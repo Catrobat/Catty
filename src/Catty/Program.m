@@ -48,32 +48,13 @@
 }
 
 # pragma mark - factories
-+ (instancetype)defaultProgramWithName:(NSString*)programName
++ (instancetype)defaultProgramWithName:(NSString*)programName programID:(NSString*)programID
 {
     programName = [Util uniqueName:programName existingNames:[[self class] allProgramNames]];
-    Program* program = [[Program alloc] init];
-    program.header = [[Header alloc] init];
-    program.header.applicationBuildName = nil;
-    program.header.applicationBuildNumber = kCatrobatApplicationBuildNumber;
-    program.header.applicationName = [Util getProjectName];
-    program.header.applicationVersion = [Util getProjectVersion];
-    program.header.catrobatLanguageVersion = kCatrobatLanguageVersion;
-    program.header.dateTimeUpload = nil;
-    program.header.programDescription = @"********** TODO: CHANGE THIS **********"; // TODO: has to be changed
-    program.header.deviceName = [Util getDeviceName];
-    program.header.mediaLicense = kCatrobatMediaLicense;
-    program.header.platform = [Util getPlatformName];
-    program.header.platformVersion = [Util getPlatformVersion];
-    program.header.programLicense = kCatrobatProgramLicense;
+    Program *program = [[Program alloc] init];
+    program.header = [Header defaultHeader];
     program.header.programName = programName;
-    program.header.remixOf = nil; // no remix
-    program.header.screenHeight = @([Util getScreenHeight]);
-    program.header.screenWidth = @([Util getScreenWidth]);
-    program.header.screenMode = kCatrobatScreenModeStretch;
-    program.header.url = nil;
-    program.header.userHandle = nil;
-    program.header.programScreenshotManuallyTaken = kCatrobatProgramScreenshotDefaultValue;
-    program.header.tags = nil;
+    program.header.programID = programID;
 
     FileManager *fileManager = [[FileManager alloc] init];
     if (! [fileManager directoryExists:programName]) {
@@ -104,6 +85,7 @@
     NSDebug(@"XML-Path: %@", xmlPath);
     Parser *parser = [[Parser alloc] init];
     Program *program = [parser generateObjectForProgramWithPath:xmlPath];
+    program.header.programID = loadingInfo.programID;
     program.XMLdocument = parser.XMLdocument;
 
     if (! program)
@@ -111,26 +93,22 @@
 
     NSLog(@"%@", [program description]);
     NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
-    [self updateLastModificationTimeForProgramWithName:loadingInfo.visibleName];
+    [self updateLastModificationTimeForProgramWithName:loadingInfo.visibleName programID:loadingInfo.programID];
     return program;
 }
 
-+ (instancetype)lastProgram
++ (instancetype)lastUsedProgram
 {
-    NSString *lastProgramName = [Util lastProgram];
-    ProgramLoadingInfo *loadingInfo = [Util programLoadingInfoForProgramWithName:lastProgramName];
-    return [Program programWithLoadingInfo:loadingInfo];
+    return [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
 }
 
-+ (void)updateLastModificationTimeForProgramWithName:(NSString*)programName
++ (void)updateLastModificationTimeForProgramWithName:(NSString*)programName programID:(NSString*)programID
 {
     NSString *xmlPath = [NSString stringWithFormat:@"%@%@",
-                         [self projectPathForProgramWithName:programName],
+                         [self projectPathForProgramWithName:programName programID:programID],
                          kProgramCodeFileName];
-
     AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    [appDelegate.fileManager changeModificationDate:[NSDate date]
-                                      forFileAtPath:xmlPath];
+    [appDelegate.fileManager changeModificationDate:[NSDate date] forFileAtPath:xmlPath];
 }
 
 - (NSInteger)numberOfTotalObjects
@@ -243,58 +221,50 @@
 
 - (NSString*)projectPath
 {
-    return [Program projectPathForProgramWithName:self.header.programName];
+    return [Program projectPathForProgramWithName:self.header.programName programID:self.header.programID];
 }
 
-+ (NSString*)projectPathForProgramWithName:(NSString*)programName
++ (NSString*)projectPathForProgramWithName:(NSString*)programName programID:(NSString*)programID
 {
-    return [NSString stringWithFormat:@"%@%@/", [Program basePath], programName];
+    return [NSString stringWithFormat:@"%@%@/", [Program basePath], [[self class] programDirectoryNameForProgramName:programName programID:programID]];
 }
 
 - (void)removeFromDisk
 {
-    [Program removeProgramFromDiskWithProgramName:self.header.programName];
+    [Program removeProgramFromDiskWithProgramName:self.header.programName programID:self.header.programID];
 }
 
-+ (void)copyProgramWithName:(NSString*)sourceProgramName
-     destinationProgramName:(NSString*)destinationProgramName
++ (void)copyProgramWithSourceProgramName:(NSString*)sourceProgramName
+                         sourceProgramID:(NSString*)sourceProgramID
+                  destinationProgramName:(NSString*)destinationProgramName
 {
-    NSString *sourceProgramPath = [[self class] projectPathForProgramWithName:sourceProgramName];
+    NSString *sourceProgramPath = [[self class] projectPathForProgramWithName:sourceProgramName programID:sourceProgramID];
     destinationProgramName = [Util uniqueName:destinationProgramName existingNames:[self allProgramNames]];
-    NSString *destinationProgramPath = [[self class] projectPathForProgramWithName:destinationProgramName];
+    NSString *destinationProgramPath = [[self class] projectPathForProgramWithName:destinationProgramName programID:sourceProgramID];
 
     AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     [appDelegate.fileManager copyExistingDirectoryAtPath:sourceProgramPath toPath:destinationProgramPath];
-    ProgramLoadingInfo *destinationProgramLoadingInfo = [[ProgramLoadingInfo alloc] init];
-    destinationProgramLoadingInfo.basePath = destinationProgramPath;
-    destinationProgramLoadingInfo.visibleName = destinationProgramName;
+    ProgramLoadingInfo *destinationProgramLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:destinationProgramName programID:nil];
     Program *program = [Program programWithLoadingInfo:destinationProgramLoadingInfo];
     program.header.programName = destinationProgramLoadingInfo.visibleName;
     [program saveToDisk];
 }
 
-+ (void)removeProgramFromDiskWithProgramName:(NSString*)programName
++ (void)removeProgramFromDiskWithProgramName:(NSString*)programName programID:(NSString*)programID
 {
     FileManager *fileManager = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).fileManager;
-    NSString *projectPath = [self projectPathForProgramWithName:programName];
+    NSString *projectPath = [self projectPathForProgramWithName:programName programID:programID];
     if ([fileManager directoryExists:projectPath]) {
         [fileManager deleteDirectory:projectPath];
     }
 
-    NSString *basePath = [Program basePath];
-    NSError *error;
-    NSArray *programLoadingInfos = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
-    NSLogError(error);
-
-    // if this is currently set as last program, then look for next program to set it as the last program
-    if ([Program isLastProgram:programName]) {
-        [Util setLastProgram:nil];
-        for (NSString *programLoadingInfo in programLoadingInfos) {
-            // exclude .DS_Store folder on MACOSX simulator
-            if ([programLoadingInfo isEqualToString:@".DS_Store"])
-                continue;
-
-            [Util setLastProgram:programLoadingInfo];
+    // if this is currently set as last used program, then look for next program to set it as
+    // the last used program
+    if ([Program isLastUsedProgram:programName programID:programID]) {
+        [Util setLastProgramWithName:nil programID:nil];
+        NSArray *allProgramLoadingInfos = [[self class] allProgramLoadingInfos];
+        for (ProgramLoadingInfo *programLoadingInfo in allProgramLoadingInfos) {
+            [Util setLastProgramWithName:programLoadingInfo.visibleName programID:programLoadingInfo.programID];
             break;
         }
     }
@@ -364,7 +334,7 @@
 {
 #if kIsRelease
     return;
-#else
+#else // kIsRelease
     dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
     dispatch_async(saveToDiskQ, ^{
         // background thread
@@ -407,7 +377,8 @@
 //#endif
 
         // update last access time
-        [[self class] updateLastModificationTimeForProgramWithName:self.header.programName];
+        [[self class] updateLastModificationTimeForProgramWithName:self.header.programName
+                                                         programID:self.header.programID];
 
         // maybe later call some functions back here, that should update the UI on main thread...
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -420,17 +391,17 @@
 //            [[NSNotificationCenter defaultCenter] postNotificationName:kHideLoadingViewNotification object:self];
 //        });
     });
-#endif
+#endif // kIsRelease
 }
 
-- (BOOL)isLastProgram
+- (BOOL)isLastUsedProgram
 {
-    return [Program isLastProgram:self.header.programName];
+    return [Program isLastUsedProgram:self.header.programName programID:self.header.programID];
 }
 
-- (void)setAsLastProgram
+- (void)setAsLastUsedProgram
 {
-    [Program setLastProgram:self];
+    [Program setLastUsedProgram:self];
 }
 
 - (void)translateDefaultProgram
@@ -440,18 +411,18 @@
     [self renameToProgramName:kLocalizedMyFirstProgram];
 }
 
-- (void)renameToProgramName:(NSString *)programName
+- (void)renameToProgramName:(NSString*)programName
 {
     if ([self.header.programName isEqualToString:programName]) {
         return;
     }
-    BOOL isLastProgram = [self isLastProgram];
+    BOOL isLastProgram = [self isLastUsedProgram];
     NSString *oldPath = [self projectPath];
     self.header.programName = [Util uniqueName:programName existingNames:[[self class] allProgramNames]];
     NSString *newPath = [self projectPath];
     [[[FileManager alloc] init] moveExistingDirectoryAtPath:oldPath toPath:newPath];
     if (isLastProgram) {
-        [Util setLastProgram:self.header.programName];
+        [Util setLastProgramWithName:self.header.programName programID:self.header.programID];
     }
     [self saveToDisk];
 }
@@ -465,7 +436,7 @@
     [self saveToDisk];
 }
 
-- (void)updateDescriptionWithText:(NSString *)descriptionText
+- (void)updateDescriptionWithText:(NSString*)descriptionText
 {
     self.header.programDescription = descriptionText;
     [self saveToDisk];
@@ -530,20 +501,54 @@
     return [ret copy];
 }
 
-+ (BOOL)programExists:(NSString*)programName
+// returns true if either same programID and/or same programName already exists
++ (BOOL)programExistsWithProgramName:(NSString*)programName programID:(NSString*)programID
 {
-    NSString *projectPath = [NSString stringWithFormat:@"%@%@/", [Program basePath], programName];
-    return [[[FileManager alloc] init] directoryExists:projectPath];
+    NSArray *allProgramLoadingInfos = [[self class] allProgramLoadingInfos];
+
+    // check if program with same ID already exists
+    if (programID && [programID length]) {
+        if ([[self class] programExistsWithProgramID:programID]) {
+            return YES;
+        }
+    }
+
+    // no programID match => check if program with same name already exists
+    for (ProgramLoadingInfo *programLoadingInfo in allProgramLoadingInfos) {
+        if ([programName isEqualToString:programLoadingInfo.visibleName]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
-+ (BOOL)isLastProgram:(NSString*)programName
+// returns true if either same programID and/or same programName already exists
++ (BOOL)programExistsWithProgramID:(NSString*)programID
 {
-    return ([programName isEqualToString:[Util lastProgram]]);
+    NSArray *allProgramLoadingInfos = [[self class] allProgramLoadingInfos];
+    for (ProgramLoadingInfo *programLoadingInfo in allProgramLoadingInfos) {
+        if ([programID isEqualToString:programLoadingInfo.programID]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
-+ (void)setLastProgram:(Program*)program
++ (BOOL)areThereAnyPrograms
 {
-    [Util setLastProgram:program.header.programName];
+    return ((BOOL)[[self allProgramNames] count]);
+}
+
++ (BOOL)isLastUsedProgram:(NSString*)programName programID:(NSString*)programID
+{
+    ProgramLoadingInfo *programLoadingInfo = [Util lastUsedProgramLoadingInfo];
+    return ([programName isEqualToString:programLoadingInfo.visibleName]
+            && [programID isEqualToString:programLoadingInfo.programID]);
+}
+
++ (void)setLastUsedProgram:(Program*)program
+{
+    [Util setLastProgramWithName:program.header.programName programID:program.header.programID];
 }
 
 + (NSString*)basePath
@@ -553,17 +558,10 @@
 
 + (NSArray*)allProgramNames
 {
-    NSString *basePath = [Program basePath];
-    NSError *error;
-    NSArray *subdirectoryNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
-    NSLogError(error);
-
-    NSMutableArray *programNames = [[NSMutableArray alloc] initWithCapacity:[subdirectoryNames count]];
-    for (NSString *subdirectoryName in subdirectoryNames) {
-        // exclude .DS_Store folder on MACOSX simulator
-        if ([subdirectoryName isEqualToString:@".DS_Store"])
-            continue;
-        [programNames addObject:subdirectoryName];
+    NSArray *allProgramLoadingInfos = [[self class] allProgramLoadingInfos];
+    NSMutableArray *programNames = [[NSMutableArray alloc] initWithCapacity:[allProgramLoadingInfos count]];
+    for (ProgramLoadingInfo *loadingInfo in allProgramLoadingInfos) {
+        [programNames addObject:loadingInfo.visibleName];
     }
     return [programNames copy];
 }
@@ -581,13 +579,45 @@
         if ([subdirectoryName isEqualToString:@".DS_Store"])
             continue;
 
-        ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
-        info.basePath = [NSString stringWithFormat:@"%@%@/", basePath, subdirectoryName];
-        info.visibleName = subdirectoryName;
+        NSArray *directoryNameParts = [subdirectoryName componentsSeparatedByString:kProgramIDSeparator];
+        if ([directoryNameParts count] != 2) {
+            continue;
+        }
+        ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgramWithName:[directoryNameParts firstObject]
+                                                                                  programID:[directoryNameParts lastObject]];
         NSDebug(@"Adding loaded program: %@", info.basePath);
         [programLoadingInfos addObject:info];
     }
     return [programLoadingInfos copy];
+}
+
++ (NSString*)programDirectoryNameForProgramName:(NSString*)programName programID:(NSString*)programID
+{
+    return [NSString stringWithFormat:@"%@%@%@", programName, kProgramIDSeparator, (programID ? programID : kNoProgramIDYetPlaceholder)];
+}
+
++ (ProgramLoadingInfo*)programLoadingInfoForProgramDirectoryName:(NSString*)programDirectoryName
+{
+    NSArray *parts = [programDirectoryName componentsSeparatedByString:kProgramIDSeparator];
+    if ((! parts) || ([parts count] != 2)) {
+        return nil;
+    }
+    return [ProgramLoadingInfo programLoadingInfoForProgramWithName:[parts firstObject]
+                                                          programID:[parts lastObject]];
+}
+
++ (NSString*)programNameForProgramID:(NSString*)programID
+{
+    if ((! programID) || (! [programID length])) {
+        return nil;
+    }
+    NSArray *allProgramLoadingInfos = [[self class] allProgramLoadingInfos];
+    for (ProgramLoadingInfo *programLoadingInfo in allProgramLoadingInfos) {
+        if ([programLoadingInfo.programID isEqualToString:programID]) {
+            return programLoadingInfo.visibleName;
+        }
+    }
+    return nil;
 }
 
 @end

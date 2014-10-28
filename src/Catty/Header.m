@@ -22,11 +22,44 @@
 
 #import "Header.h"
 #import "GDataXMLNode+PrettyFormatterExtensions.h"
+#import "Util.h"
 
 @implementation Header
 
++ (instancetype)defaultHeader
+{
+    Header *header = [[[self class] alloc] init];
+    header.applicationBuildName = [Util appBuildName];
+    header.applicationBuildNumber = [Util appBuildVersion];
+    header.applicationName = [Util appName];
+    header.applicationVersion = [Util appVersion];
+    header.catrobatLanguageVersion = [Util catrobatLanguageVersion];
+    header.dateTimeUpload = nil;
+    header.programDescription = nil;
+    header.deviceName = [Util deviceName];
+    header.mediaLicense = [Util catrobatMediaLicense];
+    header.platform = [Util platformName];
+    header.platformVersion = [Util platformVersion];
+    header.programLicense = [Util catrobatProgramLicense];
+    header.programName = nil;
+    header.remixOf = nil;
+    header.screenHeight = @([Util screenHeight]);
+    header.screenWidth = @([Util screenWidth]);
+    header.screenMode = kCatrobatScreenModeStretch;
+    header.url = nil;
+    header.userHandle = nil;
+    header.programScreenshotManuallyTaken = kCatrobatProgramScreenshotDefaultValue;
+    header.tags = nil;
+    header.programID = nil;
+    return header;
+}
+
 - (GDataXMLElement*)toXML
 {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+    [dateFormatter setDateFormat:@"yyyy-MM-ddHH:mm:ss"];
+
     GDataXMLElement *headerXMLElement = [GDataXMLNode elementWithName:@"header"];
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationBuildName"
                                          optionalStringValue:self.applicationBuildName]];
@@ -39,7 +72,7 @@
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"catrobatLanguageVersion"
                                          optionalStringValue:self.catrobatLanguageVersion]];
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"dateTimeUpload"
-                                         optionalStringValue:nil/*self.dateTimeUpload*/]]; // FIXME: which dateTimeUpload format?? catroid on Android seems to ignore this field even after (!) the upload has been finished
+                                         optionalStringValue:(self.dateTimeUpload ? [dateFormatter stringFromDate:self.dateTimeUpload] : nil)]];
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"description"
                                          optionalStringValue:self.programDescription]];
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"deviceName"

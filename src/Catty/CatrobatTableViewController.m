@@ -47,8 +47,7 @@
 #import "NetworkDefines.h"
 #import "DataTransferMessage.h"
 #import "InfoPopupViewController.h"
-#import "EAIntroView.h"
-//#import <ObjectiveGit/ObjectiveGit.h>
+#import "MYBlurIntroductionView.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
     kContinueProgramVC = 0,
@@ -59,12 +58,12 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     kUploadVC
 };
 
-@interface CatrobatTableViewController () <UITextFieldDelegate, EAIntroDelegate>
+@interface CatrobatTableViewController () <UITextFieldDelegate, MYIntroductionDelegate>
 
 @property (nonatomic, strong) NSArray *cells;
 @property (nonatomic, strong) NSArray *imageNames;
 @property (nonatomic, strong) NSArray *identifiers;
-@property (nonatomic, strong) Program *lastProgram;
+@property (nonatomic, strong) Program *lastUsedProgram;
 @property (nonatomic, strong) Program *defaultProgram;
 @property (nonatomic, strong) Reachability *reachability;
 
@@ -84,12 +83,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark - getters and setters
-- (Program*)lastProgram
+- (Program*)lastUsedProgram
 {
-    if (! _lastProgram) {
-        _lastProgram = [Program lastProgram];
+    if (! _lastUsedProgram) {
+        _lastUsedProgram = [Program lastUsedProgram];
     }
-    return _lastProgram;
+    return _lastUsedProgram;
 }
 
 #pragma mark - view events
@@ -98,7 +97,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [super viewDidLoad];
     [self initTableView];
 
-    self.lastProgram = nil;
+    self.lastUsedProgram = nil;
     self.defaultProgram = nil;
     AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     if (! [appDelegate.fileManager directoryExists:[Program basePath]]) {
@@ -114,11 +113,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = UIColor.skyBlueColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (! [defaults objectForKey:kUserIsFirstAppLaunch] || [defaults boolForKey:kUserShowIntroductionOnLaunch]) {
         self.tableView.scrollEnabled = NO;
-        [Util showIntroductionScreenInView:self.view delegate:self];
+        [Util showIntroductionScreenInView:self.navigationController.view delegate:self];
     } else {
         self.tableView.scrollEnabled = YES;
         [self initNavigationBar];
@@ -128,10 +127,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    self.lastProgram = nil;
+    self.lastUsedProgram = nil;
     self.defaultProgram = nil;
-    [self.navigationController setToolbarHidden:YES];
-    [self.navigationController setNavigationBarHidden:NO];
+    self.navigationController.toolbarHidden = YES;
+    [self.navigationController.navigationBar setHidden:NO];
      NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView beginUpdates];
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
@@ -198,7 +197,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     static NSString *segueToNewProgramIdentifier = kSegueToNewProgram;
     [self showLoadingView];
-    self.defaultProgram = [Program defaultProgramWithName:programName];
+    self.defaultProgram = [Program defaultProgramWithName:programName programID:nil];
     if ([self shouldPerformSegueWithIdentifier:segueToNewProgramIdentifier sender:self]) {
         [self hideLoadingView];
         [self performSegueWithIdentifier:segueToNewProgramIdentifier sender:self];
@@ -299,28 +298,20 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)configureSubtitleLabelForCell:(UITableViewCell*)cell
 {
-    UILabel* subtitleLabel = (UILabel*)[cell viewWithTag:kSubtitleLabelTag];
+    UILabel *subtitleLabel = (UILabel*)[cell viewWithTag:kSubtitleLabelTag];
     subtitleLabel.textColor = [UIColor brightGrayColor];
-    NSString* lastProject = [Util lastProgram];
-    subtitleLabel.text = lastProject;
+    ProgramLoadingInfo *loadingInfo = [Util lastUsedProgramLoadingInfo];
+    subtitleLabel.text = loadingInfo.visibleName;
 }
 
 - (CGFloat)getHeightForCellAtIndexPath:(NSIndexPath*)indexPath
 {
     CGFloat height;
+    CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;
     if (indexPath.row == 0) {
-        height= [TableUtil getHeightForContinueCell];
-        if ([Util getScreenHeight] == kIphone4ScreenHeight) {
-            height = height*kIphone4ScreenHeight/kIphone5ScreenHeight;
-        }
-    }
-    else {
-        height = [TableUtil getHeightForImageCell];
-        if ([Util getScreenHeight] == kIphone4ScreenHeight) {
-            height = height*kIphone4ScreenHeight/kIphone5ScreenHeight;
-        }
-    }
-    if ([Util getScreenHeight] == kIphone5ScreenHeight){
+        height= [TableUtil heightForContinueCell:navBarHeight];
+    } else {
+        height = [TableUtil heightForCatrobatTableViewImageCell:navBarHeight];
     }
     return height; // for scrolling reasons
 }
@@ -333,13 +324,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
     if ([identifier isEqualToString:kSegueToContinue]) {
         // check if program loaded successfully -> not nil
-        if (self.lastProgram) {
+        if (self.lastUsedProgram) {
             return YES;
         }
-        
+
         // program failed loading...
         // update continue cell
-        [Util setLastProgram:nil];
+        [Util setLastProgramWithName:nil programID:nil];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         [Util alertWithText:kLocalizedUnableToLoadProgram];
@@ -387,13 +378,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
 }
 
+#pragma mark - segue handling
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:kSegueToContinue]) {
         if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
             ProgramTableViewController *programTableViewController = (ProgramTableViewController*)segue.destinationViewController;
-            programTableViewController.program = self.lastProgram;
-            self.lastProgram = nil;
+            programTableViewController.program = self.lastUsedProgram;
+            self.lastUsedProgram = nil;
         }
     } else if ([segue.identifier isEqualToString:kSegueToNewProgram]) {
         if ([segue.destinationViewController isKindOfClass:[ProgramTableViewController class]]) {
@@ -404,6 +396,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
 }
 
+#pragma mark - network status
 - (void)networkStatusChanged:(NSNotification *)notification
 {
     NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
@@ -447,9 +440,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
-#pragma mark - EAIntroView delegates
-- (void)introDidFinish:(EAIntroView*)introView
-{
+
+#pragma mark - MYIntroduction Delegate
+
+-(void)introduction:(MYBlurIntroductionView *)introductionView didChangeToPanel:(MYIntroductionPanel *)panel withIndex:(NSInteger)panelIndex{
+
+}
+
+-(void)introduction:(MYBlurIntroductionView *)introductionView didFinishWithType:(MYFinishType)finishType {
+    NSLog(@"Introduction did finish");
     [self initNavigationBar];
     self.tableView.scrollEnabled = YES;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

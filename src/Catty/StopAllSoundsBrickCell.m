@@ -21,6 +21,7 @@
  */
 
 #import "StopAllSoundsBrickCell.h"
+#import "Util.h"
 
 @interface StopAllSoundsBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -30,7 +31,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory.sharedBrickShapeFactory drawSmallSquareBrickShape:UIColor.soundBrickStrokeColor fillColor:UIColor.soundBrickVioletColor];
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.soundBrickVioletColor strokeColor:UIColor.soundBrickStrokeColor height:smallBrick width:[Util screenWidth]];
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews

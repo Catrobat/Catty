@@ -23,7 +23,6 @@
 #import <UIKit/UIKit.h>
 #import "SWTableViewCell.h"
 
-#define kIphone5ScreenHeight 568.0f
 
 @interface CatrobatBaseCell : SWTableViewCell
 

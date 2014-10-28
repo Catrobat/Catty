@@ -22,7 +22,7 @@
 
 #import "FeaturedProgramsStoreViewController.h"
 #import "CatrobatInformation.h"
-#import "CatrobatProject.h"
+#import "CatrobatProgram.h"
 #import "AppDelegate.h"
 #import "Util.h"
 #import "TableUtil.h"
@@ -126,7 +126,7 @@
     }
 
     if([cell isKindOfClass:[DarkBlueGradientFeaturedCell class]]) {
-        CatrobatProject *project = [self.projects objectAtIndex:indexPath.row];
+        CatrobatProgram *project = [self.projects objectAtIndex:indexPath.row];
         
         DarkBlueGradientFeaturedCell *imageCell = (DarkBlueGradientFeaturedCell *)cell;
         [self loadImage:project.featuredImage forCell:imageCell atIndexPath:indexPath];
@@ -155,14 +155,19 @@
                                                 if(cell) {
                                                     cell.featuredImage.image = img;
                                                     cell.featuredImage.frame = cell.frame;
-                                                    cell.featuredImage.frame = CGRectMake(0, 0, cell.featuredImage.frame.size.width, cell.featuredImage.frame.size.height);
+                                                    cell.featuredImage.frame = CGRectMake(30, 0, self.view.frame.size.width, cell.featuredImage.frame.size.height);
                                                     self.featuredSize = @[[NSNumber numberWithFloat:img.size.width],[NSNumber numberWithFloat:img.size.height]];
-                                                    [self loadingIndicator:NO];
+                                                    
+                                                    CGFloat factor = img.size.width / [Util screenWidth];
+                                                    NSLog(@"%f",img.size.height/factor);                                           [self loadingIndicator:NO];
+                                                    cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.featuredImage.frame.size.height);
                                                 }
                                                 [self.tableView endUpdates];
+                                                [self.tableView reloadData];
                                             });
                                         }];
     imageCell.featuredImage.image = image;
+    self.featuredSize = @[[NSNumber numberWithFloat:image.size.width],[NSNumber numberWithFloat:image.size.height]];
     imageCell.featuredImage.contentMode = UIViewContentModeScaleAspectFit;
 }
 
@@ -216,13 +221,13 @@
         self.projects = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
         
         for (NSDictionary *projectDict in catrobatProjects) {
-            CatrobatProject *project = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+            CatrobatProgram *project = [[CatrobatProgram alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
             [self.projects addObject:project];
         }
     }
     [self update];
     
-    for (CatrobatProject* project in self.projects) {
+    for (CatrobatProgram* project in self.projects) {
         
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?id=%@", kConnectionHost, kConnectionIDQuery,project.projectID]];
         NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
@@ -268,11 +273,11 @@
         NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
         
         NSInteger counter=0;
-        CatrobatProject *loadedProject;
+        CatrobatProgram *loadedProject;
         NSDictionary *projectDict = [catrobatProjects objectAtIndex:[catrobatProjects count]-1];
-        loadedProject = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+        loadedProject = [[CatrobatProgram alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
         
-        for (CatrobatProject* project in self.projects) {
+        for (CatrobatProgram* project in self.projects) {
             if ([project.projectID isEqualToString:loadedProject.projectID ]) {
                 @synchronized(self.projects){
                     loadedProject.featuredImage = [NSString stringWithString:project.featuredImage];
@@ -315,15 +320,14 @@
 #pragma mark - Table view delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(self.featuredSize){
+    if (self.featuredSize) {
         NSNumber* width = self.featuredSize[0];
         NSNumber* height = self.featuredSize[1];
         
-        CGFloat factor = width.floatValue / [Util getScreenWidth];
+        CGFloat factor = width.floatValue / [Util screenWidth];
         return height.floatValue/factor;
     }
-    
-    return [TableUtil getHeightForFeaturedCell];
+    return [TableUtil heightForFeaturedCell];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -386,7 +390,7 @@
 {
     if ([[segue identifier] isEqualToString:kSegueToProgramDetail]) {
         NSIndexPath *selectedRowIndexPath = self.tableView.indexPathForSelectedRow;
-        CatrobatProject *catrobatProject = [self.projects objectAtIndex:selectedRowIndexPath.row];
+        CatrobatProgram *catrobatProject = [self.projects objectAtIndex:selectedRowIndexPath.row];
         ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
         programDetailViewController.project = catrobatProject;
         
@@ -396,10 +400,6 @@
 #pragma mark - update
 - (void)update {
     [self.tableView reloadData];
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < 80000
-    // iOS7 specific stuff
-    [self.searchDisplayController setActive:NO animated:YES];
-#endif
 }
 
 #pragma mark - BackButtonDelegate

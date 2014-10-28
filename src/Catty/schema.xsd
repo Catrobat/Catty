@@ -1,0 +1,995 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- catrobatlanguage version 0.9 -->
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xs:element name="program" type="program"/>
+
+  <xs:complexType name="program">
+    <xs:sequence>
+      <xs:element name="header" type="header"/>
+      <xs:element name="objectList" type="objectList" nillable="true"/>
+      <xs:element name="variables" type="variables" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="header">
+    <xs:sequence>
+      <xs:element name="applicationBuildName" type="xs:string"/>
+      <xs:element name="applicationBuildNumber" type="xs:int"/>
+      <xs:element name="applicationName" type="xs:string"/>
+      <xs:element name="applicationVersion" type="xs:string"/>
+      <xs:element name="catrobatLanguageVersion" type="xs:float"/>
+      <xs:element name="dateTimeUpload" type="xs:string"/>
+      <xs:element name="description" type="xs:string"/>
+      <xs:element name="deviceName" type="xs:string"/>
+      <xs:element name="mediaLicense" type="xs:string"/>
+      <xs:element name="platform" type="xs:string"/>
+      <xs:element name="platformVersion" type="xs:string"/>
+      <xs:element name="programLicense" type="xs:string"/>
+      <xs:element name="programName" type="xs:string"/>
+      <xs:element name="remixOf" type="xs:string"/>
+      <xs:element name="screenHeight" type="xs:int"/>
+      <xs:element name="screenMode" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="screenWidth" type="xs:int"/>
+      <xs:element name="tags" type="xs:string"/>
+      <xs:element name="url" type="xs:string"/>
+      <xs:element name="userHandle" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="objectList">
+    <xs:sequence>
+      <xs:element name="object" type="object" maxOccurs="unbounded" minOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="object">
+    <xs:complexContent>
+      <xs:extension base="objectRef">
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element name="lookList" type="lookList" nillable="true" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="scriptList" type="scriptList" nillable="true" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="soundList" type="soundList" nillable="true" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:choice>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="objectRef">
+    <xs:attribute name="reference" type="xs:string" default=""/>
+  </xs:complexType>
+
+  <xs:complexType name="lookList">
+    <xs:sequence>
+      <xs:element name="look" type="look" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="look">
+    <xs:complexContent>
+      <xs:extension base="lookRef">
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element name="fileName" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+          </xs:sequence>
+        </xs:choice>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="lookRef">
+    <xs:attribute name="reference" type="xs:string" default=""/>
+  </xs:complexType>
+
+  <xs:complexType name="soundList">
+    <xs:sequence>
+      <xs:element name="sound" type="sound" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="sound">
+    <xs:complexContent>
+      <xs:extension base="soundRef">
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element name="fileName" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+          </xs:sequence>      
+        </xs:choice>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="soundRef">
+    <xs:attribute name="reference" type="xs:string" default=""/>
+  </xs:complexType>
+
+  <xs:complexType name="scriptList">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="startScript" type="startScript"/>
+      <xs:element name="whenScript" type="whenScript"/>
+      <xs:element name="broadcastScript" type="broadcastScript"/>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:group name="script">
+    <xs:sequence>
+      <xs:element name="brickList" type="brickList" minOccurs="0" maxOccurs="1"/>
+	    <xs:element name="object" type="objectRef"/>
+    </xs:sequence>
+  </xs:group>
+
+  <xs:complexType name="brickList">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element name="broadcastBrick" type="broadcastBrick"/>
+      <xs:element name="broadcastReceiverBrick" type="broadcastReceiverBrick"/>
+      <xs:element name="broadcastWaitBrick" type="broadcastWaitBrick"/>
+      <xs:element name="changeBrightnessByNBrick" type="changeBrightnessByNBrick"/>
+      <xs:element name="changeGhostEffectByNBrick" type="changeGhostEffectByNBrick"/>
+      <xs:element name="changeSizeByNBrick" type="changeSizeByNBrick"/>
+      <xs:element name="changeVariableBrick" type="changeVariableBrick"/>
+      <xs:element name="changeVolumeByNBrick" type="changeVolumeByNBrick"/>
+      <xs:element name="changeXByNBrick" type="changeXByNBrick"/>
+      <xs:element name="changeYByNBrick" type="changeYByNBrick"/>
+      <xs:element name="clearGraphicEffectBrick" type="clearGraphicEffectBrick"/>
+      <xs:element name="comeToFrontBrick" type="comeToFrontBrick"/>
+      <xs:element name="foreverBrick" type="foreverBrick"/>
+      <xs:element name="glideToBrick" type="glideToBrick"/>
+      <xs:element name="goNStepsBackBrick" type="goNStepsBackBrick"/>
+      <xs:element name="hideBrick" type="hideBrick"/>
+      <xs:element name="ifLogicBeginBrick" type="ifLogicBeginBrick"/>
+      <xs:element name="ifLogicElseBrick" type="ifLogicElseBrick"/>
+      <xs:element name="ifLogicEndBrick" type="ifLogicEndBrick"/>
+      <xs:element name="ifOnEdgeBounceBrick" type="ifOnEdgeBounceBrick"/>
+      <xs:element name="legoNxtMotorActionBrick" type="legoNxtMotorActionBrick"/>
+      <xs:element name="legoNxtMotorStopBrick" type="legoNxtMotorStopBrick"/>
+      <xs:element name="legoNxtMotorTurnAngleBrick" type="legoNxtMotorTurnAngleBrick"/>
+      <xs:element name="legoNxtPlayToneBrick" type="legoNxtPlayToneBrick"/>
+      <xs:element name="loopBeginBrick" type="loopBeginBrick"/>
+      <xs:element name="loopEndBrick" type="loopEndBrickRef"/>
+      <xs:element name="loopEndlessBrick" type="loopEndlessBrickRef"/>
+      <xs:element name="moveNStepsBrick" type="moveNStepsBrick"/>
+      <xs:element name="nextLookBrick" type="nextLookBrick"/>
+      <xs:element name="noteBrick" type="noteBrick"/>
+      <xs:element name="placeAtBrick" type="placeAtBrick"/>
+      <xs:element name="playSoundBrick" type="playSoundBrick"/>
+      <xs:element name="pointInDirectionBrick" type="pointInDirectionBrick"/>
+      <xs:element name="pointToBrick" type="pointToBrick"/>
+      <xs:element name="repeatBrick" type="repeatBrick"/>
+      <xs:element name="setBrightnessBrick" type="setBrightnessBrick"/>
+      <xs:element name="setLookBrick" type="setLookBrick"/>
+      <xs:element name="setGhostEffectBrick" type="setGhostEffectBrick"/>
+      <xs:element name="setSizeToBrick" type="setSizeToBrick"/>
+      <xs:element name="setVariableBrick" type="setVariableBrick"/>
+      <xs:element name="setVolumeToBrick" type="setVolumeToBrick"/>
+      <xs:element name="setXBrick" type="setXBrick"/>
+      <xs:element name="setYBrick" type="setYBrick"/>
+      <xs:element name="showBrick" type="showBrick"/>
+      <xs:element name="speakBrick" type="speakBrick"/>
+      <xs:element name="stopAllSoundsBrick" type="stopAllSoundsBrick"/>
+      <xs:element name="turnLeftBrick" type="turnLeftBrick"/>
+      <xs:element name="turnRightBrick" type="turnRightBrick"/>
+      <xs:element name="waitBrick" type="waitBrick"/>
+      <xs:element name="whenBrick" type="whenBrick"/>
+      <xs:element name="whenStartedBrick" type="whenStartedBrick"/>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="startScript">
+    <xs:sequence>
+      <xs:group ref="script"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="startScriptRef">
+    <xs:attribute name="reference" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="whenScript">
+    <xs:sequence>
+      <xs:group ref="script"/>
+      <xs:element name="action" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="whenScriptRef">
+    <xs:attribute name="reference" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="broadcastScript">
+    <xs:sequence>
+      <xs:group ref="script"/>
+      <xs:element name="receivedMessage" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="broadcastScriptRef">
+    <xs:attribute name="reference" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="brick" abstract="true">
+    <xs:sequence>
+      <xs:element name="object" type="object" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="broadcastBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="broadcastMessage" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="broadcastReceiverBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="broadcastScript" type="broadcastScriptRef" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="broadcastWaitBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="broadcastMessage" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="changeBrightnessByNBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="changeBrightness" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="changeGhostEffectByNBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="changeGhostEffect" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="changeSizeByNBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="size" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="changeVariableBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="userVariable" type="userVariable"/>
+          <xs:element name="variableFormula" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="changeVolumeByNBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="volume" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="changeXByNBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="xMovement" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="changeYByNBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="yMovement" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="clearGraphicEffectBrick">
+    <xs:complexContent>
+      <xs:extension base="brick"> </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="comeToFrontBrick">
+    <xs:complexContent>
+      <xs:extension base="brick"> </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="foreverBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="loopEndBrick" type="loopEndlessBrick" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="glideToBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="durationInSeconds" type="formula"/>
+          <xs:element name="xDestination" type="formula"/>
+          <xs:element name="yDestination" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="goNStepsBackBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="steps" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="hideBrick">
+    <xs:complexContent>
+      <xs:extension base="brick"> </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ifLogicBeginBrickRef">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:attribute name="reference" type="xs:string"/>    
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ifLogicBeginBrick">
+    <xs:complexContent>
+      <xs:extension base="ifLogicBeginBrickRef">
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element name="ifCondition" type="formula" minOccurs="0"/>
+            <xs:element name="ifElseBrick" type="ifLogicElseBrick" minOccurs="0"/>
+            <xs:element name="ifEndBrick" type="ifLogicEndBrick" minOccurs="0"/>
+          </xs:sequence>  
+        </xs:choice>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ifLogicElseBrickRef">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:attribute name="reference" type="xs:string"/>    
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ifLogicElseBrick">
+    <xs:complexContent>
+      <xs:extension base="ifLogicElseBrickRef">
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element name="ifBeginBrick" type="ifLogicBeginBrick" minOccurs="0"/>
+            <xs:element name="ifEndBrick" type="ifLogicEndBrick" minOccurs="0"/>
+          </xs:sequence>  
+        </xs:choice>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ifLogicEndBrick">
+    <xs:complexContent>
+      <xs:extension base="ifLogicEndBrickRef">
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element name="ifBeginBrick" type="ifLogicBeginBrick" minOccurs="0"/>
+            <xs:element name="ifElseBrick" type="ifLogicElseBrick" minOccurs="0"/>
+          </xs:sequence>  
+        </xs:choice>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+
+  <xs:complexType name="ifLogicEndBrickRef">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:attribute name="reference" type="xs:string"/>    
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ifOnEdgeBounceBrick">
+    <xs:complexContent>
+      <xs:extension base="brick"> </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="loopBeginBrick" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="loopEndBrick" type="loopEndBrick" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="loopBeginBrickRef">
+    <xs:attribute name="class" type="xs:string"/>
+    <xs:attribute name="reference" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="loopEndBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="loopBeginBrick" type="loopBeginBrickRef" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="loopEndlessBrick">
+    <xs:complexContent>
+      <xs:extension base="loopEndBrick">
+        <xs:attribute name="class" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+
+  <xs:complexType name="loopEndBrickRef">
+    <xs:attribute name="reference" type="xs:string"/>
+  </xs:complexType>
+  
+  <xs:complexType name="loopEndlessBrickRef">
+    <xs:attribute name="reference" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="moveNStepsBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="steps" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="nextLookBrick">
+    <xs:complexContent>
+      <xs:extension base="brick"> </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="noteBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="note" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="legoNxtMotorActionBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="motor" type="xs:string"/>
+          <xs:element name="speed" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="legoNxtMotorStopBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="motor" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="legoNxtMotorTurnAngleBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="degrees" type="formula"/>
+          <xs:element name="motor" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="legoNxtPlayToneBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="durationInSeconds" type="formula"/>
+          <xs:element name="frequency" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="placeAtBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="xPosition" type="formula"/>
+          <xs:element name="yPosition" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="playSoundBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="sound" type="sound" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="pointInDirectionBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="degrees" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="pointToBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:choice>
+          <xs:element name="pointedObject" type="object" minOccurs="0"/>
+        </xs:choice>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="repeatBrick">
+    <xs:complexContent>
+      <xs:extension base="loopBeginBrick">
+        <xs:sequence>
+          <xs:element name="timesToRepeat" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="setBrightnessBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="brightness" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="setLookBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="look" type="look" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="setGhostEffectBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="transparency" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="setSizeToBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="size" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="setVariableBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="userVariable" type="userVariable"/>
+          <xs:element name="variableFormula" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="setVolumeToBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="volume" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="setXBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="xPosition" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="setYBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="yPosition" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="showBrick">
+    <xs:complexContent>
+      <xs:extension base="brick"> </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="speakBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="text" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="stopAllSoundsBrick">
+    <xs:complexContent>
+      <xs:extension base="brick"> </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="turnLeftBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="degrees" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="turnRightBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="degrees" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="waitBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="timeToWaitInSeconds" type="formula"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="whenBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="whenScript" type="whenScriptRef"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="whenStartedBrick">
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:sequence>
+          <xs:element name="startScript" type="startScriptRef"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="variables">
+    <xs:sequence>
+      <xs:element name="objectVariableList" type="objectVariableList" minOccurs="0"/>
+      <xs:element name="programVariableList" type="programVariableList" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="objectVariableList">
+    <xs:sequence>
+      <xs:element name="entry" type="entry" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="entry">
+    <xs:sequence>
+      <xs:element name="object" type="object" minOccurs="0"/>
+      <xs:element name="list" type="listOfVariables" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="listOfVariables">
+    <xs:sequence maxOccurs="unbounded">
+      <xs:element name="userVariable" type="userVariable" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="userVariable">
+    <xs:complexContent>
+      <xs:extension base="userVariableRef">
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+          </xs:sequence>      
+        </xs:choice>    
+      </xs:extension>
+    </xs:complexContent>
+    
+  </xs:complexType>
+
+  <xs:complexType name="userVariableRef">
+    <xs:attribute name="reference" type="xs:string" default=""/>
+  </xs:complexType>
+
+  <xs:complexType name="programVariableList">
+    <xs:sequence maxOccurs="unbounded">
+      <xs:element name="userVariable" type="userVariable" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="formula">
+    <xs:sequence>
+      <xs:element name="formulaTree" type="formulaElement" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="formulaElement">
+    <xs:sequence>
+      <xs:element name="leftChild" type="formulaElement" minOccurs="0"/>
+      <xs:element name="rightChild" type="formulaElement" minOccurs="0"/>
+      <xs:element name="type" type="elementType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:simpleType name="elementType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OPERATOR" />
+      <xs:enumeration value="FUNCTION" />
+      <xs:enumeration value="NUMBER" />
+      <xs:enumeration value="SENSOR" />
+      <xs:enumeration value="USER_VARIABLE" />
+      <xs:enumeration value="BRACKET" />      
+    </xs:restriction>
+  </xs:simpleType>
+  
+<!--
+ <xs:group name="formulaElement">
+    <xs:choice>
+      <xs:group ref="operator" minOccurs="1" maxOccurs="1"></xs:group>
+      <xs:group ref="function" minOccurs="1" maxOccurs="1"></xs:group>
+      <xs:group ref="number" minOccurs="1" maxOccurs="1"></xs:group>
+      <xs:group ref="sensor" minOccurs="1" maxOccurs="1"></xs:group>
+      <xs:group ref="userVariable" minOccurs="1" maxOccurs="1"></xs:group>
+      <xs:group ref="bracket" minOccurs="1" maxOccurs="1"></xs:group>
+    </xs:choice>
+  </xs:group>
+ -->
+  
+<!-- 
+ <xs:group name="operator">
+    <xs:sequence>
+      <xs:element name="type" type="operatorType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="value" type="operatorValue" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:group>
+  
+  <xs:simpleType name="operatorType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OPERATOR" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="operatorValue">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="LOGICAL_AND" />
+      <xs:enumeration value="LOGICAL_OR" />
+      <xs:enumeration value="EQUAL" />
+      <xs:enumeration value="NOT_EQUAL" />
+      <xs:enumeration value="SMALLER_OR_EQUAL" />
+      <xs:enumeration value="GREATER_OR_EQUAL" />
+      <xs:enumeration value="SMALLER_THAN" />
+      <xs:enumeration value="GREATER_THAN" />
+      <xs:enumeration value="PLUS" />
+      <xs:enumeration value="MINUS" />
+      <xs:enumeration value="MULT" />
+      <xs:enumeration value="DIVIDE" />
+      <xs:enumeration value="MOD" />
+      <xs:enumeration value="POW" />
+      <xs:enumeration value="LOGICAL_NOT" />      
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:group name="function">
+    <xs:sequence>
+      <xs:element name="type" type="functionType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="value" type="functionValue" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:group>
+  
+  <xs:simpleType name="functionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="FUNCTION" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="functionValue">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SIN" />
+      <xs:enumeration value="COS" />
+      <xs:enumeration value="TAN" />
+      <xs:enumeration value="LN" />
+      <xs:enumeration value="LOG" />
+      <xs:enumeration value="SQRT" />
+      <xs:enumeration value="RAND" />
+      <xs:enumeration value="ROUND" />
+      <xs:enumeration value="ABS" />
+      <xs:enumeration value="PI" />
+      <xs:enumeration value="MOD" />
+      <xs:enumeration value="ARCSIN" />
+      <xs:enumeration value="ARCCOS" />
+      <xs:enumeration value="ARCTAN" />
+      <xs:enumeration value="EXP" />
+      <xs:enumeration value="MAX" />     
+      <xs:enumeration value="MIN" />     
+      <xs:enumeration value="TRUE" />     
+      <xs:enumeration value="FALSE" />     
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:group name="number">
+    <xs:sequence>
+      <xs:element name="type" type="numberType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="value" type="numberValue" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:group>
+  
+  <xs:simpleType name="numberType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NUMBER" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="numberValue">
+    <xs:restriction base="xs:integer">  
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:group name="sensor">
+    <xs:sequence>
+      <xs:element name="type" type="sensorType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="value" type="sensorValue" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:group>
+  
+  <xs:simpleType name="sensorType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SENSOR" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="sensorValue">
+    <xs:restriction base="xs:string">  
+      <xs:enumeration value="X_ACCELERATION" />
+      <xs:enumeration value="Y_ACCELERATION" />
+      <xs:enumeration value="Z_ACCELERATION" />
+      <xs:enumeration value="COMPASS_DIRECTION" />
+      <xs:enumeration value="X_INCLINATION" />
+      <xs:enumeration value="Y_INCLINATION" />
+      <xs:enumeration value="OBJECT_X" />
+      <xs:enumeration value="OBJECT_Y" />
+      <xs:enumeration value="OBJECT_GHOSTEFFECT" />
+      <xs:enumeration value="OBJECT_BRIGHTNESS" />
+      <xs:enumeration value="OBJECT_SIZE" />
+      <xs:enumeration value="OBJECT_ROTATION" />
+      <xs:enumeration value="OBJECT_LAYER" />   
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:group name="userVariable">
+    <xs:sequence>
+      <xs:element name="type" type="userVariableType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="value" type="userVariableValue" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:group>
+  
+  <xs:simpleType name="userVariableType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="USER_VARIABLE" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="userVariableValue">
+    <xs:restriction base="xs:string">  
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:group name="bracket">
+    <xs:sequence>
+      <xs:element name="type" type="bracketType" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:group>
+  
+  <xs:simpleType name="bracketType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="BRACKET" />
+    </xs:restriction>
+  </xs:simpleType>
+ -->
+
+</xs:schema>

@@ -35,13 +35,13 @@
 
 #define TIMEOUT 30.0f
 
-@protocol EAIntroDelegate;
+@protocol MYIntroductionDelegate;
 @class SceneViewController;
-@class ProgramLoadingInfo;
 @class CatrobatAlertView;
 @protocol CatrobatAlertViewDelegate;
 @class CatrobatActionSheet;
 @protocol CatrobatActionSheetDelegate;
+@class ProgramLoadingInfo;
 
 @interface Util : NSObject
 
@@ -53,7 +53,7 @@
 
 + (void)showComingSoonAlertView;
 
-+ (void)showIntroductionScreenInView:(UIView*)view delegate:(id<EAIntroDelegate>)delegate;
++ (void)showIntroductionScreenInView:(UIView*)view delegate:(id<MYIntroductionDelegate>)delegate;
 
 + (CatrobatAlertView*)alertWithText:(NSString*)text;
 
@@ -94,27 +94,35 @@
 
 + (UIButton*)slideViewButtonDelete;
 
-+ (NSString*)getProjectName;
++ (NSString*)appName;
 
-+ (NSString*)getProjectVersion;
++ (NSString*)appVersion;
 
-+ (NSString*)getDeviceName;
++ (NSString*)appBuildName;
 
-+ (NSString*)getPlatformName;
++ (NSString*)appBuildVersion;
 
-+ (NSString*)getPlatformVersion;
++ (NSString*)catrobatLanguageVersion;
 
-+ (CGFloat)getScreenHeight;
++ (NSString*)catrobatMediaLicense;
 
-+ (CGFloat)getScreenWidth;
++ (NSString*)catrobatProgramLicense;
+
++ (NSString*)deviceName;
+
++ (NSString*)platformName;
+
++ (NSString*)platformVersion;
+
++ (CGFloat)screenHeight;
+
++ (CGFloat)screenWidth;
 
 + (CATransition*)getPushCATransition;
 
-+ (ProgramLoadingInfo*)programLoadingInfoForProgramWithName:(NSString*)program;
++ (ProgramLoadingInfo*)lastUsedProgramLoadingInfo;
 
-+ (NSString*)lastProgram;
-
-+ (void)setLastProgram:(NSString*)visibleName;
++ (void)setLastProgramWithName:(NSString*)programName programID:(NSString*)programID;
 
 + (void)askUserForUniqueNameAndPerformAction:(SEL)action
                                       target:(id)target

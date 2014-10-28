@@ -97,7 +97,7 @@
 #if kIsRelease // kIsRelease
     self.navigationItem.rightBarButtonItem.enabled = NO;
 #endif // kIsRelease
-    self.placeHolderView = [[PlaceHolderView alloc]initWithTitle:kLocalizedScripts];
+    self.placeHolderView = [[PlaceHolderView alloc] initWithTitle:kLocalizedScripts];
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     self.brickScaleTransition = [BrickScaleTransition new];
     self.selectedIndexPaths = [NSMutableDictionary dictionary];
@@ -177,13 +177,13 @@
         _blurView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
         _blurView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         _blurView.userInteractionEnabled = NO;
-        _blurView.tintColor = UIColor.clearColor;
+        _blurView.tintColor = [UIColor darkBlueColor];
         _blurView.underlyingView = self.collectionView;
         _blurView.blurEnabled = YES;
-        _blurView.blurRadius = 30.f;
+        _blurView.blurRadius = 50.f;
         _blurView.dynamic = YES;
         _blurView.updateInterval = 0.1f;
-        _blurView.alpha = 0.f;
+        _blurView.alpha = 0.5f;
         _blurView.hidden = YES;
         [self.view addSubview:self.blurView];
     }
@@ -221,7 +221,7 @@
 - (void)playSceneAction:(id)sender
 {
     [self.navigationController setToolbarHidden:YES animated:YES];
-    ScenePresenterViewController *vc =[[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]]];
+    ScenePresenterViewController *vc = [[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -388,7 +388,7 @@
                    layout:(UICollectionViewLayout *)collectionViewLayout
 minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 0.0f;
+    return kBrickOverlapHeight;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -567,7 +567,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 #if kIsRelease // kIsRelease
             add.enabled = NO;
 #else // kIsRelease
-            add.enabled = !self.editing;
+            add.enabled = (! self.editing);
 #endif // kIsRelease
             UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                                   target:self

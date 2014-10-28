@@ -21,7 +21,7 @@
  */
 
 #import "SearchStoreViewController.h"
-#import "CatrobatProject.h"
+#import "CatrobatProgram.h"
 #import "CatrobatInformation.h"
 #import "NetworkDefines.h"
 #import "TableUtil.h"
@@ -40,6 +40,7 @@
 @property (nonatomic, strong) NSMutableData *data;
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) UILabel *noSearchResultsLabel;
+@property (nonatomic, strong) UISearchController* searchController;
 
 @end
 
@@ -59,26 +60,21 @@
     [self initSearchView];
     [self initTableView];
     [self initNoSearchResultsLabel];
+    
+    self.searchController = [[UISearchController alloc] init];
+    self.searchController.searchBar.backgroundColor = [UIColor darkBlueColor];
+    [self.searchController setActive:YES ];
+    [self.searchController.searchBar becomeFirstResponder];
+    self.searchController.searchBar.delegate = self;
+    self.searchController.searchBar.barTintColor = UIColor.navBarColor;
+    self.searchController.searchBar.barStyle = UISearchBarStyleMinimal;
 
-    // TODO: UISearchDisplayController is deprecated!
-    //       Should be replaced with UISearchController when iOS7 support is not needed any more!
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
-    self.searchDisplayController.searchBar.backgroundColor = [UIColor darkBlueColor];
-    [self.searchDisplayController setActive:YES animated:YES];
-    [self.searchDisplayController.searchBar becomeFirstResponder];
-    self.searchDisplayController.searchBar.delegate = self;
-    self.searchDisplayController.searchBar.barTintColor = UIColor.navBarColor;
-    self.searchDisplayController.searchBar.barStyle = UISearchBarStyleMinimal;
-#pragma clang diagnostic pop
     self.tableView.backgroundColor = [UIColor darkBlueColor];
     self.checkSearch = YES;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = UIColor.skyBlueColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    [self.searchBar becomeFirstResponder];
     self.view.backgroundColor = [UIColor darkBlueColor];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor lightOrangeColor]];
     self.edgesForExtendedLayout = UIRectEdgeAll;
@@ -178,7 +174,7 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CatrobatProject *catrobatProject = [self.searchResults objectAtIndex:indexPath.row];
+    CatrobatProgram *catrobatProject = [self.searchResults objectAtIndex:indexPath.row];
     static NSString *segueToProgramDetail = kSegueToProgramDetail;
     if (! self.editing) {
         if ([self shouldPerformSegueWithIdentifier:segueToProgramDetail sender:catrobatProject]) {
@@ -187,16 +183,16 @@
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    if([tableView isEqual:self.tableView]) {
-        return [TableUtil getHeightForImageCell];
+    if ([tableView isEqual:self.tableView]) {
+        return [TableUtil heightForImageCell];
     }
     return self.tableView.rowHeight;
 }
 
 #pragma mark - NSURLConnection Delegates
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
 {
     if (self.connection == connection) {
         [self.data appendData:data];
@@ -228,7 +224,7 @@
             self.searchResults = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
             
             for (NSDictionary *projectDict in catrobatProjects) {
-                CatrobatProject *project = [[CatrobatProject alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+                CatrobatProgram *project = [[CatrobatProgram alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
                 [self.searchResults addObject:project];
             }
         }
@@ -306,13 +302,7 @@
 -(void)initSearchView
 {
     self.searchResults = [[NSMutableArray alloc] init];
-
-    // TODO: UISearchDisplayController is deprecated!
-    //       Should be replaced with UISearchController when iOS7 support is not needed any more!
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    for (UIView *subView in self.searchDisplayController.searchBar.subviews) {
-#pragma clang diagnostic pop
+    for (UIView *subView in self.searchBar.subviews) {
         if([subView isKindOfClass: [UITextField class]]) {
             [(UITextField *)subView setKeyboardAppearance: UIKeyboardAppearanceAlert];
         }
@@ -322,15 +312,10 @@
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // UISearchDisplayController is deprecated!
-    // Should be replaced with UISearchController when iOS7 support is not needed any more!
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    [self.searchDisplayController setActive:NO animated:YES];
-#pragma clang diagnostic pop
+    [self.searchController setActive:NO];
     [self update];
     if ([[segue identifier] isEqualToString:kSegueToProgramDetail]) {
-        if ([sender isKindOfClass:[CatrobatProject class]]) {
+        if ([sender isKindOfClass:[CatrobatProgram class]]) {
             ProgramDetailStoreViewController* programDetailViewController = (ProgramDetailStoreViewController*)[segue destinationViewController];
             programDetailViewController.project = sender;
             programDetailViewController.searchStoreController = self;
@@ -378,7 +363,7 @@
     }
 
     if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-        CatrobatProject *project = [self.searchResults objectAtIndex:indexPath.row];
+        CatrobatProgram *project = [self.searchResults objectAtIndex:indexPath.row];
         
         UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
         imageCell.titleLabel.text = project.projectName;

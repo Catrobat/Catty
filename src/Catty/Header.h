@@ -52,6 +52,11 @@
 @property (nonatomic, strong) NSString *programScreenshotManuallyTaken;
 @property (nonatomic, strong) NSString *tags;
 
+// do not persist following properties
+@property (nonatomic, strong) NSString *programID;
+
++ (instancetype)defaultHeader;
+
 - (GDataXMLElement*)toXML;
 
 @end

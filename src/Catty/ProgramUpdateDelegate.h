@@ -28,8 +28,10 @@
 
 @required
 
-- (void)removeProgram:(NSString*)programName;
+- (void)removeProgramWithName:(NSString*)programName programID:(NSString*)programID;
 
-- (void)renameOldProgramName:(NSString*)oldProgramName toNewProgramName:(NSString*)newProgramName;
+- (void)renameOldProgramWithName:(NSString*)oldProgramName
+                       programID:(NSString*)programID
+                toNewProgramName:(NSString*)newProgramName;
 
 @end

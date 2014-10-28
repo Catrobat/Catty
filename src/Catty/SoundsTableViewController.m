@@ -44,6 +44,7 @@
 #import "SharkfoodMuteSwitchDetector.h"
 #import "CatrobatActionSheet.h"
 #import "DataTransferMessage.h"
+#import "ProgramLoadingInfo.h"
 
 @interface SoundsTableViewController () <CatrobatActionSheetDelegate, AVAudioPlayerDelegate,
                                          SWTableViewCellDelegate>
@@ -410,7 +411,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    return [TableUtil getHeightForImageCell];
+    return [TableUtil heightForImageCell];
 }
 
 #pragma mark - swipe delegates
@@ -420,7 +421,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (index == 0) {
         // More button was pressed
         NSArray *options = @[kLocalizedCopy, kLocalizedRename];
-
 #if kIsRelease // kIsRelease
         CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedThisFeatureIsComingSoon
                                                              delegate:self
@@ -607,7 +607,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self stopAllSounds];
     [self.navigationController setToolbarHidden:YES animated:YES];
-    ScenePresenterViewController *vc =[[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]]];
+    ScenePresenterViewController *vc = [[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

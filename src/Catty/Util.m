@@ -32,7 +32,7 @@
 #import "ActionSheetAlertViewTags.h"
 #import "DataTransferMessage.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
-#import "EAIntroView.h"
+#import "MYBlurIntroductionView.h"
 
 @interface Util () <CatrobatAlertViewDelegate, UITextFieldDelegate>
 
@@ -70,32 +70,32 @@
     }
 }
 
-+ (void)showIntroductionScreenInView:(UIView *)view delegate:(id<EAIntroDelegate>)delegate
++ (void)showIntroductionScreenInView:(UIView *)view delegate:(id<MYIntroductionDelegate>)delegate
 {
-    UIImage *bgImage = [UIImage imageWithColor:[UIColor darkBlueColor]];
-    EAIntroPage *page1 = [EAIntroPage page];
-    page1.title = kLocalizedWelcomeToPocketCode;
-    page1.desc = kLocalizedWelcomeDescription;
-    page1.bgImage = bgImage;
-    page1.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page1_logo"]];
+    MYIntroductionPanel *panel1 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height) title:kLocalizedWelcomeToPocketCode description:kLocalizedWelcomeDescription image:[UIImage imageNamed:@"page1_logo"]];
+    
+    //Create Stock Panel With Image
+    MYIntroductionPanel *panel2 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height) title:kLocalizedExploreApps description:kLocalizedExploreDescription image:[UIImage imageNamed:@"page2_explore"]];
+    
+       MYIntroductionPanel *panel3 = [[MYIntroductionPanel alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height) title:kLocalizedUpcomingVersion description:kLocalizedUpcomingVersionDescription image:[UIImage imageNamed:@"page3_info"]];
 
-    EAIntroPage *page2 = [EAIntroPage page];
-    page2.title = kLocalizedExploreApps;
-    page2.desc = kLocalizedExploreDescription;
-    page2.bgImage = bgImage;
-    page2.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page2_explore"]];
-
-    EAIntroPage *page3 = [EAIntroPage page];
-    page3.title = kLocalizedUpcomingVersion;
-    page3.desc = kLocalizedUpcomingVersionDescription;
-    page3.bgImage = bgImage;
-    page3.titleIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"page3_info"]];
-
-    CGRect frame = view.frame;
-    frame.size.height -= 64.0f;
-    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:frame andPages:@[page1, page2, page3]];
-    intro.delegate = delegate;
-    [intro showInView:view animateDuration:0.3f];
+    
+    //Add panels to an array
+    NSArray *panels = @[panel1, panel2, panel3];
+    
+    //Create the introduction view and set its delegate
+    MYBlurIntroductionView *introductionView = [[MYBlurIntroductionView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
+    introductionView.delegate = delegate;
+    [introductionView setEnabled:YES];
+    introductionView.BackgroundImageView.image = [UIImage imageWithColor:[UIColor darkBlueColor]];
+    [introductionView setBackgroundColor:[UIColor darkBlueColor]];
+    //introductionView.LanguageDirection = MYLanguageDirectionRightToLeft;
+    
+    //Build the introduction with desired panels
+    [introductionView buildIntroductionWithPanels:panels];
+    
+    //Add the introduction to your view
+    [view addSubview:introductionView];
 }
 
 + (CatrobatAlertView*)alertWithText:(NSString*)text
@@ -236,40 +236,63 @@
                           backgroundColor:[UIColor colorWithRed:1.0f green:0.231f blue:0.188f alpha:1.0f]];
 }
 
-+ (NSString*)getProjectName
++ (NSString*)appName
 {
-  NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
-  return [NSString stringWithFormat:@"%@", [info objectForKey:@"CFBundleDisplayName"]];
+  return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
 }
 
-+ (NSString*)getProjectVersion
++ (NSString*)appVersion
 {
-  NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
-  return [NSString stringWithFormat:@"%@", [info objectForKey:@"CFBundleVersion"]];
+  return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 }
 
-+ (NSString*)getDeviceName
++ (NSString*)appBuildName
+{
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CatrobatBuildName"];
+}
+
++ (NSString*)appBuildVersion
+{
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+}
+
++ (NSString*)catrobatLanguageVersion
+{
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CatrobatLanguageVersion"];
+}
+
++ (NSString*)catrobatMediaLicense
+{
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CatrobatMediaLicense"];
+}
+
++ (NSString*)catrobatProgramLicense
+{
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CatrobatProgramLicense"];
+}
+
++ (NSString*)deviceName
 {
   return [[UIDevice currentDevice] model];
 }
 
-+ (NSString*)getPlatformName
++ (NSString*)platformName
 {
   return [[UIDevice currentDevice] systemName];
 }
 
-+ (NSString*)getPlatformVersion
++ (NSString*)platformVersion
 {
   return [[UIDevice currentDevice] systemVersion];
 }
 
-+ (CGFloat)getScreenHeight
++ (CGFloat)screenHeight
 {
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     return screenRect.size.height;
 }
 
-+ (CGFloat)getScreenWidth
++ (CGFloat)screenWidth
 {
   CGRect screenRect = [[UIScreen mainScreen] bounds];
   return screenRect.size.width;
@@ -285,32 +308,28 @@
     return transition;
 }
 
-+ (ProgramLoadingInfo*)programLoadingInfoForProgramWithName:(NSString*)program
-{
-    NSString *documentsDirectory = [Util applicationDocumentsDirectory];
-    NSString *programsPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, kProgramsFolder];
-    ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
-    info.basePath = [NSString stringWithFormat:@"%@/%@/", programsPath, program];
-    info.visibleName = program;
-    return info;
-}
-
-+ (NSString*)lastProgram
++ (ProgramLoadingInfo*)lastUsedProgramLoadingInfo
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString* lastProgram = [userDefaults objectForKey:kLastProgram];
-    if (! lastProgram) {
-        [userDefaults setObject:kLocalizedMyFirstProgram forKey:kLastProgram];
+    NSString *lastUsedProgramDirectoryName = [userDefaults objectForKey:kLastUsedProgram];
+    if (! lastUsedProgramDirectoryName) {
+        lastUsedProgramDirectoryName = [Program programDirectoryNameForProgramName:kLocalizedMyFirstProgram
+                                                                         programID:nil];
+        [userDefaults setObject:lastUsedProgramDirectoryName forKey:kLastUsedProgram];
         [userDefaults synchronize];
-        lastProgram = kLocalizedMyFirstProgram;
     }
-    return lastProgram;
+    return [Program programLoadingInfoForProgramDirectoryName:lastUsedProgramDirectoryName];
 }
 
-+ (void)setLastProgram:(NSString*)visibleName
++ (void)setLastProgramWithName:(NSString*)programName programID:(NSString*)programID
 {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:visibleName forKey:kLastProgram];
+    if (programName) {
+        [userDefaults setObject:[Program programDirectoryNameForProgramName:programName programID:programID]
+                         forKey:kLastUsedProgram];
+    } else {
+        [userDefaults setObject:nil forKey:kLastUsedProgram];
+    }
     [userDefaults synchronize];
 }
 

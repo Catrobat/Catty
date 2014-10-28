@@ -73,7 +73,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - getter and setters
 - (void)setProgram:(Program *)program
 {
-    [program setAsLastProgram];
+    [program setAsLastUsedProgram];
     _program = program;
 }
 
@@ -148,7 +148,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSString *oldProgramName = self.program.header.programName;
     newProgramName = [Util uniqueName:newProgramName existingNames:[Program allProgramNames]];
     [self.program renameToProgramName:newProgramName];
-    [self.delegate renameOldProgramName:oldProgramName toNewProgramName:self.program.header.programName];
+    [self.delegate renameOldProgramWithName:oldProgramName
+                                  programID:self.program.header.programID
+                           toNewProgramName:self.program.header.programName];
     self.navigationItem.title = self.title = self.program.header.programName;
 }
 
@@ -172,9 +174,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self showLoadingView];
         dispatch_queue_t reloadQ = dispatch_queue_create("reload program", NULL);
         dispatch_async(reloadQ, ^{
-            ProgramLoadingInfo *info = [[ProgramLoadingInfo alloc] init];
-            info.basePath = [NSString stringWithFormat:@"%@%@/", [Program basePath], self.program.header.programName];
-            info.visibleName = self.program.header.programName;
+            ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgramWithName:self.program.header.programName
+                                                                                      programID:self.program.header.programID];
             self.program = [Program programWithLoadingInfo:info];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
@@ -202,7 +203,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)playSceneAction:(id)sender
 {
     [self.navigationController setToolbarHidden:YES animated:YES];
-    ScenePresenterViewController *vc =[[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util programLoadingInfoForProgramWithName:[Util lastProgram]]]];
+    ScenePresenterViewController *vc = [[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -285,7 +286,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)deleteProgramAction
 {
-    [self.delegate removeProgram:self.program.header.programName];
+    [self.delegate removeProgramWithName:self.program.header.programName programID:self.program.header.programID];
     [self.program removeFromDisk];
     self.program = nil;
     [self.navigationController popViewControllerAnimated:YES];
@@ -386,7 +387,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [TableUtil getHeightForImageCell];
+    return [TableUtil heightForImageCell];
 }
 
 #pragma mark - Header View

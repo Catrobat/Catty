@@ -294,6 +294,24 @@
     NSArray *myArray = [request.URL.absoluteString componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"?"]];
     param = myArray[0];
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    // extract project ID from URL => example: https://pocketcode.org/download/959.catrobat
+    NSArray *urlParts = [param componentsSeparatedByString:@"/"];
+    if (! [urlParts count]) {
+        [Util alertWithText:kLocalizedInvalidURLGiven];
+        return NO;
+    }
+    // get last part of url and split by using separator "." => 959.catrobat
+    urlParts = [[urlParts lastObject] componentsSeparatedByString:@"."];
+    if ([urlParts count] != 2) {
+        [Util alertWithText:kLocalizedInvalidURLGiven];
+        return NO;
+    }
+    NSString *programID = [urlParts firstObject];
+    NSString *compareProgramIDString = [NSString stringWithFormat:@"%lu", [programID integerValue]];
+    if (! programID || ! [programID integerValue] || ! [programID isEqualToString:compareProgramIDString]) {
+        [Util alertWithText:kLocalizedInvalidURLGiven];
+        return NO;
+    }
     NSURL *url = [NSURL URLWithString:param];
     appDelegate.fileManager.delegate = self;
     param = nil;
@@ -302,12 +320,12 @@
         param = [request.URL.absoluteString substringFromIndex:start.location + start.length];
         param = [param stringByReplacingOccurrencesOfString:@"+" withString:@" "];
     }
-    if ([Program programExists:param]) {
+    if ([Program programExistsWithProgramName:param programID:programID]) {
         [Util alertWithText:kLocalizedProgramAlreadyDownloadedDescription];
         return NO;
     }
     FileManager *fileManager = appDelegate.fileManager;
-    [fileManager downloadFileFromURL:url withName:param];
+    [fileManager downloadFileFromURL:url withProgramID:programID withName:param];
     param = nil;
     start = [request.URL.absoluteString rangeOfString:@"download/"];
     if (start.location != NSNotFound) {

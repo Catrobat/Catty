@@ -23,11 +23,11 @@
 #import <UIKit/UIKit.h>
 #import "ProgramStoreDelegate.h"
 #import "BaseTableViewController.h"
-#import "CatrobatProject.h"
+#import "CatrobatProgram.h"
 
 @protocol RecentProgramsStoreDelegate <NSObject>
 
--(void)reloadWithProject:(CatrobatProject *)loadedProject;
+-(void)reloadWithProject:(CatrobatProgram *)loadedProject;
 
 @end
 
