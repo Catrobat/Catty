@@ -1,3 +1,0 @@
-[submodule "src/ObjectiveGit"]
-	path = src/ObjectiveGit
-	url = git@github.com:libgit2/objective-git.git

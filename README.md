@@ -6,6 +6,7 @@ iOS implementation of the Catrobat language
 # Questions?
 Please ask on our Google Plus community: http://goo.gl/fOjQi
 
+<!--
 # Setup guide
 1. Download XCode (at least version 5) from the Mac App Store
 1. Make sure you have installed [Brew][1], a package manage for OSX, which the `bootstrap` script uses to pull dependencies
@@ -19,6 +20,7 @@ Please ask on our Google Plus community: http://goo.gl/fOjQi
 1. Call bootstrap script of ObjectiveGit library
    `Catty/objective-git/script/bootstrap`
 1. `sudo brew install homebrew/versions/perl516`
+-->
 
 # First Steps
 ## Learn iOS development?
