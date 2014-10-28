@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CADBD6D319B0E8C200C62836"
-               BuildableName = "Catty"
+               BuildableName = "Pocket Code.app"
                BlueprintName = "Catty"
                ReferencedContainer = "container:Catty.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CADBD6D319B0E8C200C62836"
-            BuildableName = "Catty"
+            BuildableName = "Pocket Code.app"
             BlueprintName = "Catty"
             ReferencedContainer = "container:Catty.xcodeproj">
          </BuildableReference>
@@ -72,15 +72,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CADBD6D319B0E8C200C62836"
-            BuildableName = "Catty"
+            BuildableName = "Pocket Code.app"
             BlueprintName = "Catty"
             ReferencedContainer = "container:Catty.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -90,15 +90,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CADBD6D319B0E8C200C62836"
-            BuildableName = "Catty"
+            BuildableName = "Pocket Code.app"
             BlueprintName = "Catty"
             ReferencedContainer = "container:Catty.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
