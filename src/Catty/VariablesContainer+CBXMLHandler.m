@@ -53,7 +53,7 @@
         GDataXMLElement *programVarListElement = [programVarListElements firstObject];
         varContainer.programVariableList = [[self class] parseAndCreateProgramVariables:programVarListElement withSpriteObjectList:spriteObjectList];
     }
-
+    // TODO userBrickVariableList => what do you mean exactly?
     return varContainer;
 }
 

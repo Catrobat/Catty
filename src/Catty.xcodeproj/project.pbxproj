@@ -28,6 +28,8 @@
 		4C023FE619FFCAC700381E36 /* SpriteObject+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C023FE519FFCAC700381E36 /* SpriteObject+CBXMLHandler.m */; };
 		4C023FEA19FFCCA100381E36 /* Script+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C023FE919FFCCA100381E36 /* Script+CBXMLHandler.m */; };
 		4C023FEE19FFCF0700381E36 /* VariablesContainer+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C023FED19FFCF0700381E36 /* VariablesContainer+CBXMLHandler.m */; };
+		4CD194F91A06330C00484E4F /* ValidXML.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CD194F71A06330C00484E4F /* ValidXML.xml */; };
+		4CD194FC1A06333000484E4F /* XMLParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD194FB1A06333000484E4F /* XMLParserTests.m */; };
 		9236B38B19DA85B000495474 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9236B38A19DA85B000495474 /* Launch Screen.xib */; };
 		924DEBFA19CAFB9900EED9CE /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF619CAFB9900EED9CE /* MYBlurIntroductionView.m */; };
 		924DEBFC19CAFB9900EED9CE /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF819CAFB9900EED9CE /* MYIntroductionPanel.m */; };
@@ -412,6 +414,8 @@
 		4C9E2D3E198F698100455B77 /* NSString+FastImageSize.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "NSString+FastImageSize.license"; sourceTree = "<group>"; };
 		4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+CWPopup.license"; sourceTree = "<group>"; };
 		4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OrderedDictionary.license; sourceTree = "<group>"; };
+		4CD194F71A06330C00484E4F /* ValidXML.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidXML.xml; path = Parser/Resources/XML/ValidXML.xml; sourceTree = "<group>"; };
+		4CD194FB1A06333000484E4F /* XMLParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserTests.m; path = Parser/XMLParserTests.m; sourceTree = "<group>"; };
 		8146A9B119279721002548A4 /* ProgramTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableHeaderView.h; sourceTree = "<group>"; };
 		8146A9B219279721002548A4 /* ProgramTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableHeaderView.m; sourceTree = "<group>"; };
 		815420D3191A51F200E628D2 /* FBShimmering-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBShimmering-Prefix.pch"; sourceTree = "<group>"; };
@@ -1244,6 +1248,31 @@
 			path = Resources/Licenses;
 			sourceTree = "<group>";
 		};
+		4CD194F21A0631B200484E4F /* ParserTests */ = {
+			isa = PBXGroup;
+			children = (
+				4CD194F51A0632AA00484E4F /* XMLParserTests */,
+			);
+			name = ParserTests;
+			sourceTree = "<group>";
+		};
+		4CD194F51A0632AA00484E4F /* XMLParserTests */ = {
+			isa = PBXGroup;
+			children = (
+				4CD194F61A0632C600484E4F /* CatrobatLanguage0.93 */,
+			);
+			name = XMLParserTests;
+			sourceTree = "<group>";
+		};
+		4CD194F61A0632C600484E4F /* CatrobatLanguage0.93 */ = {
+			isa = PBXGroup;
+			children = (
+				4CD194FB1A06333000484E4F /* XMLParserTests.m */,
+				4CD194F71A06330C00484E4F /* ValidXML.xml */,
+			);
+			name = CatrobatLanguage0.93;
+			sourceTree = "<group>";
+		};
 		81506F4A18C3EDDC000ED328 /* LXReorderableCollectionViewFlowLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -1658,6 +1687,7 @@
 		B46B270317703F9400172837 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
+				4CD194F21A0631B200484E4F /* ParserTests */,
 				4C3C03F5199BA5250004F594 /* Formula */,
 				B46B270917703F9400172837 /* CattyTests.m */,
 				C34B44FB17F3403400624730 /* ExtensionTests */,
@@ -3548,6 +3578,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CD194F91A06330C00484E4F /* ValidXML.xml in Resources */,
 				CA538EC819B0EA09008240AB /* InfoPlist.strings in Resources */,
 				CA538EC919B0EA09008240AB /* test2.png in Resources */,
 				CA538ECA19B0EA09008240AB /* test.png in Resources */,
@@ -3661,6 +3692,7 @@
 				CA538EAB19B0EA09008240AB /* ShowBrickTests.m in Sources */,
 				CA538EAC19B0EA09008240AB /* SceneTests.m in Sources */,
 				CA538EAD19B0EA09008240AB /* SetYBrickTests.m in Sources */,
+				4CD194FC1A06333000484E4F /* XMLParserTests.m in Sources */,
 				CA538EAE19B0EA09008240AB /* BrickTests.m in Sources */,
 				CA538EAF19B0EA09008240AB /* ChangeBrightnessByNBrickTests.m in Sources */,
 				CA538EB019B0EA09008240AB /* ComeToFrontBrickTests.m in Sources */,
@@ -4132,6 +4164,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${SDKROOT}/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "CattyTests/CattyTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = CattyTests;
@@ -4163,6 +4200,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${SDKROOT}/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "CattyTests/CattyTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = CattyTests;
