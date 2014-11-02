@@ -71,6 +71,7 @@
 		CA5D7FE519EC44480085D5AA /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D7FE419EC44480085D5AA /* BaseCollectionViewController.m */; };
 		CA66CB7519F6B42400D849E0 /* CBXMLValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CA66CB7419F6B42400D849E0 /* CBXMLValidator.m */; };
 		CA775CBF19FD5BCB00C1E761 /* My First Program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CA6E4C4719F9C388001B65C3 /* My First Program.catrobat */; };
+		CAAE4C4D1A06CAA600040E02 /* Brick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE4C4C1A06CAA600040E02 /* Brick+CBXMLHandler.m */; };
 		CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3A198F685D00455B77 /* SSZipArchive.license */; };
 		CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */; };
 		CADBD6DB19B0E8C200C62836 /* IMPORTANT.caf in Resources */ = {isa = PBXBuildFile; fileRef = CA1B802B1971ACE300D8E79B /* IMPORTANT.caf */; };
@@ -843,6 +844,8 @@
 		CAA96AFD18E4B21F00763409 /* SoundPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundPickerTableViewController.m; sourceTree = "<group>"; };
 		CAAA269018F4510E002E55B9 /* DarkBlueGradientImageDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientImageDetailCell.m; sourceTree = "<group>"; };
 		CAAA269118F4546A002E55B9 /* DarkBlueGradientImageDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientImageDetailCell.h; sourceTree = "<group>"; };
+		CAAE4C4B1A06CA5E00040E02 /* Brick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		CAAE4C4C1A06CAA600040E02 /* Brick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Brick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CAB01BE618FC884F00DFA6B8 /* LanguageTranslationDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LanguageTranslationDefines.h; sourceTree = "<group>"; };
 		CAB3636F18F5987B00AB8401 /* NSDate+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CustomExtensions.h"; sourceTree = "<group>"; };
 		CAB3637018F5987B00AB8401 /* NSDate+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CustomExtensions.m"; sourceTree = "<group>"; };
@@ -1109,13 +1112,15 @@
 		4C023FD419FFC59000381E36 /* XMLHandler */ = {
 			isa = PBXGroup;
 			children = (
-				4C023FEB19FFCEF100381E36 /* VariablesContainer */,
-				4C023FE719FFCC7E00381E36 /* Script */,
-				4C023FE319FFCAB400381E36 /* Sprite */,
-				4C023FDF19FFCA2000381E36 /* Sound */,
-				4C023FDB19FFC99E00381E36 /* Look */,
-				4C023FD719FFC88A00381E36 /* UserVariable */,
 				4C023FD619FFC79900381E36 /* Header */,
+				4C023FDB19FFC99E00381E36 /* Look */,
+				4C023FDF19FFCA2000381E36 /* Sound */,
+				4C023FE319FFCAB400381E36 /* SpriteObject */,
+				4C023FE719FFCC7E00381E36 /* Scripts */,
+				CAAE4C271A06C33900040E02 /* Bricks */,
+				CAAE4C281A06C72A00040E02 /* Formula */,
+				4C023FD719FFC88A00381E36 /* UserVariable */,
+				4C023FEB19FFCEF100381E36 /* VariablesContainer */,
 			);
 			name = XMLHandler;
 			sourceTree = "<group>";
@@ -1156,22 +1161,22 @@
 			name = Sound;
 			sourceTree = "<group>";
 		};
-		4C023FE319FFCAB400381E36 /* Sprite */ = {
+		4C023FE319FFCAB400381E36 /* SpriteObject */ = {
 			isa = PBXGroup;
 			children = (
 				4C023FE419FFCAC700381E36 /* SpriteObject+CBXMLHandler.h */,
 				4C023FE519FFCAC700381E36 /* SpriteObject+CBXMLHandler.m */,
 			);
-			name = Sprite;
+			name = SpriteObject;
 			sourceTree = "<group>";
 		};
-		4C023FE719FFCC7E00381E36 /* Script */ = {
+		4C023FE719FFCC7E00381E36 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
 				4C023FE819FFCCA100381E36 /* Script+CBXMLHandler.h */,
 				4C023FE919FFCCA100381E36 /* Script+CBXMLHandler.m */,
 			);
-			name = Script;
+			name = Scripts;
 			sourceTree = "<group>";
 		};
 		4C023FEB19FFCEF100381E36 /* VariablesContainer */ = {
@@ -1461,14 +1466,11 @@
 				B46475321770F60E00CD277F /* AudioManager */,
 				92E3351618FBB3340056C390 /* InternetConnection */,
 				CAFE18D7192813DC003AB961 /* NavigationController */,
-				CA688215180B46CB008A7C99 /* DataStructures */,
 				B44F32A71737BBB800BD97AC /* SensorHandler */,
 				B400302E170EB47600396DB7 /* FileManager */,
 				B4DEFC89170F456D00DD1939 /* GDataXMLNode */,
 				B4D940D5170ECA19003DDBFA /* ImageCache */,
 				CD0CD004170CBFEE00B70036 /* minizip */,
-				CA047EC118C782320078BE08 /* BrickManager */,
-				B44F32A21737AC3100BD97AC /* ProgramManager */,
 				CA1B802A1971AA1C00D8E79B /* SharkfoodMuteSwitchDetector */,
 				B400302D170EB46A00396DB7 /* SSZipArchive */,
 				CA5FED5118B0199100A517B6 /* UIUtil */,
@@ -1636,17 +1638,10 @@
 			children = (
 				B45A582F17327887000E038F /* Formula.h */,
 				B45A583017327887000E038F /* Formula.m */,
-			);
-			name = Formula;
-			sourceTree = "<group>";
-		};
-		B45A583817327BC2000E038F /* FormulaElement */ = {
-			isa = PBXGroup;
-			children = (
 				B45A583417327BBE000E038F /* FormulaElement.h */,
 				B45A583517327BBE000E038F /* FormulaElement.m */,
 			);
-			name = FormulaElement;
+			name = Formula;
 			sourceTree = "<group>";
 		};
 		B46475321770F60E00CD277F /* AudioManager */ = {
@@ -1766,13 +1761,14 @@
 			name = MyProgramsViewController;
 			sourceTree = "<group>";
 		};
-		B4BCF409170ECFC3008EDF3A /* Delegates & Protocols */ = {
+		B4BCF409170ECFC3008EDF3A /* Extensions & Delegates & Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				B4D940BC170EC670003DDBFA /* Extensions */,
 				CAA443B5192412AF0076BA35 /* Delegates */,
 				CAA443B6192412BB0076BA35 /* Protocols */,
 			);
-			name = "Delegates & Protocols";
+			name = "Extensions & Delegates & Protocols";
 			sourceTree = "<group>";
 		};
 		B4BCF40F170ED1C6008EDF3A /* JSON */ = {
@@ -1910,7 +1906,7 @@
 			name = TableUtil;
 			sourceTree = "<group>";
 		};
-		B4D940BC170EC670003DDBFA /* CustomExtensions */ = {
+		B4D940BC170EC670003DDBFA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				CA3BFA59197F0CDD00DA86C9 /* NSMutableArray+CustomExtensions */,
@@ -1928,7 +1924,7 @@
 				CAB3637218F599BD00AB8401 /* NSDate+CustomExtensions */,
 				CAEB7F1719F45D3900A2A251 /* Program+CustomExtensions */,
 			);
-			name = CustomExtensions;
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		B4D940BF170EC68A003DDBFA /* NSString+CatrobatNSStringExtensions */ = {
@@ -2373,8 +2369,11 @@
 		CA688215180B46CB008A7C99 /* DataStructures */ = {
 			isa = PBXGroup;
 			children = (
+				CAE9A2C1197D8948008F7C9A /* DataTransferMessage */,
 				B4826F80174D5B7000F57AE9 /* OrderedMapTable */,
 				CA688213180B4680008A7C99 /* OrderedDictionary */,
+				B4D940C9170EC74B003DDBFA /* ProgramLoadingInfo */,
+				B4BCF40F170ED1C6008EDF3A /* JSON */,
 			);
 			name = DataStructures;
 			sourceTree = "<group>";
@@ -2631,6 +2630,278 @@
 			name = DarkBlueGradientImageDetailCell;
 			sourceTree = "<group>";
 		};
+		CAAE4C271A06C33900040E02 /* Bricks */ = {
+			isa = PBXGroup;
+			children = (
+				CAAE4C4A1A06C9CD00040E02 /* Brick */,
+				CAAE4C491A06C90800040E02 /* BroadcastBrick */,
+				CAAE4C481A06C8FF00040E02 /* BroadcastWaitBrick */,
+				CAAE4C471A06C8E300040E02 /* ChangeBrightnessByNBrick */,
+				CAAE4C461A06C89700040E02 /* ChangeGhostEffectByNBrick */,
+				CAAE4C451A06C88A00040E02 /* ChangeSizeByNBrick */,
+				CAAE4C441A06C88200040E02 /* ChangeVariableBrick */,
+				CAAE4C431A06C87800040E02 /* ChangeXYByNBrick */,
+				CAAE4C421A06C86E00040E02 /* ClearGraphicEffectBrick */,
+				CAAE4C411A06C86600040E02 /* ComeToFrontBrick */,
+				CAAE4C401A06C85700040E02 /* GlideToBrick */,
+				CAAE4C3F1A06C85000040E02 /* GoNStepsBackBrick */,
+				CAAE4C3E1A06C84C00040E02 /* HideBrick */,
+				CAAE4C3D1A06C84600040E02 /* IfBricks */,
+				CAAE4C3C1A06C83A00040E02 /* IfOnEdgeBounceBRick */,
+				CAAE4C3B1A06C83200040E02 /* LoopBricks */,
+				CAAE4C3A1A06C82900040E02 /* MoveNStepsBrick */,
+				CAAE4C391A06C82100040E02 /* NextLookBrick */,
+				CAAE4C381A06C81C00040E02 /* NoteBrick */,
+				CAAE4C371A06C81500040E02 /* PlaceAtBrick */,
+				CAAE4C361A06C80C00040E02 /* PointInDirectionBrick */,
+				CAAE4C351A06C80500040E02 /* PointToBrick */,
+				CAAE4C341A06C7FE00040E02 /* SetBrightnessBrick */,
+				CAAE4C331A06C7F500040E02 /* SetGhostEffectBrick */,
+				CAAE4C321A06C7EA00040E02 /* SetLookBrick */,
+				CAAE4C311A06C7E000040E02 /* SetSizeToBrick */,
+				CAAE4C301A06C7D800040E02 /* SetVariableBrick */,
+				CAAE4C2F1A06C7D300040E02 /* SetXYBricks */,
+				CAAE4C2E1A06C7C900040E02 /* ShowBrick */,
+				CAAE4C2D1A06C7C400040E02 /* SoundBricks */,
+				CAAE4C2C1A06C7BE00040E02 /* TurnBricks */,
+				CAAE4C2B1A06C7B900040E02 /* WaitBrick */,
+			);
+			name = Bricks;
+			sourceTree = "<group>";
+		};
+		CAAE4C281A06C72A00040E02 /* Formula */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Formula;
+			sourceTree = "<group>";
+		};
+		CAAE4C2B1A06C7B900040E02 /* WaitBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = WaitBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C2C1A06C7BE00040E02 /* TurnBricks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = TurnBricks;
+			sourceTree = "<group>";
+		};
+		CAAE4C2D1A06C7C400040E02 /* SoundBricks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SoundBricks;
+			sourceTree = "<group>";
+		};
+		CAAE4C2E1A06C7C900040E02 /* ShowBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ShowBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C2F1A06C7D300040E02 /* SetXYBricks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SetXYBricks;
+			sourceTree = "<group>";
+		};
+		CAAE4C301A06C7D800040E02 /* SetVariableBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SetVariableBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C311A06C7E000040E02 /* SetSizeToBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SetSizeToBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C321A06C7EA00040E02 /* SetLookBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SetLookBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C331A06C7F500040E02 /* SetGhostEffectBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SetGhostEffectBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C341A06C7FE00040E02 /* SetBrightnessBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SetBrightnessBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C351A06C80500040E02 /* PointToBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = PointToBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C361A06C80C00040E02 /* PointInDirectionBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = PointInDirectionBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C371A06C81500040E02 /* PlaceAtBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = PlaceAtBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C381A06C81C00040E02 /* NoteBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = NoteBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C391A06C82100040E02 /* NextLookBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = NextLookBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C3A1A06C82900040E02 /* MoveNStepsBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = MoveNStepsBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C3B1A06C83200040E02 /* LoopBricks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = LoopBricks;
+			sourceTree = "<group>";
+		};
+		CAAE4C3C1A06C83A00040E02 /* IfOnEdgeBounceBRick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = IfOnEdgeBounceBRick;
+			sourceTree = "<group>";
+		};
+		CAAE4C3D1A06C84600040E02 /* IfBricks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = IfBricks;
+			sourceTree = "<group>";
+		};
+		CAAE4C3E1A06C84C00040E02 /* HideBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = HideBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C3F1A06C85000040E02 /* GoNStepsBackBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = GoNStepsBackBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C401A06C85700040E02 /* GlideToBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = GlideToBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C411A06C86600040E02 /* ComeToFrontBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ComeToFrontBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C421A06C86E00040E02 /* ClearGraphicEffectBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ClearGraphicEffectBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C431A06C87800040E02 /* ChangeXYByNBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ChangeXYByNBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C441A06C88200040E02 /* ChangeVariableBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ChangeVariableBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C451A06C88A00040E02 /* ChangeSizeByNBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ChangeSizeByNBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C461A06C89700040E02 /* ChangeGhostEffectByNBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ChangeGhostEffectByNBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C471A06C8E300040E02 /* ChangeBrightnessByNBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ChangeBrightnessByNBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C481A06C8FF00040E02 /* BroadcastWaitBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = BroadcastWaitBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C491A06C90800040E02 /* BroadcastBrick */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = BroadcastBrick;
+			sourceTree = "<group>";
+		};
+		CAAE4C4A1A06C9CD00040E02 /* Brick */ = {
+			isa = PBXGroup;
+			children = (
+				CAAE4C4B1A06CA5E00040E02 /* Brick+CBXMLHandler.h */,
+				CAAE4C4C1A06CAA600040E02 /* Brick+CBXMLHandler.m */,
+			);
+			name = Brick;
+			sourceTree = "<group>";
+		};
 		CAB3637218F599BD00AB8401 /* NSDate+CustomExtensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -2758,15 +3029,15 @@
 		CD0CCE54170CB39600B70036 /* Catty */ = {
 			isa = PBXGroup;
 			children = (
-				B4D940BC170EC670003DDBFA /* CustomExtensions */,
-				B4BCF409170ECFC3008EDF3A /* Delegates & Protocols */,
 				B4D940B3170EC5EE003DDBFA /* Defines */,
+				B4BCF409170ECFC3008EDF3A /* Extensions & Delegates & Protocols */,
 				B400302C170EB45200396DB7 /* Helpers */,
+				CA688215180B46CB008A7C99 /* DataStructures */,
 				CD0CCFF5170CB88F00B70036 /* DataModel */,
 				CD0CCFF9170CB91A00B70036 /* Parser & Serialization */,
 				B4E7D258176EF23200EC8AD8 /* Scene */,
-				B4D940B2170EC5D5003DDBFA /* Views */,
 				CD0CCE3B170CA00F00B70036 /* ViewController */,
+				B4D940B2170EC5D5003DDBFA /* Views */,
 			);
 			path = Catty;
 			sourceTree = "<group>";
@@ -2774,7 +3045,7 @@
 		CD0CCFDD170CB54100B70036 /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
-				CD0CCFF7170CB8BC00B70036 /* Bricks */,
+				CD0CCFF7170CB8BC00B70036 /* Brick */,
 				CD0CCFDE170CB5E300B70036 /* BroadcastBrick */,
 				CD0CCFDF170CB5EC00B70036 /* BroadcastWaitBrick */,
 				C34B44F917F1D8D700624730 /* ChangeBrightnessByNBrick */,
@@ -3022,42 +3293,40 @@
 		CD0CCFF5170CB88F00B70036 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				4C3C03F8199BA6B50004F594 /* FormulaEditor */,
-				B4BCF40F170ED1C6008EDF3A /* JSON */,
-				CD0CCFDD170CB54100B70036 /* Bricks */,
-				CD0CD000170CBB8900B70036 /* BroadcastWait */,
+				CD0CCFF8170CB91000B70036 /* Program */,
 				CD0CCFFF170CBB0700B70036 /* Header */,
 				CD0CCFFE170CBAA700B70036 /* Look */,
-				CD0CCFF8170CB91000B70036 /* Program */,
-				B4D940C9170EC74B003DDBFA /* ProgramLoadingInfo */,
-				CAE9A2C1197D8948008F7C9A /* DataTransferMessage */,
-				CD0CCFFA170CB92D00B70036 /* Scripts */,
 				CD0CCFFB170CB97000B70036 /* Sound */,
-				CD0CCFF6170CB89E00B70036 /* Sprite */,
-				B45A582E17325446000E038F /* UserVariable */,
+				CD0CCFF6170CB89E00B70036 /* SpriteObject */,
+				CD0CCFFA170CB92D00B70036 /* Scripts */,
+				CD0CCFDD170CB54100B70036 /* Bricks */,
 				B45A58331732788C000E038F /* Formula */,
-				B45A583817327BC2000E038F /* FormulaElement */,
+				B45A582E17325446000E038F /* UserVariable */,
 				B470688C1733BA9A00EC880D /* VariablesContainer */,
+				CD0CD000170CBB8900B70036 /* BroadcastWait */,
+				B44F32A21737AC3100BD97AC /* ProgramManager */,
+				CA047EC118C782320078BE08 /* BrickManager */,
+				4C3C03F8199BA6B50004F594 /* FormulaEditor */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
 		};
-		CD0CCFF6170CB89E00B70036 /* Sprite */ = {
+		CD0CCFF6170CB89E00B70036 /* SpriteObject */ = {
 			isa = PBXGroup;
 			children = (
 				CD639C79170DF52600FA67DA /* SpriteObject.h */,
 				CD639C7A170DF52600FA67DA /* SpriteObject.m */,
 			);
-			name = Sprite;
+			name = SpriteObject;
 			sourceTree = "<group>";
 		};
-		CD0CCFF7170CB8BC00B70036 /* Bricks */ = {
+		CD0CCFF7170CB8BC00B70036 /* Brick */ = {
 			isa = PBXGroup;
 			children = (
 				CD0CCE5F170CB39600B70036 /* Brick.h */,
 				CD0CCE60170CB39600B70036 /* Brick.m */,
 			);
-			name = Bricks;
+			name = Brick;
 			sourceTree = "<group>";
 		};
 		CD0CCFF8170CB91000B70036 /* Program */ = {
@@ -3216,7 +3485,7 @@
 						TestTargetID = CADBD6D319B0E8C200C62836;
 					};
 					CADBD6D319B0E8C200C62836 = {
-						DevelopmentTeam = 4V6T7BCGGR;
+						DevelopmentTeam = 9NJ4SV439Q;
 					};
 				};
 			};
@@ -3562,6 +3831,7 @@
 				CADBD78719B0E8C200C62836 /* BrickSelectionView.m in Sources */,
 				CADBD78819B0E8C200C62836 /* ioapi.c in Sources */,
 				CADBD78919B0E8C200C62836 /* mztools.c in Sources */,
+				CAAE4C4D1A06CAA600040E02 /* Brick+CBXMLHandler.m in Sources */,
 				CADBD78A19B0E8C200C62836 /* ChangeYByNBrickCell.m in Sources */,
 				CADBD78B19B0E8C200C62836 /* UIWindow+AHKAdditions.m in Sources */,
 				CADBD78C19B0E8C200C62836 /* unzip.c in Sources */,

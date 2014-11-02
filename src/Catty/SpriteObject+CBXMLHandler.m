@@ -75,8 +75,8 @@
     NSMutableArray *lookList = [NSMutableArray arrayWithCapacity:[lookElements count]];
     for (GDataXMLElement *lookElement in lookElements) {
         Look *look = [Look parseFromElement:lookElement withContext:nil];
-        if(look != nil)
-            [lookList addObject:look];
+        [XMLError exceptionIfNil:look message:@"Unable to parse look..."];
+        [lookList addObject:look];
     }
     return lookList;
 }
@@ -95,8 +95,8 @@
     NSMutableArray *soundList = [NSMutableArray arrayWithCapacity:[soundElements count]];
     for (GDataXMLElement *soundElement in soundElements) {
         Sound *sound = [Sound parseFromElement:soundElement withContext:nil];
-        if(sound != nil)
-            [soundList addObject:sound];
+        [XMLError exceptionIfNil:sound message:@"Unable to parse sound..."];
+        [soundList addObject:sound];
     }
     return soundList;
 }
@@ -115,8 +115,8 @@
     NSMutableArray *scriptList = [NSMutableArray arrayWithCapacity:[scriptElements count]];
     for (GDataXMLElement *scriptElement in scriptElements) {
         Script *script = [Script parseFromElement:scriptElement withContext:nil];
-        if(script != nil)
-            [scriptList addObject:script];
+        [XMLError exceptionIfNil:script message:@"Unable to parse script..."];
+        [scriptList addObject:script];
     }
     return scriptList;
 }

@@ -39,25 +39,26 @@
     [XMLError exceptionIf:[variablesElements count] notEquals:1 message:@"Too many variable-elements given!"];
     GDataXMLElement *variablesElement = [variablesElements firstObject];
     VariablesContainer *varContainer = [VariablesContainer new];
-    
+
     NSArray *objectVarListElements = [variablesElement elementsForName:@"objectVariableList"];
     if ([objectVarListElements count]) {
         [XMLError exceptionIf:[objectVarListElements count] notEquals:1 message:@"Too many objectVariableList-elements!"];
         GDataXMLElement *objectVarListElement = [objectVarListElements firstObject];
         varContainer.objectVariableList = [[self class] parseAndCreateObjectVariables:objectVarListElement withSpriteObjectList:spriteObjectList];
     }
-    
+
     NSArray *programVarListElements = [variablesElement elementsForName:@"programVariableList"];
     if ([programVarListElements count]) {
         [XMLError exceptionIf:[programVarListElements count] notEquals:1 message:@"Too many programVariableList-elements!"];
         GDataXMLElement *programVarListElement = [programVarListElements firstObject];
         varContainer.programVariableList = [[self class] parseAndCreateProgramVariables:programVarListElement withSpriteObjectList:spriteObjectList];
     }
-    
+
     return varContainer;
 }
 
-+ (OrderedMapTable*)parseAndCreateObjectVariables:(GDataXMLElement*)objectVarListElement withSpriteObjectList:(NSMutableArray*)spriteObjectList
++ (OrderedMapTable*)parseAndCreateObjectVariables:(GDataXMLElement*)objectVarListElement
+                             withSpriteObjectList:(NSMutableArray*)spriteObjectList
 {
     [XMLError exceptionIfNil:spriteObjectList message:@"Class was not initialized with sprite object list!"];
     NSArray *entries = [objectVarListElement children];
@@ -110,7 +111,8 @@
     return objectVariableMap;
 }
 
-+ (NSMutableArray*)parseAndCreateProgramVariables:(GDataXMLElement*)programVarListElement withSpriteObjectList:(NSMutableArray*)spriteObjectList
++ (NSMutableArray*)parseAndCreateProgramVariables:(GDataXMLElement*)programVarListElement
+                             withSpriteObjectList:(NSMutableArray*)spriteObjectList
 {
     [XMLError exceptionIfNil:spriteObjectList message:@"Class was not initialized with sprite object list!"];
     NSArray *entries = [programVarListElement children];
@@ -123,7 +125,6 @@
             // OMG!! user variable has already been defined outside the variables list
             GDataXMLNode *referenceAttribute = [userVariableElement attributeForName:@"reference"];
             NSString *xPath = [referenceAttribute stringValue];
-            
             userVariableElement = [userVariableElement singleNodeForCatrobatXPath:xPath error:nil];
             [XMLError exceptionIfNil:userVariableElement
                              message:@"Invalid reference in object. No or too many objects found!"];
@@ -134,6 +135,5 @@
     }
     return programVariableList;
 }
-
 
 @end

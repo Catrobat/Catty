@@ -20,16 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Script+CBXMLHandler.h"
+#import "Brick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "GDataXMLNode.h"
 
-#import "BroadcastScript.h"
-#import "StartScript.h"
-#import "WhenScript.h"
-#import "Brick+CBXMLHandler.h"
-
-@implementation Script (CBXMLHandler)
+@implementation Brick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context
 {
@@ -62,26 +57,6 @@
     
     script.brickList = [[self class] parseAndCreateBricks:xmlElement];
     return script;
-}
-
-+ (NSMutableArray*)parseAndCreateBricks:(GDataXMLElement*)scriptElement
-{
-    NSArray *brickListElements = [scriptElement elementsForName:@"brickList"];
-    [XMLError exceptionIf:[brickListElements count] notEquals:1 message:@"No brickList given!"];
-    
-    NSArray *brickElements = [[brickListElements firstObject] children];
-    if (! [brickElements count]) {
-        // TODO: ask team if we should return nil or an empty NSMutableArray in this case!!
-        return nil;
-    }
-
-    NSMutableArray *brickList = [NSMutableArray arrayWithCapacity:[brickElements count]];
-    for (GDataXMLElement *brickElement in brickElements) {
-        Brick *brick = [Brick parseFromElement:brickElement withContext:nil];
-        [XMLError exceptionIfNil:brick message:@"Unable to parse brick..."];
-        [brickList addObject:brick];
-    }
-    return brickList;
 }
 
 @end
