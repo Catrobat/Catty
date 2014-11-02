@@ -54,6 +54,8 @@
         varContainer.programVariableList = [[self class] parseAndCreateProgramVariables:programVarListElement withSpriteObjectList:spriteObjectList];
     }
     
+    // TODO userBrickVariableList
+    
     return varContainer;
 }
 

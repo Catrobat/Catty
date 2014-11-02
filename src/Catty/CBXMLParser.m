@@ -80,13 +80,18 @@
                                                   encoding:NSUTF8StringEncoding
                                                      error:&error];
     // sanity check
-    if (error) { return nil; }
+    if (error) {
+        NSError(@"XML file could not be loaded!");
+        return nil; }
 
-    NSLog(@"%@", xmlFile);
+    //NSLog(@"%@", xmlFile);
     NSData *xmlData = [xmlFile dataUsingEncoding:NSUTF8StringEncoding];
 
     // sanity check
-    if (!xmlData) { return nil; }
+    if (!xmlData) {
+        NSError(@"XML file could not be loaded!");
+        return nil;
+    }
 
     error = nil;
     GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
@@ -104,7 +109,7 @@
     }
     [program updateReferences];
     program.XMLdocument = document;
-
+    
 //    return program;
     // FIXME: REMOVE THIS LOG-Entry after parser has been fully implemented
     NSLog(@"!!! NEW Catrobat XML Parser IS NOT FULLY IMPLEMENTED YET => RETURNING NIL !!!");
