@@ -57,7 +57,18 @@
   return trimmed;
 }
 
-- (GDataXMLElement*)singleNodeForCatrobatXPath:(NSString*)catrobatXPath error:(NSError**)error
+- (GDataXMLElement*)childWithElementName:(NSString*)elementName
+{
+    NSArray *childElements = [self children];
+    for (GDataXMLElement *childElement in childElements) {
+        if ([[childElement name] isEqualToString:elementName]) {
+            return childElement;
+        }
+    }
+    return nil;
+}
+
+- (GDataXMLElement*)singleNodeForCatrobatXPath:(NSString*)catrobatXPath
 {
     NSArray *pathComponents = [catrobatXPath componentsSeparatedByString:@"/"];
     NSMutableString *xPath = [NSMutableString stringWithCapacity:[catrobatXPath length]];
@@ -89,8 +100,9 @@
         ++index;
     }
 
-    NSArray *nodes = [self nodesForXPath:xPath error:error];
-    if ([nodes count] != 1) {
+    NSError *error = nil;
+    NSArray *nodes = [self nodesForXPath:xPath error:&error];
+    if (error || ([nodes count] != 1)) {
         return nil;
     }
     return [nodes firstObject];

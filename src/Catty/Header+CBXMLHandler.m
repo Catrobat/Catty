@@ -30,7 +30,7 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context
 {
     [XMLError exceptionIfNil:xmlElement message:@"No xml element given!"];
-    Header *header = [Header defaultHeader];
+    Header *header = [self defaultHeader];
     NSArray *headerNodes = [xmlElement elementsForName:@"header"];
     [XMLError exceptionIf:[headerNodes count] notEquals:1 message:@"Invalid header given!"];
     NSArray *headerPropertyNodes = [[headerNodes firstObject] children];

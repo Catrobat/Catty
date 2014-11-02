@@ -29,6 +29,8 @@
 #import "CBXMLValidator.h"
 #import "SpriteObject+CBXMLHandler.h"
 #import "VariablesContainer+CBXMLHandler.h"
+#import "Look.h"
+#import "Sound.h"
 
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
 #define kCatroidXMLSpriteList           @"spriteList"
@@ -122,7 +124,7 @@
     [XMLError exceptionIfNode:rootElement isNilOrNodeNameNotEquals:@"program"];
     Program *program = [Program new];
     program.header = [self parseAndCreateHeaderFromElement:rootElement];
-    program.objectList = [self parseAndCreateObjectsFromElement:rootElement];
+    program.objectList = [self parseAndCreateObjectsFromElement:rootElement withContext:program];
     program.variables = [self parseAndCreateVariablesFromElement:rootElement
                                                 spriteObjectList:program.objectList];
     return program;
@@ -135,7 +137,7 @@
 }
 
 #pragma mark Object parsing
-- (NSMutableArray*)parseAndCreateObjectsFromElement:(GDataXMLElement*)programElement
+- (NSMutableArray*)parseAndCreateObjectsFromElement:(GDataXMLElement*)programElement withContext:(id)context
 {
     NSArray *objectListElements = [programElement elementsForName:@"objectList"];
     [XMLError exceptionIf:[objectListElements count] notEquals:1 message:@"No objectList given!"];
@@ -145,7 +147,7 @@
     NSLog(@"<objectList>");
     NSMutableArray *objectList = [NSMutableArray arrayWithCapacity:[objectElements count]];
     for (GDataXMLElement *objectElement in objectElements) {
-        SpriteObject *spriteObject = [SpriteObject parseFromElement:objectElement withContext:nil];
+        SpriteObject *spriteObject = [SpriteObject parseFromElement:objectElement withContext:context];
         if(spriteObject != nil)
             [objectList addObject:spriteObject];
     }
@@ -214,6 +216,26 @@
     for (SpriteObject *spriteObject in spriteObjectList) {
         if ([spriteObject.name isEqualToString:spriteObjectName]) { // TODO: implement isEqual in SpriteObject class
             return spriteObject;
+        }
+    }
+    return nil;
+}
+
++ (Look*)findLookInArray:(NSArray*)lookList withName:(NSString*)lookName
+{
+    for (Look *look in lookList) {
+        if ([look.name isEqualToString:lookName]) { // TODO: implement isEqual in SpriteObject class
+            return look;
+        }
+    }
+    return nil;
+}
+
++ (Sound*)findSoundInArray:(NSArray*)soundList withName:(NSString*)soundName
+{
+    for (Sound *sound in soundList) {
+        if ([sound.name isEqualToString:soundName]) { // TODO: implement isEqual in SpriteObject class
+            return sound;
         }
     }
     return nil;

@@ -29,7 +29,7 @@
 
 + (instancetype)defaultHeader
 {
-    Header *header = [[[self class] alloc] init];
+    Header *header = [self new];
     header.applicationBuildName = [Util appBuildName];
     header.applicationBuildNumber = [Util appBuildVersion];
     header.applicationName = [Util appName];

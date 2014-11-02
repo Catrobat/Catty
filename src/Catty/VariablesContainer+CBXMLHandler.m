@@ -74,7 +74,7 @@
         if ([CBXMLParser isReferenceElement:objectElement]) {
             GDataXMLNode *referenceAttribute = [objectElement attributeForName:@"reference"];
             NSString *xPath = [referenceAttribute stringValue];
-            objectElement = [objectElement singleNodeForCatrobatXPath:xPath error:nil];
+            objectElement = [objectElement singleNodeForCatrobatXPath:xPath];
             [XMLError exceptionIfNil:objectElement message:@"Invalid reference in object. No or too many objects found!"];
             GDataXMLNode *nameAttribute = [objectElement attributeForName:@"name"];
             [XMLError exceptionIfNil:nameAttribute message:@"Object element does not contain a name attribute!"];
@@ -84,9 +84,10 @@
         } else {
             // OMG!! a sprite object has been defined within the variables list...
             spriteObject = [SpriteObject parseFromElement:objectElement withContext:nil];
+            [XMLError exceptionIfNil:spriteObject message:@"Unable to parse sprite object..."];
             [spriteObjectList addObject:spriteObject];
         }
-        
+
         NSArray *listElements = [entry elementsForName:@"list"];
         GDataXMLElement *listElement = [listElements firstObject];
         NSMutableArray *userVarList = [[NSMutableArray alloc] initWithCapacity:[listElement childCount]];
@@ -98,11 +99,12 @@
                 // OMG!! user variable has already been defined outside the variables list
                 GDataXMLNode *referenceAttribute = [objectElement attributeForName:@"reference"];
                 NSString *xPath = [referenceAttribute stringValue];
-                userVariableElement = [objectElement singleNodeForCatrobatXPath:xPath error:nil];
+                userVariableElement = [objectElement singleNodeForCatrobatXPath:xPath];
                 [XMLError exceptionIfNil:userVariableElement
                                  message:@"Invalid reference in object. No or too many objects found!"];
             }
             userVariable = [UserVariable parseFromElement:userVariableElement withContext:nil];
+            [XMLError exceptionIfNil:userVariable message:@"Unable to parse user variable..."];
 #warning !! UPDATE THE REFERENCE IN ALL VARIABLE-BRICKS FOR THIS USERVARIABLE IN ALL OBJECTS !!
             [userVarList addObject:userVariable];
         }
@@ -125,11 +127,12 @@
             // OMG!! user variable has already been defined outside the variables list
             GDataXMLNode *referenceAttribute = [userVariableElement attributeForName:@"reference"];
             NSString *xPath = [referenceAttribute stringValue];
-            userVariableElement = [userVariableElement singleNodeForCatrobatXPath:xPath error:nil];
+            userVariableElement = [userVariableElement singleNodeForCatrobatXPath:xPath];
             [XMLError exceptionIfNil:userVariableElement
                              message:@"Invalid reference in object. No or too many objects found!"];
         }
         userVariable = [UserVariable parseFromElement:userVariableElement withContext:nil];
+        [XMLError exceptionIfNil:userVariable message:@"Unable to parse user variable..."];
 #warning !! UPDATE THE REFERENCE IN ALL VARIABLE-BRICKS FOR THIS USERVARIABLE IN ALL OBJECTS !!
         [programVariableList addObject:userVariable];
     }

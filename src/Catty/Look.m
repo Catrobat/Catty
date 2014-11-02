@@ -30,9 +30,6 @@
 
 @implementation Look
 
-@synthesize fileName = _costumeFileName;
-@synthesize name = _costumeName;
-
 #pragma mark - init methods
 - (id)initWithPath:(NSString*)filePath
 {

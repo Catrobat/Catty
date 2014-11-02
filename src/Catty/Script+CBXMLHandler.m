@@ -59,16 +59,15 @@
     } else {
         [XMLError exceptionWithMessage:@"Unsupported script type: %@!", scriptType];
     }
-    
-    script.brickList = [[self class] parseAndCreateBricks:xmlElement];
+
+    script.brickList = [self parseAndCreateBricks:xmlElement withContext:context];
     return script;
 }
 
-+ (NSMutableArray*)parseAndCreateBricks:(GDataXMLElement*)scriptElement
++ (NSMutableArray*)parseAndCreateBricks:(GDataXMLElement*)scriptElement withContext:(id)context
 {
     NSArray *brickListElements = [scriptElement elementsForName:@"brickList"];
     [XMLError exceptionIf:[brickListElements count] notEquals:1 message:@"No brickList given!"];
-    
     NSArray *brickElements = [[brickListElements firstObject] children];
     if (! [brickElements count]) {
         // TODO: ask team if we should return nil or an empty NSMutableArray in this case!!
@@ -77,7 +76,7 @@
 
     NSMutableArray *brickList = [NSMutableArray arrayWithCapacity:[brickElements count]];
     for (GDataXMLElement *brickElement in brickElements) {
-        Brick *brick = [Brick parseFromElement:brickElement withContext:nil];
+        Brick *brick = [Brick parseFromElement:brickElement withContext:context];
         [XMLError exceptionIfNil:brick message:@"Unable to parse brick..."];
         [brickList addObject:brick];
     }

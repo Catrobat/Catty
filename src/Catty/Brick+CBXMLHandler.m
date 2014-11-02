@@ -24,39 +24,45 @@
 #import "CBXMLValidator.h"
 #import "GDataXMLNode.h"
 
+#import "SetLookBrick+CBXMLHandler.h"
+#import "SetVariableBrick+CBXMLHandler.h"
+
 @implementation Brick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context
 {
-    [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"script"];
+    [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"brick"];
     NSArray *attributes = [xmlElement attributes];
     [XMLError exceptionIf:[attributes count] notEquals:1
-                  message:@"Parsed type-attribute of script is invalid or empty!"];
-    
+                  message:@"Parsed type-attribute of brick is invalid or empty!"];
+
     GDataXMLNode *attribute = [attributes firstObject];
     [XMLError exceptionIfString:attribute.name isNotEqualToString:@"type"
                         message:@"Unsupported attribute: %@", attribute.name];
-    
-    NSString *scriptType = [attribute stringValue];
-    Script *script = nil;
-    if ([scriptType isEqualToString:@"StartScript"]) {
-        script = [StartScript new];
-    } else if ([scriptType isEqualToString:@"WhenScript"]) {
-        script = [WhenScript new];
-    } else if ([scriptType isEqualToString:@"BroadcastScript"]) {
-        BroadcastScript *broadcastScript = [BroadcastScript new];
-        NSArray *receivedMessageElements = [xmlElement elementsForName:@"receivedMessage"];
-        [XMLError exceptionIf:[receivedMessageElements count] notEquals:1
-                      message:@"Wrong number of receivedMessage elements given!"];
-        GDataXMLElement *receivedMessageElement = [receivedMessageElements firstObject];
-        broadcastScript.receivedMessage = [receivedMessageElement stringValue];
-        script = broadcastScript;
+    NSString *brickTypeName = [attribute stringValue];
+
+    // unfortunately there seem to be no way to use class category methods
+    // for objects that are created via reflection
+//    NSString *brickClassName = [[self class] brickClassNameForBrickTypeName:brickTypeName];
+//    Class class = NSClassFromString(brickClassName);
+
+    Brick *brick = nil;
+    if ([brickTypeName isEqualToString:@"SetLookBrick"]) {
+        brick = [SetLookBrick parseFromElement:xmlElement withContext:context];
+    } else if ([brickTypeName isEqualToString:@"SetVariableBrick"]) {
+        brick = [SetVariableBrick parseFromElement:xmlElement withContext:context];
     } else {
-        [XMLError exceptionWithMessage:@"Unsupported script type: %@!", scriptType];
+        [XMLError exceptionWithMessage:@"Unsupported brick type: %@. Please implement %@+CBXMLHandler class",
+         brickTypeName, brickTypeName];
     }
-    
-    script.brickList = [[self class] parseAndCreateBricks:xmlElement];
-    return script;
+    return brick;
 }
+
+//+ (NSString*)brickClassNameForBrickTypeName:(NSString*)brickTypeName
+//{
+//    NSMutableString *brickXMLHandlerClassName = [NSMutableString stringWithString:brickTypeName];
+//    // TODO: handle those class names here that do not correspond to bricktypenames...
+//    return (NSString*)brickXMLHandlerClassName;
+//}
 
 @end

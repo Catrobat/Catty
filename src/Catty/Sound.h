@@ -26,8 +26,8 @@
 @class SpriteObject;
 
 @interface Sound : NSObject
-@property (strong, nonatomic) NSString* name;
-@property (strong, nonatomic) NSString* fileName;
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *fileName;
 @property (atomic, getter = isPlaying) BOOL playing; // this property must be thread-safe!
 
 - (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;

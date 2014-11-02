@@ -29,7 +29,7 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"sound"];
-    Sound *sound = [[Sound alloc] init];
+    Sound *sound = [self new];
     NSArray *soundChildElements = [xmlElement children];
     [XMLError exceptionIf:[soundChildElements count] notEquals:2 message:@"Sound must contain two child nodes"];
     

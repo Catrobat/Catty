@@ -32,7 +32,7 @@
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"look"];
     GDataXMLNode *nameAttribute = [xmlElement attributeForName:@"name"];
     [XMLError exceptionIfNil:nameAttribute message:@"Look must contain a name attribute"];
-    Look *look = [[Look alloc] init];
+    Look *look = [self new];
     look.name = [nameAttribute stringValue];
     NSArray *lookChildElements = [xmlElement children];
     [XMLError exceptionIf:[lookChildElements count] notEquals:1

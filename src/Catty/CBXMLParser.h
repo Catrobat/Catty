@@ -27,6 +27,8 @@
 @class GDataXMLNode;
 @class GDataXMLElement;
 @class SpriteObject;
+@class Look;
+@class Sound;
 
 @interface CBXMLParser : NSObject <CBParserProtocol>
 
@@ -39,5 +41,7 @@
 + (id)valueForPropertyNode:(GDataXMLNode*)propertyNode;
 + (BOOL)isReferenceElement:(GDataXMLElement*)xmlElement;
 + (SpriteObject*)findSpriteObjectInArray:(NSArray*)spriteObjectList withName:(NSString*)spriteObjectName;
++ (Look*)findLookInArray:(NSArray*)lookList withName:(NSString*)lookName;
++ (Sound*)findSoundInArray:(NSArray*)soundList withName:(NSString*)soundName;
 
 @end

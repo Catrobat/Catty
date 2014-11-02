@@ -37,7 +37,7 @@
     [XMLError exceptionIf:[attributes count] notEquals:1
                   message:@"Parsed name-attribute of object is invalid or empty!"];
     
-    SpriteObject *spriteObject = [SpriteObject new];
+    SpriteObject *spriteObject = [self new];
     GDataXMLNode *attribute = [attributes firstObject];
     GDataXMLElement *pointedObjectElement = nil;
     // check if normal or pointed object
@@ -45,7 +45,7 @@
         spriteObject.name = [attribute stringValue];
     } else if ([attribute.name isEqualToString:@"reference"]) {
         NSString *xPath = [attribute stringValue];
-        pointedObjectElement = [xmlElement singleNodeForCatrobatXPath:xPath error:nil];
+        pointedObjectElement = [xmlElement singleNodeForCatrobatXPath:xPath];
         [XMLError exceptionIfNode:pointedObjectElement isNilOrNodeNameNotEquals:@"pointedObject"];
         GDataXMLNode *nameAttribute = [pointedObjectElement attributeForName:@"name"];
         [XMLError exceptionIfNil:nameAttribute message:@"PointedObject must contain a name attribute"];
@@ -55,9 +55,10 @@
     }
     NSLog(@"<object name=\"%@\">", spriteObject.name);
     
-    spriteObject.lookList = [[self class] parseAndCreateLooks:(pointedObjectElement ? pointedObjectElement : xmlElement)];
-    spriteObject.soundList = [[self class] parseAndCreateSounds:(pointedObjectElement ? pointedObjectElement : xmlElement)];
-    spriteObject.scriptList = [[self class] parseAndCreateScripts:(pointedObjectElement ? pointedObjectElement : xmlElement)];
+    spriteObject.lookList = [self parseAndCreateLooks:(pointedObjectElement ? pointedObjectElement : xmlElement)];
+    spriteObject.soundList = [self parseAndCreateSounds:(pointedObjectElement ? pointedObjectElement : xmlElement)];
+    spriteObject.scriptList = [self parseAndCreateScripts:(pointedObjectElement ? pointedObjectElement : xmlElement)
+                                              withContext:spriteObject];
     return spriteObject;
 }
 
@@ -101,7 +102,7 @@
     return soundList;
 }
 
-+ (NSMutableArray*)parseAndCreateScripts:(GDataXMLElement*)objectElement
++ (NSMutableArray*)parseAndCreateScripts:(GDataXMLElement*)objectElement withContext:(id)context
 {
     NSArray *scriptListElements = [objectElement elementsForName:@"scriptList"];
     [XMLError exceptionIf:[scriptListElements count] notEquals:1 message:@"No scriptList given!"];
@@ -114,7 +115,7 @@
     
     NSMutableArray *scriptList = [NSMutableArray arrayWithCapacity:[scriptElements count]];
     for (GDataXMLElement *scriptElement in scriptElements) {
-        Script *script = [Script parseFromElement:scriptElement withContext:nil];
+        Script *script = [Script parseFromElement:scriptElement withContext:context];
         [XMLError exceptionIfNil:script message:@"Unable to parse script..."];
         [scriptList addObject:script];
     }
