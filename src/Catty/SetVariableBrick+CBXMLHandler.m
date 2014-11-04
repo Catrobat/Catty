@@ -24,6 +24,7 @@
 #import "CBXMLValidator.h"
 #import "GDataXMLNode+CustomExtensions.h"
 #import "UserVariable+CBXMLHandler.h"
+#import "Formula+CBXMLHandler.h"
 #import "CBXMLParser.h"
 
 @implementation SetVariableBrick (CBXMLHandler)
@@ -35,16 +36,23 @@
     [XMLError exceptionIf:[xmlElement childCount] notEquals:3 message:@"Too less or too many child nodes found..."];
     GDataXMLElement *formulaListElement = [xmlElement childWithElementName:@"formulaList"];
     [XMLError exceptionIfNil:formulaListElement message:@"No formulaList element found..."];
+    [XMLError exceptionIf:[formulaListElement childCount] notEquals:1 message:@"Too many formulas found"];
+
+    GDataXMLElement *formulaElement = [formulaListElement childWithElementName:@"formula"];
+    [XMLError exceptionIfNil:formulaElement message:@"No formula element found..."];
+    [XMLError exceptionIfString:[[formulaElement attributeForName:@"category"] stringValue] isNotEqualToString:@"VARIABLE" message:@"Formula has wrong category"];
+    
     GDataXMLElement *inUserBrickElement = [xmlElement childWithElementName:@"inUserBrick"]; // TODO: implement this...
     [XMLError exceptionIfNil:inUserBrickElement message:@"No inUserBrickElement element found..."];
     GDataXMLElement *userVariableElement = [xmlElement childWithElementName:@"userVariable"];
     [XMLError exceptionIfNil:userVariableElement message:@"No userVariableElement element found..."];
 
     UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:nil];
+    Formula *formula = [Formula parseFromElement:formulaElement withContext:nil];
 
     SetVariableBrick *setVariableBrick = [self new];
     setVariableBrick.userVariable = userVariable;
-    setVariableBrick.variableFormula = nil; // TODO: implement formula parser...
+    setVariableBrick.variableFormula = formula; // TODO: implement formula parser...
     return setVariableBrick;
 }
 

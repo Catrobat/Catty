@@ -42,6 +42,10 @@
 #import "SetLookBrick+CBXMLHandler.h"
 #import "CBXMLContext.h"
 #import "SetLookBrick.h"
+#import "SetVariableBrick.h"
+#import "UserVariable+CBXMLHandler.h"
+#import "Formula+CBXMLHandler.h"
+#import "FormulaElement+CBXMLHandler.h"
 
 @interface XMLParserTests : XCTestCase
 
@@ -51,7 +55,7 @@
 
 - (void)testValidHeader {
     
-    Header *header = [Header parseFromElement:[[self getXMLDocumentForPath:[self getPathForXML:@"ValidXML"]] rootElement] withContext:nil];
+    Header *header = [Header parseFromElement:[[self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]] rootElement] withContext:nil];
     XCTAssertNotNil(header, @"Header is nil");
     
     XCTAssertTrue([header.applicationBuildName isEqualToString: @"applicationBuildName"], @"applicationBuildName not correctly parsed");
@@ -79,7 +83,7 @@
 
 - (void)testValidObjectList {
     
-    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidXML"]];
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
     NSArray *objectListElements = [xmlElement elementsForName:@"objectList"];
@@ -121,7 +125,7 @@
 
 - (void)testValidSetLookBrick {
     
-    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidXML"]];
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
     NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[1]" error:nil];
@@ -138,11 +142,16 @@
     
     XCTAssertTrue(brick.brickType == kSetLookBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[SetLookBrick class]], @"Invalid brick class");
+    
+    SetLookBrick *setLookBrick = (SetLookBrick*)brick;
+    
+    Look *look = setLookBrick.look;
+    XCTAssertTrue([look.name isEqualToString:@"Background"], @"Invalid look name");
 }
 
 - (void)testValidSetVariableBrick {
     
-    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidXML"]];
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
     NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[2]" error:nil];
@@ -157,8 +166,45 @@
     
     Brick *brick = [Brick parseFromElement:brickXMLElement withContext:[[CBXMLContext alloc] initWithLookList:lookList]];
     
-    XCTAssertTrue(brick.brickType == kSetLookBrick, @"Invalid brick type");
-    XCTAssertTrue([brick isKindOfClass:[SetLookBrick class]], @"Invalid brick class");
+    XCTAssertTrue(brick.brickType == kSetVariableBrick, @"Invalid brick type");
+    XCTAssertTrue([brick isKindOfClass:[SetVariableBrick class]], @"Invalid brick class");
+    
+    SetVariableBrick *setVariableBrick = (SetVariableBrick*)brick;
+    
+    XCTAssertTrue([setVariableBrick.userVariable.name isEqualToString:@"random from"], @"Invalid user variable name");
+    
+    Formula *formula = setVariableBrick.variableFormula;
+    XCTAssertTrue(formula.formulaTree.type == NUMBER, @"Invalid variable type");
+    XCTAssertTrue([formula.formulaTree.value isEqualToString:@"1"], @"Invalid variable value");
+}
+
+- (void)testValidFormulaList {
+    
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidFormulaList"]];
+    GDataXMLElement *xmlElement = [document rootElement];
+    
+    NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[2]" error:nil];
+    XCTAssertEqual([brickElement count], 1);
+    
+    NSArray *objectArray = [xmlElement nodesForXPath:@"//program/objectList/object[1]" error:nil];
+    XCTAssertEqual([objectArray count], 1);
+    GDataXMLElement *objectElement = [objectArray objectAtIndex:0];
+    
+    NSMutableArray *lookList = [SpriteObject parseAndCreateLooks:objectElement];
+    GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
+    
+    Brick *brick = [Brick parseFromElement:brickXMLElement withContext:[[CBXMLContext alloc] initWithLookList:lookList]];
+    
+    XCTAssertTrue(brick.brickType == kSetVariableBrick, @"Invalid brick type");
+    XCTAssertTrue([brick isKindOfClass:[SetVariableBrick class]], @"Invalid brick class");
+    
+    SetVariableBrick *setVariableBrick = (SetVariableBrick*)brick;
+    
+    XCTAssertTrue([setVariableBrick.userVariable.name isEqualToString:@"random from"], @"Invalid user variable name");
+    
+    Formula *formula = setVariableBrick.variableFormula;
+    // formula value should be: (1 * (-2)) + (3 / 4) = -1,25
+    XCTAssertEqualWithAccuracy([formula interpretDoubleForSprite:nil], -1.25, 0.00001, @"Formula not correctly parsed");
 }
 
 - (NSString*)getPathForXML: (NSString*)xmlFile {

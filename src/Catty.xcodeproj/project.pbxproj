@@ -28,9 +28,11 @@
 		4C023FE619FFCAC700381E36 /* SpriteObject+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C023FE519FFCAC700381E36 /* SpriteObject+CBXMLHandler.m */; };
 		4C023FEA19FFCCA100381E36 /* Script+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C023FE919FFCCA100381E36 /* Script+CBXMLHandler.m */; };
 		4C023FEE19FFCF0700381E36 /* VariablesContainer+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C023FED19FFCF0700381E36 /* VariablesContainer+CBXMLHandler.m */; };
-		4C1608A21A09535E002C7032 /* Formula+Formula_CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1608A11A09535E002C7032 /* Formula+Formula_CBXMLHandler.m */; };
+		4C1608A71A095639002C7032 /* Formula+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1608A61A095639002C7032 /* Formula+CBXMLHandler.m */; };
+		4C1608AB1A095F17002C7032 /* FormulaElement+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1608AA1A095F17002C7032 /* FormulaElement+CBXMLHandler.m */; };
+		4C1608B21A09621A002C7032 /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B01A09621A002C7032 /* ValidFormulaList.xml */; };
+		4C1608B31A09621A002C7032 /* ValidProgram.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B11A09621A002C7032 /* ValidProgram.xml */; };
 		4CA7DAB21A08FB1F00681DB9 /* CBXMLContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA7DAB11A08FB1F00681DB9 /* CBXMLContext.m */; };
-		4CD194F91A06330C00484E4F /* ValidXML.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CD194F71A06330C00484E4F /* ValidXML.xml */; };
 		4CD194FC1A06333000484E4F /* XMLParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD194FB1A06333000484E4F /* XMLParserTests.m */; };
 		9236B38B19DA85B000495474 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9236B38A19DA85B000495474 /* Launch Screen.xib */; };
 		924DEBFA19CAFB9900EED9CE /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF619CAFB9900EED9CE /* MYBlurIntroductionView.m */; };
@@ -391,8 +393,12 @@
 		4C023FEC19FFCF0700381E36 /* VariablesContainer+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VariablesContainer+CBXMLHandler.h"; sourceTree = "<group>"; };
 		4C023FED19FFCF0700381E36 /* VariablesContainer+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VariablesContainer+CBXMLHandler.m"; sourceTree = "<group>"; };
 		4C107ADC194F156F00D9D7ED /* PointToBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointToBrickTests.m; sourceTree = "<group>"; };
-		4C1608A01A09535E002C7032 /* Formula+Formula_CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Formula+Formula_CBXMLHandler.h"; sourceTree = "<group>"; };
-		4C1608A11A09535E002C7032 /* Formula+Formula_CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Formula+Formula_CBXMLHandler.m"; sourceTree = "<group>"; };
+		4C1608A51A095639002C7032 /* Formula+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Formula+CBXMLHandler.h"; sourceTree = "<group>"; };
+		4C1608A61A095639002C7032 /* Formula+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Formula+CBXMLHandler.m"; sourceTree = "<group>"; };
+		4C1608A91A095F17002C7032 /* FormulaElement+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FormulaElement+CBXMLHandler.h"; sourceTree = "<group>"; };
+		4C1608AA1A095F17002C7032 /* FormulaElement+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FormulaElement+CBXMLHandler.m"; sourceTree = "<group>"; };
+		4C1608B01A09621A002C7032 /* ValidFormulaList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidFormulaList.xml; path = "Resources/Test Resources/ValidFormulaList.xml"; sourceTree = "<group>"; };
+		4C1608B11A09621A002C7032 /* ValidProgram.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidProgram.xml; path = "Resources/Test Resources/ValidProgram.xml"; sourceTree = "<group>"; };
 		4C3AEF2E198E7EDD00604ABF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaFunctionsTest.m; sourceTree = "<group>"; };
 		4C3C03FF199BA7B40004F594 /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Functions.h; sourceTree = "<group>"; };
@@ -422,7 +428,6 @@
 		4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OrderedDictionary.license; sourceTree = "<group>"; };
 		4CA7DAB01A08FB1F00681DB9 /* CBXMLContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBXMLContext.h; path = Reachability/CBXMLContext.h; sourceTree = "<group>"; };
 		4CA7DAB11A08FB1F00681DB9 /* CBXMLContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBXMLContext.m; path = Reachability/CBXMLContext.m; sourceTree = "<group>"; };
-		4CD194F71A06330C00484E4F /* ValidXML.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidXML.xml; path = CattyTests/Parser/Resources/XML/ValidXML.xml; sourceTree = SOURCE_ROOT; };
 		4CD194FB1A06333000484E4F /* XMLParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserTests.m; path = Parser/XMLParserTests.m; sourceTree = "<group>"; };
 		8146A9B119279721002548A4 /* ProgramTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableHeaderView.h; sourceTree = "<group>"; };
 		8146A9B219279721002548A4 /* ProgramTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableHeaderView.m; sourceTree = "<group>"; };
@@ -1216,9 +1221,19 @@
 		4C1608A41A09548F002C7032 /* ParserTests */ = {
 			isa = PBXGroup;
 			children = (
-				4CD194F71A06330C00484E4F /* ValidXML.xml */,
+				4C1608B01A09621A002C7032 /* ValidFormulaList.xml */,
+				4C1608B11A09621A002C7032 /* ValidProgram.xml */,
 			);
 			name = ParserTests;
+			sourceTree = "<group>";
+		};
+		4C1608A81A095F05002C7032 /* FormulaElement */ = {
+			isa = PBXGroup;
+			children = (
+				4C1608A91A095F17002C7032 /* FormulaElement+CBXMLHandler.h */,
+				4C1608AA1A095F17002C7032 /* FormulaElement+CBXMLHandler.m */,
+			);
+			name = FormulaElement;
 			sourceTree = "<group>";
 		};
 		4C3C03F5199BA5250004F594 /* Formula */ = {
@@ -2740,8 +2755,9 @@
 		CAAE4C281A06C72A00040E02 /* Formula */ = {
 			isa = PBXGroup;
 			children = (
-				4C1608A01A09535E002C7032 /* Formula+Formula_CBXMLHandler.h */,
-				4C1608A11A09535E002C7032 /* Formula+Formula_CBXMLHandler.m */,
+				4C1608A81A095F05002C7032 /* FormulaElement */,
+				4C1608A51A095639002C7032 /* Formula+CBXMLHandler.h */,
+				4C1608A61A095639002C7032 /* Formula+CBXMLHandler.m */,
 			);
 			name = Formula;
 			sourceTree = "<group>";
@@ -3622,9 +3638,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CD194F91A06330C00484E4F /* ValidXML.xml in Resources */,
 				CA538EC819B0EA09008240AB /* InfoPlist.strings in Resources */,
+				4C1608B21A09621A002C7032 /* ValidFormulaList.xml in Resources */,
 				CA538EC919B0EA09008240AB /* test2.png in Resources */,
+				4C1608B31A09621A002C7032 /* ValidProgram.xml in Resources */,
 				CA538ECA19B0EA09008240AB /* test.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3850,12 +3867,12 @@
 				CADBD74E19B0E8C200C62836 /* Program.m in Sources */,
 				CADBD74F19B0E8C200C62836 /* SoundsTableViewController.m in Sources */,
 				CADBD75019B0E8C200C62836 /* ProjectParser.m in Sources */,
+				4C1608AB1A095F17002C7032 /* FormulaElement+CBXMLHandler.m in Sources */,
 				CADBD75119B0E8C200C62836 /* RepeatBrick.m in Sources */,
 				CADBD75219B0E8C200C62836 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */,
 				CADBD75319B0E8C200C62836 /* Script.m in Sources */,
 				CADBD75419B0E8C200C62836 /* TurnLeftBrickCell.m in Sources */,
 				CADBD75519B0E8C200C62836 /* SetBrightnessBrick.m in Sources */,
-				4C1608A21A09535E002C7032 /* Formula+Formula_CBXMLHandler.m in Sources */,
 				CADBD75619B0E8C200C62836 /* MessageComboBoxView.m in Sources */,
 				CADBD75719B0E8C200C62836 /* SetYBrickCell.m in Sources */,
 				CADBD75819B0E8C200C62836 /* SetGhostEffectBrick.m in Sources */,
@@ -3993,6 +4010,7 @@
 				CADBD7D519B0E8C200C62836 /* MoveNStepsBrick.m in Sources */,
 				4C023FE219FFCA4E00381E36 /* Sound+CBXMLHandler.m in Sources */,
 				CADBD7D619B0E8C200C62836 /* IfOnEdgeBounceBrickCell.m in Sources */,
+				4C1608A71A095639002C7032 /* Formula+CBXMLHandler.m in Sources */,
 				CADBD7D719B0E8C200C62836 /* DarkBlueGradientFeaturedCell.m in Sources */,
 				CADBD7D819B0E8C200C62836 /* Logger.m in Sources */,
 				CADBD7D919B0E8C200C62836 /* IfOnEdgeBounceBrick.m in Sources */,
