@@ -23,8 +23,10 @@
 #import "Look.h"
 #import "CBParserNodeProtocol.h"
 
+@class CBXMLContext;
+
 @interface Look (CBXMLHandler) <CBParserNodeProtocol>
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context;
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context;
 
 @end

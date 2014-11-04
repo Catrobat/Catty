@@ -27,7 +27,7 @@
 
 @implementation UserVariable (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"userVariable"];
     UserVariable *userVariable = [UserVariable new];

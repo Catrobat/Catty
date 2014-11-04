@@ -27,7 +27,7 @@
 
 @implementation Header (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [XMLError exceptionIfNil:xmlElement message:@"No xml element given!"];
     Header *header = [self defaultHeader];

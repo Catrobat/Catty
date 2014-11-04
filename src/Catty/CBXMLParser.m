@@ -31,6 +31,7 @@
 #import "VariablesContainer+CBXMLHandler.h"
 #import "Look.h"
 #import "Sound.h"
+#import "CBXMLContext.h"
 
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
 #define kCatroidXMLSpriteList           @"spriteList"
@@ -124,9 +125,9 @@
     [XMLError exceptionIfNode:rootElement isNilOrNodeNameNotEquals:@"program"];
     Program *program = [Program new];
     program.header = [self parseAndCreateHeaderFromElement:rootElement];
-    program.objectList = [self parseAndCreateObjectsFromElement:rootElement withContext:program];
+    program.objectList = [self parseAndCreateObjectsFromElement:rootElement];
     program.variables = [self parseAndCreateVariablesFromElement:rootElement
-                                                spriteObjectList:program.objectList];
+                                                withSpriteObjectList:program.objectList];
     return program;
 }
 
@@ -137,7 +138,7 @@
 }
 
 #pragma mark Object parsing
-- (NSMutableArray*)parseAndCreateObjectsFromElement:(GDataXMLElement*)programElement withContext:(id)context
+- (NSMutableArray*)parseAndCreateObjectsFromElement:(GDataXMLElement*)programElement
 {
     NSArray *objectListElements = [programElement elementsForName:@"objectList"];
     [XMLError exceptionIf:[objectListElements count] notEquals:1 message:@"No objectList given!"];
@@ -147,7 +148,7 @@
     NSLog(@"<objectList>");
     NSMutableArray *objectList = [NSMutableArray arrayWithCapacity:[objectElements count]];
     for (GDataXMLElement *objectElement in objectElements) {
-        SpriteObject *spriteObject = [SpriteObject parseFromElement:objectElement withContext:context];
+        SpriteObject *spriteObject = [SpriteObject parseFromElement:objectElement withContext:nil];
         if(spriteObject != nil)
             [objectList addObject:spriteObject];
     }
@@ -157,9 +158,9 @@
 
 #pragma mark Variable parsing
 - (VariablesContainer*)parseAndCreateVariablesFromElement:(GDataXMLElement*)programElement
-                                               spriteObjectList:(NSArray*)spriteObjectList
+                                               withSpriteObjectList:(NSMutableArray*)spriteObjectList
 {
-    return [VariablesContainer parseFromElement:programElement withContext:spriteObjectList];
+    return [VariablesContainer parseFromElement:programElement withContext:[[CBXMLContext alloc] initWithSpriteObjectList:spriteObjectList]];
 }
 
 #pragma mark - Helpers

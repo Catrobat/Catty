@@ -23,8 +23,10 @@
 #import "VariablesContainer.h"
 #import "CBParserNodeProtocol.h"
 
+@class CBXMLContext;
+
 @interface VariablesContainer (CBXMLHandler) <CBParserNodeProtocol>
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context;
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context;
 
 @end

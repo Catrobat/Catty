@@ -27,7 +27,7 @@
 
 @implementation Look (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"look"];
     GDataXMLNode *nameAttribute = [xmlElement attributeForName:@"name"];

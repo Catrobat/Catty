@@ -28,6 +28,7 @@
 		4C023FE619FFCAC700381E36 /* SpriteObject+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C023FE519FFCAC700381E36 /* SpriteObject+CBXMLHandler.m */; };
 		4C023FEA19FFCCA100381E36 /* Script+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C023FE919FFCCA100381E36 /* Script+CBXMLHandler.m */; };
 		4C023FEE19FFCF0700381E36 /* VariablesContainer+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C023FED19FFCF0700381E36 /* VariablesContainer+CBXMLHandler.m */; };
+		4CA7DAB21A08FB1F00681DB9 /* CBXMLContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA7DAB11A08FB1F00681DB9 /* CBXMLContext.m */; };
 		4CD194F91A06330C00484E4F /* ValidXML.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CD194F71A06330C00484E4F /* ValidXML.xml */; };
 		4CD194FC1A06333000484E4F /* XMLParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD194FB1A06333000484E4F /* XMLParserTests.m */; };
 		9236B38B19DA85B000495474 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9236B38A19DA85B000495474 /* Launch Screen.xib */; };
@@ -416,6 +417,8 @@
 		4C9E2D3E198F698100455B77 /* NSString+FastImageSize.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "NSString+FastImageSize.license"; sourceTree = "<group>"; };
 		4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+CWPopup.license"; sourceTree = "<group>"; };
 		4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OrderedDictionary.license; sourceTree = "<group>"; };
+		4CA7DAB01A08FB1F00681DB9 /* CBXMLContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBXMLContext.h; path = Reachability/CBXMLContext.h; sourceTree = "<group>"; };
+		4CA7DAB11A08FB1F00681DB9 /* CBXMLContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBXMLContext.m; path = Reachability/CBXMLContext.m; sourceTree = "<group>"; };
 		4CD194F71A06330C00484E4F /* ValidXML.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidXML.xml; path = Parser/Resources/XML/ValidXML.xml; sourceTree = "<group>"; };
 		4CD194FB1A06333000484E4F /* XMLParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserTests.m; path = Parser/XMLParserTests.m; sourceTree = "<group>"; };
 		8146A9B119279721002548A4 /* ProgramTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableHeaderView.h; sourceTree = "<group>"; };
@@ -1122,6 +1125,7 @@
 		4C023FD419FFC59000381E36 /* XMLHandler */ = {
 			isa = PBXGroup;
 			children = (
+				4CA7DAAF1A08FACC00681DB9 /* Context */,
 				4C023FD619FFC79900381E36 /* Header */,
 				4C023FDB19FFC99E00381E36 /* Look */,
 				4C023FDF19FFCA2000381E36 /* Sound */,
@@ -1252,6 +1256,15 @@
 			);
 			name = Licenses;
 			path = Resources/Licenses;
+			sourceTree = "<group>";
+		};
+		4CA7DAAF1A08FACC00681DB9 /* Context */ = {
+			isa = PBXGroup;
+			children = (
+				4CA7DAB01A08FB1F00681DB9 /* CBXMLContext.h */,
+				4CA7DAB11A08FB1F00681DB9 /* CBXMLContext.m */,
+			);
+			name = Context;
 			sourceTree = "<group>";
 		};
 		4CD194F21A0631B200484E4F /* ParserTests */ = {
@@ -3735,6 +3748,7 @@
 				4C023FDE19FFC9BA00381E36 /* Look+CBXMLHandler.m in Sources */,
 				CADBD70319B0E8C200C62836 /* Scene.m in Sources */,
 				CADBD70419B0E8C200C62836 /* BrickSelectModalTransition.m in Sources */,
+				4CA7DAB21A08FB1F00681DB9 /* CBXMLContext.m in Sources */,
 				CADBD70519B0E8C200C62836 /* ForeverBrickCell.m in Sources */,
 				CADBD70619B0E8C200C62836 /* BaseTableViewController.m in Sources */,
 				CADBD70719B0E8C200C62836 /* CatrobatBaseCell.m in Sources */,

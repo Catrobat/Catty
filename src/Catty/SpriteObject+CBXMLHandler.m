@@ -27,10 +27,11 @@
 #import "Look+CBXMLHandler.h"
 #import "Sound+CBXMLHandler.h"
 #import "Script+CBXMLHandler.h"
+#import "CBXMLContext.h"
 
 @implementation SpriteObject (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"object"];
     NSArray *attributes = [xmlElement attributes];
@@ -58,7 +59,7 @@
     spriteObject.lookList = [self parseAndCreateLooks:(pointedObjectElement ? pointedObjectElement : xmlElement)];
     spriteObject.soundList = [self parseAndCreateSounds:(pointedObjectElement ? pointedObjectElement : xmlElement)];
     spriteObject.scriptList = [self parseAndCreateScripts:(pointedObjectElement ? pointedObjectElement : xmlElement)
-                                              withContext:spriteObject];
+                                              forSpriteObject:spriteObject];
     return spriteObject;
 }
 
@@ -102,7 +103,7 @@
     return soundList;
 }
 
-+ (NSMutableArray*)parseAndCreateScripts:(GDataXMLElement*)objectElement withContext:(id)context
++ (NSMutableArray*)parseAndCreateScripts:(GDataXMLElement*)objectElement forSpriteObject:(SpriteObject*)spriteObject
 {
     NSArray *scriptListElements = [objectElement elementsForName:@"scriptList"];
     [XMLError exceptionIf:[scriptListElements count] notEquals:1 message:@"No scriptList given!"];
@@ -115,7 +116,7 @@
     
     NSMutableArray *scriptList = [NSMutableArray arrayWithCapacity:[scriptElements count]];
     for (GDataXMLElement *scriptElement in scriptElements) {
-        Script *script = [Script parseFromElement:scriptElement withContext:context];
+        Script *script = [Script parseFromElement:scriptElement withContext:[[CBXMLContext alloc] initWithSpriteObject:spriteObject]];
         [XMLError exceptionIfNil:script message:@"Unable to parse script..."];
         [scriptList addObject:script];
     }

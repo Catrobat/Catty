@@ -23,10 +23,11 @@
 #import <Foundation/Foundation.h>
 
 @class GDataXMLElement;
+@class CBXMLContext;
 
 @protocol CBParserNodeProtocol <NSObject>
 
 @required
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context;
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context;
 
 @end

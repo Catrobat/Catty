@@ -31,7 +31,7 @@
 
 @implementation Script (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"script"];
     NSArray *attributes = [xmlElement attributes];
@@ -64,7 +64,7 @@
     return script;
 }
 
-+ (NSMutableArray*)parseAndCreateBricks:(GDataXMLElement*)scriptElement withContext:(id)context
++ (NSMutableArray*)parseAndCreateBricks:(GDataXMLElement*)scriptElement withContext:(CBXMLContext*)context
 {
     NSArray *brickListElements = [scriptElement elementsForName:@"brickList"];
     [XMLError exceptionIf:[brickListElements count] notEquals:1 message:@"No brickList given!"];

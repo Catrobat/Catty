@@ -23,8 +23,10 @@
 #import "SetLookBrick.h"
 #import "CBParserNodeProtocol.h"
 
+@class CBXMLContext;
+
 @interface SetLookBrick (CBXMLHandler) <CBParserNodeProtocol>
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context;
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context;
 
 @end

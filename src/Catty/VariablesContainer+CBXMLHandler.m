@@ -28,13 +28,15 @@
 #import "CBXMLParser.h"
 #import "SpriteObject+CBXMLHandler.h"
 #import "UserVariable+CBXMLHandler.h"
+#import "CBXMLContext.h"
 
 @implementation VariablesContainer (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    NSMutableArray *spriteObjectList = (NSMutableArray*)context;
-    
+    NSMutableArray *spriteObjectList = context.spriteObjectList;
+    [XMLError exceptionIfNil:spriteObjectList message:@"Program not set in context"];
+
     NSArray *variablesElements = [xmlElement elementsForName:@"variables"];
     [XMLError exceptionIf:[variablesElements count] notEquals:1 message:@"Too many variable-elements given!"];
     GDataXMLElement *variablesElement = [variablesElements firstObject];

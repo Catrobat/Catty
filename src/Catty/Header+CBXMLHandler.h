@@ -22,12 +22,12 @@
 
 #import "Header.h"
 #import "CBParserNodeProtocol.h"
-#import "GDataXMLNode.h"
-#import "CBXMLValidator.h"
-#import "CBXMLParser.h"
+
+@class CBXMLContext;
+@class GDataXMLElement;
 
 @interface Header (CBXMLHandler) <CBParserNodeProtocol>
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context;
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context;
 
 @end

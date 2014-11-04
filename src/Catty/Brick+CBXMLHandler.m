@@ -29,7 +29,7 @@
 
 @implementation Brick (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"brick"];
     NSArray *attributes = [xmlElement attributes];
@@ -52,8 +52,7 @@
     } else if ([brickTypeName isEqualToString:@"SetVariableBrick"]) {
         brick = [SetVariableBrick parseFromElement:xmlElement withContext:context];
     } else {
-        [XMLError exceptionWithMessage:@"Unsupported brick type: %@. Please implement %@+CBXMLHandler class",
-         brickTypeName, brickTypeName];
+        [XMLError exceptionWithMessage:@"Unsupported brick type: %@. Please implement %@+CBXMLHandler class", brickTypeName, brickTypeName];
     }
     return brick;
 }

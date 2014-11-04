@@ -20,16 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SpriteObject.h"
-#import "CBParserNodeProtocol.h"
+#import <Foundation/Foundation.h>
 
-@interface SpriteObject (CBXMLHandler) <CBParserNodeProtocol>
+@class Program;
+@class SpriteObject;
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context;
+@interface CBXMLContext : NSObject
 
-#ifdef CATTY_TESTS
-+ (NSMutableArray*)parseAndCreateLooks:(GDataXMLElement*)objectElement;
-+ (NSMutableArray*)parseAndCreateSounds:(GDataXMLElement*)objectElement;
-#endif
+@property (nonatomic, strong, readonly) SpriteObject *spriteObject;
+@property (nonatomic, strong, readonly) NSMutableArray *spriteObjectList; // of SpriteObject
+@property (nonatomic, strong, readonly) NSMutableArray *lookList; // of Look
+@property (nonatomic, strong, readonly) NSMutableArray *soundList; // of Sound
+
+- (id)initWithSpriteObject:(SpriteObject*)spriteObject;
+- (id)initWithSpriteObjectList:(NSArray*)spriteObjectList;
+- (id)initWithLookList:(NSArray*)lookList;
+- (id)initWithSoundList:(NSArray*)soundList;
 
 @end
