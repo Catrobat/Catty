@@ -25,8 +25,6 @@
 
 @interface SpriteObject (CBXMLHandler) <CBParserNodeProtocol>
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context;
-
 #ifdef CATTY_TESTS
 + (NSMutableArray*)parseAndCreateLooks:(GDataXMLElement*)objectElement;
 + (NSMutableArray*)parseAndCreateSounds:(GDataXMLElement*)objectElement;

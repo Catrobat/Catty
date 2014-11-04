@@ -28,6 +28,7 @@
 		4C023FE619FFCAC700381E36 /* SpriteObject+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C023FE519FFCAC700381E36 /* SpriteObject+CBXMLHandler.m */; };
 		4C023FEA19FFCCA100381E36 /* Script+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C023FE919FFCCA100381E36 /* Script+CBXMLHandler.m */; };
 		4C023FEE19FFCF0700381E36 /* VariablesContainer+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C023FED19FFCF0700381E36 /* VariablesContainer+CBXMLHandler.m */; };
+		4C1608A21A09535E002C7032 /* Formula+Formula_CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1608A11A09535E002C7032 /* Formula+Formula_CBXMLHandler.m */; };
 		4CA7DAB21A08FB1F00681DB9 /* CBXMLContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA7DAB11A08FB1F00681DB9 /* CBXMLContext.m */; };
 		4CD194F91A06330C00484E4F /* ValidXML.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CD194F71A06330C00484E4F /* ValidXML.xml */; };
 		4CD194FC1A06333000484E4F /* XMLParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD194FB1A06333000484E4F /* XMLParserTests.m */; };
@@ -390,6 +391,8 @@
 		4C023FEC19FFCF0700381E36 /* VariablesContainer+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VariablesContainer+CBXMLHandler.h"; sourceTree = "<group>"; };
 		4C023FED19FFCF0700381E36 /* VariablesContainer+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VariablesContainer+CBXMLHandler.m"; sourceTree = "<group>"; };
 		4C107ADC194F156F00D9D7ED /* PointToBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointToBrickTests.m; sourceTree = "<group>"; };
+		4C1608A01A09535E002C7032 /* Formula+Formula_CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Formula+Formula_CBXMLHandler.h"; sourceTree = "<group>"; };
+		4C1608A11A09535E002C7032 /* Formula+Formula_CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Formula+Formula_CBXMLHandler.m"; sourceTree = "<group>"; };
 		4C3AEF2E198E7EDD00604ABF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaFunctionsTest.m; sourceTree = "<group>"; };
 		4C3C03FF199BA7B40004F594 /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Functions.h; sourceTree = "<group>"; };
@@ -419,7 +422,7 @@
 		4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OrderedDictionary.license; sourceTree = "<group>"; };
 		4CA7DAB01A08FB1F00681DB9 /* CBXMLContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBXMLContext.h; path = Reachability/CBXMLContext.h; sourceTree = "<group>"; };
 		4CA7DAB11A08FB1F00681DB9 /* CBXMLContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBXMLContext.m; path = Reachability/CBXMLContext.m; sourceTree = "<group>"; };
-		4CD194F71A06330C00484E4F /* ValidXML.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidXML.xml; path = Parser/Resources/XML/ValidXML.xml; sourceTree = "<group>"; };
+		4CD194F71A06330C00484E4F /* ValidXML.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidXML.xml; path = CattyTests/Parser/Resources/XML/ValidXML.xml; sourceTree = SOURCE_ROOT; };
 		4CD194FB1A06333000484E4F /* XMLParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserTests.m; path = Parser/XMLParserTests.m; sourceTree = "<group>"; };
 		8146A9B119279721002548A4 /* ProgramTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableHeaderView.h; sourceTree = "<group>"; };
 		8146A9B219279721002548A4 /* ProgramTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableHeaderView.m; sourceTree = "<group>"; };
@@ -1202,6 +1205,22 @@
 			name = VariablesContainer;
 			sourceTree = "<group>";
 		};
+		4C1608A31A095480002C7032 /* Test Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4C1608A41A09548F002C7032 /* ParserTests */,
+			);
+			name = "Test Resources";
+			sourceTree = "<group>";
+		};
+		4C1608A41A09548F002C7032 /* ParserTests */ = {
+			isa = PBXGroup;
+			children = (
+				4CD194F71A06330C00484E4F /* ValidXML.xml */,
+			);
+			name = ParserTests;
+			sourceTree = "<group>";
+		};
 		4C3C03F5199BA5250004F594 /* Formula */ = {
 			isa = PBXGroup;
 			children = (
@@ -1287,7 +1306,6 @@
 			isa = PBXGroup;
 			children = (
 				4CD194FB1A06333000484E4F /* XMLParserTests.m */,
-				4CD194F71A06330C00484E4F /* ValidXML.xml */,
 			);
 			name = CatrobatLanguage0.93;
 			sourceTree = "<group>";
@@ -1625,6 +1643,7 @@
 		B43498471927A3AB002F9075 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4C1608A31A095480002C7032 /* Test Resources */,
 				4C9E2D1D198EA6B600455B77 /* Licenses */,
 				CA6E4C4719F9C388001B65C3 /* My First Program.catrobat */,
 				4C3AEF2E198E7EDD00604ABF /* Settings.bundle */,
@@ -2721,6 +2740,8 @@
 		CAAE4C281A06C72A00040E02 /* Formula */ = {
 			isa = PBXGroup;
 			children = (
+				4C1608A01A09535E002C7032 /* Formula+Formula_CBXMLHandler.h */,
+				4C1608A11A09535E002C7032 /* Formula+Formula_CBXMLHandler.m */,
 			);
 			name = Formula;
 			sourceTree = "<group>";
@@ -3834,6 +3855,7 @@
 				CADBD75319B0E8C200C62836 /* Script.m in Sources */,
 				CADBD75419B0E8C200C62836 /* TurnLeftBrickCell.m in Sources */,
 				CADBD75519B0E8C200C62836 /* SetBrightnessBrick.m in Sources */,
+				4C1608A21A09535E002C7032 /* Formula+Formula_CBXMLHandler.m in Sources */,
 				CADBD75619B0E8C200C62836 /* MessageComboBoxView.m in Sources */,
 				CADBD75719B0E8C200C62836 /* SetYBrickCell.m in Sources */,
 				CADBD75819B0E8C200C62836 /* SetGhostEffectBrick.m in Sources */,

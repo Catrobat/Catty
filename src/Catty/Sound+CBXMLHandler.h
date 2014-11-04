@@ -25,6 +25,4 @@
 
 @interface Sound (CBXMLHandler) <CBParserNodeProtocol>
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context;
-
 @end

@@ -27,6 +27,4 @@
 
 @interface UserVariable (CBXMLHandler) <CBParserNodeProtocol>
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context;
-
 @end

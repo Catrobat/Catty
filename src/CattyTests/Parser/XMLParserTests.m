@@ -41,6 +41,7 @@
 #import "Brick+CBXMLHandler.h"
 #import "SetLookBrick+CBXMLHandler.h"
 #import "CBXMLContext.h"
+#import "SetLookBrick.h"
 
 @interface XMLParserTests : XCTestCase
 
@@ -118,7 +119,7 @@
     XCTAssertTrue([sound.fileName isEqualToString: @"6f231e6406d3554d691f3c9ffb37c043_Hit1.m4a"], @"SpriteObject[1]: Sound fileName not correctly parsed");
 }
 
-- (void)testValidStartScriptSetLookBrick {
+- (void)testValidSetLookBrick {
     
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidXML"]];
     GDataXMLElement *xmlElement = [document rootElement];
@@ -130,33 +131,34 @@
     XCTAssertEqual([objectArray count], 1);
     GDataXMLElement *objectElement = [objectArray objectAtIndex:0];
     
-    GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
-    
     NSMutableArray *lookList = [SpriteObject parseAndCreateLooks:objectElement];
+    GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
     Brick *brick = [Brick parseFromElement:brickXMLElement withContext:[[CBXMLContext alloc] initWithLookList:lookList]];
     
-   /* NSArray *objectElements = [[objectListElements firstObject] children];
-    NSMutableArray *objectList = [NSMutableArray arrayWithCapacity:[objectElements count]];
+    XCTAssertTrue(brick.brickType == kSetLookBrick, @"Invalid brick type");
+    XCTAssertTrue([brick isKindOfClass:[SetLookBrick class]], @"Invalid brick class");
+}
+
+- (void)testValidSetVariableBrick {
     
-    for (GDataXMLElement *objectElement in objectElements) {
-        SpriteObject *spriteObject = [SpriteObject parseFromElement:objectElement withContext:nil];
-        [objectList addObject:spriteObject];
-    }
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidXML"]];
+    GDataXMLElement *xmlElement = [document rootElement];
     
-    XCTAssertEqual([objectList count], 5);
+    NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[2]" error:nil];
+    XCTAssertEqual([brickElement count], 1);
     
-    SpriteObject *background = [objectList objectAtIndex:0];
-    XCTAssertTrue([background.name isEqualToString: @"Background"], @"SpriteObject[0]: Name not correctly parsed");
-    XCTAssertEqual([background.scriptList count], 1, @"SpriteObject[0]: scriptList not correctly parsed");
+    NSArray *objectArray = [xmlElement nodesForXPath:@"//program/objectList/object[1]" error:nil];
+    XCTAssertEqual([objectArray count], 1);
+    GDataXMLElement *objectElement = [objectArray objectAtIndex:0];
     
-    Script *script = [background.scriptList objectAtIndex:0];
-    XCTAssertTrue(script.brickType == kProgramStartedBrick, @"SpriteObject[0]: Script type not correctly parsed");
-    XCTAssertEqual([script.brickList count], 3, @"brickList not correctly parsed");
+    NSMutableArray *lookList = [SpriteObject parseAndCreateLooks:objectElement];
+    GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    Brick *setLookBrick = [script.brickList objectAtIndex:0];
-    XCTAssertTrue(setLookBrick.brickType == kSetLookBrick, @"SetLookBrick not correctly parsed");
-    */
+    Brick *brick = [Brick parseFromElement:brickXMLElement withContext:[[CBXMLContext alloc] initWithLookList:lookList]];
+    
+    XCTAssertTrue(brick.brickType == kSetLookBrick, @"Invalid brick type");
+    XCTAssertTrue([brick isKindOfClass:[SetLookBrick class]], @"Invalid brick class");
 }
 
 - (NSString*)getPathForXML: (NSString*)xmlFile {

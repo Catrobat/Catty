@@ -41,7 +41,6 @@
     [XMLError exceptionIfNil:userVariableElement message:@"No userVariableElement element found..."];
 
     UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:nil];
-//    userVariable.name; // TODO: search in list...
 
     SetVariableBrick *setVariableBrick = [self new];
     setVariableBrick.userVariable = userVariable;

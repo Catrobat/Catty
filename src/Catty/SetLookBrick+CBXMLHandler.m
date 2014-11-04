@@ -31,8 +31,6 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    // FIXME: validate...
-
     [XMLError exceptionIf:[xmlElement childCount] notEquals:1 message:@"Too many child nodes found..."];
     GDataXMLElement *lookElement = [[xmlElement children] firstObject];
     NSMutableArray *lookList = context.lookList;
