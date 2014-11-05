@@ -1,7 +1,4 @@
-# OS X
 .DS_Store
-
-# Xcode
 build/
 *.pbxuser
 !default.pbxuser
@@ -19,14 +16,8 @@ DerivedData
 .idea/
 *.hmap
 *.xccheckout
-
-# CocoaPods
 Pods
-
-#Merge
 *.orig
-
-#Custom
 Mockup/*
-
 *.yaml
+src/ObjectiveGit

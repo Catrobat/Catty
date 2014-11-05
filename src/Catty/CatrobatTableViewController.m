@@ -442,12 +442,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 
 #pragma mark - MYIntroduction Delegate
-
--(void)introduction:(MYBlurIntroductionView *)introductionView didChangeToPanel:(MYIntroductionPanel *)panel withIndex:(NSInteger)panelIndex{
-
+- (void)introduction:(MYBlurIntroductionView*)introductionView didChangeToPanel:(MYIntroductionPanel*)panel withIndex:(NSInteger)panelIndex
+{
 }
 
--(void)introduction:(MYBlurIntroductionView *)introductionView didFinishWithType:(MYFinishType)finishType {
+- (void)introduction:(MYBlurIntroductionView *)introductionView didFinishWithType:(MYFinishType)finishType
+{
     NSLog(@"Introduction did finish");
     [self initNavigationBar];
     self.tableView.scrollEnabled = YES;
