@@ -42,6 +42,7 @@
 #import "AHKActionSheet.h"
 #import "FormulaEditorButton.h"
 #import "BrickFormulaProtocol.h"
+#import "UIImage+CatrobatUIImageExtensions.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -60,6 +61,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
 @property (strong, nonatomic) UIMotionEffectGroup *motionEffects;
 @property (strong, nonatomic) FormulaEditorTextView *formulaEditorTextView;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *orangeTypeButton;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *toolTypeButton;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *normalTypeButton;
+@property (weak, nonatomic) IBOutlet UIScrollView *calcScrollView;
+
+
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
 @property (weak, nonatomic) IBOutlet UIButton *undoButton;
@@ -378,10 +385,23 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(1, self.brickCell.frame.size.height + 41, self.view.frame.size.width - 2, 0) AndFormulaEditorViewController:self];
     [self.view addSubview:self.formulaEditorTextView];
     
-    for(int i = 0; i < [self.buttons count]; i++) {
-        [[self.buttons objectAtIndex:i] setTitleColor:UIColor.lightOrangeColor forState:UIControlStateNormal];
+    for(int i = 0; i < [self.orangeTypeButton count]; i++) {
+        [[self.orangeTypeButton objectAtIndex:i] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [[self.orangeTypeButton objectAtIndex:i] setBackgroundColor:[UIColor lightOrangeColor]];
+      
+        [[self.orangeTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor orangeColor]] forState:UIControlStateHighlighted];
     }
-    
+  for(int i = 0; i < [self.normalTypeButton count]; i++) {
+    [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor skyBlueColor] forState:UIControlStateNormal];
+    [[self.normalTypeButton objectAtIndex:i] setBackgroundColor:[UIColor airForceBlueColor]];
+    [[self.normalTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateHighlighted];
+  }
+  for(int i = 0; i < [self.toolTypeButton count]; i++) {
+    [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor skyBlueColor] forState:UIControlStateNormal];
+    [[self.toolTypeButton objectAtIndex:i] setBackgroundColor:[UIColor darkBlueColor]];
+    [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateHighlighted];
+  }
+  
     [self update];
     [self.formulaEditorTextView becomeFirstResponder];
 }
