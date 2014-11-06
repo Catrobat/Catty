@@ -64,8 +64,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *orangeTypeButton;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *toolTypeButton;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *normalTypeButton;
-@property (weak, nonatomic) IBOutlet UIScrollView *calcScrollView;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *calcScrollView;
+@property (weak, nonatomic) IBOutlet UIScrollView *mathScrollView;
+@property (weak, nonatomic) IBOutlet UIScrollView *logicScrollView;
+@property (weak, nonatomic) IBOutlet UIScrollView *objectScrollView;
+@property (weak, nonatomic) IBOutlet UIScrollView *sensorScrollView;
 
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
@@ -132,6 +136,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [CellMotionEffect addMotionEffectForView:self.brickCell withDepthX:0.0f withDepthY:25.0f withMotionEffectGroup:self.motionEffects];
     
     [self showFormulaEditor];
+    [self hideScrollViews];
+    self.calcScrollView.hidden = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -428,18 +434,52 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.brickCell setupBrickCell];
 }
 
-- (IBAction)showMathFunctionsMenu:(id)sender
-{
-    [self.formulaEditorTextView resignFirstResponder];
-    [self.mathFunctionsMenu show];
-    [self.mathFunctionsMenu becomeFirstResponder];
+//- (IBAction)showMathFunctionsMenu:(id)sender
+//{
+//    [self.formulaEditorTextView resignFirstResponder];
+//    [self.mathFunctionsMenu show];
+//    [self.mathFunctionsMenu becomeFirstResponder];
+//}
+//
+//- (IBAction)showLogicalOperatorsMenu:(id)sender
+//{
+//    [self.formulaEditorTextView resignFirstResponder];
+//    [self.logicalOperatorsMenu show];
+//    [self.logicalOperatorsMenu becomeFirstResponder];
+//}
+- (IBAction)showCalc:(UIButton *)sender {
+    [self hideScrollViews];
+    self.calcScrollView.hidden = NO;
+    [self.calcScrollView scrollsToTop];
+}
+- (IBAction)showFunction:(UIButton *)sender {
+    [self hideScrollViews];
+    self.mathScrollView.hidden = NO;
+    [self.mathScrollView scrollsToTop];
+}
+- (IBAction)showLogic:(UIButton *)sender {
+    [self hideScrollViews];
+    self.logicScrollView.hidden = NO;
+    [self.logicScrollView scrollsToTop];
+}
+- (IBAction)showObject:(UIButton *)sender {
+    [self hideScrollViews];
+    self.objectScrollView.hidden = NO;
+    [self.objectScrollView scrollsToTop];
+}
+- (IBAction)showSensor:(UIButton *)sender {
+    [self hideScrollViews];
+    self.sensorScrollView.hidden = NO;
+    [self.sensorScrollView scrollsToTop];
 }
 
-- (IBAction)showLogicalOperatorsMenu:(id)sender
+-(void)hideScrollViews
 {
-    [self.formulaEditorTextView resignFirstResponder];
-    [self.logicalOperatorsMenu show];
-    [self.logicalOperatorsMenu becomeFirstResponder];
+    self.mathScrollView.hidden = YES;
+    self.calcScrollView.hidden = YES;
+    self.logicScrollView.hidden = YES;
+    self.objectScrollView.hidden = YES;
+    self.sensorScrollView.hidden = YES;
 }
 
 - (void)closeMenu
