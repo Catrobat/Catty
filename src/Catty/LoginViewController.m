@@ -34,6 +34,9 @@ static NSString *const registrationCountryParameterID = @"registrationCountry";
 
 bool useTestUrl = true;
 
+NSString *testEmail = @"test@gmx.at";
+NSString *testCountry = @"Austria";
+
 @interface LoginViewController ()
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSMutableData *data;
@@ -109,7 +112,12 @@ bool useTestUrl = true;
     NSDebug(@"Finished custom query to server");
      */
     
-    NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@",usernameParameterID, username, passwordParameterID, password];
+    NSLocale *currentLocale = [NSLocale currentLocale];
+    NSString *countryCode = [currentLocale objectForKey:NSLocaleCountryCode];
+    
+    NSDebug(@"Current Country is: %@", countryCode);
+    
+    NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@=%@",usernameParameterID, username, passwordParameterID, password, registrationEmailParameterID, testEmail, registrationCountryParameterID, countryCode];
     NSData *postData = [[NSData alloc] initWithContentsOfFile:post];
     //NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
