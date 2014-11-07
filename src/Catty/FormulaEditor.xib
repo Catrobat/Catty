@@ -7,14 +7,19 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FormulaEditorViewController">
             <connections>
                 <outlet property="additionButton" destination="3DA-2p-zn4" id="CAM-4y-0og"/>
+                <outlet property="calcButton" destination="Tgc-kx-DJP" id="Ui6-qE-9ZX"/>
                 <outlet property="calcScrollView" destination="Jr7-8P-SvP" id="OYF-u3-x1T"/>
                 <outlet property="computeButton" destination="oQN-vf-ZdE" id="dbs-ff-alX"/>
                 <outlet property="divisionButton" destination="Rkk-tV-mbQ" id="0AJ-qO-Hmv"/>
+                <outlet property="logicButton" destination="BjT-SP-YH6" id="Z1f-rU-mai"/>
                 <outlet property="logicScrollView" destination="hVS-Xg-Z9s" id="PZn-ww-9QH"/>
                 <outlet property="mathScrollView" destination="uXA-h0-rRH" id="WAi-3A-d5N"/>
+                <outlet property="mathbutton" destination="U9K-ue-3bh" id="wJq-tv-kH8"/>
                 <outlet property="multiplicationButton" destination="huL-az-i7Z" id="G1R-jS-RWu"/>
+                <outlet property="objectButton" destination="Lon-kh-Yxw" id="YPK-oR-a9o"/>
                 <outlet property="objectScrollView" destination="r3x-u7-pYE" id="9tA-eC-zn3"/>
                 <outlet property="redoButton" destination="Wxl-Bw-XuK" id="TtX-Jm-zHa"/>
+                <outlet property="sensorButton" destination="NJw-CT-Ced" id="r8N-ag-Tws"/>
                 <outlet property="sensorScrollView" destination="up0-Dt-TT0" id="Xaw-TC-og3"/>
                 <outlet property="substractionButton" destination="3NS-4e-r3K" id="Fig-xf-iYa"/>
                 <outlet property="undoButton" destination="DpH-97-0s2" id="SrL-4a-0yR"/>
@@ -1261,7 +1266,6 @@
                     </state>
                     <connections>
                         <action selector="showCalc:" destination="-1" eventType="touchUpInside" id="T2l-xT-N0W"/>
-                        <action selector="showMathFunctionsMenu:" destination="-1" eventType="touchUpInside" id="ul4-x7-tEj"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="400" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BjT-SP-YH6">

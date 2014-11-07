@@ -71,6 +71,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (weak, nonatomic) IBOutlet UIScrollView *objectScrollView;
 @property (weak, nonatomic) IBOutlet UIScrollView *sensorScrollView;
 
+@property (weak, nonatomic) IBOutlet UIButton *calcButton;
+@property (weak, nonatomic) IBOutlet UIButton *mathbutton;
+@property (weak, nonatomic) IBOutlet UIButton *logicButton;
+@property (weak, nonatomic) IBOutlet UIButton *objectButton;
+@property (weak, nonatomic) IBOutlet UIButton *sensorButton;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
 @property (weak, nonatomic) IBOutlet UIButton *undoButton;
@@ -138,6 +143,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self showFormulaEditor];
     [self hideScrollViews];
     self.calcScrollView.hidden = NO;
+    [self.calcButton setSelected:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -406,6 +412,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor skyBlueColor] forState:UIControlStateNormal];
     [[self.toolTypeButton objectAtIndex:i] setBackgroundColor:[UIColor darkBlueColor]];
     [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateHighlighted];
+          [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateSelected];
   }
   
     [self update];
@@ -450,26 +457,31 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (IBAction)showCalc:(UIButton *)sender {
     [self hideScrollViews];
     self.calcScrollView.hidden = NO;
+    [self.calcButton setSelected:YES];
     [self.calcScrollView scrollsToTop];
 }
 - (IBAction)showFunction:(UIButton *)sender {
     [self hideScrollViews];
     self.mathScrollView.hidden = NO;
+    [self.mathbutton setSelected:YES];
     [self.mathScrollView scrollsToTop];
 }
 - (IBAction)showLogic:(UIButton *)sender {
     [self hideScrollViews];
     self.logicScrollView.hidden = NO;
+    [self.logicButton setSelected:YES];
     [self.logicScrollView scrollsToTop];
 }
 - (IBAction)showObject:(UIButton *)sender {
     [self hideScrollViews];
     self.objectScrollView.hidden = NO;
+    [self.objectButton setSelected:YES];
     [self.objectScrollView scrollsToTop];
 }
 - (IBAction)showSensor:(UIButton *)sender {
     [self hideScrollViews];
     self.sensorScrollView.hidden = NO;
+    [self.sensorButton setSelected:YES];
     [self.sensorScrollView scrollsToTop];
 }
 
@@ -480,6 +492,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.logicScrollView.hidden = YES;
     self.objectScrollView.hidden = YES;
     self.sensorScrollView.hidden = YES;
+    [self.calcButton setSelected:NO];
+    [self.mathbutton setSelected:NO];
+    [self.objectButton setSelected:NO];
+    [self.logicButton setSelected:NO];
+    [self.sensorButton setSelected:NO];
 }
 
 - (void)closeMenu
