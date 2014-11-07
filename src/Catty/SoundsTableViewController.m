@@ -45,6 +45,7 @@
 #import "CatrobatActionSheet.h"
 #import "DataTransferMessage.h"
 #import "ProgramLoadingInfo.h"
+#import "SRViewController.h"
 
 @interface SoundsTableViewController () <CatrobatActionSheetDelegate, AVAudioPlayerDelegate,
                                          SWTableViewCellDelegate>
@@ -116,8 +117,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-    [dnc removeObserver:self name:kSoundAddedNotification object:nil];
+//    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+//    [dnc removeObserver:self name:kSoundAddedNotification object:nil];
     self.currentPlayingSongCell = nil;
     [self stopAllSounds];
 }
@@ -561,6 +562,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
         }
     } else if (actionSheet.tag == kAddSoundActionSheetTag) {
         if (buttonIndex == 0) {
+                //Recorder
+            NSLog(@"Recorder");
+            [self stopAllSounds];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
+            SRViewController *soundRecorderViewController;
+            soundRecorderViewController = [storyboard instantiateViewControllerWithIdentifier:@"SoundRecorder"];
+            [self showViewController:soundRecorderViewController sender:self];
+        } else if (buttonIndex == 1) {
             // Select music track
             NSLog(@"Select music track");
             AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -598,7 +607,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [Util actionSheetWithTitle:kLocalizedAddSound
                       delegate:self
         destructiveButtonTitle:nil
-             otherButtonTitles:@[/*kLocalizedPocketCodeRecorder, */kLocalizedChooseSound]
+             otherButtonTitles:@[kLocalizedPocketCodeRecorder, kLocalizedChooseSound]
                            tag:kAddSoundActionSheetTag
                           view:self.navigationController.view];
 }
