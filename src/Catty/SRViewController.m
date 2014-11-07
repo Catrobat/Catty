@@ -23,6 +23,7 @@
 #import "SRViewController.h"
 #import "Sound.h"
 #import "UIDefines.h"
+#import "AppDelegate.h"
 
 @interface SRViewController ()
 {
@@ -56,7 +57,7 @@
     if (self.sound) {
         self.sound.name = _soundName.text;
         NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-        [dnc postNotificationName:kSoundAddedNotification
+        [dnc postNotificationName:kRecordAddedNotification
                            object:nil
                          userInfo:@{ kUserInfoSound : self.sound}];
     }
@@ -84,10 +85,12 @@
     }
     
     if (!recorder.recording) {
+        
         NSString * fileName =[[self GetUUID] stringByAppendingString:@".m4a"];
-      NSArray* pathComponents = [NSArray arrayWithObjects:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject],fileName , nil];
-      
-      NSURL* outputFileUrl = [NSURL fileURLWithPathComponents:pathComponents];
+//        NSString * fileName =[self GetUUID];
+      AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+      NSString *filePath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, fileName];
+      NSURL* outputFileUrl = [NSURL fileURLWithPath:filePath isDirectory:NO];
       
         self.sound = [[Sound alloc] init];
         self.sound.fileName = fileName;
@@ -140,11 +143,6 @@
 }
 -(void)playClicked:(id)sender
 {
-    self.sound.name = _soundName.text;
-    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-    [dnc postNotificationName:kSoundAddedNotification
-                       object:nil
-                     userInfo:@{ kUserInfoSound : self.sound}];
     if (!recorder.recording) {
         player = [[AVAudioPlayer alloc] initWithContentsOfURL:recorder.url error:nil];
         

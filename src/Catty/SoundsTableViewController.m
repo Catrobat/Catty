@@ -106,19 +106,26 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
+-(void)dealloc
+{
+    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+    [dnc removeObserver:self name:kRecordAddedNotification object:nil];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
     [dnc addObserver:self selector:@selector(soundAdded:) name:kSoundAddedNotification object:nil];
+    [dnc addObserver:self selector:@selector(recordAdded:) name:kRecordAddedNotification object:nil];
     [self.navigationController setToolbarHidden:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-//    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-//    [dnc removeObserver:self name:kSoundAddedNotification object:nil];
+    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+    [dnc removeObserver:self name:kSoundAddedNotification object:nil];
     self.currentPlayingSongCell = nil;
     [self stopAllSounds];
 }
@@ -127,10 +134,29 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)soundAdded:(NSNotification*)notification
 {
     if (notification.userInfo) {
-        NSLog(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
+//        NSLog(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
         id sound = notification.userInfo[kUserInfoSound];
         if ([sound isKindOfClass:[Sound class]]) {
             [self addSoundToObjectAction:(Sound*)sound];
+        }
+    }
+}
+- (void)recordAdded:(NSNotification*)notification
+{
+    if (notification.userInfo) {
+//        NSLog(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
+        id sound = notification.userInfo[kUserInfoSound];
+        if ([sound isKindOfClass:[Sound class]]) {
+            Sound* recording =(Sound*)sound;
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+            NSString *filePath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, recording.fileName];
+            [self addSoundToObjectAction:recording];
+            NSError *error;
+            [fileManager removeItemAtPath:filePath error:&error];
+            if (error) {
+                NSLog(@"-.-");
+            }
         }
     }
 }

@@ -208,10 +208,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="Fls-ML-24K">
-                                            <rect key="frame" x="20" y="16.5" width="50" height="48"/>
+                                            <rect key="frame" x="20" y="16" width="50" height="48"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="92Y-4x-v3Y">
-                                            <rect key="frame" x="95" y="28.5" width="185" height="24"/>
+                                            <rect key="frame" x="95" y="28" width="185" height="24"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -237,7 +237,7 @@
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="gyB-g0-bdJ">
-                                            <rect key="frame" x="20" y="17.5" width="50" height="48"/>
+                                            <rect key="frame" x="20" y="17" width="50" height="48"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w1e-yc-Yi0">
                                             <rect key="frame" x="95" y="32" width="96" height="21"/>
@@ -913,10 +913,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleAspectFill" id="9ny-5T-JTu">
-                                            <rect key="frame" x="20" y="16.5" width="50" height="48"/>
+                                            <rect key="frame" x="20" y="16" width="50" height="48"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="12" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Pd-Vp-42O">
-                                            <rect key="frame" x="95" y="28.5" width="185" height="24"/>
+                                            <rect key="frame" x="95" y="28" width="185" height="24"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
