@@ -22,16 +22,29 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "EZAudio.h"
 
-@interface SRViewController : UIViewController <AVAudioRecorderDelegate,AVAudioPlayerDelegate>
+@interface SRViewController : UIViewController <AVAudioRecorderDelegate,AVAudioPlayerDelegate,EZMicrophoneDelegate,EZAudioFileDelegate,EZOutputDataSource>
 
 @property(nonatomic,strong) IBOutlet UIButton* play;
-@property(nonatomic,strong) IBOutlet UIButton* stop;
 @property(nonatomic,strong) IBOutlet UIButton* record;
-@property(nonatomic,strong) IBOutlet UITextField* soundName;
+
+
+@property (nonatomic,weak) IBOutlet EZAudioPlotGL *audioPlot;
+
+@property (nonatomic,assign) BOOL isRecording;
+
+@property (nonatomic,strong) EZMicrophone *microphone;
+
+@property (nonatomic,strong) EZRecorder *recorder;
+
+@property (nonatomic,strong) EZAudioFile *audioFile;
+@property (weak, nonatomic) IBOutlet UISlider *framePositionSlider;
+@property (nonatomic,assign) BOOL eof;
+
 
 -(IBAction)recordClicked:(id)sender;
 -(IBAction)playClicked:(id)sender;
--(IBAction)stopClicked:(id)sender;
+- (IBAction)seekToFrame:(UISlider *)sender;
 
 @end
