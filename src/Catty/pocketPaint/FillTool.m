@@ -57,7 +57,7 @@
   }
   //UNDO-Manager
   [[self.canvas getUndoManager] setImage:self.canvas.saveView.image];
-  
+  NSLog(@"%@",self.canvas.saveView.image);
   self.canvas.saveView.image = [self fillImage:self.canvas.saveView.image startingPoint:lastPoint andColor:[UIColor colorWithRed:self.canvas.red green:self.canvas.green blue:self.canvas.blue alpha:self.canvas.opacity]];
 }
 @end

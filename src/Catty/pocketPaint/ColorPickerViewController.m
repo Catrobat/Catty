@@ -63,16 +63,16 @@
   [self setupBrushPreview];
   self.view.backgroundColor = [UIColor cellBlueColor];
 
-  
   self.toolBar.frame = CGRectMake(0, 0, self.view.frame.size.width, self.toolBar.frame.size.height);
   self.toolBar.tintColor = [UIColor lightOrangeColor];
+  self.toolBar.barTintColor = UIColor.navBarColor;
 }
 
 - (void)setupViews
 {
   NSArray *itemArray = [NSArray arrayWithObjects:
-                        [UIImage imageNamed:@"tools"],
-                        [UIImage imageNamed:@"color"], nil];
+                        [UIImage imageNamed:@"sliderColors"],
+                        [UIImage imageNamed:@"standardColors"], nil];
   self.viewChanger = [[UISegmentedControl alloc] initWithItems:itemArray];
   self.viewChanger.frame =CGRectMake(0, self.toolBar.frame.size.height, self.view.frame.size.width, 40);
   self.viewChanger.selectedSegmentIndex = 0;

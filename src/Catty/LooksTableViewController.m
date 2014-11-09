@@ -92,6 +92,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
+#pragma mark viewwillappear
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
+
 #pragma mark - actions
 - (void)editAction:(id)sender
 {
@@ -319,37 +326,44 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-    static NSString *segueToImage = kSegueToImage;
+//    static NSString *segueToImage = kSegueToImage;
     if (! self.editing) {
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        if ([self shouldPerformSegueWithIdentifier:segueToImage sender:cell]) {
-            [self performSegueWithIdentifier:segueToImage sender:cell];
-        }
+//        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
+        PaintViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"paint"];
+        vc.delegate = self;
+        Look *look = [self.object.lookList objectAtIndex:indexPath.row];
+        NSString *lookImagePath = [self.object pathForLook:look];
+        UIImage *image = [[UIImage alloc] initWithContentsOfFile:lookImagePath];
+        vc.editingImage = image;
+        vc.editingPath = lookImagePath;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
-#pragma mark - Navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    static NSString* segueToImageIdentifier = kSegueToImage;
-    UIViewController* destController = segue.destinationViewController;
-
-    if ([sender isKindOfClass:[UITableViewCell class]]) {
-        UITableViewCell *cell = (UITableViewCell*)sender;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        if ([segue.identifier isEqualToString:segueToImageIdentifier]) {
-            if ([destController isKindOfClass:[LookImageViewController class]]) {
-                LookImageViewController *livc = (LookImageViewController*)destController;
-                if ([livc respondsToSelector:@selector(setImageName:)] && [livc respondsToSelector:@selector(setImagePath:)]) {
-                    Look *look = [self.object.lookList objectAtIndex:indexPath.row];
-                    [livc performSelector:@selector(setImageName:) withObject:look.name];
-                    NSString *lookImagePath = [self.object pathForLook:look];
-                    [livc performSelector:@selector(setImagePath:) withObject:lookImagePath];
-                }
-            }
-        }
-    }
-}
+//#pragma mark - Navigation
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    static NSString* segueToImageIdentifier = kSegueToImage;
+//    UIViewController* destController = segue.destinationViewController;
+//
+//    if ([sender isKindOfClass:[UITableViewCell class]]) {
+//        UITableViewCell *cell = (UITableViewCell*)sender;
+//        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+//        if ([segue.identifier isEqualToString:segueToImageIdentifier]) {
+//            if ([destController isKindOfClass:[LookImageViewController class]]) {
+//                LookImageViewController *livc = (LookImageViewController*)destController;
+//                livc.spriteObject = self.object;
+//                if ([livc respondsToSelector:@selector(setImageName:)] && [livc respondsToSelector:@selector(setImagePath:)]) {
+//                    Look *look = [self.object.lookList objectAtIndex:indexPath.row];
+//                    [livc performSelector:@selector(setImageName:) withObject:look.name];
+//                    NSString *lookImagePath = [self.object pathForLook:look];
+//                    [livc performSelector:@selector(setImagePath:) withObject:lookImagePath];
+//                }
+//            }
+//        }
+//    }
+//}
 
 #pragma mark - swipe delegates
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
@@ -606,6 +620,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
             PaintViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"paint"];
             vc.delegate = self;
+            vc.editingImage = nil;
             [self.navigationController pushViewController:vc animated:YES];
             
         }
@@ -681,13 +696,56 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark paintDelegate
--(void)addPaintedImage:(UIImage *)image
+-(void)addPaintedImage:(UIImage *)image andPath:(NSString *)path
 {
-    NSLog(@"SAVING");
+
+    UIImage *checkImage = [[UIImage alloc] initWithContentsOfFile:path];
     
-        // add image to object now
-    [self showLoadingView];
     
+    if (checkImage) {
+        NSLog(@"Updating");
+        NSData *imageData = UIImagePNGRepresentation(image);
+        NSDebug(@"Writing file to disk");
+            // leaving the main queue here!
+        NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{
+                // save image to programs directory
+            [imageData writeToFile:path atomically:YES];
+        }];
+            // completion block is NOT executed on the main queue
+        [saveOp setCompletionBlock:^{
+                // execute this on the main queue
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                
+            }];
+        }];
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        [queue addOperation:saveOp];
+        
+        
+        RuntimeImageCache *cache = [RuntimeImageCache sharedImageCache];
+        NSString *imageDirPath = [[self.object projectPath] stringByAppendingString:kProgramImagesDirName];
+        NSString * fileName = [path stringByReplacingOccurrencesOfString:imageDirPath withString:@""];
+        NSRange result = [fileName rangeOfString:kResourceFileNameSeparator];
+        
+        if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([fileName length]-1)))
+            return; // Invalid file name convention -> this should not happen. XXX/FIXME: maybe we want to abort here??
+        
+        NSString *previewImageName =  [NSString stringWithFormat:@"%@_%@%@",
+                                       [fileName substringToIndex:result.location],
+                                       kPreviewImageNamePrefix,
+                                       [fileName substringFromIndex:(result.location + 1)]
+                                       ];
+        
+        
+        NSString *filePath = [NSString stringWithFormat:@"%@%@", imageDirPath, previewImageName];
+        [cache overwriteThumbnailImageFromDiskWithThumbnailPath:filePath image:image thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)];
+        
+        
+        [cache replaceImage:image withName:filePath];
+    }else{
+          NSLog(@"SAVING");  // add image to object now
+        [self showLoadingView];
+        
         NSData *imageData = UIImagePNGRepresentation(image);
         NSString *lookName = @"TEST";
             // use temporary filename, will be renamed by user afterwards
@@ -702,36 +760,39 @@ static NSCharacterSet *blockedCharacterSet = nil;
         NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
                                   [self.object projectPath], kProgramImagesDirName, newImageFileName];
         NSDebug(@"Writing file to disk");
-                // leaving the main queue here!
-            NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{
-                    // save image to programs directory
-                [imageData writeToFile:newImagePath atomically:YES];
+            // leaving the main queue here!
+        NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{
+                // save image to programs directory
+            [imageData writeToFile:newImagePath atomically:YES];
+        }];
+            // completion block is NOT executed on the main queue
+        [saveOp setCompletionBlock:^{
+                // execute this on the main queue
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self hideLoadingView];
+                [self showPlaceHolder:([self.object.lookList count] == 0)];
+                
+                    // ask user for image name
+                [Util askUserForTextAndPerformAction:@selector(addLookActionWithName:look:)
+                                              target:self
+                                          withObject:look
+                                         promptTitle:kLocalizedAddImage
+                                       promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
+                                         promptValue:look.name
+                                   promptPlaceholder:kLocalizedEnterYourImageNameHere
+                                      minInputLength:kMinNumOfLookNameCharacters
+                                      maxInputLength:kMaxNumOfLookNameCharacters
+                                 blockedCharacterSet:[self blockedCharacterSet]
+                            invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
             }];
-                // completion block is NOT executed on the main queue
-            [saveOp setCompletionBlock:^{
-                    // execute this on the main queue
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    [self hideLoadingView];
-                    [self showPlaceHolder:([self.object.lookList count] == 0)];
-                    
-                        // ask user for image name
-                    [Util askUserForTextAndPerformAction:@selector(addLookActionWithName:look:)
-                                                  target:self
-                                              withObject:look
-                                             promptTitle:kLocalizedAddImage
-                                           promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
-                                             promptValue:look.name
-                                       promptPlaceholder:kLocalizedEnterYourImageNameHere
-                                          minInputLength:kMinNumOfLookNameCharacters
-                                          maxInputLength:kMaxNumOfLookNameCharacters
-                                     blockedCharacterSet:[self blockedCharacterSet]
-                                invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
-                }];
-            }];
-            NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-            [queue addOperation:saveOp];
+        }];
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        [queue addOperation:saveOp];
+        
+        
 
-
+    }
+    [self.tableView reloadData];
 }
 
 @end

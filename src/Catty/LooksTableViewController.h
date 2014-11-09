@@ -27,7 +27,7 @@
 
 @protocol PaintDelegate <NSObject>
 
--(void)addPaintedImage:(UIImage*)image;
+-(void)addPaintedImage:(UIImage*)image andPath:(NSString *)path;
 
 @end
 

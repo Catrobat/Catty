@@ -25,8 +25,10 @@
 #import "ColorPickerViewController.h"
 #import "LCTableViewPickerControl.h"
 #import "LooksTableViewController.h"
+#import "Util.h"
+#import "CatrobatAlertView.h"
 
-@interface PaintViewController : UIViewController  <BrushPickerViewControllerDelegate,ColorPickerViewControllerDelegate,UIGestureRecognizerDelegate,UIScrollViewDelegate,UINavigationControllerDelegate,LCItemPickerDelegate,UIActionSheetDelegate> {
+@interface PaintViewController : UIViewController  <BrushPickerViewControllerDelegate,ColorPickerViewControllerDelegate,UIGestureRecognizerDelegate,UIScrollViewDelegate,UINavigationControllerDelegate,LCItemPickerDelegate,UIActionSheetDelegate,CatrobatAlertViewDelegate> {
   CGPoint lastPoint;
   BOOL fingerSwiped;
 }
@@ -48,6 +50,8 @@
 @property (strong, nonatomic)  UIImageView *saveView;
 @property (nonatomic,strong) UIView *helper;
 @property (strong, nonatomic) UIScrollView *scrollView;
+@property (nonatomic,strong) UIImage *editingImage;
+@property (nonatomic,strong) NSString *editingPath;
 @property (nonatomic,strong) UIBarButtonItem* handToolBarButtonItem;
 @property (nonatomic,strong) UIBarButtonItem* pointerToolBarButtonItem;
 @property (nonatomic,strong) UIBarButtonItem* redo;

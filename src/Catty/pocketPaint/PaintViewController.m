@@ -29,6 +29,7 @@
 #import "ImageHelper.h"
 #import "UIViewController+KNSemiModal.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "Util.h"
 
 //Helper
 #import "RGBAHelper.h"
@@ -56,7 +57,6 @@
 @property (nonatomic,strong) UIToolbar *toolBar;
 @property (nonatomic,strong) YKImageCropperView *cropperView;
 
-
 //Gestures
 @property (nonatomic,strong) UITapGestureRecognizer *fillRecognizer;
 
@@ -79,6 +79,7 @@
 
 @implementation PaintViewController
 @synthesize undoManager = _undomanager;
+
 - (void)viewDidLoad
 {
   [super viewDidLoad];
@@ -98,24 +99,14 @@
 
   self.actionTypeArray = @[@(brush),@(eraser),@(crop),@(pipette),@(mirror),@(image),@(line),@(rectangle),@(ellipse),@(stamp),@(rotate),@(zoom),@(fillTool),@(pointer)];
   
-  self.drawTool = [[DrawTool alloc] initWithDrawViewCanvas:self];
-  self.lineTool = [[LineTool alloc] initWithDrawViewCanvas:self];
-  self.pipetteTool = [[PipetteTool alloc] initWithDrawViewCanvas:self];
-  self.fillTool = [[FillTool alloc] initWithDrawViewCanvas:self];
-  self.mirrorRotationZoomTool = [[MirrorRotationZoomTool alloc] initWithDrawViewCanvas:self];
-  self.imagePicker = [[ImagePicker alloc] initWithDrawViewCanvas:self];
-  self.resizeViewManager = [[ResizeViewManager alloc] initWithDrawViewCanvas:self andImagePicker:self.imagePicker];
-  self.pointerTool = [[PointerTool alloc] initWithDrawViewCanvas:self];
-  self.undoManager  = [[UndoManager alloc] initWithDrawViewCanvas:self];
-  self.handTool = [[HandTool alloc] initWithDrawViewCanvas:self];
-  
   [self setupCanvas];
-  [self setupZoom];
+    [self setupTools];
+  [self setupGestures];
   [self setupToolbar];
+  [self setupZoom];
   [self setupUndoManager];
   [self setupNavigationBar];
   self.colorBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"color"] style:UIBarButtonItemStylePlain target:self action:@selector(colorAction)];
-    
         // disable swipe back gesture
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
@@ -127,12 +118,12 @@
 - (void)willMoveToParentViewController:(UIViewController *)parent
 {
     if (![parent isEqual:self.parentViewController]) {
-        if ([self.delegate respondsToSelector:@selector(addPaintedImage:)]) {
+        if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
             UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
             UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
-            if (![self.saveView.image isEqual:blank]) {
-                [self.delegate addPaintedImage:self.saveView.image];
+            if (![self.saveView.image isEqual:blank] && ![self.saveView.image isEqual:self.editingImage]) {
+            [Util confirmAlertWithTitle:@"Save" message:@"Do you want to save the changes" delegate:self tag:0];
             }
         }
             // reenable swipe back gesture
@@ -153,62 +144,91 @@
 
 -(void)setupCanvas
 {
-  NSInteger height = (NSInteger)self.view.frame.size.height-self.navigationController.toolbar.frame.size.height;
+  NSInteger height = (NSInteger)self.view.frame.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height;
   CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, height);
   self.drawView = [[UIImageView alloc] initWithFrame:rect];
   self.saveView = [[UIImageView alloc] initWithFrame:rect];
-  //add blank image at the beginning
-  UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
-  UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
-  UIGraphicsEndImageContext();
-  self.saveView.image = blank;
-  
-//  [self manageUndo:image];
+
   self.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
-//  self.drawView.backgroundColor = [UIColor yellowColor];
 
   self.helper = [[UIView alloc] initWithFrame:rect];
-//  self.helper.backgroundColor = [UIColor redColor];
+        //add blank image at the beginning
+    if (self.editingImage) {
+        self.helper.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
+        self.drawView.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
+        self.saveView.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
+        self.saveView.image = self.editingImage;
+    } else {
+        UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
+        UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        self.saveView.image = blank;
+    }
+    
+    [self.helper addSubview:self.saveView];
+    [self.helper addSubview:self.drawView];
+    
+}
 
-  self.drawGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.drawTool action:@selector(draw:)];
-  self.drawGesture.delegate = self;
-  [self.view addGestureRecognizer:self.drawGesture];
-  
-  self.lineToolGesture  = [[UIPanGestureRecognizer alloc] initWithTarget:self.lineTool action:@selector(drawLine:)];
-  self.lineToolGesture.delegate = self;
-  [self.view addGestureRecognizer:self.lineToolGesture];
-  self.lineToolGesture.enabled = NO;
-  
-  self.pipetteRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.pipetteTool action:@selector(pipetteAction:)];
-  self.pipetteRecognizer.delegate = self;
-  [self.view addGestureRecognizer:self.pipetteRecognizer];
-  self.pipetteRecognizer.enabled = NO;
-  
-  self.fillRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.fillTool action:@selector(fillAction:)];
-  self.fillRecognizer.delegate = self;
-  [self.view addGestureRecognizer:self.fillRecognizer];
-  self.fillRecognizer.enabled = NO;
+-(void)setupTools
+{
+    self.drawTool = [[DrawTool alloc] initWithDrawViewCanvas:self];
+    self.lineTool = [[LineTool alloc] initWithDrawViewCanvas:self];
+    self.pipetteTool = [[PipetteTool alloc] initWithDrawViewCanvas:self];
+    self.fillTool = [[FillTool alloc] initWithDrawViewCanvas:self];
+    self.mirrorRotationZoomTool = [[MirrorRotationZoomTool alloc] initWithDrawViewCanvas:self];
+    self.imagePicker = [[ImagePicker alloc] initWithDrawViewCanvas:self];
+    self.resizeViewManager = [[ResizeViewManager alloc] initWithDrawViewCanvas:self andImagePicker:self.imagePicker];
+    self.pointerTool = [[PointerTool alloc] initWithDrawViewCanvas:self];
+    self.undoManager  = [[UndoManager alloc] initWithDrawViewCanvas:self];
+    self.handTool = [[HandTool alloc] initWithDrawViewCanvas:self];
+    [self.helper addSubview:self.resizeViewManager.resizeViewer];
+    [self.helper addSubview:self.pointerTool.pointerView];
+}
 
-  [self.helper addSubview:self.saveView];
-  [self.helper addSubview:self.drawView];
-//  [self.helper addSubview:self.resizeViewManager.resizeImageView];
-  [self.helper addSubview:self.resizeViewManager.resizeViewer];
-  [self.helper addSubview:self.pointerTool.pointerView];
-  
+-(void)setupGestures
+{
+    
+    self.drawGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.drawTool action:@selector(draw:)];
+    self.drawGesture.delegate = self;
+    [self.view addGestureRecognizer:self.drawGesture];
+    
+    self.lineToolGesture  = [[UIPanGestureRecognizer alloc] initWithTarget:self.lineTool action:@selector(drawLine:)];
+    self.lineToolGesture.delegate = self;
+    [self.view addGestureRecognizer:self.lineToolGesture];
+    self.lineToolGesture.enabled = NO;
+    
+    self.pipetteRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.pipetteTool action:@selector(pipetteAction:)];
+    self.pipetteRecognizer.delegate = self;
+    [self.view addGestureRecognizer:self.pipetteRecognizer];
+    self.pipetteRecognizer.enabled = NO;
+    
+    self.fillRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.fillTool action:@selector(fillAction:)];
+    self.fillRecognizer.delegate = self;
+    [self.view addGestureRecognizer:self.fillRecognizer];
+    self.fillRecognizer.enabled = NO;
+    
+
 }
 
 
 -(void)setupZoom
 {
-  self.scrollView = [[UIScrollView alloc] initWithFrame:self.saveView.frame];
+  self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height, self.view.frame.size.width, self.view.frame.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height)];
   self.scrollView.scrollEnabled = NO;
   self.scrollView.maximumZoomScale = kMaxZoomScale;
   self.scrollView.minimumZoomScale = kMinZoomScale;
-  self.scrollView.zoomScale = 0.25f;
+  self.scrollView.zoomScale = 1.0f;
   self.scrollView.delegate = self;
-  
   [self.scrollView addSubview:self.helper];
   [self.view addSubview:self.scrollView];
+    CGSize boundsSize = self.scrollView.bounds.size;
+    CGRect frameToCenter = self.helper.frame;
+        // center horizontally
+    frameToCenter.origin.x = (boundsSize.width - frameToCenter.size.width) / 2;
+        // center vertically
+    frameToCenter.origin.y = (boundsSize.height - frameToCenter.size.height) / 2 - 64;
+    self.helper.frame = frameToCenter;
 }
 
 -(void)setupToolbar
@@ -227,7 +247,7 @@
   self.navigationController.navigationBarHidden = NO;
   self.navigationController.navigationBar.tintColor = [UIColor lightOrangeColor];
   self.navigationItem.title = @"Pocket Paint";
-  UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit"
+  UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self
                                                                 action:@selector(editAction)];
@@ -261,8 +281,6 @@
 
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView
 {
-  
-  // center the image as it becomes smaller than the size of the screen
   CGSize boundsSize = scrollView.bounds.size;
   CGRect frameToCenter = self.helper.frame;
   
@@ -270,19 +288,13 @@
   if (frameToCenter.size.width < boundsSize.width)
   {
     frameToCenter.origin.x = (boundsSize.width - frameToCenter.size.width) / 2;
-  } else {
-    frameToCenter.origin.x = 0;
   }
-  
   // center vertically
   if (frameToCenter.size.height < boundsSize.height)
   {
-    frameToCenter.origin.y = (boundsSize.height - frameToCenter.size.height) / 2 - self.navigationController.navigationBar.frame.size.height / 2;
-  } else {
-    frameToCenter.origin.y = 0;
+    frameToCenter.origin.y = (boundsSize.height - frameToCenter.size.height) / 2 - 64;
   }
-  self.helper.frame = frameToCenter;
-
+    self.helper.frame = frameToCenter;
 }
 
 #pragma mark changing tool / toolbarItems
@@ -744,12 +756,12 @@
 - (void)saveAndCloseAction
 {
     NSDebug(@"save and close");
-    if ([self.delegate respondsToSelector:@selector(addPaintedImage:)]) {
+    if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
         UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
         UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         if (![self.saveView.image isEqual:blank]) {
-            [self.delegate addPaintedImage:self.saveView.image];
+            [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
         }
     }
     [self.navigationController popViewControllerAnimated:YES];
@@ -805,5 +817,14 @@
   return UIStatusBarStyleLightContent;
 }
 
+
+#pragma mark - alert delegate
+- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != 0) {
+        NSLog(@"yes");
+        [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
+    } 
+}
 
 @end

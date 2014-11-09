@@ -10,11 +10,11 @@
 /* Let's inset everything that's drawn (the handles and the content view)
    so that users can trigger a resize from a few pixels outside of
    what they actually see as the bounding box. */
-#define kSPUserResizableViewGlobalInset -10.0
+#define kSPUserResizableViewGlobalInset 0.0
 
-#define kSPUserResizableViewDefaultMinWidth 15.0
-#define kSPUserResizableViewDefaultMinHeight 15.0
-#define kSPUserResizableViewInteractiveBorderSize 15.0
+#define kSPUserResizableViewDefaultMinWidth 20.0
+#define kSPUserResizableViewDefaultMinHeight 20.0
+#define kSPUserResizableViewInteractiveBorderSize 10.0
 
 static SPUserResizableViewAnchorPoint SPUserResizableViewNoResizeAnchorPoint = { 0.0, 0.0, 0.0, 0.0 };
 static SPUserResizableViewAnchorPoint SPUserResizableViewUpperLeftAnchorPoint = { 1.0, 1.0, -1.0, 1.0 };
@@ -375,18 +375,18 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
     if (self.preventsPositionOutsideSuperview) {
         // Ensure the translation won't cause the view to move offscreen.
         CGFloat midPointX = CGRectGetMidX(self.bounds);
-        if (newCenter.x > self.superview.bounds.size.width - midPointX) {
-            newCenter.x = self.superview.bounds.size.width - midPointX;
+        if (newCenter.x - kSPUserResizableViewInteractiveBorderSize > self.superview.bounds.size.width - midPointX) {
+            newCenter.x = self.superview.bounds.size.width - midPointX +kSPUserResizableViewInteractiveBorderSize;
         }
-        if (newCenter.x < midPointX) {
-            newCenter.x = midPointX;
+        if (newCenter.x + kSPUserResizableViewInteractiveBorderSize< midPointX) {
+            newCenter.x = midPointX- kSPUserResizableViewInteractiveBorderSize;
         }
         CGFloat midPointY = CGRectGetMidY(self.bounds);
-        if (newCenter.y > self.superview.bounds.size.height - midPointY) {
-            newCenter.y = self.superview.bounds.size.height - midPointY;
+        if (newCenter.y - kSPUserResizableViewInteractiveBorderSize> self.superview.bounds.size.height - midPointY) {
+            newCenter.y = self.superview.bounds.size.height - midPointY+kSPUserResizableViewInteractiveBorderSize;
         }
-        if (newCenter.y < midPointY) {
-            newCenter.y = midPointY;
+        if (newCenter.y + kSPUserResizableViewInteractiveBorderSize< midPointY) {
+            newCenter.y = midPointY-kSPUserResizableViewInteractiveBorderSize;
         }
     }
     self.center = newCenter;

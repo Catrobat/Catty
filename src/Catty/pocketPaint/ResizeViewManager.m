@@ -334,7 +334,7 @@
   } else{
     [self.resizeViewer showEditingHandles];
   }
-  [self.resizeViewer changeBorderWithColor:[UIColor blueColor]];
+  [self.resizeViewer changeBorderWithColor:[UIColor lightOrangeColor]];
 }
 
 

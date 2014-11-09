@@ -220,7 +220,7 @@
     }else{
       cell.accessoryType = UITableViewCellAccessoryNone;
     }
-  cell.imageView.backgroundColor = [UIColor darkBlueColor];
+  cell.imageView.backgroundColor = [UIColor cellBlueColor];
   cell.textLabel.textColor = [UIColor lightBlueColor];
   cell.backgroundColor = [UIColor cellBlueColor];
   

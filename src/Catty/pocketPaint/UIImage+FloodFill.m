@@ -33,7 +33,7 @@
      You can get some discussion about this topic here:
      http://stackoverflow.com/questions/448125/how-to-get-pixel-data-from-a-uiimage-cocoa-touch-or-cgimage-core-graphics
      */
-    
+      
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     
     CGImageRef imageRef = [self CGImage];
@@ -57,11 +57,15 @@
                                                  colorSpace,
                                                  CGImageGetBitmapInfo(imageRef));
     CGColorSpaceRelease(colorSpace);
-    
+ 
     CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
     
       //Get color at start point
-    NSUInteger byteIndex = (bytesPerRow * startPoint.y) + startPoint.x * bytesPerPixel;
+      //Get color at start point
+      int x = startPoint.x;
+      int y = startPoint.y;
+      unsigned int byteIndex = (unsigned int)((bytesPerRow * y) + x * bytesPerPixel);
+//    NSUInteger byteIndex = (bytesPerRow * startPoint.y) + startPoint.x * bytesPerPixel;
     
     unsigned int ocolor = getColorCode(byteIndex, imageData);
     
@@ -111,8 +115,6 @@
     LinkedListStack *points = [[LinkedListStack alloc] initWithCapacity:500 incrementSize:500 andMultiplier:(int)height];
     LinkedListStack *antiAliasingPoints = [[LinkedListStack alloc] initWithCapacity:500 incrementSize:500 andMultiplier:(int)height];
     
-    int x =(int) startPoint.x;
-    int y =(int) startPoint.y;
     
     [points pushFrontX:x andY:y];
     
@@ -129,7 +131,7 @@
     
     while ([points popFront:&x andY:&y] != INVALID_NODE_CONTENT)
     {
-      byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
+      byteIndex = (unsigned int)((bytesPerRow * y) + x * bytesPerPixel);
       
       color = getColorCode(byteIndex, imageData);
       
@@ -139,7 +141,7 @@
         
         if(y >= 0)
         {
-          byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
+          byteIndex = (unsigned int)((bytesPerRow * y) + x * bytesPerPixel);
           
           color = getColorCode(byteIndex, imageData);
         }
@@ -155,7 +157,7 @@
       
       spanLeft = spanRight = NO;
       
-      byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
+      byteIndex = (unsigned int)((bytesPerRow * y) + x * bytesPerPixel);
       
       color = getColorCode(byteIndex, imageData);
       
@@ -169,7 +171,7 @@
         
         if(x > 0)
         {
-          byteIndex = (bytesPerRow * y) + (x - 1) * bytesPerPixel;
+          byteIndex = (unsigned int)((bytesPerRow * y) + (x - 1) * bytesPerPixel);
           
           color = getColorCode(byteIndex, imageData);
           
@@ -194,7 +196,7 @@
         
         if(x < width - 1)
         {
-          byteIndex = (bytesPerRow * y) + (x + 1) * bytesPerPixel;
+          byteIndex = (unsigned int)((bytesPerRow * y) + (x + 1) * bytesPerPixel);
           
           color = getColorCode(byteIndex, imageData);
           
@@ -221,7 +223,7 @@
         
         if(y < height)
         {
-          byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
+          byteIndex = (unsigned int)((bytesPerRow * y) + x * bytesPerPixel);
           
           color = getColorCode(byteIndex, imageData);
         }
@@ -229,7 +231,7 @@
       
       if (y<height)
       {
-        byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
+        byteIndex = (unsigned int)((bytesPerRow * y) + x * bytesPerPixel);
         color = getColorCode(byteIndex, imageData);
         
           // Add the bottom point on the antialiasing list
@@ -248,7 +250,7 @@
     
     while ([antiAliasingPoints popFront:&x andY:&y] != INVALID_NODE_CONTENT)
     {
-      byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
+      byteIndex = (unsigned int)((bytesPerRow * y) + x * bytesPerPixel);
       color = getColorCode(byteIndex, imageData);
       
       if (!compareColor(ncolor, color, 0))
@@ -274,7 +276,7 @@
         // left
       if (x>1 && y>0)
       {
-        byteIndex = bytesPerRow * (y-1) + (x-1) * bytesPerPixel;
+        byteIndex = (unsigned int)(bytesPerRow * (y-1) + (x-1) * bytesPerPixel);
         color = getColorCode(byteIndex, imageData);
         
         if (!compareColor(ncolor, color, 0))
@@ -299,7 +301,7 @@
       }
       if (x<width && y>0)
       {
-        byteIndex = bytesPerRow * (y-1) + (x+1) * bytesPerPixel;
+        byteIndex = (unsigned int)(bytesPerRow * (y-1) + (x+1) * bytesPerPixel);
         color = getColorCode(byteIndex, imageData);
         
         if (!compareColor(ncolor, color, 0))
@@ -326,7 +328,7 @@
       
       if (y>1)
       {
-        byteIndex = bytesPerRow * (y-2) + x * bytesPerPixel;
+        byteIndex = (unsigned int)(bytesPerRow * (y-2) + x * bytesPerPixel);
         color = getColorCode(byteIndex, imageData);
         
         if (!compareColor(ncolor, color, 0))
@@ -351,7 +353,7 @@
       
       if (y<height)
       {
-        byteIndex = bytesPerRow * y + x * bytesPerPixel;
+        byteIndex = (unsigned int)(bytesPerRow * y + x * bytesPerPixel);
         color = getColorCode(byteIndex, imageData);
         
         if (!compareColor(ncolor, color, 0))
@@ -384,6 +386,8 @@
     UIImage *result = [UIImage imageWithCGImage:newCGImage scale:[self scale] orientation:UIImageOrientationUp];
     
     CGImageRelease(newCGImage);
+    
+      CGImageRelease(imageRef);
     
     CGContextRelease(context);
     

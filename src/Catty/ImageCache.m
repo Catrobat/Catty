@@ -97,6 +97,15 @@ static NSMutableDictionary *sharedImageCaches = nil;
     [self.imageCache setObject:image forKey:imageName];
 }
 
+- (void)replaceImage:(UIImage*)image withName:(NSString*)imageName
+{
+    if ([self.imageCache objectForKey:imageName] && (image) && (imageName)) {
+        [self.imageCache removeObjectForKey:imageName];
+        [self.imageCache setObject:image forKey:imageName];
+    }
+    
+}
+
 - (void)clearImageCache
 {
     [self.imageCache removeAllObjects];

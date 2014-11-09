@@ -85,6 +85,7 @@
   [self.toolBar setItems:@[flexibleItem, self.doneButton]];
   self.toolBar.frame = CGRectMake(0, 0, self.view.frame.size.width, self.toolBar.frame.size.height);
   self.toolBar.tintColor = [UIColor lightOrangeColor];
+    self.toolBar.barTintColor = UIColor.navBarColor;
   
 }
 
