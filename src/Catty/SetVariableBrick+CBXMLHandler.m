@@ -41,18 +41,21 @@
     GDataXMLElement *formulaElement = [formulaListElement childWithElementName:@"formula"];
     [XMLError exceptionIfNil:formulaElement message:@"No formula element found..."];
     [XMLError exceptionIfString:[[formulaElement attributeForName:@"category"] stringValue] isNotEqualToString:@"VARIABLE" message:@"Formula has wrong category"];
-    
+
     GDataXMLElement *inUserBrickElement = [xmlElement childWithElementName:@"inUserBrick"]; // TODO: implement this...
     [XMLError exceptionIfNil:inUserBrickElement message:@"No inUserBrickElement element found..."];
+
     GDataXMLElement *userVariableElement = [xmlElement childWithElementName:@"userVariable"];
     [XMLError exceptionIfNil:userVariableElement message:@"No userVariableElement element found..."];
 
     UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:nil];
     Formula *formula = [Formula parseFromElement:formulaElement withContext:nil];
+    [XMLError exceptionIfNil:userVariable message:@"Unable to parse userVariable..."];
+    [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
 
     SetVariableBrick *setVariableBrick = [self new];
     setVariableBrick.userVariable = userVariable;
-    setVariableBrick.variableFormula = formula; // TODO: implement formula parser...
+    setVariableBrick.variableFormula = formula;
     return setVariableBrick;
 }
 
