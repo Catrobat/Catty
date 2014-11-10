@@ -22,19 +22,14 @@
 
 #import <Foundation/Foundation.h>
 
-@class Program;
-@class SpriteObject;
+@class Brick;
 
-@interface CBXMLContext : NSObject
+@interface CBXMLOpenedNestingBricksStack : NSObject <NSFastEnumeration>
 
-@property (nonatomic, strong, readonly) SpriteObject *spriteObject;
-@property (nonatomic, strong, readonly) NSMutableArray *spriteObjectList; // of SpriteObject
-@property (nonatomic, strong, readonly) NSMutableArray *lookList; // of Look
-@property (nonatomic, strong, readonly) NSMutableArray *soundList; // of Sound
+@property (nonatomic, readonly) NSUInteger numberOfOpenedNestingBricks;
 
-- (id)initWithSpriteObject:(SpriteObject*)spriteObject;
-- (id)initWithSpriteObjectList:(NSArray*)spriteObjectList;
-- (id)initWithLookList:(NSArray*)lookList;
-- (id)initWithSoundList:(NSArray*)soundList;
+- (void)pushAndOpenNestingBrick:(Brick*)openedNestingBricks;
+- (Brick*)popAndCloseTopMostNestingBrick;
+- (BOOL)isEmpty;
 
 @end
