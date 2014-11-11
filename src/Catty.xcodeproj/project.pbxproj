@@ -368,6 +368,7 @@
 		CAF9DC6B1A12CCF0003FE868 /* ShowBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9DC6A1A12CCF0003FE868 /* ShowBrick+CBXMLHandler.m */; };
 		CAF9DC6E1A12D01E003FE868 /* HideBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9DC6D1A12D01E003FE868 /* HideBrick+CBXMLHandler.m */; };
 		CAF9DC711A12D16A003FE868 /* GlideToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9DC701A12D16A003FE868 /* GlideToBrick+CBXMLHandler.m */; };
+		CAF9DC741A12D4E0003FE868 /* PlaySoundBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9DC731A12D4E0003FE868 /* PlaySoundBrick+CBXMLHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -938,6 +939,8 @@
 		CAF9DC6D1A12D01E003FE868 /* HideBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HideBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CAF9DC6F1A12D163003FE868 /* GlideToBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GlideToBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		CAF9DC701A12D16A003FE868 /* GlideToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GlideToBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		CAF9DC721A12D4D7003FE868 /* PlaySoundBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PlaySoundBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		CAF9DC731A12D4E0003FE868 /* PlaySoundBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PlaySoundBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CD0CCE5F170CB39600B70036 /* Brick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brick.h; sourceTree = "<group>"; };
 		CD0CCE60170CB39600B70036 /* Brick.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = Brick.m; sourceTree = "<group>"; tabWidth = 4; };
 		CD0CCE61170CB39600B70036 /* BroadcastBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastBrick.h; sourceTree = "<group>"; };
@@ -2814,6 +2817,8 @@
 		CAAE4C2D1A06C7C400040E02 /* SoundBricks */ = {
 			isa = PBXGroup;
 			children = (
+				CAF9DC721A12D4D7003FE868 /* PlaySoundBrick+CBXMLHandler.h */,
+				CAF9DC731A12D4E0003FE868 /* PlaySoundBrick+CBXMLHandler.m */,
 			);
 			name = SoundBricks;
 			sourceTree = "<group>";
@@ -4057,6 +4062,7 @@
 				CADBD7D419B0E8C200C62836 /* OrderedMapTable.m in Sources */,
 				CADBD7D519B0E8C200C62836 /* MoveNStepsBrick.m in Sources */,
 				4C023FE219FFCA4E00381E36 /* Sound+CBXMLHandler.m in Sources */,
+				CAF9DC741A12D4E0003FE868 /* PlaySoundBrick+CBXMLHandler.m in Sources */,
 				CADBD7D619B0E8C200C62836 /* IfOnEdgeBounceBrickCell.m in Sources */,
 				4C1608A71A095639002C7032 /* Formula+CBXMLHandler.m in Sources */,
 				CADBD7D719B0E8C200C62836 /* DarkBlueGradientFeaturedCell.m in Sources */,

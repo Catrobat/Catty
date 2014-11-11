@@ -100,6 +100,12 @@
         NSString *brickClassName = [[self class] brickClassNameForBrickTypeName:brickTypeName];
         Class class = NSClassFromString(brickClassName);
         [XMLError exceptionIfNil:class message:@"Unsupported brick type: %@", brickTypeName];
+
+        // +++++ FIXME REMOVE THIS!!! => Only needed to evaluate breakpoint for debugging purposes... ++++++
+        if (! [class conformsToProtocol:@protocol(CBParserNodeProtocol)]) {
+            while (true);
+        }
+
         [XMLError exceptionIf:[class conformsToProtocol:@protocol(CBParserNodeProtocol)] equals:NO
                       message:@"%@ must have a category %@+CBXMLHandler that implements CBParserNodeProtocol",
                               brickClassName, brickClassName];
