@@ -37,11 +37,11 @@
     GDataXMLElement *formulaXPositionElement = [formulaListElement childWithElementName:@"formula"
                                                                     containingAttribute:@"category"
                                                                               withValue:@"X_POSITION"];
-    [XMLError exceptionIfNil:formulaXPositionElement message:@"No formula element for x-position found..."];
+    [XMLError exceptionIfNil:formulaXPositionElement message:@"No formula element for X_POSITION found..."];
     GDataXMLElement *formulaYPositionElement = [formulaListElement childWithElementName:@"formula"
                                                                     containingAttribute:@"category"
                                                                               withValue:@"Y_POSITION"];
-    [XMLError exceptionIfNil:formulaYPositionElement message:@"No formula element for y-position found..."];
+    [XMLError exceptionIfNil:formulaYPositionElement message:@"No formula element for Y_POSITION found..."];
 
     Formula *formulaXPosition = [Formula parseFromElement:formulaXPositionElement withContext:nil];
     [XMLError exceptionIfNil:formulaXPosition message:@"Unable to parse formula..."];

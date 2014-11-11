@@ -99,9 +99,7 @@
         // get proper brick class via reflection
         NSString *brickClassName = [[self class] brickClassNameForBrickTypeName:brickTypeName];
         Class class = NSClassFromString(brickClassName);
-        [XMLError exceptionIfNil:class
-                         message:@"Unsupported brick type: %@. Please implement %@+CBXMLHandler class",
-         brickTypeName, brickTypeName];
+        [XMLError exceptionIfNil:class message:@"Unsupported brick type: %@", brickTypeName];
         [XMLError exceptionIf:[class conformsToProtocol:@protocol(CBParserNodeProtocol)] equals:NO
                       message:@"%@ must have a category %@+CBXMLHandler that implements CBParserNodeProtocol",
                               brickClassName, brickClassName];

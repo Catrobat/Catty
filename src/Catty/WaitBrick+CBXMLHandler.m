@@ -37,7 +37,7 @@
     GDataXMLElement *formulaElement = [formulaListElement childWithElementName:@"formula"
                                                            containingAttribute:@"category"
                                                                      withValue:@"TIME_TO_WAIT_IN_SECONDS"];
-    [XMLError exceptionIfNil:formulaElement message:@"No formula element for time-to-wait-in-seconds found..."];
+    [XMLError exceptionIfNil:formulaElement message:@"No formula element for TIME_TO_WAIT_IN_SECONDS found..."];
     Formula *formula = [Formula parseFromElement:formulaElement withContext:nil];
     [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
 
