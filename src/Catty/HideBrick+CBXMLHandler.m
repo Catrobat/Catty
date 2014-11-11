@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ShowBrick+CBXMLHandler.h"
+#import "HideBrick+CBXMLHandler.h"
 
-@implementation ShowBrick (CBXMLHandler)
+@implementation HideBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {

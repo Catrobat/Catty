@@ -20,13 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ShowBrick+CBXMLHandler.h"
+#import "HideBrick.h"
+#import "CBParserNodeProtocol.h"
 
-@implementation ShowBrick (CBXMLHandler)
+@class CBXMLContext;
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
-{
-    return [self new]; // nothing else to do!
-}
+@interface HideBrick (CBXMLHandler) <CBParserNodeProtocol>
 
 @end
