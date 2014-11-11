@@ -28,6 +28,9 @@
 // More details for this: http://stackoverflow.com/questions/6403083/ios-xml-pretty-print
 - (NSString*)XMLStringPrettyPrinted:(BOOL)isPrettyPrinted;
 - (GDataXMLElement*)childWithElementName:(NSString*)elementName;
+- (GDataXMLElement*)childWithElementName:(NSString*)elementName
+                     containingAttribute:(NSString*)attributeName
+                               withValue:(NSString*)attributeValue;
 - (GDataXMLElement*)singleNodeForCatrobatXPath:(NSString*)catrobatXPath;
 + (GDataXMLElement*)elementWithName:(NSString*)name optionalStringValue:(NSString*)value;
 

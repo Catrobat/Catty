@@ -68,6 +68,24 @@
     return nil;
 }
 
+- (GDataXMLElement*)childWithElementName:(NSString*)elementName
+                     containingAttribute:(NSString*)attributeName
+                               withValue:(NSString*)attributeValue
+{
+    NSArray *childElements = [self children];
+    for (GDataXMLElement *childElement in childElements) {
+        if (! [[childElement name] isEqualToString:elementName]) {
+            continue;
+        }
+        GDataXMLNode *attributeNode = [childElement attributeForName:attributeName];
+        if ((! attributeName) || ! [[attributeNode stringValue] isEqualToString:attributeValue]) {
+            continue;
+        }
+        return childElement;
+    }
+    return nil;
+}
+
 - (GDataXMLElement*)singleNodeForCatrobatXPath:(NSString*)catrobatXPath
 {
     NSArray *pathComponents = [catrobatXPath componentsSeparatedByString:@"/"];
