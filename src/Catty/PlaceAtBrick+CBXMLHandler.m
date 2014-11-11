@@ -46,7 +46,7 @@
     Formula *formulaXPosition = [Formula parseFromElement:formulaXPositionElement withContext:nil];
     [XMLError exceptionIfNil:formulaXPosition message:@"Unable to parse formula..."];
     Formula *formulaYPosition = [Formula parseFromElement:formulaYPositionElement withContext:nil];
-    [XMLError exceptionIfNil:formulaXPosition message:@"Unable to parse formula..."];
+    [XMLError exceptionIfNil:formulaYPosition message:@"Unable to parse formula..."];
 
     PlaceAtBrick *placeAtBrick = [self new];
     placeAtBrick.xPosition = formulaXPosition;
