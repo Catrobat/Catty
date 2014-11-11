@@ -32,7 +32,6 @@
 		4C1608AB1A095F17002C7032 /* FormulaElement+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1608AA1A095F17002C7032 /* FormulaElement+CBXMLHandler.m */; };
 		4C1608B21A09621A002C7032 /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B01A09621A002C7032 /* ValidFormulaList.xml */; };
 		4C1608B31A09621A002C7032 /* ValidProgram.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B11A09621A002C7032 /* ValidProgram.xml */; };
-		4CA7DAB21A08FB1F00681DB9 /* CBXMLContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA7DAB11A08FB1F00681DB9 /* CBXMLContext.m */; };
 		4CD194FC1A06333000484E4F /* XMLParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD194FB1A06333000484E4F /* XMLParserTests.m */; };
 		9236B38B19DA85B000495474 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9236B38A19DA85B000495474 /* Launch Screen.xib */; };
 		924DEBFA19CAFB9900EED9CE /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF619CAFB9900EED9CE /* MYBlurIntroductionView.m */; };
@@ -78,6 +77,9 @@
 		CA5D7FE519EC44480085D5AA /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D7FE419EC44480085D5AA /* BaseCollectionViewController.m */; };
 		CA66CB7519F6B42400D849E0 /* CBXMLValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CA66CB7419F6B42400D849E0 /* CBXMLValidator.m */; };
 		CA775CBF19FD5BCB00C1E761 /* My First Program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CA6E4C4719F9C388001B65C3 /* My First Program.catrobat */; };
+		CA8486791A117A9E001B6368 /* SetSizeToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8486781A117A9E001B6368 /* SetSizeToBrick+CBXMLHandler.m */; };
+		CA84867D1A117E5C001B6368 /* CBXMLOpenedNestingBricksStack.m in Sources */ = {isa = PBXBuildFile; fileRef = CA84867C1A117E5C001B6368 /* CBXMLOpenedNestingBricksStack.m */; };
+		CA8486801A1187E8001B6368 /* CBXMLContext.m in Sources */ = {isa = PBXBuildFile; fileRef = CA84867F1A1187E8001B6368 /* CBXMLContext.m */; };
 		CAAE4C4D1A06CAA600040E02 /* Brick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE4C4C1A06CAA600040E02 /* Brick+CBXMLHandler.m */; };
 		CAAE4C501A06D37200040E02 /* SetLookBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE4C4F1A06D37200040E02 /* SetLookBrick+CBXMLHandler.m */; };
 		CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3A198F685D00455B77 /* SSZipArchive.license */; };
@@ -426,8 +428,6 @@
 		4C9E2D3E198F698100455B77 /* NSString+FastImageSize.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "NSString+FastImageSize.license"; sourceTree = "<group>"; };
 		4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+CWPopup.license"; sourceTree = "<group>"; };
 		4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OrderedDictionary.license; sourceTree = "<group>"; };
-		4CA7DAB01A08FB1F00681DB9 /* CBXMLContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBXMLContext.h; path = Reachability/CBXMLContext.h; sourceTree = "<group>"; };
-		4CA7DAB11A08FB1F00681DB9 /* CBXMLContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBXMLContext.m; path = Reachability/CBXMLContext.m; sourceTree = "<group>"; };
 		4CD194FB1A06333000484E4F /* XMLParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserTests.m; path = Parser/XMLParserTests.m; sourceTree = "<group>"; };
 		8146A9B119279721002548A4 /* ProgramTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableHeaderView.h; sourceTree = "<group>"; };
 		8146A9B219279721002548A4 /* ProgramTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableHeaderView.m; sourceTree = "<group>"; };
@@ -850,6 +850,12 @@
 		CA75C2AF18A9A62B00FC8C2F /* LoopEndBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopEndBrickCell.m; sourceTree = "<group>"; };
 		CA79A118182D8A4200618283 /* GDataXMLNode+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+CustomExtensions.h"; sourceTree = "<group>"; };
 		CA79A119182D8A4200618283 /* GDataXMLNode+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+CustomExtensions.m"; sourceTree = "<group>"; };
+		CA8486771A117A7D001B6368 /* SetSizeToBrick+CBXMLHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SetSizeToBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		CA8486781A117A9E001B6368 /* SetSizeToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetSizeToBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		CA84867B1A117E5C001B6368 /* CBXMLOpenedNestingBricksStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLOpenedNestingBricksStack.h; sourceTree = "<group>"; };
+		CA84867C1A117E5C001B6368 /* CBXMLOpenedNestingBricksStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLOpenedNestingBricksStack.m; sourceTree = "<group>"; };
+		CA84867E1A1187D3001B6368 /* CBXMLContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBXMLContext.h; sourceTree = "<group>"; };
+		CA84867F1A1187E8001B6368 /* CBXMLContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLContext.m; sourceTree = "<group>"; };
 		CA882036192E76A300E5D515 /* ProgramTableViewController+UnitTestingExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ProgramTableViewController+UnitTestingExtensions.h"; sourceTree = "<group>"; };
 		CA8C247718CD053300314C2B /* ProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTests.m; sourceTree = "<group>"; };
 		CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerNewProgramTests.m; sourceTree = "<group>"; };
@@ -1295,8 +1301,8 @@
 		4CA7DAAF1A08FACC00681DB9 /* Context */ = {
 			isa = PBXGroup;
 			children = (
-				4CA7DAB01A08FB1F00681DB9 /* CBXMLContext.h */,
-				4CA7DAB11A08FB1F00681DB9 /* CBXMLContext.m */,
+				CA84867E1A1187D3001B6368 /* CBXMLContext.h */,
+				CA84867F1A1187E8001B6368 /* CBXMLContext.m */,
 			);
 			name = Context;
 			sourceTree = "<group>";
@@ -2452,6 +2458,7 @@
 		CA688215180B46CB008A7C99 /* DataStructures */ = {
 			isa = PBXGroup;
 			children = (
+				CA84867A1A117CF9001B6368 /* CBXMLOpenedNestingBricksStack */,
 				CAE9A2C1197D8948008F7C9A /* DataTransferMessage */,
 				B4826F80174D5B7000F57AE9 /* OrderedMapTable */,
 				CA688213180B4680008A7C99 /* OrderedDictionary */,
@@ -2628,6 +2635,15 @@
 				CA79A119182D8A4200618283 /* GDataXMLNode+CustomExtensions.m */,
 			);
 			name = "GDataXMLNode+PrettyFormatterExtensions";
+			sourceTree = "<group>";
+		};
+		CA84867A1A117CF9001B6368 /* CBXMLOpenedNestingBricksStack */ = {
+			isa = PBXGroup;
+			children = (
+				CA84867B1A117E5C001B6368 /* CBXMLOpenedNestingBricksStack.h */,
+				CA84867C1A117E5C001B6368 /* CBXMLOpenedNestingBricksStack.m */,
+			);
+			name = CBXMLOpenedNestingBricksStack;
 			sourceTree = "<group>";
 		};
 		CA882034192E581C00E5D515 /* SWTableViewCell */ = {
@@ -2809,6 +2825,8 @@
 		CAAE4C311A06C7E000040E02 /* SetSizeToBrick */ = {
 			isa = PBXGroup;
 			children = (
+				CA8486771A117A7D001B6368 /* SetSizeToBrick+CBXMLHandler.h */,
+				CA8486781A117A9E001B6368 /* SetSizeToBrick+CBXMLHandler.m */,
 			);
 			name = SetSizeToBrick;
 			sourceTree = "<group>";
@@ -3786,12 +3804,12 @@
 				4C023FDE19FFC9BA00381E36 /* Look+CBXMLHandler.m in Sources */,
 				CADBD70319B0E8C200C62836 /* Scene.m in Sources */,
 				CADBD70419B0E8C200C62836 /* BrickSelectModalTransition.m in Sources */,
-				4CA7DAB21A08FB1F00681DB9 /* CBXMLContext.m in Sources */,
 				CADBD70519B0E8C200C62836 /* ForeverBrickCell.m in Sources */,
 				CADBD70619B0E8C200C62836 /* BaseTableViewController.m in Sources */,
 				CADBD70719B0E8C200C62836 /* CatrobatBaseCell.m in Sources */,
 				CADBD70819B0E8C200C62836 /* PlaceAtBrickCell.m in Sources */,
 				CADBD70919B0E8C200C62836 /* FBShimmeringLayer.m in Sources */,
+				CA84867D1A117E5C001B6368 /* CBXMLOpenedNestingBricksStack.m in Sources */,
 				CADBD70A19B0E8C200C62836 /* NSString+CatrobatNSStringExtensions.m in Sources */,
 				CADBD70B19B0E8C200C62836 /* BrickShapeFactory.m in Sources */,
 				CADBD70C19B0E8C200C62836 /* InternFormulaParserException.m in Sources */,
@@ -3884,6 +3902,7 @@
 				CADBD75E19B0E8C200C62836 /* SetSizeToBrickCell.m in Sources */,
 				CADBD75F19B0E8C200C62836 /* StartScriptCell.m in Sources */,
 				CADBD76019B0E8C200C62836 /* CatrobatActionSheet.m in Sources */,
+				CA8486791A117A9E001B6368 /* SetSizeToBrick+CBXMLHandler.m in Sources */,
 				CADBD76219B0E8C200C62836 /* UIImage+AHKAdditions.m in Sources */,
 				CADBD76319B0E8C200C62836 /* SetXBrick.m in Sources */,
 				CADBD76419B0E8C200C62836 /* SetVariableBrickCell.m in Sources */,
@@ -3953,6 +3972,7 @@
 				CADBD79F19B0E8C200C62836 /* MyProgramsViewController.m in Sources */,
 				CADBD7A019B0E8C200C62836 /* IfLogicBeginBrickCell.m in Sources */,
 				CADBD7A119B0E8C200C62836 /* ImageCache.m in Sources */,
+				CA8486801A1187E8001B6368 /* CBXMLContext.m in Sources */,
 				CADBD7A219B0E8C200C62836 /* CatrobatInformation.m in Sources */,
 				CADBD7A319B0E8C200C62836 /* ProgramDetailStoreViewController.m in Sources */,
 				CADBD7A419B0E8C200C62836 /* TTTAttributedLabel.m in Sources */,

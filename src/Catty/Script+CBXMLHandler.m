@@ -23,6 +23,8 @@
 #import "Script+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "GDataXMLNode.h"
+#import "CBXMLOpenedNestingBricksStack.h"
+#import "CBXMLContext.h"
 
 #import "BroadcastScript.h"
 #import "StartScript.h"
@@ -75,11 +77,14 @@
     }
 
     NSMutableArray *brickList = [NSMutableArray arrayWithCapacity:[brickElements count]];
+    CBXMLOpenedNestingBricksStack *openedNestingBricksStack = [CBXMLOpenedNestingBricksStack new];
+    context.openedNestingBricksStack = openedNestingBricksStack;
     for (GDataXMLElement *brickElement in brickElements) {
         Brick *brick = [Brick parseFromElement:brickElement withContext:context];
         [XMLError exceptionIfNil:brick message:@"Unable to parse brick..."];
         [brickList addObject:brick];
     }
+    [XMLError exceptionIf:[openedNestingBricksStack isEmpty] equals:YES message:@"FATAL ERROR: there are still some unclosed nesting bricks (e.g. IF, FOREVER, ...) on the stack..."];
     return brickList;
 }
 

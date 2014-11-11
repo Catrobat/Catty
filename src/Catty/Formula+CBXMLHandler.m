@@ -32,7 +32,6 @@
     FormulaElement *formulaTree = [FormulaElement parseFromElement:xmlElement withContext:context];
     Formula *formula = [Formula new];
     formula.formulaTree = formulaTree;
-    
     return formula;
 }
 

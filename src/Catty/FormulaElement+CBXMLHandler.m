@@ -35,22 +35,24 @@
     GDataXMLElement *valueElement = [xmlElement childWithElementName:@"value"];
     NSString *stringValue = [valueElement stringValue];
     
-    FormulaElement *formulaTree = [[FormulaElement alloc] initWithType:type value:stringValue leftChild:nil rightChild:nil parent:nil];
-    
+    FormulaElement *formulaTree = [[FormulaElement alloc] initWithType:type
+                                                                 value:stringValue
+                                                             leftChild:nil
+                                                            rightChild:nil
+                                                                parent:nil];
+
     GDataXMLElement *rightChildElement = [xmlElement childWithElementName:@"rightChild"];
-    if(rightChildElement)
-    {
+    if (rightChildElement) {
         FormulaElement *rightChildFormula = [self parseFromElement:rightChildElement withContext:context];
         formulaTree.rightChild = rightChildFormula;
     }
-    
+
     GDataXMLElement *leftChildElement = [xmlElement childWithElementName:@"leftChild"];
-    if(leftChildElement)
-    {
+    if (leftChildElement) {
         FormulaElement *leftChildFormula = [self parseFromElement:leftChildElement withContext:context];
         formulaTree.leftChild = leftChildFormula;
     }
-    
+
     return formulaTree;
 }
 

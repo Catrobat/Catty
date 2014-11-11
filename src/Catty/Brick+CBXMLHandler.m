@@ -23,9 +23,12 @@
 #import "Brick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "GDataXMLNode.h"
+#import "CBXMLContext.h"
+#import "CBXMLOpenedNestingBricksStack.h"
 
 #import "SetLookBrick+CBXMLHandler.h"
 #import "SetVariableBrick+CBXMLHandler.h"
+#import "SetSizeToBrick+CBXMLHandler.h"
 
 @implementation Brick (CBXMLHandler)
 
@@ -51,6 +54,17 @@
         brick = [SetLookBrick parseFromElement:xmlElement withContext:context];
     } else if ([brickTypeName isEqualToString:@"SetVariableBrick"]) {
         brick = [SetVariableBrick parseFromElement:xmlElement withContext:context];
+    } else if ([brickTypeName isEqualToString:@"SetSizeToBrick"]) {
+        brick = [SetSizeToBrick parseFromElement:xmlElement withContext:nil];
+    } else if ([brickTypeName isEqualToString:@"ForeverBrick"]) {
+        // TODO: continue here...
+//        brick = [ForeverBrick parseFromElement:xmlElement withContext:nil];
+
+        //-------------------------------------------------------------------
+        // => TODO: protocol for nesting bricks like IF, FOREVER, etc...
+        // !!! FIXME !!! JUST FOR DEBUGGING PURPOSES!!! REMOVE THIS LINE!!
+        [context.openedNestingBricksStack pushAndOpenNestingBrick:[Brick new]];
+        //-------------------------------------------------------------------
     } else {
         [XMLError exceptionWithMessage:@"Unsupported brick type: %@. Please implement %@+CBXMLHandler class", brickTypeName, brickTypeName];
     }
