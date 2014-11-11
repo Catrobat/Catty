@@ -26,9 +26,12 @@
 #import "CBXMLContext.h"
 #import "CBXMLOpenedNestingBricksStack.h"
 
+// IMPORTANT: do not forgot to import every Brick+CBXMLHandler category
 #import "SetLookBrick+CBXMLHandler.h"
 #import "SetVariableBrick+CBXMLHandler.h"
 #import "SetSizeToBrick+CBXMLHandler.h"
+#import "ForeverBrick+CBXMLHandler.h"
+#import "LoopEndBrick+CBXMLHandler.h"
 
 @implementation Brick (CBXMLHandler)
 
@@ -44,38 +47,26 @@
                         message:@"Unsupported attribute: %@", attribute.name];
     NSString *brickTypeName = [attribute stringValue];
 
-    // unfortunately there seem to be no way to use class category methods
-    // for objects that are created via reflection
-//    NSString *brickClassName = [[self class] brickClassNameForBrickTypeName:brickTypeName];
-//    Class class = NSClassFromString(brickClassName);
-
-    Brick *brick = nil;
-    if ([brickTypeName isEqualToString:@"SetLookBrick"]) {
-        brick = [SetLookBrick parseFromElement:xmlElement withContext:context];
-    } else if ([brickTypeName isEqualToString:@"SetVariableBrick"]) {
-        brick = [SetVariableBrick parseFromElement:xmlElement withContext:context];
-    } else if ([brickTypeName isEqualToString:@"SetSizeToBrick"]) {
-        brick = [SetSizeToBrick parseFromElement:xmlElement withContext:nil];
-    } else if ([brickTypeName isEqualToString:@"ForeverBrick"]) {
-        // TODO: continue here...
-//        brick = [ForeverBrick parseFromElement:xmlElement withContext:nil];
-
-        //-------------------------------------------------------------------
-        // => TODO: protocol for nesting bricks like IF, FOREVER, etc...
-        // !!! FIXME !!! JUST FOR DEBUGGING PURPOSES!!! REMOVE THIS LINE!!
-        [context.openedNestingBricksStack pushAndOpenNestingBrick:[Brick new]];
-        //-------------------------------------------------------------------
-    } else {
+    // Get proper brick class via reflection
+    NSString *brickClassName = [[self class] brickClassNameForBrickTypeName:brickTypeName];
+    Class class = NSClassFromString(brickClassName);
+    
+    // NSClassFromString returns nil if class was not loaded/found
+    if(!class) {
         [XMLError exceptionWithMessage:@"Unsupported brick type: %@. Please implement %@+CBXMLHandler class", brickTypeName, brickTypeName];
     }
+
+    Brick *brick = [class parseFromElement:xmlElement withContext:context];
     return brick;
 }
 
-//+ (NSString*)brickClassNameForBrickTypeName:(NSString*)brickTypeName
-//{
-//    NSMutableString *brickXMLHandlerClassName = [NSMutableString stringWithString:brickTypeName];
-//    // TODO: handle those class names here that do not correspond to bricktypenames...
-//    return (NSString*)brickXMLHandlerClassName;
-//}
++ (NSString*)brickClassNameForBrickTypeName:(NSString*)brickTypeName
+{
+    NSMutableString *brickXMLHandlerClassName = [NSMutableString stringWithString:brickTypeName];
+    // TODO: handle those class names here that do not correspond to bricktypenames...
+    if([brickTypeName isEqualToString:@"LoopEndlessBrick"])
+        return [NSString stringWithFormat:@"LoopEndBrick"];
+    return (NSString*)brickXMLHandlerClassName;
+}
 
 @end

@@ -32,6 +32,8 @@
 		4C1608AB1A095F17002C7032 /* FormulaElement+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1608AA1A095F17002C7032 /* FormulaElement+CBXMLHandler.m */; };
 		4C1608B21A09621A002C7032 /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B01A09621A002C7032 /* ValidFormulaList.xml */; };
 		4C1608B31A09621A002C7032 /* ValidProgram.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B11A09621A002C7032 /* ValidProgram.xml */; };
+		4C23DB3C1A123FB600A0E860 /* ForeverBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C23DB3B1A123FB600A0E860 /* ForeverBrick+CBXMLHandler.m */; };
+		4C23DB4A1A124E4C00A0E860 /* LoopEndBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C23DB491A124E4C00A0E860 /* LoopEndBrick+CBXMLHandler.m */; };
 		4CD194FC1A06333000484E4F /* XMLParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD194FB1A06333000484E4F /* XMLParserTests.m */; };
 		9236B38B19DA85B000495474 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9236B38A19DA85B000495474 /* Launch Screen.xib */; };
 		924DEBFA19CAFB9900EED9CE /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF619CAFB9900EED9CE /* MYBlurIntroductionView.m */; };
@@ -401,6 +403,10 @@
 		4C1608AA1A095F17002C7032 /* FormulaElement+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FormulaElement+CBXMLHandler.m"; sourceTree = "<group>"; };
 		4C1608B01A09621A002C7032 /* ValidFormulaList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidFormulaList.xml; path = "Resources/Test Resources/ValidFormulaList.xml"; sourceTree = "<group>"; };
 		4C1608B11A09621A002C7032 /* ValidProgram.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidProgram.xml; path = "Resources/Test Resources/ValidProgram.xml"; sourceTree = "<group>"; };
+		4C23DB3A1A123FB600A0E860 /* ForeverBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ForeverBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		4C23DB3B1A123FB600A0E860 /* ForeverBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ForeverBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		4C23DB481A124E4C00A0E860 /* LoopEndBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LoopEndBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		4C23DB491A124E4C00A0E860 /* LoopEndBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LoopEndBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		4C3AEF2E198E7EDD00604ABF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaFunctionsTest.m; sourceTree = "<group>"; };
 		4C3C03FF199BA7B40004F594 /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Functions.h; sourceTree = "<group>"; };
@@ -2899,6 +2905,10 @@
 		CAAE4C3B1A06C83200040E02 /* LoopBricks */ = {
 			isa = PBXGroup;
 			children = (
+				4C23DB3A1A123FB600A0E860 /* ForeverBrick+CBXMLHandler.h */,
+				4C23DB3B1A123FB600A0E860 /* ForeverBrick+CBXMLHandler.m */,
+				4C23DB481A124E4C00A0E860 /* LoopEndBrick+CBXMLHandler.h */,
+				4C23DB491A124E4C00A0E860 /* LoopEndBrick+CBXMLHandler.m */,
 			);
 			name = LoopBricks;
 			sourceTree = "<group>";
@@ -3804,6 +3814,7 @@
 				4C023FDE19FFC9BA00381E36 /* Look+CBXMLHandler.m in Sources */,
 				CADBD70319B0E8C200C62836 /* Scene.m in Sources */,
 				CADBD70419B0E8C200C62836 /* BrickSelectModalTransition.m in Sources */,
+				4C23DB3C1A123FB600A0E860 /* ForeverBrick+CBXMLHandler.m in Sources */,
 				CADBD70519B0E8C200C62836 /* ForeverBrickCell.m in Sources */,
 				CADBD70619B0E8C200C62836 /* BaseTableViewController.m in Sources */,
 				CADBD70719B0E8C200C62836 /* CatrobatBaseCell.m in Sources */,
@@ -3822,6 +3833,7 @@
 				CADBD71219B0E8C200C62836 /* ComboBoxView.m in Sources */,
 				CADBD71319B0E8C200C62836 /* StopAllSoundsBrickCell.m in Sources */,
 				CADBD71419B0E8C200C62836 /* CellMotionEffect.m in Sources */,
+				4C23DB4A1A124E4C00A0E860 /* LoopEndBrick+CBXMLHandler.m in Sources */,
 				CADBD71519B0E8C200C62836 /* BaseTransition.m in Sources */,
 				CADBD71619B0E8C200C62836 /* ChangeBrightnessByNBrick.m in Sources */,
 				CADBD71719B0E8C200C62836 /* CatrobatTableViewController.m in Sources */,

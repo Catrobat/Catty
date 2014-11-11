@@ -38,14 +38,18 @@
 #import "SpriteObject+CBXMLHandler.h"
 #import "VariablesContainer+CBXMLHandler.h"
 #import "Script+CBXMLHandler.h"
-#import "Brick+CBXMLHandler.h"
-#import "SetLookBrick+CBXMLHandler.h"
-#import "CBXMLContext.h"
-#import "SetLookBrick.h"
-#import "SetVariableBrick.h"
 #import "UserVariable+CBXMLHandler.h"
 #import "Formula+CBXMLHandler.h"
 #import "FormulaElement+CBXMLHandler.h"
+#import "Brick+CBXMLHandler.h"
+#import "SetLookBrick+CBXMLHandler.h"
+#import "SetSizeToBrick+CBXMLHandler.h"
+#import "CBXMLContext.h"
+#import "CBXMLOpenedNestingBricksStack.h"
+#import "SetLookBrick.h"
+#import "SetVariableBrick.h"
+#import "ForeverBrick+CBXMLHandler.h"
+#import "LoopEndBrick+CBXMLHandler.h"
 
 @interface XMLParserTests : XCTestCase
 
@@ -176,6 +180,67 @@
     Formula *formula = setVariableBrick.variableFormula;
     XCTAssertTrue(formula.formulaTree.type == NUMBER, @"Invalid variable type");
     XCTAssertTrue([formula.formulaTree.value isEqualToString:@"1"], @"Invalid variable value");
+}
+
+- (void)testValidSetSizeToBrick {
+    
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]];
+    GDataXMLElement *xmlElement = [document rootElement];
+    
+    NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[2]/scriptList/script[1]/brickList/brick[1]" error:nil];
+    XCTAssertEqual([brickElement count], 1);
+    
+    NSArray *objectArray = [xmlElement nodesForXPath:@"//program/objectList/object[1]" error:nil];
+    XCTAssertEqual([objectArray count], 1);
+    GDataXMLElement *objectElement = [objectArray objectAtIndex:0];
+    
+    NSMutableArray *lookList = [SpriteObject parseAndCreateLooks:objectElement];
+    GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
+    
+    Brick *brick = [Brick parseFromElement:brickXMLElement withContext:[[CBXMLContext alloc] initWithLookList:lookList]];
+    
+    XCTAssertTrue(brick.brickType == kSetSizeToBrick, @"Invalid brick type");
+    XCTAssertTrue([brick isKindOfClass:[SetSizeToBrick class]], @"Invalid brick class");
+    
+    SetSizeToBrick *setSizeToBrick = (SetSizeToBrick*)brick;
+    Formula *formula = setSizeToBrick.size;
+    
+    XCTAssertNotNil(formula, @"Invalid formula");
+    
+    XCTAssertTrue(formula.formulaTree.type == NUMBER, @"Invalid variable type");
+    XCTAssertTrue([formula.formulaTree.value isEqualToString:@"30"], @"Invalid formula value");
+    
+    XCTAssertEqualWithAccuracy([formula interpretDoubleForSprite:nil], 30, 0.00001, @"Formula not correctly parsed");
+
+}
+
+- (void)testValidForeverBrickAndLoopEndlessBrick {
+    
+    CBXMLContext *context = [[CBXMLContext alloc] init];
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]];
+    GDataXMLElement *xmlElement = [document rootElement];
+    
+    NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[2]/scriptList/script[1]/brickList/brick[2]" error:nil];
+    XCTAssertEqual([brickElement count], 1);
+    
+    GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
+    
+    Brick *brick = [Brick parseFromElement:brickXMLElement withContext:context];
+    
+    XCTAssertTrue(brick.brickType == kForeverBrick, @"Invalid brick type");
+    XCTAssertTrue([brick isKindOfClass:[ForeverBrick class]], @"Invalid brick class");
+    
+    brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[2]/scriptList/script[1]/brickList/brick[12]" error:nil];
+    XCTAssertEqual([brickElement count], 1);
+    
+    brickXMLElement = [brickElement objectAtIndex:0];
+    
+    brick = [Brick parseFromElement:brickXMLElement withContext:context];
+    
+    XCTAssertTrue(brick.brickType == kLoopEndBrick, @"Invalid brick type");
+    XCTAssertTrue([brick isKindOfClass:[LoopEndBrick class]], @"Invalid brick class");
+    
+    XCTAssertTrue([context.openedNestingBricksStack isEmpty], @"Nesting bricks not closed properly");
 }
 
 - (void)testValidFormulaList {

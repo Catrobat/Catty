@@ -31,8 +31,6 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    // FIXME: validate...
-
     [XMLError exceptionIf:[xmlElement childCount] notEquals:3 message:@"Too less or too many child nodes found..."];
     GDataXMLElement *formulaListElement = [xmlElement childWithElementName:@"formulaList"];
     [XMLError exceptionIfNil:formulaListElement message:@"No formulaList element found..."];

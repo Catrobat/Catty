@@ -21,6 +21,7 @@
  */
 
 #import "CBXMLContext.h"
+#import "CBXMLOpenedNestingBricksStack.h"
 
 @interface CBXMLContext ()
 
@@ -71,6 +72,14 @@
     }
     
     return self;
+}
+
+- (CBXMLOpenedNestingBricksStack*)openedNestingBricksStack
+{
+    if(!_openedNestingBricksStack)
+        _openedNestingBricksStack = [[CBXMLOpenedNestingBricksStack alloc] init];
+    
+    return _openedNestingBricksStack;
 }
 
 @end

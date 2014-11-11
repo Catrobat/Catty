@@ -59,6 +59,14 @@
     return ([self.openedNestingBricks count] == 0);
 }
 
+- (NSMutableArray*)openedNestingBricks
+{
+    if(!_openedNestingBricks) {
+        _openedNestingBricks = [[NSMutableArray alloc] init];
+    }
+    return _openedNestingBricks;
+}
+
 #pragma mark - NSFastEnumeration
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState*)state
                                   objects:(__unsafe_unretained id [])buffer
