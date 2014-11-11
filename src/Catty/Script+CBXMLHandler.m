@@ -45,11 +45,11 @@
     NSArray *attributes = [xmlElement attributes];
     [XMLError exceptionIf:[attributes count] notEquals:1
                   message:@"Parsed type-attribute of script is invalid or empty!"];
-    
+
     GDataXMLNode *attribute = [attributes firstObject];
     [XMLError exceptionIfString:attribute.name isNotEqualToString:@"type"
                         message:@"Unsupported attribute: %@", attribute.name];
-    
+
     NSString *scriptType = [attribute stringValue];
     Script *script = nil;
     if ([scriptType isEqualToString:@"StartScript"]) {
