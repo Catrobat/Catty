@@ -33,6 +33,8 @@
 #import "Brick.h"
 #import "CatrobatLanguageDefines.h"
 #import "Program+CustomExtensions.h"
+#import "CBXMLContext.h"
+#import "CBXMLOpenedNestingBricksStack.h"
 #import "CBXMLValidator.h"
 #import "Header+CBXMLHandler.h"
 #import "SpriteObject+CBXMLHandler.h"
@@ -41,13 +43,9 @@
 #import "UserVariable+CBXMLHandler.h"
 #import "Formula+CBXMLHandler.h"
 #import "FormulaElement+CBXMLHandler.h"
-#import "Brick+CBXMLHandler.h"
 #import "SetLookBrick+CBXMLHandler.h"
 #import "SetSizeToBrick+CBXMLHandler.h"
-#import "CBXMLContext.h"
-#import "CBXMLOpenedNestingBricksStack.h"
-#import "SetLookBrick.h"
-#import "SetVariableBrick.h"
+#import "SetVariableBrick+CBXMLHandler.h"
 #import "ForeverBrick+CBXMLHandler.h"
 #import "LoopEndBrick+CBXMLHandler.h"
 
@@ -141,9 +139,9 @@
     
     NSMutableArray *lookList = [SpriteObject parseAndCreateLooks:objectElement];
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
-    
-    Brick *brick = [Brick parseFromElement:brickXMLElement withContext:[[CBXMLContext alloc] initWithLookList:lookList]];
-    
+
+    Brick *brick = [SetLookBrick parseFromElement:brickXMLElement withContext:[[CBXMLContext alloc] initWithLookList:lookList]];
+
     XCTAssertTrue(brick.brickType == kSetLookBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[SetLookBrick class]], @"Invalid brick class");
     
@@ -168,7 +166,7 @@
     NSMutableArray *lookList = [SpriteObject parseAndCreateLooks:objectElement];
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    Brick *brick = [Brick parseFromElement:brickXMLElement withContext:[[CBXMLContext alloc] initWithLookList:lookList]];
+    Brick *brick = [SetVariableBrick parseFromElement:brickXMLElement withContext:[[CBXMLContext alloc] initWithLookList:lookList]];
     
     XCTAssertTrue(brick.brickType == kSetVariableBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[SetVariableBrick class]], @"Invalid brick class");
@@ -196,9 +194,9 @@
     
     NSMutableArray *lookList = [SpriteObject parseAndCreateLooks:objectElement];
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
-    
-    Brick *brick = [Brick parseFromElement:brickXMLElement withContext:[[CBXMLContext alloc] initWithLookList:lookList]];
-    
+
+    Brick *brick = [SetSizeToBrick parseFromElement:brickXMLElement withContext:[[CBXMLContext alloc] initWithLookList:lookList]];
+
     XCTAssertTrue(brick.brickType == kSetSizeToBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[SetSizeToBrick class]], @"Invalid brick class");
     
@@ -225,7 +223,7 @@
     
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    Brick *brick = [Brick parseFromElement:brickXMLElement withContext:context];
+    Brick *brick = [ForeverBrick parseFromElement:brickXMLElement withContext:context];
     
     XCTAssertTrue(brick.brickType == kForeverBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[ForeverBrick class]], @"Invalid brick class");
@@ -234,9 +232,9 @@
     XCTAssertEqual([brickElement count], 1);
     
     brickXMLElement = [brickElement objectAtIndex:0];
-    
-    brick = [Brick parseFromElement:brickXMLElement withContext:context];
-    
+
+    brick = [LoopEndBrick parseFromElement:brickXMLElement withContext:context];
+
     XCTAssertTrue(brick.brickType == kLoopEndBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[LoopEndBrick class]], @"Invalid brick class");
     
@@ -257,9 +255,9 @@
     
     NSMutableArray *lookList = [SpriteObject parseAndCreateLooks:objectElement];
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
-    
-    Brick *brick = [Brick parseFromElement:brickXMLElement withContext:[[CBXMLContext alloc] initWithLookList:lookList]];
-    
+
+    Brick *brick = [SetVariableBrick parseFromElement:brickXMLElement withContext:[[CBXMLContext alloc] initWithLookList:lookList]];
+
     XCTAssertTrue(brick.brickType == kSetVariableBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[SetVariableBrick class]], @"Invalid brick class");
     

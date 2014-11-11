@@ -33,6 +33,7 @@
     NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString componentsSeparatedByCharactersInSet:separatorSet]];
     [array removeObject:@""];
     NSUInteger index = 0;
+    NSLog(@"Stack = %@", [array objectAtIndex:index++]);
     NSString *framework = [array objectAtIndex:index++];
     NSString *tempString = [array objectAtIndex:index++];
     NSString *memoryAddress = nil;
@@ -45,6 +46,8 @@
         framework = [NSString stringWithFormat:@"%@ %@", framework, tempString];
         memoryAddress = [array objectAtIndex:index++];
     }
+    NSLog(@"Framework = %@", framework);
+    NSLog(@"Memory address = %@", memoryAddress);
     NSString *classCaller = [array objectAtIndex:index++];
     return classCaller;
 }
@@ -81,17 +84,18 @@
     return [NSString stringWithFormat:@"[%@:%@(%@)]", classCaller, functionCaller, lineCaller];
 }
 
-+ (void)throwExceptionWithMessage:(NSString*)exceptionMessage, ... NS_FORMAT_FUNCTION(1,2)
++ (void)throwExceptionWithMessage:(NSString*)exceptionMessage arguments:(va_list)argList NS_FORMAT_FUNCTION(1,0)
 {
     if (exceptionMessage) {
-        va_list args;
-        va_start(args, exceptionMessage);
-        [NSException raise:[[self class] exceptionName]
-                    format:[NSString stringWithFormat:@"%@ %@",
-                            [[self class] exceptionMessagePrefix],
-                            exceptionMessage]
-                 arguments:args];
-        va_end(args);
+        exceptionMessage = [[NSString alloc] initWithFormat:exceptionMessage arguments:argList];
+        NSString *exceptionName = [[self class] exceptionName];
+        NSString *exceptionMessagePrefix = [[self class] exceptionMessagePrefix];
+        exceptionMessage = [NSString stringWithFormat:@"%@ %@",
+                            exceptionMessagePrefix,
+                            exceptionMessage];
+        [NSException raise:exceptionName
+                    format:exceptionMessage
+                 arguments:nil];
     } else {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wformat-security"
@@ -114,7 +118,7 @@
     if (! object) {
         va_list args;
         va_start(args, exceptionMessage);
-        [self throwExceptionWithMessage:exceptionMessage, args];
+        [self throwExceptionWithMessage:exceptionMessage arguments:args];
         va_end(args);
     }
 }
@@ -124,7 +128,7 @@
     if (! pointer) {
         va_list args;
         va_start(args, exceptionMessage);
-        [self throwExceptionWithMessage:exceptionMessage, args];
+        [self throwExceptionWithMessage:exceptionMessage arguments:args];
         va_end(args);
     }
 }
@@ -136,7 +140,7 @@
     if (! [firstString isEqualToString:secondString]) {
         va_list args;
         va_start(args, exceptionMessage);
-        [self throwExceptionWithMessage:exceptionMessage, args];
+        [self throwExceptionWithMessage:exceptionMessage arguments:args];
         va_end(args);
     }
 }
@@ -148,7 +152,7 @@
     if (compareValue != integerValue) {
         va_list args;
         va_start(args, exceptionMessage);
-        [self throwExceptionWithMessage:exceptionMessage, args];
+        [self throwExceptionWithMessage:exceptionMessage arguments:args];
         va_end(args);
     }
 }
@@ -160,7 +164,7 @@
     if (compareValue == integerValue) {
         va_list args;
         va_start(args, exceptionMessage);
-        [self throwExceptionWithMessage:exceptionMessage, args];
+        [self throwExceptionWithMessage:exceptionMessage arguments:args];
         va_end(args);
     }
 }
@@ -169,7 +173,7 @@
 {
     va_list args;
     va_start(args, exceptionMessage);
-    [self throwExceptionWithMessage:exceptionMessage, args];
+    [self throwExceptionWithMessage:exceptionMessage arguments:args];
     va_end(args);
 }
 

@@ -32,12 +32,10 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [XMLError exceptionIf:[xmlElement childCount] notEquals:0 message:@"Too many child nodes found..."];
-    
     ForeverBrick *foreverBrick = [self new];
-    
-    // register opening nesting brick on stack
+
+    // add opening nesting brick on stack
     [context.openedNestingBricksStack pushAndOpenNestingBrick:foreverBrick];
-    
     return foreverBrick;
 }
 
