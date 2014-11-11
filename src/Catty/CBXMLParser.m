@@ -112,11 +112,11 @@
     }
     [program updateReferences];
     program.XMLdocument = document;
-    
-//    return program;
+
     // FIXME: REMOVE THIS LOG-Entry after parser has been fully implemented
     NSLog(@"!!! NEW Catrobat XML Parser IS NOT FULLY IMPLEMENTED YET => RETURNING NIL !!!");
-    return nil;
+
+    return program;
 }
 
 - (Program*)parseAndCreateProgramForDocument:(GDataXMLDocument*)xmlDocument

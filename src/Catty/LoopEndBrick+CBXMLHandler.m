@@ -34,18 +34,19 @@
 {
     [XMLError exceptionIf:[xmlElement childCount] notEquals:0 message:@"Too many child nodes found..."];
 
-    if (!context) {
+    if (! context) {
         context = [[CBXMLContext alloc] init];
     }
 
-    LoopEndBrick *loopEndlessBrick = [self new];
+    LoopEndBrick *loopEndBrick = [self new];
 
     // unregister opening nesting brick on stack
     Brick *openingNestingBrick = [context.openedNestingBricksStack popAndCloseTopMostNestingBrick];
     if (! [openingNestingBrick isKindOfClass:[ForeverBrick class]]) {
         [XMLError exceptionWithMessage:@"Unexpected closing of nesting brick: expected LoopEndlessBrick but got %@", NSStringFromClass([openingNestingBrick class])];
     }
-    return loopEndlessBrick;
+    loopEndBrick.loopBeginBrick = (ForeverBrick*)openingNestingBrick;
+    return loopEndBrick;
 }
 
 @end
