@@ -42,10 +42,10 @@
 
     // unregister opening nesting brick on stack
     Brick *openingNestingBrick = [context.openedNestingBricksStack popAndCloseTopMostNestingBrick];
-    if (! [openingNestingBrick isKindOfClass:[ForeverBrick class]]) {
+    if (! [openingNestingBrick isKindOfClass:[LoopBeginBrick class]]) {
         [XMLError exceptionWithMessage:@"Unexpected closing of nesting brick: expected LoopEndlessBrick but got %@", NSStringFromClass([openingNestingBrick class])];
     }
-    loopEndBrick.loopBeginBrick = (ForeverBrick*)openingNestingBrick;
+    loopEndBrick.loopBeginBrick = (LoopBeginBrick*)openingNestingBrick;
     return loopEndBrick;
 }
 
