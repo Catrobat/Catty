@@ -365,6 +365,7 @@
 		CAEB7F1619F45D3400A2A251 /* Program+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEB7F1519F45D3400A2A251 /* Program+CustomExtensions.m */; };
 		CAF9DC651A12C612003FE868 /* PlaceAtBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9DC641A12C612003FE868 /* PlaceAtBrick+CBXMLHandler.m */; };
 		CAF9DC671A12CB8C003FE868 /* WaitBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9DC661A12CB8C003FE868 /* WaitBrick+CBXMLHandler.m */; };
+		CAF9DC6B1A12CCF0003FE868 /* ShowBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9DC6A1A12CCF0003FE868 /* ShowBrick+CBXMLHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -929,6 +930,8 @@
 		CAF9DC641A12C612003FE868 /* PlaceAtBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PlaceAtBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CAF9DC661A12CB8C003FE868 /* WaitBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WaitBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CAF9DC681A12CB95003FE868 /* WaitBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WaitBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		CAF9DC691A12CCEA003FE868 /* ShowBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ShowBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		CAF9DC6A1A12CCF0003FE868 /* ShowBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShowBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CD0CCE5F170CB39600B70036 /* Brick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brick.h; sourceTree = "<group>"; };
 		CD0CCE60170CB39600B70036 /* Brick.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = Brick.m; sourceTree = "<group>"; tabWidth = 4; };
 		CD0CCE61170CB39600B70036 /* BroadcastBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastBrick.h; sourceTree = "<group>"; };
@@ -2812,6 +2815,8 @@
 		CAAE4C2E1A06C7C900040E02 /* ShowBrick */ = {
 			isa = PBXGroup;
 			children = (
+				CAF9DC691A12CCEA003FE868 /* ShowBrick+CBXMLHandler.h */,
+				CAF9DC6A1A12CCF0003FE868 /* ShowBrick+CBXMLHandler.m */,
 			);
 			name = ShowBrick;
 			sourceTree = "<group>";
@@ -4029,6 +4034,7 @@
 				CADBD7CB19B0E8C200C62836 /* IfLogicEndBrick.m in Sources */,
 				CADBD7CC19B0E8C200C62836 /* PointToBrick.m in Sources */,
 				CADBD7CD19B0E8C200C62836 /* VariablesContainer.m in Sources */,
+				CAF9DC6B1A12CCF0003FE868 /* ShowBrick+CBXMLHandler.m in Sources */,
 				CADBD7CE19B0E8C200C62836 /* IfLogicEndBrickCell.m in Sources */,
 				4C023FEE19FFCF0700381E36 /* VariablesContainer+CBXMLHandler.m in Sources */,
 				CADBD7CF19B0E8C200C62836 /* ChangeVariableBrick.m in Sources */,
