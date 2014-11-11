@@ -23,13 +23,19 @@
 #import "Script+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "GDataXMLNode.h"
-#import "CBXMLOpenedNestingBricksStack.h"
 #import "CBXMLContext.h"
+#import "CBXMLOpenedNestingBricksStack.h"
 
 #import "BroadcastScript.h"
 #import "StartScript.h"
 #import "WhenScript.h"
-#import "Brick+CBXMLHandler.h"
+
+// IMPORTANT: do not forget to import every Brick+CBXMLHandler category
+#import "SetLookBrick+CBXMLHandler.h"
+#import "SetVariableBrick+CBXMLHandler.h"
+#import "SetSizeToBrick+CBXMLHandler.h"
+#import "ForeverBrick+CBXMLHandler.h"
+#import "LoopEndBrick+CBXMLHandler.h"
 
 @implementation Script (CBXMLHandler)
 
@@ -80,12 +86,42 @@
     CBXMLOpenedNestingBricksStack *openedNestingBricksStack = [CBXMLOpenedNestingBricksStack new];
     context.openedNestingBricksStack = openedNestingBricksStack;
     for (GDataXMLElement *brickElement in brickElements) {
-        Brick *brick = [Brick parseFromElement:brickElement withContext:context];
+        [XMLError exceptionIfNode:brickElement isNilOrNodeNameNotEquals:@"brick"];
+        NSArray *attributes = [brickElement attributes];
+        [XMLError exceptionIf:[attributes count] notEquals:1
+                      message:@"Parsed type-attribute of brick is invalid or empty!"];
+
+        GDataXMLNode *attribute = [attributes firstObject];
+        [XMLError exceptionIfString:attribute.name isNotEqualToString:@"type"
+                            message:@"Unsupported attribute: %@", attribute.name];
+        NSString *brickTypeName = [attribute stringValue];
+
+        // get proper brick class via reflection
+        NSString *brickClassName = [[self class] brickClassNameForBrickTypeName:brickTypeName];
+        Class class = NSClassFromString(brickClassName);
+        [XMLError exceptionIfNil:class
+                         message:@"Unsupported brick type: %@. Please implement %@+CBXMLHandler class",
+         brickTypeName, brickTypeName];
+        [XMLError exceptionIf:[class conformsToProtocol:@protocol(CBParserNodeProtocol)] equals:NO
+                      message:@"%@ must have a category %@+CBXMLHandler that implements CBParserNodeProtocol",
+                              brickClassName, brickClassName];
+        Brick *brick = [class parseFromElement:brickElement withContext:context];
         [XMLError exceptionIfNil:brick message:@"Unable to parse brick..."];
         [brickList addObject:brick];
     }
-    [XMLError exceptionIf:[openedNestingBricksStack isEmpty] equals:YES message:@"FATAL ERROR: there are still some unclosed nesting bricks (e.g. IF, FOREVER, ...) on the stack..."];
+    [XMLError exceptionIf:[openedNestingBricksStack isEmpty] equals:NO
+                  message:@"FATAL ERROR: there are still some unclosed nesting bricks (e.g. IF, \
+                            FOREVER, ...) on the stack..."];
     return brickList;
+}
+
++ (NSString*)brickClassNameForBrickTypeName:(NSString*)brickTypeName
+{
+    NSMutableString *brickXMLHandlerClassName = [NSMutableString stringWithString:brickTypeName];
+    // TODO: handle those class names here that do not correspond to bricktypenames...
+    if ([brickTypeName isEqualToString:@"LoopEndlessBrick"])
+        return [NSString stringWithFormat:@"LoopEndBrick"];
+    return (NSString*)brickXMLHandlerClassName;
 }
 
 @end
