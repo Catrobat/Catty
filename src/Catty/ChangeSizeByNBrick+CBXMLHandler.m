@@ -20,19 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SetSizeToBrick+CBXMLHandler.h"
+#import "ChangeSizeByNBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
 
-@implementation SetSizeToBrick (CBXMLHandler)
+@implementation ChangeSizeByNBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
 
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"SIZE"];
-    SetSizeToBrick *setSizeToBrick = [self new];
-    setSizeToBrick.size = formula;
-    return setSizeToBrick;
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"SIZE_CHANGE"];
+    ChangeSizeByNBrick *changeSizeByNBrick = [self new];
+    changeSizeByNBrick.size = formula;
+    return changeSizeByNBrick;
 }
 
 @end
