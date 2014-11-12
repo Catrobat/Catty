@@ -92,6 +92,7 @@
 		CA538EC919B0EA09008240AB /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = 92345632192E270B00464E6B /* test2.png */; };
 		CA538ECA19B0EA09008240AB /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 923453C1192D2D5F00464E6B /* test.png */; };
 		CA5D7FE519EC44480085D5AA /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D7FE419EC44480085D5AA /* BaseCollectionViewController.m */; };
+		CA63C9D61A13E83B009A32DB /* NoteBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9D51A13E83B009A32DB /* NoteBrick+CBXMLHandler.m */; };
 		CA66CB7519F6B42400D849E0 /* CBXMLValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CA66CB7419F6B42400D849E0 /* CBXMLValidator.m */; };
 		CA775CBF19FD5BCB00C1E761 /* My First Program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CA6E4C4719F9C388001B65C3 /* My First Program.catrobat */; };
 		CA8486791A117A9E001B6368 /* SetSizeToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8486781A117A9E001B6368 /* SetSizeToBrick+CBXMLHandler.m */; };
@@ -811,6 +812,8 @@
 		CA5FED4F18B0070300A517B6 /* BrickCellInlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCellInlineView.m; sourceTree = "<group>"; };
 		CA5FED5218B019B200A517B6 /* UIUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIUtil.h; sourceTree = "<group>"; };
 		CA5FED5318B019B200A517B6 /* UIUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIUtil.m; sourceTree = "<group>"; };
+		CA63C9D41A13E834009A32DB /* NoteBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NoteBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		CA63C9D51A13E83B009A32DB /* NoteBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NoteBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CA66CB7319F6B42400D849E0 /* CBXMLValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLValidator.h; sourceTree = "<group>"; };
 		CA66CB7419F6B42400D849E0 /* CBXMLValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLValidator.m; sourceTree = "<group>"; };
 		CA688200180AEEC2008A7C99 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
@@ -3017,6 +3020,8 @@
 		CAAE4C381A06C81C00040E02 /* NoteBrick */ = {
 			isa = PBXGroup;
 			children = (
+				CA63C9D41A13E834009A32DB /* NoteBrick+CBXMLHandler.h */,
+				CA63C9D51A13E83B009A32DB /* NoteBrick+CBXMLHandler.m */,
 			);
 			name = NoteBrick;
 			sourceTree = "<group>";
@@ -4225,6 +4230,7 @@
 				CADBD7DE19B0E8C200C62836 /* ScriptDeleteButton.m in Sources */,
 				4C023FDA19FFC8D600381E36 /* UserVariable+CBXMLHandler.m in Sources */,
 				CADBD7DF19B0E8C200C62836 /* GDataXMLNode.m in Sources */,
+				CA63C9D61A13E83B009A32DB /* NoteBrick+CBXMLHandler.m in Sources */,
 				CADBD7E019B0E8C200C62836 /* WaitBrickCell.m in Sources */,
 				CADBD7E119B0E8C200C62836 /* NSString+FastImageSize.m in Sources */,
 				CADBD7E219B0E8C200C62836 /* RoundBorderedButton.m in Sources */,

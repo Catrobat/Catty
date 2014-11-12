@@ -20,26 +20,26 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SpeakBrick+CBXMLHandler.h"
+#import "NoteBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "CBXMLParserHelper.h"
 #import "Formula.h"
 #import "FormulaElement.h"
 
-@implementation SpeakBrick (CBXMLHandler)
+@implementation NoteBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"SPEAK"];
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"NOTE"];
     [XMLError exceptionIf:formula.formulaTree.type notEquals:STRING
                   message:@"FormulaElement contains unknown type %lu! Should be STRING!",
-                          (unsigned long)formula.formulaTree.type];
+     (unsigned long)formula.formulaTree.type];
     [XMLError exceptionIfNil:formula.formulaTree.value message:@"FormulaElement contains no value!!"];
 
-    SpeakBrick *speakBrick = [self new];
-    speakBrick.text = formula.formulaTree.value;
-    return speakBrick;
+    NoteBrick *noteBrick = [self new];
+    noteBrick.note = formula.formulaTree.value;
+    return noteBrick;
 }
 
 @end
