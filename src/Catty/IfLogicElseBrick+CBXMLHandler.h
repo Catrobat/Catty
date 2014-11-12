@@ -20,14 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
+#import "IfLogicElseBrick.h"
+#import "CBParserNodeProtocol.h"
 
-@class IfLogicBeginBrick;
-@class IfLogicEndBrick;
-
-@interface IfLogicElseBrick : Brick
-
-@property (nonatomic, weak) IfLogicBeginBrick *ifBeginBrick;
-@property (nonatomic, weak) IfLogicEndBrick *ifEndBrick;
+@interface IfLogicElseBrick (CBXMLHandler) <CBParserNodeProtocol>
 
 @end

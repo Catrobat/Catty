@@ -20,30 +20,34 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "LoopEndBrick+CBXMLHandler.h"
+#import "IfLogicElseBrick+CBXMLHandler.h"
 #import "GDataXMLNode+CustomExtensions.h"
 #import "CBXMLValidator.h"
 #import "CBXMLParser.h"
 #import "CBXMLContext.h"
 #import "CBXMLOpenedNestingBricksStack.h"
-#import "ForeverBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
+#import "IfLogicBeginBrick.h"
 
-@implementation LoopEndBrick (CBXMLHandler)
+@implementation IfLogicElseBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
-
-    LoopEndBrick *loopEndBrick = [self new];
+    IfLogicElseBrick *ifLogicElseBrick = [self new];
 
     // pop opening nesting brick from stack
     Brick *openingNestingBrick = [context.openedNestingBricksStack popAndCloseTopMostNestingBrick];
-    if (! [openingNestingBrick isKindOfClass:[LoopBeginBrick class]]) {
-        [XMLError exceptionWithMessage:@"Unexpected closing of nesting brick: expected LoopEndlessBrick but got %@", NSStringFromClass([openingNestingBrick class])];
+    if (! [openingNestingBrick isKindOfClass:[IfLogicBeginBrick class]]) {
+        [XMLError exceptionWithMessage:@"Unexpected closing of nesting brick: expected IfLogicBeginBrick but got %@", NSStringFromClass([openingNestingBrick class])];
     }
-    loopEndBrick.loopBeginBrick = (LoopBeginBrick*)openingNestingBrick;
-    return loopEndBrick;
+    IfLogicBeginBrick *ifLogicBeginBrick = (IfLogicBeginBrick*)openingNestingBrick;
+    ifLogicBeginBrick.ifElseBrick = ifLogicElseBrick;
+    ifLogicElseBrick.ifBeginBrick = ifLogicBeginBrick;
+
+    // add opening nesting brick on stack
+    [context.openedNestingBricksStack pushAndOpenNestingBrick:ifLogicElseBrick];
+    return ifLogicElseBrick;
 }
 
 @end
