@@ -29,8 +29,8 @@
 
 @implementation XMLParserBrickTests
 
-- (void)testValidSetLookBrick {
-    
+- (void)testValidSetLookBrick
+{
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
@@ -56,8 +56,8 @@
     XCTAssertTrue([look.name isEqualToString:@"Background"], @"Invalid look name");
 }
 
-- (void)testValidSetVariableBrick {
-    
+- (void)testValidSetVariableBrick
+{
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
@@ -85,8 +85,8 @@
     XCTAssertTrue([formula.formulaTree.value isEqualToString:@"1"], @"Invalid variable value");
 }
 
-- (void)testValidSetSizeToBrick {
-    
+- (void)testValidSetSizeToBrick
+{
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
@@ -116,8 +116,8 @@
     XCTAssertEqualWithAccuracy([formula interpretDoubleForSprite:nil], 30, 0.00001, @"Formula not correctly parsed");
 }
 
-- (void)testValidForeverBrickAndLoopEndlessBrick {
-    
+- (void)testValidForeverBrickAndLoopEndlessBrick
+{
     CBXMLContext *context = [[CBXMLContext alloc] init];
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]];
     GDataXMLElement *xmlElement = [document rootElement];
@@ -145,8 +145,8 @@
     XCTAssertTrue([context.openedNestingBricksStack isEmpty], @"Nesting bricks not closed properly");
 }
 
-- (void)testValidPlaceAtBrick {
-    
+- (void)testValidPlaceAtBrick
+{
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
@@ -170,8 +170,8 @@
     XCTAssertEqualWithAccuracy([yPosition interpretDoubleForSprite:nil], -115, 0.00001, @"Formula not correctly parsed");
 }
 
-- (void)testValidWaitBrick {
-    
+- (void)testValidWaitBrick
+{
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
@@ -193,8 +193,8 @@
     XCTAssertEqualWithAccuracy([timeToWaitInSeconds interpretDoubleForSprite:nil], 1, 1, @"Formula not correctly parsed");
 }
 
-- (void)testValidShowBrick {
-    
+- (void)testValidShowBrick
+{
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
@@ -209,8 +209,8 @@
     XCTAssertTrue([brick isKindOfClass:[ShowBrick class]], @"Invalid brick class");
 }
 
-- (void)testValidGlideToBrick {
-    
+- (void)testValidGlideToBrick
+{
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
@@ -239,8 +239,8 @@
     XCTAssertEqualWithAccuracy([yDestination interpretDoubleForSprite:nil], -100, 0.00001, @"Formula not correctly parsed");
 }
 
-- (void)testValidHideBrick {
-    
+- (void)testValidHideBrick
+{
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
@@ -255,8 +255,8 @@
     XCTAssertTrue([brick isKindOfClass:[HideBrick class]], @"Invalid brick class");
 }
 
-- (void)testValidPlaySoundBrick {
-    
+- (void)testValidPlaySoundBrick
+{
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
@@ -282,8 +282,8 @@
     XCTAssertTrue([sound.name isEqualToString:@"Hit"], @"Invalid sound name");
 }
 
-- (void)testValidSetXBrick {
-    
+- (void)testValidSetXBrick
+{
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
@@ -305,8 +305,8 @@
     XCTAssertTrue([formula.formulaTree.value isEqualToString:@"lokal"], @"Invalid formula value");
 }
 
-- (void)testValidSetYBrick {
-    
+- (void)testValidSetYBrick
+{
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
@@ -328,8 +328,8 @@
     XCTAssertTrue([formula.formulaTree.value isEqualToString:@"global"], @"Invalid formula value");
 }
 
-- (void)testValidChangeXByNBrick {
-    
+- (void)testValidChangeXByNBrick
+{
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
@@ -351,8 +351,8 @@
     XCTAssertTrue([formula.formulaTree.value isEqualToString:@"OBJECT_BRIGHTNESS"], @"Invalid formula value");
 }
 
-- (void)testValidChangeYByNBrick {
-    
+- (void)testValidChangeYByNBrick
+{
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
@@ -373,8 +373,8 @@
     XCTAssertEqualWithAccuracy([formula interpretDoubleForSprite:nil], 10, 0.00001, @"Formula not correctly parsed");
 }
 
-- (void)testValidMoveNStepsBrick {
-    
+- (void)testValidMoveNStepsBrick
+{
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
@@ -395,8 +395,8 @@
     XCTAssertEqualWithAccuracy([formula interpretDoubleForSprite:nil], log10f(sqrt(5)) / log10f(10), 0.00001, @"Formula not correctly parsed");
 }
 
-- (void)testValidTurnLeftBrick {
-    
+- (void)testValidTurnLeftBrick
+{
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
@@ -417,8 +417,8 @@
     XCTAssertEqualWithAccuracy([formula interpretDoubleForSprite:nil], 15, 0.00001, @"Formula not correctly parsed");
 }
 
-- (void)testValidTurnRightBrick {
-    
+- (void)testValidTurnRightBrick
+{
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
@@ -439,8 +439,8 @@
     XCTAssertEqualWithAccuracy([formula interpretDoubleForSprite:nil], 15, 0.00001, @"Formula not correctly parsed");
 }
 
-- (void)testValidPointInDirectionBrick {
-    
+- (void)testValidPointInDirectionBrick
+{
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
@@ -461,7 +461,8 @@
     XCTAssertEqualWithAccuracy([formula interpretDoubleForSprite:nil], 90, 0.00001, @"Formula not correctly parsed");
 }
 
-- (void)testValidStopAllSoundBrick {
+- (void)testValidStopAllSoundBrick
+{
     
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
     GDataXMLElement *xmlElement = [document rootElement];
@@ -478,7 +479,8 @@
 }
 
 /*
-- (void)testValidPointToBrick {
+- (void)testValidPointToBrick
+{
     
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
     GDataXMLElement *xmlElement = [document rootElement];

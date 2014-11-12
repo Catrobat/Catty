@@ -32,10 +32,10 @@
     Sound *sound = [self new];
     NSArray *soundChildElements = [xmlElement children];
     [XMLError exceptionIf:[soundChildElements count] notEquals:2 message:@"Sound must contain two child nodes"];
-    
+
     GDataXMLNode *nameChildNode = [soundChildElements firstObject];
     GDataXMLNode *fileNameChildNode = [soundChildElements lastObject];
-    
+
     // swap values (if needed)
     GDataXMLNode *tempChildNode = nil;
     if ([fileNameChildNode.name isEqualToString:@"name"] && [nameChildNode.name isEqualToString:@"fileName"]) {
@@ -43,7 +43,7 @@
         nameChildNode = fileNameChildNode;
         fileNameChildNode = tempChildNode;
     }
-    
+
     [XMLError exceptionIfString:nameChildNode.name isNotEqualToString:@"name" message:@"Sound contains wrong child node(s)"];
     [XMLError exceptionIfString:fileNameChildNode.name isNotEqualToString:@"fileName" message:@"Sound contains wrong child node(s)"];
     sound.name = [nameChildNode stringValue];

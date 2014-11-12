@@ -25,13 +25,15 @@
 
 @implementation XMLParserAbstractTest
 
-- (NSString*)getPathForXML: (NSString*)xmlFile {
+- (NSString*)getPathForXML:(NSString*)xmlFile
+{
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString *path = [bundle pathForResource:xmlFile ofType:@"xml"];
     return path;
 }
 
-- (GDataXMLDocument*)getXMLDocumentForPath: (NSString*)xmlPath {
+- (GDataXMLDocument*)getXMLDocumentForPath:(NSString*)xmlPath
+{
     NSError *error;
     NSString *xmlFile = [NSString stringWithContentsOfFile:xmlPath
                                                   encoding:NSUTF8StringEncoding

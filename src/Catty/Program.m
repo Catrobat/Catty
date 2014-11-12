@@ -85,6 +85,11 @@
     NSString *xmlPath = [NSString stringWithFormat:@"%@%@", loadingInfo.basePath, kProgramCodeFileName];
     NSDebug(@"XML-Path: %@", xmlPath);
 
+//    //######### FIXME remove that later!! {
+//        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+//        xmlPath = [bundle pathForResource:@"ValidProgramAllBricks" ofType:@"xml"];
+//    // }
+
     Program *program = nil;
     CGFloat languageVersion = [Util detectCBLanguageVersionFromXMLWithPath:xmlPath];
 

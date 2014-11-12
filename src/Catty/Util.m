@@ -539,7 +539,7 @@
     if (! languageVersionString) {
         return kCatrobatInvalidVersion;
     }
-    
+
     // handle language versions that contain more than one dot-separator!
     // e.g. => convert 0.9.2 to 0.0902
     //      => convert 0.10.2 to 0.1002
@@ -566,12 +566,12 @@
         }
         languageVersionString = [filteredLanguageVersionString copy];
     }
-    
+
     // check if string contains valid number
     if (! [languageVersionString isValidNumber]) {
         return kCatrobatInvalidVersion;
     }
-    
+
     CGFloat languageVersion = (CGFloat)[languageVersionString floatValue];
     if (languageVersion < 0.0f) {
         return kCatrobatInvalidVersion;

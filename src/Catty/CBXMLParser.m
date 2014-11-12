@@ -44,7 +44,7 @@
 #define kParserObjectTypeDate           @"T@\"NSDate\""
 
 // NEVER MOVE THESE DEFINE CONSTANTS TO ANOTHER (HEADER) FILE
-#define kCatrobatXMLParserMinSupportedLanguageVersion 0.0902f
+#define kCatrobatXMLParserMinSupportedLanguageVersion 0.093f
 #define kCatrobatXMLParserMaxSupportedLanguageVersion CGFLOAT_MAX
 
 @interface CBXMLParser()
@@ -92,7 +92,7 @@
     NSData *xmlData = [xmlFile dataUsingEncoding:NSUTF8StringEncoding];
 
     // sanity check
-    if (!xmlData) {
+    if (! xmlData) {
         NSError(@"XML file could not be loaded!");
         return nil;
     }
