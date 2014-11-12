@@ -316,7 +316,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
         InternToken *firstLeftInternToken;
         switch (self.cursorTokenPosition) {
             case LEFT:
-                firstLeftInternToken = [self getFirstLeftInternToken:self.externCursorPosition];
+                firstLeftInternToken = [self getFirstLeftInternToken:self.externCursorPosition - 1];
                 if(firstLeftInternToken == nil)
                 {
                     cursorTokenPropertiesAfterModification = DO_NOT_MODIFY;
@@ -600,8 +600,8 @@ static int MAPPING_NOT_FOUND = INT_MIN;
             }
             
             int functionInternTokensLastIndex = (int)[functionInternTokens count] - 1;
-            int startSelectionIndex = (int)[self.internTokenFormulaList objectAtIndex:(int)[functionInternTokens objectAtIndex:0]];
-            endSelectedIndex = (int)[self.internTokenFormulaList objectAtIndex:(int)[functionInternTokens objectAtIndex:functionInternTokensLastIndex]];
+            int startSelectionIndex = (int)[self.internTokenFormulaList indexOfObject:[functionInternTokens objectAtIndex:0]];
+            endSelectedIndex = (int)[self.internTokenFormulaList indexOfObject:[functionInternTokens objectAtIndex:functionInternTokensLastIndex]];
     
             self.internFormulaTokenSelection = [[InternFormulaTokenSelection alloc]initWithTokenSelectionType:internTokenSelectionType
                                                                                     internTokenSelectionStart:startSelectionIndex
@@ -618,8 +618,8 @@ static int MAPPING_NOT_FOUND = INT_MIN;
             }
             
             functionInternTokensLastIndex = (int)[functionInternTokens count]-1;
-            startSelectionIndex = (int)[self.internTokenFormulaList objectAtIndex:(int)[functionInternTokens objectAtIndex:0]];
-            endSelectedIndex = (int)[self.internTokenFormulaList objectAtIndex:(int)[functionInternTokens objectAtIndex:functionInternTokensLastIndex]];
+            startSelectionIndex = (int)[self.internTokenFormulaList indexOfObject:[functionInternTokens objectAtIndex:0]];
+            endSelectedIndex = (int)[self.internTokenFormulaList indexOfObject:[functionInternTokens objectAtIndex:functionInternTokensLastIndex]];
             
             self.internFormulaTokenSelection = [[InternFormulaTokenSelection alloc]initWithTokenSelectionType:internTokenSelectionType
                                                                                     internTokenSelectionStart:startSelectionIndex
@@ -635,8 +635,8 @@ static int MAPPING_NOT_FOUND = INT_MIN;
             }
             
             functionInternTokensLastIndex = (int)[functionInternTokens count]-1;
-            startSelectionIndex = (int)[self.internTokenFormulaList objectAtIndex:(int)[functionInternTokens objectAtIndex:0]];
-            endSelectedIndex = (int)[self.internTokenFormulaList objectAtIndex:(int)[functionInternTokens objectAtIndex:functionInternTokensLastIndex]];
+            startSelectionIndex = (int)[self.internTokenFormulaList indexOfObject:[functionInternTokens objectAtIndex:0]];
+            endSelectedIndex = (int)[self.internTokenFormulaList indexOfObject:[functionInternTokens objectAtIndex:functionInternTokensLastIndex]];
             
             self.internFormulaTokenSelection = [[InternFormulaTokenSelection alloc]initWithTokenSelectionType:internTokenSelectionType
                                                                                     internTokenSelectionStart:startSelectionIndex
@@ -651,8 +651,8 @@ static int MAPPING_NOT_FOUND = INT_MIN;
             }
             
             int bracketsInternTokensLastIndex = (int)[bracketsInternTokens count] - 1;
-            startSelectionIndex = (int)[self.internTokenFormulaList objectAtIndex:(int)[bracketsInternTokens objectAtIndex:0]];
-            endSelectedIndex = (int)[self.internTokenFormulaList objectAtIndex:(int)[bracketsInternTokens objectAtIndex:bracketsInternTokensLastIndex]];
+            startSelectionIndex = (int)[self.internTokenFormulaList indexOfObject:[bracketsInternTokens objectAtIndex:0]];
+            endSelectedIndex = (int)[self.internTokenFormulaList indexOfObject:[bracketsInternTokens objectAtIndex:bracketsInternTokensLastIndex]];
            
             self.internFormulaTokenSelection = [[InternFormulaTokenSelection alloc]initWithTokenSelectionType:internTokenSelectionType
                                                                                     internTokenSelectionStart:startSelectionIndex
@@ -667,8 +667,8 @@ static int MAPPING_NOT_FOUND = INT_MIN;
             }
             
             bracketsInternTokensLastIndex = (int)[bracketsInternTokens count] - 1;
-            startSelectionIndex = (int)[self.internTokenFormulaList objectAtIndex:(int)[bracketsInternTokens objectAtIndex:0]];
-            endSelectedIndex = (int)[self.internTokenFormulaList objectAtIndex:(int)[bracketsInternTokens objectAtIndex:bracketsInternTokensLastIndex]];
+            startSelectionIndex = (int)[self.internTokenFormulaList indexOfObject:[bracketsInternTokens objectAtIndex:0]];
+            endSelectedIndex = (int)[self.internTokenFormulaList indexOfObject:[bracketsInternTokens objectAtIndex:bracketsInternTokensLastIndex]];
            
             self.internFormulaTokenSelection = [[InternFormulaTokenSelection alloc]initWithTokenSelectionType:internTokenSelectionType
                                                                                     internTokenSelectionStart:startSelectionIndex

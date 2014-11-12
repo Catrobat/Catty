@@ -31,6 +31,7 @@
 @interface FormulaEditorTextView ()
 @property (nonatomic, weak) FormulaEditorViewController *formulaEditorViewController;
 @property (nonatomic, strong) UIButton *backspaceButton;
+@property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
 @end
 
 @implementation FormulaEditorTextView
@@ -47,10 +48,12 @@
     self.formulaEditorViewController = formulaEditorViewController;
     if (self) {
         self.delegate = self;
+        self.gestureRecognizers = nil;
+        //self.selectable = NO;
+        [self addGestureRecognizer:self.tapRecognizer];
         self.inputView = [[[NSBundle mainBundle] loadNibNamed:@"FormulaEditor" owner:self.formulaEditorViewController options:nil] lastObject];
         self.inputView.backgroundColor = UIColor.airForceBlueColor;
         self.userInteractionEnabled = YES;
-        
         [self setAutocorrectionType:UITextAutocorrectionTypeNo];
         self.backgroundColor = [UIColor whiteColor];
         self.font = [UIFont boldSystemFontOfSize:20.0f];
@@ -68,6 +71,15 @@
     }
     return self;
 }
+
+-(UITapGestureRecognizer *)tapRecognizer
+{
+    if (!_tapRecognizer) {
+        _tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(formulaTapped:)];
+    }
+    return _tapRecognizer;
+}
+
 
 #pragma mark - TextField properties
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -96,11 +108,84 @@
     return NO;
 }
 
+
+
+- (void)formulaTapped:(UITapGestureRecognizer *)recognizer
+{
+    self.selectedTextRange = nil;
+    UITextView *formulView = (UITextView *)recognizer.view;
+    CGPoint point = [recognizer locationInView:formulView];
+    point.x -= formulView.textContainerInset.left;
+    point.y -= formulView.textContainerInset.top;
+
+    NSLayoutManager *layoutManager = formulView.layoutManager;
+    NSUInteger characterIndex = [layoutManager characterIndexForPoint:point
+                                           inTextContainer:formulView.textContainer
+                  fractionOfDistanceBetweenInsertionPoints:NULL] + 1;
+    
+    
+    [self.formulaEditorViewController.internFormula setCursorAndSelection:(int)characterIndex selected:NO];
+    
+    int startIndex = [self.formulaEditorViewController.internFormula getExternSelectionStartIndex];
+    int endIndex = [self.formulaEditorViewController.internFormula getExternSelectionEndIndex];
+    
+    UITextPosition *cursorPositionStart = [self positionFromPosition:self.beginningOfDocument
+                                                              offset:startIndex];
+    
+    UITextPosition *cursorPositionEnd = [self positionFromPosition:self.beginningOfDocument
+                                                            offset:endIndex];
+    NSLog(@"tap from %d to %d!", startIndex, endIndex);
+    
+    if(startIndex == endIndex)
+    {
+        UITextPosition *cursorPosition = [self positionFromPosition:self.beginningOfDocument
+                                                                offset:characterIndex];
+        self.selectedTextRange = [self textRangeFromPosition:cursorPosition toPosition:cursorPosition];
+    }
+    else{
+        self.selectedTextRange = [self textRangeFromPosition:cursorPositionStart toPosition:cursorPositionEnd];
+    }
+    
+    
+    
+    
+    
+    [self.formulaEditorViewController.history updateCurrentSelection:[self.formulaEditorViewController.internFormula getSelection]];
+    [self.formulaEditorViewController.history updateCurrentCursor:(int)characterIndex];
+    
+    
+}
+
 - (void)update
 {
     [self.formulaEditorViewController.internFormula generateExternFormulaStringAndInternExternMapping];
     [self.formulaEditorViewController.internFormula updateInternCursorPosition];
     self.text = [self.formulaEditorViewController.internFormula getExternFormulaString];
+    
+    UITextPosition *cursor = [self positionFromPosition:[self beginningOfDocument]
+                                                 offset:(NSInteger)[self.formulaEditorViewController.internFormula getExternCursorPosition]];
+    
+    
+    
+    UITextPosition *selectionStartIndex = [self positionFromPosition:[self beginningOfDocument]
+                                                 offset:(NSInteger)[self.formulaEditorViewController.internFormula getExternSelectionStartIndex]];
+    NSLog(@"start index: %d", [self.formulaEditorViewController.internFormula getExternSelectionStartIndex]);
+    
+    UITextPosition *selectionEndIndex = [self positionFromPosition:[self beginningOfDocument]
+                                                 offset:(NSInteger)[self.formulaEditorViewController.internFormula getExternSelectionEndIndex]];
+    NSLog(@"end index: %d", [self.formulaEditorViewController.internFormula getExternSelectionEndIndex]);
+    
+    UITextRange *markRange = [self textRangeFromPosition:selectionStartIndex toPosition:selectionEndIndex];
+    
+    if([self.formulaEditorViewController.internFormula getExternSelectionStartIndex] != -1 && [self.formulaEditorViewController.internFormula getExternSelectionEndIndex] != -1)
+    {
+      self.selectedTextRange = markRange;
+    }
+    else
+    {
+        self.selectedTextRange = [self textRangeFromPosition:cursor toPosition:cursor];
+    }
+    
     
     if([self.formulaEditorViewController.internFormula isEmpty]) {
         self.backspaceButton.enabled = NO;

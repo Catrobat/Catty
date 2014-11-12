@@ -232,9 +232,9 @@
             case TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE:
                 nestedFunctionsCounter--;
                 break;
-                
             default:
-                continue;
+                break;
+                
         }
         
         [functionInternTokenList addObject:tempSearchToken];

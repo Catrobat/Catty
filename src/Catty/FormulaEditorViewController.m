@@ -38,7 +38,6 @@
 #import "BrickCell.h"
 #import "FormulaElement.h"
 #import "LanguageTranslationDefines.h"
-#import "FormulaEditorHistory.h"
 #import "AHKActionSheet.h"
 #import "FormulaEditorButton.h"
 #import "BrickFormulaProtocol.h"
@@ -53,7 +52,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 @interface FormulaEditorViewController ()
 
-@property (strong, nonatomic) FormulaEditorHistory *history;
+
 @property (weak, nonatomic) Formula *formula;
 @property (weak, nonatomic) BrickCell *brickCell;
 
@@ -98,8 +97,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.history = [[FormulaEditorHistory alloc] initWithInternFormulaState:[self.internFormula getInternFormulaState]];
 
     [FormulaEditorButton setActiveFormula:formula];
-    [self update];
+    
     [self setCursorPositionToEndOfFormula];
+    [self update];
+    [self.formulaEditorTextView selectAll:self.formulaEditorTextView];
+    [self.internFormula selectWholeFormula];
 }
 
 - (void)setCursorPositionToEndOfFormula
@@ -123,8 +125,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.clearColor;
     [CellMotionEffect addMotionEffectForView:self.brickCell withDepthX:0.0f withDepthY:25.0f withMotionEffectGroup:self.motionEffects];
-    
     [self showFormulaEditor];
+    
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -140,6 +144,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.recognizer.cancelsTouchesInView = NO;
     [self.view.window addGestureRecognizer:self.recognizer];
     [self update];
+    
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -384,6 +390,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
     [self update];
     [self.formulaEditorTextView becomeFirstResponder];
+    
 }
 
 - (void)update

@@ -23,6 +23,7 @@
 #import <UIKit/UIKit.h>
 #import "InternFormula.h"
 #import "Formula.h"
+#import "FormulaEditorHistory.h"
 
 @class FormulaEditorViewController;
 @class BrickCell;
@@ -38,6 +39,7 @@
 
 @property (weak, nonatomic) id<FormulaEditorViewControllerDelegate> delegate;
 @property (strong, nonatomic) InternFormula *internFormula;
+@property (strong, nonatomic) FormulaEditorHistory *history;
 
 - (id)initWithBrickCell:(BrickCell*)brickCell;
 - (void)setFormula:(Formula*)formula;

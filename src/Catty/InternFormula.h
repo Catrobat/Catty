@@ -67,5 +67,9 @@ typedef enum TokenSelectionType{
 -(void)updateInternCursorPosition;
 -(void)selectWholeFormula;
 -(BOOL)isEmpty;
+-(int)getExternCursorPosition;
+-(int)getExternSelectionEndIndex;
+-(int)getExternSelectionStartIndex;
+-(InternFormulaTokenSelection *)getSelection;
 
 @end
