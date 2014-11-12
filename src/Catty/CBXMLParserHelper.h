@@ -20,9 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SetSizeToBrick.h"
-#import "CBParserNodeProtocol.h"
+#import <Foundation/Foundation.h>
 
-@interface SetSizeToBrick (CBXMLHandler) <CBParserNodeProtocol>
+@class GDataXMLElement;
+@class Formula;
+
+@interface CBXMLParserHelper : NSObject
+
++ (BOOL)validateXMLElement:(GDataXMLElement*)xmlElement forNumberOfChildNodes:(NSUInteger)numberOfChildNodes;
++ (BOOL)validateXMLElement:(GDataXMLElement*)xmlElement forNumberOfChildNodes:(NSUInteger)numberOfChildNodes AndFormulaListWithTotalNumberOfFormulas:(NSUInteger)numberOfFormulas;
++ (Formula*)formulaInXMLElement:(GDataXMLElement*)xmlElement forCategory:(NSString*)category;
 
 @end

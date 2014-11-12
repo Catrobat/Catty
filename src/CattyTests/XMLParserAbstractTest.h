@@ -55,6 +55,12 @@
 #import "GlideToBrick+CBXMLHandler.h"
 #import "HideBrick+CBXMLHandler.h"
 #import "PlaySoundBrick+CBXMLHandler.h"
+#import "SetXBrick+CBXMLHandler.h"
+#import "SetYBrick+CBXMLHandler.h"
+#import "ChangeXByNBrick+CBXMLHandler.h"
+#import "ChangeYByNBrick+CBXMLHandler.h"
+#import "MoveNStepsBrick+CBXMLHandler.h"
+#import "TurnLeftBrick+CBXMLHandler.h"
 
 @class GDataXMLDocument;
 

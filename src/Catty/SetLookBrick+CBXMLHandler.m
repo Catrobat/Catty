@@ -26,12 +26,15 @@
 #import "CBXMLParser.h"
 #import "Look+CBXMLHandler.h"
 #import "CBXMLContext.h"
+#import "Formula+CBXMLHandler.h"
+#import "CBXMLParserHelper.h"
 
 @implementation SetLookBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [XMLError exceptionIf:[xmlElement childCount] notEquals:1 message:@"Too many child nodes found..."];
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
+
     GDataXMLElement *lookElement = [[xmlElement children] firstObject];
     NSMutableArray *lookList = context.lookList;
 

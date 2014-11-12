@@ -24,34 +24,17 @@
 #import "CBXMLValidator.h"
 #import "GDataXMLNode+CustomExtensions.h"
 #import "Formula+CBXMLHandler.h"
+#import "CBXMLParserHelper.h"
 
 @implementation GlideToBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [XMLError exceptionIf:[xmlElement childCount] notEquals:1 message:@"Too less or too many child nodes found..."];
-    GDataXMLElement *formulaListElement = [xmlElement childWithElementName:@"formulaList"];
-    [XMLError exceptionIfNil:formulaListElement message:@"No formulaList element found..."];
-    [XMLError exceptionIf:[formulaListElement childCount] notEquals:3 message:@"Too less or many formulas found"];
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:3];
 
-    GDataXMLElement *formulaDurationElement = [formulaListElement childWithElementName:@"formula"
-                                                                   containingAttribute:@"category"
-                                                                             withValue:@"DURATION_IN_SECONDS"];
-    [XMLError exceptionIfNil:formulaDurationElement message:@"No formula element for DURATION_IN_SECONDS found..."];
-    GDataXMLElement *formulaXDestinationElement = [formulaListElement childWithElementName:@"formula"
-                                                                    containingAttribute:@"category"
-                                                                              withValue:@"X_DESTINATION"];
-    [XMLError exceptionIfNil:formulaXDestinationElement message:@"No formula element for X_DESTINATION found..."];
-    GDataXMLElement *formulaYDestinationElement = [formulaListElement childWithElementName:@"formula"
-                                                                       containingAttribute:@"category"
-                                                                                 withValue:@"Y_DESTINATION"];
-    [XMLError exceptionIfNil:formulaYDestinationElement message:@"No formula element for Y_DESTINATION found..."];
-
-    Formula *formulaDuration = [Formula parseFromElement:formulaDurationElement withContext:nil];
-    Formula *formulaXDestination = [Formula parseFromElement:formulaXDestinationElement withContext:nil];
-    [XMLError exceptionIfNil:formulaXDestination message:@"Unable to parse formula..."];
-    Formula *formulaYDestination = [Formula parseFromElement:formulaYDestinationElement withContext:nil];
-    [XMLError exceptionIfNil:formulaYDestination message:@"Unable to parse formula..."];
+    Formula *formulaDuration = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategory:@"DURATION_IN_SECONDS"];
+    Formula *formulaXDestination = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategory:@"X_DESTINATION"];
+    Formula *formulaYDestination = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategory:@"Y_DESTINATION"];
 
     GlideToBrick *glideToBrick = [self new];
     glideToBrick.durationInSeconds = formulaDuration;

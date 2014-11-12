@@ -24,22 +24,15 @@
 #import "CBXMLValidator.h"
 #import "GDataXMLNode+CustomExtensions.h"
 #import "Formula+CBXMLHandler.h"
+#import "CBXMLParserHelper.h"
 
 @implementation WaitBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [XMLError exceptionIf:[xmlElement childCount] notEquals:1 message:@"Too less or too many child nodes found..."];
-    GDataXMLElement *formulaListElement = [xmlElement childWithElementName:@"formulaList"];
-    [XMLError exceptionIfNil:formulaListElement message:@"No formulaList element found..."];
-    [XMLError exceptionIf:[formulaListElement childCount] notEquals:1 message:@"Too less or many formulas found"];
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
 
-    GDataXMLElement *formulaElement = [formulaListElement childWithElementName:@"formula"
-                                                           containingAttribute:@"category"
-                                                                     withValue:@"TIME_TO_WAIT_IN_SECONDS"];
-    [XMLError exceptionIfNil:formulaElement message:@"No formula element for TIME_TO_WAIT_IN_SECONDS found..."];
-    Formula *formula = [Formula parseFromElement:formulaElement withContext:nil];
-    [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategory:@"TIME_TO_WAIT_IN_SECONDS"];
 
     WaitBrick *waitBrick = [self new];
     waitBrick.timeToWaitInSeconds = formula;

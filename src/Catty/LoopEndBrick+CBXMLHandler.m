@@ -27,16 +27,13 @@
 #import "CBXMLContext.h"
 #import "CBXMLOpenedNestingBricksStack.h"
 #import "ForeverBrick+CBXMLHandler.h"
+#import "CBXMLParserHelper.h"
 
 @implementation LoopEndBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [XMLError exceptionIf:[xmlElement childCount] notEquals:0 message:@"Too many child nodes found..."];
-
-    if (! context) {
-        context = [[CBXMLContext alloc] init];
-    }
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
 
     LoopEndBrick *loopEndBrick = [self new];
 

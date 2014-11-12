@@ -23,8 +23,6 @@
 #import "ShowBrick.h"
 #import "CBParserNodeProtocol.h"
 
-@class CBXMLContext;
-
 @interface ShowBrick (CBXMLHandler) <CBParserNodeProtocol>
 
 @end

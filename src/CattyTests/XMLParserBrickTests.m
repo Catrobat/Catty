@@ -282,4 +282,117 @@
     XCTAssertTrue([sound.name isEqualToString:@"Hit"], @"Invalid sound name");
 }
 
+- (void)testValidSetXBrick {
+    
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLElement *xmlElement = [document rootElement];
+    
+    NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[2]" error:nil];
+    XCTAssertEqual([brickElement count], 1);
+    
+    GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
+    
+    Brick *brick = [SetXBrick parseFromElement:brickXMLElement withContext:nil];
+    
+    XCTAssertTrue(brick.brickType == kSetXBrick, @"Invalid brick type");
+    XCTAssertTrue([brick isKindOfClass:[SetXBrick class]], @"Invalid brick class");
+    
+    SetXBrick *setXBrick = (SetXBrick*)brick;
+    Formula *formula = setXBrick.xPosition;
+    
+    XCTAssertNotNil(formula, @"Invalid formula");
+    XCTAssertTrue(formula.formulaTree.type == USER_VARIABLE, @"Invalid variable type");
+    XCTAssertTrue([formula.formulaTree.value isEqualToString:@"lokal"], @"Invalid formula value");
+}
+
+- (void)testValidSetYBrick {
+    
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLElement *xmlElement = [document rootElement];
+    
+    NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[3]" error:nil];
+    XCTAssertEqual([brickElement count], 1);
+    
+    GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
+    
+    Brick *brick = [SetYBrick parseFromElement:brickXMLElement withContext:nil];
+    
+    XCTAssertTrue(brick.brickType == kSetYBrick, @"Invalid brick type");
+    XCTAssertTrue([brick isKindOfClass:[SetYBrick class]], @"Invalid brick class");
+    
+    SetYBrick *setYBrick = (SetYBrick*)brick;
+    Formula *formula = setYBrick.yPosition;
+    
+    XCTAssertNotNil(formula, @"Invalid formula");
+    XCTAssertTrue(formula.formulaTree.type == USER_VARIABLE, @"Invalid variable type");
+    XCTAssertTrue([formula.formulaTree.value isEqualToString:@"global"], @"Invalid formula value");
+}
+
+- (void)testValidChangeXByNBrick {
+    
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLElement *xmlElement = [document rootElement];
+    
+    NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[4]" error:nil];
+    XCTAssertEqual([brickElement count], 1);
+    
+    GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
+    
+    Brick *brick = [ChangeXByNBrick parseFromElement:brickXMLElement withContext:nil];
+    
+    XCTAssertTrue(brick.brickType == kChangeXByNBrick, @"Invalid brick type");
+    XCTAssertTrue([brick isKindOfClass:[ChangeXByNBrick class]], @"Invalid brick class");
+    
+    ChangeXByNBrick *changeXByNBrick = (ChangeXByNBrick*)brick;
+    Formula *formula = changeXByNBrick.xMovement;
+    
+    XCTAssertNotNil(formula, @"Invalid formula");
+    XCTAssertTrue(formula.formulaTree.type == SENSOR, @"Invalid variable type");
+    XCTAssertTrue([formula.formulaTree.value isEqualToString:@"OBJECT_BRIGHTNESS"], @"Invalid formula value");
+}
+
+- (void)testValidChangeYByNBrick {
+    
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLElement *xmlElement = [document rootElement];
+    
+    NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[5]" error:nil];
+    XCTAssertEqual([brickElement count], 1);
+    
+    GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
+    
+    Brick *brick = [ChangeYByNBrick parseFromElement:brickXMLElement withContext:nil];
+    
+    XCTAssertTrue(brick.brickType == kChangeYByNBrick, @"Invalid brick type");
+    XCTAssertTrue([brick isKindOfClass:[ChangeYByNBrick class]], @"Invalid brick class");
+    
+    ChangeYByNBrick *changeYByNBrick = (ChangeYByNBrick*)brick;
+    Formula *formula = changeYByNBrick.yMovement;
+    
+    XCTAssertNotNil(formula, @"Invalid formula");
+    XCTAssertEqualWithAccuracy([formula interpretDoubleForSprite:nil], 10, 0.00001, @"Formula not correctly parsed");
+}
+
+- (void)testValidMoveNStepsBrick {
+    
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLElement *xmlElement = [document rootElement];
+    
+    NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[6]" error:nil];
+    XCTAssertEqual([brickElement count], 1);
+    
+    GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
+    
+    Brick *brick = [MoveNStepsBrick parseFromElement:brickXMLElement withContext:nil];
+    
+    XCTAssertTrue(brick.brickType == kMoveNStepsBrick, @"Invalid brick type");
+    XCTAssertTrue([brick isKindOfClass:[MoveNStepsBrick class]], @"Invalid brick class");
+    
+    MoveNStepsBrick *moveNStepsBrick = (MoveNStepsBrick*)brick;
+    Formula *formula = moveNStepsBrick.steps;
+    
+    XCTAssertNotNil(formula, @"Invalid formula");
+    XCTAssertEqualWithAccuracy([formula interpretDoubleForSprite:nil], log10f(sqrt(5)) / log10f(10), 0.00001, @"Formula not correctly parsed");
+}
+
 @end

@@ -26,12 +26,14 @@
 #import "CBXMLParser.h"
 #import "CBXMLContext.h"
 #import "CBXMLOpenedNestingBricksStack.h"
+#import "CBXMLParserHelper.h"
 
 @implementation ForeverBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [XMLError exceptionIf:[xmlElement childCount] notEquals:0 message:@"Too many child nodes found..."];
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
+
     ForeverBrick *foreverBrick = [self new];
 
     // add opening nesting brick on stack

@@ -26,12 +26,14 @@
 #import "CBXMLParser.h"
 #import "Sound+CBXMLHandler.h"
 #import "CBXMLContext.h"
+#import "CBXMLParserHelper.h"
 
 @implementation PlaySoundBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [XMLError exceptionIf:[xmlElement childCount] notEquals:1 message:@"Too many child nodes found..."];
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
+
     GDataXMLElement *soundElement = [[xmlElement children] firstObject];
     NSMutableArray *soundList = context.soundList;
 

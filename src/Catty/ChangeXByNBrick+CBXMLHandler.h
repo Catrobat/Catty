@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SetSizeToBrick.h"
+#import "ChangeXByNBrick.h"
 #import "CBParserNodeProtocol.h"
 
-@interface SetSizeToBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface ChangeXByNBrick (CBXMLHandler) <CBParserNodeProtocol>
 
 @end

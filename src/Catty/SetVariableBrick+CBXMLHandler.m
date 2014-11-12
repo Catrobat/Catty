@@ -27,19 +27,13 @@
 #import "Formula+CBXMLHandler.h"
 #import "CBXMLParser.h"
 #import "CBXMLContext.h"
+#import "CBXMLParserHelper.h"
 
 @implementation SetVariableBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [XMLError exceptionIf:[xmlElement childCount] notEquals:3 message:@"Too less or too many child nodes found..."];
-    GDataXMLElement *formulaListElement = [xmlElement childWithElementName:@"formulaList"];
-    [XMLError exceptionIfNil:formulaListElement message:@"No formulaList element found..."];
-    [XMLError exceptionIf:[formulaListElement childCount] notEquals:1 message:@"Too many formulas found"];
-
-    GDataXMLElement *formulaElement = [formulaListElement childWithElementName:@"formula"];
-    [XMLError exceptionIfNil:formulaElement message:@"No formula element found..."];
-    [XMLError exceptionIfString:[[formulaElement attributeForName:@"category"] stringValue] isNotEqualToString:@"VARIABLE" message:@"Formula has wrong category"];
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:3 AndFormulaListWithTotalNumberOfFormulas:1];
 
     GDataXMLElement *inUserBrickElement = [xmlElement childWithElementName:@"inUserBrick"]; // TODO: implement this...
     [XMLError exceptionIfNil:inUserBrickElement message:@"No inUserBrickElement element found..."];
@@ -48,9 +42,9 @@
     [XMLError exceptionIfNil:userVariableElement message:@"No userVariableElement element found..."];
 
     UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:nil];
-    Formula *formula = [Formula parseFromElement:formulaElement withContext:nil];
     [XMLError exceptionIfNil:userVariable message:@"Unable to parse userVariable..."];
-    [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
+    
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategory:@"VARIABLE"];
 
     UserVariable *alreadyExistingUserVariable = [CBXMLParser findUserVariableInArray:context.userVariableList
                                                                             withName:userVariable.name];

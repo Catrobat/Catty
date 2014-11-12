@@ -24,22 +24,15 @@
 #import "CBXMLValidator.h"
 #import "GDataXMLNode+CustomExtensions.h"
 #import "Formula+CBXMLHandler.h"
+#import "CBXMLParserHelper.h"
 
 @implementation SetSizeToBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [XMLError exceptionIf:[xmlElement childCount] notEquals:1 message:@"Too less or too many child nodes found..."];
-    GDataXMLElement *formulaListElement = [xmlElement childWithElementName:@"formulaList"];
-    [XMLError exceptionIfNil:formulaListElement message:@"No formulaList element found..."];
-    [XMLError exceptionIf:[formulaListElement childCount] notEquals:1 message:@"Too many formulas found"];
-
-    GDataXMLElement *formulaElement = [formulaListElement childWithElementName:@"formula"];
-    [XMLError exceptionIfNil:formulaElement message:@"No formula element found..."];
-    [XMLError exceptionIfString:[[formulaElement attributeForName:@"category"] stringValue] isNotEqualToString:@"SIZE" message:@"Formula has wrong category"];
-
-    Formula *formula = [Formula parseFromElement:formulaElement withContext:nil];
-    [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
+    
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategory:@"SIZE"];
 
     SetSizeToBrick *setSizeToBrick = [self new];
     setSizeToBrick.size = formula;

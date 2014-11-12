@@ -24,29 +24,16 @@
 #import "CBXMLValidator.h"
 #import "GDataXMLNode+CustomExtensions.h"
 #import "Formula+CBXMLHandler.h"
+#import "CBXMLParserHelper.h"
 
 @implementation PlaceAtBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [XMLError exceptionIf:[xmlElement childCount] notEquals:1 message:@"Too less or too many child nodes found..."];
-    GDataXMLElement *formulaListElement = [xmlElement childWithElementName:@"formulaList"];
-    [XMLError exceptionIfNil:formulaListElement message:@"No formulaList element found..."];
-    [XMLError exceptionIf:[formulaListElement childCount] notEquals:2 message:@"Too less or many formulas found"];
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:2];
 
-    GDataXMLElement *formulaXPositionElement = [formulaListElement childWithElementName:@"formula"
-                                                                    containingAttribute:@"category"
-                                                                              withValue:@"X_POSITION"];
-    [XMLError exceptionIfNil:formulaXPositionElement message:@"No formula element for X_POSITION found..."];
-    GDataXMLElement *formulaYPositionElement = [formulaListElement childWithElementName:@"formula"
-                                                                    containingAttribute:@"category"
-                                                                              withValue:@"Y_POSITION"];
-    [XMLError exceptionIfNil:formulaYPositionElement message:@"No formula element for Y_POSITION found..."];
-
-    Formula *formulaXPosition = [Formula parseFromElement:formulaXPositionElement withContext:nil];
-    [XMLError exceptionIfNil:formulaXPosition message:@"Unable to parse formula..."];
-    Formula *formulaYPosition = [Formula parseFromElement:formulaYPositionElement withContext:nil];
-    [XMLError exceptionIfNil:formulaYPosition message:@"Unable to parse formula..."];
+    Formula *formulaXPosition = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategory:@"X_POSITION"];
+    Formula *formulaYPosition = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategory:@"Y_POSITION"];
 
     PlaceAtBrick *placeAtBrick = [self new];
     placeAtBrick.xPosition = formulaXPosition;
