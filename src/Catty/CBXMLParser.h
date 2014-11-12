@@ -29,6 +29,7 @@
 @class SpriteObject;
 @class Look;
 @class Sound;
+@class UserVariable;
 
 @interface CBXMLParser : NSObject <CBParserProtocol>
 
@@ -43,5 +44,6 @@
 + (SpriteObject*)findSpriteObjectInArray:(NSArray*)spriteObjectList withName:(NSString*)spriteObjectName;
 + (Look*)findLookInArray:(NSArray*)lookList withName:(NSString*)lookName;
 + (Sound*)findSoundInArray:(NSArray*)soundList withName:(NSString*)soundName;
++ (UserVariable*)findUserVariableInArray:(NSArray*)userVariableList withName:(NSString*)userVariableName;
 
 @end

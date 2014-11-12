@@ -34,9 +34,6 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    NSMutableArray *spriteObjectList = context.spriteObjectList;
-    [XMLError exceptionIfNil:spriteObjectList message:@"Program not set in context"];
-
     NSArray *variablesElements = [xmlElement elementsForName:@"variables"];
     [XMLError exceptionIf:[variablesElements count] notEquals:1 message:@"Too many variable-elements given!"];
     GDataXMLElement *variablesElement = [variablesElements firstObject];
@@ -46,23 +43,26 @@
     if ([objectVarListElements count]) {
         [XMLError exceptionIf:[objectVarListElements count] notEquals:1 message:@"Too many objectVariableList-elements!"];
         GDataXMLElement *objectVarListElement = [objectVarListElements firstObject];
-        varContainer.objectVariableList = [[self class] parseAndCreateObjectVariables:objectVarListElement withSpriteObjectList:spriteObjectList];
+        varContainer.objectVariableList = [[self class] parseAndCreateObjectVariables:objectVarListElement
+                                                                          withContext:context];
     }
 
     NSArray *programVarListElements = [variablesElement elementsForName:@"programVariableList"];
     if ([programVarListElements count]) {
-        [XMLError exceptionIf:[programVarListElements count] notEquals:1 message:@"Too many programVariableList-elements!"];
+        [XMLError exceptionIf:[programVarListElements count] notEquals:1
+                      message:@"Too many programVariableList-elements!"];
         GDataXMLElement *programVarListElement = [programVarListElements firstObject];
-        varContainer.programVariableList = [[self class] parseAndCreateProgramVariables:programVarListElement withSpriteObjectList:spriteObjectList];
+        
+        varContainer.programVariableList = [[self class] parseAndCreateProgramVariables:programVarListElement
+                                                                            withContext:context];
     }
     // TODO userBrickVariableList => what do you mean exactly?
     return varContainer;
 }
 
 + (OrderedMapTable*)parseAndCreateObjectVariables:(GDataXMLElement*)objectVarListElement
-                             withSpriteObjectList:(NSMutableArray*)spriteObjectList
+                                      withContext:(CBXMLContext*)context
 {
-    [XMLError exceptionIfNil:spriteObjectList message:@"Class was not initialized with sprite object list!"];
     NSArray *entries = [objectVarListElement children];
     OrderedMapTable *objectVariableMap = [OrderedMapTable weakToStrongObjectsMapTable];
     for (GDataXMLElement *entry in entries) {
@@ -80,14 +80,14 @@
             [XMLError exceptionIfNil:objectElement message:@"Invalid reference in object. No or too many objects found!"];
             GDataXMLNode *nameAttribute = [objectElement attributeForName:@"name"];
             [XMLError exceptionIfNil:nameAttribute message:@"Object element does not contain a name attribute!"];
-            spriteObject = [CBXMLParser findSpriteObjectInArray:spriteObjectList
+            spriteObject = [CBXMLParser findSpriteObjectInArray:context.spriteObjectList
                                                        withName:[nameAttribute stringValue]];
             [XMLError exceptionIfNil:spriteObject message:@"Fatal error: no sprite object found in list, but should already exist!"];
         } else {
             // OMG!! a sprite object has been defined within the variables list...
             spriteObject = [SpriteObject parseFromElement:objectElement withContext:nil];
             [XMLError exceptionIfNil:spriteObject message:@"Unable to parse sprite object..."];
-            [spriteObjectList addObject:spriteObject];
+            [context.spriteObjectList addObject:spriteObject];
         }
 
         NSArray *listElements = [entry elementsForName:@"list"];
@@ -95,7 +95,6 @@
         NSMutableArray *userVarList = [[NSMutableArray alloc] initWithCapacity:[listElement childCount]];
         for (GDataXMLElement *userVarElement in [listElement children]) {
             [XMLError exceptionIfNode:userVarElement isNilOrNodeNameNotEquals:@"userVariable"];
-            UserVariable *userVariable = nil;
             GDataXMLElement *userVariableElement = userVarElement;
             if ([CBXMLParser isReferenceElement:userVarElement]) {
                 // OMG!! user variable has already been defined outside the variables list
@@ -105,10 +104,18 @@
                 [XMLError exceptionIfNil:userVariableElement
                                  message:@"Invalid reference in object. No or too many objects found!"];
             }
-            userVariable = [UserVariable parseFromElement:userVariableElement withContext:nil];
-            [XMLError exceptionIfNil:userVariable message:@"Unable to parse user variable..."];
-#warning !! UPDATE THE REFERENCE IN ALL VARIABLE-BRICKS FOR THIS USERVARIABLE IN ALL OBJECTS !!
-            [userVarList addObject:userVariable];
+            UserVariable *compareUserVariable = [UserVariable parseFromElement:userVariableElement withContext:nil];
+            [XMLError exceptionIfNil:compareUserVariable message:@"Unable to parse user variable..."];
+            UserVariable *alreadyExistingUserVariable = [CBXMLParser findUserVariableInArray:context.userVariableList
+                                                                                    withName:compareUserVariable.name];
+            UserVariable *userVariableToAdd = nil;
+            if (alreadyExistingUserVariable) {
+                userVariableToAdd = alreadyExistingUserVariable;
+            } else {
+                userVariableToAdd = compareUserVariable;
+                [context.userVariableList addObject:userVariableToAdd];
+            }
+            [userVarList addObject:userVariableToAdd];
         }
         [objectVariableMap setObject:userVarList forKey:spriteObject];
     }
@@ -116,14 +123,12 @@
 }
 
 + (NSMutableArray*)parseAndCreateProgramVariables:(GDataXMLElement*)programVarListElement
-                             withSpriteObjectList:(NSMutableArray*)spriteObjectList
+                                      withContext:(CBXMLContext*)context
 {
-    [XMLError exceptionIfNil:spriteObjectList message:@"Class was not initialized with sprite object list!"];
     NSArray *entries = [programVarListElement children];
     NSMutableArray *programVariableList = [NSMutableArray arrayWithCapacity:[programVarListElement childCount]];
     for (GDataXMLElement *userVarElement in entries) {
         [XMLError exceptionIfNode:userVarElement isNilOrNodeNameNotEquals:@"userVariable"];
-        UserVariable *userVariable = nil;
         GDataXMLElement *userVariableElement = userVarElement;
         if ([CBXMLParser isReferenceElement:userVariableElement]) {
             // OMG!! user variable has already been defined outside the variables list
@@ -133,10 +138,18 @@
             [XMLError exceptionIfNil:userVariableElement
                              message:@"Invalid reference in object. No or too many objects found!"];
         }
-        userVariable = [UserVariable parseFromElement:userVariableElement withContext:nil];
-        [XMLError exceptionIfNil:userVariable message:@"Unable to parse user variable..."];
-#warning !! UPDATE THE REFERENCE IN ALL VARIABLE-BRICKS FOR THIS USERVARIABLE IN ALL OBJECTS !!
-        [programVariableList addObject:userVariable];
+        UserVariable *compareUserVariable = [UserVariable parseFromElement:userVariableElement withContext:nil];
+        [XMLError exceptionIfNil:compareUserVariable message:@"Unable to parse user variable..."];
+        UserVariable *alreadyExistingUserVariable = [CBXMLParser findUserVariableInArray:context.userVariableList
+                                                                                withName:compareUserVariable.name];
+        UserVariable *userVariableToAdd = nil;
+        if (alreadyExistingUserVariable) {
+            userVariableToAdd = alreadyExistingUserVariable;
+        } else {
+            userVariableToAdd = compareUserVariable;
+            [context.userVariableList addObject:userVariableToAdd];
+        }
+        [programVariableList addObject:userVariableToAdd];
     }
     return programVariableList;
 }

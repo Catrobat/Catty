@@ -25,14 +25,22 @@
 
 @interface CBXMLContext ()
 
-@property (nonatomic, strong, readwrite) SpriteObject *spriteObject;
-@property (nonatomic, strong, readwrite) NSMutableArray *spriteObjectList; // of SpriteObject
-@property (nonatomic, strong, readwrite) NSMutableArray *lookList; // of Look
-@property (nonatomic, strong, readwrite) NSMutableArray *soundList; // of Sound
+@property (nonatomic, strong, readwrite) NSMutableArray *userVariableList;
 
 @end
 
 @implementation CBXMLContext
+
+#pragma mark - Getters and Setters
+- (NSMutableArray*)userVariableList
+{
+    if (! _userVariableList) {
+        _userVariableList = [NSMutableArray array];
+    }
+    return _userVariableList;
+}
+
+#pragma mark - Initializers
 
 - (id)initWithSpriteObject:(SpriteObject*)spriteObject
 {

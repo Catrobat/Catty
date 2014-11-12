@@ -55,11 +55,13 @@
         [XMLError exceptionWithMessage:@"Unsupported attribute: %@!", attribute.name];
     }
     NSLog(@"<object name=\"%@\">", spriteObject.name);
-    
+
+    context.spriteObject = spriteObject;
+
     spriteObject.lookList = [self parseAndCreateLooks:(pointedObjectElement ? pointedObjectElement : xmlElement)];
     spriteObject.soundList = [self parseAndCreateSounds:(pointedObjectElement ? pointedObjectElement : xmlElement)];
     spriteObject.scriptList = [self parseAndCreateScripts:(pointedObjectElement ? pointedObjectElement : xmlElement)
-                                              forSpriteObject:spriteObject];
+                                              withContext:context];
     return spriteObject;
 }
 
@@ -103,7 +105,8 @@
     return soundList;
 }
 
-+ (NSMutableArray*)parseAndCreateScripts:(GDataXMLElement*)objectElement forSpriteObject:(SpriteObject*)spriteObject
++ (NSMutableArray*)parseAndCreateScripts:(GDataXMLElement*)objectElement
+                             withContext:(CBXMLContext*)context
 {
     NSArray *scriptListElements = [objectElement elementsForName:@"scriptList"];
     [XMLError exceptionIf:[scriptListElements count] notEquals:1 message:@"No scriptList given!"];
@@ -116,7 +119,7 @@
     
     NSMutableArray *scriptList = [NSMutableArray arrayWithCapacity:[scriptElements count]];
     for (GDataXMLElement *scriptElement in scriptElements) {
-        Script *script = [Script parseFromElement:scriptElement withContext:[[CBXMLContext alloc] initWithSpriteObject:spriteObject]];
+        Script *script = [Script parseFromElement:scriptElement withContext:context];
         [XMLError exceptionIfNil:script message:@"Unable to parse script..."];
         [scriptList addObject:script];
     }

@@ -26,6 +26,7 @@
 #import "UserVariable+CBXMLHandler.h"
 #import "Formula+CBXMLHandler.h"
 #import "CBXMLParser.h"
+#import "CBXMLContext.h"
 
 @implementation SetVariableBrick (CBXMLHandler)
 
@@ -50,6 +51,14 @@
     Formula *formula = [Formula parseFromElement:formulaElement withContext:nil];
     [XMLError exceptionIfNil:userVariable message:@"Unable to parse userVariable..."];
     [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
+
+    UserVariable *alreadyExistingUserVariable = [CBXMLParser findUserVariableInArray:context.userVariableList
+                                                                            withName:userVariable.name];
+    if (alreadyExistingUserVariable) {
+        [XMLError exceptionWithMessage:@"User variable with same name %@ already exists...\
+                                         Instantiated by other brick...", alreadyExistingUserVariable.name];
+    }
+    [context.userVariableList addObject:userVariable];
 
     SetVariableBrick *setVariableBrick = [self new];
     setVariableBrick.userVariable = userVariable;

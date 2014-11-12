@@ -31,6 +31,7 @@
 #import "VariablesContainer+CBXMLHandler.h"
 #import "Look.h"
 #import "Sound.h"
+#import "UserVariable.h"
 #import "CBXMLContext.h"
 
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
@@ -124,10 +125,11 @@
     GDataXMLElement *rootElement = xmlDocument.rootElement;
     [XMLError exceptionIfNode:rootElement isNilOrNodeNameNotEquals:@"program"];
     Program *program = [Program new];
+    CBXMLContext *context = [CBXMLContext new];
     program.header = [self parseAndCreateHeaderFromElement:rootElement];
-    program.objectList = [self parseAndCreateObjectsFromElement:rootElement];
-    program.variables = [self parseAndCreateVariablesFromElement:rootElement
-                                                withSpriteObjectList:program.objectList];
+    program.objectList = [self parseAndCreateObjectsFromElement:rootElement withContext:context];
+    context.spriteObjectList = program.objectList;
+    program.variables = [self parseAndCreateVariablesFromElement:rootElement withContext:context];
     return program;
 }
 
@@ -139,6 +141,7 @@
 
 #pragma mark Object parsing
 - (NSMutableArray*)parseAndCreateObjectsFromElement:(GDataXMLElement*)programElement
+                                        withContext:(CBXMLContext*)context
 {
     NSArray *objectListElements = [programElement elementsForName:@"objectList"];
     [XMLError exceptionIf:[objectListElements count] notEquals:1 message:@"No objectList given!"];
@@ -148,7 +151,7 @@
     NSLog(@"<objectList>");
     NSMutableArray *objectList = [NSMutableArray arrayWithCapacity:[objectElements count]];
     for (GDataXMLElement *objectElement in objectElements) {
-        SpriteObject *spriteObject = [SpriteObject parseFromElement:objectElement withContext:nil];
+        SpriteObject *spriteObject = [SpriteObject parseFromElement:objectElement withContext:context];
         if(spriteObject != nil)
             [objectList addObject:spriteObject];
     }
@@ -158,9 +161,9 @@
 
 #pragma mark Variable parsing
 - (VariablesContainer*)parseAndCreateVariablesFromElement:(GDataXMLElement*)programElement
-                                               withSpriteObjectList:(NSMutableArray*)spriteObjectList
+                                              withContext:(CBXMLContext*)context
 {
-    return [VariablesContainer parseFromElement:programElement withContext:[[CBXMLContext alloc] initWithSpriteObjectList:spriteObjectList]];
+    return [VariablesContainer parseFromElement:programElement withContext:context];
 }
 
 #pragma mark - Helpers
@@ -237,6 +240,16 @@
     for (Sound *sound in soundList) {
         if ([sound.name isEqualToString:soundName]) { // TODO: implement isEqual in SpriteObject class
             return sound;
+        }
+    }
+    return nil;
+}
+
++ (UserVariable*)findUserVariableInArray:(NSArray*)userVariableList withName:(NSString*)userVariableName
+{
+    for (UserVariable *userVariable in userVariableList) {
+        if ([userVariable.name isEqualToString:userVariableName]) { // TODO: implement isEqual in UserVariable class
+            return userVariable;
         }
     }
     return nil;

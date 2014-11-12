@@ -28,10 +28,11 @@
 @interface CBXMLContext : NSObject
 
 @property (nonatomic, strong) CBXMLOpenedNestingBricksStack *openedNestingBricksStack;
-@property (nonatomic, strong, readonly) SpriteObject *spriteObject; // currently parsed SpriteObject
-@property (nonatomic, strong, readonly) NSMutableArray *spriteObjectList; // contains all already parsed SpriteObjects
-@property (nonatomic, strong, readonly) NSMutableArray *lookList; // of currently parsed SpriteObject
-@property (nonatomic, strong, readonly) NSMutableArray *soundList; // of currently parsed SpriteObject
+@property (nonatomic, strong, readonly) NSMutableArray *userVariableList; // contains all already parsed UserVariables
+@property (nonatomic, strong) SpriteObject *spriteObject; // currently parsed SpriteObject
+@property (nonatomic, strong) NSMutableArray *spriteObjectList; // contains all already parsed SpriteObjects
+@property (nonatomic, strong) NSMutableArray *lookList; // of currently parsed SpriteObject
+@property (nonatomic, strong) NSMutableArray *soundList; // of currently parsed SpriteObject
 
 - (id)initWithSpriteObject:(SpriteObject*)spriteObject;
 - (id)initWithSpriteObjectList:(NSArray*)spriteObjectList;
