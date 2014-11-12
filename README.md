@@ -6,6 +6,22 @@ iOS implementation of the Catrobat language
 # Questions?
 Please ask on our Google Plus community: http://goo.gl/fOjQi
 
+<!--
+# Setup guide
+1. Download XCode (at least version 5) from the Mac App Store
+1. Make sure you have installed [Brew][1], a package manage for OSX, which the `bootstrap` script uses to pull dependencies
+1. Now install xctool and cmake by executing following lines at the command-line prompt:
+   `sudo brew install xctool`
+   `sudo brew install cmake`
+1. Checkout our repository
+   `git clone ...`
+1. Update submodules
+   `git submodule update --init --recursive`
+1. Call bootstrap script of ObjectiveGit library
+   `Catty/objective-git/script/bootstrap`
+1. `sudo brew install homebrew/versions/perl516`
+-->
+
 # First Steps
 ## Learn iOS development?
 We recommend [iPad and iPhone App Development](https://itunes.apple.com/us/course/ipad-iphone-app-development/id495052415) from the Stanford University.
@@ -68,3 +84,5 @@ The Following License Header should be used for all header and source files.
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 </code></pre>
+
+[1]: http://brew.sh

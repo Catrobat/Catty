@@ -171,13 +171,13 @@
         _blurView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
         _blurView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         _blurView.userInteractionEnabled = NO;
-        _blurView.tintColor = UIColor.clearColor;
+        _blurView.tintColor = [UIColor darkBlueColor];
         _blurView.underlyingView = self.collectionView;
         _blurView.blurEnabled = YES;
-        _blurView.blurRadius = 30.f;
+        _blurView.blurRadius = 50.f;
         _blurView.dynamic = YES;
         _blurView.updateInterval = 0.1f;
-        _blurView.alpha = 0.f;
+        _blurView.alpha = 0.5f;
         _blurView.hidden = YES;
         [self.view addSubview:self.blurView];
     }
@@ -382,7 +382,7 @@
                    layout:(UICollectionViewLayout *)collectionViewLayout
 minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 0.0f;
+    return kBrickOverlapHeight;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
