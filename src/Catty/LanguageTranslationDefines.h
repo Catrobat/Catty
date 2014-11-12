@@ -368,6 +368,8 @@
 #define kLocalizedChangeSizeByN NSLocalizedString(@"Change size by %@\%", nil)
 #define kLocalizedHide NSLocalizedString(@"Hide", nil)
 #define kLocalizedShow NSLocalizedString(@"Show", nil)
+#define kLocalizedLedOn NSLocalizedString(@"Flashlight on", nil)
+#define kLocalizedLedOff NSLocalizedString(@"Flashlight off", nil)
 #define kLocalizedSetGhostEffect NSLocalizedString(@"Set transparency\nto %@\%", nil)
 #define kLocalizedChangeGhostEffectByN NSLocalizedString(@"Change transparency\nby %@\%", nil)
 #define kLocalizedSetBrightness NSLocalizedString(@"Set brightness to %@\%", nil)

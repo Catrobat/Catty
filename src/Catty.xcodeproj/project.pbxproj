@@ -99,6 +99,11 @@
 		CA63C9E21A13EE47009A32DB /* ChangeGhostEffectBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9E11A13EE47009A32DB /* ChangeGhostEffectBrick+CBXMLHandler.m */; };
 		CA63C9E51A13EF56009A32DB /* SetBrightnessBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9E41A13EF56009A32DB /* SetBrightnessBrick+CBXMLHandler.m */; };
 		CA63C9E81A13F04F009A32DB /* ClearGraphicEffectBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9E71A13F04F009A32DB /* ClearGraphicEffectBrick+CBXMLHandler.m */; };
+		CA63C9EB1A13F0DB009A32DB /* BroadcastWaitBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9EA1A13F0DB009A32DB /* BroadcastWaitBrick+CBXMLHandler.m */; };
+		CA63C9F11A13F1C7009A32DB /* LedOnBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9F01A13F1C7009A32DB /* LedOnBrick.m */; };
+		CA63C9F31A13F294009A32DB /* LedOffBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9F21A13F294009A32DB /* LedOffBrick.m */; };
+		CA63C9F61A13F30F009A32DB /* LedOnBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9F51A13F30F009A32DB /* LedOnBrick+CBXMLHandler.m */; };
+		CA63C9F91A13F34B009A32DB /* LedOffBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9F81A13F34B009A32DB /* LedOffBrick+CBXMLHandler.m */; };
 		CA66CB7519F6B42400D849E0 /* CBXMLValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CA66CB7419F6B42400D849E0 /* CBXMLValidator.m */; };
 		CA775CBF19FD5BCB00C1E761 /* My First Program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CA6E4C4719F9C388001B65C3 /* My First Program.catrobat */; };
 		CA8486791A117A9E001B6368 /* SetSizeToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8486781A117A9E001B6368 /* SetSizeToBrick+CBXMLHandler.m */; };
@@ -832,6 +837,16 @@
 		CA63C9E41A13EF56009A32DB /* SetBrightnessBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetBrightnessBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CA63C9E61A13F048009A32DB /* ClearGraphicEffectBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ClearGraphicEffectBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		CA63C9E71A13F04F009A32DB /* ClearGraphicEffectBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ClearGraphicEffectBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		CA63C9E91A13F0D5009A32DB /* BroadcastWaitBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BroadcastWaitBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		CA63C9EA1A13F0DB009A32DB /* BroadcastWaitBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BroadcastWaitBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		CA63C9EE1A13F1AA009A32DB /* LedOnBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LedOnBrick.h; sourceTree = "<group>"; };
+		CA63C9EF1A13F1B8009A32DB /* LedOffBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LedOffBrick.h; sourceTree = "<group>"; };
+		CA63C9F01A13F1C7009A32DB /* LedOnBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LedOnBrick.m; sourceTree = "<group>"; };
+		CA63C9F21A13F294009A32DB /* LedOffBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LedOffBrick.m; sourceTree = "<group>"; };
+		CA63C9F41A13F308009A32DB /* LedOnBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LedOnBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		CA63C9F51A13F30F009A32DB /* LedOnBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LedOnBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		CA63C9F71A13F346009A32DB /* LedOffBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LedOffBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		CA63C9F81A13F34B009A32DB /* LedOffBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LedOffBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CA66CB7319F6B42400D849E0 /* CBXMLValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLValidator.h; sourceTree = "<group>"; };
 		CA66CB7419F6B42400D849E0 /* CBXMLValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLValidator.m; sourceTree = "<group>"; };
 		CA688200180AEEC2008A7C99 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
@@ -2546,6 +2561,28 @@
 			name = UIUtil;
 			sourceTree = "<group>";
 		};
+		CA63C9EC1A13F123009A32DB /* LEDBricks */ = {
+			isa = PBXGroup;
+			children = (
+				CA63C9F41A13F308009A32DB /* LedOnBrick+CBXMLHandler.h */,
+				CA63C9F51A13F30F009A32DB /* LedOnBrick+CBXMLHandler.m */,
+				CA63C9F71A13F346009A32DB /* LedOffBrick+CBXMLHandler.h */,
+				CA63C9F81A13F34B009A32DB /* LedOffBrick+CBXMLHandler.m */,
+			);
+			name = LEDBricks;
+			sourceTree = "<group>";
+		};
+		CA63C9ED1A13F185009A32DB /* LEDBricks */ = {
+			isa = PBXGroup;
+			children = (
+				CA63C9EE1A13F1AA009A32DB /* LedOnBrick.h */,
+				CA63C9F01A13F1C7009A32DB /* LedOnBrick.m */,
+				CA63C9EF1A13F1B8009A32DB /* LedOffBrick.h */,
+				CA63C9F21A13F294009A32DB /* LedOffBrick.m */,
+			);
+			name = LEDBricks;
+			sourceTree = "<group>";
+		};
 		CA6881FE180AEA85008A7C99 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2879,6 +2916,7 @@
 				CAAE4C3E1A06C84C00040E02 /* HideBrick */,
 				CAAE4C3D1A06C84600040E02 /* IfBricks */,
 				CAAE4C3C1A06C83A00040E02 /* IfOnEdgeBounceBrick */,
+				CA63C9EC1A13F123009A32DB /* LEDBricks */,
 				CAAE4C3B1A06C83200040E02 /* LoopBricks */,
 				CAAE4C3A1A06C82900040E02 /* MoveNStepsBrick */,
 				CAAE4C391A06C82100040E02 /* NextLookBrick */,
@@ -3186,6 +3224,8 @@
 		CAAE4C481A06C8FF00040E02 /* BroadcastWaitBrick */ = {
 			isa = PBXGroup;
 			children = (
+				CA63C9E91A13F0D5009A32DB /* BroadcastWaitBrick+CBXMLHandler.h */,
+				CA63C9EA1A13F0DB009A32DB /* BroadcastWaitBrick+CBXMLHandler.m */,
 			);
 			name = BroadcastWaitBrick;
 			sourceTree = "<group>";
@@ -3356,6 +3396,7 @@
 				CD0CCFE9170CB6C100B70036 /* HideBrick */,
 				B402288E1732A334004C4942 /* IfBricks */,
 				CDFEFCB01758CB8E002B5B0E /* IfOnEdgeBounceBrick */,
+				CA63C9ED1A13F185009A32DB /* LEDBricks */,
 				CD0CCFE6170CB69800B70036 /* LoopBricks */,
 				B4840CAA174FAC42002DEC53 /* MoveNStepsBrick */,
 				CD0CCFEA170CB6C800B70036 /* NextLookBrick */,
@@ -4006,6 +4047,7 @@
 				CADBD70919B0E8C200C62836 /* FBShimmeringLayer.m in Sources */,
 				CA84867D1A117E5C001B6368 /* CBXMLOpenedNestingBricksStack.m in Sources */,
 				CADBD70A19B0E8C200C62836 /* NSString+CatrobatNSStringExtensions.m in Sources */,
+				CA63C9F11A13F1C7009A32DB /* LedOnBrick.m in Sources */,
 				CADBD70B19B0E8C200C62836 /* BrickShapeFactory.m in Sources */,
 				CADBD70C19B0E8C200C62836 /* InternFormulaParserException.m in Sources */,
 				CADBD70D19B0E8C200C62836 /* UIColor+CatrobatUIColorExtensions.m in Sources */,
@@ -4015,6 +4057,7 @@
 				CADBD71019B0E8C200C62836 /* ProgramLoadingInfo.m in Sources */,
 				CADBD71119B0E8C200C62836 /* BrickManager.m in Sources */,
 				CADBD71219B0E8C200C62836 /* ComboBoxView.m in Sources */,
+				CA63C9F91A13F34B009A32DB /* LedOffBrick+CBXMLHandler.m in Sources */,
 				CADBD71319B0E8C200C62836 /* StopAllSoundsBrickCell.m in Sources */,
 				CADBD71419B0E8C200C62836 /* CellMotionEffect.m in Sources */,
 				4C23DB4A1A124E4C00A0E860 /* LoopEndBrick+CBXMLHandler.m in Sources */,
@@ -4075,6 +4118,7 @@
 				CADBD74519B0E8C200C62836 /* NavigationController.m in Sources */,
 				CADBD74619B0E8C200C62836 /* RuntimeImageCache.m in Sources */,
 				CADBD74719B0E8C200C62836 /* CatrobatAlertView.m in Sources */,
+				CA63C9F31A13F294009A32DB /* LedOffBrick.m in Sources */,
 				CADBD74819B0E8C200C62836 /* Parser.m in Sources */,
 				CADBD74919B0E8C200C62836 /* PlaceAtBrick.m in Sources */,
 				CADBD74A19B0E8C200C62836 /* PlaySoundBrick.m in Sources */,
@@ -4083,6 +4127,7 @@
 				CAFAEAE91A13C0BE00C9F170 /* IfLogicBeginBrick+CBXMLHandler.m in Sources */,
 				CADBD74D19B0E8C200C62836 /* UIUtil.m in Sources */,
 				924DEBFA19CAFB9900EED9CE /* MYBlurIntroductionView.m in Sources */,
+				CA63C9EB1A13F0DB009A32DB /* BroadcastWaitBrick+CBXMLHandler.m in Sources */,
 				4CEC09181A13975E00059BB9 /* ChangeXByNBrick+CBXMLHandler.m in Sources */,
 				CAFAEAF51A13D20B00C9F170 /* ChangeVolumeByNBrick+CBXMLHandler.m in Sources */,
 				CADBD74E19B0E8C200C62836 /* Program.m in Sources */,
@@ -4133,6 +4178,7 @@
 				CADBD77619B0E8C200C62836 /* TurnLeftBrick.m in Sources */,
 				CADBD77719B0E8C200C62836 /* TurnRightBrick.m in Sources */,
 				924DEBFC19CAFB9900EED9CE /* MYIntroductionPanel.m in Sources */,
+				CA63C9F61A13F30F009A32DB /* LedOnBrick+CBXMLHandler.m in Sources */,
 				CADBD77919B0E8C200C62836 /* SetBrightnessBrickCell.m in Sources */,
 				CADBD77A19B0E8C200C62836 /* InfoPopupViewController.m in Sources */,
 				4CEC09281A13A8C700059BB9 /* TurnRightBrick+CBXMLHandler.m in Sources */,
