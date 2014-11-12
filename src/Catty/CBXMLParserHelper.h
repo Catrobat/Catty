@@ -29,6 +29,6 @@
 
 + (BOOL)validateXMLElement:(GDataXMLElement*)xmlElement forNumberOfChildNodes:(NSUInteger)numberOfChildNodes;
 + (BOOL)validateXMLElement:(GDataXMLElement*)xmlElement forNumberOfChildNodes:(NSUInteger)numberOfChildNodes AndFormulaListWithTotalNumberOfFormulas:(NSUInteger)numberOfFormulas;
-+ (Formula*)formulaInXMLElement:(GDataXMLElement*)xmlElement forCategory:(NSString*)category;
++ (Formula*)formulaInXMLElement:(GDataXMLElement*)xmlElement forCategoryName:(NSString*)categoryName;
 
 @end

@@ -31,9 +31,8 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:2];
-
-    Formula *formulaXPosition = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategory:@"X_POSITION"];
-    Formula *formulaYPosition = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategory:@"Y_POSITION"];
+    Formula *formulaXPosition = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"X_POSITION"];
+    Formula *formulaYPosition = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"Y_POSITION"];
 
     PlaceAtBrick *placeAtBrick = [self new];
     placeAtBrick.xPosition = formulaXPosition;

@@ -385,6 +385,8 @@
 		CAF9DC711A12D16A003FE868 /* GlideToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9DC701A12D16A003FE868 /* GlideToBrick+CBXMLHandler.m */; };
 		CAF9DC741A12D4E0003FE868 /* PlaySoundBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9DC731A12D4E0003FE868 /* PlaySoundBrick+CBXMLHandler.m */; };
 		CAFAEAE61A13BE1F00C9F170 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */; };
+		CAFAEAE91A13C0BE00C9F170 /* IfLogicBeginBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFAEAE81A13C0BE00C9F170 /* IfLogicBeginBrick+CBXMLHandler.m */; };
+		CAFAEAEC1A13C2C900C9F170 /* SpeakBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFAEAEB1A13C2C900C9F170 /* SpeakBrick+CBXMLHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -984,6 +986,10 @@
 		CAF9DC701A12D16A003FE868 /* GlideToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GlideToBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CAF9DC721A12D4D7003FE868 /* PlaySoundBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PlaySoundBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		CAF9DC731A12D4E0003FE868 /* PlaySoundBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PlaySoundBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		CAFAEAE71A13C0AA00C9F170 /* IfLogicBeginBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IfLogicBeginBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		CAFAEAE81A13C0BE00C9F170 /* IfLogicBeginBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IfLogicBeginBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		CAFAEAEA1A13C2BF00C9F170 /* SpeakBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpeakBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		CAFAEAEB1A13C2C900C9F170 /* SpeakBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SpeakBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CD0CCE5F170CB39600B70036 /* Brick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brick.h; sourceTree = "<group>"; };
 		CD0CCE60170CB39600B70036 /* Brick.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = Brick.m; sourceTree = "<group>"; tabWidth = 4; };
 		CD0CCE61170CB39600B70036 /* BroadcastBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastBrick.h; sourceTree = "<group>"; };
@@ -2892,6 +2898,8 @@
 				CAF9DC731A12D4E0003FE868 /* PlaySoundBrick+CBXMLHandler.m */,
 				4CEC092F1A13B21E00059BB9 /* StopAllSoundsBrick+CBXMLHandler.h */,
 				4CEC09301A13B21E00059BB9 /* StopAllSoundsBrick+CBXMLHandler.m */,
+				CAFAEAEA1A13C2BF00C9F170 /* SpeakBrick+CBXMLHandler.h */,
+				CAFAEAEB1A13C2C900C9F170 /* SpeakBrick+CBXMLHandler.m */,
 			);
 			name = SoundBricks;
 			sourceTree = "<group>";
@@ -3028,6 +3036,8 @@
 		CAAE4C3D1A06C84600040E02 /* IfBricks */ = {
 			isa = PBXGroup;
 			children = (
+				CAFAEAE71A13C0AA00C9F170 /* IfLogicBeginBrick+CBXMLHandler.h */,
+				CAFAEAE81A13C0BE00C9F170 /* IfLogicBeginBrick+CBXMLHandler.m */,
 			);
 			name = IfBricks;
 			sourceTree = "<group>";
@@ -3986,6 +3996,7 @@
 				4CEC09251A139D7C00059BB9 /* CBXMLParserHelper.m in Sources */,
 				CADBD73D19B0E8C200C62836 /* Header.m in Sources */,
 				CADBD73E19B0E8C200C62836 /* HideBrick.m in Sources */,
+				CAFAEAEC1A13C2C900C9F170 /* SpeakBrick+CBXMLHandler.m in Sources */,
 				CADBD73F19B0E8C200C62836 /* Look.m in Sources */,
 				CADBD74019B0E8C200C62836 /* SaveToProjectActivity.m in Sources */,
 				CADBD74119B0E8C200C62836 /* TurnRightBrickCell.m in Sources */,
@@ -4001,6 +4012,7 @@
 				CADBD74A19B0E8C200C62836 /* PlaySoundBrick.m in Sources */,
 				CADBD74B19B0E8C200C62836 /* LookComboBoxView.m in Sources */,
 				CADBD74C19B0E8C200C62836 /* SWUtilityButtonView.m in Sources */,
+				CAFAEAE91A13C0BE00C9F170 /* IfLogicBeginBrick+CBXMLHandler.m in Sources */,
 				CADBD74D19B0E8C200C62836 /* UIUtil.m in Sources */,
 				924DEBFA19CAFB9900EED9CE /* MYBlurIntroductionView.m in Sources */,
 				4CEC09181A13975E00059BB9 /* ChangeXByNBrick+CBXMLHandler.m in Sources */,

@@ -29,8 +29,9 @@
 
 + (BOOL)validateXMLElement:(GDataXMLElement*)xmlElement forNumberOfChildNodes:(NSUInteger)numberOfChildNodes
 {
-    [XMLError exceptionIf:[xmlElement childCount] notEquals:numberOfChildNodes message:@"Too less or too many child nodes found... (%lu expected)", numberOfChildNodes];
-    
+    [XMLError exceptionIf:[xmlElement childCount]
+                notEquals:numberOfChildNodes
+                  message:@"Too less or too many child nodes found... (%lu expected)", numberOfChildNodes];
     return true;
 }
 
@@ -45,20 +46,16 @@
     return true;
 }
 
-+ (Formula*)formulaInXMLElement:(GDataXMLElement*)xmlElement forCategory:(NSString*)category
++ (Formula*)formulaInXMLElement:(GDataXMLElement*)xmlElement forCategoryName:(NSString*)categoryName
 {
     GDataXMLElement *formulaListElement = [xmlElement childWithElementName:@"formulaList"];
     [XMLError exceptionIfNil:formulaListElement message:@"No formulaList element found..."];
-    
     GDataXMLElement *formulaElement = [formulaListElement childWithElementName:@"formula"
-                                                                    containingAttribute:@"category"
-                                                                              withValue:category];
-    
-    [XMLError exceptionIfNil:formulaElement message:@"No formula with category %@ found...", category];
-
+                                                           containingAttribute:@"category"
+                                                                     withValue:categoryName];
+    [XMLError exceptionIfNil:formulaElement message:@"No formula with category %@ found...", categoryName];
     Formula *formula = [Formula parseFromElement:formulaElement withContext:nil];
     [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
-    
     return formula;
 }
 

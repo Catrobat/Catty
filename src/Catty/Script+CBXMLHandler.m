@@ -101,9 +101,11 @@
         Class class = NSClassFromString(brickClassName);
         [XMLError exceptionIfNil:class message:@"Unsupported brick type: %@", brickTypeName];
 
-//        if (! [class conformsToProtocol:@protocol(CBParserNodeProtocol)]) {
-//            [XMLError exceptionWithMessage:@"Class for brick type %@ does not confirm to CBParserNodeProtocol", brickTypeName];
-//        }
+        if (! [class conformsToProtocol:@protocol(CBParserNodeProtocol)]) {
+            NSLog(@"--------------------");
+            NSLog(@"brickElement:\n%@", brickElement);
+            [XMLError exceptionWithMessage:@"Class for brick type %@ does not confirm to CBParserNodeProtocol", brickTypeName];
+        }
 
         [XMLError exceptionIf:[class conformsToProtocol:@protocol(CBParserNodeProtocol)] equals:NO
                       message:@"%@ must have a category %@+CBXMLHandler that implements CBParserNodeProtocol",

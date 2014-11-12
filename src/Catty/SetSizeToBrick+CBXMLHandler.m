@@ -32,8 +32,7 @@
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
     
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategory:@"SIZE"];
-
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"SIZE"];
     SetSizeToBrick *setSizeToBrick = [self new];
     setSizeToBrick.size = formula;
     return setSizeToBrick;

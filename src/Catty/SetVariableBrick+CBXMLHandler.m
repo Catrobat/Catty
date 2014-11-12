@@ -44,7 +44,7 @@
     UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:nil];
     [XMLError exceptionIfNil:userVariable message:@"Unable to parse userVariable..."];
     
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategory:@"VARIABLE"];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VARIABLE"];
 
     UserVariable *alreadyExistingUserVariable = [CBXMLParser findUserVariableInArray:context.userVariableList
                                                                             withName:userVariable.name];

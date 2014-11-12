@@ -33,7 +33,6 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
-
     GDataXMLElement *soundElement = [[xmlElement children] firstObject];
     NSMutableArray *soundList = context.soundList;
 

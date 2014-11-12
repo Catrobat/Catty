@@ -20,22 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "TurnRightBrick+CBXMLHandler.h"
-#import "CBXMLValidator.h"
+#import "SpeakBrick+CBXMLHandler.h"
 #import "GDataXMLNode+CustomExtensions.h"
-#import "Formula+CBXMLHandler.h"
+#import "CBXMLValidator.h"
+#import "CBXMLParser.h"
+#import "CBXMLContext.h"
+#import "CBXMLOpenedNestingBricksStack.h"
 #import "CBXMLParserHelper.h"
+#import "Formula.h"
+#import "FormulaElement.h"
 
-@implementation TurnRightBrick (CBXMLHandler)
+@implementation SpeakBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"TURN_RIGHT_DEGREES"];
-    [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
-    TurnRightBrick *turnRightBrick = [self new];
-    turnRightBrick.degrees = formula;
-    return turnRightBrick;
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
+    SpeakBrick *speakBrick = [self new];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"SPEAK"];
+    [XMLError exceptionIf:formula.formulaTree.type notEquals:STRING
+                  message:@"FormulaElement contains unknown type %lu! Should be STRING!",
+                          (unsigned long)formula.formulaTree.type];
+    [XMLError exceptionIfNil:formula.formulaTree.value message:@"FormulaElement contains no value!!"];
+    speakBrick.text = formula.formulaTree.value;
+    return speakBrick;
 }
 
 @end

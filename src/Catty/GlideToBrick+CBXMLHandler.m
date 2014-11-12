@@ -31,11 +31,12 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:3];
-
-    Formula *formulaDuration = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategory:@"DURATION_IN_SECONDS"];
-    Formula *formulaXDestination = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategory:@"X_DESTINATION"];
-    Formula *formulaYDestination = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategory:@"Y_DESTINATION"];
-
+    Formula *formulaDuration = [CBXMLParserHelper formulaInXMLElement:xmlElement
+                                                      forCategoryName:@"DURATION_IN_SECONDS"];
+    Formula *formulaXDestination = [CBXMLParserHelper formulaInXMLElement:xmlElement
+                                                          forCategoryName:@"X_DESTINATION"];
+    Formula *formulaYDestination = [CBXMLParserHelper formulaInXMLElement:xmlElement
+                                                          forCategoryName:@"Y_DESTINATION"];
     GlideToBrick *glideToBrick = [self new];
     glideToBrick.durationInSeconds = formulaDuration;
     glideToBrick.xDestination = formulaXDestination;

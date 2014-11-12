@@ -31,10 +31,9 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
-
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategory:@"TURN_LEFT_DEGREES"];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"TURN_LEFT_DEGREES"];
     [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
-    
+
     TurnLeftBrick *turnLeftBrick = [self new];
     turnLeftBrick.degrees = formula;
     return turnLeftBrick;

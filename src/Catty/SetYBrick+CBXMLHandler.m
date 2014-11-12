@@ -31,10 +31,9 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
-
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategory:@"Y_POSITION"];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"Y_POSITION"];
     [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
-    
+
     SetYBrick *setYBrick = [self new];
     setYBrick.yPosition = formula;
     return setYBrick;

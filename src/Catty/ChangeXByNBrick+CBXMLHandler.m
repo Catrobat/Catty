@@ -31,8 +31,8 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
-    
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategory:@"X_POSITION_CHANGE"];
+
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"X_POSITION_CHANGE"];
     
     ChangeXByNBrick *changeXByNBrick = [self new];
     changeXByNBrick.xMovement = formula;
