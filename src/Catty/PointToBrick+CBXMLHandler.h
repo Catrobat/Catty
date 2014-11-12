@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "PlaySoundBrick.h"
+#import "PointToBrick.h"
 #import "CBParserNodeProtocol.h"
 
-@interface PlaySoundBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface PointToBrick (CBXMLHandler) <CBParserNodeProtocol>
 
 @end

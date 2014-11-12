@@ -395,4 +395,110 @@
     XCTAssertEqualWithAccuracy([formula interpretDoubleForSprite:nil], log10f(sqrt(5)) / log10f(10), 0.00001, @"Formula not correctly parsed");
 }
 
+- (void)testValidTurnLeftBrick {
+    
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLElement *xmlElement = [document rootElement];
+    
+    NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[7]" error:nil];
+    XCTAssertEqual([brickElement count], 1);
+    
+    GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
+    
+    Brick *brick = [TurnLeftBrick parseFromElement:brickXMLElement withContext:nil];
+    
+    XCTAssertTrue(brick.brickType == kTurnLeftBrick, @"Invalid brick type");
+    XCTAssertTrue([brick isKindOfClass:[TurnLeftBrick class]], @"Invalid brick class");
+    
+    TurnLeftBrick *turnLeftBrick = (TurnLeftBrick*)brick;
+    Formula *formula = turnLeftBrick.degrees;
+    
+    XCTAssertNotNil(formula, @"Invalid formula");
+    XCTAssertEqualWithAccuracy([formula interpretDoubleForSprite:nil], 15, 0.00001, @"Formula not correctly parsed");
+}
+
+- (void)testValidTurnRightBrick {
+    
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLElement *xmlElement = [document rootElement];
+    
+    NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[8]" error:nil];
+    XCTAssertEqual([brickElement count], 1);
+    
+    GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
+    
+    Brick *brick = [TurnRightBrick parseFromElement:brickXMLElement withContext:nil];
+    
+    XCTAssertTrue(brick.brickType == kTurnRightBrick, @"Invalid brick type");
+    XCTAssertTrue([brick isKindOfClass:[TurnRightBrick class]], @"Invalid brick class");
+    
+    TurnRightBrick *turnRightBrick = (TurnRightBrick*)brick;
+    Formula *formula = turnRightBrick.degrees;
+    
+    XCTAssertNotNil(formula, @"Invalid formula");
+    XCTAssertEqualWithAccuracy([formula interpretDoubleForSprite:nil], 15, 0.00001, @"Formula not correctly parsed");
+}
+
+- (void)testValidPointInDirectionBrick {
+    
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLElement *xmlElement = [document rootElement];
+    
+    NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[9]" error:nil];
+    XCTAssertEqual([brickElement count], 1);
+    
+    GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
+    
+    Brick *brick = [PointInDirectionBrick parseFromElement:brickXMLElement withContext:nil];
+    
+    XCTAssertTrue(brick.brickType == kPointInDirectionBrick, @"Invalid brick type");
+    XCTAssertTrue([brick isKindOfClass:[PointInDirectionBrick class]], @"Invalid brick class");
+    
+    PointInDirectionBrick *pointInDirectionBrick = (PointInDirectionBrick*)brick;
+    Formula *formula = pointInDirectionBrick.degrees;
+    
+    XCTAssertNotNil(formula, @"Invalid formula");
+    XCTAssertEqualWithAccuracy([formula interpretDoubleForSprite:nil], 90, 0.00001, @"Formula not correctly parsed");
+}
+
+- (void)testValidStopAllSoundBrick {
+    
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLElement *xmlElement = [document rootElement];
+    
+    NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[10]/pointedObject[1]/scriptList/script[1]/brickList/brick[2]" error:nil];
+    XCTAssertEqual([brickElement count], 1);
+    
+    GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
+    
+    Brick *brick = [StopAllSoundsBrick parseFromElement:brickXMLElement withContext:nil];
+    
+    XCTAssertTrue(brick.brickType == kStopAllSoundsBrick, @"Invalid brick type");
+    XCTAssertTrue([brick isKindOfClass:[StopAllSoundsBrick class]], @"Invalid brick class");
+}
+
+/*
+- (void)testValidPointToBrick {
+    
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLElement *xmlElement = [document rootElement];
+    
+    NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[10]" error:nil];
+    XCTAssertEqual([brickElement count], 1);
+    
+    CBXMLContext *context = [CBXMLContext new];
+    
+    GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
+    
+    Brick *brick = [PointToBrick parseFromElement:brickXMLElement withContext:context];
+    
+    XCTAssertTrue(brick.brickType == kPointToBrick, @"Invalid brick type");
+    XCTAssertTrue([brick isKindOfClass:[PointToBrick class]], @"Invalid brick class");
+    
+    PointToBrick *pointToBrick = (PointToBrick*)brick;
+    SpriteObject *spriteObject = pointToBrick.pointedObject;
+    XCTAssertNotNil(spriteObject, @"Invalid SpriteObject");
+}
+*/
+
 @end

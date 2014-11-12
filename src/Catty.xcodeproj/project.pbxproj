@@ -47,6 +47,10 @@
 		4CEC091E1A13991500059BB9 /* MoveNStepsBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC091D1A13991500059BB9 /* MoveNStepsBrick+CBXMLHandler.m */; };
 		4CEC09211A139A7A00059BB9 /* TurnLeftBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC09201A139A7A00059BB9 /* TurnLeftBrick+CBXMLHandler.m */; };
 		4CEC09251A139D7C00059BB9 /* CBXMLParserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC09241A139D7C00059BB9 /* CBXMLParserHelper.m */; };
+		4CEC09281A13A8C700059BB9 /* TurnRightBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC09271A13A8C700059BB9 /* TurnRightBrick+CBXMLHandler.m */; };
+		4CEC092B1A13A94500059BB9 /* PointInDirectionBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC092A1A13A94500059BB9 /* PointInDirectionBrick+CBXMLHandler.m */; };
+		4CEC092E1A13A9C200059BB9 /* PointToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC092D1A13A9C200059BB9 /* PointToBrick+CBXMLHandler.m */; };
+		4CEC09311A13B21E00059BB9 /* StopAllSoundsBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC09301A13B21E00059BB9 /* StopAllSoundsBrick+CBXMLHandler.m */; };
 		924DEBFA19CAFB9900EED9CE /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF619CAFB9900EED9CE /* MYBlurIntroductionView.m */; };
 		924DEBFC19CAFB9900EED9CE /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF819CAFB9900EED9CE /* MYIntroductionPanel.m */; };
 		CA2932C719EDD32800DB6701 /* CBXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2932C619EDD32800DB6701 /* CBXMLParser.m */; };
@@ -471,6 +475,14 @@
 		4CEC09201A139A7A00059BB9 /* TurnLeftBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TurnLeftBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		4CEC09231A139D7C00059BB9 /* CBXMLParserHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLParserHelper.h; sourceTree = "<group>"; };
 		4CEC09241A139D7C00059BB9 /* CBXMLParserHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLParserHelper.m; sourceTree = "<group>"; };
+		4CEC09261A13A8C700059BB9 /* TurnRightBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TurnRightBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		4CEC09271A13A8C700059BB9 /* TurnRightBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TurnRightBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		4CEC09291A13A94500059BB9 /* PointInDirectionBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PointInDirectionBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		4CEC092A1A13A94500059BB9 /* PointInDirectionBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PointInDirectionBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		4CEC092C1A13A9C200059BB9 /* PointToBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PointToBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		4CEC092D1A13A9C200059BB9 /* PointToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PointToBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		4CEC092F1A13B21E00059BB9 /* StopAllSoundsBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "StopAllSoundsBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		4CEC09301A13B21E00059BB9 /* StopAllSoundsBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "StopAllSoundsBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		8146A9B119279721002548A4 /* ProgramTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableHeaderView.h; sourceTree = "<group>"; };
 		8146A9B219279721002548A4 /* ProgramTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableHeaderView.m; sourceTree = "<group>"; };
 		815420D3191A51F200E628D2 /* FBShimmering-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBShimmering-Prefix.pch"; sourceTree = "<group>"; };
@@ -2866,6 +2878,8 @@
 			children = (
 				4CEC091F1A139A7A00059BB9 /* TurnLeftBrick+CBXMLHandler.h */,
 				4CEC09201A139A7A00059BB9 /* TurnLeftBrick+CBXMLHandler.m */,
+				4CEC09261A13A8C700059BB9 /* TurnRightBrick+CBXMLHandler.h */,
+				4CEC09271A13A8C700059BB9 /* TurnRightBrick+CBXMLHandler.m */,
 			);
 			name = TurnBricks;
 			sourceTree = "<group>";
@@ -2875,6 +2889,8 @@
 			children = (
 				CAF9DC721A12D4D7003FE868 /* PlaySoundBrick+CBXMLHandler.h */,
 				CAF9DC731A12D4E0003FE868 /* PlaySoundBrick+CBXMLHandler.m */,
+				4CEC092F1A13B21E00059BB9 /* StopAllSoundsBrick+CBXMLHandler.h */,
+				4CEC09301A13B21E00059BB9 /* StopAllSoundsBrick+CBXMLHandler.m */,
 			);
 			name = SoundBricks;
 			sourceTree = "<group>";
@@ -2943,6 +2959,8 @@
 		CAAE4C351A06C80500040E02 /* PointToBrick */ = {
 			isa = PBXGroup;
 			children = (
+				4CEC092C1A13A9C200059BB9 /* PointToBrick+CBXMLHandler.h */,
+				4CEC092D1A13A9C200059BB9 /* PointToBrick+CBXMLHandler.m */,
 			);
 			name = PointToBrick;
 			sourceTree = "<group>";
@@ -2950,6 +2968,8 @@
 		CAAE4C361A06C80C00040E02 /* PointInDirectionBrick */ = {
 			isa = PBXGroup;
 			children = (
+				4CEC09291A13A94500059BB9 /* PointInDirectionBrick+CBXMLHandler.h */,
+				4CEC092A1A13A94500059BB9 /* PointInDirectionBrick+CBXMLHandler.m */,
 			);
 			name = PointInDirectionBrick;
 			sourceTree = "<group>";
@@ -4031,6 +4051,7 @@
 				924DEBFC19CAFB9900EED9CE /* MYIntroductionPanel.m in Sources */,
 				CADBD77919B0E8C200C62836 /* SetBrightnessBrickCell.m in Sources */,
 				CADBD77A19B0E8C200C62836 /* InfoPopupViewController.m in Sources */,
+				4CEC09281A13A8C700059BB9 /* TurnRightBrick+CBXMLHandler.m in Sources */,
 				CAF9DC711A12D16A003FE868 /* GlideToBrick+CBXMLHandler.m in Sources */,
 				CADBD77B19B0E8C200C62836 /* Util.m in Sources */,
 				CADBD77C19B0E8C200C62836 /* UIViewController+CWPopup.m in Sources */,
@@ -4041,6 +4062,7 @@
 				CADBD78019B0E8C200C62836 /* IfLogicElseBrickCell.m in Sources */,
 				CADBD78119B0E8C200C62836 /* WhenScript.m in Sources */,
 				CADBD78219B0E8C200C62836 /* BrickScaleTransition.m in Sources */,
+				4CEC092E1A13A9C200059BB9 /* PointToBrick+CBXMLHandler.m in Sources */,
 				CADBD78319B0E8C200C62836 /* ObjectTableViewController.m in Sources */,
 				CADBD78419B0E8C200C62836 /* SelectButton.m in Sources */,
 				CA5D7FE519EC44480085D5AA /* BaseCollectionViewController.m in Sources */,
@@ -4118,6 +4140,7 @@
 				CADBD7C419B0E8C200C62836 /* DataTransferMessage.m in Sources */,
 				CADBD7C519B0E8C200C62836 /* IBActionSheet.m in Sources */,
 				CADBD7C619B0E8C200C62836 /* Formula.m in Sources */,
+				4CEC092B1A13A94500059BB9 /* PointInDirectionBrick+CBXMLHandler.m in Sources */,
 				4CEC09121A13955200059BB9 /* SetXBrick+CBXMLHandler.m in Sources */,
 				CADBD7C719B0E8C200C62836 /* ShowBrickCell.m in Sources */,
 				CADBD7C819B0E8C200C62836 /* FormulaElement.m in Sources */,
@@ -4138,6 +4161,7 @@
 				CADBD7D519B0E8C200C62836 /* MoveNStepsBrick.m in Sources */,
 				4C023FE219FFCA4E00381E36 /* Sound+CBXMLHandler.m in Sources */,
 				CAF9DC741A12D4E0003FE868 /* PlaySoundBrick+CBXMLHandler.m in Sources */,
+				4CEC09311A13B21E00059BB9 /* StopAllSoundsBrick+CBXMLHandler.m in Sources */,
 				CADBD7D619B0E8C200C62836 /* IfOnEdgeBounceBrickCell.m in Sources */,
 				4C1608A71A095639002C7032 /* Formula+CBXMLHandler.m in Sources */,
 				CADBD7D719B0E8C200C62836 /* DarkBlueGradientFeaturedCell.m in Sources */,
