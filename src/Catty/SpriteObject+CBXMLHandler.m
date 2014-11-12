@@ -56,10 +56,12 @@
     }
     NSLog(@"<object name=\"%@\">", spriteObject.name);
 
-    context.spriteObject = spriteObject;
-
     spriteObject.lookList = [self parseAndCreateLooks:(pointedObjectElement ? pointedObjectElement : xmlElement)];
+    context.lookList = spriteObject.lookList;
+    
     spriteObject.soundList = [self parseAndCreateSounds:(pointedObjectElement ? pointedObjectElement : xmlElement)];
+    context.soundList = spriteObject.soundList;
+    
     spriteObject.scriptList = [self parseAndCreateScripts:(pointedObjectElement ? pointedObjectElement : xmlElement)
                                               withContext:context];
     return spriteObject;

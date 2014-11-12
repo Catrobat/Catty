@@ -20,21 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "XMLParserAbstractTest.h"
+#import "GDataXMLNode+CustomExtensions.h"
 
-@class CBXMLOpenedNestingBricksStack;
-@class SpriteObject;
+@implementation XMLParserAbstractTest
 
-@interface CBXMLContext : NSObject
+- (NSString*)getPathForXML: (NSString*)xmlFile {
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString *path = [bundle pathForResource:xmlFile ofType:@"xml"];
+    return path;
+}
 
-@property (nonatomic, strong) CBXMLOpenedNestingBricksStack *openedNestingBricksStack;
-@property (nonatomic, strong, readonly) NSMutableArray *userVariableList; // contains all already parsed UserVariables
-@property (nonatomic, strong) NSMutableArray *spriteObjectList; // contains all already parsed SpriteObjects
-@property (nonatomic, strong) NSMutableArray *lookList; // of currently parsed SpriteObject
-@property (nonatomic, strong) NSMutableArray *soundList; // of currently parsed SpriteObject
-
-- (id)initWithSpriteObjectList:(NSArray*)spriteObjectList;
-- (id)initWithLookList:(NSArray*)lookList;
-- (id)initWithSoundList:(NSArray*)soundList;
+- (GDataXMLDocument*)getXMLDocumentForPath: (NSString*)xmlPath {
+    NSError *error;
+    NSString *xmlFile = [NSString stringWithContentsOfFile:xmlPath
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:&error];
+    NSData *xmlData = [xmlFile dataUsingEncoding:NSUTF8StringEncoding];
+    GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
+    return document;
+}
 
 @end

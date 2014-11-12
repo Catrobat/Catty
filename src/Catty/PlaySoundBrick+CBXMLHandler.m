@@ -33,7 +33,7 @@
 {
     [XMLError exceptionIf:[xmlElement childCount] notEquals:1 message:@"Too many child nodes found..."];
     GDataXMLElement *soundElement = [[xmlElement children] firstObject];
-    NSMutableArray *soundList = context.spriteObject.soundList;
+    NSMutableArray *soundList = context.soundList;
 
     Sound *sound = nil;
     if ([CBXMLParser isReferenceElement:soundElement]) {

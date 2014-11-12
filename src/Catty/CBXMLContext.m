@@ -42,16 +42,6 @@
 
 #pragma mark - Initializers
 
-- (id)initWithSpriteObject:(SpriteObject*)spriteObject
-{
-    self = [super init];
-    if(self) {
-        self.spriteObject = spriteObject;
-    }
-    
-    return self;
-}
-
 - (id)initWithSpriteObjectList:(NSMutableArray*)spriteObjectList
 {
     self = [super init];
