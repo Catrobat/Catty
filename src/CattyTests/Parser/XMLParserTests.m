@@ -93,9 +93,10 @@
     
     NSArray *objectElements = [[objectListElements firstObject] children];
     NSMutableArray *objectList = [NSMutableArray arrayWithCapacity:[objectElements count]];
-    
+
+    CBXMLContext *context = [CBXMLContext new];
     for (GDataXMLElement *objectElement in objectElements) {
-        SpriteObject *spriteObject = [SpriteObject parseFromElement:objectElement withContext:nil];
+        SpriteObject *spriteObject = [SpriteObject parseFromElement:objectElement withContext:context];
         [objectList addObject:spriteObject];
     }
     
@@ -140,7 +141,10 @@
     NSMutableArray *lookList = [SpriteObject parseAndCreateLooks:objectElement];
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
 
-    Brick *brick = [SetLookBrick parseFromElement:brickXMLElement withContext:[[CBXMLContext alloc] initWithLookList:lookList]];
+    CBXMLContext *context = [CBXMLContext new];
+    context.spriteObject = [SpriteObject new];
+    context.spriteObject.lookList = lookList;
+    Brick *brick = [SetLookBrick parseFromElement:brickXMLElement withContext:context];
 
     XCTAssertTrue(brick.brickType == kSetLookBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[SetLookBrick class]], @"Invalid brick class");
