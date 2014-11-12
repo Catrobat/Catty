@@ -95,6 +95,7 @@
 		CA63C9D61A13E83B009A32DB /* NoteBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9D51A13E83B009A32DB /* NoteBrick+CBXMLHandler.m */; };
 		CA63C9D91A13E9F8009A32DB /* NextLookBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9D81A13E9F8009A32DB /* NextLookBrick+CBXMLHandler.m */; };
 		CA63C9DB1A13EAAE009A32DB /* ChangeSizeByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9DA1A13EAAE009A32DB /* ChangeSizeByNBrick+CBXMLHandler.m */; };
+		CA63C9DF1A13EBFB009A32DB /* SetGhostEffectBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9DE1A13EBFB009A32DB /* SetGhostEffectBrick+CBXMLHandler.m */; };
 		CA66CB7519F6B42400D849E0 /* CBXMLValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CA66CB7419F6B42400D849E0 /* CBXMLValidator.m */; };
 		CA775CBF19FD5BCB00C1E761 /* My First Program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CA6E4C4719F9C388001B65C3 /* My First Program.catrobat */; };
 		CA8486791A117A9E001B6368 /* SetSizeToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8486781A117A9E001B6368 /* SetSizeToBrick+CBXMLHandler.m */; };
@@ -820,6 +821,8 @@
 		CA63C9D81A13E9F8009A32DB /* NextLookBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NextLookBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CA63C9DA1A13EAAE009A32DB /* ChangeSizeByNBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChangeSizeByNBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CA63C9DC1A13EAC2009A32DB /* ChangeSizeByNBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChangeSizeByNBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		CA63C9DD1A13EBF5009A32DB /* SetGhostEffectBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetGhostEffectBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		CA63C9DE1A13EBFB009A32DB /* SetGhostEffectBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetGhostEffectBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CA66CB7319F6B42400D849E0 /* CBXMLValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLValidator.h; sourceTree = "<group>"; };
 		CA66CB7419F6B42400D849E0 /* CBXMLValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLValidator.m; sourceTree = "<group>"; };
 		CA688200180AEEC2008A7C99 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
@@ -2985,6 +2988,8 @@
 		CAAE4C331A06C7F500040E02 /* SetGhostEffectBrick */ = {
 			isa = PBXGroup;
 			children = (
+				CA63C9DD1A13EBF5009A32DB /* SetGhostEffectBrick+CBXMLHandler.h */,
+				CA63C9DE1A13EBFB009A32DB /* SetGhostEffectBrick+CBXMLHandler.m */,
 			);
 			name = SetGhostEffectBrick;
 			sourceTree = "<group>";
@@ -4228,6 +4233,7 @@
 				CAF9DC741A12D4E0003FE868 /* PlaySoundBrick+CBXMLHandler.m in Sources */,
 				4CEC09311A13B21E00059BB9 /* StopAllSoundsBrick+CBXMLHandler.m in Sources */,
 				CA63C9DB1A13EAAE009A32DB /* ChangeSizeByNBrick+CBXMLHandler.m in Sources */,
+				CA63C9DF1A13EBFB009A32DB /* SetGhostEffectBrick+CBXMLHandler.m in Sources */,
 				CADBD7D619B0E8C200C62836 /* IfOnEdgeBounceBrickCell.m in Sources */,
 				4C1608A71A095639002C7032 /* Formula+CBXMLHandler.m in Sources */,
 				CAFAEAFE1A13E45F00C9F170 /* BroadcastBrick+CBXMLHandler.m in Sources */,
