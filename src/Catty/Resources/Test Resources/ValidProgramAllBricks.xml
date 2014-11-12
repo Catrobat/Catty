@@ -317,6 +317,7 @@
               <inUserBrick>false</inUserBrick>
               <userVariable>lokal</userVariable>
             </brick>
+<!--
             <brick type="LegoNxtMotorStopBrick">
               <motor>MOTOR_A</motor>
             </brick>
@@ -350,6 +351,7 @@
               </formulaList>
               <motor>MOTOR_A</motor>
             </brick>
+-->
           </brickList>
           <isUserScript>false</isUserScript>
         </script>
