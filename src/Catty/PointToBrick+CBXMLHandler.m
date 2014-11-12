@@ -20,9 +20,27 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "PlaySoundBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "PointToBrick+CBXMLHandler.h"
+#import "CBXMLValidator.h"
+#import "GDataXMLNode+CustomExtensions.h"
+#import "Formula+CBXMLHandler.h"
+#import "SpriteObject+CBXMLHandler.h"
+#import "CBXMLParserHelper.h"
 
-@interface PlaySoundBrick (CBXMLHandler) <CBParserNodeProtocol>
+@implementation PointToBrick (CBXMLHandler)
+
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
+{
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
+    
+    GDataXMLElement *pointedObjectElement = [xmlElement childWithElementName:@"pointedObject"];
+    [XMLError exceptionIfNil:pointedObjectElement message:@"No pointedObject element found..."];
+    
+    SpriteObject *spriteObject = [SpriteObject parseFromElement:pointedObjectElement withContext:context];
+    
+    PointToBrick *pointToBrick = [self new];
+    pointToBrick.pointedObject = spriteObject;
+    return pointToBrick;
+}
 
 @end

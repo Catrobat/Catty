@@ -61,6 +61,10 @@
 #import "ChangeYByNBrick+CBXMLHandler.h"
 #import "MoveNStepsBrick+CBXMLHandler.h"
 #import "TurnLeftBrick+CBXMLHandler.h"
+#import "TurnRightBrick+CBXMLHandler.h"
+#import "PointInDirectionBrick+CBXMLHandler.h"
+#import "PointToBrick+CBXMLHandler.h"
+#import "StopAllSoundsBrick+CBXMLHandler.h"
 
 @class GDataXMLDocument;
 

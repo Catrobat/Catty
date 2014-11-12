@@ -20,9 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "PlaySoundBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "StopAllSoundsBrick+CBXMLHandler.h"
+#import "CBXMLValidator.h"
+#import "GDataXMLNode+CustomExtensions.h"
+#import "CBXMLParser.h"
+#import "CBXMLContext.h"
+#import "CBXMLParserHelper.h"
 
-@interface PlaySoundBrick (CBXMLHandler) <CBParserNodeProtocol>
+@implementation StopAllSoundsBrick (CBXMLHandler)
+
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
+{
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
+    return [self new];
+}
+
 
 @end
