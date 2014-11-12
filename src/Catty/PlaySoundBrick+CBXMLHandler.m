@@ -47,7 +47,7 @@
         sound = [CBXMLParser findSoundInArray:soundList withName:[nameElement stringValue]];
         [XMLError exceptionIfNil:sound message:@"Fatal error: no sound found in list, but should already exist!"];
     } else {
-        // OMG!! a look has been defined within the brick element...
+        // OMG!! a sound has been defined within the brick element...
         sound = [Sound parseFromElement:xmlElement withContext:nil];
         [XMLError exceptionIfNil:sound message:@"Unable to parse sound..."];
         [soundList addObject:sound];

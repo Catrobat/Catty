@@ -64,6 +64,7 @@
     } else {
         [XMLError exceptionWithMessage:@"Unsupported attribute: %@!", attribute.name];
     }
+    [XMLError exceptionIfNil:spriteObject.name message:@"SpriteObject must contain a name"];
 
     // sprite object could (!) already exist in pointedSpriteObjectList at this point!
     SpriteObject *alreadyExistantSpriteObject = nil;
