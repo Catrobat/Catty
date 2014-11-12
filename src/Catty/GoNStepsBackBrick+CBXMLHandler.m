@@ -20,19 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ChangeGhostEffectBrick+CBXMLHandler.h"
+#import "GoNStepsBackBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
 
-@implementation ChangeGhostEffectByNBrick (CBXMLHandler)
+@implementation GoNStepsBackBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
 
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"TRANSPARENCY_CHANGE"];
-    ChangeGhostEffectByNBrick *changeGhostEffectByNBrick = [self new];
-    changeGhostEffectByNBrick.changeGhostEffect = formula;
-    return changeGhostEffectByNBrick;
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"STEPS"];
+    GoNStepsBackBrick *goNStepsBackBrick = [self new];
+    goNStepsBackBrick.steps = formula;
+    return goNStepsBackBrick;
 }
 
 @end

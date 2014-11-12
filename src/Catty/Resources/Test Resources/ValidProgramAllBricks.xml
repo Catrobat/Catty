@@ -317,41 +317,6 @@
               <inUserBrick>false</inUserBrick>
               <userVariable>lokal</userVariable>
             </brick>
-<!--
-            <brick type="LegoNxtMotorStopBrick">
-              <motor>MOTOR_A</motor>
-            </brick>
-            <brick type="LegoNxtPlayToneBrick">
-              <formulaList>
-                <formula category="LEGO_NXT_DURATION_IN_SECONDS">
-                  <type>NUMBER</type>
-                  <value>1</value>
-                </formula>
-                <formula category="LEGO_NXT_FREQUENCY">
-                  <type>NUMBER</type>
-                  <value>2</value>
-                </formula>
-              </formulaList>
-            </brick>
-            <brick type="LegoNxtMotorActionBrick">
-              <formulaList>
-                <formula category="LEGO_NXT_SPEED">
-                  <type>NUMBER</type>
-                  <value>100</value>
-                </formula>
-              </formulaList>
-              <motor>MOTOR_A</motor>
-            </brick>
-            <brick type="LegoNxtMotorTurnAngleBrick">
-              <formulaList>
-                <formula category="LEGO_NXT_DEGREES">
-                  <type>NUMBER</type>
-                  <value>180</value>
-                </formula>
-              </formulaList>
-              <motor>MOTOR_A</motor>
-            </brick>
--->
           </brickList>
           <isUserScript>false</isUserScript>
         </script>
