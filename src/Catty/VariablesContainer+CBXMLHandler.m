@@ -98,9 +98,9 @@
             GDataXMLElement *userVariableElement = userVarElement;
             if ([CBXMLParser isReferenceElement:userVarElement]) {
                 // OMG!! user variable has already been defined outside the variables list
-                GDataXMLNode *referenceAttribute = [objectElement attributeForName:@"reference"];
+                GDataXMLNode *referenceAttribute = [userVarElement attributeForName:@"reference"];
                 NSString *xPath = [referenceAttribute stringValue];
-                userVariableElement = [objectElement singleNodeForCatrobatXPath:xPath];
+                userVariableElement = [userVarElement singleNodeForCatrobatXPath:xPath];
                 [XMLError exceptionIfNil:userVariableElement
                                  message:@"Invalid reference in object. No or too many objects found!"];
             }

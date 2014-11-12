@@ -61,6 +61,7 @@
         GDataXMLNode *nameAttribute = [pointedObjectElement attributeForName:@"name"];
         [XMLError exceptionIfNil:nameAttribute message:@"PointedObject must contain a name attribute"];
         spriteObject.name = [nameAttribute stringValue];
+        xmlElement = pointedObjectElement;
     } else {
         [XMLError exceptionWithMessage:@"Unsupported attribute: %@!", attribute.name];
     }
