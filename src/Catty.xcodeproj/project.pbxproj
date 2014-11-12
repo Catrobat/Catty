@@ -96,6 +96,8 @@
 		CA63C9D91A13E9F8009A32DB /* NextLookBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9D81A13E9F8009A32DB /* NextLookBrick+CBXMLHandler.m */; };
 		CA63C9DB1A13EAAE009A32DB /* ChangeSizeByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9DA1A13EAAE009A32DB /* ChangeSizeByNBrick+CBXMLHandler.m */; };
 		CA63C9DF1A13EBFB009A32DB /* SetGhostEffectBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9DE1A13EBFB009A32DB /* SetGhostEffectBrick+CBXMLHandler.m */; };
+		CA63C9E21A13EE47009A32DB /* ChangeGhostEffectBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9E11A13EE47009A32DB /* ChangeGhostEffectBrick+CBXMLHandler.m */; };
+		CA63C9E51A13EF56009A32DB /* SetBrightnessBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9E41A13EF56009A32DB /* SetBrightnessBrick+CBXMLHandler.m */; };
 		CA66CB7519F6B42400D849E0 /* CBXMLValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CA66CB7419F6B42400D849E0 /* CBXMLValidator.m */; };
 		CA775CBF19FD5BCB00C1E761 /* My First Program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CA6E4C4719F9C388001B65C3 /* My First Program.catrobat */; };
 		CA8486791A117A9E001B6368 /* SetSizeToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8486781A117A9E001B6368 /* SetSizeToBrick+CBXMLHandler.m */; };
@@ -823,6 +825,10 @@
 		CA63C9DC1A13EAC2009A32DB /* ChangeSizeByNBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChangeSizeByNBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		CA63C9DD1A13EBF5009A32DB /* SetGhostEffectBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetGhostEffectBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		CA63C9DE1A13EBFB009A32DB /* SetGhostEffectBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetGhostEffectBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		CA63C9E01A13EE41009A32DB /* ChangeGhostEffectBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChangeGhostEffectBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		CA63C9E11A13EE47009A32DB /* ChangeGhostEffectBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChangeGhostEffectBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		CA63C9E31A13EF4E009A32DB /* SetBrightnessBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetBrightnessBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		CA63C9E41A13EF56009A32DB /* SetBrightnessBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetBrightnessBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CA66CB7319F6B42400D849E0 /* CBXMLValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLValidator.h; sourceTree = "<group>"; };
 		CA66CB7419F6B42400D849E0 /* CBXMLValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLValidator.m; sourceTree = "<group>"; };
 		CA688200180AEEC2008A7C99 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
@@ -2990,6 +2996,8 @@
 			children = (
 				CA63C9DD1A13EBF5009A32DB /* SetGhostEffectBrick+CBXMLHandler.h */,
 				CA63C9DE1A13EBFB009A32DB /* SetGhostEffectBrick+CBXMLHandler.m */,
+				CA63C9E01A13EE41009A32DB /* ChangeGhostEffectBrick+CBXMLHandler.h */,
+				CA63C9E11A13EE47009A32DB /* ChangeGhostEffectBrick+CBXMLHandler.m */,
 			);
 			name = SetGhostEffectBrick;
 			sourceTree = "<group>";
@@ -2997,6 +3005,8 @@
 		CAAE4C341A06C7FE00040E02 /* SetBrightnessBrick */ = {
 			isa = PBXGroup;
 			children = (
+				CA63C9E31A13EF4E009A32DB /* SetBrightnessBrick+CBXMLHandler.h */,
+				CA63C9E41A13EF56009A32DB /* SetBrightnessBrick+CBXMLHandler.m */,
 			);
 			name = SetBrightnessBrick;
 			sourceTree = "<group>";
@@ -4011,6 +4021,7 @@
 				CADBD71B19B0E8C200C62836 /* ProgramTableHeaderView.m in Sources */,
 				CADBD71C19B0E8C200C62836 /* Brick.m in Sources */,
 				CADBD71D19B0E8C200C62836 /* BrickDetailViewController.m in Sources */,
+				CA63C9E51A13EF56009A32DB /* SetBrightnessBrick+CBXMLHandler.m in Sources */,
 				CADBD71E19B0E8C200C62836 /* SearchStoreViewController.m in Sources */,
 				CADBD71F19B0E8C200C62836 /* BroadcastBrick.m in Sources */,
 				CADBD72019B0E8C200C62836 /* NSDate+CustomExtensions.m in Sources */,
@@ -4192,6 +4203,7 @@
 				CADBD7B719B0E8C200C62836 /* GlideToBrickCell.m in Sources */,
 				CADBD7B819B0E8C200C62836 /* AHKActionSheet.m in Sources */,
 				CA63C9D91A13E9F8009A32DB /* NextLookBrick+CBXMLHandler.m in Sources */,
+				CA63C9E21A13EE47009A32DB /* ChangeGhostEffectBrick+CBXMLHandler.m in Sources */,
 				CADBD7B919B0E8C200C62836 /* SWLongPressGestureRecognizer.m in Sources */,
 				CADBD7BA19B0E8C200C62836 /* FXBlurView.m in Sources */,
 				CA2932C719EDD32800DB6701 /* CBXMLParser.m in Sources */,
