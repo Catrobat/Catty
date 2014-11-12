@@ -21,9 +21,6 @@
  */
 
 #import "SetYBrick+CBXMLHandler.h"
-#import "CBXMLValidator.h"
-#import "GDataXMLNode+CustomExtensions.h"
-#import "Formula+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
 
 @implementation SetYBrick (CBXMLHandler)
@@ -32,8 +29,6 @@
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"Y_POSITION"];
-    [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
-
     SetYBrick *setYBrick = [self new];
     setYBrick.yPosition = formula;
     return setYBrick;

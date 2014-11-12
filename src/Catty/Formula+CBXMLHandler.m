@@ -21,8 +21,6 @@
  */
 
 #import "Formula+CBXMLHandler.h"
-#import "CBXMLValidator.h"
-#import "GDataXMLNode+CustomExtensions.h"
 #import "FormulaElement+CBXMLHandler.h"
 
 @implementation Formula (CBXMLHandler)

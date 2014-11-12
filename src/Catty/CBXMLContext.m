@@ -26,6 +26,7 @@
 @interface CBXMLContext ()
 
 @property (nonatomic, strong, readwrite) NSMutableArray *userVariableList;
+@property (nonatomic, strong, readwrite) NSMutableArray *pointedSpriteObjectList;
 
 @end
 
@@ -40,8 +41,15 @@
     return _userVariableList;
 }
 
-#pragma mark - Initializers
+- (NSMutableArray*)spriteObjectList
+{
+    if (! _spriteObjectList) {
+        _spriteObjectList = [NSMutableArray array];
+    }
+    return _spriteObjectList;
+}
 
+#pragma mark - Initializers
 - (id)initWithSpriteObjectList:(NSMutableArray*)spriteObjectList
 {
     self = [super init];

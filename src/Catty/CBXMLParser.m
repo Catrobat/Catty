@@ -114,9 +114,8 @@
     [program updateReferences];
     program.XMLdocument = document;
 
-    // FIXME: REMOVE THIS LOG-Entry after parser has been fully implemented
-    NSLog(@"!!! NEW Catrobat XML Parser IS NOT FULLY IMPLEMENTED YET => RETURNING NIL !!!");
-
+    // TODO: REMOVE THIS LOG-Entry after parser has been fully implemented
+    NSLog(@"!!! NEW Catrobat XML Parser IS NOT FULLY IMPLEMENTED YET !!!");
     return program;
 }
 
@@ -152,8 +151,11 @@
     NSMutableArray *objectList = [NSMutableArray arrayWithCapacity:[objectElements count]];
     for (GDataXMLElement *objectElement in objectElements) {
         SpriteObject *spriteObject = [SpriteObject parseFromElement:objectElement withContext:context];
-        if(spriteObject != nil)
+        if (spriteObject != nil)
             [objectList addObject:spriteObject];
+
+        // TODO: sanity check => check if all objects from context are in objectList
+
     }
     NSLog(@"</objectList>");
     return objectList;

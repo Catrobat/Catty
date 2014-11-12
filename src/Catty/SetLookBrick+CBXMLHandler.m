@@ -26,7 +26,6 @@
 #import "CBXMLParser.h"
 #import "Look+CBXMLHandler.h"
 #import "CBXMLContext.h"
-#import "Formula+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
 
 @implementation SetLookBrick (CBXMLHandler)

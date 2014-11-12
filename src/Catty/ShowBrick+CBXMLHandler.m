@@ -28,7 +28,6 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
-
     return [self new]; // nothing else to do!
 }
 

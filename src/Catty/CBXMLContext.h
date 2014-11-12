@@ -29,6 +29,7 @@
 
 @property (nonatomic, strong) CBXMLOpenedNestingBricksStack *openedNestingBricksStack;
 @property (nonatomic, strong, readonly) NSMutableArray *userVariableList; // contains all already parsed UserVariables
+@property (nonatomic, strong, readonly) NSMutableArray *pointedSpriteObjectList; // contains all already parsed pointed (!!) SpriteObjects
 @property (nonatomic, strong) NSMutableArray *spriteObjectList; // contains all already parsed SpriteObjects
 @property (nonatomic, strong) NSMutableArray *lookList; // of currently parsed SpriteObject
 @property (nonatomic, strong) NSMutableArray *soundList; // of currently parsed SpriteObject

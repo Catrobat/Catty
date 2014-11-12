@@ -21,9 +21,6 @@
  */
 
 #import "SetXBrick+CBXMLHandler.h"
-#import "CBXMLValidator.h"
-#import "GDataXMLNode+CustomExtensions.h"
-#import "Formula+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
 
 @implementation SetXBrick (CBXMLHandler)
@@ -32,7 +29,6 @@
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"X_POSITION"];
-
     SetXBrick *setXBrick = [self new];
     setXBrick.xPosition = formula;
     return setXBrick;

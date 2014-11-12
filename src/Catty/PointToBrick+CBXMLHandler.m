@@ -23,21 +23,29 @@
 #import "PointToBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "GDataXMLNode+CustomExtensions.h"
-#import "Formula+CBXMLHandler.h"
 #import "SpriteObject+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
+#import "CBXMLContext.h"
+#import "CBXMLParser.h"
 
 @implementation PointToBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
-    
     GDataXMLElement *pointedObjectElement = [xmlElement childWithElementName:@"pointedObject"];
     [XMLError exceptionIfNil:pointedObjectElement message:@"No pointedObject element found..."];
-    
+
+    // check if pointed sprite object already exists in context (e.g. already created by other PointToBrick)
     SpriteObject *spriteObject = [SpriteObject parseFromElement:pointedObjectElement withContext:context];
-    
+    SpriteObject *alreadyExistantSpriteObject = [CBXMLParser findSpriteObjectInArray:context.pointedSpriteObjectList
+                                                                            withName:spriteObject.name];
+    if (alreadyExistantSpriteObject) {
+        spriteObject = alreadyExistantSpriteObject;
+    } else {
+        [context.pointedSpriteObjectList addObject:spriteObject];
+    }
+
     PointToBrick *pointToBrick = [self new];
     pointToBrick.pointedObject = spriteObject;
     return pointToBrick;

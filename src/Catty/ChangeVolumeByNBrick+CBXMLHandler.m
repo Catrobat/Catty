@@ -20,20 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "TurnRightBrick+CBXMLHandler.h"
-#import "CBXMLValidator.h"
+#import "ChangeVolumeByNBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
 
-@implementation TurnRightBrick (CBXMLHandler)
+@implementation ChangeVolumeByNBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"TURN_RIGHT_DEGREES"];
-    [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
-    TurnRightBrick *turnRightBrick = [self new];
-    turnRightBrick.degrees = formula;
-    return turnRightBrick;
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
+    ChangeVolumeByNBrick *changeVolumeByNBrick = [self new];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VOLUME_CHANGE"];
+    changeVolumeByNBrick.volume = formula;
+    return changeVolumeByNBrick;
 }
 
 @end

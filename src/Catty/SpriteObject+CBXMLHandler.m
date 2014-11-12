@@ -28,6 +28,7 @@
 #import "Sound+CBXMLHandler.h"
 #import "Script+CBXMLHandler.h"
 #import "CBXMLContext.h"
+#import "CBXMLParser.h"
 
 @implementation SpriteObject (CBXMLHandler)
 
@@ -50,8 +51,10 @@
     GDataXMLElement *pointedObjectElement = nil;
     // check if normal or pointed object
     if ([attribute.name isEqualToString:@"name"]) {
+        // case: it's a normal object
         spriteObject.name = [attribute stringValue];
     } else if ([attribute.name isEqualToString:@"reference"]) {
+        // case: it's a pointed object
         NSString *xPath = [attribute stringValue];
         pointedObjectElement = [xmlElement singleNodeForCatrobatXPath:xPath];
         [XMLError exceptionIfNode:pointedObjectElement isNilOrNodeNameNotEquals:@"pointedObject"];
@@ -61,16 +64,23 @@
     } else {
         [XMLError exceptionWithMessage:@"Unsupported attribute: %@!", attribute.name];
     }
-    NSLog(@"<object name=\"%@\">", spriteObject.name);
 
-    spriteObject.lookList = [self parseAndCreateLooks:(pointedObjectElement ? pointedObjectElement : xmlElement)];
+    // sprite object could (!) already exist in pointedSpriteObjectList at this point!
+    SpriteObject *alreadyExistantSpriteObject = nil;
+    alreadyExistantSpriteObject = [CBXMLParser findSpriteObjectInArray:context.pointedSpriteObjectList
+                                                              withName:spriteObject.name];
+    if (alreadyExistantSpriteObject) {
+        return alreadyExistantSpriteObject;
+    }
+
+    NSLog(@"<object name=\"%@\">", spriteObject.name);
+    spriteObject.lookList = [self parseAndCreateLooks:xmlElement];
     context.lookList = spriteObject.lookList;
-    
-    spriteObject.soundList = [self parseAndCreateSounds:(pointedObjectElement ? pointedObjectElement : xmlElement)];
+
+    spriteObject.soundList = [self parseAndCreateSounds:xmlElement];
     context.soundList = spriteObject.soundList;
-    
-    spriteObject.scriptList = [self parseAndCreateScripts:(pointedObjectElement ? pointedObjectElement : xmlElement)
-                                              withContext:context];
+
+    spriteObject.scriptList = [self parseAndCreateScripts:xmlElement withContext:context];
     return spriteObject;
 }
 

@@ -24,10 +24,7 @@
 #import "Formula.h"
 #import "AudioManager.h"
 
-
 @implementation ChangeVolumeByNBrick
-
-@synthesize volume  = _volume;
 
 - (NSString*)brickTitle
 {
@@ -45,14 +42,10 @@
     }];
 }
 
-
 #pragma mark - Description
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"Change Volume by: %f%%)", [self.volume interpretDoubleForSprite:self.object]/100.0f];
 }
-
-
-
 
 @end

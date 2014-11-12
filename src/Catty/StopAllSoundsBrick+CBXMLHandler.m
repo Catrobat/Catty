@@ -21,10 +21,6 @@
  */
 
 #import "StopAllSoundsBrick+CBXMLHandler.h"
-#import "CBXMLValidator.h"
-#import "GDataXMLNode+CustomExtensions.h"
-#import "CBXMLParser.h"
-#import "CBXMLContext.h"
 #import "CBXMLParserHelper.h"
 
 @implementation StopAllSoundsBrick (CBXMLHandler)
