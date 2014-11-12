@@ -104,6 +104,8 @@
 		CA63C9F31A13F294009A32DB /* LedOffBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9F21A13F294009A32DB /* LedOffBrick.m */; };
 		CA63C9F61A13F30F009A32DB /* LedOnBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9F51A13F30F009A32DB /* LedOnBrick+CBXMLHandler.m */; };
 		CA63C9F91A13F34B009A32DB /* LedOffBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9F81A13F34B009A32DB /* LedOffBrick+CBXMLHandler.m */; };
+		CA63C9FC1A13F4EE009A32DB /* VibrationBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9FB1A13F4EE009A32DB /* VibrationBrick.m */; };
+		CA63CA011A13F648009A32DB /* VibrationBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63CA001A13F648009A32DB /* VibrationBrick+CBXMLHandler.m */; };
 		CA66CB7519F6B42400D849E0 /* CBXMLValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CA66CB7419F6B42400D849E0 /* CBXMLValidator.m */; };
 		CA775CBF19FD5BCB00C1E761 /* My First Program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CA6E4C4719F9C388001B65C3 /* My First Program.catrobat */; };
 		CA8486791A117A9E001B6368 /* SetSizeToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8486781A117A9E001B6368 /* SetSizeToBrick+CBXMLHandler.m */; };
@@ -847,6 +849,10 @@
 		CA63C9F51A13F30F009A32DB /* LedOnBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LedOnBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CA63C9F71A13F346009A32DB /* LedOffBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LedOffBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		CA63C9F81A13F34B009A32DB /* LedOffBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LedOffBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		CA63C9FA1A13F4E6009A32DB /* VibrationBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VibrationBrick.h; sourceTree = "<group>"; };
+		CA63C9FB1A13F4EE009A32DB /* VibrationBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VibrationBrick.m; sourceTree = "<group>"; };
+		CA63C9FF1A13F635009A32DB /* VibrationBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VibrationBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		CA63CA001A13F648009A32DB /* VibrationBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VibrationBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CA66CB7319F6B42400D849E0 /* CBXMLValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLValidator.h; sourceTree = "<group>"; };
 		CA66CB7419F6B42400D849E0 /* CBXMLValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLValidator.m; sourceTree = "<group>"; };
 		CA688200180AEEC2008A7C99 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
@@ -2583,6 +2589,24 @@
 			name = LEDBricks;
 			sourceTree = "<group>";
 		};
+		CA63C9FD1A13F4F7009A32DB /* VibrationBrick */ = {
+			isa = PBXGroup;
+			children = (
+				CA63C9FA1A13F4E6009A32DB /* VibrationBrick.h */,
+				CA63C9FB1A13F4EE009A32DB /* VibrationBrick.m */,
+			);
+			name = VibrationBrick;
+			sourceTree = "<group>";
+		};
+		CA63C9FE1A13F613009A32DB /* VibrationBrick */ = {
+			isa = PBXGroup;
+			children = (
+				CA63C9FF1A13F635009A32DB /* VibrationBrick+CBXMLHandler.h */,
+				CA63CA001A13F648009A32DB /* VibrationBrick+CBXMLHandler.m */,
+			);
+			name = VibrationBrick;
+			sourceTree = "<group>";
+		};
 		CA6881FE180AEA85008A7C99 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2934,6 +2958,7 @@
 				CAAE4C2D1A06C7C400040E02 /* SoundBricks */,
 				CAAE4C2C1A06C7BE00040E02 /* TurnBricks */,
 				CAAE4C2B1A06C7B900040E02 /* WaitBrick */,
+				CA63C9FE1A13F613009A32DB /* VibrationBrick */,
 			);
 			name = Bricks;
 			sourceTree = "<group>";
@@ -3414,6 +3439,7 @@
 				CD0CCFEC170CB6DC00B70036 /* SoundBricks */,
 				CD0CCFF3170CB77800B70036 /* TurnBricks */,
 				CD0CCFF4170CB78000B70036 /* WaitBrick */,
+				CA63C9FD1A13F4F7009A32DB /* VibrationBrick */,
 			);
 			name = Bricks;
 			sourceTree = "<group>";
@@ -4106,6 +4132,7 @@
 				4CEC09251A139D7C00059BB9 /* CBXMLParserHelper.m in Sources */,
 				CADBD73D19B0E8C200C62836 /* Header.m in Sources */,
 				CADBD73E19B0E8C200C62836 /* HideBrick.m in Sources */,
+				CA63C9FC1A13F4EE009A32DB /* VibrationBrick.m in Sources */,
 				CAFAEAEF1A13C7F600C9F170 /* IfLogicElseBrick+CBXMLHandler.m in Sources */,
 				CAFAEAEC1A13C2C900C9F170 /* SpeakBrick+CBXMLHandler.m in Sources */,
 				CADBD73F19B0E8C200C62836 /* Look.m in Sources */,
@@ -4241,6 +4268,7 @@
 				CADBD7AC19B0E8C200C62836 /* ComeToFrontBrickCell.m in Sources */,
 				CADBD7AD19B0E8C200C62836 /* FeaturedProgramsStoreViewController.m in Sources */,
 				CADBD7AE19B0E8C200C62836 /* ScenePresenterViewController.m in Sources */,
+				CA63CA011A13F648009A32DB /* VibrationBrick+CBXMLHandler.m in Sources */,
 				CAFAEAFB1A13E21900C9F170 /* RepeatBrick+CBXMLHandler.m in Sources */,
 				CADBD7AF19B0E8C200C62836 /* Reachability.m in Sources */,
 				4CEC09211A139A7A00059BB9 /* TurnLeftBrick+CBXMLHandler.m in Sources */,

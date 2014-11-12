@@ -332,6 +332,7 @@
 #define kLocalizedWhenProgramStarted NSLocalizedString(@"When program started", nil)
 #define kLocalizedWhenTapped NSLocalizedString(@"When tapped", nil)
 #define kLocalizedWaitNSeconds NSLocalizedString(@"Wait %@ second(s)", nil)
+#define kLocalizedVibrateNSeconds NSLocalizedString(@"Vibrate %@ second(s)", nil)
 #define kLocalizedWhenIReceive NSLocalizedString(@"When I receive\n%@", nil)
 #define kLocalizedBroadcast NSLocalizedString(@"Broadcast\n%@", nil)
 #define kLocalizedBroadcastAndWait NSLocalizedString(@"Broadcast and wait\n%@", nil)
