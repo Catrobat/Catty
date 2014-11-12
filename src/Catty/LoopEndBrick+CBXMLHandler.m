@@ -26,7 +26,8 @@
 #import "CBXMLParser.h"
 #import "CBXMLContext.h"
 #import "CBXMLOpenedNestingBricksStack.h"
-#import "ForeverBrick+CBXMLHandler.h"
+#import "ForeverBrick.h"
+#import "RepeatBrick.h"
 #import "CBXMLParserHelper.h"
 
 @implementation LoopEndBrick (CBXMLHandler)
@@ -39,7 +40,8 @@
 
     // pop opening nesting brick from stack
     Brick *openingNestingBrick = [context.openedNestingBricksStack popAndCloseTopMostNestingBrick];
-    if (! [openingNestingBrick isKindOfClass:[LoopBeginBrick class]]) {
+    if ((! [openingNestingBrick isKindOfClass:[LoopBeginBrick class]])
+        && (! [openingNestingBrick isKindOfClass:[RepeatBrick class]])) {
         [XMLError exceptionWithMessage:@"Unexpected closing of nesting brick: expected LoopEndlessBrick but got %@", NSStringFromClass([openingNestingBrick class])];
     }
     loopEndBrick.loopBeginBrick = (LoopBeginBrick*)openingNestingBrick;

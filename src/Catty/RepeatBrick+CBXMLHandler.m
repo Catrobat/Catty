@@ -20,22 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ForeverBrick+CBXMLHandler.h"
+#import "RepeatBrick+CBXMLHandler.h"
 #import "CBXMLContext.h"
 #import "CBXMLOpenedNestingBricksStack.h"
 #import "CBXMLParserHelper.h"
 
-@implementation ForeverBrick (CBXMLHandler)
+@implementation RepeatBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
-
-    ForeverBrick *foreverBrick = [self new];
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
+    RepeatBrick *repeatBrick = [self new];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"TIMES_TO_REPEAT"];
+    repeatBrick.timesToRepeat = formula;
 
     // add opening nesting brick on stack
-    [context.openedNestingBricksStack pushAndOpenNestingBrick:foreverBrick];
-    return foreverBrick;
+    [context.openedNestingBricksStack pushAndOpenNestingBrick:repeatBrick];
+    return repeatBrick;
 }
 
 @end

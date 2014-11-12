@@ -20,22 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ForeverBrick+CBXMLHandler.h"
-#import "CBXMLContext.h"
-#import "CBXMLOpenedNestingBricksStack.h"
-#import "CBXMLParserHelper.h"
+#import "BroadcastBrick.h"
+#import "CBParserNodeProtocol.h"
 
-@implementation ForeverBrick (CBXMLHandler)
-
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
-{
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
-
-    ForeverBrick *foreverBrick = [self new];
-
-    // add opening nesting brick on stack
-    [context.openedNestingBricksStack pushAndOpenNestingBrick:foreverBrick];
-    return foreverBrick;
-}
+@interface BroadcastBrick (CBXMLHandler) <CBParserNodeProtocol>
 
 @end

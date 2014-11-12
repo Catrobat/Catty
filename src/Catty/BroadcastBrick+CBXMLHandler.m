@@ -20,22 +20,26 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ForeverBrick+CBXMLHandler.h"
-#import "CBXMLContext.h"
-#import "CBXMLOpenedNestingBricksStack.h"
+#import "BroadcastBrick+CBXMLHandler.h"
+#import "GDataXMLNode+CustomExtensions.h"
+#import "CBXMLValidator.h"
 #import "CBXMLParserHelper.h"
 
-@implementation ForeverBrick (CBXMLHandler)
+@implementation BroadcastBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
+    GDataXMLElement *broadcastMessageElement = [xmlElement childWithElementName:@"broadcastMessage"];
+    [XMLError exceptionIfNil:broadcastMessageElement
+                     message:@"BroadcastBrick element does not contain a broadcastMessage child element!"];
 
-    ForeverBrick *foreverBrick = [self new];
+    NSString *broadcastMessage = [broadcastMessageElement stringValue];
+    [XMLError exceptionIfNil:broadcastMessage message:@"No broadcastMessage given..."];
 
-    // add opening nesting brick on stack
-    [context.openedNestingBricksStack pushAndOpenNestingBrick:foreverBrick];
-    return foreverBrick;
+    BroadcastBrick *broadcastBrick = [self new];
+    broadcastBrick.broadcastMessage = broadcastMessage;
+    return broadcastBrick;
 }
 
 @end
