@@ -147,7 +147,7 @@
     [XMLError exceptionIf:[objectListElements count] notEquals:1 message:@"No objectList given!"];
     NSArray *objectElements = [[objectListElements firstObject] children];
     [XMLError exceptionIf:[objectListElements count] equals:0
-                  message:@"No objects in objectList, but there must exit at least 1 object (background)!!"];
+                  message:@"No objects in objectList, but there must exist at least 1 object (background)!!"];
     NSLog(@"<objectList>");
     NSMutableArray *objectList = [NSMutableArray arrayWithCapacity:[objectElements count]];
     for (GDataXMLElement *objectElement in objectElements) {
