@@ -23,6 +23,7 @@
 #import <UIKit/UIKit.h>
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "FormulaEditorViewController.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
 @interface FormulaEditorTextView : UITextView <UITextViewDelegate>
 

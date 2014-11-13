@@ -112,7 +112,8 @@
 
 - (void)formulaTapped:(UITapGestureRecognizer *)recognizer
 {
-    self.selectedTextRange = nil;
+    NSMutableAttributedString *formulaString = [[NSMutableAttributedString alloc] initWithString:[self text] attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20.0f]}];
+    
     UITextView *formulView = (UITextView *)recognizer.view;
     CGPoint point = [recognizer locationInView:formulView];
     point.x -= formulView.textContainerInset.left;
@@ -129,21 +130,33 @@
     int startIndex = [self.formulaEditorViewController.internFormula getExternSelectionStartIndex];
     int endIndex = [self.formulaEditorViewController.internFormula getExternSelectionEndIndex];
     
-    UITextPosition *cursorPositionStart = [self positionFromPosition:self.beginningOfDocument
+    UITextPosition* beginning = formulView.beginningOfDocument;
+    UITextPosition *cursorPositionStart = [self positionFromPosition:beginning
                                                               offset:startIndex];
-    
-    UITextPosition *cursorPositionEnd = [self positionFromPosition:self.beginningOfDocument
+    UITextPosition *cursorPositionEnd = [self positionFromPosition:beginning
                                                             offset:endIndex];
+    
+    NSInteger location = [formulView offsetFromPosition:beginning toPosition:cursorPositionStart];
+    NSInteger length = [formulView offsetFromPosition:cursorPositionStart toPosition:cursorPositionEnd];
+    
     NSLog(@"tap from %d to %d!", startIndex, endIndex);
     
     if(startIndex == endIndex)
     {
+        self.attributedText = formulaString;
         UITextPosition *cursorPosition = [self positionFromPosition:self.beginningOfDocument
                                                                 offset:characterIndex];
         self.selectedTextRange = [self textRangeFromPosition:cursorPosition toPosition:cursorPosition];
     }
     else{
-        self.selectedTextRange = [self textRangeFromPosition:cursorPositionStart toPosition:cursorPositionEnd];
+        [formulaString addAttribute:NSBackgroundColorAttributeName value:[UIColor lightOrangeColor] range:NSMakeRange(location, length)];
+        UITextPosition *cursorPosition = [self positionFromPosition:self.beginningOfDocument
+                                                             offset:endIndex];
+        self.attributedText = formulaString;
+        self.selectedTextRange = [self textRangeFromPosition:cursorPosition toPosition:cursorPosition];
+        
+        //self.selectedTextRange = [self textRangeFromPosition:cursorPositionStart toPosition:cursorPositionEnd];
+    
     }
     
     
