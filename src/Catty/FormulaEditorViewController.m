@@ -42,6 +42,7 @@
 #import "AHKActionSheet.h"
 #import "FormulaEditorButton.h"
 #import "BrickFormulaProtocol.h"
+#import "UIImage+CatrobatUIImageExtensions.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -60,6 +61,21 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
 @property (strong, nonatomic) UIMotionEffectGroup *motionEffects;
 @property (strong, nonatomic) FormulaEditorTextView *formulaEditorTextView;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *orangeTypeButton;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *toolTypeButton;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *normalTypeButton;
+
+@property (weak, nonatomic) IBOutlet UIScrollView *calcScrollView;
+@property (weak, nonatomic) IBOutlet UIScrollView *mathScrollView;
+@property (weak, nonatomic) IBOutlet UIScrollView *logicScrollView;
+@property (weak, nonatomic) IBOutlet UIScrollView *objectScrollView;
+@property (weak, nonatomic) IBOutlet UIScrollView *sensorScrollView;
+
+@property (weak, nonatomic) IBOutlet UIButton *calcButton;
+@property (weak, nonatomic) IBOutlet UIButton *mathbutton;
+@property (weak, nonatomic) IBOutlet UIButton *logicButton;
+@property (weak, nonatomic) IBOutlet UIButton *objectButton;
+@property (weak, nonatomic) IBOutlet UIButton *sensorButton;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
 @property (weak, nonatomic) IBOutlet UIButton *undoButton;
@@ -125,6 +141,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [CellMotionEffect addMotionEffectForView:self.brickCell withDepthX:0.0f withDepthY:25.0f withMotionEffectGroup:self.motionEffects];
     
     [self showFormulaEditor];
+    [self hideScrollViews];
+    self.calcScrollView.hidden = NO;
+    [self.calcButton setSelected:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -378,10 +397,24 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(1, self.brickCell.frame.size.height + 41, self.view.frame.size.width - 2, 0) AndFormulaEditorViewController:self];
     [self.view addSubview:self.formulaEditorTextView];
     
-    for(int i = 0; i < [self.buttons count]; i++) {
-        [[self.buttons objectAtIndex:i] setTitleColor:UIColor.lightOrangeColor forState:UIControlStateNormal];
+    for(int i = 0; i < [self.orangeTypeButton count]; i++) {
+        [[self.orangeTypeButton objectAtIndex:i] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [[self.orangeTypeButton objectAtIndex:i] setBackgroundColor:[UIColor lightOrangeColor]];
+      
+        [[self.orangeTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor orangeColor]] forState:UIControlStateHighlighted];
     }
-    
+  for(int i = 0; i < [self.normalTypeButton count]; i++) {
+    [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor skyBlueColor] forState:UIControlStateNormal];
+    [[self.normalTypeButton objectAtIndex:i] setBackgroundColor:[UIColor airForceBlueColor]];
+    [[self.normalTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateHighlighted];
+  }
+  for(int i = 0; i < [self.toolTypeButton count]; i++) {
+    [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor skyBlueColor] forState:UIControlStateNormal];
+    [[self.toolTypeButton objectAtIndex:i] setBackgroundColor:[UIColor darkBlueColor]];
+    [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateHighlighted];
+          [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateSelected];
+  }
+  
     [self update];
     [self.formulaEditorTextView becomeFirstResponder];
 }
@@ -408,18 +441,62 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.brickCell setupBrickCell];
 }
 
-- (IBAction)showMathFunctionsMenu:(id)sender
-{
-    [self.formulaEditorTextView resignFirstResponder];
-    [self.mathFunctionsMenu show];
-    [self.mathFunctionsMenu becomeFirstResponder];
+//- (IBAction)showMathFunctionsMenu:(id)sender
+//{
+//    [self.formulaEditorTextView resignFirstResponder];
+//    [self.mathFunctionsMenu show];
+//    [self.mathFunctionsMenu becomeFirstResponder];
+//}
+//
+//- (IBAction)showLogicalOperatorsMenu:(id)sender
+//{
+//    [self.formulaEditorTextView resignFirstResponder];
+//    [self.logicalOperatorsMenu show];
+//    [self.logicalOperatorsMenu becomeFirstResponder];
+//}
+- (IBAction)showCalc:(UIButton *)sender {
+    [self hideScrollViews];
+    self.calcScrollView.hidden = NO;
+    [self.calcButton setSelected:YES];
+    [self.calcScrollView scrollsToTop];
+}
+- (IBAction)showFunction:(UIButton *)sender {
+    [self hideScrollViews];
+    self.mathScrollView.hidden = NO;
+    [self.mathbutton setSelected:YES];
+    [self.mathScrollView scrollsToTop];
+}
+- (IBAction)showLogic:(UIButton *)sender {
+    [self hideScrollViews];
+    self.logicScrollView.hidden = NO;
+    [self.logicButton setSelected:YES];
+    [self.logicScrollView scrollsToTop];
+}
+- (IBAction)showObject:(UIButton *)sender {
+    [self hideScrollViews];
+    self.objectScrollView.hidden = NO;
+    [self.objectButton setSelected:YES];
+    [self.objectScrollView scrollsToTop];
+}
+- (IBAction)showSensor:(UIButton *)sender {
+    [self hideScrollViews];
+    self.sensorScrollView.hidden = NO;
+    [self.sensorButton setSelected:YES];
+    [self.sensorScrollView scrollsToTop];
 }
 
-- (IBAction)showLogicalOperatorsMenu:(id)sender
+-(void)hideScrollViews
 {
-    [self.formulaEditorTextView resignFirstResponder];
-    [self.logicalOperatorsMenu show];
-    [self.logicalOperatorsMenu becomeFirstResponder];
+    self.mathScrollView.hidden = YES;
+    self.calcScrollView.hidden = YES;
+    self.logicScrollView.hidden = YES;
+    self.objectScrollView.hidden = YES;
+    self.sensorScrollView.hidden = YES;
+    [self.calcButton setSelected:NO];
+    [self.mathbutton setSelected:NO];
+    [self.objectButton setSelected:NO];
+    [self.logicButton setSelected:NO];
+    [self.sensorButton setSelected:NO];
 }
 
 - (void)closeMenu
