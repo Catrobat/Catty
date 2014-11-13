@@ -44,7 +44,7 @@
 #define kParserObjectTypeDate           @"T@\"NSDate\""
 
 // NEVER MOVE THESE DEFINE CONSTANTS TO ANOTHER (HEADER) FILE
-#define kCatrobatXMLParserMinSupportedLanguageVersion 0.093f
+#define kCatrobatXMLParserMinSupportedLanguageVersion 0.93f
 #define kCatrobatXMLParserMaxSupportedLanguageVersion CGFLOAT_MAX
 
 @interface CBXMLParser()

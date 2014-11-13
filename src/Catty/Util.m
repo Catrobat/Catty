@@ -540,33 +540,6 @@
         return kCatrobatInvalidVersion;
     }
 
-    // handle language versions that contain more than one dot-separator!
-    // e.g. => convert 0.9.2 to 0.0902
-    //      => convert 0.10.2 to 0.1002
-    //      => convert 0.9.2.1 to 0.090201
-    NSArray *languageVersionNumberParts = [languageVersionString componentsSeparatedByString:@"."];
-    if ([languageVersionNumberParts count] > 1) {
-        NSUInteger index = 0;
-        NSString *majorVersionNumberString = [languageVersionNumberParts objectAtIndex:index];
-        NSString *subVersionNumberString = [languageVersionNumberParts objectAtIndex:(index+1)];
-        NSUInteger subVersionNumber = [subVersionNumberString integerValue];
-        if (subVersionNumber < 10) {
-            subVersionNumberString = [@"0" stringByAppendingString:subVersionNumberString];
-        }
-        NSMutableString *filteredLanguageVersionString = [NSMutableString stringWithFormat:@"%@.%@",
-                                                          majorVersionNumberString,
-                                                          subVersionNumberString];
-        for (index = 2; index < [languageVersionNumberParts count]; ++index) {
-            NSString *subSubVersionNumberString = [languageVersionNumberParts objectAtIndex:index];
-            NSUInteger subSubVersionNumber = [subSubVersionNumberString integerValue];
-            if (subSubVersionNumber < 10) {
-                subSubVersionNumberString = [@"0" stringByAppendingString:subSubVersionNumberString];
-            }
-            [filteredLanguageVersionString appendString:subSubVersionNumberString];
-        }
-        languageVersionString = [filteredLanguageVersionString copy];
-    }
-
     // check if string contains valid number
     if (! [languageVersionString isValidNumber]) {
         return kCatrobatInvalidVersion;
