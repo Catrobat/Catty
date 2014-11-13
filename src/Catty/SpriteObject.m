@@ -41,22 +41,11 @@
 
 @interface SpriteObject()
 
-//@property (nonatomic, strong) NSMutableArray *activeScripts; // not in use at the moment
-//@property (nonatomic, strong) NSMutableDictionary *sounds; // not in use at the moment
-
 @end
 
 @implementation SpriteObject
 
-//- (id)init
-//{
-//    if (self = [super init]) {
-//        self.activeScripts = [[NSMutableArray alloc] initWithCapacity:self.scriptList.count]; // not in use at the moment
-//    }
-//    return self;
-//}
-
--(NSMutableArray*)lookList
+- (NSMutableArray*)lookList
 {
     // lazy instantiation
     if (! _lookList)
@@ -765,6 +754,7 @@
 - (NSString*)description
 {
     NSMutableString *mutableString = [NSMutableString string];
+    [mutableString appendFormat:@"Name: %@\r", self.name];
     [mutableString appendFormat:@"Scripts: %@\r", self.scriptList];
     [mutableString appendFormat:@"Looks: %@\r", self.lookList];
     [mutableString appendFormat:@"Sounds: %@\r", self.soundList];

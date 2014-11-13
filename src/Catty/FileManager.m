@@ -329,7 +329,10 @@
         return;
     }
         [self addNewBundleProgramWithName:kDefaultProgramBundleName];
-#if kIsRelease // kIsRelease
+
+//############################################################################################################
+//############################################################################################################
+//############################################################################################################
 #define kDefaultProgramBundleBackgroundName @"Background"
 #define kDefaultProgramBundleOtherObjectsNamePrefix @"Mole"
         // XXX: HACK serialization-workaround
@@ -337,7 +340,7 @@
             // SYNC and NOT ASYNC here because the UI must wait!!
             dispatch_queue_t translateBundleQ = dispatch_queue_create("translate bundle", NULL);
             dispatch_sync(translateBundleQ, ^{
-                NSString *xmlPath = [[Program projectPathForProgramWithName:kDefaultProgramBundleName]
+                NSString *xmlPath = [[Program projectPathForProgramWithName:kDefaultProgramBundleName programID:nil]
                                      stringByAppendingString:kProgramCodeFileName];
                 NSError *nserror = nil;
                 NSMutableString *xmlString = [NSMutableString stringWithContentsOfFile:xmlPath
@@ -349,24 +352,26 @@
                                               options:NSCaseInsensitiveSearch
                                                 range:NSMakeRange(0, [xmlString length])];
                 [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<object name=\"%@\">", kDefaultProgramBundleBackgroundName]
-                                           withString:[NSString stringWithFormat:@"<object name=\"%@\">", kGeneralBackgroundObjectName]
+                                           withString:[NSString stringWithFormat:@"<object name=\"%@\">", kLocalizedBackground]
                                               options:NSCaseInsensitiveSearch
                                                 range:NSMakeRange(0, [xmlString length])];
                 [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<object name=\"%@\">", kDefaultProgramBundleOtherObjectsNamePrefix]
-                                           withString:[NSString stringWithFormat:@"<object name=\"%@\">", kDefaultProgramOtherObjectsNamePrefix]
+                                           withString:[NSString stringWithFormat:@"<object name=\"%@\">", kLocalizedMole]
                                               options:NSCaseInsensitiveSearch
                                                 range:NSMakeRange(0, [xmlString length])];
                 [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&nserror];
                 NSLogError(nserror);
-                [self moveExistingDirectoryAtPath:[Program projectPathForProgramWithName:kDefaultProgramBundleName]
-                                           toPath:[Program projectPathForProgramWithName:kLocalizedMyFirstProgram]];
+                [self moveExistingDirectoryAtPath:[Program projectPathForProgramWithName:kDefaultProgramBundleName programID:nil]
+                                           toPath:[Program projectPathForProgramWithName:kLocalizedMyFirstProgram programID:nil]];
             });
         }
-#else // kIsRelease
-        ProgramLoadingInfo *loadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:kDefaultProgramBundleName programID:nil];
-        Program *program = [Program programWithLoadingInfo:loadingInfo];
-        [program translateDefaultProgram];
-#endif // kIsRelease
+//############################################################################################################
+//############################################################################################################
+//############################################################################################################
+
+//        ProgramLoadingInfo *loadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:kDefaultProgramBundleName programID:nil];
+//        Program *program = [Program programWithLoadingInfo:loadingInfo];
+//        [program translateDefaultProgram];
 }
 
 - (void)addNewBundleProgramWithName:(NSString*)projectName
@@ -686,7 +691,7 @@
 {
     NSURL *localFileURL = [NSURL fileURLWithPath:URL];
     assert([NSFileManager.defaultManager fileExistsAtPath:URL]);
-    
+
     NSError *error = nil;
     BOOL success = [localFileURL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:&error];
     if (!success) {

@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "Program.h"
 #import "VariablesContainer.h"
 #import "Util.h"
@@ -28,7 +27,7 @@
 #import "SpriteObject.h"
 #import "AppDelegate.h"
 #import "FileManager.h"
-#import "GDataXMLNode+PrettyFormatterExtensions.h"
+#import "GDataXMLNode+CustomExtensions.h"
 #import "SensorHandler.h"
 #import "ProgramLoadingInfo.h"
 #import "Parser.h"
@@ -37,6 +36,8 @@
 #import "LanguageTranslationDefines.h"
 #import "UserVariable.h"
 #import "OrderedMapTable.h"
+#import "CBXMLParser.h"
+#import "CatrobatLanguageDefines.h"
 
 @implementation Program
 
@@ -83,10 +84,29 @@
     NSDebug(@"Path: %@", loadingInfo.basePath);
     NSString *xmlPath = [NSString stringWithFormat:@"%@%@", loadingInfo.basePath, kProgramCodeFileName];
     NSDebug(@"XML-Path: %@", xmlPath);
-    Parser *parser = [[Parser alloc] init];
-    Program *program = [parser generateObjectForProgramWithPath:xmlPath];
+
+//    //######### FIXME remove that later!! {
+//        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+//        xmlPath = [bundle pathForResource:@"ValidProgramAllBricks" ofType:@"xml"];
+//    // }
+
+    Program *program = nil;
+    CGFloat languageVersion = [Util detectCBLanguageVersionFromXMLWithPath:xmlPath];
+
+    if (languageVersion == kCatrobatInvalidVersion) {
+        NSLog(@"Invalid catrobat language version!");
+        return nil;
+    }
+
+    // detect right parser for correct catrobat language version
+    CBXMLParser *catrobatParser = [[CBXMLParser alloc] initWithPath:xmlPath];
+    if (! [catrobatParser isSupportedLanguageVersion:languageVersion]) {
+        Parser *parser = [[Parser alloc] init];
+        program = [parser generateObjectForProgramWithPath:xmlPath];
+    } else {
+        program = [catrobatParser parseAndCreateProgram];
+    }
     program.header.programID = loadingInfo.programID;
-    program.XMLdocument = parser.XMLdocument;
 
     if (! program)
         return nil;
@@ -332,66 +352,63 @@
 
 - (void)saveToDisk
 {
-#if kIsRelease
     return;
-#else // kIsRelease
-    dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
-    dispatch_async(saveToDiskQ, ^{
-        // background thread
-        GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithRootElement:[self toXML]];
-        //    NSData *xmlData = document.XMLData;
-        NSString *xmlString = [NSString stringWithFormat:@"%@\n%@",
-                               kCatrobatXMLDeclaration,
-                               [document.rootElement XMLStringPrettyPrinted:YES]];
-        // TODO: outsource this to file manager
-        NSError *error = nil;
-        NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
-        [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
-        NSLogError(error);
-
-//#ifdef SIMULATOR_DEBUGGING_ENABLED
-//        NSString *referenceXmlString = [NSString stringWithFormat:@"%@\n%@",
-//                                        kCatrobatXMLDeclaration,
-//                                        [self.XMLdocument.rootElement XMLStringPrettyPrinted:YES]];
-////        NSLog(@"Reference XML-Document:\n\n%@\n\n", referenceXmlString);
-////        NSLog(@"XML-Document:\n\n%@\n\n", xmlString);
-//        NSString *referenceXmlPath = [NSString stringWithFormat:@"%@/reference.xml", SIMULATOR_DEBUGGING_BASE_PATH];
-//        NSString *generatedXmlPath = [NSString stringWithFormat:@"%@/generated.xml", SIMULATOR_DEBUGGING_BASE_PATH];
-//        [referenceXmlString writeToFile:referenceXmlPath
-//                             atomically:YES
-//                               encoding:NSUTF8StringEncoding
-//                                  error:&error];
-//        [xmlString writeToFile:generatedXmlPath
-//                    atomically:YES
-//                      encoding:NSUTF8StringEncoding
-//                         error:&error];
+//    dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
+//    dispatch_async(saveToDiskQ, ^{
+//        // background thread
+//        GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithRootElement:[self toXML]];
+//        //    NSData *xmlData = document.XMLData;
+//        NSString *xmlString = [NSString stringWithFormat:@"%@\n%@",
+//                               kCatrobatHeaderXMLDeclaration,
+//                               [document.rootElement XMLStringPrettyPrinted:YES]];
+//        // TODO: outsource this to file manager
+//        NSError *error = nil;
+//        NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
+//        [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+//        NSLogError(error);
 //
-////#import <Foundation/NSTask.h> // debugging for OSX
-////        NSTask *task = [[NSTask alloc] init];
-////        [task setLaunchPath:@"/usr/bin/diff"];
-////        [task setArguments:[NSArray arrayWithObjects:referenceXmlPath, generatedXmlPath, nil]];
-////        [task setStandardOutput:[NSPipe pipe]];
-////        [task setStandardInput:[NSPipe pipe]]; // piping to NSLog-tty (terminal emulator)
-////        [task launch];
-////        [task release];
-//#endif
-
-        // update last access time
-        [[self class] updateLastModificationTimeForProgramWithName:self.header.programName
-                                                         programID:self.header.programID];
-
-        // maybe later call some functions back here, that should update the UI on main thread...
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-            [notificationCenter postNotificationName:kHideLoadingViewNotification object:self];
-            [notificationCenter postNotificationName:kShowSavedViewNotification object:self];
-        });
-//        // execute 2 seconds later => just for testing purposes
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-//            [[NSNotificationCenter defaultCenter] postNotificationName:kHideLoadingViewNotification object:self];
+////#ifdef SIMULATOR_DEBUGGING_ENABLED
+////        NSString *referenceXmlString = [NSString stringWithFormat:@"%@\n%@",
+////                                        kCatrobatXMLDeclaration,
+////                                        [self.XMLdocument.rootElement XMLStringPrettyPrinted:YES]];
+//////        NSLog(@"Reference XML-Document:\n\n%@\n\n", referenceXmlString);
+//////        NSLog(@"XML-Document:\n\n%@\n\n", xmlString);
+////        NSString *referenceXmlPath = [NSString stringWithFormat:@"%@/reference.xml", SIMULATOR_DEBUGGING_BASE_PATH];
+////        NSString *generatedXmlPath = [NSString stringWithFormat:@"%@/generated.xml", SIMULATOR_DEBUGGING_BASE_PATH];
+////        [referenceXmlString writeToFile:referenceXmlPath
+////                             atomically:YES
+////                               encoding:NSUTF8StringEncoding
+////                                  error:&error];
+////        [xmlString writeToFile:generatedXmlPath
+////                    atomically:YES
+////                      encoding:NSUTF8StringEncoding
+////                         error:&error];
+////
+//////#import <Foundation/NSTask.h> // debugging for OSX
+//////        NSTask *task = [[NSTask alloc] init];
+//////        [task setLaunchPath:@"/usr/bin/diff"];
+//////        [task setArguments:[NSArray arrayWithObjects:referenceXmlPath, generatedXmlPath, nil]];
+//////        [task setStandardOutput:[NSPipe pipe]];
+//////        [task setStandardInput:[NSPipe pipe]]; // piping to NSLog-tty (terminal emulator)
+//////        [task launch];
+//////        [task release];
+////#endif
+//
+//        // update last access time
+//        [[self class] updateLastModificationTimeForProgramWithName:self.header.programName
+//                                                         programID:self.header.programID];
+//
+//        // maybe later call some functions back here, that should update the UI on main thread...
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+//            [notificationCenter postNotificationName:kHideLoadingViewNotification object:self];
+//            [notificationCenter postNotificationName:kShowSavedViewNotification object:self];
 //        });
-    });
-#endif // kIsRelease
+////        // execute 2 seconds later => just for testing purposes
+////        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+////            [[NSNotificationCenter defaultCenter] postNotificationName:kHideLoadingViewNotification object:self];
+////        });
+//    });
 }
 
 - (BOOL)isLastUsedProgram

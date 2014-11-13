@@ -20,10 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "OrderedMapTable.h"
-
-
 
 @interface OrderedMapTable()
 
@@ -32,41 +29,38 @@
 
 @end
 
-
 @implementation OrderedMapTable
 
-
-+(id)strongToStrongObjectsMapTable
++ (id)strongToStrongObjectsMapTable
 {
-    OrderedMapTable* orderedMapTable = [[OrderedMapTable alloc] init];
+    OrderedMapTable *orderedMapTable = [[OrderedMapTable alloc] init];
     orderedMapTable.mapTable = [NSMapTable strongToStrongObjectsMapTable];
     return orderedMapTable;
 }
 
 
-+(id)weakToStrongObjectsMapTable
++ (id)weakToStrongObjectsMapTable
 {
-    OrderedMapTable* orderedMapTable = [[OrderedMapTable alloc] init];
+    OrderedMapTable *orderedMapTable = [[OrderedMapTable alloc] init];
     orderedMapTable.mapTable = [NSMapTable weakToStrongObjectsMapTable];
     return orderedMapTable;
 }
 
-+(id)weakToWeakObjectsMapTable
++ (id)weakToWeakObjectsMapTable
 {
-    OrderedMapTable* orderedMapTable = [[OrderedMapTable alloc] init];
+    OrderedMapTable *orderedMapTable = [[OrderedMapTable alloc] init];
     orderedMapTable.mapTable = [NSMapTable weakToWeakObjectsMapTable];
     return orderedMapTable;
 }
 
-+(id)strongToWeakObjectsMapTable
++ (id)strongToWeakObjectsMapTable
 {
-    OrderedMapTable* orderedMapTable = [[OrderedMapTable alloc] init];
+    OrderedMapTable *orderedMapTable = [[OrderedMapTable alloc] init];
     orderedMapTable.mapTable = [NSMapTable strongToWeakObjectsMapTable];
     return orderedMapTable;
 }
 
-
--(id) init
+- (id)init
 {
     self = [super init];
     if(self) {
@@ -75,45 +69,41 @@
     return self;
 }
 
-
--(void) setObject:(id)anObject forKey:(id)aKey
+- (void)setObject:(id)anObject forKey:(id)aKey
 {
     [self.mapTable setObject:anObject forKey:aKey];
     [self.keyIndexArray addObject:aKey];
 }
 
--(void) removeAllObjects
+- (void)removeAllObjects
 {
     [self.mapTable removeAllObjects];
     [self.keyIndexArray removeAllObjects];
 }
 
--(id) keyAtIndex:(NSUInteger)index
+- (id)keyAtIndex:(NSUInteger)index
 {
     return [self.keyIndexArray objectAtIndex:index];
 }
 
--(id) objectAtIndex:(NSUInteger)index
+- (id)objectAtIndex:(NSUInteger)index
 {
     return [self.mapTable objectForKey:[self.keyIndexArray objectAtIndex:index]];
 }
 
--(id) objectForKey:(id)aKey
+- (id)objectForKey:(id)aKey
 {
     return [self.mapTable objectForKey:aKey];
 }
 
--(NSUInteger) count
+- (NSUInteger)count
 {
     return [self.mapTable count];
 }
 
--(NSString*)description
+- (NSString*)description
 {
     return [NSString stringWithFormat:@"OrderedMapTable: %@", self.mapTable];
 }
-
-
-
 
 @end

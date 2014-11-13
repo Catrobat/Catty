@@ -70,8 +70,7 @@
 - (void)setTitle:(NSString *)title
 {
     if (title.length) {
-        self.placeholderDescriptionLabel.text = [NSString stringWithFormat:kLocalizedTapPlusToAdd,
-                                                 title];
+        self.placeholderDescriptionLabel.text = [NSString stringWithFormat:kLocalizedTapPlusToAdd, title];
     }
 }
 

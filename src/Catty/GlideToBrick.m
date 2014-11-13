@@ -35,10 +35,6 @@
 
 @implementation GlideToBrick
 
-@synthesize durationInSeconds = _durationInSeconds;
-@synthesize xDestination = _xDestination;
-@synthesize yDestination = _yDestination;
-
 - (id)init
 {
     if(self = [super init]) {

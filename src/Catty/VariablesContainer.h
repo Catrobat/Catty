@@ -30,10 +30,10 @@
 @interface VariablesContainer : NSObject
 
 // Map<Sprite, List<UserVariable>
-@property (nonatomic, strong) OrderedMapTable* objectVariableList;
+@property (nonatomic, strong) OrderedMapTable *objectVariableList;
 
 // List<UserVariable> projectVariables;
-@property (nonatomic, strong) NSMutableArray* programVariableList;
+@property (nonatomic, strong) NSMutableArray *programVariableList;
 
 - (UserVariable*)getUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite;
 

@@ -28,7 +28,8 @@
 - (NSString*)stringByEscapingHTMLEntities;
 - (NSString*)firstCharacterUppercaseString;
 - (NSString*)firstCharacterLowercaseString;
-
+- (NSString*)stringBetweenString:(NSString*)start andString:(NSString*)end withOptions:(NSStringCompareOptions)mask;
+- (BOOL)isValidNumber;
 - (BOOL)containsString:(NSString*)string;
 
 + (NSString*)uuid;

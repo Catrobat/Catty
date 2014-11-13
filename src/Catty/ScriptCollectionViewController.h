@@ -20,11 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
+#import "BaseCollectionViewController.h"
 
 @class SpriteObject, FXBlurView;
 
-@interface ScriptCollectionViewController : UICollectionViewController
+@interface ScriptCollectionViewController : BaseCollectionViewController
+
 @property (strong, nonatomic) SpriteObject *object;
 @property (nonatomic, strong) FXBlurView *blurView;
 

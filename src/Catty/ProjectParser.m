@@ -35,7 +35,7 @@
 #import "OrderedMapTable.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "SpriteObject.h"
-#import "GDataXMLNode+PrettyFormatterExtensions.h"
+#import "GDataXMLNode+CustomExtensions.h"
 
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
 #define kCatroidXMLSpriteList           @"spriteList"
@@ -158,7 +158,7 @@
     XMLObjectReference* ref = [[XMLObjectReference alloc] initWithParent:parent andObject:object];
 
     for (GDataXMLElement *child in node.children) {
-        // FIXME: workaround for description property in Header class!!
+        // workaround for description property in Header class!!
         if ([object isKindOfClass:[Header class]] && [child.name isEqualToString:@"description"]) {
             ((Header*)object).programDescription = child.stringValue;
             continue;
