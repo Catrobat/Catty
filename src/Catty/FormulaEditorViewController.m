@@ -38,7 +38,6 @@
 #import "BrickCell.h"
 #import "FormulaElement.h"
 #import "LanguageTranslationDefines.h"
-#import "FormulaEditorHistory.h"
 #import "AHKActionSheet.h"
 #import "FormulaEditorButton.h"
 #import "BrickFormulaProtocol.h"
@@ -54,7 +53,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 @interface FormulaEditorViewController ()
 
-@property (strong, nonatomic) FormulaEditorHistory *history;
+
 @property (weak, nonatomic) Formula *formula;
 @property (weak, nonatomic) BrickCell *brickCell;
 
@@ -114,8 +113,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.history = [[FormulaEditorHistory alloc] initWithInternFormulaState:[self.internFormula getInternFormulaState]];
 
     [FormulaEditorButton setActiveFormula:formula];
-    [self update];
+    
     [self setCursorPositionToEndOfFormula];
+    [self update];
+    [self.formulaEditorTextView selectAll:self.formulaEditorTextView];
+    [self.internFormula selectWholeFormula];
 }
 
 - (void)setCursorPositionToEndOfFormula
