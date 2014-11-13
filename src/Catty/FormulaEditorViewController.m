@@ -116,7 +116,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
     [self setCursorPositionToEndOfFormula];
     [self update];
-    [self.formulaEditorTextView selectAll:self.formulaEditorTextView];
+    [self.formulaEditorTextView highlightSelection:[[self.internFormula getExternFormulaString] length]
+                       start:0
+                         end:(int)[[self.internFormula getExternFormulaString] length]];
     [self.internFormula selectWholeFormula];
 }
 

@@ -112,32 +112,38 @@
 
 - (void)formulaTapped:(UITapGestureRecognizer *)recognizer
 {
-    NSMutableAttributedString *formulaString = [[NSMutableAttributedString alloc] initWithString:[self text] attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20.0f]}];
+    UITextView *formulaView = (UITextView *)recognizer.view;
+    CGPoint point = [recognizer locationInView:formulaView];
+    point.x -= formulaView.textContainerInset.left;
+    point.y -= formulaView.textContainerInset.top;
     
-    UITextView *formulView = (UITextView *)recognizer.view;
-    CGPoint point = [recognizer locationInView:formulView];
-    point.x -= formulView.textContainerInset.left;
-    point.y -= formulView.textContainerInset.top;
-
-    NSLayoutManager *layoutManager = formulView.layoutManager;
-    NSUInteger characterIndex = [layoutManager characterIndexForPoint:point
-                                           inTextContainer:formulView.textContainer
-                  fractionOfDistanceBetweenInsertionPoints:NULL] + 1;
-    
-    
-    [self.formulaEditorViewController.internFormula setCursorAndSelection:(int)characterIndex selected:NO];
-    
+    NSLayoutManager *layoutManager = formulaView.layoutManager;
+    NSUInteger cursorPostionIndex = [layoutManager characterIndexForPoint:point
+                                                          inTextContainer:formulaView.textContainer
+                                 fractionOfDistanceBetweenInsertionPoints:NULL] + 1;
+    [self.formulaEditorViewController.internFormula setCursorAndSelection:(int)cursorPostionIndex selected:NO];
     int startIndex = [self.formulaEditorViewController.internFormula getExternSelectionStartIndex];
     int endIndex = [self.formulaEditorViewController.internFormula getExternSelectionEndIndex];
     
-    UITextPosition* beginning = formulView.beginningOfDocument;
-    UITextPosition *cursorPositionStart = [self positionFromPosition:beginning
-                                                              offset:startIndex];
-    UITextPosition *cursorPositionEnd = [self positionFromPosition:beginning
-                                                            offset:endIndex];
+    [self highlightSelection:cursorPostionIndex start:startIndex end:endIndex];
     
-    NSInteger location = [formulView offsetFromPosition:beginning toPosition:cursorPositionStart];
-    NSInteger length = [formulView offsetFromPosition:cursorPositionStart toPosition:cursorPositionEnd];
+    
+}
+
+-(void)highlightSelection:(NSUInteger)cursorPostionIndex start:(int)startIndex end:(int)endIndex
+{
+    NSMutableAttributedString *formulaString = [[NSMutableAttributedString alloc] initWithString:[self text] attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20.0f]}];
+    
+    
+    
+    UITextPosition* beginning = self.beginningOfDocument;
+    UITextPosition *cursorPositionStart = [self positionFromPosition:beginning
+                                                                    offset:startIndex];
+    UITextPosition *cursorPositionEnd = [self positionFromPosition:beginning
+                                                                  offset:endIndex];
+    
+    NSInteger location = [self offsetFromPosition:beginning toPosition:cursorPositionStart];
+    NSInteger length = [self offsetFromPosition:cursorPositionStart toPosition:cursorPositionEnd];
     
     NSLog(@"tap from %d to %d!", startIndex, endIndex);
     
@@ -145,27 +151,25 @@
     {
         self.attributedText = formulaString;
         UITextPosition *cursorPosition = [self positionFromPosition:self.beginningOfDocument
-                                                                offset:characterIndex];
+                                                                   offset:cursorPostionIndex];
         self.selectedTextRange = [self textRangeFromPosition:cursorPosition toPosition:cursorPosition];
     }
     else{
         [formulaString addAttribute:NSBackgroundColorAttributeName value:[UIColor lightOrangeColor] range:NSMakeRange(location, length)];
         UITextPosition *cursorPosition = [self positionFromPosition:self.beginningOfDocument
-                                                             offset:endIndex];
+                                                                   offset:endIndex];
         self.attributedText = formulaString;
         self.selectedTextRange = [self textRangeFromPosition:cursorPosition toPosition:cursorPosition];
         
-        //self.selectedTextRange = [self textRangeFromPosition:cursorPositionStart toPosition:cursorPositionEnd];
-    
     }
     
     
-    
-    
-    
     [self.formulaEditorViewController.history updateCurrentSelection:[self.formulaEditorViewController.internFormula getSelection]];
-    [self.formulaEditorViewController.history updateCurrentCursor:(int)characterIndex];
-    
+    [self.formulaEditorViewController.history updateCurrentCursor:(int)cursorPostionIndex];
+}
+
+-(void)highlightAll
+{
     
 }
 
@@ -173,32 +177,14 @@
 {
     [self.formulaEditorViewController.internFormula generateExternFormulaStringAndInternExternMapping];
     [self.formulaEditorViewController.internFormula updateInternCursorPosition];
-    self.text = [self.formulaEditorViewController.internFormula getExternFormulaString];
+    NSMutableAttributedString *formulaString = [[NSMutableAttributedString alloc] initWithString:[self.formulaEditorViewController.internFormula getExternFormulaString]
+                                                                                      attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20.0f]}];
     
-    UITextPosition *cursor = [self positionFromPosition:[self beginningOfDocument]
-                                                 offset:(NSInteger)[self.formulaEditorViewController.internFormula getExternCursorPosition]];
-    
-    
-    
-    UITextPosition *selectionStartIndex = [self positionFromPosition:[self beginningOfDocument]
-                                                 offset:(NSInteger)[self.formulaEditorViewController.internFormula getExternSelectionStartIndex]];
-    NSLog(@"start index: %d", [self.formulaEditorViewController.internFormula getExternSelectionStartIndex]);
-    
-    UITextPosition *selectionEndIndex = [self positionFromPosition:[self beginningOfDocument]
-                                                 offset:(NSInteger)[self.formulaEditorViewController.internFormula getExternSelectionEndIndex]];
-    NSLog(@"end index: %d", [self.formulaEditorViewController.internFormula getExternSelectionEndIndex]);
-    
-    UITextRange *markRange = [self textRangeFromPosition:selectionStartIndex toPosition:selectionEndIndex];
-    
-    if([self.formulaEditorViewController.internFormula getExternSelectionStartIndex] != -1 && [self.formulaEditorViewController.internFormula getExternSelectionEndIndex] != -1)
-    {
-      self.selectedTextRange = markRange;
-    }
-    else
-    {
-        self.selectedTextRange = [self textRangeFromPosition:cursor toPosition:cursor];
-    }
-    
+    self.attributedText = formulaString;
+    //[self.formulaEditorViewController.internFormula setCursorAndSelection:(int)[self.formulaEditorViewController.internFormula getExternCursorPosition] selected:NO];
+    [self highlightSelection:[self.formulaEditorViewController.internFormula getExternCursorPosition]
+                       start:[self.formulaEditorViewController.internFormula getExternSelectionStartIndex]
+                         end:[self.formulaEditorViewController.internFormula getExternSelectionEndIndex]];
     
     if([self.formulaEditorViewController.internFormula isEmpty]) {
         self.backspaceButton.enabled = NO;
@@ -209,9 +195,9 @@
     }
 }
    
-- (void)setText:(NSString *)text
+- (void)setAttributedText:(NSMutableAttributedString *)attributedText
 {
-    [super setText:text];
+    [super setAttributedText:attributedText];
     [self layoutIfNeeded];
     
     CGRect frame = self.frame;
@@ -228,5 +214,7 @@
     backspaceFrame.origin.y = self.contentSize.height - TEXT_FIELD_PADDING_VERTICAL - self.font.lineHeight/2 - self.backspaceButton.frame.size.height/2;
     self.backspaceButton.frame = backspaceFrame;
 }
+
+
 
 @end
