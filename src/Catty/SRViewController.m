@@ -25,10 +25,12 @@
 #import "UIDefines.h"
 #import "AppDelegate.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "TimerLabel.h"
 
 @interface SRViewController ()
 @property (nonatomic,strong)Sound *sound;
 @property (nonatomic,strong)NSString *filePath;
+@property (nonatomic,strong) TimerLabel* timerLabel;
 
 @end
 
@@ -41,9 +43,17 @@
     self.microphone = [EZMicrophone microphoneWithDelegate:self];
 	// Do any additional setup after loading the view, typically from a nib.
     self.audioPlot.frame = CGRectMake(0, 70, self.view.frame.size.width, self.view.frame.size.height * 0.5);
-    self.record.frame = CGRectMake(self.view.frame.size.width / 2.0 - 50, self.view.frame.size.height * 0.6, 100, 100);
-
+    self.record.frame = CGRectMake(self.view.frame.size.width / 2.0 - 50, self.view.frame.size.height * 0.7, 100, 100);
     
+    self.timerLabel = [[TimerLabel alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height * 0.6, self.view.frame.size.width, 40)];
+    self.timerLabel.timerType = TimerLabelTypeStopWatch;
+    [self.view addSubview:self.timerLabel];
+    self.timerLabel.timeLabel.backgroundColor = [UIColor clearColor];
+    self.timerLabel.timeLabel.font = [UIFont systemFontOfSize:28.0f];
+    self.timerLabel.timeLabel.textColor = [UIColor lightOrangeColor];
+    self.timerLabel.timeLabel.textAlignment = NSTextAlignmentCenter;
+    
+
     self.audioPlot.backgroundColor = [UIColor airForceBlueColor];
     self.audioPlot.color           = [UIColor lightOrangeColor];
     self.audioPlot.plotType        = EZPlotTypeRolling;
@@ -105,6 +115,7 @@
     if(!self.isRecording)
     {
         [self.record setSelected:YES];
+        [self.timerLabel start];
         [self.microphone startFetchingAudio];
         [self.audioPlot clear];
         NSString * fileName =[[self GetUUID] stringByAppendingString:@".m4a"];
@@ -127,6 +138,7 @@
         [self.microphone stopFetchingAudio];
         [self.record setSelected:NO];
         [self.navigationController popViewControllerAnimated:YES];
+        [self.timerLabel reset];
     }
     
 

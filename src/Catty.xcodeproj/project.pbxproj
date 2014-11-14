@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		921631181A16485D00C438A4 /* TimerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 921631171A16485D00C438A4 /* TimerLabel.m */; };
 		921EC1B41A0D03CE00A43ED7 /* SRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921EC1B31A0D03CE00A43ED7 /* SRViewController.m */; };
 		921EC1D11A0E109A00A43ED7 /* AEFloatConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 921EC1B71A0E109A00A43ED7 /* AEFloatConverter.m */; };
 		921EC1D21A0E109A00A43ED7 /* EZAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 921EC1B91A0E109A00A43ED7 /* EZAudio.m */; };
@@ -454,6 +455,8 @@
 		9200F005182E3CA0008BF678 /* CatrobatAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatAudioPlayer.m; sourceTree = "<group>"; };
 		920F20C21837F27E003E9EE0 /* SaveToProjectActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveToProjectActivity.h; sourceTree = "<group>"; };
 		920F20C31837F27E003E9EE0 /* SaveToProjectActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveToProjectActivity.m; sourceTree = "<group>"; };
+		921631161A16485D00C438A4 /* TimerLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerLabel.h; sourceTree = "<group>"; };
+		921631171A16485D00C438A4 /* TimerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerLabel.m; sourceTree = "<group>"; };
 		921EC1B21A0D03CE00A43ED7 /* SRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRViewController.h; sourceTree = "<group>"; };
 		921EC1B31A0D03CE00A43ED7 /* SRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRViewController.m; sourceTree = "<group>"; };
 		921EC1B61A0E109A00A43ED7 /* AEFloatConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEFloatConverter.h; sourceTree = "<group>"; };
@@ -1335,6 +1338,15 @@
 			name = MaintainProgram;
 			sourceTree = "<group>";
 		};
+		921631151A16483600C438A4 /* TimerLabel */ = {
+			isa = PBXGroup;
+			children = (
+				921631161A16485D00C438A4 /* TimerLabel.h */,
+				921631171A16485D00C438A4 /* TimerLabel.m */,
+			);
+			name = TimerLabel;
+			sourceTree = "<group>";
+		};
 		921EC1B51A0E109A00A43ED7 /* EZAudio */ = {
 			isa = PBXGroup;
 			children = (
@@ -1428,6 +1440,7 @@
 		B400302C170EB45200396DB7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				921631151A16483600C438A4 /* TimerLabel */,
 				92E3351618FBB3340056C390 /* InternetConnection */,
 				CAFE18D7192813DC003AB961 /* NavigationController */,
 				CA688215180B46CB008A7C99 /* DataStructures */,
@@ -3371,6 +3384,7 @@
 				921EC1D11A0E109A00A43ED7 /* AEFloatConverter.m in Sources */,
 				CADBD71419B0E8C200C62836 /* CellMotionEffect.m in Sources */,
 				CADBD71519B0E8C200C62836 /* BaseTransition.m in Sources */,
+				921631181A16485D00C438A4 /* TimerLabel.m in Sources */,
 				CADBD71619B0E8C200C62836 /* ChangeBrightnessByNBrick.m in Sources */,
 				CADBD71719B0E8C200C62836 /* CatrobatTableViewController.m in Sources */,
 				CADBD71819B0E8C200C62836 /* BrickCellInlineView.m in Sources */,
