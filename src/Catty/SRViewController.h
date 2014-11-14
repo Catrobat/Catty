@@ -24,9 +24,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import "EZAudio.h"
 
-@interface SRViewController : UIViewController <AVAudioRecorderDelegate,AVAudioPlayerDelegate,EZMicrophoneDelegate,EZAudioFileDelegate,EZOutputDataSource>
+@interface SRViewController : UIViewController <AVAudioRecorderDelegate,AVAudioPlayerDelegate,EZMicrophoneDelegate>
 
-@property(nonatomic,strong) IBOutlet UIButton* play;
+
 @property(nonatomic,strong) IBOutlet UIButton* record;
 
 
@@ -38,13 +38,9 @@
 
 @property (nonatomic,strong) EZRecorder *recorder;
 
-@property (nonatomic,strong) EZAudioFile *audioFile;
-@property (weak, nonatomic) IBOutlet UISlider *framePositionSlider;
-@property (nonatomic,assign) BOOL eof;
 
 
 -(IBAction)recordClicked:(id)sender;
--(IBAction)playClicked:(id)sender;
-- (IBAction)seekToFrame:(UISlider *)sender;
+
 
 @end

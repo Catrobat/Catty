@@ -40,12 +40,9 @@
     [super viewDidLoad];
     self.microphone = [EZMicrophone microphoneWithDelegate:self];
 	// Do any additional setup after loading the view, typically from a nib.
-    [self.play setEnabled:NO];
     self.audioPlot.frame = CGRectMake(0, 70, self.view.frame.size.width, self.view.frame.size.height * 0.5);
-    self.record.frame = CGRectMake(self.view.frame.size.width / 3.0, self.view.frame.size.height * 0.8, self.record.frame.size.width, self.record.frame.size.height);
-    self.play.frame = CGRectMake(self.view.frame.size.width * 2.0 / 3.0, self.view.frame.size.height * 0.8, self.play.frame.size.width, self.play.frame.size.height);
-    self.framePositionSlider.frame = CGRectMake(self.view.frame.size.width /2.0 - 100, self.view.frame.size.height * 0.7, 200, self.framePositionSlider.frame.size.height);
-    self.framePositionSlider.hidden = YES;
+    self.record.frame = CGRectMake(self.view.frame.size.width / 2.0 - 50, self.view.frame.size.height * 0.6, 100, 100);
+
     
     self.audioPlot.backgroundColor = [UIColor airForceBlueColor];
     self.audioPlot.color           = [UIColor lightOrangeColor];
@@ -53,9 +50,13 @@
     self.audioPlot.shouldFill      = YES;
     self.audioPlot.shouldMirror    = YES;
     
+    UITapGestureRecognizer * recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recordClicked:)];
+    
+    [self.view addGestureRecognizer:recognizer];
+    [self.audioPlot addGestureRecognizer:recognizer];
+    
     self.view.backgroundColor = [UIColor airForceBlueColor];
 
-    self.play.hidden = YES;
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     NSError *err = NULL;
     [audioSession setActive:YES error:&err];
@@ -103,6 +104,7 @@
     
     if(!self.isRecording)
     {
+        [self.record setSelected:YES];
         [self.microphone startFetchingAudio];
         [self.audioPlot clear];
         NSString * fileName =[[self GetUUID] stringByAppendingString:@".m4a"];
@@ -116,20 +118,15 @@
         self.recorder = [EZRecorder recorderWithDestinationURL:outputFileUrl
                                                   sourceFormat:self.microphone.audioStreamBasicDescription
                                            destinationFileType:EZRecorderFileTypeM4A];
-        [self.record setTitle:@"Stop" forState:UIControlStateNormal];
         self.isRecording = YES;
     }
     else
     {
         [self.recorder closeAudioFile];
         self.isRecording = NO;
-        [self.record setTitle:@"Record" forState:UIControlStateNormal];
-        self.play.hidden = NO;
-        self.framePositionSlider.hidden = NO;
-        [self.play setEnabled:YES];
-        self.eof = YES;
-        [self openFile];
         [self.microphone stopFetchingAudio];
+        [self.record setSelected:NO];
+        [self.navigationController popViewControllerAnimated:YES];
     }
     
 
@@ -142,49 +139,7 @@
   return (__bridge NSString *)string;
 }
 
--(void)playClicked:(id)sender
-{
-    [self.microphone stopFetchingAudio];
-    self.isRecording = NO;
-    if( ![[EZOutput sharedOutput] isPlaying] ){
-        if( self.eof ){
-            [self.audioFile seekToFrame:0];
-        }
-        [self.audioPlot clear];
-        [EZOutput sharedOutput].outputDataSource = self;
-        [[EZOutput sharedOutput] startPlayback];
-    }
-    else {
-        [EZOutput sharedOutput].outputDataSource = nil;
-        [[EZOutput sharedOutput] stopPlayback];
-    }
 
-}
-
-- (IBAction)seekToFrame:(UISlider *)sender {
-    [self.audioFile seekToFrame:(SInt64)[sender value]];
-}
-
-
--(void)openFile {
-    
-        // Stop playback
-    [[EZOutput sharedOutput] stopPlayback];
-    
-    self.audioFile                        = [EZAudioFile audioFileWithURL:[NSURL URLWithString:self.filePath]];
-    self.audioFile.audioFileDelegate      = self;
-    self.framePositionSlider.maximumValue = (float)self.audioFile.totalFrames;
-    
-        // Set the client format from the EZAudioFile on the output
-    [[EZOutput sharedOutput] setAudioStreamBasicDescription:self.audioFile.clientFormat];
-    
-        // Plot the whole waveform
-
-    [self.audioFile getWaveformDataWithCompletionBlock:^(float *waveformData, UInt32 length) {
-        [self.audioPlot updateBuffer:waveformData withBufferSize:length];
-    }];
-    
-}
 
 -(void) audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag{
   if (!flag) {
@@ -196,7 +151,6 @@
     [alert show];
   }
     [self.record setTitle:@"Record" forState:UIControlStateNormal];
-    [self.play setEnabled:YES];
 }
 
 
@@ -243,56 +197,6 @@ withNumberOfChannels:(UInt32)numberOfChannels {
     
 }
 
-
-
-#pragma mark - EZAudioFileDelegate
--(void)audioFile:(EZAudioFile *)audioFile
-       readAudio:(float **)buffer
-  withBufferSize:(UInt32)bufferSize
-withNumberOfChannels:(UInt32)numberOfChannels {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if( [EZOutput sharedOutput].isPlaying ){
-            if( self.audioPlot.plotType     == EZPlotTypeBuffer &&
-               self.audioPlot.shouldFill    == YES              &&
-               self.audioPlot.shouldMirror  == YES ){
-                self.audioPlot.shouldFill   = NO;
-                self.audioPlot.shouldMirror = NO;
-            }
-            [self.audioPlot updateBuffer:buffer[0] withBufferSize:bufferSize];
-        }
-    });
-}
-
--(void)audioFile:(EZAudioFile *)audioFile
- updatedPosition:(SInt64)framePosition {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if( !self.framePositionSlider.touchInside ){
-            self.framePositionSlider.value = (float)framePosition;
-        }
-    });
-}
-
-#pragma mark - EZOutputDataSource
--(void)output:(EZOutput *)output shouldFillAudioBufferList:(AudioBufferList *)audioBufferList withNumberOfFrames:(UInt32)frames
-{
-    if( self.audioFile )
-    {
-        UInt32 bufferSize;
-        [self.audioFile readFrames:frames
-                   audioBufferList:audioBufferList
-                        bufferSize:&bufferSize
-                               eof:&_eof];
-        if( _eof )
-        {
-            [self.audioPlot clear];
-            [self seekToFrame:0];
-        }
-    }
-}
-
--(AudioStreamBasicDescription)outputHasAudioStreamBasicDescription:(EZOutput *)output {
-    return self.audioFile.clientFormat;
-}
 
 
 @end
