@@ -410,14 +410,14 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.view addSubview:self.formulaEditorTextView];
     
     for(int i = 0; i < [self.orangeTypeButton count]; i++) {
-        [[self.orangeTypeButton objectAtIndex:i] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [[self.orangeTypeButton objectAtIndex:i] setTitleColor:[UIColor skyBlueColor] forState:UIControlStateNormal];
         [[self.orangeTypeButton objectAtIndex:i] setBackgroundColor:[UIColor lightOrangeColor]];
       
         [[self.orangeTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor orangeColor]] forState:UIControlStateHighlighted];
     }
   for(int i = 0; i < [self.normalTypeButton count]; i++) {
     [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor skyBlueColor] forState:UIControlStateNormal];
-    [[self.normalTypeButton objectAtIndex:i] setBackgroundColor:[UIColor blueGrayColor]];
+    [[self.normalTypeButton objectAtIndex:i] setBackgroundColor:[UIColor darkBlueColor]];
     [[self.normalTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateHighlighted];
   }
   for(int i = 0; i < [self.toolTypeButton count]; i++) {
@@ -477,24 +477,28 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.mathScrollView.hidden = NO;
     [self.mathbutton setSelected:YES];
     [self.mathScrollView scrollsToTop];
+    [self.mathScrollView flashScrollIndicators];
 }
 - (IBAction)showLogic:(UIButton *)sender {
     [self hideScrollViews];
     self.logicScrollView.hidden = NO;
     [self.logicButton setSelected:YES];
     [self.logicScrollView scrollsToTop];
+    [self.logicScrollView flashScrollIndicators];
 }
 - (IBAction)showObject:(UIButton *)sender {
     [self hideScrollViews];
     self.objectScrollView.hidden = NO;
     [self.objectButton setSelected:YES];
     [self.objectScrollView scrollsToTop];
+    [self.objectScrollView flashScrollIndicators];
 }
 - (IBAction)showSensor:(UIButton *)sender {
     [self hideScrollViews];
     self.sensorScrollView.hidden = NO;
     [self.sensorButton setSelected:YES];
     [self.sensorScrollView scrollsToTop];
+    [self.sensorScrollView flashScrollIndicators];
 }
 
 -(void)hideScrollViews
