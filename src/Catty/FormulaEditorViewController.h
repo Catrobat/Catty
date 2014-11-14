@@ -44,5 +44,7 @@
 - (id)initWithBrickCell:(BrickCell*)brickCell;
 - (void)setFormula:(Formula*)formula;
 - (void)update;
+- (void)updateDeleteButton:(BOOL)enabled;
+- (void)backspace:(id)sender;
 
 @end

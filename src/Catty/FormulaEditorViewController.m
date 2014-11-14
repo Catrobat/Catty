@@ -75,6 +75,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (weak, nonatomic) IBOutlet UIButton *logicButton;
 @property (weak, nonatomic) IBOutlet UIButton *objectButton;
 @property (weak, nonatomic) IBOutlet UIButton *sensorButton;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
 @property (weak, nonatomic) IBOutlet UIButton *undoButton;
@@ -261,6 +262,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self setCursorPositionToEndOfFormula];
     }
 }
+- (IBAction)backspaceButtonAction:(id)sender {
+  [self backspace:nil];
+}
 
 - (void)backspace:(id)sender
 {
@@ -270,6 +274,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (IBAction)done:(id)sender
 {
     [self dismissFormulaEditorViewController];
+}
+- (void)updateDeleteButton:(BOOL)enabled
+{
+    [self.deleteButton setEnabled:enabled];
 }
 
 - (IBAction)compute:(id)sender {
@@ -409,7 +417,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
   for(int i = 0; i < [self.normalTypeButton count]; i++) {
     [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor skyBlueColor] forState:UIControlStateNormal];
-    [[self.normalTypeButton objectAtIndex:i] setBackgroundColor:[UIColor airForceBlueColor]];
+    [[self.normalTypeButton objectAtIndex:i] setBackgroundColor:[UIColor blueGrayColor]];
     [[self.normalTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateHighlighted];
   }
   for(int i = 0; i < [self.toolTypeButton count]; i++) {

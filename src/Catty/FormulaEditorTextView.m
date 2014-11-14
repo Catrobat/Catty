@@ -62,11 +62,11 @@
         self.textContainerInset = UIEdgeInsetsMake(TEXT_FIELD_PADDING_VERTICAL, TEXT_FIELD_PADDING_HORIZONTAL, TEXT_FIELD_PADDING_VERTICAL, TEXT_FIELD_PADDING_HORIZONTAL + BACKSPACE_WIDTH);
         
         self.backspaceButton = [[UIButton alloc] init];
-        [self.backspaceButton setImage:[UIImage imageNamed:@"backspace"] forState:UIControlStateNormal];
-        [self.backspaceButton setImage:[UIImage imageNamed:@"backspace"] forState:UIControlStateDisabled];
+        [self.backspaceButton setImage:[UIImage imageNamed:@"del_active"] forState:UIControlStateNormal];
+        [self.backspaceButton setImage:[UIImage imageNamed:@"del"] forState:UIControlStateDisabled];
         self.backspaceButton.tintColor = UIColor.airForceBlueColor;
         self.backspaceButton.frame = CGRectMake(self.frame.size.width - BACKSPACE_WIDTH, 0, BACKSPACE_HEIGHT, BACKSPACE_WIDTH);
-        [self.backspaceButton addTarget:self.formulaEditorViewController action:@selector(backspace:) forControlEvents:UIControlEventTouchUpInside];
+        [self.backspaceButton addTarget:self action:@selector(clear) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.backspaceButton];
     }
     return self;
@@ -108,6 +108,12 @@
     return NO;
 }
 
+-(void)clear
+{
+    while (![self.text  isEqual: @""]) {
+        [self.formulaEditorViewController backspace:nil];
+    }
+}
 
 
 - (void)formulaTapped:(UITapGestureRecognizer *)recognizer
@@ -187,11 +193,11 @@
                          end:[self.formulaEditorViewController.internFormula getExternSelectionEndIndex]];
     
     if([self.formulaEditorViewController.internFormula isEmpty]) {
-        self.backspaceButton.enabled = NO;
-        self.backspaceButton.alpha = 0.3;
+        self.backspaceButton.hidden = YES;
+        [self.formulaEditorViewController updateDeleteButton:NO];
     } else {
-        self.backspaceButton.enabled = YES;
-        self.backspaceButton.alpha = 1.0;
+        self.backspaceButton.hidden = NO;
+        [self.formulaEditorViewController updateDeleteButton:YES];
     }
 }
    
