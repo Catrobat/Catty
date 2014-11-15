@@ -488,6 +488,33 @@
     return copiedObject;
 }
 
+- (BOOL)isEqualToProgram:(Program*)program
+{
+    if(![self.header isEqualToHeader:program.header])
+        return NO;
+    if(![self.variables isEqualToVariablesContainer:program.variables])
+        return NO;
+    if([self.objectList count] != [program.objectList count])
+        return NO;
+    
+    for(NSUInteger idx = 0; idx < [self.objectList count]; idx++) {
+        SpriteObject *firstObject = [self.objectList objectAtIndex:idx];
+        SpriteObject *secondObject = [program.objectList objectAtIndex:idx];
+        if(![firstObject isEqualToSpriteObject:secondObject])
+            return NO;
+    }
+    
+    for (SpriteObject *firstSpriteObject in self.objectList) {
+        for (SpriteObject *secondSpriteObject in program.objectList) {
+            if([firstSpriteObject.name isEqualToString:secondSpriteObject.name]) {
+                
+            }
+        }
+    }
+
+    return YES;
+}
+
 #pragma mark - helpers
 - (NSString*)description
 {

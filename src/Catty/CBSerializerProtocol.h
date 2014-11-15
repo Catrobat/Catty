@@ -22,12 +22,14 @@
 
 #import <Foundation/Foundation.h>
 
-@class GDataXMLElement;
-@class CBXMLContext;
+@class GDataXMLDocument
+@class Program;
 
-@protocol CBParserNodeProtocol <NSObject>
+@protocol CBSerializerProtocol <NSObject>
 
 @required
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context;
+
+// TODO create DAO object
+- (id)serializeProgram:(Program*)program;
 
 @end

@@ -511,6 +511,7 @@
 		4CEC092D1A13A9C200059BB9 /* PointToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PointToBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		4CEC092F1A13B21E00059BB9 /* StopAllSoundsBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "StopAllSoundsBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		4CEC09301A13B21E00059BB9 /* StopAllSoundsBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "StopAllSoundsBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		4CF30E3D1A17B5EB0080EBC5 /* CBSerializerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSerializerProtocol.h; sourceTree = "<group>"; };
 		8146A9B119279721002548A4 /* ProgramTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableHeaderView.h; sourceTree = "<group>"; };
 		8146A9B219279721002548A4 /* ProgramTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableHeaderView.m; sourceTree = "<group>"; };
 		815420D3191A51F200E628D2 /* FBShimmering-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBShimmering-Prefix.pch"; sourceTree = "<group>"; };
@@ -982,7 +983,7 @@
 		CA8C7252192BB9A100167ECD /* BrickCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellProtocol.h; sourceTree = "<group>"; };
 		CA9B7EA018FFCC0400F1790D /* NSData+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Hashes.h"; sourceTree = "<group>"; };
 		CA9B7EA118FFCC0400F1790D /* NSData+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Hashes.m"; sourceTree = "<group>"; };
-		CAA1D0A319F689FA00A7DE47 /* CBParserNodeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBParserNodeProtocol.h; sourceTree = "<group>"; };
+		CAA1D0A319F689FA00A7DE47 /* CBXMLNodeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLNodeProtocol.h; sourceTree = "<group>"; };
 		CAA443B3192410D00076BA35 /* BrickProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickProtocol.h; sourceTree = "<group>"; };
 		CAA96AFC18E4B21F00763409 /* SoundPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundPickerTableViewController.h; sourceTree = "<group>"; };
 		CAA96AFD18E4B21F00763409 /* SoundPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundPickerTableViewController.m; sourceTree = "<group>"; };
@@ -1496,6 +1497,23 @@
 				4CEC09241A139D7C00059BB9 /* CBXMLParserHelper.m */,
 			);
 			name = Helper;
+			sourceTree = "<group>";
+		};
+		4CF30E3E1A17B8A80080EBC5 /* XML */ = {
+			isa = PBXGroup;
+			children = (
+				CAA1D0A319F689FA00A7DE47 /* CBXMLNodeProtocol.h */,
+			);
+			name = XML;
+			sourceTree = "<group>";
+		};
+		4CF30E3F1A17B9B40080EBC5 /* XML */ = {
+			isa = PBXGroup;
+			children = (
+				CA5D7FE219EC28610085D5AA /* New Parser (0.93) */,
+				CA5D7FE119EC28540085D5AA /* Old Parser (0.92) */,
+			);
+			name = XML;
 			sourceTree = "<group>";
 		};
 		81506F4A18C3EDDC000ED328 /* LXReorderableCollectionViewFlowLayout */ = {
@@ -2547,7 +2565,7 @@
 			name = ProgramTableViewControllerTests;
 			sourceTree = "<group>";
 		};
-		CA5D7FE119EC28540085D5AA /* Old Parser */ = {
+		CA5D7FE119EC28540085D5AA /* Old Parser (0.92) */ = {
 			isa = PBXGroup;
 			children = (
 				B4DEFC8E170F464200DD1939 /* TestParser.h */,
@@ -2556,10 +2574,10 @@
 				B4DEFC8B170F458000DD1939 /* Parser */,
 				B4B7BAC51738E21B000BDC94 /* XMLObjectReference */,
 			);
-			name = "Old Parser";
+			name = "Old Parser (0.92)";
 			sourceTree = "<group>";
 		};
-		CA5D7FE219EC28610085D5AA /* New Parser */ = {
+		CA5D7FE219EC28610085D5AA /* New Parser (0.93) */ = {
 			isa = PBXGroup;
 			children = (
 				4CEC09221A139D6100059BB9 /* Helper */,
@@ -2570,7 +2588,7 @@
 				CA66CB7319F6B42400D849E0 /* CBXMLValidator.h */,
 				CA66CB7419F6B42400D849E0 /* CBXMLValidator.m */,
 			);
-			name = "New Parser";
+			name = "New Parser (0.93)";
 			sourceTree = "<group>";
 		};
 		CA5FED5118B0199100A517B6 /* UIUtil */ = {
@@ -2899,13 +2917,14 @@
 			name = ProgramTests;
 			sourceTree = "<group>";
 		};
-		CAA1D0A419F68A0200A7DE47 /* Parser */ = {
+		CAA1D0A419F68A0200A7DE47 /* Parser & Serializer */ = {
 			isa = PBXGroup;
 			children = (
+				4CF30E3D1A17B5EB0080EBC5 /* CBSerializerProtocol.h */,
 				CA41895919F42703008DC1F1 /* CBParserProtocol.h */,
-				CAA1D0A319F689FA00A7DE47 /* CBParserNodeProtocol.h */,
+				4CF30E3E1A17B8A80080EBC5 /* XML */,
 			);
-			name = Parser;
+			name = "Parser & Serializer";
 			sourceTree = "<group>";
 		};
 		CAA443B5192412AF0076BA35 /* Delegates */ = {
@@ -2924,7 +2943,7 @@
 			children = (
 				CAA443B3192410D00076BA35 /* BrickProtocol.h */,
 				CA8C7252192BB9A100167ECD /* BrickCellProtocol.h */,
-				CAA1D0A419F68A0200A7DE47 /* Parser */,
+				CAA1D0A419F68A0200A7DE47 /* Parser & Serializer */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -3420,7 +3439,7 @@
 				B400302C170EB45200396DB7 /* Helpers */,
 				CA688215180B46CB008A7C99 /* DataStructures */,
 				CD0CCFF5170CB88F00B70036 /* DataModel */,
-				CD0CCFF9170CB91A00B70036 /* Parser & Serialization */,
+				CD0CCFF9170CB91A00B70036 /* Parser & Serializer */,
 				B4E7D258176EF23200EC8AD8 /* Scene */,
 				CD0CCE3B170CA00F00B70036 /* ViewController */,
 				B4D940B2170EC5D5003DDBFA /* Views */,
@@ -3726,13 +3745,12 @@
 			name = Program;
 			sourceTree = "<group>";
 		};
-		CD0CCFF9170CB91A00B70036 /* Parser & Serialization */ = {
+		CD0CCFF9170CB91A00B70036 /* Parser & Serializer */ = {
 			isa = PBXGroup;
 			children = (
-				CA5D7FE219EC28610085D5AA /* New Parser */,
-				CA5D7FE119EC28540085D5AA /* Old Parser */,
+				4CF30E3F1A17B9B40080EBC5 /* XML */,
 			);
-			name = "Parser & Serialization";
+			name = "Parser & Serializer";
 			sourceTree = "<group>";
 		};
 		CD0CCFFA170CB92D00B70036 /* Scripts */ = {

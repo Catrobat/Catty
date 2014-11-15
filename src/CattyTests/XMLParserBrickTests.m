@@ -305,6 +305,40 @@
     XCTAssertTrue([formula.formulaTree.value isEqualToString:@"lokal"], @"Invalid formula value");
 }
 
+- (void)testValidSetXBrickEqual
+{
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLElement *xmlElement = [document rootElement];
+    
+    NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[2]" error:nil];
+    XCTAssertEqual([brickElement count], 1);
+    
+    GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
+    
+    Brick *brick = [SetXBrick parseFromElement:brickXMLElement withContext:nil];
+    
+    XCTAssertTrue(brick.brickType == kSetXBrick, @"Invalid brick type");
+    XCTAssertTrue([brick isKindOfClass:[SetXBrick class]], @"Invalid brick class");
+    
+    SetXBrick *setXBrick = (SetXBrick*)brick;
+    Formula *formula = setXBrick.xPosition;
+    
+    XCTAssertNotNil(formula, @"Invalid formula");
+    XCTAssertTrue(formula.formulaTree.type == USER_VARIABLE, @"Invalid variable type");
+    XCTAssertTrue([formula.formulaTree.value isEqualToString:@"lokal"], @"Invalid formula value");
+    
+    SetXBrick *secondBrick = [SetXBrick new];
+    Formula *secondFormula = [Formula new];
+    FormulaElement *formulaTree = [FormulaElement new];
+    formulaTree.type = USER_VARIABLE;
+    formulaTree.value = @"lokal";
+    secondFormula.formulaTree = formulaTree;
+    secondBrick.xPosition = secondFormula;
+    
+    XCTAssertTrue([secondFormula isEqualToFormula:formula], @"Formulas not equal");
+    XCTAssertTrue([secondBrick isEqualToBrick:setXBrick], @"SetXBricks not equal");
+}
+
 - (void)testValidSetYBrick
 {
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];

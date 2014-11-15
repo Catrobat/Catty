@@ -35,6 +35,8 @@
 #import "MYBlurIntroductionView.h"
 #import "CatrobatLanguageDefines.h"
 #import "NSString+CatrobatNSStringExtensions.h"
+#import "Formula.h"
+#import <objc/runtime.h>
 
 @interface Util () <CatrobatAlertViewDelegate, UITextFieldDelegate>
 
@@ -680,5 +682,51 @@ replacementString:(NSString*)characters
     [mutableString stringByReplacingOccurrencesOfString:@")" withString:@""];
     return [mutableString copy];
 }
+
++ (NSArray*)propertiesOfInstance:(id)instance
+{
+    unsigned count;
+    objc_property_t *properties = class_copyPropertyList([instance class], &count);
+    
+    NSMutableArray *propertiesArray = [[NSMutableArray alloc] initWithCapacity:count];
+    
+    unsigned i;
+    for (i = 0; i < count; i++)
+    {
+        objc_property_t property = properties[i];
+        
+        NSString *name = [NSString stringWithUTF8String:property_getName(property)];
+        
+        // TODO use introspection
+        if([name isEqualToString:@"hash"] || [name isEqualToString:@"superclass"] || [name isEqualToString:@"description"] || [name isEqualToString:@"debugDescription"])
+            continue;
+        NSObject *currentProperty = [instance valueForKey:name];
+        if(currentProperty != nil)
+            [propertiesArray addObject:currentProperty];
+    }
+    
+    free(properties);
+    return propertiesArray;
+}
+
++ (BOOL)isEqual:(id)object toObject:(id)objectToCompare
+{
+    if([object isKindOfClass:[NSString class]]) {
+        if([(NSString*)object isEqualToString:(NSString*)objectToCompare])
+            return YES;
+    } else if([object isKindOfClass:[NSNumber class]]) {
+        if([(NSNumber*)object isEqualToNumber:(NSNumber*)objectToCompare])
+            return YES;
+    } else if([object isKindOfClass:[NSDate class]]) {
+        if([(NSDate*)object isEqualToDate:(NSDate*)objectToCompare])
+            return YES;
+    } else if([object isKindOfClass:[Formula class]]) {
+        if([(Formula*)object isEqualToFormula:(Formula*)objectToCompare]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 
 @end

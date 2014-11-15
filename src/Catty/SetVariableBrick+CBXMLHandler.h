@@ -21,10 +21,10 @@
  */
 
 #import "SetVariableBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
 @class CBXMLContext;
 
-@interface SetVariableBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface SetVariableBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

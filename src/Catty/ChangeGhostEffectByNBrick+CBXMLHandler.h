@@ -21,8 +21,8 @@
  */
 
 #import "ChangeGhostEffectByNBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface ChangeGhostEffectByNBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface ChangeGhostEffectByNBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

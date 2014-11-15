@@ -23,6 +23,7 @@
 #import "VariablesContainer.h"
 #import "UserVariable.h"
 #import "OrderedMapTable.h"
+#include "SpriteObject.h"
 #import <pthread.h>
 
 @implementation VariablesContainer
@@ -106,6 +107,49 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_lock(&variablesLock);
     userVariable.value = [NSNumber numberWithFloat:(CGFloat)(([userVariable.value doubleValue] + value))];
     pthread_mutex_unlock(&variablesLock);
+}
+
+- (BOOL)isEqualToVariablesContainer:(VariablesContainer*)variablesContainer
+{
+    // objectVariableList
+    if([self.objectVariableList count] != [variablesContainer.objectVariableList count])
+        return NO;
+    
+    NSUInteger index;
+    for(index = 0; index < [self.objectVariableList count]; index++) {
+        SpriteObject *firstObject = [self.objectVariableList keyAtIndex:index];
+        SpriteObject *secondObject = [variablesContainer.objectVariableList keyAtIndex:index];
+        if(![firstObject isEqualToSpriteObject:secondObject])
+            return NO;
+        
+        NSMutableArray* firstUserVariableList = [self.objectVariableList objectAtIndex:index];
+        NSMutableArray* secondUserVariableList = [variablesContainer.objectVariableList objectAtIndex:index];
+        
+        if([firstUserVariableList count] != [secondUserVariableList count])
+            return NO;
+        
+        NSUInteger userVariableIndex;
+        for(userVariableIndex = 0; userVariableIndex < [firstUserVariableList count]; userVariableIndex++) {
+            UserVariable *firstVariable = [firstUserVariableList objectAtIndex:index];
+            UserVariable *secondVariable = [secondUserVariableList objectAtIndex:index];
+            if(![firstVariable isEqualToUserVariable:secondVariable])
+                return NO;
+        }
+    }
+    
+    // programVariableList
+    if([self.programVariableList count] != [variablesContainer.programVariableList count])
+        return NO;
+    
+    for(index = 0; index < [self.programVariableList count]; index++) {
+        UserVariable *firstVariable = [self.programVariableList objectAtIndex:index];
+        UserVariable *secondVariable = [variablesContainer.programVariableList objectAtIndex:index];
+        if(![firstVariable isEqualToUserVariable:secondVariable])
+            return NO;
+    }
+
+    
+    return YES;
 }
 
 @end

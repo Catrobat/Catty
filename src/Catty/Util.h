@@ -180,4 +180,8 @@
 
 + (double)degreeToRadians:(double)deg;
 
++ (NSArray*)propertiesOfInstance:(id)instance;
+
++ (BOOL)isEqual:(id)object toObject:(id)objectToCompare;
+
 @end

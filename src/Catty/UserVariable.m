@@ -47,4 +47,11 @@
     return userVariableXMLElement;
 }
 
+- (BOOL)isEqualToUserVariable:(UserVariable*)userVariable
+{
+    if([self.name isEqualToString:userVariable.name] && [self.value isEqualToNumber:userVariable.value])
+        return YES;
+    return NO;
+}
+
 @end

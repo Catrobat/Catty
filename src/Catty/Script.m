@@ -540,4 +540,35 @@
     return ret;
 }
 
+- (BOOL)isEqualToScript:(Script *)script
+{
+    if(self.brickCategoryType != script.brickCategoryType)
+        return NO;
+    
+    if(self.brickType != script.brickType)
+        return NO;
+    
+    if(![self.brickTitle isEqualToString:script.brickTitle])
+        return NO;
+    
+    if(![self.action isEqualToString:script.action])
+        return NO;
+
+    if(![self.object isEqualToSpriteObject:script.object])
+        return NO;
+    
+    if([self.brickList count] != [script.brickList count])
+        return NO;
+    
+    NSUInteger index;
+    for(index = 0; index < [self.brickList count]; index++) {
+        Brick *firstBrick = [self.brickList objectAtIndex:index];
+        Brick *secondBrick = [script.brickList objectAtIndex:index];
+        
+        if(![firstBrick isEqualToBrick:secondBrick])
+            return NO;
+    }
+    
+    return YES;
+}
 @end

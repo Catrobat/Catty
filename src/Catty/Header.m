@@ -55,6 +55,9 @@
     return header;
 }
 
+// TODO move to ser
+#define kCBXMLSerializerLanguageVersion @"0.93"
+
 - (GDataXMLElement*)toXML
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -71,7 +74,7 @@
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationVersion"
                                          optionalStringValue:self.applicationVersion]];
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"catrobatLanguageVersion"
-                                         optionalStringValue:self.catrobatLanguageVersion]];
+                                         optionalStringValue:kCBXMLSerializerLanguageVersion]];
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"dateTimeUpload"
                                          optionalStringValue:(self.dateTimeUpload ? [dateFormatter stringFromDate:self.dateTimeUpload] : nil)]];
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"description"
@@ -103,6 +106,13 @@
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"userHandle"
                                          optionalStringValue:self.userHandle]];
     return headerXMLElement;
+}
+
+- (BOOL)isEqualToHeader:(Header*)header
+{
+    if(![self.applicationBuildName isEqualToString:header.applicationBuildName])
+        return NO;
+    return YES;
 }
 
 @end

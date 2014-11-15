@@ -29,6 +29,7 @@
 #import "Script+CBXMLHandler.h"
 #import "CBXMLContext.h"
 #import "CBXMLParser.h"
+#import "Script+CBXMLHandler.h"
 
 @implementation SpriteObject (CBXMLHandler)
 

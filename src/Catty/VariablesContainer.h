@@ -41,4 +41,6 @@
 
 - (void)changeVariable:(UserVariable*)userVariable byValue:(double)value;
 
+- (BOOL)isEqualToVariablesContainer:(VariablesContainer*)variablesContainer;
+
 @end

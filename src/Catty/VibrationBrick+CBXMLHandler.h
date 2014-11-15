@@ -21,10 +21,10 @@
  */
 
 #import "VibrationBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
 @class CBXMLContext;
 
-@interface VibrationBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface VibrationBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

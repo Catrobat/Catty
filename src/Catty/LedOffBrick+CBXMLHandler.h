@@ -21,8 +21,8 @@
  */
 
 #import "LedOffBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface LedOffBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface LedOffBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

@@ -53,4 +53,6 @@
 
 - (NSString*)description;
 
+- (BOOL)isEqualToScript:(Script*)script;
+
 @end

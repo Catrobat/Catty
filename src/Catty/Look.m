@@ -101,4 +101,11 @@
     return [NSString stringWithFormat:@"Name: %@\rPath: %@\r", self.name, self.fileName];
 }
 
+- (BOOL)isEqualToLook:(Look*)look
+{
+    if([self.name isEqualToString:look.name] && [self.fileName isEqualToString:look.fileName])
+        return YES;
+    return NO;
+}
+
 @end

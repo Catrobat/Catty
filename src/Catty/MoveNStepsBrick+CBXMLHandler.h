@@ -21,8 +21,8 @@
  */
 
 #import "MoveNStepsBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface MoveNStepsBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface MoveNStepsBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

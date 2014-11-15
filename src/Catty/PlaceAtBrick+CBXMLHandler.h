@@ -21,10 +21,10 @@
  */
 
 #import "PlaceAtBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
 @class CBXMLContext;
 
-@interface PlaceAtBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface PlaceAtBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

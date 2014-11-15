@@ -20,9 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "PointToBrick.h"
-#import "CBXMLNodeProtocol.h"
+#import <Foundation/Foundation.h>
 
-@interface PointToBrick (CBXMLHandler) <CBXMLNodeProtocol>
+@class GDataXMLElement;
+@class CBXMLContext;
+
+@protocol CBXMLNodeProtocol <NSObject>
+
+@required
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context;
+//- (GDataXMLElement*)xmlElement;
 
 @end

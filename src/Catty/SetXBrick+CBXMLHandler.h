@@ -21,8 +21,8 @@
  */
 
 #import "SetXBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface SetXBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface SetXBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end
