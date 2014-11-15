@@ -20,42 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "VibrationBrick.h"
-#import "Script.h"
-#import "Formula.h"
-#import <AudioToolbox/AudioToolbox.h>
 
-@implementation VibrationBrick
+#import <Foundation/Foundation.h>
 
-- (NSString*)brickTitle
-{
-    return kLocalizedVibrateNSeconds;
-}
+@interface FlashHelper : NSObject
 
-- (SKAction*)action
-{
-    return [SKAction runBlock:[self actionBlock]];
-}
++ (instancetype)sharedFlashHandler;
 
-- (dispatch_block_t)actionBlock
-{
-    return ^{
-        NSDebug(@"Performing: %@", self.description);
-        double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.object];
-        for (int i = 1; i < 2*durationInSeconds; i++) {
-            [self performSelector:@selector(vibe:) withObject:self afterDelay:i *.5f];
-        }
-    };
-}
-
-- (void)vibe:(id)sender {
-    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-}
-
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"VibrationBrick (%f Seconds)", [self.durationInSeconds interpretDoubleForSprite:self.object]];
-}
+- (void)turnOn;
+- (void)turnOff;
 
 @end
