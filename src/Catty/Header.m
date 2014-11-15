@@ -110,8 +110,21 @@
 
 - (BOOL)isEqualToHeader:(Header*)header
 {
-    if(![self.applicationBuildName isEqualToString:header.applicationBuildName])
+    NSArray *firstPropertyList = [Util propertiesOfInstance:self];
+    NSArray *secondPropertyList = [Util propertiesOfInstance:header];
+    
+    if([firstPropertyList count] != [secondPropertyList count])
         return NO;
+    
+    NSUInteger index;
+    for(index = 0; index < [firstPropertyList count]; index++) {
+        NSObject *firstObject = [firstPropertyList objectAtIndex:index];
+        NSObject *secondObject = [secondPropertyList objectAtIndex:index];
+        
+        if(![Util isEqual:firstObject toObject:secondObject])
+            return NO;
+    }
+
     return YES;
 }
 
