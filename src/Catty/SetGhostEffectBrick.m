@@ -26,8 +26,6 @@
 
 @implementation SetGhostEffectBrick
 
-@synthesize transparency = _transparency;
-
 - (NSString*)brickTitle
 {
     return kLocalizedSetGhostEffect;

@@ -30,9 +30,6 @@
 
 @implementation Look
 
-@synthesize fileName = _costumeFileName;
-@synthesize name = _costumeName;
-
 #pragma mark - init methods
 - (id)initWithPath:(NSString*)filePath
 {
@@ -73,7 +70,7 @@
     // e.g. 34A109A82231694B6FE09C216B390570_normalCat
     NSRange result = [self.fileName rangeOfString:kResourceFileNameSeparator];
     if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([self.fileName length]-1)))
-        return nil; // Invalid file name convention -> this should not happen. XXX/FIXME: maybe we want to abort here??
+        return nil; // Invalid file name convention -> this should not happen. XXX: maybe abort here??
 
     return [NSString stringWithFormat:@"%@_%@%@",
         [self.fileName substringToIndex:result.location],

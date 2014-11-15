@@ -45,6 +45,7 @@
 #import "BrickManager.h"
 #import "SingleBrickSelectionView.h"
 #import "Util.h"
+#import "PlaceHolderView.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate,
                                               LXReorderableCollectionViewDelegateFlowLayout,
@@ -56,7 +57,6 @@
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) BrickScaleTransition *brickScaleTransition;
-@property (nonatomic, strong) PlaceHolderView *placeHolderView;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, strong) AHKActionSheet *brickSelectionMenu;
 @property  (nonatomic, strong) BrickSelectionView *brickSelectionView;
@@ -76,13 +76,6 @@
     [self setupToolBar];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    self.placeHolderView.frame = self.collectionView.bounds;
-    [self.view insertSubview:self.placeHolderView aboveSubview:self.collectionView];
-}
-
 #pragma mark - Setup Collection View
 - (void)setupCollectionView
 {
@@ -92,13 +85,14 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.collectionViewLayout = [LXReorderableCollectionViewFlowLayout new];
+    self.navigationController.title = self.title = kLocalizedScripts;
 
     self.navigationItem.rightBarButtonItems = @[self.editButtonItem];
 #if kIsRelease // kIsRelease
     self.navigationItem.rightBarButtonItem.enabled = NO;
 #endif // kIsRelease
-    self.placeHolderView = [[PlaceHolderView alloc] initWithTitle:kLocalizedScripts];
-    self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
+    self.placeHolderView.title = kLocalizedScripts;
+    [self showPlaceHolder:(! (BOOL)[self.object.scriptList count])];
     self.brickScaleTransition = [BrickScaleTransition new];
     self.selectedIndexPaths = [NSMutableDictionary dictionary];
 
@@ -621,7 +615,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
             } completion:^(BOOL finished) {
                 [self.collectionView reloadData];
-                self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
+                [self showPlaceHolder:(! (BOOL)[self.object.scriptList count])];
             }];
         }
     }
@@ -647,7 +641,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     } completion:^(BOOL finished) {
         [self.selectedIndexPaths removeAllObjects];
         [self.collectionView reloadData];
-        self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
+        [self showPlaceHolder:(! (BOOL)[self.object.scriptList count])];
     }];
 }
 
@@ -705,7 +699,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         NSError(@"Unknown class type given...");
         abort();
     }
-    self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
+    [self showPlaceHolder:(! (BOOL)[self.object.scriptList count])];
 
     if (completionBlock) completionBlock();
 }

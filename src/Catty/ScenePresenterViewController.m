@@ -25,7 +25,7 @@
 #import "ProgramLoadingInfo.h"
 #import "Parser.h"
 #import "ProgramDefines.h"
-#import "Program.h"
+#import "Program+CustomExtensions.h"
 #import "Util.h"
 #import "Script.h"
 #import "SpriteObject.h"
@@ -422,9 +422,9 @@
 {
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
-    
-    [self resetSpriteObjects];
-    
+
+    [self.program removeReferences];
+
     //Delete sound rec for loudness sensor
     NSError *error;
     
@@ -522,18 +522,13 @@
 
 - (void)restartProgram:(UIButton*)sender
 {
-    [self resetSpriteObjects];
+    [self.program removeReferences];
     self.program = nil;
     self.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
     for (SpriteObject *sprite in self.program.objectList) {
         sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-        for (Script *script in sprite.scriptList) {
-            script.allowRunNextAction = YES;
-            for (Brick *brick in script.brickList) {
-                brick.object = sprite;
-            }
-        }
     }
+    [self.program updateReferences];
     [[AudioManager sharedAudioManager] stopAllSounds];
 
     [self.broadcastWaitHandler removeSpriteMessages];
@@ -550,21 +545,6 @@
     }
     [self.skView presentScene:previousScene];
     [self continueProgram:nil withDuration:0.0f];
-}
-
-- (void)resetSpriteObjects
-{
-    for (SpriteObject *sprite in self.program.objectList) {
-        sprite.broadcastWaitDelegate = nil;
-        sprite.spriteManagerDelegate = nil;
-        for (Script *script in sprite.scriptList) {
-            script.allowRunNextAction = NO;
-            for (Brick *brick in script.brickList) {
-                brick.object = nil;
-            }
-        }
-        sprite.program = nil;
-    }
 }
 
 - (void)showHideAxis:(UIButton *)sender
