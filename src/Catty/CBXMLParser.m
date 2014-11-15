@@ -153,9 +153,15 @@
         SpriteObject *spriteObject = [SpriteObject parseFromElement:objectElement withContext:context];
         if (spriteObject != nil)
             [objectList addObject:spriteObject];
-
-        // TODO: sanity check => check if all objects from context are in objectList
-
+    }
+    // sanity check => check if all objects from context are in objectList
+    for (SpriteObject *pointedObjectInContext in context.pointedSpriteObjectList) {
+        BOOL found = NO;
+        for(SpriteObject *spriteObject in objectList) {
+            if([pointedObjectInContext.name isEqualToString:spriteObject.name])
+                found = YES;
+        }
+        [XMLError exceptionIf:found equals:NO message:@"Pointed object with name %@ not found in object list!", pointedObjectInContext.name];
     }
     NSLog(@"</objectList>");
     return objectList;

@@ -463,7 +463,6 @@
 
 - (void)testValidStopAllSoundBrick
 {
-    
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
@@ -478,10 +477,8 @@
     XCTAssertTrue([brick isKindOfClass:[StopAllSoundsBrick class]], @"Invalid brick class");
 }
 
-/*
 - (void)testValidPointToBrick
 {
-    
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
@@ -500,7 +497,7 @@
     PointToBrick *pointToBrick = (PointToBrick*)brick;
     SpriteObject *spriteObject = pointToBrick.pointedObject;
     XCTAssertNotNil(spriteObject, @"Invalid SpriteObject");
+    XCTAssertTrue([spriteObject.name isEqualToString:@"stickers"], @"Invalid brick name");
 }
-*/
 
 @end

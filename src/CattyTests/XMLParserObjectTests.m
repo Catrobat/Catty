@@ -72,4 +72,27 @@
     XCTAssertTrue([sound.fileName isEqualToString: @"6f231e6406d3554d691f3c9ffb37c043_Hit1.m4a"], @"SpriteObject[1]: Sound fileName not correctly parsed");
 }
 
+- (void)testValidObjectListForAllBricks {
+    
+    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
+    GDataXMLElement *xmlElement = [document rootElement];
+    
+    NSArray *objectListElements = [xmlElement elementsForName:@"objectList"];
+    XCTAssertEqual([objectListElements count], 1);
+    
+    NSArray *objectElements = [[objectListElements firstObject] children];
+    NSMutableArray *objectList = [NSMutableArray arrayWithCapacity:[objectElements count]];
+    
+    CBXMLContext *context = [CBXMLContext new];
+    for (GDataXMLElement *objectElement in objectElements) {
+        SpriteObject *spriteObject = [SpriteObject parseFromElement:objectElement withContext:context];
+        [objectList addObject:spriteObject];
+    }
+    
+    XCTAssertEqual([objectList count], 2);
+    SpriteObject *background = [objectList objectAtIndex:0];
+    XCTAssertTrue([background.name isEqualToString: @"Hintergrund"], @"SpriteObject[0]: Name not correctly parsed");
+}
+
+
 @end
