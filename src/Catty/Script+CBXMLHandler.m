@@ -56,6 +56,11 @@
         script = [StartScript new];
     } else if ([scriptType isEqualToString:@"WhenScript"]) {
         script = [WhenScript new];
+        NSArray *actionElements = [xmlElement elementsForName:@"action"];
+        [XMLError exceptionIf:[actionElements count] notEquals:1
+                      message:@"Wrong number of action elements given!"];
+        GDataXMLElement *actionElement = [actionElements firstObject];
+        script.action = [actionElement stringValue];
     } else if ([scriptType isEqualToString:@"BroadcastScript"]) {
         BroadcastScript *broadcastScript = [BroadcastScript new];
         NSArray *receivedMessageElements = [xmlElement elementsForName:@"receivedMessage"];

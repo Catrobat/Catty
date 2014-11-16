@@ -23,7 +23,6 @@
 #import "SetLookBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "GDataXMLNode+CustomExtensions.h"
-#import "CBXMLParser.h"
 #import "Look+CBXMLHandler.h"
 #import "CBXMLContext.h"
 #import "CBXMLParserHelper.h"
@@ -38,14 +37,14 @@
     NSMutableArray *lookList = context.lookList;
 
     Look *look = nil;
-    if ([CBXMLParser isReferenceElement:lookElement]) {
+    if ([CBXMLParserHelper isReferenceElement:lookElement]) {
         GDataXMLNode *referenceAttribute = [lookElement attributeForName:@"reference"];
         NSString *xPath = [referenceAttribute stringValue];
         lookElement = [lookElement singleNodeForCatrobatXPath:xPath];
         [XMLError exceptionIfNil:lookElement message:@"Invalid reference in SetLookBrick. No or too many looks found!"];
         GDataXMLNode *nameAttribute = [lookElement attributeForName:@"name"];
         [XMLError exceptionIfNil:nameAttribute message:@"Look element does not contain a name attribute!"];
-        look = [CBXMLParser findLookInArray:lookList withName:[nameAttribute stringValue]];
+        look = [CBXMLParserHelper findLookInArray:lookList withName:[nameAttribute stringValue]];
         [XMLError exceptionIfNil:look message:@"Fatal error: no look found in list, but should already exist!"];
     } else {
         // OMG!! a look has been defined within the brick element...

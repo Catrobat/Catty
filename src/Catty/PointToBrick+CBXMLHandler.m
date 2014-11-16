@@ -26,7 +26,7 @@
 #import "SpriteObject+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
 #import "CBXMLContext.h"
-#import "CBXMLParser.h"
+#import "CBXMLParserHelper.h"
 
 @implementation PointToBrick (CBXMLHandler)
 
@@ -38,7 +38,7 @@
 
     // check if pointed sprite object already exists in context (e.g. already created by other PointToBrick)
     SpriteObject *spriteObject = [SpriteObject parseFromElement:pointedObjectElement withContext:context];
-    SpriteObject *alreadyExistantSpriteObject = [CBXMLParser findSpriteObjectInArray:context.pointedSpriteObjectList
+    SpriteObject *alreadyExistantSpriteObject = [CBXMLParserHelper findSpriteObjectInArray:context.pointedSpriteObjectList
                                                                             withName:spriteObject.name];
     if (alreadyExistantSpriteObject) {
         spriteObject = alreadyExistantSpriteObject;

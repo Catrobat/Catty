@@ -494,7 +494,7 @@
 {
     if(self.type != formulaElement.type)
         return NO;
-    if(![self.value isEqualToString:formulaElement.value])
+    if(![Util isEqual:self.value toObject:formulaElement.value])
         return NO;
     if((self.leftChild != nil && formulaElement.leftChild == nil) || (self.leftChild == nil && formulaElement.leftChild != nil))
         return NO;

@@ -40,18 +40,10 @@
     GDataXMLElement *userVariableElement = [xmlElement childWithElementName:@"userVariable"];
     [XMLError exceptionIfNil:userVariableElement message:@"No userVariableElement element found..."];
 
-    UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:nil];
+    UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:context];
     [XMLError exceptionIfNil:userVariable message:@"Unable to parse userVariable..."];
     
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VARIABLE"];
-
-    UserVariable *alreadyExistingUserVariable = [CBXMLParser findUserVariableInArray:context.userVariableList
-                                                                            withName:userVariable.name];
-    if (alreadyExistingUserVariable) {
-        [XMLError exceptionWithMessage:@"User variable with same name %@ already exists...\
-                                         Instantiated by other brick...", alreadyExistingUserVariable.name];
-    }
-    [context.userVariableList addObject:userVariable];
 
     SetVariableBrick *setVariableBrick = [self new];
     setVariableBrick.userVariable = userVariable;

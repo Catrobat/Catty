@@ -32,6 +32,11 @@
 		4C1608AB1A095F17002C7032 /* FormulaElement+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1608AA1A095F17002C7032 /* FormulaElement+CBXMLHandler.m */; };
 		4C1608B21A09621A002C7032 /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B01A09621A002C7032 /* ValidFormulaList.xml */; };
 		4C1608B31A09621A002C7032 /* ValidProgram.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B11A09621A002C7032 /* ValidProgram.xml */; };
+		4C17C00A1A1889C900DED116 /* XMLParserBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C17C0091A1889C900DED116 /* XMLParserBlackBoxTests.m */; };
+		4C17C00F1A18966500DED116 /* Pythagorean-Theorem-092.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C17C00D1A18966500DED116 /* Pythagorean-Theorem-092.xml */; };
+		4C17C0101A18966500DED116 /* Pythagorean-Theorem-093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C17C00E1A18966500DED116 /* Pythagorean-Theorem-093.xml */; };
+		4C17C0141A18968B00DED116 /* Galaxy-War-092.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C17C0121A18968B00DED116 /* Galaxy-War-092.xml */; };
+		4C17C0151A18968B00DED116 /* Galaxy-War-093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C17C0131A18968B00DED116 /* Galaxy-War-093.xml */; };
 		4C23DB3C1A123FB600A0E860 /* ForeverBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C23DB3B1A123FB600A0E860 /* ForeverBrick+CBXMLHandler.m */; };
 		4C23DB4A1A124E4C00A0E860 /* LoopEndBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C23DB491A124E4C00A0E860 /* LoopEndBrick+CBXMLHandler.m */; };
 		4C3275ED1A135CCF0091C428 /* XMLParserBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3275EC1A135CCF0091C428 /* XMLParserBrickTests.m */; };
@@ -40,6 +45,8 @@
 		4C3275F61A135F990091C428 /* XMLParserFormulaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3275F51A135F990091C428 /* XMLParserFormulaTests.m */; };
 		4C3275F81A135FD00091C428 /* XMLParserObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3275F71A135FD00091C428 /* XMLParserObjectTests.m */; };
 		4C3275FA1A1360640091C428 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */; };
+		4CE835251A18FDE50032F78E /* Skydiving-Steve-092.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE835231A18FDE50032F78E /* Skydiving-Steve-092.xml */; };
+		4CE835261A18FDE50032F78E /* Skydiving-Steve-093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE835241A18FDE50032F78E /* Skydiving-Steve-093.xml */; };
 		4CEC09121A13955200059BB9 /* SetXBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC09111A13955200059BB9 /* SetXBrick+CBXMLHandler.m */; };
 		4CEC09151A1396DE00059BB9 /* SetYBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC09141A1396DE00059BB9 /* SetYBrick+CBXMLHandler.m */; };
 		4CEC09181A13975E00059BB9 /* ChangeXByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC09171A13975E00059BB9 /* ChangeXByNBrick+CBXMLHandler.m */; };
@@ -451,6 +458,11 @@
 		4C1608AA1A095F17002C7032 /* FormulaElement+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FormulaElement+CBXMLHandler.m"; sourceTree = "<group>"; };
 		4C1608B01A09621A002C7032 /* ValidFormulaList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidFormulaList.xml; path = "Resources/Test Resources/ValidFormulaList.xml"; sourceTree = "<group>"; };
 		4C1608B11A09621A002C7032 /* ValidProgram.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidProgram.xml; path = "Resources/Test Resources/ValidProgram.xml"; sourceTree = "<group>"; };
+		4C17C0091A1889C900DED116 /* XMLParserBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests.m; sourceTree = "<group>"; };
+		4C17C00D1A18966500DED116 /* Pythagorean-Theorem-092.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Pythagorean-Theorem-092.xml"; sourceTree = "<group>"; };
+		4C17C00E1A18966500DED116 /* Pythagorean-Theorem-093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Pythagorean-Theorem-093.xml"; sourceTree = "<group>"; };
+		4C17C0121A18968B00DED116 /* Galaxy-War-092.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Galaxy-War-092.xml"; sourceTree = "<group>"; };
+		4C17C0131A18968B00DED116 /* Galaxy-War-093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Galaxy-War-093.xml"; sourceTree = "<group>"; };
 		4C23DB3A1A123FB600A0E860 /* ForeverBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ForeverBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		4C23DB3B1A123FB600A0E860 /* ForeverBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ForeverBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		4C23DB481A124E4C00A0E860 /* LoopEndBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LoopEndBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
@@ -489,6 +501,8 @@
 		4C9E2D3E198F698100455B77 /* NSString+FastImageSize.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "NSString+FastImageSize.license"; sourceTree = "<group>"; };
 		4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+CWPopup.license"; sourceTree = "<group>"; };
 		4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OrderedDictionary.license; sourceTree = "<group>"; };
+		4CE835231A18FDE50032F78E /* Skydiving-Steve-092.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Skydiving-Steve-092.xml"; sourceTree = "<group>"; };
+		4CE835241A18FDE50032F78E /* Skydiving-Steve-093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Skydiving-Steve-093.xml"; sourceTree = "<group>"; };
 		4CEC09101A13955200059BB9 /* SetXBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetXBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		4CEC09111A13955200059BB9 /* SetXBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetXBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		4CEC09131A1396DE00059BB9 /* SetYBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetYBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
@@ -1372,6 +1386,10 @@
 		4C1608A41A09548F002C7032 /* ParserTests */ = {
 			isa = PBXGroup;
 			children = (
+				4CE835271A1900450032F78E /* Tic Tac Toe */,
+				4CE835221A18FDE50032F78E /* Skydiving Steve */,
+				4C17C0111A18968B00DED116 /* Galaxy War */,
+				4C17C00C1A18966500DED116 /* Pythagorean Theorem */,
 				4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */,
 				4C1608B01A09621A002C7032 /* ValidFormulaList.xml */,
 				4C1608B11A09621A002C7032 /* ValidProgram.xml */,
@@ -1386,6 +1404,26 @@
 				4C1608AA1A095F17002C7032 /* FormulaElement+CBXMLHandler.m */,
 			);
 			name = FormulaElement;
+			sourceTree = "<group>";
+		};
+		4C17C00C1A18966500DED116 /* Pythagorean Theorem */ = {
+			isa = PBXGroup;
+			children = (
+				4C17C00D1A18966500DED116 /* Pythagorean-Theorem-092.xml */,
+				4C17C00E1A18966500DED116 /* Pythagorean-Theorem-093.xml */,
+			);
+			name = "Pythagorean Theorem";
+			path = "Resources/Test Resources/Pythagorean Theorem";
+			sourceTree = "<group>";
+		};
+		4C17C0111A18968B00DED116 /* Galaxy War */ = {
+			isa = PBXGroup;
+			children = (
+				4C17C0121A18968B00DED116 /* Galaxy-War-092.xml */,
+				4C17C0131A18968B00DED116 /* Galaxy-War-093.xml */,
+			);
+			name = "Galaxy War";
+			path = "Resources/Test Resources/Galaxy War";
 			sourceTree = "<group>";
 		};
 		4C3275E51A135BE40091C428 /* Abstract */ = {
@@ -1486,8 +1524,27 @@
 				4C3275F31A135F3D0091C428 /* XMLParserHeaderTests.m */,
 				4C3275F51A135F990091C428 /* XMLParserFormulaTests.m */,
 				4C3275F71A135FD00091C428 /* XMLParserObjectTests.m */,
+				4C17C0091A1889C900DED116 /* XMLParserBlackBoxTests.m */,
 			);
 			name = CatrobatLanguage0.93;
+			sourceTree = "<group>";
+		};
+		4CE835221A18FDE50032F78E /* Skydiving Steve */ = {
+			isa = PBXGroup;
+			children = (
+				4CE835231A18FDE50032F78E /* Skydiving-Steve-092.xml */,
+				4CE835241A18FDE50032F78E /* Skydiving-Steve-093.xml */,
+			);
+			name = "Skydiving Steve";
+			path = "Resources/Test Resources/Skydiving Steve";
+			sourceTree = "<group>";
+		};
+		4CE835271A1900450032F78E /* Tic Tac Toe */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Tic Tac Toe";
+			path = "Resources/Test Resources/Tic Tac Toe";
 			sourceTree = "<group>";
 		};
 		4CEC09221A139D6100059BB9 /* Helper */ = {
@@ -3955,11 +4012,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA538EC819B0EA09008240AB /* InfoPlist.strings in Resources */,
+				4C17C0141A18968B00DED116 /* Galaxy-War-092.xml in Resources */,
 				4C3275FA1A1360640091C428 /* ValidProgramAllBricks.xml in Resources */,
 				4C1608B21A09621A002C7032 /* ValidFormulaList.xml in Resources */,
 				CA538EC919B0EA09008240AB /* test2.png in Resources */,
+				4C17C0151A18968B00DED116 /* Galaxy-War-093.xml in Resources */,
+				4C17C00F1A18966500DED116 /* Pythagorean-Theorem-092.xml in Resources */,
+				4CE835261A18FDE50032F78E /* Skydiving-Steve-093.xml in Resources */,
 				4C1608B31A09621A002C7032 /* ValidProgram.xml in Resources */,
+				4C17C0101A18966500DED116 /* Pythagorean-Theorem-093.xml in Resources */,
 				CA538ECA19B0EA09008240AB /* test.png in Resources */,
+				4CE835251A18FDE50032F78E /* Skydiving-Steve-092.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4077,6 +4140,7 @@
 				CA538EB219B0EA09008240AB /* NextLookBrickTests.m in Sources */,
 				CA538EB319B0EA09008240AB /* FormulaFunctionsTest.m in Sources */,
 				CA538EB419B0EA09008240AB /* GoNStepsBackBrickTests.m in Sources */,
+				4C17C00A1A1889C900DED116 /* XMLParserBlackBoxTests.m in Sources */,
 				CA538EB519B0EA09008240AB /* PointInDirectionBrickTests.m in Sources */,
 				CA538EB619B0EA09008240AB /* ProgramTableViewControllerNewProgramTests.m in Sources */,
 				CA538EB719B0EA09008240AB /* SensorHandlerTests.m in Sources */,

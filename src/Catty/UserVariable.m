@@ -23,6 +23,7 @@
 #import "UserVariable.h"
 #import "GDataXMLNode.h"
 #import "Program.h"
+#import "Util.h"
 
 @implementation UserVariable
 
@@ -49,7 +50,7 @@
 
 - (BOOL)isEqualToUserVariable:(UserVariable*)userVariable
 {
-    if([self.name isEqualToString:userVariable.name] && [self.value isEqualToNumber:userVariable.value])
+    if([self.name isEqualToString:userVariable.name] && [Util isEqual:self.value toObject:userVariable.value])
         return YES;
     return NO;
 }

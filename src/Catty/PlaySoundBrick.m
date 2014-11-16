@@ -65,4 +65,11 @@
     return brickXMLElement;
 }
 
+- (BOOL)isEqualToBrick:(Brick*)brick
+{
+    if(![self.sound isEqualToSound:((PlaySoundBrick*)brick).sound])
+        return NO;
+    return YES;
+}
+
 @end

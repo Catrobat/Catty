@@ -35,6 +35,7 @@
 #import "BroadcastWaitBrick.h"
 #import "BrickManager.h"
 #import "GDataXMLNode.h"
+#import "Util.h"
 
 #import "WhenScript.h"
 
@@ -544,19 +545,15 @@
 {
     if(self.brickCategoryType != script.brickCategoryType)
         return NO;
-    
     if(self.brickType != script.brickType)
         return NO;
-    
-    if(![self.brickTitle isEqualToString:script.brickTitle])
+    if(![Util isEqual:self.brickTitle toObject:script.brickTitle])
         return NO;
-    
-    if(![self.action isEqualToString:script.action])
+    if(![Util isEqual:self.action toObject:script.action])
+        return NO;
+    if(![Util isEqual:self.object.name toObject:script.object.name])
         return NO;
 
-    if(![self.object isEqualToSpriteObject:script.object])
-        return NO;
-    
     if([self.brickList count] != [script.brickList count])
         return NO;
     
@@ -565,8 +562,9 @@
         Brick *firstBrick = [self.brickList objectAtIndex:index];
         Brick *secondBrick = [script.brickList objectAtIndex:index];
         
-        if(![firstBrick isEqualToBrick:secondBrick])
+        if(![firstBrick isEqualToBrick:secondBrick]) {
             return NO;
+        }
     }
     
     return YES;

@@ -22,26 +22,14 @@
 
 #import "CBXMLParser.h"
 #import "GDataXMLNode.h"
+#import "CBXMLValidator.h"
+#import "CBXMLContext.h"
 #import "Program+CustomExtensions.h"
 #import "Header+CBXMLHandler.h"
-#import <Foundation/NSObjCRuntime.h>
-#import "CatrobatLanguageDefines.h"
-#import "CBXMLValidator.h"
-#import "SpriteObject+CBXMLHandler.h"
 #import "VariablesContainer+CBXMLHandler.h"
-#import "Look.h"
-#import "Sound.h"
-#import "UserVariable.h"
-#import "CBXMLContext.h"
+#import "SpriteObject+CBXMLHandler.h"
+#import "CatrobatLanguageDefines.h"
 
-#define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
-#define kCatroidXMLSpriteList           @"spriteList"
-#define kParserObjectTypeString         @"T@\"NSString\""
-#define kParserObjectTypeNumber         @"T@\"NSNumber\""
-#define kParserObjectTypeArray          @"T@\"NSArray\""
-#define kParserObjectTypeMutableArray   @"T@\"NSMutableArray\""
-#define kParserObjectTypeMutableDictionary @"T@\"NSMutableDictionary\""
-#define kParserObjectTypeDate           @"T@\"NSDate\""
 
 // NEVER MOVE THESE DEFINE CONSTANTS TO ANOTHER (HEADER) FILE
 #define kCatrobatXMLParserMinSupportedLanguageVersion 0.93f
@@ -172,95 +160,6 @@
                                               withContext:(CBXMLContext*)context
 {
     return [VariablesContainer parseFromElement:programElement withContext:context];
-}
-
-#pragma mark - Helpers
-+ (const char*)typeStringForProperty:(objc_property_t)property
-{
-    const char *attrs = property_getAttributes(property);
-    if (attrs == NULL) { return NULL; }
-
-    static char buffer[256];
-    const char *e = strchr(attrs, ',');
-    if (e == NULL) { return NULL; }
-
-    int len = (int)(e - attrs);
-    memcpy(buffer, attrs, len);
-    buffer[len] = '\0';
-    return buffer;
-}
-
-+ (id)valueForHeaderPropertyNode:(GDataXMLNode*)propertyNode
-{
-    objc_property_t property = class_getProperty([Header class], [propertyNode.name UTF8String]);
-    [XMLError exceptionIfNull:property message:@"Invalid header property %@ given", propertyNode.name];
-    NSString *propertyType = [NSString stringWithUTF8String:[[self class] typeStringForProperty:property]];
-    id value = nil;
-    if ([propertyType isEqualToString:kParserObjectTypeString]) {
-        value = [propertyNode stringValue];
-    } else if ([propertyType isEqualToString:kParserObjectTypeNumber]) {
-        value = [NSNumber numberWithFloat:[[propertyNode stringValue]floatValue]];
-    } else if ([propertyType isEqualToString:kParserObjectTypeDate]) {
-        NSDateFormatter *dateFormatter = [NSDateFormatter new];
-        [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-        [dateFormatter setDateFormat:kCatrobatHeaderDateTimeFormat];
-        value = [dateFormatter dateFromString:propertyNode.stringValue];
-    } else {
-        [XMLError exceptionWithMessage:@"Unsupported type for property %@ (of type: %@) in header", propertyNode.name, propertyType];
-    }
-    return value;
-}
-
-+ (id)valueForPropertyNode:(GDataXMLNode*)propertyNode
-{
-    // TODO: stub method => implement this!!
-    [XMLError exceptionWithMessage:@"valueForPropertyNode: NOT IMPLEMENTED YET!!!"];
-    return nil;
-}
-
-+ (BOOL)isReferenceElement:(GDataXMLElement*)xmlElement
-{
-    return ([xmlElement attributeForName:@"reference"] ? YES : NO);
-}
-
-+ (SpriteObject*)findSpriteObjectInArray:(NSArray*)spriteObjectList withName:(NSString*)spriteObjectName
-{
-    for (SpriteObject *spriteObject in spriteObjectList) {
-        if ([spriteObject.name isEqualToString:spriteObjectName]) { // TODO: implement isEqual in SpriteObject class
-            return spriteObject;
-        }
-    }
-    return nil;
-}
-
-+ (Look*)findLookInArray:(NSArray*)lookList withName:(NSString*)lookName
-{
-    for (Look *look in lookList) {
-        if ([look.name isEqualToString:lookName]) { // TODO: implement isEqual in SpriteObject class
-            return look;
-        }
-    }
-    return nil;
-}
-
-+ (Sound*)findSoundInArray:(NSArray*)soundList withName:(NSString*)soundName
-{
-    for (Sound *sound in soundList) {
-        if ([sound.name isEqualToString:soundName]) { // TODO: implement isEqual in SpriteObject class
-            return sound;
-        }
-    }
-    return nil;
-}
-
-+ (UserVariable*)findUserVariableInArray:(NSArray*)userVariableList withName:(NSString*)userVariableName
-{
-    for (UserVariable *userVariable in userVariableList) {
-        if ([userVariable.name isEqualToString:userVariableName]) { // TODO: implement isEqual in UserVariable class
-            return userVariable;
-        }
-    }
-    return nil;
 }
 
 @end

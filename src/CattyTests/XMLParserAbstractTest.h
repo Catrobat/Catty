@@ -72,5 +72,6 @@
 
 - (NSString*)getPathForXML: (NSString*)xmlFile;
 - (GDataXMLDocument*)getXMLDocumentForPath: (NSString*)xmlPath;
+- (void)compareProgram:(NSString*)programName092 withProgram:(NSString*)programName093;
 
 @end

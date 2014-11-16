@@ -99,4 +99,11 @@
     return brickXMLElement;
 }
 
+- (BOOL)isEqualToBrick:(Brick*)brick
+{
+    if([self.look isEqualToLook:((SetLookBrick*)brick).look])
+        return YES;
+    return NO;
+}
+
 @end

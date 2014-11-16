@@ -29,6 +29,7 @@
 #import "IfLogicEndBrick.h"
 #import "LoopEndBrick.h"
 #import "RepeatBrick.h"
+#import "Formula.h"
 #import "Util.h"
 
 @interface Brick()

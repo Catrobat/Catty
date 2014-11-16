@@ -20,28 +20,27 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "LoopBeginBrick.h"
-#import "LoopEndBrick.h"
-#import "Util.h"
+#import <XCTest/XCTest.h>
+#import "XMLParserAbstractTest.h"
+#import "CBXMLParser.h"
+#import "Parser.h"
 
-@implementation LoopBeginBrick
+@interface XMLParserBlackBoxTests : XMLParserAbstractTest
 
--(BOOL) checkCondition
-{
-    NSError(@"Abstract class. Override checkCondition in Subclass: %@", [self class]);
-    return NO;
+@end
+
+@implementation XMLParserBlackBoxTests
+
+- (void)testPythagoreanTheoremWithDifferentVersion {
+    [self compareProgram:@"Pythagorean-Theorem-092" withProgram:@"Pythagorean-Theorem-093"];
 }
 
-
--(void)reset
-{
+- (void)testGalaxyWarWithDifferentVersion {
+    [self compareProgram:@"Galaxy-War-092" withProgram:@"Galaxy-War-093"];
 }
 
-- (BOOL)isEqualToBrick:(Brick*)brick
-{
-    if(![Util isEqual:self.loopEndBrick.brickTitle toObject:((LoopBeginBrick*)brick).loopEndBrick.brickTitle ])
-        return NO;
-    return YES;
+- (void)testSkydivingSteveWithDifferentVersion {
+    [self compareProgram:@"Skydiving-Steve-092" withProgram:@"Skydiving-Steve-093"];
 }
 
 @end

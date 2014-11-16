@@ -42,13 +42,6 @@
 
     UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:nil];
     [XMLError exceptionIfNil:userVariable message:@"Unable to parse userVariable..."];
-    UserVariable *alreadyExistingUserVariable = [CBXMLParser findUserVariableInArray:context.userVariableList
-                                                                            withName:userVariable.name];
-    if (alreadyExistingUserVariable) {
-        [XMLError exceptionWithMessage:@"User variable with same name %@ already exists...\
-                                         Instantiated by other brick...", alreadyExistingUserVariable.name];
-    }
-    [context.userVariableList addObject:userVariable];
 
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VARIABLE_CHANGE"];
 

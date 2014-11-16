@@ -118,8 +118,19 @@ static pthread_mutex_t variablesLock;
     NSUInteger index;
     for(index = 0; index < [self.objectVariableList count]; index++) {
         SpriteObject *firstObject = [self.objectVariableList keyAtIndex:index];
-        SpriteObject *secondObject = [variablesContainer.objectVariableList keyAtIndex:index];
-        if(![firstObject isEqualToSpriteObject:secondObject])
+        
+        SpriteObject *secondObject = nil;
+        NSUInteger idx;
+        // look for object with same name (order in variable list can differ)
+        for(idx = 0; idx < [variablesContainer.objectVariableList count]; idx++) {
+            SpriteObject *spriteObject = [variablesContainer.objectVariableList keyAtIndex:idx];
+            if([spriteObject.name isEqualToString:firstObject.name]) {
+                secondObject = spriteObject;
+                break;
+            }
+        }
+        
+        if(secondObject == nil || ![firstObject isEqualToSpriteObject:secondObject])
             return NO;
         
         NSMutableArray* firstUserVariableList = [self.objectVariableList objectAtIndex:index];
@@ -128,11 +139,17 @@ static pthread_mutex_t variablesLock;
         if([firstUserVariableList count] != [secondUserVariableList count])
             return NO;
         
-        NSUInteger userVariableIndex;
-        for(userVariableIndex = 0; userVariableIndex < [firstUserVariableList count]; userVariableIndex++) {
-            UserVariable *firstVariable = [firstUserVariableList objectAtIndex:index];
-            UserVariable *secondVariable = [secondUserVariableList objectAtIndex:index];
-            if(![firstVariable isEqualToUserVariable:secondVariable])
+        for(UserVariable *firstVariable in firstUserVariableList) {
+            UserVariable *secondVariable = nil;
+            // look for variable with same name (order in variable list can differ)
+            for(UserVariable *variable in secondUserVariableList) {
+                if([firstVariable.name isEqualToString:variable.name]) {
+                    secondVariable = variable;
+                    break;
+                }
+            }
+            
+            if(secondVariable == nil || ![firstVariable isEqualToUserVariable:secondVariable])
                 return NO;
         }
     }
@@ -141,10 +158,16 @@ static pthread_mutex_t variablesLock;
     if([self.programVariableList count] != [variablesContainer.programVariableList count])
         return NO;
     
-    for(index = 0; index < [self.programVariableList count]; index++) {
-        UserVariable *firstVariable = [self.programVariableList objectAtIndex:index];
-        UserVariable *secondVariable = [variablesContainer.programVariableList objectAtIndex:index];
-        if(![firstVariable isEqualToUserVariable:secondVariable])
+    for(UserVariable *firstVariable in self.programVariableList) {
+        UserVariable *secondVariable = nil;
+        // look for variable with same name (order in variable list can differ)
+        for(UserVariable *variable in variablesContainer.programVariableList) {
+            if([firstVariable.name isEqualToString:variable.name]) {
+                secondVariable = variable;
+                break;
+            }
+        }
+        if(secondVariable == nil || ![firstVariable isEqualToUserVariable:secondVariable])
             return NO;
     }
 

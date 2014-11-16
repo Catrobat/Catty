@@ -23,7 +23,7 @@
 #import "Header+CBXMLHandler.h"
 #import "GDataXMLNode.h"
 #import "CBXMLValidator.h"
-#import "CBXMLParser.h"
+#import "CBXMLParserHelper.h"
 
 @implementation Header (CBXMLHandler)
 
@@ -39,7 +39,7 @@
     
     for (GDataXMLNode *headerPropertyNode in headerPropertyNodes) {
         [XMLError exceptionIfNil:headerPropertyNode message:@"Parsed an empty header entry!"];
-        id value = [CBXMLParser valueForHeaderPropertyNode:headerPropertyNode];
+        id value = [CBXMLParserHelper valueForHeaderPropertyNode:headerPropertyNode];
         NSLog(@"<%@>%@</%@>", headerPropertyNode.name, value, headerPropertyNode.name);
         NSString *headerPropertyName = headerPropertyNode.name;
         

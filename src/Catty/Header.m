@@ -110,21 +110,31 @@
 
 - (BOOL)isEqualToHeader:(Header*)header
 {
-    NSArray *firstPropertyList = [Util propertiesOfInstance:self];
-    NSArray *secondPropertyList = [Util propertiesOfInstance:header];
-    
-    if([firstPropertyList count] != [secondPropertyList count])
+    if(![self.applicationName isEqualToString:header.applicationName])
+        return NO;
+    if(![self.programDescription isEqualToString:header.programDescription])
+        return NO;
+    if(![self.mediaLicense isEqualToString:header.mediaLicense])
+        return NO;
+    if(![self.programLicense isEqualToString:header.programLicense])
+        return NO;
+    if(![self.programName isEqualToString:header.programName])
+        return NO;
+    if(![self.remixOf isEqualToString:header.remixOf])
+        return NO;
+    if(![self.screenHeight isEqualToNumber:header.screenHeight])
+        return NO;
+    if(![self.screenWidth isEqualToNumber:header.screenWidth])
+        return NO;
+    if(![self.screenMode isEqualToString:header.screenMode])
+        return NO;
+    if(![self.tags isEqualToString:header.tags])
+        return NO;
+    if(![self.url isEqualToString:header.url])
+        return NO;
+    if(![self.userHandle isEqualToString:header.userHandle])
         return NO;
     
-    NSUInteger index;
-    for(index = 0; index < [firstPropertyList count]; index++) {
-        NSObject *firstObject = [firstPropertyList objectAtIndex:index];
-        NSObject *secondObject = [secondPropertyList objectAtIndex:index];
-        
-        if(![Util isEqual:firstObject toObject:secondObject])
-            return NO;
-    }
-
     return YES;
 }
 

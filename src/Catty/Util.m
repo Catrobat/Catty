@@ -36,6 +36,7 @@
 #import "CatrobatLanguageDefines.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "Formula.h"
+#import "SpriteObject.h"
 #import <objc/runtime.h>
 
 @interface Util () <CatrobatAlertViewDelegate, UITextFieldDelegate>
@@ -711,6 +712,8 @@ replacementString:(NSString*)characters
 
 + (BOOL)isEqual:(id)object toObject:(id)objectToCompare
 {
+    if(object == nil && objectToCompare == nil)
+        return YES;
     if([object isKindOfClass:[NSString class]]) {
         if([(NSString*)object isEqualToString:(NSString*)objectToCompare])
             return YES;
@@ -721,10 +724,13 @@ replacementString:(NSString*)characters
         if([(NSDate*)object isEqualToDate:(NSDate*)objectToCompare])
             return YES;
     } else if([object isKindOfClass:[Formula class]]) {
-        if([(Formula*)object isEqualToFormula:(Formula*)objectToCompare]) {
+        if([(Formula*)object isEqualToFormula:(Formula*)objectToCompare])
             return YES;
-        }
+    } else if([object isKindOfClass:[SpriteObject class]]) {
+        if([(SpriteObject*)object isEqualToSpriteObject:(SpriteObject*)objectToCompare])
+            return YES;
     }
+    
     return NO;
 }
 
