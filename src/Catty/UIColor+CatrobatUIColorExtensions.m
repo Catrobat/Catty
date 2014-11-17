@@ -83,6 +83,11 @@
     return [UIColor colorWithRed:0 green:37.0f/255.0f blue:52.0f/255.0f alpha:1.0f];
 }
 
++ (UIColor*)shadeDarkBlueColor
+{
+    return [UIColor colorWithRed:0 green:27.75f/255.0f blue:29.0f/255.0f alpha:1.0f];
+}
+
 + (UIColor*)lightOrangeColor
 {
     return [UIColor colorWithRed:(CGFloat)(232.0/255.0) green:146.0f/255.0f blue:6.0f/255.0f alpha:1.0f];
