@@ -31,6 +31,7 @@
 @property (nonatomic,strong)Sound *sound;
 @property (nonatomic,strong)NSString *filePath;
 @property (nonatomic,strong) TimerLabel* timerLabel;
+@property (nonatomic,strong) AVAudioRecorder* recorder;
 
 @end
 
@@ -40,7 +41,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.microphone = [EZMicrophone microphoneWithDelegate:self];
 	// Do any additional setup after loading the view, typically from a nib.
     self.audioPlot.frame = CGRectMake(0, 70, self.view.frame.size.width, self.view.frame.size.height * 0.5);
     self.record.frame = CGRectMake(self.view.frame.size.width / 2.0 - 50, self.view.frame.size.height * 0.7, 100, 100);
@@ -53,7 +53,7 @@
     self.timerLabel.timeLabel.textColor = [UIColor lightOrangeColor];
     self.timerLabel.timeLabel.textAlignment = NSTextAlignmentCenter;
     
-
+    self.microphone = [EZMicrophone microphoneWithDelegate:self];
     self.audioPlot.backgroundColor = [UIColor airForceBlueColor];
     self.audioPlot.color           = [UIColor lightOrangeColor];
     self.audioPlot.plotType        = EZPlotTypeRolling;
@@ -64,6 +64,8 @@
     
     [self.view addGestureRecognizer:recognizer];
     [self.audioPlot addGestureRecognizer:recognizer];
+    [self.timerLabel addGestureRecognizer:recognizer];
+    
     
     self.view.backgroundColor = [UIColor airForceBlueColor];
 
@@ -79,17 +81,17 @@
         NSLog(@"There was an error sending the audio to the speakers");
     }
 
-
+    self.isRecording = NO;
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [self.recorder stop];
+    [self.timerLabel reset];
+    [self.record setSelected:NO];
     [self.microphone stopFetchingAudio];
-    [self.recorder closeAudioFile];
     self.recorder = nil;
-    [[EZOutput sharedOutput] stopPlayback];
-    [EZOutput sharedOutput].outputDataSource = nil;
     if (self.sound) {
         NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
         [dnc postNotificationName:kRecordAddedNotification
@@ -107,41 +109,49 @@
 
 -(void)recordClicked:(id)sender
 {
-    if([[EZOutput sharedOutput] isPlaying] ){
-        [EZOutput sharedOutput].outputDataSource = nil;
-        [[EZOutput sharedOutput] stopPlayback];
-    }
-    
-    if(!self.isRecording)
-    {
-        [self.record setSelected:YES];
-        [self.timerLabel start];
-        [self.microphone startFetchingAudio];
-        [self.audioPlot clear];
+    if (!self.isRecording) {
+        AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+
         NSString * fileName =[[self GetUUID] stringByAppendingString:@".m4a"];
+        self.filePath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, fileName];
         self.sound = [[Sound alloc] init];
         self.sound.fileName = fileName;
         self.sound.name = NSLocalizedString(@"Recording", nil);
-        AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-        self.filePath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, fileName];
         NSURL* outputFileUrl = [NSURL fileURLWithPath:self.filePath isDirectory:NO];
-
-        self.recorder = [EZRecorder recorderWithDestinationURL:outputFileUrl
-                                                  sourceFormat:self.microphone.audioStreamBasicDescription
-                                           destinationFileType:EZRecorderFileTypeM4A];
+        
+        AVAudioSession* session = [AVAudioSession sharedInstance];
+        [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+        
+        NSMutableDictionary* recordSetting = [[NSMutableDictionary alloc]init];
+        
+        [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
+        
+        [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
+        
+        [recordSetting setValue:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];
+        
+        self.recorder = [[AVAudioRecorder alloc]initWithURL:outputFileUrl settings:recordSetting error:NULL];
+        
+        self.recorder.delegate = self;
+        self.recorder.meteringEnabled = YES;
+        
+        [self.recorder prepareToRecord];
+        [self.record setSelected:YES];
+        [self.timerLabel start];
+        [self.audioPlot clear];
         self.isRecording = YES;
-    }
-    else
-    {
-        [self.recorder closeAudioFile];
-        self.isRecording = NO;
-        [self.microphone stopFetchingAudio];
-        [self.record setSelected:NO];
-        [self.navigationController popViewControllerAnimated:YES];
+        [session setActive:YES error:nil];
+        [self.recorder recordForDuration:(([self getFreeDiskspace]/1024ll)/256.0)];
+        [self.microphone startFetchingAudio];
+        
+    }else{
+        [self.recorder stop];
         [self.timerLabel reset];
+        [self.record setSelected:NO];
+        [self.microphone stopFetchingAudio];
+        self.isRecording = NO;
+        [self.navigationController popViewControllerAnimated:YES];
     }
-    
-
 }
 - (NSString *)GetUUID
 {
@@ -186,29 +196,19 @@
   return totalFreeSpace;
 }
 
+#pragma mark-audioPlot update
 -(void)microphone:(EZMicrophone *)microphone
  hasAudioReceived:(float **)buffer
    withBufferSize:(UInt32)bufferSize
 withNumberOfChannels:(UInt32)numberOfChannels {
-
+        // Getting audio data as an array of float buffer arrays. What does that mean? Because the audio is coming in as a stereo signal the data is split into a left and right channel. So buffer[0] corresponds to the float* data for the left channel while buffer[1] corresponds to the float* data for the right channel.
+    
+        // See the Thread Safety warning above, but in a nutshell these callbacks happen on a separate audio thread. We wrap any UI updating in a GCD block on the main thread to avoid blocking that audio flow.
     dispatch_async(dispatch_get_main_queue(),^{
-
+            // All the audio plot needs is the buffer data (float*) and the size. Internally the audio plot will handle all the drawing related code, history management, and freeing its own resources. Hence, one badass line of code gets you a pretty plot :)
         [self.audioPlot updateBuffer:buffer[0] withBufferSize:bufferSize];
     });
 }
-
--(void)microphone:(EZMicrophone *)microphone
-    hasBufferList:(AudioBufferList *)bufferList
-   withBufferSize:(UInt32)bufferSize
-withNumberOfChannels:(UInt32)numberOfChannels {
-
-    if( self.isRecording ){
-        [self.recorder appendDataFromBufferList:bufferList
-                                 withBufferSize:bufferSize];
-    }
-    
-}
-
 
 
 @end

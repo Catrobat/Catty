@@ -36,7 +36,6 @@
 
 @property (nonatomic,strong) EZMicrophone *microphone;
 
-@property (nonatomic,strong) EZRecorder *recorder;
 
 
 
