@@ -63,6 +63,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *orangeTypeButton;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *toolTypeButton;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *normalTypeButton;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *highlightedButtons;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *calcScrollView;
 @property (weak, nonatomic) IBOutlet UIScrollView *mathScrollView;
@@ -426,6 +427,13 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateHighlighted];
           [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateSelected];
   }
+
+    for(int i = 0; i < [self.highlightedButtons count]; i++) {
+        [[self.highlightedButtons objectAtIndex:i] setTitleColor:[UIColor lightOrangeColor] forState:UIControlStateNormal];
+        [[self.highlightedButtons objectAtIndex:i] setBackgroundColor:[UIColor darkBlueColor]];
+        [[self.highlightedButtons objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateHighlighted];
+        [[self.highlightedButtons objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateSelected];
+    }
   
     [self update];
     [self.formulaEditorTextView becomeFirstResponder];
