@@ -30,7 +30,7 @@
 
 @class CatrobatProgram;
 
-@interface ProgramDetailStoreViewController : UIViewController<ProgramStoreDelegate, UIScrollViewDelegate, FileManagerDelegate, TTTAttributedLabelDelegate, RecentProgramsStoreDelegate>
+@interface ProgramDetailStoreViewController : UIViewController<ProgramStoreDelegate, UIScrollViewDelegate, FileManagerDelegate, TTTAttributedLabelDelegate, RecentProgramsStoreDelegate, NSURLConnectionDataDelegate>
 
 @property (nonatomic, strong) CatrobatProgram *project;
 @property (nonatomic, strong) NSMutableDictionary *projects;

@@ -38,6 +38,7 @@
 #import "CreateView.h"
 #import "Reachability.h"
 #import "ProgramUpdateDelegate.h"
+#import "UIDefines.h"
 
 #define kUIBarHeight 49
 #define kNavBarHeight 44
@@ -219,6 +220,55 @@
         [self performSegueWithIdentifier:segueToContinue sender:self];
     }
 }
+- (void)reportProgram
+{
+    NSLog(@"report");
+//    BOOL isLoggedIn = [[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"];
+//    if (isLoggedIn) {
+    [Util askUserForReportMessageAndPerformAction:@selector(sendReportWithMessage:) target:self promptTitle:@"Report Program" promptMessage:@"Why do you think this program is inappropriate?" minInputLength:1 maxInputLength:10 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:@"only ...characters"];
+
+        
+//    }
+}
+
+static NSCharacterSet *blockedCharacterSet = nil;
+
+- (NSCharacterSet*)blockedCharacterSet
+{
+    if (! blockedCharacterSet) {
+        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                               invertedSet];
+    }
+    return blockedCharacterSet;
+}
+
+
+-(void)sendReportWithMessage:(NSString*)message
+{
+    NSLog(@"ReportMessage::::::%@",message);
+//  NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@",@"id",self.project.projectID,@"message",message];
+//  NSData *postData = [[NSData alloc] initWithContentsOfFile:post];
+//    //NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+//  NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
+//  
+//  NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+//  [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", uploadUrlBase, kConnectionLoginOrRegister]]];
+//  [request setHTTPMethod:@"POST"];
+//  [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+//  [request setHTTPBody:postData];
+//  
+//  NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+//
+//  [connection start];
+//  
+//  if(connection) {
+//    NSLog(@"Connection Successful");
+//  } else {
+//    NSLog(@"Connection could not be made");
+//  }
+
+  
+}
 
 - (void)playButtonPressed:(id)sender
 {
@@ -372,5 +422,15 @@
 }
 
 
+#pragma mark URLDelegate
 
+-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    NSDebug(@"response");
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSDebug(@"finished");
+}
 @end

@@ -400,6 +400,37 @@
                                                                   withPayload:[payload mutableCopy]];
 }
 
++ (void)askUserForReportMessageAndPerformAction:(SEL)action
+                                      target:(id)target
+                                 promptTitle:(NSString*)title
+                               promptMessage:(NSString*)message
+                              minInputLength:(NSUInteger)minInputLength
+                              maxInputLength:(NSUInteger)maxInputLength
+                            blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
+                    invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
+{
+    textFieldMaxInputLength = maxInputLength;
+    textFieldBlockedCharacterSet = blockedCharacterSet;
+    
+    NSDictionary *payload = @{
+                              kDTPayloadAskUserAction : [NSValue valueWithPointer:action],
+                              kDTPayloadAskUserTarget : target,
+                              kDTPayloadAskUserPromptTitle : title,
+                              kDTPayloadAskUserPromptMessage : message,
+                              kDTPayloadAskUserMinInputLength : @(minInputLength),
+                              kDTPayloadAskUserInvalidInputAlertMessage : invalidInputAlertMessage,
+                              };
+    CatrobatAlertView *alertView = [[self class] promptWithTitle:title
+                                                         message:message
+                                                        delegate:(id<CatrobatAlertViewDelegate>)self
+                                                     placeholder:@""
+                                                             tag:kAskUserForReportMessageAlertViewTag
+                                                           value:@""
+                                               textFieldDelegate:(id<UITextFieldDelegate>)self];
+    alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionReportMessage
+                                                                  withPayload:[payload mutableCopy]];
+}
+
 + (void)askUserForTextAndPerformAction:(SEL)action
                                 target:(id)target
                            promptTitle:(NSString*)title
@@ -656,6 +687,42 @@ replacementString:(NSString*)characters
                                                   textFieldDelegate:(id<UITextFieldDelegate>)self];
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         }
+    } else if (alertView.tag == kAskUserForReportMessageAlertViewTag){
+        if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
+            return;
+        }
+        NSString *input = [alertView textFieldAtIndex:0].text;
+        NSUInteger textFieldMinInputLength = [payload[kDTPayloadAskUserMinInputLength] unsignedIntegerValue];
+        if ([input length] < textFieldMinInputLength) {
+            NSString *alertText = [NSString stringWithFormat:kLocalizedNoOrTooShortInputDescription,
+                                   textFieldMinInputLength];
+            alertText = ((textFieldMinInputLength != 1) ? [[self class] pluralString:alertText]
+                         : [[self class] singularString:alertText]);
+            CatrobatAlertView *newAlertView = [Util alertWithText:alertText
+                                                         delegate:(id<CatrobatAlertViewDelegate>)self
+                                                              tag:kInvalidNameWarningAlertViewTag];
+            payload[kDTPayloadAskUserPromptValue] = input;
+            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
+        } else {
+                // no name duplicate => call action on target
+            SEL action = [((NSValue*)payload[kDTPayloadAskUserAction]) pointerValue];
+            id target = payload[kDTPayloadAskUserTarget];
+            id passingObject = payload[kDTPayloadAskUserObject];
+            if ((! passingObject) || [passingObject isKindOfClass:[NSNull class]]) {
+                if (action) {
+                    IMP imp = [target methodForSelector:action];
+                    void (*func)(id, SEL, id) = (void *)imp;
+                    func(target, action, input);
+                }
+            } else {
+                if (action) {
+                    IMP imp = [target methodForSelector:action];
+                    void (*func)(id, SEL, id, id) = (void *)imp;
+                    func(target, action, input, passingObject);
+                }
+            }
+        }
+
     }
 }
 

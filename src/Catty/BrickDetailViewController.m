@@ -63,7 +63,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.view.backgroundColor = UIColor.clearColor;
     self.deleteBrickOrScriptFlag = [[NSNumber alloc]initWithBool:NO];
     self.brickCopyFlag = [[NSNumber alloc]initWithBool:NO];
-    [CellMotionEffect addMotionEffectForView:self.brickCell withDepthX:0.0f withDepthY:25.0f withMotionEffectGroup:self.motionEffects];
+//    [CellMotionEffect addMotionEffectForView:self.brickCell withDepthX:0.0f withDepthY:25.0f withMotionEffectGroup:self.motionEffects];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -78,8 +78,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [CellMotionEffect removeMotionEffect:self.motionEffects fromView:self.brickCell];
-    self.motionEffects = nil;
+//    [CellMotionEffect removeMotionEffect:self.motionEffects fromView:self.brickCell];
+//    self.motionEffects = nil;
     if ([self.view.window.gestureRecognizers containsObject:self.recognizer]) {
         [self.view.window removeGestureRecognizer:self.recognizer];
     }
