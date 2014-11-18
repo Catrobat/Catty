@@ -33,7 +33,6 @@
 #import "IfLogicBeginBrickCell.h"
 #import "RepeatBrickCell.h"
 #import "BroadcastScriptCell.h"
-#import "CellMotionEffect.h"
 #import "BrickCell.h"
 #import "BrickFormulaProtocol.h"
 #import "LanguageTranslationDefines.h"
@@ -52,7 +51,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (strong, nonatomic) NSNumber *deleteBrickOrScriptFlag;
 @property (strong, nonatomic) NSNumber *brickCopyFlag;
 @property (strong, nonatomic) NSNumber *openFormulaEditorFlag;
-@property (strong, nonatomic) UIMotionEffectGroup *motionEffects;
 @property (strong, nonatomic) CatrobatActionSheet *brickMenu;
 
 @end
@@ -66,7 +64,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.deleteBrickOrScriptFlag = [[NSNumber alloc]initWithBool:NO];
     self.brickCopyFlag = [[NSNumber alloc]initWithBool:NO];
     self.openFormulaEditorFlag = [[NSNumber alloc]initWithBool:NO];
-    [CellMotionEffect addMotionEffectForView:self.brickCell withDepthX:0.0f withDepthY:25.0f withMotionEffectGroup:self.motionEffects];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -80,9 +78,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [CellMotionEffect removeMotionEffect:self.motionEffects fromView:self.brickCell];
-    self.motionEffects = nil;
+
     if ([self.view.window.gestureRecognizers containsObject:self.recognizer]) {
         [self.view.window removeGestureRecognizer:self.recognizer];
     }
@@ -162,12 +158,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     return _brickMenu;
 }
 
-- (UIMotionEffectGroup *)motionEffects {
-    if (!_motionEffects) {
-        _motionEffects = [UIMotionEffectGroup new];
-    }
-    return _motionEffects;
-}
 
 #pragma mark - Action Sheet Delegate
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
