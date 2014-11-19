@@ -844,7 +844,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
-    NSLog(@"begin");
 }
 
 - (void)textFieldFinished:(id)sender
@@ -853,7 +852,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     NoteBrick *noteBrick =(NoteBrick*) noteBrickTextField.cell.brick;
     noteBrick.note = noteBrickTextField.text;
     [noteBrickTextField update];
-    NSLog(@"%@",noteBrickTextField.text);
     [noteBrickTextField resignFirstResponder];
 }
 

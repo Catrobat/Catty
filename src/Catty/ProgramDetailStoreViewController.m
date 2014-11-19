@@ -253,7 +253,7 @@
 #pragma mark - File Manager Delegate
 - (void) downloadFinishedWithURL:(NSURL*)url
 {
-    NSLog(@"Download Finished!!!!!!");
+    NSDebug(@"Download Finished!!!!!!");
     self.project.isdownloading = NO;
     [self.projects removeObjectForKey:url];
     EVCircularProgressView* button = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];

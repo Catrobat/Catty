@@ -238,9 +238,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
         if(PLUS == [sender tag])
         {
-            NSLog(@"Plus: %@", title);
+            NSDebug(@"Plus: %@", title);
         }else{
-            NSLog(@"Beschreibung: %ld", (long)[sender tag]);
+            NSDebug(@"Beschreibung: %ld", (long)[sender tag]);
         }
         
         [self handleInputWithTitle:title AndButtonType:(int)[sender tag]];
@@ -250,7 +250,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)handleInputWithTitle:(NSString*)title AndButtonType:(int)buttonType
 {
     [self.internFormula handleKeyInputWithName:title butttonType:buttonType];
-    NSLog(@"InternFormulaString: %@",[self.internFormula getExternFormulaString]);
+    NSDebug(@"InternFormulaString: %@",[self.internFormula getExternFormulaString]);
     [self.history push:[self.internFormula getInternFormulaState]];
     [self update];
 }
@@ -635,7 +635,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
           if (self.currentComponent == 0){
           VariablesContainer* varCont = self.object.program.variables;
           UserVariable* var = [varCont getUserVariableNamed:self.variableSourceProgram[row] forSpriteObject:self.object];
-              NSLog(@"%@",var.name);
+              NSDebug(@"%@",var.name);
       }
   
       

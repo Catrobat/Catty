@@ -112,7 +112,7 @@
              
             case UIGestureRecognizerStateCancelled:
             case UIGestureRecognizerStateEnded:
-                NSLog(@"Long Press cancelled");
+                NSDebug(@"Long Press cancelled");
                 break;
                 
             default:

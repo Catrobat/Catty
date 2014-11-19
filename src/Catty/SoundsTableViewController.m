@@ -126,7 +126,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)soundAdded:(NSNotification*)notification
 {
     if (notification.userInfo) {
-        NSLog(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
+        NSDebug(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
         id sound = notification.userInfo[kUserInfoSound];
         if ([sound isKindOfClass:[Sound class]]) {
             [self addSoundToObjectAction:(Sound*)sound];
@@ -562,7 +562,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else if (actionSheet.tag == kAddSoundActionSheetTag) {
         if (buttonIndex == 0) {
             // Select music track
-            NSLog(@"Select music track");
+            NSDebug(@"Select music track");
             AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
             if (! [delegate.fileManager existPlayableSoundsInDirectory:delegate.fileManager.documentsDirectory]) {
                 [Util alertWithText:kLocalizedNoImportedSoundsFoundDescription];

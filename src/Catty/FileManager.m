@@ -150,7 +150,7 @@
 {
     NSError *error = nil;
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSLog(@"Create directory at path: %@", path);
+    NSDebug(@"Create directory at path: %@", path);
     if (! [self directoryExists:path])
         [fileManager createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:&error];
     NSLogError(error);

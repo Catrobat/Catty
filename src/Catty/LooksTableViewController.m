@@ -452,7 +452,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         // still on the main queue here
         ALAssetRepresentation *representation = [myasset defaultRepresentation];
         NSString *imageFileName = [representation filename];
-        NSLog(@"fileName: %@",imageFileName);
+        NSDebug(@"fileName: %@",imageFileName);
         NSArray *imageFileNameParts = [imageFileName componentsSeparatedByString:@"."];
         imageFileName = [imageFileNameParts firstObject];
         NSString *imageFileNameExtension = [imageFileNameParts lastObject];
@@ -475,7 +475,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
                                   [self.object projectPath], kProgramImagesDirName, newImageFileName];
         NSString *mediaType = info[UIImagePickerControllerMediaType];
-        NSLog(@"Writing file to disk");
+        NSDebug(@"Writing file to disk");
         if ([mediaType isEqualToString:@"public.image"]) {
             // leaving the main queue here!
             NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{

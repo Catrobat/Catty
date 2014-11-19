@@ -151,7 +151,7 @@
     NSInteger location = [self offsetFromPosition:beginning toPosition:cursorPositionStart];
     NSInteger length = [self offsetFromPosition:cursorPositionStart toPosition:cursorPositionEnd];
     
-    NSLog(@"tap from %d to %d!", startIndex, endIndex);
+    NSDebug(@"tap from %d to %d!", startIndex, endIndex);
     
     if(startIndex == endIndex)
     {
