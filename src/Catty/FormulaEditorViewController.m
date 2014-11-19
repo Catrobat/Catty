@@ -173,7 +173,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
   
     [self.variablePicker reloadAllComponents];
     self.currentComponent = 0;
-    
+    self.mathScrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+    self.logicScrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+    self.objectScrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+    self.sensorScrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+  
 }
 
 - (void)viewWillAppear:(BOOL)animated
