@@ -32,7 +32,7 @@
         self.clearButtonMode = UITextFieldViewModeWhileEditing;
         self.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         self.text = note;
-        self.userInteractionEnabled = NO;
+//        self.userInteractionEnabled = NO;
         self.textColor = [UIColor whiteColor];
         [self sizeToFit];
         if(self.frame.size.width > 250)
@@ -98,6 +98,17 @@
     }
     
     [self.layer addSublayer:self.border];
+}
+
+-(void)update
+{
+    [self sizeToFit];
+    if(self.frame.size.width > 250)
+    {
+        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 250, self.frame.size.height);
+    }
+    [self drawBorder:NO];
+
 }
 
 @end

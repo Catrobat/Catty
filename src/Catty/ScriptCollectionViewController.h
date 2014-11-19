@@ -25,7 +25,7 @@
 
 @class SpriteObject, FXBlurView;
 
-@interface ScriptCollectionViewController : UICollectionViewController 
+@interface ScriptCollectionViewController : UICollectionViewController <UITextFieldDelegate>
 @property (strong, nonatomic) SpriteObject *object;
 @property (nonatomic, strong) FXBlurView *blurView;
 

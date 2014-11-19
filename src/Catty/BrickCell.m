@@ -444,7 +444,7 @@
                 NoteBrick *brick =(NoteBrick*) self.brick;
                 inputViewFrame.origin.y = inputViewFrame.origin.y+10;
                 inputViewFrame.size.height = kBrickInputFieldHeight;
-                UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame andNote:brick.note];
+                UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame andNote:brick.note AndBrickCell:self];
                 inputField = (UIView*)textField;
             } else if ([afterLabelParam rangeOfString:@"MESSAGE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
@@ -540,5 +540,7 @@
         [self.layer removeAllAnimations];
     }
 }
+
+
 
 @end

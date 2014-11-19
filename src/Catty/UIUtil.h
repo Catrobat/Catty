@@ -34,7 +34,7 @@
 
 + (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame;
 + (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame AndText:(NSString*)text;
-+ (UITextField*)newDefaultBrickTextFieldWithFrame:(CGRect)frame andNote:(NSString*)note;
++ (UITextField*)newDefaultBrickTextFieldWithFrame:(CGRect)frame andNote:(NSString*)note AndBrickCell:(BrickCell*)brickCell;
 + (UIButton*)newDefaultBrickFormulaEditorWithFrame:(CGRect)frame ForBrickCell:(BrickCell*)brickCell AndLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
 
 + (MessageComboBoxView*)newDefaultBrickMessageComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;

@@ -49,6 +49,8 @@
 #import "FormulaEditorButton.h"
 #import "FormulaEditorViewController.h"
 #import "VariablesContainer.h"
+#import "NoteBrickTextField.h"
+#import "NoteBrick.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate,
                                               LXReorderableCollectionViewDelegateFlowLayout,
@@ -351,6 +353,7 @@
     }
     [brickCell setupBrickCell];
     brickCell.delegate = self;
+    brickCell.textDelegate = self;
 #if kIsRelease // kIsRelease
     brickCell.enabled = NO;
 #endif // kIsRelease
@@ -835,6 +838,23 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+}
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    NSLog(@"begin");
+}
+
+- (void)textFieldFinished:(id)sender
+{
+    NoteBrickTextField *noteBrickTextField = (NoteBrickTextField*)sender;
+    NoteBrick *noteBrick =(NoteBrick*) noteBrickTextField.cell.brick;
+    noteBrick.note = noteBrickTextField.text;
+    [noteBrickTextField update];
+    NSLog(@"%@",noteBrickTextField.text);
+    [noteBrickTextField resignFirstResponder];
+}
 
 @end

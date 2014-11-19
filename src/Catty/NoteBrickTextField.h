@@ -11,7 +11,9 @@
 
 @interface NoteBrickTextField : UITextField
 
+@property (nonatomic,strong)BrickCell *cell;
+
 - (id)initWithFrame:(CGRect)frame AndNote:(NSString*)note;
 - (void)drawBorder:(BOOL)isActive;
-
+- (void)update;
 @end
