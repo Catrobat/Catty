@@ -193,6 +193,7 @@
         self.brickSelectionView.textLabel.text = kBrickCategoryNames[type];
         self.brickSelectionView.tintColor = kBrickCategoryColors[type];
         self.selectableBricks = [BrickManager.sharedBrickManager selectableBricksForCategoryType:type];
+        
     }
     
     [self.brickSelectionView showWithView:self.placeHolderView fromViewController:self completion:^{
