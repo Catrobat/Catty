@@ -22,19 +22,16 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "EZAudio.h"
 
-@interface SRViewController : UIViewController <AVAudioRecorderDelegate,AVAudioPlayerDelegate,EZMicrophoneDelegate>
+
+@interface SRViewController : UIViewController <AVAudioRecorderDelegate,AVAudioPlayerDelegate,UIGestureRecognizerDelegate>
 
 
 @property(nonatomic,strong) IBOutlet UIButton* record;
 
 
-@property (nonatomic,weak) IBOutlet EZAudioPlotGL *audioPlot;
-
 @property (nonatomic,assign) BOOL isRecording;
 
-@property (nonatomic,strong) EZMicrophone *microphone;
 
 
 

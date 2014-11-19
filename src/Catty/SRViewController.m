@@ -42,10 +42,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.audioPlot.frame = CGRectMake(0, 70, self.view.frame.size.width, self.view.frame.size.height * 0.5);
-    self.record.frame = CGRectMake(self.view.frame.size.width / 2.0 - 50, self.view.frame.size.height * 0.7, 100, 100);
+
+    self.record.frame = CGRectMake(self.view.frame.size.width / 2.0 - 100, self.view.frame.size.height * 0.5, 200, 200);
     
-    self.timerLabel = [[TimerLabel alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height * 0.6, self.view.frame.size.width, 40)];
+    self.timerLabel = [[TimerLabel alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height * 0.4, self.view.frame.size.width, 40)];
     self.timerLabel.timerType = TimerLabelTypeStopWatch;
     [self.view addSubview:self.timerLabel];
     self.timerLabel.timeLabel.backgroundColor = [UIColor clearColor];
@@ -53,17 +53,8 @@
     self.timerLabel.timeLabel.textColor = [UIColor lightOrangeColor];
     self.timerLabel.timeLabel.textAlignment = NSTextAlignmentCenter;
     
-    self.microphone = [EZMicrophone microphoneWithDelegate:self];
-    self.audioPlot.backgroundColor = [UIColor airForceBlueColor];
-    self.audioPlot.color           = [UIColor lightOrangeColor];
-    self.audioPlot.plotType        = EZPlotTypeRolling;
-    self.audioPlot.shouldFill      = YES;
-    self.audioPlot.shouldMirror    = YES;
     
-    UITapGestureRecognizer * recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recordClicked:)];
-    
-    [self.view addGestureRecognizer:recognizer];
-    [self.audioPlot addGestureRecognizer:recognizer];
+  UITapGestureRecognizer * recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recording:)];
     [self.timerLabel addGestureRecognizer:recognizer];
     
     
@@ -90,7 +81,6 @@
     [self.recorder stop];
     [self.timerLabel reset];
     [self.record setSelected:NO];
-    [self.microphone stopFetchingAudio];
     self.recorder = nil;
     if (self.sound) {
         NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
@@ -105,6 +95,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (IBAction)recording:(id)sender {
+  [self recordClicked:nil];
 }
 
 -(void)recordClicked:(id)sender
@@ -138,17 +133,14 @@
         [self.recorder prepareToRecord];
         [self.record setSelected:YES];
         [self.timerLabel start];
-        [self.audioPlot clear];
         self.isRecording = YES;
         [session setActive:YES error:nil];
         [self.recorder recordForDuration:(([self getFreeDiskspace]/1024ll)/256.0)];
-        [self.microphone startFetchingAudio];
         
     }else{
         [self.recorder stop];
         [self.timerLabel reset];
         [self.record setSelected:NO];
-        [self.microphone stopFetchingAudio];
         self.isRecording = NO;
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -194,20 +186,6 @@
   }
   
   return totalFreeSpace;
-}
-
-#pragma mark-audioPlot update
--(void)microphone:(EZMicrophone *)microphone
- hasAudioReceived:(float **)buffer
-   withBufferSize:(UInt32)bufferSize
-withNumberOfChannels:(UInt32)numberOfChannels {
-        // Getting audio data as an array of float buffer arrays. What does that mean? Because the audio is coming in as a stereo signal the data is split into a left and right channel. So buffer[0] corresponds to the float* data for the left channel while buffer[1] corresponds to the float* data for the right channel.
-    
-        // See the Thread Safety warning above, but in a nutshell these callbacks happen on a separate audio thread. We wrap any UI updating in a GCD block on the main thread to avoid blocking that audio flow.
-    dispatch_async(dispatch_get_main_queue(),^{
-            // All the audio plot needs is the buffer data (float*) and the size. Internally the audio plot will handle all the drawing related code, history management, and freeing its own resources. Hence, one badass line of code gets you a pretty plot :)
-        [self.audioPlot updateBuffer:buffer[0] withBufferSize:bufferSize];
-    });
 }
 
 

@@ -950,11 +950,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="3kW-0i-Wc2" customClass="EZAudioPlotGL">
-                                <rect key="frame" x="0.0" y="51" width="320" height="344"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JwC-96-opT">
                                 <rect key="frame" x="130" y="445" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -968,13 +963,21 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="oiC-0f-8Wa" appends="YES" id="wbs-bF-BX9"/>
+                        </connections>
                     </view>
                     <connections>
-                        <outlet property="audioPlot" destination="3kW-0i-Wc2" id="jje-tQ-nLr"/>
                         <outlet property="record" destination="JwC-96-opT" id="WAj-Vw-xK0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ctC-SX-B8t" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="oiC-0f-8Wa">
+                    <connections>
+                        <action selector="recording:" destination="lwW-9d-q7k" id="Cbx-yX-hhl"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-248" y="-2988"/>
         </scene>
