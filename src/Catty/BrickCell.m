@@ -33,6 +33,7 @@
 #import "BrickManager.h"
 #import "BrickProtocol.h"
 #import "Script.h"
+#import "NoteBrick.h"
 
 // uncomment this to get special log outputs, etc...
 //#define LAYOUT_DEBUG 0
@@ -440,9 +441,10 @@
                 UIButton *formulaEditor = [UIUtil newDefaultBrickFormulaEditorWithFrame:inputViewFrame ForBrickCell:self AndLineNumber: lineNumber AndParameterNumber: counter];
                 inputField = (UIView*)formulaEditor;
             } else if ([afterLabelParam rangeOfString:@"TEXT"].location != NSNotFound) {
-//                inputViewFrame.origin.y = (remainingFrame.size.height - kBrickInputFieldHeight)/2.0f+(kBrickInputFieldTopMargin - kBrickInputFieldBottomMargin);
-//                inputViewFrame.size.height = kBrickInputFieldHeight;
-                UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame];
+                NoteBrick *brick =(NoteBrick*) self.brick;
+                inputViewFrame.origin.y = inputViewFrame.origin.y+10;
+                inputViewFrame.size.height = kBrickInputFieldHeight;
+                UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame andNote:brick.note];
                 inputField = (UIView*)textField;
             } else if ([afterLabelParam rangeOfString:@"MESSAGE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;

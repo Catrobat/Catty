@@ -31,6 +31,7 @@
 #import "BrickDetailViewController.h"
 #import "ScriptCollectionViewController.h"
 #import "BrickFormulaProtocol.h"
+#import "NoteBrickTextField.h"
 
 @implementation UIUtil
 
@@ -55,16 +56,10 @@
     return label;
 }
 
-+ (UITextField*)newDefaultBrickTextFieldWithFrame:(CGRect)frame
++ (NoteBrickTextField*)newDefaultBrickTextFieldWithFrame:(CGRect)frame andNote:(NSString *)note
 {
-    UITextField *textField = [[UITextField alloc] initWithFrame:frame];
-    textField.borderStyle = UITextBorderStyleRoundedRect;
-    textField.font = [UIFont systemFontOfSize:kBrickTextFieldFontSize];
-    textField.autocorrectionType = UITextAutocorrectionTypeNo;
-    textField.keyboardType = UIKeyboardTypeDefault;
-    textField.returnKeyType = UIReturnKeyDone;
-    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    NoteBrickTextField* textField = [[NoteBrickTextField alloc] initWithFrame:frame AndNote:note];
+    
     return textField;
 }
 
@@ -111,5 +106,7 @@
     comboBox.items = items;
     return comboBox;
 }
+
+
 
 @end

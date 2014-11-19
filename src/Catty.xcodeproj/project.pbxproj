@@ -40,6 +40,7 @@
 		4C23B5EF19F7E8A600BFBF5A /* NSMutableArray+Reverse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C23B5DA19F7E8A600BFBF5A /* NSMutableArray+Reverse.m */; };
 		924DEBFA19CAFB9900EED9CE /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF619CAFB9900EED9CE /* MYBlurIntroductionView.m */; };
 		924DEBFC19CAFB9900EED9CE /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF819CAFB9900EED9CE /* MYIntroductionPanel.m */; };
+		92DCB1791A1CE09D00B6C4E8 /* NoteBrickTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DCB1781A1CE09D00B6C4E8 /* NoteBrickTextField.m */; };
 		CA538EA519B0EA09008240AB /* ChangeGhostEffectByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */; };
 		CA538EA619B0EA09008240AB /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
 		CA538EA719B0EA09008240AB /* HideBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3F185625E700547C1E /* HideBrickTests.m */; };
@@ -567,6 +568,8 @@
 		92C37A511856276D00547C1E /* SetBrightnessBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetBrightnessBrickTests.m; sourceTree = "<group>"; };
 		92C37A531856279600547C1E /* MoveNStepsBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveNStepsBrickTests.m; sourceTree = "<group>"; };
 		92C37A55185627A300547C1E /* ClearGrafficEffectBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearGrafficEffectBrickTests.m; sourceTree = "<group>"; };
+		92DCB1771A1CE09D00B6C4E8 /* NoteBrickTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteBrickTextField.h; sourceTree = "<group>"; };
+		92DCB1781A1CE09D00B6C4E8 /* NoteBrickTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBrickTextField.m; sourceTree = "<group>"; };
 		92DFE97A196D795900F491EC /* InfoPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPopupViewController.h; sourceTree = "<group>"; };
 		92DFE97B196D795900F491EC /* InfoPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoPopupViewController.m; sourceTree = "<group>"; };
 		92E3351D18FBB6750056C390 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -1132,6 +1135,8 @@
 		4C23B5F319F7EB8700BFBF5A /* FormulaEditor */ = {
 			isa = PBXGroup;
 			children = (
+				92DCB1771A1CE09D00B6C4E8 /* NoteBrickTextField.h */,
+				92DCB1781A1CE09D00B6C4E8 /* NoteBrickTextField.m */,
 				4C23B5BF19F7E8A600BFBF5A /* FormulaEditorButton.h */,
 				4C23B5C019F7E8A600BFBF5A /* FormulaEditorButton.m */,
 				4C23B5C319F7E8A600BFBF5A /* FormulaEditorTextView.h */,
@@ -3570,6 +3575,7 @@
 				CADBD7BE19B0E8C200C62836 /* ClearGraphicEffectBrickCell.m in Sources */,
 				CADBD7BF19B0E8C200C62836 /* BroadcastWaitBrickCell.m in Sources */,
 				CADBD7C019B0E8C200C62836 /* LookImageViewController.m in Sources */,
+				92DCB1791A1CE09D00B6C4E8 /* NoteBrickTextField.m in Sources */,
 				CADBD7C119B0E8C200C62836 /* CreateView.m in Sources */,
 				CADBD7C219B0E8C200C62836 /* SetVariableBrick.m in Sources */,
 				CADBD7C319B0E8C200C62836 /* UserVariable.m in Sources */,
