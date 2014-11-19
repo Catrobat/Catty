@@ -24,6 +24,7 @@
 #import "InternFormula.h"
 #import "Formula.h"
 #import "FormulaEditorHistory.h"
+#import "SpriteObject.h"
 
 @class FormulaEditorViewController;
 @class BrickCell;
@@ -35,11 +36,14 @@
                       withBrickCell:(BrickCell *)brickCell;
 @end
 
-@interface FormulaEditorViewController : UIViewController
+@interface FormulaEditorViewController : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate>
 
 @property (weak, nonatomic) id<FormulaEditorViewControllerDelegate> delegate;
 @property (strong, nonatomic) InternFormula *internFormula;
 @property (strong, nonatomic) FormulaEditorHistory *history;
+@property (strong, nonatomic) NSMutableArray *variableSourceProgram;
+@property (strong, nonatomic) NSMutableArray *variableSourceObject;
+@property (weak, nonatomic) SpriteObject *object;
 
 - (id)initWithBrickCell:(BrickCell*)brickCell;
 - (void)setFormula:(Formula*)formula;

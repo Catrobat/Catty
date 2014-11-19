@@ -36,6 +36,8 @@
 #define kInvalidNameWarningAlertViewTag 101
 #define kNoInternetConnection 102
 
+#define kAskUserForVariableNameAlertViewTag 104
+
 #define kConfirmAlertViewTag 200
 
 // Alert view button indexes

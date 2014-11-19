@@ -48,6 +48,7 @@
 #import "UIUtil.h"
 #import "FormulaEditorButton.h"
 #import "FormulaEditorViewController.h"
+#import "VariablesContainer.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate,
                                               LXReorderableCollectionViewDelegateFlowLayout,
@@ -817,10 +818,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [formulaEditorViewController setFormula:button.formula];
             
         } else {
-            
             FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCell: button.brickCell];
             formulaEditorViewController.delegate = self;
-        
+            formulaEditorViewController.object = self.object;
             self.brickScaleTransition.cell = button.brickCell;
             self.brickScaleTransition.touchRect = button.brickCell.frame;
             formulaEditorViewController.transitioningDelegate = self;

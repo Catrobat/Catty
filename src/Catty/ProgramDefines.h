@@ -62,7 +62,8 @@ typedef NS_ENUM(NSUInteger, kDTMActionType) {
     kDTMActionEditProgram = 1,
     kDTMActionEditObject = 2,
     kDTMActionEditLook = 3,
-    kDTMActionEditSound = 4
+    kDTMActionEditSound = 4,
+    kDTMActionVariableName = 6
 };
 
 #define kDTPayloadProgramLoadingInfo @"DTPayloadProgramLoadingInfo"

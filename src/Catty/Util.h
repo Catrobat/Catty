@@ -88,6 +88,15 @@
                                          tag:(NSInteger)tag
                                         view:(UIView*)view;
 
++ (void)askUserForVariableNameAndPerformAction:(SEL)action
+                                        target:(id)target
+                                   promptTitle:(NSString*)title
+                                 promptMessage:(NSString*)message
+                                minInputLength:(NSUInteger)minInputLength
+                                maxInputLength:(NSUInteger)maxInputLength
+                           blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
+                      invalidInputAlertMessage:(NSString*)invalidInputAlertMessage;
+
 + (UIButton*)slideViewButtonWithTitle:(NSString*)title backgroundColor:(UIColor*)backgroundColor;
 
 + (UIButton*)slideViewButtonMore;

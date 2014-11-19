@@ -41,6 +41,9 @@
 #import "FormulaEditorButton.h"
 #import "BrickFormulaProtocol.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
+#import "VariablesContainer.h"
+#import "UserVariable.h"
+#import "OrderedMapTable.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -55,8 +58,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 @property (weak, nonatomic) Formula *formula;
 @property (weak, nonatomic) BrickCell *brickCell;
+@property (nonatomic,assign) NSInteger currentComponent;
 
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
+@property (strong, nonatomic) UITapGestureRecognizer *pickerGesture;
 @property (strong, nonatomic) FormulaEditorTextView *formulaEditorTextView;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *orangeTypeButton;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *toolTypeButton;
@@ -68,6 +73,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (weak, nonatomic) IBOutlet UIScrollView *logicScrollView;
 @property (weak, nonatomic) IBOutlet UIScrollView *objectScrollView;
 @property (weak, nonatomic) IBOutlet UIScrollView *sensorScrollView;
+@property (weak, nonatomic) IBOutlet UIScrollView *variableScrollView;
+@property (weak, nonatomic) IBOutlet UIPickerView *variablePicker;
 
 @property (weak, nonatomic) IBOutlet UIButton *calcButton;
 @property (weak, nonatomic) IBOutlet UIButton *mathbutton;
@@ -75,6 +82,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (weak, nonatomic) IBOutlet UIButton *objectButton;
 @property (weak, nonatomic) IBOutlet UIButton *sensorButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) IBOutlet UIButton *variableButton;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
 @property (weak, nonatomic) IBOutlet UIButton *undoButton;
@@ -147,6 +155,25 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self hideScrollViews];
     self.calcScrollView.hidden = NO;
     [self.calcButton setSelected:YES];
+    self.variablePicker.delegate = self;
+    self.variablePicker.dataSource = self;
+//
+//    self.variableSource = @[@"Item 1", @"Item 2", @"Item 3", @"Item 4", @"Item 5", @"Item 6"];
+    VariablesContainer *variables = self.object.program.variables;
+    self.variableSourceProgram = [[NSMutableArray alloc] init];
+    self.variableSourceObject = [[NSMutableArray alloc] init];
+    for(UserVariable *userVariable in variables.programVariableList){
+        [self.variableSourceProgram addObject:userVariable.name];
+    }
+//    for (NSInteger i=0; i < variables.objectVariableList.count;i++) {
+//        SpriteObject* object = [variables.objectVariableList objectAtIndex:i];
+//
+//        [self.variableSourceObject addObject:userVariable.name];
+//    }
+  
+    [self.variablePicker reloadAllComponents];
+    self.currentComponent = 0;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -161,6 +188,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.recognizer.numberOfTapsRequired = 1;
     self.recognizer.cancelsTouchesInView = NO;
     [self.view.window addGestureRecognizer:self.recognizer];
+    self.pickerGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chosenVariable)];
+    self.pickerGesture.numberOfTapsRequired = 1;;
+    [self.variablePicker addGestureRecognizer:self.pickerGesture];
     [self update];
 }
 
@@ -497,6 +527,13 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.sensorScrollView scrollsToTop];
     [self.sensorScrollView flashScrollIndicators];
 }
+- (IBAction)showVariable:(UIButton *)sender {
+  [self hideScrollViews];
+  self.variableScrollView.hidden = NO;
+  [self.variableButton setSelected:YES];
+  [self.variableScrollView scrollsToTop];
+  [self.variableScrollView flashScrollIndicators];
+}
 
 -(void)hideScrollViews
 {
@@ -505,16 +542,104 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.logicScrollView.hidden = YES;
     self.objectScrollView.hidden = YES;
     self.sensorScrollView.hidden = YES;
+    self.variableScrollView.hidden = YES;
     [self.calcButton setSelected:NO];
     [self.mathbutton setSelected:NO];
     [self.objectButton setSelected:NO];
     [self.logicButton setSelected:NO];
     [self.sensorButton setSelected:NO];
+    [self.variableButton setSelected:NO];
+}
+- (IBAction)addNewVariable:(UIButton *)sender {
+    //TODO alert with text
+    [self.formulaEditorTextView resignFirstResponder];
+    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:@"New Variable" promptMessage:@"Variable name:" minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:@"only 15 characters allowed"];
+
+}
+
+static NSCharacterSet *blockedCharacterSet = nil;
+
+- (NSCharacterSet*)blockedCharacterSet
+{
+    if (! blockedCharacterSet) {
+        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                               invertedSet];
+    }
+    return blockedCharacterSet;
+}
+
+
+-(void)saveVariable:(NSString*)name
+{
+    [self.formulaEditorTextView becomeFirstResponder];
+    UserVariable* var = [[UserVariable alloc] init];
+    var.name = name;
+    var.value = [NSNumber numberWithInt:2];
+    [self.object.program.variables.programVariableList addObject:var];
+    [self.variableSourceProgram addObject:var.name];
+    [self.variablePicker reloadAllComponents];
 }
 
 - (void)closeMenu
 {
     [self.formulaEditorTextView becomeFirstResponder];
+}
+
+
+#pragma mark - pickerView
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+//    if (component == 0) {
+//        return self.variableSourceObject.count;
+//    }else
+        if (component == 0){
+        return self.variableSourceProgram.count;
+    }
+    return 0;
+}
+
+
+- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+//    if (component == 0) {
+//        return self.variableSourceObject[row];
+//    }else
+        if (component == 0){
+        return self.variableSourceProgram[row];
+    }
+    return 0;
+   
+}
+
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    self.currentComponent = component;
+}
+
+- (IBAction)choseVariable:(UIButton *)sender {
+  NSInteger row = [self.variablePicker selectedRowInComponent:self.currentComponent];
+  if (row >0) {
+//      if (self.currentComponent == 0) {
+//          NSLog(@"%@",self.variableSourceObject[row]);
+//          VariablesContainer* varCont = self.object.program.variables;
+//          UserVariable* var = [varCont getUserVariableNamed:self.variableSourceObject[row] forSpriteObject:self.object];
+//      }else
+          if (self.currentComponent == 0){
+          VariablesContainer* varCont = self.object.program.variables;
+          UserVariable* var = [varCont getUserVariableNamed:self.variableSourceProgram[row] forSpriteObject:self.object];
+              NSLog(@"%@",var.name);
+      }
+  
+      
+  }
 }
 
 @end
