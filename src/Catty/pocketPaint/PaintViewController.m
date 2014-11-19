@@ -97,7 +97,7 @@
   _activeAction = brush;
   _degrees = 0;
 
-  self.actionTypeArray = @[@(brush),@(eraser),@(crop),@(pipette),@(mirror),@(image),@(line),@(rectangle),@(ellipse),@(stamp),@(rotate),@(zoom),@(fillTool),@(pointer)];
+    self.actionTypeArray = @[@(brush),@(eraser),@(crop),@(pipette),@(mirror),@(image),@(line),@(rectangle),@(ellipse),@(stamp),@(rotate),@(zoom),@(pointer)];//,@(fillTool) is buggy 
   
   [self setupCanvas];
     [self setupTools];
