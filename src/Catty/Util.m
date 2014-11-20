@@ -33,6 +33,7 @@
 #import "DataTransferMessage.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "MYBlurIntroductionView.h"
+#import "FormulaEditorTextView.h"
 
 @interface Util () <CatrobatAlertViewDelegate, UITextFieldDelegate>
 
@@ -457,6 +458,7 @@
                                  maxInputLength:(NSUInteger)maxInputLength
                             blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
                        invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
+                                andTextField:(FormulaEditorTextView *)textView
 {
     textFieldMaxInputLength = maxInputLength;
     textFieldBlockedCharacterSet = blockedCharacterSet;
@@ -468,6 +470,7 @@
                               kDTPayloadAskUserPromptMessage : message,
                               kDTPayloadAskUserMinInputLength : @(minInputLength),
                               kDTPayloadAskUserInvalidInputAlertMessage : invalidInputAlertMessage,
+                              kDTPayloadTextView: textView
                               };
     CatrobatAlertView *alertView = [[self class] promptWithTitle:title
                                                          message:message
@@ -650,6 +653,8 @@ replacementString:(NSString*)characters
         }
     }else if (alertView.tag == kAskUserForVariableNameAlertViewTag) {
         if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
+            FormulaEditorTextView *textView = (FormulaEditorTextView*)payload[kDTPayloadTextView];
+            [textView becomeFirstResponder];
             return;
         }
         NSString *input = [alertView textFieldAtIndex:0].text;

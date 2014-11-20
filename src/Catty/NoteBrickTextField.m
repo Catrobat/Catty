@@ -22,6 +22,7 @@
 
 #import "NoteBrickTextField.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "Util.h"
 
 
 @interface NoteBrickTextField ()
@@ -49,11 +50,10 @@
 //        self.userInteractionEnabled = NO;
         self.textColor = [UIColor whiteColor];
         [self sizeToFit];
-        if(self.frame.size.width > 250)
-        {
-            self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 250, self.frame.size.height);
+        if (self.frame.origin.x + self.frame.size.width + 60 > [Util screenWidth]) {
+            self.frame = CGRectMake(self.frame.origin.x,self.frame.origin.y,[Util screenWidth] - 60 - self.frame.origin.x, self.frame.size.height);
         }
-
+        [self setNeedsDisplay];
         [self drawBorder:NO];
     }
     
@@ -64,7 +64,7 @@
 #define BORDER_WIDTH 1.0
 #define BORDER_HEIGHT 4
 #define BORDER_TRANSPARENCY 0.9
-#define BORDER_PADDING 3.8
+#define BORDER_PADDING 0
 
 - (void)drawBorder:(BOOL)isActive
 {
@@ -77,6 +77,9 @@
     
     CGPoint startPoint = CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds) - BORDER_PADDING);
     CGPoint endPoint = CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds) - BORDER_PADDING - BORDER_HEIGHT);
+    
+    
+
     [borderPath moveToPoint:startPoint];
     [borderPath addLineToPoint:endPoint];
     

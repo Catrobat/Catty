@@ -557,7 +557,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (IBAction)addNewVariable:(UIButton *)sender {
     //TODO alert with text
     [self.formulaEditorTextView resignFirstResponder];
-    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:@"New Variable" promptMessage:@"Variable name:" minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:@"only 15 characters allowed"];
+    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:@"New Variable" promptMessage:@"Variable name:" minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:@"only 15 characters allowed" andTextField:self.formulaEditorTextView];
 
 }
 

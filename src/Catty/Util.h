@@ -23,6 +23,7 @@
 
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
+#import "FormulaEditorTextView.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
@@ -95,7 +96,8 @@
                                 minInputLength:(NSUInteger)minInputLength
                                 maxInputLength:(NSUInteger)maxInputLength
                            blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
-                      invalidInputAlertMessage:(NSString*)invalidInputAlertMessage;
+                      invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
+                                  andTextField:(FormulaEditorTextView *)textView;
 
 + (UIButton*)slideViewButtonWithTitle:(NSString*)title backgroundColor:(UIColor*)backgroundColor;
 
