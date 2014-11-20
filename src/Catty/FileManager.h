@@ -60,5 +60,6 @@
 - (void)stopLoading:(NSURL *)projecturl andImageURL:(NSURL *)imageurl;
 - (NSArray*)playableSoundsInDirectory:(NSString*)directoryPath;
 - (void)changeModificationDate:(NSDate*)date forFileAtPath:(NSString*)path;
+- (uint64_t)freeDiskspace;
 
 @end

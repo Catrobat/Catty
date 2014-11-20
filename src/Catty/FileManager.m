@@ -451,7 +451,7 @@
     NSLogError(error);
 }
 
-- (NSString*)getFullPathForProgram:(NSString *)programName
+- (NSString*)fullPathForProgram:(NSString *)programName
 {
     NSString *path = [NSString stringWithFormat:@"%@/%@", self.programsDirectory, programName];
     if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
@@ -486,7 +486,7 @@
 {
     if (data != nil) {
         NSString *name = [self.imageNameDict objectForKey:task];
-        NSString *storePath = [NSString stringWithFormat:@"%@/small_screenshot.png", [self getFullPathForProgram:name]];
+        NSString *storePath = [NSString stringWithFormat:@"%@/small_screenshot.png", [self fullPathForProgram:name]];
         NSDebug(@"path for image is: %@", storePath);
         if ([data writeToFile:storePath atomically:YES]) {
         }
@@ -569,25 +569,25 @@
     
 }
 
--(uint64_t)getFreeDiskspace {
+- (uint64_t)freeDiskspace
+{
+    uint64_t totalSpace = 0;
     uint64_t totalFreeSpace = 0;
     NSError *error = nil;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSDictionary *dictionary = [[NSFileManager defaultManager] attributesOfFileSystemForPath:[paths lastObject] error: &error];
 
     if (dictionary) {
+        NSNumber *fileSystemSizeInBytes = [dictionary objectForKey: NSFileSystemSize];
         NSNumber *freeFileSystemSizeInBytes = [dictionary objectForKey:NSFileSystemFreeSize];
+        totalSpace = [fileSystemSizeInBytes unsignedLongLongValue];
         totalFreeSpace = [freeFileSystemSizeInBytes unsignedLongLongValue];
-        NSDebug(@"Memory Capacity of %llu MiB with %llu MiB Free memory available.",
-                (([[dictionary objectForKey: NSFileSystemSize] unsignedLongLongValue]/1024ll)/1024ll),
-                ((totalFreeSpace/1024ll)/1024ll));
+        NSLog(@"Memory Capacity of %llu MiB with %llu MiB Free memory available.", ((totalSpace/1024ll)/1024ll), ((totalFreeSpace/1024ll)/1024ll));
     } else {
         NSError(@"Error Obtaining System Memory Info: Domain = %@, Code = %ld", [error domain], (long)[error code]);
     }
-    
     return totalFreeSpace;
 }
-
 
 #pragma mark - NSURLSessionDelegate
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
@@ -619,7 +619,7 @@
     if (! url) {
         return;
     }
-    if ([self getFreeDiskspace] < totalBytesExpectedToWrite) {
+    if ([self freeDiskspace] < totalBytesExpectedToWrite) {
         [self stopLoading:downloadTask];
         [Util alertWithText:kLocalizedNotEnoughFreeMemoryDescription];
         if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
