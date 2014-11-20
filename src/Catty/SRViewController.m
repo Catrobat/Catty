@@ -26,6 +26,7 @@
 #import "AppDelegate.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "TimerLabel.h"
+#import "NSString+CatrobatNSStringExtensions.h"
 
 @interface SRViewController ()
 @property (nonatomic,strong)Sound *sound;
@@ -112,7 +113,7 @@
     if (!self.isRecording) {
         AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
 
-        NSString * fileName =[[self GetUUID] stringByAppendingString:@".m4a"];
+        NSString *fileName =[[NSString uuid] stringByAppendingString:@".m4a"];
         self.filePath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, fileName];
         self.sound = [[Sound alloc] init];
         self.sound.fileName = fileName;
@@ -140,11 +141,10 @@
         [self.timerLabel start];
         self.isRecording = YES;
         [session setActive:YES error:nil];
-        [self.recorder recordForDuration:(([self getFreeDiskspace]/1024ll)/256.0)];
-        
+        [self.recorder recordForDuration:(([delegate.fileManager freeDiskspace]/1024ll)/256.0)];
+
         self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateProgressView) userInfo:nil repeats:YES];
-        
-    }else{
+    } else {
         [self.recorder stop];
         [self.progressTimer invalidate];
         [self.timerLabel reset];
@@ -153,15 +153,6 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
-- (NSString *)GetUUID
-{
-  CFUUIDRef theUUID = CFUUIDCreate(NULL);
-  CFStringRef string = CFUUIDCreateString(NULL, theUUID);
-  CFRelease(theUUID);
-  return (__bridge NSString *)string;
-}
-
-
 
 -(void) audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag{
   if (!flag) {
@@ -173,27 +164,6 @@
     [alert show];
   }
     [self.record setTitle:@"Record" forState:UIControlStateNormal];
-}
-
-
--(uint64_t)getFreeDiskspace {
-  uint64_t totalSpace = 0;
-  uint64_t totalFreeSpace = 0;
-  NSError *error = nil;
-  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-  NSDictionary *dictionary = [[NSFileManager defaultManager] attributesOfFileSystemForPath:[paths lastObject] error: &error];
-  
-  if (dictionary) {
-    NSNumber *fileSystemSizeInBytes = [dictionary objectForKey: NSFileSystemSize];
-    NSNumber *freeFileSystemSizeInBytes = [dictionary objectForKey:NSFileSystemFreeSize];
-    totalSpace = [fileSystemSizeInBytes unsignedLongLongValue];
-    totalFreeSpace = [freeFileSystemSizeInBytes unsignedLongLongValue];
-    NSLog(@"Memory Capacity of %llu MiB with %llu MiB Free memory available.", ((totalSpace/1024ll)/1024ll), ((totalFreeSpace/1024ll)/1024ll));
-  } else {
-    NSLog(@"Error Obtaining System Memory Info: Domain = %@, Code = %ld", [error domain], (long)[error code]);
-  }
-  
-  return totalFreeSpace;
 }
 
 -(void)updateProgressView
