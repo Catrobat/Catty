@@ -48,6 +48,7 @@
 #import "DataTransferMessage.h"
 #import "InfoPopupViewController.h"
 #import "MYBlurIntroductionView.h"
+#import "LoginPopupViewController.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
     kContinueProgramVC = 0,
@@ -55,11 +56,8 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     kLocalProgramsVC,
     kHelpVC,
     kExploreVC,
-    kUploadVC,
-    kLoginVC
+    kUploadVC
 };
-
-bool loggedIn = false; //only for testing purpose
 
 @interface CatrobatTableViewController () <UITextFieldDelegate, MYIntroductionDelegate>
 
@@ -125,6 +123,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
         self.tableView.scrollEnabled = YES;
         [self initNavigationBar];
     }
+    
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kUserIsLoggedIn]; //Just for testing, TODO: remove
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -171,15 +171,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                   kLocalizedUpload, nil];
     self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNamePrograms, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
 
-    self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, nil];
-    
-    if (loggedIn) {
-        //kSegueToUpload
-        [self.identifiers addObject:kSegueToUpload];
-    } else {
-        //kSegueToLogin
-        [self.identifiers addObject:kSegueToLogin];
-    }
+    self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
 }
 
 - (void)initNavigationBar
@@ -202,7 +194,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else {
         [self dismissPopup];
     }
+}
 
+- (void)showLoginView:(id)sender
+{
+    if (self.popupViewController == nil) {
+        LoginPopupViewController *popupViewController = [[LoginPopupViewController alloc] init];
+        popupViewController.delegate = self;
+        self.tableView.scrollEnabled = NO;
+        [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame];
+    } else {
+        [self dismissPopup];
+    }
 }
 
 - (void)addProgramAndSegueToItActionForProgramWithName:(NSString*)programName
@@ -260,6 +263,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #if kIsRelease // kIsRelease
             [Util showComingSoonAlertView];
 #else // kIsRelease
+
             [Util askUserForUniqueNameAndPerformAction:@selector(addProgramAndSegueToItActionForProgramWithName:)
                                                 target:self
                                            promptTitle:kLocalizedNewProgram
@@ -287,13 +291,23 @@ static NSCharacterSet *blockedCharacterSet = nil;
             }
             break;
         case kUploadVC:
-        case kLoginVC:
 #if kIsRelease //kIsRelease
             [Util showComingSoonAlertView];
 #else
-            if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
-                [self performSegueWithIdentifier:identifier sender:self];
+            //Check if user is logged in
+            if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
+                
+                NSDebug(@"User is logged in");
+                if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
+                    [self performSegueWithIdentifier:identifier sender:self];
+                }
+                
+            } else {
+                NSDebug(@"User has to log in");
+                //TODO: open popup for login
+                [self showLoginView:self];
             }
+
 #endif
             break;
             

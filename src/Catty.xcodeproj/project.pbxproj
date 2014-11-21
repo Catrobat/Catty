@@ -342,6 +342,7 @@
 		CADBD7F719B0E8C200C62836 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F097711B7BABD009D4DB0 /* OpenAL.framework */; };
 		D6AD274319E2A55B0023244E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6AD274219E2A55B0023244E /* LoginViewController.m */; };
 		D6AD274819E7DCD00023244E /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6AD274719E7DCD00023244E /* UploadViewController.m */; };
+		D6E9E1C81A1F500400DCD478 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E9E1C71A1F500400DCD478 /* LoginPopupViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -959,6 +960,8 @@
 		D6AD274219E2A55B0023244E /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		D6AD274619E7DCD00023244E /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
 		D6AD274719E7DCD00023244E /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
+		D6E9E1C61A1F500400DCD478 /* LoginPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginPopupViewController.h; sourceTree = "<group>"; };
+		D6E9E1C71A1F500400DCD478 /* LoginPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginPopupViewController.m; sourceTree = "<group>"; };
 		DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DE3F097711B7BABD009D4DB0 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -3022,6 +3025,8 @@
 			children = (
 				D6AD274119E2A55B0023244E /* LoginViewController.h */,
 				D6AD274219E2A55B0023244E /* LoginViewController.m */,
+				D6E9E1C61A1F500400DCD478 /* LoginPopupViewController.h */,
+				D6E9E1C71A1F500400DCD478 /* LoginPopupViewController.m */,
 			);
 			name = LoginViewController;
 			sourceTree = "<group>";
@@ -3360,6 +3365,7 @@
 				CADBD74219B0E8C200C62836 /* LoopEndBrick.m in Sources */,
 				CADBD74319B0E8C200C62836 /* BroadcastScriptCell.m in Sources */,
 				CADBD74419B0E8C200C62836 /* NextLookBrick.m in Sources */,
+				D6E9E1C81A1F500400DCD478 /* LoginPopupViewController.m in Sources */,
 				CADBD74519B0E8C200C62836 /* NavigationController.m in Sources */,
 				CADBD74619B0E8C200C62836 /* RuntimeImageCache.m in Sources */,
 				CADBD74719B0E8C200C62836 /* CatrobatAlertView.m in Sources */,

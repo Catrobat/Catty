@@ -22,6 +22,7 @@
 
 #import "LoginViewController.h"
 #import "NetworkDefines.h"
+#import "ProgramDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "LanguageTranslationDefines.h"
@@ -34,7 +35,7 @@ static NSString *const registrationCountryParameterID = @"registrationCountry";
 
 bool useTestUrl = true;
 
-NSString *testEmail = @"test@gmx.at";
+NSString *testEmail = @"test1@gmx.at";
 NSString *testCountry = @"Austria";
 
 @interface LoginViewController ()
@@ -118,8 +119,8 @@ NSString *testCountry = @"Austria";
     NSDebug(@"Current Country is: %@", countryCode);
     
     NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@=%@",usernameParameterID, username, passwordParameterID, password, registrationEmailParameterID, testEmail, registrationCountryParameterID, countryCode];
-    NSData *postData = [[NSData alloc] initWithContentsOfFile:post];
-    //NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    //NSData *postData = [[NSData alloc] initWithContentsOfFile:post];
+    NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -161,11 +162,20 @@ NSString *testCountry = @"Austria";
         NSDebug(@"Finished loading");
         
         NSError *error = nil;
-        id jsonObject = [NSJSONSerialization JSONObjectWithData:self.data
-                                                        options:NSJSONReadingMutableContainers
-                                                          error:&error];
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:self.data options:kNilOptions error:&error];
+        NSString *statusCode = [dictionary valueForKey:@"statusCode"];
+        NSDebug(@"StatusCode is %@", statusCode);
         
-        NSDebug(@"Returnvalue is: %@", jsonObject);
+        if ([statusCode  isEqual:@"201"]) {
+            NSDebug(@"Login successful");
+            [[NSUserDefaults standardUserDefaults] setBool:true forKey:kUserIsLoggedIn];
+            //TODO: close popup
+        } else {
+            NSDebug(@"Error: %@", [dictionary valueForKey:@"answer"]);
+            [Util alertWithText:[dictionary valueForKey:@"answer"]];
+            //TODO: translate answer message
+            //maybe clear password field?
+        }
         
         self.data = nil;
         self.connection = nil;

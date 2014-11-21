@@ -21,14 +21,11 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "Util.h"
+#import "UIViewController+CWPopup.h"
+#import "NetworkDefines.h"
 
-@interface LoginViewController : UIViewController <NSURLConnectionDataDelegate>
+@interface LoginPopupViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
-@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
-@property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (nonatomic, weak) id<DismissPopupDelegate> delegate;
 
 @end
