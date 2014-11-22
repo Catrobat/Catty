@@ -20,18 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "LedOffBrickCell.h"
 
-@interface NSString (CatrobatNSStringExtensions) <NSXMLParserDelegate>
+@interface LedOffBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
 
-- (NSString*)sha1;
+@implementation LedOffBrickCell
 
-- (NSString*)stringByEscapingHTMLEntities;
-- (NSString*)firstCharacterUppercaseString;
-- (NSString*)firstCharacterLowercaseString;
-- (NSString*)stringBetweenString:(NSString*)start andString:(NSString*)end withOptions:(NSStringCompareOptions)mask;
-- (BOOL)isValidNumber;
-- (BOOL)containsString:(NSString*)string;
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreenColor strokeColor:UIColor.lookBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+}
 
-+ (NSString*)uuid;
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+}
 
 @end

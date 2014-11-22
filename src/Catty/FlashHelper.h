@@ -21,17 +21,13 @@
  */
 
 
-@interface NSString (CatrobatNSStringExtensions) <NSXMLParserDelegate>
+#import <Foundation/Foundation.h>
 
-- (NSString*)sha1;
+@interface FlashHelper : NSObject
 
-- (NSString*)stringByEscapingHTMLEntities;
-- (NSString*)firstCharacterUppercaseString;
-- (NSString*)firstCharacterLowercaseString;
-- (NSString*)stringBetweenString:(NSString*)start andString:(NSString*)end withOptions:(NSStringCompareOptions)mask;
-- (BOOL)isValidNumber;
-- (BOOL)containsString:(NSString*)string;
++ (instancetype)sharedFlashHandler;
 
-+ (NSString*)uuid;
+- (void)turnOn;
+- (void)turnOff;
 
 @end

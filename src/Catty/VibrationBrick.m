@@ -23,6 +23,7 @@
 #import "VibrationBrick.h"
 #import "Script.h"
 #import "Formula.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @implementation VibrationBrick
 
@@ -40,8 +41,15 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        // TODO: stub... implement this...
+        double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.object];
+        for (int i = 1; i < 2*durationInSeconds; i++) {
+            [self performSelector:@selector(vibe:) withObject:self afterDelay:i *.5f];
+        }
     };
+}
+
+- (void)vibe:(id)sender {
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
 
 #pragma mark - Description

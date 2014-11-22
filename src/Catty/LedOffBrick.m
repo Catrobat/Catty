@@ -21,6 +21,9 @@
  */
 
 #import "LedOffBrick.h"
+#import "UIDefines.h"
+#import "GDataXMLNode.h"
+#import "FlashHelper.h"
 
 @implementation LedOffBrick
 
@@ -38,7 +41,8 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        // TODO: stub... implement this...
+        FlashHelper *helper = [FlashHelper sharedFlashHandler];
+        [helper turnOff];
     };
 }
 
@@ -47,5 +51,14 @@
 {
     return [NSString stringWithFormat:@"LedOffBrick on: %@", self.object.name];
 }
+
+- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+        // remove object reference
+    [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+    return brickXMLElement;
+}
+
 
 @end

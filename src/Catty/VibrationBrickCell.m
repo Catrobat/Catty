@@ -20,18 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "VibrationBrickCell.h"
 
-@interface NSString (CatrobatNSStringExtensions) <NSXMLParserDelegate>
+@interface VibrationBrickCell ()
+@property (nonatomic, strong) UILabel *textLabel;
+@end
 
-- (NSString*)sha1;
+@implementation VibrationBrickCell
 
-- (NSString*)stringByEscapingHTMLEntities;
-- (NSString*)firstCharacterUppercaseString;
-- (NSString*)firstCharacterLowercaseString;
-- (NSString*)stringBetweenString:(NSString*)start andString:(NSString*)end withOptions:(NSStringCompareOptions)mask;
-- (BOOL)isValidNumber;
-- (BOOL)containsString:(NSString*)string;
+- (void)drawRect:(CGRect)rect
+{
+    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.soundBrickVioletColor strokeColor:UIColor.soundBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+}
 
-+ (NSString*)uuid;
+- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+{
+    self.textLabel = inlineViewSubViews[0];
+    self.secTextField = inlineViewSubViews[1];
+}
 
 @end
