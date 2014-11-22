@@ -25,9 +25,12 @@
 #define kTestUrl @"https://catroid-test.catrob.at/"
 #define kConnectionHost kBaseUrl @"api/projects"
 #define kLoginOrRegisterUrlExtension @"api/loginOrRegister"
+#define kReportProgramExtension @"flagInappropriate/flag.json"
 #define kUploadUrlExtension @"api/upload"
 #define kLoginOrRegisterUrl kBaseUrl kLoginOrRegisterUrlExtension
 #define kTestLoginOrRegisterUrl kTestUrl kLoginOrRegisterUrlExtension
+#define kTestReportProgramUrl kTestUrl kReportProgramExtension
+#define kReportProgramUrl kBaseUrl kReportProgramExtension
 #define kUploadUrl kBaseUrl kUploadUrlExtension
 #define kTestUploadUrl kTestUrl kUploadUrlExtension
 #define kForumURL kBaseUrl @"tutorial"

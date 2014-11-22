@@ -54,6 +54,9 @@
 @property (nonatomic, strong) UIView *projectView;
 @property (nonatomic, strong) LoadingView *loadingView;
 @property (nonatomic, strong) Program *loadedProgram;
+@property (nonatomic, assign) BOOL useTestUrl;
+@property (nonatomic, strong) NSURLConnection *connection;
+@property (nonatomic, strong) NSMutableData *data;
 
 @end
 
@@ -112,6 +115,7 @@
     appDelegate.fileManager.delegate = self;
     appDelegate.fileManager.projectURL = [NSURL URLWithString:self.project.downloadUrl];
 
+    self.useTestUrl = YES;
 }
 
 - (void)initNavigationBar
@@ -260,27 +264,32 @@ static NSCharacterSet *blockedCharacterSet = nil;
 -(void)sendReportWithMessage:(NSString*)message
 {
     NSLog(@"ReportMessage::::::%@",message);
-//  NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@",@"id",self.project.projectID,@"message",message];
-//  NSData *postData = [[NSData alloc] initWithContentsOfFile:post];
-//    //NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-//  NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
-//  
-//  NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-//  [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", uploadUrlBase, kConnectionLoginOrRegister]]];
-//  [request setHTTPMethod:@"POST"];
-//  [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-//  [request setHTTPBody:postData];
-//  
-//  NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-//
-//  [connection start];
-//  
-//  if(connection) {
-//    NSLog(@"Connection Successful");
-//  } else {
-//    NSLog(@"Connection could not be made");
-//  }
+    
+    self.data = nil;
+    self.data = [[NSMutableData alloc] init];
+    
+    NSString *reportUrl = self.useTestUrl ? kTestReportProgramUrl : kReportProgramUrl;
 
+    NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@",@"id",self.project.projectID,@"message",message];
+    NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+    NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", reportUrl]]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody:postData];
+    
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    self.connection = connection;
+    
+    [self.connection start];
+    
+    if(self.connection) {
+        NSLog(@"Connection Successful");
+    } else {
+        NSLog(@"Connection could not be made");
+    }
   
 }
 
@@ -436,7 +445,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 
-#pragma mark URLDelegate
+#pragma mark - URLDelegate
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
+{
+    NSDebug(@"Received Data from server");
+    if (self.connection == connection) {
+        [self.data appendData:data];
+    }
+}
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
@@ -445,7 +462,26 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSDebug(@"finished");
+    if (self.connection == connection) {
+        NSDebug(@"Finished loading");
+        
+        NSError *error = nil;
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:self.data options:kNilOptions error:&error];
+        NSString *statusCode = [NSString stringWithFormat:@"%@", [dictionary valueForKey:@"statusCode"]];
+            //int statusCode = [dictionary valueForKey:@"statusCode"];
+        NSDebug(@"StatusCode is %@", statusCode);
+        
+            //some ugly code just to get logic working
+        if ([statusCode isEqualToString:@"200"] || [statusCode  isEqualToString:@"201"]) {
+            
+
+        } else {
+            [Util alertWithText:[dictionary valueForKey:@"answer"]];
+        }
+        self.data = nil;
+        self.connection = nil;
+    }
+
 }
 
 
