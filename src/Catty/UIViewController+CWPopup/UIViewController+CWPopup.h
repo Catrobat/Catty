@@ -11,7 +11,7 @@
 
 @protocol DismissPopupDelegate <NSObject>
 
-- (BOOL)dismissPopup;
+- (BOOL)dismissPopupWithLoginCode:(BOOL)successLogin;
 
 @end
 
@@ -23,7 +23,7 @@
 
 @property (nonatomic, readwrite) UIViewController *popupViewController;
 
--(void)presentPopupViewController:(UIViewController *)viewControllerToPresent WithFrame:(CGRect)frame;
+-(void)presentPopupViewController:(UIViewController *)viewControllerToPresent WithFrame:(CGRect)frame isLogin:(BOOL)isLogin;
 -(void)dismissPopupViewController;
 
 @end

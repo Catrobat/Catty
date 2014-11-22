@@ -27,10 +27,11 @@
 #import "SearchStoreViewController.h"
 #import "BaseTableViewController.h"
 #import "RecentProgramsStoreViewController.h"
+#import "UIViewController+CWPopup.h"
 
 @class CatrobatProgram;
 
-@interface ProgramDetailStoreViewController : UIViewController<ProgramStoreDelegate, UIScrollViewDelegate, FileManagerDelegate, TTTAttributedLabelDelegate, RecentProgramsStoreDelegate, NSURLConnectionDataDelegate>
+@interface ProgramDetailStoreViewController : UIViewController<ProgramStoreDelegate, UIScrollViewDelegate, FileManagerDelegate, TTTAttributedLabelDelegate, RecentProgramsStoreDelegate, NSURLConnectionDataDelegate, DismissPopupDelegate>
 
 @property (nonatomic, strong) CatrobatProgram *project;
 @property (nonatomic, strong) NSMutableDictionary *projects;

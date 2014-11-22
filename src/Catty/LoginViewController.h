@@ -20,19 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kSegueToContinue @"segueToContinue"
-#define kSegueToNewProgram @"segueToNewProgram"
-#define kSegueToPrograms @"segueToPrograms"
-#define kSegueToHelp @"segueToHelp"
-#define kSegueToExplore @"segueToExplore"
-#define kSegueToUpload @"segueToUpload"
-#define kSegueToLogin @"segueToLogin"
-#define kSegueToAddNewProgram @"segueToAddProgram"
+#import <UIKit/UIKit.h>
+#import "Util.h"
 
-#define kSegueToProgramDetail @"segueToProgramDetail"
-#define kSegueToScene @"segueToScene"
-#define kSegueToObject @"segueToObject"
-#define kSegueToScripts @"segueToScripts"
-#define kSegueToLooks @"segueToLooks"
-#define kSegueToSounds @"segueToSounds"
-#define kSegueToImage @"segueToImage"
+@interface LoginViewController : UIViewController <NSURLConnectionDataDelegate>
+
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
+@property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UILabel *emailLabel;
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+
+@end

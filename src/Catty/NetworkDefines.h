@@ -21,12 +21,20 @@
  */
 
 #define kConnectionTimeout 30
-#define kConnectionHost @"https://pocketcode.org/api/projects"
 #define kBaseUrl @"https://pocketcode.org/"
-#define kForumURL @"https://pocketcode.org/tutorial"
+#define kTestUrl @"https://catroid-test.catrob.at/"
+#define kConnectionHost kBaseUrl @"api/projects"
+#define kLoginOrRegisterUrlExtension @"api/loginOrRegister"
+#define kUploadUrlExtension @"api/upload"
+#define kLoginOrRegisterUrl kBaseUrl kLoginOrRegisterUrlExtension
+#define kTestLoginOrRegisterUrl kTestUrl kLoginOrRegisterUrlExtension
+#define kUploadUrl kBaseUrl kUploadUrlExtension
+#define kTestUploadUrl kTestUrl kUploadUrlExtension
+#define kForumURL kBaseUrl @"tutorial"
 #define kSourceCodeLicenseURL @"http://developer.catrobat.org/licenses"
 #define kAboutCatrobatURL @"http://www.catrobat.org"
 #define kTermsOfUseURL @"https://www.pocketcode.org/termsOfUse"
+#define kRecoverPassword @"https://pocketcode.org/passwordrecovery"
 #define kAppStoreURL @"itms-apps://itunes.apple.com/app/CATTY_APP_ID"
 
 #define kConnectionSearch @"search.json"
@@ -38,6 +46,8 @@
 #define kConnectionMostViewed @"mostViewedIDs.json"
 #define kConnectionMostViewedFull @"mostViewed.json"
 #define kConnectionIDQuery @"getInfoById.json"
+#define kConnectionLoginOrRegister @"loginOrRegister.json"
+#define kConnectionUpload @ "upload.json"
 
 #define kProgramsOffset @"offset="
 #define kProgramsLimit @"limit="

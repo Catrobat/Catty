@@ -39,6 +39,7 @@
 #import "Reachability.h"
 #import "ProgramUpdateDelegate.h"
 #import "UIDefines.h"
+#import "LoginPopupViewController.h"
 
 #define kUIBarHeight 49
 #define kNavBarHeight 44
@@ -223,12 +224,25 @@
 - (void)reportProgram
 {
     NSLog(@"report");
-//    BOOL isLoggedIn = [[NSUserDefaults standardUserDefaults] boolForKey:@"loggedIn"];
-//    if (isLoggedIn) {
+    BOOL isLoggedIn = [[NSUserDefaults standardUserDefaults] boolForKey:kUserIsLoggedIn];
+    if (isLoggedIn) {
     [Util askUserForReportMessageAndPerformAction:@selector(sendReportWithMessage:) target:self promptTitle:@"Report Program" promptMessage:@"Why do you think this program is inappropriate?" minInputLength:1 maxInputLength:10 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:@"only ...characters"];
 
-        
-//    }
+    } else {
+        [self showLoginView];
+    }
+}
+
+- (void)showLoginView
+{
+    if (self.popupViewController == nil) {
+        LoginPopupViewController *popupViewController = [[LoginPopupViewController alloc] init];
+        popupViewController.delegate = self;
+        [self presentPopupViewController:popupViewController WithFrame:self.view.frame isLogin:YES];
+        self.navigationItem.leftBarButtonItem.enabled = NO;
+    } else {
+        [self dismissPopupWithLoginCode:NO];
+    }
 }
 
 static NSCharacterSet *blockedCharacterSet = nil;
@@ -432,5 +446,23 @@ static NSCharacterSet *blockedCharacterSet = nil;
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSDebug(@"finished");
+}
+
+
+#pragma mark - popup delegate
+- (BOOL)dismissPopupWithLoginCode:(BOOL)successLogin
+{
+    if (self.popupViewController != nil) {
+        [self dismissPopupViewController];
+        self.navigationItem.leftBarButtonItem.enabled = YES;
+        if (successLogin) {
+                // TODO no trigger because popup is visible
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [self reportProgram];
+            });
+        }
+        return YES;
+    }
+    return NO;
 }
 @end

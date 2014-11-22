@@ -20,19 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kSegueToContinue @"segueToContinue"
-#define kSegueToNewProgram @"segueToNewProgram"
-#define kSegueToPrograms @"segueToPrograms"
-#define kSegueToHelp @"segueToHelp"
-#define kSegueToExplore @"segueToExplore"
-#define kSegueToUpload @"segueToUpload"
-#define kSegueToLogin @"segueToLogin"
-#define kSegueToAddNewProgram @"segueToAddProgram"
+#import <UIKit/UIKit.h>
 
-#define kSegueToProgramDetail @"segueToProgramDetail"
-#define kSegueToScene @"segueToScene"
-#define kSegueToObject @"segueToObject"
-#define kSegueToScripts @"segueToScripts"
-#define kSegueToLooks @"segueToLooks"
-#define kSegueToSounds @"segueToSounds"
-#define kSegueToImage @"segueToImage"
+@interface UploadViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *sizeValueLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *sizeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *programLabel;
+@property (weak, nonatomic) IBOutlet UITextField *programTextField;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UITextField *descriptionTextField;
+@property (weak, nonatomic) IBOutlet UIButton *uploadButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+
+@end
