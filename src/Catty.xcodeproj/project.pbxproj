@@ -105,6 +105,7 @@
 		CA538EC919B0EA09008240AB /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = 92345632192E270B00464E6B /* test2.png */; };
 		CA538ECA19B0EA09008240AB /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 923453C1192D2D5F00464E6B /* test.png */; };
 		CA5D7FE519EC44480085D5AA /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D7FE419EC44480085D5AA /* BaseCollectionViewController.m */; };
+		CA6347EB1A20EA1800C530B1 /* SpriteObject+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6347EA1A20EA1800C530B1 /* SpriteObject+CBXMLLogger.m */; };
 		CA63C9D61A13E83B009A32DB /* NoteBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9D51A13E83B009A32DB /* NoteBrick+CBXMLHandler.m */; };
 		CA63C9D91A13E9F8009A32DB /* NextLookBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9D81A13E9F8009A32DB /* NextLookBrick+CBXMLHandler.m */; };
 		CA63C9DB1A13EAAE009A32DB /* ChangeSizeByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9DA1A13EAAE009A32DB /* ChangeSizeByNBrick+CBXMLHandler.m */; };
@@ -863,6 +864,8 @@
 		CA5FED4F18B0070300A517B6 /* BrickCellInlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCellInlineView.m; sourceTree = "<group>"; };
 		CA5FED5218B019B200A517B6 /* UIUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIUtil.h; sourceTree = "<group>"; };
 		CA5FED5318B019B200A517B6 /* UIUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIUtil.m; sourceTree = "<group>"; };
+		CA6347E91A20EA1800C530B1 /* SpriteObject+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpriteObject+CBXMLLogger.h"; sourceTree = "<group>"; };
+		CA6347EA1A20EA1800C530B1 /* SpriteObject+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SpriteObject+CBXMLLogger.m"; sourceTree = "<group>"; };
 		CA63C9D41A13E834009A32DB /* NoteBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NoteBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		CA63C9D51A13E83B009A32DB /* NoteBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NoteBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CA63C9D71A13E9F0009A32DB /* NextLookBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NextLookBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
@@ -2678,6 +2681,7 @@
 		CA5D7FE219EC28610085D5AA /* New Parser (0.93) */ = {
 			isa = PBXGroup;
 			children = (
+				CA6347EC1A20EA2D00C530B1 /* XMLLogger (automatically injected) */,
 				4CEC09221A139D6100059BB9 /* Helper */,
 				4CA7DAAF1A08FACC00681DB9 /* Context */,
 				4C023FD419FFC59000381E36 /* XMLHandler */,
@@ -2696,6 +2700,15 @@
 				CA5FED5318B019B200A517B6 /* UIUtil.m */,
 			);
 			name = UIUtil;
+			sourceTree = "<group>";
+		};
+		CA6347EC1A20EA2D00C530B1 /* XMLLogger (automatically injected) */ = {
+			isa = PBXGroup;
+			children = (
+				CA6347E91A20EA1800C530B1 /* SpriteObject+CBXMLLogger.h */,
+				CA6347EA1A20EA1800C530B1 /* SpriteObject+CBXMLLogger.m */,
+			);
+			name = "XMLLogger (automatically injected)";
 			sourceTree = "<group>";
 		};
 		CA63C9EC1A13F123009A32DB /* LEDBricks */ = {
@@ -4288,6 +4301,7 @@
 				4CEC09251A139D7C00059BB9 /* CBXMLParserHelper.m in Sources */,
 				CADBD73D19B0E8C200C62836 /* Header.m in Sources */,
 				CADBD73E19B0E8C200C62836 /* HideBrick.m in Sources */,
+				CA6347EB1A20EA1800C530B1 /* SpriteObject+CBXMLLogger.m in Sources */,
 				CA63CA0F1A14072D009A32DB /* ChangeBrightnessByNBrick+CBXMLHandler.m in Sources */,
 				CA63C9FC1A13F4EE009A32DB /* VibrationBrick.m in Sources */,
 				CAFAEAEF1A13C7F600C9F170 /* IfLogicElseBrick+CBXMLHandler.m in Sources */,

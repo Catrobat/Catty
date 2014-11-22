@@ -30,7 +30,6 @@
 #import "SpriteObject+CBXMLHandler.h"
 #import "CatrobatLanguageDefines.h"
 
-
 // NEVER MOVE THESE DEFINE CONSTANTS TO ANOTHER (HEADER) FILE
 #define kCatrobatXMLParserMinSupportedLanguageVersion 0.93f
 #define kCatrobatXMLParserMaxSupportedLanguageVersion CGFLOAT_MAX

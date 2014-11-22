@@ -20,16 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SpriteObject.h"
-#import "CBXMLNodeProtocol.h"
+#import "SpriteObject+CBXMLHandler.h"
 
-#import "SpriteObject+CBXMLLogger.h"
-
-@interface SpriteObject (CBXMLHandler) <CBXMLNodeProtocol>
-
-#ifdef CATTY_TESTS
-+ (NSMutableArray*)parseAndCreateLooks:(GDataXMLElement*)objectElement;
-+ (NSMutableArray*)parseAndCreateSounds:(GDataXMLElement*)objectElement;
-#endif
+@interface SpriteObject (CBXMLLogger)
 
 @end

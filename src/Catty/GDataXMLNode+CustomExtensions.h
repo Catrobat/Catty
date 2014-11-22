@@ -27,6 +27,7 @@
 // little HACK to activate pretty printed XML, unfortunatelly GDataXMLNode does not support this by default
 // More details for this: http://stackoverflow.com/questions/6403083/ios-xml-pretty-print
 - (NSString*)XMLStringPrettyPrinted:(BOOL)isPrettyPrinted;
+- (NSString*)nonRecursiveXMLStringPrettyPrinted:(BOOL)isPrettyPrinted;
 - (GDataXMLElement*)childWithElementName:(NSString*)elementName;
 - (GDataXMLElement*)childWithElementName:(NSString*)elementName
                      containingAttribute:(NSString*)attributeName

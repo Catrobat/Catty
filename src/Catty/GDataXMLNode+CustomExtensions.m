@@ -57,6 +57,11 @@
   return trimmed;
 }
 
+- (NSString*)nonRecursiveXMLStringPrettyPrinted:(BOOL)isPrettyPrinted
+{
+    return [NSString stringWithFormat:@"<%@>", [self name]];
+}
+
 - (GDataXMLElement*)childWithElementName:(NSString*)elementName
 {
     NSArray *childElements = [self children];

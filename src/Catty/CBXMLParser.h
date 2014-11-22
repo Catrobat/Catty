@@ -21,7 +21,6 @@
  */
 
 #import "CBParserProtocol.h"
-#import <objc/runtime.h>
 
 @class GDataXMLDocument;
 @class GDataXMLNode;

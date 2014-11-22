@@ -36,13 +36,13 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [XMLError exceptionIfNil:xmlElement message:@"The rootElement nil"];
-    
-    if(![xmlElement.name isEqualToString:@"object"] && ![xmlElement.name isEqualToString:@"pointedObject"]) {
+    if (! [xmlElement.name isEqualToString:@"object"] && ![xmlElement.name isEqualToString:@"pointedObject"]) {
         [XMLError exceptionIfString:xmlElement.name
-             isNotEqualToString:@"object" message:@"The name of the rootElement is '%@' but should be '%@'",
-     xmlElement.name, @"object or pointedObject"];
+                 isNotEqualToString:@"object"
+                            message:@"The name of the rootElement is '%@' but should be '%@'",
+                                    xmlElement.name, @"object or pointedObject"];
     }
-    
+
     NSArray *attributes = [xmlElement attributes];
     [XMLError exceptionIf:[attributes count] notEquals:1
                   message:@"Parsed name-attribute of object is invalid or empty!"];
@@ -76,7 +76,6 @@
         return alreadyExistantSpriteObject;
     }
 
-    NSLog(@"<object name=\"%@\">", spriteObject.name);
     spriteObject.lookList = [self parseAndCreateLooks:xmlElement];
     context.lookList = spriteObject.lookList;
 
