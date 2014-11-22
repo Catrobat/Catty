@@ -73,6 +73,7 @@ const int VIEW_BUTTON_MARGIN_BOTTOM = 15;
     [super viewDidLoad];
     self.view.frame = CGRectMake(0,0, VIEW_FRAME_WIDTH, VIEW_FRAME_HEIGHT);
     self.view.backgroundColor = [UIColor backgroundColor];
+    [self initUsernameTextfield];
     [self initAboutPocketCodeButton];
     [self initTermsOfUseButton];
     [self initRateUsButton];
@@ -85,6 +86,11 @@ const int VIEW_BUTTON_MARGIN_BOTTOM = 15;
 }
 
 #pragma mark Initialization
+
+- (void)initUsernameTextfield
+{
+    UITextField *usernameTextfield = [[UITextField alloc] init];
+}
 
 - (void)initAboutPocketCodeButton
 {

@@ -20,12 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+//web status codes are on: https://github.com/Catrobat/Catroweb/blob/master/statusCodes.php
+
 #import "LoginViewController.h"
 #import "NetworkDefines.h"
 #import "ProgramDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "LanguageTranslationDefines.h"
+#import "SegueDefines.h"
 #import "Util.h"
 
 static NSString *const usernameParameterID = @"registrationUsername";
@@ -34,9 +37,6 @@ static NSString *const registrationEmailParameterID = @"registrationEmail";
 static NSString *const registrationCountryParameterID = @"registrationCountry";
 
 bool useTestUrl = true;
-
-NSString *testEmail = @"test1@gmx.at";
-NSString *testCountry = @"Austria";
 
 @interface LoginViewController ()
 @property (nonatomic, strong) NSURLConnection *connection;
@@ -61,7 +61,8 @@ NSString *testCountry = @"Austria";
     //[self.passwordLabel setText:kLocalizedPassword];
     [self.passwordLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0f]];
     self.passwordLabel.textColor = [UIColor lightOrangeColor];
-    
+    [self.emailLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0f]];
+    self.emailLabel.textColor = [UIColor lightOrangeColor];
     
     [self.loginButton setTitle:kLocalizedLogin forState:UIControlStateNormal];
 }
@@ -82,16 +83,21 @@ NSString *testCountry = @"Austria";
     } else if ([self.passwordTextField.text isEqualToString:@""]) {
         [Util alertWithText:@"Password is necessary!"];
         return;
+    } else if ([self.emailTextField.text isEqualToString:@""]) {
+        [Util alertWithText:@"Email is necessary!"];
+        return;
     }
     
-    [self loginAtServerWithUsername:self.usernameTextField.text andPassword:self.passwordTextField.text];
+    [self loginAtServerWithUsername:self.usernameTextField.text
+                        andPassword:self.passwordTextField.text
+                           andEmail:self.emailTextField.text];
 }
 
 
 #pragma mark - Helpers
-- (void)loginAtServerWithUsername:(NSString*)username andPassword:(NSString*)password
+- (void)loginAtServerWithUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email
 {
-    NSDebug(@"Login started with username:%@ and password:%@", username, password);
+    NSDebug(@"Login started with username:%@ and password:%@ and email:%@", username, password, email);
     // reset data
     self.data = nil;
     self.data = [[NSMutableData alloc] init];
@@ -100,26 +106,17 @@ NSString *testCountry = @"Austria";
     //For testing use: https://catroid-test.catrob.at/api/loginOrRegister/loginOrRegister.json?registrationUsername=MaxMuster&registrationPassword=MyPassword
     
     NSString *uploadUrlBase = useTestUrl ? kTestLoginOrRegisterUrl : kLoginOrRegisterUrl;
+    /*
     NSString *urlString = [NSString stringWithFormat:@"%@/%@?%@=%@&%@=%@", uploadUrlBase, kConnectionLoginOrRegister, usernameParameterID, username, passwordParameterID, password];
     NSDebug(@"URL string: %@", urlString);
-    
-    /*
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
-    
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    self.connection = connection;
-    
-    NSDebug(@"Finished custom query to server");
-     */
-    
+*/
     NSLocale *currentLocale = [NSLocale currentLocale];
     NSString *countryCode = [currentLocale objectForKey:NSLocaleCountryCode];
-    
     NSDebug(@"Current Country is: %@", countryCode);
     
-    NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@=%@",usernameParameterID, username, passwordParameterID, password, registrationEmailParameterID, testEmail, registrationCountryParameterID, countryCode];
-    //NSData *postData = [[NSData alloc] initWithContentsOfFile:post];
+    //NSString *testEmail = @"test1@gmx.at";
+    
+    NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@=%@",usernameParameterID, username, passwordParameterID, password, registrationEmailParameterID, email, registrationCountryParameterID, countryCode];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
     
@@ -163,13 +160,21 @@ NSString *testCountry = @"Austria";
         
         NSError *error = nil;
         NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:self.data options:kNilOptions error:&error];
-        NSString *statusCode = [dictionary valueForKey:@"statusCode"];
+        NSString *statusCode = [NSString stringWithFormat:@"%@", [dictionary valueForKey:@"statusCode"]];
+        //int statusCode = [dictionary valueForKey:@"statusCode"];
         NSDebug(@"StatusCode is %@", statusCode);
         
-        if ([statusCode  isEqual:@"201"]) {
+        //some ugly code just to get logic working
+        if ([statusCode isEqualToString:@"200"] || [statusCode  isEqualToString:@"201"]) {
+            
             NSDebug(@"Login successful");
+            NSString *token = [NSString stringWithFormat:@"%@", [dictionary valueForKey:@"token"]];
+            NSDebug(@"Token is %@", token);
             [[NSUserDefaults standardUserDefaults] setBool:true forKey:kUserIsLoggedIn];
-            //TODO: close popup
+            [[NSUserDefaults standardUserDefaults] setValue:token forKey:kUserLoginToken];
+            //save username, password in keychain and token in nsuserdefaults
+            [self performSegueWithIdentifier:kSegueToUpload sender:self];
+            
         } else {
             NSDebug(@"Error: %@", [dictionary valueForKey:@"answer"]);
             [Util alertWithText:[dictionary valueForKey:@"answer"]];
@@ -194,6 +199,6 @@ NSString *testCountry = @"Austria";
 {
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
- }
+}
 
 @end

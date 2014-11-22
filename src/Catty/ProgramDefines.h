@@ -83,6 +83,7 @@ typedef NS_ENUM(NSUInteger, kDTMActionType) {
 #define kUserDetailsShowDetailsKey @"showDetails"
 #define kUserIsFirstAppLaunch @"isFirstAppLaunch"
 #define kUserIsLoggedIn @"userIsLoggedIn"
+#define kUserLoginToken @"userLoginToken"
 #define kUserShowIntroductionOnLaunch @"showIntroductionOnLaunch"
 #define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
 #define kUserDetailsShowDetailsLooksKey @"detailsForLooks"

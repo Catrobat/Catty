@@ -124,7 +124,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self initNavigationBar];
     }
     
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kUserIsLoggedIn]; //Just for testing, TODO: remove
+    //[[NSUserDefaults standardUserDefaults] setBool:NO forKey:kUserIsLoggedIn]; //Just for testing, TODO: remove
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -171,7 +171,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
                   kLocalizedUpload, nil];
     self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNamePrograms, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
 
-    self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
+    BOOL userIsLoggedIn = [[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue];
+    
+    if (userIsLoggedIn) {
+        self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
+    } else {
+        self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToLogin, nil];
+    }
+    
+    
 }
 
 - (void)initNavigationBar
@@ -294,6 +302,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #if kIsRelease //kIsRelease
             [Util showComingSoonAlertView];
 #else
+            //some ugly code to get login logic running, will be removed
+            if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
+                self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
+            } else {
+                self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToLogin, nil];
+            }
+                
+            if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
+                [self performSegueWithIdentifier:identifier sender:self];
+            }
+            
+            /* //new version in progress
             //Check if user is logged in
             if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
                 
@@ -307,6 +327,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 //TODO: open popup for login
                 [self showLoginView:self];
             }
+             */
 
 #endif
             break;
