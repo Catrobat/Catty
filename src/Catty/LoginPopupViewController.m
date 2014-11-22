@@ -24,16 +24,41 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "LanguageTranslationDefines.h"
 #import <QuartzCore/QuartzCore.h>
+#import "NetworkDefines.h"
+#import "ProgramDefines.h"
+#import "SegueDefines.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
+#import "Util.h"
+
+#import "NetworkDefines.h"
+#import "ProgramDefines.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
+#import "UIImage+CatrobatUIImageExtensions.h"
+#import "LanguageTranslationDefines.h"
+
+#define usernameParameterID @"registrationUsername"
+#define passwordParameterID @"registrationPassword"
+#define registrationEmailParameterID @"registrationEmail"
+#define registrationCountryParameterID @"registrationCountry"
+
 
 @interface LoginPopupViewController ()
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UITextView *bodyTextView;
+@property (nonatomic, strong) UITextField *usernameTextField;
+@property (nonatomic, strong) UITextField *passwordTextField;
+@property (nonatomic, strong) UITextField *emailTextField;
+
+@property (nonatomic, strong) NSURLConnection *connection;
+@property (nonatomic, strong) NSMutableData *data;
+@property (nonatomic, assign) BOOL useTestUrl;
+
 @end
 
 @implementation LoginPopupViewController
 
 const int VIEW_FRAME_PADDING_HORIZONTAL = 20;
-const CGFloat VIEW_FRAME_HEIGHT = 220.0f;
+const CGFloat VIEW_FRAME_HEIGHT = 260.0f;
 const CGFloat VIEW_FRAME_CONTENT_HEIGHT = 300.0f;
 const CGFloat VIEW_FRAME_WIDTH = 280.0f;
 
@@ -71,13 +96,17 @@ const int VIEW_BUTTON_MARGIN_BOTTOM = 15;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.frame = CGRectMake(0,0, VIEW_FRAME_WIDTH, VIEW_FRAME_HEIGHT);
+    self.view.frame = CGRectMake(0,0, [Util screenWidth]-10, VIEW_FRAME_HEIGHT);
     self.view.backgroundColor = [UIColor backgroundColor];
     [self initUsernameTextfield];
-    [self initAboutPocketCodeButton];
-    [self initTermsOfUseButton];
-    [self initRateUsButton];
-    [self initProgramVersion];
+    [self initPasswordTextfield];
+    [self initEmailTextfield];
+    [self initTermsOfUse];
+    [self initCancelButton];
+    [self initLoginButton];
+    [self initForgotPasswordButton];
+    self.useTestUrl = YES;
+    [self.usernameTextField becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,60 +118,106 @@ const int VIEW_BUTTON_MARGIN_BOTTOM = 15;
 
 - (void)initUsernameTextfield
 {
-    UITextField *usernameTextfield = [[UITextField alloc] init];
-}
 
-- (void)initAboutPocketCodeButton
-{
-    UIButton *aboutPocketCodeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [aboutPocketCodeButton setTitle:kLocalizedAboutPocketCode forState:UIControlStateNormal];
-    [aboutPocketCodeButton addTarget:self
-                              action:@selector(aboutPocketCode)
-                    forControlEvents:UIControlEventTouchUpInside];
-    [aboutPocketCodeButton sizeToFit];
-    aboutPocketCodeButton.frame = CGRectMake(self.view.frame.size.width / 2 - aboutPocketCodeButton.frame.size.width / 2, VIEW_MENU_BUTTON_MARGIN_HORIZONTAL, aboutPocketCodeButton.frame.size.width, VIEW_BUTTON_HEIGHT);
+    UILabel *usernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, VIEW_MENU_BUTTON_MARGIN_HORIZONTAL, 100, 30)];
+    usernameLabel.text = @"username";
+    usernameLabel.textColor = [UIColor skyBlueColor];
     
-    [self addMenuButton:aboutPocketCodeButton];
+    self.usernameTextField = [[UITextField alloc] initWithFrame:CGRectMake(usernameLabel.frame.origin.x+usernameLabel.frame.size.width + 5, VIEW_MENU_BUTTON_MARGIN_HORIZONTAL, [Util screenWidth] - usernameLabel.frame.origin.x - usernameLabel.frame.size.width -25, 30)];
+    
+    self.usernameTextField.textColor = [UIColor lightOrangeColor];
+    self.usernameTextField.backgroundColor = [UIColor whiteColor];
+    [self.usernameTextField setBorderStyle:UITextBorderStyleRoundedRect];
+    [self.usernameTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [self.usernameTextField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+    
+    [self.view addSubview:usernameLabel];
+    [self.view addSubview:self.usernameTextField];
 }
 
-- (void)initTermsOfUseButton
+
+- (void)initPasswordTextfield
+{
+    
+    UILabel *passwordLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 3 * VIEW_MENU_BUTTON_MARGIN_HORIZONTAL + VIEW_BUTTON_HEIGHT, 100, 30)];
+    passwordLabel.text = @"password";
+    passwordLabel.textColor = [UIColor skyBlueColor];
+    
+    self.passwordTextField = [[UITextField alloc] initWithFrame:CGRectMake(passwordLabel.frame.origin.x + passwordLabel.frame.size.width + 5, passwordLabel.frame.origin.y, [Util screenWidth] - passwordLabel.frame.origin.x - passwordLabel.frame.size.width -25, 30)];
+    
+    self.passwordTextField.textColor = [UIColor lightOrangeColor];
+    self.passwordTextField.backgroundColor = [UIColor whiteColor];
+    [self.passwordTextField setBorderStyle:UITextBorderStyleRoundedRect];
+    [self.passwordTextField setSecureTextEntry:YES];
+    [self.passwordTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [self.passwordTextField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+    [self.view addSubview:passwordLabel];
+    [self.view addSubview:self.passwordTextField];
+}
+
+
+- (void)initEmailTextfield
+{
+    
+    UILabel *emailLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5 * VIEW_MENU_BUTTON_MARGIN_HORIZONTAL + 2 * VIEW_BUTTON_HEIGHT, 100, 30)];
+    emailLabel.text = @"email";
+    emailLabel.textColor = [UIColor skyBlueColor];
+    
+    self.emailTextField = [[UITextField alloc] initWithFrame:CGRectMake(emailLabel.frame.origin.x + emailLabel.frame.size.width + 5, emailLabel.frame.origin.y, [Util screenWidth] - emailLabel.frame.origin.x - emailLabel.frame.size.width -25, 30)];
+    
+    self.emailTextField.textColor = [UIColor lightOrangeColor];
+    self.emailTextField.backgroundColor = [UIColor whiteColor];
+    [self.emailTextField setBorderStyle:UITextBorderStyleRoundedRect];
+    [self.emailTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [self.emailTextField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+    [self.view addSubview:emailLabel];
+    [self.view addSubview:self.emailTextField];
+}
+
+
+- (void)initTermsOfUse
 {
     UIButton *termsOfUseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [termsOfUseButton setTitle:kLocalizedTermsOfUse forState:UIControlStateNormal];
-    [termsOfUseButton addTarget:self
-                         action:@selector(termsOfUse)
-               forControlEvents:UIControlEventTouchUpInside];
     [termsOfUseButton sizeToFit];
-    termsOfUseButton.frame = CGRectMake(self.view.frame.size.width / 2 - termsOfUseButton.frame.size.width / 2, 3 * VIEW_MENU_BUTTON_MARGIN_HORIZONTAL + VIEW_BUTTON_HEIGHT, termsOfUseButton.frame.size.width, VIEW_BUTTON_HEIGHT);
+    termsOfUseButton.frame = CGRectMake(0, self.view.frame.size.height - termsOfUseButton.frame.size.height - VIEW_BODY_PADDING_BOTTOM * 1.5, self.view.frame.size.width, termsOfUseButton.frame.size.height);
+
+    [self addLinkButton:termsOfUseButton];
     
-    [self addMenuButton:termsOfUseButton];
+    [self.view addSubview:termsOfUseButton];
+}
+- (void)initForgotPasswordButton
+{
+    UIButton *forgotButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [forgotButton setTitle:kLocalizedForgotPassword forState:UIControlStateNormal];
+    [forgotButton sizeToFit];
+    forgotButton.frame = CGRectMake(0, self.view.frame.size.height - forgotButton.frame.size.height - VIEW_BODY_PADDING_BOTTOM * 5, self.view.frame.size.width, forgotButton.frame.size.height);
+    
+    [self addLinkButton:forgotButton];
+    
+    [self.view addSubview:forgotButton];
 }
 
-- (void)initRateUsButton
+- (void)initCancelButton
 {
-    UIButton *rateUsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [rateUsButton setTitle:kLocalizedRateUs forState:UIControlStateNormal];
-    [rateUsButton addTarget:self
-                     action:@selector(openURLAction:)
-           forControlEvents:UIControlEventTouchUpInside];
-    [rateUsButton sizeToFit];
-    rateUsButton.frame = CGRectMake(self.view.frame.size.width / 2 - rateUsButton.frame.size.width / 2, 5 * VIEW_MENU_BUTTON_MARGIN_HORIZONTAL + 2 * VIEW_BUTTON_HEIGHT, rateUsButton.frame.size.width, VIEW_BUTTON_HEIGHT);
+    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+    [cancelButton sizeToFit];
+    cancelButton.frame = CGRectMake(50, self.view.frame.size.height - cancelButton.frame.size.height - VIEW_BODY_PADDING_BOTTOM * 12, cancelButton.frame.size.width, cancelButton.frame.size.height);
     
-    [self addMenuButton:rateUsButton];
+    [cancelButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:cancelButton];
 }
 
-- (void)initProgramVersion
+- (void)initLoginButton
 {
-    NSString *version = [[NSString alloc] initWithFormat:@"%@%@", kLocalizedVersionLabel, [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+    UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [loginButton setTitle:@"Login" forState:UIControlStateNormal];
+    [loginButton sizeToFit];
+    loginButton.frame = CGRectMake(self.view.frame.size.width - loginButton.frame.size.width - 50, self.view.frame.size.height - loginButton.frame.size.height - VIEW_BODY_PADDING_BOTTOM * 12, loginButton.frame.size.width, loginButton.frame.size.height);
     
-    UILabel *versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2, VIEW_HEADER_PADDING_TOP, self.view.frame.size.width, VIEW_HEADER_LABEL_HEIGHT)];
-    [versionLabel setTextColor:[UIColor skyBlueColor]];
-    [versionLabel setTextAlignment:NSTextAlignmentRight];
-    [versionLabel setText:version];
-    [versionLabel sizeToFit];
-    versionLabel.frame = CGRectMake(0, self.view.frame.size.height - versionLabel.frame.size.height - VIEW_BODY_PADDING_BOTTOM * 2, self.view.frame.size.width, versionLabel.frame.size.height);
-    versionLabel.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:versionLabel];
+    [loginButton addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:loginButton];
 }
 
 - (void)addMenuButton:(UIButton *)button
@@ -225,105 +300,200 @@ const int VIEW_BUTTON_MARGIN_BOTTOM = 15;
     [self.contentView.layer addSublayer:backShapeLayer];
 }
 
-- (void)showContentView
+-(void)cancel
 {
-    self.contentView.alpha = 0.0f;
-    [self.view addSubview:self.contentView];
-    [UIView animateWithDuration:0.2f
-                     animations:^{
-                         CGRect frame = self.contentView.frame;
-                         frame.size.height += 100.0f;
-                         self.contentView.frame = frame;
-                         frame = self.view.frame;
-                         frame.size.height += 100.0f;
-                         frame.origin.y -= 50.0f;
-                         self.view.frame = frame;
-                         self.contentView.alpha = 1.0f;
-                     }];
+    [self.delegate dismissPopupWithLoginCode:NO];
 }
 
-#pragma mark - button actions
-- (void)aboutPocketCode
+-(void)loginAction
 {
-    //init OverlayView
-    [self initContentView:kLocalizedAboutPocketCode withText:kLocalizedAboutPocketCodeDescription];
+    if ([self.usernameTextField.text isEqualToString:@""]) {
+        [Util alertWithText:@"Username is necessary!"];
+        return;
+    } else if (![self validPassword:self.passwordTextField.text]) {
+        [Util alertWithText:@"Password is not vaild!"];
+        return;
+    } else if ([self.emailTextField.text isEqualToString:@""] || ![self NSStringIsValidEmail:self.emailTextField.text]) {
+        [Util alertWithText:@"Email is not valid!"];
+        return;
+    }
     
-    //init buttons
-    UIButton *sourceCodeLicenseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [sourceCodeLicenseButton setTitle:kLocalizedSourceCodeLicenseButtonLabel forState:UIControlStateNormal];
-    [sourceCodeLicenseButton sizeToFit];
-    sourceCodeLicenseButton.frame = CGRectMake(self.contentView.frame.size.width / 2 - sourceCodeLicenseButton.frame.size.width / 2, self.bodyTextView.frame.origin.y + self.bodyTextView.frame.size.height + VIEW_BUTTON_MARGIN_BOTTOM, sourceCodeLicenseButton.frame.size.width, sourceCodeLicenseButton.frame.size.height);
-    [self addLinkButton:sourceCodeLicenseButton];
-    
-    UIButton *aboutCatrobatButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [aboutCatrobatButton setTitle:kLocalizedAboutCatrobatButtonLabel forState:UIControlStateNormal];
-    [aboutCatrobatButton sizeToFit];
-    aboutCatrobatButton.frame = CGRectMake(self.contentView.frame.size.width / 2 - aboutCatrobatButton.frame.size.width / 2, sourceCodeLicenseButton.frame.origin.y + sourceCodeLicenseButton.frame.size.height, aboutCatrobatButton.frame.size.width, aboutCatrobatButton.frame.size.height);
-    [self addLinkButton:aboutCatrobatButton];
-    
-    //Animation to add the main subview
-    [self showContentView];
+    [self loginAtServerWithUsername:self.usernameTextField.text
+                        andPassword:self.passwordTextField.text
+                           andEmail:self.emailTextField.text];
 }
 
-- (void)termsOfUse
+-(BOOL) NSStringIsValidEmail:(NSString *)checkString
 {
-    //init OverlayView
-    [self initContentView:kLocalizedTermsOfUse withText:kLocalizedTermsOfUseDescription];
-    
-    //init buttons
-    UIButton *termsOfUseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [termsOfUseButton setTitle:kLocalizedTermsOfUse forState:UIControlStateNormal];
-    [termsOfUseButton sizeToFit];
-    termsOfUseButton.frame = CGRectMake(self.contentView.frame.size.width / 2 - termsOfUseButton.frame.size.width / 2, self.bodyTextView.frame.origin.y + self.bodyTextView.frame.size.height + VIEW_BUTTON_MARGIN_BOTTOM, termsOfUseButton.frame.size.width, termsOfUseButton.frame.size.height);
-    [self addLinkButton:termsOfUseButton];
-    
-    //Animation to add the main subview
-    [self showContentView];
+    BOOL stricterFilter = NO; // Discussion http://blog.logichigh.com/2010/09/02/validating-an-e-mail-address/
+    NSString *stricterFilterString = @"[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}";
+    NSString *laxString = @".+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*";
+    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:checkString];
 }
 
-- (void)backAction
+
+-(BOOL)validPassword:(NSString*)password
 {
-    [UIView animateWithDuration:0.2f
-                     animations:^{
-                         CGRect frame = self.contentView.frame;
-                         frame.size.height -= 100.0f;
-                         self.contentView.frame = frame;
-                         frame = self.view.frame;
-                         frame.size.height = VIEW_FRAME_HEIGHT;
-                         frame.origin.y += 50.0f;
-                         self.view.frame = frame;
-                         self.contentView.alpha = 0.0f;
-                     }
-                     completion:^(BOOL finished){
-                         [[self.contentView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-                     }];
+    int numberofCharacters = 6;
+    BOOL lowerCaseLetter,upperCaseLetter,digit,specialCharacter = 0;
+    if([password length] >= numberofCharacters)
+    {
+        for (int i = 0; i < [password length]; i++)
+        {
+            unichar c = [password characterAtIndex:i];
+            if(!lowerCaseLetter)
+            {
+                lowerCaseLetter = [[NSCharacterSet lowercaseLetterCharacterSet] characterIsMember:c];
+            }
+            if(!upperCaseLetter)
+            {
+                upperCaseLetter = [[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:c];
+            }
+            if(!digit)
+            {
+                digit = [[NSCharacterSet decimalDigitCharacterSet] characterIsMember:c];
+            }
+            if(!specialCharacter)
+            {
+                specialCharacter = [[NSCharacterSet symbolCharacterSet] characterIsMember:c];
+            }
+        }
+        
+        if(specialCharacter && digit && lowerCaseLetter && upperCaseLetter)
+        {
+                //do what u want
+            return YES;
+        }
+        else
+        {
+            return YES;
+        }
+        
+    }
+    else
+    {
+
+        return NO;
+    }
+}
+
+#pragma mark - Helpers
+- (void)loginAtServerWithUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email
+{
+    NSDebug(@"Login started with username:%@ and password:%@ and email:%@", username, password, email);
+        // reset data
+    self.data = nil;
+    self.data = [[NSMutableData alloc] init];
+    
+        //Example URL: https://pocketcode.org/api/loginOrRegister/loginOrRegister.json?registrationUsername=MaxMuster&registrationPassword=MyPassword
+        //For testing use: https://catroid-test.catrob.at/api/loginOrRegister/loginOrRegister.json?registrationUsername=MaxMuster&registrationPassword=MyPassword
+    
+    NSString *uploadUrlBase = self.useTestUrl ? kTestLoginOrRegisterUrl : kLoginOrRegisterUrl;
+    /*
+     NSString *urlString = [NSString stringWithFormat:@"%@/%@?%@=%@&%@=%@", uploadUrlBase, kConnectionLoginOrRegister, usernameParameterID, username, passwordParameterID, password];
+     NSDebug(@"URL string: %@", urlString);
+     */
+    NSLocale *currentLocale = [NSLocale currentLocale];
+    NSString *countryCode = [currentLocale objectForKey:NSLocaleCountryCode];
+    NSDebug(@"Current Country is: %@", countryCode);
+    
+        //NSString *testEmail = @"test1@gmx.at";
+    
+    NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@=%@",usernameParameterID, username, passwordParameterID, password, registrationEmailParameterID, email, registrationCountryParameterID, countryCode];
+    NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+    NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", uploadUrlBase, kConnectionLoginOrRegister]]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody:postData];
+    
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    self.connection = connection;
+    
+    [self.connection start];
+    
+    if(self.connection) {
+        NSLog(@"Connection Successful");
+    } else {
+        NSLog(@"Connection could not be made");
+    }
+}
+
+
+#pragma mark - NSURLConnection Delegates
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
+{
+    NSDebug(@"Received Data from server");
+    if (self.connection == connection) {
+        [self.data appendData:data];
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSDebug(@"NSURLConnection ERROR: %@", error);
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    if (self.connection == connection) {
+        NSDebug(@"Finished loading");
+        
+        NSError *error = nil;
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:self.data options:kNilOptions error:&error];
+        NSString *statusCode = [NSString stringWithFormat:@"%@", [dictionary valueForKey:@"statusCode"]];
+            //int statusCode = [dictionary valueForKey:@"statusCode"];
+        NSDebug(@"StatusCode is %@", statusCode);
+        
+            //some ugly code just to get logic working
+        if ([statusCode isEqualToString:@"200"] || [statusCode  isEqualToString:@"201"]) {
+            
+            NSDebug(@"Login successful");
+            NSString *token = [NSString stringWithFormat:@"%@", [dictionary valueForKey:@"token"]];
+            NSDebug(@"Token is %@", token);
+            [[NSUserDefaults standardUserDefaults] setBool:true forKey:kUserIsLoggedIn];
+            [[NSUserDefaults standardUserDefaults] setValue:token forKey:kUserLoginToken];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+//                //save username, password in keychain and token in nsuserdefaults
+            [self.delegate dismissPopupWithLoginCode:YES];
+            
+        } else {
+            NSDebug(@"Error: %@", [dictionary valueForKey:@"answer"]);
+            [Util alertWithText:[dictionary valueForKey:@"answer"]];
+                //TODO: translate answer message
+                //maybe clear password field?
+        }
+        
+        self.data = nil;
+        self.connection = nil;
+    }
+}
+
+-(void)loadingIndicator:(BOOL)value
+{
+    UIApplication* app = [UIApplication sharedApplication];
+    app.networkActivityIndicatorVisible = value;
 }
 
 - (void)openURLAction:(id)sender
 {
     NSString *url = nil;
     UIButton *button = (UIButton *)sender;
-    if([button.currentTitle isEqualToString:kLocalizedSourceCodeLicenseButtonLabel])
-        url = kSourceCodeLicenseURL;
-    else if([button.currentTitle isEqualToString:kLocalizedAboutCatrobatButtonLabel])
-        url = kAboutCatrobatURL;
-    else if([button.currentTitle isEqualToString:kLocalizedTermsOfUse])
+
+    if([button.currentTitle isEqualToString:kLocalizedTermsOfUse])
         url = kTermsOfUseURL;
-    else if([button.currentTitle isEqualToString:kLocalizedRateUs]) {
-        url = kAppStoreURL;
+    if([button.currentTitle isEqualToString:kLocalizedForgotPassword])
+        url = kRecoverPassword;
+    
+    if (url) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
     }
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

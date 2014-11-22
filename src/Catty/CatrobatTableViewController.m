@@ -198,9 +198,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
         InfoPopupViewController *popupViewController = [[InfoPopupViewController alloc] init];
         popupViewController.delegate = self;
         self.tableView.scrollEnabled = NO;
-        [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame];
+        [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame isLogin:NO];
     } else {
-        [self dismissPopup];
+        [self dismissPopupWithLoginCode:NO];
     }
 }
 
@@ -210,9 +210,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
         LoginPopupViewController *popupViewController = [[LoginPopupViewController alloc] init];
         popupViewController.delegate = self;
         self.tableView.scrollEnabled = NO;
-        [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame];
+        [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame isLogin:YES];
+        self.navigationItem.leftBarButtonItem.enabled = NO;
     } else {
-        [self dismissPopup];
+        [self dismissPopupWithLoginCode:NO];
     }
 }
 
@@ -260,7 +261,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    if ([self dismissPopup]) {
+    if ([self dismissPopupWithLoginCode:NO]) {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
         return;
     }
@@ -299,37 +300,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
             }
             break;
         case kUploadVC:
-#if kIsRelease //kIsRelease
-            [Util showComingSoonAlertView];
-#else
+
             //some ugly code to get login logic running, will be removed
             if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
                 self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
-            } else {
-                self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToLogin, nil];
-            }
-                
-            if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
-                [self performSegueWithIdentifier:identifier sender:self];
-            }
-            
-            /* //new version in progress
-            //Check if user is logged in
-            if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
-                
-                NSDebug(@"User is logged in");
                 if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
                     [self performSegueWithIdentifier:identifier sender:self];
                 }
-                
             } else {
-                NSDebug(@"User has to log in");
-                //TODO: open popup for login
-                [self showLoginView:self];
+                    [self showLoginView:self];
             }
-             */
 
-#endif
             break;
             
         default:
@@ -371,9 +352,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark - segue handling
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString*)identifier sender:(id)sender
+- (BOOL)shouldPerformSegueWithIdentifider:(NSString*)identifier sender:(id)sender
 {
-    if ([self dismissPopup]) {
+    if ([self dismissPopupWithLoginCode:NO]) {
         return NO;
     }
     if ([identifier isEqualToString:kSegueToContinue]) {
@@ -512,11 +493,16 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark - popup delegate
-- (BOOL)dismissPopup
+- (BOOL)dismissPopupWithLoginCode:(BOOL)successLogin
 {
     if (self.popupViewController != nil) {
         self.tableView.scrollEnabled = YES;
         [self dismissPopupViewController];
+        self.navigationItem.leftBarButtonItem.enabled = YES;
+        if (successLogin) {
+                // TODO no trigger because popup is visible
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+        }
         return YES;
     }
     return NO;

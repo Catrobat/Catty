@@ -24,7 +24,7 @@
 #import "UIViewController+CWPopup.h"
 #import "NetworkDefines.h"
 
-@interface LoginPopupViewController : UIViewController
+@interface LoginPopupViewController : UIViewController <NSURLConnectionDataDelegate>
 
 @property (nonatomic, weak) id<DismissPopupDelegate> delegate;
 
