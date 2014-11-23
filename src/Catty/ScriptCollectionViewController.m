@@ -46,6 +46,8 @@
 #import "SingleBrickSelectionView.h"
 #import "Util.h"
 #import "PlaceHolderView.h"
+#import "LoopBeginBrick.h"
+#import "IfLogicBeginBrick.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate,
                                               LXReorderableCollectionViewDelegateFlowLayout,
@@ -604,8 +606,48 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
         if (script.brickList.count) {
             [self.collectionView performBatchUpdates:^{
-                [script.brickList removeObjectAtIndex:indexPath.item - 1];
-                [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+                Brick *brick =[script.brickList objectAtIndex:indexPath.item - 1];
+                if ([brick isKindOfClass:[LoopBeginBrick class]]) {
+                    LoopBeginBrick *beginBrick = (LoopBeginBrick *)brick;
+                    
+                    NSInteger count = 0;
+                    for (Brick *checkBrick in script.brickList) {
+                        if ([checkBrick isEqual:beginBrick.loopEndBrick]) {
+                            break;
+                        }
+                        count++;
+                    }
+                    [script.brickList removeObjectAtIndex:indexPath.item - 1];
+                    [script.brickList removeObject:beginBrick.loopEndBrick];
+                    [self.collectionView deleteItemsAtIndexPaths:@[indexPath,[NSIndexPath indexPathForItem:count inSection:indexPath.section]]];
+                    
+                }else if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
+                    IfLogicBeginBrick *beginBrick = (IfLogicBeginBrick *)brick;
+                    
+                    NSInteger countElse = 0;
+                    NSInteger countEnd = 0;
+                    for (Brick *checkBrick in script.brickList) {
+                        if ([checkBrick isEqual:beginBrick.ifElseBrick]) {
+                            
+                        }else{
+                           countElse++;
+                        }
+                        if ([checkBrick isEqual:beginBrick.ifEndBrick]) {
+                            break;
+                        }else{
+                            countEnd++;
+                        }
+  
+                    }
+                    [script.brickList removeObjectAtIndex:indexPath.item - 1];
+                    [script.brickList removeObject:beginBrick.ifElseBrick];
+                    [script.brickList removeObject:beginBrick.ifEndBrick];
+                    [self.collectionView deleteItemsAtIndexPaths:@[indexPath,[NSIndexPath indexPathForItem:countElse inSection:indexPath.section],[NSIndexPath indexPathForItem:countEnd inSection:indexPath.section]]];
+                    
+                }else{
+                    [script.brickList removeObjectAtIndex:indexPath.item - 1];
+                    [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+                }
             } completion:^(BOOL finished) {
                 [self.collectionView reloadData];
             }];
