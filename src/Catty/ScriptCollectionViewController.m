@@ -48,6 +48,9 @@
 #import "PlaceHolderView.h"
 #import "LoopBeginBrick.h"
 #import "IfLogicBeginBrick.h"
+#import "LoopEndBrick.h"
+#import "IfLogicElseBrick.h"
+#import "IfLogicEndBrick.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate,
                                               LXReorderableCollectionViewDelegateFlowLayout,
@@ -65,6 +68,9 @@
 @property (nonatomic, strong) NSArray *selectableBricks;
 @property (nonatomic, strong) NSMutableDictionary *selectedIndexPaths;
 @property (nonatomic, assign) BOOL selectedAllCells;
+@property (nonatomic, strong) NSIndexPath *higherRankBrick;
+@property (nonatomic, strong) NSIndexPath *lowerRankBrick;
+
 
 @end
 
@@ -450,6 +456,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
                                 willBeginDraggingItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.higherRankBrick = nil;
+    self.lowerRankBrick = nil;
     [UIView animateWithDuration:0.25f animations:^{
         self.navigationController.navigationBar.alpha = 0.01f;
         self.navigationController.toolbar.alpha = 0.01f;
@@ -474,7 +482,31 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath
                                                           canMoveToIndexPath:(NSIndexPath *)toIndexPath
 {
-   return (toIndexPath.item != 0);
+    Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+    Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
+    if (toIndexPath.item !=0) {
+        if ([fromBrick isKindOfClass:[LoopBeginBrick class]]){
+            return [self checkLoopBeginToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick];
+        }
+        else if ([fromBrick isKindOfClass:[LoopEndBrick class]]) {
+            return [self checkLoopEndToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick];
+        }
+        else if ([fromBrick isKindOfClass:[IfLogicBeginBrick class]]){
+            return [self checkIfBeginToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick];
+        }
+        else if([fromBrick isKindOfClass:[IfLogicElseBrick class]]){
+            return [self checkIfElseToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick];
+        }
+        else if([fromBrick isKindOfClass:[IfLogicEndBrick class]]){
+            return [self checkIfEndToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick];
+        }
+        else{
+            return (toIndexPath.item != 0);
+        }
+    }else{
+        return NO;
+    }
+
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath
@@ -827,5 +859,146 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                          }];
     }
 }
+
+
+#pragma mark - check movelogic
+
+-(BOOL)checkLoopBeginToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
+{
+    if (toIndexPath.item < self.lowerRankBrick.item || self.lowerRankBrick == nil) {
+        if (fromIndexPath.section == toIndexPath.section) {
+            Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
+            Brick *toBrick = [toScript.brickList objectAtIndex:toIndexPath.item - 1];
+            LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)fromBrick;
+            if ([loopBeginBrick.loopEndBrick isEqual:toBrick]) {
+                self.lowerRankBrick = toIndexPath;
+                return NO;
+            }else{
+                return YES;
+            }
+            
+        }else{
+            return NO;
+        }
+        
+    }else{
+        return NO;
+    }
+}
+
+-(BOOL)checkLoopEndToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
+{
+    if (toIndexPath.item > self.higherRankBrick.item || self.higherRankBrick==nil) {
+        if (fromIndexPath.section == toIndexPath.section) {
+            Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+            Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
+            LoopEndBrick *endbrick = (LoopEndBrick*) fromBrick;
+            if ([endbrick.loopBeginBrick isEqual:toBrick]) {
+                self.higherRankBrick = toIndexPath;
+                return NO;
+            }else{
+                return YES;
+            }
+        }else{
+            return NO;
+        }
+        
+    }else{
+        return NO;
+    }
+}
+
+-(BOOL)checkIfBeginToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
+{
+    if (toIndexPath.item < self.lowerRankBrick.item || self.lowerRankBrick == nil) {
+        if (fromIndexPath.section == toIndexPath.section) {
+            Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
+            Brick *toBrick = [toScript.brickList objectAtIndex:toIndexPath.item - 1];
+            IfLogicBeginBrick *ifBeginBrick = (IfLogicBeginBrick*)fromBrick;
+            if ([ifBeginBrick.ifElseBrick isEqual:toBrick]) {
+                self.lowerRankBrick = toIndexPath;
+                return NO;
+            }else if([ifBeginBrick.ifEndBrick isEqual:toBrick]) {
+                return NO;
+                
+            }else{
+                return YES;
+            }
+            
+        }else{
+            return NO;
+        }
+    }else {
+        return NO;
+    }
+}
+
+
+-(BOOL)checkIfElseToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
+{
+    if (((toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil) && (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil))||(toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil && self.lowerRankBrick == nil) || (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil && self.higherRankBrick == nil)||(self.higherRankBrick==nil && self.lowerRankBrick==nil)) {
+        if (fromIndexPath.section == toIndexPath.section) {
+            Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+            Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
+            if ([toBrick isKindOfClass:[IfLogicBeginBrick class]]) {
+                IfLogicBeginBrick *beginBrick = (IfLogicBeginBrick*)toBrick;
+                if ([beginBrick.ifElseBrick isEqual:fromBrick]) {
+                    self.higherRankBrick = toIndexPath;
+                    return NO;
+                }else{
+                    return YES;
+                }
+            }else if([toBrick isKindOfClass:[IfLogicEndBrick class]] ){
+                IfLogicEndBrick *beginBrick = (IfLogicEndBrick*)toBrick;
+                if ([beginBrick.ifElseBrick isEqual:fromBrick]) {
+                    self.lowerRankBrick = toIndexPath;
+                    return NO;
+                }else{
+                    return YES;
+                }
+            }else{
+                return YES;
+            }
+            
+        }else{
+            
+            return NO;
+        }
+        
+    }else{
+        return NO;
+    }
+
+}
+
+
+-(BOOL)checkIfEndToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
+{
+    if (toIndexPath.item > self.higherRankBrick.item || self.higherRankBrick==nil) {
+        if (fromIndexPath.section == toIndexPath.section) {
+            Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+            Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
+            if([toBrick isKindOfClass:[IfLogicElseBrick class]] ){
+                IfLogicElseBrick *beginBrick = (IfLogicElseBrick*)toBrick;
+                if ([beginBrick.ifEndBrick isEqual:fromBrick]) {
+                    self.higherRankBrick = toIndexPath;
+                    return NO;
+                }else{
+                    return YES;
+                }
+            }else{
+                return YES;
+            }
+            
+        }else{
+            
+            return NO;
+        }
+        
+    }else{
+        return NO;
+    }
+}
+
 
 @end
