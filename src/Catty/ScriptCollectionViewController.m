@@ -343,9 +343,11 @@
     CGSize size = CGSizeZero;
     
     if (collectionView == self.collectionView) {
-        Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
-        size = indexPath.item == 0 ? [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(script.class)]
-        : [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass([[script.brickList objectAtIndex:indexPath.item - 1] class])];
+        if (indexPath.section < self.object.scriptList.count) {
+            Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
+            size = indexPath.item == 0 ? [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(script.class)]
+            : [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass([[script.brickList objectAtIndex:indexPath.item - 1] class])];
+        }
 
     } else {
         if (collectionView == self.brickSelectionView.brickCollectionView) {
@@ -610,14 +612,15 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         }
     } else {
         if (indexPath.section <= self.collectionView.numberOfSections) {
-            Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
             [self.collectionView performBatchUpdates:^{
-                [self.object.scriptList removeObject:script];
-                [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
+            [self.object.scriptList removeObjectAtIndex:indexPath.section];
+            [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
             } completion:^(BOOL finished) {
                 [self.collectionView reloadData];
                 [self showPlaceHolder:(! (BOOL)[self.object.scriptList count])];
             }];
+            
+
         }
     }
 }
