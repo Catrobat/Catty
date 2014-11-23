@@ -31,7 +31,9 @@
 
 - (void)testValidHeader {
     
-    Header *header = [Header parseFromElement:[[self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]] rootElement] withContext:nil];
+    GDataXMLDocument* xmlRoot = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]];
+    
+    Header *header = [Header parseFromElement: [[xmlRoot.rootElement elementsForName:@"header"] objectAtIndex:0]withContext:nil];
     XCTAssertNotNil(header, @"Header is nil");
     
     XCTAssertTrue([header.applicationBuildName isEqualToString: @"applicationBuildName"], @"applicationBuildName not correctly parsed");

@@ -57,9 +57,17 @@
   return trimmed;
 }
 
-- (NSString*)nonRecursiveXMLStringPrettyPrinted:(BOOL)isPrettyPrinted
+- (NSString*)XMLRootElementAsString
 {
-    return [NSString stringWithFormat:@"<%@>", [self name]];
+    NSString *attributesStr = [[NSString alloc] init];
+    if([self isKindOfClass:[GDataXMLElement class]]) {
+        GDataXMLElement *element = (GDataXMLElement*)self;
+        NSArray *attributesArr = [element attributes];
+        for(GDataXMLNode *attribute in attributesArr) {
+            attributesStr = [NSString stringWithFormat:@"%@ %@", attributesStr, [attribute XMLString]];
+        }
+    }
+    return [NSString stringWithFormat:@"<%@%@>", [self name], attributesStr];
 }
 
 - (GDataXMLElement*)childWithElementName:(NSString*)elementName

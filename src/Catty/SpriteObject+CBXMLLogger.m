@@ -20,10 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SpriteObject+CBXMLHandler.h"
-#import <objc/runtime.h>
-#import "CBXMLNodeProtocol.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "SpriteObject+CBXMLLogger.h"
+#import "CBXMLLogger.h"
 
 @implementation SpriteObject (CBXMLLogger)
 
@@ -31,32 +29,15 @@
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        Class class = object_getClass((id)self);
-        SEL originalSelector = @selector(parseFromElement:withContext:);
-        SEL swizzledSelector = @selector(__parseFromElement:withContext:);
-
-        Method originalMethod = class_getInstanceMethod(class, originalSelector);
-        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
-        BOOL didAddMethod = class_addMethod(class,
-                                            originalSelector,
-                                            method_getImplementation(swizzledMethod),
-                                            method_getTypeEncoding(swizzledMethod));
-        if (didAddMethod) {
-            class_replaceMethod(class,
-                                swizzledSelector,
-                                method_getImplementation(originalMethod),
-                                method_getTypeEncoding(originalMethod));
-        } else {
-            method_exchangeImplementations(originalMethod, swizzledMethod);
-        }
+        [CBXMLLogger swizzleMethods:[self class]];
     });
 }
 
 #pragma mark - Method Swizzling
-+ (SpriteObject*)__parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
++ (instancetype)__parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    NSLog(@"%@", [xmlElement nonRecursiveXMLStringPrettyPrinted:YES]);
-    return [SpriteObject __parseFromElement:xmlElement withContext:context];
+    [CBXMLLogger logElement:xmlElement];
+    return [[self class] __parseFromElement:xmlElement withContext:context];
 }
 
 @end

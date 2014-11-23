@@ -45,6 +45,11 @@
 		4C3275F61A135F990091C428 /* XMLParserFormulaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3275F51A135F990091C428 /* XMLParserFormulaTests.m */; };
 		4C3275F81A135FD00091C428 /* XMLParserObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3275F71A135FD00091C428 /* XMLParserObjectTests.m */; };
 		4C3275FA1A1360640091C428 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */; };
+		4C6EEDF91A21BEE400D5E8E1 /* CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6EEDF81A21BEE400D5E8E1 /* CBXMLLogger.m */; };
+		4C6EEE001A21C1FF00D5E8E1 /* Look+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6EEDFF1A21C1FF00D5E8E1 /* Look+CBXMLLogger.m */; };
+		4C6EEE031A21C2DF00D5E8E1 /* Sound+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6EEE021A21C2DF00D5E8E1 /* Sound+CBXMLLogger.m */; };
+		4CBA380A1A21C37F007DE327 /* Header+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA38091A21C37F007DE327 /* Header+CBXMLLogger.m */; };
+		4CBA380E1A21C880007DE327 /* Script+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA380D1A21C880007DE327 /* Script+CBXMLLogger.m */; };
 		4CE835251A18FDE50032F78E /* Skydiving-Steve-092.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE835231A18FDE50032F78E /* Skydiving-Steve-092.xml */; };
 		4CE835261A18FDE50032F78E /* Skydiving-Steve-093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE835241A18FDE50032F78E /* Skydiving-Steve-093.xml */; };
 		4CEC09121A13955200059BB9 /* SetXBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC09111A13955200059BB9 /* SetXBrick+CBXMLHandler.m */; };
@@ -489,6 +494,12 @@
 		4C3C0402199BA7B40004F594 /* Operators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operators.m; sourceTree = "<group>"; };
 		4C3C0406199BA7E90004F594 /* InternFormulaParserException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternFormulaParserException.h; sourceTree = "<group>"; };
 		4C3C0407199BA7E90004F594 /* InternFormulaParserException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternFormulaParserException.m; sourceTree = "<group>"; };
+		4C6EEDF71A21BEE400D5E8E1 /* CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLLogger.h; sourceTree = "<group>"; };
+		4C6EEDF81A21BEE400D5E8E1 /* CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLLogger.m; sourceTree = "<group>"; };
+		4C6EEDFE1A21C1FF00D5E8E1 /* Look+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Look+CBXMLLogger.h"; sourceTree = "<group>"; };
+		4C6EEDFF1A21C1FF00D5E8E1 /* Look+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Look+CBXMLLogger.m"; sourceTree = "<group>"; };
+		4C6EEE011A21C2DF00D5E8E1 /* Sound+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Sound+CBXMLLogger.h"; sourceTree = "<group>"; };
+		4C6EEE021A21C2DF00D5E8E1 /* Sound+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Sound+CBXMLLogger.m"; sourceTree = "<group>"; };
 		4C9E2D1E198EA6B600455B77 /* SMPageControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SMPageControl.license; sourceTree = "<group>"; };
 		4C9E2D20198EACE200455B77 /* EAIntroView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EAIntroView.license; sourceTree = "<group>"; };
 		4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDKNotifyHUD.license; sourceTree = "<group>"; };
@@ -508,6 +519,10 @@
 		4C9E2D3E198F698100455B77 /* NSString+FastImageSize.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "NSString+FastImageSize.license"; sourceTree = "<group>"; };
 		4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+CWPopup.license"; sourceTree = "<group>"; };
 		4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OrderedDictionary.license; sourceTree = "<group>"; };
+		4CBA38081A21C37F007DE327 /* Header+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Header+CBXMLLogger.h"; sourceTree = "<group>"; };
+		4CBA38091A21C37F007DE327 /* Header+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Header+CBXMLLogger.m"; sourceTree = "<group>"; };
+		4CBA380C1A21C880007DE327 /* Script+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Script+CBXMLLogger.h"; sourceTree = "<group>"; };
+		4CBA380D1A21C880007DE327 /* Script+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Script+CBXMLLogger.m"; sourceTree = "<group>"; };
 		4CE835231A18FDE50032F78E /* Skydiving-Steve-092.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Skydiving-Steve-092.xml"; sourceTree = "<group>"; };
 		4CE835241A18FDE50032F78E /* Skydiving-Steve-093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Skydiving-Steve-093.xml"; sourceTree = "<group>"; };
 		4CEC09101A13955200059BB9 /* SetXBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetXBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
@@ -1324,7 +1339,7 @@
 				4C023FDB19FFC99E00381E36 /* Look */,
 				4C023FDF19FFCA2000381E36 /* Sound */,
 				4C023FE319FFCAB400381E36 /* SpriteObject */,
-				4C023FE719FFCC7E00381E36 /* Scripts */,
+				4C023FE719FFCC7E00381E36 /* Script */,
 				CAAE4C271A06C33900040E02 /* Bricks */,
 				CAAE4C281A06C72A00040E02 /* Formula */,
 				4C023FD719FFC88A00381E36 /* UserVariable */,
@@ -1378,13 +1393,13 @@
 			name = SpriteObject;
 			sourceTree = "<group>";
 		};
-		4C023FE719FFCC7E00381E36 /* Scripts */ = {
+		4C023FE719FFCC7E00381E36 /* Script */ = {
 			isa = PBXGroup;
 			children = (
 				4C023FE819FFCCA100381E36 /* Script+CBXMLHandler.h */,
 				4C023FE919FFCCA100381E36 /* Script+CBXMLHandler.m */,
 			);
-			name = Scripts;
+			name = Script;
 			sourceTree = "<group>";
 		};
 		4C023FEB19FFCEF100381E36 /* VariablesContainer */ = {
@@ -1483,6 +1498,24 @@
 				4C3C0407199BA7E90004F594 /* InternFormulaParserException.m */,
 			);
 			name = Exceptions;
+			sourceTree = "<group>";
+		};
+		4C6EEDF21A21B1BD00D5E8E1 /* CatrobatLanguage 0.93 */ = {
+			isa = PBXGroup;
+			children = (
+				CA5D7FE219EC28610085D5AA /* Parser */,
+				4C023FD419FFC59000381E36 /* XMLHandler */,
+				CA6347EC1A20EA2D00C530B1 /* XMLLogger (injected) */,
+			);
+			name = "CatrobatLanguage 0.93";
+			sourceTree = "<group>";
+		};
+		4C6EEDF31A21B1FA00D5E8E1 /* CatrobatLanguage 0.92 */ = {
+			isa = PBXGroup;
+			children = (
+				CA5D7FE119EC28540085D5AA /* Parser */,
+			);
+			name = "CatrobatLanguage 0.92";
 			sourceTree = "<group>";
 		};
 		4C9E2D1D198EA6B600455B77 /* Licenses */ = {
@@ -1588,8 +1621,8 @@
 		4CF30E3F1A17B9B40080EBC5 /* XML */ = {
 			isa = PBXGroup;
 			children = (
-				CA5D7FE219EC28610085D5AA /* New Parser (0.93) */,
-				CA5D7FE119EC28540085D5AA /* Old Parser (0.92) */,
+				4C6EEDF21A21B1BD00D5E8E1 /* CatrobatLanguage 0.93 */,
+				4C6EEDF31A21B1FA00D5E8E1 /* CatrobatLanguage 0.92 */,
 			);
 			name = XML;
 			sourceTree = "<group>";
@@ -2666,7 +2699,7 @@
 			name = ProgramTableViewControllerTests;
 			sourceTree = "<group>";
 		};
-		CA5D7FE119EC28540085D5AA /* Old Parser (0.92) */ = {
+		CA5D7FE119EC28540085D5AA /* Parser */ = {
 			isa = PBXGroup;
 			children = (
 				B4DEFC8E170F464200DD1939 /* TestParser.h */,
@@ -2675,22 +2708,20 @@
 				B4DEFC8B170F458000DD1939 /* Parser */,
 				B4B7BAC51738E21B000BDC94 /* XMLObjectReference */,
 			);
-			name = "Old Parser (0.92)";
+			name = Parser;
 			sourceTree = "<group>";
 		};
-		CA5D7FE219EC28610085D5AA /* New Parser (0.93) */ = {
+		CA5D7FE219EC28610085D5AA /* Parser */ = {
 			isa = PBXGroup;
 			children = (
-				CA6347EC1A20EA2D00C530B1 /* XMLLogger (automatically injected) */,
 				4CEC09221A139D6100059BB9 /* Helper */,
 				4CA7DAAF1A08FACC00681DB9 /* Context */,
-				4C023FD419FFC59000381E36 /* XMLHandler */,
 				CA2932C519EDD32800DB6701 /* CBXMLParser.h */,
 				CA2932C619EDD32800DB6701 /* CBXMLParser.m */,
 				CA66CB7319F6B42400D849E0 /* CBXMLValidator.h */,
 				CA66CB7419F6B42400D849E0 /* CBXMLValidator.m */,
 			);
-			name = "New Parser (0.93)";
+			name = Parser;
 			sourceTree = "<group>";
 		};
 		CA5FED5118B0199100A517B6 /* UIUtil */ = {
@@ -2702,13 +2733,23 @@
 			name = UIUtil;
 			sourceTree = "<group>";
 		};
-		CA6347EC1A20EA2D00C530B1 /* XMLLogger (automatically injected) */ = {
+		CA6347EC1A20EA2D00C530B1 /* XMLLogger (injected) */ = {
 			isa = PBXGroup;
 			children = (
+				4C6EEDF71A21BEE400D5E8E1 /* CBXMLLogger.h */,
+				4C6EEDF81A21BEE400D5E8E1 /* CBXMLLogger.m */,
 				CA6347E91A20EA1800C530B1 /* SpriteObject+CBXMLLogger.h */,
 				CA6347EA1A20EA1800C530B1 /* SpriteObject+CBXMLLogger.m */,
+				4C6EEDFE1A21C1FF00D5E8E1 /* Look+CBXMLLogger.h */,
+				4C6EEDFF1A21C1FF00D5E8E1 /* Look+CBXMLLogger.m */,
+				4C6EEE011A21C2DF00D5E8E1 /* Sound+CBXMLLogger.h */,
+				4C6EEE021A21C2DF00D5E8E1 /* Sound+CBXMLLogger.m */,
+				4CBA38081A21C37F007DE327 /* Header+CBXMLLogger.h */,
+				4CBA38091A21C37F007DE327 /* Header+CBXMLLogger.m */,
+				4CBA380C1A21C880007DE327 /* Script+CBXMLLogger.h */,
+				4CBA380D1A21C880007DE327 /* Script+CBXMLLogger.m */,
 			);
-			name = "XMLLogger (automatically injected)";
+			name = "XMLLogger (injected)";
 			sourceTree = "<group>";
 		};
 		CA63C9EC1A13F123009A32DB /* LEDBricks */ = {
@@ -4379,6 +4420,7 @@
 				CADBD77419B0E8C200C62836 /* BroadcastBrickCell.m in Sources */,
 				CADBD77519B0E8C200C62836 /* ClearGraphicEffectBrick.m in Sources */,
 				CADBD77619B0E8C200C62836 /* TurnLeftBrick.m in Sources */,
+				4C6EEDF91A21BEE400D5E8E1 /* CBXMLLogger.m in Sources */,
 				CADBD77719B0E8C200C62836 /* TurnRightBrick.m in Sources */,
 				924DEBFC19CAFB9900EED9CE /* MYIntroductionPanel.m in Sources */,
 				CA63C9F61A13F30F009A32DB /* LedOnBrick+CBXMLHandler.m in Sources */,
@@ -4392,6 +4434,7 @@
 				CADBD77D19B0E8C200C62836 /* SingleBrickSelectionView.m in Sources */,
 				CADBD77E19B0E8C200C62836 /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				4C023FEA19FFCCA100381E36 /* Script+CBXMLHandler.m in Sources */,
+				4CBA380E1A21C880007DE327 /* Script+CBXMLLogger.m in Sources */,
 				CA63CA071A13FD74009A32DB /* ComeToFrontBrick+CBXMLHandler.m in Sources */,
 				CADBD77F19B0E8C200C62836 /* WaitBrick.m in Sources */,
 				CADBD78019B0E8C200C62836 /* IfLogicElseBrickCell.m in Sources */,
@@ -4414,6 +4457,7 @@
 				CADBD78F19B0E8C200C62836 /* ChangeXByNBrickCell.m in Sources */,
 				CADBD79019B0E8C200C62836 /* zip.c in Sources */,
 				CADBD79119B0E8C200C62836 /* EVCircularProgressView.m in Sources */,
+				4C6EEE031A21C2DF00D5E8E1 /* Sound+CBXMLLogger.m in Sources */,
 				CADBD79219B0E8C200C62836 /* DownloadImageCache.m in Sources */,
 				CADBD79319B0E8C200C62836 /* NoteBrickCell.m in Sources */,
 				CAAE4C501A06D37200040E02 /* SetLookBrick+CBXMLHandler.m in Sources */,
@@ -4458,6 +4502,7 @@
 				CADBD7B419B0E8C200C62836 /* TestParser.m in Sources */,
 				CADBD7B519B0E8C200C62836 /* PointInDirectionBrick.m in Sources */,
 				CAF9DC651A12C612003FE868 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
+				4CBA380A1A21C37F007DE327 /* Header+CBXMLLogger.m in Sources */,
 				CADBD7B619B0E8C200C62836 /* PointInDirectionBrickCell.m in Sources */,
 				CADBD7B719B0E8C200C62836 /* GlideToBrickCell.m in Sources */,
 				CADBD7B819B0E8C200C62836 /* AHKActionSheet.m in Sources */,
@@ -4511,6 +4556,7 @@
 				CADBD7D719B0E8C200C62836 /* DarkBlueGradientFeaturedCell.m in Sources */,
 				CADBD7D819B0E8C200C62836 /* Logger.m in Sources */,
 				CADBD7D919B0E8C200C62836 /* IfOnEdgeBounceBrick.m in Sources */,
+				4C6EEE001A21C1FF00D5E8E1 /* Look+CBXMLLogger.m in Sources */,
 				CADBD7DA19B0E8C200C62836 /* RepeatBrickCell.m in Sources */,
 				CADBD7DB19B0E8C200C62836 /* SensorManager.m in Sources */,
 				4CEC091E1A13991500059BB9 /* MoveNStepsBrick+CBXMLHandler.m in Sources */,

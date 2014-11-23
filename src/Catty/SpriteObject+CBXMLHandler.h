@@ -23,8 +23,6 @@
 #import "SpriteObject.h"
 #import "CBXMLNodeProtocol.h"
 
-#import "SpriteObject+CBXMLLogger.h"
-
 @interface SpriteObject (CBXMLHandler) <CBXMLNodeProtocol>
 
 #ifdef CATTY_TESTS

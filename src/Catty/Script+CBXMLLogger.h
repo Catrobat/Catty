@@ -20,19 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "GDataXMLNode.h"
+#import "Script+CBXMLHandler.h"
 
-@interface GDataXMLNode (CustomExtensions)
-
-// little HACK to activate pretty printed XML, unfortunatelly GDataXMLNode does not support this by default
-// More details for this: http://stackoverflow.com/questions/6403083/ios-xml-pretty-print
-- (NSString*)XMLStringPrettyPrinted:(BOOL)isPrettyPrinted;
-- (NSString*)XMLRootElementAsString;
-- (GDataXMLElement*)childWithElementName:(NSString*)elementName;
-- (GDataXMLElement*)childWithElementName:(NSString*)elementName
-                     containingAttribute:(NSString*)attributeName
-                               withValue:(NSString*)attributeValue;
-- (GDataXMLElement*)singleNodeForCatrobatXPath:(NSString*)catrobatXPath;
-+ (GDataXMLElement*)elementWithName:(NSString*)name optionalStringValue:(NSString*)value;
+@interface Script (CBXMLLogger)
 
 @end

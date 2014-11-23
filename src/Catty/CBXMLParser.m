@@ -30,6 +30,10 @@
 #import "SpriteObject+CBXMLHandler.h"
 #import "CatrobatLanguageDefines.h"
 
+#if !kIsRelease
+#import "CBXMLLogger.h"
+#endif
+
 // NEVER MOVE THESE DEFINE CONSTANTS TO ANOTHER (HEADER) FILE
 #define kCatrobatXMLParserMinSupportedLanguageVersion 0.93f
 #define kCatrobatXMLParserMaxSupportedLanguageVersion CGFLOAT_MAX
@@ -112,7 +116,11 @@
     [XMLError exceptionIfNode:rootElement isNilOrNodeNameNotEquals:@"program"];
     Program *program = [Program new];
     CBXMLContext *context = [CBXMLContext new];
-    program.header = [self parseAndCreateHeaderFromElement:rootElement];
+    
+    NSArray *headerNodes = [rootElement elementsForName:@"header"];
+    [XMLError exceptionIf:[headerNodes count] notEquals:1 message:@"Invalid header given!"];
+    program.header = [self parseAndCreateHeaderFromElement:[headerNodes objectAtIndex:0]];
+    
     program.objectList = [self parseAndCreateObjectsFromElement:rootElement withContext:context];
     context.spriteObjectList = program.objectList;
     program.variables = [self parseAndCreateVariablesFromElement:rootElement withContext:context];
