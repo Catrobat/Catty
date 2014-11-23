@@ -40,6 +40,7 @@
 #import "NSString+FastImageSize.h"
 
 @interface SpriteObject()
+@property (nonatomic,strong) NSMutableArray *broadcastScriptArray;
 
 @end
 
@@ -67,6 +68,14 @@
     if (! _scriptList)
         _scriptList = [NSMutableArray array];
     return _scriptList;
+}
+
+- (NSMutableArray*)broadcastScriptArray
+{
+        // lazy instantiation
+    if (! _broadcastScriptArray)
+        _broadcastScriptArray = [NSMutableArray array];
+    return _broadcastScriptArray;
 }
 
 - (CGPoint)position
@@ -302,18 +311,9 @@
     }else{
         self.zPosition = zPosition;
     }
-        
     
-
     for (Script *script in self.scriptList)
     {
-        if ([script isKindOfClass:[StartScript class]]) {
-            __weak typeof(self) weakSelf = self;
-            [self startAndAddScript:script completion:^{
-                [weakSelf scriptFinished:script];
-            }];
-        }
-
         if([script isKindOfClass:[BroadcastScript class]]) {
             if ([self.broadcastWaitDelegate respondsToSelector:@selector(registerSprite:forMessage:)]) {
                 
@@ -323,6 +323,7 @@
                 abort();
             }
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:((BroadcastScript*)script).receivedMessage object:nil];
+            [self.broadcastScriptArray addObject:script];
         }
     }
 }
@@ -351,9 +352,12 @@
             for (Script *script in self.scriptList) {
             if ([script isKindOfClass:[WhenScript class]]) {
                 __weak typeof(self) weakSelf = self;
-                [self startAndAddScript:script completion:^{
-                    [weakSelf scriptFinished:script];
-                }];
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                    [weakSelf startAndAddScript:script completion:^{
+                        [weakSelf scriptFinished:script];
+                        NSDebug(@"FINISHED");
+                    }];
+                });
             }
         }
         return YES;
@@ -689,20 +693,27 @@
 - (void)performBroadcastScript:(NSNotification*)notification
 {
     NSDebug(@"Notification: %@, Object: %@", notification.name, self.name);
-
-    for (Script *script in self.scriptList) {
-        if ([script isKindOfClass:[BroadcastScript class]]) {
-            BroadcastScript *broadcastScript = (BroadcastScript*)script;
-            if ([broadcastScript.receivedMessage isEqualToString:notification.name]) {
-                
+    NSInteger counter = 0;
+    BroadcastScript *removedScript = [[BroadcastScript alloc] init];
+    for (BroadcastScript *script in self.broadcastScriptArray) {
+            if ([script.receivedMessage isEqualToString:notification.name]) {
                 __weak typeof(self) weakSelf = self;
-                [self startAndAddScript:broadcastScript completion:^{
-                    [weakSelf scriptFinished:broadcastScript];
-                    NSDebug(@"FINISHED");
-                }];
-            }
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                    [weakSelf startAndAddScript:script completion:^{
+                        [weakSelf scriptFinished:script];
+                        NSDebug(@"FINISHED");
+                    }];
+                });
+                removedScript = script;
+                break;
         }
+        counter++;
     }
+    if (self.broadcastScriptArray.count > 1) {
+        [self.broadcastScriptArray removeObjectAtIndex:counter];
+        [self.broadcastScriptArray insertObject:removedScript atIndex:self.broadcastScriptArray.count-1];
+    }
+
     //dispatch_release(group);
 }
 
@@ -736,12 +747,14 @@
             BroadcastScript* broadcastScript = (BroadcastScript*)script;
             if ([broadcastScript.receivedMessage isEqualToString:message]) {
                 dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-                
                 __weak typeof(self) weakSelf = self;
-                [self startAndAddScript:broadcastScript completion:^{
-                    [weakSelf scriptFinished:broadcastScript];
-                    dispatch_semaphore_signal(sema);
-                }];
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                    [weakSelf startAndAddScript:broadcastScript completion:^{
+                        [weakSelf scriptFinished:broadcastScript];
+                        dispatch_semaphore_signal(sema);
+                        NSDebug(@"FINISHED");
+                    }];
+                });
                 dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
                 dispatch_semaphore_signal(sema1);
             }
