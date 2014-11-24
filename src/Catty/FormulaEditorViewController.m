@@ -157,6 +157,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.calcButton setSelected:YES];
     self.variablePicker.delegate = self;
     self.variablePicker.dataSource = self;
+    self.variablePicker.tintColor = [UIColor skyBlueColor];
 //
 //    self.variableSource = @[@"Item 1", @"Item 2", @"Item 3", @"Item 4", @"Item 5", @"Item 6"];
     VariablesContainer *variables = self.object.program.variables;
@@ -440,15 +441,17 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [[self.orangeTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor orangeColor]] forState:UIControlStateHighlighted];
     }
   for(int i = 0; i < [self.normalTypeButton count]; i++) {
-    [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor skyBlueColor] forState:UIControlStateNormal];
-    [[self.normalTypeButton objectAtIndex:i] setBackgroundColor:[UIColor darkBlueColor]];
+    [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor darkBlueColor] forState:UIControlStateNormal];
+    [[self.normalTypeButton objectAtIndex:i] setBackgroundColor:[UIColor skyBlueColor]];
     [[self.normalTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateHighlighted];
   }
   for(int i = 0; i < [self.toolTypeButton count]; i++) {
     [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor skyBlueColor] forState:UIControlStateNormal];
+    [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor darkBlueColor] forState:UIControlStateHighlighted];
+    [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor darkBlueColor] forState:UIControlStateSelected];
     [[self.toolTypeButton objectAtIndex:i] setBackgroundColor:[UIColor darkBlueColor]];
-    [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateHighlighted];
-          [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateSelected];
+    [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor skyBlueColor]] forState:UIControlStateHighlighted];
+          [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor skyBlueColor]] forState:UIControlStateSelected];
   }
 
     for(int i = 0; i < [self.highlightedButtons count]; i++) {
@@ -620,6 +623,21 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
     return 0;
    
+}
+
+- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    NSString *title;
+    if (component == 0){
+         title =self.variableSourceProgram[row];
+    }else{
+        title =@"";
+    }
+
+    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:[UIColor skyBlueColor]}];
+    
+    return attString;
+    
 }
 
 
