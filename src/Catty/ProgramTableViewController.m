@@ -360,9 +360,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                   (unsigned long)[object numberOfSounds]];
     }
 
+    imageCell.titleLabel.frame = CGRectMake(imageCell.titleLabel.frame.origin.x, imageCell.titleLabel.frame.origin.y, 185, 24);
     if (! [object.lookList count]) {
         imageCell.titleLabel.text = object.name;
+        [imageCell.titleLabel sizeToFit];
         return imageCell;
+        
     }
 
     imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -388,6 +391,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         imageCell.iconImageView.image = image;
     }
     imageCell.titleLabel.text = object.name;
+    [imageCell.titleLabel sizeToFit];
     return imageCell;
 }
 

@@ -51,6 +51,8 @@
 		4CEC092B1A13A94500059BB9 /* PointInDirectionBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC092A1A13A94500059BB9 /* PointInDirectionBrick+CBXMLHandler.m */; };
 		4CEC092E1A13A9C200059BB9 /* PointToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC092D1A13A9C200059BB9 /* PointToBrick+CBXMLHandler.m */; };
 		4CEC09311A13B21E00059BB9 /* StopAllSoundsBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC09301A13B21E00059BB9 /* StopAllSoundsBrick+CBXMLHandler.m */; };
+		921631181A16485D00C438A4 /* TimerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 921631171A16485D00C438A4 /* TimerLabel.m */; };
+		921EC1B41A0D03CE00A43ED7 /* SRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921EC1B31A0D03CE00A43ED7 /* SRViewController.m */; };
 		924DEBFA19CAFB9900EED9CE /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF619CAFB9900EED9CE /* MYBlurIntroductionView.m */; };
 		924DEBFC19CAFB9900EED9CE /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 924DEBF819CAFB9900EED9CE /* MYIntroductionPanel.m */; };
 		924F2DA11A16640600113B77 /* FlashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 924F2D981A16640600113B77 /* FlashHelper.m */; };
@@ -572,6 +574,10 @@
 		9200F005182E3CA0008BF678 /* CatrobatAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatAudioPlayer.m; sourceTree = "<group>"; };
 		920F20C21837F27E003E9EE0 /* SaveToProjectActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveToProjectActivity.h; sourceTree = "<group>"; };
 		920F20C31837F27E003E9EE0 /* SaveToProjectActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveToProjectActivity.m; sourceTree = "<group>"; };
+		921631161A16485D00C438A4 /* TimerLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerLabel.h; sourceTree = "<group>"; };
+		921631171A16485D00C438A4 /* TimerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerLabel.m; sourceTree = "<group>"; };
+		921EC1B21A0D03CE00A43ED7 /* SRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRViewController.h; sourceTree = "<group>"; };
+		921EC1B31A0D03CE00A43ED7 /* SRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRViewController.m; sourceTree = "<group>"; };
 		921FE2F9182F8122001D7CF6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		92300CEA18B2196700F2B4DC /* af */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = af; path = af.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92300CEB18B2196700F2B4DC /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1686,6 +1692,15 @@
 			name = MaintainProgram;
 			sourceTree = "<group>";
 		};
+		921631151A16483600C438A4 /* TimerLabel */ = {
+			isa = PBXGroup;
+			children = (
+				921631161A16485D00C438A4 /* TimerLabel.h */,
+				921631171A16485D00C438A4 /* TimerLabel.m */,
+			);
+			name = TimerLabel;
+			sourceTree = "<group>";
+		};
 		92300CE818B2196700F2B4DC /* iOS_Lang */ = {
 			isa = PBXGroup;
 			children = (
@@ -1748,6 +1763,7 @@
 		B400302C170EB45200396DB7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				921631151A16483600C438A4 /* TimerLabel */,
 				924F2DA61A16652B00113B77 /* FlashHelper */,
 				B46475321770F60E00CD277F /* AudioManager */,
 				92E3351618FBB3340056C390 /* InternetConnection */,
@@ -2504,6 +2520,8 @@
 			children = (
 				81FAEE3317E782360052BB2B /* SoundsTableViewController.h */,
 				81FAEE3417E782360052BB2B /* SoundsTableViewController.m */,
+				921EC1B21A0D03CE00A43ED7 /* SRViewController.h */,
+				921EC1B31A0D03CE00A43ED7 /* SRViewController.m */,
 				CAA96AFC18E4B21F00763409 /* SoundPickerTableViewController.h */,
 				CAA96AFD18E4B21F00763409 /* SoundPickerTableViewController.m */,
 			);
@@ -3935,6 +3953,7 @@
 					};
 					CADBD6D319B0E8C200C62836 = {
 						DevelopmentTeam = SAUK7AHA7S;
+						DevelopmentTeam = 4V6T7BCGGR;
 					};
 				};
 			};
@@ -4176,6 +4195,7 @@
 				CADBD71419B0E8C200C62836 /* CellMotionEffect.m in Sources */,
 				4C23DB4A1A124E4C00A0E860 /* LoopEndBrick+CBXMLHandler.m in Sources */,
 				CADBD71519B0E8C200C62836 /* BaseTransition.m in Sources */,
+				921631181A16485D00C438A4 /* TimerLabel.m in Sources */,
 				CADBD71619B0E8C200C62836 /* ChangeBrightnessByNBrick.m in Sources */,
 				CADBD71719B0E8C200C62836 /* CatrobatTableViewController.m in Sources */,
 				CADBD71819B0E8C200C62836 /* BrickCellInlineView.m in Sources */,
@@ -4271,6 +4291,7 @@
 				CADBD75D19B0E8C200C62836 /* SetVolumeToBrick.m in Sources */,
 				CADBD75E19B0E8C200C62836 /* SetSizeToBrickCell.m in Sources */,
 				CADBD75F19B0E8C200C62836 /* StartScriptCell.m in Sources */,
+				921EC1B41A0D03CE00A43ED7 /* SRViewController.m in Sources */,
 				CADBD76019B0E8C200C62836 /* CatrobatActionSheet.m in Sources */,
 				CA8486791A117A9E001B6368 /* SetSizeToBrick+CBXMLHandler.m in Sources */,
 				4CEC091B1A13983D00059BB9 /* ChangeYByNBrick+CBXMLHandler.m in Sources */,
