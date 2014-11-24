@@ -865,7 +865,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 -(BOOL)checkLoopBeginToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
 {
-    if (toIndexPath.item < self.lowerRankBrick.item || self.lowerRankBrick == nil) {
+    if (((toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil) && (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil))||(toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil && self.lowerRankBrick == nil) || (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil && self.higherRankBrick == nil)||(self.higherRankBrick==nil && self.lowerRankBrick==nil))  {
         if (fromIndexPath.section == toIndexPath.section) {
             Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
             Brick *toBrick = [toScript.brickList objectAtIndex:toIndexPath.item - 1];
@@ -873,6 +873,14 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             if ([loopBeginBrick.loopEndBrick isEqual:toBrick]) {
                 self.lowerRankBrick = toIndexPath;
                 return NO;
+            }else if([toBrick isKindOfClass:[IfLogicBeginBrick class]]||[toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]){
+                if (toIndexPath.item < fromIndexPath.item) {
+                    self.higherRankBrick = toIndexPath;
+                    return NO;
+                }else{
+                    self.lowerRankBrick = toIndexPath;
+                    return NO;
+                }
             }else{
                 return YES;
             }
@@ -888,7 +896,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 -(BOOL)checkLoopEndToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
 {
-    if (toIndexPath.item > self.higherRankBrick.item || self.higherRankBrick==nil) {
+        //DONTMOVE ?!
+    if (((toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil) && (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil))||(toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil && self.lowerRankBrick == nil) || (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil && self.higherRankBrick == nil)||(self.higherRankBrick==nil && self.lowerRankBrick==nil)) {
         if (fromIndexPath.section == toIndexPath.section) {
             Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
             Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
@@ -896,6 +905,14 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             if ([endbrick.loopBeginBrick isEqual:toBrick]) {
                 self.higherRankBrick = toIndexPath;
                 return NO;
+            }else if([toBrick isKindOfClass:[IfLogicBeginBrick class]]||[toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]){
+                if (toIndexPath.item < fromIndexPath.item) {
+                    self.higherRankBrick = toIndexPath;
+                    return NO;
+                }else{
+                    self.lowerRankBrick = toIndexPath;
+                    return NO;
+                }
             }else{
                 return YES;
             }
@@ -910,7 +927,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 -(BOOL)checkIfBeginToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
 {
-    if (toIndexPath.item < self.lowerRankBrick.item || self.lowerRankBrick == nil) {
+    if (((toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil) && (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil))||(toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil && self.lowerRankBrick == nil) || (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil && self.higherRankBrick == nil)||(self.higherRankBrick==nil && self.lowerRankBrick==nil))  {
         if (fromIndexPath.section == toIndexPath.section) {
             Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
             Brick *toBrick = [toScript.brickList objectAtIndex:toIndexPath.item - 1];
@@ -921,7 +938,25 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             }else if([ifBeginBrick.ifEndBrick isEqual:toBrick]) {
                 return NO;
                 
-            }else{
+            }else if([toBrick isKindOfClass:[LoopBeginBrick class]]) {
+                if (toIndexPath.item < fromIndexPath.item) {
+                    self.higherRankBrick = toIndexPath;
+                    return NO;
+                }else{
+                    self.lowerRankBrick = toIndexPath;
+                    return NO;
+                }
+                
+            } else if([toBrick isKindOfClass:[LoopEndBrick class]]) {
+                if (toIndexPath.item < fromIndexPath.item) {
+                    self.higherRankBrick = toIndexPath;
+                    return NO;
+                }else{
+                    self.lowerRankBrick = toIndexPath;
+                    return NO;
+                }
+                
+            } else{
                 return YES;
             }
             
@@ -956,6 +991,24 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 }else{
                     return YES;
                 }
+            }else if([toBrick isKindOfClass:[LoopBeginBrick class]]) {
+                if (toIndexPath.item < fromIndexPath.item) {
+                    self.higherRankBrick = toIndexPath;
+                    return NO;
+                }else{
+                    self.lowerRankBrick = toIndexPath;
+                    return NO;
+                }
+                
+            } else if([toBrick isKindOfClass:[LoopEndBrick class]]) {
+                if (toIndexPath.item < fromIndexPath.item) {
+                    self.higherRankBrick = toIndexPath;
+                    return NO;
+                }else{
+                    self.lowerRankBrick = toIndexPath;
+                    return NO;
+                }
+                
             }else{
                 return YES;
             }
@@ -986,6 +1039,24 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 }else{
                     return YES;
                 }
+            }else if([toBrick isKindOfClass:[LoopBeginBrick class]]) {
+                if (toIndexPath.item < fromIndexPath.item) {
+                    self.higherRankBrick = toIndexPath;
+                    return NO;
+                }else{
+                    self.lowerRankBrick = toIndexPath;
+                    return NO;
+                }
+                
+            } else if([toBrick isKindOfClass:[LoopEndBrick class]]) {
+                if (toIndexPath.item < fromIndexPath.item) {
+                    self.higherRankBrick = toIndexPath;
+                    return NO;
+                }else{
+                    self.lowerRankBrick = toIndexPath;
+                    return NO;
+                }
+                
             }else{
                 return YES;
             }
