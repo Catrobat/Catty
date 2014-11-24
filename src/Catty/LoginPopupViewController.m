@@ -337,7 +337,7 @@ const int VIEW_BUTTON_MARGIN_BOTTOM = 15;
 -(BOOL)validPassword:(NSString*)password
 {
     int numberofCharacters = 6;
-    BOOL lowerCaseLetter,upperCaseLetter,digit,specialCharacter = 0;
+    BOOL lowerCaseLetter=0,upperCaseLetter=0,digit=0,specialCharacter = 0;
     if([password length] >= numberofCharacters)
     {
         for (int i = 0; i < [password length]; i++)
