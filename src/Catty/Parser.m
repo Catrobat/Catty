@@ -26,6 +26,7 @@
 #import "SpriteObject.h"
 #import "Script.h"
 #import "Brick.h"
+#import "Program+CustomExtensions.h"
 
 @implementation Parser
 
@@ -51,15 +52,8 @@
 
     // return Project object
     Program *program = [parser loadProject:xmlData];
-    // update references
-    for (SpriteObject *sprite in program.objectList) {
-        for (Script *script in sprite.scriptList) {
-            for (Brick *brick in script.brickList) {
-                brick.object = sprite;
-            }
-        }
-    }
-    self.XMLdocument = parser.XMLdocument;
+    [program updateReferences];
+    program.XMLdocument = parser.XMLdocument;
     return program;
 }
 

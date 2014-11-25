@@ -22,6 +22,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BrickCell.h"
+#import "BaseCollectionViewController.h"
 
 @class SpriteObject, FXBlurView;
 

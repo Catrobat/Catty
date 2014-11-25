@@ -440,12 +440,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
-
 #pragma mark - MYIntroduction Delegate
-
--(void)introduction:(MYBlurIntroductionView *)introductionView didChangeToPanel:(MYIntroductionPanel *)panel withIndex:(NSInteger)panelIndex
+- (void)introduction:(MYBlurIntroductionView*)introductionView didChangeToPanel:(MYIntroductionPanel*)panel
+           withIndex:(NSInteger)panelIndex
 {
-
 }
 
 -(void)introduction:(MYBlurIntroductionView *)introductionView didFinishWithType:(MYFinishType)finishType {

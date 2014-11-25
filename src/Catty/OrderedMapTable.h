@@ -25,25 +25,24 @@
 
 @interface OrderedMapTable : NSObject
 
-+(id)strongToStrongObjectsMapTable;
++ (id)strongToStrongObjectsMapTable;
 
-+(id)weakToStrongObjectsMapTable;
++ (id)weakToStrongObjectsMapTable;
 
-+(id)weakToWeakObjectsMapTable;
++ (id)weakToWeakObjectsMapTable;
 
-+(id)strongToWeakObjectsMapTable;
++ (id)strongToWeakObjectsMapTable;
 
--(void) setObject:(id)anObject forKey:(id)aKey;
+- (void)setObject:(id)anObject forKey:(id)aKey;
 
--(id) objectForKey:(id)aKey;
+- (id)objectForKey:(id)aKey;
 
--(void) removeAllObjects;
+- (void)removeAllObjects;
 
--(NSUInteger) count;
+- (NSUInteger)count;
 
--(id) objectAtIndex:(NSUInteger)index;
+- (id)objectAtIndex:(NSUInteger)index;
 
--(id) keyAtIndex:(NSUInteger)index;
-
+- (id)keyAtIndex:(NSUInteger)index;
 
 @end

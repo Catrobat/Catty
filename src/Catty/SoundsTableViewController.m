@@ -45,6 +45,8 @@
 #import "CatrobatActionSheet.h"
 #import "DataTransferMessage.h"
 #import "ProgramLoadingInfo.h"
+#import "SRViewController.h"
+#import "PlaceHolderView.h"
 
 @interface SoundsTableViewController () <CatrobatActionSheetDelegate, AVAudioPlayerDelegate,
                                          SWTableViewCellDelegate>
@@ -52,6 +54,7 @@
 @property (atomic, strong) Sound *currentPlayingSong;
 @property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
 @property (nonatomic, strong) SharkfoodMuteSwitchDetector *silentDetector;
+@property (nonatomic,assign) BOOL isAllowed;
 
 @end
 
@@ -103,6 +106,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self showPlaceHolder:(! (BOOL)[self.object.soundList count])];
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.isAllowed = YES;
+}
+
+-(void)dealloc
+{
+    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+    [dnc removeObserver:self name:kRecordAddedNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -110,6 +120,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [super viewWillAppear:animated];
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
     [dnc addObserver:self selector:@selector(soundAdded:) name:kSoundAddedNotification object:nil];
+    [dnc addObserver:self selector:@selector(recordAdded:) name:kRecordAddedNotification object:nil];
     [self.navigationController setToolbarHidden:NO];
 }
 
@@ -125,13 +136,39 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - notification
 - (void)soundAdded:(NSNotification*)notification
 {
-    if (notification.userInfo) {
-        NSDebug(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
-        id sound = notification.userInfo[kUserInfoSound];
-        if ([sound isKindOfClass:[Sound class]]) {
-            [self addSoundToObjectAction:(Sound*)sound];
+    if (self.isAllowed) {
+        if (notification.userInfo) {
+                //        NSLog(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
+            id sound = notification.userInfo[kUserInfoSound];
+            if ([sound isKindOfClass:[Sound class]]) {
+                [self addSoundToObjectAction:(Sound*)sound];
+                self.isAllowed = NO;
+            }
         }
     }
+}
+- (void)recordAdded:(NSNotification*)notification
+{
+    if (self.isAllowed) {
+        if (notification.userInfo) {
+                //        NSLog(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
+            id sound = notification.userInfo[kUserInfoSound];
+            if ([sound isKindOfClass:[Sound class]]) {
+                Sound* recording =(Sound*)sound;
+                NSFileManager *fileManager = [NSFileManager defaultManager];
+                AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+                NSString *filePath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, recording.fileName];
+                [self addSoundToObjectAction:recording];
+                NSError *error;
+                [fileManager removeItemAtPath:filePath error:&error];
+                if (error) {
+                    NSLog(@"-.-");
+                }
+                self.isAllowed = NO;
+            }
+        }
+    }
+
 }
 
 #pragma mark - actions
@@ -256,6 +293,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationNone];
     [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
+    [self hideLoadingView];
 }
 
 #pragma mark - Table view data source
@@ -561,14 +599,23 @@ static NSCharacterSet *blockedCharacterSet = nil;
         }
     } else if (actionSheet.tag == kAddSoundActionSheetTag) {
         if (buttonIndex == 0) {
+                //Recorder
+            NSLog(@"Recorder");
+            self.isAllowed = YES;
+            [self stopAllSounds];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
+            SRViewController *soundRecorderViewController;
+            soundRecorderViewController = [storyboard instantiateViewControllerWithIdentifier:@"SoundRecorder"];
+            [self showViewController:soundRecorderViewController sender:self];
+        } else if (buttonIndex == 1) {
             // Select music track
-            NSDebug(@"Select music track");
+            NSLog(@"Select music track");
+            self.isAllowed = YES;
             AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
             if (! [delegate.fileManager existPlayableSoundsInDirectory:delegate.fileManager.documentsDirectory]) {
                 [Util alertWithText:kLocalizedNoImportedSoundsFoundDescription];
                 return;
             }
-
             [self stopAllSounds];
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
             SoundPickerTableViewController *soundPickerTVC;
@@ -598,7 +645,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [Util actionSheetWithTitle:kLocalizedAddSound
                       delegate:self
         destructiveButtonTitle:nil
-             otherButtonTitles:@[/*kLocalizedPocketCodeRecorder, */kLocalizedChooseSound]
+             otherButtonTitles:@[kLocalizedPocketCodeRecorder, kLocalizedChooseSound]
                            tag:kAddSoundActionSheetTag
                           view:self.navigationController.view];
 }

@@ -34,6 +34,8 @@
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "MYBlurIntroductionView.h"
 #import "FormulaEditorTextView.h"
+#import "CatrobatLanguageDefines.h"
+#import "NSString+CatrobatNSStringExtensions.h"
 
 @interface Util () <CatrobatAlertViewDelegate, UITextFieldDelegate>
 
@@ -545,6 +547,47 @@
         }
     } while (duplicate);
     return uniqueFinalName;
+}
+
++ (CGFloat)detectCBLanguageVersionFromXMLWithPath:(NSString*)xmlPath
+{
+    NSError *error;
+    NSString *xmlString = [NSString stringWithContentsOfFile:xmlPath
+                                                    encoding:NSUTF8StringEncoding
+                                                       error:&error];
+    // sanity check
+    if (error || ! xmlString) {
+        return kCatrobatInvalidVersion;
+    }
+    // get the end of the xml header
+    NSArray *xmlStringChunks = [xmlString componentsSeparatedByString:@"</header>"];
+    if (! [xmlStringChunks count]) {
+        return kCatrobatInvalidVersion;
+    }
+    // extract header
+    NSString *xmlStringHeaderChunk = [xmlStringChunks firstObject];
+    if (! xmlStringHeaderChunk) {
+        return kCatrobatInvalidVersion;
+    }
+
+    // extract catrobatLanguageVersion field out of header
+    NSString *languageVersionString = [xmlStringHeaderChunk stringBetweenString:@"<catrobatLanguageVersion>"
+                                                                      andString:@"</catrobatLanguageVersion>"
+                                                                    withOptions:NSCaseInsensitiveSearch];
+    if (! languageVersionString) {
+        return kCatrobatInvalidVersion;
+    }
+
+    // check if string contains valid number
+    if (! [languageVersionString isValidNumber]) {
+        return kCatrobatInvalidVersion;
+    }
+
+    CGFloat languageVersion = (CGFloat)[languageVersionString floatValue];
+    if (languageVersion < 0.0f) {
+        return kCatrobatInvalidVersion;
+    }
+    return languageVersion;
 }
 
 + (double)radiansToDegree:(double)rad

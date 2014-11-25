@@ -32,10 +32,11 @@
 #import "Util.h"
 #import "Operators.h"
 #import "Functions.h"
-#import "GDataXMLNode+PrettyFormatterExtensions.h"
+//#import "GDataXMLNode+PrettyFormatterExtensions.h"
 #import "InternToken.h"
 #import "Operators.h"
 #import "InternFormulaParserException.h"
+#import "GDataXMLNode+CustomExtensions.h"
 
 #define ARC4RANDOM_MAX 0x100000000
 
@@ -432,23 +433,26 @@
 // TODO: use map for this...
 - (ElementType)elementTypeForString:(NSString*)type
 {
-    if([type isEqualToString:@"OPERATOR"]) {
+    if ([type isEqualToString:@"OPERATOR"]) {
         return OPERATOR;
     }
-    if([type isEqualToString:@"FUNCTION"]) {
+    if ([type isEqualToString:@"FUNCTION"]) {
         return FUNCTION;
     }
-    if([type isEqualToString:@"NUMBER"]) {
+    if ([type isEqualToString:@"NUMBER"]) {
         return NUMBER;
     }
-    if([type isEqualToString:@"SENSOR"]) {
+    if ([type isEqualToString:@"SENSOR"]) {
         return SENSOR;
     }
-    if([type isEqualToString:@"USER_VARIABLE"]) {
+    if ([type isEqualToString:@"USER_VARIABLE"]) {
         return USER_VARIABLE;
     }
-    if([type isEqualToString:@"BRACKET"]) {
+    if ([type isEqualToString:@"BRACKET"]) {
         return BRACKET;
+    }
+    if ([type isEqualToString:@"STRING"]) {
+        return STRING;
     }
     NSError(@"Unknown Type: %@", type);
     return -1;
@@ -474,21 +478,23 @@
     if (type == BRACKET) {
         return @"BRACKET";
     }
+    if (type == STRING) {
+        return @"STRING";
+    }
     NSError(@"Unknown Type: %@", type);
     return nil;
 }
 
--(NSString*)description
+- (NSString*)description
 {
     return [NSString stringWithFormat:@"Formula Element: Type: %d, Value: %@", self.type, self.value];
 }
 
-
--(BOOL) doubleIsInteger:(double)number {
+- (BOOL)doubleIsInteger:(double)number
+{
     if(ceil(number) == number || floor(number) == number) {
         return YES;
     }
-    
     return NO;
 }
 

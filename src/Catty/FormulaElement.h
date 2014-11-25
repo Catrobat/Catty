@@ -32,7 +32,8 @@ typedef enum {
     NUMBER,
     SENSOR,
     USER_VARIABLE,
-    BRACKET
+    BRACKET,
+    STRING
 } ElementType;
 
 @interface FormulaElement : NSObject

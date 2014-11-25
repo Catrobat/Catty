@@ -24,8 +24,6 @@
 #import "Program.h"
 #import "SpriteObject.h"
 
-#import "BroadcastScript.h" // FIXME: remove that later...
-
 @implementation Scene
 
 - (id)initWithSize:(CGSize)size andProgram:(Program *)program

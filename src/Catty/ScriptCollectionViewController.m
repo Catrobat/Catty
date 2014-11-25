@@ -51,6 +51,7 @@
 #import "VariablesContainer.h"
 #import "NoteBrickTextField.h"
 #import "NoteBrick.h"
+#import "PlaceHolderView.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate,
                                               LXReorderableCollectionViewDelegateFlowLayout,
@@ -99,6 +100,7 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.collectionViewLayout = [LXReorderableCollectionViewFlowLayout new];
+    self.navigationController.title = self.title = kLocalizedScripts;
 
     self.navigationItem.rightBarButtonItems = @[self.editButtonItem];
 #if kIsRelease // kIsRelease

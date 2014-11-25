@@ -78,18 +78,44 @@ NSMutableString* resultString;
     return [[[self substringToIndex:1] lowercaseString] stringByAppendingString:[self substringFromIndex:1]];
 }
 
-+ (NSString *)uuid
+- (NSString*)stringBetweenString:(NSString*)start andString:(NSString*)end withOptions:(NSStringCompareOptions)mask
 {
-    CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
-    NSString *uuidStr = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
-    CFRelease(uuid);
-    return uuidStr;
+    NSRange startRange = [self rangeOfString:start options:mask];
+    if (startRange.location != NSNotFound) {
+        NSRange targetRange;
+        targetRange.location = startRange.location + startRange.length;
+        targetRange.length = [self length] - targetRange.location;
+        NSRange endRange = [self rangeOfString:end options:mask range:targetRange];
+        if (endRange.location != NSNotFound) {
+            targetRange.length = endRange.location - targetRange.location;
+            return [self substringWithRange:targetRange];
+        }
+    }
+    return nil;
+}
+
+- (BOOL)isValidNumber
+{
+    NSString *decimalRegex = @"^(?:|-)(?:|0|[1-9]\\d*)(?:\\.\\d*)?$";
+    NSPredicate *regexPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", decimalRegex];
+    if ([regexPredicate evaluateWithObject:self]){
+        return YES;
+    }
+    return NO;
 }
 
 - (BOOL)containsString:(NSString*)string
 {
     NSRange range = [self rangeOfString:string options:0];
     return range.location != NSNotFound;
+}
+
++ (NSString*)uuid
+{
+    CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
+    NSString *uuidStr = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
+    CFRelease(uuid);
+    return uuidStr;
 }
 
 @end
