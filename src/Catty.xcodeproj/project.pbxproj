@@ -75,7 +75,7 @@
 		92FF2E8D1A24C7D800093DA7 /* CatrobatAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E511A24C7D800093DA7 /* CatrobatAudioPlayer.m */; };
 		92FF2E8E1A24C7D800093DA7 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E541A24C7D800093DA7 /* FileManager.m */; };
 		92FF2E8F1A24C7D800093DA7 /* FlashHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E571A24C7D800093DA7 /* FlashHelper.m */; };
-		92FF2E901A24C7D800093DA7 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E5A1A24C7D800093DA7 /* GDataXMLNode.m */; };
+		92FF2E901A24C7D800093DA7 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E5A1A24C7D800093DA7 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		92FF2E911A24C7D800093DA7 /* DownloadImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E5D1A24C7D800093DA7 /* DownloadImageCache.m */; };
 		92FF2E921A24C7D800093DA7 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E5F1A24C7D800093DA7 /* ImageCache.m */; };
 		92FF2E931A24C7D800093DA7 /* RuntimeImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E611A24C7D800093DA7 /* RuntimeImageCache.m */; };
@@ -103,6 +103,73 @@
 		92FF2EC01A24C8A700093DA7 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2EB51A24C8A700093DA7 /* OrderedDictionary.m */; };
 		92FF2EC11A24C8A700093DA7 /* OrderedMapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2EB81A24C8A700093DA7 /* OrderedMapTable.m */; };
 		92FF2EC21A24C8A700093DA7 /* ProgramLoadingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2EBB1A24C8A700093DA7 /* ProgramLoadingInfo.m */; };
+		92FF30C71A24DCAA00093DA7 /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF302A1A24DCAA00093DA7 /* BrickManager.m */; };
+		92FF30C81A24DCAA00093DA7 /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF302D1A24DCAA00093DA7 /* Brick.m */; };
+		92FF30C91A24DCAA00093DA7 /* BroadcastBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30301A24DCAA00093DA7 /* BroadcastBrick.m */; };
+		92FF30CA1A24DCAA00093DA7 /* BroadcastWaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30321A24DCAA00093DA7 /* BroadcastWaitBrick.m */; };
+		92FF30CB1A24DCAA00093DA7 /* NoteBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30341A24DCAA00093DA7 /* NoteBrick.m */; };
+		92FF30CC1A24DCAA00093DA7 /* WaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30361A24DCAA00093DA7 /* WaitBrick.m */; };
+		92FF30CD1A24DCAA00093DA7 /* IfLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30391A24DCAA00093DA7 /* IfLogicBeginBrick.m */; };
+		92FF30CE1A24DCAA00093DA7 /* IfLogicElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF303B1A24DCAA00093DA7 /* IfLogicElseBrick.m */; };
+		92FF30CF1A24DCAA00093DA7 /* IfLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF303D1A24DCAA00093DA7 /* IfLogicEndBrick.m */; };
+		92FF30D01A24DCAA00093DA7 /* ChangeBrightnessByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30401A24DCAA00093DA7 /* ChangeBrightnessByNBrick.m */; };
+		92FF30D11A24DCAA00093DA7 /* ChangeGhostEffectByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30421A24DCAA00093DA7 /* ChangeGhostEffectByNBrick.m */; };
+		92FF30D21A24DCAA00093DA7 /* ClearGraphicEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30441A24DCAA00093DA7 /* ClearGraphicEffectBrick.m */; };
+		92FF30D31A24DCAA00093DA7 /* ComeToFrontBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30461A24DCAA00093DA7 /* ComeToFrontBrick.m */; };
+		92FF30D41A24DCAA00093DA7 /* GoNStepsBackBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30481A24DCAA00093DA7 /* GoNStepsBackBrick.m */; };
+		92FF30D51A24DCAA00093DA7 /* HideBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF304A1A24DCAA00093DA7 /* HideBrick.m */; };
+		92FF30D61A24DCAA00093DA7 /* NextLookBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF304C1A24DCAA00093DA7 /* NextLookBrick.m */; };
+		92FF30D71A24DCAA00093DA7 /* SetBrightnessBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF304E1A24DCAA00093DA7 /* SetBrightnessBrick.m */; };
+		92FF30D81A24DCAA00093DA7 /* SetGhostEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30501A24DCAA00093DA7 /* SetGhostEffectBrick.m */; };
+		92FF30D91A24DCAA00093DA7 /* SetLookBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30521A24DCAA00093DA7 /* SetLookBrick.m */; };
+		92FF30DA1A24DCAA00093DA7 /* ShowBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30541A24DCAA00093DA7 /* ShowBrick.m */; };
+		92FF30DB1A24DCAA00093DA7 /* ForeverBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30571A24DCAA00093DA7 /* ForeverBrick.m */; };
+		92FF30DC1A24DCAA00093DA7 /* LoopBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30591A24DCAA00093DA7 /* LoopBeginBrick.m */; };
+		92FF30DD1A24DCAA00093DA7 /* LoopEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF305B1A24DCAA00093DA7 /* LoopEndBrick.m */; };
+		92FF30DE1A24DCAA00093DA7 /* RepeatBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF305D1A24DCAA00093DA7 /* RepeatBrick.m */; };
+		92FF30DF1A24DCAA00093DA7 /* ChangeXByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30601A24DCAA00093DA7 /* ChangeXByNBrick.m */; };
+		92FF30E01A24DCAA00093DA7 /* ChangeYByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30621A24DCAA00093DA7 /* ChangeYByNBrick.m */; };
+		92FF30E11A24DCAA00093DA7 /* GlideToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30641A24DCAA00093DA7 /* GlideToBrick.m */; };
+		92FF30E21A24DCAA00093DA7 /* IfOnEdgeBounceBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30661A24DCAA00093DA7 /* IfOnEdgeBounceBrick.m */; };
+		92FF30E31A24DCAA00093DA7 /* MoveNStepsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30681A24DCAA00093DA7 /* MoveNStepsBrick.m */; };
+		92FF30E41A24DCAA00093DA7 /* PlaceAtBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF306A1A24DCAA00093DA7 /* PlaceAtBrick.m */; };
+		92FF30E51A24DCAA00093DA7 /* SetXBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF306C1A24DCAA00093DA7 /* SetXBrick.m */; };
+		92FF30E61A24DCAA00093DA7 /* SetYBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF306E1A24DCAA00093DA7 /* SetYBrick.m */; };
+		92FF30E71A24DCAA00093DA7 /* PointInDirectionBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30711A24DCAA00093DA7 /* PointInDirectionBrick.m */; };
+		92FF30E81A24DCAA00093DA7 /* PointToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30731A24DCAA00093DA7 /* PointToBrick.m */; };
+		92FF30E91A24DCAA00093DA7 /* TurnLeftBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30751A24DCAA00093DA7 /* TurnLeftBrick.m */; };
+		92FF30EA1A24DCAA00093DA7 /* TurnRightBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30771A24DCAA00093DA7 /* TurnRightBrick.m */; };
+		92FF30EB1A24DCAA00093DA7 /* LedOffBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF307A1A24DCAA00093DA7 /* LedOffBrick.m */; };
+		92FF30EC1A24DCAA00093DA7 /* LedOnBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF307C1A24DCAA00093DA7 /* LedOnBrick.m */; };
+		92FF30ED1A24DCAA00093DA7 /* VibrationBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF307E1A24DCAA00093DA7 /* VibrationBrick.m */; };
+		92FF30EE1A24DCAA00093DA7 /* ChangeSizeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30811A24DCAA00093DA7 /* ChangeSizeByNBrick.m */; };
+		92FF30EF1A24DCAA00093DA7 /* SetSizeToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30831A24DCAA00093DA7 /* SetSizeToBrick.m */; };
+		92FF30F01A24DCAA00093DA7 /* ChangeVolumeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30861A24DCAA00093DA7 /* ChangeVolumeByNBrick.m */; };
+		92FF30F11A24DCAA00093DA7 /* PlaySoundBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30881A24DCAA00093DA7 /* PlaySoundBrick.m */; };
+		92FF30F21A24DCAA00093DA7 /* SetVolumeToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF308A1A24DCAA00093DA7 /* SetVolumeToBrick.m */; };
+		92FF30F31A24DCAA00093DA7 /* SpeakBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF308C1A24DCAA00093DA7 /* SpeakBrick.m */; };
+		92FF30F41A24DCAA00093DA7 /* StopAllSoundsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF308E1A24DCAA00093DA7 /* StopAllSoundsBrick.m */; };
+		92FF30F51A24DCAA00093DA7 /* ChangeVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30911A24DCAA00093DA7 /* ChangeVariableBrick.m */; };
+		92FF30F61A24DCAA00093DA7 /* SetVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30931A24DCAA00093DA7 /* SetVariableBrick.m */; };
+		92FF30F71A24DCAA00093DA7 /* BroadcastWaitHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30961A24DCAA00093DA7 /* BroadcastWaitHandler.m */; };
+		92FF30F81A24DCAA00093DA7 /* Formula.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30991A24DCAA00093DA7 /* Formula.m */; };
+		92FF30F91A24DCAA00093DA7 /* FormulaElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF309B1A24DCAA00093DA7 /* FormulaElement.m */; };
+		92FF30FA1A24DCAA00093DA7 /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF309E1A24DCAA00093DA7 /* Functions.m */; };
+		92FF30FB1A24DCAA00093DA7 /* InternFormulaParserException.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30A01A24DCAA00093DA7 /* InternFormulaParserException.m */; };
+		92FF30FC1A24DCAA00093DA7 /* Operators.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30A21A24DCAA00093DA7 /* Operators.m */; };
+		92FF30FD1A24DCAA00093DA7 /* Header.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30A51A24DCAA00093DA7 /* Header.m */; };
+		92FF30FE1A24DCAA00093DA7 /* Look.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30A81A24DCAA00093DA7 /* Look.m */; };
+		92FF30FF1A24DCAA00093DA7 /* Program.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30AB1A24DCAA00093DA7 /* Program.m */; };
+		92FF31001A24DCAA00093DA7 /* ProgramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30AE1A24DCAA00093DA7 /* ProgramManager.m */; };
+		92FF31011A24DCAA00093DA7 /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30B11A24DCAA00093DA7 /* Scene.m */; };
+		92FF31021A24DCAA00093DA7 /* BroadcastScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30B41A24DCAA00093DA7 /* BroadcastScript.m */; };
+		92FF31031A24DCAA00093DA7 /* Script.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30B61A24DCAA00093DA7 /* Script.m */; };
+		92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30B81A24DCAA00093DA7 /* StartScript.m */; };
+		92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30BA1A24DCAA00093DA7 /* WhenScript.m */; };
+		92FF31061A24DCAA00093DA7 /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30BD1A24DCAA00093DA7 /* Sound.m */; };
+		92FF31071A24DCAA00093DA7 /* SpriteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30C01A24DCAA00093DA7 /* SpriteObject.m */; };
+		92FF31081A24DCAA00093DA7 /* UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30C31A24DCAA00093DA7 /* UserVariable.m */; };
+		92FF31091A24DCAA00093DA7 /* VariablesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30C61A24DCAA00093DA7 /* VariablesContainer.m */; };
 		CA2932C719EDD32800DB6701 /* CBXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2932C619EDD32800DB6701 /* CBXMLParser.m */; };
 		CA2ECA461A06E2CF0018D5BB /* SetVariableBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2ECA451A06E2CF0018D5BB /* SetVariableBrick+CBXMLHandler.m */; };
 		CA538EA519B0EA09008240AB /* ChangeGhostEffectByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */; };
@@ -150,11 +217,8 @@
 		CA63C9E51A13EF56009A32DB /* SetBrightnessBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9E41A13EF56009A32DB /* SetBrightnessBrick+CBXMLHandler.m */; };
 		CA63C9E81A13F04F009A32DB /* ClearGraphicEffectBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9E71A13F04F009A32DB /* ClearGraphicEffectBrick+CBXMLHandler.m */; };
 		CA63C9EB1A13F0DB009A32DB /* BroadcastWaitBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9EA1A13F0DB009A32DB /* BroadcastWaitBrick+CBXMLHandler.m */; };
-		CA63C9F11A13F1C7009A32DB /* LedOnBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9F01A13F1C7009A32DB /* LedOnBrick.m */; };
-		CA63C9F31A13F294009A32DB /* LedOffBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9F21A13F294009A32DB /* LedOffBrick.m */; };
 		CA63C9F61A13F30F009A32DB /* LedOnBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9F51A13F30F009A32DB /* LedOnBrick+CBXMLHandler.m */; };
 		CA63C9F91A13F34B009A32DB /* LedOffBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9F81A13F34B009A32DB /* LedOffBrick+CBXMLHandler.m */; };
-		CA63C9FC1A13F4EE009A32DB /* VibrationBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63C9FB1A13F4EE009A32DB /* VibrationBrick.m */; };
 		CA63CA011A13F648009A32DB /* VibrationBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63CA001A13F648009A32DB /* VibrationBrick+CBXMLHandler.m */; };
 		CA63CA041A13FA86009A32DB /* ChangeVariableBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63CA031A13FA86009A32DB /* ChangeVariableBrick+CBXMLHandler.m */; };
 		CA63CA071A13FD74009A32DB /* ComeToFrontBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA63CA061A13FD74009A32DB /* ComeToFrontBrick+CBXMLHandler.m */; };
@@ -200,7 +264,6 @@
 		CADBD6FD19B0E8C200C62836 /* SWTableViewCell.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D24198F62A600455B77 /* SWTableViewCell.license */; };
 		CADBD6FF19B0E8C200C62836 /* FBShimmering.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D2E198F63FB00455B77 /* FBShimmering.license */; };
 		CADBD70219B0E8C200C62836 /* DarkBlueGradientImageDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAA269018F4510E002E55B9 /* DarkBlueGradientImageDetailCell.m */; };
-		CADBD70319B0E8C200C62836 /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E7D256176EF20F00EC8AD8 /* Scene.m */; };
 		CADBD70419B0E8C200C62836 /* BrickSelectModalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CA97D3192A900C00C99DCB /* BrickSelectModalTransition.m */; };
 		CADBD70519B0E8C200C62836 /* ForeverBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23A18A9615600FC8C2F /* ForeverBrickCell.m */; };
 		CADBD70619B0E8C200C62836 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA688204180B0148008A7C99 /* BaseTableViewController.m */; };
@@ -208,108 +271,62 @@
 		CADBD70819B0E8C200C62836 /* PlaceAtBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24918A9618000FC8C2F /* PlaceAtBrickCell.m */; };
 		CADBD70919B0E8C200C62836 /* FBShimmeringLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 815420D6191A51F200E628D2 /* FBShimmeringLayer.m */; };
 		CADBD70B19B0E8C200C62836 /* BrickShapeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D3C9F51945E54200DB71E1 /* BrickShapeFactory.m */; };
-		CADBD70C19B0E8C200C62836 /* InternFormulaParserException.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C0407199BA7E90004F594 /* InternFormulaParserException.m */; };
-		CADBD71119B0E8C200C62836 /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA047EC318C782550078BE08 /* BrickManager.m */; };
 		CADBD71219B0E8C200C62836 /* ComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68B67518BAA80A007042E4 /* ComboBoxView.m */; };
 		CADBD71319B0E8C200C62836 /* StopAllSoundsBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C27618A9620E00FC8C2F /* StopAllSoundsBrickCell.m */; };
 		CADBD71419B0E8C200C62836 /* CellMotionEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A5B4D6192964170082B2B8 /* CellMotionEffect.m */; };
 		CADBD71519B0E8C200C62836 /* BaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B543F18F03C0D00AF6BFE /* BaseTransition.m */; };
-		CADBD71619B0E8C200C62836 /* ChangeBrightnessByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44F617F1D8D200624730 /* ChangeBrightnessByNBrick.m */; };
 		CADBD71719B0E8C200C62836 /* CatrobatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4003031170EB50A00396DB7 /* CatrobatTableViewController.m */; };
 		CADBD71819B0E8C200C62836 /* BrickCellInlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5FED4F18B0070300A517B6 /* BrickCellInlineView.m */; };
 		CADBD71919B0E8C200C62836 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F243CC170EBEF7007A071D /* AppDelegate.m */; };
 		CADBD71A19B0E8C200C62836 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		CADBD71B19B0E8C200C62836 /* ProgramTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8146A9B219279721002548A4 /* ProgramTableHeaderView.m */; };
-		CADBD71C19B0E8C200C62836 /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE60170CB39600B70036 /* Brick.m */; };
 		CADBD71D19B0E8C200C62836 /* BrickDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B544A18F0520800AF6BFE /* BrickDetailViewController.m */; };
 		CADBD71E19B0E8C200C62836 /* SearchStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA05A19B18282B2C0025421A /* SearchStoreViewController.m */; };
-		CADBD71F19B0E8C200C62836 /* BroadcastBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE62170CB39600B70036 /* BroadcastBrick.m */; };
 		CADBD72119B0E8C200C62836 /* ChangeVariableBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C2A618A9627800FC8C2F /* ChangeVariableBrickCell.m */; };
-		CADBD72219B0E8C200C62836 /* BroadcastScript.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE64170CB39600B70036 /* BroadcastScript.m */; };
 		CADBD72319B0E8C200C62836 /* SWUtilityButtonTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251B6AA199F4B1600746D66 /* SWUtilityButtonTapGestureRecognizer.m */; };
 		CADBD72419B0E8C200C62836 /* ProgramTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 816C788517D62B7C0029A4E6 /* ProgramTableViewController.m */; };
-		CADBD72619B0E8C200C62836 /* BroadcastWaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE66170CB39600B70036 /* BroadcastWaitBrick.m */; };
 		CADBD72719B0E8C200C62836 /* SoundComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C118BAB90400BE26EF /* SoundComboBoxView.m */; };
 		CADBD72819B0E8C200C62836 /* GoNStepsBackBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C26D18A961FC00FC8C2F /* GoNStepsBackBrickCell.m */; };
 		CADBD72919B0E8C200C62836 /* VariableComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C718BAB94000BE26EF /* VariableComboBoxView.m */; };
 		CADBD72A19B0E8C200C62836 /* WhenScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22818A9605D00FC8C2F /* WhenScriptCell.m */; };
 		CADBD72B19B0E8C200C62836 /* ChangeBrightnessByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C29D18A9626400FC8C2F /* ChangeBrightnessByNBrickCell.m */; };
 		CADBD72D19B0E8C200C62836 /* BDKNotifyHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51A55D198481ED00FFCB45 /* BDKNotifyHUD.m */; };
-		CADBD72E19B0E8C200C62836 /* BroadcastWaitHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE69170CB39600B70036 /* BroadcastWaitHandler.m */; };
-		CADBD73019B0E8C200C62836 /* ChangeGhostEffectByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7B170CB39600B70036 /* ChangeGhostEffectByNBrick.m */; };
-		CADBD73119B0E8C200C62836 /* ChangeSizeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7D170CB39600B70036 /* ChangeSizeByNBrick.m */; };
-		CADBD73219B0E8C200C62836 /* ChangeVolumeByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE7F170CB39600B70036 /* ChangeVolumeByNBrick.m */; };
-		CADBD73319B0E8C200C62836 /* ChangeXByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE81170CB39600B70036 /* ChangeXByNBrick.m */; };
-		CADBD73419B0E8C200C62836 /* ChangeYByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE83170CB39600B70036 /* ChangeYByNBrick.m */; };
 		CADBD73519B0E8C200C62836 /* PlaySoundBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C27318A9620800FC8C2F /* PlaySoundBrickCell.m */; };
-		CADBD73619B0E8C200C62836 /* ComeToFrontBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCE86170CB39600B70036 /* ComeToFrontBrick.m */; };
 		CADBD73819B0E8C200C62836 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1498751989CA2A0069A21E /* LXReorderableCollectionViewFlowLayout.m */; };
-		CADBD73919B0E8C200C62836 /* ForeverBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA0170CB39600B70036 /* ForeverBrick.m */; };
-		CADBD73A19B0E8C200C62836 /* GlideToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA4170CB39600B70036 /* GlideToBrick.m */; };
-		CADBD73B19B0E8C200C62836 /* GoNStepsBackBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA6170CB39600B70036 /* GoNStepsBackBrick.m */; };
 		CADBD73C19B0E8C200C62836 /* HideBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C28E18A9624200FC8C2F /* HideBrickCell.m */; };
-		CADBD73D19B0E8C200C62836 /* Header.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEA8170CB39600B70036 /* Header.m */; };
-		CADBD73E19B0E8C200C62836 /* HideBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEAB170CB39600B70036 /* HideBrick.m */; };
-		CADBD73F19B0E8C200C62836 /* Look.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCED4170CB39700B70036 /* Look.m */; };
 		CADBD74019B0E8C200C62836 /* SaveToProjectActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F20C31837F27E003E9EE0 /* SaveToProjectActivity.m */; };
 		CADBD74119B0E8C200C62836 /* TurnRightBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C26118A961B800FC8C2F /* TurnRightBrickCell.m */; };
-		CADBD74219B0E8C200C62836 /* LoopEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCED6170CB39700B70036 /* LoopEndBrick.m */; };
 		CADBD74319B0E8C200C62836 /* BroadcastScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22B18A9606D00FC8C2F /* BroadcastScriptCell.m */; };
-		CADBD74419B0E8C200C62836 /* NextLookBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEE7170CB39700B70036 /* NextLookBrick.m */; };
 		CADBD74719B0E8C200C62836 /* CatrobatAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9A2BF197D52AF008F7C9A /* CatrobatAlertView.m */; };
 		CADBD74819B0E8C200C62836 /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEEB170CB39700B70036 /* Parser.m */; };
-		CADBD74919B0E8C200C62836 /* PlaceAtBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEED170CB39700B70036 /* PlaceAtBrick.m */; };
-		CADBD74A19B0E8C200C62836 /* PlaySoundBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEF1170CB39700B70036 /* PlaySoundBrick.m */; };
 		CADBD74B19B0E8C200C62836 /* LookComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07C418BAB91F00BE26EF /* LookComboBoxView.m */; };
 		CADBD74C19B0E8C200C62836 /* SWUtilityButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251B6AC199F4B1600746D66 /* SWUtilityButtonView.m */; };
-		CADBD74E19B0E8C200C62836 /* Program.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEF3170CB39700B70036 /* Program.m */; };
 		CADBD74F19B0E8C200C62836 /* SoundsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAEE3417E782360052BB2B /* SoundsTableViewController.m */; };
 		CADBD75019B0E8C200C62836 /* ProjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEF9170CB39700B70036 /* ProjectParser.m */; };
-		CADBD75119B0E8C200C62836 /* RepeatBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCEFD170CB39700B70036 /* RepeatBrick.m */; };
-		CADBD75319B0E8C200C62836 /* Script.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF0E170CB39700B70036 /* Script.m */; };
 		CADBD75419B0E8C200C62836 /* TurnLeftBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C25E18A961B200FC8C2F /* TurnLeftBrickCell.m */; };
-		CADBD75519B0E8C200C62836 /* SetBrightnessBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF10170CB39700B70036 /* SetBrightnessBrick.m */; };
 		CADBD75619B0E8C200C62836 /* MessageComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABE07BB18BAB8B200BE26EF /* MessageComboBoxView.m */; };
 		CADBD75719B0E8C200C62836 /* SetYBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24F18A9618D00FC8C2F /* SetYBrickCell.m */; };
-		CADBD75819B0E8C200C62836 /* SetGhostEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF12170CB39700B70036 /* SetGhostEffectBrick.m */; };
-		CADBD75A19B0E8C200C62836 /* SetLookBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF14170CB39700B70036 /* SetLookBrick.m */; };
-		CADBD75B19B0E8C200C62836 /* SetSizeToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF16170CB39700B70036 /* SetSizeToBrick.m */; };
 		CADBD75C19B0E8C200C62836 /* LoopEndBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C2AF18A9A62B00FC8C2F /* LoopEndBrickCell.m */; };
-		CADBD75D19B0E8C200C62836 /* SetVolumeToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF1A170CB39700B70036 /* SetVolumeToBrick.m */; };
 		CADBD75E19B0E8C200C62836 /* SetSizeToBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C28818A9623500FC8C2F /* SetSizeToBrickCell.m */; };
 		CADBD75F19B0E8C200C62836 /* StartScriptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22518A9603400FC8C2F /* StartScriptCell.m */; };
 		CADBD76019B0E8C200C62836 /* CatrobatActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9A2BB197D20A7008F7C9A /* CatrobatActionSheet.m */; };
 		CADBD76219B0E8C200C62836 /* UIImage+AHKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CA14986E1989CA160069A21E /* UIImage+AHKAdditions.m */; };
-		CADBD76319B0E8C200C62836 /* SetXBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF1C170CB39700B70036 /* SetXBrick.m */; };
 		CADBD76419B0E8C200C62836 /* SetVariableBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C2A318A9627200FC8C2F /* SetVariableBrickCell.m */; };
-		CADBD76519B0E8C200C62836 /* SetYBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF1E170CB39700B70036 /* SetYBrick.m */; };
 		CADBD76619B0E8C200C62836 /* ChangeVolumeByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C27C18A9621B00FC8C2F /* ChangeVolumeByNBrickCell.m */; };
 		CADBD76719B0E8C200C62836 /* SetXBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24C18A9618700FC8C2F /* SetXBrickCell.m */; };
-		CADBD76819B0E8C200C62836 /* Operators.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C0402199BA7B40004F594 /* Operators.m */; };
-		CADBD76A19B0E8C200C62836 /* ShowBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF20170CB39700B70036 /* ShowBrick.m */; };
 		CADBD76B19B0E8C200C62836 /* BrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C27423189EE41700827A95 /* BrickCell.m */; };
-		CADBD76C19B0E8C200C62836 /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF22170CB39700B70036 /* Sound.m */; };
-		CADBD76D19B0E8C200C62836 /* SpeakBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF26170CB39700B70036 /* SpeakBrick.m */; };
-		CADBD76E19B0E8C200C62836 /* StartScript.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF33170CB39700B70036 /* StartScript.m */; };
 		CADBD76F19B0E8C200C62836 /* SetLookBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C28218A9622700FC8C2F /* SetLookBrickCell.m */; };
 		CADBD77019B0E8C200C62836 /* ColoredCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA68820D180B39D0008A7C99 /* ColoredCell.m */; };
-		CADBD77219B0E8C200C62836 /* StopAllSoundsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF35170CB39700B70036 /* StopAllSoundsBrick.m */; };
 		CADBD77319B0E8C200C62836 /* SetGhostEffectBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C29418A9624F00FC8C2F /* SetGhostEffectBrickCell.m */; };
 		CADBD77419B0E8C200C62836 /* BroadcastBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23118A9613A00FC8C2F /* BroadcastBrickCell.m */; };
-		CADBD77519B0E8C200C62836 /* ClearGraphicEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44F317F1D2C700624730 /* ClearGraphicEffectBrick.m */; };
-		CADBD77619B0E8C200C62836 /* TurnLeftBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF3D170CB39700B70036 /* TurnLeftBrick.m */; };
-		CADBD77719B0E8C200C62836 /* TurnRightBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF3F170CB39700B70036 /* TurnRightBrick.m */; };
 		CADBD77919B0E8C200C62836 /* SetBrightnessBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C29A18A9625C00FC8C2F /* SetBrightnessBrickCell.m */; };
 		CADBD77A19B0E8C200C62836 /* InfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFE97B196D795900F491EC /* InfoPopupViewController.m */; };
 		CADBD77D19B0E8C200C62836 /* SingleBrickSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8165DC841938B2D000B6A306 /* SingleBrickSelectionView.m */; };
 		CADBD77E19B0E8C200C62836 /* NSMutableArray+SWUtilityButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 9251B6B3199F4B6500746D66 /* NSMutableArray+SWUtilityButtons.m */; };
-		CADBD77F19B0E8C200C62836 /* WaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF45170CB39700B70036 /* WaitBrick.m */; };
 		CADBD78019B0E8C200C62836 /* IfLogicElseBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24018A9616800FC8C2F /* IfLogicElseBrickCell.m */; };
-		CADBD78119B0E8C200C62836 /* WhenScript.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CCF47170CB39700B70036 /* WhenScript.m */; };
 		CADBD78219B0E8C200C62836 /* BrickScaleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B544218F03D4C00AF6BFE /* BrickScaleTransition.m */; };
 		CADBD78319B0E8C200C62836 /* ObjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEDFB8017EF759500FDED0E /* ObjectTableViewController.m */; };
 		CADBD78419B0E8C200C62836 /* SelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 819EFEA61948721900A1D591 /* SelectButton.m */; };
-		CADBD78519B0E8C200C62836 /* SpriteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CD639C7A170DF52600FA67DA /* SpriteObject.m */; };
 		CADBD78619B0E8C200C62836 /* SetVolumeToBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C27918A9621500FC8C2F /* SetVolumeToBrickCell.m */; };
 		CADBD78719B0E8C200C62836 /* BrickSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 816827D71934BB9B00031E7C /* BrickSelectionView.m */; };
 		CADBD78A19B0E8C200C62836 /* ChangeYByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C25518A9619B00FC8C2F /* ChangeYByNBrickCell.m */; };
@@ -327,7 +344,6 @@
 		CADBD79919B0E8C200C62836 /* ChangeSizeByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C28B18A9623B00FC8C2F /* ChangeSizeByNBrickCell.m */; };
 		CADBD79A19B0E8C200C62836 /* NextLookBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C28518A9622E00FC8C2F /* NextLookBrickCell.m */; };
 		CADBD79B19B0E8C200C62836 /* DarkBlueGradientImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */; };
-		CADBD79D19B0E8C200C62836 /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C0400199BA7B40004F594 /* Functions.m */; };
 		CADBD79E19B0E8C200C62836 /* PlaceHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 815420DC191A5C1F00E628D2 /* PlaceHolderView.m */; };
 		CADBD79F19B0E8C200C62836 /* MyProgramsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BCF406170ECFA2008EDF3A /* MyProgramsViewController.m */; };
 		CADBD7A019B0E8C200C62836 /* IfLogicBeginBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23D18A9616000FC8C2F /* IfLogicBeginBrickCell.m */; };
@@ -346,7 +362,6 @@
 		CADBD7B219B0E8C200C62836 /* AHKActionSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA14986D1989CA160069A21E /* AHKActionSheetViewController.m */; };
 		CADBD7B319B0E8C200C62836 /* MoveNStepsBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C25B18A961AB00FC8C2F /* MoveNStepsBrickCell.m */; };
 		CADBD7B419B0E8C200C62836 /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DEFC8F170F464200DD1939 /* TestParser.m */; };
-		CADBD7B519B0E8C200C62836 /* PointInDirectionBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D4DD4217156A8500EEE3F8 /* PointInDirectionBrick.m */; };
 		CADBD7B619B0E8C200C62836 /* PointInDirectionBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C26418A961C000FC8C2F /* PointInDirectionBrickCell.m */; };
 		CADBD7B719B0E8C200C62836 /* GlideToBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C26A18A961CE00FC8C2F /* GlideToBrickCell.m */; };
 		CADBD7B819B0E8C200C62836 /* AHKActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CA14986C1989CA160069A21E /* AHKActionSheet.m */; };
@@ -359,28 +374,13 @@
 		CADBD7BF19B0E8C200C62836 /* BroadcastWaitBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C23418A9614100FC8C2F /* BroadcastWaitBrickCell.m */; };
 		CADBD7C019B0E8C200C62836 /* LookImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB95BA418CD51EF006638F6 /* LookImageViewController.m */; };
 		CADBD7C119B0E8C200C62836 /* CreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B748781921433700990E5F /* CreateView.m */; };
-		CADBD7C219B0E8C200C62836 /* SetVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A5826173253E5000E038F /* SetVariableBrick.m */; };
-		CADBD7C319B0E8C200C62836 /* UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A582B17325442000E038F /* UserVariable.m */; };
 		CADBD7C519B0E8C200C62836 /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1498661989C9C70069A21E /* IBActionSheet.m */; };
-		CADBD7C619B0E8C200C62836 /* Formula.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A583017327887000E038F /* Formula.m */; };
 		CADBD7C719B0E8C200C62836 /* ShowBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C29118A9624900FC8C2F /* ShowBrickCell.m */; };
-		CADBD7C819B0E8C200C62836 /* FormulaElement.m in Sources */ = {isa = PBXBuildFile; fileRef = B45A583517327BBE000E038F /* FormulaElement.m */; };
-		CADBD7C919B0E8C200C62836 /* IfLogicBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B402288117329FEB004C4942 /* IfLogicBeginBrick.m */; };
-		CADBD7CA19B0E8C200C62836 /* IfLogicElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228901732A540004C4942 /* IfLogicElseBrick.m */; };
-		CADBD7CB19B0E8C200C62836 /* IfLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228951732A58E004C4942 /* IfLogicEndBrick.m */; };
-		CADBD7CC19B0E8C200C62836 /* PointToBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B40228A41732ADF3004C4942 /* PointToBrick.m */; };
-		CADBD7CD19B0E8C200C62836 /* VariablesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = B47068891733BA9600EC880D /* VariablesContainer.m */; };
 		CADBD7CE19B0E8C200C62836 /* IfLogicEndBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24318A9617100FC8C2F /* IfLogicEndBrickCell.m */; };
-		CADBD7CF19B0E8C200C62836 /* ChangeVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B470688E1733D6CA00EC880D /* ChangeVariableBrick.m */; };
-		CADBD7D019B0E8C200C62836 /* ProgramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B44F329F1737AC2E00BD97AC /* ProgramManager.m */; };
 		CADBD7D219B0E8C200C62836 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BAC21738E216000BDC94 /* XMLObjectReference.m */; };
-		CADBD7D319B0E8C200C62836 /* NoteBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4826F77174D076800F57AE9 /* NoteBrick.m */; };
-		CADBD7D519B0E8C200C62836 /* MoveNStepsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B4840CA6174FAC3E002DEC53 /* MoveNStepsBrick.m */; };
 		CADBD7D619B0E8C200C62836 /* IfOnEdgeBounceBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C25818A961A300FC8C2F /* IfOnEdgeBounceBrickCell.m */; };
 		CADBD7D719B0E8C200C62836 /* DarkBlueGradientFeaturedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 929FDFFF1986484200B2A88D /* DarkBlueGradientFeaturedCell.m */; };
-		CADBD7D919B0E8C200C62836 /* IfOnEdgeBounceBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFEFCB31758CBC8002B5B0E /* IfOnEdgeBounceBrick.m */; };
 		CADBD7DA19B0E8C200C62836 /* RepeatBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C24618A9617900FC8C2F /* RepeatBrickCell.m */; };
-		CADBD7DD19B0E8C200C62836 /* LoopBeginBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B271A17708E6700172837 /* LoopBeginBrick.m */; };
 		CADBD7DE19B0E8C200C62836 /* ScriptDeleteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81649E0F191D35090099AE7E /* ScriptDeleteButton.m */; };
 		CADBD7E019B0E8C200C62836 /* WaitBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA75C22E18A9612300FC8C2F /* WaitBrickCell.m */; };
 		CADBD7E219B0E8C200C62836 /* RoundBorderedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B7487C192143AA00990E5F /* RoundBorderedButton.m */; };
@@ -470,12 +470,6 @@
 		4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidProgramAllBricks.xml; path = "Resources/Test Resources/ValidProgramAllBricks.xml"; sourceTree = "<group>"; };
 		4C3AEF2E198E7EDD00604ABF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaFunctionsTest.m; sourceTree = "<group>"; };
-		4C3C03FF199BA7B40004F594 /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Functions.h; sourceTree = "<group>"; };
-		4C3C0400199BA7B40004F594 /* Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Functions.m; sourceTree = "<group>"; };
-		4C3C0401199BA7B40004F594 /* Operators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operators.h; sourceTree = "<group>"; };
-		4C3C0402199BA7B40004F594 /* Operators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operators.m; sourceTree = "<group>"; };
-		4C3C0406199BA7E90004F594 /* InternFormulaParserException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternFormulaParserException.h; sourceTree = "<group>"; };
-		4C3C0407199BA7E90004F594 /* InternFormulaParserException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternFormulaParserException.m; sourceTree = "<group>"; };
 		4C9E2D1E198EA6B600455B77 /* SMPageControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SMPageControl.license; sourceTree = "<group>"; };
 		4C9E2D20198EACE200455B77 /* EAIntroView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EAIntroView.license; sourceTree = "<group>"; };
 		4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDKNotifyHUD.license; sourceTree = "<group>"; };
@@ -764,47 +758,153 @@
 		92FF2EB81A24C8A700093DA7 /* OrderedMapTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedMapTable.m; sourceTree = "<group>"; };
 		92FF2EBA1A24C8A700093DA7 /* ProgramLoadingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramLoadingInfo.h; sourceTree = "<group>"; };
 		92FF2EBB1A24C8A700093DA7 /* ProgramLoadingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramLoadingInfo.m; sourceTree = "<group>"; };
+		92FF30291A24DCAA00093DA7 /* BrickManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickManager.h; sourceTree = "<group>"; };
+		92FF302A1A24DCAA00093DA7 /* BrickManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickManager.m; sourceTree = "<group>"; };
+		92FF302C1A24DCAA00093DA7 /* Brick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brick.h; sourceTree = "<group>"; };
+		92FF302D1A24DCAA00093DA7 /* Brick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Brick.m; sourceTree = "<group>"; };
+		92FF302F1A24DCAA00093DA7 /* BroadcastBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastBrick.h; sourceTree = "<group>"; };
+		92FF30301A24DCAA00093DA7 /* BroadcastBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastBrick.m; sourceTree = "<group>"; };
+		92FF30311A24DCAA00093DA7 /* BroadcastWaitBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastWaitBrick.h; sourceTree = "<group>"; };
+		92FF30321A24DCAA00093DA7 /* BroadcastWaitBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastWaitBrick.m; sourceTree = "<group>"; };
+		92FF30331A24DCAA00093DA7 /* NoteBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteBrick.h; sourceTree = "<group>"; };
+		92FF30341A24DCAA00093DA7 /* NoteBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBrick.m; sourceTree = "<group>"; };
+		92FF30351A24DCAA00093DA7 /* WaitBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitBrick.h; sourceTree = "<group>"; };
+		92FF30361A24DCAA00093DA7 /* WaitBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitBrick.m; sourceTree = "<group>"; };
+		92FF30381A24DCAA00093DA7 /* IfLogicBeginBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicBeginBrick.h; sourceTree = "<group>"; };
+		92FF30391A24DCAA00093DA7 /* IfLogicBeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicBeginBrick.m; sourceTree = "<group>"; };
+		92FF303A1A24DCAA00093DA7 /* IfLogicElseBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicElseBrick.h; sourceTree = "<group>"; };
+		92FF303B1A24DCAA00093DA7 /* IfLogicElseBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicElseBrick.m; sourceTree = "<group>"; };
+		92FF303C1A24DCAA00093DA7 /* IfLogicEndBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicEndBrick.h; sourceTree = "<group>"; };
+		92FF303D1A24DCAA00093DA7 /* IfLogicEndBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicEndBrick.m; sourceTree = "<group>"; };
+		92FF303F1A24DCAA00093DA7 /* ChangeBrightnessByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeBrightnessByNBrick.h; sourceTree = "<group>"; };
+		92FF30401A24DCAA00093DA7 /* ChangeBrightnessByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeBrightnessByNBrick.m; sourceTree = "<group>"; };
+		92FF30411A24DCAA00093DA7 /* ChangeGhostEffectByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeGhostEffectByNBrick.h; sourceTree = "<group>"; };
+		92FF30421A24DCAA00093DA7 /* ChangeGhostEffectByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeGhostEffectByNBrick.m; sourceTree = "<group>"; };
+		92FF30431A24DCAA00093DA7 /* ClearGraphicEffectBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearGraphicEffectBrick.h; sourceTree = "<group>"; };
+		92FF30441A24DCAA00093DA7 /* ClearGraphicEffectBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearGraphicEffectBrick.m; sourceTree = "<group>"; };
+		92FF30451A24DCAA00093DA7 /* ComeToFrontBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComeToFrontBrick.h; sourceTree = "<group>"; };
+		92FF30461A24DCAA00093DA7 /* ComeToFrontBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComeToFrontBrick.m; sourceTree = "<group>"; };
+		92FF30471A24DCAA00093DA7 /* GoNStepsBackBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoNStepsBackBrick.h; sourceTree = "<group>"; };
+		92FF30481A24DCAA00093DA7 /* GoNStepsBackBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoNStepsBackBrick.m; sourceTree = "<group>"; };
+		92FF30491A24DCAA00093DA7 /* HideBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideBrick.h; sourceTree = "<group>"; };
+		92FF304A1A24DCAA00093DA7 /* HideBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HideBrick.m; sourceTree = "<group>"; };
+		92FF304B1A24DCAA00093DA7 /* NextLookBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextLookBrick.h; sourceTree = "<group>"; };
+		92FF304C1A24DCAA00093DA7 /* NextLookBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextLookBrick.m; sourceTree = "<group>"; };
+		92FF304D1A24DCAA00093DA7 /* SetBrightnessBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetBrightnessBrick.h; sourceTree = "<group>"; };
+		92FF304E1A24DCAA00093DA7 /* SetBrightnessBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetBrightnessBrick.m; sourceTree = "<group>"; };
+		92FF304F1A24DCAA00093DA7 /* SetGhostEffectBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetGhostEffectBrick.h; sourceTree = "<group>"; };
+		92FF30501A24DCAA00093DA7 /* SetGhostEffectBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetGhostEffectBrick.m; sourceTree = "<group>"; };
+		92FF30511A24DCAA00093DA7 /* SetLookBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetLookBrick.h; sourceTree = "<group>"; };
+		92FF30521A24DCAA00093DA7 /* SetLookBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetLookBrick.m; sourceTree = "<group>"; };
+		92FF30531A24DCAA00093DA7 /* ShowBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowBrick.h; sourceTree = "<group>"; };
+		92FF30541A24DCAA00093DA7 /* ShowBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowBrick.m; sourceTree = "<group>"; };
+		92FF30561A24DCAA00093DA7 /* ForeverBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForeverBrick.h; sourceTree = "<group>"; };
+		92FF30571A24DCAA00093DA7 /* ForeverBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForeverBrick.m; sourceTree = "<group>"; };
+		92FF30581A24DCAA00093DA7 /* LoopBeginBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopBeginBrick.h; sourceTree = "<group>"; };
+		92FF30591A24DCAA00093DA7 /* LoopBeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopBeginBrick.m; sourceTree = "<group>"; };
+		92FF305A1A24DCAA00093DA7 /* LoopEndBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopEndBrick.h; sourceTree = "<group>"; };
+		92FF305B1A24DCAA00093DA7 /* LoopEndBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopEndBrick.m; sourceTree = "<group>"; };
+		92FF305C1A24DCAA00093DA7 /* RepeatBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatBrick.h; sourceTree = "<group>"; };
+		92FF305D1A24DCAA00093DA7 /* RepeatBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatBrick.m; sourceTree = "<group>"; };
+		92FF305F1A24DCAA00093DA7 /* ChangeXByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeXByNBrick.h; sourceTree = "<group>"; };
+		92FF30601A24DCAA00093DA7 /* ChangeXByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeXByNBrick.m; sourceTree = "<group>"; };
+		92FF30611A24DCAA00093DA7 /* ChangeYByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeYByNBrick.h; sourceTree = "<group>"; };
+		92FF30621A24DCAA00093DA7 /* ChangeYByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeYByNBrick.m; sourceTree = "<group>"; };
+		92FF30631A24DCAA00093DA7 /* GlideToBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlideToBrick.h; sourceTree = "<group>"; };
+		92FF30641A24DCAA00093DA7 /* GlideToBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlideToBrick.m; sourceTree = "<group>"; };
+		92FF30651A24DCAA00093DA7 /* IfOnEdgeBounceBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfOnEdgeBounceBrick.h; sourceTree = "<group>"; };
+		92FF30661A24DCAA00093DA7 /* IfOnEdgeBounceBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfOnEdgeBounceBrick.m; sourceTree = "<group>"; };
+		92FF30671A24DCAA00093DA7 /* MoveNStepsBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveNStepsBrick.h; sourceTree = "<group>"; };
+		92FF30681A24DCAA00093DA7 /* MoveNStepsBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveNStepsBrick.m; sourceTree = "<group>"; };
+		92FF30691A24DCAA00093DA7 /* PlaceAtBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceAtBrick.h; sourceTree = "<group>"; };
+		92FF306A1A24DCAA00093DA7 /* PlaceAtBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceAtBrick.m; sourceTree = "<group>"; };
+		92FF306B1A24DCAA00093DA7 /* SetXBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetXBrick.h; sourceTree = "<group>"; };
+		92FF306C1A24DCAA00093DA7 /* SetXBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetXBrick.m; sourceTree = "<group>"; };
+		92FF306D1A24DCAA00093DA7 /* SetYBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetYBrick.h; sourceTree = "<group>"; };
+		92FF306E1A24DCAA00093DA7 /* SetYBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetYBrick.m; sourceTree = "<group>"; };
+		92FF30701A24DCAA00093DA7 /* PointInDirectionBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointInDirectionBrick.h; sourceTree = "<group>"; };
+		92FF30711A24DCAA00093DA7 /* PointInDirectionBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointInDirectionBrick.m; sourceTree = "<group>"; };
+		92FF30721A24DCAA00093DA7 /* PointToBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointToBrick.h; sourceTree = "<group>"; };
+		92FF30731A24DCAA00093DA7 /* PointToBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointToBrick.m; sourceTree = "<group>"; };
+		92FF30741A24DCAA00093DA7 /* TurnLeftBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurnLeftBrick.h; sourceTree = "<group>"; };
+		92FF30751A24DCAA00093DA7 /* TurnLeftBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TurnLeftBrick.m; sourceTree = "<group>"; };
+		92FF30761A24DCAA00093DA7 /* TurnRightBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurnRightBrick.h; sourceTree = "<group>"; };
+		92FF30771A24DCAA00093DA7 /* TurnRightBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TurnRightBrick.m; sourceTree = "<group>"; };
+		92FF30791A24DCAA00093DA7 /* LedOffBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LedOffBrick.h; sourceTree = "<group>"; };
+		92FF307A1A24DCAA00093DA7 /* LedOffBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LedOffBrick.m; sourceTree = "<group>"; };
+		92FF307B1A24DCAA00093DA7 /* LedOnBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LedOnBrick.h; sourceTree = "<group>"; };
+		92FF307C1A24DCAA00093DA7 /* LedOnBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LedOnBrick.m; sourceTree = "<group>"; };
+		92FF307D1A24DCAA00093DA7 /* VibrationBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VibrationBrick.h; sourceTree = "<group>"; };
+		92FF307E1A24DCAA00093DA7 /* VibrationBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VibrationBrick.m; sourceTree = "<group>"; };
+		92FF30801A24DCAA00093DA7 /* ChangeSizeByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeSizeByNBrick.h; sourceTree = "<group>"; };
+		92FF30811A24DCAA00093DA7 /* ChangeSizeByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeSizeByNBrick.m; sourceTree = "<group>"; };
+		92FF30821A24DCAA00093DA7 /* SetSizeToBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSizeToBrick.h; sourceTree = "<group>"; };
+		92FF30831A24DCAA00093DA7 /* SetSizeToBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSizeToBrick.m; sourceTree = "<group>"; };
+		92FF30851A24DCAA00093DA7 /* ChangeVolumeByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeVolumeByNBrick.h; sourceTree = "<group>"; };
+		92FF30861A24DCAA00093DA7 /* ChangeVolumeByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVolumeByNBrick.m; sourceTree = "<group>"; };
+		92FF30871A24DCAA00093DA7 /* PlaySoundBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaySoundBrick.h; sourceTree = "<group>"; };
+		92FF30881A24DCAA00093DA7 /* PlaySoundBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaySoundBrick.m; sourceTree = "<group>"; };
+		92FF30891A24DCAA00093DA7 /* SetVolumeToBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetVolumeToBrick.h; sourceTree = "<group>"; };
+		92FF308A1A24DCAA00093DA7 /* SetVolumeToBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetVolumeToBrick.m; sourceTree = "<group>"; };
+		92FF308B1A24DCAA00093DA7 /* SpeakBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakBrick.h; sourceTree = "<group>"; };
+		92FF308C1A24DCAA00093DA7 /* SpeakBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakBrick.m; sourceTree = "<group>"; };
+		92FF308D1A24DCAA00093DA7 /* StopAllSoundsBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAllSoundsBrick.h; sourceTree = "<group>"; };
+		92FF308E1A24DCAA00093DA7 /* StopAllSoundsBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopAllSoundsBrick.m; sourceTree = "<group>"; };
+		92FF30901A24DCAA00093DA7 /* ChangeVariableBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeVariableBrick.h; sourceTree = "<group>"; };
+		92FF30911A24DCAA00093DA7 /* ChangeVariableBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVariableBrick.m; sourceTree = "<group>"; };
+		92FF30921A24DCAA00093DA7 /* SetVariableBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetVariableBrick.h; sourceTree = "<group>"; };
+		92FF30931A24DCAA00093DA7 /* SetVariableBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetVariableBrick.m; sourceTree = "<group>"; };
+		92FF30951A24DCAA00093DA7 /* BroadcastWaitHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastWaitHandler.h; sourceTree = "<group>"; };
+		92FF30961A24DCAA00093DA7 /* BroadcastWaitHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastWaitHandler.m; sourceTree = "<group>"; };
+		92FF30981A24DCAA00093DA7 /* Formula.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Formula.h; sourceTree = "<group>"; };
+		92FF30991A24DCAA00093DA7 /* Formula.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Formula.m; sourceTree = "<group>"; };
+		92FF309A1A24DCAA00093DA7 /* FormulaElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaElement.h; sourceTree = "<group>"; };
+		92FF309B1A24DCAA00093DA7 /* FormulaElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaElement.m; sourceTree = "<group>"; };
+		92FF309D1A24DCAA00093DA7 /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Functions.h; sourceTree = "<group>"; };
+		92FF309E1A24DCAA00093DA7 /* Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Functions.m; sourceTree = "<group>"; };
+		92FF309F1A24DCAA00093DA7 /* InternFormulaParserException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternFormulaParserException.h; sourceTree = "<group>"; };
+		92FF30A01A24DCAA00093DA7 /* InternFormulaParserException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternFormulaParserException.m; sourceTree = "<group>"; };
+		92FF30A11A24DCAA00093DA7 /* Operators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operators.h; sourceTree = "<group>"; };
+		92FF30A21A24DCAA00093DA7 /* Operators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operators.m; sourceTree = "<group>"; };
+		92FF30A41A24DCAA00093DA7 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		92FF30A51A24DCAA00093DA7 /* Header.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Header.m; sourceTree = "<group>"; };
+		92FF30A71A24DCAA00093DA7 /* Look.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Look.h; sourceTree = "<group>"; };
+		92FF30A81A24DCAA00093DA7 /* Look.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Look.m; sourceTree = "<group>"; };
+		92FF30AA1A24DCAA00093DA7 /* Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Program.h; sourceTree = "<group>"; };
+		92FF30AB1A24DCAA00093DA7 /* Program.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Program.m; sourceTree = "<group>"; };
+		92FF30AD1A24DCAA00093DA7 /* ProgramManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramManager.h; sourceTree = "<group>"; };
+		92FF30AE1A24DCAA00093DA7 /* ProgramManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramManager.m; sourceTree = "<group>"; };
+		92FF30B01A24DCAA00093DA7 /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
+		92FF30B11A24DCAA00093DA7 /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
+		92FF30B31A24DCAA00093DA7 /* BroadcastScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastScript.h; sourceTree = "<group>"; };
+		92FF30B41A24DCAA00093DA7 /* BroadcastScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastScript.m; sourceTree = "<group>"; };
+		92FF30B51A24DCAA00093DA7 /* Script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Script.h; sourceTree = "<group>"; };
+		92FF30B61A24DCAA00093DA7 /* Script.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Script.m; sourceTree = "<group>"; };
+		92FF30B71A24DCAA00093DA7 /* StartScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScript.h; sourceTree = "<group>"; };
+		92FF30B81A24DCAA00093DA7 /* StartScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScript.m; sourceTree = "<group>"; };
+		92FF30B91A24DCAA00093DA7 /* WhenScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhenScript.h; sourceTree = "<group>"; };
+		92FF30BA1A24DCAA00093DA7 /* WhenScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhenScript.m; sourceTree = "<group>"; };
+		92FF30BC1A24DCAA00093DA7 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
+		92FF30BD1A24DCAA00093DA7 /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sound.m; sourceTree = "<group>"; };
+		92FF30BF1A24DCAA00093DA7 /* SpriteObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteObject.h; sourceTree = "<group>"; };
+		92FF30C01A24DCAA00093DA7 /* SpriteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteObject.m; sourceTree = "<group>"; };
+		92FF30C21A24DCAA00093DA7 /* UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserVariable.h; sourceTree = "<group>"; };
+		92FF30C31A24DCAA00093DA7 /* UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserVariable.m; sourceTree = "<group>"; };
+		92FF30C51A24DCAA00093DA7 /* VariablesContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablesContainer.h; sourceTree = "<group>"; };
+		92FF30C61A24DCAA00093DA7 /* VariablesContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablesContainer.m; sourceTree = "<group>"; };
 		B4003030170EB50A00396DB7 /* CatrobatTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatrobatTableViewController.h; sourceTree = "<group>"; };
 		B4003031170EB50A00396DB7 /* CatrobatTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatrobatTableViewController.m; sourceTree = "<group>"; };
-		B402288017329FEB004C4942 /* IfLogicBeginBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicBeginBrick.h; sourceTree = "<group>"; };
-		B402288117329FEB004C4942 /* IfLogicBeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicBeginBrick.m; sourceTree = "<group>"; };
-		B402288F1732A540004C4942 /* IfLogicElseBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicElseBrick.h; sourceTree = "<group>"; };
-		B40228901732A540004C4942 /* IfLogicElseBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicElseBrick.m; sourceTree = "<group>"; };
-		B40228941732A58E004C4942 /* IfLogicEndBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfLogicEndBrick.h; sourceTree = "<group>"; };
-		B40228951732A58E004C4942 /* IfLogicEndBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicEndBrick.m; sourceTree = "<group>"; };
-		B40228A31732ADF2004C4942 /* PointToBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointToBrick.h; sourceTree = "<group>"; };
-		B40228A41732ADF3004C4942 /* PointToBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointToBrick.m; sourceTree = "<group>"; };
 		B405BAC7175DD3F600B1A0FC /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		B40C306F170ECC49000B872F /* DarkBlueGradientImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientImageCell.h; sourceTree = "<group>"; };
 		B40C3070170ECC49000B872F /* DarkBlueGradientImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientImageCell.m; sourceTree = "<group>"; };
-		B44F329E1737AC2E00BD97AC /* ProgramManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramManager.h; sourceTree = "<group>"; };
-		B44F329F1737AC2E00BD97AC /* ProgramManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramManager.m; sourceTree = "<group>"; };
 		B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		B450309F170F22EF009265D6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		B45A5825173253E5000E038F /* SetVariableBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetVariableBrick.h; sourceTree = "<group>"; };
-		B45A5826173253E5000E038F /* SetVariableBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetVariableBrick.m; sourceTree = "<group>"; };
-		B45A582A17325442000E038F /* UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserVariable.h; sourceTree = "<group>"; };
-		B45A582B17325442000E038F /* UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserVariable.m; sourceTree = "<group>"; };
-		B45A582F17327887000E038F /* Formula.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Formula.h; sourceTree = "<group>"; };
-		B45A583017327887000E038F /* Formula.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Formula.m; sourceTree = "<group>"; };
-		B45A583417327BBE000E038F /* FormulaElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaElement.h; sourceTree = "<group>"; };
-		B45A583517327BBE000E038F /* FormulaElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaElement.m; sourceTree = "<group>"; };
 		B46B26E817703E4000172837 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B46B270517703F9400172837 /* CattyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CattyTests-Info.plist"; sourceTree = "<group>"; };
 		B46B270717703F9400172837 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B46B270917703F9400172837 /* CattyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CattyTests.m; sourceTree = "<group>"; };
 		B46B270B17703F9400172837 /* CattyTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CattyTests-Prefix.pch"; sourceTree = "<group>"; };
 		B46B271217703FB700172837 /* SensorHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorHandlerTests.m; sourceTree = "<group>"; };
-		B46B271917708E6700172837 /* LoopBeginBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopBeginBrick.h; sourceTree = "<group>"; };
-		B46B271A17708E6700172837 /* LoopBeginBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopBeginBrick.m; sourceTree = "<group>"; };
-		B47068881733BA9600EC880D /* VariablesContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablesContainer.h; sourceTree = "<group>"; };
-		B47068891733BA9600EC880D /* VariablesContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablesContainer.m; sourceTree = "<group>"; };
-		B470688D1733D6C800EC880D /* ChangeVariableBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeVariableBrick.h; sourceTree = "<group>"; };
-		B470688E1733D6CA00EC880D /* ChangeVariableBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVariableBrick.m; sourceTree = "<group>"; };
-		B4826F76174D076800F57AE9 /* NoteBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteBrick.h; sourceTree = "<group>"; };
-		B4826F77174D076800F57AE9 /* NoteBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBrick.m; sourceTree = "<group>"; };
-		B4840CA5174FAC3E002DEC53 /* MoveNStepsBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveNStepsBrick.h; sourceTree = "<group>"; };
-		B4840CA6174FAC3E002DEC53 /* MoveNStepsBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveNStepsBrick.m; sourceTree = "<group>"; };
 		B496F50F17759968004BF78A /* SceneTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneTests.h; sourceTree = "<group>"; };
 		B496F51017759968004BF78A /* SceneTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneTests.m; sourceTree = "<group>"; };
 		B4AF798C174A9A330041555A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -825,8 +925,6 @@
 		B4BCF436170ED5D4008EDF3A /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		B4BCF439170ED60C008EDF3A /* FeaturedProgramsStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeaturedProgramsStoreViewController.h; sourceTree = "<group>"; };
 		B4BCF43A170ED60C008EDF3A /* FeaturedProgramsStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturedProgramsStoreViewController.m; sourceTree = "<group>"; };
-		B4D4DD4117156A8500EEE3F8 /* PointInDirectionBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointInDirectionBrick.h; sourceTree = "<group>"; };
-		B4D4DD4217156A8500EEE3F8 /* PointInDirectionBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointInDirectionBrick.m; sourceTree = "<group>"; };
 		B4D940C6170EC708003DDBFA /* CatrobatImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatrobatImageCell.h; sourceTree = "<group>"; };
 		B4D940CC170EC903003DDBFA /* CatrobatBaseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatrobatBaseCell.h; sourceTree = "<group>"; };
 		B4D940CD170EC903003DDBFA /* CatrobatBaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatrobatBaseCell.m; sourceTree = "<group>"; };
@@ -836,23 +934,15 @@
 		B4D940DF170ECB8B003DDBFA /* DarkBlueGradientCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DarkBlueGradientCell.m; sourceTree = "<group>"; };
 		B4DEFC8E170F464200DD1939 /* TestParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestParser.h; sourceTree = "<group>"; };
 		B4DEFC8F170F464200DD1939 /* TestParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestParser.m; sourceTree = "<group>"; };
-		B4E7D255176EF20F00EC8AD8 /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
-		B4E7D256176EF20F00EC8AD8 /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
 		B4E7D259176EF2CA00EC8AD8 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		B4F243CB170EBEF7007A071D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B4F243CC170EBEF7007A071D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C34B44EA17F079C700624730 /* BrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickTests.m; sourceTree = "<group>"; };
 		C34B44EC17F079F500624730 /* CustomExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomExtensionsTests.m; sourceTree = "<group>"; };
-		C34B44F217F1D2C700624730 /* ClearGraphicEffectBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearGraphicEffectBrick.h; sourceTree = "<group>"; };
-		C34B44F317F1D2C700624730 /* ClearGraphicEffectBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearGraphicEffectBrick.m; sourceTree = "<group>"; };
-		C34B44F617F1D8D200624730 /* ChangeBrightnessByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeBrightnessByNBrick.m; sourceTree = "<group>"; };
-		C34B44F717F1D8D200624730 /* ChangeBrightnessByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeBrightnessByNBrick.h; sourceTree = "<group>"; };
 		C3BF754B18117F6000134B77 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		C3F1DD5A180AD1DC00E2FA45 /* ScenePresenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenePresenterViewController.h; sourceTree = "<group>"; };
 		C3F1DD5B180AD1DC00E2FA45 /* ScenePresenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = ScenePresenterViewController.m; sourceTree = "<group>"; tabWidth = 4; };
 		C3F2950B1813C63200E37D61 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
-		CA047EC218C782550078BE08 /* BrickManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickManager.h; sourceTree = "<group>"; };
-		CA047EC318C782550078BE08 /* BrickManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickManager.m; sourceTree = "<group>"; };
 		CA05A19A18282B2C0025421A /* SearchStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchStoreViewController.h; sourceTree = "<group>"; };
 		CA05A19B18282B2C0025421A /* SearchStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStoreViewController.m; sourceTree = "<group>"; };
 		CA05A19D18286CDA0025421A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -900,16 +990,10 @@
 		CA63C9E71A13F04F009A32DB /* ClearGraphicEffectBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ClearGraphicEffectBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CA63C9E91A13F0D5009A32DB /* BroadcastWaitBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BroadcastWaitBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		CA63C9EA1A13F0DB009A32DB /* BroadcastWaitBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BroadcastWaitBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		CA63C9EE1A13F1AA009A32DB /* LedOnBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LedOnBrick.h; sourceTree = "<group>"; };
-		CA63C9EF1A13F1B8009A32DB /* LedOffBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LedOffBrick.h; sourceTree = "<group>"; };
-		CA63C9F01A13F1C7009A32DB /* LedOnBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LedOnBrick.m; sourceTree = "<group>"; };
-		CA63C9F21A13F294009A32DB /* LedOffBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LedOffBrick.m; sourceTree = "<group>"; };
 		CA63C9F41A13F308009A32DB /* LedOnBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LedOnBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		CA63C9F51A13F30F009A32DB /* LedOnBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LedOnBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CA63C9F71A13F346009A32DB /* LedOffBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LedOffBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		CA63C9F81A13F34B009A32DB /* LedOffBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LedOffBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		CA63C9FA1A13F4E6009A32DB /* VibrationBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VibrationBrick.h; sourceTree = "<group>"; };
-		CA63C9FB1A13F4EE009A32DB /* VibrationBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VibrationBrick.m; sourceTree = "<group>"; };
 		CA63C9FF1A13F635009A32DB /* VibrationBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VibrationBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		CA63CA001A13F648009A32DB /* VibrationBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VibrationBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CA63CA021A13FA79009A32DB /* ChangeVariableBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChangeVariableBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
@@ -1091,96 +1175,12 @@
 		CAFAEAFA1A13E21900C9F170 /* RepeatBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RepeatBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CAFAEAFC1A13E45200C9F170 /* BroadcastBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BroadcastBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		CAFAEAFD1A13E45F00C9F170 /* BroadcastBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BroadcastBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		CD0CCE5F170CB39600B70036 /* Brick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brick.h; sourceTree = "<group>"; };
-		CD0CCE60170CB39600B70036 /* Brick.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = Brick.m; sourceTree = "<group>"; tabWidth = 4; };
-		CD0CCE61170CB39600B70036 /* BroadcastBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastBrick.h; sourceTree = "<group>"; };
-		CD0CCE62170CB39600B70036 /* BroadcastBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastBrick.m; sourceTree = "<group>"; };
-		CD0CCE63170CB39600B70036 /* BroadcastScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastScript.h; sourceTree = "<group>"; };
-		CD0CCE64170CB39600B70036 /* BroadcastScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastScript.m; sourceTree = "<group>"; };
-		CD0CCE65170CB39600B70036 /* BroadcastWaitBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastWaitBrick.h; sourceTree = "<group>"; };
-		CD0CCE66170CB39600B70036 /* BroadcastWaitBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastWaitBrick.m; sourceTree = "<group>"; };
-		CD0CCE68170CB39600B70036 /* BroadcastWaitHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastWaitHandler.h; sourceTree = "<group>"; };
-		CD0CCE69170CB39600B70036 /* BroadcastWaitHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastWaitHandler.m; sourceTree = "<group>"; };
-		CD0CCE7A170CB39600B70036 /* ChangeGhostEffectByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeGhostEffectByNBrick.h; sourceTree = "<group>"; };
-		CD0CCE7B170CB39600B70036 /* ChangeGhostEffectByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeGhostEffectByNBrick.m; sourceTree = "<group>"; };
-		CD0CCE7C170CB39600B70036 /* ChangeSizeByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeSizeByNBrick.h; sourceTree = "<group>"; };
-		CD0CCE7D170CB39600B70036 /* ChangeSizeByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeSizeByNBrick.m; sourceTree = "<group>"; };
-		CD0CCE7E170CB39600B70036 /* ChangeVolumeByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeVolumeByNBrick.h; sourceTree = "<group>"; };
-		CD0CCE7F170CB39600B70036 /* ChangeVolumeByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVolumeByNBrick.m; sourceTree = "<group>"; };
-		CD0CCE80170CB39600B70036 /* ChangeXByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeXByNBrick.h; sourceTree = "<group>"; };
-		CD0CCE81170CB39600B70036 /* ChangeXByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeXByNBrick.m; sourceTree = "<group>"; };
-		CD0CCE82170CB39600B70036 /* ChangeYByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeYByNBrick.h; sourceTree = "<group>"; };
-		CD0CCE83170CB39600B70036 /* ChangeYByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeYByNBrick.m; sourceTree = "<group>"; };
-		CD0CCE85170CB39600B70036 /* ComeToFrontBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComeToFrontBrick.h; sourceTree = "<group>"; };
-		CD0CCE86170CB39600B70036 /* ComeToFrontBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComeToFrontBrick.m; sourceTree = "<group>"; };
-		CD0CCE9F170CB39600B70036 /* ForeverBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForeverBrick.h; sourceTree = "<group>"; };
-		CD0CCEA0170CB39600B70036 /* ForeverBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForeverBrick.m; sourceTree = "<group>"; };
-		CD0CCEA3170CB39600B70036 /* GlideToBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlideToBrick.h; sourceTree = "<group>"; };
-		CD0CCEA4170CB39600B70036 /* GlideToBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlideToBrick.m; sourceTree = "<group>"; };
-		CD0CCEA5170CB39600B70036 /* GoNStepsBackBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoNStepsBackBrick.h; sourceTree = "<group>"; };
-		CD0CCEA6170CB39600B70036 /* GoNStepsBackBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoNStepsBackBrick.m; sourceTree = "<group>"; };
-		CD0CCEA7170CB39600B70036 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
-		CD0CCEA8170CB39600B70036 /* Header.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Header.m; sourceTree = "<group>"; };
-		CD0CCEAA170CB39600B70036 /* HideBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideBrick.h; sourceTree = "<group>"; };
-		CD0CCEAB170CB39600B70036 /* HideBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HideBrick.m; sourceTree = "<group>"; };
-		CD0CCED3170CB39700B70036 /* Look.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Look.h; sourceTree = "<group>"; };
-		CD0CCED4170CB39700B70036 /* Look.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Look.m; sourceTree = "<group>"; };
-		CD0CCED5170CB39700B70036 /* LoopEndBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopEndBrick.h; sourceTree = "<group>"; };
-		CD0CCED6170CB39700B70036 /* LoopEndBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopEndBrick.m; sourceTree = "<group>"; };
-		CD0CCEE6170CB39700B70036 /* NextLookBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextLookBrick.h; sourceTree = "<group>"; };
-		CD0CCEE7170CB39700B70036 /* NextLookBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextLookBrick.m; sourceTree = "<group>"; };
 		CD0CCEEA170CB39700B70036 /* Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parser.h; sourceTree = "<group>"; };
 		CD0CCEEB170CB39700B70036 /* Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parser.m; sourceTree = "<group>"; };
-		CD0CCEEC170CB39700B70036 /* PlaceAtBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceAtBrick.h; sourceTree = "<group>"; };
-		CD0CCEED170CB39700B70036 /* PlaceAtBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceAtBrick.m; sourceTree = "<group>"; };
-		CD0CCEF0170CB39700B70036 /* PlaySoundBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaySoundBrick.h; sourceTree = "<group>"; };
-		CD0CCEF1170CB39700B70036 /* PlaySoundBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaySoundBrick.m; sourceTree = "<group>"; };
-		CD0CCEF2170CB39700B70036 /* Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Program.h; sourceTree = "<group>"; };
-		CD0CCEF3170CB39700B70036 /* Program.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Program.m; sourceTree = "<group>"; };
 		CD0CCEF8170CB39700B70036 /* ProjectParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectParser.h; sourceTree = "<group>"; };
 		CD0CCEF9170CB39700B70036 /* ProjectParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectParser.m; sourceTree = "<group>"; };
-		CD0CCEFC170CB39700B70036 /* RepeatBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatBrick.h; sourceTree = "<group>"; };
-		CD0CCEFD170CB39700B70036 /* RepeatBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatBrick.m; sourceTree = "<group>"; };
-		CD0CCF0D170CB39700B70036 /* Script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Script.h; sourceTree = "<group>"; };
-		CD0CCF0E170CB39700B70036 /* Script.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Script.m; sourceTree = "<group>"; };
-		CD0CCF0F170CB39700B70036 /* SetBrightnessBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetBrightnessBrick.h; sourceTree = "<group>"; };
-		CD0CCF10170CB39700B70036 /* SetBrightnessBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetBrightnessBrick.m; sourceTree = "<group>"; };
-		CD0CCF11170CB39700B70036 /* SetGhostEffectBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetGhostEffectBrick.h; sourceTree = "<group>"; };
-		CD0CCF12170CB39700B70036 /* SetGhostEffectBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetGhostEffectBrick.m; sourceTree = "<group>"; };
-		CD0CCF13170CB39700B70036 /* SetLookBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetLookBrick.h; sourceTree = "<group>"; };
-		CD0CCF14170CB39700B70036 /* SetLookBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetLookBrick.m; sourceTree = "<group>"; };
-		CD0CCF15170CB39700B70036 /* SetSizeToBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSizeToBrick.h; sourceTree = "<group>"; };
-		CD0CCF16170CB39700B70036 /* SetSizeToBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSizeToBrick.m; sourceTree = "<group>"; };
-		CD0CCF19170CB39700B70036 /* SetVolumeToBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetVolumeToBrick.h; sourceTree = "<group>"; };
-		CD0CCF1A170CB39700B70036 /* SetVolumeToBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetVolumeToBrick.m; sourceTree = "<group>"; };
-		CD0CCF1B170CB39700B70036 /* SetXBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetXBrick.h; sourceTree = "<group>"; };
-		CD0CCF1C170CB39700B70036 /* SetXBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetXBrick.m; sourceTree = "<group>"; };
-		CD0CCF1D170CB39700B70036 /* SetYBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetYBrick.h; sourceTree = "<group>"; };
-		CD0CCF1E170CB39700B70036 /* SetYBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetYBrick.m; sourceTree = "<group>"; };
-		CD0CCF1F170CB39700B70036 /* ShowBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowBrick.h; sourceTree = "<group>"; };
-		CD0CCF20170CB39700B70036 /* ShowBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowBrick.m; sourceTree = "<group>"; };
-		CD0CCF21170CB39700B70036 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
-		CD0CCF22170CB39700B70036 /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sound.m; sourceTree = "<group>"; };
-		CD0CCF25170CB39700B70036 /* SpeakBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakBrick.h; sourceTree = "<group>"; };
-		CD0CCF26170CB39700B70036 /* SpeakBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakBrick.m; sourceTree = "<group>"; };
-		CD0CCF32170CB39700B70036 /* StartScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScript.h; sourceTree = "<group>"; };
-		CD0CCF33170CB39700B70036 /* StartScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScript.m; sourceTree = "<group>"; };
-		CD0CCF34170CB39700B70036 /* StopAllSoundsBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAllSoundsBrick.h; sourceTree = "<group>"; };
-		CD0CCF35170CB39700B70036 /* StopAllSoundsBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopAllSoundsBrick.m; sourceTree = "<group>"; };
-		CD0CCF3C170CB39700B70036 /* TurnLeftBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurnLeftBrick.h; sourceTree = "<group>"; };
-		CD0CCF3D170CB39700B70036 /* TurnLeftBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TurnLeftBrick.m; sourceTree = "<group>"; };
-		CD0CCF3E170CB39700B70036 /* TurnRightBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurnRightBrick.h; sourceTree = "<group>"; };
-		CD0CCF3F170CB39700B70036 /* TurnRightBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TurnRightBrick.m; sourceTree = "<group>"; };
-		CD0CCF44170CB39700B70036 /* WaitBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitBrick.h; sourceTree = "<group>"; };
-		CD0CCF45170CB39700B70036 /* WaitBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitBrick.m; sourceTree = "<group>"; };
-		CD0CCF46170CB39700B70036 /* WhenScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhenScript.h; sourceTree = "<group>"; };
-		CD0CCF47170CB39700B70036 /* WhenScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhenScript.m; sourceTree = "<group>"; };
-		CD639C79170DF52600FA67DA /* SpriteObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteObject.h; sourceTree = "<group>"; };
-		CD639C7A170DF52600FA67DA /* SpriteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteObject.m; sourceTree = "<group>"; tabWidth = 4; };
 		CD8CC8BA1724346200239EBF /* HelpWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpWebViewController.h; sourceTree = "<group>"; };
 		CD8CC8BB1724346200239EBF /* HelpWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpWebViewController.m; sourceTree = "<group>"; };
-		CDFEFCB21758CBC8002B5B0E /* IfOnEdgeBounceBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfOnEdgeBounceBrick.h; sourceTree = "<group>"; };
-		CDFEFCB31758CBC8002B5B0E /* IfOnEdgeBounceBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfOnEdgeBounceBrick.m; sourceTree = "<group>"; };
 		DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DE3F097711B7BABD009D4DB0 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -1420,27 +1420,6 @@
 				4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */,
 			);
 			name = Formula;
-			sourceTree = "<group>";
-		};
-		4C3C03F8199BA6B50004F594 /* FormulaEditor */ = {
-			isa = PBXGroup;
-			children = (
-				4C3C0405199BA7DF0004F594 /* Exceptions */,
-				4C3C03FF199BA7B40004F594 /* Functions.h */,
-				4C3C0400199BA7B40004F594 /* Functions.m */,
-				4C3C0401199BA7B40004F594 /* Operators.h */,
-				4C3C0402199BA7B40004F594 /* Operators.m */,
-			);
-			name = FormulaEditor;
-			sourceTree = "<group>";
-		};
-		4C3C0405199BA7DF0004F594 /* Exceptions */ = {
-			isa = PBXGroup;
-			children = (
-				4C3C0406199BA7E90004F594 /* InternFormulaParserException.h */,
-				4C3C0407199BA7E90004F594 /* InternFormulaParserException.m */,
-			);
-			name = Exceptions;
 			sourceTree = "<group>";
 		};
 		4C9E2D1D198EA6B600455B77 /* Licenses */ = {
@@ -2163,6 +2142,347 @@
 			path = ProgramLoadingInfo;
 			sourceTree = "<group>";
 		};
+		92FF30271A24DCAA00093DA7 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				92FF30281A24DCAA00093DA7 /* BrickManager */,
+				92FF302B1A24DCAA00093DA7 /* Bricks */,
+				92FF30941A24DCAA00093DA7 /* BroadcastWait */,
+				92FF30971A24DCAA00093DA7 /* Formula */,
+				92FF309C1A24DCAA00093DA7 /* FormulaEditor */,
+				92FF30A31A24DCAA00093DA7 /* Header */,
+				92FF30A61A24DCAA00093DA7 /* Look */,
+				92FF30A91A24DCAA00093DA7 /* Program */,
+				92FF30AC1A24DCAA00093DA7 /* ProgramManager */,
+				92FF30AF1A24DCAA00093DA7 /* Scene */,
+				92FF30B21A24DCAA00093DA7 /* Scripts */,
+				92FF30BB1A24DCAA00093DA7 /* Sound */,
+				92FF30BE1A24DCAA00093DA7 /* SpriteObject */,
+				92FF30C11A24DCAA00093DA7 /* UserVariable */,
+				92FF30C41A24DCAA00093DA7 /* VariablesContainer */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		92FF30281A24DCAA00093DA7 /* BrickManager */ = {
+			isa = PBXGroup;
+			children = (
+				92FF30291A24DCAA00093DA7 /* BrickManager.h */,
+				92FF302A1A24DCAA00093DA7 /* BrickManager.m */,
+			);
+			path = BrickManager;
+			sourceTree = "<group>";
+		};
+		92FF302B1A24DCAA00093DA7 /* Bricks */ = {
+			isa = PBXGroup;
+			children = (
+				92FF302C1A24DCAA00093DA7 /* Brick.h */,
+				92FF302D1A24DCAA00093DA7 /* Brick.m */,
+				92FF302E1A24DCAA00093DA7 /* ControlBrick */,
+				92FF30371A24DCAA00093DA7 /* IFBricks */,
+				92FF303E1A24DCAA00093DA7 /* LookBricks */,
+				92FF30551A24DCAA00093DA7 /* LoopBricks */,
+				92FF305E1A24DCAA00093DA7 /* MoveBricks */,
+				92FF306F1A24DCAA00093DA7 /* RotationBricks */,
+				92FF30781A24DCAA00093DA7 /* SensorBricks */,
+				92FF307F1A24DCAA00093DA7 /* SizeBricks */,
+				92FF30841A24DCAA00093DA7 /* SoundBricks */,
+				92FF308F1A24DCAA00093DA7 /* VariableBricks */,
+			);
+			path = Bricks;
+			sourceTree = "<group>";
+		};
+		92FF302E1A24DCAA00093DA7 /* ControlBrick */ = {
+			isa = PBXGroup;
+			children = (
+				92FF302F1A24DCAA00093DA7 /* BroadcastBrick.h */,
+				92FF30301A24DCAA00093DA7 /* BroadcastBrick.m */,
+				92FF30311A24DCAA00093DA7 /* BroadcastWaitBrick.h */,
+				92FF30321A24DCAA00093DA7 /* BroadcastWaitBrick.m */,
+				92FF30331A24DCAA00093DA7 /* NoteBrick.h */,
+				92FF30341A24DCAA00093DA7 /* NoteBrick.m */,
+				92FF30351A24DCAA00093DA7 /* WaitBrick.h */,
+				92FF30361A24DCAA00093DA7 /* WaitBrick.m */,
+			);
+			path = ControlBrick;
+			sourceTree = "<group>";
+		};
+		92FF30371A24DCAA00093DA7 /* IFBricks */ = {
+			isa = PBXGroup;
+			children = (
+				92FF30381A24DCAA00093DA7 /* IfLogicBeginBrick.h */,
+				92FF30391A24DCAA00093DA7 /* IfLogicBeginBrick.m */,
+				92FF303A1A24DCAA00093DA7 /* IfLogicElseBrick.h */,
+				92FF303B1A24DCAA00093DA7 /* IfLogicElseBrick.m */,
+				92FF303C1A24DCAA00093DA7 /* IfLogicEndBrick.h */,
+				92FF303D1A24DCAA00093DA7 /* IfLogicEndBrick.m */,
+			);
+			path = IFBricks;
+			sourceTree = "<group>";
+		};
+		92FF303E1A24DCAA00093DA7 /* LookBricks */ = {
+			isa = PBXGroup;
+			children = (
+				92FF303F1A24DCAA00093DA7 /* ChangeBrightnessByNBrick.h */,
+				92FF30401A24DCAA00093DA7 /* ChangeBrightnessByNBrick.m */,
+				92FF30411A24DCAA00093DA7 /* ChangeGhostEffectByNBrick.h */,
+				92FF30421A24DCAA00093DA7 /* ChangeGhostEffectByNBrick.m */,
+				92FF30431A24DCAA00093DA7 /* ClearGraphicEffectBrick.h */,
+				92FF30441A24DCAA00093DA7 /* ClearGraphicEffectBrick.m */,
+				92FF30451A24DCAA00093DA7 /* ComeToFrontBrick.h */,
+				92FF30461A24DCAA00093DA7 /* ComeToFrontBrick.m */,
+				92FF30471A24DCAA00093DA7 /* GoNStepsBackBrick.h */,
+				92FF30481A24DCAA00093DA7 /* GoNStepsBackBrick.m */,
+				92FF30491A24DCAA00093DA7 /* HideBrick.h */,
+				92FF304A1A24DCAA00093DA7 /* HideBrick.m */,
+				92FF304B1A24DCAA00093DA7 /* NextLookBrick.h */,
+				92FF304C1A24DCAA00093DA7 /* NextLookBrick.m */,
+				92FF304D1A24DCAA00093DA7 /* SetBrightnessBrick.h */,
+				92FF304E1A24DCAA00093DA7 /* SetBrightnessBrick.m */,
+				92FF304F1A24DCAA00093DA7 /* SetGhostEffectBrick.h */,
+				92FF30501A24DCAA00093DA7 /* SetGhostEffectBrick.m */,
+				92FF30511A24DCAA00093DA7 /* SetLookBrick.h */,
+				92FF30521A24DCAA00093DA7 /* SetLookBrick.m */,
+				92FF30531A24DCAA00093DA7 /* ShowBrick.h */,
+				92FF30541A24DCAA00093DA7 /* ShowBrick.m */,
+			);
+			path = LookBricks;
+			sourceTree = "<group>";
+		};
+		92FF30551A24DCAA00093DA7 /* LoopBricks */ = {
+			isa = PBXGroup;
+			children = (
+				92FF30561A24DCAA00093DA7 /* ForeverBrick.h */,
+				92FF30571A24DCAA00093DA7 /* ForeverBrick.m */,
+				92FF30581A24DCAA00093DA7 /* LoopBeginBrick.h */,
+				92FF30591A24DCAA00093DA7 /* LoopBeginBrick.m */,
+				92FF305A1A24DCAA00093DA7 /* LoopEndBrick.h */,
+				92FF305B1A24DCAA00093DA7 /* LoopEndBrick.m */,
+				92FF305C1A24DCAA00093DA7 /* RepeatBrick.h */,
+				92FF305D1A24DCAA00093DA7 /* RepeatBrick.m */,
+			);
+			path = LoopBricks;
+			sourceTree = "<group>";
+		};
+		92FF305E1A24DCAA00093DA7 /* MoveBricks */ = {
+			isa = PBXGroup;
+			children = (
+				92FF305F1A24DCAA00093DA7 /* ChangeXByNBrick.h */,
+				92FF30601A24DCAA00093DA7 /* ChangeXByNBrick.m */,
+				92FF30611A24DCAA00093DA7 /* ChangeYByNBrick.h */,
+				92FF30621A24DCAA00093DA7 /* ChangeYByNBrick.m */,
+				92FF30631A24DCAA00093DA7 /* GlideToBrick.h */,
+				92FF30641A24DCAA00093DA7 /* GlideToBrick.m */,
+				92FF30651A24DCAA00093DA7 /* IfOnEdgeBounceBrick.h */,
+				92FF30661A24DCAA00093DA7 /* IfOnEdgeBounceBrick.m */,
+				92FF30671A24DCAA00093DA7 /* MoveNStepsBrick.h */,
+				92FF30681A24DCAA00093DA7 /* MoveNStepsBrick.m */,
+				92FF30691A24DCAA00093DA7 /* PlaceAtBrick.h */,
+				92FF306A1A24DCAA00093DA7 /* PlaceAtBrick.m */,
+				92FF306B1A24DCAA00093DA7 /* SetXBrick.h */,
+				92FF306C1A24DCAA00093DA7 /* SetXBrick.m */,
+				92FF306D1A24DCAA00093DA7 /* SetYBrick.h */,
+				92FF306E1A24DCAA00093DA7 /* SetYBrick.m */,
+			);
+			path = MoveBricks;
+			sourceTree = "<group>";
+		};
+		92FF306F1A24DCAA00093DA7 /* RotationBricks */ = {
+			isa = PBXGroup;
+			children = (
+				92FF30701A24DCAA00093DA7 /* PointInDirectionBrick.h */,
+				92FF30711A24DCAA00093DA7 /* PointInDirectionBrick.m */,
+				92FF30721A24DCAA00093DA7 /* PointToBrick.h */,
+				92FF30731A24DCAA00093DA7 /* PointToBrick.m */,
+				92FF30741A24DCAA00093DA7 /* TurnLeftBrick.h */,
+				92FF30751A24DCAA00093DA7 /* TurnLeftBrick.m */,
+				92FF30761A24DCAA00093DA7 /* TurnRightBrick.h */,
+				92FF30771A24DCAA00093DA7 /* TurnRightBrick.m */,
+			);
+			path = RotationBricks;
+			sourceTree = "<group>";
+		};
+		92FF30781A24DCAA00093DA7 /* SensorBricks */ = {
+			isa = PBXGroup;
+			children = (
+				92FF30791A24DCAA00093DA7 /* LedOffBrick.h */,
+				92FF307A1A24DCAA00093DA7 /* LedOffBrick.m */,
+				92FF307B1A24DCAA00093DA7 /* LedOnBrick.h */,
+				92FF307C1A24DCAA00093DA7 /* LedOnBrick.m */,
+				92FF307D1A24DCAA00093DA7 /* VibrationBrick.h */,
+				92FF307E1A24DCAA00093DA7 /* VibrationBrick.m */,
+			);
+			path = SensorBricks;
+			sourceTree = "<group>";
+		};
+		92FF307F1A24DCAA00093DA7 /* SizeBricks */ = {
+			isa = PBXGroup;
+			children = (
+				92FF30801A24DCAA00093DA7 /* ChangeSizeByNBrick.h */,
+				92FF30811A24DCAA00093DA7 /* ChangeSizeByNBrick.m */,
+				92FF30821A24DCAA00093DA7 /* SetSizeToBrick.h */,
+				92FF30831A24DCAA00093DA7 /* SetSizeToBrick.m */,
+			);
+			path = SizeBricks;
+			sourceTree = "<group>";
+		};
+		92FF30841A24DCAA00093DA7 /* SoundBricks */ = {
+			isa = PBXGroup;
+			children = (
+				92FF30851A24DCAA00093DA7 /* ChangeVolumeByNBrick.h */,
+				92FF30861A24DCAA00093DA7 /* ChangeVolumeByNBrick.m */,
+				92FF30871A24DCAA00093DA7 /* PlaySoundBrick.h */,
+				92FF30881A24DCAA00093DA7 /* PlaySoundBrick.m */,
+				92FF30891A24DCAA00093DA7 /* SetVolumeToBrick.h */,
+				92FF308A1A24DCAA00093DA7 /* SetVolumeToBrick.m */,
+				92FF308B1A24DCAA00093DA7 /* SpeakBrick.h */,
+				92FF308C1A24DCAA00093DA7 /* SpeakBrick.m */,
+				92FF308D1A24DCAA00093DA7 /* StopAllSoundsBrick.h */,
+				92FF308E1A24DCAA00093DA7 /* StopAllSoundsBrick.m */,
+			);
+			path = SoundBricks;
+			sourceTree = "<group>";
+		};
+		92FF308F1A24DCAA00093DA7 /* VariableBricks */ = {
+			isa = PBXGroup;
+			children = (
+				92FF30901A24DCAA00093DA7 /* ChangeVariableBrick.h */,
+				92FF30911A24DCAA00093DA7 /* ChangeVariableBrick.m */,
+				92FF30921A24DCAA00093DA7 /* SetVariableBrick.h */,
+				92FF30931A24DCAA00093DA7 /* SetVariableBrick.m */,
+			);
+			path = VariableBricks;
+			sourceTree = "<group>";
+		};
+		92FF30941A24DCAA00093DA7 /* BroadcastWait */ = {
+			isa = PBXGroup;
+			children = (
+				92FF30951A24DCAA00093DA7 /* BroadcastWaitHandler.h */,
+				92FF30961A24DCAA00093DA7 /* BroadcastWaitHandler.m */,
+			);
+			path = BroadcastWait;
+			sourceTree = "<group>";
+		};
+		92FF30971A24DCAA00093DA7 /* Formula */ = {
+			isa = PBXGroup;
+			children = (
+				92FF30981A24DCAA00093DA7 /* Formula.h */,
+				92FF30991A24DCAA00093DA7 /* Formula.m */,
+				92FF309A1A24DCAA00093DA7 /* FormulaElement.h */,
+				92FF309B1A24DCAA00093DA7 /* FormulaElement.m */,
+			);
+			path = Formula;
+			sourceTree = "<group>";
+		};
+		92FF309C1A24DCAA00093DA7 /* FormulaEditor */ = {
+			isa = PBXGroup;
+			children = (
+				92FF309D1A24DCAA00093DA7 /* Functions.h */,
+				92FF309E1A24DCAA00093DA7 /* Functions.m */,
+				92FF309F1A24DCAA00093DA7 /* InternFormulaParserException.h */,
+				92FF30A01A24DCAA00093DA7 /* InternFormulaParserException.m */,
+				92FF30A11A24DCAA00093DA7 /* Operators.h */,
+				92FF30A21A24DCAA00093DA7 /* Operators.m */,
+			);
+			path = FormulaEditor;
+			sourceTree = "<group>";
+		};
+		92FF30A31A24DCAA00093DA7 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				92FF30A41A24DCAA00093DA7 /* Header.h */,
+				92FF30A51A24DCAA00093DA7 /* Header.m */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		92FF30A61A24DCAA00093DA7 /* Look */ = {
+			isa = PBXGroup;
+			children = (
+				92FF30A71A24DCAA00093DA7 /* Look.h */,
+				92FF30A81A24DCAA00093DA7 /* Look.m */,
+			);
+			path = Look;
+			sourceTree = "<group>";
+		};
+		92FF30A91A24DCAA00093DA7 /* Program */ = {
+			isa = PBXGroup;
+			children = (
+				92FF30AA1A24DCAA00093DA7 /* Program.h */,
+				92FF30AB1A24DCAA00093DA7 /* Program.m */,
+			);
+			path = Program;
+			sourceTree = "<group>";
+		};
+		92FF30AC1A24DCAA00093DA7 /* ProgramManager */ = {
+			isa = PBXGroup;
+			children = (
+				92FF30AD1A24DCAA00093DA7 /* ProgramManager.h */,
+				92FF30AE1A24DCAA00093DA7 /* ProgramManager.m */,
+			);
+			path = ProgramManager;
+			sourceTree = "<group>";
+		};
+		92FF30AF1A24DCAA00093DA7 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				92FF30B01A24DCAA00093DA7 /* Scene.h */,
+				92FF30B11A24DCAA00093DA7 /* Scene.m */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		92FF30B21A24DCAA00093DA7 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				92FF30B31A24DCAA00093DA7 /* BroadcastScript.h */,
+				92FF30B41A24DCAA00093DA7 /* BroadcastScript.m */,
+				92FF30B51A24DCAA00093DA7 /* Script.h */,
+				92FF30B61A24DCAA00093DA7 /* Script.m */,
+				92FF30B71A24DCAA00093DA7 /* StartScript.h */,
+				92FF30B81A24DCAA00093DA7 /* StartScript.m */,
+				92FF30B91A24DCAA00093DA7 /* WhenScript.h */,
+				92FF30BA1A24DCAA00093DA7 /* WhenScript.m */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
+		92FF30BB1A24DCAA00093DA7 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				92FF30BC1A24DCAA00093DA7 /* Sound.h */,
+				92FF30BD1A24DCAA00093DA7 /* Sound.m */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
+		92FF30BE1A24DCAA00093DA7 /* SpriteObject */ = {
+			isa = PBXGroup;
+			children = (
+				92FF30BF1A24DCAA00093DA7 /* SpriteObject.h */,
+				92FF30C01A24DCAA00093DA7 /* SpriteObject.m */,
+			);
+			path = SpriteObject;
+			sourceTree = "<group>";
+		};
+		92FF30C11A24DCAA00093DA7 /* UserVariable */ = {
+			isa = PBXGroup;
+			children = (
+				92FF30C21A24DCAA00093DA7 /* UserVariable.h */,
+				92FF30C31A24DCAA00093DA7 /* UserVariable.m */,
+			);
+			path = UserVariable;
+			sourceTree = "<group>";
+		};
+		92FF30C41A24DCAA00093DA7 /* VariablesContainer */ = {
+			isa = PBXGroup;
+			children = (
+				92FF30C51A24DCAA00093DA7 /* VariablesContainer.h */,
+				92FF30C61A24DCAA00093DA7 /* VariablesContainer.m */,
+			);
+			path = VariablesContainer;
+			sourceTree = "<group>";
+		};
 		B4003032170EB51000396DB7 /* CatrobatTableViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2172,52 +2492,6 @@
 				B4003031170EB50A00396DB7 /* CatrobatTableViewController.m */,
 			);
 			name = CatrobatTableViewController;
-			sourceTree = "<group>";
-		};
-		B402288317329FEE004C4942 /* IfLogicBeginBrick */ = {
-			isa = PBXGroup;
-			children = (
-				B402288017329FEB004C4942 /* IfLogicBeginBrick.h */,
-				B402288117329FEB004C4942 /* IfLogicBeginBrick.m */,
-			);
-			name = IfLogicBeginBrick;
-			sourceTree = "<group>";
-		};
-		B402288E1732A334004C4942 /* IfBricks */ = {
-			isa = PBXGroup;
-			children = (
-				B402288317329FEE004C4942 /* IfLogicBeginBrick */,
-				B40228931732A545004C4942 /* IfLogicElseBrick */,
-				B40228981732A592004C4942 /* IfLogicEndBrick */,
-			);
-			name = IfBricks;
-			sourceTree = "<group>";
-		};
-		B40228931732A545004C4942 /* IfLogicElseBrick */ = {
-			isa = PBXGroup;
-			children = (
-				B402288F1732A540004C4942 /* IfLogicElseBrick.h */,
-				B40228901732A540004C4942 /* IfLogicElseBrick.m */,
-			);
-			name = IfLogicElseBrick;
-			sourceTree = "<group>";
-		};
-		B40228981732A592004C4942 /* IfLogicEndBrick */ = {
-			isa = PBXGroup;
-			children = (
-				B40228941732A58E004C4942 /* IfLogicEndBrick.h */,
-				B40228951732A58E004C4942 /* IfLogicEndBrick.m */,
-			);
-			name = IfLogicEndBrick;
-			sourceTree = "<group>";
-		};
-		B40228A71732ADF8004C4942 /* PointToBrick */ = {
-			isa = PBXGroup;
-			children = (
-				B40228A31732ADF2004C4942 /* PointToBrick.h */,
-				B40228A41732ADF3004C4942 /* PointToBrick.m */,
-			);
-			name = PointToBrick;
 			sourceTree = "<group>";
 		};
 		B40C3072170ECC53000B872F /* DarkBlueGradientImageCell */ = {
@@ -2239,44 +2513,6 @@
 			);
 			name = Resources;
 			path = Catty;
-			sourceTree = "<group>";
-		};
-		B44F32A21737AC3100BD97AC /* ProgramManager */ = {
-			isa = PBXGroup;
-			children = (
-				B44F329E1737AC2E00BD97AC /* ProgramManager.h */,
-				B44F329F1737AC2E00BD97AC /* ProgramManager.m */,
-			);
-			name = ProgramManager;
-			sourceTree = "<group>";
-		};
-		B45A5829173253E9000E038F /* SetVariableBrick */ = {
-			isa = PBXGroup;
-			children = (
-				B45A5825173253E5000E038F /* SetVariableBrick.h */,
-				B45A5826173253E5000E038F /* SetVariableBrick.m */,
-			);
-			name = SetVariableBrick;
-			sourceTree = "<group>";
-		};
-		B45A582E17325446000E038F /* UserVariable */ = {
-			isa = PBXGroup;
-			children = (
-				B45A582A17325442000E038F /* UserVariable.h */,
-				B45A582B17325442000E038F /* UserVariable.m */,
-			);
-			name = UserVariable;
-			sourceTree = "<group>";
-		};
-		B45A58331732788C000E038F /* Formula */ = {
-			isa = PBXGroup;
-			children = (
-				B45A582F17327887000E038F /* Formula.h */,
-				B45A583017327887000E038F /* Formula.m */,
-				B45A583417327BBE000E038F /* FormulaElement.h */,
-				B45A583517327BBE000E038F /* FormulaElement.m */,
-			);
-			name = Formula;
 			sourceTree = "<group>";
 		};
 		B46B270317703F9400172837 /* CattyTests */ = {
@@ -2312,42 +2548,6 @@
 				B46B271217703FB700172837 /* SensorHandlerTests.m */,
 			);
 			name = SensorHandlerTests;
-			sourceTree = "<group>";
-		};
-		B470688C1733BA9A00EC880D /* VariablesContainer */ = {
-			isa = PBXGroup;
-			children = (
-				B47068881733BA9600EC880D /* VariablesContainer.h */,
-				B47068891733BA9600EC880D /* VariablesContainer.m */,
-			);
-			name = VariablesContainer;
-			sourceTree = "<group>";
-		};
-		B47068911733D6EE00EC880D /* ChangeVariableBrick */ = {
-			isa = PBXGroup;
-			children = (
-				B470688D1733D6C800EC880D /* ChangeVariableBrick.h */,
-				B470688E1733D6CA00EC880D /* ChangeVariableBrick.m */,
-			);
-			name = ChangeVariableBrick;
-			sourceTree = "<group>";
-		};
-		B4826F7B174D079E00F57AE9 /* NoteBrick */ = {
-			isa = PBXGroup;
-			children = (
-				B4826F76174D076800F57AE9 /* NoteBrick.h */,
-				B4826F77174D076800F57AE9 /* NoteBrick.m */,
-			);
-			name = NoteBrick;
-			sourceTree = "<group>";
-		};
-		B4840CAA174FAC42002DEC53 /* MoveNStepsBrick */ = {
-			isa = PBXGroup;
-			children = (
-				B4840CA5174FAC3E002DEC53 /* MoveNStepsBrick.h */,
-				B4840CA6174FAC3E002DEC53 /* MoveNStepsBrick.m */,
-			);
-			name = MoveNStepsBrick;
 			sourceTree = "<group>";
 		};
 		B496F5131775996D004BF78A /* SceneTests */ = {
@@ -2442,15 +2642,6 @@
 			name = FeaturedProgramsStoreViewController;
 			sourceTree = "<group>";
 		};
-		B4D4DD3F17156A7500EEE3F8 /* PointInDirectionBrick */ = {
-			isa = PBXGroup;
-			children = (
-				B4D4DD4117156A8500EEE3F8 /* PointInDirectionBrick.h */,
-				B4D4DD4217156A8500EEE3F8 /* PointInDirectionBrick.m */,
-			);
-			name = PointInDirectionBrick;
-			sourceTree = "<group>";
-		};
 		B4D940B2170EC5D5003DDBFA /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -2516,33 +2707,6 @@
 			name = ScenePresenterViewController;
 			sourceTree = "<group>";
 		};
-		B4E7D258176EF23200EC8AD8 /* Scene */ = {
-			isa = PBXGroup;
-			children = (
-				B4E7D255176EF20F00EC8AD8 /* Scene.h */,
-				B4E7D256176EF20F00EC8AD8 /* Scene.m */,
-			);
-			name = Scene;
-			sourceTree = "<group>";
-		};
-		C34B44F517F1D2CF00624730 /* ClearGraphicEffectBrick */ = {
-			isa = PBXGroup;
-			children = (
-				C34B44F217F1D2C700624730 /* ClearGraphicEffectBrick.h */,
-				C34B44F317F1D2C700624730 /* ClearGraphicEffectBrick.m */,
-			);
-			name = ClearGraphicEffectBrick;
-			sourceTree = "<group>";
-		};
-		C34B44F917F1D8D700624730 /* ChangeBrightnessByNBrick */ = {
-			isa = PBXGroup;
-			children = (
-				C34B44F717F1D8D200624730 /* ChangeBrightnessByNBrick.h */,
-				C34B44F617F1D8D200624730 /* ChangeBrightnessByNBrick.m */,
-			);
-			name = ChangeBrightnessByNBrick;
-			sourceTree = "<group>";
-		};
 		C34B44FA17F3402300624730 /* BrickTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -2581,15 +2745,6 @@
 				C34B44EC17F079F500624730 /* CustomExtensionsTests.m */,
 			);
 			name = ExtensionTests;
-			sourceTree = "<group>";
-		};
-		CA047EC118C782320078BE08 /* BrickManager */ = {
-			isa = PBXGroup;
-			children = (
-				CA047EC218C782550078BE08 /* BrickManager.h */,
-				CA047EC318C782550078BE08 /* BrickManager.m */,
-			);
-			name = BrickManager;
 			sourceTree = "<group>";
 		};
 		CA04EDA317E7D1610063EB25 /* Continue & New */ = {
@@ -2765,26 +2920,6 @@
 				CA63C9F81A13F34B009A32DB /* LedOffBrick+CBXMLHandler.m */,
 			);
 			name = LEDBricks;
-			sourceTree = "<group>";
-		};
-		CA63C9ED1A13F185009A32DB /* LEDBricks */ = {
-			isa = PBXGroup;
-			children = (
-				CA63C9EE1A13F1AA009A32DB /* LedOnBrick.h */,
-				CA63C9F01A13F1C7009A32DB /* LedOnBrick.m */,
-				CA63C9EF1A13F1B8009A32DB /* LedOffBrick.h */,
-				CA63C9F21A13F294009A32DB /* LedOffBrick.m */,
-			);
-			name = LEDBricks;
-			sourceTree = "<group>";
-		};
-		CA63C9FD1A13F4F7009A32DB /* VibrationBrick */ = {
-			isa = PBXGroup;
-			children = (
-				CA63C9FA1A13F4E6009A32DB /* VibrationBrick.h */,
-				CA63C9FB1A13F4EE009A32DB /* VibrationBrick.m */,
-			);
-			name = VibrationBrick;
 			sourceTree = "<group>";
 		};
 		CA63C9FE1A13F613009A32DB /* VibrationBrick */ = {
@@ -3468,311 +3603,12 @@
 				92FF2E4C1A24C7D800093DA7 /* Helpers */,
 				92FF2DFD1A24C3BE00093DA7 /* Defines */,
 				B4BCF409170ECFC3008EDF3A /* Extensions & Delegates & Protocols */,
-				CD0CCFF5170CB88F00B70036 /* DataModel */,
+				92FF30271A24DCAA00093DA7 /* DataModel */,
 				CD0CCFF9170CB91A00B70036 /* Parser & Serialization */,
-				B4E7D258176EF23200EC8AD8 /* Scene */,
 				CD0CCE3B170CA00F00B70036 /* ViewController */,
 				B4D940B2170EC5D5003DDBFA /* Views */,
 			);
 			path = Catty;
-			sourceTree = "<group>";
-		};
-		CD0CCFDD170CB54100B70036 /* Bricks */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCFF7170CB8BC00B70036 /* Brick */,
-				CD0CCFDE170CB5E300B70036 /* BroadcastBrick */,
-				CD0CCFDF170CB5EC00B70036 /* BroadcastWaitBrick */,
-				C34B44F917F1D8D700624730 /* ChangeBrightnessByNBrick */,
-				CD0CCFE0170CB5FA00B70036 /* ChangeGhostEffectByNBrick */,
-				CD0CCFE1170CB63200B70036 /* ChangeSizeByNBrick */,
-				B47068911733D6EE00EC880D /* ChangeVariableBrick */,
-				CD0CCFE3170CB64A00B70036 /* ChangeXYByNBrick */,
-				C34B44F517F1D2CF00624730 /* ClearGraphicEffectBrick */,
-				CD0CCFE5170CB68100B70036 /* ComeToFrontBrick */,
-				CD0CCFE7170CB6AA00B70036 /* GlideToBrick */,
-				CD0CCFE8170CB6B400B70036 /* GoNStepsBackBrick */,
-				CD0CCFE9170CB6C100B70036 /* HideBrick */,
-				B402288E1732A334004C4942 /* IfBricks */,
-				CDFEFCB01758CB8E002B5B0E /* IfOnEdgeBounceBrick */,
-				CA63C9ED1A13F185009A32DB /* LEDBricks */,
-				CD0CCFE6170CB69800B70036 /* LoopBricks */,
-				B4840CAA174FAC42002DEC53 /* MoveNStepsBrick */,
-				CD0CCFEA170CB6C800B70036 /* NextLookBrick */,
-				B4826F7B174D079E00F57AE9 /* NoteBrick */,
-				CD0CCFEB170CB6D200B70036 /* PlaceAtBrick */,
-				B4D4DD3F17156A7500EEE3F8 /* PointInDirectionBrick */,
-				B40228A71732ADF8004C4942 /* PointToBrick */,
-				CD0CCFED170CB71F00B70036 /* SetBrightnessBrick */,
-				CD0CCFEE170CB72B00B70036 /* SetGhostEffectBrick */,
-				CD0CCFEF170CB73700B70036 /* SetLookBrick */,
-				CD0CCFF0170CB74300B70036 /* SetSizeToBrick */,
-				B45A5829173253E9000E038F /* SetVariableBrick */,
-				CD0CCFF1170CB74D00B70036 /* SetXYBricks */,
-				CD0CCFF2170CB77000B70036 /* ShowBrick */,
-				CD0CCFEC170CB6DC00B70036 /* SoundBricks */,
-				CD0CCFF3170CB77800B70036 /* TurnBricks */,
-				CD0CCFF4170CB78000B70036 /* WaitBrick */,
-				CA63C9FD1A13F4F7009A32DB /* VibrationBrick */,
-			);
-			name = Bricks;
-			sourceTree = "<group>";
-		};
-		CD0CCFDE170CB5E300B70036 /* BroadcastBrick */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCE61170CB39600B70036 /* BroadcastBrick.h */,
-				CD0CCE62170CB39600B70036 /* BroadcastBrick.m */,
-			);
-			name = BroadcastBrick;
-			sourceTree = "<group>";
-		};
-		CD0CCFDF170CB5EC00B70036 /* BroadcastWaitBrick */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCE65170CB39600B70036 /* BroadcastWaitBrick.h */,
-				CD0CCE66170CB39600B70036 /* BroadcastWaitBrick.m */,
-			);
-			name = BroadcastWaitBrick;
-			sourceTree = "<group>";
-		};
-		CD0CCFE0170CB5FA00B70036 /* ChangeGhostEffectByNBrick */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCE7A170CB39600B70036 /* ChangeGhostEffectByNBrick.h */,
-				CD0CCE7B170CB39600B70036 /* ChangeGhostEffectByNBrick.m */,
-			);
-			name = ChangeGhostEffectByNBrick;
-			sourceTree = "<group>";
-		};
-		CD0CCFE1170CB63200B70036 /* ChangeSizeByNBrick */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCE7C170CB39600B70036 /* ChangeSizeByNBrick.h */,
-				CD0CCE7D170CB39600B70036 /* ChangeSizeByNBrick.m */,
-			);
-			name = ChangeSizeByNBrick;
-			sourceTree = "<group>";
-		};
-		CD0CCFE3170CB64A00B70036 /* ChangeXYByNBrick */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCE82170CB39600B70036 /* ChangeYByNBrick.h */,
-				CD0CCE83170CB39600B70036 /* ChangeYByNBrick.m */,
-				CD0CCE80170CB39600B70036 /* ChangeXByNBrick.h */,
-				CD0CCE81170CB39600B70036 /* ChangeXByNBrick.m */,
-			);
-			name = ChangeXYByNBrick;
-			sourceTree = "<group>";
-		};
-		CD0CCFE5170CB68100B70036 /* ComeToFrontBrick */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCE85170CB39600B70036 /* ComeToFrontBrick.h */,
-				CD0CCE86170CB39600B70036 /* ComeToFrontBrick.m */,
-			);
-			name = ComeToFrontBrick;
-			sourceTree = "<group>";
-		};
-		CD0CCFE6170CB69800B70036 /* LoopBricks */ = {
-			isa = PBXGroup;
-			children = (
-				B46B271917708E6700172837 /* LoopBeginBrick.h */,
-				B46B271A17708E6700172837 /* LoopBeginBrick.m */,
-				CD0CCE9F170CB39600B70036 /* ForeverBrick.h */,
-				CD0CCEA0170CB39600B70036 /* ForeverBrick.m */,
-				CD0CCEFC170CB39700B70036 /* RepeatBrick.h */,
-				CD0CCEFD170CB39700B70036 /* RepeatBrick.m */,
-				CD0CCED5170CB39700B70036 /* LoopEndBrick.h */,
-				CD0CCED6170CB39700B70036 /* LoopEndBrick.m */,
-			);
-			name = LoopBricks;
-			sourceTree = "<group>";
-		};
-		CD0CCFE7170CB6AA00B70036 /* GlideToBrick */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCEA3170CB39600B70036 /* GlideToBrick.h */,
-				CD0CCEA4170CB39600B70036 /* GlideToBrick.m */,
-			);
-			name = GlideToBrick;
-			sourceTree = "<group>";
-		};
-		CD0CCFE8170CB6B400B70036 /* GoNStepsBackBrick */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCEA5170CB39600B70036 /* GoNStepsBackBrick.h */,
-				CD0CCEA6170CB39600B70036 /* GoNStepsBackBrick.m */,
-			);
-			name = GoNStepsBackBrick;
-			sourceTree = "<group>";
-		};
-		CD0CCFE9170CB6C100B70036 /* HideBrick */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCEAA170CB39600B70036 /* HideBrick.h */,
-				CD0CCEAB170CB39600B70036 /* HideBrick.m */,
-			);
-			name = HideBrick;
-			sourceTree = "<group>";
-		};
-		CD0CCFEA170CB6C800B70036 /* NextLookBrick */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCEE6170CB39700B70036 /* NextLookBrick.h */,
-				CD0CCEE7170CB39700B70036 /* NextLookBrick.m */,
-			);
-			name = NextLookBrick;
-			sourceTree = "<group>";
-		};
-		CD0CCFEB170CB6D200B70036 /* PlaceAtBrick */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCEEC170CB39700B70036 /* PlaceAtBrick.h */,
-				CD0CCEED170CB39700B70036 /* PlaceAtBrick.m */,
-			);
-			name = PlaceAtBrick;
-			sourceTree = "<group>";
-		};
-		CD0CCFEC170CB6DC00B70036 /* SoundBricks */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCF19170CB39700B70036 /* SetVolumeToBrick.h */,
-				CD0CCF1A170CB39700B70036 /* SetVolumeToBrick.m */,
-				CD0CCE7E170CB39600B70036 /* ChangeVolumeByNBrick.h */,
-				CD0CCE7F170CB39600B70036 /* ChangeVolumeByNBrick.m */,
-				CD0CCF25170CB39700B70036 /* SpeakBrick.h */,
-				CD0CCF26170CB39700B70036 /* SpeakBrick.m */,
-				CD0CCEF0170CB39700B70036 /* PlaySoundBrick.h */,
-				CD0CCEF1170CB39700B70036 /* PlaySoundBrick.m */,
-				CD0CCF34170CB39700B70036 /* StopAllSoundsBrick.h */,
-				CD0CCF35170CB39700B70036 /* StopAllSoundsBrick.m */,
-			);
-			name = SoundBricks;
-			sourceTree = "<group>";
-		};
-		CD0CCFED170CB71F00B70036 /* SetBrightnessBrick */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCF0F170CB39700B70036 /* SetBrightnessBrick.h */,
-				CD0CCF10170CB39700B70036 /* SetBrightnessBrick.m */,
-			);
-			name = SetBrightnessBrick;
-			sourceTree = "<group>";
-		};
-		CD0CCFEE170CB72B00B70036 /* SetGhostEffectBrick */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCF11170CB39700B70036 /* SetGhostEffectBrick.h */,
-				CD0CCF12170CB39700B70036 /* SetGhostEffectBrick.m */,
-			);
-			name = SetGhostEffectBrick;
-			sourceTree = "<group>";
-		};
-		CD0CCFEF170CB73700B70036 /* SetLookBrick */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCF13170CB39700B70036 /* SetLookBrick.h */,
-				CD0CCF14170CB39700B70036 /* SetLookBrick.m */,
-			);
-			name = SetLookBrick;
-			sourceTree = "<group>";
-		};
-		CD0CCFF0170CB74300B70036 /* SetSizeToBrick */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCF15170CB39700B70036 /* SetSizeToBrick.h */,
-				CD0CCF16170CB39700B70036 /* SetSizeToBrick.m */,
-			);
-			name = SetSizeToBrick;
-			sourceTree = "<group>";
-		};
-		CD0CCFF1170CB74D00B70036 /* SetXYBricks */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCF1B170CB39700B70036 /* SetXBrick.h */,
-				CD0CCF1C170CB39700B70036 /* SetXBrick.m */,
-				CD0CCF1D170CB39700B70036 /* SetYBrick.h */,
-				CD0CCF1E170CB39700B70036 /* SetYBrick.m */,
-			);
-			name = SetXYBricks;
-			sourceTree = "<group>";
-		};
-		CD0CCFF2170CB77000B70036 /* ShowBrick */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCF1F170CB39700B70036 /* ShowBrick.h */,
-				CD0CCF20170CB39700B70036 /* ShowBrick.m */,
-			);
-			name = ShowBrick;
-			sourceTree = "<group>";
-		};
-		CD0CCFF3170CB77800B70036 /* TurnBricks */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCF3C170CB39700B70036 /* TurnLeftBrick.h */,
-				CD0CCF3D170CB39700B70036 /* TurnLeftBrick.m */,
-				CD0CCF3E170CB39700B70036 /* TurnRightBrick.h */,
-				CD0CCF3F170CB39700B70036 /* TurnRightBrick.m */,
-			);
-			name = TurnBricks;
-			sourceTree = "<group>";
-		};
-		CD0CCFF4170CB78000B70036 /* WaitBrick */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCF44170CB39700B70036 /* WaitBrick.h */,
-				CD0CCF45170CB39700B70036 /* WaitBrick.m */,
-			);
-			name = WaitBrick;
-			sourceTree = "<group>";
-		};
-		CD0CCFF5170CB88F00B70036 /* DataModel */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCFF8170CB91000B70036 /* Program */,
-				CD0CCFFF170CBB0700B70036 /* Header */,
-				CD0CCFFE170CBAA700B70036 /* Look */,
-				CD0CCFFB170CB97000B70036 /* Sound */,
-				CD0CCFF6170CB89E00B70036 /* SpriteObject */,
-				CD0CCFFA170CB92D00B70036 /* Scripts */,
-				CD0CCFDD170CB54100B70036 /* Bricks */,
-				B45A58331732788C000E038F /* Formula */,
-				B45A582E17325446000E038F /* UserVariable */,
-				B470688C1733BA9A00EC880D /* VariablesContainer */,
-				CD0CD000170CBB8900B70036 /* BroadcastWait */,
-				B44F32A21737AC3100BD97AC /* ProgramManager */,
-				CA047EC118C782320078BE08 /* BrickManager */,
-				4C3C03F8199BA6B50004F594 /* FormulaEditor */,
-			);
-			name = DataModel;
-			sourceTree = "<group>";
-		};
-		CD0CCFF6170CB89E00B70036 /* SpriteObject */ = {
-			isa = PBXGroup;
-			children = (
-				CD639C79170DF52600FA67DA /* SpriteObject.h */,
-				CD639C7A170DF52600FA67DA /* SpriteObject.m */,
-			);
-			name = SpriteObject;
-			sourceTree = "<group>";
-		};
-		CD0CCFF7170CB8BC00B70036 /* Brick */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCE5F170CB39600B70036 /* Brick.h */,
-				CD0CCE60170CB39600B70036 /* Brick.m */,
-			);
-			name = Brick;
-			sourceTree = "<group>";
-		};
-		CD0CCFF8170CB91000B70036 /* Program */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCEF2170CB39700B70036 /* Program.h */,
-				CD0CCEF3170CB39700B70036 /* Program.m */,
-			);
-			name = Program;
 			sourceTree = "<group>";
 		};
 		CD0CCFF9170CB91A00B70036 /* Parser & Serialization */ = {
@@ -3784,57 +3620,6 @@
 			name = "Parser & Serialization";
 			sourceTree = "<group>";
 		};
-		CD0CCFFA170CB92D00B70036 /* Scripts */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCE63170CB39600B70036 /* BroadcastScript.h */,
-				CD0CCE64170CB39600B70036 /* BroadcastScript.m */,
-				CD0CCF0D170CB39700B70036 /* Script.h */,
-				CD0CCF0E170CB39700B70036 /* Script.m */,
-				CD0CCF32170CB39700B70036 /* StartScript.h */,
-				CD0CCF33170CB39700B70036 /* StartScript.m */,
-				CD0CCF46170CB39700B70036 /* WhenScript.h */,
-				CD0CCF47170CB39700B70036 /* WhenScript.m */,
-			);
-			name = Scripts;
-			sourceTree = "<group>";
-		};
-		CD0CCFFB170CB97000B70036 /* Sound */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCF21170CB39700B70036 /* Sound.h */,
-				CD0CCF22170CB39700B70036 /* Sound.m */,
-			);
-			name = Sound;
-			sourceTree = "<group>";
-		};
-		CD0CCFFE170CBAA700B70036 /* Look */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCED3170CB39700B70036 /* Look.h */,
-				CD0CCED4170CB39700B70036 /* Look.m */,
-			);
-			name = Look;
-			sourceTree = "<group>";
-		};
-		CD0CCFFF170CBB0700B70036 /* Header */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCEA7170CB39600B70036 /* Header.h */,
-				CD0CCEA8170CB39600B70036 /* Header.m */,
-			);
-			name = Header;
-			sourceTree = "<group>";
-		};
-		CD0CD000170CBB8900B70036 /* BroadcastWait */ = {
-			isa = PBXGroup;
-			children = (
-				CD0CCE68170CB39600B70036 /* BroadcastWaitHandler.h */,
-				CD0CCE69170CB39600B70036 /* BroadcastWaitHandler.m */,
-			);
-			name = BroadcastWait;
-			sourceTree = "<group>";
-		};
 		CD8CC8B81724340E00239EBF /* HelpWebViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -3842,15 +3627,6 @@
 				CD8CC8BB1724346200239EBF /* HelpWebViewController.m */,
 			);
 			name = HelpWebViewController;
-			sourceTree = "<group>";
-		};
-		CDFEFCB01758CB8E002B5B0E /* IfOnEdgeBounceBrick */ = {
-			isa = PBXGroup;
-			children = (
-				CDFEFCB21758CBC8002B5B0E /* IfOnEdgeBounceBrick.h */,
-				CDFEFCB31758CBC8002B5B0E /* IfOnEdgeBounceBrick.m */,
-			);
-			name = IfOnEdgeBounceBrick;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -4120,47 +3896,50 @@
 				CADBD70219B0E8C200C62836 /* DarkBlueGradientImageDetailCell.m in Sources */,
 				4C023FDE19FFC9BA00381E36 /* Look+CBXMLHandler.m in Sources */,
 				92FF2E9C1A24C7D800093DA7 /* SensorHandler.m in Sources */,
-				CADBD70319B0E8C200C62836 /* Scene.m in Sources */,
+				92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */,
 				CA63C9E81A13F04F009A32DB /* ClearGraphicEffectBrick+CBXMLHandler.m in Sources */,
+				92FF30D11A24DCAA00093DA7 /* ChangeGhostEffectByNBrick.m in Sources */,
+				92FF30D61A24DCAA00093DA7 /* NextLookBrick.m in Sources */,
+				92FF30D51A24DCAA00093DA7 /* HideBrick.m in Sources */,
 				92FF2EA41A24C7D800093DA7 /* Util.m in Sources */,
 				CADBD70419B0E8C200C62836 /* BrickSelectModalTransition.m in Sources */,
+				92FF30D71A24DCAA00093DA7 /* SetBrightnessBrick.m in Sources */,
+				92FF31031A24DCAA00093DA7 /* Script.m in Sources */,
 				4C23DB3C1A123FB600A0E860 /* ForeverBrick+CBXMLHandler.m in Sources */,
+				92FF30D31A24DCAA00093DA7 /* ComeToFrontBrick.m in Sources */,
 				CADBD70519B0E8C200C62836 /* ForeverBrickCell.m in Sources */,
 				CA63CA0A1A13FEC3009A32DB /* GoNStepsBackBrick+CBXMLHandler.m in Sources */,
 				CADBD70619B0E8C200C62836 /* BaseTableViewController.m in Sources */,
 				CADBD70719B0E8C200C62836 /* CatrobatBaseCell.m in Sources */,
 				CADBD70819B0E8C200C62836 /* PlaceAtBrickCell.m in Sources */,
 				CADBD70919B0E8C200C62836 /* FBShimmeringLayer.m in Sources */,
-				CA63C9F11A13F1C7009A32DB /* LedOnBrick.m in Sources */,
 				92FF2EBC1A24C8A700093DA7 /* CBXMLOpenedNestingBricksStack.m in Sources */,
 				CADBD70B19B0E8C200C62836 /* BrickShapeFactory.m in Sources */,
-				CADBD70C19B0E8C200C62836 /* InternFormulaParserException.m in Sources */,
 				CA2ECA461A06E2CF0018D5BB /* SetVariableBrick+CBXMLHandler.m in Sources */,
-				CADBD71119B0E8C200C62836 /* BrickManager.m in Sources */,
 				CADBD71219B0E8C200C62836 /* ComboBoxView.m in Sources */,
 				CA63C9F91A13F34B009A32DB /* LedOffBrick+CBXMLHandler.m in Sources */,
+				92FF30E11A24DCAA00093DA7 /* GlideToBrick.m in Sources */,
 				CADBD71319B0E8C200C62836 /* StopAllSoundsBrickCell.m in Sources */,
 				CADBD71419B0E8C200C62836 /* CellMotionEffect.m in Sources */,
 				4C23DB4A1A124E4C00A0E860 /* LoopEndBrick+CBXMLHandler.m in Sources */,
 				CADBD71519B0E8C200C62836 /* BaseTransition.m in Sources */,
-				CADBD71619B0E8C200C62836 /* ChangeBrightnessByNBrick.m in Sources */,
 				CADBD71719B0E8C200C62836 /* CatrobatTableViewController.m in Sources */,
 				CADBD71819B0E8C200C62836 /* BrickCellInlineView.m in Sources */,
 				CADBD71919B0E8C200C62836 /* AppDelegate.m in Sources */,
 				CADBD71A19B0E8C200C62836 /* main.m in Sources */,
+				92FF30EE1A24DCAA00093DA7 /* ChangeSizeByNBrick.m in Sources */,
 				CADBD71B19B0E8C200C62836 /* ProgramTableHeaderView.m in Sources */,
-				CADBD71C19B0E8C200C62836 /* Brick.m in Sources */,
+				92FF30D41A24DCAA00093DA7 /* GoNStepsBackBrick.m in Sources */,
 				CADBD71D19B0E8C200C62836 /* BrickDetailViewController.m in Sources */,
 				CA63C9E51A13EF56009A32DB /* SetBrightnessBrick+CBXMLHandler.m in Sources */,
+				92FF30ED1A24DCAA00093DA7 /* VibrationBrick.m in Sources */,
 				92FF2EC21A24C8A700093DA7 /* ProgramLoadingInfo.m in Sources */,
 				CADBD71E19B0E8C200C62836 /* SearchStoreViewController.m in Sources */,
-				CADBD71F19B0E8C200C62836 /* BroadcastBrick.m in Sources */,
 				CADBD72119B0E8C200C62836 /* ChangeVariableBrickCell.m in Sources */,
-				CADBD72219B0E8C200C62836 /* BroadcastScript.m in Sources */,
 				CADBD72319B0E8C200C62836 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
+				92FF30F61A24DCAA00093DA7 /* SetVariableBrick.m in Sources */,
 				CADBD72419B0E8C200C62836 /* ProgramTableViewController.m in Sources */,
 				92FF2E351A24C5A700093DA7 /* NSData+Hashes.m in Sources */,
-				CADBD72619B0E8C200C62836 /* BroadcastWaitBrick.m in Sources */,
 				CADBD72719B0E8C200C62836 /* SoundComboBoxView.m in Sources */,
 				CADBD72819B0E8C200C62836 /* GoNStepsBackBrickCell.m in Sources */,
 				CADBD72919B0E8C200C62836 /* VariableComboBoxView.m in Sources */,
@@ -4168,50 +3947,39 @@
 				CADBD72B19B0E8C200C62836 /* ChangeBrightnessByNBrickCell.m in Sources */,
 				92FF2EC01A24C8A700093DA7 /* OrderedDictionary.m in Sources */,
 				CADBD72D19B0E8C200C62836 /* BDKNotifyHUD.m in Sources */,
-				CADBD72E19B0E8C200C62836 /* BroadcastWaitHandler.m in Sources */,
-				CADBD73019B0E8C200C62836 /* ChangeGhostEffectByNBrick.m in Sources */,
-				CADBD73119B0E8C200C62836 /* ChangeSizeByNBrick.m in Sources */,
-				CADBD73219B0E8C200C62836 /* ChangeVolumeByNBrick.m in Sources */,
-				CADBD73319B0E8C200C62836 /* ChangeXByNBrick.m in Sources */,
-				CADBD73419B0E8C200C62836 /* ChangeYByNBrick.m in Sources */,
 				92FF2E401A24C5A700093DA7 /* UIViewController+CWPopup.m in Sources */,
 				CADBD73519B0E8C200C62836 /* PlaySoundBrickCell.m in Sources */,
+				92FF30DA1A24DCAA00093DA7 /* ShowBrick.m in Sources */,
 				92FF2E9D1A24C7D800093DA7 /* SensorManager.m in Sources */,
-				CADBD73619B0E8C200C62836 /* ComeToFrontBrick.m in Sources */,
 				CA66CB7519F6B42400D849E0 /* CBXMLValidator.m in Sources */,
 				CADBD73819B0E8C200C62836 /* LXReorderableCollectionViewFlowLayout.m in Sources */,
 				92FF2E3A1A24C5A700093DA7 /* NSString+FastImageSize.m in Sources */,
 				92FF2EBE1A24C8A700093DA7 /* CatrobatInformation.m in Sources */,
-				CADBD73919B0E8C200C62836 /* ForeverBrick.m in Sources */,
 				92FF2E991A24C7D800093DA7 /* zip.c in Sources */,
-				CADBD73A19B0E8C200C62836 /* GlideToBrick.m in Sources */,
-				CADBD73B19B0E8C200C62836 /* GoNStepsBackBrick.m in Sources */,
 				92FF2EA01A24C7D800093DA7 /* SSZipArchive.m in Sources */,
 				92FF2E381A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.m in Sources */,
+				92FF30E71A24DCAA00093DA7 /* PointInDirectionBrick.m in Sources */,
 				CADBD73C19B0E8C200C62836 /* HideBrickCell.m in Sources */,
 				4CEC09251A139D7C00059BB9 /* CBXMLParserHelper.m in Sources */,
-				CADBD73D19B0E8C200C62836 /* Header.m in Sources */,
-				CADBD73E19B0E8C200C62836 /* HideBrick.m in Sources */,
 				CA63CA0F1A14072D009A32DB /* ChangeBrightnessByNBrick+CBXMLHandler.m in Sources */,
-				CA63C9FC1A13F4EE009A32DB /* VibrationBrick.m in Sources */,
 				92FF2E3E1A24C5A700093DA7 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */,
 				92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */,
 				92FF2E3C1A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m in Sources */,
 				CAFAEAEF1A13C7F600C9F170 /* IfLogicElseBrick+CBXMLHandler.m in Sources */,
 				CAFAEAEC1A13C2C900C9F170 /* SpeakBrick+CBXMLHandler.m in Sources */,
-				CADBD73F19B0E8C200C62836 /* Look.m in Sources */,
 				CADBD74019B0E8C200C62836 /* SaveToProjectActivity.m in Sources */,
 				CADBD74119B0E8C200C62836 /* TurnRightBrickCell.m in Sources */,
 				92FF2E9B1A24C7D800093DA7 /* Reachability.m in Sources */,
-				CADBD74219B0E8C200C62836 /* LoopEndBrick.m in Sources */,
 				CADBD74319B0E8C200C62836 /* BroadcastScriptCell.m in Sources */,
-				CADBD74419B0E8C200C62836 /* NextLookBrick.m in Sources */,
+				92FF30DD1A24DCAA00093DA7 /* LoopEndBrick.m in Sources */,
 				CADBD74719B0E8C200C62836 /* CatrobatAlertView.m in Sources */,
-				CA63C9F31A13F294009A32DB /* LedOffBrick.m in Sources */,
+				92FF30FE1A24DCAA00093DA7 /* Look.m in Sources */,
 				CADBD74819B0E8C200C62836 /* Parser.m in Sources */,
-				CADBD74919B0E8C200C62836 /* PlaceAtBrick.m in Sources */,
+				92FF31081A24DCAA00093DA7 /* UserVariable.m in Sources */,
+				92FF30CE1A24DCAA00093DA7 /* IfLogicElseBrick.m in Sources */,
 				92FF2E941A24C7D800093DA7 /* Logger.m in Sources */,
-				CADBD74A19B0E8C200C62836 /* PlaySoundBrick.m in Sources */,
+				92FF30EB1A24DCAA00093DA7 /* LedOffBrick.m in Sources */,
+				92FF30D01A24DCAA00093DA7 /* ChangeBrightnessByNBrick.m in Sources */,
 				CADBD74B19B0E8C200C62836 /* LookComboBoxView.m in Sources */,
 				CADBD74C19B0E8C200C62836 /* SWUtilityButtonView.m in Sources */,
 				CAFAEAE91A13C0BE00C9F170 /* IfLogicBeginBrick+CBXMLHandler.m in Sources */,
@@ -4219,60 +3987,54 @@
 				CA63C9EB1A13F0DB009A32DB /* BroadcastWaitBrick+CBXMLHandler.m in Sources */,
 				4CEC09181A13975E00059BB9 /* ChangeXByNBrick+CBXMLHandler.m in Sources */,
 				CAFAEAF51A13D20B00C9F170 /* ChangeVolumeByNBrick+CBXMLHandler.m in Sources */,
-				CADBD74E19B0E8C200C62836 /* Program.m in Sources */,
 				924F2DA31A16640600113B77 /* LedOnBrickCell.m in Sources */,
 				CADBD74F19B0E8C200C62836 /* SoundsTableViewController.m in Sources */,
 				92FF2E971A24C7D800093DA7 /* mztools.c in Sources */,
 				CAF9DC671A12CB8C003FE868 /* WaitBrick+CBXMLHandler.m in Sources */,
 				CADBD75019B0E8C200C62836 /* ProjectParser.m in Sources */,
 				4C1608AB1A095F17002C7032 /* FormulaElement+CBXMLHandler.m in Sources */,
-				CADBD75119B0E8C200C62836 /* RepeatBrick.m in Sources */,
-				CADBD75319B0E8C200C62836 /* Script.m in Sources */,
 				CADBD75419B0E8C200C62836 /* TurnLeftBrickCell.m in Sources */,
 				924F2DA51A16640600113B77 /* VibrationBrickCell.m in Sources */,
 				92FF2E9A1A24C7D800093DA7 /* NavigationController.m in Sources */,
-				CADBD75519B0E8C200C62836 /* SetBrightnessBrick.m in Sources */,
 				CADBD75619B0E8C200C62836 /* MessageComboBoxView.m in Sources */,
 				CADBD75719B0E8C200C62836 /* SetYBrickCell.m in Sources */,
-				CADBD75819B0E8C200C62836 /* SetGhostEffectBrick.m in Sources */,
 				CA63CA041A13FA86009A32DB /* ChangeVariableBrick+CBXMLHandler.m in Sources */,
-				CADBD75A19B0E8C200C62836 /* SetLookBrick.m in Sources */,
-				CADBD75B19B0E8C200C62836 /* SetSizeToBrick.m in Sources */,
 				CADBD75C19B0E8C200C62836 /* LoopEndBrickCell.m in Sources */,
-				CADBD75D19B0E8C200C62836 /* SetVolumeToBrick.m in Sources */,
+				92FF31091A24DCAA00093DA7 /* VariablesContainer.m in Sources */,
+				92FF30F11A24DCAA00093DA7 /* PlaySoundBrick.m in Sources */,
 				92FF2E371A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m in Sources */,
 				CADBD75E19B0E8C200C62836 /* SetSizeToBrickCell.m in Sources */,
 				CADBD75F19B0E8C200C62836 /* StartScriptCell.m in Sources */,
+				92FF30DE1A24DCAA00093DA7 /* RepeatBrick.m in Sources */,
+				92FF30F81A24DCAA00093DA7 /* Formula.m in Sources */,
 				921EC1B41A0D03CE00A43ED7 /* SRViewController.m in Sources */,
 				CADBD76019B0E8C200C62836 /* CatrobatActionSheet.m in Sources */,
+				92FF30F31A24DCAA00093DA7 /* SpeakBrick.m in Sources */,
+				92FF30CF1A24DCAA00093DA7 /* IfLogicEndBrick.m in Sources */,
 				CA8486791A117A9E001B6368 /* SetSizeToBrick+CBXMLHandler.m in Sources */,
+				92FF30DF1A24DCAA00093DA7 /* ChangeXByNBrick.m in Sources */,
 				4CEC091B1A13983D00059BB9 /* ChangeYByNBrick+CBXMLHandler.m in Sources */,
 				92FF2E3D1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m in Sources */,
 				CADBD76219B0E8C200C62836 /* UIImage+AHKAdditions.m in Sources */,
-				CADBD76319B0E8C200C62836 /* SetXBrick.m in Sources */,
 				CADBD76419B0E8C200C62836 /* SetVariableBrickCell.m in Sources */,
 				CAFAEAF21A13CB1C00C9F170 /* IfLogicEndBrick+CBXMLHandler.m in Sources */,
-				CADBD76519B0E8C200C62836 /* SetYBrick.m in Sources */,
 				4C023FE619FFCAC700381E36 /* SpriteObject+CBXMLHandler.m in Sources */,
 				CADBD76619B0E8C200C62836 /* ChangeVolumeByNBrickCell.m in Sources */,
 				924F2DA21A16640600113B77 /* LedOffBrickCell.m in Sources */,
 				CADBD76719B0E8C200C62836 /* SetXBrickCell.m in Sources */,
-				CADBD76819B0E8C200C62836 /* Operators.m in Sources */,
-				CADBD76A19B0E8C200C62836 /* ShowBrick.m in Sources */,
 				CADBD76B19B0E8C200C62836 /* BrickCell.m in Sources */,
-				CADBD76C19B0E8C200C62836 /* Sound.m in Sources */,
-				CADBD76D19B0E8C200C62836 /* SpeakBrick.m in Sources */,
-				CADBD76E19B0E8C200C62836 /* StartScript.m in Sources */,
 				CADBD76F19B0E8C200C62836 /* SetLookBrickCell.m in Sources */,
 				CADBD77019B0E8C200C62836 /* ColoredCell.m in Sources */,
 				92FF2E911A24C7D800093DA7 /* DownloadImageCache.m in Sources */,
-				CADBD77219B0E8C200C62836 /* StopAllSoundsBrick.m in Sources */,
+				92FF30E81A24DCAA00093DA7 /* PointToBrick.m in Sources */,
+				92FF30CA1A24DCAA00093DA7 /* BroadcastWaitBrick.m in Sources */,
+				92FF30F21A24DCAA00093DA7 /* SetVolumeToBrick.m in Sources */,
 				92FF2EA11A24C7D800093DA7 /* TimerLabel.m in Sources */,
+				92FF30C81A24DCAA00093DA7 /* Brick.m in Sources */,
 				CADBD77319B0E8C200C62836 /* SetGhostEffectBrickCell.m in Sources */,
+				92FF30FF1A24DCAA00093DA7 /* Program.m in Sources */,
 				CADBD77419B0E8C200C62836 /* BroadcastBrickCell.m in Sources */,
-				CADBD77519B0E8C200C62836 /* ClearGraphicEffectBrick.m in Sources */,
-				CADBD77619B0E8C200C62836 /* TurnLeftBrick.m in Sources */,
-				CADBD77719B0E8C200C62836 /* TurnRightBrick.m in Sources */,
+				92FF30CD1A24DCAA00093DA7 /* IfLogicBeginBrick.m in Sources */,
 				924DEBFC19CAFB9900EED9CE /* MYIntroductionPanel.m in Sources */,
 				CA63C9F61A13F30F009A32DB /* LedOnBrick+CBXMLHandler.m in Sources */,
 				CA63CA0D1A140683009A32DB /* IfOnEdgeBounceBrick+CBXMLHandler.m in Sources */,
@@ -4283,43 +4045,53 @@
 				CAF9DC711A12D16A003FE868 /* GlideToBrick+CBXMLHandler.m in Sources */,
 				CADBD77D19B0E8C200C62836 /* SingleBrickSelectionView.m in Sources */,
 				CADBD77E19B0E8C200C62836 /* NSMutableArray+SWUtilityButtons.m in Sources */,
+				92FF30FB1A24DCAA00093DA7 /* InternFormulaParserException.m in Sources */,
+				92FF30C71A24DCAA00093DA7 /* BrickManager.m in Sources */,
 				4C023FEA19FFCCA100381E36 /* Script+CBXMLHandler.m in Sources */,
 				CA63CA071A13FD74009A32DB /* ComeToFrontBrick+CBXMLHandler.m in Sources */,
-				CADBD77F19B0E8C200C62836 /* WaitBrick.m in Sources */,
+				92FF30E31A24DCAA00093DA7 /* MoveNStepsBrick.m in Sources */,
 				CADBD78019B0E8C200C62836 /* IfLogicElseBrickCell.m in Sources */,
-				CADBD78119B0E8C200C62836 /* WhenScript.m in Sources */,
 				CADBD78219B0E8C200C62836 /* BrickScaleTransition.m in Sources */,
 				92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */,
 				4CEC092E1A13A9C200059BB9 /* PointToBrick+CBXMLHandler.m in Sources */,
+				92FF30C91A24DCAA00093DA7 /* BroadcastBrick.m in Sources */,
 				CADBD78319B0E8C200C62836 /* ObjectTableViewController.m in Sources */,
 				92FF2EA31A24C7D800093DA7 /* UIUtil.m in Sources */,
 				92FF2EBD1A24C8A700093DA7 /* DataTransferMessage.m in Sources */,
 				CADBD78419B0E8C200C62836 /* SelectButton.m in Sources */,
 				CA5D7FE519EC44480085D5AA /* BaseCollectionViewController.m in Sources */,
-				CADBD78519B0E8C200C62836 /* SpriteObject.m in Sources */,
 				CADBD78619B0E8C200C62836 /* SetVolumeToBrickCell.m in Sources */,
 				CADBD78719B0E8C200C62836 /* BrickSelectionView.m in Sources */,
 				CADBD78A19B0E8C200C62836 /* ChangeYByNBrickCell.m in Sources */,
 				CADBD78B19B0E8C200C62836 /* UIWindow+AHKAdditions.m in Sources */,
+				92FF30CB1A24DCAA00093DA7 /* NoteBrick.m in Sources */,
 				92FF2E341A24C5A700093DA7 /* GDataXMLNode+CustomExtensions.m in Sources */,
 				CADBD78D19B0E8C200C62836 /* ObjectComboBoxView.m in Sources */,
+				92FF30FA1A24DCAA00093DA7 /* Functions.m in Sources */,
 				CADBD78E19B0E8C200C62836 /* SoundPickerTableViewController.m in Sources */,
+				92FF31001A24DCAA00093DA7 /* ProgramManager.m in Sources */,
 				CADBD78F19B0E8C200C62836 /* ChangeXByNBrickCell.m in Sources */,
+				92FF30DB1A24DCAA00093DA7 /* ForeverBrick.m in Sources */,
 				CADBD79119B0E8C200C62836 /* EVCircularProgressView.m in Sources */,
+				92FF30FD1A24DCAA00093DA7 /* Header.m in Sources */,
 				CADBD79319B0E8C200C62836 /* NoteBrickCell.m in Sources */,
+				92FF30D81A24DCAA00093DA7 /* SetGhostEffectBrick.m in Sources */,
 				CAAE4C501A06D37200040E02 /* SetLookBrick+CBXMLHandler.m in Sources */,
 				CADBD79419B0E8C200C62836 /* SWTableViewCell.m in Sources */,
 				92FF2E8C1A24C7D800093DA7 /* AudioManager.m in Sources */,
 				4CEC09151A1396DE00059BB9 /* SetYBrick+CBXMLHandler.m in Sources */,
 				CADBD79519B0E8C200C62836 /* ContinueImageCell.m in Sources */,
 				92FF2E9F1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m in Sources */,
+				92FF30F91A24DCAA00093DA7 /* FormulaElement.m in Sources */,
 				CADBD79619B0E8C200C62836 /* ScriptCollectionViewController.m in Sources */,
+				92FF30FC1A24DCAA00093DA7 /* Operators.m in Sources */,
+				92FF30E91A24DCAA00093DA7 /* TurnLeftBrick.m in Sources */,
+				92FF30EA1A24DCAA00093DA7 /* TurnRightBrick.m in Sources */,
 				CADBD79719B0E8C200C62836 /* LooksTableViewController.m in Sources */,
 				CADBD79819B0E8C200C62836 /* DarkBlueGradientCell.m in Sources */,
 				CADBD79919B0E8C200C62836 /* ChangeSizeByNBrickCell.m in Sources */,
 				CADBD79A19B0E8C200C62836 /* NextLookBrickCell.m in Sources */,
 				CADBD79B19B0E8C200C62836 /* DarkBlueGradientImageCell.m in Sources */,
-				CADBD79D19B0E8C200C62836 /* Functions.m in Sources */,
 				CADBD79E19B0E8C200C62836 /* PlaceHolderView.m in Sources */,
 				CADBD79F19B0E8C200C62836 /* MyProgramsViewController.m in Sources */,
 				CADBD7A019B0E8C200C62836 /* IfLogicBeginBrickCell.m in Sources */,
@@ -4337,19 +4109,24 @@
 				CADBD7AC19B0E8C200C62836 /* ComeToFrontBrickCell.m in Sources */,
 				CADBD7AD19B0E8C200C62836 /* FeaturedProgramsStoreViewController.m in Sources */,
 				CADBD7AE19B0E8C200C62836 /* ScenePresenterViewController.m in Sources */,
+				92FF31021A24DCAA00093DA7 /* BroadcastScript.m in Sources */,
+				92FF30DC1A24DCAA00093DA7 /* LoopBeginBrick.m in Sources */,
 				CA63CA011A13F648009A32DB /* VibrationBrick+CBXMLHandler.m in Sources */,
 				CAFAEAFB1A13E21900C9F170 /* RepeatBrick+CBXMLHandler.m in Sources */,
 				4CEC09211A139A7A00059BB9 /* TurnLeftBrick+CBXMLHandler.m in Sources */,
 				CADBD7B019B0E8C200C62836 /* PointToBrickCell.m in Sources */,
+				92FF30F51A24DCAA00093DA7 /* ChangeVariableBrick.m in Sources */,
 				92FF2E931A24C7D800093DA7 /* RuntimeImageCache.m in Sources */,
 				CADBD7B119B0E8C200C62836 /* FBShimmeringView.m in Sources */,
 				CADBD7B219B0E8C200C62836 /* AHKActionSheetViewController.m in Sources */,
 				CADBD7B319B0E8C200C62836 /* MoveNStepsBrickCell.m in Sources */,
+				92FF31011A24DCAA00093DA7 /* Scene.m in Sources */,
 				CADBD7B419B0E8C200C62836 /* TestParser.m in Sources */,
-				CADBD7B519B0E8C200C62836 /* PointInDirectionBrick.m in Sources */,
 				92FF2E921A24C7D800093DA7 /* ImageCache.m in Sources */,
 				CAF9DC651A12C612003FE868 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
 				CADBD7B619B0E8C200C62836 /* PointInDirectionBrickCell.m in Sources */,
+				92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */,
+				92FF30E51A24DCAA00093DA7 /* SetXBrick.m in Sources */,
 				CADBD7B719B0E8C200C62836 /* GlideToBrickCell.m in Sources */,
 				CADBD7B819B0E8C200C62836 /* AHKActionSheet.m in Sources */,
 				92FF2E901A24C7D800093DA7 /* GDataXMLNode.m in Sources */,
@@ -4360,54 +4137,53 @@
 				CADBD7BA19B0E8C200C62836 /* FXBlurView.m in Sources */,
 				CA2932C719EDD32800DB6701 /* CBXMLParser.m in Sources */,
 				92FF2E961A24C7D800093DA7 /* ioapi.c in Sources */,
+				92FF30EF1A24DCAA00093DA7 /* SetSizeToBrick.m in Sources */,
 				CADBD7BB19B0E8C200C62836 /* HelpWebViewController.m in Sources */,
 				CADBD7BC19B0E8C200C62836 /* BaseWebViewController.m in Sources */,
+				92FF30E21A24DCAA00093DA7 /* IfOnEdgeBounceBrick.m in Sources */,
+				92FF30E41A24DCAA00093DA7 /* PlaceAtBrick.m in Sources */,
 				CADBD7BD19B0E8C200C62836 /* SpeakBrickCell.m in Sources */,
 				CADBD7BE19B0E8C200C62836 /* ClearGraphicEffectBrickCell.m in Sources */,
 				CADBD7BF19B0E8C200C62836 /* BroadcastWaitBrickCell.m in Sources */,
 				CADBD7C019B0E8C200C62836 /* LookImageViewController.m in Sources */,
+				92FF30E01A24DCAA00093DA7 /* ChangeYByNBrick.m in Sources */,
 				CADBD7C119B0E8C200C62836 /* CreateView.m in Sources */,
 				CAF9DC6E1A12D01E003FE868 /* HideBrick+CBXMLHandler.m in Sources */,
 				92FF2E981A24C7D800093DA7 /* unzip.c in Sources */,
 				CAFAEAF81A13E06300C9F170 /* SetVolumeToBrick+CBXMLHandler.m in Sources */,
-				CADBD7C219B0E8C200C62836 /* SetVariableBrick.m in Sources */,
-				CADBD7C319B0E8C200C62836 /* UserVariable.m in Sources */,
+				92FF30F71A24DCAA00093DA7 /* BroadcastWaitHandler.m in Sources */,
 				4C023FD319FFC28800381E36 /* Header+CBXMLHandler.m in Sources */,
 				CADBD7C519B0E8C200C62836 /* IBActionSheet.m in Sources */,
-				CADBD7C619B0E8C200C62836 /* Formula.m in Sources */,
+				92FF30EC1A24DCAA00093DA7 /* LedOnBrick.m in Sources */,
 				4CEC092B1A13A94500059BB9 /* PointInDirectionBrick+CBXMLHandler.m in Sources */,
+				92FF30F01A24DCAA00093DA7 /* ChangeVolumeByNBrick.m in Sources */,
 				4CEC09121A13955200059BB9 /* SetXBrick+CBXMLHandler.m in Sources */,
 				CADBD7C719B0E8C200C62836 /* ShowBrickCell.m in Sources */,
-				CADBD7C819B0E8C200C62836 /* FormulaElement.m in Sources */,
-				CADBD7C919B0E8C200C62836 /* IfLogicBeginBrick.m in Sources */,
-				CADBD7CA19B0E8C200C62836 /* IfLogicElseBrick.m in Sources */,
 				92FF2E3B1A24C5A700093DA7 /* Program+CustomExtensions.m in Sources */,
-				CADBD7CB19B0E8C200C62836 /* IfLogicEndBrick.m in Sources */,
-				CADBD7CC19B0E8C200C62836 /* PointToBrick.m in Sources */,
-				CADBD7CD19B0E8C200C62836 /* VariablesContainer.m in Sources */,
 				CAF9DC6B1A12CCF0003FE868 /* ShowBrick+CBXMLHandler.m in Sources */,
 				CADBD7CE19B0E8C200C62836 /* IfLogicEndBrickCell.m in Sources */,
 				4C023FEE19FFCF0700381E36 /* VariablesContainer+CBXMLHandler.m in Sources */,
-				CADBD7CF19B0E8C200C62836 /* ChangeVariableBrick.m in Sources */,
-				CADBD7D019B0E8C200C62836 /* ProgramManager.m in Sources */,
 				92FF2E8D1A24C7D800093DA7 /* CatrobatAudioPlayer.m in Sources */,
+				92FF30CC1A24DCAA00093DA7 /* WaitBrick.m in Sources */,
 				CADBD7D219B0E8C200C62836 /* XMLObjectReference.m in Sources */,
-				CADBD7D319B0E8C200C62836 /* NoteBrick.m in Sources */,
-				CADBD7D519B0E8C200C62836 /* MoveNStepsBrick.m in Sources */,
 				4C023FE219FFCA4E00381E36 /* Sound+CBXMLHandler.m in Sources */,
+				92FF30E61A24DCAA00093DA7 /* SetYBrick.m in Sources */,
 				CAF9DC741A12D4E0003FE868 /* PlaySoundBrick+CBXMLHandler.m in Sources */,
+				92FF30D21A24DCAA00093DA7 /* ClearGraphicEffectBrick.m in Sources */,
 				4CEC09311A13B21E00059BB9 /* StopAllSoundsBrick+CBXMLHandler.m in Sources */,
 				CA63C9DB1A13EAAE009A32DB /* ChangeSizeByNBrick+CBXMLHandler.m in Sources */,
 				CA63C9DF1A13EBFB009A32DB /* SetGhostEffectBrick+CBXMLHandler.m in Sources */,
 				CADBD7D619B0E8C200C62836 /* IfOnEdgeBounceBrickCell.m in Sources */,
 				4C1608A71A095639002C7032 /* Formula+CBXMLHandler.m in Sources */,
+				92FF31071A24DCAA00093DA7 /* SpriteObject.m in Sources */,
 				CAFAEAFE1A13E45F00C9F170 /* BroadcastBrick+CBXMLHandler.m in Sources */,
+				92FF30D91A24DCAA00093DA7 /* SetLookBrick.m in Sources */,
 				CADBD7D719B0E8C200C62836 /* DarkBlueGradientFeaturedCell.m in Sources */,
-				CADBD7D919B0E8C200C62836 /* IfOnEdgeBounceBrick.m in Sources */,
 				CADBD7DA19B0E8C200C62836 /* RepeatBrickCell.m in Sources */,
 				4CEC091E1A13991500059BB9 /* MoveNStepsBrick+CBXMLHandler.m in Sources */,
-				CADBD7DD19B0E8C200C62836 /* LoopBeginBrick.m in Sources */,
 				CADBD7DE19B0E8C200C62836 /* ScriptDeleteButton.m in Sources */,
+				92FF30F41A24DCAA00093DA7 /* StopAllSoundsBrick.m in Sources */,
+				92FF31061A24DCAA00093DA7 /* Sound.m in Sources */,
 				4C023FDA19FFC8D600381E36 /* UserVariable+CBXMLHandler.m in Sources */,
 				CA63C9D61A13E83B009A32DB /* NoteBrick+CBXMLHandler.m in Sources */,
 				CADBD7E019B0E8C200C62836 /* WaitBrickCell.m in Sources */,
