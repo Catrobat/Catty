@@ -77,11 +77,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.view.window addGestureRecognizer:self.recognizer];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-
+- (void)viewWillDisappear:(BOOL)animated
+{
     if ([self.view.window.gestureRecognizers containsObject:self.recognizer]) {
         [self.view.window removeGestureRecognizer:self.recognizer];
     }
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated

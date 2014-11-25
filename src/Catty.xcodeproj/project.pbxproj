@@ -3871,6 +3871,13 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/App-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_CFLAGS = (
+					"-w",
+					"-Xanalyzer",
+					"-analyzer-disable-checker",
+					"-Xanalyzer",
+					deadcode,
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -3899,6 +3906,13 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/App-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_CFLAGS = (
+					"-w",
+					"-Xanalyzer",
+					"-analyzer-disable-checker",
+					"-Xanalyzer",
+					deadcode,
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
