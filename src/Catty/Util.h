@@ -174,6 +174,8 @@
 
 + (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames;
 
++ (CGFloat)detectCBLanguageVersionFromXMLWithPath:(NSString*)xmlPath;
+
 + (double)radiansToDegree:(double)rad;
 
 + (double)degreeToRadians:(double)deg;

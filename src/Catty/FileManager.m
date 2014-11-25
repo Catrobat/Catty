@@ -329,7 +329,10 @@
         return;
     }
         [self addNewBundleProgramWithName:kDefaultProgramBundleName];
-#if kIsRelease // kIsRelease
+
+//############################################################################################################
+//############################################################################################################
+//############################################################################################################
 #define kDefaultProgramBundleBackgroundName @"Background"
 #define kDefaultProgramBundleOtherObjectsNamePrefix @"Mole"
         // XXX: HACK serialization-workaround
@@ -337,7 +340,7 @@
             // SYNC and NOT ASYNC here because the UI must wait!!
             dispatch_queue_t translateBundleQ = dispatch_queue_create("translate bundle", NULL);
             dispatch_sync(translateBundleQ, ^{
-                NSString *xmlPath = [[Program projectPathForProgramWithName:kDefaultProgramBundleName]
+                NSString *xmlPath = [[Program projectPathForProgramWithName:kDefaultProgramBundleName programID:nil]
                                      stringByAppendingString:kProgramCodeFileName];
                 NSError *nserror = nil;
                 NSMutableString *xmlString = [NSMutableString stringWithContentsOfFile:xmlPath
@@ -349,24 +352,26 @@
                                               options:NSCaseInsensitiveSearch
                                                 range:NSMakeRange(0, [xmlString length])];
                 [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<object name=\"%@\">", kDefaultProgramBundleBackgroundName]
-                                           withString:[NSString stringWithFormat:@"<object name=\"%@\">", kGeneralBackgroundObjectName]
+                                           withString:[NSString stringWithFormat:@"<object name=\"%@\">", kLocalizedBackground]
                                               options:NSCaseInsensitiveSearch
                                                 range:NSMakeRange(0, [xmlString length])];
                 [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<object name=\"%@\">", kDefaultProgramBundleOtherObjectsNamePrefix]
-                                           withString:[NSString stringWithFormat:@"<object name=\"%@\">", kDefaultProgramOtherObjectsNamePrefix]
+                                           withString:[NSString stringWithFormat:@"<object name=\"%@\">", kLocalizedMole]
                                               options:NSCaseInsensitiveSearch
                                                 range:NSMakeRange(0, [xmlString length])];
                 [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&nserror];
                 NSLogError(nserror);
-                [self moveExistingDirectoryAtPath:[Program projectPathForProgramWithName:kDefaultProgramBundleName]
-                                           toPath:[Program projectPathForProgramWithName:kLocalizedMyFirstProgram]];
+                [self moveExistingDirectoryAtPath:[Program projectPathForProgramWithName:kDefaultProgramBundleName programID:nil]
+                                           toPath:[Program projectPathForProgramWithName:kLocalizedMyFirstProgram programID:nil]];
             });
         }
-#else // kIsRelease
-        ProgramLoadingInfo *loadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:kDefaultProgramBundleName programID:nil];
-        Program *program = [Program programWithLoadingInfo:loadingInfo];
-        [program translateDefaultProgram];
-#endif // kIsRelease
+//############################################################################################################
+//############################################################################################################
+//############################################################################################################
+
+//        ProgramLoadingInfo *loadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:kDefaultProgramBundleName programID:nil];
+//        Program *program = [Program programWithLoadingInfo:loadingInfo];
+//        [program translateDefaultProgram];
 }
 
 - (void)addNewBundleProgramWithName:(NSString*)projectName
@@ -446,7 +451,7 @@
     NSLogError(error);
 }
 
-- (NSString*)getFullPathForProgram:(NSString *)programName
+- (NSString*)fullPathForProgram:(NSString *)programName
 {
     NSString *path = [NSString stringWithFormat:@"%@/%@", self.programsDirectory, programName];
     if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
@@ -481,7 +486,7 @@
 {
     if (data != nil) {
         NSString *name = [self.imageNameDict objectForKey:task];
-        NSString *storePath = [NSString stringWithFormat:@"%@/small_screenshot.png", [self getFullPathForProgram:name]];
+        NSString *storePath = [NSString stringWithFormat:@"%@/small_screenshot.png", [self fullPathForProgram:name]];
         NSDebug(@"path for image is: %@", storePath);
         if ([data writeToFile:storePath atomically:YES]) {
         }
@@ -564,25 +569,25 @@
     
 }
 
--(uint64_t)getFreeDiskspace {
+- (uint64_t)freeDiskspace
+{
+    uint64_t totalSpace = 0;
     uint64_t totalFreeSpace = 0;
     NSError *error = nil;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSDictionary *dictionary = [[NSFileManager defaultManager] attributesOfFileSystemForPath:[paths lastObject] error: &error];
 
     if (dictionary) {
+        NSNumber *fileSystemSizeInBytes = [dictionary objectForKey: NSFileSystemSize];
         NSNumber *freeFileSystemSizeInBytes = [dictionary objectForKey:NSFileSystemFreeSize];
+        totalSpace = [fileSystemSizeInBytes unsignedLongLongValue];
         totalFreeSpace = [freeFileSystemSizeInBytes unsignedLongLongValue];
-        NSDebug(@"Memory Capacity of %llu MiB with %llu MiB Free memory available.",
-                (([[dictionary objectForKey: NSFileSystemSize] unsignedLongLongValue]/1024ll)/1024ll),
-                ((totalFreeSpace/1024ll)/1024ll));
+        NSLog(@"Memory Capacity of %llu MiB with %llu MiB Free memory available.", ((totalSpace/1024ll)/1024ll), ((totalFreeSpace/1024ll)/1024ll));
     } else {
         NSError(@"Error Obtaining System Memory Info: Domain = %@, Code = %ld", [error domain], (long)[error code]);
     }
-    
     return totalFreeSpace;
 }
-
 
 #pragma mark - NSURLSessionDelegate
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
@@ -614,7 +619,7 @@
     if (! url) {
         return;
     }
-    if ([self getFreeDiskspace] < totalBytesExpectedToWrite) {
+    if ([self freeDiskspace] < totalBytesExpectedToWrite) {
         [self stopLoading:downloadTask];
         [Util alertWithText:kLocalizedNotEnoughFreeMemoryDescription];
         if ([self.delegate respondsToSelector:@selector(setBackDownloadStatus)]) {
@@ -686,7 +691,7 @@
 {
     NSURL *localFileURL = [NSURL fileURLWithPath:URL];
     assert([NSFileManager.defaultManager fileExistsAtPath:URL]);
-    
+
     NSError *error = nil;
     BOOL success = [localFileURL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:&error];
     if (!success) {

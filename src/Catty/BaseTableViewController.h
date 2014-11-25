@@ -21,7 +21,7 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "PlaceHolderView.h"
+@class PlaceHolderView;
 @class CatrobatAlertView;
 
 @interface BaseTableViewController : UITableViewController

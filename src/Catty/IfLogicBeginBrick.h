@@ -26,14 +26,12 @@
 @class IfLogicEndBrick;
 @class IfLogicElseBrick;
 
-
 @interface IfLogicBeginBrick : Brick
 
-@property (nonatomic, strong) Formula* ifCondition;
+@property (nonatomic, strong) Formula *ifCondition;
+@property (nonatomic, weak) IfLogicElseBrick *ifElseBrick;
+@property (nonatomic, weak) IfLogicEndBrick *ifEndBrick;
 
-@property (nonatomic, weak) IfLogicElseBrick* ifElseBrick;
-@property (nonatomic, weak) IfLogicEndBrick* ifEndBrick;
-
--(BOOL)checkCondition;
+- (BOOL)checkCondition;
 
 @end

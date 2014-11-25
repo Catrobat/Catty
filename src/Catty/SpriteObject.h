@@ -60,13 +60,13 @@
 
 @property (nonatomic, strong) NSMutableArray *scriptList;
 
-@property (nonatomic, strong) Look* currentLook;
+@property (nonatomic, strong) Look *currentLook;
 
-@property (strong, nonatomic) UIImage* currentUIImageLook;
+@property (strong, nonatomic) UIImage *currentUIImageLook;
 
 @property (nonatomic) CGFloat currentLookBrightness;
 
-@property (nonatomic,weak) Program *program;
+@property (nonatomic, weak) Program *program;
 
 @property (nonatomic)NSInteger numberOfObjectsWithoutBackground;
 
@@ -129,6 +129,5 @@
 - (BOOL)hasSound:(Sound*)sound;
 - (Look*)copyLook:(Look*)sourceLook withNameForCopiedLook:(NSString*)nameOfCopiedLook;
 - (Sound*)copySound:(Sound*)sourceSound withNameForCopiedSound:(NSString*)nameOfCopiedSound;
-
 
 @end

@@ -20,11 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kCatrobatXMLDeclaration @"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>"
-#define kCatrobatScreenModeMaximize @"MAXIMIZE"
-#define kCatrobatScreenModeStretch @"STRETCH"
-#define kCatrobatProgramScreenshotDefaultValue @"false"
-
 #define kIsRelease 0
 
 #if kIsRelease

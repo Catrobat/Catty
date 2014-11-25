@@ -24,5 +24,4 @@
 
 @interface ClearGraphicEffectBrick : Brick
 
-
 @end

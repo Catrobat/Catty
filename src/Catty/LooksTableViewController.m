@@ -50,6 +50,7 @@
 #import "DataTransferMessage.h"
 #import "ProgramLoadingInfo.h"
 #import "PaintViewController.h"
+#import "PlaceHolderView.h"
 
 @interface LooksTableViewController () <CatrobatActionSheetDelegate, UIImagePickerControllerDelegate,
                                         UINavigationControllerDelegate, CatrobatAlertViewDelegate,

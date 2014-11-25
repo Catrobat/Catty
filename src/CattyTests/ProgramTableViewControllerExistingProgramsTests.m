@@ -96,7 +96,7 @@
             continue;
 
         NSLog(@"Program name: %@", programLoadingInfo.visibleName);
-        Program *program = [self loadProgram:programLoadingInfo];
+        Program *program = [Program programWithLoadingInfo:programLoadingInfo];
         XCTAssertNotNil(program, @"Could not create program");
         if (! program) {
             NSLog(@"Loading program %@ failed", programLoadingInfo.visibleName);
@@ -198,7 +198,7 @@
             continue;
 
         NSLog(@"Program name: %@", programLoadingInfo.visibleName);
-        Program *program = [self loadProgram:programLoadingInfo];
+        Program *program = [Program programWithLoadingInfo:programLoadingInfo];
         XCTAssertNotNil(program, @"Could not create program");
         if (! program) {
             NSLog(@"Loading program %@ failed", programLoadingInfo.visibleName);
@@ -259,26 +259,6 @@
 }
 
 #pragma mark - helpers
-- (Program*)loadProgram:(ProgramLoadingInfo*)loadingInfo
-{
-    NSDebug(@"Try to load project '%@'", loadingInfo.visibleName);
-    NSDebug(@"Path: %@", loadingInfo.basePath);
-    NSString *xmlPath = [NSString stringWithFormat:@"%@", loadingInfo.basePath];
-    NSDebug(@"XML-Path: %@", xmlPath);
-    Program *program = [[[Parser alloc] init] generateObjectForProgramWithPath:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
-
-    if (! program)
-        return nil;
-
-    NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
-//    for (SpriteObject *sprite in program.objectList) {
-//        sprite.spriteManagerDelegate = self;
-//        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-//    }
-    [Util setLastProgramWithName:program.header.programName programID:program.header.programID];
-    return program;
-}
-
 + (void)removeProject:(NSString*)projectPath
 {
     FileManager *fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;

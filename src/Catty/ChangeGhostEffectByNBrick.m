@@ -27,8 +27,6 @@
 
 @implementation ChangeGhostEffectByNBrick
 
-@synthesize changeGhostEffect = _changeGhostEffect;
-
 - (NSString*)brickTitle
 {
     return kLocalizedChangeGhostEffectByN;

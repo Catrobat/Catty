@@ -34,20 +34,6 @@
                ReferencedContainer = "container:Catty.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CADBD7FD19B0E8F300C62836"
-               BuildableName = "LicenseTest"
-               BlueprintName = "LicenseTest"
-               ReferencedContainer = "container:Catty.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
