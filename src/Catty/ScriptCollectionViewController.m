@@ -1202,15 +1202,17 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
          }
          count++;
      }
-    NSIndexPath* endPath =[NSIndexPath indexPathForItem:count+1 inSection:indexPath.section];
-     if (!selectButton.selected) {
-         selectButton.selected = selectButton.touchInside;
-         [self.selectedIndexPaths setObject:indexPath forKey:[self keyWithSelectIndexPath:indexPath]];
-         [self.selectedIndexPaths setObject:endPath forKey:[self keyWithSelectIndexPath:endPath]];
-     } else {
-         selectButton.selected = NO;
-         [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:indexPath]];
-         [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:endPath]];
+     if (count+1 < script.brickList.count) { //not allowed to select -> begin.*brick = null (parserError) TODO
+         NSIndexPath* endPath =[NSIndexPath indexPathForItem:count+1 inSection:indexPath.section];
+         if (!selectButton.selected) {
+             selectButton.selected = selectButton.touchInside;
+             [self.selectedIndexPaths setObject:indexPath forKey:[self keyWithSelectIndexPath:indexPath]];
+             [self.selectedIndexPaths setObject:endPath forKey:[self keyWithSelectIndexPath:endPath]];
+         } else {
+             selectButton.selected = NO;
+             [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:indexPath]];
+             [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:endPath]];
+         }
      }
 
  }
@@ -1226,17 +1228,18 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
          }
          count++;
      }
-     
-     NSIndexPath* beginPath =[NSIndexPath indexPathForItem:count+1 inSection:indexPath.section];
-     if (!selectButton.selected) {
-         selectButton.selected = selectButton.touchInside;
-         [self.selectedIndexPaths setObject:indexPath forKey:[self keyWithSelectIndexPath:indexPath]];
-         [self.selectedIndexPaths setObject:beginPath forKey:[self keyWithSelectIndexPath:beginPath]];
-     } else {
-         selectButton.selected = NO;
-         [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:indexPath]];
-         [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:beginPath]];
-     }
+    if (count+1 < script.brickList.count) {//not allowed to select -> end.*brick = null
+        NSIndexPath* beginPath =[NSIndexPath indexPathForItem:count+1 inSection:indexPath.section];
+        if (!selectButton.selected) {
+            selectButton.selected = selectButton.touchInside;
+            [self.selectedIndexPaths setObject:indexPath forKey:[self keyWithSelectIndexPath:indexPath]];
+            [self.selectedIndexPaths setObject:beginPath forKey:[self keyWithSelectIndexPath:beginPath]];
+        } else {
+            selectButton.selected = NO;
+            [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:indexPath]];
+            [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:beginPath]];
+        }
+    }
 
      
  }
@@ -1263,19 +1266,20 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
          }
          
      }
-     NSLog(@"self:%lu,else:%lu,end:%lu",indexPath.item,countElse,countEnd);
-     NSIndexPath* elsePath =[NSIndexPath indexPathForItem:countElse+1 inSection:indexPath.section];
-     NSIndexPath* endPath =[NSIndexPath indexPathForItem:countEnd+1 inSection:indexPath.section];
-     if (!selectButton.selected) {
-         selectButton.selected = selectButton.touchInside;
-         [self.selectedIndexPaths setObject:indexPath forKey:[self keyWithSelectIndexPath:indexPath]];
-         [self.selectedIndexPaths setObject:elsePath forKey:[self keyWithSelectIndexPath:elsePath]];
-         [self.selectedIndexPaths setObject:endPath forKey:[self keyWithSelectIndexPath:endPath]];
-     } else {
-         selectButton.selected = NO;
-         [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:indexPath]];
-         [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:elsePath]];
-         [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:endPath]];
+     if (countEnd+1 < script.brickList.count && countElse+1 < script.brickList.count) {//not allowed to select -> begin.*brick = null
+         NSIndexPath* elsePath =[NSIndexPath indexPathForItem:countElse+1 inSection:indexPath.section];
+         NSIndexPath* endPath =[NSIndexPath indexPathForItem:countEnd+1 inSection:indexPath.section];
+         if (!selectButton.selected) {
+             selectButton.selected = selectButton.touchInside;
+             [self.selectedIndexPaths setObject:indexPath forKey:[self keyWithSelectIndexPath:indexPath]];
+             [self.selectedIndexPaths setObject:elsePath forKey:[self keyWithSelectIndexPath:elsePath]];
+             [self.selectedIndexPaths setObject:endPath forKey:[self keyWithSelectIndexPath:endPath]];
+         } else {
+             selectButton.selected = NO;
+             [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:indexPath]];
+             [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:elsePath]];
+             [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:endPath]];
+         }
      }
 
  }
@@ -1302,18 +1306,20 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
          }
          
      }
-     NSIndexPath* beginPath =[NSIndexPath indexPathForItem:countBegin+1 inSection:indexPath.section];
-     NSIndexPath* endPath =[NSIndexPath indexPathForItem:countEnd+1 inSection:indexPath.section];
-     if (!selectButton.selected) {
-         selectButton.selected = selectButton.touchInside;
-         [self.selectedIndexPaths setObject:indexPath forKey:[self keyWithSelectIndexPath:indexPath]];
-         [self.selectedIndexPaths setObject:beginPath forKey:[self keyWithSelectIndexPath:beginPath]];
-         [self.selectedIndexPaths setObject:endPath forKey:[self keyWithSelectIndexPath:endPath]];
-     } else {
-         selectButton.selected = NO;
-         [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:indexPath]];
-         [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:beginPath]];
-         [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:endPath]];
+     if (countEnd+1 < script.brickList.count && countBegin+1 < script.brickList.count) {//not allowed to select -> else.*brick = null
+         NSIndexPath* beginPath =[NSIndexPath indexPathForItem:countBegin+1 inSection:indexPath.section];
+         NSIndexPath* endPath =[NSIndexPath indexPathForItem:countEnd+1 inSection:indexPath.section];
+         if (!selectButton.selected) {
+             selectButton.selected = selectButton.touchInside;
+             [self.selectedIndexPaths setObject:indexPath forKey:[self keyWithSelectIndexPath:indexPath]];
+             [self.selectedIndexPaths setObject:beginPath forKey:[self keyWithSelectIndexPath:beginPath]];
+             [self.selectedIndexPaths setObject:endPath forKey:[self keyWithSelectIndexPath:endPath]];
+         } else {
+             selectButton.selected = NO;
+             [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:indexPath]];
+             [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:beginPath]];
+             [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:endPath]];
+         }
      }
      
  }
@@ -1340,18 +1346,20 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
          }
          
      }
-     NSIndexPath* beginPath =[NSIndexPath indexPathForItem:countbegin+1 inSection:indexPath.section];
-     NSIndexPath* elsePath =[NSIndexPath indexPathForItem:countElse+1 inSection:indexPath.section];
-     if (!selectButton.selected) {
-         selectButton.selected = selectButton.touchInside;
-         [self.selectedIndexPaths setObject:indexPath forKey:[self keyWithSelectIndexPath:indexPath]];
-         [self.selectedIndexPaths setObject:beginPath forKey:[self keyWithSelectIndexPath:beginPath]];
-         [self.selectedIndexPaths setObject:elsePath forKey:[self keyWithSelectIndexPath:elsePath]];
-     } else {
-         selectButton.selected = NO;
-         [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:indexPath]];
-         [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:beginPath]];
-         [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:elsePath]];
+     if (countbegin+1 < script.brickList.count && countElse+1 < script.brickList.count) {//not allowed to select -> end.*brick = null
+         NSIndexPath* beginPath =[NSIndexPath indexPathForItem:countbegin+1 inSection:indexPath.section];
+         NSIndexPath* elsePath =[NSIndexPath indexPathForItem:countElse+1 inSection:indexPath.section];
+         if (!selectButton.selected) {
+             selectButton.selected = selectButton.touchInside;
+             [self.selectedIndexPaths setObject:indexPath forKey:[self keyWithSelectIndexPath:indexPath]];
+             [self.selectedIndexPaths setObject:beginPath forKey:[self keyWithSelectIndexPath:beginPath]];
+             [self.selectedIndexPaths setObject:elsePath forKey:[self keyWithSelectIndexPath:elsePath]];
+         } else {
+             selectButton.selected = NO;
+             [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:indexPath]];
+             [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:beginPath]];
+             [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:elsePath]];
+         }
      }
      
  }
