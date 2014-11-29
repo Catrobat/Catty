@@ -137,6 +137,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
     [self.tableView insertRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:(([self.program numberOfNormalObjects] == 1) ? UITableViewRowAnimationFade : UITableViewRowAnimationBottom)];
+    [self hideLoadingView];
 }
 
 - (void)renameProgramActionForProgramWithName:(NSString*)newProgramName
@@ -152,6 +153,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                   programID:self.program.header.programID
                            toNewProgramName:self.program.header.programName];
     self.navigationItem.title = self.title = self.program.header.programName;
+    [self hideLoadingView];
 }
 
 - (void)copyObjectActionWithSourceObject:(SpriteObject*)sourceObject
@@ -184,6 +186,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         });
     });
     // ####### WORKAROUND END
+    [self hideLoadingView];
 }
 
 - (void)renameObjectActionToName:(NSString*)newObjectName spriteObject:(SpriteObject*)spriteObject
@@ -198,6 +201,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(spriteObjectIndex - kBackgroundObjects)
                                                 inSection:kObjectSectionIndex];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [self hideLoadingView];
 }
 
 - (void)playSceneAction:(id)sender
@@ -272,6 +276,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.program removeObjects:objectsToRemove];
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:(([self.program numberOfNormalObjects] != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
+    [self hideLoadingView];
 }
 
 - (void)deleteObjectForIndexPath:(NSIndexPath*)indexPath
@@ -282,6 +287,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.program removeObject:object];
     [self.program saveToDisk];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:((indexPath.row != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
+    [self hideLoadingView];
 }
 
 - (void)deleteProgramAction

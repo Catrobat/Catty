@@ -77,7 +77,7 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
 @implementation LXReorderableCollectionViewFlowLayout
 
 - (void)setDefaults {
-    _scrollingSpeed = 300.0f;
+    _scrollingSpeed = 100.0f;
     _scrollingTriggerEdgeInsets = UIEdgeInsetsMake(50.0f, 50.0f, 50.0f, 50.0f);
 }
 
@@ -209,7 +209,7 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
     if (direction == LXScrollingDirectionUnknown) {
         return;
     }
-    
+    [self invalidateLayoutIfNecessary];
     CGSize frameSize = self.collectionView.bounds.size;
     CGSize contentSize = self.collectionView.contentSize;
     CGPoint contentOffset = self.collectionView.contentOffset;

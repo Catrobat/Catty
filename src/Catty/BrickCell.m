@@ -531,7 +531,7 @@
         animation.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeRotation((CGFloat)M_PI/200.0f, 0.1f, 0.1f, 0.1f)],
                               [NSValue valueWithCATransform3D:CATransform3DMakeRotation((CGFloat)M_PI/200.0f, -0.1f, -0.1f, -0.1f)]];
         animation.autoreverses = YES ;
-        animation.repeatCount = HUGE_VAL;
+        animation.repeatCount = 2;
         animation.duration = 0.1f ;
         [self.layer addAnimation:animation forKey:@"whobble"];
     } else {

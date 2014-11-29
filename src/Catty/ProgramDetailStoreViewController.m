@@ -38,6 +38,8 @@
 #import "CreateView.h"
 #import "Reachability.h"
 #import "ProgramUpdateDelegate.h"
+#import "UIDefines.h"
+#import "LoginPopupViewController.h"
 
 #define kUIBarHeight 49
 #define kNavBarHeight 44
@@ -52,6 +54,9 @@
 @property (nonatomic, strong) UIView *projectView;
 @property (nonatomic, strong) LoadingView *loadingView;
 @property (nonatomic, strong) Program *loadedProgram;
+@property (nonatomic, assign) BOOL useTestUrl;
+@property (nonatomic, strong) NSURLConnection *connection;
+@property (nonatomic, strong) NSMutableData *data;
 
 @end
 
@@ -110,6 +115,7 @@
     appDelegate.fileManager.delegate = self;
     appDelegate.fileManager.projectURL = [NSURL URLWithString:self.project.downloadUrl];
 
+    self.useTestUrl = YES;
 }
 
 - (void)initNavigationBar
@@ -218,6 +224,77 @@
     if ([self shouldPerformSegueWithIdentifier:segueToContinue sender:self]) {
         [self performSegueWithIdentifier:segueToContinue sender:self];
     }
+}
+- (void)reportProgram
+{
+    NSDebug(@"report");
+    // TODO use this if api is ready!
+//    BOOL isLoggedIn = [[NSUserDefaults standardUserDefaults] boolForKey:kUserIsLoggedIn];
+//    if (isLoggedIn) {
+    
+            //[Util askUserForReportMessageAndPerformAction:@selector(sendReportWithMessage:) target:self promptTitle:@"Report Program" promptMessage:@"Why do you think this program is inappropriate?" minInputLength:1 maxInputLength:10 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:@"only ...characters"];
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://pocketcode.org/details/%@",self.project.projectID]]];
+
+//    } else {
+//        [self showLoginView];
+//    }
+}
+
+- (void)showLoginView
+{
+    if (self.popupViewController == nil) {
+        LoginPopupViewController *popupViewController = [[LoginPopupViewController alloc] init];
+        popupViewController.delegate = self;
+        [self presentPopupViewController:popupViewController WithFrame:self.view.frame isLogin:YES];
+        self.navigationItem.leftBarButtonItem.enabled = NO;
+    } else {
+        [self dismissPopupWithLoginCode:NO];
+    }
+}
+
+static NSCharacterSet *blockedCharacterSet = nil;
+
+- (NSCharacterSet*)blockedCharacterSet
+{
+    if (! blockedCharacterSet) {
+        blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                               invertedSet];
+    }
+    return blockedCharacterSet;
+}
+
+
+-(void)sendReportWithMessage:(NSString*)message
+{
+    NSLog(@"ReportMessage::::::%@",message);
+    
+    self.data = nil;
+    self.data = [[NSMutableData alloc] init];
+    
+    NSString *reportUrl = self.useTestUrl ? kTestReportProgramUrl : kReportProgramUrl;
+
+    NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@",@"id",self.project.projectID,@"message",message];
+    NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+    NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", reportUrl]]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody:postData];
+    
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    self.connection = connection;
+    
+    [self.connection start];
+    
+    if(self.connection) {
+        NSLog(@"Connection Successful");
+    } else {
+        NSLog(@"Connection could not be made");
+    }
+  
 }
 
 - (void)playButtonPressed:(id)sender
@@ -372,5 +449,60 @@
 }
 
 
+#pragma mark - URLDelegate
 
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
+{
+    NSDebug(@"Received Data from server");
+    if (self.connection == connection) {
+        [self.data appendData:data];
+    }
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    NSDebug(@"response");
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    if (self.connection == connection) {
+        NSDebug(@"Finished loading");
+        
+        NSError *error = nil;
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:self.data options:kNilOptions error:&error];
+        NSString *statusCode = [NSString stringWithFormat:@"%@", [dictionary valueForKey:@"statusCode"]];
+            //int statusCode = [dictionary valueForKey:@"statusCode"];
+        NSDebug(@"StatusCode is %@", statusCode);
+        
+            //some ugly code just to get logic working
+        if ([statusCode isEqualToString:@"200"] || [statusCode  isEqualToString:@"201"]) {
+            
+
+        } else {
+            [Util alertWithText:[dictionary valueForKey:@"answer"]];
+        }
+        self.data = nil;
+        self.connection = nil;
+    }
+
+}
+
+
+#pragma mark - popup delegate
+- (BOOL)dismissPopupWithLoginCode:(BOOL)successLogin
+{
+    if (self.popupViewController != nil) {
+        [self dismissPopupViewController];
+        self.navigationItem.leftBarButtonItem.enabled = YES;
+        if (successLogin) {
+                // TODO no trigger because popup is visible
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [self reportProgram];
+            });
+        }
+        return YES;
+    }
+    return NO;
+}
 @end

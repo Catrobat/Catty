@@ -431,6 +431,9 @@
 		CAFAEAF81A13E06300C9F170 /* SetVolumeToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFAEAF71A13E06300C9F170 /* SetVolumeToBrick+CBXMLHandler.m */; };
 		CAFAEAFB1A13E21900C9F170 /* RepeatBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFAEAFA1A13E21900C9F170 /* RepeatBrick+CBXMLHandler.m */; };
 		CAFAEAFE1A13E45F00C9F170 /* BroadcastBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFAEAFD1A13E45F00C9F170 /* BroadcastBrick+CBXMLHandler.m */; };
+		D6AD274319E2A55B0023244E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6AD274219E2A55B0023244E /* LoginViewController.m */; };
+		D6AD274819E7DCD00023244E /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6AD274719E7DCD00023244E /* UploadViewController.m */; };
+		D6E9E1C81A1F500400DCD478 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E9E1C71A1F500400DCD478 /* LoginPopupViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1214,6 +1217,12 @@
 		CD8CC8BB1724346200239EBF /* HelpWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpWebViewController.m; sourceTree = "<group>"; };
 		CDFEFCB21758CBC8002B5B0E /* IfOnEdgeBounceBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IfOnEdgeBounceBrick.h; sourceTree = "<group>"; };
 		CDFEFCB31758CBC8002B5B0E /* IfOnEdgeBounceBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfOnEdgeBounceBrick.m; sourceTree = "<group>"; };
+		D6AD274119E2A55B0023244E /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		D6AD274219E2A55B0023244E /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		D6AD274619E7DCD00023244E /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
+		D6AD274719E7DCD00023244E /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
+		D6E9E1C61A1F500400DCD478 /* LoginPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginPopupViewController.h; sourceTree = "<group>"; };
+		D6E9E1C71A1F500400DCD478 /* LoginPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginPopupViewController.m; sourceTree = "<group>"; };
 		DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DE3F097711B7BABD009D4DB0 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -2576,6 +2585,8 @@
 		CA05A198182827B40025421A /* Upload */ = {
 			isa = PBXGroup;
 			children = (
+				D6AD274519E7DCAA0023244E /* UploadViewController */,
+				D6AD274419E7DC300023244E /* LoginViewController */,
 			);
 			name = Upload;
 			sourceTree = "<group>";
@@ -3997,6 +4008,26 @@
 			name = IfOnEdgeBounceBrick;
 			sourceTree = "<group>";
 		};
+		D6AD274419E7DC300023244E /* LoginViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D6AD274119E2A55B0023244E /* LoginViewController.h */,
+				D6AD274219E2A55B0023244E /* LoginViewController.m */,
+				D6E9E1C61A1F500400DCD478 /* LoginPopupViewController.h */,
+				D6E9E1C71A1F500400DCD478 /* LoginPopupViewController.m */,
+			);
+			name = LoginViewController;
+			sourceTree = "<group>";
+		};
+		D6AD274519E7DCAA0023244E /* UploadViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D6AD274619E7DCD00023244E /* UploadViewController.h */,
+				D6AD274719E7DCD00023244E /* UploadViewController.m */,
+			);
+			name = UploadViewController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -4046,9 +4077,11 @@
 				LastUpgradeCheck = 0600;
 				TargetAttributes = {
 					CA538EA119B0EA09008240AB = {
+						DevelopmentTeam = SAUK7AHA7S;
 						TestTargetID = CADBD6D319B0E8C200C62836;
 					};
 					CADBD6D319B0E8C200C62836 = {
+						DevelopmentTeam = SAUK7AHA7S;
 						DevelopmentTeam = 4V6T7BCGGR;
 					};
 				};
@@ -4281,6 +4314,7 @@
 				CADBD70819B0E8C200C62836 /* PlaceAtBrickCell.m in Sources */,
 				CADBD70919B0E8C200C62836 /* FBShimmeringLayer.m in Sources */,
 				CA84867D1A117E5C001B6368 /* CBXMLOpenedNestingBricksStack.m in Sources */,
+				D6AD274819E7DCD00023244E /* UploadViewController.m in Sources */,
 				CADBD70A19B0E8C200C62836 /* NSString+CatrobatNSStringExtensions.m in Sources */,
 				CA63C9F11A13F1C7009A32DB /* LedOnBrick.m in Sources */,
 				CADBD70B19B0E8C200C62836 /* BrickShapeFactory.m in Sources */,
@@ -4308,6 +4342,7 @@
 				CADBD71D19B0E8C200C62836 /* BrickDetailViewController.m in Sources */,
 				CA63C9E51A13EF56009A32DB /* SetBrightnessBrick+CBXMLHandler.m in Sources */,
 				CADBD71E19B0E8C200C62836 /* SearchStoreViewController.m in Sources */,
+				D6AD274319E2A55B0023244E /* LoginViewController.m in Sources */,
 				CADBD71F19B0E8C200C62836 /* BroadcastBrick.m in Sources */,
 				CADBD72019B0E8C200C62836 /* NSDate+CustomExtensions.m in Sources */,
 				CADBD72119B0E8C200C62836 /* ChangeVariableBrickCell.m in Sources */,
@@ -4354,6 +4389,7 @@
 				CAEB7F1619F45D3400A2A251 /* Program+CustomExtensions.m in Sources */,
 				CADBD74319B0E8C200C62836 /* BroadcastScriptCell.m in Sources */,
 				CADBD74419B0E8C200C62836 /* NextLookBrick.m in Sources */,
+				D6E9E1C81A1F500400DCD478 /* LoginPopupViewController.m in Sources */,
 				CADBD74519B0E8C200C62836 /* NavigationController.m in Sources */,
 				CADBD74619B0E8C200C62836 /* RuntimeImageCache.m in Sources */,
 				CADBD74719B0E8C200C62836 /* CatrobatAlertView.m in Sources */,
