@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -135,7 +135,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SUT-4U-uAA">
-                    <rect key="frame" x="257" y="210" width="57.5" height="30"/>
+                    <rect key="frame" x="257" y="210" width="58" height="30"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="5L5-Bi-qdP"/>
@@ -147,22 +147,6 @@
                     </state>
                     <connections>
                         <action selector="done:" destination="-1" eventType="touchUpInside" id="grj-f4-CKi"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oQN-vf-ZdE">
-                    <rect key="frame" x="162" y="10" width="85" height="30"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="85" id="HEc-gi-cpG"/>
-                        <constraint firstAttribute="height" constant="30" id="tP8-gr-V8j"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <state key="normal" title="Compute">
-                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="compute:" destination="-1" eventType="touchUpInside" id="qfx-j6-umy"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DpH-97-0s2">
@@ -198,7 +182,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="411" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rkk-tV-mbQ">
-                    <rect key="frame" x="257" y="50" width="57.5" height="30"/>
+                    <rect key="frame" x="257" y="50" width="58" height="30"/>
                     <color key="backgroundColor" red="0.90980392160000001" green="0.57254901960000004" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="ds3-cD-Rzn"/>
@@ -213,7 +197,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="410" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="huL-az-i7Z">
-                    <rect key="frame" x="257" y="90" width="57.5" height="30"/>
+                    <rect key="frame" x="257" y="90" width="58" height="30"/>
                     <color key="backgroundColor" red="0.90980392160000001" green="0.57254901960000004" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="foD-un-Wcd"/>
@@ -228,7 +212,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="408" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3DA-2p-zn4">
-                    <rect key="frame" x="257" y="170" width="57.5" height="30"/>
+                    <rect key="frame" x="257" y="170" width="58" height="30"/>
                     <color key="backgroundColor" red="0.90980392160000001" green="0.57254901960000004" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="t1a-kK-Lt0"/>
@@ -331,7 +315,7 @@
                                 <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="6G9-Eg-s6V"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="405" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0L-h6-2EW" userLabel="&gt;=">
+                        <button opaque="NO" tag="405" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0L-h6-2EW" userLabel=">=">
                             <rect key="frame" x="90" y="85" width="85" height="30"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -353,7 +337,7 @@
                                 <constraint firstAttribute="width" constant="85" id="4cJ-5o-Uw9"/>
                                 <constraint firstAttribute="height" constant="30" id="DV0-eO-shV"/>
                             </constraints>
-                            <state key="normal" title="&gt;">
+                            <state key="normal" title=">">
                                 <color key="titleColor" red="0.13725490200000001" green="0.1960784314" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -1126,8 +1110,8 @@
                         <constraint firstItem="YRO-xu-mse" firstAttribute="top" secondItem="uXA-h0-rRH" secondAttribute="top" constant="5" id="zBN-p1-AvZ"/>
                     </constraints>
                 </scrollView>
-                <button opaque="NO" tag="400" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9K-ue-3bh">
-                    <rect key="frame" x="6" y="50" width="56.5" height="30"/>
+                <button opaque="NO" tag="400" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9K-ue-3bh">
+                    <rect key="frame" x="6" y="50" width="57" height="30"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="E9K-4Y-C06"/>
@@ -1345,8 +1329,8 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </scrollView>
-                <button opaque="NO" tag="400" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tgc-kx-DJP">
-                    <rect key="frame" x="6" y="10" width="56.5" height="30"/>
+                <button opaque="NO" tag="400" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tgc-kx-DJP">
+                    <rect key="frame" x="6" y="10" width="57" height="30"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="QH3-hd-a6C"/>
@@ -1359,8 +1343,8 @@
                         <action selector="showCalc:" destination="-1" eventType="touchUpInside" id="T2l-xT-N0W"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="400" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BjT-SP-YH6">
-                    <rect key="frame" x="6" y="90" width="56.5" height="30"/>
+                <button opaque="NO" tag="400" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BjT-SP-YH6">
+                    <rect key="frame" x="6" y="90" width="57" height="30"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="fax-Cb-FjR"/>
@@ -1374,8 +1358,8 @@
                         <action selector="showLogic:" destination="-1" eventType="touchUpInside" id="wtx-wH-fTm"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="400" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lon-kh-Yxw">
-                    <rect key="frame" x="6" y="130" width="56.5" height="30"/>
+                <button opaque="NO" tag="400" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lon-kh-Yxw">
+                    <rect key="frame" x="6" y="130" width="57" height="30"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="1xk-Q3-IGY"/>
@@ -1389,8 +1373,8 @@
                         <action selector="showObject:" destination="-1" eventType="touchUpInside" id="uTQ-Eb-aoC"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="400" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJw-CT-Ced">
-                    <rect key="frame" x="6" y="170" width="56.5" height="30"/>
+                <button opaque="NO" tag="400" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJw-CT-Ced">
+                    <rect key="frame" x="6" y="170" width="57" height="30"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="PuK-ef-Dfn"/>
@@ -1405,7 +1389,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="409" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3NS-4e-r3K">
-                    <rect key="frame" x="257" y="130" width="57.5" height="30"/>
+                    <rect key="frame" x="257" y="130" width="58" height="30"/>
                     <color key="backgroundColor" red="0.90980392160000001" green="0.57254901960000004" blue="0.023529411760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="812-Tg-Eh5"/>
@@ -1419,8 +1403,8 @@
                         <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="Csa-kn-67A"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="400" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGd-da-Hvk">
-                    <rect key="frame" x="6" y="210" width="56.5" height="30"/>
+                <button opaque="NO" tag="400" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGd-da-Hvk">
+                    <rect key="frame" x="6" y="210" width="57" height="30"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="rfc-jd-uJe"/>
@@ -1435,7 +1419,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uCt-gq-t2x" userLabel="del">
-                    <rect key="frame" x="257" y="10" width="57.5" height="30"/>
+                    <rect key="frame" x="257" y="10" width="58" height="30"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="ldf-Lj-iif"/>
@@ -1447,6 +1431,22 @@
                     </state>
                     <connections>
                         <action selector="backspaceButtonAction:" destination="-1" eventType="touchUpInside" id="pzh-tv-jGF"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oQN-vf-ZdE">
+                    <rect key="frame" x="162" y="10" width="85" height="30"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="85" id="HEc-gi-cpG"/>
+                        <constraint firstAttribute="height" constant="30" id="tP8-gr-V8j"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="Compute">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="compute:" destination="-1" eventType="touchUpInside" id="qfx-j6-umy"/>
                     </connections>
                 </button>
             </subviews>

@@ -138,6 +138,16 @@
 
 -(void)highlightSelection:(NSUInteger)cursorPostionIndex start:(int)startIndex end:(int)endIndex
 {
+    TokenSelectionType *selectionType = [self.formulaEditorViewController.internFormula getExternSelectionType];
+    
+    UIColor *selectionColor;
+    if(selectionType == PARSER_ERROR_SELECTION)
+    {
+        selectionColor = [UIColor redColor];
+    }else{
+        selectionColor = [UIColor lightOrangeColor];
+    }
+    
     NSMutableAttributedString *formulaString = [[NSMutableAttributedString alloc] initWithString:[self text] attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20.0f]}];
     
     
@@ -161,7 +171,7 @@
         self.selectedTextRange = [self textRangeFromPosition:cursorPosition toPosition:cursorPosition];
     }
     else{
-        [formulaString addAttribute:NSBackgroundColorAttributeName value:[UIColor lightOrangeColor] range:NSMakeRange(location, length)];
+        [formulaString addAttribute:NSBackgroundColorAttributeName value:selectionColor range:NSMakeRange(location, length)];
         UITextPosition *cursorPosition = [self positionFromPosition:self.beginningOfDocument
                                                                    offset:endIndex];
         self.attributedText = formulaString;
@@ -221,6 +231,14 @@
     self.backspaceButton.frame = backspaceFrame;
 }
 
+- (void)setParseErrorCursorAndSelection
+{
+    [self.formulaEditorViewController.internFormula selectParseErrorTokenAndSetCursor];
+    int startIndex = [self.formulaEditorViewController.internFormula getExternSelectionStartIndex];
+    int endIndex = [self.formulaEditorViewController.internFormula getExternSelectionEndIndex];
+    NSUInteger cursorPostionIndex = [self.formulaEditorViewController.internFormula getExternCursorPosition];
+    [self highlightSelection:cursorPostionIndex start:startIndex end:endIndex];
+}
 
 
 @end

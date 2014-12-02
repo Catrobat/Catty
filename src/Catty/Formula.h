@@ -31,6 +31,7 @@
 @interface Formula : NSObject
 
 @property (nonatomic, strong) FormulaElement* formulaTree;
+@property (nonatomic, weak) NSString* displayString;
 
 - (id)initWithInteger:(int)value;
 - (id)initWithDouble:(double)value;
@@ -49,5 +50,7 @@
 - (void)setRoot:(FormulaElement*)formulaTree;
 - (InternFormulaState*)getInternFormulaState;
 - (NSString*)getDisplayString;
+- (InternFormula*)getInternFormula;
+- (void)setDisplayString:(NSString*)text;
 
 @end
