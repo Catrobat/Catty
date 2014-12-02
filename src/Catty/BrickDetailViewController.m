@@ -37,6 +37,8 @@
 #import "BrickFormulaProtocol.h"
 #import "LanguageTranslationDefines.h"
 #import "CatrobatActionSheet.h"
+#import "LoopBeginBrick.h"
+#import "LoopEndBrick.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -51,6 +53,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (strong, nonatomic) NSNumber *deleteBrickOrScriptFlag;
 @property (strong, nonatomic) NSNumber *brickCopyFlag;
 @property (strong, nonatomic) NSNumber *openFormulaEditorFlag;
+@property (strong, nonatomic) NSNumber *animationFlag;
 @property (strong, nonatomic) CatrobatActionSheet *brickMenu;
 
 @end
@@ -64,7 +67,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.deleteBrickOrScriptFlag = [[NSNumber alloc]initWithBool:NO];
     self.brickCopyFlag = [[NSNumber alloc]initWithBool:NO];
     self.openFormulaEditorFlag = [[NSNumber alloc]initWithBool:NO];
-
+    self.animationFlag = [[NSNumber alloc]initWithBool:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -89,9 +92,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     [super viewDidDisappear:animated];
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(brickDetailViewController:viewDidDisappear:withBrickCell:copyBrick:openFormulaEditor:)]) {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(brickDetailViewController:viewDidDisappear:withBrickCell:copyBrick:openFormulaEditor:animateBrick:)]) {
         [self.delegate brickDetailViewController:self viewDidDisappear:self.deleteBrickOrScriptFlag.boolValue
-                                   withBrickCell:self.brickCell copyBrick:self.brickCopyFlag.boolValue openFormulaEditor:self.openFormulaEditorFlag.boolValue];
+                                   withBrickCell:self.brickCell copyBrick:self.brickCopyFlag.boolValue openFormulaEditor:self.openFormulaEditorFlag.boolValue animateBrick:self.animationFlag.boolValue];
     }
 }
 
@@ -166,6 +169,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 #if kIsRelease // kIsRelease
     [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 #else // kIsRelease
+
     switch ([self getAbsoluteButtonIndex:buttonIndex]) {
         case kButtonIndexDelete: {
             self.deleteBrickOrScriptFlag = [NSNumber numberWithBool:YES];
@@ -179,6 +183,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
             [self dismissBrickDetailViewController];
             break;
         case kButtonIndexAnimate:
+            self.animationFlag = [NSNumber numberWithBool:YES];
+            [self dismissBrickDetailViewController];
             break;
         case kButtonIndexEdit:
             // formula editor button

@@ -32,7 +32,8 @@
                  viewDidDisappear:(BOOL)deleteBrick
                     withBrickCell:(BrickCell *)brickCell
                         copyBrick:(BOOL)copyBrick
-                            openFormulaEditor:(BOOL)openFormulaEditor;
+                openFormulaEditor:(BOOL)openFormulaEditor
+                     animateBrick:(BOOL)animate;
 
 @end
 
