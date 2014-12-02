@@ -151,6 +151,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[ProgramManager sharedProgramManager]setProgram:self.object.program];
     self.view.backgroundColor = UIColor.clearColor;
 
     [self showFormulaEditor];
@@ -722,16 +723,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (IBAction)choseVariable:(UIButton *)sender {
   NSInteger row = [self.variablePicker selectedRowInComponent:self.currentComponent];
-  if (row >0) {
+  if (row >= 0) {
 //      if (self.currentComponent == 0) {
 //          NSLog(@"%@",self.variableSourceObject[row]);
 //          VariablesContainer* varCont = self.object.program.variables;
 //          UserVariable* var = [varCont getUserVariableNamed:self.variableSourceObject[row] forSpriteObject:self.object];
 //      }else
-          if (self.currentComponent == 0){
-          VariablesContainer* varCont = self.object.program.variables;
-          UserVariable* var = [varCont getUserVariableNamed:self.variableSourceProgram[row] forSpriteObject:self.object];
+          if (self.currentComponent == 0)
+          {
+            VariablesContainer* varCont = self.object.program.variables;
+              UserVariable* var = [varCont getUserVariableNamed:self.variableSourceProgram[row] forSpriteObject:self.object];
               NSDebug(@"%@",var.name);
+              [self handleInputWithTitle:var.name AndButtonType:0];
       }
   
       

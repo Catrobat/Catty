@@ -24,6 +24,7 @@
 #import "InternToken.h"
 #import "Functions.h"
 #import "Operators.h"
+#import "SensorManager.h"
 
 @interface InternFormulaKeyboardAdapter : NSObject
 

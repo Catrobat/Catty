@@ -25,6 +25,7 @@
 #import "Formula.h"
 #import "FormulaEditorHistory.h"
 #import "SpriteObject.h"
+#import "ProgramManager.h"
 
 @class FormulaEditorViewController;
 @class BrickCell;

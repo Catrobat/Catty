@@ -235,7 +235,48 @@
         //COSTUME
             
         //SENSOR
-            
+        case COMPASS_DIRECTION:
+            return [self buildSensor:COMPASS_DIRECTION];
+            break;
+        case LOUDNESS:
+            return [self buildSensor:LOUDNESS];
+            break;
+        case OBJECT_BRIGHTNESS:
+            return [self buildSensor:OBJECT_BRIGHTNESS];
+            break;
+        case OBJECT_GHOSTEFFECT:
+            return [self buildSensor:OBJECT_GHOSTEFFECT];
+            break;
+        case OBJECT_LAYER:
+            return [self buildSensor:OBJECT_LAYER];
+            break;
+        case OBJECT_ROTATION:
+            return [self buildSensor:OBJECT_ROTATION];
+            break;
+        case OBJECT_SIZE:
+            return [self buildSensor:OBJECT_SIZE];
+            break;
+        case OBJECT_X:
+            return [self buildSensor:OBJECT_X];
+            break;
+        case OBJECT_Y:
+            return [self buildSensor:OBJECT_Y];
+            break;
+        case X_ACCELERATION:
+            return [self buildSensor:X_ACCELERATION];
+            break;
+        case X_INCLINATION:
+            return [self buildSensor:X_INCLINATION];
+            break;
+        case Y_ACCELERATION:
+            return [self buildSensor:Y_ACCELERATION];
+            break;
+        case Y_INCLINATION:
+            return [self buildSensor:Y_INCLINATION];
+            break;
+        case Z_ACCELERATION:
+            return [self buildSensor:Z_ACCELERATION];
+            break;
             
         default:
             return nil;
@@ -346,6 +387,14 @@
     NSMutableArray *returnList = [[NSMutableArray alloc]init];
     [returnList addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_OPERATOR
                                                   AndValue:[Operators getName:operator]]];
+    return returnList;
+}
+
+-(NSMutableArray *)buildSensor:(Sensor)sensor
+{
+    NSMutableArray *returnList = [[NSMutableArray alloc]init];
+    [returnList addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_SENSOR
+                                                  AndValue:[SensorManager stringForSensor:sensor]]];
     return returnList;
 }
 @end

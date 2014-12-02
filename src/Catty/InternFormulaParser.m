@@ -232,10 +232,19 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
      
 - (FormulaElement*)userVariable
 {
-    InternFormulaParserException *exception = [[InternFormulaParserException alloc] initWithName:@"Not implemented yet" reason:nil userInfo:nil];
-    @throw exception;
+    ProgramManager *programManager = [ProgramManager sharedProgramManager];
+    VariablesContainer *container = programManager.program.variables;
+    UserVariable *userVariable = [container getUserVariableNamed:self.currentToken.tokenStringValue forSpriteObject:nil];
+    FormulaElement *formulaTree = nil;
+    if(userVariable != nil)
+    {
+        formulaTree = [[FormulaElement alloc]initWithElementType:USER_VARIABLE value:[self.currentToken getTokenStringValue] leftChild:nil rightChild:nil parent:nil];
+    }
     
-    return nil;
+//    InternFormulaParserException *exception = [[InternFormulaParserException alloc] initWithName:@"Not implemented yet" reason:nil userInfo:nil];
+//    @throw exception;
+    [self getNextToken];
+    return formulaTree;
 }
 
 - (FormulaElement*)function

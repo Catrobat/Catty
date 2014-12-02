@@ -167,7 +167,9 @@
             
             return returnValue;
             break;
-            
+        case TOKEN_TYPE_SENSOR:
+            return [SensorManager getExternName:[internToken getTokenStringValue]];
+            break;
         default:
             return [internToken getTokenStringValue];
             break;
