@@ -27,6 +27,7 @@
 
 @implementation Formula
 
+
 - (id)initWithInteger:(int)value
 {
     self = [super init];
@@ -117,6 +118,7 @@
 
 - (void)setRoot:(FormulaElement*)formulaTree
 {
+    self.displayString = nil;
     self.formulaTree = formulaTree;
 }
 
@@ -133,9 +135,26 @@
 
 - (NSString*)getDisplayString
 {
-    InternFormula *internFormula = [self getInternFormula];
-    [internFormula generateExternFormulaStringAndInternExternMapping];
-    return [internFormula getExternFormulaString];
+    if(self.displayString != nil)
+    {
+        return self.displayString;
+    }else
+    {
+        InternFormula *internFormula = [self getInternFormula];
+        [internFormula generateExternFormulaStringAndInternExternMapping];
+        return [internFormula getExternFormulaString];
+    }
+}
+
+- (void)setDisplayString:(NSString *)text
+{
+    if(text == nil)
+    {
+        _displayString = nil;
+    }else
+    {
+        _displayString = [NSString stringWithFormat:text];
+    }
 }
 
 @end

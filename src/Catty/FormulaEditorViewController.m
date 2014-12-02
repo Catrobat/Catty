@@ -98,6 +98,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 @end
 
+
+
 @implementation FormulaEditorViewController
 
 @synthesize formulaEditorTextView;
@@ -149,6 +151,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[ProgramManager sharedProgramManager]setProgram:self.object.program];
     self.view.backgroundColor = UIColor.clearColor;
 
     [self showFormulaEditor];
@@ -232,6 +235,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self.formulaEditorTextView removeFromSuperview];
         [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
     }
+    
 }
 
 #pragma mark - TextField Actions
@@ -241,12 +245,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
         UIButton *button = (UIButton *)sender;
         NSString *title = button.titleLabel.text;
 
-        if(PLUS == [sender tag])
-        {
-            NSDebug(@"Plus: %@", title);
-        }else{
-            NSDebug(@"Beschreibung: %ld", (long)[sender tag]);
-        }
+//        if(PLUS == [sender tag])
+//        {
+//            NSDebug(@"Plus: %@", title);
+//        }else{
+//            NSDebug(@"Beschreibung: %ld", (long)[sender tag]);
+//        }
         
         [self handleInputWithTitle:title AndButtonType:(int)[sender tag]];
     }
@@ -293,12 +297,17 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)backspace:(id)sender
 {
+    [self.formula setDisplayString:nil];
     [self handleInputWithTitle:@"Backspace" AndButtonType:CLEAR];
 }
 
 - (IBAction)done:(id)sender
 {
-    [self dismissFormulaEditorViewController];
+    if([self saveIfPossible])
+    {
+        [self dismissFormulaEditorViewController];
+    }
+    
 }
 - (void)updateDeleteButton:(BOOL)enabled
 {
@@ -306,14 +315,48 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 - (IBAction)compute:(id)sender {
-    float result = [[[self.internFormula getInternFormulaParser] parseFormula] interpretRecursiveForSprite:nil];
-    NSString *computedString = [NSString stringWithFormat:@"Computed result is %f", result];
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle: @"Result"
-                                                   message: computedString
-                                                  delegate: self
-                                         cancelButtonTitle:@"OK"
-                                         otherButtonTitles:nil,nil];
-    [alert show];
+    
+    UIAlertView * alert;
+    
+    if(self.internFormula != nil) {
+        
+        InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
+        FormulaElement *tempFormulaElement = [internFormulaParser parseFormula];
+        
+        float result;
+        NSString *computedString;
+        
+        switch ([internFormulaParser getErrorTokenIndex]) {
+            case FORMULA_PARSER_OK:
+                result = [tempFormulaElement interpretRecursiveForSprite:nil];
+                
+                computedString = [NSString stringWithFormat:@"Computed result is %f", result];
+                alert = [[UIAlertView alloc]initWithTitle: @"Result"
+                                                  message: computedString
+                                                 delegate: self
+                                        cancelButtonTitle:@"OK"
+                                        otherButtonTitles:nil,nil];
+                break;
+            case FORMULA_PARSER_STACK_OVERFLOW:
+                alert = [[UIAlertView alloc]initWithTitle: @"Error"
+                                                  message: @"Formula too long!"
+                                                 delegate: self
+                                        cancelButtonTitle:@"OK"
+                                        otherButtonTitles:nil,nil];
+                break;
+            default:
+                alert = [[UIAlertView alloc]initWithTitle: @"Error"
+                                                  message: @"Syntax Error!"
+                                                 delegate: self
+                                        cancelButtonTitle:@"OK"
+                                        otherButtonTitles:nil,nil];
+                [self.formulaEditorTextView setParseErrorCursorAndSelection];
+                
+                break;
+        }
+        [alert show];
+    }
+    
 }
 
 #pragma mark - Getter and setter
@@ -414,7 +457,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
             
             [_logicalOperatorsMenu addButtonWithTitle:name
                                               type:AHKActionSheetButtonTypeDefault
-                                           handler:^(AHKActionSheet *actionSheet) {
+                                           handler:^(AHKActionSheet *actisonSheet) {
                                                [weakSelf handleInputWithTitle:name AndButtonType:type];
                                                [weakSelf closeMenu];
                                            }];
@@ -475,16 +518,48 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)updateFormula
 {
-    if(self.internFormula != nil) {
-        InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
-        Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormula]];
-        
-        if([internFormulaParser getErrorTokenIndex] == FORMULA_PARSER_OK) {
-            [self.formula setRoot:formula.formulaTree];
-        }
-    }
 
+    if(self.formula != nil && self.internFormula != nil)
+    {
+        [self.formula setDisplayString:[self.internFormula getExternFormulaString]];
+    }
+    
     [self.brickCell setupBrickCell];
+}
+
+-(BOOL)saveIfPossible
+{
+        if(self.internFormula != nil) {
+            InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
+            Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormula]];
+            UIAlertView *alert;
+            switch ([internFormulaParser getErrorTokenIndex]) {
+                case FORMULA_PARSER_OK:
+                    [self.formula setRoot:formula.formulaTree];
+                    return YES;
+                    break;
+                case FORMULA_PARSER_STACK_OVERFLOW:
+                    alert = [[UIAlertView alloc]initWithTitle: @"Error"
+                                                                   message: @"Formula too long!"
+                                                                  delegate: self
+                                                         cancelButtonTitle:@"OK"
+                                                         otherButtonTitles:nil,nil];
+                    [alert show];
+                    break;
+                default:
+                    alert = [[UIAlertView alloc]initWithTitle: @"Error"
+                                                      message: @"Syntax Error!"
+                                                     delegate: self
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil,nil];
+                    [self.formulaEditorTextView setParseErrorCursorAndSelection];
+                    [alert show];
+                    
+                    break;
+            }
+        }
+    
+    return NO;
 }
 
 //- (IBAction)showMathFunctionsMenu:(id)sender
@@ -648,16 +723,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (IBAction)choseVariable:(UIButton *)sender {
   NSInteger row = [self.variablePicker selectedRowInComponent:self.currentComponent];
-  if (row >0) {
+  if (row >= 0) {
 //      if (self.currentComponent == 0) {
 //          NSLog(@"%@",self.variableSourceObject[row]);
 //          VariablesContainer* varCont = self.object.program.variables;
 //          UserVariable* var = [varCont getUserVariableNamed:self.variableSourceObject[row] forSpriteObject:self.object];
 //      }else
-          if (self.currentComponent == 0){
-          VariablesContainer* varCont = self.object.program.variables;
-          UserVariable* var = [varCont getUserVariableNamed:self.variableSourceProgram[row] forSpriteObject:self.object];
+          if (self.currentComponent == 0)
+          {
+            VariablesContainer* varCont = self.object.program.variables;
+              UserVariable* var = [varCont getUserVariableNamed:self.variableSourceProgram[row] forSpriteObject:self.object];
               NSDebug(@"%@",var.name);
+              [self handleInputWithTitle:var.name AndButtonType:0];
       }
   
       
