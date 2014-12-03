@@ -31,12 +31,20 @@
 - (void)testHeader
 {
     Program *program = [self getProgramForXML:@"ValidProgram"];
-    
     Header *header = program.header;
-    
     BOOL equal = [self isXMLElement:[header xmlElement] equalToXMLElementForXPath:@"//program/header" inProgramForXML:@"ValidProgram"];
-    
     XCTAssertTrue(equal, @"XMLElement invalid!");
 }
 
+/*
+- (void)testFormula
+{
+    Program *program = [self getProgramForXML:@"ValidProgramAllBricks"];
+    Formula *formula = ((MoveNStepsBrick*)[((Script*)[((SpriteObject*)[program.objectList objectAtIndex:0]).scriptList objectAtIndex:0]).brickList objectAtIndex:5]).steps;
+    BOOL equal = [self isXMLElement:[formula xmlElement] equalToXMLElementForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[6]/formulaList/formula[1]" inProgramForXML:@"ValidProgramAllBricks"];
+    XCTAssertTrue(equal, @"XMLElement invalid!");
+}
+ */
+
 @end
+

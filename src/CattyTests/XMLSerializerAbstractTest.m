@@ -55,8 +55,9 @@
     
     XCTAssertEqual([firstElement.children count], [secondElement.children count], @"Number of children not equal for element with name: %@", firstElement.name);
     
-    for(int i = 0; i < [firstElement.children count]; i++) {
-        [self compareXMLElement:(GDataXMLElement*)[firstElement childAtIndex:i] withXMLElement:(GDataXMLElement*)[secondElement childAtIndex:i]];
+    
+    for(GDataXMLNode *node in firstElement.children) {
+        [self compareXMLElement:node withXMLElement:[secondElement childWithElementName:node.name]];
     }
     
     return YES;

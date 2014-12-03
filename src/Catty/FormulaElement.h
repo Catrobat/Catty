@@ -55,5 +55,6 @@ typedef enum {
 
 - (NSArray*)XMLChildElements;
 - (BOOL)isEqualToFormulaElement:(FormulaElement*)formulaElement;
+- (NSString*)stringForElementType:(ElementType)type;
 
 @end

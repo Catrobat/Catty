@@ -54,7 +54,7 @@
 		4CE835261A18FDE50032F78E /* Skydiving-Steve-093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE835241A18FDE50032F78E /* Skydiving-Steve-093.xml */; };
 		4CEBDEF31A2F39CC00868971 /* XMLAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEBDEF21A2F39CC00868971 /* XMLAbstractTest.m */; };
 		4CEBDEF81A2F3AA400868971 /* XMLSerializerAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEBDEF71A2F3AA400868971 /* XMLSerializerAbstractTest.m */; };
-		4CEBDEFA1A2F3ADD00868971 /* XMLSerializerHeaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEBDEF91A2F3ADD00868971 /* XMLSerializerHeaderTests.m */; };
+		4CEBDEFA1A2F3ADD00868971 /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEBDEF91A2F3ADD00868971 /* XMLSerializerTests.m */; };
 		4CEC09121A13955200059BB9 /* SetXBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC09111A13955200059BB9 /* SetXBrick+CBXMLHandler.m */; };
 		4CEC09151A1396DE00059BB9 /* SetYBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC09141A1396DE00059BB9 /* SetYBrick+CBXMLHandler.m */; };
 		4CEC09181A13975E00059BB9 /* ChangeXByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC09171A13975E00059BB9 /* ChangeXByNBrick+CBXMLHandler.m */; };
@@ -535,7 +535,7 @@
 		4CEBDEF21A2F39CC00868971 /* XMLAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLAbstractTest.m; sourceTree = "<group>"; };
 		4CEBDEF61A2F3AA400868971 /* XMLSerializerAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLSerializerAbstractTest.h; sourceTree = "<group>"; };
 		4CEBDEF71A2F3AA400868971 /* XMLSerializerAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerAbstractTest.m; sourceTree = "<group>"; };
-		4CEBDEF91A2F3ADD00868971 /* XMLSerializerHeaderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerHeaderTests.m; sourceTree = "<group>"; };
+		4CEBDEF91A2F3ADD00868971 /* XMLSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerTests.m; sourceTree = "<group>"; };
 		4CEC09101A13955200059BB9 /* SetXBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetXBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		4CEC09111A13955200059BB9 /* SetXBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetXBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		4CEC09131A1396DE00059BB9 /* SetYBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetYBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
@@ -1633,7 +1633,7 @@
 			isa = PBXGroup;
 			children = (
 				4CEBDEF51A2F3A8D00868971 /* Abstract */,
-				4CEBDEF91A2F3ADD00868971 /* XMLSerializerHeaderTests.m */,
+				4CEBDEF91A2F3ADD00868971 /* XMLSerializerTests.m */,
 			);
 			name = XMLSerializerTests;
 			sourceTree = "<group>";
@@ -4299,7 +4299,7 @@
 				CA538EA719B0EA09008240AB /* HideBrickTests.m in Sources */,
 				4CEBDEF81A2F3AA400868971 /* XMLSerializerAbstractTest.m in Sources */,
 				4CEBDEF31A2F39CC00868971 /* XMLAbstractTest.m in Sources */,
-				4CEBDEFA1A2F3ADD00868971 /* XMLSerializerHeaderTests.m in Sources */,
+				4CEBDEFA1A2F3ADD00868971 /* XMLSerializerTests.m in Sources */,
 				CA538EA819B0EA09008240AB /* SetGhostEffectBrickTests.m in Sources */,
 				CA538EA919B0EA09008240AB /* ProgramTests.m in Sources */,
 				CA538EAA19B0EA09008240AB /* PlaceAtBrickTests.m in Sources */,

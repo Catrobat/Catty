@@ -56,4 +56,32 @@
     return formulaTree;
 }
 
+
+- (GDataXMLElement*)xmlElement
+{
+    GDataXMLElement *formulaElement = [GDataXMLNode elementWithName:@"formulaElement"];
+    
+    GDataXMLElement *type = [GDataXMLNode elementWithName:@"type" stringValue:[self stringForElementType:self.type]];
+    [formulaElement addChild:type];
+    GDataXMLElement *value = [GDataXMLNode elementWithName:@"value" stringValue:self.value];
+    [formulaElement addChild:value];
+    
+    if(self.leftChild != nil) {
+        GDataXMLElement *leftChild = [GDataXMLNode elementWithName:@"leftChild"];
+        for(GDataXMLNode *node in [self.leftChild xmlElement].children) {
+            [leftChild addChild:node];
+        }
+        [formulaElement addChild:leftChild];
+    }
+    if(self.rightChild != nil) {
+        GDataXMLElement *rightChild = [GDataXMLNode elementWithName:@"rightChild"];
+        for(GDataXMLNode *node in [self.rightChild xmlElement].children) {
+            [rightChild addChild:node];
+        }
+        [formulaElement addChild:rightChild];
+    }
+    
+    return formulaElement;
+}
+
 @end

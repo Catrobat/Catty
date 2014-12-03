@@ -22,6 +22,7 @@
 
 #import "Formula+CBXMLHandler.h"
 #import "FormulaElement+CBXMLHandler.h"
+#import "GDataXMLNode.h"
 
 @implementation Formula (CBXMLHandler)
 
@@ -31,6 +32,15 @@
     Formula *formula = [Formula new];
     formula.formulaTree = formulaTree;
     return formula;
+}
+
+- (GDataXMLElement*)xmlElement
+{
+    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"formula"];
+    for(GDataXMLNode *node in [self.formulaTree xmlElement].children) {
+        [xmlElement addChild:node];
+    }
+    return xmlElement;
 }
 
 @end
