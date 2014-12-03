@@ -22,6 +22,8 @@
 
 #import "ChangeBrightnessByNBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
+#import "GDataXMLNode+CustomExtensions.h"
+#import "Formula+CBXMLHandler.h"
 
 @implementation ChangeBrightnessByNBrick (CBXMLHandler)
 
@@ -33,6 +35,18 @@
     ChangeBrightnessByNBrick *changeBrightnessByNBrick = [self new];
     changeBrightnessByNBrick.changeBrightness = formula;
     return changeBrightnessByNBrick;
+}
+
+- (GDataXMLElement*)xmlElement
+{
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"ChangeBrightnessByNBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *formula = [self.changeBrightness xmlElement];
+    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"BRIGHTNESS_CHANGE"]];
+    [formulaList addChild:formula];
+    [brick addChild:formulaList];
+    return brick;
 }
 
 @end

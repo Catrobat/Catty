@@ -42,4 +42,13 @@
     return broadcastBrick;
 }
 
+- (GDataXMLElement*)xmlElement
+{
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"BroadcastBrick"]];
+    GDataXMLElement *message = [GDataXMLNode elementWithName:@"broadcastMessage" stringValue:self.broadcastMessage];
+    [brick addChild:message];
+    return brick;
+}
+
 @end

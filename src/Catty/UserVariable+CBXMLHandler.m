@@ -57,5 +57,10 @@
     return userVariable;
 }
 
+- (GDataXMLElement*)xmlElement
+{
+    GDataXMLElement *userVariable = [GDataXMLNode elementWithName:@"userVariable" stringValue:self.name];
+    return userVariable;
+}
 
 @end

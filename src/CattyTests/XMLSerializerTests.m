@@ -36,15 +36,13 @@
     XCTAssertTrue(equal, @"XMLElement invalid!");
 }
 
-/*
-- (void)testFormula
+- (void)testFormulaAndMoveNStepsBrick
 {
     Program *program = [self getProgramForXML:@"ValidProgramAllBricks"];
-    Formula *formula = ((MoveNStepsBrick*)[((Script*)[((SpriteObject*)[program.objectList objectAtIndex:0]).scriptList objectAtIndex:0]).brickList objectAtIndex:5]).steps;
-    BOOL equal = [self isXMLElement:[formula xmlElement] equalToXMLElementForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[6]/formulaList/formula[1]" inProgramForXML:@"ValidProgramAllBricks"];
+    MoveNStepsBrick *brick = (MoveNStepsBrick*)[((Script*)[((SpriteObject*)[program.objectList objectAtIndex:0]).scriptList objectAtIndex:0]).brickList objectAtIndex:5];
+    BOOL equal = [self isXMLElement:[brick xmlElement] equalToXMLElementForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[6]" inProgramForXML:@"ValidProgramAllBricks"];
     XCTAssertTrue(equal, @"XMLElement invalid!");
 }
- */
 
 @end
 

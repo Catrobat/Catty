@@ -23,7 +23,8 @@
 #import "SpeakBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "CBXMLParserHelper.h"
-#import "Formula.h"
+#import "GDataXMLNode+CustomExtensions.h"
+#import "Formula+CBXMLHandler.h"
 #import "FormulaElement.h"
 
 @implementation SpeakBrick (CBXMLHandler)
@@ -40,6 +41,24 @@
     SpeakBrick *speakBrick = [self new];
     speakBrick.text = formula.formulaTree.value;
     return speakBrick;
+}
+
+- (GDataXMLElement*)xmlElement
+{
+    Formula *speakFormula = [Formula new];
+    FormulaElement *formulaElement = [FormulaElement new];
+    formulaElement.type = STRING;
+    formulaElement.value = self.text;
+    speakFormula.formulaTree = formulaElement;
+    
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"SpeakBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *formula = [speakFormula xmlElement];
+    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"SPEAK"]];
+    [formulaList addChild:formula];
+    [brick addChild:formulaList];
+    return brick;
 }
 
 @end

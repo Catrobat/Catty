@@ -23,6 +23,7 @@
 #import "SetVariableBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "GDataXMLNode+CustomExtensions.h"
+#import "Formula+CBXMLHandler.h"
 #import "UserVariable+CBXMLHandler.h"
 #import "CBXMLParser.h"
 #import "CBXMLContext.h"
@@ -49,6 +50,20 @@
     setVariableBrick.userVariable = userVariable;
     setVariableBrick.variableFormula = formula;
     return setVariableBrick;
+}
+
+- (GDataXMLElement*)xmlElement
+{
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"SetVariableBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *formula = [self.variableFormula xmlElement];
+    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"VARIABLE"]];
+    [formulaList addChild:formula];
+    [brick addChild:formulaList];
+    [brick addChild:[GDataXMLNode elementWithName:@"inUserBrick" stringValue:@"false"]]; // TODO: implement this...
+    [brick addChild:[self.userVariable xmlElement]];
+    return brick;
 }
 
 @end

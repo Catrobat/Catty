@@ -22,6 +22,8 @@
 
 #import "SetSizeToBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
+#import "GDataXMLNode+CustomExtensions.h"
+#import "Formula+CBXMLHandler.h"
 
 @implementation SetSizeToBrick (CBXMLHandler)
 
@@ -33,6 +35,18 @@
     SetSizeToBrick *setSizeToBrick = [self new];
     setSizeToBrick.size = formula;
     return setSizeToBrick;
+}
+
+- (GDataXMLElement*)xmlElement
+{
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"SetSizeToBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *formula = [self.size xmlElement];
+    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"SIZE"]];
+    [formulaList addChild:formula];
+    [brick addChild:formulaList];
+    return brick;
 }
 
 @end

@@ -22,6 +22,8 @@
 
 #import "GoNStepsBackBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
+#import "GDataXMLNode+CustomExtensions.h"
+#import "Formula+CBXMLHandler.h"
 
 @implementation GoNStepsBackBrick (CBXMLHandler)
 
@@ -33,6 +35,18 @@
     GoNStepsBackBrick *goNStepsBackBrick = [self new];
     goNStepsBackBrick.steps = formula;
     return goNStepsBackBrick;
+}
+
+- (GDataXMLElement*)xmlElement
+{
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"GoNStepsBackBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *formula = [self.steps xmlElement];
+    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"STEPS"]];
+    [formulaList addChild:formula];
+    [brick addChild:formulaList];
+    return brick;
 }
 
 @end

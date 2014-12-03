@@ -72,4 +72,11 @@
     return ifLogicEndBrick;
 }
 
+- (GDataXMLElement*)xmlElement
+{
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"IfLogicEndBrick"]];
+    return brick;
+}
+
 @end

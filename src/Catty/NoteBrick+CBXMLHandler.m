@@ -23,7 +23,8 @@
 #import "NoteBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "CBXMLParserHelper.h"
-#import "Formula.h"
+#import "GDataXMLNode+CustomExtensions.h"
+#import "Formula+CBXMLHandler.h"
 #import "FormulaElement.h"
 
 @implementation NoteBrick (CBXMLHandler)
@@ -40,6 +41,24 @@
     NoteBrick *noteBrick = [self new];
     noteBrick.note = formula.formulaTree.value;
     return noteBrick;
+}
+
+- (GDataXMLElement*)xmlElement
+{
+    Formula *speakFormula = [Formula new];
+    FormulaElement *formulaElement = [FormulaElement new];
+    formulaElement.type = STRING;
+    formulaElement.value = self.note;
+    speakFormula.formulaTree = formulaElement;
+    
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"NoteBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *formula = [speakFormula xmlElement];
+    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"NOTE"]];
+    [formulaList addChild:formula];
+    [brick addChild:formulaList];
+    return brick;
 }
 
 @end

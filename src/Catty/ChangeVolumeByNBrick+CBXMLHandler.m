@@ -22,6 +22,8 @@
 
 #import "ChangeVolumeByNBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
+#import "GDataXMLNode+CustomExtensions.h"
+#import "Formula+CBXMLHandler.h"
 
 @implementation ChangeVolumeByNBrick (CBXMLHandler)
 
@@ -32,6 +34,18 @@
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VOLUME_CHANGE"];
     changeVolumeByNBrick.volume = formula;
     return changeVolumeByNBrick;
+}
+
+- (GDataXMLElement*)xmlElement
+{
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"ChangeVolumeByNBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *formula = [self.volume xmlElement];
+    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"VOLUME_CHANGE"]];
+    [formulaList addChild:formula];
+    [brick addChild:formulaList];
+    return brick;
 }
 
 @end
