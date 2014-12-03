@@ -177,10 +177,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
   
     [self.variablePicker reloadAllComponents];
     self.currentComponent = 0;
-    self.mathScrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
-    self.logicScrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
-    self.objectScrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
-    self.sensorScrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+    self.mathScrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
+    self.logicScrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
+    self.objectScrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
+    self.sensorScrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
   
 }
 
@@ -482,11 +482,15 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [[self.orangeTypeButton objectAtIndex:i] setBackgroundColor:[UIColor lightOrangeColor]];
       
         [[self.orangeTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor orangeColor]] forState:UIControlStateHighlighted];
+        [[[self.orangeTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
+        [[[self.orangeTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor backgroundColor].CGColor];
     }
   for(int i = 0; i < [self.normalTypeButton count]; i++) {
     [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor darkBlueColor] forState:UIControlStateNormal];
     [[self.normalTypeButton objectAtIndex:i] setBackgroundColor:[UIColor skyBlueColor]];
     [[self.normalTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateHighlighted];
+      [[[self.normalTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
+      [[[self.normalTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor backgroundColor].CGColor];
   }
   for(int i = 0; i < [self.toolTypeButton count]; i++) {
     [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor skyBlueColor] forState:UIControlStateNormal];
@@ -495,6 +499,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [[self.toolTypeButton objectAtIndex:i] setBackgroundColor:[UIColor darkBlueColor]];
     [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor skyBlueColor]] forState:UIControlStateHighlighted];
           [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor skyBlueColor]] forState:UIControlStateSelected];
+      [[[self.toolTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
+      [[[self.toolTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor backgroundColor].CGColor];
   }
 
     for(int i = 0; i < [self.highlightedButtons count]; i++) {
@@ -502,6 +508,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [[self.highlightedButtons objectAtIndex:i] setBackgroundColor:[UIColor shadeDarkBlueColor]];
         [[self.highlightedButtons objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateHighlighted];
         [[self.highlightedButtons objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateSelected];
+        [[[self.highlightedButtons objectAtIndex:i] layer] setBorderWidth:1.0f];
+        [[[self.highlightedButtons objectAtIndex:i] layer] setBorderColor:[UIColor backgroundColor].CGColor];
     }
   
     [self update];
