@@ -52,6 +52,9 @@
 		4CBA380E1A21C880007DE327 /* Script+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA380D1A21C880007DE327 /* Script+CBXMLLogger.m */; };
 		4CE835251A18FDE50032F78E /* Skydiving-Steve-092.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE835231A18FDE50032F78E /* Skydiving-Steve-092.xml */; };
 		4CE835261A18FDE50032F78E /* Skydiving-Steve-093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE835241A18FDE50032F78E /* Skydiving-Steve-093.xml */; };
+		4CEBDEF31A2F39CC00868971 /* XMLAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEBDEF21A2F39CC00868971 /* XMLAbstractTest.m */; };
+		4CEBDEF81A2F3AA400868971 /* XMLSerializerAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEBDEF71A2F3AA400868971 /* XMLSerializerAbstractTest.m */; };
+		4CEBDEFA1A2F3ADD00868971 /* XMLSerializerHeaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEBDEF91A2F3ADD00868971 /* XMLSerializerHeaderTests.m */; };
 		4CEC09121A13955200059BB9 /* SetXBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC09111A13955200059BB9 /* SetXBrick+CBXMLHandler.m */; };
 		4CEC09151A1396DE00059BB9 /* SetYBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC09141A1396DE00059BB9 /* SetYBrick+CBXMLHandler.m */; };
 		4CEC09181A13975E00059BB9 /* ChangeXByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC09171A13975E00059BB9 /* ChangeXByNBrick+CBXMLHandler.m */; };
@@ -528,6 +531,11 @@
 		4CBA380D1A21C880007DE327 /* Script+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Script+CBXMLLogger.m"; sourceTree = "<group>"; };
 		4CE835231A18FDE50032F78E /* Skydiving-Steve-092.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Skydiving-Steve-092.xml"; sourceTree = "<group>"; };
 		4CE835241A18FDE50032F78E /* Skydiving-Steve-093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Skydiving-Steve-093.xml"; sourceTree = "<group>"; };
+		4CEBDEF11A2F39CC00868971 /* XMLAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLAbstractTest.h; sourceTree = "<group>"; };
+		4CEBDEF21A2F39CC00868971 /* XMLAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLAbstractTest.m; sourceTree = "<group>"; };
+		4CEBDEF61A2F3AA400868971 /* XMLSerializerAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLSerializerAbstractTest.h; sourceTree = "<group>"; };
+		4CEBDEF71A2F3AA400868971 /* XMLSerializerAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerAbstractTest.m; sourceTree = "<group>"; };
+		4CEBDEF91A2F3ADD00868971 /* XMLSerializerHeaderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerHeaderTests.m; sourceTree = "<group>"; };
 		4CEC09101A13955200059BB9 /* SetXBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetXBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		4CEC09111A13955200059BB9 /* SetXBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetXBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		4CEC09131A1396DE00059BB9 /* SetYBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetYBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
@@ -1563,23 +1571,15 @@
 			name = Context;
 			sourceTree = "<group>";
 		};
-		4CD194F21A0631B200484E4F /* ParserTests */ = {
+		4CD194F21A0631B200484E4F /* Parser & Serializer */ = {
 			isa = PBXGroup;
 			children = (
-				4CD194F51A0632AA00484E4F /* XMLParserTests */,
+				4CEBDEEF1A2F397200868971 /* CatrobatLanguage0.93 */,
 			);
-			name = ParserTests;
+			name = "Parser & Serializer";
 			sourceTree = "<group>";
 		};
 		4CD194F51A0632AA00484E4F /* XMLParserTests */ = {
-			isa = PBXGroup;
-			children = (
-				4CD194F61A0632C600484E4F /* CatrobatLanguage0.93 */,
-			);
-			name = XMLParserTests;
-			sourceTree = "<group>";
-		};
-		4CD194F61A0632C600484E4F /* CatrobatLanguage0.93 */ = {
 			isa = PBXGroup;
 			children = (
 				4C3275E51A135BE40091C428 /* Abstract */,
@@ -1589,7 +1589,7 @@
 				4C3275F71A135FD00091C428 /* XMLParserObjectTests.m */,
 				4C17C0091A1889C900DED116 /* XMLParserBlackBoxTests.m */,
 			);
-			name = CatrobatLanguage0.93;
+			name = XMLParserTests;
 			sourceTree = "<group>";
 		};
 		4CE835221A18FDE50032F78E /* Skydiving Steve */ = {
@@ -1608,6 +1608,43 @@
 			);
 			name = "Tic Tac Toe";
 			path = "Resources/Test Resources/Tic Tac Toe";
+			sourceTree = "<group>";
+		};
+		4CEBDEEF1A2F397200868971 /* CatrobatLanguage0.93 */ = {
+			isa = PBXGroup;
+			children = (
+				4CEBDEF41A2F3A7900868971 /* XMLSerializerTests */,
+				4CEBDEF01A2F39A400868971 /* Abstract */,
+				4CD194F51A0632AA00484E4F /* XMLParserTests */,
+			);
+			name = CatrobatLanguage0.93;
+			sourceTree = "<group>";
+		};
+		4CEBDEF01A2F39A400868971 /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				4CEBDEF11A2F39CC00868971 /* XMLAbstractTest.h */,
+				4CEBDEF21A2F39CC00868971 /* XMLAbstractTest.m */,
+			);
+			name = Abstract;
+			sourceTree = "<group>";
+		};
+		4CEBDEF41A2F3A7900868971 /* XMLSerializerTests */ = {
+			isa = PBXGroup;
+			children = (
+				4CEBDEF51A2F3A8D00868971 /* Abstract */,
+				4CEBDEF91A2F3ADD00868971 /* XMLSerializerHeaderTests.m */,
+			);
+			name = XMLSerializerTests;
+			sourceTree = "<group>";
+		};
+		4CEBDEF51A2F3A8D00868971 /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				4CEBDEF61A2F3AA400868971 /* XMLSerializerAbstractTest.h */,
+				4CEBDEF71A2F3AA400868971 /* XMLSerializerAbstractTest.m */,
+			);
+			name = Abstract;
 			sourceTree = "<group>";
 		};
 		4CEC09221A139D6100059BB9 /* Helper */ = {
@@ -2072,7 +2109,7 @@
 		B46B270317703F9400172837 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
-				4CD194F21A0631B200484E4F /* ParserTests */,
+				4CD194F21A0631B200484E4F /* Parser & Serializer */,
 				4C3C03F5199BA5250004F594 /* Formula */,
 				B46B270917703F9400172837 /* CattyTests.m */,
 				C34B44FB17F3403400624730 /* ExtensionTests */,
@@ -4081,7 +4118,6 @@
 						TestTargetID = CADBD6D319B0E8C200C62836;
 					};
 					CADBD6D319B0E8C200C62836 = {
-						DevelopmentTeam = SAUK7AHA7S;
 						DevelopmentTeam = 4V6T7BCGGR;
 					};
 				};
@@ -4261,6 +4297,9 @@
 				CA538EA519B0EA09008240AB /* ChangeGhostEffectByNBrickTests.m in Sources */,
 				CA538EA619B0EA09008240AB /* ProgramTableViewControllerExistingProgramsTests.m in Sources */,
 				CA538EA719B0EA09008240AB /* HideBrickTests.m in Sources */,
+				4CEBDEF81A2F3AA400868971 /* XMLSerializerAbstractTest.m in Sources */,
+				4CEBDEF31A2F39CC00868971 /* XMLAbstractTest.m in Sources */,
+				4CEBDEFA1A2F3ADD00868971 /* XMLSerializerHeaderTests.m in Sources */,
 				CA538EA819B0EA09008240AB /* SetGhostEffectBrickTests.m in Sources */,
 				CA538EA919B0EA09008240AB /* ProgramTests.m in Sources */,
 				CA538EAA19B0EA09008240AB /* PlaceAtBrickTests.m in Sources */,

@@ -20,16 +20,35 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define CATTY_TESTS 1
-
-#import <XCTest/XCTest.h>
 #import "XMLAbstractTest.h"
+#import "GDataXMLNode+CustomExtensions.h"
 #import "CBXMLParser.h"
 
-@class GDataXMLDocument;
+@implementation XMLAbstractTest
 
-@interface XMLParserAbstractTest : XMLAbstractTest
+- (NSString*)getPathForXML:(NSString*)xmlFile
+{
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString *path = [bundle pathForResource:xmlFile ofType:@"xml"];
+    return path;
+}
 
-- (void)compareProgram:(NSString*)programName092 withProgram:(NSString*)programName093;
+- (GDataXMLDocument*)getXMLDocumentForPath:(NSString*)xmlPath
+{
+    NSError *error;
+    NSString *xmlFile = [NSString stringWithContentsOfFile:xmlPath
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:&error];
+    NSData *xmlData = [xmlFile dataUsingEncoding:NSUTF8StringEncoding];
+    GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
+    return document;
+}
+
+- (Program*)getProgramForXML:(NSString *)xmlFile
+{
+    CBXMLParser *parser = [[CBXMLParser alloc] initWithPath:[self getPathForXML:xmlFile]];
+    Program *program = [parser parseAndCreateProgram];
+    return program;
+}
 
 @end

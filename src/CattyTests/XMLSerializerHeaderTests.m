@@ -20,16 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define CATTY_TESTS 1
+#import "XMLSerializerAbstractTest.h"
 
-#import <XCTest/XCTest.h>
-#import "XMLAbstractTest.h"
-#import "CBXMLParser.h"
+@interface XMLSerializerHeaderTests : XMLSerializerAbstractTest
 
-@class GDataXMLDocument;
+@end
 
-@interface XMLParserAbstractTest : XMLAbstractTest
+@implementation XMLSerializerHeaderTests
 
-- (void)compareProgram:(NSString*)programName092 withProgram:(NSString*)programName093;
+- (void)testHeader
+{
+    Program *program = [self getProgramForXML:@"ValidProgram"];
+    
+    Header *header = program.header;
+    
+    BOOL equal = [self isXMLElement:[header xmlElement] equalToXMLElementForXPath:@"//program/header" inProgramForXML:@"ValidProgram"];
+    
+    XCTAssertTrue(equal, @"XMLElement invalid!");
+}
 
 @end

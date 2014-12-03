@@ -20,16 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define CATTY_TESTS 1
-
-#import <XCTest/XCTest.h>
 #import "XMLAbstractTest.h"
-#import "CBXMLParser.h"
 
-@class GDataXMLDocument;
+@interface XMLSerializerAbstractTest : XMLAbstractTest
 
-@interface XMLParserAbstractTest : XMLAbstractTest
-
-- (void)compareProgram:(NSString*)programName092 withProgram:(NSString*)programName093;
+- (BOOL)isXMLElement:(GDataXMLElement*)xmlElement equalToXMLElementForXPath:(NSString*)xPath inProgramForXML:(NSString*)program;
 
 @end

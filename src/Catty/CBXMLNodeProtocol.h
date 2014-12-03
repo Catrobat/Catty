@@ -29,6 +29,9 @@
 
 @required
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context;
-//- (GDataXMLElement*)xmlElement;
+
+// TODO set required
+@optional
+- (GDataXMLElement*)xmlElement;
 
 @end
