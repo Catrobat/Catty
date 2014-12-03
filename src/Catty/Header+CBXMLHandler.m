@@ -51,7 +51,7 @@
     return header;
 }
 
-- (GDataXMLElement*)xmlElement
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
     GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"header"];
     

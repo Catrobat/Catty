@@ -36,12 +36,12 @@
     return changeVolumeByNBrick;
 }
 
-- (GDataXMLElement*)xmlElement
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
     GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
     [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"ChangeVolumeByNBrick"]];
     GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
-    GDataXMLElement *formula = [self.volume xmlElement];
+    GDataXMLElement *formula = [self.volume xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"VOLUME_CHANGE"]];
     [formulaList addChild:formula];
     [brick addChild:formulaList];

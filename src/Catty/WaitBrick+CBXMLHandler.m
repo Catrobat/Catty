@@ -36,12 +36,12 @@
     return waitBrick;
 }
 
-- (GDataXMLElement*)xmlElement
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
     GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
     [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"WaitBrick"]];
     GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
-    GDataXMLElement *formula = [self.timeToWaitInSeconds xmlElement];
+    GDataXMLElement *formula = [self.timeToWaitInSeconds xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"TIME_TO_WAIT_IN_SECONDS"]];
     [formulaList addChild:formula];
     [brick addChild:formulaList];

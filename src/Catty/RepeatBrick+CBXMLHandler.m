@@ -41,12 +41,12 @@
     return repeatBrick;
 }
 
-- (GDataXMLElement*)xmlElement
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
     GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
     [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"RepeatBrick"]];
     GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
-    GDataXMLElement *formula = [self.timesToRepeat xmlElement];
+    GDataXMLElement *formula = [self.timesToRepeat xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"TIMES_TO_REPEAT"]];
     [formulaList addChild:formula];
     [brick addChild:formulaList];

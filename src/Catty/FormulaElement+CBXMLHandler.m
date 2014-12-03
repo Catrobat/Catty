@@ -57,7 +57,7 @@
 }
 
 
-- (GDataXMLElement*)xmlElement
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
     GDataXMLElement *formulaElement = [GDataXMLNode elementWithName:@"formulaElement"];
     
@@ -68,14 +68,14 @@
     
     if(self.leftChild != nil) {
         GDataXMLElement *leftChild = [GDataXMLNode elementWithName:@"leftChild"];
-        for(GDataXMLNode *node in [self.leftChild xmlElement].children) {
+        for(GDataXMLNode *node in [self.leftChild xmlElementWithContext:context].children) {
             [leftChild addChild:node];
         }
         [formulaElement addChild:leftChild];
     }
     if(self.rightChild != nil) {
         GDataXMLElement *rightChild = [GDataXMLNode elementWithName:@"rightChild"];
-        for(GDataXMLNode *node in [self.rightChild xmlElement].children) {
+        for(GDataXMLNode *node in [self.rightChild xmlElementWithContext:context].children) {
             [rightChild addChild:node];
         }
         [formulaElement addChild:rightChild];

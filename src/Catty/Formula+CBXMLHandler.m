@@ -34,10 +34,10 @@
     return formula;
 }
 
-- (GDataXMLElement*)xmlElement
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
     GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"formula"];
-    for(GDataXMLNode *node in [self.formulaTree xmlElement].children) {
+    for(GDataXMLNode *node in [self.formulaTree xmlElementWithContext:context].children) {
         [xmlElement addChild:node];
     }
     return xmlElement;

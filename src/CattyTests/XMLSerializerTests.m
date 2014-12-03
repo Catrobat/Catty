@@ -32,7 +32,7 @@
 {
     Program *program = [self getProgramForXML:@"ValidProgram"];
     Header *header = program.header;
-    BOOL equal = [self isXMLElement:[header xmlElement] equalToXMLElementForXPath:@"//program/header" inProgramForXML:@"ValidProgram"];
+    BOOL equal = [self isXMLElement:[header xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/header" inProgramForXML:@"ValidProgram"];
     XCTAssertTrue(equal, @"XMLElement invalid!");
 }
 
@@ -40,7 +40,7 @@
 {
     Program *program = [self getProgramForXML:@"ValidProgramAllBricks"];
     MoveNStepsBrick *brick = (MoveNStepsBrick*)[((Script*)[((SpriteObject*)[program.objectList objectAtIndex:0]).scriptList objectAtIndex:0]).brickList objectAtIndex:5];
-    BOOL equal = [self isXMLElement:[brick xmlElement] equalToXMLElementForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[6]" inProgramForXML:@"ValidProgramAllBricks"];
+    BOOL equal = [self isXMLElement:[brick xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[6]" inProgramForXML:@"ValidProgramAllBricks"];
     XCTAssertTrue(equal, @"XMLElement invalid!");
 }
 

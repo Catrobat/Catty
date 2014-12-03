@@ -40,15 +40,15 @@
     return placeAtBrick;
 }
 
-- (GDataXMLElement*)xmlElement
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
     GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
     [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"PlaceAtBrick"]];
     GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
-    GDataXMLElement *formula = [self.xPosition xmlElement];
+    GDataXMLElement *formula = [self.xPosition xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"Y_POSITION"]];
     [formulaList addChild:formula];
-    formula = [self.yPosition xmlElement];
+    formula = [self.yPosition xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"X_POSITION"]];
     [formulaList addChild:formula];
     [brick addChild:formulaList];

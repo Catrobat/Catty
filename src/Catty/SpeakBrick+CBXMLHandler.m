@@ -43,7 +43,7 @@
     return speakBrick;
 }
 
-- (GDataXMLElement*)xmlElement
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
     Formula *speakFormula = [Formula new];
     FormulaElement *formulaElement = [FormulaElement new];
@@ -54,7 +54,7 @@
     GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
     [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"SpeakBrick"]];
     GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
-    GDataXMLElement *formula = [speakFormula xmlElement];
+    GDataXMLElement *formula = [speakFormula xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"SPEAK"]];
     [formulaList addChild:formula];
     [brick addChild:formulaList];

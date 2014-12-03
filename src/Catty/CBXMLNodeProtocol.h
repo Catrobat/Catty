@@ -32,6 +32,6 @@
 
 // TODO set required
 @optional
-- (GDataXMLElement*)xmlElement;
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context;
 
 @end
