@@ -265,8 +265,7 @@
 //*******************************       BRICK TITLE TRANSLATIONS      ****************************************
 //************************************************************************************************************
 
-#import "AppDefines.h" // needed for kIsRelease-constant <= TODO: remove this line later
-#if kIsRelease // kIsRelease
+#if kIsRelease // kIsRelease <= TODO: remove this line later
 //------------------------------------------------------------------------------------------------------------
 // TODO: in our first release we do not use translated strings in the script-editor because the translated
 //       strings can vary in their length compared to the english version. This would lead to graphical issues

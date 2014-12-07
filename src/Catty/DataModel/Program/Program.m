@@ -23,7 +23,6 @@
 #import "Program.h"
 #import "VariablesContainer.h"
 #import "Util.h"
-#import "AppDefines.h"
 #import "SpriteObject.h"
 #import "AppDelegate.h"
 #import "FileManager.h"

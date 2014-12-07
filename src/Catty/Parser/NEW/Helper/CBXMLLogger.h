@@ -22,13 +22,13 @@
 
 #import <Foundation/Foundation.h>
 
-#if !kIsRelease
+//#if !kIsRelease
 #import "Header+CBXMLLogger.h"
 #import "SpriteObject+CBXMLLogger.h"
 #import "Look+CBXMLLogger.h"
 #import "Sound+CBXMLLogger.h"
 #import "Script+CBXMLLogger.h"
-#endif
+//#endif
 
 @class GDataXMLElement;
 

@@ -337,6 +337,9 @@
 		92FF33901A24E5F800093DA7 /* ProjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF33501A24E5F800093DA7 /* ProjectParser.m */; };
 		92FF33911A24E5F800093DA7 /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF33521A24E5F800093DA7 /* TestParser.m */; };
 		92FF33921A24E5F800093DA7 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF33541A24E5F800093DA7 /* XMLObjectReference.m */; };
+		CA2C805F1A35040900982897 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2C805C1A35040900982897 /* LoginPopupViewController.m */; };
+		CA2C80601A35040900982897 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2C805D1A35040900982897 /* LoginViewController.m */; };
+		CA2C80611A35040900982897 /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2C805E1A35040900982897 /* UploadViewController.m */; };
 		CA538EA519B0EA09008240AB /* ChangeGhostEffectByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */; };
 		CA538EA619B0EA09008240AB /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
 		CA538EA719B0EA09008240AB /* HideBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3F185625E700547C1E /* HideBrickTests.m */; };
@@ -373,7 +376,6 @@
 		CA538EC819B0EA09008240AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B46B270617703F9400172837 /* InfoPlist.strings */; };
 		CA538EC919B0EA09008240AB /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = 92345632192E270B00464E6B /* test2.png */; };
 		CA538ECA19B0EA09008240AB /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 923453C1192D2D5F00464E6B /* test.png */; };
-		CA6067E81A34FFDF0037A13A /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6067E71A34FFDF0037A13A /* LoginPopupViewController.m */; };
 		CA6067EB1A3500450037A13A /* Look+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6067EA1A3500450037A13A /* Look+CBXMLLogger.m */; };
 		CA6067F11A3500670037A13A /* CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6067EC1A3500670037A13A /* CBXMLLogger.m */; };
 		CA6067F21A3500670037A13A /* Header+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6067ED1A3500670037A13A /* Header+CBXMLLogger.m */; };
@@ -545,7 +547,6 @@
 		92C37A55185627A300547C1E /* ClearGrafficEffectBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearGrafficEffectBrickTests.m; sourceTree = "<group>"; };
 		92E3351D18FBB6750056C390 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		92FF2DFE1A24C3BE00093DA7 /* ActionSheetAlertViewTags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetAlertViewTags.h; sourceTree = "<group>"; };
-		92FF2DFF1A24C3BE00093DA7 /* AppDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDefines.h; sourceTree = "<group>"; };
 		92FF2E001A24C3BE00093DA7 /* ButtonTags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonTags.h; sourceTree = "<group>"; };
 		92FF2E011A24C3BE00093DA7 /* CatrobatLanguageDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatLanguageDefines.h; sourceTree = "<group>"; };
 		92FF2E021A24C3BE00093DA7 /* CellTagDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellTagDefines.h; sourceTree = "<group>"; };
@@ -1186,12 +1187,16 @@
 		C34B44EA17F079C700624730 /* BrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickTests.m; sourceTree = "<group>"; };
 		C34B44EC17F079F500624730 /* CustomExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomExtensionsTests.m; sourceTree = "<group>"; };
 		C3BF754B18117F6000134B77 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		CA045D601A34FF96004D4889 /* LoginPopupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LoginPopupViewController.h; path = Catty/LoginPopupViewController.h; sourceTree = SOURCE_ROOT; };
 		CA05A19D18286CDA0025421A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		CA2C80591A35040900982897 /* LoginPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginPopupViewController.h; sourceTree = "<group>"; };
+		CA2C805A1A35040900982897 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		CA2C805B1A35040900982897 /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
+		CA2C805C1A35040900982897 /* LoginPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginPopupViewController.m; sourceTree = "<group>"; };
+		CA2C805D1A35040900982897 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		CA2C805E1A35040900982897 /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
 		CA52403718AD786200052914 /* ProgramTableViewControllerExistingProgramsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerExistingProgramsTests.h; sourceTree = "<group>"; };
 		CA538ECE19B0EA09008240AB /* CattyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA6067E71A34FFDF0037A13A /* LoginPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginPopupViewController.m; path = Catty/LoginPopupViewController.m; sourceTree = SOURCE_ROOT; };
 		CA6067E91A3500450037A13A /* CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLLogger.h; sourceTree = "<group>"; };
 		CA6067EA1A3500450037A13A /* Look+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Look+CBXMLLogger.m"; sourceTree = "<group>"; };
 		CA6067EC1A3500670037A13A /* CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLLogger.m; sourceTree = "<group>"; };
@@ -1449,7 +1454,6 @@
 			isa = PBXGroup;
 			children = (
 				92FF2DFE1A24C3BE00093DA7 /* ActionSheetAlertViewTags.h */,
-				92FF2DFF1A24C3BE00093DA7 /* AppDefines.h */,
 				92FF2E001A24C3BE00093DA7 /* ButtonTags.h */,
 				92FF2E011A24C3BE00093DA7 /* CatrobatLanguageDefines.h */,
 				92FF2E021A24C3BE00093DA7 /* CellTagDefines.h */,
@@ -2382,8 +2386,12 @@
 		92FF31481A24DEB300093DA7 /* Upload */ = {
 			isa = PBXGroup;
 			children = (
-				CA045D601A34FF96004D4889 /* LoginPopupViewController.h */,
-				CA6067E71A34FFDF0037A13A /* LoginPopupViewController.m */,
+				CA2C80591A35040900982897 /* LoginPopupViewController.h */,
+				CA2C805A1A35040900982897 /* LoginViewController.h */,
+				CA2C805B1A35040900982897 /* UploadViewController.h */,
+				CA2C805C1A35040900982897 /* LoginPopupViewController.m */,
+				CA2C805D1A35040900982897 /* LoginViewController.m */,
+				CA2C805E1A35040900982897 /* UploadViewController.m */,
 			);
 			path = Upload;
 			sourceTree = "<group>";
@@ -3796,6 +3804,8 @@
 				92FF328F1A24E2F400093DA7 /* SetBrightnessBrickCell.m in Sources */,
 				92FF2E991A24C7D800093DA7 /* zip.c in Sources */,
 				92FF2EA01A24C7D800093DA7 /* SSZipArchive.m in Sources */,
+				CA2C80601A35040900982897 /* LoginViewController.m in Sources */,
+				CA2C80611A35040900982897 /* UploadViewController.m in Sources */,
 				92FF327E1A24E2F400093DA7 /* IfLogicBeginBrickCell.m in Sources */,
 				92FF2E381A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.m in Sources */,
 				92FF30E71A24DCAA00093DA7 /* PointInDirectionBrick.m in Sources */,
@@ -3850,6 +3860,7 @@
 				92FF30F81A24DCAA00093DA7 /* Formula.m in Sources */,
 				92FF32851A24E2F400093DA7 /* RepeatBrickCell.m in Sources */,
 				92FF30F31A24DCAA00093DA7 /* SpeakBrick.m in Sources */,
+				CA2C805F1A35040900982897 /* LoginPopupViewController.m in Sources */,
 				92FF30CF1A24DCAA00093DA7 /* IfLogicEndBrick.m in Sources */,
 				92FF30DF1A24DCAA00093DA7 /* ChangeXByNBrick.m in Sources */,
 				92FF336E1A24E5F800093DA7 /* SetLookBrick+CBXMLHandler.m in Sources */,
@@ -3904,7 +3915,6 @@
 				92FF32C01A24E2F400093DA7 /* BrickSelectModalTransition.m in Sources */,
 				92FF31581A24DEB300093DA7 /* ProgramTableViewController.m in Sources */,
 				92FF32811A24E2F400093DA7 /* LedOffBrickCell.m in Sources */,
-				CA6067E81A34FFDF0037A13A /* LoginPopupViewController.m in Sources */,
 				92FF315E1A24DEB300093DA7 /* HelpWebViewController.m in Sources */,
 				92FF32881A24E2F400093DA7 /* ChangeBrightnessByNBrickCell.m in Sources */,
 				92FF33621A24E5F800093DA7 /* NoteBrick+CBXMLHandler.m in Sources */,

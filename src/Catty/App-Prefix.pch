@@ -27,7 +27,8 @@
 #import <UIKit/UIKit.h>
 
 #import "Logger.h"
-#import "AppDefines.h"
+
+#define kIsRelease 1
 
 #if kIsRelease
 #undef DEBUG
