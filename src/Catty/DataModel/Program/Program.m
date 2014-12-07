@@ -296,7 +296,7 @@
 - (GDataXMLElement*)toXML
 {
     GDataXMLElement *rootXMLElement = [GDataXMLNode elementWithName:@"program"];
-    [rootXMLElement addChild:[self.header toXML]];
+//    [rootXMLElement addChild:[self.header toXML]];
 
     GDataXMLElement *objectListXMLElement = [GDataXMLNode elementWithName:@"objectList"];
     for (id object in self.objectList) {

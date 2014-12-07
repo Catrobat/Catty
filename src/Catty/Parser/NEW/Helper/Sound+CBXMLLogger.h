@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kIsRelease 1
+#import "Sound+CBXMLHandler.h"
 
-#if kIsRelease
-  #undef DEBUG
-#endif
+@interface Sound (CBXMLLogger)
+
+@end

@@ -20,8 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kIsRelease 1
+#import <Foundation/Foundation.h>
 
-#if kIsRelease
-  #undef DEBUG
-#endif
+@class GDataXMLElement;
+@class CBXMLContext;
+
+@protocol CBXMLNodeProtocol <NSObject>
+
+@required
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context;
+
+// TODO set required
+@optional
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context;
+
+@end

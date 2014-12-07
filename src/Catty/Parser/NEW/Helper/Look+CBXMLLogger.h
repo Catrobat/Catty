@@ -20,8 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kIsRelease 1
+#import "Look+CBXMLHandler.h"
 
-#if kIsRelease
-  #undef DEBUG
-#endif
+@interface Look (CBXMLLogger)
+
+@end

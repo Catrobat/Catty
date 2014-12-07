@@ -20,8 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kIsRelease 1
+#import <Foundation/Foundation.h>
 
-#if kIsRelease
-  #undef DEBUG
+#if !kIsRelease
+#import "Header+CBXMLLogger.h"
+#import "SpriteObject+CBXMLLogger.h"
+#import "Look+CBXMLLogger.h"
+#import "Sound+CBXMLLogger.h"
+#import "Script+CBXMLLogger.h"
 #endif
+
+@class GDataXMLElement;
+
+@interface CBXMLLogger : NSObject
+
++ (void)swizzleMethods:(Class)clazz;
++ (void)logElement:(GDataXMLElement*)xmlElement;
+
+@end
