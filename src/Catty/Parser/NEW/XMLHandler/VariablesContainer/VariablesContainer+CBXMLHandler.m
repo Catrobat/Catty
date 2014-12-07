@@ -56,7 +56,6 @@
         varContainer.programVariableList = [[self class] parseAndCreateProgramVariables:programVarListElement
                                                                             withContext:context];
     }
-    // TODO userBrickVariableList => what do you mean exactly?
     return varContainer;
 }
 

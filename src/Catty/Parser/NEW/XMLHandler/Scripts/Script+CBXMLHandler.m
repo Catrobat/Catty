@@ -128,9 +128,9 @@
 + (NSString*)brickClassNameForBrickTypeName:(NSString*)brickTypeName
 {
     NSMutableString *brickXMLHandlerClassName = [NSMutableString stringWithString:brickTypeName];
-    // TODO: handle those class names here that do not correspond to bricktypenames...
-    if ([brickTypeName isEqualToString:@"LoopEndlessBrick"])
+    if ([brickTypeName isEqualToString:@"LoopEndlessBrick"]) {
         return [NSString stringWithFormat:@"LoopEndBrick"];
+    }
     return (NSString*)brickXMLHandlerClassName;
 }
 

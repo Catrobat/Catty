@@ -755,24 +755,24 @@ replacementString:(NSString*)characters
 {
     unsigned count;
     objc_property_t *properties = class_copyPropertyList([instance class], &count);
-    
     NSMutableArray *propertiesArray = [[NSMutableArray alloc] initWithCapacity:count];
-    
+
     unsigned i;
-    for (i = 0; i < count; i++)
-    {
+    for (i = 0; i < count; i++) {
         objc_property_t property = properties[i];
         
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];
-        
         // TODO use introspection
-        if([name isEqualToString:@"hash"] || [name isEqualToString:@"superclass"] || [name isEqualToString:@"description"] || [name isEqualToString:@"debugDescription"])
+        if ([name isEqualToString:@"hash"] || [name isEqualToString:@"superclass"]
+            || [name isEqualToString:@"description"] || [name isEqualToString:@"debugDescription"]) {
             continue;
+        }
+
         NSObject *currentProperty = [instance valueForKey:name];
-        if(currentProperty != nil)
+        if (currentProperty != nil) {
             [propertiesArray addObject:currentProperty];
+        }
     }
-    
     free(properties);
     return propertiesArray;
 }
