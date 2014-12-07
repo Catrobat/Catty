@@ -35,7 +35,7 @@
 #define kCatrobatHeaderScreenModeMaximize @"MAXIMIZE"
 #define kCatrobatHeaderScreenModeStretch @"STRETCH"
 #define kCatrobatHeaderProgramScreenshotDefaultValue @"false"
-#define kCatrobatHeaderDateTimeFormat @"yyyy-MM-dd HH:mm:ss"
+#define kCatrobatHeaderDateTimeFormat @"yyyy-MM-ddHH:mm:ss"
 
 //************************************************************************************************************
 //                                SPRITE OBJECT DEFINES
