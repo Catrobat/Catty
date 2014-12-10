@@ -46,7 +46,7 @@ typedef enum{
 
 typedef enum TokenSelectionType{
     USER_SELECTION = 800,
-    PARSER_ERROR_SELECTION
+    PARSER_ERROR_SELECTION = 801
 }TokenSelectionType;
 
 

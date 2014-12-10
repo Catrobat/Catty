@@ -22,6 +22,9 @@
 
 #import "LookImageViewController.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "TableUtil.h"
+#import "RuntimeImageCache.h"
+#import "ProgramDefines.h"
 
 @interface LookImageViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -82,6 +85,8 @@
     self.imageView.backgroundColor = [UIColor darkBlueColor];
     self.navigationController.toolbar.hidden = YES;
     self.navigationController.title = self.title = self.imageName;
+    UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction)];
+    self.navigationItem.rightBarButtonItem = editButtonItem;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -102,6 +107,72 @@
 - (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
     return self.imageView;
+}
+
+
+-(void)editAction
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
+    PaintViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"paint"];
+    vc.delegate = self;
+    self.imageView.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor clearColor];
+    UIGraphicsBeginImageContextWithOptions(self.imageView.frame.size, NO, 0.0);
+    [self.imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.view.backgroundColor = [UIColor darkBlueColor];
+    self.imageView.backgroundColor = [UIColor darkBlueColor];
+    vc.editingImage = img;
+    NSLog(@"%@",img);
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark paintDelegate
+-(void)addPaintedImage:(UIImage *)image andPath:(NSString *)path
+{
+    self.imageView.image = image;
+
+    NSData *imageData = UIImagePNGRepresentation(image);
+    NSDebug(@"Writing file to disk");
+        // leaving the main queue here!
+    NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{
+            // save image to programs directory
+        [imageData writeToFile:self.imagePath atomically:YES];
+    }];
+        // completion block is NOT executed on the main queue
+    [saveOp setCompletionBlock:^{
+            // execute this on the main queue
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+
+        }];
+    }];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [queue addOperation:saveOp];
+    
+    
+    RuntimeImageCache *cache = [RuntimeImageCache sharedImageCache];
+    NSString *imageDirPath = [[self.spriteObject projectPath] stringByAppendingString:kProgramImagesDirName];
+    NSString * fileName = [self.imagePath stringByReplacingOccurrencesOfString:imageDirPath withString:@""];
+    NSRange result = [fileName rangeOfString:kResourceFileNameSeparator];
+
+    if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([fileName length]-1)))
+        return; // Invalid file name convention -> this should not happen. XXX/FIXME: maybe we want to abort here??
+    
+    NSString *previewImageName =  [NSString stringWithFormat:@"%@_%@%@",
+            [fileName substringToIndex:result.location],
+            kPreviewImageNamePrefix,
+            [fileName substringFromIndex:(result.location + 1)]
+            ];
+
+    
+    NSString *filePath = [NSString stringWithFormat:@"%@%@", imageDirPath, previewImageName];
+    [cache overwriteThumbnailImageFromDiskWithThumbnailPath:filePath image:image thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)];
+    
+    
+    [cache replaceImage:image withName:filePath];
+    
+
 }
 
 @end

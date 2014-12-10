@@ -27,7 +27,7 @@
 @class SpriteObject;
 
 typedef enum {
-    OPERATOR,
+    OPERATOR = 10000,
     FUNCTION,
     NUMBER,
     SENSOR,
