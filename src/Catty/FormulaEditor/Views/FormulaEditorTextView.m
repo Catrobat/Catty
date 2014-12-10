@@ -138,7 +138,7 @@
 
 -(void)highlightSelection:(NSUInteger)cursorPostionIndex start:(int)startIndex end:(int)endIndex
 {
-    TokenSelectionType *selectionType = [self.formulaEditorViewController.internFormula getExternSelectionType];
+    TokenSelectionType *selectionType = (TokenSelectionType*) [self.formulaEditorViewController.internFormula getExternSelectionType];
     
     UIColor *selectionColor;
     if(selectionType == PARSER_ERROR_SELECTION)

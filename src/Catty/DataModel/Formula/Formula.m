@@ -153,7 +153,7 @@
         _displayString = nil;
     }else
     {
-        _displayString = [NSString stringWithFormat:text];
+        _displayString = [NSString stringWithFormat:@"%@",text];
     }
 }
 

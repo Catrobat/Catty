@@ -158,8 +158,8 @@
                                                     cell.featuredImage.frame = CGRectMake(30, 0, self.view.frame.size.width, cell.featuredImage.frame.size.height);
                                                     self.featuredSize = @[[NSNumber numberWithFloat:img.size.width],[NSNumber numberWithFloat:img.size.height]];
                                                     
-                                                    CGFloat factor = img.size.width / [Util screenWidth];
-                                                    NSDebug(@"%f",img.size.height/factor);
+//                                                    CGFloat factor = img.size.width / [Util screenWidth];
+//                                                    NSDebug(@"%f",img.size.height/factor);
                                                     [self loadingIndicator:NO];
                                                     cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.featuredImage.frame.size.height);
                                                 }
