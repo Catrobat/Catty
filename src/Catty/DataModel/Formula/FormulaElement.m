@@ -571,7 +571,7 @@
 {
     NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
     
-    switch (self.type) {
+    switch ((int)self.type) {
         case BRACKET:
             [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_BRACKET_OPEN]];
             if (self.rightChild != nil) {

@@ -249,7 +249,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
 
 - (FormulaElement*)function
 {
-    FormulaElement *functionTree = [[FormulaElement alloc] initWithElementType:FUNCTION value:nil leftChild:nil rightChild:nil parent:nil];
+    FormulaElement *functionTree;
     
     if (![Functions isFunction:self.currentToken.tokenStringValue]) {
         [InternFormulaParserException raise:@"Parse Error" format:nil];

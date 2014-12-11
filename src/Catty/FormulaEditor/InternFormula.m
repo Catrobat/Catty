@@ -627,8 +627,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
             
             break;
         case TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER:
-            bracketsInternTokens = [InternFormulaUtils getFunctionByParameterDelimiter:self.internTokenFormulaList
-                                                                                 index:self.cursorPositionInternTokenIndex];
+//            bracketsInternTokens = [InternFormulaUtils getFunctionByParameterDelimiter:self.internTokenFormulaList                                                           index:self.cursorPositionInternTokenIndex];
             if(functionInternTokens == nil || [functionInternTokens count] == 0)
             {
                 return;
