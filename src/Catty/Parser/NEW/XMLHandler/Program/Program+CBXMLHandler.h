@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Look.h"
+#import "Program.h"
 #import "CBXMLNodeProtocol.h"
 
-@interface Look (CBXMLHandler) <CBXMLNodeProtocol>
+@interface Program (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

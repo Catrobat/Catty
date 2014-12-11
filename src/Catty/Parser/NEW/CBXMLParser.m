@@ -22,13 +22,10 @@
 
 #import "CBXMLParser.h"
 #import "GDataXMLNode.h"
-#import "CBXMLValidator.h"
-#import "CBXMLContext.h"
-#import "Program+CustomExtensions.h"
-#import "Header+CBXMLHandler.h"
-#import "VariablesContainer+CBXMLHandler.h"
-#import "SpriteObject+CBXMLHandler.h"
 #import "CatrobatLanguageDefines.h"
+#import "Program+CBXMLHandler.h"
+#import "Program+CustomExtensions.h"
+#import "CBXMLContext.h"
 
 #if !kIsRelease
 #import "CBXMLLogger.h"
@@ -89,84 +86,26 @@
     }
 
     error = nil;
-    GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
+    GDataXMLDocument *xmlDocument = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
 
     // sanity check
-    if (error || (! document)) { return nil; }
+    if (error || (! xmlDocument)) { return nil; }
 
     Program *program = nil;
     @try {
         NSInfo(@"Loading Project...");
-        program = [self parseAndCreateProgramForDocument:document];
+        CBXMLContext *context = [CBXMLContext new];
+        program = [Program parseFromElement:xmlDocument.rootElement withContext:context];
         NSInfo(@"Loading done...");
     } @catch(NSException *exception) {
         NSError(@"Program could not be loaded! %@", [exception description]);
     }
     [program updateReferences];
-    program.XMLdocument = document;
+    program.XMLdocument = xmlDocument;
 
     // TODO: REMOVE THIS LOG-Entry after parser has been fully implemented
     NSLog(@"!!! NEW Catrobat XML Parser IS NOT FULLY IMPLEMENTED YET !!!");
     return program;
-}
-
-- (Program*)parseAndCreateProgramForDocument:(GDataXMLDocument*)xmlDocument
-{
-    GDataXMLElement *rootElement = xmlDocument.rootElement;
-    [XMLError exceptionIfNode:rootElement isNilOrNodeNameNotEquals:@"program"];
-    Program *program = [Program new];
-    CBXMLContext *context = [CBXMLContext new];
-    
-    NSArray *headerNodes = [rootElement elementsForName:@"header"];
-    [XMLError exceptionIf:[headerNodes count] notEquals:1 message:@"Invalid header given!"];
-    program.header = [self parseAndCreateHeaderFromElement:[headerNodes objectAtIndex:0]];
-    
-    program.objectList = [self parseAndCreateObjectsFromElement:rootElement withContext:context];
-    context.spriteObjectList = program.objectList;
-    program.variables = [self parseAndCreateVariablesFromElement:rootElement withContext:context];
-    return program;
-}
-
-#pragma mark Header parsing
-- (Header*)parseAndCreateHeaderFromElement:(GDataXMLElement*)programElement
-{
-    return [Header parseFromElement:programElement withContext:nil];
-}
-
-#pragma mark Object parsing
-- (NSMutableArray*)parseAndCreateObjectsFromElement:(GDataXMLElement*)programElement
-                                        withContext:(CBXMLContext*)context
-{
-    NSArray *objectListElements = [programElement elementsForName:@"objectList"];
-    [XMLError exceptionIf:[objectListElements count] notEquals:1 message:@"No objectList given!"];
-    NSArray *objectElements = [[objectListElements firstObject] children];
-    [XMLError exceptionIf:[objectListElements count] equals:0
-                  message:@"No objects in objectList, but there must exist at least 1 object (background)!!"];
-    NSLog(@"<objectList>");
-    NSMutableArray *objectList = [NSMutableArray arrayWithCapacity:[objectElements count]];
-    for (GDataXMLElement *objectElement in objectElements) {
-        SpriteObject *spriteObject = [SpriteObject parseFromElement:objectElement withContext:context];
-        if (spriteObject != nil)
-            [objectList addObject:spriteObject];
-    }
-    // sanity check => check if all objects from context are in objectList
-    for (SpriteObject *pointedObjectInContext in context.pointedSpriteObjectList) {
-        BOOL found = NO;
-        for(SpriteObject *spriteObject in objectList) {
-            if([pointedObjectInContext.name isEqualToString:spriteObject.name])
-                found = YES;
-        }
-        [XMLError exceptionIf:found equals:NO message:@"Pointed object with name %@ not found in object list!", pointedObjectInContext.name];
-    }
-    NSLog(@"</objectList>");
-    return objectList;
-}
-
-#pragma mark Variable parsing
-- (VariablesContainer*)parseAndCreateVariablesFromElement:(GDataXMLElement*)programElement
-                                              withContext:(CBXMLContext*)context
-{
-    return [VariablesContainer parseFromElement:programElement withContext:context];
 }
 
 @end
