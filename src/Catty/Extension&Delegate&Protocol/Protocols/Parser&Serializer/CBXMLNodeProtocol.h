@@ -30,8 +30,6 @@
 @required
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context;
 
-// TODO set required
-@optional
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context;
 
 @end

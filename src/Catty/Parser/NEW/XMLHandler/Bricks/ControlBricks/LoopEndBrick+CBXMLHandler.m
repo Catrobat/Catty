@@ -51,6 +51,7 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
+#warning consider stack!!
     GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
     [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"LoopEndBrick"]];
     return brick;

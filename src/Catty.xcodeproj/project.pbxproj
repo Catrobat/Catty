@@ -339,6 +339,7 @@
 		92FF33921A24E5F800093DA7 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF33541A24E5F800093DA7 /* XMLObjectReference.m */; };
 		CA184E621A3A4A9400D32D9F /* Program+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA184E611A3A4A9400D32D9F /* Program+CBXMLHandler.m */; };
 		CA184E651A3A556F00D32D9F /* CBXMLSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA184E641A3A556F00D32D9F /* CBXMLSerializer.m */; };
+		CA184E671A3A83BD00D32D9F /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA184E661A3A83BD00D32D9F /* XMLSerializerBlackBoxTests.m */; };
 		CA2C805F1A35040900982897 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2C805C1A35040900982897 /* LoginPopupViewController.m */; };
 		CA2C80601A35040900982897 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2C805D1A35040900982897 /* LoginViewController.m */; };
 		CA2C80611A35040900982897 /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2C805E1A35040900982897 /* UploadViewController.m */; };
@@ -1194,6 +1195,7 @@
 		CA184E611A3A4A9400D32D9F /* Program+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Program+CBXMLHandler.m"; path = "Program/Program+CBXMLHandler.m"; sourceTree = "<group>"; };
 		CA184E631A3A556F00D32D9F /* CBXMLSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLSerializer.h; sourceTree = "<group>"; };
 		CA184E641A3A556F00D32D9F /* CBXMLSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLSerializer.m; sourceTree = "<group>"; };
+		CA184E661A3A83BD00D32D9F /* XMLSerializerBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerBlackBoxTests.m; sourceTree = "<group>"; };
 		CA2C80591A35040900982897 /* LoginPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginPopupViewController.h; sourceTree = "<group>"; };
 		CA2C805A1A35040900982897 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		CA2C805B1A35040900982897 /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
@@ -1416,12 +1418,12 @@
 			path = Resources/Licenses;
 			sourceTree = "<group>";
 		};
-		4CD194F21A0631B200484E4F /* Parser & Serializer */ = {
+		4CD194F21A0631B200484E4F /* ParserTests & SerializationTests */ = {
 			isa = PBXGroup;
 			children = (
 				4CD194F61A0632C600484E4F /* CatrobatLanguage0.93 */,
 			);
-			name = "Parser & Serializer";
+			name = "ParserTests & SerializationTests";
 			sourceTree = "<group>";
 		};
 		4CD194F51A0632AA00484E4F /* XMLParserTests */ = {
@@ -1440,9 +1442,9 @@
 		4CD194F61A0632C600484E4F /* CatrobatLanguage0.93 */ = {
 			isa = PBXGroup;
 			children = (
-				CAEE0A231A328CDF007CB248 /* XMLSerializerTests */,
 				CAEE0A241A328CEA007CB248 /* Abstract */,
 				4CD194F51A0632AA00484E4F /* XMLParserTests */,
+				CAEE0A231A328CDF007CB248 /* XMLSerializerTests */,
 			);
 			name = CatrobatLanguage0.93;
 			sourceTree = "<group>";
@@ -3212,7 +3214,7 @@
 		B46B270317703F9400172837 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
-				4CD194F21A0631B200484E4F /* Parser & Serializer */,
+				4CD194F21A0631B200484E4F /* ParserTests & SerializationTests */,
 				4C3C03F5199BA5250004F594 /* Formula */,
 				B46B270917703F9400172837 /* CattyTests.m */,
 				C34B44FB17F3403400624730 /* ExtensionTests */,
@@ -3336,6 +3338,7 @@
 			children = (
 				CAEE0A251A328D2E007CB248 /* Abstract */,
 				CAEE0A291A328EE9007CB248 /* XMLSerializerTests.m */,
+				CA184E661A3A83BD00D32D9F /* XMLSerializerBlackBoxTests.m */,
 			);
 			name = XMLSerializerTests;
 			sourceTree = "<group>";
@@ -3746,6 +3749,7 @@
 				CA538EC119B0EA09008240AB /* CattyTests.m in Sources */,
 				4C3275F61A135F990091C428 /* XMLParserFormulaTests.m in Sources */,
 				CA538EC219B0EA09008240AB /* PointToBrickTests.m in Sources */,
+				CA184E671A3A83BD00D32D9F /* XMLSerializerBlackBoxTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

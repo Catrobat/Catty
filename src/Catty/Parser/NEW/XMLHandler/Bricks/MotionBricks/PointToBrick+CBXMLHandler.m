@@ -51,4 +51,10 @@
     return pointToBrick;
 }
 
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
+{
+#warning TODO: implement this!!
+    return nil;
+}
+
 @end
