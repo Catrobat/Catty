@@ -65,7 +65,7 @@
         GDataXMLElement *referenceXMLElement = [GDataXMLNode elementWithName:@"sound"];
         NSString *index = nil;
         NSUInteger indexNumber = [context.soundList indexOfObject:self.sound];
-        if (indexNumber != NSNotFound) {
+        if ((indexNumber != NSNotFound) && (indexNumber > 0)) {
             index = [NSString stringWithFormat:@"[%lu]", indexNumber];
         } else {
             index = @"";

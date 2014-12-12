@@ -73,7 +73,7 @@
         // already serialized
         GDataXMLElement *pointedObjectXmlElement = [GDataXMLElement elementWithName:@"pointedObject"];
         NSString *index = nil;
-        if (indexOfSpriteObject != NSNotFound) {
+        if ((indexOfPointedObject != NSNotFound) && (indexOfPointedObject > 0)) {
             index = [NSString stringWithFormat:@"[%lu]", indexOfPointedObject];
         } else {
             index = @"";

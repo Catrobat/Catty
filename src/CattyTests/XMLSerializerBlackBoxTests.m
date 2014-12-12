@@ -37,4 +37,10 @@
     [program093 saveToDisk]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
 }
 
+- (void)testValidProgramAllBricks
+{
+    Program *program093 = [self getProgramForXML:@"ValidProgramAllBricks"];
+    [program093 saveToDisk]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
+}
+
 @end

@@ -40,8 +40,6 @@
 
 @implementation Program
 
-@synthesize objectList = _objectList;
-
 - (void)dealloc
 {
     NSDebug(@"Dealloc Program");

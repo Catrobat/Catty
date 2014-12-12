@@ -60,12 +60,12 @@
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
     GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"brick"];
-    [xmlElement addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"NoteBrick"]];
+    [xmlElement addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"SetLookBrick"]];
     if (self.look) {
         GDataXMLElement *referenceXMLElement = [GDataXMLNode elementWithName:@"look"];
         NSString *index = nil;
         NSUInteger indexNumber = [context.lookList indexOfObject:self.look];
-        if (indexNumber != NSNotFound) {
+        if ((indexNumber != NSNotFound) && (indexNumber > 0)) {
             index = [NSString stringWithFormat:@"[%lu]", indexNumber];
         } else {
             index = @"";

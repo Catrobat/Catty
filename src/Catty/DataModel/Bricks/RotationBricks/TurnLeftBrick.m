@@ -26,8 +26,6 @@
 
 @implementation TurnLeftBrick
 
-@synthesize degrees = _degrees;
-
 - (NSString*)brickTitle
 {
     return kLocalizedTurnLeft;

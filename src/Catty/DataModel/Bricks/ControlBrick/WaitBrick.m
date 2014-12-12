@@ -27,8 +27,6 @@
 
 @implementation WaitBrick
 
-@synthesize timeToWaitInSeconds = _timeToWaitInSeconds;
-
 - (NSString*)brickTitle
 {
     return kLocalizedWaitNSeconds;

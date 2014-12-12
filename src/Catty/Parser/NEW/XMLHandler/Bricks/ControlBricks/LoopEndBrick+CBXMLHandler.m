@@ -53,7 +53,7 @@
 {
 #warning consider stack!!
     GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"LoopEndBrick"]];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"LoopEndlessBrick"]];
     return brick;
 }
 

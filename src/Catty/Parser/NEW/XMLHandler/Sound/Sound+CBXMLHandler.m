@@ -56,8 +56,8 @@
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
     GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"sound"];
-    [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"name" stringValue:self.name]];
-    [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"fileName" stringValue:self.fileName]];
+    [xmlElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName]];
+    [xmlElement addChild:[GDataXMLElement elementWithName:@"name" stringValue:self.name]];
     return xmlElement;
 }
 
