@@ -338,6 +338,7 @@
 		92FF33911A24E5F800093DA7 /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF33521A24E5F800093DA7 /* TestParser.m */; };
 		92FF33921A24E5F800093DA7 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF33541A24E5F800093DA7 /* XMLObjectReference.m */; };
 		CA184E621A3A4A9400D32D9F /* Program+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA184E611A3A4A9400D32D9F /* Program+CBXMLHandler.m */; };
+		CA184E651A3A556F00D32D9F /* CBXMLSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA184E641A3A556F00D32D9F /* CBXMLSerializer.m */; };
 		CA2C805F1A35040900982897 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2C805C1A35040900982897 /* LoginPopupViewController.m */; };
 		CA2C80601A35040900982897 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2C805D1A35040900982897 /* LoginViewController.m */; };
 		CA2C80611A35040900982897 /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2C805E1A35040900982897 /* UploadViewController.m */; };
@@ -1191,6 +1192,8 @@
 		CA05A19D18286CDA0025421A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		CA184E601A3A4A9400D32D9F /* Program+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Program+CBXMLHandler.h"; path = "Program/Program+CBXMLHandler.h"; sourceTree = "<group>"; };
 		CA184E611A3A4A9400D32D9F /* Program+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Program+CBXMLHandler.m"; path = "Program/Program+CBXMLHandler.m"; sourceTree = "<group>"; };
+		CA184E631A3A556F00D32D9F /* CBXMLSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLSerializer.h; sourceTree = "<group>"; };
+		CA184E641A3A556F00D32D9F /* CBXMLSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLSerializer.m; sourceTree = "<group>"; };
 		CA2C80591A35040900982897 /* LoginPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginPopupViewController.h; sourceTree = "<group>"; };
 		CA2C805A1A35040900982897 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		CA2C805B1A35040900982897 /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
@@ -2910,26 +2913,30 @@
 			path = "Catty/Storyboard+XIB";
 			sourceTree = "<group>";
 		};
-		92FF32C41A24E5F800093DA7 /* Parser */ = {
+		92FF32C41A24E5F800093DA7 /* Parser & Serialization */ = {
 			isa = PBXGroup;
 			children = (
-				92FF32C51A24E5F800093DA7 /* NEW */,
-				92FF334C1A24E5F800093DA7 /* OLD */,
+				92FF32C51A24E5F800093DA7 /* Parser & Serialization */,
+				92FF334C1A24E5F800093DA7 /* Old Parser */,
 			);
+			name = "Parser & Serialization";
 			path = Parser;
 			sourceTree = "<group>";
 		};
-		92FF32C51A24E5F800093DA7 /* NEW */ = {
+		92FF32C51A24E5F800093DA7 /* Parser & Serialization */ = {
 			isa = PBXGroup;
 			children = (
 				92FF32C61A24E5F800093DA7 /* CBXMLParser.h */,
 				92FF32C71A24E5F800093DA7 /* CBXMLParser.m */,
+				CA184E631A3A556F00D32D9F /* CBXMLSerializer.h */,
+				CA184E641A3A556F00D32D9F /* CBXMLSerializer.m */,
 				92FF32C81A24E5F800093DA7 /* CBXMLValidator.h */,
 				92FF32C91A24E5F800093DA7 /* CBXMLValidator.m */,
 				92FF32CA1A24E5F800093DA7 /* Context */,
 				92FF32CD1A24E5F800093DA7 /* Helper */,
 				92FF32D01A24E5F800093DA7 /* XMLHandler */,
 			);
+			name = "Parser & Serialization";
 			path = NEW;
 			sourceTree = "<group>";
 		};
@@ -3174,7 +3181,7 @@
 			path = VariablesContainer;
 			sourceTree = "<group>";
 		};
-		92FF334C1A24E5F800093DA7 /* OLD */ = {
+		92FF334C1A24E5F800093DA7 /* Old Parser */ = {
 			isa = PBXGroup;
 			children = (
 				92FF334D1A24E5F800093DA7 /* Parser.h */,
@@ -3186,6 +3193,7 @@
 				92FF33531A24E5F800093DA7 /* XMLObjectReference.h */,
 				92FF33541A24E5F800093DA7 /* XMLObjectReference.m */,
 			);
+			name = "Old Parser";
 			path = OLD;
 			sourceTree = "<group>";
 		};
@@ -3464,7 +3472,7 @@
 				92FF2DFD1A24C3BE00093DA7 /* Defines */,
 				B4BCF409170ECFC3008EDF3A /* Extensions & Delegates & Protocols */,
 				92FF30271A24DCAA00093DA7 /* DataModel */,
-				92FF32C41A24E5F800093DA7 /* Parser */,
+				92FF32C41A24E5F800093DA7 /* Parser & Serialization */,
 				92FF310A1A24DEB300093DA7 /* ViewController */,
 				92FF31621A24E2F400093DA7 /* Views */,
 			);
@@ -3745,6 +3753,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA184E651A3A556F00D32D9F /* CBXMLSerializer.m in Sources */,
 				92FF338D1A24E5F800093DA7 /* UserVariable+CBXMLHandler.m in Sources */,
 				92FF2E9C1A24C7D800093DA7 /* SensorHandler.m in Sources */,
 				92FF32B71A24E2F400093DA7 /* ColoredCell.m in Sources */,
