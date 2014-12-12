@@ -28,6 +28,7 @@
 
 @implementation UserVariable (CBXMLHandler)
 
+#pragma mark - Parsing
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"userVariable"];
@@ -57,10 +58,11 @@
     return userVariable;
 }
 
+#pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *userVariable = [GDataXMLNode elementWithName:@"userVariable" stringValue:self.name];
-    return userVariable;
+    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"userVariable" stringValue:self.name];
+    return xmlElement;
 }
 
 @end
