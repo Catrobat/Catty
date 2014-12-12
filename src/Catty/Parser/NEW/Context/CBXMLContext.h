@@ -23,7 +23,6 @@
 #import <Foundation/Foundation.h>
 
 @class CBXMLOpenedNestingBricksStack;
-@class SpriteObject;
 
 @interface CBXMLContext : NSObject
 

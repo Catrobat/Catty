@@ -21,7 +21,6 @@
  */
 
 #import "UserVariable.h"
-#import "GDataXMLNode.h"
 #import "Program.h"
 #import "Util.h"
 

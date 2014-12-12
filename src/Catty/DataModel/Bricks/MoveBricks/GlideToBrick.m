@@ -20,10 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Glidetobrick.h"
+#import "GlideToBrick.h"
 #import "Script.h"
 #import "Formula.h"
-#import "GDataXMLNode.h"
 
 @interface GlideToBrick()
 
@@ -79,35 +78,6 @@
     double yDestination = [self.yDestination interpretDoubleForSprite:self.object];
     double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.object];
     return [NSString stringWithFormat:@"GlideTo (Position: %f/%f; duration: %f s)", xDestination, yDestination, durationInSeconds];
-}
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-{
-    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-
-    if (self.durationInSeconds) {
-        GDataXMLElement *durationInSecondsXMLElement = [GDataXMLNode elementWithName:@"durationInSeconds"];
-        [durationInSecondsXMLElement addChild:[self.durationInSeconds toXMLforObject:spriteObject]];
-        [brickXMLElement addChild:durationInSecondsXMLElement];
-    }
-
-    if (self.xDestination) {
-        GDataXMLElement *xDestinationXMLElement = [GDataXMLNode elementWithName:@"xDestination"];
-        [xDestinationXMLElement addChild:[self.xDestination toXMLforObject:spriteObject]];
-        [brickXMLElement addChild:xDestinationXMLElement];
-    }
-
-    if (self.yDestination) {
-        GDataXMLElement *yDestinationXMLElement = [GDataXMLNode elementWithName:@"yDestination"];
-        [yDestinationXMLElement addChild:[self.yDestination toXMLforObject:spriteObject]];
-        [brickXMLElement addChild:yDestinationXMLElement];
-    }
-
-    if (! self.durationInSeconds && ! self.xDestination && ! self.yDestination) {
-        // remove object reference
-        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
-    }
-    return brickXMLElement;
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick

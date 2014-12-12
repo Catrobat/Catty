@@ -20,10 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "LoopEndbrick.h"
-#import "GDataXMLNode.h"
-#import "LoopBeginBrick.h"
 #import "LoopEndBrick.h"
+#import "LoopBeginBrick.h"
 #import "Util.h"
 
 @implementation LoopEndBrick
@@ -49,23 +47,9 @@
     return [NSString stringWithFormat:@"EndLoop"];
 }
 
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-{
-    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-
-    // remove object reference
-    [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
-
-    NSString *referencePath = [NSString stringWithFormat:@"%@/loopEndBrick",
-                               [spriteObject xmlReferencePathForDestinationBrick:self.loopBeginBrick
-                                                                     sourceBrick:self]];
-    [brickXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:referencePath]];
-    return brickXMLElement;
-}
-
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if(![Util isEqual:self.loopBeginBrick.brickTitle toObject:((LoopEndBrick*)brick).loopBeginBrick.brickTitle])
+    if (! [Util isEqual:self.loopBeginBrick.brickTitle toObject:((LoopEndBrick*)brick).loopBeginBrick.brickTitle])
         return NO;
     return YES;
 }

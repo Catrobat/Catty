@@ -24,7 +24,6 @@
 #import "Formula.h"
 #import "Util.h"
 #import "Scene.h"
-#import "GDataXMLNode.h"
 
 #define kRotationDegreeOffset 90.0
 
@@ -51,28 +50,11 @@
   };
 }
 
-
-
 #pragma mark - Description
 - (NSString*)description
 {
     double deg = [self.degrees interpretDoubleForSprite:self.object];
     return [NSString stringWithFormat:@"PointInDirection: %f", deg];
-}
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-{
-    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-
-    if (self.degrees) {
-        GDataXMLElement *degreesXMLElement = [GDataXMLNode elementWithName:@"degrees"];
-        [degreesXMLElement addChild:[self.degrees toXMLforObject:spriteObject]];
-        [brickXMLElement addChild:degreesXMLElement];
-    } else {
-        // remove object reference
-        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
-    }
-    return brickXMLElement;
 }
 
 @end

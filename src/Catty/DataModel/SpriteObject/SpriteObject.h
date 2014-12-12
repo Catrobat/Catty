@@ -28,7 +28,6 @@
 @class Script;
 @class Look;
 @class Sound;
-@class GDataXMLElement;
 @class Brick;
 @protocol SpriteManagerDelegate;
 @protocol BroadcastWaitDelegate;
@@ -81,10 +80,6 @@
 - (NSUInteger)numberOfSounds;
 
 - (BOOL)isBackground;
-
-- (NSString*)xmlReferencePathForDestinationBrick:(Brick*)destinationBrick sourceBrick:(Brick*)sourceBrick;
-
-- (NSString*)xmlReferencePathForDestinationLook:(Look*)destinationLook;
 
 - (instancetype)deepCopy;
 

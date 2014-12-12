@@ -53,7 +53,6 @@ typedef enum {
 
 - (double)interpretRecursiveForSprite:(SpriteObject*)sprite;
 
-- (NSArray*)XMLChildElements;
 - (BOOL)isEqualToFormulaElement:(FormulaElement*)formulaElement;
 - (NSString*)stringForElementType:(ElementType)type;
 

@@ -24,12 +24,6 @@
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "Sound.h"
 #import <AVFoundation/AVSpeechSynthesis.h>
-#import "GDataXMLNode.h"
-
-@interface SpeakBrick()
-
-@end
-
 
 @implementation SpeakBrick
 
@@ -59,25 +53,10 @@
     }];
 }
 
-
 #pragma mark - Description
-
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"Speak: %@", self.text];
-}
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject *)spriteObject
-{
-    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-    if (self.text) {
-        GDataXMLElement *textXMLElement = [GDataXMLNode elementWithName:@"text" stringValue:self.text];
-        [brickXMLElement addChild:textXMLElement];
-    } else {
-        // remove object reference
-        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
-    }
-    return brickXMLElement;
 }
 
 @end

@@ -22,7 +22,6 @@
 
 #import "Changesizebynbrick.h"
 #import "Formula.h"
-#import "GDataXMLNode.h"
 
 @implementation ChangeSizeByNBrick
 
@@ -54,17 +53,6 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"ChangeSizeByN (%f%%)", [self.size interpretDoubleForSprite:self.object]];
-}
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-{
-    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-    if (self.size) {
-        GDataXMLElement *sizeXMLElement = [GDataXMLNode elementWithName:@"size"];
-        [sizeXMLElement addChild:[self.size toXMLforObject:spriteObject]];
-        [brickXMLElement addChild:sizeXMLElement];
-    }
-    return brickXMLElement;
 }
 
 @end

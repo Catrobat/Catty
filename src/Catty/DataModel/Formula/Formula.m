@@ -22,7 +22,6 @@
 
 #import "Formula.h"
 #import "FormulaElement.h"
-#import "GDataXMLNode.h"
 
 @implementation Formula
 
@@ -40,15 +39,6 @@
 {
     int result = [self interpretIntegerForSprite:sprite];
     return result != 0 ? true : false;
-}
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-{
-    GDataXMLElement *formulaTreeXMLElement = [GDataXMLNode elementWithName:@"formulaTree"];
-    for (GDataXMLElement *childElement in [self.formulaTree XMLChildElements]) {
-        [formulaTreeXMLElement addChild:childElement];
-    }
-    return formulaTreeXMLElement;
 }
 
 - (BOOL)isEqualToFormula:(Formula*)formula

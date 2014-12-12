@@ -20,13 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Setybrick.h"
+#import "SetYBrick.h"
 #import "Formula.h"
-#import "GDataXMLNode.h"
 
 @implementation SetYBrick
-
-@synthesize yPosition = _yPosition;
 
 - (NSString*)brickTitle
 {
@@ -51,15 +48,6 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"SetYBrick (y-Pos:%f)", [self.yPosition interpretDoubleForSprite:self.object]];
-}
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-{
-    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-    GDataXMLElement *yPositionFormulaXMLElement = [GDataXMLNode elementWithName:@"yPosition"];
-    [yPositionFormulaXMLElement addChild:[self.yPosition toXMLforObject:spriteObject]];
-    [brickXMLElement addChild:yPositionFormulaXMLElement];
-    return brickXMLElement;
 }
 
 @end
