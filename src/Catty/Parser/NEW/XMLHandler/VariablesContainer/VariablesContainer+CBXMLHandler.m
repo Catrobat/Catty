@@ -32,6 +32,7 @@
 
 @implementation VariablesContainer (CBXMLHandler)
 
+#pragma mark - Parsing
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     NSArray *variablesElements = [xmlElement elementsForName:@"variables"];
@@ -151,6 +152,54 @@
         [programVariableList addObject:userVariableToAdd];
     }
     return programVariableList;
+}
+
+#pragma mark - Serialization
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
+{
+    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"variables"];
+    GDataXMLElement *objectVariableListXmlElement = [GDataXMLNode elementWithName:@"objectVariableList"];
+    NSUInteger totalNumOfObjectVariables = [self.objectVariableList count];
+
+//        NSUInteger totalNumOfProgramVariables = [variableLists.programVariableList count];
+    for (NSUInteger index = 0; index < totalNumOfObjectVariables; ++index) {
+        NSArray *variables = [self.objectVariableList objectAtIndex:index];
+        GDataXMLElement *entryXmlElement = [GDataXMLNode elementWithName:@"entry"];
+        GDataXMLElement *entryToObjectReferenceXmlElement = [GDataXMLNode elementWithName:@"object"];
+
+        // FIXME: determine XPath...
+        [entryToObjectReferenceXmlElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@""]];
+        [entryXmlElement addChild:entryToObjectReferenceXmlElement];
+        GDataXMLElement *listXmlElement = [GDataXMLNode elementWithName:@"list"];
+        for (id variable in variables) {
+            [XMLError exceptionIf:[variable isKindOfClass:[UserVariable class]] equals:NO
+                          message:@"Invalid user variable instance given"];
+            [listXmlElement addChild:[((UserVariable*)variable) xmlElementWithContext:context]];
+        }
+        [entryXmlElement addChild:listXmlElement];
+        [objectVariableListXmlElement addChild:entryXmlElement];
+    }
+
+//        if (totalNumOfObjectVariables) {
+    [xmlElement addChild:objectVariableListXmlElement];
+//        }
+
+    GDataXMLElement *programVariableListXmlElement = [GDataXMLNode elementWithName:@"programVariableList"];
+    for (id variable in self.programVariableList) {
+        [XMLError exceptionIf:[variable isKindOfClass:[UserVariable class]] equals:NO
+                      message:@"Invalid user variable instance given"];
+        [programVariableListXmlElement addChild:[((UserVariable*)variable) xmlElementWithContext:context]];
+    }
+
+//        if (totalNumOfProgramVariables) {
+    [xmlElement addChild:programVariableListXmlElement];
+//        }
+
+//        if (totalNumOfObjectVariables || totalNumOfProgramVariables) {
+    [xmlElement addChild:xmlElement];
+//        }
+
+    return xmlElement;
 }
 
 @end
