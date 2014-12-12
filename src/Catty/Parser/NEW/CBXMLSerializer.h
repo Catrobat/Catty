@@ -20,12 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "CBParserProtocol.h"
+#import "CBSerializerProtocol.h"
 
-@interface CBXMLParser : NSObject <CBParserProtocol>
+@interface CBXMLSerializer : NSObject <CBSerializerProtocol>
 
 - (id)initWithPath:(NSString*)path;
-- (BOOL)isSupportedLanguageVersion:(CGFloat)languageVersion;
-- (Program*)parseAndCreateProgram;
+- (void)serializeProgram:(Program*)program;
 
 @end

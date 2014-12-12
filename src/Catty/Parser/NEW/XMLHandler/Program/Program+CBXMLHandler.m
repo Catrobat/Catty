@@ -23,14 +23,15 @@
 #import "Program+CBXMLHandler.h"
 #import "GDataXMLNode.h"
 #import "CBXMLValidator.h"
-
-#import "Header+CBXMLHandler.h"
 #import "VariablesContainer+CBXMLHandler.h"
 #import "SpriteObject+CBXMLHandler.h"
 #import "CBXMLContext.h"
+#import "Header+CBXMLHandler.h"
+#import "OrderedMapTable.h"
 
 @implementation Program (CBXMLHandler)
 
+#pragma mark - Parsing
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"program"];
@@ -84,6 +85,27 @@
                                               withContext:(CBXMLContext*)context
 {
     return [VariablesContainer parseFromElement:programElement withContext:context];
+}
+
+#pragma mark - Serialization
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
+{
+    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"program"];
+    context.spriteObjectList = self.objectList;
+    [xmlElement addChild:[self.header xmlElementWithContext:context]];
+
+    GDataXMLElement *objectListXmlElement = [GDataXMLNode elementWithName:@"objectList"];
+    for (id object in self.objectList) {
+        [XMLError exceptionIf:[object isKindOfClass:[SpriteObject class]] equals:NO
+                      message:@"Invalid sprite object instance given"];
+        [objectListXmlElement addChild:[((SpriteObject*)object) xmlElementWithContext:context]];
+    }
+    [xmlElement addChild:objectListXmlElement];
+
+    if (self.variables) {
+        [xmlElement addChild:[self.variables xmlElementWithContext:context]];
+    }
+    return xmlElement;
 }
 
 @end
