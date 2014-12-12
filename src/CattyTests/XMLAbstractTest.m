@@ -44,7 +44,7 @@
     return document;
 }
 
-- (Program*)getProgramForXML:(NSString *)xmlFile
+- (Program*)getProgramForXML:(NSString*)xmlFile
 {
     CBXMLParser *parser = [[CBXMLParser alloc] initWithPath:[self getPathForXML:xmlFile]];
     Program *program = [parser parseAndCreateProgram];

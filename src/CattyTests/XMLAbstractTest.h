@@ -68,8 +68,8 @@
 
 @interface XMLAbstractTest : XCTestCase
 
-- (NSString*)getPathForXML: (NSString*)xmlFile;
-- (GDataXMLDocument*)getXMLDocumentForPath: (NSString*)xmlPath;
-- (Program*)getProgramForXML: (NSString*)xmlFile;
+- (NSString*)getPathForXML:(NSString*)xmlFile;
+- (GDataXMLDocument*)getXMLDocumentForPath:(NSString*)xmlPath;
+- (Program*)getProgramForXML:(NSString*)xmlFile;
 
 @end

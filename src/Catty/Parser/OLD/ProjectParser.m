@@ -510,7 +510,7 @@
     
 }
 
--(NSMutableArray*)parseProgramVariableList:(GDataXMLElement*)progList andParent:(XMLObjectReference*)parent
+- (NSMutableArray*)parseProgramVariableList:(GDataXMLElement*)progList andParent:(XMLObjectReference*)parent
 {
     NSMutableArray* programVariableList = [[NSMutableArray alloc] initWithCapacity:progList.childCount];
     XMLObjectReference* programVariableRef = [[XMLObjectReference alloc] initWithParent:parent andObject:programVariableList];
@@ -530,8 +530,7 @@
     
 }
 
-
--(FormulaElement*)parseFormulaElement:(GDataXMLElement*)element
+- (FormulaElement*)parseFormulaElement:(GDataXMLElement*)element
 {
     NSArray* valueArray = [element elementsForName:@"value"];
     NSArray* typeArray = [element elementsForName:@"type"];
@@ -559,19 +558,12 @@
                                                                 leftChild:leftChild
                                                                rightChild:rightChild
                                                                    parent:parent];
-    
     return formulaElement;
-    
-    
 }
 
-
-
-
-
 #pragma mark - Helper
-
-const char* property_getTypeString(objc_property_t property) {
+const char *property_getTypeString(objc_property_t property)
+{
 	const char *attrs = property_getAttributes(property);
 	if (attrs == NULL) { return NULL; }
 	
@@ -587,7 +579,7 @@ const char* property_getTypeString(objc_property_t property) {
 }
 
 // TODO: use map to handle these cases. Also needed in toXML methods for serialization
--(NSString*) classNameForString:(NSString*)classString
+- (NSString*)classNameForString:(NSString*)classString
 {
     NSString* className = [classString firstCharacterUppercaseString];
     
@@ -610,14 +602,10 @@ const char* property_getTypeString(objc_property_t property) {
     else if([className isEqualToString:@"LoopEndlessBrick"]) {
         className = @"LoopEndBrick";
     }
-    
     return className;
-    
 }
 
-
-
--(BOOL) isReferenceElement:(GDataXMLElement*)element
+- (BOOL)isReferenceElement:(GDataXMLElement*)element
 {
     NSString *refString = [element attributeForName:@"reference"].stringValue;
     if (!refString || [refString isEqualToString:@""]) {
@@ -626,8 +614,7 @@ const char* property_getTypeString(objc_property_t property) {
     return YES;
 }
 
-
--(id)parentObjectForReferenceElement:(GDataXMLElement*)element andParent:(XMLObjectReference*)parent
+- (id)parentObjectForReferenceElement:(GDataXMLElement*)element andParent:(XMLObjectReference*)parent
 {
     NSString *refString = [element attributeForName:@"reference"].stringValue;    
     int count = [self numberOfOccurencesOfSubstring:@".." inString:refString];
