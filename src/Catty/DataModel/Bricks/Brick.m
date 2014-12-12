@@ -22,7 +22,6 @@
 #import "Brick.h"
 #import "Script.h"
 #import "BrickManager.h"
-#import "GDataXMLNode.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicBeginBrick.h"
@@ -69,31 +68,6 @@
 - (BOOL)isSelectableForObject
 {
     return YES;
-}
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-{
-    GDataXMLElement *brickXMLElement = [GDataXMLNode elementWithName:[self xmlTagName]];
-    GDataXMLElement *brickToObjectReferenceXMLElement = [GDataXMLNode elementWithName:@"object"];
-    [brickToObjectReferenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../../../../.."]];
-    [brickXMLElement addChild:brickToObjectReferenceXMLElement];
-    return brickXMLElement;
-}
-
-- (NSString*)xmlTagName
-{
-    NSString *tagName = [NSStringFromClass([self class]) firstCharacterLowercaseString];
-    if ([self isKindOfClass:[SpriteObject class]]) {
-        tagName = @"object";
-        // TODO: how to detect "pointedObject" from SpriteObject class??
-    } else if ([self isKindOfClass:[LoopEndBrick class]]) {
-        LoopEndBrick *endBrick = (LoopEndBrick*)self;
-        tagName = @"loopEndlessBrick";
-        if ([endBrick.loopBeginBrick isKindOfClass:[RepeatBrick class]]) {
-            tagName = @"loopEndBrick";
-        }
-    }
-    return tagName;
 }
 
 - (NSString*)description

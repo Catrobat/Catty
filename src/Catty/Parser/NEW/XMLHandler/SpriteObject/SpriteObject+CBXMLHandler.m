@@ -153,28 +153,40 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
+    // update context object
+    context.lookList = self.lookList;
+    context.soundList = self.soundList;
+
+    // generate xml element for sprite object
     GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"object"];
+    [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"name" stringValue:self.name]];
+
     GDataXMLElement *lookListXmlElement = [GDataXMLNode elementWithName:@"lookList"];
     for (id look in self.lookList) {
-        if ([look isKindOfClass:[Look class]])
-            [lookListXmlElement addChild:[((Look*)look) toXMLforObject:self]];
+        [XMLError exceptionIf:[look isKindOfClass:[Look class]] equals:NO
+                      message:@"Invalid look instance given"];
+        [lookListXmlElement addChild:[((Look*)look) xmlElementWithContext:nil]];
     }
     [xmlElement addChild:lookListXmlElement];
-    [xmlElement addChild:[GDataXMLElement elementWithName:@"name" stringValue:self.name]];
-
-    GDataXMLElement *scriptListXmlElement = [GDataXMLNode elementWithName:@"scriptList"];
-    for (id script in self.scriptList) {
-        if ([script isKindOfClass:[Script class]])
-            [scriptListXmlElement addChild:[((Script*)script) toXMLforObject:self]];
-    }
-    [xmlElement addChild:scriptListXmlElement];
 
     GDataXMLElement *soundListXmlElement = [GDataXMLNode elementWithName:@"soundList"];
     for (id sound in self.soundList) {
-        if ([sound isKindOfClass:[Sound class]])
-            [soundListXmlElement addChild:[((Sound*)sound) toXMLforObject:self]];
+        [XMLError exceptionIf:[sound isKindOfClass:[Sound class]] equals:NO
+                      message:@"Invalid sound instance given"];
+        [soundListXmlElement addChild:[((Sound*)sound) xmlElementWithContext:nil]];
     }
     [xmlElement addChild:soundListXmlElement];
+
+    GDataXMLElement *scriptListXmlElement = [GDataXMLNode elementWithName:@"scriptList"];
+    for (id script in self.scriptList) {
+        [XMLError exceptionIf:[script isKindOfClass:[Script class]] equals:NO
+                      message:@"Invalid script instance given"];
+        [scriptListXmlElement addChild:[((Script*)script) xmlElementWithContext:context]];
+    }
+    [xmlElement addChild:scriptListXmlElement];
+
+    NSString *temp = [xmlElement XMLStringPrettyPrinted:YES];
+    printf("%s", [temp cStringUsingEncoding:NSUTF16StringEncoding]);
     return xmlElement;
 }
 

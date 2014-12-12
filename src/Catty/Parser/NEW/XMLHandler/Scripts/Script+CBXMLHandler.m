@@ -25,20 +25,16 @@
 #import "GDataXMLNode.h"
 #import "CBXMLContext.h"
 #import "CBXMLOpenedNestingBricksStack.h"
+#import "NSString+CatrobatNSStringExtensions.h"
 
 #import "BroadcastScript.h"
 #import "StartScript.h"
 #import "WhenScript.h"
-
-// IMPORTANT: do not forget to import every Brick+CBXMLHandler category
-#import "SetLookBrick+CBXMLHandler.h"
-#import "SetVariableBrick+CBXMLHandler.h"
-#import "SetSizeToBrick+CBXMLHandler.h"
-#import "ForeverBrick+CBXMLHandler.h"
-#import "LoopEndBrick+CBXMLHandler.h"
+#import "Brick.h"
 
 @implementation Script (CBXMLHandler)
 
+#pragma mark - Parsing
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"script"];
@@ -105,13 +101,6 @@
         NSString *brickClassName = [[self class] brickClassNameForBrickTypeName:brickTypeName];
         Class class = NSClassFromString(brickClassName);
         [XMLError exceptionIfNil:class message:@"Unsupported brick type: %@", brickTypeName];
-
-        if (! [class conformsToProtocol:@protocol(CBXMLNodeProtocol)]) {
-            NSLog(@"--------------------");
-            NSLog(@"brickElement:\n%@", brickElement);
-            [XMLError exceptionWithMessage:@"Class for brick type %@ does not confirm to CBParserNodeProtocol", brickTypeName];
-        }
-
         [XMLError exceptionIf:[class conformsToProtocol:@protocol(CBXMLNodeProtocol)] equals:NO
                       message:@"%@ must have a category %@+CBXMLHandler that implements CBParserNodeProtocol",
                               brickClassName, brickClassName];
@@ -125,11 +114,132 @@
     return brickList;
 }
 
+#pragma mark - Serialization
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
+{
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"script"];
+    NSString *scriptTypeName = NSStringFromClass([self class]);
+    [xmlElement addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:scriptTypeName]];
+    [xmlElement addChild:[self xmlElementForBrickList:self.brickList withContext:context]];
+    if ([self isKindOfClass:[WhenScript class]]) {
+        [XMLError exceptionIfNil:self.action message:@"WhenScript contains invalid action string"];
+        GDataXMLElement *actionXmlElement = [GDataXMLElement elementWithName:@"action" stringValue:self.action];
+        [xmlElement addChild:actionXmlElement];
+    } else if ([self isKindOfClass:[BroadcastScript class]]) {
+        BroadcastScript *broadcastScript = (BroadcastScript*)self;
+        [XMLError exceptionIfNil:broadcastScript.receivedMessage
+                         message:@"BroadcastScript contains invalid receivedMessage string"];
+        GDataXMLElement *receivedMessageXmlElement = [GDataXMLElement elementWithName:@"receivedMessage"
+                                                                          stringValue:broadcastScript.receivedMessage];
+        [xmlElement addChild:receivedMessageXmlElement];
+    } else if (! [self isKindOfClass:[StartScript class]]) {
+        [XMLError exceptionWithMessage:@"Unsupported script type: %@!", NSStringFromClass([self class])];
+    }
+    return xmlElement;
+}
+
+- (GDataXMLElement*)xmlElementForBrickList:(NSArray*)brickList withContext:(CBXMLContext*)context
+{
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"brickList"];
+    CBXMLOpenedNestingBricksStack *openedNestingBricksStack = [CBXMLOpenedNestingBricksStack new];
+    context.openedNestingBricksStack = openedNestingBricksStack;
+    for (id brick in self.brickList) {
+        [XMLError exceptionIf:[brick isKindOfClass:[Brick class]] equals:NO
+                      message:@"Invalid brick instance given"];
+        [XMLError exceptionIf:[brick conformsToProtocol:@protocol(CBXMLNodeProtocol)] equals:NO
+                      message:@"Brick does not have a CBXMLHandler category that implements CBXMLNodeProtocol"];
+        @try {
+            [xmlElement addChild:[((Brick<CBXMLNodeProtocol>*)brick) xmlElementWithContext:context]];
+        }
+        @catch (NSException *exception) {
+            NSLog([exception message]);
+        }
+    }
+    [XMLError exceptionIf:[openedNestingBricksStack isEmpty] equals:NO
+                  message:@"FATAL ERROR: there are still some unclosed nesting bricks (e.g. IF, \
+                            FOREVER, ...) on the stack..."];
+    return xmlElement;
+}
+
+////////////////
+//- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+//{
+//    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+//    // remove object reference
+//    [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+//    return brickXMLElement;
+//}
+//- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+//{
+//    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+//    if (self.broadcastMessage) {
+//        GDataXMLElement *broadcastMessage = [GDataXMLNode elementWithName:@"broadcastMessage"
+//                                                              stringValue:self.broadcastMessage];
+//        [brickXMLElement addChild:broadcastMessage];
+//    } else {
+//        // remove object reference
+//        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+//    }
+//    return brickXMLElement;
+//}
+//- (GDataXMLElement*)toXMLforObject:(SpriteObject *)spriteObject
+//{
+//    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+//    if (self.broadcastMessage) {
+//        GDataXMLElement *broadcastMessage = [GDataXMLNode elementWithName:@"broadcastMessage"
+//                                                              stringValue:self.broadcastMessage];
+//        [brickXMLElement addChild:broadcastMessage];
+//    } else {
+//        // remove object reference
+//        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+//    }
+//    return brickXMLElement;
+//}
+//- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+//{
+//    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+//    if (self.changeGhostEffect) {
+//        GDataXMLElement *changeGhostEffectXMLElement = [GDataXMLNode elementWithName:@"changeGhostEffect"];
+//        [changeGhostEffectXMLElement addChild:[self.changeGhostEffect toXMLforObject:spriteObject]];
+//        [brickXMLElement addChild:changeGhostEffectXMLElement];
+//    }
+//    return brickXMLElement;
+//}
+//- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+//{
+//    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+//    if (self.size) {
+//        GDataXMLElement *sizeXMLElement = [GDataXMLNode elementWithName:@"size"];
+//        [sizeXMLElement addChild:[self.size toXMLforObject:spriteObject]];
+//        [brickXMLElement addChild:sizeXMLElement];
+//    }
+//    return brickXMLElement;
+//}
+//- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
+//{
+//    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
+//    
+//    if (self.variableFormula) {
+//        GDataXMLElement *variableFormulaXMLElement = [GDataXMLNode elementWithName:@"variableFormula"];
+//        [variableFormulaXMLElement addChild:[self.variableFormula toXMLforObject:spriteObject]];
+//        [brickXMLElement addChild:variableFormulaXMLElement];
+//    }
+//    
+//    if (! self.userVariable && ! self.variableFormula) {
+//        // remove object reference
+//        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
+//    }
+//    return brickXMLElement;
+//}
+
+////////////////
+
+// TODO: use map for this!!
 + (NSString*)brickClassNameForBrickTypeName:(NSString*)brickTypeName
 {
     NSMutableString *brickXMLHandlerClassName = [NSMutableString stringWithString:brickTypeName];
     if ([brickTypeName isEqualToString:@"LoopEndlessBrick"]) {
-        return [NSString stringWithFormat:@"LoopEndBrick"];
+        return @"LoopEndBrick";
     }
     return (NSString*)brickXMLHandlerClassName;
 }

@@ -38,10 +38,6 @@
 
 - (id)initWithSprite:(SpriteObject*)sprite;
 
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
-
-- (NSString*)xmlTagName;
-
 - (NSString*)description;
 
 - (SKAction*)action;
