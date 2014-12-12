@@ -33,6 +33,7 @@
 
 @implementation SpriteObject (CBXMLHandler)
 
+#pragma mark - Parsing
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [XMLError exceptionIfNil:xmlElement message:@"The rootElement nil"];
@@ -147,6 +148,34 @@
         [scriptList addObject:script];
     }
     return scriptList;
+}
+
+#pragma mark - Serialization
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
+{
+    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"object"];
+    GDataXMLElement *lookListXmlElement = [GDataXMLNode elementWithName:@"lookList"];
+    for (id look in self.lookList) {
+        if ([look isKindOfClass:[Look class]])
+            [lookListXmlElement addChild:[((Look*)look) toXMLforObject:self]];
+    }
+    [xmlElement addChild:lookListXmlElement];
+    [xmlElement addChild:[GDataXMLElement elementWithName:@"name" stringValue:self.name]];
+
+    GDataXMLElement *scriptListXmlElement = [GDataXMLNode elementWithName:@"scriptList"];
+    for (id script in self.scriptList) {
+        if ([script isKindOfClass:[Script class]])
+            [scriptListXmlElement addChild:[((Script*)script) toXMLforObject:self]];
+    }
+    [xmlElement addChild:scriptListXmlElement];
+
+    GDataXMLElement *soundListXmlElement = [GDataXMLNode elementWithName:@"soundList"];
+    for (id sound in self.soundList) {
+        if ([sound isKindOfClass:[Sound class]])
+            [soundListXmlElement addChild:[((Sound*)sound) toXMLforObject:self]];
+    }
+    [xmlElement addChild:soundListXmlElement];
+    return xmlElement;
 }
 
 @end
