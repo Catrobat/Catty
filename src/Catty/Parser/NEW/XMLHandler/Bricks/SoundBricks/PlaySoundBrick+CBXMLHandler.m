@@ -59,8 +59,23 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-#warning TODO: implement this!!
-    return nil;
+    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"brick"];
+    [xmlElement addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"PlaySoundBrick"]];
+    if (self.sound) {
+        GDataXMLElement *referenceXMLElement = [GDataXMLNode elementWithName:@"sound"];
+        NSString *index = nil;
+        NSUInteger indexNumber = [context.soundList indexOfObject:self.sound];
+        if (indexNumber != NSNotFound) {
+            index = [NSString stringWithFormat:@"[%lu]", indexNumber];
+        } else {
+            index = @"";
+        }
+#warning path dynamically!!
+        NSString *refPath = [NSString stringWithFormat:@"../../../../../soundList/sound%@", index]; // FIXME: determine reference path dynamically!!
+        [referenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:refPath]];
+        [xmlElement addChild:referenceXMLElement];
+    }
+    return xmlElement;
 }
 
 @end
