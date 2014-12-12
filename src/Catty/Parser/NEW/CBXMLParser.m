@@ -74,7 +74,8 @@
     // sanity check
     if (error) {
         NSError(@"XML file could not be loaded!");
-        return nil; }
+        return nil;
+    }
 
     //NSLog(@"%@", xmlFile);
     NSData *xmlData = [xmlFile dataUsingEncoding:NSUTF8StringEncoding];
@@ -93,10 +94,10 @@
 
     Program *program = nil;
     @try {
-        NSInfo(@"Loading Project...");
+        NSInfo(@"Parsing Program...");
         CBXMLContext *context = [CBXMLContext new];
         program = [Program parseFromElement:xmlDocument.rootElement withContext:context];
-        NSInfo(@"Loading done...");
+        NSInfo(@"Parsing finished...");
     } @catch(NSException *exception) {
         NSError(@"Program could not be loaded! %@", [exception description]);
     }

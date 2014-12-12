@@ -81,7 +81,7 @@
 + (ProgramLoadingInfo*)programLoadingInfoForProgramDirectoryName:(NSString*)programDirectoryName;
 + (NSString*)programNameForProgramID:(NSString*)programID;
 
-// FIXME: remove that later... after serialization works...
+// FIXME: remove that later... after serialization works... (issue#84)
 + (NSString*)projectPathForProgramWithName:(NSString*)programName programID:(NSString*)programID;
 
 @end
