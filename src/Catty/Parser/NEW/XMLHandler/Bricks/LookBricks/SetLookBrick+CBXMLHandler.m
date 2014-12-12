@@ -57,4 +57,24 @@
     return setLookBrick;
 }
 
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
+{
+    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"brick"];
+    [xmlElement addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"NoteBrick"]];
+    if (self.look) {
+        GDataXMLElement *referenceXMLElement = [GDataXMLNode elementWithName:@"look"];
+        NSString *index = nil;
+        NSUInteger indexNumber = [context.lookList indexOfObject:self.look];
+        if (indexNumber != NSNotFound) {
+            index = [NSString stringWithFormat:@"[%lu]", indexNumber];
+        } else {
+            index = @"";
+        }
+        NSString *refPath = [NSString stringWithFormat:@"../../../../../lookList/look%@", index]; // FIXME: determine reference path dynamically!!
+        [referenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:refPath]];
+        [xmlElement addChild:referenceXMLElement];
+    }
+    return xmlElement;
+}
+
 @end

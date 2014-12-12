@@ -50,7 +50,7 @@
     formulaElement.type = STRING;
     formulaElement.value = self.note;
     speakFormula.formulaTree = formulaElement;
-    
+
     GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
     [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"NoteBrick"]];
     GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
