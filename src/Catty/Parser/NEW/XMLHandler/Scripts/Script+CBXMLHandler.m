@@ -114,6 +114,16 @@
     return brickList;
 }
 
+// TODO: use map for this!!
++ (NSString*)brickClassNameForBrickTypeName:(NSString*)brickTypeName
+{
+    NSMutableString *brickXMLHandlerClassName = [NSMutableString stringWithString:brickTypeName];
+    if ([brickTypeName isEqualToString:@"LoopEndlessBrick"]) {
+        return @"LoopEndBrick";
+    }
+    return (NSString*)brickXMLHandlerClassName;
+}
+
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
@@ -159,89 +169,6 @@
                   message:@"FATAL ERROR: there are still some unclosed nesting bricks (e.g. IF, \
                             FOREVER, ...) on the stack..."];
     return xmlElement;
-}
-
-////////////////
-//- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-//{
-//    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-//    // remove object reference
-//    [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
-//    return brickXMLElement;
-//}
-//- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-//{
-//    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-//    if (self.broadcastMessage) {
-//        GDataXMLElement *broadcastMessage = [GDataXMLNode elementWithName:@"broadcastMessage"
-//                                                              stringValue:self.broadcastMessage];
-//        [brickXMLElement addChild:broadcastMessage];
-//    } else {
-//        // remove object reference
-//        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
-//    }
-//    return brickXMLElement;
-//}
-//- (GDataXMLElement*)toXMLforObject:(SpriteObject *)spriteObject
-//{
-//    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-//    if (self.broadcastMessage) {
-//        GDataXMLElement *broadcastMessage = [GDataXMLNode elementWithName:@"broadcastMessage"
-//                                                              stringValue:self.broadcastMessage];
-//        [brickXMLElement addChild:broadcastMessage];
-//    } else {
-//        // remove object reference
-//        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
-//    }
-//    return brickXMLElement;
-//}
-//- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-//{
-//    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-//    if (self.changeGhostEffect) {
-//        GDataXMLElement *changeGhostEffectXMLElement = [GDataXMLNode elementWithName:@"changeGhostEffect"];
-//        [changeGhostEffectXMLElement addChild:[self.changeGhostEffect toXMLforObject:spriteObject]];
-//        [brickXMLElement addChild:changeGhostEffectXMLElement];
-//    }
-//    return brickXMLElement;
-//}
-//- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-//{
-//    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-//    if (self.size) {
-//        GDataXMLElement *sizeXMLElement = [GDataXMLNode elementWithName:@"size"];
-//        [sizeXMLElement addChild:[self.size toXMLforObject:spriteObject]];
-//        [brickXMLElement addChild:sizeXMLElement];
-//    }
-//    return brickXMLElement;
-//}
-//- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-//{
-//    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-//    
-//    if (self.variableFormula) {
-//        GDataXMLElement *variableFormulaXMLElement = [GDataXMLNode elementWithName:@"variableFormula"];
-//        [variableFormulaXMLElement addChild:[self.variableFormula toXMLforObject:spriteObject]];
-//        [brickXMLElement addChild:variableFormulaXMLElement];
-//    }
-//    
-//    if (! self.userVariable && ! self.variableFormula) {
-//        // remove object reference
-//        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
-//    }
-//    return brickXMLElement;
-//}
-
-////////////////
-
-// TODO: use map for this!!
-+ (NSString*)brickClassNameForBrickTypeName:(NSString*)brickTypeName
-{
-    NSMutableString *brickXMLHandlerClassName = [NSMutableString stringWithString:brickTypeName];
-    if ([brickTypeName isEqualToString:@"LoopEndlessBrick"]) {
-        return @"LoopEndBrick";
-    }
-    return (NSString*)brickXMLHandlerClassName;
 }
 
 @end
