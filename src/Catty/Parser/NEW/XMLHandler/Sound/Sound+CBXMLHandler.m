@@ -26,6 +26,7 @@
 
 @implementation Sound (CBXMLHandler)
 
+#pragma mark - Parsing
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"sound"];
@@ -49,6 +50,15 @@
     sound.name = [nameChildNode stringValue];
     sound.fileName = [fileNameChildNode stringValue];
     return sound;
+}
+
+#pragma mark - Serialization
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
+{
+    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"sound"];
+    [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"name" stringValue:self.name]];
+    [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"fileName" stringValue:self.fileName]];
+    return xmlElement;
 }
 
 @end
