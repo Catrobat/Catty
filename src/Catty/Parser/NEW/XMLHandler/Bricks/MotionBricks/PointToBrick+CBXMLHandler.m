@@ -53,8 +53,37 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-#warning TODO: implement this!!
-    return nil;
+    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"brick"];
+    [xmlElement addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"NoteBrick"]];
+    [XMLError exceptionIfNil:self.pointedObject message:@"No sprite object given in PointToBrick"];
+    [XMLError exceptionIfNil:self.object message:@"Missing reference to brick's sprite object"];
+
+    // check if pointedObject has been already serialized
+#warning replace indexOfObject in Helper class
+    NSUInteger indexOfPointedObject = [context.spriteObjectList indexOfObject:self.pointedObject];
+    NSUInteger indexOfSpriteObject = [context.spriteObjectList indexOfObject:self.object];
+    [XMLError exceptionIf:indexOfPointedObject equals:NSNotFound message:@"Pointed object does not exist in spriteObject list"];
+    [XMLError exceptionIf:indexOfSpriteObject equals:NSNotFound message:@"Sprite object does not exist in spriteObject list"];
+
+    if (indexOfPointedObject > indexOfSpriteObject) {
+        // not serialized yet
+        [xmlElement addChild:[self.pointedObject xmlElementWithContext:context]];
+        [context.pointedSpriteObjectList addObject:self.pointedObject];
+    } else {
+        // already serialized
+        GDataXMLElement *pointedObjectXmlElement = [GDataXMLElement elementWithName:@"pointedObject"];
+        NSString *index = nil;
+        if (indexOfSpriteObject != NSNotFound) {
+            index = [NSString stringWithFormat:@"[%lu]", indexOfPointedObject];
+        } else {
+            index = @"";
+        }
+#warning path dynamically!!
+        NSString *refPath = [NSString stringWithFormat:@"../../../../../../object%@", index]; // FIXME: determine reference path dynamically!!
+        [pointedObjectXmlElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:refPath]];
+        [xmlElement addChild:pointedObjectXmlElement];
+    }
+    return xmlElement;
 }
 
 @end

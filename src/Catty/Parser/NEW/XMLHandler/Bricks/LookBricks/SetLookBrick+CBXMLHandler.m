@@ -70,6 +70,7 @@
         } else {
             index = @"";
         }
+#warning path dynamically!!
         NSString *refPath = [NSString stringWithFormat:@"../../../../../lookList/look%@", index]; // FIXME: determine reference path dynamically!!
         [referenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:refPath]];
         [xmlElement addChild:referenceXMLElement];
