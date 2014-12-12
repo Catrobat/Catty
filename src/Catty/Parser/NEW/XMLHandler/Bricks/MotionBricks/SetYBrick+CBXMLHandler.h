@@ -21,8 +21,8 @@
  */
 
 #import "SetYBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface SetYBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface SetYBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

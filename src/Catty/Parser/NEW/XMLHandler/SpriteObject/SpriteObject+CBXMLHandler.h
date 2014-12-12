@@ -21,9 +21,9 @@
  */
 
 #import "SpriteObject.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface SpriteObject (CBXMLHandler) <CBParserNodeProtocol>
+@interface SpriteObject (CBXMLHandler) <CBXMLNodeProtocol>
 
 #ifdef CATTY_TESTS
 + (NSMutableArray*)parseAndCreateLooks:(GDataXMLElement*)objectElement;

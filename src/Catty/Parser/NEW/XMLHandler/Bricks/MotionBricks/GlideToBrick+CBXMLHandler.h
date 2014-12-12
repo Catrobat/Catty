@@ -21,10 +21,10 @@
  */
 
 #import "GlideToBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
 @class CBXMLContext;
 
-@interface GlideToBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface GlideToBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

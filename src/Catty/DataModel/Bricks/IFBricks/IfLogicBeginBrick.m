@@ -23,6 +23,9 @@
 #import "IfLogicBeginBrick.h"
 #import "Formula.h"
 #import "GDataXMLNode.h"
+#import "IfLogicElseBrick.h"
+#import "IfLogicEndBrick.h"
+#import "Util.h"
 
 @implementation IfLogicBeginBrick
 
@@ -91,6 +94,17 @@
     [brickXMLElement addChild:ifEndBrickXMLElement];
 
     return brickXMLElement;
+}
+
+- (BOOL)isEqualToBrick:(Brick*)brick
+{
+    if(![Util isEqual:self.ifElseBrick.brickTitle toObject:((IfLogicBeginBrick*)brick).ifElseBrick.brickTitle])
+        return NO;
+    if(![Util isEqual:self.ifEndBrick.brickTitle toObject:((IfLogicBeginBrick*)brick).ifEndBrick.brickTitle])
+        return NO;
+    if(![self.ifCondition isEqualToFormula:((IfLogicBeginBrick*)brick).ifCondition])
+        return NO;
+    return YES;
 }
 
 @end

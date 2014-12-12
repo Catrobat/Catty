@@ -23,12 +23,25 @@
 #import <Foundation/Foundation.h>
 
 @class GDataXMLElement;
+@class GDataXMLNode;
 @class Formula;
+@class Look;
+@class Sound;
+@class UserVariable;
+@class SpriteObject;
 
 @interface CBXMLParserHelper : NSObject
 
 + (BOOL)validateXMLElement:(GDataXMLElement*)xmlElement forNumberOfChildNodes:(NSUInteger)numberOfChildNodes;
 + (BOOL)validateXMLElement:(GDataXMLElement*)xmlElement forNumberOfChildNodes:(NSUInteger)numberOfChildNodes AndFormulaListWithTotalNumberOfFormulas:(NSUInteger)numberOfFormulas;
 + (Formula*)formulaInXMLElement:(GDataXMLElement*)xmlElement forCategoryName:(NSString*)categoryName;
+
++ (id)valueForHeaderPropertyNode:(GDataXMLNode*)propertyNode;
++ (id)valueForPropertyNode:(GDataXMLNode*)propertyNode;
++ (BOOL)isReferenceElement:(GDataXMLElement*)xmlElement;
++ (SpriteObject*)findSpriteObjectInArray:(NSArray*)spriteObjectList withName:(NSString*)spriteObjectName;
++ (Look*)findLookInArray:(NSArray*)lookList withName:(NSString*)lookName;
++ (Sound*)findSoundInArray:(NSArray*)soundList withName:(NSString*)soundName;
++ (UserVariable*)findUserVariableInArray:(NSArray*)userVariableList withName:(NSString*)userVariableName;
 
 @end

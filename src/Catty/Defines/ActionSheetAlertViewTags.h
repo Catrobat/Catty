@@ -35,6 +35,7 @@
 #define kAskUserForUniqueNameAlertViewTag 100
 #define kInvalidNameWarningAlertViewTag 101
 #define kNoInternetConnection 102
+#define kAskUserForReportMessageAlertViewTag 103
 
 #define kAskUserForVariableNameAlertViewTag 104
 

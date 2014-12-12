@@ -86,4 +86,13 @@
     return brickXMLElement;
 }
 
+- (BOOL)isEqualToBrick:(Brick*)brick
+{
+    if(![self.userVariable isEqualToUserVariable:((SetVariableBrick*)brick).userVariable])
+        return NO;
+    if(![self.variableFormula isEqualToFormula:((SetVariableBrick*)brick).variableFormula])
+        return NO;
+    return YES;
+}
+
 @end

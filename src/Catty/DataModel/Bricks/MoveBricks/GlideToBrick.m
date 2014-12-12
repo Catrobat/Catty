@@ -136,4 +136,15 @@
     return brickXMLElement;
 }
 
+- (BOOL)isEqualToBrick:(Brick*)brick
+{
+    if(![self.durationInSeconds isEqualToFormula:((GlideToBrick*)brick).durationInSeconds])
+        return NO;
+    if(![self.xDestination isEqualToFormula:((GlideToBrick*)brick).xDestination])
+        return NO;
+    if(![self.yDestination isEqualToFormula:((GlideToBrick*)brick).yDestination])
+        return NO;
+    return YES;
+}
+
 @end

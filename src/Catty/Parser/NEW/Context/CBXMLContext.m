@@ -49,6 +49,14 @@
     return _spriteObjectList;
 }
 
+- (NSMutableArray*)pointedSpriteObjectList
+{
+    if (! _pointedSpriteObjectList) {
+        _pointedSpriteObjectList = [NSMutableArray array];
+    }
+    return _pointedSpriteObjectList;
+}
+
 #pragma mark - Initializers
 - (id)initWithSpriteObjectList:(NSMutableArray*)spriteObjectList
 {

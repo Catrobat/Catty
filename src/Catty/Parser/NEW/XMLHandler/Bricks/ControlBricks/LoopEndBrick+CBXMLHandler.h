@@ -21,8 +21,8 @@
  */
 
 #import "LoopEndBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface LoopEndBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface LoopEndBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

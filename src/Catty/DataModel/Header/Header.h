@@ -58,5 +58,6 @@
 + (instancetype)defaultHeader;
 
 - (GDataXMLElement*)toXML;
+- (BOOL)isEqualToHeader:(Header*)header;
 
 @end

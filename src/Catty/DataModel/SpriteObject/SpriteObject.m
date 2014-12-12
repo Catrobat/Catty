@@ -38,8 +38,10 @@
 #import "AudioManager.h"
 #import "AppDelegate.h"
 #import "NSString+FastImageSize.h"
+#import "ProgramDefines.h"
 
 @interface SpriteObject()
+@property (atomic,strong) NSMutableArray *broadcastScriptArray;
 
 @end
 
@@ -68,6 +70,14 @@
         _scriptList = [NSMutableArray array];
     return _scriptList;
 }
+
+//- (NSMutableArray*)broadcastScriptArray
+//{
+//        // lazy instantiation
+//    if (! _broadcastScriptArray)
+//        _broadcastScriptArray = [NSMutableArray array];
+//    return _broadcastScriptArray;
+//}
 
 - (CGPoint)position
 {
@@ -302,18 +312,9 @@
     }else{
         self.zPosition = zPosition;
     }
-        
-    
-
+    self.broadcastScriptArray = [NSMutableArray new];
     for (Script *script in self.scriptList)
     {
-        if ([script isKindOfClass:[StartScript class]]) {
-            __weak typeof(self) weakSelf = self;
-            [self startAndAddScript:script completion:^{
-                [weakSelf scriptFinished:script];
-            }];
-        }
-
         if([script isKindOfClass:[BroadcastScript class]]) {
             if ([self.broadcastWaitDelegate respondsToSelector:@selector(registerSprite:forMessage:)]) {
                 
@@ -322,7 +323,8 @@
                 NSLog(@"ERROR: BroadcastWaitDelegate not set! abort()");
                 abort();
             }
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:((BroadcastScript*)script).receivedMessage object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:[NSString stringWithFormat:@"%@%@",kCatrobatBroadcastPrefix,((BroadcastScript*)script).receivedMessage] object:nil];
+            [self.broadcastScriptArray addObject:script];
         }
     }
 }
@@ -351,9 +353,12 @@
             for (Script *script in self.scriptList) {
             if ([script isKindOfClass:[WhenScript class]]) {
                 __weak typeof(self) weakSelf = self;
-                [self startAndAddScript:script completion:^{
-                    [weakSelf scriptFinished:script];
-                }];
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                    [weakSelf startAndAddScript:script completion:^{
+                        [weakSelf scriptFinished:script];
+                        NSDebug(@"FINISHED");
+                    }];
+                });
             }
         }
         return YES;
@@ -683,26 +688,45 @@
 - (void)broadcast:(NSString*)message
 {
     NSDebug(@"Broadcast: %@, Object: %@", message, self.name);
-    [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
+    NSNotification *notification = [NSNotification notificationWithName:[NSString stringWithFormat:@"%@%@",kCatrobatBroadcastPrefix,message] object:self];
+    [[NSNotificationQueue defaultQueue]
+     enqueueNotification:notification
+     postingStyle:NSPostASAP];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
 }
 
 - (void)performBroadcastScript:(NSNotification*)notification
 {
-    NSDebug(@"Notification: %@, Object: %@", notification.name, self.name);
-
-    for (Script *script in self.scriptList) {
-        if ([script isKindOfClass:[BroadcastScript class]]) {
-            BroadcastScript *broadcastScript = (BroadcastScript*)script;
-            if ([broadcastScript.receivedMessage isEqualToString:notification.name]) {
-                
-                __weak typeof(self) weakSelf = self;
-                [self startAndAddScript:broadcastScript completion:^{
-                    [weakSelf scriptFinished:broadcastScript];
-                    NSDebug(@"FINISHED");
-                }];
+//    NSLog(@"Notification: %@, Object: %@", notification.name, self.name);
+    __weak typeof(self) weakSelf = self;
+//    dispatch_async(dispatch_get_main_queue(), ^{
+        NSInteger counter = 0;
+        BroadcastScript *removedScript = [[BroadcastScript alloc] init];
+        for (BroadcastScript *script in self.broadcastScriptArray) {
+            NSString *prefixMessage = [NSString stringWithFormat:@"%@%@",kCatrobatBroadcastPrefix,script.receivedMessage];
+            if ([prefixMessage isEqualToString:notification.name]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf startAndAddScript:script completion:^{
+                        [weakSelf scriptFinished:script];
+                        NSDebug(@"FINISHED");
+                    }];
+                });
+                removedScript = script;
+                break;
             }
+            counter++;
         }
-    }
+        NSDebug(@"COUNT: %lu",self.broadcastScriptArray.count );
+        
+        if (self.broadcastScriptArray.count > 1) {
+            [self.broadcastScriptArray removeObjectAtIndex:counter];
+            [self.broadcastScriptArray insertObject:removedScript atIndex:self.broadcastScriptArray.count-1];
+        }
+//    });
+
+    
+
+
     //dispatch_release(group);
 }
 
@@ -736,12 +760,14 @@
             BroadcastScript* broadcastScript = (BroadcastScript*)script;
             if ([broadcastScript.receivedMessage isEqualToString:message]) {
                 dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-                
                 __weak typeof(self) weakSelf = self;
-                [self startAndAddScript:broadcastScript completion:^{
-                    [weakSelf scriptFinished:broadcastScript];
-                    dispatch_semaphore_signal(sema);
-                }];
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                    [weakSelf startAndAddScript:broadcastScript completion:^{
+                        [weakSelf scriptFinished:broadcastScript];
+                        dispatch_semaphore_signal(sema);
+                        NSDebug(@"FINISHED");
+                    }];
+                });
                 dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
                 dispatch_semaphore_signal(sema1);
             }
@@ -759,6 +785,48 @@
     [mutableString appendFormat:@"Looks: %@\r", self.lookList];
     [mutableString appendFormat:@"Sounds: %@\r", self.soundList];
     return [mutableString copy];
+}
+
+- (BOOL)isEqualToSpriteObject:(SpriteObject*)spriteObject
+{
+    NSUInteger index;
+    if(![self.name isEqualToString:spriteObject.name])
+        return NO;
+    
+    // lookList
+    if([self.lookList count] != [spriteObject.lookList count])
+        return NO;
+    for(index = 0; index < [self.lookList count]; index++) {
+        Look *firstLook = [self.lookList objectAtIndex:index];
+        Look *secondLook = [spriteObject.lookList objectAtIndex:index];
+        
+        if(![firstLook isEqualToLook:secondLook])
+            return NO;
+    }
+    
+    // soundList
+    if([self.soundList count] != [spriteObject.soundList count])
+        return NO;
+    for(index = 0; index < [self.soundList count]; index++) {
+        Sound *firstSound = [self.soundList objectAtIndex:index];
+        Sound *secondSound = [spriteObject.soundList objectAtIndex:index];
+        
+        if(![firstSound isEqualToSound:secondSound])
+            return NO;
+    }
+    
+    // scriptList
+    if([self.scriptList count] != [spriteObject.scriptList count])
+        return NO;
+    for(index = 0; index < [self.scriptList count]; index++) {
+        Script *firstScript = [self.scriptList objectAtIndex:index];
+        Script *secondScript = [spriteObject.scriptList objectAtIndex:index];
+        
+        if(![firstScript isEqualToScript:secondScript])
+            return NO;
+    }
+    
+    return YES;
 }
 
 #pragma mark - Formula Protocol

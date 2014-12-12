@@ -21,8 +21,8 @@
  */
 
 #import "Sound.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface Sound (CBXMLHandler) <CBParserNodeProtocol>
+@interface Sound (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

@@ -124,4 +124,11 @@
     return brickXMLElement;
 }
 
+- (BOOL)isEqualToBrick:(Brick*)brick
+{
+    if(![self.pointedObject isEqualToSpriteObject:((PointToBrick*)brick).pointedObject])
+        return NO;
+    return YES;
+}
+
 @end

@@ -22,17 +22,30 @@
 
 #import "CBXMLParser.h"
 #import "GDataXMLNode.h"
+#import "CBXMLValidator.h"
+#import "CBXMLContext.h"
 #import "Program+CustomExtensions.h"
 #import "Header+CBXMLHandler.h"
+#import "VariablesContainer+CBXMLHandler.h"
+#import "SpriteObject+CBXMLHandler.h"
+#import "CatrobatLanguageDefines.h"
 #import <Foundation/NSObjCRuntime.h>
 #import "CatrobatLanguageDefines.h"
 #import "CBXMLValidator.h"
 #import "SpriteObject+CBXMLHandler.h"
-#import "VariablesContainer+CBXMLHandler.h"
 #import "Look.h"
 #import "Sound.h"
 #import "UserVariable.h"
 #import "CBXMLContext.h"
+
+#if !kIsRelease
+#import "CBXMLLogger.h"
+#endif
+
+// NEVER MOVE THESE DEFINE CONSTANTS TO ANOTHER (HEADER) FILE
+#define kCatrobatXMLParserMinSupportedLanguageVersion 0.93f
+#define kCatrobatXMLParserMaxSupportedLanguageVersion CGFLOAT_MAX
+
 
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
 #define kCatroidXMLSpriteList           @"spriteList"
@@ -42,10 +55,6 @@
 #define kParserObjectTypeMutableArray   @"T@\"NSMutableArray\""
 #define kParserObjectTypeMutableDictionary @"T@\"NSMutableDictionary\""
 #define kParserObjectTypeDate           @"T@\"NSDate\""
-
-// NEVER MOVE THESE DEFINE CONSTANTS TO ANOTHER (HEADER) FILE
-#define kCatrobatXMLParserMinSupportedLanguageVersion 0.93f
-#define kCatrobatXMLParserMaxSupportedLanguageVersion CGFLOAT_MAX
 
 @interface CBXMLParser()
 
@@ -125,7 +134,11 @@
     [XMLError exceptionIfNode:rootElement isNilOrNodeNameNotEquals:@"program"];
     Program *program = [Program new];
     CBXMLContext *context = [CBXMLContext new];
-    program.header = [self parseAndCreateHeaderFromElement:rootElement];
+    
+    NSArray *headerNodes = [rootElement elementsForName:@"header"];
+    [XMLError exceptionIf:[headerNodes count] notEquals:1 message:@"Invalid header given!"];
+    program.header = [self parseAndCreateHeaderFromElement:[headerNodes objectAtIndex:0]];
+    
     program.objectList = [self parseAndCreateObjectsFromElement:rootElement withContext:context];
     context.spriteObjectList = program.objectList;
     program.variables = [self parseAndCreateVariablesFromElement:rootElement withContext:context];
@@ -153,9 +166,15 @@
         SpriteObject *spriteObject = [SpriteObject parseFromElement:objectElement withContext:context];
         if (spriteObject != nil)
             [objectList addObject:spriteObject];
-
-        // TODO: sanity check => check if all objects from context are in objectList
-
+    }
+    // sanity check => check if all objects from context are in objectList
+    for (SpriteObject *pointedObjectInContext in context.pointedSpriteObjectList) {
+        BOOL found = NO;
+        for(SpriteObject *spriteObject in objectList) {
+            if([pointedObjectInContext.name isEqualToString:spriteObject.name])
+                found = YES;
+        }
+        [XMLError exceptionIf:found equals:NO message:@"Pointed object with name %@ not found in object list!", pointedObjectInContext.name];
     }
     NSLog(@"</objectList>");
     return objectList;
@@ -173,11 +192,11 @@
 {
     const char *attrs = property_getAttributes(property);
     if (attrs == NULL) { return NULL; }
-
+    
     static char buffer[256];
     const char *e = strchr(attrs, ',');
     if (e == NULL) { return NULL; }
-
+    
     int len = (int)(e - attrs);
     memcpy(buffer, attrs, len);
     buffer[len] = '\0';
@@ -207,7 +226,7 @@
 
 + (id)valueForPropertyNode:(GDataXMLNode*)propertyNode
 {
-    // TODO: stub method => implement this!!
+        // TODO: stub method => implement this!!
     [XMLError exceptionWithMessage:@"valueForPropertyNode: NOT IMPLEMENTED YET!!!"];
     return nil;
 }

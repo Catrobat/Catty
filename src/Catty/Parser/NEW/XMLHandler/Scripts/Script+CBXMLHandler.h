@@ -21,11 +21,11 @@
  */
 
 #import "Script.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
 @class CBXMLContext;
 
-@interface Script (CBXMLHandler) <CBParserNodeProtocol>
+@interface Script (CBXMLHandler) <CBXMLNodeProtocol>
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context;
 

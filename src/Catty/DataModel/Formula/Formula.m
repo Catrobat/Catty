@@ -157,4 +157,11 @@
     }
 }
 
+- (BOOL)isEqualToFormula:(Formula*)formula
+{
+    if([self.formulaTree isEqualToFormulaElement:formula.formulaTree])
+        return YES;
+    return NO;
+}
+
 @end

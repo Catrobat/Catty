@@ -180,6 +180,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+    [self hideLoadingView];
 }
 
 - (void)renameProgramActionToName:(NSString*)newProgramName
@@ -195,6 +196,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self renameOldProgramWithName:programLoadingInfo.visibleName
                          programID:programLoadingInfo.programID
                   toNewProgramName:program.header.programName];
+    [self hideLoadingView];
 }
 
 - (void)updateProgramDescriptionActionWithText:(NSString*)descriptionText
@@ -202,6 +204,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self showLoadingView];
     [program updateDescriptionWithText:descriptionText];
+    [self hideLoadingView];
 }
 
 - (void)confirmDeleteSelectedProgramsAction:(id)sender

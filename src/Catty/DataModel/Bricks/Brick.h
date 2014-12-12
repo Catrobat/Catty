@@ -46,4 +46,6 @@
 
 - (SKAction*)action;
 
+- (BOOL)isEqualToBrick:(Brick*)brick;
+
 @end

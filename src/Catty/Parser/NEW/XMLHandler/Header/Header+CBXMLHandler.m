@@ -23,7 +23,7 @@
 #import "Header+CBXMLHandler.h"
 #import "GDataXMLNode.h"
 #import "CBXMLValidator.h"
-#import "CBXMLParser.h"
+#import "CBXMLParserHelper.h"
 
 @implementation Header (CBXMLHandler)
 
@@ -31,16 +31,14 @@
 {
     [XMLError exceptionIfNil:xmlElement message:@"No xml element given!"];
     Header *header = [self defaultHeader];
-    NSArray *headerNodes = [xmlElement elementsForName:@"header"];
-    [XMLError exceptionIf:[headerNodes count] notEquals:1 message:@"Invalid header given!"];
-    NSArray *headerPropertyNodes = [[headerNodes firstObject] children];
+    NSArray *headerPropertyNodes = [xmlElement children];
     [XMLError exceptionIf:[headerPropertyNodes count] equals:0 message:@"No parsed properties found in header!"];
-    NSLog(@"<header>");
+    //NSLog(@"<header>");
     
     for (GDataXMLNode *headerPropertyNode in headerPropertyNodes) {
         [XMLError exceptionIfNil:headerPropertyNode message:@"Parsed an empty header entry!"];
-        id value = [CBXMLParser valueForHeaderPropertyNode:headerPropertyNode];
-        NSLog(@"<%@>%@</%@>", headerPropertyNode.name, value, headerPropertyNode.name);
+        id value = [CBXMLParserHelper valueForHeaderPropertyNode:headerPropertyNode];
+        //NSLog(@"<%@>%@</%@>", headerPropertyNode.name, value, headerPropertyNode.name);
         NSString *headerPropertyName = headerPropertyNode.name;
         
         // consider special case: name of property programDescription
@@ -49,7 +47,7 @@
         }
         [header setValue:value forKey:headerPropertyName]; // Note: weak properties are not yet supported!!
     }
-    NSLog(@"</header>");
+    //NSLog(@"</header>");
     return header;
 }
 

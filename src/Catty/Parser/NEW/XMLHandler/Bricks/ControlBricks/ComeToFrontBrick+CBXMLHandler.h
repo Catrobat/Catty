@@ -21,8 +21,8 @@
  */
 
 #import "ComeToFrontBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface ComeToFrontBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface ComeToFrontBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

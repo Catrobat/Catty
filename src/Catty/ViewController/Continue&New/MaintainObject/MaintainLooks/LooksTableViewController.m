@@ -180,6 +180,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+    [self hideLoadingView];
 }
 
 - (void)renameLookActionToName:(NSString*)newLookName look:(Look*)look
@@ -193,6 +194,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSUInteger lookIndex = [self.object.lookList indexOfObject:look];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lookIndex inSection:0];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [self hideLoadingView];
 }
 
 - (void)confirmDeleteSelectedLooksAction:(id)sender
@@ -220,6 +222,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
+    [self hideLoadingView];
 }
 
 - (void)deleteLookForIndexPath:(NSIndexPath*)indexPath
@@ -231,6 +234,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationNone];
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
+    [self hideLoadingView];
 }
 
 #pragma mark - Table view data source
@@ -527,6 +531,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [assetslibrary assetForURL:imageURL
                    resultBlock:resultblock
                   failureBlock:nil];
+    [self hideLoadingView];
 }
 
 #pragma mark - text field delegates

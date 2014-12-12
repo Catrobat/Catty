@@ -662,4 +662,26 @@
                                                 parent:nil];
 }
 
+- (BOOL)isEqualToFormulaElement:(FormulaElement*)formulaElement
+{
+    if(self.type != formulaElement.type)
+        return NO;
+    if(![Util isEqual:self.value toObject:formulaElement.value])
+        return NO;
+    if((self.leftChild != nil && formulaElement.leftChild == nil) || (self.leftChild == nil && formulaElement.leftChild != nil))
+        return NO;
+    if(self.leftChild != nil && ![self.leftChild isEqualToFormulaElement:formulaElement.leftChild])
+        return NO;
+    if((self.rightChild != nil && formulaElement.rightChild == nil) || (self.rightChild == nil && formulaElement.rightChild != nil))
+        return NO;
+    if(self.rightChild != nil && ![self.rightChild isEqualToFormulaElement:formulaElement.rightChild])
+        return NO;
+    if((self.parent != nil && formulaElement.parent == nil) || (self.parent == nil && formulaElement.parent != nil))
+        return NO;
+    if(self.parent != nil && ![self.parent isEqualToFormulaElement:formulaElement.parent])
+        return NO;
+    
+    return YES;
+}
+
 @end

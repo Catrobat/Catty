@@ -21,8 +21,8 @@
  */
 
 #import "NextLookBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface NextLookBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface NextLookBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

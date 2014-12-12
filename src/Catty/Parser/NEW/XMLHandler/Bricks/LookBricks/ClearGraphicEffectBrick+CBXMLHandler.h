@@ -21,8 +21,8 @@
  */
 
 #import "ClearGraphicEffectBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface ClearGraphicEffectBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface ClearGraphicEffectBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

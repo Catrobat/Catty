@@ -23,6 +23,8 @@
 #import "LoopEndbrick.h"
 #import "GDataXMLNode.h"
 #import "LoopBeginBrick.h"
+#import "LoopEndBrick.h"
+#import "Util.h"
 
 @implementation LoopEndBrick
 
@@ -59,6 +61,13 @@
                                                                      sourceBrick:self]];
     [brickXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:referencePath]];
     return brickXMLElement;
+}
+
+- (BOOL)isEqualToBrick:(Brick*)brick
+{
+    if(![Util isEqual:self.loopBeginBrick.brickTitle toObject:((LoopEndBrick*)brick).loopBeginBrick.brickTitle])
+        return NO;
+    return YES;
 }
 
 @end

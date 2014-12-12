@@ -48,6 +48,7 @@
 #import "DataTransferMessage.h"
 #import "InfoPopupViewController.h"
 #import "MYBlurIntroductionView.h"
+#import "LoginPopupViewController.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
     kContinueProgramVC = 0,
@@ -62,7 +63,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
 
 @property (nonatomic, strong) NSArray *cells;
 @property (nonatomic, strong) NSArray *imageNames;
-@property (nonatomic, strong) NSArray *identifiers;
+@property (nonatomic, strong) NSMutableArray *identifiers;
 @property (nonatomic, strong) Program *lastUsedProgram;
 @property (nonatomic, strong) Program *defaultProgram;
 @property (nonatomic, strong) Reachability *reachability;
@@ -122,6 +123,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
         self.tableView.scrollEnabled = YES;
         [self initNavigationBar];
     }
+    
+    //[[NSUserDefaults standardUserDefaults] setBool:NO forKey:kUserIsLoggedIn]; //Just for testing, TODO: remove
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -167,7 +170,16 @@ static NSCharacterSet *blockedCharacterSet = nil;
                   kLocalizedExplore,
                   kLocalizedUpload, nil];
     self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNamePrograms, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
-    self.identifiers = [[NSArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
+
+    BOOL userIsLoggedIn = [[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue];
+    
+    if (userIsLoggedIn) {
+        self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
+    } else {
+        self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToLogin, nil];
+    }
+    
+    
 }
 
 - (void)initNavigationBar
@@ -186,11 +198,23 @@ static NSCharacterSet *blockedCharacterSet = nil;
         InfoPopupViewController *popupViewController = [[InfoPopupViewController alloc] init];
         popupViewController.delegate = self;
         self.tableView.scrollEnabled = NO;
-        [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame];
+        [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame isLogin:NO];
     } else {
-        [self dismissPopup];
+        [self dismissPopupWithLoginCode:NO];
     }
+}
 
+- (void)showLoginView:(id)sender
+{
+    if (self.popupViewController == nil) {
+        LoginPopupViewController *popupViewController = [[LoginPopupViewController alloc] init];
+        popupViewController.delegate = self;
+        self.tableView.scrollEnabled = NO;
+        [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame isLogin:YES];
+        self.navigationItem.leftBarButtonItem.enabled = NO;
+    } else {
+        [self dismissPopupWithLoginCode:NO];
+    }
 }
 
 - (void)addProgramAndSegueToItActionForProgramWithName:(NSString*)programName
@@ -237,7 +261,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    if ([self dismissPopup]) {
+    if ([self dismissPopupWithLoginCode:NO]) {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
         return;
     }
@@ -248,6 +272,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #if kIsRelease // kIsRelease
             [Util showComingSoonAlertView];
 #else // kIsRelease
+
             [Util askUserForUniqueNameAndPerformAction:@selector(addProgramAndSegueToItActionForProgramWithName:)
                                                 target:self
                                            promptTitle:kLocalizedNewProgram
@@ -275,7 +300,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
             }
             break;
         case kUploadVC:
-            [Util showComingSoonAlertView];
+
+            //some ugly code to get login logic running, will be removed
+            if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
+                self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
+                if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
+                    [self performSegueWithIdentifier:identifier sender:self];
+                }
+            } else {
+                    [self showLoginView:self];
+            }
+
             break;
             
         default:
@@ -317,9 +352,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark - segue handling
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString*)identifier sender:(id)sender
+- (BOOL)shouldPerformSegueWithIdentifider:(NSString*)identifier sender:(id)sender
 {
-    if ([self dismissPopup]) {
+    if ([self dismissPopupWithLoginCode:NO]) {
         return NO;
     }
     if ([identifier isEqualToString:kSegueToContinue]) {
@@ -437,6 +472,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)dealloc
 {
+    [self.identifiers removeAllObjects]; //Is this needed?
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
@@ -456,11 +492,16 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark - popup delegate
-- (BOOL)dismissPopup
+- (BOOL)dismissPopupWithLoginCode:(BOOL)successLogin
 {
     if (self.popupViewController != nil) {
         self.tableView.scrollEnabled = YES;
         [self dismissPopupViewController];
+        self.navigationItem.leftBarButtonItem.enabled = YES;
+        if (successLogin) {
+                // TODO no trigger because popup is visible
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+        }
         return YES;
     }
     return NO;

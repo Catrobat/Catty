@@ -55,6 +55,9 @@
     return header;
 }
 
+// TODO move to ser
+#define kCBXMLSerializerLanguageVersion @"0.93"
+
 - (GDataXMLElement*)toXML
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -71,7 +74,7 @@
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationVersion"
                                          optionalStringValue:self.applicationVersion]];
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"catrobatLanguageVersion"
-                                         optionalStringValue:self.catrobatLanguageVersion]];
+                                         optionalStringValue:kCBXMLSerializerLanguageVersion]];
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"dateTimeUpload"
                                          optionalStringValue:(self.dateTimeUpload ? [dateFormatter stringFromDate:self.dateTimeUpload] : nil)]];
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"description"
@@ -103,6 +106,36 @@
     [headerXMLElement addChild:[GDataXMLNode elementWithName:@"userHandle"
                                          optionalStringValue:self.userHandle]];
     return headerXMLElement;
+}
+
+- (BOOL)isEqualToHeader:(Header*)header
+{
+    if(![self.applicationName isEqualToString:header.applicationName])
+        return NO;
+    if(![self.programDescription isEqualToString:header.programDescription])
+        return NO;
+    if(![self.mediaLicense isEqualToString:header.mediaLicense])
+        return NO;
+    if(![self.programLicense isEqualToString:header.programLicense])
+        return NO;
+    if(![self.programName isEqualToString:header.programName])
+        return NO;
+    if(![self.remixOf isEqualToString:header.remixOf])
+        return NO;
+    if(![self.screenHeight isEqualToNumber:header.screenHeight])
+        return NO;
+    if(![self.screenWidth isEqualToNumber:header.screenWidth])
+        return NO;
+    if(![self.screenMode isEqualToString:header.screenMode])
+        return NO;
+    if(![self.tags isEqualToString:header.tags])
+        return NO;
+    if(![self.url isEqualToString:header.url])
+        return NO;
+    if(![self.userHandle isEqualToString:header.userHandle])
+        return NO;
+    
+    return YES;
 }
 
 @end

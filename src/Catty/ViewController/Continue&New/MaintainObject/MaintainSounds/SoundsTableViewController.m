@@ -242,6 +242,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+    [self hideLoadingView];
 }
 
 - (void)renameSoundActionToName:(NSString*)newSoundName sound:(Sound*)sound
@@ -255,6 +256,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSUInteger soundIndex = [self.object.soundList indexOfObject:sound];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:soundIndex inSection:0];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [self hideLoadingView];
 }
 
 - (void)confirmDeleteSelectedSoundsAction:(id)sender
@@ -282,6 +284,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
     [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
+    [self hideLoadingView];
 }
 
 - (void)deleteSoundForIndexPath:(NSIndexPath*)indexPath

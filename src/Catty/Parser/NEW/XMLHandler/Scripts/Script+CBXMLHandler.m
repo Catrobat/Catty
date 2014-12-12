@@ -56,6 +56,11 @@
         script = [StartScript new];
     } else if ([scriptType isEqualToString:@"WhenScript"]) {
         script = [WhenScript new];
+        NSArray *actionElements = [xmlElement elementsForName:@"action"];
+        [XMLError exceptionIf:[actionElements count] notEquals:1
+                      message:@"Wrong number of action elements given!"];
+        GDataXMLElement *actionElement = [actionElements firstObject];
+        script.action = [actionElement stringValue];
     } else if ([scriptType isEqualToString:@"BroadcastScript"]) {
         BroadcastScript *broadcastScript = [BroadcastScript new];
         NSArray *receivedMessageElements = [xmlElement elementsForName:@"receivedMessage"];
@@ -101,13 +106,13 @@
         Class class = NSClassFromString(brickClassName);
         [XMLError exceptionIfNil:class message:@"Unsupported brick type: %@", brickTypeName];
 
-        if (! [class conformsToProtocol:@protocol(CBParserNodeProtocol)]) {
+        if (! [class conformsToProtocol:@protocol(CBXMLNodeProtocol)]) {
             NSLog(@"--------------------");
             NSLog(@"brickElement:\n%@", brickElement);
             [XMLError exceptionWithMessage:@"Class for brick type %@ does not confirm to CBParserNodeProtocol", brickTypeName];
         }
 
-        [XMLError exceptionIf:[class conformsToProtocol:@protocol(CBParserNodeProtocol)] equals:NO
+        [XMLError exceptionIf:[class conformsToProtocol:@protocol(CBXMLNodeProtocol)] equals:NO
                       message:@"%@ must have a category %@+CBXMLHandler that implements CBParserNodeProtocol",
                               brickClassName, brickClassName];
         Brick *brick = [class parseFromElement:brickElement withContext:context];

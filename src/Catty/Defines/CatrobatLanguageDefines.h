@@ -37,7 +37,6 @@
 #define kCatrobatHeaderProgramScreenshotDefaultValue @"false"
 #define kCatrobatHeaderDateTimeFormat @"yyyy-MM-ddHH:mm:ss"
 
-
 //************************************************************************************************************
 //                                SPRITE OBJECT DEFINES
 //************************************************************************************************************

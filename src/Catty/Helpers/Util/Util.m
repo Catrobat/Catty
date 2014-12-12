@@ -36,6 +36,9 @@
 #import "FormulaEditorTextView.h"
 #import "CatrobatLanguageDefines.h"
 #import "NSString+CatrobatNSStringExtensions.h"
+#import "Formula.h"
+#import "SpriteObject.h"
+#import <objc/runtime.h>
 
 @interface Util () <CatrobatAlertViewDelegate, UITextFieldDelegate>
 
@@ -402,6 +405,37 @@
                                                                   withPayload:[payload mutableCopy]];
 }
 
++ (void)askUserForReportMessageAndPerformAction:(SEL)action
+                                      target:(id)target
+                                 promptTitle:(NSString*)title
+                               promptMessage:(NSString*)message
+                              minInputLength:(NSUInteger)minInputLength
+                              maxInputLength:(NSUInteger)maxInputLength
+                            blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
+                    invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
+{
+    textFieldMaxInputLength = maxInputLength;
+    textFieldBlockedCharacterSet = blockedCharacterSet;
+    
+    NSDictionary *payload = @{
+                              kDTPayloadAskUserAction : [NSValue valueWithPointer:action],
+                              kDTPayloadAskUserTarget : target,
+                              kDTPayloadAskUserPromptTitle : title,
+                              kDTPayloadAskUserPromptMessage : message,
+                              kDTPayloadAskUserMinInputLength : @(minInputLength),
+                              kDTPayloadAskUserInvalidInputAlertMessage : invalidInputAlertMessage,
+                              };
+    CatrobatAlertView *alertView = [[self class] promptWithTitle:title
+                                                         message:message
+                                                        delegate:(id<CatrobatAlertViewDelegate>)self
+                                                     placeholder:@""
+                                                             tag:kAskUserForReportMessageAlertViewTag
+                                                           value:@""
+                                               textFieldDelegate:(id<UITextFieldDelegate>)self];
+    alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionReportMessage
+                                                                  withPayload:[payload mutableCopy]];
+}
+
 + (void)askUserForTextAndPerformAction:(SEL)action
                                 target:(id)target
                            promptTitle:(NSString*)title
@@ -694,6 +728,42 @@ replacementString:(NSString*)characters
                                                   textFieldDelegate:(id<UITextFieldDelegate>)self];
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         }
+    } else if (alertView.tag == kAskUserForReportMessageAlertViewTag){
+        if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
+            return;
+        }
+        NSString *input = [alertView textFieldAtIndex:0].text;
+        NSUInteger textFieldMinInputLength = [payload[kDTPayloadAskUserMinInputLength] unsignedIntegerValue];
+        if ([input length] < textFieldMinInputLength) {
+            NSString *alertText = [NSString stringWithFormat:kLocalizedNoOrTooShortInputDescription,
+                                   textFieldMinInputLength];
+            alertText = ((textFieldMinInputLength != 1) ? [[self class] pluralString:alertText]
+                         : [[self class] singularString:alertText]);
+            CatrobatAlertView *newAlertView = [Util alertWithText:alertText
+                                                         delegate:(id<CatrobatAlertViewDelegate>)self
+                                                              tag:kInvalidNameWarningAlertViewTag];
+            payload[kDTPayloadAskUserPromptValue] = input;
+            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
+        } else {
+                // no name duplicate => call action on target
+            SEL action = [((NSValue*)payload[kDTPayloadAskUserAction]) pointerValue];
+            id target = payload[kDTPayloadAskUserTarget];
+            id passingObject = payload[kDTPayloadAskUserObject];
+            if ((! passingObject) || [passingObject isKindOfClass:[NSNull class]]) {
+                if (action) {
+                    IMP imp = [target methodForSelector:action];
+                    void (*func)(id, SEL, id) = (void *)imp;
+                    func(target, action, input);
+                }
+            } else {
+                if (action) {
+                    IMP imp = [target methodForSelector:action];
+                    void (*func)(id, SEL, id, id) = (void *)imp;
+                    func(target, action, input, passingObject);
+                }
+            }
+        }
+
     }else if (alertView.tag == kAskUserForVariableNameAlertViewTag) {
         if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
             FormulaEditorTextView *textView = (FormulaEditorTextView*)payload[kDTPayloadTextView];
@@ -755,5 +825,56 @@ replacementString:(NSString*)characters
     [mutableString stringByReplacingOccurrencesOfString:@")" withString:@""];
     return [mutableString copy];
 }
+
++ (NSArray*)propertiesOfInstance:(id)instance
+{
+    unsigned count;
+    objc_property_t *properties = class_copyPropertyList([instance class], &count);
+    
+    NSMutableArray *propertiesArray = [[NSMutableArray alloc] initWithCapacity:count];
+    
+    unsigned i;
+    for (i = 0; i < count; i++)
+    {
+        objc_property_t property = properties[i];
+        
+        NSString *name = [NSString stringWithUTF8String:property_getName(property)];
+        
+        // TODO use introspection
+        if([name isEqualToString:@"hash"] || [name isEqualToString:@"superclass"] || [name isEqualToString:@"description"] || [name isEqualToString:@"debugDescription"])
+            continue;
+        NSObject *currentProperty = [instance valueForKey:name];
+        if(currentProperty != nil)
+            [propertiesArray addObject:currentProperty];
+    }
+    
+    free(properties);
+    return propertiesArray;
+}
+
++ (BOOL)isEqual:(id)object toObject:(id)objectToCompare
+{
+    if(object == nil && objectToCompare == nil)
+        return YES;
+    if([object isKindOfClass:[NSString class]]) {
+        if([(NSString*)object isEqualToString:(NSString*)objectToCompare])
+            return YES;
+    } else if([object isKindOfClass:[NSNumber class]]) {
+        if([(NSNumber*)object isEqualToNumber:(NSNumber*)objectToCompare])
+            return YES;
+    } else if([object isKindOfClass:[NSDate class]]) {
+        if([(NSDate*)object isEqualToDate:(NSDate*)objectToCompare])
+            return YES;
+    } else if([object isKindOfClass:[Formula class]]) {
+        if([(Formula*)object isEqualToFormula:(Formula*)objectToCompare])
+            return YES;
+    } else if([object isKindOfClass:[SpriteObject class]]) {
+        if([(SpriteObject*)object isEqualToSpriteObject:(SpriteObject*)objectToCompare])
+            return YES;
+    }
+    
+    return NO;
+}
+
 
 @end

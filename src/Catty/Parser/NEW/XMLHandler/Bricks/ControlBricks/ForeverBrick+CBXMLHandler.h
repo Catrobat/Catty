@@ -21,8 +21,8 @@
  */
 
 #import "ForeverBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface ForeverBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface ForeverBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

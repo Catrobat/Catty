@@ -21,8 +21,8 @@
  */
 
 #import "LedOnBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface LedOnBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface LedOnBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

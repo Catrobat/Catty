@@ -21,18 +21,39 @@
  */
 
 #import "UserVariable+CBXMLHandler.h"
-#import "GDataXMLNode.h"
+#import "GDataXMLNode+CustomExtensions.h"
 #import "CBXMLValidator.h"
-#import "UserVariable.h"
+#import "CBXMLParserHelper.h"
+#import "CBXMLContext.h"
 
 @implementation UserVariable (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"userVariable"];
+    BOOL isReferencedVariable = [CBXMLParserHelper isReferenceElement:xmlElement];
+    
+    if (isReferencedVariable) {
+        GDataXMLNode *referenceAttribute = [xmlElement attributeForName:@"reference"];
+        NSString *xPath = [referenceAttribute stringValue];
+        xmlElement = [xmlElement singleNodeForCatrobatXPath:xPath];
+        [XMLError exceptionIfNil:xmlElement message:@"Invalid reference in UserVariable!"];
+    }
+    
     UserVariable *userVariable = [UserVariable new];
     [XMLError exceptionIfNil:[xmlElement stringValue] message:@"No name for user variable given"];
     userVariable.name = [xmlElement stringValue];
+    
+    if(!isReferencedVariable) {
+        UserVariable *alreadyExistingUserVariable = [CBXMLParserHelper findUserVariableInArray:context.userVariableList withName:userVariable.name];
+        if (alreadyExistingUserVariable) {
+            [XMLError exceptionWithMessage:@"User variable with same name %@ already exists...\
+             Instantiated by other brick...", alreadyExistingUserVariable.name];
+        }
+        
+        [context.userVariableList addObject:userVariable];
+    }
+    
     return userVariable;
 }
 

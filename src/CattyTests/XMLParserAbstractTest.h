@@ -36,6 +36,7 @@
 #import "CBXMLContext.h"
 #import "CBXMLOpenedNestingBricksStack.h"
 #import "CBXMLValidator.h"
+#import "CBXMLLogger.h"
 #import "Header+CBXMLHandler.h"
 #import "SpriteObject+CBXMLHandler.h"
 #import "VariablesContainer+CBXMLHandler.h"
@@ -72,5 +73,6 @@
 
 - (NSString*)getPathForXML: (NSString*)xmlFile;
 - (GDataXMLDocument*)getXMLDocumentForPath: (NSString*)xmlPath;
+- (void)compareProgram:(NSString*)programName092 withProgram:(NSString*)programName093;
 
 @end

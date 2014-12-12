@@ -32,5 +32,6 @@
 
 - (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
 - (instancetype)deepCopy;
+- (BOOL)isEqualToSound:(Sound*)sound;
 
 @end

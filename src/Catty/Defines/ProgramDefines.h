@@ -22,6 +22,7 @@
 //#import "OrderedDictionary.h"
 
 #define kLastUsedProgram @"lastUsedProgram"
+#define kCatrobatBroadcastPrefix @"iCatty"
 #define kProgramCodeFileName @"code.xml"
 #define kProgramSoundsDirName @"sounds"
 #define kProgramImagesDirName @"images"
@@ -63,6 +64,7 @@ typedef NS_ENUM(NSUInteger, kDTMActionType) {
     kDTMActionEditObject = 2,
     kDTMActionEditLook = 3,
     kDTMActionEditSound = 4,
+    kDTMActionReportMessage = 5,
     kDTMActionVariableName = 6
 };
 
@@ -84,6 +86,8 @@ typedef NS_ENUM(NSUInteger, kDTMActionType) {
 
 #define kUserDetailsShowDetailsKey @"showDetails"
 #define kUserIsFirstAppLaunch @"isFirstAppLaunch"
+#define kUserIsLoggedIn @"userIsLoggedIn"
+#define kUserLoginToken @"userLoginToken"
 #define kUserShowIntroductionOnLaunch @"showIntroductionOnLaunch"
 #define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
 #define kUserDetailsShowDetailsLooksKey @"detailsForLooks"

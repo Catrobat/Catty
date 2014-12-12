@@ -21,8 +21,8 @@
  */
 
 #import "SpeakBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface SpeakBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface SpeakBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

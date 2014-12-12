@@ -21,11 +21,11 @@
  */
 
 #import "Header.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
 @class CBXMLContext;
 @class GDataXMLElement;
 
-@interface Header (CBXMLHandler) <CBParserNodeProtocol>
+@interface Header (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

@@ -29,6 +29,15 @@
 		4C3275F61A135F990091C428 /* XMLParserFormulaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3275F51A135F990091C428 /* XMLParserFormulaTests.m */; };
 		4C3275F81A135FD00091C428 /* XMLParserObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3275F71A135FD00091C428 /* XMLParserObjectTests.m */; };
 		4C3275FA1A1360640091C428 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */; };
+		9238C5761A3AE97F0099F061 /* CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C56A1A3AE97F0099F061 /* CBXMLLogger.m */; };
+		9238C5771A3AE97F0099F061 /* Header+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C56D1A3AE97F0099F061 /* Header+CBXMLLogger.m */; };
+		9238C5781A3AE97F0099F061 /* Look+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C56F1A3AE97F0099F061 /* Look+CBXMLLogger.m */; };
+		9238C5791A3AE97F0099F061 /* Script+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C5711A3AE97F0099F061 /* Script+CBXMLLogger.m */; };
+		9238C57A1A3AE97F0099F061 /* Sound+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C5731A3AE97F0099F061 /* Sound+CBXMLLogger.m */; };
+		9238C57B1A3AE97F0099F061 /* SpriteObject+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C5751A3AE97F0099F061 /* SpriteObject+CBXMLLogger.m */; };
+		9238C5831A3AE9920099F061 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */; };
+		9238C5841A3AE9920099F061 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C5801A3AE9920099F061 /* LoginViewController.m */; };
+		9238C5851A3AE9920099F061 /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C5821A3AE9920099F061 /* UploadViewController.m */; };
 		92DFAFE61A38943D00FA9B0F /* FormulaEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */; };
 		92DFB00E1A38949E00FA9B0F /* ExternInternRepresentationMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEA1A38949E00FA9B0F /* ExternInternRepresentationMapping.m */; };
 		92DFB00F1A38949E00FA9B0F /* ExternToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEC1A38949E00FA9B0F /* ExternToken.m */; };
@@ -553,6 +562,26 @@
 		92345634192E2A1B00464E6B /* ChangeBrightnessByNBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeBrightnessByNBrickTests.m; sourceTree = "<group>"; };
 		92345636192E2E6C00464E6B /* SetLookBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetLookBrickTests.m; sourceTree = "<group>"; };
 		92345638192E2E8000464E6B /* NextLookBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextLookBrickTests.m; sourceTree = "<group>"; };
+		9238C5681A3AE97F0099F061 /* CBSerializerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSerializerProtocol.h; sourceTree = "<group>"; };
+		9238C5691A3AE97F0099F061 /* CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLLogger.h; sourceTree = "<group>"; };
+		9238C56A1A3AE97F0099F061 /* CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLLogger.m; sourceTree = "<group>"; };
+		9238C56B1A3AE97F0099F061 /* CBXMLNodeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLNodeProtocol.h; sourceTree = "<group>"; };
+		9238C56C1A3AE97F0099F061 /* Header+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Header+CBXMLLogger.h"; sourceTree = "<group>"; };
+		9238C56D1A3AE97F0099F061 /* Header+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Header+CBXMLLogger.m"; sourceTree = "<group>"; };
+		9238C56E1A3AE97F0099F061 /* Look+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Look+CBXMLLogger.h"; sourceTree = "<group>"; };
+		9238C56F1A3AE97F0099F061 /* Look+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Look+CBXMLLogger.m"; sourceTree = "<group>"; };
+		9238C5701A3AE97F0099F061 /* Script+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Script+CBXMLLogger.h"; sourceTree = "<group>"; };
+		9238C5711A3AE97F0099F061 /* Script+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Script+CBXMLLogger.m"; sourceTree = "<group>"; };
+		9238C5721A3AE97F0099F061 /* Sound+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Sound+CBXMLLogger.h"; sourceTree = "<group>"; };
+		9238C5731A3AE97F0099F061 /* Sound+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Sound+CBXMLLogger.m"; sourceTree = "<group>"; };
+		9238C5741A3AE97F0099F061 /* SpriteObject+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpriteObject+CBXMLLogger.h"; sourceTree = "<group>"; };
+		9238C5751A3AE97F0099F061 /* SpriteObject+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SpriteObject+CBXMLLogger.m"; sourceTree = "<group>"; };
+		9238C57D1A3AE9920099F061 /* LoginPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginPopupViewController.h; sourceTree = "<group>"; };
+		9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginPopupViewController.m; sourceTree = "<group>"; };
+		9238C57F1A3AE9920099F061 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		9238C5801A3AE9920099F061 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		9238C5811A3AE9920099F061 /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
+		9238C5821A3AE9920099F061 /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
 		92C37A32185621FF00547C1E /* SetSizeToBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSizeToBrickTests.m; sourceTree = "<group>"; };
 		92C37A341856227200547C1E /* BrickTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTests.h; sourceTree = "<group>"; };
 		92C37A371856253B00547C1E /* ComeToFrontBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComeToFrontBrickTests.m; sourceTree = "<group>"; };
@@ -1530,6 +1559,19 @@
 			path = ../iOS_Lang;
 			sourceTree = "<group>";
 		};
+		9238C57C1A3AE9920099F061 /* Upload */ = {
+			isa = PBXGroup;
+			children = (
+				9238C57D1A3AE9920099F061 /* LoginPopupViewController.h */,
+				9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */,
+				9238C57F1A3AE9920099F061 /* LoginViewController.h */,
+				9238C5801A3AE9920099F061 /* LoginViewController.m */,
+				9238C5811A3AE9920099F061 /* UploadViewController.h */,
+				9238C5821A3AE9920099F061 /* UploadViewController.m */,
+			);
+			path = Upload;
+			sourceTree = "<group>";
+		};
 		92DFAFE81A38949E00FA9B0F /* FormulaEditor */ = {
 			isa = PBXGroup;
 			children = (
@@ -2448,6 +2490,7 @@
 		92FF310A1A24DEB300093DA7 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				9238C57C1A3AE9920099F061 /* Upload */,
 				92FF310B1A24DEB300093DA7 /* BaseViewController */,
 				92FF31121A24DEB300093DA7 /* CatrobatTableViewController */,
 				92FF31171A24DEB300093DA7 /* Continue&New */,
@@ -2455,7 +2498,6 @@
 				92FF313D1A24DEB300093DA7 /* Help */,
 				92FF31401A24DEB300093DA7 /* Programs */,
 				92FF31431A24DEB300093DA7 /* Scene */,
-				92FF31481A24DEB300093DA7 /* Upload */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2589,13 +2631,6 @@
 				92FF31471A24DEB300093DA7 /* ScenePresenterViewController.m */,
 			);
 			path = Scene;
-			sourceTree = "<group>";
-		};
-		92FF31481A24DEB300093DA7 /* Upload */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Upload;
 			sourceTree = "<group>";
 		};
 		92FF31621A24E2F400093DA7 /* Views */ = {
@@ -3529,6 +3564,20 @@
 		CD0CCE54170CB39600B70036 /* Catty */ = {
 			isa = PBXGroup;
 			children = (
+				9238C5681A3AE97F0099F061 /* CBSerializerProtocol.h */,
+				9238C5691A3AE97F0099F061 /* CBXMLLogger.h */,
+				9238C56A1A3AE97F0099F061 /* CBXMLLogger.m */,
+				9238C56B1A3AE97F0099F061 /* CBXMLNodeProtocol.h */,
+				9238C56C1A3AE97F0099F061 /* Header+CBXMLLogger.h */,
+				9238C56D1A3AE97F0099F061 /* Header+CBXMLLogger.m */,
+				9238C56E1A3AE97F0099F061 /* Look+CBXMLLogger.h */,
+				9238C56F1A3AE97F0099F061 /* Look+CBXMLLogger.m */,
+				9238C5701A3AE97F0099F061 /* Script+CBXMLLogger.h */,
+				9238C5711A3AE97F0099F061 /* Script+CBXMLLogger.m */,
+				9238C5721A3AE97F0099F061 /* Sound+CBXMLLogger.h */,
+				9238C5731A3AE97F0099F061 /* Sound+CBXMLLogger.m */,
+				9238C5741A3AE97F0099F061 /* SpriteObject+CBXMLLogger.h */,
+				9238C5751A3AE97F0099F061 /* SpriteObject+CBXMLLogger.m */,
 				92DFB01F1A38960C00FA9B0F /* pocketPaint */,
 				92DFAFE81A38949E00FA9B0F /* FormulaEditor */,
 				92FF2EA51A24C8A700093DA7 /* DataStructures */,
@@ -3825,6 +3874,7 @@
 				92FF30D51A24DCAA00093DA7 /* HideBrick.m in Sources */,
 				92DFB0131A38949E00FA9B0F /* InternFormulaKeyboardAdapter.m in Sources */,
 				92FF32631A24E2F400093DA7 /* FXBlurView.m in Sources */,
+				9238C57B1A3AE97F0099F061 /* SpriteObject+CBXMLLogger.m in Sources */,
 				92FF326E1A24E2F400093DA7 /* SWLongPressGestureRecognizer.m in Sources */,
 				92FF2EA41A24C7D800093DA7 /* Util.m in Sources */,
 				92FF30D71A24DCAA00093DA7 /* SetBrightnessBrick.m in Sources */,
@@ -3933,11 +3983,14 @@
 				92FF30D01A24DCAA00093DA7 /* ChangeBrightnessByNBrick.m in Sources */,
 				92FF33711A24E5F800093DA7 /* ChangeXByNBrick+CBXMLHandler.m in Sources */,
 				92FF32AF1A24E2F400093DA7 /* SoundComboBoxView.m in Sources */,
+				9238C5851A3AE9920099F061 /* UploadViewController.m in Sources */,
 				92FF33831A24E5F800093DA7 /* StopAllSoundsBrick+CBXMLHandler.m in Sources */,
 				92FF2E971A24C7D800093DA7 /* mztools.c in Sources */,
 				92FF32871A24E2F400093DA7 /* WaitBrickCell.m in Sources */,
 				92DFB0531A38960C00FA9B0F /* BrushPickerViewController.m in Sources */,
+				9238C5831A3AE9920099F061 /* LoginPopupViewController.m in Sources */,
 				92FF2E9A1A24C7D800093DA7 /* NavigationController.m in Sources */,
+				9238C5761A3AE97F0099F061 /* CBXMLLogger.m in Sources */,
 				92FF33761A24E5F800093DA7 /* PointToBrick+CBXMLHandler.m in Sources */,
 				92DFB0681A38960C00FA9B0F /* UIImage+FloodFill.m in Sources */,
 				92FF31091A24DCAA00093DA7 /* VariablesContainer.m in Sources */,
@@ -4000,6 +4053,7 @@
 				92FF32B21A24E2F400093DA7 /* RoundBorderedButton.m in Sources */,
 				92DFB05C1A38960C00FA9B0F /* LinkedListStack.m in Sources */,
 				92FF315C1A24DEB300093DA7 /* RecentProgramsStoreViewController.m in Sources */,
+				9238C5841A3AE9920099F061 /* LoginViewController.m in Sources */,
 				92FF31511A24DEB300093DA7 /* BrickSelectionView.m in Sources */,
 				92FF30CB1A24DCAA00093DA7 /* NoteBrick.m in Sources */,
 				92FF32A71A24E2F400093DA7 /* SpeakBrickCell.m in Sources */,
@@ -4021,6 +4075,7 @@
 				92FF33621A24E5F800093DA7 /* NoteBrick+CBXMLHandler.m in Sources */,
 				92FF30FA1A24DCAA00093DA7 /* Functions.m in Sources */,
 				92FF32781A24E2F400093DA7 /* BrickShapeFactory.m in Sources */,
+				9238C5781A3AE97F0099F061 /* Look+CBXMLLogger.m in Sources */,
 				92FF31001A24DCAA00093DA7 /* ProgramManager.m in Sources */,
 				92DFB0151A38949E00FA9B0F /* InternFormulaParserEmptyStackException.m in Sources */,
 				92FF33651A24E5F800093DA7 /* WaitBrick+CBXMLHandler.m in Sources */,
@@ -4043,6 +4098,7 @@
 				92FF31521A24DEB300093DA7 /* ScriptCollectionViewController.m in Sources */,
 				92DFB06B1A38960C00FA9B0F /* UndoManager.m in Sources */,
 				92FF2E8C1A24C7D800093DA7 /* AudioManager.m in Sources */,
+				9238C5771A3AE97F0099F061 /* Header+CBXMLLogger.m in Sources */,
 				92FF2E9F1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m in Sources */,
 				92FF30F91A24DCAA00093DA7 /* FormulaElement.m in Sources */,
 				92FF32701A24E2F400093DA7 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
@@ -4071,6 +4127,7 @@
 				92FF31021A24DCAA00093DA7 /* BroadcastScript.m in Sources */,
 				92FF30DC1A24DCAA00093DA7 /* LoopBeginBrick.m in Sources */,
 				92FF32771A24E2F400093DA7 /* BrickCellInlineView.m in Sources */,
+				9238C57A1A3AE97F0099F061 /* Sound+CBXMLLogger.m in Sources */,
 				92FF32AC1A24E2F400093DA7 /* LookComboBoxView.m in Sources */,
 				92FF32971A24E2F400093DA7 /* IfOnEdgeBounceBrickCell.m in Sources */,
 				92FF30F51A24DCAA00093DA7 /* ChangeVariableBrick.m in Sources */,
@@ -4141,6 +4198,7 @@
 				92FF31071A24DCAA00093DA7 /* SpriteObject.m in Sources */,
 				92FF30D91A24DCAA00093DA7 /* SetLookBrick.m in Sources */,
 				92FF33601A24E5F800093DA7 /* IfOnEdgeBounceBrick+CBXMLHandler.m in Sources */,
+				9238C5791A3AE97F0099F061 /* Script+CBXMLLogger.m in Sources */,
 				92FF32A11A24E2F400093DA7 /* BroadcastScriptCell.m in Sources */,
 				92FF32861A24E2F400093DA7 /* VibrationBrickCell.m in Sources */,
 				92FF30F41A24DCAA00093DA7 /* StopAllSoundsBrick.m in Sources */,

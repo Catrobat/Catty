@@ -46,6 +46,7 @@
 - (BOOL)isSingleNumberFormula;
 
 - (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
+- (BOOL)isEqualToFormula:(Formula*)formula;
 
 - (void)setRoot:(FormulaElement*)formulaTree;
 - (InternFormulaState*)getInternFormulaState;

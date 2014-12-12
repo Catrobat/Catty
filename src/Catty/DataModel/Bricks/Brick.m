@@ -29,6 +29,8 @@
 #import "IfLogicEndBrick.h"
 #import "LoopEndBrick.h"
 #import "RepeatBrick.h"
+#import "Formula.h"
+#import "Util.h"
 
 @interface Brick()
 
@@ -118,6 +120,26 @@
     return ^{
         NSError(@"%@ (NO SPECIFIC Action GIVEN! OVERRIDE THE actionBlock METHOD!", self.class);
     };
+}
+
+- (BOOL)isEqualToBrick:(Brick*)brick
+{
+    NSArray *firstPropertyList = [Util propertiesOfInstance:self];
+    NSArray *secondPropertyList = [Util propertiesOfInstance:brick];
+    
+    if([firstPropertyList count] != [secondPropertyList count])
+        return NO;
+    
+    NSUInteger index;
+    for(index = 0; index < [firstPropertyList count]; index++) {
+        NSObject *firstObject = [firstPropertyList objectAtIndex:index];
+        NSObject *secondObject = [secondPropertyList objectAtIndex:index];
+        
+        if(![Util isEqual:firstObject toObject:secondObject])
+            return NO;
+    }
+    
+    return YES;
 }
 
 @end

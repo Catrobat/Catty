@@ -37,14 +37,14 @@
     NSMutableArray *soundList = context.soundList;
 
     Sound *sound = nil;
-    if ([CBXMLParser isReferenceElement:soundElement]) {
+    if ([CBXMLParserHelper isReferenceElement:soundElement]) {
         GDataXMLNode *referenceAttribute = [soundElement attributeForName:@"reference"];
         NSString *xPath = [referenceAttribute stringValue];
         soundElement = [soundElement singleNodeForCatrobatXPath:xPath];
         [XMLError exceptionIfNil:soundElement message:@"Invalid reference in PlaySoundBrick. No or too many sounds found!"];
         GDataXMLNode *nameElement = [soundElement childWithElementName:@"name"];
         [XMLError exceptionIfNil:nameElement message:@"Sound element does not contain a name child element!"];
-        sound = [CBXMLParser findSoundInArray:soundList withName:[nameElement stringValue]];
+        sound = [CBXMLParserHelper findSoundInArray:soundList withName:[nameElement stringValue]];
         [XMLError exceptionIfNil:sound message:@"Fatal error: no sound found in list, but should already exist!"];
     } else {
         // OMG!! a sound has been defined within the brick element...

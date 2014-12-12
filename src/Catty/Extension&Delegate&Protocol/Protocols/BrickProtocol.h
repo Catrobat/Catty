@@ -31,5 +31,4 @@
 @property (nonatomic, strong, readonly) NSString *brickTitle;
 - (BOOL)isSelectableForObject;
 
-
 @end

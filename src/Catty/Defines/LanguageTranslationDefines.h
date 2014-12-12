@@ -96,6 +96,7 @@
 #define kLocalizedEditMenu NSLocalizedString(@"Edit Mode", nil)
 #define kLocalizedAboutPocketCode NSLocalizedString(@"About Pocket Code", nil)
 #define kLocalizedTermsOfUse NSLocalizedString(@"Terms of Use", nil)
+#define kLocalizedForgotPassword NSLocalizedString(@"Forgot password", nil)
 #define kLocalizedRateUs NSLocalizedString(@"Rate Us", nil)
 #define kLocalizedVersionLabel NSLocalizedString(@"v", nil)
 #define kLocalizedBack NSLocalizedString(@"Back", nil)
@@ -211,6 +212,9 @@
 #define kLocalizedSound NSLocalizedString(@"Sound", nil)
 #define kLocalizedLooks NSLocalizedString(@"Looks", nil)
 #define kLocalizedVariables NSLocalizedString(@"Variables", nil)
+#define kLocalizedLogin NSLocalizedString(@"Login", nil)
+#define kLocalizedUsername NSLocalizedString(@"Username", nil);
+#define kLocalizedPassword NSLocalizedString(@"Password", nil);
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************

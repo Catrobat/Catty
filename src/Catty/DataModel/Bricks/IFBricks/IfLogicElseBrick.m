@@ -23,6 +23,8 @@
 #import "IfLogicElseBrick.h"
 #import "GDataXMLNode.h"
 #import "IfLogicBeginBrick.h"
+#import "IfLogicEndBrick.h"
+#import "Util.h"
 
 @implementation IfLogicElseBrick
 
@@ -55,6 +57,15 @@
                                                                      sourceBrick:self]];
     [brickXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:referencePath]];
     return brickXMLElement;
+}
+
+- (BOOL)isEqualToBrick:(Brick*)brick
+{
+    if(![Util isEqual:self.ifBeginBrick.brickTitle toObject:((IfLogicElseBrick*)brick).ifBeginBrick.brickTitle])
+        return NO;
+    if(![Util isEqual:self.ifEndBrick.brickTitle toObject:((IfLogicElseBrick*)brick).ifEndBrick.brickTitle])
+        return NO;    
+    return YES;
 }
 
 @end
