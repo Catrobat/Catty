@@ -27,6 +27,7 @@
 #import "CBXMLParserHelper.h"
 #import "CBXMLContext.h"
 #import "CBXMLParserHelper.h"
+#import "CBXMLSerializerHelper.h"
 
 @implementation PointToBrick (CBXMLHandler)
 
@@ -59,9 +60,10 @@
     [XMLError exceptionIfNil:self.object message:@"Missing reference to brick's sprite object"];
 
     // check if pointedObject has been already serialized
-#warning replace indexOfObject in Helper class
-    NSUInteger indexOfPointedObject = [context.spriteObjectList indexOfObject:self.pointedObject];
-    NSUInteger indexOfSpriteObject = [context.spriteObjectList indexOfObject:self.object];
+    NSUInteger indexOfPointedObject = [CBXMLSerializerHelper indexOfElement:self.pointedObject
+                                                                    inArray:context.spriteObjectList];
+    NSUInteger indexOfSpriteObject = [CBXMLSerializerHelper indexOfElement:self.object
+                                                                   inArray:context.spriteObjectList];
     [XMLError exceptionIf:indexOfPointedObject equals:NSNotFound message:@"Pointed object does not exist in spriteObject list"];
     [XMLError exceptionIf:indexOfSpriteObject equals:NSNotFound message:@"Sprite object does not exist in spriteObject list"];
 
@@ -72,14 +74,8 @@
     } else {
         // already serialized
         GDataXMLElement *pointedObjectXmlElement = [GDataXMLElement elementWithName:@"pointedObject"];
-        NSString *index = nil;
-        if ((indexOfPointedObject != NSNotFound) && (indexOfPointedObject > 0)) {
-            index = [NSString stringWithFormat:@"[%lu]", indexOfPointedObject];
-        } else {
-            index = @"";
-        }
-#warning path dynamically!!
-        NSString *refPath = [NSString stringWithFormat:@"../../../../../../object%@", index]; // FIXME: determine reference path dynamically!!
+        NSString *refPath = [CBXMLSerializerHelper relativeXPathToObject:self.pointedObject
+                                                            inObjectList:context.spriteObjectList];
         [pointedObjectXmlElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:refPath]];
         [xmlElement addChild:pointedObjectXmlElement];
     }

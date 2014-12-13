@@ -27,6 +27,7 @@
 #import "Sound+CBXMLHandler.h"
 #import "CBXMLContext.h"
 #import "CBXMLParserHelper.h"
+#import "CBXMLSerializerHelper.h"
 
 @implementation PlaySoundBrick (CBXMLHandler)
 
@@ -63,15 +64,7 @@
     [xmlElement addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"PlaySoundBrick"]];
     if (self.sound) {
         GDataXMLElement *referenceXMLElement = [GDataXMLNode elementWithName:@"sound"];
-        NSString *index = nil;
-        NSUInteger indexNumber = [context.soundList indexOfObject:self.sound];
-        if ((indexNumber != NSNotFound) && (indexNumber > 0)) {
-            index = [NSString stringWithFormat:@"[%lu]", indexNumber];
-        } else {
-            index = @"";
-        }
-#warning path dynamically!!
-        NSString *refPath = [NSString stringWithFormat:@"../../../../../soundList/sound%@", index]; // FIXME: determine reference path dynamically!!
+        NSString *refPath = [CBXMLSerializerHelper relativeXPathToSound:self.sound inSoundList:context.soundList];
         [referenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:refPath]];
         [xmlElement addChild:referenceXMLElement];
     }

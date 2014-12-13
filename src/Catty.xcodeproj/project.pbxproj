@@ -386,6 +386,7 @@
 		CA6067F41A3500670037A13A /* Sound+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6067EF1A3500670037A13A /* Sound+CBXMLLogger.m */; };
 		CA6067F51A3500670037A13A /* SpriteObject+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6067F01A3500670037A13A /* SpriteObject+CBXMLLogger.m */; };
 		CA775CBF19FD5BCB00C1E761 /* My First Program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CA6E4C4719F9C388001B65C3 /* My First Program.catrobat */; };
+		CAC3205D1A3CC6C800C125D4 /* CBXMLSerializerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC3205C1A3CC6C800C125D4 /* CBXMLSerializerHelper.m */; };
 		CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3A198F685D00455B77 /* SSZipArchive.license */; };
 		CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */; };
 		CADBD6DE19B0E8C200C62836 /* OrderedDictionary.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */; };
@@ -1217,6 +1218,8 @@
 		CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerNewProgramTests.m; sourceTree = "<group>"; };
 		CA8C247C18CD12C100314C2B /* ProgramTableViewControllerNewProgramTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerNewProgramTests.h; sourceTree = "<group>"; };
 		CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		CAC3205B1A3CC68600C125D4 /* CBXMLSerializerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLSerializerHelper.h; sourceTree = "<group>"; };
+		CAC3205C1A3CC6C800C125D4 /* CBXMLSerializerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLSerializerHelper.m; sourceTree = "<group>"; };
 		CADBD7FB19B0E8C200C62836 /* Pocket Code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Code.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAEE0A261A328EC2007CB248 /* XMLSerializerAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLSerializerAbstractTest.h; sourceTree = "<group>"; };
 		CAEE0A271A328EC2007CB248 /* XMLSerializerAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerAbstractTest.m; sourceTree = "<group>"; };
@@ -2956,6 +2959,8 @@
 			children = (
 				92FF32CE1A24E5F800093DA7 /* CBXMLParserHelper.h */,
 				92FF32CF1A24E5F800093DA7 /* CBXMLParserHelper.m */,
+				CAC3205B1A3CC68600C125D4 /* CBXMLSerializerHelper.h */,
+				CAC3205C1A3CC6C800C125D4 /* CBXMLSerializerHelper.m */,
 				CA6067E91A3500450037A13A /* CBXMLLogger.h */,
 				CA6067EC1A3500670037A13A /* CBXMLLogger.m */,
 				CA6067EA1A3500450037A13A /* Look+CBXMLLogger.m */,
@@ -4058,6 +4063,7 @@
 				92FF30D91A24DCAA00093DA7 /* SetLookBrick.m in Sources */,
 				92FF33601A24E5F800093DA7 /* IfOnEdgeBounceBrick+CBXMLHandler.m in Sources */,
 				92FF32A11A24E2F400093DA7 /* BroadcastScriptCell.m in Sources */,
+				CAC3205D1A3CC6C800C125D4 /* CBXMLSerializerHelper.m in Sources */,
 				92FF32861A24E2F400093DA7 /* VibrationBrickCell.m in Sources */,
 				92FF30F41A24DCAA00093DA7 /* StopAllSoundsBrick.m in Sources */,
 				92FF33811A24E5F800093DA7 /* SetVolumeToBrick+CBXMLHandler.m in Sources */,

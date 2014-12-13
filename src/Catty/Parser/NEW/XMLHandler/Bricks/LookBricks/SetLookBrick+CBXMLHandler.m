@@ -26,6 +26,7 @@
 #import "Look+CBXMLHandler.h"
 #import "CBXMLContext.h"
 #import "CBXMLParserHelper.h"
+#import "CBXMLSerializerHelper.h"
 
 @implementation SetLookBrick (CBXMLHandler)
 
@@ -63,15 +64,7 @@
     [xmlElement addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"SetLookBrick"]];
     if (self.look) {
         GDataXMLElement *referenceXMLElement = [GDataXMLNode elementWithName:@"look"];
-        NSString *index = nil;
-        NSUInteger indexNumber = [context.lookList indexOfObject:self.look];
-        if ((indexNumber != NSNotFound) && (indexNumber > 0)) {
-            index = [NSString stringWithFormat:@"[%lu]", indexNumber];
-        } else {
-            index = @"";
-        }
-#warning path dynamically!!
-        NSString *refPath = [NSString stringWithFormat:@"../../../../../lookList/look%@", index]; // FIXME: determine reference path dynamically!!
+        NSString *refPath = [CBXMLSerializerHelper relativeXPathToLook:self.look inLookList:context.lookList];
         [referenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:refPath]];
         [xmlElement addChild:referenceXMLElement];
     }
