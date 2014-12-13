@@ -158,12 +158,7 @@
                       message:@"Invalid brick instance given"];
         [XMLError exceptionIf:[brick conformsToProtocol:@protocol(CBXMLNodeProtocol)] equals:NO
                       message:@"Brick does not have a CBXMLHandler category that implements CBXMLNodeProtocol"];
-        @try {
-            [xmlElement addChild:[((Brick<CBXMLNodeProtocol>*)brick) xmlElementWithContext:context]];
-        }
-        @catch (NSException *exception) {
-            NSLog([exception message]);
-        }
+        [xmlElement addChild:[((Brick<CBXMLNodeProtocol>*)brick) xmlElementWithContext:context]];
     }
     [XMLError exceptionIf:[openedNestingBricksStack isEmpty] equals:NO
                   message:@"FATAL ERROR: there are still some unclosed nesting bricks (e.g. IF, \
