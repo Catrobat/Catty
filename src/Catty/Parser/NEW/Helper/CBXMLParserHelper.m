@@ -59,8 +59,9 @@
     
     GDataXMLElement *formulaListElement = [xmlElement childWithElementName:@"formulaList"];
     [XMLError exceptionIfNil:formulaListElement message:@"No formulaList element found..."];
-    [XMLError exceptionIf:[formulaListElement childCount] notEquals:numberOfFormulas message:@"Too many formulas found (%lu expected)", (unsigned long)numberOfFormulas];
-    
+    [XMLError exceptionIf:[formulaListElement childCount]
+                notEquals:numberOfFormulas
+                  message:@"Too many formulas found (%lu expected)", (unsigned long)numberOfFormulas];
     return true;
 }
 
