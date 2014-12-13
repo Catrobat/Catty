@@ -40,6 +40,8 @@
 
 @implementation Program
 
+@synthesize objectList = _objectList;
+
 - (void)dealloc
 {
     NSDebug(@"Dealloc Program");
@@ -213,7 +215,7 @@
 #pragma mark - Custom getter and setter
 - (NSMutableArray*)objectList
 {
-    if (!_objectList) {
+    if (! _objectList) {
          _objectList = [NSMutableArray array];
     }
     return _objectList;
