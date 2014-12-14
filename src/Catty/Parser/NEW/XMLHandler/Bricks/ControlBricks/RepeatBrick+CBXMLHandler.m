@@ -50,6 +50,9 @@
     [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"TIMES_TO_REPEAT"]];
     [formulaList addChild:formula];
     [brick addChild:formulaList];
+
+    // add opening nesting brick on stack
+    [context.openedNestingBricksStack pushAndOpenNestingBrick:self];
     return brick;
 }
 

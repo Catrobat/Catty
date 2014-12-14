@@ -31,7 +31,6 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
-
     ForeverBrick *foreverBrick = [self new];
 
     // add opening nesting brick on stack
@@ -43,6 +42,9 @@
 {
     GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
     [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"ForeverBrick"]];
+
+    // add opening nesting brick on stack
+    [context.openedNestingBricksStack pushAndOpenNestingBrick:self];
     return brick;
 }
 

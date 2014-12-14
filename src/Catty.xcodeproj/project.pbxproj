@@ -3424,10 +3424,10 @@
 			children = (
 				92FF32D91A24E5F800093DA7 /* ForeverBrick+CBXMLHandler.h */,
 				92FF32DA1A24E5F800093DA7 /* ForeverBrick+CBXMLHandler.m */,
-				92FF32E31A24E5F800093DA7 /* LoopEndBrick+CBXMLHandler.h */,
-				92FF32E41A24E5F800093DA7 /* LoopEndBrick+CBXMLHandler.m */,
 				92FF32E91A24E5F800093DA7 /* RepeatBrick+CBXMLHandler.h */,
 				92FF32EA1A24E5F800093DA7 /* RepeatBrick+CBXMLHandler.m */,
+				92FF32E31A24E5F800093DA7 /* LoopEndBrick+CBXMLHandler.h */,
+				92FF32E41A24E5F800093DA7 /* LoopEndBrick+CBXMLHandler.m */,
 			);
 			name = LoopBricks;
 			sourceTree = "<group>";
