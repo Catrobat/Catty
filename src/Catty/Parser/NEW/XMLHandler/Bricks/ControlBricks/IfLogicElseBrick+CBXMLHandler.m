@@ -54,6 +54,19 @@
 {
     GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
     [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"IfLogicElseBrick"]];
+
+    // pop opening nesting brick from stack
+    Brick *openingNestingBrick = [context.openedNestingBricksStack popAndCloseTopMostNestingBrick];
+    if (! [openingNestingBrick isKindOfClass:[IfLogicBeginBrick class]]) {
+        [XMLError exceptionWithMessage:@"Unexpected closing of nesting brick: expected IfLogicBeginBrick but got %@", NSStringFromClass([openingNestingBrick class])];
+    }
+    if (((IfLogicBeginBrick*)openingNestingBrick).ifElseBrick != self) {
+        [XMLError exceptionWithMessage:@"IfLogicBeginBrick has reference to other else-brick %@",
+         NSStringFromClass([openingNestingBrick class])];
+    }
+
+    // add opening nesting brick on stack
+    [context.openedNestingBricksStack pushAndOpenNestingBrick:self];
     return brick;
 }
 

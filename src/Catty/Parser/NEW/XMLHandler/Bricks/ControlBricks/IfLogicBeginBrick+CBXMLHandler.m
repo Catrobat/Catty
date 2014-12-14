@@ -45,14 +45,17 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"IfLogicBeginBrick"]];
+    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"brick"];
+    [xmlElement addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"IfLogicBeginBrick"]];
     GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
     GDataXMLElement *formula = [self.ifCondition xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"IF_CONDITION"]];
     [formulaList addChild:formula];
-    [brick addChild:formulaList];
-    return brick;
+    [xmlElement addChild:formulaList];
+
+    // add opening nesting brick on stack
+    [context.openedNestingBricksStack pushAndOpenNestingBrick:self];
+    return xmlElement;
 }
 
 @end

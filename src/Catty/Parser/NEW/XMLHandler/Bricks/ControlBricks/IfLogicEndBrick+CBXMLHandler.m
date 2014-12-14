@@ -67,7 +67,8 @@
         ifLogicEndBrick.ifBeginBrick = ifLogicBeginBrick;
         ifLogicEndBrick.ifElseBrick = ifLogicElseBrick;
     } else {
-        [XMLError exceptionWithMessage:@"Unexpected closing of nesting brick: expected IfLogicBeginBrick but got %@", NSStringFromClass([openingNestingBrick class])];
+        [XMLError exceptionWithMessage:@"Unexpected closing of nesting brick: expected IfLogicBeginBrick or \
+         IfLogicElseBrick but got %@", NSStringFromClass([openingNestingBrick class])];
     }
     return ifLogicEndBrick;
 }
@@ -76,6 +77,54 @@
 {
     GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
     [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"IfLogicEndBrick"]];
+
+    // pop opening nesting brick from stack
+    Brick *openingNestingBrick = [context.openedNestingBricksStack popAndCloseTopMostNestingBrick];
+    if ([openingNestingBrick isKindOfClass:[IfLogicBeginBrick class]]) {
+        IfLogicBeginBrick *ifLogicBeginBrick = (IfLogicBeginBrick*)openingNestingBrick;
+        [XMLError exceptionIfNil:ifLogicBeginBrick.ifElseBrick message:@"IfLogicBeginBrick contains a \
+         reference to an ifElseBrick that is not at the top of the CBXMLOpenedNestingBricksStack"];
+        [XMLError exceptionIfNil:self.ifElseBrick message:@"IfLogicEndBrick contains a reference to an \
+         ifElseBrick that is not at the top of the CBXMLOpenedNestingBricksStack"];
+        if (ifLogicBeginBrick.ifEndBrick != self) {
+            [XMLError exceptionWithMessage:@"IfLogicBeginBrick contains a reference to an ifEndBrick that \
+             is not equal to current IfLogicEndBrick"];
+        }
+        if (self.ifBeginBrick != ifLogicBeginBrick) {
+            [XMLError exceptionWithMessage:@"IfLogicEndBrick must not contain a reference to an ifElseBrick at this point"];
+        }
+    } else if ([openingNestingBrick isKindOfClass:[IfLogicElseBrick class]]) {
+        IfLogicElseBrick *ifLogicElseBrick = (IfLogicElseBrick*)openingNestingBrick;
+        [XMLError exceptionIfNil:ifLogicElseBrick.ifBeginBrick
+                         message:@"IfLogicElseBrick contains no reference to an ifBeginBrick"];
+        [XMLError exceptionIf:[ifLogicElseBrick.ifBeginBrick isKindOfClass:[IfLogicBeginBrick class]] equals:NO
+                      message:@"Invalid reference class type for ifBeginBrick in ifLogicElseBrick given"];
+        [XMLError exceptionIfNil:ifLogicElseBrick.ifEndBrick
+                         message:@"IfLogicElseBrick contains no reference to an ifEndBrick"];
+        [XMLError exceptionIf:[ifLogicElseBrick.ifEndBrick isKindOfClass:[IfLogicEndBrick class]] equals:NO
+                      message:@"Invalid reference class type for ifEndBrick in ifLogicElseBrick given"];
+
+        IfLogicBeginBrick *ifLogicBeginBrick = ifLogicElseBrick.ifBeginBrick;
+        if (ifLogicBeginBrick.ifElseBrick != ifLogicElseBrick) {
+            [XMLError exceptionWithMessage:@"IfLogicBeginBrick contains no or a reference to other ifElseBrick"];
+        }
+        if (ifLogicBeginBrick.ifEndBrick != self) {
+            [XMLError exceptionWithMessage:@"IfLogicBeginBrick contains no or a reference to other ifEndBrick"];
+        }
+        if (ifLogicElseBrick.ifEndBrick != self) {
+            [XMLError exceptionWithMessage:@"IfLogicElseBrick contains no or a reference to other ifEndBrick"];
+        }
+        if (self.ifBeginBrick != ifLogicBeginBrick) {
+            [XMLError exceptionWithMessage:@"IfLogicEndBrick contains no or a reference to other ifBeginBrick"];
+        }
+        if (self.ifElseBrick != ifLogicElseBrick) {
+            [XMLError exceptionWithMessage:@"IfLogicEndBrick contains no or a reference to other ifElseBrick"];
+        }
+    } else {
+        [XMLError exceptionWithMessage:@"Unexpected closing of nesting brick: expected IfLogicBeginBrick or \
+         IfLogicElseBrick but got %@", NSStringFromClass([openingNestingBrick class])];
+    }
+
     return brick;
 }
 
