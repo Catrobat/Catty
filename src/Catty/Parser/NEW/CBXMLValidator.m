@@ -34,6 +34,7 @@
     [array removeObject:@""];
     NSUInteger index = 0;
     NSLog(@"Stack = %@", [array objectAtIndex:index++]);
+#if !kIsRelease // kIsRelease
     NSString *framework = [array objectAtIndex:index++];
     NSString *tempString = [array objectAtIndex:index++];
     NSString *memoryAddress = nil;
@@ -46,6 +47,7 @@
         framework = [NSString stringWithFormat:@"%@ %@", framework, tempString];
         memoryAddress = [array objectAtIndex:index++];
     }
+#endif // kIsRelease
     NSLog(@"Framework = %@", framework);
     NSLog(@"Memory address = %@", memoryAddress);
     NSString *classCaller = [array objectAtIndex:index++];
@@ -61,6 +63,7 @@
     [array removeObject:@""];
     NSUInteger index = 0;
     NSLog(@"Stack = %@", [array objectAtIndex:index++]);
+#if !kIsRelease // kIsRelease
     NSString *framework = [array objectAtIndex:index++];
     NSString *tempString = [array objectAtIndex:index++];
     NSString *memoryAddress = nil;
@@ -73,6 +76,7 @@
         framework = [NSString stringWithFormat:@"%@ %@", framework, tempString];
         memoryAddress = [array objectAtIndex:index++];
     }
+#endif // kIsRelease
     NSLog(@"Framework = %@", framework);
     NSLog(@"Memory address = %@", memoryAddress);
     NSString *classCaller = [array objectAtIndex:index++];

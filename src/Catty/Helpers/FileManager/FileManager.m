@@ -571,18 +571,22 @@
 
 - (uint64_t)freeDiskspace
 {
-    uint64_t totalSpace = 0;
     uint64_t totalFreeSpace = 0;
     NSError *error = nil;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSDictionary *dictionary = [[NSFileManager defaultManager] attributesOfFileSystemForPath:[paths lastObject] error: &error];
 
     if (dictionary) {
-        NSNumber *fileSystemSizeInBytes = [dictionary objectForKey: NSFileSystemSize];
         NSNumber *freeFileSystemSizeInBytes = [dictionary objectForKey:NSFileSystemFreeSize];
+#if !kIsRelease // kIsRelease
+        NSNumber *fileSystemSizeInBytes = [dictionary objectForKey: NSFileSystemSize];
+        uint64_t totalSpace = 0;
         totalSpace = [fileSystemSizeInBytes unsignedLongLongValue];
+#endif // kIsRelease
         totalFreeSpace = [freeFileSystemSizeInBytes unsignedLongLongValue];
+#if !kIsRelease // kIsRelease
         NSLog(@"Memory Capacity of %llu MiB with %llu MiB Free memory available.", ((totalSpace/1024ll)/1024ll), ((totalFreeSpace/1024ll)/1024ll));
+#endif // kIsRelease
     } else {
         NSError(@"Error Obtaining System Memory Info: Domain = %@, Code = %ld", [error domain], (long)[error code]);
     }

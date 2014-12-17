@@ -22,6 +22,7 @@
 
 #import "StopAllSoundsBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
+#import "GDataXMLNode+CustomExtensions.h"
 
 @implementation StopAllSoundsBrick (CBXMLHandler)
 
@@ -31,5 +32,11 @@
     return [self new];
 }
 
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
+{
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"StopAllSoundsBrick"]];
+    return brick;
+}
 
 @end

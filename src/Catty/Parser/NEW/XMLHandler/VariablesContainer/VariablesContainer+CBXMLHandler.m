@@ -25,7 +25,7 @@
 #import "VariablesContainer.h"
 #import "CBXMLValidator.h"
 #import "OrderedMapTable.h"
-#import "CBXMLParser.h"
+#import "CBXMLParserHelper.h"
 #import "SpriteObject+CBXMLHandler.h"
 #import "UserVariable+CBXMLHandler.h"
 #import "CBXMLContext.h"
@@ -56,7 +56,6 @@
         varContainer.programVariableList = [[self class] parseAndCreateProgramVariables:programVarListElement
                                                                             withContext:context];
     }
-    // TODO userBrickVariableList => what do you mean exactly?
     return varContainer;
 }
 
@@ -73,14 +72,14 @@
         SpriteObject *spriteObject = nil;
         
         // check if object contains a reference or is declared here!
-        if ([CBXMLParser isReferenceElement:objectElement]) {
+        if ([CBXMLParserHelper isReferenceElement:objectElement]) {
             GDataXMLNode *referenceAttribute = [objectElement attributeForName:@"reference"];
             NSString *xPath = [referenceAttribute stringValue];
             objectElement = [objectElement singleNodeForCatrobatXPath:xPath];
             [XMLError exceptionIfNil:objectElement message:@"Invalid reference in object. No or too many objects found!"];
             GDataXMLNode *nameAttribute = [objectElement attributeForName:@"name"];
             [XMLError exceptionIfNil:nameAttribute message:@"Object element does not contain a name attribute!"];
-            spriteObject = [CBXMLParser findSpriteObjectInArray:context.spriteObjectList
+            spriteObject = [CBXMLParserHelper findSpriteObjectInArray:context.spriteObjectList
                                                        withName:[nameAttribute stringValue]];
             [XMLError exceptionIfNil:spriteObject message:@"Fatal error: no sprite object found in list, but should already exist!"];
         } else {
@@ -96,7 +95,7 @@
         for (GDataXMLElement *userVarElement in [listElement children]) {
             [XMLError exceptionIfNode:userVarElement isNilOrNodeNameNotEquals:@"userVariable"];
             GDataXMLElement *userVariableElement = userVarElement;
-            if ([CBXMLParser isReferenceElement:userVarElement]) {
+            if ([CBXMLParserHelper isReferenceElement:userVarElement]) {
                 // OMG!! user variable has already been defined outside the variables list
                 GDataXMLNode *referenceAttribute = [userVarElement attributeForName:@"reference"];
                 NSString *xPath = [referenceAttribute stringValue];
@@ -106,7 +105,7 @@
             }
             UserVariable *compareUserVariable = [UserVariable parseFromElement:userVariableElement withContext:nil];
             [XMLError exceptionIfNil:compareUserVariable message:@"Unable to parse user variable..."];
-            UserVariable *alreadyExistingUserVariable = [CBXMLParser findUserVariableInArray:context.userVariableList
+            UserVariable *alreadyExistingUserVariable = [CBXMLParserHelper findUserVariableInArray:context.userVariableList
                                                                                     withName:compareUserVariable.name];
             UserVariable *userVariableToAdd = nil;
             if (alreadyExistingUserVariable) {
@@ -130,7 +129,7 @@
     for (GDataXMLElement *userVarElement in entries) {
         [XMLError exceptionIfNode:userVarElement isNilOrNodeNameNotEquals:@"userVariable"];
         GDataXMLElement *userVariableElement = userVarElement;
-        if ([CBXMLParser isReferenceElement:userVariableElement]) {
+        if ([CBXMLParserHelper isReferenceElement:userVariableElement]) {
             // OMG!! user variable has already been defined outside the variables list
             GDataXMLNode *referenceAttribute = [userVariableElement attributeForName:@"reference"];
             NSString *xPath = [referenceAttribute stringValue];
@@ -140,7 +139,7 @@
         }
         UserVariable *compareUserVariable = [UserVariable parseFromElement:userVariableElement withContext:nil];
         [XMLError exceptionIfNil:compareUserVariable message:@"Unable to parse user variable..."];
-        UserVariable *alreadyExistingUserVariable = [CBXMLParser findUserVariableInArray:context.userVariableList
+        UserVariable *alreadyExistingUserVariable = [CBXMLParserHelper findUserVariableInArray:context.userVariableList
                                                                                 withName:compareUserVariable.name];
         UserVariable *userVariableToAdd = nil;
         if (alreadyExistingUserVariable) {

@@ -39,4 +39,17 @@
     return pointInDirectionBrick;
 }
 
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
+{
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"PointInDirectionBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *formula = [self.degrees xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"DEGREES"]];
+    [formulaList addChild:formula];
+    [brick addChild:formulaList];
+    return brick;
+}
+
+
 @end

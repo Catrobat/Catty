@@ -58,6 +58,7 @@
 - (BOOL)hasObject:(SpriteObject*)object;
 - (SpriteObject*)copyObject:(SpriteObject*)sourceObject
     withNameForCopiedObject:(NSString*)nameOfCopiedObject;
+- (BOOL)isEqualToProgram:(Program*)program;
 
 + (instancetype)defaultProgramWithName:(NSString*)programName programID:(NSString*)programID;
 + (instancetype)lastUsedProgram;

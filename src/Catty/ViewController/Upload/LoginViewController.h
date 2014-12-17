@@ -20,8 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define kIsRelease 0
+#import <UIKit/UIKit.h>
+#import "Util.h"
 
-#if kIsRelease
-  #undef DEBUG
-#endif
+@interface LoginViewController : UIViewController <NSURLConnectionDataDelegate>
+
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
+@property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UILabel *emailLabel;
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+
+@end

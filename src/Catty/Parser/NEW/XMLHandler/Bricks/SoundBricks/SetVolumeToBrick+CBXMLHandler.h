@@ -21,8 +21,8 @@
  */
 
 #import "SetVolumeToBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface SetVolumeToBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface SetVolumeToBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

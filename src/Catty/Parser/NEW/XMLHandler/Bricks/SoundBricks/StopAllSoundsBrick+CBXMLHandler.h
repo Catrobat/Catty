@@ -21,8 +21,8 @@
  */
 
 #import "StopAllSoundsBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface StopAllSoundsBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface StopAllSoundsBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

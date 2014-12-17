@@ -40,12 +40,20 @@
 
     // pop opening nesting brick from stack
     Brick *openingNestingBrick = [context.openedNestingBricksStack popAndCloseTopMostNestingBrick];
-    if ((! [openingNestingBrick isKindOfClass:[LoopBeginBrick class]])
-        && (! [openingNestingBrick isKindOfClass:[RepeatBrick class]])) {
+    if ((! [openingNestingBrick isKindOfClass:[LoopBeginBrick class]])) {
         [XMLError exceptionWithMessage:@"Unexpected closing of nesting brick: expected LoopEndlessBrick but got %@", NSStringFromClass([openingNestingBrick class])];
     }
     loopEndBrick.loopBeginBrick = (LoopBeginBrick*)openingNestingBrick;
+    LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)openingNestingBrick;
+    loopBeginBrick.loopEndBrick = loopEndBrick;
     return loopEndBrick;
+}
+
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
+{
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"LoopEndBrick"]];
+    return brick;
 }
 
 @end

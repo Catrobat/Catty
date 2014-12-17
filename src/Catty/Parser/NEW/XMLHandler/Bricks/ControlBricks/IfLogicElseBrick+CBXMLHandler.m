@@ -50,4 +50,11 @@
     return ifLogicElseBrick;
 }
 
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
+{
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"IfLogicElseBrick"]];
+    return brick;
+}
+
 @end

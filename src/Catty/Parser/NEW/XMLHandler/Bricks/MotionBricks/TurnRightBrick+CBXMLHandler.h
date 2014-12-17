@@ -21,8 +21,8 @@
  */
 
 #import "TurnRightBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface TurnRightBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface TurnRightBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

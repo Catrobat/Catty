@@ -21,8 +21,8 @@
  */
 
 #import "IfOnEdgeBounceBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface IfOnEdgeBounceBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface IfOnEdgeBounceBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

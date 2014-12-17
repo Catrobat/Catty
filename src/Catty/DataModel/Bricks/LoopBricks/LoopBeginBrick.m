@@ -21,6 +21,8 @@
  */
 
 #import "LoopBeginBrick.h"
+#import "LoopEndBrick.h"
+#import "Util.h"
 
 @implementation LoopBeginBrick
 
@@ -33,6 +35,13 @@
 
 -(void)reset
 {
+}
+
+- (BOOL)isEqualToBrick:(Brick*)brick
+{
+    if(![Util isEqual:self.loopEndBrick.brickTitle toObject:((LoopBeginBrick*)brick).loopEndBrick.brickTitle ])
+        return NO;
+    return YES;
 }
 
 @end

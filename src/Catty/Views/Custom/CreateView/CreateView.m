@@ -65,6 +65,7 @@
     [self addDownloadButtonToView:view withTarget:target];
     [self addLoadingButtonToView:view withTarget:target];
     [self addPlayButtonToView:view withTarget:target];
+    [self addReportButtonToView:view withTarget:target];
     
     
     NSDate *projectDate = [NSDate dateWithTimeIntervalSince1970:[project.uploaded doubleValue]];
@@ -291,6 +292,19 @@
     
     
     [view addSubview:playButton];
+}
+
++ (void)addReportButtonToView:(UIView*)view withTarget:(id)target
+{
+    UIButton *reportButton = [[UIButton alloc] initWithFrame:CGRectMake(2*view.frame.size.width/3-10,view.frame.size.height*0.1+[Util screenHeight]/4.5f+10, 105, 25)];
+    reportButton.titleLabel.font = [UIFont boldSystemFontOfSize:8];
+    [reportButton.titleLabel setTintColor:[UIColor lightOrangeColor]];
+    [reportButton setTitle:@"Report as inappropriate" forState:UIControlStateNormal];
+    [reportButton addTarget:target action:@selector(reportProgram) forControlEvents:UIControlEventTouchUpInside];
+    [reportButton setTintColor:[UIColor lightOrangeColor]];
+    
+    
+    [view addSubview:reportButton];
 }
 
 + (void)addLoadingButtonToView:(UIView*)view withTarget:(id)target

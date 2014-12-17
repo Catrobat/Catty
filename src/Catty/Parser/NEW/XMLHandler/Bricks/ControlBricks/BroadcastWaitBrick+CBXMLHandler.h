@@ -21,8 +21,8 @@
  */
 
 #import "BroadcastWaitBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface BroadcastWaitBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface BroadcastWaitBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

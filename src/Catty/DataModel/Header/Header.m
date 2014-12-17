@@ -21,7 +21,6 @@
  */
 
 #import "Header.h"
-#import "GDataXMLNode+CustomExtensions.h"
 #import "Util.h"
 #import "CatrobatLanguageDefines.h"
 
@@ -55,54 +54,34 @@
     return header;
 }
 
-- (GDataXMLElement*)toXML
+- (BOOL)isEqualToHeader:(Header*)header
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-    [dateFormatter setDateFormat:kCatrobatHeaderDateTimeFormat];
-
-    GDataXMLElement *headerXMLElement = [GDataXMLNode elementWithName:@"header"];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationBuildName"
-                                         optionalStringValue:self.applicationBuildName]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationBuildNumber"
-                                         optionalStringValue:self.applicationBuildNumber]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationName"
-                                         optionalStringValue:self.applicationName]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationVersion"
-                                         optionalStringValue:self.applicationVersion]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"catrobatLanguageVersion"
-                                         optionalStringValue:self.catrobatLanguageVersion]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"dateTimeUpload"
-                                         optionalStringValue:(self.dateTimeUpload ? [dateFormatter stringFromDate:self.dateTimeUpload] : nil)]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"description"
-                                         optionalStringValue:self.programDescription]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"deviceName"
-                                         optionalStringValue:self.deviceName]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"mediaLicense"
-                                         optionalStringValue:self.mediaLicense]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"platform"
-                                         optionalStringValue:self.platform]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"platformVersion"
-                                         optionalStringValue:self.platformVersion]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"programLicense"
-                                         optionalStringValue:self.programLicense]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"programName"
-                                         optionalStringValue:self.programName]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"remixOf"
-                                         optionalStringValue:self.remixOf]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"screenHeight"
-                                         optionalStringValue:[self.screenHeight stringValue]]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"screenWidth"
-                                         optionalStringValue:[self.screenWidth stringValue]]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"screenMode"
-                                         optionalStringValue:self.screenMode]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"tags"
-                                         optionalStringValue:self.tags]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"url"
-                                         optionalStringValue:self.url]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"userHandle"
-                                         optionalStringValue:self.userHandle]];
-    return headerXMLElement;
+    if(![self.applicationName isEqualToString:header.applicationName])
+        return NO;
+    if(![self.programDescription isEqualToString:header.programDescription])
+        return NO;
+    if(![self.mediaLicense isEqualToString:header.mediaLicense])
+        return NO;
+    if(![self.programLicense isEqualToString:header.programLicense])
+        return NO;
+    if(![self.programName isEqualToString:header.programName])
+        return NO;
+    if(![self.remixOf isEqualToString:header.remixOf])
+        return NO;
+    if(![self.screenHeight isEqualToNumber:header.screenHeight])
+        return NO;
+    if(![self.screenWidth isEqualToNumber:header.screenWidth])
+        return NO;
+    if(![self.screenMode isEqualToString:header.screenMode])
+        return NO;
+    if(![self.tags isEqualToString:header.tags])
+        return NO;
+    if(![self.url isEqualToString:header.url])
+        return NO;
+    if(![self.userHandle isEqualToString:header.userHandle])
+        return NO;
+    
+    return YES;
 }
 
 @end

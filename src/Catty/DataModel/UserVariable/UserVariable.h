@@ -34,4 +34,6 @@
 - (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
 - (GDataXMLElement*)toXMLforProgram:(Program*)program;
 
+- (BOOL)isEqualToUserVariable:(UserVariable*)userVariable;
+
 @end

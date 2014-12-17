@@ -35,5 +35,6 @@
 - (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite;
 
 - (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
+- (BOOL)isEqualToFormula:(Formula*)formula;
 
 @end

@@ -21,8 +21,8 @@
  */
 
 #import "GoNStepsBackBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface GoNStepsBackBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface GoNStepsBackBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

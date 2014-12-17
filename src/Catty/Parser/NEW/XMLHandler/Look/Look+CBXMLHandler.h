@@ -21,10 +21,8 @@
  */
 
 #import "Look.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@class CBXMLContext;
-
-@interface Look (CBXMLHandler) <CBParserNodeProtocol>
+@interface Look (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

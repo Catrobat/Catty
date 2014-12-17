@@ -96,6 +96,7 @@
 #define kLocalizedEditMenu NSLocalizedString(@"Edit Mode", nil)
 #define kLocalizedAboutPocketCode NSLocalizedString(@"About Pocket Code", nil)
 #define kLocalizedTermsOfUse NSLocalizedString(@"Terms of Use", nil)
+#define kLocalizedForgotPassword NSLocalizedString(@"Forgot password", nil)
 #define kLocalizedRateUs NSLocalizedString(@"Rate Us", nil)
 #define kLocalizedVersionLabel NSLocalizedString(@"v", nil)
 #define kLocalizedBack NSLocalizedString(@"Back", nil)
@@ -211,6 +212,9 @@
 #define kLocalizedSound NSLocalizedString(@"Sound", nil)
 #define kLocalizedLooks NSLocalizedString(@"Looks", nil)
 #define kLocalizedVariables NSLocalizedString(@"Variables", nil)
+#define kLocalizedLogin NSLocalizedString(@"Login", nil)
+#define kLocalizedUsername NSLocalizedString(@"Username", nil);
+#define kLocalizedPassword NSLocalizedString(@"Password", nil);
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -261,8 +265,7 @@
 //*******************************       BRICK TITLE TRANSLATIONS      ****************************************
 //************************************************************************************************************
 
-#import "AppDefines.h" // needed for kIsRelease-constant <= TODO: remove this line later
-#if kIsRelease // kIsRelease
+#if kIsRelease // kIsRelease <= TODO: remove this line later
 //------------------------------------------------------------------------------------------------------------
 // TODO: in our first release we do not use translated strings in the script-editor because the translated
 //       strings can vary in their length compared to the english version. This would lead to graphical issues
@@ -273,6 +276,7 @@
 #define kLocalizedWhenProgramStarted @"When program started"
 #define kLocalizedWhenTapped @"When tapped"
 #define kLocalizedWaitNSeconds @"Wait %@ second(s)"
+#define kLocalizedVibrateNSeconds @"Vibrate %@ second(s)"
 #define kLocalizedWhenIReceive @"When I receive\n%@"
 #define kLocalizedBroadcast @"Broadcast\n%@"
 #define kLocalizedBroadcastAndWait @"Broadcast and wait\n%@"
@@ -309,6 +313,8 @@
 #define kLocalizedChangeSizeByN @"Change size by %@\%"
 #define kLocalizedHide @"Hide"
 #define kLocalizedShow @"Show"
+#define kLocalizedLedOn @"Flashlight on"
+#define kLocalizedLedOff @"Flashlight off"
 #define kLocalizedSetGhostEffect @"Set transparency\nto %@\%"
 #define kLocalizedChangeGhostEffectByN @"Change transparency\nby %@\%"
 #define kLocalizedSetBrightness @"Set brightness to %@\%"

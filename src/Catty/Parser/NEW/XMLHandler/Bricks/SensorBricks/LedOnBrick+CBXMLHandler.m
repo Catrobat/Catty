@@ -22,6 +22,7 @@
 
 #import "LedOnBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
+#import "GDataXMLNode+CustomExtensions.h"
 
 @implementation LedOnBrick (CBXMLHandler)
 
@@ -29,6 +30,13 @@
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
     return [self new]; // nothing else to do!
+}
+
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
+{
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"LedOnBrick"]];
+    return brick;
 }
 
 @end

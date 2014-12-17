@@ -21,8 +21,8 @@
  */
 
 #import "PointInDirectionBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface PointInDirectionBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface PointInDirectionBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

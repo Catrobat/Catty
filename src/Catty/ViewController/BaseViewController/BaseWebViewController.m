@@ -307,7 +307,8 @@
         return NO;
     }
     NSString *programID = [urlParts firstObject];
-    NSString *compareProgramIDString = [NSString stringWithFormat:@"%lu", [programID integerValue]];
+    NSString *compareProgramIDString = [NSString stringWithFormat:@"%lu",
+                                        (unsigned long)[programID integerValue]];
     if (! programID || ! [programID integerValue] || ! [programID isEqualToString:compareProgramIDString]) {
         [Util alertWithText:kLocalizedInvalidURLGiven];
         return NO;

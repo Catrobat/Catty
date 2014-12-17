@@ -57,6 +57,19 @@
   return trimmed;
 }
 
+- (NSString*)XMLRootElementAsString
+{
+    NSString *attributesStr = [[NSString alloc] init];
+    if([self isKindOfClass:[GDataXMLElement class]]) {
+        GDataXMLElement *element = (GDataXMLElement*)self;
+        NSArray *attributesArr = [element attributes];
+        for(GDataXMLNode *attribute in attributesArr) {
+            attributesStr = [NSString stringWithFormat:@"%@ %@", attributesStr, [attribute XMLString]];
+        }
+    }
+    return [NSString stringWithFormat:@"<%@%@>", [self name], attributesStr];
+}
+
 - (GDataXMLElement*)childWithElementName:(NSString*)elementName
 {
     NSArray *childElements = [self children];

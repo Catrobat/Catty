@@ -130,4 +130,6 @@
 - (Look*)copyLook:(Look*)sourceLook withNameForCopiedLook:(NSString*)nameOfCopiedLook;
 - (Sound*)copySound:(Sound*)sourceSound withNameForCopiedSound:(NSString*)nameOfCopiedSound;
 
+- (BOOL)isEqualToSpriteObject:(SpriteObject*)spriteObject;
+
 @end

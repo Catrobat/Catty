@@ -23,7 +23,24 @@
 #import "CBXMLParserHelper.h"
 #import "CBXMLValidator.h"
 #import "GDataXMLNode+CustomExtensions.h"
+#import "CBXMLContext.h"
 #import "Formula+CBXMLHandler.h"
+#import "Header+CBXMLHandler.h"
+#import "Look+CBXMLHandler.h"
+#import "Sound+CBXMLHandler.h"
+#import "UserVariable+CBXMLHandler.h"
+#import "SpriteObject+CBXMLHandler.h"
+#import "CatrobatLanguageDefines.h"
+#import <objc/runtime.h>
+
+#define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
+#define kCatroidXMLSpriteList           @"spriteList"
+#define kParserObjectTypeString         @"T@\"NSString\""
+#define kParserObjectTypeNumber         @"T@\"NSNumber\""
+#define kParserObjectTypeArray          @"T@\"NSArray\""
+#define kParserObjectTypeMutableArray   @"T@\"NSMutableArray\""
+#define kParserObjectTypeMutableDictionary @"T@\"NSMutableDictionary\""
+#define kParserObjectTypeDate           @"T@\"NSDate\""
 
 @implementation CBXMLParserHelper
 
@@ -31,7 +48,8 @@
 {
     [XMLError exceptionIf:[xmlElement childCount]
                 notEquals:numberOfChildNodes
-                  message:@"Too less or too many child nodes found... (%lu expected)", numberOfChildNodes];
+                  message:@"Too less or too many child nodes found... (%lu expected)",
+                          (unsigned long)numberOfChildNodes];
     return true;
 }
 
@@ -57,6 +75,94 @@
     Formula *formula = [Formula parseFromElement:formulaElement withContext:nil];
     [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
     return formula;
+}
+
++ (const char*)typeStringForProperty:(objc_property_t)property
+{
+    const char *attrs = property_getAttributes(property);
+    if (attrs == NULL) { return NULL; }
+    
+    static char buffer[256];
+    const char *e = strchr(attrs, ',');
+    if (e == NULL) { return NULL; }
+    
+    int len = (int)(e - attrs);
+    memcpy(buffer, attrs, len);
+    buffer[len] = '\0';
+    return buffer;
+}
+
++ (id)valueForHeaderPropertyNode:(GDataXMLNode*)propertyNode
+{
+    objc_property_t property = class_getProperty([Header class], [propertyNode.name UTF8String]);
+    [XMLError exceptionIfNull:property message:@"Invalid header property %@ given", propertyNode.name];
+    NSString *propertyType = [NSString stringWithUTF8String:[[self class] typeStringForProperty:property]];
+    id value = nil;
+    if ([propertyType isEqualToString:kParserObjectTypeString]) {
+        value = [propertyNode stringValue];
+    } else if ([propertyType isEqualToString:kParserObjectTypeNumber]) {
+        value = [NSNumber numberWithFloat:[[propertyNode stringValue]floatValue]];
+    } else if ([propertyType isEqualToString:kParserObjectTypeDate]) {
+        NSDateFormatter *dateFormatter = [NSDateFormatter new];
+        [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+        [dateFormatter setDateFormat:kCatrobatHeaderDateTimeFormat];
+        value = [dateFormatter dateFromString:propertyNode.stringValue];
+    } else {
+        [XMLError exceptionWithMessage:@"Unsupported type for property %@ (of type: %@) in header", propertyNode.name, propertyType];
+    }
+    return value;
+}
+
++ (id)valueForPropertyNode:(GDataXMLNode*)propertyNode
+{
+    // TODO: stub method => implement this!!
+    [XMLError exceptionWithMessage:@"valueForPropertyNode: NOT IMPLEMENTED YET!!!"];
+    return nil;
+}
+
++ (BOOL)isReferenceElement:(GDataXMLElement*)xmlElement
+{
+    return ([xmlElement attributeForName:@"reference"] ? YES : NO);
+}
+
++ (SpriteObject*)findSpriteObjectInArray:(NSArray*)spriteObjectList withName:(NSString*)spriteObjectName
+{
+    for (SpriteObject *spriteObject in spriteObjectList) {
+        if ([spriteObject.name isEqualToString:spriteObjectName]) { // TODO: implement isEqual in SpriteObject class
+            return spriteObject;
+        }
+    }
+    return nil;
+}
+
++ (Look*)findLookInArray:(NSArray*)lookList withName:(NSString*)lookName
+{
+    for (Look *look in lookList) {
+        if ([look.name isEqualToString:lookName]) { // TODO: implement isEqual in SpriteObject class
+            return look;
+        }
+    }
+    return nil;
+}
+
++ (Sound*)findSoundInArray:(NSArray*)soundList withName:(NSString*)soundName
+{
+    for (Sound *sound in soundList) {
+        if ([sound.name isEqualToString:soundName]) { // TODO: implement isEqual in SpriteObject class
+            return sound;
+        }
+    }
+    return nil;
+}
+
++ (UserVariable*)findUserVariableInArray:(NSArray*)userVariableList withName:(NSString*)userVariableName
+{
+    for (UserVariable *userVariable in userVariableList) {
+        if ([userVariable.name isEqualToString:userVariableName]) { // TODO: implement isEqual in UserVariable class
+            return userVariable;
+        }
+    }
+    return nil;
 }
 
 @end

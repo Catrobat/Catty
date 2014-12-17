@@ -36,5 +36,6 @@
 - (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
 - (instancetype)deepCopy;
 - (NSString*)description;
+- (BOOL)isEqualToLook:(Look*)look;
 
 @end

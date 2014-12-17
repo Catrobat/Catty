@@ -22,7 +22,6 @@
 
 #import "Look+CBXMLHandler.h"
 #import "GDataXMLNode.h"
-#import "Look.h"
 #import "CBXMLValidator.h"
 
 @implementation Look (CBXMLHandler)

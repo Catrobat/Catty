@@ -21,8 +21,8 @@
  */
 
 #import "RepeatBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface RepeatBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface RepeatBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

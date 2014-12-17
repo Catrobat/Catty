@@ -88,6 +88,15 @@
                                          tag:(NSInteger)tag
                                         view:(UIView*)view;
 
++ (void)askUserForReportMessageAndPerformAction:(SEL)action
+                                         target:(id)target
+                                    promptTitle:(NSString*)title
+                                  promptMessage:(NSString*)message
+                                 minInputLength:(NSUInteger)minInputLength
+                                 maxInputLength:(NSUInteger)maxInputLength
+                            blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
+                       invalidInputAlertMessage:(NSString*)invalidInputAlertMessage;
+
 + (UIButton*)slideViewButtonWithTitle:(NSString*)title backgroundColor:(UIColor*)backgroundColor;
 
 + (UIButton*)slideViewButtonMore;
@@ -179,5 +188,9 @@
 + (double)radiansToDegree:(double)rad;
 
 + (double)degreeToRadians:(double)deg;
+
++ (NSArray*)propertiesOfInstance:(id)instance;
+
++ (BOOL)isEqual:(id)object toObject:(id)objectToCompare;
 
 @end

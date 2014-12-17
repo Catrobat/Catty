@@ -31,18 +31,21 @@
 
 - (void)testValidHeader {
     
-    Header *header = [Header parseFromElement:[[self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]] rootElement] withContext:nil];
+    GDataXMLDocument* xmlRoot = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]];
+
+    Header *header = [Header parseFromElement:[[xmlRoot.rootElement elementsForName:@"header"] objectAtIndex:0]
+                                  withContext:nil];
     XCTAssertNotNil(header, @"Header is nil");
-    
+
     XCTAssertTrue([header.applicationBuildName isEqualToString: @"applicationBuildName"], @"applicationBuildName not correctly parsed");
     XCTAssertTrue([header.applicationBuildNumber isEqualToString: @"123"], @"applicationBuildNumber not correctly parsed");
     XCTAssertTrue([header.applicationVersion isEqualToString: @"v0.9.8-260-g4bcf9a2 master"], @"applicationVersion not correctly parsed");
     XCTAssertTrue([header.catrobatLanguageVersion isEqualToString: @"0.93"], @"catrobatLanguageVersion not correctly parsed");
-    
+
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:kCatrobatHeaderDateTimeFormat];
     XCTAssertTrue([[formatter stringFromDate:header.dateTimeUpload] isEqualToString: @"2014-11-0211:00:00"], @"dateTimeUpload not correctly parsed");
-    
+
     XCTAssertTrue([header.programDescription isEqualToString: @"description"], @"description not correctly parsed");
     XCTAssertTrue([header.deviceName isEqualToString: @"Android SDK built for x86"], @"deviceName not correctly parsed");
     XCTAssertTrue([header.mediaLicense isEqualToString: @"mediaLicense"], @"mediaLicense not correctly parsed");

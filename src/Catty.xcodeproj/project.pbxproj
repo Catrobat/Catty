@@ -337,6 +337,10 @@
 		92FF33901A24E5F800093DA7 /* ProjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF33501A24E5F800093DA7 /* ProjectParser.m */; };
 		92FF33911A24E5F800093DA7 /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF33521A24E5F800093DA7 /* TestParser.m */; };
 		92FF33921A24E5F800093DA7 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF33541A24E5F800093DA7 /* XMLObjectReference.m */; };
+		CA184E621A3A4A9400D32D9F /* Program+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA184E611A3A4A9400D32D9F /* Program+CBXMLHandler.m */; };
+		CA2C805F1A35040900982897 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2C805C1A35040900982897 /* LoginPopupViewController.m */; };
+		CA2C80601A35040900982897 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2C805D1A35040900982897 /* LoginViewController.m */; };
+		CA2C80611A35040900982897 /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2C805E1A35040900982897 /* UploadViewController.m */; };
 		CA538EA519B0EA09008240AB /* ChangeGhostEffectByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */; };
 		CA538EA619B0EA09008240AB /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
 		CA538EA719B0EA09008240AB /* HideBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3F185625E700547C1E /* HideBrickTests.m */; };
@@ -373,6 +377,12 @@
 		CA538EC819B0EA09008240AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B46B270617703F9400172837 /* InfoPlist.strings */; };
 		CA538EC919B0EA09008240AB /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = 92345632192E270B00464E6B /* test2.png */; };
 		CA538ECA19B0EA09008240AB /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 923453C1192D2D5F00464E6B /* test.png */; };
+		CA6067EB1A3500450037A13A /* Look+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6067EA1A3500450037A13A /* Look+CBXMLLogger.m */; };
+		CA6067F11A3500670037A13A /* CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6067EC1A3500670037A13A /* CBXMLLogger.m */; };
+		CA6067F21A3500670037A13A /* Header+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6067ED1A3500670037A13A /* Header+CBXMLLogger.m */; };
+		CA6067F31A3500670037A13A /* Script+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6067EE1A3500670037A13A /* Script+CBXMLLogger.m */; };
+		CA6067F41A3500670037A13A /* Sound+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6067EF1A3500670037A13A /* Sound+CBXMLLogger.m */; };
+		CA6067F51A3500670037A13A /* SpriteObject+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6067F01A3500670037A13A /* SpriteObject+CBXMLLogger.m */; };
 		CA775CBF19FD5BCB00C1E761 /* My First Program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CA6E4C4719F9C388001B65C3 /* My First Program.catrobat */; };
 		CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3A198F685D00455B77 /* SSZipArchive.license */; };
 		CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */; };
@@ -417,6 +427,16 @@
 		CADBD7F519B0E8C200C62836 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */; };
 		CADBD7F619B0E8C200C62836 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */; };
 		CADBD7F719B0E8C200C62836 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F097711B7BABD009D4DB0 /* OpenAL.framework */; };
+		CAEE0A281A328EC2007CB248 /* XMLSerializerAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE0A271A328EC2007CB248 /* XMLSerializerAbstractTest.m */; };
+		CAEE0A2A1A328EE9007CB248 /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE0A291A328EE9007CB248 /* XMLSerializerTests.m */; };
+		CAEE0A2D1A328EFF007CB248 /* XMLAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE0A2C1A328EFF007CB248 /* XMLAbstractTest.m */; };
+		CAEE0A2F1A328F37007CB248 /* XMLParserBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE0A2E1A328F37007CB248 /* XMLParserBlackBoxTests.m */; };
+		CAEE0A361A329074007CB248 /* Skydiving-Steve-092.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAEE0A341A329074007CB248 /* Skydiving-Steve-092.xml */; };
+		CAEE0A371A329074007CB248 /* Skydiving-Steve-093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAEE0A351A329074007CB248 /* Skydiving-Steve-093.xml */; };
+		CAEE0A3A1A329080007CB248 /* Pythagorean-Theorem-092.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAEE0A381A329080007CB248 /* Pythagorean-Theorem-092.xml */; };
+		CAEE0A3B1A329080007CB248 /* Pythagorean-Theorem-093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAEE0A391A329080007CB248 /* Pythagorean-Theorem-093.xml */; };
+		CAEE0A3E1A329090007CB248 /* Galaxy-War-092.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAEE0A3C1A329090007CB248 /* Galaxy-War-092.xml */; };
+		CAEE0A3F1A329090007CB248 /* Galaxy-War-093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAEE0A3D1A329090007CB248 /* Galaxy-War-093.xml */; };
 		CAFAEAE61A13BE1F00C9F170 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */; };
 /* End PBXBuildFile section */
 
@@ -528,7 +548,6 @@
 		92C37A55185627A300547C1E /* ClearGrafficEffectBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearGrafficEffectBrickTests.m; sourceTree = "<group>"; };
 		92E3351D18FBB6750056C390 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		92FF2DFE1A24C3BE00093DA7 /* ActionSheetAlertViewTags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetAlertViewTags.h; sourceTree = "<group>"; };
-		92FF2DFF1A24C3BE00093DA7 /* AppDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDefines.h; sourceTree = "<group>"; };
 		92FF2E001A24C3BE00093DA7 /* ButtonTags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonTags.h; sourceTree = "<group>"; };
 		92FF2E011A24C3BE00093DA7 /* CatrobatLanguageDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatLanguageDefines.h; sourceTree = "<group>"; };
 		92FF2E021A24C3BE00093DA7 /* CellTagDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellTagDefines.h; sourceTree = "<group>"; };
@@ -571,8 +590,6 @@
 		92FF2E451A24C5F300093DA7 /* SpriteManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteManagerDelegate.h; sourceTree = "<group>"; };
 		92FF2E471A24C64300093DA7 /* BrickCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellProtocol.h; sourceTree = "<group>"; };
 		92FF2E481A24C64300093DA7 /* BrickProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickProtocol.h; sourceTree = "<group>"; };
-		92FF2E4A1A24C64300093DA7 /* CBParserNodeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBParserNodeProtocol.h; sourceTree = "<group>"; };
-		92FF2E4B1A24C64300093DA7 /* CBParserProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBParserProtocol.h; sourceTree = "<group>"; };
 		92FF2E4E1A24C7D800093DA7 /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
 		92FF2E4F1A24C7D800093DA7 /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
 		92FF2E501A24C7D800093DA7 /* CatrobatAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatAudioPlayer.h; sourceTree = "<group>"; };
@@ -1040,8 +1057,8 @@
 		92FF32D41A24E5F800093DA7 /* BroadcastBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BroadcastBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		92FF32D51A24E5F800093DA7 /* BroadcastWaitBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BroadcastWaitBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		92FF32D61A24E5F800093DA7 /* BroadcastWaitBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BroadcastWaitBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		92FF32D71A24E5F800093DA7 /* ComeToFrontBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ComeToFrontBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
-		92FF32D81A24E5F800093DA7 /* ComeToFrontBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ComeToFrontBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		92FF32D71A24E5F800093DA7 /* ComeToFrontBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ComeToFrontBrick+CBXMLHandler.h"; path = "../ControlBricks/ComeToFrontBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		92FF32D81A24E5F800093DA7 /* ComeToFrontBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ComeToFrontBrick+CBXMLHandler.m"; path = "../ControlBricks/ComeToFrontBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		92FF32D91A24E5F800093DA7 /* ForeverBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ForeverBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		92FF32DA1A24E5F800093DA7 /* ForeverBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ForeverBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		92FF32DB1A24E5F800093DA7 /* IfLogicBeginBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IfLogicBeginBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
@@ -1050,14 +1067,14 @@
 		92FF32DE1A24E5F800093DA7 /* IfLogicElseBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IfLogicElseBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		92FF32DF1A24E5F800093DA7 /* IfLogicEndBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IfLogicEndBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		92FF32E01A24E5F800093DA7 /* IfLogicEndBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IfLogicEndBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		92FF32E11A24E5F800093DA7 /* IfOnEdgeBounceBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IfOnEdgeBounceBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
-		92FF32E21A24E5F800093DA7 /* IfOnEdgeBounceBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IfOnEdgeBounceBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		92FF32E11A24E5F800093DA7 /* IfOnEdgeBounceBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IfOnEdgeBounceBrick+CBXMLHandler.h"; path = "../ControlBricks/IfOnEdgeBounceBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		92FF32E21A24E5F800093DA7 /* IfOnEdgeBounceBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IfOnEdgeBounceBrick+CBXMLHandler.m"; path = "../ControlBricks/IfOnEdgeBounceBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		92FF32E31A24E5F800093DA7 /* LoopEndBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LoopEndBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		92FF32E41A24E5F800093DA7 /* LoopEndBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LoopEndBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		92FF32E51A24E5F800093DA7 /* NoteBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NoteBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		92FF32E61A24E5F800093DA7 /* NoteBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NoteBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		92FF32E71A24E5F800093DA7 /* PlaceAtBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PlaceAtBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
-		92FF32E81A24E5F800093DA7 /* PlaceAtBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PlaceAtBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		92FF32E71A24E5F800093DA7 /* PlaceAtBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PlaceAtBrick+CBXMLHandler.h"; path = "../ControlBricks/PlaceAtBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		92FF32E81A24E5F800093DA7 /* PlaceAtBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PlaceAtBrick+CBXMLHandler.m"; path = "../ControlBricks/PlaceAtBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		92FF32E91A24E5F800093DA7 /* RepeatBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RepeatBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		92FF32EA1A24E5F800093DA7 /* RepeatBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RepeatBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		92FF32EB1A24E5F800093DA7 /* WaitBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WaitBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
@@ -1082,8 +1099,8 @@
 		92FF32FF1A24E5F800093DA7 /* SetLookBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetLookBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		92FF33001A24E5F800093DA7 /* ShowBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ShowBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		92FF33011A24E5F800093DA7 /* ShowBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShowBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		92FF33031A24E5F800093DA7 /* ChangeSizeByNBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChangeSizeByNBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
-		92FF33041A24E5F800093DA7 /* ChangeSizeByNBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChangeSizeByNBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		92FF33031A24E5F800093DA7 /* ChangeSizeByNBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ChangeSizeByNBrick+CBXMLHandler.h"; path = "MotionBricks/ChangeSizeByNBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		92FF33041A24E5F800093DA7 /* ChangeSizeByNBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ChangeSizeByNBrick+CBXMLHandler.m"; path = "MotionBricks/ChangeSizeByNBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		92FF33051A24E5F800093DA7 /* ChangeXByNBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChangeXByNBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		92FF33061A24E5F800093DA7 /* ChangeXByNBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChangeXByNBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		92FF33071A24E5F800093DA7 /* ChangeYByNBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChangeYByNBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
@@ -1096,8 +1113,8 @@
 		92FF330E1A24E5F800093DA7 /* PointInDirectionBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PointInDirectionBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		92FF330F1A24E5F800093DA7 /* PointToBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PointToBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		92FF33101A24E5F800093DA7 /* PointToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PointToBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		92FF33111A24E5F800093DA7 /* SetSizeToBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetSizeToBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
-		92FF33121A24E5F800093DA7 /* SetSizeToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetSizeToBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		92FF33111A24E5F800093DA7 /* SetSizeToBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SetSizeToBrick+CBXMLHandler.h"; path = "MotionBricks/SetSizeToBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		92FF33121A24E5F800093DA7 /* SetSizeToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SetSizeToBrick+CBXMLHandler.m"; path = "MotionBricks/SetSizeToBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		92FF33131A24E5F800093DA7 /* SetXBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetXBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		92FF33141A24E5F800093DA7 /* SetXBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetXBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		92FF33151A24E5F800093DA7 /* SetYBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetYBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
@@ -1172,15 +1189,46 @@
 		C34B44EC17F079F500624730 /* CustomExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomExtensionsTests.m; sourceTree = "<group>"; };
 		C3BF754B18117F6000134B77 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		CA05A19D18286CDA0025421A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		CA184E601A3A4A9400D32D9F /* Program+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Program+CBXMLHandler.h"; path = "Program/Program+CBXMLHandler.h"; sourceTree = "<group>"; };
+		CA184E611A3A4A9400D32D9F /* Program+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Program+CBXMLHandler.m"; path = "Program/Program+CBXMLHandler.m"; sourceTree = "<group>"; };
+		CA2C80591A35040900982897 /* LoginPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginPopupViewController.h; sourceTree = "<group>"; };
+		CA2C805A1A35040900982897 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		CA2C805B1A35040900982897 /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
+		CA2C805C1A35040900982897 /* LoginPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginPopupViewController.m; sourceTree = "<group>"; };
+		CA2C805D1A35040900982897 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		CA2C805E1A35040900982897 /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
 		CA52403718AD786200052914 /* ProgramTableViewControllerExistingProgramsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerExistingProgramsTests.h; sourceTree = "<group>"; };
 		CA538ECE19B0EA09008240AB /* CattyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA6067E91A3500450037A13A /* CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLLogger.h; sourceTree = "<group>"; };
+		CA6067EA1A3500450037A13A /* Look+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Look+CBXMLLogger.m"; sourceTree = "<group>"; };
+		CA6067EC1A3500670037A13A /* CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLLogger.m; sourceTree = "<group>"; };
+		CA6067ED1A3500670037A13A /* Header+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Header+CBXMLLogger.m"; sourceTree = "<group>"; };
+		CA6067EE1A3500670037A13A /* Script+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Script+CBXMLLogger.m"; sourceTree = "<group>"; };
+		CA6067EF1A3500670037A13A /* Sound+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Sound+CBXMLLogger.m"; sourceTree = "<group>"; };
+		CA6067F01A3500670037A13A /* SpriteObject+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SpriteObject+CBXMLLogger.m"; sourceTree = "<group>"; };
 		CA6E4C4719F9C388001B65C3 /* My First Program.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My First Program.catrobat"; sourceTree = "<group>"; };
 		CA8C247718CD053300314C2B /* ProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTests.m; sourceTree = "<group>"; };
 		CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerNewProgramTests.m; sourceTree = "<group>"; };
 		CA8C247C18CD12C100314C2B /* ProgramTableViewControllerNewProgramTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerNewProgramTests.h; sourceTree = "<group>"; };
 		CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CADBD7FB19B0E8C200C62836 /* Pocket Code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Code.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAEE0A261A328EC2007CB248 /* XMLSerializerAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLSerializerAbstractTest.h; sourceTree = "<group>"; };
+		CAEE0A271A328EC2007CB248 /* XMLSerializerAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerAbstractTest.m; sourceTree = "<group>"; };
+		CAEE0A291A328EE9007CB248 /* XMLSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerTests.m; sourceTree = "<group>"; };
+		CAEE0A2B1A328EFF007CB248 /* XMLAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLAbstractTest.h; sourceTree = "<group>"; };
+		CAEE0A2C1A328EFF007CB248 /* XMLAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLAbstractTest.m; sourceTree = "<group>"; };
+		CAEE0A2E1A328F37007CB248 /* XMLParserBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests.m; sourceTree = "<group>"; };
+		CAEE0A341A329074007CB248 /* Skydiving-Steve-092.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Skydiving-Steve-092.xml"; path = "Resources/Test Resources/Skydiving Steve/Skydiving-Steve-092.xml"; sourceTree = "<group>"; };
+		CAEE0A351A329074007CB248 /* Skydiving-Steve-093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Skydiving-Steve-093.xml"; path = "Resources/Test Resources/Skydiving Steve/Skydiving-Steve-093.xml"; sourceTree = "<group>"; };
+		CAEE0A381A329080007CB248 /* Pythagorean-Theorem-092.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Pythagorean-Theorem-092.xml"; path = "Resources/Test Resources/Pythagorean Theorem/Pythagorean-Theorem-092.xml"; sourceTree = "<group>"; };
+		CAEE0A391A329080007CB248 /* Pythagorean-Theorem-093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Pythagorean-Theorem-093.xml"; path = "Resources/Test Resources/Pythagorean Theorem/Pythagorean-Theorem-093.xml"; sourceTree = "<group>"; };
+		CAEE0A3C1A329090007CB248 /* Galaxy-War-092.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Galaxy-War-092.xml"; path = "Resources/Test Resources/Galaxy War/Galaxy-War-092.xml"; sourceTree = "<group>"; };
+		CAEE0A3D1A329090007CB248 /* Galaxy-War-093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Galaxy-War-093.xml"; path = "Resources/Test Resources/Galaxy War/Galaxy-War-093.xml"; sourceTree = "<group>"; };
+		CAEE0A431A329512007CB248 /* CBParserNodeProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CBParserNodeProtocol.h; path = "Parser&Serializer/CBParserNodeProtocol.h"; sourceTree = "<group>"; };
+		CAEE0A441A329512007CB248 /* CBParserProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CBParserProtocol.h; path = "Parser&Serializer/CBParserProtocol.h"; sourceTree = "<group>"; };
+		CAEE0A451A329512007CB248 /* CBSerializerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CBSerializerProtocol.h; path = "Parser&Serializer/CBSerializerProtocol.h"; sourceTree = "<group>"; };
+		CAEE0A461A329512007CB248 /* CBXMLNodeProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CBXMLNodeProtocol.h; path = "Parser&Serializer/CBXMLNodeProtocol.h"; sourceTree = "<group>"; };
 		DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DE3F097711B7BABD009D4DB0 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -1310,6 +1358,10 @@
 		4C1608A41A09548F002C7032 /* ParserTests */ = {
 			isa = PBXGroup;
 			children = (
+				CAEE0A301A32901B007CB248 /* Tic Tac Toe */,
+				CAEE0A311A329023007CB248 /* Skydiving Steve */,
+				CAEE0A321A329033007CB248 /* Galaxy War */,
+				CAEE0A331A32903F007CB248 /* Pythagorean Theorem */,
 				4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */,
 				4C1608B01A09621A002C7032 /* ValidFormulaList.xml */,
 				4C1608B11A09621A002C7032 /* ValidProgram.xml */,
@@ -1361,23 +1413,15 @@
 			path = Resources/Licenses;
 			sourceTree = "<group>";
 		};
-		4CD194F21A0631B200484E4F /* ParserTests */ = {
-			isa = PBXGroup;
-			children = (
-				4CD194F51A0632AA00484E4F /* XMLParserTests */,
-			);
-			name = ParserTests;
-			sourceTree = "<group>";
-		};
-		4CD194F51A0632AA00484E4F /* XMLParserTests */ = {
+		4CD194F21A0631B200484E4F /* Parser & Serializer */ = {
 			isa = PBXGroup;
 			children = (
 				4CD194F61A0632C600484E4F /* CatrobatLanguage0.93 */,
 			);
-			name = XMLParserTests;
+			name = "Parser & Serializer";
 			sourceTree = "<group>";
 		};
-		4CD194F61A0632C600484E4F /* CatrobatLanguage0.93 */ = {
+		4CD194F51A0632AA00484E4F /* XMLParserTests */ = {
 			isa = PBXGroup;
 			children = (
 				4C3275E51A135BE40091C428 /* Abstract */,
@@ -1385,6 +1429,17 @@
 				4C3275F31A135F3D0091C428 /* XMLParserHeaderTests.m */,
 				4C3275F51A135F990091C428 /* XMLParserFormulaTests.m */,
 				4C3275F71A135FD00091C428 /* XMLParserObjectTests.m */,
+				CAEE0A2E1A328F37007CB248 /* XMLParserBlackBoxTests.m */,
+			);
+			name = XMLParserTests;
+			sourceTree = "<group>";
+		};
+		4CD194F61A0632C600484E4F /* CatrobatLanguage0.93 */ = {
+			isa = PBXGroup;
+			children = (
+				CAEE0A231A328CDF007CB248 /* XMLSerializerTests */,
+				CAEE0A241A328CEA007CB248 /* Abstract */,
+				4CD194F51A0632AA00484E4F /* XMLParserTests */,
 			);
 			name = CatrobatLanguage0.93;
 			sourceTree = "<group>";
@@ -1402,7 +1457,6 @@
 			isa = PBXGroup;
 			children = (
 				92FF2DFE1A24C3BE00093DA7 /* ActionSheetAlertViewTags.h */,
-				92FF2DFF1A24C3BE00093DA7 /* AppDefines.h */,
 				92FF2E001A24C3BE00093DA7 /* ButtonTags.h */,
 				92FF2E011A24C3BE00093DA7 /* CatrobatLanguageDefines.h */,
 				92FF2E021A24C3BE00093DA7 /* CellTagDefines.h */,
@@ -1420,7 +1474,7 @@
 			children = (
 				92FF2E091A24C5A700093DA7 /* Brick+UnitTestingExtensions */,
 				92FF2E0B1A24C5A700093DA7 /* CAgradient+Extension */,
-				92FF2E0E1A24C5A700093DA7 /* GDataXMLNode */,
+				92FF2E0E1A24C5A700093DA7 /* GDataXMLNode+CustomExtensions */,
 				92FF2E111A24C5A700093DA7 /* NSData+Hashes */,
 				92FF2E141A24C5A700093DA7 /* NSDate+Extension */,
 				92FF2E171A24C5A700093DA7 /* NSMutableArray+CustomExtension */,
@@ -1454,12 +1508,13 @@
 			path = "CAgradient+Extension";
 			sourceTree = "<group>";
 		};
-		92FF2E0E1A24C5A700093DA7 /* GDataXMLNode */ = {
+		92FF2E0E1A24C5A700093DA7 /* GDataXMLNode+CustomExtensions */ = {
 			isa = PBXGroup;
 			children = (
 				92FF2E0F1A24C5A700093DA7 /* GDataXMLNode+CustomExtensions.h */,
 				92FF2E101A24C5A700093DA7 /* GDataXMLNode+CustomExtensions.m */,
 			);
+			name = "GDataXMLNode+CustomExtensions";
 			path = GDataXMLNode;
 			sourceTree = "<group>";
 		};
@@ -1580,19 +1635,10 @@
 			children = (
 				92FF2E471A24C64300093DA7 /* BrickCellProtocol.h */,
 				92FF2E481A24C64300093DA7 /* BrickProtocol.h */,
-				92FF2E491A24C64300093DA7 /* Parser */,
+				CAEE0A421A3294FF007CB248 /* Parser & Serializer */,
 			);
 			name = Protocols;
 			path = "Extension&Delegate&Protocol/Protocols";
-			sourceTree = "<group>";
-		};
-		92FF2E491A24C64300093DA7 /* Parser */ = {
-			isa = PBXGroup;
-			children = (
-				92FF2E4A1A24C64300093DA7 /* CBParserNodeProtocol.h */,
-				92FF2E4B1A24C64300093DA7 /* CBParserProtocol.h */,
-			);
-			path = Parser;
 			sourceTree = "<group>";
 		};
 		92FF2E4C1A24C7D800093DA7 /* Helpers */ = {
@@ -1611,7 +1657,7 @@
 				92FF2E7B1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector */,
 				92FF2E7F1A24C7D800093DA7 /* SSZipArchive */,
 				92FF2E821A24C7D800093DA7 /* TimerLabel */,
-				92FF2E851A24C7D800093DA7 /* Util */,
+				92FF2E851A24C7D800093DA7 /* Utils */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1750,7 +1796,7 @@
 			path = TimerLabel;
 			sourceTree = "<group>";
 		};
-		92FF2E851A24C7D800093DA7 /* Util */ = {
+		92FF2E851A24C7D800093DA7 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				92FF2E861A24C7D800093DA7 /* TableUtil.h */,
@@ -1760,6 +1806,7 @@
 				92FF2E8A1A24C7D800093DA7 /* Util.h */,
 				92FF2E8B1A24C7D800093DA7 /* Util.m */,
 			);
+			name = Utils;
 			path = Util;
 			sourceTree = "<group>";
 		};
@@ -1884,11 +1931,9 @@
 			children = (
 				92FF302C1A24DCAA00093DA7 /* Brick.h */,
 				92FF302D1A24DCAA00093DA7 /* Brick.m */,
-				92FF302E1A24DCAA00093DA7 /* ControlBrick */,
-				92FF30371A24DCAA00093DA7 /* IFBricks */,
+				92FF302E1A24DCAA00093DA7 /* ControlBricks */,
 				92FF303E1A24DCAA00093DA7 /* LookBricks */,
-				92FF30551A24DCAA00093DA7 /* LoopBricks */,
-				92FF305E1A24DCAA00093DA7 /* MoveBricks */,
+				92FF305E1A24DCAA00093DA7 /* MotionBricks */,
 				92FF306F1A24DCAA00093DA7 /* RotationBricks */,
 				92FF30781A24DCAA00093DA7 /* SensorBricks */,
 				92FF307F1A24DCAA00093DA7 /* SizeBricks */,
@@ -1898,7 +1943,7 @@
 			path = Bricks;
 			sourceTree = "<group>";
 		};
-		92FF302E1A24DCAA00093DA7 /* ControlBrick */ = {
+		92FF302E1A24DCAA00093DA7 /* ControlBricks */ = {
 			isa = PBXGroup;
 			children = (
 				92FF302F1A24DCAA00093DA7 /* BroadcastBrick.h */,
@@ -1909,11 +1954,14 @@
 				92FF30341A24DCAA00093DA7 /* NoteBrick.m */,
 				92FF30351A24DCAA00093DA7 /* WaitBrick.h */,
 				92FF30361A24DCAA00093DA7 /* WaitBrick.m */,
+				92FF30371A24DCAA00093DA7 /* IfBricks */,
+				92FF30551A24DCAA00093DA7 /* LoopBricks */,
 			);
+			name = ControlBricks;
 			path = ControlBrick;
 			sourceTree = "<group>";
 		};
-		92FF30371A24DCAA00093DA7 /* IFBricks */ = {
+		92FF30371A24DCAA00093DA7 /* IfBricks */ = {
 			isa = PBXGroup;
 			children = (
 				92FF30381A24DCAA00093DA7 /* IfLogicBeginBrick.h */,
@@ -1923,7 +1971,8 @@
 				92FF303C1A24DCAA00093DA7 /* IfLogicEndBrick.h */,
 				92FF303D1A24DCAA00093DA7 /* IfLogicEndBrick.m */,
 			);
-			path = IFBricks;
+			name = IfBricks;
+			path = ../IFBricks;
 			sourceTree = "<group>";
 		};
 		92FF303E1A24DCAA00093DA7 /* LookBricks */ = {
@@ -1967,10 +2016,11 @@
 				92FF305C1A24DCAA00093DA7 /* RepeatBrick.h */,
 				92FF305D1A24DCAA00093DA7 /* RepeatBrick.m */,
 			);
-			path = LoopBricks;
+			name = LoopBricks;
+			path = ../LoopBricks;
 			sourceTree = "<group>";
 		};
-		92FF305E1A24DCAA00093DA7 /* MoveBricks */ = {
+		92FF305E1A24DCAA00093DA7 /* MotionBricks */ = {
 			isa = PBXGroup;
 			children = (
 				92FF305F1A24DCAA00093DA7 /* ChangeXByNBrick.h */,
@@ -1990,6 +2040,7 @@
 				92FF306D1A24DCAA00093DA7 /* SetYBrick.h */,
 				92FF306E1A24DCAA00093DA7 /* SetYBrick.m */,
 			);
+			name = MotionBricks;
 			path = MoveBricks;
 			sourceTree = "<group>";
 		};
@@ -2338,6 +2389,12 @@
 		92FF31481A24DEB300093DA7 /* Upload */ = {
 			isa = PBXGroup;
 			children = (
+				CA2C80591A35040900982897 /* LoginPopupViewController.h */,
+				CA2C805A1A35040900982897 /* LoginViewController.h */,
+				CA2C805B1A35040900982897 /* UploadViewController.h */,
+				CA2C805C1A35040900982897 /* LoginPopupViewController.m */,
+				CA2C805D1A35040900982897 /* LoginViewController.m */,
+				CA2C805E1A35040900982897 /* UploadViewController.m */,
 			);
 			path = Upload;
 			sourceTree = "<group>";
@@ -2890,6 +2947,13 @@
 			children = (
 				92FF32CE1A24E5F800093DA7 /* CBXMLParserHelper.h */,
 				92FF32CF1A24E5F800093DA7 /* CBXMLParserHelper.m */,
+				CA6067E91A3500450037A13A /* CBXMLLogger.h */,
+				CA6067EC1A3500670037A13A /* CBXMLLogger.m */,
+				CA6067EA1A3500450037A13A /* Look+CBXMLLogger.m */,
+				CA6067ED1A3500670037A13A /* Header+CBXMLLogger.m */,
+				CA6067EE1A3500670037A13A /* Script+CBXMLLogger.m */,
+				CA6067EF1A3500670037A13A /* Sound+CBXMLLogger.m */,
+				CA6067F01A3500670037A13A /* SpriteObject+CBXMLLogger.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -2901,6 +2965,7 @@
 				92FF33321A24E5F800093DA7 /* Formula */,
 				92FF33371A24E5F800093DA7 /* Header */,
 				92FF333A1A24E5F800093DA7 /* Look */,
+				CA184E5F1A3A4A3200D32D9F /* Program */,
 				92FF333D1A24E5F800093DA7 /* Scripts */,
 				92FF33401A24E5F800093DA7 /* Sound */,
 				92FF33431A24E5F800093DA7 /* SpriteObject */,
@@ -2916,7 +2981,9 @@
 				92FF32D21A24E5F800093DA7 /* ControlBricks */,
 				92FF32ED1A24E5F800093DA7 /* LookBricks */,
 				92FF33021A24E5F800093DA7 /* MotionBricks */,
+				CAEE0A4C1A329B64007CB248 /* RotationBicks */,
 				92FF331B1A24E5F800093DA7 /* SensorBricks */,
+				CAEE0A4B1A329996007CB248 /* SizeBricks */,
 				92FF33221A24E5F800093DA7 /* SoundBricks */,
 				92FF332D1A24E5F800093DA7 /* VariableBricks */,
 			);
@@ -2930,28 +2997,12 @@
 				92FF32D41A24E5F800093DA7 /* BroadcastBrick+CBXMLHandler.m */,
 				92FF32D51A24E5F800093DA7 /* BroadcastWaitBrick+CBXMLHandler.h */,
 				92FF32D61A24E5F800093DA7 /* BroadcastWaitBrick+CBXMLHandler.m */,
-				92FF32D71A24E5F800093DA7 /* ComeToFrontBrick+CBXMLHandler.h */,
-				92FF32D81A24E5F800093DA7 /* ComeToFrontBrick+CBXMLHandler.m */,
-				92FF32D91A24E5F800093DA7 /* ForeverBrick+CBXMLHandler.h */,
-				92FF32DA1A24E5F800093DA7 /* ForeverBrick+CBXMLHandler.m */,
-				92FF32DB1A24E5F800093DA7 /* IfLogicBeginBrick+CBXMLHandler.h */,
-				92FF32DC1A24E5F800093DA7 /* IfLogicBeginBrick+CBXMLHandler.m */,
-				92FF32DD1A24E5F800093DA7 /* IfLogicElseBrick+CBXMLHandler.h */,
-				92FF32DE1A24E5F800093DA7 /* IfLogicElseBrick+CBXMLHandler.m */,
-				92FF32DF1A24E5F800093DA7 /* IfLogicEndBrick+CBXMLHandler.h */,
-				92FF32E01A24E5F800093DA7 /* IfLogicEndBrick+CBXMLHandler.m */,
-				92FF32E11A24E5F800093DA7 /* IfOnEdgeBounceBrick+CBXMLHandler.h */,
-				92FF32E21A24E5F800093DA7 /* IfOnEdgeBounceBrick+CBXMLHandler.m */,
-				92FF32E31A24E5F800093DA7 /* LoopEndBrick+CBXMLHandler.h */,
-				92FF32E41A24E5F800093DA7 /* LoopEndBrick+CBXMLHandler.m */,
 				92FF32E51A24E5F800093DA7 /* NoteBrick+CBXMLHandler.h */,
 				92FF32E61A24E5F800093DA7 /* NoteBrick+CBXMLHandler.m */,
-				92FF32E71A24E5F800093DA7 /* PlaceAtBrick+CBXMLHandler.h */,
-				92FF32E81A24E5F800093DA7 /* PlaceAtBrick+CBXMLHandler.m */,
-				92FF32E91A24E5F800093DA7 /* RepeatBrick+CBXMLHandler.h */,
-				92FF32EA1A24E5F800093DA7 /* RepeatBrick+CBXMLHandler.m */,
 				92FF32EB1A24E5F800093DA7 /* WaitBrick+CBXMLHandler.h */,
 				92FF32EC1A24E5F800093DA7 /* WaitBrick+CBXMLHandler.m */,
+				CAEE0A491A3297CC007CB248 /* IfBricks */,
+				CAEE0A481A3297AE007CB248 /* LoopBricks */,
 			);
 			path = ControlBricks;
 			sourceTree = "<group>";
@@ -2965,12 +3016,16 @@
 				92FF32F11A24E5F800093DA7 /* ChangeGhostEffectByNBrick+CBXMLHandler.m */,
 				92FF32F21A24E5F800093DA7 /* ClearGraphicEffectBrick+CBXMLHandler.h */,
 				92FF32F31A24E5F800093DA7 /* ClearGraphicEffectBrick+CBXMLHandler.m */,
+				92FF32D71A24E5F800093DA7 /* ComeToFrontBrick+CBXMLHandler.h */,
+				92FF32D81A24E5F800093DA7 /* ComeToFrontBrick+CBXMLHandler.m */,
 				92FF32F41A24E5F800093DA7 /* GoNStepsBackBrick+CBXMLHandler.h */,
 				92FF32F51A24E5F800093DA7 /* GoNStepsBackBrick+CBXMLHandler.m */,
 				92FF32F61A24E5F800093DA7 /* HideBrick+CBXMLHandler.h */,
 				92FF32F71A24E5F800093DA7 /* HideBrick+CBXMLHandler.m */,
 				92FF32F81A24E5F800093DA7 /* NextLookBrick+CBXMLHandler.h */,
 				92FF32F91A24E5F800093DA7 /* NextLookBrick+CBXMLHandler.m */,
+				92FF32E71A24E5F800093DA7 /* PlaceAtBrick+CBXMLHandler.h */,
+				92FF32E81A24E5F800093DA7 /* PlaceAtBrick+CBXMLHandler.m */,
 				92FF32FA1A24E5F800093DA7 /* SetBrightnessBrick+CBXMLHandler.h */,
 				92FF32FB1A24E5F800093DA7 /* SetBrightnessBrick+CBXMLHandler.m */,
 				92FF32FC1A24E5F800093DA7 /* SetGhostEffectBrick+CBXMLHandler.h */,
@@ -2986,30 +3041,20 @@
 		92FF33021A24E5F800093DA7 /* MotionBricks */ = {
 			isa = PBXGroup;
 			children = (
-				92FF33031A24E5F800093DA7 /* ChangeSizeByNBrick+CBXMLHandler.h */,
-				92FF33041A24E5F800093DA7 /* ChangeSizeByNBrick+CBXMLHandler.m */,
 				92FF33051A24E5F800093DA7 /* ChangeXByNBrick+CBXMLHandler.h */,
 				92FF33061A24E5F800093DA7 /* ChangeXByNBrick+CBXMLHandler.m */,
 				92FF33071A24E5F800093DA7 /* ChangeYByNBrick+CBXMLHandler.h */,
 				92FF33081A24E5F800093DA7 /* ChangeYByNBrick+CBXMLHandler.m */,
 				92FF33091A24E5F800093DA7 /* GlideToBrick+CBXMLHandler.h */,
 				92FF330A1A24E5F800093DA7 /* GlideToBrick+CBXMLHandler.m */,
+				92FF32E11A24E5F800093DA7 /* IfOnEdgeBounceBrick+CBXMLHandler.h */,
+				92FF32E21A24E5F800093DA7 /* IfOnEdgeBounceBrick+CBXMLHandler.m */,
 				92FF330B1A24E5F800093DA7 /* MoveNStepsBrick+CBXMLHandler.h */,
 				92FF330C1A24E5F800093DA7 /* MoveNStepsBrick+CBXMLHandler.m */,
-				92FF330D1A24E5F800093DA7 /* PointInDirectionBrick+CBXMLHandler.h */,
-				92FF330E1A24E5F800093DA7 /* PointInDirectionBrick+CBXMLHandler.m */,
-				92FF330F1A24E5F800093DA7 /* PointToBrick+CBXMLHandler.h */,
-				92FF33101A24E5F800093DA7 /* PointToBrick+CBXMLHandler.m */,
-				92FF33111A24E5F800093DA7 /* SetSizeToBrick+CBXMLHandler.h */,
-				92FF33121A24E5F800093DA7 /* SetSizeToBrick+CBXMLHandler.m */,
 				92FF33131A24E5F800093DA7 /* SetXBrick+CBXMLHandler.h */,
 				92FF33141A24E5F800093DA7 /* SetXBrick+CBXMLHandler.m */,
 				92FF33151A24E5F800093DA7 /* SetYBrick+CBXMLHandler.h */,
 				92FF33161A24E5F800093DA7 /* SetYBrick+CBXMLHandler.m */,
-				92FF33171A24E5F800093DA7 /* TurnLeftBrick+CBXMLHandler.h */,
-				92FF33181A24E5F800093DA7 /* TurnLeftBrick+CBXMLHandler.m */,
-				92FF33191A24E5F800093DA7 /* TurnRightBrick+CBXMLHandler.h */,
-				92FF331A1A24E5F800093DA7 /* TurnRightBrick+CBXMLHandler.m */,
 			);
 			path = MotionBricks;
 			sourceTree = "<group>";
@@ -3159,7 +3204,7 @@
 		B46B270317703F9400172837 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
-				4CD194F21A0631B200484E4F /* ParserTests */,
+				4CD194F21A0631B200484E4F /* Parser & Serializer */,
 				4C3C03F5199BA5250004F594 /* Formula */,
 				B46B270917703F9400172837 /* CattyTests.m */,
 				C34B44FB17F3403400624730 /* ExtensionTests */,
@@ -3250,6 +3295,15 @@
 			name = ExtensionTests;
 			sourceTree = "<group>";
 		};
+		CA184E5F1A3A4A3200D32D9F /* Program */ = {
+			isa = PBXGroup;
+			children = (
+				CA184E601A3A4A9400D32D9F /* Program+CBXMLHandler.h */,
+				CA184E611A3A4A9400D32D9F /* Program+CBXMLHandler.m */,
+			);
+			name = Program;
+			sourceTree = "<group>";
+		};
 		CA52403418AD77DB00052914 /* ProgramTableViewControllerTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -3267,6 +3321,139 @@
 				CA8C247718CD053300314C2B /* ProgramTests.m */,
 			);
 			name = ProgramTests;
+			sourceTree = "<group>";
+		};
+		CAEE0A231A328CDF007CB248 /* XMLSerializerTests */ = {
+			isa = PBXGroup;
+			children = (
+				CAEE0A251A328D2E007CB248 /* Abstract */,
+				CAEE0A291A328EE9007CB248 /* XMLSerializerTests.m */,
+			);
+			name = XMLSerializerTests;
+			sourceTree = "<group>";
+		};
+		CAEE0A241A328CEA007CB248 /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				CAEE0A2B1A328EFF007CB248 /* XMLAbstractTest.h */,
+				CAEE0A2C1A328EFF007CB248 /* XMLAbstractTest.m */,
+			);
+			name = Abstract;
+			sourceTree = "<group>";
+		};
+		CAEE0A251A328D2E007CB248 /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				CAEE0A261A328EC2007CB248 /* XMLSerializerAbstractTest.h */,
+				CAEE0A271A328EC2007CB248 /* XMLSerializerAbstractTest.m */,
+			);
+			name = Abstract;
+			sourceTree = "<group>";
+		};
+		CAEE0A301A32901B007CB248 /* Tic Tac Toe */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Tic Tac Toe";
+			sourceTree = "<group>";
+		};
+		CAEE0A311A329023007CB248 /* Skydiving Steve */ = {
+			isa = PBXGroup;
+			children = (
+				CAEE0A341A329074007CB248 /* Skydiving-Steve-092.xml */,
+				CAEE0A351A329074007CB248 /* Skydiving-Steve-093.xml */,
+			);
+			name = "Skydiving Steve";
+			sourceTree = "<group>";
+		};
+		CAEE0A321A329033007CB248 /* Galaxy War */ = {
+			isa = PBXGroup;
+			children = (
+				CAEE0A3C1A329090007CB248 /* Galaxy-War-092.xml */,
+				CAEE0A3D1A329090007CB248 /* Galaxy-War-093.xml */,
+			);
+			name = "Galaxy War";
+			sourceTree = "<group>";
+		};
+		CAEE0A331A32903F007CB248 /* Pythagorean Theorem */ = {
+			isa = PBXGroup;
+			children = (
+				CAEE0A381A329080007CB248 /* Pythagorean-Theorem-092.xml */,
+				CAEE0A391A329080007CB248 /* Pythagorean-Theorem-093.xml */,
+			);
+			name = "Pythagorean Theorem";
+			sourceTree = "<group>";
+		};
+		CAEE0A421A3294FF007CB248 /* Parser & Serializer */ = {
+			isa = PBXGroup;
+			children = (
+				CAEE0A451A329512007CB248 /* CBSerializerProtocol.h */,
+				CAEE0A441A329512007CB248 /* CBParserProtocol.h */,
+				CAEE0A431A329512007CB248 /* CBParserNodeProtocol.h */,
+				CAEE0A471A329532007CB248 /* XML */,
+			);
+			name = "Parser & Serializer";
+			sourceTree = "<group>";
+		};
+		CAEE0A471A329532007CB248 /* XML */ = {
+			isa = PBXGroup;
+			children = (
+				CAEE0A461A329512007CB248 /* CBXMLNodeProtocol.h */,
+			);
+			name = XML;
+			sourceTree = "<group>";
+		};
+		CAEE0A481A3297AE007CB248 /* LoopBricks */ = {
+			isa = PBXGroup;
+			children = (
+				92FF32D91A24E5F800093DA7 /* ForeverBrick+CBXMLHandler.h */,
+				92FF32DA1A24E5F800093DA7 /* ForeverBrick+CBXMLHandler.m */,
+				92FF32E31A24E5F800093DA7 /* LoopEndBrick+CBXMLHandler.h */,
+				92FF32E41A24E5F800093DA7 /* LoopEndBrick+CBXMLHandler.m */,
+				92FF32E91A24E5F800093DA7 /* RepeatBrick+CBXMLHandler.h */,
+				92FF32EA1A24E5F800093DA7 /* RepeatBrick+CBXMLHandler.m */,
+			);
+			name = LoopBricks;
+			sourceTree = "<group>";
+		};
+		CAEE0A491A3297CC007CB248 /* IfBricks */ = {
+			isa = PBXGroup;
+			children = (
+				92FF32DB1A24E5F800093DA7 /* IfLogicBeginBrick+CBXMLHandler.h */,
+				92FF32DC1A24E5F800093DA7 /* IfLogicBeginBrick+CBXMLHandler.m */,
+				92FF32DD1A24E5F800093DA7 /* IfLogicElseBrick+CBXMLHandler.h */,
+				92FF32DE1A24E5F800093DA7 /* IfLogicElseBrick+CBXMLHandler.m */,
+				92FF32DF1A24E5F800093DA7 /* IfLogicEndBrick+CBXMLHandler.h */,
+				92FF32E01A24E5F800093DA7 /* IfLogicEndBrick+CBXMLHandler.m */,
+			);
+			name = IfBricks;
+			sourceTree = "<group>";
+		};
+		CAEE0A4B1A329996007CB248 /* SizeBricks */ = {
+			isa = PBXGroup;
+			children = (
+				92FF33031A24E5F800093DA7 /* ChangeSizeByNBrick+CBXMLHandler.h */,
+				92FF33041A24E5F800093DA7 /* ChangeSizeByNBrick+CBXMLHandler.m */,
+				92FF33111A24E5F800093DA7 /* SetSizeToBrick+CBXMLHandler.h */,
+				92FF33121A24E5F800093DA7 /* SetSizeToBrick+CBXMLHandler.m */,
+			);
+			name = SizeBricks;
+			sourceTree = "<group>";
+		};
+		CAEE0A4C1A329B64007CB248 /* RotationBicks */ = {
+			isa = PBXGroup;
+			children = (
+				92FF330D1A24E5F800093DA7 /* PointInDirectionBrick+CBXMLHandler.h */,
+				92FF330E1A24E5F800093DA7 /* PointInDirectionBrick+CBXMLHandler.m */,
+				92FF330F1A24E5F800093DA7 /* PointToBrick+CBXMLHandler.h */,
+				92FF33101A24E5F800093DA7 /* PointToBrick+CBXMLHandler.m */,
+				92FF33171A24E5F800093DA7 /* TurnLeftBrick+CBXMLHandler.h */,
+				92FF33181A24E5F800093DA7 /* TurnLeftBrick+CBXMLHandler.m */,
+				92FF33191A24E5F800093DA7 /* TurnRightBrick+CBXMLHandler.h */,
+				92FF331A1A24E5F800093DA7 /* TurnRightBrick+CBXMLHandler.m */,
+			);
+			name = RotationBicks;
+			path = MotionBricks;
 			sourceTree = "<group>";
 		};
 		CD0CCE54170CB39600B70036 /* Catty */ = {
@@ -3336,7 +3523,7 @@
 						TestTargetID = CADBD6D319B0E8C200C62836;
 					};
 					CADBD6D319B0E8C200C62836 = {
-						DevelopmentTeam = 4V6T7BCGGR;
+						DevelopmentTeam = 9NJ4SV439Q;
 					};
 				};
 			};
@@ -3399,12 +3586,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAEE0A3B1A329080007CB248 /* Pythagorean-Theorem-093.xml in Resources */,
 				CA538EC819B0EA09008240AB /* InfoPlist.strings in Resources */,
 				4C3275FA1A1360640091C428 /* ValidProgramAllBricks.xml in Resources */,
+				CAEE0A3F1A329090007CB248 /* Galaxy-War-093.xml in Resources */,
+				CAEE0A361A329074007CB248 /* Skydiving-Steve-092.xml in Resources */,
+				CAEE0A3A1A329080007CB248 /* Pythagorean-Theorem-092.xml in Resources */,
+				CAEE0A371A329074007CB248 /* Skydiving-Steve-093.xml in Resources */,
 				4C1608B21A09621A002C7032 /* ValidFormulaList.xml in Resources */,
 				CA538EC919B0EA09008240AB /* test2.png in Resources */,
 				4C1608B31A09621A002C7032 /* ValidProgram.xml in Resources */,
 				CA538ECA19B0EA09008240AB /* test.png in Resources */,
+				CAEE0A3E1A329090007CB248 /* Galaxy-War-092.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3509,6 +3702,8 @@
 				CA538EA519B0EA09008240AB /* ChangeGhostEffectByNBrickTests.m in Sources */,
 				CA538EA619B0EA09008240AB /* ProgramTableViewControllerExistingProgramsTests.m in Sources */,
 				CA538EA719B0EA09008240AB /* HideBrickTests.m in Sources */,
+				CAEE0A2F1A328F37007CB248 /* XMLParserBlackBoxTests.m in Sources */,
+				CAEE0A2D1A328EFF007CB248 /* XMLAbstractTest.m in Sources */,
 				CA538EA819B0EA09008240AB /* SetGhostEffectBrickTests.m in Sources */,
 				CA538EA919B0EA09008240AB /* ProgramTests.m in Sources */,
 				CA538EAA19B0EA09008240AB /* PlaceAtBrickTests.m in Sources */,
@@ -3535,6 +3730,8 @@
 				4C3275ED1A135CCF0091C428 /* XMLParserBrickTests.m in Sources */,
 				CA538EBE19B0EA09008240AB /* SetLookBrickTests.m in Sources */,
 				4C3275F81A135FD00091C428 /* XMLParserObjectTests.m in Sources */,
+				CAEE0A2A1A328EE9007CB248 /* XMLSerializerTests.m in Sources */,
+				CAEE0A281A328EC2007CB248 /* XMLSerializerAbstractTest.m in Sources */,
 				CA538EBF19B0EA09008240AB /* TurnLeftBrickTests.m in Sources */,
 				CA538EC019B0EA09008240AB /* MoveNStepsBrickTests.m in Sources */,
 				4C3275F41A135F3D0091C428 /* XMLParserHeaderTests.m in Sources */,
@@ -3567,6 +3764,7 @@
 				92FF33911A24E5F800093DA7 /* TestParser.m in Sources */,
 				92FF32AD1A24E2F400093DA7 /* MessageComboBoxView.m in Sources */,
 				92FF2EBC1A24C8A700093DA7 /* CBXMLOpenedNestingBricksStack.m in Sources */,
+				CA6067EB1A3500450037A13A /* Look+CBXMLLogger.m in Sources */,
 				92FF30E11A24DCAA00093DA7 /* GlideToBrick.m in Sources */,
 				92FF32981A24E2F400093DA7 /* MoveNStepsBrickCell.m in Sources */,
 				92FF31571A24DEB300093DA7 /* ObjectTableViewController.m in Sources */,
@@ -3603,6 +3801,7 @@
 				92FF32B01A24E2F400093DA7 /* VariableComboBoxView.m in Sources */,
 				92FF31541A24DEB300093DA7 /* SoundPickerTableViewController.m in Sources */,
 				92FF335A1A24E5F800093DA7 /* BroadcastWaitBrick+CBXMLHandler.m in Sources */,
+				CA6067F41A3500670037A13A /* Sound+CBXMLLogger.m in Sources */,
 				92FF2EC01A24C8A700093DA7 /* OrderedDictionary.m in Sources */,
 				92FF2E401A24C5A700093DA7 /* UIViewController+CWPopup.m in Sources */,
 				92FF31491A24DEB300093DA7 /* BaseCollectionViewController.m in Sources */,
@@ -3618,6 +3817,8 @@
 				92FF328F1A24E2F400093DA7 /* SetBrightnessBrickCell.m in Sources */,
 				92FF2E991A24C7D800093DA7 /* zip.c in Sources */,
 				92FF2EA01A24C7D800093DA7 /* SSZipArchive.m in Sources */,
+				CA2C80601A35040900982897 /* LoginViewController.m in Sources */,
+				CA2C80611A35040900982897 /* UploadViewController.m in Sources */,
 				92FF327E1A24E2F400093DA7 /* IfLogicBeginBrickCell.m in Sources */,
 				92FF2E381A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.m in Sources */,
 				92FF30E71A24DCAA00093DA7 /* PointInDirectionBrick.m in Sources */,
@@ -3639,6 +3840,7 @@
 				92FF329A1A24E2F400093DA7 /* PointInDirectionBrickCell.m in Sources */,
 				92FF338B1A24E5F800093DA7 /* Sound+CBXMLHandler.m in Sources */,
 				92FF32591A24E2F400093DA7 /* UIImage+AHKAdditions.m in Sources */,
+				CA6067F11A3500670037A13A /* CBXMLLogger.m in Sources */,
 				92FF32BA1A24E2F400093DA7 /* DarkBlueGradientFeaturedCell.m in Sources */,
 				92FF33731A24E5F800093DA7 /* GlideToBrick+CBXMLHandler.m in Sources */,
 				92FF33871A24E5F800093DA7 /* FormulaElement+CBXMLHandler.m in Sources */,
@@ -3671,6 +3873,8 @@
 				92FF30F81A24DCAA00093DA7 /* Formula.m in Sources */,
 				92FF32851A24E2F400093DA7 /* RepeatBrickCell.m in Sources */,
 				92FF30F31A24DCAA00093DA7 /* SpeakBrick.m in Sources */,
+				CA2C805F1A35040900982897 /* LoginPopupViewController.m in Sources */,
+				CA184E621A3A4A9400D32D9F /* Program+CBXMLHandler.m in Sources */,
 				92FF30CF1A24DCAA00093DA7 /* IfLogicEndBrick.m in Sources */,
 				92FF30DF1A24DCAA00093DA7 /* ChangeXByNBrick.m in Sources */,
 				92FF336E1A24E5F800093DA7 /* SetLookBrick+CBXMLHandler.m in Sources */,
@@ -3791,6 +3995,7 @@
 				92FF2E8F1A24C7D800093DA7 /* FlashHelper.m in Sources */,
 				92FF328D1A24E2F400093DA7 /* HideBrickCell.m in Sources */,
 				92FF2E961A24C7D800093DA7 /* ioapi.c in Sources */,
+				CA6067F21A3500670037A13A /* Header+CBXMLLogger.m in Sources */,
 				92FF337C1A24E5F800093DA7 /* LedOffBrick+CBXMLHandler.m in Sources */,
 				92FF33791A24E5F800093DA7 /* SetYBrick+CBXMLHandler.m in Sources */,
 				92FF329F1A24E2F400093DA7 /* TurnLeftBrickCell.m in Sources */,
@@ -3817,11 +4022,13 @@
 				92FF32761A24E2F400093DA7 /* BrickCell.m in Sources */,
 				92FF32AB1A24E2F400093DA7 /* ComboBoxView.m in Sources */,
 				92FF329D1A24E2F400093DA7 /* SetXBrickCell.m in Sources */,
+				CA6067F31A3500670037A13A /* Script+CBXMLLogger.m in Sources */,
 				92FF328C1A24E2F400093DA7 /* GoNStepsBackBrickCell.m in Sources */,
 				92FF2E8D1A24C7D800093DA7 /* CatrobatAudioPlayer.m in Sources */,
 				92FF32891A24E2F400093DA7 /* ChangeGhostEffectByNBrickCell.m in Sources */,
 				92FF31611A24DEB300093DA7 /* ScenePresenterViewController.m in Sources */,
 				92FF30CC1A24DCAA00093DA7 /* WaitBrick.m in Sources */,
+				CA6067F51A3500670037A13A /* SpriteObject+CBXMLLogger.m in Sources */,
 				92FF31501A24DEB300093DA7 /* BrickDetailViewController.m in Sources */,
 				92FF32B31A24E2F400093DA7 /* LoadingView.m in Sources */,
 				92FF327C1A24E2F400093DA7 /* BroadcastWaitBrickCell.m in Sources */,

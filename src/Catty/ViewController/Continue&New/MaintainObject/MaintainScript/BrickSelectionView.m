@@ -144,7 +144,7 @@
 {
     if (!_topBorder) {
         _topBorder = [CALayer new];
-        _topBorder.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.bounds), 1.0f);
+        _topBorder.frame = CGRectMake(0.0f, -22.0f, CGRectGetWidth(self.bounds), 23.0f);
     }
     return _topBorder;
 }

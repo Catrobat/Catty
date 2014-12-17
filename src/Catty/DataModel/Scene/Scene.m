@@ -23,6 +23,7 @@
 #import "Scene.h"
 #import "Program.h"
 #import "SpriteObject.h"
+#import "StartScript.h"
 
 @implementation Scene
 
@@ -72,6 +73,33 @@
     // TODO: replace numberOfObjectsWithoutBackground-property by [obj.program numberOfNormalObjects]
     for (SpriteObject *obj in self.program.objectList) {
         obj.numberOfObjectsWithoutBackground = self.numberOfObjectsWithoutBackground;
+        
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf startStartScript:obj];
+        });
+        
+        
+    }
+}
+
+
+-(void)startStartScript:(SpriteObject*)obj
+{
+    for (Script *script in obj.scriptList)
+    {
+        if ([script isKindOfClass:[StartScript class]]) {
+            
+            __weak typeof(SpriteObject*) weakSelf = obj;
+//            dispatch_queue_t backgroundQueue = dispatch_queue_create("at.catrobat.startScript", 0);
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                [weakSelf startAndAddScript:script completion:^{
+                    [weakSelf scriptFinished:script];
+                    NSDebug(@"FINISHED");
+                }];
+            });
+            
+        }
     }
 }
 

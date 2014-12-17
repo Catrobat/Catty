@@ -21,8 +21,8 @@
  */
 
 #import "IfLogicBeginBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface IfLogicBeginBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface IfLogicBeginBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

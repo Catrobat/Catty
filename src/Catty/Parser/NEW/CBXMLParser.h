@@ -21,7 +21,6 @@
  */
 
 #import "CBParserProtocol.h"
-#import <objc/runtime.h>
 
 @class GDataXMLDocument;
 @class GDataXMLNode;
@@ -36,14 +35,5 @@
 - (id)initWithPath:(NSString*)path;
 - (BOOL)isSupportedLanguageVersion:(CGFloat)languageVersion;
 - (Program*)parseAndCreateProgram;
-
-// helpers (used by the sub-parsing system)
-+ (id)valueForHeaderPropertyNode:(GDataXMLNode*)propertyNode;
-+ (id)valueForPropertyNode:(GDataXMLNode*)propertyNode;
-+ (BOOL)isReferenceElement:(GDataXMLElement*)xmlElement;
-+ (SpriteObject*)findSpriteObjectInArray:(NSArray*)spriteObjectList withName:(NSString*)spriteObjectName;
-+ (Look*)findLookInArray:(NSArray*)lookList withName:(NSString*)lookName;
-+ (Sound*)findSoundInArray:(NSArray*)soundList withName:(NSString*)soundName;
-+ (UserVariable*)findUserVariableInArray:(NSArray*)userVariableList withName:(NSString*)userVariableName;
 
 @end

@@ -23,9 +23,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class GDataXMLElement;
-@class SpriteObject;
-
 @interface Header : NSObject
 
 // meta infos
@@ -57,6 +54,6 @@
 
 + (instancetype)defaultHeader;
 
-- (GDataXMLElement*)toXML;
+- (BOOL)isEqualToHeader:(Header*)header;
 
 @end

@@ -21,10 +21,10 @@
  */
 
 #import "HideBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
 @class CBXMLContext;
 
-@interface HideBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface HideBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

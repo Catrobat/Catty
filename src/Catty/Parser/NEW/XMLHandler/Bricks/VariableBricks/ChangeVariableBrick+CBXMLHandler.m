@@ -23,6 +23,7 @@
 #import "ChangeVariableBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "GDataXMLNode+CustomExtensions.h"
+#import "Formula+CBXMLHandler.h"
 #import "UserVariable+CBXMLHandler.h"
 #import "CBXMLParser.h"
 #import "CBXMLContext.h"
@@ -42,13 +43,6 @@
 
     UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:nil];
     [XMLError exceptionIfNil:userVariable message:@"Unable to parse userVariable..."];
-    UserVariable *alreadyExistingUserVariable = [CBXMLParser findUserVariableInArray:context.userVariableList
-                                                                            withName:userVariable.name];
-    if (alreadyExistingUserVariable) {
-        [XMLError exceptionWithMessage:@"User variable with same name %@ already exists...\
-                                         Instantiated by other brick...", alreadyExistingUserVariable.name];
-    }
-    [context.userVariableList addObject:userVariable];
 
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VARIABLE_CHANGE"];
 
@@ -56,6 +50,20 @@
     changeVariableBrick.userVariable = userVariable;
     changeVariableBrick.variableFormula = formula;
     return changeVariableBrick;
+}
+
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
+{
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"ChangeVariableBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *formula = [self.variableFormula xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"VARIABLE_CHANGE"]];
+    [formulaList addChild:formula];
+    [brick addChild:formulaList];
+    [brick addChild:[GDataXMLNode elementWithName:@"inUserBrick" stringValue:@"false"]]; // TODO: implement this...
+    [brick addChild:[self.userVariable xmlElementWithContext:context]];
+    return brick;
 }
 
 @end

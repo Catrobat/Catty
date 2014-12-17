@@ -1,0 +1,2373 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<program>
+  <header>
+    <applicationBuildName/>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.9.10</applicationVersion>
+    <catrobatLanguageVersion>0.92</catrobatLanguageVersion>
+    <dateTimeUpload/>
+    <description>A visual proof of the famous theorem, adapted from Chou pei suan ching, author unknown, circa B.C. 200? [Slightly corrected version] </description>
+    <deviceName>SM-N9005</deviceName>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>19</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>Pythagorean Theorem</programName>
+    <remixOf>http://pocketcode.org/details/0</remixOf>
+    <screenHeight>1184</screenHeight>
+    <screenMode>MAXIMIZE</screenMode>
+    <screenWidth>720</screenWidth>
+    <tags/>
+    <url>http://pocketcode.org/details/824</url>
+    <userHandle>hej-wickie-hej</userHandle>
+  </header>
+  <objectList>
+    <object>
+      <lookList>
+        <look>
+          <fileName>6B90F505F45A621DFD6CB284826F6E14_background.png</fileName>
+          <name>background</name>
+        </look>
+      </lookList>
+      <name>Background</name>
+      <scriptList>
+        <startScript>
+          <brickList/>
+          <object reference="../../.."/>
+        </startScript>
+        <startScript>
+          <brickList>
+            <changeSizeByNBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>10</value>
+                </formulaTree>
+              </size>
+            </changeSizeByNBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>start</broadcastMessage>
+            </broadcastBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <broadcastScript>
+          <brickList>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.5</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <broadcastWaitBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>triangle in the upper right corner, come</broadcastMessage>
+            </broadcastWaitBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.3</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <broadcastWaitBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>triangle in the lower left, come</broadcastMessage>
+            </broadcastWaitBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.3</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <broadcastWaitBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>two triangles, come</broadcastMessage>
+            </broadcastWaitBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1.0</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <broadcastWaitBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>square, come</broadcastMessage>
+            </broadcastWaitBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1.0</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <broadcastWaitBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>go to the top and right</broadcastMessage>
+            </broadcastWaitBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.3</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <broadcastWaitBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>go to the lower left</broadcastMessage>
+            </broadcastWaitBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1.0</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <broadcastWaitBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>c2, appear</broadcastMessage>
+            </broadcastWaitBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>start</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>0FECBBCA71F92BFA9D4D768C8AFBC3DB_t8a75x3.png</fileName>
+          <name>t8a75x3</name>
+        </look>
+      </lookList>
+      <name>Triangle</name>
+      <scriptList>
+        <broadcastScript>
+          <brickList>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>start</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1.0</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <broadcastWaitBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>abc, appear</broadcastMessage>
+            </broadcastWaitBrick>
+            <broadcastWaitBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>go to the upper right</broadcastMessage>
+            </broadcastWaitBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>triangle in the upper right corner, come</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <glideToBrick>
+              <object reference="../../../../.."/>
+              <durationInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1.0</value>
+                </formulaTree>
+              </durationInSeconds>
+              <xDestination>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>188</value>
+                </formulaTree>
+              </xDestination>
+              <yDestination>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>76</value>
+                </formulaTree>
+              </yDestination>
+            </glideToBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>go to the upper right</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>0FECBBCA71F92BFA9D4D768C8AFBC3DB_t8a75x3.png</fileName>
+          <name>t8a75x3</name>
+        </look>
+      </lookList>
+      <name>Right triangle in the lower left</name>
+      <scriptList>
+        <broadcastScript>
+          <brickList>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>start</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>169</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>91</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <pointInDirectionBrick>
+              <object reference="../../../../.."/>
+              <degrees>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formulaTree>
+              </degrees>
+            </pointInDirectionBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>60</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <turnLeftBrick>
+              <object reference="../../../../.."/>
+              <degrees>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>3</value>
+                </formulaTree>
+              </degrees>
+            </turnLeftBrick>
+            <loopEndBrick reference="../repeatBrick/loopEndBrick"/>
+            <broadcastWaitBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>ab, appear</broadcastMessage>
+            </broadcastWaitBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>triangle in the lower left, come</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.1</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <glideToBrick>
+              <object reference="../../../../.."/>
+              <durationInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1.5</value>
+                </formulaTree>
+              </durationInSeconds>
+              <xDestination>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>189</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </xDestination>
+              <yDestination>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>76</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yDestination>
+            </glideToBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>go to the lower left</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>E3E11C70822ACD677E4F2D5C371FF58A_r8a75x3.png</fileName>
+          <name>r8a75x3</name>
+        </look>
+      </lookList>
+      <name>Rectangle</name>
+      <scriptList>
+        <broadcastScript>
+          <brickList>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>start</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <pointInDirectionBrick>
+              <object reference="../../../../.."/>
+              <degrees>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formulaTree>
+              </degrees>
+            </pointInDirectionBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>180</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>179</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>30</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <turnLeftBrick>
+              <object reference="../../../../.."/>
+              <degrees>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>3</value>
+                </formulaTree>
+              </degrees>
+            </turnLeftBrick>
+            <loopEndBrick reference="../repeatBrick/loopEndBrick"/>
+            <broadcastWaitBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>triangle in the upper left, appear</broadcastMessage>
+            </broadcastWaitBrick>
+            <broadcastWaitBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>triangle in the lower right, appear</broadcastMessage>
+            </broadcastWaitBrick>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+            <broadcastWaitBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>ab second, appear</broadcastMessage>
+            </broadcastWaitBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>two triangles, come</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>A6284DF3F888012B62A4A7BC25337746_r153g0b0_528x528.png</fileName>
+          <name>528x528</name>
+        </look>
+      </lookList>
+      <name>Square</name>
+      <scriptList>
+        <broadcastScript>
+          <brickList>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>start</receivedMessage>
+        </broadcastScript>
+        <whenScript>
+          <brickList>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>start</broadcastMessage>
+            </broadcastBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+        <broadcastScript>
+          <brickList>
+            <setGhostEffectBrick>
+              <object reference="../../../../.."/>
+              <transparency>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formulaTree>
+              </transparency>
+            </setGhostEffectBrick>
+            <goNStepsBackBrick>
+              <object reference="../../../../.."/>
+              <steps>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>2</value>
+                </formulaTree>
+              </steps>
+            </goNStepsBackBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>ab, hide</broadcastMessage>
+            </broadcastBrick>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>50</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <changeGhostEffectByNBrick>
+              <object reference="../../../../.."/>
+              <changeGhostEffect>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </changeGhostEffect>
+            </changeGhostEffectByNBrick>
+            <loopEndBrick reference="../repeatBrick/loopEndBrick"/>
+            <broadcastWaitBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>a2b2, appear</broadcastMessage>
+            </broadcastWaitBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>square, come</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>0FECBBCA71F92BFA9D4D768C8AFBC3DB_t8a75x3.png</fileName>
+          <name>t8a75x3</name>
+        </look>
+      </lookList>
+      <name>Right triangle in the upper left</name>
+      <scriptList>
+        <broadcastScript>
+          <brickList>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>start</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <pointInDirectionBrick>
+              <object reference="../../../../.."/>
+              <degrees>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0 </value>
+                </formulaTree>
+              </degrees>
+            </pointInDirectionBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>74</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>169</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>triangle in the upper left, appear</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <glideToBrick>
+              <object reference="../../../../.."/>
+              <durationInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1.5</value>
+                </formulaTree>
+              </durationInSeconds>
+              <xDestination>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>76</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </xDestination>
+              <yDestination>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>189</value>
+                </formulaTree>
+              </yDestination>
+            </glideToBrick>
+            <broadcastWaitBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>c, appear</broadcastMessage>
+            </broadcastWaitBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>go to the top and right</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>0FECBBCA71F92BFA9D4D768C8AFBC3DB_t8a75x3.png</fileName>
+          <name>t8a75x3</name>
+        </look>
+      </lookList>
+      <name>Right triangle in the lower right</name>
+      <scriptList>
+        <broadcastScript>
+          <brickList>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>start</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>89</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>188</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <pointInDirectionBrick>
+              <object reference="../../../../.."/>
+              <degrees>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>180</value>
+                </formulaTree>
+              </degrees>
+            </pointInDirectionBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>triangle in the lower right, appear</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <glideToBrick>
+              <object reference="../../../../.."/>
+              <durationInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1.5</value>
+                </formulaTree>
+              </durationInSeconds>
+              <xDestination>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>74</value>
+                </formulaTree>
+              </xDestination>
+              <yDestination>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>190</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yDestination>
+            </glideToBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>go to the top and right</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>2537220F16D33281C296D06C3DBECE7A_a.png</fileName>
+          <name>a</name>
+        </look>
+      </lookList>
+      <name>a</name>
+      <scriptList>
+        <broadcastScript>
+          <brickList>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>start</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>250</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>25</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <setGhostEffectBrick>
+              <object reference="../../../../.."/>
+              <transparency>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formulaTree>
+              </transparency>
+            </setGhostEffectBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>50</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <changeGhostEffectByNBrick>
+              <object reference="../../../../.."/>
+              <changeGhostEffect>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </changeGhostEffect>
+            </changeGhostEffectByNBrick>
+            <loopEndBrick reference="../repeatBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>abc, appear</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <glideToBrick>
+              <object reference="../../../../.."/>
+              <durationInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1.0</value>
+                </formulaTree>
+              </durationInSeconds>
+              <xDestination>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>188</value>
+                </formulaTree>
+              </xDestination>
+              <yDestination>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>326</value>
+                </formulaTree>
+              </yDestination>
+            </glideToBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>go to the upper right</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>50</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <changeGhostEffectByNBrick>
+              <object reference="../../../../.."/>
+              <changeGhostEffect>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>2</value>
+                </formulaTree>
+              </changeGhostEffect>
+            </changeGhostEffectByNBrick>
+            <loopEndBrick reference="../repeatBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>ab, appear</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <goNStepsBackBrick>
+              <object reference="../../../../.."/>
+              <steps>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>10</value>
+                </formulaTree>
+              </steps>
+            </goNStepsBackBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>135</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>185</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <changeGhostEffectByNBrick>
+              <object reference="../../../../.."/>
+              <changeGhostEffect>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </changeGhostEffect>
+            </changeGhostEffectByNBrick>
+            <loopEndBrick reference="../repeatBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>ab second, appear</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <goNStepsBackBrick>
+              <object reference="../../../../.."/>
+              <steps>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>10</value>
+                </formulaTree>
+              </steps>
+            </goNStepsBackBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>ab, hide</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>EE10E546A8CE706EB18F61300DCC67B6_a2.png</fileName>
+          <name>a2</name>
+        </look>
+      </lookList>
+      <name>a2</name>
+      <scriptList>
+        <broadcastScript>
+          <brickList>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1.0</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>start</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>50</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <changeGhostEffectByNBrick>
+              <object reference="../../../../.."/>
+              <changeGhostEffect>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>2</value>
+                </formulaTree>
+              </changeGhostEffect>
+            </changeGhostEffectByNBrick>
+            <loopEndBrick reference="../repeatBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>go to the top and right</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>188</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>170</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>25</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <setGhostEffectBrick>
+              <object reference="../../../../.."/>
+              <transparency>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formulaTree>
+              </transparency>
+            </setGhostEffectBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>50</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <changeGhostEffectByNBrick>
+              <object reference="../../../../.."/>
+              <changeGhostEffect>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </changeGhostEffect>
+            </changeGhostEffectByNBrick>
+            <loopEndBrick reference="../repeatBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>a2b2, appear</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>2537220F16D33281C296D06C3DBECE7A_a.png</fileName>
+          <name>a</name>
+        </look>
+      </lookList>
+      <name>a second</name>
+      <scriptList>
+        <broadcastScript>
+          <brickList>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>start</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>188</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>130</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>25</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <setGhostEffectBrick>
+              <object reference="../../../../.."/>
+              <transparency>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formulaTree>
+              </transparency>
+            </setGhostEffectBrick>
+            <goNStepsBackBrick>
+              <object reference="../../../../.."/>
+              <steps>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>10</value>
+                </formulaTree>
+              </steps>
+            </goNStepsBackBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <changeGhostEffectByNBrick>
+              <object reference="../../../../.."/>
+              <changeGhostEffect>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </changeGhostEffect>
+            </changeGhostEffectByNBrick>
+            <loopEndBrick reference="../repeatBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>ab, appear</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.02</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <goNStepsBackBrick>
+              <object reference="../../../../.."/>
+              <steps>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>10</value>
+                </formulaTree>
+              </steps>
+            </goNStepsBackBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>ab, hide</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>034B4A7C2361B5107AD5C54E3702A43F_b.png</fileName>
+          <name>b</name>
+        </look>
+      </lookList>
+      <name>b</name>
+      <scriptList>
+        <broadcastScript>
+          <brickList>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>start</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>133</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>30</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>25</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <setGhostEffectBrick>
+              <object reference="../../../../.."/>
+              <transparency>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formulaTree>
+              </transparency>
+            </setGhostEffectBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>50</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <changeGhostEffectByNBrick>
+              <object reference="../../../../.."/>
+              <changeGhostEffect>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </changeGhostEffect>
+            </changeGhostEffectByNBrick>
+            <loopEndBrick reference="../repeatBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>abc, appear</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <glideToBrick>
+              <object reference="../../../../.."/>
+              <durationInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1.0</value>
+                </formulaTree>
+              </durationInSeconds>
+              <xDestination>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>321</value>
+                </formulaTree>
+              </xDestination>
+              <yDestination>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>106</value>
+                </formulaTree>
+              </yDestination>
+            </glideToBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>go to the upper right</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>50</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <changeGhostEffectByNBrick>
+              <object reference="../../../../.."/>
+              <changeGhostEffect>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>2</value>
+                </formulaTree>
+              </changeGhostEffect>
+            </changeGhostEffectByNBrick>
+            <loopEndBrick reference="../repeatBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>ab, appear</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>80</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>50</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>25</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <setGhostEffectBrick>
+              <object reference="../../../../.."/>
+              <transparency>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formulaTree>
+              </transparency>
+            </setGhostEffectBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <goNStepsBackBrick>
+              <object reference="../../../../.."/>
+              <steps>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>10</value>
+                </formulaTree>
+              </steps>
+            </goNStepsBackBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <changeGhostEffectByNBrick>
+              <object reference="../../../../.."/>
+              <changeGhostEffect>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </changeGhostEffect>
+            </changeGhostEffectByNBrick>
+            <loopEndBrick reference="../repeatBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>ab second, appear</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <goNStepsBackBrick>
+              <object reference="../../../../.."/>
+              <steps>
+                <formulaTree>
+                  <type>SENSOR</type>
+                  <value>OBJECT_LAYER</value>
+                </formulaTree>
+              </steps>
+            </goNStepsBackBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>ab, hide</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>F79A7EFEA82AC58297FE32C50FA4E7EE_b2.png</fileName>
+          <name>b2</name>
+        </look>
+      </lookList>
+      <name>b2</name>
+      <scriptList>
+        <broadcastScript>
+          <brickList>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1.0</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>start</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>50</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <changeGhostEffectByNBrick>
+              <object reference="../../../../.."/>
+              <changeGhostEffect>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>2</value>
+                </formulaTree>
+              </changeGhostEffect>
+            </changeGhostEffectByNBrick>
+            <loopEndBrick reference="../repeatBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>go to the top and right</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>80</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>106</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>25</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <setGhostEffectBrick>
+              <object reference="../../../../.."/>
+              <transparency>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formulaTree>
+              </transparency>
+            </setGhostEffectBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>50</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <changeGhostEffectByNBrick>
+              <object reference="../../../../.."/>
+              <changeGhostEffect>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </changeGhostEffect>
+            </changeGhostEffectByNBrick>
+            <loopEndBrick reference="../repeatBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>a2b2, appear</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>034B4A7C2361B5107AD5C54E3702A43F_b.png</fileName>
+          <name>b</name>
+        </look>
+      </lookList>
+      <name>b second</name>
+      <scriptList>
+        <broadcastScript>
+          <brickList>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>start</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>56</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>106</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>25</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <setGhostEffectBrick>
+              <object reference="../../../../.."/>
+              <transparency>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formulaTree>
+              </transparency>
+            </setGhostEffectBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <goNStepsBackBrick>
+              <object reference="../../../../.."/>
+              <steps>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>10</value>
+                </formulaTree>
+              </steps>
+            </goNStepsBackBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <changeGhostEffectByNBrick>
+              <object reference="../../../../.."/>
+              <changeGhostEffect>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </changeGhostEffect>
+            </changeGhostEffectByNBrick>
+            <loopEndBrick reference="../repeatBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>ab, appear</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <goNStepsBackBrick>
+              <object reference="../../../../.."/>
+              <steps>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>15</value>
+                </formulaTree>
+              </steps>
+            </goNStepsBackBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>ab, hide</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>A1930F1A7A32131BAC0C46E1BC1E6057_c.png</fileName>
+          <name>c</name>
+        </look>
+        <look>
+          <fileName>2D03F4EA01C0813693F53EF304225D37_rc.png</fileName>
+          <name>rc</name>
+        </look>
+      </lookList>
+      <name>c</name>
+      <scriptList>
+        <broadcastScript>
+          <brickList>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>start</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>50</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <changeGhostEffectByNBrick>
+              <object reference="../../../../.."/>
+              <changeGhostEffect>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>2</value>
+                </formulaTree>
+              </changeGhostEffect>
+            </changeGhostEffectByNBrick>
+            <loopEndBrick reference="../repeatBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>c2, appear</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <setGhostEffectBrick>
+              <object reference="../../../../.."/>
+              <transparency>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formulaTree>
+              </transparency>
+            </setGhostEffectBrick>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <nextLookBrick>
+              <object reference="../../../../.."/>
+            </nextLookBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>140</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>70</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>50</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <changeGhostEffectByNBrick>
+              <object reference="../../../../.."/>
+              <changeGhostEffect>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </changeGhostEffect>
+            </changeGhostEffectByNBrick>
+            <loopEndBrick reference="../repeatBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>go to the lower left</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>65</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>10</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>25</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <setGhostEffectBrick>
+              <object reference="../../../../.."/>
+              <transparency>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formulaTree>
+              </transparency>
+            </setGhostEffectBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>50</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <changeGhostEffectByNBrick>
+              <object reference="../../../../.."/>
+              <changeGhostEffect>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </changeGhostEffect>
+            </changeGhostEffectByNBrick>
+            <loopEndBrick reference="../repeatBrick/loopEndBrick"/>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1.0</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>abc, appear</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <glideToBrick>
+              <object reference="../../../../.."/>
+              <durationInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1.0</value>
+                </formulaTree>
+              </durationInSeconds>
+              <xDestination>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>114</value>
+                </formulaTree>
+              </xDestination>
+              <yDestination>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>66</value>
+                </formulaTree>
+              </yDestination>
+            </glideToBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>go to the upper right</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>two triangles, come</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>6D7A4389F21D3EF895993E391723E02C_c2.png</fileName>
+          <name>c2</name>
+        </look>
+      </lookList>
+      <name>c2</name>
+      <scriptList>
+        <broadcastScript>
+          <brickList>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>start</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>15</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>15</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>25</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <setGhostEffectBrick>
+              <object reference="../../../../.."/>
+              <transparency>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formulaTree>
+              </transparency>
+            </setGhostEffectBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <changeGhostEffectByNBrick>
+              <object reference="../../../../.."/>
+              <changeGhostEffect>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </changeGhostEffect>
+            </changeGhostEffectByNBrick>
+            <loopEndBrick reference="../repeatBrick/loopEndBrick"/>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>2</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>200</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <changeGhostEffectByNBrick>
+              <object reference="../../../../.."/>
+              <changeGhostEffect>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.5</value>
+                </formulaTree>
+              </changeGhostEffect>
+            </changeGhostEffectByNBrick>
+            <loopEndBrick reference="../repeatBrick[2]/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>c2, appear</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>2D03F4EA01C0813693F53EF304225D37_rc.png</fileName>
+          <name>rc</name>
+        </look>
+      </lookList>
+      <name>c second</name>
+      <scriptList>
+        <broadcastScript>
+          <brickList>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>start</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>50</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <changeGhostEffectByNBrick>
+              <object reference="../../../../.."/>
+              <changeGhostEffect>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>2</value>
+                </formulaTree>
+              </changeGhostEffect>
+            </changeGhostEffectByNBrick>
+            <loopEndBrick reference="../repeatBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>c2, appear</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>70</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>135</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>25</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <setGhostEffectBrick>
+              <object reference="../../../../.."/>
+              <transparency>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formulaTree>
+              </transparency>
+            </setGhostEffectBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <comeToFrontBrick>
+              <object reference="../../../../.."/>
+            </comeToFrontBrick>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>50</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <changeGhostEffectByNBrick>
+              <object reference="../../../../.."/>
+              <changeGhostEffect>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </changeGhostEffect>
+            </changeGhostEffectByNBrick>
+            <loopEndBrick reference="../repeatBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>go to the lower left</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+  </objectList>
+  <variables>
+    <objectVariableList/>
+    <programVariableList/>
+  </variables>
+</program>

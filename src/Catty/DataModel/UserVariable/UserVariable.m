@@ -23,6 +23,7 @@
 #import "UserVariable.h"
 #import "GDataXMLNode.h"
 #import "Program.h"
+#import "Util.h"
 
 @implementation UserVariable
 
@@ -45,6 +46,13 @@
     [userVariableXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference"
                                                            stringValue:@"../../../../../objectList/object[10]/scriptList/startScript/brickList/setVariableBrick[2]/userVariable"]];
     return userVariableXMLElement;
+}
+
+- (BOOL)isEqualToUserVariable:(UserVariable*)userVariable
+{
+    if([self.name isEqualToString:userVariable.name] && [Util isEqual:self.value toObject:userVariable.value])
+        return YES;
+    return NO;
 }
 
 @end

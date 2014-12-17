@@ -21,8 +21,8 @@
  */
 
 #import "ChangeBrightnessByNBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface ChangeBrightnessByNBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface ChangeBrightnessByNBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

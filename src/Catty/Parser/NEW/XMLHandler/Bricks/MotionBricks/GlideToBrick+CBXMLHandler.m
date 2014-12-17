@@ -44,4 +44,22 @@
     return glideToBrick;
 }
 
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
+{
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"GlideToBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *formula = [self.yDestination xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"Y_DESTINATION"]];
+    [formulaList addChild:formula];
+    formula = [self.xDestination xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"X_DESTINATION"]];
+    [formulaList addChild:formula];
+    formula = [self.durationInSeconds xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"DURATION_IN_SECONDS"]];
+    [formulaList addChild:formula];
+    [brick addChild:formulaList];
+    return brick;
+}
+
 @end

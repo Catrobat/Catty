@@ -28,20 +28,21 @@
 #import "Sound+CBXMLHandler.h"
 #import "Script+CBXMLHandler.h"
 #import "CBXMLContext.h"
-#import "CBXMLParser.h"
+#import "CBXMLParserHelper.h"
+#import "Script+CBXMLHandler.h"
 
 @implementation SpriteObject (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [XMLError exceptionIfNil:xmlElement message:@"The rootElement nil"];
-    
-    if(![xmlElement.name isEqualToString:@"object"] && ![xmlElement.name isEqualToString:@"pointedObject"]) {
+    if (! [xmlElement.name isEqualToString:@"object"] && ![xmlElement.name isEqualToString:@"pointedObject"]) {
         [XMLError exceptionIfString:xmlElement.name
-             isNotEqualToString:@"object" message:@"The name of the rootElement is '%@' but should be '%@'",
-     xmlElement.name, @"object or pointedObject"];
+                 isNotEqualToString:@"object"
+                            message:@"The name of the rootElement is '%@' but should be '%@'",
+                                    xmlElement.name, @"object or pointedObject"];
     }
-    
+
     NSArray *attributes = [xmlElement attributes];
     [XMLError exceptionIf:[attributes count] notEquals:1
                   message:@"Parsed name-attribute of object is invalid or empty!"];
@@ -69,20 +70,19 @@
 
     // sprite object could (!) already exist in pointedSpriteObjectList at this point!
     SpriteObject *alreadyExistantSpriteObject = nil;
-    alreadyExistantSpriteObject = [CBXMLParser findSpriteObjectInArray:context.pointedSpriteObjectList
+    alreadyExistantSpriteObject = [CBXMLParserHelper findSpriteObjectInArray:context.pointedSpriteObjectList
                                                               withName:spriteObject.name];
     if (alreadyExistantSpriteObject) {
         return alreadyExistantSpriteObject;
     }
 
-    NSLog(@"<object name=\"%@\">", spriteObject.name);
     spriteObject.lookList = [self parseAndCreateLooks:xmlElement];
     context.lookList = spriteObject.lookList;
 
     spriteObject.soundList = [self parseAndCreateSounds:xmlElement];
     context.soundList = spriteObject.soundList;
 
-    spriteObject.scriptList = [self parseAndCreateScripts:xmlElement withContext:context];
+    spriteObject.scriptList = [self parseAndCreateScripts:xmlElement withContext:context AndSpriteObject:spriteObject];
     return spriteObject;
 }
 
@@ -128,6 +128,7 @@
 
 + (NSMutableArray*)parseAndCreateScripts:(GDataXMLElement*)objectElement
                              withContext:(CBXMLContext*)context
+                         AndSpriteObject:(SpriteObject*)spriteObject
 {
     NSArray *scriptListElements = [objectElement elementsForName:@"scriptList"];
     [XMLError exceptionIf:[scriptListElements count] notEquals:1 message:@"No scriptList given!"];
@@ -141,6 +142,7 @@
     NSMutableArray *scriptList = [NSMutableArray arrayWithCapacity:[scriptElements count]];
     for (GDataXMLElement *scriptElement in scriptElements) {
         Script *script = [Script parseFromElement:scriptElement withContext:context];
+        script.object = spriteObject;
         [XMLError exceptionIfNil:script message:@"Unable to parse script..."];
         [scriptList addObject:script];
     }

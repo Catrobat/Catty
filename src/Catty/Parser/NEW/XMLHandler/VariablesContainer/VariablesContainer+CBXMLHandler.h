@@ -21,10 +21,10 @@
  */
 
 #import "VariablesContainer.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
 @class CBXMLContext;
 
-@interface VariablesContainer (CBXMLHandler) <CBParserNodeProtocol>
+@interface VariablesContainer (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

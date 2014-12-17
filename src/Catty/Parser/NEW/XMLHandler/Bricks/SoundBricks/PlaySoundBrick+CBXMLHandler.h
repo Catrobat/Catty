@@ -21,8 +21,8 @@
  */
 
 #import "PlaySoundBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface PlaySoundBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface PlaySoundBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

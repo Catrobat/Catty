@@ -26,6 +26,7 @@
 #import "ProgramManager.h"
 #import "VariablesContainer.h"
 #import "GDataXMLNode.h"
+#import "UserVariable.h"
 
 @implementation ChangeVariableBrick
 
@@ -71,6 +72,15 @@
         [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
     }
     return brickXMLElement;
+}
+
+- (BOOL)isEqualToBrick:(Brick*)brick
+{
+    if(![self.userVariable isEqualToUserVariable:((ChangeVariableBrick*)brick).userVariable])
+        return NO;
+    if(![self.variableFormula isEqualToFormula:((ChangeVariableBrick*)brick).variableFormula])
+        return NO;
+    return YES;
 }
 
 @end

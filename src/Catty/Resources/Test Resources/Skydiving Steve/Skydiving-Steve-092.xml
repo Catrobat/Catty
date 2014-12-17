@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<program>
+  <header>
+    <applicationBuildName/>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.9.10</applicationVersion>
+    <catrobatLanguageVersion>0.92</catrobatLanguageVersion>
+    <dateTimeUpload/>
+    <description>Download this program to start with the "One Hour of Code" - Tutorial!</description>
+    <deviceName>Nexus 7</deviceName>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>19</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>Skydiving Steve</programName>
+    <remixOf/>
+    <screenHeight>1776</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>1080</screenWidth>
+    <tags/>
+    <url>http://pocketcode.org/details/1976</url>
+    <userHandle>PocketCodeTeam</userHandle>
+  </header>
+  <objectList>
+    <object>
+      <lookList>
+        <look>
+          <fileName>9c9b9b43b47b00008eb15e0c72808ecd_2014_08_15_041410.png</fileName>
+          <name>sky</name>
+        </look>
+      </lookList>
+      <name>Background</name>
+      <scriptList/>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>1581e93cf174078c6ba6805bff216c17_2014_08_15_041354.png</fileName>
+          <name>paratrooper</name>
+        </look>
+      </lookList>
+      <name>parachute</name>
+      <scriptList/>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>a75070545c64b571e9606e6c33b22c0d_2014_08_15_041340.png</fileName>
+          <name>target</name>
+        </look>
+      </lookList>
+      <name>target</name>
+      <scriptList/>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>b2b9774d1a60399daf8a9eab7c1ebf9c_look.png</fileName>
+          <name>parcel</name>
+        </look>
+      </lookList>
+      <name>parcel</name>
+      <scriptList/>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>4bcb3c90c99eee32cc97eb575766a9ee_2014_08_15_041258.png</fileName>
+          <name>restart</name>
+        </look>
+      </lookList>
+      <name>restart</name>
+      <scriptList/>
+      <soundList/>
+    </object>
+  </objectList>
+  <variables>
+    <objectVariableList/>
+    <programVariableList/>
+  </variables>
+</program>

@@ -21,10 +21,10 @@
  */
 
 #import "FormulaElement.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
 @class CBXMLContext;
 
-@interface FormulaElement (CBXMLHandler) <CBParserNodeProtocol>
+@interface FormulaElement (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

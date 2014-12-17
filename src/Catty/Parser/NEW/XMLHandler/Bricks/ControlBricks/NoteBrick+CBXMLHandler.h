@@ -21,8 +21,8 @@
  */
 
 #import "NoteBrick.h"
-#import "CBParserNodeProtocol.h"
+#import "CBXMLNodeProtocol.h"
 
-@interface NoteBrick (CBXMLHandler) <CBParserNodeProtocol>
+@interface NoteBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end
