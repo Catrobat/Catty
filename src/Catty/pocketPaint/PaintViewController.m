@@ -30,6 +30,7 @@
 #import "UIViewController+KNSemiModal.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "Util.h"
+#import "LanguageTranslationDefines.h"
 
 //Helper
 #import "RGBAHelper.h"
@@ -123,7 +124,7 @@
             UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
             if (![self.saveView.image isEqual:blank] && ![self.saveView.image isEqual:self.editingImage]) {
-            [Util confirmAlertWithTitle:@"Save" message:@"Do you want to save the changes" delegate:self tag:0];
+            [Util confirmAlertWithTitle:kLocalizedSaveToPocketCode message:kLocalizedPaintSaveChanges delegate:self tag:0];
             }
         }
             // reenable swipe back gesture
@@ -247,7 +248,7 @@
   self.navigationController.navigationBarHidden = NO;
   self.navigationController.navigationBar.tintColor = [UIColor lightOrangeColor];
   self.navigationItem.title = @"Pocket Paint";
-  UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Menu"
+  UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedPaintMenu
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self
                                                                 action:@selector(editAction)];
@@ -256,11 +257,11 @@
 
 -(void)editAction
 {
-  UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Select option:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
-                          @"Save to CameraRoll",
-                          @"Save & Close Paint",
-                          @"Discard & Close",
-                          @"New Canvas",
+  UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:kLocalizedPaintSelect delegate:self cancelButtonTitle:kLocalizedCancel destructiveButtonTitle:nil otherButtonTitles:
+                          kLocalizedPaintSave,
+                          kLocalizedPaintSaveClose,
+                          kLocalizedPaintDiscardClose,
+                          kLocalizedPaintNewCanvas,
                           nil];
   popup.tag = 1;
   [popup showInView:[UIApplication sharedApplication].keyWindow];
@@ -301,7 +302,7 @@
 
 -(void)changeAction
 {
-  LCTableViewPickerControl *pickerView = [[LCTableViewPickerControl alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, kPickerControlAgeHeight) title:@"Please pick an item" value:self.activeAction items:self.actionTypeArray offset:CGPointMake(0, 0)];
+  LCTableViewPickerControl *pickerView = [[LCTableViewPickerControl alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, kPickerControlAgeHeight) title:kLocalizedPaintPickItem value:self.activeAction items:self.actionTypeArray offset:CGPointMake(0, 0)];
   [pickerView setDelegate:self];
   self.navigationController.toolbarHidden = YES;
   [pickerView setTag:0];
@@ -489,7 +490,7 @@
 
   if (self.undoManager.canUndo) {
     [self.undoManager undo];
-    NSLog(@"undo");
+//    NSLog(@"undo");
   }else{
   }
   [self.undoManager updateUndoToolBarItems];
@@ -500,7 +501,7 @@
   
   if (self.undoManager.canRedo) {
     [self.undoManager redo];
-     NSLog(@"redo");
+//     NSLog(@"redo");
   }else{
   }
   [self.undoManager updateUndoToolBarItems];
@@ -530,7 +531,7 @@
       recognizer.enabled = NO;
     }
   } else {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Nothing to crop!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kLocalizedInformation message:kLocalizedPaintNoCrop delegate:self cancelButtonTitle:kLocalizedOK otherButtonTitles:nil];
     [alert show];
   }
   
@@ -773,11 +774,11 @@
 }
 - (void)newCanvasAction
 {
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Canvas"
-                                                  message:@"Do you really want to delete the current drawing?"
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kLocalizedPaintNewCanvas
+                                                  message:kLocalizedPaintAskNewCanvas
                                                  delegate:self
-                                        cancelButtonTitle:@"YES"
-                                        otherButtonTitles:@"NO", nil];
+                                        cancelButtonTitle:kLocalizedYes
+                                        otherButtonTitles:kLocalizedNo, nil];
   [alert show];
 }
 
@@ -822,7 +823,7 @@
 - (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex != 0) {
-        NSLog(@"yes");
+//        NSLog(@"yes");
         [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
     } 
 }
