@@ -7,6 +7,7 @@
 //
 
 #import "LCTableViewPickerControl.h"
+#import "LanguageTranslationDefines.h"
 
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 #define kNavBarHeight 44
@@ -70,7 +71,7 @@
      create dismissItem
      */
   
-  UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+  UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel
                                                                   style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
   rightButton.tintColor = [UIColor lightOrangeColor];
   UINavigationItem *item = [[UINavigationItem alloc] initWithTitle:_title];
@@ -226,72 +227,72 @@
   
   switch (item) {
     case brush:{
-      [cell.textLabel setText:NSLocalizedString(@"brush", nil)];
+      [cell.textLabel setText:kLocalizedPaintBrush];
       cell.imageView.image = [UIImage imageNamed:@"brush"];
     }
       break;
     case eraser:{
-      [cell.textLabel setText:NSLocalizedString(@"eraser", nil)];
+      [cell.textLabel setText:kLocalizedPaintEraser];
       cell.imageView.image = [UIImage imageNamed:@"eraser"];
     }
       break;
     case crop:{
-      [cell.textLabel setText:NSLocalizedString(@"crop", nil)];
+      [cell.textLabel setText:kLocalizedPaintCrop];
       cell.imageView.image = [UIImage imageNamed:@"crop"];
     }
       break;
     case pipette:{
-      [cell.textLabel setText:NSLocalizedString(@"pipette", nil)];
+      [cell.textLabel setText:kLocalizedPaintPipette];
       cell.imageView.image = [UIImage imageNamed:@"pipette"];
     }
       break;
     case mirror:{
-      [cell.textLabel setText:NSLocalizedString(@"mirror", nil)];
+      [cell.textLabel setText:kLocalizedPaintMirror];
       cell.imageView.image = [UIImage imageNamed:@"mirror"];
     }
       break;
     case image:{
-      [cell.textLabel setText:NSLocalizedString(@"image", nil)];
+      [cell.textLabel setText:kLocalizedPaintImage];
       cell.imageView.image = [UIImage imageNamed:@"image_select"];
     }
       break;
     case line:{
-      [cell.textLabel setText:NSLocalizedString(@"line", nil)];
+      [cell.textLabel setText:kLocalizedPaintLine];
       cell.imageView.image = [UIImage imageNamed:@"line"];
     }
       break;
     case rectangle:{
-      [cell.textLabel setText:NSLocalizedString(@"rectangle / square", nil)];
+      [cell.textLabel setText:kLocalizedPaintRect];
       cell.imageView.image = [UIImage imageNamed:@"rect"];
     }
       break;
     case ellipse:{
-      [cell.textLabel setText:NSLocalizedString(@"ellipse / circle", nil)];
+      [cell.textLabel setText:kLocalizedPaintCircle];
       cell.imageView.image = [UIImage imageNamed:@"circle"];
     }
       break;
     case stamp:{
-      [cell.textLabel setText:NSLocalizedString(@"stamp", nil)];
+      [cell.textLabel setText:kLocalizedPaintStamp];
       cell.imageView.image = [UIImage imageNamed:@"stamp"];
     }
       break;
     case rotate:{
-      [cell.textLabel setText:NSLocalizedString(@"rotate", nil)];
+      [cell.textLabel setText:kLocalizedPaintRotate];
       cell.imageView.image = [UIImage imageNamed:@"rotate"];
     }
       break;
     case fillTool:{
-      [cell.textLabel setText:NSLocalizedString(@"fill", nil)];
+      [cell.textLabel setText:kLocalizedPaintFill];
       cell.imageView.image = [UIImage imageNamed:@"fill"];
     }
       break;
     case zoom:{
-      [cell.textLabel setText:NSLocalizedString(@"zoom", nil)];
+      [cell.textLabel setText:kLocalizedPaintZoom];
       cell.imageView.image = [UIImage imageNamed:@"zoom"];
     }
       break;
     case pointer:{
-      [cell.textLabel setText:NSLocalizedString(@"pointer", nil)];
+      [cell.textLabel setText:kLocalizedPaintPointer];
       cell.imageView.image = [UIImage imageNamed:@"pointer"];
     }
       break;

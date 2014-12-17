@@ -603,3 +603,34 @@
 
 "LOGICAL_AND" = "AND";
 
+"Thickness"	=	"Thickness"	;
+"Red"	=	"Red"	;
+"Green"	=	"Green"	;
+"Blue"	=	"Blue"	;
+"Alpha"	=	"Alpha"	;
+"brush"	=	"brush"	;
+"eraser"	=	"eraser"	;
+"crop"	=	"crop"	;
+"pipette"	=	"pipette"	;
+"mirror"	=	"mirror"	;
+"image"	=	"image"	;
+"line"	=	"line"	;
+"rectangle / square"	=	"rectangle / square"	;
+"ellipse / circle"	=	"ellipse / circle"	;
+"stamp"	=	"stamp"	;
+"rotate"	=	"rotate"	;
+"fill"	=	"fill"	;
+"zoom"	=	"zoom"	;
+"pointer"	=	"pointer"	;
+"Do you want to save the changes"	=	"Do you want to save the changes"	;
+"Menu"	=	"Menu"	;
+"Select option:"	=	"Select option:"	;
+"Save to CameraRoll"	=	"Save to CameraRoll"	;
+"Save & Close Paint"	=	"Save & Close Paint"	;
+"Discard & Close"	=	"Discard & Close"	;
+"New Canvas"	=	"New Canvas"	;
+"Please pick an item"	=	"Please pick an item"	;
+"Do you want to save the changes"	=	"Do you want to save the changes"	;
+"Nothing to crop!"	=	"Nothing to crop!"	;
+"Do you really want to delete the current drawing?"	=	"Do you really want to delete the current drawing?"	;
+
