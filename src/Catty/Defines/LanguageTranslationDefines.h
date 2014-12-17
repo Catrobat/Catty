@@ -397,5 +397,25 @@
 // formula editor
 #define kUIActionSheetTitleSelectLogicalOperator NSLocalizedString(@"Select logical operator", nil)
 #define kUIActionSheetTitleSelectMathematicalFunction NSLocalizedString(@"Select mathematical function", nil)
+#define kUIFENumbers NSLocalizedString(@"Numbers", nil)
+#define kUIFELogic NSLocalizedString(@"Logic", nil)
+#define kUIFEVar NSLocalizedString(@"New", nil)
+#define kUIFETake NSLocalizedString(@"Take", nil)
+#define kUIFEMath NSLocalizedString(@"Math", nil)
+#define kUIFEObject NSLocalizedString(@"Object", nil)
+#define kUIFESensor NSLocalizedString(@"Sensors", nil)
+#define kUIFEVariable NSLocalizedString(@"Variables", nil)
+#define kUIFECompute NSLocalizedString(@"Compute", nil)
+#define kUIFEDone NSLocalizedString(@"Done", nil)
+#define kUIFEError NSLocalizedString(@"Error", nil)
+#define kUIFESyntaxError NSLocalizedString(@"Syntax Error!", nil)
+#define kUIFEtooLongFormula NSLocalizedString(@"Formula too long!", nil)
+#define kUIFEResult NSLocalizedString(@"Result", nil)
+#define kUIFEComputed NSLocalizedString(@"Computed result is %f", nil)
+#define kUIFENewVar NSLocalizedString(@"New Variable", nil)
+#define kUIFEonly15Char NSLocalizedString(@"only 15 characters allowed", nil)
+#define kUIFEVarName NSLocalizedString(@"Variable name:", nil)
+
+
 
 #endif // kIsRelease

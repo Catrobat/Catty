@@ -602,3 +602,36 @@
 "LOGICAL_OR" = "ODER";
 
 "LOGICAL_AND" = "UND";
+
+"Select logical operator" = "Select logical operator";
+
+"Select mathematical function" = "Select mathematical function";
+
+"Numbers" = "Nummer";
+
+"Logic" = "Logik";
+
+"Math" = "Mathe";
+
+"Object" = "Objekt";
+
+"Sensors" = "Sensoren";
+
+"Variables" = "Variablen";
+
+"Compute" = "Berechnen";
+
+"Done" = "Fertig";
+
+"Error" = "Fehler";
+"Syntax Error!" = "Syntax Fehler!";
+"Formula too long!" = "Formel zu lang!";
+"Result" = "Ergebnis";
+"Computed result is %f" = "Ergbnis lautet %f";
+"New Variable" = "Neue Variable";
+"only 15 characters allowed" = "nur 15 Characters erlaubt";
+"Variable name:" = "Variablenname:";
+
+
+"New" = "Neu";
+"Take" = "Nehmen";
