@@ -92,6 +92,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (weak, nonatomic) IBOutlet UIButton *multiplicationButton;
 @property (weak, nonatomic) IBOutlet UIButton *substractionButton;
 @property (weak, nonatomic) IBOutlet UIButton *additionButton;
+@property (weak, nonatomic) IBOutlet UIButton *doneButton;
+@property (weak, nonatomic) IBOutlet UIButton *variable;
+@property (weak, nonatomic) IBOutlet UIButton *takeVar;
 
 @property (strong, nonatomic) AHKActionSheet *mathFunctionsMenu;
 @property (strong, nonatomic) AHKActionSheet *logicalOperatorsMenu;
@@ -181,6 +184,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.logicScrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
     self.objectScrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
     self.sensorScrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
+    
+    [self localizeView];
   
 }
 
@@ -223,6 +228,22 @@ NS_ENUM(NSInteger, ButtonIndex) {
     if ([sender isKindOfClass:UITapGestureRecognizer.class]) {
         //[self dismissFormulaEditorViewController];
     }
+}
+
+#pragma mark - localizeView
+
+-(void)localizeView
+{
+  self.calcButton.titleLabel.text = kUIFENumbers;
+  self.mathbutton.titleLabel.text = kUIFEMath;
+  self.logicButton.titleLabel.text = kUIFELogic;
+  self.objectButton.titleLabel.text = kUIFEObject;
+  self.sensorButton.titleLabel.text = kUIFESensor;
+  self.variableButton.titleLabel.text = kUIFEVariable;
+  self.computeButton.titleLabel.text = kUIFECompute;
+  self.doneButton.titleLabel.text = kUIFEDone;
+  self.variable.titleLabel.text = kUIFEVar;
+  self.takeVar.titleLabel.text = kUIFETake;
 }
 
 
@@ -330,25 +351,25 @@ NS_ENUM(NSInteger, ButtonIndex) {
             case FORMULA_PARSER_OK:
                 result = [tempFormulaElement interpretRecursiveForSprite:nil];
                 
-                computedString = [NSString stringWithFormat:@"Computed result is %f", result];
-                alert = [[UIAlertView alloc]initWithTitle: @"Result"
+                computedString = [NSString stringWithFormat:kUIFEComputed, result];
+                alert = [[UIAlertView alloc]initWithTitle: kUIFEResult
                                                   message: computedString
                                                  delegate: self
-                                        cancelButtonTitle:@"OK"
+                                        cancelButtonTitle:kLocalizedOK
                                         otherButtonTitles:nil,nil];
                 break;
             case FORMULA_PARSER_STACK_OVERFLOW:
-                alert = [[UIAlertView alloc]initWithTitle: @"Error"
-                                                  message: @"Formula too long!"
+                alert = [[UIAlertView alloc]initWithTitle: kUIFEError
+                                                  message: kUIFEtooLongFormula
                                                  delegate: self
-                                        cancelButtonTitle:@"OK"
+                                        cancelButtonTitle:kLocalizedOK
                                         otherButtonTitles:nil,nil];
                 break;
             default:
-                alert = [[UIAlertView alloc]initWithTitle: @"Error"
-                                                  message: @"Syntax Error!"
+                alert = [[UIAlertView alloc]initWithTitle: kUIFEError
+                                                  message: kUIFESyntaxError
                                                  delegate: self
-                                        cancelButtonTitle:@"OK"
+                                        cancelButtonTitle:kLocalizedOK
                                         otherButtonTitles:nil,nil];
                 [self.formulaEditorTextView setParseErrorCursorAndSelection];
                 
@@ -547,18 +568,18 @@ NS_ENUM(NSInteger, ButtonIndex) {
                     return YES;
                     break;
                 case FORMULA_PARSER_STACK_OVERFLOW:
-                    alert = [[UIAlertView alloc]initWithTitle: @"Error"
-                                                                   message: @"Formula too long!"
+                    alert = [[UIAlertView alloc]initWithTitle: kUIFEError
+                                                                   message: kUIFEtooLongFormula
                                                                   delegate: self
-                                                         cancelButtonTitle:@"OK"
+                                                         cancelButtonTitle:kLocalizedOK
                                                          otherButtonTitles:nil,nil];
                     [alert show];
                     break;
                 default:
-                    alert = [[UIAlertView alloc]initWithTitle: @"Error"
-                                                      message: @"Syntax Error!"
+                    alert = [[UIAlertView alloc]initWithTitle: kUIFEError
+                                                      message: kUIFESyntaxError
                                                      delegate: self
-                                            cancelButtonTitle:@"OK"
+                                            cancelButtonTitle:kLocalizedOK
                                             otherButtonTitles:nil,nil];
                     [self.formulaEditorTextView setParseErrorCursorAndSelection];
                     [alert show];
@@ -643,13 +664,14 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (IBAction)addNewVariable:(UIButton *)sender {
     //TODO alert with text
     [self.formulaEditorTextView resignFirstResponder];
-    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:@"New Variable" promptMessage:@"Variable name:" minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:@"only 15 characters allowed" andTextField:self.formulaEditorTextView];
+    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVar promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
 
 }
 
 static NSCharacterSet *blockedCharacterSet = nil;
 
 - (NSCharacterSet*)blockedCharacterSet
+
 {
     if (! blockedCharacterSet) {
         blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]

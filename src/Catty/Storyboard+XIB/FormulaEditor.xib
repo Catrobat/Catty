@@ -13,6 +13,7 @@
                 <outlet property="computeButton" destination="oQN-vf-ZdE" id="dbs-ff-alX"/>
                 <outlet property="deleteButton" destination="uCt-gq-t2x" id="WlE-m3-Uhd"/>
                 <outlet property="divisionButton" destination="Rkk-tV-mbQ" id="0AJ-qO-Hmv"/>
+                <outlet property="doneButton" destination="SUT-4U-uAA" id="FDR-kY-DVd"/>
                 <outlet property="logicButton" destination="BjT-SP-YH6" id="Z1f-rU-mai"/>
                 <outlet property="logicScrollView" destination="hVS-Xg-Z9s" id="PZn-ww-9QH"/>
                 <outlet property="mathScrollView" destination="uXA-h0-rRH" id="WAi-3A-d5N"/>
@@ -24,7 +25,9 @@
                 <outlet property="sensorButton" destination="NJw-CT-Ced" id="r8N-ag-Tws"/>
                 <outlet property="sensorScrollView" destination="up0-Dt-TT0" id="Xaw-TC-og3"/>
                 <outlet property="substractionButton" destination="3NS-4e-r3K" id="Fig-xf-iYa"/>
+                <outlet property="takeVar" destination="kCG-a0-N5p" id="DOY-90-Vyd"/>
                 <outlet property="undoButton" destination="DpH-97-0s2" id="SrL-4a-0yR"/>
+                <outlet property="variable" destination="0tJ-1J-LnG" id="eXM-QH-j6R"/>
                 <outlet property="variableButton" destination="MGd-da-Hvk" id="Iji-nY-633"/>
                 <outlet property="variablePicker" destination="sVY-qj-Lmd" id="U1U-Ky-2mU"/>
                 <outlet property="variableScrollView" destination="FUl-ax-6eI" id="FdK-Mf-Jdd"/>
@@ -1381,7 +1384,7 @@
         </view>
     </objects>
     <resources>
-        <image name="erase" width="22" height="15"/>
+        <image name="erase" width="20" height="15"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
