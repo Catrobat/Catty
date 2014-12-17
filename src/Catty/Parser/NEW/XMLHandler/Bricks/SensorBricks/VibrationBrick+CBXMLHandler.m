@@ -22,6 +22,8 @@
 
 #import "VibrationBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
+#import "GDataXMLNode+CustomExtensions.h"
+#import "Formula+CBXMLHandler.h"
 
 @implementation VibrationBrick (CBXMLHandler)
 
@@ -32,6 +34,18 @@
     VibrationBrick *vibrationBrick = [self new];
     vibrationBrick.durationInSeconds = formula;
     return vibrationBrick;
+}
+
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
+{
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"VibrationBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *formula = [self.durationInSeconds xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"VIBRATE_DURATION_IN_SECONDS"]];
+    [formulaList addChild:formula];
+    [brick addChild:formulaList];
+    return brick;
 }
 
 @end

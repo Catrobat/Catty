@@ -459,7 +459,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
 }
 
-
 #pragma mark - Reorderable Cells Delegate
 - (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath
    willMoveToIndexPath:(NSIndexPath *)toIndexPath
@@ -1501,7 +1500,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
          }
          
      }
-         NSIndexPath* elsePath =[NSIndexPath indexPathForItem:countElse+1 inSection:indexPath.section];
+        NSIndexPath* elsePath =[NSIndexPath indexPathForItem:countElse+1 inSection:indexPath.section];
          NSIndexPath* endPath =[NSIndexPath indexPathForItem:countEnd+1 inSection:indexPath.section];
          if (!selectButton.selected) {
              selectButton.selected = selectButton.touchInside;
@@ -1590,6 +1589,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
              [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:beginPath]];
              [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:elsePath]];
          }
+
      
  }
 

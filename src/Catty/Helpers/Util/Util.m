@@ -841,8 +841,11 @@ replacementString:(NSString*)characters
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];
         
         // TODO use introspection
-        if([name isEqualToString:@"hash"] || [name isEqualToString:@"superclass"] || [name isEqualToString:@"description"] || [name isEqualToString:@"debugDescription"])
+        if ([name isEqualToString:@"hash"] || [name isEqualToString:@"superclass"]
+            || [name isEqualToString:@"description"] || [name isEqualToString:@"debugDescription"]) {
             continue;
+        }
+
         NSObject *currentProperty = [instance valueForKey:name];
         if(currentProperty != nil)
             [propertiesArray addObject:currentProperty];

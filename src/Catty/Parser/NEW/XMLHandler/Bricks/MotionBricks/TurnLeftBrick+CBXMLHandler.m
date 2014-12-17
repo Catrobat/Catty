@@ -23,6 +23,8 @@
 #import "TurnLeftBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "CBXMLParserHelper.h"
+#import "GDataXMLNode+CustomExtensions.h"
+#import "Formula+CBXMLHandler.h"
 
 @implementation TurnLeftBrick (CBXMLHandler)
 
@@ -35,6 +37,18 @@
     TurnLeftBrick *turnLeftBrick = [self new];
     turnLeftBrick.degrees = formula;
     return turnLeftBrick;
+}
+
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
+{
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"TurnLeftBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *formula = [self.degrees xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"TURN_LEFT_DEGREES"]];
+    [formulaList addChild:formula];
+    [brick addChild:formulaList];
+    return brick;
 }
 
 @end

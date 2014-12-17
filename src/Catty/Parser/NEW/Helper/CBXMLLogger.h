@@ -22,13 +22,19 @@
 
 #import <Foundation/Foundation.h>
 
+//#if !kIsRelease
+#import "Header+CBXMLLogger.h"
+#import "SpriteObject+CBXMLLogger.h"
+#import "Look+CBXMLLogger.h"
+#import "Sound+CBXMLLogger.h"
+#import "Script+CBXMLLogger.h"
+//#endif
+
 @class GDataXMLElement;
-@class CBXMLContext;
 
-@protocol CBXMLNodeProtocol <NSObject>
+@interface CBXMLLogger : NSObject
 
-@required
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context;
-//- (GDataXMLElement*)xmlElement;
++ (void)swizzleMethods:(Class)clazz;
++ (void)logElement:(GDataXMLElement*)xmlElement;
 
 @end

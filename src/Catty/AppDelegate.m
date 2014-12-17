@@ -27,7 +27,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import "ScenePresenterViewController.h"
 
-
 void uncaughtExceptionHandler(NSException *exception)
 {
     NSError(@"uncaught exception: %@", exception.description);

@@ -126,8 +126,9 @@
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     for (int sensor = X_ACCELERATION; sensor < OBJECT_X; sensor++) {
         // TODO: fix and remove this small workaround when problem is solved...
-        if (sensor == COMPASS_DIRECTION)
+        if (sensor == COMPASS_DIRECTION) {
             continue; // fourth test... always returns zero, don't know why...
+        }
 
         double sensorValue = [sensorHandler valueForSensor:sensor];
         BOOL isNotZero = (sensorValue != 0.0);

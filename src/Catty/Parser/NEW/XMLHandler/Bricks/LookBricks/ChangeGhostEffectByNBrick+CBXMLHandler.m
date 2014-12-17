@@ -22,6 +22,8 @@
 
 #import "ChangeGhostEffectByNBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
+#import "GDataXMLNode+CustomExtensions.h"
+#import "Formula+CBXMLHandler.h"
 
 @implementation ChangeGhostEffectByNBrick (CBXMLHandler)
 
@@ -33,6 +35,18 @@
     ChangeGhostEffectByNBrick *changeGhostEffectByNBrick = [self new];
     changeGhostEffectByNBrick.changeGhostEffect = formula;
     return changeGhostEffectByNBrick;
+}
+
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
+{
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"ChangeGhostEffectByNBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *formula = [self.changeGhostEffect xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"TRANSPARENCY_CHANGE"]];
+    [formulaList addChild:formula];
+    [brick addChild:formulaList];
+    return brick;
 }
 
 @end

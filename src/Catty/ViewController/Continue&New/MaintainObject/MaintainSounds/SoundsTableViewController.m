@@ -393,60 +393,70 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - player actions
 - (void)playSound:(id)sender
 {
-    // TODO: too many nested codeblocks...
     UITapGestureRecognizer *gesture = (UITapGestureRecognizer*)sender;
-    if ([gesture.view isKindOfClass:[UIImageView class]]) {
-        UIImageView *imageView = (UIImageView*)gesture.view;
-        CGPoint position = [imageView convertPoint:CGPointZero toView:self.tableView];
-        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:position];
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
-            UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
-            if (indexPath.row < [self.object.soundList count]) {
-                // acquire lock
-                @synchronized(self) {
-                    if (self.silentDetector.isMute) {
-                        [Util alertWithText:(IS_IPHONE ? kLocalizedDeviceIsInMutedStateIPhoneDescription
-                                                       : kLocalizedDeviceIsInMutedStateIPadDescription)];
-                        return;
-                    }
-                    Sound *sound = (Sound*)[self.object.soundList objectAtIndex:indexPath.row];
-                    BOOL isPlaying = sound.isPlaying;
-                    if (self.currentPlayingSong && self.currentPlayingSongCell) {
-                        self.currentPlayingSong.playing = NO;
-                        self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play"];
-                    }
-                    self.currentPlayingSong = sound;
-                    self.currentPlayingSongCell = imageCell;
-                    self.currentPlayingSong.playing = (! isPlaying);
-                    self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play"];
-                    if (! isPlaying)
-                        imageCell.iconImageView.image = [UIImage imageNamed:@"ic_media_pause"];
+    if (! [gesture.view isKindOfClass:[UIImageView class]]) {
+        return;
+    }
 
-                    // ASYNC !! lock lost here...
-                    // acquire new lock, because this part is executed asynchronously (!) on another thread
-                    dispatch_queue_t queue = dispatch_queue_create("at.tugraz.ist.catrobat.PlaySoundTVCQueue", NULL);
-                    dispatch_async(queue, ^{
-                        @synchronized(self) {
-                            [[AudioManager sharedAudioManager] stopAllSounds];
-                            if (! isPlaying) {
-                                BOOL isPlayable = [[AudioManager sharedAudioManager] playSoundWithFileName:sound.fileName
-                                                                                                    andKey:self.object.name
-                                                                                                atFilePath:[NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName]
-                                                                                                  delegate:self];
-                                if (! isPlayable) {
-                                    // SYNC !! so lock is not lost => busy waiting in PlaySoundTVCQueue
-                                    dispatch_sync(dispatch_get_main_queue(), ^{
-                                        [Util alertWithText:kLocalizedUnableToPlaySoundDescription];
-                                        [self stopAllSounds];
-                                    });
-                                }
-                            }
-                        }
-                    });
-                }
-            }
+    UIImageView *imageView = (UIImageView*)gesture.view;
+    CGPoint position = [imageView convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:position];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    if (! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
+        return;
+    }
+
+    UITableViewCell<CatrobatImageCell> *imageCell = (UITableViewCell<CatrobatImageCell>*)cell;
+    if (indexPath.row >= [self.object.soundList count]) {
+        return;
+    }
+
+    // acquire lock
+    @synchronized(self) {
+        if (self.silentDetector.isMute) {
+            [Util alertWithText:(IS_IPHONE ? kLocalizedDeviceIsInMutedStateIPhoneDescription
+                                 : kLocalizedDeviceIsInMutedStateIPadDescription)];
+            return;
         }
+        Sound *sound = (Sound*)[self.object.soundList objectAtIndex:indexPath.row];
+        BOOL isPlaying = sound.isPlaying;
+        if (self.currentPlayingSong && self.currentPlayingSongCell) {
+            self.currentPlayingSong.playing = NO;
+            self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play"];
+        }
+        self.currentPlayingSong = sound;
+        self.currentPlayingSongCell = imageCell;
+        self.currentPlayingSong.playing = (! isPlaying);
+        self.currentPlayingSongCell.iconImageView.image = [UIImage imageNamed:@"ic_media_play"];
+        if (! isPlaying)
+            imageCell.iconImageView.image = [UIImage imageNamed:@"ic_media_pause"];
+        
+        // ASYNC !! lock lost here...
+        // acquire new lock, because this part is executed asynchronously (!) on another thread
+        dispatch_queue_t queue = dispatch_queue_create("at.tugraz.ist.catrobat.PlaySoundTVCQueue", NULL);
+        dispatch_async(queue, ^{
+            @synchronized(self) {
+                [[AudioManager sharedAudioManager] stopAllSounds];
+                if (isPlaying) {
+                    return;
+                }
+                AudioManager *am = [AudioManager sharedAudioManager];
+                BOOL isPlayable = [am playSoundWithFileName:sound.fileName
+                                                     andKey:self.object.name
+                                                 atFilePath:[NSString stringWithFormat:@"%@%@",
+                                                             [self.object projectPath], kProgramSoundsDirName]
+                                                   delegate:self];
+                if (isPlayable) {
+                    return;
+                }
+
+                // SYNC !! so lock is not lost => busy waiting in PlaySoundTVCQueue
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    [Util alertWithText:kLocalizedUnableToPlaySoundDescription];
+                    [self stopAllSounds];
+                });
+            }
+        });
     }
 }
 

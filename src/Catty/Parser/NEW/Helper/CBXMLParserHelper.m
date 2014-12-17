@@ -46,123 +46,123 @@
 
 + (BOOL)validateXMLElement:(GDataXMLElement*)xmlElement forNumberOfChildNodes:(NSUInteger)numberOfChildNodes
 {
-  [XMLError exceptionIf:[xmlElement childCount]
-              notEquals:numberOfChildNodes
-                message:@"Too less or too many child nodes found... (%lu expected)", (unsigned long)numberOfChildNodes];
-  return true;
+    [XMLError exceptionIf:[xmlElement childCount]
+                notEquals:numberOfChildNodes
+                  message:@"Too less or too many child nodes found... (%lu expected)",
+                          (unsigned long)numberOfChildNodes];
+    return true;
 }
 
 + (BOOL)validateXMLElement:(GDataXMLElement*)xmlElement forNumberOfChildNodes:(NSUInteger)numberOfChildNodes AndFormulaListWithTotalNumberOfFormulas:(NSUInteger)numberOfFormulas
 {
-  [[self class] validateXMLElement:xmlElement forNumberOfChildNodes:numberOfChildNodes];
-  
-  GDataXMLElement *formulaListElement = [xmlElement childWithElementName:@"formulaList"];
-  [XMLError exceptionIfNil:formulaListElement message:@"No formulaList element found..."];
-  [XMLError exceptionIf:[formulaListElement childCount] notEquals:numberOfFormulas message:@"Too many formulas found (%lu expected)", (unsigned long)numberOfFormulas];
-  
-  return true;
+    [[self class] validateXMLElement:xmlElement forNumberOfChildNodes:numberOfChildNodes];
+    
+    GDataXMLElement *formulaListElement = [xmlElement childWithElementName:@"formulaList"];
+    [XMLError exceptionIfNil:formulaListElement message:@"No formulaList element found..."];
+    [XMLError exceptionIf:[formulaListElement childCount] notEquals:numberOfFormulas message:@"Too many formulas found (%lu expected)", (unsigned long)numberOfFormulas];
+    
+    return true;
 }
 
 + (Formula*)formulaInXMLElement:(GDataXMLElement*)xmlElement forCategoryName:(NSString*)categoryName
 {
-  GDataXMLElement *formulaListElement = [xmlElement childWithElementName:@"formulaList"];
-  [XMLError exceptionIfNil:formulaListElement message:@"No formulaList element found..."];
-  GDataXMLElement *formulaElement = [formulaListElement childWithElementName:@"formula"
-                                                         containingAttribute:@"category"
-                                                                   withValue:categoryName];
-  [XMLError exceptionIfNil:formulaElement message:@"No formula with category %@ found...", categoryName];
-  Formula *formula = [Formula parseFromElement:formulaElement withContext:nil];
-  [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
-  return formula;
+    GDataXMLElement *formulaListElement = [xmlElement childWithElementName:@"formulaList"];
+    [XMLError exceptionIfNil:formulaListElement message:@"No formulaList element found..."];
+    GDataXMLElement *formulaElement = [formulaListElement childWithElementName:@"formula"
+                                                           containingAttribute:@"category"
+                                                                     withValue:categoryName];
+    [XMLError exceptionIfNil:formulaElement message:@"No formula with category %@ found...", categoryName];
+    Formula *formula = [Formula parseFromElement:formulaElement withContext:nil];
+    [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
+    return formula;
 }
 
 + (const char*)typeStringForProperty:(objc_property_t)property
 {
-  const char *attrs = property_getAttributes(property);
-  if (attrs == NULL) { return NULL; }
-  
-  static char buffer[256];
-  const char *e = strchr(attrs, ',');
-  if (e == NULL) { return NULL; }
-  
-  int len = (int)(e - attrs);
-  memcpy(buffer, attrs, len);
-  buffer[len] = '\0';
-  return buffer;
+    const char *attrs = property_getAttributes(property);
+    if (attrs == NULL) { return NULL; }
+    
+    static char buffer[256];
+    const char *e = strchr(attrs, ',');
+    if (e == NULL) { return NULL; }
+    
+    int len = (int)(e - attrs);
+    memcpy(buffer, attrs, len);
+    buffer[len] = '\0';
+    return buffer;
 }
 
 + (id)valueForHeaderPropertyNode:(GDataXMLNode*)propertyNode
 {
-  objc_property_t property = class_getProperty([Header class], [propertyNode.name UTF8String]);
-  [XMLError exceptionIfNull:property message:@"Invalid header property %@ given", propertyNode.name];
-  NSString *propertyType = [NSString stringWithUTF8String:[[self class] typeStringForProperty:property]];
-  id value = nil;
-  if ([propertyType isEqualToString:kParserObjectTypeString]) {
-    value = [propertyNode stringValue];
-  } else if ([propertyType isEqualToString:kParserObjectTypeNumber]) {
-    value = [NSNumber numberWithFloat:[[propertyNode stringValue]floatValue]];
-  } else if ([propertyType isEqualToString:kParserObjectTypeDate]) {
-    NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-    [dateFormatter setDateFormat:kCatrobatHeaderDateTimeFormat];
-    value = [dateFormatter dateFromString:propertyNode.stringValue];
-  } else {
-    [XMLError exceptionWithMessage:@"Unsupported type for property %@ (of type: %@) in header", propertyNode.name, propertyType];
-  }
-  return value;
+    objc_property_t property = class_getProperty([Header class], [propertyNode.name UTF8String]);
+    [XMLError exceptionIfNull:property message:@"Invalid header property %@ given", propertyNode.name];
+    NSString *propertyType = [NSString stringWithUTF8String:[[self class] typeStringForProperty:property]];
+    id value = nil;
+    if ([propertyType isEqualToString:kParserObjectTypeString]) {
+        value = [propertyNode stringValue];
+    } else if ([propertyType isEqualToString:kParserObjectTypeNumber]) {
+        value = [NSNumber numberWithFloat:[[propertyNode stringValue]floatValue]];
+    } else if ([propertyType isEqualToString:kParserObjectTypeDate]) {
+        NSDateFormatter *dateFormatter = [NSDateFormatter new];
+        [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+        [dateFormatter setDateFormat:kCatrobatHeaderDateTimeFormat];
+        value = [dateFormatter dateFromString:propertyNode.stringValue];
+    } else {
+        [XMLError exceptionWithMessage:@"Unsupported type for property %@ (of type: %@) in header", propertyNode.name, propertyType];
+    }
+    return value;
 }
 
 + (id)valueForPropertyNode:(GDataXMLNode*)propertyNode
 {
     // TODO: stub method => implement this!!
-  [XMLError exceptionWithMessage:@"valueForPropertyNode: NOT IMPLEMENTED YET!!!"];
-  return nil;
+    [XMLError exceptionWithMessage:@"valueForPropertyNode: NOT IMPLEMENTED YET!!!"];
+    return nil;
 }
 
 + (BOOL)isReferenceElement:(GDataXMLElement*)xmlElement
 {
-  return ([xmlElement attributeForName:@"reference"] ? YES : NO);
+    return ([xmlElement attributeForName:@"reference"] ? YES : NO);
 }
 
 + (SpriteObject*)findSpriteObjectInArray:(NSArray*)spriteObjectList withName:(NSString*)spriteObjectName
 {
-  for (SpriteObject *spriteObject in spriteObjectList) {
-    if ([spriteObject.name isEqualToString:spriteObjectName]) { // TODO: implement isEqual in SpriteObject class
-      return spriteObject;
+    for (SpriteObject *spriteObject in spriteObjectList) {
+        if ([spriteObject.name isEqualToString:spriteObjectName]) { // TODO: implement isEqual in SpriteObject class
+            return spriteObject;
+        }
     }
-  }
-  return nil;
+    return nil;
 }
 
 + (Look*)findLookInArray:(NSArray*)lookList withName:(NSString*)lookName
 {
-  for (Look *look in lookList) {
-    if ([look.name isEqualToString:lookName]) { // TODO: implement isEqual in SpriteObject class
-      return look;
+    for (Look *look in lookList) {
+        if ([look.name isEqualToString:lookName]) { // TODO: implement isEqual in SpriteObject class
+            return look;
+        }
     }
-  }
-  return nil;
+    return nil;
 }
 
 + (Sound*)findSoundInArray:(NSArray*)soundList withName:(NSString*)soundName
 {
-  for (Sound *sound in soundList) {
-    if ([sound.name isEqualToString:soundName]) { // TODO: implement isEqual in SpriteObject class
-      return sound;
+    for (Sound *sound in soundList) {
+        if ([sound.name isEqualToString:soundName]) { // TODO: implement isEqual in SpriteObject class
+            return sound;
+        }
     }
-  }
-  return nil;
+    return nil;
 }
 
 + (UserVariable*)findUserVariableInArray:(NSArray*)userVariableList withName:(NSString*)userVariableName
 {
-  for (UserVariable *userVariable in userVariableList) {
-    if ([userVariable.name isEqualToString:userVariableName]) { // TODO: implement isEqual in UserVariable class
-      return userVariable;
+    for (UserVariable *userVariable in userVariableList) {
+        if ([userVariable.name isEqualToString:userVariableName]) { // TODO: implement isEqual in UserVariable class
+            return userVariable;
+        }
     }
-  }
-  return nil;
+    return nil;
 }
 
 @end
-

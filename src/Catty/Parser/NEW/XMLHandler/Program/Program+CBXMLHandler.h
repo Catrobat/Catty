@@ -20,23 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "HideBrick+CBXMLHandler.h"
-#import "CBXMLParserHelper.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "Program.h"
+#import "CBXMLNodeProtocol.h"
 
-@implementation HideBrick (CBXMLHandler)
-
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
-{
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
-    return [self new]; // nothing else to do!
-}
-
-- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
-{
-    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"HideBrick"]];
-    return brick;
-}
+@interface Program (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

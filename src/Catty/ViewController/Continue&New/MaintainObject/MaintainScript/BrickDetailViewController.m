@@ -81,7 +81,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 - (void)viewWillDisappear:(BOOL)animated
-{
+ {
     if ([self.view.window.gestureRecognizers containsObject:self.recognizer]) {
         [self.view.window removeGestureRecognizer:self.recognizer];
     }

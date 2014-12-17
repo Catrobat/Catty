@@ -20,23 +20,35 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "HideBrick+CBXMLHandler.h"
-#import "CBXMLParserHelper.h"
+#import "XMLAbstractTest.h"
 #import "GDataXMLNode+CustomExtensions.h"
+#import "CBXMLParser.h"
 
-@implementation HideBrick (CBXMLHandler)
+@implementation XMLAbstractTest
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
+- (NSString*)getPathForXML:(NSString*)xmlFile
 {
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
-    return [self new]; // nothing else to do!
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString *path = [bundle pathForResource:xmlFile ofType:@"xml"];
+    return path;
 }
 
-- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
+- (GDataXMLDocument*)getXMLDocumentForPath:(NSString*)xmlPath
 {
-    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"HideBrick"]];
-    return brick;
+    NSError *error;
+    NSString *xmlFile = [NSString stringWithContentsOfFile:xmlPath
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:&error];
+    NSData *xmlData = [xmlFile dataUsingEncoding:NSUTF8StringEncoding];
+    GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
+    return document;
+}
+
+- (Program*)getProgramForXML:(NSString *)xmlFile
+{
+    CBXMLParser *parser = [[CBXMLParser alloc] initWithPath:[self getPathForXML:xmlFile]];
+    Program *program = [parser parseAndCreateProgram];
+    return program;
 }
 
 @end

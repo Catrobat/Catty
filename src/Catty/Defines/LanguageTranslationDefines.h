@@ -265,8 +265,7 @@
 //*******************************       BRICK TITLE TRANSLATIONS      ****************************************
 //************************************************************************************************************
 
-#import "AppDefines.h" // needed for kIsRelease-constant <= TODO: remove this line later
-#if kIsRelease // kIsRelease
+#if kIsRelease // kIsRelease <= TODO: remove this line later
 //------------------------------------------------------------------------------------------------------------
 // TODO: in our first release we do not use translated strings in the script-editor because the translated
 //       strings can vary in their length compared to the english version. This would lead to graphical issues
@@ -277,6 +276,7 @@
 #define kLocalizedWhenProgramStarted @"When program started"
 #define kLocalizedWhenTapped @"When tapped"
 #define kLocalizedWaitNSeconds @"Wait %@ second(s)"
+#define kLocalizedVibrateNSeconds @"Vibrate %@ second(s)"
 #define kLocalizedWhenIReceive @"When I receive\n%@"
 #define kLocalizedBroadcast @"Broadcast\n%@"
 #define kLocalizedBroadcastAndWait @"Broadcast and wait\n%@"
@@ -313,6 +313,8 @@
 #define kLocalizedChangeSizeByN @"Change size by %@\%"
 #define kLocalizedHide @"Hide"
 #define kLocalizedShow @"Show"
+#define kLocalizedLedOn @"Flashlight on"
+#define kLocalizedLedOff @"Flashlight off"
 #define kLocalizedSetGhostEffect @"Set transparency\nto %@\%"
 #define kLocalizedChangeGhostEffectByN @"Change transparency\nby %@\%"
 #define kLocalizedSetBrightness @"Set brightness to %@\%"

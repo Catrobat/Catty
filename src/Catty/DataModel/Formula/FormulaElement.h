@@ -65,6 +65,8 @@ typedef enum {
 
 - (void)replaceElement:(FormulaElement*)current;
 
+- (NSString*)stringForElementType:(ElementType)type;
+
 - (void)replaceElement:(ElementType)type value:(NSString*)value;
 
 - (void)replaceWithSubElement:(NSString*) operator rightChild:(FormulaElement*)rightChild;

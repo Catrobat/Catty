@@ -23,8 +23,6 @@
 #import "Look.h"
 #import "CBXMLNodeProtocol.h"
 
-@class CBXMLContext;
-
 @interface Look (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

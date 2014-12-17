@@ -23,8 +23,6 @@
 #define CATTY_TESTS 1
 
 #import <XCTest/XCTest.h>
-#import "XMLAbstractTest.h"
-#import "CBXMLParser.h"
 #import "GDataXMLNode+CustomExtensions.h"
 #import "UIDefines.h"
 #import "Program.h"
@@ -68,12 +66,10 @@
 #import "PointToBrick+CBXMLHandler.h"
 #import "StopAllSoundsBrick+CBXMLHandler.h"
 
-@class GDataXMLDocument;
-
-@interface XMLParserAbstractTest : XMLAbstractTest
+@interface XMLAbstractTest : XCTestCase
 
 - (NSString*)getPathForXML: (NSString*)xmlFile;
 - (GDataXMLDocument*)getXMLDocumentForPath: (NSString*)xmlPath;
-- (void)compareProgram:(NSString*)programName092 withProgram:(NSString*)programName093;
+- (Program*)getProgramForXML: (NSString*)xmlFile;
 
 @end
