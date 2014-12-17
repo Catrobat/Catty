@@ -1381,7 +1381,7 @@
         </view>
     </objects>
     <resources>
-        <image name="erase" width="16" height="16"/>
+        <image name="erase" width="22" height="15"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
