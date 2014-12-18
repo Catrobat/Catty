@@ -21,10 +21,10 @@
  */
 
 #import "BrickCell.h"
-#import "MessageComboBoxView.h"
+#import "iOSCombobox.h"
 
 @interface BroadcastBrickCell : BrickCell
 
-@property (nonatomic, weak) MessageComboBoxView *messageComboBoxView;
+@property (nonatomic, weak) iOSCombobox *messageComboBoxView;
 
 @end

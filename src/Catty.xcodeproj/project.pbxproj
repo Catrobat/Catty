@@ -29,15 +29,11 @@
 		4C3275F61A135F990091C428 /* XMLParserFormulaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3275F51A135F990091C428 /* XMLParserFormulaTests.m */; };
 		4C3275F81A135FD00091C428 /* XMLParserObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3275F71A135FD00091C428 /* XMLParserObjectTests.m */; };
 		4C3275FA1A1360640091C428 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */; };
+		92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A461A42F2A3008C771A /* BSKeyboardControls.m */; };
+		92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A481A42F2A3008C771A /* iOSCombobox.m */; };
 		9238C5831A3AE9920099F061 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */; };
 		9238C5841A3AE9920099F061 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C5801A3AE9920099F061 /* LoginViewController.m */; };
 		9238C5851A3AE9920099F061 /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C5821A3AE9920099F061 /* UploadViewController.m */; };
-		923E122D1A42F16E00059989 /* ComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E12221A42F16E00059989 /* ComboBoxView.m */; };
-		923E122E1A42F16E00059989 /* LookComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E12241A42F16E00059989 /* LookComboBoxView.m */; };
-		923E122F1A42F16E00059989 /* MessageComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E12261A42F16E00059989 /* MessageComboBoxView.m */; };
-		923E12301A42F16E00059989 /* ObjectComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E12281A42F16E00059989 /* ObjectComboBoxView.m */; };
-		923E12311A42F16E00059989 /* SoundComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E122A1A42F16E00059989 /* SoundComboBoxView.m */; };
-		923E12321A42F16E00059989 /* VariableComboBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E122C1A42F16E00059989 /* VariableComboBoxView.m */; };
 		929108481A41F31F0034564D /* CBXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107A61A41F31F0034564D /* CBXMLParser.m */; };
 		929108491A41F31F0034564D /* CBXMLParser.m.orig in Resources */ = {isa = PBXBuildFile; fileRef = 929107A71A41F31F0034564D /* CBXMLParser.m.orig */; };
 		9291084A1A41F31F0034564D /* CBXMLValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107A91A41F31F0034564D /* CBXMLValidator.m */; };
@@ -539,6 +535,10 @@
 		81C27425189EF94600827A95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Catty/Images.xcassets; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		921FE2F9182F8122001D7CF6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		92289A451A42F2A3008C771A /* BSKeyboardControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSKeyboardControls.h; sourceTree = "<group>"; };
+		92289A461A42F2A3008C771A /* BSKeyboardControls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSKeyboardControls.m; sourceTree = "<group>"; };
+		92289A471A42F2A3008C771A /* iOSCombobox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSCombobox.h; sourceTree = "<group>"; };
+		92289A481A42F2A3008C771A /* iOSCombobox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSCombobox.m; sourceTree = "<group>"; };
 		92300CEA18B2196700F2B4DC /* af */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = af; path = af.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92300CEB18B2196700F2B4DC /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92300CEC18B2196700F2B4DC /* bs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bs; path = bs.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -583,18 +583,6 @@
 		9238C5801A3AE9920099F061 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9238C5811A3AE9920099F061 /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
 		9238C5821A3AE9920099F061 /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
-		923E12211A42F16E00059989 /* ComboBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComboBoxView.h; sourceTree = "<group>"; };
-		923E12221A42F16E00059989 /* ComboBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComboBoxView.m; sourceTree = "<group>"; };
-		923E12231A42F16E00059989 /* LookComboBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookComboBoxView.h; sourceTree = "<group>"; };
-		923E12241A42F16E00059989 /* LookComboBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookComboBoxView.m; sourceTree = "<group>"; };
-		923E12251A42F16E00059989 /* MessageComboBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageComboBoxView.h; sourceTree = "<group>"; };
-		923E12261A42F16E00059989 /* MessageComboBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageComboBoxView.m; sourceTree = "<group>"; };
-		923E12271A42F16E00059989 /* ObjectComboBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectComboBoxView.h; sourceTree = "<group>"; };
-		923E12281A42F16E00059989 /* ObjectComboBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectComboBoxView.m; sourceTree = "<group>"; };
-		923E12291A42F16E00059989 /* SoundComboBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundComboBoxView.h; sourceTree = "<group>"; };
-		923E122A1A42F16E00059989 /* SoundComboBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundComboBoxView.m; sourceTree = "<group>"; };
-		923E122B1A42F16E00059989 /* VariableComboBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableComboBoxView.h; sourceTree = "<group>"; };
-		923E122C1A42F16E00059989 /* VariableComboBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableComboBoxView.m; sourceTree = "<group>"; };
 		929107A51A41F31F0034564D /* CBXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLParser.h; sourceTree = "<group>"; };
 		929107A61A41F31F0034564D /* CBXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLParser.m; sourceTree = "<group>"; };
 		929107A71A41F31F0034564D /* CBXMLParser.m.orig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CBXMLParser.m.orig; sourceTree = "<group>"; };
@@ -1588,6 +1576,17 @@
 				4CD194F51A0632AA00484E4F /* XMLParserTests */,
 			);
 			name = CatrobatLanguage0.93;
+			sourceTree = "<group>";
+		};
+		92289A441A42F2A3008C771A /* ComboBox */ = {
+			isa = PBXGroup;
+			children = (
+				92289A451A42F2A3008C771A /* BSKeyboardControls.h */,
+				92289A461A42F2A3008C771A /* BSKeyboardControls.m */,
+				92289A471A42F2A3008C771A /* iOSCombobox.h */,
+				92289A481A42F2A3008C771A /* iOSCombobox.m */,
+			);
+			path = ComboBox;
 			sourceTree = "<group>";
 		};
 		92300CE818B2196700F2B4DC /* iOS_Lang */ = {
@@ -3149,10 +3148,10 @@
 		92FF31A21A24E2F400093DA7 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				92289A441A42F2A3008C771A /* ComboBox */,
 				92FF31A31A24E2F400093DA7 /* CatrobatActionSheet */,
 				92FF31A61A24E2F400093DA7 /* CatrobatAlertView */,
 				92FF31A91A24E2F400093DA7 /* CollectionViewCells */,
-				92FF321C1A24E2F400093DA7 /* ComboBoxView */,
 				92FF32291A24E2F400093DA7 /* CreateView */,
 				92FF322E1A24E2F400093DA7 /* LoadingView */,
 				92FF32311A24E2F400093DA7 /* MotionEffect */,
@@ -3356,25 +3355,6 @@
 				92FF321B1A24E2F400093DA7 /* SetVariableBrickCell.m */,
 			);
 			path = VariableBrickCells;
-			sourceTree = "<group>";
-		};
-		92FF321C1A24E2F400093DA7 /* ComboBoxView */ = {
-			isa = PBXGroup;
-			children = (
-				923E12211A42F16E00059989 /* ComboBoxView.h */,
-				923E12221A42F16E00059989 /* ComboBoxView.m */,
-				923E12231A42F16E00059989 /* LookComboBoxView.h */,
-				923E12241A42F16E00059989 /* LookComboBoxView.m */,
-				923E12251A42F16E00059989 /* MessageComboBoxView.h */,
-				923E12261A42F16E00059989 /* MessageComboBoxView.m */,
-				923E12271A42F16E00059989 /* ObjectComboBoxView.h */,
-				923E12281A42F16E00059989 /* ObjectComboBoxView.m */,
-				923E12291A42F16E00059989 /* SoundComboBoxView.h */,
-				923E122A1A42F16E00059989 /* SoundComboBoxView.m */,
-				923E122B1A42F16E00059989 /* VariableComboBoxView.h */,
-				923E122C1A42F16E00059989 /* VariableComboBoxView.m */,
-			);
-			path = ComboBoxView;
 			sourceTree = "<group>";
 		};
 		92FF32291A24E2F400093DA7 /* CreateView */ = {
@@ -4014,7 +3994,6 @@
 				92DFB01E1A38949E00FA9B0F /* NoteBrickTextField.m in Sources */,
 				92FF30D51A24DCAA00093DA7 /* HideBrick.m in Sources */,
 				92DFB0131A38949E00FA9B0F /* InternFormulaKeyboardAdapter.m in Sources */,
-				923E12301A42F16E00059989 /* ObjectComboBoxView.m in Sources */,
 				929108791A41F31F0034564D /* VibrationBrick+CBXMLHandler.m in Sources */,
 				92FF32631A24E2F400093DA7 /* FXBlurView.m in Sources */,
 				92FF326E1A24E2F400093DA7 /* SWLongPressGestureRecognizer.m in Sources */,
@@ -4049,16 +4028,13 @@
 				92DFB0101A38949E00FA9B0F /* FormulaEditorHistory.m in Sources */,
 				92FF30D41A24DCAA00093DA7 /* GoNStepsBackBrick.m in Sources */,
 				92FF328A1A24E2F400093DA7 /* ClearGraphicEffectBrickCell.m in Sources */,
-				923E122D1A42F16E00059989 /* ComboBoxView.m in Sources */,
 				92FF325B1A24E2F400093DA7 /* BDKNotifyHUD.m in Sources */,
 				92FF32BD1A24E2F400093DA7 /* ProgramTableHeaderView.m in Sources */,
-				923E12311A42F16E00059989 /* SoundComboBoxView.m in Sources */,
 				92FF30ED1A24DCAA00093DA7 /* VibrationBrick.m in Sources */,
 				92FF32941A24E2F400093DA7 /* ChangeXByNBrickCell.m in Sources */,
 				92FF2EC21A24C8A700093DA7 /* ProgramLoadingInfo.m in Sources */,
 				92FF30F61A24DCAA00093DA7 /* SetVariableBrick.m in Sources */,
 				92FF314C1A24DEB300093DA7 /* CatrobatTableViewController.m in Sources */,
-				923E122E1A42F16E00059989 /* LookComboBoxView.m in Sources */,
 				92FF315D1A24DEB300093DA7 /* SearchStoreViewController.m in Sources */,
 				92FF2E351A24C5A700093DA7 /* NSData+Hashes.m in Sources */,
 				929108831A41F31F0034564D /* Header+CBXMLHandler.m in Sources */,
@@ -4157,7 +4133,6 @@
 				92FF32931A24E2F400093DA7 /* ChangeSizeByNBrickCell.m in Sources */,
 				9291088C1A41F31F0034564D /* VariablesContainer+CBXMLHandler.m in Sources */,
 				92FF2E3D1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m in Sources */,
-				923E12321A42F16E00059989 /* VariableComboBoxView.m in Sources */,
 				92FF329C1A24E2F400093DA7 /* SetSizeToBrickCell.m in Sources */,
 				92FF31551A24DEB300093DA7 /* SoundsTableViewController.m in Sources */,
 				929108731A41F31F0034564D /* SetXBrick+CBXMLHandler.m in Sources */,
@@ -4223,6 +4198,7 @@
 				92FF32811A24E2F400093DA7 /* LedOffBrickCell.m in Sources */,
 				92FF315E1A24DEB300093DA7 /* HelpWebViewController.m in Sources */,
 				9291087B1A41F31F0034564D /* PlaySoundBrick+CBXMLHandler.m in Sources */,
+				92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */,
 				929108711A41F31F0034564D /* PointToBrick+CBXMLHandler.m in Sources */,
 				929108581A41F31F0034564D /* IfLogicBeginBrick+CBXMLHandler.m in Sources */,
 				92DFB06D1A38960C00FA9B0F /* YKImageCropperView.m in Sources */,
@@ -4260,6 +4236,7 @@
 				92FF327D1A24E2F400093DA7 /* ForeverBrickCell.m in Sources */,
 				92DFB06C1A38960C00FA9B0F /* YKImageCropperOverlayView.m in Sources */,
 				92FF2E361A24C5A700093DA7 /* NSDate+CustomExtensions.m in Sources */,
+				92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */,
 				92FF325F1A24E2F400093DA7 /* FBShimmeringLayer.m in Sources */,
 				92FF2EC11A24C8A700093DA7 /* OrderedMapTable.m in Sources */,
 				92FF325D1A24E2F400093DA7 /* EVCircularProgressView.m in Sources */,
@@ -4333,7 +4310,6 @@
 				92FF32921A24E2F400093DA7 /* ShowBrickCell.m in Sources */,
 				92FF31071A24DCAA00093DA7 /* SpriteObject.m in Sources */,
 				92FF30D91A24DCAA00093DA7 /* SetLookBrick.m in Sources */,
-				923E122F1A42F16E00059989 /* MessageComboBoxView.m in Sources */,
 				929108561A41F31F0034564D /* ComeToFrontBrick+CBXMLHandler.m in Sources */,
 				92FF32A11A24E2F400093DA7 /* BroadcastScriptCell.m in Sources */,
 				9291088B1A41F31F0034564D /* UserVariable+CBXMLHandler.m in Sources */,

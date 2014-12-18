@@ -21,11 +21,11 @@
  */
 
 #import "BrickCell.h"
-#import "VariableComboBoxView.h"
+#import "iOSCombobox.h"
 
 @interface ChangeVariableBrickCell : BrickCell
 
-@property (nonatomic, weak) VariableComboBoxView *variableComboBoxView;
+@property (nonatomic, weak) iOSCombobox *variableComboBoxView;
 @property (nonatomic, weak) UITextField *valueTextField;
 
 @end

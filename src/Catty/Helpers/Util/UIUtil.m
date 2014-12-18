@@ -22,11 +22,7 @@
 
 #import "UIUtil.h"
 #import "UIDefines.h"
-#import "MessageComboBoxView.h"
-#import "ObjectComboBoxView.h"
-#import "SoundComboBoxView.h"
-#import "LookComboBoxView.h"
-#import "VariableComboBoxView.h"
+#import "iOSCombobox.h"
 #import "FormulaEditorButton.h"
 #import "BrickDetailViewController.h"
 #import "ScriptCollectionViewController.h"
@@ -89,38 +85,10 @@
     return button;
 }
 
-+ (MessageComboBoxView*)newDefaultBrickMessageComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items
++ (iOSCombobox*)newDefaultBrickComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items
 {
-    MessageComboBoxView *comboBox = [[MessageComboBoxView alloc] initWithFrame:frame];
-    comboBox.items = items;
-    return comboBox;
-}
-
-+ (ObjectComboBoxView*)newDefaultBrickObjectComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items
-{
-    ObjectComboBoxView *comboBox = [[ObjectComboBoxView alloc] initWithFrame:frame];
-    comboBox.items = items;
-    return comboBox;
-}
-
-+ (SoundComboBoxView*)newDefaultBrickSoundComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items
-{
-    SoundComboBoxView *comboBox = [[SoundComboBoxView alloc] initWithFrame:frame];
-    comboBox.items = items;
-    return comboBox;
-}
-
-+ (LookComboBoxView*)newDefaultBrickLookComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items
-{
-    LookComboBoxView *comboBox = [[LookComboBoxView alloc] initWithFrame:frame];
-    comboBox.items = items;
-    return comboBox;
-}
-
-+ (VariableComboBoxView*)newDefaultBrickVariableComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items
-{
-    VariableComboBoxView *comboBox = [[VariableComboBoxView alloc] initWithFrame:frame];
-    comboBox.items = items;
+    iOSCombobox *comboBox = [[iOSCombobox alloc] initWithFrame:frame];
+    [comboBox setValues:items];
     return comboBox;
 }
 

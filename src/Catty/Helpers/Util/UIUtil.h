@@ -22,11 +22,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class MessageComboBoxView;
-@class ObjectComboBoxView;
-@class SoundComboBoxView;
-@class LookComboBoxView;
-@class VariableComboBoxView;
+@class iOSCombobox;
 @class FormulaEditorTextField;
 @class BrickCell;
 
@@ -37,10 +33,7 @@
 + (UITextField*)newDefaultBrickTextFieldWithFrame:(CGRect)frame andNote:(NSString*)note AndBrickCell:(BrickCell*)brickCell;
 + (UIButton*)newDefaultBrickFormulaEditorWithFrame:(CGRect)frame ForBrickCell:(BrickCell*)brickCell AndLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
 
-+ (MessageComboBoxView*)newDefaultBrickMessageComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
-+ (ObjectComboBoxView*)newDefaultBrickObjectComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
-+ (SoundComboBoxView*)newDefaultBrickSoundComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
-+ (LookComboBoxView*)newDefaultBrickLookComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
-+ (VariableComboBoxView*)newDefaultBrickVariableComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
++ (iOSCombobox*)newDefaultBrickComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
+
 
 @end

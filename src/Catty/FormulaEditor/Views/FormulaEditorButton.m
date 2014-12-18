@@ -45,7 +45,7 @@ static Formula *activeFormula;
         
         self.titleLabel.textColor = [UIColor whiteColor];
         self.titleLabel.font = [UIFont systemFontOfSize:kBrickTextFieldFontSize];
-        NSLog(@"%@",[formula getDisplayString]);
+//        NSLog(@"%@",[formula getDisplayString]);
         [self setTitle:[formula getDisplayString] forState:UIControlStateNormal];
         [self sizeToFit];
         if (self.frame.size.width >= kBrickInputFieldMaxWidth) {
