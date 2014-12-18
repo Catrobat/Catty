@@ -35,12 +35,10 @@
 		9238C5841A3AE9920099F061 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C5801A3AE9920099F061 /* LoginViewController.m */; };
 		9238C5851A3AE9920099F061 /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C5821A3AE9920099F061 /* UploadViewController.m */; };
 		929108481A41F31F0034564D /* CBXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107A61A41F31F0034564D /* CBXMLParser.m */; };
-		929108491A41F31F0034564D /* CBXMLParser.m.orig in Resources */ = {isa = PBXBuildFile; fileRef = 929107A71A41F31F0034564D /* CBXMLParser.m.orig */; };
 		9291084A1A41F31F0034564D /* CBXMLValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107A91A41F31F0034564D /* CBXMLValidator.m */; };
 		9291084B1A41F31F0034564D /* CBXMLContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107AC1A41F31F0034564D /* CBXMLContext.m */; };
 		9291084C1A41F31F0034564D /* CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107AF1A41F31F0034564D /* CBXMLLogger.m */; };
 		9291084D1A41F31F0034564D /* CBXMLParserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107B21A41F31F0034564D /* CBXMLParserHelper.m */; };
-		9291084E1A41F31F0034564D /* CBXMLParserHelper.m.orig in Resources */ = {isa = PBXBuildFile; fileRef = 929107B31A41F31F0034564D /* CBXMLParserHelper.m.orig */; };
 		9291084F1A41F31F0034564D /* Header+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107B51A41F31F0034564D /* Header+CBXMLLogger.m */; };
 		929108501A41F31F0034564D /* Look+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107B71A41F31F0034564D /* Look+CBXMLLogger.m */; };
 		929108511A41F31F0034564D /* Script+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107B91A41F31F0034564D /* Script+CBXMLLogger.m */; };
@@ -94,8 +92,6 @@
 		929108811A41F31F0034564D /* Formula+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108221A41F31F0034564D /* Formula+CBXMLHandler.m */; };
 		929108821A41F31F0034564D /* FormulaElement+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108241A41F31F0034564D /* FormulaElement+CBXMLHandler.m */; };
 		929108831A41F31F0034564D /* Header+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108271A41F31F0034564D /* Header+CBXMLHandler.m */; };
-		929108841A41F31F0034564D /* Header+CBXMLHandler.m.orig in Resources */ = {isa = PBXBuildFile; fileRef = 929108281A41F31F0034564D /* Header+CBXMLHandler.m.orig */; };
-		929108851A41F31F0034564D /* Look+CBXMLHandler.h.orig in Resources */ = {isa = PBXBuildFile; fileRef = 9291082B1A41F31F0034564D /* Look+CBXMLHandler.h.orig */; };
 		929108861A41F31F0034564D /* Look+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9291082C1A41F31F0034564D /* Look+CBXMLHandler.m */; };
 		929108871A41F31F0034564D /* Program+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9291082F1A41F31F0034564D /* Program+CBXMLHandler.m */; };
 		929108881A41F31F0034564D /* Script+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108321A41F31F0034564D /* Script+CBXMLHandler.m */; };
@@ -585,7 +581,6 @@
 		9238C5821A3AE9920099F061 /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
 		929107A51A41F31F0034564D /* CBXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLParser.h; sourceTree = "<group>"; };
 		929107A61A41F31F0034564D /* CBXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLParser.m; sourceTree = "<group>"; };
-		929107A71A41F31F0034564D /* CBXMLParser.m.orig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CBXMLParser.m.orig; sourceTree = "<group>"; };
 		929107A81A41F31F0034564D /* CBXMLValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLValidator.h; sourceTree = "<group>"; };
 		929107A91A41F31F0034564D /* CBXMLValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLValidator.m; sourceTree = "<group>"; };
 		929107AB1A41F31F0034564D /* CBXMLContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLContext.h; sourceTree = "<group>"; };
@@ -595,7 +590,6 @@
 		929107B01A41F31F0034564D /* CBXMLNodeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLNodeProtocol.h; sourceTree = "<group>"; };
 		929107B11A41F31F0034564D /* CBXMLParserHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLParserHelper.h; sourceTree = "<group>"; };
 		929107B21A41F31F0034564D /* CBXMLParserHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLParserHelper.m; sourceTree = "<group>"; };
-		929107B31A41F31F0034564D /* CBXMLParserHelper.m.orig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CBXMLParserHelper.m.orig; sourceTree = "<group>"; };
 		929107B41A41F31F0034564D /* Header+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Header+CBXMLLogger.h"; sourceTree = "<group>"; };
 		929107B51A41F31F0034564D /* Header+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Header+CBXMLLogger.m"; sourceTree = "<group>"; };
 		929107B61A41F31F0034564D /* Look+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Look+CBXMLLogger.h"; sourceTree = "<group>"; };
@@ -702,9 +696,7 @@
 		929108241A41F31F0034564D /* FormulaElement+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FormulaElement+CBXMLHandler.m"; sourceTree = "<group>"; };
 		929108261A41F31F0034564D /* Header+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Header+CBXMLHandler.h"; sourceTree = "<group>"; };
 		929108271A41F31F0034564D /* Header+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Header+CBXMLHandler.m"; sourceTree = "<group>"; };
-		929108281A41F31F0034564D /* Header+CBXMLHandler.m.orig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Header+CBXMLHandler.m.orig"; sourceTree = "<group>"; };
 		9291082A1A41F31F0034564D /* Look+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Look+CBXMLHandler.h"; sourceTree = "<group>"; };
-		9291082B1A41F31F0034564D /* Look+CBXMLHandler.h.orig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Look+CBXMLHandler.h.orig"; sourceTree = "<group>"; };
 		9291082C1A41F31F0034564D /* Look+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Look+CBXMLHandler.m"; sourceTree = "<group>"; };
 		9291082E1A41F31F0034564D /* Program+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Program+CBXMLHandler.h"; sourceTree = "<group>"; };
 		9291082F1A41F31F0034564D /* Program+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Program+CBXMLHandler.m"; sourceTree = "<group>"; };
@@ -1625,7 +1617,6 @@
 			children = (
 				929107A51A41F31F0034564D /* CBXMLParser.h */,
 				929107A61A41F31F0034564D /* CBXMLParser.m */,
-				929107A71A41F31F0034564D /* CBXMLParser.m.orig */,
 				929107A81A41F31F0034564D /* CBXMLValidator.h */,
 				929107A91A41F31F0034564D /* CBXMLValidator.m */,
 				929107AA1A41F31F0034564D /* Context */,
@@ -1652,7 +1643,6 @@
 				929107B01A41F31F0034564D /* CBXMLNodeProtocol.h */,
 				929107B11A41F31F0034564D /* CBXMLParserHelper.h */,
 				929107B21A41F31F0034564D /* CBXMLParserHelper.m */,
-				929107B31A41F31F0034564D /* CBXMLParserHelper.m.orig */,
 				929107B41A41F31F0034564D /* Header+CBXMLLogger.h */,
 				929107B51A41F31F0034564D /* Header+CBXMLLogger.m */,
 				929107B61A41F31F0034564D /* Look+CBXMLLogger.h */,
@@ -1845,7 +1835,6 @@
 			children = (
 				929108261A41F31F0034564D /* Header+CBXMLHandler.h */,
 				929108271A41F31F0034564D /* Header+CBXMLHandler.m */,
-				929108281A41F31F0034564D /* Header+CBXMLHandler.m.orig */,
 			);
 			path = Header;
 			sourceTree = "<group>";
@@ -1854,7 +1843,6 @@
 			isa = PBXGroup;
 			children = (
 				9291082A1A41F31F0034564D /* Look+CBXMLHandler.h */,
-				9291082B1A41F31F0034564D /* Look+CBXMLHandler.h.orig */,
 				9291082C1A41F31F0034564D /* Look+CBXMLHandler.m */,
 			);
 			path = Look;
@@ -3742,11 +3730,11 @@
 				LastUpgradeCheck = 0600;
 				TargetAttributes = {
 					CA538EA119B0EA09008240AB = {
-						DevelopmentTeam = SAUK7AHA7S;
+						DevelopmentTeam = 9NJ4SV439Q;
 						TestTargetID = CADBD6D319B0E8C200C62836;
 					};
 					CADBD6D319B0E8C200C62836 = {
-						DevelopmentTeam = SAUK7AHA7S;
+						DevelopmentTeam = 9NJ4SV439Q;
 					};
 				};
 			};
@@ -3831,15 +3819,12 @@
 				92FF325E1A24E2F400093DA7 /* LICENSE_EVCircularProgressView in Resources */,
 				92FF32621A24E2F400093DA7 /* PATENTS_FBShimmering in Resources */,
 				CAFAEAE61A13BE1F00C9F170 /* ValidProgramAllBricks.xml in Resources */,
-				929108491A41F31F0034564D /* CBXMLParser.m.orig in Resources */,
 				92DFB05F1A38960C00FA9B0F /* nko_brightness_guide@2x.png in Resources */,
 				CA775CBF19FD5BCB00C1E761 /* My First Program.catrobat in Resources */,
 				CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */,
 				CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */,
-				9291084E1A41F31F0034564D /* CBXMLParserHelper.m.orig in Resources */,
 				CADBD6DE19B0E8C200C62836 /* OrderedDictionary.license in Resources */,
 				92DFB05E1A38960C00FA9B0F /* nko_brightness_guide.png in Resources */,
-				929108851A41F31F0034564D /* Look+CBXMLHandler.h.orig in Resources */,
 				CADBD6DF19B0E8C200C62836 /* AHKActionSheet.license in Resources */,
 				CADBD6E019B0E8C200C62836 /* SMPageControl.license in Resources */,
 				92FF2E951A24C7D800093DA7 /* LoggerProperties.plist in Resources */,
@@ -3853,7 +3838,6 @@
 				92FF32661A24E2F400093DA7 /* LICENSE_IBActionSheet in Resources */,
 				CADBD6E719B0E8C200C62836 /* LXReorderableCollectionViewFlowLayout.license in Resources */,
 				CADBD6E819B0E8C200C62836 /* FXBlurView.license in Resources */,
-				929108841A41F31F0034564D /* Header+CBXMLHandler.m.orig in Resources */,
 				92FF326B1A24E2F400093DA7 /* LICENSE_SWTableViewCell in Resources */,
 				92FF32611A24E2F400093DA7 /* LICENSE_FBShimmering in Resources */,
 				CADBD6EA19B0E8C200C62836 /* IBActionSheet.license in Resources */,
