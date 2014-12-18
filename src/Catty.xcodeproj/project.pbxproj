@@ -300,7 +300,6 @@
 		92FF336B1A24E5F800093DA7 /* NextLookBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32F91A24E5F800093DA7 /* NextLookBrick+CBXMLHandler.m */; };
 		92FF336C1A24E5F800093DA7 /* SetBrightnessBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32FB1A24E5F800093DA7 /* SetBrightnessBrick+CBXMLHandler.m */; };
 		92FF336D1A24E5F800093DA7 /* SetGhostEffectBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32FD1A24E5F800093DA7 /* SetGhostEffectBrick+CBXMLHandler.m */; };
-		92FF336E1A24E5F800093DA7 /* SetLookBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32FF1A24E5F800093DA7 /* SetLookBrick+CBXMLHandler.m */; };
 		92FF336F1A24E5F800093DA7 /* ShowBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF33011A24E5F800093DA7 /* ShowBrick+CBXMLHandler.m */; };
 		92FF33701A24E5F800093DA7 /* ChangeSizeByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF33041A24E5F800093DA7 /* ChangeSizeByNBrick+CBXMLHandler.m */; };
 		92FF33711A24E5F800093DA7 /* ChangeXByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF33061A24E5F800093DA7 /* ChangeXByNBrick+CBXMLHandler.m */; };
@@ -386,6 +385,8 @@
 		CA6067F41A3500670037A13A /* Sound+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6067EF1A3500670037A13A /* Sound+CBXMLLogger.m */; };
 		CA6067F51A3500670037A13A /* SpriteObject+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6067F01A3500670037A13A /* SpriteObject+CBXMLLogger.m */; };
 		CA775CBF19FD5BCB00C1E761 /* My First Program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CA6E4C4719F9C388001B65C3 /* My First Program.catrobat */; };
+		CA8A94A61A41E57400E51A12 /* SetLookBrick+CBXMLHandler.h in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32FE1A24E5F800093DA7 /* SetLookBrick+CBXMLHandler.h */; };
+		CA8A94A71A41E57400E51A12 /* SetLookBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32FF1A24E5F800093DA7 /* SetLookBrick+CBXMLHandler.m */; };
 		CAC3205D1A3CC6C800C125D4 /* CBXMLSerializerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC3205C1A3CC6C800C125D4 /* CBXMLSerializerHelper.m */; };
 		CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3A198F685D00455B77 /* SSZipArchive.license */; };
 		CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */; };
@@ -3762,6 +3763,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA8A94A61A41E57400E51A12 /* SetLookBrick+CBXMLHandler.h in Sources */,
+				CA8A94A71A41E57400E51A12 /* SetLookBrick+CBXMLHandler.m in Sources */,
 				CA184E651A3A556F00D32D9F /* CBXMLSerializer.m in Sources */,
 				92FF338D1A24E5F800093DA7 /* UserVariable+CBXMLHandler.m in Sources */,
 				92FF2E9C1A24C7D800093DA7 /* SensorHandler.m in Sources */,
@@ -3895,7 +3898,6 @@
 				CA184E621A3A4A9400D32D9F /* Program+CBXMLHandler.m in Sources */,
 				92FF30CF1A24DCAA00093DA7 /* IfLogicEndBrick.m in Sources */,
 				92FF30DF1A24DCAA00093DA7 /* ChangeXByNBrick.m in Sources */,
-				92FF336E1A24E5F800093DA7 /* SetLookBrick+CBXMLHandler.m in Sources */,
 				92FF329B1A24E2F400093DA7 /* PointToBrickCell.m in Sources */,
 				92FF32571A24E2F400093DA7 /* AHKActionSheetViewController.m in Sources */,
 				92FF32931A24E2F400093DA7 /* ChangeSizeByNBrickCell.m in Sources */,

@@ -25,6 +25,7 @@
 #import "CBXMLValidator.h"
 #import "CBXMLParserHelper.h"
 #import "CatrobatLanguageDefines.h"
+#import "CBXMLSerializer.h"
 
 @implementation Header (CBXMLHandler)
 
@@ -51,9 +52,6 @@
     //NSLog(@"</header>");
     return header;
 }
-
-// FIXME: move to serializer class
-#define kCBXMLSerializerLanguageVersion @"0.93"
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {

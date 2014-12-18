@@ -31,14 +31,14 @@
 
 + (NSString*)relativeXPathToObjectList
 {
-    return @"../../../../../../"; // TODO: maybe should be computed dynamically
+    return @"../../../../../../"; // TODO: maybe should be computed dynamically REQUIRED (PointToBrick) MUST BE IMPLEMENTED!!!
 }
 
 + (NSString*)indexXPathStringForIndexNumber:(NSUInteger)indexNumber
 {
     NSString *index = nil;
-    if ((indexNumber != NSNotFound) && (indexNumber > 0)) {
-        index = [NSString stringWithFormat:@"[%lu]", indexNumber];
+    if ((indexNumber != NSNotFound) && (indexNumber > 1)) {
+        index = [NSString stringWithFormat:@"[%lu]", (indexNumber+1)];
     } else {
         index = @"";
     }

@@ -22,6 +22,8 @@
 
 #import "CBSerializerProtocol.h"
 
+#define kCBXMLSerializerLanguageVersion @"0.93"
+
 @interface CBXMLSerializer : NSObject <CBSerializerProtocol>
 
 - (id)initWithPath:(NSString*)path;
