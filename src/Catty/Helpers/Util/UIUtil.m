@@ -37,10 +37,10 @@
 
 + (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame
 {
-    return [self newDefaultBrickLabelWithFrame:frame AndText:nil];
+    return [self newDefaultBrickLabelWithFrame:frame AndText:nil andRemainingSpace:kBrickInputFieldMaxWidth];
 }
 
-+ (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame AndText:(NSString*)text
++ (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame AndText:(NSString*)text andRemainingSpace:(NSInteger)remainingSpace
 {
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
     label.textColor = [UIColor whiteColor];
@@ -49,6 +49,18 @@
         label.text = text;
         // adapt size to fit text
         [label sizeToFit];
+        if (label.frame.size.width >= remainingSpace) {
+            label.frame = CGRectMake(label.frame.origin.x, label.frame.origin.y, remainingSpace, label.frame.size.height);
+            label.numberOfLines = 1;
+            [label setAdjustsFontSizeToFitWidth:YES];
+            label.lineBreakMode = NSLineBreakByTruncatingTail;
+            label.minimumScaleFactor = 14./label.font.pointSize;
+        }else{
+            label.numberOfLines = 1;
+            label.lineBreakMode = NSLineBreakByTruncatingTail;
+            [label setAdjustsFontSizeToFitWidth:YES];
+            label.minimumScaleFactor = 14./label.font.pointSize;
+        }
         CGRect labelFrame = label.frame;
         labelFrame.size.height = frame.size.height;
         label.frame = labelFrame;

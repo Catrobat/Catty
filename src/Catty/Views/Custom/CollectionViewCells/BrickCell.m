@@ -389,7 +389,7 @@
     NSUInteger totalNumberOfParams = [params count];
     if (! totalNumberOfParams) {
         NSMutableArray *subviews = [NSMutableArray array];
-        UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:remainingFrame AndText:labelTitle];
+        UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:remainingFrame AndText:labelTitle andRemainingSpace:remainingFrame.size.width];
 #ifdef LAYOUT_DEBUG
         NSLog(@"Label Title: %@, Width: %f, Height: %f", labelTitle, remainingFrame.size.width, remainingFrame.size.height);
         textLabel.backgroundColor = [UIColor yellowColor];
@@ -410,7 +410,7 @@
         // TODO: make x-offset calculation much more smarter...
 
         if (partLabelTitle.length) {
-            UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:remainingFrame AndText:partLabelTitle];
+            UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:remainingFrame AndText:partLabelTitle andRemainingSpace:remainingFrame.size.width];
     #ifdef LAYOUT_DEBUG
             NSLog(@"Label Title: %@, Width: %f, Height: %f", partLabelTitle, remainingFrame.size.width, remainingFrame.size.height);
             textLabel.backgroundColor = [UIColor blueColor];
