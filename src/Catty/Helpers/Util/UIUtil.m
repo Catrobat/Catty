@@ -22,6 +22,7 @@
 
 #import "UIUtil.h"
 #import "UIDefines.h"
+#import "Util.h"
 #import "iOSCombobox.h"
 #import "FormulaEditorButton.h"
 #import "BrickDetailViewController.h"
