@@ -135,10 +135,10 @@
     CGContextSetLineCap(ctx, kCGLineCapButt);
     CGContextAddPath(ctx, background);
     if (active) {
-        CGContextSetRGBStrokeColor(ctx, (2 / 3 / 10), 0.18f, 0.53f, 1.0f);
+        CGContextSetStrokeColorWithColor(ctx, [UIColor lightBlueColor].CGColor);
     }
     else {
-        CGContextSetRGBStrokeColor(ctx, 0.3f, 0.3f, 0.3f, 1.0f);
+        CGContextSetStrokeColorWithColor(ctx, [UIColor whiteColor].CGColor);
     }
     CGContextDrawPath(ctx, kCGPathStroke);
     CGContextRestoreGState(ctx);
@@ -149,10 +149,10 @@
     CGContextSaveGState(ctx);
     CGContextSetLineWidth(ctx, BORDER_WIDTH);
     if (active) {
-        CGContextSetRGBStrokeColor(ctx, (2 / 3 / 10), 0.18f, 0.53f, 1.0f);
+        CGContextSetStrokeColorWithColor(ctx, [UIColor lightBlueColor].CGColor);
     }
     else {
-        CGContextSetRGBStrokeColor(ctx, 0.3f, 0.3f, 0.3f, 1.0f);
+        CGContextSetStrokeColorWithColor(ctx, [UIColor whiteColor].CGColor);
     }
     CGContextBeginPath(ctx);
     CGContextMoveToPoint(ctx,
@@ -183,7 +183,7 @@
     CGPathCloseSubpath(path);
     
   if (active) {
-        CGContextSetFillColorWithColor(ctx, [[UIColor blackColor] CGColor]);
+        CGContextSetFillColorWithColor(ctx, [[UIColor lightBlueColor] CGColor]);
   }
   else {
        CGContextSetFillColorWithColor(ctx, [[UIColor darkBlueColor] CGColor]);
