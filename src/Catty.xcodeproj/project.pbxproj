@@ -29,6 +29,75 @@
 		9238C5831A3AE9920099F061 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */; };
 		9238C5841A3AE9920099F061 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C5801A3AE9920099F061 /* LoginViewController.m */; };
 		9238C5851A3AE9920099F061 /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C5821A3AE9920099F061 /* UploadViewController.m */; };
+		929108481A41F31F0034564D /* CBXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107A61A41F31F0034564D /* CBXMLParser.m */; };
+		9291084A1A41F31F0034564D /* CBXMLValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107A91A41F31F0034564D /* CBXMLValidator.m */; };
+		9291084B1A41F31F0034564D /* CBXMLContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107AC1A41F31F0034564D /* CBXMLContext.m */; };
+		9291084C1A41F31F0034564D /* CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107AF1A41F31F0034564D /* CBXMLLogger.m */; };
+		9291084D1A41F31F0034564D /* CBXMLParserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107B21A41F31F0034564D /* CBXMLParserHelper.m */; };
+		9291084F1A41F31F0034564D /* Header+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107B51A41F31F0034564D /* Header+CBXMLLogger.m */; };
+		929108501A41F31F0034564D /* Look+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107B71A41F31F0034564D /* Look+CBXMLLogger.m */; };
+		929108511A41F31F0034564D /* Script+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107B91A41F31F0034564D /* Script+CBXMLLogger.m */; };
+		929108521A41F31F0034564D /* Sound+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107BB1A41F31F0034564D /* Sound+CBXMLLogger.m */; };
+		929108531A41F31F0034564D /* SpriteObject+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107BD1A41F31F0034564D /* SpriteObject+CBXMLLogger.m */; };
+		929108541A41F31F0034564D /* BroadcastBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107C21A41F31F0034564D /* BroadcastBrick+CBXMLHandler.m */; };
+		929108551A41F31F0034564D /* BroadcastWaitBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107C41A41F31F0034564D /* BroadcastWaitBrick+CBXMLHandler.m */; };
+		929108561A41F31F0034564D /* ComeToFrontBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107C61A41F31F0034564D /* ComeToFrontBrick+CBXMLHandler.m */; };
+		929108571A41F31F0034564D /* ForeverBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107C81A41F31F0034564D /* ForeverBrick+CBXMLHandler.m */; };
+		929108581A41F31F0034564D /* IfLogicBeginBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107CA1A41F31F0034564D /* IfLogicBeginBrick+CBXMLHandler.m */; };
+		929108591A41F31F0034564D /* IfLogicElseBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107CC1A41F31F0034564D /* IfLogicElseBrick+CBXMLHandler.m */; };
+		9291085A1A41F31F0034564D /* IfLogicEndBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107CE1A41F31F0034564D /* IfLogicEndBrick+CBXMLHandler.m */; };
+		9291085B1A41F31F0034564D /* IfOnEdgeBounceBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107D01A41F31F0034564D /* IfOnEdgeBounceBrick+CBXMLHandler.m */; };
+		9291085C1A41F31F0034564D /* LoopEndBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107D21A41F31F0034564D /* LoopEndBrick+CBXMLHandler.m */; };
+		9291085D1A41F31F0034564D /* NoteBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107D41A41F31F0034564D /* NoteBrick+CBXMLHandler.m */; };
+		9291085E1A41F31F0034564D /* PlaceAtBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107D61A41F31F0034564D /* PlaceAtBrick+CBXMLHandler.m */; };
+		9291085F1A41F31F0034564D /* RepeatBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107D81A41F31F0034564D /* RepeatBrick+CBXMLHandler.m */; };
+		929108601A41F31F0034564D /* WaitBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107DA1A41F31F0034564D /* WaitBrick+CBXMLHandler.m */; };
+		929108611A41F31F0034564D /* ChangeBrightnessByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107DD1A41F31F0034564D /* ChangeBrightnessByNBrick+CBXMLHandler.m */; };
+		929108621A41F31F0034564D /* ChangeGhostEffectByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107DF1A41F31F0034564D /* ChangeGhostEffectByNBrick+CBXMLHandler.m */; };
+		929108631A41F31F0034564D /* ClearGraphicEffectBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107E11A41F31F0034564D /* ClearGraphicEffectBrick+CBXMLHandler.m */; };
+		929108641A41F31F0034564D /* GoNStepsBackBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107E31A41F31F0034564D /* GoNStepsBackBrick+CBXMLHandler.m */; };
+		929108651A41F31F0034564D /* HideBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107E51A41F31F0034564D /* HideBrick+CBXMLHandler.m */; };
+		929108661A41F31F0034564D /* NextLookBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107E71A41F31F0034564D /* NextLookBrick+CBXMLHandler.m */; };
+		929108671A41F31F0034564D /* SetBrightnessBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107E91A41F31F0034564D /* SetBrightnessBrick+CBXMLHandler.m */; };
+		929108681A41F31F0034564D /* SetGhostEffectBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107EB1A41F31F0034564D /* SetGhostEffectBrick+CBXMLHandler.m */; };
+		929108691A41F31F0034564D /* SetLookBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107ED1A41F31F0034564D /* SetLookBrick+CBXMLHandler.m */; };
+		9291086A1A41F31F0034564D /* ShowBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107EF1A41F31F0034564D /* ShowBrick+CBXMLHandler.m */; };
+		9291086B1A41F31F0034564D /* ChangeSizeByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107F21A41F31F0034564D /* ChangeSizeByNBrick+CBXMLHandler.m */; };
+		9291086C1A41F31F0034564D /* ChangeXByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107F41A41F31F0034564D /* ChangeXByNBrick+CBXMLHandler.m */; };
+		9291086D1A41F31F0034564D /* ChangeYByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107F61A41F31F0034564D /* ChangeYByNBrick+CBXMLHandler.m */; };
+		9291086E1A41F31F0034564D /* GlideToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107F81A41F31F0034564D /* GlideToBrick+CBXMLHandler.m */; };
+		9291086F1A41F31F0034564D /* MoveNStepsBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107FA1A41F31F0034564D /* MoveNStepsBrick+CBXMLHandler.m */; };
+		929108701A41F31F0034564D /* PointInDirectionBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107FC1A41F31F0034564D /* PointInDirectionBrick+CBXMLHandler.m */; };
+		929108711A41F31F0034564D /* PointToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929107FE1A41F31F0034564D /* PointToBrick+CBXMLHandler.m */; };
+		929108721A41F31F0034564D /* SetSizeToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108001A41F31F0034564D /* SetSizeToBrick+CBXMLHandler.m */; };
+		929108731A41F31F0034564D /* SetXBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108021A41F31F0034564D /* SetXBrick+CBXMLHandler.m */; };
+		929108741A41F31F0034564D /* SetYBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108041A41F31F0034564D /* SetYBrick+CBXMLHandler.m */; };
+		929108751A41F31F0034564D /* TurnLeftBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108061A41F31F0034564D /* TurnLeftBrick+CBXMLHandler.m */; };
+		929108761A41F31F0034564D /* TurnRightBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108081A41F31F0034564D /* TurnRightBrick+CBXMLHandler.m */; };
+		929108771A41F31F0034564D /* LedOffBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9291080B1A41F31F0034564D /* LedOffBrick+CBXMLHandler.m */; };
+		929108781A41F31F0034564D /* LedOnBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9291080D1A41F31F0034564D /* LedOnBrick+CBXMLHandler.m */; };
+		929108791A41F31F0034564D /* VibrationBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9291080F1A41F31F0034564D /* VibrationBrick+CBXMLHandler.m */; };
+		9291087A1A41F31F0034564D /* ChangeVolumeByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108121A41F31F0034564D /* ChangeVolumeByNBrick+CBXMLHandler.m */; };
+		9291087B1A41F31F0034564D /* PlaySoundBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108141A41F31F0034564D /* PlaySoundBrick+CBXMLHandler.m */; };
+		9291087C1A41F31F0034564D /* SetVolumeToBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108161A41F31F0034564D /* SetVolumeToBrick+CBXMLHandler.m */; };
+		9291087D1A41F31F0034564D /* SpeakBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108181A41F31F0034564D /* SpeakBrick+CBXMLHandler.m */; };
+		9291087E1A41F31F0034564D /* StopAllSoundsBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9291081A1A41F31F0034564D /* StopAllSoundsBrick+CBXMLHandler.m */; };
+		9291087F1A41F31F0034564D /* ChangeVariableBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9291081D1A41F31F0034564D /* ChangeVariableBrick+CBXMLHandler.m */; };
+		929108801A41F31F0034564D /* SetVariableBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9291081F1A41F31F0034564D /* SetVariableBrick+CBXMLHandler.m */; };
+		929108811A41F31F0034564D /* Formula+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108221A41F31F0034564D /* Formula+CBXMLHandler.m */; };
+		929108821A41F31F0034564D /* FormulaElement+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108241A41F31F0034564D /* FormulaElement+CBXMLHandler.m */; };
+		929108831A41F31F0034564D /* Header+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108271A41F31F0034564D /* Header+CBXMLHandler.m */; };
+		929108861A41F31F0034564D /* Look+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9291082C1A41F31F0034564D /* Look+CBXMLHandler.m */; };
+		929108871A41F31F0034564D /* Program+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9291082F1A41F31F0034564D /* Program+CBXMLHandler.m */; };
+		929108881A41F31F0034564D /* Script+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108321A41F31F0034564D /* Script+CBXMLHandler.m */; };
+		929108891A41F31F0034564D /* Sound+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108351A41F31F0034564D /* Sound+CBXMLHandler.m */; };
+		9291088A1A41F31F0034564D /* SpriteObject+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108381A41F31F0034564D /* SpriteObject+CBXMLHandler.m */; };
+		9291088B1A41F31F0034564D /* UserVariable+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9291083B1A41F31F0034564D /* UserVariable+CBXMLHandler.m */; };
+		9291088C1A41F31F0034564D /* VariablesContainer+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9291083E1A41F31F0034564D /* VariablesContainer+CBXMLHandler.m */; };
+		9291088D1A41F31F0034564D /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108411A41F31F0034564D /* Parser.m */; };
+		9291088E1A41F31F0034564D /* ProjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108431A41F31F0034564D /* ProjectParser.m */; };
+		9291088F1A41F31F0034564D /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108451A41F31F0034564D /* TestParser.m */; };
+		929108901A41F31F0034564D /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 929108471A41F31F0034564D /* XMLObjectReference.m */; };
 		92DFAFE61A38943D00FA9B0F /* FormulaEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */; };
 		92DFB00E1A38949E00FA9B0F /* ExternInternRepresentationMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEA1A38949E00FA9B0F /* ExternInternRepresentationMapping.m */; };
 		92DFB00F1A38949E00FA9B0F /* ExternToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEC1A38949E00FA9B0F /* ExternToken.m */; };
@@ -579,6 +648,145 @@
 		9238C5801A3AE9920099F061 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9238C5811A3AE9920099F061 /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
 		9238C5821A3AE9920099F061 /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
+		929107A51A41F31F0034564D /* CBXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLParser.h; sourceTree = "<group>"; };
+		929107A61A41F31F0034564D /* CBXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLParser.m; sourceTree = "<group>"; };
+		929107A81A41F31F0034564D /* CBXMLValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLValidator.h; sourceTree = "<group>"; };
+		929107A91A41F31F0034564D /* CBXMLValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLValidator.m; sourceTree = "<group>"; };
+		929107AB1A41F31F0034564D /* CBXMLContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLContext.h; sourceTree = "<group>"; };
+		929107AC1A41F31F0034564D /* CBXMLContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLContext.m; sourceTree = "<group>"; };
+		929107AE1A41F31F0034564D /* CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLLogger.h; sourceTree = "<group>"; };
+		929107AF1A41F31F0034564D /* CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLLogger.m; sourceTree = "<group>"; };
+		929107B01A41F31F0034564D /* CBXMLNodeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLNodeProtocol.h; sourceTree = "<group>"; };
+		929107B11A41F31F0034564D /* CBXMLParserHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLParserHelper.h; sourceTree = "<group>"; };
+		929107B21A41F31F0034564D /* CBXMLParserHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLParserHelper.m; sourceTree = "<group>"; };
+		929107B41A41F31F0034564D /* Header+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Header+CBXMLLogger.h"; sourceTree = "<group>"; };
+		929107B51A41F31F0034564D /* Header+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Header+CBXMLLogger.m"; sourceTree = "<group>"; };
+		929107B61A41F31F0034564D /* Look+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Look+CBXMLLogger.h"; sourceTree = "<group>"; };
+		929107B71A41F31F0034564D /* Look+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Look+CBXMLLogger.m"; sourceTree = "<group>"; };
+		929107B81A41F31F0034564D /* Script+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Script+CBXMLLogger.h"; sourceTree = "<group>"; };
+		929107B91A41F31F0034564D /* Script+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Script+CBXMLLogger.m"; sourceTree = "<group>"; };
+		929107BA1A41F31F0034564D /* Sound+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Sound+CBXMLLogger.h"; sourceTree = "<group>"; };
+		929107BB1A41F31F0034564D /* Sound+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Sound+CBXMLLogger.m"; sourceTree = "<group>"; };
+		929107BC1A41F31F0034564D /* SpriteObject+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpriteObject+CBXMLLogger.h"; sourceTree = "<group>"; };
+		929107BD1A41F31F0034564D /* SpriteObject+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SpriteObject+CBXMLLogger.m"; sourceTree = "<group>"; };
+		929107C11A41F31F0034564D /* BroadcastBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BroadcastBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107C21A41F31F0034564D /* BroadcastBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BroadcastBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107C31A41F31F0034564D /* BroadcastWaitBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BroadcastWaitBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107C41A41F31F0034564D /* BroadcastWaitBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BroadcastWaitBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107C51A41F31F0034564D /* ComeToFrontBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ComeToFrontBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107C61A41F31F0034564D /* ComeToFrontBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ComeToFrontBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107C71A41F31F0034564D /* ForeverBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ForeverBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107C81A41F31F0034564D /* ForeverBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ForeverBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107C91A41F31F0034564D /* IfLogicBeginBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IfLogicBeginBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107CA1A41F31F0034564D /* IfLogicBeginBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IfLogicBeginBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107CB1A41F31F0034564D /* IfLogicElseBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IfLogicElseBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107CC1A41F31F0034564D /* IfLogicElseBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IfLogicElseBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107CD1A41F31F0034564D /* IfLogicEndBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IfLogicEndBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107CE1A41F31F0034564D /* IfLogicEndBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IfLogicEndBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107CF1A41F31F0034564D /* IfOnEdgeBounceBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IfOnEdgeBounceBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107D01A41F31F0034564D /* IfOnEdgeBounceBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IfOnEdgeBounceBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107D11A41F31F0034564D /* LoopEndBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LoopEndBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107D21A41F31F0034564D /* LoopEndBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LoopEndBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107D31A41F31F0034564D /* NoteBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NoteBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107D41A41F31F0034564D /* NoteBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NoteBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107D51A41F31F0034564D /* PlaceAtBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PlaceAtBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107D61A41F31F0034564D /* PlaceAtBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PlaceAtBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107D71A41F31F0034564D /* RepeatBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RepeatBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107D81A41F31F0034564D /* RepeatBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RepeatBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107D91A41F31F0034564D /* WaitBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WaitBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107DA1A41F31F0034564D /* WaitBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WaitBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107DC1A41F31F0034564D /* ChangeBrightnessByNBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChangeBrightnessByNBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107DD1A41F31F0034564D /* ChangeBrightnessByNBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChangeBrightnessByNBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107DE1A41F31F0034564D /* ChangeGhostEffectByNBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChangeGhostEffectByNBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107DF1A41F31F0034564D /* ChangeGhostEffectByNBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChangeGhostEffectByNBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107E01A41F31F0034564D /* ClearGraphicEffectBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ClearGraphicEffectBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107E11A41F31F0034564D /* ClearGraphicEffectBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ClearGraphicEffectBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107E21A41F31F0034564D /* GoNStepsBackBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GoNStepsBackBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107E31A41F31F0034564D /* GoNStepsBackBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GoNStepsBackBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107E41A41F31F0034564D /* HideBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HideBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107E51A41F31F0034564D /* HideBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HideBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107E61A41F31F0034564D /* NextLookBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NextLookBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107E71A41F31F0034564D /* NextLookBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NextLookBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107E81A41F31F0034564D /* SetBrightnessBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetBrightnessBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107E91A41F31F0034564D /* SetBrightnessBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetBrightnessBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107EA1A41F31F0034564D /* SetGhostEffectBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetGhostEffectBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107EB1A41F31F0034564D /* SetGhostEffectBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetGhostEffectBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107EC1A41F31F0034564D /* SetLookBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetLookBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107ED1A41F31F0034564D /* SetLookBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetLookBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107EE1A41F31F0034564D /* ShowBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ShowBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107EF1A41F31F0034564D /* ShowBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ShowBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107F11A41F31F0034564D /* ChangeSizeByNBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChangeSizeByNBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107F21A41F31F0034564D /* ChangeSizeByNBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChangeSizeByNBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107F31A41F31F0034564D /* ChangeXByNBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChangeXByNBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107F41A41F31F0034564D /* ChangeXByNBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChangeXByNBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107F51A41F31F0034564D /* ChangeYByNBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChangeYByNBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107F61A41F31F0034564D /* ChangeYByNBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChangeYByNBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107F71A41F31F0034564D /* GlideToBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GlideToBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107F81A41F31F0034564D /* GlideToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GlideToBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107F91A41F31F0034564D /* MoveNStepsBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MoveNStepsBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107FA1A41F31F0034564D /* MoveNStepsBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MoveNStepsBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107FB1A41F31F0034564D /* PointInDirectionBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PointInDirectionBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107FC1A41F31F0034564D /* PointInDirectionBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PointInDirectionBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107FD1A41F31F0034564D /* PointToBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PointToBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929107FE1A41F31F0034564D /* PointToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PointToBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929107FF1A41F31F0034564D /* SetSizeToBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetSizeToBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929108001A41F31F0034564D /* SetSizeToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetSizeToBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929108011A41F31F0034564D /* SetXBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetXBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929108021A41F31F0034564D /* SetXBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetXBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929108031A41F31F0034564D /* SetYBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetYBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929108041A41F31F0034564D /* SetYBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetYBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929108051A41F31F0034564D /* TurnLeftBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TurnLeftBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929108061A41F31F0034564D /* TurnLeftBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TurnLeftBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929108071A41F31F0034564D /* TurnRightBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TurnRightBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929108081A41F31F0034564D /* TurnRightBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TurnRightBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		9291080A1A41F31F0034564D /* LedOffBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LedOffBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9291080B1A41F31F0034564D /* LedOffBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LedOffBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		9291080C1A41F31F0034564D /* LedOnBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LedOnBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9291080D1A41F31F0034564D /* LedOnBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LedOnBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		9291080E1A41F31F0034564D /* VibrationBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VibrationBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9291080F1A41F31F0034564D /* VibrationBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VibrationBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929108111A41F31F0034564D /* ChangeVolumeByNBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChangeVolumeByNBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929108121A41F31F0034564D /* ChangeVolumeByNBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChangeVolumeByNBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929108131A41F31F0034564D /* PlaySoundBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PlaySoundBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929108141A41F31F0034564D /* PlaySoundBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PlaySoundBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929108151A41F31F0034564D /* SetVolumeToBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetVolumeToBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929108161A41F31F0034564D /* SetVolumeToBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetVolumeToBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929108171A41F31F0034564D /* SpeakBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpeakBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929108181A41F31F0034564D /* SpeakBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SpeakBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929108191A41F31F0034564D /* StopAllSoundsBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "StopAllSoundsBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9291081A1A41F31F0034564D /* StopAllSoundsBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "StopAllSoundsBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		9291081C1A41F31F0034564D /* ChangeVariableBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChangeVariableBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9291081D1A41F31F0034564D /* ChangeVariableBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChangeVariableBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		9291081E1A41F31F0034564D /* SetVariableBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetVariableBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9291081F1A41F31F0034564D /* SetVariableBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetVariableBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929108211A41F31F0034564D /* Formula+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Formula+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929108221A41F31F0034564D /* Formula+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Formula+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929108231A41F31F0034564D /* FormulaElement+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FormulaElement+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929108241A41F31F0034564D /* FormulaElement+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FormulaElement+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929108261A41F31F0034564D /* Header+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Header+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929108271A41F31F0034564D /* Header+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Header+CBXMLHandler.m"; sourceTree = "<group>"; };
+		9291082A1A41F31F0034564D /* Look+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Look+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9291082C1A41F31F0034564D /* Look+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Look+CBXMLHandler.m"; sourceTree = "<group>"; };
+		9291082E1A41F31F0034564D /* Program+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Program+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9291082F1A41F31F0034564D /* Program+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Program+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929108311A41F31F0034564D /* Script+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Script+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929108321A41F31F0034564D /* Script+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Script+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929108341A41F31F0034564D /* Sound+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Sound+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929108351A41F31F0034564D /* Sound+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Sound+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929108371A41F31F0034564D /* SpriteObject+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpriteObject+CBXMLHandler.h"; sourceTree = "<group>"; };
+		929108381A41F31F0034564D /* SpriteObject+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SpriteObject+CBXMLHandler.m"; sourceTree = "<group>"; };
+		9291083A1A41F31F0034564D /* UserVariable+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UserVariable+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9291083B1A41F31F0034564D /* UserVariable+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UserVariable+CBXMLHandler.m"; sourceTree = "<group>"; };
+		9291083D1A41F31F0034564D /* VariablesContainer+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VariablesContainer+CBXMLHandler.h"; sourceTree = "<group>"; };
+		9291083E1A41F31F0034564D /* VariablesContainer+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VariablesContainer+CBXMLHandler.m"; sourceTree = "<group>"; };
+		929108401A41F31F0034564D /* Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parser.h; sourceTree = "<group>"; };
+		929108411A41F31F0034564D /* Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parser.m; sourceTree = "<group>"; };
+		929108421A41F31F0034564D /* ProjectParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectParser.h; sourceTree = "<group>"; };
+		929108431A41F31F0034564D /* ProjectParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectParser.m; sourceTree = "<group>"; };
+		929108441A41F31F0034564D /* TestParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestParser.h; sourceTree = "<group>"; };
+		929108451A41F31F0034564D /* TestParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestParser.m; sourceTree = "<group>"; };
+		929108461A41F31F0034564D /* XMLObjectReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLObjectReference.h; sourceTree = "<group>"; };
+		929108471A41F31F0034564D /* XMLObjectReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLObjectReference.m; sourceTree = "<group>"; };
 		929108921A41F32A0034564D /* CBParserNodeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBParserNodeProtocol.h; sourceTree = "<group>"; };
 		929108931A41F32A0034564D /* CBParserProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBParserProtocol.h; sourceTree = "<group>"; };
 		929108941A41F32A0034564D /* CBSerializerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSerializerProtocol.h; sourceTree = "<group>"; };
@@ -1610,6 +1818,77 @@
 			path = Upload;
 			sourceTree = "<group>";
 		};
+		929107A31A41F31F0034564D /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				929107A41A41F31F0034564D /* NEW */,
+				9291083F1A41F31F0034564D /* OLD */,
+			);
+			path = Parser;
+			sourceTree = "<group>";
+		};
+		929107A41A41F31F0034564D /* NEW */ = {
+			isa = PBXGroup;
+			children = (
+				929107A51A41F31F0034564D /* CBXMLParser.h */,
+				929107A61A41F31F0034564D /* CBXMLParser.m */,
+				929107A81A41F31F0034564D /* CBXMLValidator.h */,
+				929107A91A41F31F0034564D /* CBXMLValidator.m */,
+				929107AA1A41F31F0034564D /* Context */,
+				929107AD1A41F31F0034564D /* Helper */,
+				929107BE1A41F31F0034564D /* XMLHandler */,
+			);
+			path = NEW;
+			sourceTree = "<group>";
+		};
+		929107AA1A41F31F0034564D /* Context */ = {
+			isa = PBXGroup;
+			children = (
+				929107AB1A41F31F0034564D /* CBXMLContext.h */,
+				929107AC1A41F31F0034564D /* CBXMLContext.m */,
+			);
+			path = Context;
+			sourceTree = "<group>";
+		};
+		929107AD1A41F31F0034564D /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				929107AE1A41F31F0034564D /* CBXMLLogger.h */,
+				929107AF1A41F31F0034564D /* CBXMLLogger.m */,
+				929107B01A41F31F0034564D /* CBXMLNodeProtocol.h */,
+				929107B11A41F31F0034564D /* CBXMLParserHelper.h */,
+				929107B21A41F31F0034564D /* CBXMLParserHelper.m */,
+				929107B41A41F31F0034564D /* Header+CBXMLLogger.h */,
+				929107B51A41F31F0034564D /* Header+CBXMLLogger.m */,
+				929107B61A41F31F0034564D /* Look+CBXMLLogger.h */,
+				929107B71A41F31F0034564D /* Look+CBXMLLogger.m */,
+				929107B81A41F31F0034564D /* Script+CBXMLLogger.h */,
+				929107B91A41F31F0034564D /* Script+CBXMLLogger.m */,
+				929107BA1A41F31F0034564D /* Sound+CBXMLLogger.h */,
+				929107BB1A41F31F0034564D /* Sound+CBXMLLogger.m */,
+				929107BC1A41F31F0034564D /* SpriteObject+CBXMLLogger.h */,
+				929107BD1A41F31F0034564D /* SpriteObject+CBXMLLogger.m */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		929107BE1A41F31F0034564D /* XMLHandler */ = {
+			isa = PBXGroup;
+			children = (
+				929107BF1A41F31F0034564D /* Bricks */,
+				929108201A41F31F0034564D /* Formula */,
+				929108251A41F31F0034564D /* Header */,
+				929108291A41F31F0034564D /* Look */,
+				9291082D1A41F31F0034564D /* Program */,
+				929108301A41F31F0034564D /* Scripts */,
+				929108331A41F31F0034564D /* Sound */,
+				929108361A41F31F0034564D /* SpriteObject */,
+				929108391A41F31F0034564D /* UserVariable */,
+				9291083C1A41F31F0034564D /* VariablesContainer */,
+			);
+			path = XMLHandler;
+			sourceTree = "<group>";
+		};
 		929107BF1A41F31F0034564D /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1759,6 +2038,8 @@
 			children = (
 				CAA4A5131A43B4C0002A69A0 /* Header+CBXMLHandler.h */,
 				CAA4A5141A43B4C0002A69A0 /* Header+CBXMLHandler.m */,
+				929108261A41F31F0034564D /* Header+CBXMLHandler.h */,
+				929108271A41F31F0034564D /* Header+CBXMLHandler.m */,
 			);
 			path = Header;
 			sourceTree = "<group>";
@@ -1768,6 +2049,8 @@
 			children = (
 				CAA4A5161A43B4D0002A69A0 /* Look+CBXMLHandler.h */,
 				CAA4A5171A43B4D0002A69A0 /* Look+CBXMLHandler.m */,
+				9291082A1A41F31F0034564D /* Look+CBXMLHandler.h */,
+				9291082C1A41F31F0034564D /* Look+CBXMLHandler.m */,
 			);
 			path = Look;
 			sourceTree = "<group>";
@@ -3803,11 +4086,11 @@
 				LastUpgradeCheck = 0600;
 				TargetAttributes = {
 					CA538EA119B0EA09008240AB = {
-						DevelopmentTeam = SAUK7AHA7S;
+						DevelopmentTeam = 9NJ4SV439Q;
 						TestTargetID = CADBD6D319B0E8C200C62836;
 					};
 					CADBD6D319B0E8C200C62836 = {
-						DevelopmentTeam = SAUK7AHA7S;
+						DevelopmentTeam = 9NJ4SV439Q;
 					};
 				};
 			};
