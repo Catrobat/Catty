@@ -185,8 +185,7 @@
     }
     [xmlElement addChild:scriptListXmlElement];
 
-    NSString *temp = [xmlElement XMLStringPrettyPrinted:YES];
-    printf("%s", [temp cStringUsingEncoding:NSUTF16StringEncoding]);
+    NSLog(@"%@", [xmlElement XMLStringPrettyPrinted:YES]);
     return xmlElement;
 }
 
