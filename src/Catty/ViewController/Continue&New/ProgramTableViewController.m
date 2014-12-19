@@ -316,7 +316,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     static NSString *CellIdentifier = kImageCell;
     static NSString *DetailCellIdentifier = kDetailImageCell;

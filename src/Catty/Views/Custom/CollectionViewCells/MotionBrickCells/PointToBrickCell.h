@@ -21,10 +21,10 @@
  */
 
 #import "BrickCell.h"
-#import "ObjectComboBoxView.h"
+#import "iOSCombobox.h"
 
 @interface PointToBrickCell : BrickCell
 
-@property (nonatomic, weak) ObjectComboBoxView *objectComboBoxView;
+@property (nonatomic, weak) iOSCombobox *objectComboBoxView;
 
 @end

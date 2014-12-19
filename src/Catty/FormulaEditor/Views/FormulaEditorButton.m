@@ -52,13 +52,26 @@ static Formula *activeFormula;
         [self setTitle:[formula getDisplayString] forState:UIControlStateNormal];
     
         [self sizeToFit];
-        if ([brickCell isKindOfClass:[PlaceAtBrickCell class]] || [brickCell isKindOfClass:[GlideToBrickCell class]]) {
+        if (self.frame.size.width >= kBrickInputFieldMaxWidth) {
+            self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, kBrickInputFieldMaxWidth, self.frame.size.height);
+            self.titleLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.frame.origin.y, kBrickInputFieldMaxWidth, self.titleLabel.frame.size.height);
+            self.titleLabel.numberOfLines = 1;
+            [self.titleLabel setAdjustsFontSizeToFitWidth:YES];
+            self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+            self.titleLabel.minimumScaleFactor = 10./self.titleLabel.font.pointSize;
+        }else if ([brickCell isKindOfClass:[PlaceAtBrickCell class]] || [brickCell isKindOfClass:[GlideToBrickCell class]]) {
             if (self.frame.size.width > [Util screenWidth]/4.0f ) {
                 CGRect labelFrame = self.frame;
                 labelFrame.size.width = [Util screenWidth]/4.0f;
                 self.frame = labelFrame;
             }
+        }else{
+            self.titleLabel.numberOfLines = 1;
+            self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+            [self.titleLabel setAdjustsFontSizeToFitWidth:YES];
+            self.titleLabel.minimumScaleFactor = 11./self.titleLabel.font.pointSize;
         }
+    
         CGRect labelFrame = self.frame;
         labelFrame.size.height = self.frame.size.height;
         self.frame = labelFrame;

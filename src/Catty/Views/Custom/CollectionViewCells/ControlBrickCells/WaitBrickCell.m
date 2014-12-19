@@ -36,9 +36,10 @@
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
 {
-    self.LeftTextLabel = inlineViewSubViews[0];
+    self.leftTextLabel = inlineViewSubViews[0];
     self.delayTextField = inlineViewSubViews[1];
     self.rightTextLabel = inlineViewSubViews[1];
+
 }
 
 

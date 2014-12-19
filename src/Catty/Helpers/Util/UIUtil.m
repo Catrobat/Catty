@@ -22,11 +22,8 @@
 
 #import "UIUtil.h"
 #import "UIDefines.h"
-#import "MessageComboBoxView.h"
-#import "ObjectComboBoxView.h"
-#import "SoundComboBoxView.h"
-#import "LookComboBoxView.h"
-#import "VariableComboBoxView.h"
+#import "Util.h"
+#import "iOSCombobox.h"
 #import "FormulaEditorButton.h"
 #import "BrickDetailViewController.h"
 #import "ScriptCollectionViewController.h"
@@ -37,10 +34,10 @@
 
 + (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame
 {
-    return [self newDefaultBrickLabelWithFrame:frame AndText:nil];
+    return [self newDefaultBrickLabelWithFrame:frame AndText:nil andRemainingSpace:kBrickInputFieldMaxWidth];
 }
 
-+ (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame AndText:(NSString*)text
++ (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame AndText:(NSString*)text andRemainingSpace:(NSInteger)remainingSpace
 {
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
     label.textColor = [UIColor whiteColor];
@@ -49,6 +46,18 @@
         label.text = text;
         // adapt size to fit text
         [label sizeToFit];
+        if (label.frame.size.width >= remainingSpace) {
+            label.frame = CGRectMake(label.frame.origin.x, label.frame.origin.y, remainingSpace, label.frame.size.height);
+            label.numberOfLines = 1;
+            [label setAdjustsFontSizeToFitWidth:YES];
+            label.lineBreakMode = NSLineBreakByTruncatingTail;
+            label.minimumScaleFactor = 14./label.font.pointSize;
+        }else{
+            label.numberOfLines = 1;
+            label.lineBreakMode = NSLineBreakByTruncatingTail;
+            [label setAdjustsFontSizeToFitWidth:YES];
+            label.minimumScaleFactor = 14./label.font.pointSize;
+        }
         CGRect labelFrame = label.frame;
         labelFrame.size.height = frame.size.height;
         label.frame = labelFrame;
@@ -72,43 +81,14 @@
 {
     Brick<BrickFormulaProtocol> *formulaBrick = (Brick<BrickFormulaProtocol> *)brickCell.brick;
     Formula *formula = [formulaBrick getFormulaForLineNumber:lineNumber AndParameterNumber:paramNumber];
-    
     FormulaEditorButton *button = [[FormulaEditorButton alloc] initWithFrame:frame AndBrickCell:brickCell AndFormula: formula];
     return button;
 }
 
-+ (MessageComboBoxView*)newDefaultBrickMessageComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items
++ (iOSCombobox*)newDefaultBrickComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items
 {
-    MessageComboBoxView *comboBox = [[MessageComboBoxView alloc] initWithFrame:frame];
-    comboBox.items = items;
-    return comboBox;
-}
-
-+ (ObjectComboBoxView*)newDefaultBrickObjectComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items
-{
-    ObjectComboBoxView *comboBox = [[ObjectComboBoxView alloc] initWithFrame:frame];
-    comboBox.items = items;
-    return comboBox;
-}
-
-+ (SoundComboBoxView*)newDefaultBrickSoundComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items
-{
-    SoundComboBoxView *comboBox = [[SoundComboBoxView alloc] initWithFrame:frame];
-    comboBox.items = items;
-    return comboBox;
-}
-
-+ (LookComboBoxView*)newDefaultBrickLookComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items
-{
-    LookComboBoxView *comboBox = [[LookComboBoxView alloc] initWithFrame:frame];
-    comboBox.items = items;
-    return comboBox;
-}
-
-+ (VariableComboBoxView*)newDefaultBrickVariableComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items
-{
-    VariableComboBoxView *comboBox = [[VariableComboBoxView alloc] initWithFrame:frame];
-    comboBox.items = items;
+    iOSCombobox *comboBox = [[iOSCombobox alloc] initWithFrame:frame];
+    [comboBox setValues:items];
     return comboBox;
 }
 

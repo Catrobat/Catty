@@ -136,6 +136,9 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kSetBrightnessBrick        = 308,
     kChangeBrightnessByNBrick  = 309,
     kClearGraphicEffectBrick   = 310,
+    kLedOnBrick                = 311,
+    kLedOffBrick               = 312,
+    kVibrationBrick            = 313,
 
     // 4xx variable bricks
     kSetVariableBrick          = 400,
@@ -161,11 +164,11 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
 ]
 
 #define kBrickCategoryStrokeColors @[\
-[UIColor controlBrickStrokeColor],\
-[UIColor motionBrickStrokeColor],\
-[UIColor soundBrickStrokeColor],\
-[UIColor lookBrickStrokeColor],\
-[UIColor variableBrickStrokeColor]\
+    [UIColor controlBrickStrokeColor],\
+    [UIColor motionBrickStrokeColor],\
+    [UIColor soundBrickStrokeColor],\
+    [UIColor lookBrickStrokeColor],\
+    [UIColor variableBrickStrokeColor]\
 ]
 
 // map brick classes to corresponding brick type identifiers
@@ -221,6 +224,9 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     @"SetBrightnessBrick"        : @(kSetBrightnessBrick),\
     @"ChangeBrightnessByNBrick"  : @(kChangeBrightnessByNBrick),\
     @"ClearGraphicEffectBrick"   : @(kClearGraphicEffectBrick),\
+    @"LedOnBrick"                : @(kLedOnBrick),\
+    @"LedOffBrick"               : @(kLedOffBrick),\
+    @"VibrationBrick"            : @(kVibrationBrick),\
 \
     /* variable bricks */\
     @"SetVariableBrick"          : @(kSetVariableBrick),\
@@ -288,6 +294,9 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"SetBrightnessBrick"        : @(kBrickHeight2h),\
 @"ChangeBrightnessByNBrick"  : @(kBrickHeight2h),\
 @"ClearGraphicEffectBrick"   : @(kBrickHeight1h),\
+@"LedOnBrick"                : @(kBrickHeight1h),\
+@"LedOffBrick"               : @(kBrickHeight1h),\
+@"VibrationBrick"            : @(kBrickHeight2h),\
 \
 /* variable bricks */\
 @"SetVariableBrick"          : @(kBrickHeight3h),\
@@ -321,11 +330,12 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 #define kBrickInlineViewCanvasOffsetY 0.0f
 #define kBrickBackgroundImageNameSuffix @"_bg"
 
-#define kBrickLabelFontSize 16.0f
+#define kBrickLabelFontSize 15.0f
 #define kBrickTextFieldFontSize 15.0f
 #define kBrickInputFieldHeight 28.0f
-#define kBrickInputFieldMinWidth 60.0f
-#define kBrickComboBoxWidth 210.0f
+#define kBrickInputFieldMinWidth 40.0f
+#define kBrickInputFieldMaxWidth [Util screenWidth]/2.5f
+#define kBrickComboBoxWidth [Util screenWidth]/2.5f
 #define kBrickInputFieldTopMargin 4.0f
 #define kBrickInputFieldBottomMargin 5.0f
 #define kBrickInputFieldLeftMargin 4.0f

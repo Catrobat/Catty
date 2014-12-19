@@ -49,7 +49,7 @@
 #define kNoProgramIDYetPlaceholder @"x"
 #define kProgramIDSeparator @"_"
 
-#define kDefaultProgramBundleName @"My First Program"
+#define kDefaultProgramBundleName @"My first program"
 
 // indexes
 #define kNumberOfSectionsInProgramTableViewController 2

@@ -23,10 +23,11 @@
 #import <UIKit/UIKit.h>
 #import "BrickCell.h"
 #import "BaseCollectionViewController.h"
+#import "iosCombobox.h"
 
 @class SpriteObject, FXBlurView;
 
-@interface ScriptCollectionViewController : UICollectionViewController <UITextFieldDelegate>
+@interface ScriptCollectionViewController : UICollectionViewController <UITextFieldDelegate,iOSComboboxDelegate>
 @property (strong, nonatomic) SpriteObject *object;
 @property (nonatomic, strong) FXBlurView *blurView;
 
