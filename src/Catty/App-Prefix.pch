@@ -28,7 +28,7 @@
 
 #import "Logger.h"
 
-#define kIsRelease 1
+#define kIsRelease 0
 
 #if kIsRelease
 #undef DEBUG

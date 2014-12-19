@@ -21,10 +21,11 @@
  */
 
 #import "Brick.h"
+#import "BrickFormulaProtocol.h"
 
 @class Formula;
 
-@interface WaitBrick : Brick
+@interface WaitBrick : Brick<BrickFormulaProtocol>
 
 @property (nonatomic, strong) Formula *timeToWaitInSeconds;
 

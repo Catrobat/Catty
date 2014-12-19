@@ -25,6 +25,16 @@
 
 @implementation ChangeYByNBrick
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.yMovement;
+}
+
+- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    self.yMovement = formula;
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedChangeY;

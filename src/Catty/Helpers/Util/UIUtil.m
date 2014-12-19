@@ -27,6 +27,11 @@
 #import "SoundComboBoxView.h"
 #import "LookComboBoxView.h"
 #import "VariableComboBoxView.h"
+#import "FormulaEditorButton.h"
+#import "BrickDetailViewController.h"
+#import "ScriptCollectionViewController.h"
+#import "BrickFormulaProtocol.h"
+#import "NoteBrickTextField.h"
 
 @implementation UIUtil
 
@@ -51,17 +56,25 @@
     return label;
 }
 
-+ (UITextField*)newDefaultBrickTextFieldWithFrame:(CGRect)frame
++ (NoteBrickTextField*)newDefaultBrickTextFieldWithFrame:(CGRect)frame andNote:(NSString *)note AndBrickCell:(BrickCell*)brickCell
 {
-    UITextField *textField = [[UITextField alloc] initWithFrame:frame];
-    textField.borderStyle = UITextBorderStyleRoundedRect;
-    textField.font = [UIFont systemFontOfSize:kBrickTextFieldFontSize];
-    textField.autocorrectionType = UITextAutocorrectionTypeNo;
-    textField.keyboardType = UIKeyboardTypeDefault;
-    textField.returnKeyType = UIReturnKeyDone;
-    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    NoteBrickTextField* textField = [[NoteBrickTextField alloc] initWithFrame:frame AndNote:note];
+    textField.delegate = brickCell.textDelegate;
+    textField.cell = brickCell;
+//    [textField addTarget:brickCell.textDelegate action:@selector(begin:) forControlEvents:UIControlEventTouchUpInside];
+    [textField addTarget:brickCell.textDelegate
+                  action:@selector(textFieldFinished:)
+        forControlEvents:UIControlEventEditingDidEndOnExit];
     return textField;
+}
+
++ (UIButton*)newDefaultBrickFormulaEditorWithFrame:(CGRect)frame ForBrickCell:(BrickCell*)brickCell AndLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    Brick<BrickFormulaProtocol> *formulaBrick = (Brick<BrickFormulaProtocol> *)brickCell.brick;
+    Formula *formula = [formulaBrick getFormulaForLineNumber:lineNumber AndParameterNumber:paramNumber];
+    
+    FormulaEditorButton *button = [[FormulaEditorButton alloc] initWithFrame:frame AndBrickCell:brickCell AndFormula: formula];
+    return button;
 }
 
 + (MessageComboBoxView*)newDefaultBrickMessageComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items
@@ -98,5 +111,7 @@
     comboBox.items = items;
     return comboBox;
 }
+
+
 
 @end

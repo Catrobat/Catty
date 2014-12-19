@@ -482,9 +482,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
 }
 
-- (void)introduction:(MYBlurIntroductionView *)introductionView didFinishWithType:(MYFinishType)finishType
-{
-    NSLog(@"Introduction did finish");
+-(void)introduction:(MYBlurIntroductionView *)introductionView didFinishWithType:(MYFinishType)finishType {
+    NSDebug(@"Introduction did finish");
     [self initNavigationBar];
     self.tableView.scrollEnabled = YES;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

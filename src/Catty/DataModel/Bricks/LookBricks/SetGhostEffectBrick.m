@@ -25,6 +25,18 @@
 
 @implementation SetGhostEffectBrick
 
+@synthesize transparency = _transparency;
+
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.transparency;
+}
+
+- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    self.transparency = formula;
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedSetGhostEffect;

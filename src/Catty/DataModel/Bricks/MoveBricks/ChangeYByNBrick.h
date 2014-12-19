@@ -22,10 +22,11 @@
 
 
 #import "Brick.h"
+#import "BrickFormulaProtocol.h"
 
 @class Formula;
 
-@interface ChangeYByNBrick : Brick
+@interface ChangeYByNBrick : Brick<BrickFormulaProtocol>
 
 @property (nonatomic, strong) Formula *yMovement;
 

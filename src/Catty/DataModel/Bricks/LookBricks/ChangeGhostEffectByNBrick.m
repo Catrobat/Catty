@@ -26,6 +26,18 @@
 
 @implementation ChangeGhostEffectByNBrick
 
+@synthesize changeGhostEffect = _changeGhostEffect;
+
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.changeGhostEffect;
+}
+
+- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    self.changeGhostEffect = formula;
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedChangeGhostEffectByN;

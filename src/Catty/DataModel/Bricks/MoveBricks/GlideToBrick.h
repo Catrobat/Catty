@@ -21,10 +21,11 @@
  */
 
 #import "Brick.h"
+#import "BrickFormulaProtocol.h"
 
 @class Formula;
 
-@interface GlideToBrick : Brick
+@interface GlideToBrick : Brick<BrickFormulaProtocol>
 
 @property (nonatomic, strong) Formula *durationInSeconds;
 @property (nonatomic, strong) Formula *xDestination;

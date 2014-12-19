@@ -108,6 +108,26 @@
     });
 }
 
+-(void)overwriteThumbnailImageFromDiskWithThumbnailPath:(NSString*)thumbnailPath image:(UIImage*)image thumbnailFrameSize:(CGSize)thumbnailFrameSize
+{
+        // generate thumbnail image (retina)
+    CGSize thumbnailImageSize = CGSizeMake(thumbnailFrameSize.width, thumbnailFrameSize.height);
+        // determine right aspect ratio
+    if (image.size.height > image.size.width)
+        thumbnailImageSize.width = (image.size.width*thumbnailImageSize.width)/image.size.height;
+    else
+        thumbnailImageSize.height = (image.size.height*thumbnailImageSize.height)/image.size.width;
+    
+    UIGraphicsBeginImageContext(thumbnailImageSize);
+    UIImage *thumbnailImage = [image copy];
+    [thumbnailImage drawInRect:CGRectMake(0, 0, thumbnailImageSize.width, thumbnailImageSize.height)];
+    thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [UIImagePNGRepresentation(thumbnailImage) writeToFile:thumbnailPath atomically:YES];
+    [self clearImageCache];
+}
+
+
 - (void)clearImageCache
 {
     [super clearImageCache];

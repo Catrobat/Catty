@@ -32,6 +32,7 @@
 #import "NSString+CatrobatNSStringExtensions.h"
 #import <objc/runtime.h>
 #import "BroadcastWaitBrick.h"
+#import "BroadcastBrick.h"
 #import "BrickManager.h"
 #import "Util.h"
 
@@ -158,7 +159,19 @@
             [((BroadcastWaitBrick*)currentBrick) performBroadcastWait];
             [weakself nextAction];
         });
-    } else if ([currentBrick isKindOfClass:[IfLogicBeginBrick class]]) {
+//    } else if ([currentBrick isKindOfClass:[BroadcastBrick class]]) {
+//        NSDebug(@"broadcast");
+//        __weak Script* weakself = self;
+////            NSMutableArray* actionArray = [[NSMutableArray alloc] init];
+//            SKAction *action = [currentBrick action];
+////            [actionArray addObject:action];
+////            SKAction *sequence = [SKAction sequence:actionArray];
+////            if (! action || ! actionArray || ! sequence) {
+////                abort();
+////            }
+//            [self runAction:action];
+//            [weakself runNextAction];
+    }else if ([currentBrick isKindOfClass:[IfLogicBeginBrick class]]) {
         BOOL condition = [((IfLogicBeginBrick*)currentBrick) checkCondition];
         if(!condition) {
             self.currentBrickIndex = [self.brickList indexOfObject:[((IfLogicBeginBrick*)currentBrick) ifElseBrick]]+1;
@@ -178,18 +191,19 @@
     } else if ([currentBrick isKindOfClass:[NoteBrick class]]) {
         [self nextAction];
     } else {
-        NSMutableArray* actionArray = [[NSMutableArray alloc] init];
+//        NSMutableArray* actionArray = [[NSMutableArray alloc] init];
         SKAction *action = [currentBrick action];
-        [actionArray addObject:action];
-        SKAction *sequence = [SKAction sequence:actionArray];
-        if (! action || ! actionArray || ! sequence) {
-            abort();
-        }
+//        [actionArray addObject:action];
+//        SKAction *sequence = [SKAction sequence:actionArray];
+//        if (! action || ! actionArray || ! sequence) {
+//            abort();
+//        }
         __weak Script *weakSelf = self;
-        [self runAction:sequence completion:^{
+        [self runAction:action completion:^{
             NSDebug(@"Finished: %@", sequence);
             [weakSelf runNextAction];
         }];
+        
     }
 }
 

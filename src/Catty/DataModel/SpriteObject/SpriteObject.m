@@ -37,9 +37,10 @@
 #import "AudioManager.h"
 #import "AppDelegate.h"
 #import "NSString+FastImageSize.h"
+#import "ProgramDefines.h"
 
 @interface SpriteObject()
-@property (nonatomic,strong) NSMutableArray *broadcastScriptArray;
+@property (atomic,strong) NSMutableArray *broadcastScriptArray;
 
 @end
 
@@ -69,13 +70,13 @@
     return _scriptList;
 }
 
-- (NSMutableArray*)broadcastScriptArray
-{
-        // lazy instantiation
-    if (! _broadcastScriptArray)
-        _broadcastScriptArray = [NSMutableArray array];
-    return _broadcastScriptArray;
-}
+//- (NSMutableArray*)broadcastScriptArray
+//{
+//        // lazy instantiation
+//    if (! _broadcastScriptArray)
+//        _broadcastScriptArray = [NSMutableArray array];
+//    return _broadcastScriptArray;
+//}
 
 - (CGPoint)position
 {
@@ -198,7 +199,7 @@
     }else{
         self.zPosition = zPosition;
     }
-    
+    self.broadcastScriptArray = [NSMutableArray new];
     for (Script *script in self.scriptList)
     {
         if([script isKindOfClass:[BroadcastScript class]]) {
@@ -209,7 +210,7 @@
                 NSLog(@"ERROR: BroadcastWaitDelegate not set! abort()");
                 abort();
             }
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:((BroadcastScript*)script).receivedMessage object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:[NSString stringWithFormat:@"%@%@",kCatrobatBroadcastPrefix,((BroadcastScript*)script).receivedMessage] object:nil];
             [self.broadcastScriptArray addObject:script];
         }
     }
@@ -574,18 +575,24 @@
 - (void)broadcast:(NSString*)message
 {
     NSDebug(@"Broadcast: %@, Object: %@", message, self.name);
-    [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
+    NSNotification *notification = [NSNotification notificationWithName:[NSString stringWithFormat:@"%@%@",kCatrobatBroadcastPrefix,message] object:self];
+    [[NSNotificationQueue defaultQueue]
+     enqueueNotification:notification
+     postingStyle:NSPostASAP];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
 }
 
 - (void)performBroadcastScript:(NSNotification*)notification
 {
-    NSDebug(@"Notification: %@, Object: %@", notification.name, self.name);
-    NSInteger counter = 0;
-    BroadcastScript *removedScript = [[BroadcastScript alloc] init];
-    for (BroadcastScript *script in self.broadcastScriptArray) {
-            if ([script.receivedMessage isEqualToString:notification.name]) {
-                __weak typeof(self) weakSelf = self;
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+//    NSLog(@"Notification: %@, Object: %@", notification.name, self.name);
+    __weak typeof(self) weakSelf = self;
+//    dispatch_async(dispatch_get_main_queue(), ^{
+        NSInteger counter = 0;
+        BroadcastScript *removedScript = [[BroadcastScript alloc] init];
+        for (BroadcastScript *script in self.broadcastScriptArray) {
+            NSString *prefixMessage = [NSString stringWithFormat:@"%@%@",kCatrobatBroadcastPrefix,script.receivedMessage];
+            if ([prefixMessage isEqualToString:notification.name]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
                     [weakSelf startAndAddScript:script completion:^{
                         [weakSelf scriptFinished:script];
                         NSDebug(@"FINISHED");
@@ -593,13 +600,19 @@
                 });
                 removedScript = script;
                 break;
+            }
+            counter++;
         }
-        counter++;
-    }
-    if (self.broadcastScriptArray.count > 1) {
-        [self.broadcastScriptArray removeObjectAtIndex:counter];
-        [self.broadcastScriptArray insertObject:removedScript atIndex:self.broadcastScriptArray.count-1];
-    }
+        NSDebug(@"COUNT: %lu",self.broadcastScriptArray.count );
+        
+        if (self.broadcastScriptArray.count > 1) {
+            [self.broadcastScriptArray removeObjectAtIndex:counter];
+            [self.broadcastScriptArray insertObject:removedScript atIndex:self.broadcastScriptArray.count-1];
+        }
+//    });
+
+    
+
 
     //dispatch_release(group);
 }

@@ -29,6 +29,16 @@
 
 @implementation SetVariableBrick
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.variableFormula;
+}
+
+- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    self.variableFormula = formula;
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedSetVariable;

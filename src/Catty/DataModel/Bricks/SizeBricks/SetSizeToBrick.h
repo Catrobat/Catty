@@ -21,12 +21,13 @@
  */
 
 
-#import "Brick.h"
 #import "SpriteObject.h"
+#import "Brick.h"
+#import "BrickFormulaProtocol.h"
 
 @class Formula;
 
-@interface SetSizeToBrick : Brick
+@interface SetSizeToBrick : Brick<BrickFormulaProtocol>
 
 @property (nonatomic, strong) Formula *size;
 

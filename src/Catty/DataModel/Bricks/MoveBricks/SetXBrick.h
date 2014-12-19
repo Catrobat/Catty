@@ -21,10 +21,11 @@
  */
 
 #import "Brick.h"
+#import "BrickFormulaProtocol.h"
 
 @class Formula;
 
-@interface SetXBrick : Brick
+@interface SetXBrick : Brick<BrickFormulaProtocol>
 
 @property (nonatomic, strong) Formula *xPosition;
 

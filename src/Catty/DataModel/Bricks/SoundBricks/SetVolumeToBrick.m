@@ -28,6 +28,16 @@
 
 @implementation SetVolumeToBrick
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.volume;
+}
+
+- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    self.volume = formula;
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedSetVolumeTo;

@@ -33,6 +33,7 @@
 #import "BrickManager.h"
 #import "BrickProtocol.h"
 #import "Script.h"
+#import "NoteBrick.h"
 
 // uncomment this to get special log outputs, etc...
 //#define LAYOUT_DEBUG 0
@@ -368,12 +369,12 @@
             frame.origin.y = yOffset;
             frame.size.height = ([params count] ? heightForLineWithParams : heightForLineWithNoParams);
             yOffset += frame.size.height;
-            [allLinesSubviews addObjectsFromArray:[self inlineViewSubviewsOfLabel:line WithParams:params WithFrame:frame]];
+            [allLinesSubviews addObjectsFromArray:[self inlineViewSubviewsOfLabel:line WithParams:params WithFrame:frame ForLineNumber:lineIndex]];
         }
         subviews = [allLinesSubviews copy]; // makes immutable copy of (NSMutableArray*) => returns (NSArray*)
     } else {
         // case: one line
-        subviews = [[self inlineViewSubviewsOfLabel:brickTitle WithParams:brickParams WithFrame:canvasFrame] copy]; // makes immutable copy of (NSMutableArray*) => returns (NSArray*)
+        subviews = [[self inlineViewSubviewsOfLabel:brickTitle WithParams:brickParams WithFrame:canvasFrame ForLineNumber:0] copy]; // makes immutable copy of (NSMutableArray*) => returns (NSArray*)
     }
     // finally add all subviews to the inline view
     for (UIView* subview in subviews) {
@@ -382,7 +383,7 @@
     return subviews;
 }
 
-- (NSMutableArray*)inlineViewSubviewsOfLabel:(NSString*)labelTitle WithParams:(NSArray*)params WithFrame:(CGRect)frame
+- (NSMutableArray*)inlineViewSubviewsOfLabel:(NSString*)labelTitle WithParams:(NSArray*)params WithFrame:(CGRect)frame ForLineNumber:(NSInteger)lineNumber
 {
     CGRect remainingFrame = frame;
     NSUInteger totalNumberOfParams = [params count];
@@ -434,15 +435,16 @@
             NSString *afterLabelParam = [params objectAtIndex:counter];
             UIView *inputField = nil;
             if ([afterLabelParam rangeOfString:@"FLOAT"].location != NSNotFound) {
-                UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame];
-                inputField = (UIView*)textField;
+                UIButton *formulaEditor = [UIUtil newDefaultBrickFormulaEditorWithFrame:inputViewFrame ForBrickCell:self AndLineNumber: lineNumber AndParameterNumber: counter];
+                inputField = (UIView*)formulaEditor;
             } else if ([afterLabelParam rangeOfString:@"INT"].location != NSNotFound) {
-                UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame];
-                inputField = (UIView*)textField;
+                UIButton *formulaEditor = [UIUtil newDefaultBrickFormulaEditorWithFrame:inputViewFrame ForBrickCell:self AndLineNumber: lineNumber AndParameterNumber: counter];
+                inputField = (UIView*)formulaEditor;
             } else if ([afterLabelParam rangeOfString:@"TEXT"].location != NSNotFound) {
-//                inputViewFrame.origin.y = (remainingFrame.size.height - kBrickInputFieldHeight)/2.0f+(kBrickInputFieldTopMargin - kBrickInputFieldBottomMargin);
-//                inputViewFrame.size.height = kBrickInputFieldHeight;
-                UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame];
+                NoteBrick *brick =(NoteBrick*) self.brick;
+                inputViewFrame.origin.y = inputViewFrame.origin.y+10;
+                inputViewFrame.size.height = kBrickInputFieldHeight;
+                UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame andNote:brick.note AndBrickCell:self];
                 inputField = (UIView*)textField;
             } else if ([afterLabelParam rangeOfString:@"MESSAGE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
@@ -531,13 +533,14 @@
         animation.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeRotation((CGFloat)M_PI/200.0f, 0.1f, 0.1f, 0.1f)],
                               [NSValue valueWithCATransform3D:CATransform3DMakeRotation((CGFloat)M_PI/200.0f, -0.1f, -0.1f, -0.1f)]];
         animation.autoreverses = YES ;
-        animation.repeatCount = 2;
+        animation.repeatCount = 20;
         animation.duration = 0.1f ;
         [self.layer addAnimation:animation forKey:@"whobble"];
     } else {
         [self.layer removeAllAnimations];
     }
 }
+
 
 
 @end

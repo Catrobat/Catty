@@ -69,6 +69,7 @@
 
 @property (nonatomic)NSInteger numberOfObjectsWithoutBackground;
 
+
 - (NSUInteger)numberOfScripts;
 
 - (NSUInteger)numberOfTotalBricks; // including script bricks

@@ -55,6 +55,7 @@
 - (void)addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist;
 - (void)downloadFileFromURL:(NSURL*)url withProgramID:(NSString*)programID withName:(NSString*)name;
 - (void)downloadScreenshotFromURL:(NSURL*)url andBaseUrl:(NSURL*)baseurl andName:(NSString*)name;
+- (NSString*)fullPathForProgram:(NSString*)programName;
 - (BOOL)existPlayableSoundsInDirectory:(NSString*)directoryPath;
 - (void)stopLoading:(NSURL *)projecturl andImageURL:(NSURL *)imageurl;
 - (NSArray*)playableSoundsInDirectory:(NSString*)directoryPath;

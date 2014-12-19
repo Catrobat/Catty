@@ -31,6 +31,9 @@
 #import "Util.h"
 #import "Operators.h"
 #import "Functions.h"
+#import "InternToken.h"
+#import "Operators.h"
+#import "InternFormulaParserException.h"
 
 #define ARC4RANDOM_MAX 0x100000000
 
@@ -44,16 +47,45 @@
 {
     self = [super init];
     if(self) {
-        self.type = [self elementTypeForString:type];
-        self.value = value;
-        self.leftChild = leftChild;
-        self.rightChild = rightChild;
-        self.parent = parent;
+        [self initialize:[self elementTypeForString:type] value:value leftChild:leftChild rightChild:rightChild parent:parent];
     }
     return self;
 }
 
--(double) interpretRecursiveForSprite:(SpriteObject*)sprite;
+- (id)initWithElementType:(ElementType)type
+                    value:(NSString*)value
+                leftChild:(FormulaElement*)leftChild
+               rightChild:(FormulaElement*)rightChild
+                   parent:(FormulaElement*)parent
+{
+    self = [super init];
+    if(self) {
+        [self initialize:type value:value leftChild:leftChild rightChild:rightChild parent:parent];
+    }
+    return self;
+}
+
+- (void)initialize:(ElementType)type
+             value:(NSString*)value
+         leftChild:(FormulaElement*)leftChild
+        rightChild:(FormulaElement*)rightChild
+            parent:(FormulaElement*)parent
+{
+    self.type = type;
+    self.value = value;
+    self.leftChild = leftChild;
+    self.rightChild = rightChild;
+    self.parent = parent;
+    
+    if (self.leftChild != nil) {
+        self.leftChild.parent = self;
+    }
+    if (self.rightChild != nil) {
+        self.rightChild.parent = self;
+    }
+}
+
+- (double)interpretRecursiveForSprite:(SpriteObject*)sprite;
 {
     double result = -1;
     
@@ -105,7 +137,8 @@
             
         default:
             NSError(@"Unknown Type: %d", self.type);
-            abort();
+            //abort();
+            [InternFormulaParserException raise:@"Unknown Type" format:@"Unknown Type for Formula Element: %d", self.type];
             break;
     }
     
@@ -126,7 +159,6 @@
     }
     
     double result = 0;
-    
     
     switch (function) {
         case SIN: {
@@ -236,13 +268,17 @@
             result = 1.0;
             break;
         }
-            
         case FALSE_F: {
             result = 0.0;
             break;
         }
+        case EXP: {
+            result = exp(left);
+            break;
+        }
         default:
-            abort();
+            //abort();
+            [InternFormulaParserException raise:@"Unknown Function" format:@"Unknown Function: %d", function];
             break;
     }
     return result;
@@ -253,7 +289,6 @@
 {
 
     double result = 0;
-    
     
     if(self.leftChild) { // binary operator
         
@@ -306,16 +341,18 @@
                 break;
             }
             case DIVIDE: {
-                if(right > 0.0 || right < 0.0) {
+                /*if(right > 0.0 || right < 0.0) {
                     result = left / right;
                 } else {
                     result = left;
-                }
+                }*/
+                result = left / right;
                 break;
             }
 
             default:
-                abort();
+                //abort();
+                [InternFormulaParserException raise:@"Unknown Operator" format:@"Unknown Operator: %d", operator];
                 break;
         }
     }
@@ -335,8 +372,9 @@
             }
                 
             default:
-            abort();
-            break;
+                //abort();
+                [InternFormulaParserException raise:@"Unknown Unary Operator" format:@"Unknown Unary Operator: %d", operator];
+                break;
         }
     }
     
@@ -457,6 +495,139 @@
     return NO;
 }
 
+- (FormulaElement*) getRoot
+{
+    FormulaElement *root = self;
+    while (root.parent != nil) {
+        root = root.parent;
+    }
+    return root;
+}
+
+- (void)replaceElement:(FormulaElement*)current
+{
+    self.parent = current.parent;
+    self.leftChild = current.leftChild;
+    self.rightChild = current.rightChild;
+    self.value = current.value;
+    self.type = current.type;
+    
+    if (self.leftChild != nil) {
+        self.leftChild.parent = self;
+    }
+    if (self.rightChild != nil) {
+        self.rightChild.parent = self;
+    }
+}
+
+- (void)replaceElement:(ElementType)type value:(NSString*)value
+{
+    self.type = type;
+    self.value = value;
+}
+
+- (void)replaceWithSubElement:(NSString*) operator rightChild:(FormulaElement*)rightChild
+{
+    FormulaElement *cloneThis = [[FormulaElement alloc] initWithElementType:OPERATOR value:operator leftChild:self rightChild:rightChild parent:self.parent];
+    
+    cloneThis.parent.rightChild = cloneThis;
+}
+
+- (NSMutableArray*)getInternTokenList
+{
+    NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
+    
+    switch ((int)self.type) {
+        case BRACKET:
+            [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_BRACKET_OPEN]];
+            if (self.rightChild != nil) {
+                [internTokenList addObjectsFromArray:[self.rightChild getInternTokenList]];
+            }
+            [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_BRACKET_CLOSE]];
+            break;
+            
+        case OPERATOR:
+            if (self.leftChild != nil) {
+                [internTokenList addObjectsFromArray:[self.leftChild getInternTokenList]];
+            }
+            [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_OPERATOR AndValue:self.value]];
+            if (self.rightChild != nil) {
+                [internTokenList addObjectsFromArray:[self.rightChild getInternTokenList]];
+            }
+            break;
+            
+        case FUNCTION:
+            [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:self.value]];
+            BOOL functionHasParameters = false;
+            if (self.leftChild != nil) {
+                [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
+                functionHasParameters = true;
+                [internTokenList addObjectsFromArray:[self.leftChild getInternTokenList]];
+            }
+            if (self.rightChild != nil) {
+                [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER]];
+                [internTokenList addObjectsFromArray:[self.rightChild getInternTokenList]];
+            }
+            if (functionHasParameters) {
+                [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
+            }
+            break;
+            
+        case USER_VARIABLE:
+            [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_USER_VARIABLE AndValue:self.value]];
+            break;
+        case NUMBER:
+            [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:self.value]];
+            break;
+        case SENSOR:
+            [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:self.value]];
+            break;
+    }
+    return internTokenList;
+}
+
+- (BOOL)isLogicalOperator
+{
+    if (self.type == OPERATOR) {
+        return [Operators isLogicalOperator:[Operators getOperatorByValue:self.value]];
+    }
+    return false;
+}
+
+- (BOOL)isSingleNumberFormula
+{
+    if (self.type == OPERATOR) {
+        Operator operator = [Operators getOperatorByValue:self.value];
+        if (operator == MINUS && self.leftChild == nil) {
+            return [self.rightChild isSingleNumberFormula];
+        }
+        return false;
+    } else if (self.type == NUMBER) {
+        return true;
+    }
+    return false;
+}
+
+- (BOOL)containsElement:(ElementType)elementType
+{
+    if (self.type == elementType
+        || (self.leftChild != nil && [self.leftChild containsElement:elementType])
+        || (self.rightChild != nil && [self.rightChild containsElement:elementType])) {
+        return true;
+    }
+    return false;
+}
+
+- (FormulaElement*)clone
+{
+    FormulaElement *leftChildClone = self.leftChild == nil ? nil : [self.leftChild clone];
+    FormulaElement *rightChildClone = self.rightChild == nil ? nil : [self.rightChild clone];
+    return [[FormulaElement alloc] initWithElementType:self.type value:self.value == nil ? @"" : self.value
+                                             leftChild:leftChildClone
+                                            rightChild:rightChildClone
+                                                parent:nil];
+}
+
 - (BOOL)isEqualToFormulaElement:(FormulaElement*)formulaElement
 {
     if(self.type != formulaElement.type)
@@ -473,9 +644,12 @@
         return NO;
     if((self.parent != nil && formulaElement.parent == nil) || (self.parent == nil && formulaElement.parent != nil))
         return NO;
-    if(self.parent != nil && ![self.parent isEqualToFormulaElement:formulaElement.parent])
+// XXX: this leads to an endless recursion bug!!!
+//    if(self.parent != nil && ![self.parent isEqualToFormulaElement:formulaElement.parent])
+//        return NO;
+    if ((self.parent && (! formulaElement.parent)) || ((! self.parent) && formulaElement.parent))
         return NO;
-    
+
     return YES;
 }
 

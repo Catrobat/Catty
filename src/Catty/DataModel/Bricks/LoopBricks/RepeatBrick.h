@@ -22,10 +22,11 @@
 
 #import "Foreverbrick.h"
 #import "LoopBeginBrick.h"
+#import "BrickFormulaProtocol.h"
 
 @class Formula;
 
-@interface RepeatBrick : LoopBeginBrick
+@interface RepeatBrick : LoopBeginBrick<BrickFormulaProtocol>
 
 @property (nonatomic, strong) Formula *timesToRepeat;
 
