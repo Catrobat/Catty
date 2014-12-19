@@ -321,11 +321,12 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 #define kBrickInlineViewCanvasOffsetY 0.0f
 #define kBrickBackgroundImageNameSuffix @"_bg"
 
-#define kBrickLabelFontSize 16.0f
+#define kBrickLabelFontSize 15.0f
 #define kBrickTextFieldFontSize 15.0f
 #define kBrickInputFieldHeight 28.0f
-#define kBrickInputFieldMinWidth 60.0f
-#define kBrickComboBoxWidth 210.0f
+#define kBrickInputFieldMinWidth 40.0f
+#define kBrickInputFieldMaxWidth [Util screenWidth]/2.5f
+#define kBrickComboBoxWidth [Util screenWidth]/2.5f
 #define kBrickInputFieldTopMargin 4.0f
 #define kBrickInputFieldBottomMargin 5.0f
 #define kBrickInputFieldLeftMargin 4.0f

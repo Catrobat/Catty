@@ -20,17 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ObjectComboBoxView.h"
+#import <UIKit/UIKit.h>
+#import <UIKit/UIResponder.h>
+#import "BSKeyboardControls.h"
 
-@implementation ObjectComboBoxView
+@protocol iOSComboboxDelegate;
 
-- (id)initWithFrame:(CGRect)frame
+@interface iOSCombobox : UIControl <UIPickerViewDataSource, UIPickerViewDelegate,BSKeyboardControlsDelegate>
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    BOOL active;
 }
 
+@property (nonatomic, strong) NSArray *values;
+@property (nonatomic, strong) UIPickerView *pickerView;
+@property (nonatomic, strong) NSString *currentValue;
+@property (nonatomic, strong) id<iOSComboboxDelegate> delegate;
+@property (nonatomic, strong) BSKeyboardControls* keyboard;
+@property (readwrite, strong) UIView *inputView;
+@property (readwrite, strong) UIView *inputAccessoryView;
+
+@end
+
+@protocol iOSComboboxDelegate <NSObject>
+@optional
+- (void) comboboxOpened:(iOSCombobox *)combobox;
+- (void) comboboxChanged:(iOSCombobox *)combobox toValue:(NSString *)toValue;
 @end

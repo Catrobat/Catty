@@ -463,11 +463,11 @@
 
 "Wait %@ second(s)" = "Warte %@ Sekunde(n)";
 
-"When I receive\n%@" = "Wenn ich empfange %@";
+"When I receive\n%@" = "Wenn ich empfange \n%@";
 
-"Broadcast\n%@" = "Verschicke an alle %@";
+"Broadcast\n%@" = "Verschicke an alle \n%@";
 
-"Broadcast and wait\n%@" = "Verschicke und warte %@";
+"Broadcast and wait\n%@" = "Verschicke und warte \n%@";
 
 "Note %@" = "Notiz %@";
 
@@ -483,7 +483,7 @@
 
 "End of Loop" = "Ende der Schleife";
 
-"Place at\nX: %@ Y: %@" = "Setze Position X:%@ Y:%@";
+"Place at\nX: %@ Y: %@" = "Setze Position\nX:%@ Y:%@";
 
 "Set X to %@" = "Setze X auf %@";
 
@@ -503,17 +503,17 @@
 
 "Point in direction %@°" = "Zeige in Richtung %@";
 
-"Point towards\n%@" = "Zeige auf %@";
+"Point towards\n%@" = "Zeige auf \n%@";
 
-"Glide %@ second(s)\nto X: %@ Y: %@" = "Gleite %@ Sekunde(n) zu X : %@ Y: %@";
+"Glide %@ second(s)\nto X: %@ Y: %@" = "Gleite %@ Sekunde(n)\nzu X : %@ Y: %@";
 
 "Go back %@ layer(s)" = "Gehe %@ Ebene(n) nach hinten";
 
 "Go to front" = "Komme nach vorn";
 
-"Switch to look\n%@" = "Setze Aussehen %@";
+"Switch to look\n%@" = "Setze Aussehen \n%@";
 
-"Set background\n%@" = "Setze Hintergrund %@";
+"Set background\n%@" = "Setze Hintergrund \n%@";
 
 "Next look" = "Nächstes Aussehen";
 
@@ -521,23 +521,23 @@
 
 "Set size to %@\%" = "Setze Größe auf %@";
 
-"Change size by %@\%" = "Ändere Größe um %@";
+"Change size by %@\%" = "Ändere Größe um \n%@";
 
 "Hide" = "Verstecke dich";
 
 "Show" = "Zeige dich";
 
-"Set transparency\nto %@\%" = "Setze Transparenz auf %@\%";
+"Set transparency\nto %@\%" = "Setze Transparenz \nauf %@\%";
 
-"Change transparency\nby %@\%" = "Ändere Transparenz um %@\%";
+"Change transparency\nby %@\%" = "Ändere Transparenz \num %@\%";
 
 "Set brightness to %@\%" = "Setze Helligkeit auf %@\%";
 
-"Change brightness\nby %@\%" = "Ändern Sie Helligkeit um %@\%";
+"Change brightness\nby %@\%" = "Ändern Sie Helligkeit \num %@\%";
 
 "Clear graphic effects" = "Schalte Grafikeffekte aus";
 
-"Start sound\n%@" = "Starte Klang %@";
+"Start sound\n%@" = "Starte Klang \n%@";
 
 "Stop all sounds" = "Stoppe alle Klänge";
 
@@ -547,9 +547,9 @@
 
 "Speak %@" = "Sprich %@";
 
-"Set variable\n%@\nto %@" = "Setze Variable %@ auf %@";
+"Set variable\n%@\nto %@" = "Setze Variable \n%@\n auf %@";
 
-"Change variable\n%@\nby %@" = "Ändere Variable %@ um %@";
+"Change variable\n%@\nby %@" = "Ändere Variable \n%@ \num %@";
 
 "Play" = "Spielen";
 

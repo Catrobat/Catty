@@ -25,11 +25,7 @@
 #import "Brick.h"
 #import "BrickCellInlineView.h"
 #import "UIUtil.h"
-#import "MessageComboBoxView.h"
-#import "ObjectComboBoxView.h"
-#import "SoundComboBoxView.h"
-#import "LookComboBoxView.h"
-#import "VariableComboBoxView.h"
+#import "iOSCombobox.h"
 #import "BrickManager.h"
 #import "BrickProtocol.h"
 #import "Script.h"
@@ -179,8 +175,8 @@
     for (UIView *view in self.inlineView.subviews) {
         if ([view isKindOfClass:[UITextField class]]) {
             ((UITextField*) view).enabled = enabled;
-        } else if ([view isKindOfClass:[ComboBoxView class]]) {
-            ((ComboBoxView*) view).enabled = enabled;
+        } else if ([view isKindOfClass:[iOSCombobox class]]) {
+            ((iOSCombobox*) view).enabled = enabled;
         }
     }
 }
@@ -389,7 +385,7 @@
     NSUInteger totalNumberOfParams = [params count];
     if (! totalNumberOfParams) {
         NSMutableArray *subviews = [NSMutableArray array];
-        UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:remainingFrame AndText:labelTitle];
+        UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:remainingFrame AndText:labelTitle andRemainingSpace:remainingFrame.size.width];
 #ifdef LAYOUT_DEBUG
         NSLog(@"Label Title: %@, Width: %f, Height: %f", labelTitle, remainingFrame.size.width, remainingFrame.size.height);
         textLabel.backgroundColor = [UIColor yellowColor];
@@ -410,7 +406,7 @@
         // TODO: make x-offset calculation much more smarter...
 
         if (partLabelTitle.length) {
-            UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:remainingFrame AndText:partLabelTitle];
+            UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:remainingFrame AndText:partLabelTitle andRemainingSpace:remainingFrame.size.width];
     #ifdef LAYOUT_DEBUG
             NSLog(@"Label Title: %@, Width: %f, Height: %f", partLabelTitle, remainingFrame.size.width, remainingFrame.size.height);
             textLabel.backgroundColor = [UIColor blueColor];
@@ -451,40 +447,45 @@
                 NSMutableArray* messages = [[NSMutableArray alloc] init];
                 [messages addObject:@"New..."];
                 [messages addObject:@"message 1"];
-                ComboBoxView *comboBox = [UIUtil newDefaultBrickMessageComboBoxWithFrame:inputViewFrame AndItems:messages];
-                [comboBox preselectItemAtIndex:1];
+                iOSCombobox *comboBox = [UIUtil newDefaultBrickComboBoxWithFrame:inputViewFrame AndItems:messages];
+                [comboBox setCurrentValue:messages[0]];
+                [comboBox setDelegate:(id<iOSComboboxDelegate>)self.delegate];
                 inputField = (UIView*)comboBox;
             } else if ([afterLabelParam rangeOfString:@"OBJECT"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 NSMutableArray* objects = [[NSMutableArray alloc] init];
                 [objects addObject:@"New..."];
                 [objects addObject:@"object 1"];
-                ComboBoxView *comboBox = [UIUtil newDefaultBrickObjectComboBoxWithFrame:inputViewFrame AndItems:objects];
-                [comboBox preselectItemAtIndex:1];
+                iOSCombobox *comboBox = [UIUtil newDefaultBrickComboBoxWithFrame:inputViewFrame AndItems:objects];
+                [comboBox setDelegate:(id<iOSComboboxDelegate>)self.delegate];
+               [comboBox setCurrentValue:objects[0]];
                 inputField = (UIView*)comboBox;
             } else if ([afterLabelParam rangeOfString:@"SOUND"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 NSMutableArray* sounds = [[NSMutableArray alloc] init];
                 [sounds addObject:@"New..."];
                 [sounds addObject:@"sound 1"];
-                ComboBoxView *comboBox = [UIUtil newDefaultBrickSoundComboBoxWithFrame:inputViewFrame AndItems:sounds];
-                [comboBox preselectItemAtIndex:1];
+                iOSCombobox *comboBox = [UIUtil newDefaultBrickComboBoxWithFrame:inputViewFrame AndItems:sounds];
+                [comboBox setDelegate:(id<iOSComboboxDelegate>)self.delegate];
+                [comboBox setCurrentValue:sounds[0]];
                 inputField = (UIView*)comboBox;
             } else if ([afterLabelParam rangeOfString:@"LOOK"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 NSMutableArray* looks = [[NSMutableArray alloc] init];
                 [looks addObject:@"New..."];
                 [looks addObject:@"look 1"];
-                ComboBoxView *comboBox = [UIUtil newDefaultBrickLookComboBoxWithFrame:inputViewFrame AndItems:looks];
-                [comboBox preselectItemAtIndex:1];
+                iOSCombobox *comboBox = [UIUtil newDefaultBrickComboBoxWithFrame:inputViewFrame AndItems:looks];
+                [comboBox setDelegate:(id<iOSComboboxDelegate>)self.delegate];
+                [comboBox setCurrentValue:looks[0]];
                 inputField = (UIView*)comboBox;
             } else if ([afterLabelParam rangeOfString:@"VARIABLE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 NSMutableArray* variables = [[NSMutableArray alloc] init];
                 [variables addObject:@"New..."];
                 [variables addObject:@"variable 1"];
-                ComboBoxView *comboBox = [UIUtil newDefaultBrickLookComboBoxWithFrame:inputViewFrame AndItems:variables];
-                [comboBox preselectItemAtIndex:1];
+                iOSCombobox *comboBox = [UIUtil newDefaultBrickComboBoxWithFrame:inputViewFrame AndItems:variables];
+                [comboBox setDelegate:(id<iOSComboboxDelegate>)self.delegate];
+                [comboBox setCurrentValue:variables[0]];
                 inputField = (UIView*)comboBox;
             } else {
                 NSError(@"unknown data type %@ given", afterLabelParam);
