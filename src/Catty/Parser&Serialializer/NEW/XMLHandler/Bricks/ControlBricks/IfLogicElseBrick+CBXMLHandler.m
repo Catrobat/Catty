@@ -33,41 +33,41 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
-    IfLogicElseBrick *ifLogicElseBrick = [self new];
+ [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
+ IfLogicElseBrick *ifLogicElseBrick = [self new];
 
-    // pop opening nesting brick from stack
-    Brick *openingNestingBrick = [context.openedNestingBricksStack popAndCloseTopMostNestingBrick];
-    if (! [openingNestingBrick isKindOfClass:[IfLogicBeginBrick class]]) {
-        [XMLError exceptionWithMessage:@"Unexpected closing of nesting brick: expected IfLogicBeginBrick but got %@", NSStringFromClass([openingNestingBrick class])];
-    }
-    IfLogicBeginBrick *ifLogicBeginBrick = (IfLogicBeginBrick*)openingNestingBrick;
-    ifLogicBeginBrick.ifElseBrick = ifLogicElseBrick;
-    ifLogicElseBrick.ifBeginBrick = ifLogicBeginBrick;
+ // pop opening nesting brick from stack
+ Brick *openingNestingBrick = [context.openedNestingBricksStack popAndCloseTopMostNestingBrick];
+ if (! [openingNestingBrick isKindOfClass:[IfLogicBeginBrick class]]) {
+  [XMLError exceptionWithMessage:@"Unexpected closing of nesting brick: expected IfLogicBeginBrick but got %@", NSStringFromClass([openingNestingBrick class])];
+ }
+ IfLogicBeginBrick *ifLogicBeginBrick = (IfLogicBeginBrick*)openingNestingBrick;
+ ifLogicBeginBrick.ifElseBrick = ifLogicElseBrick;
+ ifLogicElseBrick.ifBeginBrick = ifLogicBeginBrick;
 
-    // add opening nesting brick on stack
-    [context.openedNestingBricksStack pushAndOpenNestingBrick:ifLogicElseBrick];
-    return ifLogicElseBrick;
+ // add opening nesting brick on stack
+ [context.openedNestingBricksStack pushAndOpenNestingBrick:ifLogicElseBrick];
+ return ifLogicElseBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"IfLogicElseBrick"]];
+ GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+ [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"IfLogicElseBrick"]];
 
-    // pop opening nesting brick from stack
-    Brick *openingNestingBrick = [context.openedNestingBricksStack popAndCloseTopMostNestingBrick];
-    if (! [openingNestingBrick isKindOfClass:[IfLogicBeginBrick class]]) {
-        [XMLError exceptionWithMessage:@"Unexpected closing of nesting brick: expected IfLogicBeginBrick but got %@", NSStringFromClass([openingNestingBrick class])];
-    }
-    if (((IfLogicBeginBrick*)openingNestingBrick).ifElseBrick != self) {
-        [XMLError exceptionWithMessage:@"IfLogicBeginBrick has reference to other else-brick %@",
-         NSStringFromClass([openingNestingBrick class])];
-    }
+ // pop opening nesting brick from stack
+ Brick *openingNestingBrick = [context.openedNestingBricksStack popAndCloseTopMostNestingBrick];
+ if (! [openingNestingBrick isKindOfClass:[IfLogicBeginBrick class]]) {
+  [XMLError exceptionWithMessage:@"Unexpected closing of nesting brick: expected IfLogicBeginBrick but got %@", NSStringFromClass([openingNestingBrick class])];
+ }
+ if (((IfLogicBeginBrick*)openingNestingBrick).ifElseBrick != self) {
+  [XMLError exceptionWithMessage:@"IfLogicBeginBrick has reference to other else-brick %@",
+   NSStringFromClass([openingNestingBrick class])];
+ }
 
-    // add opening nesting brick on stack
-    [context.openedNestingBricksStack pushAndOpenNestingBrick:self];
-    return brick;
+ // add opening nesting brick on stack
+ [context.openedNestingBricksStack pushAndOpenNestingBrick:self];
+ return brick;
 }
 
 @end

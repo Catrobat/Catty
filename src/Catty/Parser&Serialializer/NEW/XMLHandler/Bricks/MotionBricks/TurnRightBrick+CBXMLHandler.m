@@ -30,24 +30,24 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"TURN_RIGHT_DEGREES"];
-    [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
-    TurnRightBrick *turnRightBrick = [self new];
-    turnRightBrick.degrees = formula;
-    return turnRightBrick;
+ [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
+ Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"TURN_RIGHT_DEGREES"];
+ [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
+ TurnRightBrick *turnRightBrick = [self new];
+ turnRightBrick.degrees = formula;
+ return turnRightBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"TurnRightBrick"]];
-    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
-    GDataXMLElement *formula = [self.degrees xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"TURN_RIGHT_DEGREES"]];
-    [formulaList addChild:formula];
-    [brick addChild:formulaList];
-    return brick;
+ GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+ [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"TurnRightBrick"]];
+ GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+ GDataXMLElement *formula = [self.degrees xmlElementWithContext:context];
+ [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"TURN_RIGHT_DEGREES"]];
+ [formulaList addChild:formula];
+ [brick addChild:formulaList];
+ return brick;
 }
 
 @end

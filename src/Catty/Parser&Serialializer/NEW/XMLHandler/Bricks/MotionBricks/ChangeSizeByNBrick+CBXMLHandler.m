@@ -29,24 +29,24 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
+ [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
 
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"SIZE_CHANGE"];
-    ChangeSizeByNBrick *changeSizeByNBrick = [self new];
-    changeSizeByNBrick.size = formula;
-    return changeSizeByNBrick;
+ Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"SIZE_CHANGE"];
+ ChangeSizeByNBrick *changeSizeByNBrick = [self new];
+ changeSizeByNBrick.size = formula;
+ return changeSizeByNBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"ChangeSizeByNBrick"]];
-    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
-    GDataXMLElement *formula = [self.size xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"SIZE_CHANGE"]];
-    [formulaList addChild:formula];
-    [brick addChild:formulaList];
-    return brick;
+ GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+ [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"ChangeSizeByNBrick"]];
+ GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+ GDataXMLElement *formula = [self.size xmlElementWithContext:context];
+ [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"SIZE_CHANGE"]];
+ [formulaList addChild:formula];
+ [brick addChild:formulaList];
+ return brick;
 }
 
 @end

@@ -29,23 +29,23 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"X_POSITION"];
-    SetXBrick *setXBrick = [self new];
-    setXBrick.xPosition = formula;
-    return setXBrick;
+ [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
+ Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"X_POSITION"];
+ SetXBrick *setXBrick = [self new];
+ setXBrick.xPosition = formula;
+ return setXBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"SetXBrick"]];
-    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
-    GDataXMLElement *formula = [self.xPosition xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"X_POSITION"]];
-    [formulaList addChild:formula];
-    [brick addChild:formulaList];
-    return brick;
+ GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+ [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"SetXBrick"]];
+ GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+ GDataXMLElement *formula = [self.xPosition xmlElementWithContext:context];
+ [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"X_POSITION"]];
+ [formulaList addChild:formula];
+ [brick addChild:formulaList];
+ return brick;
 }
 
 @end

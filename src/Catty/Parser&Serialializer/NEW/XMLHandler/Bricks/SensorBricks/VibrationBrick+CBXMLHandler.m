@@ -29,23 +29,23 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VIBRATE_DURATION_IN_SECONDS"];
-    VibrationBrick *vibrationBrick = [self new];
-    vibrationBrick.durationInSeconds = formula;
-    return vibrationBrick;
+ [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
+ Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VIBRATE_DURATION_IN_SECONDS"];
+ VibrationBrick *vibrationBrick = [self new];
+ vibrationBrick.durationInSeconds = formula;
+ return vibrationBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"VibrationBrick"]];
-    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
-    GDataXMLElement *formula = [self.durationInSeconds xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"VIBRATE_DURATION_IN_SECONDS"]];
-    [formulaList addChild:formula];
-    [brick addChild:formulaList];
-    return brick;
+ GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+ [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"VibrationBrick"]];
+ GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+ GDataXMLElement *formula = [self.durationInSeconds xmlElementWithContext:context];
+ [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"VIBRATE_DURATION_IN_SECONDS"]];
+ [formulaList addChild:formula];
+ [brick addChild:formulaList];
+ return brick;
 }
 
 @end

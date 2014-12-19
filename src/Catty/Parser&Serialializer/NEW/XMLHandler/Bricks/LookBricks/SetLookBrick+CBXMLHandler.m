@@ -32,43 +32,43 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
+ [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
 
-    GDataXMLElement *lookElement = [[xmlElement children] firstObject];
-    NSMutableArray *lookList = context.lookList;
+ GDataXMLElement *lookElement = [[xmlElement children] firstObject];
+ NSMutableArray *lookList = context.lookList;
 
-    Look *look = nil;
-    if ([CBXMLParserHelper isReferenceElement:lookElement]) {
-        GDataXMLNode *referenceAttribute = [lookElement attributeForName:@"reference"];
-        NSString *xPath = [referenceAttribute stringValue];
-        lookElement = [lookElement singleNodeForCatrobatXPath:xPath];
-        [XMLError exceptionIfNil:lookElement message:@"Invalid reference in SetLookBrick. No or too many looks found!"];
-        GDataXMLNode *nameAttribute = [lookElement attributeForName:@"name"];
-        [XMLError exceptionIfNil:nameAttribute message:@"Look element does not contain a name attribute!"];
-        look = [CBXMLParserHelper findLookInArray:lookList withName:[nameAttribute stringValue]];
-        [XMLError exceptionIfNil:look message:@"Fatal error: no look found in list, but should already exist!"];
-    } else {
-        // OMG!! a look has been defined within the brick element...
-        look = [Look parseFromElement:xmlElement withContext:nil];
-        [XMLError exceptionIfNil:look message:@"Unable to parse look..."];
-        [lookList addObject:look];
-    }
-    SetLookBrick *setLookBrick = [self new];
-    setLookBrick.look = look;
-    return setLookBrick;
+ Look *look = nil;
+ if ([CBXMLParserHelper isReferenceElement:lookElement]) {
+  GDataXMLNode *referenceAttribute = [lookElement attributeForName:@"reference"];
+  NSString *xPath = [referenceAttribute stringValue];
+  lookElement = [lookElement singleNodeForCatrobatXPath:xPath];
+  [XMLError exceptionIfNil:lookElement message:@"Invalid reference in SetLookBrick. No or too many looks found!"];
+  GDataXMLNode *nameAttribute = [lookElement attributeForName:@"name"];
+  [XMLError exceptionIfNil:nameAttribute message:@"Look element does not contain a name attribute!"];
+  look = [CBXMLParserHelper findLookInArray:lookList withName:[nameAttribute stringValue]];
+  [XMLError exceptionIfNil:look message:@"Fatal error: no look found in list, but should already exist!"];
+ } else {
+  // OMG!! a look has been defined within the brick element...
+  look = [Look parseFromElement:xmlElement withContext:nil];
+  [XMLError exceptionIfNil:look message:@"Unable to parse look..."];
+  [lookList addObject:look];
+ }
+ SetLookBrick *setLookBrick = [self new];
+ setLookBrick.look = look;
+ return setLookBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"brick"];
-    [xmlElement addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"SetLookBrick"]];
-    if (self.look) {
-        GDataXMLElement *referenceXMLElement = [GDataXMLNode elementWithName:@"look"];
-        NSString *refPath = [CBXMLSerializerHelper relativeXPathToLook:self.look inLookList:context.lookList];
-        [referenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:refPath]];
-        [xmlElement addChild:referenceXMLElement];
-    }
-    return xmlElement;
+ GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"brick"];
+ [xmlElement addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"SetLookBrick"]];
+ if (self.look) {
+  GDataXMLElement *referenceXMLElement = [GDataXMLNode elementWithName:@"look"];
+  NSString *refPath = [CBXMLSerializerHelper relativeXPathToLook:self.look inLookList:context.lookList];
+  [referenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:refPath]];
+  [xmlElement addChild:referenceXMLElement];
+ }
+ return xmlElement;
 }
 
 @end

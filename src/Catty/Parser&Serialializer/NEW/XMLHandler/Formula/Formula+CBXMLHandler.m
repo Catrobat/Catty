@@ -28,19 +28,19 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    FormulaElement *formulaTree = [FormulaElement parseFromElement:xmlElement withContext:context];
-    Formula *formula = [Formula new];
-    formula.formulaTree = formulaTree;
-    return formula;
+ FormulaElement *formulaTree = [FormulaElement parseFromElement:xmlElement withContext:context];
+ Formula *formula = [Formula new];
+ formula.formulaTree = formulaTree;
+ return formula;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"formula"];
-    for(GDataXMLNode *node in [self.formulaTree xmlElementWithContext:context].children) {
-        [xmlElement addChild:node];
-    }
-    return xmlElement;
+ GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"formula"];
+ for(GDataXMLNode *node in [self.formulaTree xmlElementWithContext:context].children) {
+  [xmlElement addChild:node];
+ }
+ return xmlElement;
 }
 
 @end

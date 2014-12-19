@@ -28,15 +28,15 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
-    return [self new]; // nothing else to do!
+ [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
+ return [self new]; // nothing else to do!
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"LedOffBrick"]];
-    return brick;
+ GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+ [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"LedOffBrick"]];
+ return brick;
 }
 
 @end

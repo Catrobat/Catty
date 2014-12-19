@@ -1631,16 +1631,16 @@
 			isa = PBXGroup;
 			children = (
 				CAA4A4861A43B407002A69A0 /* BroadcastBrick+CBXMLHandler.h */,
-				CAA4A4871A43B407002A69A0 /* BroadcastWaitBrick+CBXMLHandler.h */,
-				CAA4A4881A43B407002A69A0 /* ComeToFrontBrick+CBXMLHandler.h */,
-				CAA4A48F1A43B407002A69A0 /* NoteBrick+CBXMLHandler.h */,
-				CAA4A4901A43B407002A69A0 /* PlaceAtBrick+CBXMLHandler.h */,
-				CAA4A4921A43B407002A69A0 /* WaitBrick+CBXMLHandler.h */,
 				CAA4A4931A43B407002A69A0 /* BroadcastBrick+CBXMLHandler.m */,
+				CAA4A4871A43B407002A69A0 /* BroadcastWaitBrick+CBXMLHandler.h */,
 				CAA4A4941A43B407002A69A0 /* BroadcastWaitBrick+CBXMLHandler.m */,
+				CAA4A4881A43B407002A69A0 /* ComeToFrontBrick+CBXMLHandler.h */,
 				CAA4A4951A43B407002A69A0 /* ComeToFrontBrick+CBXMLHandler.m */,
+				CAA4A48F1A43B407002A69A0 /* NoteBrick+CBXMLHandler.h */,
 				CAA4A49C1A43B407002A69A0 /* NoteBrick+CBXMLHandler.m */,
+				CAA4A4901A43B407002A69A0 /* PlaceAtBrick+CBXMLHandler.h */,
 				CAA4A49D1A43B407002A69A0 /* PlaceAtBrick+CBXMLHandler.m */,
+				CAA4A4921A43B407002A69A0 /* WaitBrick+CBXMLHandler.h */,
 				CAA4A49F1A43B407002A69A0 /* WaitBrick+CBXMLHandler.m */,
 				CAF8EF071A43B1A900710B27 /* IfBricks */,
 				CAF8EF081A43B1CB00710B27 /* LoopBricks */,
@@ -1652,24 +1652,24 @@
 			isa = PBXGroup;
 			children = (
 				CAA4A4AD1A43B45E002A69A0 /* ChangeBrightnessByNBrick+CBXMLHandler.h */,
-				CAA4A4AE1A43B45E002A69A0 /* ChangeGhostEffectByNBrick+CBXMLHandler.h */,
-				CAA4A4AF1A43B45E002A69A0 /* ClearGraphicEffectBrick+CBXMLHandler.h */,
-				CAA4A4B01A43B45E002A69A0 /* GoNStepsBackBrick+CBXMLHandler.h */,
-				CAA4A4B11A43B45E002A69A0 /* HideBrick+CBXMLHandler.h */,
-				CAA4A4B21A43B45E002A69A0 /* NextLookBrick+CBXMLHandler.h */,
-				CAA4A4B31A43B45E002A69A0 /* SetBrightnessBrick+CBXMLHandler.h */,
-				CAA4A4B41A43B45E002A69A0 /* SetGhostEffectBrick+CBXMLHandler.h */,
-				CAA4A4B51A43B45E002A69A0 /* SetLookBrick+CBXMLHandler.h */,
-				CAA4A4B61A43B45E002A69A0 /* ShowBrick+CBXMLHandler.h */,
 				CAA4A4B71A43B45E002A69A0 /* ChangeBrightnessByNBrick+CBXMLHandler.m */,
+				CAA4A4AE1A43B45E002A69A0 /* ChangeGhostEffectByNBrick+CBXMLHandler.h */,
 				CAA4A4B81A43B45E002A69A0 /* ChangeGhostEffectByNBrick+CBXMLHandler.m */,
+				CAA4A4AF1A43B45E002A69A0 /* ClearGraphicEffectBrick+CBXMLHandler.h */,
 				CAA4A4B91A43B45E002A69A0 /* ClearGraphicEffectBrick+CBXMLHandler.m */,
+				CAA4A4B01A43B45E002A69A0 /* GoNStepsBackBrick+CBXMLHandler.h */,
 				CAA4A4BA1A43B45E002A69A0 /* GoNStepsBackBrick+CBXMLHandler.m */,
+				CAA4A4B11A43B45E002A69A0 /* HideBrick+CBXMLHandler.h */,
 				CAA4A4BB1A43B45E002A69A0 /* HideBrick+CBXMLHandler.m */,
+				CAA4A4B21A43B45E002A69A0 /* NextLookBrick+CBXMLHandler.h */,
 				CAA4A4BC1A43B45E002A69A0 /* NextLookBrick+CBXMLHandler.m */,
+				CAA4A4B31A43B45E002A69A0 /* SetBrightnessBrick+CBXMLHandler.h */,
 				CAA4A4BD1A43B45E002A69A0 /* SetBrightnessBrick+CBXMLHandler.m */,
+				CAA4A4B41A43B45E002A69A0 /* SetGhostEffectBrick+CBXMLHandler.h */,
 				CAA4A4BE1A43B45E002A69A0 /* SetGhostEffectBrick+CBXMLHandler.m */,
+				CAA4A4B51A43B45E002A69A0 /* SetLookBrick+CBXMLHandler.h */,
 				CAA4A4BF1A43B45E002A69A0 /* SetLookBrick+CBXMLHandler.m */,
+				CAA4A4B61A43B45E002A69A0 /* ShowBrick+CBXMLHandler.h */,
 				CAA4A4C01A43B45E002A69A0 /* ShowBrick+CBXMLHandler.m */,
 			);
 			path = LookBricks;
@@ -1679,28 +1679,28 @@
 			isa = PBXGroup;
 			children = (
 				CAA4A4CB1A43B472002A69A0 /* ChangeSizeByNBrick+CBXMLHandler.h */,
-				CAA4A4CC1A43B472002A69A0 /* ChangeXByNBrick+CBXMLHandler.h */,
-				CAA4A4CD1A43B472002A69A0 /* ChangeYByNBrick+CBXMLHandler.h */,
-				CAA4A4CE1A43B472002A69A0 /* GlideToBrick+CBXMLHandler.h */,
-				CAA4A4CF1A43B472002A69A0 /* MoveNStepsBrick+CBXMLHandler.h */,
-				CAA4A4D01A43B472002A69A0 /* PointInDirectionBrick+CBXMLHandler.h */,
-				CAA4A4D11A43B472002A69A0 /* PointToBrick+CBXMLHandler.h */,
-				CAA4A4D21A43B472002A69A0 /* SetSizeToBrick+CBXMLHandler.h */,
-				CAA4A4D31A43B472002A69A0 /* SetXBrick+CBXMLHandler.h */,
-				CAA4A4D41A43B472002A69A0 /* SetYBrick+CBXMLHandler.h */,
-				CAA4A4D51A43B472002A69A0 /* TurnLeftBrick+CBXMLHandler.h */,
-				CAA4A4D61A43B472002A69A0 /* TurnRightBrick+CBXMLHandler.h */,
 				CAA4A4D71A43B472002A69A0 /* ChangeSizeByNBrick+CBXMLHandler.m */,
+				CAA4A4CC1A43B472002A69A0 /* ChangeXByNBrick+CBXMLHandler.h */,
 				CAA4A4D81A43B472002A69A0 /* ChangeXByNBrick+CBXMLHandler.m */,
+				CAA4A4CD1A43B472002A69A0 /* ChangeYByNBrick+CBXMLHandler.h */,
 				CAA4A4D91A43B472002A69A0 /* ChangeYByNBrick+CBXMLHandler.m */,
+				CAA4A4CE1A43B472002A69A0 /* GlideToBrick+CBXMLHandler.h */,
 				CAA4A4DA1A43B472002A69A0 /* GlideToBrick+CBXMLHandler.m */,
+				CAA4A4CF1A43B472002A69A0 /* MoveNStepsBrick+CBXMLHandler.h */,
 				CAA4A4DB1A43B472002A69A0 /* MoveNStepsBrick+CBXMLHandler.m */,
+				CAA4A4D01A43B472002A69A0 /* PointInDirectionBrick+CBXMLHandler.h */,
 				CAA4A4DC1A43B472002A69A0 /* PointInDirectionBrick+CBXMLHandler.m */,
+				CAA4A4D11A43B472002A69A0 /* PointToBrick+CBXMLHandler.h */,
 				CAA4A4DD1A43B472002A69A0 /* PointToBrick+CBXMLHandler.m */,
+				CAA4A4D21A43B472002A69A0 /* SetSizeToBrick+CBXMLHandler.h */,
 				CAA4A4DE1A43B472002A69A0 /* SetSizeToBrick+CBXMLHandler.m */,
+				CAA4A4D31A43B472002A69A0 /* SetXBrick+CBXMLHandler.h */,
 				CAA4A4DF1A43B472002A69A0 /* SetXBrick+CBXMLHandler.m */,
+				CAA4A4D41A43B472002A69A0 /* SetYBrick+CBXMLHandler.h */,
 				CAA4A4E01A43B472002A69A0 /* SetYBrick+CBXMLHandler.m */,
+				CAA4A4D51A43B472002A69A0 /* TurnLeftBrick+CBXMLHandler.h */,
 				CAA4A4E11A43B472002A69A0 /* TurnLeftBrick+CBXMLHandler.m */,
+				CAA4A4D61A43B472002A69A0 /* TurnRightBrick+CBXMLHandler.h */,
 				CAA4A4E21A43B472002A69A0 /* TurnRightBrick+CBXMLHandler.m */,
 			);
 			path = MotionBricks;
@@ -1710,10 +1710,10 @@
 			isa = PBXGroup;
 			children = (
 				CAA4A4EF1A43B47F002A69A0 /* LedOffBrick+CBXMLHandler.h */,
-				CAA4A4F01A43B47F002A69A0 /* LedOnBrick+CBXMLHandler.h */,
-				CAA4A4F11A43B47F002A69A0 /* VibrationBrick+CBXMLHandler.h */,
 				CAA4A4F21A43B47F002A69A0 /* LedOffBrick+CBXMLHandler.m */,
+				CAA4A4F01A43B47F002A69A0 /* LedOnBrick+CBXMLHandler.h */,
 				CAA4A4F31A43B47F002A69A0 /* LedOnBrick+CBXMLHandler.m */,
+				CAA4A4F11A43B47F002A69A0 /* VibrationBrick+CBXMLHandler.h */,
 				CAA4A4F41A43B47F002A69A0 /* VibrationBrick+CBXMLHandler.m */,
 			);
 			path = SensorBricks;
@@ -1723,14 +1723,14 @@
 			isa = PBXGroup;
 			children = (
 				CAA4A4F81A43B48F002A69A0 /* ChangeVolumeByNBrick+CBXMLHandler.h */,
-				CAA4A4F91A43B48F002A69A0 /* PlaySoundBrick+CBXMLHandler.h */,
-				CAA4A4FA1A43B48F002A69A0 /* SetVolumeToBrick+CBXMLHandler.h */,
-				CAA4A4FB1A43B48F002A69A0 /* SpeakBrick+CBXMLHandler.h */,
-				CAA4A4FC1A43B48F002A69A0 /* StopAllSoundsBrick+CBXMLHandler.h */,
 				CAA4A4FD1A43B48F002A69A0 /* ChangeVolumeByNBrick+CBXMLHandler.m */,
+				CAA4A4F91A43B48F002A69A0 /* PlaySoundBrick+CBXMLHandler.h */,
 				CAA4A4FE1A43B48F002A69A0 /* PlaySoundBrick+CBXMLHandler.m */,
+				CAA4A4FA1A43B48F002A69A0 /* SetVolumeToBrick+CBXMLHandler.h */,
 				CAA4A4FF1A43B48F002A69A0 /* SetVolumeToBrick+CBXMLHandler.m */,
+				CAA4A4FB1A43B48F002A69A0 /* SpeakBrick+CBXMLHandler.h */,
 				CAA4A5001A43B48F002A69A0 /* SpeakBrick+CBXMLHandler.m */,
+				CAA4A4FC1A43B48F002A69A0 /* StopAllSoundsBrick+CBXMLHandler.h */,
 				CAA4A5011A43B48F002A69A0 /* StopAllSoundsBrick+CBXMLHandler.m */,
 			);
 			path = SoundBricks;
@@ -1740,8 +1740,8 @@
 			isa = PBXGroup;
 			children = (
 				CAA4A5071A43B499002A69A0 /* ChangeVariableBrick+CBXMLHandler.h */,
-				CAA4A5081A43B499002A69A0 /* SetVariableBrick+CBXMLHandler.h */,
 				CAA4A5091A43B499002A69A0 /* ChangeVariableBrick+CBXMLHandler.m */,
+				CAA4A5081A43B499002A69A0 /* SetVariableBrick+CBXMLHandler.h */,
 				CAA4A50A1A43B499002A69A0 /* SetVariableBrick+CBXMLHandler.m */,
 			);
 			path = VariableBricks;
@@ -1751,8 +1751,8 @@
 			isa = PBXGroup;
 			children = (
 				CAA4A50D1A43B4B5002A69A0 /* Formula+CBXMLHandler.h */,
-				CAA4A50E1A43B4B5002A69A0 /* FormulaElement+CBXMLHandler.h */,
 				CAA4A50F1A43B4B5002A69A0 /* Formula+CBXMLHandler.m */,
+				CAA4A50E1A43B4B5002A69A0 /* FormulaElement+CBXMLHandler.h */,
 				CAA4A5101A43B4B5002A69A0 /* FormulaElement+CBXMLHandler.m */,
 			);
 			path = Formula;
@@ -3701,12 +3701,12 @@
 			isa = PBXGroup;
 			children = (
 				CAA4A48A1A43B407002A69A0 /* IfLogicBeginBrick+CBXMLHandler.h */,
-				CAA4A48B1A43B407002A69A0 /* IfLogicElseBrick+CBXMLHandler.h */,
-				CAA4A48C1A43B407002A69A0 /* IfLogicEndBrick+CBXMLHandler.h */,
-				CAA4A48D1A43B407002A69A0 /* IfOnEdgeBounceBrick+CBXMLHandler.h */,
 				CAA4A4971A43B407002A69A0 /* IfLogicBeginBrick+CBXMLHandler.m */,
+				CAA4A48B1A43B407002A69A0 /* IfLogicElseBrick+CBXMLHandler.h */,
 				CAA4A4981A43B407002A69A0 /* IfLogicElseBrick+CBXMLHandler.m */,
+				CAA4A48C1A43B407002A69A0 /* IfLogicEndBrick+CBXMLHandler.h */,
 				CAA4A4991A43B407002A69A0 /* IfLogicEndBrick+CBXMLHandler.m */,
+				CAA4A48D1A43B407002A69A0 /* IfOnEdgeBounceBrick+CBXMLHandler.h */,
 				CAA4A49A1A43B407002A69A0 /* IfOnEdgeBounceBrick+CBXMLHandler.m */,
 			);
 			name = IfBricks;
@@ -3716,10 +3716,10 @@
 			isa = PBXGroup;
 			children = (
 				CAA4A4891A43B407002A69A0 /* ForeverBrick+CBXMLHandler.h */,
-				CAA4A48E1A43B407002A69A0 /* LoopEndBrick+CBXMLHandler.h */,
-				CAA4A4911A43B407002A69A0 /* RepeatBrick+CBXMLHandler.h */,
 				CAA4A4961A43B407002A69A0 /* ForeverBrick+CBXMLHandler.m */,
+				CAA4A48E1A43B407002A69A0 /* LoopEndBrick+CBXMLHandler.h */,
 				CAA4A49B1A43B407002A69A0 /* LoopEndBrick+CBXMLHandler.m */,
+				CAA4A4911A43B407002A69A0 /* RepeatBrick+CBXMLHandler.h */,
 				CAA4A49E1A43B407002A69A0 /* RepeatBrick+CBXMLHandler.m */,
 			);
 			name = LoopBricks;

@@ -33,37 +33,37 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:3 AndFormulaListWithTotalNumberOfFormulas:1];
+ [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:3 AndFormulaListWithTotalNumberOfFormulas:1];
 
-    GDataXMLElement *inUserBrickElement = [xmlElement childWithElementName:@"inUserBrick"]; // TODO: implement this...
-    [XMLError exceptionIfNil:inUserBrickElement message:@"No inUserBrickElement element found..."];
+ GDataXMLElement *inUserBrickElement = [xmlElement childWithElementName:@"inUserBrick"]; // TODO: implement this...
+ [XMLError exceptionIfNil:inUserBrickElement message:@"No inUserBrickElement element found..."];
 
-    GDataXMLElement *userVariableElement = [xmlElement childWithElementName:@"userVariable"];
-    [XMLError exceptionIfNil:userVariableElement message:@"No userVariableElement element found..."];
+ GDataXMLElement *userVariableElement = [xmlElement childWithElementName:@"userVariable"];
+ [XMLError exceptionIfNil:userVariableElement message:@"No userVariableElement element found..."];
 
-    UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:context];
-    [XMLError exceptionIfNil:userVariable message:@"Unable to parse userVariable..."];
-    
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VARIABLE"];
+ UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:context];
+ [XMLError exceptionIfNil:userVariable message:@"Unable to parse userVariable..."];
+ 
+ Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VARIABLE"];
 
-    SetVariableBrick *setVariableBrick = [self new];
-    setVariableBrick.userVariable = userVariable;
-    setVariableBrick.variableFormula = formula;
-    return setVariableBrick;
+ SetVariableBrick *setVariableBrick = [self new];
+ setVariableBrick.userVariable = userVariable;
+ setVariableBrick.variableFormula = formula;
+ return setVariableBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"SetVariableBrick"]];
-    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
-    GDataXMLElement *formula = [self.variableFormula xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"VARIABLE"]];
-    [formulaList addChild:formula];
-    [brick addChild:formulaList];
-    [brick addChild:[GDataXMLNode elementWithName:@"inUserBrick" stringValue:@"false"]]; // TODO: implement this...
-    [brick addChild:[self.userVariable xmlElementWithContext:context]];
-    return brick;
+ GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+ [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"SetVariableBrick"]];
+ GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+ GDataXMLElement *formula = [self.variableFormula xmlElementWithContext:context];
+ [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"VARIABLE"]];
+ [formulaList addChild:formula];
+ [brick addChild:formulaList];
+ [brick addChild:[GDataXMLNode elementWithName:@"inUserBrick" stringValue:@"false"]]; // TODO: implement this...
+ [brick addChild:[self.userVariable xmlElementWithContext:context]];
+ return brick;
 }
 
 @end

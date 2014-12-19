@@ -31,38 +31,38 @@
 #pragma mark - Parsing
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"userVariable"];
-    BOOL isReferencedVariable = [CBXMLParserHelper isReferenceElement:xmlElement];
-    
-    if (isReferencedVariable) {
-        GDataXMLNode *referenceAttribute = [xmlElement attributeForName:@"reference"];
-        NSString *xPath = [referenceAttribute stringValue];
-        xmlElement = [xmlElement singleNodeForCatrobatXPath:xPath];
-        [XMLError exceptionIfNil:xmlElement message:@"Invalid reference in UserVariable!"];
-    }
-    
-    UserVariable *userVariable = [UserVariable new];
-    [XMLError exceptionIfNil:[xmlElement stringValue] message:@"No name for user variable given"];
-    userVariable.name = [xmlElement stringValue];
-    
-    if(!isReferencedVariable) {
-        UserVariable *alreadyExistingUserVariable = [CBXMLParserHelper findUserVariableInArray:context.userVariableList withName:userVariable.name];
-        if (alreadyExistingUserVariable) {
-            [XMLError exceptionWithMessage:@"User variable with same name %@ already exists...\
-             Instantiated by other brick...", alreadyExistingUserVariable.name];
-        }
-        
-        [context.userVariableList addObject:userVariable];
-    }
-    
-    return userVariable;
+ [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"userVariable"];
+ BOOL isReferencedVariable = [CBXMLParserHelper isReferenceElement:xmlElement];
+ 
+ if (isReferencedVariable) {
+  GDataXMLNode *referenceAttribute = [xmlElement attributeForName:@"reference"];
+  NSString *xPath = [referenceAttribute stringValue];
+  xmlElement = [xmlElement singleNodeForCatrobatXPath:xPath];
+  [XMLError exceptionIfNil:xmlElement message:@"Invalid reference in UserVariable!"];
+ }
+ 
+ UserVariable *userVariable = [UserVariable new];
+ [XMLError exceptionIfNil:[xmlElement stringValue] message:@"No name for user variable given"];
+ userVariable.name = [xmlElement stringValue];
+ 
+ if(!isReferencedVariable) {
+  UserVariable *alreadyExistingUserVariable = [CBXMLParserHelper findUserVariableInArray:context.userVariableList withName:userVariable.name];
+  if (alreadyExistingUserVariable) {
+   [XMLError exceptionWithMessage:@"User variable with same name %@ already exists...\
+    Instantiated by other brick...", alreadyExistingUserVariable.name];
+  }
+  
+  [context.userVariableList addObject:userVariable];
+ }
+ 
+ return userVariable;
 }
 
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"userVariable" stringValue:self.name];
-    return xmlElement;
+ GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"userVariable" stringValue:self.name];
+ return xmlElement;
 }
 
 @end

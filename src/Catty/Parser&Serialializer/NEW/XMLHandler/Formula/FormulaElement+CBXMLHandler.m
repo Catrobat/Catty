@@ -28,59 +28,59 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    GDataXMLElement *typeElement = [xmlElement childWithElementName:@"type"];
-    [XMLError exceptionIfNil:xmlElement message:@"No type element found..."];
-    NSString *type = [typeElement stringValue];
+ GDataXMLElement *typeElement = [xmlElement childWithElementName:@"type"];
+ [XMLError exceptionIfNil:xmlElement message:@"No type element found..."];
+ NSString *type = [typeElement stringValue];
 
-    GDataXMLElement *valueElement = [xmlElement childWithElementName:@"value"];
-    NSString *stringValue = [valueElement stringValue];
+ GDataXMLElement *valueElement = [xmlElement childWithElementName:@"value"];
+ NSString *stringValue = [valueElement stringValue];
 
-    FormulaElement *formulaTree = [[FormulaElement alloc] initWithType:type
-                                                                 value:stringValue
-                                                             leftChild:nil
-                                                            rightChild:nil
-                                                                parent:nil];
+ FormulaElement *formulaTree = [[FormulaElement alloc] initWithType:type
+                 value:stringValue
+                leftChild:nil
+               rightChild:nil
+                parent:nil];
 
-    GDataXMLElement *rightChildElement = [xmlElement childWithElementName:@"rightChild"];
-    if (rightChildElement) {
-        FormulaElement *rightChildFormula = [self parseFromElement:rightChildElement withContext:context];
-        rightChildFormula.parent = formulaTree;
-        formulaTree.rightChild = rightChildFormula;
-    }
+ GDataXMLElement *rightChildElement = [xmlElement childWithElementName:@"rightChild"];
+ if (rightChildElement) {
+  FormulaElement *rightChildFormula = [self parseFromElement:rightChildElement withContext:context];
+  rightChildFormula.parent = formulaTree;
+  formulaTree.rightChild = rightChildFormula;
+ }
 
-    GDataXMLElement *leftChildElement = [xmlElement childWithElementName:@"leftChild"];
-    if (leftChildElement) {
-        FormulaElement *leftChildFormula = [self parseFromElement:leftChildElement withContext:context];
-        leftChildFormula.parent = formulaTree;
-        formulaTree.leftChild = leftChildFormula;
-    }
+ GDataXMLElement *leftChildElement = [xmlElement childWithElementName:@"leftChild"];
+ if (leftChildElement) {
+  FormulaElement *leftChildFormula = [self parseFromElement:leftChildElement withContext:context];
+  leftChildFormula.parent = formulaTree;
+  formulaTree.leftChild = leftChildFormula;
+ }
 
-    return formulaTree;
+ return formulaTree;
 }
 
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *formulaElement = [GDataXMLNode elementWithName:@"formulaElement"];
-    if (self.leftChild != nil) {
-        GDataXMLElement *leftChild = [GDataXMLNode elementWithName:@"leftChild"];
-        for(GDataXMLNode *node in [self.leftChild xmlElementWithContext:context].children) {
-            [leftChild addChild:node];
-        }
-        [formulaElement addChild:leftChild];
-    }
-    if (self.rightChild != nil) {
-        GDataXMLElement *rightChild = [GDataXMLNode elementWithName:@"rightChild"];
-        for(GDataXMLNode *node in [self.rightChild xmlElementWithContext:context].children) {
-            [rightChild addChild:node];
-        }
-        [formulaElement addChild:rightChild];
-    }
-    GDataXMLElement *type = [GDataXMLNode elementWithName:@"type" stringValue:[self stringForElementType:self.type]];
-    [formulaElement addChild:type];
-    GDataXMLElement *value = [GDataXMLNode elementWithName:@"value" stringValue:self.value];
-    [formulaElement addChild:value];
-    return formulaElement;
+ GDataXMLElement *formulaElement = [GDataXMLNode elementWithName:@"formulaElement"];
+ if (self.leftChild != nil) {
+  GDataXMLElement *leftChild = [GDataXMLNode elementWithName:@"leftChild"];
+  for(GDataXMLNode *node in [self.leftChild xmlElementWithContext:context].children) {
+   [leftChild addChild:node];
+  }
+  [formulaElement addChild:leftChild];
+ }
+ if (self.rightChild != nil) {
+  GDataXMLElement *rightChild = [GDataXMLNode elementWithName:@"rightChild"];
+  for(GDataXMLNode *node in [self.rightChild xmlElementWithContext:context].children) {
+   [rightChild addChild:node];
+  }
+  [formulaElement addChild:rightChild];
+ }
+ GDataXMLElement *type = [GDataXMLNode elementWithName:@"type" stringValue:[self stringForElementType:self.type]];
+ [formulaElement addChild:type];
+ GDataXMLElement *value = [GDataXMLNode elementWithName:@"value" stringValue:self.value];
+ [formulaElement addChild:value];
+ return formulaElement;
 }
 
 @end
