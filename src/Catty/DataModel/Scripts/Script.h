@@ -47,8 +47,6 @@
 
 - (void)stop;
 
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
-
 - (instancetype)deepCopy;
 
 - (NSString*)description;

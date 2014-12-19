@@ -21,14 +21,11 @@
  */
 
 
-#import "Setxbrick.h"
+#import "SetXBrick.h"
 #import "Formula.h"
 #import "Logger.h"
-#import "GDataXMLNode.h"
 
 @implementation SetXBrick
-
-@synthesize xPosition = _xPosition;
 
 - (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
 {
@@ -64,15 +61,6 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"SetXBrick (x-Pos:%f)", [self.xPosition interpretDoubleForSprite:self.object]];
-}
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-{
-    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-    GDataXMLElement *xPositionFormulaXMLElement = [GDataXMLNode elementWithName:@"xPosition"];
-    [xPositionFormulaXMLElement addChild:[self.xPosition toXMLforObject:spriteObject]];
-    [brickXMLElement addChild:xPositionFormulaXMLElement];
-    return brickXMLElement;
 }
 
 @end

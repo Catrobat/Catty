@@ -23,7 +23,6 @@
 #import "Turnrightbrick.h"
 #import "Formula.h"
 #import "Util.h"
-#import "GDataXMLNode.h"
 
 @implementation TurnRightBrick
 
@@ -67,17 +66,6 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"TurnRight (%f degrees)", [self.degrees interpretDoubleForSprite:self.object]];
-}
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject *)spriteObject
-{
-    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-    if (self.degrees) {
-        GDataXMLElement *degreesXMLElement = [GDataXMLNode elementWithName:@"degrees"];
-        [degreesXMLElement addChild:[self.degrees toXMLforObject:spriteObject]];
-        [brickXMLElement addChild:degreesXMLElement];
-    }
-    return brickXMLElement;
 }
 
 @end

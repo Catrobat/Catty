@@ -22,14 +22,12 @@
 
 #import <Foundation/Foundation.h>
 
-@class GDataXMLDocument
 @class Program;
 
 @protocol CBSerializerProtocol <NSObject>
 
 @required
-
-// TODO create DAO object
-- (id)serializeProgram:(Program*)program;
+- (id)initWithPath:(NSString*)path;
+- (void)serializeProgram:(Program*)program;
 
 @end

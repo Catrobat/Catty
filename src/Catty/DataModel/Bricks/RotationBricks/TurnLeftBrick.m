@@ -23,11 +23,8 @@
 #import "TurnLeftBrick.h"
 #import "Formula.h"
 #import "Util.h"
-#import "GDataXMLNode.h"
 
 @implementation TurnLeftBrick
-
-@synthesize degrees = _degrees;
 
 - (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
 {
@@ -69,17 +66,6 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"TurnLeft (%f degrees)", [self.degrees interpretDoubleForSprite:self.object]];
-}
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-{
-    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-    if (self.degrees) {
-        GDataXMLElement *degreesXMLElement = [GDataXMLNode elementWithName:@"degrees"];
-        [degreesXMLElement addChild:[self.degrees toXMLforObject:spriteObject]];
-        [brickXMLElement addChild:degreesXMLElement];
-    }
-    return brickXMLElement;
 }
 
 @end

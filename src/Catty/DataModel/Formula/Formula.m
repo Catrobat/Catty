@@ -22,7 +22,6 @@
 
 #import "Formula.h"
 #import "FormulaElement.h"
-#import "GDataXMLNode.h"
 #import "Operators.h"
 
 @implementation Formula
@@ -107,15 +106,6 @@
     return [self.formulaTree isSingleNumberFormula];
 }
 
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-{
-    GDataXMLElement *formulaTreeXMLElement = [GDataXMLNode elementWithName:@"formulaTree"];
-    for (GDataXMLElement *childElement in [self.formulaTree XMLChildElements]) {
-        [formulaTreeXMLElement addChild:childElement];
-    }
-    return formulaTreeXMLElement;
-}
-
 - (void)setRoot:(FormulaElement*)formulaTree
 {
     self.displayString = nil;
@@ -159,7 +149,7 @@
 
 - (BOOL)isEqualToFormula:(Formula*)formula
 {
-    if([self.formulaTree isEqualToFormulaElement:formula.formulaTree])
+    if ([self.formulaTree isEqualToFormulaElement:formula.formulaTree])
         return YES;
     return NO;
 }

@@ -22,7 +22,6 @@
 
 #import "LedOnBrick.h"
 #import "UIDefines.h"
-#import "GDataXMLNode.h"
 #import "FlashHelper.h"
 
 @implementation LedOnBrick
@@ -51,15 +50,5 @@
 {
     return [NSString stringWithFormat:@"LedOnBrick on: %@", self.object.name];
 }
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-{
-    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-        // remove object reference
-    [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
-    return brickXMLElement;
-}
-
-
 
 @end

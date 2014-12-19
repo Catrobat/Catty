@@ -26,7 +26,6 @@
 #import "ProgramManager.h"
 #import "Program.h"
 #import "VariablesContainer.h"
-#import "GDataXMLNode.h"
 
 @implementation SetVariableBrick
 
@@ -69,21 +68,6 @@
 {
     double result = [self.variableFormula interpretDoubleForSprite:self.object];
     return [NSString stringWithFormat:@"Set Variable Brick: Uservariable: %@, to: %f", self.userVariable, result];
-}
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-{
-    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-    if (self.userVariable && self.variableFormula) {
-        [brickXMLElement addChild:[self.userVariable toXMLforObject:spriteObject]];
-        GDataXMLElement *variableFormulaXMLElement = [GDataXMLNode elementWithName:@"variableFormula"];
-        [variableFormulaXMLElement addChild:[self.variableFormula toXMLforObject:spriteObject]];
-        [brickXMLElement addChild:variableFormulaXMLElement];
-    } else {
-        // remove object reference
-        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
-    }
-    return brickXMLElement;
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick

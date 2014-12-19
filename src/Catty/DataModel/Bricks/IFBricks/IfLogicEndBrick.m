@@ -21,7 +21,6 @@
  */
 
 #import "IfLogicEndBrick.h"
-#import "GDataXMLNode.h"
 #import "IfLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
 #import "Util.h"
@@ -47,16 +46,6 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"If Logic End Brick"];
-}
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-{
-    GDataXMLElement *brickXMLElement = [GDataXMLNode elementWithName:@"ifLogicEndBrick"];
-    NSString *referencePath = [NSString stringWithFormat:@"%@/ifElseBrick/ifEndBrick",
-                               [spriteObject xmlReferencePathForDestinationBrick:self.ifBeginBrick
-                                                                     sourceBrick:self]];
-    [brickXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:referencePath]];
-    return brickXMLElement;
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick

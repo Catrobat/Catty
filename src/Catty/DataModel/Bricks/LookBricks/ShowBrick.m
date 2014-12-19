@@ -21,7 +21,6 @@
  */
 
 #import "ShowBrick.h"
-#import "GDataXMLNode.h"
 
 @implementation ShowBrick
 
@@ -47,14 +46,6 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"ShowBrick on: %@", self.object.name];
-}
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-{
-    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-    // remove object reference
-    [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
-    return brickXMLElement;
 }
 
 @end

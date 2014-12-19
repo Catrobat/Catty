@@ -31,9 +31,6 @@
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) NSNumber* value;
 
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
-- (GDataXMLElement*)toXMLforProgram:(Program*)program;
-
 - (BOOL)isEqualToUserVariable:(UserVariable*)userVariable;
 
 @end

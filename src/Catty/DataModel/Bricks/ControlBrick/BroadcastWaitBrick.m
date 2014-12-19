@@ -21,7 +21,6 @@
  */
 
 #import "BroadcastWaitBrick.h"
-#import "GDataXMLNode.h"
 
 @implementation BroadcastWaitBrick
 
@@ -54,19 +53,4 @@
     return [NSString stringWithFormat:@"BroadcastWait (Msg: %@)", self.broadcastMessage];
 }
 
-- (GDataXMLElement*)toXMLforObject:(SpriteObject *)spriteObject
-{
-    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-    if (self.broadcastMessage) {
-        GDataXMLElement *broadcastMessage = [GDataXMLNode elementWithName:@"broadcastMessage"
-                                                              stringValue:self.broadcastMessage];
-        [brickXMLElement addChild:broadcastMessage];
-    } else {
-        // remove object reference
-        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
-    }
-    return brickXMLElement;
-}
-
 @end
-

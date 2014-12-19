@@ -21,7 +21,6 @@
  */
 
 #import "UserVariable.h"
-#import "GDataXMLNode.h"
 #import "Program.h"
 #import "Util.h"
 
@@ -32,25 +31,9 @@
     return [NSString stringWithFormat:@"UserVariable: Name: %@, Value: %@", self.name, self.value ];
 }
 
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-{
-    GDataXMLElement *userVariableXMLElement = [GDataXMLNode elementWithName:@"userVariable"];
-    GDataXMLElement *nameXMLElement = [GDataXMLNode elementWithName:@"name" stringValue:self.name];
-    [userVariableXMLElement addChild:nameXMLElement];
-    return userVariableXMLElement;
-}
-
-- (GDataXMLElement*)toXMLforProgram:(Program*)program
-{
-    GDataXMLElement *userVariableXMLElement = [GDataXMLNode elementWithName:@"userVariable"];
-    [userVariableXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference"
-                                                           stringValue:@"../../../../../objectList/object[10]/scriptList/startScript/brickList/setVariableBrick[2]/userVariable"]];
-    return userVariableXMLElement;
-}
-
 - (BOOL)isEqualToUserVariable:(UserVariable*)userVariable
 {
-    if([self.name isEqualToString:userVariable.name] && [Util isEqual:self.value toObject:userVariable.value])
+    if ([self.name isEqualToString:userVariable.name] && [Util isEqual:self.value toObject:userVariable.value])
         return YES;
     return NO;
 }

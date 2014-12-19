@@ -26,7 +26,6 @@
 
 @class FormulaElement;
 @class SpriteObject;
-@class GDataXMLElement;
 
 @interface Formula : NSObject
 
@@ -44,8 +43,6 @@
 - (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite;
 
 - (BOOL)isSingleNumberFormula;
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
 - (BOOL)isEqualToFormula:(Formula*)formula;
 
 - (void)setRoot:(FormulaElement*)formulaTree;

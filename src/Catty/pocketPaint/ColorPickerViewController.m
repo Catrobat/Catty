@@ -23,6 +23,7 @@
 #import "ColorPickerViewController.h"
 #import "NKOColorPickerView.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "LanguageTranslationDefines.h"
 
 @interface ColorPickerViewController ()
 @property (nonatomic,strong)UISegmentedControl *viewChanger;
@@ -141,7 +142,7 @@
 {
   
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.05f-7, 40, 10)];
-  label.text = @"Red";
+  label.text = kLocalizedPaintRed;
   label.textColor = [UIColor redColor];
   [label sizeToFit];
   self.redSlider = [[UISlider alloc] init];
@@ -169,7 +170,7 @@
 {
   
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.15f-7, 40, 10)];
-  label.text = @"Green";
+  label.text = kLocalizedPaintGreen;
   label.textColor = [UIColor greenColor];
   [label sizeToFit];
   self.greenSlider = [[UISlider alloc] init];
@@ -195,7 +196,7 @@
 -(void)setupBlueSlider
 {
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.25f-7, 40, 10)];
-  label.text = @"Blue";
+  label.text = kLocalizedPaintBlue;
   label.textColor = [UIColor blueColor];
   [label sizeToFit];
   self.blueSlider = [[UISlider alloc] init];
@@ -223,7 +224,7 @@
 {
   
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.35f-7, 40, 10)];
-  label.text = @"Alpha";
+  label.text = kLocalizedPaintAlpha;
   label.textColor = [UIColor blackColor];
   [label sizeToFit];
   self.opacitySlider = [[UISlider alloc] init];

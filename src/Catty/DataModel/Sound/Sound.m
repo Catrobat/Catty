@@ -21,16 +21,8 @@
  */
 
 #import "Sound.h"
-#import "GDataXMLNode.h"
 
 @implementation Sound
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-{
-    GDataXMLElement *soundXMLElement = [GDataXMLNode elementWithName:@"sound"];
-    [soundXMLElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:@"../../scriptList/startScript/brickList/playSoundBrick/sound"]];
-    return soundXMLElement;
-}
 
 - (instancetype)deepCopy
 {
