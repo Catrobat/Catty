@@ -42,12 +42,7 @@
 - (int)interpretIntegerForSprite:(SpriteObject*)sprite;
 - (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite;
 
-<<<<<<< HEAD
-=======
 - (BOOL)isSingleNumberFormula;
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
->>>>>>> eace01fb2a2075a7ad8bcebfe0cf9a8f74e8d509
 - (BOOL)isEqualToFormula:(Formula*)formula;
 
 - (void)setRoot:(FormulaElement*)formulaTree;
