@@ -23,11 +23,6 @@
 /* Begin PBXBuildFile section */
 		4C1608B21A09621A002C7032 /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B01A09621A002C7032 /* ValidFormulaList.xml */; };
 		4C1608B31A09621A002C7032 /* ValidProgram.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B11A09621A002C7032 /* ValidProgram.xml */; };
-		4C3275ED1A135CCF0091C428 /* XMLParserBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3275EC1A135CCF0091C428 /* XMLParserBrickTests.m */; };
-		4C3275F21A135E400091C428 /* XMLParserAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3275F11A135E400091C428 /* XMLParserAbstractTest.m */; };
-		4C3275F41A135F3D0091C428 /* XMLParserHeaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3275F31A135F3D0091C428 /* XMLParserHeaderTests.m */; };
-		4C3275F61A135F990091C428 /* XMLParserFormulaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3275F51A135F990091C428 /* XMLParserFormulaTests.m */; };
-		4C3275F81A135FD00091C428 /* XMLParserObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3275F71A135FD00091C428 /* XMLParserObjectTests.m */; };
 		4C3275FA1A1360640091C428 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */; };
 		9238C5831A3AE9920099F061 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */; };
 		9238C5841A3AE9920099F061 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C5801A3AE9920099F061 /* LoginViewController.m */; };
@@ -324,7 +319,6 @@
 		92FF32C01A24E2F400093DA7 /* BrickSelectModalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32551A24E2F400093DA7 /* BrickSelectModalTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
 		92FF338D1A24E5F800093DA7 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		CA184E671A3A83BD00D32D9F /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA184E661A3A83BD00D32D9F /* XMLSerializerBlackBoxTests.m */; };
 		CA538EA519B0EA09008240AB /* ChangeGhostEffectByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */; };
 		CA538EA619B0EA09008240AB /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
 		CA538EA719B0EA09008240AB /* HideBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3F185625E700547C1E /* HideBrickTests.m */; };
@@ -435,6 +429,16 @@
 		CAA4A5341A43B51F002A69A0 /* ProjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5301A43B51F002A69A0 /* ProjectParser.m */; };
 		CAA4A5351A43B51F002A69A0 /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5311A43B51F002A69A0 /* TestParser.m */; };
 		CAA4A5361A43B51F002A69A0 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5321A43B51F002A69A0 /* XMLObjectReference.m */; };
+		CAA4A53B1A43BDD9002A69A0 /* XMLAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A53A1A43BDD9002A69A0 /* XMLAbstractTest.m */; };
+		CAA4A5411A43BE11002A69A0 /* XMLParserAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5401A43BE11002A69A0 /* XMLParserAbstractTest.m */; };
+		CAA4A5431A43BE29002A69A0 /* XMLParserBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5421A43BE29002A69A0 /* XMLParserBlackBoxTests.m */; };
+		CAA4A5481A43BE37002A69A0 /* XMLParserBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5441A43BE37002A69A0 /* XMLParserBrickTests.m */; };
+		CAA4A5491A43BE37002A69A0 /* XMLParserFormulaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5451A43BE37002A69A0 /* XMLParserFormulaTests.m */; };
+		CAA4A54A1A43BE37002A69A0 /* XMLParserHeaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5461A43BE37002A69A0 /* XMLParserHeaderTests.m */; };
+		CAA4A54B1A43BE37002A69A0 /* XMLParserObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5471A43BE37002A69A0 /* XMLParserObjectTests.m */; };
+		CAA4A54E1A43BE97002A69A0 /* XMLSerializerAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A54D1A43BE97002A69A0 /* XMLSerializerAbstractTest.m */; };
+		CAA4A5501A43BEA6002A69A0 /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A54F1A43BEA6002A69A0 /* XMLSerializerBlackBoxTests.m */; };
+		CAA4A5531A43BEC4002A69A0 /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5521A43BEC4002A69A0 /* XMLSerializerTests.m */; };
 		CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3A198F685D00455B77 /* SSZipArchive.license */; };
 		CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */; };
 		CADBD6DE19B0E8C200C62836 /* OrderedDictionary.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */; };
@@ -478,10 +482,6 @@
 		CADBD7F519B0E8C200C62836 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */; };
 		CADBD7F619B0E8C200C62836 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */; };
 		CADBD7F719B0E8C200C62836 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F097711B7BABD009D4DB0 /* OpenAL.framework */; };
-		CAEE0A281A328EC2007CB248 /* XMLSerializerAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE0A271A328EC2007CB248 /* XMLSerializerAbstractTest.m */; };
-		CAEE0A2A1A328EE9007CB248 /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE0A291A328EE9007CB248 /* XMLSerializerTests.m */; };
-		CAEE0A2D1A328EFF007CB248 /* XMLAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE0A2C1A328EFF007CB248 /* XMLAbstractTest.m */; };
-		CAEE0A2F1A328F37007CB248 /* XMLParserBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE0A2E1A328F37007CB248 /* XMLParserBlackBoxTests.m */; };
 		CAEE0A361A329074007CB248 /* Skydiving-Steve-092.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAEE0A341A329074007CB248 /* Skydiving-Steve-092.xml */; };
 		CAEE0A371A329074007CB248 /* Skydiving-Steve-093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAEE0A351A329074007CB248 /* Skydiving-Steve-093.xml */; };
 		CAEE0A3A1A329080007CB248 /* Pythagorean-Theorem-092.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAEE0A381A329080007CB248 /* Pythagorean-Theorem-092.xml */; };
@@ -510,12 +510,6 @@
 		4C107ADC194F156F00D9D7ED /* PointToBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointToBrickTests.m; sourceTree = "<group>"; };
 		4C1608B01A09621A002C7032 /* ValidFormulaList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidFormulaList.xml; path = "Resources/Test Resources/ValidFormulaList.xml"; sourceTree = "<group>"; };
 		4C1608B11A09621A002C7032 /* ValidProgram.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidProgram.xml; path = "Resources/Test Resources/ValidProgram.xml"; sourceTree = "<group>"; };
-		4C3275EC1A135CCF0091C428 /* XMLParserBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBrickTests.m; sourceTree = "<group>"; };
-		4C3275F01A135E400091C428 /* XMLParserAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParserAbstractTest.h; sourceTree = "<group>"; };
-		4C3275F11A135E400091C428 /* XMLParserAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserAbstractTest.m; sourceTree = "<group>"; };
-		4C3275F31A135F3D0091C428 /* XMLParserHeaderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserHeaderTests.m; sourceTree = "<group>"; };
-		4C3275F51A135F990091C428 /* XMLParserFormulaTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserFormulaTests.m; sourceTree = "<group>"; };
-		4C3275F71A135FD00091C428 /* XMLParserObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserObjectTests.m; sourceTree = "<group>"; };
 		4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidProgramAllBricks.xml; path = "Resources/Test Resources/ValidProgramAllBricks.xml"; sourceTree = "<group>"; };
 		4C3AEF2E198E7EDD00604ABF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaFunctionsTest.m; sourceTree = "<group>"; };
@@ -1213,7 +1207,6 @@
 		C34B44EC17F079F500624730 /* CustomExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomExtensionsTests.m; sourceTree = "<group>"; };
 		C3BF754B18117F6000134B77 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		CA05A19D18286CDA0025421A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		CA184E661A3A83BD00D32D9F /* XMLSerializerBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerBlackBoxTests.m; sourceTree = "<group>"; };
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
 		CA52403718AD786200052914 /* ProgramTableViewControllerExistingProgramsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerExistingProgramsTests.h; sourceTree = "<group>"; };
 		CA538ECE19B0EA09008240AB /* CattyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1363,14 +1356,21 @@
 		CAA4A5301A43B51F002A69A0 /* ProjectParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectParser.m; path = "Catty/Parser&Serialializer/OLD/ProjectParser.m"; sourceTree = SOURCE_ROOT; };
 		CAA4A5311A43B51F002A69A0 /* TestParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestParser.m; path = "Catty/Parser&Serialializer/OLD/TestParser.m"; sourceTree = SOURCE_ROOT; };
 		CAA4A5321A43B51F002A69A0 /* XMLObjectReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLObjectReference.m; path = "Catty/Parser&Serialializer/OLD/XMLObjectReference.m"; sourceTree = SOURCE_ROOT; };
+		CAA4A5391A43BDD9002A69A0 /* XMLAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLAbstractTest.h; path = "Parser & Serialization/CatrobatLanguage0.93/Abstract/XMLAbstractTest.h"; sourceTree = "<group>"; };
+		CAA4A53A1A43BDD9002A69A0 /* XMLAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLAbstractTest.m; path = "Parser & Serialization/CatrobatLanguage0.93/Abstract/XMLAbstractTest.m"; sourceTree = "<group>"; };
+		CAA4A53F1A43BE11002A69A0 /* XMLParserAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLParserAbstractTest.h; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Abstract/XMLParserAbstractTest.h"; sourceTree = "<group>"; };
+		CAA4A5401A43BE11002A69A0 /* XMLParserAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserAbstractTest.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Abstract/XMLParserAbstractTest.m"; sourceTree = "<group>"; };
+		CAA4A5421A43BE29002A69A0 /* XMLParserBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserBlackBoxTests.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/BlackBox Tests/XMLParserBlackBoxTests.m"; sourceTree = "<group>"; };
+		CAA4A5441A43BE37002A69A0 /* XMLParserBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserBrickTests.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserBrickTests.m"; sourceTree = "<group>"; };
+		CAA4A5451A43BE37002A69A0 /* XMLParserFormulaTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserFormulaTests.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserFormulaTests.m"; sourceTree = "<group>"; };
+		CAA4A5461A43BE37002A69A0 /* XMLParserHeaderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserHeaderTests.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserHeaderTests.m"; sourceTree = "<group>"; };
+		CAA4A5471A43BE37002A69A0 /* XMLParserObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserObjectTests.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserObjectTests.m"; sourceTree = "<group>"; };
+		CAA4A54C1A43BE97002A69A0 /* XMLSerializerAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLSerializerAbstractTest.h; path = "Parser & Serialization/CatrobatLanguage0.93/XMLSerializerTests/Abstract/XMLSerializerAbstractTest.h"; sourceTree = "<group>"; };
+		CAA4A54D1A43BE97002A69A0 /* XMLSerializerAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLSerializerAbstractTest.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLSerializerTests/Abstract/XMLSerializerAbstractTest.m"; sourceTree = "<group>"; };
+		CAA4A54F1A43BEA6002A69A0 /* XMLSerializerBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLSerializerBlackBoxTests.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLSerializerTests/BlackBox Tests/XMLSerializerBlackBoxTests.m"; sourceTree = "<group>"; };
+		CAA4A5521A43BEC4002A69A0 /* XMLSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLSerializerTests.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLSerializerTests/Unit Tests/XMLSerializerTests.m"; sourceTree = "<group>"; };
 		CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CADBD7FB19B0E8C200C62836 /* Pocket Code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Code.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CAEE0A261A328EC2007CB248 /* XMLSerializerAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLSerializerAbstractTest.h; sourceTree = "<group>"; };
-		CAEE0A271A328EC2007CB248 /* XMLSerializerAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerAbstractTest.m; sourceTree = "<group>"; };
-		CAEE0A291A328EE9007CB248 /* XMLSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerTests.m; sourceTree = "<group>"; };
-		CAEE0A2B1A328EFF007CB248 /* XMLAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLAbstractTest.h; sourceTree = "<group>"; };
-		CAEE0A2C1A328EFF007CB248 /* XMLAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLAbstractTest.m; sourceTree = "<group>"; };
-		CAEE0A2E1A328F37007CB248 /* XMLParserBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests.m; sourceTree = "<group>"; };
 		CAEE0A341A329074007CB248 /* Skydiving-Steve-092.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Skydiving-Steve-092.xml"; path = "Resources/Test Resources/Skydiving Steve/Skydiving-Steve-092.xml"; sourceTree = "<group>"; };
 		CAEE0A351A329074007CB248 /* Skydiving-Steve-093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Skydiving-Steve-093.xml"; path = "Resources/Test Resources/Skydiving Steve/Skydiving-Steve-093.xml"; sourceTree = "<group>"; };
 		CAEE0A381A329080007CB248 /* Pythagorean-Theorem-092.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Pythagorean-Theorem-092.xml"; path = "Resources/Test Resources/Pythagorean Theorem/Pythagorean-Theorem-092.xml"; sourceTree = "<group>"; };
@@ -1520,8 +1520,8 @@
 		4C3275E51A135BE40091C428 /* Abstract */ = {
 			isa = PBXGroup;
 			children = (
-				4C3275F01A135E400091C428 /* XMLParserAbstractTest.h */,
-				4C3275F11A135E400091C428 /* XMLParserAbstractTest.m */,
+				CAA4A53F1A43BE11002A69A0 /* XMLParserAbstractTest.h */,
+				CAA4A5401A43BE11002A69A0 /* XMLParserAbstractTest.m */,
 			);
 			name = Abstract;
 			sourceTree = "<group>";
@@ -1573,11 +1573,8 @@
 			isa = PBXGroup;
 			children = (
 				4C3275E51A135BE40091C428 /* Abstract */,
-				4C3275EC1A135CCF0091C428 /* XMLParserBrickTests.m */,
-				4C3275F31A135F3D0091C428 /* XMLParserHeaderTests.m */,
-				4C3275F51A135F990091C428 /* XMLParserFormulaTests.m */,
-				4C3275F71A135FD00091C428 /* XMLParserObjectTests.m */,
-				CAEE0A2E1A328F37007CB248 /* XMLParserBlackBoxTests.m */,
+				CAA4A5371A43BD9E002A69A0 /* Unit Tests */,
+				CAA4A5381A43BDA9002A69A0 /* BlackBox Tests */,
 			);
 			name = XMLParserTests;
 			sourceTree = "<group>";
@@ -3506,16 +3503,16 @@
 		B46B270317703F9400172837 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
+				B46B270917703F9400172837 /* CattyTests.m */,
 				4CD194F21A0631B200484E4F /* Parser & Serialization */,
 				4C3C03F5199BA5250004F594 /* Formula */,
-				B46B270917703F9400172837 /* CattyTests.m */,
-				C34B44FB17F3403400624730 /* ExtensionTests */,
-				CA8C247918CD06BA00314C2B /* ProgramTests */,
-				C34B44FA17F3402300624730 /* BrickTests */,
-				B46B271417703FBE00172837 /* SensorHandlerTests */,
+				C34B44FB17F3403400624730 /* Extensions */,
+				CA8C247918CD06BA00314C2B /* Program */,
+				C34B44FA17F3402300624730 /* Bricks */,
+				B46B271417703FBE00172837 /* SensorHandler */,
 				B46B270417703F9400172837 /* Supporting Files */,
-				B496F5131775996D004BF78A /* SceneTests */,
-				CA52403418AD77DB00052914 /* ProgramTableViewControllerTests */,
+				B496F5131775996D004BF78A /* Scene */,
+				CA52403418AD77DB00052914 /* ProgramTableViewController */,
 			);
 			path = CattyTests;
 			sourceTree = "<group>";
@@ -3530,21 +3527,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B46B271417703FBE00172837 /* SensorHandlerTests */ = {
+		B46B271417703FBE00172837 /* SensorHandler */ = {
 			isa = PBXGroup;
 			children = (
 				B46B271217703FB700172837 /* SensorHandlerTests.m */,
 			);
-			name = SensorHandlerTests;
+			name = SensorHandler;
 			sourceTree = "<group>";
 		};
-		B496F5131775996D004BF78A /* SceneTests */ = {
+		B496F5131775996D004BF78A /* Scene */ = {
 			isa = PBXGroup;
 			children = (
 				B496F50F17759968004BF78A /* SceneTests.h */,
 				B496F51017759968004BF78A /* SceneTests.m */,
 			);
-			name = SceneTests;
+			name = Scene;
 			sourceTree = "<group>";
 		};
 		B4BCF409170ECFC3008EDF3A /* Extensions & Delegates & Protocols */ = {
@@ -3557,7 +3554,7 @@
 			name = "Extensions & Delegates & Protocols";
 			sourceTree = "<group>";
 		};
-		C34B44FA17F3402300624730 /* BrickTests */ = {
+		C34B44FA17F3402300624730 /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
 				92C37A341856227200547C1E /* BrickTests.h */,
@@ -3586,18 +3583,18 @@
 				92C37A4B1856270500547C1E /* TurnLeftBrickTests.m */,
 				92C37A4D1856271100547C1E /* TurnRightBrickTests.m */,
 			);
-			name = BrickTests;
+			name = Bricks;
 			sourceTree = "<group>";
 		};
-		C34B44FB17F3403400624730 /* ExtensionTests */ = {
+		C34B44FB17F3403400624730 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				C34B44EC17F079F500624730 /* CustomExtensionsTests.m */,
 			);
-			name = ExtensionTests;
+			name = Extensions;
 			sourceTree = "<group>";
 		};
-		CA52403418AD77DB00052914 /* ProgramTableViewControllerTests */ = {
+		CA52403418AD77DB00052914 /* ProgramTableViewController */ = {
 			isa = PBXGroup;
 			children = (
 				CA52403718AD786200052914 /* ProgramTableViewControllerExistingProgramsTests.h */,
@@ -3605,15 +3602,15 @@
 				CA8C247C18CD12C100314C2B /* ProgramTableViewControllerNewProgramTests.h */,
 				CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */,
 			);
-			name = ProgramTableViewControllerTests;
+			name = ProgramTableViewController;
 			sourceTree = "<group>";
 		};
-		CA8C247918CD06BA00314C2B /* ProgramTests */ = {
+		CA8C247918CD06BA00314C2B /* Program */ = {
 			isa = PBXGroup;
 			children = (
 				CA8C247718CD053300314C2B /* ProgramTests.m */,
 			);
-			name = ProgramTests;
+			name = Program;
 			sourceTree = "<group>";
 		};
 		CAA4A4731A43B3C1002A69A0 /* Logger */ = {
@@ -3635,12 +3632,47 @@
 			name = Logger;
 			sourceTree = "<group>";
 		};
+		CAA4A5371A43BD9E002A69A0 /* Unit Tests */ = {
+			isa = PBXGroup;
+			children = (
+				CAA4A5441A43BE37002A69A0 /* XMLParserBrickTests.m */,
+				CAA4A5451A43BE37002A69A0 /* XMLParserFormulaTests.m */,
+				CAA4A5461A43BE37002A69A0 /* XMLParserHeaderTests.m */,
+				CAA4A5471A43BE37002A69A0 /* XMLParserObjectTests.m */,
+			);
+			name = "Unit Tests";
+			sourceTree = "<group>";
+		};
+		CAA4A5381A43BDA9002A69A0 /* BlackBox Tests */ = {
+			isa = PBXGroup;
+			children = (
+				CAA4A5421A43BE29002A69A0 /* XMLParserBlackBoxTests.m */,
+			);
+			name = "BlackBox Tests";
+			sourceTree = "<group>";
+		};
+		CAA4A5511A43BEAE002A69A0 /* BlackBox Tests */ = {
+			isa = PBXGroup;
+			children = (
+				CAA4A54F1A43BEA6002A69A0 /* XMLSerializerBlackBoxTests.m */,
+			);
+			name = "BlackBox Tests";
+			sourceTree = "<group>";
+		};
+		CAA4A5541A43BEDB002A69A0 /* Unit Tests */ = {
+			isa = PBXGroup;
+			children = (
+				CAA4A5521A43BEC4002A69A0 /* XMLSerializerTests.m */,
+			);
+			name = "Unit Tests";
+			sourceTree = "<group>";
+		};
 		CAEE0A231A328CDF007CB248 /* XMLSerializerTests */ = {
 			isa = PBXGroup;
 			children = (
 				CAEE0A251A328D2E007CB248 /* Abstract */,
-				CAEE0A291A328EE9007CB248 /* XMLSerializerTests.m */,
-				CA184E661A3A83BD00D32D9F /* XMLSerializerBlackBoxTests.m */,
+				CAA4A5541A43BEDB002A69A0 /* Unit Tests */,
+				CAA4A5511A43BEAE002A69A0 /* BlackBox Tests */,
 			);
 			name = XMLSerializerTests;
 			sourceTree = "<group>";
@@ -3648,8 +3680,8 @@
 		CAEE0A241A328CEA007CB248 /* Abstract */ = {
 			isa = PBXGroup;
 			children = (
-				CAEE0A2B1A328EFF007CB248 /* XMLAbstractTest.h */,
-				CAEE0A2C1A328EFF007CB248 /* XMLAbstractTest.m */,
+				CAA4A5391A43BDD9002A69A0 /* XMLAbstractTest.h */,
+				CAA4A53A1A43BDD9002A69A0 /* XMLAbstractTest.m */,
 			);
 			name = Abstract;
 			sourceTree = "<group>";
@@ -3657,8 +3689,8 @@
 		CAEE0A251A328D2E007CB248 /* Abstract */ = {
 			isa = PBXGroup;
 			children = (
-				CAEE0A261A328EC2007CB248 /* XMLSerializerAbstractTest.h */,
-				CAEE0A271A328EC2007CB248 /* XMLSerializerAbstractTest.m */,
+				CAA4A54C1A43BE97002A69A0 /* XMLSerializerAbstractTest.h */,
+				CAA4A54D1A43BE97002A69A0 /* XMLSerializerAbstractTest.m */,
 			);
 			name = Abstract;
 			sourceTree = "<group>";
@@ -3977,13 +4009,15 @@
 				CA538EA519B0EA09008240AB /* ChangeGhostEffectByNBrickTests.m in Sources */,
 				CA538EA619B0EA09008240AB /* ProgramTableViewControllerExistingProgramsTests.m in Sources */,
 				CA538EA719B0EA09008240AB /* HideBrickTests.m in Sources */,
-				CAEE0A2F1A328F37007CB248 /* XMLParserBlackBoxTests.m in Sources */,
-				CAEE0A2D1A328EFF007CB248 /* XMLAbstractTest.m in Sources */,
 				CA538EA819B0EA09008240AB /* SetGhostEffectBrickTests.m in Sources */,
+				CAA4A54E1A43BE97002A69A0 /* XMLSerializerAbstractTest.m in Sources */,
+				CAA4A5431A43BE29002A69A0 /* XMLParserBlackBoxTests.m in Sources */,
 				CA538EA919B0EA09008240AB /* ProgramTests.m in Sources */,
 				CA538EAA19B0EA09008240AB /* PlaceAtBrickTests.m in Sources */,
 				CA538EAB19B0EA09008240AB /* ShowBrickTests.m in Sources */,
 				CA538EAC19B0EA09008240AB /* SceneTests.m in Sources */,
+				CAA4A54B1A43BE37002A69A0 /* XMLParserObjectTests.m in Sources */,
+				CAA4A5411A43BE11002A69A0 /* XMLParserAbstractTest.m in Sources */,
 				CA538EAD19B0EA09008240AB /* SetYBrickTests.m in Sources */,
 				CA538EAE19B0EA09008240AB /* BrickTests.m in Sources */,
 				CA538EAF19B0EA09008240AB /* ChangeBrightnessByNBrickTests.m in Sources */,
@@ -3993,27 +4027,25 @@
 				CA538EB319B0EA09008240AB /* FormulaFunctionsTest.m in Sources */,
 				CA538EB419B0EA09008240AB /* GoNStepsBackBrickTests.m in Sources */,
 				CA538EB519B0EA09008240AB /* PointInDirectionBrickTests.m in Sources */,
+				CAA4A53B1A43BDD9002A69A0 /* XMLAbstractTest.m in Sources */,
 				CA538EB619B0EA09008240AB /* ProgramTableViewControllerNewProgramTests.m in Sources */,
 				CA538EB719B0EA09008240AB /* SensorHandlerTests.m in Sources */,
 				CA538EB819B0EA09008240AB /* ClearGrafficEffectBrickTests.m in Sources */,
 				CA538EB919B0EA09008240AB /* ChangeSizeByNBrickTests.m in Sources */,
 				CA538EBA19B0EA09008240AB /* TurnRightBrickTests.m in Sources */,
-				4C3275F21A135E400091C428 /* XMLParserAbstractTest.m in Sources */,
 				CA538EBB19B0EA09008240AB /* SetBrightnessBrickTests.m in Sources */,
 				CA538EBC19B0EA09008240AB /* SetXBrickTests.m in Sources */,
 				CA538EBD19B0EA09008240AB /* SetSizeToBrickTests.m in Sources */,
-				4C3275ED1A135CCF0091C428 /* XMLParserBrickTests.m in Sources */,
+				CAA4A54A1A43BE37002A69A0 /* XMLParserHeaderTests.m in Sources */,
 				CA538EBE19B0EA09008240AB /* SetLookBrickTests.m in Sources */,
-				4C3275F81A135FD00091C428 /* XMLParserObjectTests.m in Sources */,
-				CAEE0A2A1A328EE9007CB248 /* XMLSerializerTests.m in Sources */,
-				CAEE0A281A328EC2007CB248 /* XMLSerializerAbstractTest.m in Sources */,
 				CA538EBF19B0EA09008240AB /* TurnLeftBrickTests.m in Sources */,
 				CA538EC019B0EA09008240AB /* MoveNStepsBrickTests.m in Sources */,
-				4C3275F41A135F3D0091C428 /* XMLParserHeaderTests.m in Sources */,
 				CA538EC119B0EA09008240AB /* CattyTests.m in Sources */,
-				4C3275F61A135F990091C428 /* XMLParserFormulaTests.m in Sources */,
 				CA538EC219B0EA09008240AB /* PointToBrickTests.m in Sources */,
-				CA184E671A3A83BD00D32D9F /* XMLSerializerBlackBoxTests.m in Sources */,
+				CAA4A5481A43BE37002A69A0 /* XMLParserBrickTests.m in Sources */,
+				CAA4A5501A43BEA6002A69A0 /* XMLSerializerBlackBoxTests.m in Sources */,
+				CAA4A5491A43BE37002A69A0 /* XMLParserFormulaTests.m in Sources */,
+				CAA4A5531A43BEC4002A69A0 /* XMLSerializerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
