@@ -350,8 +350,16 @@ NS_ENUM(NSInteger, ButtonIndex) {
         switch ([internFormulaParser getErrorTokenIndex]) {
             case FORMULA_PARSER_OK:
                 result = [tempFormulaElement interpretRecursiveForSprite:nil];
+                if (internFormulaParser.isBool) {
+                    if (result) {
+                        computedString = [NSString stringWithFormat:kUIFEComputedTrue];
+                    } else {
+                        computedString = [NSString stringWithFormat:kUIFEComputedFalse];
+                    }
+                } else {
+                    computedString = [NSString stringWithFormat:kUIFEComputed, result];
+                }
                 
-                computedString = [NSString stringWithFormat:kUIFEComputed, result];
                 alert = [[UIAlertView alloc]initWithTitle: kUIFEResult
                                                   message: computedString
                                                  delegate: self

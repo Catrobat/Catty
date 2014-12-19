@@ -73,7 +73,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
 {
     self.errorTokenIndex = FORMULA_PARSER_OK;
     self.currentTokenParseIndex = 0;
-    
+    self.isBool = NO;
     if (self.internTokensToParse == nil || [self.internTokensToParse count] == 0) {
         self.errorTokenIndex = FORMULA_PARSER_NO_INPUT;
         return nil;
@@ -160,7 +160,9 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
     FormulaElement *currentElement = [self term];
     FormulaElement *loopTermTree;
     NSString *operatorStringValue;
-    
+    if ([self.currentToken isOperator] && ([self.currentToken.tokenStringValue isEqualToString:[Operators getName:LOGICAL_AND]]||[self.currentToken.tokenStringValue isEqualToString:[Operators getName:LOGICAL_OR]])){
+        self.isBool = YES;
+    }
     while ([self.currentToken isOperator] && ![self.currentToken.tokenStringValue isEqualToString:[Operators getName:LOGICAL_NOT]]) {
         operatorStringValue = self.currentToken.tokenStringValue;
         [self getNextToken];
