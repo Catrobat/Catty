@@ -29,7 +29,6 @@
 
 @required
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context;
-
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context;
 
 @end
