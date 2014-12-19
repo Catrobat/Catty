@@ -33,42 +33,42 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
- [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
- GDataXMLElement *soundElement = [[xmlElement children] firstObject];
- NSMutableArray *soundList = context.soundList;
-
- Sound *sound = nil;
- if ([CBXMLParserHelper isReferenceElement:soundElement]) {
-  GDataXMLNode *referenceAttribute = [soundElement attributeForName:@"reference"];
-  NSString *xPath = [referenceAttribute stringValue];
-  soundElement = [soundElement singleNodeForCatrobatXPath:xPath];
-  [XMLError exceptionIfNil:soundElement message:@"Invalid reference in PlaySoundBrick. No or too many sounds found!"];
-  GDataXMLNode *nameElement = [soundElement childWithElementName:@"name"];
-  [XMLError exceptionIfNil:nameElement message:@"Sound element does not contain a name child element!"];
-  sound = [CBXMLParserHelper findSoundInArray:soundList withName:[nameElement stringValue]];
-  [XMLError exceptionIfNil:sound message:@"Fatal error: no sound found in list, but should already exist!"];
- } else {
-  // OMG!! a sound has been defined within the brick element...
-  sound = [Sound parseFromElement:xmlElement withContext:nil];
-  [XMLError exceptionIfNil:sound message:@"Unable to parse sound..."];
-  [soundList addObject:sound];
- }
- PlaySoundBrick *playSoundBrick = [self new];
- playSoundBrick.sound = sound;
- return playSoundBrick;
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
+    GDataXMLElement *soundElement = [[xmlElement children] firstObject];
+    NSMutableArray *soundList = context.soundList;
+    
+    Sound *sound = nil;
+    if ([CBXMLParserHelper isReferenceElement:soundElement]) {
+        GDataXMLNode *referenceAttribute = [soundElement attributeForName:@"reference"];
+        NSString *xPath = [referenceAttribute stringValue];
+        soundElement = [soundElement singleNodeForCatrobatXPath:xPath];
+        [XMLError exceptionIfNil:soundElement message:@"Invalid reference in PlaySoundBrick. No or too many sounds found!"];
+        GDataXMLNode *nameElement = [soundElement childWithElementName:@"name"];
+        [XMLError exceptionIfNil:nameElement message:@"Sound element does not contain a name child element!"];
+        sound = [CBXMLParserHelper findSoundInArray:soundList withName:[nameElement stringValue]];
+        [XMLError exceptionIfNil:sound message:@"Fatal error: no sound found in list, but should already exist!"];
+    } else {
+        // OMG!! a sound has been defined within the brick element...
+        sound = [Sound parseFromElement:xmlElement withContext:nil];
+        [XMLError exceptionIfNil:sound message:@"Unable to parse sound..."];
+        [soundList addObject:sound];
+    }
+    PlaySoundBrick *playSoundBrick = [self new];
+    playSoundBrick.sound = sound;
+    return playSoundBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
- GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"brick"];
- [xmlElement addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"PlaySoundBrick"]];
- if (self.sound) {
-  GDataXMLElement *referenceXMLElement = [GDataXMLNode elementWithName:@"sound"];
-  NSString *refPath = [CBXMLSerializerHelper relativeXPathToSound:self.sound inSoundList:context.soundList];
-  [referenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:refPath]];
-  [xmlElement addChild:referenceXMLElement];
- }
- return xmlElement;
+    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"brick"];
+    [xmlElement addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"PlaySoundBrick"]];
+    if (self.sound) {
+        GDataXMLElement *referenceXMLElement = [GDataXMLNode elementWithName:@"sound"];
+        NSString *refPath = [CBXMLSerializerHelper relativeXPathToSound:self.sound inSoundList:context.soundList];
+        [referenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:refPath]];
+        [xmlElement addChild:referenceXMLElement];
+    }
+    return xmlElement;
 }
 
 @end

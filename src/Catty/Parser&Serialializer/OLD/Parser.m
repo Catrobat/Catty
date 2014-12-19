@@ -37,19 +37,19 @@
         NSLog(@"Path (%@) is NOT valid!", path);
         return nil;
     }
-
+    
     NSError *error;
     //open xml file
     NSString *xmlFile = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
-
+    
     // sanity check
     if (error) { return nil; }
-
+    
     NSData* xmlData = [xmlFile dataUsingEncoding:NSUTF8StringEncoding];
-
+    
     //using dom parser (gdata)
     ProjectParser *parser = [[ProjectParser alloc] init];
-
+    
     // return Project object
     Program *program = [parser loadProject:xmlData];
     [program updateReferences];

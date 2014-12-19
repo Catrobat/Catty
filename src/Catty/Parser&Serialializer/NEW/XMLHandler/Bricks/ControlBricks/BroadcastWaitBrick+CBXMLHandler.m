@@ -29,26 +29,26 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
- [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
- GDataXMLElement *broadcastMessageElement = [xmlElement childWithElementName:@"broadcastMessage"];
- [XMLError exceptionIfNil:broadcastMessageElement
-      message:@"BroadcastBrick element does not contain a broadcastMessage child element!"];
-
- NSString *broadcastMessage = [broadcastMessageElement stringValue];
- [XMLError exceptionIfNil:broadcastMessage message:@"No broadcastMessage given..."];
-
- BroadcastWaitBrick *broadcastWaitBrick = [self new];
- broadcastWaitBrick.broadcastMessage = broadcastMessage;
- return broadcastWaitBrick;
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
+    GDataXMLElement *broadcastMessageElement = [xmlElement childWithElementName:@"broadcastMessage"];
+    [XMLError exceptionIfNil:broadcastMessageElement
+                     message:@"BroadcastBrick element does not contain a broadcastMessage child element!"];
+    
+    NSString *broadcastMessage = [broadcastMessageElement stringValue];
+    [XMLError exceptionIfNil:broadcastMessage message:@"No broadcastMessage given..."];
+    
+    BroadcastWaitBrick *broadcastWaitBrick = [self new];
+    broadcastWaitBrick.broadcastMessage = broadcastMessage;
+    return broadcastWaitBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
- GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
- [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"BroadcastWaitBrick"]];
- GDataXMLElement *message = [GDataXMLNode elementWithName:@"broadcastMessage" stringValue:self.broadcastMessage];
- [brick addChild:message];
- return brick;
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"BroadcastWaitBrick"]];
+    GDataXMLElement *message = [GDataXMLNode elementWithName:@"broadcastMessage" stringValue:self.broadcastMessage];
+    [brick addChild:message];
+    return brick;
 }
 
 @end

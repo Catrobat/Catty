@@ -27,7 +27,7 @@
 -(id)initWithParent:(XMLObjectReference*)parent andObject:(id)object
 {
     self = [super init];
-    if(self) {
+    if (self) {
         self.parent = parent;
         self.object = object;
     }

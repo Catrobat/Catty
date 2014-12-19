@@ -33,29 +33,29 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
- [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
- IfLogicBeginBrick *ifLogicBeginBrick = [self new];
- Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"IF_CONDITION"];
- ifLogicBeginBrick.ifCondition = formula;
-
- // add opening nesting brick on stack
- [context.openedNestingBricksStack pushAndOpenNestingBrick:ifLogicBeginBrick];
- return ifLogicBeginBrick;
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
+    IfLogicBeginBrick *ifLogicBeginBrick = [self new];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"IF_CONDITION"];
+    ifLogicBeginBrick.ifCondition = formula;
+    
+    // add opening nesting brick on stack
+    [context.openedNestingBricksStack pushAndOpenNestingBrick:ifLogicBeginBrick];
+    return ifLogicBeginBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
- GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"brick"];
- [xmlElement addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"IfLogicBeginBrick"]];
- GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
- GDataXMLElement *formula = [self.ifCondition xmlElementWithContext:context];
- [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"IF_CONDITION"]];
- [formulaList addChild:formula];
- [xmlElement addChild:formulaList];
+    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"brick"];
+    [xmlElement addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"IfLogicBeginBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *formula = [self.ifCondition xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"IF_CONDITION"]];
+    [formulaList addChild:formula];
+    [xmlElement addChild:formulaList];
 
- // add opening nesting brick on stack
- [context.openedNestingBricksStack pushAndOpenNestingBrick:self];
- return xmlElement;
+    // add opening nesting brick on stack
+    [context.openedNestingBricksStack pushAndOpenNestingBrick:self];
+    return xmlElement;
 }
 
 @end

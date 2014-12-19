@@ -31,34 +31,34 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
- [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
- Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"SPEAK"];
- [XMLError exceptionIf:formula.formulaTree.type notEquals:STRING
-      message:@"FormulaElement contains unknown type %lu! Should be STRING!",
-        (unsigned long)formula.formulaTree.type];
- [XMLError exceptionIfNil:formula.formulaTree.value message:@"FormulaElement contains no value!!"];
-
- SpeakBrick *speakBrick = [self new];
- speakBrick.text = formula.formulaTree.value;
- return speakBrick;
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"SPEAK"];
+    [XMLError exceptionIf:formula.formulaTree.type notEquals:STRING
+                  message:@"FormulaElement contains unknown type %lu! Should be STRING!",
+     (unsigned long)formula.formulaTree.type];
+    [XMLError exceptionIfNil:formula.formulaTree.value message:@"FormulaElement contains no value!!"];
+    
+    SpeakBrick *speakBrick = [self new];
+    speakBrick.text = formula.formulaTree.value;
+    return speakBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
- Formula *speakFormula = [Formula new];
- FormulaElement *formulaElement = [FormulaElement new];
- formulaElement.type = STRING;
- formulaElement.value = self.text;
- speakFormula.formulaTree = formulaElement;
- 
- GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
- [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"SpeakBrick"]];
- GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
- GDataXMLElement *formula = [speakFormula xmlElementWithContext:context];
- [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"SPEAK"]];
- [formulaList addChild:formula];
- [brick addChild:formulaList];
- return brick;
+    Formula *speakFormula = [Formula new];
+    FormulaElement *formulaElement = [FormulaElement new];
+    formulaElement.type = STRING;
+    formulaElement.value = self.text;
+    speakFormula.formulaTree = formulaElement;
+    
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"SpeakBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *formula = [speakFormula xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"SPEAK"]];
+    [formulaList addChild:formula];
+    [brick addChild:formulaList];
+    return brick;
 }
 
 @end

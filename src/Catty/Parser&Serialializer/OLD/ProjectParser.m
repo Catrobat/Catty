@@ -73,7 +73,7 @@
 
 @end
 
-@implementation ProjectParser   
+@implementation ProjectParser
 
 
 @synthesize weakPropertyRetainer = _weakPropertyRetainer;
@@ -93,27 +93,27 @@
     if (!xmlData) { return nil; }
     
     NSError *error;
-    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData 
+    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
                                                            options:0
-                                                            error:&error];
+                                                             error:&error];
     self.XMLdocument = doc;
-
+    
     // sanity checks
     if (error || !doc) { return nil; }
-
+    
     // parse and return Project object
     Program* program = nil;
     @try
     {
-        NSInfo(@"Loading Project...");
-        program = [self parseNode:doc.rootElement withParent:nil];
-        NSInfo(@"Loading done...");
+    NSInfo(@"Loading Project...");
+    program = [self parseNode:doc.rootElement withParent:nil];
+    NSInfo(@"Loading done...");
     }
     @catch(NSException* ex)
     {
-        NSError(@"Program could not be loaded! %@", [ex description]);
+    NSError(@"Program could not be loaded! %@", [ex description]);
     }
-
+    
     return program;
 }
 
@@ -132,31 +132,31 @@
 - (id)parseNode:(GDataXMLElement*)node withParent:(XMLObjectReference*)parent
 {
     if (! node)
-      return nil;
-
+        return nil;
+    
     // instantiate object based on node name (= class name)
     NSString *className = [[node.name componentsSeparatedByString:@"."] lastObject]; // this is just because of org.catrobat.catroid.bla...
     if (! className)                                                                  // Maybe we can remove this when the XML is finished?
         className = node.name;
-
+    
     className = [self classNameForString:className];
-
+    
     id object = [[NSClassFromString(className) alloc] init];
     if (! object)
         [NSException raise:@"ClassNotFoundException" format:@"Implementation of <%@> NOT FOUND!", className];
-
+    
     if([object isKindOfClass:[Program class]])
         self.program = object;
-
+    
     // just an educated guess...
     if ([object isKindOfClass:[SpriteObject class]]) {
         SpriteObject* spriteObject = (SpriteObject*)object;
         spriteObject.program = self.program;
         self.currentActiveSprite = spriteObject;
     }
-
+    
     XMLObjectReference* ref = [[XMLObjectReference alloc] initWithParent:parent andObject:object];
-
+    
     for (GDataXMLElement *child in node.children) {
         // workaround for description property in Header class!!
         if ([object isKindOfClass:[Header class]] && [child.name isEqualToString:@"description"]) {
@@ -164,7 +164,7 @@
             continue;
         }
         objc_property_t property = class_getProperty([object class], [child.name UTF8String]);
-
+        
         if (property) {
             NSString *propertyType = [NSString stringWithUTF8String:property_getTypeString(property)];
             
@@ -195,7 +195,7 @@
             else { // NOT ARRAY
                 id value = [self getSingleValue:child ofType:propertyType withParent:ref];
                 [object setValue:value forKey:child.name];
-          
+                
                 if(![propertyType isEqualToString:kParserObjectTypeSprite] && [self isWeakProperty:property] && value != nil) {
                     [self.weakPropertyRetainer addObject:value];
                 }
@@ -223,7 +223,7 @@
     }
     else if ([propertyType isEqualToString:kParserObjectTypeNumber]) {
         return [NSNumber numberWithFloat:element.stringValue.floatValue];
-
+        
     }
     else if ([propertyType isEqualToString:kParserObjectTypeDate]) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -245,7 +245,7 @@
             id object =  [self parseNode:element withParent:parent];
             return object;
         }
-
+        
     }
     else if ([propertyType isEqualToString:kParserObjectTypeLookData]) {
         if (self.currentActiveSprite && [self.currentActiveSprite isKindOfClass:[SpriteObject class]]) {
@@ -334,7 +334,7 @@
         formula.formulaTree = formulaElement;
         
         return formula;
-
+        
     }
     else {
         [NSException raise:@"FormulaElementNotFoundException" format:@"Tried to parse Formula, but formula tag not found!"];
@@ -361,16 +361,16 @@
         }
         
         NSArray* programVariableListArray = [element elementsForName:@"programVariableList"];
-
+        
         if(programVariableListArray) {
             GDataXMLElement* programVariableList  = [programVariableListArray objectAtIndex:0];
             variables.programVariableList = [self parseProgramVariableList:programVariableList andParent:ref];
         }
     }
-
+    
     
     return variables;
-
+    
 }
 
 -(id) parseReferenceElement:(GDataXMLElement*)element withParent:(XMLObjectReference*)parent
@@ -394,10 +394,10 @@
         
         objc_property_t property = class_getProperty([lastComponent class], [pathComponent UTF8String]);
         if (property) {
-            lastComponent = [lastComponent valueForKey:pathComponent];            
+            lastComponent = [lastComponent valueForKey:pathComponent];
         }
         
-
+        
         else if([pathComponent hasPrefix:@"object"] || [pathComponent hasPrefix:@"look"]) {
             
             NSInteger index = [self indexForArrayObject:pathComponent];
@@ -432,10 +432,10 @@
             NSString* className = [[self stripArrayBrackets:pathComponent] firstCharacterUppercaseString];
             NSMutableArray* list = [[NSMutableArray alloc] init];
             for (id obj in lastComponentList)
-            {
+                {
                 if ([obj isMemberOfClass:NSClassFromString(className)])
                     [list addObject:obj];
-            }
+                }
             
             NSInteger index = [self indexForArrayObject:pathComponent];
             
@@ -444,12 +444,12 @@
             }
             
             lastComponent = [list objectAtIndex:index];
-                        
+            
         }
         else {
             [NSException raise:@"UnknownPathComponentException" format:@"UNKNOWN Path Component: %@", pathComponent];
         }
-
+        
         
     }
     
@@ -523,9 +523,9 @@
             var = [self parseNode:entry withParent:programVariableRef];
         }
         [programVariableList addObject:var];
-    
+        
     }
-
+    
     return programVariableList;
     
 }
@@ -564,18 +564,18 @@
 #pragma mark - Helper
 const char *property_getTypeString(objc_property_t property)
 {
-	const char *attrs = property_getAttributes(property);
-	if (attrs == NULL) { return NULL; }
-	
-	static char buffer[256];
-	const char *e = strchr(attrs, ',');
-	if (e == NULL) { return NULL; }
-	
-	int len = (int)(e - attrs);
-	memcpy(buffer, attrs, len);
-	buffer[len] = '\0';
-	
-	return buffer;
+    const char *attrs = property_getAttributes(property);
+    if (attrs == NULL) { return NULL; }
+    
+    static char buffer[256];
+    const char *e = strchr(attrs, ',');
+    if (e == NULL) { return NULL; }
+    
+    int len = (int)(e - attrs);
+    memcpy(buffer, attrs, len);
+    buffer[len] = '\0';
+    
+    return buffer;
 }
 
 // TODO: use map to handle these cases. Also needed in toXML methods for serialization
@@ -616,7 +616,7 @@ const char *property_getTypeString(objc_property_t property)
 
 - (id)parentObjectForReferenceElement:(GDataXMLElement*)element andParent:(XMLObjectReference*)parent
 {
-    NSString *refString = [element attributeForName:@"reference"].stringValue;    
+    NSString *refString = [element attributeForName:@"reference"].stringValue;
     int count = [self numberOfOccurencesOfSubstring:@".." inString:refString];
     
     XMLObjectReference* tmp = parent;
@@ -624,7 +624,7 @@ const char *property_getTypeString(objc_property_t property)
     for(int i=0; i<count-1; i++) {
         tmp = tmp.parent;
     }
-        
+    
     return tmp.object;
     
 }
@@ -635,14 +635,14 @@ const char *property_getTypeString(objc_property_t property)
     NSUInteger length = [str length];
     NSRange range = NSMakeRange(0, length);
     while(range.location != NSNotFound)
-    {
+        {
         range = [str rangeOfString:substring options:0 range:range];
         if(range.location != NSNotFound)
-        {
+            {
             range = NSMakeRange(range.location + range.length, length - (range.location + range.length));
-            cnt++; 
+            cnt++;
+            }
         }
-    }
     return cnt;
 }
 

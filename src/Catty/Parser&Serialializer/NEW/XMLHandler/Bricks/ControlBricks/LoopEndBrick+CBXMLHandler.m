@@ -34,41 +34,41 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
- [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
- LoopEndBrick *loopEndBrick = [self new];
-
- // pop opening nesting brick from stack
- Brick *openingNestingBrick = [context.openedNestingBricksStack popAndCloseTopMostNestingBrick];
- if ((! [openingNestingBrick isKindOfClass:[LoopBeginBrick class]])) {
-  [XMLError exceptionWithMessage:@"Unexpected closing of nesting brick: expected LoopBeginBrick but \
-   got %@", NSStringFromClass([openingNestingBrick class])];
- }
- loopEndBrick.loopBeginBrick = (LoopBeginBrick*)openingNestingBrick;
- LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)openingNestingBrick;
- loopBeginBrick.loopEndBrick = loopEndBrick;
- return loopEndBrick;
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
+    LoopEndBrick *loopEndBrick = [self new];
+    
+    // pop opening nesting brick from stack
+    Brick *openingNestingBrick = [context.openedNestingBricksStack popAndCloseTopMostNestingBrick];
+    if ((! [openingNestingBrick isKindOfClass:[LoopBeginBrick class]])) {
+        [XMLError exceptionWithMessage:@"Unexpected closing of nesting brick: expected LoopBeginBrick but \
+         got %@", NSStringFromClass([openingNestingBrick class])];
+    }
+    loopEndBrick.loopBeginBrick = (LoopBeginBrick*)openingNestingBrick;
+    LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)openingNestingBrick;
+    loopBeginBrick.loopEndBrick = loopEndBrick;
+    return loopEndBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
- GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
- [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"LoopEndlessBrick"]];
-
- // pop opening nesting brick from stack
- Brick *openingNestingBrick = [context.openedNestingBricksStack popAndCloseTopMostNestingBrick];
- if ((! [openingNestingBrick isKindOfClass:[LoopBeginBrick class]])) {
-  [XMLError exceptionWithMessage:@"Unexpected closing of nesting brick: expected LoopBeginBrick but \
-   got %@", NSStringFromClass([openingNestingBrick class])];
- }
- LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)openingNestingBrick;
- if (self.loopBeginBrick != loopBeginBrick) {
-  [XMLError exceptionWithMessage:@"LoopEndBrick contains no or a reference to other loopBeginBrick"];
- }
- if (loopBeginBrick.loopEndBrick != self) {
-  [XMLError exceptionWithMessage:@"LoopBeginBrick contains no or a reference to other loopEndBrick"];
- }
-
- return brick;
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"LoopEndlessBrick"]];
+    
+    // pop opening nesting brick from stack
+    Brick *openingNestingBrick = [context.openedNestingBricksStack popAndCloseTopMostNestingBrick];
+    if ((! [openingNestingBrick isKindOfClass:[LoopBeginBrick class]])) {
+        [XMLError exceptionWithMessage:@"Unexpected closing of nesting brick: expected LoopBeginBrick but \
+         got %@", NSStringFromClass([openingNestingBrick class])];
+    }
+    LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)openingNestingBrick;
+    if (self.loopBeginBrick != loopBeginBrick) {
+        [XMLError exceptionWithMessage:@"LoopEndBrick contains no or a reference to other loopBeginBrick"];
+    }
+    if (loopBeginBrick.loopEndBrick != self) {
+        [XMLError exceptionWithMessage:@"LoopBeginBrick contains no or a reference to other loopEndBrick"];
+    }
+    
+    return brick;
 }
 
 @end

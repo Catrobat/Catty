@@ -31,29 +31,29 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
- [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
- RepeatBrick *repeatBrick = [self new];
- Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"TIMES_TO_REPEAT"];
- repeatBrick.timesToRepeat = formula;
-
- // add opening nesting brick on stack
- [context.openedNestingBricksStack pushAndOpenNestingBrick:repeatBrick];
- return repeatBrick;
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
+    RepeatBrick *repeatBrick = [self new];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"TIMES_TO_REPEAT"];
+    repeatBrick.timesToRepeat = formula;
+    
+    // add opening nesting brick on stack
+    [context.openedNestingBricksStack pushAndOpenNestingBrick:repeatBrick];
+    return repeatBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
- GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
- [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"RepeatBrick"]];
- GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
- GDataXMLElement *formula = [self.timesToRepeat xmlElementWithContext:context];
- [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"TIMES_TO_REPEAT"]];
- [formulaList addChild:formula];
- [brick addChild:formulaList];
-
- // add opening nesting brick on stack
- [context.openedNestingBricksStack pushAndOpenNestingBrick:self];
- return brick;
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"RepeatBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *formula = [self.timesToRepeat xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"TIMES_TO_REPEAT"]];
+    [formulaList addChild:formula];
+    [brick addChild:formulaList];
+    
+    // add opening nesting brick on stack
+    [context.openedNestingBricksStack pushAndOpenNestingBrick:self];
+    return brick;
 }
 
 @end

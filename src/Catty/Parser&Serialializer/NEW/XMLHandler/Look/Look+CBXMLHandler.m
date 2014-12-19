@@ -29,28 +29,28 @@
 #pragma mark - Parsing
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
- [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"look"];
- GDataXMLNode *nameAttribute = [xmlElement attributeForName:@"name"];
- [XMLError exceptionIfNil:nameAttribute message:@"Look must contain a name attribute"];
- Look *look = [self new];
- look.name = [nameAttribute stringValue];
- NSArray *lookChildElements = [xmlElement children];
- [XMLError exceptionIf:[lookChildElements count] notEquals:1
-      message:@"Look must contain a filename child node"];
- GDataXMLNode *fileNameElement = [lookChildElements firstObject];
- [XMLError exceptionIfString:fileNameElement.name isNotEqualToString:@"fileName"
-      message:@"Look contains wrong child node"];
- look.fileName = [fileNameElement stringValue];
- return look;
+    [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"look"];
+    GDataXMLNode *nameAttribute = [xmlElement attributeForName:@"name"];
+    [XMLError exceptionIfNil:nameAttribute message:@"Look must contain a name attribute"];
+    Look *look = [self new];
+    look.name = [nameAttribute stringValue];
+    NSArray *lookChildElements = [xmlElement children];
+    [XMLError exceptionIf:[lookChildElements count] notEquals:1
+                  message:@"Look must contain a filename child node"];
+    GDataXMLNode *fileNameElement = [lookChildElements firstObject];
+    [XMLError exceptionIfString:fileNameElement.name isNotEqualToString:@"fileName"
+                        message:@"Look contains wrong child node"];
+    look.fileName = [fileNameElement stringValue];
+    return look;
 }
 
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
- GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"look"];
- [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"name" stringValue:self.name]];
- [xmlElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName]];
- return xmlElement;
+    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"look"];
+    [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"name" stringValue:self.name]];
+    [xmlElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName]];
+    return xmlElement;
 }
 
 @end

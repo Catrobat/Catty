@@ -30,25 +30,25 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
- [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
- Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"DEGREES"];
- [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
-
- PointInDirectionBrick *pointInDirectionBrick = [self new];
- pointInDirectionBrick.degrees = formula;
- return pointInDirectionBrick;
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"DEGREES"];
+    [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
+    
+    PointInDirectionBrick *pointInDirectionBrick = [self new];
+    pointInDirectionBrick.degrees = formula;
+    return pointInDirectionBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
- GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
- [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"PointInDirectionBrick"]];
- GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
- GDataXMLElement *formula = [self.degrees xmlElementWithContext:context];
- [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"DEGREES"]];
- [formulaList addChild:formula];
- [brick addChild:formulaList];
- return brick;
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"PointInDirectionBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *formula = [self.degrees xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"DEGREES"]];
+    [formulaList addChild:formula];
+    [brick addChild:formulaList];
+    return brick;
 }
 
 

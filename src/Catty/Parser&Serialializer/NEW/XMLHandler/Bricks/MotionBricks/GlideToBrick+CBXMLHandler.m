@@ -30,36 +30,36 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
- [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:3];
- Formula *formulaDuration = [CBXMLParserHelper formulaInXMLElement:xmlElement
-               forCategoryName:@"DURATION_IN_SECONDS"];
- Formula *formulaXDestination = [CBXMLParserHelper formulaInXMLElement:xmlElement
-                forCategoryName:@"X_DESTINATION"];
- Formula *formulaYDestination = [CBXMLParserHelper formulaInXMLElement:xmlElement
-                forCategoryName:@"Y_DESTINATION"];
- GlideToBrick *glideToBrick = [self new];
- glideToBrick.durationInSeconds = formulaDuration;
- glideToBrick.xDestination = formulaXDestination;
- glideToBrick.yDestination = formulaYDestination;
- return glideToBrick;
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:3];
+    Formula *formulaDuration = [CBXMLParserHelper formulaInXMLElement:xmlElement
+                                                      forCategoryName:@"DURATION_IN_SECONDS"];
+    Formula *formulaXDestination = [CBXMLParserHelper formulaInXMLElement:xmlElement
+                                                          forCategoryName:@"X_DESTINATION"];
+    Formula *formulaYDestination = [CBXMLParserHelper formulaInXMLElement:xmlElement
+                                                          forCategoryName:@"Y_DESTINATION"];
+    GlideToBrick *glideToBrick = [self new];
+    glideToBrick.durationInSeconds = formulaDuration;
+    glideToBrick.xDestination = formulaXDestination;
+    glideToBrick.yDestination = formulaYDestination;
+    return glideToBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
- GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
- [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"GlideToBrick"]];
- GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
- GDataXMLElement *formula = [self.yDestination xmlElementWithContext:context];
- [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"Y_DESTINATION"]];
- [formulaList addChild:formula];
- formula = [self.xDestination xmlElementWithContext:context];
- [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"X_DESTINATION"]];
- [formulaList addChild:formula];
- formula = [self.durationInSeconds xmlElementWithContext:context];
- [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"DURATION_IN_SECONDS"]];
- [formulaList addChild:formula];
- [brick addChild:formulaList];
- return brick;
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"GlideToBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *formula = [self.yDestination xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"Y_DESTINATION"]];
+    [formulaList addChild:formula];
+    formula = [self.xDestination xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"X_DESTINATION"]];
+    [formulaList addChild:formula];
+    formula = [self.durationInSeconds xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"DURATION_IN_SECONDS"]];
+    [formulaList addChild:formula];
+    [brick addChild:formulaList];
+    return brick;
 }
 
 @end

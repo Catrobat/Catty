@@ -23,7 +23,7 @@
 #import <Foundation/Foundation.h>
 #import <GLKit/GLKit.h>
 
-@interface TestParser : NSObject 
+@interface TestParser : NSObject
 
 @property (strong, nonatomic) GLKBaseEffect *effect;
 @property (nonatomic, assign) float zIndex;

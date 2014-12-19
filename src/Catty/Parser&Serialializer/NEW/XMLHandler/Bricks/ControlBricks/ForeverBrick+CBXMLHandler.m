@@ -30,22 +30,22 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
- [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
- ForeverBrick *foreverBrick = [self new];
-
- // add opening nesting brick on stack
- [context.openedNestingBricksStack pushAndOpenNestingBrick:foreverBrick];
- return foreverBrick;
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
+    ForeverBrick *foreverBrick = [self new];
+    
+    // add opening nesting brick on stack
+    [context.openedNestingBricksStack pushAndOpenNestingBrick:foreverBrick];
+    return foreverBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
- GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
- [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"ForeverBrick"]];
-
- // add opening nesting brick on stack
- [context.openedNestingBricksStack pushAndOpenNestingBrick:self];
- return brick;
+    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"ForeverBrick"]];
+    
+    // add opening nesting brick on stack
+    [context.openedNestingBricksStack pushAndOpenNestingBrick:self];
+    return brick;
 }
 
 @end
