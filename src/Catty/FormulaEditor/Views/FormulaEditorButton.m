@@ -24,6 +24,9 @@
 #import "Formula.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "BrickFormulaProtocol.h"
+#import "PlaceAtBrickCell.h"
+#import "GlideToBrickCell.h"
+#import "Util.h"
 
 @interface FormulaEditorButton ()
 
@@ -45,10 +48,17 @@ static Formula *activeFormula;
         
         self.titleLabel.textColor = [UIColor whiteColor];
         self.titleLabel.font = [UIFont systemFontOfSize:kBrickTextFieldFontSize];
-
+        self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         [self setTitle:[formula getDisplayString] forState:UIControlStateNormal];
     
         [self sizeToFit];
+        if ([brickCell isKindOfClass:[PlaceAtBrickCell class]] || [brickCell isKindOfClass:[GlideToBrickCell class]]) {
+            if (self.frame.size.width > [Util screenWidth]/4.0f ) {
+                CGRect labelFrame = self.frame;
+                labelFrame.size.width = [Util screenWidth]/4.0f;
+                self.frame = labelFrame;
+            }
+        }
         CGRect labelFrame = self.frame;
         labelFrame.size.height = self.frame.size.height;
         self.frame = labelFrame;

@@ -380,6 +380,15 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
 }
 
+-(BOOL)changeFormula
+{
+    if ([self saveIfPossible]) {
+        return YES;
+    }else {
+        return NO;
+    }
+}
+
 #pragma mark - Getter and setter
 
 - (AHKActionSheet *)mathFunctionsMenu

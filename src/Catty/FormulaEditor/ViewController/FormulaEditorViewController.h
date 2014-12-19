@@ -51,5 +51,6 @@
 - (void)update;
 - (void)updateDeleteButton:(BOOL)enabled;
 - (void)backspace:(id)sender;
+- (BOOL)changeFormula;
 
 @end
