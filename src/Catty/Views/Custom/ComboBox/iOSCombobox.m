@@ -186,7 +186,7 @@
         CGContextSetFillColorWithColor(ctx, [[UIColor lightBlueColor] CGColor]);
   }
   else {
-       CGContextSetFillColorWithColor(ctx, [[UIColor darkBlueColor] CGColor]);
+       CGContextSetFillColorWithColor(ctx, [[UIColor whiteColor] CGColor]);
   }
 
     CGContextAddPath(ctx, path);
@@ -202,7 +202,7 @@
         [self setCurrentValue:[[self values] objectAtIndex:0]];
     }
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:FONT_NAME size:rect.size.height/2], NSFontAttributeName,
-                                [UIColor blackColor], NSForegroundColorAttributeName, nil];
+                                [UIColor whiteColor], NSForegroundColorAttributeName, nil];
     [self.currentValue drawInRect:CGRectMake(TEXT_LEFT, rect.size.height/2 - rect.size.height/3,
                                              rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT,
                                              rect.size.height - BORDER_WIDTH)
