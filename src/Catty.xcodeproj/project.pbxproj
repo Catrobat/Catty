@@ -1561,12 +1561,12 @@
 			path = Resources/Licenses;
 			sourceTree = "<group>";
 		};
-		4CD194F21A0631B200484E4F /* ParserTests & SerializationTests */ = {
+		4CD194F21A0631B200484E4F /* Parser & Serialization */ = {
 			isa = PBXGroup;
 			children = (
 				4CD194F61A0632C600484E4F /* CatrobatLanguage0.93 */,
 			);
-			name = "ParserTests & SerializationTests";
+			name = "Parser & Serialization";
 			sourceTree = "<group>";
 		};
 		4CD194F51A0632AA00484E4F /* XMLParserTests */ = {
@@ -3506,7 +3506,7 @@
 		B46B270317703F9400172837 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
-				4CD194F21A0631B200484E4F /* ParserTests & SerializationTests */,
+				4CD194F21A0631B200484E4F /* Parser & Serialization */,
 				4C3C03F5199BA5250004F594 /* Formula */,
 				B46B270917703F9400172837 /* CattyTests.m */,
 				C34B44FB17F3403400624730 /* ExtensionTests */,
