@@ -67,6 +67,7 @@
     @"{INT;range=[0,inf)}",                                      /* go N steps back    */\
     @[]                                                          /* come to front      */\
 ]
+
 // sound bricks
 #define kSoundBrickNameParams @[\
     @"{SOUND}",                     /* play sound         */\
@@ -75,6 +76,7 @@
     @"{FLOAT;range=(-inf,inf)}",    /* change volume to   */\
     @"{TEXT}"                       /* speak              */\
 ]
+
 // look bricks
 #define kLookBrickNameParams @[\
     @"{LOOK}",                      /* set background           */\
@@ -87,8 +89,12 @@
     @"{FLOAT;range=(-inf,inf)}",    /* change ghost effect by N */\
     @"{FLOAT;range=(-inf,inf)}",    /* set brightness           */\
     @"{FLOAT;range=(-inf,inf)}",    /* change brightness by N   */\
-    @[]                             /* clear graphic effect     */\
+    @[],                            /* clear graphic effect     */\
+    @[],                            /* turn on flashlight       */\
+    @[],                            /* turn off flashlight      */\
+    @"{FLOAT;range=(-inf,inf)}"     /* vibration                */\
 ]
+
 // variable bricks
 #define kVariableBrickNameParams @[\
     @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"],    /* set size to              */\

@@ -136,6 +136,9 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kSetBrightnessBrick        = 308,
     kChangeBrightnessByNBrick  = 309,
     kClearGraphicEffectBrick   = 310,
+    kLedOnBrick                = 311,
+    kLedOffBrick               = 312,
+    kVibrationBrick            = 313,
 
     // 4xx variable bricks
     kSetVariableBrick          = 400,
@@ -161,11 +164,11 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
 ]
 
 #define kBrickCategoryStrokeColors @[\
-[UIColor controlBrickStrokeColor],\
-[UIColor motionBrickStrokeColor],\
-[UIColor soundBrickStrokeColor],\
-[UIColor lookBrickStrokeColor],\
-[UIColor variableBrickStrokeColor]\
+    [UIColor controlBrickStrokeColor],\
+    [UIColor motionBrickStrokeColor],\
+    [UIColor soundBrickStrokeColor],\
+    [UIColor lookBrickStrokeColor],\
+    [UIColor variableBrickStrokeColor]\
 ]
 
 // map brick classes to corresponding brick type identifiers
@@ -221,6 +224,9 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     @"SetBrightnessBrick"        : @(kSetBrightnessBrick),\
     @"ChangeBrightnessByNBrick"  : @(kChangeBrightnessByNBrick),\
     @"ClearGraphicEffectBrick"   : @(kClearGraphicEffectBrick),\
+    @"LedOnBrick"                : @(kLedOnBrick),\
+    @"LedOffBrick"               : @(kLedOffBrick),\
+    @"VibrationBrick"            : @(kVibrationBrick),\
 \
     /* variable bricks */\
     @"SetVariableBrick"          : @(kSetVariableBrick),\
@@ -288,6 +294,9 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"SetBrightnessBrick"        : @(kBrickHeight2h),\
 @"ChangeBrightnessByNBrick"  : @(kBrickHeight2h),\
 @"ClearGraphicEffectBrick"   : @(kBrickHeight1h),\
+@"LedOnBrick"                : @(kBrickHeight1h),\
+@"LedOffBrick"               : @(kBrickHeight1h),\
+@"VibrationBrick"            : @(kBrickHeight2h),\
 \
 /* variable bricks */\
 @"SetVariableBrick"          : @(kBrickHeight3h),\

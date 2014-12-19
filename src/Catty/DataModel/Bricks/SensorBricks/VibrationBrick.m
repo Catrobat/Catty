@@ -27,6 +27,16 @@
 
 @implementation VibrationBrick
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.durationInSeconds;
+}
+
+- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    self.durationInSeconds = formula;
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedVibrateNSeconds;

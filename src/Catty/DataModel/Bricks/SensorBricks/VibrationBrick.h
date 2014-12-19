@@ -20,11 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
+#import "BrickFormulaProtocol.h"
 
 @class Formula;
 
-@interface VibrationBrick : Brick
+@interface VibrationBrick : Brick<BrickFormulaProtocol>
 
 @property (nonatomic, strong) Formula *durationInSeconds;
 
