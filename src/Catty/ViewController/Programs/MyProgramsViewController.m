@@ -581,7 +581,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (! exists) {
         programLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:programName
                                                                             programID:nil];
-        NSLog(@"Adding program: %@", programLoadingInfo.basePath);
+        NSDebug(@"Adding program: %@", programLoadingInfo.basePath);
         [self.programLoadingInfos addObject:programLoadingInfo];
 
         // create new cell

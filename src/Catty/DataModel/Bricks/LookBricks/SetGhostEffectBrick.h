@@ -21,10 +21,11 @@
  */
 
 #import "Brick.h"
+#import "BrickFormulaProtocol.h"
 
 @class Formula;
 
-@interface SetGhostEffectBrick : Brick
+@interface SetGhostEffectBrick : Brick<BrickFormulaProtocol>
 
 @property (nonatomic, strong) Formula *transparency;
 

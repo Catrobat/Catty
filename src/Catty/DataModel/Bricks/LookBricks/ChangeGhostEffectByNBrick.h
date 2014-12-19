@@ -22,10 +22,11 @@
 
 
 #import "Brick.h"
+#import "BrickFormulaProtocol.h"
 
 @class Formula;
 
-@interface ChangeGhostEffectByNBrick : Brick
+@interface ChangeGhostEffectByNBrick : Brick<BrickFormulaProtocol>
 
 @property (nonatomic, strong) Formula *changeGhostEffect;
 

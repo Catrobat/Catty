@@ -37,6 +37,8 @@
 #define kNoInternetConnection 102
 #define kAskUserForReportMessageAlertViewTag 103
 
+#define kAskUserForVariableNameAlertViewTag 104
+
 #define kConfirmAlertViewTag 200
 
 // Alert view button indexes

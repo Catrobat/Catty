@@ -32,6 +32,8 @@
 
 - (void)addImage:(UIImage*)image withName:(NSString*)imageName;
 
+- (void)replaceImage:(UIImage*)image withName:(NSString*)imageName;
+
 - (void)clearImageCache;
 
 @end

@@ -28,6 +28,16 @@
 
 @synthesize yPosition = _yPosition;
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumbers
+{
+    return self.yPosition;
+}
+
+- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    self.yPosition = formula;
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedSetY;

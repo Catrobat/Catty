@@ -23,7 +23,7 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-	SIN = 400,
+	SIN = 500,
     COS,
     TAN,
     LN,
@@ -50,5 +50,6 @@ typedef enum {
 + (BOOL)isFunction:(NSString*)value;
 + (Function)getFunctionByValue:(NSString*)value;
 + (NSString*)getName:(Function)function;
++ (NSString*)getExternName:(NSString *)value;
 
 @end

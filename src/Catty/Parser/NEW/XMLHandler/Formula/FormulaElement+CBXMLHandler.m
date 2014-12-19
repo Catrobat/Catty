@@ -31,10 +31,10 @@
     GDataXMLElement *typeElement = [xmlElement childWithElementName:@"type"];
     [XMLError exceptionIfNil:xmlElement message:@"No type element found..."];
     NSString *type = [typeElement stringValue];
-    
+
     GDataXMLElement *valueElement = [xmlElement childWithElementName:@"value"];
     NSString *stringValue = [valueElement stringValue];
-    
+
     FormulaElement *formulaTree = [[FormulaElement alloc] initWithType:type
                                                                  value:stringValue
                                                              leftChild:nil
@@ -44,12 +44,14 @@
     GDataXMLElement *rightChildElement = [xmlElement childWithElementName:@"rightChild"];
     if (rightChildElement) {
         FormulaElement *rightChildFormula = [self parseFromElement:rightChildElement withContext:context];
+        rightChildFormula.parent = formulaTree;
         formulaTree.rightChild = rightChildFormula;
     }
 
     GDataXMLElement *leftChildElement = [xmlElement childWithElementName:@"leftChild"];
     if (leftChildElement) {
         FormulaElement *leftChildFormula = [self parseFromElement:leftChildElement withContext:context];
+        leftChildFormula.parent = formulaTree;
         formulaTree.leftChild = leftChildFormula;
     }
 

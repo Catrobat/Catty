@@ -29,6 +29,16 @@
 
 @implementation IfLogicBeginBrick
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.ifCondition;
+}
+
+- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    self.ifCondition = formula;
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedIfIsTrueThen;

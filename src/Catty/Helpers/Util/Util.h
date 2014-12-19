@@ -23,6 +23,7 @@
 
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
+#import "FormulaEditorTextView.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
@@ -87,6 +88,16 @@
                            otherButtonTitles:(NSArray*)otherButtonTitles
                                          tag:(NSInteger)tag
                                         view:(UIView*)view;
+
++ (void)askUserForVariableNameAndPerformAction:(SEL)action
+                                        target:(id)target
+                                   promptTitle:(NSString*)title
+                                 promptMessage:(NSString*)message
+                                minInputLength:(NSUInteger)minInputLength
+                                maxInputLength:(NSUInteger)maxInputLength
+                           blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
+                      invalidInputAlertMessage:(NSString*)invalidInputAlertMessage
+                                  andTextField:(FormulaEditorTextView *)textView;
 
 + (void)askUserForReportMessageAndPerformAction:(SEL)action
                                          target:(id)target

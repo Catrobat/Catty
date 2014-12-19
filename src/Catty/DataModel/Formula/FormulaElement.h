@@ -27,7 +27,7 @@
 @class SpriteObject;
 
 typedef enum {
-    OPERATOR,
+    OPERATOR = 10000,
     FUNCTION,
     NUMBER,
     SENSOR,
@@ -42,7 +42,7 @@ typedef enum {
 @property (nonatomic, strong) NSString* value;
 @property (nonatomic, strong) FormulaElement* leftChild;
 @property (nonatomic, strong) FormulaElement* rightChild;
-@property (nonatomic, weak) FormulaElement* parent;
+@property (nonatomic, strong) FormulaElement* parent;
 
 - (id)initWithType:(NSString*)type
              value:(NSString*)value
@@ -50,11 +50,35 @@ typedef enum {
         rightChild:(FormulaElement*)rightChild
             parent:(FormulaElement*)parent;
 
+- (id)initWithElementType:(ElementType)type
+             value:(NSString*)value
+         leftChild:(FormulaElement*)leftChild
+        rightChild:(FormulaElement*)rightChild
+            parent:(FormulaElement*)parent;
 
 - (double)interpretRecursiveForSprite:(SpriteObject*)sprite;
 
 - (NSArray*)XMLChildElements;
 - (BOOL)isEqualToFormulaElement:(FormulaElement*)formulaElement;
+
+- (FormulaElement*) getRoot;
+
+- (void)replaceElement:(FormulaElement*)current;
+
 - (NSString*)stringForElementType:(ElementType)type;
+
+- (void)replaceElement:(ElementType)type value:(NSString*)value;
+
+- (void)replaceWithSubElement:(NSString*) operator rightChild:(FormulaElement*)rightChild;
+
+- (NSMutableArray*)getInternTokenList;
+
+- (BOOL)isLogicalOperator;
+
+- (BOOL)isSingleNumberFormula;
+
+- (BOOL)containsElement:(ElementType)elementType;
+
+- (FormulaElement*)clone;
 
 @end

@@ -92,8 +92,8 @@ NSString * const sensorStringArray[] = {
 
 + (NSString*)stringForSensor:(Sensor)sensor
 {
-    if (((NSInteger) sensor) < ((NSInteger)(sizeof(sensorStringArray) / sizeof(Sensor))))
-        return sensorStringArray[sensor];
+    if (((NSInteger) sensor-900) < ((NSInteger)(sizeof(sensorStringArray) / sizeof(Sensor))))
+        return sensorStringArray[sensor-900];
 
     return @"Unknown Sensor";
 }
@@ -101,6 +101,59 @@ NSString * const sensorStringArray[] = {
 + (BOOL)isObjectSensor:(Sensor)sensor
 {
     return (sensor >= OBJECT_X && sensor <= OBJECT_LAYER) ? YES : NO;
+}
++ (NSString *)getExternName:(NSString *)sensorName
+{
+    Sensor sensor = [self sensorForString:sensorName];
+    NSString *name;
+    switch (sensor) {
+        case COMPASS_DIRECTION:
+            name = @"compass_direction";
+            break;
+        case LOUDNESS:
+            name = @"loudness";
+            break;
+        case OBJECT_BRIGHTNESS:
+            name = @"brightness";
+            break;
+        case OBJECT_GHOSTEFFECT:
+            name = @"transparency";
+            break;
+        case OBJECT_LAYER:
+            name = @"layer";
+            break;
+        case OBJECT_ROTATION:
+            name = @"direction";
+            break;
+        case OBJECT_SIZE:
+            name = @"size";
+            break;
+        case OBJECT_X:
+            name = @"position_x";
+            break;
+        case OBJECT_Y:
+            name = @"position_y";
+            break;
+        case X_ACCELERATION:
+            name = @"acceleration_x";
+            break;
+        case X_INCLINATION:
+            name = @"inclination_x";
+            break;
+        case Y_ACCELERATION:
+            name = @"acceleration_y";
+            break;
+        case Y_INCLINATION:
+            name = @"inclination_y";
+            break;
+        case Z_ACCELERATION:
+            name = @"acceleration_z";
+            break;
+        default:
+            break;
+    }
+    
+    return name;
 }
 
 @end

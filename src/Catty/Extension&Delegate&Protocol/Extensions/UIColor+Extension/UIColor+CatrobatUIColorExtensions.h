@@ -32,6 +32,8 @@
 
 + (UIColor*) darkBlueColor;
 
++ (UIColor*)shadeDarkBlueColor;
+
 + (UIColor*) brightGrayColor;
 
 + (UIColor*) lightOrangeColor;

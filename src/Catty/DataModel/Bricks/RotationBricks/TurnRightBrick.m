@@ -27,6 +27,16 @@
 
 @implementation TurnRightBrick
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.degrees;
+}
+
+- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    self.degrees = formula;
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedTurnRight;

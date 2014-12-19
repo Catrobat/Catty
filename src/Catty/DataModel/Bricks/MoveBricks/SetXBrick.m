@@ -30,6 +30,16 @@
 
 @synthesize xPosition = _xPosition;
 
+- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.xPosition;
+}
+
+- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    self.xPosition = formula;
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedSetX;

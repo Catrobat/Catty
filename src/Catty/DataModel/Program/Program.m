@@ -73,7 +73,7 @@
 
     [program addObjectWithName:kLocalizedBackground];
     [program addObjectWithName:kLocalizedMyObject];
-    NSLog(@"%@", [program description]);
+    NSDebug(@"%@", [program description]);
     return program;
 }
 
@@ -110,7 +110,7 @@
     if (! program)
         return nil;
 
-    NSLog(@"%@", [program description]);
+    NSDebug(@"%@", [program description]);
     NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
     [self updateLastModificationTimeForProgramWithName:loadingInfo.visibleName programID:loadingInfo.programID];
     return program;

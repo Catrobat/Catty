@@ -23,6 +23,8 @@
 #import "BrickManager.h"
 #import "BrickProtocol.h"
 #import "Util.h"
+#import "BrickFormulaProtocol.h"
+#import "Formula.h"
 
 @implementation BrickManager {
     NSDictionary *_brickHeightDictionary;
@@ -133,6 +135,7 @@
             if ([brickOrScript conformsToProtocol:@protocol(BrickProtocol)]) {
                 id<BrickProtocol> brick = brickOrScript;
                 if (brick.isSelectableForObject) {
+                    
                     [selectableBricksMutableArray addObject:brick];
                 }
             }
@@ -148,7 +151,15 @@
     NSMutableArray *selectableBricksForCategoryMutable = [NSMutableArray arrayWithCapacity:[selectableBricks count]];
     for (id<BrickProtocol> brick in selectableBricks) {
         if (brick.brickCategoryType == categoryType) {
-            [selectableBricksForCategoryMutable addObject:brick];
+            if ([brick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
+                id<BrickFormulaProtocol> brickF =(id <BrickFormulaProtocol>) brick;
+                Formula * formula =[[Formula alloc ] initWithInteger:0];
+                [brickF setFormula:formula ForLineNumber:0 AndParameterNumber:0];
+                [selectableBricksForCategoryMutable addObject:brickF];
+            }else{
+                [selectableBricksForCategoryMutable addObject:brick];
+            }
+            
         }
     }
     return [selectableBricksForCategoryMutable copy];

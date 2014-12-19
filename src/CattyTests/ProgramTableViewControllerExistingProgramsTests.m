@@ -77,7 +77,7 @@
         if ([programLoadingInfo.visibleName isEqualToString:kLocalizedNewProgram])
             continue;
 
-        NSLog(@"Program name: %@", programLoadingInfo.visibleName);
+        NSDebug(@"Program name: %@", programLoadingInfo.visibleName);
         self.programTableViewController.delegate = nil; // no delegate needed for this test
         self.programTableViewController.program = [Program programWithLoadingInfo:programLoadingInfo];
         [self.programTableViewController viewDidLoad];
@@ -95,8 +95,8 @@
         if ([programLoadingInfo.visibleName isEqualToString:kLocalizedNewProgram])
             continue;
 
-        NSLog(@"Program name: %@", programLoadingInfo.visibleName);
-        Program *program = [Program programWithLoadingInfo:programLoadingInfo];
+        NSDebug(@"Program name: %@", programLoadingInfo.visibleName);
+        Program *program = [self loadProgram:programLoadingInfo];
         XCTAssertNotNil(program, @"Could not create program");
         if (! program) {
             NSLog(@"Loading program %@ failed", programLoadingInfo.visibleName);
@@ -123,8 +123,8 @@
                       @"The ProgramTableViewController did not create the background object cell correctly.");
 
         NSUInteger objectCounter = 0;
-        NSLog(@"Program: %@", program.header.programName);
-        NSLog(@"Number of objects: %lu", (unsigned long)[program numberOfTotalObjects]);
+        NSDebug(@"Program: %@", program.header.programName);
+        NSDebug(@"Number of objects: %lu", (unsigned long)[program numberOfTotalObjects]);
         for (SpriteObject *object in program.objectList) {
             if (! objectCounter) {
                 ++objectCounter;
@@ -132,14 +132,14 @@
             }
 
             indexPath = [NSIndexPath indexPathForRow:(objectCounter-1) inSection:kObjectSectionIndex];
-            NSLog(@"%@", [indexPath description]);
+            NSDebug(@"%@", [indexPath description]);
             cell = [self.programTableViewController tableView:self.programTableViewController.tableView cellForRowAtIndexPath:indexPath];
             NSString *objectCellTitle = nil;
             if ([cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
                 UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
                 objectCellTitle = imageCell.titleLabel.text;
             }
-            NSLog(@"Name for object cell %@ - should be: %@", objectCellTitle, object.name);
+            NSDebug(@"Name for object cell %@ - should be: %@", objectCellTitle, object.name);
             XCTAssertNotNil(object.name, @"Name of SpriteObject is nil, testing an empty string...");
             XCTAssertTrue([objectCellTitle isEqualToString:object.name], @"Wrong name for object cell %@ in program %@. Should be: %@", objectCellTitle, program.header.programName, object.name);
             ++objectCounter;
@@ -176,7 +176,7 @@
         if ([programLoadingInfo.visibleName isEqualToString:kLocalizedNewProgram])
             continue;
 
-        NSLog(@"Program name: %@", programLoadingInfo.visibleName);
+        NSDebug(@"Program name: %@", programLoadingInfo.visibleName);
         self.programTableViewController.delegate = nil; // no delegate needed for this test
         self.programTableViewController.program = [Program programWithLoadingInfo:programLoadingInfo];
         [self.programTableViewController performSelectorOnMainThread:@selector(view) withObject:nil waitUntilDone:YES];
@@ -197,8 +197,8 @@
         if ([programLoadingInfo.visibleName isEqualToString:kLocalizedNewProgram])
             continue;
 
-        NSLog(@"Program name: %@", programLoadingInfo.visibleName);
-        Program *program = [Program programWithLoadingInfo:programLoadingInfo];
+        NSDebug(@"Program name: %@", programLoadingInfo.visibleName);
+        Program *program = [self loadProgram:programLoadingInfo];
         XCTAssertNotNil(program, @"Could not create program");
         if (! program) {
             NSLog(@"Loading program %@ failed", programLoadingInfo.visibleName);
@@ -225,7 +225,7 @@
         if ([programLoadingInfo.visibleName isEqualToString:kLocalizedNewProgram])
             continue;
 
-        NSLog(@"Program name: %@", programLoadingInfo.visibleName);
+        NSDebug(@"Program name: %@", programLoadingInfo.visibleName);
         self.programTableViewController.delegate = nil; // no delegate needed for this test
         self.programTableViewController.program = [Program programWithLoadingInfo:programLoadingInfo];
         [self.programTableViewController performSelectorOnMainThread:@selector(view) withObject:nil waitUntilDone:YES];
@@ -259,6 +259,26 @@
 }
 
 #pragma mark - helpers
+- (Program*)loadProgram:(ProgramLoadingInfo*)loadingInfo
+{
+    NSDebug(@"Try to load project '%@'", loadingInfo.visibleName);
+    NSDebug(@"Path: %@", loadingInfo.basePath);
+    NSString *xmlPath = [NSString stringWithFormat:@"%@", loadingInfo.basePath];
+    NSDebug(@"XML-Path: %@", xmlPath);
+    Program *program = [[[Parser alloc] init] generateObjectForProgramWithPath:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
+
+    if (! program)
+        return nil;
+
+    NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
+//    for (SpriteObject *sprite in program.objectList) {
+//        sprite.spriteManagerDelegate = self;
+//        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
+//    }
+    [Util setLastProgramWithName:program.header.programName programID:program.header.programID];
+    return program;
+}
+
 + (void)removeProject:(NSString*)projectPath
 {
     FileManager *fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;

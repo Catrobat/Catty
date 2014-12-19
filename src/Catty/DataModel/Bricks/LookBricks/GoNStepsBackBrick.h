@@ -21,10 +21,11 @@
  */
 
 #import "Brick.h"
+#import "BrickFormulaProtocol.h"
 
 @class Formula;
 
-@interface GoNStepsBackBrick : Brick
+@interface GoNStepsBackBrick : Brick<BrickFormulaProtocol>
 
 @property (nonatomic, strong) Formula *steps;
 

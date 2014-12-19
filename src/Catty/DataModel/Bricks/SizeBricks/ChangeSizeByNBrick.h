@@ -22,10 +22,11 @@
 
 
 #import "Brick.h"
+#import "BrickFormulaProtocol.h"
 
 @class Formula;
 
-@interface ChangeSizeByNBrick : Brick
+@interface ChangeSizeByNBrick : Brick<BrickFormulaProtocol>
 
 @property (nonatomic, strong) Formula *size;
 

@@ -21,16 +21,35 @@
  */
 
 #import "XMLParserAbstractTest.h"
+#import "GDataXMLNode+CustomExtensions.h"
 #import "Parser.h"
 
 @implementation XMLParserAbstractTest
+
+- (NSString*)getPathForXML:(NSString*)xmlFile
+{
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString *path = [bundle pathForResource:xmlFile ofType:@"xml"];
+    return path;
+}
+
+- (GDataXMLDocument*)getXMLDocumentForPath:(NSString*)xmlPath
+{
+    NSError *error;
+    NSString *xmlFile = [NSString stringWithContentsOfFile:xmlPath
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:&error];
+    NSData *xmlData = [xmlFile dataUsingEncoding:NSUTF8StringEncoding];
+    GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
+    return document;
+}
 
 - (void)compareProgram:(NSString*)programName092 withProgram:(NSString*)programName093 {
     Parser *parser092 = [[Parser alloc] init];
     Program *program092 = [parser092 generateObjectForProgramWithPath:[self getPathForXML:programName092]];
     
     Program *program093 = [self getProgramForXML:programName093];
-    
+
     XCTAssertTrue([program093 isEqualToProgram:program092], @"Programs are not equal");
 }
 

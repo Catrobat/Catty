@@ -20,13 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 #import "Brick.h"
+#import "BrickFormulaProtocol.h"
 
 @class Formula;
 @class Ifelsebrick;
 @class IfLogicEndBrick;
 @class IfLogicElseBrick;
 
-@interface IfLogicBeginBrick : Brick
+
+@interface IfLogicBeginBrick : Brick<BrickFormulaProtocol>
 
 @property (nonatomic, strong) Formula *ifCondition;
 @property (nonatomic, weak) IfLogicElseBrick *ifElseBrick;

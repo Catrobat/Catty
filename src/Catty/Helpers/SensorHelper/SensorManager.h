@@ -23,7 +23,7 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-    X_ACCELERATION,
+    X_ACCELERATION = 900,
     Y_ACCELERATION,
     Z_ACCELERATION,
     COMPASS_DIRECTION,
@@ -45,7 +45,9 @@ typedef enum {
 
 + (NSString*) stringForSensor:(Sensor)sensor;
 
-+(BOOL) isObjectSensor:(Sensor)sensor;
++ (BOOL) isObjectSensor:(Sensor)sensor;
+
++ (NSString *)getExternName:(NSString *)sensorName;
 
 
 @end

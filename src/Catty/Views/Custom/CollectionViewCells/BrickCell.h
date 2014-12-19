@@ -48,6 +48,7 @@
 
 @interface BrickCell : UICollectionViewCell<BrickCellProtocol>
 @property (nonatomic, weak) id<BrickCellDelegate> delegate;
+@property (nonatomic, weak) id<UITextFieldDelegate> textDelegate;
 @property (nonatomic, strong) id<BrickProtocol> brick;
 @property (nonatomic, strong) NSArray *brickCategoryColors;
 @property (nonatomic) BOOL enabled;
