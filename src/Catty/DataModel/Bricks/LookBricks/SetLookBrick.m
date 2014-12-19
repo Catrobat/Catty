@@ -20,12 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Setlookbrick.h"
+#import "SetLookBrick.h"
 #import "SpriteObject.h"
 #import "ProgramDefines.h"
 #import <SpriteKit/SpriteKit.h>
 #import "UIImage+CatrobatUIImageExtensions.h"
-#import "GDataXMLNode.h"
 
 @implementation SetLookBrick
 
@@ -82,21 +81,6 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"SetLookBrick (Look: %@)", self.look.name];
-}
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-{
-    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-    if (self.look) {
-        GDataXMLElement *brickToObjectReferenceXMLElement = [GDataXMLNode elementWithName:@"look"];
-        NSString *referencePath = [spriteObject xmlReferencePathForDestinationLook:self.look];
-        [brickToObjectReferenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:referencePath]];
-        [brickXMLElement addChild:brickToObjectReferenceXMLElement];
-    } else {
-        // remove object reference
-        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
-    }
-    return brickXMLElement;
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick

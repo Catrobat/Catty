@@ -28,6 +28,4 @@
 
 @property (nonatomic, strong) Look *look;
 
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
-
 @end

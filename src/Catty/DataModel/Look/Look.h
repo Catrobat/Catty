@@ -33,7 +33,6 @@
 - (id)initWithPath:(NSString*)filePath;
 - (id)initWithName:(NSString*)name andPath:(NSString*)filePath;
 - (NSString*)previewImageFileName;
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject;
 - (instancetype)deepCopy;
 - (NSString*)description;
 - (BOOL)isEqualToLook:(Look*)look;

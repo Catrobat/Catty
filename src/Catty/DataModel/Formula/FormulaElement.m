@@ -28,15 +28,12 @@
 #import "SensorHandler.h"
 #import "SensorManager.h"
 #import "SpriteObject.h"
-#import "NSString+CatrobatNSStringExtensions.h"
 #import "Util.h"
 #import "Operators.h"
 #import "Functions.h"
-//#import "GDataXMLNode+PrettyFormatterExtensions.h"
 #import "InternToken.h"
 #import "Operators.h"
 #import "InternFormulaParserException.h"
-#import "GDataXMLNode+CustomExtensions.h"
 
 #define ARC4RANDOM_MAX 0x100000000
 
@@ -496,37 +493,6 @@
         return YES;
     }
     return NO;
-}
-
-- (NSArray*)XMLChildElements
-{
-    NSMutableArray *childs = [NSMutableArray array];
-    if (self.leftChild) {
-        GDataXMLElement *leftChildXMLElement = [GDataXMLNode elementWithName:@"leftChild"];
-        for (GDataXMLElement *childElement in [self.leftChild XMLChildElements]) {
-            [leftChildXMLElement addChild:childElement];
-        }
-        [childs addObject:leftChildXMLElement];
-    }
-    if (self.rightChild) {
-        GDataXMLElement *rightChildXMLElement = [GDataXMLNode elementWithName:@"rightChild"];
-        for (GDataXMLElement *childElement in [self.rightChild XMLChildElements]) {
-            [rightChildXMLElement addChild:childElement];
-        }
-        [childs addObject:rightChildXMLElement];
-    }
-
-    GDataXMLElement *typeXMLElement = [GDataXMLNode elementWithName:@"type"
-                                                        stringValue:[self stringForElementType:self.type]];
-    [childs addObject:typeXMLElement];
-
-    if (self.value) {
-        GDataXMLElement *valueXMLElement = [GDataXMLNode elementWithName:@"value"
-                                                     optionalStringValue:self.value];
-        [childs addObject:valueXMLElement];
-    }
-
-    return [childs copy];
 }
 
 - (FormulaElement*) getRoot

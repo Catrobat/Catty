@@ -21,7 +21,6 @@
  */
 
 #import "NoteBrick.h"
-#import "GDataXMLNode.h"
 
 @implementation NoteBrick
 
@@ -42,19 +41,6 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"NoteBrick: %@", self.note];
-}
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-{
-    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-    if (self.note) {
-        GDataXMLElement *noteXMLElement = [GDataXMLNode elementWithName:@"note" stringValue:self.note];
-        [brickXMLElement addChild:noteXMLElement];
-    } else {
-        // remove object reference
-        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
-    }
-    return brickXMLElement;
 }
 
 @end

@@ -26,7 +26,6 @@
 #import "SpriteObject.h"
 #import "AppDelegate.h"
 #import "FileManager.h"
-#import "GDataXMLNode+CustomExtensions.h"
 #import "SensorHandler.h"
 #import "ProgramLoadingInfo.h"
 #import "Parser.h"
@@ -35,8 +34,9 @@
 #import "LanguageTranslationDefines.h"
 #import "UserVariable.h"
 #import "OrderedMapTable.h"
-#import "CBXMLParser.h"
 #import "CatrobatLanguageDefines.h"
+#import "CBXMLParser.h"
+#import "CBXMLSerializer.h"
 
 @implementation Program
 
@@ -215,7 +215,7 @@
 #pragma mark - Custom getter and setter
 - (NSMutableArray*)objectList
 {
-    if (!_objectList) {
+    if (! _objectList) {
          _objectList = [NSMutableArray array];
     }
     return _objectList;
@@ -292,123 +292,28 @@
     [fileManager addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist];
 }
 
-- (GDataXMLElement*)toXML
-{
-    GDataXMLElement *rootXMLElement = [GDataXMLNode elementWithName:@"program"];
-//    [rootXMLElement addChild:[self.header toXML]];
-
-    GDataXMLElement *objectListXMLElement = [GDataXMLNode elementWithName:@"objectList"];
-    for (id object in self.objectList) {
-        if ([object isKindOfClass:[SpriteObject class]])
-            [objectListXMLElement addChild:[((SpriteObject*) object) toXML]];
-    }
-    [rootXMLElement addChild:objectListXMLElement];
-
-    if (self.variables) {
-        GDataXMLElement *variablesXMLElement = [GDataXMLNode elementWithName:@"variables"];
-        VariablesContainer *variableLists = self.variables;
-
-        GDataXMLElement *objectVariableListXMLElement = [GDataXMLNode elementWithName:@"objectVariableList"];
-        // TODO: uncomment this after toXML methods are implemented
-        NSUInteger totalNumOfObjectVariables = [variableLists.objectVariableList count];
-//        NSUInteger totalNumOfProgramVariables = [variableLists.programVariableList count];
-        for (NSUInteger index = 0; index < totalNumOfObjectVariables; ++index) {
-            NSArray *variables = [variableLists.objectVariableList objectAtIndex:index];
-            GDataXMLElement *entryXMLElement = [GDataXMLNode elementWithName:@"entry"];
-            GDataXMLElement *entryToObjectReferenceXMLElement = [GDataXMLNode elementWithName:@"object"];
-            [entryToObjectReferenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../../../../objectList/object[6]"]];
-            [entryXMLElement addChild:entryToObjectReferenceXMLElement];
-            GDataXMLElement *listXMLElement = [GDataXMLNode elementWithName:@"list"];
-            for (id variable in variables) {
-                if ([variable isKindOfClass:[UserVariable class]])
-                    [listXMLElement addChild:[((UserVariable*)variable) toXMLforProgram:self]];
-            }
-            [entryXMLElement addChild:listXMLElement];
-            [objectVariableListXMLElement addChild:entryXMLElement];
-        }
-//        if (totalNumOfObjectVariables) {
-            [variablesXMLElement addChild:objectVariableListXMLElement];
-//        }
-
-        GDataXMLElement *programVariableListXMLElement = [GDataXMLNode elementWithName:@"programVariableList"];
-        for (id variable in variableLists.programVariableList) {
-            if ([variable isKindOfClass:[UserVariable class]])
-                [programVariableListXMLElement addChild:[((UserVariable*) variable) toXMLforProgram:self]];
-        }
-//        if (totalNumOfProgramVariables) {
-            [variablesXMLElement addChild:programVariableListXMLElement];
-//        }
-
-//        if (totalNumOfObjectVariables || totalNumOfProgramVariables) {
-            [rootXMLElement addChild:variablesXMLElement];
-//        }
-    }
-    return rootXMLElement;
-}
-
-//#define SIMULATOR_DEBUGGING_ENABLED 1
-//#define SIMULATOR_DEBUGGING_BASE_PATH @"/Users/ralph/Desktop/diff"
-
+// Maybe this saveToDisk method should be outsourced to another helper class...
 - (void)saveToDisk
 {
     return;
-/*    dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
-    dispatch_async(saveToDiskQ, ^{
-        // background thread
-        GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithRootElement:[self toXML]];
-        //    NSData *xmlData = document.XMLData;
-        NSString *xmlString = [NSString stringWithFormat:@"%@\n%@",
-                               kCatrobatHeaderXMLDeclaration,
-                               [document.rootElement XMLStringPrettyPrinted:YES]];
-        // TODO: outsource this to file manager
-        NSError *error = nil;
-        NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
-        [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
-        NSLogError(error);
-
-        //#ifdef SIMULATOR_DEBUGGING_ENABLED
-        //        NSString *referenceXmlString = [NSString stringWithFormat:@"%@\n%@",
-        //                                        kCatrobatXMLDeclaration,
-        //                                        [self.XMLdocument.rootElement XMLStringPrettyPrinted:YES]];
-        ////        NSLog(@"Reference XML-Document:\n\n%@\n\n", referenceXmlString);
-        ////        NSLog(@"XML-Document:\n\n%@\n\n", xmlString);
-        //        NSString *referenceXmlPath = [NSString stringWithFormat:@"%@/reference.xml", SIMULATOR_DEBUGGING_BASE_PATH];
-        //        NSString *generatedXmlPath = [NSString stringWithFormat:@"%@/generated.xml", SIMULATOR_DEBUGGING_BASE_PATH];
-        //        [referenceXmlString writeToFile:referenceXmlPath
-        //                             atomically:YES
-        //                               encoding:NSUTF8StringEncoding
-        //                                  error:&error];
-        //        [xmlString writeToFile:generatedXmlPath
-        //                    atomically:YES
-        //                      encoding:NSUTF8StringEncoding
-        //                         error:&error];
-        //
-        ////#import <Foundation/NSTask.h> // debugging for OSX
-        ////        NSTask *task = [[NSTask alloc] init];
-        ////        [task setLaunchPath:@"/usr/bin/diff"];
-        ////        [task setArguments:[NSArray arrayWithObjects:referenceXmlPath, generatedXmlPath, nil]];
-        ////        [task setStandardOutput:[NSPipe pipe]];
-        ////        [task setStandardInput:[NSPipe pipe]]; // piping to NSLog-tty (terminal emulator)
-        ////        [task launch];
-        ////        [task release];
-        //#endif
-
-        // update last access time
-        [[self class] updateLastModificationTimeForProgramWithName:self.header.programName
-                                                         programID:self.header.programID];
-
-        // maybe later call some functions back here, that should update the UI on main thread...
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-            [notificationCenter postNotificationName:kHideLoadingViewNotification object:self];
-            [notificationCenter postNotificationName:kShowSavedViewNotification object:self];
-        });
-
-        //        // execute 2 seconds later => just for testing purposes
-        //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        //            [[NSNotificationCenter defaultCenter] postNotificationName:kHideLoadingViewNotification object:self];
-        //        });
-    });*/
+//    dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
+//    dispatch_async(saveToDiskQ, ^{
+//        // show saved view bezel
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+//            [notificationCenter postNotificationName:kHideLoadingViewNotification object:self];
+//            [notificationCenter postNotificationName:kShowSavedViewNotification object:self];
+//        });
+//
+//        // TODO: find correct serializer class dynamically
+//        NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
+//        id<CBSerializerProtocol> serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath];
+//        [serializer serializeProgram:self];
+//
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [[NSNotificationCenter defaultCenter] postNotificationName:kHideLoadingViewNotification object:self];
+//        });
+//    });
 }
 
 - (BOOL)isLastUsedProgram

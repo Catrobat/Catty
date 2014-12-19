@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "Script.h"
 #import "Brick.h"
 #import "SpriteObject.h"
@@ -35,7 +34,6 @@
 #import "BroadcastWaitBrick.h"
 #import "BroadcastBrick.h"
 #import "BrickManager.h"
-#import "GDataXMLNode.h"
 #import "Util.h"
 
 #import "WhenScript.h"
@@ -496,27 +494,6 @@
 ////        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!! currentBrickIndex=%d", self.currentBrickIndex);
 //    }
 //}
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-{
-    GDataXMLElement *scriptXMLElement = [GDataXMLNode elementWithName:[self xmlTagName]];
-    GDataXMLElement *brickListXMLElement = [GDataXMLNode elementWithName:@"brickList"];
-    for (id brick in self.brickList) {
-        if ([brick isKindOfClass:[Brick class]]) {
-            [brickListXMLElement addChild:[((Brick*) brick) toXMLforObject:spriteObject]];
-        }
-    }
-    [scriptXMLElement addChild:brickListXMLElement];
-    GDataXMLElement *scriptToObjectReferenceXMLElement = [GDataXMLNode elementWithName:@"object"];
-    [scriptToObjectReferenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../../.."]];
-    [scriptXMLElement addChild:scriptToObjectReferenceXMLElement];
-    return scriptXMLElement;
-}
-
-- (NSString*)xmlTagName
-{
-    return [NSStringFromClass([self class]) firstCharacterLowercaseString];
-}
 
 - (instancetype)deepCopy
 {

@@ -24,7 +24,6 @@
 #import "Formula.h"
 #import "Util.h"
 #import "Scene.h"
-#import "GDataXMLNode.h"
 
 @implementation MoveNStepsBrick
 
@@ -43,16 +42,16 @@
     return kLocalizedMoveNSteps;
 }
 
--(void)performFromScript:(Script *)script
+- (void)performFromScript:(Script *)script
 {
 }
 
--(SKAction*)action
+- (SKAction*)action
 {
     return [SKAction runBlock:[self actionBlock]];
 }
 
--(dispatch_block_t)actionBlock
+- (dispatch_block_t)actionBlock
 {
     return ^{
         
@@ -68,18 +67,9 @@
     };
 }
 
--(NSString*)description
+- (NSString*)description
 {
     return [NSString stringWithFormat:@"MoveNStepsBrick: %f steps", [self.steps interpretDoubleForSprite:self.object] ];
-}
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-{
-    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-    GDataXMLElement *stepsXMLElement = [GDataXMLNode elementWithName:@"steps"];
-    [stepsXMLElement addChild:[self.steps toXMLforObject:spriteObject]];
-    [brickXMLElement addChild:stepsXMLElement];
-    return brickXMLElement;
 }
 
 @end

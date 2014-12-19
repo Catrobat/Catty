@@ -23,7 +23,6 @@
 #import "PointToBrick.h"
 #import "Util.h"
 #import "Scene.h"
-#import "GDataXMLNode.h"
 
 @implementation PointToBrick
 
@@ -47,29 +46,21 @@
         
         double rotationDegrees = 0;
         
-        if(objectPosition.x == pointedObjectPosition.x && objectPosition.y == pointedObjectPosition.y) {
-            
+        if (objectPosition.x == pointedObjectPosition.x && objectPosition.y == pointedObjectPosition.y) {
             rotationDegrees = 90.0f;
-            
         } else if (objectPosition.x == pointedObjectPosition.x) {
-            
             if (objectPosition.y > pointedObjectPosition.y) {
                 rotationDegrees = 180.0f;
             } else {
                 rotationDegrees = 0.0f;
             }
-            
         } else if(objectPosition.y == pointedObjectPosition.y) {
-            
             if (objectPosition.x > pointedObjectPosition.x) {
                 rotationDegrees = 270.0f;
             } else {
                 rotationDegrees = 90.0f;
             }
-            
-        }else {
-            
-            
+        } else {
             double base = fabs(objectPosition.y - pointedObjectPosition.y);
             double height = fabs(objectPosition.x - pointedObjectPosition.x);
             double value = atan(base/height) * 180 / M_PI;
@@ -89,7 +80,7 @@
             }
             
         }
-        
+
         NSDebug(@"Performing: %@, Degreees: (%f), Pointed Object: Position: %@", self.description, rotationDegrees, NSStringFromCGPoint(self.pointedObject.position));
         
         rotationDegrees = [((Scene*)self.object.scene) convertDegreesToScene:(CGFloat)rotationDegrees] + kRotationDegreeOffset;
@@ -97,7 +88,7 @@
         if (rotationDegrees > 360.0f) {
             rotationDegrees -= 360.0f;
         }
-        
+
         self.object.zRotation = (CGFloat)[Util degreeToRadians:rotationDegrees];
     };
 }
@@ -106,22 +97,6 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"Point To Brick: %@", self.pointedObject];
-}
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-{
-    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-    if (self.pointedObject) {
-        GDataXMLElement *pointedObjectXMLElement = [GDataXMLNode elementWithName:@"pointedObject"];
-//        [pointedObjectXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@"../../../../../../object[2]/scriptList/broadcastScript[2]/brickList/pointToBrick/pointedObject"]];
-        GDataXMLElement *objectXMLElement = [self.pointedObject toXML];
-        NSArray *objectChildren = [objectXMLElement children];
-        for (GDataXMLElement *objectChild in objectChildren) {
-            [pointedObjectXMLElement addChild:objectChild];
-        }
-        [brickXMLElement addChild:pointedObjectXMLElement];
-    }
-    return brickXMLElement;
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick

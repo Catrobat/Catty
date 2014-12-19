@@ -20,17 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "CatrobatInformation.h"
 
-
 @implementation CatrobatInformation
-
-@synthesize apiVersion        = _apiVersion;
-@synthesize baseURL           = _baseURL;
-@synthesize projectsExtension = _projectsExtension;
-@synthesize totalProjects     = _totalProjects;
-
 
 - (id)initWithDict:(NSDictionary*)dict {
     self = [super init];

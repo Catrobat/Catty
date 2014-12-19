@@ -22,11 +22,8 @@
 
 #import "ChangeYByNBrick.h"
 #import "Formula.h"
-#import "GDataXMLNode.h"
 
 @implementation ChangeYByNBrick
-
-@synthesize yMovement = _yMovement;
 
 - (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
 {
@@ -57,27 +54,11 @@
     };
 }
 
-
-
 #pragma mark - Description
 - (NSString*)description
 {
     double xMov = [self.yMovement interpretDoubleForSprite:self.object];
     return [NSString stringWithFormat:@"ChangeYBy (%f)", xMov];
-}
-
-- (GDataXMLElement*)toXMLforObject:(SpriteObject*)spriteObject
-{
-    GDataXMLElement *brickXMLElement = [super toXMLforObject:spriteObject];
-    if (self.yMovement) {
-        GDataXMLElement *yMovementXMLElement = [GDataXMLNode elementWithName:@"yMovement"];
-        [yMovementXMLElement addChild:[self.yMovement toXMLforObject:spriteObject]];
-        [brickXMLElement addChild:yMovementXMLElement];
-    } else {
-        // remove object reference
-        [brickXMLElement removeChild:[[brickXMLElement children] firstObject]];
-    }
-    return brickXMLElement;
 }
 
 @end
