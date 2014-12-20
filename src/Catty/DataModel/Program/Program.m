@@ -295,25 +295,25 @@
 // Maybe this saveToDisk method should be outsourced to another helper class...
 - (void)saveToDisk
 {
-    return;
-//    dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
-//    dispatch_async(saveToDiskQ, ^{
-//        // show saved view bezel
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-//            [notificationCenter postNotificationName:kHideLoadingViewNotification object:self];
-//            [notificationCenter postNotificationName:kShowSavedViewNotification object:self];
-//        });
-//
-//        // TODO: find correct serializer class dynamically
-//        NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
-//        id<CBSerializerProtocol> serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath];
-//        [serializer serializeProgram:self];
-//
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [[NSNotificationCenter defaultCenter] postNotificationName:kHideLoadingViewNotification object:self];
-//        });
-//    });
+//    return;
+    dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
+    dispatch_async(saveToDiskQ, ^{
+        // show saved view bezel
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+            [notificationCenter postNotificationName:kHideLoadingViewNotification object:self];
+            [notificationCenter postNotificationName:kShowSavedViewNotification object:self];
+        });
+
+        // TODO: find correct serializer class dynamically
+        NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [self projectPath], kProgramCodeFileName];
+        id<CBSerializerProtocol> serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath];
+        [serializer serializeProgram:self];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:kHideLoadingViewNotification object:self];
+        });
+    });
 }
 
 - (BOOL)isLastUsedProgram
