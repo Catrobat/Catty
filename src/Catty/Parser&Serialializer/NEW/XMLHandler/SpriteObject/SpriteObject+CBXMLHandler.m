@@ -30,6 +30,7 @@
 #import "CBXMLContext.h"
 #import "CBXMLParserHelper.h"
 #import "Script+CBXMLHandler.h"
+#import "CBXMLSerializerHelper.h"
 
 @implementation SpriteObject (CBXMLHandler)
 
@@ -162,11 +163,25 @@
     // update context object
     context.lookList = self.lookList;
     context.soundList = self.soundList;
-    
+
     // generate xml element for sprite object
     GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"object"];
+
+    // check if spriteObject has been already serialized within a PointToBrick
+    NSUInteger pointedObjectIndex = [CBXMLSerializerHelper indexOfElement:self
+                                                                  inArray:context.pointedSpriteObjectList];
+    if (pointedObjectIndex != NSNotFound) {
+        // already serialized
+        SpriteObject *pointedObject = [context.pointedSpriteObjectList objectAtIndex:pointedObjectIndex];
+        NSString *refPath = [CBXMLSerializerHelper relativeXPathToPointedObject:pointedObject
+                                                           forPointedObjectList:context.pointedSpriteObjectList
+                                                                  andObjectList:context.spriteObjectList];
+        [xmlElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:refPath]];
+        return xmlElement;
+    }
+
     [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"name" stringValue:self.name]];
-    
+
     GDataXMLElement *lookListXmlElement = [GDataXMLNode elementWithName:@"lookList"];
     for (id look in self.lookList) {
         [XMLError exceptionIf:[look isKindOfClass:[Look class]] equals:NO
@@ -174,7 +189,7 @@
         [lookListXmlElement addChild:[((Look*)look) xmlElementWithContext:nil]];
     }
     [xmlElement addChild:lookListXmlElement];
-    
+
     GDataXMLElement *soundListXmlElement = [GDataXMLNode elementWithName:@"soundList"];
     for (id sound in self.soundList) {
         [XMLError exceptionIf:[sound isKindOfClass:[Sound class]] equals:NO
@@ -182,7 +197,7 @@
         [soundListXmlElement addChild:[((Sound*)sound) xmlElementWithContext:nil]];
     }
     [xmlElement addChild:soundListXmlElement];
-    
+
     GDataXMLElement *scriptListXmlElement = [GDataXMLNode elementWithName:@"scriptList"];
     for (id script in self.scriptList) {
         [XMLError exceptionIf:[script isKindOfClass:[Script class]] equals:NO
@@ -190,7 +205,7 @@
         [scriptListXmlElement addChild:[((Script*)script) xmlElementWithContext:context]];
     }
     [xmlElement addChild:scriptListXmlElement];
-    
+
     NSLog(@"%@", [xmlElement XMLStringPrettyPrinted:YES]);
     return xmlElement;
 }
