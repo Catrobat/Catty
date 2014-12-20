@@ -395,21 +395,20 @@
 
 - (BOOL)isEqualToProgram:(Program*)program
 {
-    if(![self.header isEqualToHeader:program.header])
+    if (! [self.header isEqualToHeader:program.header])
         return NO;
-    if(![self.variables isEqualToVariablesContainer:program.variables])
+    if (! [self.variables isEqualToVariablesContainer:program.variables])
         return NO;
-    if([self.objectList count] != [program.objectList count])
+    if ([self.objectList count] != [program.objectList count])
         return NO;
     
     NSUInteger idx;
-    for(idx = 0; idx < [self.objectList count]; idx++) {
+    for (idx = 0; idx < [self.objectList count]; idx++) {
         SpriteObject *firstObject = [self.objectList objectAtIndex:idx];
         SpriteObject *secondObject = [program.objectList objectAtIndex:idx];
-        if(![firstObject isEqualToSpriteObject:secondObject])
+        if (! [firstObject isEqualToSpriteObject:secondObject])
             return NO;
     }
-    
     return YES;
 }
 
