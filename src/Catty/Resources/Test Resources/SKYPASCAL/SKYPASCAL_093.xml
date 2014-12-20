@@ -2196,7 +2196,7 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <brick type="WhenBrick"/>
+            <brick type="StopAllSoundsBrick"/>
             <brick type="ShowBrick"/>
             <brick type="SetSizeToBrick">
               <formulaList>
@@ -3291,26 +3291,32 @@ music: (DJ Taxomusic- Cavern) www.YouTube.com/watch?v=vom7KPwQm3k</description>
     </objectVariableList>
     <programVariableList>
       <userVariable>
-        </userVariable>
+        <name>random from</name>
+      </userVariable>
       <userVariable>
-        </userVariable>
+        <name>random to</name>
+      </userVariable>
       <userVariable reference="../../../objectList/object[2]/scriptList/script[3]/brickList/brick[7]/userVariable"/>
       <userVariable reference="../../../objectList/object[7]/scriptList/script[2]/brickList/brick[2]/userVariable"/>
       <userVariable reference="../../../objectList/object[7]/scriptList/script[3]/brickList/brick[2]/userVariable"/>
       <userVariable reference="../../../objectList/object[2]/scriptList/script[3]/brickList/brick[8]/userVariable"/>
       <userVariable>
-        </userVariable>
+        <name>yenemy</name>
+      </userVariable>
       <userVariable>
-        </userVariable>
+        <name>yxe</name>
+      </userVariable>
       <userVariable reference="../../../objectList/object[10]/scriptList/script[2]/brickList/brick[3]/userVariable"/>
       <userVariable>
-        </userVariable>
+        <name>win</name>
+      </userVariable>
       <userVariable reference="../../../objectList/object[7]/scriptList/script[2]/brickList/brick[3]/userVariable"/>
       <userVariable reference="../../../objectList/object[19]/scriptList/script[2]/brickList/brick[4]/userVariable"/>
       <userVariable reference="../../../objectList/object[19]/scriptList/script[3]/brickList/brick[2]/userVariable"/>
       <userVariable reference="../../../objectList/object[7]/scriptList/script[3]/brickList/brick[7]/userVariable"/>
       <userVariable>
-        </userVariable>
+        <name>startin</name>
+      </userVariable>
     </programVariableList>
   </variables>
 </program>
