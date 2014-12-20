@@ -190,17 +190,23 @@
     </objectVariableList>
     <programVariableList>
       <userVariable>
-        </userVariable>
+        <name>X</name>
+      </userVariable>
       <userVariable>
-        </userVariable>
+        <name>Y</name>
+      </userVariable>
       <userVariable>
-        </userVariable>
+        <name>Yp</name>
+      </userVariable>
       <userVariable>
-        </userVariable>
+        <name>Xp</name>
+      </userVariable>
       <userVariable>
-        </userVariable>
+        <name>Yoffset</name>
+      </userVariable>
       <userVariable>
-        </userVariable>
+        <name>Xoffset</name>
+      </userVariable>
       <userVariable reference="../../../objectList/object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
     </programVariableList>
   </variables>
