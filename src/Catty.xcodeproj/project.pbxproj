@@ -356,8 +356,6 @@
 		CA8A94A71A41E57400E51A12 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		CA97A4431A44F368008C931B /* Galaxy_War_092.xml in Resources */ = {isa = PBXBuildFile; fileRef = CA97A4411A44F368008C931B /* Galaxy_War_092.xml */; };
 		CA97A4441A44F368008C931B /* Galaxy_War_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CA97A4421A44F368008C931B /* Galaxy_War_093.xml */; };
-		CA97A4471A44F37C008C931B /* Pythagorean_Theorem_092.xml in Resources */ = {isa = PBXBuildFile; fileRef = CA97A4451A44F37C008C931B /* Pythagorean_Theorem_092.xml */; };
-		CA97A4481A44F37C008C931B /* Pythagorean_Theorem_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CA97A4461A44F37C008C931B /* Pythagorean_Theorem_093.xml */; };
 		CA97A44B1A44F38F008C931B /* Air_fight_0.5_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = CA97A4491A44F38F008C931B /* Air_fight_0.5_091.xml */; };
 		CA97A44C1A44F38F008C931B /* Air_fight_0.5_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CA97A44A1A44F38F008C931B /* Air_fight_0.5_093.xml */; };
 		CA97A4501A44F3A0008C931B /* Airplane_with_shadow_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = CA97A44E1A44F3A0008C931B /* Airplane_with_shadow_091.xml */; };
@@ -1248,8 +1246,6 @@
 		CA8C247C18CD12C100314C2B /* ProgramTableViewControllerNewProgramTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerNewProgramTests.h; sourceTree = "<group>"; };
 		CA97A4411A44F368008C931B /* Galaxy_War_092.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Galaxy_War_092.xml; path = "Resources/Test Resources/Galaxy_War/Galaxy_War_092.xml"; sourceTree = "<group>"; };
 		CA97A4421A44F368008C931B /* Galaxy_War_093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Galaxy_War_093.xml; path = "Resources/Test Resources/Galaxy_War/Galaxy_War_093.xml"; sourceTree = "<group>"; };
-		CA97A4451A44F37C008C931B /* Pythagorean_Theorem_092.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Pythagorean_Theorem_092.xml; path = "Resources/Test Resources/Pythagorean_Theorem/Pythagorean_Theorem_092.xml"; sourceTree = "<group>"; };
-		CA97A4461A44F37C008C931B /* Pythagorean_Theorem_093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Pythagorean_Theorem_093.xml; path = "Resources/Test Resources/Pythagorean_Theorem/Pythagorean_Theorem_093.xml"; sourceTree = "<group>"; };
 		CA97A4491A44F38F008C931B /* Air_fight_0.5_091.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Air_fight_0.5_091.xml; path = "Resources/Test Resources/Air_fight_0.5/Air_fight_0.5_091.xml"; sourceTree = "<group>"; };
 		CA97A44A1A44F38F008C931B /* Air_fight_0.5_093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Air_fight_0.5_093.xml; path = "Resources/Test Resources/Air_fight_0.5/Air_fight_0.5_093.xml"; sourceTree = "<group>"; };
 		CA97A44E1A44F3A0008C931B /* Airplane_with_shadow_091.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Airplane_with_shadow_091.xml; path = "Resources/Test Resources/Airplane_with_shadow/Airplane_with_shadow_091.xml"; sourceTree = "<group>"; };
@@ -1600,7 +1596,6 @@
 				CA97A49D1A44F50F008C931B /* Tic_Tac_Toe_Master */,
 				CA97A4A21A44F55A008C931B /* Word_balloon_demo */,
 				CA97A4A71A44F599008C931B /* X_Ray_phone */,
-				CAEE0A331A32903F007CB248 /* Pythagorean_Theorem */,
 				4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */,
 				4C1608B01A09621A002C7032 /* ValidFormulaList.xml */,
 				4C1608B11A09621A002C7032 /* ValidProgram.xml */,
@@ -1991,7 +1986,7 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		92DFB01F1A38960C00FA9B0F /* pocketPaint */ = {
+		92DFB01F1A38960C00FA9B0F /* PocketPaint */ = {
 			isa = PBXGroup;
 			children = (
 				92DFB0201A38960C00FA9B0F /* BrushPickerViewController.h */,
@@ -2046,6 +2041,7 @@
 				92DFB0511A38960C00FA9B0F /* YKImageCropperView.h */,
 				92DFB0521A38960C00FA9B0F /* YKImageCropperView.m */,
 			);
+			name = PocketPaint;
 			path = pocketPaint;
 			sourceTree = "<group>";
 		};
@@ -3980,15 +3976,6 @@
 			name = Galaxy_War;
 			sourceTree = "<group>";
 		};
-		CAEE0A331A32903F007CB248 /* Pythagorean_Theorem */ = {
-			isa = PBXGroup;
-			children = (
-				CA97A4451A44F37C008C931B /* Pythagorean_Theorem_092.xml */,
-				CA97A4461A44F37C008C931B /* Pythagorean_Theorem_093.xml */,
-			);
-			name = Pythagorean_Theorem;
-			sourceTree = "<group>";
-		};
 		CAF8EF071A43B1A900710B27 /* IfBricks */ = {
 			isa = PBXGroup;
 			children = (
@@ -4020,7 +4007,7 @@
 		CD0CCE54170CB39600B70036 /* Catty */ = {
 			isa = PBXGroup;
 			children = (
-				92DFB01F1A38960C00FA9B0F /* pocketPaint */,
+				92DFB01F1A38960C00FA9B0F /* PocketPaint */,
 				92DFAFE81A38949E00FA9B0F /* FormulaEditor */,
 				92FF2EA51A24C8A700093DA7 /* DataStructures */,
 				92FF2E4C1A24C7D800093DA7 /* Helpers */,
@@ -4170,7 +4157,6 @@
 				CA97A44C1A44F38F008C931B /* Air_fight_0.5_093.xml in Resources */,
 				CA97A4821A44F476008C931B /* Piano_09.xml in Resources */,
 				CA97A4651A44F3C7008C931B /* Flappy_v3.0_093.xml in Resources */,
-				CA97A4471A44F37C008C931B /* Pythagorean_Theorem_092.xml in Resources */,
 				CA97A4431A44F368008C931B /* Galaxy_War_092.xml in Resources */,
 				CA97A4581A44F3B0008C931B /* Demonstration_09.xml in Resources */,
 				CA97A44B1A44F38F008C931B /* Air_fight_0.5_091.xml in Resources */,
@@ -4194,7 +4180,6 @@
 				CA97A4971A44F4C7008C931B /* SKYPASCAL_093.xml in Resources */,
 				CA97A4A51A44F594008C931B /* X_Ray_phone_091.xml in Resources */,
 				CA97A47B1A44F45C008C931B /* Minions__093.xml in Resources */,
-				CA97A4481A44F37C008C931B /* Pythagorean_Theorem_093.xml in Resources */,
 				CA97A47E1A44F46C008C931B /* Nyancat_1.0_091.xml in Resources */,
 				CA538ECA19B0EA09008240AB /* test.png in Resources */,
 				CA97A4961A44F4C7008C931B /* SKYPASCAL_08.xml in Resources */,

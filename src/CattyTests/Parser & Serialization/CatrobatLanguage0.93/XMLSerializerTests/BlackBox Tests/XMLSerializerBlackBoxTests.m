@@ -34,13 +34,21 @@
 - (void)testPythagoreanTheorem
 {
     Program *program093 = [self getProgramForXML:@"Pythagorean-Theorem-093"];
-    [program093 saveToDisk]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
+    [self saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
 }
 
 - (void)testValidProgramAllBricks
 {
     Program *program093 = [self getProgramForXML:@"ValidProgramAllBricks"];
-    [program093 saveToDisk]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
+    [self saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
+}
+
+- (void)saveProgram:(Program*)program
+{
+    // TODO: find correct serializer class dynamically
+    NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [program projectPath], kProgramCodeFileName];
+    id<CBSerializerProtocol> serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath];
+    [serializer serializeProgram:program];
 }
 
 @end
