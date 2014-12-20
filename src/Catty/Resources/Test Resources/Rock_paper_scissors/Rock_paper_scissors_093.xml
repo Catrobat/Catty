@@ -238,9 +238,11 @@
     </objectVariableList>
     <programVariableList>
       <userVariable>
-        </userVariable>
+        <name>counter</name>
+      </userVariable>
       <userVariable>
-        </userVariable>
+        <name>still speaking</name>
+      </userVariable>
       <userVariable reference="../../../objectList/object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
     </programVariableList>
   </variables>
