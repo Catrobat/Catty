@@ -111,67 +111,73 @@ static pthread_mutex_t variablesLock;
 
 - (BOOL)isEqualToVariablesContainer:(VariablesContainer*)variablesContainer
 {
+    //----------------------------------------------------------------------------------------------------
     // objectVariableList
-    if([self.objectVariableList count] != [variablesContainer.objectVariableList count])
+    //----------------------------------------------------------------------------------------------------
+    if ([self.objectVariableList count] != [variablesContainer.objectVariableList count])
         return NO;
     
     NSUInteger index;
-    for(index = 0; index < [self.objectVariableList count]; index++) {
+    for(index = 0; index < [self.objectVariableList count]; ++index) {
+        //----------------------------------------------------------------------------------------------------
+        // 1) compare keys (sprite object of both object variables)
+        //----------------------------------------------------------------------------------------------------
         SpriteObject *firstObject = [self.objectVariableList keyAtIndex:index];
-        
         SpriteObject *secondObject = nil;
         NSUInteger idx;
         // look for object with same name (order in variable list can differ)
-        for(idx = 0; idx < [variablesContainer.objectVariableList count]; idx++) {
+        for (idx = 0; idx < [variablesContainer.objectVariableList count]; ++idx) {
             SpriteObject *spriteObject = [variablesContainer.objectVariableList keyAtIndex:idx];
-            if([spriteObject.name isEqualToString:firstObject.name]) {
+            if ([spriteObject.name isEqualToString:firstObject.name]) {
                 secondObject = spriteObject;
                 break;
             }
         }
-        
-        if(secondObject == nil || ![firstObject isEqualToSpriteObject:secondObject])
+        if (secondObject == nil || (! [firstObject isEqualToSpriteObject:secondObject]))
             return NO;
-        
-        NSMutableArray* firstUserVariableList = [self.objectVariableList objectAtIndex:index];
-        NSMutableArray* secondUserVariableList = [variablesContainer.objectVariableList objectAtIndex:index];
-        
-        if([firstUserVariableList count] != [secondUserVariableList count])
+
+        //----------------------------------------------------------------------------------------------------
+        // 2) compare values (all user variables of both object variables)
+        //----------------------------------------------------------------------------------------------------
+        NSMutableArray *firstUserVariableList = [self.objectVariableList objectAtIndex:index];
+        NSMutableArray *secondUserVariableList = [variablesContainer.objectVariableList objectAtIndex:idx];
+
+        if ([firstUserVariableList count] != [secondUserVariableList count])
             return NO;
-        
-        for(UserVariable *firstVariable in firstUserVariableList) {
+
+        for (UserVariable *firstVariable in firstUserVariableList) {
             UserVariable *secondVariable = nil;
             // look for variable with same name (order in variable list can differ)
-            for(UserVariable *variable in secondUserVariableList) {
-                if([firstVariable.name isEqualToString:variable.name]) {
+            for (UserVariable *variable in secondUserVariableList) {
+                if ([firstVariable.name isEqualToString:variable.name]) {
                     secondVariable = variable;
                     break;
                 }
             }
-            
-            if(secondVariable == nil || ![firstVariable isEqualToUserVariable:secondVariable])
+
+            if ((secondVariable == nil) || (! [firstVariable isEqualToUserVariable:secondVariable]))
                 return NO;
         }
     }
-    
+
+    //----------------------------------------------------------------------------------------------------
     // programVariableList
-    if([self.programVariableList count] != [variablesContainer.programVariableList count])
+    //----------------------------------------------------------------------------------------------------
+    if ([self.programVariableList count] != [variablesContainer.programVariableList count])
         return NO;
-    
-    for(UserVariable *firstVariable in self.programVariableList) {
+
+    for (UserVariable *firstVariable in self.programVariableList) {
         UserVariable *secondVariable = nil;
         // look for variable with same name (order in variable list can differ)
-        for(UserVariable *variable in variablesContainer.programVariableList) {
-            if([firstVariable.name isEqualToString:variable.name]) {
+        for (UserVariable *variable in variablesContainer.programVariableList) {
+            if ([firstVariable.name isEqualToString:variable.name]) {
                 secondVariable = variable;
                 break;
             }
         }
-        if(secondVariable == nil || ![firstVariable isEqualToUserVariable:secondVariable])
+        if ((secondVariable == nil) || (! [firstVariable isEqualToUserVariable:secondVariable]))
             return NO;
     }
-
-    
     return YES;
 }
 
