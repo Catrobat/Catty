@@ -49,8 +49,17 @@
     Program *program092 = [parser092 generateObjectForProgramWithPath:[self getPathForXML:programName092]];
     Program *program093 = [self getProgramForXML:programName093];
 
-    // XXX: HACK => assign same header to both versions => this forces to ignore header
-    program092.header = program093.header;
+    {
+        // XXX: HACK => assign same header to both versions => this forces to ignore header
+        program092.header = program093.header;
+        // XXX: HACK => for background objects always replace german name "Hintergrund" with "Background"
+        SpriteObject *bgObject092 = program092.objectList[0];
+        SpriteObject *bgObject093 = program093.objectList[0];
+        bgObject092.name = [bgObject092.name stringByReplacingOccurrencesOfString:@"Hintergrund"
+                                                                       withString:@"Background"];
+        bgObject093.name = [bgObject093.name stringByReplacingOccurrencesOfString:@"Hintergrund"
+                                                                       withString:@"Background"];
+    }
 
     XCTAssertTrue([program093 isEqualToProgram:program092], @"Programs are not equal");
 }
