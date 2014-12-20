@@ -52,8 +52,7 @@
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
     GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"LoopEndlessBrick"]];
-    
+
     // pop opening nesting brick from stack
     Brick *openingNestingBrick = [context.openedNestingBricksStack popAndCloseTopMostNestingBrick];
     if ((! [openingNestingBrick isKindOfClass:[LoopBeginBrick class]])) {
@@ -67,7 +66,16 @@
     if (loopBeginBrick.loopEndBrick != self) {
         [XMLError exceptionWithMessage:@"LoopBeginBrick contains no or a reference to other loopEndBrick"];
     }
-    
+
+    NSString *brickXmlElementTypeName = nil;
+    if ([loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+        brickXmlElementTypeName = @"LoopEndlessBrick";
+    } else if ([loopBeginBrick isKindOfClass:[RepeatBrick class]]) {
+        brickXmlElementTypeName = @"LoopEndBrick";
+    } else {
+        [XMLError exceptionWithMessage:@"Found unsupported referenced LoopBeginBrick brick type in LoopEndBrick"];
+    }
+    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:brickXmlElementTypeName]];
     return brick;
 }
 
