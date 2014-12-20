@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<program>
+  <header>
+    <applicationBuildName/>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.9.5</applicationVersion>
+    <catrobatLanguageVersion>0.91</catrobatLanguageVersion>
+    <dateTimeUpload/>
+    <description>The famous Internet meme in its infinite version.</description>
+    <deviceName>HTC Sensation Z710e</deviceName>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>15</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>Nyancat 1.0</programName>
+    <remixOf/>
+    <screenHeight>960</screenHeight>
+    <screenWidth>540</screenWidth>
+    <tags/>
+    <url>http://pocketcode.org/details/950</url>
+    <userHandle>hej-wickie-hej</userHandle>
+  </header>
+  <objectList>
+    <object>
+      <lookList>
+        <look>
+          <fileName>3dbeb2840d2df22773f2f9e447481513_3DBEB2840D2DF22773F2F9E447481513_black.png</fileName>
+          <name>black</name>
+        </look>
+      </lookList>
+      <name>Background</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.3</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <foreverBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick class="loopEndlessBrick">
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="foreverBrick" reference="../.."/>
+              </loopEndBrick>
+            </foreverBrick>
+            <playSoundBrick>
+              <object reference="../../../../.."/>
+              <sound>
+                <fileName>058d1dda46ac71a009f6531513a7d257_058D1DDA46AC71A009F6531513A7D257_Nyan Cat [original].mp3</fileName>
+                <name>Nyan Cat [original]</name>
+              </sound>
+            </playSoundBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>26.55</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <loopEndlessBrick reference="../foreverBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+      </scriptList>
+      <soundList>
+        <sound reference="../../scriptList/startScript/brickList/playSoundBrick/sound"/>
+      </soundList>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>9db9eb8b0e327de38c5f830c22f3c59d_9DB9EB8B0E327DE38C5F830C22F3C59D_nyancat_1.png</fileName>
+          <name>1</name>
+        </look>
+        <look>
+          <fileName>386ce740c82a68d424fc273c1c2e25fa_386CE740C82A68D424FC273C1C2E25FA_nyancat_2.png</fileName>
+          <name>2</name>
+        </look>
+        <look>
+          <fileName>03eaaf2c0ceedc6639c9df8bdaa9ef44_03EAAF2C0CEEDC6639C9DF8BDAA9EF44_nyancat_3.png</fileName>
+          <name>3</name>
+        </look>
+        <look>
+          <fileName>e2d06f065286998e367910c5a99bcf7f_E2D06F065286998E367910C5A99BCF7F_nyancat_4.png</fileName>
+          <name>4</name>
+        </look>
+        <look>
+          <fileName>16740e1eb432bbe8504dc6de6167d65e_16740E1EB432BBE8504DC6DE6167D65E_nyancat_5.png</fileName>
+          <name>5</name>
+        </look>
+        <look>
+          <fileName>8390c492cb0b769d4e58437717b28538_8390C492CB0B769D4E58437717B28538_nyancat_6.png</fileName>
+          <name>6</name>
+        </look>
+        <look>
+          <fileName>3415f3828565db0afacb71feab4070e0_3415F3828565DB0AFACB71FEAB4070E0_nyancat_7.png</fileName>
+          <name>7</name>
+        </look>
+        <look>
+          <fileName>fe525ed77468bdd692771e09154ffff8_FE525ED77468BDD692771E09154FFFF8_nyancat_8.png</fileName>
+          <name>8</name>
+        </look>
+        <look>
+          <fileName>9a7ba4f271eecf99f898c719dcf6bdf6_9A7BA4F271EECF99F898C719DCF6BDF6_nyancat_9.png</fileName>
+          <name>9</name>
+        </look>
+        <look>
+          <fileName>4a7f6598e62a8d843f6672ac15da4610_4A7F6598E62A8D843F6672AC15DA4610_nyancat_10.png</fileName>
+          <name>10</name>
+        </look>
+        <look>
+          <fileName>d7708d0475c04509af24f892ab871165_D7708D0475C04509AF24F892AB871165_nyancat_11.png</fileName>
+          <name>11</name>
+        </look>
+        <look>
+          <fileName>7f93826fb7cac213364d4e82ab749e7b_7F93826FB7CAC213364D4E82AB749E7B_nyancat_12.png</fileName>
+          <name>12</name>
+        </look>
+      </lookList>
+      <name>Nyancat</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>135</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <setGhostEffectBrick>
+              <object reference="../../../../.."/>
+              <transparency>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formulaTree>
+              </transparency>
+            </setGhostEffectBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1.0</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <repeatBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick>
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="repeatBrick" reference="../.."/>
+              </loopEndBrick>
+              <timesToRepeat>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formulaTree>
+              </timesToRepeat>
+            </repeatBrick>
+            <changeGhostEffectByNBrick>
+              <object reference="../../../../.."/>
+              <changeGhostEffect>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </changeGhostEffect>
+            </changeGhostEffectByNBrick>
+            <loopEndBrick reference="../repeatBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <startScript>
+          <brickList>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1.0</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <foreverBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick class="loopEndlessBrick">
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="foreverBrick" reference="../.."/>
+              </loopEndBrick>
+            </foreverBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.16</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <nextLookBrick>
+              <object reference="../../../../.."/>
+            </nextLookBrick>
+            <loopEndlessBrick reference="../foreverBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+      </scriptList>
+      <soundList/>
+    </object>
+  </objectList>
+  <variables>
+    <objectVariableList/>
+    <programVariableList/>
+  </variables>
+</program>
