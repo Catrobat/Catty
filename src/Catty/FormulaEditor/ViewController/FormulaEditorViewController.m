@@ -350,8 +350,16 @@ NS_ENUM(NSInteger, ButtonIndex) {
         switch ([internFormulaParser getErrorTokenIndex]) {
             case FORMULA_PARSER_OK:
                 result = [tempFormulaElement interpretRecursiveForSprite:nil];
+                if (internFormulaParser.isBool) {
+                    if (result) {
+                        computedString = [NSString stringWithFormat:kUIFEComputedTrue];
+                    } else {
+                        computedString = [NSString stringWithFormat:kUIFEComputedFalse];
+                    }
+                } else {
+                    computedString = [NSString stringWithFormat:kUIFEComputed, result];
+                }
                 
-                computedString = [NSString stringWithFormat:kUIFEComputed, result];
                 alert = [[UIAlertView alloc]initWithTitle: kUIFEResult
                                                   message: computedString
                                                  delegate: self
@@ -378,6 +386,15 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [alert show];
     }
     
+}
+
+-(BOOL)changeFormula
+{
+    if ([self saveIfPossible]) {
+        return YES;
+    }else {
+        return NO;
+    }
 }
 
 #pragma mark - Getter and setter

@@ -30,6 +30,7 @@
 #import "BrickProtocol.h"
 #import "Script.h"
 #import "NoteBrick.h"
+#import "SpeakBrick.h"
 
 // uncomment this to get special log outputs, etc...
 //#define LAYOUT_DEBUG 0
@@ -443,10 +444,18 @@
                 UIButton *formulaEditor = [UIUtil newDefaultBrickFormulaEditorWithFrame:inputViewFrame ForBrickCell:self AndLineNumber: lineNumber AndParameterNumber: counter];
                 inputField = (UIView*)formulaEditor;
             } else if ([afterLabelParam rangeOfString:@"TEXT"].location != NSNotFound) {
-                NoteBrick *brick =(NoteBrick*) self.brick;
-                inputViewFrame.origin.y = inputViewFrame.origin.y+10;
-                inputViewFrame.size.height = kBrickInputFieldHeight;
-                UITextField *textField = [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame andNote:brick.note AndBrickCell:self];
+                UITextField *textField;
+                if ([self.brick isKindOfClass:[NoteBrick class]]) {
+                    NoteBrick *brick =(NoteBrick*) self.brick;
+                    inputViewFrame.origin.y = inputViewFrame.origin.y+10;
+                    inputViewFrame.size.height = kBrickInputFieldHeight;
+                     textField= [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame andNote:brick.note AndBrickCell:self];
+                } else {
+                    SpeakBrick *brick =(SpeakBrick*) self.brick;
+                    inputViewFrame.origin.y = inputViewFrame.origin.y+10;
+                    inputViewFrame.size.height = kBrickInputFieldHeight;
+                    textField= [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame andNote:brick.text AndBrickCell:self];
+                }
                 inputField = (UIView*)textField;
             } else if ([afterLabelParam rangeOfString:@"MESSAGE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;

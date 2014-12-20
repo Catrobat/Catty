@@ -24,6 +24,9 @@
 #import "Formula.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "BrickFormulaProtocol.h"
+#import "PlaceAtBrickCell.h"
+#import "GlideToBrickCell.h"
+#import "Util.h"
 
 @interface FormulaEditorButton ()
 
@@ -45,8 +48,9 @@ static Formula *activeFormula;
         
         self.titleLabel.textColor = [UIColor whiteColor];
         self.titleLabel.font = [UIFont systemFontOfSize:kBrickTextFieldFontSize];
-//        NSLog(@"%@",[formula getDisplayString]);
+        self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         [self setTitle:[formula getDisplayString] forState:UIControlStateNormal];
+    
         [self sizeToFit];
         if (self.frame.size.width >= kBrickInputFieldMaxWidth) {
             self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, kBrickInputFieldMaxWidth, self.frame.size.height);
@@ -55,13 +59,19 @@ static Formula *activeFormula;
             [self.titleLabel setAdjustsFontSizeToFitWidth:YES];
             self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
             self.titleLabel.minimumScaleFactor = 10./self.titleLabel.font.pointSize;
+        }else if ([brickCell isKindOfClass:[PlaceAtBrickCell class]] || [brickCell isKindOfClass:[GlideToBrickCell class]]) {
+            if (self.frame.size.width > [Util screenWidth]/4.0f ) {
+                CGRect labelFrame = self.frame;
+                labelFrame.size.width = [Util screenWidth]/4.0f;
+                self.frame = labelFrame;
+            }
         }else{
             self.titleLabel.numberOfLines = 1;
             self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
             [self.titleLabel setAdjustsFontSizeToFitWidth:YES];
             self.titleLabel.minimumScaleFactor = 11./self.titleLabel.font.pointSize;
         }
-
+    
         CGRect labelFrame = self.frame;
         labelFrame.size.height = self.frame.size.height;
         self.frame = labelFrame;
