@@ -180,7 +180,8 @@ REMIX TIPS:
     </objectVariableList>
     <programVariableList>
       <userVariable>
-        </userVariable>
+        <name>hold</name>
+      </userVariable>
     </programVariableList>
   </variables>
 </program>
