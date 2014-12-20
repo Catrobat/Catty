@@ -78,4 +78,15 @@
             [[self class] relativeXPathToObjectList], index];
 }
 
++ (NSString*)relativeXPathToPointedObject:(SpriteObject*)pointedObject
+                     forPointedObjectList:(NSArray*)pointedObjectList
+                            andObjectList:(NSArray*)objectList
+{
+    NSString *index = [[self class] indexXPathStringForIndexNumber:[pointedObjectList indexOfObject:pointedObject]];
+#warning !!!!!!!!!!! DOES NOT WORK CORRECTLY !!!!!!!!!!!
+    // look for first object that contains a PointToBrick that references to this pointedObject
+    return [NSString stringWithFormat:@"%@objectList/object%@",
+            [[self class] relativeXPathToObjectList], index];
+}
+
 @end

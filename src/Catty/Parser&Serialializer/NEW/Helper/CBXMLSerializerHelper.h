@@ -32,5 +32,8 @@
 + (NSString*)relativeXPathToSound:(Sound*)sound inSoundList:(NSArray*)soundList;
 + (NSString*)relativeXPathToLook:(Look*)look inLookList:(NSArray*)lookList;
 + (NSString*)relativeXPathToObject:(SpriteObject*)object inObjectList:(NSArray*)objectList;
++ (NSString*)relativeXPathToPointedObject:(SpriteObject*)pointedObject
+                     forPointedObjectList:(NSArray*)pointedObjectList
+                            andObjectList:(NSArray*)objectList;
 
 @end
