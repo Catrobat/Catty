@@ -47,7 +47,7 @@
 - (void)compareProgram:(NSString*)programName092 withProgram:(NSString*)programName093 {
     Parser *parser092 = [[Parser alloc] init];
     Program *program092 = [parser092 generateObjectForProgramWithPath:[self getPathForXML:programName092]];
-    
+
     Program *program093 = [self getProgramForXML:programName093];
 
     XCTAssertTrue([program093 isEqualToProgram:program092], @"Programs are not equal");

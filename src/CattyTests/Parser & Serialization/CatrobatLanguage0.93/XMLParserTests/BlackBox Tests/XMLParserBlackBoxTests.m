@@ -31,16 +31,54 @@
 
 @implementation XMLParserBlackBoxTests
 
-- (void)testPythagoreanTheoremWithDifferentVersion {
-    [self compareProgram:@"Pythagorean-Theorem-092" withProgram:@"Pythagorean-Theorem-093"];
+- (void)testAirFight05
+{
+    [self compareProgram:@"Air_fight_0.5_091" withProgram:@"Air_fight_0.5_093"];
 }
 
-- (void)testGalaxyWarWithDifferentVersion {
-    [self compareProgram:@"Galaxy-War-092" withProgram:@"Galaxy-War-093"];
+- (void)testAirplaneWithShadow
+{
+    [self compareProgram:@"Airplane_with_shadow_091" withProgram:@"Airplane_with_shadow_093"];
 }
 
-- (void)testSkydivingSteveWithDifferentVersion {
-    [self compareProgram:@"Skydiving-Steve-092" withProgram:@"Skydiving-Steve-093"];
+- (void)testCompass01
+{
+    [self compareProgram:@"Compass_0.1_091" withProgram:@"Compass_0.1_093"];
+}
+
+- (void)testDemonstration
+{
+    [self compareProgram:@"Demonstration_091" withProgram:@"Demonstration_093"];
+}
+
+- (void)testDrinkMoreWater
+{
+    [self compareProgram:@"Drink_more_water_091" withProgram:@"Drink_more_water_093"];
+}
+
+- (void)testFlapPacMan
+{
+    [self compareProgram:@"Flap_Pac_Man_091" withProgram:@"Flap_Pac_Man_093"];
+}
+
+- (void)testFlappy30
+{
+    [self compareProgram:@"Flappy_v3.0_091" withProgram:@"Flappy_v3.0_093"];
+}
+
+- (void)testPythagoreanTheoremWithDifferentVersion
+{
+    [self compareProgram:@"Pythagorean_Theorem_092" withProgram:@"Pythagorean_Theorem_093"];
+}
+
+- (void)testGalaxyWarWithDifferentVersion
+{
+    [self compareProgram:@"Galaxy_War_092" withProgram:@"Galaxy_War_093"];
+}
+
+- (void)testSkydivingSteveWithDifferentVersion
+{
+    [self compareProgram:@"Skydiving_Steve_092" withProgram:@"Skydiving_Steve_093"];
 }
 
 @end

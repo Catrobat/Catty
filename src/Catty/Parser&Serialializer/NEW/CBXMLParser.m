@@ -100,6 +100,7 @@
         NSInfo(@"Parsing finished...");
     } @catch(NSException *exception) {
         NSError(@"Program could not be loaded! %@", [exception description]);
+        return nil;
     }
     [program updateReferences];
     program.XMLdocument = xmlDocument;
