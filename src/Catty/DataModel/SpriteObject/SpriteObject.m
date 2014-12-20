@@ -676,10 +676,7 @@
 
 - (BOOL)isEqualToSpriteObject:(SpriteObject*)spriteObject
 {
-    // for background objects always replace german name "Hintergrund" with "Background"
-    self.name = [self.name stringByReplacingOccurrencesOfString:@"Hintergrund" withString:@"Background"];
-    spriteObject.name = [spriteObject.name stringByReplacingOccurrencesOfString:@"Hintergrund" withString:@"Background"];
-    // now check if object names are both equal to each other
+    // check if object names are both equal to each other
     if (! [self.name isEqualToString:spriteObject.name]) {
         return NO;
     }
