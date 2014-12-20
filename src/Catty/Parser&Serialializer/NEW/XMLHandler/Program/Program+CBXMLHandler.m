@@ -93,33 +93,6 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    // IMPORTANT: find all pointedObjects and move them to the end of the spriteObject list
-    NSUInteger index = 0;
-    NSMutableArray *allPointedObjectRefs = [self.objectList mutableCopy];
-    for (id object in self.objectList) {
-        [XMLError exceptionIf:[object isKindOfClass:[SpriteObject class]] equals:NO
-                      message:@"Invalid sprite object instance given"];
-
-        NSMutableArray *pointedObjectRefs = [NSMutableArray array];
-        for (id objectToCompare in self.objectList) {
-            [XMLError exceptionIf:[objectToCompare isKindOfClass:[SpriteObject class]] equals:NO
-                          message:@"Invalid sprite object instance given"];
-            for (id script in ((SpriteObject*)objectToCompare).scriptList) {
-                [XMLError exceptionIf:[script isKindOfClass:[Script class]] equals:NO
-                              message:@"Invalid script instance given"];
-                for (id brick in ((Script*)script).brickList) {
-                    [XMLError exceptionIf:[brick isKindOfClass:[Brick class]] equals:NO
-                                  message:@"Invalid brick instance given"];
-                    if ([brick isKindOfClass:[PointToBrick class]] && (((PointToBrick*)brick).pointedObject == object)) {
-                        [pointedObjectRefs addObject:objectToCompare];
-                    }
-                }
-            }
-        }
-        [allPointedObjectRefs addObject:pointedObjectRefs];
-        ++index;
-    }
-
     GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"program"];
     context.spriteObjectList = self.objectList;
     [xmlElement addChild:[self.header xmlElementWithContext:context]];
