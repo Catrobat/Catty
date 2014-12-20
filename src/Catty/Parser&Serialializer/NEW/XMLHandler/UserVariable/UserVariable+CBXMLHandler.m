@@ -44,17 +44,16 @@
     UserVariable *userVariable = [UserVariable new];
     [XMLError exceptionIfNil:[xmlElement stringValue] message:@"No name for user variable given"];
     userVariable.name = [xmlElement stringValue];
-    
-    if(!isReferencedVariable) {
+
+    if(! isReferencedVariable) {
         UserVariable *alreadyExistingUserVariable = [CBXMLParserHelper findUserVariableInArray:context.userVariableList withName:userVariable.name];
         if (alreadyExistingUserVariable) {
-            [XMLError exceptionWithMessage:@"User variable with same name %@ already exists...\
-             Instantiated by other brick...", alreadyExistingUserVariable.name];
+            NSLog(@"User variable with same name %@ already exists...\
+                  Instantiated by other brick...", alreadyExistingUserVariable.name);
+            return alreadyExistingUserVariable;
         }
-        
         [context.userVariableList addObject:userVariable];
     }
-    
     return userVariable;
 }
 

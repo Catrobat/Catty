@@ -33,19 +33,28 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:3 AndFormulaListWithTotalNumberOfFormulas:1];
-    
-    GDataXMLElement *inUserBrickElement = [xmlElement childWithElementName:@"inUserBrick"]; // TODO: implement this...
-    [XMLError exceptionIfNil:inUserBrickElement message:@"No inUserBrickElement element found..."];
-    
+    NSUInteger childCount = [xmlElement childCount];
+    if (childCount == 3) {
+        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:3 AndFormulaListWithTotalNumberOfFormulas:1];
+        // optional
+        GDataXMLElement *inUserBrickElement = [xmlElement childWithElementName:@"inUserBrick"];
+        [XMLError exceptionIfNil:inUserBrickElement message:@"No inUserBrickElement element found..."];
+
+        // TODO: handle inUserBrick here...
+
+    } else if (childCount == 2) {
+        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:2 AndFormulaListWithTotalNumberOfFormulas:1];
+    } else {
+        [XMLError exceptionWithMessage:@"Too many or too less child elements..."];
+    }
+
     GDataXMLElement *userVariableElement = [xmlElement childWithElementName:@"userVariable"];
     [XMLError exceptionIfNil:userVariableElement message:@"No userVariableElement element found..."];
-    
+
     UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:nil];
     [XMLError exceptionIfNil:userVariable message:@"Unable to parse userVariable..."];
-    
+
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VARIABLE_CHANGE"];
-    
     ChangeVariableBrick *changeVariableBrick = [self new];
     changeVariableBrick.userVariable = userVariable;
     changeVariableBrick.variableFormula = formula;
