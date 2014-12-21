@@ -24,7 +24,7 @@
 
 @interface CBXMLPositionStack ()
 
-@property (nonatomic, strong) NSMutableArray *stack;
+@property (nonatomic, strong, readwrite) NSMutableArray *stack;
 @property (nonatomic, readwrite) NSUInteger numberOfXmlElements;
 
 @end
@@ -69,7 +69,7 @@
     return [self.stack countByEnumeratingWithState:state objects:buffer count:len];
 }
 
-- (id)copy
+- (instancetype)shallowCopy
 {
     CBXMLPositionStack *copiedPositionStack = [[self class] new];
     copiedPositionStack.stack = [self.stack mutableCopy];

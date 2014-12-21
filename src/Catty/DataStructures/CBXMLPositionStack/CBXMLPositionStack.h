@@ -26,11 +26,12 @@
 
 @interface CBXMLPositionStack : NSObject <NSFastEnumeration>
 
+@property (nonatomic, strong, readonly) NSMutableArray *stack;
 @property (nonatomic, readonly) NSUInteger numberOfXmlElements;
 
 - (void)pushXmlElementName:(NSString*)xmlElementName;
 - (NSString*)popXmlElementName;
 - (BOOL)isEmpty;
-- (id)copy;
+- (instancetype)shallowCopy;
 
 @end
