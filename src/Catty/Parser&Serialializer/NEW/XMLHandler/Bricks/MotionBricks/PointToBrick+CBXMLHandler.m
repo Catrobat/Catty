@@ -77,16 +77,16 @@
         [pointedObjectXmlElement addAttribute:nameAttribute];
         NSArray *children = [objectXmlElement children];
         for (GDataXMLElement *child in children) {
-            [pointedObjectXmlElement addChild:child];
+            [pointedObjectXmlElement addChild:child context:context];
         }
-        [xmlElement addChild:pointedObjectXmlElement];
+        [xmlElement addChild:pointedObjectXmlElement context:context];
         [context.pointedSpriteObjectList addObject:self.pointedObject];
     } else {
         // already serialized
         NSString *refPath = [CBXMLSerializerHelper relativeXPathToObject:self.pointedObject context:context];
         [pointedObjectXmlElement addAttribute:[GDataXMLElement elementWithName:@"reference"
                                                                    stringValue:refPath context:context]];
-        [xmlElement addChild:pointedObjectXmlElement];
+        [xmlElement addChild:pointedObjectXmlElement context:context];
     }
     return xmlElement;
 }

@@ -51,14 +51,14 @@
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.yDestination xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"Y_DESTINATION" context:context]];
-    [formulaList addChild:formula];
+    [formulaList addChild:formula context:context];
     formula = [self.xDestination xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"X_DESTINATION" context:context]];
-    [formulaList addChild:formula];
+    [formulaList addChild:formula context:context];
     formula = [self.durationInSeconds xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"DURATION_IN_SECONDS" context:context]];
-    [formulaList addChild:formula];
-    [brick addChild:formulaList];
+    [formulaList addChild:formula context:context];
+    [brick addChild:formulaList context:context];
     return brick;
 }
 

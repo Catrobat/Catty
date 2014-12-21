@@ -184,31 +184,30 @@
     for (id look in self.lookList) {
         [XMLError exceptionIf:[look isKindOfClass:[Look class]] equals:NO
                       message:@"Invalid look instance given"];
-        [lookListXmlElement addChild:[((Look*)look) xmlElementWithContext:nil]];
+        [lookListXmlElement addChild:[((Look*)look) xmlElementWithContext:nil] context:context];
     }
-    [xmlElement addChild:lookListXmlElement];
+    [xmlElement addChild:lookListXmlElement context:context];
 
     GDataXMLElement *soundListXmlElement = [GDataXMLElement elementWithName:@"soundList" context:context];
     for (id sound in self.soundList) {
         [XMLError exceptionIf:[sound isKindOfClass:[Sound class]] equals:NO
                       message:@"Invalid sound instance given"];
-        [soundListXmlElement addChild:[((Sound*)sound) xmlElementWithContext:nil]];
+        [soundListXmlElement addChild:[((Sound*)sound) xmlElementWithContext:nil] context:context];
     }
-    [xmlElement addChild:soundListXmlElement];
+    [xmlElement addChild:soundListXmlElement context:context];
 
     GDataXMLElement *scriptListXmlElement = [GDataXMLElement elementWithName:@"scriptList" context:context];
     for (id script in self.scriptList) {
         [XMLError exceptionIf:[script isKindOfClass:[Script class]] equals:NO
                       message:@"Invalid script instance given"];
-        [scriptListXmlElement addChild:[((Script*)script) xmlElementWithContext:context]];
+        [scriptListXmlElement addChild:[((Script*)script) xmlElementWithContext:context] context:context];
     }
-    [xmlElement addChild:scriptListXmlElement];
+    [xmlElement addChild:scriptListXmlElement context:context];
 
     // TODO: implement userBricks here...
     GDataXMLElement *userBricksXmlElement = [GDataXMLElement elementWithName:@"userBricks" context:context];
-    [xmlElement addChild:userBricksXmlElement];
+    [xmlElement addChild:userBricksXmlElement context:context];
 
-    NSLog(@"%@", [xmlElement XMLStringPrettyPrinted:YES]);
     return xmlElement;
 }
 

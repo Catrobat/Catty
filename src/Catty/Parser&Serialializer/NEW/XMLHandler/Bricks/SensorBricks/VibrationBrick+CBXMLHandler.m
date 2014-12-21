@@ -43,8 +43,8 @@
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.durationInSeconds xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"VIBRATE_DURATION_IN_SECONDS" context:context]];
-    [formulaList addChild:formula];
-    [brick addChild:formulaList];
+    [formulaList addChild:formula context:context];
+    [brick addChild:formulaList context:context];
     return brick;
 }
 

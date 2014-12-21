@@ -146,6 +146,7 @@
 {
     [XMLError exceptionIfNil:name message:@"Given param xmlElement MUST NOT be nil!!"];
     [context.currentPositionStack pushXmlElementName:name];
+    NSLog(@"+ [%@] added to stack", name);
     return [[self class] elementWithName:name];
 }
 
@@ -166,7 +167,7 @@
                   message:@"Can't pop xml element from stack. Stack is empty!!"];
     NSString *xmlElementName = [context.currentPositionStack popXmlElementName];
     NSLog(@"- [%@] removed from stack", xmlElementName);
-    [self addChild:child];
+    //[self addChild:child];
 }
 
 @end

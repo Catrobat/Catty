@@ -49,12 +49,12 @@
     GDataXMLElement *formula = [self.yPosition xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"Y_POSITION"
                            context:context]];
-    [formulaList addChild:formula];
+    [formulaList addChild:formula context:context];
     formula = [self.xPosition xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"X_POSITION"
                            context:context]];
-    [formulaList addChild:formula];
-    [brick addChild:formulaList];
+    [formulaList addChild:formula context:context];
+    [brick addChild:formulaList context:context];
     return brick;
 }
 

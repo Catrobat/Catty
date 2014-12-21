@@ -70,11 +70,11 @@
     GDataXMLElement *formula = [self.variableFormula xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"VARIABLE"
                                                    context:context]];
-    [formulaList addChild:formula];
-    [brick addChild:formulaList];
-    [brick addChild:[GDataXMLElement elementWithName:@"inUserBrick" stringValue:@"false" context:context]
+    [formulaList addChild:formula context:context];
+    [brick addChild:formulaList context:context];
+    [brick addChild:[GDataXMLElement elementWithName:@"inUserBrick" stringValue:@"false" context:context context:context]
             context:context]; // TODO: implement this...
-    [brick addChild:[self.userVariable xmlElementWithContext:context]];
+    [brick addChild:[self.userVariable xmlElementWithContext:context] context:context];
     return brick;
 }
 

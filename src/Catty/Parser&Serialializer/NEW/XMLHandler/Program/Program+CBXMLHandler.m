@@ -95,18 +95,18 @@
 {
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"program" context:context];
     context.spriteObjectList = self.objectList;
-    [xmlElement addChild:[self.header xmlElementWithContext:context]];
+    [xmlElement addChild:[self.header xmlElementWithContext:context] context:context];
 
     GDataXMLElement *objectListXmlElement = [GDataXMLElement elementWithName:@"objectList" context:context];
     for (id object in self.objectList) {
         [XMLError exceptionIf:[object isKindOfClass:[SpriteObject class]] equals:NO
                       message:@"Invalid sprite object instance given"];
-        [objectListXmlElement addChild:[((SpriteObject*)object) xmlElementWithContext:context]];
+        [objectListXmlElement addChild:[((SpriteObject*)object) xmlElementWithContext:context] context:context];
     }
-    [xmlElement addChild:objectListXmlElement];
+    [xmlElement addChild:objectListXmlElement context:context];
 
     if (self.variables) {
-        [xmlElement addChild:[self.variables xmlElementWithContext:context]];
+        [xmlElement addChild:[self.variables xmlElementWithContext:context] context:context];
     }
     return xmlElement;
 }

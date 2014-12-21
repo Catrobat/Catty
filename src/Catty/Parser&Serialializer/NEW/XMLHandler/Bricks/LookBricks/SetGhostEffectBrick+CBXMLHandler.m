@@ -46,8 +46,8 @@
     GDataXMLElement *formula = [self.transparency xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"TRANSPARENCY"
                                                    context:context]];
-    [formulaList addChild:formula];
-    [brick addChild:formulaList];
+    [formulaList addChild:formula context:context];
+    [brick addChild:formulaList context:context];
     return brick;
 }
 

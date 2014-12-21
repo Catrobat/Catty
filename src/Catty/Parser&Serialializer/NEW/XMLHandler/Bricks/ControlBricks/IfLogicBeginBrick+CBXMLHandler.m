@@ -50,8 +50,8 @@
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.ifCondition xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"IF_CONDITION" context:context]];
-    [formulaList addChild:formula];
-    [xmlElement addChild:formulaList];
+    [formulaList addChild:formula context:context];
+    [xmlElement addChild:formulaList context:context];
 
     // add opening nesting brick on stack
     [context.openedNestingBricksStack pushAndOpenNestingBrick:self];

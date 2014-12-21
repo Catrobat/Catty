@@ -49,7 +49,7 @@
 {
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"look" context:context];
     [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"name" stringValue:self.name]];
-    [xmlElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName] context:context];
+    [xmlElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName] context:context context:context];
     return xmlElement;
 }
 

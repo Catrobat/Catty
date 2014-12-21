@@ -66,7 +66,7 @@
         GDataXMLElement *referenceXMLElement = [GDataXMLElement elementWithName:@"look" context:context];
         NSString *refPath = [CBXMLSerializerHelper relativeXPathToLook:self.look inLookList:context.lookList];
         [referenceXMLElement addAttribute:[GDataXMLElement elementWithName:@"reference" stringValue:refPath context:context]];
-        [xmlElement addChild:referenceXMLElement];
+        [xmlElement addChild:referenceXMLElement context:context];
     }
     return xmlElement;
 }

@@ -48,7 +48,7 @@
     [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"BroadcastWaitBrick"
                                                  context:context]];
     GDataXMLElement *message = [GDataXMLElement elementWithName:@"broadcastMessage" stringValue:self.broadcastMessage context:context];
-    [brick addChild:message];
+    [brick addChild:message context:context];
     return brick;
 }
 

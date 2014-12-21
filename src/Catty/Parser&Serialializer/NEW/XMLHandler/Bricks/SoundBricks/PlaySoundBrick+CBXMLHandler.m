@@ -66,7 +66,7 @@
         GDataXMLElement *referenceXMLElement = [GDataXMLElement elementWithName:@"sound" context:context];
         NSString *refPath = [CBXMLSerializerHelper relativeXPathToSound:self.sound inSoundList:context.soundList];
         [referenceXMLElement addAttribute:[GDataXMLElement elementWithName:@"reference" stringValue:refPath context:context]];
-        [xmlElement addChild:referenceXMLElement];
+        [xmlElement addChild:referenceXMLElement context:context];
     }
     return xmlElement;
 }

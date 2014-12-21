@@ -65,21 +65,21 @@
     if (self.leftChild != nil) {
         GDataXMLElement *leftChild = [GDataXMLElement elementWithName:@"leftChild" context:context];
         for(GDataXMLNode *node in [self.leftChild xmlElementWithContext:context].children) {
-            [leftChild addChild:node];
+            [leftChild addChild:node context:context];
         }
-        [formulaElement addChild:leftChild];
+        [formulaElement addChild:leftChild context:context];
     }
     if (self.rightChild != nil) {
         GDataXMLElement *rightChild = [GDataXMLElement elementWithName:@"rightChild" context:context];
         for(GDataXMLNode *node in [self.rightChild xmlElementWithContext:context].children) {
-            [rightChild addChild:node];
+            [rightChild addChild:node context:context];
         }
-        [formulaElement addChild:rightChild];
+        [formulaElement addChild:rightChild context:context];
     }
     GDataXMLElement *type = [GDataXMLElement elementWithName:@"type" stringValue:[self stringForElementType:self.type] context:context];
-    [formulaElement addChild:type];
+    [formulaElement addChild:type context:context];
     GDataXMLElement *value = [GDataXMLElement elementWithName:@"value" stringValue:self.value context:context];
-    [formulaElement addChild:value];
+    [formulaElement addChild:value context:context];
     return formulaElement;
 }
 

@@ -130,22 +130,22 @@
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"script" context:context];
     NSString *scriptTypeName = NSStringFromClass([self class]);
     [xmlElement addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:scriptTypeName context:context]];
-    [xmlElement addChild:[self xmlElementForBrickList:self.brickList withContext:context]];
+    [xmlElement addChild:[self xmlElementForBrickList:self.brickList withContext:context] context:context];
     if ([self isKindOfClass:[StartScript class]]) {
         // TODO: implement isUserScript here...
         GDataXMLElement *isUserScriptXmlElement = [GDataXMLElement elementWithName:@"isUserScript" stringValue:@"false" context:context];
-        [xmlElement addChild:isUserScriptXmlElement];
+        [xmlElement addChild:isUserScriptXmlElement context:context];
     } else if ([self isKindOfClass:[BroadcastScript class]]) {
         BroadcastScript *broadcastScript = (BroadcastScript*)self;
         [XMLError exceptionIfNil:broadcastScript.receivedMessage
                          message:@"BroadcastScript contains invalid receivedMessage string"];
         GDataXMLElement *receivedMessageXmlElement = [GDataXMLElement elementWithName:@"receivedMessage"
                                                                           stringValue:broadcastScript.receivedMessage];
-        [xmlElement addChild:receivedMessageXmlElement];
+        [xmlElement addChild:receivedMessageXmlElement context:context];
     } else if ([self isKindOfClass:[WhenScript class]]) {
         [XMLError exceptionIfNil:self.action message:@"WhenScript contains invalid action string"];
         GDataXMLElement *actionXmlElement = [GDataXMLElement elementWithName:@"action" stringValue:self.action context:context];
-        [xmlElement addChild:actionXmlElement];
+        [xmlElement addChild:actionXmlElement context:context];
     } else {
         [XMLError exceptionWithMessage:@"Unsupported script type: %@!", NSStringFromClass([self class])];
     }
@@ -162,7 +162,7 @@
                       message:@"Invalid brick instance given"];
         [XMLError exceptionIf:[brick conformsToProtocol:@protocol(CBXMLNodeProtocol)] equals:NO
                       message:@"Brick does not have a CBXMLHandler category that implements CBXMLNodeProtocol"];
-        [xmlElement addChild:[((Brick<CBXMLNodeProtocol>*)brick) xmlElementWithContext:context]];
+        [xmlElement addChild:[((Brick<CBXMLNodeProtocol>*)brick) xmlElementWithContext:context] context:context];
     }
     [XMLError exceptionIf:[openedNestingBricksStack isEmpty] equals:NO
                   message:@"FATAL ERROR: there are still some unclosed nesting bricks (e.g. IF, \

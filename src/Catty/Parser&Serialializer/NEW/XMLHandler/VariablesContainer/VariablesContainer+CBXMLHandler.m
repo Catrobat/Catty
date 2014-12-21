@@ -172,7 +172,7 @@
                                                                        context:context];
         [entryToObjectReferenceXmlElement addAttribute:[GDataXMLElement elementWithName:@"reference"
                                                                          stringValue:referencePath]];
-        [entryXmlElement addChild:entryToObjectReferenceXmlElement];
+        [entryXmlElement addChild:entryToObjectReferenceXmlElement context:context];
 
         GDataXMLElement *listXmlElement = [GDataXMLElement elementWithName:@"list" context:context];
         NSArray *variables = [self.objectVariableList objectAtIndex:index];
@@ -182,14 +182,14 @@
             GDataXMLElement *userVariableXmlElement = [GDataXMLElement elementWithName:@"userVariable" context:context];
             // TODO: determine XPath...
             [userVariableXmlElement addAttribute:[GDataXMLElement elementWithName:@"reference" stringValue:@"" context:context]];
-            [listXmlElement addChild:userVariableXmlElement];
+            [listXmlElement addChild:userVariableXmlElement context:context];
         }
-        [entryXmlElement addChild:listXmlElement];
-        [objectVariableListXmlElement addChild:entryXmlElement];
+        [entryXmlElement addChild:listXmlElement context:context];
+        [objectVariableListXmlElement addChild:entryXmlElement context:context];
     }
 
     if (totalNumOfObjectVariables) {
-        [xmlElement addChild:objectVariableListXmlElement];
+        [xmlElement addChild:objectVariableListXmlElement context:context];
     }
 
     GDataXMLElement *programVariableListXmlElement = [GDataXMLElement elementWithName:@"programVariableList" context:context];
@@ -199,16 +199,16 @@
         GDataXMLElement *userVariableXmlElement = [GDataXMLElement elementWithName:@"userVariable" context:context];
         // TODO: determine XPath...
         [userVariableXmlElement addAttribute:[GDataXMLElement elementWithName:@"reference" stringValue:@"" context:context]];
-        [programVariableListXmlElement addChild:userVariableXmlElement];
+        [programVariableListXmlElement addChild:userVariableXmlElement context:context];
     }
 
     if ([self.programVariableList count]) {
-        [xmlElement addChild:programVariableListXmlElement];
+        [xmlElement addChild:programVariableListXmlElement context:context];
     }
 
     GDataXMLElement *userBrickVariableListXmlElement = [GDataXMLElement elementWithName:@"userBrickVariableList" context:context];
     // TODO: implement userBrickVariables here...
-    [xmlElement addChild:userBrickVariableListXmlElement];
+    [xmlElement addChild:userBrickVariableListXmlElement context:context];
 
     return xmlElement;
 }
