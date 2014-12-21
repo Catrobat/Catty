@@ -22,7 +22,7 @@
 
 #import "SetYBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "Formula+CBXMLHandler.h"
 
 @implementation SetYBrick (CBXMLHandler)

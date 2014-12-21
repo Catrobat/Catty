@@ -22,7 +22,7 @@
 
 #import "PlaySoundBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLParser.h"
 #import "Sound+CBXMLHandler.h"
 #import "CBXMLContext.h"

@@ -22,7 +22,7 @@
 
 #import "CBXMLParserHelper.h"
 #import "CBXMLValidator.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLContext.h"
 #import "Formula+CBXMLHandler.h"
 #import "Header+CBXMLHandler.h"

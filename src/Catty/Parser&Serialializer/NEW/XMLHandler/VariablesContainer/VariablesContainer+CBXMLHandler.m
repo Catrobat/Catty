@@ -21,7 +21,7 @@
  */
 
 #import "VariablesContainer+CBXMLHandler.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "VariablesContainer.h"
 #import "CBXMLValidator.h"
 #import "OrderedMapTable.h"
@@ -29,6 +29,7 @@
 #import "SpriteObject+CBXMLHandler.h"
 #import "UserVariable+CBXMLHandler.h"
 #import "CBXMLContext.h"
+#import "CBXMLSerializerHelper.h"
 
 @implementation VariablesContainer (CBXMLHandler)
 
@@ -47,7 +48,7 @@
         varContainer.objectVariableList = [[self class] parseAndCreateObjectVariables:objectVarListElement
                                                                           withContext:context];
     }
-    
+
     NSArray *programVarListElements = [variablesElement elementsForName:@"programVariableList"];
     if ([programVarListElements count]) {
         [XMLError exceptionIf:[programVarListElements count] notEquals:1
@@ -89,7 +90,7 @@
             [XMLError exceptionIfNil:spriteObject message:@"Unable to parse sprite object..."];
             [context.spriteObjectList addObject:spriteObject];
         }
-        
+
         NSArray *listElements = [entry elementsForName:@"list"];
         GDataXMLElement *listElement = [listElements firstObject];
         NSMutableArray *userVarList = [[NSMutableArray alloc] initWithCapacity:[listElement childCount]];
@@ -160,45 +161,57 @@
     GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"variables"];
     GDataXMLElement *objectVariableListXmlElement = [GDataXMLNode elementWithName:@"objectVariableList"];
     NSUInteger totalNumOfObjectVariables = [self.objectVariableList count];
-    
-    //  NSUInteger totalNumOfProgramVariables = [variableLists.programVariableList count];
+
     for (NSUInteger index = 0; index < totalNumOfObjectVariables; ++index) {
-        NSArray *variables = [self.objectVariableList objectAtIndex:index];
         GDataXMLElement *entryXmlElement = [GDataXMLNode elementWithName:@"entry"];
         GDataXMLElement *entryToObjectReferenceXmlElement = [GDataXMLNode elementWithName:@"object"];
-        
-        // FIXME: determine XPath...
-        [entryToObjectReferenceXmlElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@""]];
+        id spriteObject = [self.objectVariableList keyAtIndex:index];
+        [XMLError exceptionIf:[spriteObject isKindOfClass:[SpriteObject class]] equals:NO
+                      message:@"Instance in objectVariableList at index: %lu is no SpriteObject", index];
+        NSString *referencePath = [CBXMLSerializerHelper relativeXPathToObject:(SpriteObject*)spriteObject
+                                                                  inObjectList:context.spriteObjectList
+                                                             programXmlElement:context.programXmlElement
+                                                absoluteXPathOfCurrentPosition:@"program/variables/objectVariables/entry/object"];
+        [entryToObjectReferenceXmlElement addAttribute:[GDataXMLNode elementWithName:@"reference"
+                                                                         stringValue:referencePath]];
         [entryXmlElement addChild:entryToObjectReferenceXmlElement];
+
         GDataXMLElement *listXmlElement = [GDataXMLNode elementWithName:@"list"];
+        NSArray *variables = [self.objectVariableList objectAtIndex:index];
         for (id variable in variables) {
             [XMLError exceptionIf:[variable isKindOfClass:[UserVariable class]] equals:NO
                           message:@"Invalid user variable instance given"];
-            [listXmlElement addChild:[((UserVariable*)variable) xmlElementWithContext:context]];
+            GDataXMLElement *userVariableXmlElement = [GDataXMLNode elementWithName:@"userVariable"];
+            // TODO: determine XPath...
+            [userVariableXmlElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@""]];
+            [listXmlElement addChild:userVariableXmlElement];
         }
         [entryXmlElement addChild:listXmlElement];
         [objectVariableListXmlElement addChild:entryXmlElement];
     }
-    
-    //  if (totalNumOfObjectVariables) {
-    [xmlElement addChild:objectVariableListXmlElement];
-    //  }
-    
+
+    if (totalNumOfObjectVariables) {
+        [xmlElement addChild:objectVariableListXmlElement];
+    }
+
     GDataXMLElement *programVariableListXmlElement = [GDataXMLNode elementWithName:@"programVariableList"];
     for (id variable in self.programVariableList) {
         [XMLError exceptionIf:[variable isKindOfClass:[UserVariable class]] equals:NO
                       message:@"Invalid user variable instance given"];
-        [programVariableListXmlElement addChild:[((UserVariable*)variable) xmlElementWithContext:context]];
+        GDataXMLElement *userVariableXmlElement = [GDataXMLNode elementWithName:@"userVariable"];
+        // TODO: determine XPath...
+        [userVariableXmlElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:@""]];
+        [programVariableListXmlElement addChild:userVariableXmlElement];
     }
-    
-    //  if (totalNumOfProgramVariables) {
-    [xmlElement addChild:programVariableListXmlElement];
-    //  }
-    
-    //  if (totalNumOfObjectVariables || totalNumOfProgramVariables) {
-    [xmlElement addChild:xmlElement];
-    //  }
-    
+
+    if ([self.programVariableList count]) {
+        [xmlElement addChild:programVariableListXmlElement];
+    }
+
+    GDataXMLElement *userBrickVariableListXmlElement = [GDataXMLNode elementWithName:@"userBrickVariableList"];
+    // TODO: implement userBrickVariables here...
+    [xmlElement addChild:userBrickVariableListXmlElement];
+
     return xmlElement;
 }
 

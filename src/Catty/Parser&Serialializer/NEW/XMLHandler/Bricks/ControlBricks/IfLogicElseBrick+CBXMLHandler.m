@@ -21,7 +21,7 @@
  */
 
 #import "IfLogicElseBrick+CBXMLHandler.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLValidator.h"
 #import "CBXMLParser.h"
 #import "CBXMLContext.h"

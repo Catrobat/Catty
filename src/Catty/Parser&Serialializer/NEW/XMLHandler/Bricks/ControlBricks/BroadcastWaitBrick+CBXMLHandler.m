@@ -21,7 +21,7 @@
  */
 
 #import "BroadcastWaitBrick+CBXMLHandler.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLValidator.h"
 #import "CBXMLParserHelper.h"
 

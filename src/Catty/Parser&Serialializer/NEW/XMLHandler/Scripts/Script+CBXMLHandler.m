@@ -131,10 +131,10 @@
     NSString *scriptTypeName = NSStringFromClass([self class]);
     [xmlElement addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:scriptTypeName]];
     [xmlElement addChild:[self xmlElementForBrickList:self.brickList withContext:context]];
-    if ([self isKindOfClass:[WhenScript class]]) {
-        [XMLError exceptionIfNil:self.action message:@"WhenScript contains invalid action string"];
-        GDataXMLElement *actionXmlElement = [GDataXMLElement elementWithName:@"action" stringValue:self.action];
-        [xmlElement addChild:actionXmlElement];
+    if ([self isKindOfClass:[StartScript class]]) {
+        // TODO: implement isUserScript here...
+        GDataXMLElement *isUserScriptXmlElement = [GDataXMLElement elementWithName:@"isUserScript" stringValue:@"false"];
+        [xmlElement addChild:isUserScriptXmlElement];
     } else if ([self isKindOfClass:[BroadcastScript class]]) {
         BroadcastScript *broadcastScript = (BroadcastScript*)self;
         [XMLError exceptionIfNil:broadcastScript.receivedMessage
@@ -142,7 +142,11 @@
         GDataXMLElement *receivedMessageXmlElement = [GDataXMLElement elementWithName:@"receivedMessage"
                                                                           stringValue:broadcastScript.receivedMessage];
         [xmlElement addChild:receivedMessageXmlElement];
-    } else if (! [self isKindOfClass:[StartScript class]]) {
+    } else if ([self isKindOfClass:[WhenScript class]]) {
+        [XMLError exceptionIfNil:self.action message:@"WhenScript contains invalid action string"];
+        GDataXMLElement *actionXmlElement = [GDataXMLElement elementWithName:@"action" stringValue:self.action];
+        [xmlElement addChild:actionXmlElement];
+    } else {
         [XMLError exceptionWithMessage:@"Unsupported script type: %@!", NSStringFromClass([self class])];
     }
     return xmlElement;

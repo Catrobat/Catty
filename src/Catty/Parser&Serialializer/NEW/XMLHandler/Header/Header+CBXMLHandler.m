@@ -21,7 +21,7 @@
  */
 
 #import "Header+CBXMLHandler.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLValidator.h"
 #import "CBXMLParserHelper.h"
 #import "CatrobatLanguageDefines.h"

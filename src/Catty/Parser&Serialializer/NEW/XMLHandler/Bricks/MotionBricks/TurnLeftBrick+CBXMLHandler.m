@@ -23,7 +23,7 @@
 #import "TurnLeftBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "CBXMLParserHelper.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "Formula+CBXMLHandler.h"
 
 @implementation TurnLeftBrick (CBXMLHandler)

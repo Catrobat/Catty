@@ -22,7 +22,7 @@
 
 #import "PointToBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "SpriteObject+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
 #import "CBXMLContext.h"
@@ -83,7 +83,9 @@
     } else {
         // already serialized
         NSString *refPath = [CBXMLSerializerHelper relativeXPathToObject:self.pointedObject
-                                                            inObjectList:context.spriteObjectList];
+                                                            inObjectList:context.spriteObjectList
+                                                       programXmlElement:context.programXmlElement
+                                          absoluteXPathOfCurrentPosition:<#(NSString *)#>];
         [pointedObjectXmlElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:refPath]];
         [xmlElement addChild:pointedObjectXmlElement];
     }

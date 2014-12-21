@@ -22,7 +22,7 @@
 
 #import "ComeToFrontBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 
 @implementation ComeToFrontBrick (CBXMLHandler)
 

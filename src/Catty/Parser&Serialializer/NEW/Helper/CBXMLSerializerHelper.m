@@ -21,6 +21,7 @@
  */
 
 #import "CBXMLSerializerHelper.h"
+#import "GDataXMLElement+CustomExtensions.h"
 
 @implementation CBXMLSerializerHelper
 
@@ -71,8 +72,14 @@
             [[self class] relativeXPathToRessourceList], index];
 }
 
-+ (NSString*)relativeXPathToObject:(SpriteObject*)object inObjectList:(NSArray*)objectList
++ (NSString*)relativeXPathToObject:(SpriteObject*)object
+                      inObjectList:(NSArray*)objectList
+                 programXmlElement:(GDataXMLElement*)programXmlElement
+    absoluteXPathOfCurrentPosition:(NSString*)absoluteXPathOfCurrentPosition
 {
+    GDataXMLElement *temp = [programXmlElement singleNodeForCatrobatXPath:absoluteXPathOfCurrentPosition];
+    NSLog(@"%@", temp);
+
     NSString *index = [[self class] indexXPathStringForIndexNumber:[objectList indexOfObject:object]];
     return [NSString stringWithFormat:@"%@objectList/object%@",
             [[self class] relativeXPathToObjectList], index];

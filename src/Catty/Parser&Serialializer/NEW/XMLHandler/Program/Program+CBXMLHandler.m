@@ -21,7 +21,7 @@
  */
 
 #import "Program+CBXMLHandler.h"
-#import "GDataXMLNode.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLValidator.h"
 #import "VariablesContainer+CBXMLHandler.h"
 #import "SpriteObject+CBXMLHandler.h"
@@ -93,7 +93,7 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"program"];
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"program" context:context];
     context.spriteObjectList = self.objectList;
     [xmlElement addChild:[self.header xmlElementWithContext:context]];
 

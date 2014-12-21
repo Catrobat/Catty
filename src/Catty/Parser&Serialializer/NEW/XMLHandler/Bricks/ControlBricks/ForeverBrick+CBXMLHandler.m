@@ -24,7 +24,7 @@
 #import "CBXMLContext.h"
 #import "CBXMLOpenedNestingBricksStack.h"
 #import "CBXMLParserHelper.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 
 @implementation ForeverBrick (CBXMLHandler)
 

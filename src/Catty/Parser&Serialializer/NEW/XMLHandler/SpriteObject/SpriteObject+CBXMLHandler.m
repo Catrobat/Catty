@@ -21,7 +21,7 @@
  */
 
 #import "SpriteObject+CBXMLHandler.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLValidator.h"
 #import "SpriteObject.h"
 #import "Look+CBXMLHandler.h"
@@ -205,6 +205,10 @@
         [scriptListXmlElement addChild:[((Script*)script) xmlElementWithContext:context]];
     }
     [xmlElement addChild:scriptListXmlElement];
+
+    // TODO: implement userBricks here...
+    GDataXMLElement *userBricksXmlElement = [GDataXMLElement elementWithName:@"userBricks"];
+    [xmlElement addChild:userBricksXmlElement];
 
     NSLog(@"%@", [xmlElement XMLStringPrettyPrinted:YES]);
     return xmlElement;

@@ -22,7 +22,7 @@
 
 #import "SetLookBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "Look+CBXMLHandler.h"
 #import "CBXMLContext.h"
 #import "CBXMLParserHelper.h"

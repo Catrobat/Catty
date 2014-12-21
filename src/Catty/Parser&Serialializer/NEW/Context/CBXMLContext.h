@@ -21,8 +21,10 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "CBXMLPositionStack.h"
 
 @class CBXMLOpenedNestingBricksStack;
+@class GDataXMLElement;
 
 @interface CBXMLContext : NSObject
 
@@ -32,6 +34,8 @@
 @property (nonatomic, strong) NSMutableArray *spriteObjectList; // contains all known SpriteObjects
 @property (nonatomic, strong) NSMutableArray *lookList; // contains all looks of currently parsed/serialized SpriteObject
 @property (nonatomic, strong) NSMutableArray *soundList; // contains all sounds of currently parsed/serialized SpriteObject
+
+@property (nonatomic, strong) CBXMLPositionStack *currentPositionStack; // program xml element
 
 - (id)initWithSpriteObjectList:(NSArray*)spriteObjectList;
 - (id)initWithLookList:(NSArray*)lookList;

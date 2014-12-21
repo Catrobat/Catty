@@ -22,7 +22,7 @@
 
 #import "StopAllSoundsBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 
 @implementation StopAllSoundsBrick (CBXMLHandler)
 

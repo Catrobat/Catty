@@ -22,7 +22,7 @@
 
 #import "CBXMLSerializer.h"
 #import "Program+CBXMLHandler.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLContext.h"
 #import "CatrobatLanguageDefines.h"
 

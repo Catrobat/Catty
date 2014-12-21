@@ -22,7 +22,7 @@
 
 #import "ChangeYByNBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "Formula+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
 
