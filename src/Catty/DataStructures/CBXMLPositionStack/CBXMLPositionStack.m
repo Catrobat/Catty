@@ -31,6 +31,11 @@
 
 @implementation CBXMLPositionStack
 
+- (NSUInteger)numberOfXmlElements
+{
+    return [self.stack count];
+}
+
 - (void)pushXmlElementName:(NSString*)xmlElementName
 {
     [self.stack addObject:xmlElementName];

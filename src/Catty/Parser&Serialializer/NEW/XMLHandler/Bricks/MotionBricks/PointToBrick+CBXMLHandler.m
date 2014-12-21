@@ -67,21 +67,14 @@
     [XMLError exceptionIf:indexOfPointedObject equals:NSNotFound message:@"Pointed object does not exist in spriteObject list"];
     [XMLError exceptionIf:indexOfSpriteObject equals:NSNotFound message:@"Sprite object does not exist in spriteObject list"];
 
-    GDataXMLElement *pointedObjectXmlElement = [GDataXMLElement elementWithName:@"pointedObject" context:context];
     if ([CBXMLSerializerHelper indexOfElement:self.object inArray:context.pointedSpriteObjectList] == NSNotFound) {
         // not serialized yet
-        GDataXMLElement *objectXmlElement = [self.pointedObject xmlElementWithContext:context];
-        GDataXMLNode *nameAttribute = [objectXmlElement attributeForName:@"name"];
-        [XMLError exceptionIfNil:nameAttribute message:@"No name attribute in object! This should never happen!!"];
-        [pointedObjectXmlElement addAttribute:nameAttribute];
-        NSArray *children = [objectXmlElement children];
-        for (GDataXMLElement *child in children) {
-            [pointedObjectXmlElement addChild:child context:context];
-        }
+        GDataXMLElement *pointedObjectXmlElement = [self.pointedObject xmlElementWithContext:context asPointedObject:YES];
         [xmlElement addChild:pointedObjectXmlElement context:context];
         [context.pointedSpriteObjectList addObject:self.pointedObject];
     } else {
         // already serialized
+        GDataXMLElement *pointedObjectXmlElement = [GDataXMLElement elementWithName:@"pointedObject" context:context];
         NSString *refPath = [CBXMLSerializerHelper relativeXPathToObject:self.pointedObject context:context];
         [pointedObjectXmlElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:refPath]];
         [xmlElement addChild:pointedObjectXmlElement context:context];

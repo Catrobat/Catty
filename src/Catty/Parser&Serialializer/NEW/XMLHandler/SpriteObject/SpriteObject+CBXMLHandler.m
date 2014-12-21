@@ -160,12 +160,18 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
+    return [self xmlElementWithContext:context asPointedObject:NO];
+}
+
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context asPointedObject:(BOOL)asPointedObject
+{
     // update context object
     context.lookList = self.lookList;
     context.soundList = self.soundList;
 
     // generate xml element for sprite object
-    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"object" context:context];
+    NSString *xmlElementName = (asPointedObject ? @"pointedObject" : @"object");
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:xmlElementName context:context];
 
     // check if spriteObject has been already serialized within a PointToBrick
     NSUInteger pointedObjectIndex = [CBXMLSerializerHelper indexOfElement:self
