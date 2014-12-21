@@ -173,9 +173,7 @@
     if (pointedObjectIndex != NSNotFound) {
         // already serialized
         SpriteObject *pointedObject = [context.pointedSpriteObjectList objectAtIndex:pointedObjectIndex];
-        NSString *refPath = [CBXMLSerializerHelper relativeXPathToPointedObject:pointedObject
-                                                           forPointedObjectList:context.pointedSpriteObjectList
-                                                                  andObjectList:context.spriteObjectList];
+        NSString *refPath = [CBXMLSerializerHelper relativeXPathToPointedObject:pointedObject context:context];
         [xmlElement addAttribute:[GDataXMLElement elementWithName:@"reference" stringValue:refPath context:context]];
         return xmlElement;
     }
