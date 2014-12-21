@@ -21,9 +21,11 @@
  */
 
 #import "XMLSerializerAbstractTest.h"
+#import "GDataXMLElement+CustomExtensions.h"
 
 @implementation XMLSerializerAbstractTest
 
+#warning use and implement this
 - (BOOL)isXMLElement:(GDataXMLElement*)xmlElement equalToXMLElementForXPath:(NSString*)xPath inProgramForXML:(NSString*)program
 {
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:program]];
@@ -37,7 +39,7 @@
     return [self compareXMLElement:xmlElementFromFile withXMLElement:xmlElement];
 }
 
-- (BOOL)compareXMLElement:(GDataXMLNode*)firstElement withXMLElement:(GDataXMLNode*)secondElement
+- (BOOL)compareXMLElement:(GDataXMLElement*)firstElement withXMLElement:(GDataXMLElement*)secondElement
 {
     XCTAssertTrue([firstElement.name isEqualToString:secondElement.name], @"Name of xml element is not equal (file=%@, xmlElement=%@)", firstElement.name, secondElement.name);
     
@@ -56,7 +58,7 @@
     XCTAssertEqual([firstElement.children count], [secondElement.children count], @"Number of children not equal for element with name: %@", firstElement.name);
     
     
-    for(GDataXMLNode *node in firstElement.children) {
+    for(GDataXMLElement *node in firstElement.children) {
         [self compareXMLElement:node withXMLElement:[secondElement childWithElementName:node.name]];
     }
     

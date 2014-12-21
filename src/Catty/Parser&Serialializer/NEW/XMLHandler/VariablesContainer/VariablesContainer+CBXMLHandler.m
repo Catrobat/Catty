@@ -169,9 +169,7 @@
         [XMLError exceptionIf:[spriteObject isKindOfClass:[SpriteObject class]] equals:NO
                       message:@"Instance in objectVariableList at index: %lu is no SpriteObject", index];
         NSString *referencePath = [CBXMLSerializerHelper relativeXPathToObject:(SpriteObject*)spriteObject
-                                                                  inObjectList:context.spriteObjectList
-                                                             programXmlElement:context.programXmlElement
-                                                absoluteXPathOfCurrentPosition:@"program/variables/objectVariables/entry/object"];
+                                                                       context:context];
         [entryToObjectReferenceXmlElement addAttribute:[GDataXMLElement elementWithName:@"reference"
                                                                          stringValue:referencePath]];
         [entryXmlElement addChild:entryToObjectReferenceXmlElement];

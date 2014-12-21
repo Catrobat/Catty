@@ -22,7 +22,7 @@
 
 #import "Formula+CBXMLHandler.h"
 #import "FormulaElement+CBXMLHandler.h"
-#import "GDataXMLNode.h"
+#import "GDataXMLElement+CustomExtensions.h"
 
 @implementation Formula (CBXMLHandler)
 

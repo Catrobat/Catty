@@ -22,7 +22,7 @@
 
 #import "Script+CBXMLHandler.h"
 #import "CBXMLValidator.h"
-#import "GDataXMLNode.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLContext.h"
 #import "CBXMLOpenedNestingBricksStack.h"
 #import "NSString+CatrobatNSStringExtensions.h"

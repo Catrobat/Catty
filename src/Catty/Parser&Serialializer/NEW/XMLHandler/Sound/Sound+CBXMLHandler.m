@@ -21,7 +21,7 @@
  */
 
 #import "Sound+CBXMLHandler.h"
-#import "GDataXMLNode.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLValidator.h"
 
 @implementation Sound (CBXMLHandler)
