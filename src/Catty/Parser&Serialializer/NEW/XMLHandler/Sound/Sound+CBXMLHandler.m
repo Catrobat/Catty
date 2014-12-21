@@ -23,6 +23,8 @@
 #import "Sound+CBXMLHandler.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLValidator.h"
+#import "CBXMLContext.h"
+#import "CBXMLSerializerHelper.h"
 
 @implementation Sound (CBXMLHandler)
 
@@ -55,7 +57,8 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"sound" context:context];
+    NSUInteger indexOfSound = [CBXMLSerializerHelper indexOfElement:self inArray:context.soundList];
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"sound" xPathIndex:(indexOfSound+1) context:context];
     [xmlElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName context:context] context:context];
     [xmlElement addChild:[GDataXMLElement elementWithName:@"name" stringValue:self.name context:context] context:context];
     return xmlElement;

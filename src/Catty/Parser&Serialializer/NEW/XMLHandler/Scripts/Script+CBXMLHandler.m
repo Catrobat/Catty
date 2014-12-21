@@ -26,11 +26,12 @@
 #import "CBXMLContext.h"
 #import "CBXMLOpenedNestingBricksStack.h"
 #import "NSString+CatrobatNSStringExtensions.h"
-
 #import "BroadcastScript.h"
 #import "StartScript.h"
 #import "WhenScript.h"
 #import "Brick.h"
+#import "SpriteObject.h"
+#import "CBXMLSerializerHelper.h"
 
 @implementation Script (CBXMLHandler)
 
@@ -127,7 +128,9 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"script" context:context];
+    NSUInteger indexOfScript = [CBXMLSerializerHelper indexOfElement:self inArray:self.object.scriptList];
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"script" xPathIndex:(indexOfScript+1)
+                                                           context:context];
     NSString *scriptTypeName = NSStringFromClass([self class]);
     [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:scriptTypeName]];
     [xmlElement addChild:[self xmlElementForBrickList:self.brickList withContext:context] context:context];
@@ -155,6 +158,10 @@
 
 - (GDataXMLElement*)xmlElementForBrickList:(NSArray*)brickList withContext:(CBXMLContext*)context
 {
+    // update context object
+    context.brickList = self.brickList;
+
+    // generate xml element for brickList
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"brickList" context:context];
     CBXMLOpenedNestingBricksStack *openedNestingBricksStack = [CBXMLOpenedNestingBricksStack new];
     context.openedNestingBricksStack = openedNestingBricksStack;

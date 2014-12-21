@@ -171,9 +171,14 @@
     context.soundList = self.soundList;
 
     // generate xml element for sprite object
-    NSString *xmlElementName = (asPointedObject ? @"pointedObject" : @"object");
-    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:xmlElementName context:context];
-    CBXMLPositionStack *currentPositionStack = [context.currentPositionStack copy];
+    GDataXMLElement *xmlElement = nil;
+    if (! asPointedObject) {
+        NSUInteger indexOfSpriteObject = [CBXMLSerializerHelper indexOfElement:self inArray:context.spriteObjectList];
+        xmlElement = [GDataXMLElement elementWithName:@"object" xPathIndex:(indexOfSpriteObject+1) context:context];
+    } else {
+        xmlElement = [GDataXMLElement elementWithName:@"pointedObject" context:context];
+    }
+    CBXMLPositionStack *currentPositionStack = [context.currentPositionStack shallowCopy];
 
     // check if spriteObject has been already serialized (e.g. within a PointToBrick)
     CBXMLPositionStack *positionStackOfSpriteObject = context.spriteObjectNamePositions[self.name];

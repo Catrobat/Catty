@@ -41,9 +41,10 @@
     Program *program = [Program new];
     NSArray *headerNodes = [xmlElement elementsForName:@"header"];
     [XMLError exceptionIf:[headerNodes count] notEquals:1 message:@"Invalid header given!"];
+    // IMPORTANT: DO NOT CHANGE ORDER HERE!!
     program.header = [self parseAndCreateHeaderFromElement:[headerNodes objectAtIndex:0]];
-    program.objectList = [self parseAndCreateObjectsFromElement:xmlElement withContext:context];
     program.variables = [self parseAndCreateVariablesFromElement:xmlElement withContext:context];
+    program.objectList = [self parseAndCreateObjectsFromElement:xmlElement withContext:context];
     return program;
 }
 
@@ -93,8 +94,12 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"program" context:context];
+    // update context object
     context.spriteObjectList = self.objectList;
+    context.variables = self.variables;
+
+    // generate xml element for program
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"program" context:context];
     [xmlElement addChild:[self.header xmlElementWithContext:context] context:context];
 
     GDataXMLElement *objectListXmlElement = [GDataXMLElement elementWithName:@"objectList" context:context];
