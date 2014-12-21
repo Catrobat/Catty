@@ -140,7 +140,8 @@
         [XMLError exceptionIfNil:broadcastScript.receivedMessage
                          message:@"BroadcastScript contains invalid receivedMessage string"];
         GDataXMLElement *receivedMessageXmlElement = [GDataXMLElement elementWithName:@"receivedMessage"
-                                                                          stringValue:broadcastScript.receivedMessage];
+                                                                          stringValue:broadcastScript.receivedMessage
+                                                                              context:context];
         [xmlElement addChild:receivedMessageXmlElement context:context];
     } else if ([self isKindOfClass:[WhenScript class]]) {
         [XMLError exceptionIfNil:self.action message:@"WhenScript contains invalid action string"];

@@ -145,8 +145,10 @@
 + (GDataXMLElement*)elementWithName:(NSString*)name context:(CBXMLContext*)context
 {
     [XMLError exceptionIfNil:name message:@"Given param xmlElement MUST NOT be nil!!"];
-    [context.currentPositionStack pushXmlElementName:name];
-    NSLog(@"+ [%@] added to stack", name);
+    if (context.currentPositionStack) {
+        [context.currentPositionStack pushXmlElementName:name];
+        NSLog(@"+ [%@] added to stack", name);
+    }
     return [[self class] elementWithName:name];
 }
 
@@ -166,7 +168,9 @@
     [XMLError exceptionIf:[context.currentPositionStack isEmpty] equals:YES
                   message:@"Can't pop xml element from stack. Stack is empty!!"];
     NSString *xmlElementName = [context.currentPositionStack popXmlElementName];
-    NSLog(@"- [%@] removed from stack", xmlElementName);
+    if (context.currentPositionStack) {
+        NSLog(@"- [%@] removed from stack", xmlElementName);
+    }
     [self addChild:child];
 }
 
