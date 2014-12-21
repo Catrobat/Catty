@@ -76,8 +76,8 @@
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" context:context];
-    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"IfLogicEndBrick" context:context]];
-    
+    [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"IfLogicEndBrick"]];
+
     // pop opening nesting brick from stack
     Brick *openingNestingBrick = [context.openedNestingBricksStack popAndCloseTopMostNestingBrick];
     if ([openingNestingBrick isKindOfClass:[IfLogicBeginBrick class]]) {

@@ -35,7 +35,7 @@
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" context:context];
-    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"LedOnBrick" context:context]];
+    [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"LedOnBrick"]];
     return brick;
 }
 

@@ -167,7 +167,7 @@
                   message:@"Can't pop xml element from stack. Stack is empty!!"];
     NSString *xmlElementName = [context.currentPositionStack popXmlElementName];
     NSLog(@"- [%@] removed from stack", xmlElementName);
-    //[self addChild:child];
+    [self addChild:child];
 }
 
 @end

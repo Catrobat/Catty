@@ -39,10 +39,10 @@
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" context:context];
-    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"VibrationBrick" context:context]];
+    [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"VibrationBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.durationInSeconds xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"VIBRATE_DURATION_IN_SECONDS" context:context]];
+    [formula addAttribute:[GDataXMLNode attributeWithName:@"category" stringValue:@"VIBRATE_DURATION_IN_SECONDS"]];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
     return brick;

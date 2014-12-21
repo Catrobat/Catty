@@ -29,13 +29,12 @@
 @interface CBXMLContext : NSObject
 
 @property (nonatomic, strong) CBXMLOpenedNestingBricksStack *openedNestingBricksStack;
+@property (nonatomic, strong) CBXMLPositionStack *currentPositionStack; // stack to keep track of current position (used for serialization only)
 @property (nonatomic, strong, readonly) NSMutableArray *userVariableList; // contains all already parsed UserVariables
 @property (nonatomic, strong, readonly) NSMutableArray *pointedSpriteObjectList; // contains all already parsed pointed (!!) SpriteObjects
 @property (nonatomic, strong) NSMutableArray *spriteObjectList; // contains all known SpriteObjects
 @property (nonatomic, strong) NSMutableArray *lookList; // contains all looks of currently parsed/serialized SpriteObject
 @property (nonatomic, strong) NSMutableArray *soundList; // contains all sounds of currently parsed/serialized SpriteObject
-
-@property (nonatomic, strong) CBXMLPositionStack *currentPositionStack; // program xml element
 
 - (id)initWithSpriteObjectList:(NSArray*)spriteObjectList;
 - (id)initWithLookList:(NSArray*)lookList;

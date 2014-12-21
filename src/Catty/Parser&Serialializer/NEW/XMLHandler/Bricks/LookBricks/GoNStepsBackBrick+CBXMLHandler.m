@@ -40,10 +40,10 @@
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" context:context];
-    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"GoNStepsBackBrick" context:context]];
+    [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"GoNStepsBackBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.steps xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"STEPS" context:context]];
+    [formula addAttribute:[GDataXMLNode attributeWithName:@"category" stringValue:@"STEPS"]];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
     return brick;

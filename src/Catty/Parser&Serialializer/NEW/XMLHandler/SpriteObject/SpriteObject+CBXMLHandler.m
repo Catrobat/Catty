@@ -174,7 +174,7 @@
         // already serialized
         SpriteObject *pointedObject = [context.pointedSpriteObjectList objectAtIndex:pointedObjectIndex];
         NSString *refPath = [CBXMLSerializerHelper relativeXPathToPointedObject:pointedObject context:context];
-        [xmlElement addAttribute:[GDataXMLElement elementWithName:@"reference" stringValue:refPath context:context]];
+        [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:refPath]];
         return xmlElement;
     }
 
@@ -184,7 +184,7 @@
     for (id look in self.lookList) {
         [XMLError exceptionIf:[look isKindOfClass:[Look class]] equals:NO
                       message:@"Invalid look instance given"];
-        [lookListXmlElement addChild:[((Look*)look) xmlElementWithContext:nil] context:context];
+        [lookListXmlElement addChild:[((Look*)look) xmlElementWithContext:context] context:context];
     }
     [xmlElement addChild:lookListXmlElement context:context];
 
@@ -192,7 +192,7 @@
     for (id sound in self.soundList) {
         [XMLError exceptionIf:[sound isKindOfClass:[Sound class]] equals:NO
                       message:@"Invalid sound instance given"];
-        [soundListXmlElement addChild:[((Sound*)sound) xmlElementWithContext:nil] context:context];
+        [soundListXmlElement addChild:[((Sound*)sound) xmlElementWithContext:context] context:context];
     }
     [xmlElement addChild:soundListXmlElement context:context];
 

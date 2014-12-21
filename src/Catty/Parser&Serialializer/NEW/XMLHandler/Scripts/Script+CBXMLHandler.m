@@ -129,7 +129,7 @@
 {
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"script" context:context];
     NSString *scriptTypeName = NSStringFromClass([self class]);
-    [xmlElement addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:scriptTypeName context:context]];
+    [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:scriptTypeName]];
     [xmlElement addChild:[self xmlElementForBrickList:self.brickList withContext:context] context:context];
     if ([self isKindOfClass:[StartScript class]]) {
         // TODO: implement isUserScript here...

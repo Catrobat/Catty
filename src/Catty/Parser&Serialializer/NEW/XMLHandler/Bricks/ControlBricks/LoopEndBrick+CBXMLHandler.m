@@ -75,7 +75,7 @@
     } else {
         [XMLError exceptionWithMessage:@"Found unsupported referenced LoopBeginBrick brick type in LoopEndBrick"];
     }
-    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:brickXmlElementTypeName context:context]];
+    [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:brickXmlElementTypeName]];
     return brick;
 }
 

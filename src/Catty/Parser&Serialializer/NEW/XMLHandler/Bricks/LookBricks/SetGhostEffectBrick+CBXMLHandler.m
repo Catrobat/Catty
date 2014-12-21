@@ -40,12 +40,10 @@
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" context:context];
-    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"SetGhostEffectBrick"
-                                                 context:context]];
+    [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"SetGhostEffectBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.transparency xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"TRANSPARENCY"
-                                                   context:context]];
+    [formula addAttribute:[GDataXMLNode attributeWithName:@"category" stringValue:@"TRANSPARENCY"]];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
     return brick;

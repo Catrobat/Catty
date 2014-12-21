@@ -61,11 +61,11 @@
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"brick" context:context];
-    [xmlElement addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"SetLookBrick" context:context]];
+    [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"SetLookBrick"]];
     if (self.look) {
         GDataXMLElement *referenceXMLElement = [GDataXMLElement elementWithName:@"look" context:context];
         NSString *refPath = [CBXMLSerializerHelper relativeXPathToLook:self.look inLookList:context.lookList];
-        [referenceXMLElement addAttribute:[GDataXMLElement elementWithName:@"reference" stringValue:refPath context:context]];
+        [referenceXMLElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:refPath]];
         [xmlElement addChild:referenceXMLElement context:context];
     }
     return xmlElement;

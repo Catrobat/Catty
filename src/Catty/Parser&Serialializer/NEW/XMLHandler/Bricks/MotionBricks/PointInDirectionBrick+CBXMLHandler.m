@@ -42,10 +42,10 @@
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" context:context];
-    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"PointInDirectionBrick" context:context]];
+    [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"PointInDirectionBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.degrees xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"DEGREES" context:context]];
+    [formula addAttribute:[GDataXMLNode attributeWithName:@"category" stringValue:@"DEGREES"]];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
     return brick;

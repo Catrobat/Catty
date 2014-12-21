@@ -55,8 +55,7 @@
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"brick" context:context];
-    [xmlElement addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"PointToBrick"
-                                                      context:context]];
+    [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"PointToBrick"]];
     [XMLError exceptionIfNil:self.pointedObject message:@"No sprite object given in PointToBrick"];
     [XMLError exceptionIfNil:self.object message:@"Missing reference to brick's sprite object"];
 
@@ -84,8 +83,7 @@
     } else {
         // already serialized
         NSString *refPath = [CBXMLSerializerHelper relativeXPathToObject:self.pointedObject context:context];
-        [pointedObjectXmlElement addAttribute:[GDataXMLElement elementWithName:@"reference"
-                                                                   stringValue:refPath context:context]];
+        [pointedObjectXmlElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:refPath]];
         [xmlElement addChild:pointedObjectXmlElement context:context];
     }
     return xmlElement;

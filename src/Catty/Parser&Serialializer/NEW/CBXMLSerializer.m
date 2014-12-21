@@ -25,6 +25,7 @@
 #import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLContext.h"
 #import "CatrobatLanguageDefines.h"
+#import "CBXMLPositionStack.h"
 
 @interface CBXMLSerializer()
 
@@ -58,6 +59,12 @@
         NSInfo(@"Saving Program...");
         CBXMLContext *context = [CBXMLContext new];
         GDataXMLElement *programElement = [program xmlElementWithContext:context];
+        // sanity check => stack must be empty
+        if (! [context.currentPositionStack isEmpty]) {
+            NSError(@"FATAL! Unable to serialize program. Current position stack is NOT empty.");
+            abort();
+        }
+
         GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithRootElement:programElement];
         NSString *xmlString = [NSString stringWithFormat:@"%@\n%@", kCatrobatHeaderXMLDeclaration,
                                [document.rootElement XMLStringPrettyPrinted:YES]];

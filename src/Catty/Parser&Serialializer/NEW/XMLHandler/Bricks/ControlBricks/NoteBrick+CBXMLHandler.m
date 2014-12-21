@@ -50,12 +50,12 @@
     formulaElement.type = STRING;
     formulaElement.value = self.note;
     speakFormula.formulaTree = formulaElement;
-    
+
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" context:context];
-    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"NoteBrick" context:context]];
+    [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"NoteBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [speakFormula xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"NOTE" context:context]];
+    [formula addAttribute:[GDataXMLNode attributeWithName:@"category" stringValue:@"NOTE"]];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
     return brick;

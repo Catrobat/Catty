@@ -55,48 +55,68 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
     [dateFormatter setDateFormat:kCatrobatHeaderDateTimeFormat];
-    
+
     GDataXMLElement *headerXMLElement = [GDataXMLElement elementWithName:@"header" context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"applicationBuildName"
-                                                    stringValue:self.applicationBuildName context:context]];
+                                                    stringValue:self.applicationBuildName context:context]
+                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"applicationBuildNumber"
-                                                    stringValue:self.applicationBuildNumber context:context]];
+                                                    stringValue:self.applicationBuildNumber context:context]
+                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"applicationName"
-                                                    stringValue:self.applicationName context:context]];
+                                                    stringValue:self.applicationName context:context]
+                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"applicationVersion"
-                                                    stringValue:self.applicationVersion context:context]];
+                                                    stringValue:self.applicationVersion context:context]
+                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"catrobatLanguageVersion"
-                                                    stringValue:kCBXMLSerializerLanguageVersion context:context]];
+                                                    stringValue:kCBXMLSerializerLanguageVersion context:context]
+                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"dateTimeUpload"
-                                                    stringValue:(self.dateTimeUpload ? [dateFormatter stringFromDate:self.dateTimeUpload] : nil) context:context]];
+                                                    stringValue:(self.dateTimeUpload ? [dateFormatter stringFromDate:self.dateTimeUpload] : nil) context:context]
+                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"description"
-                                                    stringValue:self.programDescription context:context]];
+                                                    stringValue:self.programDescription context:context]
+                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"deviceName"
-                                                    stringValue:self.deviceName context:context]];
+                                                    stringValue:self.deviceName context:context]
+                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"mediaLicense"
-                                                    stringValue:self.mediaLicense context:context]];
+                                                    stringValue:self.mediaLicense context:context]
+                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"platform"
-                                                    stringValue:self.platform context:context]];
+                                                    stringValue:self.platform context:context]
+                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"platformVersion"
-                                                    stringValue:self.platformVersion context:context]];
+                                                    stringValue:self.platformVersion context:context]
+                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"programLicense"
-                                                    stringValue:self.programLicense context:context]];
+                                                    stringValue:self.programLicense context:context]
+                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"programName"
-                                                    stringValue:self.programName context:context]];
+                                                    stringValue:self.programName context:context]
+                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"remixOf"
-                                                    stringValue:self.remixOf context:context]];
+                                                    stringValue:self.remixOf context:context]
+                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"screenHeight"
-                                                    stringValue:[self.screenHeight stringValue] context:context]];
+                                                    stringValue:[self.screenHeight stringValue] context:context]
+                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"screenWidth"
-                                                    stringValue:[self.screenWidth stringValue] context:context]];
+                                                    stringValue:[self.screenWidth stringValue] context:context]
+                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"screenMode"
-                                                    stringValue:self.screenMode context:context]];
+                                                    stringValue:self.screenMode context:context]
+                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"tags"
-                                                    stringValue:self.tags context:context]];
+                                                    stringValue:self.tags context:context]
+                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"url"
-                                                    stringValue:self.url context:context]];
+                                                    stringValue:self.url context:context]
+                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"userHandle"
-                                                    stringValue:self.userHandle context:context]];
+                                                    stringValue:self.userHandle context:context]
+                       context:context];
     return headerXMLElement;
 }
 

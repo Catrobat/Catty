@@ -40,12 +40,10 @@
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" context:context];
-    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"ChangeBrightnessByNBrick"
-                                                 context:context]];
+    [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"ChangeBrightnessByNBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.changeBrightness xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"BRIGHTNESS_CHANGE"
-                                                   context:context]];
+    [formula addAttribute:[GDataXMLNode attributeWithName:@"category" stringValue:@"BRIGHTNESS_CHANGE"]];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
     return brick;

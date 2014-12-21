@@ -170,8 +170,8 @@
                       message:@"Instance in objectVariableList at index: %lu is no SpriteObject", index];
         NSString *referencePath = [CBXMLSerializerHelper relativeXPathToObject:(SpriteObject*)spriteObject
                                                                        context:context];
-        [entryToObjectReferenceXmlElement addAttribute:[GDataXMLElement elementWithName:@"reference"
-                                                                         stringValue:referencePath]];
+        [entryToObjectReferenceXmlElement addAttribute:[GDataXMLNode attributeWithName:@"reference"
+                                                                            stringValue:referencePath]];
         [entryXmlElement addChild:entryToObjectReferenceXmlElement context:context];
 
         GDataXMLElement *listXmlElement = [GDataXMLElement elementWithName:@"list" context:context];
@@ -181,7 +181,7 @@
                           message:@"Invalid user variable instance given"];
             GDataXMLElement *userVariableXmlElement = [GDataXMLElement elementWithName:@"userVariable" context:context];
             // TODO: determine XPath...
-            [userVariableXmlElement addAttribute:[GDataXMLElement elementWithName:@"reference" stringValue:@"" context:context]];
+            [userVariableXmlElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:@""]];
             [listXmlElement addChild:userVariableXmlElement context:context];
         }
         [entryXmlElement addChild:listXmlElement context:context];
@@ -198,7 +198,7 @@
                       message:@"Invalid user variable instance given"];
         GDataXMLElement *userVariableXmlElement = [GDataXMLElement elementWithName:@"userVariable" context:context];
         // TODO: determine XPath...
-        [userVariableXmlElement addAttribute:[GDataXMLElement elementWithName:@"reference" stringValue:@"" context:context]];
+        [userVariableXmlElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:@""]];
         [programVariableListXmlElement addChild:userVariableXmlElement context:context];
     }
 

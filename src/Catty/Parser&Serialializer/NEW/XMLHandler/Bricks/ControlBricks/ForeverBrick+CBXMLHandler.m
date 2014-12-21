@@ -41,8 +41,8 @@
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" context:context];
-    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"ForeverBrick" context:context]];
-    
+    [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"ForeverBrick"]];
+
     // add opening nesting brick on stack
     [context.openedNestingBricksStack pushAndOpenNestingBrick:self];
     return brick;

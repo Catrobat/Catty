@@ -22,6 +22,7 @@
 
 #import "CBXMLContext.h"
 #import "CBXMLOpenedNestingBricksStack.h"
+#import "CBXMLPositionStack.h"
 
 @interface CBXMLContext ()
 
@@ -33,6 +34,22 @@
 @implementation CBXMLContext
 
 #pragma mark - Getters and Setters
+- (CBXMLOpenedNestingBricksStack*)openedNestingBricksStack
+{
+    if(!_openedNestingBricksStack)
+        _openedNestingBricksStack = [[CBXMLOpenedNestingBricksStack alloc] init];
+
+    return _openedNestingBricksStack;
+}
+
+- (CBXMLPositionStack*)currentPositionStack
+{
+    if(! _currentPositionStack)
+        _currentPositionStack = [[CBXMLPositionStack alloc] init];
+
+    return _currentPositionStack;
+}
+
 - (NSMutableArray*)userVariableList
 {
     if (! _userVariableList) {
@@ -86,14 +103,6 @@
     }
     
     return self;
-}
-
-- (CBXMLOpenedNestingBricksStack*)openedNestingBricksStack
-{
-    if(!_openedNestingBricksStack)
-        _openedNestingBricksStack = [[CBXMLOpenedNestingBricksStack alloc] init];
-    
-    return _openedNestingBricksStack;
 }
 
 @end
