@@ -69,4 +69,12 @@
     return [self.stack countByEnumeratingWithState:state objects:buffer count:len];
 }
 
+- (id)copy
+{
+    CBXMLPositionStack *copiedPositionStack = [[self class] new];
+    copiedPositionStack.stack = [self.stack mutableCopy];
+    copiedPositionStack.numberOfXmlElements = self.numberOfXmlElements;
+    return copiedPositionStack;
+}
+
 @end

@@ -31,5 +31,6 @@
 - (void)pushXmlElementName:(NSString*)xmlElementName;
 - (NSString*)popXmlElementName;
 - (BOOL)isEmpty;
+- (id)copy;
 
 @end

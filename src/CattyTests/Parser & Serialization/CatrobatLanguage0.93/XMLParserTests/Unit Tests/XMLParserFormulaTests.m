@@ -43,9 +43,11 @@
     
     NSMutableArray *lookList = [SpriteObject parseAndCreateLooks:objectElement];
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
-    
-    Brick *brick = [SetVariableBrick parseFromElement:brickXMLElement withContext:[[CBXMLContext alloc] initWithLookList:lookList]];
-    
+
+    CBXMLContext *context = [CBXMLContext new];
+    context.lookList = lookList;
+    Brick *brick = [SetVariableBrick parseFromElement:brickXMLElement withContext:context];
+
     XCTAssertTrue(brick.brickType == kSetVariableBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[SetVariableBrick class]], @"Invalid brick class");
     

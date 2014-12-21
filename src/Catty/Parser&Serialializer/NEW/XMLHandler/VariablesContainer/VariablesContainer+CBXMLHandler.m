@@ -30,6 +30,7 @@
 #import "UserVariable+CBXMLHandler.h"
 #import "CBXMLContext.h"
 #import "CBXMLSerializerHelper.h"
+#import "CBXMLPositionStack.h"
 
 @implementation VariablesContainer (CBXMLHandler)
 
@@ -168,10 +169,12 @@
         id spriteObject = [self.objectVariableList keyAtIndex:index];
         [XMLError exceptionIf:[spriteObject isKindOfClass:[SpriteObject class]] equals:NO
                       message:@"Instance in objectVariableList at index: %lu is no SpriteObject", index];
-        NSString *referencePath = [CBXMLSerializerHelper relativeXPathToObject:(SpriteObject*)spriteObject
-                                                                       context:context];
+        CBXMLPositionStack *positionStackOfSpriteObject = context.spriteObjectNamePositions[((SpriteObject*)spriteObject).name];
+        CBXMLPositionStack *currentPositionStack = [context.currentPositionStack copy];
+        NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
+                                                             toDestinationPositionStack:positionStackOfSpriteObject];
         [entryToObjectReferenceXmlElement addAttribute:[GDataXMLNode attributeWithName:@"reference"
-                                                                            stringValue:referencePath]];
+                                                                            stringValue:refPath]];
         [entryXmlElement addChild:entryToObjectReferenceXmlElement context:context];
 
         GDataXMLElement *listXmlElement = [GDataXMLElement elementWithName:@"list" context:context];

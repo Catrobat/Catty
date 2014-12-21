@@ -50,6 +50,14 @@
     return _currentPositionStack;
 }
 
+- (NSMutableDictionary*)spriteObjectNamePositions
+{
+    if(! _spriteObjectNamePositions)
+        _spriteObjectNamePositions = [NSMutableDictionary dictionary];
+
+    return _spriteObjectNamePositions;
+}
+
 - (NSMutableArray*)userVariableList
 {
     if (! _userVariableList) {
@@ -72,37 +80,6 @@
         _pointedSpriteObjectList = [NSMutableArray array];
     }
     return _pointedSpriteObjectList;
-}
-
-#pragma mark - Initializers
-- (id)initWithSpriteObjectList:(NSMutableArray*)spriteObjectList
-{
-    self = [super init];
-    if(self) {
-        self.spriteObjectList = spriteObjectList;
-    }
-    
-    return self;
-}
-
-- (id)initWithLookList:(NSMutableArray*)lookList
-{
-    self = [super init];
-    if(self) {
-        self.lookList = lookList;
-    }
-    
-    return self;
-}
-
-- (id)initWithSoundList:(NSMutableArray*)soundList
-{
-    self = [super init];
-    if(self) {
-        self.soundList = soundList;
-    }
-    
-    return self;
 }
 
 @end

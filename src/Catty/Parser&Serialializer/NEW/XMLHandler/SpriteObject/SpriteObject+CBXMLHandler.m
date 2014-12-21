@@ -31,6 +31,7 @@
 #import "CBXMLParserHelper.h"
 #import "Script+CBXMLHandler.h"
 #import "CBXMLSerializerHelper.h"
+#import "CBXMLPositionStack.h"
 
 @implementation SpriteObject (CBXMLHandler)
 
@@ -172,17 +173,20 @@
     // generate xml element for sprite object
     NSString *xmlElementName = (asPointedObject ? @"pointedObject" : @"object");
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:xmlElementName context:context];
+    CBXMLPositionStack *currentPositionStack = [context.currentPositionStack copy];
 
-    // check if spriteObject has been already serialized within a PointToBrick
-    NSUInteger pointedObjectIndex = [CBXMLSerializerHelper indexOfElement:self
-                                                                  inArray:context.pointedSpriteObjectList];
-    if (pointedObjectIndex != NSNotFound) {
+    // check if spriteObject has been already serialized (e.g. within a PointToBrick)
+    CBXMLPositionStack *positionStackOfSpriteObject = context.spriteObjectNamePositions[self.name];
+    if (positionStackOfSpriteObject) {
         // already serialized
-        SpriteObject *pointedObject = [context.pointedSpriteObjectList objectAtIndex:pointedObjectIndex];
-        NSString *refPath = [CBXMLSerializerHelper relativeXPathToPointedObject:pointedObject context:context];
+        NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
+                                                             toDestinationPositionStack:positionStackOfSpriteObject];
         [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:refPath]];
         return xmlElement;
     }
+
+    // save current stack position in context
+    context.spriteObjectNamePositions[self.name] = currentPositionStack;
 
     [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"name" stringValue:self.name]];
 
