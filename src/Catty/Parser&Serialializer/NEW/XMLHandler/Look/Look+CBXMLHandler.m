@@ -23,6 +23,8 @@
 #import "Look+CBXMLHandler.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLValidator.h"
+#import "CBXMLContext.h"
+#import "CBXMLSerializerHelper.h"
 
 @implementation Look (CBXMLHandler)
 
@@ -47,11 +49,11 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"look" context:context];
+    NSUInteger indexOfLook = [CBXMLSerializerHelper indexOfElement:self inArray:context.lookList];
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"look" xPathIndex:(indexOfLook+1) context:context];
     [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"name" stringValue:self.name]];
     [xmlElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName
-                                                  context:context]
-                 context:context];
+                                                  context:context] context:context];
     return xmlElement;
 }
 

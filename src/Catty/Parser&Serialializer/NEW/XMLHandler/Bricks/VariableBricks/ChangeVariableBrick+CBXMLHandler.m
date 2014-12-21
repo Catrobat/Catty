@@ -28,6 +28,9 @@
 #import "CBXMLParser.h"
 #import "CBXMLContext.h"
 #import "CBXMLParserHelper.h"
+#import "CBXMLSerializerHelper.h"
+#import "VariablesContainer.h"
+#import "OrderedMapTable.h"
 
 @implementation ChangeVariableBrick (CBXMLHandler)
 
@@ -63,7 +66,8 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" context:context];
+    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
     [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"ChangeVariableBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.variableFormula xmlElementWithContext:context];
@@ -72,7 +76,21 @@
     [brick addChild:formulaList context:context];
     [brick addChild:[GDataXMLElement elementWithName:@"inUserBrick" stringValue:@"false"
                                              context:context] context:context]; // TODO: implement this...
-    [brick addChild:[self.userVariable xmlElementWithContext:context] context:context];
+
+    // is it object variable or program variable?
+    [XMLError exceptionIfNil:self.object message:@"Brick contains no reference to the \
+     corresponding Sprite Object!"];
+    BOOL isObjectVariable = [context.variables isVariableOfSpriteObject:self.object userVariable:self.userVariable];
+    BOOL isProgramVariable = [context.variables isProgramVariable:self.userVariable];
+    [XMLError exceptionIf:(isObjectVariable || isProgramVariable) equals:NO
+                  message:@"Brick contains invalid UserVariable. The variable is neither an \
+                            object nor a program variable."];
+
+    if (isObjectVariable) {
+        [brick addChild:[self.userVariable xmlElementWithContext:context forSpriteObject:self.object] context:context];
+    } else {
+        [brick addChild:[self.userVariable xmlElementWithContext:context] context:context];
+    }
     return brick;
 }
 

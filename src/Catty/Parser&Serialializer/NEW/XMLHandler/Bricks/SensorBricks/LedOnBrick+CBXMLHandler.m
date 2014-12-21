@@ -23,6 +23,8 @@
 #import "LedOnBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
 #import "GDataXMLElement+CustomExtensions.h"
+#import "CBXMLContext.h"
+#import "CBXMLSerializerHelper.h"
 
 @implementation LedOnBrick (CBXMLHandler)
 
@@ -34,7 +36,8 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" context:context];
+    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
     [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"LedOnBrick"]];
     return brick;
 }

@@ -55,8 +55,9 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"brick" context:context];
-    [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"PointToBrick"]];
+    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
+    [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"PointToBrick"]];
     [XMLError exceptionIfNil:self.pointedObject message:@"No sprite object given in PointToBrick"];
     [XMLError exceptionIfNil:self.object message:@"Missing reference to brick's sprite object"];
 
@@ -73,19 +74,24 @@
     if (positionStackOfSpriteObject) {
         // already serialized
         GDataXMLElement *pointedObjectXmlElement = [GDataXMLElement elementWithName:@"pointedObject" context:context];
-        CBXMLPositionStack *currentPositionStack = [context.currentPositionStack copy];
+        CBXMLPositionStack *currentPositionStack = [context.currentPositionStack shallowCopy];
 
         NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
                                                              toDestinationPositionStack:positionStackOfSpriteObject];
         [pointedObjectXmlElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:refPath]];
-        [xmlElement addChild:pointedObjectXmlElement context:context];
+        [brick addChild:pointedObjectXmlElement context:context];
     } else {
         // not serialized yet
-        GDataXMLElement *pointedObjectXmlElement = [self.pointedObject xmlElementWithContext:context asPointedObject:YES];
-        [xmlElement addChild:pointedObjectXmlElement context:context];
+        CBXMLContext *newContext = [context shallowCopy]; // IMPORTANT: copy context!!!
+        newContext.currentPositionStack = context.currentPositionStack; // but position stacks must remain the same!
+        GDataXMLElement *pointedObjectXmlElement = [self.pointedObject xmlElementWithContext:newContext asPointedObject:YES];
+        context.spriteObjectNamePositions = newContext.spriteObjectNamePositions;
+        context.programUserVariableNamePositions = newContext.programUserVariableNamePositions;
+        context.pointedSpriteObjectList = newContext.pointedSpriteObjectList;
+        [brick addChild:pointedObjectXmlElement context:context];
         [context.pointedSpriteObjectList addObject:self.pointedObject];
     }
-    return xmlElement;
+    return brick;
 }
 
 @end
