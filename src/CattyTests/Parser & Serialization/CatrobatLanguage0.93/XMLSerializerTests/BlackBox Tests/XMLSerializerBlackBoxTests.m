@@ -31,9 +31,27 @@
 
 @implementation XMLSerializerBlackBoxTests
 
+- (void)testAirFight05
+{
+    Program *program093 = [self getProgramForXML:@"Air_fight_0.5_093"];
+    [self saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
+}
+
+- (void)testAirplaneWithShadow
+{
+    Program *program093 = [self getProgramForXML:@"Airplane_with_shadow_093"];
+    [self saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
+}
+
+- (void)testFlapPacMan
+{
+    Program *program093 = [self getProgramForXML:@"Flap_Pac_Man_093"];
+    [self saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
+}
+
 - (void)testPythagoreanTheorem
 {
-    Program *program093 = [self getProgramForXML:@"Pythagorean-Theorem-093"];
+    Program *program093 = [self getProgramForXML:@"Pythagorean_Theorem_093"];
     [self saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
 }
 

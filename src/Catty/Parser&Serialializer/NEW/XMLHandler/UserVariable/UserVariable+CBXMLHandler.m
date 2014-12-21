@@ -25,6 +25,8 @@
 #import "CBXMLValidator.h"
 #import "CBXMLParserHelper.h"
 #import "CBXMLContext.h"
+#import "CBXMLPositionStack.h"
+#import "CBXMLSerializerHelper.h"
 
 @implementation UserVariable (CBXMLHandler)
 
@@ -60,7 +62,36 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"userVariable" stringValue:self.name context:context];
+    return [self xmlElementWithContext:context forSpriteObject:nil];
+}
+
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context forSpriteObject:(SpriteObject*)spriteObject
+{
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"userVariable" stringValue:self.name
+                                                           context:context]; // needed here for stack
+    CBXMLPositionStack *currentPositionStack = [context.currentPositionStack shallowCopy];
+
+    // check if userVariable has been already serialized (e.g. within a SetVariableBrick)
+    CBXMLPositionStack *positionStackOfUserVariable = nil;
+    if (! spriteObject) {
+        positionStackOfUserVariable = context.programUserVariableNamePositions[self.name];
+    }
+    if (positionStackOfUserVariable) {
+        // already serialized
+        [context.currentPositionStack popXmlElementName]; // remove already added userVariable that contains stringValue!
+        GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"userVariable"
+                                                               context:context]; // add new one without stringValue!
+        NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
+                                                             toDestinationPositionStack:positionStackOfUserVariable];
+        [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:refPath]];
+        return xmlElement;
+    }
+
+    // save current stack position in context
+    if (! spriteObject) {
+        context.programUserVariableNamePositions[self.name] = currentPositionStack;
+    }
+
     return xmlElement;
 }
 
