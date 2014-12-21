@@ -29,6 +29,7 @@
 #import "ForeverBrick.h"
 #import "RepeatBrick.h"
 #import "CBXMLParserHelper.h"
+#import "CBXMLSerializerHelper.h"
 
 @implementation LoopEndBrick (CBXMLHandler)
 
@@ -51,7 +52,8 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" context:context];
+    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
 
     // pop opening nesting brick from stack
     Brick *openingNestingBrick = [context.openedNestingBricksStack popAndCloseTopMostNestingBrick];

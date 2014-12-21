@@ -28,6 +28,7 @@
 #import "CBXMLOpenedNestingBricksStack.h"
 #import "CBXMLParserHelper.h"
 #import "Formula+CBXMLHandler.h"
+#import "CBXMLSerializerHelper.h"
 
 @implementation IfLogicBeginBrick (CBXMLHandler)
 
@@ -45,17 +46,18 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"brick" context:context];
-    [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"IfLogicBeginBrick"]];
+    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
+    [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"IfLogicBeginBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.ifCondition xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLNode attributeWithName:@"category" stringValue:@"IF_CONDITION"]];
     [formulaList addChild:formula context:context];
-    [xmlElement addChild:formulaList context:context];
+    [brick addChild:formulaList context:context];
 
     // add opening nesting brick on stack
     [context.openedNestingBricksStack pushAndOpenNestingBrick:self];
-    return xmlElement;
+    return brick;
 }
 
 @end

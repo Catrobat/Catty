@@ -27,19 +27,9 @@
 
 @implementation CBXMLSerializerHelper
 
-+ (NSString*)relativeXPathToProgramXmlElementForCurrentPositionStack:(CBXMLPositionStack*)stack
++ (NSString*)relativeXPathToRessourceList
 {
-    NSUInteger numberOfXmlElements = [stack numberOfXmlElements];
-    NSMutableString *path = [NSMutableString stringWithString:@""];
-    for (NSUInteger counter = 0; counter < numberOfXmlElements; ++counter) {
-        [path appendString:@"../"];
-    }
-    return [path copy];
-}
-
-+ (NSString*)relativeXPathToObjectList
-{
-    return @"../../../../../../"; // TODO: should be computed dynamically REQUIRED (PointToBrick) MUST BE IMPLEMENTED!!!
+    return @"../../../../../"; // TODO: should be computed dynamically!
 }
 
 + (NSString*)indexXPathStringForIndexNumber:(NSUInteger)indexNumber
@@ -67,35 +57,53 @@
 
 + (NSString*)relativeXPathToSound:(Sound*)sound inSoundList:(NSArray*)soundList
 {
-//    NSString *index = [[self class] indexXPathStringForIndexNumber:[soundList indexOfObject:sound]];
-//    return [NSString stringWithFormat:@"%@soundList/sound%@",
-//            [[self class] relativeXPathToRessourceList], index];
-    return @"NOT IMPLEMENTED";
+    NSString *index = [[self class] indexXPathStringForIndexNumber:[[self class] indexOfElement:sound
+                                                                                        inArray:soundList]];
+    return [NSString stringWithFormat:@"%@soundList/sound%@",
+            [[self class] relativeXPathToRessourceList], index];
 }
 
 + (NSString*)relativeXPathToLook:(Look*)look inLookList:(NSArray*)lookList
 {
-//    NSString *index = [[self class] indexXPathStringForIndexNumber:[lookList indexOfObject:look]];
-    return @"NOT IMPLEMENTED";
-//    return [NSString stringWithFormat:@"%@lookList/look%@",
-//            [[self class] relativeXPathToRessourceList], index];
+    NSString *index = [[self class] indexXPathStringForIndexNumber:[[self class] indexOfElement:look
+                                                                                        inArray:lookList]];
+    return [NSString stringWithFormat:@"%@lookList/look%@",
+            [[self class] relativeXPathToRessourceList], index];
 }
 
-+ (NSString*)relativeXPathToObject:(SpriteObject*)object context:(CBXMLContext*)context
++ (NSString*)relativeXPathFromSourcePositionStack:(CBXMLPositionStack*)sourcePositionStack
+                       toDestinationPositionStack:(CBXMLPositionStack*)destinationPositionStack
 {
-    NSString *path = [[self class] relativeXPathToProgramXmlElementForCurrentPositionStack:context.currentPositionStack];
-    NSString *index = [[self class] indexXPathStringForIndexNumber:[context.spriteObjectList indexOfObject:object]];
-    return [NSString stringWithFormat:@"%@objectList/object%@", path, index];
-}
+    // determine longest common path of both positions
+    NSUInteger index = 0;
+    NSUInteger stackLengthOfSourcePath = [sourcePositionStack.stack count];
+    NSUInteger stackLengthOfDestinationPath = [destinationPositionStack.stack count];
+    while ((index < stackLengthOfSourcePath) && (index < stackLengthOfDestinationPath)) {
+        NSString *xmlElementNameOfSourcePath = [sourcePositionStack.stack objectAtIndex:index];
+        NSString *xmlElementNameOfDestinationPath = [destinationPositionStack.stack objectAtIndex:index];
+        if (! [xmlElementNameOfSourcePath isEqualToString:xmlElementNameOfDestinationPath]) {
+            break;
+        }
+        ++index;
+    }
 
-+ (NSString*)relativeXPathToPointedObject:(SpriteObject*)pointedObject context:(CBXMLContext*)context
-{
-    NSString *index = [[self class] indexXPathStringForIndexNumber:[context.pointedSpriteObjectList
-                                                                    indexOfObject:pointedObject]];
-#warning !!!!!!!!!!! DOES NOT WORK CORRECTLY !!!!!!!!!!!
-    // look for first object that contains a PointToBrick that references to this pointedObject
-    return [NSString stringWithFormat:@"%@objectList/object%@",
-            [[self class] relativeXPathToObjectList], index];
+    // path reconstruction
+    NSMutableString *path = [NSMutableString new];
+    // check if destination element is outside of source element => then we have to prepend "../../[../]"
+    if (index < stackLengthOfSourcePath) {
+        NSUInteger difference = (stackLengthOfSourcePath - index);
+        for (NSUInteger times = 0; times < difference; ++times) {
+            [path appendString:@"../"];
+        }
+    }
+    NSUInteger counter = 0;
+    while (index < stackLengthOfDestinationPath) {
+        [path appendFormat:@"%@%@", (counter++ ? @"/" : @""),
+         [destinationPositionStack.stack objectAtIndex:index]];
+        ++index;
+    }
+
+    return [path copy];
 }
 
 @end

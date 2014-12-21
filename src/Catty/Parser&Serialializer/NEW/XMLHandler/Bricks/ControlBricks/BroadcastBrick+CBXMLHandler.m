@@ -24,6 +24,8 @@
 #import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLValidator.h"
 #import "CBXMLParserHelper.h"
+#import "CBXMLContext.h"
+#import "CBXMLSerializerHelper.h"
 
 @implementation BroadcastBrick (CBXMLHandler)
 
@@ -44,7 +46,8 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" context:context];
+    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
     [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"BroadcastBrick"]];
     GDataXMLElement *message = [GDataXMLElement elementWithName:@"broadcastMessage" stringValue:self.broadcastMessage context:context];
     [brick addChild:message context:context];

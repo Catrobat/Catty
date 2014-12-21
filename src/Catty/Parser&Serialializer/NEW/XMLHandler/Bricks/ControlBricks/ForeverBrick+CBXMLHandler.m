@@ -25,6 +25,7 @@
 #import "CBXMLOpenedNestingBricksStack.h"
 #import "CBXMLParserHelper.h"
 #import "GDataXMLElement+CustomExtensions.h"
+#import "CBXMLSerializerHelper.h"
 
 @implementation ForeverBrick (CBXMLHandler)
 
@@ -40,7 +41,8 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" context:context];
+    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
     [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"ForeverBrick"]];
 
     // add opening nesting brick on stack

@@ -29,6 +29,7 @@
 #import "CBXMLParserHelper.h"
 #import "IfLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
+#import "CBXMLSerializerHelper.h"
 
 @implementation IfLogicEndBrick (CBXMLHandler)
 
@@ -75,7 +76,8 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" context:context];
+    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
     [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"IfLogicEndBrick"]];
 
     // pop opening nesting brick from stack
