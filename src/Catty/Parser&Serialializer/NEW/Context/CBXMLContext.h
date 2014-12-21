@@ -25,6 +25,7 @@
 @class CBXMLOpenedNestingBricksStack;
 @class GDataXMLElement;
 @class CBXMLPositionStack;
+@class VariablesContainer;
 
 @interface CBXMLContext : NSObject
 
@@ -38,13 +39,20 @@
 // a CBXMLPositionStack instance) as the dictionary's values (used for serialization only)
 @property (nonatomic, strong) NSMutableDictionary *spriteObjectNamePositions;
 
+// contains UserVariable names as the dictionary's keys and their current position on the stack (pointer to
+// a CBXMLPositionStack instance) as the dictionary's values (used for serialization only)
+@property (nonatomic, strong) NSMutableDictionary *programUserVariableNamePositions;
+
 //------------------------------------------------------------------------------------------------------------
 // ressources data used while traversing the tree
 //------------------------------------------------------------------------------------------------------------
-@property (nonatomic, strong, readonly) NSMutableArray *userVariableList; // contains all already parsed UserVariables
-@property (nonatomic, strong, readonly) NSMutableArray *pointedSpriteObjectList; // contains all already parsed pointed (!!) SpriteObjects
+@property (nonatomic, strong) NSMutableArray *pointedSpriteObjectList; // contains all already parsed pointed (!!) SpriteObjects
 @property (nonatomic, strong) NSMutableArray *spriteObjectList; // contains all known SpriteObjects
 @property (nonatomic, strong) NSMutableArray *lookList; // contains all looks of currently parsed/serialized SpriteObject
 @property (nonatomic, strong) NSMutableArray *soundList; // contains all sounds of currently parsed/serialized SpriteObject
+@property (nonatomic, strong) NSMutableArray *brickList; // contains all bricks (used only by serializer)
+@property (nonatomic, strong) VariablesContainer *variables;
+
+- (instancetype)shallowCopy;
 
 @end

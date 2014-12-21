@@ -142,21 +142,39 @@
     return [nodes firstObject];
 }
 
-+ (GDataXMLElement*)elementWithName:(NSString*)name context:(CBXMLContext*)context
++ (void)pushToStackElementName:(NSString*)name xPathIndex:(NSUInteger)xPathIndex context:(CBXMLContext*)context
 {
     [XMLError exceptionIfNil:name message:@"Given param xmlElement MUST NOT be nil!!"];
     if (context.currentPositionStack) {
+        if (xPathIndex > 1) {
+            name = [name stringByAppendingFormat:@"[%lu]", xPathIndex];
+        }
         [context.currentPositionStack pushXmlElementName:name];
         NSLog(@"+ [%@] added to stack", name);
     }
+}
+
++ (GDataXMLElement*)elementWithName:(NSString*)name context:(CBXMLContext*)context
+{
+    return [self elementWithName:name xPathIndex:0 context:context];
+}
+
++ (GDataXMLElement*)elementWithName:(NSString*)name xPathIndex:(NSUInteger)xPathIndex
+                            context:(CBXMLContext*)context
+{
+    [[self class] pushToStackElementName:name xPathIndex:xPathIndex context:context];
     return [[self class] elementWithName:name];
 }
 
 + (GDataXMLElement*)elementWithName:(NSString*)name stringValue:(NSString*)value context:(CBXMLContext*)context
 {
-    [XMLError exceptionIfNil:name message:@"Given param xmlElement MUST NOT be nil!!"];
-    [context.currentPositionStack pushXmlElementName:name];
-    NSLog(@"+ [%@] added to stack", name);
+    return [self elementWithName:name xPathIndex:0 stringValue:value context:context];
+}
+
++ (GDataXMLElement*)elementWithName:(NSString*)name xPathIndex:(NSUInteger)xPathIndex
+                        stringValue:(NSString*)value context:(CBXMLContext*)context
+{
+    [[self class] pushToStackElementName:name xPathIndex:xPathIndex context:context];
     if (value && [value length]) {
         return [[self class] elementWithName:name stringValue:value];
     }

@@ -23,13 +23,7 @@
 #import "CBXMLContext.h"
 #import "CBXMLOpenedNestingBricksStack.h"
 #import "CBXMLPositionStack.h"
-
-@interface CBXMLContext ()
-
-@property (nonatomic, strong, readwrite) NSMutableArray *userVariableList;
-@property (nonatomic, strong, readwrite) NSMutableArray *pointedSpriteObjectList;
-
-@end
+#import "VariablesContainer.h"
 
 @implementation CBXMLContext
 
@@ -58,12 +52,20 @@
     return _spriteObjectNamePositions;
 }
 
-- (NSMutableArray*)userVariableList
+- (NSMutableDictionary*)programUserVariableNamePositions
 {
-    if (! _userVariableList) {
-        _userVariableList = [NSMutableArray array];
+    if(! _programUserVariableNamePositions)
+        _programUserVariableNamePositions = [NSMutableDictionary dictionary];
+
+    return _programUserVariableNamePositions;
+}
+
+- (NSMutableArray*)pointedSpriteObjectList
+{
+    if (! _pointedSpriteObjectList) {
+        _pointedSpriteObjectList = [NSMutableArray array];
     }
-    return _userVariableList;
+    return _pointedSpriteObjectList;
 }
 
 - (NSMutableArray*)spriteObjectList
@@ -74,12 +76,53 @@
     return _spriteObjectList;
 }
 
-- (NSMutableArray*)pointedSpriteObjectList
+- (NSMutableArray*)lookList
 {
-    if (! _pointedSpriteObjectList) {
-        _pointedSpriteObjectList = [NSMutableArray array];
+    if (! _lookList) {
+        _lookList = [NSMutableArray array];
     }
-    return _pointedSpriteObjectList;
+    return _lookList;
+}
+
+- (NSMutableArray*)soundList
+{
+    if (! _soundList) {
+        _soundList = [NSMutableArray array];
+    }
+    return _soundList;
+}
+
+- (NSMutableArray*)brickList
+{
+    if (! _brickList) {
+        _brickList = [NSMutableArray array];
+    }
+    return _brickList;
+}
+
+- (VariablesContainer*)variables
+{
+    if (! _variables) {
+        _variables = [VariablesContainer new];
+    }
+    return _variables;
+}
+
+
+- (instancetype)shallowCopy
+{
+    CBXMLContext *copiedContext = [CBXMLContext new];
+    copiedContext.openedNestingBricksStack = [self.openedNestingBricksStack shallowCopy];
+    copiedContext.currentPositionStack = [self.currentPositionStack shallowCopy];
+    copiedContext.spriteObjectNamePositions = [self.spriteObjectNamePositions mutableCopy];
+    copiedContext.programUserVariableNamePositions = [self.programUserVariableNamePositions mutableCopy];
+    copiedContext.pointedSpriteObjectList = [self.pointedSpriteObjectList mutableCopy];
+    copiedContext.spriteObjectList = [self.spriteObjectList mutableCopy];
+    copiedContext.lookList = [self.lookList mutableCopy];
+    copiedContext.soundList = [self.soundList mutableCopy];
+    copiedContext.brickList = [self.brickList mutableCopy];
+    copiedContext.variables = [self.variables shallowCopy];
+    return copiedContext;
 }
 
 @end
