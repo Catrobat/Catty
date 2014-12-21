@@ -67,17 +67,15 @@ static pthread_mutex_t variablesLock;
     return _programVariableList;
 }
 
-- (UserVariable*)getUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*) sprite
+- (UserVariable*)getUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite
 {
-    NSArray* objectUserVariables = [self.objectVariableList objectForKey:sprite];
-    
-    UserVariable* variable = [self findUserVariableNamed:name inArray:objectUserVariables];
-    
-    if(!variable) {
+    NSArray *objectUserVariables = [self.objectVariableList objectForKey:sprite];
+    UserVariable *variable = [self findUserVariableNamed:name inArray:objectUserVariables];
+
+    if (! variable) {
         variable = [self findUserVariableNamed:name inArray:self.programVariableList];
     }
     return variable;
-    
 }
 
 - (UserVariable*)findUserVariableNamed:(NSString*)name inArray:(NSArray*)userVariables
@@ -107,6 +105,34 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_lock(&variablesLock);
     userVariable.value = [NSNumber numberWithFloat:(CGFloat)(([userVariable.value doubleValue] + value))];
     pthread_mutex_unlock(&variablesLock);
+}
+
+- (BOOL)isVariableOfSpriteObject:(SpriteObject*)spriteObject userVariable:(UserVariable*)userVariable
+{
+    for (NSUInteger index = 0; index < [self.objectVariableList count]; ++index) {
+        SpriteObject *spriteObjectToCompare = [self.objectVariableList keyAtIndex:index];
+        if (spriteObjectToCompare != spriteObject) {
+            continue;
+        }
+
+        NSMutableArray *userVariableList = [self.objectVariableList objectAtIndex:index];
+        for (UserVariable *userVariableToCompare in userVariableList) {
+            if ([userVariableToCompare.name isEqualToString:userVariable.name]) {
+                return YES;
+            }
+        }
+    }
+    return NO;
+}
+
+- (BOOL)isProgramVariable:(UserVariable*)userVariable
+{
+    for (UserVariable *userVariableToCompare in self.programVariableList) {
+        if ([userVariableToCompare.name isEqualToString:userVariable.name]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 - (BOOL)isEqualToVariablesContainer:(VariablesContainer*)variablesContainer
@@ -179,6 +205,14 @@ static pthread_mutex_t variablesLock;
             return NO;
     }
     return YES;
+}
+
+- (instancetype)shallowCopy
+{
+    VariablesContainer *copiedVariablesContainer = [VariablesContainer new];
+    copiedVariablesContainer.objectVariableList = self.objectVariableList;
+    copiedVariablesContainer.programVariableList = [self.programVariableList mutableCopy];
+    return copiedVariablesContainer;
 }
 
 @end

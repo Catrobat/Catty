@@ -41,6 +41,12 @@
 
 - (void)changeVariable:(UserVariable*)userVariable byValue:(double)value;
 
+- (BOOL)isVariableOfSpriteObject:(SpriteObject*)spriteObject userVariable:(UserVariable*)userVariable;
+
+- (BOOL)isProgramVariable:(UserVariable*)userVariable;
+
 - (BOOL)isEqualToVariablesContainer:(VariablesContainer*)variablesContainer;
+
+- (instancetype)shallowCopy;
 
 @end
