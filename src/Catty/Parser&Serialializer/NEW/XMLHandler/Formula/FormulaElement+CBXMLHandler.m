@@ -61,24 +61,24 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *formulaElement = [GDataXMLElement elementWithName:@"formulaElement"];
+    GDataXMLElement *formulaElement = [GDataXMLElement elementWithName:@"formulaElement" context:context];
     if (self.leftChild != nil) {
-        GDataXMLElement *leftChild = [GDataXMLElement elementWithName:@"leftChild"];
+        GDataXMLElement *leftChild = [GDataXMLElement elementWithName:@"leftChild" context:context];
         for(GDataXMLNode *node in [self.leftChild xmlElementWithContext:context].children) {
             [leftChild addChild:node];
         }
         [formulaElement addChild:leftChild];
     }
     if (self.rightChild != nil) {
-        GDataXMLElement *rightChild = [GDataXMLElement elementWithName:@"rightChild"];
+        GDataXMLElement *rightChild = [GDataXMLElement elementWithName:@"rightChild" context:context];
         for(GDataXMLNode *node in [self.rightChild xmlElementWithContext:context].children) {
             [rightChild addChild:node];
         }
         [formulaElement addChild:rightChild];
     }
-    GDataXMLElement *type = [GDataXMLElement elementWithName:@"type" stringValue:[self stringForElementType:self.type]];
+    GDataXMLElement *type = [GDataXMLElement elementWithName:@"type" stringValue:[self stringForElementType:self.type] context:context];
     [formulaElement addChild:type];
-    GDataXMLElement *value = [GDataXMLElement elementWithName:@"value" stringValue:self.value];
+    GDataXMLElement *value = [GDataXMLElement elementWithName:@"value" stringValue:self.value context:context];
     [formulaElement addChild:value];
     return formulaElement;
 }

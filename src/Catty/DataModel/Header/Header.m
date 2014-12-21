@@ -64,7 +64,7 @@
     [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
     [dateFormatter setDateFormat:kCatrobatHeaderDateTimeFormat];
 
-    GDataXMLElement *headerXMLElement = [GDataXMLElement elementWithName:@"header"];
+    GDataXMLElement *headerXMLElement = [GDataXMLElement elementWithName:@"header" context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"applicationBuildName"
                                          optionalStringValue:self.applicationBuildName]];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"applicationBuildNumber"

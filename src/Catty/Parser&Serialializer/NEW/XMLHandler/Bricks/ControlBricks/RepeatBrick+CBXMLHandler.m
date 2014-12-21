@@ -43,11 +43,11 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"RepeatBrick"]];
-    GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList"];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" context:context];
+    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"RepeatBrick" context:context]];
+    GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.timesToRepeat xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"TIMES_TO_REPEAT"]];
+    [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"TIMES_TO_REPEAT" context:context]];
     [formulaList addChild:formula];
     [brick addChild:formulaList];
     

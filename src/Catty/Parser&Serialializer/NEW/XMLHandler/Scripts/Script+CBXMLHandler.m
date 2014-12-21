@@ -127,13 +127,13 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"script"];
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"script" context:context];
     NSString *scriptTypeName = NSStringFromClass([self class]);
-    [xmlElement addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:scriptTypeName]];
+    [xmlElement addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:scriptTypeName context:context]];
     [xmlElement addChild:[self xmlElementForBrickList:self.brickList withContext:context]];
     if ([self isKindOfClass:[StartScript class]]) {
         // TODO: implement isUserScript here...
-        GDataXMLElement *isUserScriptXmlElement = [GDataXMLElement elementWithName:@"isUserScript" stringValue:@"false"];
+        GDataXMLElement *isUserScriptXmlElement = [GDataXMLElement elementWithName:@"isUserScript" stringValue:@"false" context:context];
         [xmlElement addChild:isUserScriptXmlElement];
     } else if ([self isKindOfClass:[BroadcastScript class]]) {
         BroadcastScript *broadcastScript = (BroadcastScript*)self;
@@ -144,7 +144,7 @@
         [xmlElement addChild:receivedMessageXmlElement];
     } else if ([self isKindOfClass:[WhenScript class]]) {
         [XMLError exceptionIfNil:self.action message:@"WhenScript contains invalid action string"];
-        GDataXMLElement *actionXmlElement = [GDataXMLElement elementWithName:@"action" stringValue:self.action];
+        GDataXMLElement *actionXmlElement = [GDataXMLElement elementWithName:@"action" stringValue:self.action context:context];
         [xmlElement addChild:actionXmlElement];
     } else {
         [XMLError exceptionWithMessage:@"Unsupported script type: %@!", NSStringFromClass([self class])];
@@ -154,7 +154,7 @@
 
 - (GDataXMLElement*)xmlElementForBrickList:(NSArray*)brickList withContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"brickList"];
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"brickList" context:context];
     CBXMLOpenedNestingBricksStack *openedNestingBricksStack = [CBXMLOpenedNestingBricksStack new];
     context.openedNestingBricksStack = openedNestingBricksStack;
     for (id brick in self.brickList) {

@@ -34,8 +34,8 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"ComeToFrontBrick"]];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" context:context];
+    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"ComeToFrontBrick" context:context]];
     return brick;
 }
 

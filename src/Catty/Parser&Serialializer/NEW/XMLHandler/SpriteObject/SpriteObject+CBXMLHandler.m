@@ -165,7 +165,7 @@
     context.soundList = self.soundList;
 
     // generate xml element for sprite object
-    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"object"];
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"object" context:context];
 
     // check if spriteObject has been already serialized within a PointToBrick
     NSUInteger pointedObjectIndex = [CBXMLSerializerHelper indexOfElement:self
@@ -176,13 +176,13 @@
         NSString *refPath = [CBXMLSerializerHelper relativeXPathToPointedObject:pointedObject
                                                            forPointedObjectList:context.pointedSpriteObjectList
                                                                   andObjectList:context.spriteObjectList];
-        [xmlElement addAttribute:[GDataXMLElement elementWithName:@"reference" stringValue:refPath]];
+        [xmlElement addAttribute:[GDataXMLElement elementWithName:@"reference" stringValue:refPath context:context]];
         return xmlElement;
     }
 
     [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"name" stringValue:self.name]];
 
-    GDataXMLElement *lookListXmlElement = [GDataXMLElement elementWithName:@"lookList"];
+    GDataXMLElement *lookListXmlElement = [GDataXMLElement elementWithName:@"lookList" context:context];
     for (id look in self.lookList) {
         [XMLError exceptionIf:[look isKindOfClass:[Look class]] equals:NO
                       message:@"Invalid look instance given"];
@@ -190,7 +190,7 @@
     }
     [xmlElement addChild:lookListXmlElement];
 
-    GDataXMLElement *soundListXmlElement = [GDataXMLElement elementWithName:@"soundList"];
+    GDataXMLElement *soundListXmlElement = [GDataXMLElement elementWithName:@"soundList" context:context];
     for (id sound in self.soundList) {
         [XMLError exceptionIf:[sound isKindOfClass:[Sound class]] equals:NO
                       message:@"Invalid sound instance given"];
@@ -198,7 +198,7 @@
     }
     [xmlElement addChild:soundListXmlElement];
 
-    GDataXMLElement *scriptListXmlElement = [GDataXMLElement elementWithName:@"scriptList"];
+    GDataXMLElement *scriptListXmlElement = [GDataXMLElement elementWithName:@"scriptList" context:context];
     for (id script in self.scriptList) {
         [XMLError exceptionIf:[script isKindOfClass:[Script class]] equals:NO
                       message:@"Invalid script instance given"];
@@ -207,7 +207,7 @@
     [xmlElement addChild:scriptListXmlElement];
 
     // TODO: implement userBricks here...
-    GDataXMLElement *userBricksXmlElement = [GDataXMLElement elementWithName:@"userBricks"];
+    GDataXMLElement *userBricksXmlElement = [GDataXMLElement elementWithName:@"userBricks" context:context];
     [xmlElement addChild:userBricksXmlElement];
 
     NSLog(@"%@", [xmlElement XMLStringPrettyPrinted:YES]);

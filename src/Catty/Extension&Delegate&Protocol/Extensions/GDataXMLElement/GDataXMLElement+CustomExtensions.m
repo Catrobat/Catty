@@ -23,6 +23,7 @@
 #import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLContext.h"
 #import "CBXMLValidator.h"
+#import "CBXMLPositionStack.h"
 
 @implementation GDataXMLElement (CustomExtensions)
 

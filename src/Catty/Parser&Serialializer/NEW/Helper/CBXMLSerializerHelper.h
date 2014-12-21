@@ -25,19 +25,14 @@
 @class Sound;
 @class Look;
 @class SpriteObject;
-@class GDataXMLElement;
+@class CBXMLContext;
 
 @interface CBXMLSerializerHelper : NSObject
 
 + (NSUInteger)indexOfElement:(id)element inArray:(NSArray*)array;
 + (NSString*)relativeXPathToSound:(Sound*)sound inSoundList:(NSArray*)soundList;
 + (NSString*)relativeXPathToLook:(Look*)look inLookList:(NSArray*)lookList;
-+ (NSString*)relativeXPathToObject:(SpriteObject*)object
-                      inObjectList:(NSArray*)objectList
-                 programXmlElement:(GDataXMLElement*)programXmlElement
-    absoluteXPathOfCurrentPosition:(NSString*)absoluteXPathOfCurrentPosition;
-+ (NSString*)relativeXPathToPointedObject:(SpriteObject*)pointedObject
-                     forPointedObjectList:(NSArray*)pointedObjectList
-                            andObjectList:(NSArray*)objectList;
++ (NSString*)relativeXPathToObject:(SpriteObject*)object context:(CBXMLContext*)context;
++ (NSString*)relativeXPathToPointedObject:(SpriteObject*)pointedObject context:(CBXMLContext*)context;
 
 @end

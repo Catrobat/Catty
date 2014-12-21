@@ -22,17 +22,24 @@
 
 #import "CBXMLSerializerHelper.h"
 #import "GDataXMLElement+CustomExtensions.h"
+#import "CBXMLContext.h"
+#import "CBXMLPositionStack.h"
 
 @implementation CBXMLSerializerHelper
 
-+ (NSString*)relativeXPathToRessourceList
++ (NSString*)relativeXPathToProgramXmlElementForCurrentPositionStack:(CBXMLPositionStack*)stack
 {
-    return @"../../../../../"; // TODO: maybe should be computed dynamically
+    NSUInteger numberOfXmlElements = [stack numberOfXmlElements];
+    NSMutableString *path = [NSMutableString stringWithString:@""];
+    for (NSUInteger counter = 0; counter < numberOfXmlElements; ++counter) {
+        [path appendString:@"../"];
+    }
+    return [path copy];
 }
 
 + (NSString*)relativeXPathToObjectList
 {
-    return @"../../../../../../"; // TODO: maybe should be computed dynamically REQUIRED (PointToBrick) MUST BE IMPLEMENTED!!!
+    return @"../../../../../../"; // TODO: should be computed dynamically REQUIRED (PointToBrick) MUST BE IMPLEMENTED!!!
 }
 
 + (NSString*)indexXPathStringForIndexNumber:(NSUInteger)indexNumber
@@ -60,36 +67,31 @@
 
 + (NSString*)relativeXPathToSound:(Sound*)sound inSoundList:(NSArray*)soundList
 {
-    NSString *index = [[self class] indexXPathStringForIndexNumber:[soundList indexOfObject:sound]];
-    return [NSString stringWithFormat:@"%@soundList/sound%@",
-            [[self class] relativeXPathToRessourceList], index];
+//    NSString *index = [[self class] indexXPathStringForIndexNumber:[soundList indexOfObject:sound]];
+//    return [NSString stringWithFormat:@"%@soundList/sound%@",
+//            [[self class] relativeXPathToRessourceList], index];
+    return @"NOT IMPLEMENTED";
 }
 
 + (NSString*)relativeXPathToLook:(Look*)look inLookList:(NSArray*)lookList
 {
-    NSString *index = [[self class] indexXPathStringForIndexNumber:[lookList indexOfObject:look]];
-    return [NSString stringWithFormat:@"%@lookList/look%@",
-            [[self class] relativeXPathToRessourceList], index];
+//    NSString *index = [[self class] indexXPathStringForIndexNumber:[lookList indexOfObject:look]];
+    return @"NOT IMPLEMENTED";
+//    return [NSString stringWithFormat:@"%@lookList/look%@",
+//            [[self class] relativeXPathToRessourceList], index];
 }
 
-+ (NSString*)relativeXPathToObject:(SpriteObject*)object
-                      inObjectList:(NSArray*)objectList
-                 programXmlElement:(GDataXMLElement*)programXmlElement
-    absoluteXPathOfCurrentPosition:(NSString*)absoluteXPathOfCurrentPosition
++ (NSString*)relativeXPathToObject:(SpriteObject*)object context:(CBXMLContext*)context
 {
-    GDataXMLElement *temp = [programXmlElement singleNodeForCatrobatXPath:absoluteXPathOfCurrentPosition];
-    NSLog(@"%@", temp);
-
-    NSString *index = [[self class] indexXPathStringForIndexNumber:[objectList indexOfObject:object]];
-    return [NSString stringWithFormat:@"%@objectList/object%@",
-            [[self class] relativeXPathToObjectList], index];
+    NSString *path = [[self class] relativeXPathToProgramXmlElementForCurrentPositionStack:context.currentPositionStack];
+    NSString *index = [[self class] indexXPathStringForIndexNumber:[context.spriteObjectList indexOfObject:object]];
+    return [NSString stringWithFormat:@"%@objectList/object%@", path, index];
 }
 
-+ (NSString*)relativeXPathToPointedObject:(SpriteObject*)pointedObject
-                     forPointedObjectList:(NSArray*)pointedObjectList
-                            andObjectList:(NSArray*)objectList
++ (NSString*)relativeXPathToPointedObject:(SpriteObject*)pointedObject context:(CBXMLContext*)context
 {
-    NSString *index = [[self class] indexXPathStringForIndexNumber:[pointedObjectList indexOfObject:pointedObject]];
+    NSString *index = [[self class] indexXPathStringForIndexNumber:[context.pointedSpriteObjectList
+                                                                    indexOfObject:pointedObject]];
 #warning !!!!!!!!!!! DOES NOT WORK CORRECTLY !!!!!!!!!!!
     // look for first object that contains a PointToBrick that references to this pointedObject
     return [NSString stringWithFormat:@"%@objectList/object%@",

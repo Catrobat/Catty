@@ -44,9 +44,10 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"BroadcastWaitBrick"]];
-    GDataXMLElement *message = [GDataXMLElement elementWithName:@"broadcastMessage" stringValue:self.broadcastMessage];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" context:context];
+    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"BroadcastWaitBrick"
+                                                 context:context]];
+    GDataXMLElement *message = [GDataXMLElement elementWithName:@"broadcastMessage" stringValue:self.broadcastMessage context:context];
     [brick addChild:message];
     return brick;
 }

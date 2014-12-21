@@ -26,6 +26,8 @@
 
 @interface CBXMLPositionStack : NSObject <NSFastEnumeration>
 
+@property (nonatomic, readonly) NSUInteger numberOfXmlElements;
+
 - (void)pushXmlElementName:(NSString*)xmlElementName;
 - (NSString*)popXmlElementName;
 - (BOOL)isEmpty;

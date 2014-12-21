@@ -60,12 +60,12 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"brick"];
-    [xmlElement addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"PlaySoundBrick"]];
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"brick" context:context];
+    [xmlElement addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"PlaySoundBrick" context:context]];
     if (self.sound) {
-        GDataXMLElement *referenceXMLElement = [GDataXMLElement elementWithName:@"sound"];
+        GDataXMLElement *referenceXMLElement = [GDataXMLElement elementWithName:@"sound" context:context];
         NSString *refPath = [CBXMLSerializerHelper relativeXPathToSound:self.sound inSoundList:context.soundList];
-        [referenceXMLElement addAttribute:[GDataXMLElement elementWithName:@"reference" stringValue:refPath]];
+        [referenceXMLElement addAttribute:[GDataXMLElement elementWithName:@"reference" stringValue:refPath context:context]];
         [xmlElement addChild:referenceXMLElement];
     }
     return xmlElement;

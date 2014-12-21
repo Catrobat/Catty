@@ -97,7 +97,7 @@
     context.spriteObjectList = self.objectList;
     [xmlElement addChild:[self.header xmlElementWithContext:context]];
 
-    GDataXMLElement *objectListXmlElement = [GDataXMLElement elementWithName:@"objectList"];
+    GDataXMLElement *objectListXmlElement = [GDataXMLElement elementWithName:@"objectList" context:context];
     for (id object in self.objectList) {
         [XMLError exceptionIf:[object isKindOfClass:[SpriteObject class]] equals:NO
                       message:@"Invalid sprite object instance given"];

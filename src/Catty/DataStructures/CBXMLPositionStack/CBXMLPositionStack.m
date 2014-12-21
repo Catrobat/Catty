@@ -25,6 +25,7 @@
 @interface CBXMLPositionStack ()
 
 @property (nonatomic, strong) NSMutableArray *stack;
+@property (nonatomic, readwrite) NSUInteger numberOfXmlElements;
 
 @end
 

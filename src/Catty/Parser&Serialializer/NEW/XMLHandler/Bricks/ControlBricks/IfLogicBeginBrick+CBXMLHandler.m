@@ -45,11 +45,11 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"brick"];
-    [xmlElement addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"IfLogicBeginBrick"]];
-    GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList"];
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"brick" context:context];
+    [xmlElement addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"IfLogicBeginBrick" context:context]];
+    GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.ifCondition xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"IF_CONDITION"]];
+    [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"IF_CONDITION" context:context]];
     [formulaList addChild:formula];
     [xmlElement addChild:formulaList];
 

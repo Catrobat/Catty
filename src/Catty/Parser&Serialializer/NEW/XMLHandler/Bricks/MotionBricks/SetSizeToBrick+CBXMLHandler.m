@@ -39,11 +39,11 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"SetSizeToBrick"]];
-    GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList"];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" context:context];
+    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"SetSizeToBrick" context:context]];
+    GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.size xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"SIZE"]];
+    [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"SIZE" context:context]];
     [formulaList addChild:formula];
     [brick addChild:formulaList];
     return brick;

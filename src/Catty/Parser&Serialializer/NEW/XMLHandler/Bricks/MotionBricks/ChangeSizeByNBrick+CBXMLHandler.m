@@ -29,24 +29,26 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
- [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
-
- Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"SIZE_CHANGE"];
- ChangeSizeByNBrick *changeSizeByNBrick = [self new];
- changeSizeByNBrick.size = formula;
- return changeSizeByNBrick;
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
+    
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"SIZE_CHANGE"];
+    ChangeSizeByNBrick *changeSizeByNBrick = [self new];
+    changeSizeByNBrick.size = formula;
+    return changeSizeByNBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
- GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick"];
- [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"ChangeSizeByNBrick"]];
- GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList"];
- GDataXMLElement *formula = [self.size xmlElementWithContext:context];
- [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"SIZE_CHANGE"]];
- [formulaList addChild:formula];
- [brick addChild:formulaList];
- return brick;
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" context:context];
+    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"ChangeSizeByNBrick"
+                                                 context:context]];
+    GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
+    GDataXMLElement *formula = [self.size xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"SIZE_CHANGE"
+                                                   context:context]];
+    [formulaList addChild:formula];
+    [brick addChild:formulaList];
+    return brick;
 }
 
 @end

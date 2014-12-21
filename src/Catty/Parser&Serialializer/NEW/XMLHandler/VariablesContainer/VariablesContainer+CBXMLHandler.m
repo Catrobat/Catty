@@ -158,13 +158,13 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"variables"];
-    GDataXMLElement *objectVariableListXmlElement = [GDataXMLElement elementWithName:@"objectVariableList"];
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"variables" context:context];
+    GDataXMLElement *objectVariableListXmlElement = [GDataXMLElement elementWithName:@"objectVariableList" context:context];
     NSUInteger totalNumOfObjectVariables = [self.objectVariableList count];
 
     for (NSUInteger index = 0; index < totalNumOfObjectVariables; ++index) {
-        GDataXMLElement *entryXmlElement = [GDataXMLElement elementWithName:@"entry"];
-        GDataXMLElement *entryToObjectReferenceXmlElement = [GDataXMLElement elementWithName:@"object"];
+        GDataXMLElement *entryXmlElement = [GDataXMLElement elementWithName:@"entry" context:context];
+        GDataXMLElement *entryToObjectReferenceXmlElement = [GDataXMLElement elementWithName:@"object" context:context];
         id spriteObject = [self.objectVariableList keyAtIndex:index];
         [XMLError exceptionIf:[spriteObject isKindOfClass:[SpriteObject class]] equals:NO
                       message:@"Instance in objectVariableList at index: %lu is no SpriteObject", index];
@@ -176,14 +176,14 @@
                                                                          stringValue:referencePath]];
         [entryXmlElement addChild:entryToObjectReferenceXmlElement];
 
-        GDataXMLElement *listXmlElement = [GDataXMLElement elementWithName:@"list"];
+        GDataXMLElement *listXmlElement = [GDataXMLElement elementWithName:@"list" context:context];
         NSArray *variables = [self.objectVariableList objectAtIndex:index];
         for (id variable in variables) {
             [XMLError exceptionIf:[variable isKindOfClass:[UserVariable class]] equals:NO
                           message:@"Invalid user variable instance given"];
-            GDataXMLElement *userVariableXmlElement = [GDataXMLElement elementWithName:@"userVariable"];
+            GDataXMLElement *userVariableXmlElement = [GDataXMLElement elementWithName:@"userVariable" context:context];
             // TODO: determine XPath...
-            [userVariableXmlElement addAttribute:[GDataXMLElement elementWithName:@"reference" stringValue:@""]];
+            [userVariableXmlElement addAttribute:[GDataXMLElement elementWithName:@"reference" stringValue:@"" context:context]];
             [listXmlElement addChild:userVariableXmlElement];
         }
         [entryXmlElement addChild:listXmlElement];
@@ -194,13 +194,13 @@
         [xmlElement addChild:objectVariableListXmlElement];
     }
 
-    GDataXMLElement *programVariableListXmlElement = [GDataXMLElement elementWithName:@"programVariableList"];
+    GDataXMLElement *programVariableListXmlElement = [GDataXMLElement elementWithName:@"programVariableList" context:context];
     for (id variable in self.programVariableList) {
         [XMLError exceptionIf:[variable isKindOfClass:[UserVariable class]] equals:NO
                       message:@"Invalid user variable instance given"];
-        GDataXMLElement *userVariableXmlElement = [GDataXMLElement elementWithName:@"userVariable"];
+        GDataXMLElement *userVariableXmlElement = [GDataXMLElement elementWithName:@"userVariable" context:context];
         // TODO: determine XPath...
-        [userVariableXmlElement addAttribute:[GDataXMLElement elementWithName:@"reference" stringValue:@""]];
+        [userVariableXmlElement addAttribute:[GDataXMLElement elementWithName:@"reference" stringValue:@"" context:context]];
         [programVariableListXmlElement addChild:userVariableXmlElement];
     }
 
@@ -208,7 +208,7 @@
         [xmlElement addChild:programVariableListXmlElement];
     }
 
-    GDataXMLElement *userBrickVariableListXmlElement = [GDataXMLElement elementWithName:@"userBrickVariableList"];
+    GDataXMLElement *userBrickVariableListXmlElement = [GDataXMLElement elementWithName:@"userBrickVariableList" context:context];
     // TODO: implement userBrickVariables here...
     [xmlElement addChild:userBrickVariableListXmlElement];
 

@@ -21,10 +21,10 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "CBXMLPositionStack.h"
 
 @class CBXMLOpenedNestingBricksStack;
 @class GDataXMLElement;
+@class CBXMLPositionStack;
 
 @interface CBXMLContext : NSObject
 

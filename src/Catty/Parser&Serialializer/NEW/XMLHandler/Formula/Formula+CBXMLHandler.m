@@ -36,7 +36,7 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"formula"];
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"formula" context:context];
     for(GDataXMLNode *node in [self.formulaTree xmlElementWithContext:context].children) {
         [xmlElement addChild:node];
     }
