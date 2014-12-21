@@ -20,9 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
+#import "CBXMLContext.h"
+#import "CBXMLValidator.h"
 
-@implementation GDataXMLNode (CustomExtensions)
+@implementation GDataXMLElement (CustomExtensions)
 
 - (NSString *)XMLStringPrettyPrinted:(BOOL)isPrettyPrinted
 {
@@ -139,12 +141,31 @@
     return [nodes firstObject];
 }
 
-+ (GDataXMLElement *)elementWithName:(NSString *)name optionalStringValue:(NSString *)value;
++ (GDataXMLElement*)elementWithName:(NSString*)name context:(CBXMLContext*)context
 {
+    [XMLError exceptionIfNil:name message:@"Given param xmlElement MUST NOT be nil!!"];
+    [context.currentPositionStack pushXmlElementName:name];
+    return [[self class] elementWithName:name];
+}
+
++ (GDataXMLElement*)elementWithName:(NSString*)name stringValue:(NSString*)value context:(CBXMLContext*)context
+{
+    [XMLError exceptionIfNil:name message:@"Given param xmlElement MUST NOT be nil!!"];
+    [context.currentPositionStack pushXmlElementName:name];
+    NSLog(@"+ [%@] added to stack", name);
     if (value && [value length]) {
         return [[self class] elementWithName:name stringValue:value];
     }
     return [[self class] elementWithName:name];
+}
+
+- (void)addChild:(GDataXMLNode*)child context:(CBXMLContext*)context
+{
+    [XMLError exceptionIf:[context.currentPositionStack isEmpty] equals:YES
+                  message:@"Can't pop xml element from stack. Stack is empty!!"];
+    NSString *xmlElementName = [context.currentPositionStack popXmlElementName];
+    NSLog(@"- [%@] removed from stack", xmlElementName);
+    [self addChild:child];
 }
 
 @end
