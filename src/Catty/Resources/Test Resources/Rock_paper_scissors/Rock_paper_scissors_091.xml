@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<program>
+  <header>
+    <applicationBuildName/>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.9.5</applicationVersion>
+    <catrobatLanguageVersion>0.91</catrobatLanguageVersion>
+    <dateTimeUpload/>
+    <description>Hold your phone in the right hand then move it up and down and it will show random gestures on the screen.</description>
+    <deviceName>HTC Sensation Z710e</deviceName>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>15</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>Rock paper scissors</programName>
+    <remixOf>http://pocketcode.org/details/0</remixOf>
+    <screenHeight>960</screenHeight>
+    <screenWidth>540</screenWidth>
+    <tags/>
+    <url>http://pocketcode.org/details/710</url>
+    <userHandle>hej-wickie-hej</userHandle>
+  </header>
+  <objectList>
+    <object>
+      <lookList>
+        <look>
+          <fileName>0f120901ddc9097e90b89afaa0719a8c_look.png</fileName>
+          <name>look</name>
+        </look>
+      </lookList>
+      <name>Background</name>
+      <scriptList/>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>6BD6E8982817E19565D34648C140F9E0_Aussehen.jpg</fileName>
+          <name>guu</name>
+        </look>
+        <look>
+          <fileName>E25EAE5764DD1692854FE2DEBFB64B6B_Aussehen.jpg</fileName>
+          <name>choki</name>
+        </look>
+        <look>
+          <fileName>12CD990907D78E4EBFAFD7167A408B47_Aussehen.jpg</fileName>
+          <name>paa!</name>
+        </look>
+      </lookList>
+      <name>Player</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>115</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>ready</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <type>FUNCTION</type>
+                  <value>TRUE</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <foreverBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick class="loopEndlessBrick">
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="foreverBrick" reference="../.."/>
+              </loopEndBrick>
+            </foreverBrick>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <rightChild>
+                      <leftChild>
+                        <type>SENSOR</type>
+                        <value>Y_INCLINATION</value>
+                      </leftChild>
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>15</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>SMALLER_OR_EQUAL</value>
+                    </rightChild>
+                    <type>BRACKET</type>
+                  </leftChild>
+                  <rightChild>
+                    <type>USER_VARIABLE</type>
+                    <value>ready</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>LOGICAL_AND</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>FUNCTION</type>
+                  <value>FALSE</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <broadcastWaitBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>aikoudesho</broadcastMessage>
+            </broadcastWaitBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick/ifElseBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick/ifElseBrick/ifEndBrick"/>
+            <loopEndlessBrick reference="../foreverBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <broadcastScript>
+          <brickList>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <leftChild>
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>3</value>
+                    </rightChild>
+                    <type>FUNCTION</type>
+                    <value>RAND</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1.0</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>GREATER_THAN</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <leftChild>
+                      <type>NUMBER</type>
+                      <value>1</value>
+                    </leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>2</value>
+                    </rightChild>
+                    <type>FUNCTION</type>
+                    <value>RAND</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1.0</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[2]/ifElseBrick"/>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[2]/ifElseBrick/ifEndBrick"/>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick/ifElseBrick"/>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[3]"/>
+            </setLookBrick>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick/ifElseBrick/ifEndBrick"/>
+            <showBrick>
+              <object reference="../../../../.."/>
+            </showBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>aikoudesho</receivedMessage>
+        </broadcastScript>
+        <startScript>
+          <brickList>
+            <foreverBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick class="loopEndlessBrick">
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="foreverBrick" reference="../.."/>
+              </loopEndBrick>
+            </foreverBrick>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <rightChild>
+                      <leftChild>
+                        <type>SENSOR</type>
+                        <value>Y_INCLINATION</value>
+                      </leftChild>
+                      <rightChild>
+                        <type>NUMBER</type>
+                        <value>20</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>GREATER_OR_EQUAL</value>
+                    </rightChild>
+                    <type>BRACKET</type>
+                  </leftChild>
+                  <rightChild>
+                    <rightChild>
+                      <type>USER_VARIABLE</type>
+                      <value>ready</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>LOGICAL_NOT</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>LOGICAL_AND</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../../../startScript/brickList/setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>FUNCTION</type>
+                  <value>TRUE</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick/ifElseBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick/ifElseBrick/ifEndBrick"/>
+            <loopEndlessBrick reference="../foreverBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+      </scriptList>
+      <soundList/>
+    </object>
+  </objectList>
+  <variables>
+    <objectVariableList>
+      <entry>
+        <object reference="../../../../objectList/object[2]"/>
+        <list/>
+      </entry>
+    </objectVariableList>
+    <programVariableList>
+      <userVariable>
+        <name>counter</name>
+      </userVariable>
+      <userVariable>
+        <name>still speaking</name>
+      </userVariable>
+      <userVariable reference="../../../objectList/object[2]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+    </programVariableList>
+  </variables>
+</program>

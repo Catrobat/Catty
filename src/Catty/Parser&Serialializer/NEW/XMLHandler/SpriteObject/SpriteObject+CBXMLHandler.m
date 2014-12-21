@@ -50,7 +50,7 @@
     
     SpriteObject *spriteObject = [self new];
     GDataXMLNode *attribute = [attributes firstObject];
-    GDataXMLElement *pointedObjectElement = nil;
+    GDataXMLElement *referencedObjectElement = nil;
     // check if normal or pointed object
     if ([attribute.name isEqualToString:@"name"]) {
         // case: it's a normal object
@@ -58,31 +58,39 @@
     } else if ([attribute.name isEqualToString:@"reference"]) {
         // case: it's a pointed object
         NSString *xPath = [attribute stringValue];
-        pointedObjectElement = [xmlElement singleNodeForCatrobatXPath:xPath];
-        [XMLError exceptionIfNode:pointedObjectElement isNilOrNodeNameNotEquals:@"pointedObject"];
-        GDataXMLNode *nameAttribute = [pointedObjectElement attributeForName:@"name"];
+        referencedObjectElement = [xmlElement singleNodeForCatrobatXPath:xPath];
+        if ([referencedObjectElement.name isEqualToString:@"object"]) {
+            [XMLError exceptionIfNode:referencedObjectElement isNilOrNodeNameNotEquals:@"object"];
+        } else {
+            [XMLError exceptionIfNode:referencedObjectElement isNilOrNodeNameNotEquals:@"pointedObject"];
+        }
+        GDataXMLNode *nameAttribute = [referencedObjectElement attributeForName:@"name"];
         [XMLError exceptionIfNil:nameAttribute message:@"PointedObject must contain a name attribute"];
         spriteObject.name = [nameAttribute stringValue];
-        xmlElement = pointedObjectElement;
+        xmlElement = referencedObjectElement;
     } else {
         [XMLError exceptionWithMessage:@"Unsupported attribute: %@!", attribute.name];
     }
     [XMLError exceptionIfNil:spriteObject.name message:@"SpriteObject must contain a name"];
-    
-    // sprite object could (!) already exist in pointedSpriteObjectList at this point!
-    SpriteObject *alreadyExistantSpriteObject = nil;
-    alreadyExistantSpriteObject = [CBXMLParserHelper findSpriteObjectInArray:context.pointedSpriteObjectList
-                                                                    withName:spriteObject.name];
-    if (alreadyExistantSpriteObject) {
-        return alreadyExistantSpriteObject;
+
+    // sprite object could (!) already exist in pointedSpriteObjectList or spriteObjectList at this point!
+    SpriteObject *alreadyExistingPointedSpriteObject = [CBXMLParserHelper findSpriteObjectInArray:context.pointedSpriteObjectList
+                                                                                         withName:spriteObject.name];
+    if (alreadyExistingPointedSpriteObject) {
+        return alreadyExistingPointedSpriteObject;
     }
-    
+    SpriteObject *alreadyExistingSpriteObject = [CBXMLParserHelper findSpriteObjectInArray:context.spriteObjectList
+                                                                                  withName:spriteObject.name];
+    if (alreadyExistingSpriteObject) {
+        return alreadyExistingSpriteObject;
+    }
+
     spriteObject.lookList = [self parseAndCreateLooks:xmlElement];
     context.lookList = spriteObject.lookList;
-    
+
     spriteObject.soundList = [self parseAndCreateSounds:xmlElement];
     context.soundList = spriteObject.soundList;
-    
+
     spriteObject.scriptList = [self parseAndCreateScripts:xmlElement withContext:context AndSpriteObject:spriteObject];
     return spriteObject;
 }
@@ -114,10 +122,9 @@
     
     NSArray *soundElements = [[soundListElements firstObject] children];
     if (! [soundElements count]) {
-        // TODO: ask team if we should return nil or an empty NSMutableArray in this case!!
-        return nil;
+        return [NSMutableArray array];
     }
-    
+
     NSMutableArray *soundList = [NSMutableArray arrayWithCapacity:[soundElements count]];
     for (GDataXMLElement *soundElement in soundElements) {
         Sound *sound = [Sound parseFromElement:soundElement withContext:nil];
@@ -136,10 +143,9 @@
     
     NSArray *scriptElements = [[scriptListElements firstObject] children];
     if (! [scriptElements count]) {
-        // TODO: ask team if we should return nil or an empty NSMutableArray in this case!!
-        return nil;
+        return [NSMutableArray array];
     }
-    
+
     NSMutableArray *scriptList = [NSMutableArray arrayWithCapacity:[scriptElements count]];
     for (GDataXMLElement *scriptElement in scriptElements) {
         Script *script = [Script parseFromElement:scriptElement withContext:context];

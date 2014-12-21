@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<program>
+  <header>
+    <applicationBuildName/>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.9.2</applicationVersion>
+    <catrobatLanguageVersion>0.9</catrobatLanguageVersion>
+    <dateTimeUpload/>
+    <description>Thirsty? You should drink at least 2 liters of water a day. Now this is easy, because your can use your phone to drink anytime you want!
+REMIX TIPS:
+ * Change drink
+ * Change sounds</description>
+    <deviceName>Nexus 7</deviceName>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>18</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>Drink more water</programName>
+    <remixOf>http://pocketcode.org/details/949</remixOf>
+    <screenHeight>1824</screenHeight>
+    <screenWidth>1200</screenWidth>
+    <tags/>
+    <url>http://pocketcode.org/details/980</url>
+    <userHandle>PocketCodeTeam</userHandle>
+  </header>
+  <objectList>
+    <object>
+      <lookList/>
+      <name>Background</name>
+      <scriptList/>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>e57bab5e9933adb64913ce0e8f4f0011_look.png</fileName>
+          <name>look1</name>
+        </look>
+        <look>
+          <fileName>689c6e75fb7c51fe2e2b24efdeed1aeb_look.png</fileName>
+          <name>look2</name>
+        </look>
+        <look>
+          <fileName>d1ac7d9114e699ee10701ab2ce867ca3_look.png</fileName>
+          <name>look3</name>
+        </look>
+        <look>
+          <fileName>35965b6d8d8592c776ca5243cc89bc35_look.png</fileName>
+          <name>look</name>
+        </look>
+      </lookList>
+      <name>glass</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[4]"/>
+            </setLookBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>200</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <foreverBrick>
+              <object reference="../../../../.."/>
+              <loopEndBrick class="loopEndlessBrick">
+                <object reference="../../../../../.."/>
+                <loopBeginBrick class="foreverBrick" reference="../.."/>
+              </loopEndBrick>
+            </foreverBrick>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <rightChild>
+                      <type>SENSOR</type>
+                      <value>Y_INCLINATION</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>MINUS</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>0</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>GREATER_OR_EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <playSoundBrick>
+              <object reference="../../../../.."/>
+              <sound>
+                <fileName>029bfe13d2096fc7a256e3a4285ec832_ThroatGulp.mp3</fileName>
+                <name>ThroatGulp</name>
+              </sound>
+            </playSoundBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>200</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <playSoundBrick>
+              <object reference="../../../../.."/>
+              <sound reference="../../playSoundBrick/sound"/>
+            </playSoundBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <playSoundBrick>
+              <object reference="../../../../.."/>
+              <sound reference="../../playSoundBrick/sound"/>
+            </playSoundBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[3]"/>
+            </setLookBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.5</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <playSoundBrick>
+              <object reference="../../../../.."/>
+              <sound>
+                <fileName>23bdf53428f3c8560de8b5891b37b1d4_Aufnahme.mp3</fileName>
+                <name>Aah</name>
+              </sound>
+            </playSoundBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>3</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[4]"/>
+            </setLookBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>200</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick/ifElseBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick/ifElseBrick/ifEndBrick"/>
+            <loopEndlessBrick reference="../foreverBrick/loopEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+      </scriptList>
+      <soundList>
+        <sound reference="../../scriptList/startScript/brickList/playSoundBrick/sound"/>
+        <sound reference="../../scriptList/startScript/brickList/playSoundBrick[4]/sound"/>
+      </soundList>
+    </object>
+  </objectList>
+  <variables>
+    <objectVariableList>
+      <entry>
+        <object reference="../../../../objectList/object[2]"/>
+        <list/>
+      </entry>
+    </objectVariableList>
+    <programVariableList>
+      <userVariable>
+        <name>hold</name>
+      </userVariable>
+    </programVariableList>
+  </variables>
+</program>

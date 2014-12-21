@@ -38,7 +38,7 @@
 {
     NSString *index = nil;
     if ((indexNumber != NSNotFound) && (indexNumber > 1)) {
-        index = [NSString stringWithFormat:@"[%lu]", (indexNumber+1)];
+        index = [NSString stringWithFormat:@"[%lu]", (unsigned long)(indexNumber+1)];
     } else {
         index = @"";
     }

@@ -43,7 +43,6 @@
     [XMLError exceptionIf:[headerNodes count] notEquals:1 message:@"Invalid header given!"];
     program.header = [self parseAndCreateHeaderFromElement:[headerNodes objectAtIndex:0]];
     program.objectList = [self parseAndCreateObjectsFromElement:xmlElement withContext:context];
-    context.spriteObjectList = program.objectList;
     program.variables = [self parseAndCreateVariablesFromElement:xmlElement withContext:context];
     return program;
 }
@@ -65,6 +64,7 @@
                   message:@"No objects in objectList, but there must exist at least 1 object (background)!!"];
     NSLog(@"<objectList>");
     NSMutableArray *objectList = [NSMutableArray arrayWithCapacity:[objectElements count]];
+    context.spriteObjectList = objectList;
     for (GDataXMLElement *objectElement in objectElements) {
         SpriteObject *spriteObject = [SpriteObject parseFromElement:objectElement withContext:context];
         if (spriteObject != nil)
@@ -99,7 +99,7 @@
     for (id object in self.objectList) {
         [XMLError exceptionIf:[object isKindOfClass:[SpriteObject class]] equals:NO
                       message:@"Invalid sprite object instance given"];
-        
+
         NSMutableArray *pointedObjectRefs = [NSMutableArray array];
         for (id objectToCompare in self.objectList) {
             [XMLError exceptionIf:[objectToCompare isKindOfClass:[SpriteObject class]] equals:NO
@@ -119,22 +119,11 @@
         [allPointedObjectRefs addObject:pointedObjectRefs];
         ++index;
     }
-    
-    // NSMutableArray *newObjectList = [self.objectList mutableCopy];
-    // index = 0;
-    // for (NSArray *references in allPointedObjectRefs) {
-    //  if (! [references count]) {
-    //   [newObjectList addObject:[self.objectList objectAtIndex:index]];
-    //   ++index;
-    //   continue;
-    //  }
-    //  ++index;
-    // }
-    
+
     GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"program"];
     context.spriteObjectList = self.objectList;
     [xmlElement addChild:[self.header xmlElementWithContext:context]];
-    
+
     GDataXMLElement *objectListXmlElement = [GDataXMLNode elementWithName:@"objectList"];
     for (id object in self.objectList) {
         [XMLError exceptionIf:[object isKindOfClass:[SpriteObject class]] equals:NO
@@ -142,7 +131,7 @@
         [objectListXmlElement addChild:[((SpriteObject*)object) xmlElementWithContext:context]];
     }
     [xmlElement addChild:objectListXmlElement];
-    
+
     if (self.variables) {
         [xmlElement addChild:[self.variables xmlElementWithContext:context]];
     }

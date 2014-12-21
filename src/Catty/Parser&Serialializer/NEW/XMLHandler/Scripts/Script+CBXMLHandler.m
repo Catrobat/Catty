@@ -68,7 +68,7 @@
     } else {
         [XMLError exceptionWithMessage:@"Unsupported script type: %@!", scriptType];
     }
-    
+
     script.brickList = [self parseAndCreateBricks:xmlElement withContext:context];
     return script;
 }

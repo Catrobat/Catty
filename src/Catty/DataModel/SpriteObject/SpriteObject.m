@@ -676,43 +676,46 @@
 
 - (BOOL)isEqualToSpriteObject:(SpriteObject*)spriteObject
 {
-    NSUInteger index;
-    if(![self.name isEqualToString:spriteObject.name])
+    // check if object names are both equal to each other
+    if (! [self.name isEqualToString:spriteObject.name]) {
         return NO;
-    
+    }
+
     // lookList
-    if([self.lookList count] != [spriteObject.lookList count])
+    if ([self.lookList count] != [spriteObject.lookList count])
         return NO;
-    for(index = 0; index < [self.lookList count]; index++) {
+
+    NSUInteger index;
+    for (index = 0; index < [self.lookList count]; ++index) {
         Look *firstLook = [self.lookList objectAtIndex:index];
         Look *secondLook = [spriteObject.lookList objectAtIndex:index];
-        
-        if(![firstLook isEqualToLook:secondLook])
+
+        if (! [firstLook isEqualToLook:secondLook])
             return NO;
     }
     
     // soundList
-    if([self.soundList count] != [spriteObject.soundList count])
+    if ([self.soundList count] != [spriteObject.soundList count])
         return NO;
-    for(index = 0; index < [self.soundList count]; index++) {
+
+    for (index = 0; index < [self.soundList count]; index++) {
         Sound *firstSound = [self.soundList objectAtIndex:index];
         Sound *secondSound = [spriteObject.soundList objectAtIndex:index];
         
-        if(![firstSound isEqualToSound:secondSound])
+        if (! [firstSound isEqualToSound:secondSound])
             return NO;
     }
-    
+
     // scriptList
-    if([self.scriptList count] != [spriteObject.scriptList count])
+    if ([self.scriptList count] != [spriteObject.scriptList count])
         return NO;
-    for(index = 0; index < [self.scriptList count]; index++) {
+    for (index = 0; index < [self.scriptList count]; index++) {
         Script *firstScript = [self.scriptList objectAtIndex:index];
         Script *secondScript = [spriteObject.scriptList objectAtIndex:index];
         
-        if(![firstScript isEqualToScript:secondScript])
+        if (! [firstScript isEqualToScript:secondScript])
             return NO;
     }
-    
     return YES;
 }
 

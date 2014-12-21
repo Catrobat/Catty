@@ -261,21 +261,8 @@
 #pragma mark - helpers
 - (Program*)loadProgram:(ProgramLoadingInfo*)loadingInfo
 {
-    NSDebug(@"Try to load project '%@'", loadingInfo.visibleName);
-    NSDebug(@"Path: %@", loadingInfo.basePath);
-    NSString *xmlPath = [NSString stringWithFormat:@"%@", loadingInfo.basePath];
-    NSDebug(@"XML-Path: %@", xmlPath);
-    Program *program = [[[Parser alloc] init] generateObjectForProgramWithPath:[xmlPath stringByAppendingFormat:@"%@", kProgramCodeFileName]];
-
-    if (! program)
-        return nil;
-
-    NSDebug(@"ProjectResolution: width/height:  %f / %f", program.header.screenWidth.floatValue, program.header.screenHeight.floatValue);
-//    for (SpriteObject *sprite in program.objectList) {
-//        sprite.spriteManagerDelegate = self;
-//        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-//    }
-    [Util setLastProgramWithName:program.header.programName programID:program.header.programID];
+    Program *program = [Program programWithLoadingInfo:loadingInfo];
+    [program setAsLastUsedProgram];
     return program;
 }
 
