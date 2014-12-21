@@ -51,7 +51,7 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick"];
 
     // pop opening nesting brick from stack
     Brick *openingNestingBrick = [context.openedNestingBricksStack popAndCloseTopMostNestingBrick];
@@ -75,7 +75,7 @@
     } else {
         [XMLError exceptionWithMessage:@"Found unsupported referenced LoopBeginBrick brick type in LoopEndBrick"];
     }
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:brickXmlElementTypeName]];
+    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:brickXmlElementTypeName]];
     return brick;
 }
 

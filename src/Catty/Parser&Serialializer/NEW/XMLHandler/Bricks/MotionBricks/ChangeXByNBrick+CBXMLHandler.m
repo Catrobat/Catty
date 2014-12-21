@@ -41,11 +41,11 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"ChangeXByNBrick"]];
-    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"ChangeXByNBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList"];
     GDataXMLElement *formula = [self.xMovement xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"X_POSITION_CHANGE"]];
+    [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"X_POSITION_CHANGE"]];
     [formulaList addChild:formula];
     [brick addChild:formulaList];
     return brick;

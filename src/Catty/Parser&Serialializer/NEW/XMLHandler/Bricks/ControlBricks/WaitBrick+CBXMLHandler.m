@@ -38,11 +38,11 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"WaitBrick"]];
-    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"WaitBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList"];
     GDataXMLElement *formula = [self.timeToWaitInSeconds xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"TIME_TO_WAIT_IN_SECONDS"]];
+    [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"TIME_TO_WAIT_IN_SECONDS"]];
     [formulaList addChild:formula];
     [brick addChild:formulaList];
     return brick;

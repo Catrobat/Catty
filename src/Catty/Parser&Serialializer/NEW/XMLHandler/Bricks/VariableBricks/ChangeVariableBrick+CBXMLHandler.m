@@ -63,14 +63,14 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"ChangeVariableBrick"]];
-    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"ChangeVariableBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList"];
     GDataXMLElement *formula = [self.variableFormula xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"VARIABLE_CHANGE"]];
+    [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"VARIABLE_CHANGE"]];
     [formulaList addChild:formula];
     [brick addChild:formulaList];
-    [brick addChild:[GDataXMLNode elementWithName:@"inUserBrick" stringValue:@"false"]]; // TODO: implement this...
+    [brick addChild:[GDataXMLElement elementWithName:@"inUserBrick" stringValue:@"false"]]; // TODO: implement this...
     [brick addChild:[self.userVariable xmlElementWithContext:context]];
     return brick;
 }

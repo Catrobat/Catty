@@ -47,7 +47,7 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"look"];
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"look"];
     [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"name" stringValue:self.name]];
     [xmlElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName]];
     return xmlElement;

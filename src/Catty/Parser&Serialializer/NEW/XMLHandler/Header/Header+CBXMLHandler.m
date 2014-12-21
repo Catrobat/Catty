@@ -56,46 +56,46 @@
     [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
     [dateFormatter setDateFormat:kCatrobatHeaderDateTimeFormat];
     
-    GDataXMLElement *headerXMLElement = [GDataXMLNode elementWithName:@"header"];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationBuildName"
+    GDataXMLElement *headerXMLElement = [GDataXMLElement elementWithName:@"header"];
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"applicationBuildName"
                                          optionalStringValue:self.applicationBuildName]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationBuildNumber"
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"applicationBuildNumber"
                                          optionalStringValue:self.applicationBuildNumber]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationName"
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"applicationName"
                                          optionalStringValue:self.applicationName]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"applicationVersion"
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"applicationVersion"
                                          optionalStringValue:self.applicationVersion]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"catrobatLanguageVersion"
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"catrobatLanguageVersion"
                                          optionalStringValue:kCBXMLSerializerLanguageVersion]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"dateTimeUpload"
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"dateTimeUpload"
                                          optionalStringValue:(self.dateTimeUpload ? [dateFormatter stringFromDate:self.dateTimeUpload] : nil)]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"description"
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"description"
                                          optionalStringValue:self.programDescription]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"deviceName"
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"deviceName"
                                          optionalStringValue:self.deviceName]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"mediaLicense"
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"mediaLicense"
                                          optionalStringValue:self.mediaLicense]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"platform"
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"platform"
                                          optionalStringValue:self.platform]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"platformVersion"
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"platformVersion"
                                          optionalStringValue:self.platformVersion]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"programLicense"
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"programLicense"
                                          optionalStringValue:self.programLicense]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"programName"
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"programName"
                                          optionalStringValue:self.programName]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"remixOf"
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"remixOf"
                                          optionalStringValue:self.remixOf]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"screenHeight"
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"screenHeight"
                                          optionalStringValue:[self.screenHeight stringValue]]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"screenWidth"
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"screenWidth"
                                          optionalStringValue:[self.screenWidth stringValue]]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"screenMode"
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"screenMode"
                                          optionalStringValue:self.screenMode]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"tags"
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"tags"
                                          optionalStringValue:self.tags]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"url"
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"url"
                                          optionalStringValue:self.url]];
-    [headerXMLElement addChild:[GDataXMLNode elementWithName:@"userHandle"
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"userHandle"
                                          optionalStringValue:self.userHandle]];
     return headerXMLElement;
 }

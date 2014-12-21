@@ -54,8 +54,8 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"brick"];
-    [xmlElement addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"PointToBrick"]];
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"brick"];
+    [xmlElement addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"PointToBrick"]];
     [XMLError exceptionIfNil:self.pointedObject message:@"No sprite object given in PointToBrick"];
     [XMLError exceptionIfNil:self.object message:@"Missing reference to brick's sprite object"];
 
@@ -86,7 +86,7 @@
                                                             inObjectList:context.spriteObjectList
                                                        programXmlElement:context.programXmlElement
                                           absoluteXPathOfCurrentPosition:<#(NSString *)#>];
-        [pointedObjectXmlElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:refPath]];
+        [pointedObjectXmlElement addAttribute:[GDataXMLElement elementWithName:@"reference" stringValue:refPath]];
         [xmlElement addChild:pointedObjectXmlElement];
     }
     return xmlElement;

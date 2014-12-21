@@ -39,11 +39,11 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"ChangeGhostEffectByNBrick"]];
-    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"ChangeGhostEffectByNBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList"];
     GDataXMLElement *formula = [self.changeGhostEffect xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"TRANSPARENCY_CHANGE"]];
+    [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"TRANSPARENCY_CHANGE"]];
     [formulaList addChild:formula];
     [brick addChild:formulaList];
     return brick;

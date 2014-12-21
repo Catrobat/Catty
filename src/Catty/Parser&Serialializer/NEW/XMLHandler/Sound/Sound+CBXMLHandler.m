@@ -55,7 +55,7 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"sound"];
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"sound"];
     [xmlElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName]];
     [xmlElement addChild:[GDataXMLElement elementWithName:@"name" stringValue:self.name]];
     return xmlElement;

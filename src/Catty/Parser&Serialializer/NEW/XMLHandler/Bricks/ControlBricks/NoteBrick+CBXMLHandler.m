@@ -51,11 +51,11 @@
     formulaElement.value = self.note;
     speakFormula.formulaTree = formulaElement;
     
-    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"NoteBrick"]];
-    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick"];
+    [brick addAttribute:[GDataXMLElement elementWithName:@"type" stringValue:@"NoteBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList"];
     GDataXMLElement *formula = [speakFormula xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"NOTE"]];
+    [formula addAttribute:[GDataXMLElement elementWithName:@"category" stringValue:@"NOTE"]];
     [formulaList addChild:formula];
     [brick addChild:formulaList];
     return brick;

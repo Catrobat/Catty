@@ -60,7 +60,7 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"userVariable" stringValue:self.name];
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"userVariable" stringValue:self.name];
     return xmlElement;
 }
 
