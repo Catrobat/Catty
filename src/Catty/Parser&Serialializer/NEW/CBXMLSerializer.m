@@ -79,8 +79,8 @@
                                [document.rootElement XMLStringPrettyPrinted:YES]];
 
 #if !SIMULATOR_DEBUGGING_ENABLED
-        // FIXME: [GDataXMLElement XMLStringPrettyPrinted] always adds &amp; to already encoded strings
-        //        Unfortunately XMLStringPrettyPrinted only encodes & to &amp; and ignores all other
+        // FIXME: [GDataXMLElement XMLStringPrettyPrinted] always adds "&amp;" to already escaped strings
+        //        Unfortunately XMLStringPrettyPrinted only escapes "&" to "&amp;" and ignores all other
         //        invalid characters that have to be escaped. Therefore we can't rely on
         //        the XMLStringPrettyPrinted method. {
         xmlString = [xmlString stringByReplacingOccurrencesOfString:@"&amp;lt;" withString:@"&lt;"];
