@@ -32,6 +32,6 @@
 - (void)pushXmlElementName:(NSString*)xmlElementName;
 - (NSString*)popXmlElementName;
 - (BOOL)isEmpty;
-- (instancetype)shallowCopy;
+- (id)mutableCopy;
 
 @end

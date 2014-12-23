@@ -45,4 +45,6 @@
 
 - (id)keyAtIndex:(NSUInteger)index;
 
+- (id)mutableCopy;
+
 @end

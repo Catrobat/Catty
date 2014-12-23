@@ -24,8 +24,8 @@
 
 @interface OrderedMapTable()
 
-@property (nonatomic, strong) NSMutableArray* keyIndexArray;
-@property (nonatomic, strong) NSMapTable* mapTable;
+@property (nonatomic, strong) NSMutableArray *keyIndexArray;
+@property (nonatomic, strong) NSMapTable *mapTable;
 
 @end
 
@@ -104,6 +104,14 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"OrderedMapTable: %@", self.mapTable];
+}
+
+- (id)mutableCopy
+{
+    OrderedMapTable *orderedMapTable = [OrderedMapTable new];
+    orderedMapTable.keyIndexArray = [self.keyIndexArray mutableCopy];
+    orderedMapTable.mapTable = [self.mapTable mutableCopy];
+    return orderedMapTable;
 }
 
 @end

@@ -69,7 +69,7 @@
     return [self.stack countByEnumeratingWithState:state objects:buffer count:len];
 }
 
-- (instancetype)shallowCopy
+- (id)mutableCopy
 {
     CBXMLPositionStack *copiedPositionStack = [[self class] new];
     copiedPositionStack.stack = [self.stack mutableCopy];

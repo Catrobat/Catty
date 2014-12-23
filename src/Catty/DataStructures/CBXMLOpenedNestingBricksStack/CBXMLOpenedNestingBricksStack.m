@@ -75,7 +75,7 @@
     return [self.openedNestingBricks countByEnumeratingWithState:state objects:buffer count:len];
 }
 
-- (instancetype)shallowCopy
+- (id)mutableCopy
 {
     CBXMLOpenedNestingBricksStack *copiedOpenedNestingBricksStack = [[self class] new];
     copiedOpenedNestingBricksStack.openedNestingBricks = [self.openedNestingBricks mutableCopy];
