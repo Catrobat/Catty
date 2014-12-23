@@ -292,10 +292,9 @@
     [fileManager addDefaultProgramToProgramsRootDirectoryIfNoProgramsExist];
 }
 
-// Maybe this saveToDisk method should be outsourced to another helper class...
+// TODO: Maybe this saveToDisk method should be outsourced to another helper class...
 - (void)saveToDisk
 {
-//    return;
     dispatch_queue_t saveToDiskQ = dispatch_queue_create("save to disk", NULL);
     dispatch_async(saveToDiskQ, ^{
         // show saved view bezel
