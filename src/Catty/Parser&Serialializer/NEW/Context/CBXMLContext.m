@@ -76,28 +76,28 @@
     return _spriteObjectList;
 }
 
-- (NSMutableArray*)lookList
-{
-    if (! _lookList) {
-        _lookList = [NSMutableArray array];
-    }
-    return _lookList;
-}
-
-- (NSMutableArray*)soundList
-{
-    if (! _soundList) {
-        _soundList = [NSMutableArray array];
-    }
-    return _soundList;
-}
-
 - (NSMutableArray*)brickList
 {
     if (! _brickList) {
         _brickList = [NSMutableArray array];
     }
     return _brickList;
+}
+
+- (NSMutableArray*)programVariableList
+{
+    if (! _programVariableList) {
+        _programVariableList = [NSMutableArray array];
+    }
+    return _programVariableList;
+}
+
+- (NSMutableDictionary*)spriteObjectNameVariableList
+{
+    if (! _spriteObjectNameVariableList) {
+        _spriteObjectNameVariableList = [NSMutableDictionary dictionary];
+    }
+    return _spriteObjectNameVariableList;
 }
 
 - (VariablesContainer*)variables
@@ -108,20 +108,20 @@
     return _variables;
 }
 
-
-- (instancetype)shallowCopy
+- (id)mutableCopy
 {
     CBXMLContext *copiedContext = [CBXMLContext new];
-    copiedContext.openedNestingBricksStack = [self.openedNestingBricksStack shallowCopy];
-    copiedContext.currentPositionStack = [self.currentPositionStack shallowCopy];
+    copiedContext.openedNestingBricksStack = [self.openedNestingBricksStack mutableCopy];
+    copiedContext.currentPositionStack = [self.currentPositionStack mutableCopy];
     copiedContext.spriteObjectNamePositions = [self.spriteObjectNamePositions mutableCopy];
     copiedContext.programUserVariableNamePositions = [self.programUserVariableNamePositions mutableCopy];
     copiedContext.pointedSpriteObjectList = [self.pointedSpriteObjectList mutableCopy];
     copiedContext.spriteObjectList = [self.spriteObjectList mutableCopy];
-    copiedContext.lookList = [self.lookList mutableCopy];
-    copiedContext.soundList = [self.soundList mutableCopy];
+    copiedContext.spriteObject = self.spriteObject;
     copiedContext.brickList = [self.brickList mutableCopy];
-    copiedContext.variables = [self.variables shallowCopy];
+    copiedContext.programVariableList = [self.programVariableList mutableCopy];
+    copiedContext.spriteObjectNameVariableList = [self.spriteObjectNameVariableList mutableCopy];
+    copiedContext.variables = [self.variables mutableCopy];
     return copiedContext;
 }
 

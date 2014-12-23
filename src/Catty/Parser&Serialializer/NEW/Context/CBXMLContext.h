@@ -23,8 +23,8 @@
 #import <Foundation/Foundation.h>
 
 @class CBXMLOpenedNestingBricksStack;
-@class GDataXMLElement;
 @class CBXMLPositionStack;
+@class SpriteObject;
 @class VariablesContainer;
 
 @interface CBXMLContext : NSObject
@@ -48,11 +48,13 @@
 //------------------------------------------------------------------------------------------------------------
 @property (nonatomic, strong) NSMutableArray *pointedSpriteObjectList; // contains all already parsed pointed (!!) SpriteObjects
 @property (nonatomic, strong) NSMutableArray *spriteObjectList; // contains all known SpriteObjects
-@property (nonatomic, strong) NSMutableArray *lookList; // contains all looks of currently parsed/serialized SpriteObject
-@property (nonatomic, strong) NSMutableArray *soundList; // contains all sounds of currently parsed/serialized SpriteObject
+@property (nonatomic, strong) SpriteObject *spriteObject; // contains all looks, sounds, bricks, ... of currently parsed/serialized SpriteObject
+// TODO: refactor this later: remove brickList here and dynamically find brick in scriptList. maybe scripts should be referenced in bricks as well!!
 @property (nonatomic, strong) NSMutableArray *brickList; // contains all bricks (used only by serializer)
-@property (nonatomic, strong) VariablesContainer *variables;
+@property (nonatomic, strong) NSMutableArray *programVariableList; // (used for parsing only)
+@property (nonatomic, strong) NSMutableDictionary *spriteObjectNameVariableList; // (used for parsing only)
+@property (nonatomic, strong) VariablesContainer *variables; // (used for serialization only)
 
-- (instancetype)shallowCopy;
+- (id)mutableCopy;
 
 @end
