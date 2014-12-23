@@ -107,6 +107,20 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_unlock(&variablesLock);
 }
 
+- (SpriteObject*)spriteObjectForObjectVariable:(UserVariable*)userVariable
+{
+    for (NSUInteger index = 0; index < [self.objectVariableList count]; ++index) {
+        SpriteObject *spriteObject = [self.objectVariableList keyAtIndex:index];
+        NSMutableArray *userVariableList = [self.objectVariableList objectAtIndex:index];
+        for (UserVariable *userVariableToCompare in userVariableList) {
+            if (userVariableToCompare == userVariable) {
+                return spriteObject;
+            }
+        }
+    }
+    return nil;
+}
+
 - (BOOL)isVariableOfSpriteObject:(SpriteObject*)spriteObject userVariable:(UserVariable*)userVariable
 {
     for (NSUInteger index = 0; index < [self.objectVariableList count]; ++index) {

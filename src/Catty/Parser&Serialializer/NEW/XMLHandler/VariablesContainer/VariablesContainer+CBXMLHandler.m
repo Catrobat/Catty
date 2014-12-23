@@ -31,6 +31,7 @@
 #import "CBXMLContext.h"
 #import "CBXMLSerializerHelper.h"
 #import "CBXMLPositionStack.h"
+#import "OrderedDictionary.h"
 
 @implementation VariablesContainer (CBXMLHandler)
 
@@ -76,12 +77,13 @@
     return varContainer;
 }
 
-+ (NSMutableDictionary*)parseAndCreateObjectVariables:(GDataXMLElement*)objectVarListElement
++ (OrderedDictionary*)parseAndCreateObjectVariables:(GDataXMLElement*)objectVarListElement
                                  spriteObjectElements:(NSMutableDictionary*)spriteObjectElementMap
 {
     NSLog(@"--- Object Variables ---");
     NSArray *entries = [objectVarListElement children];
-    NSMutableDictionary *objectVariableMap = [NSMutableDictionary dictionaryWithCapacity:[entries count]];
+    OrderedDictionary *objectVariableMap = [[OrderedDictionary alloc] initWithCapacity:[entries count]];
+    NSUInteger index = 0;
     for (GDataXMLElement *entry in entries) {
         [XMLError exceptionIfNode:entry isNilOrNodeNameNotEquals:@"entry"];
         NSArray *objectElements = [entry elementsForName:@"object"];
@@ -112,8 +114,10 @@
         // create all user variables of this sprite object
         NSArray *listElements = [entry elementsForName:@"list"];
         GDataXMLElement *listElement = [listElements firstObject];
-        [objectVariableMap setObject:[[self class] parseUserVariablesList:[listElement children]]
-                              forKey:spriteObjectName];
+        [objectVariableMap insertObject:[[self class] parseUserVariablesList:[listElement children]]
+                                 forKey:spriteObjectName
+                                atIndex:index];
+        ++index;
     }
     return objectVariableMap;
 }
@@ -158,7 +162,7 @@
         CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
         NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
                                                              toDestinationPositionStack:positionStackOfSpriteObject];
-        [entryToObjectReferenceXmlElement addAttribute:[GDataXMLNode attributeWithName:@"reference"
+        [entryToObjectReferenceXmlElement addAttribute:[GDataXMLElement attributeWithName:@"reference"
                                                                             stringValue:refPath]];
         [entryXmlElement addChild:entryToObjectReferenceXmlElement context:context];
 
@@ -167,8 +171,7 @@
         for (id variable in variables) {
             [XMLError exceptionIf:[variable isKindOfClass:[UserVariable class]] equals:NO
                           message:@"Invalid user variable instance given"];
-            GDataXMLElement *userVariableXmlElement = [(UserVariable*)variable xmlElementWithContext:context
-                                                                                     forSpriteObject:(SpriteObject*)spriteObject];
+            GDataXMLElement *userVariableXmlElement = [(UserVariable*)variable xmlElementWithContext:context];
             [listXmlElement addChild:userVariableXmlElement context:context];
         }
         [entryXmlElement addChild:listXmlElement context:context];
@@ -186,10 +189,10 @@
     }
     [xmlElement addChild:programVariableListXmlElement context:context];
 
-    GDataXMLElement *userBrickVariableListXmlElement = [GDataXMLElement elementWithName:@"userBrickVariableList"
-                                                                                context:context];
-    // TODO: implement userBrickVariables here...
-    [xmlElement addChild:userBrickVariableListXmlElement context:context];
+    //  Unused at the moment => TODO: implement this after Catroid has decided to officially use this feature!
+    //    GDataXMLElement *userBrickVariableListXmlElement = [GDataXMLElement elementWithName:@"userBrickVariableList"
+    //                                                                                context:context];
+    //    [xmlElement addChild:userBrickVariableListXmlElement context:context];
 
     return xmlElement;
 }

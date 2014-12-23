@@ -27,6 +27,4 @@
 
 @interface UserVariable (CBXMLHandler) <CBXMLNodeProtocol>
 
-- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context forSpriteObject:(SpriteObject*)spriteObject;
-
 @end

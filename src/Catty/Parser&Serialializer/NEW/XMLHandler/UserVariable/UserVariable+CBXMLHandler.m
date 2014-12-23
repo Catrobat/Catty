@@ -42,9 +42,8 @@
         xmlElement = [xmlElement singleNodeForCatrobatXPath:xPath];
         [XMLError exceptionIfNil:xmlElement message:@"Invalid reference in UserVariable!"];
     }
-    [XMLError exceptionIfNil:[xmlElement stringValue] message:@"No name for user variable given"];
-
     NSString *userVariableName = [xmlElement stringValue];
+    [XMLError exceptionIfNil:userVariableName message:@"No name for user variable given"];
     UserVariable *userVariable = nil;
     if (context) {
         SpriteObject *spriteObject = context.spriteObject;
@@ -75,20 +74,47 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    return [self xmlElementWithContext:context forSpriteObject:nil];
-}
-
-- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context forSpriteObject:(SpriteObject*)spriteObject
-{
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"userVariable" stringValue:self.name
                                                            context:context]; // needed here for stack
     CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
 
     // check if userVariable has been already serialized (e.g. within a SetVariableBrick)
     CBXMLPositionStack *positionStackOfUserVariable = nil;
-    if (! spriteObject) {
-        positionStackOfUserVariable = context.programUserVariableNamePositions[self.name];
+
+    // check whether objectVariable or programVariable
+    SpriteObject *spriteObject = [context.variables spriteObjectForObjectVariable:self];
+    if (spriteObject) {
+        // it is a object variable!
+        NSMutableDictionary *alreadySerializedVariables = [context.spriteObjectNameUserVariableListPositions
+                                                           objectForKey:spriteObject.name];
+        if (alreadySerializedVariables) {
+            positionStackOfUserVariable = [alreadySerializedVariables objectForKey:self.name];
+            if (positionStackOfUserVariable) {
+                // already serialized
+                [context.currentPositionStack popXmlElementName]; // remove already added userVariable that contains stringValue!
+                GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"userVariable"
+                                                                       context:context]; // add new one without stringValue!
+                NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
+                                                                     toDestinationPositionStack:positionStackOfUserVariable];
+                [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
+                return xmlElement;
+            }
+        } else {
+            alreadySerializedVariables = [NSMutableDictionary dictionary];
+            [context.spriteObjectNameUserVariableListPositions setObject:alreadySerializedVariables
+                                                                  forKey:spriteObject.name];
+        }
+        // save current stack position in context
+        [alreadySerializedVariables setObject:currentPositionStack forKey:self.name];
+        return xmlElement;
     }
+
+    // it must be a program variable!
+    if (! [context.variables isProgramVariable:self]) {
+        [XMLError exceptionWithMessage:@"UserVariable is neither objectVariable nor programVariable"];
+    }
+
+    positionStackOfUserVariable = [context.programUserVariableNamePositions objectForKey:self.name];
     if (positionStackOfUserVariable) {
         // already serialized
         [context.currentPositionStack popXmlElementName]; // remove already added userVariable that contains stringValue!
@@ -96,15 +122,11 @@
                                                                context:context]; // add new one without stringValue!
         NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
                                                              toDestinationPositionStack:positionStackOfUserVariable];
-        [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:refPath]];
+        [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
         return xmlElement;
     }
-
     // save current stack position in context
-    if (! spriteObject) {
-        context.programUserVariableNamePositions[self.name] = currentPositionStack;
-    }
-
+    [context.programUserVariableNamePositions setObject:currentPositionStack forKey:self.name];
     return xmlElement;
 }
 
