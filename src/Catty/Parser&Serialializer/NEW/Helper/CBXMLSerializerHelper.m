@@ -35,7 +35,7 @@
 + (NSString*)indexXPathStringForIndexNumber:(NSUInteger)indexNumber
 {
     NSString *index = nil;
-    if ((indexNumber != NSNotFound) && (indexNumber > 1)) {
+    if ((indexNumber != NSNotFound) && (indexNumber > 0)) {
         index = [NSString stringWithFormat:@"[%lu]", (unsigned long)(indexNumber+1)];
     } else {
         index = @"";
@@ -93,13 +93,11 @@
     if (index < stackLengthOfSourcePath) {
         NSUInteger difference = (stackLengthOfSourcePath - index);
         for (NSUInteger times = 0; times < difference; ++times) {
-            [path appendString:@"../"];
+            [path appendFormat:@"..%@", ((times < (difference - 1)) ? @"/" : @"")];
         }
     }
-    NSUInteger counter = 0;
     while (index < stackLengthOfDestinationPath) {
-        [path appendFormat:@"%@%@", (counter++ ? @"/" : @""),
-         [destinationPositionStack.stack objectAtIndex:index]];
+        [path appendFormat:@"/%@", [destinationPositionStack.stack objectAtIndex:index]];
         ++index;
     }
     return [path copy];
