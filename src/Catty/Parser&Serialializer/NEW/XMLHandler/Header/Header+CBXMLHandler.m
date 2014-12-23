@@ -102,11 +102,11 @@
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"screenHeight"
                                                     stringValue:[self.screenHeight stringValue] context:context]
                        context:context];
-    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"screenWidth"
-                                                    stringValue:[self.screenWidth stringValue] context:context]
-                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"screenMode"
                                                     stringValue:self.screenMode context:context]
+                       context:context];
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"screenWidth"
+                                                    stringValue:[self.screenWidth stringValue] context:context]
                        context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"tags"
                                                     stringValue:self.tags context:context]

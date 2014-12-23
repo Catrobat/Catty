@@ -78,8 +78,10 @@
     }
     GDataXMLElement *type = [GDataXMLElement elementWithName:@"type" stringValue:[self stringForElementType:self.type] context:context];
     [formulaElement addChild:type context:context];
-    GDataXMLElement *value = [GDataXMLElement elementWithName:@"value" stringValue:self.value context:context];
-    [formulaElement addChild:value context:context];
+    if (self.value) {
+        GDataXMLElement *value = [GDataXMLElement elementWithName:@"value" stringValue:self.value context:context];
+        [formulaElement addChild:value context:context];
+    }
     return formulaElement;
 }
 
