@@ -41,10 +41,9 @@
 }
 
 
-NSMutableString* resultString;
+NSMutableString *resultString;
 
-
-- (NSString*) stringByEscapingHTMLEntities
+- (NSString*)stringByEscapingHTMLEntities
 {
     NSMutableString *result = [NSMutableString stringWithString:self];
     NSRange range = NSMakeRange(0, [result length]);
@@ -66,6 +65,16 @@ NSMutableString* resultString;
     }
     
     return result;
+}
+
+- (NSString*)stringByEscapingForXMLValues
+{
+    NSString *escapedString = [self stringByReplacingOccurrencesOfString:@"<"  withString:@"&lt;"];
+    escapedString = [escapedString stringByReplacingOccurrencesOfString:@">"  withString:@"&gt;"];
+    escapedString = [escapedString stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"];
+    escapedString = [escapedString stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot;"];
+    escapedString = [escapedString stringByReplacingOccurrencesOfString:@"'"  withString:@"&apos;"];
+    return escapedString;
 }
 
 - (NSString*)firstCharacterUppercaseString

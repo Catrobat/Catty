@@ -26,7 +26,7 @@
 
 @implementation CBXMLLogger
 
-+ (void)logElement:(GDataXMLElement *)xmlElement
++ (void)logElement:(GDataXMLElement*)xmlElement
 {
     NSLog(@"%@", [xmlElement XMLRootElementAsString]);
 }

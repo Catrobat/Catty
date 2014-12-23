@@ -179,9 +179,7 @@ REMIX TIPS:
       </entry>
     </objectVariableList>
     <programVariableList>
-      <userVariable>
-        <name>hold</name>
-      </userVariable>
+      <userVariable>hold</userVariable>
     </programVariableList>
   </variables>
 </program>
