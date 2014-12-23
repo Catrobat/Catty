@@ -52,7 +52,7 @@
 {
     NSUInteger indexOfLook = [CBXMLSerializerHelper indexOfElement:self inArray:context.spriteObject.lookList];
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"look" xPathIndex:(indexOfLook+1) context:context];
-    [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"name" stringValue:self.name]];
+    [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"name" escapedStringValue:self.name]];
     [xmlElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName
                                                   context:context] context:context];
     return xmlElement;

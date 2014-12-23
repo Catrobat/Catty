@@ -90,10 +90,11 @@
         return alreadyExistingPointedSpriteObject;
     }
 
+    // IMPORTANT: DO NOT CHANGE ORDER HERE!
+    [context.spriteObjectList addObject:spriteObject];
     spriteObject.lookList = [self parseAndCreateLooks:xmlElement];
     spriteObject.soundList = [self parseAndCreateSounds:xmlElement];
     spriteObject.scriptList = [self parseAndCreateScripts:xmlElement withContext:context];
-    [context.spriteObjectList addObject:spriteObject];
     return spriteObject;
 }
 
@@ -183,14 +184,14 @@
         // already serialized
         NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
                                                              toDestinationPositionStack:positionStackOfSpriteObject];
-        [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:refPath]];
+        [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
         return xmlElement;
     }
 
     // save current stack position in context
     context.spriteObjectNamePositions[self.name] = currentPositionStack;
 
-    [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"name" stringValue:self.name]];
+    [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"name" escapedStringValue:self.name]];
 
     GDataXMLElement *lookListXmlElement = [GDataXMLElement elementWithName:@"lookList" context:context];
     for (id look in self.lookList) {
@@ -216,9 +217,9 @@
     }
     [xmlElement addChild:scriptListXmlElement context:context];
 
-    // TODO: implement userBricks here...
-    GDataXMLElement *userBricksXmlElement = [GDataXMLElement elementWithName:@"userBricks" context:context];
-    [xmlElement addChild:userBricksXmlElement context:context];
+    //  Unused at the moment => TODO: implement this after Catroid has decided to officially use this feature!
+    //    GDataXMLElement *userBricksXmlElement = [GDataXMLElement elementWithName:@"userBricks" context:context];
+    //    [xmlElement addChild:userBricksXmlElement context:context];
 
     return xmlElement;
 }
