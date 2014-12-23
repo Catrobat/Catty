@@ -42,10 +42,10 @@
 {
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"SetVolumeToBrick"]];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"SetVolumeToBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.volume xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLNode attributeWithName:@"category" stringValue:@"VOLUME"]];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"VOLUME"]];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
     return brick;

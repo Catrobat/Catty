@@ -62,12 +62,12 @@
 {
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"PlaySoundBrick"]];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"PlaySoundBrick"]];
     if (self.sound) {
         GDataXMLElement *referenceXMLElement = [GDataXMLElement elementWithName:@"sound" context:context];
         NSString *refPath = [CBXMLSerializerHelper relativeXPathToSound:self.sound
                                                             inSoundList:context.spriteObject.soundList];
-        [referenceXMLElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:refPath]];
+        [referenceXMLElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
         [brick addChild:referenceXMLElement context:context];
     }
     return brick;

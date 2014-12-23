@@ -50,16 +50,16 @@
 {
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"GlideToBrick"]];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"GlideToBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.yDestination xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLNode attributeWithName:@"category" stringValue:@"Y_DESTINATION"]];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"Y_DESTINATION"]];
     [formulaList addChild:formula context:context];
     formula = [self.xDestination xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLNode attributeWithName:@"category" stringValue:@"X_DESTINATION"]];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"X_DESTINATION"]];
     [formulaList addChild:formula context:context];
     formula = [self.durationInSeconds xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLNode attributeWithName:@"category" stringValue:@"DURATION_IN_SECONDS"]];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"DURATION_IN_SECONDS"]];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
     return brick;

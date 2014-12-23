@@ -68,14 +68,17 @@
 {
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"SetVariableBrick"]];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"SetVariableBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.variableFormula xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLNode attributeWithName:@"category" stringValue:@"VARIABLE"]];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"VARIABLE"]];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
-    [brick addChild:[GDataXMLElement elementWithName:@"inUserBrick" stringValue:@"false" context:context]
-            context:context]; // TODO: implement this...
+
+    //  Unused at the moment => TODO: implement this after Catroid has decided to officially use this feature!
+    //    [brick addChild:[GDataXMLElement elementWithName:@"inUserBrick" stringValue:@"false"
+    //                                             context:context] context:context];
+
     [brick addChild:[self.userVariable xmlElementWithContext:context] context:context];
     return brick;
 }
