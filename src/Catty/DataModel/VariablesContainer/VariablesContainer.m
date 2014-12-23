@@ -207,10 +207,10 @@ static pthread_mutex_t variablesLock;
     return YES;
 }
 
-- (instancetype)shallowCopy
+- (id)mutableCopy
 {
     VariablesContainer *copiedVariablesContainer = [VariablesContainer new];
-    copiedVariablesContainer.objectVariableList = self.objectVariableList;
+    copiedVariablesContainer.objectVariableList = [self.objectVariableList mutableCopy];
     copiedVariablesContainer.programVariableList = [self.programVariableList mutableCopy];
     return copiedVariablesContainer;
 }

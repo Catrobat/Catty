@@ -234,7 +234,7 @@
 {
     // lazy instantiation
     if (! _variables)
-        _variables = [[VariablesContainer alloc] init];
+        _variables = [VariablesContainer new];
     return _variables;
 }
 

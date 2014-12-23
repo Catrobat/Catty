@@ -47,6 +47,6 @@
 
 - (BOOL)isEqualToVariablesContainer:(VariablesContainer*)variablesContainer;
 
-- (instancetype)shallowCopy;
+- (id)mutableCopy;
 
 @end
