@@ -160,16 +160,4 @@
     return nil;
 }
 
-+ (NSArray*)userVariablesInOrderedMapTable:(OrderedMapTable*)orderedMapTable
-                           forSpriteObject:(SpriteObject*)spriteObject
-{
-    for (NSUInteger index = 0; index < [orderedMapTable count]; ++index) {
-        SpriteObject *spriteObjectToCompare = [orderedMapTable keyAtIndex:index];
-        if (spriteObjectToCompare == spriteObject) {
-            return [orderedMapTable objectAtIndex:index];
-        }
-    }
-    return nil;
-}
-
 @end

@@ -52,6 +52,14 @@
     return _spriteObjectNamePositions;
 }
 
+- (NSMutableDictionary*)spriteObjectNameUserVariableListPositions
+{
+    if(! _spriteObjectNameUserVariableListPositions)
+        _spriteObjectNameUserVariableListPositions = [NSMutableDictionary dictionary];
+    
+    return _spriteObjectNameUserVariableListPositions;
+}
+
 - (NSMutableDictionary*)programUserVariableNamePositions
 {
     if(! _programUserVariableNamePositions)

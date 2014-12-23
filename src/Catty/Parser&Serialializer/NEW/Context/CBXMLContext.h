@@ -39,6 +39,11 @@
 // a CBXMLPositionStack instance) as the dictionary's values (used for serialization only)
 @property (nonatomic, strong) NSMutableDictionary *spriteObjectNamePositions;
 
+// contains SpriteObject names as the dictionary's keys and NSMutableArrays containing their current position
+// on the stack (pointer to a CBXMLPositionStack instance) as the dictionary's values (used for
+// serialization only)
+@property (nonatomic, strong) NSMutableDictionary *spriteObjectNameUserVariableListPositions;
+
 // contains UserVariable names as the dictionary's keys and their current position on the stack (pointer to
 // a CBXMLPositionStack instance) as the dictionary's values (used for serialization only)
 @property (nonatomic, strong) NSMutableDictionary *programUserVariableNamePositions;

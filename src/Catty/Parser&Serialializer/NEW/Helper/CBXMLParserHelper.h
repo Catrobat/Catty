@@ -44,8 +44,4 @@
 + (Sound*)findSoundInArray:(NSArray*)soundList withName:(NSString*)soundName;
 + (UserVariable*)findUserVariableInArray:(NSArray*)userVariableList withName:(NSString*)userVariableName;
 
-#warning Do we need that??
-+ (NSArray*)userVariablesInOrderedMapTable:(OrderedMapTable*)orderedMapTable
-                           forSpriteObject:(SpriteObject*)spriteObject;
-
 @end
