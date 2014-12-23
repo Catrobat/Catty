@@ -29,11 +29,8 @@
 @interface CBXMLSerializerHelper : NSObject
 
 + (NSUInteger)indexOfElement:(id)element inArray:(NSArray*)array;
-
-#warning remove that later!!!
 + (NSString*)relativeXPathToSound:(Sound*)sound inSoundList:(NSArray*)soundList;
 + (NSString*)relativeXPathToLook:(Look*)look inLookList:(NSArray*)lookList;
-
 + (NSString*)relativeXPathFromSourcePositionStack:(CBXMLPositionStack*)sourcePositionStack
                        toDestinationPositionStack:(CBXMLPositionStack*)destinationPositionStack;
 

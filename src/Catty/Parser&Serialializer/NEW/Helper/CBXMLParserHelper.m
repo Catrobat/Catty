@@ -31,6 +31,7 @@
 #import "UserVariable+CBXMLHandler.h"
 #import "SpriteObject+CBXMLHandler.h"
 #import "CatrobatLanguageDefines.h"
+#import "OrderedMapTable.h"
 #import <objc/runtime.h>
 
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
@@ -114,13 +115,6 @@
     return value;
 }
 
-+ (id)valueForPropertyNode:(GDataXMLNode*)propertyNode
-{
-    // TODO: stub method => implement this!!
-    [XMLError exceptionWithMessage:@"valueForPropertyNode: NOT IMPLEMENTED YET!!!"];
-    return nil;
-}
-
 + (BOOL)isReferenceElement:(GDataXMLElement*)xmlElement
 {
     return ([xmlElement attributeForName:@"reference"] ? YES : NO);
@@ -161,6 +155,18 @@
     for (UserVariable *userVariable in userVariableList) {
         if ([userVariable.name isEqualToString:userVariableName]) { // TODO: implement isEqual in UserVariable class
             return userVariable;
+        }
+    }
+    return nil;
+}
+
++ (NSArray*)userVariablesInOrderedMapTable:(OrderedMapTable*)orderedMapTable
+                           forSpriteObject:(SpriteObject*)spriteObject
+{
+    for (NSUInteger index = 0; index < [orderedMapTable count]; ++index) {
+        SpriteObject *spriteObjectToCompare = [orderedMapTable keyAtIndex:index];
+        if (spriteObjectToCompare == spriteObject) {
+            return [orderedMapTable objectAtIndex:index];
         }
     }
     return nil;

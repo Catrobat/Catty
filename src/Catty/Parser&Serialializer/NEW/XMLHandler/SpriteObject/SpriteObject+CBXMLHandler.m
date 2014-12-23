@@ -45,12 +45,14 @@
                             message:@"The name of the rootElement is '%@' but should be '%@'",
          xmlElement.name, @"object or pointedObject"];
     }
-    
+
     NSArray *attributes = [xmlElement attributes];
     [XMLError exceptionIf:[attributes count] notEquals:1
                   message:@"Parsed name-attribute of object is invalid or empty!"];
-    
+
     SpriteObject *spriteObject = [self new];
+    context.spriteObject = spriteObject; // update context!
+
     GDataXMLNode *attribute = [attributes firstObject];
     GDataXMLElement *referencedObjectElement = nil;
     // check if normal or pointed object
@@ -75,25 +77,23 @@
     }
     [XMLError exceptionIfNil:spriteObject.name message:@"SpriteObject must contain a name"];
 
-    // sprite object could (!) already exist in pointedSpriteObjectList or spriteObjectList at this point!
-    SpriteObject *alreadyExistingPointedSpriteObject = [CBXMLParserHelper findSpriteObjectInArray:context.pointedSpriteObjectList
-                                                                                         withName:spriteObject.name];
-    if (alreadyExistingPointedSpriteObject) {
-        return alreadyExistingPointedSpriteObject;
-    }
+    // sprite object could (!) already exist in spriteObjectList or pointedSpriteObjectList at this point!
     SpriteObject *alreadyExistingSpriteObject = [CBXMLParserHelper findSpriteObjectInArray:context.spriteObjectList
                                                                                   withName:spriteObject.name];
     if (alreadyExistingSpriteObject) {
         return alreadyExistingSpriteObject;
     }
+    SpriteObject *alreadyExistingPointedSpriteObject = [CBXMLParserHelper findSpriteObjectInArray:context.pointedSpriteObjectList
+                                                                                         withName:spriteObject.name];
+    if (alreadyExistingPointedSpriteObject) {
+        [context.spriteObjectList addObject:spriteObject];
+        return alreadyExistingPointedSpriteObject;
+    }
 
     spriteObject.lookList = [self parseAndCreateLooks:xmlElement];
-    context.lookList = spriteObject.lookList;
-
     spriteObject.soundList = [self parseAndCreateSounds:xmlElement];
-    context.soundList = spriteObject.soundList;
-
-    spriteObject.scriptList = [self parseAndCreateScripts:xmlElement withContext:context AndSpriteObject:spriteObject];
+    spriteObject.scriptList = [self parseAndCreateScripts:xmlElement withContext:context];
+    [context.spriteObjectList addObject:spriteObject];
     return spriteObject;
 }
 
@@ -104,8 +104,7 @@
     
     NSArray *lookElements = [[lookListElements firstObject] children];
     if (! [lookElements count]) {
-        // TODO: ask team if we should return nil or an empty NSMutableArray in this case!!
-        return nil;
+        return [NSMutableArray array];
     }
     
     NSMutableArray *lookList = [NSMutableArray arrayWithCapacity:[lookElements count]];
@@ -138,11 +137,10 @@
 
 + (NSMutableArray*)parseAndCreateScripts:(GDataXMLElement*)objectElement
                              withContext:(CBXMLContext*)context
-                         AndSpriteObject:(SpriteObject*)spriteObject
 {
     NSArray *scriptListElements = [objectElement elementsForName:@"scriptList"];
     [XMLError exceptionIf:[scriptListElements count] notEquals:1 message:@"No scriptList given!"];
-    
+
     NSArray *scriptElements = [[scriptListElements firstObject] children];
     if (! [scriptElements count]) {
         return [NSMutableArray array];
@@ -151,7 +149,6 @@
     NSMutableArray *scriptList = [NSMutableArray arrayWithCapacity:[scriptElements count]];
     for (GDataXMLElement *scriptElement in scriptElements) {
         Script *script = [Script parseFromElement:scriptElement withContext:context];
-        script.object = spriteObject;
         [XMLError exceptionIfNil:script message:@"Unable to parse script..."];
         [scriptList addObject:script];
     }
@@ -167,8 +164,7 @@
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context asPointedObject:(BOOL)asPointedObject
 {
     // update context object
-    context.lookList = self.lookList;
-    context.soundList = self.soundList;
+    context.spriteObject = self;
 
     // generate xml element for sprite object
     GDataXMLElement *xmlElement = nil;
@@ -178,7 +174,8 @@
     } else {
         xmlElement = [GDataXMLElement elementWithName:@"pointedObject" context:context];
     }
-    CBXMLPositionStack *currentPositionStack = [context.currentPositionStack shallowCopy];
+
+    CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
 
     // check if spriteObject has been already serialized (e.g. within a PointToBrick)
     CBXMLPositionStack *positionStackOfSpriteObject = context.spriteObjectNamePositions[self.name];

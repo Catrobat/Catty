@@ -102,7 +102,6 @@
          [destinationPositionStack.stack objectAtIndex:index]];
         ++index;
     }
-
     return [path copy];
 }
 

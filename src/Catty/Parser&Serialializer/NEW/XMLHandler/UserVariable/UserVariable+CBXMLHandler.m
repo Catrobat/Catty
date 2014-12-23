@@ -27,6 +27,8 @@
 #import "CBXMLContext.h"
 #import "CBXMLPositionStack.h"
 #import "CBXMLSerializerHelper.h"
+#import "VariablesContainer.h"
+#import "SpriteObject.h"
 
 @implementation UserVariable (CBXMLHandler)
 
@@ -34,28 +36,39 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"userVariable"];
-    BOOL isReferencedVariable = [CBXMLParserHelper isReferenceElement:xmlElement];
-    
-    if (isReferencedVariable) {
+    if ([CBXMLParserHelper isReferenceElement:xmlElement]) {
         GDataXMLNode *referenceAttribute = [xmlElement attributeForName:@"reference"];
         NSString *xPath = [referenceAttribute stringValue];
         xmlElement = [xmlElement singleNodeForCatrobatXPath:xPath];
         [XMLError exceptionIfNil:xmlElement message:@"Invalid reference in UserVariable!"];
     }
-    
-    UserVariable *userVariable = [UserVariable new];
     [XMLError exceptionIfNil:[xmlElement stringValue] message:@"No name for user variable given"];
-    userVariable.name = [xmlElement stringValue];
 
-    if(! isReferencedVariable) {
-        UserVariable *alreadyExistingUserVariable = [CBXMLParserHelper findUserVariableInArray:context.userVariableList withName:userVariable.name];
-        if (alreadyExistingUserVariable) {
-            NSLog(@"User variable with same name %@ already exists...\
-                  Instantiated by other brick...", alreadyExistingUserVariable.name);
-            return alreadyExistingUserVariable;
+    NSString *userVariableName = [xmlElement stringValue];
+    UserVariable *userVariable = nil;
+    if (context) {
+        SpriteObject *spriteObject = context.spriteObject;
+        if (spriteObject) {
+            [XMLError exceptionIfNil:spriteObject.name message:@"Given SpriteObject has no name."];
+            NSMutableArray *objectUserVariables = [context.spriteObjectNameVariableList objectForKey:spriteObject.name];
+            for (UserVariable *userVariableToCompare in objectUserVariables) {
+                if ([userVariableToCompare.name isEqualToString:userVariableName]) {
+                    return userVariableToCompare;
+                }
+            }
         }
-        [context.userVariableList addObject:userVariable];
+        userVariable = [CBXMLParserHelper findUserVariableInArray:context.programVariableList
+                                                         withName:userVariableName];
+        if (userVariable) {
+            return userVariable;
+        }
+        [XMLError exceptionWithMessage:@"This should never happen."];
     }
+
+    // no context given => this method has been called from VariablesContainer+CBXMLHandler
+    userVariable = [UserVariable new];
+    userVariable.name = userVariableName;
+    NSLog(@"Created new UserVariable: %@", userVariable.name);
     return userVariable;
 }
 
@@ -69,7 +82,7 @@
 {
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"userVariable" stringValue:self.name
                                                            context:context]; // needed here for stack
-    CBXMLPositionStack *currentPositionStack = [context.currentPositionStack shallowCopy];
+    CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
 
     // check if userVariable has been already serialized (e.g. within a SetVariableBrick)
     CBXMLPositionStack *positionStackOfUserVariable = nil;
