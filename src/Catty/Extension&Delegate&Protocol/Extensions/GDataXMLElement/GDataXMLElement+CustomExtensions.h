@@ -42,7 +42,7 @@
                             context:(CBXMLContext*)context;
 + (GDataXMLElement*)elementWithName:(NSString*)name xPathIndex:(NSUInteger)xPathIndex
                         stringValue:(NSString*)value context:(CBXMLContext*)context;
-
++ (id)attributeWithName:(NSString*)name escapedStringValue:(NSString*)value;
 - (void)addChild:(GDataXMLNode*)child context:(CBXMLContext*)context;
 
 @end

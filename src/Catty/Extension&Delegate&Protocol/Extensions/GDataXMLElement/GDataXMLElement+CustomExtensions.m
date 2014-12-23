@@ -24,6 +24,7 @@
 #import "CBXMLContext.h"
 #import "CBXMLValidator.h"
 #import "CBXMLPositionStack.h"
+#import "NSString+CatrobatNSStringExtensions.h"
 
 @implementation GDataXMLElement (CustomExtensions)
 
@@ -63,7 +64,7 @@
 - (NSString*)XMLRootElementAsString
 {
     NSString *attributesStr = [[NSString alloc] init];
-    if([self isKindOfClass:[GDataXMLElement class]]) {
+    if ([self isKindOfClass:[GDataXMLElement class]]) {
         GDataXMLElement *element = (GDataXMLElement*)self;
         NSArray *attributesArr = [element attributes];
         for(GDataXMLNode *attribute in attributesArr) {
@@ -176,9 +177,15 @@
 {
     [[self class] pushToStackElementName:name xPathIndex:xPathIndex context:context];
     if (value && [value length]) {
-        return [[self class] elementWithName:name stringValue:value];
+        return [[self class] elementWithName:name
+                                 stringValue:[value stringByEscapingForXMLValues]];
     }
     return [[self class] elementWithName:name];
+}
+
++ (id)attributeWithName:(NSString*)name escapedStringValue:(NSString*)value
+{
+    return [[self class] attributeWithName:name stringValue:[value stringByEscapingForXMLValues]];
 }
 
 - (void)addChild:(GDataXMLNode*)child context:(CBXMLContext*)context
