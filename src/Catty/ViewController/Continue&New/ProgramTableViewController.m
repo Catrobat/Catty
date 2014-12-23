@@ -285,7 +285,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSUInteger index = (kBackgroundObjects + indexPath.row);
     SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:index];
     [self.program removeObject:object];
-    [self.program saveToDisk];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:((indexPath.row != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
     [self hideLoadingView];
 }

@@ -478,6 +478,7 @@
 		CAA4A54E1A43BE97002A69A0 /* XMLSerializerAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A54D1A43BE97002A69A0 /* XMLSerializerAbstractTest.m */; };
 		CAA4A5501A43BEA6002A69A0 /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A54F1A43BEA6002A69A0 /* XMLSerializerBlackBoxTests.m */; };
 		CAA4A5531A43BEC4002A69A0 /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5521A43BEC4002A69A0 /* XMLSerializerTests.m */; };
+		CAAD54071A4926A600B64ADE /* Encapsulated.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAAD54061A4926A600B64ADE /* Encapsulated.xml */; };
 		CAD116DD1A46AAC000F560B4 /* CBXMLPositionStack.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD116DC1A46AAC000F560B4 /* CBXMLPositionStack.m */; };
 		CAD116E51A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD116E41A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.m */; };
 		CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3A198F685D00455B77 /* SSZipArchive.license */; };
@@ -1442,6 +1443,7 @@
 		CAA4A54D1A43BE97002A69A0 /* XMLSerializerAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLSerializerAbstractTest.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLSerializerTests/Abstract/XMLSerializerAbstractTest.m"; sourceTree = "<group>"; };
 		CAA4A54F1A43BEA6002A69A0 /* XMLSerializerBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLSerializerBlackBoxTests.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLSerializerTests/BlackBox Tests/XMLSerializerBlackBoxTests.m"; sourceTree = "<group>"; };
 		CAA4A5521A43BEC4002A69A0 /* XMLSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLSerializerTests.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLSerializerTests/Unit Tests/XMLSerializerTests.m"; sourceTree = "<group>"; };
+		CAAD54061A4926A600B64ADE /* Encapsulated.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Encapsulated.xml; sourceTree = "<group>"; };
 		CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CAD116DB1A46AAC000F560B4 /* CBXMLPositionStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBXMLPositionStack.h; path = CBXMLPositionStack/CBXMLPositionStack.h; sourceTree = "<group>"; };
 		CAD116DC1A46AAC000F560B4 /* CBXMLPositionStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBXMLPositionStack.m; path = CBXMLPositionStack/CBXMLPositionStack.m; sourceTree = "<group>"; };
@@ -1582,6 +1584,7 @@
 				CA97A4671A44F3E2008C931B /* Compass_0.1 */,
 				CA97A4681A44F3EE008C931B /* Demonstration */,
 				CA97A4691A44F3F7008C931B /* Drink_more_water */,
+				CAAD54081A4926B800B64ADE /* Encapsulated */,
 				CA97A46A1A44F407008C931B /* Flap_Pac_Man */,
 				CA97A46B1A44F428008C931B /* Flappy_v3.0 */,
 				CAEE0A321A329033007CB248 /* Galaxy_War */,
@@ -3934,6 +3937,14 @@
 			name = "Unit Tests";
 			sourceTree = "<group>";
 		};
+		CAAD54081A4926B800B64ADE /* Encapsulated */ = {
+			isa = PBXGroup;
+			children = (
+				CAAD54061A4926A600B64ADE /* Encapsulated.xml */,
+			);
+			name = Encapsulated;
+			sourceTree = "<group>";
+		};
 		CAD116DE1A46AAC500F560B4 /* CBXMLPositionStack */ = {
 			isa = PBXGroup;
 			children = (
@@ -4087,7 +4098,7 @@
 						TestTargetID = CADBD6D319B0E8C200C62836;
 					};
 					CADBD6D319B0E8C200C62836 = {
-						DevelopmentTeam = 4V6T7BCGGR;
+						DevelopmentTeam = 9NJ4SV439Q;
 					};
 				};
 			};
@@ -4155,6 +4166,7 @@
 				CA97A4931A44F4B4008C931B /* Skydiving_Steve_093.xml in Resources */,
 				4C3275FA1A1360640091C428 /* ValidProgramAllBricks.xml in Resources */,
 				CA97A4591A44F3B0008C931B /* Demonstration_093.xml in Resources */,
+				CAAD54071A4926A600B64ADE /* Encapsulated.xml in Resources */,
 				CA97A48F1A44F495008C931B /* Rock_paper_scissors_093.xml in Resources */,
 				CA97A4A11A44F556008C931B /* Word_balloon_demo_093.xml in Resources */,
 				CA97A4921A44F4B4008C931B /* Skydiving_Steve_092.xml in Resources */,
