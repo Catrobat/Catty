@@ -25,6 +25,7 @@
 #import "CBXMLValidator.h"
 #import "CBXMLContext.h"
 #import "CBXMLSerializerHelper.h"
+#import "SpriteObject.h"
 
 @implementation Look (CBXMLHandler)
 
@@ -49,7 +50,7 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    NSUInteger indexOfLook = [CBXMLSerializerHelper indexOfElement:self inArray:context.lookList];
+    NSUInteger indexOfLook = [CBXMLSerializerHelper indexOfElement:self inArray:context.spriteObject.lookList];
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"look" xPathIndex:(indexOfLook+1) context:context];
     [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"name" stringValue:self.name]];
     [xmlElement addChild:[GDataXMLElement elementWithName:@"fileName" stringValue:self.fileName

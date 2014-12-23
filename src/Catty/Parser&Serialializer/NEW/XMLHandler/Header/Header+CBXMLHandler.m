@@ -40,7 +40,7 @@
         [XMLError exceptionIfNil:headerPropertyNode message:@"Parsed an empty header entry!"];
         id value = [CBXMLParserHelper valueForHeaderPropertyNode:headerPropertyNode];
         NSString *headerPropertyName = headerPropertyNode.name;
-        
+
         // consider special case: name of property programDescription
         if ([headerPropertyNode.name isEqualToString:@"description"]) {
             headerPropertyName = @"programDescription";

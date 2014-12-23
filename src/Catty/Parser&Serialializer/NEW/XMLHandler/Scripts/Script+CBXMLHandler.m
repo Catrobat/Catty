@@ -42,11 +42,11 @@
     NSArray *attributes = [xmlElement attributes];
     [XMLError exceptionIf:[attributes count] notEquals:1
                   message:@"Parsed type-attribute of script is invalid or empty!"];
-    
+
     GDataXMLNode *attribute = [attributes firstObject];
     [XMLError exceptionIfString:attribute.name isNotEqualToString:@"type"
                         message:@"Unsupported attribute: %@", attribute.name];
-    
+
     NSString *scriptType = [attribute stringValue];
     Script *script = nil;
     if ([scriptType isEqualToString:@"StartScript"]) {
@@ -71,6 +71,7 @@
     }
 
     script.brickList = [self parseAndCreateBricks:xmlElement withContext:context];
+    script.object = context.spriteObject;
     return script;
 }
 
@@ -80,24 +81,22 @@
     [XMLError exceptionIf:[brickListElements count] notEquals:1 message:@"No brickList given!"];
     NSArray *brickElements = [[brickListElements firstObject] children];
     if (! [brickElements count]) {
-        // TODO: ask team if we should return nil or an empty NSMutableArray in this case!!
-        return nil;
+        return [NSMutableArray array];
     }
-    
+
     NSMutableArray *brickList = [NSMutableArray arrayWithCapacity:[brickElements count]];
-    CBXMLOpenedNestingBricksStack *openedNestingBricksStack = [CBXMLOpenedNestingBricksStack new];
-    context.openedNestingBricksStack = openedNestingBricksStack;
+    context.openedNestingBricksStack = [CBXMLOpenedNestingBricksStack new]; // update context!
     for (GDataXMLElement *brickElement in brickElements) {
         [XMLError exceptionIfNode:brickElement isNilOrNodeNameNotEquals:@"brick"];
         NSArray *attributes = [brickElement attributes];
         [XMLError exceptionIf:[attributes count] notEquals:1
                       message:@"Parsed type-attribute of brick is invalid or empty!"];
-        
+
         GDataXMLNode *attribute = [attributes firstObject];
         [XMLError exceptionIfString:attribute.name isNotEqualToString:@"type"
                             message:@"Unsupported attribute: %@", attribute.name];
         NSString *brickTypeName = [attribute stringValue];
-        
+
         // get proper brick class via reflection
         NSString *brickClassName = [[self class] brickClassNameForBrickTypeName:brickTypeName];
         Class class = NSClassFromString(brickClassName);
@@ -107,15 +106,15 @@
          brickClassName, brickClassName];
         Brick *brick = [class parseFromElement:brickElement withContext:context];
         [XMLError exceptionIfNil:brick message:@"Unable to parse brick..."];
+        brick.object = context.spriteObject;
         [brickList addObject:brick];
     }
-    [XMLError exceptionIf:[openedNestingBricksStack isEmpty] equals:NO
+    [XMLError exceptionIf:[context.openedNestingBricksStack isEmpty] equals:NO
                   message:@"FATAL ERROR: there are still some unclosed nesting bricks (e.g. IF, \
      FOREVER, ...) on the stack..."];
     return brickList;
 }
 
-// TODO: use map for this!!
 + (NSString*)brickClassNameForBrickTypeName:(NSString*)brickTypeName
 {
     NSMutableString *brickXMLHandlerClassName = [NSMutableString stringWithString:brickTypeName];

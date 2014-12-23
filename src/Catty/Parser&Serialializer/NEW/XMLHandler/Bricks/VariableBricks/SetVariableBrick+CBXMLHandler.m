@@ -36,15 +36,17 @@
 {
     NSUInteger childCount = [xmlElement childCount];
     if (childCount == 3) {
-        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:3 AndFormulaListWithTotalNumberOfFormulas:1];
+        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:3
+      AndFormulaListWithTotalNumberOfFormulas:1];
         // optional
         GDataXMLElement *inUserBrickElement = [xmlElement childWithElementName:@"inUserBrick"];
         [XMLError exceptionIfNil:inUserBrickElement message:@"No inUserBrickElement element found..."];
-        
+
         // TODO: handle inUserBrick here...
-        
+
     } else if (childCount == 2) {
-        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:2 AndFormulaListWithTotalNumberOfFormulas:1];
+        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:2
+      AndFormulaListWithTotalNumberOfFormulas:1];
     } else {
         [XMLError exceptionWithMessage:@"Too many or too less child elements..."];
     }

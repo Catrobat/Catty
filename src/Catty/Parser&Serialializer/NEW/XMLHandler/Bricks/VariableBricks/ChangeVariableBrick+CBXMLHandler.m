@@ -54,7 +54,7 @@
     GDataXMLElement *userVariableElement = [xmlElement childWithElementName:@"userVariable"];
     [XMLError exceptionIfNil:userVariableElement message:@"No userVariableElement element found..."];
 
-    UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:nil];
+    UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:context];
     [XMLError exceptionIfNil:userVariable message:@"Unable to parse userVariable..."];
 
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VARIABLE_CHANGE"];

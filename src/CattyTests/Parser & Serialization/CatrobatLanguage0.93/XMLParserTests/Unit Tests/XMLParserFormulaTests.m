@@ -45,7 +45,8 @@
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
 
     CBXMLContext *context = [CBXMLContext new];
-    context.lookList = lookList;
+    context.spriteObject = [SpriteObject new];
+    context.spriteObject.lookList = lookList;
     Brick *brick = [SetVariableBrick parseFromElement:brickXMLElement withContext:context];
 
     XCTAssertTrue(brick.brickType == kSetVariableBrick, @"Invalid brick type");

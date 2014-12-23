@@ -45,7 +45,8 @@
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
     CBXMLContext *context = [CBXMLContext new];
-    context.lookList = lookList;
+    context.spriteObject = [SpriteObject new];
+    context.spriteObject.lookList = lookList;
     Brick *brick = [SetLookBrick parseFromElement:brickXMLElement withContext:context];
     
     XCTAssertTrue(brick.brickType == kSetLookBrick, @"Invalid brick type");
@@ -73,7 +74,8 @@
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
 
     CBXMLContext *context = [CBXMLContext new];
-    context.lookList = lookList;
+    context.spriteObject = [SpriteObject new];
+    context.spriteObject.lookList = lookList;
     Brick *brick = [SetVariableBrick parseFromElement:brickXMLElement withContext:context];
 
     XCTAssertTrue(brick.brickType == kSetVariableBrick, @"Invalid brick type");
@@ -104,7 +106,8 @@
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
 
     CBXMLContext *context = [CBXMLContext new];
-    context.lookList = lookList;
+    context.spriteObject = [SpriteObject new];
+    context.spriteObject.lookList = lookList;
     Brick *brick = [SetSizeToBrick parseFromElement:brickXMLElement withContext:context];
 
     XCTAssertTrue(brick.brickType == kSetSizeToBrick, @"Invalid brick type");
@@ -276,7 +279,8 @@
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
 
     CBXMLContext *context = [CBXMLContext new];
-    context.soundList = soundList;
+    context.spriteObject = [SpriteObject new];
+    context.spriteObject.soundList = soundList;
     Brick *brick = [PlaySoundBrick parseFromElement:brickXMLElement withContext:context];
 
     XCTAssertTrue(brick.brickType == kPlaySoundBrick, @"Invalid brick type");

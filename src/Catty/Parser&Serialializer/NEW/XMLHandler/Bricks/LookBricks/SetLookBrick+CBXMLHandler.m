@@ -35,8 +35,8 @@
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
     
     GDataXMLElement *lookElement = [[xmlElement children] firstObject];
-    NSMutableArray *lookList = context.lookList;
-    
+    NSMutableArray *lookList = context.spriteObject.lookList;
+
     Look *look = nil;
     if ([CBXMLParserHelper isReferenceElement:lookElement]) {
         GDataXMLNode *referenceAttribute = [lookElement attributeForName:@"reference"];
@@ -65,7 +65,7 @@
     [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"SetLookBrick"]];
     if (self.look) {
         GDataXMLElement *referenceXMLElement = [GDataXMLElement elementWithName:@"look" context:context];
-        NSString *refPath = [CBXMLSerializerHelper relativeXPathToLook:self.look inLookList:context.lookList];
+        NSString *refPath = [CBXMLSerializerHelper relativeXPathToLook:self.look inLookList:context.spriteObject.lookList];
         [referenceXMLElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:refPath]];
         [brick addChild:referenceXMLElement context:context];
     }

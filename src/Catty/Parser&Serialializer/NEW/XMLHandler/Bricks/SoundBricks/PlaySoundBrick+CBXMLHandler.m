@@ -35,8 +35,8 @@
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
     GDataXMLElement *soundElement = [[xmlElement children] firstObject];
-    NSMutableArray *soundList = context.soundList;
-    
+    NSMutableArray *soundList = context.spriteObject.soundList;
+
     Sound *sound = nil;
     if ([CBXMLParserHelper isReferenceElement:soundElement]) {
         GDataXMLNode *referenceAttribute = [soundElement attributeForName:@"reference"];
@@ -65,7 +65,8 @@
     [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"PlaySoundBrick"]];
     if (self.sound) {
         GDataXMLElement *referenceXMLElement = [GDataXMLElement elementWithName:@"sound" context:context];
-        NSString *refPath = [CBXMLSerializerHelper relativeXPathToSound:self.sound inSoundList:context.soundList];
+        NSString *refPath = [CBXMLSerializerHelper relativeXPathToSound:self.sound
+                                                            inSoundList:context.spriteObject.soundList];
         [referenceXMLElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:refPath]];
         [brick addChild:referenceXMLElement context:context];
     }
