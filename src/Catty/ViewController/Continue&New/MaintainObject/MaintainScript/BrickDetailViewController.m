@@ -166,10 +166,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 #pragma mark - Action Sheet Delegate
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-#if kIsRelease // kIsRelease
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
-#else // kIsRelease
-
     switch ([self getAbsoluteButtonIndex:buttonIndex]) {
         case kButtonIndexDelete: {
             self.deleteBrickOrScriptFlag = [NSNumber numberWithBool:YES];
@@ -197,7 +193,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
         default:
             break;
     }
-#endif // kIsRelease
 }
 
 #pragma mark - helper methods

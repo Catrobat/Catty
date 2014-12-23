@@ -450,6 +450,4 @@
 #define kUIFEonly15Char NSLocalizedString(@"only 15 characters allowed", nil)
 #define kUIFEVarName NSLocalizedString(@"Variable name:", nil)
 
-
-
 #endif // kIsRelease
