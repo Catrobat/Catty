@@ -21,10 +21,7 @@
  */
 
 #import "BaseTransition.h"
-#import "BrickCell.h"
 
 @interface BrickScaleTransition : BaseTransition
-@property (nonatomic, strong) BrickCell *cell;
-@property (nonatomic, assign) CGRect touchRect;
 
 @end

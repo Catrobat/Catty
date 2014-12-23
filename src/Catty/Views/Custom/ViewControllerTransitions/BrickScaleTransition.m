@@ -24,83 +24,100 @@
 #import "ScriptCollectionViewController.h"
 #import "FXBlurView.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "BrickCell.h"
+#import "BrickDetailViewController.h"
 
-#define kTopAnimationOffset 40.0f
+#define kTopAnimationOffset 20.0f
 
 @implementation BrickScaleTransition {
-    CGFloat _yOffset;
-    ScriptCollectionViewController *_scriptCollectionVC;
+    CGFloat _animatedFromPositionY;
+    CGRect _animatedFromRect;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
-    UIView *container = transitionContext.containerView;
-    
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    UIView *move = nil;
-    CGRect beginFrame = [container convertRect:self.cell.bounds fromView:self.cell];
-    
+    BrickCell *brickCell = nil;
+    ScriptCollectionViewController *scvc = nil;
     switch (self.transitionMode) {
         case TransitionModePresent: {
-            _scriptCollectionVC = (ScriptCollectionViewController *)fromVC.childViewControllers.lastObject;
-            NSAssert(_scriptCollectionVC != nil, @"No ScriptCollectionViewController");
-            _yOffset = self.touchRect.origin.y - _scriptCollectionVC.collectionView.contentOffset.y;
+            for (UIViewController *controller in fromVC.childViewControllers) {
+                if ([controller isKindOfClass:ScriptCollectionViewController.class]) {
+                    scvc = (ScriptCollectionViewController *)controller;
+                    break;
+                }
+            }
+            scvc.blurView.hidden = NO;
             
-            move = [self.cell snapshotViewAfterScreenUpdates:YES];
-            move.frame = beginFrame;
-            [container addSubview:move];
-            self.cell.hidden = YES;
-            _scriptCollectionVC.blurView.hidden = NO;
-            __weak ScriptCollectionViewController *weakScriptCollectionVC = _scriptCollectionVC;
+            brickCell = (BrickCell *)[scvc.collectionView cellForItemAtIndexPath:scvc.selectedIndexPath];
+            [transitionContext.containerView addSubview:brickCell];
+            [transitionContext.containerView addSubview:toVC.view];
+    
+            CGPoint posBrickCell = brickCell.layer.position;
+            _animatedFromPositionY = brickCell.frame.origin.y - scvc.collectionView.contentOffset.y;
+            _animatedFromRect = brickCell.frame;
+            posBrickCell.y = CGRectGetMidY(brickCell.layer.bounds) + kTopAnimationOffset;
+            fromVC.view.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
+            
+            UIView *animationView = [brickCell snapshotViewAfterScreenUpdates:NO];
+            CGRect animationViewRect = [transitionContext.containerView convertRect:brickCell.bounds fromView:brickCell];
+            if (scvc.collectionView.contentOffset.y >= 0.f) {
+                CGPoint origin = animationViewRect.origin;
+                origin.y -= scvc.collectionView.contentOffset.y;
+                animationViewRect.origin = origin;
+            }
+            
+            animationView.frame = animationViewRect;
+            [transitionContext.containerView addSubview:animationView];
+            
+            brickCell.hidden = YES;
             [UIView animateWithDuration:0.5f delay:0.0f usingSpringWithDamping:10.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-//                move.center = toVC.view.center;
-                move.layer.position = CGPointMake(CGRectGetMidX(toVC.view.bounds), CGRectGetMidY(move.bounds) + kTopAnimationOffset);
-                weakScriptCollectionVC.blurView.alpha = 1.0f;
-                weakScriptCollectionVC.collectionView.alpha = 0.5f;
-                weakScriptCollectionVC.navigationController.navigationBar.alpha = 0.01f;
-                weakScriptCollectionVC.navigationController.navigationBar.tintColor = UIColor.lightGrayColor;
-                weakScriptCollectionVC.navigationController.toolbar.alpha = 0.01f;
+                animationView.layer.position = posBrickCell;
+                scvc.blurView.alpha = 1.0f;
+                scvc.collectionView.alpha = 0.5f;
+                scvc.navigationController.toolbar.alpha = 0.01f;
+                scvc.navigationController.navigationBar.alpha = 0.01f;
             } completion:^(BOOL finished) {
-                weakScriptCollectionVC.blurView.dynamic = NO;
-                toVC.view.frame = fromVC.view.frame;
-                self.cell.hidden = NO;
-//                self.cell.center = toVC.view.center;
-                self.cell.layer.position = CGPointMake(CGRectGetMidX(toVC.view.bounds), CGRectGetMidY(move.bounds) + kTopAnimationOffset);
-                [toVC.view addSubview:self.cell];
-                [container addSubview:toVC.view];
-                [move removeFromSuperview];
+                [animationView removeFromSuperview];
+                scvc.blurView.dynamic = NO;
+                brickCell.layer.position = posBrickCell;
+                brickCell.hidden = NO;
+                [toVC.view addSubview:brickCell];
                 [transitionContext completeTransition:YES];
             }];
         }
             break;
             
         case TransitionModeDismiss: {
-            _scriptCollectionVC.blurView.dynamic = YES;
-            __weak ScriptCollectionViewController *weakScriptCollectionVC = _scriptCollectionVC;
-            __weak BrickScaleTransition *weakself = self;
-            CGFloat yOffset = _yOffset;
-            [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:10.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                weakself.cell.frame = CGRectMake(0.0f, yOffset, self.touchRect.size.width, self.touchRect.size.height);
-                weakScriptCollectionVC.blurView.alpha = 0.0f;
-                weakScriptCollectionVC.collectionView.alpha = 1.0f;
-                weakScriptCollectionVC.navigationController.navigationBar.alpha = 1.0f;
-                weakScriptCollectionVC.navigationController.navigationBar.tintColor = UIColor.lightOrangeColor;
-                weakScriptCollectionVC.navigationController.toolbar.alpha = 1.0f;
-            } completion:^(BOOL finished) {
-                if (finished) {
-                    self.cell.frame = self.touchRect;
-                    [fromVC.view removeFromSuperview];
-                    weakScriptCollectionVC.blurView.hidden = YES;
-                    [move removeFromSuperview];
-                    [transitionContext completeTransition:YES];
+            for (UIViewController *controller in toVC.childViewControllers) {
+                if ([controller isKindOfClass:ScriptCollectionViewController.class]) {
+                    scvc = (ScriptCollectionViewController *)controller;
+                    break;
                 }
+            }
+            BrickDetailViewController *bdvc = (BrickDetailViewController *)fromVC;
+            brickCell = bdvc.brickCell;
+            scvc.blurView.dynamic = YES;
+            toVC.view.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
+            
+            CGPoint position = CGPointMake(brickCell.layer.position.x, _animatedFromPositionY + CGRectGetMidY(brickCell.bounds));
+            CGRect brickCellFrame = _animatedFromRect;
+    
+            [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:10.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                brickCell.layer.position = position;
+                scvc.blurView.alpha = 0.0f;
+                scvc.collectionView.alpha = 1.0f;
+                scvc.navigationController.toolbar.alpha = 1.0f;
+                scvc.navigationController.navigationBar.alpha = 1.0f;
+            } completion:^(BOOL finished) {
+                brickCell.frame = brickCellFrame;
+                scvc.blurView.hidden = YES;
+                [transitionContext completeTransition:YES];
+                [scvc viewDidAppear:NO];
             }];
         }
-            break;
-            
-        default:
             break;
     }
 }

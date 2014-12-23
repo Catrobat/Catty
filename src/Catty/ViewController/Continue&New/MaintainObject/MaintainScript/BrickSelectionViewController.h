@@ -20,9 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import <UIKit/UIKit.h>
+#import "UIDefines.h"
 
-#import "BaseTransition.h"
+@class BrickSelectionViewController;
+@protocol BrickSelectionViewControllerDelegate <NSObject>
+- (void)brickSelectionViewControllerdidSelectBrickListButton:(BrickSelectionViewController *) brickSelectionViewController;
 
-@interface BrickSelectModalTransition : BaseTransition
+@end
+
+@interface BrickSelectionViewController : UICollectionViewController
+- (instancetype)initWithBrickCategory:(kBrickCategoryType)type NS_DESIGNATED_INITIALIZER;
+
+// Disallow init.
+- (instancetype)init __attribute__((unavailable("init is not a supported initializer for this class.")));
+@property (nonatomic, weak) id<BrickSelectionViewControllerDelegate>delegate;
+@property (nonatomic, readonly) NSArray *bricks;
 
 @end

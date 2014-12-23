@@ -30,6 +30,7 @@
 @interface ScriptCollectionViewController : UICollectionViewController <UITextFieldDelegate,iOSComboboxDelegate>
 @property (strong, nonatomic) SpriteObject *object;
 @property (nonatomic, strong) FXBlurView *blurView;
+@property (nonatomic, readonly) NSIndexPath *selectedIndexPath;
 
 - (void) openFormulaEditor:(BrickCell*)brickCell;
 

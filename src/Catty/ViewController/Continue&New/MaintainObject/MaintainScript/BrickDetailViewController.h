@@ -28,17 +28,27 @@
 @protocol BrickDetailViewControllerDelegate <NSObject>
 
 @optional
+// Delete a single brick.
 - (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
-                 viewDidDisappear:(BOOL)deleteBrick
-                    withBrickCell:(BrickCell *)brickCell
-                        copyBrick:(BOOL)copyBrick
-                openFormulaEditor:(BOOL)openFormulaEditor
-                     animateBrick:(BOOL)animate;
+                      didDeleteBrick:(BrickCell *)brickCell;
+
+// Delete a script section.
+- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
+                     didDeleteScript:(BrickCell *)brickCell;
+
+// Copy a single Brick.
+- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
+                   didCopyBrick:(BrickCell *)brickCell;
 
 @end
 
 @interface BrickDetailViewController : UIViewController
+- (instancetype)initWithBrickCell:(BrickCell *)brickCell NS_DESIGNATED_INITIALIZER;
+
+// Disallow init.
+- (instancetype)init __attribute__((unavailable("init is not a supported initializer for this class.")));
+
 @property (weak, nonatomic) id<BrickDetailViewControllerDelegate> delegate;
-@property (strong, nonatomic) BrickCell *brickCell;
+@property (nonatomic, readonly) BrickCell *brickCell;
 
 @end
