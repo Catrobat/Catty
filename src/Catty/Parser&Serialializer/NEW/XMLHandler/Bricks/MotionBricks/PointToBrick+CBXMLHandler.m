@@ -61,7 +61,7 @@
 {
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLNode attributeWithName:@"type" stringValue:@"PointToBrick"]];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"PointToBrick"]];
     [XMLError exceptionIfNil:self.pointedObject message:@"No sprite object given in PointToBrick"];
     [XMLError exceptionIfNil:self.object message:@"Missing reference to brick's sprite object"];
 
@@ -82,7 +82,7 @@
 
         NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
                                                              toDestinationPositionStack:positionStackOfSpriteObject];
-        [pointedObjectXmlElement addAttribute:[GDataXMLNode attributeWithName:@"reference" stringValue:refPath]];
+        [pointedObjectXmlElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
         [brick addChild:pointedObjectXmlElement context:context];
     } else {
         // not serialized yet
@@ -90,6 +90,7 @@
         newContext.currentPositionStack = context.currentPositionStack; // but position stacks must remain the same!
         GDataXMLElement *pointedObjectXmlElement = [self.pointedObject xmlElementWithContext:newContext asPointedObject:YES];
         context.spriteObjectNamePositions = newContext.spriteObjectNamePositions;
+        context.spriteObjectNameUserVariableListPositions = newContext.spriteObjectNameUserVariableListPositions;
         context.programUserVariableNamePositions = newContext.programUserVariableNamePositions;
         context.pointedSpriteObjectList = newContext.pointedSpriteObjectList;
         [brick addChild:pointedObjectXmlElement context:context];
