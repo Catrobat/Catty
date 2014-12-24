@@ -202,7 +202,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.recognizer.cancelsTouchesInView = NO;
     [self.view.window addGestureRecognizer:self.recognizer];
     self.pickerGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chosenVariable)];
-    self.pickerGesture.numberOfTapsRequired = 1;;
+    self.pickerGesture.numberOfTapsRequired = 1;
     [self.variablePicker addGestureRecognizer:self.pickerGesture];
     [self update];
 }

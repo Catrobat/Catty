@@ -32,6 +32,6 @@
 @property (nonatomic, strong) FXBlurView *blurView;
 @property (nonatomic, readonly) NSIndexPath *selectedIndexPath;
 
-- (void) openFormulaEditor:(BrickCell*)brickCell;
+- (void)openFormulaEditor:(BrickCell*)brickCell;
 
 @end

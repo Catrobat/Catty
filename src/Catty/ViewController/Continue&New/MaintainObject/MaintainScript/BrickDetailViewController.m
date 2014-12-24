@@ -78,20 +78,6 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
     [self.brickMenu showInView:self.view];
 }
 
-- (void)handleTap:(UITapGestureRecognizer *)sender
-{
-    if ([sender isKindOfClass:UITapGestureRecognizer.class]) {
-        if (sender.state == UIGestureRecognizerStateEnded) {
-            CGPoint location = [sender locationInView:nil];
-            if ([self.brickCell pointInside:[self.brickCell convertPoint:location fromView:self.view] withEvent:nil]) {
-                [self.brickMenu showInView:self.view];
-            } else {
-                [self dismissBrickDetailViewController];
-            }
-        }
-    }
-}
-
 #pragma mark - getters
 - (CatrobatActionSheet*)brickMenu
 {
@@ -119,14 +105,13 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
                                                       cancelButtonTitle:kLocalizedClose
                                                  destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
                                                       otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
-                              [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
+                                                                        [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
             } else {
                 _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:nil
                                                                delegate:self
                                                       cancelButtonTitle:kLocalizedClose
                                                  destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
-                                                      otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
-                              nil];
+                                                      otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell], nil];
             }
             
             
@@ -144,7 +129,7 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
 #pragma mark - Action Sheet Delegate
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    self.buttonIndex = buttonIndex;
+    self.buttonIndex = [self getAbsoluteButtonIndex:buttonIndex];
     switch (self.buttonIndex) {
         case kButtonIndexDelete: {
             if ([self.brickCell isScriptBrick]) {
@@ -179,14 +164,11 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
         default:
             break;
     }
-     [self dismissBrickDetailViewController];
+    
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
 #pragma mark - helper methods
-- (void)dismissBrickDetailViewController
-{
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
-}
 
 - (NSString *)deleteMenuItemNameWithBrickCell:(BrickCell *)cell
 {
@@ -233,7 +215,7 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
     return NO;
 }
 
-- (bool)isFormulaBrick:(BrickCell*)brickCell
+- (BOOL)isFormulaBrick:(BrickCell*)brickCell
 {
     return ([brickCell.brick conformsToProtocol:@protocol(BrickFormulaProtocol)]);
 }
@@ -250,9 +232,7 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
             }
             break;
         case kButtonIndexEdit:
-            if(![self isAnimateableBrick:self.brickCell])
-                return kButtonIndexCancel;
-            if(![self isFormulaBrick:self.brickCell])
+            if(![self isAnimateableBrick:self.brickCell] || ![self isFormulaBrick:self.brickCell])
                 return kButtonIndexCancel;
             break;
         default:

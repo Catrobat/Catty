@@ -50,6 +50,10 @@
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
 #import "BrickSelectionViewController.h"
+#import "UIUtil.h"
+#import "FormulaEditorButton.h"
+#import "NoteBrickTextField.h"
+#import "NoteBrick.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate,
                                               LXReorderableCollectionViewDelegateFlowLayout,
@@ -57,9 +61,11 @@
                                               UIViewControllerTransitioningDelegate,
                                               BrickCellDelegate,
                                               BrickDetailViewControllerDelegate,
-                                             BrickSelectionViewControllerDelegate>
+                                              BrickSelectionViewControllerDelegate,
+                                              FormulaEditorViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) PlaceHolderView *placeHolderView;
 @property (nonatomic, strong) BrickScaleTransition *brickScaleTransition;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, strong) AHKActionSheet *brickSelectionMenu;
@@ -102,8 +108,8 @@
 #if kIsRelease // kIsRelease
     self.navigationItem.rightBarButtonItem.enabled = NO;
 #endif // kIsRelease
-//    self.placeHolderView.title = kLocalizedScripts;
-//    [self showPlaceHolder:(! (BOOL)[self.object.scriptList count])];
+    self.placeHolderView = [[PlaceHolderView alloc] initWithTitle:kLocalizedScripts];
+    self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     self.brickScaleTransition = [BrickScaleTransition new];
     self.selectedIndexPaths = [NSMutableDictionary dictionary];
 
@@ -187,33 +193,6 @@
 
 #pragma mark - Brick Selection / Play Action
 
-//- (void)showBrickSelectionView:(kBrickCategoryType)type
-//{
-//    if (!self.brickSelectionView.active) {
-//        self.brickSelectionView.yOffset = kOffsetTopBrickSelectionView;
-//        self.brickSelectionView.textLabel.text = kBrickCategoryNames[type];
-//        self.brickSelectionView.tintColor = kBrickCategoryColors[type];
-//        self.selectableBricks = [BrickManager.sharedBrickManager selectableBricksForCategoryType:type];
-//        
-//    }
-//    
-//    [self.brickSelectionView showWithView:self.placeHolderView fromViewController:self completion:^{
-//        [self setupToolBar];
-//        [self.brickSelectionView.brickCollectionView reloadData];
-//    }];
-//}
-
-- (void)showBrickSelectionMenu
-{
-//    if (self.brickSelectionView.active) {
-//        [self.brickSelectionView dismissView:self withView:self.collectionView fastDismiss:NO completion:^{
-//            [self.brickSelectionView removeFromSuperview];
-//            [self setupToolBar];
-//        }];
-//    }
-    [self.brickSelectionMenu show];
-}
-
 - (void)playSceneAction:(id)sender
 {
     [self.navigationController setToolbarHidden:YES animated:YES];
@@ -227,8 +206,8 @@
                                                                   presentingController:(UIViewController *)presenting
                                                                       sourceController:(UIViewController *)source
 {
-    if ([presented isKindOfClass:[BrickDetailViewController class]]) {
-         self.brickScaleTransition.transitionMode = TransitionModePresent;
+    if ([presented isKindOfClass:[BrickDetailViewController class]] || [presented isKindOfClass:[FormulaEditorViewController class]]) {
+        self.brickScaleTransition.transitionMode = TransitionModePresent;
         return self.brickScaleTransition;
     }
     return nil;
@@ -236,7 +215,7 @@
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
 {
-    if ([dismissed isKindOfClass:[BrickDetailViewController class]]) {
+    if ([dismissed isKindOfClass:[BrickDetailViewController class]] || [dismissed isKindOfClass:[FormulaEditorViewController class]]) {
         self.brickScaleTransition.transitionMode = TransitionModeDismiss;
         return self.brickScaleTransition;
     }
@@ -247,9 +226,8 @@
 
 - (void)brickSelectionViewControllerdidSelectBrickListButton:(BrickSelectionViewController *) brickSelectionViewController
 {
-    [self showBrickSelectionMenu];
+    [self.brickSelectionMenu show];
 }
-
 
 #pragma mark - BrickDetailViewController Delegate
 
@@ -271,6 +249,29 @@
     __weak ScriptCollectionViewController *weakself = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.3f * NSEC_PER_SEC)),
                    dispatch_get_main_queue(), ^{ [weakself copyBrickCell:brickCell]; });
+}
+
+- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
+                  didAnimateBrick:(BrickCell *)brickCell {
+    
+}
+
+- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
+                   didEditFormula:(BrickCell *)brickCell {
+    UIButton *formulaEditorButton = [UIUtil newDefaultBrickFormulaEditorWithFrame:CGRectMake(0, 0, 0, 0)
+                                                                     ForBrickCell:brickCell
+                                                                     AndLineNumber:0
+                                                                     AndParameterNumber:0];
+    [self performSelectorOnMainThread:@selector(openFormulaEditor:) withObject:(id)formulaEditorButton waitUntilDone:NO];
+}
+
+#pragma mark FormulaEditorViewController Delegate
+- (void)formulaEditorViewController:(FormulaEditorViewController *)formulaEditorViewController
+                      withBrickCell:(BrickCell *)brickCell
+{
+    self.collectionView.userInteractionEnabled = YES;
+    self.navigationController.navigationBar.userInteractionEnabled = YES;
+    [self.collectionView reloadData];
 }
 
 #pragma mark - Collection View Datasource
@@ -464,47 +465,21 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 #endif // kIsRelease
 }
 
-//#pragma mark - Add brick Delegate
-//- (void)singleBrickSelectionView:(SingleBrickSelectionView *)singleBrickSelectionView didShowWithBrick:(id<BrickProtocol>)brick
-//              replicantBrickView:(UIView *)brickView
-//{
-//    // TODO just handle/add normal bricks at the moment
-//    NSIndexPath *indexPath;
-//    if (self.collectionView.visibleCells.count) {
-//        indexPath = [self.collectionView indexPathForItemAtPoint:CGPointMake(CGRectGetMidX(self.collectionView.bounds), CGRectGetMidY(self.collectionView.bounds))];
-//        
-//        if (indexPath.item == 0) {
-//            indexPath = [NSIndexPath indexPathForRow:indexPath.item + 1 inSection:indexPath.section];
-//        }
-//    }
-//    
-//    // Crash
-//    Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
-//    
-//    __weak typeof(self.collectionView) weakCollectionView = self.collectionView;
-//    [self insertBrick:brick atIndexPath:indexPath intoScriptList:script completion:^{
-//        NSIndexPath *newCellIndexPath = [NSIndexPath indexPathForItem:indexPath.item + 1 inSection:indexPath.section];
-//        
-//        BrickCell *newCell = (BrickCell *)[weakCollectionView cellForItemAtIndexPath:newCellIndexPath];
-//        CGFloat yOffset = weakCollectionView.contentOffset.y;
-//        
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:0.7f initialSpringVelocity:1.5f
-//                                options:UIViewAnimationOptionCurveEaseInOut
-//                             animations:^{
-//                                 brickView.center = CGPointMake(CGRectGetMidX(newCell.bounds), newCell.center.y - yOffset);
-//                                 singleBrickSelectionView.dimview.alpha = 0.0f;
-//                                 brickView.layer.shadowOpacity = 0.0f;
-//                             } completion:^(BOOL finished) {
-//                                 if (finished) {
-//                                     newCell.alpha = 1.0f;
-//                                     [singleBrickSelectionView removeFromSuperview];
-//                                     [newCell animateBrick:YES];
-//                                 }
-//                             }];
-//        });
-//    }];
-//}
+#pragma mark - UITextfield Delegate
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+}
+
+- (void)textFieldFinished:(id)sender
+{
+    NoteBrickTextField *noteBrickTextField = (NoteBrickTextField*)sender;
+    NoteBrick *noteBrick =(NoteBrick*) noteBrickTextField.cell.brick;
+    noteBrick.note = noteBrickTextField.text;
+    [noteBrickTextField update];
+    [noteBrickTextField resignFirstResponder];
+}
 
 #pragma mark - Brick Cell Delegate
 - (void)BrickCell:(BrickCell *)brickCell didSelectBrickCellButton:(SelectButton *)selectButton
@@ -540,6 +515,36 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
     
     [self.collectionView reloadData];
+}
+
+# pragma mark - open Formulaeditor
+- (void)openFormulaEditor:(FormulaEditorButton*)sender
+{
+    if([sender isKindOfClass:[FormulaEditorButton class]]) {
+        FormulaEditorButton *button = (FormulaEditorButton*)sender;
+        
+        if([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
+            FormulaEditorViewController *formulaEditorViewController = (FormulaEditorViewController*)self.presentedViewController;
+            if ([formulaEditorViewController changeFormula]) {
+                [formulaEditorViewController setFormula:button.formula];
+            }
+            
+        } else {
+            FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCell: button.brickCell];
+            formulaEditorViewController.delegate = self;
+            formulaEditorViewController.object = self.object;
+//            self.brickScaleTransition.cell = button.brickCell;
+//            self.brickScaleTransition.touchRect = button.brickCell.frame;
+            formulaEditorViewController.transitioningDelegate = self;
+            formulaEditorViewController.modalPresentationStyle = UIModalPresentationCustom;
+            self.collectionView.userInteractionEnabled = NO;
+            
+            [self presentViewController:formulaEditorViewController animated:YES completion:^{
+                self.navigationController.navigationBar.userInteractionEnabled = NO;
+                [formulaEditorViewController setFormula:button.formula];
+            }];
+        }
+    }
 }
 
 #pragma mark - Helpers
@@ -598,37 +603,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 [self.collectionView reloadData];
             }];
         }
-//<<<<<<< HEAD
-//    }
-//    else if (indexPath.section <= self.collectionView.numberOfSections) {
-//        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:indexPath.section];
-//        [self.collectionView performBatchUpdates:^{
-//            [self.object.scriptList removeObjectAtIndex:indexPath.section];
-//            [self.collectionView deleteSections:indexSet];
-//        } completion:^(BOOL finished) {
-//            [self showPlaceHolder:(! (BOOL)[self.object.scriptList count])];
-//        }];
-//    }
-//    
-//    // Check if empty script list in object, if empty add new start script.
-//    if (!self.object.scriptList.count) {
-//        StartScript *startScript = [StartScript new];
-//        [self.object.scriptList addObject:startScript];
-//        [self.collectionView reloadData];
-//=======
-//    } else {
-//        if (indexPath.section <= self.collectionView.numberOfSections) {
-//            [self.collectionView performBatchUpdates:^{
-//            [self.object.scriptList removeObjectAtIndex:indexPath.section];
-//            [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
-//            } completion:^(BOOL finished) {
-//                [self.collectionView reloadData];
-//                [self showPlaceHolder:(! (BOOL)[self.object.scriptList count])];
-//            }];
-//            
-//
-//        }
-//>>>>>>> 081f50b4cf833869d5f0a5ab818872471877540c
     }
 }
 
@@ -707,7 +681,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
     
     
-//    [self showPlaceHolder:(! (BOOL)[self.object.scriptList count])];
+//   [self showPlaceHolder:(! (BOOL)[self.object.scriptList count])];
 }
 
 - (void)insertBrick:(Brick *)brick atIndexPath:(NSIndexPath *)indexPath intoScriptList:(Script *)script completion:(void(^)())completionBlock
