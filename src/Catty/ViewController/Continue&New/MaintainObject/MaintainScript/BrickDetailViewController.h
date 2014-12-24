@@ -40,6 +40,12 @@
 - (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
                    didCopyBrick:(BrickCell *)brickCell;
 
+- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
+                  didAnimateBrick:(BrickCell *)brickCell;
+
+- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
+                   didEditFormula:(BrickCell *)brickCell;
+
 @end
 
 @interface BrickDetailViewController : UIViewController

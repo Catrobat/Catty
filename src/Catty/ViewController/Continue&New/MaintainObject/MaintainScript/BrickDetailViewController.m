@@ -36,14 +36,15 @@
 #import "BrickCell.h"
 #import "LanguageTranslationDefines.h"
 #import "CatrobatActionSheet.h"
+#import "BrickFormulaProtocol.h"
 
 // Button mapping.
 typedef NS_ENUM(NSInteger, EditButtonIndex) {
     kButtonIndexDelete  = 0,
     kButtonIndexCopy    = 1,
-    kButtonIndexEdit    = 2,
-    kButtonIndexCancel  = 3,
-    kButtonIndexAnimate = 4
+    kButtonIndexAnimate = 2,
+    kButtonIndexEdit    = 3,
+    kButtonIndexCancel  = 4,
 };
 
 @interface BrickDetailViewController () <CatrobatActionSheetDelegate>
@@ -155,34 +156,44 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
     self.buttonIndex = buttonIndex;
     switch (self.buttonIndex) {
         case kButtonIndexDelete: {
-            if ([self.delegate respondsToSelector:@selector(brickDetailViewController:didDeleteBrick:)])
-                [self.delegate brickDetailViewController:self didDeleteBrick:self.brickCell];
-            [self dismissBrickDetailViewController];
+            if ([self.brickCell isScriptBrick]) {
+                if ([self.delegate respondsToSelector:@selector(brickDetailViewController:didDeleteScript:)])
+                    [self.delegate brickDetailViewController:self didDeleteScript:self.brickCell];
+            } else {
+                if ([self.delegate respondsToSelector:@selector(brickDetailViewController:didDeleteBrick:)])
+                    [self.delegate brickDetailViewController:self didDeleteBrick:self.brickCell];
+            }
         }
             break;
-        case kButtonIndexCopy: {
+            
+        case kButtonIndexCopy:
             if (![self.brickCell isScriptBrick])
                 if ([self.delegate respondsToSelector:@selector(brickDetailViewController:didCopyBrick:)])
                     [self.delegate brickDetailViewController:self didCopyBrick:self.brickCell];
-            [self dismissBrickDetailViewController];
-            }
             break;
+            
         case kButtonIndexEdit:
-    
+            if ([self.delegate respondsToSelector:@selector(brickDetailViewController:didEditFormula:)])
+                [self.delegate brickDetailViewController:self didEditFormula:self.brickCell];
             break;
+            
         case kButtonIndexCancel:
-            [self dismissBrickDetailViewController];
             break;
+            
         case kButtonIndexAnimate:
-    
+            if ([self.delegate respondsToSelector:@selector(brickDetailViewController:didAnimateBrick:)])
+                [self.delegate brickDetailViewController:self didAnimateBrick:self.brickCell];
+            break;
+        
+        default:
             break;
     }
+     [self dismissBrickDetailViewController];
 }
 
 #pragma mark - helper methods
 - (void)dismissBrickDetailViewController
 {
-    [self.brickMenu dismissWithClickedButtonIndex:-1 animated:YES];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -230,5 +241,35 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
     }
     return NO;
 }
+
+- (bool)isFormulaBrick:(BrickCell*)brickCell
+{
+    return ([brickCell.brick conformsToProtocol:@protocol(BrickFormulaProtocol)]);
+}
+
+- (NSInteger)getAbsoluteButtonIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case kButtonIndexAnimate:
+            if(![self isAnimateableBrick:self.brickCell]) {
+                if(![self isFormulaBrick:self.brickCell])
+                    return kButtonIndexCancel;
+                else
+                    return kButtonIndexEdit;
+            }
+            break;
+        case kButtonIndexEdit:
+            if(![self isAnimateableBrick:self.brickCell])
+                return kButtonIndexCancel;
+            if(![self isFormulaBrick:self.brickCell])
+                return kButtonIndexCancel;
+            break;
+        default:
+            break;
+    }
+    
+    return buttonIndex;
+}
+
 
 @end
