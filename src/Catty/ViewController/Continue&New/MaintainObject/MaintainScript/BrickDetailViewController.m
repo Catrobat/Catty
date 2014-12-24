@@ -33,24 +33,24 @@
 #import "IfLogicBeginBrickCell.h"
 #import "RepeatBrickCell.h"
 #import "BroadcastScriptCell.h"
-#import "CellMotionEffect.h"
 #import "BrickCell.h"
 #import "LanguageTranslationDefines.h"
 #import "CatrobatActionSheet.h"
 
-NS_ENUM(NSInteger, ButtonIndex) {
-    kButtonIndexDelete = 0,
-    kButtonIndexCopyOrCancel = 1,
-    kButtonIndexEdit = 2,
-    kButtonIndexCancel = 3,
+// Button mapping.
+typedef NS_ENUM(NSInteger, EditButtonIndex) {
+    kButtonIndexDelete  = 0,
+    kButtonIndexCopy    = 1,
+    kButtonIndexEdit    = 2,
+    kButtonIndexCancel  = 3,
     kButtonIndexAnimate = 4
 };
 
 @interface BrickDetailViewController () <CatrobatActionSheetDelegate>
-@property (strong, nonatomic) UITapGestureRecognizer *recognizer;
-@property (strong, nonatomic) UIMotionEffectGroup *motionEffects;
-@property (strong, nonatomic) CatrobatActionSheet *brickMenu;
-@property (strong, nonatomic) BrickCell *brickCell;
+@property(nonatomic, assign) EditButtonIndex buttonIndex;
+@property(strong, nonatomic) UITapGestureRecognizer *recognizer;
+@property(strong, nonatomic) CatrobatActionSheet *brickMenu;
+@property(strong, nonatomic) BrickCell *brickCell;
 
 @end
 
@@ -123,102 +123,60 @@ NS_ENUM(NSInteger, ButtonIndex) {
 #pragma mark - getters
 - (CatrobatActionSheet*)brickMenu
 {
-    if (! _brickMenu) {
+    if (!_brickMenu) {
         if ([self isAnimateableBrick:self.brickCell]) {
-#if kIsRelease // kIsRelease
-            _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:kLocalizedThisFeatureIsComingSoon
-                                                           delegate:self
-                                                  cancelButtonTitle:kLocalizedClose
-                                             destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
-                                                  otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
-                                                                    [self animateMenuItemWithBrickCell:self.brickCell],
-                                                                    [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
-#else // kIsRelease
             _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:nil
                                                            delegate:self
                                                   cancelButtonTitle:kLocalizedClose
                                              destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
                                                   otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
-                                                                    [self animateMenuItemWithBrickCell:self.brickCell],
-                                                                    [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
-#endif // kIsRelease
+                          [self animateMenuItemWithBrickCell:self.brickCell],
+                          [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
         } else {
-#if kIsRelease // kIsRelease
-            _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:kLocalizedThisFeatureIsComingSoon
-                                                           delegate:self
-                                                  cancelButtonTitle:kLocalizedClose
-                                             destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
-                                                  otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
-                                                                    [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
-#else // kIsRelease
             _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:nil
                                                            delegate:self
                                                   cancelButtonTitle:kLocalizedClose
                                              destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
                                                   otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
                                                                     [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
-#endif // kIsRelease
+            
         }
-#if kIsRelease // kIsRelease
-        // disable all buttons except cancel button (index of cancel button: ([_brickMenu.buttons count] - 1))
-        for (IBActionSheetButton *button in _brickMenu.buttons) {
-            if (button.index != ([_brickMenu.buttons count] - 1)) {
-                button.enabled = NO;
-            }
-        }
-        [_brickMenu setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.6f]];
-        [_brickMenu setButtonTextColor:[UIColor grayColor]];
-        [_brickMenu setButtonTextColor:[UIColor lightOrangeColor] forButtonAtIndex:([_brickMenu.buttons count] - 1)];
-#else // kIsRelease
         [_brickMenu setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.6f]];
         [_brickMenu setButtonTextColor:[UIColor lightOrangeColor]];
         [_brickMenu setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
-#endif // kIsRelease
         _brickMenu.transparentView = nil;
     }
     return _brickMenu;
 }
 
-- (UIMotionEffectGroup *)motionEffects {
-    if (!_motionEffects) {
-        _motionEffects = [UIMotionEffectGroup new];
-    }
-    return _motionEffects;
-}
-
 #pragma mark - Action Sheet Delegate
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-#if kIsRelease // kIsRelease
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
-#else // kIsRelease
-    switch (buttonIndex) {
+    self.buttonIndex = buttonIndex;
+    switch (self.buttonIndex) {
         case kButtonIndexDelete: {
-            if ([self.delegate respondsToSelector:@selector(brickDetailViewController:didDeleteBrick:)]) {
+            if ([self.delegate respondsToSelector:@selector(brickDetailViewController:didDeleteBrick:)])
                 [self.delegate brickDetailViewController:self didDeleteBrick:self.brickCell];
-            }
             [self dismissBrickDetailViewController];
-            break;
         }
-        case kButtonIndexCopyOrCancel:
-            if (![self.brickCell isScriptBrick]) {
-                if ([self.delegate respondsToSelector:@selector(brickDetailViewController:didCopyBrick:)]) {
-                    [self.delegate brickDetailViewController:self didCopyBrick:self.brickCell];
-                }
-            }
-            [self dismissBrickDetailViewController];
             break;
-        case kButtonIndexAnimate:
+        case kButtonIndexCopy: {
+            if (![self.brickCell isScriptBrick])
+                if ([self.delegate respondsToSelector:@selector(brickDetailViewController:didCopyBrick:)])
+                    [self.delegate brickDetailViewController:self didCopyBrick:self.brickCell];
+            [self dismissBrickDetailViewController];
+            }
             break;
         case kButtonIndexEdit:
+    
             break;
         case kButtonIndexCancel:
             [self dismissBrickDetailViewController];
             break;
-        default:
+        case kButtonIndexAnimate:
+    
             break;
     }
-#endif // kIsRelease
 }
 
 #pragma mark - helper methods
