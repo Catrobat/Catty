@@ -26,6 +26,7 @@
 		4C3275FA1A1360640091C428 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */; };
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
 		811FB6ED1A49812700957E10 /* BrickSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6EC1A49812700957E10 /* BrickSelectionViewController.m */; };
+		81C0A6791A4CACB7003A77C5 /* ScriptDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A6781A4CACB7003A77C5 /* ScriptDataSource.m */; };
 		92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A461A42F2A3008C771A /* BSKeyboardControls.m */; };
 		92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A481A42F2A3008C771A /* iOSCombobox.m */; };
 		9238C5831A3AE9920099F061 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */; };
@@ -568,6 +569,8 @@
 		811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptCollectionViewController.m; sourceTree = "<group>"; };
 		811FB6EB1A49812700957E10 /* BrickSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSelectionViewController.h; sourceTree = "<group>"; };
 		811FB6EC1A49812700957E10 /* BrickSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickSelectionViewController.m; sourceTree = "<group>"; };
+		81C0A6771A4CACB7003A77C5 /* ScriptDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptDataSource.h; sourceTree = "<group>"; };
+		81C0A6781A4CACB7003A77C5 /* ScriptDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptDataSource.m; sourceTree = "<group>"; };
 		81C27425189EF94600827A95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Catty/Images.xcassets; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		921FE2F9182F8122001D7CF6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
@@ -2908,6 +2911,8 @@
 				811FB6EC1A49812700957E10 /* BrickSelectionViewController.m */,
 				92FF311F1A24DEB300093DA7 /* BrickDetailViewController.h */,
 				92FF31201A24DEB300093DA7 /* BrickDetailViewController.m */,
+				81C0A6771A4CACB7003A77C5 /* ScriptDataSource.h */,
+				81C0A6781A4CACB7003A77C5 /* ScriptDataSource.m */,
 			);
 			path = MaintainScript;
 			sourceTree = "<group>";
@@ -4464,6 +4469,7 @@
 				92DFB0561A38960C00FA9B0F /* FillTool.m in Sources */,
 				92FF327F1A24E2F400093DA7 /* IfLogicElseBrickCell.m in Sources */,
 				92FF30F11A24DCAA00093DA7 /* PlaySoundBrick.m in Sources */,
+				81C0A6791A4CACB7003A77C5 /* ScriptDataSource.m in Sources */,
 				92FF2E371A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m in Sources */,
 				92FF314B1A24DEB300093DA7 /* BaseWebViewController.m in Sources */,
 				92FF30DE1A24DCAA00093DA7 /* RepeatBrick.m in Sources */,
