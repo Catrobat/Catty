@@ -82,6 +82,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+    self.navigationController.toolbar.tintColor = UIColor.orangeColor;
+    
     [self setupSubViews];
     [self setupCollectionView];
     [self setupToolBar];
@@ -423,11 +427,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath
 {
-#if kIsRelease // kIsRelease
-    return NO;
-#else // kIsRelease
     return ((self.isEditing || indexPath.item == 0) ? NO : YES);
-#endif // kIsRelease
 }
 
 #pragma mark - UITextfield Delegate
@@ -477,7 +477,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
                   didAnimateBrick:(BrickCell *)brickCell {
-    //[self animate:self.selectedIndexPath brickCell:brickCell];
+    [self animate:self.selectedIndexPath brickCell:brickCell];
 }
 
 - (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
@@ -559,31 +559,35 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 #pragma mark - Helpers
 - (void)setupToolBar
 {
-    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-    self.navigationController.toolbar.tintColor = UIColor.orangeColor;
-    
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
+  
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-    
-    self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-    
+  
+    UIBarButtonItem *delete = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
+                                                                          target:self
+                                                                          action:@selector(deleteSelectedBricks)];
+    delete.tintColor = [UIColor redColor];
+
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(showBrickSelectionMenu)];
-#if kIsRelease // kIsRelease
-    add.enabled = NO;
-#else // kIsRelease
-    add.enabled = (! self.editing);
-#endif // kIsRelease
+    
+    add.enabled =  !self.editing;
+    
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
                                                                           action:@selector(playSceneAction:)];
     play.enabled = !self.editing;
-    self.toolbarItems = @[flexItem,invisibleButton, add, invisibleButton, flexItem,
-                          flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem];
+    
+    if (self.editing) {
+        self.toolbarItems = @[flexItem,invisibleButton, delete, invisibleButton, flexItem];
+    } else {
+        self.toolbarItems = @[flexItem,invisibleButton, add, invisibleButton, flexItem,
+                              flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem];
+    }
 }
 
 - (void)removeBrickAtIndexPath:(NSIndexPath *)indexPath

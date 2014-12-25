@@ -214,7 +214,9 @@
 - (void)selectButtonSelected:(id)sender
 {
     if ([sender isKindOfClass:SelectButton.class]) {
-        [self.delegate BrickCell:self didSelectBrickCellButton:self.selectButton];
+        if ([self.delegate respondsToSelector:@selector(BrickCell:didSelectBrickCellButton:)]) {
+            [self.delegate BrickCell:self didSelectBrickCellButton:self.selectButton];
+        }
     }
 }
 
