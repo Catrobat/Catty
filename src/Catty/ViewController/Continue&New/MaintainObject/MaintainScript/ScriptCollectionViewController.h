@@ -28,10 +28,9 @@
 @class SpriteObject, FXBlurView;
 
 @interface ScriptCollectionViewController : UICollectionViewController <UITextFieldDelegate,iOSComboboxDelegate>
-@property (strong, nonatomic) SpriteObject *object;
 @property (nonatomic, strong) FXBlurView *blurView;
+@property (strong, nonatomic) SpriteObject *object;
 @property (nonatomic, readonly) NSIndexPath *selectedIndexPath;
 
-- (void)openFormulaEditor:(BrickCell*)brickCell;
 
 @end
