@@ -43,7 +43,7 @@
 
 @implementation CreateView
 
-+(CGFloat)height
++ (CGFloat)height
 {
     return [Util screenHeight];
 }
@@ -58,7 +58,7 @@
     [self addAuthorImageToView:view];
     [self addNumberOfDownloadsImagetoView:view];
     [self addNumberOfDownloadsWithDownloads:project.downloads toView:view];
-    
+
     [self addProgramDescriptionLabelWithDescription:project.projectDescription toView:view target:target];
     [self addThumbnailImageWithImageUrlString:project.screenshotSmall toView:view];
         //[self addBigImageWithImageUrlString:project.screenshotBig toView:view];
@@ -66,15 +66,11 @@
     [self addLoadingButtonToView:view withTarget:target];
     [self addPlayButtonToView:view withTarget:target];
     [self addReportButtonToView:view withTarget:target];
-    
-    
+
     NSDate *projectDate = [NSDate dateWithTimeIntervalSince1970:[project.uploaded doubleValue]];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    
-    NSString *uploaded = [dateFormatter stringFromDate:projectDate];
+    NSString *uploaded = [[CatrobatProgram uploadDateFormatter] stringFromDate:projectDate];
     [self addInformationLabelToView:view withAuthor:project.author downloads:project.downloads uploaded:uploaded version:project.size views:project.views];
-    
+
     return view;
 }
 

@@ -26,7 +26,7 @@
 
 @implementation XMLSerializerAbstractTest
 
-#warning use and implement this
+// TODO: use and implement this
 - (BOOL)isXMLElement:(GDataXMLElement*)xmlElement equalToXMLElementForXPath:(NSString*)xPath inProgramForXML:(NSString*)program
 {
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:program]];

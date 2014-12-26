@@ -29,6 +29,7 @@
 
 @implementation Header (CBXMLHandler)
 
+#pragma mark - Parsing
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [XMLError exceptionIfNil:xmlElement message:@"No xml element given!"];
@@ -50,12 +51,9 @@
     return header;
 }
 
+#pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-    [dateFormatter setDateFormat:kCatrobatHeaderDateTimeFormat];
-
     GDataXMLElement *headerXMLElement = [GDataXMLElement elementWithName:@"header" context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"applicationBuildName"
                                                     stringValue:self.applicationBuildName context:context]
@@ -73,8 +71,9 @@
                                                     stringValue:kCBXMLSerializerLanguageVersion context:context]
                        context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"dateTimeUpload"
-                                                    stringValue:(self.dateTimeUpload ? [dateFormatter stringFromDate:self.dateTimeUpload] : nil) context:context]
-                       context:context];
+                                                    stringValue:(self.dateTimeUpload ? [[[self class] headerDateFormatter] stringFromDate:self.dateTimeUpload]
+                                                                 : nil)
+                                                        context:context] context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"description"
                                                     stringValue:self.programDescription context:context]
                        context:context];
@@ -118,6 +117,18 @@
                                                     stringValue:self.userHandle context:context]
                        context:context];
     return headerXMLElement;
+}
+
+#pragma mark - Helpers
+static NSDateFormatter *headerDateFormatter = nil;
++ (NSDateFormatter*)headerDateFormatter
+{
+    if (! headerDateFormatter) {
+        headerDateFormatter = [NSDateFormatter new];
+        [headerDateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+        [headerDateFormatter setDateFormat:kCatrobatHeaderDateTimeFormat];
+    }
+    return headerDateFormatter;
 }
 
 @end

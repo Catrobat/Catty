@@ -105,10 +105,7 @@
     } else if ([propertyType isEqualToString:kParserObjectTypeNumber]) {
         value = [NSNumber numberWithFloat:[[propertyNode stringValue]floatValue]];
     } else if ([propertyType isEqualToString:kParserObjectTypeDate]) {
-        NSDateFormatter *dateFormatter = [NSDateFormatter new];
-        [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-        [dateFormatter setDateFormat:kCatrobatHeaderDateTimeFormat];
-        value = [dateFormatter dateFromString:propertyNode.stringValue];
+        value = [[[self class] headerDateFormatter] dateFromString:propertyNode.stringValue];
     } else {
         [XMLError exceptionWithMessage:@"Unsupported type for property %@ (of type: %@) in header", propertyNode.name, propertyType];
     }

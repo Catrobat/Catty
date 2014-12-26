@@ -28,4 +28,6 @@
 
 @interface Header (CBXMLHandler) <CBXMLNodeProtocol>
 
++ (NSDateFormatter*)headerDateFormatter;
+
 @end
