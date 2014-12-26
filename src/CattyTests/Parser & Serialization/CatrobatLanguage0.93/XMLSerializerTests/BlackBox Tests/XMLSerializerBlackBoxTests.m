@@ -30,6 +30,7 @@
 
 @implementation XMLSerializerBlackBoxTests
 
+<<<<<<< HEAD
 //- (void)testAirFight05
 //{
 //    Program *program093 = [self getProgramForXML:@"Air_fight_0.5_093"];

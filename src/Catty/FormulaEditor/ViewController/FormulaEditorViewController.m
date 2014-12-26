@@ -44,6 +44,8 @@
 #import "VariablesContainer.h"
 #import "UserVariable.h"
 #import "OrderedMapTable.h"
+#import "CatrobatActionSheet.h"
+#import "ActionSheetAlertViewTags.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -53,7 +55,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexCancel = 4
 };
 
-@interface FormulaEditorViewController ()
+@interface FormulaEditorViewController () <CatrobatActionSheetDelegate>
 
 
 @property (weak, nonatomic) Formula *formula;
@@ -98,6 +100,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 @property (strong, nonatomic) AHKActionSheet *mathFunctionsMenu;
 @property (strong, nonatomic) AHKActionSheet *logicalOperatorsMenu;
+@property (nonatomic) BOOL isProgramVariable;
 
 @end
 
@@ -164,21 +167,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.variablePicker.delegate = self;
     self.variablePicker.dataSource = self;
     self.variablePicker.tintColor = [UIColor skyBlueColor];
-//
-//    self.variableSource = @[@"Item 1", @"Item 2", @"Item 3", @"Item 4", @"Item 5", @"Item 6"];
-    VariablesContainer *variables = self.object.program.variables;
     self.variableSourceProgram = [[NSMutableArray alloc] init];
     self.variableSourceObject = [[NSMutableArray alloc] init];
-    for(UserVariable *userVariable in variables.programVariableList){
-        [self.variableSourceProgram addObject:userVariable.name];
-    }
-//    for (NSInteger i=0; i < variables.objectVariableList.count;i++) {
-//        SpriteObject* object = [variables.objectVariableList objectAtIndex:i];
-//
-//        [self.variableSourceObject addObject:userVariable.name];
-//    }
-  
-    [self.variablePicker reloadAllComponents];
+    [self updateVariablePickerData];
     self.currentComponent = 0;
     self.mathScrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
     self.logicScrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
@@ -350,8 +341,16 @@ NS_ENUM(NSInteger, ButtonIndex) {
         switch ([internFormulaParser getErrorTokenIndex]) {
             case FORMULA_PARSER_OK:
                 result = [tempFormulaElement interpretRecursiveForSprite:nil];
+                if (internFormulaParser.isBool) {
+                    if (result) {
+                        computedString = [NSString stringWithFormat:kUIFEComputedTrue];
+                    } else {
+                        computedString = [NSString stringWithFormat:kUIFEComputedFalse];
+                    }
+                } else {
+                    computedString = [NSString stringWithFormat:kUIFEComputed, result];
+                }
                 
-                computedString = [NSString stringWithFormat:kUIFEComputed, result];
                 alert = [[UIAlertView alloc]initWithTitle: kUIFEResult
                                                   message: computedString
                                                  delegate: self
@@ -378,6 +377,15 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [alert show];
     }
     
+}
+
+-(BOOL)changeFormula
+{
+    if ([self saveIfPossible]) {
+        return YES;
+    }else {
+        return NO;
+    }
 }
 
 #pragma mark - Getter and setter
@@ -665,7 +673,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (IBAction)addNewVariable:(UIButton *)sender {
     //TODO alert with text
     [self.formulaEditorTextView resignFirstResponder];
-    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVar promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+    
+    [Util actionSheetWithTitle:kUIFEActionVar delegate:self destructiveButtonTitle:nil otherButtonTitles:@[kUIFEActionVarObj,kUIFEActionVarPro] tag:kAddNewVarActionSheetTag view:self.view];
 
 }
 
@@ -681,16 +690,43 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return blockedCharacterSet;
 }
 
+-(void)updateVariablePickerData
+{
+    VariablesContainer *variables = self.object.program.variables;
+    [self.variableSourceProgram removeAllObjects];
+    for(UserVariable *userVariable in variables.programVariableList){
+        [self.variableSourceProgram addObject:userVariable.name];
+    }
+    NSArray *array = [self.object.program.variables.objectVariableList objectForKey:self.object];
+    if (array) {
+        for (UserVariable *var in array) {
+            [self.variableSourceProgram addObject:var.name];
+        }
+        
+    }
+  
+    [self.variablePicker reloadAllComponents];
+}
+
 
 -(void)saveVariable:(NSString*)name
 {
     [self.formulaEditorTextView becomeFirstResponder];
-    UserVariable* var = [[UserVariable alloc] init];
+    UserVariable* var = [UserVariable new];
     var.name = name;
-    var.value = [NSNumber numberWithInt:2];
-    [self.object.program.variables.programVariableList addObject:var];
-    [self.variableSourceProgram addObject:var.name];
-    [self.variablePicker reloadAllComponents];
+    var.value = [NSNumber numberWithInt:0];
+    if (self.isProgramVariable) {
+        [self.object.program.variables.programVariableList addObject:var];
+    } else {
+        NSMutableArray *array = [self.object.program.variables.objectVariableList objectForKey:self.object];
+        if (!array) {
+            array = [NSMutableArray new];
+        }
+        [array addObject:var];
+        [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
+    }
+
+    [self updateVariablePickerData];
 }
 
 - (void)closeMenu
@@ -770,6 +806,20 @@ static NSCharacterSet *blockedCharacterSet = nil;
   
       
   }
+}
+
+
+#pragma mark - action sheet delegates
+- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    self.isProgramVariable = NO;
+    if (actionSheet.tag == 444) {
+        if (buttonIndex == 1) {
+            self.isProgramVariable = YES;
+        }
+        [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVar promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+    }
+    
 }
 
 @end

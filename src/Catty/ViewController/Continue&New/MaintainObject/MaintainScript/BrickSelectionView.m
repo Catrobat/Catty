@@ -54,7 +54,7 @@
     NSAssert(self.yOffset > 0.0f, @"no valid y offset value to show view");
     if (!self.isOnScreen) {
          self.onScreen = YES;
-        
+        self.alpha = 1.0f;
         self.frame = CGRectMake(0.0f, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(UIScreen.mainScreen.bounds));
 //        self.blurView.underlyingView = viewController.view;
         self.blurView.backgroundColor = [UIColor darkBlueColor];
@@ -67,21 +67,16 @@
         [viewController.view insertSubview:self aboveSubview:view];
         [self.brickCollectionView scrollToItemAtIndexPath:0 atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
         __weak BrickSelectionView *weakself = self;
-        [UIView animateWithDuration:0.5f delay:0.0f usingSpringWithDamping:10.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:0.5f delay:0.0f usingSpringWithDamping:0.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             self.frame = CGRectMake(0.0f, UIScreen.mainScreen.bounds.origin.y + 20.0, CGRectGetWidth(self.bounds), CGRectGetHeight(UIScreen.mainScreen.bounds));
-            [viewController.navigationController setNavigationBarHidden:YES animated:YES];
+            
             view.alpha = 0.4f;
             view.transform = CGAffineTransformScale(CGAffineTransformMakeTranslation(0.0f, -20.0f), 0.95f, 0.95f);
         } completion:^(BOOL finished) {
             if (finished) {
                 view.userInteractionEnabled = NO;
+                [viewController.navigationController setNavigationBarHidden:YES animated:NO];
                 weakself.blurView.dynamic = NO;
-//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                    [UIView animateWithDuration:0.25f animations:^{
-//                        self.textLabel.alpha = 0.0f;
-//                        self.textLabel.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
-//                    } completion:NULL];
-//                });
             }
         }];
         if (completionBlock) completionBlock();
@@ -96,11 +91,12 @@
     if (self.onScreen) {
         self.onScreen = NO;
         
-        [UIView animateWithDuration:fastDimiss ? 0.15f : 0.4f delay:0.0f usingSpringWithDamping:0.8f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            self.frame = CGRectMake(0.0f, UIScreen.mainScreen.bounds.size.height, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
+        [UIView animateWithDuration:fastDimiss ? 0.15f : 0.6f delay:0.0f usingSpringWithDamping:1.0f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            self.frame = CGRectMake(0.0f, UIScreen.mainScreen.bounds.size.height+100, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
             [fromViewController.navigationController setNavigationBarHidden:NO animated:YES];
             view.alpha = 1.0f;
             view.transform = CGAffineTransformIdentity;
+            self.alpha = 0;
         } completion:^(BOOL finished) {
             view.userInteractionEnabled = YES;
             if (completionBlock) completionBlock();

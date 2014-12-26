@@ -41,6 +41,7 @@ typedef enum {
 @property (nonatomic) int currentTokenParseIndex;
 @property (nonatomic) int errorTokenIndex;
 @property (nonatomic, weak) InternToken* currentToken;
+@property (nonatomic) BOOL isBool;
 
 - (id)initWithTokens:(NSArray*)tokens; // of InternToken
 - (void)handleOperator:(NSString*) operator WithCurrentElement:(FormulaElement*) currentElement AndNewElement: (FormulaElement*) newElement;
