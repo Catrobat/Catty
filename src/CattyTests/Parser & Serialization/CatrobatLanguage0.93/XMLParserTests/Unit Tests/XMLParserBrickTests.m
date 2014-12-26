@@ -65,12 +65,6 @@
     
     NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[2]" error:nil];
     XCTAssertEqual([brickElement count], 1);
-    
-    NSArray *objectArray = [xmlElement nodesForXPath:@"//program/objectList/object[1]" error:nil];
-    XCTAssertEqual([objectArray count], 1);
-    GDataXMLElement *objectElement = [objectArray objectAtIndex:0];
-    
-    NSMutableArray *lookList = [SpriteObject parseAndCreateLooks:objectElement];
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
 
     Brick *brick = [SetVariableBrick parseFromElement:brickXMLElement withContext:nil];
