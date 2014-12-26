@@ -115,15 +115,13 @@
 #pragma mark - Setup Collection View
 - (void)setupCollectionView
 {
-    
-    // Data source
+    // Setup Data source.
     __weak ScriptCollectionViewController *weakself = self;
-    ScriptCollectionViewConfigureBlock configureCellBlock = ^(id cell, id script) {
-        [weakself configureBrickCell:cell forScript:script];
+    ScriptCollectionViewConfigureBlock configureCellBlock = ^(id cell) {
+        [weakself configureBrickCell:cell];
     };
-    
     self.scriptDataSource = [[ScriptDataSource alloc] initWithScriptList:self.object.scriptList
-                                                          cellIdentifier:nil
+                                                          cellIdentifier:nil // We dont use the same identifier for all bricks atm.
                                                           configureCellBlock:configureCellBlock];
     self.collectionView.dataSource = self.scriptDataSource;
     self.collectionView.delegate = self;
@@ -145,17 +143,8 @@
     }
 }
 
-- (void)configureBrickCell:(BrickCell *)brickCell forScript:(Script *)script
+- (void)configureBrickCell:(BrickCell *)brickCell
 {
-    NSIndexPath *indexPath = [self.collectionView indexPathForCell:brickCell];
-    if (indexPath.item == 0) {
-        // case it's a script brick
-        brickCell.brick = script;  // script == brick
-    } else {
-        // case it's a normal brick
-        Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
-        brickCell.brick = brick;
-    }
     brickCell.enabled = YES;
     [brickCell setupBrickCell];
     brickCell.delegate = self;
@@ -270,73 +259,13 @@
     return nil;
 }
 
-#pragma mark - Collection View Datasource
-//- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-//{
-//    return self.object.scriptList.count;
-//}
-//
-//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-//{
-//    Script *script = [self.object.scriptList objectAtIndex:section];
-//    if (! script) {
-//        NSError(@"This should never happen");
-//        abort();
-//    }
-//    return ([script.brickList count] + 1); // because script itself is a brick in IDE too
-//}
-
-#pragma mark - UICollectionView Delegates
-//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    static NSString *brickCellIdentifier = @"";
-//    BrickCell *brickCell = (BrickCell *)[collectionView cellForItemAtIndexPath:indexPath];
-//    
-//    Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
-//    NSAssert(script, @"Error, no script available");
-//    
-//    if (indexPath.item == 0) {
-//        // case it's a script brick
-//        brickCellIdentifier = NSStringFromClass([script class]);
-//        if (brickCell == nil) {
-//            brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickCellIdentifier
-//                                                                  forIndexPath:indexPath];
-//        }
-//        brickCell.brick = script;  // script == brick
-//        brickCell.selectButton.hidden = YES;
-//    } else {
-//        // case it's a normal brick
-//        Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
-//        brickCellIdentifier = NSStringFromClass([brick class]);
-//        if (brickCell == nil) {
-//            brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickCellIdentifier
-//                                                                  forIndexPath:indexPath];
-//        }
-//        brickCell.brick = brick;
-//    }
-//    brickCell.enabled = YES;
-//    
-//    if (self.selectedAllCells) {
-//        [brickCell selectedState:self.selectedAllCells setEditingState:self.editing];
-//    } else {
-//        NSString *key = [self keyWithSelectIndexPath:indexPath];
-//        BOOL selected = indexPath == self.selectedIndexPaths[key];
-//        [brickCell selectedState:selected setEditingState:self.editing];
-//    }
-//    [brickCell setupBrickCell];
-//    brickCell.delegate = self;
-//    brickCell.textDelegate = self;
-//    return brickCell;
-//}
-//
-
 - (CGSize)collectionView:(UICollectionView*)collectionView
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath*)indexPath
 {
     CGSize size = CGSizeZero;
     if (indexPath.section < self.object.scriptList.count) {
-        Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
+        Script *script = [self.scriptDataSource scriptAtSection:indexPath.section];
         size = indexPath.item == 0 ? [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(script.class)]
         : [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass([[script.brickList objectAtIndex:indexPath.item - 1] class])];
     }
@@ -569,7 +498,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             }
             
             FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCell: button.brickCell];
-            formulaEditorViewController.delegate = self;
             formulaEditorViewController.object = self.object;
             formulaEditorViewController.transitioningDelegate = self;
             formulaEditorViewController.modalPresentationStyle = UIModalPresentationCustom;

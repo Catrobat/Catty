@@ -23,12 +23,12 @@
 #import <Foundation/Foundation.h>
 #import "Script.h"
 
-typedef void (^ScriptCollectionViewConfigureBlock)(id cell, id script);
+typedef void (^ScriptCollectionViewConfigureBlock)(id cell);
 
 @interface ScriptDataSource : NSObject <UICollectionViewDataSource>
 
 - (instancetype)initWithScriptList:(NSArray *)scriptList
-                    cellIdentifier:(NSString *)cellIdentifier
+                    cellIdentifier:(NSString *) __unused cellIdentifier
                 configureCellBlock:(ScriptCollectionViewConfigureBlock)configureCellBlock NS_DESIGNATED_INITIALIZER;
 
 // Disallow init.

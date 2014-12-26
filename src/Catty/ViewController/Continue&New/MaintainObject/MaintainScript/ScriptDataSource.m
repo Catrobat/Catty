@@ -22,6 +22,7 @@
 
 #import "ScriptDataSource.h"
 #import "Brick.h"
+#import "BrickCell.h"
 
 @interface ScriptDataSource ()
 @property(nonatomic, copy) ScriptCollectionViewConfigureBlock configureCellBlock;
@@ -35,13 +36,12 @@
 #pragma mark - Init
 
 - (instancetype)initWithScriptList:(NSArray *)scriptList
-                    cellIdentifier:(NSString *)cellIdentifier
+                    cellIdentifier:(NSString *) __unused cellIdentifier
                 configureCellBlock:(ScriptCollectionViewConfigureBlock)configureCellBlock
 {
     if (self = [super init]) {
         _configureCellBlock = [configureCellBlock copy];
         _scriptList = scriptList;
-        _cellIdentifier = cellIdentifier;
     }
     return self;
 }
@@ -57,7 +57,7 @@
 {
     Script *script = [self scriptAtSection:(NSUInteger)section];
     NSAssert(script != nil, @"Error, no script found");
-    // +1, because script itself is a brick in IDE too
+    // +1, because script itself is a brick in IDE too.
     return script.brickList.count + 1;
 }
 
@@ -65,20 +65,24 @@
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier;
+    BrickCell *brickCell = nil;
+    
     Script *script = [self scriptAtSection:indexPath.section];
+    Brick *brick = nil;
     
     if (indexPath.item == 0) {
         cellIdentifier = NSStringFromClass([script class]);
     } else {
-        Brick *brick = [script.brickList objectAtIndex:indexPath.item - 1];
+        brick = [script.brickList objectAtIndex:indexPath.item - 1];
         cellIdentifier = NSStringFromClass([brick class]);
     }
-
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier
-                                forIndexPath:indexPath];
     
-    self.configureCellBlock(cell, script);
-    return cell;
+    brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier
+                                forIndexPath:indexPath];
+    brickCell.brick = indexPath.item == 0 ? script : brick;
+    
+    self.configureCellBlock(brickCell);
+    return brickCell;
 }
 
 #pragma mark - Public
