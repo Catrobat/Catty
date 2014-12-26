@@ -33,6 +33,8 @@
 #import "SpriteObject.h"
 #import "CBXMLSerializerHelper.h"
 
+#import "Formula+CBXMLHandler.h"
+
 @implementation Script (CBXMLHandler)
 
 #pragma mark - Parsing
@@ -100,11 +102,30 @@
         // get proper brick class via reflection
         NSString *brickClassName = [[self class] brickClassNameForBrickTypeName:brickTypeName];
         Class class = NSClassFromString(brickClassName);
-        [XMLError exceptionIfNil:class message:@"Unsupported brick type: %@", brickTypeName];
+        GDataXMLElement *brickXmlElement = nil;
+        if (! class) {
+            // unknown brick type => replace by NoteBrick
+            NSWarn(@"Unsupported brick type: %@ => to be replaced by a NoteBrick", brickTypeName);
+            class = NSClassFromString(@"NoteBrick");
+            [XMLError exceptionIfNil:class
+                             message:@"Unable to retrieve NoteBrick class. This should never happen."];
+            brickXmlElement = [GDataXMLElement elementWithName:@"brick"];
+            [brickXmlElement addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"NoteBrick"]];
+            GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList"];
+            GDataXMLElement *formulaElement = [GDataXMLElement elementWithName:@"formula"];
+            [formulaElement addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"NOTE"]];
+            [formulaElement addChild:[GDataXMLElement elementWithName:@"type" stringValue:@"STRING"]];
+            [formulaElement addChild:[GDataXMLElement elementWithName:@"value"
+                                                          stringValue:[NSString stringWithFormat:@"Unsupported brick: %@. Replaced by NoteBrick", brickTypeName]]];
+            [formulaList addChild:formulaElement];
+            [brickXmlElement addChild:formulaList];
+        } else {
+            brickXmlElement = brickElement;
+        }
         [XMLError exceptionIf:[class conformsToProtocol:@protocol(CBXMLNodeProtocol)] equals:NO
                       message:@"%@ must have a category %@+CBXMLHandler that implements CBParserNodeProtocol",
-         brickClassName, brickClassName];
-        Brick *brick = [class parseFromElement:brickElement withContext:context];
+                              brickClassName, brickClassName];
+        Brick *brick = [class parseFromElement:brickXmlElement withContext:context];
         [XMLError exceptionIfNil:brick message:@"Unable to parse brick..."];
         brick.object = context.spriteObject;
         [brickList addObject:brick];
