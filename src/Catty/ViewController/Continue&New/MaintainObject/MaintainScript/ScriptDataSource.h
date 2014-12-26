@@ -23,9 +23,29 @@
 #import <Foundation/Foundation.h>
 #import "Script.h"
 
+typedef NS_ENUM(NSUInteger, ScriptDataSourceState) {
+    ScriptDataSourceStateBrickAdded = 0,
+    ScriptDataSourceStateScriptDeleted,
+    ScriptDataSourceStateBrickDeleted,
+    ScriptDataSourceStateBrickCopied
+};
+
 typedef void (^ScriptCollectionViewConfigureBlock)(id cell);
 
+@class ScriptDataSource;
+@protocol ScriptDataSourceDelegate <NSObject>
+
+@optional
+// Maybe change to key-value observing later....
+- (void)scriptDataSource:(ScriptDataSource *)scriptDataSource
+            stateChanged:(ScriptDataSourceState)state
+                   error:(NSError *)error;
+
+@end
+
 @interface ScriptDataSource : NSObject <UICollectionViewDataSource>
+@property(nonatomic, weak) id<ScriptDataSourceDelegate> delegate;
+@property(nonatomic, readonly) ScriptDataSourceState state;
 
 - (instancetype)initWithScriptList:(NSArray *)scriptList
                     cellIdentifier:(NSString *) __unused cellIdentifier
