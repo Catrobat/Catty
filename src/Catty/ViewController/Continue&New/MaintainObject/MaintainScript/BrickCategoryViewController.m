@@ -40,7 +40,6 @@
     if (self = [super initWithCollectionViewLayout:[UICollectionViewFlowLayout new]]) {
         _bricks = [BrickManager.sharedBrickManager selectableBricksForCategoryType:type];
         _brickCategory = type;
-        self.title = kBrickCategoryNames[type];
     }
     return self;
 }
@@ -66,6 +65,7 @@
     self.collectionView.collectionViewLayout = [UICollectionViewFlowLayout new];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
+    self.automaticallyAdjustsScrollViewInsets = YES;
     
     [self setupSubViews];
 }
@@ -122,7 +122,11 @@
                         layout:(UICollectionViewLayout*)collectionViewLayout
         insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(64.f + kScriptCollectionViewTopInsets, 0.0f, kScriptCollectionViewBottomInsets, 0.0f);
+    return UIEdgeInsetsMake(CGRectGetHeight(self.navigationController.navigationBar.bounds) +
+                            CGRectGetHeight([UIApplication sharedApplication].statusBarFrame) + kScriptCollectionViewTopInsets,
+                            0.0f,
+                            kScriptCollectionViewBottomInsets,
+                            0.0f);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView

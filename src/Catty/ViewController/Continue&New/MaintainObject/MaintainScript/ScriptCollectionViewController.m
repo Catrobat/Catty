@@ -86,7 +86,7 @@
     
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     self.navigationController.toolbar.tintColor = UIColor.orangeColor;
-    
+    self.navigationController.hidesBarsOnSwipe = YES;
     [self setupCollectionView];
     [self setupSubViews];
     [self setupToolBar];
@@ -260,12 +260,12 @@
                                                                                  navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
                                                                                                options:@{ UIPageViewControllerOptionInterPageSpacingKey : @20.f }];
     
-    [bsvc setViewControllers:@[bcvc] direction:UIPageViewControllerNavigationDirectionForward
-                                      animated:NO
-                                    completion:NULL];
+    [bsvc setViewControllers:@[bcvc]
+                   direction:UIPageViewControllerNavigationDirectionForward
+                    animated:NO
+                  completion:NULL];
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bsvc];
-    navController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [self presentViewController:navController animated:YES completion:NULL];
 }
 
@@ -378,25 +378,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     self.higherRankBrick = nil;
     self.lowerRankBrick = nil;
-    [UIView animateWithDuration:0.25f animations:^{
-        self.navigationController.navigationBar.alpha = 0.01f;
-        self.navigationController.toolbar.alpha = 0.01f;
-    } completion:^(BOOL finished) {
-        collectionView.userInteractionEnabled = NO;
-        BrickCell *cell = (BrickCell *)[collectionView cellForItemAtIndexPath:indexPath];
-        [cell animateBrick:NO];
-    }];
-}
-
-- (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
-                                   didEndDraggingItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    [UIView animateWithDuration:0.25f animations:^{
-         self.navigationController.navigationBar.alpha = 1.0f;
-         self.navigationController.toolbar.alpha = 1.0f;
-    } completion:^(BOOL finished) {
-        collectionView.userInteractionEnabled = YES;
-    }];
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath

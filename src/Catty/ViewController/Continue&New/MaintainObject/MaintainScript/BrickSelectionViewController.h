@@ -22,7 +22,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BrickSelectionViewController : UIPageViewController <UIPageViewControllerDataSource>
+@interface BrickSelectionViewController : UIPageViewController <UIPageViewControllerDataSource,
+                                                                UIPageViewControllerDelegate>
 
 
 @end

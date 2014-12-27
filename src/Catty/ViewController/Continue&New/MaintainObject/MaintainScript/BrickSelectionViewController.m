@@ -31,8 +31,11 @@
     [super viewDidLoad];
     
     self.dataSource = self;
+    self.delegate = self;
     self.view.backgroundColor = [UIColor darkBlueColor];
+    self.navigationController.toolbarHidden = YES;
     [self setupNavBar];
+    [self updateTitle];
 }
 
 #pragma mark - UIPageViewControllerDataSource
@@ -41,14 +44,46 @@
       viewControllerBeforeViewController:(UIViewController *)viewController
 {
     BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
-    return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:bcVC.pageIndex - 1];
+    NSUInteger pageIndex = bcVC.pageIndex - 1;
+    return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:pageIndex];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
        viewControllerAfterViewController:(UIViewController *)viewController
 {
     BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
-    return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:bcVC.pageIndex + 1];
+    NSUInteger pageIndex = bcVC.pageIndex + 1;
+    return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:pageIndex];
+}
+
+- (void)pageViewController:(UIPageViewController *)pageViewController
+        didFinishAnimating:(BOOL)finished
+   previousViewControllers:(NSArray *)previousViewControllers
+       transitionCompleted:(BOOL)completed
+{
+    if (completed) {
+        [self updateTitle];
+    }
+}
+
+#pragma mark - Pageindicator
+- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
+{
+    [self setupPageControl];
+    return kCategoryCount;
+}
+
+- (void)setupPageControl
+{
+    UIPageControl * pageControl = [[self.view.subviews
+                                        filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(class = %@)", [UIPageControl class]]] lastObject];
+    pageControl.currentPageIndicatorTintColor = [UIColor lightOrangeColor];
+}
+
+- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
+{
+    BrickCategoryViewController *bcvc = [pageViewController.viewControllers objectAtIndex:0];
+    return bcvc.pageIndex;
 }
 
 #pragma mark - Setup
@@ -58,6 +93,15 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                                           target:self
                                                                                           action:@selector(dismiss:)];
+}
+
+- (void)updateTitle
+{
+    BrickCategoryViewController *bcvc = [self.viewControllers objectAtIndex:0];
+    NSInteger pageIndex = bcvc.pageIndex;
+    if (pageIndex >= 0 && pageIndex < kCategoryCount) {
+        self.title = kBrickCategoryNames[pageIndex];
+    }
 }
 
 #pragma mark Button Actions
