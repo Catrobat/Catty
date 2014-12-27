@@ -55,7 +55,8 @@ typedef void(^AHKActionSheetHandler)(AHKActionSheet *actionSheet);
 @property (copy, nonatomic) NSDictionary *destructiveButtonTextAttributes UI_APPEARANCE_SELECTOR;
 @property (copy, nonatomic) NSDictionary *cancelButtonTextAttributes UI_APPEARANCE_SELECTOR;
 /// Duration of the show/dismiss animations. Defaults to 0.5.
-@property (nonatomic) NSTimeInterval animationDuration UI_APPEARANCE_SELECTOR;
+@property (nonatomic) NSTimeInterval animationPresentDuration UI_APPEARANCE_SELECTOR;
+@property (nonatomic) NSTimeInterval animationDisimissDuration UI_APPEARANCE_SELECTOR;
 
 /// Boxed boolean value. Enables/disables control hiding with pan gesture. Enabled by default.
 @property (strong, nonatomic) NSNumber *cancelOnPanGestureEnabled UI_APPEARANCE_SELECTOR;

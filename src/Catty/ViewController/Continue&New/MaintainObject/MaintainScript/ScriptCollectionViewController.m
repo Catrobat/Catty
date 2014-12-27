@@ -49,20 +49,20 @@
 #import "LoopEndBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
-#import "BrickSelectionViewController.h"
+#import "BrickCategoryViewController.h"
 #import "UIUtil.h"
 #import "FormulaEditorButton.h"
 #import "NoteBrickTextField.h"
 #import "NoteBrick.h"
 #import "ScriptDataSource.h"
+#import "BrickSelectionViewController.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate,
                                               LXReorderableCollectionViewDelegateFlowLayout,
                                               LXReorderableCollectionViewDataSource,
                                               UIViewControllerTransitioningDelegate,
                                               BrickCellDelegate,
-                                              BrickDetailViewControllerDelegate,
-                                              BrickSelectionViewControllerDelegate>
+                                              BrickDetailViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
@@ -151,6 +151,41 @@
     brickCell.textDelegate = self;
 }
 
+#pragma mark - Setup Toolbar
+
+- (void)setupToolBar
+{
+    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                              target:nil
+                                                                              action:nil];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
+    
+    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+    
+    UIBarButtonItem *delete = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
+                                                                            target:self
+                                                                            action:@selector(deleteSelectedBricks)];
+    delete.tintColor = [UIColor redColor];
+    
+    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                         target:self
+                                                                         action:@selector(showBrickSelectionMenu:)];
+    
+    add.enabled =  !self.editing;
+    
+    UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+                                                                          target:self
+                                                                          action:@selector(playSceneAction:)];
+    play.enabled = !self.editing;
+    
+    if (self.editing) {
+        self.toolbarItems = @[flexItem,invisibleButton, delete, invisibleButton, flexItem];
+    } else {
+        self.toolbarItems = @[flexItem,invisibleButton, add, invisibleButton, flexItem,
+                              flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem];
+    }
+}
+
 #pragma mark - Init SubViews
 - (void)setupSubViews {    
     // BlurView
@@ -172,7 +207,9 @@
     
     // Brick List Sheet
     self.brickSelectionMenu = [[AHKActionSheet alloc]initWithTitle:kLocalizedSelectBrickCategory];
-    self.brickSelectionMenu.animationDuration = .25f;
+    self.brickSelectionMenu.animationPresentDuration = 0.4f;
+    self.brickSelectionMenu.animationDisimissDuration = 0.15f;
+    
     self.brickSelectionMenu.blurTintColor = [UIColor colorWithWhite:0.0f alpha:0.7f];
     self.brickSelectionMenu.separatorColor = UIColor.skyBlueColor;
     self.brickSelectionMenu.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:14.0f] ,
@@ -182,7 +219,7 @@
     self.brickSelectionMenu.selectedBackgroundColor = [UIColor colorWithWhite:0.0f alpha:0.3f];
     self.brickSelectionMenu.automaticallyTintButtonImages = NO;
     
-    __weak ScriptCollectionViewController *weakSelf = self;
+    __weak ScriptCollectionViewController *weakSelf = self;    
     [self.brickSelectionMenu addButtonWithTitle:kLocalizedControl
                                       image:[UIImage imageNamed:@"orange_indicator"]
                                        type:AHKActionSheetButtonTypeDefault
@@ -218,11 +255,17 @@
 #pragma mark - Show brick selection screen
 
 - (void)showBrickSelectionController:(kBrickCategoryType)type {
-    BrickSelectionViewController *bsvc = [[BrickSelectionViewController alloc] initWithBrickCategory:type];
-    bsvc.delegate = self;
+    BrickCategoryViewController *bcvc = [[BrickCategoryViewController alloc] initWithBrickCategory:type];
+    BrickSelectionViewController *bsvc = [[BrickSelectionViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
+                                                                                 navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
+                                                                                               options:@{ UIPageViewControllerOptionInterPageSpacingKey : @20.f }];
+    
+    [bsvc setViewControllers:@[bcvc] direction:UIPageViewControllerNavigationDirectionForward
+                                      animated:NO
+                                    completion:NULL];
+    
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bsvc];
     navController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    // navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:navController animated:YES completion:NULL];
 }
 
@@ -233,6 +276,13 @@
     [self.navigationController setToolbarHidden:YES animated:YES];
     ScenePresenterViewController *vc = [[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]]];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)showBrickSelectionMenu:(id)sender
+{
+    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+        [self.brickSelectionMenu show];
+    }
 }
 
 #pragma mark - UIViewControllerAnimatedTransitioning delegate
@@ -400,13 +450,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     [noteBrickTextField resignFirstResponder];
 }
 
-#pragma mark - BrickSelectionViewControllerDelegate
-
-- (void)brickSelectionViewControllerdidSelectBrickListButton:(BrickSelectionViewController *) brickSelectionViewController
-{
-    [self.brickSelectionMenu show];
-}
-
 #pragma mark - BrickDetailViewController Delegate
 
 - (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
@@ -510,38 +553,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - Helpers
-- (void)setupToolBar
-{
-    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                              target:nil
-                                                                              action:nil];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
-  
-    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-  
-    UIBarButtonItem *delete = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
-                                                                          target:self
-                                                                          action:@selector(deleteSelectedBricks)];
-    delete.tintColor = [UIColor redColor];
-
-    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                         target:self
-                                                                         action:@selector(showBrickSelectionMenu)];
-    
-    add.enabled =  !self.editing;
-    
-    UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
-                                                                          target:self
-                                                                          action:@selector(playSceneAction:)];
-    play.enabled = !self.editing;
-    
-    if (self.editing) {
-        self.toolbarItems = @[flexItem,invisibleButton, delete, invisibleButton, flexItem];
-    } else {
-        self.toolbarItems = @[flexItem,invisibleButton, add, invisibleButton, flexItem,
-                              flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem];
-    }
-}
 
 - (void)removeBrickAtIndexPath:(NSIndexPath *)indexPath
 {

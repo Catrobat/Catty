@@ -21,8 +21,15 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "UIDefines.h"
 
-@interface BrickSelectionViewController : UIPageViewController <UIPageViewControllerDataSource>
+@interface BrickCategoryViewController : UICollectionViewController
+- (instancetype)initWithBrickCategory:(kBrickCategoryType)type NS_DESIGNATED_INITIALIZER;
++ (BrickCategoryViewController *)brickCategoryViewControllerForPageIndex:(NSInteger)pageIndex;
 
+// Disallow init.
+- (instancetype)init __attribute__((unavailable("init is not a supported initializer for this class.")));
+@property (nonatomic, readonly) NSArray *bricks;
+@property (nonatomic, readonly) NSUInteger pageIndex;
 
 @end

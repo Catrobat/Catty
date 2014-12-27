@@ -21,139 +21,51 @@
  */
 
 #import "BrickSelectionViewController.h"
-#import "BrickManager.h"
-#import "BrickCell.h"
-#import "BrickProtocol.h"
-#import "Brick.h"
-
-@interface BrickSelectionViewController ()
-@property (nonatomic, strong) NSArray *bricks;
-@property(nonatomic, strong) UIVisualEffectView *blurView;
-
-@end
+#import "BrickCategoryViewController.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
 @implementation BrickSelectionViewController
 
-- (instancetype)initWithBrickCategory:(kBrickCategoryType)type {
-    if (self = [super initWithCollectionViewLayout:[UICollectionViewFlowLayout new]]) {
-        _bricks = [BrickManager.sharedBrickManager selectableBricksForCategoryType:type];
-        self.title = kBrickCategoryNames[type];
-    }
-    return self;
-}
-
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    self.collectionView.collectionViewLayout = [UICollectionViewFlowLayout new];
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
     
-    [self setupSubViews];
+    self.dataSource = self;
+    self.view.backgroundColor = [UIColor darkBlueColor];
     [self setupNavBar];
 }
 
-- (void)setupSubViews {
-    NSDictionary *allBrickTypes = [[BrickManager sharedBrickManager] classNameBrickTypeMap];
-    for (NSString *className in allBrickTypes) {
-        [self.collectionView registerClass:NSClassFromString([className stringByAppendingString:@"Cell"])
-                forCellWithReuseIdentifier:className];
-    }
-    
-    self.collectionView.backgroundColor = UIColor.clearColor;
-    self.view.backgroundColor = UIColor.clearColor;
-    
-    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-    self.blurView = [[UIVisualEffectView alloc] initWithEffect:blur];
+#pragma mark - UIPageViewControllerDataSource
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
+      viewControllerBeforeViewController:(UIViewController *)viewController
+{
+    BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
+    return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:bcVC.pageIndex - 1];
 }
 
-- (void)setupNavBar {
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
+       viewControllerAfterViewController:(UIViewController *)viewController
+{
+    BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
+    return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:bcVC.pageIndex + 1];
+}
+
+#pragma mark - Setup
+
+- (void)setupNavBar
+{
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                                           target:self
-                                                                                           action:@selector(dismiss:)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Brick List", nil)
-                                                                              style:UIBarButtonItemStylePlain
-                                                                             target:self
-                                                                             action:@selector(showBrickList:)];
+                                                                                          target:self
+                                                                                          action:@selector(dismiss:)];
 }
 
+#pragma mark Button Actions
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    [self.view insertSubview:self.blurView belowSubview:self.collectionView];
-}
-
-- (void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
-    
-    self.blurView.frame = self.view.bounds;
-}
-
-#pragma mark - Collection View Datasource
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _bricks.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
-                    cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    id<BrickProtocol> brick = [self.bricks objectAtIndex:indexPath.item];
-    NSString *brickCellIdentifier = NSStringFromClass(brick.class);
-    BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickCellIdentifier
-                                                                    forIndexPath:indexPath];
-    brickCell.brick = [self.bricks objectAtIndex:indexPath.item];
-    [brickCell setupBrickCell];
-    return brickCell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-}
-
-#pragma mark - Collection View Layout
-
-- (CGSize)collectionView:(UICollectionView*)collectionView
-                  layout:(UICollectionViewLayout*)collectionViewLayout
-  sizeForItemAtIndexPath:(NSIndexPath*)indexPath {
-    Brick *brick = [self.bricks objectAtIndex:indexPath.item];
-    CGSize size = [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(brick.class)];
-    return size;
-}
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
-                        layout:(UICollectionViewLayout*)collectionViewLayout
-        insetForSectionAtIndex:(NSInteger)section
+- (void)dismiss:(id)sender
 {
-    return UIEdgeInsetsMake(kScriptCollectionViewTopInsets, 0.0f, kScriptCollectionViewBottomInsets, 0.0f);
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView
-                   layout:(UICollectionViewLayout *)collectionViewLayout
-minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 8.f;
-}
-
-#pragma mark Barutton Actions
-
-- (void)dismiss:(id)sender {
     if ([sender isKindOfClass:UIBarButtonItem.class]) {
         [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
-    }
-}
-
-- (void)showBrickList:(id)sender {
-    if ([sender isKindOfClass:UIBarButtonItem.class]) {
-        __weak BrickSelectionViewController *weakself = self;
-        [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
-            if ([weakself.delegate respondsToSelector:@selector(BrickCell:didSelectBrickCellButton:)]) {
-                [weakself.delegate brickSelectionViewControllerdidSelectBrickListButton:weakself];
-            }
-        }];
     }
 }
 

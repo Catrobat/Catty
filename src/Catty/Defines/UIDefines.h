@@ -81,6 +81,8 @@ typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
     kVariableBrick             = 4
 };
 
+#define kCategoryCount 5 
+
 // brick type identifiers
 typedef NS_ENUM(NSUInteger, kBrickType) {
     // invalid brick type
