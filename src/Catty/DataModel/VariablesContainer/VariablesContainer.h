@@ -41,6 +41,14 @@
 
 - (void)changeVariable:(UserVariable*)userVariable byValue:(double)value;
 
+- (SpriteObject*)spriteObjectForObjectVariable:(UserVariable*)userVariable;
+
+- (BOOL)isVariableOfSpriteObject:(SpriteObject*)spriteObject userVariable:(UserVariable*)userVariable;
+
+- (BOOL)isProgramVariable:(UserVariable*)userVariable;
+
 - (BOOL)isEqualToVariablesContainer:(VariablesContainer*)variablesContainer;
+
+- (id)mutableCopy;
 
 @end

@@ -20,26 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ShowBrick+CBXMLHandler.h"
-#import "CBXMLParserHelper.h"
-#import "GDataXMLElement+CustomExtensions.h"
-#import "CBXMLContext.h"
-#import "CBXMLSerializerHelper.h"
+#import <Foundation/Foundation.h>
 
-@implementation ShowBrick (CBXMLHandler)
+@class Brick;
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
-{
-    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
-    return [self new]; // nothing else to do!
-}
+@interface CBXMLPositionStack : NSObject <NSFastEnumeration>
 
-- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
-{
-    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
-    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"ShowBrick"]];
-    return brick;
-}
+@property (nonatomic, strong, readonly) NSMutableArray *stack;
+@property (nonatomic, readonly) NSUInteger numberOfXmlElements;
+
+- (void)pushXmlElementName:(NSString*)xmlElementName;
+- (NSString*)popXmlElementName;
+- (BOOL)isEmpty;
+- (id)mutableCopy;
 
 @end

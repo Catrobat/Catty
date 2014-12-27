@@ -43,6 +43,6 @@
 @property (nonatomic) BOOL isdownloading;
 
 - (id)initWithDict:(NSDictionary*)dict andBaseUrl:(NSString*)baseUrl;
-
++ (NSDateFormatter*)uploadDateFormatter;
 
 @end

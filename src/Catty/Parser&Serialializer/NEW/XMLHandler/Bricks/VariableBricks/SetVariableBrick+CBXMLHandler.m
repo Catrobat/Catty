@@ -22,12 +22,13 @@
 
 #import "SetVariableBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "Formula+CBXMLHandler.h"
 #import "UserVariable+CBXMLHandler.h"
 #import "CBXMLParser.h"
 #import "CBXMLContext.h"
 #import "CBXMLParserHelper.h"
+#import "CBXMLSerializerHelper.h"
 
 @implementation SetVariableBrick (CBXMLHandler)
 
@@ -35,15 +36,17 @@
 {
     NSUInteger childCount = [xmlElement childCount];
     if (childCount == 3) {
-        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:3 AndFormulaListWithTotalNumberOfFormulas:1];
+        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:3
+      AndFormulaListWithTotalNumberOfFormulas:1];
         // optional
         GDataXMLElement *inUserBrickElement = [xmlElement childWithElementName:@"inUserBrick"];
         [XMLError exceptionIfNil:inUserBrickElement message:@"No inUserBrickElement element found..."];
-        
+
         // TODO: handle inUserBrick here...
-        
+
     } else if (childCount == 2) {
-        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:2 AndFormulaListWithTotalNumberOfFormulas:1];
+        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:2
+      AndFormulaListWithTotalNumberOfFormulas:1];
     } else {
         [XMLError exceptionWithMessage:@"Too many or too less child elements..."];
     }
@@ -63,15 +66,20 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"SetVariableBrick"]];
-    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"SetVariableBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.variableFormula xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"VARIABLE"]];
-    [formulaList addChild:formula];
-    [brick addChild:formulaList];
-    [brick addChild:[GDataXMLNode elementWithName:@"inUserBrick" stringValue:@"false"]]; // TODO: implement this...
-    [brick addChild:[self.userVariable xmlElementWithContext:context]];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"VARIABLE"]];
+    [formulaList addChild:formula context:context];
+    [brick addChild:formulaList context:context];
+
+    //  Unused at the moment => TODO: implement this after Catroid has decided to officially use this feature!
+    //    [brick addChild:[GDataXMLElement elementWithName:@"inUserBrick" stringValue:@"false"
+    //                                             context:context] context:context];
+
+    [brick addChild:[self.userVariable xmlElementWithContext:context] context:context];
     return brick;
 }
 

@@ -143,8 +143,8 @@
     return _timeFormat;
 }
 
-- (NSDateFormatter*)dateFormatter{
-    
+- (NSDateFormatter*)dateFormatter
+{
     if (_dateFormatter == nil) {
         _dateFormatter = [[NSDateFormatter alloc] init];
         _dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"];

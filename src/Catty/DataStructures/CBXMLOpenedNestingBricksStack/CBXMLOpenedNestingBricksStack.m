@@ -69,10 +69,18 @@
 
 #pragma mark - NSFastEnumeration
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState*)state
-                                  objects:(__unsafe_unretained id [])buffer
+                                  objects:(__unsafe_unretained id[])buffer
                                     count:(NSUInteger)len
 {
     return [self.openedNestingBricks countByEnumeratingWithState:state objects:buffer count:len];
+}
+
+- (id)mutableCopy
+{
+    CBXMLOpenedNestingBricksStack *copiedOpenedNestingBricksStack = [[self class] new];
+    copiedOpenedNestingBricksStack.openedNestingBricks = [self.openedNestingBricks mutableCopy];
+    copiedOpenedNestingBricksStack.numberOfOpenedNestingBricks = self.numberOfOpenedNestingBricks;
+    return copiedOpenedNestingBricksStack;
 }
 
 @end

@@ -22,7 +22,7 @@
 
 #import "SetLookBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "Look+CBXMLHandler.h"
 #import "CBXMLContext.h"
 #import "CBXMLParserHelper.h"
@@ -35,8 +35,8 @@
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
     
     GDataXMLElement *lookElement = [[xmlElement children] firstObject];
-    NSMutableArray *lookList = context.lookList;
-    
+    NSMutableArray *lookList = context.spriteObject.lookList;
+
     Look *look = nil;
     if ([CBXMLParserHelper isReferenceElement:lookElement]) {
         GDataXMLNode *referenceAttribute = [lookElement attributeForName:@"reference"];
@@ -60,15 +60,16 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"brick"];
-    [xmlElement addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"SetLookBrick"]];
+    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"SetLookBrick"]];
     if (self.look) {
-        GDataXMLElement *referenceXMLElement = [GDataXMLNode elementWithName:@"look"];
-        NSString *refPath = [CBXMLSerializerHelper relativeXPathToLook:self.look inLookList:context.lookList];
-        [referenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:refPath]];
-        [xmlElement addChild:referenceXMLElement];
+        GDataXMLElement *referenceXMLElement = [GDataXMLElement elementWithName:@"look" context:context];
+        NSString *refPath = [CBXMLSerializerHelper relativeXPathToLook:self.look inLookList:context.spriteObject.lookList];
+        [referenceXMLElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
+        [brick addChild:referenceXMLElement context:context];
     }
-    return xmlElement;
+    return brick;
 }
 
 @end

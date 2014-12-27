@@ -24,13 +24,14 @@
 
 @class Sound;
 @class Look;
-@class SpriteObject;
+@class CBXMLPositionStack;
 
 @interface CBXMLSerializerHelper : NSObject
 
 + (NSUInteger)indexOfElement:(id)element inArray:(NSArray*)array;
 + (NSString*)relativeXPathToSound:(Sound*)sound inSoundList:(NSArray*)soundList;
 + (NSString*)relativeXPathToLook:(Look*)look inLookList:(NSArray*)lookList;
-+ (NSString*)relativeXPathToObject:(SpriteObject*)object inObjectList:(NSArray*)objectList;
++ (NSString*)relativeXPathFromSourcePositionStack:(CBXMLPositionStack*)sourcePositionStack
+                       toDestinationPositionStack:(CBXMLPositionStack*)destinationPositionStack;
 
 @end

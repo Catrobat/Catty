@@ -31,5 +31,6 @@
 - (void)pushAndOpenNestingBrick:(Brick*)openedNestingBricks;
 - (Brick*)popAndCloseTopMostNestingBrick;
 - (BOOL)isEmpty;
+- (id)mutableCopy;
 
 @end

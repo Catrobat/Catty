@@ -29,7 +29,7 @@
     if (self) {
         self.name            = [dict valueForKey:@"ProjectName"];
         self.author          = [dict valueForKey:@"Author"];
-        self.projectDescription  = [dict valueForKey:@"Description"];
+        self.projectDescription = [dict valueForKey:@"Description"];
         self.downloadUrl     = [NSString stringWithFormat:@"%@%@", baseUrl,[dict valueForKey:@"DownloadUrl"]];
         self.downloads       = [dict valueForKey:@"Downloads"];
         self.projectID       = [dict valueForKey:@"ProjectId"];
@@ -52,8 +52,17 @@
             self.size = @"?";
         }
     }
-    
     return self;
+}
+
+static NSDateFormatter *uploadDateFormatter = nil;
++ (NSDateFormatter*)uploadDateFormatter
+{
+    if (! uploadDateFormatter) {
+        uploadDateFormatter = [NSDateFormatter new];
+        [uploadDateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    }
+    return uploadDateFormatter;
 }
 
 @end

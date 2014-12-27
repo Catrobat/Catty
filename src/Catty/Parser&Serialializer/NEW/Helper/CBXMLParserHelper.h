@@ -29,6 +29,7 @@
 @class Sound;
 @class UserVariable;
 @class SpriteObject;
+@class OrderedMapTable;
 
 @interface CBXMLParserHelper : NSObject
 
@@ -37,7 +38,6 @@
 + (Formula*)formulaInXMLElement:(GDataXMLElement*)xmlElement forCategoryName:(NSString*)categoryName;
 
 + (id)valueForHeaderPropertyNode:(GDataXMLNode*)propertyNode;
-+ (id)valueForPropertyNode:(GDataXMLNode*)propertyNode;
 + (BOOL)isReferenceElement:(GDataXMLElement*)xmlElement;
 + (SpriteObject*)findSpriteObjectInArray:(NSArray*)spriteObjectList withName:(NSString*)spriteObjectName;
 + (Look*)findLookInArray:(NSArray*)lookList withName:(NSString*)lookName;

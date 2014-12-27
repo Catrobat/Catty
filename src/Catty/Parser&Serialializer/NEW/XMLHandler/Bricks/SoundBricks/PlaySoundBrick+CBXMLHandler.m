@@ -22,7 +22,7 @@
 
 #import "PlaySoundBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLParser.h"
 #import "Sound+CBXMLHandler.h"
 #import "CBXMLContext.h"
@@ -35,8 +35,8 @@
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
     GDataXMLElement *soundElement = [[xmlElement children] firstObject];
-    NSMutableArray *soundList = context.soundList;
-    
+    NSMutableArray *soundList = context.spriteObject.soundList;
+
     Sound *sound = nil;
     if ([CBXMLParserHelper isReferenceElement:soundElement]) {
         GDataXMLNode *referenceAttribute = [soundElement attributeForName:@"reference"];
@@ -60,15 +60,17 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"brick"];
-    [xmlElement addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"PlaySoundBrick"]];
+    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"PlaySoundBrick"]];
     if (self.sound) {
-        GDataXMLElement *referenceXMLElement = [GDataXMLNode elementWithName:@"sound"];
-        NSString *refPath = [CBXMLSerializerHelper relativeXPathToSound:self.sound inSoundList:context.soundList];
-        [referenceXMLElement addAttribute:[GDataXMLNode elementWithName:@"reference" stringValue:refPath]];
-        [xmlElement addChild:referenceXMLElement];
+        GDataXMLElement *referenceXMLElement = [GDataXMLElement elementWithName:@"sound" context:context];
+        NSString *refPath = [CBXMLSerializerHelper relativeXPathToSound:self.sound
+                                                            inSoundList:context.spriteObject.soundList];
+        [referenceXMLElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
+        [brick addChild:referenceXMLElement context:context];
     }
-    return xmlElement;
+    return brick;
 }
 
 @end

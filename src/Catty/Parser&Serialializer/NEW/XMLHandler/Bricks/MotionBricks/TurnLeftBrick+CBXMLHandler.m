@@ -23,8 +23,10 @@
 #import "TurnLeftBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "CBXMLParserHelper.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "Formula+CBXMLHandler.h"
+#import "CBXMLContext.h"
+#import "CBXMLSerializerHelper.h"
 
 @implementation TurnLeftBrick (CBXMLHandler)
 
@@ -41,13 +43,14 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"TurnLeftBrick"]];
-    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"TurnLeftBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.degrees xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"TURN_LEFT_DEGREES"]];
-    [formulaList addChild:formula];
-    [brick addChild:formulaList];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"TURN_LEFT_DEGREES"]];
+    [formulaList addChild:formula context:context];
+    [brick addChild:formulaList context:context];
     return brick;
 }
 

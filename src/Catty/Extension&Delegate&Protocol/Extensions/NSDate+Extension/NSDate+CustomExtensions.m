@@ -80,14 +80,22 @@
     return ([self compare:date] == NSOrderedAscending);
 }
 
+static NSDateFormatter *sameDayDateFormatter = nil;
++ (NSDateFormatter*)sameDayDateFormatter
+{
+    if (! sameDayDateFormatter) {
+        sameDayDateFormatter = [NSDateFormatter new];
+        [sameDayDateFormatter setDateFormat:@"yyyy-MM-dd"];
+    }
+    return sameDayDateFormatter;
+}
+
 - (BOOL)isSameDay:(NSDate*)date
 {
     if ((self == nil) || (date == nil))
         return NO;
 
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-
+    NSDateFormatter *dateFormatter = [[self class] sameDayDateFormatter];
     NSDate *ownDate = [dateFormatter dateFromString:[dateFormatter stringFromDate:self]];
     date = [dateFormatter dateFromString:[dateFormatter stringFromDate:date]];
     return ([ownDate compare:date] == NSOrderedSame);
@@ -115,25 +123,40 @@
     return [(shortName ? kWeekdayNamesShort : kWeekdayNames) objectAtIndex:([components weekday] - 1)];
 }
 
+static NSDateFormatter *humanFriendlyTodayDateFormatter = nil;
++ (NSDateFormatter*)humanFriendlyTodayDateFormatter
+{
+    if (! humanFriendlyTodayDateFormatter) {
+        humanFriendlyTodayDateFormatter = [NSDateFormatter new];
+        [humanFriendlyTodayDateFormatter setDateFormat:@"HH:mm"];
+    }
+    return humanFriendlyTodayDateFormatter;
+}
+
+static NSDateFormatter *humanFriendlyDateFormatter = nil;
++ (NSDateFormatter*)humanFriendlyDateFormatter
+{
+    if (! humanFriendlyDateFormatter) {
+        humanFriendlyDateFormatter = [NSDateFormatter new];
+        [humanFriendlyDateFormatter setDateFormat:@"d, yyyy"];
+    }
+    return humanFriendlyDateFormatter;
+}
+
 - (NSString*)humanFriendlyFormattedString
 {
     if ([self isToday]) {
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"HH:mm"];
-        return [NSString stringWithFormat:@"%@ %@", kLocalizedToday, [dateFormatter stringFromDate:self]];
+        return [NSString stringWithFormat:@"%@ %@", kLocalizedToday,
+                [[[self class] humanFriendlyTodayDateFormatter] stringFromDate:self]];
     } else if ([self isYesterday]) {
         return kLocalizedYesterday;
     }
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSCalendarUnit options = (NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear);
-    NSDateComponents *components = [calendar components:options
-                                               fromDate:self];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"d, yyyy"];
+    NSDateComponents *components = [calendar components:options fromDate:self];
     NSInteger index = ([components month] - 1);
-    return [NSString stringWithFormat:@"%@ %@",
-            [kMonthNamesShort objectAtIndex:index],
-            [dateFormatter stringFromDate:self]];
+    return [NSString stringWithFormat:@"%@ %@", [kMonthNamesShort objectAtIndex:index],
+            [[[self class] humanFriendlyDateFormatter] stringFromDate:self]];
 }
 
 @end

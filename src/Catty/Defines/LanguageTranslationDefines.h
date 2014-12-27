@@ -451,7 +451,8 @@
 #define kUIFENewVar NSLocalizedString(@"New Variable", nil)
 #define kUIFEonly15Char NSLocalizedString(@"only 15 characters allowed", nil)
 #define kUIFEVarName NSLocalizedString(@"Variable name:", nil)
-
-
+#define kUIFEActionVar NSLocalizedString(@"Variable type", nil)
+#define kUIFEActionVarObj NSLocalizedString(@"object", nil)
+#define kUIFEActionVarPro NSLocalizedString(@"program", nil)
 
 #endif // kIsRelease

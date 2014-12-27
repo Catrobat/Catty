@@ -26,6 +26,7 @@
 - (NSString*)sha1;
 
 - (NSString*)stringByEscapingHTMLEntities;
+- (NSString*)stringByEscapingForXMLValues;
 - (NSString*)firstCharacterUppercaseString;
 - (NSString*)firstCharacterLowercaseString;
 - (NSString*)stringBetweenString:(NSString*)start andString:(NSString*)end withOptions:(NSStringCompareOptions)mask;

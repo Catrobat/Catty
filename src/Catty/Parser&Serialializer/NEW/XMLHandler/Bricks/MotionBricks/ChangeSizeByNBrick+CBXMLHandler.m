@@ -22,31 +22,34 @@
 
 #import "ChangeSizeByNBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "Formula+CBXMLHandler.h"
+#import "CBXMLContext.h"
+#import "CBXMLSerializerHelper.h"
 
 @implementation ChangeSizeByNBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
- [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
-
- Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"SIZE_CHANGE"];
- ChangeSizeByNBrick *changeSizeByNBrick = [self new];
- changeSizeByNBrick.size = formula;
- return changeSizeByNBrick;
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
+    
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"SIZE_CHANGE"];
+    ChangeSizeByNBrick *changeSizeByNBrick = [self new];
+    changeSizeByNBrick.size = formula;
+    return changeSizeByNBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
- GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
- [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"ChangeSizeByNBrick"]];
- GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
- GDataXMLElement *formula = [self.size xmlElementWithContext:context];
- [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"SIZE_CHANGE"]];
- [formulaList addChild:formula];
- [brick addChild:formulaList];
- return brick;
+    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"ChangeSizeByNBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
+    GDataXMLElement *formula = [self.size xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"SIZE_CHANGE"]];
+    [formulaList addChild:formula context:context];
+    [brick addChild:formulaList context:context];
+    return brick;
 }
 
 @end

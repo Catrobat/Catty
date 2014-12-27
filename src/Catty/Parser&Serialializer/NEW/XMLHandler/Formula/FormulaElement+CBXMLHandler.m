@@ -22,7 +22,7 @@
 
 #import "FormulaElement+CBXMLHandler.h"
 #import "CBXMLValidator.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 
 @implementation FormulaElement (CBXMLHandler)
 
@@ -61,25 +61,27 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *formulaElement = [GDataXMLNode elementWithName:@"formulaElement"];
+    GDataXMLElement *formulaElement = [GDataXMLElement elementWithName:@"formulaElement" context:context];
     if (self.leftChild != nil) {
-        GDataXMLElement *leftChild = [GDataXMLNode elementWithName:@"leftChild"];
+        GDataXMLElement *leftChild = [GDataXMLElement elementWithName:@"leftChild" context:context];
         for(GDataXMLNode *node in [self.leftChild xmlElementWithContext:context].children) {
-            [leftChild addChild:node];
+            [leftChild addChild:node context:context];
         }
-        [formulaElement addChild:leftChild];
+        [formulaElement addChild:leftChild context:context];
     }
     if (self.rightChild != nil) {
-        GDataXMLElement *rightChild = [GDataXMLNode elementWithName:@"rightChild"];
+        GDataXMLElement *rightChild = [GDataXMLElement elementWithName:@"rightChild" context:context];
         for(GDataXMLNode *node in [self.rightChild xmlElementWithContext:context].children) {
-            [rightChild addChild:node];
+            [rightChild addChild:node context:context];
         }
-        [formulaElement addChild:rightChild];
+        [formulaElement addChild:rightChild context:context];
     }
-    GDataXMLElement *type = [GDataXMLNode elementWithName:@"type" stringValue:[self stringForElementType:self.type]];
-    [formulaElement addChild:type];
-    GDataXMLElement *value = [GDataXMLNode elementWithName:@"value" stringValue:self.value];
-    [formulaElement addChild:value];
+    GDataXMLElement *type = [GDataXMLElement elementWithName:@"type" stringValue:[self stringForElementType:self.type] context:context];
+    [formulaElement addChild:type context:context];
+    if (self.value) {
+        GDataXMLElement *value = [GDataXMLElement elementWithName:@"value" stringValue:self.value context:context];
+        [formulaElement addChild:value context:context];
+    }
     return formulaElement;
 }
 

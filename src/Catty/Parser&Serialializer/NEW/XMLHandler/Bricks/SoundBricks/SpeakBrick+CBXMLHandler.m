@@ -23,9 +23,11 @@
 #import "SpeakBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "CBXMLParserHelper.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "Formula+CBXMLHandler.h"
 #import "FormulaElement.h"
+#import "CBXMLContext.h"
+#import "CBXMLSerializerHelper.h"
 
 @implementation SpeakBrick (CBXMLHandler)
 
@@ -50,14 +52,15 @@
     formulaElement.type = STRING;
     formulaElement.value = self.text;
     speakFormula.formulaTree = formulaElement;
-    
-    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"SpeakBrick"]];
-    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+
+    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"SpeakBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [speakFormula xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"SPEAK"]];
-    [formulaList addChild:formula];
-    [brick addChild:formulaList];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"SPEAK"]];
+    [formulaList addChild:formula context:context];
+    [brick addChild:formulaList context:context];
     return brick;
 }
 
