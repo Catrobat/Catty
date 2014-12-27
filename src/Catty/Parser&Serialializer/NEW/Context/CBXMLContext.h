@@ -23,18 +23,43 @@
 #import <Foundation/Foundation.h>
 
 @class CBXMLOpenedNestingBricksStack;
+@class CBXMLPositionStack;
+@class SpriteObject;
+@class VariablesContainer;
 
 @interface CBXMLContext : NSObject
 
+//------------------------------------------------------------------------------------------------------------
+// navigational, nesting and recursion depth data used while traversing the tree
+//------------------------------------------------------------------------------------------------------------
 @property (nonatomic, strong) CBXMLOpenedNestingBricksStack *openedNestingBricksStack;
-@property (nonatomic, strong, readonly) NSMutableArray *userVariableList; // contains all already parsed UserVariables
-@property (nonatomic, strong, readonly) NSMutableArray *pointedSpriteObjectList; // contains all already parsed pointed (!!) SpriteObjects
-@property (nonatomic, strong) NSMutableArray *spriteObjectList; // contains all known SpriteObjects
-@property (nonatomic, strong) NSMutableArray *lookList; // contains all looks of currently parsed/serialized SpriteObject
-@property (nonatomic, strong) NSMutableArray *soundList; // contains all sounds of currently parsed/serialized SpriteObject
+@property (nonatomic, strong) CBXMLPositionStack *currentPositionStack; // stack to keep track of current position (used for serialization only)
 
-- (id)initWithSpriteObjectList:(NSArray*)spriteObjectList;
-- (id)initWithLookList:(NSArray*)lookList;
-- (id)initWithSoundList:(NSArray*)soundList;
+// contains SpriteObject names as the dictionary's keys and their current position on the stack (pointer to
+// a CBXMLPositionStack instance) as the dictionary's values (used for serialization only)
+@property (nonatomic, strong) NSMutableDictionary *spriteObjectNamePositions;
+
+// contains SpriteObject names as the dictionary's keys and NSMutableArrays containing their current position
+// on the stack (pointer to a CBXMLPositionStack instance) as the dictionary's values (used for
+// serialization only)
+@property (nonatomic, strong) NSMutableDictionary *spriteObjectNameUserVariableListPositions;
+
+// contains UserVariable names as the dictionary's keys and their current position on the stack (pointer to
+// a CBXMLPositionStack instance) as the dictionary's values (used for serialization only)
+@property (nonatomic, strong) NSMutableDictionary *programUserVariableNamePositions;
+
+//------------------------------------------------------------------------------------------------------------
+// ressources data used while traversing the tree
+//------------------------------------------------------------------------------------------------------------
+@property (nonatomic, strong) NSMutableArray *pointedSpriteObjectList; // contains all already parsed pointed (!!) SpriteObjects
+@property (nonatomic, strong) NSMutableArray *spriteObjectList; // contains all known SpriteObjects
+@property (nonatomic, strong) SpriteObject *spriteObject; // contains all looks, sounds, bricks, ... of currently parsed/serialized SpriteObject
+// TODO: refactor this later: remove brickList here and dynamically find brick in scriptList. maybe scripts should be referenced in bricks as well!!
+@property (nonatomic, strong) NSMutableArray *brickList; // contains all bricks (used only by serializer)
+@property (nonatomic, strong) NSMutableArray *programVariableList; // (used for parsing only)
+@property (nonatomic, strong) NSMutableDictionary *spriteObjectNameVariableList; // (used for parsing only)
+@property (nonatomic, strong) VariablesContainer *variables; // (used for serialization only)
+
+- (id)mutableCopy;
 
 @end

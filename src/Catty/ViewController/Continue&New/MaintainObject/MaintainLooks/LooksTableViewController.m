@@ -112,29 +112,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else {
         [options addObject:kLocalizedShowDetails];
     }
-#if kIsRelease // kIsRelease
-    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedThisFeatureIsComingSoon
-                                                         delegate:self
-                                           destructiveButtonTitle:nil
-                                                otherButtonTitles:options
-                                                              tag:kEditLooksActionSheetTag
-                                                             view:self.navigationController.view];
-    // disable all buttons except hide/show details + cancel button
-    // (index of cancel button: ([actionSheet.buttons count] - 1))
-    for (IBActionSheetButton *button in actionSheet.buttons) {
-        if ((button.index != ([actionSheet.buttons count] - 2)) && (button.index != ([actionSheet.buttons count] - 1))) {
-            button.enabled = NO;
-            [actionSheet setButtonTextColor:[UIColor grayColor] forButtonAtIndex:button.index];
-        }
-    }
-#else // kIsRelease
     [Util actionSheetWithTitle:kLocalizedEditLooks
                       delegate:self
         destructiveButtonTitle:nil
              otherButtonTitles:options
                            tag:kEditLooksActionSheetTag
                           view:self.navigationController.view];
-#endif // kIsRelease
 }
 
 - (void)addLookAction:(id)sender
@@ -377,28 +360,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (index == 0) {
         // More button was pressed
         NSArray *options = @[kLocalizedCopy, kLocalizedRename];
-#if kIsRelease // kIsRelease
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedThisFeatureIsComingSoon
-                                                             delegate:self
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:options
-                                                                  tag:kEditLookActionSheetTag
-                                                                 view:self.navigationController.view];
-        // disable all buttons except cancel button (index of cancel button: ([actionSheet.buttons count] - 1))
-        for (IBActionSheetButton *button in actionSheet.buttons) {
-            if (button.index != ([actionSheet.buttons count] - 1)) {
-                button.enabled = NO;
-                [actionSheet setButtonTextColor:[UIColor grayColor] forButtonAtIndex:button.index];
-            }
-        }
-#else // kIsRelease
         CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditLook
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
                                                                   tag:kEditLookActionSheetTag
                                                                  view:self.navigationController.view];
-#endif // kIsRelease
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         NSDictionary *payload = @{ kDTPayloadLook : [self.object.lookList objectAtIndex:indexPath.row] };
         DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionEditLook
@@ -406,9 +373,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         actionSheet.dataTransferMessage = message;
     } else if (index == 1) {
         // Delete button was pressed
-#if kIsRelease // kIsRelease
-        [Util showComingSoonAlertView];
-#else // kIsRelease
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         [cell hideUtilityButtonsAnimated:YES];
         [self performActionOnConfirmation:@selector(deleteLookForIndexPath:)
@@ -417,7 +381,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                    target:self
                              confirmTitle:kLocalizedDeleteThisLook
                            confirmMessage:kLocalizedThisActionCannotBeUndone];
-#endif // kIsRelease
     }
 }
 
@@ -669,9 +632,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addLookAction:)];
-#if kIsRelease // kIsRelease
-    add.enabled = NO;
-#endif // kIsRelease
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
                                                                           action:@selector(playSceneAction:)];

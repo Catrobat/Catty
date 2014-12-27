@@ -21,16 +21,13 @@
  */
 
 #import "Program+CBXMLHandler.h"
-#import "GDataXMLNode.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLValidator.h"
 #import "VariablesContainer+CBXMLHandler.h"
 #import "SpriteObject+CBXMLHandler.h"
 #import "CBXMLContext.h"
 #import "Header+CBXMLHandler.h"
-#import "OrderedMapTable.h"
-#import "Script.h"
-#import "Brick.h"
-#import "PointToBrick.h"
+#import "CBXMLParserHelper.h"
 
 @implementation Program (CBXMLHandler)
 
@@ -38,19 +35,21 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"program"];
+    [XMLError exceptionIfNil:context message:@"No context given!"];
     Program *program = [Program new];
-    NSArray *headerNodes = [xmlElement elementsForName:@"header"];
-    [XMLError exceptionIf:[headerNodes count] notEquals:1 message:@"Invalid header given!"];
-    program.header = [self parseAndCreateHeaderFromElement:[headerNodes objectAtIndex:0]];
-    program.objectList = [self parseAndCreateObjectsFromElement:xmlElement withContext:context];
+    // IMPORTANT: DO NOT CHANGE ORDER HERE!!
+    program.header = [self parseAndCreateHeaderFromElement:xmlElement];
     program.variables = [self parseAndCreateVariablesFromElement:xmlElement withContext:context];
+    program.objectList = [self parseAndCreateObjectsFromElement:xmlElement withContext:context];
     return program;
 }
 
 #pragma mark Header parsing
 + (Header*)parseAndCreateHeaderFromElement:(GDataXMLElement*)programElement
 {
-    return [Header parseFromElement:programElement withContext:nil];
+    NSArray *headerNodes = [programElement elementsForName:@"header"];
+    [XMLError exceptionIf:[headerNodes count] notEquals:1 message:@"Invalid header given!"];
+    return [Header parseFromElement:[headerNodes objectAtIndex:0] withContext:nil];
 }
 
 #pragma mark Object parsing
@@ -64,17 +63,31 @@
                   message:@"No objects in objectList, but there must exist at least 1 object (background)!!"];
     NSLog(@"<objectList>");
     NSMutableArray *objectList = [NSMutableArray arrayWithCapacity:[objectElements count]];
-    context.spriteObjectList = objectList;
     for (GDataXMLElement *objectElement in objectElements) {
         SpriteObject *spriteObject = [SpriteObject parseFromElement:objectElement withContext:context];
-        if (spriteObject != nil)
-            [objectList addObject:spriteObject];
+        [XMLError exceptionIfNil:spriteObject message:@"Unable to parse SpriteObject!"];
+        [objectList addObject:spriteObject];
     }
+
+    // sanity check => check if both objectLists are identical
+    [XMLError exceptionIf:[objectList count] notEquals:[context.spriteObjectList count]
+                  message:@"Both SpriteObjectLists must be identical!"];
+    for (SpriteObject *spriteObject in objectList) {
+        BOOL found = NO;
+        for (SpriteObject *spriteObjectToCompare in context.spriteObjectList) {
+            if (spriteObjectToCompare == spriteObject) {
+                found = YES;
+                break;
+            }
+        }
+        [XMLError exceptionIf:found equals:NO message:@"Both SpriteObjectLists must be equal!"];
+    }
+
     // sanity check => check if all objects from context are in objectList
     for (SpriteObject *pointedObjectInContext in context.pointedSpriteObjectList) {
         BOOL found = NO;
         for (SpriteObject *spriteObject in objectList) {
-            if ([pointedObjectInContext.name isEqualToString:spriteObject.name])
+            if (pointedObjectInContext == spriteObject)
                 found = YES;
         }
         [XMLError exceptionIf:found equals:NO message:@"Pointed object with name %@ not found in object list!", pointedObjectInContext.name];
@@ -93,47 +106,24 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    // IMPORTANT: find all pointedObjects and move them to the end of the spriteObject list
-    NSUInteger index = 0;
-    NSMutableArray *allPointedObjectRefs = [self.objectList mutableCopy];
-    for (id object in self.objectList) {
-        [XMLError exceptionIf:[object isKindOfClass:[SpriteObject class]] equals:NO
-                      message:@"Invalid sprite object instance given"];
-
-        NSMutableArray *pointedObjectRefs = [NSMutableArray array];
-        for (id objectToCompare in self.objectList) {
-            [XMLError exceptionIf:[objectToCompare isKindOfClass:[SpriteObject class]] equals:NO
-                          message:@"Invalid sprite object instance given"];
-            for (id script in ((SpriteObject*)objectToCompare).scriptList) {
-                [XMLError exceptionIf:[script isKindOfClass:[Script class]] equals:NO
-                              message:@"Invalid script instance given"];
-                for (id brick in ((Script*)script).brickList) {
-                    [XMLError exceptionIf:[brick isKindOfClass:[Brick class]] equals:NO
-                                  message:@"Invalid brick instance given"];
-                    if ([brick isKindOfClass:[PointToBrick class]] && (((PointToBrick*)brick).pointedObject == object)) {
-                        [pointedObjectRefs addObject:objectToCompare];
-                    }
-                }
-            }
-        }
-        [allPointedObjectRefs addObject:pointedObjectRefs];
-        ++index;
-    }
-
-    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"program"];
+    // update context object
     context.spriteObjectList = self.objectList;
-    [xmlElement addChild:[self.header xmlElementWithContext:context]];
+    context.variables = self.variables;
 
-    GDataXMLElement *objectListXmlElement = [GDataXMLNode elementWithName:@"objectList"];
+    // generate xml element for program
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"program" context:context];
+    [xmlElement addChild:[self.header xmlElementWithContext:context] context:context];
+
+    GDataXMLElement *objectListXmlElement = [GDataXMLElement elementWithName:@"objectList" context:context];
     for (id object in self.objectList) {
         [XMLError exceptionIf:[object isKindOfClass:[SpriteObject class]] equals:NO
                       message:@"Invalid sprite object instance given"];
-        [objectListXmlElement addChild:[((SpriteObject*)object) xmlElementWithContext:context]];
+        [objectListXmlElement addChild:[((SpriteObject*)object) xmlElementWithContext:context] context:context];
     }
-    [xmlElement addChild:objectListXmlElement];
+    [xmlElement addChild:objectListXmlElement context:context];
 
     if (self.variables) {
-        [xmlElement addChild:[self.variables xmlElementWithContext:context]];
+        [xmlElement addChild:[self.variables xmlElementWithContext:context] context:context];
     }
     return xmlElement;
 }

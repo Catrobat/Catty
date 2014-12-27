@@ -44,7 +44,9 @@
     NSMutableArray *lookList = [SpriteObject parseAndCreateLooks:objectElement];
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    CBXMLContext *context = [[CBXMLContext alloc] initWithLookList:lookList];
+    CBXMLContext *context = [CBXMLContext new];
+    context.spriteObject = [SpriteObject new];
+    context.spriteObject.lookList = lookList;
     Brick *brick = [SetLookBrick parseFromElement:brickXMLElement withContext:context];
     
     XCTAssertTrue(brick.brickType == kSetLookBrick, @"Invalid brick type");
@@ -63,16 +65,9 @@
     
     NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[2]" error:nil];
     XCTAssertEqual([brickElement count], 1);
-    
-    NSArray *objectArray = [xmlElement nodesForXPath:@"//program/objectList/object[1]" error:nil];
-    XCTAssertEqual([objectArray count], 1);
-    GDataXMLElement *objectElement = [objectArray objectAtIndex:0];
-    
-    NSMutableArray *lookList = [SpriteObject parseAndCreateLooks:objectElement];
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
-    
-    Brick *brick = [SetVariableBrick parseFromElement:brickXMLElement withContext:[[CBXMLContext alloc] initWithLookList:lookList]];
-    
+
+    Brick *brick = [SetVariableBrick parseFromElement:brickXMLElement withContext:nil];
     XCTAssertTrue(brick.brickType == kSetVariableBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[SetVariableBrick class]], @"Invalid brick class");
     
@@ -99,9 +94,12 @@
     
     NSMutableArray *lookList = [SpriteObject parseAndCreateLooks:objectElement];
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
-    
-    Brick *brick = [SetSizeToBrick parseFromElement:brickXMLElement withContext:[[CBXMLContext alloc] initWithLookList:lookList]];
-    
+
+    CBXMLContext *context = [CBXMLContext new];
+    context.spriteObject = [SpriteObject new];
+    context.spriteObject.lookList = lookList;
+    Brick *brick = [SetSizeToBrick parseFromElement:brickXMLElement withContext:context];
+
     XCTAssertTrue(brick.brickType == kSetSizeToBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[SetSizeToBrick class]], @"Invalid brick class");
     
@@ -269,9 +267,12 @@
     
     NSMutableArray *soundList = [SpriteObject parseAndCreateSounds:objectElement];
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
-    
-    Brick *brick = [PlaySoundBrick parseFromElement:brickXMLElement withContext:[[CBXMLContext alloc] initWithSoundList:soundList]];
-    
+
+    CBXMLContext *context = [CBXMLContext new];
+    context.spriteObject = [SpriteObject new];
+    context.spriteObject.soundList = soundList;
+    Brick *brick = [PlaySoundBrick parseFromElement:brickXMLElement withContext:context];
+
     XCTAssertTrue(brick.brickType == kPlaySoundBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[PlaySoundBrick class]], @"Invalid brick class");
     

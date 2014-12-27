@@ -111,9 +111,6 @@
     self.navigationController.title = self.title = kLocalizedScripts;
 
     self.navigationItem.rightBarButtonItems = @[self.editButtonItem];
-#if kIsRelease // kIsRelease
-    self.navigationItem.rightBarButtonItem.enabled = NO;
-#endif // kIsRelease
     self.placeHolderView = [[PlaceHolderView alloc] initWithTitle:kLocalizedScripts];
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     self.brickScaleTransition = [BrickScaleTransition new];
@@ -367,9 +364,6 @@
     [brickCell setupBrickCell];
     brickCell.delegate = self;
     brickCell.textDelegate = self;
-#if kIsRelease // kIsRelease
-    brickCell.enabled = NO;
-#endif // kIsRelease
     return brickCell;
 }
 
@@ -540,11 +534,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath
 {
-#if kIsRelease // kIsRelease
-    return NO;
-#else // kIsRelease
     return ((self.isEditing || indexPath.item == 0) ? NO : YES);
-#endif // kIsRelease
 }
 
 #pragma mark - Add brick Delegate

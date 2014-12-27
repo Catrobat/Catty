@@ -23,7 +23,7 @@
 #define CATTY_TESTS 1
 
 #import <XCTest/XCTest.h>
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "UIDefines.h"
 #import "Program.h"
 #import "Look.h"

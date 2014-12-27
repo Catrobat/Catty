@@ -21,12 +21,12 @@
  */
 
 #import "CBXMLLogger.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import <objc/runtime.h>
 
 @implementation CBXMLLogger
 
-+ (void)logElement:(GDataXMLElement *)xmlElement
++ (void)logElement:(GDataXMLElement*)xmlElement
 {
     NSLog(@"%@", [xmlElement XMLRootElementAsString]);
 }

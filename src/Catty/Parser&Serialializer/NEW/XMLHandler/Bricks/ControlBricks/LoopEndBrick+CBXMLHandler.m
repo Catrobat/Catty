@@ -21,7 +21,7 @@
  */
 
 #import "LoopEndBrick+CBXMLHandler.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLValidator.h"
 #import "CBXMLParser.h"
 #import "CBXMLContext.h"
@@ -29,6 +29,7 @@
 #import "ForeverBrick.h"
 #import "RepeatBrick.h"
 #import "CBXMLParserHelper.h"
+#import "CBXMLSerializerHelper.h"
 
 @implementation LoopEndBrick (CBXMLHandler)
 
@@ -51,9 +52,9 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"LoopEndlessBrick"]];
-    
+    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
+
     // pop opening nesting brick from stack
     Brick *openingNestingBrick = [context.openedNestingBricksStack popAndCloseTopMostNestingBrick];
     if ((! [openingNestingBrick isKindOfClass:[LoopBeginBrick class]])) {
@@ -67,7 +68,16 @@
     if (loopBeginBrick.loopEndBrick != self) {
         [XMLError exceptionWithMessage:@"LoopBeginBrick contains no or a reference to other loopEndBrick"];
     }
-    
+
+    NSString *brickXmlElementTypeName = nil;
+    if ([loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+        brickXmlElementTypeName = @"LoopEndlessBrick";
+    } else if ([loopBeginBrick isKindOfClass:[RepeatBrick class]]) {
+        brickXmlElementTypeName = @"LoopEndBrick";
+    } else {
+        [XMLError exceptionWithMessage:@"Found unsupported referenced LoopBeginBrick brick type in LoopEndBrick"];
+    }
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:brickXmlElementTypeName]];
     return brick;
 }
 

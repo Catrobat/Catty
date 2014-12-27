@@ -95,18 +95,14 @@
     Program *program = nil;
     @try {
         NSInfo(@"Parsing Program...");
-        CBXMLContext *context = [CBXMLContext new];
-        program = [Program parseFromElement:xmlDocument.rootElement withContext:context];
+        program = [Program parseFromElement:xmlDocument.rootElement withContext:[CBXMLContext new]];
         NSInfo(@"Parsing finished...");
     } @catch(NSException *exception) {
         NSError(@"Program could not be loaded! %@", [exception description]);
         return nil;
     }
     [program updateReferences];
-    program.XMLdocument = xmlDocument;
-
-    // TODO: REMOVE THIS LOG-Entry after parser has been fully implemented
-    NSLog(@"!!! NEW Catrobat XML Parser IS NOT FULLY IMPLEMENTED YET !!!");
+    program.XMLdocument = xmlDocument; // TODO: remove this after serialization has been finished!!
     return program;
 }
 

@@ -21,7 +21,7 @@
  */
 
 #import "XMLParserAbstractTest.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "Parser.h"
 
 @implementation XMLParserAbstractTest

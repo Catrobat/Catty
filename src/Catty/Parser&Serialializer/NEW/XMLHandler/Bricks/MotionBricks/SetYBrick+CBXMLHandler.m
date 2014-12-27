@@ -22,8 +22,10 @@
 
 #import "SetYBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "Formula+CBXMLHandler.h"
+#import "CBXMLContext.h"
+#import "CBXMLSerializerHelper.h"
 
 @implementation SetYBrick (CBXMLHandler)
 
@@ -38,13 +40,14 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"SetYBrick"]];
-    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"SetYBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.yPosition xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"Y_POSITION"]];
-    [formulaList addChild:formula];
-    [brick addChild:formulaList];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"Y_POSITION"]];
+    [formulaList addChild:formula context:context];
+    [brick addChild:formulaList context:context];
     return brick;
 }
 

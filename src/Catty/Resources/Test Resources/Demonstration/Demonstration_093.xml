@@ -794,9 +794,7 @@
       </entry>
     </objectVariableList>
     <programVariableList>
-      <userVariable>
-          <name>test</name>
-      </userVariable>
+      <userVariable>test</userVariable>
     </programVariableList>
   </variables>
 </program>

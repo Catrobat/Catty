@@ -22,12 +22,15 @@
 
 #import "ChangeVariableBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "Formula+CBXMLHandler.h"
 #import "UserVariable+CBXMLHandler.h"
 #import "CBXMLParser.h"
 #import "CBXMLContext.h"
 #import "CBXMLParserHelper.h"
+#import "CBXMLSerializerHelper.h"
+#import "VariablesContainer.h"
+#import "OrderedMapTable.h"
 
 @implementation ChangeVariableBrick (CBXMLHandler)
 
@@ -51,7 +54,7 @@
     GDataXMLElement *userVariableElement = [xmlElement childWithElementName:@"userVariable"];
     [XMLError exceptionIfNil:userVariableElement message:@"No userVariableElement element found..."];
 
-    UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:nil];
+    UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:context];
     [XMLError exceptionIfNil:userVariable message:@"Unable to parse userVariable..."];
 
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VARIABLE_CHANGE"];
@@ -63,15 +66,20 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    GDataXMLElement *brick = [GDataXMLNode elementWithName:@"brick"];
-    [brick addAttribute:[GDataXMLNode elementWithName:@"type" stringValue:@"ChangeVariableBrick"]];
-    GDataXMLElement *formulaList = [GDataXMLNode elementWithName:@"formulaList"];
+    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"ChangeVariableBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.variableFormula xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLNode elementWithName:@"category" stringValue:@"VARIABLE_CHANGE"]];
-    [formulaList addChild:formula];
-    [brick addChild:formulaList];
-    [brick addChild:[GDataXMLNode elementWithName:@"inUserBrick" stringValue:@"false"]]; // TODO: implement this...
-    [brick addChild:[self.userVariable xmlElementWithContext:context]];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"VARIABLE_CHANGE"]];
+    [formulaList addChild:formula context:context];
+    [brick addChild:formulaList context:context];
+
+    //  Unused at the moment => TODO: implement this after Catroid has decided to officially use this feature!
+    //    [brick addChild:[GDataXMLElement elementWithName:@"inUserBrick" stringValue:@"false"
+    //                                             context:context] context:context];
+
+    [brick addChild:[self.userVariable xmlElementWithContext:context] context:context];
     return brick;
 }
 

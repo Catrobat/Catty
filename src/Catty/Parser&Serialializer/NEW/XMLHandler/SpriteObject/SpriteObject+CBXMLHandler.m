@@ -21,7 +21,7 @@
  */
 
 #import "SpriteObject+CBXMLHandler.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLValidator.h"
 #import "SpriteObject.h"
 #import "Look+CBXMLHandler.h"
@@ -30,6 +30,8 @@
 #import "CBXMLContext.h"
 #import "CBXMLParserHelper.h"
 #import "Script+CBXMLHandler.h"
+#import "CBXMLSerializerHelper.h"
+#import "CBXMLPositionStack.h"
 
 @implementation SpriteObject (CBXMLHandler)
 
@@ -43,12 +45,14 @@
                             message:@"The name of the rootElement is '%@' but should be '%@'",
          xmlElement.name, @"object or pointedObject"];
     }
-    
+
     NSArray *attributes = [xmlElement attributes];
     [XMLError exceptionIf:[attributes count] notEquals:1
                   message:@"Parsed name-attribute of object is invalid or empty!"];
-    
+
     SpriteObject *spriteObject = [self new];
+    context.spriteObject = spriteObject; // update context!
+
     GDataXMLNode *attribute = [attributes firstObject];
     GDataXMLElement *referencedObjectElement = nil;
     // check if normal or pointed object
@@ -73,25 +77,24 @@
     }
     [XMLError exceptionIfNil:spriteObject.name message:@"SpriteObject must contain a name"];
 
-    // sprite object could (!) already exist in pointedSpriteObjectList or spriteObjectList at this point!
-    SpriteObject *alreadyExistingPointedSpriteObject = [CBXMLParserHelper findSpriteObjectInArray:context.pointedSpriteObjectList
-                                                                                         withName:spriteObject.name];
-    if (alreadyExistingPointedSpriteObject) {
-        return alreadyExistingPointedSpriteObject;
-    }
+    // sprite object could (!) already exist in spriteObjectList or pointedSpriteObjectList at this point!
     SpriteObject *alreadyExistingSpriteObject = [CBXMLParserHelper findSpriteObjectInArray:context.spriteObjectList
                                                                                   withName:spriteObject.name];
     if (alreadyExistingSpriteObject) {
         return alreadyExistingSpriteObject;
     }
+    SpriteObject *alreadyExistingPointedSpriteObject = [CBXMLParserHelper findSpriteObjectInArray:context.pointedSpriteObjectList
+                                                                                         withName:spriteObject.name];
+    if (alreadyExistingPointedSpriteObject) {
+        [context.spriteObjectList addObject:spriteObject];
+        return alreadyExistingPointedSpriteObject;
+    }
 
+    // IMPORTANT: DO NOT CHANGE ORDER HERE!
+    [context.spriteObjectList addObject:spriteObject];
     spriteObject.lookList = [self parseAndCreateLooks:xmlElement];
-    context.lookList = spriteObject.lookList;
-
     spriteObject.soundList = [self parseAndCreateSounds:xmlElement];
-    context.soundList = spriteObject.soundList;
-
-    spriteObject.scriptList = [self parseAndCreateScripts:xmlElement withContext:context AndSpriteObject:spriteObject];
+    spriteObject.scriptList = [self parseAndCreateScripts:xmlElement withContext:context];
     return spriteObject;
 }
 
@@ -102,8 +105,7 @@
     
     NSArray *lookElements = [[lookListElements firstObject] children];
     if (! [lookElements count]) {
-        // TODO: ask team if we should return nil or an empty NSMutableArray in this case!!
-        return nil;
+        return [NSMutableArray array];
     }
     
     NSMutableArray *lookList = [NSMutableArray arrayWithCapacity:[lookElements count]];
@@ -136,11 +138,10 @@
 
 + (NSMutableArray*)parseAndCreateScripts:(GDataXMLElement*)objectElement
                              withContext:(CBXMLContext*)context
-                         AndSpriteObject:(SpriteObject*)spriteObject
 {
     NSArray *scriptListElements = [objectElement elementsForName:@"scriptList"];
     [XMLError exceptionIf:[scriptListElements count] notEquals:1 message:@"No scriptList given!"];
-    
+
     NSArray *scriptElements = [[scriptListElements firstObject] children];
     if (! [scriptElements count]) {
         return [NSMutableArray array];
@@ -149,7 +150,6 @@
     NSMutableArray *scriptList = [NSMutableArray arrayWithCapacity:[scriptElements count]];
     for (GDataXMLElement *scriptElement in scriptElements) {
         Script *script = [Script parseFromElement:scriptElement withContext:context];
-        script.object = spriteObject;
         [XMLError exceptionIfNil:script message:@"Unable to parse script..."];
         [scriptList addObject:script];
     }
@@ -159,39 +159,68 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
+    return [self xmlElementWithContext:context asPointedObject:NO];
+}
+
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context asPointedObject:(BOOL)asPointedObject
+{
     // update context object
-    context.lookList = self.lookList;
-    context.soundList = self.soundList;
-    
+    context.spriteObject = self;
+
     // generate xml element for sprite object
-    GDataXMLElement *xmlElement = [GDataXMLNode elementWithName:@"object"];
-    [xmlElement addAttribute:[GDataXMLNode attributeWithName:@"name" stringValue:self.name]];
-    
-    GDataXMLElement *lookListXmlElement = [GDataXMLNode elementWithName:@"lookList"];
+    GDataXMLElement *xmlElement = nil;
+    if (! asPointedObject) {
+        NSUInteger indexOfSpriteObject = [CBXMLSerializerHelper indexOfElement:self inArray:context.spriteObjectList];
+        xmlElement = [GDataXMLElement elementWithName:@"object" xPathIndex:(indexOfSpriteObject+1) context:context];
+    } else {
+        xmlElement = [GDataXMLElement elementWithName:@"pointedObject" context:context];
+    }
+
+    CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
+
+    // check if spriteObject has been already serialized (e.g. within a PointToBrick)
+    CBXMLPositionStack *positionStackOfSpriteObject = context.spriteObjectNamePositions[self.name];
+    if (positionStackOfSpriteObject) {
+        // already serialized
+        NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
+                                                             toDestinationPositionStack:positionStackOfSpriteObject];
+        [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
+        return xmlElement;
+    }
+
+    // save current stack position in context
+    context.spriteObjectNamePositions[self.name] = currentPositionStack;
+
+    [xmlElement addAttribute:[GDataXMLElement attributeWithName:@"name" escapedStringValue:self.name]];
+
+    GDataXMLElement *lookListXmlElement = [GDataXMLElement elementWithName:@"lookList" context:context];
     for (id look in self.lookList) {
         [XMLError exceptionIf:[look isKindOfClass:[Look class]] equals:NO
                       message:@"Invalid look instance given"];
-        [lookListXmlElement addChild:[((Look*)look) xmlElementWithContext:nil]];
+        [lookListXmlElement addChild:[((Look*)look) xmlElementWithContext:context] context:context];
     }
-    [xmlElement addChild:lookListXmlElement];
-    
-    GDataXMLElement *soundListXmlElement = [GDataXMLNode elementWithName:@"soundList"];
+    [xmlElement addChild:lookListXmlElement context:context];
+
+    GDataXMLElement *soundListXmlElement = [GDataXMLElement elementWithName:@"soundList" context:context];
     for (id sound in self.soundList) {
         [XMLError exceptionIf:[sound isKindOfClass:[Sound class]] equals:NO
                       message:@"Invalid sound instance given"];
-        [soundListXmlElement addChild:[((Sound*)sound) xmlElementWithContext:nil]];
+        [soundListXmlElement addChild:[((Sound*)sound) xmlElementWithContext:context] context:context];
     }
-    [xmlElement addChild:soundListXmlElement];
-    
-    GDataXMLElement *scriptListXmlElement = [GDataXMLNode elementWithName:@"scriptList"];
+    [xmlElement addChild:soundListXmlElement context:context];
+
+    GDataXMLElement *scriptListXmlElement = [GDataXMLElement elementWithName:@"scriptList" context:context];
     for (id script in self.scriptList) {
         [XMLError exceptionIf:[script isKindOfClass:[Script class]] equals:NO
                       message:@"Invalid script instance given"];
-        [scriptListXmlElement addChild:[((Script*)script) xmlElementWithContext:context]];
+        [scriptListXmlElement addChild:[((Script*)script) xmlElementWithContext:context] context:context];
     }
-    [xmlElement addChild:scriptListXmlElement];
-    
-    NSLog(@"%@", [xmlElement XMLStringPrettyPrinted:YES]);
+    [xmlElement addChild:scriptListXmlElement context:context];
+
+    //  Unused at the moment => TODO: implement this after Catroid has decided to officially use this feature!
+    //    GDataXMLElement *userBricksXmlElement = [GDataXMLElement elementWithName:@"userBricks" context:context];
+    //    [xmlElement addChild:userBricksXmlElement context:context];
+
     return xmlElement;
 }
 

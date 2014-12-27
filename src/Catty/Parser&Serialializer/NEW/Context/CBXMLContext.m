@@ -22,31 +22,50 @@
 
 #import "CBXMLContext.h"
 #import "CBXMLOpenedNestingBricksStack.h"
-
-@interface CBXMLContext ()
-
-@property (nonatomic, strong, readwrite) NSMutableArray *userVariableList;
-@property (nonatomic, strong, readwrite) NSMutableArray *pointedSpriteObjectList;
-
-@end
+#import "CBXMLPositionStack.h"
+#import "VariablesContainer.h"
 
 @implementation CBXMLContext
 
 #pragma mark - Getters and Setters
-- (NSMutableArray*)userVariableList
+- (CBXMLOpenedNestingBricksStack*)openedNestingBricksStack
 {
-    if (! _userVariableList) {
-        _userVariableList = [NSMutableArray array];
-    }
-    return _userVariableList;
+    if(!_openedNestingBricksStack)
+        _openedNestingBricksStack = [[CBXMLOpenedNestingBricksStack alloc] init];
+
+    return _openedNestingBricksStack;
 }
 
-- (NSMutableArray*)spriteObjectList
+- (CBXMLPositionStack*)currentPositionStack
 {
-    if (! _spriteObjectList) {
-        _spriteObjectList = [NSMutableArray array];
-    }
-    return _spriteObjectList;
+    if(! _currentPositionStack)
+        _currentPositionStack = [[CBXMLPositionStack alloc] init];
+
+    return _currentPositionStack;
+}
+
+- (NSMutableDictionary*)spriteObjectNamePositions
+{
+    if(! _spriteObjectNamePositions)
+        _spriteObjectNamePositions = [NSMutableDictionary dictionary];
+
+    return _spriteObjectNamePositions;
+}
+
+- (NSMutableDictionary*)spriteObjectNameUserVariableListPositions
+{
+    if(! _spriteObjectNameUserVariableListPositions)
+        _spriteObjectNameUserVariableListPositions = [NSMutableDictionary dictionary];
+    
+    return _spriteObjectNameUserVariableListPositions;
+}
+
+- (NSMutableDictionary*)programUserVariableNamePositions
+{
+    if(! _programUserVariableNamePositions)
+        _programUserVariableNamePositions = [NSMutableDictionary dictionary];
+
+    return _programUserVariableNamePositions;
 }
 
 - (NSMutableArray*)pointedSpriteObjectList
@@ -57,43 +76,61 @@
     return _pointedSpriteObjectList;
 }
 
-#pragma mark - Initializers
-- (id)initWithSpriteObjectList:(NSMutableArray*)spriteObjectList
+- (NSMutableArray*)spriteObjectList
 {
-    self = [super init];
-    if(self) {
-        self.spriteObjectList = spriteObjectList;
+    if (! _spriteObjectList) {
+        _spriteObjectList = [NSMutableArray array];
     }
-    
-    return self;
+    return _spriteObjectList;
 }
 
-- (id)initWithLookList:(NSMutableArray*)lookList
+- (NSMutableArray*)brickList
 {
-    self = [super init];
-    if(self) {
-        self.lookList = lookList;
+    if (! _brickList) {
+        _brickList = [NSMutableArray array];
     }
-    
-    return self;
+    return _brickList;
 }
 
-- (id)initWithSoundList:(NSMutableArray*)soundList
+- (NSMutableArray*)programVariableList
 {
-    self = [super init];
-    if(self) {
-        self.soundList = soundList;
+    if (! _programVariableList) {
+        _programVariableList = [NSMutableArray array];
     }
-    
-    return self;
+    return _programVariableList;
 }
 
-- (CBXMLOpenedNestingBricksStack*)openedNestingBricksStack
+- (NSMutableDictionary*)spriteObjectNameVariableList
 {
-    if(!_openedNestingBricksStack)
-        _openedNestingBricksStack = [[CBXMLOpenedNestingBricksStack alloc] init];
-    
-    return _openedNestingBricksStack;
+    if (! _spriteObjectNameVariableList) {
+        _spriteObjectNameVariableList = [NSMutableDictionary dictionary];
+    }
+    return _spriteObjectNameVariableList;
+}
+
+- (VariablesContainer*)variables
+{
+    if (! _variables) {
+        _variables = [VariablesContainer new];
+    }
+    return _variables;
+}
+
+- (id)mutableCopy
+{
+    CBXMLContext *copiedContext = [CBXMLContext new];
+    copiedContext.openedNestingBricksStack = [self.openedNestingBricksStack mutableCopy];
+    copiedContext.currentPositionStack = [self.currentPositionStack mutableCopy];
+    copiedContext.spriteObjectNamePositions = [self.spriteObjectNamePositions mutableCopy];
+    copiedContext.programUserVariableNamePositions = [self.programUserVariableNamePositions mutableCopy];
+    copiedContext.pointedSpriteObjectList = [self.pointedSpriteObjectList mutableCopy];
+    copiedContext.spriteObjectList = [self.spriteObjectList mutableCopy];
+    copiedContext.spriteObject = self.spriteObject;
+    copiedContext.brickList = [self.brickList mutableCopy];
+    copiedContext.programVariableList = [self.programVariableList mutableCopy];
+    copiedContext.spriteObjectNameVariableList = [self.spriteObjectNameVariableList mutableCopy];
+    copiedContext.variables = [self.variables mutableCopy];
+    return copiedContext;
 }
 
 @end

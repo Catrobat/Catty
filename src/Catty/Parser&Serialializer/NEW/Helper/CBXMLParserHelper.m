@@ -22,7 +22,7 @@
 
 #import "CBXMLParserHelper.h"
 #import "CBXMLValidator.h"
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLContext.h"
 #import "Formula+CBXMLHandler.h"
 #import "Header+CBXMLHandler.h"
@@ -31,6 +31,7 @@
 #import "UserVariable+CBXMLHandler.h"
 #import "SpriteObject+CBXMLHandler.h"
 #import "CatrobatLanguageDefines.h"
+#import "OrderedMapTable.h"
 #import <objc/runtime.h>
 
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
@@ -104,21 +105,11 @@
     } else if ([propertyType isEqualToString:kParserObjectTypeNumber]) {
         value = [NSNumber numberWithFloat:[[propertyNode stringValue]floatValue]];
     } else if ([propertyType isEqualToString:kParserObjectTypeDate]) {
-        NSDateFormatter *dateFormatter = [NSDateFormatter new];
-        [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-        [dateFormatter setDateFormat:kCatrobatHeaderDateTimeFormat];
-        value = [dateFormatter dateFromString:propertyNode.stringValue];
+        value = [[Header headerDateFormatter] dateFromString:propertyNode.stringValue];
     } else {
         [XMLError exceptionWithMessage:@"Unsupported type for property %@ (of type: %@) in header", propertyNode.name, propertyType];
     }
     return value;
-}
-
-+ (id)valueForPropertyNode:(GDataXMLNode*)propertyNode
-{
-    // TODO: stub method => implement this!!
-    [XMLError exceptionWithMessage:@"valueForPropertyNode: NOT IMPLEMENTED YET!!!"];
-    return nil;
 }
 
 + (BOOL)isReferenceElement:(GDataXMLElement*)xmlElement

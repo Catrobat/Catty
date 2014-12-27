@@ -21,9 +21,12 @@
  */
 
 #import "XMLSerializerAbstractTest.h"
+#import "GDataXMLElement+CustomExtensions.h"
+#import "CBXMLSerializer.h"
 
 @implementation XMLSerializerAbstractTest
 
+// TODO: use and implement this
 - (BOOL)isXMLElement:(GDataXMLElement*)xmlElement equalToXMLElementForXPath:(NSString*)xPath inProgramForXML:(NSString*)program
 {
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:program]];
@@ -37,7 +40,7 @@
     return [self compareXMLElement:xmlElementFromFile withXMLElement:xmlElement];
 }
 
-- (BOOL)compareXMLElement:(GDataXMLNode*)firstElement withXMLElement:(GDataXMLNode*)secondElement
+- (BOOL)compareXMLElement:(GDataXMLElement*)firstElement withXMLElement:(GDataXMLElement*)secondElement
 {
     XCTAssertTrue([firstElement.name isEqualToString:secondElement.name], @"Name of xml element is not equal (file=%@, xmlElement=%@)", firstElement.name, secondElement.name);
     
@@ -56,11 +59,19 @@
     XCTAssertEqual([firstElement.children count], [secondElement.children count], @"Number of children not equal for element with name: %@", firstElement.name);
     
     
-    for(GDataXMLNode *node in firstElement.children) {
+    for(GDataXMLElement *node in firstElement.children) {
         [self compareXMLElement:node withXMLElement:[secondElement childWithElementName:node.name]];
     }
     
     return YES;
+}
+
+- (void)saveProgram:(Program*)program
+{
+    // TODO: find correct serializer class dynamically
+    NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [program projectPath], kProgramCodeFileName];
+    id<CBSerializerProtocol> serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath];
+    [serializer serializeProgram:program];
 }
 
 @end

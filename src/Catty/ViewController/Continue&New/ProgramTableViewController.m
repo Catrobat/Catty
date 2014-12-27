@@ -223,30 +223,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else {
         [options addObject:kLocalizedShowDetails];
     }
-#if kIsRelease // kIsRelease
-    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedThisFeatureIsComingSoon
-                                                         delegate:self
-                                           destructiveButtonTitle:kLocalizedDelete
-                                                otherButtonTitles:options
-                                                              tag:kEditProgramActionSheetTag
-                                                             view:self.navigationController.view];
-    // disable all buttons except delete + hide/show details + cancel button
-    // (index of cancel button: ([actionSheet.buttons count] - 1))
-    for (IBActionSheetButton *button in actionSheet.buttons) {
-        if ((button.index != 0) && (button.index != ([actionSheet.buttons count] - 2))
-            && (button.index != ([actionSheet.buttons count] - 1))) {
-            button.enabled = NO;
-            [actionSheet setButtonTextColor:[UIColor grayColor] forButtonAtIndex:button.index];
-        }
-    }
-#else // kIsRelease
     [Util actionSheetWithTitle:kLocalizedEditProgram
                       delegate:self
         destructiveButtonTitle:kLocalizedDelete
              otherButtonTitles:options
                            tag:kEditProgramActionSheetTag
                           view:self.navigationController.view];
-#endif // kIsRelease
 }
 
 - (void)confirmDeleteSelectedObjectsAction:(id)sender
@@ -285,7 +267,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSUInteger index = (kBackgroundObjects + indexPath.row);
     SpriteObject *object = (SpriteObject*)[self.program.objectList objectAtIndex:index];
     [self.program removeObject:object];
-    [self.program saveToDisk];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:((indexPath.row != 0) ? UITableViewRowAnimationTop : UITableViewRowAnimationFade)];
     [self hideLoadingView];
 }
@@ -474,28 +455,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (index == 0) {
         // More button was pressed
         NSArray *options = @[kLocalizedCopy, kLocalizedRename];
-#if kIsRelease // kIsRelease
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedThisFeatureIsComingSoon
-                                                             delegate:self
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:options
-                                                                  tag:kEditObjectActionSheetTag
-                                                                 view:self.navigationController.view];
-        // disable all buttons except cancel button (index of cancel button: ([actionSheet.buttons count] - 1))
-        for (IBActionSheetButton *button in actionSheet.buttons) {
-            if (button.index != ([actionSheet.buttons count] - 1)) {
-                button.enabled = NO;
-                [actionSheet setButtonTextColor:[UIColor grayColor] forButtonAtIndex:button.index];
-            }
-        }
-#else // kIsRelease
         CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditObject
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
                                                                   tag:kEditObjectActionSheetTag
                                                                  view:self.navigationController.view];
-#endif // kIsRelease
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         NSInteger spriteObjectIndex = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
         NSDictionary *payload = @{ kDTPayloadSpriteObject : [self.program.objectList objectAtIndex:spriteObjectIndex] };
@@ -504,9 +469,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         actionSheet.dataTransferMessage = message;
     } else if (index == 1) {
         // Delete button was pressed
-#if kIsRelease // kIsRelease
-        [Util showComingSoonAlertView];
-#else // kIsRelease
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         [cell hideUtilityButtonsAnimated:YES];
         if (indexPath.section == kObjectSectionIndex) {
@@ -517,7 +479,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                  confirmTitle:kLocalizedDeleteThisObject
                                confirmMessage:kLocalizedThisActionCannotBeUndone];
         }
-#endif // kIsRelease
     }
 }
 
@@ -611,9 +572,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addObjectAction:)];
-#if kIsRelease // kIsRelease
-    add.enabled = NO;
-#endif // kIsRelease
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
                                                                           action:@selector(playSceneAction:)];

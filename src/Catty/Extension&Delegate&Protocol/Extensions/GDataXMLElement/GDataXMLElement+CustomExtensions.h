@@ -22,7 +22,9 @@
 
 #import "GDataXMLNode.h"
 
-@interface GDataXMLNode (CustomExtensions)
+@class CBXMLContext;
+
+@interface GDataXMLElement (CustomExtensions)
 
 // little HACK to activate pretty printed XML, unfortunatelly GDataXMLNode does not support this by default
 // More details for this: http://stackoverflow.com/questions/6403083/ios-xml-pretty-print
@@ -33,6 +35,14 @@
                      containingAttribute:(NSString*)attributeName
                                withValue:(NSString*)attributeValue;
 - (GDataXMLElement*)singleNodeForCatrobatXPath:(NSString*)catrobatXPath;
-+ (GDataXMLElement*)elementWithName:(NSString*)name optionalStringValue:(NSString*)value;
++ (GDataXMLElement*)elementWithName:(NSString*)name context:(CBXMLContext*)context;
++ (GDataXMLElement*)elementWithName:(NSString*)name xPathIndex:(NSUInteger)xPathIndex
+                            context:(CBXMLContext*)context;
++ (GDataXMLElement*)elementWithName:(NSString*)name stringValue:(NSString*)value
+                            context:(CBXMLContext*)context;
++ (GDataXMLElement*)elementWithName:(NSString*)name xPathIndex:(NSUInteger)xPathIndex
+                        stringValue:(NSString*)value context:(CBXMLContext*)context;
++ (id)attributeWithName:(NSString*)name escapedStringValue:(NSString*)value;
+- (void)addChild:(GDataXMLNode*)child context:(CBXMLContext*)context;
 
 @end

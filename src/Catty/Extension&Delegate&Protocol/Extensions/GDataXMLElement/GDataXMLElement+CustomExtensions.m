@@ -20,9 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "GDataXMLNode+CustomExtensions.h"
+#import "GDataXMLElement+CustomExtensions.h"
+#import "CBXMLContext.h"
+#import "CBXMLValidator.h"
+#import "CBXMLPositionStack.h"
+#import "NSString+CatrobatNSStringExtensions.h"
 
-@implementation GDataXMLNode (CustomExtensions)
+@implementation GDataXMLElement (CustomExtensions)
 
 - (NSString *)XMLStringPrettyPrinted:(BOOL)isPrettyPrinted
 {
@@ -60,7 +64,7 @@
 - (NSString*)XMLRootElementAsString
 {
     NSString *attributesStr = [[NSString alloc] init];
-    if([self isKindOfClass:[GDataXMLElement class]]) {
+    if ([self isKindOfClass:[GDataXMLElement class]]) {
         GDataXMLElement *element = (GDataXMLElement*)self;
         NSArray *attributesArr = [element attributes];
         for(GDataXMLNode *attribute in attributesArr) {
@@ -139,12 +143,60 @@
     return [nodes firstObject];
 }
 
-+ (GDataXMLElement *)elementWithName:(NSString *)name optionalStringValue:(NSString *)value;
++ (void)pushToStackElementName:(NSString*)name xPathIndex:(NSUInteger)xPathIndex context:(CBXMLContext*)context
 {
+    [XMLError exceptionIfNil:name message:@"Given param xmlElement MUST NOT be nil!!"];
+    if (context.currentPositionStack) {
+        if (xPathIndex > 1) {
+            name = [name stringByAppendingFormat:@"[%lu]", xPathIndex];
+        }
+        [context.currentPositionStack pushXmlElementName:name];
+        NSLog(@"+ [%@] added to stack", name);
+    }
+}
+
++ (GDataXMLElement*)elementWithName:(NSString*)name context:(CBXMLContext*)context
+{
+    return [self elementWithName:name xPathIndex:0 context:context];
+}
+
++ (GDataXMLElement*)elementWithName:(NSString*)name xPathIndex:(NSUInteger)xPathIndex
+                            context:(CBXMLContext*)context
+{
+    [[self class] pushToStackElementName:name xPathIndex:xPathIndex context:context];
+    return [[self class] elementWithName:name];
+}
+
++ (GDataXMLElement*)elementWithName:(NSString*)name stringValue:(NSString*)value context:(CBXMLContext*)context
+{
+    return [self elementWithName:name xPathIndex:0 stringValue:value context:context];
+}
+
++ (GDataXMLElement*)elementWithName:(NSString*)name xPathIndex:(NSUInteger)xPathIndex
+                        stringValue:(NSString*)value context:(CBXMLContext*)context
+{
+    [[self class] pushToStackElementName:name xPathIndex:xPathIndex context:context];
     if (value && [value length]) {
-        return [[self class] elementWithName:name stringValue:value];
+        return [[self class] elementWithName:name
+                                 stringValue:[value stringByEscapingForXMLValues]];
     }
     return [[self class] elementWithName:name];
+}
+
++ (id)attributeWithName:(NSString*)name escapedStringValue:(NSString*)value
+{
+    return [[self class] attributeWithName:name stringValue:[value stringByEscapingForXMLValues]];
+}
+
+- (void)addChild:(GDataXMLNode*)child context:(CBXMLContext*)context
+{
+    [XMLError exceptionIf:[context.currentPositionStack isEmpty] equals:YES
+                  message:@"Can't pop xml element from stack. Stack is empty!!"];
+    NSString *xmlElementName = [context.currentPositionStack popXmlElementName];
+    if (context.currentPositionStack) {
+        NSLog(@"- [%@] removed from stack", xmlElementName);
+    }
+    [self addChild:child];
 }
 
 @end

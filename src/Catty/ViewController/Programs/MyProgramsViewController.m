@@ -439,28 +439,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
         // More button was pressed
         NSArray *options = @[kLocalizedCopy, kLocalizedRename,
                              kLocalizedDescription/*, kLocalizedUpload*/];
-#if kIsRelease // kIsRelease
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedThisFeatureIsComingSoon
-                                                             delegate:self
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:options
-                                                                  tag:kEditProgramActionSheetTag
-                                                                 view:self.navigationController.view];
-        // disable all buttons except cancel button (index of cancel button: ([actionSheet.buttons count] - 1))
-        for (IBActionSheetButton *button in actionSheet.buttons) {
-            if (button.index != ([actionSheet.buttons count] - 1)) {
-                button.enabled = NO;
-                [actionSheet setButtonTextColor:[UIColor grayColor] forButtonAtIndex:button.index];
-            }
-        }
-#else // kIsRelease
         CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditProgram
                                                              delegate:self
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:options
                                                                   tag:kEditProgramActionSheetTag
                                                                  view:self.navigationController.view];
-#endif // kIsRelease
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         NSDictionary *payload = @{ kDTPayloadProgramLoadingInfo : [self.programLoadingInfos objectAtIndex:indexPath.row] };
         DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionEditProgram
@@ -654,9 +638,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(addProgramAction:)];
-#if kIsRelease // kIsRelease
-    add.enabled = NO;
-#endif // kIsRelease
     self.toolbarItems = @[flexItem, add, flexItem];
 }
 
