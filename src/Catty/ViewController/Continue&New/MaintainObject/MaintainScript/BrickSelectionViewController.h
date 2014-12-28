@@ -22,6 +22,7 @@
 
 #import <UIKit/UIKit.h>
 
+// Container VC for BrickcategoryVC
 @interface BrickSelectionViewController : UIPageViewController <UIPageViewControllerDataSource,
                                                                 UIPageViewControllerDelegate>
 

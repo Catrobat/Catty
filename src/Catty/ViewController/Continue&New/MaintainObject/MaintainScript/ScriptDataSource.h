@@ -54,7 +54,13 @@ typedef void (^ScriptCollectionViewConfigureBlock)(id cell);
 // Disallow init.
 - (instancetype)init __attribute__((unavailable("init is not a supported initializer for this class.")));
 
+// Script with brick list array.
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath;
+
+- (NSArray *)bricklistInScriptAtIndexPath:(NSIndexPath *)indexPath;
+
+// Returns nil if Scriptbrick (at index 0 at section).
+- (Brick *)brickInScriptAtIndexPath:(NSIndexPath *)indexPath;
 
 - (Script *)scriptAtSection:(NSUInteger)section;
 

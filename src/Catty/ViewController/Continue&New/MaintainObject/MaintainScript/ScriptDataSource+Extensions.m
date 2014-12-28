@@ -29,18 +29,6 @@
 
 @implementation ScriptDataSource (Extensions)
 
-#pragma mark - Setters
-- (void)setState:(ScriptDataSourceState)state {
-    if (state != self.state) {
-        self.state = state;
-        if ([self.delegate respondsToSelector:@selector(scriptDataSource:stateChanged:error:)]) {
-            // TODO: Handle Error
-            NSError *error = nil;
-            [self.delegate scriptDataSource:self stateChanged:self.state error:error];
-        }
-    }
-}
-
 #pragma mark - Add new bricks to data source
 - (void)addBrickAtIndexPath:(NSIndexPath *)indexpath atSection:(NSUInteger)section
 {

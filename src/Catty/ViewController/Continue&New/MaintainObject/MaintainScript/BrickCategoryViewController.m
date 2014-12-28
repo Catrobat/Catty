@@ -104,7 +104,10 @@
     return brickCell;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+  [collectionView deselectItemAtIndexPath:indexPath animated:NO];
+    BrickCell *cell = (BrickCell *)[collectionView cellForItemAtIndexPath:indexPath];
     
 }
 

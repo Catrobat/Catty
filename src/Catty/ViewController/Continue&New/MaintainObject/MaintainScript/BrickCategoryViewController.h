@@ -23,6 +23,8 @@
 #import <UIKit/UIKit.h>
 #import "UIDefines.h"
 
+
+
 @interface BrickCategoryViewController : UICollectionViewController
 - (instancetype)initWithBrickCategory:(kBrickCategoryType)type NS_DESIGNATED_INITIALIZER;
 + (BrickCategoryViewController *)brickCategoryViewControllerForPageIndex:(NSInteger)pageIndex;

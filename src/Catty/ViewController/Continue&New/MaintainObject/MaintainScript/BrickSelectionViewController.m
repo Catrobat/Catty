@@ -69,15 +69,16 @@
 #pragma mark - Pageindicator
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
 {
-    [self setupPageControl];
+    [self overwritePageControl];
     return kCategoryCount;
 }
 
-- (void)setupPageControl
+- (void)overwritePageControl
 {
     UIPageControl * pageControl = [[self.view.subviews
                                         filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(class = %@)", [UIPageControl class]]] lastObject];
     pageControl.currentPageIndicatorTintColor = [UIColor lightOrangeColor];
+    pageControl.backgroundColor = [UIColor colorWithWhite:1.f alpha:0.1f];
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController

@@ -46,6 +46,16 @@
     return self;
 }
 
+#pragma mark - Setters
+- (void)setState:(ScriptDataSourceState)state {
+    self.state = state;
+    if ([self.delegate respondsToSelector:@selector(scriptDataSource:stateChanged:error:)]) {
+        // TODO: Handle Error
+        NSError *error = nil;
+        [self.delegate scriptDataSource:self stateChanged:self.state error:error];
+    }
+}
+
 #pragma mark - Collection View Datasource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -71,14 +81,14 @@
     Brick *brick = nil;
     
     if (indexPath.item == 0) {
-        cellIdentifier = NSStringFromClass([script class]);
+        cellIdentifier = [NSString stringWithFormat:@"%@", [script class]];
     } else {
         brick = [script.brickList objectAtIndex:indexPath.item - 1];
-        cellIdentifier = NSStringFromClass([brick class]);
+        cellIdentifier = [NSString stringWithFormat:@"%@", [brick class]];
     }
     
     brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier
-                                forIndexPath:indexPath];
+                                                          forIndexPath:indexPath];
     brickCell.brick = indexPath.item == 0 ? script : brick;
     
     self.configureCellBlock(brickCell);
@@ -89,8 +99,24 @@
 
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath
 {
-    id item = [self.scriptList objectAtIndex:(NSUInteger)indexPath.row];
+    id item = [self.scriptList objectAtIndex:(NSUInteger)indexPath.item];
     return item;
+}
+
+- (NSArray *)bricklistInScriptAtIndexPath:(NSIndexPath *)indexPath
+{
+    Script *script = [self scriptAtSection:(NSUInteger)indexPath.section];
+    return script.brickList;
+}
+
+- (Brick *)brickInScriptAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *brickList = [self bricklistInScriptAtIndexPath:indexPath];
+    NSInteger index = indexPath.item - 1;
+    if (index >= 0 && index < brickList.count) {
+       return [brickList objectAtIndex:(NSUInteger)index];
+    }
+    return nil;
 }
 
 - (Script *)scriptAtSection:(NSUInteger)section
