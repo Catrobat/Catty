@@ -21,17 +21,26 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "UIDefines.h"
+#import "Brick.h"
 
+@class BrickCategoryViewController;
+@protocol BrickCategoryViewControllerDelegate <NSObject>
 
+@optional
+- (void)brickCategoryViewController:(BrickCategoryViewController *)brickCategoryViewController
+                     didSelectBrick:(Brick *)brick;
+
+@end
 
 @interface BrickCategoryViewController : UICollectionViewController
+@property(nonatomic, weak) id<BrickCategoryViewControllerDelegate> delegate;
+@property(nonatomic, readonly) NSArray *bricks;
+@property(nonatomic, readonly) NSUInteger pageIndex;
+
 - (instancetype)initWithBrickCategory:(kBrickCategoryType)type NS_DESIGNATED_INITIALIZER;
 + (BrickCategoryViewController *)brickCategoryViewControllerForPageIndex:(NSInteger)pageIndex;
 
 // Disallow init.
 - (instancetype)init __attribute__((unavailable("init is not a supported initializer for this class.")));
-@property (nonatomic, readonly) NSArray *bricks;
-@property (nonatomic, readonly) NSUInteger pageIndex;
 
 @end

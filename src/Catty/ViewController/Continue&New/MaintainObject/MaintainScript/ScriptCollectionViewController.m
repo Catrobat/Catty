@@ -32,7 +32,7 @@
 #import "LXReorderableCollectionViewFlowLayout.h"
 #import "BrickManager.h"
 #import "StartScriptCell.h"
-#import "BrickScaleTransition.h"
+#import "BrickTransition.h"
 #import "BrickDetailViewController.h"
 #import "WhenScriptCell.h"
 #import "FXBlurView.h"
@@ -66,13 +66,13 @@
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
-@property (nonatomic, strong) BrickScaleTransition *brickScaleTransition;
-@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
+@property (nonatomic, strong) BrickTransition *brickScaleTransition;
+@property (nonatomic, strong) NSIndexPath *selectedIndexPath; // Refactor
 @property (nonatomic, strong) AHKActionSheet *brickSelectionMenu;
-@property (nonatomic, strong) NSMutableDictionary *selectedIndexPaths;
-@property (nonatomic, assign) BOOL selectedAllCells;
-@property (nonatomic, strong) NSIndexPath *higherRankBrick;
-@property (nonatomic, strong) NSIndexPath *lowerRankBrick;
+@property (nonatomic, strong) NSMutableDictionary *selectedIndexPaths;  // refactor
+@property (nonatomic, assign) BOOL selectedAllCells;  // Refactor
+@property (nonatomic, strong) NSIndexPath *higherRankBrick; // refactor
+@property (nonatomic, strong) NSIndexPath *lowerRankBrick;  // refactor
 @property (nonatomic, strong) ScriptDataSource *scriptDataSource;
 
 @end
@@ -132,7 +132,7 @@
     self.collectionView.collectionViewLayout = [LXReorderableCollectionViewFlowLayout new];
     self.navigationController.title = self.title = kLocalizedScripts;
     self.navigationItem.rightBarButtonItems = @[self.editButtonItem];
-    self.brickScaleTransition = [BrickScaleTransition new];
+    self.brickScaleTransition = [[BrickTransition alloc] initWithViewToAnimate:nil];
     self.selectedIndexPaths = [NSMutableDictionary dictionary];
 
     // register brick cells for current brick category
@@ -256,6 +256,7 @@
 
 - (void)showBrickSelectionController:(kBrickCategoryType)type {
     BrickCategoryViewController *bcvc = [[BrickCategoryViewController alloc] initWithBrickCategory:type];
+    bcvc.delegate = self;
     BrickSelectionViewController *bsvc = [[BrickSelectionViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
                                                                                  navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
                                                                                                options:@{ UIPageViewControllerOptionInterPageSpacingKey : @20.f }];
@@ -340,6 +341,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:NO];
     BrickCell *cell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
+    [self.brickScaleTransition updateAnimationViewWithView:cell];
     if (!self.isEditing) {
         self.selectedIndexPath =  indexPath;
         BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc] initWithBrickCell:cell];
@@ -467,6 +469,15 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     [self openFormulaEditor:formulaEditorButton];
 }
 
+#pragma mark - BrickCategoryViewController
+
+- (void)brickCategoryViewController:(BrickCategoryViewController *)brickCategoryViewController
+                     didSelectBrick:(Brick *)brick
+{
+    brickCategoryViewController.delegate = nil;
+    [self dismissViewControllerAnimated:YES completion:NULL];
+    NSLog(@"[ %@ ] selected", brick);
+}
 
 #pragma mark - Brick Cell Delegate
 - (void)BrickCell:(BrickCell *)brickCell didSelectBrickCellButton:(SelectButton *)selectButton

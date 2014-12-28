@@ -22,6 +22,7 @@
 
 #import "BrickSelectionViewController.h"
 #import "BrickCategoryViewController.h"
+#import "ScriptCollectionViewController.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 
 @implementation BrickSelectionViewController
@@ -63,6 +64,7 @@
 {
     if (completed) {
         [self updateTitle];
+        [self updateBrickCategoryViewControllerDelegate];
     }
 }
 
@@ -94,6 +96,15 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                                           target:self
                                                                                           action:@selector(dismiss:)];
+}
+
+- (void)updateBrickCategoryViewControllerDelegate
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(class = %@)",[ScriptCollectionViewController class]];
+    ScriptCollectionViewController *scvc = [self.presentingViewController.childViewControllers filteredArrayUsingPredicate:predicate].lastObject;
+    NSAssert(scvc != nil, @"Error, no valid presenting VC found.");
+    BrickCategoryViewController *bcvc = [self.viewControllers objectAtIndex:0];
+    bcvc.delegate = scvc;
 }
 
 - (void)updateTitle

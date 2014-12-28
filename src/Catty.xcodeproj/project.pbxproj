@@ -312,7 +312,7 @@
 		92FF32BC1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF324B1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m */; };
 		92FF32BD1A24E2F400093DA7 /* ProgramTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF324E1A24E2F400093DA7 /* ProgramTableHeaderView.m */; };
 		92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32511A24E2F400093DA7 /* BaseTransition.m */; };
-		92FF32BF1A24E2F400093DA7 /* BrickScaleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickScaleTransition.m */; };
+		92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
 		92FF338D1A24E5F800093DA7 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		CA538EA519B0EA09008240AB /* ChangeGhostEffectByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */; };
@@ -1217,8 +1217,8 @@
 		92FF324E1A24E2F400093DA7 /* ProgramTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableHeaderView.m; sourceTree = "<group>"; };
 		92FF32501A24E2F400093DA7 /* BaseTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTransition.h; sourceTree = "<group>"; };
 		92FF32511A24E2F400093DA7 /* BaseTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTransition.m; sourceTree = "<group>"; };
-		92FF32521A24E2F400093DA7 /* BrickScaleTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickScaleTransition.h; sourceTree = "<group>"; };
-		92FF32531A24E2F400093DA7 /* BrickScaleTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickScaleTransition.m; sourceTree = "<group>"; };
+		92FF32521A24E2F400093DA7 /* BrickTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTransition.h; sourceTree = "<group>"; };
+		92FF32531A24E2F400093DA7 /* BrickTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickTransition.m; sourceTree = "<group>"; };
 		92FF32C21A24E33B00093DA7 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
 		B405BAC7175DD3F600B1A0FC /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -3468,8 +3468,8 @@
 			children = (
 				92FF32501A24E2F400093DA7 /* BaseTransition.h */,
 				92FF32511A24E2F400093DA7 /* BaseTransition.m */,
-				92FF32521A24E2F400093DA7 /* BrickScaleTransition.h */,
-				92FF32531A24E2F400093DA7 /* BrickScaleTransition.m */,
+				92FF32521A24E2F400093DA7 /* BrickTransition.h */,
+				92FF32531A24E2F400093DA7 /* BrickTransition.m */,
 			);
 			path = ViewControllerTransitions;
 			sourceTree = "<group>";
@@ -4480,7 +4480,7 @@
 				92FF32BA1A24E2F400093DA7 /* DarkBlueGradientFeaturedCell.m in Sources */,
 				92DFB01D1A38949E00FA9B0F /* FormulaEditorTextView.m in Sources */,
 				92FF32751A24E2F400093DA7 /* CatrobatAlertView.m in Sources */,
-				92FF32BF1A24E2F400093DA7 /* BrickScaleTransition.m in Sources */,
+				92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */,
 				92FF31081A24DCAA00093DA7 /* UserVariable.m in Sources */,
 				92FF30CE1A24DCAA00093DA7 /* IfLogicElseBrick.m in Sources */,
 				92FF2E941A24C7D800093DA7 /* Logger.m in Sources */,

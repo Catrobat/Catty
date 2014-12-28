@@ -22,6 +22,11 @@
 
 #import "BaseTransition.h"
 
-@interface BrickScaleTransition : BaseTransition
+@interface BrickTransition : BaseTransition
+@property (nonatomic, readonly) UIView *animateView;
+
+- (instancetype)initWithViewToAnimate:(UIView *)view;
+
+- (void)updateAnimationViewWithView:(UIView *)view;
 
 @end

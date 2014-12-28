@@ -22,7 +22,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger, TransitionMode) { TransitionModePresent = 0, TransitionModeDismiss };
+typedef NS_ENUM(NSInteger, TransitionMode) {
+        TransitionModePresent = 0,
+        TransitionModeDismiss
+};
 
 @interface BaseTransition : NSObject <UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate>
 @property (nonatomic, assign) TransitionMode transitionMode;

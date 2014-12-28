@@ -22,13 +22,13 @@
 
 #import "BaseTransition.h"
 
-const CGFloat DURATION_PRESENT = 3.0f;
-const CGFloat DURATION_DISMISS = 3.0f;
+const CGFloat kDurationPresent = 0.25f;
+const CGFloat kDurationDismiss = 0.25f;
 
 @implementation BaseTransition 
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return _transitionMode == TransitionModePresent ? DURATION_PRESENT : DURATION_DISMISS;
+    return _transitionMode == TransitionModePresent ? kDurationPresent : kDurationDismiss;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {

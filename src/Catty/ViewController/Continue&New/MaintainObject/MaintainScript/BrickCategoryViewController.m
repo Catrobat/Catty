@@ -108,7 +108,10 @@
 {
   [collectionView deselectItemAtIndexPath:indexPath animated:NO];
     BrickCell *cell = (BrickCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    
+    NSAssert(cell.brick, @"Error, no brick.");
+    if ([self.delegate respondsToSelector:@selector(brickCategoryViewController:didSelectBrick:)]) {
+        [self.delegate brickCategoryViewController:self didSelectBrick:cell.brick];
+    }
 }
 
 #pragma mark - Collection View Layout
