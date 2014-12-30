@@ -204,4 +204,7 @@
 
 + (BOOL)isEqual:(id)object toObject:(id)objectToCompare;
 
+// Check if not on Main Thread.
+void CBAssertIfNotMainThread(void);
+
 @end

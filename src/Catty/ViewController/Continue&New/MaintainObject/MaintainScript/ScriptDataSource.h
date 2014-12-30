@@ -23,29 +23,11 @@
 #import <Foundation/Foundation.h>
 #import "Script.h"
 
-typedef NS_ENUM(NSUInteger, ScriptDataSourceState) {
-    ScriptDataSourceStateBrickAdded = 0,
-    ScriptDataSourceStateScriptDeleted,
-    ScriptDataSourceStateBrickDeleted,
-    ScriptDataSourceStateBrickCopied
-};
-
 typedef void (^ScriptCollectionViewConfigureBlock)(id cell);
 
-@class ScriptDataSource;
-@protocol ScriptDataSourceDelegate <NSObject>
-
-@optional
-// Maybe change to key-value observing later....
-- (void)scriptDataSource:(ScriptDataSource *)scriptDataSource
-            stateChanged:(ScriptDataSourceState)state
-                   error:(NSError *)error;
-
-@end
-
 @interface ScriptDataSource : NSObject <UICollectionViewDataSource>
-@property(nonatomic, weak) id<ScriptDataSourceDelegate> delegate;
-@property(nonatomic, readonly) ScriptDataSourceState state;
+@property(nonatomic, readonly) NSArray *scriptList;
+@property(nonatomic, readonly) NSUInteger numberOfSections;
 
 - (instancetype)initWithScriptList:(NSArray *)scriptList
                     cellIdentifier:(NSString *) __unused cellIdentifier
@@ -54,14 +36,6 @@ typedef void (^ScriptCollectionViewConfigureBlock)(id cell);
 // Disallow init.
 - (instancetype)init __attribute__((unavailable("init is not a supported initializer for this class.")));
 
-// Script with brick list array.
-- (id)itemAtIndexPath:(NSIndexPath *)indexPath;
-
-- (NSArray *)bricklistInScriptAtIndexPath:(NSIndexPath *)indexPath;
-
-// Returns nil if Scriptbrick (at index 0 at section).
-- (Brick *)brickInScriptAtIndexPath:(NSIndexPath *)indexPath;
-
-- (Script *)scriptAtSection:(NSUInteger)section;
+- (void)setScriptList:(NSArray *)scriptList;
 
 @end

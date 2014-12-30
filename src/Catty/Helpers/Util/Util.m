@@ -879,5 +879,17 @@ replacementString:(NSString*)characters
     return NO;
 }
 
+#pragma mark - Macros
+
+// https://www.mikeash.com/pyblog/friday-qa-2013-05-03-proper-use-of-asserts.html
+#define CBAssert(expression, ...) \
+do { if(!(expression)) { \
+NSLog(@"%@", [NSString stringWithFormat: @"Assertion failure: %s in %s on line %s:%d. %@", #expression, __PRETTY_FUNCTION__, __FILE__, __LINE__, [NSString stringWithFormat:@"" __VA_ARGS__]]); \
+abort(); }} while(0)
+
+void CBAssertIfNotMainThread(void) {
+    CBAssert(NSThread.isMainThread, @"\nERROR: Not on main thread.\n\nSet breakpoint on CBAssertIfNotMainThread to find out where.\n\nStacktrace: %@", [NSThread callStackSymbols]);
+}
+
 
 @end

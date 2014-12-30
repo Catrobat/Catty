@@ -21,6 +21,7 @@
  */
 
 #import "ScriptDataSource.h"
+#import "ScriptDataSource_Private.h"
 #import "Brick.h"
 #import "BrickCell.h"
 
@@ -46,14 +47,22 @@
     return self;
 }
 
-#pragma mark - Setters
-- (void)setState:(ScriptDataSourceState)state {
-    self.state = state;
-    if ([self.delegate respondsToSelector:@selector(scriptDataSource:stateChanged:error:)]) {
-        // TODO: Handle Error
-        NSError *error = nil;
-        [self.delegate scriptDataSource:self stateChanged:self.state error:error];
+# pragma mark - Setters
+
+- (void)setScriptList:(NSArray *)scriptList
+{
+    if (scriptList == _scriptList || [scriptList isEqual:_scriptList]) {
+        return;
     }
+    
+    _scriptList = [scriptList copy];
+}
+
+#pragma mark - Getters
+
+- (NSUInteger)numberOfSections
+{
+    return self.scriptList.count;
 }
 
 #pragma mark - Collection View Datasource
@@ -65,7 +74,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    Script *script = [self scriptAtSection:(NSUInteger)section];
+    Script *script = [self.scriptList objectAtIndex:(NSUInteger)section];
     NSAssert(script != nil, @"Error, no script found");
     // +1, because script itself is a brick in IDE too.
     return script.brickList.count + 1;
@@ -77,14 +86,14 @@
     static NSString *cellIdentifier;
     BrickCell *brickCell = nil;
     
-    Script *script = [self scriptAtSection:indexPath.section];
+    Script *script = [self.scriptList objectAtIndex:(NSUInteger)indexPath.section];
     Brick *brick = nil;
     
     if (indexPath.item == 0) {
-        cellIdentifier = [NSString stringWithFormat:@"%@", [script class]];
+        cellIdentifier = NSStringFromClass([script class]);
     } else {
         brick = [script.brickList objectAtIndex:indexPath.item - 1];
-        cellIdentifier = [NSString stringWithFormat:@"%@", [brick class]];
+        cellIdentifier = NSStringFromClass([brick class]);
     }
     
     brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier
@@ -95,33 +104,4 @@
     return brickCell;
 }
 
-#pragma mark - Public
-
-- (id)itemAtIndexPath:(NSIndexPath *)indexPath
-{
-    id item = [self.scriptList objectAtIndex:(NSUInteger)indexPath.item];
-    return item;
-}
-
-- (NSArray *)bricklistInScriptAtIndexPath:(NSIndexPath *)indexPath
-{
-    Script *script = [self scriptAtSection:(NSUInteger)indexPath.section];
-    return script.brickList;
-}
-
-- (Brick *)brickInScriptAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSArray *brickList = [self bricklistInScriptAtIndexPath:indexPath];
-    NSInteger index = indexPath.item - 1;
-    if (index >= 0 && index < brickList.count) {
-       return [brickList objectAtIndex:(NSUInteger)index];
-    }
-    return nil;
-}
-
-- (Script *)scriptAtSection:(NSUInteger)section
-{
-    NSAssert(self.scriptList.count, @"No bricks in Scriptlist");
-    return (Script *)[self.scriptList objectAtIndex:section];
-}
 @end

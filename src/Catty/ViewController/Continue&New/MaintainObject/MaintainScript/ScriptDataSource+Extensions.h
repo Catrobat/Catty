@@ -24,12 +24,27 @@
 
 @interface ScriptDataSource (Extensions)
 
-- (void)addBrickAtIndexPath:(NSIndexPath *)indexpath atSection:(NSUInteger)section;
+- (void)addBricks:(NSArray *)bricks toIndexPaths:(NSArray *)indexPaths;
 
-- (void)deleteScriptAtSection:(NSUInteger)section;
+- (void)removeScriptAtSection:(NSUInteger)section;
 
-- (void)deleteBrickAtIndexPath:(NSIndexPath *)indexPath;
+- (void)removeBrickAtIndexPath:(NSIndexPath *)indexPath;
 
-- (void)copyBrickAtIndexPath:(NSIndexPath *)indexPath;
+- (void)copyBrickAtIndexPath:(NSIndexPath *)atIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
+
+// Script with brick list array.
+- (id)itemAtIndexPath:(NSIndexPath *)indexPath;
+
+// Returns indexpath for equal items (script bricks or none-script bricks).
+- (NSArray *)indexPathsForItem:(id)item;
+
+- (NSArray *)brickListInScriptAtIndexPath:(NSIndexPath *)indexPath;
+
+// Returns nil if Scriptbrick (at index 0 at section).
+- (Brick *)brickInScriptAtIndexPath:(NSIndexPath *)indexPath;
+
+- (Script *)scriptAtSection:(NSUInteger)section;
+
+- (BOOL)isSectionAtIndexPathValidScript:(NSIndexPath *)indexPath;
 
 @end

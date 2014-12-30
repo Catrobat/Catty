@@ -21,6 +21,8 @@
  */
 
 #import "ScriptDataSource+Extensions.h"
+#import "ScriptDataSource_Private.h"
+#import "Util.h"
 
 @interface ScriptDataSource ()
 @property(nonatomic, assign) ScriptDataSourceState state;
@@ -29,28 +31,192 @@
 
 @implementation ScriptDataSource (Extensions)
 
-#pragma mark - Add new bricks to data source
-- (void)addBrickAtIndexPath:(NSIndexPath *)indexpath atSection:(NSUInteger)section
+#pragma mark - Set state
+
+- (void)setState:(ScriptDataSourceState)state {
+    self.state = state;
+    if ([self.delegate respondsToSelector:@selector(scriptDataSource:stateChanged:error:)]) {
+        // TODO: Handle Error
+        NSError *error = nil;
+        id<ScriptDataSourceDelegate> delegate = self.delegate;
+        [delegate scriptDataSource:self stateChanged:self.state error:error];
+    }
+}
+
+#pragma mark - Get Data
+
+- (id)itemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self.scriptList objectAtIndex:(NSUInteger)indexPath.item];
+}
+
+
+// We are using a index for brick items with index in bricklist + 1.
+// Script bricks always have index 0.
+- (NSArray *)indexPathsForItem:(id)item
+{
+    NSMutableArray *indexPaths = [NSMutableArray array];
+    
+    // Search for Scripts indexpaths.
+    [self.scriptList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if ([item isKindOfClass:[Script class]]) {
+            if ([obj isEqual:item]) {
+                [indexPaths addObject:[NSIndexPath indexPathForItem:0 inSection:idx]];
+            }
+        } else
+            *stop = YES;
+    }];
+    
+    // Search for brick indexpaths.
+    if (![item isKindOfClass:[Script class]]) {
+        NSUInteger section = 0;
+        for (Script *script in self.scriptList) {
+            [script.brickList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                if ([obj isEqual:item]) {
+                    [indexPaths addObject:[NSIndexPath indexPathForItem:idx + 1 inSection:section]];
+                }
+            }];
+            section += 1;
+        }
+    }
+
+    return indexPaths;
+}
+
+- (NSArray *)brickListInScriptAtIndexPath:(NSIndexPath *)indexPath
+{
+    Script *script = [self scriptAtSection:(NSUInteger)indexPath.section];
+    return script.brickList;
+}
+
+- (Brick *)brickInScriptAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *brickList = [self brickListInScriptAtIndexPath:indexPath];
+    NSInteger index = indexPath.item - 1;
+    if (index >= 0 && index < brickList.count) {
+        return [brickList objectAtIndex:(NSUInteger)index];
+    }
+    return nil;
+}
+
+- (Script *)scriptAtSection:(NSUInteger)section
+{
+    NSAssert(self.scriptList.count, @"No bricks in Scriptlist");
+    return (Script *)[self.scriptList objectAtIndex:section];
+}
+
+#pragma mark - Add, remove, copy
+
+- (void)addBricks:(NSArray *)bricks toIndexPaths:(NSArray *)indexPaths
 {
     self.state = ScriptDataSourceStateBrickAdded;
 }
 
-#pragma mark - Delete sript
-- (void)deleteScriptAtSection:(NSUInteger)section
+- (void)removeScriptAtSection:(NSUInteger)section
 {
     self.state = ScriptDataSourceStateScriptDeleted;
 }
 
-#pragma mark - Delete brick
-- (void)deleteBrickAtIndexPath:(NSIndexPath *)indexPath
+- (void)removeBrickAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.state = ScriptDataSourceStateBrickDeleted;
+    NSIndexSet *indexes = [NSIndexSet indexSetWithIndex:indexPath.item];
+    [self removeItemsAtIndexes:indexes inSection:indexPath.section];
 }
 
-#pragma mark - Copy brick
-- (void)copyBrickAtIndexPath:(NSIndexPath *)indexPath
+- (void)copyBrickAtIndexPath:(NSIndexPath *)atIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
     self.state = ScriptDataSourceStateBrickCopied;
+}
+
+#pragma mark - Checks
+
+- (BOOL)isSectionAtIndexPathValidScript:(NSIndexPath *)indexPath
+{
+    if (indexPath.section >= self.scriptList.count) {
+        return NO;
+    }
+    return [[self scriptAtSection:(NSUInteger)indexPath.section] isKindOfClass:[Script class]];
+}
+
+#pragma mark - Private
+
+- (void)removeItemsAtIndexes:(NSIndexSet *)indexes inSection:(NSUInteger)section
+{
+    Script *script = [self.scriptList objectAtIndex:section];
+    NSArray *bricks = script.brickList;
+    
+    NSUInteger newCount = bricks.count - indexes.count;
+    NSMutableArray *newBricks = newCount > 0 ? [[NSMutableArray alloc] initWithCapacity:newCount] : nil;
+    
+    __block dispatch_block_t batchUpdates = ^{};
+    batchUpdates = [batchUpdates copy];
+    
+    [bricks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        dispatch_block_t oldUpdates = batchUpdates;
+        if ([indexes containsIndex:idx]) {
+            // Removing this object.
+            batchUpdates = ^{
+                oldUpdates();
+                [self informItemsRemovedAtIndexPaths:@[[NSIndexPath indexPathForItem:idx inSection:section]]];
+            };
+        } else {
+            // Keeping this item.
+            NSUInteger newIdx = newBricks.count;
+            [newBricks addObject:obj];
+            batchUpdates = ^{
+                oldUpdates();
+                [self informItemMovedFromIndexPath:[NSIndexPath indexPathForItem:idx + 1 inSection:section]
+                                      toIndexPaths:[NSIndexPath indexPathForItem:newIdx + 1 inSection:section]];
+            };
+        }
+        batchUpdates = [batchUpdates copy];
+    }];
+    
+    script.brickList = newBricks;
+    NSMutableArray *scriptList = [self.scriptList mutableCopy];
+    [scriptList replaceObjectAtIndex:section withObject:script];
+    
+    self.scriptList = scriptList;
+    
+    [self informBatchUpdate:^{ batchUpdates(); }];
+}
+
+- (void)informItemsRemovedAtIndexPaths:(NSArray *)removedIndexPaths
+{
+    CBAssertIfNotMainThread();
+    
+    id<ScriptDataSourceDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(scriptDataSource:didRemoveItemsAtIndexPaths:)]) {
+        [delegate scriptDataSource:self didRemoveItemsAtIndexPaths:removedIndexPaths];
+    }
+}
+
+- (void)informItemMovedFromIndexPath:(NSIndexPath *)indexPath toIndexPaths:(NSIndexPath *)newIndexPath
+{
+    CBAssertIfNotMainThread();
+    
+    id<ScriptDataSourceDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(scriptDataSource:didMoveItemAtIndexPath:toIndexPath:)]) {
+        [delegate scriptDataSource:self didMoveItemAtIndexPath:indexPath toIndexPath:newIndexPath];
+    }
+}
+
+- (void)informBatchUpdate:(dispatch_block_t)update
+{
+    [self informBatchUpdate:update complete:nil];
+}
+
+- (void)informBatchUpdate:(dispatch_block_t)update complete:(dispatch_block_t)complete
+{
+    CBAssertIfNotMainThread();
+    
+    id<ScriptDataSourceDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(scriptDataSource:performBatchUpdate:complete:)]) {
+        [delegate scriptDataSource:self performBatchUpdate:update complete:complete];
+    } else {
+        if (update) { update(); }
+        if (complete) { complete(); }
+    }
 }
 
 @end
