@@ -22,39 +22,28 @@
 
 #import <UIKit/UIKit.h>
 
-@class BrickDetailViewController;
-@class BrickCell;
+typedef NS_ENUM(NSUInteger, BrickDetailViewControllerState) {
+    BrickDetailViewControllerStateNone = 0,
+    BrickDetailViewControllerStateBrickUpdated,
+    BrickDetailViewControllerStateDeleteScript,
+    BrickDetailViewControllerStateDeleteBrick,
+    BrickDetailViewControllerStateCopyBrick,
+    BrickDetailViewControllerStateAnimateBrick,
+    BrickDetailViewControllerStateEditFormula,
+};
 
-@protocol BrickDetailViewControllerDelegate <NSObject>
-
-@optional
-// Delete a single brick.
-- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
-                      didDeleteBrick:(BrickCell *)brickCell;
-
-// Delete a script section.
-- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
-                     didDeleteScript:(BrickCell *)brickCell;
-
-// Copy a single Brick.
-- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
-                   didCopyBrick:(BrickCell *)brickCell;
-
-- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
-                  didAnimateBrick:(BrickCell *)brickCell;
-
-- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
-                   didEditFormula:(BrickCell *)brickCell;
-
-@end
-
+@class Brick;
 @interface BrickDetailViewController : UIViewController
-- (instancetype)initWithBrickCell:(BrickCell *)brickCell NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithBrick:(Brick *)brick NS_DESIGNATED_INITIALIZER;
++ (BrickDetailViewController *)brickDetailViewController;
 
 // Disallow init.
 - (instancetype)init __attribute__((unavailable("init is not a supported initializer for this class.")));
 
-@property (weak, nonatomic) id<BrickDetailViewControllerDelegate> delegate;
-@property (nonatomic, readonly) BrickCell *brickCell;
+//@property (weak, nonatomic) id<BrickDetailViewControllerDelegate> delegate;
+@property (nonatomic, readonly) BrickDetailViewControllerState state;
+@property (nonatomic, readonly) Brick *brick;
+
+- (void)setBrick:(Brick *)brick;
 
 @end

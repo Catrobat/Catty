@@ -57,25 +57,29 @@
 #import "BrickSelectionViewController.h"
 #import "ScriptDataSource_Private.h"
 #import "ScriptDataSource+Extensions.h"
+#import "FBKVOController.h"
 
 @interface ScriptCollectionViewController () <UICollectionViewDelegate,
                                               LXReorderableCollectionViewDelegateFlowLayout,
                                               LXReorderableCollectionViewDataSource,
                                               UIViewControllerTransitioningDelegate,
                                               BrickCellDelegate,
-                                              BrickDetailViewControllerDelegate,
-                                              ScriptDataSourceDelegate>
+                                              ScriptDataSourceDelegate,
+                                              iOSComboboxDelegate,
+                                              UITextFieldDelegate>
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
 @property (nonatomic, strong) BrickTransition *brickScaleTransition;
-@property (nonatomic, strong) NSIndexPath *selectedIndexPath; // Refactor
+@property (nonatomic, strong) NSIndexPath *lastSelectedIndexPath;
 @property (nonatomic, strong) AHKActionSheet *brickSelectionMenu;
 @property (nonatomic, strong) NSMutableDictionary *selectedIndexPaths;  // refactor
 @property (nonatomic, assign) BOOL selectedAllCells;  // Refactor
 @property (nonatomic, strong) NSIndexPath *higherRankBrick; // refactor
 @property (nonatomic, strong) NSIndexPath *lowerRankBrick;  // refactor
 @property (nonatomic, strong) ScriptDataSource *scriptDataSource;
+@property (nonatomic, strong) BrickDetailViewController *brickDetailVC;
+@property (nonatomic, strong) FBKVOController *KVOController;
 
 @end
 
@@ -89,7 +93,8 @@
     
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     self.navigationController.toolbar.tintColor = UIColor.orangeColor;
-//    self.navigationController.hidesBarsOnSwipe = YES;
+    [self setupDataSource];
+    [self setupObserver];
     [self setupCollectionView];
     [self setupSubViews];
     [self setupToolBar];
@@ -211,12 +216,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     
     [self.brickScaleTransition updateAnimationViewWithView:brickCell];
     if (!self.isEditing) {
-        self.selectedIndexPath =  indexPath;
-        BrickDetailViewController *brickDetailViewcontroller = [[BrickDetailViewController alloc] initWithBrickCell:brickCell];
-        brickDetailViewcontroller.delegate = self;
-        brickDetailViewcontroller.transitioningDelegate = self;
-        brickDetailViewcontroller.modalPresentationStyle = UIModalPresentationCustom;
-        [self presentViewController:brickDetailViewcontroller animated:YES completion:NULL];
+        self.lastSelectedIndexPath =  indexPath;
+        self.brickDetailVC.brick = brickCell.brick;
+        self.brickDetailVC.transitioningDelegate = self;
+        self.brickDetailVC.modalPresentationStyle = UIModalPresentationCustom;
+        [self presentViewController:self.brickDetailVC animated:YES completion:NULL];
     }
 }
 
@@ -326,40 +330,64 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     [self.collectionView performBatchUpdates:^{
         update();
     } completion:^(BOOL finished) {
-        if (complete) {
-            complete();
-        }
+        if (complete) { complete(); }
         [weakself.collectionView reloadData];
     }];
 }
 
-#pragma mark - BrickDetailViewController Delegate
+#pragma mark - BrickDetailViewController Key Value Observing
 
-- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
-                   didDeleteBrick:(BrickCell *)brickCell {
-    NSIndexPath *indexPath = [self.collectionView indexPathForCell:brickCell];
-    [self.scriptDataSource removeBrickAtIndexPath:indexPath];
+- (void)brickDetailViewControllerStateChanged
+{
+    switch (self.brickDetailVC.state) {
+        case BrickDetailViewControllerStateNone:
+        case BrickDetailViewControllerStateBrickUpdated:
+            return;
+            break;
+        case BrickDetailViewControllerStateDeleteScript:
+            [self removeScript];
+            break;
+        case BrickDetailViewControllerStateDeleteBrick:
+            [self removeBrick];
+            break;
+        case BrickDetailViewControllerStateCopyBrick:
+            
+            break;
+        case BrickDetailViewControllerStateAnimateBrick:
+            
+            break;
+        case BrickDetailViewControllerStateEditFormula:
+            
+            break;
+            
+        default:
+            break;
+    }
 }
 
-- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
-                  didDeleteScript:(BrickCell *)brickCell {
+- (void)removeBrick
+{
+    [self.scriptDataSource removeBrickAtIndexPath:self.lastSelectedIndexPath];
+}
+
+- (void)removeScript
+{
     
 }
 
-- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
-                     didCopyBrick:(BrickCell *)brickCell {
-    __weak ScriptCollectionViewController *weakself = self;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.3f * NSEC_PER_SEC)),
-                   dispatch_get_main_queue(), ^{ [weakself copyBrickCell:brickCell]; });
+- (void)copyBrick
+{
+    
 }
 
-- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
-                  didAnimateBrick:(BrickCell *)brickCell {
-    [self animate:self.selectedIndexPath brickCell:brickCell];
+- (void)animateBrick
+{
+    
 }
 
-- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
-                   didEditFormula:(BrickCell *)brickCell {
+- (void)editFormula
+{
+    BrickCell *brickCell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:self.lastSelectedIndexPath];
     FormulaEditorButton *formulaEditorButton = (FormulaEditorButton *)[UIUtil newDefaultBrickFormulaEditorWithFrame:CGRectMake(0, 0, 0, 0)
                                                                                                        ForBrickCell:brickCell
                                                                                                       AndLineNumber:0
@@ -444,35 +472,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 #pragma mark - Helpers
 
-//- (void)removeBrickAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    NSLog(@"Removing Brick at indexpath %@", indexPath);
-//    if (indexPath.item != 0) {
-//        Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
-//        if (script.brickList.count) {
-//            [self.collectionView performBatchUpdates:^{
-//                Brick *brick =[script.brickList objectAtIndex:indexPath.item - 1];
-//                if ([brick isKindOfClass:[LoopBeginBrick class]]) {
-//                    [self removeLoopBeginWithBrick:brick Script:script andIndexPath:indexPath];
-//                } else if ([brick isKindOfClass:[LoopEndBrick class]]) {
-//                    [self removeLoopEndWithBrick:brick Script:script andIndexPath:indexPath];
-//                }else if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
-//                    [self removeLogicBeginWithBrick:brick Script:script andIndexPath:indexPath];
-//                }else if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
-//                    [self removeLogicEndWithBrick:brick Script:script andIndexPath:indexPath];
-//                }else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
-//                    [self removeLogicElseWithBrick:brick Script:script andIndexPath:indexPath];
-//                }else{
-//                    [script.brickList removeObjectAtIndex:indexPath.item - 1];
-//                    [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
-//                }
-//            } completion:^(BOOL finished) {
-//                [self.collectionView reloadData];
-//            }];
-//        }
-//    }
-//}
-
 - (void)removeBricksWithIndexPaths:(NSArray *)indexPaths
 {
     NSArray *sortedIndexPaths = [indexPaths sortedArrayUsingSelector:@selector(compare:)];
@@ -541,11 +540,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [self.object.scriptList addObject:script];
         }
         
-        script = [self.object.scriptList objectAtIndex:self.selectedIndexPath.section];
+        script = [self.object.scriptList objectAtIndex:self.lastSelectedIndexPath.section];
         Brick *brick = (Brick*)brickOrScript;
         brick.object = self.object;
         
-        [self insertBrick:brick atIndexPath:self.selectedIndexPath intoScriptList:script completion:NULL];
+        [self insertBrick:brick atIndexPath:self.lastSelectedIndexPath intoScriptList:script completion:NULL];
         
     } else if ([brickOrScript isKindOfClass:[Script class]]) {
         Script *script = (Script*)brickOrScript;
@@ -1261,9 +1260,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - Setup
-- (void)setupCollectionView
+
+- (void)setupDataSource
 {
-    // Setup Data source.
     __weak ScriptCollectionViewController *weakself = self;
     ScriptCollectionViewConfigureBlock configureCellBlock = ^(id cell) {
         [weakself configureBrickCell:cell];
@@ -1274,7 +1273,26 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     self.scriptDataSource.delegate = self;
     self.collectionView.dataSource = self.scriptDataSource;
     self.collectionView.delegate = self;
+}
+
+
+- (void)setupObserver
+{
+    // create KVO controller with observer
+    FBKVOController *KVOController = [FBKVOController controllerWithObserver:self];
+    self.KVOController = KVOController;
     
+    self.brickDetailVC = [BrickDetailViewController brickDetailViewController];
+    
+    // observe clock date property
+    [self.KVOController observe:self.brickDetailVC
+                        keyPath:@"state"
+                        options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew
+                        action:@selector(brickDetailViewControllerStateChanged)];
+}
+
+- (void)setupCollectionView
+{
     self.collectionView.backgroundColor = [UIColor darkBlueColor];
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.scrollEnabled = YES;

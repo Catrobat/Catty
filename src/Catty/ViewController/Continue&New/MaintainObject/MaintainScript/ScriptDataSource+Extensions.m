@@ -119,7 +119,7 @@
 
 - (void)removeBrickAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSIndexSet *indexes = [NSIndexSet indexSetWithIndex:indexPath.item];
+    NSIndexSet *indexes = [NSIndexSet indexSetWithIndex:indexPath.item - 1];
     [self removeItemsAtIndexes:indexes inSection:indexPath.section];
 }
 
@@ -157,7 +157,7 @@
             // Removing this object.
             batchUpdates = ^{
                 oldUpdates();
-                [self informItemsRemovedAtIndexPaths:@[[NSIndexPath indexPathForItem:idx inSection:section]]];
+                [self informItemsRemovedAtIndexPaths:@[[NSIndexPath indexPathForItem:idx + 1 inSection:section]]];
             };
         } else {
             // Keeping this item.
@@ -173,11 +173,6 @@
     }];
     
     script.brickList = newBricks;
-    NSMutableArray *scriptList = [self.scriptList mutableCopy];
-    [scriptList replaceObjectAtIndex:section withObject:script];
-    
-    self.scriptList = scriptList;
-    
     [self informBatchUpdate:^{ batchUpdates(); }];
 }
 

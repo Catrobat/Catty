@@ -27,10 +27,8 @@
 #import "BrickCategoryViewController.h"
 
 @class SpriteObject, FXBlurView;
-@interface ScriptCollectionViewController : UICollectionViewController <UITextFieldDelegate,
-                                                                        iOSComboboxDelegate,
-                                                                        BrickCategoryViewControllerDelegate>
-//@property (nonatomic, strong) FXBlurView *blurView;
-@property (strong, nonatomic) SpriteObject *object;
+@interface ScriptCollectionViewController : UICollectionViewController <BrickCategoryViewControllerDelegate>
+
+@property (nonatomic, strong) SpriteObject *object;
 
 @end
