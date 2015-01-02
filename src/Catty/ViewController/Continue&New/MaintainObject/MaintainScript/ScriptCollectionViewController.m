@@ -35,7 +35,6 @@
 #import "BrickTransition.h"
 #import "BrickDetailViewController.h"
 #import "WhenScriptCell.h"
-#import "FXBlurView.h"
 #import "LanguageTranslationDefines.h"
 #import "PlaceHolderView.h"
 #import "BroadcastScriptCell.h"
@@ -82,7 +81,8 @@
 
 @implementation ScriptCollectionViewController
 
-#pragma mark - events
+#pragma mark - UICollectionViewControllerDelegate
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -102,17 +102,10 @@
     [self.view insertSubview:self.placeHolderView aboveSubview:self.collectionView];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    [self.collectionView reloadData];
-}
-
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     
     self.placeHolderView.frame = self.collectionView.frame;
-    self.blurView.frame = self.collectionView.frame;
 }
 
 #pragma mark - Show brick selection screen
@@ -1343,21 +1336,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - Init SubViews
-- (void)setupSubViews {
-    // BlurView
-    self.blurView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
-    self.blurView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    self.blurView.userInteractionEnabled = NO;
-    self.blurView.tintColor = [UIColor darkBlueColor];
-    self.blurView.underlyingView = self.collectionView;
-    self.blurView.blurEnabled = YES;
-    self.blurView.blurRadius = 50.f;
-    self.blurView.dynamic = YES;
-    self.blurView.updateInterval = 0.1f;
-    self.blurView.alpha = 0.5f;
-    self.blurView.hidden = YES;
-    [self.view addSubview:self.blurView];
-    
+- (void)setupSubViews {    
     self.placeHolderView = [[PlaceHolderView alloc] initWithTitle:kLocalizedScripts];
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
     

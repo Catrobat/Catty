@@ -30,7 +30,7 @@
 @interface ScriptCollectionViewController : UICollectionViewController <UITextFieldDelegate,
                                                                         iOSComboboxDelegate,
                                                                         BrickCategoryViewControllerDelegate>
-@property (nonatomic, strong) FXBlurView *blurView;
+//@property (nonatomic, strong) FXBlurView *blurView;
 @property (strong, nonatomic) SpriteObject *object;
 
 @end

@@ -26,18 +26,20 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "BrickCell.h"
 #import "BrickDetailViewController.h"
+#import "FXBlurView.h"
 #import "math.h"
 
 #define kTopAnimationOffset 20.0f
 
 @interface BrickTransition ()
 @property (nonatomic, strong) UIView *animateView;
+@property (nonatomic, strong) UIView *originalView;
+@property (nonatomic, strong) FXBlurView *blurView;
 
 @end
 
 @implementation BrickTransition {
-    CGFloat _animatedFromPositionY;
-    CGRect _animatedFromRect;
+    CGPoint _animatedFromPosition;
 }
 
 - (instancetype)initWithViewToAnimate:(UIView *)view
@@ -50,7 +52,11 @@
 
 - (void)updateAnimationViewWithView:(UIView *)view
 {
-    self.animateView = view;
+    self.animateView = [view snapshotViewAfterScreenUpdates:YES];
+    self.originalView = view;
+    
+    _animatedFromPosition = view.layer.position;
+    self.animateView.frame = view.frame;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
@@ -61,6 +67,7 @@
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
     ScriptCollectionViewController *scvc = nil;
+    
     switch (self.transitionMode) {
         case TransitionModePresent: {
             for (UIViewController *controller in fromVC.childViewControllers) {
@@ -69,44 +76,48 @@
                     break;
                 }
             }
-            scvc.blurView.hidden = NO;
             
-            [transitionContext.containerView addSubview:self.animateView];
-            [transitionContext.containerView addSubview:toVC.view];
+            CGPoint positionTo = self.animateView.layer.position;
+            positionTo.y = ceilf(CGRectGetMidY(self.animateView.layer.bounds) + kTopAnimationOffset);
             
-            CGPoint posBrickCell = self.animateView.layer.position;
-            _animatedFromPositionY = ceilf(self.animateView.frame.origin.y - scvc.collectionView.contentOffset.y);
-            _animatedFromRect = self.animateView.frame;
-            posBrickCell.y = CGRectGetMidY(self.animateView.layer.bounds) + kTopAnimationOffset;
-            fromVC.view.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
+            CGPoint origin = self.animateView.frame.origin;
+            origin.y -= scvc.collectionView.contentOffset.y;
             
-            UIView *animationView = [self.animateView snapshotViewAfterScreenUpdates:NO];
-            CGRect animationViewRect = [transitionContext.containerView convertRect:self.animateView.bounds fromView:self.animateView];
+            CGRect frame = self.animateView.frame;
+            frame.origin = origin;
+            self.animateView.frame = frame;
+            
+            CGRect animationViewRect = self.animateView.frame;
             if (scvc.collectionView.contentOffset.y >= 0.f) {
                 CGPoint origin = animationViewRect.origin;
                 origin.y -= scvc.collectionView.contentOffset.y;
                 animationViewRect.origin = origin;
             }
             
-            animationView.frame = animationViewRect;
-            [transitionContext.containerView addSubview:animationView];
+            self.originalView.hidden = YES;
+            [self setupBlurViewWithFrame:scvc.view.frame underLayingView:scvc.collectionView];
             
-            self.animateView.hidden = YES;
+            [transitionContext.containerView addSubview:self.blurView];
+            [transitionContext.containerView addSubview:toVC.view];
+            [transitionContext.containerView addSubview:self.animateView];
+            
             __weak BrickTransition *weakself = self;
-            [UIView animateWithDuration:0.5f delay:0.0f usingSpringWithDamping:10.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                animationView.layer.position = posBrickCell;
-                scvc.blurView.alpha = 1.0f;
-                scvc.collectionView.alpha = 0.5f;
-                scvc.navigationController.toolbar.alpha = 0.01f;
-                scvc.navigationController.navigationBar.alpha = 0.01f;
-            } completion:^(BOOL finished) {
-                [animationView removeFromSuperview];
-                scvc.blurView.dynamic = NO;
-                weakself.animateView.layer.position = posBrickCell;
-                weakself.animateView.hidden = NO;
-                [toVC.view addSubview:self.animateView];
-                [transitionContext completeTransition:YES];
-            }];
+            fromVC.view.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
+            
+            [UIView animateWithDuration:0.5f
+                                  delay:0.0f
+                 usingSpringWithDamping:10.0f
+                  initialSpringVelocity:0.0f
+                                options:UIViewAnimationOptionCurveEaseInOut
+                             animations:^{
+                                 weakself.animateView.layer.position = positionTo;
+                                 weakself.blurView.layer.opacity = 1.0f;
+                                 scvc.navigationController.toolbar.alpha = 0.01f;
+                                 scvc.navigationController.navigationBar.alpha = 0.01f;
+                             } completion:^(BOOL finished) {
+                                 weakself.blurView.dynamic = NO;
+                                 [transitionContext completeTransition:YES];
+                             }];
         }
             break;
             
@@ -118,29 +129,44 @@
                 }
             }
 
-            scvc.blurView.dynamic = YES;
+            self.blurView.dynamic = YES;
             toVC.view.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
             
-            CGPoint position = CGPointMake(self.animateView.layer.position.x, _animatedFromPositionY + CGRectGetMidY(self.animateView.bounds));
-            CGRect brickCellFrame = _animatedFromRect;
-    
+            CGPoint position = self.animateView.layer.position;
+            position.y = _animatedFromPosition.y;
+            position.y -= scvc.collectionView.contentOffset.y;
+            position.y = ceilf(position.y);
+            
             __weak BrickTransition *weakself = self;
-            [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:10.0f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                weakself.animateView.layer.position = position;
-                scvc.blurView.alpha = 0.0f;
-                scvc.collectionView.alpha = 1.0f;
-                scvc.navigationController.toolbar.alpha = 1.0f;
-                scvc.navigationController.navigationBar.alpha = 1.0f;
-            } completion:^(BOOL finished) {
-                weakself.animateView.frame = brickCellFrame;
-                scvc.blurView.hidden = YES;
-                weakself.animateView.hidden = NO;
-                [transitionContext completeTransition:YES];
-                [scvc viewDidAppear:NO];
-            }];
+            [UIView animateWithDuration:0.3f
+                                  delay:0.0f
+                 usingSpringWithDamping:10.0f
+                  initialSpringVelocity:0.0f
+                                options:UIViewAnimationOptionCurveEaseInOut
+                             animations:^{
+                                 weakself.animateView.layer.position = position;
+                                 weakself.blurView.layer.opacity = 0.0f;
+                                 scvc.navigationController.toolbar.alpha = 1.0f;
+                                 scvc.navigationController.navigationBar.alpha = 1.0f;
+                             } completion:^(BOOL finished) {
+                                 weakself.originalView.hidden = NO;
+                                 weakself.blurView = nil;
+                                 [transitionContext completeTransition:YES];
+                             }];
         }
             break;
     }
+}
+
+#pragma mark - Private
+
+- (void)setupBlurViewWithFrame:(CGRect)frame underLayingView:(UIView *)underlayingView
+{
+    self.blurView = [[FXBlurView alloc] initWithFrame:frame];
+    self.blurView.underlyingView = underlayingView;
+    self.blurView.tintColor = [UIColor blackColor];
+    self.blurView.blurRadius = 20.f;
+    self.blurView.layer.opacity = 0.0f;
 }
 
 @end
