@@ -26,8 +26,10 @@
 
 - (void)addBricks:(NSArray *)bricks toIndexPaths:(NSArray *)indexPaths;
 
-- (void)removeScriptAtSection:(NSUInteger)section;
+// Removes complete section.
+- (void)removeScriptsAtSections:(NSIndexSet *)sections;
 
+// Remove single brick.
 - (void)removeBrickAtIndexPath:(NSIndexPath *)indexPath;
 
 - (void)copyBrickAtIndexPath:(NSIndexPath *)atIndexPath toIndexPath:(NSIndexPath *)toIndexPath;

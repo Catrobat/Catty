@@ -71,7 +71,7 @@
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
 @property (nonatomic, strong) BrickTransition *brickScaleTransition;
-@property (nonatomic, strong) NSIndexPath *lastSelectedIndexPath;
+@property (nonatomic, strong) NSIndexPath *trackedIndexPath;
 @property (nonatomic, strong) AHKActionSheet *brickSelectionMenu;
 @property (nonatomic, strong) NSMutableDictionary *selectedIndexPaths;  // refactor
 @property (nonatomic, assign) BOOL selectedAllCells;  // Refactor
@@ -216,7 +216,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     
     [self.brickScaleTransition updateAnimationViewWithView:brickCell];
     if (!self.isEditing) {
-        self.lastSelectedIndexPath =  indexPath;
+        self.trackedIndexPath =  indexPath;
         self.brickDetailVC.brick = brickCell.brick;
         self.brickDetailVC.transitioningDelegate = self;
         self.brickDetailVC.modalPresentationStyle = UIModalPresentationCustom;
@@ -312,6 +312,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     NSLog(@"Script data source state changed: %i", state);
 }
 
+- (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didRemoveSections:(NSIndexSet *)sections
+{
+    [self.collectionView deleteSections:sections];
+}
+
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didRemoveItemsAtIndexPaths:(NSArray *)indexPaths
 {
     [self.collectionView deleteItemsAtIndexPaths:indexPaths];
@@ -367,12 +372,12 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)removeBrick
 {
-    [self.scriptDataSource removeBrickAtIndexPath:self.lastSelectedIndexPath];
+    [self.scriptDataSource removeBrickAtIndexPath:self.trackedIndexPath];
 }
 
 - (void)removeScript
 {
-    
+    [self.scriptDataSource removeScriptsAtSections:[NSIndexSet indexSetWithIndex:self.trackedIndexPath.section]];
 }
 
 - (void)copyBrick
@@ -387,7 +392,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)editFormula
 {
-    BrickCell *brickCell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:self.lastSelectedIndexPath];
+    BrickCell *brickCell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:self.trackedIndexPath];
     FormulaEditorButton *formulaEditorButton = (FormulaEditorButton *)[UIUtil newDefaultBrickFormulaEditorWithFrame:CGRectMake(0, 0, 0, 0)
                                                                                                        ForBrickCell:brickCell
                                                                                                       AndLineNumber:0
@@ -540,11 +545,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [self.object.scriptList addObject:script];
         }
         
-        script = [self.object.scriptList objectAtIndex:self.lastSelectedIndexPath.section];
+        script = [self.object.scriptList objectAtIndex:self.trackedIndexPath.section];
         Brick *brick = (Brick*)brickOrScript;
         brick.object = self.object;
         
-        [self insertBrick:brick atIndexPath:self.lastSelectedIndexPath intoScriptList:script completion:NULL];
+        [self insertBrick:brick atIndexPath:self.trackedIndexPath intoScriptList:script completion:NULL];
         
     } else if ([brickOrScript isKindOfClass:[Script class]]) {
         Script *script = (Script*)brickOrScript;

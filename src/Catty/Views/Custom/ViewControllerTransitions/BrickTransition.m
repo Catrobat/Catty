@@ -166,6 +166,7 @@
     self.blurView.underlyingView = underlayingView;
     self.blurView.tintColor = [UIColor blackColor];
     self.blurView.blurRadius = 20.f;
+    self.blurView.updateInterval = 0.2f;
     self.blurView.layer.opacity = 0.0f;
 }
 

@@ -39,7 +39,8 @@ typedef NS_ENUM(NSUInteger, ScriptDataSourceState) {
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didInsertItemsAtIndexPaths:(NSArray *)indexPaths;
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didRemoveItemsAtIndexPaths:(NSArray *)indexPaths;
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didCopyItemsAtIndexPaths:(NSArray *)indexPaths;
-- (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didMoveItemAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)newIndexPath;
+- (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didMoveItemAtIndexPath:(NSIndexPath *)fromIndexPath
+                                                                         toIndexPath:(NSIndexPath *)newIndexPath;
 
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didInsertSections:(NSIndexSet *)sections;
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didRemoveSections:(NSIndexSet *)sections;

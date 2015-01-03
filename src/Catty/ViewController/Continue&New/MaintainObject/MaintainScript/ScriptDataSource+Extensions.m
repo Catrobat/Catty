@@ -101,7 +101,7 @@
 
 - (Script *)scriptAtSection:(NSUInteger)section
 {
-    NSAssert(self.scriptList.count, @"No bricks in Scriptlist");
+    CBAssert(self.scriptList.count, @"No bricks in Scriptlist");
     return (Script *)[self.scriptList objectAtIndex:section];
 }
 
@@ -112,9 +112,9 @@
     self.state = ScriptDataSourceStateBrickAdded;
 }
 
-- (void)removeScriptAtSection:(NSUInteger)section
+- (void)removeScriptsAtSections:(NSIndexSet *)sections
 {
-    self.state = ScriptDataSourceStateScriptDeleted;
+    [self removeSectionAtIndexes:sections];
 }
 
 - (void)removeBrickAtIndexPath:(NSIndexPath *)indexPath
@@ -140,6 +140,31 @@
 
 #pragma mark - Private
 
+- (void)removeSectionAtIndexes:(NSIndexSet *)sections
+{
+    NSMutableIndexSet *sectionIndexes = [NSMutableIndexSet indexSetWithIndexesInRange:NSMakeRange(0, self.numberOfSections)];
+    NSMutableArray *scriptList = [self.scriptList mutableCopy];
+    
+    __block dispatch_block_t batchUpdates = ^{};
+    batchUpdates = [batchUpdates copy];
+    
+    __weak typeof(&*self) weakself = self;
+    [sections enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+        dispatch_block_t oldUpdates = batchUpdates;
+        if ([sectionIndexes containsIndex:idx]) {
+            batchUpdates = ^{
+                oldUpdates();
+                [scriptList removeObjectAtIndex:idx];
+                weakself.scriptList = scriptList;
+                [weakself informSectionsRemoved:[NSIndexSet indexSetWithIndex:idx]];
+            };
+        }
+        batchUpdates = [batchUpdates copy];
+    }];
+    
+    [self informBatchUpdate:^{ batchUpdates(); }];
+}
+
 - (void)removeItemsAtIndexes:(NSIndexSet *)indexes inSection:(NSUInteger)section
 {
     Script *script = [self.scriptList objectAtIndex:section];
@@ -151,13 +176,14 @@
     __block dispatch_block_t batchUpdates = ^{};
     batchUpdates = [batchUpdates copy];
     
+    __weak typeof(&*self) weakself = self;
     [bricks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         dispatch_block_t oldUpdates = batchUpdates;
         if ([indexes containsIndex:idx]) {
             // Removing this object.
             batchUpdates = ^{
                 oldUpdates();
-                [self informItemsRemovedAtIndexPaths:@[[NSIndexPath indexPathForItem:idx + 1 inSection:section]]];
+                [weakself informItemsRemovedAtIndexPaths:@[[NSIndexPath indexPathForItem:idx + 1 inSection:section]]];
             };
         } else {
             // Keeping this item.
@@ -165,7 +191,7 @@
             [newBricks addObject:obj];
             batchUpdates = ^{
                 oldUpdates();
-                [self informItemMovedFromIndexPath:[NSIndexPath indexPathForItem:idx + 1 inSection:section]
+                [weakself informItemMovedFromIndexPath:[NSIndexPath indexPathForItem:idx + 1 inSection:section]
                                       toIndexPaths:[NSIndexPath indexPathForItem:newIdx + 1 inSection:section]];
             };
         }
@@ -174,6 +200,16 @@
     
     script.brickList = newBricks;
     [self informBatchUpdate:^{ batchUpdates(); }];
+}
+
+- (void)informSectionsRemoved:(NSIndexSet *)sections
+{
+    CBAssertIfNotMainThread();
+    
+    id<ScriptDataSourceDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(scriptDataSource:didRemoveSections:)]) {
+        [delegate scriptDataSource:self didRemoveSections:sections];
+    }
 }
 
 - (void)informItemsRemovedAtIndexPaths:(NSArray *)removedIndexPaths
