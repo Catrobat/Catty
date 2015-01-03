@@ -32,7 +32,7 @@
 // Remove single brick.
 - (void)removeBrickAtIndexPath:(NSIndexPath *)indexPath;
 
-- (void)copyBrickAtIndexPath:(NSIndexPath *)atIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
+- (void)copyBrickAtIndexPath:(NSIndexPath *)atIndexPath;
 
 // Script with brick list array.
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath;
@@ -42,7 +42,7 @@
 
 - (NSArray *)brickListInScriptAtIndexPath:(NSIndexPath *)indexPath;
 
-// Returns nil if Scriptbrick (at index 0 at section).
+// Returns nil if Scriptbrick (index 0 in section).
 - (Brick *)brickInScriptAtIndexPath:(NSIndexPath *)indexPath;
 
 - (Script *)scriptAtSection:(NSUInteger)section;

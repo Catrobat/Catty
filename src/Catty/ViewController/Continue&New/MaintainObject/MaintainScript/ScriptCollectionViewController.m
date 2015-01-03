@@ -317,6 +317,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     [self.collectionView deleteSections:sections];
 }
 
+- (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didInsertItemsAtIndexPaths:(NSArray *)indexPaths
+{
+    [self.collectionView insertItemsAtIndexPaths:indexPaths];
+}
+
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didRemoveItemsAtIndexPaths:(NSArray *)indexPaths
 {
     [self.collectionView deleteItemsAtIndexPaths:indexPaths];
@@ -356,7 +361,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [self removeBrick];
             break;
         case BrickDetailViewControllerStateCopyBrick:
-            
+            [self copyBrick];
             break;
         case BrickDetailViewControllerStateAnimateBrick:
             
@@ -382,7 +387,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)copyBrick
 {
-    
+    [self.scriptDataSource copyBrickAtIndexPath:self.trackedIndexPath];
 }
 
 - (void)animateBrick
@@ -520,73 +525,73 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
-- (void)copyBrickCell:(BrickCell*)brickCell
-{
-    if (! brickCell) {
-        return;
-    }
-
-    // convert brickCell to brick
-    NSString *brickCellClassName = NSStringFromClass([brickCell class]);
-    NSString *brickOrScriptClassName = [brickCellClassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""];
-    id brickOrScript = [[NSClassFromString(brickOrScriptClassName) alloc] init];
-    if (! [brickOrScript conformsToProtocol:@protocol(BrickProtocol)]) {
-        NSError(@"Given object does not implement BrickProtocol...");
-        return;
-    }
-
-    if ([brickOrScript isKindOfClass:[Brick class]]) {
-        Script *script = nil;
-        // automatically create new script if the object does not contain any of them
-        if (! [self.object.scriptList count]) {
-            script = [[StartScript alloc] init];
-            script.allowRunNextAction = YES;
-            script.object = self.object;
-            [self.object.scriptList addObject:script];
-        }
-        
-        script = [self.object.scriptList objectAtIndex:self.trackedIndexPath.section];
-        Brick *brick = (Brick*)brickOrScript;
-        brick.object = self.object;
-        
-        [self insertBrick:brick atIndexPath:self.trackedIndexPath intoScriptList:script completion:NULL];
-        
-    } else if ([brickOrScript isKindOfClass:[Script class]]) {
-        Script *script = (Script*)brickOrScript;
-        script.object = self.object;
-        [self.object.scriptList addObject:script];
-    } else {
-        NSError(@"Unknown class type given...");
-        return;
-    }
-    
-    self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
-}
-
-- (void)insertBrick:(Brick *)brick atIndexPath:(NSIndexPath *)indexPath intoScriptList:(Script *)script completion:(void(^)())completionBlock
-{
-    for (BrickCell *cell in self.collectionView.visibleCells) {
-        [cell animateBrick:NO];
-    }
-    
-    __weak ScriptCollectionViewController *weakself = self;
-    [self.collectionView performBatchUpdates:^{
-        if (!script.brickList.count) {
-            [script.brickList addObject:brick];
-            [weakself.collectionView insertItemsAtIndexPaths:@[indexPath]];
-        } else {
-            [script.brickList insertObject:brick atIndex:indexPath.item];
-            [weakself.collectionView insertItemsAtIndexPaths:@[indexPath]];
-        }
-    } completion:^(BOOL finished) {
-        if (finished) {
-            NSIndexPath *newCellIndexPath = [NSIndexPath indexPathForItem:indexPath.item + 1 inSection:indexPath.section];
-            [weakself.collectionView reloadItemsAtIndexPaths:@[indexPath, newCellIndexPath]];
-            if (completionBlock) completionBlock();
-        }
-    }];
-}
-
+//- (void)copyBrickCell:(BrickCell*)brickCell
+//{
+//    if (! brickCell) {
+//        return;
+//    }
+//
+//    // convert brickCell to brick
+//    NSString *brickCellClassName = NSStringFromClass([brickCell class]);
+//    NSString *brickOrScriptClassName = [brickCellClassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""];
+//    id brickOrScript = [[NSClassFromString(brickOrScriptClassName) alloc] init];
+//    if (! [brickOrScript conformsToProtocol:@protocol(BrickProtocol)]) {
+//        NSError(@"Given object does not implement BrickProtocol...");
+//        return;
+//    }
+//
+//    if ([brickOrScript isKindOfClass:[Brick class]]) {
+//        Script *script = nil;
+//        // automatically create new script if the object does not contain any of them
+//        if (! [self.object.scriptList count]) {
+//            script = [[StartScript alloc] init];
+//            script.allowRunNextAction = YES;
+//            script.object = self.object;
+//            [self.object.scriptList addObject:script];
+//        }
+//        
+//        script = [self.object.scriptList objectAtIndex:self.trackedIndexPath.section];
+//        Brick *brick = (Brick*)brickOrScript;
+//        brick.object = self.object;
+//        
+//        [self insertBrick:brick atIndexPath:self.trackedIndexPath intoScriptList:script completion:NULL];
+//        
+//    } else if ([brickOrScript isKindOfClass:[Script class]]) {
+//        Script *script = (Script*)brickOrScript;
+//        script.object = self.object;
+//        [self.object.scriptList addObject:script];
+//    } else {
+//        NSError(@"Unknown class type given...");
+//        return;
+//    }
+//    
+//    self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
+//}
+//
+//- (void)insertBrick:(Brick *)brick atIndexPath:(NSIndexPath *)indexPath intoScriptList:(Script *)script completion:(void(^)())completionBlock
+//{
+//    for (BrickCell *cell in self.collectionView.visibleCells) {
+//        [cell animateBrick:NO];
+//    }
+//    
+//    __weak ScriptCollectionViewController *weakself = self;
+//    [self.collectionView performBatchUpdates:^{
+//        if (!script.brickList.count) {
+//            [script.brickList addObject:brick];
+//            [weakself.collectionView insertItemsAtIndexPaths:@[indexPath]];
+//        } else {
+//            [script.brickList insertObject:brick atIndex:indexPath.item];
+//            [weakself.collectionView insertItemsAtIndexPaths:@[indexPath]];
+//        }
+//    } completion:^(BOOL finished) {
+//        if (finished) {
+//            NSIndexPath *newCellIndexPath = [NSIndexPath indexPathForItem:indexPath.item + 1 inSection:indexPath.section];
+//            [weakself.collectionView reloadItemsAtIndexPaths:@[indexPath, newCellIndexPath]];
+//            if (completionBlock) completionBlock();
+//        }
+//    }];
+//}
+//
 
 - (NSString *)keyWithSelectIndexPath:(NSIndexPath *)indexPath
 {

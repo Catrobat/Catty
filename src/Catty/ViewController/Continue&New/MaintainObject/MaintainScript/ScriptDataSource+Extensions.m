@@ -23,6 +23,7 @@
 #import "ScriptDataSource+Extensions.h"
 #import "ScriptDataSource_Private.h"
 #import "Util.h"
+#import "Brick.h"
 
 @interface ScriptDataSource ()
 @property(nonatomic, assign) ScriptDataSourceState state;
@@ -123,9 +124,26 @@
     [self removeItemsAtIndexes:indexes inSection:indexPath.section];
 }
 
-- (void)copyBrickAtIndexPath:(NSIndexPath *)atIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+- (void)copyBrickAtIndexPath:(NSIndexPath *)atIndexPath
 {
-    self.state = ScriptDataSourceStateBrickCopied;
+    // TODO: validate which extra bricks must be added (if else, if end, loop begin, loop end...)
+    Brick *oldBrick = [self brickInScriptAtIndexPath:atIndexPath];
+    CBAssert(oldBrick != nil, @"Error copy brick, brick == nil.");
+    
+    // TODO: Copy brick
+    Brick *newBrick = [[oldBrick class] new];
+    
+    // Example adding extra bricks
+    /*
+    Brick *newBrick2 = [[oldBrick class] new];
+    Brick *newBrick3 = [[oldBrick class] new];
+    */
+    
+    NSArray *addedBricks = @[ newBrick ];
+    
+    NSUInteger startIdx = (NSUInteger)atIndexPath.item - 1;
+    NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(startIdx, addedBricks.count)];
+    [self insertBricks:addedBricks atIndexes:indexes inSection:atIndexPath.section];
 }
 
 #pragma mark - Checks
@@ -167,7 +185,7 @@
 
 - (void)removeItemsAtIndexes:(NSIndexSet *)indexes inSection:(NSUInteger)section
 {
-    Script *script = [self.scriptList objectAtIndex:section];
+    Script *script = [self scriptAtSection:section];
     NSArray *bricks = script.brickList;
     
     NSUInteger newCount = bricks.count - indexes.count;
@@ -202,6 +220,24 @@
     [self informBatchUpdate:^{ batchUpdates(); }];
 }
 
+- (void)insertBricks:(NSArray *)bricks atIndexes:(NSIndexSet *)indexes inSection:(NSUInteger)section
+{
+    Script *script = [self scriptAtSection:section];
+    NSMutableArray *brickList = [script.brickList mutableCopy];
+    [brickList insertObjects:bricks atIndexes:indexes];
+    
+    script.brickList = brickList;
+    
+    NSMutableArray *insertedIndexPaths = [[NSMutableArray alloc] initWithCapacity:indexes.count];
+    [indexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+            [insertedIndexPaths addObject:[NSIndexPath indexPathForItem:idx + 1 inSection:section]];
+    }];
+    
+    [self informItemsInsertedAtIndexPaths:insertedIndexPaths];
+}
+
+#pragma mark - Inform collectionview about changes
+
 - (void)informSectionsRemoved:(NSIndexSet *)sections
 {
     CBAssertIfNotMainThread();
@@ -229,6 +265,16 @@
     id<ScriptDataSourceDelegate> delegate = self.delegate;
     if ([delegate respondsToSelector:@selector(scriptDataSource:didMoveItemAtIndexPath:toIndexPath:)]) {
         [delegate scriptDataSource:self didMoveItemAtIndexPath:indexPath toIndexPath:newIndexPath];
+    }
+}
+
+- (void)informItemsInsertedAtIndexPaths:(NSArray *)insertedIndexPaths
+{
+    CBAssertIfNotMainThread();
+    
+    id<ScriptDataSourceDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(scriptDataSource:didInsertItemsAtIndexPaths:)]) {
+        [delegate scriptDataSource:self didInsertItemsAtIndexPaths:insertedIndexPaths];
     }
 }
 
