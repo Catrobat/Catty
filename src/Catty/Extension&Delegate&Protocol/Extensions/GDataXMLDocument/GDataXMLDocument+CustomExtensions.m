@@ -20,31 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "XMLSerializerAbstractTest.h"
+#import "GDataXMLDocument+CustomExtensions.h"
 #import "GDataXMLElement+CustomExtensions.h"
-#import "CBXMLSerializer.h"
 
-@implementation XMLSerializerAbstractTest
+@implementation GDataXMLDocument (CustomExtensions)
 
-// TODO: use and implement this
-- (BOOL)isXMLElement:(GDataXMLElement*)xmlElement equalToXMLElementForXPath:(NSString*)xPath inProgramForXML:(NSString*)program
+- (BOOL)isEqualToDocument:(GDataXMLDocument*)document
 {
-    GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:program]];
-    GDataXMLElement *xml = [document rootElement];
-    
-    NSArray *array = [xml nodesForXPath:xPath error:nil];
-    XCTAssertEqual([array count], 1);
-    
-    GDataXMLElement *xmlElementFromFile = [array objectAtIndex:0];
-    return [xmlElement isEqualToElement:xmlElementFromFile];
-}
-
-- (void)saveProgram:(Program*)program
-{
-    // TODO: find correct serializer class dynamically
-    NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [program projectPath], kProgramCodeFileName];
-    id<CBSerializerProtocol> serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath];
-    [serializer serializeProgram:program];
+    if(![self.XMLData isEqualToData:document.XMLData]) {
+        NSDebug(@"GDataXMLDocuments are not equal: XMLData objects are not equal");
+        return false;
+    }
+    return [self.rootElement isEqualToElement:document.rootElement];
 }
 
 @end

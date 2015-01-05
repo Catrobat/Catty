@@ -199,4 +199,43 @@
     [self addChild:child];
 }
 
+- (BOOL)isEqualToElement:(GDataXMLElement*)node
+{
+    NSUInteger attributesCount = [self.attributes count];
+    if(attributesCount != [node.attributes count]) {
+        NSDebug(@"GDataXMLElements not equal: different number of attributes!");
+        return false;
+    }
+
+    for(int i = 0; i < attributesCount; i++) {
+        GDataXMLNode *firstAttribute = [self.attributes objectAtIndex:i];
+        GDataXMLNode *secondAttribute = [node.attributes objectAtIndex:i];
+        if(![firstAttribute.name isEqualToString:secondAttribute.name]) {
+            NSDebug(@"GDataXMLElements not equal: no node attribute with name %@!", firstAttribute.name);
+            return false;
+        }
+        if(![firstAttribute.stringValue isEqualToString:secondAttribute.stringValue]) {
+            NSDebug(@"GDataXMLElements not equal: string value for attribute with name %@ not equal!", firstAttribute.name);
+            return false;
+        }
+    }
+    
+    if(![self.stringValue isEqualToString:node.stringValue]) {
+        NSDebug(@"GDataXMLElements not equal: different string values!");
+        return false;
+    }
+    
+    NSUInteger childrenCount = [self.children count];
+    if(childrenCount != [node.children count]) {
+        NSDebug(@"GDataXMLElements not equal: different number of children!");
+        return false;
+    }
+    for(int i = 0; i < childrenCount; i++) {
+        GDataXMLElement *firstChild = [self.children objectAtIndex:i];
+        GDataXMLElement *secondChild = [node.children objectAtIndex:i];
+        return [firstChild isEqual:secondChild];
+    }
+    return true;
+}
+
 @end

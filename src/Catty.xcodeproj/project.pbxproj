@@ -24,6 +24,7 @@
 		4C1608B21A09621A002C7032 /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B01A09621A002C7032 /* ValidFormulaList.xml */; };
 		4C1608B31A09621A002C7032 /* ValidProgram.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B11A09621A002C7032 /* ValidProgram.xml */; };
 		4C3275FA1A1360640091C428 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */; };
+		4C6066351A5A9E6700F486CE /* GDataXMLDocument+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066341A5A9E6700F486CE /* GDataXMLDocument+CustomExtensions.m */; };
 		92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A461A42F2A3008C771A /* BSKeyboardControls.m */; };
 		92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A481A42F2A3008C771A /* iOSCombobox.m */; };
 		9238C5831A3AE9920099F061 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */; };
@@ -549,6 +550,8 @@
 		4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidProgramAllBricks.xml; path = "Resources/Test Resources/ValidProgramAllBricks.xml"; sourceTree = "<group>"; };
 		4C3AEF2E198E7EDD00604ABF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaFunctionsTest.m; sourceTree = "<group>"; };
+		4C6066331A5A9E6700F486CE /* GDataXMLDocument+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GDataXMLDocument+CustomExtensions.h"; path = "Catty/Extension&Delegate&Protocol/Extensions/GDataXMLDocument/GDataXMLDocument+CustomExtensions.h"; sourceTree = SOURCE_ROOT; };
+		4C6066341A5A9E6700F486CE /* GDataXMLDocument+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GDataXMLDocument+CustomExtensions.m"; path = "Catty/Extension&Delegate&Protocol/Extensions/GDataXMLDocument/GDataXMLDocument+CustomExtensions.m"; sourceTree = SOURCE_ROOT; };
 		4C9E2D1E198EA6B600455B77 /* SMPageControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SMPageControl.license; sourceTree = "<group>"; };
 		4C9E2D20198EACE200455B77 /* EAIntroView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EAIntroView.license; sourceTree = "<group>"; };
 		4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDKNotifyHUD.license; sourceTree = "<group>"; };
@@ -1626,6 +1629,16 @@
 			name = Formula;
 			sourceTree = "<group>";
 		};
+		4C60662F1A5A9E0700F486CE /* GDataXMLDocument+CustomExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				4C6066331A5A9E6700F486CE /* GDataXMLDocument+CustomExtensions.h */,
+				4C6066341A5A9E6700F486CE /* GDataXMLDocument+CustomExtensions.m */,
+			);
+			name = "GDataXMLDocument+CustomExtensions";
+			path = GDataXMLNode;
+			sourceTree = "<group>";
+		};
 		4C9E2D1D198EA6B600455B77 /* Licenses */ = {
 			isa = PBXGroup;
 			children = (
@@ -2073,6 +2086,7 @@
 				92FF2E091A24C5A700093DA7 /* Brick+UnitTestingExtensions */,
 				92FF2E0B1A24C5A700093DA7 /* CAgradient+Extension */,
 				92FF2E0E1A24C5A700093DA7 /* GDataXMLElement+CustomExtensions */,
+				4C60662F1A5A9E0700F486CE /* GDataXMLDocument+CustomExtensions */,
 				92FF2E111A24C5A700093DA7 /* NSData+Hashes */,
 				92FF2E141A24C5A700093DA7 /* NSDate+Extension */,
 				92FF2E171A24C5A700093DA7 /* NSMutableArray+CustomExtension */,
@@ -4516,6 +4530,7 @@
 				92FF329B1A24E2F400093DA7 /* PointToBrickCell.m in Sources */,
 				92FF32571A24E2F400093DA7 /* AHKActionSheetViewController.m in Sources */,
 				CAA4A4C71A43B45E002A69A0 /* SetBrightnessBrick+CBXMLHandler.m in Sources */,
+				4C6066351A5A9E6700F486CE /* GDataXMLDocument+CustomExtensions.m in Sources */,
 				92FF32931A24E2F400093DA7 /* ChangeSizeByNBrickCell.m in Sources */,
 				92FF2E3D1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m in Sources */,
 				92FF329C1A24E2F400093DA7 /* SetSizeToBrickCell.m in Sources */,
