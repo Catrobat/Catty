@@ -21,6 +21,7 @@
  */
 
 #import "GDataXMLElement+CustomExtensions.h"
+#import "GDataXMLNode+CustomExtensions.h"
 #import "CBXMLContext.h"
 #import "CBXMLValidator.h"
 #import "CBXMLPositionStack.h"
@@ -201,40 +202,48 @@
 
 - (BOOL)isEqualToElement:(GDataXMLElement*)node
 {
+    if(![self.decodedName isEqualToString:node.decodedName]) {
+        NSDebug(@"GDataXMLElements not equal: tag names not equal (%@ != %@)!", self.name, node.name);
+    }
+    
     NSUInteger attributesCount = [self.attributes count];
     if(attributesCount != [node.attributes count]) {
         NSDebug(@"GDataXMLElements not equal: different number of attributes!");
         return false;
     }
-
     for(int i = 0; i < attributesCount; i++) {
         GDataXMLNode *firstAttribute = [self.attributes objectAtIndex:i];
         GDataXMLNode *secondAttribute = [node.attributes objectAtIndex:i];
-        if(![firstAttribute.name isEqualToString:secondAttribute.name]) {
-            NSDebug(@"GDataXMLElements not equal: no node attribute with name %@!", firstAttribute.name);
+        if(![firstAttribute isEqualToNode:secondAttribute])
             return false;
-        }
-        if(![firstAttribute.stringValue isEqualToString:secondAttribute.stringValue]) {
-            NSDebug(@"GDataXMLElements not equal: string value for attribute with name %@ not equal!", firstAttribute.name);
-            return false;
-        }
-    }
-    
-    if(![self.stringValue isEqualToString:node.stringValue]) {
-        NSDebug(@"GDataXMLElements not equal: different string values!");
-        return false;
     }
     
     NSUInteger childrenCount = [self.children count];
     if(childrenCount != [node.children count]) {
-        NSDebug(@"GDataXMLElements not equal: different number of children!");
+        NSLog(@"GDataXMLElements not equal: different number of children for element with name %@!", self.name);
         return false;
     }
     for(int i = 0; i < childrenCount; i++) {
-        GDataXMLElement *firstChild = [self.children objectAtIndex:i];
-        GDataXMLElement *secondChild = [node.children objectAtIndex:i];
-        return [firstChild isEqual:secondChild];
+        if([[self.children objectAtIndex:i] isKindOfClass:[GDataXMLElement class]]) {
+            GDataXMLElement *firstChild = [self.children objectAtIndex:i];
+            GDataXMLElement *secondChild = [node.children objectAtIndex:i];
+            if(![firstChild isEqualToElement:secondChild])
+                return false;
+        } else if([[self.children objectAtIndex:i] isKindOfClass:[GDataXMLNode class]]) {
+            GDataXMLNode *firstChild = [self.children objectAtIndex:i];
+            GDataXMLElement *secondChild = [node.children objectAtIndex:i];
+            if(![firstChild isEqualToNode:secondChild])
+                return false;
+        } else {
+            NSDebug(@"GDataXMLElements not equal: invalid class name %@!", [[self.children objectAtIndex:i] class]);
+            return false;
+        }
     }
+    if(childrenCount == 0) {
+        if(![(GDataXMLNode*)self isEqualToNode:(GDataXMLNode*)node])
+            return false;
+    }
+    
     return true;
 }
 

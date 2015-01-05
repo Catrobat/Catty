@@ -20,18 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "GDataXMLDocument+CustomExtensions.h"
-#import "GDataXMLElement+CustomExtensions.h"
+#import "GDataXMLNode.h"
 
-@implementation GDataXMLDocument (CustomExtensions)
+@interface GDataXMLNode (CustomExtensions)
 
-- (BOOL)isEqualToDocument:(GDataXMLDocument*)document
-{
-    if(![self.XMLData isEqualToData:document.XMLData]) {
-        NSDebug(@"GDataXMLDocuments are not equal: XMLData objects are not equal");
-        return false;
-    }
-    return [self.rootElement isEqualToElement:document.rootElement];
-}
+- (BOOL)isEqualToNode:(GDataXMLNode*)node;
+- (NSString*)decodedStringValue;
+- (NSString*)decodedName;
++ (NSString*)decodedStringForString:(NSString*)xmlString;
 
 @end

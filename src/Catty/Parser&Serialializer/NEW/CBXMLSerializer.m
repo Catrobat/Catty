@@ -53,28 +53,34 @@
 #define SIMULATOR_DEBUGGING_BASE_PATH @"/Users/ralph/Desktop/"
 
 #pragma mark - Program serialization
++ (GDataXMLDocument*)xmlDocumentForProgram:(Program*)program
+{
+    CBXMLContext *context = [CBXMLContext new];
+    GDataXMLElement *programElement = [program xmlElementWithContext:context];
+    
+    // sanity check => stack must contain only one element!!
+    // only <program> root-element must remain on the stack!!
+    if (context.currentPositionStack.numberOfXmlElements != 1) {
+        NSError(@"FATAL! Unable to serialize program. Current position stack contains no or more than \
+                1 element but should contain only one element named 'program'");
+        abort();
+    }
+    NSString *remainingXmlElementName = [context.currentPositionStack popXmlElementName];
+    if (! [remainingXmlElementName isEqualToString:@"program"]) {
+        NSError(@"FATAL! Unable to serialize program. Current position stack contains an element named \
+                '%@' but should contain an element with name 'program'", remainingXmlElementName);
+        abort();
+    }
+    
+    GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithRootElement:programElement];
+    return document;
+}
+
 - (void)serializeProgram:(Program*)program
 {
     @try {
         NSInfo(@"Saving Program...");
-        CBXMLContext *context = [CBXMLContext new];
-        GDataXMLElement *programElement = [program xmlElementWithContext:context];
-
-        // sanity check => stack must contain only one element!!
-        // only <program> root-element must remain on the stack!!
-        if (context.currentPositionStack.numberOfXmlElements != 1) {
-            NSError(@"FATAL! Unable to serialize program. Current position stack contains no or more than \
-                    1 element but should contain only one element named 'program'");
-            abort();
-        }
-        NSString *remainingXmlElementName = [context.currentPositionStack popXmlElementName];
-        if (! [remainingXmlElementName isEqualToString:@"program"]) {
-            NSError(@"FATAL! Unable to serialize program. Current position stack contains an element named \
-                    '%@' but should contain an element with name 'program'", remainingXmlElementName);
-            abort();
-        }
-
-        GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithRootElement:programElement];
+        GDataXMLDocument *document = [[self class] xmlDocumentForProgram:program];
         NSString *xmlString = [NSString stringWithFormat:@"%@\n%@", kCatrobatHeaderXMLDeclaration,
                                [document.rootElement XMLStringPrettyPrinted:YES]];
 

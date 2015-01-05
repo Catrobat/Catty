@@ -21,8 +21,8 @@
  */
 
 #import "XMLSerializerAbstractTest.h"
-#import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLSerializer.h"
+#import "Program+CBXMLHandler.h"
 
 @implementation XMLSerializerAbstractTest
 
@@ -39,12 +39,26 @@
     return [xmlElement isEqualToElement:xmlElementFromFile];
 }
 
+- (BOOL)isProgram:(Program*)firstProgram equalToXML:(NSString*)secondProgram
+{
+    GDataXMLDocument *firstDocument = [CBXMLSerializer xmlDocumentForProgram:firstProgram];
+    GDataXMLDocument *secondDocument = [self getXMLDocumentForPath:[self getPathForXML:secondProgram]];
+    return [firstDocument.rootElement isEqualToElement:secondDocument.rootElement];
+}
+
 - (void)saveProgram:(Program*)program
 {
     // TODO: find correct serializer class dynamically
     NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [program projectPath], kProgramCodeFileName];
     id<CBSerializerProtocol> serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath];
     [serializer serializeProgram:program];
+}
+
+- (void)testParseXMLAndSerializeProgramAndCompareXML:(NSString*)xmlFile
+{
+    Program *program = [self getProgramForXML:xmlFile];
+    BOOL equal = [self isProgram:program equalToXML:xmlFile];
+    XCTAssertTrue(equal, @"Serialized program and XML are not equal (%@)", xmlFile);
 }
 
 @end

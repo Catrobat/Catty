@@ -30,148 +30,134 @@
 
 @implementation XMLSerializerBlackBoxTests
 
-//- (void)testAirFight05
-//{
-//    Program *program093 = [self getProgramForXML:@"Air_fight_0.5_093"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testAirplaneWithShadow
-//{
-//    Program *program093 = [self getProgramForXML:@"Airplane_with_shadow_093"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testCompass01
-//{
-//    Program *program093 = [self getProgramForXML:@"Compass_0.1_093"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testDemonstration
-//{
-//    Program *program093 = [self getProgramForXML:@"Demonstration_093"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testDrinkMoreWater
-//{
-//    Program *program093 = [self getProgramForXML:@"Drink_more_water_093"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testEncapsulated
-//{
-//    Program *program093 = [self getProgramForXML:@"Encapsulated"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testFlapPacMan
-//{
-//    Program *program093 = [self getProgramForXML:@"Flap_Pac_Man_093"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testFlappy30
-//{
-//    Program *program093 = [self getProgramForXML:@"Flappy_v3.0_093"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testGalaxyWar
-//{
-//    Program *program093 = [self getProgramForXML:@"Galaxy_War_093"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testGossipGirl
-//{
-//    Program *program093 = [self getProgramForXML:@"Gossip_Girl_093"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testMemory
-//{
-//    Program *program093 = [self getProgramForXML:@"Memory_093"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testMinecraftWorkInProgress
-//{
-//    Program *program093 = [self getProgramForXML:@"Minecraft_Work_In_Progress_093"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testMinions_
-//{
-//    Program *program093 = [self getProgramForXML:@"Minions__093"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testNyancat10
-//{
-//    Program *program093 = [self getProgramForXML:@"Nyancat_1.0_093"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testPiano
-//{
-//    Program *program093 = [self getProgramForXML:@"Piano_093"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testPongStarter
-//{
-//    Program *program093 = [self getProgramForXML:@"Pong_Starter_093"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testPythagoreanTheorem
-//{
-//    Program *program093 = [self getProgramForXML:@"Pythagorean_Theorem_093"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testRockPaperScissors
-//{
-//    Program *program093 = [self getProgramForXML:@"Rock_paper_scissors_093"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testSkyPascal
-//{
-//    Program *program093 = [self getProgramForXML:@"SKYPASCAL_093"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testSkydivingSteve
-//{
-//    Program *program093 = [self getProgramForXML:@"Skydiving_Steve_093"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testTicTacToeMaster
-//{
-//    Program *program093 = [self getProgramForXML:@"Tic_Tac_Toe_Master_093"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testWordBalloonDemo
-//{
-//    Program *program093 = [self getProgramForXML:@"Word_balloon_demo_093"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testXRayPhone
-//{
-//    Program *program093 = [self getProgramForXML:@"X_Ray_phone_093"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
-//
-//- (void)testValidProgramAllBricks
-//{
-//    Program *program093 = [self getProgramForXML:@"ValidProgramAllBricks"];
-//    [super saveProgram:program093]; // TODO: mustn't use saveToDisk! never throws exceptions => test always succeeds...
-//}
+- (void)testAirFight05
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Air_fight_0.5_093"];
+}
+
+- (void)testInvalidAirFight05
+{
+    Program *program093 = [self getProgramForXML:@"Air_fight_0.5_093"];
+    SpriteObject *background = (SpriteObject*)[program093.objectList objectAtIndex:0];
+    background.name = @"Invalid";
+    BOOL equal = [self isProgram:program093 equalToXML:@"Air_fight_0.5_093"];
+    XCTAssertFalse(equal, @"Serialized program and XML are not equal");
+}
+
+- (void)testAirplaneWithShadow
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Airplane_with_shadow_093"];
+}
+
+- (void)testCompass01
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Compass_0.1_093"];
+}
+
+- (void)testDemonstration
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Demonstration_093"];
+}
+
+- (void)testDrinkMoreWater
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Drink_more_water_093"];
+}
+
+- (void)testEncapsulated
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Encapsulated"];
+}
+
+- (void)testFlapPacMan
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Flap_Pac_Man_093"];
+}
+
+- (void)testFlappy30
+{
+   [self testParseXMLAndSerializeProgramAndCompareXML:@"Flappy_v3.0_093"];
+}
+
+- (void)testGossipGirl
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Gossip_Girl_093"];
+}
+
+- (void)testMemory
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Memory_093"];
+}
+
+- (void)testMinecraftWorkInProgress
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Minecraft_Work_In_Progress_093"];
+}
+
+- (void)testMinions_
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Minions__093"];
+}
+
+- (void)testNyancat10
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Nyancat_1.0_093"];
+}
+
+- (void)testPiano
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Piano_093"];
+}
+
+- (void)testPongStarter
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Pong_Starter_093"];
+}
+
+- (void)testRockPaperScissors
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Rock_paper_scissors_093"];
+}
+
+- (void)testSkyPascal
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"SKYPASCAL_093"];
+}
+
+- (void)testTicTacToeMaster
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Tic_Tac_Toe_Master_093"];
+}
+
+- (void)testWordBalloonDemo
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Word_balloon_demo_093"];
+}
+
+- (void)testXRayPhone
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"X_Ray_phone_093"];
+}
+
+// TODO: fix tests
+/*- (void)testGalaxyWar
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Galaxy_War_093"];
+}
+
+- (void)testSkydivingSteve
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Skydiving_Steve_093"];
+}
+
+- (void)testPythagoreanTheorem
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Pythagorean_Theorem_093"];
+}
+
+- (void)testValidProgramAllBricks
+{
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"ValidProgramAllBricks"];
+}*/
 
 @end

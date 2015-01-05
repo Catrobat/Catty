@@ -22,11 +22,11 @@
 
 #import "XMLSerializerAbstractTest.h"
 
-@interface XMLSerializerHeaderTests : XMLSerializerAbstractTest
+@interface XMLSerializerTests : XMLSerializerAbstractTest
 
 @end
 
-@implementation XMLSerializerHeaderTests
+@implementation XMLSerializerTests
 
 - (void)testHeader
 {

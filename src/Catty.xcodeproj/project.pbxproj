@@ -24,7 +24,7 @@
 		4C1608B21A09621A002C7032 /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B01A09621A002C7032 /* ValidFormulaList.xml */; };
 		4C1608B31A09621A002C7032 /* ValidProgram.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B11A09621A002C7032 /* ValidProgram.xml */; };
 		4C3275FA1A1360640091C428 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */; };
-		4C6066351A5A9E6700F486CE /* GDataXMLDocument+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066341A5A9E6700F486CE /* GDataXMLDocument+CustomExtensions.m */; };
+		4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */; };
 		92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A461A42F2A3008C771A /* BSKeyboardControls.m */; };
 		92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A481A42F2A3008C771A /* iOSCombobox.m */; };
 		9238C5831A3AE9920099F061 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */; };
@@ -550,8 +550,8 @@
 		4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidProgramAllBricks.xml; path = "Resources/Test Resources/ValidProgramAllBricks.xml"; sourceTree = "<group>"; };
 		4C3AEF2E198E7EDD00604ABF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaFunctionsTest.m; sourceTree = "<group>"; };
-		4C6066331A5A9E6700F486CE /* GDataXMLDocument+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GDataXMLDocument+CustomExtensions.h"; path = "Catty/Extension&Delegate&Protocol/Extensions/GDataXMLDocument/GDataXMLDocument+CustomExtensions.h"; sourceTree = SOURCE_ROOT; };
-		4C6066341A5A9E6700F486CE /* GDataXMLDocument+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GDataXMLDocument+CustomExtensions.m"; path = "Catty/Extension&Delegate&Protocol/Extensions/GDataXMLDocument/GDataXMLDocument+CustomExtensions.m"; sourceTree = SOURCE_ROOT; };
+		4C6066381A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+CustomExtensions.h"; sourceTree = "<group>"; };
+		4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+CustomExtensions.m"; sourceTree = "<group>"; };
 		4C9E2D1E198EA6B600455B77 /* SMPageControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SMPageControl.license; sourceTree = "<group>"; };
 		4C9E2D20198EACE200455B77 /* EAIntroView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EAIntroView.license; sourceTree = "<group>"; };
 		4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDKNotifyHUD.license; sourceTree = "<group>"; };
@@ -1629,13 +1629,13 @@
 			name = Formula;
 			sourceTree = "<group>";
 		};
-		4C60662F1A5A9E0700F486CE /* GDataXMLDocument+CustomExtensions */ = {
+		4C6066371A5ACC3100F486CE /* GDataXMLNode+CustomExtensions */ = {
 			isa = PBXGroup;
 			children = (
-				4C6066331A5A9E6700F486CE /* GDataXMLDocument+CustomExtensions.h */,
-				4C6066341A5A9E6700F486CE /* GDataXMLDocument+CustomExtensions.m */,
+				4C6066381A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.h */,
+				4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */,
 			);
-			name = "GDataXMLDocument+CustomExtensions";
+			name = "GDataXMLNode+CustomExtensions";
 			path = GDataXMLNode;
 			sourceTree = "<group>";
 		};
@@ -2086,7 +2086,7 @@
 				92FF2E091A24C5A700093DA7 /* Brick+UnitTestingExtensions */,
 				92FF2E0B1A24C5A700093DA7 /* CAgradient+Extension */,
 				92FF2E0E1A24C5A700093DA7 /* GDataXMLElement+CustomExtensions */,
-				4C60662F1A5A9E0700F486CE /* GDataXMLDocument+CustomExtensions */,
+				4C6066371A5ACC3100F486CE /* GDataXMLNode+CustomExtensions */,
 				92FF2E111A24C5A700093DA7 /* NSData+Hashes */,
 				92FF2E141A24C5A700093DA7 /* NSDate+Extension */,
 				92FF2E171A24C5A700093DA7 /* NSMutableArray+CustomExtension */,
@@ -3507,8 +3507,8 @@
 			isa = PBXGroup;
 			children = (
 				CAA4A4611A43B36A002A69A0 /* CBXMLParser.h */,
-				CAA4A4621A43B36A002A69A0 /* CBXMLSerializer.h */,
 				CAA4A4631A43B388002A69A0 /* CBXMLParser.m */,
+				CAA4A4621A43B36A002A69A0 /* CBXMLSerializer.h */,
 				CAA4A4641A43B388002A69A0 /* CBXMLSerializer.m */,
 				92FF32CA1A24E5F800093DA7 /* Context */,
 				92FF32CD1A24E5F800093DA7 /* Helper */,
@@ -3531,11 +3531,11 @@
 			isa = PBXGroup;
 			children = (
 				CAA4A46A1A43B3BC002A69A0 /* CBXMLParserHelper.h */,
-				CAA4A46B1A43B3BC002A69A0 /* CBXMLSerializerHelper.h */,
-				CAA4A46C1A43B3BC002A69A0 /* CBXMLValidator.h */,
 				CAA4A46D1A43B3BC002A69A0 /* CBXMLParserHelper.m */,
-				CAA4A46E1A43B3BC002A69A0 /* CBXMLSerializerHelper.m */,
+				CAA4A46C1A43B3BC002A69A0 /* CBXMLValidator.h */,
 				CAA4A46F1A43B3BC002A69A0 /* CBXMLValidator.m */,
+				CAA4A46B1A43B3BC002A69A0 /* CBXMLSerializerHelper.h */,
+				CAA4A46E1A43B3BC002A69A0 /* CBXMLSerializerHelper.m */,
 				CAA4A4731A43B3C1002A69A0 /* Logger */,
 			);
 			path = Helper;
@@ -4530,7 +4530,6 @@
 				92FF329B1A24E2F400093DA7 /* PointToBrickCell.m in Sources */,
 				92FF32571A24E2F400093DA7 /* AHKActionSheetViewController.m in Sources */,
 				CAA4A4C71A43B45E002A69A0 /* SetBrightnessBrick+CBXMLHandler.m in Sources */,
-				4C6066351A5A9E6700F486CE /* GDataXMLDocument+CustomExtensions.m in Sources */,
 				92FF32931A24E2F400093DA7 /* ChangeSizeByNBrickCell.m in Sources */,
 				92FF2E3D1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m in Sources */,
 				92FF329C1A24E2F400093DA7 /* SetSizeToBrickCell.m in Sources */,
@@ -4546,6 +4545,7 @@
 				92FF32A91A24E2F400093DA7 /* ChangeVariableBrickCell.m in Sources */,
 				92FF30C81A24DCAA00093DA7 /* Brick.m in Sources */,
 				CAA4A4721A43B3BC002A69A0 /* CBXMLValidator.m in Sources */,
+				4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */,
 				92FF32961A24E2F400093DA7 /* GlideToBrickCell.m in Sources */,
 				92DFB0571A38960C00FA9B0F /* HandTool.m in Sources */,
 				92FF30FF1A24DCAA00093DA7 /* Program.m in Sources */,
