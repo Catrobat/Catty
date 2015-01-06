@@ -27,6 +27,10 @@
 #import "LoopBeginBrick.h"
 #import "LoopEndBrick.h"
 #import "ForeverBrick.h"
+#import "RepeatBrick.h"
+#import "IfLogicBeginBrick.h"
+#import "IfLogicElseBrick.h"
+#import "IfLogicEndBrick.h"
 
 @interface ScriptDataSource ()
 @property(nonatomic, assign) ScriptDataSourceState state;
@@ -129,26 +133,6 @@
     [indexes addIndexes:linkedIndexes];
 
     [self removeItemsAtIndexes:indexes inSection:indexPath.section];
-}
-
-- (NSIndexSet *)indexesForLinkedBricksWithBrickAtIndexPath:(NSIndexPath *)indexPath
-{
-    Script *script = [self scriptAtSection:indexPath.section];
-    NSArray *bricks = script.brickList;
-    Brick *brick = [self brickInScriptAtIndexPath:indexPath];
-    
-    NSMutableIndexSet *indexes = [NSMutableIndexSet indexSet];
-    if ([brick isKindOfClass:[ForeverBrick class]]) {
-        ForeverBrick *foreverBrick = (ForeverBrick *)brick;
-        [indexes addIndex:[bricks indexOfObject:foreverBrick.loopEndBrick]];
-    }
-    
-    else if ([brick isKindOfClass:[LoopEndBrick class]]) {
-        LoopEndBrick *loopendBrick = (LoopEndBrick *)brick;
-        [indexes addIndex:[bricks indexOfObject:loopendBrick.loopBeginBrick]];
-    }
-    
-    return indexes;
 }
 
 - (void)copyBrickAtIndexPath:(NSIndexPath *)atIndexPath
@@ -316,5 +300,55 @@
         if (complete) { complete(); }
     }
 }
+
+#pragma mark - Indexes for linked bricks
+
+- (NSIndexSet *)indexesForLinkedBricksWithBrickAtIndexPath:(NSIndexPath *)indexPath
+{
+    Script *script = [self scriptAtSection:indexPath.section];
+    NSArray *bricks = script.brickList;
+    Brick *brick = [self brickInScriptAtIndexPath:indexPath];
+    CBAssert(brick != nil, @"No brick found.");
+    
+    NSMutableIndexSet *indexes = [NSMutableIndexSet indexSet];
+    
+    // Loop bricks.
+    if ([brick isKindOfClass:[ForeverBrick class]]) {
+        ForeverBrick *foreverBrick = (ForeverBrick *)brick;
+        [indexes addIndex:[bricks indexOfObject:foreverBrick.loopEndBrick]];
+    }
+    
+    if ([brick isKindOfClass:[RepeatBrick class]]) {
+        RepeatBrick *repeatBrick = (RepeatBrick *)brick;
+        [indexes addIndex:[bricks indexOfObject:repeatBrick.loopEndBrick]];
+    }
+    
+    else if ([brick isKindOfClass:[LoopEndBrick class]]) {
+        LoopEndBrick *loopendBrick = (LoopEndBrick *)brick;
+        [indexes addIndex:[bricks indexOfObject:loopendBrick.loopBeginBrick]];
+    }
+    
+    // Logic bricks.
+    else if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
+        IfLogicBeginBrick *beginBrick = (IfLogicBeginBrick *)brick;
+        [indexes addIndex:[bricks indexOfObject:beginBrick.ifElseBrick]];
+        [indexes addIndex:[bricks indexOfObject:beginBrick.ifEndBrick]];
+    }
+    
+    else if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
+        IfLogicEndBrick *endBrick = (IfLogicEndBrick *)brick;
+        [indexes addIndex:[bricks indexOfObject:endBrick.ifBeginBrick]];
+        [indexes addIndex:[bricks indexOfObject:endBrick.ifElseBrick]];
+    }
+    
+    else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
+        IfLogicElseBrick *elseBrick = (IfLogicElseBrick *)brick;
+        [indexes addIndex:[bricks indexOfObject:elseBrick.ifBeginBrick]];
+        [indexes addIndex:[bricks indexOfObject:elseBrick.ifEndBrick]];
+    }
+    
+    return indexes;
+}
+
 
 @end
