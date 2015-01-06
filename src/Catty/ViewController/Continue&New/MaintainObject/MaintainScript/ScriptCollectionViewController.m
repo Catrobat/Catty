@@ -122,7 +122,7 @@
                                                                                  navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
                                                                                                options:@{ UIPageViewControllerOptionInterPageSpacingKey : @20.f }];
     
-    [bsvc setViewControllers:@[bcvc]
+    [bsvc setViewControllers:@[ bcvc ]
                    direction:UIPageViewControllerNavigationDirectionForward
                     animated:NO
                   completion:NULL];
@@ -309,7 +309,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource stateChanged:(ScriptDataSourceState)state error:(NSError *)error
 {
-    NSLog(@"Script data source state changed: %i", state);
+    NSLog(@"Script data source state changed: %lu", state);
 }
 
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didRemoveSections:(NSIndexSet *)sections
@@ -1288,13 +1288,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)setupObserver
 {
-    // create KVO controller with observer
+    // create KVO controller with observer.
     FBKVOController *KVOController = [FBKVOController controllerWithObserver:self];
     self.KVOController = KVOController;
     
     self.brickDetailVC = [BrickDetailViewController brickDetailViewController];
     
-    // observe clock date property
+    // observe brick detail vc state property.
     [self.KVOController observe:self.brickDetailVC
                         keyPath:@"state"
                         options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew

@@ -62,7 +62,7 @@
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
 
-    NSAssert(self.animateView, @"Error, no view to animate.");
+    CBAssert(self.animateView, @"Error, no view to animate.");
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     

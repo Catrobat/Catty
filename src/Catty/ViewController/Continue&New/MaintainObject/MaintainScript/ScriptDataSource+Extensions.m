@@ -24,6 +24,9 @@
 #import "ScriptDataSource_Private.h"
 #import "Util.h"
 #import "Brick.h"
+#import "LoopBeginBrick.h"
+#import "LoopEndBrick.h"
+#import "ForeverBrick.h"
 
 @interface ScriptDataSource ()
 @property(nonatomic, assign) ScriptDataSourceState state;
@@ -120,8 +123,32 @@
 
 - (void)removeBrickAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSIndexSet *indexes = [NSIndexSet indexSetWithIndex:indexPath.item - 1];
+    NSMutableIndexSet *indexes = [NSMutableIndexSet indexSetWithIndex:indexPath.item - 1];
+    
+    NSIndexSet *linkedIndexes = [self indexesForLinkedBricksWithBrickAtIndexPath:indexPath];
+    [indexes addIndexes:linkedIndexes];
+
     [self removeItemsAtIndexes:indexes inSection:indexPath.section];
+}
+
+- (NSIndexSet *)indexesForLinkedBricksWithBrickAtIndexPath:(NSIndexPath *)indexPath
+{
+    Script *script = [self scriptAtSection:indexPath.section];
+    NSArray *bricks = script.brickList;
+    Brick *brick = [self brickInScriptAtIndexPath:indexPath];
+    
+    NSMutableIndexSet *indexes = [NSMutableIndexSet indexSet];
+    if ([brick isKindOfClass:[ForeverBrick class]]) {
+        ForeverBrick *foreverBrick = (ForeverBrick *)brick;
+        [indexes addIndex:[bricks indexOfObject:foreverBrick.loopEndBrick]];
+    }
+    
+    else if ([brick isKindOfClass:[LoopEndBrick class]]) {
+        LoopEndBrick *loopendBrick = (LoopEndBrick *)brick;
+        [indexes addIndex:[bricks indexOfObject:loopendBrick.loopBeginBrick]];
+    }
+    
+    return indexes;
 }
 
 - (void)copyBrickAtIndexPath:(NSIndexPath *)atIndexPath
@@ -132,12 +159,6 @@
     
     // TODO: Copy brick
     Brick *newBrick = [[oldBrick class] new];
-    
-    // Example adding extra bricks
-    /*
-    Brick *newBrick2 = [[oldBrick class] new];
-    Brick *newBrick3 = [[oldBrick class] new];
-    */
     
     NSArray *addedBricks = @[ newBrick ];
     
