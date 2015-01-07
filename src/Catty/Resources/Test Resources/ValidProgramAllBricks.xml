@@ -262,7 +262,7 @@
                     <action>Tapped</action>
                   </script>
                 </scriptList>
-                <userBricks/>
+                <!-- <userBricks/> -->
               </pointedObject>
             </brick>
             <brick type="GlideToBrick">
@@ -296,7 +296,7 @@
                   <value>1</value>
                 </formula>
               </formulaList>
-              <inUserBrick>false</inUserBrick>
+              <!-- <inUserBrick>false</inUserBrick> -->
               <userVariable>global</userVariable>
             </brick>
             <brick type="ChangeVariableBrick">
@@ -314,14 +314,14 @@
                   <value>RAND</value>
                 </formula>
               </formulaList>
-              <inUserBrick>false</inUserBrick>
+              <!-- <inUserBrick>false</inUserBrick> -->
               <userVariable>lokal</userVariable>
             </brick>
           </brickList>
-          <isUserScript>false</isUserScript>
+          <!-- <isUserScript>false</isUserScript> -->
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object reference="../object/scriptList/script/brickList/brick[10]/pointedObject"/>
   </objectList>
@@ -337,6 +337,6 @@
     <programVariableList>
       <userVariable reference="../../../objectList/object/scriptList/script/brickList/brick[13]/userVariable"/>
     </programVariableList>
-    <userBrickVariableList/>
+    <!-- <userBrickVariableList/> -->
   </variables>
 </program>

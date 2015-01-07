@@ -139,8 +139,7 @@
     [self testParseXMLAndSerializeProgramAndCompareXML:@"X_Ray_phone_093"];
 }
 
-// TODO: fix tests
-/*- (void)testGalaxyWar
+- (void)testGalaxyWar
 {
     [self testParseXMLAndSerializeProgramAndCompareXML:@"Galaxy_War_093"];
 }
@@ -158,6 +157,6 @@
 - (void)testValidProgramAllBricks
 {
     [self testParseXMLAndSerializeProgramAndCompareXML:@"ValidProgramAllBricks"];
-}*/
+}
 
 @end

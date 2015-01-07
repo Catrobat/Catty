@@ -25,8 +25,8 @@
 @interface GDataXMLNode (CustomExtensions)
 
 - (BOOL)isEqualToNode:(GDataXMLNode*)node;
+- (NSArray*)childrenWithoutComments;
 - (NSString*)decodedStringValue;
 - (NSString*)decodedName;
 + (NSString*)decodedStringForString:(NSString*)xmlString;
-
 @end

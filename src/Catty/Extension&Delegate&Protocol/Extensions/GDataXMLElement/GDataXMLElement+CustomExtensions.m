@@ -218,20 +218,22 @@
             return false;
     }
     
-    NSUInteger childrenCount = [self.children count];
-    if(childrenCount != [node.children count]) {
-        NSLog(@"GDataXMLElements not equal: different number of children for element with name %@!", self.name);
+    NSArray *children = [self childrenWithoutComments];
+    NSArray *nodeChildren = [node childrenWithoutComments];
+    NSUInteger childrenCount = [children count];
+    if(childrenCount != [nodeChildren count]) {
+        NSDebug(@"GDataXMLElements not equal: different number of children for element with name %@!", self.name);
         return false;
     }
     for(int i = 0; i < childrenCount; i++) {
-        if([[self.children objectAtIndex:i] isKindOfClass:[GDataXMLElement class]]) {
-            GDataXMLElement *firstChild = [self.children objectAtIndex:i];
-            GDataXMLElement *secondChild = [node.children objectAtIndex:i];
+        if([[children objectAtIndex:i] isKindOfClass:[GDataXMLElement class]]) {
+            GDataXMLElement *firstChild = [children objectAtIndex:i];
+            GDataXMLElement *secondChild = [nodeChildren objectAtIndex:i];
             if(![firstChild isEqualToElement:secondChild])
                 return false;
-        } else if([[self.children objectAtIndex:i] isKindOfClass:[GDataXMLNode class]]) {
-            GDataXMLNode *firstChild = [self.children objectAtIndex:i];
-            GDataXMLElement *secondChild = [node.children objectAtIndex:i];
+        } else if([[children objectAtIndex:i] isKindOfClass:[GDataXMLNode class]]) {
+            GDataXMLNode *firstChild = [children objectAtIndex:i];
+            GDataXMLElement *secondChild = [nodeChildren objectAtIndex:i];
             if(![firstChild isEqualToNode:secondChild])
                 return false;
         } else {
