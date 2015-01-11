@@ -39,7 +39,6 @@
 #import "PlaceHolderView.h"
 #import "BroadcastScriptCell.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
-#import "AHKActionSheet.h"
 #import "BrickManager.h"
 #import "Util.h"
 #import "PlaceHolderView.h"
@@ -72,7 +71,6 @@
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
 @property (nonatomic, strong) BrickTransition *brickScaleTransition;
 @property (nonatomic, strong) NSIndexPath *trackedIndexPath;
-@property (nonatomic, strong) AHKActionSheet *brickSelectionMenu;
 @property (nonatomic, strong) NSMutableDictionary *selectedIndexPaths;  // refactor
 @property (nonatomic, assign) BOOL selectedAllCells;  // Refactor
 @property (nonatomic, strong) NSIndexPath *higherRankBrick; // refactor
@@ -83,7 +81,9 @@
 
 @end
 
-@implementation ScriptCollectionViewController
+@implementation ScriptCollectionViewController {
+    kBrickCategoryType _lastSelectedBrickCategory;
+}
 
 #pragma mark - UICollectionViewControllerDelegate
 
@@ -110,7 +110,7 @@
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     
-    self.placeHolderView.frame = self.collectionView.frame;
+    self.placeHolderView.frame = self.collectionView.bounds;
 }
 
 #pragma mark - Show brick selection screen
@@ -118,9 +118,10 @@
 - (void)showBrickSelectionController:(kBrickCategoryType)type {
     BrickCategoryViewController *bcvc = [[BrickCategoryViewController alloc] initWithBrickCategory:type];
     bcvc.delegate = self;
-    BrickSelectionViewController *bsvc = [[BrickSelectionViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
-                                                                                 navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
-                                                                                               options:@{ UIPageViewControllerOptionInterPageSpacingKey : @20.f }];
+    BrickSelectionViewController *bsvc = [[BrickSelectionViewController alloc]
+                    initWithTransitionStyle: UIPageViewControllerTransitionStyleScroll
+                      navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
+                                    options:@{ UIPageViewControllerOptionInterPageSpacingKey : @20.f }];
     
     [bsvc setViewControllers:@[ bcvc ]
                    direction:UIPageViewControllerNavigationDirectionForward
@@ -128,9 +129,9 @@
                   completion:NULL];
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bsvc];
-    __weak ScriptCollectionViewController *weakself = self;
+    __weak typeof(&*self) weakself = self;
     [self presentViewController:navController animated:YES completion:^{
-        if (self.scriptDataSource.scriptList.count) {
+        if (weakself.scriptDataSource.scriptList.count) {
             NSIndexPath *scrollToTopIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
             [weakself.collectionView scrollToItemAtIndexPath:scrollToTopIndexPath
                                             atScrollPosition:UICollectionViewScrollPositionTop
@@ -148,10 +149,10 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)showBrickSelectionMenu:(id)sender
+- (void)showBricks:(id)sender
 {
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-        [self.brickSelectionMenu show];
+        [self showBrickSelectionController:_lastSelectedBrickCategory];
     }
 }
 
@@ -352,7 +353,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     switch (self.brickDetailVC.state) {
         case BrickDetailViewControllerStateNone:
         case BrickDetailViewControllerStateBrickUpdated:
-            return;
             break;
         case BrickDetailViewControllerStateDeleteScript:
             [self removeScript];
@@ -364,10 +364,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [self copyBrick];
             break;
         case BrickDetailViewControllerStateAnimateBrick:
-            
+            // TODO
             break;
         case BrickDetailViewControllerStateEditFormula:
-            
+            // TODO
             break;
             
         default:
@@ -410,6 +410,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (void)brickCategoryViewController:(BrickCategoryViewController *)brickCategoryViewController
                      didSelectBrick:(Brick *)brick
 {
+    _lastSelectedBrickCategory = brick.brickCategoryType;
     brickCategoryViewController.delegate = nil;
     [self dismissViewControllerAnimated:YES completion:NULL];
     NSLog(@"[ %@ ] selected", brick);
@@ -524,74 +525,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         }
     }
 }
-
-//- (void)copyBrickCell:(BrickCell*)brickCell
-//{
-//    if (! brickCell) {
-//        return;
-//    }
-//
-//    // convert brickCell to brick
-//    NSString *brickCellClassName = NSStringFromClass([brickCell class]);
-//    NSString *brickOrScriptClassName = [brickCellClassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""];
-//    id brickOrScript = [[NSClassFromString(brickOrScriptClassName) alloc] init];
-//    if (! [brickOrScript conformsToProtocol:@protocol(BrickProtocol)]) {
-//        NSError(@"Given object does not implement BrickProtocol...");
-//        return;
-//    }
-//
-//    if ([brickOrScript isKindOfClass:[Brick class]]) {
-//        Script *script = nil;
-//        // automatically create new script if the object does not contain any of them
-//        if (! [self.object.scriptList count]) {
-//            script = [[StartScript alloc] init];
-//            script.allowRunNextAction = YES;
-//            script.object = self.object;
-//            [self.object.scriptList addObject:script];
-//        }
-//        
-//        script = [self.object.scriptList objectAtIndex:self.trackedIndexPath.section];
-//        Brick *brick = (Brick*)brickOrScript;
-//        brick.object = self.object;
-//        
-//        [self insertBrick:brick atIndexPath:self.trackedIndexPath intoScriptList:script completion:NULL];
-//        
-//    } else if ([brickOrScript isKindOfClass:[Script class]]) {
-//        Script *script = (Script*)brickOrScript;
-//        script.object = self.object;
-//        [self.object.scriptList addObject:script];
-//    } else {
-//        NSError(@"Unknown class type given...");
-//        return;
-//    }
-//    
-//    self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
-//}
-//
-//- (void)insertBrick:(Brick *)brick atIndexPath:(NSIndexPath *)indexPath intoScriptList:(Script *)script completion:(void(^)())completionBlock
-//{
-//    for (BrickCell *cell in self.collectionView.visibleCells) {
-//        [cell animateBrick:NO];
-//    }
-//    
-//    __weak ScriptCollectionViewController *weakself = self;
-//    [self.collectionView performBatchUpdates:^{
-//        if (!script.brickList.count) {
-//            [script.brickList addObject:brick];
-//            [weakself.collectionView insertItemsAtIndexPaths:@[indexPath]];
-//        } else {
-//            [script.brickList insertObject:brick atIndex:indexPath.item];
-//            [weakself.collectionView insertItemsAtIndexPaths:@[indexPath]];
-//        }
-//    } completion:^(BOOL finished) {
-//        if (finished) {
-//            NSIndexPath *newCellIndexPath = [NSIndexPath indexPathForItem:indexPath.item + 1 inSection:indexPath.section];
-//            [weakself.collectionView reloadItemsAtIndexPaths:@[indexPath, newCellIndexPath]];
-//            if (completionBlock) completionBlock();
-//        }
-//    }];
-//}
-//
 
 - (NSString *)keyWithSelectIndexPath:(NSIndexPath *)indexPath
 {
@@ -1220,7 +1153,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
-                                                                         action:@selector(showBrickSelectionMenu:)];
+                                                                         action:@selector(showBricks:)];
     
     add.enabled =  !self.editing;
     
@@ -1241,52 +1174,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (void)setupSubViews {    
     self.placeHolderView = [[PlaceHolderView alloc] initWithTitle:kLocalizedScripts];
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
-    
-    // Brick List Sheet
-    self.brickSelectionMenu = [[AHKActionSheet alloc]initWithTitle:kLocalizedSelectBrickCategory];
-    self.brickSelectionMenu.animationPresentDuration = 0.4f;
-    self.brickSelectionMenu.animationDisimissDuration = 0.15f;
-    
-    self.brickSelectionMenu.blurTintColor = [UIColor colorWithWhite:0.0f alpha:0.7f];
-    self.brickSelectionMenu.separatorColor = UIColor.skyBlueColor;
-    self.brickSelectionMenu.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:14.0f] ,
-                                                    NSForegroundColorAttributeName : UIColor.skyBlueColor};
-    self.brickSelectionMenu.cancelButtonTextAttributes = @{NSForegroundColorAttributeName : UIColor.lightOrangeColor};
-    self.brickSelectionMenu.buttonTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
-    self.brickSelectionMenu.selectedBackgroundColor = [UIColor colorWithWhite:0.0f alpha:0.3f];
-    self.brickSelectionMenu.automaticallyTintButtonImages = NO;
-    
-    __weak ScriptCollectionViewController *weakSelf = self;
-    [self.brickSelectionMenu addButtonWithTitle:kLocalizedControl
-                                          image:[UIImage imageNamed:@"orange_indicator"]
-                                           type:AHKActionSheetButtonTypeDefault
-                                        handler:^(AHKActionSheet *actionSheet) {
-                                            [weakSelf showBrickSelectionController:kControlBrick];
-                                        }];
-    [self.brickSelectionMenu addButtonWithTitle:kLocalizedMotion
-                                          image:[UIImage imageNamed:@"lightblue_indicator"]
-                                           type:AHKActionSheetButtonTypeDefault
-                                        handler:^(AHKActionSheet *actionSheet) {
-                                            [weakSelf showBrickSelectionController:kMotionBrick];
-                                        }];
-    [self.brickSelectionMenu addButtonWithTitle:kLocalizedSound
-                                          image:[UIImage imageNamed:@"pink_indicator"]
-                                           type:AHKActionSheetButtonTypeDefault
-                                        handler:^(AHKActionSheet *actionSheet) {
-                                            [weakSelf showBrickSelectionController:kSoundBrick];
-                                        }];
-    [self.brickSelectionMenu addButtonWithTitle:kLocalizedLooks
-                                          image:[UIImage imageNamed:@"green_indicator"]
-                                           type:AHKActionSheetButtonTypeDefault
-                                        handler:^(AHKActionSheet *actionSheet) {
-                                            [weakSelf showBrickSelectionController:kLookBrick];
-                                        }];
-    [self.brickSelectionMenu addButtonWithTitle:kLocalizedVariables
-                                          image:[UIImage imageNamed:@"red_indicator"]
-                                           type:AHKActionSheetButtonTypeDefault
-                                        handler:^(AHKActionSheet *actionSheet) {
-                                            [weakSelf showBrickSelectionController:kVariableBrick];
-                                        }];
 }
 
 @end

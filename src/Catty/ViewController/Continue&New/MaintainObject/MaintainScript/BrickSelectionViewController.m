@@ -78,7 +78,7 @@
 - (void)overwritePageControl
 {
     UIPageControl * pageControl = [[self.view.subviews
-                                        filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"(class = %@)", [UIPageControl class]]] lastObject];
+                                        filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class = %@", [UIPageControl class]]] lastObject];
     pageControl.currentPageIndicatorTintColor = [UIColor lightOrangeColor];
     pageControl.backgroundColor = [UIColor colorWithWhite:1.f alpha:0.1f];
 }

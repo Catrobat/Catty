@@ -79,9 +79,8 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
     self.view = view;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     [self.brickMenu showInView:self.view];
 }
