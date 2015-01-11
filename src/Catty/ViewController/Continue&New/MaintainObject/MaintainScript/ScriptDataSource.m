@@ -75,7 +75,7 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     Script *script = [self.scriptList objectAtIndex:(NSUInteger)section];
-    NSAssert(script != nil, @"Error, no script found");
+    CBAssert(script != nil, @"Error, no script found");
     // +1, because script itself is a brick in IDE too.
     return script.brickList.count + 1;
 }

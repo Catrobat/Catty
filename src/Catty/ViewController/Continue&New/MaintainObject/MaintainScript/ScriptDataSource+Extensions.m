@@ -315,34 +315,40 @@
     // Loop bricks.
     if ([brick isKindOfClass:[ForeverBrick class]]) {
         ForeverBrick *foreverBrick = (ForeverBrick *)brick;
+        CBAssert(foreverBrick.loopEndBrick);
         [indexes addIndex:[bricks indexOfObject:foreverBrick.loopEndBrick]];
     }
     
     if ([brick isKindOfClass:[RepeatBrick class]]) {
         RepeatBrick *repeatBrick = (RepeatBrick *)brick;
+        CBAssert(repeatBrick.loopEndBrick);
         [indexes addIndex:[bricks indexOfObject:repeatBrick.loopEndBrick]];
     }
     
     else if ([brick isKindOfClass:[LoopEndBrick class]]) {
         LoopEndBrick *loopendBrick = (LoopEndBrick *)brick;
+        CBAssert(loopendBrick.loopBeginBrick);
         [indexes addIndex:[bricks indexOfObject:loopendBrick.loopBeginBrick]];
     }
     
     // Logic bricks.
     else if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
         IfLogicBeginBrick *beginBrick = (IfLogicBeginBrick *)brick;
+        CBAssert(beginBrick.ifElseBrick && beginBrick.ifEndBrick);
         [indexes addIndex:[bricks indexOfObject:beginBrick.ifElseBrick]];
         [indexes addIndex:[bricks indexOfObject:beginBrick.ifEndBrick]];
     }
     
     else if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
         IfLogicEndBrick *endBrick = (IfLogicEndBrick *)brick;
+        CBAssert(endBrick.ifBeginBrick && endBrick.ifElseBrick);
         [indexes addIndex:[bricks indexOfObject:endBrick.ifBeginBrick]];
         [indexes addIndex:[bricks indexOfObject:endBrick.ifElseBrick]];
     }
     
     else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
         IfLogicElseBrick *elseBrick = (IfLogicElseBrick *)brick;
+        CBAssert(elseBrick.ifBeginBrick && elseBrick.ifEndBrick);
         [indexes addIndex:[bricks indexOfObject:elseBrick.ifBeginBrick]];
         [indexes addIndex:[bricks indexOfObject:elseBrick.ifEndBrick]];
     }

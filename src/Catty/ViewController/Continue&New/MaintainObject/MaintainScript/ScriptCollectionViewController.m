@@ -367,7 +367,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             // TODO
             break;
         case BrickDetailViewControllerStateEditFormula:
-            // TODO
+            // TODOgf
             break;
             
         default:
