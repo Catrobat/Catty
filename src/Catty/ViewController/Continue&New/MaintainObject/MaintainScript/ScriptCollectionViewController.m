@@ -366,8 +366,15 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         case BrickDetailViewControllerStateAnimateBrick:
             // TODO
             break;
-        case BrickDetailViewControllerStateEditFormula:
-            // TODOgf
+        case BrickDetailViewControllerStateEditFormula: {
+            // TODO: 
+            BrickCell *brickCell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:self.trackedIndexPath];
+            FormulaEditorButton *formulaEditorButton = (FormulaEditorButton *)[UIUtil newDefaultBrickFormulaEditorWithFrame:CGRectMake(0, 0, 0, 0)
+                                                                                                               ForBrickCell:brickCell
+                                                                                                              AndLineNumber:0
+                                                                                                         AndParameterNumber:0];
+            [self openFormulaEditor:formulaEditorButton];
+        }
             break;
             
         default:

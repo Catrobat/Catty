@@ -266,48 +266,4 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
     [self.brickMenu showInView:self.view];
 }
 
-
-//- (void)setupBrickMenu
-//{
-//    if ([self animateMenuItemWithBrick:self.brick] && [self editFormulaMenuItemWithBrick:self.brick]) {
-//        self.brickMenu = [[CatrobatActionSheet alloc] initWithTitle:nil
-//                                                           delegate:self
-//                                                  cancelButtonTitle:kLocalizedClose
-//                                             destructiveButtonTitle:[self deleteMenuItemNameWithBrick:self.brick]
-//                                                  otherButtonTitles:[self secondMenuItemWithBrick:self.brick],
-//                          [self animateMenuItemWithBrick:self.brick],
-//                          [self editFormulaMenuItemWithBrick:self.brick], nil];
-//    } else if ([self animateMenuItemWithBrick:self.brick]){
-//        self.brickMenu = [[CatrobatActionSheet alloc] initWithTitle:nil
-//                                                           delegate:self
-//                                                  cancelButtonTitle:kLocalizedClose
-//                                             destructiveButtonTitle:[self deleteMenuItemNameWithBrick:self.brick]
-//                                                  otherButtonTitles:[self secondMenuItemWithBrick:self.brick],
-//                          [self animateMenuItemWithBrick:self.brick],
-//                          nil];
-//    } else if ([self editFormulaMenuItemWithBrick:self.brick]){
-//        self.brickMenu = [[CatrobatActionSheet alloc] initWithTitle:nil
-//                                                           delegate:self
-//                                                  cancelButtonTitle:kLocalizedClose
-//                                             destructiveButtonTitle:[self deleteMenuItemNameWithBrick:self.brick]
-//                                                  otherButtonTitles:[self secondMenuItemWithBrick:self.brick],
-//                          [self editFormulaMenuItemWithBrick:self.brick], nil];
-//    } else {
-//        self.brickMenu = [[CatrobatActionSheet alloc] initWithTitle:nil
-//                                                           delegate:self
-//                                                  cancelButtonTitle:kLocalizedClose
-//                                             destructiveButtonTitle:[self deleteMenuItemNameWithBrick:self.brick]
-//                                                  otherButtonTitles:[self secondMenuItemWithBrick:self.brick], nil];
-//    }
-//    
-//    
-//    [self.brickMenu setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.6f]];
-//    [self.brickMenu setButtonTextColor:[UIColor lightOrangeColor]];
-//    [self.brickMenu setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
-//    self.brickMenu.transparentView = nil;
-//    
-//    [self.brickMenu showInView:self.view];
-//}
-
-
 @end

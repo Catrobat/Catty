@@ -205,15 +205,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    
-    if (self.delegate && [self.delegate respondsToSelector:@selector(formulaEditorViewController:withBrickCell:)]) {
-        [self.delegate formulaEditorViewController:self withBrickCell:self.brickCell];
-    }
-}
-
 - (void)handleTap:(UITapGestureRecognizer *)sender
 {
     if ([sender isKindOfClass:UITapGestureRecognizer.class]) {
