@@ -385,7 +385,7 @@
     if (! [self hasObject:sourceObject]) {
         return nil;
     }
-    SpriteObject *copiedObject = [sourceObject deepCopy];
+    SpriteObject *copiedObject = [sourceObject mutableCopyWithZone:nil];
     copiedObject.name = [Util uniqueName:nameOfCopiedObject existingNames:[self allObjectNames]];
     [self.objectList addObject:copiedObject];
     [self saveToDisk];

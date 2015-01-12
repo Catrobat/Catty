@@ -46,7 +46,7 @@
 @end
 
 
-@interface SpriteObject : SKSpriteNode <SpriteFormulaProtocol>
+@interface SpriteObject : SKSpriteNode <SpriteFormulaProtocol, NSMutableCopying>
 
 @property (assign, nonatomic) CGSize originalSize;
 
@@ -81,8 +81,6 @@
 - (NSUInteger)numberOfSounds;
 
 - (BOOL)isBackground;
-
-- (instancetype)deepCopy;
 
 // events
 - (void)start:(CGFloat)zPosition;

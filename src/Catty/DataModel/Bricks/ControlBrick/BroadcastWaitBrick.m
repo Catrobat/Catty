@@ -45,8 +45,6 @@
     [self.object broadcastAndWait:self.broadcastMessage];
 }
 
-
-
 #pragma mark - Description
 - (NSString*)description
 {

@@ -154,11 +154,12 @@
     return NO;
 }
 
-- (instancetype)deepCopy
+#pragma mark - Copy
+- (id)mutableCopyWithZone:(NSZone *)zone
 {
     Formula *formula = [Formula new];
     if(self.formulaTree)
-        formula.formulaTree = [self.formulaTree deepCopy];
+        formula.formulaTree = [self.formulaTree mutableCopyWithZone:zone];
     return formula;
 }
 

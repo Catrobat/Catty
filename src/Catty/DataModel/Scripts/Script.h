@@ -31,7 +31,7 @@
 @class SpriteObject;
 @class GDataXMLElement;
 
-@interface Script : SKNode <BrickProtocol>
+@interface Script : SKNode <BrickProtocol, NSMutableCopying>
 
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readonly) kBrickType brickType;
@@ -46,8 +46,6 @@
 - (void)startWithCompletion:(dispatch_block_t)block;
 
 - (void)stop;
-
-- (instancetype)deepCopy;
 
 - (NSString*)description;
 

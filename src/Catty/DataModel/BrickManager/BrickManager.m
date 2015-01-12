@@ -156,7 +156,7 @@
                 Formula * formula =[[Formula alloc ] initWithInteger:0];
                 [brickF setFormula:formula ForLineNumber:0 AndParameterNumber:0];
                 [selectableBricksForCategoryMutable addObject:brickF];
-            }else{
+            } else{
                 [selectableBricksForCategoryMutable addObject:brick];
             }
             

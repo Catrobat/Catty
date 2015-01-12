@@ -845,13 +845,24 @@ replacementString:(NSString*)characters
             || [name isEqualToString:@"description"] || [name isEqualToString:@"debugDescription"]) {
             continue;
         }
-
+        
         NSObject *currentProperty = [instance valueForKey:name];
         if(currentProperty != nil)
             [propertiesDictionary setValue:currentProperty forKey:name];
     }
     
     free(properties);
+    
+    /*if([instance superclass] != [NSObject class]) {
+        NSObject *superClass = [[instance superclass] new];
+        NSDictionary *superDictionary = [[self class] propertiesOfInstance:superClass];
+        for(NSString *propertyKey in superDictionary) {
+            NSObject *currentProperty = [instance valueForKey:propertyKey];
+            if(currentProperty != nil)
+                [propertiesDictionary setValue:currentProperty forKey:propertyKey];
+        }
+    }*/
+    
     return propertiesDictionary;
 }
 

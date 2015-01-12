@@ -131,7 +131,8 @@
     return self.tokenStringValue;
 }
 
--(InternToken *)deepCopy
+#pragma mark - Copy
+- (id)mutableCopyWithZone:(NSZone *)zone
 {
     return [[InternToken alloc]initWithType:self.internTokenType AndValue:self.tokenStringValue];
 }

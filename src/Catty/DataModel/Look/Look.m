@@ -78,7 +78,8 @@
     ];
 }
 
-- (instancetype)deepCopy
+#pragma mark - Copy
+- (id)mutableCopyWithZone:(NSZone *)zone
 {
     Look *copiedLook = [[Look alloc] init];
     copiedLook.fileName = [NSString stringWithString:self.fileName];

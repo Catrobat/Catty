@@ -48,6 +48,7 @@
     return [NSString stringWithFormat:@"If Logic End Brick"];
 }
 
+#pragma mark - Compare
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
     if(![Util isEqual:self.ifBeginBrick.brickTitle toObject:((IfLogicEndBrick*)brick).ifBeginBrick.brickTitle])

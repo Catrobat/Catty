@@ -1067,14 +1067,14 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     
     for(InternToken *tokenToCopy in self.internTokenFormulaList)
     {
-        [deepCopyOfInternTokenFormula addObject:[tokenToCopy deepCopy]];
+        [deepCopyOfInternTokenFormula addObject:[tokenToCopy mutableCopyWithZone:nil]];
     }
     
     InternFormulaTokenSelection *deepCopyOfInternFormulaTokenSelection = [[InternFormulaTokenSelection alloc]init];
     
     if([self isTokenSelected])
     {
-        deepCopyOfInternFormulaTokenSelection = [self.internFormulaTokenSelection deepCopy];
+        deepCopyOfInternFormulaTokenSelection = [self.internFormulaTokenSelection mutableCopyWithZone:nil];
     }
     
     return [[InternFormulaState alloc]initWithList:deepCopyOfInternTokenFormula

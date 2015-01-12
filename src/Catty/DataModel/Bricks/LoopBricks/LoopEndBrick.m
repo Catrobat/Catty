@@ -47,6 +47,7 @@
     return [NSString stringWithFormat:@"EndLoop"];
 }
 
+#pragma mark - Compare
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
     if (! [Util isEqual:self.loopBeginBrick.brickTitle toObject:((LoopEndBrick*)brick).loopBeginBrick.brickTitle])

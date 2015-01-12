@@ -24,7 +24,8 @@
 
 @implementation Sound
 
-- (instancetype)deepCopy
+#pragma mark - Copy
+- (id)mutableCopyWithZone:(NSZone *)zone
 {
     Sound *copiedSound = [[Sound alloc] init];
     copiedSound.fileName = [NSString stringWithString:self.fileName];

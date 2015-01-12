@@ -116,26 +116,31 @@
     return YES;
 }
 
-- (instancetype)deepCopy;
+#pragma mark - Copy
+- (id)mutableCopyWithZone:(NSZone *)zone
 {
     Brick *brick = [[self class] new];
     NSDictionary *properties = [Util propertiesOfInstance:self];
+    
     for (NSString *propertyKey in properties) {
         id propertyValue = [properties objectForKey:propertyKey];
         
         // prevent recursion
         if([propertyValue isKindOfClass:[SpriteObject class]])
             continue;
+        if([propertyValue isKindOfClass:[Brick class]])
+            continue;
         
-        // TODO handle standard datatypes
-        if([propertyValue conformsToProtocol:@protocol(DeepCopyProtocol)]) {
-            id propertyValueClone = [propertyValue deepCopy];
+        // standard datatypes like NSString are already confirming to the NSMutableCopying protocol
+        if([propertyValue conformsToProtocol:@protocol(NSMutableCopying)]) {
+            id propertyValueClone = [propertyValue mutableCopyWithZone:zone];
             [brick setValue:propertyValueClone forKey:propertyKey];
         } else {
-            NSError(@"Property %@ in Brick of class %@ does not implement deepCopy method", propertyKey, [self class]);
+            NSError(@"Property %@ of class %@ in Brick of class %@ does not confirm to NSMutableCopying protocol", propertyKey, [propertyValue class], [self class]);
         }
     }
-    return nil;
+    
+    return brick;
 }
 
 @end

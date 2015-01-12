@@ -23,7 +23,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface InternFormulaTokenSelection : NSObject
+@interface InternFormulaTokenSelection : NSObject<NSMutableCopying>
 
 -(BOOL)equals:(id)objectToCompare;
 -(NSInteger)getStartIndex;
@@ -32,6 +32,5 @@
 -(InternFormulaTokenSelection *)initWithTokenSelectionType:(enum TokenSelectionType)tokenSelectionType
                                  internTokenSelectionStart:(NSInteger)internTokenSelectionStart
                                    internTokenSelectionEnd:(NSInteger)internTokenSelectionEnd;
--(InternFormulaTokenSelection *)deepCopy;
 
 @end

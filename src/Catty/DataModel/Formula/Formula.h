@@ -23,12 +23,11 @@
 #import <Foundation/Foundation.h>
 #import "InternFormula.h"
 #import "InternFormulaState.h"
-#import "DeepCopyProtocol.h"
 
 @class FormulaElement;
 @class SpriteObject;
 
-@interface Formula : NSObject<DeepCopyProtocol>
+@interface Formula : NSObject<NSMutableCopying>
 
 @property (nonatomic, strong) FormulaElement* formulaTree;
 @property (nonatomic, weak) NSString* displayString;
@@ -51,7 +50,5 @@
 - (NSString*)getDisplayString;
 - (InternFormula*)getInternFormula;
 - (void)setDisplayString:(NSString*)text;
-
-- (instancetype)deepCopy;
 
 @end

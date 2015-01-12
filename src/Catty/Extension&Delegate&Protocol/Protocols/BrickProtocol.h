@@ -22,9 +22,8 @@
 
 #import <Foundation/Foundation.h>
 #import "UIDefines.h"
-#import "DeepCopyProtocol.h"
 
-@protocol BrickProtocol <DeepCopyProtocol>
+@protocol BrickProtocol<NSObject, NSMutableCopying>
 
 @required
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;

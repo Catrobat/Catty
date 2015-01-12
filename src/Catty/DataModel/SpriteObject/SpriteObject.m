@@ -158,37 +158,6 @@
     return NO;
 }
 
-- (instancetype)deepCopy
-{
-    SpriteObject *newObject = [[SpriteObject alloc] init];
-    newObject.spriteManagerDelegate = nil;
-    newObject.broadcastWaitDelegate = nil;
-    newObject.currentLook = nil;
-    newObject.currentUIImageLook = nil;
-    newObject.numberOfObjectsWithoutBackground = 0;
-
-    // deep copy
-    newObject.lookList = [NSMutableArray arrayWithCapacity:[self.lookList count]];
-    for (id lookObject in self.lookList) {
-        if ([lookObject isKindOfClass:[Look class]]) {
-            [newObject.lookList addObject:[((Look*)lookObject) deepCopy]];
-        }
-    }
-    newObject.soundList = [NSMutableArray arrayWithCapacity:[self.soundList count]];
-    for (id soundObject in self.soundList) {
-        if ([soundObject isKindOfClass:[Sound class]]) {
-            [newObject.soundList addObject:[((Sound*)soundObject) deepCopy]];
-        }
-    }
-    newObject.scriptList = [NSMutableArray arrayWithCapacity:[self.scriptList count]];
-    for (id scriptObject in self.scriptList) {
-        if ([scriptObject isKindOfClass:[Script class]]) {
-            [newObject.scriptList addObject:[((Script*)scriptObject) deepCopy]];
-        }
-    }
-    return newObject;
-}
-
 - (void)start:(CGFloat)zPosition
 {
     self.position = CGPointMake(0, 0);
@@ -534,7 +503,7 @@
     if (! [self hasLook:sourceLook]) {
         return nil;
     }
-    Look *copiedLook = [sourceLook deepCopy];
+    Look *copiedLook = [sourceLook mutableCopyWithZone:nil];
     copiedLook.name = [Util uniqueName:nameOfCopiedLook existingNames:[self allLookNames]];
     [self.lookList addObject:copiedLook];
     [self.program saveToDisk];
@@ -546,7 +515,7 @@
     if (! [self hasSound:sourceSound]) {
         return nil;
     }
-    Sound *copiedSound = [sourceSound deepCopy];
+    Sound *copiedSound = [sourceSound mutableCopyWithZone:nil];
     copiedSound.name = [Util uniqueName:nameOfCopiedSound existingNames:[self allSoundNames]];
     [self.soundList addObject:copiedSound];
     [self.program saveToDisk];
@@ -754,6 +723,38 @@
 -(CGFloat) scaleY
 {
     return [self yScale]*100;
+}
+
+#pragma mark - Copy
+- (id)mutableCopyWithZone:(NSZone *)zone
+{
+    SpriteObject *newObject = [[SpriteObject alloc] init];
+    newObject.spriteManagerDelegate = nil;
+    newObject.broadcastWaitDelegate = nil;
+    newObject.currentLook = nil;
+    newObject.currentUIImageLook = nil;
+    newObject.numberOfObjectsWithoutBackground = 0;
+    
+    // deep copy
+    newObject.lookList = [NSMutableArray arrayWithCapacity:[self.lookList count]];
+    for (id lookObject in self.lookList) {
+        if ([lookObject isKindOfClass:[Look class]]) {
+            [newObject.lookList addObject:[((Look*)lookObject) mutableCopyWithZone:zone]];
+        }
+    }
+    newObject.soundList = [NSMutableArray arrayWithCapacity:[self.soundList count]];
+    for (id soundObject in self.soundList) {
+        if ([soundObject isKindOfClass:[Sound class]]) {
+            [newObject.soundList addObject:[((Sound*)soundObject) mutableCopyWithZone:zone]];
+        }
+    }
+    newObject.scriptList = [NSMutableArray arrayWithCapacity:[self.scriptList count]];
+    for (id scriptObject in self.scriptList) {
+        if ([scriptObject isKindOfClass:[Script class]]) {
+            [newObject.scriptList addObject:[((Script*)scriptObject) mutableCopyWithZone:zone]];
+        }
+    }
+    return newObject;
 }
 
 @end

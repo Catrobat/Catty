@@ -24,12 +24,11 @@
 
 @class SpriteObject;
 
-@interface Sound : NSObject
+@interface Sound : NSObject<NSMutableCopying>
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *fileName;
 @property (atomic, getter = isPlaying) BOOL playing; // this property must be thread-safe!
 
-- (instancetype)deepCopy;
 - (BOOL)isEqualToSound:(Sound*)sound;
 
 @end

@@ -495,7 +495,9 @@
 //    }
 //}
 
-- (instancetype)deepCopy
+
+#pragma mark - Copy
+- (id)mutableCopyWithZone:(NSZone *)zone
 {
     // shallow copy
     Script *copiedScript = [self copy];
@@ -510,7 +512,7 @@
     for (id brick in self.brickList) {
         if ([brick isKindOfClass:[Brick class]]) {
             // TODO: issue #308 - implement deep copy for all bricks here!!
-            [copiedScript.brickList addObject:[brick deepCopy]]; // there are some bricks that refer to other sound, look, sprite objects...
+            [copiedScript.brickList addObject:[brick mutableCopyWithZone:nil]]; // there are some bricks that refer to other sound, look, sprite objects...
         }
     }
     return copiedScript;

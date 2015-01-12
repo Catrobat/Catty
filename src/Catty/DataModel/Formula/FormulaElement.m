@@ -618,10 +618,11 @@
     return false;
 }
 
-- (FormulaElement*)deepCopy
+#pragma mark - Copy
+- (id)mutableCopyWithZone:(NSZone *)zone
 {
-    FormulaElement *leftChildClone = self.leftChild == nil ? nil : [self.leftChild deepCopy];
-    FormulaElement *rightChildClone = self.rightChild == nil ? nil : [self.rightChild deepCopy];
+    FormulaElement *leftChildClone = self.leftChild == nil ? nil : [self.leftChild mutableCopyWithZone:zone];
+    FormulaElement *rightChildClone = self.rightChild == nil ? nil : [self.rightChild mutableCopyWithZone:zone];
     return [[FormulaElement alloc] initWithElementType:self.type value:self.value == nil ? @"" : self.value
                                              leftChild:leftChildClone
                                             rightChild:rightChildClone
