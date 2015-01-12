@@ -826,12 +826,12 @@ replacementString:(NSString*)characters
     return [mutableString copy];
 }
 
-+ (NSArray*)propertiesOfInstance:(id)instance
++ (NSDictionary*)propertiesOfInstance:(id)instance
 {
     unsigned count;
     objc_property_t *properties = class_copyPropertyList([instance class], &count);
     
-    NSMutableArray *propertiesArray = [[NSMutableArray alloc] initWithCapacity:count];
+    NSMutableDictionary *propertiesDictionary = [NSMutableDictionary new];
     
     unsigned i;
     for (i = 0; i < count; i++)
@@ -848,11 +848,11 @@ replacementString:(NSString*)characters
 
         NSObject *currentProperty = [instance valueForKey:name];
         if(currentProperty != nil)
-            [propertiesArray addObject:currentProperty];
+            [propertiesDictionary setValue:currentProperty forKey:name];
     }
     
     free(properties);
-    return propertiesArray;
+    return propertiesDictionary;
 }
 
 + (BOOL)isEqual:(id)object toObject:(id)objectToCompare

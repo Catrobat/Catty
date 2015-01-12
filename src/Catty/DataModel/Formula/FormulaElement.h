@@ -23,6 +23,7 @@
 #import <Foundation/Foundation.h>
 #import "Functions.h"
 #import "Operators.h"
+#import "DeepCopyProtocol.h"
 
 @class SpriteObject;
 
@@ -36,7 +37,7 @@ typedef enum {
     STRING
 } ElementType;
 
-@interface FormulaElement : NSObject
+@interface FormulaElement : NSObject<DeepCopyProtocol>
 
 @property (nonatomic, assign) ElementType type;
 @property (nonatomic, strong) NSString* value;
@@ -78,6 +79,6 @@ typedef enum {
 
 - (BOOL)containsElement:(ElementType)elementType;
 
-- (FormulaElement*)clone;
+- (FormulaElement*)deepCopy;
 
 @end

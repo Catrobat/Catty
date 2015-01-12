@@ -98,8 +98,8 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    NSArray *firstPropertyList = [Util propertiesOfInstance:self];
-    NSArray *secondPropertyList = [Util propertiesOfInstance:brick];
+    NSArray *firstPropertyList = [[Util propertiesOfInstance:self] allValues];
+    NSArray *secondPropertyList = [[Util propertiesOfInstance:brick] allValues];
     
     if([firstPropertyList count] != [secondPropertyList count])
         return NO;
@@ -114,6 +114,28 @@
     }
     
     return YES;
+}
+
+- (instancetype)deepCopy;
+{
+    Brick *brick = [[self class] new];
+    NSDictionary *properties = [Util propertiesOfInstance:self];
+    for (NSString *propertyKey in properties) {
+        id propertyValue = [properties objectForKey:propertyKey];
+        
+        // prevent recursion
+        if([propertyValue isKindOfClass:[SpriteObject class]])
+            continue;
+        
+        // TODO handle standard datatypes
+        if([propertyValue conformsToProtocol:@protocol(DeepCopyProtocol)]) {
+            id propertyValueClone = [propertyValue deepCopy];
+            [brick setValue:propertyValueClone forKey:propertyKey];
+        } else {
+            NSError(@"Property %@ in Brick of class %@ does not implement deepCopy method", propertyKey, [self class]);
+        }
+    }
+    return nil;
 }
 
 @end

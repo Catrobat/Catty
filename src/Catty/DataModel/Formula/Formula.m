@@ -154,4 +154,12 @@
     return NO;
 }
 
+- (instancetype)deepCopy
+{
+    Formula *formula = [Formula new];
+    if(self.formulaTree)
+        formula.formulaTree = [self.formulaTree deepCopy];
+    return formula;
+}
+
 @end

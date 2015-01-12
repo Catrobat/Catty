@@ -510,7 +510,7 @@
     for (id brick in self.brickList) {
         if ([brick isKindOfClass:[Brick class]]) {
             // TODO: issue #308 - implement deep copy for all bricks here!!
-            [copiedScript.brickList addObject:brick]; // there are some bricks that refer to other sound, look, sprite objects...
+            [copiedScript.brickList addObject:[brick deepCopy]]; // there are some bricks that refer to other sound, look, sprite objects...
         }
     }
     return copiedScript;

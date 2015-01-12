@@ -21,36 +21,8 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "InternFormula.h"
-#import "InternFormulaState.h"
-#import "DeepCopyProtocol.h"
 
-@class FormulaElement;
-@class SpriteObject;
-
-@interface Formula : NSObject<DeepCopyProtocol>
-
-@property (nonatomic, strong) FormulaElement* formulaTree;
-@property (nonatomic, weak) NSString* displayString;
-
-- (id)initWithInteger:(int)value;
-- (id)initWithDouble:(double)value;
-- (id)initWithFloat:(float)value;
-- (id)initWithFormulaElement:(FormulaElement*)formulaTree;
-
-- (double)interpretDoubleForSprite:(SpriteObject*)sprite;
-- (float)interpretFloatForSprite:(SpriteObject*)sprite;
-- (int)interpretIntegerForSprite:(SpriteObject*)sprite;
-- (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite;
-
-- (BOOL)isSingleNumberFormula;
-- (BOOL)isEqualToFormula:(Formula*)formula;
-
-- (void)setRoot:(FormulaElement*)formulaTree;
-- (InternFormulaState*)getInternFormulaState;
-- (NSString*)getDisplayString;
-- (InternFormula*)getInternFormula;
-- (void)setDisplayString:(NSString*)text;
+@protocol DeepCopyProtocol <NSObject>
 
 - (instancetype)deepCopy;
 

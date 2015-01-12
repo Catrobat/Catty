@@ -618,10 +618,10 @@
     return false;
 }
 
-- (FormulaElement*)clone
+- (FormulaElement*)deepCopy
 {
-    FormulaElement *leftChildClone = self.leftChild == nil ? nil : [self.leftChild clone];
-    FormulaElement *rightChildClone = self.rightChild == nil ? nil : [self.rightChild clone];
+    FormulaElement *leftChildClone = self.leftChild == nil ? nil : [self.leftChild deepCopy];
+    FormulaElement *rightChildClone = self.rightChild == nil ? nil : [self.rightChild deepCopy];
     return [[FormulaElement alloc] initWithElementType:self.type value:self.value == nil ? @"" : self.value
                                              leftChild:leftChildClone
                                             rightChild:rightChildClone
