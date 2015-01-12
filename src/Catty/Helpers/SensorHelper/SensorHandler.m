@@ -112,7 +112,7 @@ static SensorHandler* sharedSensorHandler = nil;
             }
             [self loudness];
             result = self.loudnessInPercent;
-            NSDebug(@"Loudness: %f \%", result);
+            NSDebug(@"Loudness: %f %%", result);
             break;
         }
             
