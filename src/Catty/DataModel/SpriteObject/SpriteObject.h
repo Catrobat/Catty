@@ -24,6 +24,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "Program.h"
 #import "ProgramDefines.h"
+#import "CBMutableCopying.h"
 
 @class Script;
 @class Look;
@@ -46,7 +47,7 @@
 @end
 
 
-@interface SpriteObject : SKSpriteNode <SpriteFormulaProtocol, NSMutableCopying>
+@interface SpriteObject : SKSpriteNode <SpriteFormulaProtocol, CBMutableCopying>
 
 @property (assign, nonatomic) CGSize originalSize;
 

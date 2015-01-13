@@ -22,8 +22,9 @@
 
 #import <Foundation/Foundation.h>
 #import "UIDefines.h"
+#import "CBMutableCopying.h"
 
-@protocol BrickProtocol<NSObject, NSMutableCopying>
+@protocol BrickProtocol<NSObject, CBMutableCopying>
 
 @required
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;

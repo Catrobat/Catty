@@ -20,21 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "CBMutableCopying.h"
 
-@class GDataXMLElement;
-@class SpriteObject;
+@interface CBMutableCopyContext : NSObject
 
-@interface Look : NSObject<CBMutableCopying>
+// Dictionary consisting of id (old pointer) -> id (new pointer)
+@property (strong, nonatomic) NSMutableDictionary *updatedReferences;
 
-@property (strong, nonatomic) NSString *fileName;
-@property (strong, nonatomic) NSString *name;
-
-- (id)initWithPath:(NSString*)filePath;
-- (id)initWithName:(NSString*)name andPath:(NSString*)filePath;
-- (NSString*)previewImageFileName;
-- (NSString*)description;
-- (BOOL)isEqualToLook:(Look*)look;
+- (void)updateReference:(id)oldReference WithReference:(id)newReference;
+- (id)updatedReferenceForReference:(id)oldReference;
 
 @end

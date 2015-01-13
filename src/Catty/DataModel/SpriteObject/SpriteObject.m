@@ -38,6 +38,7 @@
 #import "AppDelegate.h"
 #import "NSString+FastImageSize.h"
 #import "ProgramDefines.h"
+#include "CBMutableCopyContext.h"
 
 @interface SpriteObject()
 @property (atomic,strong) NSMutableArray *broadcastScriptArray;
@@ -503,7 +504,7 @@
     if (! [self hasLook:sourceLook]) {
         return nil;
     }
-    Look *copiedLook = [sourceLook mutableCopyWithZone:nil];
+    Look *copiedLook = [sourceLook mutableCopyWithContext:[CBMutableCopyContext new]];
     copiedLook.name = [Util uniqueName:nameOfCopiedLook existingNames:[self allLookNames]];
     [self.lookList addObject:copiedLook];
     [self.program saveToDisk];
@@ -515,7 +516,7 @@
     if (! [self hasSound:sourceSound]) {
         return nil;
     }
-    Sound *copiedSound = [sourceSound mutableCopyWithZone:nil];
+    Sound *copiedSound = [sourceSound mutableCopyWithContext:[CBMutableCopyContext new]];
     copiedSound.name = [Util uniqueName:nameOfCopiedSound existingNames:[self allSoundNames]];
     [self.soundList addObject:copiedSound];
     [self.program saveToDisk];
@@ -726,9 +727,12 @@
 }
 
 #pragma mark - Copy
-- (id)mutableCopyWithZone:(NSZone *)zone
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
 {
+    if(!context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
+    
     SpriteObject *newObject = [[SpriteObject alloc] init];
+    newObject.program = nil;
     newObject.spriteManagerDelegate = nil;
     newObject.broadcastWaitDelegate = nil;
     newObject.currentLook = nil;
@@ -739,19 +743,19 @@
     newObject.lookList = [NSMutableArray arrayWithCapacity:[self.lookList count]];
     for (id lookObject in self.lookList) {
         if ([lookObject isKindOfClass:[Look class]]) {
-            [newObject.lookList addObject:[((Look*)lookObject) mutableCopyWithZone:zone]];
+            [newObject.lookList addObject:[lookObject mutableCopyWithContext:context]];
         }
     }
     newObject.soundList = [NSMutableArray arrayWithCapacity:[self.soundList count]];
     for (id soundObject in self.soundList) {
         if ([soundObject isKindOfClass:[Sound class]]) {
-            [newObject.soundList addObject:[((Sound*)soundObject) mutableCopyWithZone:zone]];
+            [newObject.soundList addObject:[soundObject mutableCopyWithContext:context]];
         }
     }
     newObject.scriptList = [NSMutableArray arrayWithCapacity:[self.scriptList count]];
     for (id scriptObject in self.scriptList) {
         if ([scriptObject isKindOfClass:[Script class]]) {
-            [newObject.scriptList addObject:[((Script*)scriptObject) mutableCopyWithZone:zone]];
+            [newObject.scriptList addObject:[scriptObject mutableCopyWithContext:context]];
         }
     }
     return newObject;

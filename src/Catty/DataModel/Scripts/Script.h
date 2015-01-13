@@ -26,12 +26,13 @@
 #import "UIDefines.h"
 #import "LanguageTranslationDefines.h"
 #import "BrickProtocol.h"
+#import "CBMutableCopying.h"
 
 @class Brick;
 @class SpriteObject;
 @class GDataXMLElement;
 
-@interface Script : SKNode <BrickProtocol, NSMutableCopying>
+@interface Script : SKNode <BrickProtocol, CBMutableCopying>
 
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readonly) kBrickType brickType;

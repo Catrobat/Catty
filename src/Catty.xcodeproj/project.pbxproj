@@ -23,6 +23,7 @@
 /* Begin PBXBuildFile section */
 		4C1608B21A09621A002C7032 /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B01A09621A002C7032 /* ValidFormulaList.xml */; };
 		4C1608B31A09621A002C7032 /* ValidProgram.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B11A09621A002C7032 /* ValidProgram.xml */; };
+		4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2650691A6538710050775B /* CBMutableCopyContext.m */; };
 		4C3275FA1A1360640091C428 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */; };
 		92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A461A42F2A3008C771A /* BSKeyboardControls.m */; };
 		92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A481A42F2A3008C771A /* iOSCombobox.m */; };
@@ -546,6 +547,9 @@
 		4C107ADC194F156F00D9D7ED /* PointToBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointToBrickTests.m; sourceTree = "<group>"; };
 		4C1608B01A09621A002C7032 /* ValidFormulaList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidFormulaList.xml; path = "Resources/Test Resources/ValidFormulaList.xml"; sourceTree = "<group>"; };
 		4C1608B11A09621A002C7032 /* ValidProgram.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidProgram.xml; path = "Resources/Test Resources/ValidProgram.xml"; sourceTree = "<group>"; };
+		4C2650681A6538710050775B /* CBMutableCopyContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopyContext.h; path = CBCopyContext/CBMutableCopyContext.h; sourceTree = "<group>"; };
+		4C2650691A6538710050775B /* CBMutableCopyContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBMutableCopyContext.m; path = CBCopyContext/CBMutableCopyContext.m; sourceTree = "<group>"; };
+		4C26506C1A653A5A0050775B /* CBMutableCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopying.h; path = Copying/CBMutableCopying.h; sourceTree = "<group>"; };
 		4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidProgramAllBricks.xml; path = "Resources/Test Resources/ValidProgramAllBricks.xml"; sourceTree = "<group>"; };
 		4C3AEF2E198E7EDD00604ABF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaFunctionsTest.m; sourceTree = "<group>"; };
@@ -1609,6 +1613,23 @@
 			name = ParserTests;
 			sourceTree = "<group>";
 		};
+		4C2650671A6538470050775B /* CBCopyContext */ = {
+			isa = PBXGroup;
+			children = (
+				4C2650681A6538710050775B /* CBMutableCopyContext.h */,
+				4C2650691A6538710050775B /* CBMutableCopyContext.m */,
+			);
+			name = CBCopyContext;
+			sourceTree = "<group>";
+		};
+		4C26506B1A653A3F0050775B /* Copying */ = {
+			isa = PBXGroup;
+			children = (
+				4C26506C1A653A5A0050775B /* CBMutableCopying.h */,
+			);
+			name = Copying;
+			sourceTree = "<group>";
+		};
 		4C3275E51A135BE40091C428 /* Abstract */ = {
 			isa = PBXGroup;
 			children = (
@@ -2234,6 +2255,7 @@
 				92DFAFE71A38945300FA9B0F /* BrickFormulaProtocol.h */,
 				92FF2E471A24C64300093DA7 /* BrickCellProtocol.h */,
 				92FF2E481A24C64300093DA7 /* BrickProtocol.h */,
+				4C26506B1A653A3F0050775B /* Copying */,
 				929108911A41F32A0034564D /* Parser&Serializer */,
 			);
 			name = Protocols;
@@ -2412,6 +2434,7 @@
 		92FF2EA51A24C8A700093DA7 /* DataStructures */ = {
 			isa = PBXGroup;
 			children = (
+				4C2650671A6538470050775B /* CBCopyContext */,
 				92FF2EA61A24C8A700093DA7 /* CBXMLOpenedNestingBricksStack */,
 				CAD116DE1A46AAC500F560B4 /* CBXMLPositionStack */,
 				92FF2EA91A24C8A700093DA7 /* DataTransferMessage */,
@@ -4683,6 +4706,7 @@
 				92FF32761A24E2F400093DA7 /* BrickCell.m in Sources */,
 				92FF329D1A24E2F400093DA7 /* SetXBrickCell.m in Sources */,
 				92FF328C1A24E2F400093DA7 /* GoNStepsBackBrickCell.m in Sources */,
+				4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */,
 				92FF2E8D1A24C7D800093DA7 /* CatrobatAudioPlayer.m in Sources */,
 				92FF32891A24E2F400093DA7 /* ChangeGhostEffectByNBrickCell.m in Sources */,
 				CAA4A4821A43B3CE002A69A0 /* Look+CBXMLLogger.m in Sources */,

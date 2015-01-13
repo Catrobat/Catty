@@ -35,7 +35,7 @@
 #import "BroadcastBrick.h"
 #import "BrickManager.h"
 #import "Util.h"
-
+#import "CBMutableCopyContext.h"
 #import "WhenScript.h"
 
 @interface Script()
@@ -497,22 +497,25 @@
 
 
 #pragma mark - Copy
-- (id)mutableCopyWithZone:(NSZone *)zone
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {
-    // shallow copy
-    Script *copiedScript = [self copy];
-
-    // reset (just to ensure)
-    copiedScript.currentBrickIndex = 0;
-    copiedScript.allowRunNextAction = YES;
-    copiedScript.action = nil;
+    if(!context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
+    
+    Script *copiedScript = [[self class] new];
+    copiedScript.brickCategoryType = self.brickCategoryType;
+    copiedScript.brickType = self.brickType;
+    copiedScript.allowRunNextAction = self.allowRunNextAction;
+    if(self.action)
+        copiedScript.action = [NSString stringWithString:self.action];
+    
+    [context updateReference:self WithReference:copiedScript];
 
     // deep copy
     copiedScript.brickList = [NSMutableArray arrayWithCapacity:[self.brickList count]];
     for (id brick in self.brickList) {
         if ([brick isKindOfClass:[Brick class]]) {
             // TODO: issue #308 - implement deep copy for all bricks here!!
-            [copiedScript.brickList addObject:[brick mutableCopyWithZone:nil]]; // there are some bricks that refer to other sound, look, sprite objects...
+            [copiedScript.brickList addObject:[brick mutableCopyWithContext:context]]; // there are some bricks that refer to other sound, look, sprite objects...
         }
     }
     return copiedScript;

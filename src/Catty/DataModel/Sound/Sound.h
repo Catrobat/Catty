@@ -21,10 +21,11 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "CBMutableCopying.h"
 
 @class SpriteObject;
 
-@interface Sound : NSObject<NSMutableCopying>
+@interface Sound : NSObject<CBMutableCopying>
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *fileName;
 @property (atomic, getter = isPlaying) BOOL playing; // this property must be thread-safe!

@@ -21,18 +21,9 @@
  */
 
 #import "Sound.h"
+#import "CBMutableCopyContext.h"
 
 @implementation Sound
-
-#pragma mark - Copy
-- (id)mutableCopyWithZone:(NSZone *)zone
-{
-    Sound *copiedSound = [[Sound alloc] init];
-    copiedSound.fileName = [NSString stringWithString:self.fileName];
-    copiedSound.name = [NSString stringWithString:self.name];
-    copiedSound.playing = NO;
-    return copiedSound;
-}
 
 - (NSString*)description
 {
@@ -45,5 +36,20 @@
         return YES;
     return NO;
 }
+
+#pragma mark - Copy
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
+{
+    if(!context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
+    
+    Sound *copiedSound = [[Sound alloc] init];
+    copiedSound.fileName = [NSString stringWithString:self.fileName];
+    copiedSound.name = [NSString stringWithString:self.name];
+    copiedSound.playing = NO;
+    
+    [context updateReference:self WithReference:copiedSound];
+    return copiedSound;
+}
+
 
 @end

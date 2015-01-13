@@ -30,6 +30,9 @@
 #import "RepeatBrick.h"
 #import "Formula.h"
 #import "Util.h"
+#import "CBMutableCopyContext.h"
+
+#import "Look.h"
 
 @interface Brick()
 
@@ -117,26 +120,38 @@
 }
 
 #pragma mark - Copy
-- (id)mutableCopyWithZone:(NSZone *)zone
+// This function must be overriden by Bricks with references to other Bricks (e.g. ForeverBrick)
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {
+    return [self mutableCopyWithContext:context AndErrorReporting:true];
+}
+
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context AndErrorReporting:(BOOL)reportError
+{
+    if(!context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
+    
     Brick *brick = [[self class] new];
+    [context updateReference:self WithReference:brick];
+    
     NSDictionary *properties = [Util propertiesOfInstance:self];
     
     for (NSString *propertyKey in properties) {
         id propertyValue = [properties objectForKey:propertyKey];
         
-        // prevent recursion
-        if([propertyValue isKindOfClass:[SpriteObject class]])
-            continue;
-        if([propertyValue isKindOfClass:[Brick class]])
-            continue;
-        
-        // standard datatypes like NSString are already confirming to the NSMutableCopying protocol
-        if([propertyValue conformsToProtocol:@protocol(NSMutableCopying)]) {
-            id propertyValueClone = [propertyValue mutableCopyWithZone:zone];
+        if([propertyValue conformsToProtocol:@protocol(CBMutableCopying)]) {
+            id updatedReference = [context updatedReferenceForReference:propertyValue];
+            if(updatedReference) {
+                [brick setValue:updatedReference forKey:propertyKey];
+            } else {
+                id propertyValueClone = [propertyValue mutableCopyWithContext:context];
+                [brick setValue:propertyValueClone forKey:propertyKey];
+            }
+        } else if([propertyValue conformsToProtocol:@protocol(NSMutableCopying)]) {
+            // standard datatypes like NSString are already conforming to the NSMutableCopying protocol
+            id propertyValueClone = [propertyValue mutableCopyWithZone:nil];
             [brick setValue:propertyValueClone forKey:propertyKey];
-        } else {
-            NSError(@"Property %@ of class %@ in Brick of class %@ does not confirm to NSMutableCopying protocol", propertyKey, [propertyValue class], [self class]);
+        } else if(reportError) {
+            NSError(@"Property %@ of class %@ in Brick of class %@ does not conform to CBMutableCopying or NSMutableCopying protocol. Implement mutableCopyWithContext method in %@", propertyKey, [propertyValue class], [self class], [self class]);
         }
     }
     
