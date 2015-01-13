@@ -101,7 +101,7 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if(![self.pointedObject isEqualToSpriteObject:((PointToBrick*)brick).pointedObject])
+    if(![self.pointedObject.name isEqualToString:((PointToBrick*)brick).pointedObject.name])
         return NO;
     return YES;
 }
