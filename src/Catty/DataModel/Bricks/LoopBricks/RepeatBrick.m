@@ -65,4 +65,12 @@
     return [NSString stringWithFormat:@"RepeatLoop with %d iterations", [self.timesToRepeat interpretIntegerForSprite:self.object]];
 }
 
+#pragma mark - Copy
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
+{
+    RepeatBrick *brick = [self mutableCopyWithContext:context AndErrorReporting:NO];
+    brick.loopCount = self.loopCount;
+    return brick;
+}
+
 @end

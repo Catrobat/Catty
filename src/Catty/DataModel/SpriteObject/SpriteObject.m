@@ -732,12 +732,15 @@
     if(!context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
     
     SpriteObject *newObject = [[SpriteObject alloc] init];
+    newObject.name = [NSString stringWithString:self.name];
     newObject.program = nil;
     newObject.spriteManagerDelegate = nil;
     newObject.broadcastWaitDelegate = nil;
     newObject.currentLook = nil;
     newObject.currentUIImageLook = nil;
     newObject.numberOfObjectsWithoutBackground = 0;
+    
+    [context updateReference:self WithReference:newObject];
     
     // deep copy
     newObject.lookList = [NSMutableArray arrayWithCapacity:[self.lookList count]];
@@ -755,7 +758,9 @@
     newObject.scriptList = [NSMutableArray arrayWithCapacity:[self.scriptList count]];
     for (id scriptObject in self.scriptList) {
         if ([scriptObject isKindOfClass:[Script class]]) {
-            [newObject.scriptList addObject:[scriptObject mutableCopyWithContext:context]];
+            Script *copiedScript = [scriptObject mutableCopyWithContext:context];
+            copiedScript.object = newObject;
+            [newObject.scriptList addObject:copiedScript];
         }
     }
     return newObject;

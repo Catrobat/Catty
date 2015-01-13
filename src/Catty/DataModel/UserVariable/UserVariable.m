@@ -23,6 +23,7 @@
 #import "UserVariable.h"
 #import "Program.h"
 #import "Util.h"
+#import "CBMutableCopyContext.h"
 
 @implementation UserVariable
 
@@ -36,6 +37,19 @@
     if ([self.name isEqualToString:userVariable.name] && [Util isEqual:self.value toObject:userVariable.value])
         return YES;
     return NO;
+}
+
+#pragma mark - Copy
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
+{
+    if(!context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
+    
+    UserVariable *variable = [[self class] new];
+    variable.name = [NSString stringWithString:self.name];
+    variable.value = [self.value mutableCopy];
+    
+    [context updateReference:self WithReference:variable];
+    return variable;
 }
 
 @end

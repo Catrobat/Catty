@@ -386,7 +386,8 @@
     if (! [self hasObject:sourceObject]) {
         return nil;
     }
-    SpriteObject *copiedObject = [sourceObject mutableCopyWithContext:[CBMutableCopyContext new]];
+    CBMutableCopyContext *context = [CBMutableCopyContext new];
+    SpriteObject *copiedObject = [sourceObject mutableCopyWithContext:context];
     copiedObject.name = [Util uniqueName:nameOfCopiedObject existingNames:[self allObjectNames]];
     [self.objectList addObject:copiedObject];
     [self saveToDisk];

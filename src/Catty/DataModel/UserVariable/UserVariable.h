@@ -21,15 +21,18 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "CBMutableCopying.h"
 
 @class GDataXMLElement;
 @class SpriteObject;
 @class Program;
 
-@interface UserVariable : NSObject
+@interface UserVariable : NSObject<CBMutableCopying>
 
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) NSNumber* value;
+
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
 
 - (BOOL)isEqualToUserVariable:(UserVariable*)userVariable;
 

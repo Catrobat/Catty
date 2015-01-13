@@ -623,7 +623,7 @@
 {
     FormulaElement *leftChildClone = self.leftChild == nil ? nil : [self.leftChild mutableCopyWithZone:zone];
     FormulaElement *rightChildClone = self.rightChild == nil ? nil : [self.rightChild mutableCopyWithZone:zone];
-    return [[FormulaElement alloc] initWithElementType:self.type value:self.value == nil ? @"" : self.value
+    return [[FormulaElement alloc] initWithElementType:self.type value:self.value
                                              leftChild:leftChildClone
                                             rightChild:rightChildClone
                                                 parent:nil];

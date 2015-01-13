@@ -32,8 +32,6 @@
 #import "Util.h"
 #import "CBMutableCopyContext.h"
 
-#import "Look.h"
-
 @interface Brick()
 
 @property (nonatomic, readwrite) kBrickCategoryType brickCategoryType;
@@ -125,6 +123,7 @@
 {
     return [self mutableCopyWithContext:context AndErrorReporting:true];
 }
+
 
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context AndErrorReporting:(BOOL)reportError
 {
