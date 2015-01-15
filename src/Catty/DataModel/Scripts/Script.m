@@ -200,7 +200,7 @@
 //        }
         __weak Script *weakSelf = self;
         [self runAction:action completion:^{
-            NSDebug(@"Finished: %@", sequence);
+            NSDebug(@"Finished: %@", action);
             [weakSelf runNextAction];
         }];
         

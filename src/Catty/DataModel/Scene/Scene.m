@@ -152,7 +152,7 @@
     }
     SpriteObject *obj1 = nodesAtPoint[[nodesAtPoint count]-1];
     NSInteger counter =[nodesAtPoint count]-2;
-    NSDebug(@"How many nodes are touched: %d",counter);
+    NSDebug(@"How many nodes are touched: %ld",(long)counter);
     NSDebug(@"First Node:%@",obj1);
     if (!obj1.name) {
         return NO;
