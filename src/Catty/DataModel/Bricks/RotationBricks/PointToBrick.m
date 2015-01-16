@@ -38,6 +38,13 @@
     return [SKAction runBlock:[self actionBlock]];        
 }
 
+- (SpriteObject*) pointedObject
+{
+    if(!_pointedObject)
+        _pointedObject = self.object;
+    return _pointedObject;
+}
+
 - (dispatch_block_t)actionBlock
 {
     return ^{

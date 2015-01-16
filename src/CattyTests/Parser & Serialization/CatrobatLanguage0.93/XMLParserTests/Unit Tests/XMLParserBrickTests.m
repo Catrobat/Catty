@@ -532,7 +532,27 @@
     PointToBrick *pointToBrick = (PointToBrick*)brick;
     SpriteObject *spriteObject = pointToBrick.pointedObject;
     XCTAssertNotNil(spriteObject, @"Invalid SpriteObject");
-    XCTAssertTrue([spriteObject.name isEqualToString:@"stickers"], @"Invalid brick name");
+    XCTAssertTrue([spriteObject.name isEqualToString:@"stickers"], @"Invalid object name");
+}
+
+- (void)testValidPointToBrickWithoutSpriteObject
+{
+    Program *program = [self getProgramForXML:@"PointToBrickWithoutSpriteObject"];
+    XCTAssertNotNil(program, @"Program must not be nil!");
+    
+    SpriteObject *moleTwo = [program.objectList objectAtIndex:1];
+    XCTAssertNotNil(moleTwo, @"SpriteObject must not be nil!");
+    XCTAssertTrue([moleTwo.name isEqualToString:@"Mole 2"], @"Invalid object name!");
+    
+    Script *script = [moleTwo.scriptList objectAtIndex:0];
+    XCTAssertNotNil(script, @"Script must not be nil!");
+    
+    PointToBrick *pointToBrick = [script.brickList objectAtIndex:7];
+    XCTAssertNotNil(pointToBrick, @"PointToBrick must not be nil!");
+    
+    SpriteObject *pointedObject = pointToBrick.pointedObject;
+    XCTAssertNotNil(pointedObject, @"pointedObject must not be nil!");
+    XCTAssertTrue([pointedObject.name isEqualToString:@"Mole 2"], @"Invalid object name!");
 }
 
 @end
