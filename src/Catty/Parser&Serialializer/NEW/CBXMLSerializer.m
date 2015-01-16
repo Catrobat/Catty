@@ -106,7 +106,7 @@
         NSLog(@"%@", xmlString);
         NSError *error = nil;
 
-#ifdef SIMULATOR_DEBUGGING_ENABLED
+#if SIMULATOR_DEBUGGING_ENABLED
         NSString *referenceXmlString = [NSString stringWithFormat:@"%@\n%@",
                                         kCatrobatHeaderXMLDeclaration,
                                         [program.XMLdocument.rootElement XMLStringPrettyPrinted:YES]];
@@ -121,6 +121,7 @@
                       encoding:NSUTF8StringEncoding
                          error:&error];
 
+        error = nil;
         //#import <Foundation/NSTask.h> // debugging for OSX
         //        NSTask *task = [[NSTask alloc] init];
         //        [task setLaunchPath:@"/usr/bin/diff"];
@@ -131,12 +132,12 @@
         //        [task release];
 #endif
 
-        [xmlString writeToFile:self.xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+        if(![xmlString writeToFile:self.xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error])
+            NSError(@"Program could not saved to disk! %@", error);
 
         // update last access time
         [Program updateLastModificationTimeForProgramWithName:program.header.programName
                                                     programID:program.header.programID];
-        NSLogError(error);
         NSInfo(@"Saving finished...");
     } @catch(NSException *exception) {
         NSError(@"Program could not be loaded! %@", [exception description]);
