@@ -151,9 +151,10 @@
     NSError *error = nil;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSDebug(@"Create directory at path: %@", path);
-    if (! [self directoryExists:path])
-        [fileManager createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:&error];
-    NSLogError(error);
+    if (! [self directoryExists:path]) {
+        if(![fileManager createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:&error])
+            NSLogError(error);
+    }
 }
 
 - (void)deleteAllFilesInDocumentsDirectory
@@ -171,9 +172,9 @@
     NSError *error = nil;
     for (NSString *file in [fm contentsOfDirectoryAtPath:path error:&error]) {
         BOOL success = [fm removeItemAtPath:[NSString stringWithFormat:@"%@%@", path, file] error:&error];
-        NSLogError(error);
 
         if (!success) {
+            NSLogError(error);
             NSError(@"Error deleting file.");
         }
     }
@@ -217,9 +218,10 @@
     NSURL *oldURL = [NSURL fileURLWithPath:oldPath];
     NSURL *newURL = [NSURL fileURLWithPath:newPath];
     NSError *error = nil;
-    if ([[NSFileManager defaultManager] copyItemAtURL:oldURL toURL:newURL error:&error] != YES)
+    if ([[NSFileManager defaultManager] copyItemAtURL:oldURL toURL:newURL error:&error] != YES) {
         NSLog(@"Unable to copy file: %@", [error localizedDescription]);
-    NSLogError(error);
+        NSLogError(error);
+    }
 }
 
 - (void)moveExistingFileAtPath:(NSString*)oldPath toPath:(NSString*)newPath overwrite:(BOOL)overwrite
@@ -239,9 +241,10 @@
     NSURL *oldURL = [NSURL fileURLWithPath:oldPath];
     NSURL *newURL = [NSURL fileURLWithPath:newPath];
     NSError *error = nil;
-    if ([[NSFileManager defaultManager] moveItemAtURL:oldURL toURL:newURL error:&error] != YES)
+    if ([[NSFileManager defaultManager] moveItemAtURL:oldURL toURL:newURL error:&error] != YES) {
         NSLog(@"Unable to move file: %@", [error localizedDescription]);
-    NSLogError(error);
+        NSLogError(error);
+    }
 }
 
 - (void)moveExistingDirectoryAtPath:(NSString*)oldPath toPath:(NSString*)newPath
@@ -253,23 +256,28 @@
     NSURL *oldURL = [NSURL fileURLWithPath:oldPath];
     NSURL *newURL = [NSURL fileURLWithPath:newPath];
     NSError *error = nil;
-    if ([[NSFileManager defaultManager] moveItemAtURL:oldURL toURL:newURL error:&error] != YES)
+    if ([[NSFileManager defaultManager] moveItemAtURL:oldURL toURL:newURL error:&error] != YES) {
         NSLog(@"Unable to move directory: %@", [error localizedDescription]);
-    NSLogError(error);
+        NSLogError(error);
+    }
 }
 
 - (void)deleteFile:(NSString*)path
 {
     NSError *error = nil;
-    [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
-    NSLogError(error);
+    if(![[NSFileManager defaultManager] removeItemAtPath:path error:&error]) {
+        NSLog(@"Error while deleting file: %@", path);
+        NSLogError(error);
+    }
 }
 
 - (void)deleteDirectory:(NSString *)path
 {
     NSError *error = nil;
-    [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
-    NSLogError(error);
+    if(![[NSFileManager defaultManager] removeItemAtPath:path error:&error]) {
+        NSLog(@"Error while deleting directory: %@", path);
+        NSLogError(error);
+    }
 }
 
 - (NSUInteger)sizeOfDirectoryAtPath:(NSString*)path
@@ -299,7 +307,8 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error = nil;
     NSDictionary *fileDictionary = [fileManager attributesOfItemAtPath:path error:&error];
-    NSLogError(error);
+    if(!fileDictionary)
+        NSLogError(error);
     return (NSUInteger)[fileDictionary fileSize];
 }
 
@@ -311,7 +320,8 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error = nil;
     NSDictionary *fileDictionary = [fileManager attributesOfItemAtPath:path error:&error];
-    NSLogError(error);
+    if(!fileDictionary)
+        NSLogError(error);
     return [fileDictionary fileModificationDate];
 }
 
@@ -319,7 +329,8 @@
 {
     NSError *error = nil;
     NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:directory error:&error];
-    NSLogError(error);
+    if(!contents)
+        NSLogError(error);
     return contents;
 }
 
@@ -382,7 +393,8 @@
     }
 
     NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.programsDirectory error:&error];
-    NSLogError(error);
+    if(!contents)
+        NSLogError(error);
 
     if ([contents indexOfObject:projectName]) {
         NSString *filePath = [[NSBundle mainBundle] pathForResource:projectName ofType:@"catrobat"];
