@@ -25,6 +25,8 @@
 @interface XMLSerializerAbstractTest : XMLAbstractTest
 
 - (BOOL)isXMLElement:(GDataXMLElement*)xmlElement equalToXMLElementForXPath:(NSString*)xPath inProgramForXML:(NSString*)program;
+- (BOOL)isProgram:(Program*)firstProgram equalToXML:(NSString*)secondProgram;
 - (void)saveProgram:(Program*)program;
+- (void)testParseXMLAndSerializeProgramAndCompareXML:(NSString*)xmlFile;
 
 @end

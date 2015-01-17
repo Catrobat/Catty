@@ -20,16 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "CBSerializerProtocol.h"
+#import "GDataXMLNode.h"
 
-#define kCBXMLSerializerLanguageVersion @"0.93"
+@interface GDataXMLNode (CustomExtensions)
 
-@class GDataXMLDocument;
-
-@interface CBXMLSerializer : NSObject <CBSerializerProtocol>
-
-- (id)initWithPath:(NSString*)path;
-- (void)serializeProgram:(Program*)program;
-+ (GDataXMLDocument*)xmlDocumentForProgram:(Program*)program;
-
+- (BOOL)isEqualToNode:(GDataXMLNode*)node;
+- (NSArray*)childrenWithoutComments;
+- (NSString*)decodedStringValue;
+- (NSString*)decodedName;
++ (NSString*)decodedStringForString:(NSString*)xmlString;
 @end
