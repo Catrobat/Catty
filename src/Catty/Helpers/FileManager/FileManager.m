@@ -268,7 +268,8 @@
     if(![[NSFileManager defaultManager] removeItemAtPath:path error:&error]) {
         NSLog(@"Error while deleting file: %@", path);
         NSLogError(error);
-    }
+    } else
+        NSLog(@"File deleted: %@", path);
 }
 
 - (void)deleteDirectory:(NSString *)path
@@ -277,7 +278,8 @@
     if(![[NSFileManager defaultManager] removeItemAtPath:path error:&error]) {
         NSLog(@"Error while deleting directory: %@", path);
         NSLogError(error);
-    }
+    } else
+        NSLog(@"Directory deleted: %@", path);
 }
 
 - (NSUInteger)sizeOfDirectoryAtPath:(NSString*)path
