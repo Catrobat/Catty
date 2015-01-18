@@ -45,7 +45,7 @@ typedef enum {
 
 - (id)initWithTokens:(NSArray*)tokens; // of InternToken
 - (void)handleOperator:(NSString*) operator WithCurrentElement:(FormulaElement*) currentElement AndNewElement: (FormulaElement*) newElement;
-- (FormulaElement*) parseFormula;
+- (FormulaElement*)parseFormulaForSpriteObject:(SpriteObject*)object;
 - (int)getErrorTokenIndex;
 
 @end

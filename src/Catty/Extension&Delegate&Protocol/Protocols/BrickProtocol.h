@@ -23,6 +23,8 @@
 #import <Foundation/Foundation.h>
 #import "UIDefines.h"
 
+@class SpriteObject;
+
 @protocol BrickProtocol <NSObject>
 
 @required
@@ -30,5 +32,6 @@
 @property (nonatomic, readonly) kBrickType brickType;
 @property (nonatomic, strong, readonly) NSString *brickTitle;
 - (BOOL)isSelectableForObject;
+- (SpriteObject*)object;
 
 @end
