@@ -26,5 +26,5 @@
 
 - (UIImage *)imageRotatedByRadians:(CGFloat)radians;
 - (UIImage *)imageRotatedByDegrees:(CGFloat)degrees;
-
+- (UIImage *)fixOrientation;
 @end
