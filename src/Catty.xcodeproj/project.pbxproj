@@ -24,7 +24,6 @@
 		4C1608B21A09621A002C7032 /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B01A09621A002C7032 /* ValidFormulaList.xml */; };
 		4C1608B31A09621A002C7032 /* ValidProgram.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B11A09621A002C7032 /* ValidProgram.xml */; };
 		4C3275FA1A1360640091C428 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */; };
-		4C585F101A6BEF1D00627EE9 /* PointToBrickWithoutSpriteObject.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C585F0F1A6BEF1D00627EE9 /* PointToBrickWithoutSpriteObject.xml */; };
 		92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A461A42F2A3008C771A /* BSKeyboardControls.m */; };
 		92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A481A42F2A3008C771A /* iOSCombobox.m */; };
 		9238C5831A3AE9920099F061 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */; };
@@ -550,7 +549,6 @@
 		4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidProgramAllBricks.xml; path = "Resources/Test Resources/ValidProgramAllBricks.xml"; sourceTree = "<group>"; };
 		4C3AEF2E198E7EDD00604ABF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaFunctionsTest.m; sourceTree = "<group>"; };
-		4C585F0F1A6BEF1D00627EE9 /* PointToBrickWithoutSpriteObject.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = PointToBrickWithoutSpriteObject.xml; path = "Resources/Test Resources/PointToBrickWithoutSpriteObject/PointToBrickWithoutSpriteObject.xml"; sourceTree = "<group>"; };
 		4C9E2D1E198EA6B600455B77 /* SMPageControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SMPageControl.license; sourceTree = "<group>"; };
 		4C9E2D20198EACE200455B77 /* EAIntroView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EAIntroView.license; sourceTree = "<group>"; };
 		4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDKNotifyHUD.license; sourceTree = "<group>"; };
@@ -1581,7 +1579,6 @@
 		4C1608A41A09548F002C7032 /* ParserTests */ = {
 			isa = PBXGroup;
 			children = (
-				4C585F0E1A6BEF0A00627EE9 /* PointToBrickWithoutSpriteObject */,
 				CA97A44D1A44F397008C931B /* Air_fight_0.5 */,
 				CA97A4661A44F3D9008C931B /* Airplane_with_shadow */,
 				CA97A4671A44F3E2008C931B /* Compass_0.1 */,
@@ -1627,14 +1624,6 @@
 				4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */,
 			);
 			name = Formula;
-			sourceTree = "<group>";
-		};
-		4C585F0E1A6BEF0A00627EE9 /* PointToBrickWithoutSpriteObject */ = {
-			isa = PBXGroup;
-			children = (
-				4C585F0F1A6BEF1D00627EE9 /* PointToBrickWithoutSpriteObject.xml */,
-			);
-			name = PointToBrickWithoutSpriteObject;
 			sourceTree = "<group>";
 		};
 		4C9E2D1D198EA6B600455B77 /* Licenses */ = {
@@ -4184,7 +4173,6 @@
 				CA97A47A1A44F45C008C931B /* Minions__091.xml in Resources */,
 				CA97A45C1A44F3B7008C931B /* Drink_more_water_09.xml in Resources */,
 				CA97A47F1A44F46C008C931B /* Nyancat_1.0_093.xml in Resources */,
-				4C585F101A6BEF1D00627EE9 /* PointToBrickWithoutSpriteObject.xml in Resources */,
 				CA97A4511A44F3A0008C931B /* Airplane_with_shadow_093.xml in Resources */,
 				CA97A4771A44F455008C931B /* Minecraft_Work_In_Progress_093.xml in Resources */,
 				4C1608B21A09621A002C7032 /* ValidFormulaList.xml in Resources */,

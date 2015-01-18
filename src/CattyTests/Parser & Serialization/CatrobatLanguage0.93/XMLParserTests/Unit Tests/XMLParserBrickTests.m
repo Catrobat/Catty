@@ -535,6 +535,7 @@
     XCTAssertTrue([spriteObject.name isEqualToString:@"stickers"], @"Invalid object name");
 }
 
+/*
 - (void)testValidPointToBrickWithoutSpriteObject
 {
     Program *program = [self getProgramForXML:@"PointToBrickWithoutSpriteObject"];
@@ -553,6 +554,6 @@
     SpriteObject *pointedObject = pointToBrick.pointedObject;
     XCTAssertNotNil(pointedObject, @"pointedObject must not be nil!");
     XCTAssertTrue([pointedObject.name isEqualToString:@"Mole 2"], @"Invalid object name!");
-}
+}*/
 
 @end
