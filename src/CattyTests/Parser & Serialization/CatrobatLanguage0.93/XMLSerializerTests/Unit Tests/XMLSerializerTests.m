@@ -53,7 +53,6 @@
     XCTAssertTrue(equal, @"XMLElement invalid!");
 }
 
-/*
 - (void)testPointedToBrickWithoutSpriteObject
 {
     Program *program = [self getProgramForXML:@"PointToBrickWithoutSpriteObject"];
@@ -71,7 +70,7 @@
 
     BOOL equal = [self isXMLElement:[pointToBrick xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/objectList/object[2]/scriptList/script[1]/brickList/brick[8]" inProgramForXML:@"PointToBrickWithoutSpriteObject"];
     XCTAssertTrue(equal, @"XMLElement invalid!");
-}*/
+}
 
 @end
 
