@@ -22,11 +22,11 @@
 
 #import "XMLSerializerAbstractTest.h"
 
-@interface XMLSerializerHeaderTests : XMLSerializerAbstractTest
+@interface XMLSerializerTests : XMLSerializerAbstractTest
 
 @end
 
-@implementation XMLSerializerHeaderTests
+@implementation XMLSerializerTests
 
 - (void)testHeader
 {
@@ -34,6 +34,15 @@
     Header *header = program.header;
     BOOL equal = [self isXMLElement:[header xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/header" inProgramForXML:@"ValidProgram"];
     XCTAssertTrue(equal, @"XMLElement invalid!");
+}
+
+- (void)testInvalidHeader
+{
+    Program *program = [self getProgramForXML:@"ValidProgram"];
+    Header *header = program.header;
+    header.programDescription = @"Invalid";
+    BOOL equal = [self isXMLElement:[header xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/header" inProgramForXML:@"ValidProgram"];
+    XCTAssertFalse(equal, @"GDataXMLElement::isEqualToElement not working correctly!");
 }
 
 - (void)testFormulaAndMoveNStepsBrick

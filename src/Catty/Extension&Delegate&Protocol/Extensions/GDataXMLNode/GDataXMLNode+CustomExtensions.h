@@ -20,11 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "GDataXMLNode.h"
 
-@interface UIImage (Rotate)
+@interface GDataXMLNode (CustomExtensions)
 
-- (UIImage *)imageRotatedByRadians:(CGFloat)radians;
-- (UIImage *)imageRotatedByDegrees:(CGFloat)degrees;
-- (UIImage *)fixOrientation;
+- (BOOL)isEqualToNode:(GDataXMLNode*)node;
+- (NSArray*)childrenWithoutComments;
+- (NSString*)decodedStringValue;
+- (NSString*)decodedName;
++ (NSString*)decodedStringForString:(NSString*)xmlString;
 @end
