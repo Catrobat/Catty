@@ -37,6 +37,8 @@
 
 - (id)objectForKey:(id)aKey;
 
+- (void)removeObjectForKey:(id)aKey;
+
 - (void)removeAllObjects;
 
 - (NSUInteger)count;

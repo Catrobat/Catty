@@ -75,6 +75,12 @@
     [self.keyIndexArray addObject:aKey];
 }
 
+- (void)removeObjectForKey:(id)aKey
+{
+    [self.mapTable removeObjectForKey:aKey];
+    [self.keyIndexArray removeObject:aKey];
+}
+
 - (void)removeAllObjects
 {
     [self.mapTable removeAllObjects];
