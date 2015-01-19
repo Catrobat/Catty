@@ -38,6 +38,7 @@
 @interface CBXMLParser()
 
 @property (nonatomic, strong) NSString *xmlPath;
+@property (nonatomic, strong) NSString *xmlContent;
 
 @end
 
@@ -57,6 +58,14 @@
     return self;
 }
 
+- (id)initWithXMLContent:(NSString*)xmlContent
+{
+    if (self = [super init]) {
+        self.xmlContent = xmlContent;
+    }
+    return self;
+}
+
 #pragma mark - Supported versions
 - (BOOL)isSupportedLanguageVersion:(CGFloat)languageVersion
 {
@@ -68,7 +77,12 @@
 - (Program*)parseAndCreateProgram
 {
     NSError *error;
-    NSString *xmlFile = [NSString stringWithContentsOfFile:self.xmlPath
+    NSString *xmlFile;
+    
+    if(self.xmlContent)
+        xmlFile = self.xmlContent;
+    else
+        xmlFile = [NSString stringWithContentsOfFile:self.xmlPath
                                                   encoding:NSUTF8StringEncoding
                                                      error:&error];
     // sanity check

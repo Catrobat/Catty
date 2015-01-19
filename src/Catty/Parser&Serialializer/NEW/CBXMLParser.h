@@ -25,6 +25,7 @@
 @interface CBXMLParser : NSObject <CBParserProtocol>
 
 - (id)initWithPath:(NSString*)path;
+- (id)initWithXMLContent:(NSString*)xmlContent;
 - (BOOL)isSupportedLanguageVersion:(CGFloat)languageVersion;
 - (Program*)parseAndCreateProgram;
 
