@@ -44,5 +44,6 @@
                         stringValue:(NSString*)value context:(CBXMLContext*)context;
 + (id)attributeWithName:(NSString*)name escapedStringValue:(NSString*)value;
 - (void)addChild:(GDataXMLNode*)child context:(CBXMLContext*)context;
+- (BOOL)isEqualToElement:(GDataXMLElement*)node;
 
 @end

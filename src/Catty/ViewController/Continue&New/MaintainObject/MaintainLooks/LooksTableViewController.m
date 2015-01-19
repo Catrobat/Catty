@@ -51,6 +51,7 @@
 #import "ProgramLoadingInfo.h"
 #import "PaintViewController.h"
 #import "PlaceHolderView.h"
+#import "UIImage+Rotate.h"
 
 @interface LooksTableViewController () <CatrobatActionSheetDelegate, UIImagePickerControllerDelegate,
                                         UINavigationControllerDelegate, CatrobatAlertViewDelegate,
@@ -421,6 +422,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIImage *image = info[UIImagePickerControllerEditedImage];
     if (! image) {
         image = info[UIImagePickerControllerOriginalImage];
+        image = [image fixOrientation];
     }
 
     if (! image) {

@@ -98,7 +98,7 @@
             </brick>
             <brick type="IfLogicEndBrick"/>
           </brickList>
-          <isUserScript>false</isUserScript>
+          <!-- <isUserScript>false</isUserScript> -->
         </script>
         <script type="StartScript">
           <brickList>
@@ -121,7 +121,7 @@
             </brick>
             <brick type="LoopEndlessBrick"/>
           </brickList>
-          <isUserScript>false</isUserScript>
+          <!-- <isUserScript>false</isUserScript> -->
         </script>
         <script type="WhenScript">
           <brickList>
@@ -150,7 +150,7 @@
           <action>Tapped</action>
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="Spaceship">
       <lookList>
@@ -196,7 +196,7 @@
               </formulaList>
             </brick>
           </brickList>
-          <isUserScript>false</isUserScript>
+          <!-- <isUserScript>false</isUserScript> -->
         </script>
         <script type="StartScript">
           <brickList>
@@ -208,12 +208,12 @@
                   <value>OBJECT_X</value>
                 </formula>
               </formulaList>
-              <inUserBrick>false</inUserBrick>
+              <!-- <inUserBrick>false</inUserBrick> -->
               <userVariable>ShipX</userVariable>
             </brick>
             <brick type="LoopEndlessBrick"/>
           </brickList>
-          <isUserScript>false</isUserScript>
+          <!-- <isUserScript>false</isUserScript> -->
         </script>
         <script type="StartScript">
           <brickList>
@@ -245,7 +245,7 @@
             <brick type="IfLogicEndBrick"/>
             <brick type="LoopEndlessBrick"/>
           </brickList>
-          <isUserScript>false</isUserScript>
+          <!-- <isUserScript>false</isUserScript> -->
         </script>
         <script type="StartScript">
           <brickList>
@@ -299,7 +299,7 @@
             <brick type="IfLogicEndBrick"/>
             <brick type="LoopEndlessBrick"/>
           </brickList>
-          <isUserScript>false</isUserScript>
+          <!-- <isUserScript>false</isUserScript> -->
         </script>
         <script type="StartScript">
           <brickList>
@@ -327,7 +327,7 @@
             <brick type="IfLogicEndBrick"/>
             <brick type="LoopEndlessBrick"/>
           </brickList>
-          <isUserScript>false</isUserScript>
+          <!-- <isUserScript>false</isUserScript> -->
         </script>
         <script type="StartScript">
           <brickList>
@@ -417,10 +417,10 @@
             <brick type="IfLogicEndBrick"/>
             <brick type="LoopEndlessBrick"/>
           </brickList>
-          <isUserScript>false</isUserScript>
+          <!-- <isUserScript>false</isUserScript> -->
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="Laser beam">
       <lookList>
@@ -445,7 +445,7 @@
                   <value>1</value>
                 </formula>
               </formulaList>
-              <inUserBrick>false</inUserBrick>
+              <!-- <inUserBrick>false</inUserBrick> -->
               <userVariable>beamReady</userVariable>
             </brick>
             <brick type="ForeverBrick"/>
@@ -456,7 +456,7 @@
                   <value>OBJECT_X</value>
                 </formula>
               </formulaList>
-              <inUserBrick>false</inUserBrick>
+              <!-- <inUserBrick>false</inUserBrick> -->
               <userVariable>laserBeamX</userVariable>
             </brick>
             <brick type="SetVariableBrick">
@@ -466,12 +466,12 @@
                   <value>OBJECT_Y</value>
                 </formula>
               </formulaList>
-              <inUserBrick>false</inUserBrick>
+              <!-- <inUserBrick>false</inUserBrick> -->
               <userVariable>laserBeamY</userVariable>
             </brick>
             <brick type="LoopEndlessBrick"/>
           </brickList>
-          <isUserScript>false</isUserScript>
+          <!-- <isUserScript>false</isUserScript> -->
         </script>
         <script type="BroadcastScript">
           <brickList>
@@ -482,7 +482,7 @@
                   <value>0</value>
                 </formula>
               </formulaList>
-              <inUserBrick>false</inUserBrick>
+              <!-- <inUserBrick>false</inUserBrick> -->
               <userVariable reference="../../../../script/brickList/brick[2]/userVariable"/>
             </brick>
             <brick type="SetXBrick">
@@ -536,7 +536,7 @@
                   <value>1</value>
                 </formula>
               </formulaList>
-              <inUserBrick>false</inUserBrick>
+              <!-- <inUserBrick>false</inUserBrick> -->
               <userVariable reference="../../../../script/brickList/brick[2]/userVariable"/>
             </brick>
           </brickList>
@@ -552,14 +552,14 @@
                   <value>1</value>
                 </formula>
               </formulaList>
-              <inUserBrick>false</inUserBrick>
+              <!-- <inUserBrick>false</inUserBrick> -->
               <userVariable reference="../../../../script/brickList/brick[2]/userVariable"/>
             </brick>
           </brickList>
           <receivedMessage>dead</receivedMessage>
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="Enemy1">
       <lookList>
@@ -611,7 +611,7 @@
                   <value>0.0</value>
                 </formula>
               </formulaList>
-              <inUserBrick>false</inUserBrick>
+              <!-- <inUserBrick>false</inUserBrick> -->
               <userVariable>killCount</userVariable>
             </brick>
             <brick type="ForeverBrick"/>
@@ -702,7 +702,7 @@
             </brick>
             <brick type="LoopEndlessBrick"/>
           </brickList>
-          <isUserScript>false</isUserScript>
+          <!-- <isUserScript>false</isUserScript> -->
         </script>
         <script type="StartScript">
           <brickList>
@@ -838,7 +838,7 @@
                   <value>1</value>
                 </formula>
               </formulaList>
-              <inUserBrick>false</inUserBrick>
+              <!-- <inUserBrick>false</inUserBrick> -->
               <userVariable reference="../../../../script/brickList/brick[2]/userVariable"/>
             </brick>
             <brick type="PlaySoundBrick">
@@ -889,10 +889,10 @@
             <brick type="IfLogicEndBrick"/>
             <brick type="LoopEndlessBrick"/>
           </brickList>
-          <isUserScript>false</isUserScript>
+          <!-- <isUserScript>false</isUserScript> -->
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="Enemy2">
       <lookList>
@@ -944,7 +944,7 @@
                   <value>0.0</value>
                 </formula>
               </formulaList>
-              <inUserBrick>false</inUserBrick>
+              <!-- <inUserBrick>false</inUserBrick> -->
               <userVariable reference="../../../../../../object[4]/scriptList/script/brickList/brick[2]/userVariable"/>
             </brick>
             <brick type="ForeverBrick"/>
@@ -1035,7 +1035,7 @@
             </brick>
             <brick type="LoopEndlessBrick"/>
           </brickList>
-          <isUserScript>false</isUserScript>
+          <!-- <isUserScript>false</isUserScript> -->
         </script>
         <script type="StartScript">
           <brickList>
@@ -1171,7 +1171,7 @@
                   <value>1</value>
                 </formula>
               </formulaList>
-              <inUserBrick>false</inUserBrick>
+              <!-- <inUserBrick>false</inUserBrick> -->
               <userVariable reference="../../../../../../object[4]/scriptList/script/brickList/brick[2]/userVariable"/>
             </brick>
             <brick type="PlaySoundBrick">
@@ -1222,10 +1222,10 @@
             <brick type="IfLogicEndBrick"/>
             <brick type="LoopEndlessBrick"/>
           </brickList>
-          <isUserScript>false</isUserScript>
+          <!-- <isUserScript>false</isUserScript> -->
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="Enemy3">
       <lookList>
@@ -1277,7 +1277,7 @@
                   <value>0</value>
                 </formula>
               </formulaList>
-              <inUserBrick>false</inUserBrick>
+              <!-- <inUserBrick>false</inUserBrick> -->
               <userVariable reference="../../../../../../object[4]/scriptList/script/brickList/brick[2]/userVariable"/>
             </brick>
             <brick type="ForeverBrick"/>
@@ -1368,7 +1368,7 @@
             </brick>
             <brick type="LoopEndlessBrick"/>
           </brickList>
-          <isUserScript>false</isUserScript>
+          <!-- <isUserScript>false</isUserScript> -->
         </script>
         <script type="StartScript">
           <brickList>
@@ -1504,7 +1504,7 @@
                   <value>1</value>
                 </formula>
               </formulaList>
-              <inUserBrick>false</inUserBrick>
+              <!-- <inUserBrick>false</inUserBrick> -->
               <userVariable reference="../../../../../../object[4]/scriptList/script/brickList/brick[2]/userVariable"/>
             </brick>
             <brick type="PlaySoundBrick">
@@ -1555,10 +1555,10 @@
             <brick type="IfLogicEndBrick"/>
             <brick type="LoopEndlessBrick"/>
           </brickList>
-          <isUserScript>false</isUserScript>
+          <!-- <isUserScript>false</isUserScript> -->
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="Enemy4">
       <lookList>
@@ -1610,7 +1610,7 @@
                   <value>0</value>
                 </formula>
               </formulaList>
-              <inUserBrick>false</inUserBrick>
+              <!-- <inUserBrick>false</inUserBrick> -->
               <userVariable reference="../../../../../../object[4]/scriptList/script/brickList/brick[2]/userVariable"/>
             </brick>
             <brick type="ForeverBrick"/>
@@ -1701,7 +1701,7 @@
             </brick>
             <brick type="LoopEndlessBrick"/>
           </brickList>
-          <isUserScript>false</isUserScript>
+          <!-- <isUserScript>false</isUserScript> -->
         </script>
         <script type="StartScript">
           <brickList>
@@ -1837,7 +1837,7 @@
                   <value>1</value>
                 </formula>
               </formulaList>
-              <inUserBrick>false</inUserBrick>
+              <!-- <inUserBrick>false</inUserBrick> -->
               <userVariable reference="../../../../../../object[4]/scriptList/script/brickList/brick[2]/userVariable"/>
             </brick>
             <brick type="PlaySoundBrick">
@@ -1888,10 +1888,10 @@
             <brick type="IfLogicEndBrick"/>
             <brick type="LoopEndlessBrick"/>
           </brickList>
-          <isUserScript>false</isUserScript>
+          <!-- <isUserScript>false</isUserScript> -->
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="End screen">
       <lookList>
@@ -1923,10 +1923,10 @@
           <brickList>
             <brick type="HideBrick"/>
           </brickList>
-          <isUserScript>false</isUserScript>
+          <!-- <isUserScript>false</isUserScript> -->
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
   </objectList>
   <variables>
@@ -1967,6 +1967,6 @@
       <userVariable reference="../../../objectList/object[3]/scriptList/script/brickList/brick[5]/userVariable"/>
       <userVariable reference="../../../objectList/object[4]/scriptList/script/brickList/brick[2]/userVariable"/>
     </programVariableList>
-    <userBrickVariableList/>
+    <!-- <userBrickVariableList/> -->
   </variables>
 </program>

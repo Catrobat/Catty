@@ -24,9 +24,12 @@
 
 #define kCBXMLSerializerLanguageVersion @"0.93"
 
+@class GDataXMLDocument;
+
 @interface CBXMLSerializer : NSObject <CBSerializerProtocol>
 
 - (id)initWithPath:(NSString*)path;
 - (void)serializeProgram:(Program*)program;
++ (GDataXMLDocument*)xmlDocumentForProgram:(Program*)program;
 
 @end

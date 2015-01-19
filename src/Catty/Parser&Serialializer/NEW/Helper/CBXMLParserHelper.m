@@ -23,6 +23,7 @@
 #import "CBXMLParserHelper.h"
 #import "CBXMLValidator.h"
 #import "GDataXMLElement+CustomExtensions.h"
+#import "GDataXMLNode+CustomExtensions.h"
 #import "CBXMLContext.h"
 #import "Formula+CBXMLHandler.h"
 #import "Header+CBXMLHandler.h"
@@ -47,7 +48,7 @@
 
 + (BOOL)validateXMLElement:(GDataXMLElement*)xmlElement forNumberOfChildNodes:(NSUInteger)numberOfChildNodes
 {
-    [XMLError exceptionIf:[xmlElement childCount]
+    [XMLError exceptionIf:[[xmlElement childrenWithoutComments] count]
                 notEquals:numberOfChildNodes
                   message:@"Too less or too many child nodes found... (%lu expected)",
                           (unsigned long)numberOfChildNodes];

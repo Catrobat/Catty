@@ -31,7 +31,7 @@
       </lookList>
       <soundList/>
       <scriptList/>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="parachute">
       <lookList>
@@ -41,7 +41,7 @@
       </lookList>
       <soundList/>
       <scriptList/>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="target">
       <lookList>
@@ -51,7 +51,7 @@
       </lookList>
       <soundList/>
       <scriptList/>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="parcel">
       <lookList>
@@ -61,7 +61,7 @@
       </lookList>
       <soundList/>
       <scriptList/>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="restart">
       <lookList>
@@ -71,12 +71,12 @@
       </lookList>
       <soundList/>
       <scriptList/>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
   </objectList>
   <variables>
     <objectVariableList/>
     <programVariableList/>
-    <userBrickVariableList/>
+    <!-- <userBrickVariableList/> -->
   </variables>
 </program>
