@@ -522,29 +522,46 @@
 
 - (void)restartProgram:(UIButton*)sender
 {
-    [self.program removeReferences];
-    self.program = nil;
-    self.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
-    for (SpriteObject *sprite in self.program.objectList) {
-        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-    }
-    [self.program updateReferences];
-    [[AudioManager sharedAudioManager] stopAllSounds];
-
-    [self.broadcastWaitHandler removeSpriteMessages];
-    Scene *previousScene = (Scene*)self.skView.scene;
-    previousScene.program = self.program;
-
-    if (! self.program) {
-        [[[UIAlertView alloc] initWithTitle:kLocalizedCantRestartProgram
-                                    message:nil
-                                   delegate:self.menuView
-                          cancelButtonTitle:kLocalizedOK
-                          otherButtonTitles:nil] show];
-        return;
-    }
-    [self.skView presentScene:previousScene];
-    [self continueProgram:nil withDuration:0.0f];
+//    [self.program removeReferences];
+//    self.program = nil;
+//    self.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
+//    for (SpriteObject *sprite in self.program.objectList) {
+//        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
+//    }
+//    [self.program updateReferences];
+//    [[AudioManager sharedAudioManager] stopAllSounds];
+//
+//    [self.broadcastWaitHandler removeSpriteMessages];
+//    Scene *previousScene = (Scene*)self.skView.scene;
+//    previousScene.program = self.program;
+//
+//    if (! self.program) {
+//        [[[UIAlertView alloc] initWithTitle:kLocalizedCantRestartProgram
+//                                    message:nil
+//                                   delegate:self.menuView
+//                          cancelButtonTitle:kLocalizedOK
+//                          otherButtonTitles:nil] show];
+//        return;
+//    }
+//    [self.skView presentScene:previousScene];
+//    [self continueProgram:nil withDuration:0.0f];
+    ScenePresenterViewController *vc = [[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]]];
+    
+    
+    UINavigationController *navController = self.navigationController;
+    
+        //Get all view controllers in navigation controller currently
+    NSMutableArray *controllers=[[NSMutableArray alloc] initWithArray:navController.viewControllers] ;
+    
+        //Remove the last view controller
+    [controllers removeLastObject];
+    
+        //set the new set of view controllers
+    [navController setViewControllers:controllers];
+    
+        //Push a new view controller
+    [navController pushViewController:vc animated:NO];
+    
 }
 
 - (void)showHideAxis:(UIButton *)sender

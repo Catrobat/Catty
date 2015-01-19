@@ -155,12 +155,17 @@
   self.helper = [[UIView alloc] initWithFrame:rect];
         //add blank image at the beginning
     if (self.editingImage) {
-//        self.helper.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
-//        self.drawView.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
-//        self.saveView.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
-        self.helper.frame = self.view.bounds;
-        self.drawView.frame = self.view.bounds;
-        self.saveView.frame = self.view.bounds;
+        if ((self.editingImage.size.width <= self.view.bounds.size.width) && (self.editingImage.size.height <= self.view.bounds.size.height)) {
+            self.helper.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
+            self.drawView.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
+            self.saveView.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
+        }else{
+            
+            self.helper.frame = self.view.bounds;
+            self.drawView.frame = self.view.bounds;
+            self.saveView.frame = self.view.bounds;
+        }
+
         self.saveView.image = self.editingImage;
     } else {
         UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);

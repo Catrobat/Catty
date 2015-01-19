@@ -449,6 +449,7 @@
 #define kUIFEComputedTrue NSLocalizedString(@"Computed result is TRUE", nil)
 #define kUIFEComputedFalse NSLocalizedString(@"Computed result is FALSE", nil)
 #define kUIFENewVar NSLocalizedString(@"New Variable", nil)
+#define kUIFENewVarExists NSLocalizedString(@"Name already exists. Please choose another", nil)
 #define kUIFEonly15Char NSLocalizedString(@"only 15 characters allowed", nil)
 #define kUIFEVarName NSLocalizedString(@"Variable name:", nil)
 #define kUIFEActionVar NSLocalizedString(@"Variable type", nil)

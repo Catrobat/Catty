@@ -712,6 +712,24 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 -(void)saveVariable:(NSString*)name
 {
+    for (UserVariable* variable in self.object.program.variables.programVariableList) {
+        if ([variable.name isEqualToString:name]) {
+            [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVarExists promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+            return;
+        }
+    }
+    if(!self.isProgramVariable){
+        if ([self.object.program.variables.objectVariableList objectForKey:self.object]) {
+            for (UserVariable* variable in [self.object.program.variables.objectVariableList objectForKey:self.object]) {
+                if ([variable.name isEqualToString:name]) {
+                    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVarExists promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+                    return;
+                }
+            }
+        }
+        
+    }
+    
     [self.formulaEditorTextView becomeFirstResponder];
     UserVariable* var = [UserVariable new];
     var.name = name;
@@ -726,7 +744,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [array addObject:var];
         [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
     }
-
+    
     [self updateVariablePickerData];
 }
 
