@@ -74,5 +74,24 @@
     XCTAssertTrue([parsedProgram isEqualToProgram:program], @"Programs are not equal");
 }
 
+- (void)testPointedToBrickWithoutSpriteObject
+{
+    Program *program = [self getProgramForXML:@"PointToBrickWithoutSpriteObject"];
+    XCTAssertNotNil(program, @"Program must not be nil!");
+    
+    SpriteObject *moleTwo = [program.objectList objectAtIndex:1];
+    XCTAssertNotNil(moleTwo, @"SpriteObject must not be nil!");
+    XCTAssertTrue([moleTwo.name isEqualToString:@"Mole 2"], @"Invalid object name!");
+    
+    Script *script = [moleTwo.scriptList objectAtIndex:0];
+    XCTAssertNotNil(script, @"Script must not be nil!");
+    
+    PointToBrick *pointToBrick = [script.brickList objectAtIndex:7];
+    XCTAssertNotNil(pointToBrick, @"PointToBrick must not be nil!");
+
+    BOOL equal = [self isXMLElement:[pointToBrick xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/objectList/object[2]/scriptList/script[1]/brickList/brick[8]" inProgramForXML:@"PointToBrickWithoutSpriteObject"];
+    XCTAssertTrue(equal, @"XMLElement invalid!");
+}
+
 @end
 
