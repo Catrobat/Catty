@@ -147,7 +147,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSString *newPath = [self.object pathForLook:look];
     [appDelegate.fileManager moveExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
     [self.dataCache removeObjectForKey:look.fileName]; // just to ensure
-    [self.object addLook:look];
+    [self.object addLook:look AndSaveToDisk:YES];
 
     [self showPlaceHolder:NO];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
@@ -160,7 +160,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self showLoadingView];
     NSString *nameOfCopiedLook = [Util uniqueName:sourceLook.name existingNames:[self.object allLookNames]];
-    [self.object copyLook:sourceLook withNameForCopiedLook:nameOfCopiedLook];
+    [self.object copyLook:sourceLook withNameForCopiedLook:nameOfCopiedLook AndSaveToDisk:YES];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
@@ -174,7 +174,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
     [self showLoadingView];
     newLookName = [Util uniqueName:newLookName existingNames:[self.object allLookNames]];
-    [self.object renameLook:look toName:newLookName];
+    [self.object renameLook:look toName:newLookName AndSaveToDisk:YES];
     NSUInteger lookIndex = [self.object.lookList indexOfObject:look];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lookIndex inSection:0];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
@@ -202,7 +202,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [looksToRemove addObject:look];
         [self.dataCache removeObjectForKey:look.fileName];
     }
-    [self.object removeLooks:looksToRemove];
+    [self.object removeLooks:looksToRemove AndSaveToDisk:YES];
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
@@ -214,7 +214,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self showLoadingView];
     Look *look = (Look*)[self.object.lookList objectAtIndex:indexPath.row];
     [self.dataCache removeObjectForKey:look.fileName];
-    [self.object removeLook:look];
+    [self.object removeLook:look AndSaveToDisk:YES];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationNone];
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];

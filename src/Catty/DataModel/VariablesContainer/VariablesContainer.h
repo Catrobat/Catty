@@ -47,6 +47,8 @@
 
 - (BOOL)isProgramVariable:(UserVariable*)userVariable;
 
+- (void)removeObjectVariablesForSpriteObject:(SpriteObject*)object;
+
 - (BOOL)isEqualToVariablesContainer:(VariablesContainer*)variablesContainer;
 
 - (id)mutableCopy;

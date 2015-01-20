@@ -363,14 +363,16 @@
     return [soundNames copy];
 }
 
-- (void)addLook:(Look*)look
+- (void)addLook:(Look*)look AndSaveToDisk:(BOOL)save
 {
     if ([self hasLook:look]) {
         return;
     }
     look.name = [Util uniqueName:look.name existingNames:[self allLookNames]];
     [self.lookList addObject:look];
-    [self.program saveToDisk];
+    if(save) {
+        [self.program saveToDisk];
+    }
     return;
 }
 
@@ -457,20 +459,27 @@
     }
 }
 
-- (void)removeLooks:(NSArray*)looks
+- (void)removeLooks:(NSArray*)looks AndSaveToDisk:(BOOL)save
 {
+    if(looks == self.lookList) {
+        looks = [looks mutableCopy];
+    }
     for (id look in looks) {
         if ([look isKindOfClass:[Look class]]) {
             [self removeLookFromList:look];
         }
     }
-    [self.program saveToDisk];
+    if(save) {
+        [self.program saveToDisk];
+    }
 }
 
-- (void)removeLook:(Look*)look
+- (void)removeLook:(Look*)look AndSaveToDisk:(BOOL)save
 {
     [self removeLookFromList:look];
-    [self.program saveToDisk];
+    if(save) {
+        [self.program saveToDisk];
+    }
 }
 
 - (void)removeSoundFromList:(Sound*)sound
@@ -503,20 +512,27 @@
     }
 }
 
-- (void)removeSounds:(NSArray*)sounds
+- (void)removeSounds:(NSArray*)sounds AndSaveToDisk:(BOOL)save
 {
+    if(sounds == self.soundList) {
+        sounds = [sounds mutableCopy];
+    }
     for (id sound in sounds) {
         if ([sound isKindOfClass:[Sound class]]) {
             [self removeSoundFromList:sound];
         }
     }
-    [self.program saveToDisk];
+    if(save) {
+        [self.program saveToDisk];
+    }
 }
 
-- (void)removeSound:(Sound*)sound
+- (void)removeSound:(Sound*)sound AndSaveToDisk:(BOOL)save
 {
     [self removeSoundFromList:sound];
-    [self.program saveToDisk];
+    if(save) {
+        [self.program saveToDisk];
+    }
 }
 
 - (BOOL)hasLook:(Look*)look
@@ -529,7 +545,7 @@
     return [self.soundList containsObject:sound];
 }
 
-- (Look*)copyLook:(Look*)sourceLook withNameForCopiedLook:(NSString*)nameOfCopiedLook
+- (Look*)copyLook:(Look*)sourceLook withNameForCopiedLook:(NSString*)nameOfCopiedLook AndSaveToDisk:(BOOL)save
 {
     if (! [self hasLook:sourceLook]) {
         return nil;
@@ -537,11 +553,13 @@
     Look *copiedLook = [sourceLook deepCopy];
     copiedLook.name = [Util uniqueName:nameOfCopiedLook existingNames:[self allLookNames]];
     [self.lookList addObject:copiedLook];
-    [self.program saveToDisk];
+    if(save) {
+        [self.program saveToDisk];
+    }
     return copiedLook;
 }
 
-- (Sound*)copySound:(Sound*)sourceSound withNameForCopiedSound:(NSString*)nameOfCopiedSound
+- (Sound*)copySound:(Sound*)sourceSound withNameForCopiedSound:(NSString*)nameOfCopiedSound AndSaveToDisk:(BOOL)save
 {
     if (! [self hasSound:sourceSound]) {
         return nil;
@@ -549,26 +567,32 @@
     Sound *copiedSound = [sourceSound deepCopy];
     copiedSound.name = [Util uniqueName:nameOfCopiedSound existingNames:[self allSoundNames]];
     [self.soundList addObject:copiedSound];
-    [self.program saveToDisk];
+    if(save) {
+        [self.program saveToDisk];
+    }
     return copiedSound;
 }
 
-- (void)renameLook:(Look*)look toName:(NSString*)newLookName
+- (void)renameLook:(Look*)look toName:(NSString*)newLookName AndSaveToDisk:(BOOL)save
 {
     if (! [self hasLook:look] || [look.name isEqualToString:newLookName]) {
         return;
     }
     look.name = [Util uniqueName:newLookName existingNames:[self allLookNames]];
-    [self.program saveToDisk];
+    if(save) {
+        [self.program saveToDisk];
+    }
 }
 
-- (void)renameSound:(Sound*)sound toName:(NSString*)newSoundName
+- (void)renameSound:(Sound*)sound toName:(NSString*)newSoundName AndSaveToDisk:(BOOL)save
 {
     if (! [self hasSound:sound] || [sound.name isEqualToString:newSoundName]) {
         return;
     }
     sound.name = [Util uniqueName:newSoundName existingNames:[self allSoundNames]];
-    [self.program saveToDisk];
+    if(save) {
+        [self.program saveToDisk];
+    }
 }
 
 #pragma mark - Broadcast

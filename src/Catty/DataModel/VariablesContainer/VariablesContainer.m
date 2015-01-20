@@ -149,6 +149,11 @@ static pthread_mutex_t variablesLock;
     return NO;
 }
 
+- (void)removeObjectVariablesForSpriteObject:(SpriteObject*)object
+{
+    [self.objectVariableList removeObjectForKey:object];
+}
+
 - (BOOL)isEqualToVariablesContainer:(VariablesContainer*)variablesContainer
 {
     //----------------------------------------------------------------------------------------------------

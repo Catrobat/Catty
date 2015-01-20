@@ -21,6 +21,11 @@
  */
 
 #import "XMLSerializerAbstractTest.h"
+#import "Program+CBXMLHandler.h"
+#import "CBXMLContext.h"
+#import "CBXMLSerializer.h"
+#import "CBXMLParser.h"
+#import "GDataXMLElement+CustomExtensions.h"
 
 @interface XMLSerializerTests : XMLSerializerAbstractTest
 
@@ -51,6 +56,22 @@
     MoveNStepsBrick *brick = (MoveNStepsBrick*)[((Script*)[((SpriteObject*)[program.objectList objectAtIndex:0]).scriptList objectAtIndex:0]).brickList objectAtIndex:5];
     BOOL equal = [self isXMLElement:[brick xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[6]" inProgramForXML:@"ValidProgramAllBricks"];
     XCTAssertTrue(equal, @"XMLElement invalid!");
+}
+
+- (void)testRemoveObjectAndSerializeProgram
+{
+    Program *referenceProgram = [self getProgramForXML:@"ValidProgram"];
+    Program *program = [self getProgramForXML:@"ValidProgram"];
+    SpriteObject *moleOne = [program.objectList objectAtIndex:1];
+    [program removeObject:moleOne];
+    
+    GDataXMLElement *xmlElement = [program xmlElementWithContext:[CBXMLContext new]];
+    XCTAssertNotNil(xmlElement, @"Error during serialization of removed object");
+    XCTAssertEqual([program.objectList count] + 1, [referenceProgram.objectList count], @"Object not properly removed");
+    XCTAssertFalse([[referenceProgram xmlElementWithContext:[CBXMLContext new]] isEqualToElement:xmlElement], @"Object not properly removed");
+    
+    Program *parsedProgram = [Program parseFromElement:xmlElement withContext:[CBXMLContext new]];
+    XCTAssertTrue([parsedProgram isEqualToProgram:program], @"Programs are not equal");
 }
 
 - (void)testPointedToBrickWithoutSpriteObject
