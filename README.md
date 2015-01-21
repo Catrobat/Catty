@@ -22,7 +22,7 @@ Please ask on our Google Plus community: http://goo.gl/fOjQi
 1. `sudo brew install homebrew/versions/perl516`
 -->
 
-# First Steps
+# First steps for intern Teammembers
 ## Learn iOS development?
 We recommend [iPad and iPhone App Development](https://itunes.apple.com/us/course/ipad-iphone-app-development/id495052415) from the Stanford University.
 
@@ -54,7 +54,35 @@ For a step-by-step guide how to deploy your first project, see: http://goo.gl/R0
 > App ID: at.tugraz.DEVist.catroid-demo-app-1
 > App Name: Catroid Player
 
+* We strictly use Test-Driven Development(URL 
+http://c2.com/cgi/wiki?TestDrivenDevelopment) and Clean Code(URL 
+https://www.ufm.edu/images/0/04/Clean_Code.pdf), so first read 
+everything you can about these development methods. Code developed in a 
+different style will not be accepted.
+
 * Finished
+
+
+# First steps for extern Contributors
+## Learn iOS development?
+We recommend [iPad and iPhone App Development](https://itunes.apple.com/us/course/ipad-iphone-app-development/id495052415) from the Stanford University.
+
+## Setting Up Your First Project - Step by Step
+For a step-by-step guide how to deploy your first project, see: http://goo.gl/R0tmG
+
+## ... Short Version
+
+* We strictly use Test-Driven Development(URL 
+http://c2.com/cgi/wiki?TestDrivenDevelopment) and Clean Code(URL 
+https://www.ufm.edu/images/0/04/Clean_Code.pdf), so first read 
+everything you can about these development methods. Code developed in a 
+different style will not be accepted.
+
+* If you have any further questions please use our IRC Channel or Google Plus community: http://goo.gl/fOjQi
+
+* Finished
+
+
 
 # License
 
