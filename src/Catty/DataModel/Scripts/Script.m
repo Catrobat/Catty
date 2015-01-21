@@ -139,19 +139,21 @@
 
     Brick *currentBrick = [self.brickList objectAtIndex:self.currentBrickIndex];
     ++self.currentBrickIndex;
+    
+    SKAction *action = [self fakeAction];;
 
     if ([currentBrick isKindOfClass:[LoopBeginBrick class]]) {
         BOOL condition = [((LoopBeginBrick*)currentBrick) checkCondition];
         if(!condition) {
             self.currentBrickIndex = [self.brickList indexOfObject:[((LoopBeginBrick*)currentBrick) loopEndBrick]]+1;
         }
-        [self nextAction];
+//        [self nextAction];
     } else if ([currentBrick isKindOfClass:[LoopEndBrick class]]) {
         self.currentBrickIndex = [self.brickList indexOfObject:[((LoopEndBrick*)currentBrick) loopBeginBrick]];
         if (self.currentBrickIndex == NSNotFound) {
             abort();
         }
-        [self nextAction];
+//        [self nextAction];
     } else if ([currentBrick isKindOfClass:[BroadcastWaitBrick class]]) {
         NSDebug(@"broadcast wait");
         __weak Script* weakself = self;
@@ -179,32 +181,26 @@
         if (self.currentBrickIndex == NSIntegerMin) {
             NSError(@"The XML-Structure is wrong, please fix the project");
         }
-        [self nextAction];
+//        [self nextAction];
     } else if ([currentBrick isKindOfClass:[IfLogicElseBrick class]]) {
         self.currentBrickIndex = [self.brickList indexOfObject:[((IfLogicElseBrick*)currentBrick) ifEndBrick]]+1;
         if (self.currentBrickIndex == NSIntegerMin) {
             NSError(@"The XML-Structure is wrong, please fix the project");
         }
-        [self nextAction];
+//        [self nextAction];
     } else if ([currentBrick isKindOfClass:[IfLogicEndBrick class]]) {
-        [self nextAction];
+//        [self nextAction];
     } else if ([currentBrick isKindOfClass:[NoteBrick class]]) {
-        [self nextAction];
+//        [self nextAction];
     } else {
-//        NSMutableArray* actionArray = [[NSMutableArray alloc] init];
-        SKAction *action = [currentBrick action];
-//        [actionArray addObject:action];
-//        SKAction *sequence = [SKAction sequence:actionArray];
-//        if (! action || ! actionArray || ! sequence) {
-//            abort();
-//        }
-        __weak Script *weakSelf = self;
-        [self runAction:action completion:^{
-            NSDebug(@"Finished: %@", action);
-            [weakSelf runNextAction];
-        }];
-        
+         action = [currentBrick action];
     }
+    __weak Script *weakSelf = self;
+    [self runAction:action completion:^{
+        NSDebug(@"Finished: %@", action);
+        [weakSelf nextAction];
+    }];
+
 }
 
 - (void)nextAction
@@ -234,7 +230,17 @@
 }
 
 
+- (SKAction*)fakeAction
+{
+    return [SKAction runBlock:[self fakeActionBlock]];
+}
 
+- (dispatch_block_t)fakeActionBlock
+{
+    return ^{
+        NSDebug(@"Performing: fake");
+    };
+}
 
 
 
