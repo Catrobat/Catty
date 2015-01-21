@@ -161,6 +161,7 @@
             [((BroadcastWaitBrick*)currentBrick) performBroadcastWait];
             [weakself nextAction];
         });
+        return;
 //    } else if ([currentBrick isKindOfClass:[BroadcastBrick class]]) {
 //        NSDebug(@"broadcast");
 //        __weak Script* weakself = self;
