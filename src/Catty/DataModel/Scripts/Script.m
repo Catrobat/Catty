@@ -197,10 +197,18 @@
          action = [currentBrick action];
     }
     __weak Script *weakSelf = self;
-    [self runAction:action completion:^{
-        NSDebug(@"Finished: %@", action);
-        [weakSelf nextAction];
-    }];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (action && self.allowRunNextAction) {
+            [self runAction:action completion:^{
+                NSDebug(@"Finished: %@", action);
+                [weakSelf nextAction];
+            }];
+        } else {
+            return ;
+        }
+        
+    });
+
 
 }
 
