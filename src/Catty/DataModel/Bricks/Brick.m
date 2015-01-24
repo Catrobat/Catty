@@ -150,7 +150,7 @@
             id propertyValueClone = [propertyValue mutableCopyWithZone:nil];
             [brick setValue:propertyValueClone forKey:propertyKey];
         } else if(reportError) {
-            NSError(@"Property %@ of class %@ in Brick of class %@ does not conform to CBMutableCopying or NSMutableCopying protocol. Implement mutableCopyWithContext method in %@", propertyKey, [propertyValue class], [self class], [self class]);
+            NSError(@"Property %@ of class %@ in Brick of class %@ does not conform to CBMutableCopying protocol. Implement mutableCopyWithContext method in %@", propertyKey, [propertyValue class], [self class], [self class]);
         }
     }
     

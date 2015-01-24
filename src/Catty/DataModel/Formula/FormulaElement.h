@@ -23,6 +23,7 @@
 #import <Foundation/Foundation.h>
 #import "Functions.h"
 #import "Operators.h"
+#import "CBMutableCopying.h"
 
 @class SpriteObject;
 
@@ -36,7 +37,7 @@ typedef enum {
     STRING
 } ElementType;
 
-@interface FormulaElement : NSObject<NSMutableCopying>
+@interface FormulaElement : NSObject<CBMutableCopying>
 
 @property (nonatomic, assign) ElementType type;
 @property (nonatomic, strong) NSString* value;

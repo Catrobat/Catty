@@ -619,10 +619,10 @@
 }
 
 #pragma mark - Copy
-- (id)mutableCopyWithZone:(NSZone *)zone
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {
-    FormulaElement *leftChildClone = self.leftChild == nil ? nil : [self.leftChild mutableCopyWithZone:zone];
-    FormulaElement *rightChildClone = self.rightChild == nil ? nil : [self.rightChild mutableCopyWithZone:zone];
+    FormulaElement *leftChildClone = self.leftChild == nil ? nil : [self.leftChild mutableCopyWithContext:context];
+    FormulaElement *rightChildClone = self.rightChild == nil ? nil : [self.rightChild mutableCopyWithContext:context];
     return [[FormulaElement alloc] initWithElementType:self.type value:self.value
                                              leftChild:leftChildClone
                                             rightChild:rightChildClone

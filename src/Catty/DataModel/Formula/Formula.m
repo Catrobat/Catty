@@ -155,11 +155,11 @@
 }
 
 #pragma mark - Copy
-- (id)mutableCopyWithZone:(NSZone *)zone
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {
     Formula *formula = [Formula new];
     if(self.formulaTree)
-        formula.formulaTree = [self.formulaTree mutableCopyWithZone:zone];
+        formula.formulaTree = [self.formulaTree mutableCopyWithContext:context];
     return formula;
 }
 
