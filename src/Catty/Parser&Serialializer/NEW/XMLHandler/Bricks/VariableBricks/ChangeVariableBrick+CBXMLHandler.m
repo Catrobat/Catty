@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #import "ChangeVariableBrick+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "GDataXMLElement+CustomExtensions.h"
+#import "GDataXMLNode+CustomExtensions.h"
 #import "Formula+CBXMLHandler.h"
 #import "UserVariable+CBXMLHandler.h"
 #import "CBXMLParser.h"
@@ -36,9 +37,9 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
-    NSUInteger childCount = [xmlElement childCount];
+    NSUInteger childCount = [xmlElement.childrenWithoutComments count];
     if (childCount == 3) {
-        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:3 AndFormulaListWithTotalNumberOfFormulas:1];
+        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:childCount AndFormulaListWithTotalNumberOfFormulas:1];
         // optional
         GDataXMLElement *inUserBrickElement = [xmlElement childWithElementName:@"inUserBrick"];
         [XMLError exceptionIfNil:inUserBrickElement message:@"No inUserBrickElement element found..."];
@@ -46,7 +47,7 @@
         // TODO: handle inUserBrick here...
 
     } else if (childCount == 2) {
-        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:2 AndFormulaListWithTotalNumberOfFormulas:1];
+        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:childCount AndFormulaListWithTotalNumberOfFormulas:1];
     } else {
         [XMLError exceptionWithMessage:@"Too many or too less child elements..."];
     }

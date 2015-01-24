@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -200,7 +200,7 @@
 //        }
         __weak Script *weakSelf = self;
         [self runAction:action completion:^{
-            NSDebug(@"Finished: %@", sequence);
+            NSDebug(@"Finished: %@", action);
             [weakSelf runNextAction];
         }];
         

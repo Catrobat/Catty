@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,8 +21,8 @@
  */
 
 #import "XMLSerializerAbstractTest.h"
-#import "GDataXMLElement+CustomExtensions.h"
 #import "CBXMLSerializer.h"
+#import "Program+CBXMLHandler.h"
 
 @implementation XMLSerializerAbstractTest
 
@@ -36,34 +36,14 @@
     XCTAssertEqual([array count], 1);
     
     GDataXMLElement *xmlElementFromFile = [array objectAtIndex:0];
-    
-    return [self compareXMLElement:xmlElementFromFile withXMLElement:xmlElement];
+    return [xmlElement isEqualToElement:xmlElementFromFile];
 }
 
-- (BOOL)compareXMLElement:(GDataXMLElement*)firstElement withXMLElement:(GDataXMLElement*)secondElement
+- (BOOL)isProgram:(Program*)firstProgram equalToXML:(NSString*)secondProgram
 {
-    XCTAssertTrue([firstElement.name isEqualToString:secondElement.name], @"Name of xml element is not equal (file=%@, xmlElement=%@)", firstElement.name, secondElement.name);
-    
-    
-    if([firstElement isKindOfClass:[GDataXMLElement class]]) {
-        XCTAssertEqual([((GDataXMLElement*)firstElement).attributes count], [((GDataXMLElement*)secondElement).attributes count], @"Number of attributes not equal for element with name: %@", firstElement.name);
-
-        for(GDataXMLNode *attribute in ((GDataXMLElement*)firstElement).attributes) {
-            GDataXMLNode *node = [(GDataXMLElement*)secondElement attributeForName:attribute.name];
-            
-            XCTAssertTrue([attribute.name isEqualToString:node.name], @"Attribute name not equal for element with name: %@ (file=%@, xmlElement=%@)", firstElement.name, attribute.name, node.name);
-            XCTAssertTrue([attribute.stringValue isEqualToString:node.stringValue], @"Attribute value not equal for element with name: %@ (file=%@, xmlElement=%@)", firstElement.name, attribute.stringValue, node.stringValue);
-        }
-    }
-    
-    XCTAssertEqual([firstElement.children count], [secondElement.children count], @"Number of children not equal for element with name: %@", firstElement.name);
-    
-    
-    for(GDataXMLElement *node in firstElement.children) {
-        [self compareXMLElement:node withXMLElement:[secondElement childWithElementName:node.name]];
-    }
-    
-    return YES;
+    GDataXMLDocument *firstDocument = [CBXMLSerializer xmlDocumentForProgram:firstProgram];
+    GDataXMLDocument *secondDocument = [self getXMLDocumentForPath:[self getPathForXML:secondProgram]];
+    return [firstDocument.rootElement isEqualToElement:secondDocument.rootElement];
 }
 
 - (void)saveProgram:(Program*)program
@@ -72,6 +52,13 @@
     NSString *xmlPath = [NSString stringWithFormat:@"%@%@", [program projectPath], kProgramCodeFileName];
     id<CBSerializerProtocol> serializer = [[CBXMLSerializer alloc] initWithPath:xmlPath];
     [serializer serializeProgram:program];
+}
+
+- (void)testParseXMLAndSerializeProgramAndCompareXML:(NSString*)xmlFile
+{
+    Program *program = [self getProgramForXML:xmlFile];
+    BOOL equal = [self isProgram:program equalToXML:xmlFile];
+    XCTAssertTrue(equal, @"Serialized program and XML are not equal (%@)", xmlFile);
 }
 
 @end

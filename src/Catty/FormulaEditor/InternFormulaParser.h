@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -45,7 +45,7 @@ typedef enum {
 
 - (id)initWithTokens:(NSArray*)tokens; // of InternToken
 - (void)handleOperator:(NSString*) operator WithCurrentElement:(FormulaElement*) currentElement AndNewElement: (FormulaElement*) newElement;
-- (FormulaElement*) parseFormula;
+- (FormulaElement*)parseFormulaForSpriteObject:(SpriteObject*)object;
 - (int)getErrorTokenIndex;
 
 @end

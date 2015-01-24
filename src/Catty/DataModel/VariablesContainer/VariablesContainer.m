@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -147,6 +147,11 @@ static pthread_mutex_t variablesLock;
         }
     }
     return NO;
+}
+
+- (void)removeObjectVariablesForSpriteObject:(SpriteObject*)object
+{
+    [self.objectVariableList removeObjectForKey:object];
 }
 
 - (BOOL)isEqualToVariablesContainer:(VariablesContainer*)variablesContainer

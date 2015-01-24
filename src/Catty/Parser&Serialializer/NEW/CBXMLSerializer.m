@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -53,28 +53,34 @@
 #define SIMULATOR_DEBUGGING_BASE_PATH @"/Users/ralph/Desktop/"
 
 #pragma mark - Program serialization
++ (GDataXMLDocument*)xmlDocumentForProgram:(Program*)program
+{
+    CBXMLContext *context = [CBXMLContext new];
+    GDataXMLElement *programElement = [program xmlElementWithContext:context];
+    
+    // sanity check => stack must contain only one element!!
+    // only <program> root-element must remain on the stack!!
+    if (context.currentPositionStack.numberOfXmlElements != 1) {
+        NSError(@"FATAL! Unable to serialize program. Current position stack contains no or more than \
+                1 element but should contain only one element named 'program'");
+        abort();
+    }
+    NSString *remainingXmlElementName = [context.currentPositionStack popXmlElementName];
+    if (! [remainingXmlElementName isEqualToString:@"program"]) {
+        NSError(@"FATAL! Unable to serialize program. Current position stack contains an element named \
+                '%@' but should contain an element with name 'program'", remainingXmlElementName);
+        abort();
+    }
+    
+    GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithRootElement:programElement];
+    return document;
+}
+
 - (void)serializeProgram:(Program*)program
 {
     @try {
         NSInfo(@"Saving Program...");
-        CBXMLContext *context = [CBXMLContext new];
-        GDataXMLElement *programElement = [program xmlElementWithContext:context];
-
-        // sanity check => stack must contain only one element!!
-        // only <program> root-element must remain on the stack!!
-        if (context.currentPositionStack.numberOfXmlElements != 1) {
-            NSError(@"FATAL! Unable to serialize program. Current position stack contains no or more than \
-                    1 element but should contain only one element named 'program'");
-            abort();
-        }
-        NSString *remainingXmlElementName = [context.currentPositionStack popXmlElementName];
-        if (! [remainingXmlElementName isEqualToString:@"program"]) {
-            NSError(@"FATAL! Unable to serialize program. Current position stack contains an element named \
-                    '%@' but should contain an element with name 'program'", remainingXmlElementName);
-            abort();
-        }
-
-        GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithRootElement:programElement];
+        GDataXMLDocument *document = [[self class] xmlDocumentForProgram:program];
         NSString *xmlString = [NSString stringWithFormat:@"%@\n%@", kCatrobatHeaderXMLDeclaration,
                                [document.rootElement XMLStringPrettyPrinted:YES]];
 
@@ -100,7 +106,7 @@
         NSLog(@"%@", xmlString);
         NSError *error = nil;
 
-#ifdef SIMULATOR_DEBUGGING_ENABLED
+#if SIMULATOR_DEBUGGING_ENABLED
         NSString *referenceXmlString = [NSString stringWithFormat:@"%@\n%@",
                                         kCatrobatHeaderXMLDeclaration,
                                         [program.XMLdocument.rootElement XMLStringPrettyPrinted:YES]];
@@ -115,6 +121,7 @@
                       encoding:NSUTF8StringEncoding
                          error:&error];
 
+        error = nil;
         //#import <Foundation/NSTask.h> // debugging for OSX
         //        NSTask *task = [[NSTask alloc] init];
         //        [task setLaunchPath:@"/usr/bin/diff"];
@@ -125,12 +132,12 @@
         //        [task release];
 #endif
 
-        [xmlString writeToFile:self.xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+        if(![xmlString writeToFile:self.xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error])
+            NSError(@"Program could not saved to disk! %@", error);
 
         // update last access time
         [Program updateLastModificationTimeForProgramWithName:program.header.programName
                                                     programID:program.header.programID];
-        NSLogError(error);
         NSInfo(@"Saving finished...");
     } @catch(NSException *exception) {
         NSError(@"Program could not be loaded! %@", [exception description]);
