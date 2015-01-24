@@ -739,7 +739,6 @@
     return 100 * self.currentLookBrightness;
 }
 
-
 -(CGFloat) scaleX
 {
     return [self xScale]*100;
@@ -757,7 +756,7 @@
     
     SpriteObject *newObject = [[SpriteObject alloc] init];
     newObject.name = [NSString stringWithString:self.name];
-    newObject.program = nil;
+    newObject.program = self.program;
     newObject.spriteManagerDelegate = nil;
     newObject.broadcastWaitDelegate = nil;
     newObject.currentLook = nil;
