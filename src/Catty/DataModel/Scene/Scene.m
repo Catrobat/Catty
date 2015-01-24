@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -152,7 +152,7 @@
     }
     SpriteObject *obj1 = nodesAtPoint[[nodesAtPoint count]-1];
     NSInteger counter =[nodesAtPoint count]-2;
-    NSDebug(@"How many nodes are touched: %d",counter);
+    NSDebug(@"How many nodes are touched: %ld",(long)counter);
     NSDebug(@"First Node:%@",obj1);
     if (!obj1.name) {
         return NO;

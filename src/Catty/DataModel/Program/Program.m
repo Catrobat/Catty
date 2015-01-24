@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -176,10 +176,10 @@
     NSUInteger index = 0;
     for (SpriteObject *currentObject in self.objectList) {
         if (currentObject == object) {
-            // TODO: remove all sounds, images from disk that are not needed any more...
-//            currentObject.program = nil;
-//            [currentObject removeSounds:currentObject.soundList];
-//            [currentObject removeLooks:currentObject.lookList];
+            [currentObject removeSounds:currentObject.soundList AndSaveToDisk:NO];
+            [currentObject removeLooks:currentObject.lookList AndSaveToDisk:NO];
+            [currentObject.program.variables removeObjectVariablesForSpriteObject:currentObject];
+            currentObject.program = nil;
             [self.objectList removeObjectAtIndex:index];
             break;
         }

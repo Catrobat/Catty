@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -25,6 +25,8 @@
 @interface XMLSerializerAbstractTest : XMLAbstractTest
 
 - (BOOL)isXMLElement:(GDataXMLElement*)xmlElement equalToXMLElementForXPath:(NSString*)xPath inProgramForXML:(NSString*)program;
+- (BOOL)isProgram:(Program*)firstProgram equalToXML:(NSString*)secondProgram;
 - (void)saveProgram:(Program*)program;
+- (void)testParseXMLAndSerializeProgramAndCompareXML:(NSString*)xmlFile;
 
 @end

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -36,6 +36,13 @@
 - (SKAction*)action
 {
     return [SKAction runBlock:[self actionBlock]];        
+}
+
+- (SpriteObject*) pointedObject
+{
+    if(!_pointedObject)
+        _pointedObject = self.object;
+    return _pointedObject;
 }
 
 - (dispatch_block_t)actionBlock

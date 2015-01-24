@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,12 +21,17 @@
  */
 
 #import "XMLSerializerAbstractTest.h"
+#import "Program+CBXMLHandler.h"
+#import "CBXMLContext.h"
+#import "CBXMLSerializer.h"
+#import "CBXMLParser.h"
+#import "GDataXMLElement+CustomExtensions.h"
 
-@interface XMLSerializerHeaderTests : XMLSerializerAbstractTest
+@interface XMLSerializerTests : XMLSerializerAbstractTest
 
 @end
 
-@implementation XMLSerializerHeaderTests
+@implementation XMLSerializerTests
 
 - (void)testHeader
 {
@@ -36,11 +41,55 @@
     XCTAssertTrue(equal, @"XMLElement invalid!");
 }
 
+- (void)testInvalidHeader
+{
+    Program *program = [self getProgramForXML:@"ValidProgram"];
+    Header *header = program.header;
+    header.programDescription = @"Invalid";
+    BOOL equal = [self isXMLElement:[header xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/header" inProgramForXML:@"ValidProgram"];
+    XCTAssertFalse(equal, @"GDataXMLElement::isEqualToElement not working correctly!");
+}
+
 - (void)testFormulaAndMoveNStepsBrick
 {
     Program *program = [self getProgramForXML:@"ValidProgramAllBricks"];
     MoveNStepsBrick *brick = (MoveNStepsBrick*)[((Script*)[((SpriteObject*)[program.objectList objectAtIndex:0]).scriptList objectAtIndex:0]).brickList objectAtIndex:5];
     BOOL equal = [self isXMLElement:[brick xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[6]" inProgramForXML:@"ValidProgramAllBricks"];
+    XCTAssertTrue(equal, @"XMLElement invalid!");
+}
+
+- (void)testRemoveObjectAndSerializeProgram
+{
+    Program *referenceProgram = [self getProgramForXML:@"ValidProgram"];
+    Program *program = [self getProgramForXML:@"ValidProgram"];
+    SpriteObject *moleOne = [program.objectList objectAtIndex:1];
+    [program removeObject:moleOne];
+    
+    GDataXMLElement *xmlElement = [program xmlElementWithContext:[CBXMLContext new]];
+    XCTAssertNotNil(xmlElement, @"Error during serialization of removed object");
+    XCTAssertEqual([program.objectList count] + 1, [referenceProgram.objectList count], @"Object not properly removed");
+    XCTAssertFalse([[referenceProgram xmlElementWithContext:[CBXMLContext new]] isEqualToElement:xmlElement], @"Object not properly removed");
+    
+    Program *parsedProgram = [Program parseFromElement:xmlElement withContext:[CBXMLContext new]];
+    XCTAssertTrue([parsedProgram isEqualToProgram:program], @"Programs are not equal");
+}
+
+- (void)testPointedToBrickWithoutSpriteObject
+{
+    Program *program = [self getProgramForXML:@"PointToBrickWithoutSpriteObject"];
+    XCTAssertNotNil(program, @"Program must not be nil!");
+    
+    SpriteObject *moleTwo = [program.objectList objectAtIndex:1];
+    XCTAssertNotNil(moleTwo, @"SpriteObject must not be nil!");
+    XCTAssertTrue([moleTwo.name isEqualToString:@"Mole 2"], @"Invalid object name!");
+    
+    Script *script = [moleTwo.scriptList objectAtIndex:0];
+    XCTAssertNotNil(script, @"Script must not be nil!");
+    
+    PointToBrick *pointToBrick = [script.brickList objectAtIndex:7];
+    XCTAssertNotNil(pointToBrick, @"PointToBrick must not be nil!");
+
+    BOOL equal = [self isXMLElement:[pointToBrick xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/objectList/object[2]/scriptList/script[1]/brickList/brick[8]" inProgramForXML:@"PointToBrickWithoutSpriteObject"];
     XCTAssertTrue(equal, @"XMLElement invalid!");
 }
 

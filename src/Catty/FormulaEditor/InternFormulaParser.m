@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -69,7 +69,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
     }
 }
 
-- (FormulaElement*) parseFormula
+- (FormulaElement*)parseFormulaForSpriteObject:(SpriteObject*)object
 {
     self.errorTokenIndex = FORMULA_PARSER_OK;
     self.currentTokenParseIndex = 0;
@@ -100,7 +100,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
     FormulaElement *formulaParseTree = nil;
     
     @try {
-        formulaParseTree = [self formula];
+        formulaParseTree = [self formulaForSpriteObject:object];
     } @catch (InternFormulaParserException *parseExeption) {
         self.errorTokenIndex = self.currentTokenParseIndex;
     }
@@ -143,9 +143,9 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
     [self.internTokensToParse removeObjectAtIndex:([self.internTokensToParse count] - 1)];
 }
      
-- (FormulaElement*) formula
+- (FormulaElement*)formulaForSpriteObject:(SpriteObject*)object
 {
-    FormulaElement *termListTree = [self termList];
+    FormulaElement *termListTree = [self termListForSpriteObject:object];
          
     if ([self.currentToken isEndOfFileToken]) {
         return termListTree;
@@ -155,9 +155,9 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
     @throw exception;
 }
      
-- (FormulaElement*) termList
+- (FormulaElement*)termListForSpriteObject:(SpriteObject*)object
 {
-    FormulaElement *currentElement = [self term];
+    FormulaElement *currentElement = [self termForSpriteObject:object];
     FormulaElement *loopTermTree;
     NSString *operatorStringValue;
     if ([self.currentToken isOperator] && ([self.currentToken.tokenStringValue isEqualToString:[Operators getName:LOGICAL_AND]]||[self.currentToken.tokenStringValue isEqualToString:[Operators getName:LOGICAL_OR]])){
@@ -166,14 +166,14 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
     while ([self.currentToken isOperator] && ![self.currentToken.tokenStringValue isEqualToString:[Operators getName:LOGICAL_NOT]]) {
         operatorStringValue = self.currentToken.tokenStringValue;
         [self getNextToken];
-        loopTermTree = [self term];
+        loopTermTree = [self termForSpriteObject:object];
         [self handleOperator:operatorStringValue WithCurrentElement:currentElement AndNewElement:loopTermTree];
         currentElement = loopTermTree;
     }
     return [currentElement getRoot];
 }
      
-- (FormulaElement*) term
+- (FormulaElement*)termForSpriteObject:(SpriteObject*)object
 {
     FormulaElement *termTree = [[FormulaElement alloc] initWithElementType:NUMBER value:nil leftChild:nil rightChild:nil parent:nil];
     FormulaElement *currentElement = termTree;
@@ -198,7 +198,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
          
         case TOKEN_TYPE_BRACKET_OPEN: {
             [self getNextToken];
-            FormulaElement *newFormulaElement = [[FormulaElement alloc] initWithElementType:BRACKET value:nil leftChild:nil rightChild:[self termList] parent:nil];
+            FormulaElement *newFormulaElement = [[FormulaElement alloc] initWithElementType:BRACKET value:nil leftChild:nil rightChild:[self termListForSpriteObject:object] parent:nil];
             [currentElement replaceElement:newFormulaElement];
             
             if (![self.currentToken isBracketClose]) {
@@ -209,7 +209,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
         }
             
         case TOKEN_TYPE_FUNCTION_NAME: {
-            [currentElement replaceElement:[self function]];
+            [currentElement replaceElement:[self functionForSpriteObject:object]];
             break;
         }
          
@@ -219,7 +219,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
         }
          
         case TOKEN_TYPE_USER_VARIABLE: {
-            [currentElement replaceElement:[self userVariable]];
+            [currentElement replaceElement:[self userVariableForSpriteObject:object]];
             break;
         }
          
@@ -232,11 +232,11 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
     return termTree;
 }
      
-- (FormulaElement*)userVariable
+- (FormulaElement*)userVariableForSpriteObject:(SpriteObject*)object
 {
     ProgramManager *programManager = [ProgramManager sharedProgramManager];
     VariablesContainer *container = programManager.program.variables;
-    UserVariable *userVariable = [container getUserVariableNamed:self.currentToken.tokenStringValue forSpriteObject:nil];
+    UserVariable *userVariable = [container getUserVariableNamed:self.currentToken.tokenStringValue forSpriteObject:object];
     FormulaElement *formulaTree = nil;
     if(userVariable != nil)
     {
@@ -249,7 +249,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
     return formulaTree;
 }
 
-- (FormulaElement*)function
+- (FormulaElement*)functionForSpriteObject:(SpriteObject*)object
 {
     FormulaElement *functionTree;
     
@@ -264,10 +264,10 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
     if ([self.currentToken isFunctionParameterBracketOpen]) {
         [self getNextToken];
         
-        functionTree.leftChild = [self termList];
+        functionTree.leftChild = [self termListForSpriteObject:object];
         if ([self.currentToken isFunctionParameterDelimiter]) {
             [self getNextToken];
-            functionTree.rightChild = [self termList];
+            functionTree.rightChild = [self termListForSpriteObject:object];
         }
         if (![self.currentToken isFunctionParameterBracketClose]) {
             [InternFormulaParserException raise:@"Parse Error" format:nil];

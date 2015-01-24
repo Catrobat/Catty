@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -220,7 +220,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self showLoadingView];
     NSString *nameOfCopiedSound = [Util uniqueName:sourceSound.name existingNames:[self.object allSoundNames]];
-    [self.object copySound:sourceSound withNameForCopiedSound:nameOfCopiedSound];
+    [self.object copySound:sourceSound withNameForCopiedSound:nameOfCopiedSound AndSaveToDisk:YES];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
@@ -234,7 +234,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
     [self showLoadingView];
     newSoundName = [Util uniqueName:newSoundName existingNames:[self.object allSoundNames]];
-    [self.object renameSound:sound toName:newSoundName];
+    [self.object renameSound:sound toName:newSoundName AndSaveToDisk:YES];
     NSUInteger soundIndex = [self.object.soundList indexOfObject:sound];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:soundIndex inSection:0];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
@@ -262,7 +262,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         Sound *sound = (Sound*)[self.object.soundList objectAtIndex:selectedRowIndexPath.row];
         [soundsToRemove addObject:sound];
     }
-    [self.object removeSounds:soundsToRemove];
+    [self.object removeSounds:soundsToRemove AndSaveToDisk:YES];
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
     [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
@@ -274,7 +274,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self showLoadingView];
     [self stopAllSounds];
     Sound *sound = (Sound*)[self.object.soundList objectAtIndex:indexPath.row];
-    [self.object removeSound:sound];
+    [self.object removeSound:sound AndSaveToDisk:YES];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationNone];
     [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #import "ResizeViewManager.h"
 #import "RGBAHelper.h"
 #import "YKImageCropperOverlayView.h"
+
 
 #define kControlSize 45.0f
 
@@ -237,87 +238,59 @@
 
 - (void)takeImage:(UITapGestureRecognizer *)recognizer
 {
-  
-  if (self.canvas.activeAction == stamp) {
-    if (!self.gotImage) {
-      if (self.canvas.saveView.image != nil) {
-        //        [self updateTransform:self.resizeImageView transform:0];
-        //        [self updateTransform:self.saveView transform:0];
-        CGFloat scale = self.canvas.scrollView.zoomScale;
-        CGRect rect = self.resizeViewer.frame;
-        rect.origin.x = (rect.origin.x + self.canvas.saveView.frame.origin.x) * scale;
-        rect.origin.y = (rect.origin.y + self.canvas.saveView.frame.origin.y) * scale;
-        rect.size.width *= scale;
-        rect.size.height *= scale;
-        
-        UIGraphicsBeginImageContext(rect.size);
-        //        CGContextRotateCTM(UIGraphicsGetCurrentContext(), -self.rotation);
-        //        CGContextClipToRect(UIGraphicsGetCurrentContext(), CGRectMake(0,0, rect.size.width, rect.size.height));
-        CGPoint contextCenter = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
-        CGContextTranslateCTM(UIGraphicsGetCurrentContext(), contextCenter.x, contextCenter.y);
-        
-        CGContextTranslateCTM(UIGraphicsGetCurrentContext(), -contextCenter.x, -contextCenter.y);
-        //TODO rotate rect -> CGRectMake(-rect.origin.x, -rect.origin.y, self.saveView.image.size.width , self.saveView.image.size.height)
-//        self.canvas.saveView.transform = CGAffineTransformMakeRotation(self.rotation);
-        CGRect newrect = CGRectApplyAffineTransform(rect,self.resizeViewer.transform);
-        [self.canvas.saveView.image drawInRect:CGRectMake(-newrect.origin.x, -newrect.origin.y, self.canvas.saveView.image.size.width , self.canvas.saveView.image.size.height)];
-        CGContextRotateCTM(UIGraphicsGetCurrentContext(), self.rotation);
-//        CGContextRotateCTM(UIGraphicsGetCurrentContext(), self.rotation);
-        UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
-//        self.canvas.saveView.transform = CGAffineTransformMakeRotation(0);
-        UIGraphicsEndImageContext();
-        self.stampImage = img;
-        self.resizeViewer.contentView.image = img;
-        self.gotImage = YES;
-        //        [self updateTransform:self.saveView transform:0];
-        //        [self updateTransform:self.resizeImageView transform:-self.rotation];
-        return;
-        
-      }else{
-        //TODO: alert image is nil;
-      }
+    
+    if (self.canvas.activeAction == stamp) {
+        if (!self.gotImage) {
+            if (self.canvas.saveView.image != nil) {
+                    //        [self updateTransform:self.resizeImageView transform:0];
+                    //        [self updateTransform:self.saveView transform:0];
+                CGFloat scale = self.canvas.scrollView.zoomScale;
+                CGRect rect = self.resizeViewer.frame;
+                rect.origin.x = rect.origin.x + 15 + self.canvas.saveView.frame.origin.x;
+                rect.origin.y = rect.origin.y + 10 + self.canvas.saveView.frame.origin.y;
+                rect.size.width -= 40;
+                rect.size.height -= 10;
+                    //for retina displays
+                if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+                    UIGraphicsBeginImageContextWithOptions(rect.size, NO, scale);
+                } else {
+                    UIGraphicsBeginImageContext(rect.size);
+                }
+                CGContextRef ctx = UIGraphicsGetCurrentContext();
+                CGContextTranslateCTM(ctx, -rect.origin.x, -rect.origin.y);
+                [self.canvas.saveView.layer renderInContext:ctx];
+                UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+                
+                
+                self.stampImage = viewImage;
+                self.resizeViewer.contentView.image = viewImage;
+                self.gotImage = YES;
+                    //        [self updateTransform:self.saveView transform:0];
+                    //        [self updateTransform:self.resizeImageView transform:-self.rotation];
+                return;
+                
+            }else{
+                    //TODO: alert image is nil;
+            }
+        }
     }
-  }
-  [self.resizeViewer hideEditingHandles];
-  self.canvas.saveView.backgroundColor = [UIColor clearColor];
-  CGFloat scale = self.canvas.scrollView.zoomScale;
-  [self.canvas.scrollView setZoomScale:1.0f];
-  UIGraphicsBeginImageContextWithOptions(self.canvas.helper.frame.size, NO, self.canvas.scrollView.zoomScale);
-  [self.canvas.helper.layer renderInContext:UIGraphicsGetCurrentContext()];
-  UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
-  //  UIGraphicsEndImageContext();
-  //  CGContextRef context = UIGraphicsGetCurrentContext();
-  //
-  //  // -renderInContext: renders in the coordinate space of the layer,
-  //  // so we must first apply the layer's geometry to the graphics context
-  //  CGContextSaveGState(context);
-  //  // Center the context around the view's anchor point
-  ////  CGContextTranslateCTM(context, [self.helper center].x, [self.helper center].y);
-  //  // Apply the view's transform about the anchor point
-  //  CGContextConcatCTM(context, [self.helper transform]);
-  //  // Offset by the portion of the bounds left of and above the anchor point
-  //  CGContextTranslateCTM(context,
-  //                        -[self.helper bounds].size.width * [[self.helper layer] anchorPoint].x,
-  //                        -[self.helper bounds].size.height * [[self.helper layer] anchorPoint].y);
-  //
-  //  // Render the layer hierarchy to the current context
-  //  [[self.helper layer] renderInContext:context];
-  //
-  //  // Restore the context
-  //  CGContextRestoreGState(context);
-  //
-  //  // Retrieve the screenshot image
-  //  UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-  
-  UIGraphicsEndImageContext();
-  [self.canvas.scrollView setZoomScale:scale];
-  
-  //UNDO-Manager
-  [[self.canvas getUndoManager] setImage:self.canvas.saveView.image];
-  
-  self.canvas.saveView.image = img;
-  [self showUserAction];
-  self.canvas.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
+    [self.resizeViewer hideEditingHandles];
+    self.canvas.saveView.backgroundColor = [UIColor clearColor];
+    CGFloat scale = self.canvas.scrollView.zoomScale;
+    [self.canvas.scrollView setZoomScale:1.0f];
+    UIGraphicsBeginImageContextWithOptions(self.canvas.helper.frame.size, NO, self.canvas.scrollView.zoomScale);
+    [self.canvas.helper.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [self.canvas.scrollView setZoomScale:scale];
+    
+        //UNDO-Manager
+    [[self.canvas getUndoManager] setImage:self.canvas.saveView.image];
+    
+    self.canvas.saveView.image = img;
+    [self showUserAction];
+    self.canvas.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
 }
 
 -(void)showUserAction

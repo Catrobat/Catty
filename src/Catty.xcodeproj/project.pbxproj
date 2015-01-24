@@ -26,6 +26,8 @@
 		4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2650691A6538710050775B /* CBMutableCopyContext.m */; };
 		4C26506F1A6566F50050775B /* SpriteObjectCopyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26506E1A6566F50050775B /* SpriteObjectCopyTest.m */; };
 		4C3275FA1A1360640091C428 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */; };
+		4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */; };
+		4CB2AB291A6BF2590086E5A0 /* PointToBrickWithoutSpriteObject.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CB2AB281A6BF2590086E5A0 /* PointToBrickWithoutSpriteObject.xml */; };
 		92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A461A42F2A3008C771A /* BSKeyboardControls.m */; };
 		92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A481A42F2A3008C771A /* iOSCombobox.m */; };
 		9238C5831A3AE9920099F061 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */; };
@@ -555,6 +557,8 @@
 		4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidProgramAllBricks.xml; path = "Resources/Test Resources/ValidProgramAllBricks.xml"; sourceTree = "<group>"; };
 		4C3AEF2E198E7EDD00604ABF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaFunctionsTest.m; sourceTree = "<group>"; };
+		4C6066381A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+CustomExtensions.h"; sourceTree = "<group>"; };
+		4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+CustomExtensions.m"; sourceTree = "<group>"; };
 		4C9E2D1E198EA6B600455B77 /* SMPageControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SMPageControl.license; sourceTree = "<group>"; };
 		4C9E2D20198EACE200455B77 /* EAIntroView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EAIntroView.license; sourceTree = "<group>"; };
 		4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDKNotifyHUD.license; sourceTree = "<group>"; };
@@ -574,6 +578,7 @@
 		4C9E2D3E198F698100455B77 /* NSString+FastImageSize.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "NSString+FastImageSize.license"; sourceTree = "<group>"; };
 		4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+CWPopup.license"; sourceTree = "<group>"; };
 		4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OrderedDictionary.license; sourceTree = "<group>"; };
+		4CB2AB281A6BF2590086E5A0 /* PointToBrickWithoutSpriteObject.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PointToBrickWithoutSpriteObject.xml; sourceTree = "<group>"; };
 		81C27425189EF94600827A95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Catty/Images.xcassets; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		921FE2F9182F8122001D7CF6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
@@ -1585,6 +1590,7 @@
 		4C1608A41A09548F002C7032 /* ParserTests */ = {
 			isa = PBXGroup;
 			children = (
+				4CB2AB271A6BF2590086E5A0 /* PointToBrickWithoutSpriteObject */,
 				CA97A44D1A44F397008C931B /* Air_fight_0.5 */,
 				CA97A4661A44F3D9008C931B /* Airplane_with_shadow */,
 				CA97A4671A44F3E2008C931B /* Compass_0.1 */,
@@ -1657,6 +1663,16 @@
 			name = Formula;
 			sourceTree = "<group>";
 		};
+		4C6066371A5ACC3100F486CE /* GDataXMLNode+CustomExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				4C6066381A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.h */,
+				4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */,
+			);
+			name = "GDataXMLNode+CustomExtensions";
+			path = GDataXMLNode;
+			sourceTree = "<group>";
+		};
 		4C9E2D1D198EA6B600455B77 /* Licenses */ = {
 			isa = PBXGroup;
 			children = (
@@ -1682,6 +1698,15 @@
 			);
 			name = Licenses;
 			path = Resources/Licenses;
+			sourceTree = "<group>";
+		};
+		4CB2AB271A6BF2590086E5A0 /* PointToBrickWithoutSpriteObject */ = {
+			isa = PBXGroup;
+			children = (
+				4CB2AB281A6BF2590086E5A0 /* PointToBrickWithoutSpriteObject.xml */,
+			);
+			name = PointToBrickWithoutSpriteObject;
+			path = "Resources/Test Resources/PointToBrickWithoutSpriteObject";
 			sourceTree = "<group>";
 		};
 		4CD194F21A0631B200484E4F /* Parser & Serialization */ = {
@@ -2104,6 +2129,7 @@
 				92FF2E091A24C5A700093DA7 /* Brick+UnitTestingExtensions */,
 				92FF2E0B1A24C5A700093DA7 /* CAgradient+Extension */,
 				92FF2E0E1A24C5A700093DA7 /* GDataXMLElement+CustomExtensions */,
+				4C6066371A5ACC3100F486CE /* GDataXMLNode+CustomExtensions */,
 				92FF2E111A24C5A700093DA7 /* NSData+Hashes */,
 				92FF2E141A24C5A700093DA7 /* NSDate+Extension */,
 				92FF2E171A24C5A700093DA7 /* NSMutableArray+CustomExtension */,
@@ -3526,8 +3552,8 @@
 			isa = PBXGroup;
 			children = (
 				CAA4A4611A43B36A002A69A0 /* CBXMLParser.h */,
-				CAA4A4621A43B36A002A69A0 /* CBXMLSerializer.h */,
 				CAA4A4631A43B388002A69A0 /* CBXMLParser.m */,
+				CAA4A4621A43B36A002A69A0 /* CBXMLSerializer.h */,
 				CAA4A4641A43B388002A69A0 /* CBXMLSerializer.m */,
 				92FF32CA1A24E5F800093DA7 /* Context */,
 				92FF32CD1A24E5F800093DA7 /* Helper */,
@@ -3550,11 +3576,11 @@
 			isa = PBXGroup;
 			children = (
 				CAA4A46A1A43B3BC002A69A0 /* CBXMLParserHelper.h */,
-				CAA4A46B1A43B3BC002A69A0 /* CBXMLSerializerHelper.h */,
-				CAA4A46C1A43B3BC002A69A0 /* CBXMLValidator.h */,
 				CAA4A46D1A43B3BC002A69A0 /* CBXMLParserHelper.m */,
-				CAA4A46E1A43B3BC002A69A0 /* CBXMLSerializerHelper.m */,
+				CAA4A46C1A43B3BC002A69A0 /* CBXMLValidator.h */,
 				CAA4A46F1A43B3BC002A69A0 /* CBXMLValidator.m */,
+				CAA4A46B1A43B3BC002A69A0 /* CBXMLSerializerHelper.h */,
+				CAA4A46E1A43B3BC002A69A0 /* CBXMLSerializerHelper.m */,
 				CAA4A4731A43B3C1002A69A0 /* Logger */,
 			);
 			path = Helper;
@@ -4207,6 +4233,7 @@
 				CA97A47A1A44F45C008C931B /* Minions__091.xml in Resources */,
 				CA97A45C1A44F3B7008C931B /* Drink_more_water_09.xml in Resources */,
 				CA97A47F1A44F46C008C931B /* Nyancat_1.0_093.xml in Resources */,
+				4CB2AB291A6BF2590086E5A0 /* PointToBrickWithoutSpriteObject.xml in Resources */,
 				CA97A4511A44F3A0008C931B /* Airplane_with_shadow_093.xml in Resources */,
 				CA97A4771A44F455008C931B /* Minecraft_Work_In_Progress_093.xml in Resources */,
 				4C1608B21A09621A002C7032 /* ValidFormulaList.xml in Resources */,
@@ -4566,6 +4593,7 @@
 				92FF32A91A24E2F400093DA7 /* ChangeVariableBrickCell.m in Sources */,
 				92FF30C81A24DCAA00093DA7 /* Brick.m in Sources */,
 				CAA4A4721A43B3BC002A69A0 /* CBXMLValidator.m in Sources */,
+				4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */,
 				92FF32961A24E2F400093DA7 /* GlideToBrickCell.m in Sources */,
 				92DFB0571A38960C00FA9B0F /* HandTool.m in Sources */,
 				92FF30FF1A24DCAA00093DA7 /* Program.m in Sources */,

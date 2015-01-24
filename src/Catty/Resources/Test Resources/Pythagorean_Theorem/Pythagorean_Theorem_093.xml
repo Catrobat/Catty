@@ -33,7 +33,7 @@
       <scriptList>
         <script type="StartScript">
           <brickList/>
-          <isUserScript>false</isUserScript>
+          <!-- <isUserScript>false</isUserScript> -->
         </script>
         <script type="StartScript">
           <brickList>
@@ -49,7 +49,7 @@
               <broadcastMessage>start</broadcastMessage>
             </brick>
           </brickList>
-          <isUserScript>false</isUserScript>
+          <!-- <isUserScript>false</isUserScript> -->
         </script>
         <script type="BroadcastScript">
           <brickList>
@@ -134,7 +134,7 @@
           <receivedMessage>start</receivedMessage>
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="Triangle">
       <lookList>
@@ -208,7 +208,7 @@
           <receivedMessage>go to the upper right</receivedMessage>
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="Right triangle in the lower left">
       <lookList>
@@ -313,7 +313,7 @@
           <receivedMessage>go to the lower left</receivedMessage>
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="Rectangle">
       <lookList>
@@ -391,7 +391,7 @@
           <receivedMessage>two triangles, come</receivedMessage>
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="Square">
       <lookList>
@@ -468,7 +468,7 @@
           <receivedMessage>square, come</receivedMessage>
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="Right triangle in the upper left">
       <lookList>
@@ -552,7 +552,7 @@
           <receivedMessage>go to the top and right</receivedMessage>
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="Right triangle in the lower right">
       <lookList>
@@ -633,7 +633,7 @@
           <receivedMessage>go to the top and right</receivedMessage>
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="a">
       <lookList>
@@ -815,7 +815,7 @@
           <receivedMessage>ab, hide</receivedMessage>
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="a2">
       <lookList>
@@ -926,7 +926,7 @@
           <receivedMessage>a2b2, appear</receivedMessage>
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="a second">
       <lookList>
@@ -1043,7 +1043,7 @@
           <receivedMessage>ab, hide</receivedMessage>
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="b">
       <lookList>
@@ -1251,7 +1251,7 @@
           <receivedMessage>ab, hide</receivedMessage>
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="b2">
       <lookList>
@@ -1362,7 +1362,7 @@
           <receivedMessage>a2b2, appear</receivedMessage>
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="b second">
       <lookList>
@@ -1468,7 +1468,7 @@
           <receivedMessage>ab, hide</receivedMessage>
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="c">
       <lookList>
@@ -1660,7 +1660,7 @@
           <receivedMessage>two triangles, come</receivedMessage>
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="c2">
       <lookList>
@@ -1770,7 +1770,7 @@
           <receivedMessage>c2, appear</receivedMessage>
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
     <object name="c second">
       <lookList>
@@ -1872,12 +1872,12 @@
           <receivedMessage>go to the lower left</receivedMessage>
         </script>
       </scriptList>
-      <userBricks/>
+      <!-- <userBricks/> -->
     </object>
   </objectList>
   <variables>
     <objectVariableList/>
     <programVariableList/>
-    <userBrickVariableList/>
+    <!-- <userBrickVariableList/> -->
   </variables>
 </program>
