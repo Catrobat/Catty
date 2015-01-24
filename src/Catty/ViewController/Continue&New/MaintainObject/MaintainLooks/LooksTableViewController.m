@@ -57,6 +57,7 @@
                                         UINavigationControllerDelegate, CatrobatAlertViewDelegate,
                                         UITextFieldDelegate, SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
+@property (nonatomic, weak) Look *selectedLook;
 @end
 
 @implementation LooksTableViewController
@@ -321,8 +322,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
         PaintViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"paint"];
         vc.delegate = self;
-        Look *look = [self.object.lookList objectAtIndex:indexPath.row];
-        NSString *lookImagePath = [self.object pathForLook:look];
+        self.selectedLook = [self.object.lookList objectAtIndex:indexPath.row];
+        NSString *lookImagePath = [self.object pathForLook:self.selectedLook];
         UIImage *image = [[UIImage alloc] initWithContentsOfFile:lookImagePath];
         vc.editingImage = image;
         vc.editingPath = lookImagePath;
@@ -666,13 +667,29 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark paintDelegate
 -(void)addPaintedImage:(UIImage *)image andPath:(NSString *)path
 {
-
     UIImage *checkImage = [[UIImage alloc] initWithContentsOfFile:path];
-    
     
     if (checkImage) {
         NSLog(@"Updating");
         NSData *imageData = UIImagePNGRepresentation(image);
+        NSString *imageDirPath = [[self.object projectPath] stringByAppendingString:kProgramImagesDirName];
+        NSString *fileName = [path stringByReplacingOccurrencesOfString:imageDirPath withString:@""];
+        
+        NSRange result = [fileName rangeOfString:kResourceFileNameSeparator];
+        if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([fileName length]-1)))
+            return; // Invalid file name convention -> this should not happen. XXX/FIXME: maybe we want to abort here??
+
+        NSUInteger referenceCount = [self.object referenceCountForLook:[fileName substringFromIndex:1]];
+        if(referenceCount > 1) {
+            NSString *newImageFileName = [NSString stringWithFormat:@"%@_%@.%@",
+                                          [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
+                                          self.selectedLook.name,
+                                          kLocalizedMyImageExtension];
+            path = [path stringByReplacingOccurrencesOfString:[fileName substringFromIndex:1] withString:newImageFileName];
+            fileName = newImageFileName;
+            self.selectedLook.fileName = fileName;
+        }
+        
         NSDebug(@"Writing file to disk");
             // leaving the main queue here!
         NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{
@@ -688,15 +705,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
         }];
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
         [queue addOperation:saveOp];
-        
+    
         
         RuntimeImageCache *cache = [RuntimeImageCache sharedImageCache];
-        NSString *imageDirPath = [[self.object projectPath] stringByAppendingString:kProgramImagesDirName];
-        NSString * fileName = [path stringByReplacingOccurrencesOfString:imageDirPath withString:@""];
-        NSRange result = [fileName rangeOfString:kResourceFileNameSeparator];
-        
-        if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([fileName length]-1)))
-            return; // Invalid file name convention -> this should not happen. XXX/FIXME: maybe we want to abort here??
         
         NSString *previewImageName =  [NSString stringWithFormat:@"%@_%@%@",
                                        [fileName substringToIndex:result.location],

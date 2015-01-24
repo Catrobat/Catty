@@ -107,6 +107,8 @@
 - (CGFloat)durationOfSound:(Sound*)sound;
 - (NSArray*)allLookNames;
 - (NSArray*)allSoundNames;
+- (NSUInteger)referenceCountForLook:(NSString*)fileName;
+- (NSUInteger)referenceCountForSound:(NSString*)fileName;
 
 // actions
 - (void)changeLook:(Look*)look;
@@ -123,6 +125,7 @@
 - (Look*)copyLook:(Look*)sourceLook withNameForCopiedLook:(NSString*)nameOfCopiedLook AndSaveToDisk:(BOOL)save;;
 - (Sound*)copySound:(Sound*)sourceSound withNameForCopiedSound:(NSString*)nameOfCopiedSound AndSaveToDisk:(BOOL)save;;
 
+// compare
 - (BOOL)isEqualToSpriteObject:(SpriteObject*)spriteObject;
 
 @end
