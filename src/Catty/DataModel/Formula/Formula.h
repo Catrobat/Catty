@@ -23,11 +23,12 @@
 #import <Foundation/Foundation.h>
 #import "InternFormula.h"
 #import "InternFormulaState.h"
+#import "CBMutableCopying.h"
 
 @class FormulaElement;
 @class SpriteObject;
 
-@interface Formula : NSObject
+@interface Formula : NSObject<CBMutableCopying>
 
 @property (nonatomic, strong) FormulaElement* formulaTree;
 @property (nonatomic, weak) NSString* displayString;

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2015 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,17 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
 
+#import "CBMutableCopyContext.h"
 
-@interface InternFormulaTokenSelection : NSObject<NSMutableCopying>
+@implementation CBMutableCopyContext
 
--(BOOL)equals:(id)objectToCompare;
--(NSInteger)getStartIndex;
--(NSInteger)getEndIndex;
--(enum TokenSelectionType)getToketSelectionType;
--(InternFormulaTokenSelection *)initWithTokenSelectionType:(enum TokenSelectionType)tokenSelectionType
-                                 internTokenSelectionStart:(NSInteger)internTokenSelectionStart
-                                   internTokenSelectionEnd:(NSInteger)internTokenSelectionEnd;
+- (NSMutableDictionary*)updatedReferences
+{
+    if(!_updatedReferences) {
+        _updatedReferences = [NSMutableDictionary new];
+    }
+    return _updatedReferences;
+}
+
+- (void)updateReference:(id)oldReference WithReference:(id)newReference
+{
+    NSString *oldAddr = [NSString stringWithFormat:@"%p", oldReference];
+    [self.updatedReferences setValue:newReference forKey:oldAddr];
+}
+
+- (id)updatedReferenceForReference:(id)oldReference
+{
+    NSString *oldAddr = [NSString stringWithFormat:@"%p", oldReference];
+    for(NSString *oldAddress in self.updatedReferences) {
+        if([oldAddress isEqualToString:oldAddr])
+            return [self.updatedReferences valueForKey:oldAddress];
+    }
+    return nil;
+}
 
 @end

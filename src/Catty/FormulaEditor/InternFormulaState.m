@@ -85,14 +85,14 @@
     
     for(InternToken *tokenToCopy in self.internTokenFormulaList)
     {
-        [deepCopyOfInternTokenFormula addObject:[tokenToCopy deepCopy]];
+        [deepCopyOfInternTokenFormula addObject:[tokenToCopy mutableCopyWithZone:nil]];
     }
     
     InternFormulaTokenSelection *deepCopyOfInternFormulaTokenSelection = [[InternFormulaTokenSelection alloc]init];
     
     if(self.tokenSelection != nil)
     {
-        deepCopyOfInternFormulaTokenSelection = [self.tokenSelection deepCopy];
+        deepCopyOfInternFormulaTokenSelection = [self.tokenSelection mutableCopyWithZone:nil];
     }
     
     return [[InternFormula alloc]initWithInternTokenList:deepCopyOfInternTokenFormula

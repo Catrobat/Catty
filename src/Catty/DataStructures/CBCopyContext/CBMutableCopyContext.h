@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2015 The Catrobat Team
+ *  Copyright (C) 2010-2014 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,17 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
 
+@interface CBMutableCopyContext : NSObject
 
-@interface InternFormulaTokenSelection : NSObject<NSMutableCopying>
+// Dictionary consisting of id (old pointer) -> id (new pointer)
+@property (strong, nonatomic) NSMutableDictionary *updatedReferences;
 
--(BOOL)equals:(id)objectToCompare;
--(NSInteger)getStartIndex;
--(NSInteger)getEndIndex;
--(enum TokenSelectionType)getToketSelectionType;
--(InternFormulaTokenSelection *)initWithTokenSelectionType:(enum TokenSelectionType)tokenSelectionType
-                                 internTokenSelectionStart:(NSInteger)internTokenSelectionStart
-                                   internTokenSelectionEnd:(NSInteger)internTokenSelectionEnd;
+- (void)updateReference:(id)oldReference WithReference:(id)newReference;
+- (id)updatedReferenceForReference:(id)oldReference;
 
 @end

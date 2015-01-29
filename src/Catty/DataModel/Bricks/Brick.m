@@ -30,6 +30,7 @@
 #import "RepeatBrick.h"
 #import "Formula.h"
 #import "Util.h"
+#import "CBMutableCopyContext.h"
 
 @interface Brick()
 
@@ -98,8 +99,8 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    NSArray *firstPropertyList = [Util propertiesOfInstance:self];
-    NSArray *secondPropertyList = [Util propertiesOfInstance:brick];
+    NSArray *firstPropertyList = [[Util propertiesOfInstance:self] allValues];
+    NSArray *secondPropertyList = [[Util propertiesOfInstance:brick] allValues];
     
     if([firstPropertyList count] != [secondPropertyList count])
         return NO;
@@ -114,6 +115,46 @@
     }
     
     return YES;
+}
+
+#pragma mark - Copy
+// This function must be overriden by Bricks with references to other Bricks (e.g. ForeverBrick)
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
+{
+    return [self mutableCopyWithContext:context AndErrorReporting:true];
+}
+
+
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context AndErrorReporting:(BOOL)reportError
+{
+    if(!context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
+    
+    Brick *brick = [[self class] new];
+    [context updateReference:self WithReference:brick];
+    
+    NSDictionary *properties = [Util propertiesOfInstance:self];
+    
+    for (NSString *propertyKey in properties) {
+        id propertyValue = [properties objectForKey:propertyKey];
+        
+        if([propertyValue conformsToProtocol:@protocol(CBMutableCopying)]) {
+            id updatedReference = [context updatedReferenceForReference:propertyValue];
+            if(updatedReference) {
+                [brick setValue:updatedReference forKey:propertyKey];
+            } else {
+                id propertyValueClone = [propertyValue mutableCopyWithContext:context];
+                [brick setValue:propertyValueClone forKey:propertyKey];
+            }
+        } else if([propertyValue conformsToProtocol:@protocol(NSMutableCopying)]) {
+            // standard datatypes like NSString are already conforming to the NSMutableCopying protocol
+            id propertyValueClone = [propertyValue mutableCopyWithZone:nil];
+            [brick setValue:propertyValueClone forKey:propertyKey];
+        } else if(reportError) {
+            NSError(@"Property %@ of class %@ in Brick of class %@ does not conform to CBMutableCopying protocol. Implement mutableCopyWithContext method in %@", propertyKey, [propertyValue class], [self class], [self class]);
+        }
+    }
+    
+    return brick;
 }
 
 @end

@@ -162,30 +162,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSString *nameOfCopiedObject = [Util uniqueName:sourceObject.name existingNames:[self.program allObjectNames]];
     [self.program copyObject:sourceObject withNameForCopiedObject:nameOfCopiedObject];
 
-    //    // create new cell
-    //    NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
-    //    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
-    //    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
-    // TODO: scroll to bottom or show notification to user!
-
-    // TODO: issue #308 - deep copy for SpriteObjects
-    // ####### WORKAROUND BEGIN: QUICK&DIRTY UGLY HACK !!!
-
-    // execute 2 seconds later => just for testing purposes
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self showLoadingView];
-        dispatch_queue_t reloadQ = dispatch_queue_create("reload program", NULL);
-        dispatch_async(reloadQ, ^{
-            ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgramWithName:self.program.header.programName
-                                                                                      programID:self.program.header.programID];
-            self.program = [Program programWithLoadingInfo:info];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-                [self hideLoadingView];
-            });
-        });
-    });
-    // ####### WORKAROUND END
+    // create new cell
+    NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
     [self hideLoadingView];
 }
 
@@ -355,7 +336,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSString *imagePath = [object pathForLook:[object.lookList firstObject]];
     imageCell.iconImageView.image = nil;
     imageCell.indexPath = indexPath;
-
+    
     UIImage *image = [imageCache cachedImageForPath:previewImagePath];
     if (! image) {
         [imageCache loadThumbnailImageFromDiskWithThumbnailPath:previewImagePath

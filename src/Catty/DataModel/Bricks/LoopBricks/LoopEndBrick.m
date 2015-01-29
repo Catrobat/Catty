@@ -23,6 +23,7 @@
 #import "LoopEndBrick.h"
 #import "LoopBeginBrick.h"
 #import "Util.h"
+#import "CBMutableCopyContext.h"
 
 @implementation LoopEndBrick
 
@@ -47,11 +48,27 @@
     return [NSString stringWithFormat:@"EndLoop"];
 }
 
+#pragma mark - Compare
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
     if (! [Util isEqual:self.loopBeginBrick.brickTitle toObject:((LoopEndBrick*)brick).loopBeginBrick.brickTitle])
         return NO;
     return YES;
+}
+
+#pragma mark - Copy
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
+{
+    LoopEndBrick *brick = [self mutableCopyWithContext:context AndErrorReporting:NO];
+    LoopBeginBrick *beginBrick = [context updatedReferenceForReference:self.loopBeginBrick];
+    
+    if(beginBrick) {
+        brick.loopBeginBrick = beginBrick;
+        beginBrick.loopEndBrick = brick;
+    } else {
+        NSError(@"LoopBeginBrick must not be nil for Brick with class %@!", [self class]);
+    }
+    return brick;
 }
 
 @end

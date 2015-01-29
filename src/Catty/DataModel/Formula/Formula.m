@@ -154,4 +154,13 @@
     return NO;
 }
 
+#pragma mark - Copy
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
+{
+    Formula *formula = [Formula new];
+    if(self.formulaTree)
+        formula.formulaTree = [self.formulaTree mutableCopyWithContext:context];
+    return formula;
+}
+
 @end

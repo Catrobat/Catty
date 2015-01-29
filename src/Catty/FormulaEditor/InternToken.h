@@ -70,7 +70,7 @@ typedef enum KeyboardNumbers
     TOKEN_TYPE_NUMBER_9,
 }KeyboardNumbers;
 
-@interface InternToken : NSObject
+@interface InternToken : NSObject<NSMutableCopying>
 
 @property (nonatomic, strong) NSString *tokenStringValue;
 @property (nonatomic) InternTokenType internTokenType;
@@ -94,6 +94,5 @@ typedef enum KeyboardNumbers
 - (BOOL)isEqualTo:(InternToken*)token;
 - (InternTokenType)getInternTokenType;
 - (NSString *)getTokenStringValue;
-- (InternToken *)deepCopy;
 
 @end

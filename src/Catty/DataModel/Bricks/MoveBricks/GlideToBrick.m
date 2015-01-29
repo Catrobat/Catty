@@ -23,6 +23,7 @@
 #import "GlideToBrick.h"
 #import "Script.h"
 #import "Formula.h"
+#import "CBMutableCopyContext.h"
 
 @interface GlideToBrick()
 
@@ -115,6 +116,13 @@
     if(![self.yDestination isEqualToFormula:((GlideToBrick*)brick).yDestination])
         return NO;
     return YES;
+}
+
+#pragma mark - Copy
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
+{
+    return [self mutableCopyWithContext:context AndErrorReporting:NO];
+    
 }
 
 @end

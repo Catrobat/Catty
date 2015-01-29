@@ -21,11 +21,12 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "CBMutableCopying.h"
 
 @class GDataXMLElement;
 @class SpriteObject;
 
-@interface Look : NSObject
+@interface Look : NSObject<CBMutableCopying>
 
 @property (strong, nonatomic) NSString *fileName;
 @property (strong, nonatomic) NSString *name;
@@ -33,7 +34,6 @@
 - (id)initWithPath:(NSString*)filePath;
 - (id)initWithName:(NSString*)name andPath:(NSString*)filePath;
 - (NSString*)previewImageFileName;
-- (instancetype)deepCopy;
 - (NSString*)description;
 - (BOOL)isEqualToLook:(Look*)look;
 

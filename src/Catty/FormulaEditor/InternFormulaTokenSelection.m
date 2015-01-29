@@ -79,12 +79,10 @@
     return NO;
 }
 
-
--(InternFormulaTokenSelection *)deepCopy
+#pragma mark - Copy
+- (id)mutableCopyWithZone:(NSZone *)zone
 {
     return [[InternFormulaTokenSelection alloc]initWithTokenSelectionType:self.tokenSelectionType internTokenSelectionStart:self.internTokenSelectionStart internTokenSelectionEnd:self.internTokenSelectionEnd];
 }
-
-
 
 @end

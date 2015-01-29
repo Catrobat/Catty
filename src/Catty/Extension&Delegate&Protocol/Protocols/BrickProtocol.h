@@ -22,10 +22,11 @@
 
 #import <Foundation/Foundation.h>
 #import "UIDefines.h"
+#import "CBMutableCopying.h"
 
 @class SpriteObject;
 
-@protocol BrickProtocol <NSObject>
+@protocol BrickProtocol<NSObject, CBMutableCopying>
 
 @required
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
