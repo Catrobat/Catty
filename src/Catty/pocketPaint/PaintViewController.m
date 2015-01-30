@@ -124,7 +124,7 @@
             UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
             if (![self.saveView.image isEqual:blank] && ![self.saveView.image isEqual:self.editingImage]) {
-            [Util confirmAlertWithTitle:kLocalizedSaveToPocketCode message:kLocalizedPaintSaveChanges delegate:self tag:0];
+                [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
             }
         }
             // reenable swipe back gesture
@@ -134,6 +134,10 @@
     }
 }
 
+-(void)didMoveToParentViewController:(UIViewController *)parent
+{
+    NSLog(@"Moved,%@",self.navigationController.viewControllers);
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -832,15 +836,6 @@
   return UIStatusBarStyleLightContent;
 }
 
-
-#pragma mark - alert delegate
-- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex != 0) {
-//        NSLog(@"yes");
-        [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
-    } 
-}
 
 
 #pragma mark dealloc

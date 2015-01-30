@@ -57,6 +57,8 @@
                                         UINavigationControllerDelegate, CatrobatAlertViewDelegate,
                                         UITextFieldDelegate, SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
+@property (nonatomic,strong)UIImage* paintImage;
+@property (nonatomic,strong)NSString* paintImagePath;
 @end
 
 @implementation LooksTableViewController
@@ -664,6 +666,25 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark paintDelegate
+
+-(void)showSavePaintImageAlert:(UIImage *)image andPath:(NSString *)path
+{
+    self.paintImage = image;
+    self.paintImagePath = path;
+    [Util confirmAlertWithTitle:kLocalizedSaveToPocketCode message:kLocalizedPaintSaveChanges delegate:self tag:0];
+}
+#pragma mark - alert delegate
+- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != 0) {
+            //        NSLog(@"yes");
+        if (self.paintImagePath && self.paintImage) {
+            [self addPaintedImage:self.paintImage andPath:self.paintImagePath];
+        }
+    } 
+}
+
+
 -(void)addPaintedImage:(UIImage *)image andPath:(NSString *)path
 {
 
