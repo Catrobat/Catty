@@ -33,6 +33,7 @@
 		9238C5831A3AE9920099F061 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */; };
 		9238C5841A3AE9920099F061 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C5801A3AE9920099F061 /* LoginViewController.m */; };
 		9238C5851A3AE9920099F061 /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C5821A3AE9920099F061 /* UploadViewController.m */; };
+		928D4D791A7BD19A00E6DFA8 /* CatrobatUISlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 928D4D781A7BD19A00E6DFA8 /* CatrobatUISlider.m */; };
 		92DFAFE61A38943D00FA9B0F /* FormulaEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */; };
 		92DFB00E1A38949E00FA9B0F /* ExternInternRepresentationMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEA1A38949E00FA9B0F /* ExternInternRepresentationMapping.m */; };
 		92DFB00F1A38949E00FA9B0F /* ExternToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEC1A38949E00FA9B0F /* ExternToken.m */; };
@@ -630,6 +631,8 @@
 		9238C5801A3AE9920099F061 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9238C5811A3AE9920099F061 /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
 		9238C5821A3AE9920099F061 /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
+		928D4D771A7BD19A00E6DFA8 /* CatrobatUISlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CatrobatUISlider.h; path = CatrobatSlider/CatrobatUISlider.h; sourceTree = "<group>"; };
+		928D4D781A7BD19A00E6DFA8 /* CatrobatUISlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CatrobatUISlider.m; path = CatrobatSlider/CatrobatUISlider.m; sourceTree = "<group>"; };
 		929108261A41F31F0034564D /* Header+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Header+CBXMLHandler.h"; sourceTree = "<group>"; };
 		929108271A41F31F0034564D /* Header+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Header+CBXMLHandler.m"; sourceTree = "<group>"; };
 		9291082A1A41F31F0034564D /* Look+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Look+CBXMLHandler.h"; sourceTree = "<group>"; };
@@ -1768,6 +1771,15 @@
 				9238C5821A3AE9920099F061 /* UploadViewController.m */,
 			);
 			path = Upload;
+			sourceTree = "<group>";
+		};
+		928D4D7A1A7BD1A400E6DFA8 /* CatrobatSlider */ = {
+			isa = PBXGroup;
+			children = (
+				928D4D771A7BD19A00E6DFA8 /* CatrobatUISlider.h */,
+				928D4D781A7BD19A00E6DFA8 /* CatrobatUISlider.m */,
+			);
+			name = CatrobatSlider;
 			sourceTree = "<group>";
 		};
 		929107BF1A41F31F0034564D /* Bricks */ = {
@@ -3206,6 +3218,7 @@
 				92FF32341A24E2F400093DA7 /* PlaceHolderView */,
 				92FF32371A24E2F400093DA7 /* TableView */,
 				92FF324F1A24E2F400093DA7 /* ViewControllerTransitions */,
+				928D4D7A1A7BD1A400E6DFA8 /* CatrobatSlider */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -4492,6 +4505,7 @@
 				92FF2E401A24C5A700093DA7 /* UIViewController+CWPopup.m in Sources */,
 				92FF31491A24DEB300093DA7 /* BaseCollectionViewController.m in Sources */,
 				CAA4A4E71A43B472002A69A0 /* MoveNStepsBrick+CBXMLHandler.m in Sources */,
+				928D4D791A7BD19A00E6DFA8 /* CatrobatUISlider.m in Sources */,
 				92FF30DA1A24DCAA00093DA7 /* ShowBrick.m in Sources */,
 				CAA4A4691A43B3A9002A69A0 /* CBXMLContext.m in Sources */,
 				92FF2E9D1A24C7D800093DA7 /* SensorManager.m in Sources */,
