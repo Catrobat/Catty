@@ -383,9 +383,9 @@
     }
       break;
     case rotate:{
-      UIBarButtonItem* rotateRight = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self.mirrorRotationZoomTool action:@selector(rotateRight)];
-      UIBarButtonItem* rotateLeft = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self.mirrorRotationZoomTool action:@selector(rotateLeft)];
-      self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,rotateLeft,rotateRight,self.undo,self.redo, nil];
+        UIBarButtonItem*rotateR = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"rotate_right"] style:UIBarButtonItemStylePlain target:self.mirrorRotationZoomTool action:@selector(rotateRight)];
+        UIBarButtonItem*rotateL = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"rotate_left"] style:UIBarButtonItemStylePlain target:self.mirrorRotationZoomTool action:@selector(rotateLeft)];
+      self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,rotateL,rotateR,self.undo,self.redo, nil];
     }
       break;
     case zoom:{
@@ -840,6 +840,14 @@
 //        NSLog(@"yes");
         [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
     } 
+}
+
+
+#pragma mark dealloc
+
+-(void)dealloc
+{
+    NSLog(@"dealloc");
 }
 
 @end
