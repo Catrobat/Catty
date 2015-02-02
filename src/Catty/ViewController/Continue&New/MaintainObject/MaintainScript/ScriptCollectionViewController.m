@@ -65,7 +65,8 @@
                                               BrickCellDelegate,
                                               ScriptDataSourceDelegate,
                                               iOSComboboxDelegate,
-                                              UITextFieldDelegate>
+                                              UITextFieldDelegate,
+                                              BrickDetailViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
@@ -76,8 +77,7 @@
 @property (nonatomic, strong) NSIndexPath *higherRankBrick; // refactor
 @property (nonatomic, strong) NSIndexPath *lowerRankBrick;  // refactor
 @property (nonatomic, strong) ScriptDataSource *scriptDataSource;
-@property (nonatomic, strong) BrickDetailViewController *brickDetailVC;
-@property (nonatomic, strong) FBKVOController *KVOController;
+@property (nonatomic, strong) FBKVOController *scriptDataSourceKVOController;
 
 @end
 
@@ -92,9 +92,8 @@
     [super viewDidLoad];
     
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-    self.navigationController.toolbar.tintColor = UIColor.orangeColor;
+    self.navigationController.toolbar.tintColor = [UIColor orangeColor];
     [self setupDataSource];
-    [self setupObserver];
     [self setupCollectionView];
     [self setupSubViews];
     [self setupToolBar];
@@ -218,10 +217,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     [self.brickScaleTransition updateAnimationViewWithView:brickCell];
     if (!self.isEditing) {
         self.trackedIndexPath =  indexPath;
-        self.brickDetailVC.brick = brickCell.brick;
-        self.brickDetailVC.transitioningDelegate = self;
-        self.brickDetailVC.modalPresentationStyle = UIModalPresentationCustom;
-        [self presentViewController:self.brickDetailVC animated:YES completion:NULL];
+        BrickDetailViewController *vc = [BrickDetailViewController brickDetailViewControllerWithtBrick:brickCell.brick];
+        vc.delegate = self;
+        vc.transitioningDelegate = self;
+        [self presentViewController:vc animated:YES completion:NULL];
     }
 }
 
@@ -346,11 +345,12 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }];
 }
 
-#pragma mark - BrickDetailViewController Key Value Observing
+#pragma mark - BrickDetailViewControllerDelegate
 
-- (void)brickDetailViewControllerStateChanged
+- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
+                   didChangeState:(BrickDetailViewControllerState)state
 {
-    switch (self.brickDetailVC.state) {
+    switch (brickDetailViewController.state) {
         case BrickDetailViewControllerStateNone:
         case BrickDetailViewControllerStateBrickUpdated:
             break;
@@ -367,7 +367,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             // TODO
             break;
         case BrickDetailViewControllerStateEditFormula: {
-            // TODO: 
+            // TODO:
             BrickCell *brickCell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:self.trackedIndexPath];
             FormulaEditorButton *formulaEditorButton = (FormulaEditorButton *)[UIUtil newDefaultBrickFormulaEditorWithFrame:CGRectMake(0, 0, 0, 0)
                                                                                                                ForBrickCell:brickCell
@@ -1087,7 +1087,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)setupDataSource
 {
-    __weak ScriptCollectionViewController *weakself = self;
+    __weak typeof(&*self) weakself = self;
     ScriptCollectionViewConfigureBlock configureCellBlock = ^(id cell) {
         [weakself configureBrickCell:cell];
     };
@@ -1097,23 +1097,20 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     self.scriptDataSource.delegate = self;
     self.collectionView.dataSource = self.scriptDataSource;
     self.collectionView.delegate = self;
-}
-
-
-- (void)setupObserver
-{
+    
     // create KVO controller with observer.
     FBKVOController *KVOController = [FBKVOController controllerWithObserver:self];
-    self.KVOController = KVOController;
-    
-    self.brickDetailVC = [BrickDetailViewController brickDetailViewController];
-    
-    // observe brick detail vc state property.
-    [self.KVOController observe:self.brickDetailVC
-                        keyPath:@"state"
-                        options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew
-                        action:@selector(brickDetailViewControllerStateChanged)];
+    self.scriptDataSourceKVOController = KVOController;
+    [self.scriptDataSourceKVOController observe:self.scriptDataSource
+                                        keyPath:@"scriptList"
+                                        options:NSKeyValueObservingOptionNew
+                                          block:^(id observer, id object, NSDictionary *change) {
+                                              NSDebug(@"Script data source items changed.");
+                                              Program *program = weakself.object.program;
+                                              [program saveToDisk];
+    }];
 }
+
 
 - (void)setupCollectionView
 {

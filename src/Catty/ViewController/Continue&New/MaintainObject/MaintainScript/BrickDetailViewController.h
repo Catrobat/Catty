@@ -32,10 +32,21 @@ typedef NS_ENUM(NSUInteger, BrickDetailViewControllerState) {
     BrickDetailViewControllerStateEditFormula,
 };
 
+@class BrickDetailViewController;
+@protocol BrickDetailViewControllerDelegate <NSObject>
+@optional
+
+- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
+                   didChangeState:(BrickDetailViewControllerState)state;
+
+@end
+
 @class Brick;
 @interface BrickDetailViewController : UIViewController
+@property (nonatomic, weak) id<BrickDetailViewControllerDelegate> delegate;
+
 - (instancetype)initWithBrick:(Brick *)brick NS_DESIGNATED_INITIALIZER;
-+ (BrickDetailViewController *)brickDetailViewController;
++ (BrickDetailViewController *)brickDetailViewControllerWithtBrick:(Brick *)brick;
 
 // Disallow init.
 - (instancetype)init __attribute__((unavailable("init is not a supported initializer for this class.")));
@@ -44,6 +55,5 @@ typedef NS_ENUM(NSUInteger, BrickDetailViewControllerState) {
 @property (nonatomic, readonly) BrickDetailViewControllerState state;
 @property (nonatomic, readonly) Brick *brick;
 
-- (void)setBrick:(Brick *)brick;
 
 @end

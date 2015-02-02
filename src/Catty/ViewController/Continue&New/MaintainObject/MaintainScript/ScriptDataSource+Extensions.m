@@ -185,6 +185,7 @@
         batchUpdates = [batchUpdates copy];
     }];
     
+    self.scriptList = scriptList;
     [self informBatchUpdate:^{ batchUpdates(); }];
 }
 
@@ -222,6 +223,10 @@
     }];
     
     script.brickList = newBricks;
+    NSMutableArray *newScriptList = [NSMutableArray arrayWithArray:self.scriptList];
+    [newScriptList replaceObjectAtIndex:section withObject:script];
+    self.scriptList = newScriptList;
+    
     [self informBatchUpdate:^{ batchUpdates(); }];
 }
 

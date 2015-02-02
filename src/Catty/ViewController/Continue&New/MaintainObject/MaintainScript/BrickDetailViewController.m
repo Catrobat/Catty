@@ -62,13 +62,14 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
 
 #pragma mark - init
 
-+ (BrickDetailViewController *)brickDetailViewController
++ (BrickDetailViewController *)brickDetailViewControllerWithtBrick:(Brick *)brick
 {
-    return [[self alloc] initWithBrick:nil];
+    return [[BrickDetailViewController alloc] initWithBrick:brick];
 }
 
 - (instancetype)initWithBrick:(Brick *)brick {
     if (self = [super init]) {
+         self.modalPresentationStyle = UIModalPresentationCustom;
         _state = BrickDetailViewControllerStateNone;
         _brick = brick;
     }
@@ -102,9 +103,12 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
 
 - (void)setState:(BrickDetailViewControllerState)state
 {
-    // Key value observing.
     if (state != _state) {
         _state = state;
+        id<BrickDetailViewControllerDelegate> delegate = self.delegate;
+        if ([delegate respondsToSelector:@selector(brickDetailViewController:didChangeState:)]) {
+            [delegate brickDetailViewController:self didChangeState:state];
+        }
     }
 }
 
