@@ -141,10 +141,7 @@
     Brick *oldBrick = [self brickInScriptAtIndexPath:atIndexPath];
     CBAssert(oldBrick != nil, @"Error copy brick, brick == nil.");
     
-    // TODO: Copy brick
-    Brick *newBrick = [[oldBrick class] new];
-    
-    NSArray *addedBricks = @[ newBrick ];
+    NSArray *addedBricks = [self linkedBricksForBrick:oldBrick];
     
     NSUInteger startIdx = (NSUInteger)atIndexPath.item - 1;
     NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(startIdx, addedBricks.count)];
@@ -237,6 +234,11 @@
     [brickList insertObjects:bricks atIndexes:indexes];
     
     script.brickList = brickList;
+    
+    // TODO: Fix exception raised.
+//    NSMutableArray *newScriptList = [NSMutableArray arrayWithArray:self.scriptList];
+//    [newScriptList replaceObjectAtIndex:section withObject:script];
+//    self.scriptList = newScriptList;
     
     NSMutableArray *insertedIndexPaths = [[NSMutableArray alloc] initWithCapacity:indexes.count];
     [indexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
@@ -359,6 +361,92 @@
     }
     
     return indexes;
+}
+
+- (NSArray *)linkedBricksForBrick:(Brick *)brick
+{
+    NSMutableArray *bricks = [NSMutableArray arrayWithCapacity:3];
+
+    // TODO: Copy brick!
+    
+    switch (brick.brickType) {
+        case kInvalidBrick:
+        case kProgramStartedBrick:
+        case kTappedBrick:
+        case kWaitBrick:
+        case kReceiveBrick:
+        case kBroadcastBrick:
+        case kBroadcastWaitBrick:
+        case kNoteBrick:
+        case kPlaceAtBrick:
+        case kSetXBrick:
+        case kSetYBrick:
+        case kChangeXByNBrick:
+        case kChangeYByNBrick:
+        case kIfOnEdgeBounceBrick:
+        case kMoveNStepsBrick:
+        case kTurnLeftBrick:
+        case kTurnRightBrick:
+        case kPointInDirectionBrick:
+        case kPointToBrick:
+        case kGlideToBrick:
+        case kGoNStepsBackBrick:
+        case kComeToFrontBrick:
+        case kPlaySoundBrick:
+        case kStopAllSoundsBrick:
+        case kSetVolumeToBrick:
+        case kChangeVolumeByNBrick:
+        case kSpeakBrick:
+        case kSetLookBrick:
+        case kNextLookBrick:
+        case kSetSizeToBrick:
+        case kChangeSizeByNBrick:
+        case kHideBrick:
+        case kShowBrick:
+        case kSetGhostEffectBrick:
+        case kChangeGhostEffectByNBrick:
+        case kSetBrightnessBrick:
+        case kChangeBrightnessByNBrick:
+        case kClearGraphicEffectBrick:
+        case kLedOnBrick:
+        case kLedOffBrick:
+        case kVibrationBrick:
+        case kSetVariableBrick:
+        case kChangeVariableBrick:
+            [bricks addObject:[[brick class] new]];
+            break;
+        case kForeverBrick:
+            [bricks addObject:[[brick class] new]];
+            [bricks addObject:[LoopEndBrick new]];
+            break;
+        case kIfBrick:
+            [bricks addObject:[[brick class] new]];
+            [bricks addObject:[IfLogicElseBrick new]];
+            [bricks addObject:[IfLogicEndBrick new]];
+            break;
+        case kIfElseBrick:
+            [bricks addObject:[IfLogicBeginBrick new]];
+            [bricks addObject:[[brick class] new]];
+            [bricks addObject:[IfLogicEndBrick new]];
+            break;
+        case kIfEndBrick:
+            [bricks addObject:[IfLogicBeginBrick new]];
+            [bricks addObject:[IfLogicElseBrick new]];
+            [bricks addObject:[[brick class] new]];
+            break;
+        case kRepeatBrick:
+            [bricks addObject:[[brick class] new]];
+            [bricks addObject:[LoopEndBrick new]];
+            break;
+        case kLoopEndBrick:
+            [bricks addObject:[RepeatBrick new]];
+            [bricks addObject:[[brick class] new]];
+            break;
+
+        default:
+            break;
+    }
+    return bricks;
 }
 
 
