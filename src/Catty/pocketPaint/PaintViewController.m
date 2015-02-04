@@ -124,7 +124,7 @@
             UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
             if (![self.saveView.image isEqual:blank] && ![self.saveView.image isEqual:self.editingImage]) {
-            [Util confirmAlertWithTitle:kLocalizedSaveToPocketCode message:kLocalizedPaintSaveChanges delegate:self tag:0];
+                [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
             }
         }
             // reenable swipe back gesture
@@ -134,6 +134,10 @@
     }
 }
 
+-(void)didMoveToParentViewController:(UIViewController *)parent
+{
+    NSLog(@"Moved,%@",self.navigationController.viewControllers);
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -383,9 +387,9 @@
     }
       break;
     case rotate:{
-      UIBarButtonItem* rotateRight = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self.mirrorRotationZoomTool action:@selector(rotateRight)];
-      UIBarButtonItem* rotateLeft = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self.mirrorRotationZoomTool action:@selector(rotateLeft)];
-      self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,rotateLeft,rotateRight,self.undo,self.redo, nil];
+        UIBarButtonItem*rotateR = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"rotate_right"] style:UIBarButtonItemStylePlain target:self.mirrorRotationZoomTool action:@selector(rotateRight)];
+        UIBarButtonItem*rotateL = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"rotate_left"] style:UIBarButtonItemStylePlain target:self.mirrorRotationZoomTool action:@selector(rotateLeft)];
+      self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,rotateL,rotateR,self.undo,self.redo, nil];
     }
       break;
     case zoom:{
@@ -833,13 +837,12 @@
 }
 
 
-#pragma mark - alert delegate
-- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+
+#pragma mark dealloc
+
+-(void)dealloc
 {
-    if (buttonIndex != 0) {
-//        NSLog(@"yes");
-        [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
-    } 
+    NSLog(@"dealloc");
 }
 
 @end

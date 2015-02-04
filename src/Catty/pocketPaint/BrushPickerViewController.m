@@ -25,10 +25,11 @@
 #import "PaintViewController.h"
 #import "UIImage+Rotate.h"
 #import "LanguageTranslationDefines.h"
+#import "CatrobatUISlider.h"
 
 @interface BrushPickerViewController ()
 @property (nonatomic,strong)UIImageView *brushView;
-@property (nonatomic,strong)UISlider *brushSlider;
+@property (nonatomic,strong)CatrobatUISlider *brushSlider;
 @property (nonatomic,strong)UILabel *thicknessLabel;
 @property (nonatomic,strong)UISegmentedControl *brushEndingControl;
 
@@ -118,8 +119,8 @@
 
 -(void)setupBrushSlider
 {
-  self.brushSlider = [[UISlider alloc] init];
-  self.brushSlider.frame =CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.7f, self.view.frame.size.width-100, 5);
+  self.brushSlider = [[CatrobatUISlider alloc] init];
+  self.brushSlider.frame =CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.7f, self.view.frame.size.width-100, 20);
   [self.brushSlider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
   [self.brushSlider setBackgroundColor:[UIColor clearColor]];
   self.brushSlider.minimumValue = 1.0f;

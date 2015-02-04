@@ -20,15 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "PaintViewController.h"
-#import "SpriteObject.h"
+#import "CatrobatUISlider.h"
 
-@interface LookImageViewController : UIViewController <PaintDelegate,CatrobatAlertViewDelegate>
+@implementation CatrobatUISlider
 
-@property (nonatomic, strong) NSString *imageName;
-@property (nonatomic, strong) NSString *imagePath;
-@property (nonatomic, strong) SpriteObject *spriteObject;
-@property (nonatomic, weak) LooksTableViewController *looksTableViewController;
+
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent*)event {
+    CGRect bounds = self.bounds;
+    bounds = CGRectInset(bounds, -10, -15);
+    return CGRectContainsPoint(bounds, point);
+}
 
 @end

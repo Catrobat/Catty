@@ -21,14 +21,7 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "PaintViewController.h"
-#import "SpriteObject.h"
 
-@interface LookImageViewController : UIViewController <PaintDelegate,CatrobatAlertViewDelegate>
-
-@property (nonatomic, strong) NSString *imageName;
-@property (nonatomic, strong) NSString *imagePath;
-@property (nonatomic, strong) SpriteObject *spriteObject;
-@property (nonatomic, weak) LooksTableViewController *looksTableViewController;
+@interface CatrobatUISlider : UISlider
 
 @end
