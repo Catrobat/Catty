@@ -24,6 +24,7 @@
 #import "NKOColorPickerView.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "LanguageTranslationDefines.h"
+#import "CatrobatUISlider.h"
 
 @interface ColorPickerViewController ()
 @property (nonatomic,strong)UISegmentedControl *viewChanger;
@@ -31,13 +32,13 @@
 @property (nonatomic,strong)UIView *rgbaSliderView;
 @property (nonatomic,strong)UIView *standardColors;
 @property (nonatomic,strong)UIImageView *brushView;
-@property (nonatomic,strong)UISlider *redSlider;
+@property (nonatomic,strong)CatrobatUISlider *redSlider;
 @property (nonatomic,strong)UILabel *redLabel;
-@property (nonatomic,strong)UISlider *greenSlider;
+@property (nonatomic,strong)CatrobatUISlider *greenSlider;
 @property (nonatomic,strong)UILabel *greenLabel;
-@property (nonatomic,strong)UISlider *blueSlider;
+@property (nonatomic,strong)CatrobatUISlider *blueSlider;
 @property (nonatomic,strong)UILabel *blueLabel;
-@property (nonatomic,strong)UISlider *opacitySlider;
+@property (nonatomic,strong)CatrobatUISlider *opacitySlider;
 @property (nonatomic,strong)UILabel *opacityLabel;
 @property (nonatomic,strong)NSMutableArray *colorArray;
 @property (nonatomic,strong)NKOColorPickerView *colorPicker;
@@ -145,7 +146,7 @@
   label.text = kLocalizedPaintRed;
   label.textColor = [UIColor redColor];
   [label sizeToFit];
-  self.redSlider = [[UISlider alloc] init];
+  self.redSlider = [[CatrobatUISlider alloc] init];
   self.redSlider.frame =CGRectMake(self.view.frame.size.width*0.3f, self.view.frame.size.height*0.05f, 150, 5);
   [self.redSlider addTarget:self action:@selector(redAction:) forControlEvents:UIControlEventValueChanged];
   [self.redSlider setBackgroundColor:[UIColor clearColor]];
@@ -173,7 +174,7 @@
   label.text = kLocalizedPaintGreen;
   label.textColor = [UIColor greenColor];
   [label sizeToFit];
-  self.greenSlider = [[UISlider alloc] init];
+  self.greenSlider = [[CatrobatUISlider alloc] init];
   self.greenSlider.frame =CGRectMake(self.view.frame.size.width*0.3f, self.view.frame.size.height*0.15f, 150, 5);
   [self.greenSlider addTarget:self action:@selector(greenAction:) forControlEvents:UIControlEventValueChanged];
   [self.greenSlider setBackgroundColor:[UIColor clearColor]];
@@ -199,7 +200,7 @@
   label.text = kLocalizedPaintBlue;
   label.textColor = [UIColor blueColor];
   [label sizeToFit];
-  self.blueSlider = [[UISlider alloc] init];
+  self.blueSlider = [[CatrobatUISlider alloc] init];
   self.blueSlider.frame =CGRectMake(self.view.frame.size.width*0.3f, self.view.frame.size.height*0.25f, 150, 5);
   [self.blueSlider addTarget:self action:@selector(blueAction:) forControlEvents:UIControlEventValueChanged];
   [self.blueSlider setBackgroundColor:[UIColor clearColor]];
@@ -227,7 +228,7 @@
   label.text = kLocalizedPaintAlpha;
   label.textColor = [UIColor blackColor];
   [label sizeToFit];
-  self.opacitySlider = [[UISlider alloc] init];
+  self.opacitySlider = [[CatrobatUISlider alloc] init];
   self.opacitySlider.frame =CGRectMake(self.view.frame.size.width*0.3f, self.view.frame.size.height*0.35f, 150, 5);
   [self.opacitySlider addTarget:self action:@selector(opacityAction:) forControlEvents:UIControlEventValueChanged];
   [self.opacitySlider setBackgroundColor:[UIColor clearColor]];

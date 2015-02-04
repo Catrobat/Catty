@@ -27,8 +27,8 @@
 
 @protocol PaintDelegate <NSObject>
 
--(void)addPaintedImage:(UIImage*)image andPath:(NSString *)path;
-
+-(void)showSavePaintImageAlert:(UIImage*)image andPath:(NSString *)path;
+-(void)addPaintedImage:(UIImage *)image andPath:(NSString *)path;
 @end
 
 @interface LooksTableViewController : BaseTableViewController <PaintDelegate>
