@@ -410,14 +410,7 @@
         }
 
         // count references in all object of that look image
-        NSUInteger lookImageReferenceCounter = 0;
-        for (SpriteObject *object in self.program.objectList) {
-            for (Look *lookToCheck in object.lookList) {
-                if ([lookToCheck.fileName isEqualToString:look.fileName]) {
-                    ++lookImageReferenceCounter;
-                }
-            }
-        }
+        NSUInteger lookImageReferenceCounter = [self referenceCountForLook:look.fileName];
         // if image is not used by other objects, delete it
         if (lookImageReferenceCounter <= 1) {
             AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -464,14 +457,7 @@
         }
         
         // count references in all object of that sound file
-        NSUInteger soundReferenceCounter = 0;
-        for (SpriteObject *object in self.program.objectList) {
-            for (Sound *soundToCheck in object.soundList) {
-                if ([soundToCheck.fileName isEqualToString:sound.fileName]) {
-                    ++soundReferenceCounter;
-                }
-            }
-        }
+        NSUInteger soundReferenceCounter = [self referenceCountForSound:sound.fileName];
         // if sound is not used by other objects, delete it
         if (soundReferenceCounter <= 1) {
             AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -668,6 +654,7 @@
     return [mutableString copy];
 }
 
+#pragma mark - Compare
 - (BOOL)isEqualToSpriteObject:(SpriteObject*)spriteObject
 {
     // check if object names are both equal to each other
@@ -787,6 +774,33 @@
         }
     }
     return newObject;
+}
+
+#pragma mark - Helpers
+- (NSUInteger)referenceCountForLook:(NSString*)fileName
+{
+    NSUInteger referenceCount = 0;
+    for (SpriteObject *object in self.program.objectList) {
+        for (Look *look in object.lookList) {
+            if ([look.fileName isEqualToString:fileName]) {
+                ++referenceCount;
+            }
+        }
+    }
+    return referenceCount;
+}
+
+- (NSUInteger)referenceCountForSound:(NSString*)fileName
+{
+    NSUInteger referenceCount = 0;
+    for (SpriteObject *object in self.program.objectList) {
+        for (Sound *sound in object.soundList) {
+            if ([sound.fileName isEqualToString:fileName]) {
+                ++referenceCount;
+            }
+        }
+    }
+    return referenceCount;
 }
 
 @end
