@@ -334,25 +334,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
     if(self.internFormula != nil) {
         
         InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
-//        FormulaElement *tempFormulaElement = [internFormulaParser parseFormulaForSpriteObject:self.brickCell.brick.object];
         Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormulaForSpriteObject:self.brickCell.brick.object]];
         
-        
-        float result;
         NSString *computedString;
         
         switch ([internFormulaParser getErrorTokenIndex]) {
             case FORMULA_PARSER_OK:
-//                result = [tempFormulaElement interpretRecursiveForSprite:nil];
-//                if (internFormulaParser.isBool) {
-//                    if (result) {
-//                        computedString = [NSString stringWithFormat:kUIFEComputedTrue];
-//                    } else {
-//                        computedString = [NSString stringWithFormat:kUIFEComputedFalse];
-//                    }
-//                } else {
-//                    computedString = [NSString stringWithFormat:kUIFEComputed, result];
-//                }
                 
                 computedString = [formula getResultForComputeDialog:self.brickCell.brick.object];
                 
