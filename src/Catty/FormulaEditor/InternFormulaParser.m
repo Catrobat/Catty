@@ -163,6 +163,9 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
     if ([self.currentToken isOperator] && ([self.currentToken.tokenStringValue isEqualToString:[Operators getName:LOGICAL_AND]]||[self.currentToken.tokenStringValue isEqualToString:[Operators getName:LOGICAL_OR]])){
         self.isBool = YES;
     }
+//    if ([self.currentToken isFunctionName] && ([self.currentToken.tokenStringValue isEqualToString:[Functions getName:TRUE_F]] || [self.currentToken.tokenStringValue isEqualToString:[Functions getName:FALSE_F]])) {
+//        self.isBool = YES;
+//    }
     while ([self.currentToken isOperator] && ![self.currentToken.tokenStringValue isEqualToString:[Operators getName:LOGICAL_NOT]]) {
         operatorStringValue = self.currentToken.tokenStringValue;
         [self getNextToken];

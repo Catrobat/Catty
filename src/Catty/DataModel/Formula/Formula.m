@@ -154,6 +154,30 @@
     return NO;
 }
 
+- (NSString *)getResultForComputeDialog:(SpriteObject *)sprite
+{
+    NSString *result = [NSString stringWithFormat:@""];
+    
+    if ([self.formulaTree isLogicalOperator]) {
+        BOOL bool_result = [self interpretBOOLForSprite:sprite];
+        result = bool_result ? @"TRUE" : @"FALSE";	
+    }else if ([self.formulaTree isLogicalFunction])
+    {
+        double double_result = [self interpretDoubleForSprite:sprite];
+        if (double_result == 0.0f)
+            result = @"FALSE";
+        else
+            result = @"TRUE";
+    }
+    else{
+        double double_result = [self.formulaTree interpretRecursiveForSprite:sprite];
+        result = [NSString stringWithFormat:@"%f", double_result];
+        
+    }
+    
+    return result;
+}
+
 #pragma mark - Copy
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {

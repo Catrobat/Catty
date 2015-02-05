@@ -75,6 +75,8 @@ typedef enum {
 
 - (BOOL)isLogicalOperator;
 
+- (BOOL)isLogicalFunction;
+
 - (BOOL)isSingleNumberFormula;
 
 - (BOOL)containsElement:(ElementType)elementType;
