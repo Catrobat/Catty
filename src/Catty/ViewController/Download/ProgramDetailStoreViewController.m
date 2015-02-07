@@ -149,6 +149,7 @@
     [super viewWillAppear:animated];
     [self.navigationController setToolbarHidden:YES];
     self.searchStoreController.checkSearch = NO;
+    self.loadedProgram = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated
