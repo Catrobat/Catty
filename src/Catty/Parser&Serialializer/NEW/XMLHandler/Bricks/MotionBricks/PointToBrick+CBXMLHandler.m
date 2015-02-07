@@ -35,7 +35,7 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     if([xmlElement childCount] > 1) {
-        [XMLError exceptionWithMessage:@"Too many child nodes found... (0 or 1 expected, actual %lu)", [xmlElement childCount]];
+        [XMLError exceptionWithMessage:@"Too many child nodes found... (0 or 1 expected, actual %lu)", (unsigned long)[xmlElement childCount]];
     }
     
     PointToBrick *pointToBrick = [self new];
