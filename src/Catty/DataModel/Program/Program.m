@@ -43,11 +43,6 @@
 
 @synthesize objectList = _objectList;
 
-- (void)dealloc
-{
-    NSDebug(@"Dealloc Program");
-}
-
 # pragma mark - factories
 + (instancetype)defaultProgramWithName:(NSString*)programName programID:(NSString*)programID
 {
@@ -560,6 +555,36 @@
         }
     }
     return nil;
+}
+
+#pragma mark - Dealloc
+- (void)removeReferences
+{
+    if(!self.objectList)
+        return;
+    
+    for (SpriteObject *sprite in self.objectList) {
+        sprite.broadcastWaitDelegate = nil;
+        sprite.spriteManagerDelegate = nil;
+        
+        if(sprite.scriptList) {
+            for (Script *script in sprite.scriptList) {
+                script.allowRunNextAction = NO;
+                if(script.brickList) {
+                    for (Brick *brick in script.brickList) {
+                        brick.object = nil;
+                    }
+                }
+            }
+        }
+        sprite.program = nil;
+    }
+}
+
+- (void)dealloc
+{
+    [self removeReferences];
+    NSDebug(@"Dealloc Program");
 }
 
 @end

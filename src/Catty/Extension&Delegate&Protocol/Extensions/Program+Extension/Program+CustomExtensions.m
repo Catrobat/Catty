@@ -40,19 +40,4 @@
     }
 }
 
-- (void)removeReferences
-{
-    for (SpriteObject *sprite in self.objectList) {
-        sprite.broadcastWaitDelegate = nil;
-        sprite.spriteManagerDelegate = nil;
-        for (Script *script in sprite.scriptList) {
-            script.allowRunNextAction = NO;
-            for (Brick *brick in script.brickList) {
-                brick.object = nil;
-            }
-        }
-        sprite.program = nil;
-    }
-}
-
 @end
