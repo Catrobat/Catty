@@ -27,10 +27,6 @@
 #import "Program+CustomExtensions.h"
 #import "CBXMLContext.h"
 
-#if !kIsRelease
-#import "CBXMLLogger.h"
-#endif
-
 // NEVER MOVE THESE DEFINE CONSTANTS TO ANOTHER (HEADER) FILE
 #define kCatrobatXMLParserMinSupportedLanguageVersion 0.93f
 #define kCatrobatXMLParserMaxSupportedLanguageVersion CGFLOAT_MAX
