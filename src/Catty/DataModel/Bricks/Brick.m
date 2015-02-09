@@ -53,7 +53,7 @@
     return self;
 }
 
-- (id)initWithSprite:(SpriteObject *)sprite
+- (id)initWithScript:(Script*)script
 {
     self = [super init];
     if (self) {
@@ -61,7 +61,7 @@
         BrickManager *brickManager = [BrickManager sharedBrickManager];
         self.brickType = [brickManager brickTypeForClassName:subclassName];
         self.brickCategoryType = [brickManager brickCategoryTypeForBrickType:self.brickType];
-        self.object = sprite;
+//        self.object = sprite;
     }
     return self;
 }

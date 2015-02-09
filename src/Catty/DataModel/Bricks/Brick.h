@@ -34,9 +34,9 @@
 @property (nonatomic, strong, readonly) NSString *brickTitle;
 - (BOOL)isSelectableForObject;
 
-@property (nonatomic, strong) SpriteObject *object;
+@property (nonatomic, strong) SpriteObject* object;
 
-- (id)initWithSprite:(SpriteObject*)sprite;
+- (id)initWithScript:(Script*)script;
 
 - (NSString*)description;
 
