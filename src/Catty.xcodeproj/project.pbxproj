@@ -408,12 +408,6 @@
 		CAA4A4701A43B3BC002A69A0 /* CBXMLParserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A46D1A43B3BC002A69A0 /* CBXMLParserHelper.m */; };
 		CAA4A4711A43B3BC002A69A0 /* CBXMLSerializerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A46E1A43B3BC002A69A0 /* CBXMLSerializerHelper.m */; };
 		CAA4A4721A43B3BC002A69A0 /* CBXMLValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A46F1A43B3BC002A69A0 /* CBXMLValidator.m */; };
-		CAA4A4801A43B3CE002A69A0 /* CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A47A1A43B3CE002A69A0 /* CBXMLLogger.m */; };
-		CAA4A4811A43B3CE002A69A0 /* Header+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A47B1A43B3CE002A69A0 /* Header+CBXMLLogger.m */; };
-		CAA4A4821A43B3CE002A69A0 /* Look+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A47C1A43B3CE002A69A0 /* Look+CBXMLLogger.m */; };
-		CAA4A4831A43B3CE002A69A0 /* Script+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A47D1A43B3CE002A69A0 /* Script+CBXMLLogger.m */; };
-		CAA4A4841A43B3CE002A69A0 /* Sound+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A47E1A43B3CE002A69A0 /* Sound+CBXMLLogger.m */; };
-		CAA4A4851A43B3CE002A69A0 /* SpriteObject+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A47F1A43B3CE002A69A0 /* SpriteObject+CBXMLLogger.m */; };
 		CAA4A4A01A43B407002A69A0 /* BroadcastBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A4931A43B407002A69A0 /* BroadcastBrick+CBXMLHandler.m */; };
 		CAA4A4A11A43B407002A69A0 /* BroadcastWaitBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A4941A43B407002A69A0 /* BroadcastWaitBrick+CBXMLHandler.m */; };
 		CAA4A4A21A43B407002A69A0 /* ComeToFrontBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A4951A43B407002A69A0 /* ComeToFrontBrick+CBXMLHandler.m */; };
@@ -1314,18 +1308,6 @@
 		CAA4A46D1A43B3BC002A69A0 /* CBXMLParserHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBXMLParserHelper.m; path = "Catty/Parser&Serialializer/NEW/Helper/CBXMLParserHelper.m"; sourceTree = SOURCE_ROOT; };
 		CAA4A46E1A43B3BC002A69A0 /* CBXMLSerializerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBXMLSerializerHelper.m; path = "Catty/Parser&Serialializer/NEW/Helper/CBXMLSerializerHelper.m"; sourceTree = SOURCE_ROOT; };
 		CAA4A46F1A43B3BC002A69A0 /* CBXMLValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBXMLValidator.m; path = "Catty/Parser&Serialializer/NEW/Helper/CBXMLValidator.m"; sourceTree = SOURCE_ROOT; };
-		CAA4A4741A43B3CE002A69A0 /* CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBXMLLogger.h; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/CBXMLLogger.h"; sourceTree = SOURCE_ROOT; };
-		CAA4A4751A43B3CE002A69A0 /* Header+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Header+CBXMLLogger.h"; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/Header+CBXMLLogger.h"; sourceTree = SOURCE_ROOT; };
-		CAA4A4761A43B3CE002A69A0 /* Look+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Look+CBXMLLogger.h"; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/Look+CBXMLLogger.h"; sourceTree = SOURCE_ROOT; };
-		CAA4A4771A43B3CE002A69A0 /* Script+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Script+CBXMLLogger.h"; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/Script+CBXMLLogger.h"; sourceTree = SOURCE_ROOT; };
-		CAA4A4781A43B3CE002A69A0 /* Sound+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Sound+CBXMLLogger.h"; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/Sound+CBXMLLogger.h"; sourceTree = SOURCE_ROOT; };
-		CAA4A4791A43B3CE002A69A0 /* SpriteObject+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SpriteObject+CBXMLLogger.h"; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/SpriteObject+CBXMLLogger.h"; sourceTree = SOURCE_ROOT; };
-		CAA4A47A1A43B3CE002A69A0 /* CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBXMLLogger.m; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/CBXMLLogger.m"; sourceTree = SOURCE_ROOT; };
-		CAA4A47B1A43B3CE002A69A0 /* Header+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Header+CBXMLLogger.m"; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/Header+CBXMLLogger.m"; sourceTree = SOURCE_ROOT; };
-		CAA4A47C1A43B3CE002A69A0 /* Look+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Look+CBXMLLogger.m"; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/Look+CBXMLLogger.m"; sourceTree = SOURCE_ROOT; };
-		CAA4A47D1A43B3CE002A69A0 /* Script+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Script+CBXMLLogger.m"; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/Script+CBXMLLogger.m"; sourceTree = SOURCE_ROOT; };
-		CAA4A47E1A43B3CE002A69A0 /* Sound+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Sound+CBXMLLogger.m"; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/Sound+CBXMLLogger.m"; sourceTree = SOURCE_ROOT; };
-		CAA4A47F1A43B3CE002A69A0 /* SpriteObject+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SpriteObject+CBXMLLogger.m"; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/SpriteObject+CBXMLLogger.m"; sourceTree = SOURCE_ROOT; };
 		CAA4A4861A43B407002A69A0 /* BroadcastBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BroadcastBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/NEW/XMLHandler/Bricks/ControlBricks/BroadcastBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		CAA4A4871A43B407002A69A0 /* BroadcastWaitBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BroadcastWaitBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/NEW/XMLHandler/Bricks/ControlBricks/BroadcastWaitBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		CAA4A4881A43B407002A69A0 /* ComeToFrontBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ComeToFrontBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/NEW/XMLHandler/Bricks/ControlBricks/ComeToFrontBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
@@ -3594,7 +3576,6 @@
 				CAA4A46F1A43B3BC002A69A0 /* CBXMLValidator.m */,
 				CAA4A46B1A43B3BC002A69A0 /* CBXMLSerializerHelper.h */,
 				CAA4A46E1A43B3BC002A69A0 /* CBXMLSerializerHelper.m */,
-				CAA4A4731A43B3C1002A69A0 /* Logger */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -3954,25 +3935,6 @@
 				CA97A46D1A44F43E008C931B /* Gossip_Girl_093.xml */,
 			);
 			name = Gossip_Girl;
-			sourceTree = "<group>";
-		};
-		CAA4A4731A43B3C1002A69A0 /* Logger */ = {
-			isa = PBXGroup;
-			children = (
-				CAA4A4741A43B3CE002A69A0 /* CBXMLLogger.h */,
-				CAA4A4751A43B3CE002A69A0 /* Header+CBXMLLogger.h */,
-				CAA4A4761A43B3CE002A69A0 /* Look+CBXMLLogger.h */,
-				CAA4A4771A43B3CE002A69A0 /* Script+CBXMLLogger.h */,
-				CAA4A4781A43B3CE002A69A0 /* Sound+CBXMLLogger.h */,
-				CAA4A4791A43B3CE002A69A0 /* SpriteObject+CBXMLLogger.h */,
-				CAA4A47A1A43B3CE002A69A0 /* CBXMLLogger.m */,
-				CAA4A47B1A43B3CE002A69A0 /* Header+CBXMLLogger.m */,
-				CAA4A47C1A43B3CE002A69A0 /* Look+CBXMLLogger.m */,
-				CAA4A47D1A43B3CE002A69A0 /* Script+CBXMLLogger.m */,
-				CAA4A47E1A43B3CE002A69A0 /* Sound+CBXMLLogger.m */,
-				CAA4A47F1A43B3CE002A69A0 /* SpriteObject+CBXMLLogger.m */,
-			);
-			name = Logger;
 			sourceTree = "<group>";
 		};
 		CAA4A5371A43BD9E002A69A0 /* Unit Tests */ = {
@@ -4560,9 +4522,7 @@
 				92FF30EB1A24DCAA00093DA7 /* LedOffBrick.m in Sources */,
 				92FF32B81A24E2F400093DA7 /* ContinueImageCell.m in Sources */,
 				CAA4A4AC1A43B407002A69A0 /* WaitBrick+CBXMLHandler.m in Sources */,
-				CAA4A4831A43B3CE002A69A0 /* Script+CBXMLLogger.m in Sources */,
 				92FF32691A24E2F400093DA7 /* MYBlurIntroductionView.m in Sources */,
-				CAA4A4811A43B3CE002A69A0 /* Header+CBXMLLogger.m in Sources */,
 				92FF30D01A24DCAA00093DA7 /* ChangeBrightnessByNBrick.m in Sources */,
 				9238C5851A3AE9920099F061 /* UploadViewController.m in Sources */,
 				92FF2E971A24C7D800093DA7 /* mztools.c in Sources */,
@@ -4659,7 +4619,6 @@
 				92FF315E1A24DEB300093DA7 /* HelpWebViewController.m in Sources */,
 				92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */,
 				CAA4A5271A43B506002A69A0 /* UserVariable+CBXMLHandler.m in Sources */,
-				CAA4A4841A43B3CE002A69A0 /* Sound+CBXMLLogger.m in Sources */,
 				92DFB06D1A38960C00FA9B0F /* YKImageCropperView.m in Sources */,
 				CAA4A5181A43B4D0002A69A0 /* Look+CBXMLHandler.m in Sources */,
 				92DFB0161A38949E00FA9B0F /* InternFormulaState.m in Sources */,
@@ -4721,7 +4680,6 @@
 				92FF326D1A24E2F400093DA7 /* SWCellScrollView.m in Sources */,
 				92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */,
 				92FF32731A24E2F400093DA7 /* TTTAttributedLabel.m in Sources */,
-				CAA4A4851A43B3CE002A69A0 /* SpriteObject+CBXMLLogger.m in Sources */,
 				92DFB0671A38960C00FA9B0F /* SPUserResizableView.m in Sources */,
 				92FF30E51A24DCAA00093DA7 /* SetXBrick.m in Sources */,
 				CAA4A4711A43B3BC002A69A0 /* CBXMLSerializerHelper.m in Sources */,
@@ -4763,13 +4721,11 @@
 				4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */,
 				92FF2E8D1A24C7D800093DA7 /* CatrobatAudioPlayer.m in Sources */,
 				92FF32891A24E2F400093DA7 /* ChangeGhostEffectByNBrickCell.m in Sources */,
-				CAA4A4821A43B3CE002A69A0 /* Look+CBXMLLogger.m in Sources */,
 				92FF31611A24DEB300093DA7 /* ScenePresenterViewController.m in Sources */,
 				92FF30CC1A24DCAA00093DA7 /* WaitBrick.m in Sources */,
 				92DFB0541A38960C00FA9B0F /* ColorPickerViewController.m in Sources */,
 				92FF31501A24DEB300093DA7 /* BrickDetailViewController.m in Sources */,
 				92FF32B31A24E2F400093DA7 /* LoadingView.m in Sources */,
-				CAA4A4801A43B3CE002A69A0 /* CBXMLLogger.m in Sources */,
 				92FF327C1A24E2F400093DA7 /* BroadcastWaitBrickCell.m in Sources */,
 				92FF32821A24E2F400093DA7 /* LedOnBrickCell.m in Sources */,
 				CAA4A4661A43B388002A69A0 /* CBXMLSerializer.m in Sources */,
