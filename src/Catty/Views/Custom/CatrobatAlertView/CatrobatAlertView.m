@@ -21,6 +21,8 @@
  */
 
 #import "CatrobatAlertView.h"
+#import "ActionSheetAlertViewTags.h"
+#import "Util.h"
 
 @implementation CatrobatAlertView
 
@@ -37,6 +39,14 @@
                                       otherButtonTitles:otherButtonTitles, nil];
     alertView.dataTransferMessage = nil;
     return alertView;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField*)textField
+{
+    [self dismissWithClickedButtonIndex:0 animated:YES];
+    [textField resignFirstResponder]; // dismiss the keyboard
+    [[Util class] alertView:self clickedButtonAtIndex:kAlertViewButtonOK];
+    return YES;
 }
 
 @end
