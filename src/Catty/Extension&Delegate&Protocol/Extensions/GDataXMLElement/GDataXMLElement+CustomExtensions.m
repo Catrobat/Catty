@@ -149,7 +149,7 @@
     [XMLError exceptionIfNil:name message:@"Given param xmlElement MUST NOT be nil!!"];
     if (context.currentPositionStack) {
         if (xPathIndex > 1) {
-            name = [name stringByAppendingFormat:@"[%lu]", xPathIndex];
+            name = [name stringByAppendingFormat:@"[%lu]", (unsigned long)xPathIndex];
         }
         [context.currentPositionStack pushXmlElementName:name];
         NSLog(@"+ [%@] added to stack", name);
