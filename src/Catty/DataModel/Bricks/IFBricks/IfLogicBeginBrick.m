@@ -25,6 +25,7 @@
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
 #import "Util.h"
+#import "Script.h"
 
 @implementation IfLogicBeginBrick
 
@@ -46,7 +47,7 @@
 -(BOOL)checkCondition
 {
     NSDebug(@"Performing: %@", self.description);
-    return [self.ifCondition interpretBOOLForSprite:self.object];
+    return [self.ifCondition interpretBOOLForSprite:self.script.object];
 }
 
 

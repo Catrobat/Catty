@@ -21,14 +21,15 @@
  */
 
 #import <Foundation/Foundation.h>
-@protocol ScriptProtocol;
+#import "UIDefines.h"
+#import "CBMutableCopying.h"
 
-@protocol BrickCellProtocol <NSObject>
+@protocol ScriptProtocol<NSObject, CBMutableCopying>
 
 @required
-@property (nonatomic, strong) id<ScriptProtocol> scriptOrBrick;
-@property (nonatomic) BOOL enabled;
-- (kBrickShapeType)brickShapeType;
-+ (CGFloat)cellHeight;
+@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
+@property (nonatomic, readonly) kBrickType brickType;
+@property (nonatomic, strong, readonly) NSString *brickTitle;
+- (BOOL)isSelectableForObject;
 
 @end

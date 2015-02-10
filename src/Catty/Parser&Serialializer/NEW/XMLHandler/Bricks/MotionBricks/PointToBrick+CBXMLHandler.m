@@ -29,6 +29,7 @@
 #import "CBXMLParserHelper.h"
 #import "CBXMLSerializerHelper.h"
 #import "CBXMLPositionStack.h"
+#import "Script.h"
 
 @implementation PointToBrick (CBXMLHandler)
 
@@ -70,42 +71,42 @@
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
     [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"PointToBrick"]];
-    
-    if(self.pointedObject != self.object) {
-        [XMLError exceptionIfNil:self.pointedObject message:@"No sprite object given in PointToBrick"];
-        [XMLError exceptionIfNil:self.object message:@"Missing reference to brick's sprite object"];
 
-        // check if pointedObject has been already serialized
-        NSUInteger indexOfPointedObject = [CBXMLSerializerHelper indexOfElement:self.pointedObject
-                                                                    inArray:context.spriteObjectList];
-        NSUInteger indexOfSpriteObject = [CBXMLSerializerHelper indexOfElement:self.object
-                                                                   inArray:context.spriteObjectList];
-        [XMLError exceptionIf:indexOfPointedObject equals:NSNotFound message:@"Pointed object does not exist in spriteObject list"];
-        [XMLError exceptionIf:indexOfSpriteObject equals:NSNotFound message:@"Sprite object does not exist in spriteObject list"];
+    [XMLError exceptionIfNil:self.pointedObject message:@"No sprite object given in PointToBrick"];
+    [XMLError exceptionIfNil:self.script.object message:@"Missing reference to brick's sprite object"];
+    [XMLError exceptionIf:(self.pointedObject == self.script.object) equals:YES
+                  message:@"PointToBrick must not point to its own SpriteObject, that contains this PointToBrick."];
 
-        // check if spriteObject has been already serialized
-        CBXMLPositionStack *positionStackOfSpriteObject = context.spriteObjectNamePositions[self.pointedObject.name];
-        if (positionStackOfSpriteObject) {
-            // already serialized
-            GDataXMLElement *pointedObjectXmlElement = [GDataXMLElement elementWithName:@"pointedObject" context:context];
-            CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
+    // check if pointedObject has been already serialized
+    NSUInteger indexOfPointedObject = [CBXMLSerializerHelper indexOfElement:self.pointedObject
+                                                                inArray:context.spriteObjectList];
+    NSUInteger indexOfSpriteObject = [CBXMLSerializerHelper indexOfElement:self.script.object
+                                                               inArray:context.spriteObjectList];
+    [XMLError exceptionIf:indexOfPointedObject equals:NSNotFound message:@"Pointed object does not exist in spriteObject list"];
+    [XMLError exceptionIf:indexOfSpriteObject equals:NSNotFound message:@"Sprite object does not exist in spriteObject list"];
 
-            NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
-                                                             toDestinationPositionStack:positionStackOfSpriteObject];
-            [pointedObjectXmlElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
-            [brick addChild:pointedObjectXmlElement context:context];
-        } else {
-            // not serialized yet
-            CBXMLContext *newContext = [context mutableCopy]; // IMPORTANT: copy context!!!
-            newContext.currentPositionStack = context.currentPositionStack; // but position stacks must remain the same!
-            GDataXMLElement *pointedObjectXmlElement = [self.pointedObject xmlElementWithContext:newContext asPointedObject:YES];
-            context.spriteObjectNamePositions = newContext.spriteObjectNamePositions;
-            context.spriteObjectNameUserVariableListPositions = newContext.spriteObjectNameUserVariableListPositions;
-            context.programUserVariableNamePositions = newContext.programUserVariableNamePositions;
-            context.pointedSpriteObjectList = newContext.pointedSpriteObjectList;
-            [brick addChild:pointedObjectXmlElement context:context];
-            [context.pointedSpriteObjectList addObject:self.pointedObject];
-        }
+    // check if spriteObject has been already serialized
+    CBXMLPositionStack *positionStackOfSpriteObject = context.spriteObjectNamePositions[self.pointedObject.name];
+    if (positionStackOfSpriteObject) {
+        // already serialized
+        GDataXMLElement *pointedObjectXmlElement = [GDataXMLElement elementWithName:@"pointedObject" context:context];
+        CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
+
+        NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
+                                                         toDestinationPositionStack:positionStackOfSpriteObject];
+        [pointedObjectXmlElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
+        [brick addChild:pointedObjectXmlElement context:context];
+    } else {
+        // not serialized yet
+        CBXMLContext *newContext = [context mutableCopy]; // IMPORTANT: copy context!!!
+        newContext.currentPositionStack = context.currentPositionStack; // but position stacks must remain the same!
+        GDataXMLElement *pointedObjectXmlElement = [self.pointedObject xmlElementWithContext:newContext asPointedObject:YES];
+        context.spriteObjectNamePositions = newContext.spriteObjectNamePositions;
+        context.spriteObjectNameUserVariableListPositions = newContext.spriteObjectNameUserVariableListPositions;
+        context.programUserVariableNamePositions = newContext.programUserVariableNamePositions;
+        context.pointedSpriteObjectList = newContext.pointedSpriteObjectList;
+        [brick addChild:pointedObjectXmlElement context:context];
+        [context.pointedSpriteObjectList addObject:self.pointedObject];
     }
     return brick;
 }

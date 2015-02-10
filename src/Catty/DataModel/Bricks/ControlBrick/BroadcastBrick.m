@@ -21,6 +21,7 @@
  */
 
 #import "BroadcastBrick.h"
+#import "Script.h"
 
 @implementation BroadcastBrick
 
@@ -45,7 +46,7 @@
         __weak BroadcastBrick* weakself = self;
         NSDebug(@"Performing: %@", [self description]);
         dispatch_async(dispatch_get_main_queue(), ^{
-            [weakself.object broadcast:self.broadcastMessage];
+            [weakself.script.object broadcast:self.broadcastMessage];
         });
         
     }];

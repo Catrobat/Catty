@@ -22,6 +22,7 @@
 
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
+#import "WhenScript.h"
 
 @interface ShowBrickTests : BrickTests
 
@@ -49,14 +50,16 @@
     
     Scene* scene = [[Scene alloc] init];
     [scene addChild:object];
-    
-    ShowBrick* brick = [[ShowBrick alloc]init];
-    brick.object = object;
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
+    ShowBrick *brick = [[ShowBrick alloc] init];
+    brick.script = script;
     
     dispatch_block_t action = [brick actionBlock];
     action();
-    
-    
+
     XCTAssertEqual(object.hidden, NO, @"ShowBrick is not correctly calculated");
 }
 

@@ -33,8 +33,9 @@
         sprite.program = self;
         for (Script *script in sprite.scriptList) {
             script.allowRunNextAction = YES;
+            script.object = sprite;
             for (Brick *brick in script.brickList) {
-                brick.object = sprite;
+                brick.script = script;
             }
         }
     }

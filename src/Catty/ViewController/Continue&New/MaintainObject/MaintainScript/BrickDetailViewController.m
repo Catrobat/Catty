@@ -251,7 +251,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (bool)isFormulaBrick:(BrickCell*)brickCell
 {
-    if ([brickCell.brick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
+    if ([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
         return YES;
     }
     return NO;

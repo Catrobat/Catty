@@ -23,6 +23,7 @@
 #import "ClearGraphicEffectBrick.h"
 #import "Look.h"
 #import "Formula.h"
+#import "Script.h"
 
 @implementation ClearGraphicEffectBrick
 
@@ -40,31 +41,32 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        Look* look = [self.object currentLook];
-        UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
-        SKTexture* texture = [SKTexture textureWithImage:image];
-        self.object.currentUIImageLook = image;
-        self.object.currentLookBrightness = 0;
-        self.object.alpha = 1.0f;
-        double xScale = self.object.xScale;
-        double yScale = self.object.yScale;
-        self.object.xScale = 1.0;
-        self.object.yScale = 1.0;
-        self.object.size = texture.size;
-        self.object.texture = texture;
-        self.object.currentLook = look;
+        Look* look = [self.script.object currentLook];
+        UIImage *image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
+        SKTexture *texture = [SKTexture textureWithImage:image];
+        self.script.object.currentUIImageLook = image;
+        self.script.object.currentLookBrightness = 0;
+        self.script.object.alpha = 1.0f;
+        double xScale = self.script.object.xScale;
+        double yScale = self.script.object.yScale;
+        self.script.object.xScale = 1.0;
+        self.script.object.yScale = 1.0;
+        self.script.object.size = texture.size;
+        self.script.object.texture = texture;
+        self.script.object.currentLook = look;
         if(xScale != 1.0) {
-            self.object.xScale = (CGFloat)xScale;
+            self.script.object.xScale = (CGFloat)xScale;
         }
         if(yScale != 1.0) {
-            self.object.yScale = (CGFloat)yScale;
+            self.script.object.yScale = (CGFloat)yScale;
         }
         
     };
 }
--(NSString*)pathForLook:(Look*)look
+
+- (NSString*)pathForLook:(Look*)look
 {
-    return [NSString stringWithFormat:@"%@images/%@", [self.object projectPath], look.fileName];
+    return [NSString stringWithFormat:@"%@images/%@", [self.script.object projectPath], look.fileName];
 }
 
 #pragma mark - Description

@@ -24,6 +24,7 @@
 #import "Formula.h"
 #import "Util.h"
 #import "Scene.h"
+#import "Script.h"
 
 #define kRotationDegreeOffset 90.0
 
@@ -53,17 +54,17 @@
 {
   return ^{
     NSDebug(@"Performing: %@", self.description);
-    double degrees = [self.degrees interpretDoubleForSprite:self.object] - kRotationDegreeOffset;
-    degrees = [((Scene*)self.object.scene) convertDegreesToScene:(CGFloat)degrees];
+    double degrees = [self.degrees interpretDoubleForSprite:self.script.object] - kRotationDegreeOffset;
+    degrees = [((Scene*)self.script.object.scene) convertDegreesToScene:(CGFloat)degrees];
     double rad = [Util degreeToRadians:degrees];
-    self.object.zRotation = (CGFloat)rad;
+    self.script.object.zRotation = (CGFloat)rad;
   };
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    double deg = [self.degrees interpretDoubleForSprite:self.object];
+    double deg = [self.degrees interpretDoubleForSprite:self.script.object];
     return [NSString stringWithFormat:@"PointInDirection: %f", deg];
 }
 

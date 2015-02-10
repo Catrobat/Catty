@@ -23,6 +23,7 @@
 #import "TurnLeftBrick.h"
 #import "Formula.h"
 #import "Util.h"
+#import "Script.h"
 
 @implementation TurnLeftBrick
 
@@ -50,22 +51,22 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        double rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.object]];
-        double newRad = self.object.zRotation + rad;
+        double rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.script.object]];
+        double newRad = self.script.object.zRotation + rad;
         if (newRad >= 2*M_PI) {
             newRad -= 2*M_PI;
         }
         else if (newRad <= (- 2*M_PI)) {
             newRad += 2*M_PI;
         }
-        self.object.zRotation = (CGFloat)newRad;
+        self.script.object.zRotation = (CGFloat)newRad;
     };
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"TurnLeft (%f degrees)", [self.degrees interpretDoubleForSprite:self.object]];
+    return [NSString stringWithFormat:@"TurnLeft (%f degrees)", [self.degrees interpretDoubleForSprite:self.script.object]];
 }
 
 @end

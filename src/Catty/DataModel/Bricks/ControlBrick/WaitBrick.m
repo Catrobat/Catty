@@ -46,13 +46,13 @@
 {
     NSDebug(@"Performing: %@", self.description);
 
-    return [SKAction waitForDuration:[self.timeToWaitInSeconds interpretDoubleForSprite:self.object]];
+    return [SKAction waitForDuration:[self.timeToWaitInSeconds interpretDoubleForSprite:self.script.object]];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"WaitBrick (%f Seconds)", [self.timeToWaitInSeconds interpretDoubleForSprite:self.object]];
+    return [NSString stringWithFormat:@"WaitBrick (%f Seconds)", [self.timeToWaitInSeconds interpretDoubleForSprite:self.script.object]];
 }
 
 @end

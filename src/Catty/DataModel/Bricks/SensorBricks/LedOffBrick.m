@@ -23,6 +23,7 @@
 #import "LedOffBrick.h"
 #import "UIDefines.h"
 #import "FlashHelper.h"
+#import "Script.h"
 
 @implementation LedOffBrick
 
@@ -48,7 +49,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"LedOffBrick on: %@", self.object.name];
+    return [NSString stringWithFormat:@"LedOffBrick on: %@", self.script.object.name];
 }
 
 @end

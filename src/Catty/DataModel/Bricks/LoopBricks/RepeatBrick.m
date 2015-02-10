@@ -22,6 +22,7 @@
 
 #import "Repeatbrick.h"
 #import "Formula.h"
+#import "Script.h"
 
 @interface RepeatBrick()
 
@@ -49,7 +50,7 @@
 - (BOOL)checkCondition
 {
     NSDebug(@"Loop Count: %d", self.loopCount);
-    int timesToRepeat = [self.timesToRepeat interpretIntegerForSprite:self.object];
+    int timesToRepeat = [self.timesToRepeat interpretIntegerForSprite:self.script.object];
     return (self.loopCount++ < timesToRepeat) ? YES : NO;
 }
 
@@ -62,7 +63,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"RepeatLoop with %d iterations", [self.timesToRepeat interpretIntegerForSprite:self.object]];
+    return [NSString stringWithFormat:@"RepeatLoop with %d iterations", [self.timesToRepeat interpretIntegerForSprite:self.script.object]];
 }
 
 #pragma mark - Copy

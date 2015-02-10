@@ -397,7 +397,7 @@
         return NO;
     if ([self.objectList count] != [program.objectList count])
         return NO;
-    
+
     NSUInteger idx;
     for (idx = 0; idx < [self.objectList count]; idx++) {
         SpriteObject *firstObject = [self.objectList objectAtIndex:idx];
@@ -560,21 +560,22 @@
 #pragma mark - Dealloc
 - (void)removeReferences
 {
-    if(!self.objectList)
+    if(! self.objectList)
         return;
-    
+
     for (SpriteObject *sprite in self.objectList) {
         sprite.broadcastWaitDelegate = nil;
         sprite.spriteManagerDelegate = nil;
-        
+
         if(sprite.scriptList) {
             for (Script *script in sprite.scriptList) {
                 script.allowRunNextAction = NO;
                 if(script.brickList) {
                     for (Brick *brick in script.brickList) {
-                        brick.object = nil;
+                        brick.script = nil;
                     }
                 }
+                script.object = nil;
             }
         }
         sprite.program = nil;

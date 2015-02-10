@@ -21,6 +21,7 @@
  */
 
 #import "Hidebrick.h"
+#import "Script.h"
 
 @implementation HideBrick
 
@@ -39,7 +40,7 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        self.object.hidden = YES;
+        self.script.object.hidden = YES;
     };
 }
 
