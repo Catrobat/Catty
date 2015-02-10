@@ -32,7 +32,7 @@
 @class SpriteObject;
 @class GDataXMLElement;
 
-@interface Script : SKNode <BrickProtocol, CBMutableCopying>
+@interface Script : SKNode <ScriptProtocol, CBMutableCopying>
 
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readonly) kBrickType brickType;

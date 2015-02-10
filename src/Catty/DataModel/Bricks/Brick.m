@@ -53,19 +53,6 @@
     return self;
 }
 
-- (id)initWithScript:(Script*)script
-{
-    self = [super init];
-    if (self) {
-        NSString *subclassName = NSStringFromClass([self class]);
-        BrickManager *brickManager = [BrickManager sharedBrickManager];
-        self.brickType = [brickManager brickTypeForClassName:subclassName];
-        self.brickCategoryType = [brickManager brickCategoryTypeForBrickType:self.brickType];
-        self.script = script;
-    }
-    return self;
-}
-
 - (BOOL)isSelectableForObject
 {
     return YES;

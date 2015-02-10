@@ -328,18 +328,17 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.deleteButton setEnabled:enabled];
 }
 
-- (IBAction)compute:(id)sender {
-    
-    UIAlertView * alert;
-    
-    if(self.internFormula != nil) {
-        
+- (IBAction)compute:(id)sender
+{
+    UIAlertView *alert;
+    if (self.internFormula != nil) {
         InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
-        FormulaElement *tempFormulaElement = [internFormulaParser parseFormulaForSpriteObject:self.brickCell.brick.script.object];
-        
+        Brick *brick = (Brick*)self.brickCell.scriptOrBrick; // must be a brick!
+        FormulaElement *tempFormulaElement = [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
+
         float result;
         NSString *computedString;
-        
+
         switch ([internFormulaParser getErrorTokenIndex]) {
             case FORMULA_PARSER_OK:
                 result = [tempFormulaElement interpretRecursiveForSprite:nil];
@@ -571,7 +570,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
         if(self.internFormula != nil) {
             InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
-            Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormulaForSpriteObject:self.brickCell.brick.script.object]];
+            Brick *brick = (Brick*)self.brickCell.scriptOrBrick; // must be a brick!
+            FormulaElement *formulaElement = [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
+            Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
             UIAlertView *alert;
             switch ([internFormulaParser getErrorTokenIndex]) {
                 case FORMULA_PARSER_OK:
