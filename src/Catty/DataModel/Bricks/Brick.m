@@ -61,7 +61,7 @@
         BrickManager *brickManager = [BrickManager sharedBrickManager];
         self.brickType = [brickManager brickTypeForClassName:subclassName];
         self.brickCategoryType = [brickManager brickCategoryTypeForBrickType:self.brickType];
-//        self.object = sprite;
+        self.script = script;
     }
     return self;
 }

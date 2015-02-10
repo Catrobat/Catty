@@ -22,6 +22,7 @@
 
 #import "ChangeYByNBrick.h"
 #import "Formula.h"
+#import "Script.h"
 
 @implementation ChangeYByNBrick
 
@@ -49,15 +50,15 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        float yMov = (float)[self.yMovement interpretDoubleForSprite:self.object];
-        self.object.position = CGPointMake(self.object.position.x, self.object.position.y + yMov);
+        float yMov = (float)[self.yMovement interpretDoubleForSprite:self.script.object];
+        self.script.object.position = CGPointMake(self.script.object.position.x, self.script.object.position.y + yMov);
     };
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    double xMov = [self.yMovement interpretDoubleForSprite:self.object];
+    double xMov = [self.yMovement interpretDoubleForSprite:self.script.object];
     return [NSString stringWithFormat:@"ChangeYBy (%f)", xMov];
 }
 

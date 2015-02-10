@@ -47,6 +47,7 @@
 #import "CatrobatActionSheet.h"
 #import "ActionSheetAlertViewTags.h"
 #import "BrickProtocol.h"
+#import "Script.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -334,7 +335,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     if(self.internFormula != nil) {
         
         InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
-        FormulaElement *tempFormulaElement = [internFormulaParser parseFormulaForSpriteObject:self.brickCell.brick.object];
+        FormulaElement *tempFormulaElement = [internFormulaParser parseFormulaForSpriteObject:self.brickCell.brick.script.object];
         
         float result;
         NSString *computedString;
@@ -570,7 +571,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
         if(self.internFormula != nil) {
             InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
-            Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormulaForSpriteObject:self.brickCell.brick.object]];
+            Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormulaForSpriteObject:self.brickCell.brick.script.object]];
             UIAlertView *alert;
             switch ([internFormulaParser getErrorTokenIndex]) {
                 case FORMULA_PARSER_OK:

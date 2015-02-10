@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "ChangeGhostEffectByNBrick.h"
 #import "Formula.h"
+#import "Script.h"
 
 @implementation ChangeGhostEffectByNBrick
 
@@ -52,17 +52,17 @@
 {
   return ^{
     NSDebug(@"Performing: %@", self.description);
-    double transparency = [self.changeGhostEffect interpretDoubleForSprite:self.object];
-      CGFloat alpha = (CGFloat)(self.object.alpha - transparency/100.0f);
+    double transparency = [self.changeGhostEffect interpretDoubleForSprite:self.script.object];
+      CGFloat alpha = (CGFloat)(self.script.object.alpha - transparency/100.0f);
       if (alpha < 0) {
-          self.object.alpha = 0;
+          self.script.object.alpha = 0;
           
       }
       else if (alpha > 1){
-          self.object.alpha = 1;
+          self.script.object.alpha = 1;
       }
       else{
-          self.object.alpha = alpha;
+          self.script.object.alpha = alpha;
       }
   };
 }
@@ -70,7 +70,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ChangeGhostEffect by (%f)", [self.changeGhostEffect interpretDoubleForSprite:self.object]];
+    return [NSString stringWithFormat:@"ChangeGhostEffect by (%f)", [self.changeGhostEffect interpretDoubleForSprite:self.script.object]];
 }
 
 @end

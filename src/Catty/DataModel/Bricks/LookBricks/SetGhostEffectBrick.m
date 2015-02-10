@@ -22,6 +22,7 @@
 
 #import "Setghosteffectbrick.h"
 #import "Formula.h"
+#import "Script.h"
 
 @implementation SetGhostEffectBrick
 
@@ -51,17 +52,16 @@
 {
   return ^{
     NSDebug(@"Performing: %@", self.description);
-    double transparency = [self.transparency interpretDoubleForSprite:self.object];
+    double transparency = [self.transparency interpretDoubleForSprite:self.script.object];
       double alpha = 1.0-transparency/100.0f;
       if (alpha < 0) {
-          self.object.alpha = 0;
-
+          self.script.object.alpha = 0;
       }
       else if (alpha > 1){
-          self.object.alpha = 1;
+          self.script.object.alpha = 1;
       }
       else{
-          self.object.alpha = (CGFloat)alpha;
+          self.script.object.alpha = (CGFloat)alpha;
       }
       };
 }
@@ -69,7 +69,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetGhostEffect (%f%%)", [self.transparency interpretDoubleForSprite:self.object]];
+    return [NSString stringWithFormat:@"SetGhostEffect (%f%%)", [self.transparency interpretDoubleForSprite:self.script.object]];
 }
 
 @end

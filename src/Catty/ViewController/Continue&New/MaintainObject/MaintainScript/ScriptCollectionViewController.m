@@ -938,13 +938,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             script.object = self.object;
             [self.object.scriptList addObject:script];
         }
-        
+
         script = [self.object.scriptList objectAtIndex:self.selectedIndexPath.section];
         Brick *brick = (Brick*)brickOrScript;
-        brick.object = self.object;
-        
+        brick.script.object = self.object;
         [self insertBrick:brick atIndexPath:self.selectedIndexPath intoScriptList:script copy:copy completion:NULL];
-        
     } else if ([brickOrScript isKindOfClass:[Script class]]) {
         Script *script = (Script*)brickOrScript;
         script.object = self.object;

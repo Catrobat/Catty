@@ -21,6 +21,7 @@
  */
 
 #import "BroadcastWaitBrick.h"
+#import "Script.h"
 
 @implementation BroadcastWaitBrick
 
@@ -42,7 +43,7 @@
 - (void)performBroadcastWait
 {
     NSDebug(@"Performing: %@", self.description);
-    [self.object broadcastAndWait:self.broadcastMessage];
+    [self.script.object broadcastAndWait:self.broadcastMessage];
 }
 
 #pragma mark - Description

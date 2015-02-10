@@ -23,6 +23,7 @@
 #import "LedOnBrick.h"
 #import "UIDefines.h"
 #import "FlashHelper.h"
+#import "Script.h"
 
 @implementation LedOnBrick
 
@@ -48,7 +49,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"LedOnBrick on: %@", self.object.name];
+    return [NSString stringWithFormat:@"LedOnBrick on: %@", self.script.object.name];
 }
 
 @end

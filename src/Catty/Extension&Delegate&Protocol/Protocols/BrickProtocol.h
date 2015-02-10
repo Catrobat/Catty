@@ -24,7 +24,7 @@
 #import "UIDefines.h"
 #import "CBMutableCopying.h"
 
-@class SpriteObject;
+@class Script;
 
 @protocol BrickProtocol<NSObject, CBMutableCopying>
 
@@ -33,6 +33,6 @@
 @property (nonatomic, readonly) kBrickType brickType;
 @property (nonatomic, strong, readonly) NSString *brickTitle;
 - (BOOL)isSelectableForObject;
-- (SpriteObject*)object;
+- (Script*)script;
 
 @end

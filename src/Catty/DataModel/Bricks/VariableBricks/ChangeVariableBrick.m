@@ -26,6 +26,7 @@
 #import "ProgramManager.h"
 #import "VariablesContainer.h"
 #import "UserVariable.h"
+#import "Script.h"
 
 @implementation ChangeVariableBrick
 
@@ -48,9 +49,9 @@
 {
     
     return [SKAction runBlock:^{
-        NSDebug(@"Performing: %@ on: %@", self.description, self.object);
+        NSDebug(@"Performing: %@ on: %@", self.description, self.script.object);
         
-        double result = [self.variableFormula interpretDoubleForSprite:self.object];
+        double result = [self.variableFormula interpretDoubleForSprite:self.script.object];
         
         Program* program = ProgramManager.sharedProgramManager.program;
         VariablesContainer* variables = program.variables;

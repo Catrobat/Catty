@@ -22,6 +22,7 @@
 
 #import "Changesizebynbrick.h"
 #import "Formula.h"
+#import "Script.h"
 
 @implementation ChangeSizeByNBrick
 
@@ -49,12 +50,12 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        double sizeInPercent = [self.size interpretDoubleForSprite:self.object];
-        [self.object setXScale:(CGFloat)(self.object.xScale + sizeInPercent/100.0)];
-        [self.object setYScale:(CGFloat)(self.object.yScale + sizeInPercent/100.0)];
+        double sizeInPercent = [self.size interpretDoubleForSprite:self.script.object];
+        [self.script.object setXScale:(CGFloat)(self.script.object.xScale + sizeInPercent/100.0)];
+        [self.script.object setYScale:(CGFloat)(self.script.object.yScale + sizeInPercent/100.0)];
         //for touch issue
-        CGImageRef image = [self.object.currentUIImageLook CGImage];
-        self.object.currentUIImageLook = [UIImage imageWithCGImage:image scale:(CGFloat)(self.object.xScale + 1.0f/(sizeInPercent/100.0f)) orientation:UIImageOrientationUp];
+        CGImageRef image = [self.script.object.currentUIImageLook CGImage];
+        self.script.object.currentUIImageLook = [UIImage imageWithCGImage:image scale:(CGFloat)(self.script.object.xScale + 1.0f/(sizeInPercent/100.0f)) orientation:UIImageOrientationUp];
     };
 
 }
@@ -62,7 +63,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ChangeSizeByN (%f%%)", [self.size interpretDoubleForSprite:self.object]];
+    return [NSString stringWithFormat:@"ChangeSizeByN (%f%%)", [self.size interpretDoubleForSprite:self.script.object]];
 }
 
 @end
