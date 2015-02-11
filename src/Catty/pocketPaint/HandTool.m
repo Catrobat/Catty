@@ -27,7 +27,7 @@
 
 @implementation HandTool
 
--(id) initWithDrawViewCanvas:(PaintViewController *)canvas
+- (id) initWithDrawViewCanvas:(PaintViewController *)canvas
 {
   self = [super init];
   if(self)
@@ -39,7 +39,7 @@
 }
 
 
--(void)changeHandToolAction
+- (void)changeHandToolAction
 {
   if (!self.canvas.scrollView.scrollEnabled) {
     self.canvas.drawGesture.enabled = NO;
@@ -62,7 +62,7 @@
 
 }
 
--(void)disableHandTool
+- (void)disableHandTool
 {
   self.canvas.handToolBarButtonItem.tintColor = [UIColor lightOrangeColor];
   if (self.canvas.activeAction == brush) {

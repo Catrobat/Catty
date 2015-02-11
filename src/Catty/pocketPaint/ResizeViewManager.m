@@ -29,7 +29,7 @@
 
 @implementation ResizeViewManager
 
--(id) initWithDrawViewCanvas:(PaintViewController *)canvas andImagePicker:(ImagePicker*)imagePicker
+- (id) initWithDrawViewCanvas:(PaintViewController *)canvas andImagePicker:(ImagePicker*)imagePicker
 {
   self = [super init];
   if(self)
@@ -41,7 +41,7 @@
   }
   return self;
 }
--(void)initResizeView
+- (void)initResizeView
 {
   self.resizeViewer = [[SPUserResizableView alloc] initWithFrame:CGRectMake(50 , 50, 150 , 150)];
   UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(50 , 50, 150 , 150)];
@@ -124,7 +124,7 @@
 //  }
 }
 
--(void)updateShape
+- (void)updateShape
 {
   self.resizeViewer.contentView = nil;
   switch (self.canvas.activeAction) {
@@ -206,7 +206,7 @@
   
 }
 
--(void)showResizeView
+- (void)showResizeView
 {
   self.resizeViewer.hidden = NO;
   self.takeView.enabled = YES;
@@ -217,7 +217,7 @@
   }
 }
 
--(void)hideResizeView
+- (void)hideResizeView
 {
   self.resizeViewer.hidden = YES;
   
@@ -294,14 +294,14 @@
     self.canvas.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
 }
 
--(void)showUserAction
+- (void)showUserAction
 {
   [self.resizeViewer changeBorderWithColor:[UIColor greenColor]];
   [self.resizeViewer showEditingHandles];
   [NSTimer scheduledTimerWithTimeInterval:0.15f target:self selector:@selector(hideShowUserAction) userInfo:nil repeats:NO];
 }
 
--(void)hideShowUserAction
+- (void)hideShowUserAction
 {
   if (self.canvas.activeAction == stamp) {
 //    [self.resizeViewer hideEditingHandles];

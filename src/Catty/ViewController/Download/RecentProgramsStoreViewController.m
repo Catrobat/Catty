@@ -176,7 +176,7 @@
     self.downloadSegmentedControl.frame = CGRectMake(9, 9, self.view.frame.size.width - 18, self.downloadSegmentedControl.frame.size.height);
 
 }
--(void)initFooterView
+- (void)initFooterView
 {
     self.footerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 40.0)];
     
@@ -242,7 +242,7 @@
 
 
 
--(void)loadImage:(NSString*)imageURLString forCell:(UITableViewCell <CatrobatImageCell>*) imageCell atIndexPath:(NSIndexPath*)indexPath
+- (void)loadImage:(NSString*)imageURLString forCell:(UITableViewCell <CatrobatImageCell>*) imageCell atIndexPath:(NSIndexPath*)indexPath
 {
     
     imageCell.iconImageView.image =
@@ -298,7 +298,7 @@
     self.programListOffset += self.programListLimit;
 }
 
--(void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response
+- (void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response
 {
     if (data == nil) {
         if (self.shouldShowAlert) {
@@ -389,7 +389,7 @@
     
 }
 
--(void)loadIDForArray:(NSMutableArray*)projects andInformation:(CatrobatInformation*) information andProjects:(NSArray*)catrobatProjects
+- (void)loadIDForArray:(NSMutableArray*)projects andInformation:(CatrobatInformation*) information andProjects:(NSArray*)catrobatProjects
 {
     
     for (NSDictionary *projectDict in catrobatProjects) {
@@ -425,7 +425,7 @@
 }
 
 
--(void)loadInfosWith:(NSData*)data andResponse:(NSURLResponse*)response
+- (void)loadInfosWith:(NSData*)data andResponse:(NSURLResponse*)response
 {
     if (data == nil) {
         if (self.shouldShowAlert) {
@@ -665,7 +665,7 @@
 }
 
 #pragma mark - scrollView
--(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     self.tableView.tableFooterView = self.footerView;
     

@@ -30,7 +30,7 @@
 }
 @property (nonatomic,strong) PaintViewController* canvas;
 
--(void)draw:(UIPanGestureRecognizer *)recognizer;
--(id)initWithDrawViewCanvas:(PaintViewController*)canvas;
+- (void)draw:(UIPanGestureRecognizer *)recognizer;
+- (id)initWithDrawViewCanvas:(PaintViewController*)canvas;
 
 @end

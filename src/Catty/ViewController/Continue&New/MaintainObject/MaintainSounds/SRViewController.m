@@ -81,7 +81,7 @@
     self.isRecording = NO;
 }
 
--(void)viewWillDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self.recorder stop];
@@ -108,7 +108,7 @@
   [self recordClicked:nil];
 }
 
--(void)recordClicked:(id)sender
+- (void)recordClicked:(id)sender
 {
     if (!self.isRecording) {
         AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -154,7 +154,7 @@
     }
 }
 
--(void) audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag{
+- (void) audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag{
   if (!flag) {
     UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Error"
                                                    message:@"Not enough Memory"
@@ -166,7 +166,7 @@
     [self.record setTitle:@"Record" forState:UIControlStateNormal];
 }
 
--(void)updateProgressView
+- (void)updateProgressView
 {
     CGFloat time = 0;
     float minutes = floor(self.recorder.currentTime/60);

@@ -477,7 +477,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
 }
 
--(void)introduction:(MYBlurIntroductionView *)introductionView didFinishWithType:(MYFinishType)finishType {
+- (void)introduction:(MYBlurIntroductionView *)introductionView didFinishWithType:(MYFinishType)finishType {
     NSDebug(@"Introduction did finish");
     [self initNavigationBar];
     self.tableView.scrollEnabled = YES;

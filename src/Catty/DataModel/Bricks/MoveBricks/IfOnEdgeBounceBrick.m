@@ -44,7 +44,7 @@
     
 }
 
--(SKAction*)action
+- (SKAction*)action
 {
     
     return [SKAction runBlock:^{

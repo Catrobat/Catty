@@ -29,7 +29,7 @@
     return kLocalizedForever;
 }
 
--(BOOL)checkCondition
+- (BOOL)checkCondition
 {
     return YES;
 }

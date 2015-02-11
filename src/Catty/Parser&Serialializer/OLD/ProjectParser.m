@@ -320,7 +320,7 @@
 }
 
 
--(id) parseFormula:(GDataXMLElement*)element
+- (id) parseFormula:(GDataXMLElement*)element
 {
     NSArray* formulaTrees = [element elementsForName:@"formulaTree"];
     if(formulaTrees) {
@@ -339,7 +339,7 @@
     }
 }
 
--(id) parseVariablesContainer:(GDataXMLElement*)element withParent:(XMLObjectReference*)parent
+- (id) parseVariablesContainer:(GDataXMLElement*)element withParent:(XMLObjectReference*)parent
 {
     
     VariablesContainer* variables = nil;
@@ -370,7 +370,7 @@
     
 }
 
--(id) parseReferenceElement:(GDataXMLElement*)element withParent:(XMLObjectReference*)parent
+- (id) parseReferenceElement:(GDataXMLElement*)element withParent:(XMLObjectReference*)parent
 {
     NSString *refString = [element attributeForName:@"reference"].stringValue;
     if (!refString || [refString isEqualToString:@""]) {
@@ -460,7 +460,7 @@
 
 
 
--(OrderedMapTable*)parseObjectVariableMap:(GDataXMLElement*)objectVariableList andParent:(XMLObjectReference*)parent
+- (OrderedMapTable*)parseObjectVariableMap:(GDataXMLElement*)objectVariableList andParent:(XMLObjectReference*)parent
 {
     
     OrderedMapTable* objectVariableMap = [OrderedMapTable weakToStrongObjectsMapTable];

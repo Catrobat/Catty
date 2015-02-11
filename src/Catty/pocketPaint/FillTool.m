@@ -24,7 +24,7 @@
 #import "UIImage+FloodFill.h"
 
 @implementation FillTool
--(id) initWithDrawViewCanvas:(PaintViewController *)canvas
+- (id) initWithDrawViewCanvas:(PaintViewController *)canvas
 {
   self = [super init];
   if(self)
@@ -34,7 +34,7 @@
   return self;
 }
 
--(UIImage *)fillImage:(UIImage*)image startingPoint:(CGPoint)point andColor:(UIColor*)color
+- (UIImage *)fillImage:(UIImage*)image startingPoint:(CGPoint)point andColor:(UIColor*)color
 {
   if (!image) {
     UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0);
@@ -46,7 +46,7 @@
   return newImage;
 }
 
--(void)fillAction:(UITapGestureRecognizer*)recognizer
+- (void)fillAction:(UITapGestureRecognizer*)recognizer
 {
   CGPoint lastPoint = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
   if (!self.canvas.saveView.image) {

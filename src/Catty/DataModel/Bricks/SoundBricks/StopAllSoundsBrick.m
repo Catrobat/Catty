@@ -30,7 +30,7 @@
     return kLocalizedStopAllSounds;
 }
 
--(SKAction*)action
+- (SKAction*)action
 {    
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);

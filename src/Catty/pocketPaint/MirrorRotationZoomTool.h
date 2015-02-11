@@ -27,13 +27,13 @@
 
 @property (nonatomic,strong) PaintViewController* canvas;
 
--(id)initWithDrawViewCanvas:(PaintViewController*)canvas;
+- (id)initWithDrawViewCanvas:(PaintViewController*)canvas;
 
--(void)zoomOut;
--(void)zoomIn;
--(void)rotateLeft;
--(void)rotateRight;
--(void)mirrorHorizontalAction;
--(void)mirrorVerticalAction;
+- (void)zoomOut;
+- (void)zoomIn;
+- (void)rotateLeft;
+- (void)rotateRight;
+- (void)mirrorHorizontalAction;
+- (void)mirrorVerticalAction;
 
 @end

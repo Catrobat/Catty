@@ -39,7 +39,7 @@
                                  thumbnailFrameSize:(CGSize)thumbnailFrameSize
                                        onCompletion:(void(^)(UIImage *image))completion;
 
--(void)overwriteThumbnailImageFromDiskWithThumbnailPath:(NSString*)thumbnailPath image:(UIImage*)image thumbnailFrameSize:(CGSize)thumbnailFrameSize;
+- (void)overwriteThumbnailImageFromDiskWithThumbnailPath:(NSString*)thumbnailPath image:(UIImage*)image thumbnailFrameSize:(CGSize)thumbnailFrameSize;
 
 - (void)clearImageCache;
 

@@ -701,37 +701,37 @@
 }
 
 #pragma mark - Formula Protocol
--(CGFloat)xPosition
+- (CGFloat)xPosition
 {
     return self.position.x;
 }
 
--(CGFloat)yPosition
+- (CGFloat)yPosition
 {
     return self.position.y;
 }
 
--(CGFloat)rotation
+- (CGFloat)rotation
 {
     return (CGFloat)[Util radiansToDegree:self.zRotation];
 }
 
--(CGFloat) zIndex
+- (CGFloat) zIndex
 {
     return [self zPosition];
 }
 
--(CGFloat) brightness
+- (CGFloat) brightness
 {
     return 100 * self.currentLookBrightness;
 }
 
--(CGFloat) scaleX
+- (CGFloat) scaleX
 {
     return [self xScale]*100;
 }
 
--(CGFloat) scaleY
+- (CGFloat) scaleY
 {
     return [self yScale]*100;
 }

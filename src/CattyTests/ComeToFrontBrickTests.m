@@ -42,7 +42,7 @@
     [super tearDown];
 }
 
--(void)testComeToFrontBrick
+- (void)testComeToFrontBrick
 {
     
     Program* program = [[Program alloc] init];

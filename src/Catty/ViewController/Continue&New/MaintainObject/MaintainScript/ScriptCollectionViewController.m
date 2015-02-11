@@ -680,7 +680,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 }
 
--(void)animate:(NSIndexPath *)indexPath brickCell:(BrickCell*)brickCell
+- (void)animate:(NSIndexPath *)indexPath brickCell:(BrickCell*)brickCell
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [brickCell animateBrick:YES];
@@ -696,7 +696,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
--(void)loopBrickForAnimation:(Brick*)brick IndexPath:(NSIndexPath*)indexPath andScript:(Script*)script
+- (void)loopBrickForAnimation:(Brick*)brick IndexPath:(NSIndexPath*)indexPath andScript:(Script*)script
 {
   if ([brick isKindOfClass:[LoopBeginBrick class]]) {
     LoopBeginBrick *begin = (LoopBeginBrick *)brick;
@@ -723,7 +723,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
   }
 }
 
--(void)ifBrickForAnimation:(Brick*)brick IndexPath:(NSIndexPath*)indexPath andScript:(Script*)script
+- (void)ifBrickForAnimation:(Brick*)brick IndexPath:(NSIndexPath*)indexPath andScript:(Script*)script
 {
   if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
     IfLogicBeginBrick *begin = (IfLogicBeginBrick *)brick;
@@ -793,7 +793,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
   }
 }
 
--(void)animateLoop:(NSInteger)count andIndexPath:(NSIndexPath*)indexPath
+- (void)animateLoop:(NSInteger)count andIndexPath:(NSIndexPath*)indexPath
 {
   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
     BrickCell*cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:count+1 inSection:indexPath.section]];
@@ -801,7 +801,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
   });
 }
 
--(void)animateIf:(NSInteger)count1 and:(NSInteger)count2 andIndexPath:(NSIndexPath*)indexPath
+- (void)animateIf:(NSInteger)count1 and:(NSInteger)count2 andIndexPath:(NSIndexPath*)indexPath
 {
   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
     BrickCell* elsecell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:count1+1 inSection:indexPath.section]];
@@ -1063,12 +1063,12 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
--(void)textFieldDidEndEditing:(UITextField *)textField
+- (void)textFieldDidEndEditing:(UITextField *)textField
 {
     [textField resignFirstResponder];
 }
 
--(void)textFieldDidBeginEditing:(UITextField *)textField{
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
 }
 
 - (void)textFieldFinished:(id)sender
@@ -1083,7 +1083,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 #pragma mark - check movelogic
 
--(BOOL)checkLoopBeginToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
+- (BOOL)checkLoopBeginToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
 {
     if (((toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil) && (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil))||(toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil && self.lowerRankBrick == nil) || (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil && self.higherRankBrick == nil)||(self.higherRankBrick==nil && self.lowerRankBrick==nil))  {
         if (fromIndexPath.section == toIndexPath.section) {
@@ -1114,7 +1114,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
--(BOOL)checkLoopEndToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
+- (BOOL)checkLoopEndToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
 {
         //DONTMOVE ?!
     if (((toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil) && (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil))||(toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil && self.lowerRankBrick == nil) || (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil && self.higherRankBrick == nil)||(self.higherRankBrick==nil && self.lowerRankBrick==nil)) {
@@ -1145,7 +1145,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
--(BOOL)checkIfBeginToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
+- (BOOL)checkIfBeginToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
 {
     if (((toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil) && (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil))||(toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil && self.lowerRankBrick == nil) || (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil && self.higherRankBrick == nil)||(self.higherRankBrick==nil && self.lowerRankBrick==nil))  {
         if (fromIndexPath.section == toIndexPath.section) {
@@ -1189,7 +1189,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 
--(BOOL)checkIfElseToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
+- (BOOL)checkIfElseToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
 {
     if (((toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil) && (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil))||(toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil && self.lowerRankBrick == nil) || (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil && self.higherRankBrick == nil)||(self.higherRankBrick==nil && self.lowerRankBrick==nil)) {
         if (fromIndexPath.section == toIndexPath.section) {
@@ -1245,7 +1245,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 
--(BOOL)checkIfEndToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
+- (BOOL)checkIfEndToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
 {
     if (toIndexPath.item > self.higherRankBrick.item || self.higherRankBrick==nil) {
         if (fromIndexPath.section == toIndexPath.section) {
@@ -1294,7 +1294,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 #pragma mark - removeLogic/Loop bricks
 
--(void)removeLoopBeginWithBrick:(Brick*)brick Script:(Script*)script andIndexPath:(NSIndexPath*)indexPath
+- (void)removeLoopBeginWithBrick:(Brick*)brick Script:(Script*)script andIndexPath:(NSIndexPath*)indexPath
 {
     LoopBeginBrick *beginBrick = (LoopBeginBrick *)brick;
     
@@ -1311,7 +1311,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     
 }
 
--(void)removeLoopEndWithBrick:(Brick*)brick Script:(Script*)script andIndexPath:(NSIndexPath*)indexPath
+- (void)removeLoopEndWithBrick:(Brick*)brick Script:(Script*)script andIndexPath:(NSIndexPath*)indexPath
 {
     LoopEndBrick *endBrick = (LoopEndBrick *)brick;
     
@@ -1328,7 +1328,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 }
 
--(void)removeLogicBeginWithBrick:(Brick*)brick Script:(Script*)script andIndexPath:(NSIndexPath*)indexPath
+- (void)removeLogicBeginWithBrick:(Brick*)brick Script:(Script*)script andIndexPath:(NSIndexPath*)indexPath
 {
     IfLogicBeginBrick *beginBrick = (IfLogicBeginBrick *)brick;
     
@@ -1357,7 +1357,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 }
 
--(void)removeLogicElseWithBrick:(Brick*)brick Script:(Script*)script andIndexPath:(NSIndexPath*)indexPath
+- (void)removeLogicElseWithBrick:(Brick*)brick Script:(Script*)script andIndexPath:(NSIndexPath*)indexPath
 {
     IfLogicElseBrick *elseBrick = (IfLogicElseBrick *)brick;
     
@@ -1386,7 +1386,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 }
 
--(void)removeLogicEndWithBrick:(Brick*)brick Script:(Script*)script andIndexPath:(NSIndexPath*)indexPath
+- (void)removeLogicEndWithBrick:(Brick*)brick Script:(Script*)script andIndexPath:(NSIndexPath*)indexPath
 {
     IfLogicEndBrick *endBrick = (IfLogicEndBrick *)brick;
     
@@ -1419,7 +1419,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
              
 #pragma mark - selectLogic/Loop bricks
              
--(void)selectLoopBeginWithBrick:(Brick*)brick Script:(Script*)script IndexPath:(NSIndexPath*)indexPath andSelectButton:(SelectButton *)selectButton
+- (void)selectLoopBeginWithBrick:(Brick*)brick Script:(Script*)script IndexPath:(NSIndexPath*)indexPath andSelectButton:(SelectButton *)selectButton
  {
      LoopBeginBrick *beginBrick = (LoopBeginBrick *)brick;
 

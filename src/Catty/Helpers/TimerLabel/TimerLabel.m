@@ -111,7 +111,7 @@
     [self updateLabel];
 }
 
--(void)setCountDownToDate:(NSDate*)date{
+- (void)setCountDownToDate:(NSDate*)date{
     NSTimeInterval timeLeft = (int)[date timeIntervalSinceDate:[NSDate date]];
     
     if (timeLeft > 0) {
@@ -163,7 +163,7 @@
 }
 
 
--(void)addTimeCountedByTime:(NSTimeInterval)timeToAdd
+- (void)addTimeCountedByTime:(NSTimeInterval)timeToAdd
 {
     [self setCountDownTime:timeToAdd + timeUserValue];
     [self updateLabel];
@@ -184,7 +184,7 @@
 #pragma mark - Timer Control Method
 
 
--(void)start{
+- (void)start{
     
     if (_timer) {
         [_timer invalidate];
@@ -216,13 +216,13 @@
 }
 
 #if NS_BLOCKS_AVAILABLE
--(void)startWithEndingBlock:(void(^)(NSTimeInterval))end{
+- (void)startWithEndingBlock:(void(^)(NSTimeInterval))end{
     [self start];
     endedBlock = end;
 }
 #endif
     
--(void)pause{
+- (void)pause{
 	if(_counting){
 	    [_timer invalidate];
 	    _timer = nil;
@@ -231,7 +231,7 @@
 	}
 }
 
--(void)reset{
+- (void)reset{
     pausedTime = nil;
     timeUserValue = (self.timerType == TimerLabelTypeStopWatch)? 0 : timeUserValue;
     startCountDate = (self.counting)? [NSDate date] : nil;
@@ -241,13 +241,13 @@
 
 #pragma mark - Private method
 
--(void)setup{
+- (void)setup{
     date1970 = [NSDate dateWithTimeIntervalSince1970:0];
     [self updateLabel];
 }
 
 
--(void)updateLabel{
+- (void)updateLabel{
     
     NSTimeInterval timeDiff = [[[NSDate alloc] init] timeIntervalSinceDate:startCountDate];
     NSDate *timeToShow;

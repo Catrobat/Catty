@@ -24,7 +24,7 @@
 
 @implementation DrawTool
 
--(id) initWithDrawViewCanvas:(PaintViewController *)canvas
+- (id) initWithDrawViewCanvas:(PaintViewController *)canvas
 {
   self = [super init];
   if(self)
@@ -34,7 +34,7 @@
   return self;
 }
 
--(void)draw:(UIPanGestureRecognizer *)recognizer
+- (void)draw:(UIPanGestureRecognizer *)recognizer
 {
 
   if (recognizer.state == UIGestureRecognizerStateBegan){

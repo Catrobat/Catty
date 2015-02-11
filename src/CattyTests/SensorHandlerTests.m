@@ -121,7 +121,7 @@
     XCTAssertTrue(isNotZero, @"It's very unlikely that z is really zero!");
 }
 
--(void)testValueForSensor
+- (void)testValueForSensor
 {
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     for (int sensor = X_ACCELERATION; sensor < OBJECT_X; sensor++) {
@@ -137,7 +137,7 @@
     
 }
 
--(void)testStopSensors
+- (void)testStopSensors
 {
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     

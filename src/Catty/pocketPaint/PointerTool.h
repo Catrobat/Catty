@@ -35,10 +35,10 @@
 
 @property (nonatomic,strong) UIPanGestureRecognizer *moveView;
 
--(void)drawWithPointer:(UIPanGestureRecognizer *)recognizer;
--(id)initWithDrawViewCanvas:(PaintViewController*)canvas;
+- (void)drawWithPointer:(UIPanGestureRecognizer *)recognizer;
+- (id)initWithDrawViewCanvas:(PaintViewController*)canvas;
 
--(void)drawingChangeAction;
--(void)disable;
--(void)updateColorView;
+- (void)drawingChangeAction;
+- (void)disable;
+- (void)updateColorView;
 @end

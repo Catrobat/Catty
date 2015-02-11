@@ -24,8 +24,8 @@
 
 @interface ExternToken : NSObject
 
--(ExternToken *)initWithIndex:(int)startIndex andEndIndex:(int)endIndex;
--(int)getStartIndex;
--(int)getEndIndex;
+- (ExternToken *)initWithIndex:(int)startIndex andEndIndex:(int)endIndex;
+- (int)getStartIndex;
+- (int)getEndIndex;
 
 @end

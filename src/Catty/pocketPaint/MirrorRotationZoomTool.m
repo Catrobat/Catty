@@ -27,7 +27,7 @@
 #define kMinZoomScale 0.25f
 
 @implementation MirrorRotationZoomTool
--(id) initWithDrawViewCanvas:(PaintViewController *)canvas
+- (id) initWithDrawViewCanvas:(PaintViewController *)canvas
 {
   self = [super init];
   if(self)
@@ -37,7 +37,7 @@
   return self;
 }
 
--(void)mirrorVerticalAction
+- (void)mirrorVerticalAction
 {
   UIImage* flippedImage;
   if (!self.canvas.vertical) {
@@ -57,7 +57,7 @@
   self.canvas.drawView.image = nil;
 }
 
--(void)mirrorHorizontalAction
+- (void)mirrorHorizontalAction
 {
   UIImage* flippedImage;
   if (!self.canvas.horizontal) {
@@ -77,7 +77,7 @@
   self.canvas.drawView.image = nil;
 }
 
--(void)rotateRight
+- (void)rotateRight
 {
   self.canvas.degrees += 90;
   CGFloat zoomScale = self.canvas.scrollView.zoomScale;
@@ -92,7 +92,7 @@
   self.canvas.saveView.image = image;
 }
 
--(void)rotateLeft
+- (void)rotateLeft
 {
   self.canvas.degrees -= 90;
   CGFloat zoomScale = self.canvas.scrollView.zoomScale;
@@ -107,7 +107,7 @@
   self.canvas.saveView.image = image;
 }
 
--(void)zoomIn
+- (void)zoomIn
 {
   if (self.canvas.scrollView.zoomScale * 1.1f < kMaxZoomScale) {
     self.canvas.scrollView.zoomScale = self.canvas.scrollView.zoomScale * 1.1f;
@@ -116,7 +116,7 @@
   }
 }
 
--(void)zoomOut
+- (void)zoomOut
 {
   if (self.canvas.scrollView.zoomScale / 1.1f > kMinZoomScale) {
     self.canvas.scrollView.zoomScale = self.canvas.scrollView.zoomScale / 1.1f;

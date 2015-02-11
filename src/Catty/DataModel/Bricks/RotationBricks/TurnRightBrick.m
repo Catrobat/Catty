@@ -42,7 +42,7 @@
     return kLocalizedTurnRight;
 }
 
--(SKAction*)action
+- (SKAction*)action
 {
     return [SKAction runBlock:[self actionBlock]];
 }

@@ -37,7 +37,7 @@
     return self;
 }
 
--(void)dealloc
+- (void)dealloc
 {
     NSDebug(@"Dealloc Scene");
 }
@@ -84,7 +84,7 @@
 }
 
 
--(void)startStartScript:(SpriteObject*)obj
+- (void)startStartScript:(SpriteObject*)obj
 {
     for (Script *script in obj.scriptList)
     {
@@ -103,7 +103,7 @@
     }
 }
 
--(CGPoint)convertPointToScene:(CGPoint)point
+- (CGPoint)convertPointToScene:(CGPoint)point
 {
     CGPoint scenePoint;
     scenePoint.x = [self convertXCoordinateToScene:point.x];
@@ -112,34 +112,34 @@
     return scenePoint;
 }
 
--(CGFloat)convertYCoordinateToScene:(CGFloat)y
+- (CGFloat)convertYCoordinateToScene:(CGFloat)y
 {
     return (self.size.height/2.0f + y);
 }
 
--(CGFloat)convertXCoordinateToScene:(CGFloat)x
+- (CGFloat)convertXCoordinateToScene:(CGFloat)x
 {
     return (self.scene.size.width/2.0f + x);
 }
 
--(CGPoint)convertSceneCoordinateToPoint:(CGPoint)point
+- (CGPoint)convertSceneCoordinateToPoint:(CGPoint)point
 {
     CGFloat x = point.x - self.scene.size.width/2.0f;
     CGFloat y = point.y - self.scene.size.height/2.0f;
     return CGPointMake(x, y);
 }
 
--(CGFloat) convertDegreesToScene:(CGFloat)degrees
+- (CGFloat) convertDegreesToScene:(CGFloat)degrees
 {
     return 360.0f - degrees;
 }
 
--(CGFloat) convertSceneToDegrees:(CGFloat)degrees
+- (CGFloat) convertSceneToDegrees:(CGFloat)degrees
 {
     return 360.0f + degrees;
 }
 
--(BOOL)touchedwith:(NSSet*)touches withX:(CGFloat)x andY:(CGFloat)y
+- (BOOL)touchedwith:(NSSet*)touches withX:(CGFloat)x andY:(CGFloat)y
 {
     NSDebug(@"StartTouchofScene");
     UITouch *touch = [touches anyObject];

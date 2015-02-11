@@ -43,7 +43,7 @@
     [super tearDown];
 }
 
--(void)testPointInDirectionBrick
+- (void)testPointInDirectionBrick
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);

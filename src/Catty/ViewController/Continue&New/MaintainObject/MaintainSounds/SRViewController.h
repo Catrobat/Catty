@@ -36,7 +36,7 @@
 
 
 
--(IBAction)recordClicked:(id)sender;
+- (IBAction)recordClicked:(id)sender;
 
 
 @end
