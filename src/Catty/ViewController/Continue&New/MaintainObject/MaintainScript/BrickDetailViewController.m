@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -251,7 +251,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (bool)isFormulaBrick:(BrickCell*)brickCell
 {
-    if ([brickCell.brick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
+    if ([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
         return YES;
     }
     return NO;

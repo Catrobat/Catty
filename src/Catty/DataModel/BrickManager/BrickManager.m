@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -156,7 +156,7 @@
                 Formula * formula =[[Formula alloc ] initWithInteger:0];
                 [brickF setFormula:formula ForLineNumber:0 AndParameterNumber:0];
                 [selectableBricksForCategoryMutable addObject:brickF];
-            }else{
+            } else{
                 [selectableBricksForCategoryMutable addObject:brick];
             }
             

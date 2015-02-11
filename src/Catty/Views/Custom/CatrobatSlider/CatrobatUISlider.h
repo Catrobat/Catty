@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,24 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Look+CBXMLLogger.h"
-#import "CBXMLLogger.h"
+#import <UIKit/UIKit.h>
 
-@implementation Look (CBXMLLogger)
-
-+ (void)load
-{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [CBXMLLogger swizzleMethods:[self class]];
-    });
-}
-
-#pragma mark - Method Swizzling
-+ (instancetype)__parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
-{
-    [CBXMLLogger logElement:xmlElement];
-    return [[self class] __parseFromElement:xmlElement withContext:context];
-}
+@interface CatrobatUISlider : UISlider
 
 @end

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -38,6 +38,7 @@
 #import "AppDelegate.h"
 #import "NSString+FastImageSize.h"
 #import "ProgramDefines.h"
+#include "CBMutableCopyContext.h"
 
 @interface SpriteObject()
 @property (atomic,strong) NSMutableArray *broadcastScriptArray;
@@ -156,37 +157,6 @@
     if (self.program && [self.program.objectList count])
         return ([self.program.objectList objectAtIndex:0] == self);
     return NO;
-}
-
-- (instancetype)deepCopy
-{
-    SpriteObject *newObject = [[SpriteObject alloc] init];
-    newObject.spriteManagerDelegate = nil;
-    newObject.broadcastWaitDelegate = nil;
-    newObject.currentLook = nil;
-    newObject.currentUIImageLook = nil;
-    newObject.numberOfObjectsWithoutBackground = 0;
-
-    // deep copy
-    newObject.lookList = [NSMutableArray arrayWithCapacity:[self.lookList count]];
-    for (id lookObject in self.lookList) {
-        if ([lookObject isKindOfClass:[Look class]]) {
-            [newObject.lookList addObject:[((Look*)lookObject) deepCopy]];
-        }
-    }
-    newObject.soundList = [NSMutableArray arrayWithCapacity:[self.soundList count]];
-    for (id soundObject in self.soundList) {
-        if ([soundObject isKindOfClass:[Sound class]]) {
-            [newObject.soundList addObject:[((Sound*)soundObject) deepCopy]];
-        }
-    }
-    newObject.scriptList = [NSMutableArray arrayWithCapacity:[self.scriptList count]];
-    for (id scriptObject in self.scriptList) {
-        if ([scriptObject isKindOfClass:[Script class]]) {
-            [newObject.scriptList addObject:[((Script*)scriptObject) deepCopy]];
-        }
-    }
-    return newObject;
 }
 
 - (void)start:(CGFloat)zPosition
@@ -440,14 +410,7 @@
         }
 
         // count references in all object of that look image
-        NSUInteger lookImageReferenceCounter = 0;
-        for (SpriteObject *object in self.program.objectList) {
-            for (Look *lookToCheck in object.lookList) {
-                if ([lookToCheck.fileName isEqualToString:look.fileName]) {
-                    ++lookImageReferenceCounter;
-                }
-            }
-        }
+        NSUInteger lookImageReferenceCounter = [self referenceCountForLook:look.fileName];
         // if image is not used by other objects, delete it
         if (lookImageReferenceCounter <= 1) {
             AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -494,14 +457,7 @@
         }
         
         // count references in all object of that sound file
-        NSUInteger soundReferenceCounter = 0;
-        for (SpriteObject *object in self.program.objectList) {
-            for (Sound *soundToCheck in object.soundList) {
-                if ([soundToCheck.fileName isEqualToString:sound.fileName]) {
-                    ++soundReferenceCounter;
-                }
-            }
-        }
+        NSUInteger soundReferenceCounter = [self referenceCountForSound:sound.fileName];
         // if sound is not used by other objects, delete it
         if (soundReferenceCounter <= 1) {
             AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -550,7 +506,7 @@
     if (! [self hasLook:sourceLook]) {
         return nil;
     }
-    Look *copiedLook = [sourceLook deepCopy];
+    Look *copiedLook = [sourceLook mutableCopyWithContext:[CBMutableCopyContext new]];
     copiedLook.name = [Util uniqueName:nameOfCopiedLook existingNames:[self allLookNames]];
     [self.lookList addObject:copiedLook];
     if(save) {
@@ -564,7 +520,7 @@
     if (! [self hasSound:sourceSound]) {
         return nil;
     }
-    Sound *copiedSound = [sourceSound deepCopy];
+    Sound *copiedSound = [sourceSound mutableCopyWithContext:[CBMutableCopyContext new]];
     copiedSound.name = [Util uniqueName:nameOfCopiedSound existingNames:[self allSoundNames]];
     [self.soundList addObject:copiedSound];
     if(save) {
@@ -698,6 +654,7 @@
     return [mutableString copy];
 }
 
+#pragma mark - Compare
 - (BOOL)isEqualToSpriteObject:(SpriteObject*)spriteObject
 {
     // check if object names are both equal to each other
@@ -769,7 +726,6 @@
     return 100 * self.currentLookBrightness;
 }
 
-
 -(CGFloat) scaleX
 {
     return [self xScale]*100;
@@ -778,6 +734,73 @@
 -(CGFloat) scaleY
 {
     return [self yScale]*100;
+}
+
+#pragma mark - Copy
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
+{
+    if(!context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
+    
+    SpriteObject *newObject = [[SpriteObject alloc] init];
+    newObject.name = [NSString stringWithString:self.name];
+    newObject.program = self.program;
+    newObject.spriteManagerDelegate = nil;
+    newObject.broadcastWaitDelegate = nil;
+    newObject.currentLook = nil;
+    newObject.currentUIImageLook = nil;
+    newObject.numberOfObjectsWithoutBackground = 0;
+    
+    [context updateReference:self WithReference:newObject];
+    
+    // deep copy
+    newObject.lookList = [NSMutableArray arrayWithCapacity:[self.lookList count]];
+    for (id lookObject in self.lookList) {
+        if ([lookObject isKindOfClass:[Look class]]) {
+            [newObject.lookList addObject:[lookObject mutableCopyWithContext:context]];
+        }
+    }
+    newObject.soundList = [NSMutableArray arrayWithCapacity:[self.soundList count]];
+    for (id soundObject in self.soundList) {
+        if ([soundObject isKindOfClass:[Sound class]]) {
+            [newObject.soundList addObject:[soundObject mutableCopyWithContext:context]];
+        }
+    }
+    newObject.scriptList = [NSMutableArray arrayWithCapacity:[self.scriptList count]];
+    for (id scriptObject in self.scriptList) {
+        if ([scriptObject isKindOfClass:[Script class]]) {
+            Script *copiedScript = [scriptObject mutableCopyWithContext:context];
+            copiedScript.object = newObject;
+            [newObject.scriptList addObject:copiedScript];
+        }
+    }
+    return newObject;
+}
+
+#pragma mark - Helpers
+- (NSUInteger)referenceCountForLook:(NSString*)fileName
+{
+    NSUInteger referenceCount = 0;
+    for (SpriteObject *object in self.program.objectList) {
+        for (Look *look in object.lookList) {
+            if ([look.fileName isEqualToString:fileName]) {
+                ++referenceCount;
+            }
+        }
+    }
+    return referenceCount;
+}
+
+- (NSUInteger)referenceCountForSound:(NSString*)fileName
+{
+    NSUInteger referenceCount = 0;
+    for (SpriteObject *object in self.program.objectList) {
+        for (Sound *sound in object.soundList) {
+            if ([sound.fileName isEqualToString:fileName]) {
+                ++referenceCount;
+            }
+        }
+    }
+    return referenceCount;
 }
 
 @end

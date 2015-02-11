@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -79,7 +79,7 @@
 
 + (UIButton*)newDefaultBrickFormulaEditorWithFrame:(CGRect)frame ForBrickCell:(BrickCell*)brickCell AndLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
 {
-    Brick<BrickFormulaProtocol> *formulaBrick = (Brick<BrickFormulaProtocol> *)brickCell.brick;
+    Brick<BrickFormulaProtocol> *formulaBrick = (Brick<BrickFormulaProtocol>*)brickCell.scriptOrBrick;
     Formula *formula = [formulaBrick getFormulaForLineNumber:lineNumber AndParameterNumber:paramNumber];
     FormulaEditorButton *button = [[FormulaEditorButton alloc] initWithFrame:frame AndBrickCell:brickCell AndFormula: formula];
     return button;

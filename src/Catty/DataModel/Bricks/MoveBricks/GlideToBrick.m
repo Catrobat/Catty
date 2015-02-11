@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #import "GlideToBrick.h"
 #import "Script.h"
 #import "Formula.h"
+#import "CBMutableCopyContext.h"
 
 @interface GlideToBrick()
 
@@ -76,9 +77,9 @@
 #pragma mark - override
 - (SKAction*)action
 {
-    double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.object];
-    double xDestination = [self.xDestination interpretDoubleForSprite:self.object];
-    double yDestination = [self.yDestination interpretDoubleForSprite:self.object];
+    double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.script.object];
+    double xDestination = [self.xDestination interpretDoubleForSprite:self.script.object];
+    double yDestination = [self.yDestination interpretDoubleForSprite:self.script.object];
     self.isInitialized = NO;
 
     return [SKAction customActionWithDuration:durationInSeconds actionBlock:^(SKNode *node, CGFloat elapsedTime) {
@@ -86,23 +87,23 @@
         
         if(!self.isInitialized) {
             self.isInitialized = YES;
-            self.currentPoint = self.object.position;
+            self.currentPoint = self.script.object.position;
             self.startingPoint = self.currentPoint;
         }
         // TODO: handle extreme movemenets and set currentPoint accordingly
         CGFloat percent = (CGFloat)(elapsedTime / durationInSeconds);
         CGFloat xPoint = (CGFloat)(self.startingPoint.x + (xDestination - self.startingPoint.x) * percent);
         CGFloat yPoint = (CGFloat)(self.startingPoint.y + (yDestination - self.startingPoint.y) * percent);
-        self.object.position = self.currentPoint = CGPointMake(xPoint, yPoint);
+        self.script.object.position = self.currentPoint = CGPointMake(xPoint, yPoint);
     }];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    double xDestination = [self.xDestination interpretDoubleForSprite:self.object];
-    double yDestination = [self.yDestination interpretDoubleForSprite:self.object];
-    double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.object];
+    double xDestination = [self.xDestination interpretDoubleForSprite:self.script.object];
+    double yDestination = [self.yDestination interpretDoubleForSprite:self.script.object];
+    double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.script.object];
     return [NSString stringWithFormat:@"GlideTo (Position: %f/%f; duration: %f s)", xDestination, yDestination, durationInSeconds];
 }
 
@@ -115,6 +116,13 @@
     if(![self.yDestination isEqualToFormula:((GlideToBrick*)brick).yDestination])
         return NO;
     return YES;
+}
+
+#pragma mark - Copy
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
+{
+    return [self mutableCopyWithContext:context AndErrorReporting:NO];
+    
 }
 
 @end

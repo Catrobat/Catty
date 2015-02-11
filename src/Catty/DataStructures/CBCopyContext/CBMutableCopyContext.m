@@ -20,8 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Script+CBXMLHandler.h"
 
-@interface Script (CBXMLLogger)
+#import "CBMutableCopyContext.h"
+
+@implementation CBMutableCopyContext
+
+- (NSMutableDictionary*)updatedReferences
+{
+    if(!_updatedReferences) {
+        _updatedReferences = [NSMutableDictionary new];
+    }
+    return _updatedReferences;
+}
+
+- (void)updateReference:(id)oldReference WithReference:(id)newReference
+{
+    NSString *oldAddr = [NSString stringWithFormat:@"%p", oldReference];
+    [self.updatedReferences setValue:newReference forKey:oldAddr];
+}
+
+- (id)updatedReferenceForReference:(id)oldReference
+{
+    NSString *oldAddr = [NSString stringWithFormat:@"%p", oldReference];
+    for(NSString *oldAddress in self.updatedReferences) {
+        if([oldAddress isEqualToString:oldAddr])
+            return [self.updatedReferences valueForKey:oldAddress];
+    }
+    return nil;
+}
 
 @end

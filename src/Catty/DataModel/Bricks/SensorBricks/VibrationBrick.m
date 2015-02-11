@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -51,7 +51,7 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.object];
+        double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.script.object];
         for (int i = 1; i < 2*durationInSeconds; i++) {
             [self performSelector:@selector(vibe:) withObject:self afterDelay:i *.5f];
         }
@@ -65,7 +65,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"VibrationBrick (%f Seconds)", [self.durationInSeconds interpretDoubleForSprite:self.object]];
+    return [NSString stringWithFormat:@"VibrationBrick (%f Seconds)", [self.durationInSeconds interpretDoubleForSprite:self.script.object]];
 }
 
 @end

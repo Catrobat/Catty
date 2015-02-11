@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -72,12 +72,13 @@
         [XMLError exceptionWithMessage:@"Unsupported script type: %@!", scriptType];
     }
 
-    script.brickList = [self parseAndCreateBricks:xmlElement withContext:context];
     script.object = context.spriteObject;
+    script.brickList = [self parseAndCreateBricks:xmlElement forScript:script withContext:context];
     return script;
 }
 
-+ (NSMutableArray*)parseAndCreateBricks:(GDataXMLElement*)scriptElement withContext:(CBXMLContext*)context
++ (NSMutableArray*)parseAndCreateBricks:(GDataXMLElement*)scriptElement forScript:(Script*)script
+                            withContext:(CBXMLContext*)context
 {
     NSArray *brickListElements = [scriptElement elementsForName:@"brickList"];
     [XMLError exceptionIf:[brickListElements count] notEquals:1 message:@"No brickList given!"];
@@ -127,7 +128,7 @@
                               brickClassName, brickClassName];
         Brick *brick = [class parseFromElement:brickXmlElement withContext:context];
         [XMLError exceptionIfNil:brick message:@"Unable to parse brick..."];
-        brick.object = context.spriteObject;
+        brick.script = script;
         [brickList addObject:brick];
     }
     [XMLError exceptionIf:[context.openedNestingBricksStack isEmpty] equals:NO

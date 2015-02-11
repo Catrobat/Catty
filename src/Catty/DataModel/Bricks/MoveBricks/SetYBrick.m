@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 
 #import "SetYBrick.h"
 #import "Formula.h"
+#import "Script.h"
 
 @implementation SetYBrick
 
@@ -50,15 +51,15 @@
 {
   return ^{
     NSDebug(@"Performing: %@", self.description);
-    double yPosition = [self.yPosition interpretDoubleForSprite:self.object];
-    self.object.position = CGPointMake(self.object.xPosition, (CGFloat)yPosition);
+    double yPosition = [self.yPosition interpretDoubleForSprite:self.script.object];
+    self.script.object.position = CGPointMake(self.script.object.xPosition, (CGFloat)yPosition);
   };
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetYBrick (y-Pos:%f)", [self.yPosition interpretDoubleForSprite:self.object]];
+    return [NSString stringWithFormat:@"SetYBrick (y-Pos:%f)", [self.yPosition interpretDoubleForSprite:self.script.object]];
 }
 
 @end

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -37,15 +37,11 @@
 #import "CatrobatLanguageDefines.h"
 #import "CBXMLParser.h"
 #import "CBXMLSerializer.h"
+#import "CBMutableCopyContext.h"
 
 @implementation Program
 
 @synthesize objectList = _objectList;
-
-- (void)dealloc
-{
-    NSDebug(@"Dealloc Program");
-}
 
 # pragma mark - factories
 + (instancetype)defaultProgramWithName:(NSString*)programName programID:(NSString*)programID
@@ -385,7 +381,8 @@
     if (! [self hasObject:sourceObject]) {
         return nil;
     }
-    SpriteObject *copiedObject = [sourceObject deepCopy];
+    CBMutableCopyContext *context = [CBMutableCopyContext new];
+    SpriteObject *copiedObject = [sourceObject mutableCopyWithContext:context];
     copiedObject.name = [Util uniqueName:nameOfCopiedObject existingNames:[self allObjectNames]];
     [self.objectList addObject:copiedObject];
     [self saveToDisk];
@@ -400,7 +397,7 @@
         return NO;
     if ([self.objectList count] != [program.objectList count])
         return NO;
-    
+
     NSUInteger idx;
     for (idx = 0; idx < [self.objectList count]; idx++) {
         SpriteObject *firstObject = [self.objectList objectAtIndex:idx];
@@ -558,6 +555,37 @@
         }
     }
     return nil;
+}
+
+#pragma mark - Dealloc
+- (void)removeReferences
+{
+    if(! self.objectList)
+        return;
+
+    for (SpriteObject *sprite in self.objectList) {
+        sprite.broadcastWaitDelegate = nil;
+        sprite.spriteManagerDelegate = nil;
+
+        if(sprite.scriptList) {
+            for (Script *script in sprite.scriptList) {
+                script.allowRunNextAction = NO;
+                if(script.brickList) {
+                    for (Brick *brick in script.brickList) {
+                        brick.script = nil;
+                    }
+                }
+                script.object = nil;
+            }
+        }
+        sprite.program = nil;
+    }
+}
+
+- (void)dealloc
+{
+    [self removeReferences];
+    NSDebug(@"Dealloc Program");
 }
 
 @end

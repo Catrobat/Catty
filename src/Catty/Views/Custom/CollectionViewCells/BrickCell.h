@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -36,20 +36,17 @@
 #define roundedSmallBrick 75.0f
 
 @class Brick, BrickCellInlineView, BrickCell;
-@protocol BrickProtocol;
+@protocol ScriptProtocol;
 
-
-@protocol BrickCellDelegate <NSObject>
-
+@protocol BrickCellDelegate<NSObject>
 @optional
-- (void)BrickCell:(BrickCell *)brickCell didSelectBrickCellButton:(SelectButton *)selectButton;
-
+- (void)BrickCell:(BrickCell*)brickCell didSelectBrickCellButton:(SelectButton*)selectButton;
 @end
 
 @interface BrickCell : UICollectionViewCell<BrickCellProtocol>
 @property (nonatomic, weak) id<BrickCellDelegate> delegate;
 @property (nonatomic, weak) id<UITextFieldDelegate> textDelegate;
-@property (nonatomic, strong) id<BrickProtocol> brick;
+@property (nonatomic, strong) id<ScriptProtocol> scriptOrBrick;
 @property (nonatomic, strong) NSArray *brickCategoryColors;
 @property (nonatomic) BOOL enabled;
 @property (nonatomic, strong) SelectButton *selectButton;

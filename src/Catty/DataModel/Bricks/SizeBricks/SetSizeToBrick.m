@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "SetSizeToBrick.h"
 #import "Formula.h"
+#import "Script.h"
 
 @implementation SetSizeToBrick
 
@@ -50,12 +50,12 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        double sizeInPercent = [self.size interpretDoubleForSprite:self.object];
-        [self.object setXScale:(CGFloat)(sizeInPercent/100.0f)];
-        [self.object setYScale:(CGFloat)(sizeInPercent/100.0f)];
+        double sizeInPercent = [self.size interpretDoubleForSprite:self.script.object];
+        [self.script.object setXScale:(CGFloat)(sizeInPercent/100.0f)];
+        [self.script.object setYScale:(CGFloat)(sizeInPercent/100.0f)];
         //for touch issue
-        CGImageRef image = [self.object.currentUIImageLook CGImage];
-        self.object.currentUIImageLook = [UIImage imageWithCGImage:image scale:(CGFloat)(1.0f/(sizeInPercent/100.0f)) orientation:UIImageOrientationUp];
+        CGImageRef image = [self.script.object.currentUIImageLook CGImage];
+        self.script.object.currentUIImageLook = [UIImage imageWithCGImage:image scale:(CGFloat)(1.0f/(sizeInPercent/100.0f)) orientation:UIImageOrientationUp];
     };
     
 }
@@ -63,7 +63,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetSizeTo (%f%%)", [self.size interpretDoubleForSprite:self.object]];
+    return [NSString stringWithFormat:@"SetSizeTo (%f%%)", [self.size interpretDoubleForSprite:self.script.object]];
 }
 
 @end

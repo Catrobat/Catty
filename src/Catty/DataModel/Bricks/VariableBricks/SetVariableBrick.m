@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,6 +26,7 @@
 #import "ProgramManager.h"
 #import "Program.h"
 #import "VariablesContainer.h"
+#import "Script.h"
 
 @implementation SetVariableBrick
 
@@ -52,9 +53,9 @@
 - (dispatch_block_t)actionBlock
 {
   return ^{
-    NSDebug(@"Performing: %@ on: %@", self.description, self.object);
+    NSDebug(@"Performing: %@ on: %@", self.description, self.script.object);
     
-    double result = [self.variableFormula interpretDoubleForSprite:self.object];
+    double result = [self.variableFormula interpretDoubleForSprite:self.script.object];
     
     Program* program = ProgramManager.sharedProgramManager.program;
     VariablesContainer* variables = program.variables;
@@ -66,7 +67,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    double result = [self.variableFormula interpretDoubleForSprite:self.object];
+    double result = [self.variableFormula interpretDoubleForSprite:self.script.object];
     return [NSString stringWithFormat:@"Set Variable Brick: Uservariable: %@, to: %f", self.userVariable, result];
 }
 

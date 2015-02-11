@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,12 +22,13 @@
 
 #import "Cometofrontbrick.h"
 #import "Scene.h"
+#import "Script.h"
 
 @implementation ComeToFrontBrick
 
 - (BOOL)isSelectableForObject
 {
-    return (! [self.object isBackground]);
+    return (! [self.script.object isBackground]);
 }
 
 - (NSString*)brickTitle
@@ -44,16 +45,16 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        CGFloat zValue = self.object.zPosition;
-        CGFloat frontValue = self.object.numberOfObjectsWithoutBackground;
-        self.object.zPosition = frontValue;
-        for(SpriteObject *obj in self.object.program.objectList){
-            if((obj.zPosition > zValue) && (obj.zPosition <= frontValue) && (obj != self.object)) {
+        CGFloat zValue = self.script.object.zPosition;
+        CGFloat frontValue = self.script.object.numberOfObjectsWithoutBackground;
+        self.script.object.zPosition = frontValue;
+        for(SpriteObject *obj in self.script.object.program.objectList){
+            if((obj.zPosition > zValue) && (obj.zPosition <= frontValue) && (obj != self.script.object)) {
                 obj.zPosition -=1;
             }
         }
 
-        NSDebug(@"%f",self.object.zPosition );
+        NSDebug(@"%f",self.script.object.zPosition );
     };
 }
 
@@ -62,6 +63,5 @@
 {
     return [NSString stringWithFormat:@"ComeToFront"];
 }
-
 
 @end

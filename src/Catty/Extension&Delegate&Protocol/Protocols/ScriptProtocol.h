@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,8 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Sound+CBXMLHandler.h"
+#import <Foundation/Foundation.h>
+#import "UIDefines.h"
+#import "CBMutableCopying.h"
 
-@interface Sound (CBXMLLogger)
+@protocol ScriptProtocol<NSObject, CBMutableCopying>
+
+@required
+@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
+@property (nonatomic, readonly) kBrickType brickType;
+@property (nonatomic, strong, readonly) NSString *brickTitle;
+- (BOOL)isSelectableForObject;
 
 @end

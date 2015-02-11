@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -41,7 +41,7 @@
   if ([self.canvas.saveView.image isEqual:image])
   {
     [[self prepareWithInvocationTarget:self] setImage:self.canvas.saveView.image]; // Here we let know the undo managed what image was used before
-    NSLog(@"log");
+//    NSLog(@"log");
     
     // post notifications to update UI
   }else{

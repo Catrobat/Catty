@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -32,16 +32,15 @@
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readonly) kBrickType brickType;
 @property (nonatomic, strong, readonly) NSString *brickTitle;
+@property (nonatomic, strong) Script *script;
 - (BOOL)isSelectableForObject;
-
-@property (nonatomic, strong) SpriteObject *object;
-
-- (id)initWithSprite:(SpriteObject*)sprite;
 
 - (NSString*)description;
 
 - (SKAction*)action;
 
 - (BOOL)isEqualToBrick:(Brick*)brick;
+
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context AndErrorReporting:(BOOL)reportError;
 
 @end

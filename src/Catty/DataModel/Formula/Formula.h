@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,11 +23,12 @@
 #import <Foundation/Foundation.h>
 #import "InternFormula.h"
 #import "InternFormulaState.h"
+#import "CBMutableCopying.h"
 
 @class FormulaElement;
 @class SpriteObject;
 
-@interface Formula : NSObject
+@interface Formula : NSObject<CBMutableCopying>
 
 @property (nonatomic, strong) FormulaElement* formulaTree;
 @property (nonatomic, weak) NSString* displayString;

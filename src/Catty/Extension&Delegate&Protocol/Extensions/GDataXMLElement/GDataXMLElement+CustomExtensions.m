@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -149,7 +149,7 @@
     [XMLError exceptionIfNil:name message:@"Given param xmlElement MUST NOT be nil!!"];
     if (context.currentPositionStack) {
         if (xPathIndex > 1) {
-            name = [name stringByAppendingFormat:@"[%lu]", xPathIndex];
+            name = [name stringByAppendingFormat:@"[%lu]", (unsigned long)xPathIndex];
         }
         [context.currentPositionStack pushXmlElementName:name];
         NSLog(@"+ [%@] added to stack", name);

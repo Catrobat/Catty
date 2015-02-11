@@ -20,8 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Look+CBXMLHandler.h"
 
-@interface Look (CBXMLLogger)
+@interface CBMutableCopyContext : NSObject
+
+// Dictionary consisting of id (old pointer) -> id (new pointer)
+@property (strong, nonatomic) NSMutableDictionary *updatedReferences;
+
+- (void)updateReference:(id)oldReference WithReference:(id)newReference;
+- (id)updatedReferenceForReference:(id)oldReference;
 
 @end

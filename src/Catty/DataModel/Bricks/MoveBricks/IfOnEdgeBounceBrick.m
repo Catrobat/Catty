@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,12 +22,13 @@
 
 #import "IfOnEdgeBounceBrick.h"
 #import "Util.h"
+#import "Script.h"
 
 @implementation IfOnEdgeBounceBrick
 
 - (BOOL)isSelectableForObject
 {
-    return (! [self.object isBackground]);
+    return (! [self.script.object isBackground]);
 }
 
 - (NSString*)brickTitle
@@ -39,7 +40,7 @@
 {
     NSDebug(@"Performing: %@", self.description);
     
-    //[self.object ifOnEdgeBounce];
+    //[self.script.object ifOnEdgeBounce];
     
 }
 
@@ -48,15 +49,15 @@
     
     return [SKAction runBlock:^{
         
-        float width = self.object.size.width;
-        float height = self.object.size.height;
-        CGFloat xPosition = self.object.position.x;
-        CGFloat yPosition = self.object.position.y;
+        float width = self.script.object.size.width;
+        float height = self.script.object.size.height;
+        CGFloat xPosition = self.script.object.position.x;
+        CGFloat yPosition = self.script.object.position.y;
 
-        CGFloat virtualScreenWidth = self.object.scene.size.width/2.0f;
-        CGFloat virtualScreenHeight = self.object.scene.size.height/2.0f;
+        CGFloat virtualScreenWidth = self.script.object.scene.size.width/2.0f;
+        CGFloat virtualScreenHeight = self.script.object.scene.size.height/2.0f;
 
-        float rotation = [self.object rotation];
+        float rotation = [self.script.object rotation];
 
         if (xPosition < -virtualScreenWidth + width/2.0f) {
             if (rotation <= 180.0f) {
@@ -88,8 +89,8 @@
             yPosition = -virtualScreenHeight + (int) (height / 2);
         }
         
-        self.object.zRotation = (CGFloat)[Util degreeToRadians:rotation];
-        self.object.position = CGPointMake(xPosition, yPosition);
+        self.script.object.zRotation = (CGFloat)[Util degreeToRadians:rotation];
+        self.script.object.position = CGPointMake(xPosition, yPosition);
 
     }];
     

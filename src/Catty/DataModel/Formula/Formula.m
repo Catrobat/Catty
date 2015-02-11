@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -152,6 +152,15 @@
     if ([self.formulaTree isEqualToFormulaElement:formula.formulaTree])
         return YES;
     return NO;
+}
+
+#pragma mark - Copy
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
+{
+    Formula *formula = [Formula new];
+    if(self.formulaTree)
+        formula.formulaTree = [self.formulaTree mutableCopyWithContext:context];
+    return formula;
 }
 
 @end

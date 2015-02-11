@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -251,6 +251,7 @@
                 rect.size.width -= 40;
                 rect.size.height -= 10;
                     //for retina displays
+                self.canvas.saveView.backgroundColor = [UIColor clearColor];
                 if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
                     UIGraphicsBeginImageContextWithOptions(rect.size, NO, scale);
                 } else {
@@ -261,7 +262,7 @@
                 [self.canvas.saveView.layer renderInContext:ctx];
                 UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
                 UIGraphicsEndImageContext();
-                
+                self.canvas.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
                 
                 self.stampImage = viewImage;
                 self.resizeViewer.contentView.image = viewImage;

@@ -20,21 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+@class CBMutableCopyContext;
 
-//#if !kIsRelease
-#import "Header+CBXMLLogger.h"
-#import "SpriteObject+CBXMLLogger.h"
-#import "Look+CBXMLLogger.h"
-#import "Sound+CBXMLLogger.h"
-#import "Script+CBXMLLogger.h"
-//#endif
+@protocol CBMutableCopying <NSObject>
 
-@class GDataXMLElement;
-
-@interface CBXMLLogger : NSObject
-
-+ (void)swizzleMethods:(Class)clazz;
-+ (void)logElement:(GDataXMLElement*)xmlElement;
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
 
 @end

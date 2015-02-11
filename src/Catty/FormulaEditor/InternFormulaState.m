@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -85,14 +85,14 @@
     
     for(InternToken *tokenToCopy in self.internTokenFormulaList)
     {
-        [deepCopyOfInternTokenFormula addObject:[tokenToCopy deepCopy]];
+        [deepCopyOfInternTokenFormula addObject:[tokenToCopy mutableCopyWithZone:nil]];
     }
     
     InternFormulaTokenSelection *deepCopyOfInternFormulaTokenSelection = [[InternFormulaTokenSelection alloc]init];
     
     if(self.tokenSelection != nil)
     {
-        deepCopyOfInternFormulaTokenSelection = [self.tokenSelection deepCopy];
+        deepCopyOfInternFormulaTokenSelection = [self.tokenSelection mutableCopyWithZone:nil];
     }
     
     return [[InternFormula alloc]initWithInternTokenList:deepCopyOfInternTokenFormula

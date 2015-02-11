@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@
 #import "SetXBrick.h"
 #import "Formula.h"
 #import "Logger.h"
+#import "Script.h"
 
 @implementation SetXBrick
 
@@ -51,16 +52,16 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        double xPosition = [self.xPosition interpretDoubleForSprite:self.object];
+        double xPosition = [self.xPosition interpretDoubleForSprite:self.script.object];
         
-        self.object.position = CGPointMake((CGFloat)xPosition, self.object.yPosition);
+        self.script.object.position = CGPointMake((CGFloat)xPosition, self.script.object.yPosition);
     };
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetXBrick (x-Pos:%f)", [self.xPosition interpretDoubleForSprite:self.object]];
+    return [NSString stringWithFormat:@"SetXBrick (x-Pos:%f)", [self.xPosition interpretDoubleForSprite:self.script.object]];
 }
 
 @end

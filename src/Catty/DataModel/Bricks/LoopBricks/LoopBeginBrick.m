@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -37,6 +37,7 @@
 {
 }
 
+#pragma mark - Compare
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
     if(![Util isEqual:self.loopEndBrick.brickTitle toObject:((LoopBeginBrick*)brick).loopEndBrick.brickTitle ])

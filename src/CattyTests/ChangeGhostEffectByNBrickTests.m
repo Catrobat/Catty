@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
+#import "WhenScript.h"
 
 @interface ChangeGhostEffectByNBrickTests : BrickTests
 
@@ -43,55 +44,55 @@
 
 -(void)testChangeGhostEffectByNBrickPositive
 {
-    
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
-    
+
     Scene* scene = [[Scene alloc] init];
     [scene addChild:object];
-    
+
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"20";
     transparency.formulaTree = formulaTree;
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
     ChangeGhostEffectByNBrick* brick = [[ChangeGhostEffectByNBrick alloc]init];
-    brick.object = object;
+    brick.script = script;
     brick.changeGhostEffect = transparency;
-    
+
     dispatch_block_t action = [brick actionBlock];
     action();
-    
-    
     XCTAssertEqual(object.alpha, 0.8f, @"ChangeGhostEffectBrick is not correctly calculated");
 }
 
 
 -(void)testChangeGhostEffectByNBrickNegative
 {
-    
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
     object.alpha = 0.4;
-    
+
     Scene* scene = [[Scene alloc] init];
     [scene addChild:object];
-    
+
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"-20";
     transparency.formulaTree = formulaTree;
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
     ChangeGhostEffectByNBrick* brick = [[ChangeGhostEffectByNBrick alloc]init];
-    brick.object = object;
+    brick.script = script;
     brick.changeGhostEffect = transparency;
-    
+
     dispatch_block_t action = [brick actionBlock];
     action();
-    
-    
     XCTAssertEqual(object.alpha, 0.6f, @"ChangeGhostEffectBrick is not correctly calculated");
 }
 
@@ -111,15 +112,16 @@
     formulaTree.type = NUMBER;
     formulaTree.value = @"150";
     transparency.formulaTree = formulaTree;
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
     ChangeGhostEffectByNBrick* brick = [[ChangeGhostEffectByNBrick alloc]init];
-    brick.object = object;
+    brick.script = script;
     brick.changeGhostEffect = transparency;
-    
+
     dispatch_block_t action = [brick actionBlock];
     action();
-    
-    
     XCTAssertEqual(object.alpha, 0.0f, @"ChangeGhostEffectBrick is not correctly calculated");
 }
 
@@ -137,15 +139,16 @@
     formulaTree.type = NUMBER;
     formulaTree.value = @"a";
     transparency.formulaTree = formulaTree;
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
     ChangeGhostEffectByNBrick* brick = [[ChangeGhostEffectByNBrick alloc]init];
-    brick.object = object;
+    brick.script = script;
     brick.changeGhostEffect = transparency;
-    
+
     dispatch_block_t action = [brick actionBlock];
     action();
-    
-    
     XCTAssertEqual(object.alpha, 1.0f, @"ChangeGhostEffectBrick is not correctly calculated");
 }
 

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -47,6 +47,7 @@
 #import "CatrobatActionSheet.h"
 #import "ActionSheetAlertViewTags.h"
 #import "BrickProtocol.h"
+#import "Script.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -327,18 +328,17 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.deleteButton setEnabled:enabled];
 }
 
-- (IBAction)compute:(id)sender {
-    
-    UIAlertView * alert;
-    
-    if(self.internFormula != nil) {
-        
+- (IBAction)compute:(id)sender
+{
+    UIAlertView *alert;
+    if (self.internFormula != nil) {
         InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
-        FormulaElement *tempFormulaElement = [internFormulaParser parseFormulaForSpriteObject:self.brickCell.brick.object];
-        
+        Brick *brick = (Brick*)self.brickCell.scriptOrBrick; // must be a brick!
+        FormulaElement *tempFormulaElement = [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
+
         float result;
         NSString *computedString;
-        
+
         switch ([internFormulaParser getErrorTokenIndex]) {
             case FORMULA_PARSER_OK:
                 result = [tempFormulaElement interpretRecursiveForSprite:nil];
@@ -570,7 +570,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
         if(self.internFormula != nil) {
             InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
-            Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormulaForSpriteObject:self.brickCell.brick.object]];
+            Brick *brick = (Brick*)self.brickCell.scriptOrBrick; // must be a brick!
+            FormulaElement *formulaElement = [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
+            Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
             UIAlertView *alert;
             switch ([internFormulaParser getErrorTokenIndex]) {
                 case FORMULA_PARSER_OK:

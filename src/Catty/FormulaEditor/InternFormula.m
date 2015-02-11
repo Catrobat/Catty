@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -1067,14 +1067,14 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     
     for(InternToken *tokenToCopy in self.internTokenFormulaList)
     {
-        [deepCopyOfInternTokenFormula addObject:[tokenToCopy deepCopy]];
+        [deepCopyOfInternTokenFormula addObject:[tokenToCopy mutableCopyWithZone:nil]];
     }
     
     InternFormulaTokenSelection *deepCopyOfInternFormulaTokenSelection = [[InternFormulaTokenSelection alloc]init];
     
     if([self isTokenSelected])
     {
-        deepCopyOfInternFormulaTokenSelection = [self.internFormulaTokenSelection deepCopy];
+        deepCopyOfInternFormulaTokenSelection = [self.internFormulaTokenSelection mutableCopyWithZone:nil];
     }
     
     return [[InternFormulaState alloc]initWithList:deepCopyOfInternTokenFormula

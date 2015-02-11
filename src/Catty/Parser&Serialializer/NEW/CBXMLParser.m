@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,10 +26,6 @@
 #import "Program+CBXMLHandler.h"
 #import "Program+CustomExtensions.h"
 #import "CBXMLContext.h"
-
-#if !kIsRelease
-#import "CBXMLLogger.h"
-#endif
 
 // NEVER MOVE THESE DEFINE CONSTANTS TO ANOTHER (HEADER) FILE
 #define kCatrobatXMLParserMinSupportedLanguageVersion 0.93f

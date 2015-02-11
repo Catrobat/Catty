@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
 #import "PointToBrick.h"
+#import "WhenScript.h"
 
 @interface PointToBrickTests : BrickTests
 
@@ -53,14 +54,17 @@
     
     [firstObject setPosition:CGPointMake(0, 0)];
     [secondObject setPosition:CGPointMake(0, 10)];
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = firstObject;
+
     PointToBrick *brick = [[PointToBrick alloc] init];
-    brick.object = firstObject;
+    brick.script = script;
     brick.pointedObject = secondObject;
-    
+
     dispatch_block_t dispatchBlock = [brick actionBlock];
     dispatchBlock();
-    
+
     // SpriteKit coordinates: 0/0 => center instead of top left corner
     // SpriteKit: +90 degrees is turn left / -90degrees is turn right
     // Catrabot: 90 degrees shifted
@@ -71,21 +75,23 @@
 {
     SpriteObject *firstObject = [[SpriteObject alloc] init];
     SpriteObject *secondObject = [[SpriteObject alloc] init];
-    
+
     Scene *scene = [[Scene alloc] init];
     [scene addChild:firstObject];
     [scene addChild:secondObject];
-    
+
     [firstObject setPosition:CGPointMake(0, 0)];
     [secondObject setPosition:CGPointMake(0, 0)];
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = firstObject;
+
     PointToBrick *brick = [[PointToBrick alloc] init];
-    brick.object = firstObject;
+    brick.script = script;
     brick.pointedObject = secondObject;
-    
+
     dispatch_block_t dispatchBlock = [brick actionBlock];
     dispatchBlock();
-    
     XCTAssertEqualWithAccuracy(firstObject.rotation, 360.0f, 0.1f, @"PointToBrick not correct");
 }
 
@@ -93,21 +99,23 @@
 {
     SpriteObject *firstObject = [[SpriteObject alloc] init];
     SpriteObject *secondObject = [[SpriteObject alloc] init];
-    
+
     Scene *scene = [[Scene alloc] init];
     [scene addChild:firstObject];
     [scene addChild:secondObject];
-    
+
     [firstObject setPosition:CGPointMake(0, 0)];
     [secondObject setPosition:CGPointMake(1, 1)];
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = firstObject;
+
     PointToBrick *brick = [[PointToBrick alloc] init];
-    brick.object = firstObject;
+    brick.script = script;
     brick.pointedObject = secondObject;
-    
+
     dispatch_block_t dispatchBlock = [brick actionBlock];
     dispatchBlock();
-    
     XCTAssertEqualWithAccuracy(firstObject.rotation, 45.0f, 0.1f, @"PointToBrick not correct");
 }
 
