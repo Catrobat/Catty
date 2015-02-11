@@ -24,7 +24,7 @@
 #import "PaintViewController.h"
 
 @interface UndoManager : NSUndoManager
-@property (nonatomic,strong) PaintViewController* canvas;
+@property (nonatomic,weak) PaintViewController* canvas;
 
 -(id)initWithDrawViewCanvas:(PaintViewController*)canvas;
 -(void)setImage:(UIImage*)image;

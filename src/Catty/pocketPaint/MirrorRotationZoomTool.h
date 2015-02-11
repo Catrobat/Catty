@@ -25,7 +25,7 @@
 
 @interface MirrorRotationZoomTool : NSObject
 
-@property (nonatomic,strong) PaintViewController* canvas;
+@property (nonatomic,weak) PaintViewController* canvas;
 
 -(id)initWithDrawViewCanvas:(PaintViewController*)canvas;
 
