@@ -73,6 +73,7 @@
 @property (nonatomic, strong) UIView *gridView;
 @property (nonatomic, strong) Program *program;
 @property (nonatomic, strong) SKView *skView;
+@property (nonatomic) dispatch_queue_t restartProgramQueue;
 
 @end
 
@@ -176,6 +177,15 @@
 }
 
 #pragma mark getters and setters
+- (dispatch_queue_t)restartProgramQueue
+{
+    // lazy instantiation
+    if (! _restartProgramQueue) {
+        _restartProgramQueue = dispatch_queue_create("org.catrobat.restartProgram", 0);
+    }
+    return _restartProgramQueue;
+}
+
 - (BroadcastWaitHandler*)broadcastWaitHandler
 {
     // lazy instantiation
@@ -514,44 +524,53 @@
 
 - (void)restartProgram:(UIButton*)sender
 {
-//    [self.program removeReferences];
-//    self.program = nil;
-//    self.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
-//    for (SpriteObject *sprite in self.program.objectList) {
-//        sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-//    }
-//    [self.program updateReferences];
-//    [[AudioManager sharedAudioManager] stopAllSounds];
-//
-//    [self.broadcastWaitHandler removeSpriteMessages];
-//    Scene *previousScene = (Scene*)self.skView.scene;
-//    previousScene.program = self.program;
-//
-//    if (! self.program) {
-//        [[[UIAlertView alloc] initWithTitle:kLocalizedCantRestartProgram
-//                                    message:nil
-//                                   delegate:self.menuView
-//                          cancelButtonTitle:kLocalizedOK
-//                          otherButtonTitles:nil] show];
-//        return;
-//    }
-//    [self.skView presentScene:previousScene];
-//    [self continueProgram:nil withDuration:0.0f];
-    ScenePresenterViewController *vc = [[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]]];
+    self.program.playing = NO;
+    dispatch_queue_t backgroundQueue = dispatch_queue_create("org.catrobat.restartProgram", 0);
+    __weak typeof(self)weakSelf = self;
+    dispatch_async(backgroundQueue, ^{
+        [NSThread sleepForTimeInterval:1.0f]; // XXX: wait until all blocks are finished!!
+        __weak typeof(ScenePresenterViewController*)weakSelfSelf = weakSelf;
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [weakSelfSelf.program removeReferences];
+            weakSelfSelf.program = nil;
+            weakSelfSelf.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
+            for (SpriteObject *sprite in weakSelfSelf.program.objectList) {
+                sprite.broadcastWaitDelegate = weakSelfSelf.broadcastWaitHandler;
+            }
+            [weakSelfSelf.program updateReferences];
+            [[AudioManager sharedAudioManager] stopAllSounds];
 
-    UINavigationController *navController = self.navigationController;
+            [weakSelfSelf.broadcastWaitHandler removeSpriteMessages];
+            Scene *previousScene = (Scene*)weakSelfSelf.skView.scene;
+            previousScene.program = weakSelfSelf.program;
 
-    //Get all view controllers in navigation controller currently
-    NSMutableArray *controllers = [[NSMutableArray alloc] initWithArray:navController.viewControllers];
-
-    //Remove the last view controller
-    [controllers removeLastObject];
-
-    //set the new set of view controllers
-    [navController setViewControllers:controllers];
-
-    //Push a new view controller
-    [navController pushViewController:vc animated:NO];
+            if (! weakSelfSelf.program) {
+                [[[UIAlertView alloc] initWithTitle:kLocalizedCantRestartProgram
+                                            message:nil
+                                           delegate:weakSelfSelf.menuView
+                                  cancelButtonTitle:kLocalizedOK
+                                  otherButtonTitles:nil] show];
+                return;
+            }
+            [weakSelfSelf.skView presentScene:previousScene];
+            [weakSelfSelf continueProgram:nil withDuration:0.0f];
+            //    ScenePresenterViewController *vc = [[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]]];
+            //
+            //    UINavigationController *navController = weakSelfSelf.navigationController;
+            //
+            //    //Get all view controllers in navigation controller currently
+            //    NSMutableArray *controllers = [[NSMutableArray alloc] initWithArray:navController.viewControllers];
+            //
+            //    //Remove the last view controller
+            //    [controllers removeLastObject];
+            //
+            //    //set the new set of view controllers
+            //    [navController setViewControllers:controllers];
+            //
+            //    //Push a new view controller
+            //    [navController pushViewController:vc animated:NO];
+        });
+    });
 }
 
 - (void)showHideAxis:(UIButton*)sender
