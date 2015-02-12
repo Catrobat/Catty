@@ -45,7 +45,6 @@
 - (SKAction*)action
 {
     NSDebug(@"Performing: %@", self.description);
-
     return [SKAction waitForDuration:[self.timeToWaitInSeconds interpretDoubleForSprite:self.script.object]];
 }
 

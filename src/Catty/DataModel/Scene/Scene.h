@@ -26,7 +26,6 @@
 
 @interface Scene : SKScene
 
-
 @property(nonatomic, weak) Program* program;
 
 - (id)initWithSize:(CGSize)size andProgram:(Program*)program;
