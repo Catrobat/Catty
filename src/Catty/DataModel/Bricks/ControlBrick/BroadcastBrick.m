@@ -42,13 +42,15 @@
 
 - (SKAction*)action
 {
+    __weak BroadcastBrick* weakSelf = self;
     return [SKAction runBlock:^{
-        __weak BroadcastBrick* weakself = self;
-        NSDebug(@"Performing: %@", [self description]);
+        __weak Script *weakScript = weakSelf.script;
+        __weak SpriteObject *weakSpriteObject = weakScript.object;
+        __weak NSString *weakBroadcastMessage = weakSelf.broadcastMessage;
+        NSDebug(@"Performing: %@", [weakSelf description]);
         dispatch_async(dispatch_get_main_queue(), ^{
-            [weakself.script.object broadcast:self.broadcastMessage];
+            [weakSpriteObject broadcast:weakBroadcastMessage];
         });
-        
     }];
 }
 
