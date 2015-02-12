@@ -107,14 +107,10 @@
 
 - (void)startStartScript:(StartScript*)startScript
 {
-    __weak typeof(StartScript*)weakStartScript = startScript;
-    __weak typeof(SpriteObject*)weakSpriteObject = startScript.object;
     dispatch_queue_t backgroundQueue = dispatch_queue_create("org.catrobat.startScript", 0);
     dispatch_async(backgroundQueue, ^{
-        __weak typeof(StartScript*)weakWeakStartScript = weakStartScript;
-        __weak typeof(SpriteObject*)weakWeakSpriteObject = weakSpriteObject;
-        [weakSpriteObject startAndAddScript:weakStartScript completion:^{
-            [weakWeakSpriteObject scriptFinished:weakWeakStartScript];
+        [startScript.object startAndAddScript:startScript completion:^{
+            [startScript.object scriptFinished:startScript];
             NSDebug(@"FINISHED");
         }];
     });

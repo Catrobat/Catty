@@ -213,12 +213,9 @@
         for (Script *script in self.scriptList) {
             if ([script isKindOfClass:[WhenScript class]]) {
                 __weak typeof(self) weakSelf = self;
-                __weak typeof(Script*) weakScript = script;
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                    __weak typeof(SpriteObject*) weakSpriteObject = weakSelf;
-                    __weak typeof(Script*) weakWeakScript = weakScript;
-                    [weakSelf startAndAddScript:weakScript completion:^{
-                        [weakSpriteObject scriptFinished:weakWeakScript];
+                    [weakSelf startAndAddScript:script completion:^{
+                        [weakSelf scriptFinished:script];
                         NSDebug(@"FINISHED");
                     }];
                 });
@@ -631,15 +628,10 @@
             if ([broadcastScript.receivedMessage isEqualToString:message]) {
                 dispatch_semaphore_t sema = dispatch_semaphore_create(0);
                 __weak typeof(self) weakSelf = self;
-                __weak typeof(BroadcastScript*) weakBroadcastScript = broadcastScript;
-                __weak typeof(dispatch_semaphore_t) weakSema = sema;
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                    __weak typeof(SpriteObject*) weakWeakSelf = weakSelf;
-                    __weak typeof(BroadcastScript*) weakWeakBroadcastScript = weakBroadcastScript;
-                    __weak typeof(dispatch_semaphore_t) weakWeakSema = weakSema;
-                    [weakSelf startAndAddScript:weakBroadcastScript completion:^{
-                        [weakWeakSelf scriptFinished:weakWeakBroadcastScript];
-                        dispatch_semaphore_signal(weakWeakSema);
+                    [weakSelf startAndAddScript:broadcastScript completion:^{
+                        [weakSelf scriptFinished:broadcastScript];
+                        dispatch_semaphore_signal(sema);
                         NSDebug(@"FINISHED");
                     }];
                 });
