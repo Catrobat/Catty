@@ -67,22 +67,18 @@
         if (! [sprite isKindOfClass:[SpriteObject class]]) {
             NSError(@"sprite is not a SpriteObject...abort()");
         }
-
-        __weak typeof(SpriteObject*)weakSpriteObject = sprite;
-        __weak typeof(dispatch_semaphore_t)weakSema = sema;
+        __weak SpriteObject *weakSpriteObject = sprite;
         dispatch_async(broadcastWaitQueue, ^{
-            [weakSpriteObject performBroadcastWaitScriptWithMessage:message with:weakSema];
+            [weakSpriteObject performBroadcastWaitScriptWithMessage:message with:sema];
         });
         dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
     }
-
     NSInteger numberOfSprites = [sprites count];
     for (NSInteger counter = 0; counter < numberOfSprites; ++counter) {
         dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
     }
     dispatch_group_t group = dispatch_group_create();
     dispatch_group_async(group, broadcastWaitQueue, ^{});
-
     for (NSInteger counter = 0; counter < numberOfSprites; ++counter) {
         dispatch_semaphore_signal(sema);
     }
