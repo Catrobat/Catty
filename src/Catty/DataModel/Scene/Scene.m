@@ -24,10 +24,11 @@
 #import "Program.h"
 #import "SpriteObject.h"
 #import "StartScript.h"
+#import "HideBrick.h"
 
 @implementation Scene
 
-- (id)initWithSize:(CGSize)size andProgram:(Program *)program
+- (id)initWithSize:(CGSize)size andProgram:(Program*)program
 {
     if (self = [super initWithSize:size]) {
         self.program = program;
@@ -54,45 +55,69 @@
 
 - (void)startProgram
 {
+    if (! [[NSThread currentThread] isMainThread]) {
+        NSLog(@" ");
+        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        NSLog(@"!!                                                                                       !!");
+        NSLog(@"!! FATAL: THIS METHOD SHOULD NEVER EVER BE CALLED FROM ANOTHER THREAD EXCEPT MAIN-THREAD !!");
+        NSLog(@"!!                                                                                       !!");
+        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        NSLog(@" ");
+        abort();
+    }
+
+    // init and prepare Scene
     CGFloat zPosition = 1.0f;
     [self removeAllChildren]; // just to ensure
-    for (SpriteObject *obj in self.program.objectList) {
-        [self addChild:obj];
-        NSDebug(@"%f",zPosition);
-        [obj start:zPosition];
-        [obj setLook];
-        obj.program = self.program;
-        obj.userInteractionEnabled = YES;
-        if (! ([obj isBackground])) {
+    self.program.playing = YES;
+    for (SpriteObject *spriteObject in self.program.objectList) {
+        // now add the brick with correct visability-state to the Scene
+        [self addChild:spriteObject];
+        // minor user experience improvement: check if first Brick in StartScript is HideBrick
+        BOOL found = NO;
+        for (Script *script in spriteObject.scriptList) {
+            if ([script isKindOfClass:[StartScript class]]) {
+                id firstBrick = [script.brickList firstObject];
+                if ([firstBrick isKindOfClass:[HideBrick class]]) {
+                    found = YES;
+                }
+                break;
+            }
+        }
+        spriteObject.hidden = found;
+        NSDebug(@"%f", zPosition);
+        [spriteObject start:zPosition];
+        [spriteObject setLook];
+        spriteObject.userInteractionEnabled = YES;
+
+        if (! ([spriteObject isBackground])) {
             zPosition++;
         }
     }
-    for (SpriteObject *obj in self.program.objectList) {
-        __weak typeof(self) weakSelf = self;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf startStartScript:obj];
-        });
+
+    // start StartScripts of all SpriteObjects simultaneously!!
+    for (SpriteObject *spriteObject in self.program.objectList) {
+        for (Script *script in spriteObject.scriptList) {
+            if ([script isKindOfClass:[StartScript class]]) {
+                [self startStartScript:(StartScript*)script];
+            }
+        }
     }
 }
 
-
-- (void)startStartScript:(SpriteObject*)obj
+- (void)startStartScript:(StartScript*)startScript
 {
-    for (Script *script in obj.scriptList)
-    {
-        if ([script isKindOfClass:[StartScript class]]) {
-            
-            __weak typeof(SpriteObject*) weakSelf = obj;
-//            dispatch_queue_t backgroundQueue = dispatch_queue_create("at.catrobat.startScript", 0);
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                [weakSelf startAndAddScript:script completion:^{
-                    [weakSelf scriptFinished:script];
-                    NSDebug(@"FINISHED");
-                }];
-            });
-            
-        }
-    }
+    __weak typeof(StartScript*)weakStartScript = startScript;
+    __weak typeof(SpriteObject*)weakSpriteObject = startScript.object;
+    dispatch_queue_t backgroundQueue = dispatch_queue_create("org.catrobat.startScript", 0);
+    dispatch_async(backgroundQueue, ^{
+        __weak typeof(StartScript*)weakWeakStartScript = weakStartScript;
+        __weak typeof(SpriteObject*)weakWeakSpriteObject = weakSpriteObject;
+        [weakSpriteObject startAndAddScript:weakStartScript completion:^{
+            [weakWeakSpriteObject scriptFinished:weakWeakStartScript];
+            NSDebug(@"FINISHED");
+        }];
+    });
 }
 
 - (CGPoint)convertPointToScene:(CGPoint)point
@@ -100,7 +125,6 @@
     CGPoint scenePoint;
     scenePoint.x = [self convertXCoordinateToScene:point.x];
     scenePoint.y = [self convertYCoordinateToScene:point.y];
-    
     return scenePoint;
 }
 
@@ -121,66 +145,65 @@
     return CGPointMake(x, y);
 }
 
-- (CGFloat) convertDegreesToScene:(CGFloat)degrees
+- (CGFloat)convertDegreesToScene:(CGFloat)degrees
 {
     return 360.0f - degrees;
 }
 
-- (CGFloat) convertSceneToDegrees:(CGFloat)degrees
+- (CGFloat)convertSceneToDegrees:(CGFloat)degrees
 {
     return 360.0f + degrees;
 }
 
 - (BOOL)touchedwith:(NSSet*)touches withX:(CGFloat)x andY:(CGFloat)y
 {
-    NSDebug(@"StartTouchofScene");
-    UITouch *touch = [touches anyObject];
-    CGPoint location = [touch locationInNode:self];
-    NSDebug(@"x:%f,y:%f",location.x,location.y);
-    BOOL foundObject = NO;
-    NSArray *nodesAtPoint = [self nodesAtPoint:location];
-    if ([nodesAtPoint count]==0) {
+    if (! self.program.isPlaying) {
         return NO;
     }
+
+    NSDebug(@"StartTouchOfScene");
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self];
+    NSDebug(@"x:%f,y:%f", location.x, location.y);
+    BOOL foundObject = NO;
+    NSArray *nodesAtPoint = [self nodesAtPoint:location];
+    if ([nodesAtPoint count] == 0) {
+        return NO;
+    }
+
     SpriteObject *obj1 = nodesAtPoint[[nodesAtPoint count]-1];
     NSInteger counter =[nodesAtPoint count]-2;
     NSDebug(@"How many nodes are touched: %ld",(long)counter);
     NSDebug(@"First Node:%@",obj1);
-    if (!obj1.name) {
+    if (! obj1.name) {
         return NO;
     }
-    while (!foundObject) {
+
+    while (! foundObject) {
         CGPoint point = [touch locationInNode:obj1];
-        if (!obj1.hidden) {
+        if (! obj1.hidden) {
             if (![obj1 touchedwith:touches withX:point.x andY:point.y]) {
                 CGFloat zPosition = obj1.zPosition;
                 zPosition -= 1;
                 if (zPosition == -1 || counter < 0) {
                     foundObject =  YES;
                     NSDebug(@"Found Object");
-                }
-                else
-                {
+                } else {
                     obj1 = nodesAtPoint[counter];
                     NSDebug(@"NextNode: %@",obj1);
-                    counter--;
-                    
+                    --counter;
                 }
-            }
-            else{
+            } else {
                 foundObject = YES;
                 NSDebug(@"Found Object");
             }
-
-        }
-        else{
+        } else {
             obj1 = nodesAtPoint[counter];
             NSDebug(@"NextNode: %@",obj1);
-            counter--;
+            --counter;
         }
     }
     return YES;
-
 }
 
 @end
