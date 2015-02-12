@@ -32,7 +32,6 @@
     if (self = [super initWithSize:size]) {
         self.program = program;
         self.backgroundColor = [UIColor whiteColor];
-        self.numberOfObjectsWithoutBackground = 0;
     }
     return self;
 }
@@ -42,14 +41,13 @@
     NSDebug(@"Dealloc Scene");
 }
 
-- (void)willMoveFromView:(SKView *)view
+- (void)willMoveFromView:(SKView*)view
 {
-    self.numberOfObjectsWithoutBackground = 0;
     [self removeAllChildren];
     [self removeAllActions];
 }
 
-- (void)didMoveToView:(SKView *)view
+- (void)didMoveToView:(SKView*)view
 {
     [self startProgram];
 }
@@ -67,19 +65,13 @@
         obj.userInteractionEnabled = YES;
         if (! ([obj isBackground])) {
             zPosition++;
-            self.numberOfObjectsWithoutBackground++;
         }
     }
-    // TODO: replace numberOfObjectsWithoutBackground-property by [obj.program numberOfNormalObjects]
     for (SpriteObject *obj in self.program.objectList) {
-        obj.numberOfObjectsWithoutBackground = self.numberOfObjectsWithoutBackground;
-        
         __weak typeof(self) weakSelf = self;
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf startStartScript:obj];
         });
-        
-        
     }
 }
 

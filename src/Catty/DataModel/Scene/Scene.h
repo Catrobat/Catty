@@ -28,8 +28,6 @@
 
 
 @property(nonatomic, weak) Program* program;
-@property(nonatomic) NSInteger numberOfObjectsWithoutBackground;
-
 
 - (id)initWithSize:(CGSize)size andProgram:(Program*)program;
 

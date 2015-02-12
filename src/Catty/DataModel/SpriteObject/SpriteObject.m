@@ -739,8 +739,8 @@
 #pragma mark - Copy
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
 {
-    if(!context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
-    
+    if (! context) { NSError(@"%@ must not be nil!", [CBMutableCopyContext class]); }
+
     SpriteObject *newObject = [[SpriteObject alloc] init];
     newObject.name = [NSString stringWithString:self.name];
     newObject.program = self.program;
@@ -748,10 +748,8 @@
     newObject.broadcastWaitDelegate = nil;
     newObject.currentLook = nil;
     newObject.currentUIImageLook = nil;
-    newObject.numberOfObjectsWithoutBackground = 0;
-    
     [context updateReference:self WithReference:newObject];
-    
+
     // deep copy
     newObject.lookList = [NSMutableArray arrayWithCapacity:[self.lookList count]];
     for (id lookObject in self.lookList) {

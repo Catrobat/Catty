@@ -20,8 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Cometofrontbrick.h"
-#import "Scene.h"
+#import "ComeToFrontBrick.h"
 #import "Script.h"
 
 @implementation ComeToFrontBrick
@@ -46,7 +45,7 @@
     return ^{
         NSDebug(@"Performing: %@", self.description);
         CGFloat zValue = self.script.object.zPosition;
-        CGFloat frontValue = self.script.object.numberOfObjectsWithoutBackground;
+        CGFloat frontValue = [self.script.object.program numberOfNormalObjects];
         self.script.object.zPosition = frontValue;
         for(SpriteObject *obj in self.script.object.program.objectList){
             if((obj.zPosition > zValue) && (obj.zPosition <= frontValue) && (obj != self.script.object)) {

@@ -64,7 +64,6 @@
 #define kDontResumeSounds 4
 #define kfirstSwipeDuration 0.8f
 
-
 @interface ScenePresenterViewController ()<UIActionSheetDelegate>
 
 @property (nonatomic) BOOL menuOpen;
@@ -82,8 +81,7 @@
 - (id)initWithProgram:(Program *)program
 {
     if (self = [super init]) {
-        for (SpriteObject *sprite in program.objectList)
-        {
+        for (SpriteObject *sprite in program.objectList) {
             //        sprite.spriteManagerDelegate = self;
             sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
 
@@ -104,13 +102,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
-    
+
     /// MenuImageBackground
     UIImage *menuBackgroundImage = [UIImage imageNamed:@"stage_dialog_background_middle_1"];
     UIImage *newBackgroundImage;
-    
+
     if ([Util screenHeight] == kIphone4ScreenHeight) {
         CGSize size = CGSizeMake(kWidthSlideMenu+kBounceEffect, kIphone4ScreenHeight);
         UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
@@ -124,7 +121,7 @@
         newBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
     }
-    
+
     self.skView.backgroundColor = UIColor.backgroundColor;
     self.menuView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, kWidthSlideMenu + kBounceEffect, CGRectGetHeight(UIScreen.mainScreen.bounds))];
     self.menuView.backgroundColor = [[UIColor alloc] initWithPatternImage:newBackgroundImage];
@@ -198,7 +195,7 @@
     return _gridView;
 }
 
-- (SKView *)skView
+- (SKView*)skView
 {
     if (!_skView) {
         _skView = [[SKView alloc] initWithFrame:self.view.bounds];
@@ -212,7 +209,6 @@
     return _skView;
 }
 
-
 - (UIImage*)brightnessBackground:(UIImage*)startImage
 {
     CGImageRef image = startImage.CGImage;
@@ -222,10 +218,10 @@
                                   keysAndValues:kCIInputImageKey, ciImage, @"inputBrightness",
                         @(-0.5), nil];
     CIImage *outputImage = [filter outputImage];
-    
+
     CGImageRef cgimg =
     [context createCGImage:outputImage fromRect:[outputImage extent]];
-  
+
     UIImage *output = [UIImage imageWithCGImage:cgimg];
     CFRelease(cgimg);
     return output;
@@ -253,17 +249,14 @@
             UILabel* label      = [[UILabel alloc] initWithFrame:
                                    CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-(KMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(kMenuButtonSize)-10, 100, kMenuButtonSize)];
             self.menuBackLabel  = label;
-            
             label               =[[UILabel alloc] initWithFrame:
                                   CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-kMenuIPhone5ContinueGapSize-10,100, kMenuButtonSize)];
             self.menuRestartLabel = label;
             label               = [[UILabel alloc] initWithFrame:
                                    CGRectMake(kPlaceofContinueLabel+kContinueOffset,([Util screenHeight]/2)+(kContinueButtonSize/2)-10,  kContinueButtonSize, kMenuButtonSize)];
             self.menuContinueLabel = label;
-            
             label               = [[UILabel alloc] initWithFrame:
                                    CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+(kContinueButtonSize/2)+kMenuIPhone5ContinueGapSize+kMenuButtonSize-10,  100, kMenuButtonSize)];
-            
             self.menuScreenshotLabel = label;
             label               = [[UILabel alloc] initWithFrame:
                                    CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+                    (kContinueButtonSize/2)+(KMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(2*kMenuButtonSize)-10,  100, kMenuButtonSize)];
@@ -769,7 +762,6 @@
     self.menuView.frame = CGRectMake(-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
     self.menuBtn.hidden=YES;
 }
-
 
 - (void)handleCancelledNegative:(CGPoint)translate
 {

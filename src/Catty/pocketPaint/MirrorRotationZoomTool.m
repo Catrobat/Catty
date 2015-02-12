@@ -118,12 +118,11 @@
 
 - (void)zoomOut
 {
-  if (self.canvas.scrollView.zoomScale / 1.1f > kMinZoomScale) {
-    self.canvas.scrollView.zoomScale = self.canvas.scrollView.zoomScale / 1.1f;
-  }else{
-    self.canvas.scrollView.zoomScale =kMinZoomScale;
-  }
-  
+    if (self.canvas.scrollView.zoomScale / 1.1f > kMinZoomScale) {
+        self.canvas.scrollView.zoomScale = self.canvas.scrollView.zoomScale / 1.1f;
+    } else {
+        self.canvas.scrollView.zoomScale = kMinZoomScale;
+    }
 }
 
 @end
