@@ -26,6 +26,7 @@
 #import "AppDelegate.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "TimerLabel.h"
+#import "Util.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 
 @interface SRViewController ()
@@ -117,7 +118,7 @@
         self.filePath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, fileName];
         self.sound = [[Sound alloc] init];
         self.sound.fileName = fileName;
-        self.sound.name = NSLocalizedString(@"Recording", nil);
+        self.sound.name = kLocalizedRecording;
         NSURL* outputFileUrl = [NSURL fileURLWithPath:self.filePath isDirectory:NO];
         
         AVAudioSession* session = [AVAudioSession sharedInstance];
@@ -156,14 +157,9 @@
 
 -(void) audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag{
   if (!flag) {
-    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Error"
-                                                   message:@"Not enough Memory"
-                                                  delegate:nil
-                                         cancelButtonTitle:@"OK"
-                                         otherButtonTitles:nil];
-    [alert show];
+      [Util alertWithText:kLocalizedMemoryWarning];
   }
-    [self.record setTitle:@"Record" forState:UIControlStateNormal];
+//    [self.record setTitle:@"Record" forState:UIControlStateNormal];
 }
 
 -(void)updateProgressView

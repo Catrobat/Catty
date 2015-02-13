@@ -136,7 +136,7 @@
 
 -(void)didMoveToParentViewController:(UIViewController *)parent
 {
-    NSLog(@"Moved,%@",self.navigationController.viewControllers);
+    NSDebug(@"Moved,%@",self.navigationController.viewControllers);
 }
 
 - (void)didReceiveMemoryWarning
@@ -259,7 +259,7 @@
 {
   self.navigationController.navigationBarHidden = NO;
   self.navigationController.navigationBar.tintColor = [UIColor lightOrangeColor];
-  self.navigationItem.title = @"Pocket Paint";
+  self.navigationItem.title = kLocalizedPaintPocketPaint;
   UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedPaintMenu
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self

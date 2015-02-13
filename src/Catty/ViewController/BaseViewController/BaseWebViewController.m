@@ -29,6 +29,7 @@
 #import "ProgramDefines.h"
 #import "LoadingView.h"
 #import "Program.h"
+#import "LanguageTranslationDefines.h"
 
 @interface BaseWebViewController ()
 @property (nonatomic, strong) UIWebView *webView;
@@ -252,7 +253,7 @@
         [[[UIAlertView alloc] initWithTitle:@"Info"
                                     message:error.localizedDescription
                                    delegate:self
-                          cancelButtonTitle:@"OK"
+                          cancelButtonTitle:kLocalizedOK
                           otherButtonTitles:nil] show];
         
     }

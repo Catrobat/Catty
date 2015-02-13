@@ -127,7 +127,7 @@
     self.view.backgroundColor = [UIColor darkBlueColor];
     self.imageView.backgroundColor = [UIColor darkBlueColor];
     vc.editingImage = img;
-    NSLog(@"%@",img);
+//    NSLog(@"%@",img);
     [self.navigationController pushViewController:vc animated:YES];
 }
 
