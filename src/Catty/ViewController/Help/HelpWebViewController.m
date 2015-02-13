@@ -32,6 +32,7 @@
     [super viewDidLoad];
     self.title = kLocalizedHelp;
     self.tintColor = UIColor.lightOrangeColor;
+    self.navigationController.hidesBarsOnSwipe = YES;
 }
 
 
