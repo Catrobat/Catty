@@ -99,7 +99,7 @@
   _activeAction = brush;
   _degrees = 0;
 
-    self.actionTypeArray = @[@(brush),@(eraser),@(crop),@(pipette),@(mirror),@(image),@(line),@(rectangle),@(ellipse),@(stamp),@(rotate),@(zoom),@(pointer)];//,@(fillTool) is buggy 
+    self.actionTypeArray = @[@(brush),@(eraser),@(crop),@(pipette),@(mirror),@(image),@(line),@(rectangle),@(ellipse),@(stamp),@(rotate),@(zoom),@(pointer),@(fillTool)];
   
   [self setupCanvas];
   [self setupTools];
@@ -153,10 +153,16 @@
 
   self.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
 
+
   self.helper = [[UIView alloc] initWithFrame:rect];
         //add blank image at the beginning
     if (self.editingImage) {
-        self.saveView.image = self.editingImage;
+        UIImage *image = self.editingImage;
+        UIGraphicsBeginImageContext(image.size);
+        [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
+        self.saveView.image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        self.editingImage = self.saveView.image;
         if ((self.editingImage.size.width <= self.view.bounds.size.width) && (self.editingImage.size.height <= self.view.bounds.size.height)) {
             self.helper.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
             self.drawView.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
@@ -845,6 +851,8 @@
 
 -(void)dealloc
 {
+    self.fillTool = nil;
+    self.fillRecognizer = nil;
     NSLog(@"dealloc");
 }
 
