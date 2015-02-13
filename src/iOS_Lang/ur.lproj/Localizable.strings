@@ -23,10 +23,10 @@
 "A program with the same name already exists, try again." = "A program with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
-"About Catrobat" = "Over Catrobat";
+"About Catrobat" = "About Catrobat";
 
 /* No comment provided by engineer. */
-"About Pocket Code" = "Over Pocket Code";
+"About Pocket Code" = "About Pocket Code";
 
 /* No comment provided by engineer. */
 "Add image" = "Add image";
@@ -56,25 +56,25 @@
 "Apr" = "Apr";
 
 /* No comment provided by engineer. */
-"April" = "april";
+"April" = "April";
 
 /* No comment provided by engineer. */
 "Aug" = "Aug";
 
 /* No comment provided by engineer. */
-"August" = "augustus";
+"August" = "August";
 
 /* No comment provided by engineer. */
 "Author" = "Author";
 
 /* No comment provided by engineer. */
-"Back" = "Terug";
+"Back" = "Back";
 
 /* No comment provided by engineer. */
-"Background" = "Achtergrond";
+"Background" = "Background";
 
 /* No comment provided by engineer. */
-"Backgrounds" = "Achtergronden";
+"Backgrounds" = "Backgrounds";
 
 /* paint */
 "Blue" = "Blue";
@@ -101,10 +101,10 @@
 "Can't restart program!" = "Can't restart program!";
 
 /* No comment provided by engineer. */
-"Cancel" = "Annuleren";
+"Cancel" = "Cancel";
 
 /* No comment provided by engineer. */
-"Categories" = "Categorieën";
+"Categories" = "Categories";
 
 /* No comment provided by engineer. */
 "Change brightness\nby %@\%" = "Change brightness\nby %1$@\\%2$";
@@ -128,19 +128,19 @@
 "Change Y by %@" = "Change Y by %@";
 
 /* No comment provided by engineer. */
-"Choose image" = "Kies afbeelding";
+"Choose image" = "Choose image";
 
 /* No comment provided by engineer. */
 "Choose sound" = "Choose sound";
 
 /* No comment provided by engineer. */
-"Clear graphic effects" = "Grafische effecten verwijderen";
+"Clear graphic effects" = "Clear graphic effects";
 
 /* No comment provided by engineer. */
-"Close" = "Sluiten";
+"Close" = "Close";
 
 /* No comment provided by engineer. */
-"Compute" = "Berekenen";
+"Compute" = "Compute";
 
 /* No comment provided by engineer. */
 "Computed result is %.2f" = "Computed result is %.2f";
@@ -152,19 +152,19 @@
 "Computed result is TRUE" = "Computed result is TRUE";
 
 /* No comment provided by engineer. */
-"Continue" = "Doorgaan";
+"Continue" = "جاری رکھیں";
 
 /* No comment provided by engineer. */
-"Control" = "Besturen";
+"Control" = "Control";
 
 /* No comment provided by engineer. */
-"Copy" = "Kopiëren";
+"Copy" = "Copy";
 
 /* No comment provided by engineer. */
-"Copy Brick" = "Kopieer steen";
+"Copy Brick" = "Copy Brick";
 
 /* No comment provided by engineer. */
-"Copy program" = "Kopieer programma";
+"Copy program" = "Copy program";
 
 /* paint */
 "crop" = "crop";
@@ -173,13 +173,13 @@
 "Dec" = "Dec";
 
 /* No comment provided by engineer. */
-"December" = "december";
+"December" = "December";
 
 /* No comment provided by engineer. */
-"Delete" = "verwijderen";
+"Delete" = "Delete";
 
 /* No comment provided by engineer. */
-"Delete Brick" = "Verwijder steen";
+"Delete Brick" = "Delete Brick";
 
 /* No comment provided by engineer. */
 "Delete Looks" = "Delete Looks";
@@ -191,7 +191,7 @@
 "Delete Programs" = "Delete Programs";
 
 /* No comment provided by engineer. */
-"Delete Script" = "Verwijder script";
+"Delete Script" = "Delete Script";
 
 /* No comment provided by engineer. */
 "Delete Sounds" = "Delete Sounds";
@@ -209,7 +209,7 @@
 "Delete this sound" = "Delete this sound";
 
 /* No comment provided by engineer. */
-"Description" = "Omschrijving";
+"Description" = "Description";
 
 /* No comment provided by engineer. */
 "Details" = "Details";
@@ -227,19 +227,19 @@
 "Done" = "Done";
 
 /* No comment provided by engineer. */
-"Download" = "Downloaden";
+"Download" = "Download";
 
 /* No comment provided by engineer. */
 "Downloads" = "Downloads";
 
 /* No comment provided by engineer. */
-"Draw new image" = "Teken een nieuwe afbeelding";
+"Draw new image" = "Draw new image";
 
 /* No comment provided by engineer. */
 "Edit" = "Edit";
 
 /* No comment provided by engineer. */
-"Edit Formula" = "Formule bewerken";
+"Edit Formula" = "Edit Formula";
 
 /* Action sheet menu title */
 "Edit Look" = "Edit Look";
@@ -269,7 +269,7 @@
 "ellipse / circle" = "ellipse / circle";
 
 /* No comment provided by engineer. */
-"Else" = "Anders";
+"Else" = "Else";
 
 /* No comment provided by engineer. */
 "End of Loop" = "End of Loop";
@@ -293,10 +293,10 @@
 "eraser" = "eraser";
 
 /* No comment provided by engineer. */
-"Error" = "Fout";
+"Error" = "Error";
 
 /* No comment provided by engineer. */
-"Explore" = "Gemeenschap";
+"Explore" = "Explore";
 
 /* No comment provided by engineer. */
 "Explore apps" = "Explore apps";
@@ -308,7 +308,7 @@
 "Feb" = "Feb";
 
 /* No comment provided by engineer. */
-"February" = "februari";
+"February" = "February";
 
 /* paint */
 "fill" = "fill";
@@ -320,13 +320,13 @@
 "Flashlight on" = "Flashlight on";
 
 /* No comment provided by engineer. */
-"Forever" = "Herhaal";
+"Forever" = "Forever";
 
 /* No comment provided by engineer. */
 "Forgot password" = "Forgot password";
 
 /* No comment provided by engineer. */
-"Formula too long!" = "Formule te lang! Repareer of druk opnieuw om alle wijzigingen ongedaan te maken.";
+"Formula too long!" = "Formula too long!";
 
 /* No comment provided by engineer. */
 "Fr" = "Fr";
@@ -335,7 +335,7 @@
 "Friday" = "Friday";
 
 /* No comment provided by engineer. */
-"From Camera" = "Van camera";
+"From Camera" = "From Camera";
 
 /* No comment provided by engineer. */
 "Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %1$@ second(s)\nto X: %2$@ Y: %3$@";
@@ -344,7 +344,7 @@
 "Go back %@ layer(s)" = "Go back %@ layer(s)";
 
 /* No comment provided by engineer. */
-"Go to front" = "Ga naar voorgrond";
+"Go to front" = "Go to front";
 
 /* paint */
 "Green" = "Green";
@@ -356,10 +356,10 @@
 "Help" = "Help";
 
 /* No comment provided by engineer. */
-"Hide" = "Verdwijn";
+"Hide" = "Hide";
 
 /* No comment provided by engineer. */
-"Hide Details" = "Details verbergen";
+"Hide Details" = "Hide Details";
 
 /* No comment provided by engineer. */
 "If %@ is true then" = "If %@ is true then";
@@ -368,7 +368,7 @@
 "If End" = "If End";
 
 /* No comment provided by engineer. */
-"If on edge, bounce" = "Aan de rand, keer om";
+"If on edge, bounce" = "If on edge, bounce";
 
 /* paint */
 "image" = "image";
@@ -389,19 +389,19 @@
 "Jan" = "Jan";
 
 /* No comment provided by engineer. */
-"January" = "januari";
+"January" = "January";
 
 /* No comment provided by engineer. */
 "Jul" = "Jul";
 
 /* No comment provided by engineer. */
-"July" = "juli";
+"July" = "July";
 
 /* No comment provided by engineer. */
 "Jun" = "Jun";
 
 /* No comment provided by engineer. */
-"June" = "juni";
+"June" = "June";
 
 /* No comment provided by engineer. */
 "Last access" = "Last access";
@@ -416,25 +416,25 @@
 "Loading" = "Loading";
 
 /* No comment provided by engineer. */
-"Logic" = "Logica";
+"Logic" = "Logic";
 
 /* No comment provided by engineer. */
-"Login" = "Inloggen";
+"Login" = "Login";
 
 /* No comment provided by engineer. */
-"Looks" = "Uiterlijk";
+"Looks" = "Looks";
 
 /* No comment provided by engineer. */
 "Mar" = "Mar";
 
 /* No comment provided by engineer. */
-"March" = "maart";
+"March" = "March";
 
 /* No comment provided by engineer. */
 "Math" = "Math";
 
 /* No comment provided by engineer. */
-"May" = "mei";
+"May" = "May";
 
 /* No comment provided by engineer. */
 "Measure" = "Measure";
@@ -449,7 +449,7 @@
 "Mo" = "Mo";
 
 /* Prefix of default catrobat program object names (except background object) */
-"Mole" = "Mol";
+"Mole" = "Mole";
 
 /* No comment provided by engineer. */
 "Monday" = "Monday";
@@ -464,25 +464,25 @@
 "Most Viewed" = "Most Viewed";
 
 /* No comment provided by engineer. */
-"Motion" = "Bewegen";
+"Motion" = "Motion";
 
 /* No comment provided by engineer. */
 "Move %@ step(s)" = "Move %@ step(s)";
 
 /* Name of the default catrobat program */
-"My first program" = "Mijn eerste programma";
+"My first program" = "My first program";
 
 /* Default title of imported photo from camera (taken by camera) */
 "My Image" = "My Image";
 
 /* Title for first (default) object */
-"My Object" = "Mijn object";
+"My Object" = "My Object";
 
 /* No comment provided by engineer. */
 "Name already exists. Please choose another" = "Name already exists. Please choose another";
 
 /* No comment provided by engineer. */
-"New" = "Nieuw";
+"New" = "New";
 
 /* paint */
 "New Canvas" = "New Canvas";
@@ -491,19 +491,19 @@
 "New Program" = "New Program";
 
 /* No comment provided by engineer. */
-"New Variable" = "Nieuwe variabele";
+"New Variable" = "New Variable";
 
 /* No comment provided by engineer. */
 "Newest" = "Newest";
 
 /* No comment provided by engineer. */
-"Next background" = "Volgende achtergrond";
+"Next background" = "Next background";
 
 /* No comment provided by engineer. */
-"Next look" = "Volgende uiterlijk";
+"Next look" = "Next look";
 
 /* No comment provided by engineer. */
-"No" = "Nee";
+"No" = "No";
 
 /* No comment provided by engineer. */
 "No Description available" = "No Description available";
@@ -542,7 +542,7 @@
 "Nov" = "Nov";
 
 /* No comment provided by engineer. */
-"November" = "november";
+"November" = "November";
 
 /* No comment provided by engineer. */
 "Numbers" = "Numbers";
@@ -554,16 +554,16 @@
 "Object" = "Object";
 
 /* No comment provided by engineer. */
-"Object name" = "Objectnaam";
+"Object name" = "Object name";
 
 /* No comment provided by engineer. */
-"Objects" = "Objecten";
+"Objects" = "Objects";
 
 /* No comment provided by engineer. */
 "Oct" = "Oct";
 
 /* No comment provided by engineer. */
-"October" = "oktober";
+"October" = "October";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -599,10 +599,10 @@
 "Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on." = "Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on.";
 
 /* No comment provided by engineer. */
-"Pocket Code Recorder" = "Pocket Code-recorder";
+"Pocket Code Recorder" = "Pocket Code Recorder";
 
 /* No comment provided by engineer. */
-"Pocket Code Source Code License" = "Pocket Code-licentie";
+"Pocket Code Source Code License" = "Pocket Code Source Code License";
 
 /* paint */
 "Pocket Paint" = "Pocket Paint";
@@ -623,7 +623,7 @@
 "Program name" = "Program name";
 
 /* No comment provided by engineer. */
-"Programs" = "Programma's";
+"Programs" = "Programs";
 
 /* No comment provided by engineer. */
 "Project" = "Project";
@@ -641,7 +641,7 @@
 "Red" = "Red";
 
 /* No comment provided by engineer. */
-"Rename" = "Hernoemen";
+"Rename" = "Rename";
 
 /* No comment provided by engineer. */
 "Rename image" = "Rename image";
@@ -659,10 +659,10 @@
 "Repeat %@ times" = "Repeat %@ times";
 
 /* No comment provided by engineer. */
-"Report as inappropriate" = "Melden als ongepast";
+"Report as inappropriate" = "Report as inappropriate";
 
 /* No comment provided by engineer. */
-"Restart" = "Opnieuw starten";
+"Restart" = "Restart";
 
 /* No comment provided by engineer. */
 "Result" = "Result";
@@ -671,7 +671,7 @@
 "rotate" = "rotate";
 
 /* paint */
-"round" = "afgerond";
+"round" = "round";
 
 /* No comment provided by engineer. */
 "Sa" = "Sa";
@@ -695,7 +695,7 @@
 "Saved" = "Saved";
 
 /* No comment provided by engineer. */
-"Screenshot" = "Schermafdruk";
+"Screenshot" = "Screenshot";
 
 /* No comment provided by engineer. */
 "Screenshot saved to Camera Roll" = "Screenshot saved to Camera Roll";
@@ -722,13 +722,13 @@
 "Select option:" = "Select option:";
 
 /* No comment provided by engineer. */
-"Sensors" = "Sensoren";
+"Sensors" = "Sensors";
 
 /* No comment provided by engineer. */
 "Sep" = "Sep";
 
 /* No comment provided by engineer. */
-"September" = "september";
+"September" = "September";
 
 /* No comment provided by engineer. */
 "Set background\n%@" = "Set background\n%@";
@@ -737,7 +737,7 @@
 "Set brightness to %@\%" = "Set brightness to %1$@\\%2$";
 
 /* No comment provided by engineer. */
-"Set description" = "Vul omschrijving in";
+"Set description" = "Set description";
 
 /* No comment provided by engineer. */
 "Set size to %@\%" = "Set size to %1$@\\%2$";
@@ -758,10 +758,10 @@
 "Set Y to %@" = "Set Y to %@";
 
 /* No comment provided by engineer. */
-"Show" = "Verschijn";
+"Show" = "Show";
 
 /* No comment provided by engineer. */
-"Show Details" = "Details tonen";
+"Show Details" = "Show Details";
 
 /* No comment provided by engineer. */
 "Size" = "Size";
@@ -773,13 +773,13 @@
 "Slow Internet Connection!" = "Slow Internet Connection!";
 
 /* No comment provided by engineer. */
-"Sound" = "Geluid";
+"Sound" = "Sound";
 
 /* No comment provided by engineer. */
 "Sound name" = "Sound name";
 
 /* No comment provided by engineer. */
-"Sounds" = "Geluiden";
+"Sounds" = "Sounds";
 
 /* No comment provided by engineer. */
 "Speak %@" = "Speak %@";
@@ -794,7 +794,7 @@
 "Start sound\n%@" = "Start sound\n%@";
 
 /* No comment provided by engineer. */
-"Stop all sounds" = "Stop alle geluiden";
+"Stop all sounds" = "Stop all sounds";
 
 /* No comment provided by engineer. */
 "Su" = "Su";
@@ -806,7 +806,7 @@
 "Switch to look\n%@" = "Switch to look\n%@";
 
 /* No comment provided by engineer. */
-"Syntax Error!" = "Syntaxfout: Repareer of druk opnieuw om alle wijzigingen ongedaan te maken";
+"Syntax Error!" = "Syntax Error!";
 
 /* No comment provided by engineer. */
 "Take" = "Take";
@@ -836,7 +836,7 @@
 "Thursday" = "Thursday";
 
 /* No comment provided by engineer. */
-"Today" = "Vandaag";
+"Today" = "Today";
 
 /* No comment provided by engineer. */
 "Tu" = "Tu";
@@ -869,7 +869,7 @@
 "Upcoming version" = "Upcoming version";
 
 /* No comment provided by engineer. */
-"Upload" = "Uploaden";
+"Upload" = "Upload";
 
 /* No comment provided by engineer. */
 "Uploaded" = "Uploaded";
@@ -887,7 +887,7 @@
 "Variable type" = "Variable type";
 
 /* No comment provided by engineer. */
-"Variables" = "Variabelen";
+"Variables" = "Variables";
 
 /* No comment provided by engineer. */
 "Version" = "Version";
@@ -914,16 +914,16 @@
 "When I receive\n%@" = "When I receive\n%@";
 
 /* No comment provided by engineer. */
-"When program started" = "Wanneer programma start";
+"When program started" = "When program started";
 
 /* No comment provided by engineer. */
-"When tapped" = "Wanneer aangeklikt";
+"When tapped" = "When tapped";
 
 /* No comment provided by engineer. */
-"Yes" = "Ja";
+"Yes" = "Yes";
 
 /* No comment provided by engineer. */
-"Yesterday" = "Gisteren";
+"Yesterday" = "Yesterday";
 
 /* No comment provided by engineer. */
 "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people.";

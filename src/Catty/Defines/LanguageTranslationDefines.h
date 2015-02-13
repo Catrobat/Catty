@@ -218,6 +218,7 @@
 #define kLocalizedRecording NSLocalizedString(@"Recording", nil)
 #define kLocalizedError NSLocalizedString(@"Error", nil)
 #define kLocalizedMemoryWarning NSLocalizedString(@"Not enough Memory", nil)
+#define kLocalizedReportProgram NSLocalizedString(@"Report as inappropriate", nil)
 
 
 //************************************************************************************************************
