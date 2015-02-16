@@ -184,25 +184,27 @@
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
-    UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
+    UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                           target:self
                                                                           action:@selector(saveSound)];
-    UIBarButtonItem *rec;
+    UIImage* recordPauseImage;
     if (!self.isRecording) {
-        rec = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
-                                                            target:self
-                                                            action:@selector(recordClicked)];
+        recordPauseImage = [UIImage imageNamed:@"record"];
     } else {
-        rec = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause
-                                                           target:self
-                                                           action:@selector(recordClicked)];
+        recordPauseImage = [UIImage imageNamed:@"pause"];
     }
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.bounds = CGRectMake( 0, 0, recordPauseImage.size.width, recordPauseImage.size.height );
+    [button setImage:recordPauseImage forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(recordClicked) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *recordPause = [[UIBarButtonItem alloc] initWithCustomView:button];
+//    UIBarButtonItem* recordPause = [[UIBarButtonItem alloc] initWithImage:recordPauseImage style:nil target:self action:@selector(recordClicked)];
     
         // XXX: workaround for tap area problem:
         // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-    self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, rec, invisibleButton, flexItem,
+    self.toolbarItems = [NSArray arrayWithObjects:flexItem, invisibleButton, recordPause, invisibleButton, flexItem,
                          flexItem, flexItem, invisibleButton, save , invisibleButton, flexItem, nil];
 }
 
