@@ -90,7 +90,7 @@
 - (void)testClearGraphicEffectBrick2
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a" programID:program.header.programID];
+    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     object.program = program;
     object.position = CGPointMake(0.0f, 0.0f);
 
