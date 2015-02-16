@@ -22,6 +22,7 @@
 
 #import "GoNStepsBackBrick.h"
 #import "Formula.h"
+#import "Script.h"
 
 @implementation GoNStepsBackBrick
 
@@ -37,7 +38,7 @@
 
 - (BOOL)isSelectableForObject
 {
-    return (! [self.object isBackground]);
+    return (! [self.script.object isBackground]);
 }
 
 - (NSString*)brickTitle
@@ -56,12 +57,12 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        CGFloat zValue = self.object.zPosition;
-        int steps = [self.steps interpretIntegerForSprite:self.object];
-        NSDebug(@"%f",self.object.zPosition-steps);
-        self.object.zPosition = MAX(1, self.object.zPosition-steps);
-        for(SpriteObject *obj in self.object.program.objectList){
-            if ((obj.zPosition < zValue) && (obj.zPosition >= self.object.zPosition) && (obj != self.object)) {
+        CGFloat zValue = self.script.object.zPosition;
+        int steps = [self.steps interpretIntegerForSprite:self.script.object];
+        NSDebug(@"%f",self.script.object.zPosition-steps);
+        self.script.object.zPosition = MAX(1, self.script.object.zPosition-steps);
+        for(SpriteObject *obj in self.script.object.program.objectList){
+            if ((obj.zPosition < zValue) && (obj.zPosition >= self.script.object.zPosition) && (obj != self.script.object)) {
                 obj.zPosition +=1;
             }
         }
@@ -72,7 +73,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"GoNStepsBack (%d)", [self.steps interpretIntegerForSprite:self.object]];
+    return [NSString stringWithFormat:@"GoNStepsBack (%d)", [self.steps interpretIntegerForSprite:self.script.object]];
 }
 
 @end

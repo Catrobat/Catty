@@ -22,6 +22,7 @@
 
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
+#import "WhenScript.h"
 
 @interface GoNStepsBackBrickTests : BrickTests
 
@@ -41,174 +42,169 @@
     [super tearDown];
 }
 
-
--(void)testGoNStepsBackBrickSingle
+- (void)testGoNStepsBackBrickSingle
 {
     Program* program = [[Program alloc] init];
-    
     SpriteObject* object1 = [[SpriteObject alloc] init];
     object1.program = program;
     object1.zPosition = 5;
     object1.numberOfObjectsWithoutBackground = 2;
-    
+
     SpriteObject* object2 = [[SpriteObject alloc] init];
     object2.zPosition = 3;
-    
+
     [program.objectList addObject:object1];
     [program.objectList addObject:object2];
-    
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object1;
+
     GoNStepsBackBrick* brick = [[GoNStepsBackBrick alloc] init];
-    brick.object = object1;
-    
+    brick.script = script;
+
     Formula* steps = [[Formula alloc] init];
     FormulaElement* formulaTree = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"1";
     steps.formulaTree = formulaTree;
     brick.steps = steps;
-    
+
     dispatch_block_t action = [brick actionBlock];
     action();
-    
     XCTAssertEqual(object1.zPosition, (CGFloat)4.0, @"GoNStepsBack is not correctly calculated");
     XCTAssertEqual(object2.zPosition, (CGFloat)3.0, @"GoNStepsBack is not correctly calculated");
-    
 }
--(void)testGoNStepsBackBrickTwice
+
+- (void)testGoNStepsBackBrickTwice
 {
-    Program* program = [[Program alloc] init];
-    
-    SpriteObject* object1 = [[SpriteObject alloc] init];
+    Program *program = [[Program alloc] init];
+    SpriteObject *object1 = [[SpriteObject alloc] init];
     object1.program = program;
     object1.zPosition = 6;
     object1.numberOfObjectsWithoutBackground = 2;
-    
-    SpriteObject* object2 = [[SpriteObject alloc] init];
+
+    SpriteObject *object2 = [[SpriteObject alloc] init];
     object2.zPosition = 3;
-    
+
     [program.objectList addObject:object1];
     [program.objectList addObject:object2];
-    
-    
-    GoNStepsBackBrick* brick = [[GoNStepsBackBrick alloc] init];
-    brick.object = object1;
-    
-    Formula* steps = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object1;
+
+    GoNStepsBackBrick *brick = [[GoNStepsBackBrick alloc] init];
+    brick.script = script;
+
+    Formula *steps = [[Formula alloc] init];
+    FormulaElement *formulaTree = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"2";
     steps.formulaTree = formulaTree;
     brick.steps = steps;
-    
+
     dispatch_block_t action = [brick actionBlock];
     action();
-    
     XCTAssertEqual(object1.zPosition, (CGFloat)4.0, @"GoNStepsBack is not correctly calculated");
     XCTAssertEqual(object2.zPosition, (CGFloat)3.0, @"GoNStepsBack is not correctly calculated");
-    
 }
 
--(void)testGoNStepsBackBrickComeToSameLayer
+- (void)testGoNStepsBackBrickComeToSameLayer
 {
-    Program* program = [[Program alloc] init];
-    
-    SpriteObject* object1 = [[SpriteObject alloc] init];
+    Program *program = [[Program alloc] init];
+    SpriteObject *object1 = [[SpriteObject alloc] init];
     object1.program = program;
     object1.zPosition = 5;
     object1.numberOfObjectsWithoutBackground = 2;
-    
-    SpriteObject* object2 = [[SpriteObject alloc] init];
+
+    SpriteObject *object2 = [[SpriteObject alloc] init];
     object2.zPosition = 3;
-    
+
     [program.objectList addObject:object1];
     [program.objectList addObject:object2];
-    
-    
-    GoNStepsBackBrick* brick = [[GoNStepsBackBrick alloc] init];
-    brick.object = object1;
-    
-    Formula* steps = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object1;
+
+    GoNStepsBackBrick *brick = [[GoNStepsBackBrick alloc] init];
+    brick.script = script;
+
+    Formula *steps = [[Formula alloc] init];
+    FormulaElement *formulaTree = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"2";
     steps.formulaTree = formulaTree;
     brick.steps = steps;
-    
+
     dispatch_block_t action = [brick actionBlock];
     action();
-    
     XCTAssertEqual(object1.zPosition, (CGFloat)3.0, @"GoNStepsBack is not correctly calculated");
     XCTAssertEqual(object2.zPosition, (CGFloat)4.0, @"GoNStepsBack is not correctly calculated");
-    
 }
 
--(void)testGoNStepsBackBrickOutOfRange
+- (void)testGoNStepsBackBrickOutOfRange
 {
-    Program* program = [[Program alloc] init];
-    
-    SpriteObject* object1 = [[SpriteObject alloc] init];
+    Program *program = [[Program alloc] init];
+    SpriteObject *object1 = [[SpriteObject alloc] init];
     object1.program = program;
     object1.zPosition = 5;
     object1.numberOfObjectsWithoutBackground = 2;
-    
-    SpriteObject* object2 = [[SpriteObject alloc] init];
+
+    SpriteObject *object2 = [[SpriteObject alloc] init];
     object2.zPosition = 3;
-    
+
     [program.objectList addObject:object1];
     [program.objectList addObject:object2];
-    
-    
-    GoNStepsBackBrick* brick = [[GoNStepsBackBrick alloc] init];
-    brick.object = object1;
-    
-    Formula* steps = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object1;
+
+    GoNStepsBackBrick *brick = [[GoNStepsBackBrick alloc] init];
+    brick.script = script;
+
+    Formula *steps = [[Formula alloc] init];
+    FormulaElement *formulaTree = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"10";
     steps.formulaTree = formulaTree;
     brick.steps = steps;
-    
+
     dispatch_block_t action = [brick actionBlock];
     action();
-    
     XCTAssertEqual(object1.zPosition, (CGFloat)1.0, @"GoNStepsBack is not correctly calculated");
     XCTAssertEqual(object2.zPosition, (CGFloat)4.0, @"GoNStepsBack is not correctly calculated");
-    
 }
 
--(void)testGoNStepsBackBrickWronginput
+- (void)testGoNStepsBackBrickWronginput
 {
-    Program* program = [[Program alloc] init];
-    
-    SpriteObject* object1 = [[SpriteObject alloc] init];
+    Program *program = [[Program alloc] init];
+    SpriteObject *object1 = [[SpriteObject alloc] init];
     object1.program = program;
     object1.zPosition = 5;
     object1.numberOfObjectsWithoutBackground = 2;
-    
-    SpriteObject* object2 = [[SpriteObject alloc] init];
+
+    SpriteObject *object2 = [[SpriteObject alloc] init];
     object2.zPosition = 3;
-    
+
     [program.objectList addObject:object1];
     [program.objectList addObject:object2];
-    
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object1;
+
     GoNStepsBackBrick* brick = [[GoNStepsBackBrick alloc] init];
-    brick.object = object1;
-    
-    Formula* steps = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+    brick.script = script;
+
+    Formula *steps = [[Formula alloc] init];
+    FormulaElement *formulaTree = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"a";
     steps.formulaTree = formulaTree;
     brick.steps = steps;
-    
+
     dispatch_block_t action = [brick actionBlock];
     action();
-    
     XCTAssertEqual(object1.zPosition, (CGFloat)5.0, @"GoNStepsBack is not correctly calculated");
     XCTAssertEqual(object2.zPosition, (CGFloat)3.0, @"GoNStepsBack is not correctly calculated");
-    
 }
 
 @end

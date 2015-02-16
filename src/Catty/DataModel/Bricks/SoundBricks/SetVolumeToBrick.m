@@ -20,11 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "SetVolumeToBrick.h"
-
 #import "Formula.h"
 #import "AudioManager.h"
+#import "Script.h"
 
 @implementation SetVolumeToBrick
 
@@ -49,8 +48,8 @@
     
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
-        double volume = [self.volume interpretDoubleForSprite:self.object];
-        [[AudioManager sharedAudioManager] setVolumeToPercent:(CGFloat)volume forKey:self.object.name];
+        double volume = [self.volume interpretDoubleForSprite:self.script.object];
+        [[AudioManager sharedAudioManager] setVolumeToPercent:(CGFloat)volume forKey:self.script.object.name];
         
     }];
 }
@@ -59,7 +58,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Set Volume to: %f%%)", [self.volume interpretDoubleForSprite:self.object]];
+    return [NSString stringWithFormat:@"Set Volume to: %f%%)", [self.volume interpretDoubleForSprite:self.script.object]];
 }
 
 

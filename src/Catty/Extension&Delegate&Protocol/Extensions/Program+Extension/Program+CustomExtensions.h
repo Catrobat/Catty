@@ -25,6 +25,5 @@
 @interface Program (CustomExtensions)
 
 - (void)updateReferences;
-- (void)removeReferences;
 
 @end

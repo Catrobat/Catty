@@ -22,6 +22,7 @@
 
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
+#import "WhenScript.h"
 
 @interface TurnRightBrickTests : BrickTests
 
@@ -41,122 +42,124 @@
     [super tearDown];
 }
 
--(void)testTurnrightBrick
+- (void)testTurnrightBrick
 {
-    SpriteObject* object = [[SpriteObject alloc] init];
+    SpriteObject *object = [[SpriteObject alloc] init];
     object.zRotation = 0;
-    
-    TurnRightBrick* brick = [[TurnRightBrick alloc] init];
-    brick.object = object;
-    
-    Formula* degrees = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
+    TurnRightBrick *brick = [[TurnRightBrick alloc] init];
+    brick.script = script;
+
+    Formula *degrees = [[Formula alloc] init];
+    FormulaElement *formulaTree = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"20";
     degrees.formulaTree = formulaTree;
     brick.degrees = degrees;
-    
+
     dispatch_block_t action = [brick actionBlock];
-    
     action();
     NSLog(@"Rotation: %f",[object rotation]);
-    
     XCTAssertEqualWithAccuracy([object rotation], -20.0f, 0.0001, @"TurnRightBrick not correct");
 }
 
--(void)testTurnrightBrickOver360
+- (void)testTurnrightBrickOver360
 {
-    SpriteObject* object = [[SpriteObject alloc] init];
+    SpriteObject *object = [[SpriteObject alloc] init];
     object.zRotation = 0;
-    
-    TurnRightBrick* brick = [[TurnRightBrick alloc] init];
-    brick.object = object;
-    
-    Formula* degrees = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
+    TurnRightBrick *brick = [[TurnRightBrick alloc] init];
+    brick.script = script;
+
+    Formula *degrees = [[Formula alloc] init];
+    FormulaElement *formulaTree = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"400";
     degrees.formulaTree = formulaTree;
     brick.degrees = degrees;
-    
+
     dispatch_block_t action = [brick actionBlock];
-    
     action();
     NSLog(@"Rotation: %f",[object rotation]);
-    
     XCTAssertEqualWithAccuracy([object rotation], -40.0f, 0.0001, @"TurnRightBrick not correct");
 }
 
-
--(void)testTurnrightBrickNegative
+- (void)testTurnrightBrickNegative
 {
-    SpriteObject* object = [[SpriteObject alloc] init];
+    SpriteObject *object = [[SpriteObject alloc] init];
     object.zRotation = 0;
-    
-    TurnRightBrick* brick = [[TurnRightBrick alloc] init];
-    brick.object = object;
-    
-    Formula* degrees = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
+    TurnRightBrick *brick = [[TurnRightBrick alloc] init];
+    brick.script = script;
+
+    Formula *degrees = [[Formula alloc] init];
+    FormulaElement *formulaTree = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"-20";
     degrees.formulaTree = formulaTree;
     brick.degrees = degrees;
-    
+
     dispatch_block_t action = [brick actionBlock];
-    
     action();
     NSLog(@"Rotation: %f",[object rotation]);
-    
     XCTAssertEqualWithAccuracy([object rotation], 20.0f, 0.0001, @"TurnRightBrick not correct");
 }
 
--(void)testTurnrightBrickNegativeOver360
+- (void)testTurnrightBrickNegativeOver360
 {
-    SpriteObject* object = [[SpriteObject alloc] init];
+    SpriteObject *object = [[SpriteObject alloc] init];
     object.zRotation = 0;
-    
-    TurnRightBrick* brick = [[TurnRightBrick alloc] init];
-    brick.object = object;
-    
-    Formula* degrees = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
+    TurnRightBrick *brick = [[TurnRightBrick alloc] init];
+    brick.script = script;
+
+    Formula *degrees = [[Formula alloc] init];
+    FormulaElement *formulaTree = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"-400";
     degrees.formulaTree = formulaTree;
     brick.degrees = degrees;
-    
+
     dispatch_block_t action = [brick actionBlock];
-    
     action();
     NSLog(@"Rotation: %f",[object rotation]);
-    
     XCTAssertEqualWithAccuracy([object rotation], 40.0f, 0.0001, @"TurnRightBrick not correct");
 }
 
--(void)testTurnrightBrickWrongInput
+- (void)testTurnrightBrickWrongInput
 {
-    SpriteObject* object = [[SpriteObject alloc] init];
+    SpriteObject *object = [[SpriteObject alloc] init];
     object.zRotation = 0;
-    
-    TurnRightBrick* brick = [[TurnRightBrick alloc] init];
-    brick.object = object;
-    
-    Formula* degrees = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
+    TurnRightBrick *brick = [[TurnRightBrick alloc] init];
+    brick.script = script;
+
+    Formula *degrees = [[Formula alloc] init];
+    FormulaElement *formulaTree = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"a";
     degrees.formulaTree = formulaTree;
     brick.degrees = degrees;
-    
+
     dispatch_block_t action = [brick actionBlock];
-    
     action();
     NSLog(@"Rotation: %f",[object rotation]);
-    
     XCTAssertEqualWithAccuracy([object rotation], 0.0, 0.0001, @"TurnRightBrick not correct");
 }
-
-
 
 @end

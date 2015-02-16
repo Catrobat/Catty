@@ -423,7 +423,7 @@
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
 
-    [self.program removeReferences];
+    [[ProgramManager sharedProgramManager] setProgram:nil];
 
     //Delete sound rec for loudness sensor
     NSError *error;

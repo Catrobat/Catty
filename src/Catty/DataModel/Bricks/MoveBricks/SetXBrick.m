@@ -24,6 +24,7 @@
 #import "SetXBrick.h"
 #import "Formula.h"
 #import "Logger.h"
+#import "Script.h"
 
 @implementation SetXBrick
 
@@ -51,16 +52,16 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        double xPosition = [self.xPosition interpretDoubleForSprite:self.object];
+        double xPosition = [self.xPosition interpretDoubleForSprite:self.script.object];
         
-        self.object.position = CGPointMake((CGFloat)xPosition, self.object.yPosition);
+        self.script.object.position = CGPointMake((CGFloat)xPosition, self.script.object.yPosition);
     };
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetXBrick (x-Pos:%f)", [self.xPosition interpretDoubleForSprite:self.object]];
+    return [NSString stringWithFormat:@"SetXBrick (x-Pos:%f)", [self.xPosition interpretDoubleForSprite:self.script.object]];
 }
 
 @end

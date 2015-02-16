@@ -28,11 +28,11 @@
 @protocol SingleBrickSelectionViewDelegate <NSObject>
 
 @optional
-- (void)singleBrickSelectionView:(SingleBrickSelectionView *)singleBrickSelectionView
-                  didSelectBrick:(id<BrickProtocol>)brick replicantBrickView:(UIView *)brickView;
+- (void)singleBrickSelectionView:(SingleBrickSelectionView*)singleBrickSelectionView
+                  didSelectBrick:(id<BrickProtocol>)brick replicantBrickView:(UIView*)brickView;
 
-- (void)singleBrickSelectionView:(SingleBrickSelectionView *)singleBrickSelectionView
-                  didShowWithBrick:(id<BrickProtocol>)brick replicantBrickView:(UIView *)brickView;
+- (void)singleBrickSelectionView:(SingleBrickSelectionView*)singleBrickSelectionView
+                  didShowWithBrick:(id<BrickProtocol>)brick replicantBrickView:(UIView*)brickView;
 
 
 @end
@@ -41,8 +41,7 @@
 @property (strong, nonatomic) UIView *dimview;
 @property (nonatomic, weak) id<SingleBrickSelectionViewDelegate> delegate;
 
-
-- (void)showSingleBrickSelectionViewWithBrickCell:(BrickCell *)brickCell fromView:(UIView *)fromView
-                                        belowView:(UIView *)belowView completion:(void(^)())completionBlock;
+- (void)showSingleBrickSelectionViewWithBrickCell:(BrickCell*)brickCell fromView:(UIView*)fromView
+                                        belowView:(UIView*)belowView completion:(void(^)())completionBlock;
 
 @end

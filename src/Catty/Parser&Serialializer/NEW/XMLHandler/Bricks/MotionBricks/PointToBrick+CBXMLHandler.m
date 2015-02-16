@@ -29,13 +29,14 @@
 #import "CBXMLParserHelper.h"
 #import "CBXMLSerializerHelper.h"
 #import "CBXMLPositionStack.h"
+#import "Script.h"
 
 @implementation PointToBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     if([xmlElement childCount] > 1) {
-        [XMLError exceptionWithMessage:@"Too many child nodes found... (0 or 1 expected, actual %lu)", [xmlElement childCount]];
+        [XMLError exceptionWithMessage:@"Too many child nodes found... (0 or 1 expected, actual %lu)", (unsigned long)[xmlElement childCount]];
     }
     
     PointToBrick *pointToBrick = [self new];
@@ -70,16 +71,16 @@
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
     [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"PointToBrick"]];
-    
-    if(self.pointedObject != self.object) {
-        [XMLError exceptionIfNil:self.pointedObject message:@"No sprite object given in PointToBrick"];
-        [XMLError exceptionIfNil:self.object message:@"Missing reference to brick's sprite object"];
 
+    [XMLError exceptionIfNil:self.pointedObject message:@"No sprite object given in PointToBrick"];
+    [XMLError exceptionIfNil:self.script.object message:@"Missing reference to brick's sprite object"];
+    
+    if(self.pointedObject != self.script.object) {
         // check if pointedObject has been already serialized
         NSUInteger indexOfPointedObject = [CBXMLSerializerHelper indexOfElement:self.pointedObject
-                                                                    inArray:context.spriteObjectList];
-        NSUInteger indexOfSpriteObject = [CBXMLSerializerHelper indexOfElement:self.object
-                                                                   inArray:context.spriteObjectList];
+                                                                inArray:context.spriteObjectList];
+        NSUInteger indexOfSpriteObject = [CBXMLSerializerHelper indexOfElement:self.script.object
+                                                               inArray:context.spriteObjectList];
         [XMLError exceptionIf:indexOfPointedObject equals:NSNotFound message:@"Pointed object does not exist in spriteObject list"];
         [XMLError exceptionIf:indexOfSpriteObject equals:NSNotFound message:@"Sprite object does not exist in spriteObject list"];
 
@@ -91,7 +92,7 @@
             CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
 
             NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
-                                                             toDestinationPositionStack:positionStackOfSpriteObject];
+                                                         toDestinationPositionStack:positionStackOfSpriteObject];
             [pointedObjectXmlElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
             [brick addChild:pointedObjectXmlElement context:context];
         } else {

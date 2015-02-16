@@ -21,6 +21,7 @@
  */
 
 #import "ShowBrick.h"
+#import "Script.h"
 
 @implementation ShowBrick
 
@@ -38,14 +39,14 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        self.object.hidden = NO;
+        self.script.object.hidden = NO;
     };
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ShowBrick on: %@", self.object.name];
+    return [NSString stringWithFormat:@"ShowBrick on: %@", self.script.object.name];
 }
 
 @end

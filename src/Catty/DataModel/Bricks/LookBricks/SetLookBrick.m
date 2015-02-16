@@ -25,12 +25,13 @@
 #import "ProgramDefines.h"
 #import <SpriteKit/SpriteKit.h>
 #import "UIImage+CatrobatUIImageExtensions.h"
+#import "Script.h"
 
 @implementation SetLookBrick
 
 - (NSString*)brickTitle
 {
-    return ([self.object isBackground] ? kLocalizedSetBackground : kLocalizedSetLook);
+    return ([self.script.object isBackground] ? kLocalizedSetBackground : kLocalizedSetLook);
 }
 
 - (SKAction*)action
@@ -42,39 +43,39 @@
 {
     UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook]];
     SKTexture* texture= nil;
-    if ([self.object isBackground]) {
+    if ([self.script.object isBackground]) {
         texture = [SKTexture textureWithImage:image];
-        self.object.currentUIImageLook = image;
+        self.script.object.currentUIImageLook = image;
     } else {
         //        CGRect newRect = [image cropRectForImage:image];
         //        CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
         //        UIImage *newImage = [UIImage imageWithCGImage:imageRef];
         //        CGImageRelease(imageRef);
         texture = [SKTexture textureWithImage:image];
-        self.object.currentUIImageLook = image;
+        self.script.object.currentUIImageLook = image;
     }
-    self.object.currentLookBrightness = 0;
+    self.script.object.currentLookBrightness = 0;
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        double xScale = self.object.xScale;
-        double yScale = self.object.yScale;
-        self.object.xScale = 1.0;
-        self.object.yScale = 1.0;
-        self.object.size = texture.size;
-        self.object.texture = texture;
-        self.object.currentLook = self.look;
+        double xScale = self.script.object.xScale;
+        double yScale = self.script.object.yScale;
+        self.script.object.xScale = 1.0;
+        self.script.object.yScale = 1.0;
+        self.script.object.size = texture.size;
+        self.script.object.texture = texture;
+        self.script.object.currentLook = self.look;
         if(xScale != 1.0) {
-            self.object.xScale = (CGFloat)xScale;
+            self.script.object.xScale = (CGFloat)xScale;
         }
         if(yScale != 1.0) {
-            self.object.yScale = (CGFloat)yScale;
+            self.script.object.yScale = (CGFloat)yScale;
         }
     };
 }
 
 - (NSString*)pathForLook
 {
-    return [NSString stringWithFormat:@"%@%@/%@", [self.object projectPath], kProgramImagesDirName, self.look.fileName];
+    return [NSString stringWithFormat:@"%@%@/%@", [self.script.object projectPath], kProgramImagesDirName, self.look.fileName];
 }
 
 #pragma mark - Description

@@ -35,7 +35,6 @@
 #import "CBXMLContext.h"
 #import "CBXMLOpenedNestingBricksStack.h"
 #import "CBXMLValidator.h"
-#import "CBXMLLogger.h"
 #import "Header+CBXMLHandler.h"
 #import "SpriteObject+CBXMLHandler.h"
 #import "VariablesContainer+CBXMLHandler.h"

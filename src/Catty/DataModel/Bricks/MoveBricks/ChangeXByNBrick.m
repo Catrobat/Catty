@@ -22,6 +22,7 @@
 
 #import "ChangeXByNBrick.h"
 #import "Formula.h"
+#import "Script.h"
 
 @implementation ChangeXByNBrick
 
@@ -49,8 +50,8 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        double xMov = [self.xMovement interpretDoubleForSprite:self.object];
-        self.object.position = CGPointMake((CGFloat)(self.object.position.x+xMov), self.object.position.y);
+        double xMov = [self.xMovement interpretDoubleForSprite:self.script.object];
+        self.script.object.position = CGPointMake((CGFloat)(self.script.object.position.x+xMov), self.script.object.position.y);
 
     };
 }
@@ -58,7 +59,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    double xMov = [self.xMovement interpretDoubleForSprite:self.object];
+    double xMov = [self.xMovement interpretDoubleForSprite:self.script.object];
     return [NSString stringWithFormat:@"ChangeXBy (%f)", xMov];
 }
 

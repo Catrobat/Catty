@@ -335,14 +335,14 @@
             // case it's a script brick
             NSString *scriptSubClassName = NSStringFromClass([script class]);
             brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:scriptSubClassName forIndexPath:indexPath];
-            brickCell.brick = script;
+            brickCell.scriptOrBrick = script;
             brickCell.selectButton.hidden = YES;
         } else {
             // case it's a normal brick
             Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
             NSString *brickSubClassName = NSStringFromClass([brick class]);
             brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickSubClassName forIndexPath:indexPath];
-            brickCell.brick = brick;
+            brickCell.scriptOrBrick = brick;
         }
         brickCell.enabled = YES;
     } else {
@@ -351,7 +351,7 @@
             NSString *brickTypeName = NSStringFromClass([brick class]);
             brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName
                                                                   forIndexPath:indexPath];
-            brickCell.brick = [self.selectableBricks objectAtIndex:indexPath.section];
+            brickCell.scriptOrBrick = [self.selectableBricks objectAtIndex:indexPath.section];
         }
     }
     if (self.selectedAllCells) {
@@ -938,13 +938,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             script.object = self.object;
             [self.object.scriptList addObject:script];
         }
-        
+
         script = [self.object.scriptList objectAtIndex:self.selectedIndexPath.section];
         Brick *brick = (Brick*)brickOrScript;
-        brick.object = self.object;
-        
+        brick.script.object = self.object;
         [self insertBrick:brick atIndexPath:self.selectedIndexPath intoScriptList:script copy:copy completion:NULL];
-        
     } else if ([brickOrScript isKindOfClass:[Script class]]) {
         Script *script = (Script*)brickOrScript;
         script.object = self.object;
@@ -1076,7 +1074,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (void)textFieldFinished:(id)sender
 {
     NoteBrickTextField *noteBrickTextField = (NoteBrickTextField*)sender;
-    NoteBrick *noteBrick =(NoteBrick*) noteBrickTextField.cell.brick;
+    NoteBrick *noteBrick = (NoteBrick*)noteBrickTextField.cell.scriptOrBrick;
     noteBrick.note = noteBrickTextField.text;
     [noteBrickTextField update];
     [noteBrickTextField resignFirstResponder];

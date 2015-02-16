@@ -22,6 +22,7 @@
 
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
+#import "WhenScript.h"
 
 @interface SetYBrickTests : BrickTests
 
@@ -56,16 +57,16 @@
     formulaTree.type = NUMBER;
     formulaTree.value = @"20";
     yPosition.formulaTree = formulaTree;
-    
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
     SetYBrick* brick = [[SetYBrick alloc]init];
-    brick.object = object;
+    brick.script = script;
     brick.yPosition = yPosition;
-    
+
     dispatch_block_t action = [brick actionBlock];
     action();
-    
-    
     XCTAssertEqual(object.yPosition, (CGFloat)20, @"SetyBrick is not correctly calculated");
 }
 
@@ -83,16 +84,16 @@
     formulaTree.type = NUMBER;
     formulaTree.value = @"-20";
     yPosition.formulaTree = formulaTree;
-    
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
     SetYBrick* brick = [[SetYBrick alloc]init];
-    brick.object = object;
+    brick.script = script;
     brick.yPosition = yPosition;
     
     dispatch_block_t action = [brick actionBlock];
     action();
-    
-    
     XCTAssertEqual(object.yPosition, (CGFloat)-20, @"SetyBrick is not correctly calculated");
 }
 
@@ -110,16 +111,16 @@
     formulaTree.type = NUMBER;
     formulaTree.value = @"50000";
     yPosition.formulaTree = formulaTree;
-    
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
     SetYBrick* brick = [[SetYBrick alloc]init];
-    brick.object = object;
+    brick.script = script;
     brick.yPosition = yPosition;
-    
+
     dispatch_block_t action = [brick actionBlock];
     action();
-    
-    
     XCTAssertEqual(object.yPosition, (CGFloat)50000, @"SetyBrick is not correctly calculated");
 }
 
@@ -137,16 +138,16 @@
     formulaTree.type = NUMBER;
     formulaTree.value = @"a";
     yPosition.formulaTree = formulaTree;
-    
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
     SetYBrick* brick = [[SetYBrick alloc]init];
-    brick.object = object;
+    brick.script = script;
     brick.yPosition = yPosition;
-    
+
     dispatch_block_t action = [brick actionBlock];
     action();
-    
-    
     XCTAssertEqual(object.yPosition, (CGFloat)0, @"SetyBrick is not correctly calculated");
 }
 

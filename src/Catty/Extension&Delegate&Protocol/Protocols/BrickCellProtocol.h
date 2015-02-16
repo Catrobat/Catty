@@ -21,12 +21,12 @@
  */
 
 #import <Foundation/Foundation.h>
-@protocol BrickProtocol;
+@protocol ScriptProtocol;
 
 @protocol BrickCellProtocol <NSObject>
 
 @required
-@property (nonatomic, strong) id<BrickProtocol> brick;
+@property (nonatomic, strong) id<ScriptProtocol> scriptOrBrick;
 @property (nonatomic) BOOL enabled;
 - (kBrickShapeType)brickShapeType;
 + (CGFloat)cellHeight;
