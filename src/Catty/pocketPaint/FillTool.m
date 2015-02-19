@@ -1,4 +1,4 @@
-/**
+/*
  *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
@@ -36,13 +36,7 @@
 
 - (UIImage *)fillImage:(UIImage*)image startingPoint:(CGPoint)point andColor:(UIColor*)color
 {
-  if (!image) {
-    UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0);
-    UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    image = blank;
-  }
-  UIImage *newImage = [image floodFillFromPoint:point withColor:color andTolerance:75];
+  UIImage *newImage = [image floodFillFromPoint:point withColor:color andTolerance:50];
   return newImage;
 }
 
@@ -58,6 +52,11 @@
   //UNDO-Manager
   [[self.canvas getUndoManager] setImage:self.canvas.saveView.image];
 //  NSLog(@"%@",self.canvas.saveView.image);
-  self.canvas.saveView.image = [self fillImage:self.canvas.saveView.image startingPoint:lastPoint andColor:[UIColor colorWithRed:self.canvas.red green:self.canvas.green blue:self.canvas.blue alpha:self.canvas.opacity]];
+    UIImage *image = self.canvas.saveView.image;
+  image = [self fillImage:image startingPoint:lastPoint andColor:[UIColor colorWithRed:self.canvas.red green:self.canvas.green blue:self.canvas.blue alpha:self.canvas.opacity]];
+    UIGraphicsBeginImageContext(image.size);
+    [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
+    self.canvas.saveView.image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
 }
 @end

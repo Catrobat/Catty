@@ -27,7 +27,7 @@
   BOOL fingerSwiped;
   CGPoint lastPoint;
 }
-@property (nonatomic,strong) PaintViewController* canvas;
+@property (nonatomic,weak) PaintViewController* canvas;
 @property (nonatomic,strong) UIView* pointerView;
 @property (nonatomic,strong) UIImageView* colorView;
 @property (nonatomic,strong) CALayer *border;

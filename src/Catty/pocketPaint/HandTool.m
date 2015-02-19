@@ -65,7 +65,7 @@
 - (void)disableHandTool
 {
   self.canvas.handToolBarButtonItem.tintColor = [UIColor lightOrangeColor];
-  if (self.canvas.activeAction == brush) {
+  if (self.canvas.activeAction == brush || self.canvas.activeAction == eraser) {
     self.canvas.drawGesture.enabled = YES;
   } else if (self.canvas.activeAction == pipette){
     self.canvas.pipetteRecognizer.enabled = YES;

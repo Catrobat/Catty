@@ -23,7 +23,7 @@
 #import "TimerLabel.h"
 
 
-#define kDefaultTimeFormat  @"HH:mm:ss"
+#define kDefaultTimeFormat  @"mm:ss"
 #define kDefaultFireIntervalNormal  0.1
 #define kDefaultFireIntervalHighUse  0.02
 #define kDefaultTimerType TimerLabelTypeStopWatch
