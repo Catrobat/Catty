@@ -53,13 +53,13 @@
         context.pointedSpriteObjectList = newContext.pointedSpriteObjectList;
 
         SpriteObject *alreadyExistantSpriteObject = [CBXMLParserHelper findSpriteObjectInArray:context.pointedSpriteObjectList
-                                                                                  withName:spriteObject.name];
+                                                                                      withName:spriteObject.name];
         if (alreadyExistantSpriteObject) {
             spriteObject = alreadyExistantSpriteObject;
         } else {
             [context.pointedSpriteObjectList addObject:spriteObject];
         }
-        
+
         pointToBrick.pointedObject = spriteObject;
     }
 

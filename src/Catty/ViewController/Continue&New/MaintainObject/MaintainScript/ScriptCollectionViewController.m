@@ -72,7 +72,7 @@
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 @property (nonatomic, strong) AHKActionSheet *brickSelectionMenu;
-@property  (nonatomic, strong) BrickSelectionView *brickSelectionView;
+@property (nonatomic, strong) BrickSelectionView *brickSelectionView;
 @property (nonatomic, strong) NSArray *selectableBricks;
 @property (nonatomic, strong) NSMutableDictionary *selectedIndexPaths;
 @property (nonatomic, assign) BOOL selectedAllCells;
