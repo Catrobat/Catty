@@ -31,6 +31,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "Util.h"
 #import "LanguageTranslationDefines.h"
+#import "QuartzCore/QuartzCore.h"
 
 //Helper
 #import "RGBAHelper.h"
@@ -98,10 +99,10 @@
   _activeAction = brush;
   _degrees = 0;
 
-    self.actionTypeArray = @[@(brush),@(eraser),@(crop),@(pipette),@(mirror),@(image),@(line),@(rectangle),@(ellipse),@(stamp),@(rotate),@(zoom),@(pointer)];//,@(fillTool) is buggy 
+    self.actionTypeArray = @[@(brush),@(eraser),@(crop),@(pipette),@(mirror),@(image),@(line),@(rectangle),@(ellipse),@(stamp),@(rotate),@(zoom),@(pointer),@(fillTool)];
   
   [self setupCanvas];
-    [self setupTools];
+  [self setupTools];
   [self setupGestures];
   [self setupToolbar];
   [self setupZoom];
@@ -123,8 +124,9 @@
             UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
             UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
-            if (![self.saveView.image isEqual:blank] && ![self.saveView.image isEqual:self.editingImage]) {
-                [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
+          if (![self.saveView.image isEqual:blank] && ![self.saveView.image isEqual:self.editingImage]) {
+                  [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
+              
             }
         }
             // reenable swipe back gesture
@@ -132,11 +134,6 @@
             self.navigationController.interactivePopGestureRecognizer.enabled = YES;
         }
     }
-}
-
--(void)didMoveToParentViewController:(UIViewController *)parent
-{
-    NSLog(@"Moved,%@",self.navigationController.viewControllers);
 }
 
 - (void)didReceiveMemoryWarning
@@ -156,21 +153,32 @@
 
   self.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
 
+
   self.helper = [[UIView alloc] initWithFrame:rect];
         //add blank image at the beginning
     if (self.editingImage) {
+        UIImage *image = self.editingImage;
+        UIGraphicsBeginImageContext(image.size);
+        [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
+        self.saveView.image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        self.editingImage = self.saveView.image;
         if ((self.editingImage.size.width <= self.view.bounds.size.width) && (self.editingImage.size.height <= self.view.bounds.size.height)) {
             self.helper.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
             self.drawView.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
             self.saveView.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
-        }else{
-            
-            self.helper.frame = self.view.bounds;
-            self.drawView.frame = self.view.bounds;
-            self.saveView.frame = self.view.bounds;
+        } else if ((self.editingImage.size.width <= 2*self.view.bounds.size.width) && (self.editingImage.size.height <= 2*self.view.bounds.size.height)) {
+            self.helper.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
+            self.drawView.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
+            self.saveView.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
+            [self.scrollView zoomToRect:CGRectMake(0, 0, 200, 400) animated:YES];
+        }else {
+            CGFloat height = self.editingImage.size.height*0.5;
+            CGFloat width = self.editingImage.size.width*0.5;
+            self.helper.frame = CGRectMake(0, 0, width, height);
+            self.drawView.frame = CGRectMake(0, 0, width, height);
+            self.saveView.frame = CGRectMake(0, 0, width, height);
         }
-
-        self.saveView.image = self.editingImage;
     } else {
         UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
         UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
@@ -762,7 +770,8 @@
 - (void)saveAction
 {
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    UIImageWriteToSavedPhotosAlbum(self.saveView.image, nil, nil, nil);
+          UIImageWriteToSavedPhotosAlbum(self.saveView.image, nil, nil, nil);
+      
   });
     NSDebug(@"saved to Camera Roll");
 }
@@ -774,7 +783,7 @@
         UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         if (![self.saveView.image isEqual:blank]) {
-            [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
+                [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
         }
     }
     [self.navigationController popViewControllerAnimated:YES];
@@ -842,6 +851,8 @@
 
 -(void)dealloc
 {
+    self.fillTool = nil;
+    self.fillRecognizer = nil;
     NSLog(@"dealloc");
 }
 
