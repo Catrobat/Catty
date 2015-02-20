@@ -25,10 +25,10 @@
 
 @interface HandTool : NSObject
 
-@property (nonatomic,weak) PaintViewController* canvas;
--(id)initWithDrawViewCanvas:(PaintViewController*)canvas;
+@property (nonatomic, weak) PaintViewController *canvas;
+- (id)initWithDrawViewCanvas:(PaintViewController*)canvas;
 
+- (void)changeHandToolAction;
+- (void)disableHandTool;
 
--(void)changeHandToolAction;
--(void)disableHandTool;
 @end

@@ -33,7 +33,7 @@
 
 @implementation InternFormulaState
 
--(InternFormulaState *)initWithList:(NSMutableArray *)internTokenFormulaList
+- (InternFormulaState *)initWithList:(NSMutableArray *)internTokenFormulaList
                           selection:(InternFormulaTokenSelection *)tokenSelection
             andExternCursorPosition:(int)externCursorPosition
 {
@@ -50,7 +50,7 @@
 }
 
 
--(BOOL)isEqual:(id)objectToCompare
+- (BOOL)isEqual:(id)objectToCompare
 {
     if([objectToCompare isKindOfClass:[InternFormulaState class]])
     {
@@ -79,7 +79,7 @@
     return [super isEqual:objectToCompare];
 }
 
--(InternFormula *)createInternFormulaFromState
+- (InternFormula *)createInternFormulaFromState
 {
     NSMutableArray *deepCopyOfInternTokenFormula = [[NSMutableArray alloc]init];
     

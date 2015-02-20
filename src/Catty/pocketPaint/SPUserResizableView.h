@@ -93,7 +93,7 @@ typedef struct SPUserResizableViewAnchorPoint {
  */
 - (BOOL)isResizing;
 
--(void)changeBorderWithColor:(UIColor*)color;
+- (void)changeBorderWithColor:(UIColor*)color;
 
 
 @end

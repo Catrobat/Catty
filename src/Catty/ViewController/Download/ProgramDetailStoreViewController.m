@@ -266,7 +266,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 
--(void)sendReportWithMessage:(NSString*)message
+- (void)sendReportWithMessage:(NSString*)message
 {
     NSLog(@"ReportMessage::::::%@",message);
     
@@ -361,7 +361,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
 }
 
--(void)reloadWithProject:(CatrobatProgram *)loadedProject
+- (void)reloadWithProject:(CatrobatProgram *)loadedProject
 {
     [self.projectView removeFromSuperview];
     self.projectView = [self createViewForProject:loadedProject];
@@ -428,14 +428,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self loadingIndicator:NO];
     
 }
--(void)updateProgress:(double)progress
+- (void)updateProgress:(double)progress
 {
     NSDebug(@"updateProgress:%f",((float)progress));
     EVCircularProgressView* button = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];
     [button setProgress:progress animated:YES];
 }
 
--(void)setBackDownloadStatus
+- (void)setBackDownloadStatus
 {
     [self.view viewWithTag:kDownloadButtonTag].hidden = NO;
     [self.view viewWithTag:kPlayButtonTag].hidden = YES;
@@ -443,7 +443,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self loadingIndicator:NO];
 }
 
--(void)loadingIndicator:(BOOL)value
+- (void)loadingIndicator:(BOOL)value
 {
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = value;
@@ -460,12 +460,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
 }
 
--(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     NSDebug(@"response");
 }
 
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     if (self.connection == connection) {
         NSDebug(@"Finished loading");

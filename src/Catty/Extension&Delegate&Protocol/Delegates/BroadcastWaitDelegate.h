@@ -25,7 +25,7 @@
 
 @protocol BroadcastWaitDelegate <NSObject>
 
--(void)registerSprite:(SpriteObject*)sprite forMessage:(NSString*)message;
--(void)performBroadcastWaitForMessage:(NSString*)message;
+- (void)registerSprite:(SpriteObject*)sprite forMessage:(NSString*)message;
+- (void)performBroadcastWaitForMessage:(NSString*)message;
 
 @end

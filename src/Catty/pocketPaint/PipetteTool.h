@@ -27,8 +27,8 @@
 
 @property (nonatomic,weak) PaintViewController* canvas;
 
--(id)initWithDrawViewCanvas:(PaintViewController*)canvas;
+- (id)initWithDrawViewCanvas:(PaintViewController*)canvas;
 
--(void)pipetteAction:(UITapGestureRecognizer*)recognizer;
+- (void)pipetteAction:(UITapGestureRecognizer*)recognizer;
 
 @end

@@ -309,7 +309,7 @@
         [self.delegate selectControl:self didSelectWithItem:[_items objectAtIndex:indexPath.row]];
 }
 
--(void)cancel
+- (void)cancel
 {
   if ([self.delegate respondsToSelector:@selector(selectControl:didCancelWithItem:)])
     [self.delegate selectControl:self didCancelWithItem:@(self.currentVale)];

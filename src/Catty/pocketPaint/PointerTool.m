@@ -23,7 +23,7 @@
 #import "PointerTool.h"
 
 @implementation PointerTool
--(id) initWithDrawViewCanvas:(PaintViewController *)canvas
+- (id) initWithDrawViewCanvas:(PaintViewController *)canvas
 {
   self = [super init];
   if(self)
@@ -34,7 +34,7 @@
   return self;
 }
 
--(void)initPointerView
+- (void)initPointerView
 {
   self.pointerView = [[UIView alloc] initWithFrame:CGRectMake(self.canvas.helper.center.x , self.canvas.helper.center.y, 125 , 125)];
   [self.pointerView setUserInteractionEnabled:YES];
@@ -87,7 +87,7 @@
     [layer addSublayer:line];
 }
 
--(void)updateColorView
+- (void)updateColorView
 {
   self.colorView.frame = CGRectMake(0, 0,self.canvas.thickness+2, self.canvas.thickness+2);
   self.colorView.center = CGPointMake(self.pointerView.center.x-self.pointerView.frame.origin.x, self.pointerView.center.y-self.pointerView.frame.origin.y) ;
@@ -113,7 +113,7 @@
 }
 
 
--(void)drawingChangeAction
+- (void)drawingChangeAction
 {
   if (self.drawingEnabled == YES) {
     self.drawingEnabled = NO;
@@ -129,7 +129,7 @@
   
 }
 
--(void)disable
+- (void)disable
 {
   self.drawingEnabled = NO;
   self.pointerView.hidden = YES;
@@ -137,7 +137,7 @@
   self.colorView.hidden = YES;
 }
 
--(void)drawWithPointer:(UIPanGestureRecognizer *)recognizer
+- (void)drawWithPointer:(UIPanGestureRecognizer *)recognizer
 {
   //Move View
   CGPoint translation = [recognizer translationInView:self.canvas.helper];

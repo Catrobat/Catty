@@ -27,7 +27,7 @@
 
 @implementation UserVariable
 
--(NSString*)description
+- (NSString*)description
 {
     return [NSString stringWithFormat:@"UserVariable: Name: %@, Value: %@", self.name, self.value ];
 }

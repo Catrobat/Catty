@@ -29,7 +29,7 @@
 
 @property (nonatomic,weak) PaintViewController* canvas;
 
--(void)drawLine:(UIPanGestureRecognizer *)recognizer;
--(id)initWithDrawViewCanvas:(PaintViewController*)canvas;
+- (void)drawLine:(UIPanGestureRecognizer *)recognizer;
+- (id)initWithDrawViewCanvas:(PaintViewController*)canvas;
 
 @end

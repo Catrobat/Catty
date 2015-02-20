@@ -27,8 +27,8 @@
 
 @property (nonatomic, strong) NSString *broadcastMessage;
 
--(id)initWithMessage:(NSString*)message;
+- (id)initWithMessage:(NSString*)message;
 
--(void)performBroadcastWait;
+- (void)performBroadcastWait;
 
 @end

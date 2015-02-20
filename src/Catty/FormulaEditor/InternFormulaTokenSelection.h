@@ -25,11 +25,11 @@
 
 @interface InternFormulaTokenSelection : NSObject<NSMutableCopying>
 
--(BOOL)equals:(id)objectToCompare;
--(NSInteger)getStartIndex;
--(NSInteger)getEndIndex;
--(enum TokenSelectionType)getToketSelectionType;
--(InternFormulaTokenSelection *)initWithTokenSelectionType:(enum TokenSelectionType)tokenSelectionType
+- (BOOL)equals:(id)objectToCompare;
+- (NSInteger)getStartIndex;
+- (NSInteger)getEndIndex;
+- (enum TokenSelectionType)getToketSelectionType;
+- (InternFormulaTokenSelection *)initWithTokenSelectionType:(enum TokenSelectionType)tokenSelectionType
                                  internTokenSelectionStart:(NSInteger)internTokenSelectionStart
                                    internTokenSelectionEnd:(NSInteger)internTokenSelectionEnd;
 

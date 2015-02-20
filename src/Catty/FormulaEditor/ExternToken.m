@@ -31,7 +31,7 @@
 
 @implementation ExternToken
 
--(ExternToken *)initWithIndex:(int)startIndex andEndIndex:(int)endIndex
+- (ExternToken *)initWithIndex:(int)startIndex andEndIndex:(int)endIndex
 {
     self = [super init];
     if(self)
@@ -44,12 +44,12 @@
     
 }
 
--(int)getStartIndex
+- (int)getStartIndex
 {
     return self.startIndex;
 }
 
--(int)getEndIndex
+- (int)getEndIndex
 {
     return self.endIndex;
 }

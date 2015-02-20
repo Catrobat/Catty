@@ -26,9 +26,9 @@
 
 @interface SRViewController : UIViewController <AVAudioRecorderDelegate,AVAudioPlayerDelegate,UIGestureRecognizerDelegate>
 
-@property(nonatomic,strong) IBOutlet UIButton* record;
-@property (nonatomic,assign) BOOL isRecording;
+@property(nonatomic, strong) IBOutlet UIButton *record;
+@property (nonatomic, assign) BOOL isRecording;
 
--(IBAction)recordClicked;
+- (IBAction)recordClicked;
 
 @end

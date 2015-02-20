@@ -44,7 +44,7 @@
     return kLocalizedIfIsTrueThen;
 }
 
--(BOOL)checkCondition
+- (BOOL)checkCondition
 {
     NSDebug(@"Performing: %@", self.description);
     return [self.ifCondition interpretBOOLForSprite:self.script.object];

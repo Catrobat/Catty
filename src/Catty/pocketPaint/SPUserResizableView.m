@@ -106,7 +106,7 @@ static SPUserResizableViewAnchorPoint SPUserResizableViewLowerMiddleAnchorPoint 
  *  @param anchor CGPoint for new anchor
  *  @param view
  */
--(void)setAnchorPoint:(CGPoint)anchor;
+- (void)setAnchorPoint:(CGPoint)anchor;
 
 /**
  *  Determines if we should not resize the by current settings.
@@ -392,7 +392,7 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
     self.center = newCenter;
 }
 
--(void)setAnchorPoint:(CGPoint)anchor {
+- (void)setAnchorPoint:(CGPoint)anchor {
     CGPoint newPoint = CGPointMake(self.bounds.size.width * anchor.x,
                                    self.bounds.size.height * anchor.y);
     CGPoint oldPoint = CGPointMake(self.bounds.size.width * self.layer.anchorPoint.x,
@@ -424,7 +424,7 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
     }
 }
 
--(void)changeBorderWithColor:(UIColor*)color
+- (void)changeBorderWithColor:(UIColor*)color
 {
   _borderView.borderColor = color;
   [_borderView setNeedsDisplay];

@@ -26,8 +26,8 @@
 @interface UndoManager : NSUndoManager
 @property (nonatomic,weak) PaintViewController* canvas;
 
--(id)initWithDrawViewCanvas:(PaintViewController*)canvas;
--(void)setImage:(UIImage*)image;
--(void)updateUndoToolBarItems;
+- (id)initWithDrawViewCanvas:(PaintViewController*)canvas;
+- (void)setImage:(UIImage*)image;
+- (void)updateUndoToolBarItems;
 
 @end

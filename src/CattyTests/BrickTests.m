@@ -43,7 +43,7 @@
 }
 
 
--(void)testSetVariableBrick
+- (void)testSetVariableBrick
 {
 //  Program* program = [[Program alloc] init];
 //  

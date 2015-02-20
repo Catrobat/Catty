@@ -144,7 +144,7 @@
 
 #pragma mark initView
 
--(void)setupCanvas
+- (void)setupCanvas
 {
   NSInteger height = (NSInteger)self.view.frame.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height;
   CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, height);
@@ -191,7 +191,7 @@
     
 }
 
--(void)setupTools
+- (void)setupTools
 {
     self.drawTool = [[DrawTool alloc] initWithDrawViewCanvas:self];
     self.lineTool = [[LineTool alloc] initWithDrawViewCanvas:self];
@@ -207,7 +207,7 @@
     [self.helper addSubview:self.pointerTool.pointerView];
 }
 
--(void)setupGestures
+- (void)setupGestures
 {
     
     self.drawGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.drawTool action:@selector(draw:)];
@@ -233,7 +233,7 @@
 }
 
 
--(void)setupZoom
+- (void)setupZoom
 {
   self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height, self.view.frame.size.width, self.view.frame.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height)];
   self.scrollView.scrollEnabled = NO;
@@ -252,7 +252,7 @@
     self.helper.frame = frameToCenter;
 }
 
--(void)setupToolbar
+- (void)setupToolbar
 {
   [self.navigationController setToolbarHidden:NO];
   self.navigationController.toolbar.barStyle = UIBarStyleBlack;
@@ -263,7 +263,7 @@
   
 }
 
--(void)setupNavigationBar
+- (void)setupNavigationBar
 {
   self.navigationController.navigationBarHidden = NO;
   self.navigationController.navigationBar.tintColor = [UIColor lightOrangeColor];
@@ -275,7 +275,7 @@
   self.navigationItem.rightBarButtonItem = editButton;
 }
 
--(void)editAction
+- (void)editAction
 {
   UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:kLocalizedPaintSelect delegate:self cancelButtonTitle:kLocalizedCancel destructiveButtonTitle:nil otherButtonTitles:
                           kLocalizedPaintSave,
@@ -287,7 +287,7 @@
   [popup showInView:[UIApplication sharedApplication].keyWindow];
 }
 
--(void)setupUndoManager
+- (void)setupUndoManager
 {
   self.undoArray = [[NSMutableArray alloc] initWithCapacity:kStackSize];
   self.redoArray = [[NSMutableArray alloc] initWithCapacity:kStackSize];
@@ -295,7 +295,7 @@
 
 #pragma mark scrollView delegate
 
--(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
   return self.helper;
 }
@@ -320,7 +320,7 @@
 
 #pragma mark changing tool / toolbarItems
 
--(void)changeAction
+- (void)changeAction
 {
   LCTableViewPickerControl *pickerView = [[LCTableViewPickerControl alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, kPickerControlAgeHeight) title:kLocalizedPaintPickItem value:self.activeAction items:self.actionTypeArray offset:CGPointMake(0, 0)];
   [pickerView setDelegate:self];
@@ -334,7 +334,7 @@
   [pickerView showInView:self.scrollView];
 }
 
--(void) updateToolbar
+- (void) updateToolbar
 {
   UIBarButtonItem* action = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"tools"] style:UIBarButtonItemStylePlain target:self action:@selector(changeAction)];
   self.handToolBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"hand"] style:UIBarButtonItemStylePlain target:self.handTool action:@selector(changeHandToolAction)];
@@ -422,7 +422,7 @@
   self.navigationController.toolbarHidden = NO;
 }
 
--(void)setBackAllActions
+- (void)setBackAllActions
 {
   self.isEraser = NO;
   self.resizeViewManager.gotImage = NO;
@@ -455,7 +455,7 @@
   }
 }
 
--(void)updateActiveAction:(id)item
+- (void)updateActiveAction:(id)item
 {
   self.activeAction = [item intValue];
   [self setBackAllActions];
@@ -537,7 +537,7 @@
   self.saveView.hidden = YES;
 }
 
--(void)cropInitAction
+- (void)cropInitAction
 {
   if (self.saveView.image) {
     self.cropperView = [[YKImageCropperView alloc] initWithImage:self.saveView.image andFrame:self.view.frame];
@@ -557,18 +557,18 @@
   
 }
 
--(void)initPipette
+- (void)initPipette
 {
   //PipetteAction
   self.pipetteRecognizer.enabled = YES;
 }
 
--(void)initFillTool
+- (void)initFillTool
 {
   self.fillRecognizer.enabled = YES;
 }
 
--(void)initPointerTool
+- (void)initPointerTool
 {
   self.pointerTool.drawingEnabled = NO;
   self.pointerTool.pointerView.hidden = NO;
@@ -577,7 +577,7 @@
   self.drawView.userInteractionEnabled = YES;
 }
 
--(void)initShape
+- (void)initShape
 {
   self.resizeViewManager.resizeViewer.frame = CGRectMake(0, 0, 150, 150);
   self.resizeViewManager.resizeViewer.bounds = CGRectMake(self.resizeViewManager.resizeViewer.bounds.origin.x , self.resizeViewManager.resizeViewer.bounds.origin.y , 150 , 150);
@@ -585,7 +585,7 @@
   [self.resizeViewManager updateShape];
 }
 
--(void)initStamp
+- (void)initStamp
 {
 //  self.resizeViewManager.border.hidden = NO;
   self.resizeViewManager.resizeViewer.contentView.image = nil;
@@ -593,7 +593,7 @@
 
 #pragma mark tool actions
 
--(void)cropAction
+- (void)cropAction
 {
   if ([self.cropperView superview] == self.view) {
     UIImage* croppedImage = [self.cropperView editedImage];
@@ -620,7 +620,7 @@
   
 }
 
--(void)stampAction
+- (void)stampAction
 {
   self.resizeViewManager.gotImage = NO;
   self.resizeViewManager.resizeViewer.contentView.image = nil;
@@ -629,7 +629,7 @@
 
 #pragma mark change color/thickness
 
--(void)colorAction
+- (void)colorAction
 {
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
   ColorPickerViewController *cvc = [storyboard instantiateViewControllerWithIdentifier:@"colorPicker"];
@@ -643,7 +643,7 @@
   [self presentViewController:cvc animated:YES completion:nil];
 }
 
--(void)brushAction
+- (void)brushAction
 {
   BrushPickerViewController *bvc = [[BrushPickerViewController alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height*0.5, self.view.frame.size.width, self.view.frame.size.height*0.5) andController:self];
   bvc.delegate = self;
@@ -656,7 +656,7 @@
 
 #pragma mark tool helpers
 
--(void)setImagePickerImage:(UIImage*)image
+- (void)setImagePickerImage:(UIImage*)image
 {
   CGFloat width = image.size.width;
   CGFloat height = image.size.height;
@@ -706,7 +706,7 @@
 
 #pragma mark brush/color delegate
 
--(void)closeBrushPicker:(id)sender
+- (void)closeBrushPicker:(id)sender
 {
   self.thickness = ((BrushPickerViewController*)sender).brush;
   self.ending = ((BrushPickerViewController*)sender).brushEnding;
@@ -717,7 +717,7 @@
   }
   [self dismissSemiModalView];
 }
--(void)closeColorPicker:(id)sender
+- (void)closeColorPicker:(id)sender
 {
   self.red =((ColorPickerViewController*)sender).red;
   self.green =((ColorPickerViewController*)sender).green;
@@ -814,17 +814,17 @@
 
 #pragma mark Getter
 
--(id)getUndoManager
+- (id)getUndoManager
 {
   return self.undoManager;
 }
 
--(id)getResizeViewManager
+- (id)getResizeViewManager
 {
   return self.resizeViewManager;
 }
 
--(id)getPointerTool
+- (id)getPointerTool
 {
   return self.pointerTool;
 }
@@ -841,7 +841,7 @@
 }
 
 #pragma mark - statusBar Delegate
--(UIStatusBarStyle)preferredStatusBarStyle{
+- (UIStatusBarStyle)preferredStatusBarStyle{
   return UIStatusBarStyleLightContent;
 }
 
@@ -849,7 +849,7 @@
 
 #pragma mark dealloc
 
--(void)dealloc
+- (void)dealloc
 {
     self.fillTool = nil;
     self.fillRecognizer = nil;

@@ -42,7 +42,7 @@
     [super tearDown];
 }
 
--(void)testNextLookBrick
+- (void)testNextLookBrick
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     Program *program = [Program defaultProgramWithName:@"a" programID:nil];

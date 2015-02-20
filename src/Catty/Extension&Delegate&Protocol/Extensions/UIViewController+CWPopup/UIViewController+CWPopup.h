@@ -23,7 +23,7 @@
 
 @property (nonatomic, readwrite) UIViewController *popupViewController;
 
--(void)presentPopupViewController:(UIViewController *)viewControllerToPresent WithFrame:(CGRect)frame isLogin:(BOOL)isLogin;
--(void)dismissPopupViewController;
+- (void)presentPopupViewController:(UIViewController *)viewControllerToPresent WithFrame:(CGRect)frame isLogin:(BOOL)isLogin;
+- (void)dismissPopupViewController;
 
 @end

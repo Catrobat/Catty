@@ -42,17 +42,17 @@
 @property (nonatomic,strong) UITapGestureRecognizer *takeView;
 
 
--(id)initWithDrawViewCanvas:(PaintViewController*)canvas andImagePicker:(ImagePicker*)imagePicker;
--(void)initResizeView;
+- (id)initWithDrawViewCanvas:(PaintViewController*)canvas andImagePicker:(ImagePicker*)imagePicker;
+- (void)initResizeView;
 - (void)moveView:(UIPanGestureRecognizer *)recognizer;
 - (void)handleRotate:(UIRotationGestureRecognizer *)recognizer;
 - (void)handleResize:(UIPinchGestureRecognizer *)gestureRecognizer;
--(void)updateShape;
--(void)showResizeView;
--(void)hideResizeView;
+- (void)updateShape;
+- (void)showResizeView;
+- (void)hideResizeView;
 - (void)takeImage:(UITapGestureRecognizer *)recognizer;
--(void)showUserAction;
--(void)hideShowUserAction;
+- (void)showUserAction;
+- (void)hideShowUserAction;
 
 
 @end

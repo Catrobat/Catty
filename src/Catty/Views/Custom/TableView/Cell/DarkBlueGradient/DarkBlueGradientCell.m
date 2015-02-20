@@ -28,14 +28,14 @@
 @implementation DarkBlueGradientCell
 
 
--(id)initWithCoder:(NSCoder *)aDecoder {
+- (id)initWithCoder:(NSCoder *)aDecoder {
     if(self = [super initWithCoder:aDecoder]) {
         [self configure];
     }    
     return self;
 }
 
--(void)configure
+- (void)configure
 {
     self.backgroundColor = UIColor.darkBlueColor;
 }
