@@ -26,7 +26,6 @@
 #import "AppDelegate.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "TimerLabel.h"
-#import "Util.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 
 @interface SRViewController ()
@@ -35,8 +34,8 @@
 @property (nonatomic,strong) TimerLabel* timerLabel;
 @property (nonatomic,strong) AVAudioRecorder* recorder;
 @property (nonatomic,strong) AVAudioSession* session;
-//@property (nonatomic,strong) UIProgressView* timeProgress;
-//@property (nonatomic,strong) NSTimer* progressTimer;
+    //@property (nonatomic,strong) UIProgressView* timeProgress;
+    //@property (nonatomic,strong) NSTimer* progressTimer;
 
 @end
 
@@ -46,28 +45,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+        // Do any additional setup after loading the view, typically from a nib.
     [self setupToolBar];
     self.record.frame = CGRectMake(self.view.frame.size.width / 2.0 - 125, self.view.frame.size.height * 0.4, 250, 250);
     
     self.timerLabel = [[TimerLabel alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height * 0.2, self.view.frame.size.width, 40)];
-//    self.timeProgress = [[UIProgressView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2.0 - 125 ,self.view.frame.size.height * 0.3, 250, 10)];
+        //    self.timeProgress = [[UIProgressView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2.0 - 125 ,self.view.frame.size.height * 0.3, 250, 10)];
     
     self.timerLabel.timerType = TimerLabelTypeStopWatch;
     [self.view addSubview:self.timerLabel];
-//    [self.view addSubview:self.timeProgress];
+        //    [self.view addSubview:self.timeProgress];
     self.timerLabel.timeLabel.backgroundColor = [UIColor clearColor];
     self.timerLabel.timeLabel.font = [UIFont systemFontOfSize:28.0f];
     self.timerLabel.timeLabel.textColor = [UIColor lightOrangeColor];
     self.timerLabel.timeLabel.textAlignment = NSTextAlignmentCenter;
     
     
-  UITapGestureRecognizer * recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recording:)];
+    UITapGestureRecognizer * recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recording:)];
     [self.timerLabel addGestureRecognizer:recognizer];
-//    [self.timeProgress addGestureRecognizer:recognizer];
+        //    [self.timeProgress addGestureRecognizer:recognizer];
     
     self.view.backgroundColor = [UIColor airForceBlueColor];
-
+    
     
     self.isRecording = NO;
     
@@ -86,7 +85,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+        // Dispose of any resources that can be recreated.
 }
 
 - (void)prepareRecorder
@@ -130,52 +129,25 @@
 
 
 - (IBAction)recording:(id)sender {
-  [self recordClicked];
+    [self recordClicked];
 }
 
 - (void)recordClicked
 {
     if (!self.isRecording) {
-
-<<<<<<< HEAD
-        NSString *fileName =[[NSString uuid] stringByAppendingString:@".m4a"];
-        self.filePath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, fileName];
-        self.sound = [[Sound alloc] init];
-        self.sound.fileName = fileName;
-        self.sound.name = kLocalizedRecording;
-        NSURL* outputFileUrl = [NSURL fileURLWithPath:self.filePath isDirectory:NO];
         
-        AVAudioSession* session = [AVAudioSession sharedInstance];
-        [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-        
-        NSMutableDictionary* recordSetting = [[NSMutableDictionary alloc]init];
-        
-        [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
-        
-        [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
-        
-        [recordSetting setValue:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];
-        
-        self.recorder = [[AVAudioRecorder alloc]initWithURL:outputFileUrl settings:recordSetting error:NULL];
-        
-        self.recorder.delegate = self;
-        self.recorder.meteringEnabled = YES;
-        
-        [self.recorder prepareToRecord];
-=======
->>>>>>> master
         [self.record setSelected:YES];
         [self.timerLabel start];
-//        [self.recorder record];
+            //        [self.recorder record];
         self.isRecording = YES;
         [self.session setActive:YES error:nil];
         AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
         [self.recorder recordForDuration:(([delegate.fileManager freeDiskspace]/1024ll)/256.0)];
         [self setupToolBar];
-//        self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateProgressView) userInfo:nil repeats:YES];
+            //        self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateProgressView) userInfo:nil repeats:YES];
     } else {
         [self.recorder pause];
-//        [self.progressTimer invalidate];
+            //        [self.progressTimer invalidate];
         [self.timerLabel pause];
         [self.record setSelected:NO];
         self.isRecording = NO;
@@ -184,23 +156,28 @@
 }
 
 - (void) audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag{
-  if (!flag) {
-      [Util alertWithText:kLocalizedMemoryWarning];
-  }
-//    [self.record setTitle:@"Record" forState:UIControlStateNormal];
+    if (!flag) {
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Error"
+                                                       message:@"Not enough Memory"
+                                                      delegate:nil
+                                             cancelButtonTitle:@"OK"
+                                             otherButtonTitles:nil];
+        [alert show];
+    }
+    [self.record setTitle:@"Record" forState:UIControlStateNormal];
 }
 
-//- (void)updateProgressView
-//{
-//    CGFloat time = 0;
-//    float minutes = floor(self.recorder.currentTime/60);
-//    float seconds = self.recorder.currentTime - (minutes * 60);
-//    time = (NSInteger)(seconds)% (NSInteger)(5*60);
-//    time = time / (5*60);
-//    [self.timeProgress setProgress:time];
-//    [self.timeProgress setNeedsDisplay];
-//    
-//}
+    //- (void)updateProgressView
+    //{
+    //    CGFloat time = 0;
+    //    float minutes = floor(self.recorder.currentTime/60);
+    //    float seconds = self.recorder.currentTime - (minutes * 60);
+    //    time = (NSInteger)(seconds)% (NSInteger)(5*60);
+    //    time = time / (5*60);
+    //    [self.timeProgress setProgress:time];
+    //    [self.timeProgress setNeedsDisplay];
+    //
+    //}
 
 - (void)setupToolBar
 {
@@ -221,7 +198,7 @@
     [button setImage:recordPauseImage forState:UIControlStateNormal];
     [button addTarget:self action:@selector(recordClicked) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *recordPause = [[UIBarButtonItem alloc] initWithCustomView:button];
-//    UIBarButtonItem* recordPause = [[UIBarButtonItem alloc] initWithImage:recordPauseImage style:nil target:self action:@selector(recordClicked)];
+        //    UIBarButtonItem* recordPause = [[UIBarButtonItem alloc] initWithImage:recordPauseImage style:nil target:self action:@selector(recordClicked)];
     
         // XXX: workaround for tap area problem:
         // http://stackoverflow.com/questions/5113258/uitoolbar-unexpectedly-registers-taps-on-uibarbuttonitem-instances-even-when-tap
