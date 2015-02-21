@@ -43,7 +43,7 @@
 
 
 
--(void)testMoveNStepsBrick
+- (void)testMoveNStepsBrick
 {
     //    Program* program = [[Program alloc] init];
     //

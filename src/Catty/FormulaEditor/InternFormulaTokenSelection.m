@@ -33,7 +33,7 @@
 
 @implementation InternFormulaTokenSelection
 
--(InternFormulaTokenSelection *)initWithTokenSelectionType:(TokenSelectionType)tokenSelectionType
+- (InternFormulaTokenSelection *)initWithTokenSelectionType:(TokenSelectionType)tokenSelectionType
                                  internTokenSelectionStart:(NSInteger)internTokenSelectionStart
                                    internTokenSelectionEnd:(NSInteger)internTokenSelectionEnd
 {
@@ -48,22 +48,22 @@
     return self;
 }
 
--(NSInteger)getStartIndex
+- (NSInteger)getStartIndex
 {
     return self.internTokenSelectionStart;
 }
 
--(NSInteger)getEndIndex
+- (NSInteger)getEndIndex
 {
     return self.internTokenSelectionEnd;
 }
 
--(TokenSelectionType)getToketSelectionType
+- (TokenSelectionType)getToketSelectionType
 {
     return self.tokenSelectionType;
 }
 
--(BOOL)equals:(id)objectToCompare
+- (BOOL)equals:(id)objectToCompare
 {
     if([objectToCompare isKindOfClass:[InternFormulaTokenSelection class]])
     {

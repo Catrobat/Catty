@@ -98,7 +98,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark viewwillappear
--(void)viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
@@ -668,7 +668,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 #pragma mark paintDelegate
 
--(void)showSavePaintImageAlert:(UIImage *)image andPath:(NSString *)path
+- (void)showSavePaintImageAlert:(UIImage *)image andPath:(NSString *)path
 {
     self.paintImage = image;
     self.paintImagePath = path;
@@ -686,7 +686,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 
--(void)addPaintedImage:(UIImage *)image andPath:(NSString *)path
+- (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path
 {
     UIImage *checkImage = [[UIImage alloc] initWithContentsOfFile:path];
     

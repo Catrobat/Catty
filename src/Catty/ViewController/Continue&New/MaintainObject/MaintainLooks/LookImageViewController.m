@@ -113,7 +113,7 @@
 }
 
 
--(void)editAction
+- (void)editAction
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
     PaintViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"paint"];
@@ -133,7 +133,7 @@
 
 #pragma mark paintDelegate
 
--(void)showSavePaintImageAlert:(UIImage *)image andPath:(NSString *)path
+- (void)showSavePaintImageAlert:(UIImage *)image andPath:(NSString *)path
 {
     self.paintImage = image;
     self.paintImagePath = path;
@@ -151,7 +151,7 @@
 }
 
 #pragma mark paintDelegate
--(void)addPaintedImage:(UIImage *)image andPath:(NSString *)path
+- (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path
 {
     self.imageView.image = image;
 

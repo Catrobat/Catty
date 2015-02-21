@@ -46,7 +46,7 @@
     return [SKAction runBlock:[self actionBlock]];
 }
 
--(dispatch_block_t)actionBlock
+- (dispatch_block_t)actionBlock
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);

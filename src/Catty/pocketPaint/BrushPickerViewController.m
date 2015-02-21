@@ -70,7 +70,7 @@
     // Do any additional setup after loading the view.
 }
 
--(void)viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
   [self setupBrushPreview];
@@ -78,7 +78,7 @@
   [self setupBrushSlider];
 }
 
--(void)setupToolBar
+- (void)setupToolBar
 {
   self.toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
   [self.view addSubview:self.toolBar];
@@ -92,7 +92,7 @@
 }
 
 
--(void)setupSegmentedControl
+- (void)setupSegmentedControl
 {
   NSArray *mySegments = [[NSArray alloc] initWithObjects: kLocalizedPaintRound,
                          kLocalizedPaintSquare, nil];
@@ -117,7 +117,7 @@
   [self.view addSubview:self.brushEndingControl];
 }
 
--(void)setupBrushSlider
+- (void)setupBrushSlider
 {
   self.brushSlider = [[CatrobatUISlider alloc] init];
   self.brushSlider.frame =CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.7f, self.view.frame.size.width-100, 20);
@@ -143,7 +143,7 @@
   
 }
 
--(void)setupBrushPreview
+- (void)setupBrushPreview
 {
   self.brushView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.center.x-60, 60, 125, 125)];
   UIGraphicsBeginImageContext(self.brushView.frame.size);
@@ -187,7 +187,7 @@
 }
 */
 
--(void)whichBrushEnding:(UISegmentedControl *)paramSender
+- (void)whichBrushEnding:(UISegmentedControl *)paramSender
 {
   NSInteger selectedIndex = [paramSender selectedSegmentIndex];
   switch (selectedIndex) {
@@ -224,7 +224,7 @@
 
 }
 
--(void)sliderAction:(id)sender
+- (void)sliderAction:(id)sender
 {
   UISlider *slider = (UISlider*)sender;
   float value = slider.value;

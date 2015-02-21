@@ -48,7 +48,6 @@
     SpriteObject* object1 = [[SpriteObject alloc] init];
     object1.program = program;
     object1.zPosition = 5;
-    object1.numberOfObjectsWithoutBackground = 2;
 
     SpriteObject* object2 = [[SpriteObject alloc] init];
     object2.zPosition = 3;
@@ -81,7 +80,6 @@
     SpriteObject *object1 = [[SpriteObject alloc] init];
     object1.program = program;
     object1.zPosition = 6;
-    object1.numberOfObjectsWithoutBackground = 2;
 
     SpriteObject *object2 = [[SpriteObject alloc] init];
     object2.zPosition = 3;
@@ -114,7 +112,6 @@
     SpriteObject *object1 = [[SpriteObject alloc] init];
     object1.program = program;
     object1.zPosition = 5;
-    object1.numberOfObjectsWithoutBackground = 2;
 
     SpriteObject *object2 = [[SpriteObject alloc] init];
     object2.zPosition = 3;
@@ -147,7 +144,6 @@
     SpriteObject *object1 = [[SpriteObject alloc] init];
     object1.program = program;
     object1.zPosition = 5;
-    object1.numberOfObjectsWithoutBackground = 2;
 
     SpriteObject *object2 = [[SpriteObject alloc] init];
     object2.zPosition = 3;
@@ -180,7 +176,6 @@
     SpriteObject *object1 = [[SpriteObject alloc] init];
     object1.program = program;
     object1.zPosition = 5;
-    object1.numberOfObjectsWithoutBackground = 2;
 
     SpriteObject *object2 = [[SpriteObject alloc] init];
     object2.zPosition = 3;

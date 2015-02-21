@@ -41,7 +41,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
 
 @implementation InternFormula
 
--(ExternInternRepresentationMapping *)externInternRepresentationMapping
+- (ExternInternRepresentationMapping *)externInternRepresentationMapping
 {
     if(!_externInternRepresentationMapping)
     {
@@ -51,7 +51,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     return _externInternRepresentationMapping;
 }
 
--(NSMutableArray *)internTokenFormulaList
+- (NSMutableArray *)internTokenFormulaList
 {
     if (!_internTokenFormulaList) {
         _internTokenFormulaList = [[NSMutableArray alloc]init];
@@ -59,7 +59,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     return _internTokenFormulaList;
 }
 
--(NSString *)externFormulaString
+- (NSString *)externFormulaString
 {
     if(!_externFormulaString)
     {
@@ -68,7 +68,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     return _externFormulaString;
 }
 
--(InternFormula *)initWithInternTokenList:(NSMutableArray *)internTokenList
+- (InternFormula *)initWithInternTokenList:(NSMutableArray *)internTokenList
 {
     self = [super init];
     if(self)
@@ -82,7 +82,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     return self;
 }
 
--(InternFormula *)initWithInternTokenList:(NSMutableArray *)internTokenList
+- (InternFormula *)initWithInternTokenList:(NSMutableArray *)internTokenList
               internFormulaTokenSelection:(InternFormulaTokenSelection *)internFormulaTokenSelection
                      externCursorPosition:(int)externCursorPosition
 {
@@ -100,7 +100,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     return self;
 }
 
--(void)setCursorAndSelection:(int)externCursorPosition
+- (void)setCursorAndSelection:(int)externCursorPosition
                     selected:(BOOL)isSelected
 {
     self.externCursorPosition = externCursorPosition;
@@ -118,7 +118,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     }
 }
 
--(void)handleKeyInputWithName:(NSString *)name butttonType:(int)resourceId
+- (void)handleKeyInputWithName:(NSString *)name butttonType:(int)resourceId
 {
     NSMutableArray *keyInputInternTokenList = [[InternFormulaKeyboardAdapter alloc]createInternTokenListByResourceId:resourceId name:name];
     
@@ -156,7 +156,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     
 }
 
--(void)generateExternFormulaStringAndInternExternMapping
+- (void)generateExternFormulaStringAndInternExternMapping
 {
     InternToExternGenerator *internToExternGenerator = [[InternToExternGenerator alloc]init];
     [internToExternGenerator generateExternStringAndMapping:self.internTokenFormulaList];
@@ -164,7 +164,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     self.externInternRepresentationMapping = [internToExternGenerator getGeneratedExternIternRepresentationMapping];
 }
 
--(void)updateExternCursorPosition:(CursorTokenPropertiesAfterModification)cursorTakenPropertiesAfterInput
+- (void)updateExternCursorPosition:(CursorTokenPropertiesAfterModification)cursorTakenPropertiesAfterInput
 {
     switch (cursorTakenPropertiesAfterInput) {
         case AM_LEFT:
@@ -178,7 +178,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     }
 }
 
--(CursorTokenPropertiesAfterModification)insertLeftToCurrentToken:(NSMutableArray *)internTokensToInsert
+- (CursorTokenPropertiesAfterModification)insertLeftToCurrentToken:(NSMutableArray *)internTokensToInsert
 {
     InternToken *firstLeftInternToken = nil;
     if(self.cursorPositionInternTokenIndex > 0)
@@ -244,7 +244,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     
 }
 
--(CursorTokenPropertiesAfterModification)insertRightToCurrentToken:(NSMutableArray *)internTokensToInsert
+- (CursorTokenPropertiesAfterModification)insertRightToCurrentToken:(NSMutableArray *)internTokensToInsert
 {
     
     if(self.cursorPositionInternToken == nil)
@@ -300,7 +300,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     
 }
 
--(CursorTokenPropertiesAfterModification)handleDeletion
+- (CursorTokenPropertiesAfterModification)handleDeletion
 {
     CursorTokenPropertiesAfterModification cursorTokenPropertiesAfterModification = DO_NOT_MODIFY;
     if(self.internFormulaTokenSelection != nil)
@@ -346,7 +346,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     return cursorTokenPropertiesAfterModification;
 }
 
--(CursorTokenPropertiesAfterModification)deleteInternTokenByIndex:(int)internTokenIndex
+- (CursorTokenPropertiesAfterModification)deleteInternTokenByIndex:(int)internTokenIndex
 {
     InternToken *tokenToDelete = [self.internTokenFormulaList objectAtIndex:internTokenIndex];
     int externNumberOffset;
@@ -479,7 +479,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
 }
 
 
--(void)setExternCursorPositionLeftTo:(int)internTokenIndex
+- (void)setExternCursorPositionLeftTo:(int)internTokenIndex
 {
     if([self.internTokenFormulaList count] < 1)
     {
@@ -502,7 +502,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     self.cursorTokenPosition = LEFT;
 }
 
--(void)setExternCursorPositionRightTo:(int)internTokenIndex
+- (void)setExternCursorPositionRightTo:(int)internTokenIndex
 {
     if([self.internTokenFormulaList count] < 1)
     {
@@ -526,7 +526,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     
 }
 
--(void)deleteInternTokensWithStart:(int)deleteIndexStart end:(int)deleteIndexEnd
+- (void)deleteInternTokensWithStart:(int)deleteIndexStart end:(int)deleteIndexEnd
 {
     NSMutableArray *tokenListToInsert = [[NSMutableArray alloc]init];
     [self replaceInternTokensInList:tokenListToInsert
@@ -534,7 +534,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
                     replaceIndexEnd:deleteIndexEnd];
 }
 
--(void)replaceInternTokensInList:(NSArray *)tokenListToInsert
+- (void)replaceInternTokensInList:(NSArray *)tokenListToInsert
                replaceIndexStart:(int)start
                  replaceIndexEnd:(int)end
 {
@@ -551,7 +551,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     [self addSourceArray:tokenListToInsert toTarget:self.internTokenFormulaList atIndex:start];
 }
 
--(void)selectCursorPositionInternToken:(TokenSelectionType)internTokenSelectionType
+- (void)selectCursorPositionInternToken:(TokenSelectionType)internTokenSelectionType
 {
     
     self.internFormulaTokenSelection = nil;
@@ -684,7 +684,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     
 }
 
--(InternToken *)getFirstLeftInternToken:(int)externIndex
+- (InternToken *)getFirstLeftInternToken:(int)externIndex
 {
     for(int searchIndex = externIndex; searchIndex >=0; searchIndex--)
     {
@@ -698,7 +698,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     return nil;
 }
 
--(void)updateInternCursorPosition
+- (void)updateInternCursorPosition
 {
     int cursorPositionTokenIndex = [self.externInternRepresentationMapping getInternTokenByExternIndex:self.externCursorPosition];
     int leftCursorPositionTokenIndex = [self.externInternRepresentationMapping getInternTokenByExternIndex:self.externCursorPosition-1];
@@ -747,7 +747,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
 
 }
 
--(BOOL)isTokenSelected
+- (BOOL)isTokenSelected
 {
     if(self.internFormulaTokenSelection == nil)
     {
@@ -756,7 +756,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     return YES;
 }
 
--(CursorTokenPropertiesAfterModification)replaceSelection:(NSMutableArray *)tokenListToInsert
+- (CursorTokenPropertiesAfterModification)replaceSelection:(NSMutableArray *)tokenListToInsert
 {
     if([InternFormulaUtils isPeriodToken:[NSArray arrayWithArray:tokenListToInsert]])
     {
@@ -793,7 +793,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     
 }
 
--(CursorTokenPropertiesAfterModification)setCursorPositionAndSelectionAfterInput:(int)insertedInternTokenIndex
+- (CursorTokenPropertiesAfterModification)setCursorPositionAndSelectionAfterInput:(int)insertedInternTokenIndex
 {
     InternToken *insertedInternToken = [self.internTokenFormulaList objectAtIndex:insertedInternTokenIndex];
     NSArray *functionInternTokenList;
@@ -850,7 +850,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     
 }
 
--(CursorTokenPropertiesAfterModification)replaceCursorPositionInternTokenByTokenList:(NSArray *)internTokensToReplaceWith
+- (CursorTokenPropertiesAfterModification)replaceCursorPositionInternTokenByTokenList:(NSArray *)internTokensToReplaceWith
 {
     if([self.cursorPositionInternToken isNumber] && [InternFormulaUtils isNumberToken:internTokensToReplaceWith])
     {
@@ -937,7 +937,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     
 }
 
--(void)addSourceArray:(NSArray *)source toTarget:(NSMutableArray *)target atIndex:(int)index
+- (void)addSourceArray:(NSArray *)source toTarget:(NSMutableArray *)target atIndex:(int)index
 {
     for(int i = (int)[source count]-1; i >= 0; i--)
     {
@@ -945,18 +945,18 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     }
 }
 
--(int)getExternCursorPosition
+- (int)getExternCursorPosition
 {
     return self.externCursorPosition;
 }
 
--(InternFormulaParser *)getInternFormulaParser
+- (InternFormulaParser *)getInternFormulaParser
 {
     self.internTokenFormulaParser = [[InternFormulaParser alloc]initWithTokens:self.internTokenFormulaList];
     return self.internTokenFormulaParser;
 }
 
--(TokenSelectionType)getExternSelectionType
+- (TokenSelectionType)getExternSelectionType
 {
     if(![self isTokenSelected])
     {
@@ -965,7 +965,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     return [self.internFormulaTokenSelection getToketSelectionType];
 }
 
--(void)selectWholeFormula
+- (void)selectWholeFormula
 {
     if([self.internTokenFormulaList count] == 0)
     {
@@ -975,17 +975,17 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     self.internFormulaTokenSelection = [[InternFormulaTokenSelection alloc]initWithTokenSelectionType:USER_SELECTION internTokenSelectionStart:0 internTokenSelectionEnd:[self.internTokenFormulaList count]-1];
 }
 
--(NSString *)getExternFormulaString
+- (NSString *)getExternFormulaString
 {
     return self.externFormulaString;
 }
 
--(InternFormulaTokenSelection *)getSelection
+- (InternFormulaTokenSelection *)getSelection
 {
     return self.internFormulaTokenSelection;
 }
 
--(void)selectParseErrorTokenAndSetCursor
+- (void)selectParseErrorTokenAndSetCursor
 {
     if(self.internTokenFormulaParser == nil || [self.internTokenFormulaList count] == 0)
     {
@@ -1012,7 +1012,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     
 }
 
--(BOOL)isThereSomethingToDelete
+- (BOOL)isThereSomethingToDelete
 {
     if(self.internFormulaTokenSelection != nil)
     {
@@ -1027,7 +1027,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     return YES;
 }
 
--(int)getExternSelectionStartIndex
+- (int)getExternSelectionStartIndex
 {
     if(self.internFormulaTokenSelection == nil)
     {
@@ -1044,7 +1044,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     return externSelectionStartIndex;
 }
 
--(int)getExternSelectionEndIndex
+- (int)getExternSelectionEndIndex
 {
     if(self.internFormulaTokenSelection == nil)
     {
@@ -1061,7 +1061,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     return externSelectionEndIndex;
 }
 
--(InternFormulaState *)getInternFormulaState
+- (InternFormulaState *)getInternFormulaState
 {
     NSMutableArray *deepCopyOfInternTokenFormula = [[NSMutableArray alloc]init];
     
@@ -1082,7 +1082,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
                            andExternCursorPosition:self.externCursorPosition];
 }
 
--(BOOL)isEmpty
+- (BOOL)isEmpty
 {
     return [self.internTokenFormulaList count] <= 0;
 }

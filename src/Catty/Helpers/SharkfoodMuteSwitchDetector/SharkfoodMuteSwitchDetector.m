@@ -31,24 +31,24 @@ void SharkfoodSoundMuteNotificationCompletionProc(SystemSoundID  ssID,void* clie
 /**
  Sound completion, objc
  */
--(void)complete;
+- (void)complete;
 /**
  Our loop, checks sound switch
  */
--(void)loopCheck;
+- (void)loopCheck;
 /**
  Pause while in the background, if your app supports playing audio in the background, you want this.
  Otherwise your app will be rejected.
  */
--(void)didEnterBackground;
+- (void)didEnterBackground;
 /**
  Resume when entering foreground
  */
--(void)willReturnToForeground;
+- (void)willReturnToForeground;
 /**
  Schedule a next check
  */
--(void)scheduleCall;
+- (void)scheduleCall;
 /**
  Is paused?
  */
@@ -70,7 +70,7 @@ void SharkfoodSoundMuteNotificationCompletionProc(SystemSoundID  ssID,void* clie
 
 @implementation SharkfoodMuteSwitchDetector
 
--(id)init{
+- (id)init{
     self = [super init];
     if (self){
         NSURL* url = [[NSBundle mainBundle] URLForResource:@"IMPORTANT" withExtension:@"caf"];
@@ -89,17 +89,17 @@ void SharkfoodSoundMuteNotificationCompletionProc(SystemSoundID  ssID,void* clie
     return self;
 }
 
--(void)didEnterBackground{
+- (void)didEnterBackground{
     self.isPaused = YES;
 }
--(void)willReturnToForeground{
+- (void)willReturnToForeground{
     self.isPaused = NO;
     if (!self.isPlaying){
         [self scheduleCall];
     }
 }
 
--(void)setSilentNotify:(SharkfoodMuteSwitchDetectorBlock)silentNotify{
+- (void)setSilentNotify:(SharkfoodMuteSwitchDetectorBlock)silentNotify{
     _silentNotify = [silentNotify copy];
     self.forceEmit = YES;
 }
@@ -113,13 +113,13 @@ void SharkfoodSoundMuteNotificationCompletionProc(SystemSoundID  ssID,void* clie
     return sShared;
 }
 
--(void)scheduleCall{
+- (void)scheduleCall{
     [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(loopCheck) object:nil];
     [self performSelector:@selector(loopCheck) withObject:nil afterDelay:1];
 }
 
 
--(void)complete{
+- (void)complete{
     self.isPlaying = NO;
     NSTimeInterval elapsed = [NSDate timeIntervalSinceReferenceDate] - self.interval;
     BOOL isMute = elapsed < 0.1; // Should have been 0.5 sec, but it seems to return much faster (0.3something)
@@ -132,7 +132,7 @@ void SharkfoodSoundMuteNotificationCompletionProc(SystemSoundID  ssID,void* clie
     [self scheduleCall];
 }
 
--(void)loopCheck{
+- (void)loopCheck{
     if (!self.isPaused){
         self.interval = [NSDate timeIntervalSinceReferenceDate];
         self.isPlaying = YES;
@@ -143,7 +143,7 @@ void SharkfoodSoundMuteNotificationCompletionProc(SystemSoundID  ssID,void* clie
 
 // For reference only, this DTOR will never be invoked.
 
--(void)dealloc{
+- (void)dealloc{
     if (self.soundId != -1){
         AudioServicesRemoveSystemSoundCompletion(self.soundId);
         AudioServicesDisposeSystemSoundID(self.soundId);

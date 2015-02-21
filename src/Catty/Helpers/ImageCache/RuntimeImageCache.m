@@ -108,7 +108,7 @@
     });
 }
 
--(void)overwriteThumbnailImageFromDiskWithThumbnailPath:(NSString*)thumbnailPath image:(UIImage*)image thumbnailFrameSize:(CGSize)thumbnailFrameSize
+- (void)overwriteThumbnailImageFromDiskWithThumbnailPath:(NSString*)thumbnailPath image:(UIImage*)image thumbnailFrameSize:(CGSize)thumbnailFrameSize
 {
         // generate thumbnail image (retina)
     CGSize thumbnailImageSize = CGSizeMake(thumbnailFrameSize.width, thumbnailFrameSize.height);

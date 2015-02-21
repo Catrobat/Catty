@@ -43,7 +43,7 @@
 }
 
 
--(void)testSetYBrickPositive
+- (void)testSetYBrickPositive
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];
@@ -70,7 +70,7 @@
     XCTAssertEqual(object.yPosition, (CGFloat)20, @"SetyBrick is not correctly calculated");
 }
 
--(void)testSetYBrickNegative
+- (void)testSetYBrickNegative
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];
@@ -97,7 +97,7 @@
     XCTAssertEqual(object.yPosition, (CGFloat)-20, @"SetyBrick is not correctly calculated");
 }
 
--(void)testSetYBrickOutOfRange
+- (void)testSetYBrickOutOfRange
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];
@@ -124,7 +124,7 @@
     XCTAssertEqual(object.yPosition, (CGFloat)50000, @"SetyBrick is not correctly calculated");
 }
 
--(void)testSetYBrickWrongInput
+- (void)testSetYBrickWrongInput
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];

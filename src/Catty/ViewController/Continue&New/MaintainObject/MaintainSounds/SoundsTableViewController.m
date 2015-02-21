@@ -109,7 +109,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.isAllowed = YES;
 }
 
--(void)dealloc
+- (void)dealloc
 {
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
     [dnc removeObserver:self name:kRecordAddedNotification object:nil];

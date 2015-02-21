@@ -23,7 +23,7 @@
 #import "PointerTool.h"
 
 @implementation PointerTool
--(id) initWithDrawViewCanvas:(PaintViewController *)canvas
+- (id) initWithDrawViewCanvas:(PaintViewController *)canvas
 {
   self = [super init];
   if(self)
@@ -34,9 +34,9 @@
   return self;
 }
 
--(void)initPointerView
+- (void)initPointerView
 {
-  self.pointerView = [[UIView alloc] initWithFrame:CGRectMake(self.canvas.helper.center.x , self.canvas.helper.center.y, 150 , 150)];
+  self.pointerView = [[UIView alloc] initWithFrame:CGRectMake(self.canvas.helper.center.x , self.canvas.helper.center.y, 125 , 125)];
   [self.pointerView setUserInteractionEnabled:YES];
   self.pointerView.backgroundColor = [UIColor clearColor];
   self.pointerView.hidden = YES;
@@ -53,7 +53,7 @@
   self.colorView.hidden = YES;
   
 
-  [self.pointerView addSubview:self.colorView];
+  
   
   self.canvas.pointerToolBarButtonItem.tintColor = [UIColor lightOrangeColor];
   self.drawingEnabled = NO;
@@ -67,9 +67,27 @@
   [self.border setBorderWidth:4];
   [self.border setBorderColor:[[UIColor blackColor] CGColor]];
   [self.pointerView.layer addSublayer:self.border];
+  
+  [self makeLineLayer:self.pointerView.layer lineFromPointA:CGPointMake((self.pointerView.frame.size.width /2), 0) toPointB:CGPointMake((self.pointerView.frame.size.width /2), (self.pointerView.frame.size.height))];
+  [self makeLineLayer:self.pointerView.layer lineFromPointA:CGPointMake(0, (self.pointerView.frame.size.height/2)) toPointB:CGPointMake((self.pointerView.frame.size.width), (self.pointerView.frame.size.height/2))];
+  
+  [self.pointerView addSubview:self.colorView];
 }
 
--(void)updateColorView
+-(void)makeLineLayer:(CALayer *)layer lineFromPointA:(CGPoint)pointA toPointB:(CGPoint)pointB
+{
+    CAShapeLayer *line = [CAShapeLayer layer];
+    UIBezierPath *linePath=[UIBezierPath bezierPath];
+    [linePath moveToPoint: pointA];
+    [linePath addLineToPoint:pointB];
+    line.path=linePath.CGPath;
+    line.fillColor = nil;
+    line.opacity = 1.0;
+    line.strokeColor = [UIColor blackColor].CGColor;
+    [layer addSublayer:line];
+}
+
+- (void)updateColorView
 {
   self.colorView.frame = CGRectMake(0, 0,self.canvas.thickness+2, self.canvas.thickness+2);
   self.colorView.center = CGPointMake(self.pointerView.center.x-self.pointerView.frame.origin.x, self.pointerView.center.y-self.pointerView.frame.origin.y) ;
@@ -95,7 +113,7 @@
 }
 
 
--(void)drawingChangeAction
+- (void)drawingChangeAction
 {
   if (self.drawingEnabled == YES) {
     self.drawingEnabled = NO;
@@ -111,7 +129,7 @@
   
 }
 
--(void)disable
+- (void)disable
 {
   self.drawingEnabled = NO;
   self.pointerView.hidden = YES;
@@ -119,7 +137,7 @@
   self.colorView.hidden = YES;
 }
 
--(void)drawWithPointer:(UIPanGestureRecognizer *)recognizer
+- (void)drawWithPointer:(UIPanGestureRecognizer *)recognizer
 {
   //Move View
   CGPoint translation = [recognizer translationInView:self.canvas.helper];

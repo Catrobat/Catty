@@ -191,23 +191,26 @@
     [self removeChildrenInArray:@[script]];
 }
 
-- (BOOL)touchedwith:(NSSet *)touches withX:(CGFloat)x andY:(CGFloat)y
+- (BOOL)touchedwith:(NSSet*)touches withX:(CGFloat)x andY:(CGFloat)y
 {
+    if (! [self.program isPlaying]) {
+        
+    }
     for (UITouch *touch in touches) {
         CGPoint touchedPoint = [touch locationInNode:self];
-        NSDebug(@"x:%f,y:%f",touchedPoint.x,touchedPoint.y);
+        NSDebug(@"x:%f,y:%f", touchedPoint.x, touchedPoint.y);
          //NSLog(@"test touch, %@",self.name);
 //        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [UIScreen mainScreen].scale);
 //        [self.scene.view drawViewHierarchyInRect:self.frame afterScreenUpdates:NO];
 //        UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
 //        UIGraphicsEndImageContext();
-        NSDebug(@"image : x:%f,y:%f",self.currentUIImageLook.size.width,self.currentUIImageLook.size.height);
+        NSDebug(@"image : x:%f,y:%f", self.currentUIImageLook.size.width, self.currentUIImageLook.size.height);
         BOOL isTransparent = [self.currentUIImageLook isTransparentPixel:self.currentUIImageLook withX:touchedPoint.x andY:touchedPoint.y];
         if (isTransparent) {
             NSDebug(@"I'm transparent at this point");
             return NO;
         }
-            for (Script *script in self.scriptList) {
+        for (Script *script in self.scriptList) {
             if ([script isKindOfClass:[WhenScript class]]) {
                 __weak typeof(self) weakSelf = self;
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
@@ -258,6 +261,9 @@
 
 - (void)startAndAddScript:(Script*)script completion:(dispatch_block_t)completion
 {
+    if (! script || ! self.program.isPlaying) {
+        return;
+    }
 //    if ([[self children] indexOfObject:script] == NSNotFound) { <== does not work any more under iOS8!!
     if (! [script inParentHierarchy:self]) {
         [script removeFromParent]; // just to ensure
@@ -269,7 +275,7 @@
 - (Look*)nextLook
 {
     NSInteger index = [self.lookList indexOfObject:self.currentLook];
-    index++;
+    ++index;
     index %= [self.lookList count];
     return [self.lookList objectAtIndex:index];
 }
@@ -555,10 +561,10 @@
 - (void)broadcast:(NSString*)message
 {
     NSDebug(@"Broadcast: %@, Object: %@", message, self.name);
-    NSNotification *notification = [NSNotification notificationWithName:[NSString stringWithFormat:@"%@%@",kCatrobatBroadcastPrefix,message] object:self];
-    [[NSNotificationQueue defaultQueue]
-     enqueueNotification:notification
-     postingStyle:NSPostASAP];
+    // prepend prefix to avoid bad voodoo!
+    NSString *notificationMessage = [kCatrobatBroadcastPrefix stringByAppendingString:message];
+    NSNotification *notification = [NSNotification notificationWithName:notificationMessage object:self];
+    [[NSNotificationQueue defaultQueue] enqueueNotification:notification postingStyle:NSPostASAP];
 //    [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
 }
 
@@ -583,17 +589,12 @@
             }
             counter++;
         }
-        NSDebug(@"COUNT: %lu",self.broadcastScriptArray.count );
-        
+        NSDebug(@"COUNT: %lu", self.broadcastScriptArray.count);
         if (self.broadcastScriptArray.count > 1) {
             [self.broadcastScriptArray removeObjectAtIndex:counter];
             [self.broadcastScriptArray insertObject:removedScript atIndex:self.broadcastScriptArray.count-1];
         }
 //    });
-
-    
-
-
     //dispatch_release(group);
 }
 
@@ -621,7 +622,6 @@
 
 - (void)performBroadcastWaitScriptWithMessage:(NSString*)message with:(dispatch_semaphore_t)sema1
 {
-
     for (Script *script in self.scriptList) {
         if ([script isKindOfClass:[BroadcastScript class]]) {
             BroadcastScript* broadcastScript = (BroadcastScript*)script;
@@ -642,7 +642,6 @@
     }
     NSDebug(@"BroadcastWaitScriptDone");
 }
-
 
 - (NSString*)description
 {
@@ -701,37 +700,37 @@
 }
 
 #pragma mark - Formula Protocol
--(CGFloat)xPosition
+- (CGFloat)xPosition
 {
     return self.position.x;
 }
 
--(CGFloat)yPosition
+- (CGFloat)yPosition
 {
     return self.position.y;
 }
 
--(CGFloat)rotation
+- (CGFloat)rotation
 {
     return (CGFloat)[Util radiansToDegree:self.zRotation];
 }
 
--(CGFloat) zIndex
+- (CGFloat) zIndex
 {
     return [self zPosition];
 }
 
--(CGFloat) brightness
+- (CGFloat) brightness
 {
     return 100 * self.currentLookBrightness;
 }
 
--(CGFloat) scaleX
+- (CGFloat) scaleX
 {
     return [self xScale]*100;
 }
 
--(CGFloat) scaleY
+- (CGFloat) scaleY
 {
     return [self yScale]*100;
 }
@@ -739,8 +738,8 @@
 #pragma mark - Copy
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
 {
-    if(!context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
-    
+    if (! context) { NSError(@"%@ must not be nil!", [CBMutableCopyContext class]); }
+
     SpriteObject *newObject = [[SpriteObject alloc] init];
     newObject.name = [NSString stringWithString:self.name];
     newObject.program = self.program;
@@ -748,10 +747,8 @@
     newObject.broadcastWaitDelegate = nil;
     newObject.currentLook = nil;
     newObject.currentUIImageLook = nil;
-    newObject.numberOfObjectsWithoutBackground = 0;
-    
     [context updateReference:self WithReference:newObject];
-    
+
     // deep copy
     newObject.lookList = [NSMutableArray arrayWithCapacity:[self.lookList count]];
     for (id lookObject in self.lookList) {

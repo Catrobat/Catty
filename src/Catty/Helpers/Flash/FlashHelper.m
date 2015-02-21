@@ -45,7 +45,7 @@ static FlashHelper* sharedFlashHandler = nil;
     return sharedFlashHandler;
 }
 
--(void)turnOn
+- (void)turnOn
 {
     self.session= [[AVCaptureSession alloc] init];
     
@@ -70,7 +70,7 @@ static FlashHelper* sharedFlashHandler = nil;
     }
 
 }
--(void)turnOff
+- (void)turnOff
 {
     if (self.session.isRunning) {
         [self.session stopRunning];

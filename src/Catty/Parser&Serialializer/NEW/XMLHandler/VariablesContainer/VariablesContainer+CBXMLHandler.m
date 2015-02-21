@@ -80,7 +80,6 @@
 + (OrderedDictionary*)parseAndCreateObjectVariables:(GDataXMLElement*)objectVarListElement
                                  spriteObjectElements:(NSMutableDictionary*)spriteObjectElementMap
 {
-    NSLog(@"--- Object Variables ---");
     NSArray *entries = [objectVarListElement children];
     OrderedDictionary *objectVariableMap = [[OrderedDictionary alloc] initWithCapacity:[entries count]];
     NSUInteger index = 0;
@@ -103,7 +102,6 @@
         [XMLError exceptionIfNil:nameAttribute message:@"Object element does not contain a name attribute!"];
         NSString *spriteObjectName = [nameAttribute stringValue];
         [spriteObjectElementMap setObject:objectElement forKey:spriteObjectName];
-        NSLog(@"For SpriteObject: %@", spriteObjectName);
 
         // check if that SpriteObject has been already parsed some time before
         if ([objectVariableMap objectForKey:spriteObjectName]) {
@@ -124,7 +122,6 @@
 
 + (NSMutableArray*)parseAndCreateProgramVariables:(GDataXMLElement*)programVarListElement
 {
-    NSLog(@"--- Program Variables ---");
     return [[self class] parseUserVariablesList:[programVarListElement children]];
 }
 
