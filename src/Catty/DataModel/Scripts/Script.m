@@ -37,12 +37,12 @@
 #import "Util.h"
 #import "CBMutableCopyContext.h"
 #import "WhenScript.h"
+#import "BroadcastScript.h"
 
 @interface Script()
 
 @property (nonatomic, readwrite) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readwrite) kBrickType brickType;
-@property (nonatomic, assign) NSUInteger currentBrickIndex;
 @property (copy) dispatch_block_t completion;
 
 @end
@@ -54,6 +54,8 @@
     if (self = [super init]) {
         NSString *subclassName = NSStringFromClass([self class]);
         BrickManager *brickManager = [BrickManager sharedBrickManager];
+        self.parentScript = nil;
+        self.allowRunNextAction = YES;
         self.brickType = [brickManager brickTypeForClassName:subclassName];
         self.brickCategoryType = [brickManager brickCategoryTypeForBrickType:self.brickType];
         self.currentBrickIndex = 0;
@@ -85,21 +87,21 @@
 - (void)dealloc
 {
     NSDebug(@"Dealloc %@ %@", [self class], self.parent);
-    
 }
 
 #pragma mark - Copy
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {
     if(!context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
-    
+
     Script *copiedScript = [[self class] new];
     copiedScript.brickCategoryType = self.brickCategoryType;
     copiedScript.brickType = self.brickType;
     copiedScript.allowRunNextAction = self.allowRunNextAction;
-    if(self.action)
+    if (self.action) {
         copiedScript.action = [NSString stringWithString:self.action];
-    
+    }
+
     [context updateReference:self WithReference:copiedScript];
 
     // deep copy
@@ -107,8 +109,13 @@
     for (id brick in self.brickList) {
         if ([brick isKindOfClass:[Brick class]]) {
             // TODO: issue #308 - implement deep copy for all bricks here!!
-            [copiedScript.brickList addObject:[brick mutableCopyWithContext:context]]; // there are some bricks that refer to other sound, look, sprite objects...
+            Brick *copiedBrick = [brick mutableCopyWithContext:context]; // there are some bricks that refer to other sound, look, sprite objects...
+            copiedBrick.script = copiedScript;
+            [copiedScript.brickList addObject:copiedBrick];
         }
+    }
+    if ([self isKindOfClass:[BroadcastScript class]]) {
+        ((BroadcastScript*)copiedScript).receivedMessage = ((BroadcastScript*)self).receivedMessage;
     }
     return copiedScript;
 }
@@ -163,13 +170,28 @@
 - (void)startWithCompletion:(dispatch_block_t)completion
 {
     NSDebug(@"Starting: %@", NSStringFromClass([self class]));
-    [self reset];
-    self.completion = completion;
+//    self.completion = completion;
 
+//    if ([self isKindOfClass:[BroadcastScript class]]) {
+//        NSLog(@"Starting BroadcastScript of object %@", self.object.name);
+//    }
+
+    [self reset];
     if ([self hasActions]) {
+//        NSLog(@"%@ has actions", [self class]);
         [self removeAllActions];
     } else {
-        [self runNextAction];
+        [self runAllActions];
+    }
+
+    // only remove from parent if program is still playing, otherwise script will be removed
+    // via stopProgram-method in Scene
+    if (self.object.program.isPlaying) {
+        //    [self.object removeChildrenInArray:@[script]];
+        [self removeFromParent];
+    }
+    if (completion) {
+        completion();
     }
 }
 
@@ -181,6 +203,7 @@
             [((LoopBeginBrick*)brick) reset];
         }
     }
+    self.allowRunNextAction = YES;
     self.currentBrickIndex = 0;
     self.completion = NULL;
 }
@@ -191,89 +214,81 @@
     self.currentBrickIndex = NSNotFound;
 }
 
-- (void)runNextAction
+- (void)runAllActions
 {
-    // check if script execution was terminated
+    NSString *preservedScriptName = NSStringFromClass([self class]);
+    NSString *preservedObjectName = self.object.name;
+//    NSLog(@"Started %@ in object %@", preservedScriptName, preservedObjectName);
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+    while (self.currentBrickIndex < [self.brickList count]) {
+        if (! self.allowRunNextAction || (! self.object.program.isPlaying)) {
+            NSLog(@"Forced to finish Script: %@", NSStringFromClass([self class]));
+            break;
+        }
+
+        [self runActionForBrick:[self.brickList objectAtIndex:self.currentBrickIndex] semaphore:sem];
+        if ([self isKindOfClass:[BroadcastScript class]]) { NSLog(@"  START waiting semaphore"); }
+        dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+        if ([self isKindOfClass:[BroadcastScript class]]) { NSLog(@"  END waiting semaphore"); }
+        ++self.currentBrickIndex;
+    }
+
+//    if ([self isKindOfClass:[BroadcastScript class]]) {
+//        NSLog(@"Finished %@ in object %@", preservedScriptName, preservedObjectName);
+//    }
+    self.allowRunNextAction = NO;
+}
+
+- (void)runActionForBrick:(Brick*)brick semaphore:(dispatch_semaphore_t)semaphore
+{
+//    if ([self isKindOfClass:[BroadcastScript class]]) {
+//        NSLog(@"  Running Brick %@", [brick class]);
+//    }
     if (! self.allowRunNextAction) {
-        NSDebug(@"Forced to finish Script: %@", NSStringFromClass([self class]));
-        if (self.completion) {
-            self.completion();
-        }
+        dispatch_semaphore_signal(semaphore);
         return;
     }
-
-    // check if script is finished
-    if (self.currentBrickIndex >= [self.brickList count]) {
-        NSDebug(@"Finished Script: %@", NSStringFromClass([self class]));
-        if (self.completion) {
-            self.completion();
-        }
-        return;
-    }
-
-    NSDebug(@"Running Next Action");
-    NSDebug(@"Self Parent: %@", self.parent);
-
-    Brick *currentBrick = [self.brickList objectAtIndex:self.currentBrickIndex];
-    ++self.currentBrickIndex;
-
-    SKAction *action = [self fakeAction];
-//    SKAction *action = nil;
-    if ([currentBrick isKindOfClass:[LoopBeginBrick class]]) {
-        BOOL condition = [((LoopBeginBrick*)currentBrick) checkCondition];
+    SKAction *action = nil;
+    if ([brick isKindOfClass:[LoopBeginBrick class]]) {
+        BOOL condition = [((LoopBeginBrick*)brick) checkCondition];
         if (! condition) {
-            LoopEndBrick *loopEndBrick = ((LoopBeginBrick*)currentBrick).loopEndBrick;
+            LoopEndBrick *loopEndBrick = ((LoopBeginBrick*)brick).loopEndBrick;
             self.currentBrickIndex = (1 + [self.brickList indexOfObject:loopEndBrick]);
         }
-    } else if ([currentBrick isKindOfClass:[LoopEndBrick class]]) {
-        LoopBeginBrick *loopBeginBrick = ((LoopEndBrick*)currentBrick).loopBeginBrick;
+    } else if ([brick isKindOfClass:[LoopEndBrick class]]) {
+        LoopBeginBrick *loopBeginBrick = ((LoopEndBrick*)brick).loopBeginBrick;
         self.currentBrickIndex = [self.brickList indexOfObject:loopBeginBrick];
         if (self.currentBrickIndex == NSNotFound) {
             abort();
         }
-    } else if ([currentBrick isKindOfClass:[BroadcastWaitBrick class]]) {
+    } else if ([brick isKindOfClass:[BroadcastWaitBrick class]]) {
         NSDebug(@"broadcast wait");
-        __weak Script *weakSelf = self;
-        __weak BroadcastWaitBrick *weakBroadcastWaitBrick = (BroadcastWaitBrick*)currentBrick;
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            [weakBroadcastWaitBrick performBroadcastWait];
-            [weakSelf nextAction];
+//        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [(BroadcastWaitBrick*)brick performBroadcastWait];
         });
-        return;
-        //    } else if ([currentBrick isKindOfClass:[BroadcastBrick class]]) {
-        //        NSDebug(@"broadcast");
-        //        __weak Script* weakself = self;
-        ////            NSMutableArray* actionArray = [[NSMutableArray alloc] init];
-        //            SKAction *action = [currentBrick action];
-        ////            [actionArray addObject:action];
-        ////            SKAction *sequence = [SKAction sequence:actionArray];
-        ////            if (! action || ! actionArray || ! sequence) {
-        ////                abort();
-        ////            }
-        //            [self runAction:action];
-        //            [weakself runNextAction];
-    } else if ([currentBrick isKindOfClass:[IfLogicBeginBrick class]]) {
-        BOOL condition = [((IfLogicBeginBrick*)currentBrick) checkCondition];
+    } else if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
+        BOOL condition = [((IfLogicBeginBrick*)brick) checkCondition];
         if (! condition) {
-            self.currentBrickIndex = (1 + [self.brickList indexOfObject:((IfLogicBeginBrick*)currentBrick).ifElseBrick]);
+            self.currentBrickIndex = (1 + [self.brickList indexOfObject:((IfLogicBeginBrick*)brick).ifElseBrick]);
         }
         if (self.currentBrickIndex == NSIntegerMin) {
             NSError(@"The XML-Structure is wrong, please fix the project");
         }
-    } else if ([currentBrick isKindOfClass:[IfLogicElseBrick class]]) {
-        self.currentBrickIndex = (1 + [self.brickList indexOfObject:((IfLogicElseBrick*)currentBrick).ifEndBrick]);
+    } else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
+        self.currentBrickIndex = (1 + [self.brickList indexOfObject:((IfLogicElseBrick*)brick).ifEndBrick]);
         if (self.currentBrickIndex == NSIntegerMin) {
             NSError(@"The XML-Structure is wrong, please fix the project");
         }
-    } else if ([currentBrick isKindOfClass:[IfLogicEndBrick class]]) {
-        IfLogicBeginBrick *ifBeginBrick = ((IfLogicEndBrick*)currentBrick).ifBeginBrick;
+    } else if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
+        IfLogicBeginBrick *ifBeginBrick = ((IfLogicEndBrick*)brick).ifBeginBrick;
         if ([self.brickList indexOfObject:ifBeginBrick] == NSNotFound) {
             abort();
         }
-    } else if ([currentBrick isKindOfClass:[NoteBrick class]]) {
+    } else if ([brick isKindOfClass:[NoteBrick class]]) {
         // nothing to do!
     } else {
-        action = [currentBrick action];
+        action = [brick action];
     }
 
     __weak Script *weakSelf = self;
@@ -281,23 +296,121 @@
         if (action && self.allowRunNextAction) {
             [weakSelf runAction:action completion:^{
                 NSDebug(@"Finished: %@", action);
-                [weakSelf nextAction];
+                dispatch_semaphore_signal(semaphore);
             }];
         } else {
-            [weakSelf runNextAction];
-            return;
+            dispatch_semaphore_signal(semaphore);
         }
     });
 }
 
-- (void)nextAction
-{
-    // Needs to be async because of recursion!
-    __weak Script* weakSelf = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [weakSelf runNextAction];
-    });
-}
+//- (void)runNextAction
+//{
+//    // check if script execution was terminated
+//    if (! self.allowRunNextAction) {
+//        NSDebug(@"Forced to finish Script: %@", NSStringFromClass([self class]));
+//        if (self.completion) {
+//            self.completion();
+//        }
+//        return;
+//    }
+//
+//    // check if script is finished
+//    if (self.currentBrickIndex >= [self.brickList count]) {
+//        NSDebug(@"Finished Script: %@", NSStringFromClass([self class]));
+//        if (self.completion) {
+//            self.completion();
+//        }
+//        return;
+//    }
+//
+//    NSDebug(@"Running Next Action");
+//    NSDebug(@"Self Parent: %@", self.parent);
+//
+//    Brick *currentBrick = [self.brickList objectAtIndex:self.currentBrickIndex];
+//    ++self.currentBrickIndex;
+//
+//    SKAction *action = [self fakeAction];
+////    SKAction *action = nil;
+//    if ([currentBrick isKindOfClass:[LoopBeginBrick class]]) {
+//        BOOL condition = [((LoopBeginBrick*)currentBrick) checkCondition];
+//        if (! condition) {
+//            LoopEndBrick *loopEndBrick = ((LoopBeginBrick*)currentBrick).loopEndBrick;
+//            self.currentBrickIndex = (1 + [self.brickList indexOfObject:loopEndBrick]);
+//        }
+//    } else if ([currentBrick isKindOfClass:[LoopEndBrick class]]) {
+//        LoopBeginBrick *loopBeginBrick = ((LoopEndBrick*)currentBrick).loopBeginBrick;
+//        self.currentBrickIndex = [self.brickList indexOfObject:loopBeginBrick];
+//        if (self.currentBrickIndex == NSNotFound) {
+//            abort();
+//        }
+//    } else if ([currentBrick isKindOfClass:[BroadcastWaitBrick class]]) {
+//        NSDebug(@"broadcast wait");
+//        __weak Script *weakSelf = self;
+//        __weak BroadcastWaitBrick *weakBroadcastWaitBrick = (BroadcastWaitBrick*)currentBrick;
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+//            [weakBroadcastWaitBrick performBroadcastWait];
+//            [weakSelf nextAction];
+//        });
+//        return;
+//        //    } else if ([currentBrick isKindOfClass:[BroadcastBrick class]]) {
+//        //        NSDebug(@"broadcast");
+//        //        __weak Script* weakself = self;
+//        ////            NSMutableArray* actionArray = [[NSMutableArray alloc] init];
+//        //            SKAction *action = [currentBrick action];
+//        ////            [actionArray addObject:action];
+//        ////            SKAction *sequence = [SKAction sequence:actionArray];
+//        ////            if (! action || ! actionArray || ! sequence) {
+//        ////                abort();
+//        ////            }
+//        //            [self runAction:action];
+//        //            [weakself runNextAction];
+//    } else if ([currentBrick isKindOfClass:[IfLogicBeginBrick class]]) {
+//        BOOL condition = [((IfLogicBeginBrick*)currentBrick) checkCondition];
+//        if (! condition) {
+//            self.currentBrickIndex = (1 + [self.brickList indexOfObject:((IfLogicBeginBrick*)currentBrick).ifElseBrick]);
+//        }
+//        if (self.currentBrickIndex == NSIntegerMin) {
+//            NSError(@"The XML-Structure is wrong, please fix the project");
+//        }
+//    } else if ([currentBrick isKindOfClass:[IfLogicElseBrick class]]) {
+//        self.currentBrickIndex = (1 + [self.brickList indexOfObject:((IfLogicElseBrick*)currentBrick).ifEndBrick]);
+//        if (self.currentBrickIndex == NSIntegerMin) {
+//            NSError(@"The XML-Structure is wrong, please fix the project");
+//        }
+//    } else if ([currentBrick isKindOfClass:[IfLogicEndBrick class]]) {
+//        IfLogicBeginBrick *ifBeginBrick = ((IfLogicEndBrick*)currentBrick).ifBeginBrick;
+//        if ([self.brickList indexOfObject:ifBeginBrick] == NSNotFound) {
+//            abort();
+//        }
+//    } else if ([currentBrick isKindOfClass:[NoteBrick class]]) {
+//        // nothing to do!
+//    } else {
+//        action = [currentBrick action];
+//    }
+//
+//    __weak Script *weakSelf = self;
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        if (action && self.allowRunNextAction) {
+//            [weakSelf runAction:action completion:^{
+//                NSDebug(@"Finished: %@", action);
+//                [weakSelf nextAction];
+//            }];
+//        } else {
+//            [weakSelf runNextAction];
+//            return;
+//        }
+//    });
+//}
+//
+//- (void)nextAction
+//{
+//    // Needs to be async because of recursion!
+//    __weak Script* weakSelf = self;
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [weakSelf runNextAction];
+//    });
+//}
 
 - (SKAction*)fakeAction
 {
