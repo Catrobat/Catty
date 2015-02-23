@@ -157,6 +157,12 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    @synchronized(self) {
+        Scene *previousScene = (Scene*)self.skView.scene;
+        ((Scene*)self.skView.scene).userInteractionEnabled = NO;
+        [previousScene stopProgram];
+        ((Scene*)self.skView.scene).userInteractionEnabled = YES;
+    }
     [super viewWillDisappear:animated];
     [self.menuView removeFromSuperview];
     self.navigationController.navigationBar.hidden = NO;
@@ -429,9 +435,9 @@
 
     //Delete sound rec for loudness sensor
     NSError *error;
-    
+
     NSFileManager *fileMgr = [NSFileManager defaultManager];
-    
+
     NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString* soundfile = [documentsPath stringByAppendingPathComponent:@"loudness_handler.m4a"];
     if ([fileMgr removeItemAtPath:soundfile error:&error] != YES)
@@ -516,60 +522,36 @@
     CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
     Scene *scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
     scene.name = self.program.header.programName;
-    scene.scaleMode = SKSceneScaleModeFill;
+    scene.scaleMode = SKSceneScaleModeFill; // TODO: use header screenMode property here! + create enum
     self.skView.paused = NO;
     [self.skView presentScene:scene];
-    [[ProgramManager sharedProgramManager] setProgram:self.program];
+    [[ProgramManager sharedProgramManager] setProgram:self.program]; // TODO: should be removed!
 }
 
 - (void)restartProgram:(UIButton*)sender
 {
-    self.program.playing = NO;
+    self.view.userInteractionEnabled = NO;
     dispatch_queue_t backgroundQueue = dispatch_queue_create("org.catrobat.restartProgram", 0);
     __weak typeof(self)weakSelf = self;
     dispatch_async(backgroundQueue, ^{
-        [NSThread sleepForTimeInterval:1.0f]; // XXX: wait until all blocks are finished!!
-        __weak typeof(ScenePresenterViewController*)weakSelfSelf = weakSelf;
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [weakSelfSelf.program removeReferences];
-            weakSelfSelf.program = nil;
-            weakSelfSelf.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
-            for (SpriteObject *sprite in weakSelfSelf.program.objectList) {
-                sprite.broadcastWaitDelegate = weakSelfSelf.broadcastWaitHandler;
-            }
-            [weakSelfSelf.program updateReferences];
-            [[AudioManager sharedAudioManager] stopAllSounds];
-
-            [weakSelfSelf.broadcastWaitHandler removeSpriteMessages];
-            Scene *previousScene = (Scene*)weakSelfSelf.skView.scene;
-            previousScene.program = weakSelfSelf.program;
-
-            if (! weakSelfSelf.program) {
-                [[[UIAlertView alloc] initWithTitle:kLocalizedCantRestartProgram
-                                            message:nil
-                                           delegate:weakSelfSelf.menuView
-                                  cancelButtonTitle:kLocalizedOK
-                                  otherButtonTitles:nil] show];
-                return;
-            }
-            [weakSelfSelf.skView presentScene:previousScene];
-            [weakSelfSelf continueProgram:nil withDuration:0.0f];
-            //    ScenePresenterViewController *vc = [[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]]];
-            //
-            //    UINavigationController *navController = weakSelfSelf.navigationController;
-            //
-            //    //Get all view controllers in navigation controller currently
-            //    NSMutableArray *controllers = [[NSMutableArray alloc] initWithArray:navController.viewControllers];
-            //
-            //    //Remove the last view controller
-            //    [controllers removeLastObject];
-            //
-            //    //set the new set of view controllers
-            //    [navController setViewControllers:controllers];
-            //
-            //    //Push a new view controller
-            //    [navController pushViewController:vc animated:NO];
-        });
+        @synchronized(weakSelf) {
+            Scene *previousScene = (Scene*)weakSelf.skView.scene;
+            [previousScene stopProgram];
+            [self.broadcastWaitHandler removeSpriteMessages];
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                if (! weakSelf.program) {
+                    [[[UIAlertView alloc] initWithTitle:kLocalizedCantRestartProgram
+                                                message:nil
+                                               delegate:weakSelf.menuView
+                                      cancelButtonTitle:kLocalizedOK
+                                      otherButtonTitles:nil] show];
+                    return;
+                }
+                [weakSelf.skView presentScene:previousScene];
+                [weakSelf continueProgram:nil withDuration:0.0f];
+                weakSelf.view.userInteractionEnabled = YES;
+            });
+        }
     });
 }
 

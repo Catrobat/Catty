@@ -62,7 +62,8 @@
 {
     NSArray *sprites = [self.spritesForMessages objectForKey:message];
     dispatch_semaphore_t sema = dispatch_semaphore_create([sprites count]);
-    dispatch_queue_t broadcastWaitQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+//    dispatch_queue_t broadcastWaitQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    dispatch_queue_t broadcastWaitQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
     for (SpriteObject *sprite in sprites) {
         if (! [sprite isKindOfClass:[SpriteObject class]]) {
             NSError(@"sprite is not a SpriteObject...abort()");
@@ -89,7 +90,6 @@
 {
     if (self.spritesForMessages.count)
         [self.spritesForMessages removeAllObjects];
-        
 }
 
 @end

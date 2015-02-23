@@ -31,7 +31,6 @@
 #import "ProgramDetailStoreViewController.h"
 #import "ProgramLoadingInfo.h"
 #import "SegueDefines.h"
-#import "Parser.h"
 #import "SpriteObject.h"
 #import "Script.h"
 #import "Brick.h"

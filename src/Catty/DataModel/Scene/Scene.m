@@ -25,8 +25,24 @@
 #import "SpriteObject.h"
 #import "StartScript.h"
 #import "HideBrick.h"
+#import "AudioManager.h"
+
+@interface Scene()
+
+@property (nonatomic, strong) dispatch_queue_t backgroundQueue;
+
+@end
 
 @implementation Scene
+
+- (dispatch_queue_t)backgroundQueue
+{
+    if (! _backgroundQueue) {
+//        _backgroundQueue = dispatch_queue_create("org.catrobat.startScript", DISPATCH_QUEUE_CONCURRENT);
+        _backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    }
+    return _backgroundQueue;
+}
 
 - (id)initWithSize:(CGSize)size andProgram:(Program*)program
 {
@@ -71,8 +87,6 @@
     [self removeAllChildren]; // just to ensure
     self.program.playing = YES;
     for (SpriteObject *spriteObject in self.program.objectList) {
-        // now add the brick with correct visability-state to the Scene
-        [self addChild:spriteObject];
         // minor user experience improvement: check if first Brick in StartScript is HideBrick
         BOOL found = NO;
         for (Script *script in spriteObject.scriptList) {
@@ -85,13 +99,15 @@
             }
         }
         spriteObject.hidden = found;
+        // now add the brick with correct visability-state to the Scene
+        [self addChild:spriteObject];
         NSDebug(@"%f", zPosition);
         [spriteObject start:zPosition];
         [spriteObject setLook];
         spriteObject.userInteractionEnabled = YES;
 
         if (! ([spriteObject isBackground])) {
-            zPosition++;
+            ++zPosition;
         }
     }
 
@@ -107,13 +123,40 @@
 
 - (void)startStartScript:(StartScript*)startScript
 {
-    dispatch_queue_t backgroundQueue = dispatch_queue_create("org.catrobat.startScript", 0);
-    dispatch_async(backgroundQueue, ^{
-        [startScript.object startAndAddScript:startScript completion:^{
-            [startScript.object scriptFinished:startScript];
-            NSDebug(@"FINISHED");
-        }];
+//    [NSOperationQueue high]
+//    NSOperationQueuePriorityHigh
+//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//    NSOperation *operation = [NSOperation new];
+//    operation.qualityOfService = NSQualityOfServiceUserInitiated;
+//    operation.queuePriority = NSOperationQueuePriorityVeryHigh;
+    dispatch_async(self.backgroundQueue, ^{
+        [startScript.object startAndAddScript:startScript completion:nil];
+        NSLog(@"FINISHED");
     });
+}
+
+- (void)stopProgram
+{
+    self.program.playing = NO;
+    self.paused = YES;
+    [[AudioManager sharedAudioManager] stopAllSounds];
+//    [NSThread sleepForTimeInterval:0.5f]; // XXX: wait until all blocks are finished!!
+//    [self.program removeReferences];
+//    [self.program updateReferences];
+
+    for (SpriteObject *object in self.program.objectList) {
+        for (Script *script in object.scriptList) {
+            script.allowRunNextAction = NO;
+            [script removeAllActions];
+            if ([script inParentHierarchy:object]) {
+                [script removeFromParent];
+            }
+            script.currentBrickIndex = 0;
+        }
+        if ([object inParentHierarchy:self]) {
+            [object removeFromParent];
+        }
+    }
 }
 
 - (CGPoint)convertPointToScene:(CGPoint)point
@@ -168,7 +211,7 @@
     }
 
     SpriteObject *obj1 = nodesAtPoint[[nodesAtPoint count]-1];
-    NSInteger counter =[nodesAtPoint count]-2;
+    NSInteger counter = [nodesAtPoint count]-2;
     NSDebug(@"How many nodes are touched: %ld",(long)counter);
     NSDebug(@"First Node:%@",obj1);
     if (! obj1.name) {
@@ -178,7 +221,7 @@
     while (! foundObject) {
         CGPoint point = [touch locationInNode:obj1];
         if (! obj1.hidden) {
-            if (![obj1 touchedwith:touches withX:point.x andY:point.y]) {
+            if (! [obj1 touchedwith:touches withX:point.x andY:point.y]) {
                 CGFloat zPosition = obj1.zPosition;
                 zPosition -= 1;
                 if (zPosition == -1 || counter < 0) {
