@@ -93,11 +93,11 @@
     super.position = position;
 }
 
-- (void)dealloc
-{
-    NSDebug(@"Dealloc: %@", self);
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
+//- (void)dealloc
+//{
+//    NSDebug(@"Dealloc: %@", self);
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//}
 
 - (NSUInteger)numberOfScripts
 {
@@ -172,8 +172,10 @@
         self.zPosition = zPosition;
     }
     self.broadcastScriptDictionary = nil;
+    NSUInteger indexCounter = 0;
     for (Script *script in self.scriptList) {
         if (! [script isKindOfClass:[BroadcastScript class]]) {
+            ++indexCounter;
             continue;
         }
 
@@ -185,8 +187,9 @@
             abort();
         }
 
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:[NSString stringWithFormat:@"%@%@", kCatrobatBroadcastPrefix, broadcastScript.receivedMessage] object:nil];
-        self.broadcastScriptDictionary[broadcastScript] = [NSMutableArray arrayWithCapacity:kMaxNumOfSameBroadcastScriptInstances];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:[NSString stringWithFormat:@"%@%@", kCatrobatBroadcastPrefix, broadcastScript.receivedMessage] object:nil];
+        self.broadcastScriptDictionary[@(indexCounter)] = [NSMutableArray arrayWithCapacity:kMaxNumOfSameBroadcastScriptInstances];
+        ++indexCounter;
     }
 }
 
@@ -557,81 +560,65 @@
 - (void)broadcast:(NSString*)message
 {
     NSDebug(@"Broadcast: %@, Object: %@", message, self.name);
-    dispatch_async(dispatch_get_main_queue(), ^{ // just to ensure
+//    dispatch_async(dispatch_get_main_queue(), ^{ // just to ensure
         // prepend prefix to avoid bad voodoo!
         NSString *notificationMessage = [kCatrobatBroadcastPrefix stringByAppendingString:message];
         NSNotification *notification = [NSNotification notificationWithName:notificationMessage object:self];
-        [[NSNotificationQueue defaultQueue] enqueueNotification:notification postingStyle:NSPostASAP];
+        [self performBroadcastScript:notification];
+//        [[NSNotificationQueue defaultQueue] enqueueNotification:notification postingStyle:NSPostASAP];
         //    [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
-    });
+//    });
 }
 
 - (void)performBroadcastScript:(NSNotification*)notification
 {
-    __weak typeof(self) weakSelf = self;
-    dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
-
-//    dispatch_async(dispatch_get_main_queue(), ^{ // just to make sure we are running on main thread
-        @synchronized(self) {
-            for (BroadcastScript *parentScript in weakSelf.broadcastScriptDictionary) {
-//                BroadcastScript *parentScript;
-//                [parentKey getValue:&parentScript];
-                NSLog(@"%@", [parentScript description]);
-                if (! parentScript.receivedMessage) {
-                    NSLog(@"Test!");
-                    continue;
-                }
-//                assert(parentScript.receivedMessage != nil);
-                if (! [[kCatrobatBroadcastPrefix stringByAppendingString:parentScript.receivedMessage] isEqualToString:notification.name]) {
-                    continue;
-                }
-
-                dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
-                if ((parentScript.currentBrickIndex == 0) && (! [parentScript inParentHierarchy:self])) {
-                    dispatch_async(backgroundQueue, ^{
-                        [weakSelf startAndAddScript:parentScript completion:nil];
-                    });
-                    continue;
-                }
-
-                if (parentScript.currentBrickIndex >= ([parentScript.brickList count] - 1)) {
-                    parentScript.currentBrickIndex = 0;
-                    dispatch_async(backgroundQueue, ^{
-                        [weakSelf startAndAddScript:parentScript completion:nil];
-                    });
-                    continue;
-                }
-
-                if ([weakSelf.broadcastScriptDictionary[parentScript] count] > kMaxNumOfSameBroadcastScriptInstances) {
-                    continue;
-                }
-
-                // find finished/reusable child
-                BOOL foundReusableChild = NO;
-                for (BroadcastScript *childScript in weakSelf.broadcastScriptDictionary[parentScript]) {
-                    if (childScript.currentBrickIndex >= ([childScript.brickList count] - 1)) {
-                        childScript.currentBrickIndex = 0;
-                        dispatch_async(backgroundQueue, ^{
-                            [weakSelf startAndAddScript:childScript completion:nil];
-                        });
-                        foundReusableChild = YES;
-                    }
-                }
-                if (foundReusableChild) { continue; }
-
-                // no reusable child found => create new script instance
-                BroadcastScript *newScript = [parentScript mutableCopyWithContext:[CBMutableCopyContext new]];
-                newScript.parentScript = parentScript;
-                newScript.object = parentScript.object;
-                newScript.currentBrickIndex = 0;
-                assert(newScript.receivedMessage != nil);
-                dispatch_async(backgroundQueue, ^{
-                    [weakSelf startAndAddScript:newScript completion:nil];
-                });
-                weakSelf.broadcastScriptDictionary[parentScript] = newScript;
+    @synchronized(self) {
+        dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+        for (NSNumber *parentScriptIndex in self.broadcastScriptDictionary) {
+            Script *script = [self.scriptList objectAtIndex:[parentScriptIndex unsignedIntegerValue]];
+            assert([script isKindOfClass:[BroadcastScript class]]);
+            BroadcastScript *parentScript = (BroadcastScript*)script;
+            if (! [[kCatrobatBroadcastPrefix stringByAppendingString:parentScript.receivedMessage] isEqualToString:notification.name]) {
+                continue;
             }
+
+            if (((parentScript.currentBrickIndex == 0) && (! [parentScript inParentHierarchy:self]))
+                || (parentScript.currentBrickIndex >= [parentScript.brickList count])) {
+                parentScript.currentBrickIndex = 0;
+                dispatch_async(backgroundQueue, ^{
+                    [self startAndAddScript:parentScript completion:nil];
+                });
+                continue;
+            }
+
+            if ([self.broadcastScriptDictionary[parentScript] count] > kMaxNumOfSameBroadcastScriptInstances) {
+                continue;
+            }
+
+            // find finished/reusable child
+            BOOL foundReusableChild = NO;
+            for (BroadcastScript *childScript in self.broadcastScriptDictionary[parentScript]) {
+                if (childScript.currentBrickIndex >= ([childScript.brickList count] - 1)) {
+                    childScript.currentBrickIndex = 0;
+                    dispatch_async(backgroundQueue, ^{
+                        [self startAndAddScript:childScript completion:nil];
+                    });
+                    foundReusableChild = YES;
+                }
+            }
+            if (foundReusableChild) { continue; }
+
+            // no reusable child found => create new script instance
+            BroadcastScript *newScript = [parentScript mutableCopyWithContext:[CBMutableCopyContext new]];
+            newScript.object = parentScript.object;
+            newScript.currentBrickIndex = 0;
+            assert(newScript.receivedMessage != nil);
+            dispatch_async(backgroundQueue, ^{
+                [self startAndAddScript:newScript completion:nil];
+            });
+            [self.broadcastScriptDictionary[parentScript] addObject:newScript];
         }
-//    });
+    }
 }
 
 - (void)broadcastAndWait:(NSString*)message

@@ -54,7 +54,6 @@
     if (self = [super init]) {
         NSString *subclassName = NSStringFromClass([self class]);
         BrickManager *brickManager = [BrickManager sharedBrickManager];
-        self.parentScript = nil;
         self.allowRunNextAction = YES;
         self.brickType = [brickManager brickTypeForClassName:subclassName];
         self.brickCategoryType = [brickManager brickCategoryTypeForBrickType:self.brickType];
@@ -219,31 +218,30 @@
     NSString *preservedScriptName = NSStringFromClass([self class]);
     NSString *preservedObjectName = self.object.name;
 //    NSLog(@"Started %@ in object %@", preservedScriptName, preservedObjectName);
-    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
     while (self.currentBrickIndex < [self.brickList count]) {
         if (! self.allowRunNextAction || (! self.object.program.isPlaying)) {
             NSLog(@"Forced to finish Script: %@", NSStringFromClass([self class]));
             break;
         }
 
+        dispatch_semaphore_t sem = dispatch_semaphore_create(0);
         [self runActionForBrick:[self.brickList objectAtIndex:self.currentBrickIndex] semaphore:sem];
-        if ([self isKindOfClass:[BroadcastScript class]]) { NSLog(@"  START waiting semaphore"); }
-        dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
-        if ([self isKindOfClass:[BroadcastScript class]]) { NSLog(@"  END waiting semaphore"); }
+//        if ([self isKindOfClass:[BroadcastScript class]]) { NSLog(@"  START waiting semaphore"); }
+        double delayInSeconds = 0.2f;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_semaphore_wait(sem, popTime);
+//        dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+//        if ([self isKindOfClass:[BroadcastScript class]]) { NSLog(@"  END waiting semaphore"); }
         ++self.currentBrickIndex;
     }
 
-//    if ([self isKindOfClass:[BroadcastScript class]]) {
-//        NSLog(@"Finished %@ in object %@", preservedScriptName, preservedObjectName);
-//    }
+//    if ([self isKindOfClass:[BroadcastScript class]]) { NSLog(@"Finished %@ in object %@", preservedScriptName, preservedObjectName); }
     self.allowRunNextAction = NO;
 }
 
 - (void)runActionForBrick:(Brick*)brick semaphore:(dispatch_semaphore_t)semaphore
 {
-//    if ([self isKindOfClass:[BroadcastScript class]]) {
-//        NSLog(@"  Running Brick %@", [brick class]);
-//    }
+//    if ([self isKindOfClass:[BroadcastScript class]]) { NSLog(@"  Running Brick %@", [brick class]); }
     if (! self.allowRunNextAction) {
         dispatch_semaphore_signal(semaphore);
         return;

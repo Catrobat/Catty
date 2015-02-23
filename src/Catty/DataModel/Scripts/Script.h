@@ -40,7 +40,6 @@
 @property (nonatomic, strong, readonly) NSString *brickTitle;
 - (BOOL)isSelectableForObject;
 
-@property (nonatomic, weak) Script *parentScript;
 @property (nonatomic) BOOL allowRunNextAction;
 @property (nonatomic, weak) SpriteObject *object;
 @property (nonatomic, strong) NSString *action;
