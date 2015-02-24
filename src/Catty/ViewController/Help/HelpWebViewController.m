@@ -35,5 +35,9 @@
     self.navigationController.hidesBarsOnSwipe = YES;
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+  self.navigationController.hidesBarsOnSwipe = NO;
+}
 
 @end
