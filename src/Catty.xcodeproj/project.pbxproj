@@ -4074,6 +4074,8 @@
 				CA538EC319B0EA09008240AB /* Frameworks */,
 				CA538EC719B0EA09008240AB /* Resources */,
 				CA66B2471A9E7BAF00F53AD6 /* License Test */,
+				CA66B24B1A9E89B600F53AD6 /* Localized Strings Test */,
+				CA66B24C1A9E89DA00F53AD6 /* Update Localized Strings */,
 			);
 			buildRules = (
 			);
@@ -4095,6 +4097,8 @@
 				CADBD70119B0E8C200C62836 /* Sources */,
 				CADBD7E419B0E8C200C62836 /* Frameworks */,
 				CA66B2461A9E7B3800F53AD6 /* License Test */,
+				CA66B2491A9E895500F53AD6 /* Localized Strings Test */,
+				CA66B24A1A9E899500F53AD6 /* Update Localized Strings */,
 			);
 			buildRules = (
 			);
@@ -4315,6 +4319,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
 			shellScript = "./license-test.sh";
+		};
+		CA66B2491A9E895500F53AD6 /* Localized Strings Test */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Localized Strings Test";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "./localized-strings-test.sh";
+		};
+		CA66B24A1A9E899500F53AD6 /* Update Localized Strings */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Update Localized Strings";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "./update-localized-strings.sh";
+		};
+		CA66B24B1A9E89B600F53AD6 /* Localized Strings Test */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Localized Strings Test";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "./localized-strings-test.sh";
+		};
+		CA66B24C1A9E89DA00F53AD6 /* Update Localized Strings */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Update Localized Strings";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "./update-localized-strings.sh";
 		};
 		CADBD6D619B0E8C200C62836 /* Add Version Number To Root.plist */ = {
 			isa = PBXShellScriptBuildPhase;
