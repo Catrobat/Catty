@@ -21,10 +21,8 @@
  */
 
 #import "SpriteObject.h"
-#import "BroadcastWaitDelegate.h"
 #import "StartScript.h"
 #import "WhenScript.h"
-#import "BroadcastScript.h"
 #import "Look.h"
 #import "Sound.h"
 #import "Scene.h"
@@ -39,10 +37,6 @@
 #import "NSString+FastImageSize.h"
 #import "ProgramDefines.h"
 #include "CBMutableCopyContext.h"
-
-@interface SpriteObject()
-@property (nonatomic, strong) NSMutableDictionary *broadcastScriptDictionary;
-@end
 
 @implementation SpriteObject
 
@@ -68,14 +62,6 @@
     if (! _scriptList)
         _scriptList = [NSMutableArray array];
     return _scriptList;
-}
-
-- (NSMutableDictionary*)broadcastScriptDictionary
-{
-    // lazy instantiation
-    if (! _broadcastScriptDictionary)
-        _broadcastScriptDictionary = [NSMutableDictionary dictionary];
-    return _broadcastScriptDictionary;
 }
 
 - (CGPoint)position
@@ -158,9 +144,6 @@
     return NO;
 }
 
-#warning TODO: OUTSOURCE!!
-#define kMaxNumOfSameBroadcastScriptInstances 20
-
 - (void)start:(CGFloat)zPosition
 {
     self.position = CGPointMake(0, 0);
@@ -171,26 +154,6 @@
     } else {
         self.zPosition = zPosition;
     }
-    self.broadcastScriptDictionary = nil;
-    NSUInteger indexCounter = 0;
-    for (Script *script in self.scriptList) {
-        if (! [script isKindOfClass:[BroadcastScript class]]) {
-            ++indexCounter;
-            continue;
-        }
-
-        BroadcastScript *broadcastScript = (BroadcastScript*)script;
-        if ([self.broadcastWaitDelegate respondsToSelector:@selector(registerSprite:forMessage:)]) {
-            [self.broadcastWaitDelegate registerSprite:self forMessage:((BroadcastScript*)script).receivedMessage];
-        } else {
-            NSLog(@"ERROR: BroadcastWaitDelegate not set! abort()");
-            abort();
-        }
-
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:[NSString stringWithFormat:@"%@%@", kCatrobatBroadcastPrefix, broadcastScript.receivedMessage] object:nil];
-        self.broadcastScriptDictionary[@(indexCounter)] = [NSMutableArray arrayWithCapacity:kMaxNumOfSameBroadcastScriptInstances];
-        ++indexCounter;
-    }
 }
 
 - (BOOL)touchedwith:(NSSet*)touches withX:(CGFloat)x andY:(CGFloat)y
@@ -199,6 +162,7 @@
         return NO;
     }
 
+    __weak typeof(self) weakSelf = self;
     for (UITouch *touch in touches) {
         CGPoint touchedPoint = [touch locationInNode:self];
         NSDebug(@"x:%f,y:%f", touchedPoint.x, touchedPoint.y);
@@ -215,7 +179,6 @@
         }
         for (Script *script in self.scriptList) {
             if ([script isKindOfClass:[WhenScript class]]) {
-                __weak typeof(self) weakSelf = self;
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                     [weakSelf startAndAddScript:script completion:nil];
                 });
@@ -556,69 +519,10 @@
     }
 }
 
-#pragma mark - Broadcast
-- (void)broadcast:(NSString*)message
+- (void)removeReferences
 {
-    NSDebug(@"Broadcast: %@, Object: %@", message, self.name);
-//    dispatch_async(dispatch_get_main_queue(), ^{ // just to ensure
-        // prepend prefix to avoid bad voodoo!
-        NSString *notificationMessage = [kCatrobatBroadcastPrefix stringByAppendingString:message];
-        NSNotification *notification = [NSNotification notificationWithName:notificationMessage object:self];
-        [self performBroadcastScript:notification];
-//        [[NSNotificationQueue defaultQueue] enqueueNotification:notification postingStyle:NSPostASAP];
-        //    [[NSNotificationCenter defaultCenter] postNotificationName:message object:self];
-//    });
-}
-
-- (void)performBroadcastScript:(NSNotification*)notification
-{
-    @synchronized(self) {
-        dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
-        for (NSNumber *parentScriptIndex in self.broadcastScriptDictionary) {
-            Script *script = [self.scriptList objectAtIndex:[parentScriptIndex unsignedIntegerValue]];
-            assert([script isKindOfClass:[BroadcastScript class]]);
-            BroadcastScript *parentScript = (BroadcastScript*)script;
-            if (! [[kCatrobatBroadcastPrefix stringByAppendingString:parentScript.receivedMessage] isEqualToString:notification.name]) {
-                continue;
-            }
-
-            if (((parentScript.currentBrickIndex == 0) && (! [parentScript inParentHierarchy:self]))
-                || (parentScript.currentBrickIndex >= [parentScript.brickList count])) {
-                parentScript.currentBrickIndex = 0;
-                dispatch_async(backgroundQueue, ^{
-                    [self startAndAddScript:parentScript completion:nil];
-                });
-                continue;
-            }
-
-            if ([self.broadcastScriptDictionary[parentScript] count] > kMaxNumOfSameBroadcastScriptInstances) {
-                continue;
-            }
-
-            // find finished/reusable child
-            BOOL foundReusableChild = NO;
-            for (BroadcastScript *childScript in self.broadcastScriptDictionary[parentScript]) {
-                if (childScript.currentBrickIndex >= ([childScript.brickList count] - 1)) {
-                    childScript.currentBrickIndex = 0;
-                    dispatch_async(backgroundQueue, ^{
-                        [self startAndAddScript:childScript completion:nil];
-                    });
-                    foundReusableChild = YES;
-                }
-            }
-            if (foundReusableChild) { continue; }
-
-            // no reusable child found => create new script instance
-            BroadcastScript *newScript = [parentScript mutableCopyWithContext:[CBMutableCopyContext new]];
-            newScript.object = parentScript.object;
-            newScript.currentBrickIndex = 0;
-            assert(newScript.receivedMessage != nil);
-            dispatch_async(backgroundQueue, ^{
-                [self startAndAddScript:newScript completion:nil];
-            });
-            [self.broadcastScriptDictionary[parentScript] addObject:newScript];
-        }
-    }
+    self.program = nil;
+    [self.scriptList makeObjectsPerformSelector:@selector(removeReferences)];
 }
 
 - (void)broadcastAndWait:(NSString*)message
@@ -634,36 +538,35 @@
         abort();
     }
 
-    if ([self.broadcastWaitDelegate respondsToSelector:@selector(performBroadcastWaitForMessage:)]) {
-        [self.broadcastWaitDelegate performBroadcastWaitForMessage:message];
-    } else {
-        NSLog(@"ERROR: BroadcastWaitDelegate not set! abort()");
-        abort();
-    }
-
+//    if ([self.broadcastWaitDelegate respondsToSelector:@selector(performBroadcastWaitForMessage:)]) {
+//        [self.broadcastWaitDelegate performBroadcastWaitForMessage:message];
+//    } else {
+//        NSLog(@"ERROR: BroadcastWaitDelegate not set! abort()");
+//        abort();
+//    }
 }
 
-- (void)performBroadcastWaitScriptWithMessage:(NSString*)message with:(dispatch_semaphore_t)sema1
-{
-    for (Script *script in self.scriptList) {
-        if ([script isKindOfClass:[BroadcastScript class]]) {
-            BroadcastScript* broadcastScript = (BroadcastScript*)script;
-            if ([broadcastScript.receivedMessage isEqualToString:message]) {
-                dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-                __weak typeof(self) weakSelf = self;
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                    [weakSelf startAndAddScript:broadcastScript completion:^{
-                        dispatch_semaphore_signal(sema);
-                        NSDebug(@"BroadcastWait Semaphore RELEASED");
-                    }];
-                });
-                dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-                dispatch_semaphore_signal(sema1);
-            }
-        }
-    }
-    NSDebug(@"BroadcastWaitScriptDone");
-}
+//- (void)performBroadcastWaitScriptWithMessage:(NSString*)message with:(dispatch_semaphore_t)sema1
+//{
+//    __weak typeof(self) weakSelf = self;
+//    for (Script *script in self.scriptList) {
+//        if ([script isKindOfClass:[BroadcastScript class]]) {
+//            BroadcastScript* broadcastScript = (BroadcastScript*)script;
+//            if ([broadcastScript.receivedMessage isEqualToString:message]) {
+//                dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+//                    [weakSelf startAndAddScript:broadcastScript completion:^{
+//                        dispatch_semaphore_signal(sema);
+//                        NSDebug(@"BroadcastWait Semaphore RELEASED");
+//                    }];
+//                });
+//                dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+//                dispatch_semaphore_signal(sema1);
+//            }
+//        }
+//    }
+//    NSDebug(@"BroadcastWaitScriptDone");
+//}
 
 - (NSString*)description
 {
@@ -765,8 +668,6 @@
     SpriteObject *newObject = [[SpriteObject alloc] init];
     newObject.name = [NSString stringWithString:self.name];
     newObject.program = self.program;
-    newObject.spriteManagerDelegate = nil;
-    newObject.broadcastWaitDelegate = nil;
     newObject.currentLook = nil;
     newObject.currentUIImageLook = nil;
     [context updateReference:self WithReference:newObject];

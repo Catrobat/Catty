@@ -33,20 +33,16 @@
 {
     NSMutableString *ret = [[NSMutableString alloc] initWithString:@"BroadcastScript: "];
     [ret appendString:self.receivedMessage];
-    
-    if ([self.brickList count] > 0)
-    {
+
+    if ([self.brickList count] > 0) {
         [ret appendString:@"\nBricks: \r"];
         for (Brick *brick in self.brickList)
         {
             [ret appendFormat:@"%@\r", brick];
         }
-    }
-    else
-    {
+    } else {
         [ret appendString:@"Bricks array empty!\r"];
     }
-    
     return ret;
 }
 
