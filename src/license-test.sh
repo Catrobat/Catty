@@ -6,8 +6,6 @@ EXCLUDED_DIRS=( "TTTAttributedLabel" "minizip" "SSZipArchive" "GDataXMLNode" "FB
 
 EXCLUDED_FILES=( "AHKActionSheet.[mh]" "AHKActionSheetViewController.[mh]" "LXReorderableCollectionViewFlowLayout.[mh]" "IBActionSheet.[mh]" "Reachability.[mh]" "SharkfoodMuteSwitchDetector.[mh]" "SWCellScrollView.[mh]" "SWUtilityButtonView.[mh]" "UIImage+AHKAdditions.[mh]" "UIWindow+AHKAdditions.[mh]" "SWLongPressGestureRecognizer.[mh]" "SWTableViewCell.[mh]" "SWUtilityButtonTapGestureRecognizer.[mh]" "SMPageControl.[mh]" "EAIntroPage.[mh]" "MYBlurIntroductionView.[mh]" "MYIntroductionPanel.[mh]" )
 
-
-
 EXCLUDED_DIRS_STR=""
 for ((i=0;i<${#EXCLUDED_DIRS[@]};++i)); do
     if [ "$i" -gt 0 ]
@@ -29,7 +27,7 @@ done
 ERROR_COUNT=0
 while read file
 do
-    matches=$(egrep -wx "$SEARCH_STRING" $file | wc -l)
+    matches=$(egrep -wx "$SEARCH_STRING" "$file" | wc -l)
     if [ $matches -ne 15 ]; then
         echo -e $file:1: error : No valid License Header found! 1>&2 
         ERROR_COUNT=1
