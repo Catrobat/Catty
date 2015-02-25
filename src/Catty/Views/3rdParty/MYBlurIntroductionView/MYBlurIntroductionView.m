@@ -7,6 +7,7 @@
 //
 
 #import "MYBlurIntroductionView.h"
+#import "LanguageTranslationDefines.h"
 
 @implementation MYBlurIntroductionView
 @synthesize delegate;
@@ -53,7 +54,7 @@
     [self addSubview:self.PageControl];
     
     //Get skipString dimensions
-    NSString *skipString = NSLocalizedString(@"Skip", nil);
+    NSString *skipString = kLocalizedSkip;
     CGFloat skipStringWidth = 0;
     kSkipButtonFont = [UIFont systemFontOfSize:16];
     
