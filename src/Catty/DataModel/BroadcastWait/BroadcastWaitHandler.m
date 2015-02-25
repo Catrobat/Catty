@@ -25,14 +25,15 @@
 
 @interface BroadcastWaitHandler()
 @property (strong, nonatomic) NSMutableDictionary *spritesForMessages;
-@property (strong, nonatomic) NSLock *lock;
+//@property (strong, nonatomic) NSLock *lock;
 @end
 
 
 @implementation BroadcastWaitHandler
 
-- (NSMutableDictionary *)spritesForMessages
+- (NSMutableDictionary*)spritesForMessages
 {
+    // lazy instantiation
     if (!_spritesForMessages) {
         _spritesForMessages = [NSMutableDictionary dictionary];
     }
@@ -41,16 +42,18 @@
 
 - (void)registerSprite:(SpriteObject *)sprite forMessage:(NSString *)message
 {
-    [self.lock lock];
-    NSArray *sprites = [self.spritesForMessages objectForKey:message];
-    [self.spritesForMessages removeObjectForKey:message];
-    if (sprites == nil) {
-        sprites = [NSArray arrayWithObject:sprite];
-    } else {
-        sprites = [sprites arrayByAddingObject:sprite];
+//    [self.lock lock];
+    @synchronized (self) {
+        NSArray *sprites = [self.spritesForMessages objectForKey:message];
+        [self.spritesForMessages removeObjectForKey:message];
+        if (sprites == nil) {
+            sprites = [NSArray arrayWithObject:sprite];
+        } else {
+            sprites = [sprites arrayByAddingObject:sprite];
+        }
+        [self.spritesForMessages setObject:sprites forKey:message];
     }
-    [self.spritesForMessages setObject:sprites forKey:message];
-    [self.lock unlock];
+//    [self.lock unlock];
 }
 
 - (void)dealloc
