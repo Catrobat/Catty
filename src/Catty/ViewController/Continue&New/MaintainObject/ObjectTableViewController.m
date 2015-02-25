@@ -55,14 +55,6 @@
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - actions
-- (void)playSceneAction:(id)sender
-{
-    [self.navigationController setToolbarHidden:YES animated:YES];
-    ScenePresenterViewController *vc = [[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]]];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

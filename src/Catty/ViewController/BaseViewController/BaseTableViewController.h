@@ -53,6 +53,7 @@
                              target:(id)target
                        confirmTitle:(NSString*)confirmTitle
                      confirmMessage:(NSString*)confirmMessage;
+- (void)playSceneAction:(id)sender;
 - (void)showLoadingView;
 - (void)hideLoadingView;
 

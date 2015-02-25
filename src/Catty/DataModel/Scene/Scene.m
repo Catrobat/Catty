@@ -86,6 +86,7 @@
     CGFloat zPosition = 1.0f;
     [self removeAllChildren]; // just to ensure
     self.program.playing = YES;
+    [self.program setupBroadcastHandling];
     for (SpriteObject *spriteObject in self.program.objectList) {
         // minor user experience improvement: check if first Brick in StartScript is HideBrick
         BOOL found = NO;
@@ -135,28 +136,67 @@
     });
 }
 
-- (void)stopProgram
+- (void)stopProgramWithCompletion:(dispatch_block_t)completion
 {
-    self.program.playing = NO;
-    self.paused = YES;
-    [[AudioManager sharedAudioManager] stopAllSounds];
-//    [NSThread sleepForTimeInterval:0.5f]; // XXX: wait until all blocks are finished!!
-//    [self.program removeReferences];
-//    [self.program updateReferences];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        self.program.playing = NO;
+        [[AudioManager sharedAudioManager] stopAllSounds];
 
-    for (SpriteObject *object in self.program.objectList) {
-        for (Script *script in object.scriptList) {
-            script.allowRunNextAction = NO;
-            [script removeAllActions];
-            if ([script inParentHierarchy:object]) {
-                [script removeFromParent];
+        // continue scene so that all SpriteKit actions can be finished
+        self.view.paused = NO;
+    });
+
+    // perform waiting on another thread!
+    // busy waiting until all scripts finished!!
+    for (SpriteObject *spriteObject in self.program.objectList) {
+        for (Script *script in spriteObject.scriptList) {
+            // CAVE: Never remove this (empty) while loop here!!
+            while (script.isRunning) {
+                [script stop];
+                NSLog(@"%@ in %@ is still running (Scene %@). Waiting until script finished execution...", [script class], spriteObject.name, (self.isPaused ? @"paused" : @"still running"));
+//                for (Brick *brick in script.brickList) {
+//                    if (brick) {
+//                        dispatch_semaphore_signal(brick.semaphore); // XXX: HACK!!
+//                    }
+//                }
+                [NSThread sleepForTimeInterval:1.0f];
             }
-            script.currentBrickIndex = 0;
-        }
-        if ([object inParentHierarchy:self]) {
-            [object removeFromParent];
         }
     }
+    NSLog(@"All scripts finished execution!");
+
+    // remove all references in program hierarchy
+    [self.program removeReferences];
+
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        self.view.paused = YES; // pause scene!
+
+        // now all (!) scripts of all (!) objects have been finished! we can safely remove all SpriteObjects from Scene
+        // NOTE: this for-in-loop MUST NOT be combined with previous for-in-loop because there could exist some
+        //       Scripts in SpriteObjects that contain pointToBricks to other (!) SpriteObjects
+        for (SpriteObject *spriteObject in self.program.objectList) {
+            for (Script *script in spriteObject.scriptList) {
+                [script stop];
+                if ([script inParentHierarchy:spriteObject]) {
+                    [script removeFromParent];
+                }
+            }
+            if ([spriteObject inParentHierarchy:self]) {
+                [spriteObject removeFromParent];
+            }
+        }
+    });
+    [self.program removeReferences];
+    NSLog(@"All SpriteObjects and Scripts have been removed from Scene!");
+
+    if (completion) {
+        completion();
+    }
+}
+
+- (void)restartProgramWithCompletion:(dispatch_block_t)completion
+{
+    [self stopProgramWithCompletion:nil];
 }
 
 - (CGPoint)convertPointToScene:(CGPoint)point

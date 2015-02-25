@@ -185,13 +185,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self hideLoadingView];
 }
 
-- (void)playSceneAction:(id)sender
-{
-    [self.navigationController setToolbarHidden:YES animated:YES];
-    ScenePresenterViewController *vc = [[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]]];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 - (void)editAction:(id)sender
 {
     NSMutableArray *options = [NSMutableArray array];

@@ -233,15 +233,7 @@
     [self.brickSelectionMenu show];
 }
 
-- (void)playSceneAction:(id)sender
-{
-    [self.navigationController setToolbarHidden:YES animated:YES];
-    ScenePresenterViewController *vc = [[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]]];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 #pragma mark - UIViewControllerAnimatedTransitioning delegate
-
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
                                                                   presentingController:(UIViewController *)presenting
                                                                       sourceController:(UIViewController *)source
@@ -934,7 +926,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         // automatically create new script if the object does not contain any of them
         if (! [self.object.scriptList count]) {
             script = [[StartScript alloc] init];
-            script.allowRunNextAction = YES;
             script.object = self.object;
             [self.object.scriptList addObject:script];
         }

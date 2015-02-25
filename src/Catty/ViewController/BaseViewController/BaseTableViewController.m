@@ -32,6 +32,7 @@
 #import "LoadingView.h"
 #import "BDKNotifyHUD.h"
 #import "PlaceHolderView.h"
+#import "ScenePresenterViewController.h"
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"
@@ -346,6 +347,17 @@
                        confirmMessage:confirmMessage];
 }
 
+- (void)playSceneAction:(id)sender
+{
+    if ([self respondsToSelector:@selector(stopAllSounds)]) {
+        [self performSelector:@selector(stopAllSounds)];
+    }
+    [self.navigationController setToolbarHidden:YES animated:YES];
+    ScenePresenterViewController *vc = [ScenePresenterViewController new];
+    vc.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark - alert view delegate handlers
 - (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -378,6 +390,7 @@
 
 - (void)showLoadingView
 {
+    // TODO: create getter for loadingView property and use lazy instantiation instead!
     if (! self.loadingView) {
         self.loadingView = [[LoadingView alloc] init];
         [self.view addSubview:self.loadingView];
@@ -404,7 +417,6 @@
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     [self.loadingView hide];
 }
-
 
 - (void)showSavedView
 {
