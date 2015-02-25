@@ -18,70 +18,919 @@
  *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
- */
-"ExampleEntry" = "ExampleTranslation";
+*/
+/* No comment provided by engineer. */
+"A program with the same name already exists, try again." = "Program sa istim imenom već postoji, pokušaj ponovno.";
 
-"New" = "New";
+/* No comment provided by engineer. */
+"About Catrobat" = "O Catrobat-u";
 
-"Programs" = "Programs";
+/* No comment provided by engineer. */
+"About Pocket Code" = "O Pocket Code-u";
 
-"Continue" = "Continue";
+/* No comment provided by engineer. */
+"Add image" = "Dodaj sliku";
 
-"Download" = "Download";
+/* Action sheet menu title */
+"Add look" = "Dodaj izgled";
 
-"Upload" = "Upload";
+/* No comment provided by engineer. */
+"Add object" = "Dodaj objekt";
 
-"Forum" = "Forum";
+/* Action sheet menu title */
+"Add sound" = "Dodaj zvuk";
 
-"This feature is coming soon!" = "This feature is coming soon!";
+/* paint */
+"Alpha" = "Alfa";
 
-"Pocket Code for iOS" = "Pocket Code for iOS";
+/* No comment provided by engineer. */
+"An image with the same name already exists, try again." = "An image with the same name already exists, try again.";
 
-"Description" = "Description";
+/* No comment provided by engineer. */
+"An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
 
-"Author" = "Author";
+/* No comment provided by engineer. */
+"Animate Brick" = "Animiraj blok";
 
-"Uploaded" = "Uploaded";
+/* No comment provided by engineer. */
+"Apr" = "Apr";
 
-"Views" = "Views";
+/* No comment provided by engineer. */
+"April" = "Travanj";
 
-"Play" = "Play";
+/* No comment provided by engineer. */
+"Aug" = "Aug";
 
-"Recents" = "Recents";
+/* No comment provided by engineer. */
+"August" = "Kolovoz";
 
-"Featured" = "Featured";
+/* No comment provided by engineer. */
+"Author" = "Autor";
 
-"Search" = "Search";
+/* No comment provided by engineer. */
+"Back" = "Natrag";
 
-"Screenshot" = "Screenshot";
+/* No comment provided by engineer. */
+"Background" = "Pozadina";
 
-"Back" = "Back";
+/* No comment provided by engineer. */
+"Backgrounds" = "Pozadine";
 
-"Restart" = "Restart";
+/* paint */
+"Blue" = "Plava";
 
-"Grid" = "Grid";
+/* No comment provided by engineer. */
+"Bricks" = "Blokovi";
 
-"Edit" = "Edit";
+/* No comment provided by engineer. */
+"Broadcast and wait\n%@" = "Broadcast and wait\n%@";
 
-"Background" = "Background";
+/* No comment provided by engineer. */
+"Broadcast\n%@" = "Broadcast\n%@";
 
-"Objects" = "Objects";
+/* paint */
+"brush" = "brush";
 
-"Object" = "Object";
+/* No comment provided by engineer. */
+"By switching to the section \"Explore\" you can discover much more interesting stuff." = "By switching to the section \"Explore\" you can discover much more interesting stuff.";
 
-"My Object" = "My Object";
-
-"Delete" = "Delete";
-
-"Cancel" = "Cancel";
-
-"Add Object" = "Add Object";
-
-"Object name:" = "Object name:";
-
-"Save Screenshot to:" = "Save Screenshot to:";
-
+/* No comment provided by engineer. */
 "Camera Roll" = "Camera Roll";
 
-"Project" = "Project";
+/* No comment provided by engineer. */
+"Can't restart program!" = "Can't restart program!";
+
+/* No comment provided by engineer. */
+"Cancel" = "Odustani";
+
+/* No comment provided by engineer. */
+"Categories" = "Kategorije";
+
+/* No comment provided by engineer. */
+"Change brightness\nby %@\%" = "Change brightness\nby %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Change size by %@\%" = "Change size by %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Change transparency\nby %@\%" = "Change transparency\nby %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Change variable\n%@\nby %@" = "Change variable\n%1$@\nby %2$@";
+
+/* No comment provided by engineer. */
+"Change volume by %@" = "Promjeni glasnoću za %@";
+
+/* No comment provided by engineer. */
+"Change X by %@" = "Promjeni X za %@";
+
+/* No comment provided by engineer. */
+"Change Y by %@" = "Promjeni Y za %@";
+
+/* No comment provided by engineer. */
+"Choose image" = "Odaberi sliku";
+
+/* No comment provided by engineer. */
+"Choose sound" = "Odaberi zvuk";
+
+/* No comment provided by engineer. */
+"Clear graphic effects" = "Ukloni grafičke efekte";
+
+/* No comment provided by engineer. */
+"Close" = "Zatvoriti";
+
+/* No comment provided by engineer. */
+"Compute" = "Izračunati";
+
+/* No comment provided by engineer. */
+"Computed result is %.2f" = "Computed result is %.2f";
+
+/* No comment provided by engineer. */
+"Computed result is FALSE" = "Computed result is FALSE";
+
+/* No comment provided by engineer. */
+"Computed result is TRUE" = "Computed result is TRUE";
+
+/* No comment provided by engineer. */
+"Continue" = "Nastavi";
+
+/* No comment provided by engineer. */
+"Control" = "Kontrola";
+
+/* No comment provided by engineer. */
+"Copy" = "Kopirati";
+
+/* No comment provided by engineer. */
+"Copy Brick" = "Kopiraj blok";
+
+/* No comment provided by engineer. */
+"Copy program" = "Kopiraj program";
+
+/* paint */
+"crop" = "crop";
+
+/* No comment provided by engineer. */
+"Dec" = "Dec";
+
+/* No comment provided by engineer. */
+"December" = "Prosinac";
+
+/* No comment provided by engineer. */
+"Delete" = "Izbrisati";
+
+/* No comment provided by engineer. */
+"Delete Brick" = "Izbriši blok";
+
+/* No comment provided by engineer. */
+"Delete Looks" = "Izbriši izglede";
+
+/* No comment provided by engineer. */
+"Delete Objects" = "Obriši objekte";
+
+/* No comment provided by engineer. */
+"Delete Programs" = "Obriši programe";
+
+/* No comment provided by engineer. */
+"Delete Script" = "Izbriši skriptu";
+
+/* No comment provided by engineer. */
+"Delete Sounds" = "Izbriši zvukove";
+
+/* No comment provided by engineer. */
+"Delete this look" = "Izbriši ovaj izgled";
+
+/* No comment provided by engineer. */
+"Delete this object" = "Izbriši ovaj objekt";
+
+/* No comment provided by engineer. */
+"Delete this program" = "Izbriši ovaj program";
+
+/* No comment provided by engineer. */
+"Delete this sound" = "Izbriši ovaj zvuk";
+
+/* No comment provided by engineer. */
+"Description" = "Opis";
+
+/* No comment provided by engineer. */
+"Details" = "Details";
+
+/* paint */
+"Discard & Close" = "Discard & Close";
+
+/* paint */
+"Do you really want to delete the current drawing?" = "Do you really want to delete the current drawing?";
+
+/* paint */
+"Do you want to save the changes" = "Do you want to save the changes";
+
+/* No comment provided by engineer. */
+"Done" = "Izvršeno";
+
+/* No comment provided by engineer. */
+"Download" = "Preuzmi";
+
+/* No comment provided by engineer. */
+"Downloads" = "Preuzimanja";
+
+/* No comment provided by engineer. */
+"Draw new image" = "Nacrtaj novu sliku";
+
+/* No comment provided by engineer. */
+"Edit" = "Uredi";
+
+/* No comment provided by engineer. */
+"Edit Formula" = "Uredi formulu";
+
+/* Action sheet menu title */
+"Edit Look" = "Edit Look";
+
+/* Action sheet menu title */
+"Edit Looks" = "Uredi izglede";
+
+/* No comment provided by engineer. */
+"Edit Mode" = "Edit Mode";
+
+/* No comment provided by engineer. */
+"Edit Object" = "Edit Object";
+
+/* No comment provided by engineer. */
+"Edit Program" = "Uredi program";
+
+/* No comment provided by engineer. */
+"Edit Programs" = "Uredi programe";
+
+/* Action sheet menu title */
+"Edit Sound" = "Edit Sound";
+
+/* Action sheet menu title */
+"Edit Sounds" = "Uredi zvukove";
+
+/* paint */
+"ellipse / circle" = "ellipse / circle";
+
+/* No comment provided by engineer. */
+"Else" = "Drugo";
+
+/* No comment provided by engineer. */
+"End of Loop" = "Kraj petlje";
+
+/* Placeholder for add image-name input field */
+"Enter your image name here..." = "Unesi naziv slike ovdje...";
+
+/* Placeholder for add object-name input field */
+"Enter your object name here..." = "Unesi naziv svog objekta ovdje...";
+
+/* Placeholder for program-description input field */
+"Enter your program description here..." = "Enter your program description here...";
+
+/* Placeholder for program-name input field */
+"Enter your program name here..." = "Unesi naziv svog programa ovdje...";
+
+/* Placeholder for add sound-name input field */
+"Enter your sound name here..." = "Enter your sound name here...";
+
+/* paint */
+"eraser" = "eraser";
+
+/* No comment provided by engineer. */
+"Error" = "Pogreška";
+
+/* No comment provided by engineer. */
+"Explore" = "Istraži";
+
+/* No comment provided by engineer. */
+"Explore apps" = "Explore apps";
+
+/* No comment provided by engineer. */
+"Featured Programs" = "Featured Programs";
+
+/* No comment provided by engineer. */
+"Feb" = "Feb";
+
+/* No comment provided by engineer. */
+"February" = "Veljača";
+
+/* paint */
+"fill" = "fill";
+
+/* No comment provided by engineer. */
+"Flashlight off" = "Flashlight off";
+
+/* No comment provided by engineer. */
+"Flashlight on" = "Flashlight on";
+
+/* No comment provided by engineer. */
+"Forever" = "Ponavljaj";
+
+/* No comment provided by engineer. */
+"Forgot password" = "Forgot password";
+
+/* No comment provided by engineer. */
+"Formula too long!" = "Formula je preduga!";
+
+/* No comment provided by engineer. */
+"Fr" = "Pet";
+
+/* No comment provided by engineer. */
+"Friday" = "Petak";
+
+/* No comment provided by engineer. */
+"From Camera" = "From Camera";
+
+/* No comment provided by engineer. */
+"Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %1$@ second(s)\nto X: %2$@ Y: %3$@";
+
+/* No comment provided by engineer. */
+"Go back %@ layer(s)" = "Go back %@ layer(s)";
+
+/* No comment provided by engineer. */
+"Go to front" = "Idi naprijed";
+
+/* paint */
+"Green" = "Zelena";
+
+/* No comment provided by engineer. */
+"Grid" = "Grid";
+
+/* No comment provided by engineer. */
+"Help" = "Pomoć";
+
+/* No comment provided by engineer. */
+"Hide" = "Sakrij";
+
+/* No comment provided by engineer. */
+"Hide Details" = "Sakrij detalje";
+
+/* No comment provided by engineer. */
+"If %@ is true then" = "Ako %@ vrijedi onda";
+
+/* No comment provided by engineer. */
+"If End" = "If End";
+
+/* No comment provided by engineer. */
+"If on edge, bounce" = "Ako na rubu, odskočiti";
+
+/* paint */
+"image" = "image";
+
+/* No comment provided by engineer. */
+"Image name" = "Naziv slike";
+
+/* No comment provided by engineer. */
+"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.";
+
+/* No comment provided by engineer. */
+"Information" = "Informacije";
+
+/* No comment provided by engineer. */
+"Invalid URL given!" = "Invalid URL given!";
+
+/* No comment provided by engineer. */
+"Jan" = "Jan";
+
+/* No comment provided by engineer. */
+"January" = "Siječanj";
+
+/* No comment provided by engineer. */
+"Jul" = "Jul";
+
+/* No comment provided by engineer. */
+"July" = "Srpanj";
+
+/* No comment provided by engineer. */
+"Jun" = "Jun";
+
+/* No comment provided by engineer. */
+"June" = "Lipanj";
+
+/* No comment provided by engineer. */
+"Last access" = "Posljednji pristup";
+
+/* No comment provided by engineer. */
+"Length" = "Dužina";
+
+/* paint */
+"line" = "line";
+
+/* No comment provided by engineer. */
+"Loading" = "Učitavanje";
+
+/* No comment provided by engineer. */
+"Logic" = "Logika";
+
+/* No comment provided by engineer. */
+"Login" = "Prijava";
+
+/* No comment provided by engineer. */
+"Looks" = "Izgledi";
+
+/* No comment provided by engineer. */
+"Mar" = "Mar";
+
+/* No comment provided by engineer. */
+"March" = "Ožujak";
+
+/* No comment provided by engineer. */
+"Math" = "Math";
+
+/* No comment provided by engineer. */
+"May" = "Svibanj";
+
+/* No comment provided by engineer. */
+"Measure" = "Mjera";
+
+/* paint */
+"Menu" = "Izbornik";
+
+/* paint */
+"mirror" = "mirror";
+
+/* No comment provided by engineer. */
+"Mo" = "Pon";
+
+/* Prefix of default catrobat program object names (except background object) */
+"Mole" = "Krtica";
+
+/* No comment provided by engineer. */
+"Monday" = "Ponedjeljak";
+
+/* No comment provided by engineer. */
+"More" = " Više";
+
+/* No comment provided by engineer. */
+"Most Downloaded" = "Sa najviše preuzimanja";
+
+/* No comment provided by engineer. */
+"Most Viewed" = "Najgledanije";
+
+/* No comment provided by engineer. */
+"Motion" = "Kretanje";
+
+/* No comment provided by engineer. */
+"Move %@ step(s)" = "Pomjeri %@ koraka";
+
+/* Name of the default catrobat program */
+"My first program" = "Moj prvi program";
+
+/* Default title of imported photo from camera (taken by camera) */
+"My Image" = "My Image";
+
+/* Title for first (default) object */
+"My Object" = "Moj objekt";
+
+/* No comment provided by engineer. */
+"Name already exists. Please choose another" = "Name already exists. Please choose another";
+
+/* No comment provided by engineer. */
+"New" = "Novi";
+
+/* paint */
+"New Canvas" = "New Canvas";
+
+/* No comment provided by engineer. */
+"New Program" = "Novi program";
+
+/* No comment provided by engineer. */
+"New Variable" = "Nova varijabla";
+
+/* No comment provided by engineer. */
+"Newest" = "Najnoviji";
+
+/* No comment provided by engineer. */
+"Next background" = "Sljedeća pozadina";
+
+/* No comment provided by engineer. */
+"Next look" = "Sljedeći izgled";
+
+/* No comment provided by engineer. */
+"No" = "Ne";
+
+/* No comment provided by engineer. */
+"No Description available" = "Opis nije dostupan";
+
+/* No comment provided by engineer. */
+"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "Nema ubačenih zvukova. Molimo povežite svoj iPhone sa PC-om/Mac-om i koristi iTunes FileSharing za ubacivanje zvučnih datoteka u PocketCode aplikaciju.";
+
+/* No comment provided by engineer. */
+"No input or the input is too short. Please enter at least %lu character(s)." = "No input or the input is too short. Please enter at least %lu character(s).";
+
+/* No comment provided by engineer. */
+"No internet connection available." = "No internet connection available.";
+
+/* No comment provided by engineer. */
+"No or invalid image name entered, try again." = "No or invalid image name entered, try again.";
+
+/* No comment provided by engineer. */
+"No or invalid sound name entered, try again." = "No or invalid sound name entered, try again.";
+
+/* No comment provided by engineer. */
+"No search results" = "No search results";
+
+/* No comment provided by engineer. */
+"Not enough free memory to download this program. Please delete some of your programs" = "Nema dovoljno slobodno memorije za preuzimanje programa. Molimo izbriši neke od svojih programa";
+
+/* No comment provided by engineer. */
+"Not enough Memory" = "Not enough Memory";
+
+/* No comment provided by engineer. */
+"Note %@" = "Note %@";
+
+/* paint */
+"Nothing to crop!" = "Nothing to crop!";
+
+/* No comment provided by engineer. */
+"Nov" = "Nov";
+
+/* No comment provided by engineer. */
+"November" = "Studeni";
+
+/* No comment provided by engineer. */
+"Numbers" = "Numbers";
+
+/* No comment provided by engineer. */
+"object" = "object";
+
+/* No comment provided by engineer. */
+"Object" = "Objekt";
+
+/* No comment provided by engineer. */
+"Object name" = "Naziv objekta";
+
+/* No comment provided by engineer. */
+"Objects" = "Objekti";
+
+/* No comment provided by engineer. */
+"Oct" = "Oct";
+
+/* No comment provided by engineer. */
+"October" = "Listopad";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"only 15 characters allowed" = "only 15 characters allowed";
+
+/* No comment provided by engineer. */
+"Password" = "Lozinka";
+
+/* paint */
+"pipette" = "pipette";
+
+/* No comment provided by engineer. */
+"Place at\nX: %@ Y: %@" = "Place at\nX: %1$@ Y: %2$@";
+
+/* No comment provided by engineer. */
+"Play" = "Pokreni";
+
+/* paint */
+"Please pick an item" = "Please pick an item";
+
+/* No comment provided by engineer. */
+"Pocket Code" = "Pocket Code";
+
+/* No comment provided by engineer. */
+"Pocket Code for iOS" = "Pocket Code za iOS";
+
+/* No comment provided by engineer. */
+"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:";
+
+/* No comment provided by engineer. */
+"Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on." = "Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on.";
+
+/* No comment provided by engineer. */
+"Pocket Code Recorder" = "Pocket Code snimač";
+
+/* No comment provided by engineer. */
+"Pocket Code Source Code License" = "Pocket Code Source Code licenca";
+
+/* paint */
+"Pocket Paint" = "Pocket Paint";
+
+/* No comment provided by engineer. */
+"Point in direction %@°" = "Point in direction %@°";
+
+/* No comment provided by engineer. */
+"Point towards\n%@" = "Point towards\n%@";
+
+/* paint */
+"pointer" = "pointer";
+
+/* No comment provided by engineer. */
+"program" = "program";
+
+/* No comment provided by engineer. */
+"Program name" = "Naziv programa";
+
+/* No comment provided by engineer. */
+"Programs" = "Programi";
+
+/* No comment provided by engineer. */
+"Project" = "Projekt";
+
+/* No comment provided by engineer. */
+"Rate Us" = "Rate Us";
+
+/* No comment provided by engineer. */
+"Recording" = "Recording";
+
+/* paint */
+"rectangle / square" = "rectangle / square";
+
+/* paint */
+"Red" = "Crvena";
+
+/* No comment provided by engineer. */
+"Rename" = "Preimenovati";
+
+/* No comment provided by engineer. */
+"Rename image" = "Rename image";
+
+/* No comment provided by engineer. */
+"Rename object" = "Rename object";
+
+/* No comment provided by engineer. */
+"Rename program" = "Preimenuj program";
+
+/* No comment provided by engineer. */
+"Rename sound" = "Rename sound";
+
+/* No comment provided by engineer. */
+"Repeat %@ times" = "Ponovi %@ puta";
+
+/* No comment provided by engineer. */
+"Report as inappropriate" = "Prijavi kao neprikladno";
+
+/* No comment provided by engineer. */
+"Restart" = "Ponovno pokreni";
+
+/* No comment provided by engineer. */
+"Result" = "Result";
+
+/* paint */
+"rotate" = "rotate";
+
+/* paint */
+"round" = "round";
+
+/* No comment provided by engineer. */
+"Sa" = "Sub";
+
+/* No comment provided by engineer. */
+"Saturday" = "Subota";
+
+/* paint */
+"Save & Close Paint" = "Save & Close Paint";
+
+/* Action sheet menu title */
+"Save Screenshot to" = "Spremi snimku zaslona u";
+
+/* paint */
+"Save to CameraRoll" = "Save to CameraRoll";
+
+/* No comment provided by engineer. */
+"Save to PocketCode" = "Save to PocketCode";
+
+/* No comment provided by engineer. */
+"Saved" = "Saved";
+
+/* No comment provided by engineer. */
+"Screenshot" = "Snimka zaslona";
+
+/* No comment provided by engineer. */
+"Screenshot saved to Camera Roll" = "Screenshot saved to Camera Roll";
+
+/* No comment provided by engineer. */
+"Screenshot saved to project" = "Snimka zaslona spremljena u projekt";
+
+/* No comment provided by engineer. */
+"Scripts" = "Skripte";
+
+/* No comment provided by engineer. */
+"Select All" = "Odaberi sve";
+
+/* No comment provided by engineer. */
+"Select Brick Category" = "Select Brick Category";
+
+/* No comment provided by engineer. */
+"Select logical operator" = "Select logical operator";
+
+/* No comment provided by engineer. */
+"Select mathematical function" = "Select mathematical function";
+
+/* paint */
+"Select option:" = "Select option:";
+
+/* No comment provided by engineer. */
+"Sensors" = "Senzori";
+
+/* No comment provided by engineer. */
+"Sep" = "Sep";
+
+/* No comment provided by engineer. */
+"September" = "Rujan";
+
+/* No comment provided by engineer. */
+"Set background\n%@" = "Set background\n%@";
+
+/* No comment provided by engineer. */
+"Set brightness to %@\%" = "Set brightness to %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Set description" = "Postavi opis";
+
+/* No comment provided by engineer. */
+"Set size to %@\%" = "Set size to %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Set transparency\nto %@\%" = "Set transparency\nto %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Set variable\n%@\nto %@" = "Set variable\n%1$@\nto %2$@";
+
+/* No comment provided by engineer. */
+"Set volume to %@\%" = "Set volume to %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Set X to %@" = "Postavi X na %@";
+
+/* No comment provided by engineer. */
+"Set Y to %@" = "Postavi Y na %@";
+
+/* No comment provided by engineer. */
+"Show" = "Prikaži";
+
+/* No comment provided by engineer. */
+"Show Details" = "Prikaži detalje";
+
+/* No comment provided by engineer. */
+"Size" = "Veličina";
+
+/* No comment provided by engineer. */
+"Skip" = "Skip";
+
+/* No comment provided by engineer. */
+"Slow Internet Connection!" = "Slow Internet Connection!";
+
+/* No comment provided by engineer. */
+"Sound" = "Zvuk";
+
+/* No comment provided by engineer. */
+"Sound name" = "Sound name";
+
+/* No comment provided by engineer. */
+"Sounds" = "Zvuci";
+
+/* No comment provided by engineer. */
+"Speak %@" = "Speak %@";
+
+/* paint */
+"square" = "square";
+
+/* paint */
+"stamp" = "stamp";
+
+/* No comment provided by engineer. */
+"Start sound\n%@" = "Start sound\n%@";
+
+/* No comment provided by engineer. */
+"Stop all sounds" = "Zaustavi sve zvukove";
+
+/* No comment provided by engineer. */
+"Su" = "Ned";
+
+/* No comment provided by engineer. */
+"Sunday" = "Nedjelja";
+
+/* No comment provided by engineer. */
+"Switch to look\n%@" = "Switch to look\n%@";
+
+/* No comment provided by engineer. */
+"Syntax Error!" = "Pogreška u sintaksi!";
+
+/* No comment provided by engineer. */
+"Take" = "Take";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add %@" = "Dodirni \"+\" za dodavanje %@";
+
+/* No comment provided by engineer. */
+"Terms of Use" = "Uvjeti korištenja";
+
+/* No comment provided by engineer. */
+"Th" = "Čet";
+
+/* No comment provided by engineer. */
+"The description contains invalid characters, try again." = "The description contains invalid characters, try again.";
+
+/* paint */
+"Thickness" = "Thickness";
+
+/* No comment provided by engineer. */
+"This action can not be undone!" = "Ova akcija se ne može poništiti!";
+
+/* No comment provided by engineer. */
+"This feature is coming soon!" = "This feature is coming soon!";
+
+/* No comment provided by engineer. */
+"Thursday" = "Četvrtak";
+
+/* No comment provided by engineer. */
+"Today" = "Danas";
+
+/* No comment provided by engineer. */
+"Tu" = "Ut";
+
+/* No comment provided by engineer. */
+"Tuesday" = "Utorak";
+
+/* No comment provided by engineer. */
+"Turn left %@°" = "Skreni lijevo %@°";
+
+/* No comment provided by engineer. */
+"Turn right %@°" = "Skreni desno %@";
+
+/* No comment provided by engineer. */
+"Unable to load program!" = "Nije moguće učitati program!";
+
+/* No comment provided by engineer. */
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Nije moguće reproducirati ovaj zvuk!\nMožda zvuk nije valjan ili je datoteka oštećena.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.";
+
+/* No comment provided by engineer. */
+"Unselect All" = "Unselect All";
+
+/* No comment provided by engineer. */
+"Upcoming version" = "Upcoming version";
+
+/* No comment provided by engineer. */
+"Upload" = "Upload";
+
+/* No comment provided by engineer. */
+"Uploaded" = "Uploaded";
+
+/* No comment provided by engineer. */
+"Username" = "Korisničko ime";
+
+/* No comment provided by engineer. */
+"v" = "v";
+
+/* No comment provided by engineer. */
+"Variable name:" = "Variable name:";
+
+/* No comment provided by engineer. */
+"Variable type" = "Variable type";
+
+/* No comment provided by engineer. */
+"Variables" = "Varijable";
+
+/* No comment provided by engineer. */
+"Version" = "Verzija";
+
+/* No comment provided by engineer. */
+"Vibrate %@ second(s)" = "Vibrate %@ second(s)";
+
+/* No comment provided by engineer. */
+"Views" = "Pregledi";
+
+/* No comment provided by engineer. */
+"Wait %@ second(s)" = "Čekaj %@ sekundi";
+
+/* No comment provided by engineer. */
+"We" = "Sri";
+
+/* No comment provided by engineer. */
+"Wednesday" = "Srijeda";
+
+/* No comment provided by engineer. */
+"Welcome to Pocket Code" = "Welcome to Pocket Code";
+
+/* No comment provided by engineer. */
+"When I receive\n%@" = "Kada primim\n%@";
+
+/* No comment provided by engineer. */
+"When program started" = "Kad program počne";
+
+/* No comment provided by engineer. */
+"When tapped" = "Kad dodirneš";
+
+/* No comment provided by engineer. */
+"Yes" = "Da";
+
+/* No comment provided by engineer. */
+"Yesterday" = "Jučer";
+
+/* No comment provided by engineer. */
+"You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people.";
+
+/* No comment provided by engineer. */
+"You have already downloaded this program!" = "You have already downloaded this program!";
+
+/* paint */
+"zoom" = "zoom";
 

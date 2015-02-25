@@ -94,8 +94,8 @@
 
 - (void)setupSegmentedControl
 {
-  NSArray *mySegments = [[NSArray alloc] initWithObjects: @"Round",
-                         @"Square", nil];
+  NSArray *mySegments = [[NSArray alloc] initWithObjects: kLocalizedPaintRound,
+                         kLocalizedPaintSquare, nil];
   self.brushEndingControl = [[UISegmentedControl alloc] initWithItems:mySegments];
   CGFloat width = self.view.frame.size.width-140.0f;
   self.brushEndingControl.frame =CGRectMake(self.view.center.x-width/2.0f, self.view.frame.size.height*0.9f, width, 20);

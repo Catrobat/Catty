@@ -295,7 +295,7 @@
     UIButton *reportButton = [[UIButton alloc] initWithFrame:CGRectMake(2*view.frame.size.width/3-10,view.frame.size.height*0.1+[Util screenHeight]/4.5f+10, 105, 25)];
     reportButton.titleLabel.font = [UIFont boldSystemFontOfSize:8];
     [reportButton.titleLabel setTintColor:[UIColor lightOrangeColor]];
-    [reportButton setTitle:@"Report as inappropriate" forState:UIControlStateNormal];
+    [reportButton setTitle:kLocalizedReportProgram forState:UIControlStateNormal];
     [reportButton addTarget:target action:@selector(reportProgram) forControlEvents:UIControlEventTouchUpInside];
     [reportButton setTintColor:[UIColor lightOrangeColor]];
     
