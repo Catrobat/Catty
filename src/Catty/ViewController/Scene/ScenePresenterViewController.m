@@ -31,7 +31,6 @@
 #import "SpriteObject.h"
 #import "SpriteManagerDelegate.h"
 #import "Brick.h"
-#import "BroadcastWaitHandler.h"
 #import "AudioManager.h"
 #import "ProgramManager.h"
 #import "SensorHandler.h"
@@ -44,6 +43,7 @@
 #import "SaveToProjectActivity.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "LanguageTranslationDefines.h"
+#import "LoadingView.h"
 
 #define kWidthSlideMenu 150
 #define kBounceEffect 5
@@ -67,37 +67,16 @@
 @interface ScenePresenterViewController ()<UIActionSheetDelegate>
 
 @property (nonatomic) BOOL menuOpen;
-@property (nonatomic, strong) BroadcastWaitHandler *broadcastWaitHandler;
 @property (nonatomic) CGPoint firstGestureTouchPoint;
 @property (nonatomic) UIImage *snapshotImage;
 @property (nonatomic, strong) UIView *gridView;
-@property (nonatomic, strong) Program *program;
+@property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) SKView *skView;
 @property (nonatomic) dispatch_queue_t restartProgramQueue;
 
 @end
 
 @implementation ScenePresenterViewController
-
-- (id)initWithProgram:(Program *)program
-{
-    if (self = [super init]) {
-        for (SpriteObject *sprite in program.objectList) {
-            //        sprite.spriteManagerDelegate = self;
-            sprite.broadcastWaitDelegate = self.broadcastWaitHandler;
-
-            // NOTE: if there are still some runNextAction tasks in a queue
-            // then these actions must not be executed because the Scene is not available any more.
-            // This problem caused the app to crash sometimes in the past.
-            // Now these lines fix this issue.
-            for (Script *script in sprite.scriptList) {
-                script.allowRunNextAction = YES;
-            }
-        }
-        _program = program;
-    }
-    return self;
-}
 
 #pragma mark - ViewController Delegates
 - (void)viewDidLoad
@@ -157,12 +136,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    @synchronized(self) {
-        Scene *previousScene = (Scene*)self.skView.scene;
-        ((Scene*)self.skView.scene).userInteractionEnabled = NO;
-        [previousScene stopProgram];
-        ((Scene*)self.skView.scene).userInteractionEnabled = YES;
-    }
     [super viewWillDisappear:animated];
     [self.menuView removeFromSuperview];
     self.navigationController.navigationBar.hidden = NO;
@@ -192,15 +165,6 @@
     return _restartProgramQueue;
 }
 
-- (BroadcastWaitHandler*)broadcastWaitHandler
-{
-    // lazy instantiation
-    if (! _broadcastWaitHandler) {
-        _broadcastWaitHandler = [[BroadcastWaitHandler alloc] init];
-    }
-    return _broadcastWaitHandler;
-}
-
 - (UIView*)gridView
 {
     // lazy instantiation
@@ -209,6 +173,19 @@
         _gridView.hidden = YES;
     }
     return _gridView;
+}
+
+- (LoadingView*)loadingView
+{
+    // lazy instantiation
+    if (! _loadingView) {
+        _loadingView = [[LoadingView alloc] init];
+        [self.view addSubview:_loadingView];
+        [self.view bringSubviewToFront:_loadingView];
+        _loadingView.backgroundColor = [UIColor whiteColor];
+        _loadingView.alpha = 1.0;
+    }
+    return _loadingView;
 }
 
 - (SKView*)skView
@@ -486,9 +463,24 @@
 #pragma mark - button functions
 - (void)stopProgram:(UIButton*)sender
 {
-    [self.parentViewController.navigationController setToolbarHidden:NO];
-    [self.parentViewController.navigationController setNavigationBarHidden:NO];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.loadingView show];
+    self.menuView.userInteractionEnabled = NO;
+    Scene *previousScene = (Scene*)self.skView.scene;
+    previousScene.userInteractionEnabled = NO;
+
+    // busy waiting on other thread until all SpriteKit actions have been finished
+    __weak typeof(self)weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [previousScene stopProgramWithCompletion:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                previousScene.userInteractionEnabled = YES;
+                [self.loadingView hide];
+                [weakSelf.parentViewController.navigationController setToolbarHidden:NO];
+                [weakSelf.parentViewController.navigationController setNavigationBarHidden:NO];
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            });
+        }];
+    });
 }
 
 - (void)continueProgram:(UIButton*)sender withDuration:(CGFloat)duration
@@ -536,21 +528,22 @@
     dispatch_async(backgroundQueue, ^{
         @synchronized(weakSelf) {
             Scene *previousScene = (Scene*)weakSelf.skView.scene;
-            [previousScene stopProgram];
-            [self.broadcastWaitHandler removeSpriteMessages];
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                if (! weakSelf.program) {
-                    [[[UIAlertView alloc] initWithTitle:kLocalizedCantRestartProgram
-                                                message:nil
-                                               delegate:weakSelf.menuView
-                                      cancelButtonTitle:kLocalizedOK
-                                      otherButtonTitles:nil] show];
-                    return;
-                }
-                [weakSelf.skView presentScene:previousScene];
-                [weakSelf continueProgram:nil withDuration:0.0f];
-                weakSelf.view.userInteractionEnabled = YES;
-            });
+#warning TODO: NOT YET IMPLEMENTED!!
+            [previousScene restartProgramWithCompletion:^{
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    if (! weakSelf.program) {
+                        [[[UIAlertView alloc] initWithTitle:kLocalizedCantRestartProgram
+                                                    message:nil
+                                                   delegate:weakSelf.menuView
+                                          cancelButtonTitle:kLocalizedOK
+                                          otherButtonTitles:nil] show];
+                        return;
+                    }
+                    [weakSelf.skView presentScene:previousScene];
+                    [weakSelf continueProgram:nil withDuration:0.0f];
+                    weakSelf.view.userInteractionEnabled = YES;
+                });
+            }];
         }
     });
 }
