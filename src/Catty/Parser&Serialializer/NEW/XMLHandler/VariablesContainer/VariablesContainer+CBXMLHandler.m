@@ -150,11 +150,16 @@
     NSUInteger totalNumOfObjectVariables = [self.objectVariableList count];
 
     for (NSUInteger index = 0; index < totalNumOfObjectVariables; ++index) {
-        GDataXMLElement *entryXmlElement = [GDataXMLElement elementWithName:@"entry" context:context];
-        GDataXMLElement *entryToObjectReferenceXmlElement = [GDataXMLElement elementWithName:@"object" context:context];
         id spriteObject = [self.objectVariableList keyAtIndex:index];
         [XMLError exceptionIf:[spriteObject isKindOfClass:[SpriteObject class]] equals:NO
                       message:@"Instance in objectVariableList at index: %lu is no SpriteObject", (unsigned long)index];
+        if (![context.spriteObjectList containsObject:spriteObject]) {
+            NSWarn(@"Error while serializing object variable for object '%@': object does not exists!", ((SpriteObject*)spriteObject).name);
+            continue;
+        }
+        
+        GDataXMLElement *entryXmlElement = [GDataXMLElement elementWithName:@"entry" context:context];
+        GDataXMLElement *entryToObjectReferenceXmlElement = [GDataXMLElement elementWithName:@"object" context:context];
         CBXMLPositionStack *positionStackOfSpriteObject = context.spriteObjectNamePositions[((SpriteObject*)spriteObject).name];
         CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
         NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack
