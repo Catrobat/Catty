@@ -96,7 +96,7 @@
     self.filePath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, fileName];
     self.sound = [[Sound alloc] init];
     self.sound.fileName = fileName;
-    self.sound.name = NSLocalizedString(@"Recording", nil);
+    self.sound.name = kLocalizedRecording;
     NSURL* outputFileUrl = [NSURL fileURLWithPath:self.filePath isDirectory:NO];
     self.session = [AVAudioSession sharedInstance];
     NSError *err = NULL;

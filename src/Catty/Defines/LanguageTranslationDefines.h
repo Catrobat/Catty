@@ -219,7 +219,7 @@
 #define kLocalizedError NSLocalizedString(@"Error", nil)
 #define kLocalizedMemoryWarning NSLocalizedString(@"Not enough Memory", nil)
 #define kLocalizedReportProgram NSLocalizedString(@"Report as inappropriate", nil)
-
+#define kLocalizedRecording NSLocalizedString(@"Recording", nil)
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -399,10 +399,11 @@
 #define kLocalizedSetVariable NSLocalizedString(@"Set variable\n%@\nto %@", nil)
 #define kLocalizedChangeVariable NSLocalizedString(@"Change variable\n%@\nby %@", nil)
 
+#endif // kIsRelease
 
-    //************************************************************************************************************
-    //************************************       PAINT                ********************************************
-    //************************************************************************************************************
+//************************************************************************************************************
+//************************************       PAINT                ********************************************
+//************************************************************************************************************
 
 #define kLocalizedPaintThickness NSLocalizedString(@"Thickness", @"paint")
 #define kLocalizedPaintRed NSLocalizedString(@"Red", @"paint")
@@ -438,9 +439,9 @@
 #define kLocalizedPaintSquare NSLocalizedString(@"square", @"paint")
 #define kLocalizedPaintPocketPaint NSLocalizedString(@"Pocket Paint", @"paint")
 
-    //************************************************************************************************************
-    //************************************       FormulaEditor        ********************************************
-    //************************************************************************************************************
+//************************************************************************************************************
+//************************************       FormulaEditor        ********************************************
+//************************************************************************************************************
 
 #define kUIActionSheetTitleSelectLogicalOperator NSLocalizedString(@"Select logical operator", nil)
 #define kUIActionSheetTitleSelectMathematicalFunction NSLocalizedString(@"Select mathematical function", nil)
@@ -468,5 +469,3 @@
 #define kUIFEActionVar NSLocalizedString(@"Variable type", nil)
 #define kUIFEActionVarObj NSLocalizedString(@"object", nil)
 #define kUIFEActionVarPro NSLocalizedString(@"program", nil)
-
-#endif // kIsRelease

@@ -6,20 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		CADBD7FD19B0E8F300C62836 /* LicenseTest */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = CADBD7FF19B0E8F300C62836 /* Build configuration list for PBXAggregateTarget "LicenseTest" */;
-			buildPhases = (
-				CADBD7FE19B0E8F300C62836 /* Run Script */,
-			);
-			dependencies = (
-			);
-			name = LicenseTest;
-			productName = LicenseTest;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		4C1608B21A09621A002C7032 /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B01A09621A002C7032 /* ValidFormulaList.xml */; };
 		4C1608B31A09621A002C7032 /* ValidProgram.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B11A09621A002C7032 /* ValidProgram.xml */; };
@@ -318,7 +304,6 @@
 		92FF32BF1A24E2F400093DA7 /* BrickScaleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickScaleTransition.m */; };
 		92FF32C01A24E2F400093DA7 /* BrickSelectModalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32551A24E2F400093DA7 /* BrickSelectModalTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
-		92FF338D1A24E5F800093DA7 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		CA538EA519B0EA09008240AB /* ChangeGhostEffectByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */; };
 		CA538EA619B0EA09008240AB /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
 		CA538EA719B0EA09008240AB /* HideBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3F185625E700547C1E /* HideBrickTests.m */; };
@@ -356,8 +341,6 @@
 		CA538EC919B0EA09008240AB /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = 92345632192E270B00464E6B /* test2.png */; };
 		CA538ECA19B0EA09008240AB /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 923453C1192D2D5F00464E6B /* test.png */; };
 		CA775CBF19FD5BCB00C1E761 /* My first program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CA6E4C4719F9C388001B65C3 /* My first program.catrobat */; };
-		CA8A94A61A41E57400E51A12 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		CA8A94A71A41E57400E51A12 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		CA97A4431A44F368008C931B /* Galaxy_War_092.xml in Resources */ = {isa = PBXBuildFile; fileRef = CA97A4411A44F368008C931B /* Galaxy_War_092.xml */; };
 		CA97A4441A44F368008C931B /* Galaxy_War_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CA97A4421A44F368008C931B /* Galaxy_War_093.xml */; };
 		CA97A44B1A44F38F008C931B /* Air_fight_0.5_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = CA97A4491A44F38F008C931B /* Air_fight_0.5_091.xml */; };
@@ -4090,6 +4073,9 @@
 				CA538EA419B0EA09008240AB /* Sources */,
 				CA538EC319B0EA09008240AB /* Frameworks */,
 				CA538EC719B0EA09008240AB /* Resources */,
+				CA66B2471A9E7BAF00F53AD6 /* License Test */,
+				CA66B24B1A9E89B600F53AD6 /* Localized Strings Test */,
+				CA66B24C1A9E89DA00F53AD6 /* Update Localized Strings */,
 			);
 			buildRules = (
 			);
@@ -4110,6 +4096,9 @@
 				CADBD6D819B0E8C200C62836 /* Resources */,
 				CADBD70119B0E8C200C62836 /* Sources */,
 				CADBD7E419B0E8C200C62836 /* Frameworks */,
+				CA66B2461A9E7B3800F53AD6 /* License Test */,
+				CA66B2491A9E895500F53AD6 /* Localized Strings Test */,
+				CA66B24A1A9E899500F53AD6 /* Update Localized Strings */,
 			);
 			buildRules = (
 			);
@@ -4185,7 +4174,6 @@
 			projectRoot = "";
 			targets = (
 				CADBD6D319B0E8C200C62836 /* Catty */,
-				CADBD7FD19B0E8F300C62836 /* LicenseTest */,
 				CA538EA119B0EA09008240AB /* CattyTests */,
 			);
 		};
@@ -4304,6 +4292,90 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		CA66B2461A9E7B3800F53AD6 /* License Test */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "License Test";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "./license-test.sh";
+		};
+		CA66B2471A9E7BAF00F53AD6 /* License Test */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "License Test";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "./license-test.sh";
+		};
+		CA66B2491A9E895500F53AD6 /* Localized Strings Test */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Localized Strings Test";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "./localized-strings-test.sh";
+		};
+		CA66B24A1A9E899500F53AD6 /* Update Localized Strings */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Update Localized Strings";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "./update-localized-strings.sh";
+		};
+		CA66B24B1A9E89B600F53AD6 /* Localized Strings Test */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Localized Strings Test";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "./localized-strings-test.sh";
+		};
+		CA66B24C1A9E89DA00F53AD6 /* Update Localized Strings */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Update Localized Strings";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "./update-localized-strings.sh";
+		};
 		CADBD6D619B0E8C200C62836 /* Add Version Number To Root.plist */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4331,20 +4403,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/usr/bin/perl -w";
 			shellScript = "use strict;\n\nmy $ACKNOWLEDGEMENTS_HEADER = \"PORTIONS OF THE APPLICATION MAY UTILIZE THE FOLLOWING COPYRIGHTED MATERIAL, THE USE OF WHICH IS HEREBY ACKNOWLEDGED:\";\n\nmy $out = \"Catty/Settings.bundle/en.lproj/Acknowledgements.strings\";\nmy $plistout = \"Catty/Settings.bundle/Acknowledgements.plist\";\n\nunlink $out;\n\nopen(my $outfh, '>', $out) or die $!;\nopen(my $plistfh, '>', $plistout) or die $!;\n\nprint $plistfh <<'EOD';\n<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n    <key>StringsTable</key>\n    <string>Acknowledgements</string>\n    <key>PreferenceSpecifiers</key>\n        <array>\nEOD\n\nprint $plistfh <<\"EOD\";\n            <dict>\n                <key>Type</key>\n                <string>PSGroupSpecifier</string>\n                <key>FooterText</key>\n                <string>AcknowledgementHeader</string>\n            </dict>\nEOD\n\nprint $outfh \"\\\"AcknowledgementHeader\\\" = \\\"$ACKNOWLEDGEMENTS_HEADER\\\";\\n\";\n\nfor my $i (sort glob(\"Catty/Resources/Licenses/*.license\"))\n{\n    my $value=`cat $i`;\n    $value =~ s/\\r//g;\n    $value =~ s/\\n/\\r/g;\n    $value =~ s/[ \\t]+\\r/\\r/g;\n    $value =~ s/\\\"/\\'/g;\n    my $key=$i;\n    $key =~ s/\\.license$//;\n    \n    print $plistfh <<\"EOD\";\n            <dict>\n                <key>Type</key>\n                <string>PSGroupSpecifier</string>\n                <key>FooterText</key>\n                <string>$key</string>\n            </dict>\nEOD\n    \n    print $outfh \"\\\"$key\\\" = \\\"$value\\\";\\n\";\n}\n\nprint $plistfh <<'EOD';\n        </array>\n</dict>\n</plist>\nEOD\n\nclose($outfh);\nclose($plistfh);";
-		};
-		CADBD7FE19B0E8F300C62836 /* Run Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./license-test.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -4401,9 +4459,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA8A94A61A41E57400E51A12 /* (null) in Sources */,
-				CA8A94A71A41E57400E51A12 /* (null) in Sources */,
-				92FF338D1A24E5F800093DA7 /* (null) in Sources */,
 				CAA4A4C81A43B45E002A69A0 /* SetGhostEffectBrick+CBXMLHandler.m in Sources */,
 				92FF2E9C1A24C7D800093DA7 /* SensorHandler.m in Sources */,
 				92FF32B71A24E2F400093DA7 /* ColoredCell.m in Sources */,
@@ -5056,26 +5111,6 @@
 			};
 			name = Release;
 		};
-		CADBD80019B0E8F300C62836 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = LicenseTest_iOS8.0;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		CADBD80119B0E8F300C62836 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = LicenseTest_iOS8.0;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -5102,15 +5137,6 @@
 			buildConfigurations = (
 				CADBD7F919B0E8C200C62836 /* Debug */,
 				CADBD7FA19B0E8C200C62836 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CADBD7FF19B0E8F300C62836 /* Build configuration list for PBXAggregateTarget "LicenseTest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CADBD80019B0E8F300C62836 /* Debug */,
-				CADBD80119B0E8F300C62836 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
