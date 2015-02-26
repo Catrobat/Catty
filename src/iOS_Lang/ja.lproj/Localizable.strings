@@ -19,517 +19,918 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
 */
-"ExampleEntry" = "ExampleEntry";
-
-"New Program" = "New Program";
-
-"Background" = "背景";
-
-"My Object" = "私のスプライト";
-
-"Today" = "今日";
-
-"Yesterday" = "昨日";
-
-"Sunday" = "Sunday";
-
-"Monday" = "Monday";
-
-"Tuesday" = "Tuesday";
-
-"Wednesday" = "Wednesday";
-
-"Thursday" = "Thursday";
-
-"Friday" = "Friday";
-
-"Saturday" = "Saturday";
-
-"Su" = "Su";
-
-"Mo" = "Mo";
-
-"Tu" = "Tu";
-
-"We" = "We";
-
-"Th" = "Th";
-
-"Fr" = "Fr";
-
-"Sa" = "Sa";
-
-"January" = "&#x4E00;&#x6708;";
-
-"February" = "&#x4E8C;&#x6708;";
-
-"March" = "&#x4E09;&#x6708;";
-
-"April" = "&#x56DB;&#x6708;";
-
-"May" = "&#x4E94;&#x6708;";
-
-"June" = "&#x516D;&#x6708;";
-
-"July" = "&#x4E03;&#x6708;";
-
-"August" = "&#x516B;&#x6708;";
-
-"September" = "&#x4E5D;&#x6708;";
-
-"October" = "&#x5341;&#x6708;";
-
-"November" = "&#x5341;&#x4E00;&#x6708;";
-
-"December" = "&#x5341;&#x4E8C;&#x6708;";
-
-"Jan" = "Jan";
-
-"Feb" = "Feb";
-
-"Mar" = "Mar";
-
-"Apr" = "Apr";
-
-"May" = "&#x4E94;&#x6708;";
-
-"Jun" = "Jun";
-
-"Jul" = "Jul";
-
-"Aug" = "Aug";
-
-"Sep" = "Sep";
-
-"Oct" = "Oct";
-
-"Nov" = "Nov";
-
-"Dec" = "Dec";
-
-"Pocket Code" = "ポケット\nコード";
-
-"Categories" = "範囲";
-
-"Explore" = "探索";
-
-"Help" = "ヘルプ";
-
-"Info" = "Info";
-
-"Looks" = "外見";
-
-"Sounds" = "サウンド";
-
-"Choose sound" = "Choose sound";
-
-"Programs" = "プログラム";
-
-"Featured Programs" = "Featured Programs";
-
-"Scripts" = "スクリプト";
-
-"Backgrounds" = "背景";
-
-"Tap \"+\" to add %@" = "Tap \"+\" to add %@";
-
-"Continue" = "続行";
-
-"New" = "新しい";
-
-"Programs" = "プログラム";
-
-"Explore" = "探索";
-
-"Upload" = "アップロード";
-
-"Help" = "ヘルプ";
-
-"Edit Mode" = "Edit Mode";
-
-"Edit" = "Edit";
-
-"Cancel" = "キャンセル";
-
-"Select All" = "Select All";
-
-"Unselect All" = "Unselect All";
-
-"Delete" = "削除";
-
-"Edit Sounds" = "Edit Sounds";
-
-"Edit Looks" = "Edit Looks";
-
-"Add look" = "Add look";
-
-"Edit Program" = "Edit Program";
-
-"Edit Programs" = "Edit Programs";
-
-"Add sound" = "Add sound";
-
-"Save Screenshot to" = "Save Screenshot to";
-
-"Close" = "閉じる";
-
-"Delete Brick" = "ブロックを削除します。";
-
-"Delete Script" = "スクリプトを削除します。";
-
-"Animate Brick" = "Animate Brick";
-
-"Copy Brick" = "ブロックをコピーします。";
-
-"Edit Formula" = "数式を編集します。";
-
-"Delete Sounds" = "Delete Sounds";
-
-"Hide Details" = "詳細を隠す";
-
-"Show Details" = "詳細を表示";
-
-"Delete Looks" = "Delete Looks";
-
-"From Camera" = "カメラから";
-
-"Choose image" = "画像を選択";
-
-"Draw new image" = "新しい画像を描画します。";
-
-"Rename" = "名前の変更";
-
-"Copy" = "Copy";
-
-"Description" = "Description";
-
-"Upload" = "Upload";
-
-"Delete Objects" = "Delete Objects";
-
-"Delete Programs" = "Delete Programs";
-
-"Pocket Code Recorder" = "ポケットコードのサウンドレコーダー";
-
-"Choose sound" = "Choose sound";
-
-"Camera Roll" = "Camera Roll";
-
-"Project" = "Project";
-
-"Cancel" = "キャンセル";
-
-"Delete" = "削除";
-
-"Play" = "Play";
-
-"Download" = "ダウンロード";
-
-"More" = "もっと";
-
-"Delete" = "削除";
-
-"Pocket Code" = "ポケット\nコード";
-
-"Add object" = "Add object";
-
-"Add image" = "Add image";
-
-"Rename program" = "Rename program";
-
-"Set description" = "Set description";
-
-"Rename object" = "Rename object";
-
-"Rename image" = "Rename image";
-
-"Rename sound" = "Rename sound";
-
-"Enter your sound name here..." = "Enter your sound name here...";
-
-"Sound name" = "Sound name";
-
-"An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
-
-"No or invalid image name entered, try again." = "No or invalid image name entered, try again.";
-
-"No or invalid sound name entered, try again." = "No or invalid sound name entered, try again.";
-
-"An image with the same name already exists, try again." = "An image with the same name already exists, try again.";
-
-"Enter your program description here..." = "Enter your program description here...";
-
-"Can't restart program!" = "Can't restart program!";
-
-"Screenshot saved to Camera Roll" = "Screenshot saved to Camera Roll";
-
-"Screenshot saved to project" = "Screenshot saved to project";
-
-"New program" = "新規プログラムの名前";
-
-"Delete this program" = "Delete this program";
-
-"Delete these objects" = "Delete these objects";
-
-"Delete this object" = "Delete this object";
-
-"Delete these programs" = "Delete these programs";
-
-"Delete this program" = "Delete this program";
-
-"Delete these looks" = "Delete these looks";
-
-"Delete this look" = "Delete this look";
-
-"Delete these sounds" = "Delete these sounds";
-
-"Delete this sound" = "Delete this sound";
-
-"Not enough free memory to download this program. Please delete some of your programs" = "Not enough free memory to download this program. Please delete some of your programs";
-
-"Enter your program name here..." = "Enter your program name here...";
-
-"Enter your object name here..." = "Enter your object name here...";
-
-"Enter your image name here..." = "Enter your image name here...";
-
-"This feature is coming soon!" = "This feature is coming soon!";
-
-"Pocket Code for iOS" = "Pocket Code for iOS";
-
-"Program name" = "Program name";
-
-"Object name" = "オブジェクト名";
-
-"Image name" = "Image name";
-
-"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
-
-"No input or the input is too short. Please enter at least %lu characters." = "No input or the input is too short. Please enter at least %lu characters.";
-
-"No or invalid program name entered, try again." = "No or invalid program name entered, try again.";
-
+/* No comment provided by engineer. */
 "A program with the same name already exists, try again." = "A program with the same name already exists, try again.";
 
-"No or invalid object name entered, try again." = "No or invalid object name entered, try again.";
+/* No comment provided by engineer. */
+"About Catrobat" = "キャトロバットについて";
 
-"Unable to load program!" = "Unable to load program!";
+/* No comment provided by engineer. */
+"About Pocket Code" = "ポケットコードについて";
 
-"This action can not be undone!" = "This action can not be undone!";
+/* No comment provided by engineer. */
+"Add image" = "Add image";
 
-"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
+/* Action sheet menu title */
+"Add look" = "Add look";
 
-"No internet connection available." = "No internet connection available.";
+/* No comment provided by engineer. */
+"Add object" = "Add object";
 
-"OK" = "わかりました";
+/* Action sheet menu title */
+"Add sound" = "Add sound";
 
-"Cancel" = "キャンセル";
+/* paint */
+"Alpha" = "透過度";
 
-"Yes" = "はい";
+/* No comment provided by engineer. */
+"An image with the same name already exists, try again." = "An image with the same name already exists, try again.";
 
-"No" = "いいえ";
+/* No comment provided by engineer. */
+"An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
 
-"Delete" = "削除";
+/* No comment provided by engineer. */
+"Animate Brick" = "Animate Brick";
 
-"Loading" = "Loading";
+/* No comment provided by engineer. */
+"Apr" = "Apr";
 
-"Description" = "説明";
+/* No comment provided by engineer. */
+"April" = "&#x56DB;&#x6708;";
 
-"No Description available" = "No Description available";
+/* No comment provided by engineer. */
+"Aug" = "Aug";
 
+/* No comment provided by engineer. */
+"August" = "&#x516B;&#x6708;";
+
+/* No comment provided by engineer. */
 "Author" = "Author";
 
-"Downloads" = "Downloads";
+/* No comment provided by engineer. */
+"Back" = "戻る";
 
-"Uploaded" = "Uploaded";
-
-"Version" = "Version";
-
-"Information" = "Information";
-
-"Views" = "Views";
-
-"Measure" = "Measure";
-
-"Size" = "Size";
-
+/* No comment provided by engineer. */
 "Background" = "背景";
 
-"Object" = "スプライト";
+/* No comment provided by engineer. */
+"Backgrounds" = "背景";
 
-"Objects" = "オブジェクト";
+/* paint */
+"Blue" = "青";
 
-"Scripts" = "スクリプト";
-
+/* No comment provided by engineer. */
 "Bricks" = "Bricks";
 
-"Looks" = "外見";
-
-"Sounds" = "サウンド";
-
-"Last access" = "Last access";
-
-"Size" = "Size";
-
-"Length" = "Length";
-
-"Back" = "戻る";
-
-"Restart" = "再スタート";
-
-"Continue" = "続行";
-
-"Screenshot" = "スクリーンショット";
-
-"Grid" = "Grid";
-
-"Most Downloaded" = "最もダウンロードされた";
-
-"Most Viewed" = "よく見られている";
-
-"Newest" = "最新";
-
-"Control" = "制御";
-
-"Motion" = "動き";
-
-"Sound" = "音";
-
-"Looks" = "外見";
-
-"Variables" = "変数";
-
-"When program started" = "プログラムがはじまると";
-
-"When tapped" = "オブジェクトがタップされている";
-
-"Wait %@ second(s)" = "Wait %@ second(s)";
-
-"When I receive\n%@" = "When I receive\n%@";
-
-"Broadcast\n%@" = "Broadcast\n%@";
-
+/* No comment provided by engineer. */
 "Broadcast and wait\n%@" = "Broadcast and wait\n%@";
 
-"Note %@" = "Note %@";
+/* No comment provided by engineer. */
+"Broadcast\n%@" = "Broadcast\n%@";
 
-"Forever" = "ずっと";
+/* paint */
+"brush" = "brush";
 
-"If %@ is true then" = "If %@ is true then";
+/* No comment provided by engineer. */
+"By switching to the section \"Explore\" you can discover much more interesting stuff." = "By switching to the section \"Explore\" you can discover much more interesting stuff.";
 
-"Else" = "そうではなかったら、";
-
-"If End" = "If End";
-
-"Repeat %@ times" = "Repeat %@ times";
-
-"End of Loop" = "End of Loop";
-
-"Place at\nX: %@ Y: %@" = "Place at\nX: %@ Y: %@";
-
-"Set X to %@" = "Set X to %@";
-
-"Set Y to %@" = "Set Y to %@";
-
-"Change X by %@" = "Change X by %@";
-
-"Change Y by %@" = "Change Y by %@";
-
-"If on edge, bounce" = "端に当たったら、跳ね返る";
-
-"Move %@ step(s)" = "Move %@ step(s)";
-
-"Turn left %@°" = "Turn left %@°";
-
-"Turn right %@°" = "Turn right %@°";
-
-"Point in direction %@°" = "Point in direction %@°";
-
-"Point towards\n%@" = "Point towards\n%@";
-
-"Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %@ second(s)\nto X: %@ Y: %@";
-
-"Go back %@ layer(s)" = "Go back %@ layer(s)";
-
-"Go to front" = "前に出す";
-
-"Switch to look\n%@" = "Switch to look\n%@";
-
-"Set background\n%@" = "Set background\n%@";
-
-"Next look" = "次の外見";
-
-"Next background" = "次の背景";
-
-"Set size to %@\%" = "Set size to %@\%";
-
-"Change size by %@\%" = "Change size by %@\%";
-
-"Hide" = "隠す";
-
-"Show" = "表示する";
-
-"Set transparency\nto %@\%" = "Set transparency\nto %@\%";
-
-"Change transparency\nby %@\%" = "Change transparency\nby %@\%";
-
-"Set brightness to %@\%" = "Set brightness to %@\%";
-
-"Change brightness\nby %@\%" = "Change brightness\nby %@\%";
-
-"Clear graphic effects" = "画像効果をなくす";
-
-"Start sound\n%@" = "Start sound\n%@";
-
-"Stop all sounds" = "すべてのサウンドを停止";
-
-"Set volume to %@\%" = "Set volume to %@\%";
-
-"Change volume by %@" = "Change volume by %@";
-
-"Speak %@" = "Speak %@";
-
-"Set variable\n%@\nto %@" = "Set variable\n%@\nto %@";
-
-"Change variable\n%@\nby %@" = "Change variable\n%@\nby %@";
-
-"Play" = "Play";
-
-"Recents" = "Recents";
-
-"Featured" = "Featured";
-
-"Search" = "Search";
-
-"Screenshot" = "スクリーンショット";
-
-"Back" = "戻る";
-
-"Restart" = "再スタート";
-
-"Grid" = "Grid";
-
-"Edit" = "Edit";
-
-"Background" = "背景";
-
-"Objects" = "オブジェクト";
-
-"Object" = "スプライト";
-
-"My Object" = "私のスプライト";
-
-"Delete" = "削除";
-
-"Cancel" = "キャンセル";
-
-"Add Object" = "Add Object";
-
-"Object name:" = "オブジェクト名:";
-
-"Save Screenshot to:" = "Save Screenshot to:";
-
+/* No comment provided by engineer. */
 "Camera Roll" = "Camera Roll";
 
+/* No comment provided by engineer. */
+"Can't restart program!" = "Can't restart program!";
+
+/* No comment provided by engineer. */
+"Cancel" = "キャンセル";
+
+/* No comment provided by engineer. */
+"Categories" = "範囲";
+
+/* No comment provided by engineer. */
+"Change brightness\nby %@\%" = "Change brightness\nby %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Change size by %@\%" = "Change size by %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Change transparency\nby %@\%" = "Change transparency\nby %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Change variable\n%@\nby %@" = "Change variable\n%1$@\nby %2$@";
+
+/* No comment provided by engineer. */
+"Change volume by %@" = "Change volume by %@";
+
+/* No comment provided by engineer. */
+"Change X by %@" = "Change X by %@";
+
+/* No comment provided by engineer. */
+"Change Y by %@" = "Change Y by %@";
+
+/* No comment provided by engineer. */
+"Choose image" = "画像を選択";
+
+/* No comment provided by engineer. */
+"Choose sound" = "Choose sound";
+
+/* No comment provided by engineer. */
+"Clear graphic effects" = "画像効果をなくす";
+
+/* No comment provided by engineer. */
+"Close" = "閉じる";
+
+/* No comment provided by engineer. */
+"Compute" = "計算";
+
+/* No comment provided by engineer. */
+"Computed result is %.2f" = "Computed result is %.2f";
+
+/* No comment provided by engineer. */
+"Computed result is FALSE" = "Computed result is FALSE";
+
+/* No comment provided by engineer. */
+"Computed result is TRUE" = "Computed result is TRUE";
+
+/* No comment provided by engineer. */
+"Continue" = "続行";
+
+/* No comment provided by engineer. */
+"Control" = "制御";
+
+/* No comment provided by engineer. */
+"Copy" = "コピー";
+
+/* No comment provided by engineer. */
+"Copy Brick" = "ブロックをコピーします。";
+
+/* No comment provided by engineer. */
+"Copy program" = "プログラムをコピー";
+
+/* paint */
+"crop" = "crop";
+
+/* No comment provided by engineer. */
+"Dec" = "Dec";
+
+/* No comment provided by engineer. */
+"December" = "&#x5341;&#x4E8C;&#x6708;";
+
+/* No comment provided by engineer. */
+"Delete" = "削除";
+
+/* No comment provided by engineer. */
+"Delete Brick" = "ブロックを削除します。";
+
+/* No comment provided by engineer. */
+"Delete Looks" = "Delete Looks";
+
+/* No comment provided by engineer. */
+"Delete Objects" = "Delete Objects";
+
+/* No comment provided by engineer. */
+"Delete Programs" = "Delete Programs";
+
+/* No comment provided by engineer. */
+"Delete Script" = "スクリプトを削除します。";
+
+/* No comment provided by engineer. */
+"Delete Sounds" = "Delete Sounds";
+
+/* No comment provided by engineer. */
+"Delete this look" = "Delete this look";
+
+/* No comment provided by engineer. */
+"Delete this object" = "Delete this object";
+
+/* No comment provided by engineer. */
+"Delete this program" = "Delete this program";
+
+/* No comment provided by engineer. */
+"Delete this sound" = "Delete this sound";
+
+/* No comment provided by engineer. */
+"Description" = "説明";
+
+/* No comment provided by engineer. */
+"Details" = "Details";
+
+/* paint */
+"Discard & Close" = "Discard & Close";
+
+/* paint */
+"Do you really want to delete the current drawing?" = "Do you really want to delete the current drawing?";
+
+/* paint */
+"Do you want to save the changes" = "Do you want to save the changes";
+
+/* No comment provided by engineer. */
+"Done" = "完了";
+
+/* No comment provided by engineer. */
+"Download" = "ダウンロード";
+
+/* No comment provided by engineer. */
+"Downloads" = "Downloads";
+
+/* No comment provided by engineer. */
+"Draw new image" = "新しい画像を描画します。";
+
+/* No comment provided by engineer. */
+"Edit" = "Edit";
+
+/* No comment provided by engineer. */
+"Edit Formula" = "数式を編集します。";
+
+/* Action sheet menu title */
+"Edit Look" = "Edit Look";
+
+/* Action sheet menu title */
+"Edit Looks" = "Edit Looks";
+
+/* No comment provided by engineer. */
+"Edit Mode" = "Edit Mode";
+
+/* No comment provided by engineer. */
+"Edit Object" = "Edit Object";
+
+/* No comment provided by engineer. */
+"Edit Program" = "Edit Program";
+
+/* No comment provided by engineer. */
+"Edit Programs" = "Edit Programs";
+
+/* Action sheet menu title */
+"Edit Sound" = "Edit Sound";
+
+/* Action sheet menu title */
+"Edit Sounds" = "Edit Sounds";
+
+/* paint */
+"ellipse / circle" = "ellipse / circle";
+
+/* No comment provided by engineer. */
+"Else" = "そうではなかったら、";
+
+/* No comment provided by engineer. */
+"End of Loop" = "End of Loop";
+
+/* Placeholder for add image-name input field */
+"Enter your image name here..." = "Enter your image name here...";
+
+/* Placeholder for add object-name input field */
+"Enter your object name here..." = "Enter your object name here...";
+
+/* Placeholder for program-description input field */
+"Enter your program description here..." = "Enter your program description here...";
+
+/* Placeholder for program-name input field */
+"Enter your program name here..." = "Enter your program name here...";
+
+/* Placeholder for add sound-name input field */
+"Enter your sound name here..." = "Enter your sound name here...";
+
+/* paint */
+"eraser" = "eraser";
+
+/* No comment provided by engineer. */
+"Error" = "エラー";
+
+/* No comment provided by engineer. */
+"Explore" = "探索";
+
+/* No comment provided by engineer. */
+"Explore apps" = "Explore apps";
+
+/* No comment provided by engineer. */
+"Featured Programs" = "Featured Programs";
+
+/* No comment provided by engineer. */
+"Feb" = "Feb";
+
+/* No comment provided by engineer. */
+"February" = "&#x4E8C;&#x6708;";
+
+/* paint */
+"fill" = "fill";
+
+/* No comment provided by engineer. */
+"Flashlight off" = "Flashlight off";
+
+/* No comment provided by engineer. */
+"Flashlight on" = "Flashlight on";
+
+/* No comment provided by engineer. */
+"Forever" = "ずっと";
+
+/* No comment provided by engineer. */
+"Forgot password" = "Forgot password";
+
+/* No comment provided by engineer. */
+"Formula too long!" = "Formula too long!";
+
+/* No comment provided by engineer. */
+"Fr" = "Fr";
+
+/* No comment provided by engineer. */
+"Friday" = "Friday";
+
+/* No comment provided by engineer. */
+"From Camera" = "カメラから";
+
+/* No comment provided by engineer. */
+"Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %1$@ second(s)\nto X: %2$@ Y: %3$@";
+
+/* No comment provided by engineer. */
+"Go back %@ layer(s)" = "Go back %@ layer(s)";
+
+/* No comment provided by engineer. */
+"Go to front" = "前に出す";
+
+/* paint */
+"Green" = "緑";
+
+/* No comment provided by engineer. */
+"Grid" = "Grid";
+
+/* No comment provided by engineer. */
+"Help" = "ヘルプ";
+
+/* No comment provided by engineer. */
+"Hide" = "隠す";
+
+/* No comment provided by engineer. */
+"Hide Details" = "詳細を隠す";
+
+/* No comment provided by engineer. */
+"If %@ is true then" = "If %@ is true then";
+
+/* No comment provided by engineer. */
+"If End" = "If End";
+
+/* No comment provided by engineer. */
+"If on edge, bounce" = "端に当たったら、跳ね返る";
+
+/* paint */
+"image" = "image";
+
+/* No comment provided by engineer. */
+"Image name" = "Image name";
+
+/* No comment provided by engineer. */
+"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.";
+
+/* No comment provided by engineer. */
+"Information" = "Information";
+
+/* No comment provided by engineer. */
+"Invalid URL given!" = "Invalid URL given!";
+
+/* No comment provided by engineer. */
+"Jan" = "Jan";
+
+/* No comment provided by engineer. */
+"January" = "&#x4E00;&#x6708;";
+
+/* No comment provided by engineer. */
+"Jul" = "Jul";
+
+/* No comment provided by engineer. */
+"July" = "&#x4E03;&#x6708;";
+
+/* No comment provided by engineer. */
+"Jun" = "Jun";
+
+/* No comment provided by engineer. */
+"June" = "&#x516D;&#x6708;";
+
+/* No comment provided by engineer. */
+"Last access" = "Last access";
+
+/* No comment provided by engineer. */
+"Length" = "Length";
+
+/* paint */
+"line" = "line";
+
+/* No comment provided by engineer. */
+"Loading" = "Loading";
+
+/* No comment provided by engineer. */
+"Logic" = "論理";
+
+/* No comment provided by engineer. */
+"Login" = "ログイン";
+
+/* No comment provided by engineer. */
+"Looks" = "外見";
+
+/* No comment provided by engineer. */
+"Mar" = "Mar";
+
+/* No comment provided by engineer. */
+"March" = "&#x4E09;&#x6708;";
+
+/* No comment provided by engineer. */
+"Math" = "Math";
+
+/* No comment provided by engineer. */
+"May" = "&#x4E94;&#x6708;";
+
+/* No comment provided by engineer. */
+"Measure" = "Measure";
+
+/* paint */
+"Menu" = "メニュー";
+
+/* paint */
+"mirror" = "mirror";
+
+/* No comment provided by engineer. */
+"Mo" = "Mo";
+
+/* Prefix of default catrobat program object names (except background object) */
+"Mole" = "ほくろ";
+
+/* No comment provided by engineer. */
+"Monday" = "Monday";
+
+/* No comment provided by engineer. */
+"More" = "もっと";
+
+/* No comment provided by engineer. */
+"Most Downloaded" = "最もダウンロードされた";
+
+/* No comment provided by engineer. */
+"Most Viewed" = "よく見られている";
+
+/* No comment provided by engineer. */
+"Motion" = "動き";
+
+/* No comment provided by engineer. */
+"Move %@ step(s)" = "Move %@ step(s)";
+
+/* Name of the default catrobat program */
+"My first program" = "私の最初のプログラム";
+
+/* Default title of imported photo from camera (taken by camera) */
+"My Image" = "My Image";
+
+/* Title for first (default) object */
+"My Object" = "私のスプライト";
+
+/* No comment provided by engineer. */
+"Name already exists. Please choose another" = "Name already exists. Please choose another";
+
+/* No comment provided by engineer. */
+"New" = "新しい";
+
+/* paint */
+"New Canvas" = "New Canvas";
+
+/* No comment provided by engineer. */
+"New Program" = "New Program";
+
+/* No comment provided by engineer. */
+"New Variable" = "新しい変数";
+
+/* No comment provided by engineer. */
+"Newest" = "最新";
+
+/* No comment provided by engineer. */
+"Next background" = "次の背景";
+
+/* No comment provided by engineer. */
+"Next look" = "次の外見";
+
+/* No comment provided by engineer. */
+"No" = "いいえ";
+
+/* No comment provided by engineer. */
+"No Description available" = "No Description available";
+
+/* No comment provided by engineer. */
+"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
+
+/* No comment provided by engineer. */
+"No input or the input is too short. Please enter at least %lu character(s)." = "No input or the input is too short. Please enter at least %lu character(s).";
+
+/* No comment provided by engineer. */
+"No internet connection available." = "No internet connection available.";
+
+/* No comment provided by engineer. */
+"No or invalid image name entered, try again." = "No or invalid image name entered, try again.";
+
+/* No comment provided by engineer. */
+"No or invalid sound name entered, try again." = "No or invalid sound name entered, try again.";
+
+/* No comment provided by engineer. */
+"No search results" = "No search results";
+
+/* No comment provided by engineer. */
+"Not enough free memory to download this program. Please delete some of your programs" = "Not enough free memory to download this program. Please delete some of your programs";
+
+/* No comment provided by engineer. */
+"Not enough Memory" = "Not enough Memory";
+
+/* No comment provided by engineer. */
+"Note %@" = "Note %@";
+
+/* paint */
+"Nothing to crop!" = "Nothing to crop!";
+
+/* No comment provided by engineer. */
+"Nov" = "Nov";
+
+/* No comment provided by engineer. */
+"November" = "&#x5341;&#x4E00;&#x6708;";
+
+/* No comment provided by engineer. */
+"Numbers" = "Numbers";
+
+/* No comment provided by engineer. */
+"object" = "object";
+
+/* No comment provided by engineer. */
+"Object" = "スプライト";
+
+/* No comment provided by engineer. */
+"Object name" = "オブジェクト名";
+
+/* No comment provided by engineer. */
+"Objects" = "オブジェクト";
+
+/* No comment provided by engineer. */
+"Oct" = "Oct";
+
+/* No comment provided by engineer. */
+"October" = "&#x5341;&#x6708;";
+
+/* No comment provided by engineer. */
+"OK" = "わかりました";
+
+/* No comment provided by engineer. */
+"only 15 characters allowed" = "only 15 characters allowed";
+
+/* No comment provided by engineer. */
+"Password" = "Password";
+
+/* paint */
+"pipette" = "pipette";
+
+/* No comment provided by engineer. */
+"Place at\nX: %@ Y: %@" = "Place at\nX: %1$@ Y: %2$@";
+
+/* No comment provided by engineer. */
+"Play" = "Play";
+
+/* paint */
+"Please pick an item" = "Please pick an item";
+
+/* No comment provided by engineer. */
+"Pocket Code" = "ポケット\nコード";
+
+/* No comment provided by engineer. */
+"Pocket Code for iOS" = "Pocket Code for iOS";
+
+/* No comment provided by engineer. */
+"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:";
+
+/* No comment provided by engineer. */
+"Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on." = "Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on.";
+
+/* No comment provided by engineer. */
+"Pocket Code Recorder" = "ポケットコードのサウンドレコーダー";
+
+/* No comment provided by engineer. */
+"Pocket Code Source Code License" = "Pocket Code Source Code License";
+
+/* paint */
+"Pocket Paint" = "ポケット\nペイント";
+
+/* No comment provided by engineer. */
+"Point in direction %@°" = "Point in direction %@°";
+
+/* No comment provided by engineer. */
+"Point towards\n%@" = "Point towards\n%@";
+
+/* paint */
+"pointer" = "pointer";
+
+/* No comment provided by engineer. */
+"program" = "program";
+
+/* No comment provided by engineer. */
+"Program name" = "Program name";
+
+/* No comment provided by engineer. */
+"Programs" = "プログラム";
+
+/* No comment provided by engineer. */
 "Project" = "Project";
+
+/* No comment provided by engineer. */
+"Rate Us" = "Rate Us";
+
+/* No comment provided by engineer. */
+"Recording" = "Recording";
+
+/* paint */
+"rectangle / square" = "rectangle / square";
+
+/* paint */
+"Red" = "赤";
+
+/* No comment provided by engineer. */
+"Rename" = "名前の変更";
+
+/* No comment provided by engineer. */
+"Rename image" = "Rename image";
+
+/* No comment provided by engineer. */
+"Rename object" = "Rename object";
+
+/* No comment provided by engineer. */
+"Rename program" = "Rename program";
+
+/* No comment provided by engineer. */
+"Rename sound" = "Rename sound";
+
+/* No comment provided by engineer. */
+"Repeat %@ times" = "Repeat %@ times";
+
+/* No comment provided by engineer. */
+"Report as inappropriate" = "不適切として報告します。";
+
+/* No comment provided by engineer. */
+"Restart" = "再スタート";
+
+/* No comment provided by engineer. */
+"Result" = "Result";
+
+/* paint */
+"rotate" = "rotate";
+
+/* paint */
+"round" = "round";
+
+/* No comment provided by engineer. */
+"Sa" = "Sa";
+
+/* No comment provided by engineer. */
+"Saturday" = "Saturday";
+
+/* paint */
+"Save & Close Paint" = "Save & Close Paint";
+
+/* Action sheet menu title */
+"Save Screenshot to" = "Save Screenshot to";
+
+/* paint */
+"Save to CameraRoll" = "Save to CameraRoll";
+
+/* No comment provided by engineer. */
+"Save to PocketCode" = "Save to PocketCode";
+
+/* No comment provided by engineer. */
+"Saved" = "Saved";
+
+/* No comment provided by engineer. */
+"Screenshot" = "スクリーンショット";
+
+/* No comment provided by engineer. */
+"Screenshot saved to Camera Roll" = "Screenshot saved to Camera Roll";
+
+/* No comment provided by engineer. */
+"Screenshot saved to project" = "Screenshot saved to project";
+
+/* No comment provided by engineer. */
+"Scripts" = "スクリプト";
+
+/* No comment provided by engineer. */
+"Select All" = "Select All";
+
+/* No comment provided by engineer. */
+"Select Brick Category" = "Select Brick Category";
+
+/* No comment provided by engineer. */
+"Select logical operator" = "Select logical operator";
+
+/* No comment provided by engineer. */
+"Select mathematical function" = "Select mathematical function";
+
+/* paint */
+"Select option:" = "Select option:";
+
+/* No comment provided by engineer. */
+"Sensors" = "センサー";
+
+/* No comment provided by engineer. */
+"Sep" = "Sep";
+
+/* No comment provided by engineer. */
+"September" = "&#x4E5D;&#x6708;";
+
+/* No comment provided by engineer. */
+"Set background\n%@" = "Set background\n%@";
+
+/* No comment provided by engineer. */
+"Set brightness to %@\%" = "Set brightness to %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Set description" = "説明を設定する";
+
+/* No comment provided by engineer. */
+"Set size to %@\%" = "Set size to %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Set transparency\nto %@\%" = "Set transparency\nto %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Set variable\n%@\nto %@" = "Set variable\n%1$@\nto %2$@";
+
+/* No comment provided by engineer. */
+"Set volume to %@\%" = "Set volume to %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Set X to %@" = "Set X to %@";
+
+/* No comment provided by engineer. */
+"Set Y to %@" = "Set Y to %@";
+
+/* No comment provided by engineer. */
+"Show" = "表示する";
+
+/* No comment provided by engineer. */
+"Show Details" = "詳細を表示";
+
+/* No comment provided by engineer. */
+"Size" = "Size";
+
+/* No comment provided by engineer. */
+"Skip" = "Skip";
+
+/* No comment provided by engineer. */
+"Slow Internet Connection!" = "Slow Internet Connection!";
+
+/* No comment provided by engineer. */
+"Sound" = "音";
+
+/* No comment provided by engineer. */
+"Sound name" = "Sound name";
+
+/* No comment provided by engineer. */
+"Sounds" = "サウンド";
+
+/* No comment provided by engineer. */
+"Speak %@" = "Speak %@";
+
+/* paint */
+"square" = "square";
+
+/* paint */
+"stamp" = "stamp";
+
+/* No comment provided by engineer. */
+"Start sound\n%@" = "Start sound\n%@";
+
+/* No comment provided by engineer. */
+"Stop all sounds" = "すべてのサウンドを停止";
+
+/* No comment provided by engineer. */
+"Su" = "Su";
+
+/* No comment provided by engineer. */
+"Sunday" = "Sunday";
+
+/* No comment provided by engineer. */
+"Switch to look\n%@" = "Switch to look\n%@";
+
+/* No comment provided by engineer. */
+"Syntax Error!" = "Syntax Error!";
+
+/* No comment provided by engineer. */
+"Take" = "Take";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add %@" = "Tap \"+\" to add %@";
+
+/* No comment provided by engineer. */
+"Terms of Use" = "利用規約";
+
+/* No comment provided by engineer. */
+"Th" = "Th";
+
+/* No comment provided by engineer. */
+"The description contains invalid characters, try again." = "The description contains invalid characters, try again.";
+
+/* paint */
+"Thickness" = "Thickness";
+
+/* No comment provided by engineer. */
+"This action can not be undone!" = "This action can not be undone!";
+
+/* No comment provided by engineer. */
+"This feature is coming soon!" = "This feature is coming soon!";
+
+/* No comment provided by engineer. */
+"Thursday" = "Thursday";
+
+/* No comment provided by engineer. */
+"Today" = "今日";
+
+/* No comment provided by engineer. */
+"Tu" = "Tu";
+
+/* No comment provided by engineer. */
+"Tuesday" = "Tuesday";
+
+/* No comment provided by engineer. */
+"Turn left %@°" = "Turn left %@°";
+
+/* No comment provided by engineer. */
+"Turn right %@°" = "Turn right %@°";
+
+/* No comment provided by engineer. */
+"Unable to load program!" = "Unable to load program!";
+
+/* No comment provided by engineer. */
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.";
+
+/* No comment provided by engineer. */
+"Unselect All" = "Unselect All";
+
+/* No comment provided by engineer. */
+"Upcoming version" = "Upcoming version";
+
+/* No comment provided by engineer. */
+"Upload" = "アップロード";
+
+/* No comment provided by engineer. */
+"Uploaded" = "Uploaded";
+
+/* No comment provided by engineer. */
+"Username" = "Username";
+
+/* No comment provided by engineer. */
+"v" = "v";
+
+/* No comment provided by engineer. */
+"Variable name:" = "Variable name:";
+
+/* No comment provided by engineer. */
+"Variable type" = "Variable type";
+
+/* No comment provided by engineer. */
+"Variables" = "変数";
+
+/* No comment provided by engineer. */
+"Version" = "Version";
+
+/* No comment provided by engineer. */
+"Vibrate %@ second(s)" = "Vibrate %@ second(s)";
+
+/* No comment provided by engineer. */
+"Views" = "Views";
+
+/* No comment provided by engineer. */
+"Wait %@ second(s)" = "Wait %@ second(s)";
+
+/* No comment provided by engineer. */
+"We" = "We";
+
+/* No comment provided by engineer. */
+"Wednesday" = "Wednesday";
+
+/* No comment provided by engineer. */
+"Welcome to Pocket Code" = "Welcome to Pocket Code";
+
+/* No comment provided by engineer. */
+"When I receive\n%@" = "When I receive\n%@";
+
+/* No comment provided by engineer. */
+"When program started" = "プログラムがはじまると";
+
+/* No comment provided by engineer. */
+"When tapped" = "オブジェクトがタップされている";
+
+/* No comment provided by engineer. */
+"Yes" = "はい";
+
+/* No comment provided by engineer. */
+"Yesterday" = "昨日";
+
+/* No comment provided by engineer. */
+"You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people.";
+
+/* No comment provided by engineer. */
+"You have already downloaded this program!" = "You have already downloaded this program!";
+
+/* paint */
+"zoom" = "zoom";
 

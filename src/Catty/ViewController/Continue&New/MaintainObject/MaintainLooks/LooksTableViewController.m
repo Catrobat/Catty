@@ -684,7 +684,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIImage *checkImage = [[UIImage alloc] initWithContentsOfFile:path];
     
     if (checkImage) {
-        NSLog(@"Updating");
+//        NSLog(@"Updating");
         NSData *imageData = UIImagePNGRepresentation(image);
         NSString *imageDirPath = [[self.object projectPath] stringByAppendingString:kProgramImagesDirName];
         NSString *fileName = [path stringByReplacingOccurrencesOfString:imageDirPath withString:@""];
@@ -736,7 +736,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         
         [cache replaceImage:image withName:filePath];
     }else{
-          NSLog(@"SAVING");  // add image to object now
+          NSDebug(@"SAVING");  // add image to object now
         [self showLoadingView];
         
         NSData *imageData = UIImagePNGRepresentation(image);
