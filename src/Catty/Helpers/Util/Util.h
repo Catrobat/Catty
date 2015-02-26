@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -71,16 +71,14 @@
                               message:(NSString*)message
                              delegate:(id<CatrobatAlertViewDelegate>)delegate
                           placeholder:(NSString*)placeholder
-                                  tag:(NSInteger)tag
-                    textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate;
+                                  tag:(NSInteger)tag;
 
 + (CatrobatAlertView*)promptWithTitle:(NSString*)title
                               message:(NSString*)message
                              delegate:(id<CatrobatAlertViewDelegate>)delegate
                           placeholder:(NSString*)placeholder
                                   tag:(NSInteger)tag
-                                value:(NSString*)value
-                    textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate;
+                                value:(NSString*)value;
 
 + (CatrobatActionSheet*)actionSheetWithTitle:(NSString*)title
                                     delegate:(id<CatrobatActionSheetDelegate>)delegate
@@ -200,7 +198,7 @@
 
 + (double)degreeToRadians:(double)deg;
 
-+ (NSArray*)propertiesOfInstance:(id)instance;
++ (NSDictionary*)propertiesOfInstance:(id)instance;
 
 + (BOOL)isEqual:(id)object toObject:(id)objectToCompare;
 

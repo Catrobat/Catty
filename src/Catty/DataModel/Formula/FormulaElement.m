@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -146,7 +146,7 @@
     
 }
 
--(double) interpretFunction:(Function)function forSprite:(SpriteObject*)sprite
+- (double) interpretFunction:(Function)function forSprite:(SpriteObject*)sprite
 {
     
     double left = 0;
@@ -618,11 +618,12 @@
     return false;
 }
 
-- (FormulaElement*)clone
+#pragma mark - Copy
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {
-    FormulaElement *leftChildClone = self.leftChild == nil ? nil : [self.leftChild clone];
-    FormulaElement *rightChildClone = self.rightChild == nil ? nil : [self.rightChild clone];
-    return [[FormulaElement alloc] initWithElementType:self.type value:self.value == nil ? @"" : self.value
+    FormulaElement *leftChildClone = self.leftChild == nil ? nil : [self.leftChild mutableCopyWithContext:context];
+    FormulaElement *rightChildClone = self.rightChild == nil ? nil : [self.rightChild mutableCopyWithContext:context];
+    return [[FormulaElement alloc] initWithElementType:self.type value:self.value
                                              leftChild:leftChildClone
                                             rightChild:rightChildClone
                                                 parent:nil];

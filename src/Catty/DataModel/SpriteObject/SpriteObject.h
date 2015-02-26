@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "Program.h"
 #import "ProgramDefines.h"
+#import "CBMutableCopying.h"
 
 @class Script;
 @class Look;
@@ -46,7 +47,7 @@
 @end
 
 
-@interface SpriteObject : SKSpriteNode <SpriteFormulaProtocol>
+@interface SpriteObject : SKSpriteNode <SpriteFormulaProtocol, CBMutableCopying>
 
 @property (assign, nonatomic) CGSize originalSize;
 
@@ -67,9 +68,6 @@
 
 @property (nonatomic, weak) Program *program;
 
-@property (nonatomic)NSInteger numberOfObjectsWithoutBackground;
-
-
 - (NSUInteger)numberOfScripts;
 
 - (NSUInteger)numberOfTotalBricks; // including script bricks
@@ -81,8 +79,6 @@
 - (NSUInteger)numberOfSounds;
 
 - (BOOL)isBackground;
-
-- (instancetype)deepCopy;
 
 // events
 - (void)start:(CGFloat)zPosition;
@@ -108,22 +104,25 @@
 - (CGFloat)durationOfSound:(Sound*)sound;
 - (NSArray*)allLookNames;
 - (NSArray*)allSoundNames;
+- (NSUInteger)referenceCountForLook:(NSString*)fileName;
+- (NSUInteger)referenceCountForSound:(NSString*)fileName;
 
 // actions
-- (void)addLook:(Look*)look;
 - (void)changeLook:(Look*)look;
 - (void)setLook;
-- (void)removeLooks:(NSArray*)looks;
-- (void)removeLook:(Look*)look;
-- (void)removeSounds:(NSArray*)sounds;
-- (void)removeSound:(Sound*)sound;
-- (void)renameLook:(Look*)look toName:(NSString*)newLookName;
-- (void)renameSound:(Sound*)sound toName:(NSString*)newSoundName;
+- (void)addLook:(Look*)look AndSaveToDisk:(BOOL)save;
+- (void)removeLooks:(NSArray*)looks AndSaveToDisk:(BOOL)save;
+- (void)removeLook:(Look*)look AndSaveToDisk:(BOOL)save;
+- (void)removeSounds:(NSArray*)sounds AndSaveToDisk:(BOOL)save;
+- (void)removeSound:(Sound*)sound AndSaveToDisk:(BOOL)save;
+- (void)renameLook:(Look*)look toName:(NSString*)newLookName AndSaveToDisk:(BOOL)save;
+- (void)renameSound:(Sound*)sound toName:(NSString*)newSoundName AndSaveToDisk:(BOOL)save;
 - (BOOL)hasLook:(Look*)look;
 - (BOOL)hasSound:(Sound*)sound;
-- (Look*)copyLook:(Look*)sourceLook withNameForCopiedLook:(NSString*)nameOfCopiedLook;
-- (Sound*)copySound:(Sound*)sourceSound withNameForCopiedSound:(NSString*)nameOfCopiedSound;
+- (Look*)copyLook:(Look*)sourceLook withNameForCopiedLook:(NSString*)nameOfCopiedLook AndSaveToDisk:(BOOL)save;;
+- (Sound*)copySound:(Sound*)sourceSound withNameForCopiedSound:(NSString*)nameOfCopiedSound AndSaveToDisk:(BOOL)save;;
 
+// compare
 - (BOOL)isEqualToSpriteObject:(SpriteObject*)spriteObject;
 
 @end

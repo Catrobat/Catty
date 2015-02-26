@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,15 +21,15 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "CBMutableCopying.h"
 
 @class SpriteObject;
 
-@interface Sound : NSObject
+@interface Sound : NSObject<CBMutableCopying>
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *fileName;
 @property (atomic, getter = isPlaying) BOOL playing; // this property must be thread-safe!
 
-- (instancetype)deepCopy;
 - (BOOL)isEqualToSound:(Sound*)sound;
 
 @end

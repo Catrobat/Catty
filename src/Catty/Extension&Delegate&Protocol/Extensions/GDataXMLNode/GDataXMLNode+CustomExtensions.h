@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,8 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Header+CBXMLHandler.h"
+#import "GDataXMLNode.h"
 
-@interface Header (CBXMLLogger)
+@interface GDataXMLNode (CustomExtensions)
 
+- (BOOL)isEqualToNode:(GDataXMLNode*)node;
+- (NSArray*)childrenWithoutComments;
+- (NSString*)decodedStringValue;
+- (NSString*)decodedName;
++ (NSString*)decodedStringForString:(NSString*)xmlString;
 @end

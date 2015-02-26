@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -45,14 +45,13 @@
 - (SKAction*)action
 {
     NSDebug(@"Performing: %@", self.description);
-
-    return [SKAction waitForDuration:[self.timeToWaitInSeconds interpretDoubleForSprite:self.object]];
+    return [SKAction waitForDuration:[self.timeToWaitInSeconds interpretDoubleForSprite:self.script.object]];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"WaitBrick (%f Seconds)", [self.timeToWaitInSeconds interpretDoubleForSprite:self.object]];
+    return [NSString stringWithFormat:@"WaitBrick (%f Seconds)", [self.timeToWaitInSeconds interpretDoubleForSprite:self.script.object]];
 }
 
 @end

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
  */
 
 #import "BroadcastBrick.h"
+#import "Script.h"
 
 @implementation BroadcastBrick
 
@@ -41,13 +42,13 @@
 
 - (SKAction*)action
 {
+    __weak BroadcastBrick* weakSelf = self;
     return [SKAction runBlock:^{
-        __weak BroadcastBrick* weakself = self;
-        NSDebug(@"Performing: %@", [self description]);
+        __weak BroadcastBrick *weakWeakSelf = weakSelf;
+        NSDebug(@"Performing: %@", [weakSelf description]);
         dispatch_async(dispatch_get_main_queue(), ^{
-            [weakself.object broadcast:self.broadcastMessage];
+            [weakWeakSelf.script.object broadcast:weakWeakSelf.broadcastMessage];
         });
-        
     }];
 }
 

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -215,8 +215,13 @@
 #define kLocalizedLooks NSLocalizedString(@"Looks", nil)
 #define kLocalizedVariables NSLocalizedString(@"Variables", nil)
 #define kLocalizedLogin NSLocalizedString(@"Login", nil)
-#define kLocalizedUsername NSLocalizedString(@"Username", nil);
-#define kLocalizedPassword NSLocalizedString(@"Password", nil);
+#define kLocalizedUsername NSLocalizedString(@"Username", nil)
+#define kLocalizedPassword NSLocalizedString(@"Password", nil)
+#define kLocalizedRecording NSLocalizedString(@"Recording", nil)
+#define kLocalizedError NSLocalizedString(@"Error", nil)
+#define kLocalizedMemoryWarning NSLocalizedString(@"Not enough Memory", nil)
+#define kLocalizedReportProgram NSLocalizedString(@"Report as inappropriate", nil)
+#define kLocalizedRecording NSLocalizedString(@"Recording", nil)
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -396,41 +401,50 @@
 #define kLocalizedSetVariable NSLocalizedString(@"Set variable\n%@\nto %@", nil)
 #define kLocalizedChangeVariable NSLocalizedString(@"Change variable\n%@\nby %@", nil)
 
+#endif // kIsRelease
 
-    //Paint
+//************************************************************************************************************
+//************************************       PAINT                ********************************************
+//************************************************************************************************************
 
-#define kLocalizedPaintThickness NSLocalizedString(@"Thickness", nil)
-#define kLocalizedPaintRed NSLocalizedString(@"Red", nil)
-#define kLocalizedPaintGreen NSLocalizedString(@"Green", nil)
-#define kLocalizedPaintBlue NSLocalizedString(@"Blue", nil)
-#define kLocalizedPaintAlpha NSLocalizedString(@"Alpha", nil)
-#define kLocalizedPaintBrush NSLocalizedString(@"brush", nil)
-#define kLocalizedPaintEraser NSLocalizedString(@"eraser", nil)
-#define kLocalizedPaintCrop NSLocalizedString(@"crop", nil)
-#define kLocalizedPaintPipette NSLocalizedString(@"pipette", nil)
-#define kLocalizedPaintMirror NSLocalizedString(@"mirror", nil)
-#define kLocalizedPaintImage NSLocalizedString(@"image", nil)
-#define kLocalizedPaintLine NSLocalizedString(@"line", nil)
-#define kLocalizedPaintRect NSLocalizedString(@"rectangle / square", nil)
-#define kLocalizedPaintCircle NSLocalizedString(@"ellipse / circle", nil)
-#define kLocalizedPaintStamp NSLocalizedString(@"stamp", nil)
-#define kLocalizedPaintRotate NSLocalizedString(@"rotate", nil)
-#define kLocalizedPaintFill NSLocalizedString(@"fill", nil)
-#define kLocalizedPaintZoom NSLocalizedString(@"zoom", nil)
-#define kLocalizedPaintPointer NSLocalizedString(@"pointer", nil)
-#define kLocalizedPaintSaveChanges NSLocalizedString(@"Do you want to save the changes", nil)
-#define kLocalizedPaintMenu NSLocalizedString(@"Menu", nil)
-#define kLocalizedPaintSelect NSLocalizedString(@"Select option:", nil)
-#define kLocalizedPaintSave NSLocalizedString(@"Save to CameraRoll", nil)
-#define kLocalizedPaintSaveClose NSLocalizedString(@"Save & Close Paint", nil)
-#define kLocalizedPaintDiscardClose NSLocalizedString(@"Discard & Close", nil)
-#define kLocalizedPaintNewCanvas NSLocalizedString(@"New Canvas", nil)
-#define kLocalizedPaintPickItem NSLocalizedString(@"Please pick an item", nil)
-#define kLocalizedPaintSaveChanges NSLocalizedString(@"Do you want to save the changes", nil)
-#define kLocalizedPaintNoCrop NSLocalizedString(@"Nothing to crop!", nil)
-#define kLocalizedPaintAskNewCanvas NSLocalizedString(@"Do you really want to delete the current drawing?", nil)
+#define kLocalizedPaintThickness NSLocalizedString(@"Thickness", @"paint")
+#define kLocalizedPaintRed NSLocalizedString(@"Red", @"paint")
+#define kLocalizedPaintGreen NSLocalizedString(@"Green", @"paint")
+#define kLocalizedPaintBlue NSLocalizedString(@"Blue", @"paint")
+#define kLocalizedPaintAlpha NSLocalizedString(@"Alpha", @"paint")
+#define kLocalizedPaintBrush NSLocalizedString(@"brush", @"paint")
+#define kLocalizedPaintEraser NSLocalizedString(@"eraser", @"paint")
+#define kLocalizedPaintCrop NSLocalizedString(@"crop", @"paint")
+#define kLocalizedPaintPipette NSLocalizedString(@"pipette", @"paint")
+#define kLocalizedPaintMirror NSLocalizedString(@"mirror", @"paint")
+#define kLocalizedPaintImage NSLocalizedString(@"image", @"paint")
+#define kLocalizedPaintLine NSLocalizedString(@"line", @"paint")
+#define kLocalizedPaintRect NSLocalizedString(@"rectangle / square", @"paint")
+#define kLocalizedPaintCircle NSLocalizedString(@"ellipse / circle", @"paint")
+#define kLocalizedPaintStamp NSLocalizedString(@"stamp", @"paint")
+#define kLocalizedPaintRotate NSLocalizedString(@"rotate", @"paint")
+#define kLocalizedPaintFill NSLocalizedString(@"fill", @"paint")
+#define kLocalizedPaintZoom NSLocalizedString(@"zoom", @"paint")
+#define kLocalizedPaintPointer NSLocalizedString(@"pointer", @"paint")
+#define kLocalizedPaintSaveChanges NSLocalizedString(@"Do you want to save the changes", @"paint")
+#define kLocalizedPaintMenu NSLocalizedString(@"Menu", @"paint")
+#define kLocalizedPaintSelect NSLocalizedString(@"Select option:", @"paint")
+#define kLocalizedPaintSave NSLocalizedString(@"Save to CameraRoll", @"paint")
+#define kLocalizedPaintSaveClose NSLocalizedString(@"Save & Close Paint", @"paint")
+#define kLocalizedPaintDiscardClose NSLocalizedString(@"Discard & Close", @"paint")
+#define kLocalizedPaintNewCanvas NSLocalizedString(@"New Canvas", @"paint")
+#define kLocalizedPaintPickItem NSLocalizedString(@"Please pick an item", @"paint")
+#define kLocalizedPaintSaveChanges NSLocalizedString(@"Do you want to save the changes", @"paint")
+#define kLocalizedPaintNoCrop NSLocalizedString(@"Nothing to crop!", @"paint")
+#define kLocalizedPaintAskNewCanvas NSLocalizedString(@"Do you really want to delete the current drawing?", @"paint")
+#define kLocalizedPaintRound NSLocalizedString(@"round", @"paint")
+#define kLocalizedPaintSquare NSLocalizedString(@"square", @"paint")
+#define kLocalizedPaintPocketPaint NSLocalizedString(@"Pocket Paint", @"paint")
 
-// formula editor
+//************************************************************************************************************
+//************************************       FormulaEditor        ********************************************
+//************************************************************************************************************
+
 #define kUIActionSheetTitleSelectLogicalOperator NSLocalizedString(@"Select logical operator", nil)
 #define kUIActionSheetTitleSelectMathematicalFunction NSLocalizedString(@"Select mathematical function", nil)
 #define kUIFENumbers NSLocalizedString(@"Numbers", nil)
@@ -451,10 +465,9 @@
 #define kUIFEComputedTrue NSLocalizedString(@"Computed result is TRUE", nil)
 #define kUIFEComputedFalse NSLocalizedString(@"Computed result is FALSE", nil)
 #define kUIFENewVar NSLocalizedString(@"New Variable", nil)
+#define kUIFENewVarExists NSLocalizedString(@"Name already exists. Please choose another", nil)
 #define kUIFEonly15Char NSLocalizedString(@"only 15 characters allowed", nil)
 #define kUIFEVarName NSLocalizedString(@"Variable name:", nil)
 #define kUIFEActionVar NSLocalizedString(@"Variable type", nil)
 #define kUIFEActionVarObj NSLocalizedString(@"object", nil)
 #define kUIFEActionVarPro NSLocalizedString(@"program", nil)
-
-#endif // kIsRelease

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -46,6 +46,8 @@
 #import "OrderedMapTable.h"
 #import "CatrobatActionSheet.h"
 #import "ActionSheetAlertViewTags.h"
+#import "BrickProtocol.h"
+#import "Script.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -214,7 +216,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 #pragma mark - localizeView
 
--(void)localizeView
+- (void)localizeView
 {
   self.calcButton.titleLabel.text = kUIFENumbers;
   self.mathbutton.titleLabel.text = kUIFEMath;
@@ -317,18 +319,17 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.deleteButton setEnabled:enabled];
 }
 
-- (IBAction)compute:(id)sender {
-    
-    UIAlertView * alert;
-    
-    if(self.internFormula != nil) {
-        
+- (IBAction)compute:(id)sender
+{
+    UIAlertView *alert;
+    if (self.internFormula != nil) {
         InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
-        FormulaElement *tempFormulaElement = [internFormulaParser parseFormula];
-        
+        Brick *brick = (Brick*)self.brickCell.scriptOrBrick; // must be a brick!
+        FormulaElement *tempFormulaElement = [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
+
         float result;
         NSString *computedString;
-        
+
         switch ([internFormulaParser getErrorTokenIndex]) {
             case FORMULA_PARSER_OK:
                 result = [tempFormulaElement interpretRecursiveForSprite:nil];
@@ -370,7 +371,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
 }
 
--(BOOL)changeFormula
+- (BOOL)changeFormula
 {
     if ([self saveIfPossible]) {
         return YES;
@@ -556,11 +557,13 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.brickCell setupBrickCell];
 }
 
--(BOOL)saveIfPossible
+- (BOOL)saveIfPossible
 {
         if(self.internFormula != nil) {
             InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
-            Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormula]];
+            Brick *brick = (Brick*)self.brickCell.scriptOrBrick; // must be a brick!
+            FormulaElement *formulaElement = [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
+            Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
             UIAlertView *alert;
             switch ([internFormulaParser getErrorTokenIndex]) {
                 case FORMULA_PARSER_OK:
@@ -646,7 +649,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
   [self.variableScrollView flashScrollIndicators];
 }
 
--(void)hideScrollViews
+- (void)hideScrollViews
 {
     self.mathScrollView.hidden = YES;
     self.calcScrollView.hidden = YES;
@@ -681,7 +684,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return blockedCharacterSet;
 }
 
--(void)updateVariablePickerData
+- (void)updateVariablePickerData
 {
     VariablesContainer *variables = self.object.program.variables;
     [self.variableSourceProgram removeAllObjects];
@@ -700,8 +703,26 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 
--(void)saveVariable:(NSString*)name
+- (void)saveVariable:(NSString*)name
 {
+    for (UserVariable* variable in self.object.program.variables.programVariableList) {
+        if ([variable.name isEqualToString:name]) {
+            [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVarExists promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+            return;
+        }
+    }
+    if(!self.isProgramVariable){
+        if ([self.object.program.variables.objectVariableList objectForKey:self.object]) {
+            for (UserVariable* variable in [self.object.program.variables.objectVariableList objectForKey:self.object]) {
+                if ([variable.name isEqualToString:name]) {
+                    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVarExists promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+                    return;
+                }
+            }
+        }
+        
+    }
+    
     [self.formulaEditorTextView becomeFirstResponder];
     UserVariable* var = [UserVariable new];
     var.name = name;
@@ -716,7 +737,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [array addObject:var];
         [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
     }
-
+    
     [self updateVariablePickerData];
 }
 
@@ -804,12 +825,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     self.isProgramVariable = NO;
-    if (actionSheet.tag == 444) {
+//    if (actionSheet.tag == 444) {
         if (buttonIndex == 1) {
             self.isProgramVariable = YES;
         }
         [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVar promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
-    }
+//    }
     
 }
 

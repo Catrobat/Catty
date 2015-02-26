@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -45,7 +45,7 @@ static FlashHelper* sharedFlashHandler = nil;
     return sharedFlashHandler;
 }
 
--(void)turnOn
+- (void)turnOn
 {
     self.session= [[AVCaptureSession alloc] init];
     
@@ -70,7 +70,7 @@ static FlashHelper* sharedFlashHandler = nil;
     }
 
 }
--(void)turnOff
+- (void)turnOff
 {
     if (self.session.isRunning) {
         [self.session stopRunning];

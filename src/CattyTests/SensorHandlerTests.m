@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -121,7 +121,7 @@
     XCTAssertTrue(isNotZero, @"It's very unlikely that z is really zero!");
 }
 
--(void)testValueForSensor
+- (void)testValueForSensor
 {
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     for (int sensor = X_ACCELERATION; sensor < OBJECT_X; sensor++) {
@@ -137,7 +137,7 @@
     
 }
 
--(void)testStopSensors
+- (void)testStopSensors
 {
     SensorHandler* sensorHandler = [SensorHandler sharedSensorHandler];
     

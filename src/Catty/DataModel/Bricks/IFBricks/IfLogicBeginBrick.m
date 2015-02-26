@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -25,6 +25,7 @@
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
 #import "Util.h"
+#import "Script.h"
 
 @implementation IfLogicBeginBrick
 
@@ -43,10 +44,10 @@
     return kLocalizedIfIsTrueThen;
 }
 
--(BOOL)checkCondition
+- (BOOL)checkCondition
 {
     NSDebug(@"Performing: %@", self.description);
-    return [self.ifCondition interpretBOOLForSprite:self.object];
+    return [self.ifCondition interpretBOOLForSprite:self.script.object];
 }
 
 

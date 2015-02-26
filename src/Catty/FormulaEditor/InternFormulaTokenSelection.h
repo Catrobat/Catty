@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,15 +23,14 @@
 #import <Foundation/Foundation.h>
 
 
-@interface InternFormulaTokenSelection : NSObject
+@interface InternFormulaTokenSelection : NSObject<NSMutableCopying>
 
--(BOOL)equals:(id)objectToCompare;
--(NSInteger)getStartIndex;
--(NSInteger)getEndIndex;
--(enum TokenSelectionType)getToketSelectionType;
--(InternFormulaTokenSelection *)initWithTokenSelectionType:(enum TokenSelectionType)tokenSelectionType
+- (BOOL)equals:(id)objectToCompare;
+- (NSInteger)getStartIndex;
+- (NSInteger)getEndIndex;
+- (enum TokenSelectionType)getToketSelectionType;
+- (InternFormulaTokenSelection *)initWithTokenSelectionType:(enum TokenSelectionType)tokenSelectionType
                                  internTokenSelectionStart:(NSInteger)internTokenSelectionStart
                                    internTokenSelectionEnd:(NSInteger)internTokenSelectionEnd;
--(InternFormulaTokenSelection *)deepCopy;
 
 @end

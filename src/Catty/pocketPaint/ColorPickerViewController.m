@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@
 #import "NKOColorPickerView.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "LanguageTranslationDefines.h"
+#import "CatrobatUISlider.h"
 
 @interface ColorPickerViewController ()
 @property (nonatomic,strong)UISegmentedControl *viewChanger;
@@ -31,13 +32,13 @@
 @property (nonatomic,strong)UIView *rgbaSliderView;
 @property (nonatomic,strong)UIView *standardColors;
 @property (nonatomic,strong)UIImageView *brushView;
-@property (nonatomic,strong)UISlider *redSlider;
+@property (nonatomic,strong)CatrobatUISlider *redSlider;
 @property (nonatomic,strong)UILabel *redLabel;
-@property (nonatomic,strong)UISlider *greenSlider;
+@property (nonatomic,strong)CatrobatUISlider *greenSlider;
 @property (nonatomic,strong)UILabel *greenLabel;
-@property (nonatomic,strong)UISlider *blueSlider;
+@property (nonatomic,strong)CatrobatUISlider *blueSlider;
 @property (nonatomic,strong)UILabel *blueLabel;
-@property (nonatomic,strong)UISlider *opacitySlider;
+@property (nonatomic,strong)CatrobatUISlider *opacitySlider;
 @property (nonatomic,strong)UILabel *opacityLabel;
 @property (nonatomic,strong)NSMutableArray *colorArray;
 @property (nonatomic,strong)NKOColorPickerView *colorPicker;
@@ -92,7 +93,7 @@
   self.standardColors.hidden = YES;
 }
 
--(void)setupStandardColorsView
+- (void)setupStandardColorsView
 {
   self.colorArray = [NSMutableArray array];
     self.standardColors.frame = CGRectMake(0, self.view.frame.size.height * 0.3f, self.view.frame.size.width, 400);
@@ -129,7 +130,7 @@
 
 }
 
--(void)setupRGBAView
+- (void)setupRGBAView
 {
   [self setupRedSlider];
   [self setupGreenSlider];
@@ -138,14 +139,14 @@
   [self setupPicker];
 }
 
--(void)setupRedSlider
+- (void)setupRedSlider
 {
   
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.05f-7, 40, 10)];
   label.text = kLocalizedPaintRed;
   label.textColor = [UIColor redColor];
   [label sizeToFit];
-  self.redSlider = [[UISlider alloc] init];
+  self.redSlider = [[CatrobatUISlider alloc] init];
   self.redSlider.frame =CGRectMake(self.view.frame.size.width*0.3f, self.view.frame.size.height*0.05f, 150, 5);
   [self.redSlider addTarget:self action:@selector(redAction:) forControlEvents:UIControlEventValueChanged];
   [self.redSlider setBackgroundColor:[UIColor clearColor]];
@@ -166,14 +167,14 @@
 
 }
 
--(void)setupGreenSlider
+- (void)setupGreenSlider
 {
   
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.15f-7, 40, 10)];
   label.text = kLocalizedPaintGreen;
   label.textColor = [UIColor greenColor];
   [label sizeToFit];
-  self.greenSlider = [[UISlider alloc] init];
+  self.greenSlider = [[CatrobatUISlider alloc] init];
   self.greenSlider.frame =CGRectMake(self.view.frame.size.width*0.3f, self.view.frame.size.height*0.15f, 150, 5);
   [self.greenSlider addTarget:self action:@selector(greenAction:) forControlEvents:UIControlEventValueChanged];
   [self.greenSlider setBackgroundColor:[UIColor clearColor]];
@@ -193,13 +194,13 @@
   [self.rgbaSliderView addSubview:self.greenSlider];
   
 }
--(void)setupBlueSlider
+- (void)setupBlueSlider
 {
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.25f-7, 40, 10)];
   label.text = kLocalizedPaintBlue;
   label.textColor = [UIColor blueColor];
   [label sizeToFit];
-  self.blueSlider = [[UISlider alloc] init];
+  self.blueSlider = [[CatrobatUISlider alloc] init];
   self.blueSlider.frame =CGRectMake(self.view.frame.size.width*0.3f, self.view.frame.size.height*0.25f, 150, 5);
   [self.blueSlider addTarget:self action:@selector(blueAction:) forControlEvents:UIControlEventValueChanged];
   [self.blueSlider setBackgroundColor:[UIColor clearColor]];
@@ -220,14 +221,14 @@
   
 }
 
--(void)setupOpacitySlider
+- (void)setupOpacitySlider
 {
   
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.35f-7, 40, 10)];
   label.text = kLocalizedPaintAlpha;
   label.textColor = [UIColor blackColor];
   [label sizeToFit];
-  self.opacitySlider = [[UISlider alloc] init];
+  self.opacitySlider = [[CatrobatUISlider alloc] init];
   self.opacitySlider.frame =CGRectMake(self.view.frame.size.width*0.3f, self.view.frame.size.height*0.35f, 150, 5);
   [self.opacitySlider addTarget:self action:@selector(opacityAction:) forControlEvents:UIControlEventValueChanged];
   [self.opacitySlider setBackgroundColor:[UIColor clearColor]];
@@ -248,7 +249,7 @@
   
 }
 
--(void)setupPicker
+- (void)setupPicker
 {
   NKOColorPickerDidChangeColorBlock colorDidChangeBlock = ^(UIColor *color){
       //Your code handling a color change in the picker view.
@@ -267,7 +268,7 @@
   [self.rgbaView addSubview:self.colorPicker];
 }
 
--(void)setupBrushPreview
+- (void)setupBrushPreview
 {
   self.brushView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.center.x-self.view.frame.size.height * 0.05f, 90, self.view.frame.size.height * 0.1f, self.view.frame.size.height * 0.1f)];
   self.brushView.layer.cornerRadius = 20.0f;
@@ -283,7 +284,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)redAction:(id)sender
+- (void)redAction:(id)sender
 {
   UISlider *slider = (UISlider*)sender;
   float value = slider.value;
@@ -292,7 +293,7 @@
   self.red = value/255.0f;
   [self updatePreview];
 }
--(void)greenAction:(id)sender
+- (void)greenAction:(id)sender
 {
   UISlider *slider = (UISlider*)sender;
   float value = slider.value;
@@ -301,7 +302,7 @@
   self.green = value/255.0f;
   [self updatePreview];
 }
--(void)blueAction:(id)sender
+- (void)blueAction:(id)sender
 {
   UISlider *slider = (UISlider*)sender;
   float value = slider.value;
@@ -310,7 +311,7 @@
   self.blue = value/255.0f;
   [self updatePreview];
 }
--(void)opacityAction:(id)sender
+- (void)opacityAction:(id)sender
 {
   UISlider *slider = (UISlider*)sender;
   float value = slider.value;
@@ -320,13 +321,13 @@
   [self updatePreview];
 }
 
--(void)updatePreview
+- (void)updatePreview
 {
   self.brushView.backgroundColor = [UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.opacity];
   [self.colorPicker setColor:[UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.opacity]];
 }
 
--(void)viewChanged:(UISegmentedControl *)paramSender
+- (void)viewChanged:(UISegmentedControl *)paramSender
 {
   NSInteger selectedIndex = [paramSender selectedSegmentIndex];
   switch (selectedIndex) {
@@ -368,7 +369,7 @@
   [self updateRGBAView];
 }
 
--(void)updateRGBAView
+- (void)updateRGBAView
 {
   self.redSlider.value = self.red*255.0f;
   self.redLabel.text = [NSString stringWithFormat:@"%.0f",roundf(self.red*255.0f)];
@@ -385,7 +386,7 @@
   [self.rgbaView setNeedsDisplay];
 }
 
--(void)resetColorPicker
+- (void)resetColorPicker
 {
   NKOColorPickerDidChangeColorBlock colorDidChangeBlock = ^(UIColor *color){
       //Your code handling a color change in the picker view.
@@ -421,7 +422,7 @@
   [self.delegate closeColorPicker:self];
 }
 
--(BOOL)prefersStatusBarHidden { return YES; }
+- (BOOL)prefersStatusBarHidden { return YES; }
 
 
 

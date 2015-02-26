@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@
 #import "RGBAHelper.h"
 
 @implementation PipetteTool
--(id) initWithDrawViewCanvas:(PaintViewController *)canvas
+- (id) initWithDrawViewCanvas:(PaintViewController *)canvas
 {
   self = [super init];
   if(self)
@@ -34,7 +34,7 @@
   return self;
 }
 
--(void)pipetteAction:(UITapGestureRecognizer*)recognizer
+- (void)pipetteAction:(UITapGestureRecognizer*)recognizer
 {
   CGPoint point = [recognizer locationOfTouch:0 inView:self.canvas.drawView];
   if (!self.canvas.saveView.image) {

@@ -31,13 +31,13 @@ const struct KNSemiModalOptionKeys KNSemiModalOptionKeys = {
 #define kSemiModalDismissButtonTag         10004
 
 @interface UIViewController (KNSemiModalInternal)
--(UIView*)parentTarget;
--(CAAnimationGroup*)animationGroupForward:(BOOL)_forward;
+- (UIView*)parentTarget;
+- (CAAnimationGroup*)animationGroupForward:(BOOL)_forward;
 @end
 
 @implementation UIViewController (KNSemiModalInternal)
 
--(UIViewController*)kn_parentTargetViewController {
+- (UIViewController*)kn_parentTargetViewController {
 	UIViewController * target = self;
 	if ([[self ym_optionOrDefaultForKey:KNSemiModalOptionKeys.traverseParentHierarchy] boolValue]) {
 		// cover UINav & UITabbar as well
@@ -47,13 +47,13 @@ const struct KNSemiModalOptionKeys KNSemiModalOptionKeys = {
 	}
 	return target;
 }
--(UIView*)parentTarget {
+- (UIView*)parentTarget {
     return [self kn_parentTargetViewController].view;
 }
 
 #pragma mark Options and defaults
 
--(void)kn_registerDefaultsAndOptions:(NSDictionary*)options {
+- (void)kn_registerDefaultsAndOptions:(NSDictionary*)options {
 	[self ym_registerOptions:options defaults:@{
      KNSemiModalOptionKeys.traverseParentHierarchy : @(YES),
      KNSemiModalOptionKeys.pushParentBack : @(NO),
@@ -68,7 +68,7 @@ const struct KNSemiModalOptionKeys KNSemiModalOptionKeys = {
 
 #pragma mark Push-back animation group
 
--(CAAnimationGroup*)animationGroupForward:(BOOL)_forward {
+- (CAAnimationGroup*)animationGroupForward:(BOOL)_forward {
     // Create animation keys, forwards and backwards
     CATransform3D t1 = CATransform3DIdentity;
     t1.m34 = 1.0/-900;
@@ -115,12 +115,12 @@ const struct KNSemiModalOptionKeys KNSemiModalOptionKeys = {
     return group;
 }
 
--(void)kn_interfaceOrientationDidChange:(NSNotification*)notification {
+- (void)kn_interfaceOrientationDidChange:(NSNotification*)notification {
 	UIView *overlay = [[self parentTarget] viewWithTag:kSemiModalOverlayTag];
 	[self kn_addOrUpdateParentScreenshotInView:overlay];
 }
 
--(UIImageView*)kn_addOrUpdateParentScreenshotInView:(UIView*)screenshotContainer {
+- (UIImageView*)kn_addOrUpdateParentScreenshotInView:(UIView*)screenshotContainer {
 	UIView *target = [self parentTarget];
 	UIView *semiView = [target viewWithTag:kSemiModalModalViewTag];
 	
@@ -154,14 +154,14 @@ const struct KNSemiModalOptionKeys KNSemiModalOptionKeys = {
 
 @implementation UIViewController (KNSemiModal)
 
--(void)presentSemiViewController:(UIViewController*)vc {
+- (void)presentSemiViewController:(UIViewController*)vc {
 	[self presentSemiViewController:vc withOptions:nil completion:nil dismissBlock:nil];
 }
--(void)presentSemiViewController:(UIViewController*)vc
+- (void)presentSemiViewController:(UIViewController*)vc
 					 withOptions:(NSDictionary*)options {
     [self presentSemiViewController:vc withOptions:options completion:nil dismissBlock:nil];
 }
--(void)presentSemiViewController:(UIViewController*)vc
+- (void)presentSemiViewController:(UIViewController*)vc
 					 withOptions:(NSDictionary*)options
 					  completion:(KNTransitionCompletionBlock)completion
 					dismissBlock:(KNTransitionCompletionBlock)dismissBlock {
@@ -186,13 +186,13 @@ const struct KNSemiModalOptionKeys KNSemiModalOptionKeys = {
 	}];
 }
 
--(void)presentSemiView:(UIView*)view {
+- (void)presentSemiView:(UIView*)view {
 	[self presentSemiView:view withOptions:nil completion:nil];
 }
--(void)presentSemiView:(UIView*)view withOptions:(NSDictionary*)options {
+- (void)presentSemiView:(UIView*)view withOptions:(NSDictionary*)options {
 	[self presentSemiView:view withOptions:options completion:nil];
 }
--(void)presentSemiView:(UIView*)view
+- (void)presentSemiView:(UIView*)view
 		   withOptions:(NSDictionary*)options
 			completion:(KNTransitionCompletionBlock)completion {
 	[self kn_registerDefaultsAndOptions:options]; // re-registering is OK
@@ -303,16 +303,16 @@ const struct KNSemiModalOptionKeys KNSemiModalOptionKeys = {
         }];
     }
 }
--(void)updateBackground{
+- (void)updateBackground{
     UIView * target = [self parentTarget];
     UIView * overlay = [target viewWithTag:kSemiModalOverlayTag];
     [self kn_addOrUpdateParentScreenshotInView:overlay];
 }
--(void)dismissSemiModalView {
+- (void)dismissSemiModalView {
 	[self dismissSemiModalViewWithCompletion:nil];
 }
 
--(void)dismissSemiModalViewWithCompletion:(void (^)(void))completion {
+- (void)dismissSemiModalViewWithCompletion:(void (^)(void))completion {
     // Look for presenting controller if available
     UIViewController * prstingTgt = self;
     UIViewController * presentingController = objc_getAssociatedObject(prstingTgt.view, kSemiModalPresentingViewController);

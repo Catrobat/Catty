@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -25,10 +25,11 @@
 #import "PaintViewController.h"
 #import "UIImage+Rotate.h"
 #import "LanguageTranslationDefines.h"
+#import "CatrobatUISlider.h"
 
 @interface BrushPickerViewController ()
 @property (nonatomic,strong)UIImageView *brushView;
-@property (nonatomic,strong)UISlider *brushSlider;
+@property (nonatomic,strong)CatrobatUISlider *brushSlider;
 @property (nonatomic,strong)UILabel *thicknessLabel;
 @property (nonatomic,strong)UISegmentedControl *brushEndingControl;
 
@@ -69,7 +70,7 @@
     // Do any additional setup after loading the view.
 }
 
--(void)viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
   [self setupBrushPreview];
@@ -77,7 +78,7 @@
   [self setupBrushSlider];
 }
 
--(void)setupToolBar
+- (void)setupToolBar
 {
   self.toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
   [self.view addSubview:self.toolBar];
@@ -91,10 +92,10 @@
 }
 
 
--(void)setupSegmentedControl
+- (void)setupSegmentedControl
 {
-  NSArray *mySegments = [[NSArray alloc] initWithObjects: @"Round",
-                         @"Square", nil];
+  NSArray *mySegments = [[NSArray alloc] initWithObjects: kLocalizedPaintRound,
+                         kLocalizedPaintSquare, nil];
   self.brushEndingControl = [[UISegmentedControl alloc] initWithItems:mySegments];
   CGFloat width = self.view.frame.size.width-140.0f;
   self.brushEndingControl.frame =CGRectMake(self.view.center.x-width/2.0f, self.view.frame.size.height*0.9f, width, 20);
@@ -116,10 +117,10 @@
   [self.view addSubview:self.brushEndingControl];
 }
 
--(void)setupBrushSlider
+- (void)setupBrushSlider
 {
-  self.brushSlider = [[UISlider alloc] init];
-  self.brushSlider.frame =CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.7f, self.view.frame.size.width-100, 5);
+  self.brushSlider = [[CatrobatUISlider alloc] init];
+  self.brushSlider.frame =CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.7f, self.view.frame.size.width-100, 20);
   [self.brushSlider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
   [self.brushSlider setBackgroundColor:[UIColor clearColor]];
   self.brushSlider.minimumValue = 1.0f;
@@ -142,7 +143,7 @@
   
 }
 
--(void)setupBrushPreview
+- (void)setupBrushPreview
 {
   self.brushView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.center.x-60, 60, 125, 125)];
   UIGraphicsBeginImageContext(self.brushView.frame.size);
@@ -186,7 +187,7 @@
 }
 */
 
--(void)whichBrushEnding:(UISegmentedControl *)paramSender
+- (void)whichBrushEnding:(UISegmentedControl *)paramSender
 {
   NSInteger selectedIndex = [paramSender selectedSegmentIndex];
   switch (selectedIndex) {
@@ -223,7 +224,7 @@
 
 }
 
--(void)sliderAction:(id)sender
+- (void)sliderAction:(id)sender
 {
   UISlider *slider = (UISlider*)sender;
   float value = slider.value;

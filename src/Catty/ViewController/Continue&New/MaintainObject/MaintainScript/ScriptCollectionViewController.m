@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -179,6 +179,112 @@
     return nil;
 }
 
+//#pragma mark BrickDetailViewController Delegate
+//- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
+//                 viewDidDisappear:(BOOL)deleteBrick withBrickCell:(BrickCell *)brickCell copyBrick:(BOOL)copyBrick
+//                openFormulaEditor:(BOOL)openFormulaEditor animateBrick:(BOOL)animate
+//{
+//    self.collectionView.userInteractionEnabled = YES;
+//    self.navigationController.navigationBar.userInteractionEnabled = YES;
+//    [self.collectionView reloadData];
+//
+//    if (deleteBrick) {
+//        [self removeBrickWithIndexPath:self.selectedIndexPath];
+//    } else if (copyBrick) {
+//        [self addBrickCellAction:brickCell copyBrick:copyBrick completionBlock:NULL];
+//    } else if (openFormulaEditor) {
+//        UIButton *formulaEditorButton = [UIUtil newDefaultBrickFormulaEditorWithFrame:CGRectMake(0, 0, 0, 0) ForBrickCell:brickCell AndLineNumber: 0 AndParameterNumber: 0];
+//        [self performSelectorOnMainThread:@selector(openFormulaEditor:) withObject:(id)formulaEditorButton waitUntilDone:NO];
+//    }else if (animate){
+//        [self animate:self.selectedIndexPath brickCell:brickCell];
+//    }
+//}
+//
+//#pragma mark FormulaEditorViewController Delegate
+//- (void)formulaEditorViewController:(FormulaEditorViewController *)formulaEditorViewController
+//                withBrickCell:(BrickCell *)brickCell
+//{
+//    self.collectionView.userInteractionEnabled = YES;
+//    self.navigationController.navigationBar.userInteractionEnabled = YES;
+//    [self.collectionView reloadData];
+//}
+//
+//#pragma mark - Collection View Datasource
+//- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+//{
+//    NSInteger count = 0;
+//    if (collectionView == self.collectionView) {
+//        count =  [self.object.scriptList count];
+//    } else {
+//        if (collectionView == self.brickSelectionView.brickCollectionView) count = self.selectableBricks.count;
+//    }
+//    return count;
+//}
+//
+//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+//{
+//    NSInteger count = 0;
+//    
+//    if (collectionView == self.collectionView) {
+//        Script *script = [self.object.scriptList objectAtIndex:section];
+//        if (! script) {
+//            NSError(@"This should never happen");
+//            abort();
+//        }
+//        count = ([script.brickList count] + 1); // because script itself is a brick in IDE too
+//    } else {
+//        count = ((collectionView == self.brickSelectionView.brickCollectionView) ? 1 : 0);
+//    }
+//    return count;
+//}
+//
+//#pragma mark - UICollectionView Delegates
+//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    BrickCell *brickCell = nil;
+//    if (self.collectionView == collectionView) {
+//        Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
+//        if (! script) {
+//            NSError(@"This should never happen");
+//            abort();
+//        }
+//        if (indexPath.item == 0) {
+//            // case it's a script brick
+//            NSString *scriptSubClassName = NSStringFromClass([script class]);
+//            brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:scriptSubClassName forIndexPath:indexPath];
+//            brickCell.scriptOrBrick = script;
+//            brickCell.selectButton.hidden = YES;
+//        } else {
+//            // case it's a normal brick
+//            Brick *brick = [script.brickList objectAtIndex:(indexPath.row - 1)];
+//            NSString *brickSubClassName = NSStringFromClass([brick class]);
+//            brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickSubClassName forIndexPath:indexPath];
+//            brickCell.scriptOrBrick = brick;
+//        }
+//        brickCell.enabled = YES;
+//    } else {
+//        if (collectionView == self.brickSelectionView.brickCollectionView) {
+//            id<BrickProtocol> brick = [self.selectableBricks objectAtIndex:indexPath.section];
+//            NSString *brickTypeName = NSStringFromClass([brick class]);
+//            brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickTypeName
+//                                                                  forIndexPath:indexPath];
+//            brickCell.scriptOrBrick = [self.selectableBricks objectAtIndex:indexPath.section];
+//        }
+//    }
+//    if (self.selectedAllCells) {
+//        [brickCell selectedState:self.selectedAllCells setEditingState:self.editing];
+//    } else {
+//        NSString *key = [self keyWithSelectIndexPath:indexPath];
+//        BOOL selected = indexPath == self.selectedIndexPaths[key];
+//        [brickCell selectedState:selected setEditingState:self.editing];
+//    }
+//    [brickCell setupBrickCell];
+//    brickCell.delegate = self;
+//    brickCell.textDelegate = self;
+//    return brickCell;
+//}
+//
+
 - (CGSize)collectionView:(UICollectionView*)collectionView
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath*)indexPath
@@ -217,7 +323,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     [self.brickScaleTransition updateAnimationViewWithView:brickCell];
     if (!self.isEditing) {
         self.trackedIndexPath =  indexPath;
-        BrickDetailViewController *vc = [BrickDetailViewController brickDetailViewControllerWithtBrick:brickCell.brick];
+        BrickDetailViewController *vc = [BrickDetailViewController brickDetailViewControllerWithScriptOrBrick:brickCell.scriptOrBrick];
         vc.delegate = self;
         vc.transitioningDelegate = self;
         [self presentViewController:vc animated:YES completion:NULL];
@@ -299,7 +405,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (void)textFieldFinished:(id)sender
 {
     NoteBrickTextField *noteBrickTextField = (NoteBrickTextField*)sender;
-    NoteBrick *noteBrick =(NoteBrick*) noteBrickTextField.cell.brick;
+    NoteBrick *noteBrick = (NoteBrick*)noteBrickTextField.cell.scriptOrBrick;
     noteBrick.note = noteBrickTextField.text;
     [noteBrickTextField update];
     [noteBrickTextField resignFirstResponder];
@@ -415,12 +521,12 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 #pragma mark - BrickCategoryViewController
 
 - (void)brickCategoryViewController:(BrickCategoryViewController *)brickCategoryViewController
-                     didSelectBrick:(Brick *)brick
+             didSelectScriptOrBrick:(id<ScriptProtocol>)scriptOrBrick
 {
-    _lastSelectedBrickCategory = brick.brickCategoryType;
+    _lastSelectedBrickCategory = scriptOrBrick.brickCategoryType;
     brickCategoryViewController.delegate = nil;
     [self dismissViewControllerAnimated:YES completion:NULL];
-    NSLog(@"[ %@ ] selected", brick);
+    NSLog(@"[ %@ ] selected", scriptOrBrick);
 }
 
 #pragma mark - Brick Cell Delegate
@@ -460,7 +566,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - Open Formula Editor
-
 - (void)openFormulaEditor:(FormulaEditorButton *)button
 {
     if([button isKindOfClass:[FormulaEditorButton class]]) {
@@ -531,6 +636,88 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:indexPath]];
         }
     }
+//<<<<<<< HEAD
+//=======
+//    
+//}
+//
+//- (void)addBrickCellAction:(BrickCell*)brickCell copyBrick:(BOOL)copy completionBlock:(void(^)())completionBlock
+//{
+//    if (! brickCell) {
+//        return;
+//    }
+//
+//    // convert brickCell to brick
+//    NSString *brickCellClassName = NSStringFromClass([brickCell class]);
+//    NSString *brickOrScriptClassName = [brickCellClassName stringByReplacingOccurrencesOfString:@"Cell" withString:@""];
+//    id brickOrScript = [[NSClassFromString(brickOrScriptClassName) alloc] init];
+//    if (! [brickOrScript conformsToProtocol:@protocol(BrickProtocol)]) {
+//        NSError(@"Given object does not implement BrickProtocol...");
+//        abort();
+//    }
+//
+//    if ([brickOrScript isKindOfClass:[Brick class]]) {
+//        Script *script = nil;
+//        // automatically create new script if the object does not contain any of them
+//        if (! [self.object.scriptList count]) {
+//            script = [[StartScript alloc] init];
+//            script.allowRunNextAction = YES;
+//            script.object = self.object;
+//            [self.object.scriptList addObject:script];
+//        }
+//
+//        script = [self.object.scriptList objectAtIndex:self.selectedIndexPath.section];
+//        Brick *brick = (Brick*)brickOrScript;
+//        brick.script.object = self.object;
+//        [self insertBrick:brick atIndexPath:self.selectedIndexPath intoScriptList:script copy:copy completion:NULL];
+//    } else if ([brickOrScript isKindOfClass:[Script class]]) {
+//        Script *script = (Script*)brickOrScript;
+//        script.object = self.object;
+//        [self.object.scriptList addObject:script];
+//    } else {
+//        NSError(@"Unknown class type given...");
+//        abort();
+//    }
+//    self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
+//
+//    if (completionBlock) completionBlock();
+//}
+//
+//- (void)insertBrick:(Brick *)brick atIndexPath:(NSIndexPath *)indexPath intoScriptList:(Script *)script copy:(BOOL)copy completion:(void(^)())completionBlock
+//{
+//    for (BrickCell *cell in self.collectionView.visibleCells) {
+//        [cell animateBrick:NO];
+//    }
+//
+//    if (copy) {
+//        [self.collectionView performBatchUpdates:^{
+//            [script.brickList insertObject:brick atIndex:indexPath.item ];
+//            [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
+//        } completion:^(BOOL finished) {
+//            if (finished) {
+//                [self.collectionView reloadData];
+//            }
+//        }];
+//    } else {
+//        [self.collectionView performBatchUpdates:^{
+//            if (!script.brickList.count) {
+//                [script.brickList addObject:brick];
+//                [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
+//            } else {
+//                [script.brickList insertObject:brick atIndex:indexPath.item];
+//                [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
+//            }
+//        } completion:^(BOOL finished) {
+//            if (finished) {
+//                NSIndexPath *newCellIndexPath = [NSIndexPath indexPathForItem:indexPath.item + 1 inSection:indexPath.section];
+//                [self.collectionView reloadItemsAtIndexPaths:@[indexPath, newCellIndexPath]];
+//                BrickCell *newCell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:newCellIndexPath];
+//                newCell.alpha = 0.0f;
+//                if (completionBlock) completionBlock();
+//            }
+//        }];
+//    }
+//>>>>>>> 3c08963a3bf73e7476e3da259b93bb9be3785e82
 }
 
 - (NSString *)keyWithSelectIndexPath:(NSIndexPath *)indexPath
@@ -574,9 +761,28 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
-#pragma mark - check movelogic
+//<<<<<<< HEAD
+//=======
+//- (void)textFieldDidEndEditing:(UITextField *)textField
+//{
+//    [textField resignFirstResponder];
+//}
+//
+//- (void)textFieldDidBeginEditing:(UITextField *)textField{
+//}
+//
+//- (void)textFieldFinished:(id)sender
+//{
+//    NoteBrickTextField *noteBrickTextField = (NoteBrickTextField*)sender;
+//    NoteBrick *noteBrick = (NoteBrick*)noteBrickTextField.cell.scriptOrBrick;
+//    noteBrick.note = noteBrickTextField.text;
+//    [noteBrickTextField update];
+//    [noteBrickTextField resignFirstResponder];
+//}
+//>>>>>>> 3c08963a3bf73e7476e3da259b93bb9be3785e82
 
--(BOOL)checkLoopBeginToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
+#pragma mark - check movelogic
+- (BOOL)checkLoopBeginToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
 {
     if (((toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil) && (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil))||(toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil && self.lowerRankBrick == nil) || (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil && self.higherRankBrick == nil)||(self.higherRankBrick==nil && self.lowerRankBrick==nil))  {
         if (fromIndexPath.section == toIndexPath.section) {
@@ -607,7 +813,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
--(BOOL)checkLoopEndToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
+- (BOOL)checkLoopEndToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
 {
         //DONTMOVE ?!
     if (((toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil) && (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil))||(toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil && self.lowerRankBrick == nil) || (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil && self.higherRankBrick == nil)||(self.higherRankBrick==nil && self.lowerRankBrick==nil)) {
@@ -638,7 +844,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
--(BOOL)checkIfBeginToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
+- (BOOL)checkIfBeginToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
 {
     if (((toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil) && (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil))||(toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil && self.lowerRankBrick == nil) || (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil && self.higherRankBrick == nil)||(self.higherRankBrick==nil && self.lowerRankBrick==nil))  {
         if (fromIndexPath.section == toIndexPath.section) {
@@ -682,7 +888,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 
--(BOOL)checkIfElseToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
+- (BOOL)checkIfElseToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
 {
     if (((toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil) && (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil))||(toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil && self.lowerRankBrick == nil) || (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil && self.higherRankBrick == nil)||(self.higherRankBrick==nil && self.lowerRankBrick==nil)) {
         if (fromIndexPath.section == toIndexPath.section) {
@@ -738,7 +944,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 
--(BOOL)checkIfEndToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
+- (BOOL)checkIfEndToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
 {
     if (toIndexPath.item > self.higherRankBrick.item || self.higherRankBrick==nil) {
         if (fromIndexPath.section == toIndexPath.section) {
@@ -785,7 +991,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - selectLogic/Loop bricks
-             
 -(void)selectLoopBeginWithBrick:(Brick*)brick Script:(Script*)script IndexPath:(NSIndexPath*)indexPath andSelectButton:(SelectButton *)selectButton
 {
     LoopBeginBrick *beginBrick = (LoopBeginBrick *)brick;
@@ -951,7 +1156,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - Animate Logic Bricks
-
 -(void)animate:(NSIndexPath *)indexPath brickCell:(BrickCell*)brickCell
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

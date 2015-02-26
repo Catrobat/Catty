@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -67,7 +67,6 @@
     // no context given => this method has been called from VariablesContainer+CBXMLHandler
     userVariable = [UserVariable new];
     userVariable.name = userVariableName;
-    NSLog(@"Created new UserVariable: %@", userVariable.name);
     return userVariable;
 }
 

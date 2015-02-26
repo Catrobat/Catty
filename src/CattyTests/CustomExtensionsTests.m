@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -42,7 +42,7 @@
 }
 
 
--(void) testEscapingHTMLEntities
+- (void) testEscapingHTMLEntities
 {
     NSMutableString* testString = [[NSMutableString alloc]initWithFormat:@"entities: &amp; , &quot; , &#x27; , &#x39; , &#x92; , &#x96; , &gt; and &lt; "];
     

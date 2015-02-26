@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -143,21 +143,16 @@ static Formula *activeFormula;
     self.border.path = borderPath.CGPath;
     self.border.lineWidth = BORDER_WIDTH;
     [self.border setOpacity:BORDER_TRANSPARENCY];
-    
-    if(isActive) {
-        
+
+    if (isActive) {
         self.border.strokeColor = [UIColor cellBlueColor].CGColor;
-        
         self.border.shadowColor = [UIColor lightBlueColor].CGColor;
         self.border.shadowRadius = 1;
         self.border.shadowOpacity = 1.0;
         self.border.shadowOffset = CGSizeMake(0, 0);
-        
     } else {
-        
-        UIColor *borderColor = kBrickCategoryStrokeColors[self.brickCell.brick.brickCategoryType];
+        UIColor *borderColor = kBrickCategoryStrokeColors[self.brickCell.scriptOrBrick.brickCategoryType];
         self.border.strokeColor = borderColor.CGColor;
-        
     }
     
     [self.layer addSublayer:self.border];

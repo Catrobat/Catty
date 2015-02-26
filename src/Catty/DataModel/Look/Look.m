@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "Look.h"
 #import "ProgramDefines.h"
+#import "CBMutableCopyContext.h"
 
 @interface Look ()
 @end
@@ -78,11 +78,16 @@
     ];
 }
 
-- (instancetype)deepCopy
+#pragma mark - Copy
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
 {
+    if(!context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
+    
     Look *copiedLook = [[Look alloc] init];
     copiedLook.fileName = [NSString stringWithString:self.fileName];
     copiedLook.name = [NSString stringWithString:self.name];
+    
+    [context updateReference:self WithReference:copiedLook];
     return copiedLook;
 }
 

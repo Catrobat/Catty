@@ -37,18 +37,18 @@ static UIColor *kSeparatorLineColor = nil;
 @property (nonatomic, assign) BOOL hasCustomAnimation;
 
 //Init Methods
--(id)initWithFrame:(CGRect)frame title:(NSString *)title description:(NSString *)description;
--(id)initWithFrame:(CGRect)frame title:(NSString *)title description:(NSString *)description header:(UIView *)headerView;
--(id)initWithFrame:(CGRect)frame title:(NSString *)title description:(NSString *)description image:(UIImage *)image;
--(id)initWithFrame:(CGRect)frame title:(NSString *)title description:(NSString *)description image:(UIImage *)image header:(UIView *)headerView;
--(id)initWithFrame:(CGRect)frame nibNamed:(NSString *)nibName;
+- (id)initWithFrame:(CGRect)frame title:(NSString *)title description:(NSString *)description;
+- (id)initWithFrame:(CGRect)frame title:(NSString *)title description:(NSString *)description header:(UIView *)headerView;
+- (id)initWithFrame:(CGRect)frame title:(NSString *)title description:(NSString *)description image:(UIImage *)image;
+- (id)initWithFrame:(CGRect)frame title:(NSString *)title description:(NSString *)description image:(UIImage *)image header:(UIView *)headerView;
+- (id)initWithFrame:(CGRect)frame nibNamed:(NSString *)nibName;
 
 //Support Methods
 +(BOOL)runningiOS7;
 
 //Interaction Methods
--(void)panelDidAppear;
--(void)panelDidDisappear;
+- (void)panelDidAppear;
+- (void)panelDidDisappear;
 
--(void)buildPanelWithFrame:(CGRect)frame;
+- (void)buildPanelWithFrame:(CGRect)frame;
 @end

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
+#import "WhenScript.h"
 
 @interface ComeToFrontBrickTests : BrickTests
 
@@ -41,32 +42,35 @@
     [super tearDown];
 }
 
--(void)testComeToFrontBrick
+- (void)testComeToFrontBrick
 {
-    
     Program* program = [[Program alloc] init];
+    
+    SpriteObject* background = [[SpriteObject alloc] init];
+    background.program = program;
     
     SpriteObject* object1 = [[SpriteObject alloc] init];
     object1.program = program;
     object1.zPosition = 1;
-    object1.numberOfObjectsWithoutBackground = 2;
     
     SpriteObject* object2 = [[SpriteObject alloc] init];
     object2.zPosition = 2;
     
+    [program.objectList addObject:background];
     [program.objectList addObject:object1];
     [program.objectList addObject:object2];
     
+    Script *script = [[WhenScript alloc] init];
+    script.object = object1;
     
     ComeToFrontBrick* brick = [[ComeToFrontBrick alloc] init];
-    brick.object = object1;
+    brick.script = script;
     
     dispatch_block_t action = [brick actionBlock];
     action();
     
     XCTAssertEqual(object1.zPosition, (CGFloat)2.0, @"ComeToFront is not correctly calculated");
     XCTAssertEqual(object2.zPosition, (CGFloat)1.0, @"ComeToFront is not correctly calculated");
-    
 }
 
 @end

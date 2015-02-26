@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
+#import "WhenScript.h"
 
 @interface TurnLeftBrickTests : BrickTests
 
@@ -41,95 +42,96 @@
     [super tearDown];
 }
 
--(void)testTurnLeftBrick
+- (void)testTurnLeftBrick
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     object.zRotation = 0;
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
     TurnLeftBrick* brick = [[TurnLeftBrick alloc] init];
-    brick.object = object;
-    
-    Formula* degrees = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+    brick.script = script;
+
+    Formula *degrees = [[Formula alloc] init];
+    FormulaElement *formulaTree = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"60";
     degrees.formulaTree = formulaTree;
     brick.degrees = degrees;
-    
+
     dispatch_block_t action = [brick actionBlock];
-    
     action();
-    
     XCTAssertEqualWithAccuracy([object rotation], 60.0f, 0.0001, @"TurnLeftBrick not correct");
 }
 
--(void)testTurnLeftBrickOver360
+- (void)testTurnLeftBrickOver360
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     object.zRotation = 0;
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
     TurnLeftBrick* brick = [[TurnLeftBrick alloc] init];
-    brick.object = object;
-    
+    brick.script = script;
+
     Formula* degrees = [[Formula alloc] init];
     FormulaElement* formulaTree = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"400";
     degrees.formulaTree = formulaTree;
     brick.degrees = degrees;
-    
+
     dispatch_block_t action = [brick actionBlock];
-    
     action();
-    
     XCTAssertEqualWithAccuracy([object rotation], 40.0f, 0.0001, @"TurnLeftBrick not correct");
 }
 
--(void)testTurnLeftBrickNegative
+- (void)testTurnLeftBrickNegative
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     object.zRotation = 0;
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
     TurnLeftBrick* brick = [[TurnLeftBrick alloc] init];
-    brick.object = object;
-    
+    brick.script = script;
+
     Formula* degrees = [[Formula alloc] init];
     FormulaElement* formulaTree = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"-60";
     degrees.formulaTree = formulaTree;
     brick.degrees = degrees;
-    
+
     dispatch_block_t action = [brick actionBlock];
-    
     action();
-    
     XCTAssertEqualWithAccuracy([object rotation], -60.0f, 0.0001, @"TurnLeftBrick not correct");
 }
 
--(void)testTurnLeftBrickNegativeOver360
+- (void)testTurnLeftBrickNegativeOver360
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     object.zRotation = 0;
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
     TurnLeftBrick* brick = [[TurnLeftBrick alloc] init];
-    brick.object = object;
-    
-    Formula* degrees = [[Formula alloc] init];
+    brick.script = script;
+
+    Formula *degrees = [[Formula alloc] init];
     FormulaElement* formulaTree = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"-400";
     degrees.formulaTree = formulaTree;
     brick.degrees = degrees;
-    
+
     dispatch_block_t action = [brick actionBlock];
-    
     action();
-    
     XCTAssertEqualWithAccuracy([object rotation], -40.0f, 0.0001, @"TurnLeftBrick not correct");
 }
-
-
-
 
 @end

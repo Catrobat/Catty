@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #import "PlaySoundBrick.h"
 #import "Sound.h"
 #import "AudioManager.h"
+#import "Script.h"
 
 @implementation PlaySoundBrick
 
@@ -34,10 +35,10 @@
 - (SKAction*)action
 {
     NSDebug(@"Adding: %@", self.description);
-    NSDebug(@"Test: %@", [self.object description]);
+    NSDebug(@"Test: %@", [self.script.object description]);
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
-        [[AudioManager sharedAudioManager] playSoundWithFileName:self.sound.fileName andKey:self.object.name atFilePath:[NSString stringWithFormat:@"%@%@", [self.object projectPath], kProgramSoundsDirName]];
+        [[AudioManager sharedAudioManager] playSoundWithFileName:self.sound.fileName andKey:self.script.object.name atFilePath:[NSString stringWithFormat:@"%@%@", [self.script.object projectPath], kProgramSoundsDirName]];
     }];
 }
 

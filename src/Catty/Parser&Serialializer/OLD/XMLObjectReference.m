@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@
 
 @implementation XMLObjectReference
 
--(id)initWithParent:(XMLObjectReference*)parent andObject:(id)object
+- (id)initWithParent:(XMLObjectReference*)parent andObject:(id)object
 {
     self = [super init];
     if (self) {
@@ -34,12 +34,12 @@
     return self;
 }
 
--(void)dealloc
+- (void)dealloc
 {
     
 }
 
--(NSString*)description
+- (NSString*)description
 {
     return [NSString stringWithFormat:@"XMLObjectReference: Parent: %@, Object: %@", self.parent, self.object ];
 }

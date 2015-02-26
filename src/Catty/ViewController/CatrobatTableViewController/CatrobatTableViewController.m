@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -477,7 +477,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
 }
 
--(void)introduction:(MYBlurIntroductionView *)introductionView didFinishWithType:(MYFinishType)finishType {
+- (void)introduction:(MYBlurIntroductionView *)introductionView didFinishWithType:(MYFinishType)finishType {
     NSDebug(@"Introduction did finish");
     [self initNavigationBar];
     self.tableView.scrollEnabled = YES;

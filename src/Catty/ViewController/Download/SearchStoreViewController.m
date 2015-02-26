@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -235,7 +235,7 @@
     }
 }
 
--(void)loadingIndicator:(BOOL)value
+- (void)loadingIndicator:(BOOL)value
 {
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = value;
@@ -299,7 +299,7 @@
     [self.view addSubview:self.noSearchResultsLabel];
 }
 
--(void)initSearchView
+- (void)initSearchView
 {
     self.searchResults = [[NSMutableArray alloc] init];
     for (UIView *subView in self.searchBar.subviews) {
@@ -324,7 +324,7 @@
 }
 
 #pragma mark - Helper
--(void)queryServerForSearchString:(NSString*)searchString
+- (void)queryServerForSearchString:(NSString*)searchString
 {
     NSDebug(@"Begin custom query to server");
     // reset data

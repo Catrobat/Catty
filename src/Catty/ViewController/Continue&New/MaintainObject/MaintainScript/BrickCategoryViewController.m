@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -99,7 +99,7 @@
     NSString *brickCellIdentifier = NSStringFromClass(brick.class);
     BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickCellIdentifier
                                                                     forIndexPath:indexPath];
-    brickCell.brick = [self.bricks objectAtIndex:indexPath.item];
+    brickCell.scriptOrBrick = [self.bricks objectAtIndex:indexPath.item];
     [brickCell setupBrickCell];
     return brickCell;
 }
@@ -108,9 +108,9 @@
 {
   [collectionView deselectItemAtIndexPath:indexPath animated:NO];
     BrickCell *cell = (BrickCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    NSAssert(cell.brick, @"Error, no brick.");
+    NSAssert(cell.scriptOrBrick, @"Error, no brick.");
     if ([self.delegate respondsToSelector:@selector(brickCategoryViewController:didSelectBrick:)]) {
-        [self.delegate brickCategoryViewController:self didSelectBrick:cell.brick];
+        [self.delegate brickCategoryViewController:self didSelectScriptOrBrick:cell.scriptOrBrick];
     }
 }
 

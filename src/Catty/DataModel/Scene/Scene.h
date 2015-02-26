@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,21 +26,18 @@
 
 @interface Scene : SKScene
 
-
 @property(nonatomic, weak) Program* program;
-@property(nonatomic) NSInteger numberOfObjectsWithoutBackground;
 
+- (id)initWithSize:(CGSize)size andProgram:(Program*)program;
 
--(id)initWithSize:(CGSize)size andProgram:(Program*)program;
+- (CGPoint)convertPointToScene:(CGPoint)point;
+- (CGFloat)convertYCoordinateToScene:(CGFloat)y;
+- (CGFloat)convertXCoordinateToScene:(CGFloat)x;
+- (CGFloat)convertDegreesToScene:(CGFloat)degrees;
 
--(CGPoint)convertPointToScene:(CGPoint)point;
--(CGFloat)convertYCoordinateToScene:(CGFloat)y;
--(CGFloat)convertXCoordinateToScene:(CGFloat)x;
--(CGFloat)convertDegreesToScene:(CGFloat)degrees;
+- (CGPoint)convertSceneCoordinateToPoint:(CGPoint)point;
+- (CGFloat)convertSceneToDegrees:(CGFloat)degrees;
 
--(CGPoint)convertSceneCoordinateToPoint:(CGPoint)point;
--(CGFloat)convertSceneToDegrees:(CGFloat)degrees;
-
--(BOOL)touchedwith:(NSSet*)touches withX:(CGFloat) x andY:(CGFloat) y;
+- (BOOL)touchedwith:(NSSet*)touches withX:(CGFloat) x andY:(CGFloat) y;
 
 @end

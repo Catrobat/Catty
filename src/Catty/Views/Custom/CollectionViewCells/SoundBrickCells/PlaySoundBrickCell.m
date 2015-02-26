@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@
 
 @implementation PlaySoundBrickCell
 
--(void)drawRect:(CGRect)rect
+- (void)drawRect:(CGRect)rect
 {
     [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.soundBrickVioletColor strokeColor:UIColor.soundBrickStrokeColor height:mediumBrick width:[Util screenWidth]];
 }

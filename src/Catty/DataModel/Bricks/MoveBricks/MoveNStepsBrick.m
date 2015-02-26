@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@
 #import "Formula.h"
 #import "Util.h"
 #import "Scene.h"
+#import "Script.h"
 
 @implementation MoveNStepsBrick
 
@@ -55,21 +56,21 @@
 {
     return ^{
         
-        double steps = [self.steps interpretDoubleForSprite:self.object];
-        double rotation = [self.object rotation]+90;
+        double steps = [self.steps interpretDoubleForSprite:self.script.object];
+        double rotation = [self.script.object rotation]+90;
         while (rotation >= 360) {
             rotation -= 360;
         }
         rotation = rotation * M_PI / 180;
-        int xPosition = (int)round(self.object.position.x + (steps * sin(rotation)));
-        int yPosition = (int)round(self.object.position.y - (steps * cos(rotation)));
-        self.object.position = CGPointMake(xPosition, yPosition);
+        int xPosition = (int)round(self.script.object.position.x + (steps * sin(rotation)));
+        int yPosition = (int)round(self.script.object.position.y - (steps * cos(rotation)));
+        self.script.object.position = CGPointMake(xPosition, yPosition);
     };
 }
 
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"MoveNStepsBrick: %f steps", [self.steps interpretDoubleForSprite:self.object] ];
+    return [NSString stringWithFormat:@"MoveNStepsBrick: %f steps", [self.steps interpretDoubleForSprite:self.script.object] ];
 }
 
 @end

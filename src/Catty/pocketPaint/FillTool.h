@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,9 +26,9 @@
 @interface FillTool : NSObject
 
 
-@property (nonatomic,strong) PaintViewController* canvas;
+@property (nonatomic,weak) PaintViewController* canvas;
 
--(id)initWithDrawViewCanvas:(PaintViewController*)canvas;
--(UIImage *)fillImage:(UIImage*)image startingPoint:(CGPoint)point andColor:(UIColor*)color;
--(void)fillAction:(UITapGestureRecognizer*)recognizer;
+- (id)initWithDrawViewCanvas:(PaintViewController*)canvas;
+- (UIImage *)fillImage:(UIImage*)image startingPoint:(CGPoint)point andColor:(UIColor*)color;
+- (void)fillAction:(UITapGestureRecognizer*)recognizer;
 @end

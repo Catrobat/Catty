@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -28,9 +28,9 @@
   BOOL fingerSwiped;
   CGPoint lastPoint;
 }
-@property (nonatomic,strong) PaintViewController* canvas;
+@property (nonatomic,weak) PaintViewController* canvas;
 
--(void)draw:(UIPanGestureRecognizer *)recognizer;
--(id)initWithDrawViewCanvas:(PaintViewController*)canvas;
+- (void)draw:(UIPanGestureRecognizer *)recognizer;
+- (id)initWithDrawViewCanvas:(PaintViewController*)canvas;
 
 @end

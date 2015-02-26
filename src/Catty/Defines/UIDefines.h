@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,8 +22,8 @@
 
 #import "LanguageTranslationDefines.h"
 
-// which characters in program, object, image names do we have to support?
-#define kTextFieldAllowedCharacters @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzäöü_#?!()[]{}^*|~<>£¥=+-_.,:;\"'&@%$€ 1234567890"
+// XXX: which characters in program, object, image names do we have to support?
+#define kTextFieldAllowedCharacters @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzäöü#?!()[]{}^*|~<>£¥=+-.,:;\"'&@%$€ 1234567890"
 
 #define kMenuImageNameContinue @"continue"
 #define kMenuImageNameNew @"new"

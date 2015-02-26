@@ -10,11 +10,11 @@
 /* Let's inset everything that's drawn (the handles and the content view)
    so that users can trigger a resize from a few pixels outside of
    what they actually see as the bounding box. */
-#define kSPUserResizableViewGlobalInset 0.0
+#define kSPUserResizableViewGlobalInset 10.0
 
 #define kSPUserResizableViewDefaultMinWidth 20.0
 #define kSPUserResizableViewDefaultMinHeight 20.0
-#define kSPUserResizableViewInteractiveBorderSize 10.0
+#define kSPUserResizableViewInteractiveBorderSize 20.0
 
 static SPUserResizableViewAnchorPoint SPUserResizableViewNoResizeAnchorPoint = { 0.0, 0.0, 0.0, 0.0 };
 static SPUserResizableViewAnchorPoint SPUserResizableViewUpperLeftAnchorPoint = { 1.0, 1.0, -1.0, 1.0 };
@@ -46,7 +46,7 @@ static SPUserResizableViewAnchorPoint SPUserResizableViewLowerMiddleAnchorPoint 
     CGContextSaveGState(context);
     
     // (1) Draw the bounding box.
-    CGContextSetLineWidth(context, 3.0);
+    CGContextSetLineWidth(context, 4.0);
     CGContextSetStrokeColorWithColor(context, self.borderColor.CGColor);
     CGContextAddRect(context, CGRectInset(self.bounds, kSPUserResizableViewInteractiveBorderSize/2, kSPUserResizableViewInteractiveBorderSize/2));
     CGContextStrokePath(context);
@@ -106,7 +106,7 @@ static SPUserResizableViewAnchorPoint SPUserResizableViewLowerMiddleAnchorPoint 
  *  @param anchor CGPoint for new anchor
  *  @param view
  */
--(void)setAnchorPoint:(CGPoint)anchor;
+- (void)setAnchorPoint:(CGPoint)anchor;
 
 /**
  *  Determines if we should not resize the by current settings.
@@ -392,7 +392,7 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
     self.center = newCenter;
 }
 
--(void)setAnchorPoint:(CGPoint)anchor {
+- (void)setAnchorPoint:(CGPoint)anchor {
     CGPoint newPoint = CGPointMake(self.bounds.size.width * anchor.x,
                                    self.bounds.size.height * anchor.y);
     CGPoint oldPoint = CGPointMake(self.bounds.size.width * self.layer.anchorPoint.x,
@@ -424,7 +424,7 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
     }
 }
 
--(void)changeBorderWithColor:(UIColor*)color
+- (void)changeBorderWithColor:(UIColor*)color
 {
   _borderView.borderColor = color;
   [_borderView setNeedsDisplay];

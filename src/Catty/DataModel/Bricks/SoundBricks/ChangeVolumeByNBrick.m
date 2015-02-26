@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #import "ChangeVolumeByNBrick.h"
 #import "Formula.h"
 #import "AudioManager.h"
+#import "Script.h"
 
 @implementation ChangeVolumeByNBrick
 
@@ -48,8 +49,8 @@
     NSDebug(@"Adding: %@", self.description);
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
-        double volume = [self.volume interpretDoubleForSprite:self.object];
-        [[AudioManager sharedAudioManager]changeVolumeByPercent:(CGFloat)volume forKey:self.object.name];
+        double volume = [self.volume interpretDoubleForSprite:self.script.object];
+        [[AudioManager sharedAudioManager]changeVolumeByPercent:(CGFloat)volume forKey:self.script.object.name];
 
     }];
 }
@@ -57,7 +58,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Change Volume by: %f%%)", [self.volume interpretDoubleForSprite:self.object]/100.0f];
+    return [NSString stringWithFormat:@"Change Volume by: %f%%)", [self.volume interpretDoubleForSprite:self.script.object]/100.0f];
 }
 
 @end

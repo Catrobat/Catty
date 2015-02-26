@@ -729,7 +729,7 @@ static NSString * const kTableViewPanState = @"state";
     }
 }
 
--(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     if (!decelerate)
     {
@@ -754,7 +754,7 @@ static NSString * const kTableViewPanState = @"state";
     }
 }
 
--(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
     return ![touch.view isKindOfClass:[UIControl class]];
 }

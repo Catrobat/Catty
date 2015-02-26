@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,12 +26,13 @@
 #import "UIDefines.h"
 #import "LanguageTranslationDefines.h"
 #import "BrickProtocol.h"
+#import "CBMutableCopying.h"
 
 @class Brick;
 @class SpriteObject;
 @class GDataXMLElement;
 
-@interface Script : SKNode <BrickProtocol>
+@interface Script : SKNode <ScriptProtocol, CBMutableCopying>
 
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readonly) kBrickType brickType;
@@ -46,8 +47,6 @@
 - (void)startWithCompletion:(dispatch_block_t)block;
 
 - (void)stop;
-
-- (instancetype)deepCopy;
 
 - (NSString*)description;
 

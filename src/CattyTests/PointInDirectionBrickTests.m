@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,8 @@
 
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
+#import "Script.h"
+#import "WhenScript.h"
 
 @interface PointInDirectionBrickTests : BrickTests
 
@@ -41,7 +43,7 @@
     [super tearDown];
 }
 
--(void)testPointInDirectionBrick
+- (void)testPointInDirectionBrick
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
@@ -54,15 +56,16 @@
     formulaTree.type = NUMBER;
     formulaTree.value = @"20";
     degrees.formulaTree = formulaTree;
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
     PointInDirectionBrick* brick = [[PointInDirectionBrick alloc]init];
-    brick.object = object;
+    brick.script = script;
     brick.degrees = degrees;
-    
+
     dispatch_block_t action = [brick actionBlock];
     action();
-    
-    
     XCTAssertEqual(object.zRotation, (float)((360-(-70))*M_PI/180), @"PointInDirectionBrick is not correctly calculated");
 }
 

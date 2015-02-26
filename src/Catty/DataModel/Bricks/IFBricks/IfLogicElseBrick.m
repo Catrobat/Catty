@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -48,6 +48,7 @@
     return [NSString stringWithFormat:@"If Logic Else Brick"];
 }
 
+#pragma mark - Compare
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
     if(![Util isEqual:self.ifBeginBrick.brickTitle toObject:((IfLogicElseBrick*)brick).ifBeginBrick.brickTitle])

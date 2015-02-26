@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -30,11 +30,11 @@
 @property (nonatomic, strong)InternFormulaTokenSelection *tokenSelection;
 @property (nonatomic)int externCursorPosition;
 
--(InternFormulaState *)initWithList:(NSMutableArray *)internTokenFormulaList
+- (InternFormulaState *)initWithList:(NSMutableArray *)internTokenFormulaList
                           selection:(InternFormulaTokenSelection *)tokenSelection
             andExternCursorPosition:(int)externCursorPosition;
 
--(BOOL)isEqual:(id)objectToCompare;
--(InternFormula*)createInternFormulaFromState;
+- (BOOL)isEqual:(id)objectToCompare;
+- (InternFormula*)createInternFormulaFromState;
 
 @end

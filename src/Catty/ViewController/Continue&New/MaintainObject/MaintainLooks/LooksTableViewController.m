@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -51,11 +51,15 @@
 #import "ProgramLoadingInfo.h"
 #import "PaintViewController.h"
 #import "PlaceHolderView.h"
+#import "UIImage+Rotate.h"
 
 @interface LooksTableViewController () <CatrobatActionSheetDelegate, UIImagePickerControllerDelegate,
                                         UINavigationControllerDelegate, CatrobatAlertViewDelegate,
                                         UITextFieldDelegate, SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
+@property (nonatomic,strong)UIImage* paintImage;
+@property (nonatomic,strong)NSString* paintImagePath;
+@property (nonatomic, weak) Look *selectedLook;
 @end
 
 @implementation LooksTableViewController
@@ -94,7 +98,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark viewwillappear
--(void)viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
@@ -146,7 +150,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSString *newPath = [self.object pathForLook:look];
     [appDelegate.fileManager moveExistingFileAtPath:oldPath toPath:newPath overwrite:YES];
     [self.dataCache removeObjectForKey:look.fileName]; // just to ensure
-    [self.object addLook:look];
+    [self.object addLook:look AndSaveToDisk:YES];
 
     [self showPlaceHolder:NO];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
@@ -159,7 +163,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self showLoadingView];
     NSString *nameOfCopiedLook = [Util uniqueName:sourceLook.name existingNames:[self.object allLookNames]];
-    [self.object copyLook:sourceLook withNameForCopiedLook:nameOfCopiedLook];
+    [self.object copyLook:sourceLook withNameForCopiedLook:nameOfCopiedLook AndSaveToDisk:YES];
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
@@ -173,7 +177,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
     [self showLoadingView];
     newLookName = [Util uniqueName:newLookName existingNames:[self.object allLookNames]];
-    [self.object renameLook:look toName:newLookName];
+    [self.object renameLook:look toName:newLookName AndSaveToDisk:YES];
     NSUInteger lookIndex = [self.object.lookList indexOfObject:look];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lookIndex inSection:0];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
@@ -201,7 +205,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [looksToRemove addObject:look];
         [self.dataCache removeObjectForKey:look.fileName];
     }
-    [self.object removeLooks:looksToRemove];
+    [self.object removeLooks:looksToRemove AndSaveToDisk:YES];
     [super exitEditingMode];
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
@@ -213,7 +217,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self showLoadingView];
     Look *look = (Look*)[self.object.lookList objectAtIndex:indexPath.row];
     [self.dataCache removeObjectForKey:look.fileName];
-    [self.object removeLook:look];
+    [self.object removeLook:look AndSaveToDisk:YES];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationNone];
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
@@ -320,8 +324,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
         PaintViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"paint"];
         vc.delegate = self;
-        Look *look = [self.object.lookList objectAtIndex:indexPath.row];
-        NSString *lookImagePath = [self.object pathForLook:look];
+        self.selectedLook = [self.object.lookList objectAtIndex:indexPath.row];
+        NSString *lookImagePath = [self.object pathForLook:self.selectedLook];
         UIImage *image = [[UIImage alloc] initWithContentsOfFile:lookImagePath];
         vc.editingImage = image;
         vc.editingPath = lookImagePath;
@@ -421,6 +425,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIImage *image = info[UIImagePickerControllerEditedImage];
     if (! image) {
         image = info[UIImagePickerControllerOriginalImage];
+        image = [image fixOrientation];
     }
 
     if (! image) {
@@ -662,15 +667,50 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark paintDelegate
--(void)addPaintedImage:(UIImage *)image andPath:(NSString *)path
-{
 
+- (void)showSavePaintImageAlert:(UIImage *)image andPath:(NSString *)path
+{
+    self.paintImage = image;
+    self.paintImagePath = path;
+    [Util confirmAlertWithTitle:kLocalizedSaveToPocketCode message:kLocalizedPaintSaveChanges delegate:self tag:0];
+}
+#pragma mark - alert delegate
+- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != 0) {
+            //        NSLog(@"yes");
+        if (self.paintImagePath && self.paintImage) {
+            [self addPaintedImage:self.paintImage andPath:self.paintImagePath];
+        }
+    } 
+}
+
+
+- (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path
+{
     UIImage *checkImage = [[UIImage alloc] initWithContentsOfFile:path];
     
-    
     if (checkImage) {
-        NSLog(@"Updating");
+//        NSLog(@"Updating");
         NSData *imageData = UIImagePNGRepresentation(image);
+        NSString *imageDirPath = [[self.object projectPath] stringByAppendingString:kProgramImagesDirName];
+        NSString *fileName = [path stringByReplacingOccurrencesOfString:imageDirPath withString:@""];
+        
+        NSRange result = [fileName rangeOfString:kResourceFileNameSeparator];
+        if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([fileName length]-1)))
+            return; // Invalid file name convention -> this should not happen. XXX/FIXME: maybe we want to abort here??
+
+        NSUInteger referenceCount = [self.object referenceCountForLook:[fileName substringFromIndex:1]];
+        if(referenceCount > 1) {
+            NSString *newImageFileName = [NSString stringWithFormat:@"%@_%@.%@",
+                                          [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
+                                          self.selectedLook.name,
+                                          kLocalizedMyImageExtension];
+            path = [path stringByReplacingOccurrencesOfString:[fileName substringFromIndex:1] withString:newImageFileName];
+            fileName = newImageFileName;
+            self.selectedLook.fileName = fileName;
+        }
+        
         NSDebug(@"Writing file to disk");
             // leaving the main queue here!
         NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{
@@ -686,15 +726,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
         }];
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
         [queue addOperation:saveOp];
-        
+    
         
         RuntimeImageCache *cache = [RuntimeImageCache sharedImageCache];
-        NSString *imageDirPath = [[self.object projectPath] stringByAppendingString:kProgramImagesDirName];
-        NSString * fileName = [path stringByReplacingOccurrencesOfString:imageDirPath withString:@""];
-        NSRange result = [fileName rangeOfString:kResourceFileNameSeparator];
-        
-        if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([fileName length]-1)))
-            return; // Invalid file name convention -> this should not happen. XXX/FIXME: maybe we want to abort here??
         
         NSString *previewImageName =  [NSString stringWithFormat:@"%@_%@%@",
                                        [fileName substringToIndex:result.location],
@@ -709,7 +743,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         
         [cache replaceImage:image withName:filePath];
     }else{
-          NSLog(@"SAVING");  // add image to object now
+          NSDebug(@"SAVING");  // add image to object now
         [self showLoadingView];
         
         NSData *imageData = UIImagePNGRepresentation(image);

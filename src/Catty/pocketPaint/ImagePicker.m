@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@
 
 @implementation ImagePicker
 
--(id) initWithDrawViewCanvas:(PaintViewController *)canvas
+- (id) initWithDrawViewCanvas:(PaintViewController *)canvas
 {
   self = [super init];
   if(self)
@@ -34,7 +34,7 @@
   return self;
 }
 
--(void)cameraImagePickerAction
+- (void)cameraImagePickerAction
 {
   //IMAGEPICKER CAMERA
   UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -45,7 +45,7 @@
   [self.canvas presentViewController:picker animated:YES completion:NULL];
 }
 
--(void)imagePickerAction
+- (void)imagePickerAction
 {
   //IMAGEPICKER CameraRoll
   UIImagePickerController *picker = [[UIImagePickerController alloc] init];

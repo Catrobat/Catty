@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@
 
 @implementation ExternToken
 
--(ExternToken *)initWithIndex:(int)startIndex andEndIndex:(int)endIndex
+- (ExternToken *)initWithIndex:(int)startIndex andEndIndex:(int)endIndex
 {
     self = [super init];
     if(self)
@@ -44,12 +44,12 @@
     
 }
 
--(int)getStartIndex
+- (int)getStartIndex
 {
     return self.startIndex;
 }
 
--(int)getEndIndex
+- (int)getEndIndex
 {
     return self.endIndex;
 }

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 
 #import "ChangeXByNBrick.h"
 #import "Formula.h"
+#import "Script.h"
 
 @implementation ChangeXByNBrick
 
@@ -40,17 +41,17 @@
     return kLocalizedChangeX;
 }
 
--(SKAction*)action
+- (SKAction*)action
 {
     return [SKAction runBlock:[self actionBlock]];
 }
 
--(dispatch_block_t)actionBlock
+- (dispatch_block_t)actionBlock
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        double xMov = [self.xMovement interpretDoubleForSprite:self.object];
-        self.object.position = CGPointMake((CGFloat)(self.object.position.x+xMov), self.object.position.y);
+        double xMov = [self.xMovement interpretDoubleForSprite:self.script.object];
+        self.script.object.position = CGPointMake((CGFloat)(self.script.object.position.x+xMov), self.script.object.position.y);
 
     };
 }
@@ -58,7 +59,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    double xMov = [self.xMovement interpretDoubleForSprite:self.object];
+    double xMov = [self.xMovement interpretDoubleForSprite:self.script.object];
     return [NSString stringWithFormat:@"ChangeXBy (%f)", xMov];
 }
 

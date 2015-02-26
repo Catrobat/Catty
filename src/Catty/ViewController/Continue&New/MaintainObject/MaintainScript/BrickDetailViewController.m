@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -52,33 +52,34 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
 @interface BrickDetailViewController () <CatrobatActionSheetDelegate>
 @property(nonatomic, assign) EditButtonIndex buttonIndex;
 @property(strong, nonatomic) CatrobatActionSheet *brickMenu;
-@property(strong, nonatomic) Brick *brick;
+@property(strong, nonatomic) id<ScriptProtocol> scriptOrBrick;
 
 @end
 
-@implementation BrickDetailViewController {
+@implementation BrickDetailViewController
+{
     BrickDetailViewControllerState _tempState;
 }
 
 #pragma mark - init
-
-+ (BrickDetailViewController *)brickDetailViewControllerWithtBrick:(Brick *)brick
++ (BrickDetailViewController*)brickDetailViewControllerWithScriptOrBrick:(id<ScriptProtocol>)scriptOrBrick
 {
-    return [[BrickDetailViewController alloc] initWithBrick:brick];
+    return [[BrickDetailViewController alloc] initWithScriptOrBrick:scriptOrBrick];
 }
 
-- (instancetype)initWithBrick:(Brick *)brick {
+- (instancetype)initWithScriptOrBrick:(id<ScriptProtocol>)scriptOrBrick
+{
     if (self = [super init]) {
-         self.modalPresentationStyle = UIModalPresentationCustom;
-        _state = BrickDetailViewControllerStateNone;
-        _brick = brick;
+        self.modalPresentationStyle = UIModalPresentationCustom;
+        self.state = BrickDetailViewControllerStateNone;
+        self.scriptOrBrick = scriptOrBrick;
     }
     return self;
 }
 
 #pragma mark - UIViewController
-
-- (void)loadView {
+- (void)loadView
+{
     [super loadView];
     
     UIView *view = [[UIView alloc] initWithFrame:UIScreen.mainScreen.bounds];

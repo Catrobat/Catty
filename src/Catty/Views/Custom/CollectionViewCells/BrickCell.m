@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -169,12 +169,12 @@
 #pragma mark - getters and setters
 - (kBrickCategoryType)categoryType
 {
-    return self.brick.brickCategoryType;
+    return self.scriptOrBrick.brickCategoryType;
 }
 
 - (kBrickType)brickType
 {
-    return self.brick.brickType;
+    return self.scriptOrBrick.brickType;
 }
 
 - (void)setEnabled:(BOOL)enabled
@@ -322,7 +322,7 @@
 
     BrickManager *brickManager = [BrickManager sharedBrickManager];
     NSUInteger brickIndex = [brickManager brickIndexForBrickType:self.brickType];
-    NSString *brickTitle = self.brick.brickTitle;
+    NSString *brickTitle = self.scriptOrBrick.brickTitle;
     id brickParamsUnconverted = brickCategoryParams[brickIndex];
     NSArray *brickParams = (([brickParamsUnconverted isKindOfClass:[NSString class]]) ? @[brickParamsUnconverted] : brickParamsUnconverted);
     NSArray *subviews = nil;
@@ -447,13 +447,13 @@
                 inputField = (UIView*)formulaEditor;
             } else if ([afterLabelParam rangeOfString:@"TEXT"].location != NSNotFound) {
                 UITextField *textField;
-                if ([self.brick isKindOfClass:[NoteBrick class]]) {
-                    NoteBrick *brick =(NoteBrick*) self.brick;
+                if ([self.scriptOrBrick isKindOfClass:[NoteBrick class]]) {
+                    NoteBrick *brick = (NoteBrick*)self.scriptOrBrick;
                     inputViewFrame.origin.y = inputViewFrame.origin.y+10;
                     inputViewFrame.size.height = kBrickInputFieldHeight;
                      textField= [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame andNote:brick.note AndBrickCell:self];
                 } else {
-                    SpeakBrick *brick =(SpeakBrick*) self.brick;
+                    SpeakBrick *brick = (SpeakBrick*)self.scriptOrBrick;
                     inputViewFrame.origin.y = inputViewFrame.origin.y+10;
                     inputViewFrame.size.height = kBrickInputFieldHeight;
                     textField= [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame andNote:brick.text AndBrickCell:self];
@@ -532,7 +532,7 @@
 
 - (BOOL)isScriptBrick
 {
-    return [self.brick isKindOfClass:[Script class]];
+    return [self.scriptOrBrick isKindOfClass:[Script class]];
 }
 
 #pragma mark - cell editing

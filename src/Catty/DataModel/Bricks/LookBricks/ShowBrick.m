@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
  */
 
 #import "ShowBrick.h"
+#import "Script.h"
 
 @implementation ShowBrick
 
@@ -38,14 +39,14 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        self.object.hidden = NO;
+        self.script.object.hidden = NO;
     };
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ShowBrick on: %@", self.object.name];
+    return [NSString stringWithFormat:@"ShowBrick on: %@", self.script.object.name];
 }
 
 @end

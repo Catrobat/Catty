@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@
 
 @implementation InternToExternGenerator
 
--(ExternInternRepresentationMapping *)generatedExternInternRepresentationMapping
+- (ExternInternRepresentationMapping *)generatedExternInternRepresentationMapping
 {
     if(!_generatedExternInternRepresentationMapping)
     {
@@ -41,7 +41,7 @@
     return _generatedExternInternRepresentationMapping;
 }
 
--(NSString *)generatedExternFormulaString
+- (NSString *)generatedExternFormulaString
 {
     if(!_generatedExternFormulaString)
     {
@@ -51,7 +51,7 @@
         
 }
 
--(InternToExternGenerator *)init
+- (InternToExternGenerator *)init
 {
     self = [super init];
     if(self)
@@ -62,17 +62,17 @@
     return self;
 }
 
--(NSString *)getGeneratedExternFormulaString
+- (NSString *)getGeneratedExternFormulaString
 {
     return self.generatedExternFormulaString;
 }
 
--(ExternInternRepresentationMapping *)getGeneratedExternIternRepresentationMapping
+- (ExternInternRepresentationMapping *)getGeneratedExternIternRepresentationMapping
 {
     return self.generatedExternInternRepresentationMapping;
 }
 
--(void)generateExternStringAndMapping:(NSArray *)internTokenFormula
+- (void)generateExternStringAndMapping:(NSArray *)internTokenFormula
 {
     NSMutableArray *internTokenList = [[NSMutableArray alloc]init];
     for(InternToken *internToken in internTokenFormula)
@@ -119,7 +119,7 @@
     //self.generatedExternFormulaString = [self.generatedExternFormulaString stringByAppendingString:@" "];
 }
 
--(NSString *)generateExternStringFromToken:(InternToken *)internToken
+- (NSString *)generateExternStringFromToken:(InternToken *)internToken
 {
     NSString *returnValue;
 
@@ -177,7 +177,7 @@
 }
 
 
--(BOOL)appendWithWhitespace:(InternToken *)currenToken andNextToken:(InternToken *)nextToken
+- (BOOL)appendWithWhitespace:(InternToken *)currenToken andNextToken:(InternToken *)nextToken
 {
     if(currenToken == nil)
     {

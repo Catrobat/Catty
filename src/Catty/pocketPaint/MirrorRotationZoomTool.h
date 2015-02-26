@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -25,15 +25,15 @@
 
 @interface MirrorRotationZoomTool : NSObject
 
-@property (nonatomic,strong) PaintViewController* canvas;
+@property (nonatomic,weak) PaintViewController* canvas;
 
--(id)initWithDrawViewCanvas:(PaintViewController*)canvas;
+- (id)initWithDrawViewCanvas:(PaintViewController*)canvas;
 
--(void)zoomOut;
--(void)zoomIn;
--(void)rotateLeft;
--(void)rotateRight;
--(void)mirrorHorizontalAction;
--(void)mirrorVerticalAction;
+- (void)zoomOut;
+- (void)zoomIn;
+- (void)rotateLeft;
+- (void)rotateRight;
+- (void)mirrorHorizontalAction;
+- (void)mirrorVerticalAction;
 
 @end

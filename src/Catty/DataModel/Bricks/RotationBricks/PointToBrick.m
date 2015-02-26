@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #import "PointToBrick.h"
 #import "Util.h"
 #import "Scene.h"
+#import "Script.h"
 
 @implementation PointToBrick
 
@@ -38,10 +39,17 @@
     return [SKAction runBlock:[self actionBlock]];        
 }
 
+- (SpriteObject*) pointedObject
+{
+    if(!_pointedObject)
+        _pointedObject = self.script.object;
+    return _pointedObject;
+}
+
 - (dispatch_block_t)actionBlock
 {
     return ^{
-        CGPoint objectPosition = [self.object position];
+        CGPoint objectPosition = [self.script.object position];
         CGPoint pointedObjectPosition = [self.pointedObject position];
         
         double rotationDegrees = 0;
@@ -83,13 +91,13 @@
 
         NSDebug(@"Performing: %@, Degreees: (%f), Pointed Object: Position: %@", self.description, rotationDegrees, NSStringFromCGPoint(self.pointedObject.position));
         
-        rotationDegrees = [((Scene*)self.object.scene) convertDegreesToScene:(CGFloat)rotationDegrees] + kRotationDegreeOffset;
+        rotationDegrees = [((Scene*)self.script.object.scene) convertDegreesToScene:(CGFloat)rotationDegrees] + kRotationDegreeOffset;
         
         if (rotationDegrees > 360.0f) {
             rotationDegrees -= 360.0f;
         }
 
-        self.object.zRotation = (CGFloat)[Util degreeToRadians:rotationDegrees];
+        self.script.object.zRotation = (CGFloat)[Util degreeToRadians:rotationDegrees];
     };
 }
 
@@ -101,7 +109,7 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if(![self.pointedObject isEqualToSpriteObject:((PointToBrick*)brick).pointedObject])
+    if(![self.pointedObject.name isEqualToString:((PointToBrick*)brick).pointedObject.name])
         return NO;
     return YES;
 }

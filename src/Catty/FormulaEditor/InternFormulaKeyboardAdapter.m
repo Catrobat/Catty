@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@
 
 @implementation InternFormulaKeyboardAdapter
 
--(NSMutableArray *)createInternTokenListByResourceId:(int)resource name:(NSString*)name
+- (NSMutableArray *)createInternTokenListByResourceId:(int)resource name:(NSString*)name
 {
     //USER VARIABLES
     
@@ -287,21 +287,21 @@
     
 }
 
--(NSMutableArray *)buildUserVariable:(NSString *)name
+- (NSMutableArray *)buildUserVariable:(NSString *)name
 {
     NSMutableArray *returnList = [[NSMutableArray alloc]init];
     [returnList addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_USER_VARIABLE AndValue:name]];
     return returnList;
 }
 
--(NSMutableArray *)buildString:(NSString *)name
+- (NSMutableArray *)buildString:(NSString *)name
 {
     NSMutableArray *returnList = [[NSMutableArray alloc]init];
     [returnList addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_STRING AndValue:name]];
     return returnList;
 }
 
--(NSMutableArray *)buildNumber:(NSString *)numberValue
+- (NSMutableArray *)buildNumber:(NSString *)numberValue
 {
     NSMutableArray *returnList = [[NSMutableArray alloc]init];
     [returnList addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_NUMBER
@@ -309,7 +309,7 @@
     return returnList;
 }
 
--(NSMutableArray *)buildSingleParameterFunction:(Function)function
+- (NSMutableArray *)buildSingleParameterFunction:(Function)function
                          withFirstParameterType:(InternTokenType)firstParameter
                               andParameterValue:(NSString *)parameterValue
 {
@@ -329,7 +329,7 @@
 
 }
 
--(NSMutableArray *)buildFunctionWithoutParametersAndBrackets:(Function)function
+- (NSMutableArray *)buildFunctionWithoutParametersAndBrackets:(Function)function
 {
     NSMutableArray *returnList = [[NSMutableArray alloc]init];
     [returnList addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_FUNCTION_NAME
@@ -337,7 +337,7 @@
     return returnList;
 }
 
--(NSMutableArray *)buildDoubleParameterFunction:(Function)function
+- (NSMutableArray *)buildDoubleParameterFunction:(Function)function
                          withFirstParameterType:(InternTokenType)firstParameter
                               andParameterValue:(NSString *)firstParameterValue
                         withSecondParameterType:(InternTokenType)secondParameter
@@ -364,25 +364,25 @@
     
 }
 
--(NSMutableArray *)buildPeriod{
+- (NSMutableArray *)buildPeriod{
     NSMutableArray *returnList = [[NSMutableArray alloc]init];
     [returnList addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_PERIOD]];
     return returnList;
 }
 
--(NSMutableArray *)buildBracketOpen{
+- (NSMutableArray *)buildBracketOpen{
     NSMutableArray *returnList = [[NSMutableArray alloc]init];
     [returnList addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_BRACKET_OPEN]];
     return returnList;
 }
 
--(NSMutableArray *)buildBracketClose{
+- (NSMutableArray *)buildBracketClose{
     NSMutableArray *returnList = [[NSMutableArray alloc]init];
     [returnList addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_BRACKET_CLOSE]];
     return returnList;
 }
 
--(NSMutableArray *)buildOperator:(Operator)operator
+- (NSMutableArray *)buildOperator:(Operator)operator
 {
     NSMutableArray *returnList = [[NSMutableArray alloc]init];
     [returnList addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_OPERATOR
@@ -390,7 +390,7 @@
     return returnList;
 }
 
--(NSMutableArray *)buildSensor:(Sensor)sensor
+- (NSMutableArray *)buildSensor:(Sensor)sensor
 {
     NSMutableArray *returnList = [[NSMutableArray alloc]init];
     [returnList addObject:[[InternToken alloc]initWithType:TOKEN_TYPE_SENSOR

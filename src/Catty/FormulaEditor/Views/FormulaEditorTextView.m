@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -72,7 +72,7 @@
     return self;
 }
 
--(UITapGestureRecognizer *)tapRecognizer
+- (UITapGestureRecognizer *)tapRecognizer
 {
     if (!_tapRecognizer) {
         _tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(formulaTapped:)];
@@ -108,7 +108,7 @@
     return NO;
 }
 
--(void)clear
+- (void)clear
 {
     while (![self.text  isEqual: @""]) {
         [self.formulaEditorViewController backspace:nil];
@@ -136,7 +136,7 @@
     
 }
 
--(void)highlightSelection:(NSUInteger)cursorPostionIndex start:(int)startIndex end:(int)endIndex
+- (void)highlightSelection:(NSUInteger)cursorPostionIndex start:(int)startIndex end:(int)endIndex
 {
     TokenSelectionType selectionType = (TokenSelectionType) [self.formulaEditorViewController.internFormula getExternSelectionType];
     UIColor *selectionColor;
@@ -183,7 +183,7 @@
     [self.formulaEditorViewController.history updateCurrentCursor:(int)cursorPostionIndex];
 }
 
--(void)highlightAll
+- (void)highlightAll
 {
     
 }

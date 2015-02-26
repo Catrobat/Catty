@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 
 @implementation HandTool
 
--(id) initWithDrawViewCanvas:(PaintViewController *)canvas
+- (id) initWithDrawViewCanvas:(PaintViewController *)canvas
 {
   self = [super init];
   if(self)
@@ -39,7 +39,7 @@
 }
 
 
--(void)changeHandToolAction
+- (void)changeHandToolAction
 {
   if (!self.canvas.scrollView.scrollEnabled) {
     self.canvas.drawGesture.enabled = NO;
@@ -62,10 +62,10 @@
 
 }
 
--(void)disableHandTool
+- (void)disableHandTool
 {
   self.canvas.handToolBarButtonItem.tintColor = [UIColor lightOrangeColor];
-  if (self.canvas.activeAction == brush) {
+  if (self.canvas.activeAction == brush || self.canvas.activeAction == eraser) {
     self.canvas.drawGesture.enabled = YES;
   } else if (self.canvas.activeAction == pipette){
     self.canvas.pipetteRecognizer.enabled = YES;

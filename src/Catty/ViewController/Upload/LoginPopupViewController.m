@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -300,12 +300,12 @@ const int VIEW_BUTTON_MARGIN_BOTTOM = 15;
     [self.contentView.layer addSublayer:backShapeLayer];
 }
 
--(void)cancel
+- (void)cancel
 {
     [self.delegate dismissPopupWithLoginCode:NO];
 }
 
--(void)loginAction
+- (void)loginAction
 {
     if ([self.usernameTextField.text isEqualToString:@""]) {
         [Util alertWithText:@"Username is necessary!"];
@@ -323,7 +323,7 @@ const int VIEW_BUTTON_MARGIN_BOTTOM = 15;
                            andEmail:self.emailTextField.text];
 }
 
--(BOOL) NSStringIsValidEmail:(NSString *)checkString
+- (BOOL) NSStringIsValidEmail:(NSString *)checkString
 {
     BOOL stricterFilter = NO; // Discussion http://blog.logichigh.com/2010/09/02/validating-an-e-mail-address/
     NSString *stricterFilterString = @"[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}";
@@ -334,7 +334,7 @@ const int VIEW_BUTTON_MARGIN_BOTTOM = 15;
 }
 
 
--(BOOL)validPassword:(NSString*)password
+- (BOOL)validPassword:(NSString*)password
 {
     int numberofCharacters = 6;
     BOOL lowerCaseLetter=0,upperCaseLetter=0,digit=0,specialCharacter = 0;
@@ -473,7 +473,7 @@ const int VIEW_BUTTON_MARGIN_BOTTOM = 15;
     }
 }
 
--(void)loadingIndicator:(BOOL)value
+- (void)loadingIndicator:(BOOL)value
 {
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = value;

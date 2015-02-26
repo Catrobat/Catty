@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@
 
 @property (nonatomic,strong) SPUserResizableView *resizeViewer;
 @property (nonatomic)        CGFloat rotation;
-@property (nonatomic,strong) PaintViewController* canvas;
+@property (nonatomic,weak) PaintViewController* canvas;
 @property (nonatomic,strong) ImagePicker *imagePicker;
 @property (nonatomic) BOOL gotImage;
 @property (nonatomic,strong) UIImage* stampImage;
@@ -42,17 +42,17 @@
 @property (nonatomic,strong) UITapGestureRecognizer *takeView;
 
 
--(id)initWithDrawViewCanvas:(PaintViewController*)canvas andImagePicker:(ImagePicker*)imagePicker;
--(void)initResizeView;
+- (id)initWithDrawViewCanvas:(PaintViewController*)canvas andImagePicker:(ImagePicker*)imagePicker;
+- (void)initResizeView;
 - (void)moveView:(UIPanGestureRecognizer *)recognizer;
 - (void)handleRotate:(UIRotationGestureRecognizer *)recognizer;
 - (void)handleResize:(UIPinchGestureRecognizer *)gestureRecognizer;
--(void)updateShape;
--(void)showResizeView;
--(void)hideResizeView;
+- (void)updateShape;
+- (void)showResizeView;
+- (void)hideResizeView;
 - (void)takeImage:(UITapGestureRecognizer *)recognizer;
--(void)showUserAction;
--(void)hideShowUserAction;
+- (void)showUserAction;
+- (void)hideShowUserAction;
 
 
 @end

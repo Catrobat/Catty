@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -25,10 +25,13 @@
 #import "TableUtil.h"
 #import "RuntimeImageCache.h"
 #import "ProgramDefines.h"
+#import "LanguageTranslationDefines.h"
 
 @interface LookImageViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (nonatomic,strong)UIImage* paintImage;
+@property (nonatomic,strong)NSString* paintImagePath;
 @end
 
 @implementation LookImageViewController
@@ -110,7 +113,7 @@
 }
 
 
--(void)editAction
+- (void)editAction
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
     PaintViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"paint"];
@@ -124,12 +127,31 @@
     self.view.backgroundColor = [UIColor darkBlueColor];
     self.imageView.backgroundColor = [UIColor darkBlueColor];
     vc.editingImage = img;
-    NSLog(@"%@",img);
+//    NSLog(@"%@",img);
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark paintDelegate
--(void)addPaintedImage:(UIImage *)image andPath:(NSString *)path
+
+- (void)showSavePaintImageAlert:(UIImage *)image andPath:(NSString *)path
+{
+    self.paintImage = image;
+    self.paintImagePath = path;
+    [Util confirmAlertWithTitle:kLocalizedSaveToPocketCode message:kLocalizedPaintSaveChanges delegate:self tag:0];
+}
+#pragma mark - alert delegate
+- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != 0) {
+            //        NSLog(@"yes");
+        if (self.paintImagePath && self.paintImage) {
+            [self addPaintedImage:self.paintImage andPath:self.paintImagePath];
+        }
+    }
+}
+
+#pragma mark paintDelegate
+- (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path
 {
     self.imageView.image = image;
 

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
+#import "WhenScript.h"
 
 @interface SetYBrickTests : BrickTests
 
@@ -42,7 +43,7 @@
 }
 
 
--(void)testSetYBrickPositive
+- (void)testSetYBrickPositive
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];
@@ -56,20 +57,20 @@
     formulaTree.type = NUMBER;
     formulaTree.value = @"20";
     yPosition.formulaTree = formulaTree;
-    
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
     SetYBrick* brick = [[SetYBrick alloc]init];
-    brick.object = object;
+    brick.script = script;
     brick.yPosition = yPosition;
-    
+
     dispatch_block_t action = [brick actionBlock];
     action();
-    
-    
     XCTAssertEqual(object.yPosition, (CGFloat)20, @"SetyBrick is not correctly calculated");
 }
 
--(void)testSetYBrickNegative
+- (void)testSetYBrickNegative
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];
@@ -83,20 +84,20 @@
     formulaTree.type = NUMBER;
     formulaTree.value = @"-20";
     yPosition.formulaTree = formulaTree;
-    
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
     SetYBrick* brick = [[SetYBrick alloc]init];
-    brick.object = object;
+    brick.script = script;
     brick.yPosition = yPosition;
     
     dispatch_block_t action = [brick actionBlock];
     action();
-    
-    
     XCTAssertEqual(object.yPosition, (CGFloat)-20, @"SetyBrick is not correctly calculated");
 }
 
--(void)testSetYBrickOutOfRange
+- (void)testSetYBrickOutOfRange
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];
@@ -110,20 +111,20 @@
     formulaTree.type = NUMBER;
     formulaTree.value = @"50000";
     yPosition.formulaTree = formulaTree;
-    
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
     SetYBrick* brick = [[SetYBrick alloc]init];
-    brick.object = object;
+    brick.script = script;
     brick.yPosition = yPosition;
-    
+
     dispatch_block_t action = [brick actionBlock];
     action();
-    
-    
     XCTAssertEqual(object.yPosition, (CGFloat)50000, @"SetyBrick is not correctly calculated");
 }
 
--(void)testSetYBrickWrongInput
+- (void)testSetYBrickWrongInput
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];
@@ -137,16 +138,16 @@
     formulaTree.type = NUMBER;
     formulaTree.value = @"a";
     yPosition.formulaTree = formulaTree;
-    
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
     SetYBrick* brick = [[SetYBrick alloc]init];
-    brick.object = object;
+    brick.script = script;
     brick.yPosition = yPosition;
-    
+
     dispatch_block_t action = [brick actionBlock];
     action();
-    
-    
     XCTAssertEqual(object.yPosition, (CGFloat)0, @"SetyBrick is not correctly calculated");
 }
 

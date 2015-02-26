@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -108,7 +108,7 @@
     });
 }
 
--(void)overwriteThumbnailImageFromDiskWithThumbnailPath:(NSString*)thumbnailPath image:(UIImage*)image thumbnailFrameSize:(CGSize)thumbnailFrameSize
+- (void)overwriteThumbnailImageFromDiskWithThumbnailPath:(NSString*)thumbnailPath image:(UIImage*)image thumbnailFrameSize:(CGSize)thumbnailFrameSize
 {
         // generate thumbnail image (retina)
     CGSize thumbnailImageSize = CGSizeMake(thumbnailFrameSize.width, thumbnailFrameSize.height);

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -26,7 +26,7 @@
 
 @implementation SaveToProjectActivity
 
--(id)initWithImagePath:(NSString *)path
+- (id)initWithImagePath:(NSString *)path
 {
     self = [super init];
     if (self)
@@ -66,7 +66,7 @@
 }
 
 
--(void)performActivity
+- (void)performActivity
 {
     //Dimensions of Screenshot???
     NSString *pngFilePath = [NSString stringWithFormat:@"%@/manual_screenshot.png",self.path];

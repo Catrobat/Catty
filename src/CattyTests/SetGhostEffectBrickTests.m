@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
+#import "WhenScript.h"
 
 @interface SetGhostEffectBrickTests : BrickTests
 
@@ -41,7 +42,7 @@
     [super tearDown];
 }
 
--(void)testSetGhostEffectBrickPositve
+- (void)testSetGhostEffectBrickPositve
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
@@ -54,9 +55,12 @@
     formulaTree.type = NUMBER;
     formulaTree.value = @"20";
     transparency.formulaTree = formulaTree;
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
     SetGhostEffectBrick* brick = [[SetGhostEffectBrick alloc]init];
-    brick.object = object;
+    brick.script = script;
     brick.transparency = transparency;
     
     dispatch_block_t action = [brick actionBlock];
@@ -66,7 +70,7 @@
     XCTAssertEqual(object.alpha, 0.8f, @"ShowBrick is not correctly calculated");
 }
 
--(void)testSetGhostEffectBrickNegative
+- (void)testSetGhostEffectBrickNegative
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
@@ -79,9 +83,12 @@
     formulaTree.type = NUMBER;
     formulaTree.value = @"-20";
     transparency.formulaTree = formulaTree;
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
     SetGhostEffectBrick* brick = [[SetGhostEffectBrick alloc]init];
-    brick.object = object;
+    brick.script = script;
     brick.transparency = transparency;
     
     dispatch_block_t action = [brick actionBlock];
@@ -91,7 +98,7 @@
     XCTAssertEqual(object.alpha, 1.0f, @"ShowBrick is not correctly calculated");
 }
 
--(void)testSetGhostEffectBrickWronginput
+- (void)testSetGhostEffectBrickWronginput
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
@@ -105,14 +112,16 @@
     formulaTree.type = NUMBER;
     formulaTree.value = @"a";
     transparency.formulaTree = formulaTree;
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
     SetGhostEffectBrick* brick = [[SetGhostEffectBrick alloc]init];
-    brick.object = object;
+    brick.script = script;
     brick.transparency = transparency;
     
     dispatch_block_t action = [brick actionBlock];
     action();
-    
     
     XCTAssertEqual(object.alpha, 1.0f, @"ShowBrick is not correctly calculated");
 }

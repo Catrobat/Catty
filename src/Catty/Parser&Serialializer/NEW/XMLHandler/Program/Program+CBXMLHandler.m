@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -61,7 +61,6 @@
     NSArray *objectElements = [[objectListElements firstObject] children];
     [XMLError exceptionIf:[objectListElements count] equals:0
                   message:@"No objects in objectList, but there must exist at least 1 object (background)!!"];
-    NSLog(@"<objectList>");
     NSMutableArray *objectList = [NSMutableArray arrayWithCapacity:[objectElements count]];
     for (GDataXMLElement *objectElement in objectElements) {
         SpriteObject *spriteObject = [SpriteObject parseFromElement:objectElement withContext:context];
@@ -92,7 +91,6 @@
         }
         [XMLError exceptionIf:found equals:NO message:@"Pointed object with name %@ not found in object list!", pointedObjectInContext.name];
     }
-    NSLog(@"</objectList>");
     return objectList;
 }
 

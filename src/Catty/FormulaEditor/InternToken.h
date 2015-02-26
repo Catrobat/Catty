@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -70,7 +70,7 @@ typedef enum KeyboardNumbers
     TOKEN_TYPE_NUMBER_9,
 }KeyboardNumbers;
 
-@interface InternToken : NSObject
+@interface InternToken : NSObject<NSMutableCopying>
 
 @property (nonatomic, strong) NSString *tokenStringValue;
 @property (nonatomic) InternTokenType internTokenType;
@@ -94,6 +94,5 @@ typedef enum KeyboardNumbers
 - (BOOL)isEqualTo:(InternToken*)token;
 - (InternTokenType)getInternTokenType;
 - (NSString *)getTokenStringValue;
-- (InternToken *)deepCopy;
 
 @end

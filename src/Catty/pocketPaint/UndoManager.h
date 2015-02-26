@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,10 +24,10 @@
 #import "PaintViewController.h"
 
 @interface UndoManager : NSUndoManager
-@property (nonatomic,strong) PaintViewController* canvas;
+@property (nonatomic,weak) PaintViewController* canvas;
 
--(id)initWithDrawViewCanvas:(PaintViewController*)canvas;
--(void)setImage:(UIImage*)image;
--(void)updateUndoToolBarItems;
+- (id)initWithDrawViewCanvas:(PaintViewController*)canvas;
+- (void)setImage:(UIImage*)image;
+- (void)updateUndoToolBarItems;
 
 @end

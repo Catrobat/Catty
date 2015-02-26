@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -52,26 +52,26 @@ typedef enum TokenSelectionType{
 
 @interface InternFormula : NSObject
 
--(InternFormula *)initWithInternTokenList:(NSMutableArray *)internTokenList;
--(InternFormula *)initWithInternTokenList:(NSMutableArray *)internTokenList
+- (InternFormula *)initWithInternTokenList:(NSMutableArray *)internTokenList;
+- (InternFormula *)initWithInternTokenList:(NSMutableArray *)internTokenList
               internFormulaTokenSelection:(InternFormulaTokenSelection *)internFormulaTokenSelection
                      externCursorPosition:(int)externCursorPosition;
--(void)handleKeyInputWithName:(NSString *)name butttonType:(int)resourceId;
--(NSString *)getExternFormulaString;
--(void)generateExternFormulaStringAndInternExternMapping;
--(void)setCursorAndSelection:(int)externCursorPosition
+- (void)handleKeyInputWithName:(NSString *)name butttonType:(int)resourceId;
+- (NSString *)getExternFormulaString;
+- (void)generateExternFormulaStringAndInternExternMapping;
+- (void)setCursorAndSelection:(int)externCursorPosition
                     selected:(BOOL)isSelected;
--(InternFormulaState*)getInternFormulaState;
--(InternFormulaParser *)getInternFormulaParser;
--(void)setExternCursorPositionRightTo:(int)internTokenIndex;
--(void)updateInternCursorPosition;
--(void)selectWholeFormula;
--(BOOL)isEmpty;
--(int)getExternCursorPosition;
--(int)getExternSelectionEndIndex;
--(int)getExternSelectionStartIndex;
--(TokenSelectionType)getExternSelectionType;
--(InternFormulaTokenSelection *)getSelection;
--(void)selectParseErrorTokenAndSetCursor;
+- (InternFormulaState*)getInternFormulaState;
+- (InternFormulaParser *)getInternFormulaParser;
+- (void)setExternCursorPositionRightTo:(int)internTokenIndex;
+- (void)updateInternCursorPosition;
+- (void)selectWholeFormula;
+- (BOOL)isEmpty;
+- (int)getExternCursorPosition;
+- (int)getExternSelectionEndIndex;
+- (int)getExternSelectionStartIndex;
+- (TokenSelectionType)getExternSelectionType;
+- (InternFormulaTokenSelection *)getSelection;
+- (void)selectParseErrorTokenAndSetCursor;
 
 @end

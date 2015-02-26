@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -36,17 +36,19 @@ typedef NS_ENUM(NSUInteger, BrickDetailViewControllerState) {
 @protocol BrickDetailViewControllerDelegate <NSObject>
 @optional
 
-- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
+- (void)brickDetailViewController:(BrickDetailViewController*)brickDetailViewController
                    didChangeState:(BrickDetailViewControllerState)state;
 
 @end
 
+@protocol ScriptProtocol;
 @class Brick;
+
 @interface BrickDetailViewController : UIViewController
 @property (nonatomic, weak) id<BrickDetailViewControllerDelegate> delegate;
 
-- (instancetype)initWithBrick:(Brick *)brick NS_DESIGNATED_INITIALIZER;
-+ (BrickDetailViewController *)brickDetailViewControllerWithtBrick:(Brick *)brick;
+- (instancetype)initWithScriptOrBrick:(id<ScriptProtocol>)scriptOrBrick NS_DESIGNATED_INITIALIZER;
++ (BrickDetailViewController*)brickDetailViewControllerWithScriptOrBrick:(id<ScriptProtocol>)scriptOrBrick;
 
 // Disallow init.
 - (instancetype)init __attribute__((unavailable("init is not a supported initializer for this class.")));

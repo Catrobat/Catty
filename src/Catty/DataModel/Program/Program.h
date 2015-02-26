@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -35,6 +35,7 @@
 @property (nonatomic, strong) Header *header;
 @property (nonatomic, strong) NSMutableArray *objectList;
 @property (nonatomic, strong) VariablesContainer *variables;
+@property (nonatomic, getter=isPlaying) BOOL playing;
 
 // FIXME: remove this property after serialization works
 @property (nonatomic, strong) GDataXMLDocument *XMLdocument;
@@ -47,6 +48,7 @@
 - (void)removeObject:(SpriteObject*)object;
 - (NSString*)projectPath;
 - (void)removeFromDisk;
+- (void)removeReferences;
 - (void)saveToDisk;
 - (BOOL)isLastUsedProgram;
 - (void)setAsLastUsedProgram;

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -121,17 +121,18 @@
     return self.internTokenType == token.internTokenType && ((self.tokenStringValue == nil && token.tokenStringValue == nil) || [self.tokenStringValue isEqualToString:token.tokenStringValue]);
 }
 
--(InternTokenType)getInternTokenType
+- (InternTokenType)getInternTokenType
 {
     return self.internTokenType;
 }
 
--(NSString *)getTokenStringValue
+- (NSString *)getTokenStringValue
 {
     return self.tokenStringValue;
 }
 
--(InternToken *)deepCopy
+#pragma mark - Copy
+- (id)mutableCopyWithZone:(NSZone *)zone
 {
     return [[InternToken alloc]initWithType:self.internTokenType AndValue:self.tokenStringValue];
 }

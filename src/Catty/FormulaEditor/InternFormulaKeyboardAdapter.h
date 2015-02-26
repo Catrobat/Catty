@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -28,6 +28,6 @@
 
 @interface InternFormulaKeyboardAdapter : NSObject
 
--(NSMutableArray *)createInternTokenListByResourceId:(int)resource name:(NSString*)name;
+- (NSMutableArray *)createInternTokenListByResourceId:(int)resource name:(NSString*)name;
 
 @end

@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2010-2014 The Catrobat Team
+ *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -98,8 +98,7 @@
     
     brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier
                                                           forIndexPath:indexPath];
-    brickCell.brick = indexPath.item == 0 ? script : brick;
-    
+    brickCell.scriptOrBrick = indexPath.item == 0 ? script : brick;
     self.configureCellBlock(brickCell);
     return brickCell;
 }
