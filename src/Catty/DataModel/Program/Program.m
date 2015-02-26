@@ -257,7 +257,7 @@
 {
     NSString *sourceProgramPath = [[self class] projectPathForProgramWithName:sourceProgramName programID:sourceProgramID];
     destinationProgramName = [Util uniqueName:destinationProgramName existingNames:[self allProgramNames]];
-    NSString *destinationProgramPath = [[self class] projectPathForProgramWithName:destinationProgramName programID:sourceProgramID];
+    NSString *destinationProgramPath = [[self class] projectPathForProgramWithName:destinationProgramName programID:nil];
 
     AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     [appDelegate.fileManager copyExistingDirectoryAtPath:sourceProgramPath toPath:destinationProgramPath];
