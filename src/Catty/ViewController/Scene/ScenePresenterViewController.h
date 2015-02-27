@@ -46,7 +46,7 @@
 @property (strong,nonatomic) UILabel *menuRestartLabel;
 @property (strong,nonatomic) UILabel *menuAxisLabel;
 
-- (void)pause;
-- (void)resume;
+- (void)pauseAction;
+- (void)resumeAction;
 
 @end

@@ -78,13 +78,13 @@
 
 @implementation ScenePresenterViewController
 
-#pragma mark - ViewController Delegates
+#pragma mark - View Event Handling
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
 
-    /// MenuImageBackground
+    // MenuImageBackground
     UIImage *menuBackgroundImage = [UIImage imageNamed:@"stage_dialog_background_middle_1"];
     UIImage *newBackgroundImage;
 
@@ -115,7 +115,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self configureScene];
+    [self setupScene];
     UIApplication.sharedApplication.idleTimerDisabled = YES;
     UIApplication.sharedApplication.statusBarHidden = YES;
     self.navigationController.navigationBar.hidden = YES;
@@ -131,7 +131,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self continueProgram:nil withDuration:kfirstSwipeDuration];
+    [self continueProgramAction:nil withDuration:kfirstSwipeDuration];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -155,7 +155,554 @@
     self.skView.bounds = self.view.bounds;
 }
 
-#pragma mark getters and setters
+#pragma mark - Initialization & Setup & Dealloc
+#pragma mark Dealloc
+- (void)dealloc
+{
+    [[AudioManager sharedAudioManager] stopAllSounds];
+    [[SensorHandler sharedSensorHandler] stopSensors];
+    [[ProgramManager sharedProgramManager] setProgram:nil];
+    
+    // Delete sound rec for loudness sensor
+    NSError *error;
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *soundfile = [documentsPath stringByAppendingPathComponent:@"loudness_handler.m4a"];
+    if ([fileMgr removeItemAtPath:soundfile error:&error] != YES)
+        NSDebug(@"No Sound file available or unable to delete file: %@", [error localizedDescription]);
+}
+
+#pragma mark View Setup
+- (void)setUpLabels
+{
+    if ([Util screenHeight]==kIphone4ScreenHeight) {
+        UILabel* label     =[[UILabel alloc] initWithFrame:
+                             CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-(kMenuIPhone4GapSize)-kMenuIPhone4ContinueGapSize-(kMenuButtonSize)-10, 100, kMenuButtonSize)];
+        self.menuBackLabel = label;
+        label              =[[UILabel alloc] initWithFrame:
+                             CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-kMenuIPhone4ContinueGapSize-10,100, kMenuButtonSize)];
+        self.menuRestartLabel = label;
+        label     = [[UILabel alloc] initWithFrame:
+                     CGRectMake(kPlaceofContinueLabel+kContinueOffset,(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)-10,  kContinueButtonSize, kMenuButtonSize)];
+        self.menuContinueLabel = label;
+        label    = [[UILabel alloc] initWithFrame:
+                    CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone4ContinueGapSize+kMenuButtonSize-10,  100, kMenuButtonSize)];
+        self.menuScreenshotLabel = label;
+        label         = [[UILabel alloc] initWithFrame:
+                         CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+(kMenuIPhone4GapSize)+kMenuIPhone4ContinueGapSize+(2*kMenuButtonSize)-10,  100, kMenuButtonSize)];
+        self.menuAxisLabel  = label;
+    } else {
+            UILabel* label      = [[UILabel alloc] initWithFrame:
+                                   CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-(KMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(kMenuButtonSize)-10, 100, kMenuButtonSize)];
+            self.menuBackLabel  = label;
+            label               =[[UILabel alloc] initWithFrame:
+                                  CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-kMenuIPhone5ContinueGapSize-10,100, kMenuButtonSize)];
+            self.menuRestartLabel = label;
+            label               = [[UILabel alloc] initWithFrame:
+                                   CGRectMake(kPlaceofContinueLabel+kContinueOffset,([Util screenHeight]/2)+(kContinueButtonSize/2)-10,  kContinueButtonSize, kMenuButtonSize)];
+            self.menuContinueLabel = label;
+            label               = [[UILabel alloc] initWithFrame:
+                                   CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+(kContinueButtonSize/2)+kMenuIPhone5ContinueGapSize+kMenuButtonSize-10,  100, kMenuButtonSize)];
+            self.menuScreenshotLabel = label;
+            label               = [[UILabel alloc] initWithFrame:
+                                   CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+                    (kContinueButtonSize/2)+(KMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(2*kMenuButtonSize)-10,  100, kMenuButtonSize)];
+            self.menuAxisLabel  = label;
+    }
+    NSArray *labelTextArray = [[NSArray alloc] initWithObjects:kLocalizedBack,
+                               kLocalizedRestart,
+                               kLocalizedContinue,
+                               kLocalizedScreenshot,
+                               kLocalizedGrid, nil];
+    NSArray* labelArray = [[NSArray alloc] initWithObjects:self.menuBackLabel,self.menuRestartLabel,self.menuContinueLabel, self.menuScreenshotLabel, self.menuAxisLabel,nil];
+    for (int i = 0; i < [labelTextArray count]; ++i) {
+        [self setupLabel:labelTextArray[i]
+                 andView:labelArray[i]];
+    }
+}
+
+- (void)setupLabel:(NSString*)name andView:(UILabel*)label
+{
+    label.text = name;
+    label.textColor = [UIColor lightGrayColor];
+    label.font = [UIFont fontWithName:@"Helvetica Neue" size:(14.0)];
+    label.textAlignment = NSTextAlignmentCenter;
+    [self.menuView addSubview:label];
+    [self.menuView bringSubviewToFront:label];
+}
+
+- (void)setUpMenuButtons
+{
+    self.menuBackButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.menuContinueButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.menuScreenshotButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.menuRestartButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.menuAxisButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.menuAspectRatioButton = [UIButton buttonWithType:UIButtonTypeCustom];
+
+    [self setupButtonWithButton:self.menuBackButton
+                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_back"]
+        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_back_pressed"]
+                    andSelector:@selector(stopProgramAction:)
+     ];
+
+    [self setupButtonWithButton:self.menuContinueButton
+                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_continue"]
+        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_continue_pressed"]
+                    andSelector:@selector(continueProgramAction:withDuration:)
+     ];
+
+    [self setupButtonWithButton:self.menuScreenshotButton
+                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_screenshot"]
+        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_screenshot_pressed"]
+                    andSelector:@selector(takeScreenshotAction:)
+     ];
+
+    [self setupButtonWithButton:self.menuRestartButton
+                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_restart"]
+        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_restart_pressed"]
+                    andSelector:@selector(restartProgramAction:)
+     ];
+
+    [self setupButtonWithButton:self.menuAxisButton
+                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_toggle_axis"]
+        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_toggle_axis_pressed"]
+                    andSelector:@selector(showHideAxisAction:)
+     ];
+
+    [self setupButtonWithButton:self.menuAspectRatioButton
+                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"]
+        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio_pressed"]
+                    andSelector:@selector(manageAspectRatioAction:)
+     ];
+}
+
+- (void)setupButtonWithButton:(UIButton*)button ImageNameNormal:(UIImage*)stateNormal andImageNameHighlighted:(UIImage*)stateHighlighted andSelector:(SEL)myAction
+{
+    [button setBackgroundImage:stateNormal
+                      forState:UIControlStateNormal];
+    [button setBackgroundImage:stateHighlighted
+                      forState:UIControlStateHighlighted];
+    [button setBackgroundImage:stateHighlighted
+                      forState:UIControlStateSelected];
+    [button  addTarget:self
+                action:myAction
+      forControlEvents:UIControlEventTouchUpInside];
+
+    [self.menuView addSubview:button];
+}
+
+- (void)setUpMenuFrames
+{
+    self.menuAspectRatioButton.frame = CGRectMake(10,10, kMenuButtonSize-20, kMenuButtonSize-20);
+    ///StartPosition
+    if ([Util screenHeight]==kIphone4ScreenHeight) {
+        self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-(kMenuIPhone4GapSize)-(2*kMenuButtonSize)-kMenuIPhone4ContinueGapSize, kMenuButtonSize, kMenuButtonSize);
+        
+        self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-kMenuIPhone4ContinueGapSize-(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
+        self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons+kContinueOffset,(kIphone4ScreenHeight/2)-(kContinueButtonSize/2),  kContinueButtonSize, kContinueButtonSize);
+        self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone4ContinueGapSize,  kMenuButtonSize, kMenuButtonSize);
+        self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+(kMenuIPhone4GapSize)+kMenuIPhone4ContinueGapSize+(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
+    } else {
+        self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-(KMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(2*kMenuButtonSize), kMenuButtonSize, kMenuButtonSize);
+        self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-kMenuIPhone5ContinueGapSize-(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
+        self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons+kContinueOffset,([Util screenHeight]/2)-(kContinueButtonSize/2),  kContinueButtonSize, kContinueButtonSize);
+        self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+(kContinueButtonSize/2)+kMenuIPhone5ContinueGapSize,  kMenuButtonSize, kMenuButtonSize);
+        self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+(kContinueButtonSize/2)+(KMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
+    }
+//    NSLog(@"Width: %f",self.menuView.frame.size.width);
+}
+
+- (void)setUpGridView
+{
+    self.gridView.backgroundColor = [UIColor clearColor];
+    UIView *xArrow = [[UIView alloc] initWithFrame:CGRectMake(0,[Util screenHeight]/2,[Util screenWidth],1)];
+    xArrow.backgroundColor = [UIColor redColor];
+    [self.gridView addSubview:xArrow];
+    UIView *yArrow = [[UIView alloc] initWithFrame:CGRectMake([Util screenWidth]/2,0,1,[Util screenHeight])];
+    yArrow.backgroundColor = [UIColor redColor];
+    [self.gridView addSubview:yArrow];
+    // nullLabel
+    UILabel *nullLabel = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5, [Util screenHeight]/2 + 5, 10, 15)];
+    nullLabel.text = @"0";
+    nullLabel.textColor = [UIColor redColor];
+    [self.gridView addSubview:nullLabel];
+    // positveWidth
+    UILabel *positiveWidth = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]- 40, [Util screenHeight]/2 + 5, 30, 15)];
+    positiveWidth.text = [NSString stringWithFormat:@"%d",(int)self.program.header.screenWidth.floatValue/2];
+    positiveWidth.textColor = [UIColor redColor];
+    [self.gridView addSubview:positiveWidth];
+    // negativeWidth
+    UILabel *negativeWidth = [[UILabel alloc] initWithFrame:CGRectMake(5, [Util screenHeight]/2 + 5, 40, 15)];
+    negativeWidth.text = [NSString stringWithFormat:@"-%d",(int)self.program.header.screenWidth.floatValue/2];
+    negativeWidth.textColor = [UIColor redColor];
+    [self.gridView addSubview:negativeWidth];
+    // positveHeight
+    UILabel *positiveHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5, [Util screenHeight] - 20, 40, 15)];
+    positiveHeight.text = [NSString stringWithFormat:@"-%d",(int)self.program.header.screenHeight.floatValue/2];
+    positiveHeight.textColor = [UIColor redColor];
+    [self.gridView addSubview:positiveHeight];
+    // negativeHeight
+    UILabel *negativeHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5,5, 40, 15)];
+    negativeHeight.text = [NSString stringWithFormat:@"%d",(int)self.program.header.screenHeight.floatValue/2];
+    negativeHeight.textColor = [UIColor redColor];
+    [self.gridView addSubview:negativeHeight];
+    
+    [self.view insertSubview:self.gridView aboveSubview:self.skView];
+}
+
+- (void)setupScene
+{
+    CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
+    Scene *scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
+    scene.name = self.program.header.programName;
+#warning TODO: use header screenMode property here! + create enum
+    scene.scaleMode = SKSceneScaleModeFill;
+    self.skView.paused = NO;
+    [self.skView presentScene:scene];
+    [[ProgramManager sharedProgramManager] setProgram:self.program]; // TODO: should be removed!
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
+# pragma mark - Touch Event Handling
+- (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
+{
+    if (self.menuOpen) {
+        NSDebug(@"touch on scene not allowed, because menu is open");
+    }
+    else{
+        NSDebug(@"touch on scene allowed");
+        for (UITouch *touch in touches) {
+            CGPoint location = [touch locationInView:self.skView];
+            NSDebug(@"StartTouchinScenePresenter");
+            
+            Scene *scene = (Scene *)self.skView.scene;
+            if ([scene touchedwith:touches withX:location.x andY:location.y]) {
+                break;
+            }
+        }
+    }
+}
+
+#pragma mark - Action Handling
+#pragma mark Game Event Handling
+- (void)pauseAction
+{
+    [[AVAudioSession sharedInstance] setActive:NO error:nil];
+    [[AudioManager sharedAudioManager] pauseAllSounds];
+}
+
+- (void)resumeAction
+{
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    [[AudioManager sharedAudioManager] resumeAllSounds];
+}
+
+- (void)continueProgramAction:(UIButton*)sender withDuration:(CGFloat)duration
+{
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    CGFloat animateDuration = 0.0f;
+    animateDuration = duration > 0.0001f ? duration : 0.35f;
+    
+    [UIView animateWithDuration:animateDuration
+                          delay:0.0f
+                        options: UIViewAnimationOptionTransitionFlipFromRight
+                     animations:^{[self continueAnimation];}
+                     completion:^(BOOL finished){
+                         self.menuOpen = NO;
+                     }];
+    self.skView.paused = NO;
+    
+    if (duration != kDontResumeSounds) {
+        [[AudioManager sharedAudioManager] resumeAllSounds];
+    }
+}
+
+- (void)stopProgramAction:(UIButton*)sender
+{
+    [self.loadingView show];
+    self.menuView.userInteractionEnabled = NO;
+    Scene *previousScene = (Scene*)self.skView.scene;
+    previousScene.userInteractionEnabled = NO;
+    
+    // busy waiting on other thread until all SpriteKit actions have been finished
+    __weak typeof(self)weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [previousScene stopProgramWithCompletion:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                previousScene.userInteractionEnabled = YES;
+                [self.loadingView hide];
+                [weakSelf.parentViewController.navigationController setToolbarHidden:NO];
+                [weakSelf.parentViewController.navigationController setNavigationBarHidden:NO];
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            });
+        }];
+    });
+}
+
+- (void)restartProgramAction:(UIButton*)sender
+{
+    self.view.userInteractionEnabled = NO;
+    dispatch_queue_t backgroundQueue = dispatch_queue_create("org.catrobat.restartProgram", 0);
+    __weak typeof(self)weakSelf = self;
+    dispatch_async(backgroundQueue, ^{
+        @synchronized(weakSelf) {
+            Scene *previousScene = (Scene*)weakSelf.skView.scene;
+#warning TODO: NOT YET IMPLEMENTED!!
+            [previousScene restartProgramWithCompletion:^{
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    if (! weakSelf.program) {
+                        [[[UIAlertView alloc] initWithTitle:kLocalizedCantRestartProgram
+                                                    message:nil
+                                                   delegate:weakSelf.menuView
+                                          cancelButtonTitle:kLocalizedOK
+                                          otherButtonTitles:nil] show];
+                        return;
+                    }
+                    [weakSelf.skView presentScene:previousScene];
+                    [weakSelf continueProgramAction:nil withDuration:0.0f];
+                    weakSelf.view.userInteractionEnabled = YES;
+                });
+            }];
+        }
+    });
+}
+
+#pragma mark User Event Handling
+- (void)backButtonAction:(UIButton*)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)showHideAxisAction:(UIButton*)sender
+{
+    if (self.gridView.hidden == NO) {
+        self.gridView.hidden = YES;
+    } else {
+        self.gridView.hidden = NO;
+    }
+}
+
+- (void)manageAspectRatioAction:(UIButton *)sender
+{
+    self.skView.scene.scaleMode = self.skView.scene.scaleMode == SKSceneScaleModeAspectFit ? SKSceneScaleModeFill : SKSceneScaleModeAspectFit;
+    [self.skView setNeedsLayout];
+    self.menuOpen = YES;
+    // pause Scene
+    SKView *view = self.skView;
+    view.paused = YES;
+    [[AudioManager sharedAudioManager] pauseAllSounds];
+}
+
+- (void)takeScreenshotAction:(UIButton*)sender
+{
+    // Screenshot function
+    UIGraphicsBeginImageContextWithOptions(self.skView.bounds.size, NO, [UIScreen mainScreen].scale);
+    [self.skView drawViewHierarchyInRect:self.skView.bounds afterScreenUpdates:NO];
+    self.snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [self showSaveScreenshotActionSheet];
+    
+}
+
+#pragma mark - Action Sheet & Alert View Handling
+- (void)showSaveScreenshotActionSheet
+{
+    UIImage *imageToShare = self.snapshotImage;
+    NSString* path = [self.program projectPath];
+    NSArray *itemsToShare = @[imageToShare];
+
+    SaveToProjectActivity *saveToProjectActivity = [[SaveToProjectActivity alloc] initWithImagePath:path];
+    NSArray *activities = @[saveToProjectActivity];
+
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:activities];
+    activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact,
+                                         UIActivityTypePostToFlickr,
+                                         UIActivityTypePostToFacebook,
+                                         UIActivityTypePostToVimeo,
+                                         UIActivityTypePostToWeibo,
+                                         UIActivityTypePostToTwitter,
+                                         UIActivityTypeMail]; // or whichever you don't need
+    [self presentViewController:activityVC animated:YES completion:nil];
+}
+
+- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+// Now we have an activity view -> just in case we need change back to the action sheet
+//- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//  NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+//  if ([buttonTitle isEqualToString:kLocalizedCameraRoll]) {
+//    // Write to Camera Roll
+//    UIImageWriteToSavedPhotosAlbum(self.snapshotImage, nil, nil, nil);
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kLocalizedScreenshotSavedToCameraRoll
+//                                                    message:nil
+//                                                   delegate:self.menuView
+//                                          cancelButtonTitle:kLocalizedOK
+//                                          otherButtonTitles:nil];
+//    [alert show];
+//  }
+//  if ([buttonTitle isEqualToString:kLocalizedProject]) {
+//    NSString* path = [self.program projectPath];
+//    NSString *pngFilePath = [NSString stringWithFormat:@"%@/manual_screenshot.png",path];
+//    NSData *data = [NSData dataWithData:UIImagePNGRepresentation(self.snapshotImage)];
+//    [data writeToFile:pngFilePath atomically:YES];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kLocalizedScreenshotSavedToProject
+//                                                    message:nil
+//                                                   delegate:self.menuView
+//                                          cancelButtonTitle:kLocalizedOK
+//                                          otherButtonTitles:nil];
+//    [alert show];
+//  }
+//}
+
+#pragma mark - Pan Gesture Handler
+- (void)handlePan:(UIPanGestureRecognizer*)gesture
+{
+    CGPoint translate = [gesture translationInView:gesture.view];
+    translate.y = 0.0;
+    CGFloat velocityX = [gesture velocityInView:gesture.view].x;
+    
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        self.firstGestureTouchPoint = [gesture locationInView:gesture.view];
+    }
+    
+    if (gesture.state == UIGestureRecognizerStateChanged) {
+        if (translate.x > 0.0 && translate.x < kWidthSlideMenu && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
+            [UIView animateWithDuration:0.25
+                                  delay:0.0
+                                options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{[self handlePositvePan:translate];}
+                             completion:nil];
+        } else if (translate.x < 0.0 && translate.x > -kWidthSlideMenu && self.menuOpen == YES) {
+            [UIView animateWithDuration:0.25
+                                  delay:0.0
+                                options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{[self handleNegativePan:translate];}
+                             completion:nil];
+        }
+    }
+    
+    if (gesture.state == UIGestureRecognizerStateCancelled ||
+        gesture.state == UIGestureRecognizerStateEnded ||
+        gesture.state == UIGestureRecognizerStateFailed) {
+        if (translate.x > (kWidthSlideMenu/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
+            [UIView animateWithDuration:0.25
+                                  delay:0.0
+                                options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{[self handleCancelledPositive:translate];}
+                             completion:^(BOOL finished) {
+                                 self.menuOpen = YES;
+                                 // pause Scene
+                                 SKView * view= self.skView;
+                                 view.paused=YES;
+                                 [[AudioManager sharedAudioManager] pauseAllSounds];
+
+                                 if (translate.x < (kWidthSlideMenu) && velocityX > 300) {
+                                     [self bounceAnimation];
+                                 }
+                             }];
+        } else if(translate.x > 0.0 && translate.x <(kWidthSlideMenu/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
+            [UIView animateWithDuration:0.25
+                                  delay:0.0
+                                options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{[self handleCancelledNegative:translate];}
+                             completion:^(BOOL finished) {
+                                 SKView * view = self.skView;
+                                 view.paused = NO;
+                                 self.menuOpen = NO;
+                                 [[AudioManager sharedAudioManager] resumeAllSounds];
+                             }];
+        } else if (translate.x < (-kWidthSlideMenu/4)  && self.menuOpen == YES) {
+            [UIView animateWithDuration:0.25
+                                  delay:0.0
+                                options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{[self handleCancelledNegative:translate];}
+                             completion:^(BOOL finished) {
+                                 SKView * view = self.skView;
+                                 view.paused = NO;
+                                 self.menuOpen = NO;
+                                 [[AudioManager sharedAudioManager] resumeAllSounds];
+                             }];
+        } else if (translate.x > (-kWidthSlideMenu/4) && translate.x < 0.0   && self.menuOpen == YES) {
+            [UIView animateWithDuration:0.25
+                                  delay:0.0
+                                options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{[self handleCancelledPositive:translate];}
+                             completion:^(BOOL finished) {
+                                 self.menuOpen = YES;
+                                 // pause Scene
+                                 SKView * view= self.skView;
+                                 view.paused=YES;
+                                 [[AudioManager sharedAudioManager] pauseAllSounds];
+                                 if (translate.x > -(kWidthSlideMenu) && velocityX < -100) {
+                                     [self bounceAnimation];
+                                 }
+                             }];
+        }
+    }
+}
+
+
+- (void)handlePositvePan:(CGPoint)translate
+{
+    [self.view bringSubviewToFront:self.menuView];
+    self.menuView.frame = CGRectMake(-kWidthSlideMenu+translate.x-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
+    self.menuBtn.hidden=YES;
+}
+
+- (void)handleNegativePan:(CGPoint)translate
+{
+    self.menuView.frame = CGRectMake(translate.x-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
+    self.menuBtn.hidden=NO;
+}
+
+- (void)handleCancelledPositive:(CGPoint)translate
+{
+    [self.view bringSubviewToFront:self.menuView];
+    self.menuView.frame = CGRectMake(-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
+    self.menuBtn.hidden=YES;
+}
+
+- (void)handleCancelledNegative:(CGPoint)translate
+{
+    self.menuView.frame = CGRectMake(-kWidthSlideMenu-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
+    self.menuBtn.hidden=NO;
+}
+
+#pragma mark - Animation Handling
+- (void)bounceAnimation
+{
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position.x"];
+    [animation setFromValue:[NSNumber numberWithFloat:kWidthSlideMenu/2]];
+    [animation setToValue:[NSNumber numberWithFloat:(kWidthSlideMenu/2)+(kBounceEffect/2)]];
+    [animation setDuration:.3];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithControlPoints:.5f :1.8f :1 :1]];
+    [self.menuView.layer addAnimation:animation forKey:@"somekey"];
+}
+
+- (void)revealAnimation
+{
+    [self.view bringSubviewToFront:self.menuView];
+    self.menuView.frame = CGRectMake(-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
+    self.menuBtn.hidden=YES;
+}
+
+- (void)continueAnimation
+{
+    self.menuView.frame = CGRectMake(-kWidthSlideMenu-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
+}
+
+#pragma mark - Getters & Setters
+#pragma mark Queue Getters & Setters
 - (dispatch_queue_t)restartProgramQueue
 {
     // lazy instantiation
@@ -165,6 +712,7 @@
     return _restartProgramQueue;
 }
 
+#pragma mark View Getters & Setters
 - (UIView*)gridView
 {
     // lazy instantiation
@@ -202,6 +750,8 @@
     return _skView;
 }
 
+#pragma mark - Helpers
+#pragma mark View Helpers
 - (UIImage*)brightnessBackground:(UIImage*)startImage
 {
     CGImageRef image = startImage.CGImage;
@@ -211,599 +761,13 @@
                                   keysAndValues:kCIInputImageKey, ciImage, @"inputBrightness",
                         @(-0.5), nil];
     CIImage *outputImage = [filter outputImage];
-
+    
     CGImageRef cgimg =
     [context createCGImage:outputImage fromRect:[outputImage extent]];
-
+    
     UIImage *output = [UIImage imageWithCGImage:cgimg];
     CFRelease(cgimg);
     return output;
 }
 
-- (void)setUpLabels
-{
-    if ([Util screenHeight]==kIphone4ScreenHeight) {
-        UILabel* label     =[[UILabel alloc] initWithFrame:
-                             CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-(kMenuIPhone4GapSize)-kMenuIPhone4ContinueGapSize-(kMenuButtonSize)-10, 100, kMenuButtonSize)];
-        self.menuBackLabel = label;
-        label              =[[UILabel alloc] initWithFrame:
-                             CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-kMenuIPhone4ContinueGapSize-10,100, kMenuButtonSize)];
-        self.menuRestartLabel = label;
-        label     = [[UILabel alloc] initWithFrame:
-                     CGRectMake(kPlaceofContinueLabel+kContinueOffset,(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)-10,  kContinueButtonSize, kMenuButtonSize)];
-        self.menuContinueLabel = label;
-        label    = [[UILabel alloc] initWithFrame:
-                    CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone4ContinueGapSize+kMenuButtonSize-10,  100, kMenuButtonSize)];
-        self.menuScreenshotLabel = label;
-        label         = [[UILabel alloc] initWithFrame:
-                         CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+(kMenuIPhone4GapSize)+kMenuIPhone4ContinueGapSize+(2*kMenuButtonSize)-10,  100, kMenuButtonSize)];
-        self.menuAxisLabel  = label;
-    } else {
-            UILabel* label      = [[UILabel alloc] initWithFrame:
-                                   CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-(KMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(kMenuButtonSize)-10, 100, kMenuButtonSize)];
-            self.menuBackLabel  = label;
-            label               =[[UILabel alloc] initWithFrame:
-                                  CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-kMenuIPhone5ContinueGapSize-10,100, kMenuButtonSize)];
-            self.menuRestartLabel = label;
-            label               = [[UILabel alloc] initWithFrame:
-                                   CGRectMake(kPlaceofContinueLabel+kContinueOffset,([Util screenHeight]/2)+(kContinueButtonSize/2)-10,  kContinueButtonSize, kMenuButtonSize)];
-            self.menuContinueLabel = label;
-            label               = [[UILabel alloc] initWithFrame:
-                                   CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+(kContinueButtonSize/2)+kMenuIPhone5ContinueGapSize+kMenuButtonSize-10,  100, kMenuButtonSize)];
-            self.menuScreenshotLabel = label;
-            label               = [[UILabel alloc] initWithFrame:
-                                   CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+                    (kContinueButtonSize/2)+(KMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(2*kMenuButtonSize)-10,  100, kMenuButtonSize)];
-            self.menuAxisLabel  = label;
-    }
-    NSArray* labelTextArray = [[NSArray alloc] initWithObjects:
-                               kLocalizedBack,
-                               kLocalizedRestart,
-                               kLocalizedContinue,
-                               kLocalizedScreenshot,
-                               kLocalizedGrid, nil];
-    NSArray* labelArray = [[NSArray alloc] initWithObjects:self.menuBackLabel,self.menuRestartLabel,self.menuContinueLabel, self.menuScreenshotLabel, self.menuAxisLabel,nil];
-    for (int i = 0; i < [labelTextArray count]; ++i) {
-        [self setupLabel:labelTextArray[i]
-                 andView:labelArray[i]];
-    }
-}
-
-- (void)setupLabel:(NSString*)name andView:(UILabel*)label
-{
-    label.text = name;
-    label.textColor = [UIColor lightGrayColor];
-    label.font = [UIFont fontWithName:@"Helvetica Neue" size:(14.0)];
-    label.textAlignment = NSTextAlignmentCenter;
-    [self.menuView addSubview:label];
-    [self.menuView bringSubviewToFront:label];
-}
-
-- (void)setUpMenuButtons
-{
-    self.menuBackButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.menuContinueButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.menuScreenshotButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.menuRestartButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.menuAxisButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.menuAspectRatioButton = [UIButton buttonWithType:UIButtonTypeCustom];
-
-    [self setupButtonWithButton:self.menuBackButton
-                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_back"]
-        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_back_pressed"]
-                    andSelector:@selector(stopProgram:)
-     ];
-
-    [self setupButtonWithButton:self.menuContinueButton
-                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_continue"]
-        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_continue_pressed"]
-                    andSelector:@selector(continueProgram:withDuration:)
-     ];
-
-    [self setupButtonWithButton:self.menuScreenshotButton
-                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_screenshot"]
-        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_screenshot_pressed"]
-                    andSelector:@selector(takeScreenshot:)
-     ];
-
-    [self setupButtonWithButton:self.menuRestartButton
-                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_restart"]
-        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_restart_pressed"]
-                    andSelector:@selector(restartProgram:)
-     ];
-
-    [self setupButtonWithButton:self.menuAxisButton
-                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_toggle_axis"]
-        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_toggle_axis_pressed"]
-                    andSelector:@selector(showHideAxis:)
-     ];
-
-    [self setupButtonWithButton:self.menuAspectRatioButton
-                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"]
-        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio_pressed"]
-                    andSelector:@selector(manageAspectRatio:)
-     ];
-}
-
-- (void)setupButtonWithButton:(UIButton*)button ImageNameNormal:(UIImage*)stateNormal andImageNameHighlighted:(UIImage*)stateHighlighted andSelector:(SEL)myAction
-{
-    [button setBackgroundImage:stateNormal
-                      forState:UIControlStateNormal];
-    [button setBackgroundImage:stateHighlighted
-                      forState:UIControlStateHighlighted];
-    [button setBackgroundImage:stateHighlighted
-                      forState:UIControlStateSelected];
-    [button  addTarget:self
-                action:myAction
-      forControlEvents:UIControlEventTouchUpInside];
-
-    [self.menuView addSubview:button];
-}
-
-- (void)setUpMenuFrames
-{
-    self.menuAspectRatioButton.frame = CGRectMake(10,10, kMenuButtonSize-20, kMenuButtonSize-20);
-    ///StartPosition
-    if ([Util screenHeight]==kIphone4ScreenHeight) {
-        self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-(kMenuIPhone4GapSize)-(2*kMenuButtonSize)-kMenuIPhone4ContinueGapSize, kMenuButtonSize, kMenuButtonSize);
-        
-        self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-kMenuIPhone4ContinueGapSize-(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
-        self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons+kContinueOffset,(kIphone4ScreenHeight/2)-(kContinueButtonSize/2),  kContinueButtonSize, kContinueButtonSize);
-        self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone4ContinueGapSize,  kMenuButtonSize, kMenuButtonSize);
-        self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+(kMenuIPhone4GapSize)+kMenuIPhone4ContinueGapSize+(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
-    } else {
-        self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-(KMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(2*kMenuButtonSize), kMenuButtonSize, kMenuButtonSize);
-        self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-kMenuIPhone5ContinueGapSize-(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
-        self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons+kContinueOffset,([Util screenHeight]/2)-(kContinueButtonSize/2),  kContinueButtonSize, kContinueButtonSize);
-        self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+(kContinueButtonSize/2)+kMenuIPhone5ContinueGapSize,  kMenuButtonSize, kMenuButtonSize);
-        self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+(kContinueButtonSize/2)+(KMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
-    }
-//    //NSLog(@"Width: %f",self.menuView.frame.size.width);
-}
-
-- (void)setUpGridView
-{
-    self.gridView.backgroundColor = [UIColor clearColor];
-    UIView *xArrow = [[UIView alloc] initWithFrame:CGRectMake(0,[Util screenHeight]/2,[Util screenWidth],1)];
-    xArrow.backgroundColor = [UIColor redColor];
-    [self.gridView addSubview:xArrow];
-    UIView *yArrow = [[UIView alloc] initWithFrame:CGRectMake([Util screenWidth]/2,0,1,[Util screenHeight])];
-    yArrow.backgroundColor = [UIColor redColor];
-    [self.gridView addSubview:yArrow];
-    //nullLabel
-    UILabel *nullLabel = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5, [Util screenHeight]/2 + 5, 10, 15)];
-    nullLabel.text = @"0";
-    nullLabel.textColor = [UIColor redColor];
-    [self.gridView addSubview:nullLabel];
-    //positveWidth
-    UILabel *positiveWidth = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]- 40, [Util screenHeight]/2 + 5, 30, 15)];
-    positiveWidth.text = [NSString stringWithFormat:@"%d",(int)self.program.header.screenWidth.floatValue/2];
-    positiveWidth.textColor = [UIColor redColor];
-    [self.gridView addSubview:positiveWidth];
-    //negativWidth
-    UILabel *negativeWidth = [[UILabel alloc] initWithFrame:CGRectMake(5, [Util screenHeight]/2 + 5, 40, 15)];
-    negativeWidth.text = [NSString stringWithFormat:@"-%d",(int)self.program.header.screenWidth.floatValue/2];
-    negativeWidth.textColor = [UIColor redColor];
-    [self.gridView addSubview:negativeWidth];
-    //positveHeight
-    UILabel *positiveHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5, [Util screenHeight] - 20, 40, 15)];
-    positiveHeight.text = [NSString stringWithFormat:@"-%d",(int)self.program.header.screenHeight.floatValue/2];
-    positiveHeight.textColor = [UIColor redColor];
-    [self.gridView addSubview:positiveHeight];
-    //negativHeight
-    UILabel *negativeHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5,5, 40, 15)];
-    negativeHeight.text = [NSString stringWithFormat:@"%d",(int)self.program.header.screenHeight.floatValue/2];
-    negativeHeight.textColor = [UIColor redColor];
-    [self.gridView addSubview:negativeHeight];
-    
-    [self.view insertSubview:self.gridView aboveSubview:self.skView];
-}
-
-- (BOOL)prefersStatusBarHidden
-{
-    return YES;
-}
-
-- (void)dealloc
-{
-    [[AudioManager sharedAudioManager] stopAllSounds];
-    [[SensorHandler sharedSensorHandler] stopSensors];
-
-    [[ProgramManager sharedProgramManager] setProgram:nil];
-
-    //Delete sound rec for loudness sensor
-    NSError *error;
-
-    NSFileManager *fileMgr = [NSFileManager defaultManager];
-
-    NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString* soundfile = [documentsPath stringByAppendingPathComponent:@"loudness_handler.m4a"];
-    if ([fileMgr removeItemAtPath:soundfile error:&error] != YES)
-        NSDebug(@"No Sound file available or unable to delete file: %@", [error localizedDescription]);
-}
-
-- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
-
-- (void)backButtonPressed:(UIButton*)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)revealMenu:(UIButton*)sender
-{
-    self.skView.paused = YES;
-    [[AVAudioSession sharedInstance] setActive:NO error:nil];
-    [[AudioManager sharedAudioManager] pauseAllSounds];
-
-    [UIView animateWithDuration:1.0f
-                          delay:0.5f
-                        options: UIViewAnimationOptionTransitionFlipFromLeft
-                     animations:^{[self revealAnimation];}
-                     completion:^(BOOL finished){
-                         self.menuOpen = YES;
-     }];
-}
-
-- (void)revealAnimation
-{
-    [self.view bringSubviewToFront:self.menuView];
-    self.menuView.frame = CGRectMake(-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
-    self.menuBtn.hidden=YES;
-}
-
-- (void)goback:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-#pragma mark - button functions
-- (void)stopProgram:(UIButton*)sender
-{
-    [self.loadingView show];
-    self.menuView.userInteractionEnabled = NO;
-    Scene *previousScene = (Scene*)self.skView.scene;
-    previousScene.userInteractionEnabled = NO;
-
-    // busy waiting on other thread until all SpriteKit actions have been finished
-    __weak typeof(self)weakSelf = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        [previousScene stopProgramWithCompletion:^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                previousScene.userInteractionEnabled = YES;
-                [self.loadingView hide];
-                [weakSelf.parentViewController.navigationController setToolbarHidden:NO];
-                [weakSelf.parentViewController.navigationController setNavigationBarHidden:NO];
-                [weakSelf.navigationController popViewControllerAnimated:YES];
-            });
-        }];
-    });
-}
-
-- (void)continueProgram:(UIButton*)sender withDuration:(CGFloat)duration
-{
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
-
-    CGFloat animateDuration = 0.0f;
-    animateDuration = duration > 0.0001f ? duration : 0.35f;
-
-    [UIView animateWithDuration:animateDuration
-                          delay:0.0f
-                        options: UIViewAnimationOptionTransitionFlipFromRight
-                     animations:^{[self continueAnimation];}
-                     completion:^(BOOL finished){
-                         self.menuOpen = NO;
-                     }];
-    self.skView.paused = NO;
-
-    if (duration != kDontResumeSounds) {
-        [[AudioManager sharedAudioManager] resumeAllSounds];
-    }
-}
-
-- (void)continueAnimation
-{
-    self.menuView.frame = CGRectMake(-kWidthSlideMenu-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
-}
-
-- (void)configureScene
-{
-    CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
-    Scene *scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
-    scene.name = self.program.header.programName;
-    scene.scaleMode = SKSceneScaleModeFill; // TODO: use header screenMode property here! + create enum
-    self.skView.paused = NO;
-    [self.skView presentScene:scene];
-    [[ProgramManager sharedProgramManager] setProgram:self.program]; // TODO: should be removed!
-}
-
-- (void)restartProgram:(UIButton*)sender
-{
-    self.view.userInteractionEnabled = NO;
-    dispatch_queue_t backgroundQueue = dispatch_queue_create("org.catrobat.restartProgram", 0);
-    __weak typeof(self)weakSelf = self;
-    dispatch_async(backgroundQueue, ^{
-        @synchronized(weakSelf) {
-            Scene *previousScene = (Scene*)weakSelf.skView.scene;
-#warning TODO: NOT YET IMPLEMENTED!!
-            [previousScene restartProgramWithCompletion:^{
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    if (! weakSelf.program) {
-                        [[[UIAlertView alloc] initWithTitle:kLocalizedCantRestartProgram
-                                                    message:nil
-                                                   delegate:weakSelf.menuView
-                                          cancelButtonTitle:kLocalizedOK
-                                          otherButtonTitles:nil] show];
-                        return;
-                    }
-                    [weakSelf.skView presentScene:previousScene];
-                    [weakSelf continueProgram:nil withDuration:0.0f];
-                    weakSelf.view.userInteractionEnabled = YES;
-                });
-            }];
-        }
-    });
-}
-
-- (void)showHideAxis:(UIButton*)sender
-{
-    if (self.gridView.hidden == NO) {
-        self.gridView.hidden = YES;
-    } else {
-        self.gridView.hidden = NO;
-    }
-}
-
-- (void)manageAspectRatio:(UIButton *)sender
-{
-    self.skView.scene.scaleMode = self.skView.scene.scaleMode == SKSceneScaleModeAspectFit ? SKSceneScaleModeFill : SKSceneScaleModeAspectFit;
-    [self.skView setNeedsLayout];
-    self.menuOpen = YES;
-    //pause Scene
-    SKView * view= self.skView;
-    view.paused=YES;
-    //view.userInteractionEnabled = NO;
-    [[AudioManager sharedAudioManager] pauseAllSounds];
-}
-
-- (void)takeScreenshot:(UIButton *)sender
-{
-    /// Screenshot function
-    UIGraphicsBeginImageContextWithOptions(self.skView.bounds.size, NO, [UIScreen mainScreen].scale);
-    [self.skView drawViewHierarchyInRect:self.skView.bounds afterScreenUpdates:NO];
-    self.snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    [self showSaveScreenshotActionSheet];
-    
-}
-- (void)showSaveScreenshotActionSheet
-{
-    UIImage *imageToShare = self.snapshotImage;
-    NSString* path = [self.program projectPath];
-    NSArray *itemsToShare = @[imageToShare];
-
-    SaveToProjectActivity *saveToProjectActivity = [[SaveToProjectActivity alloc] initWithImagePath:path];
-    NSArray *activities = @[saveToProjectActivity];
-
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:activities];
-    activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact,
-                                         UIActivityTypePostToFlickr,
-                                         UIActivityTypePostToFacebook,
-                                         UIActivityTypePostToVimeo,
-                                         UIActivityTypePostToWeibo,
-                                         UIActivityTypePostToTwitter,
-                                         UIActivityTypeMail]; //or whichever you don't need
-    [self presentViewController:activityVC animated:YES completion:nil];
-}
-
-// Now we have an activity view -> just in case we need change back to the action sheet
-//- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-//{
-//  NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
-//  if ([buttonTitle isEqualToString:kLocalizedCameraRoll]) {
-//    /// Write to Camera Roll
-//    UIImageWriteToSavedPhotosAlbum(self.snapshotImage, nil, nil, nil);
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kLocalizedScreenshotSavedToCameraRoll
-//                                                    message:nil
-//                                                   delegate:self.menuView
-//                                          cancelButtonTitle:kLocalizedOK
-//                                          otherButtonTitles:nil];
-//    [alert show];
-//  }
-//
-//  if ([buttonTitle isEqualToString:kLocalizedProject]) {
-//    NSString* path = [self.program projectPath];
-//    NSString *pngFilePath = [NSString stringWithFormat:@"%@/manual_screenshot.png",path];
-//    NSData *data = [NSData dataWithData:UIImagePNGRepresentation(self.snapshotImage)];
-//    [data writeToFile:pngFilePath atomically:YES];
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kLocalizedScreenshotSavedToProject
-//                                                    message:nil
-//                                                   delegate:self.menuView
-//                                          cancelButtonTitle:kLocalizedOK
-//                                          otherButtonTitles:nil];
-//    [alert show];
-//
-//  }
-//
-//}
-
-#pragma mark PanGestureHandler
-- (void)handlePan:(UIPanGestureRecognizer *)gesture
-{
-    CGPoint translate = [gesture translationInView:gesture.view];
-    translate.y = 0.0;
-    CGFloat velocityX = [gesture velocityInView:gesture.view].x;
-    
-    if (gesture.state == UIGestureRecognizerStateBegan) {
-        self.firstGestureTouchPoint = [gesture locationInView:gesture.view];
-    }
-    
-    if (gesture.state == UIGestureRecognizerStateChanged) {
-        if (translate.x > 0.0 && translate.x < kWidthSlideMenu && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
-            [UIView animateWithDuration:0.25
-                                  delay:0.0
-                                options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{[self handlePositvePan:translate];}
-                             completion:^(BOOL finished) {
-                                 //self.menuOpen = YES;
-                                 //[[AudioManager sharedAudioManager] pauseAllSounds];
-                             }];
-        } else if (translate.x < 0.0 && translate.x > -kWidthSlideMenu && self.menuOpen == YES) {
-            [UIView animateWithDuration:0.25
-                                  delay:0.0
-                                options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{[self handleNegativePan:translate];}
-                             completion:^(BOOL finished) {
-                                 //SKView * view= (SKView*)_skView;
-                                 //view.paused=NO;
-                                 //[[AudioManager sharedAudioManager] resumeAllSounds];
-                                 //self.menuOpen = NO;
-                             }];
-        }
-    }
-    
-    if (gesture.state == UIGestureRecognizerStateCancelled ||
-        gesture.state == UIGestureRecognizerStateEnded ||
-        gesture.state == UIGestureRecognizerStateFailed) {
-        if (translate.x > (kWidthSlideMenu/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
-            [UIView animateWithDuration:0.25
-                                  delay:0.0
-                                options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{[self handleCancelledPositive:translate];}
-                             completion:^(BOOL finished) {
-                                 self.menuOpen = YES;
-                                 //pause Scene
-                                 SKView * view= self.skView;
-                                 view.paused=YES;
-                                 //view.userInteractionEnabled = NO;
-                                 [[AudioManager sharedAudioManager] pauseAllSounds];
-                                 
-                                 if (translate.x < (kWidthSlideMenu) && velocityX >300) {
-                                     [self bounce];
-                                 }
-                             }];
-        } else if(translate.x > 0.0 && translate.x <(kWidthSlideMenu/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
-            [UIView animateWithDuration:0.25
-                                  delay:0.0
-                                options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{[self handleCancelledNegative:translate];}
-                             completion:^(BOOL finished) {
-                                 SKView * view = self.skView;
-                                 view.paused=NO;
-                                 //view.userInteractionEnabled = YES;
-                                 self.menuOpen= NO;
-                                 [[AudioManager sharedAudioManager] resumeAllSounds];
-                             }];
-        } else if (translate.x < (-kWidthSlideMenu/4)  && self.menuOpen == YES) {
-            [UIView animateWithDuration:0.25
-                                  delay:0.0
-                                options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{[self handleCancelledNegative:translate];}
-                             completion:^(BOOL finished) {
-                                 SKView * view = self.skView;
-                                 view.paused=NO;
-                                 //view.userInteractionEnabled = YES;
-                                 self.menuOpen= NO;
-                                 [[AudioManager sharedAudioManager] resumeAllSounds];
-                             }];
-        } else if (translate.x > (-kWidthSlideMenu/4) && translate.x < 0.0   && self.menuOpen == YES) {
-            [UIView animateWithDuration:0.25
-                                  delay:0.0
-                                options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{[self handleCancelledPositive:translate];}
-                             completion:^(BOOL finished) {
-                                 self.menuOpen = YES;
-                                 //pause Scene
-                                 SKView * view= self.skView;
-                                 view.paused=YES;
-                                 //view.userInteractionEnabled = NO;
-                                 [[AudioManager sharedAudioManager] pauseAllSounds];
-                                 if (translate.x > -(kWidthSlideMenu) && velocityX < -100) {
-                                     [self bounce];
-                                 }
-                             }];
-        }
-    }
-}
-
-
-- (void)handlePositvePan:(CGPoint)translate
-{
-    [self.view bringSubviewToFront:self.menuView];
-//    UIColor *background = [UIColor darkBlueColor];//[[UIColor alloc] initWithPatternImage:snapshotImage];
-//    self.menuView.backgroundColor = background;
-//    
-//    SKView * view= (SKView*)_skView;
-//    view.paused=YES;
-    self.menuView.frame = CGRectMake(-kWidthSlideMenu+translate.x-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
-    self.menuBtn.hidden=YES;
-}
-
-- (void)handleNegativePan:(CGPoint)translate
-{
-    self.menuView.frame = CGRectMake(translate.x-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
-    self.menuBtn.hidden=NO;
-}
-
-- (void)handleCancelledPositive:(CGPoint)translate
-{
-    [self.view bringSubviewToFront:self.menuView];
-//    UIColor *background = [UIColor darkBlueColor];//[[UIColor alloc] initWithPatternImage:snapshotImage];
-//    self.menuView.backgroundColor = background;
-    self.menuView.frame = CGRectMake(-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
-    self.menuBtn.hidden=YES;
-}
-
-- (void)handleCancelledNegative:(CGPoint)translate
-{
-    self.menuView.frame = CGRectMake(-kWidthSlideMenu-kBounceEffect, 0, self.menuView.frame.size.width, self.menuView.frame.size.height);
-    self.menuBtn.hidden=NO;
-}
-
-- (void)bounce
-{
-    CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:@"position.x"];
-    [animation setFromValue:[NSNumber numberWithFloat:kWidthSlideMenu/2]];
-    [animation setToValue:[NSNumber numberWithFloat:(kWidthSlideMenu/2)+(kBounceEffect/2)]];
-    [animation setDuration:.3];
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithControlPoints:.5f :1.8f :1 :1]];
-    [self.menuView.layer addAnimation:animation forKey:@"somekey"];
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    if (self.menuOpen) {
-        NSDebug(@"touch on scene not allowed, because menu is open");
-    }
-    else{
-        NSDebug(@"touch on scene allowed");
-        for (UITouch* touch in touches) {
-            CGPoint location = [touch locationInView:self.skView];
-            NSDebug(@"StartTouchinScenePresenter");
-            
-            Scene *scene = (Scene *)self.skView.scene;
-            if ([scene touchedwith:touches withX:location.x andY:location.y]) {
-                break;
-            }
-        }
-    }
-
-}
-
-- (void)pause
-{
-    [[AVAudioSession sharedInstance] setActive:NO error:nil];
-    [[AudioManager sharedAudioManager] pauseAllSounds];
-}
-
-- (void)resume
-{
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    [[AudioManager sharedAudioManager] resumeAllSounds];
-}
-
 @end
-
