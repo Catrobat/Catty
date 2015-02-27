@@ -20,11 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BaseTransition.h"
-#import "BrickCell.h"
+#import "Brick.h"
 
-@interface BrickScaleTransition : BaseTransition
-@property (nonatomic, strong) BrickCell *cell;
-@property (nonatomic, assign) CGRect touchRect;
+@class BrickCategoryViewController;
+@protocol BrickCategoryViewControllerDelegate<NSObject>
+@optional
+- (void)brickCategoryViewController:(BrickCategoryViewController*)brickCategoryViewController
+             didSelectScriptOrBrick:(id<ScriptProtocol>)scriptOrBrick;
+@end
+
+@interface BrickCategoryViewController : UICollectionViewController
+@property(nonatomic, weak) id<BrickCategoryViewControllerDelegate> delegate;
+@property(nonatomic, strong, readonly) NSArray *scriptsAndBricks;
+@property(nonatomic, readonly) NSUInteger pageIndex;
+
+- (instancetype)initWithBrickCategory:(kBrickCategoryType)type NS_DESIGNATED_INITIALIZER;
++ (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(NSInteger)pageIndex;
+
+// disallow init
+- (instancetype)init __attribute__((unavailable("init is not a supported initializer for this class.")));
 
 @end

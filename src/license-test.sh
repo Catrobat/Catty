@@ -4,7 +4,7 @@ SEARCH_STRING=" \\*  Copyright \\(C\\) 2010-2015 The Catrobat Team| \\*  \\(http
 
 EXCLUDED_DIRS=( "TTTAttributedLabel" "minizip" "SSZipArchive" "GDataXMLNode" "FBShimmering" "LXReorderableCollectionViewFlowLayout" "AHKActionSheetViewController" "AHKAdditions" "IBActionSheet" "SWCellScrollView" "SWLongPressGestureRecognizer" "SWTableViewCell" "FXBlurView" "BDKNotifyHUD" "EVCircularProgressView" "NSString+FastImageSize" "UIViewController+CWPopup" "OrderedDictionary" "pocketPaint")
 
-EXCLUDED_FILES=( "AHKActionSheet.[mh]" "AHKActionSheetViewController.[mh]" "LXReorderableCollectionViewFlowLayout.[mh]" "IBActionSheet.[mh]" "Reachability.[mh]" "SharkfoodMuteSwitchDetector.[mh]" "SWCellScrollView.[mh]" "SWUtilityButtonView.[mh]" "UIImage+AHKAdditions.[mh]" "UIWindow+AHKAdditions.[mh]" "SWLongPressGestureRecognizer.[mh]" "SWTableViewCell.[mh]" "SWUtilityButtonTapGestureRecognizer.[mh]" "SMPageControl.[mh]" "EAIntroPage.[mh]" "MYBlurIntroductionView.[mh]" "MYIntroductionPanel.[mh]" )
+EXCLUDED_FILES=( "AHKActionSheet.[mh]" "AHKActionSheetViewController.[mh]" "LXReorderableCollectionViewFlowLayout.[mh]" "IBActionSheet.[mh]" "Reachability.[mh]" "SharkfoodMuteSwitchDetector.[mh]" "SWCellScrollView.[mh]" "SWUtilityButtonView.[mh]" "UIImage+AHKAdditions.[mh]" "UIWindow+AHKAdditions.[mh]" "SWLongPressGestureRecognizer.[mh]" "SWTableViewCell.[mh]" "SWUtilityButtonTapGestureRecognizer.[mh]" "SMPageControl.[mh]" "EAIntroPage.[mh]" "MYBlurIntroductionView.[mh]" "MYIntroductionPanel.[mh]" "FBKVOController.[mh]" "MYIntroductionPanel.[mh]" )
 
 EXCLUDED_DIRS_STR=""
 for ((i=0;i<${#EXCLUDED_DIRS[@]};++i)); do

@@ -20,28 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BrickProtocol.h"
+#import <Foundation/Foundation.h>
+#import "Script.h"
 
-@class BrickCell, SingleBrickSelectionView, BrickProtocol;
+typedef void (^ScriptCollectionViewConfigureBlock)(id cell);
 
-@protocol SingleBrickSelectionViewDelegate <NSObject>
+@interface ScriptDataSource : NSObject <UICollectionViewDataSource>
+@property(nonatomic, readonly) NSArray *scriptList;
+@property(nonatomic, readonly) NSUInteger numberOfSections;
 
-@optional
-- (void)singleBrickSelectionView:(SingleBrickSelectionView*)singleBrickSelectionView
-                  didSelectBrick:(id<BrickProtocol>)brick replicantBrickView:(UIView*)brickView;
+- (instancetype)initWithScriptList:(NSArray *)scriptList
+                    cellIdentifier:(NSString *) __unused cellIdentifier
+                configureCellBlock:(ScriptCollectionViewConfigureBlock)configureCellBlock NS_DESIGNATED_INITIALIZER;
 
-- (void)singleBrickSelectionView:(SingleBrickSelectionView*)singleBrickSelectionView
-                  didShowWithBrick:(id<BrickProtocol>)brick replicantBrickView:(UIView*)brickView;
+// Disallow init.
+- (instancetype)init __attribute__((unavailable("init is not a supported initializer for this class.")));
 
-
-@end
-
-@interface SingleBrickSelectionView : UIView
-@property (strong, nonatomic) UIView *dimview;
-@property (nonatomic, weak) id<SingleBrickSelectionViewDelegate> delegate;
-
-- (void)showSingleBrickSelectionViewWithBrickCell:(BrickCell*)brickCell fromView:(UIView*)fromView
-                                        belowView:(UIView*)belowView completion:(void(^)())completionBlock;
+- (void)setScriptList:(NSArray *)scriptList;
 
 @end

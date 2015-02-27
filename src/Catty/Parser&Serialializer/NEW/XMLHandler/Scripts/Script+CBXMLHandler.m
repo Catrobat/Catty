@@ -54,12 +54,15 @@
     if ([scriptType isEqualToString:@"StartScript"]) {
         script = [StartScript new];
     } else if ([scriptType isEqualToString:@"WhenScript"]) {
-        script = [WhenScript new];
+        WhenScript *whenScript = [WhenScript new];
         NSArray *actionElements = [xmlElement elementsForName:@"action"];
         [XMLError exceptionIf:[actionElements count] notEquals:1
                       message:@"Wrong number of action elements given!"];
         GDataXMLElement *actionElement = [actionElements firstObject];
-        script.action = [actionElement stringValue];
+        [XMLError exceptionIf:[whenScript.action isEqualToString:[actionElement stringValue]] equals:NO
+                      message:@"Action of parsed WhenScript should be '%@' but is '%@'",
+                              whenScript.action, [actionElement stringValue]];
+        script = whenScript;
     } else if ([scriptType isEqualToString:@"BroadcastScript"]) {
         BroadcastScript *broadcastScript = [BroadcastScript new];
         NSArray *receivedMessageElements = [xmlElement elementsForName:@"receivedMessage"];
@@ -168,8 +171,8 @@
                                                                               context:context];
         [xmlElement addChild:receivedMessageXmlElement context:context];
     } else if ([self isKindOfClass:[WhenScript class]]) {
-        [XMLError exceptionIfNil:self.action message:@"WhenScript contains invalid action string"];
-        GDataXMLElement *actionXmlElement = [GDataXMLElement elementWithName:@"action" stringValue:self.action context:context];
+        [XMLError exceptionIfNil:((WhenScript*)self).action message:@"WhenScript contains invalid action string"];
+        GDataXMLElement *actionXmlElement = [GDataXMLElement elementWithName:@"action" stringValue:((WhenScript*)self).action context:context];
         [xmlElement addChild:actionXmlElement context:context];
     } else {
         [XMLError exceptionWithMessage:@"Unsupported script type: %@!", NSStringFromClass([self class])];

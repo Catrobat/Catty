@@ -71,14 +71,6 @@
     return _scriptList;
 }
 
-//- (NSMutableArray*)broadcastScriptArray
-//{
-//        // lazy instantiation
-//    if (! _broadcastScriptArray)
-//        _broadcastScriptArray = [NSMutableArray array];
-//    return _broadcastScriptArray;
-//}
-
 - (CGPoint)position
 {
     return [((Scene*)self.scene) convertSceneCoordinateToPoint:super.position];
@@ -685,7 +677,7 @@
         if (! [firstSound isEqualToSound:secondSound])
             return NO;
     }
-
+    
     // scriptList
     if ([self.scriptList count] != [spriteObject.scriptList count])
         return NO;

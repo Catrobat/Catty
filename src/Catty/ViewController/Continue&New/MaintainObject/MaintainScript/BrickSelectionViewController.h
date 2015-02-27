@@ -21,26 +21,6 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "InternFormula.h"
-#import "Formula.h"
-#import "FormulaEditorHistory.h"
-#import "SpriteObject.h"
-#import "ProgramManager.h"
 
-
-@class BrickCell;
-@interface FormulaEditorViewController : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate>
-@property (strong, nonatomic) InternFormula *internFormula;
-@property (strong, nonatomic) FormulaEditorHistory *history;
-@property (strong, nonatomic) NSMutableArray *variableSourceProgram;
-@property (strong, nonatomic) NSMutableArray *variableSourceObject;
-@property (weak, nonatomic) SpriteObject *object;
-
-- (id)initWithBrickCell:(BrickCell*)brickCell;
-- (void)setFormula:(Formula*)formula;
-- (void)update;
-- (void)updateDeleteButton:(BOOL)enabled;
-- (void)backspace:(id)sender;
-- (BOOL)changeFormula;
-
+@interface BrickSelectionViewController : UIPageViewController
 @end

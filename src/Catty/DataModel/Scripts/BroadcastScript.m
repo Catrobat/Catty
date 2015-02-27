@@ -32,7 +32,9 @@
 - (NSString*)description
 {
     NSMutableString *ret = [[NSMutableString alloc] initWithString:@"BroadcastScript: "];
-    [ret appendString:self.receivedMessage];
+    if (self.receivedMessage.length) {
+        [ret appendString:self.receivedMessage];
+    }
     
     if ([self.brickList count] > 0)
     {

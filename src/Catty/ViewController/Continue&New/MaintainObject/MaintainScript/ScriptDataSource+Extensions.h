@@ -20,9 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import "ScriptDataSource.h"
 
-#import "BaseTransition.h"
+@interface ScriptDataSource (Extensions)
 
-@interface BrickSelectModalTransition : BaseTransition
+- (void)addBricks:(NSArray *)bricks toIndexPaths:(NSArray *)indexPaths;
+
+// Removes complete section.
+- (void)removeScriptsAtSections:(NSIndexSet *)sections;
+
+// Remove single brick.
+- (void)removeBrickAtIndexPath:(NSIndexPath *)indexPath;
+
+- (void)copyBrickAtIndexPath:(NSIndexPath *)atIndexPath;
+
+// Script with brick list array.
+- (id)itemAtIndexPath:(NSIndexPath *)indexPath;
+
+// Returns indexpath for equal items (script bricks or none-script bricks).
+- (NSArray *)indexPathsForItem:(id)item;
+
+- (NSArray *)brickListInScriptAtIndexPath:(NSIndexPath *)indexPath;
+
+// Returns nil if Scriptbrick (index 0 in section).
+- (Brick *)brickInScriptAtIndexPath:(NSIndexPath *)indexPath;
+
+- (Script *)scriptAtSection:(NSUInteger)section;
+
+- (BOOL)isSectionAtIndexPathValidScript:(NSIndexPath *)indexPath;
 
 @end
