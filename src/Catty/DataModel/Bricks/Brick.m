@@ -31,6 +31,9 @@
 #import "Formula.h"
 #import "Util.h"
 #import "CBMutableCopyContext.h"
+#import "BroadcastWaitBrick.h"
+#import "NoteBrick.h"
+#include <mach/mach_time.h>
 
 @interface Brick()
 
@@ -142,6 +145,110 @@
     }
     
     return brick;
+}
+
+#pragma mark - Brick actions
+- (NSUInteger)runAction
+{
+    NSDate *startTime = [NSDate date];
+    NSUInteger brickIndex = 0;
+    for (Brick *brick in self.script.brickList) {
+        if (self == brick) {
+            break;
+        }
+        ++brickIndex;
+    }
+    assert(brickIndex < [self.script.brickList count]);
+    SKAction *action = nil;
+    if ([self isKindOfClass:[LoopBeginBrick class]]) {
+        LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)self;
+        loopBeginBrick.loopStartTime = mach_absolute_time();
+        BOOL condition = [loopBeginBrick checkCondition];
+        if (! condition) {
+            LoopEndBrick *loopEndBrick = loopBeginBrick.loopEndBrick;
+            brickIndex = (1 + [self.script.brickList indexOfObject:loopEndBrick]);
+        }
+    } else if ([self isKindOfClass:[LoopEndBrick class]]) {
+        uint64_t loopEndTime = mach_absolute_time();
+        LoopBeginBrick *loopBeginBrick = ((LoopEndBrick*)self).loopBeginBrick;
+        brickIndex = [self.script.brickList indexOfObject:loopBeginBrick];
+        if (brickIndex == NSNotFound) {
+            abort();
+        }
+        // information for converting from MTU to nanoseconds
+        mach_timebase_info_data_t info;
+        if (! mach_timebase_info(&info)) {
+            // time elapsed in Mach time units
+            const uint64_t loopDurationMTU = loopEndTime - loopBeginBrick.loopStartTime;
+            // elapsed time in nanoseconds
+            const double loopDuration = (double)loopDurationMTU * (double)info.numer / (double)info.denom;
+            // FIXME: check if UI actions executed + outsource constant!!
+            if (loopDuration < kMinLoopDurationTime) {
+                [NSThread sleepForTimeInterval:((kMinLoopDurationTime - loopDuration)/1000000000)];
+            }
+        }
+        loopBeginBrick.loopStartTime = mach_absolute_time();
+    } else if ([self isKindOfClass:[BroadcastWaitBrick class]]) {
+        NSDebug(@"broadcast wait");
+        //        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [(BroadcastWaitBrick*)self performBroadcastWait];
+        });
+    } else if ([self isKindOfClass:[IfLogicBeginBrick class]]) {
+        BOOL condition = [((IfLogicBeginBrick*)self) checkCondition];
+        if (! condition) {
+            brickIndex = (1 + [self.script.brickList indexOfObject:((IfLogicBeginBrick*)self).ifElseBrick]);
+        }
+        if (brickIndex == NSIntegerMin) {
+            NSError(@"The XML-Structure is wrong, please fix the project");
+        }
+    } else if ([self isKindOfClass:[IfLogicElseBrick class]]) {
+        brickIndex = (1 + [self.script.brickList indexOfObject:((IfLogicElseBrick*)self).ifEndBrick]);
+        if (brickIndex == NSIntegerMin) {
+            NSError(@"The XML-Structure is wrong, please fix the project");
+        }
+    } else if ([self isKindOfClass:[IfLogicEndBrick class]]) {
+        IfLogicBeginBrick *ifBeginBrick = ((IfLogicEndBrick*)self).ifBeginBrick;
+        if ([self.script.brickList indexOfObject:ifBeginBrick] == NSNotFound) {
+            abort();
+        }
+    } else if ([self isKindOfClass:[NoteBrick class]]) {
+        // nothing to do!
+    } else {
+        action = [self action];
+    }
+    
+    if (! self.script.object.program.isPlaying || ! action) {
+        return brickIndex;
+    }
+
+    __weak Brick *weakSelf = self;
+    //    if ([self isKindOfClass:[BroadcastScript class]]) { NSLog(@"  START waiting semaphore [%@]", [brick class]); }
+    self.semaphore = dispatch_semaphore_create(0);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (action && weakSelf.script.object.program.isPlaying) {
+            [weakSelf.script runAction:action completion:^{
+                NSDebug(@"Finished: %@", action);
+                dispatch_semaphore_signal(weakSelf.semaphore);
+                NSLog(@"  Duration for %@: %fms", [self class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
+            }];
+        } else {
+            dispatch_semaphore_signal(weakSelf.semaphore);
+        }
+    });
+    
+    //        double delayInSeconds = 0.2f;
+    //        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    //        dispatch_semaphore_wait(semaphore, popTime);
+    //    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+    //    if ([self isKindOfClass:[BroadcastScript class]]) { NSLog(@"  END waiting semaphore [%@]", [brick class]); }
+    return brickIndex;
+}
+
+- (void)removeReferences
+{
+    self.script = nil;
 }
 
 @end

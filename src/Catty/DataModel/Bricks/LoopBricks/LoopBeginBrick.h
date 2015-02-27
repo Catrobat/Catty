@@ -26,10 +26,10 @@
 @interface LoopBeginBrick : Brick
 
 @property (nonatomic, weak) LoopEndBrick *loopEndBrick;
+@property (nonatomic) uint64_t loopStartTime;
 
 - (void)reset;
 
-- (BOOL) checkCondition;
-
+- (BOOL)checkCondition;
 
 @end

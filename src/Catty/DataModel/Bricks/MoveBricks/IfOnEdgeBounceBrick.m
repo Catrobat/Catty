@@ -46,9 +46,7 @@
 
 - (SKAction*)action
 {
-    
     return [SKAction runBlock:^{
-        
         float width = self.script.object.size.width;
         float height = self.script.object.size.height;
         CGFloat xPosition = self.script.object.position.x;

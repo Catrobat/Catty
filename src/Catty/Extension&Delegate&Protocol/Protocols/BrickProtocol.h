@@ -26,6 +26,6 @@
 
 @protocol BrickProtocol <ScriptProtocol>
 
-@property (nonatomic, strong) Script *script;
+@property (nonatomic, weak) Script *script;
 
 @end

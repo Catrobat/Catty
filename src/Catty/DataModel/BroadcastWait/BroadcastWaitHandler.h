@@ -21,9 +21,12 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "BroadcastWaitDelegate.h"
 
-@interface BroadcastWaitHandler : NSObject <BroadcastWaitDelegate>
+@class SpriteObject;
+
+@interface BroadcastWaitHandler : NSObject
+
+- (void)registerSprite:(SpriteObject*)sprite forMessage:(NSString*)message;
 - (void)removeSpriteMessages;
 
 @end

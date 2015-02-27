@@ -26,7 +26,7 @@
 
 @interface Scene : SKScene
 
-@property(nonatomic, weak) Program* program;
+@property(nonatomic, weak) Program *program;
 
 - (id)initWithSize:(CGSize)size andProgram:(Program*)program;
 
@@ -39,5 +39,7 @@
 - (CGFloat)convertSceneToDegrees:(CGFloat)degrees;
 
 - (BOOL)touchedwith:(NSSet*)touches withX:(CGFloat) x andY:(CGFloat) y;
+- (void)stopProgramWithCompletion:(dispatch_block_t)completion;
+- (void)restartProgramWithCompletion:(dispatch_block_t)completion;
 
 @end

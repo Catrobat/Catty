@@ -29,6 +29,7 @@
 @class SpriteObject;
 @class ProgramLoadingInfo;
 @class GDataXMLDocument;
+@class Script;
 
 @interface Program : NSObject
 
@@ -61,6 +62,8 @@
 - (SpriteObject*)copyObject:(SpriteObject*)sourceObject
     withNameForCopiedObject:(NSString*)nameOfCopiedObject;
 - (BOOL)isEqualToProgram:(Program*)program;
+- (void)setupBroadcastHandling;
+- (void)broadcast:(NSString*)message senderScript:(Script*)script;
 
 + (instancetype)defaultProgramWithName:(NSString*)programName programID:(NSString*)programID;
 + (instancetype)lastUsedProgram;

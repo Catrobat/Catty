@@ -29,10 +29,13 @@
 
 @interface Brick : NSObject <BrickProtocol>
 
+#warning JUST FOR DEBUGGING PURPOSES
+@property (nonatomic, strong) dispatch_semaphore_t semaphore;
+
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readonly) kBrickType brickType;
 @property (nonatomic, strong, readonly) NSString *brickTitle;
-@property (nonatomic, strong) Script *script;
+@property (nonatomic, weak) Script *script;
 - (BOOL)isSelectableForObject;
 
 - (NSString*)description;
@@ -42,5 +45,9 @@
 - (BOOL)isEqualToBrick:(Brick*)brick;
 
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context AndErrorReporting:(BOOL)reportError;
+
+- (NSUInteger)runAction;
+
+- (void)removeReferences;
 
 @end

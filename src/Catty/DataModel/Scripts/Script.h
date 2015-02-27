@@ -34,22 +34,26 @@
 
 @interface Script : SKNode <ScriptProtocol, CBMutableCopying>
 
+@property (nonatomic, readonly, getter=isRunning) BOOL running;
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readonly) kBrickType brickType;
 @property (nonatomic, strong, readonly) NSString *brickTitle;
 - (BOOL)isSelectableForObject;
 
-@property (atomic) BOOL allowRunNextAction;
 @property (nonatomic, weak) SpriteObject *object;
 @property (nonatomic, strong) NSString *action;
 @property (strong, nonatomic) NSMutableArray *brickList;
 
-- (void)startWithCompletion:(dispatch_block_t)block;
+- (void)startWithCompletion:(dispatch_block_t)completion;
+
+- (void)restart;
 
 - (void)stop;
 
 - (NSString*)description;
 
 - (BOOL)isEqualToScript:(Script*)script;
+
+- (void)removeReferences;
 
 @end

@@ -38,6 +38,16 @@
 #import "CBXMLParser.h"
 #import "CBXMLSerializer.h"
 #import "CBMutableCopyContext.h"
+#import "BroadcastScript.h"
+#import "BroadcastWaitHandler.h"
+
+@interface Program()
+
+@property (nonatomic, strong) BroadcastWaitHandler *broadcastWaitHandler;
+@property (nonatomic, strong) NSMutableDictionary *spriteObjectBroadcastScripts;
+@property (nonatomic, strong) NSMutableDictionary *spriteObjectNameMap;
+
+@end
 
 @implementation Program
 
@@ -155,8 +165,6 @@
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     //object.originalSize;
-    //object.spriteManagerDelegate;
-    //object.broadcastWaitDelegate = self.broadcastWaitHandler;
     object.currentLook = nil;
 
     object.name = [Util uniqueName:objectName existingNames:[self allObjectNames]];
@@ -211,6 +219,31 @@
 }
 
 #pragma mark - Custom getter and setter
+- (BroadcastWaitHandler*)broadcastWaitHandler
+{
+    // lazy instantiation
+    if (! _broadcastWaitHandler) {
+        _broadcastWaitHandler = [BroadcastWaitHandler new];
+    }
+    return _broadcastWaitHandler;
+}
+
+- (NSMutableDictionary*)spriteObjectBroadcastScripts
+{
+    if (! _spriteObjectBroadcastScripts) {
+        _spriteObjectBroadcastScripts = [NSMutableDictionary dictionary];
+    }
+    return _spriteObjectBroadcastScripts;
+}
+
+- (NSMutableDictionary*)spriteObjectNameMap
+{
+    if (! _spriteObjectNameMap) {
+        _spriteObjectNameMap = [NSMutableDictionary dictionary];
+    }
+    return _spriteObjectNameMap;
+}
+
 - (NSMutableArray*)objectList
 {
     if (! _objectList) {
@@ -559,35 +592,81 @@
     return nil;
 }
 
-#pragma mark - Dealloc
 - (void)removeReferences
 {
-    if (! self.objectList)
-        return;
+    [self.broadcastWaitHandler removeSpriteMessages];
+    self.broadcastWaitHandler = nil;
+    self.spriteObjectBroadcastScripts = nil;
+    self.spriteObjectNameMap = nil;
+    self.playing = NO;
+    [self.objectList makeObjectsPerformSelector:@selector(removeReferences)];
+}
 
-    for (SpriteObject *sprite in self.objectList) {
-        sprite.broadcastWaitDelegate = nil;
-        sprite.spriteManagerDelegate = nil;
+#pragma mark - broadcasting handling
+- (void)setupBroadcastHandling
+{
+    // reset all lazy (!) instantiated objects
+    self.broadcastWaitHandler = nil;
+    self.spriteObjectBroadcastScripts = nil;
+    self.spriteObjectNameMap = nil;
 
-        if(sprite.scriptList) {
-            for (Script *script in sprite.scriptList) {
-                script.allowRunNextAction = NO;
-                if(script.brickList) {
-                    for (Brick *brick in script.brickList) {
-                        brick.script = nil;
-                    }
-                }
-                script.object = nil;
+    for (SpriteObject *spriteObject in self.objectList) {
+        NSMutableArray *broadcastScripts = [NSMutableArray array];
+        for (Script *script in spriteObject.scriptList) {
+            if (! [script isKindOfClass:[BroadcastScript class]]) {
+                continue;
             }
+
+            BroadcastScript *broadcastScript = (BroadcastScript*)script;
+            [self.broadcastWaitHandler registerSprite:spriteObject forMessage:broadcastScript.receivedMessage];
+            [broadcastScripts addObject:broadcastScript];
         }
-        sprite.program = nil;
+        [self.spriteObjectBroadcastScripts setObject:broadcastScripts forKey:spriteObject.name];
+        self.spriteObjectNameMap[spriteObject.name] = spriteObject;
     }
 }
 
-- (void)dealloc
+- (void)broadcast:(NSString*)message senderScript:(Script*)script
 {
-    [self removeReferences];
-    NSDebug(@"Dealloc Program");
+    NSDebug(@"Broadcast: %@", message);
+    for (NSString *spriteObjectName in self.spriteObjectBroadcastScripts) {
+        SpriteObject *spriteObject = self.spriteObjectNameMap[spriteObjectName];
+        NSArray *broadcastScriptList = self.spriteObjectBroadcastScripts[spriteObjectName];
+        for (BroadcastScript *broadcastScript in broadcastScriptList) {
+            if (! [broadcastScript.receivedMessage isEqualToString:message]) {
+                continue;
+            }
+
+            // case sender script equals receiver script => restart receiver script
+            // (sets brick action instruction pointer to zero)
+            if (broadcastScript == script) {
+                assert(broadcastScript.isRunning);
+                // only restart, no synchronization needed!
+                [broadcastScript restart]; // trigger script to restart
+                continue;
+            }
+
+            // case sender script does not equal receiver script => check if receiver script
+            // if broadcastScript is not running then start broadcastScript!
+            if (! broadcastScript.isRunning) {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                    [spriteObject startAndAddScript:broadcastScript completion:nil];
+                });
+                continue;
+            }
+
+            // broadcastScript running on HIGH-priority queue synchronization required!!
+            @synchronized(broadcastScript) {
+                // FIXME: should abort immediatelly as implemented in Catroid!!
+                // cancel all already running actions of this script!!
+                [broadcastScript restart]; // trigger script to restart
+                [broadcastScript removeAllActions];
+                for (Brick *brick in broadcastScript.brickList) {
+                    dispatch_semaphore_signal(brick.semaphore); // XXX: HACK!!
+                }
+            }
+        }
+    }
 }
 
 @end

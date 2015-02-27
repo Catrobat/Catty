@@ -25,14 +25,15 @@
 
 @interface BroadcastWaitHandler()
 @property (strong, nonatomic) NSMutableDictionary *spritesForMessages;
-@property (strong, nonatomic) NSLock *lock;
+//@property (strong, nonatomic) NSLock *lock;
 @end
 
 
 @implementation BroadcastWaitHandler
 
-- (NSMutableDictionary *)spritesForMessages
+- (NSMutableDictionary*)spritesForMessages
 {
+    // lazy instantiation
     if (!_spritesForMessages) {
         _spritesForMessages = [NSMutableDictionary dictionary];
     }
@@ -41,16 +42,18 @@
 
 - (void)registerSprite:(SpriteObject *)sprite forMessage:(NSString *)message
 {
-    [self.lock lock];
-    NSArray *sprites = [self.spritesForMessages objectForKey:message];
-    [self.spritesForMessages removeObjectForKey:message];
-    if (sprites == nil) {
-        sprites = [NSArray arrayWithObject:sprite];
-    } else {
-        sprites = [sprites arrayByAddingObject:sprite];
+//    [self.lock lock];
+    @synchronized (self) {
+        NSArray *sprites = [self.spritesForMessages objectForKey:message];
+        [self.spritesForMessages removeObjectForKey:message];
+        if (sprites == nil) {
+            sprites = [NSArray arrayWithObject:sprite];
+        } else {
+            sprites = [sprites arrayByAddingObject:sprite];
+        }
+        [self.spritesForMessages setObject:sprites forKey:message];
     }
-    [self.spritesForMessages setObject:sprites forKey:message];
-    [self.lock unlock];
+//    [self.lock unlock];
 }
 
 - (void)dealloc
@@ -58,38 +61,38 @@
     [self removeSpriteMessages];
 }
 
-- (void)performBroadcastWaitForMessage:(NSString*)message
-{
-    NSArray *sprites = [self.spritesForMessages objectForKey:message];
-    dispatch_semaphore_t sema = dispatch_semaphore_create([sprites count]);
-    dispatch_queue_t broadcastWaitQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
-    for (SpriteObject *sprite in sprites) {
-        if (! [sprite isKindOfClass:[SpriteObject class]]) {
-            NSError(@"sprite is not a SpriteObject...abort()");
-        }
-        __weak SpriteObject *weakSpriteObject = sprite;
-        dispatch_async(broadcastWaitQueue, ^{
-            [weakSpriteObject performBroadcastWaitScriptWithMessage:message with:sema];
-        });
-        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-    }
-    NSInteger numberOfSprites = [sprites count];
-    for (NSInteger counter = 0; counter < numberOfSprites; ++counter) {
-        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-    }
-    dispatch_group_t group = dispatch_group_create();
-    dispatch_group_async(group, broadcastWaitQueue, ^{});
-    for (NSInteger counter = 0; counter < numberOfSprites; ++counter) {
-        dispatch_semaphore_signal(sema);
-    }
-    // Block until we're ready
-}
+//- (void)performBroadcastWaitForMessage:(NSString*)message
+//{
+//    NSArray *sprites = [self.spritesForMessages objectForKey:message];
+//    dispatch_semaphore_t sema = dispatch_semaphore_create([sprites count]);
+////    dispatch_queue_t broadcastWaitQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+//    dispatch_queue_t broadcastWaitQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+//    for (SpriteObject *sprite in sprites) {
+//        if (! [sprite isKindOfClass:[SpriteObject class]]) {
+//            NSError(@"sprite is not a SpriteObject...abort()");
+//        }
+//        __weak SpriteObject *weakSpriteObject = sprite;
+//        dispatch_async(broadcastWaitQueue, ^{
+//            [weakSpriteObject performBroadcastWaitScriptWithMessage:message with:sema];
+//        });
+//        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+//    }
+//    NSInteger numberOfSprites = [sprites count];
+//    for (NSInteger counter = 0; counter < numberOfSprites; ++counter) {
+//        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+//    }
+//    dispatch_group_t group = dispatch_group_create();
+//    dispatch_group_async(group, broadcastWaitQueue, ^{});
+//    for (NSInteger counter = 0; counter < numberOfSprites; ++counter) {
+//        dispatch_semaphore_signal(sema);
+//    }
+//    // Block until we're ready
+//}
 
 - (void)removeSpriteMessages
 {
     if (self.spritesForMessages.count)
         [self.spritesForMessages removeAllObjects];
-        
 }
 
 @end
