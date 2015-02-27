@@ -21,13 +21,9 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "BrickCell.h"
-#import "BaseCollectionViewController.h"
-#import "iosCombobox.h"
-#import "BrickCategoryViewController.h"
 
-@class SpriteObject, FXBlurView;
-@interface ScriptCollectionViewController : UICollectionViewController <BrickCategoryViewControllerDelegate>
+@class SpriteObject;
+@interface ScriptCollectionViewController : UICollectionViewController
 
 @property (nonatomic, strong) SpriteObject *object;
 

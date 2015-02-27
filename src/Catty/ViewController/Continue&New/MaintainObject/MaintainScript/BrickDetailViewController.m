@@ -53,7 +53,6 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
 @property(nonatomic, assign) EditButtonIndex buttonIndex;
 @property(strong, nonatomic) CatrobatActionSheet *brickMenu;
 @property(strong, nonatomic) id<ScriptProtocol> scriptOrBrick;
-
 @end
 
 @implementation BrickDetailViewController
@@ -113,9 +112,9 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
     }
 }
 
-- (void)setBrick:(Brick *)brick
+- (void)setScriptOrBrick:(id<ScriptProtocol>)scriptOrBrick
 {
-    _brick = brick;
+    _scriptOrBrick = scriptOrBrick;
     _state = BrickDetailViewControllerStateBrickUpdated;
 }
 
@@ -127,38 +126,33 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
         case kButtonIndexCancel:
             _tempState = BrickDetailViewControllerStateNone;
             break;
-    
         case kButtonIndexDelete: {
-            if ([self.brick isKindOfClass:[Script class]])
+            if ([self.scriptOrBrick isKindOfClass:[Script class]])
                 _tempState = BrickDetailViewControllerStateDeleteScript;
              else
                 _tempState = BrickDetailViewControllerStateDeleteBrick;
-        }
+            }
             break;
-            
         case kButtonIndexCopy:
-            if (![self.brick isKindOfClass:[Script class]])
+            if (![self.scriptOrBrick isKindOfClass:[Script class]])
                 _tempState = BrickDetailViewControllerStateCopyBrick;
             break;
-            
         case kButtonIndexEdit:
             _tempState = BrickDetailViewControllerStateEditFormula;
             break;
-            
         case kButtonIndexAnimate:
             _tempState = BrickDetailViewControllerStateAnimateBrick;
             break;
-        
         default:
             break;
     }
-    
+
     [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
 #pragma mark - helper methods
 
-- (NSString *)deleteMenuItemWithBrick:(Brick *)brick
+- (NSString *)deleteMenuItemWithScriptOrBrick:(id<ScriptProtocol>)brick
 {
     NSString *title = nil;
     if ([brick isKindOfClass:IfLogicElseBrick.class] ||
@@ -178,30 +172,29 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
 
 
 // TODO: refactor later => use property in brick class for this...
-- (BOOL)isAnimateableBrick:(Brick *)brick
+- (BOOL)isAnimateableBrick:(id<ScriptProtocol>)scriptOrBrick
 {
-    if ([brick isKindOfClass:IfLogicElseBrick.class] ||
-        [brick isKindOfClass:IfLogicEndBrick.class] ||
-        [brick isKindOfClass:ForeverBrick.class] ||
-        [brick isKindOfClass:IfLogicBeginBrick.class] ||
-        [brick isKindOfClass:RepeatBrick.class]) {
+    if ([scriptOrBrick isKindOfClass:IfLogicElseBrick.class] ||
+        [scriptOrBrick isKindOfClass:IfLogicEndBrick.class] ||
+        [scriptOrBrick isKindOfClass:ForeverBrick.class] ||
+        [scriptOrBrick isKindOfClass:IfLogicBeginBrick.class] ||
+        [scriptOrBrick isKindOfClass:RepeatBrick.class]) {
         return YES;
     }
     return NO;
 }
 
-
-- (BOOL)isFormulaBrick:(Brick *)brick
+- (BOOL)isFormulaBrick:(id<ScriptProtocol>)scriptOrBrick
 {
-    return ([brick conformsToProtocol:@protocol(BrickFormulaProtocol)]);
+    return ([scriptOrBrick conformsToProtocol:@protocol(BrickFormulaProtocol)]);
 }
 
 - (NSInteger)getAbsoluteButtonIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex) {
         case kButtonIndexAnimate:
-            if(![self isAnimateableBrick:self.brick]) {
-                if(![self isFormulaBrick:self.brick])
+            if (! [self isAnimateableBrick:self.scriptOrBrick]) {
+                if(![self isFormulaBrick:self.scriptOrBrick])
                     return kButtonIndexCancel;
                 else
                     return kButtonIndexEdit;
@@ -209,7 +202,7 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
             break;
             
         case kButtonIndexEdit:
-            if(![self isAnimateableBrick:self.brick] || ![self isFormulaBrick:self.brick])
+            if ((! [self isAnimateableBrick:self.scriptOrBrick]) || (! [self isFormulaBrick:self.scriptOrBrick]))
                 return kButtonIndexCancel;
             break;
         
@@ -225,10 +218,10 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
 // TODO: move checks for brick type features (animatee, formula) to brick (category).
 - (void)setupBrickMenu
 {
-    CBAssert(self.brick);
+    CBAssert(self.scriptOrBrick);
     
     NSArray *buttons = nil;
-    if ([self isAnimateableBrick:self.brick] && [self isFormulaBrick:self.brick]) {
+    if ([self isAnimateableBrick:self.scriptOrBrick] && [self isFormulaBrick:self.scriptOrBrick]) {
         buttons = @[
                     kLocalizedCopyBrick,
                     kLocalizedAnimateBricks,
@@ -236,13 +229,13 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
                     ];
    
     }
-    else if ([self isAnimateableBrick:self.brick]) {
+    else if ([self isAnimateableBrick:self.scriptOrBrick]) {
         buttons = @[
                     kLocalizedCopyBrick,
                     kLocalizedAnimateBricks,
                     ];
     }
-    else if ([self isFormulaBrick:self.brick]) {
+    else if ([self isFormulaBrick:self.scriptOrBrick]) {
         buttons = @[
                     kLocalizedCopyBrick,
                     kLocalizedEditFormula
@@ -250,11 +243,10 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
     } else {
         buttons = @[ kLocalizedCopyBrick ];
     }
-    
+
     NSMutableArray *otherButtons = [NSMutableArray arrayWithArray:buttons];
-    BOOL isScript = [self.brick isKindOfClass:[Script class]];
-    NSString *destructiveTitle = isScript ? kLocalizedDeleteScript : [self deleteMenuItemWithBrick:self.brick];
-    
+    BOOL isScript = [self.scriptOrBrick isKindOfClass:[Script class]];
+    NSString *destructiveTitle = isScript ? kLocalizedDeleteScript : [self deleteMenuItemWithScriptOrBrick:self.scriptOrBrick];
     self.brickMenu = [[CatrobatActionSheet alloc] initWithTitle:nil
                                                        delegate:self
                                               cancelButtonTitle:kLocalizedClose
@@ -262,12 +254,10 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
                                               otherButtonTitles:nil];
 
     for (NSString *title in otherButtons) { [self.brickMenu addButtonWithTitle:title]; }
-    
     [self.brickMenu setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.6f]];
     [self.brickMenu setButtonTextColor:[UIColor lightOrangeColor]];
     [self.brickMenu setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
     self.brickMenu.transparentView = nil;
-    
     [self.brickMenu showInView:self.view];
 }
 

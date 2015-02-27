@@ -42,20 +42,15 @@ typedef NS_ENUM(NSUInteger, BrickDetailViewControllerState) {
 @end
 
 @protocol ScriptProtocol;
-@class Brick;
 
 @interface BrickDetailViewController : UIViewController
 @property (nonatomic, weak) id<BrickDetailViewControllerDelegate> delegate;
+@property (nonatomic, readonly) BrickDetailViewControllerState state;
 
 - (instancetype)initWithScriptOrBrick:(id<ScriptProtocol>)scriptOrBrick NS_DESIGNATED_INITIALIZER;
 + (BrickDetailViewController*)brickDetailViewControllerWithScriptOrBrick:(id<ScriptProtocol>)scriptOrBrick;
 
 // Disallow init.
 - (instancetype)init __attribute__((unavailable("init is not a supported initializer for this class.")));
-
-//@property (weak, nonatomic) id<BrickDetailViewControllerDelegate> delegate;
-@property (nonatomic, readonly) BrickDetailViewControllerState state;
-@property (nonatomic, readonly) Brick *brick;
-
 
 @end
