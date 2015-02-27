@@ -20,11 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
+#import "BrickCategoryViewController.h"
 
 @class SpriteObject;
-@interface ScriptCollectionViewController : UICollectionViewController
 
+@interface ScriptCollectionViewController : UICollectionViewController<BrickCategoryViewControllerDelegate>
 @property (nonatomic, strong) SpriteObject *object;
-
 @end

@@ -110,21 +110,19 @@
         NSDictionary *brickTypeClassNameMap = [self brickTypeClassNameMap];
         NSArray *allBrickTypes = [brickTypeClassNameMap allKeys];
         NSArray *orderedBrickTypes = [allBrickTypes sortedArrayUsingSelector:@selector(compare:)];
-
         // collect class names
         NSMutableArray *orderedBrickClassNamesMutable = [NSMutableArray arrayWithCapacity:[orderedBrickTypes count]];
         for (NSNumber *brickType in orderedBrickTypes) {
             [orderedBrickClassNamesMutable addObject:brickTypeClassNameMap[brickType]];
         }
-        orderedBrickClassNames = [orderedBrickClassNamesMutable copy]; // make NSArray out of NSMutableArray
+        orderedBrickClassNames = orderedBrickClassNamesMutable;
     }
     return orderedBrickClassNames;
 }
 
 - (NSArray*)selectableBricks
 {
-    // retrieve all bricks that are selectable and return their objects stored in NSArray
-    // and save this NSArray statically for performance reasons
+    // save array statically for performance reasons
     static NSArray *selectableBricks = nil;
     if (selectableBricks == nil) {
         NSArray *orderedBrickClassNames = [self brickClassNamesOrderedByBrickType];
@@ -135,12 +133,11 @@
             if ([brickOrScript conformsToProtocol:@protocol(BrickProtocol)]) {
                 id<BrickProtocol> brick = brickOrScript;
                 if (brick.isSelectableForObject) {
-                    
                     [selectableBricksMutableArray addObject:brick];
                 }
             }
         }
-        selectableBricks = [selectableBricksMutableArray copy]; // make NSArray out of NSMutableArray
+        selectableBricks = selectableBricksMutableArray;
     }
     return selectableBricks;
 }
@@ -156,13 +153,12 @@
                 Formula * formula =[[Formula alloc ] initWithInteger:0];
                 [brickF setFormula:formula ForLineNumber:0 AndParameterNumber:0];
                 [selectableBricksForCategoryMutable addObject:brickF];
-            } else{
+            } else {
                 [selectableBricksForCategoryMutable addObject:brick];
             }
-            
         }
     }
-    return [selectableBricksForCategoryMutable copy];
+    return (NSArray*)selectableBricksForCategoryMutable;
 }
 
 - (kBrickType)brickTypeForCategoryType:(kBrickCategoryType)categoryType andBrickIndex:(NSUInteger)index

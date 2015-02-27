@@ -47,7 +47,6 @@
 #import "LoopEndBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
-#import "BrickCategoryViewController.h"
 #import "UIUtil.h"
 #import "FormulaEditorButton.h"
 #import "NoteBrickTextField.h"
@@ -58,16 +57,15 @@
 #import "ScriptDataSource+Extensions.h"
 #import "FBKVOController.h"
 
-@interface ScriptCollectionViewController () <UICollectionViewDelegate,
-                                              LXReorderableCollectionViewDelegateFlowLayout,
-                                              LXReorderableCollectionViewDataSource,
-                                              UIViewControllerTransitioningDelegate,
-                                              BrickCellDelegate,
-                                              ScriptDataSourceDelegate,
-                                              iOSComboboxDelegate,
-                                              UITextFieldDelegate,
-                                              BrickDetailViewControllerDelegate,
-                                              BrickCategoryViewControllerDelegate>
+@interface ScriptCollectionViewController() <UICollectionViewDelegate,
+                                             LXReorderableCollectionViewDelegateFlowLayout,
+                                             LXReorderableCollectionViewDataSource,
+                                             UIViewControllerTransitioningDelegate,
+                                             BrickCellDelegate,
+                                             ScriptDataSourceDelegate,
+                                             iOSComboboxDelegate,
+                                             UITextFieldDelegate,
+                                             BrickDetailViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
@@ -393,7 +391,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)animateBrick
 {
-    
 }
 
 - (void)editFormula
@@ -406,9 +403,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     [self openFormulaEditor:formulaEditorButton];
 }
 
-#pragma mark - BrickCategoryViewController
-
-- (void)brickCategoryViewController:(BrickCategoryViewController *)brickCategoryViewController
+#pragma mark - BrickCategoryViewController delegates
+- (void)brickCategoryViewController:(BrickCategoryViewController*)brickCategoryViewController
              didSelectScriptOrBrick:(id<ScriptProtocol>)scriptOrBrick
 {
     _lastSelectedBrickCategory = scriptOrBrick.brickCategoryType;
@@ -418,7 +414,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - Brick Cell Delegate
-- (void)BrickCell:(BrickCell *)brickCell didSelectBrickCellButton:(SelectButton *)selectButton
+- (void)BrickCell:(BrickCell*)brickCell didSelectBrickCellButton:(SelectButton*)selectButton
 {
     NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:
                               [self.collectionView convertPoint:selectButton.center fromView:selectButton.superview]];
@@ -454,7 +450,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - Open Formula Editor
-- (void)openFormulaEditor:(FormulaEditorButton *)button
+- (void)openFormulaEditor:(FormulaEditorButton*)button
 {
     if([button isKindOfClass:[FormulaEditorButton class]]) {
         if([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
@@ -482,7 +478,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - Helpers
-
 - (void)removeBricksWithIndexPaths:(NSArray *)indexPaths
 {
     NSArray *sortedIndexPaths = [indexPaths sortedArrayUsingSelector:@selector(compare:)];
@@ -526,7 +521,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
-- (NSString *)keyWithSelectIndexPath:(NSIndexPath *)indexPath
+- (NSString*)keyWithSelectIndexPath:(NSIndexPath*)indexPath
 {
     return [NSString stringWithFormat:@"%@_%@", @(indexPath.section), @(indexPath.item)];
 }
@@ -566,26 +561,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                          }];
     }
 }
-
-//<<<<<<< HEAD
-//=======
-//- (void)textFieldDidEndEditing:(UITextField *)textField
-//{
-//    [textField resignFirstResponder];
-//}
-//
-//- (void)textFieldDidBeginEditing:(UITextField *)textField{
-//}
-//
-//- (void)textFieldFinished:(id)sender
-//{
-//    NoteBrickTextField *noteBrickTextField = (NoteBrickTextField*)sender;
-//    NoteBrick *noteBrick = (NoteBrick*)noteBrickTextField.cell.scriptOrBrick;
-//    noteBrick.note = noteBrickTextField.text;
-//    [noteBrickTextField update];
-//    [noteBrickTextField resignFirstResponder];
-//}
-//>>>>>>> 3c08963a3bf73e7476e3da259b93bb9be3785e82
 
 #pragma mark - check movelogic
 - (BOOL)checkLoopBeginToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick

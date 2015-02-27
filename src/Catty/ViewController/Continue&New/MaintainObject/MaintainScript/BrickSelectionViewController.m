@@ -25,12 +25,14 @@
 #import "ScriptCollectionViewController.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 
+@interface BrickSelectionViewController() <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+@end
+
 @implementation BrickSelectionViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.dataSource = self;
     self.delegate = self;
     self.view.backgroundColor = [UIColor darkBlueColor];
@@ -40,26 +42,25 @@
 }
 
 #pragma mark - UIPageViewControllerDataSource
-
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
-      viewControllerBeforeViewController:(UIViewController *)viewController
+- (UIViewController*)pageViewController:(UIPageViewController*)pageViewController
+     viewControllerBeforeViewController:(UIViewController*)viewController
 {
     BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
     NSUInteger pageIndex = bcVC.pageIndex - 1;
     return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:pageIndex];
 }
 
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
-       viewControllerAfterViewController:(UIViewController *)viewController
+- (UIViewController*)pageViewController:(UIPageViewController*)pageViewController
+     viewControllerAfterViewController:(UIViewController*)viewController
 {
     BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
     NSUInteger pageIndex = bcVC.pageIndex + 1;
     return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:pageIndex];
 }
 
-- (void)pageViewController:(UIPageViewController *)pageViewController
+- (void)pageViewController:(UIPageViewController*)pageViewController
         didFinishAnimating:(BOOL)finished
-   previousViewControllers:(NSArray *)previousViewControllers
+   previousViewControllers:(NSArray*)previousViewControllers
        transitionCompleted:(BOOL)completed
 {
     if (completed) {
@@ -69,7 +70,7 @@
 }
 
 #pragma mark - Pageindicator
-- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
+- (NSInteger)presentationCountForPageViewController:(UIPageViewController*)pageViewController
 {
     [self overwritePageControl];
     return kCategoryCount;
@@ -83,7 +84,7 @@
     pageControl.backgroundColor = [UIColor colorWithWhite:1.f alpha:0.1f];
 }
 
-- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
+- (NSInteger)presentationIndexForPageViewController:(UIPageViewController*)pageViewController
 {
     BrickCategoryViewController *bcvc = [pageViewController.viewControllers objectAtIndex:0];
     return bcvc.pageIndex;

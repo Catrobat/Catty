@@ -35,16 +35,16 @@
 @implementation BrickCategoryViewController
 
 #pragma mark - Init
-
-- (instancetype)initWithBrickCategory:(kBrickCategoryType)type {
+- (instancetype)initWithBrickCategory:(kBrickCategoryType)type
+{
     if (self = [super initWithCollectionViewLayout:[UICollectionViewFlowLayout new]]) {
-        _bricks = [BrickManager.sharedBrickManager selectableBricksForCategoryType:type];
-        _brickCategory = type;
+        self.bricks = [BrickManager.sharedBrickManager selectableBricksForCategoryType:type];
+        self.brickCategory = type;
     }
     return self;
 }
 
-+ (BrickCategoryViewController *)brickCategoryViewControllerForPageIndex:(NSInteger)pageIndex
++ (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(NSInteger)pageIndex
 {
     if (pageIndex >= 0 && pageIndex < kCategoryCount) {
         return [[self alloc] initWithBrickCategory:pageIndex];
@@ -53,90 +53,86 @@
 }
 
 #pragma mark - Getters
-
-- (NSUInteger)pageIndex {
+- (NSUInteger)pageIndex
+{
     return self.brickCategory;
 }
 
 #pragma mark - UIViewController Delegates
-
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.collectionView.collectionViewLayout = [UICollectionViewFlowLayout new];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.automaticallyAdjustsScrollViewInsets = YES;
-    
-    [self setupSubViews];
+    [self setupSubviews];
 }
 
 #pragma mark - Setup
-
-- (void)setupSubViews {
+- (void)setupSubviews
+{
     NSDictionary *allBrickTypes = [[BrickManager sharedBrickManager] classNameBrickTypeMap];
     for (NSString *className in allBrickTypes) {
         [self.collectionView registerClass:NSClassFromString([className stringByAppendingString:@"Cell"])
                 forCellWithReuseIdentifier:className];
     }
-    
     self.collectionView.backgroundColor = [UIColor clearColor];
     self.view.backgroundColor = [UIColor clearColor];
 }
 
-#pragma mark - Collection View Datasource
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+#pragma mark - Collection View Data Source
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView*)collectionView
+{
     return 1;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _bricks.count;
+- (NSInteger)collectionView:(UICollectionView*)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return [self.bricks count];
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
-                    cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionViewCell*)collectionView:(UICollectionView*)collectionView cellForItemAtIndexPath:(NSIndexPath*)indexPath
+{
     id<BrickProtocol> brick = [self.bricks objectAtIndex:indexPath.item];
     NSString *brickCellIdentifier = NSStringFromClass(brick.class);
     BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickCellIdentifier
-                                                                    forIndexPath:indexPath];
+                                                                     forIndexPath:indexPath];
     brickCell.scriptOrBrick = [self.bricks objectAtIndex:indexPath.item];
     [brickCell setupBrickCell];
     return brickCell;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(UICollectionView*)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
-  [collectionView deselectItemAtIndexPath:indexPath animated:NO];
-    BrickCell *cell = (BrickCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [collectionView deselectItemAtIndexPath:indexPath animated:NO];
+    BrickCell *cell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
     NSAssert(cell.scriptOrBrick, @"Error, no brick.");
-    if ([self.delegate respondsToSelector:@selector(brickCategoryViewController:didSelectBrick:)]) {
+    if ([self.delegate respondsToSelector:@selector(brickCategoryViewController:didSelectScriptOrBrick:)]) {
         [self.delegate brickCategoryViewController:self didSelectScriptOrBrick:cell.scriptOrBrick];
     }
 }
 
 #pragma mark - Collection View Layout
-
-- (CGSize)collectionView:(UICollectionView*)collectionView
-                  layout:(UICollectionViewLayout*)collectionViewLayout
-  sizeForItemAtIndexPath:(NSIndexPath*)indexPath {
+- (CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath*)indexPath
+{
     Brick *brick = [self.bricks objectAtIndex:indexPath.item];
     CGSize size = [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(brick.class)];
     return size;
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
+- (UIEdgeInsets)collectionView:(UICollectionView*)collectionView
                         layout:(UICollectionViewLayout*)collectionViewLayout
         insetForSectionAtIndex:(NSInteger)section
 {
     return UIEdgeInsetsMake(CGRectGetHeight(self.navigationController.navigationBar.bounds) +
-                            CGRectGetHeight([UIApplication sharedApplication].statusBarFrame) + kScriptCollectionViewTopInsets,
-                            0.0f,
-                            kScriptCollectionViewBottomInsets,
-                            0.0f);
+                            CGRectGetHeight([UIApplication sharedApplication].statusBarFrame) +
+                            kScriptCollectionViewTopInsets, 0.0f, kScriptCollectionViewBottomInsets, 0.0f);
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView
-                   layout:(UICollectionViewLayout *)collectionViewLayout
+- (CGFloat)collectionView:(UICollectionView*)collectionView
+                   layout:(UICollectionViewLayout*)collectionViewLayout
 minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     return 8.f;
