@@ -45,7 +45,7 @@
 - (UIViewController*)pageViewController:(UIPageViewController*)pageViewController
      viewControllerBeforeViewController:(UIViewController*)viewController
 {
-    BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
+    BrickCategoryViewController *bcVC = (BrickCategoryViewController*)viewController;
     NSUInteger pageIndex = bcVC.pageIndex - 1;
     return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:pageIndex];
 }
@@ -53,7 +53,7 @@
 - (UIViewController*)pageViewController:(UIPageViewController*)pageViewController
      viewControllerAfterViewController:(UIViewController*)viewController
 {
-    BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
+    BrickCategoryViewController *bcVC = (BrickCategoryViewController*)viewController;
     NSUInteger pageIndex = bcVC.pageIndex + 1;
     return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:pageIndex];
 }
@@ -78,8 +78,8 @@
 
 - (void)overwritePageControl
 {
-    UIPageControl * pageControl = [[self.view.subviews
-                                        filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class = %@", [UIPageControl class]]] lastObject];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"class = %@", [UIPageControl class]];
+    UIPageControl *pageControl = [[self.view.subviews filteredArrayUsingPredicate:predicate] lastObject];
     pageControl.currentPageIndicatorTintColor = [UIColor lightOrangeColor];
     pageControl.backgroundColor = [UIColor colorWithWhite:1.f alpha:0.1f];
 }
@@ -91,7 +91,6 @@
 }
 
 #pragma mark - Setup
-
 - (void)setupNavBar
 {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone

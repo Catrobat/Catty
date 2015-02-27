@@ -26,7 +26,7 @@
 #import "SegueDefines.h"
 #import "ScenePresenterViewController.h"
 #import "BrickCell.h"
-#import "Script.h"
+#import "WhenScript.h"
 #import "StartScript.h"
 #import "Brick.h"
 #import "LXReorderableCollectionViewFlowLayout.h"
@@ -125,7 +125,7 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bsvc];
     __weak typeof(&*self) weakself = self;
     [self presentViewController:navController animated:YES completion:^{
-        if (weakself.scriptDataSource.scriptList.count) {
+        if ([weakself.scriptDataSource.scriptList count]) {
             NSIndexPath *scrollToTopIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
             [weakself.collectionView scrollToItemAtIndexPath:scrollToTopIndexPath
                                             atScrollPosition:UICollectionViewScrollPositionTop
@@ -298,13 +298,12 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - ScriptDataSourceDelegate
-
-- (void)scriptDataSource:(ScriptDataSource *)scriptDataSource stateChanged:(ScriptDataSourceState)state error:(NSError *)error
+- (void)scriptDataSource:(ScriptDataSource *)scriptDataSource stateChanged:(ScriptDataSourceState)state error:(NSError*)error
 {
     NSLog(@"Script data source state changed: %lu", state);
 }
 
-- (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didRemoveSections:(NSIndexSet *)sections
+- (void)scriptDataSource:(ScriptDataSource*)scriptDataSource didRemoveSections:(NSIndexSet *)sections
 {
     [self.collectionView deleteSections:sections];
 }
@@ -411,6 +410,53 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     brickCategoryViewController.delegate = nil;
     [self dismissViewControllerAnimated:YES completion:NULL];
     NSLog(@"[ %@ ] selected", scriptOrBrick);
+
+#warning README first!
+    // NOTE: experimental code!!! should be moved to BrickManager
+    //       I've absolutely no idea what's going on here with this odd ScriptDataSource class...
+    //       I'd suggest implementing a datasource protocol in BrickManager instead
+    //       But work should be splitted up and moved into ProgramManager, ScriptManager, BrickManager...
+    if ([scriptOrBrick isKindOfClass:[Script class]]) {
+        // add script to script list
+        Script *script = (Script*)scriptOrBrick;
+        [self.object.scriptList addObject:script];
+    } else if ([scriptOrBrick isKindOfClass:[Brick class]]) {
+        // check if there exists a script yet
+        // if not, create StartScript first
+        if (! [self.object.scriptList count]) {
+            [self.object.scriptList addObject:[StartScript new]];
+        }
+        // now add brick to the first script in list
+        Script *firstScript = [self.object.scriptList firstObject];
+        Brick *brickToAdd = (Brick*)scriptOrBrick;
+        [firstScript.brickList addObject:brickToAdd];
+        if ([brickToAdd isKindOfClass:[IfLogicBeginBrick class]]) {
+            IfLogicBeginBrick *ifBeginBrick = (IfLogicBeginBrick*)brickToAdd;
+
+            IfLogicElseBrick *elseBrick = [IfLogicElseBrick new];
+            IfLogicEndBrick *endBrick = [IfLogicEndBrick new];
+
+            ifBeginBrick.ifElseBrick = elseBrick;
+            ifBeginBrick.ifEndBrick = endBrick;
+
+            elseBrick.ifBeginBrick = ifBeginBrick;
+            elseBrick.ifEndBrick = endBrick;
+
+            endBrick.ifBeginBrick = ifBeginBrick;
+            endBrick.ifElseBrick = elseBrick;
+
+            [firstScript.brickList addObject:elseBrick];
+            [firstScript.brickList addObject:endBrick];
+        } else if ([brickToAdd isKindOfClass:[LoopBeginBrick class]]) {
+            LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)brickToAdd;
+            LoopEndBrick *loopEndBrick = [LoopEndBrick new];
+            loopBeginBrick.loopEndBrick = loopEndBrick;
+            loopEndBrick.loopBeginBrick = loopBeginBrick;
+            [firstScript.brickList addObject:loopEndBrick];
+        }
+    }
+    [self.object.program saveToDisk];
+    [self.collectionView reloadData];
 }
 
 #pragma mark - Brick Cell Delegate

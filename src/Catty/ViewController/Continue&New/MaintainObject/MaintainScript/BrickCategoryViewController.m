@@ -23,11 +23,10 @@
 #import "BrickCategoryViewController.h"
 #import "BrickManager.h"
 #import "BrickCell.h"
-#import "BrickProtocol.h"
 #import "Brick.h"
 
 @interface BrickCategoryViewController ()
-@property (nonatomic, strong) NSArray *bricks;
+@property (nonatomic, strong, readwrite) NSArray *scriptsAndBricks;
 @property (nonatomic, assign) NSUInteger brickCategory;
 
 @end
@@ -38,7 +37,7 @@
 - (instancetype)initWithBrickCategory:(kBrickCategoryType)type
 {
     if (self = [super initWithCollectionViewLayout:[UICollectionViewFlowLayout new]]) {
-        self.bricks = [BrickManager.sharedBrickManager selectableBricksForCategoryType:type];
+        self.scriptsAndBricks = [BrickManager.sharedBrickManager selectableBricksForCategoryType:type];
         self.brickCategory = type;
     }
     return self;
@@ -89,16 +88,16 @@
 
 - (NSInteger)collectionView:(UICollectionView*)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self.bricks count];
+    return [self.scriptsAndBricks count];
 }
 
 - (UICollectionViewCell*)collectionView:(UICollectionView*)collectionView cellForItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    id<BrickProtocol> brick = [self.bricks objectAtIndex:indexPath.item];
-    NSString *brickCellIdentifier = NSStringFromClass(brick.class);
+    id<ScriptProtocol> scriptOrBrick = [self.scriptsAndBricks objectAtIndex:indexPath.item];
+    NSString *brickCellIdentifier = NSStringFromClass(scriptOrBrick.class);
     BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickCellIdentifier
                                                                      forIndexPath:indexPath];
-    brickCell.scriptOrBrick = [self.bricks objectAtIndex:indexPath.item];
+    brickCell.scriptOrBrick = scriptOrBrick;
     [brickCell setupBrickCell];
     return brickCell;
 }
@@ -117,7 +116,7 @@
 - (CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    Brick *brick = [self.bricks objectAtIndex:indexPath.item];
+    Brick *brick = [self.scriptsAndBricks objectAtIndex:indexPath.item];
     CGSize size = [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(brick.class)];
     return size;
 }

@@ -75,7 +75,7 @@
                     break;
                 }
             }
-            
+
             CGPoint positionTo = self.animateView.layer.position;
             positionTo.y = ceilf(CGRectGetMidY(self.animateView.layer.bounds) + kTopAnimationOffset);
             
