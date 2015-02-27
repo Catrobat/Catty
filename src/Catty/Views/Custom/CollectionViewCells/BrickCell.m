@@ -27,7 +27,6 @@
 #import "UIUtil.h"
 #import "iOSCombobox.h"
 #import "BrickManager.h"
-#import "BrickProtocol.h"
 #import "Script.h"
 #import "NoteBrick.h"
 #import "SpeakBrick.h"

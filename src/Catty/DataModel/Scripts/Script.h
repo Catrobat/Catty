@@ -41,7 +41,6 @@
 
 @property (atomic) BOOL allowRunNextAction;
 @property (nonatomic, weak) SpriteObject *object;
-@property (nonatomic, strong) NSString *action;
 @property (strong, nonatomic) NSMutableArray *brickList;
 
 - (void)startWithCompletion:(dispatch_block_t)block;

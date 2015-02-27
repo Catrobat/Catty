@@ -31,7 +31,7 @@
 
 @interface BrickCategoryViewController : UICollectionViewController
 @property(nonatomic, weak) id<BrickCategoryViewControllerDelegate> delegate;
-@property(nonatomic, readonly) NSArray *bricks;
+@property(nonatomic, strong, readonly) NSArray *scriptsAndBricks;
 @property(nonatomic, readonly) NSUInteger pageIndex;
 
 - (instancetype)initWithBrickCategory:(kBrickCategoryType)type NS_DESIGNATED_INITIALIZER;

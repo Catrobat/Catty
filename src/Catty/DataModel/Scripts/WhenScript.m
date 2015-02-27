@@ -21,8 +21,23 @@
  */
 
 #import "WhenScript.h"
+#import "CatrobatLanguageDefines.h"
+
+@interface WhenScript()
+
+@property (nonatomic, strong, readwrite) NSString *action;
+
+@end
 
 @implementation WhenScript
+
+- (id)init
+{
+    if (self = [super init]) {
+        self.action = kCatrobatWhenScriptActionTitle;
+    }
+    return self;
+}
 
 - (NSString*)brickTitle
 {

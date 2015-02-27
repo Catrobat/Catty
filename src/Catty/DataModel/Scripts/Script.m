@@ -97,9 +97,11 @@
     copiedScript.brickCategoryType = self.brickCategoryType;
     copiedScript.brickType = self.brickType;
     copiedScript.allowRunNextAction = self.allowRunNextAction;
-    if(self.action)
-        copiedScript.action = [NSString stringWithString:self.action];
-    
+    if ([self isKindOfClass:[WhenScript class]]) {
+        NSAssert([copiedScript isKindOfClass:[WhenScript class]],
+                 @"Copied script has to be an instance of WhenScript too!!");
+    }
+
     [context updateReference:self WithReference:copiedScript];
 
     // deep copy
@@ -130,22 +132,29 @@
 }
 
 #pragma mark - isEqualToScript
-- (BOOL)isEqualToScript:(Script *)script
+- (BOOL)isEqualToScript:(Script*)script
 {
-    if(self.brickCategoryType != script.brickCategoryType)
+    // check if subclass names are equal!
+    NSAssert([NSStringFromClass([self class]) isEqualToString:NSStringFromClass([script class])],
+             @"Given script has to be an instance of the same class as self!!");
+    if (self.brickCategoryType != script.brickCategoryType)
         return NO;
-    if(self.brickType != script.brickType)
+    if (self.brickType != script.brickType)
         return NO;
-    if(![Util isEqual:self.brickTitle toObject:script.brickTitle])
+    if (! [Util isEqual:self.brickTitle toObject:script.brickTitle])
         return NO;
-    if(![Util isEqual:self.action toObject:script.action])
+    if ([self isKindOfClass:[WhenScript class]]) {
+        WhenScript *selfWhenScript = (WhenScript*)self;
+        WhenScript *compareWhenScript = (WhenScript*)script;
+        if (! [Util isEqual:selfWhenScript.action toObject:compareWhenScript.action]) {
+            return NO;
+        }
+    }
+    if (! [Util isEqual:self.object.name toObject:script.object.name])
         return NO;
-    if(![Util isEqual:self.object.name toObject:script.object.name])
+    if ([self.brickList count] != [script.brickList count])
         return NO;
 
-    if([self.brickList count] != [script.brickList count])
-        return NO;
-    
     NSUInteger index;
     for(index = 0; index < [self.brickList count]; index++) {
         Brick *firstBrick = [self.brickList objectAtIndex:index];

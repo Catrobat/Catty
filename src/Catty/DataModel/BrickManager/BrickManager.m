@@ -21,7 +21,7 @@
  */
 
 #import "BrickManager.h"
-#import "BrickProtocol.h"
+#import "ScriptProtocol.h"
 #import "Util.h"
 #import "BrickFormulaProtocol.h"
 #import "Formula.h"
@@ -130,8 +130,8 @@
         for (NSString *className in orderedBrickClassNames) {
             // only add selectable brick/script objects to the array
             id brickOrScript = [[NSClassFromString(className) alloc] init];
-            if ([brickOrScript conformsToProtocol:@protocol(BrickProtocol)]) {
-                id<BrickProtocol> brick = brickOrScript;
+            if ([brickOrScript conformsToProtocol:@protocol(ScriptProtocol)]) {
+                id<ScriptProtocol> brick = brickOrScript;
                 if (brick.isSelectableForObject) {
                     [selectableBricksMutableArray addObject:brick];
                 }
@@ -146,11 +146,11 @@
 {
     NSArray *selectableBricks = [self selectableBricks];
     NSMutableArray *selectableBricksForCategoryMutable = [NSMutableArray arrayWithCapacity:[selectableBricks count]];
-    for (id<BrickProtocol> brick in selectableBricks) {
+    for (id<ScriptProtocol> brick in selectableBricks) {
         if (brick.brickCategoryType == categoryType) {
             if ([brick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
-                id<BrickFormulaProtocol> brickF =(id <BrickFormulaProtocol>) brick;
-                Formula * formula =[[Formula alloc ] initWithInteger:0];
+                id<BrickFormulaProtocol> brickF = (id<BrickFormulaProtocol>)brick;
+                Formula *formula =[[Formula alloc] initWithInteger:0];
                 [brickF setFormula:formula ForLineNumber:0 AndParameterNumber:0];
                 [selectableBricksForCategoryMutable addObject:brickF];
             } else {
