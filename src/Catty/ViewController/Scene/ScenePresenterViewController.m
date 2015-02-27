@@ -72,7 +72,6 @@
 @property (nonatomic, strong) UIView *gridView;
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) SKView *skView;
-@property (nonatomic) dispatch_queue_t restartProgramQueue;
 
 @end
 
@@ -445,30 +444,32 @@
 
 - (void)restartProgramAction:(UIButton*)sender
 {
-    self.view.userInteractionEnabled = NO;
-    dispatch_queue_t backgroundQueue = dispatch_queue_create("org.catrobat.restartProgram", 0);
-    __weak typeof(self)weakSelf = self;
-    dispatch_async(backgroundQueue, ^{
-        @synchronized(weakSelf) {
-            Scene *previousScene = (Scene*)weakSelf.skView.scene;
-#warning TODO: NOT YET IMPLEMENTED!!
-            [previousScene restartProgramWithCompletion:^{
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    if (! weakSelf.program) {
-                        [[[UIAlertView alloc] initWithTitle:kLocalizedCantRestartProgram
-                                                    message:nil
-                                                   delegate:weakSelf.menuView
-                                          cancelButtonTitle:kLocalizedOK
-                                          otherButtonTitles:nil] show];
-                        return;
-                    }
-                    [weakSelf.skView presentScene:previousScene];
-                    [weakSelf continueProgramAction:nil withDuration:0.0f];
-                    weakSelf.view.userInteractionEnabled = YES;
-                });
-            }];
-        }
-    });
+// TODO: NOT YET IMPLEMENTED!!
+    NSError(@"\n\n\n\n\n\n  !!! Not yet implemented !!!\n\n\n");
+    abort();
+//    self.view.userInteractionEnabled = NO;
+//    dispatch_queue_t backgroundQueue = dispatch_queue_create("org.catrobat.restartProgram", 0);
+//    __weak typeof(self)weakSelf = self;
+//    dispatch_async(backgroundQueue, ^{
+//        @synchronized(weakSelf) {
+//            Scene *previousScene = (Scene*)weakSelf.skView.scene;
+//            [previousScene restartProgramWithCompletion:^{
+//                dispatch_sync(dispatch_get_main_queue(), ^{
+//                    if (! weakSelf.program) {
+//                        [[[UIAlertView alloc] initWithTitle:kLocalizedCantRestartProgram
+//                                                    message:nil
+//                                                   delegate:weakSelf.menuView
+//                                          cancelButtonTitle:kLocalizedOK
+//                                          otherButtonTitles:nil] show];
+//                        return;
+//                    }
+//                    [weakSelf.skView presentScene:previousScene];
+//                    [weakSelf continueProgramAction:nil withDuration:0.0f];
+//                    weakSelf.view.userInteractionEnabled = YES;
+//                });
+//            }];
+//        }
+//    });
 }
 
 #pragma mark User Event Handling
@@ -702,16 +703,6 @@
 }
 
 #pragma mark - Getters & Setters
-#pragma mark Queue Getters & Setters
-- (dispatch_queue_t)restartProgramQueue
-{
-    // lazy instantiation
-    if (! _restartProgramQueue) {
-        _restartProgramQueue = dispatch_queue_create("org.catrobat.restartProgram", 0);
-    }
-    return _restartProgramQueue;
-}
-
 #pragma mark View Getters & Setters
 - (UIView*)gridView
 {

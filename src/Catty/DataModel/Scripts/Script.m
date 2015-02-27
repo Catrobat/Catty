@@ -205,9 +205,9 @@
 
 - (void)runAllActions
 {
-    NSString *preservedScriptName = NSStringFromClass([self class]);
-    NSString *preservedObjectName = self.object.name;
-    NSDebug(@"Started %@ in object %@", preservedScriptName, preservedObjectName);
+//    NSString *preservedScriptName = NSStringFromClass([self class]);
+//    NSString *preservedObjectName = self.object.name;
+//    NSDebug(@"Started %@ in object %@", preservedScriptName, preservedObjectName);
 
     self.running = YES;
     NSUInteger currentBrickIndex = 0;
@@ -230,7 +230,7 @@
         }
     }
     self.running = NO;
-    NSDebug(@"Finished %@ in object %@", preservedScriptName, preservedObjectName);
+//    NSDebug(@"Finished %@ in object %@", preservedScriptName, preservedObjectName);
 }
 
 - (void)removeReferences
