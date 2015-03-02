@@ -169,17 +169,15 @@
             LoopEndBrick *loopEndBrick = loopBeginBrick.loopEndBrick;
             brickIndex = (1 + [self.script.brickList indexOfObject:loopEndBrick]);
         }
-        [self.script runSequenceAndWait:YES];
+        [self.script runSequence];
     } else if ([self isKindOfClass:[LoopEndBrick class]]) {
-        uint64_t loopEndTime = mach_absolute_time();
         LoopBeginBrick *loopBeginBrick = ((LoopEndBrick*)self).loopBeginBrick;
         brickIndex = [self.script.brickList indexOfObject:loopBeginBrick];
         if (brickIndex == NSNotFound) {
             abort();
         }
-        
-        [self.script runSequenceAndWait:YES];
-        
+        [self.script runSequence];
+        uint64_t loopEndTime = mach_absolute_time();
         // information for converting from MTU to nanoseconds
         mach_timebase_info_data_t info;
         if (! mach_timebase_info(&info)) {
@@ -202,10 +200,10 @@
     } else if ([self isKindOfClass:[BroadcastBrick class]]) {
 //        action = [self action];
 //        [self.script.actionSequenceList addObject:action];
-        [self.script runSequenceAndWait:YES];
-        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             [self.script.object.program broadcast:((BroadcastBrick*)self).broadcastMessage senderScript:self.script];
         });
+        [self.script runSequence];
     } else if ([self isKindOfClass:[IfLogicBeginBrick class]]) {
         BOOL condition = [((IfLogicBeginBrick*)self) checkCondition];
         if (! condition) {
@@ -214,20 +212,20 @@
         if (brickIndex == NSIntegerMin) {
             NSError(@"The XML-Structure is wrong, please fix the project");
         }
-                [self.script runSequenceAndWait:YES];
+        [self.script runSequence];
     } else if ([self isKindOfClass:[IfLogicElseBrick class]]) {
         brickIndex = (1 + [self.script.brickList indexOfObject:((IfLogicElseBrick*)self).ifEndBrick]);
         if (brickIndex == NSIntegerMin) {
             NSError(@"The XML-Structure is wrong, please fix the project");
         }
-                [self.script runSequenceAndWait:YES];
+        [self.script runSequence];
     } else if ([self isKindOfClass:[IfLogicEndBrick class]]) {
         IfLogicBeginBrick *ifBeginBrick = ((IfLogicEndBrick*)self).ifBeginBrick;
         if ([self.script.brickList indexOfObject:ifBeginBrick] == NSNotFound) {
             abort();
         }
         
-        [self.script runSequenceAndWait:YES];
+        [self.script runSequence];
     } else if ([self isKindOfClass:[NoteBrick class]]) {
         // nothing to do!
     } else {

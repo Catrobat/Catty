@@ -216,11 +216,11 @@
         @synchronized(self) {
             if (self.restartScript) {
                 currentBrickIndex = 0;
-                [self runSequenceAndWait:NO];
+                [self runLastSequence];
                 self.restartScript = NO;
             }
             if (currentBrickIndex >= [self.brickList count]) {
-                [self runSequenceAndWait:YES];
+                [self runLastSequence];
                 break;
             }
             if (! self.object.program.isPlaying) {
@@ -236,33 +236,40 @@
 //    NSDebug(@"Finished %@ in object %@", preservedScriptName, preservedObjectName);
 }
 
-- (void)runSequenceAndWait:(BOOL)wait
+- (void)runSequence
 {
     __weak Script *weakSelf = self;
-    //    if ([self isKindOfClass:[BroadcastScript class]]) { NSLog(@"  START waiting semaphore [%@]", [brick class]); }
-    if(wait)
-        self.semaphore = dispatch_semaphore_create(0);
-    
-    NSMutableArray *temp = [self.actionSequenceList mutableCopy];
-    [weakSelf.actionSequenceList removeAllObjects];
+    self.semaphore = dispatch_semaphore_create(0);
 
     dispatch_async(dispatch_get_main_queue(), ^{
-        if ([temp count] /*&& weakSelf.object.program.isPlaying*/) {
-            [weakSelf runAction:[SKAction sequence:temp] completion:^{
+        if ([self.actionSequenceList count] && weakSelf.object.program.isPlaying) {
+            [weakSelf runAction:[SKAction group:self.actionSequenceList] completion:^{
                 NSDebug(@"Finished: %@", action);
-                //[weakSelf.actionSequenceList removeAllObjects];
-                if(wait)
-                    dispatch_semaphore_signal(weakSelf.semaphore);
+                [weakSelf.actionSequenceList removeAllObjects];
+                dispatch_semaphore_signal(weakSelf.semaphore);
                 //NSLog(@"  Duration for %@: %fms", [self class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
             }];
         } else {
-            if(wait)
-                dispatch_semaphore_signal(weakSelf.semaphore);
+            dispatch_semaphore_signal(weakSelf.semaphore);
         }
     });
     
-    if(wait)
-        dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+}
+- (void)runLastSequence
+{
+    __weak Script *weakSelf = self;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([self.actionSequenceList count] && weakSelf.object.program.isPlaying) {
+            [weakSelf runAction:[SKAction group:self.actionSequenceList] completion:^{
+                NSDebug(@"Finished: %@", action);
+                [weakSelf.actionSequenceList removeAllObjects];
+                    //NSLog(@"  Duration for %@: %fms", [self class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
+            }];
+        }
+    });
+
 }
 
 - (void)removeReferences

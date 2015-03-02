@@ -58,6 +58,6 @@
 
 - (void)removeReferences;
 
-- (void)runSequenceAndWait:(BOOL)wait;
+- (void)runSequence;
 
 @end
