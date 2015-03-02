@@ -48,6 +48,7 @@
         self.brickCategoryType = [brickManager brickCategoryTypeForBrickType:self.brickType];
         self.running = NO;
         self.restartScript = NO;
+        self.actionSequenceList = [NSMutableArray new];
     }
     return self;
 }
@@ -215,9 +216,11 @@
         @synchronized(self) {
             if (self.restartScript) {
                 currentBrickIndex = 0;
+                [self runSequenceAndWait:NO];
                 self.restartScript = NO;
             }
             if (currentBrickIndex >= [self.brickList count]) {
+                [self runSequenceAndWait:YES];
                 break;
             }
             if (! self.object.program.isPlaying) {
@@ -231,6 +234,35 @@
     }
     self.running = NO;
 //    NSDebug(@"Finished %@ in object %@", preservedScriptName, preservedObjectName);
+}
+
+- (void)runSequenceAndWait:(BOOL)wait
+{
+    __weak Script *weakSelf = self;
+    //    if ([self isKindOfClass:[BroadcastScript class]]) { NSLog(@"  START waiting semaphore [%@]", [brick class]); }
+    if(wait)
+        self.semaphore = dispatch_semaphore_create(0);
+    
+    NSMutableArray *temp = [self.actionSequenceList mutableCopy];
+    [weakSelf.actionSequenceList removeAllObjects];
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([temp count] /*&& weakSelf.object.program.isPlaying*/) {
+            [weakSelf runAction:[SKAction sequence:temp] completion:^{
+                NSDebug(@"Finished: %@", action);
+                //[weakSelf.actionSequenceList removeAllObjects];
+                if(wait)
+                    dispatch_semaphore_signal(weakSelf.semaphore);
+                //NSLog(@"  Duration for %@: %fms", [self class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
+            }];
+        } else {
+            if(wait)
+                dispatch_semaphore_signal(weakSelf.semaphore);
+        }
+    });
+    
+    if(wait)
+        dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
 }
 
 - (void)removeReferences

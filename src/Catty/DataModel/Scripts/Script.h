@@ -43,6 +43,8 @@
 @property (nonatomic, weak) SpriteObject *object;
 @property (nonatomic, strong) NSString *action;
 @property (strong, nonatomic) NSMutableArray *brickList;
+@property (strong, nonatomic) NSMutableArray *actionSequenceList;
+@property (nonatomic, strong) dispatch_semaphore_t semaphore;
 
 - (void)startWithCompletion:(dispatch_block_t)completion;
 
@@ -55,5 +57,7 @@
 - (BOOL)isEqualToScript:(Script*)script;
 
 - (void)removeReferences;
+
+- (void)runSequenceAndWait:(BOOL)wait;
 
 @end
