@@ -40,13 +40,10 @@
     return self;
 }
 
-- (SKAction*)action
+- (void)performBroadcast
 {
-    __weak BroadcastBrick* weakSelf = self;
-    return [SKAction runBlock:^{
-        NSDebug(@"Performing: %@", [weakSelf description]);
-        [weakSelf.script.object.program broadcast:weakSelf.broadcastMessage senderScript:weakSelf.script];
-    }];
+    NSDebug(@"Performing: %@", [weakSelf description]);
+    [self.script.object.program broadcast:self.broadcastMessage senderScript:self.script];
 }
 
 #pragma mark - Description
