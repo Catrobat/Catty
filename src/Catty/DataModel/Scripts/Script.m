@@ -228,7 +228,7 @@
                 break;
             }
             Brick *brick = [self.brickList objectAtIndex:currentBrickIndex];
-            currentBrickIndex = [brick runAction];
+            currentBrickIndex = [brick runActionWithIndex:currentBrickIndex];
             ++currentBrickIndex;
         }
     }
@@ -240,12 +240,11 @@
 {
     __weak Script *weakSelf = self;
     self.semaphore = dispatch_semaphore_create(0);
-
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         if ([self.actionSequenceList count] && weakSelf.object.program.isPlaying) {
             [weakSelf runAction:[SKAction group:self.actionSequenceList] completion:^{
                 NSDebug(@"Finished: %@", action);
-                [weakSelf.actionSequenceList removeAllObjects];
                 dispatch_semaphore_signal(weakSelf.semaphore);
                 //NSLog(@"  Duration for %@: %fms", [self class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
             }];
@@ -253,8 +252,8 @@
             dispatch_semaphore_signal(weakSelf.semaphore);
         }
     });
-    
     dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+    [self.actionSequenceList removeAllObjects];
 }
 - (void)runLastSequence
 {

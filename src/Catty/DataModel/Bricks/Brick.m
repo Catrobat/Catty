@@ -28,6 +28,8 @@
 #import "IfLogicEndBrick.h"
 #import "LoopEndBrick.h"
 #import "RepeatBrick.h"
+#import "BroadcastScript.h"
+#import "WaitBrick.h"
 #import "BroadcastBrick.h"
 #import "Formula.h"
 #import "Util.h"
@@ -149,16 +151,17 @@
 }
 
 #pragma mark - Brick actions
-- (NSUInteger)runAction
+- (NSUInteger)runActionWithIndex:(NSUInteger)brickIndex
 {
+    NSLog(@"%@",[self description]);
     NSDate *startTime = [NSDate date];
-    NSUInteger brickIndex = 0;
-    for (Brick *brick in self.script.brickList) {
-        if (self == brick) {
-            break;
-        }
-        ++brickIndex;
-    }
+//    NSUInteger brickIndex = 0;
+//    for (Brick *brick in self.script.brickList) {
+//        if (self == brick) {
+//            break;
+//        }
+//        ++brickIndex;
+//    }
     assert(brickIndex < [self.script.brickList count]);
     SKAction *action = nil;
     if ([self isKindOfClass:[LoopBeginBrick class]]) {
@@ -167,20 +170,17 @@
         BOOL condition = [loopBeginBrick checkCondition];
         if (! condition) {
             LoopEndBrick *loopEndBrick = loopBeginBrick.loopEndBrick;
-            brickIndex = (1 + [self.script.brickList indexOfObject:loopEndBrick]);
+            brickIndex = ([self.script.brickList indexOfObject:loopEndBrick]);
         }
-        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        if ([self.script.actionSequenceList count]) {
             [self.script runSequence];
-        });
+        }
     } else if ([self isKindOfClass:[LoopEndBrick class]]) {
         LoopBeginBrick *loopBeginBrick = ((LoopEndBrick*)self).loopBeginBrick;
         brickIndex = [self.script.brickList indexOfObject:loopBeginBrick];
         if (brickIndex == NSNotFound) {
             abort();
         }
-        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            [self.script runSequence];
-        });
         uint64_t loopEndTime = mach_absolute_time();
         // information for converting from MTU to nanoseconds
         mach_timebase_info_data_t info;
@@ -197,9 +197,9 @@
         loopBeginBrick.loopStartTime = mach_absolute_time();
     } else if ([self isKindOfClass:[BroadcastWaitBrick class]]) {
         NSDebug(@"broadcast wait");
-        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        if ([self.script.actionSequenceList count]) {
             [self.script runSequence];
-        });
+        }
         dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             [(BroadcastWaitBrick*)self performBroadcastWait];
         });
@@ -210,44 +210,48 @@
         dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             [(BroadcastBrick*)self performBroadcast];
         });
-        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        if ([self.script.actionSequenceList count]) {
             [self.script runSequence];
-        });
+        }
     } else if ([self isKindOfClass:[IfLogicBeginBrick class]]) {
         BOOL condition = [((IfLogicBeginBrick*)self) checkCondition];
         if (! condition) {
-            brickIndex = (1 + [self.script.brickList indexOfObject:((IfLogicBeginBrick*)self).ifElseBrick]);
+            brickIndex = ([self.script.brickList indexOfObject:((IfLogicBeginBrick*)self).ifElseBrick]);
         }
         if (brickIndex == NSIntegerMin) {
             NSError(@"The XML-Structure is wrong, please fix the project");
         }
-        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             [self.script runSequence];
-        });
     } else if ([self isKindOfClass:[IfLogicElseBrick class]]) {
-        brickIndex = (1 + [self.script.brickList indexOfObject:((IfLogicElseBrick*)self).ifEndBrick]);
+        brickIndex = ([self.script.brickList indexOfObject:((IfLogicElseBrick*)self).ifEndBrick]);
         if (brickIndex == NSIntegerMin) {
             NSError(@"The XML-Structure is wrong, please fix the project");
         }
-        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        if ([self.script.actionSequenceList count]) {
             [self.script runSequence];
-        });
+        }
     } else if ([self isKindOfClass:[IfLogicEndBrick class]]) {
         IfLogicBeginBrick *ifBeginBrick = ((IfLogicEndBrick*)self).ifBeginBrick;
         if ([self.script.brickList indexOfObject:ifBeginBrick] == NSNotFound) {
             abort();
         }
-        
-        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        if ([self.script.actionSequenceList count]) {
             [self.script runSequence];
-        });
+        }
     } else if ([self isKindOfClass:[NoteBrick class]]) {
         // nothing to do!
-    } else {
+    }else if ([self isKindOfClass:[WaitBrick class]]) {
+        if ([self.script.actionSequenceList count]) {
+            [self.script runSequence];
+        }
+        action = [self action];
+        [self.script.actionSequenceList addObject:action];
+        [self.script runSequence];
+    }else {
         action = [self action];
         [self.script.actionSequenceList addObject:action];
     }
-    
+
     return brickIndex;
 }
 

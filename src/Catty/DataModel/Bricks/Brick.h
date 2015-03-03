@@ -46,7 +46,7 @@
 
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context AndErrorReporting:(BOOL)reportError;
 
-- (NSUInteger)runAction;
+- (NSUInteger)runActionWithIndex:(NSUInteger)index;
 
 - (void)removeReferences;
 
