@@ -28,9 +28,9 @@
   BOOL fingerSwiped;
   CGPoint lastPoint;
 }
-@property (nonatomic,strong) PaintViewController* canvas;
+@property (nonatomic,weak) PaintViewController* canvas;
 
--(void)draw:(UIPanGestureRecognizer *)recognizer;
--(id)initWithDrawViewCanvas:(PaintViewController*)canvas;
+- (void)draw:(UIPanGestureRecognizer *)recognizer;
+- (id)initWithDrawViewCanvas:(PaintViewController*)canvas;
 
 @end

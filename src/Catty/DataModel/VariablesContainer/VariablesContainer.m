@@ -30,7 +30,7 @@
 
 static pthread_mutex_t variablesLock;
 
--(id)init
+- (id)init
 {
     self = [super init];
     if (self) {
@@ -39,7 +39,7 @@ static pthread_mutex_t variablesLock;
     return self;
 }
 
--(void)dealloc
+- (void)dealloc
 {
     NSDebug(@"Dealloc Variables");
     [self.objectVariableList removeAllObjects];

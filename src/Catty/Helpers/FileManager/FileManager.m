@@ -545,7 +545,7 @@
     [self addSkipBackupAttributeToItemAtURL:storePath];
 }
 
--(void)stopLoading:(NSURL *)projecturl andImageURL:(NSURL *)imageurl
+- (void)stopLoading:(NSURL *)projecturl andImageURL:(NSURL *)imageurl
 {
     if (self.programTaskDict.count > 0) {
         NSArray *temp = [self.programTaskDict allKeysForObject:projecturl];
@@ -564,7 +564,7 @@
  
 }
 
--(void)stopLoading:(NSURLSessionDownloadTask *)task
+- (void)stopLoading:(NSURLSessionDownloadTask *)task
 {
     [task suspend];
     NSURL* url = [self.programTaskDict objectForKey:task];

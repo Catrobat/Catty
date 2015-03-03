@@ -20,7 +20,7 @@
     return self;
 }
 
--(id)initWithFrame:(CGRect)frame title:(NSString *)title description:(NSString *)description{
+- (id)initWithFrame:(CGRect)frame title:(NSString *)title description:(NSString *)description{
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
@@ -33,7 +33,7 @@
     return self;
 }
 
--(id)initWithFrame:(CGRect)frame title:(NSString *)title description:(NSString *)description header:(UIView *)headerView{
+- (id)initWithFrame:(CGRect)frame title:(NSString *)title description:(NSString *)description header:(UIView *)headerView{
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
@@ -46,7 +46,7 @@
     return self;
 }
 
--(id)initWithFrame:(CGRect)frame title:(NSString *)title description:(NSString *)description image:(UIImage *)image{
+- (id)initWithFrame:(CGRect)frame title:(NSString *)title description:(NSString *)description image:(UIImage *)image{
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
@@ -60,7 +60,7 @@
     return self;
 }
 
--(id)initWithFrame:(CGRect)frame title:(NSString *)title description:(NSString *)description image:(UIImage *)image header:(UIView *)headerView{
+- (id)initWithFrame:(CGRect)frame title:(NSString *)title description:(NSString *)description image:(UIImage *)image header:(UIView *)headerView{
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
@@ -75,7 +75,7 @@
     return self;
 }
 
--(id)initWithFrame:(CGRect)frame nibNamed:(NSString *)nibName{
+- (id)initWithFrame:(CGRect)frame nibNamed:(NSString *)nibName{
     self = [super init];
     if (self) {
         // Initialization code
@@ -87,7 +87,7 @@
     return self;
 }
 
--(void)initializeConstants{
+- (void)initializeConstants{
     kTitleFont = [UIFont boldSystemFontOfSize:21];
     kTitleTextColor = [UIColor whiteColor];
     kDescriptionFont = [UIFont systemFontOfSize:14];
@@ -106,7 +106,7 @@
 }
 */
 
--(void)buildPanelWithFrame:(CGRect)frame{
+- (void)buildPanelWithFrame:(CGRect)frame{
     CGFloat panelTitleHeight = 0;
     CGFloat panelDescriptionHeight = 0;
     
@@ -187,11 +187,11 @@
 
 #pragma mark - Interaction Methods
 
--(void)panelDidAppear{
+- (void)panelDidAppear{
     //Implemented by subclass
 }
 
--(void)panelDidDisappear{
+- (void)panelDidDisappear{
     //Implemented by subclass
 }
 

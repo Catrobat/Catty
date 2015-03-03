@@ -42,7 +42,7 @@
     [super tearDown];
 }
 
--(void)testShowBrick
+- (void)testShowBrick
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];

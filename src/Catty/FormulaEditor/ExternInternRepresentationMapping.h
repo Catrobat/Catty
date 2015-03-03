@@ -23,18 +23,18 @@
 
 @interface ExternInternRepresentationMapping : NSObject
 
--(ExternInternRepresentationMapping *)init;
--(void)putMappingWithStart:(int)externStringStartIndex
+- (ExternInternRepresentationMapping *)init;
+- (void)putMappingWithStart:(int)externStringStartIndex
                     andEnd:(int)externStringEndIndex
         andInternListIndex:(int)internListIndex;
 
--(int)getExternTokenStartIndex:(int)internIndex;
+- (int)getExternTokenStartIndex:(int)internIndex;
 
--(int)getExternTokenEndIndex:(int)internIndex;
+- (int)getExternTokenEndIndex:(int)internIndex;
 
--(int)getInternTokenByExternIndex:(int)externIndex;
+- (int)getInternTokenByExternIndex:(int)externIndex;
 
--(int)getExternTokenStartOffset:(int)externIndex
+- (int)getExternTokenStartOffset:(int)externIndex
              withInternOffsetTo:(int)internOffsetTo;
 
 

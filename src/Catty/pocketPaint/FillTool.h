@@ -26,9 +26,9 @@
 @interface FillTool : NSObject
 
 
-@property (nonatomic,strong) PaintViewController* canvas;
+@property (nonatomic,weak) PaintViewController* canvas;
 
--(id)initWithDrawViewCanvas:(PaintViewController*)canvas;
--(UIImage *)fillImage:(UIImage*)image startingPoint:(CGPoint)point andColor:(UIColor*)color;
--(void)fillAction:(UITapGestureRecognizer*)recognizer;
+- (id)initWithDrawViewCanvas:(PaintViewController*)canvas;
+- (UIImage *)fillImage:(UIImage*)image startingPoint:(CGPoint)point andColor:(UIColor*)color;
+- (void)fillAction:(UITapGestureRecognizer*)recognizer;
 @end

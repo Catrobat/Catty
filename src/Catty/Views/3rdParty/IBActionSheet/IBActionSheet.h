@@ -53,7 +53,7 @@ typedef NS_ENUM(NSInteger, IBActionSheetButtonCornerType) {
 // Protocol needed to receive notifications from the IBActionSheet (Will receive UIActionSheet notifications as well)
 @protocol IBActionSheetDelegate <NSObject>
 
--(void)actionSheet:(IBActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
+- (void)actionSheet:(IBActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 @end
 

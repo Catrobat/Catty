@@ -42,7 +42,7 @@
     [super tearDown];
 }
 
--(void)testChangeGhostEffectByNBrickPositive
+- (void)testChangeGhostEffectByNBrickPositive
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
@@ -69,7 +69,7 @@
 }
 
 
--(void)testChangeGhostEffectByNBrickNegative
+- (void)testChangeGhostEffectByNBrickNegative
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
@@ -97,7 +97,7 @@
 }
 
 
--(void)testChangeGhostEffectByNBrickOutOfRange
+- (void)testChangeGhostEffectByNBrickOutOfRange
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];
@@ -125,7 +125,7 @@
     XCTAssertEqual(object.alpha, 0.0f, @"ChangeGhostEffectBrick is not correctly calculated");
 }
 
--(void)testChangeGhostEffectByNBrickWrongInput
+- (void)testChangeGhostEffectByNBrickWrongInput
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];

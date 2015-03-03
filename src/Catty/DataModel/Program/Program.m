@@ -69,6 +69,7 @@
 
     [program addObjectWithName:kLocalizedBackground];
     [program addObjectWithName:kLocalizedMyObject];
+    program.playing = NO;
     NSDebug(@"%@", [program description]);
     return program;
 }
@@ -102,6 +103,7 @@
         program = [catrobatParser parseAndCreateProgram];
     }
     program.header.programID = loadingInfo.programID;
+    program.playing = NO;
 
     if (! program)
         return nil;
@@ -255,7 +257,7 @@
 {
     NSString *sourceProgramPath = [[self class] projectPathForProgramWithName:sourceProgramName programID:sourceProgramID];
     destinationProgramName = [Util uniqueName:destinationProgramName existingNames:[self allProgramNames]];
-    NSString *destinationProgramPath = [[self class] projectPathForProgramWithName:destinationProgramName programID:sourceProgramID];
+    NSString *destinationProgramPath = [[self class] projectPathForProgramWithName:destinationProgramName programID:nil];
 
     AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     [appDelegate.fileManager copyExistingDirectoryAtPath:sourceProgramPath toPath:destinationProgramPath];
@@ -560,7 +562,7 @@
 #pragma mark - Dealloc
 - (void)removeReferences
 {
-    if(! self.objectList)
+    if (! self.objectList)
         return;
 
     for (SpriteObject *sprite in self.objectList) {

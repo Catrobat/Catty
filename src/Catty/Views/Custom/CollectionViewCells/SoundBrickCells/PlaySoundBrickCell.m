@@ -28,7 +28,7 @@
 
 @implementation PlaySoundBrickCell
 
--(void)drawRect:(CGRect)rect
+- (void)drawRect:(CGRect)rect
 {
     [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.soundBrickVioletColor strokeColor:UIColor.soundBrickStrokeColor height:mediumBrick width:[Util screenWidth]];
 }

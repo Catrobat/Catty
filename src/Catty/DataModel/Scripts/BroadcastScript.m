@@ -29,7 +29,7 @@
     return kLocalizedWhenIReceive;
 }
 
--(NSString*)description
+- (NSString*)description
 {
     NSMutableString *ret = [[NSMutableString alloc] initWithString:@"BroadcastScript: "];
     [ret appendString:self.receivedMessage];

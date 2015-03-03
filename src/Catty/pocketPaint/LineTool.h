@@ -27,9 +27,9 @@
   CGPoint lastPoint;
 }
 
-@property (nonatomic,strong) PaintViewController* canvas;
+@property (nonatomic,weak) PaintViewController* canvas;
 
--(void)drawLine:(UIPanGestureRecognizer *)recognizer;
--(id)initWithDrawViewCanvas:(PaintViewController*)canvas;
+- (void)drawLine:(UIPanGestureRecognizer *)recognizer;
+- (id)initWithDrawViewCanvas:(PaintViewController*)canvas;
 
 @end

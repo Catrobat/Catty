@@ -26,7 +26,7 @@
 
 @implementation SaveToProjectActivity
 
--(id)initWithImagePath:(NSString *)path
+- (id)initWithImagePath:(NSString *)path
 {
     self = [super init];
     if (self)
@@ -66,7 +66,7 @@
 }
 
 
--(void)performActivity
+- (void)performActivity
 {
     //Dimensions of Screenshot???
     NSString *pngFilePath = [NSString stringWithFormat:@"%@/manual_screenshot.png",self.path];

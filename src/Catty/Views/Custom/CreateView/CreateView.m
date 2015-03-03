@@ -276,7 +276,7 @@
     downloadAgainButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     [downloadAgainButton setTitleColor:[UIColor lightOrangeColor] forState:UIControlStateNormal];
     [downloadAgainButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-    [downloadAgainButton setTitle:@"Download" forState:UIControlStateNormal];
+    [downloadAgainButton setTitle:kLocalizedDownload forState:UIControlStateNormal];
     [downloadAgainButton addTarget:target action:@selector(downloadAgain) forControlEvents:UIControlEventTouchUpInside];
     [downloadAgainButton setTintColor:[UIColor lightOrangeColor]];
     downloadAgainButton.tag = kDownloadAgainButtonTag;
@@ -339,7 +339,7 @@
     UIButton *reportButton = [[UIButton alloc] initWithFrame:CGRectMake(view.frame.size.width/15,view.frame.size.height + height*0.01f, 130, 25)];
     reportButton.titleLabel.font = [UIFont boldSystemFontOfSize:10];
     [reportButton.titleLabel setTintColor:[UIColor lightOrangeColor]];
-    [reportButton setTitle:@"Report as inappropriate" forState:UIControlStateNormal];
+    [reportButton setTitle:kLocalizedReportProgram forState:UIControlStateNormal];
     [reportButton addTarget:target action:@selector(reportProgram) forControlEvents:UIControlEventTouchUpInside];
     [reportButton sizeToFit];
     [reportButton setTintColor:[UIColor lightOrangeColor]];

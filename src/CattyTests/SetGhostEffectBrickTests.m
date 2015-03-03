@@ -42,7 +42,7 @@
     [super tearDown];
 }
 
--(void)testSetGhostEffectBrickPositve
+- (void)testSetGhostEffectBrickPositve
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
@@ -70,7 +70,7 @@
     XCTAssertEqual(object.alpha, 0.8f, @"ShowBrick is not correctly calculated");
 }
 
--(void)testSetGhostEffectBrickNegative
+- (void)testSetGhostEffectBrickNegative
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);

@@ -24,7 +24,7 @@
 
 @implementation UndoManager
 
--(id) initWithDrawViewCanvas:(PaintViewController *)canvas
+- (id) initWithDrawViewCanvas:(PaintViewController *)canvas
 {
   self = [super init];
   if(self)
@@ -56,7 +56,7 @@
   
 }
 
--(void)updateUndoToolBarItems
+- (void)updateUndoToolBarItems
 {
   if (!self.canvas.undoManager.canUndo) {
     self.canvas.undo.enabled = NO;

@@ -187,7 +187,7 @@ bool useTestUrl = true;
     }
 }
 
--(void)loadingIndicator:(BOOL)value
+- (void)loadingIndicator:(BOOL)value
 {
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = value;

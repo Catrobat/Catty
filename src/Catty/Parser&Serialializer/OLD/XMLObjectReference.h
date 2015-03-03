@@ -28,6 +28,6 @@
 @property (nonatomic, weak) id object;
 
 
--(id)initWithParent:(XMLObjectReference*)parent andObject:(id)object;
+- (id)initWithParent:(XMLObjectReference*)parent andObject:(id)object;
 
 @end

@@ -49,9 +49,6 @@
     return self;
 }
 
-#define SIMULATOR_DEBUGGING_ENABLED 0
-#define SIMULATOR_DEBUGGING_BASE_PATH @"/Users/ralph/Desktop/"
-
 #pragma mark - Program serialization
 + (GDataXMLDocument*)xmlDocumentForProgram:(Program*)program
 {
@@ -84,7 +81,6 @@
         NSString *xmlString = [NSString stringWithFormat:@"%@\n%@", kCatrobatHeaderXMLDeclaration,
                                [document.rootElement XMLStringPrettyPrinted:YES]];
 
-#if !SIMULATOR_DEBUGGING_ENABLED
         // FIXME: [GDataXMLElement XMLStringPrettyPrinted] always adds "&amp;" to already escaped strings
         //        Unfortunately XMLStringPrettyPrinted only escapes "&" to "&amp;" and ignores all other
         //        invalid characters that have to be escaped. Therefore we can't rely on
@@ -95,44 +91,11 @@
         xmlString = [xmlString stringByReplacingOccurrencesOfString:@"&amp;quot;" withString:@"&quot;"];
         xmlString = [xmlString stringByReplacingOccurrencesOfString:@"&amp;apos;" withString:@"&apos;"];
         // }
-#else
-        xmlString = [xmlString stringByReplacingOccurrencesOfString:@"&amp;lt;" withString:@"<"];
-        xmlString = [xmlString stringByReplacingOccurrencesOfString:@"&amp;gt;" withString:@">"];
-        xmlString = [xmlString stringByReplacingOccurrencesOfString:@"&amp;amp;" withString:@"&"];
-        xmlString = [xmlString stringByReplacingOccurrencesOfString:@"&amp;quot;" withString:@"\""];
-        xmlString = [xmlString stringByReplacingOccurrencesOfString:@"&amp;apos;" withString:@"'"];
-#endif
 
         NSLog(@"%@", xmlString);
         NSError *error = nil;
 
-#if SIMULATOR_DEBUGGING_ENABLED
-        NSString *referenceXmlString = [NSString stringWithFormat:@"%@\n%@",
-                                        kCatrobatHeaderXMLDeclaration,
-                                        [program.XMLdocument.rootElement XMLStringPrettyPrinted:YES]];
-        NSString *referenceXmlPath = [NSString stringWithFormat:@"%@/original.xml", SIMULATOR_DEBUGGING_BASE_PATH];
-        NSString *generatedXmlPath = [NSString stringWithFormat:@"%@/generated.xml", SIMULATOR_DEBUGGING_BASE_PATH];
-        [referenceXmlString writeToFile:referenceXmlPath
-                             atomically:YES
-                               encoding:NSUTF8StringEncoding
-                                  error:&error];
-        [xmlString writeToFile:generatedXmlPath
-                    atomically:YES
-                      encoding:NSUTF8StringEncoding
-                         error:&error];
-
-        error = nil;
-        //#import <Foundation/NSTask.h> // debugging for OSX
-        //        NSTask *task = [[NSTask alloc] init];
-        //        [task setLaunchPath:@"/usr/bin/diff"];
-        //        [task setArguments:[NSArray arrayWithObjects:referenceXmlPath, generatedXmlPath, nil]];
-        //        [task setStandardOutput:[NSPipe pipe]];
-        //        [task setStandardInput:[NSPipe pipe]]; // piping to NSLog-tty (terminal emulator)
-        //        [task launch];
-        //        [task release];
-#endif
-
-        if(![xmlString writeToFile:self.xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error])
+        if (! [xmlString writeToFile:self.xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error])
             NSError(@"Program could not saved to disk! %@", error);
 
         // update last access time

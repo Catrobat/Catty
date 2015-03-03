@@ -28,6 +28,6 @@
 
 @interface InternFormulaKeyboardAdapter : NSObject
 
--(NSMutableArray *)createInternTokenListByResourceId:(int)resource name:(NSString*)name;
+- (NSMutableArray *)createInternTokenListByResourceId:(int)resource name:(NSString*)name;
 
 @end

@@ -24,14 +24,14 @@
 #import "PaintViewController.h"
 
 @interface ImagePicker : NSObject <UIImagePickerControllerDelegate,UINavigationControllerDelegate>
-@property (nonatomic,strong) PaintViewController* canvas;
+@property (nonatomic,weak) PaintViewController* canvas;
 @property (nonatomic,strong) UIImage *originalImage;
 
--(id)initWithDrawViewCanvas:(PaintViewController*)canvas;
+- (id)initWithDrawViewCanvas:(PaintViewController*)canvas;
 
--(void)cameraImagePickerAction;
+- (void)cameraImagePickerAction;
 
--(void)imagePickerAction;
+- (void)imagePickerAction;
 
 
 @end

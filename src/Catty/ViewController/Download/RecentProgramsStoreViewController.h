@@ -27,7 +27,7 @@
 
 @protocol RecentProgramsStoreDelegate <NSObject>
 
--(void)reloadWithProject:(CatrobatProgram *)loadedProject;
+- (void)reloadWithProject:(CatrobatProgram *)loadedProject;
 
 @end
 

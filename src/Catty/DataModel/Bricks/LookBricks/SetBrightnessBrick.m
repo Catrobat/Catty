@@ -108,7 +108,7 @@
     };
 }
 
--(NSString*)pathForLook:(Look*)look
+- (NSString*)pathForLook:(Look*)look
 {
   return [NSString stringWithFormat:@"%@images/%@", [self.script.object projectPath], look.fileName];
 }

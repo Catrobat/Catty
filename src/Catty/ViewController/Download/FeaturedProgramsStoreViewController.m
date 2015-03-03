@@ -142,7 +142,7 @@
 
 
 
--(void)loadImage:(NSString*)imageURLString forCell:(DarkBlueGradientFeaturedCell *) imageCell atIndexPath:(NSIndexPath*)indexPath
+- (void)loadImage:(NSString*)imageURLString forCell:(DarkBlueGradientFeaturedCell *) imageCell atIndexPath:(NSIndexPath*)indexPath
 {
     
     [self loadingIndicator:YES];
@@ -190,7 +190,7 @@
     [self showLoadingView];
 }
 
--(void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response
+- (void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response
 {
     if (data == nil) {
         if (self.shouldShowAlert) {
@@ -244,7 +244,7 @@
     [self showLoadingView];
   
 }
--(void)loadInfosWith:(NSData*)data andResponse:(NSURLResponse*)response
+- (void)loadInfosWith:(NSData*)data andResponse:(NSURLResponse*)response
 {
     if (data == nil) {
         if (self.shouldShowAlert) {
@@ -311,7 +311,7 @@
     [self loadingIndicator:NO];
 }
 
--(void)loadingIndicator:(BOOL)value
+- (void)loadingIndicator:(BOOL)value
 {
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = value;
@@ -404,7 +404,7 @@
 }
 
 #pragma mark - BackButtonDelegate
--(void)back {
+- (void)back {
     [self.navigationController popViewControllerAnimated:YES];
 }
 

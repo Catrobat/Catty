@@ -146,7 +146,7 @@
     
 }
 
--(double) interpretFunction:(Function)function forSprite:(SpriteObject*)sprite
+- (double) interpretFunction:(Function)function forSprite:(SpriteObject*)sprite
 {
     
     double left = 0;

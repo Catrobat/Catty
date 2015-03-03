@@ -225,7 +225,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 #pragma mark - localizeView
 
--(void)localizeView
+- (void)localizeView
 {
   self.calcButton.titleLabel.text = kUIFENumbers;
   self.mathbutton.titleLabel.text = kUIFEMath;
@@ -380,7 +380,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
 }
 
--(BOOL)changeFormula
+- (BOOL)changeFormula
 {
     if ([self saveIfPossible]) {
         return YES;
@@ -566,7 +566,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.brickCell setupBrickCell];
 }
 
--(BOOL)saveIfPossible
+- (BOOL)saveIfPossible
 {
         if(self.internFormula != nil) {
             InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
@@ -658,7 +658,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
   [self.variableScrollView flashScrollIndicators];
 }
 
--(void)hideScrollViews
+- (void)hideScrollViews
 {
     self.mathScrollView.hidden = YES;
     self.calcScrollView.hidden = YES;
@@ -693,7 +693,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return blockedCharacterSet;
 }
 
--(void)updateVariablePickerData
+- (void)updateVariablePickerData
 {
     VariablesContainer *variables = self.object.program.variables;
     [self.variableSourceProgram removeAllObjects];
@@ -712,7 +712,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 
--(void)saveVariable:(NSString*)name
+- (void)saveVariable:(NSString*)name
 {
     for (UserVariable* variable in self.object.program.variables.programVariableList) {
         if ([variable.name isEqualToString:name]) {

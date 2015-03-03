@@ -67,7 +67,6 @@
     // no context given => this method has been called from VariablesContainer+CBXMLHandler
     userVariable = [UserVariable new];
     userVariable.name = userVariableName;
-    NSLog(@"Created new UserVariable: %@", userVariable.name);
     return userVariable;
 }
 

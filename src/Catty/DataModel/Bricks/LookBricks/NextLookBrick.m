@@ -39,7 +39,7 @@
     return [SKAction runBlock:[self actionBlock]];
 }
 
--(dispatch_block_t)actionBlock
+- (dispatch_block_t)actionBlock
 {
 return ^{
     NSDebug(@"Performing: %@", self.description);
@@ -77,7 +77,7 @@ return ^{
 }
 
 
--(NSString*)pathForLook:(Look*)look
+- (NSString*)pathForLook:(Look*)look
 {
   return [NSString stringWithFormat:@"%@%@/%@", [self.script.object projectPath], kProgramImagesDirName, look.fileName];
 }

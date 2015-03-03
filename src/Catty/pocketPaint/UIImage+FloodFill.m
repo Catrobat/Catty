@@ -35,18 +35,18 @@
      */
       
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    
-    CGImageRef imageRef = [self CGImage];
-    
+      CGImageRef imageRef = self.CGImage;
+//    
+//    
     NSUInteger width = CGImageGetWidth(imageRef);
     NSUInteger height = CGImageGetHeight(imageRef);
-    
+//    
     NSUInteger bytesPerPixel = CGImageGetBitsPerPixel(imageRef) / 8;
     NSUInteger bytesPerRow = CGImageGetBytesPerRow(imageRef);
     NSUInteger bitsPerComponent = CGImageGetBitsPerComponent(imageRef);
     
-    unsigned char *imageData = malloc(bytesPerRow * height);
-    
+    unsigned char *imageData = calloc(height*bytesPerRow,4);
+      memset(imageData, 0, height*bytesPerRow*4);
     CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
     
     CGContextRef context = CGBitmapContextCreate(imageData,
@@ -56,16 +56,18 @@
                                                  bytesPerRow,
                                                  colorSpace,
                                                  CGImageGetBitmapInfo(imageRef));
+      
+      
     CGColorSpaceRelease(colorSpace);
  
     CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
-    
+//      imageData = CGBitmapContextGetData(context);
       //Get color at start point
       //Get color at start point
       int x = startPoint.x;
       int y = startPoint.y;
-      unsigned int byteIndex = (unsigned int)((bytesPerRow * y) + x * bytesPerPixel);
-//    NSUInteger byteIndex = (bytesPerRow * startPoint.y) + startPoint.x * bytesPerPixel;
+//      unsigned int byteIndex = (unsigned int)((bytesPerRow * y) + x * bytesPerPixel);
+    NSUInteger byteIndex = (bytesPerRow * startPoint.y) + startPoint.x * bytesPerPixel;
     
     unsigned int ocolor = getColorCode(byteIndex, imageData);
     
@@ -387,7 +389,7 @@
     
     CGImageRelease(newCGImage);
     
-      CGImageRelease(imageRef);
+//    CGImageRelease(imageRef);
     
     CGContextRelease(context);
     

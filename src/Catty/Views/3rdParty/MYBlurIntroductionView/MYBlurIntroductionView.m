@@ -7,6 +7,7 @@
 //
 
 #import "MYBlurIntroductionView.h"
+#import "LanguageTranslationDefines.h"
 
 @implementation MYBlurIntroductionView
 @synthesize delegate;
@@ -18,7 +19,7 @@
  *
  *  @return MYBlurIntroductionView : UIView
  */
--(id)initWithFrame:(CGRect)frame{
+- (id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         self.MasterScrollView.delegate = self;
         self.frame = frame;
@@ -30,7 +31,7 @@
 /**
  *  Initializes the high level view components for the introduction view.
  */
--(void)initializeViewComponents{
+- (void)initializeViewComponents{
     //Background Image View
     self.BackgroundImageView = [[UIImageView alloc] initWithFrame:self.frame];
     self.BackgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -53,7 +54,7 @@
     [self addSubview:self.PageControl];
     
     //Get skipString dimensions
-    NSString *skipString = NSLocalizedString(@"Skip", nil);
+    NSString *skipString = kLocalizedSkip;
     CGFloat skipStringWidth = 0;
     kSkipButtonFont = [UIFont systemFontOfSize:16];
     
@@ -81,7 +82,7 @@
     [self addSubview:self.RightSkipButton];
 }
 
--(void)buildIntroductionWithPanels:(NSArray *)panels{
+- (void)buildIntroductionWithPanels:(NSArray *)panels{
     Panels = panels;
     for (MYIntroductionPanel *panel in Panels) {
         panel.parentIntroductionView = self;
@@ -100,13 +101,13 @@
  *  @param frame @b CGRect - Specifies the desired size of the overlayed view.
  *
  */
--(void)addOverlayViewWithFrame:(CGRect)frame{
+- (void)addOverlayViewWithFrame:(CGRect)frame{
     self.BackgroundColorView = [[UIView alloc] initWithFrame:CGRectMake(0.0f,0.0f,frame.size.width,frame.size.height)];
     self.BackgroundColorView.backgroundColor = self.UserBackgroundColor;
     [self insertSubview:self.BackgroundColorView belowSubview:self.MasterScrollView];
 }
 
--(void)addPanelsToScrollView{
+- (void)addPanelsToScrollView{
     if (Panels) {
         if (Panels.count > 0) {
             //Set page control number of pages
@@ -131,7 +132,7 @@
     }
 }
 
--(void)buildScrollViewLeftToRight{
+- (void)buildScrollViewLeftToRight{
     CGFloat panelXOffset = 0;
     for (MYIntroductionPanel *panelView in Panels) {
         panelView.frame = CGRectMake(panelXOffset, 0, self.frame.size.width, self.frame.size.height);
@@ -149,7 +150,7 @@
     [self animatePanelAtIndex:0];
 }
 
--(void)buildScrollViewRightToLeft{
+- (void)buildScrollViewRightToLeft{
     CGFloat panelXOffset = self.frame.size.width*Panels.count;
     [self.MasterScrollView setContentSize:CGSizeMake(panelXOffset + self.frame.size.width, self.frame.size.height)];
     
@@ -174,11 +175,11 @@
 
 #pragma mark - UIScrollView Delegate
 
--(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     
 }
 
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     if (self.LanguageDirection == MYLanguageDirectionLeftToRight) {
         self.CurrentPanelIndex = scrollView.contentOffset.x/self.MasterScrollView.frame.size.width;
         
@@ -256,7 +257,7 @@
 }
 
 //This will handle our changing opacity at the end of the introduction
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     self.CurrentPanelIndex = scrollView.contentOffset.x/self.MasterScrollView.frame.size.width;
     if (self.LanguageDirection == MYLanguageDirectionLeftToRight) {
         if (self.CurrentPanelIndex == (Panels.count - 1)) {
@@ -272,7 +273,7 @@
 
 #pragma mark - Helper Methods
 //Show the information at the given panel with animations
--(void)animatePanelAtIndex:(NSInteger)index{
+- (void)animatePanelAtIndex:(NSInteger)index{
     //If it is a custom panel, skip stock animation
     
     //Hide all labels
@@ -329,7 +330,7 @@
     }
 }
 
--(void)appendCloseViewAtXIndex:(CGFloat*)xIndex{
+- (void)appendCloseViewAtXIndex:(CGFloat*)xIndex{
     UIView *closeView = [[UIView alloc] initWithFrame:CGRectMake(*xIndex, 0, self.frame.size.width, 400)];
     
     [self.MasterScrollView addSubview:closeView];
@@ -343,14 +344,14 @@
     [self skipIntroduction];
 }
 
--(void)skipIntroduction{
+- (void)skipIntroduction{
     if ([(id)delegate respondsToSelector:@selector(introduction:didFinishWithType:)]) {
         [delegate introduction:self didFinishWithType:MYFinishTypeSkipButton];
     }
     [self hideWithFadeOutDuration:0.3];
 }
 
--(void)hideWithFadeOutDuration:(CGFloat)duration{
+- (void)hideWithFadeOutDuration:(CGFloat)duration{
     //Fade out
     [UIView animateWithDuration:duration animations:^{
         self.alpha = 0;
@@ -362,7 +363,7 @@
     }];
 }
 
--(void)changeToPanelAtIndex:(NSInteger)index{
+- (void)changeToPanelAtIndex:(NSInteger)index{
     int currentIndex = (int)self.CurrentPanelIndex;
     if (self.LanguageDirection == MYLanguageDirectionRightToLeft)
         currentIndex = (int)((Panels.count-1)-self.CurrentPanelIndex);
@@ -399,7 +400,7 @@
     }
 }
 
--(void)setEnabled:(BOOL)enabled{
+- (void)setEnabled:(BOOL)enabled{
     [UIView animateWithDuration:0.3 animations:^{
         if (enabled) {
             if (self.LanguageDirection == MYLanguageDirectionLeftToRight) {
@@ -423,7 +424,7 @@
 
 #pragma mark - Customization Methods
 
--(void)setBackgroundColor:(UIColor *)backgroundColor{
+- (void)setBackgroundColor:(UIColor *)backgroundColor{
     //Save the background color for building
     self.UserBackgroundColor = backgroundColor;
     

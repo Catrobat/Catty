@@ -42,7 +42,7 @@ static Logger* instance;
     return instance;
 }
 
--(Logger*) init
+- (Logger*) init
 {
     self = [super init];
     if(self) {
@@ -97,7 +97,7 @@ static Logger* instance;
 }
 
 
--(void)logAtLevel:(LogLevel)level withFormat:(NSString*)format arguments:(va_list)args
+- (void)logAtLevel:(LogLevel)level withFormat:(NSString*)format arguments:(va_list)args
 {
     if(level >= self.logLevel) {
         NSString* callerClass = [self classNameForCaller];
@@ -111,7 +111,7 @@ static Logger* instance;
     }
 }
 
--(BOOL)loggingEnabledForClass:(NSString*)className logLevel:(LogLevel)level
+- (BOOL)loggingEnabledForClass:(NSString*)className logLevel:(LogLevel)level
 {    
     id classLvl = [self.loggerProperties objectForKey:className];
     LogLevel classLogLevel = debug;
@@ -122,7 +122,7 @@ static Logger* instance;
 }
 
 
--(NSString*)classNameForCaller
+- (NSString*)classNameForCaller
 {
     NSString *sourceString = [[NSThread callStackSymbols] objectAtIndex:3];
     NSCharacterSet *separatorSet = [NSCharacterSet characterSetWithCharactersInString:@" -[]+?.,"];
@@ -135,7 +135,7 @@ static Logger* instance;
     
 }
 
--(NSString*)stringForLogLevel:(LogLevel)level{
+- (NSString*)stringForLogLevel:(LogLevel)level{
     switch (level) {
         case debug:
             return @"DEBUG";
@@ -159,7 +159,7 @@ static Logger* instance;
     }
 }
 
--(LogLevel)logLevelForString:(NSString*)level
+- (LogLevel)logLevelForString:(NSString*)level
 {
     if([level isEqualToString:@"debug"]) {
         return debug;
@@ -176,7 +176,7 @@ static Logger* instance;
     return -1;
 }
 
--(BOOL) isDispatchBlock:(NSString*)block
+- (BOOL) isDispatchBlock:(NSString*)block
 {
     return [block hasPrefix:@"__"] ? YES : NO;
 }

@@ -28,5 +28,5 @@
 @property (nonatomic,strong)NSString *path;
 @property (nonatomic,strong)UIImage *image;
 
--(id)initWithImagePath:(NSString *)path;
+- (id)initWithImagePath:(NSString *)path;
 @end
