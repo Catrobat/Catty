@@ -116,24 +116,19 @@
     for (SpriteObject *spriteObject in self.program.objectList) {
         for (Script *script in spriteObject.scriptList) {
             if ([script isKindOfClass:[StartScript class]]) {
-                [self startStartScript:(StartScript*)script];
+                //    [NSOperationQueue high]
+                //    NSOperationQueuePriorityHigh
+                //    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+                //    NSOperation *operation = [NSOperation new];
+                //    operation.qualityOfService = NSQualityOfServiceUserInitiated;
+                //    operation.queuePriority = NSOperationQueuePriorityVeryHigh;
+                dispatch_async(self.backgroundQueue, ^{
+                    [script.object startAndAddScript:script completion:nil];
+                    NSLog(@"FINISHED");
+                });
             }
         }
     }
-}
-
-- (void)startStartScript:(StartScript*)startScript
-{
-//    [NSOperationQueue high]
-//    NSOperationQueuePriorityHigh
-//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-//    NSOperation *operation = [NSOperation new];
-//    operation.qualityOfService = NSQualityOfServiceUserInitiated;
-//    operation.queuePriority = NSOperationQueuePriorityVeryHigh;
-    dispatch_async(self.backgroundQueue, ^{
-        [startScript.object startAndAddScript:startScript completion:nil];
-        NSLog(@"FINISHED");
-    });
 }
 
 - (void)stopProgramWithCompletion:(dispatch_block_t)completion

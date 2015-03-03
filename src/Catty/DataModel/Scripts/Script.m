@@ -216,15 +216,13 @@
         @synchronized(self) {
             if (self.restartScript) {
                 currentBrickIndex = 0;
-                [self runLastSequence];
+                [self runSequenceAndWait:YES]; // XXX: not sure if we should wait here!!
                 self.restartScript = NO;
             }
-            if (currentBrickIndex >= [self.brickList count]) {
-                [self runLastSequence];
-                break;
-            }
-            if (! self.object.program.isPlaying) {
-                NSLog(@"Forced to finish Script: %@", NSStringFromClass([self class]));
+            if ((! self.object.program.isPlaying) || currentBrickIndex >= [self.brickList count]) {
+                if (! self.object.program.isPlaying) {
+                    NSLog(@"Forced to finish Script: %@", NSStringFromClass([self class]));
+                }
                 break;
             }
             Brick *brick = [self.brickList objectAtIndex:currentBrickIndex];
@@ -232,43 +230,32 @@
             ++currentBrickIndex;
         }
     }
+    if (self.object.program.isPlaying) {
+        // if we do NOT wait here, the script will be removed from the Scene
+        // before all actions have been executed!
+        [self runSequenceAndWait:YES];
+    }
     self.running = NO;
 //    NSDebug(@"Finished %@ in object %@", preservedScriptName, preservedObjectName);
 }
 
-- (void)runSequence
+- (void)runSequenceAndWait:(BOOL)wait
 {
     __weak Script *weakSelf = self;
-    self.semaphore = dispatch_semaphore_create(0);
-    
+    if (wait) { self.semaphore = dispatch_semaphore_create(0); }
     dispatch_async(dispatch_get_main_queue(), ^{
         if ([self.actionSequenceList count] && weakSelf.object.program.isPlaying) {
-            [weakSelf runAction:[SKAction group:self.actionSequenceList] completion:^{
+            [weakSelf runAction:[SKAction sequence:self.actionSequenceList] completion:^{
                 NSDebug(@"Finished: %@", action);
-                dispatch_semaphore_signal(weakSelf.semaphore);
+                if (wait) { dispatch_semaphore_signal(weakSelf.semaphore); }
                 //NSLog(@"  Duration for %@: %fms", [self class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
             }];
         } else {
-            dispatch_semaphore_signal(weakSelf.semaphore);
+            if (wait) { dispatch_semaphore_signal(weakSelf.semaphore); }
         }
     });
-    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+    if (wait) { dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER); }
     [self.actionSequenceList removeAllObjects];
-}
-- (void)runLastSequence
-{
-    __weak Script *weakSelf = self;
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if ([self.actionSequenceList count] && weakSelf.object.program.isPlaying) {
-            [weakSelf runAction:[SKAction group:self.actionSequenceList] completion:^{
-                NSDebug(@"Finished: %@", action);
-                [weakSelf.actionSequenceList removeAllObjects];
-                    //NSLog(@"  Duration for %@: %fms", [self class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
-            }];
-        }
-    });
-
 }
 
 - (void)removeReferences

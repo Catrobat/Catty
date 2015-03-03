@@ -153,27 +153,26 @@
 #pragma mark - Brick actions
 - (NSUInteger)runActionWithIndex:(NSUInteger)brickIndex
 {
-    NSLog(@"%@",[self description]);
-    NSDate *startTime = [NSDate date];
-//    NSUInteger brickIndex = 0;
-//    for (Brick *brick in self.script.brickList) {
-//        if (self == brick) {
-//            break;
-//        }
-//        ++brickIndex;
-//    }
+    NSLog(@"%@", [self description]);
     assert(brickIndex < [self.script.brickList count]);
     SKAction *action = nil;
+
+#warning handle nested loops => loop start times must be pushed to a stack!!!
     if ([self isKindOfClass:[LoopBeginBrick class]]) {
         LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)self;
         loopBeginBrick.loopStartTime = mach_absolute_time();
         BOOL condition = [loopBeginBrick checkCondition];
         if (! condition) {
             LoopEndBrick *loopEndBrick = loopBeginBrick.loopEndBrick;
+            // TODO: indexOfObject depends on isEqual-method implementation of LoopEndBrick/Brick class,
+            //       create new helper method to determine the index
             brickIndex = ([self.script.brickList indexOfObject:loopEndBrick]);
+            if (brickIndex != NSNotFound) {
+                abort();
+            }
         }
         if ([self.script.actionSequenceList count]) {
-            [self.script runSequence];
+            [self.script runSequenceAndWait:YES];
         }
     } else if ([self isKindOfClass:[LoopEndBrick class]]) {
         LoopBeginBrick *loopBeginBrick = ((LoopEndBrick*)self).loopBeginBrick;
@@ -198,12 +197,11 @@
     } else if ([self isKindOfClass:[BroadcastWaitBrick class]]) {
         NSDebug(@"broadcast wait");
         if ([self.script.actionSequenceList count]) {
-            [self.script runSequence];
+            [self.script runSequenceAndWait:YES];
         }
         dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             [(BroadcastWaitBrick*)self performBroadcastWait];
         });
-
     } else if ([self isKindOfClass:[BroadcastBrick class]]) {
 //        action = [self action];
 //        [self.script.actionSequenceList addObject:action];
@@ -211,7 +209,7 @@
             [(BroadcastBrick*)self performBroadcast];
         });
         if ([self.script.actionSequenceList count]) {
-            [self.script runSequence];
+            [self.script runSequenceAndWait:YES];
         }
     } else if ([self isKindOfClass:[IfLogicBeginBrick class]]) {
         BOOL condition = [((IfLogicBeginBrick*)self) checkCondition];
@@ -221,14 +219,14 @@
         if (brickIndex == NSIntegerMin) {
             NSError(@"The XML-Structure is wrong, please fix the project");
         }
-            [self.script runSequence];
+        [self.script runSequenceAndWait:YES];
     } else if ([self isKindOfClass:[IfLogicElseBrick class]]) {
         brickIndex = ([self.script.brickList indexOfObject:((IfLogicElseBrick*)self).ifEndBrick]);
         if (brickIndex == NSIntegerMin) {
             NSError(@"The XML-Structure is wrong, please fix the project");
         }
         if ([self.script.actionSequenceList count]) {
-            [self.script runSequence];
+            [self.script runSequenceAndWait:YES];
         }
     } else if ([self isKindOfClass:[IfLogicEndBrick class]]) {
         IfLogicBeginBrick *ifBeginBrick = ((IfLogicEndBrick*)self).ifBeginBrick;
@@ -236,22 +234,28 @@
             abort();
         }
         if ([self.script.actionSequenceList count]) {
-            [self.script runSequence];
+            [self.script runSequenceAndWait:YES];
         }
     } else if ([self isKindOfClass:[NoteBrick class]]) {
         // nothing to do!
-    }else if ([self isKindOfClass:[WaitBrick class]]) {
+    } else if ([self isKindOfClass:[WaitBrick class]]) {
         if ([self.script.actionSequenceList count]) {
-            [self.script runSequence];
+            [self.script runSequenceAndWait:YES];
         }
+
+        NSTimeInterval timeToWait = [((WaitBrick*)self).timeToWaitInSeconds interpretDoubleForSprite:self.script.object];
+        if (timeToWait == 0.0f) {
+            NSLog(@"WTH!!");
+        }
+        NSLog(@"TimeToWait: %f", timeToWait);
+
         action = [self action];
         [self.script.actionSequenceList addObject:action];
-        [self.script runSequence];
-    }else {
+        [self.script runSequenceAndWait:YES];
+    } else {
         action = [self action];
         [self.script.actionSequenceList addObject:action];
     }
-
     return brickIndex;
 }
 

@@ -54,12 +54,9 @@
 {
   return ^{
     NSDebug(@"Performing: %@ on: %@", self.description, self.script.object);
-    
     double result = [self.variableFormula interpretDoubleForSprite:self.script.object];
-    
-    Program* program = ProgramManager.sharedProgramManager.program;
-    VariablesContainer* variables = program.variables;
-    
+    Program *program = ProgramManager.sharedProgramManager.program;
+    VariablesContainer *variables = program.variables;
     [variables setUserVariable:self.userVariable toValue:result];
   };
 }

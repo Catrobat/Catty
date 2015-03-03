@@ -159,7 +159,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[ProgramManager sharedProgramManager]setProgram:self.object.program];
+    [[ProgramManager sharedProgramManager] setProgram:self.object.program];
     self.view.backgroundColor = UIColor.clearColor;
 
     [self showFormulaEditor];
