@@ -272,7 +272,7 @@
 
 + (void)addDownloadAgainButtonToView:(UIView*)view withTarget:(id)target
 {
-    UIButton *downloadAgainButton = [[UIButton alloc] initWithFrame:CGRectMake(2*view.frame.size.width/3 - 80,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 100, 25)];
+    UIButton *downloadAgainButton = [[UIButton alloc] initWithFrame:CGRectMake(view.frame.size.width/2-10,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 100, 25)];
     downloadAgainButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     [downloadAgainButton setTitleColor:[UIColor lightOrangeColor] forState:UIControlStateNormal];
     [downloadAgainButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
