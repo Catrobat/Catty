@@ -57,6 +57,7 @@
 @property (nonatomic, assign) BOOL useTestUrl;
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSMutableData *data;
+@property (nonatomic, strong) NSString *duplicateName;
 
 @end
 
@@ -82,10 +83,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.duplicateName = self.project.name;
     [self initNavigationBar];
     self.hidesBottomBarWhenPushed = YES;
-    
     self.view.backgroundColor = [UIColor darkBlueColor];
     NSDebug(@"%@",self.project.author);
     self.projectView = [self createViewForProject:self.project];
@@ -136,10 +136,12 @@
         [view viewWithTag:kDownloadButtonTag].hidden = YES;
         [view viewWithTag:kPlayButtonTag].hidden = NO;
         [view viewWithTag:kStopLoadingTag].hidden = YES;
+        [view viewWithTag:kDownloadAgainButtonTag].hidden = NO;
     } else if (self.project.isdownloading) {
         [view viewWithTag:kDownloadButtonTag].hidden = YES;
         [view viewWithTag:kPlayButtonTag].hidden = YES;
         [view viewWithTag:kStopLoadingTag].hidden = NO;
+        [view viewWithTag:kDownloadAgainButtonTag].hidden = YES;
     }
     return view;
 }
@@ -310,17 +312,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
     button.hidden = NO;
     button.progress = 0;
-    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
-    appDelegate.fileManager.delegate = self;
-    [appDelegate.fileManager downloadFileFromURL:url withProgramID:self.project.projectID withName:self.project.projectName];
-    NSDebug(@"url screenshot is %@", self.project.screenshotSmall);
-    NSString *urlString = self.project.screenshotSmall;
-    NSDebug(@"screenshot url is: %@", urlString);
-    NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
-    [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url andName:self.project.name];
-    self.project.isdownloading = YES;
-    [self.projects setObject:self.project forKey:url];
+    [self downloadWithName:self.project.name];
 }
 
 - (void)downloadButtonPressed:(id)sender
@@ -328,8 +320,32 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self downloadButtonPressed];
 }
 
+-(void)downloadAgain
+{
+    NSLog(@"%@",[NSString stringWithFormat:@"%@_%@",self.project.name,self.project.projectID]);
+    self.duplicateName = [Util uniqueName:self.project.name existingNames:[Program allProgramNames]];
+    NSLog(@"%@",[Program allProgramNames]);
+    [self downloadWithName:self.duplicateName];
+}
+
+-(void)downloadWithName:(NSString*)name
+{
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
+    appDelegate.fileManager.delegate = self;
+    [appDelegate.fileManager downloadFileFromURL:url withProgramID:self.project.projectID withName:name];
+    NSDebug(@"url screenshot is %@", self.project.screenshotSmall);
+    NSString *urlString = self.project.screenshotSmall;
+    NSDebug(@"screenshot url is: %@", urlString);
+    NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
+    [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url andName:name];
+    self.project.isdownloading = YES;
+    [self.projects setObject:self.project forKey:url];
+    [self reloadInputViews];
+}
+
 #pragma mark - File Manager Delegate
-- (void) downloadFinishedWithURL:(NSURL*)url
+- (void) downloadFinishedWithURL:(NSURL*)url andProgramLoadingInfo:(ProgramLoadingInfo *)info
 {
     NSDebug(@"Download Finished!!!!!!");
     self.project.isdownloading = NO;
@@ -338,8 +354,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
     button.hidden = YES;
     button.progress = 0;
     [self.view viewWithTag:kPlayButtonTag].hidden = NO;
+    [self.view viewWithTag:kDownloadAgainButtonTag].hidden = NO;
     [self loadingIndicator:NO];
-  
 }
 
 #pragma mark - TTTAttributedLabelDelegate
@@ -410,6 +426,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.projectView viewWithTag:kDownloadButtonTag].hidden = NO;
     [self.projectView viewWithTag:kStopLoadingTag].hidden = YES;
     [self.projectView viewWithTag:kPlayButtonTag].hidden = YES;
+    [self.projectView viewWithTag:kDownloadAgainButtonTag].hidden = YES;
 }
 
 #pragma mark - actions
@@ -440,6 +457,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.view viewWithTag:kDownloadButtonTag].hidden = NO;
     [self.view viewWithTag:kPlayButtonTag].hidden = YES;
     [self.view viewWithTag:kStopLoadingTag].hidden = YES;
+    [self.view viewWithTag:kDownloadAgainButtonTag].hidden = YES;
     [self loadingIndicator:NO];
 }
 
