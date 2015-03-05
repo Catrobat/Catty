@@ -78,7 +78,24 @@ let licenseCheckExcludeFiles = [
     "MYIntroductionPanel.[mh]"
 ]; let licenseCheckExcludeFilesLine = __LINE__; // CAUTION: NEVER separate these two statements by adding a new line
 
-
+let licenseSearchStringTemplate = "/**\n *  Copyright (C) 2010-%@ The Catrobat Team\n"
+                                + " *  (http://developer.catrobat.org/credits)\n *\n"
+                                + " *  This program is free software: you can redistribute it and/or modify\n"
+                                + " *  it under the terms of the GNU Affero General Public License as\n"
+                                + " *  published by the Free Software Foundation, either version 3 of the\n"
+                                + " *  License, or (at your option) any later version.\n"
+                                + " *\n"
+                                + " *  An additional term exception under section 7 of the GNU Affero\n"
+                                + " *  General Public License, version 3, is available at\n"
+                                + " *  (http://developer.catrobat.org/license_additional_term)\n"
+                                + " *\n"
+                                + " *  This program is distributed in the hope that it will be useful,\n"
+                                + " *  but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+                                + " *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n"
+                                + " *  GNU Affero General Public License for more details.\n"
+                                + " *\n"
+                                + " *  You should have received a copy of the GNU Affero General Public License\n"
+                                + " *  along with this program.  If not, see http://www.gnu.org/licenses/.\n */"
 
 //==========================================================================================================
 //
@@ -86,26 +103,12 @@ let licenseCheckExcludeFiles = [
 //
 //============================================================================================================
 
-let licenseSearchString = "/**\n *  Copyright (C) 2010-2015 The Catrobat Team\n"
-                        + " *  (http://developer.catrobat.org/credits)\n *\n"
-                        + " *  This program is free software: you can redistribute it and/or modify\n"
-                        + " *  it under the terms of the GNU Affero General Public License as\n"
-                        + " *  published by the Free Software Foundation, either version 3 of the\n"
-                        + " *  License, or (at your option) any later version.\n"
-                        + " *\n"
-                        + " *  An additional term exception under section 7 of the GNU Affero\n"
-                        + " *  General Public License, version 3, is available at\n"
-                        + " *  (http://developer.catrobat.org/license_additional_term)\n"
-                        + " *\n"
-                        + " *  This program is distributed in the hope that it will be useful,\n"
-                        + " *  but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
-                        + " *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the\n"
-                        + " *  GNU Affero General Public License for more details.\n"
-                        + " *\n *  You should have received a copy of the GNU Affero General Public License\n"
-                        + " *  along with this program.  If not, see http://www.gnu.org/licenses/.\n */"
-
 let ERR_SUCCESS : Int32 = 0
 let ERR_FAILED : Int32 = 1
+
+let components : NSDateComponents = NSCalendar.currentCalendar().components(.CalendarUnitYear, fromDate: NSDate())
+let licenseSearchStringCurrentYear = String(format:licenseSearchStringTemplate, String(components.year))
+let licenseSearchStringPreviousYear = String(format:licenseSearchStringTemplate, String(components.year - 1))
 
 func localizedStringCheck(#filePath : String, #fileContent : String) -> (failed: Bool, errorMessage: NSString?)
 {
@@ -126,7 +129,7 @@ func localizedStringCheck(#filePath : String, #fileContent : String) -> (failed:
 
 func licenseCheck(#filePath : String, #fileContent : String) -> (failed: Bool, errorMessage: NSString?)
 {
-    let range = fileContent.rangeOfString(licenseSearchString)
+    let range = fileContent.rangeOfString(licenseSearchStringCurrentYear)
     if range != nil {
         let index: Int = distance(fileContent.startIndex, range!.startIndex)
         if index != 0 {
@@ -142,6 +145,22 @@ func licenseCheck(#filePath : String, #fileContent : String) -> (failed: Bool, e
             return (false, nil)
         }
     }
+
+    let rangePreviousYear = fileContent.rangeOfString(licenseSearchStringPreviousYear)
+    if rangePreviousYear != nil {
+        let index: Int = distance(fileContent.startIndex, rangePreviousYear!.startIndex)
+        var lineNumber : Int = 1
+        if index != 0 {
+            var newRange : Range<String.Index> = Range<String.Index>(start: fileContent.startIndex, end: rangePreviousYear!.startIndex)
+            let substring : String = fileContent.substringWithRange(newRange)
+            lineNumber = substring.componentsSeparatedByString("\n").count
+            if lineNumber == 0 {
+                lineNumber = 1
+            }
+        }
+        return (true, "\(filePath):\(lineNumber): error : Wrong year in license header!\n")
+    }
+
     let lineNumber = 1 // license header must be at the very top of source file
     let errorMessage : String = "\(filePath):\(lineNumber): error : No valid License Header at the beginning of the file found! Maybe the license header is valid but contains some whitespaces at the end of some lines!\n"
     return (true, errorMessage)
