@@ -29,12 +29,15 @@ import Foundation
 //
 //============================================================================================================
 
+// CAVE: NEVER separate these two statements by adding a new line
+let pathToReadmeFile = "../README.md"; let pathToReadmeFileLine = __LINE__;
+
 let localizedStringCheckExcludeFiles = [
     "LanguageTranslationDefines.h",
     "Functions.[hm]",
     "Operators.m",
     "BSKeyboardControls.m"
-]; let localizedStringCheckExcludeFilesLine = __LINE__; // CAUTION: NEVER separate these two statements by adding a new line
+]; let localizedStringCheckExcludeFilesLine = __LINE__; // CAVE: NEVER separate these two statements by adding a new line
 
 let licenseCheckExcludeDirs = [
     "TTTAttributedLabel",
@@ -56,7 +59,7 @@ let licenseCheckExcludeDirs = [
     "UIViewController+CWPopup",
     "OrderedDictionary",
     "pocketPaint"
-]; let licenseCheckExcludeDirsLine = __LINE__; // CAUTION: NEVER separate these two statements by adding a new line
+]; let licenseCheckExcludeDirsLine = __LINE__; // CAVE: NEVER separate these two statements by adding a new line
 
 let licenseCheckExcludeFiles = [
     "AHKActionSheet.[mh]",
@@ -76,7 +79,7 @@ let licenseCheckExcludeFiles = [
     "EAIntroPage.[mh]",
     "MYBlurIntroductionView.[mh]",
     "MYIntroductionPanel.[mh]"
-]; let licenseCheckExcludeFilesLine = __LINE__; // CAUTION: NEVER separate these two statements by adding a new line
+]; let licenseCheckExcludeFilesLine = __LINE__; // CAVE: NEVER separate these two statements by adding a new line
 
 let licenseSearchStringTemplate = "/**\n *  Copyright (C) 2010-%@ The Catrobat Team\n"
                                 + " *  (http://developer.catrobat.org/credits)\n *\n"
@@ -97,7 +100,7 @@ let licenseSearchStringTemplate = "/**\n *  Copyright (C) 2010-%@ The Catrobat T
                                 + " *  You should have received a copy of the GNU Affero General Public License\n"
                                 + " *  along with this program.  If not, see http://www.gnu.org/licenses/.\n */"
 
-//==========================================================================================================
+//============================================================================================================
 //
 //                                 SCRIPT IMPLEMENTATION
 //
@@ -110,6 +113,9 @@ let components : NSDateComponents = NSCalendar.currentCalendar().components(.Cal
 let licenseSearchStringCurrentYear = String(format:licenseSearchStringTemplate, String(components.year))
 let licenseSearchStringPreviousYear = String(format:licenseSearchStringTemplate, String(components.year - 1))
 
+//------------------------------------------------------------------------------------------------------------
+//                                 FUNCTIONS
+//------------------------------------------------------------------------------------------------------------
 func localizedStringCheck(#filePath : String, #fileContent : String) -> (failed: Bool, errorMessage: NSString?)
 {
     let range = fileContent.rangeOfString("NSLocalizedString")
@@ -127,7 +133,8 @@ func localizedStringCheck(#filePath : String, #fileContent : String) -> (failed:
     return (true, errorMessage)
 }
 
-func licenseCheck(#filePath : String, #fileContent : String) -> (failed: Bool, errorMessage: NSString?)
+func licenseCheck(#filePath : String, #fileContent : String, lineNumberOffset : Int = 0)
+    -> (failed: Bool, errorMessage: NSString?)
 {
     let range = fileContent.rangeOfString(licenseSearchStringCurrentYear)
     if range != nil {
@@ -139,7 +146,7 @@ func licenseCheck(#filePath : String, #fileContent : String) -> (failed: Bool, e
             if lineNumber == 0 {
                 lineNumber = 1
             }
-            let errorMessage : String = "\(filePath):\(lineNumber): error : License header is valid but must always be placed at the very top of the file!\n"
+            let errorMessage : String = "\(filePath):\(lineNumber + lineNumberOffset): error : License header is valid but must always be placed at the very top of the file!\n"
             return (true, errorMessage)
         } else {
             return (false, nil)
@@ -158,19 +165,51 @@ func licenseCheck(#filePath : String, #fileContent : String) -> (failed: Bool, e
                 lineNumber = 1
             }
         }
-        return (true, "\(filePath):\(lineNumber): error : Wrong year in license header!\n")
+        return (true, "\(filePath):\(lineNumber + lineNumberOffset): error : Wrong year in license header!\n")
     }
 
     let lineNumber = 1 // license header must be at the very top of source file
-    let errorMessage : String = "\(filePath):\(lineNumber): error : No valid License Header at the beginning of the file found! Maybe the license header is valid but contains some whitespaces at the end of some lines!\n"
+    let errorMessage : String = "\(filePath):\(lineNumber + lineNumberOffset): error : No valid License Header at the beginning of the file found! Maybe the license header is valid but contains some whitespaces at the end of some lines!\n"
     return (true, errorMessage)
 }
 
-let stderr = NSFileHandle.fileHandleWithStandardError()
-let fileManager = NSFileManager.defaultManager()
-let enumerator:NSDirectoryEnumerator? = fileManager.enumeratorAtPath(".")
+func licenseCheckForReadme(#filePath : String, #fileContent : String) -> (failed: Bool, errorMessage: NSString?)
+{
+    let range = fileContent.rangeOfString("## License Header")
+    if range == nil {
+        return (true, "\(pathToReadmeFile):1: error: Unable to find license header section\n")
+    }
+    let sectionString = fileContent.substringWithRange(Range<String.Index>(start: range!.startIndex,
+        end: fileContent.endIndex))
+    let sectionRange = sectionString.rangeOfString("<code>")
+    if sectionRange == nil {
+        return (true, "\(pathToReadmeFile):1: error: Unable to find code section within license header section\n")
+    }
+    let licenseString = sectionString.substringWithRange(Range<String.Index>(start: advance(sectionRange!.endIndex, 1),
+                                                                               end: sectionString.endIndex))
+    var newLineCountRange = Range<String.Index>(start: fileContent.startIndex, end: range!.endIndex)
+    let newLineCountSubString = fileContent.substringWithRange(newLineCountRange)
+    var lineNumberOfLicenseHeaderStart : Int = newLineCountSubString.componentsSeparatedByString("\n").count
+    return licenseCheck(filePath: pathToReadmeFile,
+                     fileContent: licenseString,
+                lineNumberOffset: lineNumberOfLicenseHeaderStart)
+}
 
-// extensions
+// helper functions
+func printResultErrorAndExitIfFailed(#failed: Bool, #errorMessage: NSString?)
+{
+    if failed {
+        printErrorAndExitIfFailed(errorMessage!)
+    }
+}
+
+func printErrorAndExitIfFailed(errorMessage: NSString)
+{
+    stderr.writeData(errorMessage.dataUsingEncoding(NSUTF8StringEncoding)!)
+    exit(ERR_FAILED)
+}
+
+// helper extensions
 extension String {
     func removeCharsFromEnd(count:Int) -> String {
         let stringLength = countElements(self)
@@ -179,11 +218,17 @@ extension String {
     }
 }
 
+//------------------------------------------------------------------------------------------------------------
+//                                 CHECKS
+//------------------------------------------------------------------------------------------------------------
+
+let stderr = NSFileHandle.fileHandleWithStandardError()
+let fileManager = NSFileManager.defaultManager()
+let enumerator:NSDirectoryEnumerator? = fileManager.enumeratorAtPath(".")
+
 let fileNameOfThisScript : String? = Process.arguments.first?.lastPathComponent
 if fileNameOfThisScript == nil {
-    let errorMessage = "\(__FILE__):\(__LINE__ - 1): error: WTH is going on here!! Unable to determine the file name of this script!\n"
-    stderr.writeData(errorMessage.dataUsingEncoding(NSUTF8StringEncoding)!)
-    exit(ERR_FAILED)
+    printErrorAndExitIfFailed("\(__FILE__):\(__LINE__ - 1): error: WTH is going on here!! Unable to determine the file name of this script!\n")
 }
 
 // prepare lists
@@ -247,11 +292,8 @@ while let filePath = enumerator!.nextObject() as? String {
             continue
         }
 
-        let result = localizedStringCheck(filePath:filePath, fileContent:content!)
-        if result.failed {
-            stderr.writeData(result.errorMessage!.dataUsingEncoding(NSUTF8StringEncoding)!)
-            exit(ERR_FAILED)
-        }
+        let (failed, errorMessage) = localizedStringCheck(filePath:filePath, fileContent:content!)
+        printResultErrorAndExitIfFailed(failed:failed, errorMessage:errorMessage)
     }
 
     // license header check
@@ -274,14 +316,17 @@ while let filePath = enumerator!.nextObject() as? String {
                 continue
             }
         }
-
-        let result = licenseCheck(filePath:filePath, fileContent:content!)
-        if result.failed {
-            stderr.writeData(result.errorMessage!.dataUsingEncoding(NSUTF8StringEncoding)!)
-            exit(ERR_FAILED)
-        }
+        let (failed, errorMessage) = licenseCheck(filePath:filePath, fileContent:content!)
+        printResultErrorAndExitIfFailed(failed:failed, errorMessage:errorMessage)
     }
-
 }
+
+// license check for README.md
+let readmeFileContent = String(contentsOfFile: pathToReadmeFile, encoding: NSUTF8StringEncoding, error: nil)
+if (readmeFileContent == nil) {
+    printErrorAndExitIfFailed("\(__FILE__):\(pathToReadmeFileLine): error: Unable to open file or invalid filePath given!\n")
+}
+let (failed, errorMessage) = licenseCheckForReadme(filePath: pathToReadmeFile, fileContent: readmeFileContent!)
+printResultErrorAndExitIfFailed(failed:failed, errorMessage:errorMessage)
 
 exit(ERR_SUCCESS)
