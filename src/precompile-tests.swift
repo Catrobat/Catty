@@ -196,14 +196,14 @@ func licenseCheckForReadme(#filePath : String, #fileContent : String) -> (failed
 }
 
 // helper functions
-func printResultErrorAndExitIfFailed(#failed: Bool, #errorMessage: NSString?)
+func printResultErrorAndExitIfFailed(#failed: Bool, #errorMessage: String?)
 {
     if failed {
         printErrorAndExitIfFailed(errorMessage!)
     }
 }
 
-func printErrorAndExitIfFailed(errorMessage: NSString)
+func printErrorAndExitIfFailed(errorMessage: String)
 {
     stderr.writeData(errorMessage.dataUsingEncoding(NSUTF8StringEncoding)!)
     exit(ERR_FAILED)
