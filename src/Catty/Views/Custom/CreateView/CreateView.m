@@ -250,6 +250,7 @@
     activity.tag = kActivityIndicator;
     activity.frame = CGRectMake(5, 0, 25, 25);
     [downloadButton addSubview:activity];
+    [downloadButton sizeToFit];
     
     
     [view addSubview:downloadButton];
