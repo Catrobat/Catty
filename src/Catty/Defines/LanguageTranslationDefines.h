@@ -456,4 +456,7 @@
 #define kUIFEActionVarObj NSLocalizedString(@"object", nil)
 #define kUIFEActionVarPro NSLocalizedString(@"program", nil)
 
+#define kUIFENewText NSLocalizedString(@"New Text", nil)
+#define kUIFETextMessage NSLocalizedString(@"Text message:", nil)
+
 #endif // kIsRelease

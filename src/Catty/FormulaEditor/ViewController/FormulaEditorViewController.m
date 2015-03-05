@@ -47,6 +47,7 @@
 #import "CatrobatActionSheet.h"
 #import "ActionSheetAlertViewTags.h"
 #import "BrickProtocol.h"
+#import "InternToken.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -251,6 +252,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
 }
 
+
 #pragma mark - TextField Actions
 - (IBAction)buttonPressed:(id)sender
 {
@@ -269,10 +271,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
 }
 
+//3011 for string
+
 - (void)handleInputWithTitle:(NSString*)title AndButtonType:(int)buttonType
 {
     [self.internFormula handleKeyInputWithName:title butttonType:buttonType];
-    NSDebug(@"InternFormulaString: %@",[self.internFormula getExternFormulaString]);
+    NSLog(@"InternFormulaString: %@",[self.internFormula getExternFormulaString]);
     [self.history push:[self.internFormula getInternFormulaState]];
     [self update];
 }
@@ -744,6 +748,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.formulaEditorTextView becomeFirstResponder];
 }
 
+- (IBAction)addNewText:(id)sender {
+    
+    [Util askUserForVariableNameAndPerformAction:@selector(handleNewTextInput:) target:self promptTitle:kUIFENewText promptMessage:kUIFETextMessage minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+    
+}
+
+- (void)handleNewTextInput:(NSString*)text
+{
+    NSDebug(@"Text: %@", text);
+    [self handleInputWithTitle:text AndButtonType:TOKEN_TYPE_STRING];
+}
 
 #pragma mark - pickerView
 

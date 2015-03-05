@@ -157,7 +157,7 @@
         GDataXMLElement *entryToObjectReferenceXmlElement = [GDataXMLElement elementWithName:@"object" context:context];
         id spriteObject = [self.objectVariableList keyAtIndex:index];
         [XMLError exceptionIf:[spriteObject isKindOfClass:[SpriteObject class]] equals:NO
-                      message:@"Instance in objectVariableList at index: %lu is no SpriteObject", index];
+                      message:@"Instance in objectVariableList at index: %lu is no SpriteObject", (unsigned long)index];
         CBXMLPositionStack *positionStackOfSpriteObject = context.spriteObjectNamePositions[((SpriteObject*)spriteObject).name];
         CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
         NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack

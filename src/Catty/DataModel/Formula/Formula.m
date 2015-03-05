@@ -82,7 +82,14 @@
 
 - (double)interpretDoubleForSprite:(SpriteObject*)sprite
 {
-    return [self.formulaTree interpretRecursiveForSprite:sprite];
+    id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
+    double returnDoubleValue = 0.0f;
+    if([returnValue isKindOfClass:[NSNumber class]])
+    {
+        returnDoubleValue = [returnValue doubleValue];
+    }
+    
+    return returnDoubleValue;
 }
 
 - (float)interpretFloatForSprite:(SpriteObject*)sprite
@@ -92,7 +99,15 @@
 
 - (int)interpretIntegerForSprite:(SpriteObject*)sprite
 {
-    return (int)[self.formulaTree interpretRecursiveForSprite:sprite];
+    id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
+    
+    
+    if([returnValue isKindOfClass:[NSNumber class]])
+    {
+        return (int)[returnValue doubleValue];
+    }
+    
+    return 0;
 }
 
 - (BOOL)interpretBOOLForSprite:(SpriteObject*)sprite
@@ -110,6 +125,19 @@
 {
     self.displayString = nil;
     self.formulaTree = formulaTree;
+}
+
+- (NSString *)interpretString:(SpriteObject*)sprite
+{
+//    id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
+    NSString *returnStringValue = @"";
+    
+//    if()
+//    {
+//        
+//    }
+    
+    return returnStringValue;
 }
 
 - (InternFormulaState*)getInternFormulaState
@@ -168,9 +196,19 @@
             result = @"FALSE";
         else
             result = @"TRUE";
+    }else if(self.formulaTree.type == STRING)
+    {
+        return [self interpretString:sprite];
     }
     else{
-        double double_result = [self.formulaTree interpretRecursiveForSprite:sprite];
+        id tempResult = [self.formulaTree interpretRecursiveForSprite:sprite];
+        double double_result = 0.0f;
+        
+        if([tempResult isKindOfClass:[NSNumber class]])
+        {
+            double_result = [tempResult doubleValue];
+        }
+        
         result = [NSString stringWithFormat:@"%f", double_result];
         
     }

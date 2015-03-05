@@ -220,6 +220,10 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
             [currentElement replaceElement:[self sensor]];
             break;
         }
+        case TOKEN_TYPE_STRING: {
+            [currentElement replaceElement:STRING value:[self string]];
+            break;
+        }
          
         case TOKEN_TYPE_USER_VARIABLE: {
             [currentElement replaceElement:[self userVariableForSpriteObject:object]];
@@ -302,6 +306,15 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
          
     [self getNextToken];
     return numberToCheck;
+}
+
+- (NSString *)string
+{
+    NSString *returnValue = self.currentToken.tokenStringValue;
+    [self getNextToken];
+    
+    return returnValue;
+    
 }
 
 - (void)getNextToken
