@@ -167,7 +167,7 @@
             // TODO: indexOfObject depends on isEqual-method implementation of LoopEndBrick/Brick class,
             //       create new helper method to determine the index
             brickIndex = ([self.script.brickList indexOfObject:loopEndBrick]);
-            if (brickIndex != NSNotFound) {
+            if (brickIndex == NSNotFound) {
                 abort();
             }
         }
