@@ -180,6 +180,7 @@
         if (brickIndex == NSNotFound) {
             abort();
         }
+        --brickIndex;
         uint64_t loopEndTime = mach_absolute_time();
         // information for converting from MTU to nanoseconds
         mach_timebase_info_data_t info;
