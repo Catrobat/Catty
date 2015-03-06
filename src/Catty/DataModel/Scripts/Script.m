@@ -243,13 +243,25 @@
 {
     __weak Script *weakSelf = self;
     if (wait) { self.semaphore = dispatch_semaphore_create(0); }
+    NSDate *startTime = [NSDate date];
+    dispatch_block_t finalCompletionBlock = ^{
+        if (wait) { dispatch_semaphore_signal(weakSelf.semaphore); }
+        NSLog(@"  Duration for Sequence in %@: %fms", [self class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
+    };
+    NSUInteger index = 0;
+    dispatch_block_t completionBlock = nil;
+    for (SKAction *action in [self.actionSequenceList reverseObjectEnumerator]) {
+        if (! index) {
+            completionBlock = ^{[weakSelf runAction:action completion:finalCompletionBlock];};
+            ++index;
+            continue;
+        }
+        completionBlock = ^{[weakSelf runAction:action completion:completionBlock];};
+        ++index;
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
-        if ([self.actionSequenceList count] && weakSelf.object.program.isPlaying) {
-            [weakSelf runAction:[SKAction sequence:self.actionSequenceList] completion:^{
-                NSDebug(@"Finished: %@", action);
-                if (wait) { dispatch_semaphore_signal(weakSelf.semaphore); }
-                //NSLog(@"  Duration for %@: %fms", [self class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
-            }];
+        if ([self.actionSequenceList count] && weakSelf.object.program.isPlaying && completionBlock) {
+            completionBlock();
         } else {
             if (wait) { dispatch_semaphore_signal(weakSelf.semaphore); }
         }
