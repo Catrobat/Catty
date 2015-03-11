@@ -112,6 +112,13 @@
         }
     }
 
+    // compute all sequence lists
+    for (SpriteObject *spriteObject in self.program.objectList) {
+        for (Script *script in spriteObject.scriptList) {
+            [script computeSequenceList];
+        }
+    }
+
     // start StartScripts of all SpriteObjects simultaneously!!
     for (SpriteObject *spriteObject in self.program.objectList) {
         for (Script *script in spriteObject.scriptList) {

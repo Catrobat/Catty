@@ -21,7 +21,7 @@
  */
 
 #define kLastUsedProgram @"lastUsedProgram"
-#define kMinLoopDurationTime (30 * 1000 * 1000) // in nanoseconds!
+#define kMinLoopDurationTime (20 * 1000 * 1000) // in nanoseconds!
 #define kProgramCodeFileName @"code.xml"
 #define kProgramSoundsDirName @"sounds"
 #define kProgramImagesDirName @"images"

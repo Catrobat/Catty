@@ -27,6 +27,8 @@
 #import "Util.h"
 #import "LoopBeginBrick.h"
 #import "BroadcastScript.h"
+#import "IfLogicBeginBrick.h"
+#import "IfLogicElseBrick.h"
 
 @interface Script()
 
@@ -34,6 +36,7 @@
 @property (nonatomic, readwrite, getter=isRunning) BOOL running;
 @property (nonatomic, readwrite) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readwrite) kBrickType brickType;
+@property (nonatomic, strong) NSArray *sequenceList;
 
 @end
 
@@ -49,6 +52,7 @@
         self.running = NO;
         self.restartScript = NO;
         self.actionSequenceList = [NSMutableArray new];
+        self.sequenceList = nil;
     }
     return self;
 }
@@ -77,6 +81,24 @@
 - (void)dealloc
 {
     NSDebug(@"Dealloc %@ %@", [self class], self.parent);
+}
+
+- (void)computeSequenceList
+{
+    NSMutableArray *sequenceList = [NSMutableArray array];
+    CBSequence *currentSequence = [CBSequence new];
+    [sequenceList addObject:currentSequence];
+    for (Brick *brick in self.brickList) {
+        if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
+            [sequenceList addObject:currentSequence];
+            currentSequence = [[CBConditionalSequence alloc] initWithCondition:((IfLogicBeginBrick)brick).condition];
+        } else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
+            [currentSequence switchBranch];
+        } else {
+            [currentSequence addAction:[brick action]];
+        }
+    }
+    self.sequenceList = sequenceList;
 }
 
 #pragma mark - Copy
