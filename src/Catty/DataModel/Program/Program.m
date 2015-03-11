@@ -663,7 +663,9 @@
                 [broadcastScript restart]; // trigger script to restart
                 [broadcastScript removeAllActions];
                 for (Brick *brick in broadcastScript.brickList) {
-                    dispatch_semaphore_signal(brick.semaphore); // XXX: HACK!!
+                    if (brick.semaphore) {
+                        dispatch_semaphore_signal(brick.semaphore); // XXX: HACK!!
+                    }
                 }
             }
         }
