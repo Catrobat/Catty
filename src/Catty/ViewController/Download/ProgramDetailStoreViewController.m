@@ -322,9 +322,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 -(void)downloadAgain
 {
-    NSLog(@"%@",[NSString stringWithFormat:@"%@_%@",self.project.name,self.project.projectID]);
+    EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
+    [self.projectView viewWithTag:kPlayButtonTag].hidden = YES;
+    UIButton* downloadAgainButton = (UIButton*)[self.projectView viewWithTag:kDownloadAgainButtonTag];
+    downloadAgainButton.enabled = NO;
+    button.hidden = NO;
+    button.progress = 0;
     self.duplicateName = [Util uniqueName:self.project.name existingNames:[Program allProgramNames]];
-    NSLog(@"%@",[Program allProgramNames]);
+    NSDebug(@"%@",[Program allProgramNames]);
     [self downloadWithName:self.duplicateName];
 }
 
@@ -354,7 +359,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     button.hidden = YES;
     button.progress = 0;
     [self.view viewWithTag:kPlayButtonTag].hidden = NO;
-    [self.view viewWithTag:kDownloadAgainButtonTag].hidden = NO;
+    UIButton* downloadAgainButton = (UIButton*)[self.projectView viewWithTag:kDownloadAgainButtonTag];
+    downloadAgainButton.enabled = YES;
+    downloadAgainButton.hidden = NO;
     [self loadingIndicator:NO];
 }
 
@@ -441,7 +448,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
     EVCircularProgressView* button = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];
     button.hidden = YES;
     button.progress = 0;
-    [self.view viewWithTag:kDownloadButtonTag].hidden = NO;
+    UIButton* downloadAgainButton = (UIButton*)[self.projectView viewWithTag:kDownloadAgainButtonTag];
+    if(downloadAgainButton.enabled){
+        [self.view viewWithTag:kDownloadButtonTag].hidden = NO;
+    } else {
+        [self.view viewWithTag:kPlayButtonTag].hidden = NO;
+        downloadAgainButton.enabled = YES;
+    }
     [self loadingIndicator:NO];
     
 }

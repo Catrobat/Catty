@@ -25,5 +25,6 @@
 @interface RoundBorderedButton : UIButton
 
 - (void)setPlusIconVisibility:(BOOL)show;
+- (id)initWithFrame:(CGRect)frame andBorder:(BOOL)visibleBorder;
 
 @end

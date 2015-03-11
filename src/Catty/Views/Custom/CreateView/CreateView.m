@@ -82,7 +82,7 @@
     nameLabel.numberOfLines = 2;
     [self configureTitleLabel:nameLabel andHeight: height];
     [nameLabel sizeToFit];
-    [self setMaxHeightIfGreaterForView:view withHeight:height*0.1f+nameLabel.frame.size.height];
+    [self setMaxHeightIfGreaterForView:view withHeight:nameLabel.frame.origin.y+nameLabel.frame.size.height];
     
     [view addSubview:nameLabel];
 }
@@ -99,12 +99,11 @@
 + (void)addAuthorLabelWithAuthor:(NSString*)author toView:(UIView*)view
 {
     CGFloat height = [self height];
-    UILabel* authorLabel = [[UILabel alloc] initWithFrame:CGRectMake(view.frame.size.width/2-10, height*0.05f+15, 155, 25)];
+    UILabel* authorLabel = [[UILabel alloc] initWithFrame:CGRectMake(view.frame.size.width/2-10,view.frame.size.height+5, 155, 25)];
     authorLabel.text = author;
     [self configureAuthorLabel:authorLabel andHeight:height];
     [view addSubview:authorLabel];
     [self setMaxHeightIfGreaterForView:view withHeight:authorLabel.frame.origin.y+authorLabel.frame.size.height];
-    
 }
 
 
@@ -238,7 +237,7 @@
 
 + (void) addDownloadButtonToView:(UIView*)view withTarget:(id)target
 {
-    UIButton *downloadButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(2*view.frame.size.width/3-10,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 105, 25)];
+    UIButton *downloadButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(2*view.frame.size.width/3-10,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 105, 25) andBorder:YES];
     downloadButton.tag = kDownloadButtonTag;
     downloadButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     [downloadButton setTitle:kLocalizedDownload forState:UIControlStateNormal];
@@ -258,7 +257,7 @@
 
 + (void)addPlayButtonToView:(UIView*)view withTarget:(id)target
 {
-    UIButton *playButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(2*view.frame.size.width/3+45,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 105, 25)];
+    UIButton *playButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(2*view.frame.size.width/3+45,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 105, 25) andBorder:YES];
     playButton.tag = kPlayButtonTag;
     playButton.hidden = YES;
     playButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
@@ -273,7 +272,7 @@
 
 + (void)addDownloadAgainButtonToView:(UIView*)view withTarget:(id)target
 {
-    UIButton *downloadAgainButton = [[UIButton alloc] initWithFrame:CGRectMake(view.frame.size.width/2-10,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 100, 25)];
+    RoundBorderedButton *downloadAgainButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(view.frame.size.width/2-10,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 100, 25) andBorder:NO];
     downloadAgainButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     [downloadAgainButton setTitleColor:[UIColor lightOrangeColor] forState:UIControlStateNormal];
     [downloadAgainButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
