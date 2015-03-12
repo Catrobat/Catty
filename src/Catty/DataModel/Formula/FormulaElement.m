@@ -152,7 +152,75 @@
 
 - (id)interpretString:(NSString *)value
 {
-    return nil;
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = NSNumberFormatterDecimalStyle;
+    
+    if(self.parent == nil && self.type != USER_VARIABLE)
+    {
+        NSNumber *anotherValue = [formatter numberFromString:value];
+        
+        if(anotherValue == nil)
+        {
+            return value;
+        }else{
+            return anotherValue;
+        }
+    }
+    
+    if(self.parent != nil)
+    {
+        BOOL isAParentFunction = [Functions getFunctionByValue:value] != NO_FUNCTION;
+        if(isAParentFunction && self.parent.type == STRING)
+        {
+               if([Functions getFunctionByValue:self.parent.value] == LETTER && self.parent.leftChild == self)
+               {
+                   NSNumber *anotherValue = [formatter numberFromString:value];
+                   
+                   if(anotherValue == nil)
+                   {
+                       return [NSNumber numberWithDouble:0.0f];
+                   }else{
+                       return anotherValue;
+                   }
+               }
+            return value;
+        }
+        
+        if(isAParentFunction)
+        {
+            NSNumber *anotherValue = [formatter numberFromString:value];
+            
+            if(anotherValue == nil)
+            {
+                return value;
+            }else{
+                return anotherValue;
+            }
+        }
+        
+        BOOL isParentAnOperator = [Operators getOperatorByValue:self.parent.value] != NO_OPERATOR;
+        
+        if(isParentAnOperator && ([Operators getOperatorByValue:self.parent.value] == EQUAL ||
+                                  [Operators getOperatorByValue:self.parent.value] == NOT_EQUAL))
+        {
+            return value;
+        }
+    }
+    
+    if([value length] == 0)
+    {
+        return [NSNumber numberWithDouble:0.0f];
+    }
+    
+    NSNumber *anotherValue = [formatter numberFromString:value];
+    
+    if(anotherValue == nil)
+    {
+        return [NSNumber numberWithDouble:0.0f];
+    }else{
+        return anotherValue;
+    }
+    
 }
 
 -(id) interpretFunction:(Function)function forSprite:(SpriteObject*)sprite
@@ -291,6 +359,19 @@
         }
         case EXP: {
             result = [NSNumber numberWithDouble:exp(left)];
+            break;
+        }
+        case LENGTH: {
+            //TODO: implement
+            break;
+        }
+        case LETTER: {
+            
+            //TODO: implement
+            break;
+        }
+        case JOIN: {
+            //TODO: implement
             break;
         }
         default:
@@ -617,6 +698,9 @@
             break;
         case SENSOR:
             [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:self.value]];
+            break;
+            case STRING:
+            [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_STRING AndValue:self.value]];
             break;
     }
     return internTokenList;

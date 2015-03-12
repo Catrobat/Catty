@@ -129,15 +129,15 @@
 
 - (NSString *)interpretString:(SpriteObject*)sprite
 {
-//    id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
-    NSString *returnStringValue = @"";
+    id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
+
+    if([returnValue isKindOfClass:[NSNumber class]])
+    {
+        return [NSString stringWithFormat:@"%lf", [returnValue doubleValue]];
+    }
+    //TODO: Exception handling if no number returned
     
-//    if()
-//    {
-//        
-//    }
-    
-    return returnStringValue;
+    return returnValue;
 }
 
 - (InternFormulaState*)getInternFormulaState

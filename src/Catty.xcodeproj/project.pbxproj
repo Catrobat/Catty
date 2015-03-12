@@ -4167,7 +4167,7 @@
 				LastUpgradeCheck = 0600;
 				TargetAttributes = {
 					CA538EA119B0EA09008240AB = {
-						DevelopmentTeam = 9NJ4SV439Q;
+						DevelopmentTeam = 4V6T7BCGGR;
 						TestTargetID = CADBD6D319B0E8C200C62836;
 					};
 					CADBD6D319B0E8C200C62836 = {

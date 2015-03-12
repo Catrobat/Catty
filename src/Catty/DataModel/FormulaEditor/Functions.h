@@ -42,7 +42,11 @@ typedef enum {
     FALSE_F,
     MOD,
     POW,
-    EXP
+    EXP,
+    JOIN,
+    LETTER,
+    LENGTH,
+    NO_FUNCTION = -1
 } Function;
 
 @interface Functions : NSObject

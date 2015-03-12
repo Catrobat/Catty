@@ -79,7 +79,7 @@
         return EXP;
     
     [InternFormulaParserException raise:@"Invalid Function Name" format:@"Invalid Function Name: %@", value];
-    return -1;
+    return NO_FUNCTION;
 }
 
 + (NSString*)getName:(Function)function
@@ -221,6 +221,7 @@
             break;
             
         default:
+            return @"";
             break;
     }
 }

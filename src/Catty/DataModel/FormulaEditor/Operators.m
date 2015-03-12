@@ -284,7 +284,7 @@
     }
     
     NSError(@"Unknown Operator: %@", name);
-    return -1;
+    return NO_OPERATOR;
 }
 
 + (int)compareOperator:(Operator)firstOperator WithOperator:(Operator)secondOperator
