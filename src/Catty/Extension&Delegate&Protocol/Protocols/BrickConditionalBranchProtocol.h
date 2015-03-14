@@ -19,20 +19,9 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
-#import "Brick.h"
-#import "BrickFormulaProtocol.h"
-#import "BrickConditionalBranchProtocol.h"
 
-@class Formula;
-@class IfLogicElseBrick;
-@class IfLogicEndBrick;
+#import <Foundation/Foundation.h>
 
-@interface IfLogicBeginBrick : Brick<BrickFormulaProtocol, BrickConditionalBranchProtocol>
-
-@property (nonatomic, strong) Formula *ifCondition;
-@property (nonatomic, weak) IfLogicElseBrick *ifElseBrick;
-@property (nonatomic, weak) IfLogicEndBrick *ifEndBrick;
-
+@protocol BrickConditionalBranchProtocol <NSObject>
 - (BOOL)checkCondition;
-
 @end
