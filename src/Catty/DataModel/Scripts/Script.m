@@ -29,6 +29,15 @@
 #import "BroadcastScript.h"
 #import "IfLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
+#import "IfLogicEndBrick.h"
+#import "CBBroadcastOperation.h"
+#import "CBBroadcastWaitOperation.h"
+#import "CBIfConditionalOperationList.h"
+#import "CBSequenceBlock.h"
+#import "LoopBeginBrick.h"
+#import "LoopEndBrick.h"
+#import "BroadcastBrick.h"
+#import "BroadcastWaitBrick.h"
 
 @interface Script()
 
@@ -36,7 +45,7 @@
 @property (nonatomic, readwrite, getter=isRunning) BOOL running;
 @property (nonatomic, readwrite) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readwrite) kBrickType brickType;
-@property (nonatomic, strong) NSArray *sequenceList;
+@property (nonatomic, strong) NSArray *operationList;
 
 @end
 
@@ -52,7 +61,7 @@
         self.running = NO;
         self.restartScript = NO;
         self.actionSequenceList = [NSMutableArray new];
-        self.sequenceList = nil;
+        self.operationList = nil;
     }
     return self;
 }
@@ -83,22 +92,61 @@
     NSDebug(@"Dealloc %@ %@", [self class], self.parent);
 }
 
-- (void)computeSequenceList
+// TODO: support nesting bricks within nesting bricks
+- (void)computeOperationList
 {
-    NSMutableArray *sequenceList = [NSMutableArray array];
-    CBSequence *currentSequence = [CBSequence new];
-    [sequenceList addObject:currentSequence];
+    NSMutableArray *operationList = [NSMutableArray array];
+    CBSequenceBlock *currentSequence = [CBSequenceBlock new];
     for (Brick *brick in self.brickList) {
         if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
-            [sequenceList addObject:currentSequence];
-            currentSequence = [[CBConditionalSequence alloc] initWithCondition:((IfLogicBeginBrick)brick).condition];
+            if (! [currentSequence isEmpty]) {
+                [operationList addObject:currentSequence];
+            }
+            CBIfConditionalOperationList *ifList = [CBIfConditionalOperationList
+                                                    listWithConditionalBrick:(IfLogicBeginBrick*)brick];
+            currentSequence = ifList;
         } else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
-            [currentSequence switchBranch];
+            CBIfConditionalSequenceBlock *ifSequence = (CBIfConditionalSequenceBlock*)currentSequence;
+            [ifSequence switchToBranch:CBElseBranch];
+        } else if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
+            if (! [currentSequence isEmpty]) {
+                [currentOperationList addObject:currentSequence];
+            }
+            currentSequence = [CBSequenceBlock new];
+        } else if ([brick isKindOfClass:[LoopBeginBrick class]]) {
+            if (! [currentSequence isEmpty]) {
+                [currentOperationList addObject:currentSequence];
+            }
+            LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)brick;
+            currentSequence = [CBSequenceBlock new];
+            currentSequence = [CBConditionalSequenceBlock sequenceWithConditionalBrick:loopBeginBrick];
+        } else if ([brick isKindOfClass:[LoopEndBrick class]]) {
+            if (! [currentSequence isEmpty]) {
+                [currentOperationList addObject:currentSequence];
+            }
+            currentSequence = [CBSequenceBlock new];
+        } else if ([brick isKindOfClass:[BroadcastBrick class]]) {
+            if (! [currentSequence isEmpty]) {
+                [currentOperationList addObject:currentSequence];
+            }
+            [currentOperationList addObject:[CBBroadcastOperation operationWithBroadcastBrick:(BroadcastBrick*)brick]];
+            currentSequence = [CBSequenceBlock new];
+        } else if ([brick isKindOfClass:[BroadcastWaitBrick class]]) {
+            if (! [currentSequence isEmpty]) {
+                [currentOperationList addObject:currentSequence];
+            }
+            [currentOperationList addObject:[CBBroadcastWaitOperation operationWithBroadcastWaitBrick:(BroadcastWaitBrick*)brick]];
+            currentSequence = [CBSequenceBlock new];
         } else {
             [currentSequence addAction:[brick action]];
         }
     }
-    self.sequenceList = sequenceList;
+    assert(operationList == currentOperationList);
+
+    if (! [currentSequence isEmpty]) {
+        [operationList addObject:currentSequence];
+    }
+    self.operationList = (NSArray*)operationList;
 }
 
 #pragma mark - Copy
@@ -163,7 +211,7 @@
 
     if([self.brickList count] != [script.brickList count])
         return NO;
-    
+
     NSUInteger index;
     for(index = 0; index < [self.brickList count]; index++) {
         Brick *firstBrick = [self.brickList objectAtIndex:index];
@@ -173,7 +221,6 @@
             return NO;
         }
     }
-    
     return YES;
 }
 

@@ -46,7 +46,7 @@
 @property (strong, nonatomic) NSMutableArray *actionSequenceList;
 @property (nonatomic, strong) dispatch_semaphore_t semaphore;
 
-- (void)computeSequenceList;
+- (void)computeOperationList;
 
 - (void)startWithCompletion:(dispatch_block_t)completion;
 

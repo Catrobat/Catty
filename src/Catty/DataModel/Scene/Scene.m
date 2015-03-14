@@ -115,7 +115,7 @@
     // compute all sequence lists
     for (SpriteObject *spriteObject in self.program.objectList) {
         for (Script *script in spriteObject.scriptList) {
-            [script computeSequenceList];
+            [script computeOperationList];
         }
     }
 
