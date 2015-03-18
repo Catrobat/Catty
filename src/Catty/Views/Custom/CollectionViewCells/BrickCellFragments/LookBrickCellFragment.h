@@ -20,16 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-@protocol ScriptProtocol;
 
-@protocol BrickCellProtocol <NSObject>
+#import "BrickCellFragmentProtocol.h"
+#import "iOSCombobox.h"
 
-@required
-@property (nonatomic, strong) id<ScriptProtocol> scriptOrBrick;
-@property (nonatomic) BOOL enabled;
+@interface LookBrickCellFragment : iOSCombobox<BrickCellFragmentProtocol, iOSComboboxDelegate>
 
-- (kBrickShapeType)brickShapeType;
-+ (CGFloat)cellHeight;
+@property (nonatomic, readonly) CGRect frame;
+@property (nonatomic, weak) id<BrickCellFragmentDelegate> fragmentDelegate;
 
 @end

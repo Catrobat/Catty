@@ -29,6 +29,8 @@
 #import "ScriptCollectionViewController.h"
 #import "BrickFormulaProtocol.h"
 #import "NoteBrickTextField.h"
+#import "SetLookBrick.h"
+#import "SetLookBrick.h"
 
 @implementation UIUtil
 
@@ -91,7 +93,5 @@
     [comboBox setValues:items];
     return comboBox;
 }
-
-
 
 @end

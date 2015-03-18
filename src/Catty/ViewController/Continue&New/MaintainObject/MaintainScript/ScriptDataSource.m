@@ -103,4 +103,17 @@
     return brickCell;
 }
 
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    NSLog(@"From KVO");
+    
+    if([keyPath isEqualToString:@"number"])
+    {
+        id oldC = [change objectForKey:NSKeyValueChangeOldKey];
+        id newC = [change objectForKey:NSKeyValueChangeNewKey];
+        
+        NSLog(@"%@ %@", oldC, newC);
+    }
+}
+
 @end

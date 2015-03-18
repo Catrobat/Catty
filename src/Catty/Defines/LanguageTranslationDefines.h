@@ -89,6 +89,7 @@
 #define kLocalizedTapPlusToAdd NSLocalizedString(@"Tap \"+\" to add %@", nil)
 #define kLocalizedContinue NSLocalizedString(@"Continue", nil)
 #define kLocalizedNew NSLocalizedString(@"New", nil)
+#define kLocalizedNewElement NSLocalizedString(@"New...", nil)
 #define kLocalizedPrograms NSLocalizedString(@"Programs", nil)
 #define kLocalizedHelp NSLocalizedString(@"Help", nil)
 #define kLocalizedExplore NSLocalizedString(@"Explore", nil)

@@ -20,16 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-@protocol ScriptProtocol;
+@class BrickCell;
+@class Brick;
 
-@protocol BrickCellProtocol <NSObject>
+@protocol BrickCellFragmentDelegate <NSObject>
 
 @required
-@property (nonatomic, strong) id<ScriptProtocol> scriptOrBrick;
-@property (nonatomic) BOOL enabled;
+- (void)dataDidChange:(id)data ForBrick:(Brick*)brick;
 
-- (kBrickShapeType)brickShapeType;
-+ (CGFloat)cellHeight;
+@end
+
+@protocol BrickCellFragmentProtocol <NSObject>
+
+@required
+@property (nonatomic, readonly) CGRect frame;
+- (instancetype)initWithFrame:(CGRect)frame AndBrickCell:(BrickCell*)brickCell;
 
 @end

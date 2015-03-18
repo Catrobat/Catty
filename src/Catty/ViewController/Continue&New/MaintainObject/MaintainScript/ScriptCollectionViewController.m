@@ -56,6 +56,8 @@
 #import "ScriptDataSource_Private.h"
 #import "ScriptDataSource+Extensions.h"
 #import "FBKVOController.h"
+#import "BrickCellFragmentProtocol.h"
+#import "SetLookBrick.h"
 
 @interface ScriptCollectionViewController() <UICollectionViewDelegate,
                                              LXReorderableCollectionViewDelegateFlowLayout,
@@ -65,7 +67,8 @@
                                              ScriptDataSourceDelegate,
                                              iOSComboboxDelegate,
                                              UITextFieldDelegate,
-                                             BrickDetailViewControllerDelegate>
+                                             BrickDetailViewControllerDelegate,
+                                             BrickCellFragmentDelegate>
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
@@ -1090,8 +1093,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                                         options:NSKeyValueObservingOptionNew
                                           block:^(id observer, id object, NSDictionary *change) {
                                               NSDebug(@"Script data source items changed.");
-                                              Program *program = weakself.object.program;
-                                              [program saveToDisk];
+                                              [weakself saveProgram];
     }];
 }
 
@@ -1121,6 +1123,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     [brickCell setupBrickCell];
     brickCell.delegate = self;
     brickCell.textDelegate = self;
+    brickCell.fragmentDelegate = self;
 }
 
 #pragma mark - Setup Toolbar
@@ -1163,6 +1166,32 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     self.placeHolderView = [[PlaceHolderView alloc] initWithTitle:kLocalizedScripts];
     self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
+}
+
+#pragma mark - Save Program
+- (void)saveProgram
+{
+    Program *program = self.object.program;
+    [program saveToDisk];
+}
+
+#pragma mark - BrickCellFragment delegate
+- (void)dataDidChange:(id)data ForBrick:(Brick *)brick
+{
+    NSString *value = (NSString*)data;
+    if([value isEqualToString:kLocalizedNewElement]) {
+    } else {
+        if([brick isKindOfClass:[SetLookBrick class]]) {
+            SetLookBrick *lookBrick = (SetLookBrick*)brick;
+            for(Look *look in lookBrick.script.object.lookList) {
+                if([look.name isEqualToString:value]) {
+                    lookBrick.look = look;
+                    break;
+                }
+            }
+        }
+        [self saveProgram];
+    }
 }
 
 @end

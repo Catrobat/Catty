@@ -31,6 +31,8 @@
 #import "Script.h"
 #import "NoteBrick.h"
 #import "SpeakBrick.h"
+#import "BrickCellFragmentProtocol.h"
+#import "LookBrickCellFragment.h"
 
 // uncomment this to get special log outputs, etc...
 //#define LAYOUT_DEBUG 0
@@ -488,13 +490,7 @@
                 inputField = (UIView*)comboBox;
             } else if ([afterLabelParam rangeOfString:@"LOOK"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
-                NSMutableArray* looks = [[NSMutableArray alloc] init];
-                [looks addObject:@"New..."];
-                [looks addObject:@"look 1"];
-                iOSCombobox *comboBox = [UIUtil newDefaultBrickComboBoxWithFrame:inputViewFrame AndItems:looks];
-                [comboBox setDelegate:(id<iOSComboboxDelegate>)self.delegate];
-                [comboBox setCurrentValue:looks[0]];
-                inputField = (UIView*)comboBox;
+                inputField = [[LookBrickCellFragment alloc] initWithFrame:inputViewFrame AndBrickCell:self];
             } else if ([afterLabelParam rangeOfString:@"VARIABLE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 NSMutableArray* variables = [[NSMutableArray alloc] init];

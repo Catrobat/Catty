@@ -48,6 +48,7 @@
 #import "ActionSheetAlertViewTags.h"
 #import "BrickProtocol.h"
 #import "Script.h"
+#import "SpriteObject.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
