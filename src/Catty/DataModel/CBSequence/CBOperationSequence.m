@@ -20,11 +20,32 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "CBOperationSequence.h"
 
-@interface CBSequence : NSObject
+@interface CBOperationSequence()
+@property (nonatomic, strong) NSMutableArray *operationList;
+@end
 
-#warning should create protocol instead of class!! no abstract classes possible in ObjC
-- (BOOL)isEmpty;
+@implementation CBOperationSequence
+
+#pragma mark - Getters & Setters
+- (NSMutableArray*)operationList
+{
+    if (! _operationList) {
+        _operationList = [NSMutableArray array];
+    }
+    return _operationList;
+}
+
+#pragma mark - Operations
+- (void)addOperation:(CBOperation*)operation
+{
+    [self.operationList addObject:operation];
+}
+
+- (BOOL)isEmpty
+{
+    return ([self.operationList count] == 0);
+}
 
 @end

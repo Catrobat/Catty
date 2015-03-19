@@ -20,11 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "CBSequence.h"
 
-@interface CBSequence : NSObject
+@class CBOperation;
 
-#warning should create protocol instead of class!! no abstract classes possible in ObjC
-- (BOOL)isEmpty;
+@interface CBOperationSequence : CBSequence
+
+- (void)addOperation:(CBOperation*)operation;
 
 @end

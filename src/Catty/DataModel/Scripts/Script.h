@@ -43,10 +43,13 @@
 @property (nonatomic, weak) SpriteObject *object;
 @property (nonatomic, strong) NSString *action;
 @property (strong, nonatomic) NSMutableArray *brickList;
+
+#warning REMOVE THIS AT THE END!!!
 @property (strong, nonatomic) NSMutableArray *actionSequenceList;
+
 @property (nonatomic, strong) dispatch_semaphore_t semaphore;
 
-- (void)computeOperationList;
+- (void)computeSequenceList;
 
 - (void)startWithCompletion:(dispatch_block_t)completion;
 

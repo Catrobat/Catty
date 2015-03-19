@@ -30,10 +30,11 @@
 #import "IfLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
+#import "CBActionOperation.h"
 #import "CBBroadcastOperation.h"
 #import "CBBroadcastWaitOperation.h"
-#import "CBIfConditionalOperationList.h"
-#import "CBSequenceBlock.h"
+#import "CBIfConditionalSequence.h"
+#import "CBOperationSequence.h"
 #import "LoopBeginBrick.h"
 #import "LoopEndBrick.h"
 #import "BroadcastBrick.h"
@@ -45,7 +46,7 @@
 @property (nonatomic, readwrite, getter=isRunning) BOOL running;
 @property (nonatomic, readwrite) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readwrite) kBrickType brickType;
-@property (nonatomic, strong) NSArray *operationList;
+@property (nonatomic, strong) NSArray *sequenceList;
 
 @end
 
@@ -60,8 +61,7 @@
         self.brickCategoryType = [brickManager brickCategoryTypeForBrickType:self.brickType];
         self.running = NO;
         self.restartScript = NO;
-        self.actionSequenceList = [NSMutableArray new];
-        self.operationList = nil;
+        self.sequenceList = nil;
     }
     return self;
 }
@@ -80,6 +80,20 @@
                                  userInfo:nil];
 }
 
+- (NSMutableArray*)actionSequenceList
+{
+    if (! _actionSequenceList)
+        _actionSequenceList = [NSMutableArray array];
+    return _actionSequenceList;
+}
+
+- (NSArray*)sequenceList
+{
+    if (! _sequenceList)
+        _sequenceList = [NSArray array];
+    return _sequenceList;
+}
+
 - (NSMutableArray*)brickList
 {
     if (! _brickList)
@@ -92,61 +106,86 @@
     NSDebug(@"Dealloc %@ %@", [self class], self.parent);
 }
 
-// TODO: support nesting bricks within nesting bricks
-- (void)computeOperationList
+- (void)computeSequenceList
 {
-    NSMutableArray *operationList = [NSMutableArray array];
-    CBSequenceBlock *currentSequence = [CBSequenceBlock new];
+    NSMutableArray *scriptSequenceList = [NSMutableArray array];
+    CBOperationSequence *currentOperationSequence = [CBOperationSequence new];
+    NSMutableArray *sequenceStack = [NSMutableArray array];
+    NSMutableArray *currentSequenceList = scriptSequenceList;
+
     for (Brick *brick in self.brickList) {
         if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
-            if (! [currentSequence isEmpty]) {
-                [operationList addObject:currentSequence];
+            if (! [currentOperationSequence isEmpty]) {
+                [currentSequenceList addObject:currentOperationSequence];
             }
-            CBIfConditionalOperationList *ifList = [CBIfConditionalOperationList
-                                                    listWithConditionalBrick:(IfLogicBeginBrick*)brick];
-            currentSequence = ifList;
+            // preserve currentSequenceList and push it to stack
+            [sequenceStack addObject:currentSequenceList];
+            currentSequenceList = [NSMutableArray array]; // new sequence list for If
+            currentOperationSequence = [CBOperationSequence new];
         } else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
-            CBIfConditionalSequenceBlock *ifSequence = (CBIfConditionalSequenceBlock*)currentSequence;
-            [ifSequence switchToBranch:CBElseBranch];
+            if (! [currentOperationSequence isEmpty]) {
+                [currentSequenceList addObject:currentOperationSequence];
+            }
+            // preserve currentSequenceList and push it to stack
+            [sequenceStack addObject:currentSequenceList];
+            currentSequenceList = [NSMutableArray array]; // new sequence list for Else
+            currentOperationSequence = [CBOperationSequence new];
         } else if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
-            if (! [currentSequence isEmpty]) {
-                [currentOperationList addObject:currentSequence];
+            if (! [currentOperationSequence isEmpty]) {
+                [currentSequenceList addObject:currentOperationSequence];
             }
-            currentSequence = [CBSequenceBlock new];
+            IfLogicEndBrick *endBrick = (IfLogicEndBrick*)brick;
+            IfLogicBeginBrick *ifBrick = endBrick.ifBeginBrick;
+            IfLogicElseBrick *elseBrick = endBrick.ifElseBrick;
+            CBIfConditionalSequence *ifSequence = [CBIfConditionalSequence sequenceWithConditionalBrick:ifBrick];
+            if (elseBrick) {
+                // currentSequenceList is ElseSequenceList
+                ifSequence.elseSequenceList = currentSequenceList;
+                // pop IfSequenceList from stack
+                currentSequenceList = [sequenceStack lastObject];
+                [sequenceStack removeLastObject];
+            }
+            // now currentSequenceList is IfSequenceList
+            ifSequence.sequenceList = currentSequenceList;
+
+            // pop currentSequenceList from stack
+            currentSequenceList = [sequenceStack lastObject];
+            [sequenceStack removeLastObject];
+            [currentSequenceList addObject:ifSequence];
+            currentOperationSequence = [CBOperationSequence new];
         } else if ([brick isKindOfClass:[LoopBeginBrick class]]) {
-            if (! [currentSequence isEmpty]) {
-                [currentOperationList addObject:currentSequence];
+            if (! [currentOperationSequence isEmpty]) {
+                [currentSequenceList addObject:currentOperationSequence];
             }
-            LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)brick;
-            currentSequence = [CBSequenceBlock new];
-            currentSequence = [CBConditionalSequenceBlock sequenceWithConditionalBrick:loopBeginBrick];
+            // preserve currentSequenceList and push it to stack
+            [sequenceStack addObject:currentSequenceList];
+            currentSequenceList = [NSMutableArray array]; // new sequence list for Loop
+            currentOperationSequence = [CBOperationSequence new];
         } else if ([brick isKindOfClass:[LoopEndBrick class]]) {
-            if (! [currentSequence isEmpty]) {
-                [currentOperationList addObject:currentSequence];
+            if (! [currentOperationSequence isEmpty]) {
+                [currentSequenceList addObject:currentOperationSequence];
             }
-            currentSequence = [CBSequenceBlock new];
+            // loop end -> fetch currentSequenceList from stack
+            CBConditionalSequence *conditionalSequence = [CBConditionalSequence sequenceWithConditionalBrick:((LoopEndBrick*)brick).loopBeginBrick];
+            conditionalSequence.sequenceList = currentSequenceList;
+            currentSequenceList = [sequenceStack lastObject];
+            [sequenceStack removeLastObject];
+            [currentSequenceList addObject:conditionalSequence];
+            currentOperationSequence = [CBOperationSequence new];
         } else if ([brick isKindOfClass:[BroadcastBrick class]]) {
-            if (! [currentSequence isEmpty]) {
-                [currentOperationList addObject:currentSequence];
-            }
-            [currentOperationList addObject:[CBBroadcastOperation operationWithBroadcastBrick:(BroadcastBrick*)brick]];
-            currentSequence = [CBSequenceBlock new];
+            [currentOperationSequence addOperation:[CBBroadcastOperation operationWithBroadcastBrick:(BroadcastBrick*)brick]];
         } else if ([brick isKindOfClass:[BroadcastWaitBrick class]]) {
-            if (! [currentSequence isEmpty]) {
-                [currentOperationList addObject:currentSequence];
-            }
-            [currentOperationList addObject:[CBBroadcastWaitOperation operationWithBroadcastWaitBrick:(BroadcastWaitBrick*)brick]];
-            currentSequence = [CBSequenceBlock new];
+            [currentOperationSequence addOperation:[CBBroadcastWaitOperation operationWithBroadcastWaitBrick:(BroadcastWaitBrick*)brick]];
         } else {
-            [currentSequence addAction:[brick action]];
+            [currentOperationSequence addOperation:[CBActionOperation operationWithAction:[brick action]]];
         }
     }
-    assert(operationList == currentOperationList);
+    assert(scriptSequenceList == currentSequenceList); // sanity check just to ensure!
 
-    if (! [currentSequence isEmpty]) {
-        [operationList addObject:currentSequence];
+    if (! [currentOperationSequence isEmpty]) {
+        [currentSequenceList addObject:currentOperationSequence];
     }
-    self.operationList = (NSArray*)operationList;
+    self.sequenceList = (NSArray*)currentSequenceList;
 }
 
 #pragma mark - Copy

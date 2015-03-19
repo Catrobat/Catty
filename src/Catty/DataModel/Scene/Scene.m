@@ -27,6 +27,10 @@
 #import "HideBrick.h"
 #import "AudioManager.h"
 
+#warning REMOVE!!!
+#import "ForeverBrick.h"
+#import "NoteBrick.h"
+
 @interface Scene()
 
 @property (nonatomic, strong) dispatch_queue_t backgroundQueue;
@@ -115,7 +119,7 @@
     // compute all sequence lists
     for (SpriteObject *spriteObject in self.program.objectList) {
         for (Script *script in spriteObject.scriptList) {
-            [script computeOperationList];
+            [script computeSequenceList];
         }
     }
 
