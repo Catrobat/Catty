@@ -26,9 +26,8 @@
 
 @interface CBConditionalSequence : CBSequence
 
+@property (nonatomic, strong) NSMutableArray *sequenceList;
 + (instancetype)sequenceWithConditionalBrick:(id<BrickConditionalBranchProtocol>)conditionBrick;
 - (BOOL)checkCondition;
-- (void)addSequence:(CBSequence*)sequence;
-- (BOOL)isEmpty;
 
 @end

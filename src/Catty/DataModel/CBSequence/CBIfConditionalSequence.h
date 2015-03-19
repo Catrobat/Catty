@@ -22,14 +22,8 @@
 
 #import "CBConditionalSequence.h"
 
-typedef NS_ENUM(NSInteger, CBBranch) {
-    CBIfBranch = 0,
-    CBElseBranch = 1
-};
-
 @interface CBIfConditionalSequence : CBConditionalSequence
 
-- (void)addSequence:(CBSequence*)sequence forBranch:(CBBranch)branch;
-- (BOOL)isEmpty;
+@property (nonatomic, strong) NSMutableArray *elseSequenceList;
 
 @end

@@ -25,11 +25,11 @@
 
 @interface CBConditionalSequence()
 @property (nonatomic, strong) id<BrickConditionalBranchProtocol> conditionBrick;
-@property (nonatomic, strong) NSMutableArray *sequenceList;
 @end
 
 @implementation CBConditionalSequence
 
+#pragma mark - Getters & Setters
 - (NSMutableArray*)sequenceList
 {
     if (! _sequenceList) {
@@ -45,19 +45,15 @@
     return conditionalSequence;
 }
 
-- (BOOL)checkCondition
-{
-    return [self.conditionBrick checkCondition];
-}
-
-- (void)addSequence:(CBSequence*)sequence
-{
-    [self.sequenceList addObject:sequence];
-}
-
+#pragma mark - Operations
 - (BOOL)isEmpty
 {
     return ([self.sequenceList count] == 0);
+}
+
+- (BOOL)checkCondition
+{
+    return [self.conditionBrick checkCondition];
 }
 
 @end

@@ -23,7 +23,6 @@
 #import "CBIfConditionalSequence.h"
 
 @interface CBIfConditionalSequence()
-@property (nonatomic, strong) NSMutableArray *elseSequenceList;
 @end
 
 @implementation CBIfConditionalSequence
@@ -34,17 +33,6 @@
         _elseSequenceList = [NSMutableArray array];
     }
     return _elseSequenceList;
-}
-
-- (void)addSequence:(CBSequence*)sequence forBranch:(CBBranch)branch
-{
-    if (branch == CBIfBranch) {
-        [super addSequence:sequence];
-    } else if (branch == CBElseBranch) {
-        [self.elseSequenceList addObject:sequence];
-    } else {
-        NSError(@"Unsupported current branch!");
-    }
 }
 
 - (BOOL)isEmpty
