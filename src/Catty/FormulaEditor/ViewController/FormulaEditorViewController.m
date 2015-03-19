@@ -237,6 +237,35 @@ NS_ENUM(NSInteger, ButtonIndex) {
   self.doneButton.titleLabel.text = kUIFEDone;
   self.variable.titleLabel.text = kUIFEVar;
   self.takeVar.titleLabel.text = kUIFETake;
+    
+    
+    
+    
+
+    for (UIButton *button in self.normalTypeButton) {
+        
+        NSString *name = [Functions getExternName:[Functions getName:[button tag]]];
+        if([name length] != 0)
+        {
+            [button setTitle:name forState:UIControlStateAll];
+        }else
+        {
+            name = [Operators getExternName:[Operators getName:[button tag]]];
+            if([name length] != 0)
+            {
+                [button setTitle:name forState:UIControlStateAll];
+            }else
+            {
+                name = [SensorManager getExternName:[SensorManager stringForSensor:[button tag]]];
+                if([name length] != 0)
+                {
+                    [button setTitle:name forState:UIControlStateAll];
+                }
+
+            }
+        }
+    }
+    
 }
 
 
@@ -749,6 +778,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 - (IBAction)addNewText:(id)sender {
+    [self.formulaEditorTextView resignFirstResponder];
     
     [Util askUserForVariableNameAndPerformAction:@selector(handleNewTextInput:) target:self promptTitle:kUIFENewText promptMessage:kUIFETextMessage minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
     
@@ -758,6 +788,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     NSDebug(@"Text: %@", text);
     [self handleInputWithTitle:text AndButtonType:TOKEN_TYPE_STRING];
+    [self.formulaEditorTextView becomeFirstResponder];
 }
 
 #pragma mark - pickerView

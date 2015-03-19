@@ -169,7 +169,7 @@
     
     if(self.parent != nil)
     {
-        BOOL isAParentFunction = [Functions getFunctionByValue:value] != NO_FUNCTION;
+        BOOL isAParentFunction = [Functions getFunctionByValue:self.parent.value] != NO_FUNCTION;
         if(isAParentFunction && self.parent.type == STRING)
         {
                if([Functions getFunctionByValue:self.parent.value] == LETTER && self.parent.leftChild == self)

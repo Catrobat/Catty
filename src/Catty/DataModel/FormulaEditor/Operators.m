@@ -21,6 +21,7 @@
  */
 
 #import "Operators.h"
+#import "LanguageTranslationDefines.h"
 
 @implementation Operators
 
@@ -190,13 +191,13 @@
     
     switch (operator) {
         case LOGICAL_AND:
-            name = [NSString stringWithFormat:NSLocalizedString([self getName:operator], nil)];
+            name = kUIFEOperatorAnd;
             break;
         case LOGICAL_OR:
-            name = [NSString stringWithFormat:NSLocalizedString([self getName:operator], nil)];
+            name = kUIFEOperatorOr;
             break;
         case LOGICAL_NOT:
-            name = [NSString stringWithFormat:NSLocalizedString([self getName:operator], nil)];
+            name = kUIFEOperatorNot;
             break;
         case EQUAL:
             name = @"=";
@@ -283,7 +284,7 @@
         return LOGICAL_NOT;
     }
     
-    NSError(@"Unknown Operator: %@", name);
+//    NSError(@"Unknown Operator: %@", name);
     return NO_OPERATOR;
 }
 

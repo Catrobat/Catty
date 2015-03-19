@@ -78,7 +78,7 @@
     if([value isEqualToString:@"EXP"])
         return EXP;
     
-    [InternFormulaParserException raise:@"Invalid Function Name" format:@"Invalid Function Name: %@", value];
+//    [InternFormulaParserException raise:@"Invalid Function Name" format:@"Invalid Function Name: %@", value];
     return NO_FUNCTION;
 }
 
@@ -147,10 +147,11 @@
             break;
 
         default:
+            return nil;
             break;
     }
 
-    [InternFormulaParserException raise:@"Invalid Function" format:@"Invalid Function: %i", function];
+//    [InternFormulaParserException raise:@"Invalid Function" format:@"Invalid Function: %i", function];
     return nil;
 }
 
@@ -175,7 +176,7 @@
             return @"log";
             break;
         case SQRT:
-            return [NSString stringWithFormat:NSLocalizedString([self getName:function], nil)];
+            return kUIFEFunctionSqrt;
             break;
         case RAND:
             return @"rand";
@@ -202,10 +203,10 @@
             return @"min";
             break;
         case TRUE_F:
-            return [NSString stringWithFormat:NSLocalizedString([self getName:function], nil)];
+            return kUIFEFunctionTrue;
             break;
         case FALSE_F:
-            return [NSString stringWithFormat:NSLocalizedString([self getName:function], nil)];
+            return kUIFEFunctionFalse;
             break;
         case MOD:
             return @"mod";

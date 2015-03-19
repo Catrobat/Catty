@@ -21,6 +21,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "LanguageTranslationDefines.h"
 
 typedef enum {
 	SIN = 500,

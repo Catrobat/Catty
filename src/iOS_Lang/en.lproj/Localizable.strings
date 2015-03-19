@@ -591,18 +591,6 @@
 
 "Project" = "Project";
 
-"SQRT" = "sqrt";
-
-"TRUE" = "TRUE";
-
-"FALSE" = "FALSE";
-
-"LOGICAL_NOT" = "NOT";
-
-"LOGICAL_OR" = "OR";
-
-"LOGICAL_AND" = "AND";
-
 "Thickness"	=	"Thickness"	;
 "Red"	=	"Red"	;
 "Green"	=	"Green"	;
@@ -664,6 +652,31 @@
 
 "New Text" = "New Text";
 "Text message:" = "Text message:";
+
+"fkt sqrt" = "sqrt";
+"fkt true" = "TRUE";
+"fkt false" = "FALSE";
+
+"op and" = "AND";
+"op not" = "NOT";
+"op or" = "OR";
+
+"obj transparency" = "Transparency";
+"obj brightness" = "Brightness";
+"obj size" = "Size";
+"obj direction" = "Direction";
+"obj layer" = "Layer";
+"obj pos x" = "Position_x";
+"obj pos y" = "Position_y";
+
+"sens compass" = "Compass";
+"sens loudness" = "Loudness";
+"sens acceleration x" = "Acceleration_x";
+"sens acceleration y" = "Acceleration_y";
+"sens acceleration z" = "Acceleration_z";
+"sens inclination x" = "decline_x";
+"sens inclination y" = "decline_y";
+
 
 "New" = "New";
 "Take" = "Take";

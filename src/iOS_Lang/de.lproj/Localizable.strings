@@ -591,23 +591,11 @@
 
 "Project" = "Projekt";
 
-"SQRT" = "wurzel";
-
-"TRUE" = "WAHR";
-
-"FALSE" = "FALSCH";
-
-"LOGICAL_NOT" = "NICHT";
-
-"LOGICAL_OR" = "ODER";
-
-"LOGICAL_AND" = "UND";
-
 "Select logical operator" = "Select logical operator";
 
 "Select mathematical function" = "Select mathematical function";
 
-"Numbers" = "Nummer";
+"Numbers" = "Zahlen";
 
 "Logic" = "Logik";
 
@@ -634,6 +622,30 @@
 
 "New Text" = "New Text";
 "Text message:" = "Text message:";
+
+"fkt sqrt" = "wurzel";
+"fkt true" = "WAHR";
+"fkt false" = "FALSCH";
+
+"op and" = "UND";
+"op not" = "NICHT";
+"op or" = "ODER";
+
+"obj transparency" = "Transparenz";
+"obj brightness" = "Helligkeit";
+"obj size" = "Größe";
+"obj direction" = "Richtung";
+"obj layer" = "Ebene";
+"obj pos x" = "Position_x";
+"obj pos y" = "Position_y";
+
+"sens compass" = "Compass_Richtung";
+"sens loudness" = "Umgebungslautstärke";
+"sens acceleration x" = "Beschleunigung_x";
+"sens acceleration y" = "Beschleunigung_y";
+"sens acceleration z" = "Beschleunigung_z";
+"sens inclination x" = "Neigung_x";
+"sens inclination y" = "Neigung_y";
 
 "New" = "Neu";
 "Take" = "Nehmen";
