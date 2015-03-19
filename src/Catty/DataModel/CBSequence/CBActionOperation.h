@@ -20,16 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "CBConditionalOperationList.h"
+#import "CBOperation.h"
 
-typedef NS_ENUM(NSInteger, CBBranch) {
-    CBIfBranch = 0,
-    CBElseBranch = 1
-};
+@class SKAction;
 
-@interface CBIfConditionalOperationList : CBConditionalOperationList
+@interface CBActionOperation : CBOperation
 
-- (void)addSequenceBlock:(NSMutableArray*)sequenceBlock forBranch:(CBBranch)branch;
-- (BOOL)isEmpty;
++ (instancetype)operationWithAction:(SKAction*)action;
 
 @end

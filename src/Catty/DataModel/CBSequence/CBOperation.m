@@ -24,9 +24,4 @@
 
 @implementation CBOperation
 
-- (BOOL)isEmpty
-{
-    return NO;
-}
-
 @end

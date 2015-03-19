@@ -24,6 +24,4 @@
 
 @interface CBOperation : NSObject
 
-- (BOOL)isEmpty;
-
 @end

@@ -20,36 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "CBIfConditionalOperationList.h"
+#import "CBActionOperation.h"
+#import <SpriteKit/SpriteKit.h>
 
-@interface CBIfConditionalOperationList()
-@property (nonatomic, strong) NSMutableArray *elseOperationList;
+@interface CBActionOperation()
+@property (nonatomic, strong) SKAction *action;
 @end
 
-@implementation CBIfConditionalOperationList
+@implementation CBActionOperation
 
-- (NSMutableArray*)elseOperationList
++ (instancetype)operationWithAction:(SKAction*)action
 {
-    if (! _elseOperationList) {
-        _elseOperationList = [NSMutableArray array];
-    }
-    return _elseOperationList;
-}
-
-- (void)addSequenceBlock:(NSMutableArray*)sequenceBlock forBranch:(CBBranch)branch
-{
-    if (branch == CBIfBranch) {
-        [super addSequenceBlock:sequenceBlock];
-    } else if (branch == CBElseBranch) {
-        self.elseOperationList = sequenceBlock;
-    } else {
-        NSError(@"Unsupported current branch!");
-    }
-}
-
-- (BOOL)isEmpty
-{
-    return ([super isEmpty] && ([self.elseOperationList count] == 0));
+    CBActionOperation *operation = [CBActionOperation new];
+    operation.action = action;
+    return operation;
 }
 
 @end
