@@ -26,6 +26,7 @@
 
 @interface CBBroadcastOperation : CBOperation
 
+@property (nonatomic, strong, readonly) BroadcastBrick *broadcastBrick;
 + (instancetype)operationWithBroadcastBrick:(BroadcastBrick*)broadcastBrick;
 
 @end

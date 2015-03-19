@@ -26,6 +26,7 @@
 
 @interface CBActionOperation : CBOperation
 
+@property (nonatomic, strong, readonly) SKAction *action;
 + (instancetype)operationWithAction:(SKAction*)action;
 
 @end

@@ -24,7 +24,7 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface CBActionOperation()
-@property (nonatomic, strong) SKAction *action;
+@property (nonatomic, strong, readwrite) SKAction *action;
 @end
 
 @implementation CBActionOperation

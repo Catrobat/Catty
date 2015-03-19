@@ -319,32 +319,125 @@
 //    NSDebug(@"Started %@ in object %@", preservedScriptName, preservedObjectName);
 
     self.running = YES;
-    NSUInteger currentBrickIndex = 0;
-    while (true) {
-        @synchronized(self) {
-            if (self.restartScript) {
-                currentBrickIndex = 0;
-                [self runSequenceAndWait:YES]; // XXX: not sure if we should wait here!!
-                self.restartScript = NO;
-            }
-            if ((! self.object.program.isPlaying) || currentBrickIndex >= [self.brickList count]) {
-                if (! self.object.program.isPlaying) {
-                    NSLog(@"Forced to finish Script: %@", NSStringFromClass([self class]));
-                }
-                break;
-            }
-            Brick *brick = [self.brickList objectAtIndex:currentBrickIndex];
-            currentBrickIndex = [brick runActionWithIndex:currentBrickIndex];
-            ++currentBrickIndex;
-        }
+
+    dispatch_block_t sequenceBlock = [self sequenceBlockForSequenceList:self.sequenceList];
+    if (self.object.program.isPlaying && sequenceBlock) {
+        sequenceBlock();
     }
-    if (self.object.program.isPlaying) {
-        // if we do NOT wait here, the script will be removed from the Scene
-        // before all actions have been executed!
-        [self runSequenceAndWait:YES];
-    }
+
+//    NSUInteger currentBrickIndex = 0;
+//    while (true) {
+//        @synchronized(self) {
+//            if (self.restartScript) {
+//                currentBrickIndex = 0;
+//                [self runSequenceAndWait:YES]; // XXX: not sure if we should wait here!!
+//                self.restartScript = NO;
+//            }
+//            if ((! self.object.program.isPlaying) || currentBrickIndex >= [self.brickList count]) {
+//                if (! self.object.program.isPlaying) {
+//                    NSLog(@"Forced to finish Script: %@", NSStringFromClass([self class]));
+//                }
+//                break;
+//            }
+//            Brick *brick = [self.brickList objectAtIndex:currentBrickIndex];
+//            currentBrickIndex = [brick runActionWithIndex:currentBrickIndex];
+//            ++currentBrickIndex;
+//        }
+//    }
+//    if (self.object.program.isPlaying) {
+//        // if we do NOT wait here, the script will be removed from the Scene
+//        // before all actions have been executed!
+//        [self runSequenceAndWait:YES];
+//    }
     self.running = NO;
 //    NSDebug(@"Finished %@ in object %@", preservedScriptName, preservedObjectName);
+}
+
+- (dispatch_block_t)sequenceBlockForSequenceList:(NSArray*)sequenceList
+{
+    dispatch_block_t completionBlock = nil;
+    for (CBSequence *sequence in [sequenceList reverseObjectEnumerator]) {
+        if ([sequence isKindOfClass:[CBOperationSequence class]]) {
+            completionBlock = [self sequenceBlockForOperationSequence:(CBOperationSequence*)sequence
+                                                 finalCompletionBlock:completionBlock];
+        } else if ([sequence isKindOfClass:[CBIfConditionalSequence class]]) {
+            // if else sequence
+            NSError(@"UNIMPLEMENTED IFCONDITIONALSEQUENCE");
+            abort();
+        } else if ([sequence isKindOfClass:[CBConditionalSequence class]]) {
+            // loop sequence
+            CBConditionalSequence *conditionalSequence = (CBConditionalSequence*)sequence;
+            completionBlock = [self sequenceBlockForSequenceList:conditionalSequence.sequenceList];
+            if (completionBlock == nil) {
+                continue;
+            }
+            completionBlock = ^{
+                if ([conditionalSequence checkCondition]) {
+                    completionBlock();
+                }
+            };
+        }
+    }
+    return completionBlock;
+}
+
+- (dispatch_block_t)sequenceBlockForOperationSequence:(CBOperationSequence*)operationSequence
+                                 finalCompletionBlock:(dispatch_block_t)finalCompletionBlock
+{
+    NSDate *startTime = [NSDate date];
+    if (finalCompletionBlock) {
+        finalCompletionBlock = ^{
+            NSLog(@"  Duration for Sequence in %@: %fms", [self class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
+            finalCompletionBlock();
+        };
+    } else {
+        finalCompletionBlock = ^{
+            NSLog(@"  Duration for Sequence in %@: %fms", [self class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
+        };
+    }
+    NSUInteger index = 0;
+    dispatch_block_t completionBlock = nil;
+    NSArray *operationList = operationSequence.operationList;
+    __weak Script *weakSelf = self;
+    for (CBOperation *operation in [operationList reverseObjectEnumerator]) {
+        if ([operation isKindOfClass:[CBActionOperation class]]) {
+            CBActionOperation *actionOperation = (CBActionOperation*)operation;
+            if (index) {
+                completionBlock = ^{
+                    NSLog(@"test");
+                    [weakSelf runAction:actionOperation.action completion:completionBlock];
+                };
+            } else {
+                completionBlock = ^{
+                    NSLog(@"test2");
+                    [weakSelf runAction:actionOperation.action completion:finalCompletionBlock];
+                };
+            }
+        } else if ([operation isKindOfClass:[CBBroadcastOperation class]]) {
+            // cancel all upcoming actions if BroadcastBrick calls its own script
+            BroadcastBrick *broadcastBrick = ((CBBroadcastOperation*)operation).broadcastBrick;
+            if ([self isKindOfClass:[BroadcastScript class]]) {
+                BroadcastScript *broadcastScript = (BroadcastScript*)self;
+                if ([broadcastBrick.broadcastMessage isEqualToString:broadcastScript.receivedMessage]) {
+                    completionBlock = ^{ [broadcastBrick performBroadcast]; };
+                    break;
+                }
+            }
+            if (index) {
+                completionBlock = ^{ NSLog(@"broadcast"); [broadcastBrick performBroadcast]; completionBlock(); };
+            } else {
+                completionBlock = ^{ NSLog(@"broadcast"); [broadcastBrick performBroadcast]; finalCompletionBlock(); };
+            }
+        } else if ([operation isKindOfClass:[CBBroadcastWaitOperation class]]) {
+            NSError(@"UNIMPLEMENTED BROADCASTWAIT");
+            abort();
+        } else {
+            NSError(@"UNSUPPORTED OPERATION!!");
+            abort();
+        }
+        ++index;
+    }
+    return completionBlock;
 }
 
 - (void)runSequenceAndWait:(BOOL)wait

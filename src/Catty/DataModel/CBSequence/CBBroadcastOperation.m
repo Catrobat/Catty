@@ -24,7 +24,7 @@
 #import "BroadcastBrick.h"
 
 @interface CBBroadcastOperation()
-@property (nonatomic, strong) BroadcastBrick *broadcastBrick;
+@property (nonatomic, strong, readwrite) BroadcastBrick *broadcastBrick;
 @end
 
 @implementation CBBroadcastOperation

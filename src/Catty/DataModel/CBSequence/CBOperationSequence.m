@@ -23,7 +23,7 @@
 #import "CBOperationSequence.h"
 
 @interface CBOperationSequence()
-@property (nonatomic, strong) NSMutableArray *operationList;
+@property (nonatomic, strong, readwrite) NSMutableArray *operationList;
 @end
 
 @implementation CBOperationSequence

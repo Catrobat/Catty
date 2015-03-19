@@ -25,6 +25,7 @@
 @class CBOperation;
 
 @interface CBOperationSequence : CBSequence
+@property (nonatomic, strong, readonly) NSMutableArray *operationList;
 
 - (void)addOperation:(CBOperation*)operation;
 
