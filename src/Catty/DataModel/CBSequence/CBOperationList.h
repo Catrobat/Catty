@@ -20,11 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "CBOperation.h"
-#import "CBSequenceBlock.h"
+#import "CBSequence.h"
 
-@interface CBOperationList : CBOperation
+@class CBOperation;
 
-- (void)addSequenceBlock:(CBSequenceBlock*)sequenceBlock;
+@interface CBOperationList : CBSequence
+
+- (void)addOperation:(CBOperation*)operation;
+- (BOOL)isEmpty;
 
 @end

@@ -21,7 +21,6 @@
  */
 
 #import "CBOperationList.h"
-#import "CBSequenceBlock.h"
 
 @interface CBOperationList()
 @property (nonatomic, strong) NSMutableArray *operationList;
@@ -37,11 +36,14 @@
     return _operationList;
 }
 
-- (void)addSequenceBlock:(CBSequenceBlock*)sequenceBlock
+- (void)addOperation:(CBOperation*)operation
 {
-    if (! [currentSequence isEmpty]) {
-        [currentOperationList addObject:currentSequence];
-    }
+    [self.operationList addObject:operation];
+}
+
+- (BOOL)isEmpty
+{
+    return ([self.operationList count] == 0);
 }
 
 @end
