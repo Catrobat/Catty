@@ -542,13 +542,13 @@
 		4C5517BC1ABC16B600A52FF4 /* ViewControllerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDefines.h; sourceTree = "<group>"; };
 		4C5517C31ABC300800A52FF4 /* BrickCellFragmentProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellFragmentProtocol.h; sourceTree = "<group>"; };
 		4C5517C41ABC300800A52FF4 /* BrickCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellProtocol.h; sourceTree = "<group>"; };
-		4C5517C51ABC300800A52FF4 /* BrickFormulaProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickFormulaProtocol.h; sourceTree = "<group>"; };
 		4C5517C61ABC300800A52FF4 /* BrickProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickProtocol.h; sourceTree = "<group>"; };
 		4C5517C81ABC303200A52FF4 /* ScriptProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptProtocol.h; sourceTree = "<group>"; };
-		4C5517CB1ABC322A00A52FF4 /* BrickLookProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickLookProtocol.h; sourceTree = "<group>"; };
-		4C5517CC1ABC4DA300A52FF4 /* BrickSoundProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSoundProtocol.h; sourceTree = "<group>"; };
 		4C5517D01ABC4F9400A52FF4 /* SoundBrickCellFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundBrickCellFragment.h; path = BrickCellFragments/SoundBrickCellFragment.h; sourceTree = "<group>"; };
 		4C5517D11ABC4F9400A52FF4 /* SoundBrickCellFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoundBrickCellFragment.m; path = BrickCellFragments/SoundBrickCellFragment.m; sourceTree = "<group>"; };
+		4C5517D41ABC6A8100A52FF4 /* BrickFormulaProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickFormulaProtocol.h; sourceTree = "<group>"; };
+		4C5517D51ABC6AA500A52FF4 /* BrickLookProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickLookProtocol.h; sourceTree = "<group>"; };
+		4C5517D61ABC6AB800A52FF4 /* BrickSoundProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSoundProtocol.h; sourceTree = "<group>"; };
 		4C6066381A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+CustomExtensions.h"; sourceTree = "<group>"; };
 		4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+CustomExtensions.m"; sourceTree = "<group>"; };
 		4C9E2D1E198EA6B600455B77 /* SMPageControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SMPageControl.license; sourceTree = "<group>"; };
@@ -1652,12 +1652,10 @@
 		4C5517BE1ABC2F5F00A52FF4 /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
+				4C5517D31ABC6A8100A52FF4 /* BrickData */,
 				4C5517C31ABC300800A52FF4 /* BrickCellFragmentProtocol.h */,
 				4C5517C41ABC300800A52FF4 /* BrickCellProtocol.h */,
 				4C5517C61ABC300800A52FF4 /* BrickProtocol.h */,
-				4C5517C51ABC300800A52FF4 /* BrickFormulaProtocol.h */,
-				4C5517CB1ABC322A00A52FF4 /* BrickLookProtocol.h */,
-				4C5517CC1ABC4DA300A52FF4 /* BrickSoundProtocol.h */,
 			);
 			path = Bricks;
 			sourceTree = "<group>";
@@ -1668,6 +1666,16 @@
 				4C5517C81ABC303200A52FF4 /* ScriptProtocol.h */,
 			);
 			path = Scripts;
+			sourceTree = "<group>";
+		};
+		4C5517D31ABC6A8100A52FF4 /* BrickData */ = {
+			isa = PBXGroup;
+			children = (
+				4C5517D41ABC6A8100A52FF4 /* BrickFormulaProtocol.h */,
+				4C5517D51ABC6AA500A52FF4 /* BrickLookProtocol.h */,
+				4C5517D61ABC6AB800A52FF4 /* BrickSoundProtocol.h */,
+			);
+			path = BrickData;
 			sourceTree = "<group>";
 		};
 		4C6066371A5ACC3100F486CE /* GDataXMLNode+CustomExtensions */ = {
