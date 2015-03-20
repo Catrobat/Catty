@@ -23,3 +23,5 @@
 #define kPaintViewControllerIdentifier @"paint"
 #define kLooksTableViewControllerIdentifier @"LooksTableViewController"
 #define kSoundsTableViewControllerIdentifier @"SoundsTableViewController"
+#define kSoundRecorderViewControllerIdentifier @"SoundRecorder"
+#define kSoundPickerTableViewControllerIdentifier @"SoundPickerTableViewController"

@@ -47,6 +47,7 @@
 #import "ProgramLoadingInfo.h"
 #import "SRViewController.h"
 #import "PlaceHolderView.h"
+#import "ViewControllerDefines.h"
 
 @interface SoundsTableViewController () <CatrobatActionSheetDelegate, AVAudioPlayerDelegate,
                                          SWTableViewCellDelegate>
@@ -586,9 +587,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
             NSLog(@"Recorder");
             self.isAllowed = YES;
             [self stopAllSounds];
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
             SRViewController *soundRecorderViewController;
-            soundRecorderViewController = [storyboard instantiateViewControllerWithIdentifier:@"SoundRecorder"];
+            soundRecorderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kSoundRecorderViewControllerIdentifier];
             [self showViewController:soundRecorderViewController sender:self];
         } else if (buttonIndex == 1) {
             // Select music track
@@ -600,9 +600,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 return;
             }
             [self stopAllSounds];
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
             SoundPickerTableViewController *soundPickerTVC;
-            soundPickerTVC = [storyboard instantiateViewControllerWithIdentifier:@"SoundPickerTableViewController"];
+            soundPickerTVC = [self.storyboard instantiateViewControllerWithIdentifier:kSoundPickerTableViewControllerIdentifier];
             soundPickerTVC.directory = delegate.fileManager.documentsDirectory;
             UINavigationController *navigationController = [[UINavigationController alloc]
                                                             initWithRootViewController:soundPickerTVC];
