@@ -24,7 +24,7 @@
 #import "Brick.h"
 #import "Look.h"
 
-@protocol LookBrickProtocol <NSObject>
+@protocol BrickLookProtocol <NSObject>
 
 - (Look*)lookForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
 - (void)setLook:(Look*)look ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;

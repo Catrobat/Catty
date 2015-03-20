@@ -26,7 +26,7 @@
 @class SpriteObject;
 @class Brick;
 @class Look;
-@protocol LookBrickProtocol;
+@protocol BrickLookProtocol;
 
 @protocol PaintDelegate <NSObject>
 

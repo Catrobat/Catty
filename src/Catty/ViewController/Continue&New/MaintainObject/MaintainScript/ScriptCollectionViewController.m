@@ -57,7 +57,7 @@
 #import "ScriptDataSource+Extensions.h"
 #import "FBKVOController.h"
 #import "BrickCellFragmentProtocol.h"
-#import "LookBrickProtocol.h"
+#import "BrickLookProtocol.h"
 #import "LooksTableViewController.h"
 #import "ViewControllerDefines.h"
 
@@ -1181,9 +1181,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 #pragma mark - BrickCellFragment delegate
 - (void)updateData:(id)data ForBrick:(Brick*)brick AndLineNumber:(NSInteger)line AndParameterNumber:(NSInteger)parameter
 {
-    if([brick conformsToProtocol:@protocol(LookBrickProtocol)]) {
+    if([brick conformsToProtocol:@protocol(BrickLookProtocol)]) {
         NSString *value = (NSString*)data;
-        Brick<LookBrickProtocol> *lookBrick = (Brick<LookBrickProtocol>*)brick;
+        Brick<BrickLookProtocol> *lookBrick = (Brick<BrickLookProtocol>*)brick;
         if([value isEqualToString:kLocalizedNewElement]) {
             LooksTableViewController *ltvc = [self.storyboard instantiateViewControllerWithIdentifier:kLooksTableViewControllerIdentifier];
             [ltvc setObject:self.object];

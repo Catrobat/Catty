@@ -53,7 +53,7 @@
 #import "PlaceHolderView.h"
 #import "UIImage+Rotate.h"
 #import "ScriptCollectionViewController.h"
-#import "LookBrickProtocol.h"
+#import "BrickLookProtocol.h"
 
 @interface LooksTableViewController () <CatrobatActionSheetDelegate, UIImagePickerControllerDelegate,
                                         UINavigationControllerDelegate, CatrobatAlertViewDelegate,
