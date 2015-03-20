@@ -21,40 +21,41 @@
  */
 
 
-#import "LookBrickCellFragment.h"
+#import "SoundBrickCellFragment.h"
 #import "iOSCombobox.h"
 #import "BrickCell.h"
+#import "Sound.h"
 #import "Script.h"
-#import "Look.h"
 #import "Brick.h"
-#import "BrickLookProtocol.h"
+#import "BrickSoundProtocol.h"
 #import "LooksTableViewController.h"
 #import "LanguageTranslationDefines.h"
 
-@interface LookBrickCellFragment()
+@interface SoundBrickCellFragment()
 @property (nonatomic, weak) BrickCell *brickCell;
 @property (nonatomic) NSInteger lineNumber;
 @property (nonatomic) NSInteger parameterNumber;
 @end
 
-@implementation LookBrickCellFragment
+@implementation SoundBrickCellFragment
 
-- (instancetype)initWithFrame:(CGRect)frame AndBrickCell:(BrickCell*)brickCell AndLineNumber:(NSInteger)line AndParameterNumber:(NSInteger)parameter
+- (instancetype)initWithFrame:(CGRect)frame AndBrickCell:(BrickCell *)brickCell AndLineNumber:(NSInteger)line AndParameterNumber:(NSInteger)parameter
 {
     if(self = [super initWithFrame:frame]) {
         _brickCell = brickCell;
         _lineNumber = line;
         _parameterNumber = parameter;
+        
         NSMutableArray *options = [[NSMutableArray alloc] init];
         [options addObject:kLocalizedNewElement];
         int currentOptionIndex = 0;
         int optionIndex = 1;
-        if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickLookProtocol)]) {
-            Brick<BrickLookProtocol> *lookBrick = (Brick<BrickLookProtocol>*)brickCell.scriptOrBrick;
-            Look *currentLook = [lookBrick lookForLineNumber:line AndParameterNumber:parameter];
-            for(Look *look in lookBrick.script.object.lookList) {
-                [options addObject:look.name];
-                if([look.name isEqualToString:currentLook.name])
+        if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickSoundProtocol)]) {
+            Brick<BrickSoundProtocol> *soundBrick = (Brick<BrickSoundProtocol>*)brickCell.scriptOrBrick;
+            Sound *currentSound = [soundBrick soundForLineNumber:line AndParameterNumber:parameter];
+            for(Sound *sound in soundBrick.script.object.soundList) {
+                [options addObject:sound.name];
+                if([sound.name isEqualToString:currentSound.name])
                     currentOptionIndex = optionIndex;
                 optionIndex++;
             }

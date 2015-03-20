@@ -33,6 +33,7 @@
 #import "SpeakBrick.h"
 #import "BrickCellFragmentProtocol.h"
 #import "LookBrickCellFragment.h"
+#import "SoundBrickCellFragment.h"
 
 // uncomment this to get special log outputs, etc...
 //#define LAYOUT_DEBUG 0
@@ -481,16 +482,10 @@
                 inputField = (UIView*)comboBox;
             } else if ([afterLabelParam rangeOfString:@"SOUND"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
-                NSMutableArray* sounds = [[NSMutableArray alloc] init];
-                [sounds addObject:@"New..."];
-                [sounds addObject:@"sound 1"];
-                iOSCombobox *comboBox = [UIUtil newDefaultBrickComboBoxWithFrame:inputViewFrame AndItems:sounds];
-                [comboBox setDelegate:(id<iOSComboboxDelegate>)self.delegate];
-                [comboBox setCurrentValue:sounds[0]];
-                inputField = (UIView*)comboBox;
+                inputField = [[SoundBrickCellFragment alloc] initWithFrame:inputViewFrame AndBrickCell:self AndLineNumber:lineNumber AndParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"LOOK"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
-                inputField = [[LookBrickCellFragment alloc] initWithFrame:inputViewFrame AndBrickCell:self];
+                inputField = [[LookBrickCellFragment alloc] initWithFrame:inputViewFrame AndBrickCell:self AndLineNumber:lineNumber AndParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"VARIABLE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 NSMutableArray* variables = [[NSMutableArray alloc] init];

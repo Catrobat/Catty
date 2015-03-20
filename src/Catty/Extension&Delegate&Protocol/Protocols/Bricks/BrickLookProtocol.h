@@ -21,8 +21,9 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "Brick.h"
-#import "Look.h"
+
+@class Brick;
+@class Sound;
 
 @protocol BrickLookProtocol <NSObject>
 

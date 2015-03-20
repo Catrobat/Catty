@@ -58,8 +58,12 @@
 #import "FBKVOController.h"
 #import "BrickCellFragmentProtocol.h"
 #import "BrickLookProtocol.h"
+#import "BrickSoundProtocol.h"
 #import "LooksTableViewController.h"
+#import "SoundsTableViewController.h"
 #import "ViewControllerDefines.h"
+#import "Look.h"
+#import "Sound.h"
 
 @interface ScriptCollectionViewController() <UICollectionViewDelegate,
                                              LXReorderableCollectionViewDelegateFlowLayout,
@@ -1198,6 +1202,27 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             for(Look *look in self.object.lookList) {
                 if([look.name isEqualToString:value]) {
                     [lookBrick setLook:look ForLineNumber:line AndParameterNumber:parameter];
+                    break;
+                }
+            }
+        }
+    } else if([brick conformsToProtocol:@protocol(BrickSoundProtocol)]) {
+        NSString *value = (NSString*)data;
+        Brick<BrickSoundProtocol> *soundBrick = (Brick<BrickSoundProtocol>*)brick;
+        if([value isEqualToString:kLocalizedNewElement]) {
+            SoundsTableViewController *ltvc = [self.storyboard instantiateViewControllerWithIdentifier:kSoundsTableViewControllerIdentifier];
+            [ltvc setObject:self.object];
+            ltvc.showAddSoundActionSheetAtStart = YES;
+            ltvc.afterSafeBlock =  ^(Sound* sound) {
+                [soundBrick setSound:sound ForLineNumber:line AndParameterNumber:parameter];
+                [self.navigationController popViewControllerAnimated:YES];
+            };
+            [self.navigationController pushViewController:ltvc animated:YES];
+            return;
+        } else {
+            for(Sound *sound in self.object.soundList) {
+                if([sound.name isEqualToString:value]) {
+                    [soundBrick setSound:sound ForLineNumber:line AndParameterNumber:parameter];
                     break;
                 }
             }

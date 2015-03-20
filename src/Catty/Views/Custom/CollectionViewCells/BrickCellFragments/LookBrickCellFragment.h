@@ -25,8 +25,4 @@
 #import "iOSCombobox.h"
 
 @interface LookBrickCellFragment : iOSCombobox<BrickCellFragmentProtocol, iOSComboboxDelegate>
-
-@property (nonatomic, readonly) CGRect frame;
-- (instancetype)initWithFrame:(CGRect)frame AndBrickCell:(BrickCell*)brickCell;
-
 @end

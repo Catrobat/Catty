@@ -22,9 +22,11 @@
 
 
 #import "Brick.h"
+#import "BrickSoundProtocol.h"
+
 @class Sound;
 
-@interface PlaySoundBrick : Brick
+@interface PlaySoundBrick : Brick<BrickSoundProtocol>
 
 @property (nonatomic, strong) Sound *sound;
 

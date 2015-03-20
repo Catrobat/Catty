@@ -24,7 +24,12 @@
 #import "BaseTableViewController.h"
 
 @class SpriteObject;
+@class Sound;
 
 @interface SoundsTableViewController : BaseTableViewController
+
 @property (strong, nonatomic) SpriteObject *object;
+@property (nonatomic) BOOL showAddSoundActionSheetAtStart;
+@property (copy) void (^afterSafeBlock)(Sound* look);
+
 @end

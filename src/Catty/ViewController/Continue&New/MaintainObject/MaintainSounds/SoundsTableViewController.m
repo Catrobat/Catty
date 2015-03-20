@@ -107,6 +107,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.isAllowed = YES;
+    
+    if(self.showAddSoundActionSheetAtStart) {
+        [self addSoundAction:nil];
+    }
 }
 
 - (void)dealloc
@@ -214,6 +218,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     [self.object.program saveToDisk];
+    
+    if(self.afterSafeBlock) {
+        self.afterSafeBlock(sound);
+    }
 }
 
 - (void)copySoundActionWithSourceSound:(Sound*)sourceSound

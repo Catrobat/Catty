@@ -54,6 +54,7 @@
 #import "UIImage+Rotate.h"
 #import "ScriptCollectionViewController.h"
 #import "BrickLookProtocol.h"
+#import "ViewControllerDefines.h"
 
 @interface LooksTableViewController () <CatrobatActionSheetDelegate, UIImagePickerControllerDelegate,
                                         UINavigationControllerDelegate, CatrobatAlertViewDelegate,
@@ -331,8 +332,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 //    static NSString *segueToImage = kSegueToImage;
     if (! self.editing) {
 //        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
-        PaintViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"paint"];
+        PaintViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kPaintViewControllerIdentifier];
         vc.delegate = self;
         self.selectedLook = [self.object.lookList objectAtIndex:indexPath.row];
         NSString *lookImagePath = [self.object pathForLook:self.selectedLook];
@@ -601,8 +601,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             // implement this after Pocket Paint is fully integrated
             // draw new image
             NSDebug(@"Draw new image");
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
-            PaintViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"paint"];
+            PaintViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kPaintViewControllerIdentifier];
             vc.delegate = self;
             vc.editingImage = nil;
             [self.navigationController pushViewController:vc animated:YES];

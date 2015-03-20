@@ -98,7 +98,8 @@
 
 - (void)setLook:(Look *)look ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
 {
-    self.look = look;
+    if(look)
+        self.look = look;
 }
 
 @end

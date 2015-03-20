@@ -20,23 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@class BrickCell;
+#import <Foundation/Foundation.h>
+
 @class Brick;
+@class Sound;
 
-@protocol BrickCellFragmentDelegate <NSObject>
+@protocol BrickSoundProtocol <NSObject>
 
-@required
-- (void)updateData:(id)data ForBrick:(Brick*)brick AndLineNumber:(NSInteger)line AndParameterNumber:(NSInteger)parameter;
-
-@end
-
-@protocol BrickCellFragmentProtocol <NSObject>
-
-@required
-@property (nonatomic, readonly) NSInteger lineNumber;
-@property (nonatomic, readonly) NSInteger parameterNumber;
-@property (nonatomic, weak, readonly) BrickCell* brickCell;
-
-- (instancetype)initWithFrame:(CGRect)frame AndBrickCell:(BrickCell*)brickCell AndLineNumber:(NSInteger)line AndParameterNumber:(NSInteger)parameter;
+- (Sound*)soundForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
+- (void)setSound:(Sound*)sound ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
 
 @end
