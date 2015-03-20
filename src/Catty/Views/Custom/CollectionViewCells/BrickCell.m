@@ -34,6 +34,7 @@
 #import "BrickCellFragmentProtocol.h"
 #import "LookBrickCellFragment.h"
 #import "SoundBrickCellFragment.h"
+#import "ObjectBrickCellFragment.h"
 
 // uncomment this to get special log outputs, etc...
 //#define LAYOUT_DEBUG 0
@@ -473,13 +474,7 @@
                 inputField = (UIView*)comboBox;
             } else if ([afterLabelParam rangeOfString:@"OBJECT"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
-                NSMutableArray* objects = [[NSMutableArray alloc] init];
-                [objects addObject:@"New..."];
-                [objects addObject:@"object 1"];
-                iOSCombobox *comboBox = [UIUtil newDefaultBrickComboBoxWithFrame:inputViewFrame AndItems:objects];
-                [comboBox setDelegate:(id<iOSComboboxDelegate>)self.delegate];
-               [comboBox setCurrentValue:objects[0]];
-                inputField = (UIView*)comboBox;
+                inputField = [[ObjectBrickCellFragment alloc] initWithFrame:inputViewFrame AndBrickCell:self AndLineNumber:lineNumber AndParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"SOUND"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 inputField = [[SoundBrickCellFragment alloc] initWithFrame:inputViewFrame AndBrickCell:self AndLineNumber:lineNumber AndParameterNumber:counter];

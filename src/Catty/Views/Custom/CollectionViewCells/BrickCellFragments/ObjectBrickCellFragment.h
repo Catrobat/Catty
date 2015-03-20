@@ -20,18 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
 
-@class ProgramLoadingInfo;
-@class Program;
-@protocol ProgramUpdateDelegate;
+#import "BrickCellFragmentProtocol.h"
+#import "iOSCombobox.h"
 
-@interface ProgramTableViewController : BaseTableViewController
+@interface ObjectBrickCellFragment : iOSCombobox<BrickCellFragmentProtocol, iOSComboboxDelegate>
 
-@property (weak, nonatomic) id<ProgramUpdateDelegate> delegate;
-@property (strong, nonatomic) Program *program;
-
-- (void)addObjectAction:(id)sender;
+@property (nonatomic, weak) NSArray* objectList;
 
 @end

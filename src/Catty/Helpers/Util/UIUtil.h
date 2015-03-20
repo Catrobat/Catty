@@ -25,6 +25,7 @@
 @class iOSCombobox;
 @class FormulaEditorTextField;
 @class BrickCell;
+@class Program;
 
 @interface UIUtil : NSObject
 
@@ -34,7 +35,5 @@
 + (UIButton*)newDefaultBrickFormulaEditorWithFrame:(CGRect)frame ForBrickCell:(BrickCell*)brickCell AndLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
 
 + (iOSCombobox*)newDefaultBrickComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
-
-+ (UIStoryboard*)currentStoryboard;
 
 @end

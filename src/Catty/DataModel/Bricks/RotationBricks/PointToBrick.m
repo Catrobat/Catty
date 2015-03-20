@@ -114,4 +114,16 @@
     return YES;
 }
 
+#pragma mark - BrickObjectProtocol
+- (void)setObject:(SpriteObject *)object ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    if(object)
+        self.pointedObject = object;
+}
+
+- (SpriteObject*)objectForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.pointedObject;
+}
+
 @end

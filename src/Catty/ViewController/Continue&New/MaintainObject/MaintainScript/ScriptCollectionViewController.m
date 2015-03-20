@@ -59,8 +59,10 @@
 #import "BrickCellFragmentProtocol.h"
 #import "BrickLookProtocol.h"
 #import "BrickSoundProtocol.h"
+#import "BrickObjectProtocol.h"
 #import "LooksTableViewController.h"
 #import "SoundsTableViewController.h"
+#import "ProgramTableViewController.h"
 #import "ViewControllerDefines.h"
 #import "Look.h"
 #import "Sound.h"
@@ -1183,6 +1185,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - BrickCellFragment delegate
+- (void)addObjectActionWithName:(NSString*)objectName
+{
+    NSString *uniqueName = [Util uniqueName:objectName existingNames:[self.object.program allObjectNames]];
+    [self.object.program addObjectWithName:uniqueName];
+    [self.collectionView reloadData];
+}
+
 - (void)updateData:(id)data ForBrick:(Brick*)brick AndLineNumber:(NSInteger)line AndParameterNumber:(NSInteger)parameter
 {
     if([brick conformsToProtocol:@protocol(BrickLookProtocol)]) {
@@ -1226,6 +1235,15 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                     break;
                 }
             }
+        }
+    } else if([brick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
+        NSString *value = (NSString*)data;
+        Brick<BrickObjectProtocol> *objectBrick = (Brick<BrickObjectProtocol>*)brick;
+        if([value isEqualToString:kLocalizedNewElement]) {
+            [Util addObjectAlertForProgram:self.object.program AndPerformAction:@selector(addObjectActionWithName:) OnTarget:self];
+            return;
+        } else {
+            
         }
     }
     

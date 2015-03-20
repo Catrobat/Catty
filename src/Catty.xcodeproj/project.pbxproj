@@ -13,6 +13,7 @@
 		4C26506F1A6566F50050775B /* SpriteObjectCopyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26506E1A6566F50050775B /* SpriteObjectCopyTest.m */; };
 		4C3275FA1A1360640091C428 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */; };
 		4C5517D21ABC4F9400A52FF4 /* SoundBrickCellFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5517D11ABC4F9400A52FF4 /* SoundBrickCellFragment.m */; };
+		4C5517DA1ABC747B00A52FF4 /* ObjectBrickCellFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5517D91ABC747A00A52FF4 /* ObjectBrickCellFragment.m */; };
 		4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */; };
 		4CB2AB291A6BF2590086E5A0 /* PointToBrickWithoutSpriteObject.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CB2AB281A6BF2590086E5A0 /* PointToBrickWithoutSpriteObject.xml */; };
 		4CB4419E1AB9A96A005A1DEF /* LookBrickCellFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4419D1AB9A96A005A1DEF /* LookBrickCellFragment.m */; };
@@ -549,6 +550,9 @@
 		4C5517D41ABC6A8100A52FF4 /* BrickFormulaProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickFormulaProtocol.h; sourceTree = "<group>"; };
 		4C5517D51ABC6AA500A52FF4 /* BrickLookProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickLookProtocol.h; sourceTree = "<group>"; };
 		4C5517D61ABC6AB800A52FF4 /* BrickSoundProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSoundProtocol.h; sourceTree = "<group>"; };
+		4C5517D71ABC737C00A52FF4 /* BrickObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickObjectProtocol.h; sourceTree = "<group>"; };
+		4C5517D81ABC747A00A52FF4 /* ObjectBrickCellFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectBrickCellFragment.h; path = BrickCellFragments/ObjectBrickCellFragment.h; sourceTree = "<group>"; };
+		4C5517D91ABC747A00A52FF4 /* ObjectBrickCellFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ObjectBrickCellFragment.m; path = BrickCellFragments/ObjectBrickCellFragment.m; sourceTree = "<group>"; };
 		4C6066381A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+CustomExtensions.h"; sourceTree = "<group>"; };
 		4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+CustomExtensions.m"; sourceTree = "<group>"; };
 		4C9E2D1E198EA6B600455B77 /* SMPageControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SMPageControl.license; sourceTree = "<group>"; };
@@ -1673,6 +1677,7 @@
 			children = (
 				4C5517D41ABC6A8100A52FF4 /* BrickFormulaProtocol.h */,
 				4C5517D51ABC6AA500A52FF4 /* BrickLookProtocol.h */,
+				4C5517D71ABC737C00A52FF4 /* BrickObjectProtocol.h */,
 				4C5517D61ABC6AB800A52FF4 /* BrickSoundProtocol.h */,
 			);
 			path = BrickData;
@@ -1729,6 +1734,8 @@
 			children = (
 				4CB4419C1AB9A96A005A1DEF /* LookBrickCellFragment.h */,
 				4CB4419D1AB9A96A005A1DEF /* LookBrickCellFragment.m */,
+				4C5517D81ABC747A00A52FF4 /* ObjectBrickCellFragment.h */,
+				4C5517D91ABC747A00A52FF4 /* ObjectBrickCellFragment.m */,
 				4C5517D01ABC4F9400A52FF4 /* SoundBrickCellFragment.h */,
 				4C5517D11ABC4F9400A52FF4 /* SoundBrickCellFragment.m */,
 			);
@@ -4535,6 +4542,7 @@
 				92FF2E9C1A24C7D800093DA7 /* SensorHandler.m in Sources */,
 				92FF32B71A24E2F400093DA7 /* ColoredCell.m in Sources */,
 				CAA4A4AA1A43B407002A69A0 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
+				4C5517DA1ABC747B00A52FF4 /* ObjectBrickCellFragment.m in Sources */,
 				92DFB05B1A38960C00FA9B0F /* LineTool.m in Sources */,
 				92FF32711A24E2F400093DA7 /* SWUtilityButtonView.m in Sources */,
 				92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */,

@@ -190,6 +190,8 @@
                    blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
               invalidInputAlertMessage:(NSString*)invalidInputAlertMessage;
 
++ (void)addObjectAlertForProgram:(Program*)program AndPerformAction:(SEL)action OnTarget:(id)target;
+
 + (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames;
 
 + (CGFloat)detectCBLanguageVersionFromXMLWithPath:(NSString*)xmlPath;

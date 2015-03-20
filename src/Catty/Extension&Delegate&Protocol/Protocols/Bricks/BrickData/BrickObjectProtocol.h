@@ -20,18 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
+#import <Foundation/Foundation.h>
 
-@class ProgramLoadingInfo;
-@class Program;
-@protocol ProgramUpdateDelegate;
+@class Brick;
+@class SpriteObject;
 
-@interface ProgramTableViewController : BaseTableViewController
+@protocol BrickObjectProtocol <NSObject>
 
-@property (weak, nonatomic) id<ProgramUpdateDelegate> delegate;
-@property (strong, nonatomic) Program *program;
-
-- (void)addObjectAction:(id)sender;
+- (SpriteObject*)objectForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
+- (void)setObject:(SpriteObject*)object ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
 
 @end

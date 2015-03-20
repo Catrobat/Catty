@@ -512,7 +512,21 @@
 }
 
 
-
++ (void)addObjectAlertForProgram:(Program*)program AndPerformAction:(SEL)action OnTarget:(id)target
+{
+    [self askUserForUniqueNameAndPerformAction:@selector(addObjectActionWithName:)
+                                        target:target
+                                   promptTitle:kLocalizedAddObject
+                                 promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]
+                                   promptValue:nil
+                             promptPlaceholder:kLocalizedEnterYourObjectNameHere
+                                minInputLength:kMinNumOfObjectNameCharacters
+                                maxInputLength:kMaxNumOfObjectNameCharacters
+                           blockedCharacterSet:[[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                                                invertedSet]
+                      invalidInputAlertMessage:kLocalizedObjectNameAlreadyExistsDescription
+                                 existingNames:[[program allObjectNames] mutableCopy]];
+}
 
 + (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames
 {

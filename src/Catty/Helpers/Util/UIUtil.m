@@ -94,11 +94,4 @@
     return comboBox;
 }
 
-+ (UIStoryboard*)currentStoryboard
-{
-    UIApplication *application = [UIApplication sharedApplication];
-    UIWindow *backWindow = application.windows[0];
-    return backWindow.rootViewController.storyboard;
-}
-
 @end
