@@ -57,7 +57,9 @@
 #import "ScriptDataSource+Extensions.h"
 #import "FBKVOController.h"
 #import "BrickCellFragmentProtocol.h"
-#import "SetLookBrick.h"
+#import "LookBrickProtocol.h"
+#import "LooksTableViewController.h"
+#import "ViewControllerDefines.h"
 
 @interface ScriptCollectionViewController() <UICollectionViewDelegate,
                                              LXReorderableCollectionViewDelegateFlowLayout,
@@ -103,6 +105,7 @@
 {
     [super viewWillAppear:animated];
     [self.view insertSubview:self.placeHolderView aboveSubview:self.collectionView];
+    [self.collectionView reloadData];
 }
 
 - (void)viewWillLayoutSubviews {
@@ -1176,22 +1179,32 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - BrickCellFragment delegate
-- (void)dataDidChange:(id)data ForBrick:(Brick *)brick
+- (void)updateData:(id)data ForBrick:(Brick*)brick AndLineNumber:(NSInteger)line AndParameterNumber:(NSInteger)parameter
 {
-    NSString *value = (NSString*)data;
-    if([value isEqualToString:kLocalizedNewElement]) {
-    } else {
-        if([brick isKindOfClass:[SetLookBrick class]]) {
-            SetLookBrick *lookBrick = (SetLookBrick*)brick;
-            for(Look *look in lookBrick.script.object.lookList) {
+    if([brick conformsToProtocol:@protocol(LookBrickProtocol)]) {
+        NSString *value = (NSString*)data;
+        Brick<LookBrickProtocol> *lookBrick = (Brick<LookBrickProtocol>*)brick;
+        if([value isEqualToString:kLocalizedNewElement]) {
+            LooksTableViewController *ltvc = [self.storyboard instantiateViewControllerWithIdentifier:kLooksTableViewControllerIdentifier];
+            [ltvc setObject:self.object];
+            ltvc.showAddLookActionSheetAtStart = YES;
+            ltvc.afterSafeBlock =  ^(Look* look) {
+                [lookBrick setLook:look ForLineNumber:line AndParameterNumber:parameter];
+                [self.navigationController popViewControllerAnimated:YES];
+            };
+            [self.navigationController pushViewController:ltvc animated:YES];
+            return;
+        } else {
+            for(Look *look in self.object.lookList) {
                 if([look.name isEqualToString:value]) {
-                    lookBrick.look = look;
+                    [lookBrick setLook:look ForLineNumber:line AndParameterNumber:parameter];
                     break;
                 }
             }
         }
-        [self saveProgram];
     }
+    
+    [self saveProgram];
 }
 
 @end

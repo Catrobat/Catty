@@ -91,4 +91,14 @@
     return NO;
 }
 
+- (Look *)lookForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    return self.look;
+}
+
+- (void)setLook:(Look *)look ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+{
+    self.look = look;
+}
+
 @end

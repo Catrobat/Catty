@@ -303,11 +303,6 @@
     active = NO;
     [self setNeedsDisplay];
     
-    if ([[self delegate] respondsToSelector:@selector(comboboxClosed:withValue:)])
-    {
-        [[self delegate] comboboxClosed:self withValue:[self currentValue]];
-    }
-    
     return YES;
 }
 
@@ -315,6 +310,11 @@
 {
     [[keyboardControls activeField] resignFirstResponder];
     [self resignFirstResponder];
+    
+    if ([[self delegate] respondsToSelector:@selector(comboboxClosed:withValue:)])
+    {
+        [[self delegate] comboboxClosed:self withValue:[self currentValue]];
+    }
 }
 
 @end

@@ -52,6 +52,8 @@
 #import "PaintViewController.h"
 #import "PlaceHolderView.h"
 #import "UIImage+Rotate.h"
+#import "ScriptCollectionViewController.h"
+#import "LookBrickProtocol.h"
 
 @interface LooksTableViewController () <CatrobatActionSheetDelegate, UIImagePickerControllerDelegate,
                                         UINavigationControllerDelegate, CatrobatAlertViewDelegate,
@@ -95,6 +97,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    if(self.showAddLookActionSheetAtStart) {
+        [self showAddLookActionSheet];
+    }
 }
 
 #pragma mark viewwillappear
@@ -157,6 +163,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationBottom];
+    
+    if(self.afterSafeBlock) {
+        self.afterSafeBlock(look);
+    }
 }
 
 - (void)copyLookActionWithSourceLook:(Look*)sourceLook

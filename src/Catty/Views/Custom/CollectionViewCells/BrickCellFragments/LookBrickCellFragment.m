@@ -62,7 +62,7 @@
 
 - (void)comboboxClosed:(iOSCombobox*)combobox withValue:(NSString*)value
 {
-    [self.brickCell.fragmentDelegate dataDidChange:value ForBrick:(Brick*)self.brickCell.scriptOrBrick];
+    [self.brickCell.fragmentDelegate updateData:value ForBrick:(Brick*)self.brickCell.scriptOrBrick AndLineNumber:1 AndParameterNumber:1];
 }
 
 @end

@@ -27,6 +27,6 @@
 @interface LookBrickCellFragment : iOSCombobox<BrickCellFragmentProtocol, iOSComboboxDelegate>
 
 @property (nonatomic, readonly) CGRect frame;
-@property (nonatomic, weak) id<BrickCellFragmentDelegate> fragmentDelegate;
+- (instancetype)initWithFrame:(CGRect)frame AndBrickCell:(BrickCell*)brickCell;
 
 @end

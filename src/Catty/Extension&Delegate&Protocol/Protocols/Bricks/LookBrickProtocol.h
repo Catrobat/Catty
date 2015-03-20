@@ -20,20 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@class BrickCell;
-@class Brick;
+#import <Foundation/Foundation.h>
+#import "Brick.h"
+#import "Look.h"
 
-@protocol BrickCellFragmentDelegate <NSObject>
+@protocol LookBrickProtocol <NSObject>
 
-@required
-- (void)dataDidChange:(id)data ForBrick:(Brick*)brick;
-
-@end
-
-@protocol BrickCellFragmentProtocol <NSObject>
-
-@required
-@property (nonatomic, readonly) CGRect frame;
-- (instancetype)initWithFrame:(CGRect)frame AndBrickCell:(BrickCell*)brickCell;
+- (Look*)lookForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
+- (void)setLook:(Look*)look ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
 
 @end
