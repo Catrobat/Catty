@@ -506,6 +506,11 @@
 		CADBD7F519B0E8C200C62836 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */; };
 		CADBD7F619B0E8C200C62836 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */; };
 		CADBD7F719B0E8C200C62836 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F097711B7BABD009D4DB0 /* OpenAL.framework */; };
+		CAEE3BF51ABDFAE7009FDA72 /* CBConditionalSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE3BF01ABDFAE7009FDA72 /* CBConditionalSequence.m */; };
+		CAEE3BF61ABDFAE7009FDA72 /* CBIfConditionalSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE3BF11ABDFAE7009FDA72 /* CBIfConditionalSequence.m */; };
+		CAEE3BF71ABDFAE7009FDA72 /* CBOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE3BF21ABDFAE7009FDA72 /* CBOperation.m */; };
+		CAEE3BF81ABDFAE7009FDA72 /* CBOperationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE3BF31ABDFAE7009FDA72 /* CBOperationSequence.m */; };
+		CAEE3BF91ABDFAE7009FDA72 /* CBSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE3BF41ABDFAE7009FDA72 /* CBSequence.m */; };
 		CAFAEAE61A13BE1F00C9F170 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */; };
 /* End PBXBuildFile section */
 
@@ -1428,6 +1433,17 @@
 		CAD116E31A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GDataXMLElement+CustomExtensions.h"; path = "Catty/Extension&Delegate&Protocol/Extensions/GDataXMLElement/GDataXMLElement+CustomExtensions.h"; sourceTree = SOURCE_ROOT; };
 		CAD116E41A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GDataXMLElement+CustomExtensions.m"; path = "Catty/Extension&Delegate&Protocol/Extensions/GDataXMLElement/GDataXMLElement+CustomExtensions.m"; sourceTree = SOURCE_ROOT; };
 		CADBD7FB19B0E8C200C62836 /* Pocket Code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Code.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAEE3BE91ABDFABD009FDA72 /* BrickConditionalBranchProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickConditionalBranchProtocol.h; sourceTree = "<group>"; };
+		CAEE3BEB1ABDFAE7009FDA72 /* CBConditionalSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBConditionalSequence.h; path = CBSequence/CBConditionalSequence.h; sourceTree = "<group>"; };
+		CAEE3BEC1ABDFAE7009FDA72 /* CBIfConditionalSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBIfConditionalSequence.h; path = CBSequence/CBIfConditionalSequence.h; sourceTree = "<group>"; };
+		CAEE3BED1ABDFAE7009FDA72 /* CBOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBOperation.h; path = CBSequence/CBOperation.h; sourceTree = "<group>"; };
+		CAEE3BEE1ABDFAE7009FDA72 /* CBOperationSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBOperationSequence.h; path = CBSequence/CBOperationSequence.h; sourceTree = "<group>"; };
+		CAEE3BEF1ABDFAE7009FDA72 /* CBSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBSequence.h; path = CBSequence/CBSequence.h; sourceTree = "<group>"; };
+		CAEE3BF01ABDFAE7009FDA72 /* CBConditionalSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBConditionalSequence.m; path = CBSequence/CBConditionalSequence.m; sourceTree = "<group>"; };
+		CAEE3BF11ABDFAE7009FDA72 /* CBIfConditionalSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBIfConditionalSequence.m; path = CBSequence/CBIfConditionalSequence.m; sourceTree = "<group>"; };
+		CAEE3BF21ABDFAE7009FDA72 /* CBOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBOperation.m; path = CBSequence/CBOperation.m; sourceTree = "<group>"; };
+		CAEE3BF31ABDFAE7009FDA72 /* CBOperationSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBOperationSequence.m; path = CBSequence/CBOperationSequence.m; sourceTree = "<group>"; };
+		CAEE3BF41ABDFAE7009FDA72 /* CBSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBSequence.m; path = CBSequence/CBSequence.m; sourceTree = "<group>"; };
 		DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DE3F097711B7BABD009D4DB0 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -2263,6 +2279,7 @@
 		92FF2E461A24C64300093DA7 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				CAEE3BE91ABDFABD009FDA72 /* BrickConditionalBranchProtocol.h */,
 				92DFAFE71A38945300FA9B0F /* BrickFormulaProtocol.h */,
 				92FF2E471A24C64300093DA7 /* BrickCellProtocol.h */,
 				92FF2E481A24C64300093DA7 /* BrickProtocol.h */,
@@ -2532,6 +2549,7 @@
 		92FF30271A24DCAA00093DA7 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				CAEE3BEA1ABDFADE009FDA72 /* CBSequence */,
 				92FF30281A24DCAA00093DA7 /* BrickManager */,
 				92FF302B1A24DCAA00093DA7 /* Bricks */,
 				92FF30941A24DCAA00093DA7 /* BroadcastWait */,
@@ -4016,6 +4034,39 @@
 			name = Galaxy_War;
 			sourceTree = "<group>";
 		};
+		CAEE3BEA1ABDFADE009FDA72 /* CBSequence */ = {
+			isa = PBXGroup;
+			children = (
+				CAEE3BFA1ABDFAF5009FDA72 /* Operation */,
+				CAEE3BFB1ABDFB03009FDA72 /* Sequence */,
+			);
+			name = CBSequence;
+			sourceTree = "<group>";
+		};
+		CAEE3BFA1ABDFAF5009FDA72 /* Operation */ = {
+			isa = PBXGroup;
+			children = (
+				CAEE3BED1ABDFAE7009FDA72 /* CBOperation.h */,
+				CAEE3BF21ABDFAE7009FDA72 /* CBOperation.m */,
+			);
+			name = Operation;
+			sourceTree = "<group>";
+		};
+		CAEE3BFB1ABDFB03009FDA72 /* Sequence */ = {
+			isa = PBXGroup;
+			children = (
+				CAEE3BEF1ABDFAE7009FDA72 /* CBSequence.h */,
+				CAEE3BF41ABDFAE7009FDA72 /* CBSequence.m */,
+				CAEE3BEE1ABDFAE7009FDA72 /* CBOperationSequence.h */,
+				CAEE3BF31ABDFAE7009FDA72 /* CBOperationSequence.m */,
+				CAEE3BEB1ABDFAE7009FDA72 /* CBConditionalSequence.h */,
+				CAEE3BF01ABDFAE7009FDA72 /* CBConditionalSequence.m */,
+				CAEE3BEC1ABDFAE7009FDA72 /* CBIfConditionalSequence.h */,
+				CAEE3BF11ABDFAE7009FDA72 /* CBIfConditionalSequence.m */,
+			);
+			name = Sequence;
+			sourceTree = "<group>";
+		};
 		CAF8EF071A43B1A900710B27 /* IfBricks */ = {
 			isa = PBXGroup;
 			children = (
@@ -4427,6 +4478,7 @@
 				CAA4A4F51A43B47F002A69A0 /* LedOffBrick+CBXMLHandler.m in Sources */,
 				92FF328A1A24E2F400093DA7 /* ClearGraphicEffectBrickCell.m in Sources */,
 				92FF325B1A24E2F400093DA7 /* BDKNotifyHUD.m in Sources */,
+				CAEE3BF71ABDFAE7009FDA72 /* CBOperation.m in Sources */,
 				CAD116DD1A46AAC000F560B4 /* CBXMLPositionStack.m in Sources */,
 				92FF32BD1A24E2F400093DA7 /* ProgramTableHeaderView.m in Sources */,
 				CAA4A5361A43B51F002A69A0 /* XMLObjectReference.m in Sources */,
@@ -4499,6 +4551,7 @@
 				92FF32A41A24E2F400093DA7 /* ChangeVolumeByNBrickCell.m in Sources */,
 				92FF30EB1A24DCAA00093DA7 /* LedOffBrick.m in Sources */,
 				92FF32B81A24E2F400093DA7 /* ContinueImageCell.m in Sources */,
+				CAEE3BF61ABDFAE7009FDA72 /* CBIfConditionalSequence.m in Sources */,
 				CAA4A4AC1A43B407002A69A0 /* WaitBrick+CBXMLHandler.m in Sources */,
 				92FF32691A24E2F400093DA7 /* MYBlurIntroductionView.m in Sources */,
 				92FF30D01A24DCAA00093DA7 /* ChangeBrightnessByNBrick.m in Sources */,
@@ -4616,6 +4669,7 @@
 				CAA4A4E91A43B472002A69A0 /* PointToBrick+CBXMLHandler.m in Sources */,
 				CAA4A4A21A43B407002A69A0 /* ComeToFrontBrick+CBXMLHandler.m in Sources */,
 				92DFB0661A38960C00FA9B0F /* RGBAHelper.m in Sources */,
+				CAEE3BF91ABDFAE7009FDA72 /* CBSequence.m in Sources */,
 				92DFB0111A38949E00FA9B0F /* NSMutableArray+Reverse.m in Sources */,
 				92FF32A51A24E2F400093DA7 /* PlaySoundBrickCell.m in Sources */,
 				92FF30D81A24DCAA00093DA7 /* SetGhostEffectBrick.m in Sources */,
@@ -4642,6 +4696,7 @@
 				92FF325F1A24E2F400093DA7 /* FBShimmeringLayer.m in Sources */,
 				92FF2EC11A24C8A700093DA7 /* OrderedMapTable.m in Sources */,
 				92FF325D1A24E2F400093DA7 /* EVCircularProgressView.m in Sources */,
+				CAEE3BF51ABDFAE7009FDA72 /* CBConditionalSequence.m in Sources */,
 				CAA4A4A01A43B407002A69A0 /* BroadcastBrick+CBXMLHandler.m in Sources */,
 				92FF32991A24E2F400093DA7 /* PlaceAtBrickCell.m in Sources */,
 				92FF2E8E1A24C7D800093DA7 /* FileManager.m in Sources */,
@@ -4654,6 +4709,7 @@
 				92FF2E931A24C7D800093DA7 /* RuntimeImageCache.m in Sources */,
 				92DFB01C1A38949E00FA9B0F /* FormulaEditorButton.m in Sources */,
 				92FF31011A24DCAA00093DA7 /* Scene.m in Sources */,
+				CAEE3BF81ABDFAE7009FDA72 /* CBOperationSequence.m in Sources */,
 				92FF2E921A24C7D800093DA7 /* ImageCache.m in Sources */,
 				92FF326D1A24E2F400093DA7 /* SWCellScrollView.m in Sources */,
 				92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */,
