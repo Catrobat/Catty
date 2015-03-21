@@ -391,21 +391,16 @@
         } else if (operation.brick) {
             completionBlock = ^{
                 NSLog(@"[%@] %@ action", [weakSelf class], [operation.brick class]);
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [weakSelf runAction:operation.brick.action completion:^(){
-                        NSLog(@"[%@] %@ action finished", [weakSelf class], [operation.brick class]);
-                        completionBlock();
-                    }];
-                });
+                [weakSelf runAction:operation.brick.action completion:completionBlock];
             };
         } else {
             NSError(@"NO BRICK GIVEN!!");
             abort();
         }
     }
-//    dispatch_semaphore_signal(weakSelf.semaphore);
-//    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
     return completionBlock;
+    //    dispatch_semaphore_signal(weakSelf.semaphore);
+    //    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
 }
 
 - (void)removeReferences
