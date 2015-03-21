@@ -22,6 +22,17 @@
 
 #import "CBOperation.h"
 
+@interface CBOperation()
+@property (nonatomic, strong, readwrite) Brick *brick;
+@end
+
 @implementation CBOperation
+
++ (instancetype)operationForBrick:(Brick*)brick
+{
+    CBOperation *operation = [CBOperation new];
+    operation.brick = brick;
+    return operation;
+}
 
 @end

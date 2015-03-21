@@ -662,11 +662,11 @@
                 // cancel all already running actions of this script!!
                 [broadcastScript restart]; // trigger script to restart
                 [broadcastScript removeAllActions];
-                for (Brick *brick in broadcastScript.brickList) {
-                    if (brick.semaphore) {
-                        dispatch_semaphore_signal(brick.semaphore); // XXX: HACK!!
-                    }
-                }
+//                for (Brick *brick in broadcastScript.brickList) {
+//                    if (brick.semaphore) {
+//                        dispatch_semaphore_signal(brick.semaphore); // XXX: HACK!!
+//                    }
+//                }
             }
         }
     }

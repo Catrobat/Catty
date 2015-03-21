@@ -29,9 +29,6 @@
 
 @interface Brick : NSObject <BrickProtocol>
 
-#warning JUST FOR DEBUGGING PURPOSES
-@property (nonatomic, strong) dispatch_semaphore_t semaphore;
-
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readonly) kBrickType brickType;
 @property (nonatomic, strong, readonly) NSString *brickTitle;
@@ -45,8 +42,6 @@
 - (BOOL)isEqualToBrick:(Brick*)brick;
 
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context AndErrorReporting:(BOOL)reportError;
-
-- (NSUInteger)runActionWithIndex:(NSUInteger)index;
 
 - (void)removeReferences;
 

@@ -22,6 +22,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class Brick;
+
 @interface CBOperation : NSObject
+
+@property (nonatomic, strong, readonly) Brick *brick;
++ (instancetype)operationForBrick:(Brick*)brick;
 
 @end
