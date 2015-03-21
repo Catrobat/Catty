@@ -116,23 +116,33 @@
         }
     }
 
-    // compute all sequence lists
-    for (SpriteObject *spriteObject in self.program.objectList) {
-        for (Script *script in spriteObject.scriptList) {
-            [script computeSequenceList];
-        }
-    }
-
     // start StartScripts of all SpriteObjects simultaneously!!
     for (SpriteObject *spriteObject in self.program.objectList) {
         for (Script *script in spriteObject.scriptList) {
             if ([script isKindOfClass:[StartScript class]]) {
-//                dispatch_async(self.backgroundQueue, ^{
-                    [script.object startAndAddScript:script completion:nil];
-//                });
+                [script.object startAndAddScript:script completion:nil];
             }
         }
     }
+
+//
+//    // compute all sequence lists
+//    for (SpriteObject *spriteObject in self.program.objectList) {
+//        for (Script *script in spriteObject.scriptList) {
+//            [script computeSequenceList];
+//        }
+//    }
+//
+//    // start StartScripts of all SpriteObjects simultaneously!!
+//    for (SpriteObject *spriteObject in self.program.objectList) {
+//        for (Script *script in spriteObject.scriptList) {
+//            if ([script isKindOfClass:[StartScript class]]) {
+////                dispatch_async(self.backgroundQueue, ^{
+//                    [script.object startAndAddScript:script completion:nil];
+////                });
+//            }
+//        }
+//    }
 }
 
 - (void)stopProgramWithCompletion:(dispatch_block_t)completion

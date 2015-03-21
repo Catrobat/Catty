@@ -282,10 +282,9 @@
 - (void)startWithCompletion:(dispatch_block_t)completion
 {
     NSDebug(@"Starting: %@", NSStringFromClass([self class]));
-
-//    if ([self isKindOfClass:[BroadcastScript class]]) {
-//        NSLog(@"Starting BroadcastScript of object %@", self.object.name);
-//    }
+    if ([self isKindOfClass:[BroadcastScript class]]) {
+        NSLog(@"Starting BroadcastScript of object %@", self.object.name);
+    }
 
     [self reset];
     if ([self hasActions]) {
@@ -295,12 +294,6 @@
         [self runAllActions];
     }
 
-    // only remove from parent if program is still playing, otherwise script will be removed
-    // via stopProgram-method in Scene
-    if (self.object.program.isPlaying) {
-        //    [self.object removeChildrenInArray:@[script]];
-        [self removeFromParent];
-    }
     if (completion) {
         completion();
     }
@@ -312,16 +305,27 @@
 //    NSString *preservedObjectName = self.object.name;
 //    NSDebug(@"Started %@ in object %@", preservedScriptName, preservedObjectName);
     self.running = YES;
-
-    dispatch_block_t sequenceBlock = [self sequenceBlockForSequenceList:self.sequenceList];
+    dispatch_block_t sequenceBlock = [self sequenceBlockForSequenceList:self.sequenceList
+                                                   finalCompletionBlock:^(){
+                                                       // only remove from parent if program is
+                                                       // still playing, otherwise script will be removed
+                                                       // via stopProgram-method in Scene
+                                                       if (self.object.program.isPlaying) {
+                                                           //    [self.object removeChildrenInArray:@[script]];
+                                                           [self removeFromParent];
+                                                       }
+                                                       self.running = NO;
+                                                       NSLog(@"%@ finished!", [self class]);
+                                                   }];
     if (self.object.program.isPlaying && sequenceBlock) {
         sequenceBlock();
     }
 }
 
 - (dispatch_block_t)sequenceBlockForSequenceList:(NSArray*)sequenceList
+                            finalCompletionBlock:(dispatch_block_t)finalCompletionBlock
 {
-    dispatch_block_t completionBlock = ^(){ self.running = NO; NSLog(@"Script finished!"); };
+    dispatch_block_t completionBlock = finalCompletionBlock;
     for (CBSequence *sequence in [sequenceList reverseObjectEnumerator]) {
         if ([sequence isKindOfClass:[CBOperationSequence class]]) {
             completionBlock = [self sequenceBlockForOperationSequence:(CBOperationSequence*)sequence
@@ -333,7 +337,8 @@
         } else if ([sequence isKindOfClass:[CBConditionalSequence class]]) {
             // loop sequence
             CBConditionalSequence *conditionalSequence = (CBConditionalSequence*)sequence;
-            completionBlock = [self sequenceBlockForSequenceList:conditionalSequence.sequenceList];
+            completionBlock = [self sequenceBlockForSequenceList:conditionalSequence.sequenceList
+                                            finalCompletionBlock:completionBlock];
             if (completionBlock == nil) {
                 continue;
             }
