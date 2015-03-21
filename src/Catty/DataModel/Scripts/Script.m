@@ -46,6 +46,8 @@
 @property (nonatomic, readwrite) kBrickType brickType;
 @property (nonatomic, strong) NSArray *sequenceList;
 
+@property (nonatomic, copy) dispatch_block_t whileSequence;
+
 @end
 
 @implementation Script
@@ -76,13 +78,6 @@
                                    reason:[NSString stringWithFormat:@"You must override %@ in the subclass %@",
                                            NSStringFromSelector(_cmd), NSStringFromClass([self class])]
                                  userInfo:nil];
-}
-
-- (NSMutableArray*)actionSequenceList
-{
-    if (! _actionSequenceList)
-        _actionSequenceList = [NSMutableArray array];
-    return _actionSequenceList;
 }
 
 - (NSArray*)sequenceList
@@ -336,34 +331,59 @@
             abort();
         } else if ([sequence isKindOfClass:[CBConditionalSequence class]]) {
             // loop sequence
-            CBConditionalSequence *conditionalSequence = (CBConditionalSequence*)sequence;
-            completionBlock = [self sequenceBlockForSequenceList:conditionalSequence.sequenceList
-                                            finalCompletionBlock:completionBlock];
-            if (completionBlock == nil) {
-                continue;
-            }
-            completionBlock = ^{
-                if ([conditionalSequence checkCondition]) {
-                    completionBlock();
-                }
-            };
+            completionBlock = [self repeatingSequenceBlockForConditionalSequence:(CBConditionalSequence*)sequence
+                                                            finalCompletionBlock:completionBlock];
         }
     }
     return completionBlock;
 }
 
+- (dispatch_block_t)repeatingSequenceBlockForConditionalSequence:(CBConditionalSequence*)conditionalSequence
+                                            finalCompletionBlock:(dispatch_block_t)finalCompletionBlock
+{
+    __weak Script *weakSelf = self;
+    self.whileSequence = nil;
+    dispatch_block_t completionBlock = ^() {
+        if ([conditionalSequence checkCondition]) {
+            NSDate *startTime = [NSDate date];
+            dispatch_block_t newCompletionBlock = [weakSelf sequenceBlockForSequenceList:conditionalSequence.sequenceList
+                                                                    finalCompletionBlock:^(){
+                                                                        if (weakSelf.whileSequence) {
+                                                                            dispatch_async(dispatch_get_main_queue(), ^(){
+                                                                                NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:startTime];
+                                                                                NSLog(@"  Duration for Sequence: %fms", [[NSDate date] timeIntervalSinceDate:startTime]*1000);
+                                                                                if (duration < 0.02f) {
+                                                                                    [NSThread sleepForTimeInterval:(0.02f-duration)];
+                                                                                }
+                                                                                weakSelf.whileSequence();
+                                                                            });
+                                                                        }
+                                                                    }];
+            newCompletionBlock();
+        } else {
+            finalCompletionBlock();
+        }
+    };
+    self.whileSequence = completionBlock;
+    return completionBlock;
+}
+
+//            dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+//            dispatch_semaphore_signal(semaphore);
+//            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+
 - (dispatch_block_t)sequenceBlockForOperationSequence:(CBOperationSequence*)operationSequence
                                  finalCompletionBlock:(dispatch_block_t)finalCompletionBlock
 {
-    NSDate *startTime = [NSDate date];
+//    NSDate *startTime = [NSDate date];
     if (finalCompletionBlock) {
         finalCompletionBlock = ^{
-            NSLog(@"  Duration for Sequence in %@: %fms", [self class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
+//            NSLog(@"  Duration for Sequence in %@: %fms", [self class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
             finalCompletionBlock();
         };
     } else {
         finalCompletionBlock = ^{
-            NSLog(@"  Duration for Sequence in %@: %fms", [self class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
+//            NSLog(@"  Duration for Sequence in %@: %fms", [self class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
         };
     }
     dispatch_block_t completionBlock = finalCompletionBlock;
@@ -399,8 +419,6 @@
         }
     }
     return completionBlock;
-    //    dispatch_semaphore_signal(weakSelf.semaphore);
-    //    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
 }
 
 - (void)removeReferences

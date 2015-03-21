@@ -44,9 +44,6 @@
 @property (nonatomic, strong) NSString *action;
 @property (strong, nonatomic) NSMutableArray *brickList;
 
-#warning REMOVE THIS AT THE END!!!
-@property (strong, nonatomic) NSMutableArray *actionSequenceList;
-
 @property (nonatomic, strong) dispatch_semaphore_t semaphore;
 
 - (void)computeSequenceList;
@@ -62,7 +59,5 @@
 - (BOOL)isEqualToScript:(Script*)script;
 
 - (void)removeReferences;
-
-- (void)runSequenceAndWait:(BOOL)wait;
 
 @end
