@@ -650,9 +650,7 @@
             // if broadcastScript is not running then start broadcastScript!
             if (! broadcastScript.isRunning) {
                 // we are already running on highpriority queue, but broadcastScript != senderScript
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                    [spriteObject startAndAddScript:broadcastScript completion:nil];
-                });
+                [spriteObject startAndAddScript:broadcastScript completion:nil];
                 continue;
             }
 

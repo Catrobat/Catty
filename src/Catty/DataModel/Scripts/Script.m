@@ -46,7 +46,9 @@
 @property (nonatomic, readwrite) kBrickType brickType;
 @property (nonatomic, strong) NSArray *sequenceList;
 
-@property (nonatomic, copy) dispatch_block_t whileSequence;
+@property (nonatomic, copy) dispatch_block_t fullScriptSequence;
+
+@property (nonatomic, copy) dispatch_block_t whileSequence; // TEMPORARY!!
 
 @end
 
@@ -313,6 +315,7 @@
                                                        NSLog(@"%@ finished!", [self class]);
                                                    }];
     if (self.object.program.isPlaying && sequenceBlock) {
+        self.fullScriptSequence = sequenceBlock;
         sequenceBlock();
     }
 }
@@ -349,13 +352,15 @@
             dispatch_block_t newCompletionBlock = [weakSelf sequenceBlockForSequenceList:conditionalSequence.sequenceList
                                                                     finalCompletionBlock:^(){
                                                                         if (weakSelf.whileSequence) {
-                                                                            dispatch_async(dispatch_get_main_queue(), ^(){
+                                                                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                                                                                 NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:startTime];
-                                                                                NSLog(@"  Duration for Sequence: %fms", [[NSDate date] timeIntervalSinceDate:startTime]*1000);
+                                                                                //NSLog(@"  Duration for Sequence: %fms", [[NSDate date] timeIntervalSinceDate:startTime]*1000);
                                                                                 if (duration < 0.02f) {
                                                                                     [NSThread sleepForTimeInterval:(0.02f-duration)];
                                                                                 }
-                                                                                weakSelf.whileSequence();
+                                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                                    weakSelf.whileSequence();
+                                                                                });
                                                                             });
                                                                         }
                                                                     }];
@@ -397,20 +402,31 @@
                 BroadcastScript *broadcastScript = (BroadcastScript*)self;
                 if ([broadcastBrick.broadcastMessage isEqualToString:broadcastScript.receivedMessage]) {
                     completionBlock = ^{
-                        NSLog(@"[%@] BroadcastBrick action with message: %@",
-                              [self class], broadcastBrick.broadcastMessage);
-                        [broadcastBrick performBroadcast];
+//                        NSLog(@"[%@] BroadcastBrick action with message: %@",
+//                              [self class], broadcastBrick.broadcastMessage);
+//                        // TODO: perform broadcast to other scripts too!!
+//                        [broadcastBrick performBroadcast];
+
+                        // DO NOT call completionBlock here so that upcoming actions are ignored!
+                        dispatch_async(dispatch_get_main_queue(), ^(){
+                            weakSelf.fullScriptSequence();
+//                            [weakSelf runAllActions]; // restart this self-listening BroadcastScript
+                        });
                     };
-                    break;
+                    continue;
                 }
             }
-            completionBlock = ^{ NSLog(@"BroadcastBrick with message: %@", broadcastBrick.broadcastMessage); [broadcastBrick performBroadcast]; completionBlock(); };
+            completionBlock = ^{
+//                NSLog(@"BroadcastBrick with message: %@", broadcastBrick.broadcastMessage);
+                [broadcastBrick performBroadcast];
+                completionBlock(); // YES, the script must continue here. upcoming actions are executed!!
+            };
         } else if ([operation.brick isKindOfClass:[BroadcastWaitBrick class]]) {
             NSError(@"UNIMPLEMENTED BROADCASTWAIT");
             abort();
         } else if (operation.brick) {
             completionBlock = ^{
-                NSLog(@"[%@] %@ action", [weakSelf class], [operation.brick class]);
+//                NSLog(@"[%@] %@ action", [weakSelf class], [operation.brick class]);
                 [weakSelf runAction:operation.brick.action completion:completionBlock];
             };
         } else {
