@@ -49,6 +49,20 @@
 
 @implementation Script
 
++ (Script *)scriptWithType:(kBrickType)type andCategory:(kBrickCategoryType)category {
+    return [[[self class] alloc] initWithType:type andCategory:category]; 
+}
+
+- (instancetype)initWithType:(kBrickType)type andCategory:(kBrickCategoryType)category {
+    self = [super init];
+    if (self) {
+        self.brickType = type;
+        self.brickCategoryType = category;
+        self.currentBrickIndex = 0;
+    }
+    return self;
+}
+
 - (id)init
 {
     if (self = [super init]) {

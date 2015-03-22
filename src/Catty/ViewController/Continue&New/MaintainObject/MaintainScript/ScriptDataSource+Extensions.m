@@ -111,6 +111,27 @@
     self.state = ScriptDataSourceStateBrickAdded;
 }
 
+- (void)addScript:(Script *)script toSection:(NSInteger)section {
+    CBAssert([script isKindOfClass:[Script class]]);
+    
+    NSMutableArray *newScriptList = nil;
+    if (section >= 0 && section < self.numberOfSections) {
+        newScriptList = [self.scriptList mutableCopy];
+        [newScriptList insertObject:script atIndex:(NSUInteger)section];
+    } else if (self.scriptList.count == 0) {
+        newScriptList = [NSMutableArray arrayWithArray:@[ script ]];
+    } else if (section >= 0 && section >= self.numberOfSections) {
+        newScriptList = [self.scriptList mutableCopy];
+        [newScriptList addObject:script];
+    } else {
+        NSError(@"Invalid section");
+    }
+    
+    self.scriptList = newScriptList;
+    
+    [self informSectionsInserted:[NSIndexSet indexSetWithIndex:(NSUInteger)section]];
+}
+
 - (void)removeScriptsAtSections:(NSIndexSet *)sections
 {
     [self removeSectionAtIndexes:sections];
@@ -173,7 +194,7 @@
         batchUpdates = [batchUpdates copy];
     }];
     
-    self.scriptList = scriptList;
+//    self.scriptList = scriptList;
     [self informBatchUpdate:^{ batchUpdates(); }];
 }
 
@@ -241,6 +262,16 @@
 
 #pragma mark - Inform collectionview about changes
 
+- (void)informSectionsInserted:(NSIndexSet *)sections
+{
+    CBAssertIfNotMainThread();
+    
+    id<ScriptDataSourceDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(scriptDataSource:didInsertSections:)]) {
+        [delegate scriptDataSource:self didInsertSections:sections];
+    }
+}
+
 - (void)informSectionsRemoved:(NSIndexSet *)sections
 {
     CBAssertIfNotMainThread();
@@ -248,6 +279,16 @@
     id<ScriptDataSourceDelegate> delegate = self.delegate;
     if ([delegate respondsToSelector:@selector(scriptDataSource:didRemoveSections:)]) {
         [delegate scriptDataSource:self didRemoveSections:sections];
+    }
+}
+
+- (void)informSectionMovedFrom:(NSInteger)section to:(NSInteger)newSection
+{
+    CBAssertIfNotMainThread();
+    
+    id<ScriptDataSourceDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(scriptDataSource:didMoveSection:toSection:)]) {
+        [delegate scriptDataSource:self didMoveSection:section toSection:newSection];
     }
 }
 

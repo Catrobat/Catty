@@ -303,6 +303,17 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     NSLog(@"Script data source state changed: %lu", state);
 }
 
+- (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didInsertSections:(NSIndexSet *)sections {
+    if (!sections)
+        return;
+    
+    [self.collectionView insertSections:sections];
+}
+
+- (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didMoveSection:(NSInteger)section toSection:(NSInteger)newSection{
+    [self.collectionView moveSection:section toSection:newSection];
+}
+
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didRemoveSections:(NSIndexSet *)sections
 {
     [self.collectionView deleteSections:sections];
@@ -412,6 +423,25 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     
     NSString *brickClassString = [[BrickManager sharedBrickManager] classNameForBrickType:scriptOrBrick.brickType];
     Class brickClass = NSClassFromString(brickClassString);
+    
+    // Script bricks
+    if (scriptOrBrick.brickType == kProgramStartedBrick || scriptOrBrick.brickType == kTappedBrick
+        || scriptOrBrick.brickType == kReceiveBrick) {
+        id newScript = [brickClass scriptWithType:scriptOrBrick.brickType andCategory:scriptOrBrick.brickCategoryType];
+        
+        NSUInteger lastSection = self.scriptDataSource.numberOfSections;
+        
+        // Scroll to botton.
+        if (self.scriptDataSource.numberOfSections > 0) {
+            NSUInteger itemCount = [self.collectionView numberOfItemsInSection:lastSection - 1];
+            NSIndexPath *bottonIndexPath = [NSIndexPath indexPathForItem:itemCount - 1 inSection:lastSection - 1];
+            [self.collectionView scrollToItemAtIndexPath:bottonIndexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
+        }
+        
+        [self.scriptDataSource addScript:newScript toSection:lastSection];
+        return;
+    }
+    
     id newBrick = [brickClass brickWithType:scriptOrBrick.brickType andCategory:scriptOrBrick.brickCategoryType];
     
     // Reset scrolling to top.
@@ -420,10 +450,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         [self.collectionView scrollToItemAtIndexPath:topIndexpath atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
     }
     
-    // Add new brick to top Section.
+    // Add new brick to top section.
     [self.scriptDataSource addBricks:@[newBrick] atIndexPath:topIndexpath];
-    
-    NSLog(@"[ %@ ] added.", newBrick);
 }
 
 #pragma mark - Brick Cell Delegate
@@ -491,6 +519,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - Helpers
+// TODO: Remove
 - (void)removeBricksWithIndexPaths:(NSArray *)indexPaths
 {
     NSArray *sortedIndexPaths = [indexPaths sortedArrayUsingSelector:@selector(compare:)];
@@ -540,6 +569,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - Editing
+// TODO: Refactor
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
@@ -1101,10 +1131,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     [self.scriptDataSourceKVOController observe:self.scriptDataSource
                                         keyPath:@"scriptList"
                                         options:NSKeyValueObservingOptionNew
-                                          block:^(id observer, id object, NSDictionary *change) {
+                                          block:^(ScriptCollectionViewController *observer, ScriptDataSource *object, NSDictionary *change) {
                                               NSDebug(@"Script data source items changed.");
-                                              Program *program = weakself.object.program;
-                                              [program saveToDisk];
+                                              weakself.object.scriptList = [object.scriptList mutableCopy];
+//                                              Program *program = weakself.object.program;
+//                                              [program saveToDisk];
     }];
 }
 
