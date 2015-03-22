@@ -23,9 +23,39 @@
 #import <Foundation/Foundation.h>
 #import "Script.h"
 
+typedef NS_ENUM(NSUInteger, ScriptDataSourceState) {
+    ScriptDataSourceStateBrickAdded = 0,
+    ScriptDataSourceStateScriptDeleted,
+    ScriptDataSourceStateBrickDeleted,
+    ScriptDataSourceStateBrickCopied
+};
+
 typedef void (^ScriptCollectionViewConfigureBlock)(id cell);
 
+@class ScriptDataSource;
+@protocol ScriptDataSourceDelegate <NSObject>
+
+@optional
+// Maybe change to key-value observing later....
+- (void)scriptDataSource:(ScriptDataSource *)scriptDataSource stateChanged:(ScriptDataSourceState)state error:(NSError *)error;
+- (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didInsertItemsAtIndexPaths:(NSArray *)indexPaths;
+- (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didRemoveItemsAtIndexPaths:(NSArray *)indexPaths;
+- (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didCopyItemsAtIndexPaths:(NSArray *)indexPaths;
+- (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didMoveItemAtIndexPath:(NSIndexPath *)fromIndexPath
+             toIndexPath:(NSIndexPath *)newIndexPath;
+
+- (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didInsertSections:(NSIndexSet *)sections;
+- (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didRemoveSections:(NSIndexSet *)sections;
+
+- (void)scriptDataSource:(ScriptDataSource *)scriptDataSource performBatchUpdate:(dispatch_block_t)update complete:(dispatch_block_t)complete;
+
+@end
+
+
 @interface ScriptDataSource : NSObject <UICollectionViewDataSource>
+@property(nonatomic, weak) id<ScriptDataSourceDelegate> delegate;
+@property(nonatomic, readonly) ScriptDataSourceState state;
+
 @property(nonatomic, readonly) NSArray *scriptList;
 @property(nonatomic, readonly) NSUInteger numberOfSections;
 

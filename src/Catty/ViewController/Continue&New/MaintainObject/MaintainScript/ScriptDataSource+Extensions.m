@@ -21,7 +21,6 @@
  */
 
 #import "ScriptDataSource+Extensions.h"
-#import "ScriptDataSource_Private.h"
 #import "Util.h"
 #import "Brick.h"
 #import "LoopBeginBrick.h"
@@ -39,18 +38,6 @@
 
 @implementation ScriptDataSource (Extensions)
 
-#pragma mark - Set state
-
-- (void)setState:(ScriptDataSourceState)state {
-    self.state = state;
-    if ([self.delegate respondsToSelector:@selector(scriptDataSource:stateChanged:error:)]) {
-        // TODO: Handle Error
-        NSError *error = nil;
-        id<ScriptDataSourceDelegate> delegate = self.delegate;
-        [delegate scriptDataSource:self stateChanged:self.state error:error];
-    }
-}
-
 #pragma mark - Get Data
 
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath
@@ -58,9 +45,8 @@
     return [self.scriptList objectAtIndex:(NSUInteger)indexPath.item];
 }
 
-
 // We are using a index for brick items with index in bricklist + 1.
-// Script bricks always have index 0.
+// Script bricks always at index 0.
 - (NSArray *)indexPathsForItem:(id)item
 {
     NSMutableArray *indexPaths = [NSMutableArray array];
@@ -115,8 +101,13 @@
 
 #pragma mark - Add, remove, copy
 
-- (void)addBricks:(NSArray *)bricks toIndexPaths:(NSArray *)indexPaths
+- (void)addBricks:(NSArray *)bricks atIndexPath:(NSIndexPath *)atIndexPath
 {
+    NSUInteger startIdx = (NSUInteger)atIndexPath.item;
+    NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(startIdx, bricks.count)];
+    
+    [self insertBricks:bricks atIndexes:indexes inSection:atIndexPath.section];
+    
     self.state = ScriptDataSourceStateBrickAdded;
 }
 

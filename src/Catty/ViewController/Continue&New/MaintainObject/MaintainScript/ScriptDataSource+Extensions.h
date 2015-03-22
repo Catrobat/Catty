@@ -22,9 +22,10 @@
 
 #import "ScriptDataSource.h"
 
+
 @interface ScriptDataSource (Extensions)
 
-- (void)addBricks:(NSArray *)bricks toIndexPaths:(NSArray *)indexPaths;
+- (void)addBricks:(NSArray *)bricks atIndexPath:(NSIndexPath *)atIndexPath;
 
 // Removes complete section.
 - (void)removeScriptsAtSections:(NSIndexSet *)sections;

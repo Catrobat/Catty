@@ -53,7 +53,6 @@
 #import "NoteBrick.h"
 #import "ScriptDataSource.h"
 #import "BrickSelectionViewController.h"
-#import "ScriptDataSource_Private.h"
 #import "ScriptDataSource+Extensions.h"
 #import "FBKVOController.h"
 
@@ -332,8 +331,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     [self.collectionView performBatchUpdates:^{
         update();
     } completion:^(BOOL finished) {
-        if (complete) { complete(); }
         [weakself.collectionView reloadData];
+        if (complete) { complete(); }
     }];
 }
 
@@ -410,7 +409,21 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     _lastSelectedBrickCategory = scriptOrBrick.brickCategoryType;
     brickCategoryViewController.delegate = nil;
     [self dismissViewControllerAnimated:YES completion:NULL];
-    NSLog(@"[ %@ ] selected", scriptOrBrick);
+    
+    NSString *brickClassString = [[BrickManager sharedBrickManager] classNameForBrickType:scriptOrBrick.brickType];
+    Class brickClass = NSClassFromString(brickClassString);
+    id newBrick = [brickClass brickWithType:scriptOrBrick.brickType andCategory:scriptOrBrick.brickCategoryType];
+    
+    // Reset scrolling to top.
+    NSIndexPath *topIndexpath = [NSIndexPath indexPathForItem:1 inSection:0];
+    if ([self.collectionView numberOfItemsInSection:0] > 0) {
+        [self.collectionView scrollToItemAtIndexPath:topIndexpath atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+    }
+    
+    // Add new brick to top Section.
+    [self.scriptDataSource addBricks:@[newBrick] atIndexPath:topIndexpath];
+    
+    NSLog(@"[ %@ ] added.", newBrick);
 }
 
 #pragma mark - Brick Cell Delegate
