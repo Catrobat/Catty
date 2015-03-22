@@ -49,7 +49,6 @@
 @property (nonatomic, copy) dispatch_block_t fullScriptSequence;
 
 @property (nonatomic, copy) dispatch_block_t whileSequence; // TEMPORARY!!
-@property (nonatomic) NSUInteger broadcastCounter;
 
 @end
 
@@ -303,19 +302,19 @@
 //    NSString *preservedObjectName = self.object.name;
 //    NSDebug(@"Started %@ in object %@", preservedScriptName, preservedObjectName);
     self.running = YES;
-    self.broadcastCounter = 0;
+    dispatch_block_t finalCompletion = ^{
+        // only remove from parent if program is
+        // still playing, otherwise script will be removed
+        // via stopProgram-method in Scene
+        if (self.object.program.isPlaying) {
+            //    [self.object removeChildrenInArray:@[script]];
+            //[self removeFromParent];
+        }
+        self.running = NO;
+        NSLog(@"%@ finished!", [self class]);
+    };
     dispatch_block_t sequenceBlock = [self sequenceBlockForSequenceList:self.sequenceList
-                                                   finalCompletionBlock:^(){
-                                                       // only remove from parent if program is
-                                                       // still playing, otherwise script will be removed
-                                                       // via stopProgram-method in Scene
-//                                                       if (self.object.program.isPlaying) {
-//                                                           //    [self.object removeChildrenInArray:@[script]];
-//                                                           [self removeFromParent];
-//                                                       }
-//                                                       self.running = NO;
-                                                       NSLog(@"%@ finished!", [self class]);
-                                                   }];
+                                                   finalCompletionBlock:finalCompletion];
     self.fullScriptSequence = sequenceBlock;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self runAllActions];
@@ -402,12 +401,12 @@
 //    NSDate *startTime = [NSDate date];
     if (finalCompletionBlock) {
         finalCompletionBlock = ^{
-//            NSLog(@"  Duration for Sequence in %@: %fms", [self class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
+            NSDebug(@"  Duration for Sequence in %@: %fms", [self class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
             finalCompletionBlock();
         };
     } else {
         finalCompletionBlock = ^{
-//            NSLog(@"  Duration for Sequence in %@: %fms", [self class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
+            NSDebug(@"  Duration for Sequence in %@: %fms", [self class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
         };
     }
     dispatch_block_t completionBlock = finalCompletionBlock;
@@ -420,36 +419,21 @@
             if ([self isKindOfClass:[BroadcastScript class]]) {
                 BroadcastScript *broadcastScript = (BroadcastScript*)self;
                 if ([broadcastBrick.broadcastMessage isEqualToString:broadcastScript.receivedMessage]) {
-                    completionBlock = ^{
-//                        NSLog(@"[%@] BroadcastBrick action with message: %@",
-//                              [self class], broadcastBrick.broadcastMessage);
-//                        // TODO: perform broadcast to other scripts too!!
-//                        [broadcastBrick performBroadcast];
-
-                        // DO NOT call completionBlock here so that upcoming actions are ignored!
-                        if (++self.broadcastCounter % 10) { // XXX: HACK!!
-                            [weakSelf runAllActions];
-                        } else {
-                            dispatch_async(dispatch_get_main_queue(), ^(){
-                                //                            weakSelf.fullScriptSequence();
-                                [weakSelf runAllActions]; // restart this self-listening BroadcastScript
-                            });
-                        }
-                    };
+                    // DO NOT call completionBlock here so that upcoming actions are ignored!
+                    completionBlock = ^{ [broadcastBrick performBroadcast]; };
                     continue;
                 }
             }
             completionBlock = ^{
-//                NSLog(@"BroadcastBrick with message: %@", broadcastBrick.broadcastMessage);
                 [broadcastBrick performBroadcast];
-                completionBlock(); // YES, the script must continue here. upcoming actions are executed!!
+                completionBlock(); // the script must continue here. upcoming actions are executed!!
             };
         } else if ([operation.brick isKindOfClass:[BroadcastWaitBrick class]]) {
-//            NSError(@"UNIMPLEMENTED BROADCASTWAIT");
-//            abort();
+            NSError(@"UNIMPLEMENTED BROADCASTWAIT");
+            abort();
         } else if (operation.brick) {
             completionBlock = ^{
-//                NSLog(@"[%@] %@ action", [weakSelf class], [operation.brick class]);
+                NSDebug(@"[%@] %@ action", [weakSelf class], [operation.brick class]);
                 [weakSelf runAction:operation.brick.action completion:completionBlock];
             };
         } else {

@@ -50,6 +50,8 @@
 
 - (void)startWithCompletion:(dispatch_block_t)completion;
 
+- (void)runAllActions;
+
 - (void)restart;
 
 - (void)stop;

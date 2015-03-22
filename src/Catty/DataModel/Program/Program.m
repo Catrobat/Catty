@@ -46,6 +46,7 @@
 @property (nonatomic, strong) BroadcastWaitHandler *broadcastWaitHandler;
 @property (nonatomic, strong) NSMutableDictionary *spriteObjectBroadcastScripts;
 @property (nonatomic, strong) NSMutableDictionary *spriteObjectNameMap;
+@property (nonatomic, strong) NSMutableDictionary *broadcastScriptCounters;
 
 @end
 
@@ -242,6 +243,14 @@
         _spriteObjectNameMap = [NSMutableDictionary dictionary];
     }
     return _spriteObjectNameMap;
+}
+
+- (NSMutableDictionary*)broadcastScriptCounters
+{
+    if (! _broadcastScriptCounters) {
+        _broadcastScriptCounters = [NSMutableDictionary dictionary];
+    }
+    return _broadcastScriptCounters;
 }
 
 - (NSMutableArray*)objectList
@@ -641,8 +650,20 @@
             // (sets brick action instruction pointer to zero)
             if (broadcastScript == script) {
                 assert(broadcastScript.isRunning);
-                // only restart, no synchronization needed!
-                [broadcastScript restart]; // trigger script to restart
+                NSNumber *counterNumber = self.broadcastScriptCounters[message];
+                NSUInteger counter = 0;
+                if (counterNumber) {
+                    counter = [counterNumber integerValue];
+                }
+                if (++counter % 12) { // XXX: DIRTY HACK!!
+                    [broadcastScript runAllActions];
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        // weakSelf.fullScriptSequence();
+                        [broadcastScript runAllActions]; // restart this self-listening BroadcastScript
+                    });
+                }
+                self.broadcastScriptCounters[message] = @(counter);
                 continue;
             }
 
