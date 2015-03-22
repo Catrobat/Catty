@@ -387,10 +387,6 @@
     return completionBlock;
 }
 
-//            dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-//            dispatch_semaphore_signal(semaphore);
-//            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-
 - (dispatch_block_t)sequenceBlockForOperationSequence:(CBOperationSequence*)operationSequence
                                  finalCompletionBlock:(dispatch_block_t)finalCompletionBlock
 {

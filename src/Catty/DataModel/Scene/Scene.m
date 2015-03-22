@@ -132,11 +132,6 @@
             while (script.isRunning) {
                 [script stop];
                 NSLog(@"%@ in %@ is still running (Scene %@). Waiting until script finished execution...", [script class], spriteObject.name, (self.isPaused ? @"paused" : @"still running"));
-//                for (Brick *brick in script.brickList) {
-//                    if (brick && brick.semaphore) {
-//                        dispatch_semaphore_signal(brick.semaphore); // XXX: HACK!!
-//                    }
-//                }
                 [NSThread sleepForTimeInterval:1.0f];
             }
         }
