@@ -49,6 +49,7 @@
 @property (nonatomic, copy) dispatch_block_t fullScriptSequence;
 
 @property (nonatomic, copy) dispatch_block_t whileSequence; // TEMPORARY!!
+@property (nonatomic) NSUInteger broadcastCounter;
 
 @end
 
@@ -288,7 +289,7 @@
 //        NSLog(@"%@ has actions", [self class]);
         [self removeAllActions];
     } else {
-        [self runAllActions];
+        [self prepareAllActions];
     }
 
     if (completion) {
@@ -296,27 +297,35 @@
     }
 }
 
-- (void)runAllActions
+- (void)prepareAllActions
 {
 //    NSString *preservedScriptName = NSStringFromClass([self class]);
 //    NSString *preservedObjectName = self.object.name;
 //    NSDebug(@"Started %@ in object %@", preservedScriptName, preservedObjectName);
     self.running = YES;
+    self.broadcastCounter = 0;
     dispatch_block_t sequenceBlock = [self sequenceBlockForSequenceList:self.sequenceList
                                                    finalCompletionBlock:^(){
                                                        // only remove from parent if program is
                                                        // still playing, otherwise script will be removed
                                                        // via stopProgram-method in Scene
-                                                       if (self.object.program.isPlaying) {
-                                                           //    [self.object removeChildrenInArray:@[script]];
-                                                           [self removeFromParent];
-                                                       }
-                                                       self.running = NO;
+//                                                       if (self.object.program.isPlaying) {
+//                                                           //    [self.object removeChildrenInArray:@[script]];
+//                                                           [self removeFromParent];
+//                                                       }
+//                                                       self.running = NO;
                                                        NSLog(@"%@ finished!", [self class]);
                                                    }];
-    if (self.object.program.isPlaying && sequenceBlock) {
-        self.fullScriptSequence = sequenceBlock;
-        sequenceBlock();
+    self.fullScriptSequence = sequenceBlock;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self runAllActions];
+    });
+}
+
+- (void)runAllActions
+{
+    if (self.object.program.isPlaying && self.fullScriptSequence) {
+        self.fullScriptSequence();
     }
 }
 
@@ -330,8 +339,18 @@
                                                  finalCompletionBlock:completionBlock];
         } else if ([sequence isKindOfClass:[CBIfConditionalSequence class]]) {
             // if else sequence
-            NSError(@"UNIMPLEMENTED IFCONDITIONALSEQUENCE");
-            abort();
+            CBIfConditionalSequence *ifSequence = (CBIfConditionalSequence*)sequence;
+            completionBlock = ^{
+                if ([ifSequence checkCondition]) {
+                    [self sequenceBlockForSequenceList:ifSequence.sequenceList
+                                  finalCompletionBlock:completionBlock]();
+                } else {
+                    [self sequenceBlockForSequenceList:ifSequence.elseSequenceList
+                                  finalCompletionBlock:completionBlock]();
+                }
+            };
+//            NSError(@"UNIMPLEMENTED IFCONDITIONALSEQUENCE");
+//            abort();
         } else if ([sequence isKindOfClass:[CBConditionalSequence class]]) {
             // loop sequence
             completionBlock = [self repeatingSequenceBlockForConditionalSequence:(CBConditionalSequence*)sequence
@@ -408,10 +427,14 @@
 //                        [broadcastBrick performBroadcast];
 
                         // DO NOT call completionBlock here so that upcoming actions are ignored!
-                        dispatch_async(dispatch_get_main_queue(), ^(){
-                            weakSelf.fullScriptSequence();
-//                            [weakSelf runAllActions]; // restart this self-listening BroadcastScript
-                        });
+                        if (++self.broadcastCounter % 10) { // XXX: HACK!!
+                            [weakSelf runAllActions];
+                        } else {
+                            dispatch_async(dispatch_get_main_queue(), ^(){
+                                //                            weakSelf.fullScriptSequence();
+                                [weakSelf runAllActions]; // restart this self-listening BroadcastScript
+                            });
+                        }
                     };
                     continue;
                 }
@@ -422,8 +445,8 @@
                 completionBlock(); // YES, the script must continue here. upcoming actions are executed!!
             };
         } else if ([operation.brick isKindOfClass:[BroadcastWaitBrick class]]) {
-            NSError(@"UNIMPLEMENTED BROADCASTWAIT");
-            abort();
+//            NSError(@"UNIMPLEMENTED BROADCASTWAIT");
+//            abort();
         } else if (operation.brick) {
             completionBlock = ^{
 //                NSLog(@"[%@] %@ action", [weakSelf class], [operation.brick class]);
