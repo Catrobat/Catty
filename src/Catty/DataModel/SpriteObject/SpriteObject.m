@@ -179,9 +179,9 @@
         }
         for (Script *script in self.scriptList) {
             if ([script isKindOfClass:[WhenScript class]]) {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                    [weakSelf startAndAddScript:script completion:nil];
-                });
+//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                    [self startAndAddScript:script completion:nil];
+//                });
             }
         }
         return YES;

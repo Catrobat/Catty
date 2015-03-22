@@ -675,18 +675,8 @@
                 continue;
             }
 
-            // broadcastScript running on HIGH-priority queue synchronization required!!
-            @synchronized(broadcastScript) {
-                // FIXME: should abort immediatelly as implemented in Catroid!!
-                // cancel all already running actions of this script!!
-                [broadcastScript restart]; // trigger script to restart
-                [broadcastScript removeAllActions];
-//                for (Brick *brick in broadcastScript.brickList) {
-//                    if (brick.semaphore) {
-//                        dispatch_semaphore_signal(brick.semaphore); // XXX: HACK!!
-//                    }
-//                }
-            }
+            // case broadcast script is already running!
+            [broadcastScript restart]; // trigger script to restart
         }
     }
 }

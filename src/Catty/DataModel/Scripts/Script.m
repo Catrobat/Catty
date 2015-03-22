@@ -289,6 +289,7 @@
         [self removeAllActions];
     } else {
         [self prepareAllActions];
+        [self runAllActions];
     }
 
     if (completion) {
@@ -316,9 +317,6 @@
     dispatch_block_t sequenceBlock = [self sequenceBlockForSequenceList:self.sequenceList
                                                    finalCompletionBlock:finalCompletion];
     self.fullScriptSequence = sequenceBlock;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self runAllActions];
-    });
 }
 
 - (void)runAllActions
@@ -348,8 +346,6 @@
                                   finalCompletionBlock:completionBlock]();
                 }
             };
-//            NSError(@"UNIMPLEMENTED IFCONDITIONALSEQUENCE");
-//            abort();
         } else if ([sequence isKindOfClass:[CBConditionalSequence class]]) {
             // loop sequence
             completionBlock = [self repeatingSequenceBlockForConditionalSequence:(CBConditionalSequence*)sequence
@@ -399,19 +395,19 @@
                                  finalCompletionBlock:(dispatch_block_t)finalCompletionBlock
 {
 //    NSDate *startTime = [NSDate date];
+    __weak Script *weakSelf = self;
     if (finalCompletionBlock) {
         finalCompletionBlock = ^{
-            NSDebug(@"  Duration for Sequence in %@: %fms", [self class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
+            NSDebug(@"  Duration for Sequence in %@: %fms", [weakSelf class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
             finalCompletionBlock();
         };
     } else {
         finalCompletionBlock = ^{
-            NSDebug(@"  Duration for Sequence in %@: %fms", [self class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
+            NSDebug(@"  Duration for Sequence in %@: %fms", [weakSelf class], [[NSDate date] timeIntervalSinceDate:startTime]*1000);
         };
     }
     dispatch_block_t completionBlock = finalCompletionBlock;
     NSArray *operationList = operationSequence.operationList;
-    __weak Script *weakSelf = self;
     for (CBOperation *operation in [operationList reverseObjectEnumerator]) {
         if ([operation.brick isKindOfClass:[BroadcastBrick class]]) {
             // cancel all upcoming actions if BroadcastBrick calls its own script

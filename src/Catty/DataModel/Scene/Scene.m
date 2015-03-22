@@ -27,26 +27,7 @@
 #import "HideBrick.h"
 #import "AudioManager.h"
 
-#warning REMOVE!!!
-#import "ForeverBrick.h"
-#import "NoteBrick.h"
-
-@interface Scene()
-
-@property (nonatomic, strong) dispatch_queue_t backgroundQueue;
-
-@end
-
 @implementation Scene
-
-- (dispatch_queue_t)backgroundQueue
-{
-    if (! _backgroundQueue) {
-//        _backgroundQueue = dispatch_queue_create("org.catrobat.startScript", DISPATCH_QUEUE_CONCURRENT);
-        _backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
-    }
-    return _backgroundQueue;
-}
 
 - (id)initWithSize:(CGSize)size andProgram:(Program*)program
 {
@@ -123,13 +104,11 @@
         }
     }
 
-    // start StartScripts of all SpriteObjects simultaneously!!
+    // now we are ready to start all StartScripts of all SpriteObjects
     for (SpriteObject *spriteObject in self.program.objectList) {
         for (Script *script in spriteObject.scriptList) {
             if ([script isKindOfClass:[StartScript class]]) {
-//                dispatch_async(self.backgroundQueue, ^{
-                    [script.object startAndAddScript:script completion:nil];
-//                });
+                [script.object startAndAddScript:script completion:nil];
             }
         }
     }
