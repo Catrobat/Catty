@@ -32,6 +32,7 @@
 - (NSDictionary*)classNameBrickTypeMap;
 - (NSDictionary*)brickTypeClassNameMap;
 - (NSArray*)selectableBricks;
+- (NSArray *)selectableScriptBricks;
 - (NSArray*)selectableBricksForCategoryType:(kBrickCategoryType)categoryType;
 - (kBrickType)brickTypeForClassName:(NSString*)className;
 - (kBrickCategoryType)brickCategoryTypeForBrickType:(kBrickType)brickType;

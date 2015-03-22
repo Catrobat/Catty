@@ -22,6 +22,17 @@
 
 #import "Brick.h"
 
+// TODO: Add favourite brick page.
+typedef NS_ENUM(NSUInteger, PageIndexCategoryType) {
+  /*  kPageIndexScriptFavourites,*/
+    kPageIndexScriptBricks,
+    kPageIndexControlBrick,
+    kPageIndexMotionBrick,
+    kPageIndexSoundBrick,
+    kPageIndexLookBrick,
+    kPageIndexVariableBrick
+};
+
 @class BrickCategoryViewController;
 @protocol BrickCategoryViewControllerDelegate<NSObject>
 @optional
@@ -30,14 +41,19 @@
 @end
 
 @interface BrickCategoryViewController : UICollectionViewController
+@property(nonatomic, readonly) PageIndexCategoryType pageIndexCategoryType;
 @property(nonatomic, weak) id<BrickCategoryViewControllerDelegate> delegate;
 @property(nonatomic, readonly) NSArray *bricks;
 @property(nonatomic, readonly) NSUInteger pageIndex;
 
-- (instancetype)initWithBrickCategory:(kBrickCategoryType)type NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithBrickCategory:(PageIndexCategoryType)type;
+
 + (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(NSInteger)pageIndex;
 
 // disallow init
 - (instancetype)init __attribute__((unavailable("init is not a supported initializer for this class.")));
 
 @end
+
+extern NSString * CBTitleFromPageIndexCategoryType(PageIndexCategoryType pageIndexType);
+

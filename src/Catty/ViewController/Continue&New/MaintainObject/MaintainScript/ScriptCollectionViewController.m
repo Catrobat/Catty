@@ -80,7 +80,7 @@
 @end
 
 @implementation ScriptCollectionViewController {
-    kBrickCategoryType _lastSelectedBrickCategory;
+    PageIndexCategoryType _lastSelectedBrickCategory;
 }
 
 #pragma mark - view events
@@ -108,7 +108,7 @@
 }
 
 #pragma mark - Show brick selection screen
-- (void)showBrickSelectionController:(kBrickCategoryType)type {
+- (void)showBrickSelectionController:(PageIndexCategoryType)type {
     BrickCategoryViewController *bcvc = [[BrickCategoryViewController alloc] initWithBrickCategory:type];
     bcvc.delegate = self;
     BrickSelectionViewController *bsvc = [[BrickSelectionViewController alloc]
@@ -406,7 +406,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (void)brickCategoryViewController:(BrickCategoryViewController*)brickCategoryViewController
              didSelectScriptOrBrick:(id<ScriptProtocol>)scriptOrBrick
 {
-    _lastSelectedBrickCategory = scriptOrBrick.brickCategoryType;
+    _lastSelectedBrickCategory = brickCategoryViewController.pageIndexCategoryType;
     brickCategoryViewController.delegate = nil;
     [self dismissViewControllerAnimated:YES completion:NULL];
     
@@ -415,7 +415,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     id newBrick = [brickClass brickWithType:scriptOrBrick.brickType andCategory:scriptOrBrick.brickCategoryType];
     
     // Reset scrolling to top.
-    NSIndexPath *topIndexpath = [NSIndexPath indexPathForItem:1 inSection:0];
+    NSIndexPath *topIndexpath = [NSIndexPath indexPathForItem:0 inSection:0];
     if ([self.collectionView numberOfItemsInSection:0] > 0) {
         [self.collectionView scrollToItemAtIndexPath:topIndexpath atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
     }
