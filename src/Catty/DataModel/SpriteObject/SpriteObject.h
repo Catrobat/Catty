@@ -81,7 +81,6 @@
 - (void)start:(CGFloat)zPosition;
 - (void)broadcastAndWait:(NSString*)message;
 
-- (void)startAndAddScript:(Script*)script completion:(dispatch_block_t)completion;
 - (Look*)nextLook;
 - (BOOL)touchedwith:(NSSet*)touches withX:(CGFloat)x andY:(CGFloat)y;
 

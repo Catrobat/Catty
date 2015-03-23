@@ -162,7 +162,6 @@
         return NO;
     }
 
-    __weak typeof(self) weakSelf = self;
     for (UITouch *touch in touches) {
         CGPoint touchedPoint = [touch locationInNode:self];
         NSDebug(@"x:%f,y:%f", touchedPoint.x, touchedPoint.y);
@@ -179,59 +178,18 @@
         }
         for (Script *script in self.scriptList) {
             if ([script isKindOfClass:[WhenScript class]]) {
-//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                    [self startAndAddScript:script completion:nil];
-//                });
+                @synchronized(script) {
+                    if (! script.isRunning) {
+                        [script start];
+                    } else {
+                        [script restart];
+                    }
+                }
             }
         }
         return YES;
     }
     return YES;
-}
-
-//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//    
-//    //NSDebug(@"Touched: %@", self.name);
-//    //UITouch *touch = [[event allTouches] anyObject];
-//    for (UITouch *touch in touches) {
-//        CGPoint touchedPoint = [touch locationInNode:self];
-//        BOOL isTransparent = NO;//[self.currentUIImageLook isTransparentPixel:self.currentUIImageLook withX:touchedPoint.x andY:touchedPoint.y];
-//        NSLog(@"test touch, %@",self.name);
-//        if (isTransparent == NO) {
-//            for (Script *script in self.scriptList)
-//            {
-//                if ([script isKindOfClass:[WhenScript class]]) {
-//                    
-//                    [self startAndAddScript:script completion:^{
-//                        [self scriptFinished:script];
-//                    }];
-//                    
-//                }
-//                
-//            }
-//            //return YES;
-//            
-//        }
-//        else{
-//            NSLog(@"transparent");
-//            //return NO;
-//        }
-//        
-//    }
-//    //return YES;
-//}
-
-- (void)startAndAddScript:(Script*)script completion:(dispatch_block_t)completion
-{
-    if (! script || ! self.program.isPlaying) {
-        return;
-    }
-//    if ([[self children] indexOfObject:script] == NSNotFound) { <== does not work any more under iOS8!!
-    if (! [script inParentHierarchy:self]) {
-        [self addChild:script];
-    }
-    [script start];
 }
 
 - (Look*)nextLook
