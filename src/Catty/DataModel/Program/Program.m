@@ -45,7 +45,6 @@
 
 @property (nonatomic, strong) BroadcastWaitHandler *broadcastWaitHandler;
 @property (nonatomic, strong) NSMutableDictionary *spriteObjectBroadcastScripts;
-@property (nonatomic, strong) NSMutableDictionary *spriteObjectNameMap;
 @property (nonatomic, strong) NSMutableDictionary *broadcastScriptCounters;
 
 @end
@@ -235,14 +234,6 @@
         _spriteObjectBroadcastScripts = [NSMutableDictionary dictionary];
     }
     return _spriteObjectBroadcastScripts;
-}
-
-- (NSMutableDictionary*)spriteObjectNameMap
-{
-    if (! _spriteObjectNameMap) {
-        _spriteObjectNameMap = [NSMutableDictionary dictionary];
-    }
-    return _spriteObjectNameMap;
 }
 
 - (NSMutableDictionary*)broadcastScriptCounters
@@ -606,7 +597,6 @@
     [self.broadcastWaitHandler removeSpriteMessages];
     self.broadcastWaitHandler = nil;
     self.spriteObjectBroadcastScripts = nil;
-    self.spriteObjectNameMap = nil;
     self.playing = NO;
     [self.objectList makeObjectsPerformSelector:@selector(removeReferences)];
 }
@@ -617,7 +607,6 @@
     // reset all lazy (!) instantiated objects
     self.broadcastWaitHandler = nil;
     self.spriteObjectBroadcastScripts = nil;
-    self.spriteObjectNameMap = nil;
 
     for (SpriteObject *spriteObject in self.objectList) {
         NSMutableArray *broadcastScripts = [NSMutableArray array];
@@ -631,7 +620,6 @@
             [broadcastScripts addObject:broadcastScript];
         }
         [self.spriteObjectBroadcastScripts setObject:broadcastScripts forKey:spriteObject.name];
-        self.spriteObjectNameMap[spriteObject.name] = spriteObject;
     }
 }
 
@@ -639,7 +627,6 @@
 {
     NSDebug(@"Broadcast: %@", message);
     for (NSString *spriteObjectName in self.spriteObjectBroadcastScripts) {
-        SpriteObject *spriteObject = self.spriteObjectNameMap[spriteObjectName];
         NSArray *broadcastScriptList = self.spriteObjectBroadcastScripts[spriteObjectName];
         for (BroadcastScript *broadcastScript in broadcastScriptList) {
             if (! [broadcastScript.receivedMessage isEqualToString:message]) {
@@ -656,10 +643,10 @@
                     counter = [counterNumber integerValue];
                 }
                 if (++counter % 12) { // XXX: DIRTY HACK!!
-                    [broadcastScript restart];
+                    [broadcastScript selfBroadcastRestart];
                 } else {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [broadcastScript restart]; // restart this self-listening BroadcastScript
+                        [broadcastScript selfBroadcastRestart]; // restart this self-listening BroadcastScript
                     });
                 }
                 self.broadcastScriptCounters[message] = @(counter);
@@ -668,14 +655,15 @@
 
             // case sender script does not equal receiver script => check if receiver script
             // if broadcastScript is not running then start broadcastScript!
-            if (! broadcastScript.isRunning) {
-                // we are already running on highpriority queue, but broadcastScript != senderScript
-                [spriteObject startAndAddScript:broadcastScript completion:nil];
-                continue;
+            @synchronized(broadcastScript) {
+                if (! broadcastScript.isRunning) {
+                    // we are already running on highpriority queue, but broadcastScript != senderScript
+                    [broadcastScript start];
+                } else {
+                    // case broadcast script is already running!
+                    [broadcastScript restart]; // trigger script to restart
+                }
             }
-
-            // case broadcast script is already running!
-            [broadcastScript restart]; // trigger script to restart
         }
     }
 }
