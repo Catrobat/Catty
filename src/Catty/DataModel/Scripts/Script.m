@@ -37,6 +37,7 @@
 #import "LoopEndBrick.h"
 #import "BroadcastBrick.h"
 #import "BroadcastWaitBrick.h"
+#import "NoteBrick.h"
 
 @interface Script()
 
@@ -46,7 +47,6 @@
 @property (nonatomic, strong) NSArray *sequenceList;
 
 @property (nonatomic, copy) dispatch_block_t fullScriptSequence;
-
 @property (nonatomic, copy) dispatch_block_t whileSequence; // TEMPORARY!!
 
 @end
@@ -165,6 +165,8 @@
             [sequenceStack removeLastObject];
             [currentSequenceList addObject:conditionalSequence];
             currentOperationSequence = [CBOperationSequence new];
+        } else if ([brick isKindOfClass:[NoteBrick class]]) {
+            // ignore NoteBricks!
         } else {
             [currentOperationSequence addOperation:[CBOperation operationForBrick:brick]];
         }
@@ -180,7 +182,7 @@
 #pragma mark - Copy
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {
-    if(!context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
+    if (! context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
 
     Script *copiedScript = [[self class] new];
     copiedScript.brickCategoryType = self.brickCategoryType;
@@ -290,7 +292,10 @@
 
 - (void)stop
 {
-    [self removeAllActions];
+    if ([self hasActions]) {
+        [self removeAllActions];
+    }
+    [self reset];
 }
 
 - (void)prepareAllActions
@@ -298,26 +303,21 @@
 //    NSString *preservedScriptName = NSStringFromClass([self class]);
 //    NSString *preservedObjectName = self.object.name;
 //    NSDebug(@"Started %@ in object %@", preservedScriptName, preservedObjectName);
-    self.running = YES;
-    dispatch_block_t finalCompletion = ^{
-        // only remove from parent if program is
-        // still playing, otherwise script will be removed
-        // via stopProgram-method in Scene
-        if (self.object.program.isPlaying) {
-            //    [self.object removeChildrenInArray:@[script]];
-            //[self removeFromParent];
-        }
-        self.running = NO;
-        NSLog(@"%@ finished!", [self class]);
+    __weak Script *weakSelf = self;
+    dispatch_block_t scriptEndCompletion = ^{
+        [weakSelf removeFromParent];
+        weakSelf.running = NO;
+        NSLog(@"%@ finished!", [weakSelf class]);
     };
     dispatch_block_t sequenceBlock = [self sequenceBlockForSequenceList:self.sequenceList
-                                                   finalCompletionBlock:finalCompletion];
+                                                   finalCompletionBlock:scriptEndCompletion];
     self.fullScriptSequence = sequenceBlock;
 }
 
 - (void)runAllActions
 {
     if (self.object.program.isPlaying && self.fullScriptSequence) {
+        self.running = YES;
         self.fullScriptSequence();
     }
 }
@@ -420,7 +420,11 @@
                 BroadcastScript *broadcastScript = (BroadcastScript*)self;
                 if ([broadcastBrick.broadcastMessage isEqualToString:broadcastScript.receivedMessage]) {
                     // DO NOT call completionBlock here so that upcoming actions are ignored!
-                    completionBlock = ^{ [broadcastBrick performBroadcast]; };
+                    completionBlock = ^{
+                        [broadcastBrick performBroadcast];
+                        // end of script reached!! Scripts will be aborted due to self-calling broadcast
+                        NSLog(@"BroadcastScript ended due to self broadcast!");
+                    };
                     continue;
                 }
             }
