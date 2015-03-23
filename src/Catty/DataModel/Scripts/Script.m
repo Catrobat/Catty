@@ -40,7 +40,6 @@
 
 @interface Script()
 
-@property (nonatomic) BOOL restartScript;
 @property (nonatomic, readwrite, getter=isRunning) BOOL running;
 @property (nonatomic, readwrite) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readwrite) kBrickType brickType;
@@ -62,7 +61,6 @@
         self.brickType = [brickManager brickTypeForClassName:subclassName];
         self.brickCategoryType = [brickManager brickCategoryTypeForBrickType:self.brickType];
         self.running = NO;
-        self.restartScript = NO;
         self.sequenceList = nil;
     }
     return self;
@@ -265,18 +263,7 @@
     }
 }
 
-- (void)restart
-{
-    self.restartScript = YES;
-}
-
-- (void)stop
-{
-    [self removeAllActions];
-    self.restartScript = NO;
-}
-
-- (void)startWithCompletion:(dispatch_block_t)completion
+- (void)start
 {
     NSDebug(@"Starting: %@", NSStringFromClass([self class]));
     if ([self isKindOfClass:[BroadcastScript class]]) {
@@ -285,16 +272,25 @@
 
     [self reset];
     if ([self hasActions]) {
-//        NSLog(@"%@ has actions", [self class]);
         [self removeAllActions];
     } else {
         [self prepareAllActions];
         [self runAllActions];
     }
+}
 
-    if (completion) {
-        completion();
+- (void)restart
+{
+    if ([self hasActions]) {
+        [self removeAllActions];
     }
+    [self reset];
+    [self runAllActions];
+}
+
+- (void)stop
+{
+    [self removeAllActions];
 }
 
 - (void)prepareAllActions
@@ -326,9 +322,12 @@
     }
 }
 
+// this method must NEVER return nil!!
 - (dispatch_block_t)sequenceBlockForSequenceList:(NSArray*)sequenceList
                             finalCompletionBlock:(dispatch_block_t)finalCompletionBlock
 {
+    assert(finalCompletionBlock != nil); // required parameter must NOT be nil!!
+    __weak Script *weakSelf = self;
     dispatch_block_t completionBlock = finalCompletionBlock;
     for (CBSequence *sequence in [sequenceList reverseObjectEnumerator]) {
         if ([sequence isKindOfClass:[CBOperationSequence class]]) {
@@ -339,11 +338,11 @@
             CBIfConditionalSequence *ifSequence = (CBIfConditionalSequence*)sequence;
             completionBlock = ^{
                 if ([ifSequence checkCondition]) {
-                    [self sequenceBlockForSequenceList:ifSequence.sequenceList
-                                  finalCompletionBlock:completionBlock]();
+                    [weakSelf sequenceBlockForSequenceList:ifSequence.sequenceList
+                                      finalCompletionBlock:completionBlock]();
                 } else {
-                    [self sequenceBlockForSequenceList:ifSequence.elseSequenceList
-                                  finalCompletionBlock:completionBlock]();
+                    [weakSelf sequenceBlockForSequenceList:ifSequence.elseSequenceList
+                                      finalCompletionBlock:completionBlock]();
                 }
             };
         } else if ([sequence isKindOfClass:[CBConditionalSequence class]]) {
@@ -352,44 +351,53 @@
                                                             finalCompletionBlock:completionBlock];
         }
     }
+    assert(completionBlock != nil); // this method must NEVER return nil!!
     return completionBlock;
 }
 
+// this method must NEVER return nil!!
 - (dispatch_block_t)repeatingSequenceBlockForConditionalSequence:(CBConditionalSequence*)conditionalSequence
                                             finalCompletionBlock:(dispatch_block_t)finalCompletionBlock
 {
+    assert(finalCompletionBlock != nil); // required parameter must NOT be nil!!
     __weak Script *weakSelf = self;
+#warning create fingerprint of individual whileSequence and add it to a dictionary
     self.whileSequence = nil;
-    dispatch_block_t completionBlock = ^() {
+    dispatch_block_t completionBlock = ^{
         if ([conditionalSequence checkCondition]) {
             NSDate *startTime = [NSDate date];
-            dispatch_block_t newCompletionBlock = [weakSelf sequenceBlockForSequenceList:conditionalSequence.sequenceList
-                                                                    finalCompletionBlock:^(){
-                                                                        if (weakSelf.whileSequence) {
-                                                                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                                                                                NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:startTime];
-                                                                                //NSLog(@"  Duration for Sequence: %fms", [[NSDate date] timeIntervalSinceDate:startTime]*1000);
-                                                                                if (duration < 0.02f) {
-                                                                                    [NSThread sleepForTimeInterval:(0.02f-duration)];
-                                                                                }
-                                                                                dispatch_async(dispatch_get_main_queue(), ^{
-                                                                                    weakSelf.whileSequence();
-                                                                                });
-                                                                            });
-                                                                        }
-                                                                    }];
-            newCompletionBlock();
+            dispatch_block_t loopEndCompletionBlock = ^{
+                // high priority queue only needed for blocking purposes...
+                // the reason for this is that you should NEVER block the (serial) main_queue!!
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                    NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:startTime];
+                    //NSLog(@"  Duration for Sequence: %fms", [[NSDate date] timeIntervalSinceDate:startTime]*1000);
+                    if (duration < 0.02f) {
+                        [NSThread sleepForTimeInterval:(0.02f-duration)];
+                    }
+                    // now switch back to the main queue for executing the sequence!
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if (weakSelf.whileSequence) {
+                            weakSelf.whileSequence();
+                        }
+                    });
+                });
+            };
+            [weakSelf sequenceBlockForSequenceList:conditionalSequence.sequenceList
+                              finalCompletionBlock:loopEndCompletionBlock]();
         } else {
             finalCompletionBlock();
         }
     };
     self.whileSequence = completionBlock;
+    assert(completionBlock != nil); // this method must NEVER return nil!!
     return completionBlock;
 }
 
 - (dispatch_block_t)sequenceBlockForOperationSequence:(CBOperationSequence*)operationSequence
                                  finalCompletionBlock:(dispatch_block_t)finalCompletionBlock
 {
+    assert(finalCompletionBlock != nil); // required parameter must NOT be nil!!
 //    NSDate *startTime = [NSDate date];
     __weak Script *weakSelf = self;
     if (finalCompletionBlock) {
@@ -433,6 +441,7 @@
             abort();
         }
     }
+    assert(completionBlock != nil); // this method must NEVER return nil!!
     return completionBlock;
 }
 

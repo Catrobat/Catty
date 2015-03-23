@@ -231,7 +231,7 @@
     if (! [script inParentHierarchy:self]) {
         [self addChild:script];
     }
-    [script startWithCompletion:nil];
+    [script start];
 }
 
 - (Look*)nextLook

@@ -46,9 +46,7 @@
 
 - (void)computeSequenceList;
 
-- (void)startWithCompletion:(dispatch_block_t)completion;
-
-- (void)runAllActions;
+- (void)start;
 
 - (void)restart;
 

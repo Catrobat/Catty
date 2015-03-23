@@ -656,11 +656,10 @@
                     counter = [counterNumber integerValue];
                 }
                 if (++counter % 12) { // XXX: DIRTY HACK!!
-                    [broadcastScript runAllActions];
+                    [broadcastScript restart];
                 } else {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        // weakSelf.fullScriptSequence();
-                        [broadcastScript runAllActions]; // restart this self-listening BroadcastScript
+                        [broadcastScript restart]; // restart this self-listening BroadcastScript
                     });
                 }
                 self.broadcastScriptCounters[message] = @(counter);
