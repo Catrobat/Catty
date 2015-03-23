@@ -48,6 +48,8 @@
 
 - (void)start;
 
+- (void)selfBroadcastRestart; // should only be used for self-broadcasts
+
 - (void)restart;
 
 - (void)stop;

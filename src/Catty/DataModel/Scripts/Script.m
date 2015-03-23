@@ -46,6 +46,7 @@
 @property (nonatomic, readwrite) kBrickType brickType;
 @property (nonatomic, strong) NSArray *sequenceList;
 
+@property (nonatomic, copy) dispatch_block_t abortScriptExecutionCompletion;
 @property (nonatomic, copy) dispatch_block_t fullScriptSequence;
 @property (nonatomic, copy) dispatch_block_t whileSequence; // TEMPORARY!!
 
@@ -61,6 +62,7 @@
         self.brickType = [brickManager brickTypeForClassName:subclassName];
         self.brickCategoryType = [brickManager brickCategoryTypeForBrickType:self.brickType];
         self.running = NO;
+        self.abortScriptExecutionCompletion = nil;
         self.sequenceList = nil;
     }
     return self;
@@ -97,6 +99,16 @@
 - (void)dealloc
 {
     NSDebug(@"Dealloc %@ %@", [self class], self.parent);
+}
+
+- (BOOL)scriptExecutionHasBeenAborted
+{
+    return (self.abortScriptExecutionCompletion != nil);
+}
+
+- (void)abortScriptExecutionWithCompletion:(dispatch_block_t)completion
+{
+    self.abortScriptExecutionCompletion = completion;
 }
 
 - (void)computeSequenceList
@@ -177,6 +189,7 @@
         [currentSequenceList addObject:currentOperationSequence];
     }
     self.sequenceList = (NSArray*)currentSequenceList;
+    [self prepareAllActions];
 }
 
 #pragma mark - Copy
@@ -267,35 +280,73 @@
 
 - (void)start
 {
-    NSDebug(@"Starting: %@", NSStringFromClass([self class]));
-    if ([self isKindOfClass:[BroadcastScript class]]) {
-        NSLog(@"Starting BroadcastScript of object %@", self.object.name);
+    assert(self.object.program.isPlaying); // ensure that program is playing!
+    assert(! self.isRunning); // ensure that script is NOT already running!
+    NSLog(@"Starting: %@ of object %@", [self class], [self.object class]);
+
+    if (! [self inParentHierarchy:self.object]) {
+        NSLog(@" + Adding this node to object");
+        [self.object addChild:self];
     }
 
-    [self reset];
+    [self reset]; // just to ensure
     if ([self hasActions]) {
         [self removeAllActions];
-    } else {
-        [self prepareAllActions];
-        [self runAllActions];
     }
+    [self runAllActions];
 }
 
-- (void)restart
+- (void)selfBroadcastRestart
 {
-    if ([self hasActions]) {
-        [self removeAllActions];
-    }
+    assert(self.object.program.isPlaying); // ensure that program is playing!
+    assert(self.isRunning); // ensure that script is already running!
+    assert([self isKindOfClass:[BroadcastScript class]]);
     [self reset];
     [self runAllActions];
 }
 
+- (void)restart
+{
+    assert(self.object.program.isPlaying); // ensure that program is playing!
+    assert(self.isRunning); // ensure that script is already running!
+    __weak Script *weakSelf = self;
+    self.abortScriptExecutionCompletion = ^{
+        NSLog(@"!! ABORT DETECTED !! => Restarting [%@] now!", [weakSelf class]);
+        if ([weakSelf isKindOfClass:[BroadcastScript class]]) {
+            NSLog(@"Starting BroadcastScript of object %@", weakSelf.object.name);
+        }
+
+        [weakSelf reset];
+        if ([weakSelf hasActions]) {
+            [weakSelf removeAllActions];
+        }
+        weakSelf.abortScriptExecutionCompletion = nil; // reset before starting script again!
+        [weakSelf runAllActions];
+    };
+}
+
 - (void)stop
 {
-    if ([self hasActions]) {
-        [self removeAllActions];
-    }
-    [self reset];
+    assert(self.object.program.isPlaying); // ensure that program is playing!
+    assert(self.isRunning); // ensure that script is already running!
+    __weak Script *weakSelf = self;
+    self.abortScriptExecutionCompletion = ^{
+        NSLog(@"!! ABORT DETECTED !! => Stopping [%@] now!", [weakSelf class]);
+        if ([weakSelf isKindOfClass:[BroadcastScript class]]) {
+            NSLog(@"Starting BroadcastScript of object %@", weakSelf.object.name);
+        }
+
+        [weakSelf reset];
+        if ([weakSelf hasActions]) {
+            [weakSelf removeAllActions];
+        }
+        weakSelf.abortScriptExecutionCompletion = nil; // reset before starting script again!
+        weakSelf.running = NO;
+        if ([weakSelf inParentHierarchy:weakSelf.object]) {
+            [weakSelf removeFromParent];
+        }
+        NSLog(@"%@ stopped!", [weakSelf class]);
+    };
 }
 
 - (void)prepareAllActions
@@ -305,9 +356,22 @@
 //    NSDebug(@"Started %@ in object %@", preservedScriptName, preservedObjectName);
     __weak Script *weakSelf = self;
     dispatch_block_t scriptEndCompletion = ^{
-        [weakSelf removeFromParent];
-        weakSelf.running = NO;
-        NSLog(@"%@ finished!", [weakSelf class]);
+        @synchronized(weakSelf) {
+            dispatch_block_t abortScriptExecutionCompletion = weakSelf.abortScriptExecutionCompletion;
+            if (abortScriptExecutionCompletion != nil) {
+                // resets abort flag and aborts script execution here
+                abortScriptExecutionCompletion();
+                weakSelf.abortScriptExecutionCompletion = nil;
+                NSLog(@"%@ aborted while finishing!", [weakSelf class]);
+                return;
+            }
+            weakSelf.running = NO;
+            if ([weakSelf inParentHierarchy:weakSelf.object]) {
+                [weakSelf removeFromParent];
+            }
+            NSLog(@"%@ finished!", [weakSelf class]);
+        }
+        
     };
     dispatch_block_t sequenceBlock = [self sequenceBlockForSequenceList:self.sequenceList
                                                    finalCompletionBlock:scriptEndCompletion];
@@ -316,13 +380,12 @@
 
 - (void)runAllActions
 {
-    if (self.object.program.isPlaying && self.fullScriptSequence) {
-        self.running = YES;
-        self.fullScriptSequence();
-    }
+    assert(self.fullScriptSequence != nil); // ensure that fullScriptSequence already exists
+    assert(self.object.program.isPlaying); // ensure that program is playing!
+    self.running = YES;
+    self.fullScriptSequence();
 }
 
-// this method must NEVER return nil!!
 - (dispatch_block_t)sequenceBlockForSequenceList:(NSArray*)sequenceList
                             finalCompletionBlock:(dispatch_block_t)finalCompletionBlock
 {
@@ -355,7 +418,6 @@
     return completionBlock;
 }
 
-// this method must NEVER return nil!!
 - (dispatch_block_t)repeatingSequenceBlockForConditionalSequence:(CBConditionalSequence*)conditionalSequence
                                             finalCompletionBlock:(dispatch_block_t)finalCompletionBlock
 {
@@ -421,9 +483,9 @@
                 if ([broadcastBrick.broadcastMessage isEqualToString:broadcastScript.receivedMessage]) {
                     // DO NOT call completionBlock here so that upcoming actions are ignored!
                     completionBlock = ^{
-                        [broadcastBrick performBroadcast];
                         // end of script reached!! Scripts will be aborted due to self-calling broadcast
-                        NSLog(@"BroadcastScript ended due to self broadcast!");
+                        NSDebug(@"BroadcastScript ended due to self broadcast!");
+                        [broadcastBrick performBroadcast]; // finally perform broadcast
                     };
                     continue;
                 }
@@ -438,6 +500,14 @@
         } else if (operation.brick) {
             completionBlock = ^{
                 NSDebug(@"[%@] %@ action", [weakSelf class], [operation.brick class]);
+                dispatch_block_t abortScriptExecutionCompletion = weakSelf.abortScriptExecutionCompletion;
+                if (abortScriptExecutionCompletion != nil) {
+                    // resets abort flag and aborts script execution here
+                    abortScriptExecutionCompletion();
+                    weakSelf.abortScriptExecutionCompletion = nil;
+                    NSLog(@"%@ aborted!", [weakSelf class]);
+                    return;
+                }
                 [weakSelf runAction:operation.brick.action completion:completionBlock];
             };
         } else {
@@ -451,6 +521,11 @@
 
 - (void)removeReferences
 {
+    // DO NOT CHANGE ORDER HERE!
+    self.sequenceList = nil;
+    self.abortScriptExecutionCompletion = nil;
+    self.fullScriptSequence = nil;
+    self.whileSequence = nil;
     [self.brickList makeObjectsPerformSelector:@selector(removeReferences)];
     self.object = nil;
 }
