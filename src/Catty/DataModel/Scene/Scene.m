@@ -108,7 +108,7 @@
     for (SpriteObject *spriteObject in self.program.objectList) {
         for (Script *script in spriteObject.scriptList) {
             if ([script isKindOfClass:[StartScript class]]) {
-                [script.object startAndAddScript:script completion:nil];
+                [script start];
             }
         }
     }
@@ -117,31 +117,37 @@
 - (void)stopProgramWithCompletion:(dispatch_block_t)completion
 {
     dispatch_sync(dispatch_get_main_queue(), ^{
-        self.program.playing = NO;
         [[AudioManager sharedAudioManager] stopAllSounds];
 
         // continue scene so that all SpriteKit actions can be finished
         self.view.paused = NO;
     });
 
+    // stop all running scripts
+    for (SpriteObject *spriteObject in self.program.objectList) {
+        for (Script *script in spriteObject.scriptList) {
+            @synchronized(script) {
+                if (script.isRunning) {
+                    [script stop];
+                }
+            }
+        }
+    }
+
     // perform waiting on another thread!
     // busy waiting until all scripts finished!!
     for (SpriteObject *spriteObject in self.program.objectList) {
         for (Script *script in spriteObject.scriptList) {
-            // CAVE: Never remove this (empty) while loop here!!
             while (script.isRunning) {
-                [script stop];
                 NSLog(@"%@ in %@ is still running (Scene %@). Waiting until script finished execution...", [script class], spriteObject.name, (self.isPaused ? @"paused" : @"still running"));
-                [NSThread sleepForTimeInterval:1.0f];
+                [NSThread sleepForTimeInterval:0.3f];
             }
         }
     }
     NSLog(@"All scripts finished execution!");
 
-    // remove all references in program hierarchy
-    [self.program removeReferences];
-
     dispatch_sync(dispatch_get_main_queue(), ^{
+        self.program.playing = NO;
         self.view.paused = YES; // pause scene!
 
         // now all (!) scripts of all (!) objects have been finished! we can safely remove all SpriteObjects from Scene
@@ -149,16 +155,18 @@
         //       Scripts in SpriteObjects that contain pointToBricks to other (!) SpriteObjects
         for (SpriteObject *spriteObject in self.program.objectList) {
             for (Script *script in spriteObject.scriptList) {
-                [script stop];
                 if ([script inParentHierarchy:spriteObject]) {
-                    [script removeFromParent];
+                    [script removeFromParent]; // just to ensure
                 }
             }
+
             if ([spriteObject inParentHierarchy:self]) {
                 [spriteObject removeFromParent];
             }
         }
     });
+
+    // remove all references in program hierarchy
     [self.program removeReferences];
     NSLog(@"All SpriteObjects and Scripts have been removed from Scene!");
 
