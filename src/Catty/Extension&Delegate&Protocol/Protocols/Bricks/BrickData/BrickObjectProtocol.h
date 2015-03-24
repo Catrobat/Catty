@@ -27,7 +27,7 @@
 
 @protocol BrickObjectProtocol <NSObject>
 
-- (SpriteObject*)objectForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
-- (void)setObject:(SpriteObject*)object ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
+- (SpriteObject*)objectForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (void)setObject:(SpriteObject*)object forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 
 @end

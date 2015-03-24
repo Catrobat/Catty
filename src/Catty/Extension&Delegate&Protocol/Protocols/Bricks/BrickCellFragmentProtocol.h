@@ -26,17 +26,13 @@
 @protocol BrickCellFragmentDelegate <NSObject>
 
 @required
-- (void)updateData:(id)data ForBrick:(Brick*)brick AndLineNumber:(NSInteger)line AndParameterNumber:(NSInteger)parameter;
+- (void)updateData:(id)data forBrick:(Brick*)brick andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter;
 
 @end
 
 @protocol BrickCellFragmentProtocol <NSObject>
 
 @required
-@property (nonatomic, readonly) NSInteger lineNumber;
-@property (nonatomic, readonly) NSInteger parameterNumber;
-@property (nonatomic, weak, readonly) BrickCell* brickCell;
-
-- (instancetype)initWithFrame:(CGRect)frame AndBrickCell:(BrickCell*)brickCell AndLineNumber:(NSInteger)line AndParameterNumber:(NSInteger)parameter;
+- (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell*)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter;
 
 @end

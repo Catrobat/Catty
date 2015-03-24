@@ -1185,14 +1185,18 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - BrickCellFragment delegate
-- (void)addObjectActionWithName:(NSString*)objectName
+- (void)addObjectWithName:(NSString*)objectName andCompletion:(id)completion
 {
     NSString *uniqueName = [Util uniqueName:objectName existingNames:[self.object.program allObjectNames]];
     [self.object.program addObjectWithName:uniqueName];
     [self.collectionView reloadData];
+    if(completion) {
+        dispatch_block_t block = (void (^)(void))completion;
+        block();
+    }
 }
 
-- (void)updateData:(id)data ForBrick:(Brick*)brick AndLineNumber:(NSInteger)line AndParameterNumber:(NSInteger)parameter
+- (void)updateData:(id)data forBrick:(Brick*)brick andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
     if([brick conformsToProtocol:@protocol(BrickLookProtocol)]) {
         NSString *value = (NSString*)data;
@@ -1202,7 +1206,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [ltvc setObject:self.object];
             ltvc.showAddLookActionSheetAtStart = YES;
             ltvc.afterSafeBlock =  ^(Look* look) {
-                [lookBrick setLook:look ForLineNumber:line AndParameterNumber:parameter];
+                [lookBrick setLook:look forLineNumber:line andParameterNumber:parameter];
                 [self.navigationController popViewControllerAnimated:YES];
             };
             [self.navigationController pushViewController:ltvc animated:YES];
@@ -1210,7 +1214,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         } else {
             for(Look *look in self.object.lookList) {
                 if([look.name isEqualToString:value]) {
-                    [lookBrick setLook:look ForLineNumber:line AndParameterNumber:parameter];
+                    [lookBrick setLook:look forLineNumber:line andParameterNumber:parameter];
                     break;
                 }
             }
@@ -1223,7 +1227,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [ltvc setObject:self.object];
             ltvc.showAddSoundActionSheetAtStart = YES;
             ltvc.afterSafeBlock =  ^(Sound* sound) {
-                [soundBrick setSound:sound ForLineNumber:line AndParameterNumber:parameter];
+                [soundBrick setSound:sound forLineNumber:line andParameterNumber:parameter];
                 [self.navigationController popViewControllerAnimated:YES];
             };
             [self.navigationController pushViewController:ltvc animated:YES];
@@ -1231,7 +1235,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         } else {
             for(Sound *sound in self.object.soundList) {
                 if([sound.name isEqualToString:value]) {
-                    [soundBrick setSound:sound ForLineNumber:line AndParameterNumber:parameter];
+                    [soundBrick setSound:sound forLineNumber:line andParameterNumber:parameter];
                     break;
                 }
             }
@@ -1240,7 +1244,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         NSString *value = (NSString*)data;
         Brick<BrickObjectProtocol> *objectBrick = (Brick<BrickObjectProtocol>*)brick;
         if([value isEqualToString:kLocalizedNewElement]) {
-            [Util addObjectAlertForProgram:self.object.program AndPerformAction:@selector(addObjectActionWithName:) OnTarget:self];
+            [Util addObjectAlertForProgram:self.object.program andPerformAction:@selector(addObjectWithName:andCompletion:) onTarget:self withCompletion:nil];
             return;
         } else {
             

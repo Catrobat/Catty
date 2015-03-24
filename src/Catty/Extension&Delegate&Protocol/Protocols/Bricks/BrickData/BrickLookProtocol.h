@@ -27,7 +27,7 @@
 
 @protocol BrickLookProtocol <NSObject>
 
-- (Look*)lookForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
-- (void)setLook:(Look*)look ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
+- (Look*)lookForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (void)setLook:(Look*)look forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 
 @end

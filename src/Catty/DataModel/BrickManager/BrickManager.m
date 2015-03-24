@@ -151,7 +151,7 @@
             if ([brick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
                 id<BrickFormulaProtocol> brickF =(id <BrickFormulaProtocol>) brick;
                 Formula * formula =[[Formula alloc ] initWithInteger:0];
-                [brickF setFormula:formula ForLineNumber:0 AndParameterNumber:0];
+                [brickF setFormula:formula forLineNumber:0 andParameterNumber:0];
                 [selectableBricksForCategoryMutable addObject:brickF];
             } else {
                 [selectableBricksForCategoryMutable addObject:brick];

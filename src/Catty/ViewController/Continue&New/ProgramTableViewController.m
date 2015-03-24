@@ -116,7 +116,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - actions
 - (void)addObjectAction:(id)sender
 {
-    [Util addObjectAlertForProgram:self.program AndPerformAction:@selector(addObjectActionWithName:) OnTarget:self];
+    [Util addObjectAlertForProgram:self.program andPerformAction:@selector(addObjectActionWithName:) onTarget:self withCompletion:nil];
 }
 
 - (void)addObjectActionWithName:(NSString*)objectName

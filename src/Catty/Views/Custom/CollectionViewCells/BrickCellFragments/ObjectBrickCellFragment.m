@@ -39,7 +39,7 @@
 
 @implementation ObjectBrickCellFragment
 
-- (instancetype)initWithFrame:(CGRect)frame AndBrickCell:(BrickCell*)brickCell AndLineNumber:(NSInteger)line AndParameterNumber:(NSInteger)parameter
+- (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell*)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
     if(self = [super initWithFrame:frame]) {
         _brickCell = brickCell;
@@ -51,7 +51,7 @@
         int optionIndex = 1;
         if([self.brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
             Brick<BrickObjectProtocol> *objectBrick = (Brick<BrickObjectProtocol>*)self.brickCell.scriptOrBrick;
-            SpriteObject *currentObject = [objectBrick objectForLineNumber:self.lineNumber AndParameterNumber:self.parameterNumber];
+            SpriteObject *currentObject = [objectBrick objectForLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
             for(SpriteObject *object in objectBrick.script.object.program.objectList) {
                 [options addObject:object.name];
                 if([currentObject.name isEqualToString:object.name])
@@ -68,7 +68,7 @@
 
 - (void)comboboxClosed:(iOSCombobox*)combobox withValue:(NSString*)value
 {
-    [self.brickCell.fragmentDelegate updateData:value ForBrick:(Brick*)self.brickCell.scriptOrBrick AndLineNumber:self.lineNumber AndParameterNumber:self.parameterNumber];
+    [self.brickCell.fragmentDelegate updateData:value forBrick:(Brick*)self.brickCell.scriptOrBrick andLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
 }
 
 @end

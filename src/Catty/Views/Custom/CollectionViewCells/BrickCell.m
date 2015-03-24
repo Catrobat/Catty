@@ -474,13 +474,13 @@
                 inputField = (UIView*)comboBox;
             } else if ([afterLabelParam rangeOfString:@"OBJECT"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
-                inputField = [[ObjectBrickCellFragment alloc] initWithFrame:inputViewFrame AndBrickCell:self AndLineNumber:lineNumber AndParameterNumber:counter];
+                inputField = [[ObjectBrickCellFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"SOUND"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
-                inputField = [[SoundBrickCellFragment alloc] initWithFrame:inputViewFrame AndBrickCell:self AndLineNumber:lineNumber AndParameterNumber:counter];
+                inputField = [[SoundBrickCellFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"LOOK"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
-                inputField = [[LookBrickCellFragment alloc] initWithFrame:inputViewFrame AndBrickCell:self AndLineNumber:lineNumber AndParameterNumber:counter];
+                inputField = [[LookBrickCellFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"VARIABLE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 NSMutableArray* variables = [[NSMutableArray alloc] init];

@@ -39,7 +39,7 @@
 @synthesize xDestination = _xDestination;
 @synthesize yDestination = _yDestination;
 
-- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     if(lineNumber == 0 && paramNumber == 0)
         return self.durationInSeconds;
@@ -51,7 +51,7 @@
     return nil;
 }
 
-- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     if(lineNumber == 0 && paramNumber == 0)
         self.durationInSeconds = formula;
