@@ -46,6 +46,8 @@
 
 + (Script *)scriptWithType:(kBrickType)type andCategory:(kBrickCategoryType)category;
 
+- (instancetype)initWithType:(kBrickType)type andCategory:(kBrickCategoryType)category;
+
 - (void)startWithCompletion:(dispatch_block_t)block;
 
 - (void)stop;

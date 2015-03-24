@@ -37,6 +37,8 @@
 
 + (Brick *)brickWithType:(kBrickType)type andCategory:(kBrickCategoryType)category;
 
+- (instancetype)initWithType:(kBrickType)type andCategory:(kBrickCategoryType)category;
+
 - (BOOL)isSelectableForObject;
 
 - (NSString*)description;

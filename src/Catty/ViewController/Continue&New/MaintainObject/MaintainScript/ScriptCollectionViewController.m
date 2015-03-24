@@ -342,8 +342,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     [self.collectionView performBatchUpdates:^{
         update();
     } completion:^(BOOL finished) {
-        [weakself.collectionView reloadData];
         if (complete) { complete(); }
+        [weakself.collectionView reloadData];
     }];
 }
 
@@ -424,34 +424,52 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     NSString *brickClassString = [[BrickManager sharedBrickManager] classNameForBrickType:scriptOrBrick.brickType];
     Class brickClass = NSClassFromString(brickClassString);
     
-    // Script bricks
-    if (scriptOrBrick.brickType == kProgramStartedBrick || scriptOrBrick.brickType == kTappedBrick
-        || scriptOrBrick.brickType == kReceiveBrick) {
-        id newScript = [brickClass scriptWithType:scriptOrBrick.brickType andCategory:scriptOrBrick.brickCategoryType];
+    NSIndexPath *topIndexpath = [NSIndexPath indexPathForItem:0 inSection:0];
+    NSUInteger lastSection = self.scriptDataSource.numberOfSections;
+    NSUInteger itemCount = [self.collectionView numberOfItemsInSection:lastSection - 1];
+    NSIndexPath *bottomIndexPath = [NSIndexPath indexPathForItem:itemCount - 1 inSection:lastSection - 1];
+    
+    // Empty Script List, insert start script with added brick
+    if (self.scriptDataSource.scriptList.count == 0 && ![self isScript:scriptOrBrick.brickType]) {
+        id newBrick = [brickClass brickWithType:scriptOrBrick.brickType andCategory:scriptOrBrick.brickCategoryType];
+        StartScript *startScript = [StartScript new];
+        startScript.object = self.object;
         
-        NSUInteger lastSection = self.scriptDataSource.numberOfSections;
+        [self.scriptDataSource addScript:startScript toSection:topIndexpath.section];
+        [self.scriptDataSource addBricks:@[newBrick] atIndexPath:topIndexpath];
         
-        // Scroll to botton.
+    } else if ([self isScript:scriptOrBrick.brickType]) {
         if (self.scriptDataSource.numberOfSections > 0) {
-            NSUInteger itemCount = [self.collectionView numberOfItemsInSection:lastSection - 1];
-            NSIndexPath *bottonIndexPath = [NSIndexPath indexPathForItem:itemCount - 1 inSection:lastSection - 1];
-            [self.collectionView scrollToItemAtIndexPath:bottonIndexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
+            [self resetScrollingtoBottomWithIndexPath:bottomIndexPath animated:NO];
         }
         
+        id newScript = [[brickClass alloc] initWithType:scriptOrBrick.brickType andCategory:scriptOrBrick.brickCategoryType];
         [self.scriptDataSource addScript:newScript toSection:lastSection];
-        return;
+    } else {
+        [self resetScrollingtoTopWithIndexPath:topIndexpath animated:NO];
+
+        id newBrick = [brickClass brickWithType:scriptOrBrick.brickType andCategory:scriptOrBrick.brickCategoryType];
+        // Add new brick to top section.
+        [self.scriptDataSource addBricks:@[newBrick] atIndexPath:topIndexpath];
     }
-    
-    id newBrick = [brickClass brickWithType:scriptOrBrick.brickType andCategory:scriptOrBrick.brickCategoryType];
-    
-    // Reset scrolling to top.
-    NSIndexPath *topIndexpath = [NSIndexPath indexPathForItem:0 inSection:0];
+}
+
+// TODO: Refactor (move into brick manager oder protocol?)
+- (BOOL)isScript:(kBrickType)brickType {
+    if (brickType == kProgramStartedBrick || brickType == kTappedBrick || brickType == kReceiveBrick) {
+        return YES;
+    }
+    return NO;
+}
+
+- (void)resetScrollingtoTopWithIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated {
     if ([self.collectionView numberOfItemsInSection:0] > 0) {
-        [self.collectionView scrollToItemAtIndexPath:topIndexpath atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
+        [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionTop animated:animated];
     }
-    
-    // Add new brick to top section.
-    [self.scriptDataSource addBricks:@[newBrick] atIndexPath:topIndexpath];
+}
+
+- (void)resetScrollingtoBottomWithIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated{
+    [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:animated];
 }
 
 #pragma mark - Brick Cell Delegate
