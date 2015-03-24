@@ -59,4 +59,15 @@
     return [NSString stringWithFormat:@"Speak: %@", self.text];
 }
 
+- (void)setText:(NSString *)text forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    if(text)
+        self.text = text;
+}
+
+- (NSString*)textForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    return self.text;
+}
+
 @end

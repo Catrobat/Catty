@@ -21,9 +21,10 @@
  */
 
 #import "Brick.h"
+#import "BrickTextProtocol.h"
 
 
-@interface SpeakBrick : Brick
+@interface SpeakBrick : Brick<BrickTextProtocol>
 
 @property (nonatomic, strong) NSString *text;
 

@@ -10,6 +10,7 @@
 		4C1608B21A09621A002C7032 /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B01A09621A002C7032 /* ValidFormulaList.xml */; };
 		4C1608B31A09621A002C7032 /* ValidProgram.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B11A09621A002C7032 /* ValidProgram.xml */; };
 		4C1EB20D1AC185770001F431 /* BrickCellFormulaFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1EB20C1AC185770001F431 /* BrickCellFormulaFragment.m */; };
+		4C1EB2121AC19BC60001F431 /* BrickCellTextFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1EB2111AC19BC60001F431 /* BrickCellTextFragment.m */; };
 		4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2650691A6538710050775B /* CBMutableCopyContext.m */; };
 		4C26506F1A6566F50050775B /* SpriteObjectCopyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26506E1A6566F50050775B /* SpriteObjectCopyTest.m */; };
 		4C3275FA1A1360640091C428 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */; };
@@ -47,7 +48,6 @@
 		92DFB01B1A38949E00FA9B0F /* FormulaEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB0061A38949E00FA9B0F /* FormulaEditorViewController.m */; };
 		92DFB01C1A38949E00FA9B0F /* FormulaEditorButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB0091A38949E00FA9B0F /* FormulaEditorButton.m */; };
 		92DFB01D1A38949E00FA9B0F /* FormulaEditorTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB00B1A38949E00FA9B0F /* FormulaEditorTextView.m */; };
-		92DFB01E1A38949E00FA9B0F /* NoteBrickTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB00D1A38949E00FA9B0F /* NoteBrickTextField.m */; };
 		92DFB0531A38960C00FA9B0F /* BrushPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB0211A38960C00FA9B0F /* BrushPickerViewController.m */; };
 		92DFB0541A38960C00FA9B0F /* ColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB0231A38960C00FA9B0F /* ColorPickerViewController.m */; };
 		92DFB0551A38960C00FA9B0F /* DrawTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB0251A38960C00FA9B0F /* DrawTool.m */; };
@@ -536,6 +536,9 @@
 		4C1608B11A09621A002C7032 /* ValidProgram.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidProgram.xml; path = "Resources/Test Resources/ValidProgram.xml"; sourceTree = "<group>"; };
 		4C1EB20B1AC185770001F431 /* BrickCellFormulaFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellFormulaFragment.h; path = BrickCellFragments/BrickCellFormulaFragment.h; sourceTree = "<group>"; };
 		4C1EB20C1AC185770001F431 /* BrickCellFormulaFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellFormulaFragment.m; path = BrickCellFragments/BrickCellFormulaFragment.m; sourceTree = "<group>"; };
+		4C1EB20F1AC19B3D0001F431 /* BrickTextProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTextProtocol.h; sourceTree = "<group>"; };
+		4C1EB2101AC19BC60001F431 /* BrickCellTextFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellTextFragment.h; path = BrickCellFragments/BrickCellTextFragment.h; sourceTree = "<group>"; };
+		4C1EB2111AC19BC60001F431 /* BrickCellTextFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellTextFragment.m; path = BrickCellFragments/BrickCellTextFragment.m; sourceTree = "<group>"; };
 		4C2650681A6538710050775B /* CBMutableCopyContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopyContext.h; path = CBCopyContext/CBMutableCopyContext.h; sourceTree = "<group>"; };
 		4C2650691A6538710050775B /* CBMutableCopyContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBMutableCopyContext.m; path = CBCopyContext/CBMutableCopyContext.m; sourceTree = "<group>"; };
 		4C26506C1A653A5A0050775B /* CBMutableCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopying.h; path = Copying/CBMutableCopying.h; sourceTree = "<group>"; };
@@ -705,8 +708,6 @@
 		92DFB0091A38949E00FA9B0F /* FormulaEditorButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaEditorButton.m; sourceTree = "<group>"; };
 		92DFB00A1A38949E00FA9B0F /* FormulaEditorTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaEditorTextView.h; sourceTree = "<group>"; };
 		92DFB00B1A38949E00FA9B0F /* FormulaEditorTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaEditorTextView.m; sourceTree = "<group>"; };
-		92DFB00C1A38949E00FA9B0F /* NoteBrickTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteBrickTextField.h; sourceTree = "<group>"; };
-		92DFB00D1A38949E00FA9B0F /* NoteBrickTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBrickTextField.m; sourceTree = "<group>"; };
 		92DFB0201A38960C00FA9B0F /* BrushPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrushPickerViewController.h; sourceTree = "<group>"; };
 		92DFB0211A38960C00FA9B0F /* BrushPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrushPickerViewController.m; sourceTree = "<group>"; };
 		92DFB0221A38960C00FA9B0F /* ColorPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPickerViewController.h; sourceTree = "<group>"; };
@@ -1682,6 +1683,7 @@
 				4C5517D51ABC6AA500A52FF4 /* BrickLookProtocol.h */,
 				4C5517D71ABC737C00A52FF4 /* BrickObjectProtocol.h */,
 				4C5517D61ABC6AB800A52FF4 /* BrickSoundProtocol.h */,
+				4C1EB20F1AC19B3D0001F431 /* BrickTextProtocol.h */,
 			);
 			path = BrickData;
 			sourceTree = "<group>";
@@ -1743,6 +1745,8 @@
 				4C5517D91ABC747A00A52FF4 /* BrickCellObjectFragment.m */,
 				4C5517D01ABC4F9400A52FF4 /* BrickCellSoundFragment.h */,
 				4C5517D11ABC4F9400A52FF4 /* BrickCellSoundFragment.m */,
+				4C1EB2101AC19BC60001F431 /* BrickCellTextFragment.h */,
+				4C1EB2111AC19BC60001F431 /* BrickCellTextFragment.m */,
 			);
 			name = BrickCellFragments;
 			sourceTree = "<group>";
@@ -2098,8 +2102,6 @@
 				92DFB0091A38949E00FA9B0F /* FormulaEditorButton.m */,
 				92DFB00A1A38949E00FA9B0F /* FormulaEditorTextView.h */,
 				92DFB00B1A38949E00FA9B0F /* FormulaEditorTextView.m */,
-				92DFB00C1A38949E00FA9B0F /* NoteBrickTextField.h */,
-				92DFB00D1A38949E00FA9B0F /* NoteBrickTextField.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4555,7 +4557,6 @@
 				92FF30D11A24DCAA00093DA7 /* ChangeGhostEffectByNBrick.m in Sources */,
 				92FF32601A24E2F400093DA7 /* FBShimmeringView.m in Sources */,
 				92FF30D61A24DCAA00093DA7 /* NextLookBrick.m in Sources */,
-				92DFB01E1A38949E00FA9B0F /* NoteBrickTextField.m in Sources */,
 				92FF30D51A24DCAA00093DA7 /* HideBrick.m in Sources */,
 				92DFB0131A38949E00FA9B0F /* InternFormulaKeyboardAdapter.m in Sources */,
 				92FF32631A24E2F400093DA7 /* FXBlurView.m in Sources */,
@@ -4880,6 +4881,7 @@
 				CAA4A4EA1A43B472002A69A0 /* SetSizeToBrick+CBXMLHandler.m in Sources */,
 				CAA4A4C91A43B45E002A69A0 /* SetLookBrick+CBXMLHandler.m in Sources */,
 				92FF32B51A24E2F400093DA7 /* PlaceHolderView.m in Sources */,
+				4C1EB2121AC19BC60001F431 /* BrickCellTextFragment.m in Sources */,
 				92FF30D21A24DCAA00093DA7 /* ClearGraphicEffectBrick.m in Sources */,
 				CAA4A4A11A43B407002A69A0 /* BroadcastWaitBrick+CBXMLHandler.m in Sources */,
 				92FF32921A24E2F400093DA7 /* ShowBrickCell.m in Sources */,

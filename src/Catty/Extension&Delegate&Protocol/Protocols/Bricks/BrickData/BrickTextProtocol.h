@@ -20,14 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BrickCell.h"
+#import <Foundation/Foundation.h>
 
-@interface NoteBrickTextField : UITextField
+@class Brick;
 
-@property (nonatomic,strong)BrickCell *cell;
+@protocol BrickTextProtocol <NSObject>
 
-- (id)initWithFrame:(CGRect)frame AndNote:(NSString*)note;
-- (void)drawBorder:(BOOL)isActive;
-- (void)update;
+- (NSString*)textForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (void)setText:(NSString*)text forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+
 @end

@@ -36,6 +36,7 @@
 #import "BrickCellSoundFragment.h"
 #import "BrickCellObjectFragment.h"
 #import "BrickCellFormulaFragment.h"
+#import "BrickCellTextFragment.h"
 
 // uncomment this to get special log outputs, etc...
 //#define LAYOUT_DEBUG 0
@@ -447,19 +448,9 @@
             if ([afterLabelParam rangeOfString:@"FLOAT"].location != NSNotFound || [afterLabelParam rangeOfString:@"INT"].location != NSNotFound) {
                 inputField = [[BrickCellFormulaFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"TEXT"].location != NSNotFound) {
-                UITextField *textField;
-                if ([self.scriptOrBrick isKindOfClass:[NoteBrick class]]) {
-                    NoteBrick *brick = (NoteBrick*)self.scriptOrBrick;
-                    inputViewFrame.origin.y = inputViewFrame.origin.y+10;
-                    inputViewFrame.size.height = kBrickInputFieldHeight;
-                     textField= [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame andNote:brick.note AndBrickCell:self];
-                } else {
-                    SpeakBrick *brick = (SpeakBrick*)self.scriptOrBrick;
-                    inputViewFrame.origin.y = inputViewFrame.origin.y+10;
-                    inputViewFrame.size.height = kBrickInputFieldHeight;
-                    textField= [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame andNote:brick.text AndBrickCell:self];
-                }
-                inputField = (UIView*)textField;
+                inputViewFrame.origin.y = inputViewFrame.origin.y+10;
+                inputViewFrame.size.height = kBrickInputFieldHeight;
+                inputField = [[BrickCellTextFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"MESSAGE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 NSMutableArray* messages = [[NSMutableArray alloc] init];

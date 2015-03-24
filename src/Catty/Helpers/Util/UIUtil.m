@@ -26,7 +26,6 @@
 #import "iOSCombobox.h"
 #import "BrickDetailViewController.h"
 #import "ScriptCollectionViewController.h"
-#import "NoteBrickTextField.h"
 #import "SetLookBrick.h"
 #import "SetLookBrick.h"
 
@@ -63,18 +62,6 @@
         label.frame = labelFrame;
     }
     return label;
-}
-
-+ (NoteBrickTextField*)newDefaultBrickTextFieldWithFrame:(CGRect)frame andNote:(NSString *)note AndBrickCell:(BrickCell*)brickCell
-{
-    NoteBrickTextField* textField = [[NoteBrickTextField alloc] initWithFrame:frame AndNote:note];
-    textField.delegate = brickCell.textDelegate;
-    textField.cell = brickCell;
-//    [textField addTarget:brickCell.textDelegate action:@selector(begin:) forControlEvents:UIControlEventTouchUpInside];
-    [textField addTarget:brickCell.textDelegate
-                  action:@selector(textFieldFinished:)
-        forControlEvents:UIControlEventEditingDidEndOnExit];
-    return textField;
 }
 
 + (iOSCombobox*)newDefaultBrickComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items

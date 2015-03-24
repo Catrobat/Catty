@@ -49,7 +49,6 @@
 #import "IfLogicEndBrick.h"
 #import "UIUtil.h"
 #import "BrickCellFormulaFragment.h"
-#import "NoteBrickTextField.h"
 #import "NoteBrick.h"
 #import "ScriptDataSource.h"
 #import "BrickSelectionViewController.h"
@@ -60,6 +59,7 @@
 #import "BrickLookProtocol.h"
 #import "BrickSoundProtocol.h"
 #import "BrickObjectProtocol.h"
+#import "BrickTextProtocol.h"
 #import "LooksTableViewController.h"
 #import "SoundsTableViewController.h"
 #import "ProgramTableViewController.h"
@@ -74,7 +74,6 @@
                                              BrickCellDelegate,
                                              ScriptDataSourceDelegate,
                                              iOSComboboxDelegate,
-                                             UITextFieldDelegate,
                                              BrickDetailViewControllerDelegate,
                                              BrickCellFragmentDelegate>
 
@@ -291,22 +290,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return ((self.isEditing || indexPath.item == 0) ? NO : YES);
-}
-
-#pragma mark - UITextfield Delegate
-
--(void)textFieldDidEndEditing:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-}
-
-- (void)textFieldFinished:(id)sender
-{
-    NoteBrickTextField *noteBrickTextField = (NoteBrickTextField*)sender;
-    NoteBrick *noteBrick = (NoteBrick*)noteBrickTextField.cell.scriptOrBrick;
-    noteBrick.note = noteBrickTextField.text;
-    [noteBrickTextField update];
-    [noteBrickTextField resignFirstResponder];
 }
 
 #pragma mark - ScriptDataSourceDelegate
@@ -1127,7 +1110,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     brickCell.enabled = YES;
     [brickCell setupBrickCell];
     brickCell.delegate = self;
-    brickCell.textDelegate = self;
     brickCell.fragmentDelegate = self;
 }
 
@@ -1209,7 +1191,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         } else {
             [lookBrick setLook:[Util lookWithName:(NSString*)data forObject:self.object] forLineNumber:line andParameterNumber:parameter];
         }
-    } else if([brick conformsToProtocol:@protocol(BrickSoundProtocol)]) {
+    }
+    if([brick conformsToProtocol:@protocol(BrickSoundProtocol)]) {
         Brick<BrickSoundProtocol> *soundBrick = (Brick<BrickSoundProtocol>*)brick;
         if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
             SoundsTableViewController *ltvc = [self.storyboard instantiateViewControllerWithIdentifier:kSoundsTableViewControllerIdentifier];
@@ -1224,7 +1207,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         } else {
             [soundBrick setSound:[Util soundWithName:(NSString*)data forObject:self.object] forLineNumber:line andParameterNumber:parameter];
         }
-    } else if([brick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
+    }
+    if([brick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
         Brick<BrickObjectProtocol> *objectBrick = (Brick<BrickObjectProtocol>*)brick;
         if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
             [Util addObjectAlertForProgram:self.object.program andPerformAction:@selector(addObjectWithName:andCompletion:) onTarget:self withCompletion:^(NSString *objectName){
@@ -1234,9 +1218,14 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         } else {
             [objectBrick setObject:[Util objectWithName:(NSString*)data forProgram:self.object.program] forLineNumber:line andParameterNumber:parameter];
         }
-    } else if([brick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
+    }
+    if([brick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
         Brick<BrickFormulaProtocol> *formulaBrick = (Brick<BrickFormulaProtocol>*)brick;
         [formulaBrick setFormula:(Formula*)data forLineNumber:line andParameterNumber:parameter];
+    }
+    if([brick conformsToProtocol:@protocol(BrickTextProtocol)]) {
+        Brick<BrickTextProtocol> *textBrick = (Brick<BrickTextProtocol>*)brick;
+        [textBrick setText:(NSString*)data forLineNumber:line andParameterNumber:parameter];
     }
     
     [self saveProgram];
