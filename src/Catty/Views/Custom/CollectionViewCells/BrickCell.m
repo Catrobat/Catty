@@ -32,9 +32,10 @@
 #import "NoteBrick.h"
 #import "SpeakBrick.h"
 #import "BrickCellFragmentProtocol.h"
-#import "LookBrickCellFragment.h"
-#import "SoundBrickCellFragment.h"
-#import "ObjectBrickCellFragment.h"
+#import "BrickCellLookFragment.h"
+#import "BrickCellSoundFragment.h"
+#import "BrickCellObjectFragment.h"
+#import "BrickCellFormulaFragment.h"
 
 // uncomment this to get special log outputs, etc...
 //#define LAYOUT_DEBUG 0
@@ -443,12 +444,8 @@
             inputViewFrame.size.width = kBrickInputFieldMinWidth;
             NSString *afterLabelParam = [params objectAtIndex:counter];
             UIView *inputField = nil;
-            if ([afterLabelParam rangeOfString:@"FLOAT"].location != NSNotFound) {
-                UIButton *formulaEditor = [UIUtil newDefaultBrickFormulaEditorWithFrame:inputViewFrame ForBrickCell:self AndLineNumber: lineNumber AndParameterNumber: counter];
-                inputField = (UIView*)formulaEditor;
-            } else if ([afterLabelParam rangeOfString:@"INT"].location != NSNotFound) {
-                UIButton *formulaEditor = [UIUtil newDefaultBrickFormulaEditorWithFrame:inputViewFrame ForBrickCell:self AndLineNumber: lineNumber AndParameterNumber: counter];
-                inputField = (UIView*)formulaEditor;
+            if ([afterLabelParam rangeOfString:@"FLOAT"].location != NSNotFound || [afterLabelParam rangeOfString:@"INT"].location != NSNotFound) {
+                inputField = [[BrickCellFormulaFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"TEXT"].location != NSNotFound) {
                 UITextField *textField;
                 if ([self.scriptOrBrick isKindOfClass:[NoteBrick class]]) {
@@ -474,13 +471,13 @@
                 inputField = (UIView*)comboBox;
             } else if ([afterLabelParam rangeOfString:@"OBJECT"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
-                inputField = [[ObjectBrickCellFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
+                inputField = [[BrickCellObjectFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"SOUND"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
-                inputField = [[SoundBrickCellFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
+                inputField = [[BrickCellSoundFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"LOOK"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
-                inputField = [[LookBrickCellFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
+                inputField = [[BrickCellLookFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"VARIABLE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 NSMutableArray* variables = [[NSMutableArray alloc] init];

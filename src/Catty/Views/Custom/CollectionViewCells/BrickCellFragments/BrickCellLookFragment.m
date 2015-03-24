@@ -21,7 +21,7 @@
  */
 
 
-#import "LookBrickCellFragment.h"
+#import "BrickCellLookFragment.h"
 #import "iOSCombobox.h"
 #import "BrickCell.h"
 #import "Script.h"
@@ -31,13 +31,13 @@
 #import "LooksTableViewController.h"
 #import "LanguageTranslationDefines.h"
 
-@interface LookBrickCellFragment()
+@interface BrickCellLookFragment()
 @property (nonatomic, weak) BrickCell *brickCell;
 @property (nonatomic) NSInteger lineNumber;
 @property (nonatomic) NSInteger parameterNumber;
 @end
 
-@implementation LookBrickCellFragment
+@implementation BrickCellLookFragment
 
 - (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell*)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {

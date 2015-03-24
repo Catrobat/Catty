@@ -22,10 +22,7 @@
 
 
 #import "BrickCellFragmentProtocol.h"
-#import "iOSCombobox.h"
+#import "FormulaEditorButton.h"
 
-@interface ObjectBrickCellFragment : iOSCombobox<BrickCellFragmentProtocol, iOSComboboxDelegate>
-
-@property (nonatomic, weak) NSArray* objectList;
-
+@interface BrickCellFormulaFragment : FormulaEditorButton<BrickCellFragmentProtocol, FormulaEditorViewControllerDelegate>
 @end

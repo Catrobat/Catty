@@ -24,5 +24,8 @@
 #import "BrickCellFragmentProtocol.h"
 #import "iOSCombobox.h"
 
-@interface LookBrickCellFragment : iOSCombobox<BrickCellFragmentProtocol, iOSComboboxDelegate>
+@interface BrickCellObjectFragment : iOSCombobox<BrickCellFragmentProtocol, iOSComboboxDelegate>
+
+@property (nonatomic, weak) NSArray* objectList;
+
 @end

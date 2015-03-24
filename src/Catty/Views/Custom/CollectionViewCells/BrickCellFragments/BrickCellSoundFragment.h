@@ -24,6 +24,6 @@
 #import "BrickCellFragmentProtocol.h"
 #import "iOSCombobox.h"
 
-@interface SoundBrickCellFragment : iOSCombobox<BrickCellFragmentProtocol, iOSComboboxDelegate>
+@interface BrickCellSoundFragment : iOSCombobox<BrickCellFragmentProtocol, iOSComboboxDelegate>
 
 @end

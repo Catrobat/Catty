@@ -21,41 +21,40 @@
  */
 
 
-#import "SoundBrickCellFragment.h"
+#import "BrickCellObjectFragment.h"
 #import "iOSCombobox.h"
 #import "BrickCell.h"
-#import "Sound.h"
 #import "Script.h"
+#import "Look.h"
 #import "Brick.h"
-#import "BrickSoundProtocol.h"
+#import "BrickObjectProtocol.h"
 #import "LooksTableViewController.h"
 #import "LanguageTranslationDefines.h"
 
-@interface SoundBrickCellFragment()
+@interface BrickCellObjectFragment()
 @property (nonatomic, weak) BrickCell *brickCell;
 @property (nonatomic) NSInteger lineNumber;
 @property (nonatomic) NSInteger parameterNumber;
 @end
 
-@implementation SoundBrickCellFragment
+@implementation BrickCellObjectFragment
 
-- (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell *)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
+- (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell*)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
     if(self = [super initWithFrame:frame]) {
         _brickCell = brickCell;
         _lineNumber = line;
         _parameterNumber = parameter;
-        
         NSMutableArray *options = [[NSMutableArray alloc] init];
         [options addObject:kLocalizedNewElement];
         int currentOptionIndex = 0;
         int optionIndex = 1;
-        if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickSoundProtocol)]) {
-            Brick<BrickSoundProtocol> *soundBrick = (Brick<BrickSoundProtocol>*)brickCell.scriptOrBrick;
-            Sound *currentSound = [soundBrick soundForLineNumber:line andParameterNumber:parameter];
-            for(Sound *sound in soundBrick.script.object.soundList) {
-                [options addObject:sound.name];
-                if([sound.name isEqualToString:currentSound.name])
+        if([self.brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
+            Brick<BrickObjectProtocol> *objectBrick = (Brick<BrickObjectProtocol>*)self.brickCell.scriptOrBrick;
+            SpriteObject *currentObject = [objectBrick objectForLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
+            for(SpriteObject *object in objectBrick.script.object.program.objectList) {
+                [options addObject:object.name];
+                if([currentObject.name isEqualToString:object.name])
                     currentOptionIndex = optionIndex;
                 optionIndex++;
             }

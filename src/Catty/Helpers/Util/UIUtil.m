@@ -24,10 +24,8 @@
 #import "UIDefines.h"
 #import "Util.h"
 #import "iOSCombobox.h"
-#import "FormulaEditorButton.h"
 #import "BrickDetailViewController.h"
 #import "ScriptCollectionViewController.h"
-#import "BrickFormulaProtocol.h"
 #import "NoteBrickTextField.h"
 #import "SetLookBrick.h"
 #import "SetLookBrick.h"
@@ -77,14 +75,6 @@
                   action:@selector(textFieldFinished:)
         forControlEvents:UIControlEventEditingDidEndOnExit];
     return textField;
-}
-
-+ (UIButton*)newDefaultBrickFormulaEditorWithFrame:(CGRect)frame ForBrickCell:(BrickCell*)brickCell AndLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
-{
-    Brick<BrickFormulaProtocol> *formulaBrick = (Brick<BrickFormulaProtocol>*)brickCell.scriptOrBrick;
-    Formula *formula = [formulaBrick formulaForLineNumber:lineNumber andParameterNumber:paramNumber];
-    FormulaEditorButton *button = [[FormulaEditorButton alloc] initWithFrame:frame AndBrickCell:brickCell AndFormula: formula];
-    return button;
 }
 
 + (iOSCombobox*)newDefaultBrickComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items

@@ -48,7 +48,7 @@
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
 #import "UIUtil.h"
-#import "FormulaEditorButton.h"
+#import "BrickCellFormulaFragment.h"
 #import "NoteBrickTextField.h"
 #import "NoteBrick.h"
 #import "ScriptDataSource.h"
@@ -373,11 +373,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         case BrickDetailViewControllerStateEditFormula: {
             // TODO:
             BrickCell *brickCell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:self.trackedIndexPath];
-            FormulaEditorButton *formulaEditorButton = (FormulaEditorButton *)[UIUtil newDefaultBrickFormulaEditorWithFrame:CGRectMake(0, 0, 0, 0)
-                                                                                                               ForBrickCell:brickCell
-                                                                                                              AndLineNumber:0
-                                                                                                         AndParameterNumber:0];
-            [self openFormulaEditor:formulaEditorButton];
+            BrickCellFormulaFragment *formulaFragment = [[BrickCellFormulaFragment alloc] initWithFrame:CGRectMake(0, 0, 0, 0) andBrickCell:brickCell andLineNumber:0 andParameterNumber:0];
+            [self openFormulaEditor:formulaFragment];
         }
             break;
             
@@ -408,11 +405,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (void)editFormula
 {
     BrickCell *brickCell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:self.trackedIndexPath];
-    FormulaEditorButton *formulaEditorButton = (FormulaEditorButton *)[UIUtil newDefaultBrickFormulaEditorWithFrame:CGRectMake(0, 0, 0, 0)
-                                                                                                       ForBrickCell:brickCell
-                                                                                                      AndLineNumber:0
-                                                                                                 AndParameterNumber:0];
-    [self openFormulaEditor:formulaEditorButton];
+    BrickCellFormulaFragment *formulaFragment = [[BrickCellFormulaFragment alloc] initWithFrame:CGRectMake(0, 0, 0, 0) andBrickCell:brickCell andLineNumber:0 andParameterNumber:0];
+    [self openFormulaEditor:formulaFragment];
 }
 
 #pragma mark - BrickCategoryViewController delegates
@@ -462,13 +456,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - Open Formula Editor
-- (void)openFormulaEditor:(FormulaEditorButton*)button
+- (void)openFormulaEditor:(BrickCellFormulaFragment*)formulaFragment
 {
-    if([button isKindOfClass:[FormulaEditorButton class]]) {
+    if([formulaFragment isKindOfClass:[FormulaEditorButton class]]) {
         if([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
             FormulaEditorViewController *formulaEditorViewController = (FormulaEditorViewController*)self.presentedViewController;
             if ([formulaEditorViewController changeFormula]) {
-                [formulaEditorViewController setFormula:button.formula];
+                [formulaEditorViewController setFormula:formulaFragment.formula];
             }
             
         } else {
@@ -476,14 +470,14 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             if (self.presentedViewController.isViewLoaded && self.presentedViewController.view.window) {
                 [self.presentedViewController dismissViewControllerAnimated:NO completion:NULL];
             }
-            
-            FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCell: button.brickCell];
+            FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCell: formulaFragment.brickCell];
             formulaEditorViewController.object = self.object;
             formulaEditorViewController.transitioningDelegate = self;
             formulaEditorViewController.modalPresentationStyle = UIModalPresentationCustom;
+            formulaEditorViewController.delegate = formulaFragment;
             
             [self presentViewController:formulaEditorViewController animated:YES completion:^{
-                [formulaEditorViewController setFormula:button.formula];
+                [formulaEditorViewController setFormula:formulaFragment.formula];
             }];
         }
     }
@@ -1196,11 +1190,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     [self.collectionView reloadData];
 }
 
-- (void)updateData:(NSString*)data forBrick:(Brick*)brick andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
+- (void)updateData:(id)data forBrick:(Brick*)brick andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
     if([brick conformsToProtocol:@protocol(BrickLookProtocol)]) {
         Brick<BrickLookProtocol> *lookBrick = (Brick<BrickLookProtocol>*)brick;
-        if([data isEqualToString:kLocalizedNewElement]) {
+        if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
             LooksTableViewController *ltvc = [self.storyboard instantiateViewControllerWithIdentifier:kLooksTableViewControllerIdentifier];
             [ltvc setObject:self.object];
             ltvc.showAddLookActionSheetAtStart = YES;
@@ -1211,11 +1205,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [self.navigationController pushViewController:ltvc animated:YES];
             return;
         } else {
-            [lookBrick setLook:[Util lookWithName:data forObject:self.object] forLineNumber:line andParameterNumber:parameter];
+            [lookBrick setLook:[Util lookWithName:(NSString*)data forObject:self.object] forLineNumber:line andParameterNumber:parameter];
         }
     } else if([brick conformsToProtocol:@protocol(BrickSoundProtocol)]) {
         Brick<BrickSoundProtocol> *soundBrick = (Brick<BrickSoundProtocol>*)brick;
-        if([data isEqualToString:kLocalizedNewElement]) {
+        if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
             SoundsTableViewController *ltvc = [self.storyboard instantiateViewControllerWithIdentifier:kSoundsTableViewControllerIdentifier];
             [ltvc setObject:self.object];
             ltvc.showAddSoundActionSheetAtStart = YES;
@@ -1226,18 +1220,21 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [self.navigationController pushViewController:ltvc animated:YES];
             return;
         } else {
-            [soundBrick setSound:[Util soundWithName:data forObject:self.object] forLineNumber:line andParameterNumber:parameter];
+            [soundBrick setSound:[Util soundWithName:(NSString*)data forObject:self.object] forLineNumber:line andParameterNumber:parameter];
         }
     } else if([brick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
         Brick<BrickObjectProtocol> *objectBrick = (Brick<BrickObjectProtocol>*)brick;
-        if([data isEqualToString:kLocalizedNewElement]) {
+        if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
             [Util addObjectAlertForProgram:self.object.program andPerformAction:@selector(addObjectWithName:andCompletion:) onTarget:self withCompletion:^(NSString *objectName){
                 [objectBrick setObject:[Util objectWithName:objectName forProgram:self.object.program] forLineNumber:line andParameterNumber:parameter];
             }];
             return;
         } else {
-            [objectBrick setObject:[Util objectWithName:data forProgram:self.object.program] forLineNumber:line andParameterNumber:parameter];
+            [objectBrick setObject:[Util objectWithName:(NSString*)data forProgram:self.object.program] forLineNumber:line andParameterNumber:parameter];
         }
+    } else if([brick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
+        Brick<BrickFormulaProtocol> *formulaBrick = (Brick<BrickFormulaProtocol>*)brick;
+        [formulaBrick setFormula:(Formula*)data forLineNumber:line andParameterNumber:parameter];
     }
     
     [self saveProgram];

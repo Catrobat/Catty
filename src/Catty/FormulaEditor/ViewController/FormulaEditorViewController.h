@@ -27,6 +27,9 @@
 #import "SpriteObject.h"
 #import "ProgramManager.h"
 
+@protocol FormulaEditorViewControllerDelegate <NSObject>
+- (void)saveFormula:(Formula*)formula;
+@end
 
 @class BrickCell;
 @interface FormulaEditorViewController : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate>
@@ -35,6 +38,7 @@
 @property (strong, nonatomic) NSMutableArray *variableSourceProgram;
 @property (strong, nonatomic) NSMutableArray *variableSourceObject;
 @property (weak, nonatomic) SpriteObject *object;
+@property (strong, nonatomic) id<FormulaEditorViewControllerDelegate> delegate;
 
 - (id)initWithBrickCell:(BrickCell*)brickCell;
 - (void)setFormula:(Formula*)formula;

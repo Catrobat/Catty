@@ -568,7 +568,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
             UIAlertView *alert;
             switch ([internFormulaParser getErrorTokenIndex]) {
                 case FORMULA_PARSER_OK:
-                    [self.formula setRoot:formula.formulaTree];
+                    if(self.delegate) {
+                        [self.delegate saveFormula:formula];
+                    }
                     return YES;
                     break;
                 case FORMULA_PARSER_STACK_OVERFLOW:
@@ -702,7 +704,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
   
     [self.variablePicker reloadAllComponents];
 }
-
 
 - (void)saveVariable:(NSString*)name
 {

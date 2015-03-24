@@ -26,7 +26,7 @@
 @protocol BrickCellFragmentDelegate <NSObject>
 
 @required
-- (void)updateData:(NSString*)data forBrick:(Brick*)brick andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter;
+- (void)updateData:(id)data forBrick:(Brick*)brick andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter;
 
 @end
 

@@ -20,18 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
 
-@class iOSCombobox;
-@class FormulaEditorTextField;
-@class BrickCell;
-@class Program;
+#import "BrickCellFragmentProtocol.h"
+#import "iOSCombobox.h"
 
-@interface UIUtil : NSObject
-
-+ (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame;
-+ (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame AndText:(NSString*)text andRemainingSpace:(NSInteger)remainingSpace;
-+ (UITextField*)newDefaultBrickTextFieldWithFrame:(CGRect)frame andNote:(NSString*)note AndBrickCell:(BrickCell*)brickCell;
-+ (iOSCombobox*)newDefaultBrickComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
-
+@interface BrickCellLookFragment : iOSCombobox<BrickCellFragmentProtocol, iOSComboboxDelegate>
 @end
