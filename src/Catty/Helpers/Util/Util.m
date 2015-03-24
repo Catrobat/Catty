@@ -37,6 +37,8 @@
 #import "CatrobatLanguageDefines.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "Formula.h"
+#import "Sound.h"
+#import "Look.h"
 #import "SpriteObject.h"
 #import <objc/runtime.h>
 
@@ -512,7 +514,7 @@
 }
 
 
-+ (void)addObjectAlertForProgram:(Program*)program andPerformAction:(SEL)action onTarget:(id)target withCompletion:(void(^)(void))completion
++ (void)addObjectAlertForProgram:(Program*)program andPerformAction:(SEL)action onTarget:(id)target withCompletion:(void(^)(NSString*))completion
 {
     [self askUserForUniqueNameAndPerformAction:action
                                         target:target
@@ -874,6 +876,36 @@ replacementString:(NSString*)characters
     }
     
     return NO;
+}
+
++ (SpriteObject*)objectWithName:(NSString*)objectName forProgram:(Program*)program
+{
+    for(SpriteObject *object in program.objectList) {
+        if([object.name isEqualToString:objectName]) {
+            return object;
+        }
+    }
+    return nil;
+}
+
++ (Sound*)soundWithName:(NSString*)objectName forObject:(SpriteObject*)object
+{
+    for(Sound *sound in object.soundList) {
+        if([sound.name isEqualToString:objectName]) {
+            return sound;
+        }
+    }
+    return nil;
+}
+
++ (Look*)lookWithName:(NSString*)objectName forObject:(SpriteObject*)object
+{
+    for(Look *look in object.lookList) {
+        if([look.name isEqualToString:objectName]) {
+            return look;
+        }
+    }
+    return nil;
 }
 
 #pragma mark - Macros

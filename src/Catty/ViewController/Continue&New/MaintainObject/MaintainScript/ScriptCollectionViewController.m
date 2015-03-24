@@ -1189,19 +1189,18 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     NSString *uniqueName = [Util uniqueName:objectName existingNames:[self.object.program allObjectNames]];
     [self.object.program addObjectWithName:uniqueName];
-    [self.collectionView reloadData];
     if(completion) {
-        dispatch_block_t block = (void (^)(void))completion;
-        block();
+        void (^block)(NSString*) = (void (^)(NSString*))completion;
+        block(objectName);
     }
+    [self.collectionView reloadData];
 }
 
-- (void)updateData:(id)data forBrick:(Brick*)brick andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
+- (void)updateData:(NSString*)data forBrick:(Brick*)brick andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
     if([brick conformsToProtocol:@protocol(BrickLookProtocol)]) {
-        NSString *value = (NSString*)data;
         Brick<BrickLookProtocol> *lookBrick = (Brick<BrickLookProtocol>*)brick;
-        if([value isEqualToString:kLocalizedNewElement]) {
+        if([data isEqualToString:kLocalizedNewElement]) {
             LooksTableViewController *ltvc = [self.storyboard instantiateViewControllerWithIdentifier:kLooksTableViewControllerIdentifier];
             [ltvc setObject:self.object];
             ltvc.showAddLookActionSheetAtStart = YES;
@@ -1212,17 +1211,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [self.navigationController pushViewController:ltvc animated:YES];
             return;
         } else {
-            for(Look *look in self.object.lookList) {
-                if([look.name isEqualToString:value]) {
-                    [lookBrick setLook:look forLineNumber:line andParameterNumber:parameter];
-                    break;
-                }
-            }
+            [lookBrick setLook:[Util lookWithName:data forObject:self.object] forLineNumber:line andParameterNumber:parameter];
         }
     } else if([brick conformsToProtocol:@protocol(BrickSoundProtocol)]) {
-        NSString *value = (NSString*)data;
         Brick<BrickSoundProtocol> *soundBrick = (Brick<BrickSoundProtocol>*)brick;
-        if([value isEqualToString:kLocalizedNewElement]) {
+        if([data isEqualToString:kLocalizedNewElement]) {
             SoundsTableViewController *ltvc = [self.storyboard instantiateViewControllerWithIdentifier:kSoundsTableViewControllerIdentifier];
             [ltvc setObject:self.object];
             ltvc.showAddSoundActionSheetAtStart = YES;
@@ -1233,21 +1226,17 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [self.navigationController pushViewController:ltvc animated:YES];
             return;
         } else {
-            for(Sound *sound in self.object.soundList) {
-                if([sound.name isEqualToString:value]) {
-                    [soundBrick setSound:sound forLineNumber:line andParameterNumber:parameter];
-                    break;
-                }
-            }
+            [soundBrick setSound:[Util soundWithName:data forObject:self.object] forLineNumber:line andParameterNumber:parameter];
         }
     } else if([brick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
-        NSString *value = (NSString*)data;
         Brick<BrickObjectProtocol> *objectBrick = (Brick<BrickObjectProtocol>*)brick;
-        if([value isEqualToString:kLocalizedNewElement]) {
-            [Util addObjectAlertForProgram:self.object.program andPerformAction:@selector(addObjectWithName:andCompletion:) onTarget:self withCompletion:nil];
+        if([data isEqualToString:kLocalizedNewElement]) {
+            [Util addObjectAlertForProgram:self.object.program andPerformAction:@selector(addObjectWithName:andCompletion:) onTarget:self withCompletion:^(NSString *objectName){
+                [objectBrick setObject:[Util objectWithName:objectName forProgram:self.object.program] forLineNumber:line andParameterNumber:parameter];
+            }];
             return;
         } else {
-            
+            [objectBrick setObject:[Util objectWithName:data forProgram:self.object.program] forLineNumber:line andParameterNumber:parameter];
         }
     }
     
