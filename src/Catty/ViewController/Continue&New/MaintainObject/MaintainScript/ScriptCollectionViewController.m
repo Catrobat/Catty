@@ -466,16 +466,18 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             }
             
         } else {
-            // Check if allready presenting a view controller.
+            // Check if already presenting a view controller.
             if (self.presentedViewController.isViewLoaded && self.presentedViewController.view.window) {
                 [self.presentedViewController dismissViewControllerAnimated:NO completion:NULL];
             }
+            
             FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCell: formulaFragment.brickCell];
             formulaEditorViewController.object = self.object;
             formulaEditorViewController.transitioningDelegate = self;
             formulaEditorViewController.modalPresentationStyle = UIModalPresentationCustom;
             formulaEditorViewController.delegate = formulaFragment;
             
+            [self.brickScaleTransition updateAnimationViewWithView:formulaFragment.brickCell];
             [self presentViewController:formulaEditorViewController animated:YES completion:^{
                 [formulaEditorViewController setFormula:formulaFragment.formula];
             }];
