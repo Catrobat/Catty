@@ -52,4 +52,6 @@
 
 - (BOOL)isSectionAtIndexPathValidScript:(NSIndexPath *)indexPath;
 
+- (NSArray *)linkedBricksForBrick:(Brick *)brick;
+
 @end

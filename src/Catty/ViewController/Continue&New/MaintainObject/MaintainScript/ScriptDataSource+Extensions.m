@@ -400,6 +400,7 @@
     NSMutableArray *bricks = [NSMutableArray arrayWithCapacity:3];
 
     // TODO: Copy brick!
+    // TODO: add references of linked bricks.
     
     switch (brick.brickType) {
         case kInvalidBrick:

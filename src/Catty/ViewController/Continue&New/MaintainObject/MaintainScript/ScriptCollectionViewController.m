@@ -436,7 +436,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         startScript.object = self.object;
         
         [self.scriptDataSource addScript:startScript toSection:topIndexpath.section];
-        [self.scriptDataSource addBricks:@[newBrick] atIndexPath:topIndexpath];
+        
+        NSArray *bricks = [self.scriptDataSource linkedBricksForBrick:newBrick];
+        [self.scriptDataSource addBricks:bricks atIndexPath:topIndexpath];
         
     } else if ([self isScript:scriptOrBrick.brickType]) {
         if (self.scriptDataSource.numberOfSections > 0) {
@@ -449,8 +451,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         [self resetScrollingtoTopWithIndexPath:topIndexpath animated:NO];
 
         id newBrick = [brickClass brickWithType:scriptOrBrick.brickType andCategory:scriptOrBrick.brickCategoryType];
-        // Add new brick to top section.
-        [self.scriptDataSource addBricks:@[newBrick] atIndexPath:topIndexpath];
+        // Add new brick(s) to top section.
+        NSArray *bricks = [self.scriptDataSource linkedBricksForBrick:newBrick];
+        [self.scriptDataSource addBricks:bricks atIndexPath:topIndexpath];
     }
 }
 
