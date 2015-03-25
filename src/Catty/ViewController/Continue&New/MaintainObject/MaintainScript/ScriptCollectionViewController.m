@@ -300,7 +300,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource stateChanged:(ScriptDataSourceState)state error:(NSError *)error
 {
-    NSLog(@"Script data source state changed: %lu", state);
+    NSLog(@"Script data source state changed: %u", state);
 }
 
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didInsertSections:(NSIndexSet *)sections {
@@ -431,13 +431,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     
     // Empty Script List, insert start script with added brick
     if (self.scriptDataSource.scriptList.count == 0 && ![self isScript:scriptOrBrick.brickType]) {
-        id newBrick = [brickClass brickWithType:scriptOrBrick.brickType andCategory:scriptOrBrick.brickCategoryType];
         StartScript *startScript = [StartScript new];
         startScript.object = self.object;
-        
         [self.scriptDataSource addScript:startScript toSection:topIndexpath.section];
         
-        NSArray *bricks = [self.scriptDataSource linkedBricksForBrick:newBrick];
+        NSArray *bricks = [self.scriptDataSource linkedBricksForBrick:scriptOrBrick.brickType];
         [self.scriptDataSource addBricks:bricks atIndexPath:topIndexpath];
         
     } else if ([self isScript:scriptOrBrick.brickType]) {
@@ -449,10 +447,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         [self.scriptDataSource addScript:newScript toSection:lastSection];
     } else {
         [self resetScrollingtoTopWithIndexPath:topIndexpath animated:NO];
-
-        id newBrick = [brickClass brickWithType:scriptOrBrick.brickType andCategory:scriptOrBrick.brickCategoryType];
         // Add new brick(s) to top section.
-        NSArray *bricks = [self.scriptDataSource linkedBricksForBrick:newBrick];
+        NSArray *bricks = [self.scriptDataSource linkedBricksForBrick:scriptOrBrick.brickType];
         [self.scriptDataSource addBricks:bricks atIndexPath:topIndexpath];
     }
 }
