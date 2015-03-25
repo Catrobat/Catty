@@ -32,6 +32,11 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
+    SetLookBrick *setLookBrick = [self new];
+    if([xmlElement childCount] == 0) {
+        return setLookBrick;
+    }
+    
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
     
     GDataXMLElement *lookElement = [[xmlElement children] firstObject];
@@ -53,7 +58,6 @@
         [XMLError exceptionIfNil:look message:@"Unable to parse look..."];
         [lookList addObject:look];
     }
-    SetLookBrick *setLookBrick = [self new];
     setLookBrick.look = look;
     return setLookBrick;
 }

@@ -42,7 +42,7 @@
 - (dispatch_block_t)actionBlock
 {
     UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook]];
-    SKTexture* texture= nil;
+    SKTexture* texture = nil;
     if ([self.script.object isBackground]) {
         texture = [SKTexture textureWithImage:image];
         self.script.object.currentUIImageLook = image;
@@ -57,18 +57,20 @@
     self.script.object.currentLookBrightness = 0;
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        double xScale = self.script.object.xScale;
-        double yScale = self.script.object.yScale;
-        self.script.object.xScale = 1.0;
-        self.script.object.yScale = 1.0;
-        self.script.object.size = texture.size;
-        self.script.object.texture = texture;
-        self.script.object.currentLook = self.look;
-        if(xScale != 1.0) {
-            self.script.object.xScale = (CGFloat)xScale;
-        }
-        if(yScale != 1.0) {
-            self.script.object.yScale = (CGFloat)yScale;
+        if(image && texture) {
+            double xScale = self.script.object.xScale;
+            double yScale = self.script.object.yScale;
+            self.script.object.xScale = 1.0;
+            self.script.object.yScale = 1.0;
+            self.script.object.size = texture.size;
+            self.script.object.texture = texture;
+            self.script.object.currentLook = self.look;
+            if(xScale != 1.0) {
+                self.script.object.xScale = (CGFloat)xScale;
+            }
+            if(yScale != 1.0) {
+                self.script.object.yScale = (CGFloat)yScale;
+            }
         }
     };
 }
