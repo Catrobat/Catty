@@ -297,7 +297,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource stateChanged:(ScriptDataSourceState)state error:(NSError *)error
 {
-    NSLog(@"Script data source state changed: %u", state);
+    NSLog(@"Script data source state changed: %lu", state);
 }
 
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didInsertSections:(NSIndexSet *)sections {
@@ -1143,8 +1143,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                                           block:^(ScriptCollectionViewController *observer, ScriptDataSource *object, NSDictionary *change) {
                                               NSDebug(@"Script data source items changed.");
                                               weakself.object.scriptList = [object.scriptList mutableCopy];
-//                                              Program *program = weakself.object.program;
-//                                              [program saveToDisk];
                                               [weakself saveProgram];
     }];
 }
