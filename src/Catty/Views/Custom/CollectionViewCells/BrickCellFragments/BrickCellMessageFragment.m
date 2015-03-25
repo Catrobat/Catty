@@ -82,8 +82,16 @@ static NSMutableArray *messages = nil;
     if (messages == nil)
     {
         messages = [[NSMutableArray alloc] init];
-        Brick *currentBrick = (Brick*)self.brickCell.scriptOrBrick;
-        for(SpriteObject *object in currentBrick.script.object.program.objectList) {
+        NSArray *objectList;
+        if([self.brickCell.scriptOrBrick isKindOfClass:[BroadcastScript class]]) {
+            BroadcastScript *currentScript = (BroadcastScript*)self.brickCell.scriptOrBrick;
+            objectList = currentScript.object.program.objectList;
+        } else if(self.brickCell.scriptOrBrick) {
+            Brick *currentBrick = (Brick*)self.brickCell.scriptOrBrick;
+            objectList = currentBrick.script.object.program.objectList;
+        }
+        
+        for(SpriteObject *object in objectList) {
             for(Script *script in object.scriptList) {
                 if([script isKindOfClass:[BroadcastScript class]]) {
                     BroadcastScript *broadcastScript = (BroadcastScript*)script;

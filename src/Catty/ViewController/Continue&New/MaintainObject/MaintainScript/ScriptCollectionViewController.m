@@ -1224,7 +1224,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     [program saveToDisk];
 }
 
-#pragma mark - BrickCellFragment delegate
+#pragma mark - BrickCellFragment Delegate
 - (void)addObjectWithName:(NSString*)objectName andCompletion:(id)completion
 {
     NSString *uniqueName = [Util uniqueName:objectName existingNames:[self.object.program allObjectNames]];
