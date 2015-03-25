@@ -22,7 +22,13 @@
 
 
 #import "BrickCellFragmentProtocol.h"
-#import "FormulaEditorButton.h"
+#import "FormulaEditorViewController.h"
 
-@interface BrickCellFormulaFragment : FormulaEditorButton<BrickCellFragmentProtocol, FormulaEditorViewControllerDelegate>
+@interface BrickCellFormulaFragment : UIButton<BrickCellFragmentProtocol, FormulaEditorViewControllerDelegate>
+
+@property (nonatomic, weak) BrickCell *brickCell;
+
+- (void)drawBorder:(BOOL)isActive;
+- (Formula*)formula;
+
 @end

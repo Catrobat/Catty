@@ -24,10 +24,12 @@
 #import "BrickCellFormulaFragment.h"
 #import "BrickCell.h"
 #import "BrickFormulaProtocol.h"
-#import "FormulaEditorButton.h"
+#import "PlaceAtBrickCell.h"
+#import "GlideToBrickCell.h"
 #import "LanguageTranslationDefines.h"
 
 @interface BrickCellFormulaFragment()
+@property (nonatomic, strong) CAShapeLayer *border;
 @property (nonatomic) NSInteger lineNumber;
 @property (nonatomic) NSInteger parameterNumber;
 @end
@@ -39,13 +41,114 @@
     Brick<BrickFormulaProtocol> *formulaBrick = (Brick<BrickFormulaProtocol>*)brickCell.scriptOrBrick;
     Formula *formula = [formulaBrick formulaForLineNumber:line andParameterNumber:parameter
 ];
-    if(self = [super initWithFrame:frame AndBrickCell:brickCell AndFormula: formula]) {
-        self.brickCell = brickCell;
+    if(self = [super initWithFrame:frame]) {
+        _brickCell = brickCell;
         _lineNumber = line;
         _parameterNumber = parameter;
+        
+        self.titleLabel.textColor = [UIColor whiteColor];
+        self.titleLabel.font = [UIFont systemFontOfSize:kBrickTextFieldFontSize];
+        self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+        [self setTitle:[formula getDisplayString] forState:UIControlStateNormal];
+        
+        [self sizeToFit];
+        if (self.frame.size.width >= kBrickInputFieldMaxWidth) {
+            self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, kBrickInputFieldMaxWidth, self.frame.size.height);
+            self.titleLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.frame.origin.y, kBrickInputFieldMaxWidth, self.titleLabel.frame.size.height);
+            self.titleLabel.numberOfLines = 1;
+            [self.titleLabel setAdjustsFontSizeToFitWidth:YES];
+            self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+            self.titleLabel.minimumScaleFactor = 10./self.titleLabel.font.pointSize;
+        } else if ([brickCell isKindOfClass:[PlaceAtBrickCell class]] || [brickCell isKindOfClass:[GlideToBrickCell class]]) {
+            if (self.frame.size.width > [Util screenWidth]/4.0f ) {
+                CGRect labelFrame = self.frame;
+                labelFrame.size.width = [Util screenWidth]/4.0f;
+                self.frame = labelFrame;
+            }
+        } else {
+            self.titleLabel.numberOfLines = 1;
+            self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+            [self.titleLabel setAdjustsFontSizeToFitWidth:YES];
+            self.titleLabel.minimumScaleFactor = 11./self.titleLabel.font.pointSize;
+        }
+        
+        CGRect labelFrame = self.frame;
+        labelFrame.size.height = self.frame.size.height;
+        self.frame = labelFrame;
+        
+        [self addTarget:brickCell.delegate action:@selector(openFormulaEditor:) forControlEvents:UIControlEventTouchUpInside];
+        [self drawBorder:NO];
     }
     return self;
 }
+
+#define FORMULA_MAX_LENGTH 15
+
+- (void)setTitle:(NSString *)title forState:(UIControlState)state
+{
+    if([title length] > FORMULA_MAX_LENGTH) {
+        title = [NSString stringWithFormat:@"%@...", [title substringToIndex:FORMULA_MAX_LENGTH]];
+    }
+    
+    title = [NSString stringWithFormat:@" %@ ", title];
+    [super setTitle:title forState:state];
+}
+
+#define BORDER_WIDTH 1.0
+#define BORDER_HEIGHT 4
+#define BORDER_TRANSPARENCY 0.9
+#define BORDER_PADDING 3.8
+
+- (void)drawBorder:(BOOL)isActive
+{
+    if(self.border)
+        [self.border removeFromSuperlayer];
+    
+    self.border = [[CAShapeLayer alloc] init];
+    
+    UIBezierPath *borderPath = [[UIBezierPath alloc] init];
+    
+    CGPoint startPoint = CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds) - BORDER_PADDING);
+    CGPoint endPoint = CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds) - BORDER_PADDING - BORDER_HEIGHT);
+    [borderPath moveToPoint:startPoint];
+    [borderPath addLineToPoint:endPoint];
+    
+    startPoint = CGPointMake(0, CGRectGetMaxY(self.bounds) - BORDER_PADDING);
+    endPoint = CGPointMake(0, CGRectGetMaxY(self.bounds) - BORDER_PADDING - BORDER_HEIGHT);
+    [borderPath moveToPoint:startPoint];
+    [borderPath addLineToPoint:endPoint];
+    
+    startPoint = CGPointMake(-BORDER_WIDTH / 2, CGRectGetMaxY(self.bounds) - BORDER_PADDING);
+    endPoint = CGPointMake(CGRectGetMaxX(self.bounds) + BORDER_WIDTH / 2, CGRectGetMaxY(self.bounds) - BORDER_PADDING);
+    [borderPath moveToPoint:startPoint];
+    [borderPath addLineToPoint:endPoint];
+    
+    self.border.frame = self.bounds;
+    self.border.path = borderPath.CGPath;
+    self.border.lineWidth = BORDER_WIDTH;
+    [self.border setOpacity:BORDER_TRANSPARENCY];
+    
+    if (isActive) {
+        self.border.strokeColor = [UIColor cellBlueColor].CGColor;
+        self.border.shadowColor = [UIColor lightBlueColor].CGColor;
+        self.border.shadowRadius = 1;
+        self.border.shadowOpacity = 1.0;
+        self.border.shadowOffset = CGSizeMake(0, 0);
+    } else {
+        UIColor *borderColor = kBrickCategoryStrokeColors[self.brickCell.scriptOrBrick.brickCategoryType];
+        self.border.strokeColor = borderColor.CGColor;
+    }
+    
+    [self.layer addSublayer:self.border];
+}
+
+- (Formula*)formula
+{
+    Brick<BrickFormulaProtocol> *formulaBrick = (Brick<BrickFormulaProtocol>*)self.brickCell.scriptOrBrick;
+    return [formulaBrick formulaForLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
+}
+
+# pragma mark - Delegate
 
 - (void)saveFormula:(Formula *)formula
 {

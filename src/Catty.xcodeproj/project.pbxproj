@@ -46,7 +46,6 @@
 		92DFB0191A38949E00FA9B0F /* InternToExternGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB0011A38949E00FA9B0F /* InternToExternGenerator.m */; };
 		92DFB01A1A38949E00FA9B0F /* InternToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB0031A38949E00FA9B0F /* InternToken.m */; };
 		92DFB01B1A38949E00FA9B0F /* FormulaEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB0061A38949E00FA9B0F /* FormulaEditorViewController.m */; };
-		92DFB01C1A38949E00FA9B0F /* FormulaEditorButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB0091A38949E00FA9B0F /* FormulaEditorButton.m */; };
 		92DFB01D1A38949E00FA9B0F /* FormulaEditorTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB00B1A38949E00FA9B0F /* FormulaEditorTextView.m */; };
 		92DFB0531A38960C00FA9B0F /* BrushPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB0211A38960C00FA9B0F /* BrushPickerViewController.m */; };
 		92DFB0541A38960C00FA9B0F /* ColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB0231A38960C00FA9B0F /* ColorPickerViewController.m */; };
@@ -704,8 +703,6 @@
 		92DFB0031A38949E00FA9B0F /* InternToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternToken.m; sourceTree = "<group>"; };
 		92DFB0051A38949E00FA9B0F /* FormulaEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaEditorViewController.h; sourceTree = "<group>"; };
 		92DFB0061A38949E00FA9B0F /* FormulaEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaEditorViewController.m; sourceTree = "<group>"; };
-		92DFB0081A38949E00FA9B0F /* FormulaEditorButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaEditorButton.h; sourceTree = "<group>"; };
-		92DFB0091A38949E00FA9B0F /* FormulaEditorButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaEditorButton.m; sourceTree = "<group>"; };
 		92DFB00A1A38949E00FA9B0F /* FormulaEditorTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaEditorTextView.h; sourceTree = "<group>"; };
 		92DFB00B1A38949E00FA9B0F /* FormulaEditorTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaEditorTextView.m; sourceTree = "<group>"; };
 		92DFB0201A38960C00FA9B0F /* BrushPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrushPickerViewController.h; sourceTree = "<group>"; };
@@ -2098,8 +2095,6 @@
 		92DFB0071A38949E00FA9B0F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				92DFB0081A38949E00FA9B0F /* FormulaEditorButton.h */,
-				92DFB0091A38949E00FA9B0F /* FormulaEditorButton.m */,
 				92DFB00A1A38949E00FA9B0F /* FormulaEditorTextView.h */,
 				92DFB00B1A38949E00FA9B0F /* FormulaEditorTextView.m */,
 			);
@@ -4818,7 +4813,6 @@
 				92FF32971A24E2F400093DA7 /* IfOnEdgeBounceBrickCell.m in Sources */,
 				92FF30F51A24DCAA00093DA7 /* ChangeVariableBrick.m in Sources */,
 				92FF2E931A24C7D800093DA7 /* RuntimeImageCache.m in Sources */,
-				92DFB01C1A38949E00FA9B0F /* FormulaEditorButton.m in Sources */,
 				92FF31011A24DCAA00093DA7 /* Scene.m in Sources */,
 				92FF2E921A24C7D800093DA7 /* ImageCache.m in Sources */,
 				92FF326D1A24E2F400093DA7 /* SWCellScrollView.m in Sources */,

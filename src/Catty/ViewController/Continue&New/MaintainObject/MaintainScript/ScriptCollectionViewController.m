@@ -441,30 +441,29 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 #pragma mark - Open Formula Editor
 - (void)openFormulaEditor:(BrickCellFormulaFragment*)formulaFragment
 {
-    if([formulaFragment isKindOfClass:[FormulaEditorButton class]]) {
-        if([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
-            FormulaEditorViewController *formulaEditorViewController = (FormulaEditorViewController*)self.presentedViewController;
-            if ([formulaEditorViewController changeFormula]) {
-                [formulaEditorViewController setFormula:formulaFragment.formula];
-            }
-            
-        } else {
-            // Check if already presenting a view controller.
-            if (self.presentedViewController.isViewLoaded && self.presentedViewController.view.window) {
-                [self.presentedViewController dismissViewControllerAnimated:NO completion:NULL];
-            }
-            
-            FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCell: formulaFragment.brickCell];
-            formulaEditorViewController.object = self.object;
-            formulaEditorViewController.transitioningDelegate = self;
-            formulaEditorViewController.modalPresentationStyle = UIModalPresentationCustom;
-            formulaEditorViewController.delegate = formulaFragment;
-            
-            [self.brickScaleTransition updateAnimationViewWithView:formulaFragment.brickCell];
-            [self presentViewController:formulaEditorViewController animated:YES completion:^{
-                [formulaEditorViewController setFormula:formulaFragment.formula];
-            }];
+    if([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
+        FormulaEditorViewController *formulaEditorViewController = (FormulaEditorViewController*)self.presentedViewController;
+        if ([formulaEditorViewController changeFormula]) {
+            [formulaEditorViewController setBrickCellFormulaFragment:formulaFragment];
+            [formulaFragment drawBorder:YES];
         }
+    } else {
+        // Check if already presenting a view controller.
+        if (self.presentedViewController.isViewLoaded && self.presentedViewController.view.window) {
+            [self.presentedViewController dismissViewControllerAnimated:NO completion:NULL];
+        }
+        
+        FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCellFormulaFragment:formulaFragment];
+        formulaEditorViewController.object = self.object;
+        formulaEditorViewController.transitioningDelegate = self;
+        formulaEditorViewController.modalPresentationStyle = UIModalPresentationCustom;
+        formulaEditorViewController.delegate = formulaFragment;
+        [formulaFragment drawBorder:YES];
+        
+        [self.brickScaleTransition updateAnimationViewWithView:formulaFragment.brickCell];
+        [self presentViewController:formulaEditorViewController animated:YES completion:^{
+            [formulaEditorViewController setBrickCellFormulaFragment:formulaFragment];
+        }];
     }
 }
 
