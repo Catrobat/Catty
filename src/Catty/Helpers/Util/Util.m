@@ -850,7 +850,8 @@ replacementString:(NSString*)characters
         
         // TODO use introspection
         if ([name isEqualToString:@"hash"] || [name isEqualToString:@"superclass"]
-            || [name isEqualToString:@"description"] || [name isEqualToString:@"debugDescription"]) {
+            || [name isEqualToString:@"description"] || [name isEqualToString:@"debugDescription"]
+            || [name isEqualToString:@"brickCategoryType"] || [name isEqualToString:@"brickType"]) {
             continue;
         }
         
