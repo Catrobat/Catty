@@ -37,6 +37,11 @@
     }];
 }
 
+- (void)setupEmptyBrick
+{
+    self.note = [NSString stringWithString:kLocalizedDefaultNote];
+}
+
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"NoteBrick: %@", self.note];

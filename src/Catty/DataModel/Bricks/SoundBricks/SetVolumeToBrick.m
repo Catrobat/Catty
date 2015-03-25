@@ -37,6 +37,11 @@
     self.volume = formula;
 }
 
+- (void)setupEmptyBrick
+{
+    self.volume = [[Formula alloc] initWithFloat:60];
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedSetVolumeTo;

@@ -44,6 +44,12 @@
         self.yPosition = formula;
 }
 
+- (void)setupEmptyBrick
+{
+    self.xPosition = [[Formula alloc] initWithInteger:100];
+    self.yPosition = [[Formula alloc] initWithInteger:200];
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedPlaceAt;

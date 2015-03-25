@@ -41,6 +41,11 @@
     return self;
 }
 
+- (void)setupEmptyBrick
+{
+    self.broadcastMessage = [NSString stringWithString:kLocalizedBroadcastDefaultMessage];
+}
+
 - (void)performBroadcastWait
 {
     NSDebug(@"Performing: %@", self.description);

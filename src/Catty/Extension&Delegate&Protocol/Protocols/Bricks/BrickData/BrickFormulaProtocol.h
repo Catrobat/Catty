@@ -24,7 +24,7 @@
 #import "Brick.h"
 #import "Formula.h"
 
-@protocol BrickFormulaProtocol <NSObject>
+@protocol BrickFormulaProtocol <BrickProtocol>
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 - (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;

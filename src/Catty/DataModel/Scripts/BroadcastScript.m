@@ -52,6 +52,11 @@
     return ret;
 }
 
+- (void)setupEmptyBrick
+{
+    self.receivedMessage = [NSString stringWithString:kLocalizedBroadcastDefaultMessage];
+}
+
 - (void)setMessage:(NSString *)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     if(message)

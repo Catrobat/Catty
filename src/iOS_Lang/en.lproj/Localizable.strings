@@ -11,6 +11,9 @@
 "About Pocket Code" = "About Pocket Code";
 
 /* No comment provided by engineer. */
+"add comment here..." = "add comment here...";
+
+/* No comment provided by engineer. */
 "Add image" = "Add image";
 
 /* Action sheet menu title */
@@ -344,6 +347,9 @@
 "Grid" = "Grid";
 
 /* No comment provided by engineer. */
+"Hello !" = "Hello !";
+
+/* No comment provided by engineer. */
 "Help" = "Help";
 
 /* No comment provided by engineer. */
@@ -435,6 +441,9 @@
 
 /* No comment provided by engineer. */
 "Message" = "Message";
+
+/* No comment provided by engineer. */
+"message 1" = "message 1";
 
 /* paint */
 "mirror" = "mirror";

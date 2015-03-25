@@ -36,6 +36,11 @@
     self.yMovement = formula;
 }
 
+- (void)setupEmptyBrick
+{
+    self.yMovement = [[Formula alloc] initWithInteger:10];
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedChangeY;

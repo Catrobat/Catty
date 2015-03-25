@@ -33,6 +33,7 @@
 @property (nonatomic, strong) FormulaElement* formulaTree;
 @property (nonatomic, weak) NSString* displayString;
 
+- (id)initWithZero;
 - (id)initWithInteger:(int)value;
 - (id)initWithDouble:(double)value;
 - (id)initWithFloat:(float)value;

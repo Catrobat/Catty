@@ -22,6 +22,7 @@
 
 #import "BroadcastBrick.h"
 #import "Script.h"
+#import "LanguageTranslationDefines.h"
 
 @implementation BroadcastBrick
 
@@ -38,6 +39,11 @@
         self.broadcastMessage = message;
     }
     return self;
+}
+
+- (void)setupEmptyBrick
+{
+    self.broadcastMessage = [NSString stringWithString:kLocalizedBroadcastDefaultMessage];
 }
 
 - (SKAction*)action

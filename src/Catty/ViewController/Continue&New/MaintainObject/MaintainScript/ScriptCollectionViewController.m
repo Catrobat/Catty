@@ -305,31 +305,43 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         return;
     
     [self.collectionView insertSections:sections];
+    // TODO make save work with KVO
+    [self.object.program saveToDisk];
 }
 
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didMoveSection:(NSInteger)section toSection:(NSInteger)newSection{
     [self.collectionView moveSection:section toSection:newSection];
+    // TODO make save work with KVO
+    [self.object.program saveToDisk];
 }
 
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didRemoveSections:(NSIndexSet *)sections
 {
     [self.collectionView deleteSections:sections];
+    // TODO make save work with KVO
+    [self.object.program saveToDisk];
 }
 
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didInsertItemsAtIndexPaths:(NSArray *)indexPaths
 {
     [self.collectionView insertItemsAtIndexPaths:indexPaths];
+    // TODO make save work with KVO
+    [self.object.program saveToDisk];
 }
 
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didRemoveItemsAtIndexPaths:(NSArray *)indexPaths
 {
     [self.collectionView deleteItemsAtIndexPaths:indexPaths];
+    // TODO make save work with KVO
+    [self.object.program saveToDisk];
 }
 
 -(void)scriptDataSource:(ScriptDataSource *)scriptDataSource didMoveItemAtIndexPath:(NSIndexPath *)fromIndexPath
                                                                         toIndexPath:(NSIndexPath *)newIndexPath
 {
     [self.collectionView moveItemAtIndexPath:fromIndexPath toIndexPath:newIndexPath];
+    // TODO make save work with KVO
+    [self.object.program saveToDisk];
 }
 
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource performBatchUpdate:(dispatch_block_t)update
@@ -341,6 +353,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     } completion:^(BOOL finished) {
         if (complete) { complete(); }
         [weakself.collectionView reloadData];
+        // TODO do with KVO
+        [self.object.program saveToDisk];
     }];
 }
 
@@ -1242,7 +1256,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         void (^block)(NSString*) = (void (^)(NSString*))completion;
         block(messageName);
     }
-    [BrickCellMessageFragment resetMessages];
     [self saveProgram];
     [self.collectionView reloadData];
 }
@@ -1315,7 +1328,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                                    blockedCharacterSet:[[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
                                                         invertedSet]
                               invalidInputAlertMessage:kLocalizedMessageAlreadyExistsDescription
-                                         existingNames:[BrickCellMessageFragment allMessages]];
+                                         existingNames:[Util allMessagesForProgram:self.object.program]];
             return;
         } else {
             [messageBrick setMessage:(NSString*)data forLineNumber:line andParameterNumber:parameter];

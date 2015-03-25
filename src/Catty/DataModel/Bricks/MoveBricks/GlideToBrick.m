@@ -61,6 +61,13 @@
         self.yDestination = formula;
 }
 
+- (void)setupEmptyBrick
+{
+    self.durationInSeconds = [[Formula alloc] initWithInteger:1];
+    self.xDestination = [[Formula alloc] initWithInteger:100];
+    self.yDestination = [[Formula alloc] initWithInteger:200];
+}
+
 - (id)init
 {
     if(self = [super init]) {

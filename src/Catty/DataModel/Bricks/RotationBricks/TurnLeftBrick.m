@@ -37,6 +37,11 @@
     self.degrees = formula;
 }
 
+- (void)setupEmptyBrick
+{
+    self.degrees = [[Formula alloc] initWithFloat:15];
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedTurnLeft;

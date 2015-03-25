@@ -37,6 +37,11 @@
     self.durationInSeconds = formula;
 }
 
+- (void)setupEmptyBrick
+{
+    self.durationInSeconds = [[Formula alloc] initWithZero];
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedVibrateNSeconds;

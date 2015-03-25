@@ -39,6 +39,11 @@
     self.ifCondition = formula;
 }
 
+- (void)setupEmptyBrick
+{
+    self.ifCondition = [[Formula alloc] initWithInteger:1];
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedIfIsTrueThen;

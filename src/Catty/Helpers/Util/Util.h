@@ -210,6 +210,8 @@
 
 + (Look*)lookWithName:(NSString*)objectName forObject:(SpriteObject*)object;
 
++ (NSArray*)allMessagesForProgram:(Program*)program;
+
 // https://www.mikeash.com/pyblog/friday-qa-2013-05-03-proper-use-of-asserts.html
 #define CBAssert(expression, ...) \
 do { if(!(expression)) { \

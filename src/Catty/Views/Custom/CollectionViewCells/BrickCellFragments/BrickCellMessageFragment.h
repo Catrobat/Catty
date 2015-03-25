@@ -26,7 +26,4 @@
 
 @interface BrickCellMessageFragment : iOSCombobox<BrickCellFragmentProtocol, iOSComboboxDelegate>
 
-+ (void)resetMessages;
-+ (NSArray*)allMessages;
-
 @end

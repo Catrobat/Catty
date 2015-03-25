@@ -172,14 +172,8 @@
     NSMutableArray *selectableBricksForCategoryMutable = [NSMutableArray arrayWithCapacity:[selectableBricks count]];
     for (id<BrickProtocol> brick in selectableBricks) {
         if (brick.brickCategoryType == categoryType) {
-            if ([brick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
-                id<BrickFormulaProtocol> brickF =(id <BrickFormulaProtocol>) brick;
-                Formula * formula =[[Formula alloc ] initWithInteger:0];
-                [brickF setFormula:formula forLineNumber:0 andParameterNumber:0];
-                [selectableBricksForCategoryMutable addObject:brickF];
-            } else {
-                [selectableBricksForCategoryMutable addObject:brick];
-            }
+            [brick setupEmptyBrick];
+            [selectableBricksForCategoryMutable addObject:brick];
         }
     }
     return (NSArray*)selectableBricksForCategoryMutable;

@@ -40,6 +40,11 @@
     return kLocalizedSpeak;
 }
 
+- (void)setupEmptyBrick
+{
+    self.text = kLocalizedDefaultSpeakText;
+}
+
 - (SKAction*)action
 {
     NSDebug(@"Adding: %@", self.description);

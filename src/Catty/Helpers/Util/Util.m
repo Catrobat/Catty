@@ -39,6 +39,10 @@
 #import "Formula.h"
 #import "Sound.h"
 #import "Look.h"
+#import "Script.h"
+#import "BroadcastWaitBrick.h"
+#import "BroadcastBrick.h"
+#import "BroadcastScript.h"
 #import "SpriteObject.h"
 #import <objc/runtime.h>
 
@@ -906,6 +910,29 @@ replacementString:(NSString*)characters
         }
     }
     return nil;
+}
+
++ (NSArray*)allMessagesForProgram:(Program*)program
+{
+    NSMutableArray *messages = [[NSMutableArray alloc] init];
+    for(SpriteObject *object in program.objectList) {
+        for(Script *script in object.scriptList) {
+            if([script isKindOfClass:[BroadcastScript class]]) {
+                BroadcastScript *broadcastScript = (BroadcastScript*)script;
+                [messages addObject:broadcastScript.receivedMessage];
+            }
+            for(Brick *brick in script.brickList) {
+                if([brick isKindOfClass:[BroadcastBrick class]]) {
+                    BroadcastBrick *broadcastBrick = (BroadcastBrick*)brick;
+                    [messages addObject:broadcastBrick.broadcastMessage];
+                } else if([brick isKindOfClass:[BroadcastWaitBrick class]]) {
+                    BroadcastWaitBrick *broadcastBrick = (BroadcastWaitBrick*)brick;
+                    [messages addObject:broadcastBrick.broadcastMessage];
+                }
+            }
+        }
+    }
+    return messages;
 }
 
 #pragma mark - Macros

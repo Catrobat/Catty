@@ -38,6 +38,11 @@
     self.transparency = formula;
 }
 
+- (void)setupEmptyBrick
+{
+    self.transparency = [[Formula alloc] initWithZero];
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedSetGhostEffect;

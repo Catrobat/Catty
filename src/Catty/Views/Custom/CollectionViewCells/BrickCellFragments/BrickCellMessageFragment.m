@@ -56,7 +56,12 @@ static NSMutableArray *messages = nil;
         if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickMessageProtocol)]) {
             Brick<BrickMessageProtocol> *messageBrick = (Brick<BrickMessageProtocol>*)brickCell.scriptOrBrick;
             NSString *currentMessage = [messageBrick messageForLineNumber:line andParameterNumber:parameter];
-            for(NSString *message in [self messages]) {
+            NSArray *messages;
+            if([brickCell.scriptOrBrick isKindOfClass:[Script class]])
+                messages = [Util allMessagesForProgram:((Script*)brickCell.scriptOrBrick).object.program];
+            else
+                messages = [Util allMessagesForProgram:messageBrick.script.object.program];
+            for(NSString *message in messages) {
                 if(![options containsObject:message]) {
                     [options addObject:message];
                     if([message isEqualToString:currentMessage])
@@ -75,57 +80,6 @@ static NSMutableArray *messages = nil;
 - (void)comboboxClosed:(iOSCombobox*)combobox withValue:(NSString*)value
 {
     [self.brickCell.fragmentDelegate updateData:value forBrick:(Brick*)self.brickCell.scriptOrBrick andLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
-}
-
-- (NSMutableArray*)messages
-{
-    if (messages == nil)
-    {
-        messages = [[NSMutableArray alloc] init];
-        NSArray *objectList;
-        if([self.brickCell.scriptOrBrick isKindOfClass:[BroadcastScript class]]) {
-            BroadcastScript *currentScript = (BroadcastScript*)self.brickCell.scriptOrBrick;
-            objectList = currentScript.object.program.objectList;
-        } else if(self.brickCell.scriptOrBrick) {
-            Brick *currentBrick = (Brick*)self.brickCell.scriptOrBrick;
-            objectList = currentBrick.script.object.program.objectList;
-        }
-        
-        for(SpriteObject *object in objectList) {
-            for(Script *script in object.scriptList) {
-                if([script isKindOfClass:[BroadcastScript class]]) {
-                    BroadcastScript *broadcastScript = (BroadcastScript*)script;
-                    [messages addObject:broadcastScript.receivedMessage];
-                }
-                for(Brick *brick in script.brickList) {
-                    if([brick isKindOfClass:[BroadcastBrick class]]) {
-                        BroadcastBrick *broadcastBrick = (BroadcastBrick*)brick;
-                        [messages addObject:broadcastBrick.broadcastMessage];
-                    } else if([brick isKindOfClass:[BroadcastWaitBrick class]]) {
-                        BroadcastWaitBrick *broadcastBrick = (BroadcastWaitBrick*)brick;
-                        [messages addObject:broadcastBrick.broadcastMessage];
-                    }
-                }
-            }
-        }
-    }
-    
-    return messages;
-}
-
-- (void)addMessage:(NSString*)message
-{
-    [[self messages] addObject:message];
-}
-
-+ (void)resetMessages
-{
-    messages = nil;
-}
-
-+ (NSArray*)allMessages
-{
-    return messages;
 }
 
 @end

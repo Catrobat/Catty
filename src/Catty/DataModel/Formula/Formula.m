@@ -80,6 +80,11 @@
     return self;
 }
 
+- (id)initWithZero
+{
+    return [self initWithInteger:0];
+}
+
 - (double)interpretDoubleForSprite:(SpriteObject*)sprite
 {
     return [self.formulaTree interpretRecursiveForSprite:sprite];

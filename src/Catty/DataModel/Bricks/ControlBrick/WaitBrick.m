@@ -37,6 +37,11 @@
     self.timeToWaitInSeconds = formula;
 }
 
+- (void)setupEmptyBrick
+{
+    self.timeToWaitInSeconds = [[Formula alloc] initWithInteger:1];
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedWaitNSeconds;

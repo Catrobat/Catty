@@ -36,6 +36,11 @@
     self.size = formula;
 }
 
+- (void)setupEmptyBrick
+{
+    self.size = [[Formula alloc] initWithZero];
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedChangeSizeByN;

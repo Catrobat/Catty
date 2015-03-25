@@ -38,6 +38,11 @@
     self.changeGhostEffect = formula;
 }
 
+- (void)setupEmptyBrick
+{
+    self.changeGhostEffect = [[Formula alloc] initWithZero];
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedChangeGhostEffectByN;

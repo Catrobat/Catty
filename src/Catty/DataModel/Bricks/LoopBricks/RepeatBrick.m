@@ -42,6 +42,11 @@
     self.timesToRepeat = formula;
 }
 
+- (void)setupEmptyBrick
+{
+    self.timesToRepeat = [[Formula alloc] initWithInteger:10];
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedRepeatNTimes;

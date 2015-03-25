@@ -38,6 +38,11 @@
     self.xPosition = formula;
 }
 
+- (void)setupEmptyBrick
+{
+    self.xPosition = [[Formula alloc] initWithInteger:100];
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedSetX;

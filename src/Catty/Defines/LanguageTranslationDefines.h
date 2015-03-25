@@ -350,11 +350,13 @@
 #define kLocalizedWhenProgramStarted NSLocalizedString(@"When program started", nil)
 #define kLocalizedWhenTapped NSLocalizedString(@"When tapped", nil)
 #define kLocalizedWaitNSeconds NSLocalizedString(@"Wait %@ second(s)", nil)
+#define kLocalizedBroadcastDefaultMessage NSLocalizedString(@"message 1", nil)
 #define kLocalizedVibrateNSeconds NSLocalizedString(@"Vibrate %@ second(s)", nil)
 #define kLocalizedWhenIReceive NSLocalizedString(@"When I receive\n%@", nil)
 #define kLocalizedBroadcast NSLocalizedString(@"Broadcast\n%@", nil)
 #define kLocalizedBroadcastAndWait NSLocalizedString(@"Broadcast and wait\n%@", nil)
 #define kLocalizedNote NSLocalizedString(@"Note %@", nil)
+#define kLocalizedDefaultNote NSLocalizedString(@"add comment here...", nil)
 #define kLocalizedForever NSLocalizedString(@"Forever", nil)
 #define kLocalizedIfIsTrueThen NSLocalizedString(@"If %@ is true then", nil)
 #define kLocalizedElse NSLocalizedString(@"Else", nil)
@@ -401,6 +403,7 @@
 #define kLocalizedSetVolumeTo NSLocalizedString(@"Set volume to %@\%", nil)
 #define kLocalizedChangeVolumeByN NSLocalizedString(@"Change volume by %@", nil)
 #define kLocalizedSpeak NSLocalizedString(@"Speak %@", nil)
+#define kLocalizedDefaultSpeakText NSLocalizedString(@"Hello !", nil)
 
 // variable bricks
 #define kLocalizedSetVariable NSLocalizedString(@"Set variable\n%@\nto %@", nil)

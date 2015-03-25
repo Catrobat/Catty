@@ -40,6 +40,11 @@
     self.degrees = formula;
 }
 
+- (void)setupEmptyBrick
+{
+    self.degrees = [[Formula alloc] initWithFloat:90];
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedPointInDirection;

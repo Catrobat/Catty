@@ -38,6 +38,11 @@
     self.changeBrightness = formula;
 }
 
+- (void)setupEmptyBrick
+{
+    self.changeBrightness = [[Formula alloc] initWithZero];
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedChangeBrightnessByN;

@@ -38,6 +38,11 @@
     self.steps = formula;
 }
 
+- (void)setupEmptyBrick
+{
+    self.steps = [[Formula alloc] initWithFloat:10];
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedMoveNSteps;

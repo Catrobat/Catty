@@ -36,6 +36,11 @@
     self.xMovement = formula;
 }
 
+- (void)setupEmptyBrick
+{
+    self.xMovement = [[Formula alloc] initWithInteger:10];
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedChangeX;

@@ -40,6 +40,11 @@
     self.variableFormula = formula;
 }
 
+- (void)setupEmptyBrick
+{
+    self.variableFormula = [[Formula alloc] initWithZero];
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedSetVariable;

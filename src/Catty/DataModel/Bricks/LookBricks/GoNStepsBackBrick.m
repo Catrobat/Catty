@@ -36,6 +36,11 @@
     self.steps = formula;
 }
 
+- (void)setupEmptyBrick
+{
+    self.steps = [[Formula alloc] initWithInteger:1];
+}
+
 - (BOOL)isSelectableForObject
 {
     return (! [self.script.object isBackground]);

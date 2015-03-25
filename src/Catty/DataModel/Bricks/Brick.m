@@ -121,6 +121,11 @@
     return YES;
 }
 
+- (void)setupEmptyBrick
+{
+    // Override this method in Brick implementation
+}
+
 #pragma mark - Copy
 // This function must be overriden by Bricks with references to other Bricks (e.g. ForeverBrick)
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context
