@@ -69,6 +69,10 @@ static NSMutableArray *messages = nil;
                     optionIndex++;
                 }
             }
+            if(currentMessage && ![options containsObject:currentMessage]) {
+                [options addObject:currentMessage];
+                currentOptionIndex = optionIndex;
+            }
         }
         [self setValues:options];
         [self setCurrentValue:options[currentOptionIndex]];
