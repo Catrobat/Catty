@@ -52,4 +52,15 @@
     return ret;
 }
 
+- (void)setMessage:(NSString *)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    if(message)
+        self.receivedMessage = message;
+}
+
+- (NSString *)messageForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    return self.receivedMessage;
+}
+
 @end

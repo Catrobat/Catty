@@ -60,6 +60,8 @@
 #import "BrickSoundProtocol.h"
 #import "BrickObjectProtocol.h"
 #import "BrickTextProtocol.h"
+#import "BrickMessageProtocol.h"
+#import "BrickCellMessageFragment.h"
 #import "LooksTableViewController.h"
 #import "SoundsTableViewController.h"
 #import "ProgramTableViewController.h"
@@ -1173,6 +1175,17 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     [self.collectionView reloadData];
 }
 
+- (void)addMessageWithName:(NSString*)messageName andCompletion:(id)completion
+{
+    if(completion) {
+        void (^block)(NSString*) = (void (^)(NSString*))completion;
+        block(messageName);
+    }
+    [BrickCellMessageFragment resetMessages];
+    [self saveProgram];
+    [self.collectionView reloadData];
+}
+
 - (void)updateData:(id)data forBrick:(Brick*)brick andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
     if([brick conformsToProtocol:@protocol(BrickLookProtocol)]) {
@@ -1219,12 +1232,33 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         }
     }
     if([brick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
-        Brick<BrickFormulaProtocol> *formulaBrick = (Brick<BrickFormulaProtocol>*)brick;
-        [formulaBrick setFormula:(Formula*)data forLineNumber:line andParameterNumber:parameter];
+        [(Brick<BrickFormulaProtocol>*)brick setFormula:(Formula*)data forLineNumber:line andParameterNumber:parameter];
     }
     if([brick conformsToProtocol:@protocol(BrickTextProtocol)]) {
-        Brick<BrickTextProtocol> *textBrick = (Brick<BrickTextProtocol>*)brick;
-        [textBrick setText:(NSString*)data forLineNumber:line andParameterNumber:parameter];
+        [(Brick<BrickTextProtocol>*)brick setText:(NSString*)data forLineNumber:line andParameterNumber:parameter];
+    }
+    if([brick conformsToProtocol:@protocol(BrickMessageProtocol)]) {
+        Brick<BrickMessageProtocol> *messageBrick = (Brick<BrickMessageProtocol>*)brick;
+        if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
+            [Util askUserForUniqueNameAndPerformAction:@selector(addMessageWithName:andCompletion:)
+                                                target:self
+                                            withObject:(id) ^(NSString* message){
+                                                [messageBrick setMessage:message forLineNumber:line andParameterNumber:parameter];
+                                            }
+                                           promptTitle:kLocalizedNewMessage
+                                         promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedMessage]
+                                           promptValue:nil
+                                     promptPlaceholder:kLocalizedEnterYourMessageHere
+                                        minInputLength:kMinNumOfMessageNameCharacters
+                                        maxInputLength:kMaxNumOfMessageNameCharacters
+                                   blockedCharacterSet:[[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                                                        invertedSet]
+                              invalidInputAlertMessage:kLocalizedMessageAlreadyExistsDescription
+                                         existingNames:[BrickCellMessageFragment allMessages]];
+            return;
+        } else {
+            [messageBrick setMessage:(NSString*)data forLineNumber:line andParameterNumber:parameter];
+        }
     }
     
     [self saveProgram];

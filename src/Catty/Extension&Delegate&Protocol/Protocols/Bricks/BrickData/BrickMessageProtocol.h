@@ -20,16 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import <Foundation/Foundation.h>
 
-#import "Brick.h"
-#import "BrickMessageProtocol.h"
+@class Brick;
 
-@interface BroadcastWaitBrick : Brick<BrickMessageProtocol>
+@protocol BrickMessageProtocol <NSObject>
 
-@property (nonatomic, strong) NSString *broadcastMessage;
-
-- (id)initWithMessage:(NSString*)message;
-
-- (void)performBroadcastWait;
+- (NSString*)messageForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (void)setMessage:(NSString*)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 
 @end

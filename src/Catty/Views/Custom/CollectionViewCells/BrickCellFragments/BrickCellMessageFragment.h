@@ -21,15 +21,12 @@
  */
 
 
-#import "Brick.h"
-#import "BrickMessageProtocol.h"
+#import "BrickCellFragmentProtocol.h"
+#import "iOSCombobox.h"
 
-@interface BroadcastWaitBrick : Brick<BrickMessageProtocol>
+@interface BrickCellMessageFragment : iOSCombobox<BrickCellFragmentProtocol, iOSComboboxDelegate>
 
-@property (nonatomic, strong) NSString *broadcastMessage;
-
-- (id)initWithMessage:(NSString*)message;
-
-- (void)performBroadcastWait;
++ (void)resetMessages;
++ (NSArray*)allMessages;
 
 @end

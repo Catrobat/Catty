@@ -52,6 +52,17 @@
     }];
 }
 
+- (void)setMessage:(NSString *)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    if(message)
+        self.broadcastMessage = message;
+}
+
+- (NSString*)messageForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    return self.broadcastMessage;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

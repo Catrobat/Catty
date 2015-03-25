@@ -37,6 +37,7 @@
 #import "BrickCellObjectFragment.h"
 #import "BrickCellFormulaFragment.h"
 #import "BrickCellTextFragment.h"
+#import "BrickCellMessageFragment.h"
 
 // uncomment this to get special log outputs, etc...
 //#define LAYOUT_DEBUG 0
@@ -453,13 +454,7 @@
                 inputField = [[BrickCellTextFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"MESSAGE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
-                NSMutableArray* messages = [[NSMutableArray alloc] init];
-                [messages addObject:@"New..."];
-                [messages addObject:@"message 1"];
-                iOSCombobox *comboBox = [UIUtil newDefaultBrickComboBoxWithFrame:inputViewFrame AndItems:messages];
-                [comboBox setCurrentValue:messages[0]];
-                [comboBox setDelegate:(id<iOSComboboxDelegate>)self.delegate];
-                inputField = (UIView*)comboBox;
+                inputField = [[BrickCellMessageFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"OBJECT"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 inputField = [[BrickCellObjectFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];

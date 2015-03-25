@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
+
+/* No comment provided by engineer. */
 "A program with the same name already exists, try again." = "A program with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
@@ -262,6 +265,9 @@
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "Enter your image name here...";
 
+/* Placeholder for message input field */
+"Enter your message here..." = "Enter your message here...";
+
 /* Placeholder for add object-name input field */
 "Enter your object name here..." = "Enter your object name here...";
 
@@ -427,6 +433,9 @@
 /* paint */
 "Menu" = "Menu";
 
+/* No comment provided by engineer. */
+"Message" = "Message";
+
 /* paint */
 "mirror" = "mirror";
 
@@ -471,6 +480,9 @@
 
 /* paint */
 "New Canvas" = "New Canvas";
+
+/* No comment provided by engineer. */
+"New Message" = "New Message";
 
 /* No comment provided by engineer. */
 "New Program" = "New Program";

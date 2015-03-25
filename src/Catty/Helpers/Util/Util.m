@@ -394,7 +394,7 @@
     CatrobatAlertView *alertView = [[self class] promptWithTitle:title
                                                          message:message
                                                         delegate:(id<CatrobatAlertViewDelegate>)self
-                                                     placeholder:kLocalizedEnterYourProgramNameHere
+                                                     placeholder:placeholder
                                                              tag:kAskUserForUniqueNameAlertViewTag
                                                            value:value];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionAskUserForUniqueName
