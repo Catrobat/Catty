@@ -22,9 +22,12 @@
 
 #import "ScriptDataSource.h"
 
+
 @interface ScriptDataSource (Extensions)
 
-- (void)addBricks:(NSArray *)bricks toIndexPaths:(NSArray *)indexPaths;
+- (void)addBricks:(NSArray *)bricks atIndexPath:(NSIndexPath *)atIndexPath;
+
+- (void)addScript:(Script *)script toSection:(NSInteger)section;
 
 // Removes complete section.
 - (void)removeScriptsAtSections:(NSIndexSet *)sections;
@@ -48,5 +51,8 @@
 - (Script *)scriptAtSection:(NSUInteger)section;
 
 - (BOOL)isSectionAtIndexPathValidScript:(NSIndexPath *)indexPath;
+
+/// Returns linked loop/condition bricks or just one single brick.
+- (NSArray *)linkedBricksForBrick:(kBrickType)brickType;
 
 @end

@@ -27,26 +27,32 @@
 #import "Brick.h"
 
 @interface BrickCategoryViewController ()
+@property(nonatomic, assign) PageIndexCategoryType pageIndexCategoryType;
 @property (nonatomic, strong) NSArray *bricks;
-@property (nonatomic, assign) NSUInteger brickCategory;
 
 @end
 
 @implementation BrickCategoryViewController
 
 #pragma mark - Init
-- (instancetype)initWithBrickCategory:(kBrickCategoryType)type
+- (instancetype)initWithBrickCategory:(PageIndexCategoryType)type
 {
     if (self = [super initWithCollectionViewLayout:[UICollectionViewFlowLayout new]]) {
-        self.bricks = [BrickManager.sharedBrickManager selectableBricksForCategoryType:type];
-        self.brickCategory = type;
+        self.pageIndexCategoryType = type;
+        
+        NSUInteger category = [self brickCategoryTypForPageIndex:type];
+        if (type == kPageIndexScriptBricks) {
+            self.bricks = [[BrickManager sharedBrickManager] selectableScriptBricks];
+        } else {
+            self.bricks = [[BrickManager sharedBrickManager] selectableBricksForCategoryType:category];
+        }
     }
     return self;
 }
 
 + (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(NSInteger)pageIndex
 {
-    if (pageIndex >= 0 && pageIndex < kCategoryCount) {
+    if (pageIndex >= 0 && pageIndex <= kPageIndexVariableBrick) {
         return [[self alloc] initWithBrickCategory:pageIndex];
     }
     return nil;
@@ -55,7 +61,7 @@
 #pragma mark - Getters
 - (NSUInteger)pageIndex
 {
-    return self.brickCategory;
+    return self.pageIndexCategoryType;
 }
 
 #pragma mark - UIViewController Delegates
@@ -89,7 +95,7 @@
 
 - (NSInteger)collectionView:(UICollectionView*)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self.bricks count];
+    return self.bricks.count;
 }
 
 - (UICollectionViewCell*)collectionView:(UICollectionView*)collectionView cellForItemAtIndexPath:(NSIndexPath*)indexPath
@@ -138,4 +144,39 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     return 8.f;
 }
 
+#pragma mark - Helpers
+- (kBrickCategoryType)brickCategoryTypForPageIndex:(NSUInteger)pageIndex {
+    if (pageIndex == 0 || pageIndex == 1) {
+        return kControlBrick;
+    }
+    
+    return pageIndex - 1; // + 1 (Script category) offset
+}
+
 @end
+
+NSString * CBTitleFromPageIndexCategoryType(PageIndexCategoryType pageIndexType)
+{
+    switch (pageIndexType) {
+        case kPageIndexScriptBricks:
+            return kUIScriptTitle;
+            break;
+        case kPageIndexControlBrick:
+            return kUIControlTitle;
+            break;
+        case kPageIndexMotionBrick:
+            return kUIMotionTitle;
+            break;
+        case kPageIndexSoundBrick:
+            return kUISoundTitle;
+            break;
+        case kPageIndexLookBrick:
+            return kUILookTitle;
+            break;
+        case kPageIndexVariableBrick:
+            return kUIVariableTitle;
+            break;
+        default:
+            break;
+    }
+}

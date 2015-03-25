@@ -25,6 +25,7 @@
 #import "Util.h"
 #import "BrickFormulaProtocol.h"
 #import "Formula.h"
+#import "Script.h"
 
 @implementation BrickManager {
     NSDictionary *_brickHeightDictionary;
@@ -140,6 +141,29 @@
         selectableBricks = selectableBricksMutableArray;
     }
     return selectableBricks;
+}
+
+- (NSArray *)selectableScriptBricks {
+    static NSArray *scripts = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSArray *allBricks = [self brickClassNamesOrderedByBrickType];
+        NSMutableArray *mutableScriptBricks = [[NSMutableArray alloc] initWithCapacity:allBricks.count];
+        [allBricks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            CBAssert([obj isKindOfClass:[NSString class]]);
+            Class class = NSClassFromString(obj);
+            id brickOrScript = [class new];
+            if ([brickOrScript isKindOfClass:[Script class]] && [brickOrScript conformsToProtocol:@protocol(ScriptProtocol)]) {
+                id<ScriptProtocol> scriptBrick = brickOrScript;
+                [mutableScriptBricks addObject:scriptBrick];
+            }
+        }];
+        
+        scripts = mutableScriptBricks;
+    });
+    
+    return scripts;
 }
 
 - (NSArray*)selectableBricksForCategoryType:(kBrickCategoryType)categoryType

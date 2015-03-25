@@ -21,7 +21,6 @@
  */
 
 #import "ScriptDataSource.h"
-#import "ScriptDataSource_Private.h"
 #import "Brick.h"
 #import "BrickCell.h"
 
@@ -56,6 +55,21 @@
     }
     
     _scriptList = [scriptList copy];
+}
+
+- (void)setState:(ScriptDataSourceState)state {
+    if (state == _state) {
+        return;
+    }
+    
+    _state = state;
+    
+    id<ScriptDataSourceDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(scriptDataSource:stateChanged:error:)]) {
+        // TODO: Handle Error
+        NSError *error = nil;
+        [delegate scriptDataSource:self stateChanged:self.state error:error];
+    }
 }
 
 #pragma mark - Getters

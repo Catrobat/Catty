@@ -52,7 +52,6 @@
 #import "NoteBrick.h"
 #import "ScriptDataSource.h"
 #import "BrickSelectionViewController.h"
-#import "ScriptDataSource_Private.h"
 #import "ScriptDataSource+Extensions.h"
 #import "FBKVOController.h"
 #import "BrickCellFragmentProtocol.h"
@@ -93,7 +92,7 @@
 @end
 
 @implementation ScriptCollectionViewController {
-    kBrickCategoryType _lastSelectedBrickCategory;
+    PageIndexCategoryType _lastSelectedBrickCategory;
 }
 
 #pragma mark - view events
@@ -122,7 +121,7 @@
 }
 
 #pragma mark - Show brick selection screen
-- (void)showBrickSelectionController:(kBrickCategoryType)type {
+- (void)showBrickSelectionController:(PageIndexCategoryType)type {
     BrickCategoryViewController *bcvc = [[BrickCategoryViewController alloc] initWithBrickCategory:type];
     bcvc.delegate = self;
     BrickSelectionViewController *bsvc = [[BrickSelectionViewController alloc]
@@ -298,7 +297,18 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource stateChanged:(ScriptDataSourceState)state error:(NSError *)error
 {
-    NSLog(@"Script data source state changed: %lu", state);
+    NSLog(@"Script data source state changed: %u", state);
+}
+
+- (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didInsertSections:(NSIndexSet *)sections {
+    if (!sections)
+        return;
+    
+    [self.collectionView insertSections:sections];
+}
+
+- (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didMoveSection:(NSInteger)section toSection:(NSInteger)newSection{
+    [self.collectionView moveSection:section toSection:newSection];
 }
 
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didRemoveSections:(NSIndexSet *)sections
@@ -398,10 +408,58 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (void)brickCategoryViewController:(BrickCategoryViewController*)brickCategoryViewController
              didSelectScriptOrBrick:(id<ScriptProtocol>)scriptOrBrick
 {
-    _lastSelectedBrickCategory = scriptOrBrick.brickCategoryType;
+    _lastSelectedBrickCategory = brickCategoryViewController.pageIndexCategoryType;
     brickCategoryViewController.delegate = nil;
     [self dismissViewControllerAnimated:YES completion:NULL];
-    NSLog(@"[ %@ ] selected", scriptOrBrick);
+    
+    NSString *brickClassString = [[BrickManager sharedBrickManager] classNameForBrickType:scriptOrBrick.brickType];
+    Class brickClass = NSClassFromString(brickClassString);
+    
+    NSIndexPath *topIndexpath = [NSIndexPath indexPathForItem:0 inSection:0];
+    NSUInteger lastSection = self.scriptDataSource.numberOfSections;
+    NSUInteger itemCount = [self.collectionView numberOfItemsInSection:lastSection - 1];
+    NSIndexPath *bottomIndexPath = [NSIndexPath indexPathForItem:itemCount - 1 inSection:lastSection - 1];
+    
+    // Empty Script List, insert start script with added brick
+    if (self.scriptDataSource.scriptList.count == 0 && ![self isScript:scriptOrBrick.brickType]) {
+        StartScript *startScript = [StartScript new];
+        startScript.object = self.object;
+        [self.scriptDataSource addScript:startScript toSection:topIndexpath.section];
+        
+        NSArray *bricks = [self.scriptDataSource linkedBricksForBrick:scriptOrBrick.brickType];
+        [self.scriptDataSource addBricks:bricks atIndexPath:topIndexpath];
+        
+    } else if ([self isScript:scriptOrBrick.brickType]) {
+        if (self.scriptDataSource.numberOfSections > 0) {
+            [self resetScrollingtoBottomWithIndexPath:bottomIndexPath animated:NO];
+        }
+        
+        id newScript = [[brickClass alloc] initWithType:scriptOrBrick.brickType andCategory:scriptOrBrick.brickCategoryType];
+        [self.scriptDataSource addScript:newScript toSection:lastSection];
+    } else {
+        [self resetScrollingtoTopWithIndexPath:topIndexpath animated:NO];
+        // Add new brick(s) to top section.
+        NSArray *bricks = [self.scriptDataSource linkedBricksForBrick:scriptOrBrick.brickType];
+        [self.scriptDataSource addBricks:bricks atIndexPath:topIndexpath];
+    }
+}
+
+// TODO: Refactor (move into brick manager oder protocol?)
+- (BOOL)isScript:(kBrickType)brickType {
+    if (brickType == kProgramStartedBrick || brickType == kTappedBrick || brickType == kReceiveBrick) {
+        return YES;
+    }
+    return NO;
+}
+
+- (void)resetScrollingtoTopWithIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated {
+    if ([self.collectionView numberOfItemsInSection:0] > 0) {
+        [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionTop animated:animated];
+    }
+}
+
+- (void)resetScrollingtoBottomWithIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated{
+    [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:animated];
 }
 
 #pragma mark - Brick Cell Delegate
@@ -470,6 +528,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - Helpers
+// TODO: Remove
 - (void)removeBricksWithIndexPaths:(NSArray *)indexPaths
 {
     NSArray *sortedIndexPaths = [indexPaths sortedArrayUsingSelector:@selector(compare:)];
@@ -519,6 +578,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - Editing
+// TODO: Refactor
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
@@ -1080,8 +1140,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     [self.scriptDataSourceKVOController observe:self.scriptDataSource
                                         keyPath:@"scriptList"
                                         options:NSKeyValueObservingOptionNew
-                                          block:^(id observer, id object, NSDictionary *change) {
+                                          block:^(ScriptCollectionViewController *observer, ScriptDataSource *object, NSDictionary *change) {
                                               NSDebug(@"Script data source items changed.");
+                                              weakself.object.scriptList = [object.scriptList mutableCopy];
+//                                              Program *program = weakself.object.program;
+//                                              [program saveToDisk];
                                               [weakself saveProgram];
     }];
 }

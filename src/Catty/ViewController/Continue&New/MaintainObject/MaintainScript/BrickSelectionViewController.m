@@ -47,6 +47,7 @@
 {
     BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
     NSUInteger pageIndex = bcVC.pageIndex - 1;
+    
     return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:pageIndex];
 }
 
@@ -73,7 +74,7 @@
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController*)pageViewController
 {
     [self overwritePageControl];
-    return kCategoryCount;
+    return kMaxPages;
 }
 
 - (void)overwritePageControl
@@ -112,8 +113,8 @@
 {
     BrickCategoryViewController *bcvc = [self.viewControllers objectAtIndex:0];
     NSInteger pageIndex = bcvc.pageIndex;
-    if (pageIndex >= 0 && pageIndex < kCategoryCount) {
-        self.title = kBrickCategoryNames[pageIndex];
+    if (pageIndex >= 0 && pageIndex < kMaxPages) {
+        self.title = CBTitleFromPageIndexCategoryType(pageIndex);
     }
 }
 
