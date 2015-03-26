@@ -160,10 +160,10 @@
             return returnValue;
             break;
         case TOKEN_TYPE_STRING:
-            returnValue = [NSString stringWithFormat:@"\""];
+            returnValue = [NSString stringWithFormat:@"\'"];
             
             returnValue = [returnValue stringByAppendingString:[internToken getTokenStringValue]];
-            returnValue = [returnValue stringByAppendingString:@"\""];
+            returnValue = [returnValue stringByAppendingString:@"\'"];
             
             return returnValue;
             break;

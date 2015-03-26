@@ -57,7 +57,7 @@ typedef enum {
         rightChild:(FormulaElement*)rightChild
             parent:(FormulaElement*)parent;
 
-- (double)interpretRecursiveForSprite:(SpriteObject*)sprite;
+- (id)interpretRecursiveForSprite:(SpriteObject*)sprite;
 
 - (BOOL)isEqualToFormulaElement:(FormulaElement*)formulaElement;
 
@@ -74,6 +74,10 @@ typedef enum {
 - (NSMutableArray*)getInternTokenList;
 
 - (BOOL)isLogicalOperator;
+
+- (BOOL)isLogicalFunction;
+
+//- (BOOL)hasFunctionStringReturnType;
 
 - (BOOL)isSingleNumberFormula;
 

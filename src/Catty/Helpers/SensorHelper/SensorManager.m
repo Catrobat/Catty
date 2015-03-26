@@ -21,7 +21,7 @@
  */
 
 #import "SensorManager.h"
-
+#import "LanguageTranslationDefines.h"
 @implementation SensorManager
 
 NSString * const sensorStringArray[] = {
@@ -38,6 +38,7 @@ NSString * const sensorStringArray[] = {
     @"OBJECT_SIZE",
     @"OBJECT_ROTATION",
     @"OBJECT_LAYER",
+    @"LOUDNESS"
 };
 
 +(Sensor) sensorForString:(NSString*)sensor
@@ -85,17 +86,20 @@ NSString * const sensorStringArray[] = {
         return LOUDNESS;
     }
     
-    NSError(@"Unknown Sensor: %@", sensor);
+//    NSError(@"Unknown Sensor: %@", sensor);
     
     return -1;
 }
 
 + (NSString*)stringForSensor:(Sensor)sensor
 {
-    if (((NSInteger) sensor-900) < ((NSInteger)(sizeof(sensorStringArray) / sizeof(Sensor))))
-        return sensorStringArray[sensor-900];
+        if (((NSInteger) sensor-900) < ((NSInteger)(sizeof(sensorStringArray) / sizeof(Sensor))) && ((NSInteger) sensor-900) >= 0)
+        {
+            return sensorStringArray[sensor-900];
+        }else{
+            return @"";
+        }
 
-    return @"Unknown Sensor";
 }
 
 + (BOOL)isObjectSensor:(Sensor)sensor
@@ -108,46 +112,46 @@ NSString * const sensorStringArray[] = {
     NSString *name;
     switch (sensor) {
         case COMPASS_DIRECTION:
-            name = @"compass_direction";
+            name = kUIFESensorCompass;
             break;
         case LOUDNESS:
-            name = @"loudness";
+            name = kUIFESensorLoudness;
             break;
         case OBJECT_BRIGHTNESS:
-            name = @"brightness";
+            name = kUIFEObjectBrightness;
             break;
         case OBJECT_GHOSTEFFECT:
-            name = @"transparency";
+            name = kUIFEObjectTransparency;
             break;
         case OBJECT_LAYER:
-            name = @"layer";
+            name = kUIFEObjectLayer;
             break;
         case OBJECT_ROTATION:
-            name = @"direction";
+            name = kUIFEObjectDirection;
             break;
         case OBJECT_SIZE:
-            name = @"size";
+            name = kUIFEObjectSize;
             break;
         case OBJECT_X:
-            name = @"position_x";
+            name = kUIFEObjectPositionX;
             break;
         case OBJECT_Y:
-            name = @"position_y";
+            name = kUIFEObjectPositionY;
             break;
         case X_ACCELERATION:
-            name = @"acceleration_x";
+            name = kUIFESensorAccelerationX;
             break;
         case X_INCLINATION:
-            name = @"inclination_x";
+            name = kUIFESensorInclinationX;
             break;
         case Y_ACCELERATION:
-            name = @"acceleration_y";
+            name = kUIFESensorAccelerationY;
             break;
         case Y_INCLINATION:
-            name = @"inclination_y";
+            name = kUIFESensorInclinationY;
             break;
         case Z_ACCELERATION:
-            name = @"acceleration_z";
+            name = kUIFESensorAccelerationZ;
             break;
         default:
             break;

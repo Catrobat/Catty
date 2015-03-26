@@ -82,7 +82,7 @@
     @[],                            /* stop all sounds    */\
     @"{FLOAT;range=(-inf,inf)}",    /* set volume to      */\
     @"{FLOAT;range=(-inf,inf)}",    /* change volume to   */\
-    @"{TEXT}"                       /* speak              */\
+    @"{INT}"                       /* speak              */\
 ]
 
 // look bricks

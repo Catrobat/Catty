@@ -924,13 +924,28 @@
 
 /* No comment provided by engineer. */
 "Yesterday" = "Gestern";
-
 /* No comment provided by engineer. */
+
 "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people.";
+"true" = "WAHR";
+"false" = "FALSCH";
 
 /* No comment provided by engineer. */
 "You have already downloaded this program!" = "Das Programm wurde bereits heruntergeladen!";
 
 /* paint */
 "zoom" = "zoom";
+"size" = "Größe";
+"direction" = "Richtung";
+"layer" = "Ebene";
+"pos_x" = "Position_x";
+"pos_y" = "Position_y";
+
+"compass" = "Compass_Richtung";
+"loudness" = "Umgebungslautstärke";
+"acceleration_x" = "Beschleunigung_x";
+"acceleration_y" = "Beschleunigung_y";
+"acceleration_z" = "Beschleunigung_z";
+"inclination_x" = "Neigung_x";
+"inclination_y" = "Neigung_y";
 

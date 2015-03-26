@@ -42,7 +42,12 @@
 
 - (void)setupEmptyBrick
 {
-    self.text = kLocalizedDefaultSpeakText;
+    Formula *speakFormula = [Formula new];
+    FormulaElement *formulaElement = [FormulaElement new];
+    formulaElement.type = STRING;
+    formulaElement.value = kLocalizedDefaultSpeakText;
+    speakFormula.formulaTree = formulaElement;
+    self.formula = speakFormula;
 }
 
 - (SKAction*)action
@@ -52,7 +57,7 @@
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
         AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];
-        AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:self.text];
+        AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:self.formula.formulaTree.value];
         [synthesizer speakUtterance:utterance];
 
     }];
@@ -61,18 +66,18 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Speak: %@", self.text];
+    return [NSString stringWithFormat:@"Speak: %@", self.formula];
 }
 
-- (void)setText:(NSString *)text forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+-(void)setFormula:(Formula *)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
-    if(text)
-        self.text = text;
+    if(formula)
+        self.formula = formula;
 }
 
-- (NSString*)textForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    return self.text;
+- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber{
+    return self.formula;
 }
+
 
 @end

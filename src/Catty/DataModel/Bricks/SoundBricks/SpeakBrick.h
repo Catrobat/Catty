@@ -21,11 +21,12 @@
  */
 
 #import "Brick.h"
-#import "BrickTextProtocol.h"
+#import "BrickFormulaProtocol.h"
+#import "Formula.h"
 
 
-@interface SpeakBrick : Brick<BrickTextProtocol>
+@interface SpeakBrick : Brick<BrickFormulaProtocol>
 
-@property (nonatomic, strong) NSString *text;
+@property (nonatomic, strong) Formula *formula;
 
 @end

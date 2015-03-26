@@ -11,6 +11,12 @@
 "About Pocket Code" = "About Pocket Code";
 
 /* No comment provided by engineer. */
+"acceleration_x" = "acceleration_x";
+
+/* No comment provided by engineer. */
+"acceleration_y" = "acceleration_y";
+
+/* No comment provided by engineer. */
 "add comment here..." = "add comment here...";
 
 /* No comment provided by engineer. */
@@ -33,6 +39,9 @@
 
 /* No comment provided by engineer. */
 "An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
+
+/* No comment provided by engineer. */
+"and" = "and";
 
 /* No comment provided by engineer. */
 "Animate Brick" = "Animate Brick";
@@ -66,6 +75,9 @@
 
 /* No comment provided by engineer. */
 "Bricks" = "Bricks";
+
+/* No comment provided by engineer. */
+"brightness" = "brightness";
 
 /* No comment provided by engineer. */
 "Broadcast and wait\n%@" = "Broadcast and wait\n%@";
@@ -123,6 +135,9 @@
 
 /* No comment provided by engineer. */
 "Close" = "Close";
+
+/* No comment provided by engineer. */
+"compass" = "compass";
 
 /* No comment provided by engineer. */
 "Compute" = "Compute";
@@ -204,6 +219,9 @@
 
 /* No comment provided by engineer. */
 "Details" = "Details";
+
+/* No comment provided by engineer. */
+"direction" = "direction";
 
 /* paint */
 "Discard & Close" = "Discard & Close";
@@ -294,6 +312,7 @@
 
 /* No comment provided by engineer. */
 "Explore apps" = "Explore apps";
+"false" = "false";
 
 /* No comment provided by engineer. */
 "Featured Programs" = "Featured Programs";
@@ -375,9 +394,12 @@
 
 /* No comment provided by engineer. */
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.";
+"inclination_x" = "inclination_x";
 
 /* No comment provided by engineer. */
-"Information" = "Information";
+
+/* No comment provided by engineer. */
+"inclination_y" = "inclination_y";
 
 /* No comment provided by engineer. */
 "Invalid input entered, try again." = "Invalid input entered, try again.";
@@ -407,6 +429,9 @@
 "Last access" = "Last access";
 
 /* No comment provided by engineer. */
+"layer" = "layer";
+
+/* No comment provided by engineer. */
 "Length" = "Length";
 
 /* paint */
@@ -423,6 +448,9 @@
 
 /* No comment provided by engineer. */
 "Looks" = "Looks";
+
+/* No comment provided by engineer. */
+"loudness" = "loudness";
 
 /* No comment provided by engineer. */
 "Mar" = "Mar";
@@ -497,7 +525,7 @@
 "New Message" = "New Message";
 
 /* No comment provided by engineer. */
-"New Program" = "New Program";
+"New Text" = "New Text";
 
 /* No comment provided by engineer. */
 "New Variable" = "New Variable";
@@ -537,6 +565,9 @@
 
 /* No comment provided by engineer. */
 "No search results" = "No search results";
+
+/* No comment provided by engineer. */
+"not" = "not";
 
 /* No comment provided by engineer. */
 "Not enough free memory to download this program. Please delete some of your programs" = "Not enough free memory to download this program. Please delete some of your programs";
@@ -584,6 +615,9 @@
 "only 15 characters allowed" = "only 15 characters allowed";
 
 /* No comment provided by engineer. */
+"or" = "or";
+
+/* No comment provided by engineer. */
 "Password" = "Password";
 
 /* paint */
@@ -627,6 +661,12 @@
 
 /* paint */
 "pointer" = "pointer";
+
+/* No comment provided by engineer. */
+"pos_x" = "pos_x";
+
+/* No comment provided by engineer. */
+"pos_y" = "pos_y";
 
 /* No comment provided by engineer. */
 "program" = "program";
@@ -776,6 +816,9 @@
 "Show Details" = "Show Details";
 
 /* No comment provided by engineer. */
+"size" = "size";
+
+/* No comment provided by engineer. */
 "Size" = "Size";
 
 /* No comment provided by engineer. */
@@ -795,6 +838,9 @@
 
 /* No comment provided by engineer. */
 "Speak %@" = "Speak %@";
+
+/* No comment provided by engineer. */
+"sqrt" = "sqrt";
 
 /* paint */
 "square" = "square";
@@ -830,6 +876,9 @@
 "Terms of Use" = "Terms of Use";
 
 /* No comment provided by engineer. */
+"Text message:" = "Text message:";
+
+/* No comment provided by engineer. */
 "Th" = "Th";
 
 /* No comment provided by engineer. */
@@ -849,6 +898,12 @@
 
 /* No comment provided by engineer. */
 "Today" = "Today";
+
+/* No comment provided by engineer. */
+"transparency" = "transparency";
+
+/* No comment provided by engineer. */
+"true" = "true";
 
 /* No comment provided by engineer. */
 "Tu" = "Tu";
