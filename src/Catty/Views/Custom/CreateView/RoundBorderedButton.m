@@ -25,6 +25,7 @@
 @interface RoundBorderedButton()
 
 @property(nonatomic, assign) BOOL plusIconVisible;
+@property(nonatomic, assign) BOOL visibleBorder;
 
 @end
 
@@ -34,6 +35,7 @@
 {
     self = [super init];
     if (self) {
+        self.visibleBorder = YES;
         [self setup];
     }
     return self;
@@ -48,10 +50,11 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame andBorder:(BOOL)visibleBorder
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.visibleBorder = visibleBorder;
         [self setup];
     }
     return self;
@@ -63,8 +66,10 @@
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     [self setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
     [self.titleLabel setFont:[UIFont boldSystemFontOfSize:13]];
-    self.layer.cornerRadius = 3.5;
-    self.layer.borderWidth = 1.0;
+    if (self.visibleBorder) {
+        self.layer.cornerRadius = 3.5;
+        self.layer.borderWidth = 1.0;
+    }
     [self refreshBorderColor];
 }
 

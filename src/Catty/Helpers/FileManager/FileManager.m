@@ -485,13 +485,15 @@
     NSString *name = [self.programNameDict objectForKey:task];
     NSString *programID = [self.programIDDict objectForKey:task];
     [self unzipAndStore:data withProgramID:programID withName:name];
+    ProgramLoadingInfo* info = [ProgramLoadingInfo programLoadingInfoForProgramWithName:name
+                                                                              programID:programID];
     NSURL* url = [self.programTaskDict objectForKey:task];
-    if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:)] && [self.projectURL isEqual:url]) {
+    if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:andProgramLoadingInfo:)] && [self.projectURL isEqual:url]) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.delegate downloadFinishedWithURL:url];
+            [self.delegate downloadFinishedWithURL:url andProgramLoadingInfo:info];
         });
-    }else if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:)] && [self.delegate isKindOfClass:[BaseWebViewController class]]){
-        [self.delegate downloadFinishedWithURL:url];
+    }else if ([self.delegate respondsToSelector:@selector(downloadFinishedWithURL:andProgramLoadingInfo:)] && [self.delegate isKindOfClass:[BaseWebViewController class]]){
+        [self.delegate downloadFinishedWithURL:url andProgramLoadingInfo:info];
     }
 
 }
@@ -616,13 +618,14 @@
         [self.programTaskDict removeObjectForKey:downloadTask];
         [self.programNameDict removeObjectForKey:downloadTask];
         [self.programIDDict removeObjectForKey:downloadTask];
+        // Notification for reloading MyProgramViewController
+        [[NSNotificationCenter defaultCenter] postNotificationName:kProgramDownloadedNotification object:self];
     } else {
         [self storeDownloadedImage:[NSData dataWithContentsOfURL:location] andTask:downloadTask];
         [self.imageTaskDict removeObjectForKey:downloadTask];
         [self.imageNameDict removeObjectForKey:downloadTask];
     }
-    // Notification for reloading MyProgramViewController
-    [[NSNotificationCenter defaultCenter] postNotificationName:kProgramDownloadedNotification object:self];
+    
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = NO;
 }

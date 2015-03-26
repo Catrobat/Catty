@@ -21,11 +21,12 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "ProgramLoadingInfo.h"
 
 
 @protocol FileManagerDelegate <NSObject>
 
-- (void) downloadFinishedWithURL:(NSURL*)url;
+- (void) downloadFinishedWithURL:(NSURL*)url andProgramLoadingInfo:(ProgramLoadingInfo*)info;
 - (void) updateProgress:(double)progress;
 - (void) setBackDownloadStatus;
 
