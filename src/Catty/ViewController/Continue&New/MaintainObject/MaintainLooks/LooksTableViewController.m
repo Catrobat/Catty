@@ -594,7 +594,16 @@ static NSCharacterSet *blockedCharacterSet = nil;
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
             PaintViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"paint"];
             vc.delegate = self;
-            vc.editingImage = nil;
+            NSInteger height = (NSInteger)self.view.frame.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height;
+            CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, height);
+            UIImage *image = [UIImage new];
+            UIGraphicsBeginImageContext(rect.size);
+            [image drawInRect:CGRectMake(0, 0, rect.size.width, rect.size.height)];
+            image = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+
+            vc.editingImage = image;
+            vc.editingPath = nil;
             [self.navigationController pushViewController:vc animated:YES];
             
         }
@@ -679,7 +688,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     if (buttonIndex != 0) {
             //        NSLog(@"yes");
-        if (self.paintImagePath && self.paintImage) {
+        if (self.paintImage) {
             [self addPaintedImage:self.paintImage andPath:self.paintImagePath];
         }
     } 

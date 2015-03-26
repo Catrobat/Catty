@@ -76,7 +76,7 @@
 @property (nonatomic,strong) HandTool* handTool;
 @property (nonatomic,strong) ResizeViewManager* resizeViewManager;
 @property (nonatomic,strong) PointerTool* pointerTool;
-
+@property (nonatomic,strong) UIImage* checkImage;
 @end
 
 @implementation PaintViewController
@@ -121,12 +121,14 @@
 {
     if (![parent isEqual:self.parentViewController]) {
         if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
-            UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
-            UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            if (![self.saveView.image isEqual:blank] && ![self.saveView.image isEqual:self.editingImage]) {
-                [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
-                
+            NSData *data1 = UIImagePNGRepresentation(self.saveView.image);
+            NSData *data2 = UIImagePNGRepresentation(self.checkImage);
+            if (![data1 isEqual:data2]) {
+                if (![self.saveView.image isEqual:self.editingImage] && self.editingImage != nil) {
+                    [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
+                } else if (self.editingPath == nil) {
+                    [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
+                }
             }
         }
             // reenable swipe back gesture
@@ -163,6 +165,7 @@
         self.saveView.image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         self.editingImage = self.saveView.image;
+        self.checkImage = self.saveView.image;
         if ((self.editingImage.size.width <= self.view.bounds.size.width) && (self.editingImage.size.height <= self.view.bounds.size.height)) {
             self.helper.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
             self.drawView.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
