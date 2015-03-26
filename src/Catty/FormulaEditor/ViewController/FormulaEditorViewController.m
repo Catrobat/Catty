@@ -177,6 +177,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.logicScrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
     self.objectScrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
     self.sensorScrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
+    self.calcScrollView.contentSize = CGSizeMake(self.calcScrollView.frame.size.width,self.calcScrollView.frame.size.height);
     
     [self localizeView];
   
@@ -227,17 +228,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 -(void)localizeView
 {
-    [self.calcButton setTitle:kUIFENumbers forState:UIControlStateAll];
-    [self.mathbutton setTitle:kUIFEMath forState:UIControlStateAll];
-    [self.logicButton setTitle:kUIFELogic forState:UIControlStateAll];
-    [self.objectButton setTitle:kUIFEObject forState:UIControlStateAll];
-    [self.sensorButton setTitle:kUIFESensor forState:UIControlStateAll];
-    [self.variableButton setTitle:kUIFEVariable forState:UIControlStateAll];
-    [self.computeButton setTitle:kUIFECompute forState:UIControlStateAll];
-    [self.doneButton setTitle:kUIFEDone forState:UIControlStateAll];
-    [self.variable setTitle:kUIFEVar forState:UIControlStateAll];
-    [self.takeVar setTitle:kUIFETake forState:UIControlStateAll];
-
     for (UIButton *button in self.normalTypeButton) {
         
         NSString *name = [Functions getExternName:[Functions getName:[button tag]]];
@@ -261,6 +251,17 @@ NS_ENUM(NSInteger, ButtonIndex) {
             }
         }
     }
+    
+    [self.calcButton setTitle:kUIFENumbers forState:UIControlStateAll];
+    [self.mathbutton setTitle:kUIFEMath forState:UIControlStateAll];
+    [self.logicButton setTitle:kUIFELogic forState:UIControlStateAll];
+    [self.objectButton setTitle:kUIFEObject forState:UIControlStateAll];
+    [self.sensorButton setTitle:kUIFESensor forState:UIControlStateAll];
+    [self.variableButton setTitle:kUIFEVariable forState:UIControlStateAll];
+    [self.computeButton setTitle:kUIFECompute forState:UIControlStateAll];
+    [self.doneButton setTitle:kUIFEDone forState:UIControlStateAll];
+    [self.variable setTitle:kUIFEVar forState:UIControlStateAll];
+    [self.takeVar setTitle:kUIFETake forState:UIControlStateAll];
     
 }
 
