@@ -63,6 +63,22 @@
     }];
 }
 
+- (void)setText:(NSString*)text
+{
+    Formula *speakFormula = [Formula new];
+    FormulaElement *formulaElement = [FormulaElement new];
+    formulaElement.type = STRING;
+    formulaElement.value = text;
+    speakFormula.formulaTree = formulaElement;
+    self.formula = speakFormula;
+}
+
+- (NSString*)text
+{
+    NSError(@"This property can not be accessed and is only used for backward compatibility with ProjectParser for CatrobatLanguage < 0.93");
+    return nil;
+}
+
 #pragma mark - Description
 - (NSString*)description
 {
