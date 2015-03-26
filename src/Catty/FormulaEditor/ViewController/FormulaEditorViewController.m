@@ -237,10 +237,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.doneButton setTitle:kUIFEDone forState:UIControlStateAll];
     [self.variable setTitle:kUIFEVar forState:UIControlStateAll];
     [self.takeVar setTitle:kUIFETake forState:UIControlStateAll];
-    
-    
-    
-    
 
     for (UIButton *button in self.normalTypeButton) {
         

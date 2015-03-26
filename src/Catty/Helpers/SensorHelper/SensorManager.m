@@ -38,6 +38,7 @@ NSString * const sensorStringArray[] = {
     @"OBJECT_SIZE",
     @"OBJECT_ROTATION",
     @"OBJECT_LAYER",
+    @"LOUDNESS"
 };
 
 +(Sensor) sensorForString:(NSString*)sensor

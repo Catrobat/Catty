@@ -674,8 +674,8 @@
 "acceleration_x" = "Acceleration_x";
 "acceleration_y" = "Acceleration_y";
 "acceleration_z" = "Acceleration_z";
-"inclination_x" = "decline_x";
-"inclination_y" = "decline_y";
+"inclination_x" = "Decline_x";
+"inclination_y" = "Decline_y";
 
 
 "New" = "New";
