@@ -47,7 +47,7 @@
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
         AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];
-        AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:self.text];
+        AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:self.formula.formulaTree.value];
         [synthesizer speakUtterance:utterance];
 
     }];
@@ -56,7 +56,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Speak: %@", self.text];
+    return [NSString stringWithFormat:@"Speak: %@", self.formula];
 }
 
 @end

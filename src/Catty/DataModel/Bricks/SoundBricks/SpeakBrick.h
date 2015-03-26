@@ -21,10 +21,10 @@
  */
 
 #import "Brick.h"
-
+#import "Formula.h"
 
 @interface SpeakBrick : Brick
 
-@property (nonatomic, strong) NSString *text;
+@property (nonatomic, strong) Formula *formula;
 
 @end
