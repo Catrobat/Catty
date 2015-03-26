@@ -30,11 +30,11 @@
 @property (nonatomic, strong)InternFormulaTokenSelection *tokenSelection;
 @property (nonatomic)int externCursorPosition;
 
--(InternFormulaState *)initWithList:(NSMutableArray *)internTokenFormulaList
+- (InternFormulaState *)initWithList:(NSMutableArray *)internTokenFormulaList
                           selection:(InternFormulaTokenSelection *)tokenSelection
             andExternCursorPosition:(int)externCursorPosition;
 
--(BOOL)isEqual:(id)objectToCompare;
--(InternFormula*)createInternFormulaFromState;
+- (BOOL)isEqual:(id)objectToCompare;
+- (InternFormula*)createInternFormulaFromState;
 
 @end

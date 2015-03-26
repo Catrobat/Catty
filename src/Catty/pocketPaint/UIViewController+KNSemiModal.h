@@ -63,26 +63,26 @@ typedef void (^KNTransitionCompletionBlock)(void);
  @param completion   Is called after `-[vc viewDidAppear:]`.
  @param dismissBlock Is called when the user dismisses the semi-modal view by tapping the dimmed receiver view.
  */
--(void)presentSemiViewController:(UIViewController*)vc
+- (void)presentSemiViewController:(UIViewController*)vc
 					 withOptions:(NSDictionary*)options
 					  completion:(KNTransitionCompletionBlock)completion
 					dismissBlock:(KNTransitionCompletionBlock)dismissBlock;
 
--(void)presentSemiView:(UIView*)view
+- (void)presentSemiView:(UIView*)view
 		   withOptions:(NSDictionary*)options
 			completion:(KNTransitionCompletionBlock)completion;
 
 // Convenient overloading methods
--(void)presentSemiViewController:(UIViewController*)vc;
--(void)presentSemiViewController:(UIViewController*)vc withOptions:(NSDictionary*)options;
--(void)presentSemiView:(UIView*)vc;
--(void)presentSemiView:(UIView*)view withOptions:(NSDictionary*)options;
+- (void)presentSemiViewController:(UIViewController*)vc;
+- (void)presentSemiViewController:(UIViewController*)vc withOptions:(NSDictionary*)options;
+- (void)presentSemiView:(UIView*)vc;
+- (void)presentSemiView:(UIView*)view withOptions:(NSDictionary*)options;
 
 // Update (refresh) backgroundView
--(void)updateBackground;
+- (void)updateBackground;
 // Dismiss & resize
--(void)resizeSemiView:(CGSize)newSize;
--(void)dismissSemiModalView;
--(void)dismissSemiModalViewWithCompletion:(KNTransitionCompletionBlock)completion;
+- (void)resizeSemiView:(CGSize)newSize;
+- (void)dismissSemiModalView;
+- (void)dismissSemiModalViewWithCompletion:(KNTransitionCompletionBlock)completion;
 
 @end

@@ -22,6 +22,7 @@
 
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
+#import "WhenScript.h"
 
 @interface HideBrickTests : BrickTests
 
@@ -41,7 +42,7 @@
     [super tearDown];
 }
 
--(void)testHideBrick
+- (void)testHideBrick
 {
     
     SpriteObject* object = [[SpriteObject alloc] init];
@@ -49,10 +50,13 @@
     
     Scene* scene = [[Scene alloc] init];
     [scene addChild:object];
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
     HideBrick* brick = [[HideBrick alloc]init];
-    brick.object = object;
-    
+    brick.script = script;
+
     dispatch_block_t action = [brick actionBlock];
     action();
     

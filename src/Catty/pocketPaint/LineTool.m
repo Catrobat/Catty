@@ -24,7 +24,7 @@
 
 @implementation LineTool
 
--(id) initWithDrawViewCanvas:(PaintViewController *)canvas
+- (id) initWithDrawViewCanvas:(PaintViewController *)canvas
 {
   self = [super init];
   if(self)
@@ -34,7 +34,7 @@
   return self;
 }
 
--(void)drawLine:(UIPanGestureRecognizer *)recognizer
+- (void)drawLine:(UIPanGestureRecognizer *)recognizer
 {
   if (recognizer.state == UIGestureRecognizerStateBegan){
     
@@ -52,7 +52,7 @@
   }
 }
 
--(void)shapeMoved:(CGPoint)currentPoint
+- (void)shapeMoved:(CGPoint)currentPoint
   {
         //LINE
         UIGraphicsBeginImageContext(self.canvas.drawView.frame.size);

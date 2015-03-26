@@ -53,19 +53,6 @@
     return self;
 }
 
-- (id)initWithSprite:(SpriteObject *)sprite
-{
-    self = [super init];
-    if (self) {
-        NSString *subclassName = NSStringFromClass([self class]);
-        BrickManager *brickManager = [BrickManager sharedBrickManager];
-        self.brickType = [brickManager brickTypeForClassName:subclassName];
-        self.brickCategoryType = [brickManager brickCategoryTypeForBrickType:self.brickType];
-        self.object = sprite;
-    }
-    return self;
-}
-
 - (BOOL)isSelectableForObject
 {
     return YES;
@@ -76,7 +63,7 @@
     return @"Brick (NO SPECIFIC DESCRIPTION GIVEN! OVERRIDE THE DESCRIPTION METHOD!";
 }
 
--(SKAction*)action
+- (SKAction*)action
 {
     NSError(@"%@ (NO SPECIFIC Action GIVEN! OVERRIDE THE action METHOD!", self.class);
     return nil;
@@ -90,7 +77,7 @@
                                  userInfo:nil];
 }
 
--(dispatch_block_t)actionBlock
+- (dispatch_block_t)actionBlock
 {
     return ^{
         NSError(@"%@ (NO SPECIFIC Action GIVEN! OVERRIDE THE actionBlock METHOD!", self.class);

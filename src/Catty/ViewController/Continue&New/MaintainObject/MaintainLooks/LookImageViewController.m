@@ -113,7 +113,7 @@
 }
 
 
--(void)editAction
+- (void)editAction
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
     PaintViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"paint"];
@@ -127,13 +127,13 @@
     self.view.backgroundColor = [UIColor darkBlueColor];
     self.imageView.backgroundColor = [UIColor darkBlueColor];
     vc.editingImage = img;
-    NSLog(@"%@",img);
+//    NSLog(@"%@",img);
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark paintDelegate
 
--(void)showSavePaintImageAlert:(UIImage *)image andPath:(NSString *)path
+- (void)showSavePaintImageAlert:(UIImage *)image andPath:(NSString *)path
 {
     self.paintImage = image;
     self.paintImagePath = path;
@@ -151,7 +151,7 @@
 }
 
 #pragma mark paintDelegate
--(void)addPaintedImage:(UIImage *)image andPath:(NSString *)path
+- (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path
 {
     self.imageView.image = image;
 

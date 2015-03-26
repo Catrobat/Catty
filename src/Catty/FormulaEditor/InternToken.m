@@ -121,12 +121,12 @@
     return self.internTokenType == token.internTokenType && ((self.tokenStringValue == nil && token.tokenStringValue == nil) || [self.tokenStringValue isEqualToString:token.tokenStringValue]);
 }
 
--(InternTokenType)getInternTokenType
+- (InternTokenType)getInternTokenType
 {
     return self.internTokenType;
 }
 
--(NSString *)getTokenStringValue
+- (NSString *)getTokenStringValue
 {
     return self.tokenStringValue;
 }

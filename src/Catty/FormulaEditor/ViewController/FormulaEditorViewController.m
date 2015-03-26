@@ -47,6 +47,7 @@
 #import "CatrobatActionSheet.h"
 #import "ActionSheetAlertViewTags.h"
 #import "BrickProtocol.h"
+#import "Script.h"
 #import "InternToken.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
@@ -226,7 +227,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 #pragma mark - localizeView
 
--(void)localizeView
+- (void)localizeView
 {
     for (UIButton *button in self.normalTypeButton) {
         
@@ -277,7 +278,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
     
 }
-
 
 #pragma mark - TextField Actions
 - (IBAction)buttonPressed:(id)sender
@@ -357,13 +357,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.deleteButton setEnabled:enabled];
 }
 
-- (IBAction)compute:(id)sender {
-    
-    UIAlertView * alert;
-    
-    if(self.internFormula != nil) {
-        
+- (IBAction)compute:(id)sender
+{
+    UIAlertView *alert;
+    if (self.internFormula != nil) {
         InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
+        Brick *brick = (Brick*)self.brickCell.scriptOrBrick; // must be a brick!
         Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormulaForSpriteObject:self.brickCell.brick.object]];
         
         NSString *computedString;
@@ -401,7 +400,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
 }
 
--(BOOL)changeFormula
+- (BOOL)changeFormula
 {
     if ([self saveIfPossible]) {
         return YES;
@@ -587,11 +586,13 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.brickCell setupBrickCell];
 }
 
--(BOOL)saveIfPossible
+- (BOOL)saveIfPossible
 {
         if(self.internFormula != nil) {
             InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
-            Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormulaForSpriteObject:self.brickCell.brick.object]];
+            Brick *brick = (Brick*)self.brickCell.scriptOrBrick; // must be a brick!
+            FormulaElement *formulaElement = [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
+            Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
             UIAlertView *alert;
             switch ([internFormulaParser getErrorTokenIndex]) {
                 case FORMULA_PARSER_OK:
@@ -677,7 +678,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
   [self.variableScrollView flashScrollIndicators];
 }
 
--(void)hideScrollViews
+- (void)hideScrollViews
 {
     self.mathScrollView.hidden = YES;
     self.calcScrollView.hidden = YES;
@@ -712,7 +713,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return blockedCharacterSet;
 }
 
--(void)updateVariablePickerData
+- (void)updateVariablePickerData
 {
     VariablesContainer *variables = self.object.program.variables;
     [self.variableSourceProgram removeAllObjects];
@@ -731,7 +732,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 
--(void)saveVariable:(NSString*)name
+- (void)saveVariable:(NSString*)name
 {
     for (UserVariable* variable in self.object.program.variables.programVariableList) {
         if ([variable.name isEqualToString:name]) {

@@ -27,6 +27,7 @@
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import <CoreImage/CoreImage.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "Script.h"
 
 @implementation SetBrightnessBrick
 
@@ -56,7 +57,7 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        double brightness = [self.brightness interpretDoubleForSprite:self.object]/100;
+        double brightness = [self.brightness interpretDoubleForSprite:self.script.object]/100;
         if (brightness > 2) {
             brightness = 1.0f;
         }
@@ -66,7 +67,7 @@
         else{
             brightness -= 1.0f;
         }
-        Look* look = [self.object currentLook];
+        Look* look = [self.script.object currentLook];
         UIImage* lookImage = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
         
         CGImageRef image = lookImage.CGImage;
@@ -85,20 +86,20 @@
         
         // 3
         UIImage *newImage = [UIImage imageWithCGImage:cgimg];
-        self.object.currentUIImageLook = newImage;
-        self.object.texture = [SKTexture textureWithImage:newImage];
-        self.object.currentLookBrightness = (CGFloat)brightness;
-        double xScale = self.object.xScale;
-        double yScale = self.object.yScale;
-        self.object.xScale = 1.0;
-        self.object.yScale = 1.0;
-        self.object.size = self.object.texture.size;
-        self.object.texture = self.object.texture;
+        self.script.object.currentUIImageLook = newImage;
+        self.script.object.texture = [SKTexture textureWithImage:newImage];
+        self.script.object.currentLookBrightness = (CGFloat)brightness;
+        double xScale = self.script.object.xScale;
+        double yScale = self.script.object.yScale;
+        self.script.object.xScale = 1.0;
+        self.script.object.yScale = 1.0;
+        self.script.object.size = self.script.object.texture.size;
+        self.script.object.texture = self.script.object.texture;
         if(xScale != 1.0) {
-            self.object.xScale = (CGFloat)xScale;
+            self.script.object.xScale = (CGFloat)xScale;
         }
         if(yScale != 1.0) {
-            self.object.yScale = (CGFloat)yScale;
+            self.script.object.yScale = (CGFloat)yScale;
         }
         
         // 4
@@ -107,15 +108,15 @@
     };
 }
 
--(NSString*)pathForLook:(Look*)look
+- (NSString*)pathForLook:(Look*)look
 {
-  return [NSString stringWithFormat:@"%@images/%@", [self.object projectPath], look.fileName];
+  return [NSString stringWithFormat:@"%@images/%@", [self.script.object projectPath], look.fileName];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-  return [NSString stringWithFormat:@"Set Brightness to: %f%%)", [self.brightness interpretDoubleForSprite:self.object]];
+  return [NSString stringWithFormat:@"Set Brightness to: %f%%)", [self.brightness interpretDoubleForSprite:self.script.object]];
 }
 
 @end

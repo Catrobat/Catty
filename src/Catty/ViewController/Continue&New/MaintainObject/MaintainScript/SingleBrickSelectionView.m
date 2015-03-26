@@ -23,6 +23,7 @@
 #import "SingleBrickSelectionView.h"
 #import "BrickCell.h"
 #import "BrickManager.h"
+#import "Brick.h"
 
 @interface SingleBrickSelectionView () <UIGestureRecognizerDelegate>
 @property (weak, nonatomic) BrickCell *brickCell;
@@ -67,7 +68,10 @@
         self.alpha = 1.0f;
         self.brickCellViewCopy.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
-        [self.delegate singleBrickSelectionView:self didShowWithBrick:self.brickCell.brick replicantBrickView:self.brickCellViewCopy];
+        Brick *brick = (Brick*)self.brickCell.scriptOrBrick; // must be a brick
+        [self.delegate singleBrickSelectionView:self
+                               didShowWithBrick:brick
+                             replicantBrickView:self.brickCellViewCopy];
         if (completionBlock) completionBlock();
     }];
 }
@@ -84,7 +88,7 @@
     return _dimview;
 }
 
--(void)layoutSubviews
+- (void)layoutSubviews
 {
     [super layoutSubviews];
     self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
@@ -103,9 +107,11 @@
                     self.dimview.alpha = 0.0f;
                 } completion:^(BOOL finished) {
                     self.dimview.hidden = YES;
-                    
                     if (self.delegate) {
-                        [self.delegate singleBrickSelectionView:self didSelectBrick:self.brickCell.brick replicantBrickView:self.brickCellViewCopy];
+                        Brick *brick = (Brick*)self.brickCell.scriptOrBrick; // must be a brick
+                        [self.delegate singleBrickSelectionView:self
+                                                 didSelectBrick:brick
+                                             replicantBrickView:self.brickCellViewCopy];
                     }
                 }];
             } break;

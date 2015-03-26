@@ -36,20 +36,17 @@
 #define roundedSmallBrick 75.0f
 
 @class Brick, BrickCellInlineView, BrickCell;
-@protocol BrickProtocol;
+@protocol ScriptProtocol;
 
-
-@protocol BrickCellDelegate <NSObject>
-
+@protocol BrickCellDelegate<NSObject>
 @optional
-- (void)BrickCell:(BrickCell *)brickCell didSelectBrickCellButton:(SelectButton *)selectButton;
-
+- (void)BrickCell:(BrickCell*)brickCell didSelectBrickCellButton:(SelectButton*)selectButton;
 @end
 
 @interface BrickCell : UICollectionViewCell<BrickCellProtocol>
 @property (nonatomic, weak) id<BrickCellDelegate> delegate;
 @property (nonatomic, weak) id<UITextFieldDelegate> textDelegate;
-@property (nonatomic, strong) id<BrickProtocol> brick;
+@property (nonatomic, strong) id<ScriptProtocol> scriptOrBrick;
 @property (nonatomic, strong) NSArray *brickCategoryColors;
 @property (nonatomic) BOOL enabled;
 @property (nonatomic, strong) SelectButton *selectButton;

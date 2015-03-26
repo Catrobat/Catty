@@ -19,517 +19,918 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
 */
-"ExampleEntry" = "ExampleEntry";
-
-"New Program" = "New Program";
-
-"Background" = "Achtergrond";
-
-"My Object" = "Mijn object";
-
-"Today" = "Vandaag";
-
-"Yesterday" = "Gisteren";
-
-"Sunday" = "Sunday";
-
-"Monday" = "Monday";
-
-"Tuesday" = "Tuesday";
-
-"Wednesday" = "Wednesday";
-
-"Thursday" = "Thursday";
-
-"Friday" = "Friday";
-
-"Saturday" = "Saturday";
-
-"Su" = "Su";
-
-"Mo" = "Mo";
-
-"Tu" = "Tu";
-
-"We" = "We";
-
-"Th" = "Th";
-
-"Fr" = "Fr";
-
-"Sa" = "Sa";
-
-"January" = "January";
-
-"February" = "February";
-
-"March" = "March";
-
-"April" = "April";
-
-"May" = "May";
-
-"June" = "June";
-
-"July" = "July";
-
-"August" = "August";
-
-"September" = "September";
-
-"October" = "October";
-
-"November" = "November";
-
-"December" = "December";
-
-"Jan" = "Jan";
-
-"Feb" = "Feb";
-
-"Mar" = "Mar";
-
-"Apr" = "Apr";
-
-"May" = "May";
-
-"Jun" = "Jun";
-
-"Jul" = "Jul";
-
-"Aug" = "Aug";
-
-"Sep" = "Sep";
-
-"Oct" = "Oct";
-
-"Nov" = "Nov";
-
-"Dec" = "Dec";
-
-"Pocket Code" = "Pocket Code";
-
-"Categories" = "Categorieën";
-
-"Explore" = "Gemeenschap";
-
-"Help" = "Help";
-
-"Info" = "Info";
-
-"Looks" = "Uiterlijk";
-
-"Sounds" = "Geluiden";
-
-"Choose sound" = "Choose sound";
-
-"Programs" = "Programma's";
-
-"Featured Programs" = "Featured Programs";
-
-"Scripts" = "Scripts";
-
-"Backgrounds" = "Achtergronden";
-
-"Tap \"+\" to add %@" = "Tap \"+\" to add %@";
-
-"Continue" = "Doorgaan";
-
-"New" = "Nieuw";
-
-"Programs" = "Programma's";
-
-"Explore" = "Gemeenschap";
-
-"Upload" = "Uploaden";
-
-"Help" = "Help";
-
-"Edit Mode" = "Edit Mode";
-
-"Edit" = "Edit";
-
-"Cancel" = "Annuleren";
-
-"Select All" = "Select All";
-
-"Unselect All" = "Unselect All";
-
-"Delete" = "verwijderen";
-
-"Edit Sounds" = "Edit Sounds";
-
-"Edit Looks" = "Edit Looks";
-
-"Add look" = "Add look";
-
-"Edit Program" = "Edit Program";
-
-"Edit Programs" = "Edit Programs";
-
-"Add sound" = "Add sound";
-
-"Save Screenshot to" = "Save Screenshot to";
-
-"Close" = "Sluiten";
-
-"Delete Brick" = "Verwijder steen";
-
-"Delete Script" = "Verwijder script";
-
-"Animate Brick" = "Animate Brick";
-
-"Copy Brick" = "Kopieer steen";
-
-"Edit Formula" = "Formule bewerken";
-
-"Delete Sounds" = "Delete Sounds";
-
-"Hide Details" = "Details verbergen";
-
-"Show Details" = "Details tonen";
-
-"Delete Looks" = "Delete Looks";
-
-"From Camera" = "Van camera";
-
-"Choose image" = "Kies afbeelding";
-
-"Draw new image" = "Teken een nieuwe afbeelding";
-
-"Rename" = "Hernoemen";
-
-"Copy" = "Copy";
-
-"Description" = "Description";
-
-"Upload" = "Upload";
-
-"Delete Objects" = "Delete Objects";
-
-"Delete Programs" = "Delete Programs";
-
-"Pocket Code Recorder" = "Pocket Code-recorder";
-
-"Choose sound" = "Choose sound";
-
-"Camera Roll" = "Camera Roll";
-
-"Project" = "Project";
-
-"Cancel" = "Annuleren";
-
-"Delete" = "verwijderen";
-
-"Play" = "Play";
-
-"Download" = "Download";
-
-"More" = "More";
-
-"Delete" = "verwijderen";
-
-"Pocket Code" = "Pocket Code";
-
-"Add object" = "Add object";
-
-"Add image" = "Add image";
-
-"Rename program" = "Rename program";
-
-"Set description" = "Set description";
-
-"Rename object" = "Rename object";
-
-"Rename image" = "Rename image";
-
-"Rename sound" = "Rename sound";
-
-"Enter your sound name here..." = "Enter your sound name here...";
-
-"Sound name" = "Sound name";
-
-"An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
-
-"No or invalid image name entered, try again." = "No or invalid image name entered, try again.";
-
-"No or invalid sound name entered, try again." = "No or invalid sound name entered, try again.";
-
-"An image with the same name already exists, try again." = "An image with the same name already exists, try again.";
-
-"Enter your program description here..." = "Enter your program description here...";
-
-"Can't restart program!" = "Can't restart program!";
-
-"Screenshot saved to Camera Roll" = "Screenshot saved to Camera Roll";
-
-"Screenshot saved to project" = "Screenshot saved to project";
-
-"New program" = "Nieuw programma";
-
-"Delete this program" = "Delete this program";
-
-"Delete these objects" = "Delete these objects";
-
-"Delete this object" = "Delete this object";
-
-"Delete these programs" = "Delete these programs";
-
-"Delete this program" = "Delete this program";
-
-"Delete these looks" = "Delete these looks";
-
-"Delete this look" = "Delete this look";
-
-"Delete these sounds" = "Delete these sounds";
-
-"Delete this sound" = "Delete this sound";
-
-"Not enough free memory to download this program. Please delete some of your programs" = "Not enough free memory to download this program. Please delete some of your programs";
-
-"Enter your program name here..." = "Enter your program name here...";
-
-"Enter your object name here..." = "Enter your object name here...";
-
-"Enter your image name here..." = "Enter your image name here...";
-
-"This feature is coming soon!" = "This feature is coming soon!";
-
-"Pocket Code for iOS" = "Pocket Code for iOS";
-
-"Program name" = "Program name";
-
-"Object name" = "Object name";
-
-"Image name" = "Image name";
-
-"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
-
-"No input or the input is too short. Please enter at least %lu characters." = "No input or the input is too short. Please enter at least %lu characters.";
-
-"No or invalid program name entered, try again." = "No or invalid program name entered, try again.";
-
+/* No comment provided by engineer. */
 "A program with the same name already exists, try again." = "A program with the same name already exists, try again.";
 
-"No or invalid object name entered, try again." = "No or invalid object name entered, try again.";
+/* No comment provided by engineer. */
+"About Catrobat" = "Over Catrobat";
 
-"Unable to load program!" = "Unable to load program!";
+/* No comment provided by engineer. */
+"About Pocket Code" = "Over Pocket Code";
 
-"This action can not be undone!" = "This action can not be undone!";
+/* No comment provided by engineer. */
+"Add image" = "Add image";
 
-"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
+/* Action sheet menu title */
+"Add look" = "Add look";
 
-"No internet connection available." = "No internet connection available.";
+/* No comment provided by engineer. */
+"Add object" = "Add object";
 
-"OK" = "OK";
+/* Action sheet menu title */
+"Add sound" = "Add sound";
 
-"Cancel" = "Annuleren";
+/* paint */
+"Alpha" = "Alpha";
 
-"Yes" = "Ja";
+/* No comment provided by engineer. */
+"An image with the same name already exists, try again." = "An image with the same name already exists, try again.";
 
-"No" = "Nee";
+/* No comment provided by engineer. */
+"An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
 
-"Delete" = "verwijderen";
+/* No comment provided by engineer. */
+"Animate Brick" = "Animate Brick";
 
-"Loading" = "Loading";
+/* No comment provided by engineer. */
+"Apr" = "Apr";
 
-"Description" = "Omschrijving";
+/* No comment provided by engineer. */
+"April" = "april";
 
-"No Description available" = "No Description available";
+/* No comment provided by engineer. */
+"Aug" = "Aug";
 
+/* No comment provided by engineer. */
+"August" = "augustus";
+
+/* No comment provided by engineer. */
 "Author" = "Author";
 
-"Downloads" = "Downloads";
+/* No comment provided by engineer. */
+"Back" = "Terug";
 
-"Uploaded" = "Uploaded";
-
-"Version" = "Version";
-
-"Information" = "Information";
-
-"Views" = "Views";
-
-"Measure" = "Measure";
-
-"Size" = "Size";
-
+/* No comment provided by engineer. */
 "Background" = "Achtergrond";
 
-"Object" = "Object";
+/* No comment provided by engineer. */
+"Backgrounds" = "Achtergronden";
 
-"Objects" = "Objecten";
+/* paint */
+"Blue" = "Blue";
 
-"Scripts" = "Scripts";
-
+/* No comment provided by engineer. */
 "Bricks" = "Bricks";
 
-"Looks" = "Uiterlijk";
-
-"Sounds" = "Geluiden";
-
-"Last access" = "Last access";
-
-"Size" = "Size";
-
-"Length" = "Length";
-
-"Back" = "Terug";
-
-"Restart" = "Opnieuw starten";
-
-"Continue" = "Doorgaan";
-
-"Screenshot" = "Schermafdruk";
-
-"Grid" = "Grid";
-
-"Most Downloaded" = "Most Downloaded";
-
-"Most Viewed" = "Most Viewed";
-
-"Newest" = "Newest";
-
-"Control" = "Besturen";
-
-"Motion" = "Bewegen";
-
-"Sound" = "Geluid";
-
-"Looks" = "Uiterlijk";
-
-"Variables" = "Variabelen";
-
-"When program started" = "Wanneer programma start";
-
-"When tapped" = "Wanneer aangeklikt";
-
-"Wait %@ second(s)" = "Wait %@ second(s)";
-
-"When I receive\n%@" = "When I receive\n%@";
-
-"Broadcast\n%@" = "Broadcast\n%@";
-
+/* No comment provided by engineer. */
 "Broadcast and wait\n%@" = "Broadcast and wait\n%@";
 
-"Note %@" = "Note %@";
+/* No comment provided by engineer. */
+"Broadcast\n%@" = "Broadcast\n%@";
 
-"Forever" = "Herhaal";
+/* paint */
+"brush" = "brush";
 
-"If %@ is true then" = "If %@ is true then";
+/* No comment provided by engineer. */
+"By switching to the section \"Explore\" you can discover much more interesting stuff." = "By switching to the section \"Explore\" you can discover much more interesting stuff.";
 
-"Else" = "Anders";
-
-"If End" = "If End";
-
-"Repeat %@ times" = "Repeat %@ times";
-
-"End of Loop" = "End of Loop";
-
-"Place at\nX: %@ Y: %@" = "Place at\nX: %@ Y: %@";
-
-"Set X to %@" = "Set X to %@";
-
-"Set Y to %@" = "Set Y to %@";
-
-"Change X by %@" = "Change X by %@";
-
-"Change Y by %@" = "Change Y by %@";
-
-"If on edge, bounce" = "Aan de rand, keer om";
-
-"Move %@ step(s)" = "Move %@ step(s)";
-
-"Turn left %@°" = "Turn left %@°";
-
-"Turn right %@°" = "Turn right %@°";
-
-"Point in direction %@°" = "Point in direction %@°";
-
-"Point towards\n%@" = "Point towards\n%@";
-
-"Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %@ second(s)\nto X: %@ Y: %@";
-
-"Go back %@ layer(s)" = "Go back %@ layer(s)";
-
-"Go to front" = "Ga naar voorgrond";
-
-"Switch to look\n%@" = "Switch to look\n%@";
-
-"Set background\n%@" = "Set background\n%@";
-
-"Next look" = "Volgende uiterlijk";
-
-"Next background" = "Volgende achtergrond";
-
-"Set size to %@\%" = "Set size to %@\%";
-
-"Change size by %@\%" = "Change size by %@\%";
-
-"Hide" = "Verdwijn";
-
-"Show" = "Verschijn";
-
-"Set transparency\nto %@\%" = "Set transparency\nto %@\%";
-
-"Change transparency\nby %@\%" = "Change transparency\nby %@\%";
-
-"Set brightness to %@\%" = "Set brightness to %@\%";
-
-"Change brightness\nby %@\%" = "Change brightness\nby %@\%";
-
-"Clear graphic effects" = "Grafische effecten verwijderen";
-
-"Start sound\n%@" = "Start sound\n%@";
-
-"Stop all sounds" = "Stop alle geluiden";
-
-"Set volume to %@\%" = "Set volume to %@\%";
-
-"Change volume by %@" = "Change volume by %@";
-
-"Speak %@" = "Speak %@";
-
-"Set variable\n%@\nto %@" = "Set variable\n%@\nto %@";
-
-"Change variable\n%@\nby %@" = "Change variable\n%@\nby %@";
-
-"Play" = "Play";
-
-"Recents" = "Recents";
-
-"Featured" = "Featured";
-
-"Search" = "Search";
-
-"Screenshot" = "Schermafdruk";
-
-"Back" = "Terug";
-
-"Restart" = "Opnieuw starten";
-
-"Grid" = "Grid";
-
-"Edit" = "Edit";
-
-"Background" = "Achtergrond";
-
-"Objects" = "Objecten";
-
-"Object" = "Object";
-
-"My Object" = "Mijn object";
-
-"Delete" = "verwijderen";
-
-"Cancel" = "Annuleren";
-
-"Add Object" = "Add Object";
-
-"Object name:" = "Object name:";
-
-"Save Screenshot to:" = "Save Screenshot to:";
-
+/* No comment provided by engineer. */
 "Camera Roll" = "Camera Roll";
 
+/* No comment provided by engineer. */
+"Can't restart program!" = "Can't restart program!";
+
+/* No comment provided by engineer. */
+"Cancel" = "Annuleren";
+
+/* No comment provided by engineer. */
+"Categories" = "Categorieën";
+
+/* No comment provided by engineer. */
+"Change brightness\nby %@\%" = "Change brightness\nby %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Change size by %@\%" = "Change size by %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Change transparency\nby %@\%" = "Change transparency\nby %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Change variable\n%@\nby %@" = "Change variable\n%1$@\nby %2$@";
+
+/* No comment provided by engineer. */
+"Change volume by %@" = "Change volume by %@";
+
+/* No comment provided by engineer. */
+"Change X by %@" = "Change X by %@";
+
+/* No comment provided by engineer. */
+"Change Y by %@" = "Change Y by %@";
+
+/* No comment provided by engineer. */
+"Choose image" = "Kies afbeelding";
+
+/* No comment provided by engineer. */
+"Choose sound" = "Choose sound";
+
+/* No comment provided by engineer. */
+"Clear graphic effects" = "Grafische effecten verwijderen";
+
+/* No comment provided by engineer. */
+"Close" = "Sluiten";
+
+/* No comment provided by engineer. */
+"Compute" = "Berekenen";
+
+/* No comment provided by engineer. */
+"Computed result is %.2f" = "Computed result is %.2f";
+
+/* No comment provided by engineer. */
+"Computed result is FALSE" = "Computed result is FALSE";
+
+/* No comment provided by engineer. */
+"Computed result is TRUE" = "Computed result is TRUE";
+
+/* No comment provided by engineer. */
+"Continue" = "Doorgaan";
+
+/* No comment provided by engineer. */
+"Control" = "Besturen";
+
+/* No comment provided by engineer. */
+"Copy" = "Kopiëren";
+
+/* No comment provided by engineer. */
+"Copy Brick" = "Kopieer steen";
+
+/* No comment provided by engineer. */
+"Copy program" = "Kopieer programma";
+
+/* paint */
+"crop" = "crop";
+
+/* No comment provided by engineer. */
+"Dec" = "Dec";
+
+/* No comment provided by engineer. */
+"December" = "december";
+
+/* No comment provided by engineer. */
+"Delete" = "verwijderen";
+
+/* No comment provided by engineer. */
+"Delete Brick" = "Verwijder steen";
+
+/* No comment provided by engineer. */
+"Delete Looks" = "Delete Looks";
+
+/* No comment provided by engineer. */
+"Delete Objects" = "Delete Objects";
+
+/* No comment provided by engineer. */
+"Delete Programs" = "Delete Programs";
+
+/* No comment provided by engineer. */
+"Delete Script" = "Verwijder script";
+
+/* No comment provided by engineer. */
+"Delete Sounds" = "Delete Sounds";
+
+/* No comment provided by engineer. */
+"Delete this look" = "Delete this look";
+
+/* No comment provided by engineer. */
+"Delete this object" = "Delete this object";
+
+/* No comment provided by engineer. */
+"Delete this program" = "Delete this program";
+
+/* No comment provided by engineer. */
+"Delete this sound" = "Delete this sound";
+
+/* No comment provided by engineer. */
+"Description" = "Omschrijving";
+
+/* No comment provided by engineer. */
+"Details" = "Details";
+
+/* paint */
+"Discard & Close" = "Discard & Close";
+
+/* paint */
+"Do you really want to delete the current drawing?" = "Do you really want to delete the current drawing?";
+
+/* paint */
+"Do you want to save the changes" = "Do you want to save the changes";
+
+/* No comment provided by engineer. */
+"Done" = "Done";
+
+/* No comment provided by engineer. */
+"Download" = "Downloaden";
+
+/* No comment provided by engineer. */
+"Downloads" = "Downloads";
+
+/* No comment provided by engineer. */
+"Draw new image" = "Teken een nieuwe afbeelding";
+
+/* No comment provided by engineer. */
+"Edit" = "Edit";
+
+/* No comment provided by engineer. */
+"Edit Formula" = "Formule bewerken";
+
+/* Action sheet menu title */
+"Edit Look" = "Edit Look";
+
+/* Action sheet menu title */
+"Edit Looks" = "Edit Looks";
+
+/* No comment provided by engineer. */
+"Edit Mode" = "Edit Mode";
+
+/* No comment provided by engineer. */
+"Edit Object" = "Edit Object";
+
+/* No comment provided by engineer. */
+"Edit Program" = "Edit Program";
+
+/* No comment provided by engineer. */
+"Edit Programs" = "Edit Programs";
+
+/* Action sheet menu title */
+"Edit Sound" = "Edit Sound";
+
+/* Action sheet menu title */
+"Edit Sounds" = "Edit Sounds";
+
+/* paint */
+"ellipse / circle" = "ellipse / circle";
+
+/* No comment provided by engineer. */
+"Else" = "Anders";
+
+/* No comment provided by engineer. */
+"End of Loop" = "End of Loop";
+
+/* Placeholder for add image-name input field */
+"Enter your image name here..." = "Enter your image name here...";
+
+/* Placeholder for add object-name input field */
+"Enter your object name here..." = "Enter your object name here...";
+
+/* Placeholder for program-description input field */
+"Enter your program description here..." = "Enter your program description here...";
+
+/* Placeholder for program-name input field */
+"Enter your program name here..." = "Enter your program name here...";
+
+/* Placeholder for add sound-name input field */
+"Enter your sound name here..." = "Enter your sound name here...";
+
+/* paint */
+"eraser" = "eraser";
+
+/* No comment provided by engineer. */
+"Error" = "Fout";
+
+/* No comment provided by engineer. */
+"Explore" = "Gemeenschap";
+
+/* No comment provided by engineer. */
+"Explore apps" = "Explore apps";
+
+/* No comment provided by engineer. */
+"Featured Programs" = "Featured Programs";
+
+/* No comment provided by engineer. */
+"Feb" = "Feb";
+
+/* No comment provided by engineer. */
+"February" = "februari";
+
+/* paint */
+"fill" = "fill";
+
+/* No comment provided by engineer. */
+"Flashlight off" = "Flashlight off";
+
+/* No comment provided by engineer. */
+"Flashlight on" = "Flashlight on";
+
+/* No comment provided by engineer. */
+"Forever" = "Herhaal";
+
+/* No comment provided by engineer. */
+"Forgot password" = "Forgot password";
+
+/* No comment provided by engineer. */
+"Formula too long!" = "Formule te lang! Repareer of druk opnieuw om alle wijzigingen ongedaan te maken.";
+
+/* No comment provided by engineer. */
+"Fr" = "Fr";
+
+/* No comment provided by engineer. */
+"Friday" = "Friday";
+
+/* No comment provided by engineer. */
+"From Camera" = "Van camera";
+
+/* No comment provided by engineer. */
+"Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %1$@ second(s)\nto X: %2$@ Y: %3$@";
+
+/* No comment provided by engineer. */
+"Go back %@ layer(s)" = "Go back %@ layer(s)";
+
+/* No comment provided by engineer. */
+"Go to front" = "Ga naar voorgrond";
+
+/* paint */
+"Green" = "Green";
+
+/* No comment provided by engineer. */
+"Grid" = "Grid";
+
+/* No comment provided by engineer. */
+"Help" = "Help";
+
+/* No comment provided by engineer. */
+"Hide" = "Verdwijn";
+
+/* No comment provided by engineer. */
+"Hide Details" = "Details verbergen";
+
+/* No comment provided by engineer. */
+"If %@ is true then" = "If %@ is true then";
+
+/* No comment provided by engineer. */
+"If End" = "If End";
+
+/* No comment provided by engineer. */
+"If on edge, bounce" = "Aan de rand, keer om";
+
+/* paint */
+"image" = "image";
+
+/* No comment provided by engineer. */
+"Image name" = "Image name";
+
+/* No comment provided by engineer. */
+"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.";
+
+/* No comment provided by engineer. */
+"Information" = "Information";
+
+/* No comment provided by engineer. */
+"Invalid URL given!" = "Invalid URL given!";
+
+/* No comment provided by engineer. */
+"Jan" = "Jan";
+
+/* No comment provided by engineer. */
+"January" = "januari";
+
+/* No comment provided by engineer. */
+"Jul" = "Jul";
+
+/* No comment provided by engineer. */
+"July" = "juli";
+
+/* No comment provided by engineer. */
+"Jun" = "Jun";
+
+/* No comment provided by engineer. */
+"June" = "juni";
+
+/* No comment provided by engineer. */
+"Last access" = "Last access";
+
+/* No comment provided by engineer. */
+"Length" = "Length";
+
+/* paint */
+"line" = "line";
+
+/* No comment provided by engineer. */
+"Loading" = "Loading";
+
+/* No comment provided by engineer. */
+"Logic" = "Logica";
+
+/* No comment provided by engineer. */
+"Login" = "Inloggen";
+
+/* No comment provided by engineer. */
+"Looks" = "Uiterlijk";
+
+/* No comment provided by engineer. */
+"Mar" = "Mar";
+
+/* No comment provided by engineer. */
+"March" = "maart";
+
+/* No comment provided by engineer. */
+"Math" = "Math";
+
+/* No comment provided by engineer. */
+"May" = "mei";
+
+/* No comment provided by engineer. */
+"Measure" = "Measure";
+
+/* paint */
+"Menu" = "Menu";
+
+/* paint */
+"mirror" = "mirror";
+
+/* No comment provided by engineer. */
+"Mo" = "Mo";
+
+/* Prefix of default catrobat program object names (except background object) */
+"Mole" = "Mol";
+
+/* No comment provided by engineer. */
+"Monday" = "Monday";
+
+/* No comment provided by engineer. */
+"More" = "More";
+
+/* No comment provided by engineer. */
+"Most Downloaded" = "Most Downloaded";
+
+/* No comment provided by engineer. */
+"Most Viewed" = "Most Viewed";
+
+/* No comment provided by engineer. */
+"Motion" = "Bewegen";
+
+/* No comment provided by engineer. */
+"Move %@ step(s)" = "Move %@ step(s)";
+
+/* Name of the default catrobat program */
+"My first program" = "Mijn eerste programma";
+
+/* Default title of imported photo from camera (taken by camera) */
+"My Image" = "My Image";
+
+/* Title for first (default) object */
+"My Object" = "Mijn object";
+
+/* No comment provided by engineer. */
+"Name already exists. Please choose another" = "Name already exists. Please choose another";
+
+/* No comment provided by engineer. */
+"New" = "Nieuw";
+
+/* paint */
+"New Canvas" = "New Canvas";
+
+/* No comment provided by engineer. */
+"New Program" = "New Program";
+
+/* No comment provided by engineer. */
+"New Variable" = "Nieuwe variabele";
+
+/* No comment provided by engineer. */
+"Newest" = "Newest";
+
+/* No comment provided by engineer. */
+"Next background" = "Volgende achtergrond";
+
+/* No comment provided by engineer. */
+"Next look" = "Volgende uiterlijk";
+
+/* No comment provided by engineer. */
+"No" = "Nee";
+
+/* No comment provided by engineer. */
+"No Description available" = "No Description available";
+
+/* No comment provided by engineer. */
+"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
+
+/* No comment provided by engineer. */
+"No input or the input is too short. Please enter at least %lu character(s)." = "No input or the input is too short. Please enter at least %lu character(s).";
+
+/* No comment provided by engineer. */
+"No internet connection available." = "No internet connection available.";
+
+/* No comment provided by engineer. */
+"No or invalid image name entered, try again." = "No or invalid image name entered, try again.";
+
+/* No comment provided by engineer. */
+"No or invalid sound name entered, try again." = "No or invalid sound name entered, try again.";
+
+/* No comment provided by engineer. */
+"No search results" = "No search results";
+
+/* No comment provided by engineer. */
+"Not enough free memory to download this program. Please delete some of your programs" = "Not enough free memory to download this program. Please delete some of your programs";
+
+/* No comment provided by engineer. */
+"Not enough Memory" = "Not enough Memory";
+
+/* No comment provided by engineer. */
+"Note %@" = "Note %@";
+
+/* paint */
+"Nothing to crop!" = "Nothing to crop!";
+
+/* No comment provided by engineer. */
+"Nov" = "Nov";
+
+/* No comment provided by engineer. */
+"November" = "november";
+
+/* No comment provided by engineer. */
+"Numbers" = "Numbers";
+
+/* No comment provided by engineer. */
+"object" = "object";
+
+/* No comment provided by engineer. */
+"Object" = "Object";
+
+/* No comment provided by engineer. */
+"Object name" = "Objectnaam";
+
+/* No comment provided by engineer. */
+"Objects" = "Objecten";
+
+/* No comment provided by engineer. */
+"Oct" = "Oct";
+
+/* No comment provided by engineer. */
+"October" = "oktober";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"only 15 characters allowed" = "only 15 characters allowed";
+
+/* No comment provided by engineer. */
+"Password" = "Password";
+
+/* paint */
+"pipette" = "pipette";
+
+/* No comment provided by engineer. */
+"Place at\nX: %@ Y: %@" = "Place at\nX: %1$@ Y: %2$@";
+
+/* No comment provided by engineer. */
+"Play" = "Play";
+
+/* paint */
+"Please pick an item" = "Please pick an item";
+
+/* No comment provided by engineer. */
+"Pocket Code" = "Pocket Code";
+
+/* No comment provided by engineer. */
+"Pocket Code for iOS" = "Pocket Code for iOS";
+
+/* No comment provided by engineer. */
+"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:";
+
+/* No comment provided by engineer. */
+"Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on." = "Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on.";
+
+/* No comment provided by engineer. */
+"Pocket Code Recorder" = "Pocket Code-recorder";
+
+/* No comment provided by engineer. */
+"Pocket Code Source Code License" = "Pocket Code-licentie";
+
+/* paint */
+"Pocket Paint" = "Pocket Paint";
+
+/* No comment provided by engineer. */
+"Point in direction %@°" = "Point in direction %@°";
+
+/* No comment provided by engineer. */
+"Point towards\n%@" = "Point towards\n%@";
+
+/* paint */
+"pointer" = "pointer";
+
+/* No comment provided by engineer. */
+"program" = "program";
+
+/* No comment provided by engineer. */
+"Program name" = "Program name";
+
+/* No comment provided by engineer. */
+"Programs" = "Programma's";
+
+/* No comment provided by engineer. */
 "Project" = "Project";
+
+/* No comment provided by engineer. */
+"Rate Us" = "Rate Us";
+
+/* No comment provided by engineer. */
+"Recording" = "Recording";
+
+/* paint */
+"rectangle / square" = "rectangle / square";
+
+/* paint */
+"Red" = "Red";
+
+/* No comment provided by engineer. */
+"Rename" = "Hernoemen";
+
+/* No comment provided by engineer. */
+"Rename image" = "Rename image";
+
+/* No comment provided by engineer. */
+"Rename object" = "Rename object";
+
+/* No comment provided by engineer. */
+"Rename program" = "Rename program";
+
+/* No comment provided by engineer. */
+"Rename sound" = "Rename sound";
+
+/* No comment provided by engineer. */
+"Repeat %@ times" = "Repeat %@ times";
+
+/* No comment provided by engineer. */
+"Report as inappropriate" = "Melden als ongepast";
+
+/* No comment provided by engineer. */
+"Restart" = "Opnieuw starten";
+
+/* No comment provided by engineer. */
+"Result" = "Result";
+
+/* paint */
+"rotate" = "rotate";
+
+/* paint */
+"round" = "afgerond";
+
+/* No comment provided by engineer. */
+"Sa" = "Sa";
+
+/* No comment provided by engineer. */
+"Saturday" = "Saturday";
+
+/* paint */
+"Save & Close Paint" = "Save & Close Paint";
+
+/* Action sheet menu title */
+"Save Screenshot to" = "Save Screenshot to";
+
+/* paint */
+"Save to CameraRoll" = "Save to CameraRoll";
+
+/* No comment provided by engineer. */
+"Save to PocketCode" = "Save to PocketCode";
+
+/* No comment provided by engineer. */
+"Saved" = "Saved";
+
+/* No comment provided by engineer. */
+"Screenshot" = "Schermafdruk";
+
+/* No comment provided by engineer. */
+"Screenshot saved to Camera Roll" = "Screenshot saved to Camera Roll";
+
+/* No comment provided by engineer. */
+"Screenshot saved to project" = "Screenshot saved to project";
+
+/* No comment provided by engineer. */
+"Scripts" = "Scripts";
+
+/* No comment provided by engineer. */
+"Select All" = "Select All";
+
+/* No comment provided by engineer. */
+"Select Brick Category" = "Select Brick Category";
+
+/* No comment provided by engineer. */
+"Select logical operator" = "Select logical operator";
+
+/* No comment provided by engineer. */
+"Select mathematical function" = "Select mathematical function";
+
+/* paint */
+"Select option:" = "Select option:";
+
+/* No comment provided by engineer. */
+"Sensors" = "Sensoren";
+
+/* No comment provided by engineer. */
+"Sep" = "Sep";
+
+/* No comment provided by engineer. */
+"September" = "september";
+
+/* No comment provided by engineer. */
+"Set background\n%@" = "Set background\n%@";
+
+/* No comment provided by engineer. */
+"Set brightness to %@\%" = "Set brightness to %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Set description" = "Vul omschrijving in";
+
+/* No comment provided by engineer. */
+"Set size to %@\%" = "Set size to %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Set transparency\nto %@\%" = "Set transparency\nto %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Set variable\n%@\nto %@" = "Set variable\n%1$@\nto %2$@";
+
+/* No comment provided by engineer. */
+"Set volume to %@\%" = "Set volume to %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Set X to %@" = "Set X to %@";
+
+/* No comment provided by engineer. */
+"Set Y to %@" = "Set Y to %@";
+
+/* No comment provided by engineer. */
+"Show" = "Verschijn";
+
+/* No comment provided by engineer. */
+"Show Details" = "Details tonen";
+
+/* No comment provided by engineer. */
+"Size" = "Size";
+
+/* No comment provided by engineer. */
+"Skip" = "Skip";
+
+/* No comment provided by engineer. */
+"Slow Internet Connection!" = "Slow Internet Connection!";
+
+/* No comment provided by engineer. */
+"Sound" = "Geluid";
+
+/* No comment provided by engineer. */
+"Sound name" = "Sound name";
+
+/* No comment provided by engineer. */
+"Sounds" = "Geluiden";
+
+/* No comment provided by engineer. */
+"Speak %@" = "Speak %@";
+
+/* paint */
+"square" = "square";
+
+/* paint */
+"stamp" = "stamp";
+
+/* No comment provided by engineer. */
+"Start sound\n%@" = "Start sound\n%@";
+
+/* No comment provided by engineer. */
+"Stop all sounds" = "Stop alle geluiden";
+
+/* No comment provided by engineer. */
+"Su" = "Su";
+
+/* No comment provided by engineer. */
+"Sunday" = "Sunday";
+
+/* No comment provided by engineer. */
+"Switch to look\n%@" = "Switch to look\n%@";
+
+/* No comment provided by engineer. */
+"Syntax Error!" = "Syntaxfout: Repareer of druk opnieuw om alle wijzigingen ongedaan te maken";
+
+/* No comment provided by engineer. */
+"Take" = "Take";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add %@" = "Tap \"+\" to add %@";
+
+/* No comment provided by engineer. */
+"Terms of Use" = "Terms of Use";
+
+/* No comment provided by engineer. */
+"Th" = "Th";
+
+/* No comment provided by engineer. */
+"The description contains invalid characters, try again." = "The description contains invalid characters, try again.";
+
+/* paint */
+"Thickness" = "Thickness";
+
+/* No comment provided by engineer. */
+"This action can not be undone!" = "This action can not be undone!";
+
+/* No comment provided by engineer. */
+"This feature is coming soon!" = "This feature is coming soon!";
+
+/* No comment provided by engineer. */
+"Thursday" = "Thursday";
+
+/* No comment provided by engineer. */
+"Today" = "Vandaag";
+
+/* No comment provided by engineer. */
+"Tu" = "Tu";
+
+/* No comment provided by engineer. */
+"Tuesday" = "Tuesday";
+
+/* No comment provided by engineer. */
+"Turn left %@°" = "Turn left %@°";
+
+/* No comment provided by engineer. */
+"Turn right %@°" = "Turn right %@°";
+
+/* No comment provided by engineer. */
+"Unable to load program!" = "Unable to load program!";
+
+/* No comment provided by engineer. */
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.";
+
+/* No comment provided by engineer. */
+"Unselect All" = "Unselect All";
+
+/* No comment provided by engineer. */
+"Upcoming version" = "Upcoming version";
+
+/* No comment provided by engineer. */
+"Upload" = "Uploaden";
+
+/* No comment provided by engineer. */
+"Uploaded" = "Uploaded";
+
+/* No comment provided by engineer. */
+"Username" = "Username";
+
+/* No comment provided by engineer. */
+"v" = "v";
+
+/* No comment provided by engineer. */
+"Variable name:" = "Variable name:";
+
+/* No comment provided by engineer. */
+"Variable type" = "Variable type";
+
+/* No comment provided by engineer. */
+"Variables" = "Variabelen";
+
+/* No comment provided by engineer. */
+"Version" = "Version";
+
+/* No comment provided by engineer. */
+"Vibrate %@ second(s)" = "Vibrate %@ second(s)";
+
+/* No comment provided by engineer. */
+"Views" = "Views";
+
+/* No comment provided by engineer. */
+"Wait %@ second(s)" = "Wait %@ second(s)";
+
+/* No comment provided by engineer. */
+"We" = "We";
+
+/* No comment provided by engineer. */
+"Wednesday" = "Wednesday";
+
+/* No comment provided by engineer. */
+"Welcome to Pocket Code" = "Welcome to Pocket Code";
+
+/* No comment provided by engineer. */
+"When I receive\n%@" = "When I receive\n%@";
+
+/* No comment provided by engineer. */
+"When program started" = "Wanneer programma start";
+
+/* No comment provided by engineer. */
+"When tapped" = "Wanneer aangeklikt";
+
+/* No comment provided by engineer. */
+"Yes" = "Ja";
+
+/* No comment provided by engineer. */
+"Yesterday" = "Gisteren";
+
+/* No comment provided by engineer. */
+"You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people.";
+
+/* No comment provided by engineer. */
+"You have already downloaded this program!" = "You have already downloaded this program!";
+
+/* paint */
+"zoom" = "zoom";
 

@@ -31,10 +31,11 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "Util.h"
 #import "LanguageTranslationDefines.h"
+#import "QuartzCore/QuartzCore.h"
 
-//Helper
+    //Helper
 #import "RGBAHelper.h"
-//Tools
+    //Tools
 #import "FillTool.h"
 #import "DrawTool.h"
 #import "LineTool.h"
@@ -58,7 +59,7 @@
 @property (nonatomic,strong) UIToolbar *toolBar;
 @property (nonatomic,strong) YKImageCropperView *cropperView;
 
-//Gestures
+    //Gestures
 @property (nonatomic,strong) UITapGestureRecognizer *fillRecognizer;
 
 @property (nonatomic,strong) UIBarButtonItem* colorBarButtonItem;
@@ -83,36 +84,36 @@
 
 - (void)viewDidLoad
 {
-  [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-  _red = 0.0/255.0;
-  _green = 0.0/255.0;
-  _blue = 0.0/255.0;
-  _thickness = 10.0;
-  _opacity = 1.0;
-//  enabled = YES;
-  _isEraser = NO;
-  _horizontal = NO;
-  _vertical = NO;
-  _ending = Round;
-  _activeAction = brush;
-  _degrees = 0;
-
-    self.actionTypeArray = @[@(brush),@(eraser),@(crop),@(pipette),@(mirror),@(image),@(line),@(rectangle),@(ellipse),@(stamp),@(rotate),@(zoom),@(pointer)];//,@(fillTool) is buggy 
-  
-  [self setupCanvas];
+    [super viewDidLoad];
+        // Do any additional setup after loading the view, typically from a nib.
+    _red = 0.0/255.0;
+    _green = 0.0/255.0;
+    _blue = 0.0/255.0;
+    _thickness = 10.0;
+    _opacity = 1.0;
+        //  enabled = YES;
+    _isEraser = NO;
+    _horizontal = NO;
+    _vertical = NO;
+    _ending = Round;
+    _activeAction = brush;
+    _degrees = 0;
+    
+    self.actionTypeArray = @[@(brush),@(eraser),@(crop),@(pipette),@(mirror),@(image),@(line),@(rectangle),@(ellipse),@(stamp),@(rotate),@(zoom),@(pointer),@(fillTool)];
+    
+    [self setupCanvas];
     [self setupTools];
-  [self setupGestures];
-  [self setupToolbar];
-  [self setupZoom];
-  [self setupUndoManager];
-  [self setupNavigationBar];
-  self.colorBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"color"] style:UIBarButtonItemStylePlain target:self action:@selector(colorAction)];
+    [self setupGestures];
+    [self setupToolbar];
+    [self setupZoom];
+    [self setupUndoManager];
+    [self setupNavigationBar];
+    self.colorBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"color"] style:UIBarButtonItemStylePlain target:self action:@selector(colorAction)];
         // disable swipe back gesture
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     }
-
+    
 }
 
 
@@ -125,6 +126,7 @@
             UIGraphicsEndImageContext();
             if (![self.saveView.image isEqual:blank] && ![self.saveView.image isEqual:self.editingImage]) {
                 [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
+                
             }
         }
             // reenable swipe back gesture
@@ -134,43 +136,49 @@
     }
 }
 
--(void)didMoveToParentViewController:(UIViewController *)parent
-{
-    NSLog(@"Moved,%@",self.navigationController.viewControllers);
-}
-
 - (void)didReceiveMemoryWarning
 {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
+    [super didReceiveMemoryWarning];
+        // Dispose of any resources that can be recreated.
 }
 
 #pragma mark initView
 
--(void)setupCanvas
+- (void)setupCanvas
 {
-  NSInteger height = (NSInteger)self.view.frame.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height;
-  CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, height);
-  self.drawView = [[UIImageView alloc] initWithFrame:rect];
-  self.saveView = [[UIImageView alloc] initWithFrame:rect];
-
-  self.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
-
-  self.helper = [[UIView alloc] initWithFrame:rect];
+    NSInteger height = (NSInteger)self.view.frame.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height;
+    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, height);
+    self.drawView = [[UIImageView alloc] initWithFrame:rect];
+    self.saveView = [[UIImageView alloc] initWithFrame:rect];
+    
+    self.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
+    
+    
+    self.helper = [[UIView alloc] initWithFrame:rect];
         //add blank image at the beginning
     if (self.editingImage) {
+        UIImage *image = self.editingImage;
+        UIGraphicsBeginImageContext(image.size);
+        [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
+        self.saveView.image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        self.editingImage = self.saveView.image;
         if ((self.editingImage.size.width <= self.view.bounds.size.width) && (self.editingImage.size.height <= self.view.bounds.size.height)) {
             self.helper.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
             self.drawView.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
             self.saveView.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
-        }else{
-            
-            self.helper.frame = self.view.bounds;
-            self.drawView.frame = self.view.bounds;
-            self.saveView.frame = self.view.bounds;
+        } else if ((self.editingImage.size.width <= 2*self.view.bounds.size.width) && (self.editingImage.size.height <= 2*self.view.bounds.size.height)) {
+            self.helper.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
+            self.drawView.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
+            self.saveView.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
+            [self.scrollView zoomToRect:CGRectMake(0, 0, 200, 400) animated:YES];
+        }else {
+            CGFloat height = self.editingImage.size.height*0.5;
+            CGFloat width = self.editingImage.size.width*0.5;
+            self.helper.frame = CGRectMake(0, 0, width, height);
+            self.drawView.frame = CGRectMake(0, 0, width, height);
+            self.saveView.frame = CGRectMake(0, 0, width, height);
         }
-
-        self.saveView.image = self.editingImage;
     } else {
         UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
         UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
@@ -183,7 +191,7 @@
     
 }
 
--(void)setupTools
+- (void)setupTools
 {
     self.drawTool = [[DrawTool alloc] initWithDrawViewCanvas:self];
     self.lineTool = [[LineTool alloc] initWithDrawViewCanvas:self];
@@ -199,7 +207,7 @@
     [self.helper addSubview:self.pointerTool.pointerView];
 }
 
--(void)setupGestures
+- (void)setupGestures
 {
     
     self.drawGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.drawTool action:@selector(draw:)];
@@ -221,20 +229,20 @@
     [self.view addGestureRecognizer:self.fillRecognizer];
     self.fillRecognizer.enabled = NO;
     
-
+    
 }
 
 
--(void)setupZoom
+- (void)setupZoom
 {
-  self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height, self.view.frame.size.width, self.view.frame.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height)];
-  self.scrollView.scrollEnabled = NO;
-  self.scrollView.maximumZoomScale = kMaxZoomScale;
-  self.scrollView.minimumZoomScale = kMinZoomScale;
-  self.scrollView.zoomScale = 1.0f;
-  self.scrollView.delegate = self;
-  [self.scrollView addSubview:self.helper];
-  [self.view addSubview:self.scrollView];
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height, self.view.frame.size.width, self.view.frame.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height)];
+    self.scrollView.scrollEnabled = NO;
+    self.scrollView.maximumZoomScale = kMaxZoomScale;
+    self.scrollView.minimumZoomScale = kMinZoomScale;
+    self.scrollView.zoomScale = 1.0f;
+    self.scrollView.delegate = self;
+    [self.scrollView addSubview:self.helper];
+    [self.view addSubview:self.scrollView];
     CGSize boundsSize = self.scrollView.bounds.size;
     CGRect frameToCenter = self.helper.frame;
         // center horizontally
@@ -244,403 +252,403 @@
     self.helper.frame = frameToCenter;
 }
 
--(void)setupToolbar
+- (void)setupToolbar
 {
-  [self.navigationController setToolbarHidden:NO];
-  self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-  self.navigationController.toolbar.barTintColor = [UIColor navBarColor];
-  self.navigationController.toolbar.tintColor = [UIColor lightOrangeColor];
-  self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-  [self updateToolbar];
-  
+    [self.navigationController setToolbarHidden:NO];
+    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+    self.navigationController.toolbar.barTintColor = [UIColor navBarColor];
+    self.navigationController.toolbar.tintColor = [UIColor lightOrangeColor];
+    self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    [self updateToolbar];
+    
 }
 
--(void)setupNavigationBar
+- (void)setupNavigationBar
 {
-  self.navigationController.navigationBarHidden = NO;
-  self.navigationController.navigationBar.tintColor = [UIColor lightOrangeColor];
-  self.navigationItem.title = @"Pocket Paint";
-  UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedPaintMenu
-                                                                 style:UIBarButtonItemStylePlain
-                                                                target:self
-                                                                action:@selector(editAction)];
-  self.navigationItem.rightBarButtonItem = editButton;
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.tintColor = [UIColor lightOrangeColor];
+    self.navigationItem.title = @"Pocket Paint";
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedPaintMenu
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(editAction)];
+    self.navigationItem.rightBarButtonItem = editButton;
 }
 
--(void)editAction
+- (void)editAction
 {
-  UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:kLocalizedPaintSelect delegate:self cancelButtonTitle:kLocalizedCancel destructiveButtonTitle:nil otherButtonTitles:
-                          kLocalizedPaintSave,
-                          kLocalizedPaintSaveClose,
-                          kLocalizedPaintDiscardClose,
-                          kLocalizedPaintNewCanvas,
-                          nil];
-  popup.tag = 1;
-  [popup showInView:[UIApplication sharedApplication].keyWindow];
+    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:kLocalizedPaintSelect delegate:self cancelButtonTitle:kLocalizedCancel destructiveButtonTitle:nil otherButtonTitles:
+                            kLocalizedPaintSave,
+                            kLocalizedPaintSaveClose,
+                            kLocalizedPaintDiscardClose,
+                            kLocalizedPaintNewCanvas,
+                            nil];
+    popup.tag = 1;
+    [popup showInView:[UIApplication sharedApplication].keyWindow];
 }
 
--(void)setupUndoManager
+- (void)setupUndoManager
 {
-  self.undoArray = [[NSMutableArray alloc] initWithCapacity:kStackSize];
-  self.redoArray = [[NSMutableArray alloc] initWithCapacity:kStackSize];
+    self.undoArray = [[NSMutableArray alloc] initWithCapacity:kStackSize];
+    self.redoArray = [[NSMutableArray alloc] initWithCapacity:kStackSize];
 }
 
 #pragma mark scrollView delegate
 
--(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
-  return self.helper;
+    return self.helper;
 }
 
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView
 {
-  CGSize boundsSize = scrollView.bounds.size;
-  CGRect frameToCenter = self.helper.frame;
-  
-  // center horizontally
-  if (frameToCenter.size.width < boundsSize.width)
-  {
-    frameToCenter.origin.x = (boundsSize.width - frameToCenter.size.width) / 2;
-  }
-  // center vertically
-  if (frameToCenter.size.height < boundsSize.height)
-  {
-    frameToCenter.origin.y = (boundsSize.height - frameToCenter.size.height) / 2 - 64;
-  }
+    CGSize boundsSize = scrollView.bounds.size;
+    CGRect frameToCenter = self.helper.frame;
+    
+        // center horizontally
+    if (frameToCenter.size.width < boundsSize.width)
+    {
+        frameToCenter.origin.x = (boundsSize.width - frameToCenter.size.width) / 2;
+    }
+        // center vertically
+    if (frameToCenter.size.height < boundsSize.height)
+    {
+        frameToCenter.origin.y = (boundsSize.height - frameToCenter.size.height) / 2 - 64;
+    }
     self.helper.frame = frameToCenter;
 }
 
 #pragma mark changing tool / toolbarItems
 
--(void)changeAction
+- (void)changeAction
 {
-  LCTableViewPickerControl *pickerView = [[LCTableViewPickerControl alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, kPickerControlAgeHeight) title:kLocalizedPaintPickItem value:self.activeAction items:self.actionTypeArray offset:CGPointMake(0, 0)];
-  [pickerView setDelegate:self];
-  self.navigationController.toolbarHidden = YES;
-  [pickerView setTag:0];
-  [self setBackAllActions];
-  self.drawGesture.enabled = NO;
-  self.lineToolGesture.enabled = NO;
-  [self.view addSubview:pickerView];
-  self.pipetteRecognizer.enabled = NO;
-  [pickerView showInView:self.scrollView];
+    LCTableViewPickerControl *pickerView = [[LCTableViewPickerControl alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, kPickerControlAgeHeight) title:kLocalizedPaintPickItem value:self.activeAction items:self.actionTypeArray offset:CGPointMake(0, 0)];
+    [pickerView setDelegate:self];
+    self.navigationController.toolbarHidden = YES;
+    [pickerView setTag:0];
+    [self setBackAllActions];
+    self.drawGesture.enabled = NO;
+    self.lineToolGesture.enabled = NO;
+    [self.view addSubview:pickerView];
+    self.pipetteRecognizer.enabled = NO;
+    [pickerView showInView:self.scrollView];
 }
 
--(void) updateToolbar
+- (void) updateToolbar
 {
-  UIBarButtonItem* action = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"tools"] style:UIBarButtonItemStylePlain target:self action:@selector(changeAction)];
-  self.handToolBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"hand"] style:UIBarButtonItemStylePlain target:self.handTool action:@selector(changeHandToolAction)];
-  self.undo = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"undo"] style:UIBarButtonItemStylePlain target:self action:@selector(undoAction)];
-  self.redo = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"redo"] style:UIBarButtonItemStylePlain target:self action:@selector(redoAction)];
-  [self.undoManager updateUndoToolBarItems];
-  
-  self.colorBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"color"] style:UIBarButtonItemStylePlain target:self action:@selector(colorAction)];
-  self.colorBarButtonItem.tintColor = [UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.opacity];
-  switch (self.activeAction) {
-    case brush:{
-      UIBarButtonItem* brushPicker = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"thickness"] style:UIBarButtonItemStylePlain target:self action:@selector(brushAction)];
-      self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,brushPicker,self.colorBarButtonItem,self.undo,self.redo, nil];
-      }
-      break;
-    case eraser:{
-      UIBarButtonItem* brushPicker = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"thickness"] style:UIBarButtonItemStylePlain target:self action:@selector(brushAction)];
-      self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,brushPicker,self.undo,self.redo, nil];
+    UIBarButtonItem* action = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"tools"] style:UIBarButtonItemStylePlain target:self action:@selector(changeAction)];
+    self.handToolBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"hand"] style:UIBarButtonItemStylePlain target:self.handTool action:@selector(changeHandToolAction)];
+    self.undo = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"undo"] style:UIBarButtonItemStylePlain target:self action:@selector(undoAction)];
+    self.redo = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"redo"] style:UIBarButtonItemStylePlain target:self action:@selector(redoAction)];
+    [self.undoManager updateUndoToolBarItems];
+    
+    self.colorBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"color"] style:UIBarButtonItemStylePlain target:self action:@selector(colorAction)];
+    self.colorBarButtonItem.tintColor = [UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.opacity];
+    switch (self.activeAction) {
+        case brush:{
+            UIBarButtonItem* brushPicker = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"thickness"] style:UIBarButtonItemStylePlain target:self action:@selector(brushAction)];
+            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,brushPicker,self.colorBarButtonItem,self.undo,self.redo, nil];
+        }
+            break;
+        case eraser:{
+            UIBarButtonItem* brushPicker = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"thickness"] style:UIBarButtonItemStylePlain target:self action:@selector(brushAction)];
+            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,brushPicker,self.undo,self.redo, nil];
+        }
+            break;
+        case crop:{
+            UIBarButtonItem* crop = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"crop_cut"] style:UIBarButtonItemStylePlain target:self action:@selector(cropAction)];
+            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,crop,self.undo,self.redo, nil];
+        }
+            break;
+        case pipette:{
+            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem, self.colorBarButtonItem,self.undo,self.redo, nil];
+        }
+            break;
+        case mirror:{
+            UIBarButtonItem* mirrorVertical = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"mirror_vertical"] style:UIBarButtonItemStylePlain target:self.mirrorRotationZoomTool action:@selector(mirrorVerticalAction)];
+            UIBarButtonItem* mirrorHorizontal = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"mirror_horizontal"] style:UIBarButtonItemStylePlain target:self.mirrorRotationZoomTool action:@selector(mirrorHorizontalAction)];
+            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,mirrorVertical,mirrorHorizontal,self.undo,self.redo, nil];
+        }
+            break;
+        case image:{
+            UIBarButtonItem* camera = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self.imagePicker action:@selector(cameraImagePickerAction)];
+            UIBarButtonItem* cameraRoll = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"image_select"] style:UIBarButtonItemStylePlain target:self.imagePicker action:@selector(imagePickerAction)];
+            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem , camera, cameraRoll,self.undo,self.redo, nil];
+        }
+            break;
+        case line:{
+            UIBarButtonItem* brushPicker = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"thickness"] style:UIBarButtonItemStylePlain target:self action:@selector(brushAction)];
+            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,brushPicker, self.colorBarButtonItem,self.undo,self.redo, nil];
+        }
+            break;
+        case ellipse:
+        case rectangle:
+        {
+            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,self.colorBarButtonItem,self.undo,self.redo, nil];
+        }
+            break;
+            
+        case stamp:
+        {
+            UIBarButtonItem* newStamp = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"stamp"] style:UIBarButtonItemStylePlain target:self action:@selector(stampAction)];
+            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,newStamp,self.undo,self.redo, nil];
+        }
+            break;
+        case rotate:{
+            UIBarButtonItem*rotateR = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"rotate_right"] style:UIBarButtonItemStylePlain target:self.mirrorRotationZoomTool action:@selector(rotateRight)];
+            UIBarButtonItem*rotateL = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"rotate_left"] style:UIBarButtonItemStylePlain target:self.mirrorRotationZoomTool action:@selector(rotateLeft)];
+            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,rotateL,rotateR,self.undo,self.redo, nil];
+        }
+            break;
+        case zoom:{
+            UIBarButtonItem* zoomIn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"zoom_in"] style:UIBarButtonItemStylePlain target:self.mirrorRotationZoomTool action:@selector(zoomIn)];
+            UIBarButtonItem* zoomOut = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"zoom_out"] style:UIBarButtonItemStylePlain target:self.mirrorRotationZoomTool action:@selector(zoomOut)];
+            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,zoomIn,zoomOut,self.undo,self.redo, nil];
+        }
+            break;
+        case fillTool:{
+            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,self.colorBarButtonItem,self.undo,self.redo, nil];
+        }
+            break;
+        case pointer:{
+            UIBarButtonItem* brushPicker = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"thickness"] style:UIBarButtonItemStylePlain target:self action:@selector(brushAction)];
+            self.pointerToolBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"pointer"] style:UIBarButtonItemStylePlain target:self.pointerTool action:@selector(drawingChangeAction)];
+            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,brushPicker,self.colorBarButtonItem,self.pointerToolBarButtonItem,self.undo,self.redo, nil];
+        }
+            break;
+        default:
+            break;
     }
-      break;
-    case crop:{
-      UIBarButtonItem* crop = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"crop_cut"] style:UIBarButtonItemStylePlain target:self action:@selector(cropAction)];
-      self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,crop,self.undo,self.redo, nil];
-    }
-      break;
-    case pipette:{
-      self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem, self.colorBarButtonItem,self.undo,self.redo, nil];
-    }
-      break;
-    case mirror:{
-      UIBarButtonItem* mirrorVertical = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"mirror_vertical"] style:UIBarButtonItemStylePlain target:self.mirrorRotationZoomTool action:@selector(mirrorVerticalAction)];
-      UIBarButtonItem* mirrorHorizontal = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"mirror_horizontal"] style:UIBarButtonItemStylePlain target:self.mirrorRotationZoomTool action:@selector(mirrorHorizontalAction)];
-      self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,mirrorVertical,mirrorHorizontal,self.undo,self.redo, nil];
-    }
-      break;
-    case image:{
-      UIBarButtonItem* camera = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self.imagePicker action:@selector(cameraImagePickerAction)];
-      UIBarButtonItem* cameraRoll = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"image_select"] style:UIBarButtonItemStylePlain target:self.imagePicker action:@selector(imagePickerAction)];
-      self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem , camera, cameraRoll,self.undo,self.redo, nil];
-    }
-      break;
-    case line:{
-      UIBarButtonItem* brushPicker = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"thickness"] style:UIBarButtonItemStylePlain target:self action:@selector(brushAction)];
-      self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,brushPicker, self.colorBarButtonItem,self.undo,self.redo, nil];
-    }
-      break;
-    case ellipse:
-    case rectangle:
-    {
-      self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,self.colorBarButtonItem,self.undo,self.redo, nil];
-    }
-      break;
-      
-    case stamp:
-    {
-      UIBarButtonItem* newStamp = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"stamp"] style:UIBarButtonItemStylePlain target:self action:@selector(stampAction)];
-      self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,newStamp,self.undo,self.redo, nil];
-    }
-      break;
-    case rotate:{
-        UIBarButtonItem*rotateR = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"rotate_right"] style:UIBarButtonItemStylePlain target:self.mirrorRotationZoomTool action:@selector(rotateRight)];
-        UIBarButtonItem*rotateL = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"rotate_left"] style:UIBarButtonItemStylePlain target:self.mirrorRotationZoomTool action:@selector(rotateLeft)];
-      self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,rotateL,rotateR,self.undo,self.redo, nil];
-    }
-      break;
-    case zoom:{
-      UIBarButtonItem* zoomIn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"zoom_in"] style:UIBarButtonItemStylePlain target:self.mirrorRotationZoomTool action:@selector(zoomIn)];
-      UIBarButtonItem* zoomOut = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"zoom_out"] style:UIBarButtonItemStylePlain target:self.mirrorRotationZoomTool action:@selector(zoomOut)];
-      self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,zoomIn,zoomOut,self.undo,self.redo, nil];
-    }
-      break;
-    case fillTool:{
-      self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,self.colorBarButtonItem,self.undo,self.redo, nil];
-    }
-      break;
-    case pointer:{
-      UIBarButtonItem* brushPicker = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"thickness"] style:UIBarButtonItemStylePlain target:self action:@selector(brushAction)];
-     self.pointerToolBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"pointer"] style:UIBarButtonItemStylePlain target:self.pointerTool action:@selector(drawingChangeAction)];
-    self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,brushPicker,self.colorBarButtonItem,self.pointerToolBarButtonItem,self.undo,self.redo, nil];
-    }
-      break;
-    default:
-      break;
-  }
-  self.navigationController.toolbarHidden = NO;
+    self.navigationController.toolbarHidden = NO;
 }
 
--(void)setBackAllActions
+- (void)setBackAllActions
 {
-  self.isEraser = NO;
-  self.resizeViewManager.gotImage = NO;
-  self.saveView.hidden = NO;
-  
-  self.drawGesture.enabled = NO;
-  self.lineToolGesture.enabled = NO;
-  self.pipetteRecognizer.enabled = NO;
-  self.fillRecognizer.enabled = NO;
-  
-  [self.handTool disableHandTool];
-  self.pointerToolBarButtonItem.tintColor = [UIColor lightOrangeColor];
-  if (self.resizeViewManager.resizeViewer.hidden == NO) {
-      [self.resizeViewManager hideResizeView];
-  }
-  if (self.pointerTool.pointerView.hidden == NO) {
-      [self.pointerTool disable];
-  }
-  if (self.cropperView) {
-    [self.cropperView removeFromSuperview];
-    self.cropperView = nil;
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
-    self.drawView.hidden = NO;
+    self.isEraser = NO;
+    self.resizeViewManager.gotImage = NO;
     self.saveView.hidden = NO;
-    self.helper.hidden = NO;
-//    enabled = YES;
-    for (UIGestureRecognizer *recognizer in [self.scrollView gestureRecognizers]) {
-      recognizer.enabled = YES;
+    
+    self.drawGesture.enabled = NO;
+    self.lineToolGesture.enabled = NO;
+    self.pipetteRecognizer.enabled = NO;
+    self.fillRecognizer.enabled = NO;
+    
+    [self.handTool disableHandTool];
+    self.pointerToolBarButtonItem.tintColor = [UIColor lightOrangeColor];
+    if (self.resizeViewManager.resizeViewer.hidden == NO) {
+        [self.resizeViewManager hideResizeView];
     }
-  }
+    if (self.pointerTool.pointerView.hidden == NO) {
+        [self.pointerTool disable];
+    }
+    if (self.cropperView) {
+        [self.cropperView removeFromSuperview];
+        self.cropperView = nil;
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
+        self.drawView.hidden = NO;
+        self.saveView.hidden = NO;
+        self.helper.hidden = NO;
+            //    enabled = YES;
+        for (UIGestureRecognizer *recognizer in [self.scrollView gestureRecognizers]) {
+            recognizer.enabled = YES;
+        }
+    }
 }
 
--(void)updateActiveAction:(id)item
+- (void)updateActiveAction:(id)item
 {
-  self.activeAction = [item intValue];
-  [self setBackAllActions];
-  
-  switch (self.activeAction) {
-    case brush:
-      self.drawGesture.enabled = YES;
-      break;
-    case eraser:
-      [self eraserAction];
-      break;
-    case crop:
-      [self cropInitAction];
-      break;
-    case pipette:
-      [self initPipette];
-      break;
-    case mirror:
-      break;
-    case image:
-      break;
-    case stamp:
-      [self initStamp];
-      [self.resizeViewManager showResizeView];
-      break;
-    case line:
-      self.lineToolGesture.enabled = YES;
-      break;
-    case rectangle:
-    case ellipse:
-      [self.resizeViewManager showResizeView];
-      [self initShape];
-      break;
-    case rotate:
-      break;
-    case fillTool:
-      [self initFillTool];
-      break;
-    case pointer:
-      [self initPointerTool];
-      break;
-    default:
-      break;
-  }
-
+    self.activeAction = [item intValue];
+    [self setBackAllActions];
+    
+    switch (self.activeAction) {
+        case brush:
+            self.drawGesture.enabled = YES;
+            break;
+        case eraser:
+            [self eraserAction];
+            break;
+        case crop:
+            [self cropInitAction];
+            break;
+        case pipette:
+            [self initPipette];
+            break;
+        case mirror:
+            break;
+        case image:
+            break;
+        case stamp:
+            [self initStamp];
+            [self.resizeViewManager showResizeView];
+            break;
+        case line:
+            self.lineToolGesture.enabled = YES;
+            break;
+        case rectangle:
+        case ellipse:
+            [self.resizeViewManager showResizeView];
+            [self initShape];
+            break;
+        case rotate:
+            break;
+        case fillTool:
+            [self initFillTool];
+            break;
+        case pointer:
+            [self initPointerTool];
+            break;
+        default:
+            break;
+    }
+    
 }
 
 #pragma mark undo/redo
 
 - (void)undoAction
 {
-
-  if (self.undoManager.canUndo) {
-    [self.undoManager undo];
-//    NSLog(@"undo");
-  }else{
-  }
-  [self.undoManager updateUndoToolBarItems];
- 
+    
+    if (self.undoManager.canUndo) {
+        [self.undoManager undo];
+            //    NSLog(@"undo");
+    }else{
+    }
+    [self.undoManager updateUndoToolBarItems];
+    
 }
 - (void)redoAction
 {
-  
-  if (self.undoManager.canRedo) {
-    [self.undoManager redo];
-//     NSLog(@"redo");
-  }else{
-  }
-  [self.undoManager updateUndoToolBarItems];
+    
+    if (self.undoManager.canRedo) {
+        [self.undoManager redo];
+            //     NSLog(@"redo");
+    }else{
+    }
+    [self.undoManager updateUndoToolBarItems];
 }
 
 #pragma mark initActions for tools
 
 - (void)eraserAction
 {
-  self.isEraser = YES;
-  self.drawView.image = self.saveView.image;
-  self.drawGesture.enabled = YES;
-  self.saveView.hidden = YES;
-}
-
--(void)cropInitAction
-{
-  if (self.saveView.image) {
-    self.cropperView = [[YKImageCropperView alloc] initWithImage:self.saveView.image andFrame:self.view.frame];
-    [self.view addSubview:self.cropperView];
-    self.drawView.hidden = YES;
+    self.isEraser = YES;
+    self.drawView.image = self.saveView.image;
+    self.drawGesture.enabled = YES;
     self.saveView.hidden = YES;
-    self.helper.hidden = YES;
-//    enabled = NO;
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    for (UIGestureRecognizer *recognizer in [self.scrollView gestureRecognizers]) {
-      recognizer.enabled = NO;
+}
+
+- (void)cropInitAction
+{
+    if (self.saveView.image) {
+        self.cropperView = [[YKImageCropperView alloc] initWithImage:self.saveView.image andFrame:self.view.frame];
+        [self.view addSubview:self.cropperView];
+        self.drawView.hidden = YES;
+        self.saveView.hidden = YES;
+        self.helper.hidden = YES;
+            //    enabled = NO;
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+        for (UIGestureRecognizer *recognizer in [self.scrollView gestureRecognizers]) {
+            recognizer.enabled = NO;
+        }
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kLocalizedInformation message:kLocalizedPaintNoCrop delegate:self cancelButtonTitle:kLocalizedOK otherButtonTitles:nil];
+        [alert show];
     }
-  } else {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kLocalizedInformation message:kLocalizedPaintNoCrop delegate:self cancelButtonTitle:kLocalizedOK otherButtonTitles:nil];
-    [alert show];
-  }
-  
+    
 }
 
--(void)initPipette
+- (void)initPipette
 {
-  //PipetteAction
-  self.pipetteRecognizer.enabled = YES;
+        //PipetteAction
+    self.pipetteRecognizer.enabled = YES;
 }
 
--(void)initFillTool
+- (void)initFillTool
 {
-  self.fillRecognizer.enabled = YES;
+    self.fillRecognizer.enabled = YES;
 }
 
--(void)initPointerTool
+- (void)initPointerTool
 {
-  self.pointerTool.drawingEnabled = NO;
-  self.pointerTool.pointerView.hidden = NO;
-  self.pointerTool.moveView.enabled = YES;
-  self.pointerTool.colorView.hidden = YES;
-  self.drawView.userInteractionEnabled = YES;
+    self.pointerTool.drawingEnabled = NO;
+    self.pointerTool.pointerView.hidden = NO;
+    self.pointerTool.moveView.enabled = YES;
+    self.pointerTool.colorView.hidden = YES;
+    self.drawView.userInteractionEnabled = YES;
 }
 
--(void)initShape
+- (void)initShape
 {
-  self.resizeViewManager.resizeViewer.frame = CGRectMake(0, 0, 150, 150);
-  self.resizeViewManager.resizeViewer.bounds = CGRectMake(self.resizeViewManager.resizeViewer.bounds.origin.x , self.resizeViewManager.resizeViewer.bounds.origin.y , 150 , 150);
-//  [self.scrollView zoomToRect:CGRectMake(0, 0, 500, 500) animated:YES];
-  [self.resizeViewManager updateShape];
+    self.resizeViewManager.resizeViewer.frame = CGRectMake(0, 0, 150, 150);
+    self.resizeViewManager.resizeViewer.bounds = CGRectMake(self.resizeViewManager.resizeViewer.bounds.origin.x , self.resizeViewManager.resizeViewer.bounds.origin.y , 150 , 150);
+        //  [self.scrollView zoomToRect:CGRectMake(0, 0, 500, 500) animated:YES];
+    [self.resizeViewManager updateShape];
 }
 
--(void)initStamp
+- (void)initStamp
 {
-//  self.resizeViewManager.border.hidden = NO;
-  self.resizeViewManager.resizeViewer.contentView.image = nil;
+        //  self.resizeViewManager.border.hidden = NO;
+    self.resizeViewManager.resizeViewer.contentView.image = nil;
 }
 
 #pragma mark tool actions
 
--(void)cropAction
+- (void)cropAction
 {
-  if ([self.cropperView superview] == self.view) {
-    UIImage* croppedImage = [self.cropperView editedImage];
-    self.drawView.image = nil;
-    CGSize boundsSize = croppedImage.size;
-    self.helper.frame = CGRectMake(0, 0, boundsSize.width*self.scrollView.zoomScale, boundsSize.height*self.scrollView.zoomScale);
-    self.saveView.frame =CGRectMake(0, 0, (NSInteger)boundsSize.width, (NSInteger)boundsSize.height);
-    self.drawView.frame =CGRectMake(0, 0, (NSInteger)boundsSize.width, (NSInteger)boundsSize.height);
-    self.saveView.image = croppedImage;
-    self.drawView.image = nil;
-    self.drawView.hidden = NO;
-    self.saveView.hidden = NO;
-    self.helper.hidden = NO;
-      //  enabled = YES;
-    [self.cropperView removeFromSuperview];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    for (UIGestureRecognizer *recognizer in [self.scrollView gestureRecognizers]) {
-      recognizer.enabled = YES;
+    if ([self.cropperView superview] == self.view) {
+        UIImage* croppedImage = [self.cropperView editedImage];
+        self.drawView.image = nil;
+        CGSize boundsSize = croppedImage.size;
+        self.helper.frame = CGRectMake(0, 0, boundsSize.width*self.scrollView.zoomScale, boundsSize.height*self.scrollView.zoomScale);
+        self.saveView.frame =CGRectMake(0, 0, (NSInteger)boundsSize.width, (NSInteger)boundsSize.height);
+        self.drawView.frame =CGRectMake(0, 0, (NSInteger)boundsSize.width, (NSInteger)boundsSize.height);
+        self.saveView.image = croppedImage;
+        self.drawView.image = nil;
+        self.drawView.hidden = NO;
+        self.saveView.hidden = NO;
+        self.helper.hidden = NO;
+            //  enabled = YES;
+        [self.cropperView removeFromSuperview];
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+        for (UIGestureRecognizer *recognizer in [self.scrollView gestureRecognizers]) {
+            recognizer.enabled = YES;
+        }
+        [self.scrollView zoomToRect:CGRectMake(0, 0, 500, 500) animated:YES];
+    } else {
+        [self cropInitAction];
     }
-    [self.scrollView zoomToRect:CGRectMake(0, 0, 500, 500) animated:YES];
-  } else {
-    [self cropInitAction];
-  }
-  
+    
 }
 
--(void)stampAction
+- (void)stampAction
 {
-  self.resizeViewManager.gotImage = NO;
-  self.resizeViewManager.resizeViewer.contentView.image = nil;
+    self.resizeViewManager.gotImage = NO;
+    self.resizeViewManager.resizeViewer.contentView.image = nil;
 }
 
 
 #pragma mark change color/thickness
 
--(void)colorAction
+- (void)colorAction
 {
-  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
-  ColorPickerViewController *cvc = [storyboard instantiateViewControllerWithIdentifier:@"colorPicker"];
-  cvc.delegate = self;
-  cvc.red = self.red;
-  cvc.green = self.green;
-  cvc.blue = self.blue;
-  cvc.opacity = self.opacity;
-//  self.view.userInteractionEnabled = NO;
-//  enabled = NO;
-  [self presentViewController:cvc animated:YES completion:nil];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
+    ColorPickerViewController *cvc = [storyboard instantiateViewControllerWithIdentifier:@"colorPicker"];
+    cvc.delegate = self;
+    cvc.red = self.red;
+    cvc.green = self.green;
+    cvc.blue = self.blue;
+    cvc.opacity = self.opacity;
+        //  self.view.userInteractionEnabled = NO;
+        //  enabled = NO;
+    [self presentViewController:cvc animated:YES completion:nil];
 }
 
--(void)brushAction
+- (void)brushAction
 {
-  BrushPickerViewController *bvc = [[BrushPickerViewController alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height*0.5, self.view.frame.size.width, self.view.frame.size.height*0.5) andController:self];
-  bvc.delegate = self;
-  
-  [self presentSemiViewController:bvc];
+    BrushPickerViewController *bvc = [[BrushPickerViewController alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height*0.5, self.view.frame.size.width, self.view.frame.size.height*0.5) andController:self];
+    bvc.delegate = self;
+    
+    [self presentSemiViewController:bvc];
 }
 
 
@@ -648,111 +656,111 @@
 
 #pragma mark tool helpers
 
--(void)setImagePickerImage:(UIImage*)image
+- (void)setImagePickerImage:(UIImage*)image
 {
-  CGFloat width = image.size.width;
-  CGFloat height = image.size.height;
-  
-  self.resizeViewManager.scale = 150.0f / width;
-  height = height * self.resizeViewManager.scale;
-  width = width * self.resizeViewManager.scale;
-  image = [RGBAHelper resizeImage:image withWidth:(int)width withHeight:(int)height];
-//  self.resizeViewManager.border.frame = CGRectMake(0, 0,
-//                                 (int)width,
-//                                 (int)height);
-  self.resizeViewManager.resizeViewer.bounds = CGRectMake(self.resizeViewManager.resizeViewer.bounds.origin.x, self.resizeViewManager.resizeViewer.bounds.origin.y,
-                                           (int)width,
-                                           (int)height);
-  
-  self.resizeViewManager.resizeViewer.contentView.image = image;
-  self.resizeViewManager.resizeViewer.contentMode = UIViewContentModeTop;
-  [self.resizeViewManager showResizeView];
+    CGFloat width = image.size.width;
+    CGFloat height = image.size.height;
+    
+    self.resizeViewManager.scale = 150.0f / width;
+    height = height * self.resizeViewManager.scale;
+    width = width * self.resizeViewManager.scale;
+    image = [RGBAHelper resizeImage:image withWidth:(int)width withHeight:(int)height];
+        //  self.resizeViewManager.border.frame = CGRectMake(0, 0,
+        //                                 (int)width,
+        //                                 (int)height);
+    self.resizeViewManager.resizeViewer.bounds = CGRectMake(self.resizeViewManager.resizeViewer.bounds.origin.x, self.resizeViewManager.resizeViewer.bounds.origin.y,
+                                                            (int)width,
+                                                            (int)height);
+    
+    self.resizeViewManager.resizeViewer.contentView.image = image;
+    self.resizeViewManager.resizeViewer.contentMode = UIViewContentModeTop;
+    [self.resizeViewManager showResizeView];
 }
 #pragma mark actionPicker delegate
 
 - (void)dismissPickerControl:(LCTableViewPickerControl*)view
 {
-  [view dismiss];
+    [view dismiss];
 }
 
 - (void)selectControl:(LCTableViewPickerControl*)view didSelectWithItem:(id)item
 {
-  /*
-   Check item is NSString or NSNumber , if it is necessary
-   */
-  if (view.tag == 0)
-  {
-    [self updateActiveAction:item];
-    [self updateToolbar];
-  }
-  
-  [self dismissPickerControl:view];
+    /*
+     Check item is NSString or NSNumber , if it is necessary
+     */
+    if (view.tag == 0)
+    {
+        [self updateActiveAction:item];
+        [self updateToolbar];
+    }
+    
+    [self dismissPickerControl:view];
 }
 
 - (void)selectControl:(LCTableViewPickerControl *)view didCancelWithItem:(id)item
 {
-  [self updateActiveAction:item];
-  [self updateToolbar];
-  [self dismissPickerControl:view];
+    [self updateActiveAction:item];
+    [self updateToolbar];
+    [self dismissPickerControl:view];
 }
 
 #pragma mark brush/color delegate
 
--(void)closeBrushPicker:(id)sender
+- (void)closeBrushPicker:(id)sender
 {
-  self.thickness = ((BrushPickerViewController*)sender).brush;
-  self.ending = ((BrushPickerViewController*)sender).brushEnding;
-//  self.view.userInteractionEnabled = YES;
-//  enabled = YES;
-  if (self.activeAction == pointer) {
-    [self.pointerTool updateColorView];
-  }
-  [self dismissSemiModalView];
+    self.thickness = ((BrushPickerViewController*)sender).brush;
+    self.ending = ((BrushPickerViewController*)sender).brushEnding;
+        //  self.view.userInteractionEnabled = YES;
+        //  enabled = YES;
+    if (self.activeAction == pointer) {
+        [self.pointerTool updateColorView];
+    }
+    [self dismissSemiModalView];
 }
--(void)closeColorPicker:(id)sender
+- (void)closeColorPicker:(id)sender
 {
-  self.red =((ColorPickerViewController*)sender).red;
-  self.green =((ColorPickerViewController*)sender).green;
-  self.blue =((ColorPickerViewController*)sender).blue;
-  self.opacity =((ColorPickerViewController*)sender).opacity;
-//  self.view.userInteractionEnabled = YES;
-  [self updateToolbar];
-//  enabled = YES;
-  if (self.activeAction == rectangle || self.activeAction == ellipse) {
-    [self.resizeViewManager updateShape];
-  }
-  if (self.activeAction == pointer) {
-    [self.pointerTool updateColorView];
-  }
-  [self dismissViewControllerAnimated:YES completion:nil];
+    self.red =((ColorPickerViewController*)sender).red;
+    self.green =((ColorPickerViewController*)sender).green;
+    self.blue =((ColorPickerViewController*)sender).blue;
+    self.opacity =((ColorPickerViewController*)sender).opacity;
+        //  self.view.userInteractionEnabled = YES;
+    [self updateToolbar];
+        //  enabled = YES;
+    if (self.activeAction == rectangle || self.activeAction == ellipse) {
+        [self.resizeViewManager updateShape];
+    }
+    if (self.activeAction == pointer) {
+        [self.pointerTool updateColorView];
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 #pragma mark actionSheetDelegate
 
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
-  
-  switch (popup.tag) {
-    case 1: {
-      switch (buttonIndex) {
-        case 0:
-          [self saveAction];
-          break;
-        case 1:
-          [self saveAndCloseAction];
-          break;
-        case 2:
-          [self discardAndCloseAction];
-          break;
-        case 3:
-          [self newCanvasAction];
-          break;
+    
+    switch (popup.tag) {
+        case 1: {
+            switch (buttonIndex) {
+                case 0:
+                    [self saveAction];
+                    break;
+                case 1:
+                    [self saveAndCloseAction];
+                    break;
+                case 2:
+                    [self discardAndCloseAction];
+                    break;
+                case 3:
+                    [self newCanvasAction];
+                    break;
+                default:
+                    break;
+            }
+            break;
+        }
         default:
-          break;
-      }
-      break;
+            break;
     }
-    default:
-      break;
-  }
 }
 
 
@@ -761,9 +769,10 @@
 
 - (void)saveAction
 {
-  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    UIImageWriteToSavedPhotosAlbum(self.saveView.image, nil, nil, nil);
-  });
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        UIImageWriteToSavedPhotosAlbum(self.saveView.image, nil, nil, nil);
+        
+    });
     NSDebug(@"saved to Camera Roll");
 }
 - (void)saveAndCloseAction
@@ -781,49 +790,49 @@
 }
 - (void)discardAndCloseAction
 {
-  NSDebug(@"don't save and close");
-  [self.navigationController popViewControllerAnimated:YES];
+    NSDebug(@"don't save and close");
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)newCanvasAction
 {
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kLocalizedPaintNewCanvas
-                                                  message:kLocalizedPaintAskNewCanvas
-                                                 delegate:self
-                                        cancelButtonTitle:kLocalizedYes
-                                        otherButtonTitles:kLocalizedNo, nil];
-  [alert show];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kLocalizedPaintNewCanvas
+                                                    message:kLocalizedPaintAskNewCanvas
+                                                   delegate:self
+                                          cancelButtonTitle:kLocalizedYes
+                                          otherButtonTitles:kLocalizedNo, nil];
+    [alert show];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-  if (buttonIndex == 0) {
-    UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
-    UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    self.saveView.image = blank;
-  }
+    if (buttonIndex == 0) {
+        UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
+        UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        self.saveView.image = blank;
+    }
 }
 
 #pragma mark Getter
 
--(id)getUndoManager
+- (id)getUndoManager
 {
-  return self.undoManager;
+    return self.undoManager;
 }
 
--(id)getResizeViewManager
+- (id)getResizeViewManager
 {
-  return self.resizeViewManager;
+    return self.resizeViewManager;
 }
 
--(id)getPointerTool
+- (id)getPointerTool
 {
-  return self.pointerTool;
+    return self.pointerTool;
 }
 
 #pragma mark - gestureRecognizer Delegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     if ([gestureRecognizer isKindOfClass:[UIPinchGestureRecognizer class]]) {
-         return NO;
+        return NO;
     } else if ([otherGestureRecognizer isKindOfClass:[UIPinchGestureRecognizer class]]) {
         return NO;
     }
@@ -832,16 +841,18 @@
 }
 
 #pragma mark - statusBar Delegate
--(UIStatusBarStyle)preferredStatusBarStyle{
-  return UIStatusBarStyleLightContent;
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 
 
 #pragma mark dealloc
 
--(void)dealloc
+- (void)dealloc
 {
+    self.fillTool = nil;
+    self.fillRecognizer = nil;
     NSLog(@"dealloc");
 }
 

@@ -22,6 +22,7 @@
 
 #import "Placeatbrick.h"
 #import "Formula.h"
+#import "Script.h"
 
 @implementation PlaceAtBrick
 
@@ -57,17 +58,17 @@
 {
   return ^{
     NSDebug(@"Performing: %@", self.description);
-    double xPosition = [self.xPosition interpretDoubleForSprite:self.object];
-    double yPosition = [self.yPosition interpretDoubleForSprite:self.object];
-    self.object.position = CGPointMake((CGFloat)xPosition, (CGFloat)yPosition);
+    double xPosition = [self.xPosition interpretDoubleForSprite:self.script.object];
+    double yPosition = [self.yPosition interpretDoubleForSprite:self.script.object];
+    self.script.object.position = CGPointMake((CGFloat)xPosition, (CGFloat)yPosition);
   };
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    double xPosition = [self.xPosition interpretDoubleForSprite:self.object];
-    double yPosition = [self.yPosition interpretDoubleForSprite:self.object];
+    double xPosition = [self.xPosition interpretDoubleForSprite:self.script.object];
+    double yPosition = [self.yPosition interpretDoubleForSprite:self.script.object];
     return [NSString stringWithFormat:@"PlaceAt (Position: %f/%f)", xPosition, yPosition];
 }
 

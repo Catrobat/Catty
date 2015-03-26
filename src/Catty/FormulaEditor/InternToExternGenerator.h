@@ -29,8 +29,8 @@
 
 @interface InternToExternGenerator : NSObject
 
--(void)generateExternStringAndMapping:(NSArray *)internTokenFormula;
--(NSString *)getGeneratedExternFormulaString;
--(ExternInternRepresentationMapping *)getGeneratedExternIternRepresentationMapping;
+- (void)generateExternStringAndMapping:(NSArray *)internTokenFormula;
+- (NSString *)getGeneratedExternFormulaString;
+- (ExternInternRepresentationMapping *)getGeneratedExternIternRepresentationMapping;
 
 @end

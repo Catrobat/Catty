@@ -15,7 +15,7 @@
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  *  GNU Affero General Public License for more details.
- * 
+ *
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
@@ -24,12 +24,13 @@
 #import "Look.h"
 #import "ProgramDefines.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
+#import "Script.h"
 
 @implementation NextLookBrick
 
 - (NSString*)brickTitle
 {
-    return ([self.object isBackground] ? kLocalizedNextBackground : kLocalizedNextLook);
+    return ([self.script.object isBackground] ? kLocalizedNextBackground : kLocalizedNextLook);
 }
 
 - (SKAction*)action
@@ -38,16 +39,16 @@
     return [SKAction runBlock:[self actionBlock]];
 }
 
--(dispatch_block_t)actionBlock
+- (dispatch_block_t)actionBlock
 {
 return ^{
     NSDebug(@"Performing: %@", self.description);
-    Look* look = [self.object nextLook];
+    Look* look = [self.script.object nextLook];
     UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
     SKTexture* texture= nil;
-    if ([self.object isBackground]) {
+    if ([self.script.object isBackground]) {
         texture = [SKTexture textureWithImage:image];
-        self.object.currentUIImageLook = image;
+        self.script.object.currentUIImageLook = image;
     }
     else{
         //            CGRect newRect = [image cropRectForImage:image];
@@ -55,30 +56,30 @@ return ^{
         //            UIImage *newImage = [UIImage imageWithCGImage:imageRef];
         //            CGImageRelease(imageRef);
         texture = [SKTexture textureWithImage:image];
-        self.object.currentUIImageLook = image;
+        self.script.object.currentUIImageLook = image;
     }
-    self.object.currentUIImageLook = image;
-    self.object.currentLookBrightness = 0;
-    double xScale = self.object.xScale;
-    double yScale = self.object.yScale;
-    self.object.xScale = 1.0;
-    self.object.yScale = 1.0;
-    self.object.size = texture.size;
-    self.object.texture = texture;
-    self.object.currentLook = look;
+    self.script.object.currentUIImageLook = image;
+    self.script.object.currentLookBrightness = 0;
+    double xScale = self.script.object.xScale;
+    double yScale = self.script.object.yScale;
+    self.script.object.xScale = 1.0;
+    self.script.object.yScale = 1.0;
+    self.script.object.size = texture.size;
+    self.script.object.texture = texture;
+    self.script.object.currentLook = look;
     if(xScale != 1.0) {
-        self.object.xScale = (CGFloat)xScale;
+        self.script.object.xScale = (CGFloat)xScale;
     }
     if(yScale != 1.0) {
-        self.object.yScale = (CGFloat)yScale;
+        self.script.object.yScale = (CGFloat)yScale;
     }
     };
 }
 
 
--(NSString*)pathForLook:(Look*)look
+- (NSString*)pathForLook:(Look*)look
 {
-  return [NSString stringWithFormat:@"%@%@/%@", [self.object projectPath], kProgramImagesDirName, look.fileName];
+  return [NSString stringWithFormat:@"%@%@/%@", [self.script.object projectPath], kProgramImagesDirName, look.fileName];
 }
 
 #pragma mark - Description

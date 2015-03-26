@@ -29,9 +29,9 @@
 
 @protocol SpriteManagerDelegate <NSObject>
 
--(void)bringToFrontSprite:(SpriteObject*)sprite;
--(void)bringNStepsBackSprite:(SpriteObject*)sprite numberOfSteps:(int)n;
+- (void)bringToFrontSprite:(SpriteObject*)sprite;
+- (void)bringNStepsBackSprite:(SpriteObject*)sprite numberOfSteps:(int)n;
 
--(void)stopAllSounds;
+- (void)stopAllSounds;
 
 @end

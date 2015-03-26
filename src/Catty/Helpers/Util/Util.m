@@ -40,7 +40,7 @@
 #import "SpriteObject.h"
 #import <objc/runtime.h>
 
-@interface Util () <CatrobatAlertViewDelegate, UITextFieldDelegate>
+@interface Util () <CatrobatAlertViewDelegate>
 
 @end
 
@@ -55,10 +55,9 @@
     return alreadyActive;
 }
 
-+ (NSString *)applicationDocumentsDirectory
++ (NSString*)applicationDocumentsDirectory
 {    
-    NSArray *paths = 
-    NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
     return basePath;
 
@@ -148,15 +147,13 @@
                              delegate:(id<CatrobatAlertViewDelegate>)delegate
                           placeholder:(NSString*)placeholder
                                   tag:(NSInteger)tag
-                    textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate
 {
     return [Util promptWithTitle:title
                          message:message
                         delegate:delegate
                      placeholder:placeholder
                              tag:tag
-                           value:nil
-               textFieldDelegate:textFieldDelegate];
+                           value:nil];
 }
 
 + (CatrobatAlertView*)promptWithTitle:(NSString*)title
@@ -165,7 +162,6 @@
                           placeholder:(NSString*)placeholder
                                   tag:(NSInteger)tag
                                 value:(NSString*)value
-                    textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate
 {
     CatrobatAlertView *alertView = [[CatrobatAlertView alloc] initWithTitle:title
                                                                     message:message
@@ -178,10 +174,9 @@
     textField.placeholder = placeholder;
     [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
     textField.text = value;
-    textField.delegate = textFieldDelegate;
+    textField.delegate = alertView;
     textField.returnKeyType = UIReturnKeyDone;
     [textField becomeFirstResponder];
-    catrobatAlertView = alertView;
     if (! [self activateTestMode:NO]) {
         [alertView show];
     }
@@ -399,8 +394,7 @@
                                                         delegate:(id<CatrobatAlertViewDelegate>)self
                                                      placeholder:kLocalizedEnterYourProgramNameHere
                                                              tag:kAskUserForUniqueNameAlertViewTag
-                                                           value:value
-                                               textFieldDelegate:(id<UITextFieldDelegate>)self];
+                                                           value:value];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionAskUserForUniqueName
                                                                   withPayload:[payload mutableCopy]];
 }
@@ -430,8 +424,7 @@
                                                         delegate:(id<CatrobatAlertViewDelegate>)self
                                                      placeholder:@""
                                                              tag:kAskUserForReportMessageAlertViewTag
-                                                           value:@""
-                                               textFieldDelegate:(id<UITextFieldDelegate>)self];
+                                                           value:@""];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionReportMessage
                                                                   withPayload:[payload mutableCopy]];
 }
@@ -513,8 +506,7 @@
                                                         delegate:(id<CatrobatAlertViewDelegate>)self
                                                      placeholder:@""
                                                              tag:kAskUserForVariableNameAlertViewTag
-                                                           value:@""
-                                               textFieldDelegate:(id<UITextFieldDelegate>)self];
+                                                           value:@""];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionVariableName
                                                                   withPayload:[payload mutableCopy]];
 }
@@ -639,8 +631,6 @@ static NSCharacterSet *textFieldBlockedCharacterSet = nil;
 
 static NSUInteger textFieldMaxInputLength = 0;
 
-static CatrobatAlertView *catrobatAlertView = nil;
-
 + (BOOL)textField:(UITextField*)field shouldChangeCharactersInRange:(NSRange)range
 replacementString:(NSString*)characters
 {
@@ -648,14 +638,6 @@ replacementString:(NSString*)characters
         return false;
     }
     return ([characters rangeOfCharacterFromSet:textFieldBlockedCharacterSet].location == NSNotFound);
-}
-
-+ (BOOL)textFieldShouldReturn:(UITextField*)textField
-{
-    [catrobatAlertView dismissWithClickedButtonIndex:0 animated:YES];
-    [textField resignFirstResponder]; // dismiss the keyboard
-    [[self class] alertView:catrobatAlertView clickedButtonAtIndex:kAlertViewButtonOK];
-    return YES;
 }
 
 #pragma mark - alert view delegates
@@ -724,8 +706,7 @@ replacementString:(NSString*)characters
                                                            delegate:(id<CatrobatAlertViewDelegate>)self
                                                         placeholder:payload[kDTPayloadAskUserPromptPlaceholder]
                                                                 tag:kAskUserForUniqueNameAlertViewTag
-                                                              value:([value isKindOfClass:[NSString class]] ? value : nil)
-                                                  textFieldDelegate:(id<UITextFieldDelegate>)self];
+                                                              value:([value isKindOfClass:[NSString class]] ? value : nil)];
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         }
     } else if (alertView.tag == kAskUserForReportMessageAlertViewTag){

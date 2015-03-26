@@ -80,7 +80,6 @@
 + (OrderedDictionary*)parseAndCreateObjectVariables:(GDataXMLElement*)objectVarListElement
                                  spriteObjectElements:(NSMutableDictionary*)spriteObjectElementMap
 {
-    NSLog(@"--- Object Variables ---");
     NSArray *entries = [objectVarListElement children];
     OrderedDictionary *objectVariableMap = [[OrderedDictionary alloc] initWithCapacity:[entries count]];
     NSUInteger index = 0;
@@ -103,7 +102,6 @@
         [XMLError exceptionIfNil:nameAttribute message:@"Object element does not contain a name attribute!"];
         NSString *spriteObjectName = [nameAttribute stringValue];
         [spriteObjectElementMap setObject:objectElement forKey:spriteObjectName];
-        NSLog(@"For SpriteObject: %@", spriteObjectName);
 
         // check if that SpriteObject has been already parsed some time before
         if ([objectVariableMap objectForKey:spriteObjectName]) {
@@ -124,7 +122,6 @@
 
 + (NSMutableArray*)parseAndCreateProgramVariables:(GDataXMLElement*)programVarListElement
 {
-    NSLog(@"--- Program Variables ---");
     return [[self class] parseUserVariablesList:[programVarListElement children]];
 }
 
@@ -153,11 +150,16 @@
     NSUInteger totalNumOfObjectVariables = [self.objectVariableList count];
 
     for (NSUInteger index = 0; index < totalNumOfObjectVariables; ++index) {
-        GDataXMLElement *entryXmlElement = [GDataXMLElement elementWithName:@"entry" context:context];
-        GDataXMLElement *entryToObjectReferenceXmlElement = [GDataXMLElement elementWithName:@"object" context:context];
         id spriteObject = [self.objectVariableList keyAtIndex:index];
         [XMLError exceptionIf:[spriteObject isKindOfClass:[SpriteObject class]] equals:NO
                       message:@"Instance in objectVariableList at index: %lu is no SpriteObject", (unsigned long)index];
+        if (![context.spriteObjectList containsObject:spriteObject]) {
+            NSWarn(@"Error while serializing object variable for object '%@': object does not exists!", ((SpriteObject*)spriteObject).name);
+            continue;
+        }
+        
+        GDataXMLElement *entryXmlElement = [GDataXMLElement elementWithName:@"entry" context:context];
+        GDataXMLElement *entryToObjectReferenceXmlElement = [GDataXMLElement elementWithName:@"object" context:context];
         CBXMLPositionStack *positionStackOfSpriteObject = context.spriteObjectNamePositions[((SpriteObject*)spriteObject).name];
         CBXMLPositionStack *currentPositionStack = [context.currentPositionStack mutableCopy];
         NSString *refPath = [CBXMLSerializerHelper relativeXPathFromSourcePositionStack:currentPositionStack

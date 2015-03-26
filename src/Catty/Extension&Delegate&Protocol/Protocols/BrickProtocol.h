@@ -20,19 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import "UIDefines.h"
-#import "CBMutableCopying.h"
+#import "ScriptProtocol.h"
 
-@class SpriteObject;
+@class Script;
 
-@protocol BrickProtocol<NSObject, CBMutableCopying>
+@protocol BrickProtocol <ScriptProtocol>
 
-@required
-@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
-@property (nonatomic, readonly) kBrickType brickType;
-@property (nonatomic, strong, readonly) NSString *brickTitle;
-- (BOOL)isSelectableForObject;
-- (SpriteObject*)object;
+@property (nonatomic, strong) Script *script;
 
 @end

@@ -235,7 +235,7 @@
     }
 }
 
--(void)loadingIndicator:(BOOL)value
+- (void)loadingIndicator:(BOOL)value
 {
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = value;
@@ -299,7 +299,7 @@
     [self.view addSubview:self.noSearchResultsLabel];
 }
 
--(void)initSearchView
+- (void)initSearchView
 {
     self.searchResults = [[NSMutableArray alloc] init];
     for (UIView *subView in self.searchBar.subviews) {
@@ -324,7 +324,7 @@
 }
 
 #pragma mark - Helper
--(void)queryServerForSearchString:(NSString*)searchString
+- (void)queryServerForSearchString:(NSString*)searchString
 {
     NSDebug(@"Begin custom query to server");
     // reset data

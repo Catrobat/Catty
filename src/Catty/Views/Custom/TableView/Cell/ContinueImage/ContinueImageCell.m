@@ -25,12 +25,12 @@
 
 @implementation ContinueImageCell
 
--(void)awakeFromNib
+- (void)awakeFromNib
 {
     [self configureImageCell];
 }
 
--(void)configureImageCell
+- (void)configureImageCell
 {
     self.titleLabel.textColor = UIColor.skyBlueColor;
 }

@@ -39,8 +39,6 @@
     self.leftTextLabel = inlineViewSubViews[0];
     self.delayTextField = inlineViewSubViews[1];
     self.rightTextLabel = inlineViewSubViews[1];
-
 }
-
 
 @end

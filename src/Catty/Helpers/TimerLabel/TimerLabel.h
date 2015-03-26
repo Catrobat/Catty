@@ -30,9 +30,9 @@ typedef enum{
 @class TimerLabel;
 @protocol TimerLabelDelegate <NSObject>
 @optional
--(void)timerLabel:(TimerLabel*)timerLabel finshedCountDownTimerWithTime:(NSTimeInterval)countTime;
--(void)timerLabel:(TimerLabel*)timerLabel countingTo:(NSTimeInterval)time timertype:(TimerLabelType)timerType;
--(NSString*)timerLabel:(TimerLabel*)timerLabel customTextToDisplayAtTime:(NSTimeInterval)time;
+- (void)timerLabel:(TimerLabel*)timerLabel finshedCountDownTimerWithTime:(NSTimeInterval)countTime;
+- (void)timerLabel:(TimerLabel*)timerLabel countingTo:(NSTimeInterval)time timertype:(TimerLabelType)timerType;
+- (NSString*)timerLabel:(TimerLabel*)timerLabel customTextToDisplayAtTime:(NSTimeInterval)time;
 @end
 
 @interface TimerLabel : UILabel;
@@ -53,23 +53,23 @@ typedef enum{
 @property (assign) BOOL resetTimerAfterFinish;
 
 
--(id)initWithTimerType:(TimerLabelType)theType;
--(id)initWithLabel:(UILabel*)theLabel andTimerType:(TimerLabelType)theType;
--(id)initWithLabel:(UILabel*)theLabel;
+- (id)initWithTimerType:(TimerLabelType)theType;
+- (id)initWithLabel:(UILabel*)theLabel andTimerType:(TimerLabelType)theType;
+- (id)initWithLabel:(UILabel*)theLabel;
 
 
--(void)start;
+- (void)start;
 #if NS_BLOCKS_AVAILABLE
--(void)startWithEndingBlock:(void(^)(NSTimeInterval countTime))end; //use it if you are not going to use delegate
+- (void)startWithEndingBlock:(void(^)(NSTimeInterval countTime))end; //use it if you are not going to use delegate
 #endif
--(void)pause;
--(void)reset;
+- (void)pause;
+- (void)reset;
 
--(void)setCountDownTime:(NSTimeInterval)time;
--(void)setStopWatchTime:(NSTimeInterval)time;
--(void)setCountDownToDate:(NSDate*)date;
+- (void)setCountDownTime:(NSTimeInterval)time;
+- (void)setStopWatchTime:(NSTimeInterval)time;
+- (void)setCountDownToDate:(NSDate*)date;
 
--(void)addTimeCountedByTime:(NSTimeInterval)timeToAdd;
+- (void)addTimeCountedByTime:(NSTimeInterval)timeToAdd;
 
 - (NSTimeInterval)getTimeCounted;
 

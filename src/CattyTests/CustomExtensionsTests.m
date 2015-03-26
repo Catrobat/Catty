@@ -42,7 +42,7 @@
 }
 
 
--(void) testEscapingHTMLEntities
+- (void) testEscapingHTMLEntities
 {
     NSMutableString* testString = [[NSMutableString alloc]initWithFormat:@"entities: &amp; , &quot; , &#x27; , &#x39; , &#x92; , &#x96; , &gt; and &lt; "];
     

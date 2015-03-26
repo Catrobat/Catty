@@ -22,6 +22,7 @@
 
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
+#import "WhenScript.h"
 
 @interface ClearGrafficEffectBrickTests : BrickTests
 
@@ -41,147 +42,139 @@
     [super tearDown];
 }
 
--(void)testClearGraphicEffectBrick
+- (void)testClearGraphicEffectBrick
 {
-    
     SpriteObject* object = [[SpriteObject alloc] init];
     Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     object.program = program;
     object.position = CGPointMake(0.0f, 0.0f);
-    
+
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString * filePath = [bundle pathForResource:@"test.png"
                                            ofType:nil];
     NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
     Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
     [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
-    
+
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"20";
     transparency.formulaTree = formulaTree;
-    
-    
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
     SetGhostEffectBrick* brick = [[SetGhostEffectBrick alloc]init];
-    brick.object = object;
+    brick.script = script;
     [object.lookList addObject:look];
     [object.lookList addObject:look];
     object.currentLook = look;
     object.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
     object.currentLookBrightness = 1.0f;
-    brick.object = object;
+    brick.script = script;
     brick.transparency = transparency;
-    
-    
-    
-    dispatch_block_t action = [brick actionBlock];
-    
-    action();
-    
-    ClearGraphicEffectBrick* clearBrick = [[ClearGraphicEffectBrick alloc]init];
-    clearBrick.object = object;
 
+    dispatch_block_t action = [brick actionBlock];
+    action();
+
+    ClearGraphicEffectBrick* clearBrick = [[ClearGraphicEffectBrick alloc]init];
+    clearBrick.script = script;
     action = [clearBrick actionBlock];
     action();
 
-    
     XCTAssertEqualWithAccuracy([object alpha], 1.0,0.0001f, @"ClearGraphic is not correctly calculated");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
--(void)testClearGraphicEffectBrick2
-{
-    SpriteObject* object = [[SpriteObject alloc] init];
-    Program *program = [Program defaultProgramWithName:@"a" programID:program.header.programID];
-    object.program = program;
-    object.position = CGPointMake(0.0f, 0.0f);
-    
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString * filePath = [bundle pathForResource:@"test.png"
-                                           ofType:nil];
-    NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
-    Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
-    [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
-    
-    Formula* transparency =[[Formula alloc] init];
-    FormulaElement* formulaTree  = [[FormulaElement alloc] init];
-    formulaTree.type = NUMBER;
-    formulaTree.value = @"-20";
-    transparency.formulaTree = formulaTree;
-    
-    
-    SetGhostEffectBrick* brick = [[SetGhostEffectBrick alloc]init];
-    brick.object = object;
-    [object.lookList addObject:look];
-    [object.lookList addObject:look];
-    object.currentLook = look;
-    object.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.currentLookBrightness = 1.0f;
-    brick.object = object;
-    brick.transparency = transparency;
-    
-    
-    
-    dispatch_block_t action = [brick actionBlock];
-    
-    action();
-    
-    ClearGraphicEffectBrick* clearBrick = [[ClearGraphicEffectBrick alloc]init];
-    clearBrick.object = object;
-    
-    action = [clearBrick actionBlock];
-    action();
-    
-    
-    XCTAssertEqualWithAccuracy([object alpha], 1.0,0.0001f, @"ClearGraphic is not correctly calculated");
-    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
-}
-
-
--(void)testClearGraphicEffectBrick3
+- (void)testClearGraphicEffectBrick2
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     object.program = program;
     object.position = CGPointMake(0.0f, 0.0f);
-    
+
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString * filePath = [bundle pathForResource:@"test.png"
                                            ofType:nil];
     NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
     Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
     [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
-    
-    Formula* brightness =[[Formula alloc] init];
-    FormulaElement* formulaTree  = [[FormulaElement alloc] init];
+
+    Formula *transparency = [[Formula alloc] init];
+    FormulaElement *formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
-    formulaTree.value = @"50";
-    brightness.formulaTree = formulaTree;
-    
-    
-    SetBrightnessBrick* brick = [[SetBrightnessBrick alloc]init];
-    brick.object = object;
+    formulaTree.value = @"-20";
+    transparency.formulaTree = formulaTree;
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
+    SetGhostEffectBrick* brick = [[SetGhostEffectBrick alloc]init];
+    brick.script = script;
     [object.lookList addObject:look];
     [object.lookList addObject:look];
     object.currentLook = look;
     object.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
     object.currentLookBrightness = 1.0f;
-    brick.object = object;
-    brick.brightness = brightness;
-    
-    
+    brick.script = script;
+    brick.transparency = transparency;
+
     dispatch_block_t action = [brick actionBlock];
-    
     action();
-    
+
     ClearGraphicEffectBrick* clearBrick = [[ClearGraphicEffectBrick alloc]init];
-    clearBrick.object = object;
-    
+    clearBrick.script = script;
+
     action = [clearBrick actionBlock];
     action();
-    
-    
+
+    XCTAssertEqualWithAccuracy([object alpha], 1.0,0.0001f, @"ClearGraphic is not correctly calculated");
+    [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
+}
+
+- (void)testClearGraphicEffectBrick3
+{
+    SpriteObject *object = [[SpriteObject alloc] init];
+    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
+    object.program = program;
+    object.position = CGPointMake(0.0f, 0.0f);
+
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString * filePath = [bundle pathForResource:@"test.png"
+                                           ofType:nil];
+    NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
+    Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
+    [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
+
+    Formula* brightness =[[Formula alloc] init];
+    FormulaElement* formulaTree  = [[FormulaElement alloc] init];
+    formulaTree.type = NUMBER;
+    formulaTree.value = @"50";
+    brightness.formulaTree = formulaTree;
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
+    SetBrightnessBrick* brick = [[SetBrightnessBrick alloc]init];
+    brick.script = script;
+    [object.lookList addObject:look];
+    [object.lookList addObject:look];
+    object.currentLook = look;
+    object.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
+    object.currentLookBrightness = 1.0f;
+    brick.script = script;
+    brick.brightness = brightness;
+
+    dispatch_block_t action = [brick actionBlock];
+    action();
+
+    ClearGraphicEffectBrick* clearBrick = [[ClearGraphicEffectBrick alloc]init];
+    clearBrick.script = script;
+
+    action = [clearBrick actionBlock];
+    action();
+
     XCTAssertEqualWithAccuracy([object brightness], 0.0f,0.0001f, @"ClearGraphic is not correctly calculated");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }

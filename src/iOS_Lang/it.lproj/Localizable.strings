@@ -19,533 +19,918 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
 */
-"ExampleEntry" = "ExampleEntry";
-
-"New Program" = "Nuovo programma";
-
-"Background" = "Sfondo";
-
-"My Object" = "Mio oggetto";
-
-"Today" = "Oggi";
-
-"Yesterday" = "Ieri";
-
-"Sunday" = "Domenica";
-
-"Monday" = "Lunedì";
-
-"Tuesday" = "Martedì";
-
-"Wednesday" = "Mercoledì";
-
-"Thursday" = "Giovedì";
-
-"Friday" = "Venerdì";
-
-"Saturday" = "Sabato";
-
-"Su" = "Do";
-
-"Mo" = "Lu";
-
-"Tu" = "Ma";
-
-"We" = "Me";
-
-"Th" = "Gi";
-
-"Fr" = "Ve";
-
-"Sa" = "Sa";
-
-"January" = "Gennaio";
-
-"February" = "Febbraio";
-
-"March" = "Marzo";
-
-"April" = "Aprile";
-
-"May" = "Maggio";
-
-"June" = "Giugno";
-
-"July" = "Luglio";
-
-"August" = "Agosto";
-
-"September" = "Settembre";
-
-"October" = "Ottobre";
-
-"November" = "Novembre";
-
-"December" = "Dicembre";
-
-"Jan" = "Gen";
-
-"Feb" = "Feb";
-
-"Mar" = "Mar";
-
-"Apr" = "Apr";
-
-"May" = "Maggio";
-
-"Jun" = "Giu";
-
-"Jul" = "Lug";
-
-"Aug" = "Ago";
-
-"Sep" = "Set";
-
-"Oct" = "Ott";
-
-"Nov" = "Nov";
-
-"Dec" = "Dic";
-
-"Pocket Code" = "Pocket Code";
-
-"Categories" = "Categorie";
-
-"Explore" = "Esplora";
-
-"Help" = "Guida";
-
-"Info" = "Info";
-
-"Looks" = "Costumi";
-
-"Sounds" = "Suoni";
-
-"Choose sound" = "Scegli un suono";
-
-"Programs" = "Programmi";
-
-"Featured Programs" = "Programmi consigliati";
-
-"Scripts" = "Script";
-
-"Backgrounds" = "Sfondi";
-
-"Tap \"+\" to add %@" = "Premere \"+\" per aggiungere %@";
-
-"Continue" = "Continuare";
-
-"New" = "Nuovo";
-
-"Programs" = "Programmi";
-
-"Explore" = "Esplora";
-
-"Upload" = "Carica";
-
-"Help" = "Guida";
-
-"Edit Mode" = "Modalità di modifica";
-
-"Edit" = "Modifica";
-
-"Cancel" = "Annulla";
-
-"Select All" = "Seleziona tutto";
-
-"Unselect All" = "Deseleziona tutto";
-
-"Delete" = "Eliminare";
-
-"Edit Sounds" = "Modifica suoni";
-
-"Edit Looks" = "Modifica aspetto";
-
-"Add look" = "Aggiungi aspetto";
-
-"Edit Program" = "Modifica il programma";
-
-"Edit Programs" = "Modifica i programmi";
-
-"Add sound" = "Aggiungi suono";
-
-"Save Screenshot to" = "Salva la schermata in";
-
-"Close" = "Chiudere";
-
-"Delete Brick" = "Elimina mattoncino";
-
-"Delete Script" = "Elimina lo script";
-
-"Animate Brick" = "Anima il mattoncino";
-
-"Copy Brick" = "Copia mattoncino";
-
-"Edit Formula" = "Modifica Formula";
-
-"Delete Sounds" = "Elimina suoni";
-
-"Hide Details" = "Nascondi dettagli";
-
-"Show Details" = "Mostra dettagli";
-
-"Delete Looks" = "Elimina aspetto";
-
-"From Camera" = "Da fotocamera";
-
-"Choose image" = "Scegli immagine";
-
-"Draw new image" = "Disegna nuova immagine";
-
-"Rename" = "Rinomina";
-
-"Copy" = "Copiare";
-
-"Description" = "Descrizione";
-
-"Upload" = "Upload";
-
-"Delete Objects" = "Eliminare gli oggetti";
-
-"Delete Programs" = "Eliminare i programmi";
-
-"Pocket Code Recorder" = "Registratore di Pocket Code";
-
-"Choose sound" = "Selezionare il sound";
-
-"Delete Objects" = "Elimina oggetti";
-
-"Delete Programs" = "Elimina programmi";
-
-"Pocket Code Recorder" = "Registratore di Pocket Code";
-
-"Choose sound" = "Scegli un suono";
-
-"Camera Roll" = "Rullino fotografico";
-
-"Project" = "Progetto";
-
-"Cancel" = "Annulla";
-
-"Delete" = "Eliminare";
-
-"Play" = "Gioca";
-
-"Download" = "Scarica";
-
-"More" = "Altro";
-
-"Delete" = "Eliminare";
-
-"Pocket Code" = "Pocket Code";
-
-"Add object" = "Aggiungi oggetto";
-
-"Add image" = "Aggiungi immagine";
-
-"Rename program" = "Rinomina il programma";
-
-<<<<<<< HEAD
-"Set description" = "Set description";
-
-"Rename object" = "Rename object";
-
-"Rename image" = "Rename image";
-
-"Rename sound" = "Rename sound";
-
-"Enter your sound name here..." = "Enter your sound name here...";
-
-"Sound name" = "Sound name";
-
-"An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
-
-"No or invalid image name entered, try again." = "No or invalid image name entered, try again.";
-
-"No or invalid sound name entered, try again." = "No or invalid sound name entered, try again.";
-
-"An image with the same name already exists, try again." = "An image with the same name already exists, try again.";
-
-"Enter your program description here..." = "Enter your program description here...";
-
-"Can't restart program!" = "Can't restart program!";
-=======
-"Can't restart program!" = "Non è possibile riavviare il programma!";
->>>>>>> 8518fcf69e96ffd6072a7a21f370ff134d98d8a6
-
-"Screenshot saved to Camera Roll" = "Screenshot salvato sul rullino";
-
-"Screenshot saved to project" = "Screenshot salvato sul progetto";
-
-"New program" = "Nuovo programma";
-
-"Delete this program" = "Elimina questo programma";
-
-"Delete these objects" = "Elimina questi oggetti";
-
-"Delete this object" = "Elimina questo oggetto";
-
-"Delete these programs" = "Elimina questi programmi";
-
-"Delete this program" = "Elimina questo programma";
-
-"Delete these looks" = "Elimina questi aspetti";
-
-"Delete this look" = "Elimina questo aspetto";
-
-"Delete these sounds" = "Elimina questi suoni";
-
-"Delete this sound" = "Elimina questo suono";
-
-"Not enough free memory to download this program. Please delete some of your programs" = "Non c'è abbastanza memoria libera per scaricare questo programma. Si consiglia di eliminare alcuni programmi";
-
-"Enter your program name here..." = "Inserisci qui il nome del tuo programma...";
-
-"Enter your object name here..." = "Inserisci qui il nome del tuo oggetto...";
-
-"Enter your image name here..." = "Inserisci qui il nome della tua immagine...";
-
-"This feature is coming soon!" = "Questa funzionalità non è ancora attiva, arriverà presto!";
-
-"Pocket Code for iOS" = "Pocket Code per iOS";
-
-"Program name" = "Nome del programma";
-
-"Object name" = "Nome dell'oggetto";
-
-"Image name" = "Nome immagine";
-
-"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "Non è stati trovato alcun suono importato. Collega il tuo iPhone al PC/Mac e usa iTunes FileSharing per importare file audio dentro l'app PocketCode.";
-
-<<<<<<< HEAD
-"No input or the input is too short. Please enter at least %lu characters." = "No input or the input is too short. Please enter at least %lu characters.";
-
-"No or invalid program name entered, try again." = "No or invalid program name entered, try again.";
-=======
-"No or invalid program name entered, try again." = "Nessun nome o nome non valido inserito per il programma; riprova.";
->>>>>>> 8518fcf69e96ffd6072a7a21f370ff134d98d8a6
-
+/* No comment provided by engineer. */
 "A program with the same name already exists, try again." = "Esiste già un programma con lo stesso nome, riprovare.";
 
-"No or invalid object name entered, try again." = "Nessun nome o nome non valido inserito per il nome dell'oggetto; riprova.";
+/* No comment provided by engineer. */
+"About Catrobat" = "Su Catrobat";
 
-"Unable to load program!" = "Impossibile caricare il programma!";
+/* No comment provided by engineer. */
+"About Pocket Code" = "Su Pocket Code";
 
-"This action can not be undone!" = "Questa azione non può essere annullata!";
+/* No comment provided by engineer. */
+"Add image" = "Aggiungi immagine";
 
-"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Impossibile riprodurre il suono!\nForse il formato non è valido oppure il file è danneggiato.";
+/* Action sheet menu title */
+"Add look" = "Aggiungi aspetto";
 
-"No internet connection available." = "Nessuna connessione internet disponibile.";
+/* No comment provided by engineer. */
+"Add object" = "Aggiungi oggetto";
 
-"OK" = "Va bene";
+/* Action sheet menu title */
+"Add sound" = "Aggiungi suono";
 
-"Cancel" = "Annulla";
+/* paint */
+"Alpha" = "Alpha (opacità)";
 
-"Yes" = "Si";
+/* No comment provided by engineer. */
+"An image with the same name already exists, try again." = "An image with the same name already exists, try again.";
 
-"No" = "No";
+/* No comment provided by engineer. */
+"An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
 
-"Delete" = "Eliminare";
+/* No comment provided by engineer. */
+"Animate Brick" = "Anima il mattoncino";
 
-"Loading" = "Sto caricando";
+/* No comment provided by engineer. */
+"Apr" = "Apr";
 
-"Description" = "Descrizione";
+/* No comment provided by engineer. */
+"April" = "Aprile";
 
-"No Description available" = "Nessuna descrizione disponibile";
+/* No comment provided by engineer. */
+"Aug" = "Ago";
 
+/* No comment provided by engineer. */
+"August" = "Agosto";
+
+/* No comment provided by engineer. */
 "Author" = "Autore";
 
-"Downloads" = "Download";
+/* No comment provided by engineer. */
+"Back" = "Indietro";
 
-"Uploaded" = "File caricato";
-
-"Version" = "Versione";
-
-"Information" = "Informazioni";
-
-"Views" = "Visualizzazioni";
-
-"Measure" = "Misura";
-
-"Size" = "Dimensione";
-
+/* No comment provided by engineer. */
 "Background" = "Sfondo";
 
-"Object" = "Oggetto";
+/* No comment provided by engineer. */
+"Backgrounds" = "Sfondi";
 
-"Objects" = "Oggetti";
+/* paint */
+"Blue" = "Blu";
 
-"Scripts" = "Script";
-
+/* No comment provided by engineer. */
 "Bricks" = "Mattoncini";
 
-"Looks" = "Costumi";
-
-"Sounds" = "Suoni";
-
-"Last access" = "Ultimo accesso";
-
-"Size" = "Dimensione";
-
-"Length" = "Lunghezza";
-
-"Back" = "Indietro";
-
-"Restart" = "Riavvia";
-
-"Continue" = "Continuare";
-
-"Screenshot" = "Cattura schermata";
-
-"Grid" = "Griglia";
-
-"Most Downloaded" = "Più scaricati";
-
-"Most Viewed" = "Più visualizzati";
-
-"Newest" = "Ultime novità";
-
-"Control" = "Controllo";
-
-"Motion" = "Movimento";
-
-"Sound" = "Suono";
-
-"Looks" = "Costumi";
-
-"Variables" = "Variabili";
-
-"When program started" = "Quando il programma inizia";
-
-"When tapped" = "Quando premuto";
-
-"Wait %@ second(s)" = "Aspetta %@ secondi";
-
-"When I receive\n%@" = "Quando ricevo\n%@";
-
-"Broadcast\n%@" = "Invia\n%@";
-
+/* No comment provided by engineer. */
 "Broadcast and wait\n%@" = "Invia e aspetta\n%@";
 
-"Note %@" = "Nota %@";
+/* No comment provided by engineer. */
+"Broadcast\n%@" = "Invia\n%@";
 
-"Forever" = "Per sempre";
+/* paint */
+"brush" = "brush";
 
-"If %@ is true then" = "Se %@ è vero allora";
+/* No comment provided by engineer. */
+"By switching to the section \"Explore\" you can discover much more interesting stuff." = "By switching to the section \"Explore\" you can discover much more interesting stuff.";
 
-"Else" = "Altrimenti";
-
-"If End" = "Fine Se";
-
-"Repeat %@ times" = "Ripeti %@ volte";
-
-"End of Loop" = "Fine Ciclo";
-
-"Place at\nX: %@ Y: %@" = "Posiziona su\nX: %@ Y: %@";
-
-"Set X to %@" = "Valorizza X a %@";
-
-"Set Y to %@" = "Valorizza Y a %@";
-
-"Change X by %@" = "Cambia X di %@";
-
-"Change Y by %@" = "Cambia Y di %@";
-
-"If on edge, bounce" = "Se sul bordo, rimbalza";
-
-"Move %@ step(s)" = "Muovi di %@ passi";
-
-"Turn left %@°" = "Gira a sinistra di %@°";
-
-"Turn right %@°" = "Gira a destra di %@°";
-
-"Point in direction %@°" = "Punta in direzione %@°";
-
-"Point towards\n%@" = "Punta verso %@";
-
-"Glide %@ second(s)\nto X: %@ Y: %@" = "Scivola in %@ secondi \nverso X: %@ Y: %@";
-
-"Go back %@ layer(s)" = "Sposta indietro di %@ strati";
-
-"Go to front" = "Sposta avanti";
-
-"Switch to look\n%@" = "Cambia l'aspetto in\n%@";
-
-"Set background\n%@" = "Imposta sfondo\n%@";
-
-"Next look" = "Prossimo costume";
-
-"Next background" = "Prossimo sfondo";
-
-"Set size to %@\%" = "Imposta la dimensione a %@\%";
-
-"Change size by %@\%" = "Cambiare dimensione di %@\%";
-
-"Hide" = "Nascondi";
-
-"Show" = "Mostra";
-
-"Set transparency\nto %@\%" = "Imposta la trasparenza su %@\%";
-
-"Change transparency\nby %@\%" = "Cambia la trasparenza di %@\%";
-
-"Set brightness to %@\%" = "Imposta luminosità a %@\%";
-
-"Change brightness\nby %@\%" = "Cambia luminosità\ndel %@\%";
-
-"Clear graphic effects" = "Elimina gli effetti grafici";
-
-"Start sound\n%@" = "Avvia il suono \n%@";
-
-"Stop all sounds" = "Interrompi tutti i suoni";
-
-"Set volume to %@\%" = "Imposta il volume al %@\%";
-
-"Change volume by %@" = "Cambia il volume di %@";
-
-"Speak %@" = "Parla %@";
-
-"Set variable\n%@\nto %@" = "Valorizza variable\n%@\ncon %@";
-
-"Change variable\n%@\nby %@" = "Cambia la variabile\n%@\ndi %@";
-
-"Play" = "Gioca";
-
-"Recents" = "Recenti";
-
-"Featured" = "In evidenza";
-
-"Search" = "Cerca";
-
-"Screenshot" = "Cattura schermata";
-
-"Back" = "Indietro";
-
-"Restart" = "Riavvia";
-
-"Grid" = "Griglia";
-
-"Edit" = "Modifica";
-
-"Background" = "Sfondo";
-
-"Objects" = "Oggetti";
-
-"Object" = "Oggetto";
-
-"My Object" = "Mio oggetto";
-
-"Delete" = "Eliminare";
-
-"Cancel" = "Annulla";
-
-"Add Object" = "Aggiungi oggetto";
-
-"Object name:" = "Nome dell'oggetto:";
-
-"Save Screenshot to:" = "Salva la schermata in:";
-
+/* No comment provided by engineer. */
 "Camera Roll" = "Rullino fotografico";
 
+/* No comment provided by engineer. */
+"Can't restart program!" = "Non è possibile riavviare il programma!";
+
+/* No comment provided by engineer. */
+"Cancel" = "Annulla";
+
+/* No comment provided by engineer. */
+"Categories" = "Categorie";
+
+/* No comment provided by engineer. */
+"Change brightness\nby %@\%" = "Change brightness\nby %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Change size by %@\%" = "Change size by %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Change transparency\nby %@\%" = "Change transparency\nby %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Change variable\n%@\nby %@" = "Change variable\n%1$@\nby %2$@";
+
+/* No comment provided by engineer. */
+"Change volume by %@" = "Cambia il volume di %@";
+
+/* No comment provided by engineer. */
+"Change X by %@" = "Cambia X di %@";
+
+/* No comment provided by engineer. */
+"Change Y by %@" = "Cambia Y di %@";
+
+/* No comment provided by engineer. */
+"Choose image" = "Scegli immagine";
+
+/* No comment provided by engineer. */
+"Choose sound" = "Scegli un suono";
+
+/* No comment provided by engineer. */
+"Clear graphic effects" = "Elimina gli effetti grafici";
+
+/* No comment provided by engineer. */
+"Close" = "Chiudere";
+
+/* No comment provided by engineer. */
+"Compute" = "Calcola";
+
+/* No comment provided by engineer. */
+"Computed result is %.2f" = "Computed result is %.2f";
+
+/* No comment provided by engineer. */
+"Computed result is FALSE" = "Computed result is FALSE";
+
+/* No comment provided by engineer. */
+"Computed result is TRUE" = "Computed result is TRUE";
+
+/* No comment provided by engineer. */
+"Continue" = "Continuare";
+
+/* No comment provided by engineer. */
+"Control" = "Controllo";
+
+/* No comment provided by engineer. */
+"Copy" = "Copiare";
+
+/* No comment provided by engineer. */
+"Copy Brick" = "Copia mattoncino";
+
+/* No comment provided by engineer. */
+"Copy program" = "Copia il programma";
+
+/* paint */
+"crop" = "crop";
+
+/* No comment provided by engineer. */
+"Dec" = "Dic";
+
+/* No comment provided by engineer. */
+"December" = "Dicembre";
+
+/* No comment provided by engineer. */
+"Delete" = "Eliminare";
+
+/* No comment provided by engineer. */
+"Delete Brick" = "Elimina mattoncino";
+
+/* No comment provided by engineer. */
+"Delete Looks" = "Elimina aspetto";
+
+/* No comment provided by engineer. */
+"Delete Objects" = "Elimina oggetti";
+
+/* No comment provided by engineer. */
+"Delete Programs" = "Elimina programmi";
+
+/* No comment provided by engineer. */
+"Delete Script" = "Elimina lo script";
+
+/* No comment provided by engineer. */
+"Delete Sounds" = "Elimina suoni";
+
+/* No comment provided by engineer. */
+"Delete this look" = "Elimina questo aspetto";
+
+/* No comment provided by engineer. */
+"Delete this object" = "Elimina questo oggetto";
+
+/* No comment provided by engineer. */
+"Delete this program" = "Elimina questo programma";
+
+/* No comment provided by engineer. */
+"Delete this sound" = "Elimina questo suono";
+
+/* No comment provided by engineer. */
+"Description" = "Descrizione";
+
+/* No comment provided by engineer. */
+"Details" = "Details";
+
+/* paint */
+"Discard & Close" = "Discard & Close";
+
+/* paint */
+"Do you really want to delete the current drawing?" = "Do you really want to delete the current drawing?";
+
+/* paint */
+"Do you want to save the changes" = "Do you want to save the changes";
+
+/* No comment provided by engineer. */
+"Done" = "Fatto";
+
+/* No comment provided by engineer. */
+"Download" = "Scarica";
+
+/* No comment provided by engineer. */
+"Downloads" = "Download";
+
+/* No comment provided by engineer. */
+"Draw new image" = "Disegna nuova immagine";
+
+/* No comment provided by engineer. */
+"Edit" = "Modifica";
+
+/* No comment provided by engineer. */
+"Edit Formula" = "Modifica Formula";
+
+/* Action sheet menu title */
+"Edit Look" = "Edit Look";
+
+/* Action sheet menu title */
+"Edit Looks" = "Modifica aspetto";
+
+/* No comment provided by engineer. */
+"Edit Mode" = "Modalità di modifica";
+
+/* No comment provided by engineer. */
+"Edit Object" = "Edit Object";
+
+/* No comment provided by engineer. */
+"Edit Program" = "Modifica il programma";
+
+/* No comment provided by engineer. */
+"Edit Programs" = "Modifica i programmi";
+
+/* Action sheet menu title */
+"Edit Sound" = "Edit Sound";
+
+/* Action sheet menu title */
+"Edit Sounds" = "Modifica suoni";
+
+/* paint */
+"ellipse / circle" = "ellipse / circle";
+
+/* No comment provided by engineer. */
+"Else" = "Altrimenti";
+
+/* No comment provided by engineer. */
+"End of Loop" = "Fine Ciclo";
+
+/* Placeholder for add image-name input field */
+"Enter your image name here..." = "Inserisci qui il nome della tua immagine...";
+
+/* Placeholder for add object-name input field */
+"Enter your object name here..." = "Inserisci qui il nome del tuo oggetto...";
+
+/* Placeholder for program-description input field */
+"Enter your program description here..." = "Enter your program description here...";
+
+/* Placeholder for program-name input field */
+"Enter your program name here..." = "Inserisci qui il nome del tuo programma...";
+
+/* Placeholder for add sound-name input field */
+"Enter your sound name here..." = "Enter your sound name here...";
+
+/* paint */
+"eraser" = "eraser";
+
+/* No comment provided by engineer. */
+"Error" = "Errore";
+
+/* No comment provided by engineer. */
+"Explore" = "Esplora";
+
+/* No comment provided by engineer. */
+"Explore apps" = "Explore apps";
+
+/* No comment provided by engineer. */
+"Featured Programs" = "Programmi consigliati";
+
+/* No comment provided by engineer. */
+"Feb" = "Feb";
+
+/* No comment provided by engineer. */
+"February" = "Febbraio";
+
+/* paint */
+"fill" = "fill";
+
+/* No comment provided by engineer. */
+"Flashlight off" = "Flashlight off";
+
+/* No comment provided by engineer. */
+"Flashlight on" = "Flashlight on";
+
+/* No comment provided by engineer. */
+"Forever" = "Per sempre";
+
+/* No comment provided by engineer. */
+"Forgot password" = "Forgot password";
+
+/* No comment provided by engineer. */
+"Formula too long!" = "Formula troppo lunga!";
+
+/* No comment provided by engineer. */
+"Fr" = "Ve";
+
+/* No comment provided by engineer. */
+"Friday" = "Venerdì";
+
+/* No comment provided by engineer. */
+"From Camera" = "Da fotocamera";
+
+/* No comment provided by engineer. */
+"Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %1$@ second(s)\nto X: %2$@ Y: %3$@";
+
+/* No comment provided by engineer. */
+"Go back %@ layer(s)" = "Sposta indietro di %@ strati";
+
+/* No comment provided by engineer. */
+"Go to front" = "Sposta avanti";
+
+/* paint */
+"Green" = "Verde";
+
+/* No comment provided by engineer. */
+"Grid" = "Griglia";
+
+/* No comment provided by engineer. */
+"Help" = "Guida";
+
+/* No comment provided by engineer. */
+"Hide" = "Nascondi";
+
+/* No comment provided by engineer. */
+"Hide Details" = "Nascondi dettagli";
+
+/* No comment provided by engineer. */
+"If %@ is true then" = "Se %@ è vero allora";
+
+/* No comment provided by engineer. */
+"If End" = "Fine Se";
+
+/* No comment provided by engineer. */
+"If on edge, bounce" = "Se sul bordo, rimbalza";
+
+/* paint */
+"image" = "image";
+
+/* No comment provided by engineer. */
+"Image name" = "Nome immagine";
+
+/* No comment provided by engineer. */
+"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.";
+
+/* No comment provided by engineer. */
+"Information" = "Informazioni";
+
+/* No comment provided by engineer. */
+"Invalid URL given!" = "Invalid URL given!";
+
+/* No comment provided by engineer. */
+"Jan" = "Gen";
+
+/* No comment provided by engineer. */
+"January" = "Gennaio";
+
+/* No comment provided by engineer. */
+"Jul" = "Lug";
+
+/* No comment provided by engineer. */
+"July" = "Luglio";
+
+/* No comment provided by engineer. */
+"Jun" = "Giu";
+
+/* No comment provided by engineer. */
+"June" = "Giugno";
+
+/* No comment provided by engineer. */
+"Last access" = "Ultimo accesso";
+
+/* No comment provided by engineer. */
+"Length" = "Lunghezza";
+
+/* paint */
+"line" = "line";
+
+/* No comment provided by engineer. */
+"Loading" = "Sto caricando";
+
+/* No comment provided by engineer. */
+"Logic" = "Logica";
+
+/* No comment provided by engineer. */
+"Login" = "Login";
+
+/* No comment provided by engineer. */
+"Looks" = "Costumi";
+
+/* No comment provided by engineer. */
+"Mar" = "Mar";
+
+/* No comment provided by engineer. */
+"March" = "Marzo";
+
+/* No comment provided by engineer. */
+"Math" = "Math";
+
+/* No comment provided by engineer. */
+"May" = "Maggio";
+
+/* No comment provided by engineer. */
+"Measure" = "Misura";
+
+/* paint */
+"Menu" = "Menu";
+
+/* paint */
+"mirror" = "mirror";
+
+/* No comment provided by engineer. */
+"Mo" = "Lu";
+
+/* Prefix of default catrobat program object names (except background object) */
+"Mole" = "Talpa";
+
+/* No comment provided by engineer. */
+"Monday" = "Lunedì";
+
+/* No comment provided by engineer. */
+"More" = "Altro";
+
+/* No comment provided by engineer. */
+"Most Downloaded" = "Più scaricati";
+
+/* No comment provided by engineer. */
+"Most Viewed" = "Più visualizzati";
+
+/* No comment provided by engineer. */
+"Motion" = "Movimento";
+
+/* No comment provided by engineer. */
+"Move %@ step(s)" = "Muovi di %@ passi";
+
+/* Name of the default catrobat program */
+"My first program" = "Il mio primo programma";
+
+/* Default title of imported photo from camera (taken by camera) */
+"My Image" = "My Image";
+
+/* Title for first (default) object */
+"My Object" = "Mio oggetto";
+
+/* No comment provided by engineer. */
+"Name already exists. Please choose another" = "Name already exists. Please choose another";
+
+/* No comment provided by engineer. */
+"New" = "Nuovo";
+
+/* paint */
+"New Canvas" = "New Canvas";
+
+/* No comment provided by engineer. */
+"New Program" = "Nuovo programma";
+
+/* No comment provided by engineer. */
+"New Variable" = "Nuova variabile";
+
+/* No comment provided by engineer. */
+"Newest" = "Ultime novità";
+
+/* No comment provided by engineer. */
+"Next background" = "Prossimo sfondo";
+
+/* No comment provided by engineer. */
+"Next look" = "Prossimo costume";
+
+/* No comment provided by engineer. */
+"No" = "No";
+
+/* No comment provided by engineer. */
+"No Description available" = "Nessuna descrizione disponibile";
+
+/* No comment provided by engineer. */
+"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "Non è stati trovato alcun suono importato. Collega il tuo iPhone al PC/Mac e usa iTunes FileSharing per importare file audio dentro l'app PocketCode.";
+
+/* No comment provided by engineer. */
+"No input or the input is too short. Please enter at least %lu character(s)." = "No input or the input is too short. Please enter at least %lu character(s).";
+
+/* No comment provided by engineer. */
+"No internet connection available." = "No internet connection available.";
+
+/* No comment provided by engineer. */
+"No or invalid image name entered, try again." = "No or invalid image name entered, try again.";
+
+/* No comment provided by engineer. */
+"No or invalid sound name entered, try again." = "No or invalid sound name entered, try again.";
+
+/* No comment provided by engineer. */
+"No search results" = "No search results";
+
+/* No comment provided by engineer. */
+"Not enough free memory to download this program. Please delete some of your programs" = "Non c'è abbastanza memoria libera per scaricare questo programma. Si consiglia di eliminare alcuni programmi";
+
+/* No comment provided by engineer. */
+"Not enough Memory" = "Not enough Memory";
+
+/* No comment provided by engineer. */
+"Note %@" = "Nota %@";
+
+/* paint */
+"Nothing to crop!" = "Nothing to crop!";
+
+/* No comment provided by engineer. */
+"Nov" = "Nov";
+
+/* No comment provided by engineer. */
+"November" = "Novembre";
+
+/* No comment provided by engineer. */
+"Numbers" = "Numbers";
+
+/* No comment provided by engineer. */
+"object" = "object";
+
+/* No comment provided by engineer. */
+"Object" = "Oggetto";
+
+/* No comment provided by engineer. */
+"Object name" = "Nome dell'oggetto";
+
+/* No comment provided by engineer. */
+"Objects" = "Oggetti";
+
+/* No comment provided by engineer. */
+"Oct" = "Ott";
+
+/* No comment provided by engineer. */
+"October" = "Ottobre";
+
+/* No comment provided by engineer. */
+"OK" = "Va bene";
+
+/* No comment provided by engineer. */
+"only 15 characters allowed" = "only 15 characters allowed";
+
+/* No comment provided by engineer. */
+"Password" = "Password";
+
+/* paint */
+"pipette" = "pipette";
+
+/* No comment provided by engineer. */
+"Place at\nX: %@ Y: %@" = "Place at\nX: %1$@ Y: %2$@";
+
+/* No comment provided by engineer. */
+"Play" = "Gioca";
+
+/* paint */
+"Please pick an item" = "Please pick an item";
+
+/* No comment provided by engineer. */
+"Pocket Code" = "Pocket Code";
+
+/* No comment provided by engineer. */
+"Pocket Code for iOS" = "Pocket Code per iOS";
+
+/* No comment provided by engineer. */
+"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:";
+
+/* No comment provided by engineer. */
+"Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on." = "Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on.";
+
+/* No comment provided by engineer. */
+"Pocket Code Recorder" = "Registratore di Pocket Code";
+
+/* No comment provided by engineer. */
+"Pocket Code Source Code License" = "Licenza del codice sorgente di Pocket Code";
+
+/* paint */
+"Pocket Paint" = "Pocket Paint";
+
+/* No comment provided by engineer. */
+"Point in direction %@°" = "Punta in direzione %@°";
+
+/* No comment provided by engineer. */
+"Point towards\n%@" = "Punta verso %@";
+
+/* paint */
+"pointer" = "pointer";
+
+/* No comment provided by engineer. */
+"program" = "program";
+
+/* No comment provided by engineer. */
+"Program name" = "Nome del programma";
+
+/* No comment provided by engineer. */
+"Programs" = "Programmi";
+
+/* No comment provided by engineer. */
 "Project" = "Progetto";
+
+/* No comment provided by engineer. */
+"Rate Us" = "Rate Us";
+
+/* No comment provided by engineer. */
+"Recording" = "Recording";
+
+/* paint */
+"rectangle / square" = "rectangle / square";
+
+/* paint */
+"Red" = "Rosso";
+
+/* No comment provided by engineer. */
+"Rename" = "Rinomina";
+
+/* No comment provided by engineer. */
+"Rename image" = "Rename image";
+
+/* No comment provided by engineer. */
+"Rename object" = "Rename object";
+
+/* No comment provided by engineer. */
+"Rename program" = "Rinomina il programma";
+
+/* No comment provided by engineer. */
+"Rename sound" = "Rename sound";
+
+/* No comment provided by engineer. */
+"Repeat %@ times" = "Ripeti %@ volte";
+
+/* No comment provided by engineer. */
+"Report as inappropriate" = "Segnala come inappropriato";
+
+/* No comment provided by engineer. */
+"Restart" = "Riavvia";
+
+/* No comment provided by engineer. */
+"Result" = "Result";
+
+/* paint */
+"rotate" = "rotate";
+
+/* paint */
+"round" = "arrotonda";
+
+/* No comment provided by engineer. */
+"Sa" = "Sa";
+
+/* No comment provided by engineer. */
+"Saturday" = "Sabato";
+
+/* paint */
+"Save & Close Paint" = "Save & Close Paint";
+
+/* Action sheet menu title */
+"Save Screenshot to" = "Salva la schermata in";
+
+/* paint */
+"Save to CameraRoll" = "Save to CameraRoll";
+
+/* No comment provided by engineer. */
+"Save to PocketCode" = "Save to PocketCode";
+
+/* No comment provided by engineer. */
+"Saved" = "Saved";
+
+/* No comment provided by engineer. */
+"Screenshot" = "Cattura schermata";
+
+/* No comment provided by engineer. */
+"Screenshot saved to Camera Roll" = "Screenshot salvato sul rullino";
+
+/* No comment provided by engineer. */
+"Screenshot saved to project" = "Screenshot salvato sul progetto";
+
+/* No comment provided by engineer. */
+"Scripts" = "Script";
+
+/* No comment provided by engineer. */
+"Select All" = "Seleziona tutto";
+
+/* No comment provided by engineer. */
+"Select Brick Category" = "Select Brick Category";
+
+/* No comment provided by engineer. */
+"Select logical operator" = "Select logical operator";
+
+/* No comment provided by engineer. */
+"Select mathematical function" = "Select mathematical function";
+
+/* paint */
+"Select option:" = "Select option:";
+
+/* No comment provided by engineer. */
+"Sensors" = "Sensori";
+
+/* No comment provided by engineer. */
+"Sep" = "Set";
+
+/* No comment provided by engineer. */
+"September" = "Settembre";
+
+/* No comment provided by engineer. */
+"Set background\n%@" = "Imposta sfondo\n%@";
+
+/* No comment provided by engineer. */
+"Set brightness to %@\%" = "Set brightness to %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Set description" = "Imposta descrizione";
+
+/* No comment provided by engineer. */
+"Set size to %@\%" = "Set size to %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Set transparency\nto %@\%" = "Set transparency\nto %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Set variable\n%@\nto %@" = "Set variable\n%1$@\nto %2$@";
+
+/* No comment provided by engineer. */
+"Set volume to %@\%" = "Set volume to %1$@\\%2$";
+
+/* No comment provided by engineer. */
+"Set X to %@" = "Valorizza X a %@";
+
+/* No comment provided by engineer. */
+"Set Y to %@" = "Valorizza Y a %@";
+
+/* No comment provided by engineer. */
+"Show" = "Mostra";
+
+/* No comment provided by engineer. */
+"Show Details" = "Mostra dettagli";
+
+/* No comment provided by engineer. */
+"Size" = "Dimensione";
+
+/* No comment provided by engineer. */
+"Skip" = "Skip";
+
+/* No comment provided by engineer. */
+"Slow Internet Connection!" = "Slow Internet Connection!";
+
+/* No comment provided by engineer. */
+"Sound" = "Suono";
+
+/* No comment provided by engineer. */
+"Sound name" = "Sound name";
+
+/* No comment provided by engineer. */
+"Sounds" = "Suoni";
+
+/* No comment provided by engineer. */
+"Speak %@" = "Parla %@";
+
+/* paint */
+"square" = "square";
+
+/* paint */
+"stamp" = "stamp";
+
+/* No comment provided by engineer. */
+"Start sound\n%@" = "Avvia il suono \n%@";
+
+/* No comment provided by engineer. */
+"Stop all sounds" = "Interrompi tutti i suoni";
+
+/* No comment provided by engineer. */
+"Su" = "Do";
+
+/* No comment provided by engineer. */
+"Sunday" = "Domenica";
+
+/* No comment provided by engineer. */
+"Switch to look\n%@" = "Passa all'aspetto\n%@";
+
+/* No comment provided by engineer. */
+"Syntax Error!" = "Errore di sintassi!";
+
+/* No comment provided by engineer. */
+"Take" = "Take";
+
+/* No comment provided by engineer. */
+"Tap \"+\" to add %@" = "Premere \"+\" per aggiungere %@";
+
+/* No comment provided by engineer. */
+"Terms of Use" = "Termini di utilizzo";
+
+/* No comment provided by engineer. */
+"Th" = "Gi";
+
+/* No comment provided by engineer. */
+"The description contains invalid characters, try again." = "The description contains invalid characters, try again.";
+
+/* paint */
+"Thickness" = "Thickness";
+
+/* No comment provided by engineer. */
+"This action can not be undone!" = "Questa azione non può essere annullata!";
+
+/* No comment provided by engineer. */
+"This feature is coming soon!" = "Questa funzionalità non è ancora attiva, arriverà presto!";
+
+/* No comment provided by engineer. */
+"Thursday" = "Giovedì";
+
+/* No comment provided by engineer. */
+"Today" = "Oggi";
+
+/* No comment provided by engineer. */
+"Tu" = "Ma";
+
+/* No comment provided by engineer. */
+"Tuesday" = "Martedì";
+
+/* No comment provided by engineer. */
+"Turn left %@°" = "Gira a sinistra di %@°";
+
+/* No comment provided by engineer. */
+"Turn right %@°" = "Gira a destra di %@°";
+
+/* No comment provided by engineer. */
+"Unable to load program!" = "Impossibile caricare il programma!";
+
+/* No comment provided by engineer. */
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Impossibile riprodurre il suono!\nForse il formato non è valido oppure il file è danneggiato.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.";
+
+/* No comment provided by engineer. */
+"Unselect All" = "Deseleziona tutto";
+
+/* No comment provided by engineer. */
+"Upcoming version" = "Upcoming version";
+
+/* No comment provided by engineer. */
+"Upload" = "Carica";
+
+/* No comment provided by engineer. */
+"Uploaded" = "File caricato";
+
+/* No comment provided by engineer. */
+"Username" = "Nome utente";
+
+/* No comment provided by engineer. */
+"v" = "v";
+
+/* No comment provided by engineer. */
+"Variable name:" = "Variable name:";
+
+/* No comment provided by engineer. */
+"Variable type" = "Variable type";
+
+/* No comment provided by engineer. */
+"Variables" = "Variabili";
+
+/* No comment provided by engineer. */
+"Version" = "Versione";
+
+/* No comment provided by engineer. */
+"Vibrate %@ second(s)" = "Vibrate %@ second(s)";
+
+/* No comment provided by engineer. */
+"Views" = "Visualizzazioni";
+
+/* No comment provided by engineer. */
+"Wait %@ second(s)" = "Aspetta %@ secondi";
+
+/* No comment provided by engineer. */
+"We" = "Me";
+
+/* No comment provided by engineer. */
+"Wednesday" = "Mercoledì";
+
+/* No comment provided by engineer. */
+"Welcome to Pocket Code" = "Welcome to Pocket Code";
+
+/* No comment provided by engineer. */
+"When I receive\n%@" = "Quando ricevo\n%@";
+
+/* No comment provided by engineer. */
+"When program started" = "Quando il programma inizia";
+
+/* No comment provided by engineer. */
+"When tapped" = "Quando premuto";
+
+/* No comment provided by engineer. */
+"Yes" = "Si";
+
+/* No comment provided by engineer. */
+"Yesterday" = "Ieri";
+
+/* No comment provided by engineer. */
+"You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people.";
+
+/* No comment provided by engineer. */
+"You have already downloaded this program!" = "You have already downloaded this program!";
+
+/* paint */
+"zoom" = "zoom";
 

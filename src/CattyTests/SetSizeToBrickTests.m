@@ -22,6 +22,7 @@
 
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
+#import "WhenScript.h"
 
 @interface SetSizeToBrickTests : BrickTests
 
@@ -41,7 +42,7 @@
     [super tearDown];
 }
 
--(void)testSetSizeToBrickAction
+- (void)testSetSizeToBrickAction
 {
     ComeToFrontBrick* brick = [[ComeToFrontBrick alloc] init];
     SKAction* action = [brick action];
@@ -49,81 +50,69 @@
     XCTAssertNotNil(action, @"Returned action is nil");
 }
 
--(void)testSetSizeToBrickPositive
+- (void)testSetSizeToBrickPositive
 {
-    
-    SpriteObject* object = [[SpriteObject alloc] init];
-    
-    SetSizeToBrick* brick = [[SetSizeToBrick alloc] init];
-    brick.object = object;
-    
-    Formula* size = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+    SpriteObject *object = [[SpriteObject alloc] init];
+
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+
+    SetSizeToBrick *brick = [[SetSizeToBrick alloc] init];
+    brick.script = script;
+
+    Formula *size = [[Formula alloc] init];
+    FormulaElement *formulaTree = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"130";
     size.formulaTree = formulaTree;
     brick.size = size;
-    
+
     dispatch_block_t action = [brick actionBlock];
-    
     action();
-    
     XCTAssertEqualWithAccuracy([object scaleX], 130.0f, 0.0001, @"X - Scale not correct");
     XCTAssertEqualWithAccuracy([object scaleY], 130.0f, 0.0001, @"Y - Scale not correct");
-    
-    
 }
 
--(void)testSetSizeToBrickNegative
+- (void)testSetSizeToBrickNegative
 {
-    
-    SpriteObject* object = [[SpriteObject alloc] init];
-    
-    SetSizeToBrick* brick = [[SetSizeToBrick alloc] init];
-    brick.object = object;
-    
-    Formula* size = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+    SpriteObject *object = [[SpriteObject alloc] init];
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+    SetSizeToBrick *brick = [[SetSizeToBrick alloc] init];
+    brick.script = script;
+
+    Formula *size = [[Formula alloc] init];
+    FormulaElement *formulaTree = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"-130";
     size.formulaTree = formulaTree;
     brick.size = size;
-    
+
     dispatch_block_t action = [brick actionBlock];
-    
     action();
-    
-    XCTAssertEqualWithAccuracy([object scaleX], -130.0f, 0.0001,  @"X - Scale not correct");
+    XCTAssertEqualWithAccuracy([object scaleX], -130.0f, 0.0001, @"X - Scale not correct");
     XCTAssertEqualWithAccuracy([object scaleY], -130.0f, 0.0001, @"Y - Scale not correct");
-    
-    
 }
 
--(void)testSetSizeToBrickWrongInput
+- (void)testSetSizeToBrickWrongInput
 {
-    
-    SpriteObject* object = [[SpriteObject alloc] init];
-    
-    SetSizeToBrick* brick = [[SetSizeToBrick alloc] init];
-    brick.object = object;
-    
-    Formula* size = [[Formula alloc] init];
-    FormulaElement* formulaTree = [[FormulaElement alloc] init];
+    SpriteObject *object = [[SpriteObject alloc] init];
+    Script *script = [[WhenScript alloc] init];
+    script.object = object;
+    SetSizeToBrick *brick = [[SetSizeToBrick alloc] init];
+    brick.script = script;
+
+    Formula *size = [[Formula alloc] init];
+    FormulaElement *formulaTree = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"a";
     size.formulaTree = formulaTree;
     brick.size = size;
-    
+
     dispatch_block_t action = [brick actionBlock];
-    
     action();
-    
     XCTAssertEqualWithAccuracy([object scaleX], 0.0f, 0.0001, @"X - Scale not correct");
-    XCTAssertEqualWithAccuracy([object scaleY], 0.0f, 0.0001,@"Y - Scale not correct");
-    
-    
+    XCTAssertEqualWithAccuracy([object scaleY], 0.0f, 0.0001, @"Y - Scale not correct");
 }
-
-
 
 @end

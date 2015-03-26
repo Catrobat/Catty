@@ -27,7 +27,7 @@
   BOOL fingerSwiped;
   CGPoint lastPoint;
 }
-@property (nonatomic,strong) PaintViewController* canvas;
+@property (nonatomic,weak) PaintViewController* canvas;
 @property (nonatomic,strong) UIView* pointerView;
 @property (nonatomic,strong) UIImageView* colorView;
 @property (nonatomic,strong) CALayer *border;
@@ -35,10 +35,10 @@
 
 @property (nonatomic,strong) UIPanGestureRecognizer *moveView;
 
--(void)drawWithPointer:(UIPanGestureRecognizer *)recognizer;
--(id)initWithDrawViewCanvas:(PaintViewController*)canvas;
+- (void)drawWithPointer:(UIPanGestureRecognizer *)recognizer;
+- (id)initWithDrawViewCanvas:(PaintViewController*)canvas;
 
--(void)drawingChangeAction;
--(void)disable;
--(void)updateColorView;
+- (void)drawingChangeAction;
+- (void)disable;
+- (void)updateColorView;
 @end

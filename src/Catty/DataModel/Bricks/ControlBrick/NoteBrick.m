@@ -34,7 +34,6 @@
     NSError(@"NoteBrick should not be executed!");
     return [SKAction runBlock:^{
         NSDebug(@"Performing: %@", self.description);
-        
     }];
 }
 

@@ -117,7 +117,7 @@
     [self.layer addSublayer:self.border];
 }
 
--(void)update
+- (void)update
 {
     [self sizeToFit];
     if(self.frame.size.width > 250)

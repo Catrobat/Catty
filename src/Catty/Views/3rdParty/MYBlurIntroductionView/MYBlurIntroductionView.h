@@ -33,8 +33,8 @@ typedef enum {
 /******************************/
 @protocol MYIntroductionDelegate
 @optional
--(void)introduction:(MYBlurIntroductionView *)introductionView didFinishWithType:(MYFinishType)finishType;
--(void)introduction:(MYBlurIntroductionView *)introductionView didChangeToPanel:(MYIntroductionPanel *)panel withIndex:(NSInteger)panelIndex;
+- (void)introduction:(MYBlurIntroductionView *)introductionView didFinishWithType:(MYFinishType)finishType;
+- (void)introduction:(MYBlurIntroductionView *)introductionView didChangeToPanel:(MYIntroductionPanel *)panel withIndex:(NSInteger)panelIndex;
 @end
 
 /******************************/
@@ -69,7 +69,7 @@ typedef enum {
  *
  *  @param panels @b Array of MYIntroductionPanel objects
  */
--(void)buildIntroductionWithPanels:(NSArray *)panels;
+- (void)buildIntroductionWithPanels:(NSArray *)panels;
 
 /**
  *  Handles the event that the skip button was tapped.
@@ -81,19 +81,19 @@ typedef enum {
  *
  *  @param index @b NSInteger The desired panel number to be changed to
  */
--(void)changeToPanelAtIndex:(NSInteger)index;
+- (void)changeToPanelAtIndex:(NSInteger)index;
 
 /**
  *  Enables or disables use of the introductionView. Use this if you want to hold someone on a panel until they have completed some task
  *
  *  @param enabled @b BOOL The desired enabled status of the introduction view
  */
--(void)setEnabled:(BOOL)enabled;
+- (void)setEnabled:(BOOL)enabled;
 
 /**
  *  Changes the background color of the introduction view. This background color sits a layer above the background image layer.
  *
  *  @param backgroundColor  @b UIColor The desired background color
  */
--(void)setBackgroundColor:(UIColor *)backgroundColor;
+- (void)setBackgroundColor:(UIColor *)backgroundColor;
 @end

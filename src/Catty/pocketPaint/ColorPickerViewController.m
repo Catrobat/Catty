@@ -93,7 +93,7 @@
   self.standardColors.hidden = YES;
 }
 
--(void)setupStandardColorsView
+- (void)setupStandardColorsView
 {
   self.colorArray = [NSMutableArray array];
     self.standardColors.frame = CGRectMake(0, self.view.frame.size.height * 0.3f, self.view.frame.size.width, 400);
@@ -130,7 +130,7 @@
 
 }
 
--(void)setupRGBAView
+- (void)setupRGBAView
 {
   [self setupRedSlider];
   [self setupGreenSlider];
@@ -139,7 +139,7 @@
   [self setupPicker];
 }
 
--(void)setupRedSlider
+- (void)setupRedSlider
 {
   
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.05f-7, 40, 10)];
@@ -167,7 +167,7 @@
 
 }
 
--(void)setupGreenSlider
+- (void)setupGreenSlider
 {
   
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.15f-7, 40, 10)];
@@ -194,7 +194,7 @@
   [self.rgbaSliderView addSubview:self.greenSlider];
   
 }
--(void)setupBlueSlider
+- (void)setupBlueSlider
 {
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.25f-7, 40, 10)];
   label.text = kLocalizedPaintBlue;
@@ -221,7 +221,7 @@
   
 }
 
--(void)setupOpacitySlider
+- (void)setupOpacitySlider
 {
   
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.35f-7, 40, 10)];
@@ -249,7 +249,7 @@
   
 }
 
--(void)setupPicker
+- (void)setupPicker
 {
   NKOColorPickerDidChangeColorBlock colorDidChangeBlock = ^(UIColor *color){
       //Your code handling a color change in the picker view.
@@ -268,7 +268,7 @@
   [self.rgbaView addSubview:self.colorPicker];
 }
 
--(void)setupBrushPreview
+- (void)setupBrushPreview
 {
   self.brushView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.center.x-self.view.frame.size.height * 0.05f, 90, self.view.frame.size.height * 0.1f, self.view.frame.size.height * 0.1f)];
   self.brushView.layer.cornerRadius = 20.0f;
@@ -284,7 +284,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)redAction:(id)sender
+- (void)redAction:(id)sender
 {
   UISlider *slider = (UISlider*)sender;
   float value = slider.value;
@@ -293,7 +293,7 @@
   self.red = value/255.0f;
   [self updatePreview];
 }
--(void)greenAction:(id)sender
+- (void)greenAction:(id)sender
 {
   UISlider *slider = (UISlider*)sender;
   float value = slider.value;
@@ -302,7 +302,7 @@
   self.green = value/255.0f;
   [self updatePreview];
 }
--(void)blueAction:(id)sender
+- (void)blueAction:(id)sender
 {
   UISlider *slider = (UISlider*)sender;
   float value = slider.value;
@@ -311,7 +311,7 @@
   self.blue = value/255.0f;
   [self updatePreview];
 }
--(void)opacityAction:(id)sender
+- (void)opacityAction:(id)sender
 {
   UISlider *slider = (UISlider*)sender;
   float value = slider.value;
@@ -321,13 +321,13 @@
   [self updatePreview];
 }
 
--(void)updatePreview
+- (void)updatePreview
 {
   self.brushView.backgroundColor = [UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.opacity];
   [self.colorPicker setColor:[UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.opacity]];
 }
 
--(void)viewChanged:(UISegmentedControl *)paramSender
+- (void)viewChanged:(UISegmentedControl *)paramSender
 {
   NSInteger selectedIndex = [paramSender selectedSegmentIndex];
   switch (selectedIndex) {
@@ -369,7 +369,7 @@
   [self updateRGBAView];
 }
 
--(void)updateRGBAView
+- (void)updateRGBAView
 {
   self.redSlider.value = self.red*255.0f;
   self.redLabel.text = [NSString stringWithFormat:@"%.0f",roundf(self.red*255.0f)];
@@ -386,7 +386,7 @@
   [self.rgbaView setNeedsDisplay];
 }
 
--(void)resetColorPicker
+- (void)resetColorPicker
 {
   NKOColorPickerDidChangeColorBlock colorDidChangeBlock = ^(UIColor *color){
       //Your code handling a color change in the picker view.
@@ -422,7 +422,7 @@
   [self.delegate closeColorPicker:self];
 }
 
--(BOOL)prefersStatusBarHidden { return YES; }
+- (BOOL)prefersStatusBarHidden { return YES; }
 
 
 

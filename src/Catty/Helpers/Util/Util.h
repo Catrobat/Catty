@@ -71,16 +71,14 @@
                               message:(NSString*)message
                              delegate:(id<CatrobatAlertViewDelegate>)delegate
                           placeholder:(NSString*)placeholder
-                                  tag:(NSInteger)tag
-                    textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate;
+                                  tag:(NSInteger)tag;
 
 + (CatrobatAlertView*)promptWithTitle:(NSString*)title
                               message:(NSString*)message
                              delegate:(id<CatrobatAlertViewDelegate>)delegate
                           placeholder:(NSString*)placeholder
                                   tag:(NSInteger)tag
-                                value:(NSString*)value
-                    textFieldDelegate:(id<UITextFieldDelegate>)textFieldDelegate;
+                                value:(NSString*)value;
 
 + (CatrobatActionSheet*)actionSheetWithTitle:(NSString*)title
                                     delegate:(id<CatrobatActionSheetDelegate>)delegate

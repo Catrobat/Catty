@@ -24,7 +24,7 @@
 
 @implementation XMLObjectReference
 
--(id)initWithParent:(XMLObjectReference*)parent andObject:(id)object
+- (id)initWithParent:(XMLObjectReference*)parent andObject:(id)object
 {
     self = [super init];
     if (self) {
@@ -34,12 +34,12 @@
     return self;
 }
 
--(void)dealloc
+- (void)dealloc
 {
     
 }
 
--(NSString*)description
+- (NSString*)description
 {
     return [NSString stringWithFormat:@"XMLObjectReference: Parent: %@, Object: %@", self.parent, self.object ];
 }

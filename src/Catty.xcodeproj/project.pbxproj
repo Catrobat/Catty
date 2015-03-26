@@ -6,20 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		CADBD7FD19B0E8F300C62836 /* LicenseTest */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = CADBD7FF19B0E8F300C62836 /* Build configuration list for PBXAggregateTarget "LicenseTest" */;
-			buildPhases = (
-				CADBD7FE19B0E8F300C62836 /* Run Script */,
-			);
-			dependencies = (
-			);
-			name = LicenseTest;
-			productName = LicenseTest;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		4C1608B21A09621A002C7032 /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B01A09621A002C7032 /* ValidFormulaList.xml */; };
 		4C1608B31A09621A002C7032 /* ValidProgram.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B11A09621A002C7032 /* ValidProgram.xml */; };
@@ -318,7 +304,6 @@
 		92FF32BF1A24E2F400093DA7 /* BrickScaleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickScaleTransition.m */; };
 		92FF32C01A24E2F400093DA7 /* BrickSelectModalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32551A24E2F400093DA7 /* BrickSelectModalTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
-		92FF338D1A24E5F800093DA7 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		CA538EA519B0EA09008240AB /* ChangeGhostEffectByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */; };
 		CA538EA619B0EA09008240AB /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
 		CA538EA719B0EA09008240AB /* HideBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3F185625E700547C1E /* HideBrickTests.m */; };
@@ -356,8 +341,6 @@
 		CA538EC919B0EA09008240AB /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = 92345632192E270B00464E6B /* test2.png */; };
 		CA538ECA19B0EA09008240AB /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 923453C1192D2D5F00464E6B /* test.png */; };
 		CA775CBF19FD5BCB00C1E761 /* My first program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CA6E4C4719F9C388001B65C3 /* My first program.catrobat */; };
-		CA8A94A61A41E57400E51A12 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		CA8A94A71A41E57400E51A12 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		CA97A4431A44F368008C931B /* Galaxy_War_092.xml in Resources */ = {isa = PBXBuildFile; fileRef = CA97A4411A44F368008C931B /* Galaxy_War_092.xml */; };
 		CA97A4441A44F368008C931B /* Galaxy_War_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CA97A4421A44F368008C931B /* Galaxy_War_093.xml */; };
 		CA97A44B1A44F38F008C931B /* Air_fight_0.5_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = CA97A4491A44F38F008C931B /* Air_fight_0.5_091.xml */; };
@@ -408,12 +391,6 @@
 		CAA4A4701A43B3BC002A69A0 /* CBXMLParserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A46D1A43B3BC002A69A0 /* CBXMLParserHelper.m */; };
 		CAA4A4711A43B3BC002A69A0 /* CBXMLSerializerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A46E1A43B3BC002A69A0 /* CBXMLSerializerHelper.m */; };
 		CAA4A4721A43B3BC002A69A0 /* CBXMLValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A46F1A43B3BC002A69A0 /* CBXMLValidator.m */; };
-		CAA4A4801A43B3CE002A69A0 /* CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A47A1A43B3CE002A69A0 /* CBXMLLogger.m */; };
-		CAA4A4811A43B3CE002A69A0 /* Header+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A47B1A43B3CE002A69A0 /* Header+CBXMLLogger.m */; };
-		CAA4A4821A43B3CE002A69A0 /* Look+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A47C1A43B3CE002A69A0 /* Look+CBXMLLogger.m */; };
-		CAA4A4831A43B3CE002A69A0 /* Script+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A47D1A43B3CE002A69A0 /* Script+CBXMLLogger.m */; };
-		CAA4A4841A43B3CE002A69A0 /* Sound+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A47E1A43B3CE002A69A0 /* Sound+CBXMLLogger.m */; };
-		CAA4A4851A43B3CE002A69A0 /* SpriteObject+CBXMLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A47F1A43B3CE002A69A0 /* SpriteObject+CBXMLLogger.m */; };
 		CAA4A4A01A43B407002A69A0 /* BroadcastBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A4931A43B407002A69A0 /* BroadcastBrick+CBXMLHandler.m */; };
 		CAA4A4A11A43B407002A69A0 /* BroadcastWaitBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A4941A43B407002A69A0 /* BroadcastWaitBrick+CBXMLHandler.m */; };
 		CAA4A4A21A43B407002A69A0 /* ComeToFrontBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A4951A43B407002A69A0 /* ComeToFrontBrick+CBXMLHandler.m */; };
@@ -1314,18 +1291,6 @@
 		CAA4A46D1A43B3BC002A69A0 /* CBXMLParserHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBXMLParserHelper.m; path = "Catty/Parser&Serialializer/NEW/Helper/CBXMLParserHelper.m"; sourceTree = SOURCE_ROOT; };
 		CAA4A46E1A43B3BC002A69A0 /* CBXMLSerializerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBXMLSerializerHelper.m; path = "Catty/Parser&Serialializer/NEW/Helper/CBXMLSerializerHelper.m"; sourceTree = SOURCE_ROOT; };
 		CAA4A46F1A43B3BC002A69A0 /* CBXMLValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBXMLValidator.m; path = "Catty/Parser&Serialializer/NEW/Helper/CBXMLValidator.m"; sourceTree = SOURCE_ROOT; };
-		CAA4A4741A43B3CE002A69A0 /* CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBXMLLogger.h; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/CBXMLLogger.h"; sourceTree = SOURCE_ROOT; };
-		CAA4A4751A43B3CE002A69A0 /* Header+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Header+CBXMLLogger.h"; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/Header+CBXMLLogger.h"; sourceTree = SOURCE_ROOT; };
-		CAA4A4761A43B3CE002A69A0 /* Look+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Look+CBXMLLogger.h"; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/Look+CBXMLLogger.h"; sourceTree = SOURCE_ROOT; };
-		CAA4A4771A43B3CE002A69A0 /* Script+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Script+CBXMLLogger.h"; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/Script+CBXMLLogger.h"; sourceTree = SOURCE_ROOT; };
-		CAA4A4781A43B3CE002A69A0 /* Sound+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Sound+CBXMLLogger.h"; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/Sound+CBXMLLogger.h"; sourceTree = SOURCE_ROOT; };
-		CAA4A4791A43B3CE002A69A0 /* SpriteObject+CBXMLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SpriteObject+CBXMLLogger.h"; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/SpriteObject+CBXMLLogger.h"; sourceTree = SOURCE_ROOT; };
-		CAA4A47A1A43B3CE002A69A0 /* CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBXMLLogger.m; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/CBXMLLogger.m"; sourceTree = SOURCE_ROOT; };
-		CAA4A47B1A43B3CE002A69A0 /* Header+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Header+CBXMLLogger.m"; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/Header+CBXMLLogger.m"; sourceTree = SOURCE_ROOT; };
-		CAA4A47C1A43B3CE002A69A0 /* Look+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Look+CBXMLLogger.m"; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/Look+CBXMLLogger.m"; sourceTree = SOURCE_ROOT; };
-		CAA4A47D1A43B3CE002A69A0 /* Script+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Script+CBXMLLogger.m"; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/Script+CBXMLLogger.m"; sourceTree = SOURCE_ROOT; };
-		CAA4A47E1A43B3CE002A69A0 /* Sound+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Sound+CBXMLLogger.m"; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/Sound+CBXMLLogger.m"; sourceTree = SOURCE_ROOT; };
-		CAA4A47F1A43B3CE002A69A0 /* SpriteObject+CBXMLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SpriteObject+CBXMLLogger.m"; path = "Catty/Parser&Serialializer/NEW/Helper/Logger/SpriteObject+CBXMLLogger.m"; sourceTree = SOURCE_ROOT; };
 		CAA4A4861A43B407002A69A0 /* BroadcastBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BroadcastBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/NEW/XMLHandler/Bricks/ControlBricks/BroadcastBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		CAA4A4871A43B407002A69A0 /* BroadcastWaitBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BroadcastWaitBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/NEW/XMLHandler/Bricks/ControlBricks/BroadcastWaitBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
 		CAA4A4881A43B407002A69A0 /* ComeToFrontBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ComeToFrontBrick+CBXMLHandler.h"; path = "Catty/Parser&Serialializer/NEW/XMLHandler/Bricks/ControlBricks/ComeToFrontBrick+CBXMLHandler.h"; sourceTree = SOURCE_ROOT; };
@@ -3594,7 +3559,6 @@
 				CAA4A46F1A43B3BC002A69A0 /* CBXMLValidator.m */,
 				CAA4A46B1A43B3BC002A69A0 /* CBXMLSerializerHelper.h */,
 				CAA4A46E1A43B3BC002A69A0 /* CBXMLSerializerHelper.m */,
-				CAA4A4731A43B3C1002A69A0 /* Logger */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -3956,25 +3920,6 @@
 			name = Gossip_Girl;
 			sourceTree = "<group>";
 		};
-		CAA4A4731A43B3C1002A69A0 /* Logger */ = {
-			isa = PBXGroup;
-			children = (
-				CAA4A4741A43B3CE002A69A0 /* CBXMLLogger.h */,
-				CAA4A4751A43B3CE002A69A0 /* Header+CBXMLLogger.h */,
-				CAA4A4761A43B3CE002A69A0 /* Look+CBXMLLogger.h */,
-				CAA4A4771A43B3CE002A69A0 /* Script+CBXMLLogger.h */,
-				CAA4A4781A43B3CE002A69A0 /* Sound+CBXMLLogger.h */,
-				CAA4A4791A43B3CE002A69A0 /* SpriteObject+CBXMLLogger.h */,
-				CAA4A47A1A43B3CE002A69A0 /* CBXMLLogger.m */,
-				CAA4A47B1A43B3CE002A69A0 /* Header+CBXMLLogger.m */,
-				CAA4A47C1A43B3CE002A69A0 /* Look+CBXMLLogger.m */,
-				CAA4A47D1A43B3CE002A69A0 /* Script+CBXMLLogger.m */,
-				CAA4A47E1A43B3CE002A69A0 /* Sound+CBXMLLogger.m */,
-				CAA4A47F1A43B3CE002A69A0 /* SpriteObject+CBXMLLogger.m */,
-			);
-			name = Logger;
-			sourceTree = "<group>";
-		};
 		CAA4A5371A43BD9E002A69A0 /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -4143,11 +4088,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CADBD7F819B0E8C200C62836 /* Build configuration list for PBXNativeTarget "Catty" */;
 			buildPhases = (
-				CADBD6D619B0E8C200C62836 /* Add Version Number To Root.plist */,
+				CADBD6D619B0E8C200C62836 /* Catty Precompile Tests */,
 				CADBD6D719B0E8C200C62836 /* Add Licenses To Acknowledgements.plist */,
 				CADBD6D819B0E8C200C62836 /* Resources */,
 				CADBD70119B0E8C200C62836 /* Sources */,
 				CADBD7E419B0E8C200C62836 /* Frameworks */,
+				CA0BB4151AA7709900E5A88D /* Add version number to Root.plist */,
 			);
 			buildRules = (
 			);
@@ -4223,7 +4169,6 @@
 			projectRoot = "";
 			targets = (
 				CADBD6D319B0E8C200C62836 /* Catty */,
-				CADBD7FD19B0E8F300C62836 /* LicenseTest */,
 				CA538EA119B0EA09008240AB /* CattyTests */,
 			);
 		};
@@ -4342,19 +4287,33 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		CADBD6D619B0E8C200C62836 /* Add Version Number To Root.plist */ = {
+		CA0BB4151AA7709900E5A88D /* Add version number to Root.plist */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Add Version Number To Root.plist";
+			name = "Add version number to Root.plist";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "CFBundleShortVersionString=`/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${SRCROOT}/Catty/App-Info.plist\"`\n/usr/libexec/PlistBuddy \"$SRCROOT/Catty/Settings.bundle/Root.plist\" -c \"set PreferenceSpecifiers:3:DefaultValue $CFBundleShortVersionString\"";
+		};
+		CADBD6D619B0E8C200C62836 /* Catty Precompile Tests */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Catty Precompile Tests";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "./precompile-tests.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\n  exit $OUT\nfi\n\n./update-localized-strings.sh&\n";
 		};
 		CADBD6D719B0E8C200C62836 /* Add Licenses To Acknowledgements.plist */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4369,20 +4328,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/usr/bin/perl -w";
 			shellScript = "use strict;\n\nmy $ACKNOWLEDGEMENTS_HEADER = \"PORTIONS OF THE APPLICATION MAY UTILIZE THE FOLLOWING COPYRIGHTED MATERIAL, THE USE OF WHICH IS HEREBY ACKNOWLEDGED:\";\n\nmy $out = \"Catty/Settings.bundle/en.lproj/Acknowledgements.strings\";\nmy $plistout = \"Catty/Settings.bundle/Acknowledgements.plist\";\n\nunlink $out;\n\nopen(my $outfh, '>', $out) or die $!;\nopen(my $plistfh, '>', $plistout) or die $!;\n\nprint $plistfh <<'EOD';\n<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n    <key>StringsTable</key>\n    <string>Acknowledgements</string>\n    <key>PreferenceSpecifiers</key>\n        <array>\nEOD\n\nprint $plistfh <<\"EOD\";\n            <dict>\n                <key>Type</key>\n                <string>PSGroupSpecifier</string>\n                <key>FooterText</key>\n                <string>AcknowledgementHeader</string>\n            </dict>\nEOD\n\nprint $outfh \"\\\"AcknowledgementHeader\\\" = \\\"$ACKNOWLEDGEMENTS_HEADER\\\";\\n\";\n\nfor my $i (sort glob(\"Catty/Resources/Licenses/*.license\"))\n{\n    my $value=`cat $i`;\n    $value =~ s/\\r//g;\n    $value =~ s/\\n/\\r/g;\n    $value =~ s/[ \\t]+\\r/\\r/g;\n    $value =~ s/\\\"/\\'/g;\n    my $key=$i;\n    $key =~ s/\\.license$//;\n    \n    print $plistfh <<\"EOD\";\n            <dict>\n                <key>Type</key>\n                <string>PSGroupSpecifier</string>\n                <key>FooterText</key>\n                <string>$key</string>\n            </dict>\nEOD\n    \n    print $outfh \"\\\"$key\\\" = \\\"$value\\\";\\n\";\n}\n\nprint $plistfh <<'EOD';\n        </array>\n</dict>\n</plist>\nEOD\n\nclose($outfh);\nclose($plistfh);";
-		};
-		CADBD7FE19B0E8F300C62836 /* Run Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./license-test.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -4439,9 +4384,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA8A94A61A41E57400E51A12 /* (null) in Sources */,
-				CA8A94A71A41E57400E51A12 /* (null) in Sources */,
-				92FF338D1A24E5F800093DA7 /* (null) in Sources */,
 				CAA4A4C81A43B45E002A69A0 /* SetGhostEffectBrick+CBXMLHandler.m in Sources */,
 				92FF2E9C1A24C7D800093DA7 /* SensorHandler.m in Sources */,
 				92FF32B71A24E2F400093DA7 /* ColoredCell.m in Sources */,
@@ -4560,9 +4502,7 @@
 				92FF30EB1A24DCAA00093DA7 /* LedOffBrick.m in Sources */,
 				92FF32B81A24E2F400093DA7 /* ContinueImageCell.m in Sources */,
 				CAA4A4AC1A43B407002A69A0 /* WaitBrick+CBXMLHandler.m in Sources */,
-				CAA4A4831A43B3CE002A69A0 /* Script+CBXMLLogger.m in Sources */,
 				92FF32691A24E2F400093DA7 /* MYBlurIntroductionView.m in Sources */,
-				CAA4A4811A43B3CE002A69A0 /* Header+CBXMLLogger.m in Sources */,
 				92FF30D01A24DCAA00093DA7 /* ChangeBrightnessByNBrick.m in Sources */,
 				9238C5851A3AE9920099F061 /* UploadViewController.m in Sources */,
 				92FF2E971A24C7D800093DA7 /* mztools.c in Sources */,
@@ -4659,7 +4599,6 @@
 				92FF315E1A24DEB300093DA7 /* HelpWebViewController.m in Sources */,
 				92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */,
 				CAA4A5271A43B506002A69A0 /* UserVariable+CBXMLHandler.m in Sources */,
-				CAA4A4841A43B3CE002A69A0 /* Sound+CBXMLLogger.m in Sources */,
 				92DFB06D1A38960C00FA9B0F /* YKImageCropperView.m in Sources */,
 				CAA4A5181A43B4D0002A69A0 /* Look+CBXMLHandler.m in Sources */,
 				92DFB0161A38949E00FA9B0F /* InternFormulaState.m in Sources */,
@@ -4721,7 +4660,6 @@
 				92FF326D1A24E2F400093DA7 /* SWCellScrollView.m in Sources */,
 				92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */,
 				92FF32731A24E2F400093DA7 /* TTTAttributedLabel.m in Sources */,
-				CAA4A4851A43B3CE002A69A0 /* SpriteObject+CBXMLLogger.m in Sources */,
 				92DFB0671A38960C00FA9B0F /* SPUserResizableView.m in Sources */,
 				92FF30E51A24DCAA00093DA7 /* SetXBrick.m in Sources */,
 				CAA4A4711A43B3BC002A69A0 /* CBXMLSerializerHelper.m in Sources */,
@@ -4763,13 +4701,11 @@
 				4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */,
 				92FF2E8D1A24C7D800093DA7 /* CatrobatAudioPlayer.m in Sources */,
 				92FF32891A24E2F400093DA7 /* ChangeGhostEffectByNBrickCell.m in Sources */,
-				CAA4A4821A43B3CE002A69A0 /* Look+CBXMLLogger.m in Sources */,
 				92FF31611A24DEB300093DA7 /* ScenePresenterViewController.m in Sources */,
 				92FF30CC1A24DCAA00093DA7 /* WaitBrick.m in Sources */,
 				92DFB0541A38960C00FA9B0F /* ColorPickerViewController.m in Sources */,
 				92FF31501A24DEB300093DA7 /* BrickDetailViewController.m in Sources */,
 				92FF32B31A24E2F400093DA7 /* LoadingView.m in Sources */,
-				CAA4A4801A43B3CE002A69A0 /* CBXMLLogger.m in Sources */,
 				92FF327C1A24E2F400093DA7 /* BroadcastWaitBrickCell.m in Sources */,
 				92FF32821A24E2F400093DA7 /* LedOnBrickCell.m in Sources */,
 				CAA4A4661A43B388002A69A0 /* CBXMLSerializer.m in Sources */,
@@ -5050,6 +4986,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = NO;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = NO;
@@ -5077,6 +5014,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = NO;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = NO;
@@ -5097,26 +5035,6 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
-			};
-			name = Release;
-		};
-		CADBD80019B0E8F300C62836 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = LicenseTest_iOS8.0;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		CADBD80119B0E8F300C62836 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = LicenseTest_iOS8.0;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -5146,15 +5064,6 @@
 			buildConfigurations = (
 				CADBD7F919B0E8C200C62836 /* Debug */,
 				CADBD7FA19B0E8C200C62836 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CADBD7FF19B0E8F300C62836 /* Build configuration list for PBXAggregateTarget "LicenseTest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CADBD80019B0E8F300C62836 /* Debug */,
-				CADBD80119B0E8F300C62836 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

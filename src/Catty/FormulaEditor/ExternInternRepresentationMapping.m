@@ -35,7 +35,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
 
 @implementation ExternInternRepresentationMapping
 
--(ExternInternRepresentationMapping *)init
+- (ExternInternRepresentationMapping *)init
 {
     self = [super init];
     if(self)
@@ -47,7 +47,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
         
 }
 
--(NSMutableDictionary *)externInternMapping
+- (NSMutableDictionary *)externInternMapping
 {
     if(!_externInternMapping)
     {
@@ -57,7 +57,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     return _externInternMapping;
 }
 
--(NSMutableDictionary *)internExternMapping
+- (NSMutableDictionary *)internExternMapping
 {
     if(!_internExternMapping)
     {
@@ -67,18 +67,18 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     return _internExternMapping;
 }
 
--(void)addItemToList:(NSMutableDictionary *)list withKey:(int)key andValue:(id)obj
+- (void)addItemToList:(NSMutableDictionary *)list withKey:(int)key andValue:(id)obj
 {
     [list setObject:obj forKey:[NSNumber numberWithInt:key]];
 }
 
--(id)getItemfromList:(NSMutableDictionary *)list withKey:(int)key
+- (id)getItemfromList:(NSMutableDictionary *)list withKey:(int)key
 {
 //    NSLog(@"get Value %@ from list!", [list objectForKey:[NSNumber numberWithInt:key]]);
     return [list objectForKey:[NSNumber numberWithInt:key]];
 }
 
--(void)putMappingWithStart:(int)externStringStartIndex andEnd:(int)externStringEndIndex andInternListIndex:(int)internListIndex
+- (void)putMappingWithStart:(int)externStringStartIndex andEnd:(int)externStringEndIndex andInternListIndex:(int)internListIndex
 {
     [self addItemToList:self.externInternMapping
                 withKey:externStringStartIndex
@@ -100,7 +100,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     }
 }
 
--(int)getExternTokenStartIndex:(int)internIndex
+- (int)getExternTokenStartIndex:(int)internIndex
 {
     ExternToken *externToken = [self getItemfromList:self.internExternMapping withKey:internIndex];
     if(externToken==nil)
@@ -111,7 +111,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     return [externToken getStartIndex];
 }
 
--(int)getExternTokenEndIndex:(int)internIndex
+- (int)getExternTokenEndIndex:(int)internIndex
 {
     ExternToken *externToken = [self getItemfromList:self.internExternMapping withKey:internIndex];
     if(externToken==nil)
@@ -122,7 +122,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     return [externToken getEndIndex];
 }
 
--(int)getInternTokenByExternIndex:(int)externIndex
+- (int)getInternTokenByExternIndex:(int)externIndex
 {
     if(externIndex<0)
     {
@@ -155,7 +155,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     
 }
 
--(int)getExternTokenStartOffset:(int)externIndex withInternOffsetTo:(int)internOffsetTo
+- (int)getExternTokenStartOffset:(int)externIndex withInternOffsetTo:(int)internOffsetTo
 {
     for(int searchIndex = externIndex; searchIndex >=0; searchIndex--)
     {
@@ -173,7 +173,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
 }
 
 
--(int)searchDownIn:(NSMutableDictionary *)mapping withBeginIndex:(int)index
+- (int)searchDownIn:(NSMutableDictionary *)mapping withBeginIndex:(int)index
 {
     for(int searchIndex = index; searchIndex>=0; searchIndex--)
     {
@@ -187,7 +187,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
     return MAPPING_NOT_FOUND;
 }
 
--(int)searchUpIn:(NSMutableDictionary *)mapping withBeginIndex:(int)index
+- (int)searchUpIn:(NSMutableDictionary *)mapping withBeginIndex:(int)index
 {
     for(int searchIndex = index; searchIndex<self.externStringLength; searchIndex++)
     {

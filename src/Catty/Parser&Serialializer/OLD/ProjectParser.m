@@ -103,17 +103,13 @@
     
     // parse and return Project object
     Program* program = nil;
-    @try
-    {
-    NSInfo(@"Loading Project...");
-    program = [self parseNode:doc.rootElement withParent:nil];
-    NSInfo(@"Loading done...");
+    @try {
+        NSInfo(@"Loading Project...");
+        program = [self parseNode:doc.rootElement withParent:nil];
+        NSInfo(@"Loading done...");
+    } @catch(NSException* ex) {
+        NSError(@"Program could not be loaded! %@", [ex description]);
     }
-    @catch(NSException* ex)
-    {
-    NSError(@"Program could not be loaded! %@", [ex description]);
-    }
-    
     return program;
 }
 
@@ -200,8 +196,9 @@
                     [self.weakPropertyRetainer addObject:value];
                 }
             }
-        }
-        else {
+        // omit property "object" in all subclasses of Brick class
+        } else if ([child.name isEqualToString:@"object"] && [className hasSuffix:@"Brick"]) {
+        } else {
             [NSException raise:@"PropertyNotFoundException" format:@"property <%@> does NOT exist in our implementation of <%@>", child.name, className];
         }
     }
@@ -323,7 +320,7 @@
 }
 
 
--(id) parseFormula:(GDataXMLElement*)element
+- (id) parseFormula:(GDataXMLElement*)element
 {
     NSArray* formulaTrees = [element elementsForName:@"formulaTree"];
     if(formulaTrees) {
@@ -342,7 +339,7 @@
     }
 }
 
--(id) parseVariablesContainer:(GDataXMLElement*)element withParent:(XMLObjectReference*)parent
+- (id) parseVariablesContainer:(GDataXMLElement*)element withParent:(XMLObjectReference*)parent
 {
     
     VariablesContainer* variables = nil;
@@ -373,7 +370,7 @@
     
 }
 
--(id) parseReferenceElement:(GDataXMLElement*)element withParent:(XMLObjectReference*)parent
+- (id) parseReferenceElement:(GDataXMLElement*)element withParent:(XMLObjectReference*)parent
 {
     NSString *refString = [element attributeForName:@"reference"].stringValue;
     if (!refString || [refString isEqualToString:@""]) {
@@ -425,7 +422,7 @@
                 lastComponent = [lastComponent objectAtIndex:index];
             }
         }
-        else if([self component:pathComponent containsString:@"Brick"] || [self component:pathComponent containsString:@"Script"]) {
+        else if ([self component:pathComponent containsString:@"Brick"] || [self component:pathComponent containsString:@"Script"]) {
             
             NSMutableArray* lastComponentList = lastComponent;
             
@@ -463,7 +460,7 @@
 
 
 
--(OrderedMapTable*)parseObjectVariableMap:(GDataXMLElement*)objectVariableList andParent:(XMLObjectReference*)parent
+- (OrderedMapTable*)parseObjectVariableMap:(GDataXMLElement*)objectVariableList andParent:(XMLObjectReference*)parent
 {
     
     OrderedMapTable* objectVariableMap = [OrderedMapTable weakToStrongObjectsMapTable];
