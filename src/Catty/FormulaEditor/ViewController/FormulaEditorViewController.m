@@ -48,6 +48,7 @@
 #import "ActionSheetAlertViewTags.h"
 #import "BrickProtocol.h"
 #import "Script.h"
+#import "InternToken.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -177,6 +178,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.logicScrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
     self.objectScrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
     self.sensorScrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
+    self.calcScrollView.contentSize = CGSizeMake(self.calcScrollView.frame.size.width,self.calcScrollView.frame.size.height);
     
     [self localizeView];
   
@@ -227,16 +229,41 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)localizeView
 {
-  self.calcButton.titleLabel.text = kUIFENumbers;
-  self.mathbutton.titleLabel.text = kUIFEMath;
-  self.logicButton.titleLabel.text = kUIFELogic;
-  self.objectButton.titleLabel.text = kUIFEObject;
-  self.sensorButton.titleLabel.text = kUIFESensor;
-  self.variableButton.titleLabel.text = kUIFEVariable;
-  self.computeButton.titleLabel.text = kUIFECompute;
-  self.doneButton.titleLabel.text = kUIFEDone;
-  self.variable.titleLabel.text = kUIFEVar;
-  self.takeVar.titleLabel.text = kUIFETake;
+    for (UIButton *button in self.normalTypeButton) {
+        
+        NSString *name = [Functions getExternName:[Functions getName:(Function)[button tag]]];
+        if([name length] != 0)
+        {
+            [button setTitle:name forState:UIControlStateAll];
+        }else
+        {
+            name = [Operators getExternName:[Operators getName:(Operator)[button tag]]];
+            if([name length] != 0)
+            {
+                [button setTitle:name forState:UIControlStateAll];
+            }else
+            {
+                name = [SensorManager getExternName:[SensorManager stringForSensor:(Sensor)[button tag]]];
+                if([name length] != 0)
+                {
+                    [button setTitle:name forState:UIControlStateAll];
+                }
+
+            }
+        }
+    }
+    
+    [self.calcButton setTitle:kUIFENumbers forState:UIControlStateAll];
+    [self.mathbutton setTitle:kUIFEMath forState:UIControlStateAll];
+    [self.logicButton setTitle:kUIFELogic forState:UIControlStateAll];
+    [self.objectButton setTitle:kUIFEObject forState:UIControlStateAll];
+    [self.sensorButton setTitle:kUIFESensor forState:UIControlStateAll];
+    [self.variableButton setTitle:kUIFEVariable forState:UIControlStateAll];
+    [self.computeButton setTitle:kUIFECompute forState:UIControlStateAll];
+    [self.doneButton setTitle:kUIFEDone forState:UIControlStateAll];
+    [self.variable setTitle:kUIFEVar forState:UIControlStateAll];
+    [self.takeVar setTitle:kUIFETake forState:UIControlStateAll];
+    
 }
 
 
@@ -270,10 +297,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
 }
 
+//3011 for string
+
 - (void)handleInputWithTitle:(NSString*)title AndButtonType:(int)buttonType
 {
     [self.internFormula handleKeyInputWithName:title butttonType:buttonType];
-    NSDebug(@"InternFormulaString: %@",[self.internFormula getExternFormulaString]);
+    NSLog(@"InternFormulaString: %@",[self.internFormula getExternFormulaString]);
     [self.history push:[self.internFormula getInternFormulaState]];
     [self update];
 }
@@ -334,23 +363,14 @@ NS_ENUM(NSInteger, ButtonIndex) {
     if (self.internFormula != nil) {
         InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
         Brick *brick = (Brick*)self.brickCell.scriptOrBrick; // must be a brick!
-        FormulaElement *tempFormulaElement = [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
-
-        float result;
+        Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormulaForSpriteObject:brick.script.object]];
+        
         NSString *computedString;
-
+        
         switch ([internFormulaParser getErrorTokenIndex]) {
             case FORMULA_PARSER_OK:
-                result = [tempFormulaElement interpretRecursiveForSprite:nil];
-                if (internFormulaParser.isBool) {
-                    if (result) {
-                        computedString = [NSString stringWithFormat:kUIFEComputedTrue];
-                    } else {
-                        computedString = [NSString stringWithFormat:kUIFEComputedFalse];
-                    }
-                } else {
-                    computedString = [NSString stringWithFormat:kUIFEComputed, result];
-                }
+                
+                computedString = [formula getResultForComputeDialog:brick.script.object];
                 
                 alert = [[UIAlertView alloc]initWithTitle: kUIFEResult
                                                   message: computedString
@@ -755,6 +775,19 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.formulaEditorTextView becomeFirstResponder];
 }
 
+- (IBAction)addNewText:(id)sender {
+    [self.formulaEditorTextView resignFirstResponder];
+    
+    [Util askUserForVariableNameAndPerformAction:@selector(handleNewTextInput:) target:self promptTitle:kUIFENewText promptMessage:kUIFETextMessage minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+    
+}
+
+- (void)handleNewTextInput:(NSString*)text
+{
+    NSDebug(@"Text: %@", text);
+    [self handleInputWithTitle:text AndButtonType:TOKEN_TYPE_STRING];
+    [self.formulaEditorTextView becomeFirstResponder];
+}
 
 #pragma mark - pickerView
 
