@@ -184,7 +184,7 @@
 
 - (NSString *)getResultForComputeDialog:(SpriteObject *)sprite
 {
-    NSString *result = [NSString stringWithFormat:@""];
+    NSString *result;
     
     if ([self.formulaTree isLogicalOperator]) {
         BOOL bool_result = [self interpretBOOLForSprite:sprite];

@@ -231,19 +231,19 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     for (UIButton *button in self.normalTypeButton) {
         
-        NSString *name = [Functions getExternName:[Functions getName:[button tag]]];
+        NSString *name = [Functions getExternName:[Functions getName:(Function)[button tag]]];
         if([name length] != 0)
         {
             [button setTitle:name forState:UIControlStateAll];
         }else
         {
-            name = [Operators getExternName:[Operators getName:[button tag]]];
+            name = [Operators getExternName:[Operators getName:(Operator)[button tag]]];
             if([name length] != 0)
             {
                 [button setTitle:name forState:UIControlStateAll];
             }else
             {
-                name = [SensorManager getExternName:[SensorManager stringForSensor:[button tag]]];
+                name = [SensorManager getExternName:[SensorManager stringForSensor:(Sensor)[button tag]]];
                 if([name length] != 0)
                 {
                     [button setTitle:name forState:UIControlStateAll];
