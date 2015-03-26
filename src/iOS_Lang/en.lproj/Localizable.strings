@@ -653,29 +653,29 @@
 "New Text" = "New Text";
 "Text message:" = "Text message:";
 
-"fkt sqrt" = "sqrt";
-"fkt true" = "TRUE";
-"fkt false" = "FALSE";
+"sqrt" = "sqrt";
+"true" = "TRUE";
+"false" = "FALSE";
 
-"op and" = "AND";
-"op not" = "NOT";
-"op or" = "OR";
+"and" = "AND";
+"not" = "NOT";
+"or" = "OR";
 
-"obj transparency" = "Transparency";
-"obj brightness" = "Brightness";
-"obj size" = "Size";
-"obj direction" = "Direction";
-"obj layer" = "Layer";
-"obj pos x" = "Position_x";
-"obj pos y" = "Position_y";
+"transparency" = "Transparency";
+"brightness" = "Brightness";
+"size" = "Size";
+"direction" = "Direction";
+"layer" = "Layer";
+"pos_x" = "Position_x";
+"pos_y" = "Position_y";
 
-"sens compass" = "Compass";
-"sens loudness" = "Loudness";
-"sens acceleration x" = "Acceleration_x";
-"sens acceleration y" = "Acceleration_y";
-"sens acceleration z" = "Acceleration_z";
-"sens inclination x" = "decline_x";
-"sens inclination y" = "decline_y";
+"compass" = "Compass";
+"loudness" = "Loudness";
+"acceleration_x" = "Acceleration_x";
+"acceleration_y" = "Acceleration_y";
+"acceleration_z" = "Acceleration_z";
+"inclination_x" = "decline_x";
+"inclination_y" = "decline_y";
 
 
 "New" = "New";

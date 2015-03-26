@@ -227,16 +227,16 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 -(void)localizeView
 {
-  self.calcButton.titleLabel.text = kUIFENumbers;
-  self.mathbutton.titleLabel.text = kUIFEMath;
-  self.logicButton.titleLabel.text = kUIFELogic;
-  self.objectButton.titleLabel.text = kUIFEObject;
-  self.sensorButton.titleLabel.text = kUIFESensor;
-  self.variableButton.titleLabel.text = kUIFEVariable;
-  self.computeButton.titleLabel.text = kUIFECompute;
-  self.doneButton.titleLabel.text = kUIFEDone;
-  self.variable.titleLabel.text = kUIFEVar;
-  self.takeVar.titleLabel.text = kUIFETake;
+    [self.calcButton setTitle:kUIFENumbers forState:UIControlStateAll];
+    [self.mathbutton setTitle:kUIFEMath forState:UIControlStateAll];
+    [self.logicButton setTitle:kUIFELogic forState:UIControlStateAll];
+    [self.objectButton setTitle:kUIFEObject forState:UIControlStateAll];
+    [self.sensorButton setTitle:kUIFESensor forState:UIControlStateAll];
+    [self.variableButton setTitle:kUIFEVariable forState:UIControlStateAll];
+    [self.computeButton setTitle:kUIFECompute forState:UIControlStateAll];
+    [self.doneButton setTitle:kUIFEDone forState:UIControlStateAll];
+    [self.variable setTitle:kUIFEVar forState:UIControlStateAll];
+    [self.takeVar setTitle:kUIFETake forState:UIControlStateAll];
     
     
     

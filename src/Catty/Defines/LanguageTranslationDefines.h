@@ -456,32 +456,29 @@
 #define kUIFEActionVarObj NSLocalizedString(@"object", nil)
 #define kUIFEActionVarPro NSLocalizedString(@"program", nil)
 
-#define kUIFEFunctionSqrt NSLocalizedString(@"fkt sqrt", nil)
-#define kUIFEFunctionTrue NSLocalizedString(@"fkt true", nil)
-#define kUIFEFunctionFalse NSLocalizedString(@"fkt false", nil)
+#define kUIFEFunctionSqrt NSLocalizedString(@"sqrt", nil)
+#define kUIFEFunctionTrue NSLocalizedString(@"true", nil)
+#define kUIFEFunctionFalse NSLocalizedString(@"false", nil)
 
-#define kUIFEOperatorAnd NSLocalizedString(@"op and", nil)
-#define kUIFEOperatorNot NSLocalizedString(@"op not", nil)
-#define kUIFEOperatorOr NSLocalizedString(@"op or", nil)
+#define kUIFEOperatorAnd NSLocalizedString(@"and", nil)
+#define kUIFEOperatorNot NSLocalizedString(@"not", nil)
+#define kUIFEOperatorOr NSLocalizedString(@"or", nil)
 
-#define kUIFEObjectTransparency NSLocalizedString(@"obj transparency", nil)
-#define kUIFEObjectBrightness NSLocalizedString(@"obj brightness", nil)
-#define kUIFEObjectSize NSLocalizedString(@"obj size", nil)
-#define kUIFEObjectDirection NSLocalizedString(@"obj direction", nil)
-#define kUIFEObjectLayer NSLocalizedString(@"obj layer", nil)
-#define kUIFEObjectPositionX NSLocalizedString(@"obj pos x", nil)
-#define kUIFEObjectPositionY NSLocalizedString(@"obj pos y", nil)
+#define kUIFEObjectTransparency NSLocalizedString(@"transparency", nil)
+#define kUIFEObjectBrightness NSLocalizedString(@"brightness", nil)
+#define kUIFEObjectSize NSLocalizedString(@"size", nil)
+#define kUIFEObjectDirection NSLocalizedString(@"direction", nil)
+#define kUIFEObjectLayer NSLocalizedString(@"layer", nil)
+#define kUIFEObjectPositionX NSLocalizedString(@"pos_x", nil)
+#define kUIFEObjectPositionY NSLocalizedString(@"pos_y", nil)
 
-#define kUIFESensorCompass NSLocalizedString(@"sens compass", nil)
-#define kUIFESensorLoudness NSLocalizedString(@"sens loudness", nil)
-#define kUIFESensorAccelerationX NSLocalizedString(@"sens acceleration x", nil)
-#define kUIFESensorAccelerationY NSLocalizedString(@"sens acceleration y", nil)
-#define kUIFESensorAccelerationZ NSLocalizedString(@"sens acceleration z", nil)
-#define kUIFESensorInclinationX NSLocalizedString(@"sens inclination x", nil)
-#define kUIFESensorInclinationY NSLocalizedString(@"sens inclination y", nil)
-
-
-
+#define kUIFESensorCompass NSLocalizedString(@"compass", nil)
+#define kUIFESensorLoudness NSLocalizedString(@"loudness", nil)
+#define kUIFESensorAccelerationX NSLocalizedString(@"acceleration_x", nil)
+#define kUIFESensorAccelerationY NSLocalizedString(@"acceleration_y", nil)
+#define kUIFESensorAccelerationZ NSLocalizedString(@"acceleration_z", nil)
+#define kUIFESensorInclinationX NSLocalizedString(@"inclination_x", nil)
+#define kUIFESensorInclinationY NSLocalizedString(@"inclination_y", nil)
 
 
 

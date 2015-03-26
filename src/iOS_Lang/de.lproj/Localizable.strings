@@ -623,29 +623,29 @@
 "New Text" = "New Text";
 "Text message:" = "Text message:";
 
-"fkt sqrt" = "wurzel";
-"fkt true" = "WAHR";
-"fkt false" = "FALSCH";
+"sqrt" = "wurzel";
+"true" = "WAHR";
+"false" = "FALSCH";
 
-"op and" = "UND";
-"op not" = "NICHT";
-"op or" = "ODER";
+"and" = "UND";
+"not" = "NICHT";
+"or" = "ODER";
 
-"obj transparency" = "Transparenz";
-"obj brightness" = "Helligkeit";
-"obj size" = "Größe";
-"obj direction" = "Richtung";
-"obj layer" = "Ebene";
-"obj pos x" = "Position_x";
-"obj pos y" = "Position_y";
+"transparency" = "Transparenz";
+"brightness" = "Helligkeit";
+"size" = "Größe";
+"direction" = "Richtung";
+"layer" = "Ebene";
+"pos_x" = "Position_x";
+"pos_y" = "Position_y";
 
-"sens compass" = "Compass_Richtung";
-"sens loudness" = "Umgebungslautstärke";
-"sens acceleration x" = "Beschleunigung_x";
-"sens acceleration y" = "Beschleunigung_y";
-"sens acceleration z" = "Beschleunigung_z";
-"sens inclination x" = "Neigung_x";
-"sens inclination y" = "Neigung_y";
+"compass" = "Compass_Richtung";
+"loudness" = "Umgebungslautstärke";
+"acceleration_x" = "Beschleunigung_x";
+"acceleration_y" = "Beschleunigung_y";
+"acceleration_z" = "Beschleunigung_z";
+"inclination_x" = "Neigung_x";
+"inclination_y" = "Neigung_y";
 
 "New" = "Neu";
 "Take" = "Nehmen";
