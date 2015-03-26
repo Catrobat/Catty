@@ -450,13 +450,17 @@
                     inputViewFrame.origin.y = inputViewFrame.origin.y+10;
                     inputViewFrame.size.height = kBrickInputFieldHeight;
                      textField= [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame andNote:brick.note AndBrickCell:self];
+                    inputField = (UIView*)textField;
                 } else {
-                    SpeakBrick *brick = (SpeakBrick*)self.scriptOrBrick;
-                    inputViewFrame.origin.y = inputViewFrame.origin.y+10;
-                    inputViewFrame.size.height = kBrickInputFieldHeight;
-                    textField= [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame andNote:brick.text AndBrickCell:self];
+                        //TODO
+//                    SpeakBrick *brick = (SpeakBrick*)self.scriptOrBrick;
+//                    inputViewFrame.origin.y = inputViewFrame.origin.y+10;
+//                    inputViewFrame.size.height = kBrickInputFieldHeight;
+//                    textField= [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame andNote:brick.formula.formulaTree.value AndBrickCell:self];
+                    UIButton *formulaEditor = [UIUtil newDefaultBrickFormulaEditorWithFrame:inputViewFrame ForBrickCell:self AndLineNumber: lineNumber AndParameterNumber: counter];
+                    inputField = (UIView*)formulaEditor;
                 }
-                inputField = (UIView*)textField;
+                
             } else if ([afterLabelParam rangeOfString:@"MESSAGE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 NSMutableArray* messages = [[NSMutableArray alloc] init];

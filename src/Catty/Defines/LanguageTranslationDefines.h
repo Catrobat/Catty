@@ -469,3 +469,32 @@
 #define kUIFEActionVar NSLocalizedString(@"Variable type", nil)
 #define kUIFEActionVarObj NSLocalizedString(@"object", nil)
 #define kUIFEActionVarPro NSLocalizedString(@"program", nil)
+
+#define kUIFEFunctionSqrt NSLocalizedString(@"sqrt", nil)
+#define kUIFEFunctionTrue NSLocalizedString(@"true", nil)
+#define kUIFEFunctionFalse NSLocalizedString(@"false", nil)
+
+#define kUIFEOperatorAnd NSLocalizedString(@"and", nil)
+#define kUIFEOperatorNot NSLocalizedString(@"not", nil)
+#define kUIFEOperatorOr NSLocalizedString(@"or", nil)
+
+#define kUIFEObjectTransparency NSLocalizedString(@"transparency", nil)
+#define kUIFEObjectBrightness NSLocalizedString(@"brightness", nil)
+#define kUIFEObjectSize NSLocalizedString(@"size", nil)
+#define kUIFEObjectDirection NSLocalizedString(@"direction", nil)
+#define kUIFEObjectLayer NSLocalizedString(@"layer", nil)
+#define kUIFEObjectPositionX NSLocalizedString(@"pos_x", nil)
+#define kUIFEObjectPositionY NSLocalizedString(@"pos_y", nil)
+
+#define kUIFESensorCompass NSLocalizedString(@"compass", nil)
+#define kUIFESensorLoudness NSLocalizedString(@"loudness", nil)
+#define kUIFESensorAccelerationX NSLocalizedString(@"acceleration_x", nil)
+#define kUIFESensorAccelerationY NSLocalizedString(@"acceleration_y", nil)
+#define kUIFESensorAccelerationZ NSLocalizedString(@"acceleration_z", nil)
+#define kUIFESensorInclinationX NSLocalizedString(@"inclination_x", nil)
+#define kUIFESensorInclinationY NSLocalizedString(@"inclination_y", nil)
+
+
+
+#define kUIFENewText NSLocalizedString(@"New Text", nil)
+#define kUIFETextMessage NSLocalizedString(@"Text message:", nil)
