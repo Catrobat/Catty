@@ -6,22 +6,6 @@ iOS implementation of the Catrobat language
 # Questions?
 Please ask on our Google Plus community: http://goo.gl/fOjQi
 
-<!--
-# Setup guide
-1. Download XCode (at least version 5) from the Mac App Store
-1. Make sure you have installed [Brew][1], a package manage for OSX, which the `bootstrap` script uses to pull dependencies
-1. Now install xctool and cmake by executing following lines at the command-line prompt:
-   `sudo brew install xctool`
-   `sudo brew install cmake`
-1. Checkout our repository
-   `git clone ...`
-1. Update submodules
-   `git submodule update --init --recursive`
-1. Call bootstrap script of ObjectiveGit library
-   `Catty/objective-git/script/bootstrap`
-1. `sudo brew install homebrew/versions/perl516`
--->
-
 # First steps for intern Teammembers
 ## Learn iOS development?
 We recommend [iPad and iPhone App Development](https://itunes.apple.com/us/course/ipad-iphone-app-development/id495052415) from the Stanford University.
@@ -60,6 +44,24 @@ https://www.ufm.edu/images/0/04/Clean_Code.pdf), so first read
 everything you can about these development methods. Code developed in a 
 different style will not be accepted.
 
+* Download XCode (at least version 6) from the Mac App Store
+
+* Clone this project by using git clone
+
+<!--
+ 1. Make sure you have installed [Brew][1], a package manage for OSX, which the `bootstrap` script uses to pull dependencies
+ 1. Now install xctool and cmake by executing following lines at the command-line prompt:
+ `sudo brew install xctool`
+ `sudo brew install cmake`
+ 1. Checkout our repository
+ `git clone ...`
+ 1. Update submodules
+ `git submodule update --init --recursive`
+ 1. Call bootstrap script of ObjectiveGit library
+ `Catty/objective-git/script/bootstrap`
+ 1. `sudo brew install homebrew/versions/perl516`
+ -->
+
 * Finished
 
 
@@ -77,6 +79,10 @@ http://c2.com/cgi/wiki?TestDrivenDevelopment) and Clean Code(URL
 https://www.ufm.edu/images/0/04/Clean_Code.pdf), so first read 
 everything you can about these development methods. Code developed in a 
 different style will not be accepted.
+
+* Download XCode (at least version 6) from the Mac App Store
+
+* Clone this project by using git clone
 
 * If you have any further questions please use our IRC Channel or Google Plus community: http://goo.gl/fOjQi
 
