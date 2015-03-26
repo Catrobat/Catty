@@ -498,5 +498,3 @@
 
 #define kUIFENewText NSLocalizedString(@"New Text", nil)
 #define kUIFETextMessage NSLocalizedString(@"Text message:", nil)
-
-#endif // kIsRelease

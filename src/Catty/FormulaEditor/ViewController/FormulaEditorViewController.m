@@ -363,14 +363,14 @@ NS_ENUM(NSInteger, ButtonIndex) {
     if (self.internFormula != nil) {
         InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
         Brick *brick = (Brick*)self.brickCell.scriptOrBrick; // must be a brick!
-        Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormulaForSpriteObject:self.brickCell.brick.object]];
+        Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormulaForSpriteObject:brick.script.object]];
         
         NSString *computedString;
         
         switch ([internFormulaParser getErrorTokenIndex]) {
             case FORMULA_PARSER_OK:
                 
-                computedString = [formula getResultForComputeDialog:self.brickCell.brick.object];
+                computedString = [formula getResultForComputeDialog:brick.script.object];
                 
                 alert = [[UIAlertView alloc]initWithTitle: kUIFEResult
                                                   message: computedString

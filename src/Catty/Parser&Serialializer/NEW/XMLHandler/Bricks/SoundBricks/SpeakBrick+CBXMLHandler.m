@@ -41,23 +41,18 @@
     [XMLError exceptionIfNil:formula.formulaTree.value message:@"FormulaElement contains no value!!"];
     
     SpeakBrick *speakBrick = [self new];
-    speakBrick.text = formula.formulaTree.value;
+    speakBrick.formula = formula;
     return speakBrick;
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-    Formula *speakFormula = [Formula new];
-    FormulaElement *formulaElement = [FormulaElement new];
-    formulaElement.type = STRING;
-    formulaElement.value = self.text;
-    speakFormula.formulaTree = formulaElement;
 
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
     [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"SpeakBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
-    GDataXMLElement *formula = [speakFormula xmlElementWithContext:context];
+    GDataXMLElement *formula = [self.formula xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"SPEAK"]];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];

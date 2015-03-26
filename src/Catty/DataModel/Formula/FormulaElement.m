@@ -149,7 +149,6 @@
     return result;
     
 }
-- (double) interpretFunction:(Function)function forSprite:(SpriteObject*)sprite
 
 - (id)interpretString:(NSString *)value
 {
