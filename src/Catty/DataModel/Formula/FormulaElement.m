@@ -471,7 +471,7 @@
         
         
         double right = 0.0f;
-
+        
         id rightId = [self.rightChild interpretRecursiveForSprite:sprite];
         if([rightId isKindOfClass:[NSNumber class]])
         {
@@ -736,7 +736,7 @@
         if((function == FALSE_F || function == TRUE_F) && self.leftChild == nil && self.rightChild == nil)
         {
             return YES;
-}
+        }
     }else
     {
         return NO;
