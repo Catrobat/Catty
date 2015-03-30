@@ -92,6 +92,17 @@
     [self setupToolBar];
 }
 
+- (void)playSceneAction:(id)sender
+{
+    if ([self respondsToSelector:@selector(stopAllSounds)]) {
+        [self performSelector:@selector(stopAllSounds)];
+    }
+    [self.navigationController setToolbarHidden:YES animated:YES];
+    ScenePresenterViewController *vc = [ScenePresenterViewController new];
+    vc.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -607,7 +618,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 #pragma mark - helpers
-
 - (void)setupToolBar
 {
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
