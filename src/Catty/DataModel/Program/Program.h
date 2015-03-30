@@ -20,8 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
-#import <UIKit/UIKit.h>
 #import "Header.h"
 #import "ProgramDefines.h"
 
@@ -30,6 +28,7 @@
 @class ProgramLoadingInfo;
 @class GDataXMLDocument;
 @class Script;
+@class BroadcastScript;
 
 @interface Program : NSObject
 
@@ -64,6 +63,9 @@
 - (BOOL)isEqualToProgram:(Program*)program;
 - (void)setupBroadcastHandling;
 - (void)broadcast:(NSString*)message senderScript:(Script*)script;
+- (void)broadcastAndWait:(NSString*)message senderScript:(Script*)script;
+- (void)signalForWaitingBroadcastWithMessage:(NSString*)message;
+- (void)waitingForBroadcastWithMessage:(NSString*)message;
 
 + (instancetype)defaultProgramWithName:(NSString*)programName programID:(NSString*)programID;
 + (instancetype)lastUsedProgram;

@@ -385,6 +385,8 @@
 		CA97A4A11A44F556008C931B /* Word_balloon_demo_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CA97A49F1A44F556008C931B /* Word_balloon_demo_093.xml */; };
 		CA97A4A51A44F594008C931B /* X_Ray_phone_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = CA97A4A31A44F594008C931B /* X_Ray_phone_091.xml */; };
 		CA97A4A61A44F594008C931B /* X_Ray_phone_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CA97A4A41A44F594008C931B /* X_Ray_phone_093.xml */; };
+		CAA067F41ACA113000326EE6 /* faster.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CAA067F21ACA10FC00326EE6 /* faster.catrobat */; };
+		CAA067F51ACA113300326EE6 /* test.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CAA067F31ACA10FC00326EE6 /* test.catrobat */; };
 		CAA4A4651A43B388002A69A0 /* CBXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A4631A43B388002A69A0 /* CBXMLParser.m */; };
 		CAA4A4661A43B388002A69A0 /* CBXMLSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A4641A43B388002A69A0 /* CBXMLSerializer.m */; };
 		CAA4A4691A43B3A9002A69A0 /* CBXMLContext.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A4681A43B3A9002A69A0 /* CBXMLContext.m */; };
@@ -1283,6 +1285,8 @@
 		CA97A49F1A44F556008C931B /* Word_balloon_demo_093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Word_balloon_demo_093.xml; path = "Resources/Test Resources/Word_balloon_demo/Word_balloon_demo_093.xml"; sourceTree = "<group>"; };
 		CA97A4A31A44F594008C931B /* X_Ray_phone_091.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = X_Ray_phone_091.xml; path = "Resources/Test Resources/X_Ray_phone/X_Ray_phone_091.xml"; sourceTree = "<group>"; };
 		CA97A4A41A44F594008C931B /* X_Ray_phone_093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = X_Ray_phone_093.xml; path = "Resources/Test Resources/X_Ray_phone/X_Ray_phone_093.xml"; sourceTree = "<group>"; };
+		CAA067F21ACA10FC00326EE6 /* faster.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = faster.catrobat; sourceTree = "<group>"; };
+		CAA067F31ACA10FC00326EE6 /* test.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.catrobat; sourceTree = "<group>"; };
 		CAA4A4611A43B36A002A69A0 /* CBXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBXMLParser.h; path = "Catty/Parser&Serialializer/NEW/CBXMLParser.h"; sourceTree = SOURCE_ROOT; };
 		CAA4A4621A43B36A002A69A0 /* CBXMLSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBXMLSerializer.h; path = "Catty/Parser&Serialializer/NEW/CBXMLSerializer.h"; sourceTree = SOURCE_ROOT; };
 		CAA4A4631A43B388002A69A0 /* CBXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBXMLParser.m; path = "Catty/Parser&Serialializer/NEW/CBXMLParser.m"; sourceTree = SOURCE_ROOT; };
@@ -1505,6 +1509,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				CAA067F21ACA10FC00326EE6 /* faster.catrobat */,
+				CAA067F31ACA10FC00326EE6 /* test.catrobat */,
 				81C27425189EF94600827A95 /* Images.xcassets */,
 				CD0CCE54170CB39600B70036 /* Catty */,
 				92FF32C11A24E33B00093DA7 /* Storyboard+XIB */,
@@ -4166,7 +4172,7 @@
 						TestTargetID = CADBD6D319B0E8C200C62836;
 					};
 					CADBD6D319B0E8C200C62836 = {
-						DevelopmentTeam = 4V6T7BCGGR;
+						DevelopmentTeam = 9NJ4SV439Q;
 					};
 				};
 			};
@@ -4288,6 +4294,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA775CBF19FD5BCB00C1E761 /* My first program.catrobat in Resources */,
+				CAA067F41ACA113000326EE6 /* faster.catrobat in Resources */,
+				CAA067F51ACA113300326EE6 /* test.catrobat in Resources */,
 				92FF325E1A24E2F400093DA7 /* LICENSE_EVCircularProgressView in Resources */,
 				92FF32621A24E2F400093DA7 /* PATENTS_FBShimmering in Resources */,
 				CAFAEAE61A13BE1F00C9F170 /* ValidProgramAllBricks.xml in Resources */,
@@ -4362,7 +4370,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "./precompile-tests.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\n  exit $OUT\nfi\n\n./update-localized-strings.sh&\n";
+			shellScript = "#./precompile-tests.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\n  exit $OUT\nfi\n\n./update-localized-strings.sh&\n";
 		};
 		CADBD6D719B0E8C200C62836 /* Add Licenses To Acknowledgements.plist */ = {
 			isa = PBXShellScriptBuildPhase;

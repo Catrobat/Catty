@@ -46,6 +46,7 @@
 @property (nonatomic, strong) BroadcastWaitHandler *broadcastWaitHandler;
 @property (nonatomic, strong) NSMutableDictionary *spriteObjectBroadcastScripts;
 @property (nonatomic, strong) NSMutableDictionary *broadcastScriptCounters;
+@property (nonatomic, strong) NSMutableDictionary *broadcastMessageSemaphores;
 
 @end
 
@@ -242,6 +243,14 @@
         _broadcastScriptCounters = [NSMutableDictionary dictionary];
     }
     return _broadcastScriptCounters;
+}
+
+- (NSMutableDictionary*)broadcastMessageSemaphores
+{
+    if (! _broadcastMessageSemaphores) {
+        _broadcastMessageSemaphores = [NSMutableDictionary dictionary];
+    }
+    return _broadcastMessageSemaphores;
 }
 
 - (NSMutableArray*)objectList
@@ -637,6 +646,7 @@
             // (sets brick action instruction pointer to zero)
             if (broadcastScript == script) {
                 assert(broadcastScript.isRunning);
+                broadcastScript.calledByOtherScriptBroadcastWait = NO; // no synchronization required here
                 NSNumber *counterNumber = self.broadcastScriptCounters[message];
                 NSUInteger counter = 0;
                 if (counterNumber) {
@@ -656,6 +666,7 @@
             // case sender script does not equal receiver script => check if receiver script
             // if broadcastScript is not running then start broadcastScript!
             @synchronized(broadcastScript) {
+                broadcastScript.calledByOtherScriptBroadcastWait = NO; // synchronized!
                 if (! broadcastScript.isRunning) {
                     // we are already running on highpriority queue, but broadcastScript != senderScript
                     [broadcastScript start];
@@ -666,6 +677,72 @@
             }
         }
     }
+}
+
+- (void)broadcastAndWait:(NSString*)message senderScript:(Script*)script
+{
+    for (NSString *spriteObjectName in self.spriteObjectBroadcastScripts) {
+        NSArray *broadcastScriptList = self.spriteObjectBroadcastScripts[spriteObjectName];
+        for (BroadcastScript *broadcastScript in broadcastScriptList) {
+            if (! [broadcastScript.receivedMessage isEqualToString:message]) {
+                continue;
+            }
+
+            dispatch_semaphore_t semaphore = self.broadcastMessageSemaphores[broadcastScript.receivedMessage];
+            if (! semaphore) {
+                semaphore = dispatch_semaphore_create(0);
+                self.broadcastMessageSemaphores[broadcastScript.receivedMessage] = semaphore;
+            }
+
+            // case sender script equals receiver script => restart receiver script
+            // (sets brick action instruction pointer to zero)
+            if (broadcastScript == script) {
+                assert(broadcastScript.isRunning);
+                broadcastScript.calledByOtherScriptBroadcastWait = NO; // no synchronization required here
+                NSNumber *counterNumber = self.broadcastScriptCounters[message];
+                NSUInteger counter = 0;
+                if (counterNumber) {
+                    counter = [counterNumber integerValue];
+                }
+                if (++counter % 12) { // XXX: DIRTY HACK!!
+                    [broadcastScript selfBroadcastRestart];
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [broadcastScript selfBroadcastRestart]; // restart this self-listening BroadcastScript
+                    });
+                }
+                self.broadcastScriptCounters[message] = @(counter);
+                continue;
+            }
+
+            // case sender script does not equal receiver script => check if receiver script
+            // if broadcastScript is not running then start broadcastScript!
+            @synchronized(broadcastScript) {
+                broadcastScript.calledByOtherScriptBroadcastWait = YES; // synchronized!
+                if (! broadcastScript.isRunning) {
+                    // we are already running on highpriority queue, but broadcastScript != senderScript
+                    [broadcastScript start];
+                } else {
+                    // case broadcast script is already running!
+                    [broadcastScript restart]; // trigger script to restart
+                }
+            }
+        }
+    }
+}
+
+- (void)signalForWaitingBroadcastWithMessage:(NSString*)message
+{
+    dispatch_semaphore_t semaphore = self.broadcastMessageSemaphores[message];
+    assert(semaphore);
+    dispatch_semaphore_signal(semaphore);
+}
+
+- (void)waitingForBroadcastWithMessage:(NSString*)message
+{
+    dispatch_semaphore_t semaphore = self.broadcastMessageSemaphores[message];
+    assert(semaphore);
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 }
 
 @end
