@@ -36,7 +36,7 @@
 #import "AppDelegate.h"
 #import "NSString+FastImageSize.h"
 #import "ProgramDefines.h"
-#include "CBMutableCopyContext.h"
+#import "CBMutableCopyContext.h"
 
 @implementation SpriteObject
 
@@ -483,49 +483,6 @@
     [self.scriptList makeObjectsPerformSelector:@selector(removeReferences)];
 }
 
-- (void)broadcastAndWait:(NSString*)message
-{
-    if ([[NSThread currentThread] isMainThread]) {
-        NSLog(@" ");
-        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        NSLog(@"!!                                                                                       !!");
-        NSLog(@"!!  ATTENTION: THIS METHOD SHOULD NEVER EVER BE CALLED FROM MAIN-THREAD!!! BUSY WAITING  !!");
-        NSLog(@"!!                                                                                       !!");
-        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        NSLog(@" ");
-        abort();
-    }
-
-//    if ([self.broadcastWaitDelegate respondsToSelector:@selector(performBroadcastWaitForMessage:)]) {
-//        [self.broadcastWaitDelegate performBroadcastWaitForMessage:message];
-//    } else {
-//        NSLog(@"ERROR: BroadcastWaitDelegate not set! abort()");
-//        abort();
-//    }
-}
-
-//- (void)performBroadcastWaitScriptWithMessage:(NSString*)message with:(dispatch_semaphore_t)sema1
-//{
-//    __weak typeof(self) weakSelf = self;
-//    for (Script *script in self.scriptList) {
-//        if ([script isKindOfClass:[BroadcastScript class]]) {
-//            BroadcastScript* broadcastScript = (BroadcastScript*)script;
-//            if ([broadcastScript.receivedMessage isEqualToString:message]) {
-//                dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-//                    [weakSelf startAndAddScript:broadcastScript completion:^{
-//                        dispatch_semaphore_signal(sema);
-//                        NSDebug(@"BroadcastWait Semaphore RELEASED");
-//                    }];
-//                });
-//                dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-//                dispatch_semaphore_signal(sema1);
-//            }
-//        }
-//    }
-//    NSDebug(@"BroadcastWaitScriptDone");
-//}
-
 - (NSString*)description
 {
     NSMutableString *mutableString = [NSMutableString string];
@@ -556,7 +513,7 @@
         if (! [firstLook isEqualToLook:secondLook])
             return NO;
     }
-    
+
     // soundList
     if ([self.soundList count] != [spriteObject.soundList count])
         return NO;
