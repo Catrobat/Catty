@@ -29,9 +29,6 @@
 @class Script;
 @class Look;
 @class Sound;
-@class Brick;
-@protocol SpriteManagerDelegate;
-@protocol BroadcastWaitDelegate;
 
 @protocol SpriteFormulaProtocol
 
@@ -79,7 +76,6 @@
 
 // events
 - (void)start:(CGFloat)zPosition;
-- (void)broadcastAndWait:(NSString*)message;
 
 - (Look*)nextLook;
 - (BOOL)touchedwith:(NSSet*)touches withX:(CGFloat)x andY:(CGFloat)y;
