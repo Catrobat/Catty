@@ -20,7 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Broadcastscript.h"
+#import "BroadcastScript.h"
+#import "SpriteObject.h"
 
 @implementation BroadcastScript
 
@@ -44,6 +45,11 @@
         [ret appendString:@"Bricks array empty!\r"];
     }
     return ret;
+}
+
+- (void)signalForWaitingBroadcasts
+{
+    [self.object.program signalForWaitingBroadcastWithMessage:self.receivedMessage];
 }
 
 @end

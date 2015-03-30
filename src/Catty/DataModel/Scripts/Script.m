@@ -357,6 +357,13 @@
     __weak Script *weakSelf = self;
     dispatch_block_t scriptEndCompletion = ^{
         @synchronized(weakSelf) {
+            if ([weakSelf isKindOfClass:[BroadcastScript class]]) {
+                // TODO: avoid concurrency conflicts between BroadcastBricks and BroadcastWaitBricks!!!
+                BroadcastScript *broadcastScript = (BroadcastScript*)weakSelf;
+                if (broadcastScript.isCalledByOtherScriptBroadcastWait) {
+                    [broadcastScript signalForWaitingBroadcasts]; // signal finished broadcast!
+                }
+            }
             dispatch_block_t abortScriptExecutionCompletion = weakSelf.abortScriptExecutionCompletion;
             if (abortScriptExecutionCompletion != nil) {
                 // resets abort flag and aborts script execution here
@@ -484,6 +491,9 @@
                     // DO NOT call completionBlock here so that upcoming actions are ignored!
                     completionBlock = ^{
                         // end of script reached!! Scripts will be aborted due to self-calling broadcast
+                        if (broadcastScript.isCalledByOtherScriptBroadcastWait) {
+                            [broadcastScript signalForWaitingBroadcasts]; // signal finished broadcast!
+                        }
                         NSDebug(@"BroadcastScript ended due to self broadcast!");
                         [broadcastBrick performBroadcast]; // finally perform broadcast
                     };
@@ -495,8 +505,28 @@
                 completionBlock(); // the script must continue here. upcoming actions are executed!!
             };
         } else if ([operation.brick isKindOfClass:[BroadcastWaitBrick class]]) {
-            NSError(@"UNIMPLEMENTED BROADCASTWAIT");
-            abort();
+            // cancel all upcoming actions if BroadcastWaitBrick calls its own script
+            BroadcastWaitBrick *broadcastWaitBrick = (BroadcastWaitBrick*)operation.brick;
+            if ([self isKindOfClass:[BroadcastScript class]]) {
+                BroadcastScript *broadcastScript = (BroadcastScript*)self;
+                if ([broadcastWaitBrick.broadcastMessage isEqualToString:broadcastScript.receivedMessage]) {
+                    // DO NOT call completionBlock here so that upcoming actions are ignored!
+                    completionBlock = ^{
+                        // end of script reached!! Scripts will be aborted due to self-calling broadcast
+                        if (broadcastScript.isCalledByOtherScriptBroadcastWait) {
+                            [broadcastScript signalForWaitingBroadcasts]; // signal finished broadcast!
+                        }
+                        NSDebug(@"BroadcastScript ended due to self broadcastWait!");
+                        // finally perform normal (!) broadcast
+                        // no waiting required, since there all upcoming actions in the sequence are omitted!
+                        [broadcastWaitBrick performBroadcastButDontWait];
+                    };
+                    continue;
+                }
+            }
+            completionBlock = ^{
+                [broadcastWaitBrick performBroadcastAndWaitWithCompletion:completionBlock];
+            };
         } else if (operation.brick) {
             completionBlock = ^{
                 NSDebug(@"[%@] %@ action", [weakSelf class], [operation.brick class]);
