@@ -20,17 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BrickCell.h"
-#import "BaseCollectionViewController.h"
-#import "iosCombobox.h"
+#import "BrickCategoryViewController.h"
 
-@class SpriteObject, FXBlurView;
+@class SpriteObject;
 
-@interface ScriptCollectionViewController : UICollectionViewController <UITextFieldDelegate,iOSComboboxDelegate>
-@property (strong, nonatomic) SpriteObject *object;
-@property (nonatomic, strong) FXBlurView *blurView;
-
-- (void) openFormulaEditor:(BrickCell*)brickCell;
-
+@interface ScriptCollectionViewController : UICollectionViewController<BrickCategoryViewControllerDelegate>
+@property (nonatomic, strong) SpriteObject *object;
 @end

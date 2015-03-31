@@ -14,6 +14,12 @@
 		4C3275FA1A1360640091C428 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */; };
 		4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */; };
 		4CB2AB291A6BF2590086E5A0 /* PointToBrickWithoutSpriteObject.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CB2AB281A6BF2590086E5A0 /* PointToBrickWithoutSpriteObject.xml */; };
+		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
+		811FB6ED1A49812700957E10 /* BrickCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6EC1A49812700957E10 /* BrickCategoryViewController.m */; };
+		81C0A6791A4CACB7003A77C5 /* ScriptDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A6781A4CACB7003A77C5 /* ScriptDataSource.m */; };
+		81C0A67C1A4D821F003A77C5 /* ScriptDataSource+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67B1A4D821F003A77C5 /* ScriptDataSource+Extensions.m */; };
+		81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */; };
+		81CC62311A57286D002804B7 /* FBKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC62301A57286D002804B7 /* FBKVOController.m */; };
 		92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A461A42F2A3008C771A /* BSKeyboardControls.m */; };
 		92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A481A42F2A3008C771A /* iOSCombobox.m */; };
 		9238C5831A3AE9920099F061 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */; };
@@ -185,9 +191,6 @@
 		92FF314E1A24DEB300093DA7 /* LookImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF311B1A24DEB300093DA7 /* LookImageViewController.m */; };
 		92FF314F1A24DEB300093DA7 /* LooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF311D1A24DEB300093DA7 /* LooksTableViewController.m */; };
 		92FF31501A24DEB300093DA7 /* BrickDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31201A24DEB300093DA7 /* BrickDetailViewController.m */; };
-		92FF31511A24DEB300093DA7 /* BrickSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31221A24DEB300093DA7 /* BrickSelectionView.m */; };
-		92FF31521A24DEB300093DA7 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31241A24DEB300093DA7 /* ScriptCollectionViewController.m */; };
-		92FF31531A24DEB300093DA7 /* SingleBrickSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31261A24DEB300093DA7 /* SingleBrickSelectionView.m */; };
 		92FF31541A24DEB300093DA7 /* SoundPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31291A24DEB300093DA7 /* SoundPickerTableViewController.m */; };
 		92FF31551A24DEB300093DA7 /* SoundsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF312B1A24DEB300093DA7 /* SoundsTableViewController.m */; };
 		92FF31561A24DEB300093DA7 /* SRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF312D1A24DEB300093DA7 /* SRViewController.m */; };
@@ -301,8 +304,7 @@
 		92FF32BC1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF324B1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m */; };
 		92FF32BD1A24E2F400093DA7 /* ProgramTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF324E1A24E2F400093DA7 /* ProgramTableHeaderView.m */; };
 		92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32511A24E2F400093DA7 /* BaseTransition.m */; };
-		92FF32BF1A24E2F400093DA7 /* BrickScaleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickScaleTransition.m */; };
-		92FF32C01A24E2F400093DA7 /* BrickSelectModalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32551A24E2F400093DA7 /* BrickSelectModalTransition.m */; };
+		92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
 		CA538EA519B0EA09008240AB /* ChangeGhostEffectByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */; };
 		CA538EA619B0EA09008240AB /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
@@ -564,7 +566,19 @@
 		4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+CWPopup.license"; sourceTree = "<group>"; };
 		4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OrderedDictionary.license; sourceTree = "<group>"; };
 		4CB2AB281A6BF2590086E5A0 /* PointToBrickWithoutSpriteObject.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PointToBrickWithoutSpriteObject.xml; sourceTree = "<group>"; };
+		811FB6E81A4980EF00957E10 /* ScriptCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptCollectionViewController.h; sourceTree = "<group>"; };
+		811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptCollectionViewController.m; sourceTree = "<group>"; };
+		811FB6EB1A49812700957E10 /* BrickCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCategoryViewController.h; sourceTree = "<group>"; };
+		811FB6EC1A49812700957E10 /* BrickCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCategoryViewController.m; sourceTree = "<group>"; };
+		81C0A6771A4CACB7003A77C5 /* ScriptDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptDataSource.h; sourceTree = "<group>"; };
+		81C0A6781A4CACB7003A77C5 /* ScriptDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptDataSource.m; sourceTree = "<group>"; };
+		81C0A67A1A4D821F003A77C5 /* ScriptDataSource+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ScriptDataSource+Extensions.h"; sourceTree = "<group>"; };
+		81C0A67B1A4D821F003A77C5 /* ScriptDataSource+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ScriptDataSource+Extensions.m"; sourceTree = "<group>"; };
+		81C0A67D1A4EE8CF003A77C5 /* BrickSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSelectionViewController.h; sourceTree = "<group>"; };
+		81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickSelectionViewController.m; sourceTree = "<group>"; };
 		81C27425189EF94600827A95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Catty/Images.xcassets; sourceTree = "<group>"; };
+		81CC622F1A57286D002804B7 /* FBKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBKVOController.h; path = KVOController/FBKVOController.h; sourceTree = "<group>"; };
+		81CC62301A57286D002804B7 /* FBKVOController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBKVOController.m; path = KVOController/FBKVOController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		921FE2F9182F8122001D7CF6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		92289A451A42F2A3008C771A /* BSKeyboardControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSKeyboardControls.h; sourceTree = "<group>"; };
@@ -984,12 +998,6 @@
 		92FF311D1A24DEB300093DA7 /* LooksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LooksTableViewController.m; sourceTree = "<group>"; };
 		92FF311F1A24DEB300093DA7 /* BrickDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickDetailViewController.h; sourceTree = "<group>"; };
 		92FF31201A24DEB300093DA7 /* BrickDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickDetailViewController.m; sourceTree = "<group>"; };
-		92FF31211A24DEB300093DA7 /* BrickSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSelectionView.h; sourceTree = "<group>"; };
-		92FF31221A24DEB300093DA7 /* BrickSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickSelectionView.m; sourceTree = "<group>"; };
-		92FF31231A24DEB300093DA7 /* ScriptCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptCollectionViewController.h; sourceTree = "<group>"; };
-		92FF31241A24DEB300093DA7 /* ScriptCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptCollectionViewController.m; sourceTree = "<group>"; };
-		92FF31251A24DEB300093DA7 /* SingleBrickSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleBrickSelectionView.h; sourceTree = "<group>"; };
-		92FF31261A24DEB300093DA7 /* SingleBrickSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleBrickSelectionView.m; sourceTree = "<group>"; };
 		92FF31281A24DEB300093DA7 /* SoundPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundPickerTableViewController.h; sourceTree = "<group>"; };
 		92FF31291A24DEB300093DA7 /* SoundPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundPickerTableViewController.m; sourceTree = "<group>"; };
 		92FF312A1A24DEB300093DA7 /* SoundsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundsTableViewController.h; sourceTree = "<group>"; };
@@ -1209,10 +1217,8 @@
 		92FF324E1A24E2F400093DA7 /* ProgramTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableHeaderView.m; sourceTree = "<group>"; };
 		92FF32501A24E2F400093DA7 /* BaseTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTransition.h; sourceTree = "<group>"; };
 		92FF32511A24E2F400093DA7 /* BaseTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTransition.m; sourceTree = "<group>"; };
-		92FF32521A24E2F400093DA7 /* BrickScaleTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickScaleTransition.h; sourceTree = "<group>"; };
-		92FF32531A24E2F400093DA7 /* BrickScaleTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickScaleTransition.m; sourceTree = "<group>"; };
-		92FF32541A24E2F400093DA7 /* BrickSelectModalTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSelectModalTransition.h; sourceTree = "<group>"; };
-		92FF32551A24E2F400093DA7 /* BrickSelectModalTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickSelectModalTransition.m; sourceTree = "<group>"; };
+		92FF32521A24E2F400093DA7 /* BrickTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTransition.h; sourceTree = "<group>"; };
+		92FF32531A24E2F400093DA7 /* BrickTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickTransition.m; sourceTree = "<group>"; };
 		92FF32C21A24E33B00093DA7 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
 		B405BAC7175DD3F600B1A0FC /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -1724,6 +1730,15 @@
 				CAEE0A231A328CDF007CB248 /* XMLSerializerTests */,
 			);
 			name = CatrobatLanguage0.93;
+			sourceTree = "<group>";
+		};
+		81CC622E1A57285D002804B7 /* KVOController */ = {
+			isa = PBXGroup;
+			children = (
+				81CC622F1A57286D002804B7 /* FBKVOController.h */,
+				81CC62301A57286D002804B7 /* FBKVOController.m */,
+			);
+			name = KVOController;
 			sourceTree = "<group>";
 		};
 		92289A441A42F2A3008C771A /* ComboBox */ = {
@@ -2299,6 +2314,7 @@
 		92FF2E4C1A24C7D800093DA7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				81CC622E1A57285D002804B7 /* KVOController */,
 				92FF2E4D1A24C7D800093DA7 /* AudioManager */,
 				92FF2E521A24C7D800093DA7 /* FileManager */,
 				92FF2E551A24C7D800093DA7 /* Flash */,
@@ -2973,14 +2989,18 @@
 		92FF311E1A24DEB300093DA7 /* MaintainScript */ = {
 			isa = PBXGroup;
 			children = (
+				811FB6E81A4980EF00957E10 /* ScriptCollectionViewController.h */,
+				811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */,
+				81C0A67D1A4EE8CF003A77C5 /* BrickSelectionViewController.h */,
+				81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */,
+				811FB6EB1A49812700957E10 /* BrickCategoryViewController.h */,
+				811FB6EC1A49812700957E10 /* BrickCategoryViewController.m */,
 				92FF311F1A24DEB300093DA7 /* BrickDetailViewController.h */,
 				92FF31201A24DEB300093DA7 /* BrickDetailViewController.m */,
-				92FF31211A24DEB300093DA7 /* BrickSelectionView.h */,
-				92FF31221A24DEB300093DA7 /* BrickSelectionView.m */,
-				92FF31231A24DEB300093DA7 /* ScriptCollectionViewController.h */,
-				92FF31241A24DEB300093DA7 /* ScriptCollectionViewController.m */,
-				92FF31251A24DEB300093DA7 /* SingleBrickSelectionView.h */,
-				92FF31261A24DEB300093DA7 /* SingleBrickSelectionView.m */,
+				81C0A6771A4CACB7003A77C5 /* ScriptDataSource.h */,
+				81C0A6781A4CACB7003A77C5 /* ScriptDataSource.m */,
+				81C0A67A1A4D821F003A77C5 /* ScriptDataSource+Extensions.h */,
+				81C0A67B1A4D821F003A77C5 /* ScriptDataSource+Extensions.m */,
 			);
 			path = MaintainScript;
 			sourceTree = "<group>";
@@ -3520,10 +3540,8 @@
 			children = (
 				92FF32501A24E2F400093DA7 /* BaseTransition.h */,
 				92FF32511A24E2F400093DA7 /* BaseTransition.m */,
-				92FF32521A24E2F400093DA7 /* BrickScaleTransition.h */,
-				92FF32531A24E2F400093DA7 /* BrickScaleTransition.m */,
-				92FF32541A24E2F400093DA7 /* BrickSelectModalTransition.h */,
-				92FF32551A24E2F400093DA7 /* BrickSelectModalTransition.m */,
+				92FF32521A24E2F400093DA7 /* BrickTransition.h */,
+				92FF32531A24E2F400093DA7 /* BrickTransition.m */,
 			);
 			path = ViewControllerTransitions;
 			sourceTree = "<group>";
@@ -4482,6 +4500,7 @@
 				CAA4A5041A43B48F002A69A0 /* SetVolumeToBrick+CBXMLHandler.m in Sources */,
 				92FF30EE1A24DCAA00093DA7 /* ChangeSizeByNBrick.m in Sources */,
 				92DFB0101A38949E00FA9B0F /* FormulaEditorHistory.m in Sources */,
+				81CC62311A57286D002804B7 /* FBKVOController.m in Sources */,
 				92FF30D41A24DCAA00093DA7 /* GoNStepsBackBrick.m in Sources */,
 				CAA4A4F51A43B47F002A69A0 /* LedOffBrick+CBXMLHandler.m in Sources */,
 				92FF328A1A24E2F400093DA7 /* ClearGraphicEffectBrickCell.m in Sources */,
@@ -4551,7 +4570,7 @@
 				92FF32BA1A24E2F400093DA7 /* DarkBlueGradientFeaturedCell.m in Sources */,
 				92DFB01D1A38949E00FA9B0F /* FormulaEditorTextView.m in Sources */,
 				92FF32751A24E2F400093DA7 /* CatrobatAlertView.m in Sources */,
-				92FF32BF1A24E2F400093DA7 /* BrickScaleTransition.m in Sources */,
+				92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */,
 				92FF31081A24DCAA00093DA7 /* UserVariable.m in Sources */,
 				92FF30CE1A24DCAA00093DA7 /* IfLogicElseBrick.m in Sources */,
 				92FF2E941A24C7D800093DA7 /* Logger.m in Sources */,
@@ -4576,6 +4595,7 @@
 				92DFB0561A38960C00FA9B0F /* FillTool.m in Sources */,
 				92FF327F1A24E2F400093DA7 /* IfLogicElseBrickCell.m in Sources */,
 				92FF30F11A24DCAA00093DA7 /* PlaySoundBrick.m in Sources */,
+				81C0A6791A4CACB7003A77C5 /* ScriptDataSource.m in Sources */,
 				92FF2E371A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m in Sources */,
 				92FF314B1A24DEB300093DA7 /* BaseWebViewController.m in Sources */,
 				92FF30DE1A24DCAA00093DA7 /* RepeatBrick.m in Sources */,
@@ -4583,6 +4603,7 @@
 				CAA4A4A81A43B407002A69A0 /* LoopEndBrick+CBXMLHandler.m in Sources */,
 				92FF30F81A24DCAA00093DA7 /* Formula.m in Sources */,
 				92DFB01B1A38949E00FA9B0F /* FormulaEditorViewController.m in Sources */,
+				81C0A67C1A4D821F003A77C5 /* ScriptDataSource+Extensions.m in Sources */,
 				92FF32851A24E2F400093DA7 /* RepeatBrickCell.m in Sources */,
 				92FF30F31A24DCAA00093DA7 /* SpeakBrick.m in Sources */,
 				CAA4A5341A43B51F002A69A0 /* ProjectParser.m in Sources */,
@@ -4640,19 +4661,18 @@
 				92DFB05C1A38960C00FA9B0F /* LinkedListStack.m in Sources */,
 				92FF315C1A24DEB300093DA7 /* RecentProgramsStoreViewController.m in Sources */,
 				9238C5841A3AE9920099F061 /* LoginViewController.m in Sources */,
-				92FF31511A24DEB300093DA7 /* BrickSelectionView.m in Sources */,
 				92FF30CB1A24DCAA00093DA7 /* NoteBrick.m in Sources */,
 				92FF32A71A24E2F400093DA7 /* SpeakBrickCell.m in Sources */,
 				92FF327B1A24E2F400093DA7 /* BroadcastBrickCell.m in Sources */,
 				CAA4A5061A43B48F002A69A0 /* StopAllSoundsBrick+CBXMLHandler.m in Sources */,
 				92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */,
 				92FF32A01A24E2F400093DA7 /* TurnRightBrickCell.m in Sources */,
+				811FB6ED1A49812700957E10 /* BrickCategoryViewController.m in Sources */,
 				92DFB0181A38949E00FA9B0F /* InternFormulaUtils.m in Sources */,
 				CAA4A5021A43B48F002A69A0 /* ChangeVolumeByNBrick+CBXMLHandler.m in Sources */,
 				CAA4A4651A43B388002A69A0 /* CBXMLParser.m in Sources */,
 				92FF328E1A24E2F400093DA7 /* NextLookBrickCell.m in Sources */,
 				92DFB0581A38960C00FA9B0F /* ImageHelper.m in Sources */,
-				92FF32C01A24E2F400093DA7 /* BrickSelectModalTransition.m in Sources */,
 				92FF31581A24DEB300093DA7 /* ProgramTableViewController.m in Sources */,
 				92FF32811A24E2F400093DA7 /* LedOffBrickCell.m in Sources */,
 				92FF315E1A24DEB300093DA7 /* HelpWebViewController.m in Sources */,
@@ -4673,7 +4693,6 @@
 				92FF32A21A24E2F400093DA7 /* StartScriptCell.m in Sources */,
 				92DFB0121A38949E00FA9B0F /* InternFormula.m in Sources */,
 				92FF30FD1A24DCAA00093DA7 /* Header.m in Sources */,
-				92FF31531A24DEB300093DA7 /* SingleBrickSelectionView.m in Sources */,
 				CAA4A4E91A43B472002A69A0 /* PointToBrick+CBXMLHandler.m in Sources */,
 				CAA4A4A21A43B407002A69A0 /* ComeToFrontBrick+CBXMLHandler.m in Sources */,
 				92DFB0661A38960C00FA9B0F /* RGBAHelper.m in Sources */,
@@ -4684,7 +4703,6 @@
 				CAA4A4E51A43B472002A69A0 /* ChangeYByNBrick+CBXMLHandler.m in Sources */,
 				92FF329E1A24E2F400093DA7 /* SetYBrickCell.m in Sources */,
 				92FF325A1A24E2F400093DA7 /* UIWindow+AHKAdditions.m in Sources */,
-				92FF31521A24DEB300093DA7 /* ScriptCollectionViewController.m in Sources */,
 				92DFB06B1A38960C00FA9B0F /* UndoManager.m in Sources */,
 				92FF2E8C1A24C7D800093DA7 /* AudioManager.m in Sources */,
 				92FF2E9F1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m in Sources */,
@@ -4698,6 +4716,7 @@
 				92FF314D1A24DEB300093DA7 /* InfoPopupViewController.m in Sources */,
 				92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */,
 				92FF327D1A24E2F400093DA7 /* ForeverBrickCell.m in Sources */,
+				81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */,
 				92DFB06C1A38960C00FA9B0F /* YKImageCropperOverlayView.m in Sources */,
 				92FF2E361A24C5A700093DA7 /* NSDate+CustomExtensions.m in Sources */,
 				92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */,
@@ -4771,6 +4790,7 @@
 				92FF327C1A24E2F400093DA7 /* BroadcastWaitBrickCell.m in Sources */,
 				92FF32821A24E2F400093DA7 /* LedOnBrickCell.m in Sources */,
 				CAA4A4661A43B388002A69A0 /* CBXMLSerializer.m in Sources */,
+				811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */,
 				92FF30E61A24DCAA00093DA7 /* SetYBrick.m in Sources */,
 				92FF32B41A24E2F400093DA7 /* CellMotionEffect.m in Sources */,
 				92FF314F1A24DEB300093DA7 /* LooksTableViewController.m in Sources */,

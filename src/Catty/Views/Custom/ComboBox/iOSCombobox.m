@@ -45,9 +45,7 @@
 - (void)initialize
 {
     active = NO;
-    
     self.backgroundColor = [UIColor clearColor];
-    
     CGFloat pickerY = [[UIScreen mainScreen] bounds].size.height - PICKER_VIEW_HEIGHT;
     CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
     self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0f, pickerY, screenWidth, PICKER_VIEW_HEIGHT)];
@@ -313,6 +311,5 @@
     [[keyboardControls activeField] resignFirstResponder];
     [self resignFirstResponder];
 }
-
 
 @end

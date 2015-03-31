@@ -40,12 +40,29 @@
 
 @interface Brick()
 
-@property (nonatomic, readwrite) kBrickCategoryType brickCategoryType;
-@property (nonatomic, readwrite) kBrickType brickType;
+@property (nonatomic, assign) kBrickCategoryType brickCategoryType;
+@property (nonatomic, assign) kBrickType brickType;
 
 @end
 
 @implementation Brick
+
+
+#pragma mark - NSObject
+
++ (Brick *)brickWithType:(kBrickType)type andCategory:(kBrickCategoryType)category
+{
+    return [[[self class] alloc] initWithType:type andCategory:category];
+}
+
+- (instancetype)initWithType:(kBrickType)type andCategory:(kBrickCategoryType)category {
+    self = [super init];
+    if (self) {
+        self.brickType = type;
+        self.brickCategoryType = category;
+    }
+    return self;
+}
 
 - (id)init
 {

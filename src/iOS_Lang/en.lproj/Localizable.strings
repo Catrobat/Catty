@@ -161,7 +161,13 @@
 "Delete Brick" = "Delete Brick";
 
 /* No comment provided by engineer. */
+"Delete Condition" = "Delete Condition";
+
+/* No comment provided by engineer. */
 "Delete Looks" = "Delete Looks";
+
+/* No comment provided by engineer. */
+"Delete Loop" = "Delete Loop";
 
 /* No comment provided by engineer. */
 "Delete Objects" = "Delete Objects";

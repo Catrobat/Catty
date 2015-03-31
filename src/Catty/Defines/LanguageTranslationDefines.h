@@ -121,6 +121,8 @@
 #define kLocalizedSelectBrickCategory NSLocalizedString(@"Select Brick Category", nil)
 #define kLocalizedClose NSLocalizedString(@"Close", nil)
 #define kLocalizedDeleteBrick NSLocalizedString(@"Delete Brick", nil)
+#define kLocalizedDeleteLogicBrick NSLocalizedString(@"Delete Condition", nil)
+#define kLocalizedDeleteLoopBrick NSLocalizedString(@"Delete Loop", nil)
 #define kLocalizedDeleteScript NSLocalizedString(@"Delete Script", nil)
 #define kLocalizedAnimateBricks NSLocalizedString(@"Animate Brick", nil)
 #define kLocalizedCopyBrick NSLocalizedString(@"Copy Brick", nil)
@@ -469,3 +471,13 @@
 #define kUIFEActionVar NSLocalizedString(@"Variable type", nil)
 #define kUIFEActionVarObj NSLocalizedString(@"object", nil)
 #define kUIFEActionVarPro NSLocalizedString(@"program", nil)
+
+//************************************************************************************************************
+//************************************       BrickCategoryTitles        ********************************************
+//************************************************************************************************************
+#define kUIScriptTitle NSLocalizedStringFromTable(@"Script", @"BrickCategoryViewController", nil);
+#define kUIControlTitle NSLocalizedStringFromTable(@"Control", @"BrickCategoryViewController", nil);
+#define kUIMotionTitle  NSLocalizedStringFromTable(@"Motion", @"BrickCategoryViewController", nil);
+#define kUISoundTitle  NSLocalizedStringFromTable(@"Sound", @"BrickCategoryViewController", nil);
+#define kUILookTitle  NSLocalizedStringFromTable(@"Look", @"BrickCategoryViewController", nil);
+#define kUIVariableTitle  NSLocalizedStringFromTable(@"Variable", @"BrickCategoryViewController", nil);

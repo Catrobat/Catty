@@ -525,7 +525,7 @@
         if (! [firstSound isEqualToSound:secondSound])
             return NO;
     }
-
+    
     // scriptList
     if ([self.scriptList count] != [spriteObject.scriptList count])
         return NO;

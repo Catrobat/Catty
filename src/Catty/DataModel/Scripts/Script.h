@@ -52,6 +52,10 @@
 
 - (void)restart;
 
++ (Script*)scriptWithType:(kBrickType)type andCategory:(kBrickCategoryType)category;
+
+- (instancetype)initWithType:(kBrickType)type andCategory:(kBrickCategoryType)category;
+
 - (void)stop;
 
 - (NSString*)description;

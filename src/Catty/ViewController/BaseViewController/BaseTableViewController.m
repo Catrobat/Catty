@@ -113,11 +113,6 @@
     return _placeHolderView;
 }
 
-- (void)showPlaceHolder:(BOOL)show
-{
-    self.tableView.alwaysBounceVertical = self.placeHolderView.hidden = (! show);
-}
-
 - (UIBarButtonItem*)selectAllRowsButtonItem
 {
     if (! _selectAllRowsButtonItem) {
@@ -430,5 +425,13 @@
         [hud removeFromSuperview];
     }];
 }
+
+#pragma mark - Public 
+
+- (void)showPlaceHolder:(BOOL)show
+{
+    self.tableView.alwaysBounceVertical = self.placeHolderView.hidden = (! show);
+}
+
 
 @end

@@ -20,28 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BrickProtocol.h"
+#import "BaseTransition.h"
 
-@class BrickCell, SingleBrickSelectionView, BrickProtocol;
+@interface BrickTransition : BaseTransition
+@property (nonatomic, readonly) UIView *animateView;
 
-@protocol SingleBrickSelectionViewDelegate <NSObject>
+- (instancetype)initWithViewToAnimate:(UIView *)view;
 
-@optional
-- (void)singleBrickSelectionView:(SingleBrickSelectionView*)singleBrickSelectionView
-                  didSelectBrick:(id<BrickProtocol>)brick replicantBrickView:(UIView*)brickView;
-
-- (void)singleBrickSelectionView:(SingleBrickSelectionView*)singleBrickSelectionView
-                  didShowWithBrick:(id<BrickProtocol>)brick replicantBrickView:(UIView*)brickView;
-
-
-@end
-
-@interface SingleBrickSelectionView : UIView
-@property (strong, nonatomic) UIView *dimview;
-@property (nonatomic, weak) id<SingleBrickSelectionViewDelegate> delegate;
-
-- (void)showSingleBrickSelectionViewWithBrickCell:(BrickCell*)brickCell fromView:(UIView*)fromView
-                                        belowView:(UIView*)belowView completion:(void(^)())completionBlock;
+- (void)updateAnimationViewWithView:(UIView *)view;
 
 @end

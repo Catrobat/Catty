@@ -33,6 +33,11 @@
 @property (nonatomic, readonly) kBrickType brickType;
 @property (nonatomic, strong, readonly) NSString *brickTitle;
 @property (nonatomic, weak) Script *script;
+
++ (Brick*)brickWithType:(kBrickType)type andCategory:(kBrickCategoryType)category;
+
+- (instancetype)initWithType:(kBrickType)type andCategory:(kBrickCategoryType)category;
+
 - (BOOL)isSelectableForObject;
 
 - (NSString*)description;

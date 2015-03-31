@@ -195,7 +195,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.recognizer.cancelsTouchesInView = NO;
     [self.view.window addGestureRecognizer:self.recognizer];
     self.pickerGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chosenVariable)];
-    self.pickerGesture.numberOfTapsRequired = 1;;
+    self.pickerGesture.numberOfTapsRequired = 1;
     [self.variablePicker addGestureRecognizer:self.pickerGesture];
     [self update];
 }
@@ -204,15 +204,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [super viewWillDisappear:animated];
     if ([self.view.window.gestureRecognizers containsObject:self.recognizer]) {
         [self.view.window removeGestureRecognizer:self.recognizer];
-    }
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    
-    if (self.delegate && [self.delegate respondsToSelector:@selector(formulaEditorViewController:withBrickCell:)]) {
-        [self.delegate formulaEditorViewController:self withBrickCell:self.brickCell];
     }
 }
 
