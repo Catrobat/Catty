@@ -728,7 +728,7 @@
                 } else {
                     // case broadcast script is already running!
                     if (broadcastScript.isCalledByOtherScriptBroadcastWait) {
-                        [broadcastScript signalForWaitingBroadcasts]; // signal finished broadcast!
+                        dispatch_semaphore_signal(semaphore); // signal finished broadcast!
                     }
                     [broadcastScript restart]; // trigger script to restart
                 }
@@ -747,6 +747,11 @@
 - (void)waitingForBroadcastWithMessage:(NSString*)message
 {
     dispatch_semaphore_t semaphore = self.broadcastMessageSemaphores[message];
+#warning workaround for synchronization issue
+    if (! semaphore) {
+        semaphore = dispatch_semaphore_create(0);
+        self.broadcastMessageSemaphores[message] = semaphore;
+    }
     assert(semaphore);
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 }

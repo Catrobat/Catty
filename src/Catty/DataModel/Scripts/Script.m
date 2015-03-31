@@ -63,7 +63,6 @@
     if (self) {
         self.brickType = type;
         self.brickCategoryType = category;
-        self.currentBrickIndex = 0;
     }
     return self;
 }
