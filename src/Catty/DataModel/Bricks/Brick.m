@@ -50,20 +50,6 @@
 
 #pragma mark - NSObject
 
-+ (Brick *)brickWithType:(kBrickType)type andCategory:(kBrickCategoryType)category
-{
-    return [[[self class] alloc] initWithType:type andCategory:category];
-}
-
-- (instancetype)initWithType:(kBrickType)type andCategory:(kBrickCategoryType)category {
-    self = [super init];
-    if (self) {
-        self.brickType = type;
-        self.brickCategoryType = category;
-    }
-    return self;
-}
-
 - (id)init
 {
     self = [super init];

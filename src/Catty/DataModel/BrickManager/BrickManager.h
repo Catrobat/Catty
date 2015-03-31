@@ -40,5 +40,6 @@
 - (kBrickType)brickTypeForCategoryType:(kBrickCategoryType)categoryType andBrickIndex:(NSUInteger)index;
 - (NSUInteger)brickIndexForBrickType:(kBrickType)brickType;
 - (CGSize)sizeForBrick:(NSString *)brickName;
+- (BOOL)isScript:(kBrickType)type;
 
 @end

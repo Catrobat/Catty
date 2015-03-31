@@ -245,13 +245,16 @@
     Script *script = [self scriptAtSection:section];
     NSMutableArray *brickList = [script.brickList mutableCopy];
     [brickList insertObjects:bricks atIndexes:indexes];
-    
     script.brickList = brickList;
+
+    // Set script reference
+    for (Brick *brick in script.brickList) {
+        brick.script = script;
+    }
     
-    // TODO: Fix exception raised.
-//    NSMutableArray *newScriptList = [NSMutableArray arrayWithArray:self.scriptList];
-//    [newScriptList replaceObjectAtIndex:section withObject:script];
-//    self.scriptList = newScriptList;
+    NSMutableArray *newScriptList = [NSMutableArray arrayWithArray:self.scriptList];
+    [newScriptList replaceObjectAtIndex:section withObject:script];
+    self.scriptList = newScriptList;
     
     NSMutableArray *insertedIndexPaths = [[NSMutableArray alloc] initWithCapacity:indexes.count];
     [indexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
