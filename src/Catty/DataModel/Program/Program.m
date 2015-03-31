@@ -672,6 +672,9 @@
                     [broadcastScript start];
                 } else {
                     // case broadcast script is already running!
+                    if (broadcastScript.isCalledByOtherScriptBroadcastWait) {
+                        [broadcastScript signalForWaitingBroadcasts]; // signal finished broadcast!
+                    }
                     [broadcastScript restart]; // trigger script to restart
                 }
             }
@@ -724,6 +727,9 @@
                     [broadcastScript start];
                 } else {
                     // case broadcast script is already running!
+                    if (broadcastScript.isCalledByOtherScriptBroadcastWait) {
+                        [broadcastScript signalForWaitingBroadcasts]; // signal finished broadcast!
+                    }
                     [broadcastScript restart]; // trigger script to restart
                 }
             }
