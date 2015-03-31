@@ -24,4 +24,10 @@
 
 @implementation CBSequence
 
+- (BOOL)isEmpty
+{
+    NSError(@"THIS METHOD MUST BE IMPLEMENTED IN ALL SUBCLASSES!!");
+    abort();
+}
+
 @end
