@@ -178,12 +178,20 @@
         }
         for (Script *script in self.scriptList) {
             if ([script isKindOfClass:[WhenScript class]]) {
+                BOOL newScript = NO;
                 @synchronized(script) {
                     if (! script.isRunning) {
                         [script start];
                     } else {
-                        [script restart];
+                        newScript = YES;
+//                        [script restart];
                     }
+                }
+                if (newScript) {
+                    Script *copiedScript = (Script*)[script mutableCopyWithContext:[CBMutableCopyContext new]];
+                    copiedScript.object = script.object;
+                    [copiedScript computeSequenceList]; // TODO: remove this...
+                    [copiedScript start];
                 }
             }
         }
