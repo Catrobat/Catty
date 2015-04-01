@@ -32,7 +32,9 @@
 - (NSString*)description
 {
     NSMutableString *ret = [[NSMutableString alloc] initWithString:@"BroadcastScript: "];
-    [ret appendString:self.receivedMessage];
+    if (self.receivedMessage.length) {
+        [ret appendString:self.receivedMessage];
+    }
     
     if ([self.brickList count] > 0)
     {
@@ -48,6 +50,22 @@
     }
     
     return ret;
+}
+
+- (void)setupEmptyBrick
+{
+    self.receivedMessage = [NSString stringWithString:kLocalizedBroadcastDefaultMessage];
+}
+
+- (void)setMessage:(NSString *)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    if(message)
+        self.receivedMessage = message;
+}
+
+- (NSString *)messageForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    return self.receivedMessage;
 }
 
 @end

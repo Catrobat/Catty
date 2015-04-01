@@ -20,28 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BrickProtocol.h"
 
-@class BrickCell, SingleBrickSelectionView, BrickProtocol;
+#import "BrickCellFragmentProtocol.h"
+#import "FormulaEditorViewController.h"
 
-@protocol SingleBrickSelectionViewDelegate <NSObject>
+@interface BrickCellFormulaFragment : UIButton<BrickCellFragmentProtocol, FormulaEditorViewControllerDelegate>
 
-@optional
-- (void)singleBrickSelectionView:(SingleBrickSelectionView*)singleBrickSelectionView
-                  didSelectBrick:(id<BrickProtocol>)brick replicantBrickView:(UIView*)brickView;
+@property (nonatomic, weak) BrickCell *brickCell;
 
-- (void)singleBrickSelectionView:(SingleBrickSelectionView*)singleBrickSelectionView
-                  didShowWithBrick:(id<BrickProtocol>)brick replicantBrickView:(UIView*)brickView;
-
-
-@end
-
-@interface SingleBrickSelectionView : UIView
-@property (strong, nonatomic) UIView *dimview;
-@property (nonatomic, weak) id<SingleBrickSelectionViewDelegate> delegate;
-
-- (void)showSingleBrickSelectionViewWithBrickCell:(BrickCell*)brickCell fromView:(UIView*)fromView
-                                        belowView:(UIView*)belowView completion:(void(^)())completionBlock;
+- (void)drawBorder:(BOOL)isActive;
+- (Formula*)formula;
 
 @end

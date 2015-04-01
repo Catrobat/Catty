@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
+
+/* No comment provided by engineer. */
 "A program with the same name already exists, try again." = "A program with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
@@ -14,7 +17,7 @@
 "acceleration_y" = "acceleration_y";
 
 /* No comment provided by engineer. */
-"acceleration_z" = "acceleration_z";
+"add comment here..." = "add comment here...";
 
 /* No comment provided by engineer. */
 "Add image" = "Add image";
@@ -179,7 +182,13 @@
 "Delete Brick" = "Delete Brick";
 
 /* No comment provided by engineer. */
+"Delete Condition" = "Delete Condition";
+
+/* No comment provided by engineer. */
 "Delete Looks" = "Delete Looks";
+
+/* No comment provided by engineer. */
+"Delete Loop" = "Delete Loop";
 
 /* No comment provided by engineer. */
 "Delete Objects" = "Delete Objects";
@@ -277,6 +286,9 @@
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "Enter your image name here...";
 
+/* Placeholder for message input field */
+"Enter your message here..." = "Enter your message here...";
+
 /* Placeholder for add object-name input field */
 "Enter your object name here..." = "Enter your object name here...";
 
@@ -300,8 +312,6 @@
 
 /* No comment provided by engineer. */
 "Explore apps" = "Explore apps";
-
-/* No comment provided by engineer. */
 "false" = "false";
 
 /* No comment provided by engineer. */
@@ -356,6 +366,9 @@
 "Grid" = "Grid";
 
 /* No comment provided by engineer. */
+"Hello !" = "Hello !";
+
+/* No comment provided by engineer. */
 "Help" = "Help";
 
 /* No comment provided by engineer. */
@@ -381,15 +394,15 @@
 
 /* No comment provided by engineer. */
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.";
+"inclination_x" = "inclination_x";
 
 /* No comment provided by engineer. */
-"inclination_x" = "inclination_x";
 
 /* No comment provided by engineer. */
 "inclination_y" = "inclination_y";
 
 /* No comment provided by engineer. */
-"Information" = "Information";
+"Invalid input entered, try again." = "Invalid input entered, try again.";
 
 /* No comment provided by engineer. */
 "Invalid URL given!" = "Invalid URL given!";
@@ -457,6 +470,12 @@
 /* paint */
 "Menu" = "Menu";
 
+/* No comment provided by engineer. */
+"Message" = "Message";
+
+/* No comment provided by engineer. */
+"message 1" = "message 1";
+
 /* paint */
 "mirror" = "mirror";
 
@@ -503,13 +522,16 @@
 "New Canvas" = "New Canvas";
 
 /* No comment provided by engineer. */
-"New Program" = "New Program";
+"New Message" = "New Message";
 
 /* No comment provided by engineer. */
 "New Text" = "New Text";
 
 /* No comment provided by engineer. */
 "New Variable" = "New Variable";
+
+/* No comment provided by engineer. */
+"New..." = "New...";
 
 /* No comment provided by engineer. */
 "Newest" = "Newest";

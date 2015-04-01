@@ -116,17 +116,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - actions
 - (void)addObjectAction:(id)sender
 {
-    [Util askUserForUniqueNameAndPerformAction:@selector(addObjectActionWithName:)
-                                        target:self
-                                   promptTitle:kLocalizedAddObject
-                                 promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]
-                                   promptValue:nil
-                             promptPlaceholder:kLocalizedEnterYourObjectNameHere
-                                minInputLength:kMinNumOfObjectNameCharacters
-                                maxInputLength:kMaxNumOfObjectNameCharacters
-                           blockedCharacterSet:[self blockedCharacterSet]
-                      invalidInputAlertMessage:kLocalizedObjectNameAlreadyExistsDescription
-                                 existingNames:[[self.program allObjectNames] mutableCopy]];
+    [Util addObjectAlertForProgram:self.program andPerformAction:@selector(addObjectActionWithName:) onTarget:self withCompletion:nil];
 }
 
 - (void)addObjectActionWithName:(NSString*)objectName

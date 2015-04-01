@@ -45,6 +45,8 @@
 #define kMaxNumOfLookNameCharacters 20
 #define kMinNumOfSoundNameCharacters 1
 #define kMaxNumOfSoundNameCharacters 20
+#define kMinNumOfMessageNameCharacters 1
+#define kMaxNumOfMessageNameCharacters 20
 
 #define kNoProgramIDYetPlaceholder @"x"
 #define kProgramIDSeparator @"_"

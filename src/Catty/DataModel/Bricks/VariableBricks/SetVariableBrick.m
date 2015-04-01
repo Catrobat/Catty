@@ -30,14 +30,19 @@
 
 @implementation SetVariableBrick
 
-- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.variableFormula;
 }
 
-- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     self.variableFormula = formula;
+}
+
+- (void)setupEmptyBrick
+{
+    self.variableFormula = [[Formula alloc] initWithZero];
 }
 
 - (NSString*)brickTitle

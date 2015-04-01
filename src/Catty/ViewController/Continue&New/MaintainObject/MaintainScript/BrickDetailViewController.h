@@ -22,23 +22,35 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, BrickDetailViewControllerState) {
+    BrickDetailViewControllerStateNone = 0,
+    BrickDetailViewControllerStateBrickUpdated,
+    BrickDetailViewControllerStateDeleteScript,
+    BrickDetailViewControllerStateDeleteBrick,
+    BrickDetailViewControllerStateCopyBrick,
+    BrickDetailViewControllerStateAnimateBrick,
+    BrickDetailViewControllerStateEditFormula,
+};
+
 @class BrickDetailViewController;
-@class BrickCell;
-
 @protocol BrickDetailViewControllerDelegate <NSObject>
-
 @optional
-- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
-                 viewDidDisappear:(BOOL)deleteBrick
-                    withBrickCell:(BrickCell *)brickCell
-                        copyBrick:(BOOL)copyBrick
-                openFormulaEditor:(BOOL)openFormulaEditor
-                     animateBrick:(BOOL)animate;
+
+- (void)brickDetailViewController:(BrickDetailViewController*)brickDetailViewController
+                   didChangeState:(BrickDetailViewControllerState)state;
 
 @end
 
+@protocol ScriptProtocol;
+
 @interface BrickDetailViewController : UIViewController
-@property (weak, nonatomic) id<BrickDetailViewControllerDelegate> delegate;
-@property (strong, nonatomic) BrickCell *brickCell;
+@property (nonatomic, weak) id<BrickDetailViewControllerDelegate> delegate;
+@property (nonatomic, readonly) BrickDetailViewControllerState state;
+
+- (instancetype)initWithScriptOrBrick:(id<ScriptProtocol>)scriptOrBrick NS_DESIGNATED_INITIALIZER;
++ (BrickDetailViewController*)brickDetailViewControllerWithScriptOrBrick:(id<ScriptProtocol>)scriptOrBrick;
+
+// Disallow init.
+- (instancetype)init __attribute__((unavailable("init is not a supported initializer for this class.")));
 
 @end

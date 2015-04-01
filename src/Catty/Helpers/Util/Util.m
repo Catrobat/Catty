@@ -37,6 +37,12 @@
 #import "CatrobatLanguageDefines.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "Formula.h"
+#import "Sound.h"
+#import "Look.h"
+#import "Script.h"
+#import "BroadcastWaitBrick.h"
+#import "BroadcastBrick.h"
+#import "BroadcastScript.h"
 #import "SpriteObject.h"
 #import <objc/runtime.h>
 
@@ -392,7 +398,7 @@
     CatrobatAlertView *alertView = [[self class] promptWithTitle:title
                                                          message:message
                                                         delegate:(id<CatrobatAlertViewDelegate>)self
-                                                     placeholder:kLocalizedEnterYourProgramNameHere
+                                                     placeholder:placeholder
                                                              tag:kAskUserForUniqueNameAlertViewTag
                                                            value:value];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionAskUserForUniqueName
@@ -512,7 +518,22 @@
 }
 
 
-
++ (void)addObjectAlertForProgram:(Program*)program andPerformAction:(SEL)action onTarget:(id)target withCompletion:(void(^)(NSString*))completion
+{
+    [self askUserForUniqueNameAndPerformAction:action
+                                        target:target
+                                    withObject:(id)completion
+                                   promptTitle:kLocalizedAddObject
+                                 promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]
+                                   promptValue:nil
+                             promptPlaceholder:kLocalizedEnterYourObjectNameHere
+                                minInputLength:kMinNumOfObjectNameCharacters
+                                maxInputLength:kMaxNumOfObjectNameCharacters
+                           blockedCharacterSet:[[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                                                invertedSet]
+                      invalidInputAlertMessage:kLocalizedObjectNameAlreadyExistsDescription
+                                 existingNames:[[program allObjectNames] mutableCopy]];
+}
 
 + (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames
 {
@@ -662,7 +683,13 @@ replacementString:(NSString*)characters
         }
 
         NSUInteger textFieldMinInputLength = [payload[kDTPayloadAskUserMinInputLength] unsignedIntegerValue];
-        if (nameAlreadyExists) {
+        if ([input isEqualToString:kLocalizedNewElement]) {
+            CatrobatAlertView *newAlertView = [Util alertWithText:kLocalizedInvalidInputDescription
+                                                         delegate:(id<CatrobatAlertViewDelegate>)self
+                                                              tag:kInvalidNameWarningAlertViewTag];
+            payload[kDTPayloadAskUserPromptValue] = input;
+            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
+        } else if (nameAlreadyExists) {
             CatrobatAlertView *newAlertView = [Util alertWithText:payload[kDTPayloadAskUserInvalidInputAlertMessage]
                                                          delegate:(id<CatrobatAlertViewDelegate>)self
                                                               tag:kInvalidNameWarningAlertViewTag];
@@ -823,7 +850,8 @@ replacementString:(NSString*)characters
         
         // TODO use introspection
         if ([name isEqualToString:@"hash"] || [name isEqualToString:@"superclass"]
-            || [name isEqualToString:@"description"] || [name isEqualToString:@"debugDescription"]) {
+            || [name isEqualToString:@"description"] || [name isEqualToString:@"debugDescription"]
+            || [name isEqualToString:@"brickCategoryType"] || [name isEqualToString:@"brickType"]) {
             continue;
         }
         
@@ -859,6 +887,65 @@ replacementString:(NSString*)characters
     }
     
     return NO;
+}
+
++ (SpriteObject*)objectWithName:(NSString*)objectName forProgram:(Program*)program
+{
+    for(SpriteObject *object in program.objectList) {
+        if([object.name isEqualToString:objectName]) {
+            return object;
+        }
+    }
+    return nil;
+}
+
++ (Sound*)soundWithName:(NSString*)objectName forObject:(SpriteObject*)object
+{
+    for(Sound *sound in object.soundList) {
+        if([sound.name isEqualToString:objectName]) {
+            return sound;
+        }
+    }
+    return nil;
+}
+
++ (Look*)lookWithName:(NSString*)objectName forObject:(SpriteObject*)object
+{
+    for(Look *look in object.lookList) {
+        if([look.name isEqualToString:objectName]) {
+            return look;
+        }
+    }
+    return nil;
+}
+
++ (NSArray*)allMessagesForProgram:(Program*)program
+{
+    NSMutableArray *messages = [[NSMutableArray alloc] init];
+    for(SpriteObject *object in program.objectList) {
+        for(Script *script in object.scriptList) {
+            if([script isKindOfClass:[BroadcastScript class]]) {
+                BroadcastScript *broadcastScript = (BroadcastScript*)script;
+                [messages addObject:broadcastScript.receivedMessage];
+            }
+            for(Brick *brick in script.brickList) {
+                if([brick isKindOfClass:[BroadcastBrick class]]) {
+                    BroadcastBrick *broadcastBrick = (BroadcastBrick*)brick;
+                    [messages addObject:broadcastBrick.broadcastMessage];
+                } else if([brick isKindOfClass:[BroadcastWaitBrick class]]) {
+                    BroadcastWaitBrick *broadcastBrick = (BroadcastWaitBrick*)brick;
+                    [messages addObject:broadcastBrick.broadcastMessage];
+                }
+            }
+        }
+    }
+    return messages;
+}
+
+#pragma mark - Macros
+
+void CBAssertIfNotMainThread(void) {
+    CBAssert(NSThread.isMainThread, @"\nERROR: Not on main thread.\n\nSet breakpoint on CBAssertIfNotMainThread to find out where.\n\nStacktrace: %@", [NSThread callStackSymbols]);
 }
 
 

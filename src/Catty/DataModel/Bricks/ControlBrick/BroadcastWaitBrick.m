@@ -33,6 +33,7 @@
 - (id)initWithMessage:(NSString *)message
 {
     self = [super init];
+    
     if (self)
     {
         self.broadcastMessage = message;
@@ -40,10 +41,26 @@
     return self;
 }
 
+- (void)setupEmptyBrick
+{
+    self.broadcastMessage = [NSString stringWithString:kLocalizedBroadcastDefaultMessage];
+}
+
 - (void)performBroadcastWait
 {
     NSDebug(@"Performing: %@", self.description);
     [self.script.object broadcastAndWait:self.broadcastMessage];
+}
+
+- (void)setMessage:(NSString *)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    if(message)
+        self.broadcastMessage = message;
+}
+
+- (NSString*)messageForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    return self.broadcastMessage;
 }
 
 #pragma mark - Description

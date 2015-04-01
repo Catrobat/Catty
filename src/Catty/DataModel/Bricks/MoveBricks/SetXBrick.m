@@ -28,14 +28,19 @@
 
 @implementation SetXBrick
 
-- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.xPosition;
 }
 
-- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     self.xPosition = formula;
+}
+
+- (void)setupEmptyBrick
+{
+    self.xPosition = [[Formula alloc] initWithInteger:100];
 }
 
 - (NSString*)brickTitle

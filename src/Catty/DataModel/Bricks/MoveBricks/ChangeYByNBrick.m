@@ -26,14 +26,19 @@
 
 @implementation ChangeYByNBrick
 
-- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.yMovement;
 }
 
-- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     self.yMovement = formula;
+}
+
+- (void)setupEmptyBrick
+{
+    self.yMovement = [[Formula alloc] initWithInteger:10];
 }
 
 - (NSString*)brickTitle

@@ -20,9 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import <Foundation/Foundation.h>
+#import "Brick.h"
+#import "Formula.h"
 
-#import "BaseTransition.h"
+@protocol BrickFormulaProtocol <BrickProtocol>
 
-@interface BrickSelectModalTransition : BaseTransition
+- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 
 @end

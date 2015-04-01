@@ -20,11 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BaseTransition.h"
-#import "BrickCell.h"
+#import <UIKit/UIKit.h>
 
-@interface BrickScaleTransition : BaseTransition
-@property (nonatomic, strong) BrickCell *cell;
-@property (nonatomic, assign) CGRect touchRect;
+#define kMaxPages 6
 
+@interface BrickSelectionViewController : UIPageViewController
 @end

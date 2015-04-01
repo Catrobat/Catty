@@ -20,12 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ScriptProtocol.h"
+#import <Foundation/Foundation.h>
+@protocol ScriptProtocol;
 
-@class Script;
+@protocol BrickCellProtocol <NSObject>
 
-@protocol BrickProtocol <ScriptProtocol>
+@required
+@property (nonatomic, strong) id<ScriptProtocol> scriptOrBrick;
+@property (nonatomic) BOOL enabled;
 
-@property (nonatomic, strong) Script *script;
+- (kBrickShapeType)brickShapeType;
++ (CGFloat)cellHeight;
 
 @end

@@ -29,14 +29,19 @@
 
 @synthesize volume  = _volume;
 
-- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.volume;
 }
 
-- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     self.volume = formula;
+}
+
+- (void)setupEmptyBrick
+{
+    self.volume = [[Formula alloc] initWithFloat:-10];
 }
 
 - (NSString*)brickTitle

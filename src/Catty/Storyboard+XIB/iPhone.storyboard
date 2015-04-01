@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14D72i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="62e-MX-z1C">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6246"/>
     </dependencies>
     <scenes>
         <!--New Program-->
@@ -194,7 +194,7 @@
         <!--Sounds-->
         <scene sceneID="chZ-5K-kCV">
             <objects>
-                <tableViewController id="USc-jF-F6X" customClass="SoundsTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SoundsTableViewController" id="USc-jF-F6X" customClass="SoundsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="TeL-cC-H6w">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -384,7 +384,7 @@
         <!--Looks-->
         <scene sceneID="wWp-yc-EGI">
             <objects>
-                <tableViewController id="7i9-vH-sab" customClass="LooksTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="LooksTableViewController" id="7i9-vH-sab" customClass="LooksTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="9mO-sp-Va8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

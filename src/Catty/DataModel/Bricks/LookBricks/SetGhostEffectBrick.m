@@ -28,14 +28,19 @@
 
 @synthesize transparency = _transparency;
 
-- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.transparency;
 }
 
-- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     self.transparency = formula;
+}
+
+- (void)setupEmptyBrick
+{
+    self.transparency = [[Formula alloc] initWithZero];
 }
 
 - (NSString*)brickTitle

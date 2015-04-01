@@ -23,262 +23,242 @@
 #import "BrickDetailViewController.h"
 #import "UIDefines.h"
 #import "Brick.h"
+#import "Script.h"
 #import "LanguageTranslationDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
-#import "StartScriptCell.h"
-#import "WhenScriptCell.h"
-#import "IfLogicElseBrickCell.h"
-#import "IfLogicEndBrickCell.h"
-#import "ForeverBrickCell.h"
-#import "IfLogicBeginBrickCell.h"
-#import "RepeatBrickCell.h"
-#import "BroadcastScriptCell.h"
-#import "BrickCell.h"
-#import "BrickFormulaProtocol.h"
+#import "StartScript.h"
+#import "WhenScript.h"
+#import "IfLogicElseBrick.h"
+#import "IfLogicEndBrick.h"
+#import "ForeverBrick.h"
+#import "LoopEndBrick.h"
+#import "IfLogicBeginBrick.h"
+#import "RepeatBrick.h"
+#import "BroadcastScript.h"
 #import "LanguageTranslationDefines.h"
 #import "CatrobatActionSheet.h"
-#import "LoopBeginBrick.h"
-#import "LoopEndBrick.h"
+#import "BrickFormulaProtocol.h"
+#import "Util.h"
 
-NS_ENUM(NSInteger, ButtonIndex) {
-    kButtonIndexDelete = 0,
-    kButtonIndexCopyOrCancel = 1,
+// Button mapping.
+typedef NS_ENUM(NSInteger, EditButtonIndex) {
+    kButtonIndexDelete  = 0,
+    kButtonIndexCopy    = 1,
     kButtonIndexAnimate = 2,
-    kButtonIndexEdit = 3,
-    kButtonIndexCancel = 4
+    kButtonIndexEdit    = 3,
+    kButtonIndexCancel  = 4,
 };
 
 @interface BrickDetailViewController () <CatrobatActionSheetDelegate>
-@property (strong, nonatomic) UITapGestureRecognizer *recognizer;
-@property (strong, nonatomic) NSNumber *deleteBrickOrScriptFlag;
-@property (strong, nonatomic) NSNumber *brickCopyFlag;
-@property (strong, nonatomic) NSNumber *openFormulaEditorFlag;
-@property (strong, nonatomic) NSNumber *animationFlag;
-@property (strong, nonatomic) CatrobatActionSheet *brickMenu;
-
+@property(nonatomic, assign) EditButtonIndex buttonIndex;
+@property(strong, nonatomic) CatrobatActionSheet *brickMenu;
+@property(strong, nonatomic) id<ScriptProtocol> scriptOrBrick;
 @end
 
 @implementation BrickDetailViewController
-
-- (void)viewDidLoad
 {
-    [super viewDidLoad];
-    self.view.backgroundColor = UIColor.clearColor;
-    self.deleteBrickOrScriptFlag = [[NSNumber alloc]initWithBool:NO];
-    self.brickCopyFlag = [[NSNumber alloc]initWithBool:NO];
-    self.openFormulaEditorFlag = [[NSNumber alloc]initWithBool:NO];
-    self.animationFlag = [[NSNumber alloc]initWithBool:NO];
+    BrickDetailViewControllerState _tempState;
 }
 
-- (void)viewDidAppear:(BOOL)animated
+#pragma mark - init
++ (BrickDetailViewController*)brickDetailViewControllerWithScriptOrBrick:(id<ScriptProtocol>)scriptOrBrick
 {
-    [super viewDidAppear:animated];
-    [self.brickMenu showInView:self.view];
-    self.recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-    self.recognizer.numberOfTapsRequired = 1;
-    self.recognizer.cancelsTouchesInView = NO;
-    [self.view.window addGestureRecognizer:self.recognizer];
+    return [[BrickDetailViewController alloc] initWithScriptOrBrick:scriptOrBrick];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
- {
-    if ([self.view.window.gestureRecognizers containsObject:self.recognizer]) {
-        [self.view.window removeGestureRecognizer:self.recognizer];
+- (instancetype)initWithScriptOrBrick:(id<ScriptProtocol>)scriptOrBrick
+{
+    if (self = [super init]) {
+        self.modalPresentationStyle = UIModalPresentationCustom;
+        self.state = BrickDetailViewControllerStateNone;
+        self.scriptOrBrick = scriptOrBrick;
     }
-    [super viewWillDisappear:animated];
+    return self;
+}
+
+#pragma mark - UIViewController
+- (void)loadView
+{
+    [super loadView];
+    
+    UIView *view = [[UIView alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    view.backgroundColor = [UIColor clearColor];
+    self.view = view;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self setupBrickMenu];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(brickDetailViewController:viewDidDisappear:withBrickCell:copyBrick:openFormulaEditor:animateBrick:)]) {
-        [self.delegate brickDetailViewController:self viewDidDisappear:self.deleteBrickOrScriptFlag.boolValue
-                                   withBrickCell:self.brickCell copyBrick:self.brickCopyFlag.boolValue openFormulaEditor:self.openFormulaEditorFlag.boolValue animateBrick:self.animationFlag.boolValue];
-    }
+    self.state = _tempState;  // Just update state when self dismissed.
 }
 
-- (void)handleTap:(UITapGestureRecognizer *)sender
+#pragma mark - Setters
+
+- (void)setState:(BrickDetailViewControllerState)state
 {
-    if ([sender isKindOfClass:UITapGestureRecognizer.class]) {
-        if (sender.state == UIGestureRecognizerStateEnded) {
-            CGPoint location = [sender locationInView:nil];
-            if (![self.brickCell pointInside:[self.brickCell convertPoint:location fromView:self.view] withEvent:nil] &&
-                ![self.brickMenu pointInside:[self.brickMenu convertPoint:location fromView:self.view] withEvent:nil]) {
-                [self dismissBrickDetailViewController];
-            } else {
-                if (!self.brickMenu.visible) {
-                    [self.brickMenu showInView:self.view];
-                }
-            }
+    if (state != _state) {
+        _state = state;
+        id<BrickDetailViewControllerDelegate> delegate = self.delegate;
+        if ([delegate respondsToSelector:@selector(brickDetailViewController:didChangeState:)]) {
+            [delegate brickDetailViewController:self didChangeState:state];
         }
     }
 }
 
-#pragma mark - getters
-- (CatrobatActionSheet*)brickMenu
+- (void)setScriptOrBrick:(id<ScriptProtocol>)scriptOrBrick
 {
-    if (! _brickMenu) {
-      if ([self animateMenuItemWithBrickCell:self.brickCell] && [self editFormulaMenuItemWithBrickCell:self.brickCell]) {
-        _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:nil
-                                                       delegate:self
-                                              cancelButtonTitle:kLocalizedClose
-                                         destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
-                                              otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
-                      [self animateMenuItemWithBrickCell:self.brickCell],
-                      [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
-      } else if ([self animateMenuItemWithBrickCell:self.brickCell]){
-        _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:nil
-                                                       delegate:self
-                                              cancelButtonTitle:kLocalizedClose
-                                         destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
-                                              otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
-                                                                [self animateMenuItemWithBrickCell:self.brickCell],
-                                                                nil];
-      } else if ([self editFormulaMenuItemWithBrickCell:self.brickCell]){
-        _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:nil
-                                                       delegate:self
-                                              cancelButtonTitle:kLocalizedClose
-                                         destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
-                                              otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
-                                                                [self editFormulaMenuItemWithBrickCell:self.brickCell], nil];
-      } else{
-          _brickMenu = [[CatrobatActionSheet alloc] initWithTitle:nil
-                                                         delegate:self
-                                                cancelButtonTitle:kLocalizedClose
-                                           destructiveButtonTitle:[self deleteMenuItemNameWithBrickCell:self.brickCell]
-                                                otherButtonTitles:[self secondMenuItemWithBrickCell:self.brickCell],
-                                                                    nil];
-      }
-      
-      
-    }
-        [_brickMenu setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.6f]];
-        [_brickMenu setButtonTextColor:[UIColor lightOrangeColor]];
-        [_brickMenu setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
-
-        _brickMenu.transparentView = nil;
-    
-    return _brickMenu;
+    _scriptOrBrick = scriptOrBrick;
+    _state = BrickDetailViewControllerStateBrickUpdated;
 }
-
 
 #pragma mark - Action Sheet Delegate
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    switch ([self getAbsoluteButtonIndex:buttonIndex]) {
+    self.buttonIndex = [self getAbsoluteButtonIndex:buttonIndex];
+    switch (self.buttonIndex) {
+        case kButtonIndexCancel:
+            _tempState = BrickDetailViewControllerStateNone;
+            break;
         case kButtonIndexDelete: {
-            self.deleteBrickOrScriptFlag = [NSNumber numberWithBool:YES];
-            [self dismissBrickDetailViewController];
-            break;
-        }
-        case kButtonIndexCopyOrCancel:
-            if (! [self.brickCell isScriptBrick]) {
-                self.brickCopyFlag = [NSNumber numberWithBool:(! [self.brickCell isScriptBrick])];
+            if ([self.scriptOrBrick isKindOfClass:[Script class]])
+                _tempState = BrickDetailViewControllerStateDeleteScript;
+             else
+                _tempState = BrickDetailViewControllerStateDeleteBrick;
             }
-            [self dismissBrickDetailViewController];
             break;
-        case kButtonIndexAnimate:
-            self.animationFlag = [NSNumber numberWithBool:YES];
-            [self dismissBrickDetailViewController];
+        case kButtonIndexCopy:
+            if (![self.scriptOrBrick isKindOfClass:[Script class]])
+                _tempState = BrickDetailViewControllerStateCopyBrick;
             break;
         case kButtonIndexEdit:
-            // formula editor button
-            self.openFormulaEditorFlag = [NSNumber numberWithBool:YES];
-            [self dismissBrickDetailViewController];
+            _tempState = BrickDetailViewControllerStateEditFormula;
             break;
-        case kButtonIndexCancel:
-            [self dismissBrickDetailViewController];
+        case kButtonIndexAnimate:
+            _tempState = BrickDetailViewControllerStateAnimateBrick;
             break;
         default:
             break;
     }
+
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
 #pragma mark - helper methods
-- (void)dismissBrickDetailViewController
+
+- (NSString *)deleteMenuItemWithScriptOrBrick:(id<ScriptProtocol>)brick
 {
-    if (! self.presentingViewController.isBeingDismissed) {
-        [self.brickMenu dismissWithClickedButtonIndex:-1 animated:YES];
-        [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
+    NSString *title = nil;
+    if ([brick isKindOfClass:IfLogicElseBrick.class] ||
+        [brick isKindOfClass:IfLogicEndBrick.class] ||
+        [brick isKindOfClass:IfLogicBeginBrick.class]) {
+        title = kLocalizedDeleteLogicBrick;
     }
+    else if ([brick isKindOfClass:ForeverBrick.class] ||
+             [brick isKindOfClass:RepeatBrick.class] ||
+             [brick isKindOfClass:LoopEndBrick.class]) {
+        title = kLocalizedDeleteLoopBrick;
+    } else {
+        title = kLocalizedDeleteBrick;
+    }
+    return title;
 }
 
-- (NSString *)deleteMenuItemNameWithBrickCell:(BrickCell *)cell
-{
-    if ([cell isScriptBrick]) {
-        return kLocalizedDeleteScript;
-    }
-    return kLocalizedDeleteBrick;
-}
-
-- (NSString *)secondMenuItemWithBrickCell:(BrickCell *)cell
-{
-    if ([cell isScriptBrick]) {
-        return nil;
-    }
-    return kLocalizedCopyBrick;
-}
-
-- (NSString *)animateMenuItemWithBrickCell:(BrickCell *)cell
-{
-    if ([cell isScriptBrick] || (! [self isAnimateableBrick:cell])) {
-        return nil;
-    }
-    return kLocalizedAnimateBricks;
-}
-
-- (NSString *)editFormulaMenuItemWithBrickCell:(BrickCell *)cell
-{
-    if ([cell isScriptBrick] || (! [self isFormulaBrick:cell])) {
-        return nil;
-    }
-    return kLocalizedEditFormula;
-}
 
 // TODO: refactor later => use property in brick class for this...
-- (bool)isAnimateableBrick:(BrickCell*)brickCell
+- (BOOL)isAnimateableBrick:(id<ScriptProtocol>)scriptOrBrick
 {
-    if ([brickCell isKindOfClass:IfLogicElseBrickCell.class] ||
-        [brickCell isKindOfClass:IfLogicEndBrickCell.class] ||
-        [brickCell isKindOfClass:ForeverBrickCell.class] ||
-        [brickCell isKindOfClass:IfLogicBeginBrickCell.class] ||
-        [brickCell isKindOfClass:RepeatBrickCell.class]) {
+    if ([scriptOrBrick isKindOfClass:IfLogicElseBrick.class] ||
+        [scriptOrBrick isKindOfClass:IfLogicEndBrick.class] ||
+        [scriptOrBrick isKindOfClass:ForeverBrick.class] ||
+        [scriptOrBrick isKindOfClass:IfLogicBeginBrick.class] ||
+        [scriptOrBrick isKindOfClass:RepeatBrick.class]) {
         return YES;
     }
     return NO;
 }
 
-- (bool)isFormulaBrick:(BrickCell*)brickCell
+- (BOOL)isFormulaBrick:(id<ScriptProtocol>)scriptOrBrick
 {
-    if ([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
-        return YES;
-    }
-    return NO;
+    return ([scriptOrBrick conformsToProtocol:@protocol(BrickFormulaProtocol)]);
 }
 
 - (NSInteger)getAbsoluteButtonIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex) {
         case kButtonIndexAnimate:
-            if(![self isAnimateableBrick:self.brickCell]) {
-                if(![self isFormulaBrick:self.brickCell])
+            if (! [self isAnimateableBrick:self.scriptOrBrick]) {
+                if(![self isFormulaBrick:self.scriptOrBrick])
                     return kButtonIndexCancel;
                 else
                     return kButtonIndexEdit;
             }
             break;
+            
         case kButtonIndexEdit:
-            if(![self isAnimateableBrick:self.brickCell])
-                return kButtonIndexCancel;
-            if(![self isFormulaBrick:self.brickCell])
+            if ((! [self isAnimateableBrick:self.scriptOrBrick]) || (! [self isFormulaBrick:self.scriptOrBrick]))
                 return kButtonIndexCancel;
             break;
+        
         default:
             break;
     }
     
     return buttonIndex;
+}
+
+#pragma mark - Setup
+
+// TODO: move checks for brick type features (animatee, formula) to brick (category).
+- (void)setupBrickMenu
+{
+    CBAssert(self.scriptOrBrick);
+    
+    NSArray *buttons = nil;
+    if ([self isAnimateableBrick:self.scriptOrBrick] && [self isFormulaBrick:self.scriptOrBrick]) {
+        buttons = @[
+                    kLocalizedCopyBrick,
+                    kLocalizedAnimateBricks,
+                    kLocalizedEditFormula
+                    ];
+   
+    }
+    else if ([self isAnimateableBrick:self.scriptOrBrick]) {
+        buttons = @[
+                    kLocalizedCopyBrick,
+                    kLocalizedAnimateBricks,
+                    ];
+    }
+    else if ([self isFormulaBrick:self.scriptOrBrick]) {
+        buttons = @[
+                    kLocalizedCopyBrick,
+                    kLocalizedEditFormula
+                    ];
+    } else {
+        buttons = @[ kLocalizedCopyBrick ];
+    }
+
+    NSMutableArray *otherButtons = [NSMutableArray arrayWithArray:buttons];
+    BOOL isScript = [self.scriptOrBrick isKindOfClass:[Script class]];
+    NSString *destructiveTitle = isScript ? kLocalizedDeleteScript : [self deleteMenuItemWithScriptOrBrick:self.scriptOrBrick];
+    self.brickMenu = [[CatrobatActionSheet alloc] initWithTitle:nil
+                                                       delegate:self
+                                              cancelButtonTitle:kLocalizedClose
+                                         destructiveButtonTitle:destructiveTitle
+                                              otherButtonTitles:nil];
+
+    for (NSString *title in otherButtons) { [self.brickMenu addButtonWithTitle:title]; }
+    [self.brickMenu setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.6f]];
+    [self.brickMenu setButtonTextColor:[UIColor lightOrangeColor]];
+    [self.brickMenu setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
+    self.brickMenu.transparentView = nil;
+    [self.brickMenu showInView:self.view];
 }
 
 @end

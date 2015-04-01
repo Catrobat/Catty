@@ -37,9 +37,25 @@
     }];
 }
 
+- (void)setupEmptyBrick
+{
+    self.note = [NSString stringWithString:kLocalizedDefaultNote];
+}
+
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"NoteBrick: %@", self.note];
+}
+
+- (void)setText:(NSString *)text forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    if(text)
+        self.note = text;
+}
+
+- (NSString*)textForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    return self.note;
 }
 
 @end

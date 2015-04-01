@@ -40,6 +40,16 @@
     return kLocalizedSpeak;
 }
 
+- (void)setupEmptyBrick
+{
+    Formula *speakFormula = [Formula new];
+    FormulaElement *formulaElement = [FormulaElement new];
+    formulaElement.type = STRING;
+    formulaElement.value = kLocalizedDefaultSpeakText;
+    speakFormula.formulaTree = formulaElement;
+    self.formula = speakFormula;
+}
+
 - (SKAction*)action
 {
     NSDebug(@"Adding: %@", self.description);
@@ -74,5 +84,16 @@
 {
     return [NSString stringWithFormat:@"Speak: %@", self.formula];
 }
+
+-(void)setFormula:(Formula *)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    if(formula)
+        self.formula = formula;
+}
+
+- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber{
+    return self.formula;
+}
+
 
 @end

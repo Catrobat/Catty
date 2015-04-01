@@ -20,13 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import "Brick.h"
-#import "Formula.h"
 
-@protocol BrickFormulaProtocol <NSObject>
+#import "BrickCellFragmentProtocol.h"
+#import "iOSCombobox.h"
 
-- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
-- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
+@interface BrickCellObjectFragment : iOSCombobox<BrickCellFragmentProtocol, iOSComboboxDelegate>
+
+@property (nonatomic, weak) NSArray* objectList;
 
 @end

@@ -22,8 +22,9 @@
 
 
 #import "Brick.h"
+#import "BrickMessageProtocol.h"
 
-@interface BroadcastWaitBrick : Brick
+@interface BroadcastWaitBrick : Brick<BrickMessageProtocol>
 
 @property (nonatomic, strong) NSString *broadcastMessage;
 

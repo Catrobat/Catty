@@ -25,15 +25,12 @@
 @class iOSCombobox;
 @class FormulaEditorTextField;
 @class BrickCell;
+@class Program;
 
 @interface UIUtil : NSObject
 
 + (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame;
 + (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame AndText:(NSString*)text andRemainingSpace:(NSInteger)remainingSpace;
-+ (UITextField*)newDefaultBrickTextFieldWithFrame:(CGRect)frame andNote:(NSString*)note AndBrickCell:(BrickCell*)brickCell;
-+ (UIButton*)newDefaultBrickFormulaEditorWithFrame:(CGRect)frame ForBrickCell:(BrickCell*)brickCell AndLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
-
 + (iOSCombobox*)newDefaultBrickComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
-
 
 @end

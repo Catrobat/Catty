@@ -34,8 +34,8 @@
 @property (nonatomic, strong) NSArray *values;
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) NSString *currentValue;
-@property (nonatomic, strong) id<iOSComboboxDelegate> delegate;
-@property (nonatomic, strong) BSKeyboardControls* keyboard;
+@property (nonatomic, weak) id<iOSComboboxDelegate>delegate;
+@property (nonatomic, strong) BSKeyboardControls *keyboard;
 @property (readwrite, strong) UIView *inputView;
 @property (readwrite, strong) UIView *inputAccessoryView;
 
@@ -44,5 +44,6 @@
 @protocol iOSComboboxDelegate <NSObject>
 @optional
 - (void) comboboxOpened:(iOSCombobox *)combobox;
+- (void) comboboxClosed:(iOSCombobox *)combobox withValue:(NSString *)value;
 - (void) comboboxChanged:(iOSCombobox *)combobox toValue:(NSString *)toValue;
 @end

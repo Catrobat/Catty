@@ -20,14 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BrickCell.h"
 
-@interface NoteBrickTextField : UITextField
+#import "BrickCellFragmentProtocol.h"
+#import "iOSCombobox.h"
 
-@property (nonatomic,strong)BrickCell *cell;
+@interface BrickCellMessageFragment : iOSCombobox<BrickCellFragmentProtocol, iOSComboboxDelegate>
 
-- (id)initWithFrame:(CGRect)frame AndNote:(NSString*)note;
-- (void)drawBorder:(BOOL)isActive;
-- (void)update;
 @end

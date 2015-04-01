@@ -52,6 +52,9 @@
 #import "PaintViewController.h"
 #import "PlaceHolderView.h"
 #import "UIImage+Rotate.h"
+#import "ScriptCollectionViewController.h"
+#import "BrickLookProtocol.h"
+#import "ViewControllerDefines.h"
 
 @interface LooksTableViewController () <CatrobatActionSheetDelegate, UIImagePickerControllerDelegate,
                                         UINavigationControllerDelegate, CatrobatAlertViewDelegate,
@@ -95,6 +98,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    if(self.showAddLookActionSheetAtStart) {
+        [self showAddLookActionSheet];
+    }
 }
 
 #pragma mark viewwillappear
@@ -157,6 +164,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationBottom];
+    
+    if(self.afterSafeBlock) {
+        self.afterSafeBlock(look);
+    }
 }
 
 - (void)copyLookActionWithSourceLook:(Look*)sourceLook
@@ -321,8 +332,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 //    static NSString *segueToImage = kSegueToImage;
     if (! self.editing) {
 //        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
-        PaintViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"paint"];
+        PaintViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kPaintViewControllerIdentifier];
         vc.delegate = self;
         self.selectedLook = [self.object.lookList objectAtIndex:indexPath.row];
         NSString *lookImagePath = [self.object pathForLook:self.selectedLook];
@@ -591,8 +601,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             // implement this after Pocket Paint is fully integrated
             // draw new image
             NSDebug(@"Draw new image");
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
-            PaintViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"paint"];
+            PaintViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kPaintViewControllerIdentifier];
             vc.delegate = self;
             NSInteger height = (NSInteger)self.view.frame.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height;
             CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, height);

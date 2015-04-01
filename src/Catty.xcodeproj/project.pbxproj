@@ -9,11 +9,23 @@
 /* Begin PBXBuildFile section */
 		4C1608B21A09621A002C7032 /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B01A09621A002C7032 /* ValidFormulaList.xml */; };
 		4C1608B31A09621A002C7032 /* ValidProgram.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C1608B11A09621A002C7032 /* ValidProgram.xml */; };
+		4C1EB20D1AC185770001F431 /* BrickCellFormulaFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1EB20C1AC185770001F431 /* BrickCellFormulaFragment.m */; };
+		4C1EB2121AC19BC60001F431 /* BrickCellTextFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1EB2111AC19BC60001F431 /* BrickCellTextFragment.m */; };
 		4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2650691A6538710050775B /* CBMutableCopyContext.m */; };
 		4C26506F1A6566F50050775B /* SpriteObjectCopyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26506E1A6566F50050775B /* SpriteObjectCopyTest.m */; };
 		4C3275FA1A1360640091C428 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */; };
+		4C4867BD1AC2B9C4009D679D /* BrickCellMessageFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4867BC1AC2B9C4009D679D /* BrickCellMessageFragment.m */; };
+		4C5517D21ABC4F9400A52FF4 /* BrickCellSoundFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5517D11ABC4F9400A52FF4 /* BrickCellSoundFragment.m */; };
+		4C5517DA1ABC747B00A52FF4 /* BrickCellObjectFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5517D91ABC747A00A52FF4 /* BrickCellObjectFragment.m */; };
 		4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */; };
 		4CB2AB291A6BF2590086E5A0 /* PointToBrickWithoutSpriteObject.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CB2AB281A6BF2590086E5A0 /* PointToBrickWithoutSpriteObject.xml */; };
+		4CB4419E1AB9A96A005A1DEF /* BrickCellLookFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4419D1AB9A96A005A1DEF /* BrickCellLookFragment.m */; };
+		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
+		811FB6ED1A49812700957E10 /* BrickCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6EC1A49812700957E10 /* BrickCategoryViewController.m */; };
+		81C0A6791A4CACB7003A77C5 /* ScriptDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A6781A4CACB7003A77C5 /* ScriptDataSource.m */; };
+		81C0A67C1A4D821F003A77C5 /* ScriptDataSource+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67B1A4D821F003A77C5 /* ScriptDataSource+Extensions.m */; };
+		81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */; };
+		81CC62311A57286D002804B7 /* FBKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC62301A57286D002804B7 /* FBKVOController.m */; };
 		92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A461A42F2A3008C771A /* BSKeyboardControls.m */; };
 		92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A481A42F2A3008C771A /* iOSCombobox.m */; };
 		9238C5831A3AE9920099F061 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */; };
@@ -35,9 +47,7 @@
 		92DFB0191A38949E00FA9B0F /* InternToExternGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB0011A38949E00FA9B0F /* InternToExternGenerator.m */; };
 		92DFB01A1A38949E00FA9B0F /* InternToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB0031A38949E00FA9B0F /* InternToken.m */; };
 		92DFB01B1A38949E00FA9B0F /* FormulaEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB0061A38949E00FA9B0F /* FormulaEditorViewController.m */; };
-		92DFB01C1A38949E00FA9B0F /* FormulaEditorButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB0091A38949E00FA9B0F /* FormulaEditorButton.m */; };
 		92DFB01D1A38949E00FA9B0F /* FormulaEditorTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB00B1A38949E00FA9B0F /* FormulaEditorTextView.m */; };
-		92DFB01E1A38949E00FA9B0F /* NoteBrickTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB00D1A38949E00FA9B0F /* NoteBrickTextField.m */; };
 		92DFB0531A38960C00FA9B0F /* BrushPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB0211A38960C00FA9B0F /* BrushPickerViewController.m */; };
 		92DFB0541A38960C00FA9B0F /* ColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB0231A38960C00FA9B0F /* ColorPickerViewController.m */; };
 		92DFB0551A38960C00FA9B0F /* DrawTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB0251A38960C00FA9B0F /* DrawTool.m */; };
@@ -185,9 +195,6 @@
 		92FF314E1A24DEB300093DA7 /* LookImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF311B1A24DEB300093DA7 /* LookImageViewController.m */; };
 		92FF314F1A24DEB300093DA7 /* LooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF311D1A24DEB300093DA7 /* LooksTableViewController.m */; };
 		92FF31501A24DEB300093DA7 /* BrickDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31201A24DEB300093DA7 /* BrickDetailViewController.m */; };
-		92FF31511A24DEB300093DA7 /* BrickSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31221A24DEB300093DA7 /* BrickSelectionView.m */; };
-		92FF31521A24DEB300093DA7 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31241A24DEB300093DA7 /* ScriptCollectionViewController.m */; };
-		92FF31531A24DEB300093DA7 /* SingleBrickSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31261A24DEB300093DA7 /* SingleBrickSelectionView.m */; };
 		92FF31541A24DEB300093DA7 /* SoundPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31291A24DEB300093DA7 /* SoundPickerTableViewController.m */; };
 		92FF31551A24DEB300093DA7 /* SoundsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF312B1A24DEB300093DA7 /* SoundsTableViewController.m */; };
 		92FF31561A24DEB300093DA7 /* SRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF312D1A24DEB300093DA7 /* SRViewController.m */; };
@@ -301,8 +308,7 @@
 		92FF32BC1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF324B1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m */; };
 		92FF32BD1A24E2F400093DA7 /* ProgramTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF324E1A24E2F400093DA7 /* ProgramTableHeaderView.m */; };
 		92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32511A24E2F400093DA7 /* BaseTransition.m */; };
-		92FF32BF1A24E2F400093DA7 /* BrickScaleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickScaleTransition.m */; };
-		92FF32C01A24E2F400093DA7 /* BrickSelectModalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32551A24E2F400093DA7 /* BrickSelectModalTransition.m */; };
+		92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
 		CA538EA519B0EA09008240AB /* ChangeGhostEffectByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */; };
 		CA538EA619B0EA09008240AB /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
@@ -528,6 +534,11 @@
 		4C107ADC194F156F00D9D7ED /* PointToBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointToBrickTests.m; sourceTree = "<group>"; };
 		4C1608B01A09621A002C7032 /* ValidFormulaList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidFormulaList.xml; path = "Resources/Test Resources/ValidFormulaList.xml"; sourceTree = "<group>"; };
 		4C1608B11A09621A002C7032 /* ValidProgram.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidProgram.xml; path = "Resources/Test Resources/ValidProgram.xml"; sourceTree = "<group>"; };
+		4C1EB20B1AC185770001F431 /* BrickCellFormulaFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellFormulaFragment.h; path = BrickCellFragments/BrickCellFormulaFragment.h; sourceTree = "<group>"; };
+		4C1EB20C1AC185770001F431 /* BrickCellFormulaFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellFormulaFragment.m; path = BrickCellFragments/BrickCellFormulaFragment.m; sourceTree = "<group>"; };
+		4C1EB20F1AC19B3D0001F431 /* BrickTextProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTextProtocol.h; sourceTree = "<group>"; };
+		4C1EB2101AC19BC60001F431 /* BrickCellTextFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellTextFragment.h; path = BrickCellFragments/BrickCellTextFragment.h; sourceTree = "<group>"; };
+		4C1EB2111AC19BC60001F431 /* BrickCellTextFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellTextFragment.m; path = BrickCellFragments/BrickCellTextFragment.m; sourceTree = "<group>"; };
 		4C2650681A6538710050775B /* CBMutableCopyContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopyContext.h; path = CBCopyContext/CBMutableCopyContext.h; sourceTree = "<group>"; };
 		4C2650691A6538710050775B /* CBMutableCopyContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBMutableCopyContext.m; path = CBCopyContext/CBMutableCopyContext.m; sourceTree = "<group>"; };
 		4C26506C1A653A5A0050775B /* CBMutableCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopying.h; path = Copying/CBMutableCopying.h; sourceTree = "<group>"; };
@@ -535,6 +546,22 @@
 		4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidProgramAllBricks.xml; path = "Resources/Test Resources/ValidProgramAllBricks.xml"; sourceTree = "<group>"; };
 		4C3AEF2E198E7EDD00604ABF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaFunctionsTest.m; sourceTree = "<group>"; };
+		4C4867BB1AC2B9C4009D679D /* BrickCellMessageFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellMessageFragment.h; path = BrickCellFragments/BrickCellMessageFragment.h; sourceTree = "<group>"; };
+		4C4867BC1AC2B9C4009D679D /* BrickCellMessageFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellMessageFragment.m; path = BrickCellFragments/BrickCellMessageFragment.m; sourceTree = "<group>"; };
+		4C4867BF1AC2CA6D009D679D /* BrickMessageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMessageProtocol.h; sourceTree = "<group>"; };
+		4C5517BC1ABC16B600A52FF4 /* ViewControllerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDefines.h; sourceTree = "<group>"; };
+		4C5517C31ABC300800A52FF4 /* BrickCellFragmentProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellFragmentProtocol.h; sourceTree = "<group>"; };
+		4C5517C41ABC300800A52FF4 /* BrickCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellProtocol.h; sourceTree = "<group>"; };
+		4C5517C61ABC300800A52FF4 /* BrickProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickProtocol.h; sourceTree = "<group>"; };
+		4C5517C81ABC303200A52FF4 /* ScriptProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptProtocol.h; sourceTree = "<group>"; };
+		4C5517D01ABC4F9400A52FF4 /* BrickCellSoundFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellSoundFragment.h; path = BrickCellFragments/BrickCellSoundFragment.h; sourceTree = "<group>"; };
+		4C5517D11ABC4F9400A52FF4 /* BrickCellSoundFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellSoundFragment.m; path = BrickCellFragments/BrickCellSoundFragment.m; sourceTree = "<group>"; };
+		4C5517D41ABC6A8100A52FF4 /* BrickFormulaProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickFormulaProtocol.h; sourceTree = "<group>"; };
+		4C5517D51ABC6AA500A52FF4 /* BrickLookProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickLookProtocol.h; sourceTree = "<group>"; };
+		4C5517D61ABC6AB800A52FF4 /* BrickSoundProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSoundProtocol.h; sourceTree = "<group>"; };
+		4C5517D71ABC737C00A52FF4 /* BrickObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickObjectProtocol.h; sourceTree = "<group>"; };
+		4C5517D81ABC747A00A52FF4 /* BrickCellObjectFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellObjectFragment.h; path = BrickCellFragments/BrickCellObjectFragment.h; sourceTree = "<group>"; };
+		4C5517D91ABC747A00A52FF4 /* BrickCellObjectFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellObjectFragment.m; path = BrickCellFragments/BrickCellObjectFragment.m; sourceTree = "<group>"; };
 		4C6066381A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+CustomExtensions.h"; sourceTree = "<group>"; };
 		4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+CustomExtensions.m"; sourceTree = "<group>"; };
 		4C9E2D1E198EA6B600455B77 /* SMPageControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SMPageControl.license; sourceTree = "<group>"; };
@@ -557,7 +584,21 @@
 		4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+CWPopup.license"; sourceTree = "<group>"; };
 		4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OrderedDictionary.license; sourceTree = "<group>"; };
 		4CB2AB281A6BF2590086E5A0 /* PointToBrickWithoutSpriteObject.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PointToBrickWithoutSpriteObject.xml; sourceTree = "<group>"; };
+		4CB4419C1AB9A96A005A1DEF /* BrickCellLookFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellLookFragment.h; path = BrickCellFragments/BrickCellLookFragment.h; sourceTree = "<group>"; };
+		4CB4419D1AB9A96A005A1DEF /* BrickCellLookFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellLookFragment.m; path = BrickCellFragments/BrickCellLookFragment.m; sourceTree = "<group>"; };
+		811FB6E81A4980EF00957E10 /* ScriptCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptCollectionViewController.h; sourceTree = "<group>"; };
+		811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptCollectionViewController.m; sourceTree = "<group>"; };
+		811FB6EB1A49812700957E10 /* BrickCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCategoryViewController.h; sourceTree = "<group>"; };
+		811FB6EC1A49812700957E10 /* BrickCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCategoryViewController.m; sourceTree = "<group>"; };
+		81C0A6771A4CACB7003A77C5 /* ScriptDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptDataSource.h; sourceTree = "<group>"; };
+		81C0A6781A4CACB7003A77C5 /* ScriptDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptDataSource.m; sourceTree = "<group>"; };
+		81C0A67A1A4D821F003A77C5 /* ScriptDataSource+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ScriptDataSource+Extensions.h"; sourceTree = "<group>"; };
+		81C0A67B1A4D821F003A77C5 /* ScriptDataSource+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ScriptDataSource+Extensions.m"; sourceTree = "<group>"; };
+		81C0A67D1A4EE8CF003A77C5 /* BrickSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSelectionViewController.h; sourceTree = "<group>"; };
+		81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickSelectionViewController.m; sourceTree = "<group>"; };
 		81C27425189EF94600827A95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Catty/Images.xcassets; sourceTree = "<group>"; };
+		81CC622F1A57286D002804B7 /* FBKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBKVOController.h; path = KVOController/FBKVOController.h; sourceTree = "<group>"; };
+		81CC62301A57286D002804B7 /* FBKVOController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBKVOController.m; path = KVOController/FBKVOController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		921FE2F9182F8122001D7CF6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		92289A451A42F2A3008C771A /* BSKeyboardControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSKeyboardControls.h; sourceTree = "<group>"; };
@@ -637,7 +678,6 @@
 		92C37A531856279600547C1E /* MoveNStepsBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveNStepsBrickTests.m; sourceTree = "<group>"; };
 		92C37A55185627A300547C1E /* ClearGrafficEffectBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearGrafficEffectBrickTests.m; sourceTree = "<group>"; };
 		92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormulaEditor.xib; sourceTree = "<group>"; };
-		92DFAFE71A38945300FA9B0F /* BrickFormulaProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickFormulaProtocol.h; sourceTree = "<group>"; };
 		92DFAFE91A38949E00FA9B0F /* ExternInternRepresentationMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternInternRepresentationMapping.h; sourceTree = "<group>"; };
 		92DFAFEA1A38949E00FA9B0F /* ExternInternRepresentationMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternInternRepresentationMapping.m; sourceTree = "<group>"; };
 		92DFAFEB1A38949E00FA9B0F /* ExternToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternToken.h; sourceTree = "<group>"; };
@@ -666,12 +706,8 @@
 		92DFB0031A38949E00FA9B0F /* InternToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternToken.m; sourceTree = "<group>"; };
 		92DFB0051A38949E00FA9B0F /* FormulaEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaEditorViewController.h; sourceTree = "<group>"; };
 		92DFB0061A38949E00FA9B0F /* FormulaEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaEditorViewController.m; sourceTree = "<group>"; };
-		92DFB0081A38949E00FA9B0F /* FormulaEditorButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaEditorButton.h; sourceTree = "<group>"; };
-		92DFB0091A38949E00FA9B0F /* FormulaEditorButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaEditorButton.m; sourceTree = "<group>"; };
 		92DFB00A1A38949E00FA9B0F /* FormulaEditorTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaEditorTextView.h; sourceTree = "<group>"; };
 		92DFB00B1A38949E00FA9B0F /* FormulaEditorTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaEditorTextView.m; sourceTree = "<group>"; };
-		92DFB00C1A38949E00FA9B0F /* NoteBrickTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteBrickTextField.h; sourceTree = "<group>"; };
-		92DFB00D1A38949E00FA9B0F /* NoteBrickTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBrickTextField.m; sourceTree = "<group>"; };
 		92DFB0201A38960C00FA9B0F /* BrushPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrushPickerViewController.h; sourceTree = "<group>"; };
 		92DFB0211A38960C00FA9B0F /* BrushPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrushPickerViewController.m; sourceTree = "<group>"; };
 		92DFB0221A38960C00FA9B0F /* ColorPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPickerViewController.h; sourceTree = "<group>"; };
@@ -763,8 +799,6 @@
 		92FF2E431A24C5F300093DA7 /* ProgramStoreDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramStoreDelegate.h; sourceTree = "<group>"; };
 		92FF2E441A24C5F300093DA7 /* ProgramUpdateDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramUpdateDelegate.h; sourceTree = "<group>"; };
 		92FF2E451A24C5F300093DA7 /* SpriteManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteManagerDelegate.h; sourceTree = "<group>"; };
-		92FF2E471A24C64300093DA7 /* BrickCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellProtocol.h; sourceTree = "<group>"; };
-		92FF2E481A24C64300093DA7 /* BrickProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickProtocol.h; sourceTree = "<group>"; };
 		92FF2E4E1A24C7D800093DA7 /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
 		92FF2E4F1A24C7D800093DA7 /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
 		92FF2E501A24C7D800093DA7 /* CatrobatAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatAudioPlayer.h; sourceTree = "<group>"; };
@@ -978,12 +1012,6 @@
 		92FF311D1A24DEB300093DA7 /* LooksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LooksTableViewController.m; sourceTree = "<group>"; };
 		92FF311F1A24DEB300093DA7 /* BrickDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickDetailViewController.h; sourceTree = "<group>"; };
 		92FF31201A24DEB300093DA7 /* BrickDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickDetailViewController.m; sourceTree = "<group>"; };
-		92FF31211A24DEB300093DA7 /* BrickSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSelectionView.h; sourceTree = "<group>"; };
-		92FF31221A24DEB300093DA7 /* BrickSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickSelectionView.m; sourceTree = "<group>"; };
-		92FF31231A24DEB300093DA7 /* ScriptCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptCollectionViewController.h; sourceTree = "<group>"; };
-		92FF31241A24DEB300093DA7 /* ScriptCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptCollectionViewController.m; sourceTree = "<group>"; };
-		92FF31251A24DEB300093DA7 /* SingleBrickSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleBrickSelectionView.h; sourceTree = "<group>"; };
-		92FF31261A24DEB300093DA7 /* SingleBrickSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleBrickSelectionView.m; sourceTree = "<group>"; };
 		92FF31281A24DEB300093DA7 /* SoundPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundPickerTableViewController.h; sourceTree = "<group>"; };
 		92FF31291A24DEB300093DA7 /* SoundPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundPickerTableViewController.m; sourceTree = "<group>"; };
 		92FF312A1A24DEB300093DA7 /* SoundsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundsTableViewController.h; sourceTree = "<group>"; };
@@ -1203,10 +1231,8 @@
 		92FF324E1A24E2F400093DA7 /* ProgramTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableHeaderView.m; sourceTree = "<group>"; };
 		92FF32501A24E2F400093DA7 /* BaseTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTransition.h; sourceTree = "<group>"; };
 		92FF32511A24E2F400093DA7 /* BaseTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTransition.m; sourceTree = "<group>"; };
-		92FF32521A24E2F400093DA7 /* BrickScaleTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickScaleTransition.h; sourceTree = "<group>"; };
-		92FF32531A24E2F400093DA7 /* BrickScaleTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickScaleTransition.m; sourceTree = "<group>"; };
-		92FF32541A24E2F400093DA7 /* BrickSelectModalTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSelectModalTransition.h; sourceTree = "<group>"; };
-		92FF32551A24E2F400093DA7 /* BrickSelectModalTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickSelectModalTransition.m; sourceTree = "<group>"; };
+		92FF32521A24E2F400093DA7 /* BrickTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTransition.h; sourceTree = "<group>"; };
+		92FF32531A24E2F400093DA7 /* BrickTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickTransition.m; sourceTree = "<group>"; };
 		92FF32C21A24E33B00093DA7 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
 		B405BAC7175DD3F600B1A0FC /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -1631,6 +1657,38 @@
 			name = Formula;
 			sourceTree = "<group>";
 		};
+		4C5517BE1ABC2F5F00A52FF4 /* Bricks */ = {
+			isa = PBXGroup;
+			children = (
+				4C5517D31ABC6A8100A52FF4 /* BrickData */,
+				4C5517C31ABC300800A52FF4 /* BrickCellFragmentProtocol.h */,
+				4C5517C41ABC300800A52FF4 /* BrickCellProtocol.h */,
+				4C5517C61ABC300800A52FF4 /* BrickProtocol.h */,
+			);
+			path = Bricks;
+			sourceTree = "<group>";
+		};
+		4C5517C71ABC303200A52FF4 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				4C5517C81ABC303200A52FF4 /* ScriptProtocol.h */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
+		4C5517D31ABC6A8100A52FF4 /* BrickData */ = {
+			isa = PBXGroup;
+			children = (
+				4C5517D41ABC6A8100A52FF4 /* BrickFormulaProtocol.h */,
+				4C5517D51ABC6AA500A52FF4 /* BrickLookProtocol.h */,
+				4C4867BF1AC2CA6D009D679D /* BrickMessageProtocol.h */,
+				4C5517D71ABC737C00A52FF4 /* BrickObjectProtocol.h */,
+				4C5517D61ABC6AB800A52FF4 /* BrickSoundProtocol.h */,
+				4C1EB20F1AC19B3D0001F431 /* BrickTextProtocol.h */,
+			);
+			path = BrickData;
+			sourceTree = "<group>";
+		};
 		4C6066371A5ACC3100F486CE /* GDataXMLNode+CustomExtensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1677,6 +1735,25 @@
 			path = "Resources/Test Resources/PointToBrickWithoutSpriteObject";
 			sourceTree = "<group>";
 		};
+		4CB4419B1AB9A902005A1DEF /* BrickCellFragments */ = {
+			isa = PBXGroup;
+			children = (
+				4C1EB20B1AC185770001F431 /* BrickCellFormulaFragment.h */,
+				4C1EB20C1AC185770001F431 /* BrickCellFormulaFragment.m */,
+				4CB4419C1AB9A96A005A1DEF /* BrickCellLookFragment.h */,
+				4C4867BB1AC2B9C4009D679D /* BrickCellMessageFragment.h */,
+				4C4867BC1AC2B9C4009D679D /* BrickCellMessageFragment.m */,
+				4CB4419D1AB9A96A005A1DEF /* BrickCellLookFragment.m */,
+				4C5517D81ABC747A00A52FF4 /* BrickCellObjectFragment.h */,
+				4C5517D91ABC747A00A52FF4 /* BrickCellObjectFragment.m */,
+				4C5517D01ABC4F9400A52FF4 /* BrickCellSoundFragment.h */,
+				4C5517D11ABC4F9400A52FF4 /* BrickCellSoundFragment.m */,
+				4C1EB2101AC19BC60001F431 /* BrickCellTextFragment.h */,
+				4C1EB2111AC19BC60001F431 /* BrickCellTextFragment.m */,
+			);
+			name = BrickCellFragments;
+			sourceTree = "<group>";
+		};
 		4CD194F21A0631B200484E4F /* Parser & Serialization */ = {
 			isa = PBXGroup;
 			children = (
@@ -1703,6 +1780,15 @@
 				CAEE0A231A328CDF007CB248 /* XMLSerializerTests */,
 			);
 			name = CatrobatLanguage0.93;
+			sourceTree = "<group>";
+		};
+		81CC622E1A57285D002804B7 /* KVOController */ = {
+			isa = PBXGroup;
+			children = (
+				81CC622F1A57286D002804B7 /* FBKVOController.h */,
+				81CC62301A57286D002804B7 /* FBKVOController.m */,
+			);
+			name = KVOController;
 			sourceTree = "<group>";
 		};
 		92289A441A42F2A3008C771A /* ComboBox */ = {
@@ -2015,12 +2101,8 @@
 		92DFB0071A38949E00FA9B0F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				92DFB0081A38949E00FA9B0F /* FormulaEditorButton.h */,
-				92DFB0091A38949E00FA9B0F /* FormulaEditorButton.m */,
 				92DFB00A1A38949E00FA9B0F /* FormulaEditorTextView.h */,
 				92DFB00B1A38949E00FA9B0F /* FormulaEditorTextView.m */,
-				92DFB00C1A38949E00FA9B0F /* NoteBrickTextField.h */,
-				92DFB00D1A38949E00FA9B0F /* NoteBrickTextField.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2096,6 +2178,7 @@
 				92FF2E051A24C3BE00093DA7 /* ProgramDefines.h */,
 				92FF2E061A24C3BE00093DA7 /* SegueDefines.h */,
 				92FF2E071A24C3BE00093DA7 /* UIDefines.h */,
+				4C5517BC1ABC16B600A52FF4 /* ViewControllerDefines.h */,
 			);
 			path = Defines;
 			sourceTree = "<group>";
@@ -2265,9 +2348,8 @@
 		92FF2E461A24C64300093DA7 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				92DFAFE71A38945300FA9B0F /* BrickFormulaProtocol.h */,
-				92FF2E471A24C64300093DA7 /* BrickCellProtocol.h */,
-				92FF2E481A24C64300093DA7 /* BrickProtocol.h */,
+				4C5517C71ABC303200A52FF4 /* Scripts */,
+				4C5517BE1ABC2F5F00A52FF4 /* Bricks */,
 				4C26506B1A653A3F0050775B /* Copying */,
 				929108911A41F32A0034564D /* Parser&Serializer */,
 			);
@@ -2278,6 +2360,7 @@
 		92FF2E4C1A24C7D800093DA7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				81CC622E1A57285D002804B7 /* KVOController */,
 				92FF2E4D1A24C7D800093DA7 /* AudioManager */,
 				92FF2E521A24C7D800093DA7 /* FileManager */,
 				92FF2E551A24C7D800093DA7 /* Flash */,
@@ -2951,14 +3034,18 @@
 		92FF311E1A24DEB300093DA7 /* MaintainScript */ = {
 			isa = PBXGroup;
 			children = (
+				811FB6E81A4980EF00957E10 /* ScriptCollectionViewController.h */,
+				811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */,
+				81C0A67D1A4EE8CF003A77C5 /* BrickSelectionViewController.h */,
+				81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */,
+				811FB6EB1A49812700957E10 /* BrickCategoryViewController.h */,
+				811FB6EC1A49812700957E10 /* BrickCategoryViewController.m */,
 				92FF311F1A24DEB300093DA7 /* BrickDetailViewController.h */,
 				92FF31201A24DEB300093DA7 /* BrickDetailViewController.m */,
-				92FF31211A24DEB300093DA7 /* BrickSelectionView.h */,
-				92FF31221A24DEB300093DA7 /* BrickSelectionView.m */,
-				92FF31231A24DEB300093DA7 /* ScriptCollectionViewController.h */,
-				92FF31241A24DEB300093DA7 /* ScriptCollectionViewController.m */,
-				92FF31251A24DEB300093DA7 /* SingleBrickSelectionView.h */,
-				92FF31261A24DEB300093DA7 /* SingleBrickSelectionView.m */,
+				81C0A6771A4CACB7003A77C5 /* ScriptDataSource.h */,
+				81C0A6781A4CACB7003A77C5 /* ScriptDataSource.m */,
+				81C0A67A1A4D821F003A77C5 /* ScriptDataSource+Extensions.h */,
+				81C0A67B1A4D821F003A77C5 /* ScriptDataSource+Extensions.m */,
 			);
 			path = MaintainScript;
 			sourceTree = "<group>";
@@ -3213,6 +3300,7 @@
 				92FF31AB1A24E2F400093DA7 /* BrickCell.m */,
 				92FF31AC1A24E2F400093DA7 /* BrickCellInlineView.h */,
 				92FF31AD1A24E2F400093DA7 /* BrickCellInlineView.m */,
+				4CB4419B1AB9A902005A1DEF /* BrickCellFragments */,
 				92FF31AE1A24E2F400093DA7 /* BrickShapeFactory */,
 				92FF31B11A24E2F400093DA7 /* Buttons */,
 				92FF31B61A24E2F400093DA7 /* ControlBrickCells */,
@@ -3498,10 +3586,8 @@
 			children = (
 				92FF32501A24E2F400093DA7 /* BaseTransition.h */,
 				92FF32511A24E2F400093DA7 /* BaseTransition.m */,
-				92FF32521A24E2F400093DA7 /* BrickScaleTransition.h */,
-				92FF32531A24E2F400093DA7 /* BrickScaleTransition.m */,
-				92FF32541A24E2F400093DA7 /* BrickSelectModalTransition.h */,
-				92FF32551A24E2F400093DA7 /* BrickSelectModalTransition.m */,
+				92FF32521A24E2F400093DA7 /* BrickTransition.h */,
+				92FF32531A24E2F400093DA7 /* BrickTransition.m */,
 			);
 			path = ViewControllerTransitions;
 			sourceTree = "<group>";
@@ -4117,7 +4203,7 @@
 						TestTargetID = CADBD6D319B0E8C200C62836;
 					};
 					CADBD6D319B0E8C200C62836 = {
-						DevelopmentTeam = 4V6T7BCGGR;
+						DevelopmentTeam = 8FL5R8726S;
 					};
 				};
 			};
@@ -4313,7 +4399,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "./precompile-tests.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\n  exit $OUT\nfi\n\n./update-localized-strings.sh&\n";
+			shellScript = "
+";
 		};
 		CADBD6D719B0E8C200C62836 /* Add Licenses To Acknowledgements.plist */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4388,6 +4475,7 @@
 				92FF2E9C1A24C7D800093DA7 /* SensorHandler.m in Sources */,
 				92FF32B71A24E2F400093DA7 /* ColoredCell.m in Sources */,
 				CAA4A4AA1A43B407002A69A0 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
+				4C5517DA1ABC747B00A52FF4 /* BrickCellObjectFragment.m in Sources */,
 				92DFB05B1A38960C00FA9B0F /* LineTool.m in Sources */,
 				92FF32711A24E2F400093DA7 /* SWUtilityButtonView.m in Sources */,
 				92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */,
@@ -4395,10 +4483,10 @@
 				92FF30D11A24DCAA00093DA7 /* ChangeGhostEffectByNBrick.m in Sources */,
 				92FF32601A24E2F400093DA7 /* FBShimmeringView.m in Sources */,
 				92FF30D61A24DCAA00093DA7 /* NextLookBrick.m in Sources */,
-				92DFB01E1A38949E00FA9B0F /* NoteBrickTextField.m in Sources */,
 				92FF30D51A24DCAA00093DA7 /* HideBrick.m in Sources */,
 				92DFB0131A38949E00FA9B0F /* InternFormulaKeyboardAdapter.m in Sources */,
 				92FF32631A24E2F400093DA7 /* FXBlurView.m in Sources */,
+				4C5517D21ABC4F9400A52FF4 /* BrickCellSoundFragment.m in Sources */,
 				92FF326E1A24E2F400093DA7 /* SWLongPressGestureRecognizer.m in Sources */,
 				92FF2EA41A24C7D800093DA7 /* Util.m in Sources */,
 				92FF30D71A24DCAA00093DA7 /* SetBrightnessBrick.m in Sources */,
@@ -4425,6 +4513,7 @@
 				CAA4A5041A43B48F002A69A0 /* SetVolumeToBrick+CBXMLHandler.m in Sources */,
 				92FF30EE1A24DCAA00093DA7 /* ChangeSizeByNBrick.m in Sources */,
 				92DFB0101A38949E00FA9B0F /* FormulaEditorHistory.m in Sources */,
+				81CC62311A57286D002804B7 /* FBKVOController.m in Sources */,
 				92FF30D41A24DCAA00093DA7 /* GoNStepsBackBrick.m in Sources */,
 				CAA4A4F51A43B47F002A69A0 /* LedOffBrick+CBXMLHandler.m in Sources */,
 				92FF328A1A24E2F400093DA7 /* ClearGraphicEffectBrickCell.m in Sources */,
@@ -4493,7 +4582,7 @@
 				92FF32BA1A24E2F400093DA7 /* DarkBlueGradientFeaturedCell.m in Sources */,
 				92DFB01D1A38949E00FA9B0F /* FormulaEditorTextView.m in Sources */,
 				92FF32751A24E2F400093DA7 /* CatrobatAlertView.m in Sources */,
-				92FF32BF1A24E2F400093DA7 /* BrickScaleTransition.m in Sources */,
+				92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */,
 				92FF31081A24DCAA00093DA7 /* UserVariable.m in Sources */,
 				92FF30CE1A24DCAA00093DA7 /* IfLogicElseBrick.m in Sources */,
 				92FF2E941A24C7D800093DA7 /* Logger.m in Sources */,
@@ -4517,6 +4606,7 @@
 				92DFB0561A38960C00FA9B0F /* FillTool.m in Sources */,
 				92FF327F1A24E2F400093DA7 /* IfLogicElseBrickCell.m in Sources */,
 				92FF30F11A24DCAA00093DA7 /* PlaySoundBrick.m in Sources */,
+				81C0A6791A4CACB7003A77C5 /* ScriptDataSource.m in Sources */,
 				92FF2E371A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m in Sources */,
 				92FF314B1A24DEB300093DA7 /* BaseWebViewController.m in Sources */,
 				92FF30DE1A24DCAA00093DA7 /* RepeatBrick.m in Sources */,
@@ -4524,6 +4614,7 @@
 				CAA4A4A81A43B407002A69A0 /* LoopEndBrick+CBXMLHandler.m in Sources */,
 				92FF30F81A24DCAA00093DA7 /* Formula.m in Sources */,
 				92DFB01B1A38949E00FA9B0F /* FormulaEditorViewController.m in Sources */,
+				81C0A67C1A4D821F003A77C5 /* ScriptDataSource+Extensions.m in Sources */,
 				92FF32851A24E2F400093DA7 /* RepeatBrickCell.m in Sources */,
 				92FF30F31A24DCAA00093DA7 /* SpeakBrick.m in Sources */,
 				CAA4A5341A43B51F002A69A0 /* ProjectParser.m in Sources */,
@@ -4569,6 +4660,7 @@
 				92FF30C71A24DCAA00093DA7 /* BrickManager.m in Sources */,
 				92FF30E31A24DCAA00093DA7 /* MoveNStepsBrick.m in Sources */,
 				92DFB00E1A38949E00FA9B0F /* ExternInternRepresentationMapping.m in Sources */,
+				4CB4419E1AB9A96A005A1DEF /* BrickCellLookFragment.m in Sources */,
 				CAA4A4E61A43B472002A69A0 /* GlideToBrick+CBXMLHandler.m in Sources */,
 				92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */,
 				92FF30C91A24DCAA00093DA7 /* BroadcastBrick.m in Sources */,
@@ -4581,19 +4673,18 @@
 				92DFB05C1A38960C00FA9B0F /* LinkedListStack.m in Sources */,
 				92FF315C1A24DEB300093DA7 /* RecentProgramsStoreViewController.m in Sources */,
 				9238C5841A3AE9920099F061 /* LoginViewController.m in Sources */,
-				92FF31511A24DEB300093DA7 /* BrickSelectionView.m in Sources */,
 				92FF30CB1A24DCAA00093DA7 /* NoteBrick.m in Sources */,
 				92FF32A71A24E2F400093DA7 /* SpeakBrickCell.m in Sources */,
 				92FF327B1A24E2F400093DA7 /* BroadcastBrickCell.m in Sources */,
 				CAA4A5061A43B48F002A69A0 /* StopAllSoundsBrick+CBXMLHandler.m in Sources */,
 				92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */,
 				92FF32A01A24E2F400093DA7 /* TurnRightBrickCell.m in Sources */,
+				811FB6ED1A49812700957E10 /* BrickCategoryViewController.m in Sources */,
 				92DFB0181A38949E00FA9B0F /* InternFormulaUtils.m in Sources */,
 				CAA4A5021A43B48F002A69A0 /* ChangeVolumeByNBrick+CBXMLHandler.m in Sources */,
 				CAA4A4651A43B388002A69A0 /* CBXMLParser.m in Sources */,
 				92FF328E1A24E2F400093DA7 /* NextLookBrickCell.m in Sources */,
 				92DFB0581A38960C00FA9B0F /* ImageHelper.m in Sources */,
-				92FF32C01A24E2F400093DA7 /* BrickSelectModalTransition.m in Sources */,
 				92FF31581A24DEB300093DA7 /* ProgramTableViewController.m in Sources */,
 				92FF32811A24E2F400093DA7 /* LedOffBrickCell.m in Sources */,
 				92FF315E1A24DEB300093DA7 /* HelpWebViewController.m in Sources */,
@@ -4613,8 +4704,8 @@
 				92FF30DB1A24DCAA00093DA7 /* ForeverBrick.m in Sources */,
 				92FF32A21A24E2F400093DA7 /* StartScriptCell.m in Sources */,
 				92DFB0121A38949E00FA9B0F /* InternFormula.m in Sources */,
+				4C4867BD1AC2B9C4009D679D /* BrickCellMessageFragment.m in Sources */,
 				92FF30FD1A24DCAA00093DA7 /* Header.m in Sources */,
-				92FF31531A24DEB300093DA7 /* SingleBrickSelectionView.m in Sources */,
 				CAA4A4E91A43B472002A69A0 /* PointToBrick+CBXMLHandler.m in Sources */,
 				CAA4A4A21A43B407002A69A0 /* ComeToFrontBrick+CBXMLHandler.m in Sources */,
 				92DFB0661A38960C00FA9B0F /* RGBAHelper.m in Sources */,
@@ -4624,7 +4715,6 @@
 				CAA4A4E51A43B472002A69A0 /* ChangeYByNBrick+CBXMLHandler.m in Sources */,
 				92FF329E1A24E2F400093DA7 /* SetYBrickCell.m in Sources */,
 				92FF325A1A24E2F400093DA7 /* UIWindow+AHKAdditions.m in Sources */,
-				92FF31521A24DEB300093DA7 /* ScriptCollectionViewController.m in Sources */,
 				92DFB06B1A38960C00FA9B0F /* UndoManager.m in Sources */,
 				92FF2E8C1A24C7D800093DA7 /* AudioManager.m in Sources */,
 				92FF2E9F1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m in Sources */,
@@ -4638,6 +4728,7 @@
 				92FF314D1A24DEB300093DA7 /* InfoPopupViewController.m in Sources */,
 				92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */,
 				92FF327D1A24E2F400093DA7 /* ForeverBrickCell.m in Sources */,
+				81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */,
 				92DFB06C1A38960C00FA9B0F /* YKImageCropperOverlayView.m in Sources */,
 				92FF2E361A24C5A700093DA7 /* NSDate+CustomExtensions.m in Sources */,
 				92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */,
@@ -4654,10 +4745,10 @@
 				92FF32971A24E2F400093DA7 /* IfOnEdgeBounceBrickCell.m in Sources */,
 				92FF30F51A24DCAA00093DA7 /* ChangeVariableBrick.m in Sources */,
 				92FF2E931A24C7D800093DA7 /* RuntimeImageCache.m in Sources */,
-				92DFB01C1A38949E00FA9B0F /* FormulaEditorButton.m in Sources */,
 				92FF31011A24DCAA00093DA7 /* Scene.m in Sources */,
 				92FF2E921A24C7D800093DA7 /* ImageCache.m in Sources */,
 				92FF326D1A24E2F400093DA7 /* SWCellScrollView.m in Sources */,
+				4C1EB20D1AC185770001F431 /* BrickCellFormulaFragment.m in Sources */,
 				92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */,
 				92FF32731A24E2F400093DA7 /* TTTAttributedLabel.m in Sources */,
 				92DFB0671A38960C00FA9B0F /* SPUserResizableView.m in Sources */,
@@ -4709,12 +4800,14 @@
 				92FF327C1A24E2F400093DA7 /* BroadcastWaitBrickCell.m in Sources */,
 				92FF32821A24E2F400093DA7 /* LedOnBrickCell.m in Sources */,
 				CAA4A4661A43B388002A69A0 /* CBXMLSerializer.m in Sources */,
+				811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */,
 				92FF30E61A24DCAA00093DA7 /* SetYBrick.m in Sources */,
 				92FF32B41A24E2F400093DA7 /* CellMotionEffect.m in Sources */,
 				92FF314F1A24DEB300093DA7 /* LooksTableViewController.m in Sources */,
 				CAA4A4EA1A43B472002A69A0 /* SetSizeToBrick+CBXMLHandler.m in Sources */,
 				CAA4A4C91A43B45E002A69A0 /* SetLookBrick+CBXMLHandler.m in Sources */,
 				92FF32B51A24E2F400093DA7 /* PlaceHolderView.m in Sources */,
+				4C1EB2121AC19BC60001F431 /* BrickCellTextFragment.m in Sources */,
 				92FF30D21A24DCAA00093DA7 /* ClearGraphicEffectBrick.m in Sources */,
 				CAA4A4A11A43B407002A69A0 /* BroadcastWaitBrick+CBXMLHandler.m in Sources */,
 				92FF32921A24E2F400093DA7 /* ShowBrickCell.m in Sources */,
