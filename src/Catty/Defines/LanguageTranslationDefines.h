@@ -484,6 +484,9 @@
 #define kUIFEFunctionSqrt NSLocalizedString(@"sqrt", nil)
 #define kUIFEFunctionTrue NSLocalizedString(@"true", nil)
 #define kUIFEFunctionFalse NSLocalizedString(@"false", nil)
+#define kUIFEFunctionLetter NSLocalizedString(@"letter", nil)
+#define kUIFEFunctionJoin NSLocalizedString(@"join", nil)
+#define kUIFEFunctionLength NSLocalizedString(@"length", nil)
 
 #define kUIFEOperatorAnd NSLocalizedString(@"and", nil)
 #define kUIFEOperatorNot NSLocalizedString(@"not", nil)

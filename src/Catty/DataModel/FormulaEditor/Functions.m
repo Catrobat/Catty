@@ -77,6 +77,12 @@
         return POW;
     if([value isEqualToString:@"EXP"])
         return EXP;
+    if([value isEqualToString:@"LETTER"])
+        return LETTER;
+    if([value isEqualToString:@"LENGTH"])
+        return LENGTH;
+    if([value isEqualToString:@"JOIN"])
+        return JOIN;
     
 //    [InternFormulaParserException raise:@"Invalid Function Name" format:@"Invalid Function Name: %@", value];
     return NO_FUNCTION;
@@ -144,6 +150,15 @@
             break;
         case EXP:
             return @"EXP";
+            break;
+        case JOIN:
+            return @"JOIN";
+            break;
+        case LENGTH:
+            return @"LENGTH";
+            break;
+        case LETTER:
+            return @"LETTER";
             break;
 
         default:
@@ -220,7 +235,15 @@
         case EXP:
             return @"exp";
             break;
-            
+        case LETTER:
+            return kUIFEFunctionLetter;
+            break;
+        case LENGTH:
+            return kUIFEFunctionLength;
+            break;
+        case JOIN:
+            return kUIFEFunctionJoin;
+            break;
         default:
             return @"";
             break;

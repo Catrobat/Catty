@@ -209,6 +209,10 @@
         id tempResult = [self.formulaTree interpretRecursiveForSprite:sprite];
         double double_result = 0.0f;
         
+        if([tempResult isKindOfClass:[NSString class]])
+        {
+            return tempResult;
+        }
         if([tempResult isKindOfClass:[NSNumber class]])
         {
             double_result = [tempResult doubleValue];
