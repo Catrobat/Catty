@@ -402,7 +402,7 @@
             if (number != nil) {
                 if([number doubleValue]-(int)[number doubleValue] == 0)
                 {
-                    parameterInterpretation = [NSString stringWithFormat:@"%d", [number integerValue]];
+                    parameterInterpretation = [NSString stringWithFormat:@"%ld", (long)[number integerValue]];
                 }else{
                     parameterInterpretation = [NSString stringWithFormat:@"%g", [number doubleValue]];
                 }
@@ -484,14 +484,14 @@
     id userVariableVvalue = [userVariable value];
     if([userVariableVvalue isKindOfClass:[NSString class]])
     {
-        return [userVariableVvalue length];
+        return (int)[userVariableVvalue length];
     }else if([userVariableVvalue isKindOfClass:[NSNumber class]])
     {
         if([userVariableVvalue doubleValue]-[userVariableVvalue integerValue] == 0)
         {
-            return [[NSString stringWithFormat:@"%d", [userVariableVvalue integerValue]] length];
+            return (int)[[NSString stringWithFormat:@"%ld", (long)[userVariableVvalue integerValue]] length];
         }else{
-            return [[NSString stringWithFormat:@"%g", [userVariableVvalue doubleValue]] length];
+            return (int)[[NSString stringWithFormat:@"%g", [userVariableVvalue doubleValue]] length];
         }
         
     }
