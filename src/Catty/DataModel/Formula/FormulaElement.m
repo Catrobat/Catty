@@ -228,15 +228,17 @@
     
     double left = 0.0f;
     double right = 0.0f;
+    id leftId = nil;
+    id rightId = nil;
     if(self.leftChild) {
-        id leftId =[self.leftChild interpretRecursiveForSprite:sprite];
+        leftId =[self.leftChild interpretRecursiveForSprite:sprite];
         if([leftId isKindOfClass:[NSNumber class]])
         {
             left = [leftId doubleValue];
         }
     }
     if (self.rightChild) {
-        id rightId = [self.rightChild interpretRecursiveForSprite:sprite];
+        rightId = [self.rightChild interpretRecursiveForSprite:sprite];
         if([rightId isKindOfClass:[NSNumber class]])
         {
             right = [rightId doubleValue];
@@ -362,16 +364,15 @@
             break;
         }
         case LENGTH: {
-            //TODO: implement
+            result = [self interpretFunctionLENGTH:left forSprite:sprite];
             break;
         }
         case LETTER: {
-            
-            //TODO: implement
+            result = [self interpretFunctionLETTER:leftId and:rightId];
             break;
         }
         case JOIN: {
-            //TODO: implement
+            result = [self interpretFunctionJOIN:sprite];
             break;
         }
         default:
@@ -382,6 +383,122 @@
     return result;
     
 }
+
+- (id)interpretFunctionJOIN:(SpriteObject *)sprite
+{
+    NSString *returnValue = [self interpretFunctionJOINParameter:self.leftChild witSprite:sprite];
+    return [returnValue stringByAppendingString:[self interpretFunctionJOINParameter:self.rightChild witSprite:sprite]];
+}
+
+- (NSString *)interpretFunctionJOINParameter:(FormulaElement *)child witSprite:(SpriteObject *)sprite
+{
+    NSString *parameterInterpretation;
+    
+    if(child != nil)
+    {
+        if(child.type == NUMBER)
+        {
+            NSNumber *number = [NSNumber numberWithDouble:[[child interpretRecursiveForSprite:sprite] doubleValue]];
+            if (number != nil) {
+                if([number doubleValue]-(int)[number doubleValue] == 0)
+                {
+                    parameterInterpretation = [NSString stringWithFormat:@"%ld", (long)[number integerValue]];
+                }else{
+                    parameterInterpretation = [NSString stringWithFormat:@"%g", [number doubleValue]];
+                }
+            }
+        }
+        else if(child.type == STRING)
+        {
+            parameterInterpretation = child.value;
+        }else if (child.type != STRING)
+        {
+            id value = [child interpretRecursiveForSprite:sprite];
+            if([value isKindOfClass:[NSNumber class]])
+            {
+                parameterInterpretation = [NSString stringWithFormat:@"%g", [value doubleValue]];
+            }else if([value isKindOfClass:[NSString class]]){
+                parameterInterpretation = value;
+            }
+            
+        }
+    }
+    
+    return parameterInterpretation;
+}
+
+- (id)interpretFunctionLETTER:(id)left and:(id)right
+{
+    int index = [left doubleValue] - 1;
+    NSString *rightString = nil;
+    
+    if([right isKindOfClass:[NSNumber class]])
+    {
+        
+        rightString = [NSString stringWithFormat:@"%g", [right doubleValue]];
+    }else if ([right isKindOfClass:[NSString class]])
+    {
+        rightString = right;
+    }else{
+        rightString = @"";
+    }
+    
+    if(index < 0){
+        return @"";
+    }else if(index >= [rightString length]){
+        return @"";
+    }
+    
+    char temp_char = [rightString characterAtIndex:index];
+    NSString *returnValue = [NSString stringWithFormat:@"%c", temp_char ];
+    
+    return returnValue;
+}
+
+- (id)interpretFunctionLENGTH:(double)left forSprite:(SpriteObject *)sprite
+{
+    NSString *left_string = [NSString stringWithFormat:@"%lf", left];
+    if(self.leftChild == nil)
+    {
+        return [NSNumber numberWithDouble:0.0f];
+    }
+    if(self.leftChild.type == NUMBER || self.leftChild.type == STRING)
+    {
+        return [NSNumber numberWithDouble:[self.leftChild.value length]];
+    }
+    if(self.leftChild.type == USER_VARIABLE)
+    {
+        return [NSNumber numberWithDouble:(double)[self handleLengthUserVariableParameter:sprite]];
+    }
+    
+    
+    return [NSNumber numberWithDouble:[left_string length]];
+}
+
+- (int)handleLengthUserVariableParameter:(SpriteObject *)sprite
+{
+    ProgramManager *programManager = [ProgramManager sharedProgramManager];
+    VariablesContainer *container = programManager.program.variables;
+    UserVariable *userVariable = [container getUserVariableNamed:self.leftChild.value forSpriteObject:sprite];
+    
+    id userVariableVvalue = [userVariable value];
+    if([userVariableVvalue isKindOfClass:[NSString class]])
+    {
+        return (int)[userVariableVvalue length];
+    }else if([userVariableVvalue isKindOfClass:[NSNumber class]])
+    {
+        if([userVariableVvalue doubleValue]-[userVariableVvalue integerValue] == 0)
+        {
+            return (int)[[NSString stringWithFormat:@"%ld", (long)[userVariableVvalue integerValue]] length];
+        }else{
+            return (int)[[NSString stringWithFormat:@"%g", [userVariableVvalue doubleValue]] length];
+        }
+        
+    }
+    
+    return 0;
+}
+
 
 - (id) interpretOperator:(Operator)operator forSprite:(SpriteObject*)sprite
 {
