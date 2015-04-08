@@ -27,12 +27,11 @@
 
 + (BOOL)isFunction:(NSString*)value
 {
-    @try {
-        [self getFunctionByValue:value];
-    } @catch(InternFormulaParserException *e) {
-        return false;
+    if([self getFunctionByValue:value] == NO_FUNCTION)
+    {
+        return NO;
     }
-    return true;
+    return YES;
 }
 
 + (Function)getFunctionByValue:(NSString*)value
@@ -78,7 +77,6 @@
     if([value isEqualToString:@"EXP"])
         return EXP;
     
-//    [InternFormulaParserException raise:@"Invalid Function Name" format:@"Invalid Function Name: %@", value];
     return NO_FUNCTION;
 }
 
