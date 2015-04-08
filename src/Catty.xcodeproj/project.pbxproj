@@ -4399,7 +4399,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "/usr/bin/env xcrun swiftc -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) precompile-tests.swift\n./precompile-tests\nOUT=$?\nif [ $OUT -ne 0 ];then\nexit $OUT\nfi\n\n./update-localized-strings.sh&\n";
+			shellScript = "#/usr/bin/env xcrun swiftc -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) precompile-tests.swift\n#./precompile-tests\n/usr/bin/env xcrun swift -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) precompile-tests.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\nexit $OUT\nfi\n\n./update-localized-strings.sh&\n";
 		};
 		CADBD6D719B0E8C200C62836 /* Add Licenses To Acknowledgements.plist */ = {
 			isa = PBXShellScriptBuildPhase;

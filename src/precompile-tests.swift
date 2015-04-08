@@ -1,4 +1,4 @@
-#!/usr/bin/env xcrun swift
+#!/usr/bin/env xcrun swift -I .
 /**
  *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
