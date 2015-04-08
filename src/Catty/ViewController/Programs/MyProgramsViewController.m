@@ -541,7 +541,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                       withObject:program
                                      promptTitle:kLocalizedSetDescription
                                    promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedDescription]
-                                     promptValue:program.header.description
+                                     promptValue:program.header.programDescription  
                                promptPlaceholder:kLocalizedEnterYourProgramDescriptionHere
                                   minInputLength:kMinNumOfProgramDescriptionCharacters
                                   maxInputLength:kMaxNumOfProgramDescriptionCharacters
