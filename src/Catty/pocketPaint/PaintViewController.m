@@ -33,9 +33,9 @@
 #import "LanguageTranslationDefines.h"
 #import "QuartzCore/QuartzCore.h"
 
-    //Helper
+//Helper
 #import "RGBAHelper.h"
-    //Tools
+//Tools
 #import "FillTool.h"
 #import "DrawTool.h"
 #import "LineTool.h"
@@ -59,7 +59,7 @@
 @property (nonatomic,strong) UIToolbar *toolBar;
 @property (nonatomic,strong) YKImageCropperView *cropperView;
 
-    //Gestures
+//Gestures
 @property (nonatomic,strong) UITapGestureRecognizer *fillRecognizer;
 
 @property (nonatomic,strong) UIBarButtonItem* colorBarButtonItem;
@@ -85,13 +85,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        // Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nib.
     _red = 0.0/255.0;
     _green = 0.0/255.0;
     _blue = 0.0/255.0;
     _thickness = 10.0;
     _opacity = 1.0;
-        //  enabled = YES;
+    //  enabled = YES;
     _isEraser = NO;
     _horizontal = NO;
     _vertical = NO;
@@ -109,7 +109,7 @@
     [self setupUndoManager];
     [self setupNavigationBar];
     self.colorBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"color"] style:UIBarButtonItemStylePlain target:self action:@selector(colorAction)];
-        // disable swipe back gesture
+    // disable swipe back gesture
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     }
@@ -131,7 +131,7 @@
                 }
             }
         }
-            // reenable swipe back gesture
+        // reenable swipe back gesture
         if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
             self.navigationController.interactivePopGestureRecognizer.enabled = YES;
         }
@@ -141,14 +141,15 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-        // Dispose of any resources that can be recreated.
+    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark initView
 
 - (void)setupCanvas
 {
-    NSInteger height = (NSInteger)self.view.frame.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height;
+    NSInteger width = self.view.bounds.size.width;
+    NSInteger height = (NSInteger)self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height;
     CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, height);
     self.drawView = [[UIImageView alloc] initWithFrame:rect];
     self.saveView = [[UIImageView alloc] initWithFrame:rect];
@@ -157,7 +158,7 @@
     
     
     self.helper = [[UIView alloc] initWithFrame:rect];
-        //add blank image at the beginning
+    //add blank image at the beginning
     if (self.editingImage) {
         UIImage *image = self.editingImage;
         UIGraphicsBeginImageContext(image.size);
@@ -166,21 +167,24 @@
         UIGraphicsEndImageContext();
         self.editingImage = self.saveView.image;
         self.checkImage = self.saveView.image;
-        if ((self.editingImage.size.width <= self.view.bounds.size.width) && (self.editingImage.size.height <= self.view.bounds.size.height)) {
-            self.helper.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
-            self.drawView.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
-            self.saveView.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
-        } else if ((self.editingImage.size.width <= 2*self.view.bounds.size.width) && (self.editingImage.size.height <= 2*self.view.bounds.size.height)) {
-            self.helper.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
-            self.drawView.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
-            self.saveView.frame = CGRectMake(0, 0, self.editingImage.size.width, self.editingImage.size.height);
-            [self.scrollView zoomToRect:CGRectMake(0, 0, 200, 400) animated:YES];
-        }else {
-            CGFloat height = self.editingImage.size.height*0.5;
-            CGFloat width = self.editingImage.size.width*0.5;
-            self.helper.frame = CGRectMake(0, 0, width, height);
-            self.drawView.frame = CGRectMake(0, 0, width, height);
-            self.saveView.frame = CGRectMake(0, 0, width, height);
+        
+        NSInteger imageWidth = self.editingImage.size.width;
+        NSInteger imageHeight = self.editingImage.size.height;
+        
+        if ((imageWidth <= width) && (imageHeight <= height)) {
+            self.helper.frame = CGRectMake(0, 0, imageWidth, imageHeight);
+            self.drawView.frame = CGRectMake(0, 0, imageWidth, imageHeight);
+            self.saveView.frame = CGRectMake(0, 0, imageWidth, imageHeight);
+        } else {
+            CGFloat ratio = 1.0;
+            if(imageWidth > imageHeight)
+                ratio = (CGFloat)width / (CGFloat)imageWidth;
+            else
+                ratio = (CGFloat)height / (CGFloat)imageHeight;
+            
+            self.helper.frame = CGRectMake(0, 0, (CGFloat)imageWidth * ratio, (CGFloat)imageHeight * ratio);
+            self.drawView.frame = CGRectMake(0, 0, (CGFloat)imageWidth * ratio, (CGFloat)imageHeight * ratio);
+            self.saveView.frame = CGRectMake(0, 0, (CGFloat)imageWidth * ratio, (CGFloat)imageHeight * ratio);
         }
     } else {
         UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
@@ -248,9 +252,9 @@
     [self.view addSubview:self.scrollView];
     CGSize boundsSize = self.scrollView.bounds.size;
     CGRect frameToCenter = self.helper.frame;
-        // center horizontally
+    // center horizontally
     frameToCenter.origin.x = (boundsSize.width - frameToCenter.size.width) / 2;
-        // center vertically
+    // center vertically
     frameToCenter.origin.y = (boundsSize.height - frameToCenter.size.height) / 2 - 64;
     self.helper.frame = frameToCenter;
 }
@@ -308,12 +312,12 @@
     CGSize boundsSize = scrollView.bounds.size;
     CGRect frameToCenter = self.helper.frame;
     
-        // center horizontally
+    // center horizontally
     if (frameToCenter.size.width < boundsSize.width)
     {
         frameToCenter.origin.x = (boundsSize.width - frameToCenter.size.width) / 2;
     }
-        // center vertically
+    // center vertically
     if (frameToCenter.size.height < boundsSize.height)
     {
         frameToCenter.origin.y = (boundsSize.height - frameToCenter.size.height) / 2 - 64;
@@ -451,7 +455,7 @@
         self.drawView.hidden = NO;
         self.saveView.hidden = NO;
         self.helper.hidden = NO;
-            //    enabled = YES;
+        //    enabled = YES;
         for (UIGestureRecognizer *recognizer in [self.scrollView gestureRecognizers]) {
             recognizer.enabled = YES;
         }
@@ -513,7 +517,7 @@
     
     if (self.undoManager.canUndo) {
         [self.undoManager undo];
-            //    NSLog(@"undo");
+        //    NSLog(@"undo");
     }else{
     }
     [self.undoManager updateUndoToolBarItems];
@@ -524,7 +528,7 @@
     
     if (self.undoManager.canRedo) {
         [self.undoManager redo];
-            //     NSLog(@"redo");
+        //     NSLog(@"redo");
     }else{
     }
     [self.undoManager updateUndoToolBarItems];
@@ -548,7 +552,7 @@
         self.drawView.hidden = YES;
         self.saveView.hidden = YES;
         self.helper.hidden = YES;
-            //    enabled = NO;
+        //    enabled = NO;
         [self.navigationController setNavigationBarHidden:YES animated:YES];
         for (UIGestureRecognizer *recognizer in [self.scrollView gestureRecognizers]) {
             recognizer.enabled = NO;
@@ -562,7 +566,7 @@
 
 - (void)initPipette
 {
-        //PipetteAction
+    //PipetteAction
     self.pipetteRecognizer.enabled = YES;
 }
 
@@ -584,13 +588,13 @@
 {
     self.resizeViewManager.resizeViewer.frame = CGRectMake(0, 0, 150, 150);
     self.resizeViewManager.resizeViewer.bounds = CGRectMake(self.resizeViewManager.resizeViewer.bounds.origin.x , self.resizeViewManager.resizeViewer.bounds.origin.y , 150 , 150);
-        //  [self.scrollView zoomToRect:CGRectMake(0, 0, 500, 500) animated:YES];
+    //  [self.scrollView zoomToRect:CGRectMake(0, 0, 500, 500) animated:YES];
     [self.resizeViewManager updateShape];
 }
 
 - (void)initStamp
 {
-        //  self.resizeViewManager.border.hidden = NO;
+    //  self.resizeViewManager.border.hidden = NO;
     self.resizeViewManager.resizeViewer.contentView.image = nil;
 }
 
@@ -610,7 +614,7 @@
         self.drawView.hidden = NO;
         self.saveView.hidden = NO;
         self.helper.hidden = NO;
-            //  enabled = YES;
+        //  enabled = YES;
         [self.cropperView removeFromSuperview];
         [self.navigationController setNavigationBarHidden:NO animated:YES];
         for (UIGestureRecognizer *recognizer in [self.scrollView gestureRecognizers]) {
@@ -641,8 +645,8 @@
     cvc.green = self.green;
     cvc.blue = self.blue;
     cvc.opacity = self.opacity;
-        //  self.view.userInteractionEnabled = NO;
-        //  enabled = NO;
+    //  self.view.userInteractionEnabled = NO;
+    //  enabled = NO;
     [self presentViewController:cvc animated:YES completion:nil];
 }
 
@@ -668,9 +672,9 @@
     height = height * self.resizeViewManager.scale;
     width = width * self.resizeViewManager.scale;
     image = [RGBAHelper resizeImage:image withWidth:(int)width withHeight:(int)height];
-        //  self.resizeViewManager.border.frame = CGRectMake(0, 0,
-        //                                 (int)width,
-        //                                 (int)height);
+    //  self.resizeViewManager.border.frame = CGRectMake(0, 0,
+    //                                 (int)width,
+    //                                 (int)height);
     self.resizeViewManager.resizeViewer.bounds = CGRectMake(self.resizeViewManager.resizeViewer.bounds.origin.x, self.resizeViewManager.resizeViewer.bounds.origin.y,
                                                             (int)width,
                                                             (int)height);
@@ -713,8 +717,8 @@
 {
     self.thickness = ((BrushPickerViewController*)sender).brush;
     self.ending = ((BrushPickerViewController*)sender).brushEnding;
-        //  self.view.userInteractionEnabled = YES;
-        //  enabled = YES;
+    //  self.view.userInteractionEnabled = YES;
+    //  enabled = YES;
     if (self.activeAction == pointer) {
         [self.pointerTool updateColorView];
     }
@@ -726,9 +730,9 @@
     self.green =((ColorPickerViewController*)sender).green;
     self.blue =((ColorPickerViewController*)sender).blue;
     self.opacity =((ColorPickerViewController*)sender).opacity;
-        //  self.view.userInteractionEnabled = YES;
+    //  self.view.userInteractionEnabled = YES;
     [self updateToolbar];
-        //  enabled = YES;
+    //  enabled = YES;
     if (self.activeAction == rectangle || self.activeAction == ellipse) {
         [self.resizeViewManager updateShape];
     }
