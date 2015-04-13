@@ -17,6 +17,9 @@
 "acceleration_y" = "acceleration_y";
 
 /* No comment provided by engineer. */
+"acceleration_z" = "acceleration_z";
+
+/* No comment provided by engineer. */
 "add comment here..." = "add comment here...";
 
 /* No comment provided by engineer. */
@@ -312,6 +315,8 @@
 
 /* No comment provided by engineer. */
 "Explore apps" = "Explore apps";
+
+/* No comment provided by engineer. */
 "false" = "false";
 
 /* No comment provided by engineer. */
@@ -394,12 +399,15 @@
 
 /* No comment provided by engineer. */
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.";
+
+/* No comment provided by engineer. */
 "inclination_x" = "inclination_x";
 
 /* No comment provided by engineer. */
+"inclination_y" = "inclination_y";
 
 /* No comment provided by engineer. */
-"inclination_y" = "inclination_y";
+"Information" = "Information";
 
 /* No comment provided by engineer. */
 "Invalid input entered, try again." = "Invalid input entered, try again.";
@@ -412,6 +420,9 @@
 
 /* No comment provided by engineer. */
 "January" = "January";
+
+/* No comment provided by engineer. */
+"join" = "join";
 
 /* No comment provided by engineer. */
 "Jul" = "Jul";
@@ -432,7 +443,13 @@
 "layer" = "layer";
 
 /* No comment provided by engineer. */
+"length" = "length";
+
+/* No comment provided by engineer. */
 "Length" = "Length";
+
+/* No comment provided by engineer. */
+"letter" = "letter";
 
 /* paint */
 "line" = "line";
@@ -523,6 +540,9 @@
 
 /* No comment provided by engineer. */
 "New Message" = "New Message";
+
+/* No comment provided by engineer. */
+"New Program" = "New Program";
 
 /* No comment provided by engineer. */
 "New Text" = "New Text";

@@ -1,4 +1,4 @@
-#!/usr/bin/env xcrun swift
+#!/usr/bin/env xcrun swift -I .
 /**
  *  Copyright (C) 2010-2015 The Catrobat Team
  *  (http://developer.catrobat.org/credits)
@@ -78,7 +78,8 @@ let licenseCheckExcludeFiles = [
     "SMPageControl.[mh]",
     "EAIntroPage.[mh]",
     "MYBlurIntroductionView.[mh]",
-    "MYIntroductionPanel.[mh]"
+    "MYIntroductionPanel.[mh]",
+    "FBKVOController.[mh]"
 ]; let licenseCheckExcludeFilesLine = __LINE__; // CAVE: NEVER separate these two statements by adding a new line
 
 let licenseSearchStringTemplate = "/**\n *  Copyright (C) 2010-%@ The Catrobat Team\n"
@@ -116,7 +117,32 @@ let licenseSearchStringPreviousYear = String(format:licenseSearchStringTemplate,
 //------------------------------------------------------------------------------------------------------------
 //                                 FUNCTIONS
 //------------------------------------------------------------------------------------------------------------
-func localizedStringCheck(#filePath : String, #fileContent : String) -> (failed: Bool, errorMessage: NSString?)
+// helper functions
+func printResultErrorAndExitIfFailed(#failed: Bool, #errorMessage: String?)
+{
+    if failed {
+        printErrorAndExitIfFailed(errorMessage!)
+    }
+}
+
+func printErrorAndExitIfFailed(errorMessage: String)
+{
+    stderr.writeData(errorMessage.dataUsingEncoding(NSUTF8StringEncoding)!)
+    exit(ERR_FAILED)
+}
+
+// helper extensions
+extension String {
+    func removeCharsFromEnd(count:Int) -> String {
+        let temp = self as NSString
+        let stringLength = temp.length // FIXME: workaround for count(self)
+        let substringIndex = (stringLength < count) ? 0 : stringLength - count
+        return self.substringToIndex(advance(self.startIndex, substringIndex))
+    }
+}
+
+// checking functions
+func localizedStringCheck(#filePath : String, #fileContent : String) -> (failed: Bool, errorMessage: String?)
 {
     let range = fileContent.rangeOfString("NSLocalizedString")
     if range == nil {
@@ -134,7 +160,7 @@ func localizedStringCheck(#filePath : String, #fileContent : String) -> (failed:
 }
 
 func licenseCheck(#filePath : String, #fileContent : String, lineNumberOffset : Int = 0)
-    -> (failed: Bool, errorMessage: NSString?)
+    -> (failed: Bool, errorMessage: String?)
 {
     let range = fileContent.rangeOfString(licenseSearchStringCurrentYear)
     if range != nil {
@@ -173,7 +199,7 @@ func licenseCheck(#filePath : String, #fileContent : String, lineNumberOffset : 
     return (true, errorMessage)
 }
 
-func licenseCheckForReadme(#filePath : String, #fileContent : String) -> (failed: Bool, errorMessage: NSString?)
+func licenseCheckForReadme(#filePath : String, #fileContent : String) -> (failed: Bool, errorMessage: String?)
 {
     let range = fileContent.rangeOfString("## License Header")
     if range == nil {
@@ -195,29 +221,6 @@ func licenseCheckForReadme(#filePath : String, #fileContent : String) -> (failed
                 lineNumberOffset: lineNumberOfLicenseHeaderStart)
 }
 
-// helper functions
-func printResultErrorAndExitIfFailed(#failed: Bool, #errorMessage: String?)
-{
-    if failed {
-        printErrorAndExitIfFailed(errorMessage!)
-    }
-}
-
-func printErrorAndExitIfFailed(errorMessage: String)
-{
-    stderr.writeData(errorMessage.dataUsingEncoding(NSUTF8StringEncoding)!)
-    exit(ERR_FAILED)
-}
-
-// helper extensions
-extension String {
-    func removeCharsFromEnd(count:Int) -> String {
-        let stringLength = countElements(self)
-        let substringIndex = (stringLength < count) ? 0 : stringLength - count
-        return self.substringToIndex(advance(self.startIndex, substringIndex))
-    }
-}
-
 //------------------------------------------------------------------------------------------------------------
 //                                 CHECKS
 //------------------------------------------------------------------------------------------------------------
@@ -226,9 +229,12 @@ let stderr = NSFileHandle.fileHandleWithStandardError()
 let fileManager = NSFileManager.defaultManager()
 let enumerator:NSDirectoryEnumerator? = fileManager.enumeratorAtPath(".")
 
-let fileNameOfThisScript : String? = Process.arguments.first?.lastPathComponent
+var fileNameOfThisScript : String? = Process.arguments.first?.lastPathComponent
 if fileNameOfThisScript == nil {
     printErrorAndExitIfFailed("\(__FILE__):\(__LINE__ - 1): error: WTH is going on here!! Unable to determine the file name of this script!\n")
+}
+if fileNameOfThisScript!.hasSuffix(".swift") == false {
+    fileNameOfThisScript = fileNameOfThisScript! + ".swift"
 }
 
 // prepare lists
@@ -328,5 +334,3 @@ if (readmeFileContent == nil) {
 }
 let (failed, errorMessage) = licenseCheckForReadme(filePath: pathToReadmeFile, fileContent: readmeFileContent!)
 printResultErrorAndExitIfFailed(failed:failed, errorMessage:errorMessage)
-
-exit(ERR_SUCCESS)
