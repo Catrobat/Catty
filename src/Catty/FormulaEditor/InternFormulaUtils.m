@@ -463,6 +463,26 @@
     return internTokensToReplaceWith;
 }
 
++ (NSMutableArray*)insertOperatorToNumberToken:(InternToken*)numberTokenToBeModified
+                         numberOffset:(int)externNumberOffset
+                               operator:(InternToken*)operatorToInsert
+{
+    NSMutableArray *replaceTokenList = [[NSMutableArray alloc]init];
+    NSString *numberString = [numberTokenToBeModified getTokenStringValue];
+    NSString *leftPart = [numberString substringWithRange:NSMakeRange(0, externNumberOffset)];
+    NSString *rightPart = [numberString substringFromIndex:externNumberOffset];
+    
+    InternToken *leftNumber = [[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:leftPart];
+    InternToken *rightNumber = [[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:rightPart];
+    [replaceTokenList addObject:leftNumber];
+    [replaceTokenList addObject:operatorToInsert];
+    [replaceTokenList addObject:rightNumber];
+    
+    return replaceTokenList;
+    
+    
+}
+
 + (InternToken*)insertIntoNumberToken:(InternToken*)numberTokenToBeModified
                                numberOffset:(int)externNumberOffset
                                number:(NSString*)numberToInsert
@@ -548,7 +568,7 @@
                 break;
                 
             default:
-                continue;
+                break;
         }
         
         searchIndex++;

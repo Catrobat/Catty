@@ -21,6 +21,7 @@
  */
 
 #import "InternFormula.h"
+#import "InternFormulaUtils.h"
 
 @interface InternFormula()
 
@@ -627,6 +628,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
             
             break;
         case TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER:
+            functionInternTokens = [InternFormulaUtils getFunctionByParameterDelimiter:self.internTokenFormulaList                                                           index:self.cursorPositionInternTokenIndex];
 //            bracketsInternTokens = [InternFormulaUtils getFunctionByParameterDelimiter:self.internTokenFormulaList                                                           index:self.cursorPositionInternTokenIndex];
             if(functionInternTokens == nil || [functionInternTokens count] == 0)
             {
@@ -837,22 +839,32 @@ static int MAPPING_NOT_FOUND = INT_MIN;
             break;
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
 
 - (CursorTokenPropertiesAfterModification)replaceCursorPositionInternTokenByTokenList:(NSArray *)internTokensToReplaceWith
 {
-    if([self.cursorPositionInternToken isNumber] && [InternFormulaUtils isNumberToken:internTokensToReplaceWith])
+    
+    if ([self.cursorPositionInternToken isNumber]
+        && [internTokensToReplaceWith count] == 1
+        && [[internTokensToReplaceWith objectAtIndex:0]isOperator]) {
+        
+        int externNumberOffset = [self.externInternRepresentationMapping
+                                  getExternTokenStartOffset:self.externCursorPosition
+                                  withInternOffsetTo:self.cursorPositionInternTokenIndex];
+       
+        NSMutableArray *replaceList = [InternFormulaUtils insertOperatorToNumberToken:self.cursorPositionInternToken
+                                                                         numberOffset:externNumberOffset
+                                                                             operator:[internTokensToReplaceWith objectAtIndex:0]];
+        
+        [self replaceInternTokensInList:replaceList
+                      replaceIndexStart:self.cursorPositionInternTokenIndex
+                        replaceIndexEnd:self.cursorPositionInternTokenIndex];
+        
+        return [self setCursorPositionAndSelectionAfterInput:self.cursorPositionInternTokenIndex];
+    }
+    
+    if([self.cursorPositionInternToken isNumber]
+       && [InternFormulaUtils isNumberToken:internTokensToReplaceWith])
     {
         InternToken *numberTokenToInsert = [internTokensToReplaceWith objectAtIndex:0];
         int externNumberOffset = [self.externInternRepresentationMapping getExternTokenStartOffset:self.externCursorPosition
@@ -861,14 +873,17 @@ static int MAPPING_NOT_FOUND = INT_MIN;
         {
             return DO_NOT_MODIFY;
         }
-        [InternFormulaUtils insertIntoNumberToken:self.cursorPositionInternToken numberOffset:externNumberOffset number:[numberTokenToInsert getTokenStringValue]];
+        [InternFormulaUtils insertIntoNumberToken:self.cursorPositionInternToken
+                                     numberOffset:externNumberOffset
+                                           number:[numberTokenToInsert getTokenStringValue]];
         
         self.externCursorPosition++;
         return DO_NOT_MODIFY;
         
     }
     
-    if([self.cursorPositionInternToken isNumber] && [InternFormulaUtils isPeriodToken:internTokensToReplaceWith])
+    if([self.cursorPositionInternToken isNumber]
+       && [InternFormulaUtils isPeriodToken:internTokensToReplaceWith])
     {
         NSString *numberString = [self.cursorPositionInternToken getTokenStringValue];
         NSCharacterSet *cset = [NSCharacterSet characterSetWithCharactersInString:@"."];
@@ -924,7 +939,7 @@ static int MAPPING_NOT_FOUND = INT_MIN;
         self.cursorPositionInternToken = nil;
         self.cursorPositionInternTokenIndex ++;
         
-        return DO_NOT_MODIFY;
+        return AM_RIGHT;
         
     }
     
