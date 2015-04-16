@@ -119,7 +119,7 @@
                 break;
                 
             default:
-                continue;
+                break;
         }
         
         [functionInternTokenList addObject:tempSearchToken];
@@ -159,7 +159,7 @@
                 break;
                 
             default:
-                continue;
+                break;
         }
         
         [functionInternTokenList addObject:tempSearchToken];
@@ -274,7 +274,7 @@
                 break;
                 
             default:
-                continue;
+                break;
         }
         
         [bracketInternTokenListToReturn addObject:tempSearchToken];
@@ -314,7 +314,7 @@
                 break;
                 
             default:
-                continue;
+                break;
         }
         
         [bracketInternTokenListToReturn addObject:tempSearchToken];
@@ -426,7 +426,7 @@
     @try {
         firstInternTokenType = [self getFirstInternTokenType:internTokens];
     } @catch(InternFormulaParserException *e) {
-        return true;
+        return false;
     }
     
     if (firstInternTokenType == TOKEN_TYPE_FUNCTION_NAME) {
@@ -443,7 +443,7 @@
     @try {
         firstInternTokenType = [self getFirstInternTokenType:internTokens];
     } @catch(InternFormulaParserException *e) {
-        return true;
+        return false;
     }
     
     if ([internTokens count] <= 1 && firstInternTokenType == TOKEN_TYPE_NUMBER) {
