@@ -639,12 +639,24 @@
 
 + (double)radiansToDegree:(double)rad
 {
-    return rad * 180.0f / M_PI;
+    CGFloat temp = rad * 180.0f / M_PI;
+    temp = fmod(temp, 360.0f);
+    if (temp < 0.0f) {
+        return 360.0f + temp;
+    }else {
+        return temp;
+    }
 }
 
 + (double)degreeToRadians:(double)deg
 {
-    return deg * M_PI / 180.0f;
+    CGFloat temp = deg * M_PI / 180.0f;
+    temp =  fmod(temp, 2*M_PI);
+    if (temp < 0.0f) {
+        return 2*M_PI + temp;
+    }else {
+        return temp;
+    }
 }
 
 #pragma mark - text field delegates
