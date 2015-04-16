@@ -182,9 +182,9 @@
             else
                 ratio = (CGFloat)height / (CGFloat)imageHeight;
             
-            self.helper.frame = CGRectMake(0, 0, (CGFloat)imageWidth * ratio, (CGFloat)imageHeight * ratio);
-            self.drawView.frame = CGRectMake(0, 0, (CGFloat)imageWidth * ratio, (CGFloat)imageHeight * ratio);
-            self.saveView.frame = CGRectMake(0, 0, (CGFloat)imageWidth * ratio, (CGFloat)imageHeight * ratio);
+            self.helper.frame = CGRectMake(0, 0, (NSInteger)(imageWidth * ratio)+ 1, (NSInteger)(imageHeight * ratio)+ 1);
+            self.drawView.frame = CGRectMake(0, 0, (NSInteger)(imageWidth * ratio)+ 1, (NSInteger)(imageHeight * ratio)+ 1);
+            self.saveView.frame = CGRectMake(0, 0, (NSInteger)(imageWidth * ratio)+ 1, (NSInteger)(imageHeight * ratio)+ 1);
         }
     } else {
         UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
