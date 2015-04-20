@@ -150,7 +150,7 @@
 {
     NSInteger width = self.view.bounds.size.width;
     NSInteger height = (NSInteger)self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height;
-    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, height);
+    CGRect rect = CGRectMake(0, 0, width, height);
     self.drawView = [[UIImageView alloc] initWithFrame:rect];
     self.saveView = [[UIImageView alloc] initWithFrame:rect];
     
@@ -170,22 +170,12 @@
         
         NSInteger imageWidth = self.editingImage.size.width;
         NSInteger imageHeight = self.editingImage.size.height;
-        
-        if ((imageWidth <= width) && (imageHeight <= height)) {
-            self.helper.frame = CGRectMake(0, 0, imageWidth, imageHeight);
-            self.drawView.frame = CGRectMake(0, 0, imageWidth, imageHeight);
-            self.saveView.frame = CGRectMake(0, 0, imageWidth, imageHeight);
-        } else {
-            CGFloat ratio = 1.0;
-            if(imageWidth > imageHeight)
-                ratio = (CGFloat)width / (CGFloat)imageWidth;
-            else
-                ratio = (CGFloat)height / (CGFloat)imageHeight;
-            
-            self.helper.frame = CGRectMake(0, 0, (NSInteger)(imageWidth * ratio)+ 1, (NSInteger)(imageHeight * ratio)+ 1);
-            self.drawView.frame = CGRectMake(0, 0, (NSInteger)(imageWidth * ratio)+ 1, (NSInteger)(imageHeight * ratio)+ 1);
-            self.saveView.frame = CGRectMake(0, 0, (NSInteger)(imageWidth * ratio)+ 1, (NSInteger)(imageHeight * ratio)+ 1);
-        }
+        self.helper.frame = CGRectMake(0, 0, imageWidth, imageHeight);
+        self.drawView.frame = CGRectMake(0, 0, imageWidth, imageHeight);
+        self.saveView.frame = CGRectMake(0, 0, imageWidth, imageHeight);
+        self.saveView.contentMode = UIViewContentModeScaleAspectFit;
+        self.drawView.contentMode = UIViewContentModeScaleAspectFit;
+
     } else {
         UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
         UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
@@ -250,6 +240,14 @@
     self.scrollView.delegate = self;
     [self.scrollView addSubview:self.helper];
     [self.view addSubview:self.scrollView];
+    NSInteger width = self.view.bounds.size.width;
+    NSInteger height = (NSInteger)self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height;
+    NSInteger imageWidth = self.editingImage.size.width;
+    NSInteger imageHeight = self.editingImage.size.height;
+    if ((imageWidth >= width) || (imageHeight >= height)) {
+        [self.scrollView zoomToRect:CGRectMake(0, 0, imageWidth, imageHeight) animated:NO];
+    }
+    
     CGSize boundsSize = self.scrollView.bounds.size;
     CGRect frameToCenter = self.helper.frame;
     // center horizontally
