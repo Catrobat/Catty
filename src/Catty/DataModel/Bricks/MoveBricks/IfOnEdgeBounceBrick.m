@@ -60,11 +60,7 @@
         CGFloat virtualScreenWidth = self.script.object.scene.size.width/2.0f;
         CGFloat virtualScreenHeight = self.script.object.scene.size.height/2.0f;
         
-        CGFloat rotation = fmodf([self.script.object rotation], 360);
-        if(rotation < 0)
-            rotation += 360;
-        NSLog(@"ROT = %f",rotation);
-        
+        CGFloat rotation = [self.script.object rotation];
         if (xPosition < -virtualScreenWidth + width/2.0f) {
             if (rotation > 90.0f && rotation < 270.0f) {
                 rotation = (180.0f-rotation);
@@ -73,21 +69,22 @@
             
         } else if (xPosition > virtualScreenWidth - width / 2.0f) {
             
-            if ((rotation >= 0.0f && rotation < 90.0f) ||(rotation > 270.0f && rotation <= 360.0f)) {
+            if ((rotation >= 0.0f && rotation < 90.0f) || (rotation > 270.0f && rotation <= 360.0f)) {
                 rotation = 180.0f - rotation;
             }
             xPosition = virtualScreenWidth - (int) (width / 2.0f);
         }
         
         if(rotation < 0)
-            rotation += 360;
+            rotation += 360.0f;
+        
         if (yPosition > virtualScreenHeight - height / 2.0f) {
             if (rotation > 0.0f && rotation < 180.0f) {
                 rotation = -rotation;
             }
             
             yPosition = virtualScreenHeight - (int) (height / 2.0f);
-            
+
         } else if (yPosition < -virtualScreenHeight + height / 2.0f) {
             if (rotation > 180.0f && rotation < 360.0f) {
                 rotation = 360.0f - rotation;
@@ -95,7 +92,7 @@
             yPosition = -virtualScreenHeight + (int) (height / 2);
         }
         
-        self.script.object.zRotation = (CGFloat)[Util degreeToRadians:rotation];
+        [self.script.object setRotation:rotation];
         self.script.object.position = CGPointMake(xPosition, yPosition);
     };
 }

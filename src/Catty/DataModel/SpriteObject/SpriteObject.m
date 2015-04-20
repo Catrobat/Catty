@@ -704,7 +704,18 @@
 
 - (CGFloat)rotation
 {
-    return (CGFloat)[Util radiansToDegree:self.zRotation];
+    CGFloat rotation = fmodf([Util radiansToDegree:self.zRotation], 360.0f);
+    if(rotation < 0.0f)
+        rotation += 360.0f;
+    return rotation;
+}
+
+- (void)setRotation:(CGFloat)rotationInDegrees
+{
+    rotationInDegrees = fmodf(rotationInDegrees, 360.0f);
+    if(rotationInDegrees < 0.0f)
+        rotationInDegrees += 360.0f;
+    self.zRotation = [Util degreeToRadians:rotationInDegrees];
 }
 
 - (CGFloat) zIndex

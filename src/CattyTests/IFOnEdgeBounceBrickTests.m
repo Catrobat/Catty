@@ -211,28 +211,24 @@
 - (NSNumber*)convertCBToSKDegrees:(CGFloat)degrees
 {
     double deg = degrees - ROTATION_DEGREE_OFFSET;
-    return [NSNumber numberWithFloat:[(Scene*)self.scene convertDegreesToScene:(CGFloat)deg]];
+    NSNumber *test = [NSNumber numberWithFloat:fmodf([(Scene*)self.scene convertDegreesToScene:(CGFloat)deg], 360.0f)];
+    NSLog(@"%f CB = %f IOS", degrees, [test floatValue]);
+    return test;
 }
 
 - (void)setPosition:(CGPoint)position AndRotation:(NSNumber*)rotation
 {
     self.spriteObject.position = position;
-    self.spriteObject.zRotation = [Util degreeToRadians: [rotation floatValue]];
+    [self.spriteObject setRotation:[rotation floatValue]];
     dispatch_block_t action = [self.brick actionBlock];
     action();
 }
 
 - (void)checkPosition:(CGPoint)position AndRotation:(NSNumber*)rotation
 {
-    CGFloat rot = [rotation floatValue];
-    if(rot >= (360 - EPSILON))
-        rot -= 360;
-    CGFloat objectRot = [Util radiansToDegree:self.spriteObject.zRotation];
-    if(objectRot >= (360 - EPSILON))
-        objectRot -= 360;
     XCTAssertEqualWithAccuracy(position.x, self.spriteObject.position.x, EPSILON, @"Wrong x after bounce");
     XCTAssertEqualWithAccuracy(position.y, self.spriteObject.position.y, EPSILON, @"Wrong y after bounce");
-    XCTAssertEqualWithAccuracy(rot, objectRot, EPSILON, @"Wrong rotation after bounce");
+    XCTAssertEqualWithAccuracy([rotation floatValue], [self.spriteObject rotation], EPSILON, @"Wrong rotation after bounce");
 }
 
 @end

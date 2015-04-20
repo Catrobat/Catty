@@ -59,9 +59,6 @@
         double rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.script.object]];
         double newRad = self.script.object.zRotation - rad;
         newRad = fmod(newRad, 2*M_PI);
-        if (newRad < 0.0f) {
-            newRad = 2*M_PI - newRad;
-        }
         [self.script.object setZRotation:(CGFloat)newRad];
     };
 }

@@ -63,7 +63,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     NSLog(@"Rotation: %f",[object rotation]);
-    XCTAssertEqualWithAccuracy([object rotation], -20.0f, 0.0001, @"TurnRightBrick not correct");
+    XCTAssertEqualWithAccuracy([object rotation], 360.0f + (-20.0f), 0.0001, @"TurnRightBrick not correct");
 }
 
 - (void)testTurnrightBrickOver360
@@ -87,7 +87,7 @@
     dispatch_block_t action = [brick actionBlock];
     action();
     NSLog(@"Rotation: %f",[object rotation]);
-    XCTAssertEqualWithAccuracy([object rotation], -40.0f, 0.0001, @"TurnRightBrick not correct");
+    XCTAssertEqualWithAccuracy([object rotation], 360.0f + (-40.0f), 0.0001, @"TurnRightBrick not correct");
 }
 
 - (void)testTurnrightBrickNegative
