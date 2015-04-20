@@ -58,11 +58,10 @@
 - (dispatch_block_t)actionBlock
 {
   return ^{
-    NSDebug(@"Performing: %@", self.description);
-    double degrees = [self.degrees interpretDoubleForSprite:self.script.object] - kRotationDegreeOffset;
-    degrees = [((Scene*)self.script.object.scene) convertDegreesToScene:(CGFloat)degrees];
-    double rad = [Util degreeToRadians:degrees];
-    self.script.object.zRotation = (CGFloat)rad;
+      NSDebug(@"Performing: %@", self.description);
+      double degrees = [self.degrees interpretDoubleForSprite:self.script.object] - kRotationDegreeOffset;
+      degrees = [((Scene*)self.script.object.scene) convertDegreesToScene:(CGFloat)degrees];
+      [self.script.object setRotation:degrees];
   };
 }
 
