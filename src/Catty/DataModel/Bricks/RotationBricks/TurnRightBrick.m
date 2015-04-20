@@ -56,10 +56,9 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        double rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.script.object]];
-        double newRad = self.script.object.zRotation - rad;
-        newRad = fmod(newRad, 2*M_PI);
-        [self.script.object setZRotation:(CGFloat)newRad];
+        CGFloat rotation = [self.script.object rotation];
+        rotation -= [self.degrees interpretDoubleForSprite:self.script.object];
+        [self.script.object setRotation:rotation];
     };
 }
 
