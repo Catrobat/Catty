@@ -513,7 +513,7 @@
     
     if (self.undoManager.canUndo) {
         [self.undoManager undo];
-            //    NSLog(@"undo");
+            //    NSDebug(@"undo");
     }else{
     }
     [self.undoManager updateUndoToolBarItems];
@@ -524,7 +524,7 @@
     
     if (self.undoManager.canRedo) {
         [self.undoManager redo];
-            //     NSLog(@"redo");
+            //     NSDebug(@"redo");
     }else{
     }
     [self.undoManager updateUndoToolBarItems];
@@ -856,7 +856,7 @@
 {
     self.fillTool = nil;
     self.fillRecognizer = nil;
-    NSLog(@"dealloc");
+    NSDebug(@"dealloc");
 }
 
 @end

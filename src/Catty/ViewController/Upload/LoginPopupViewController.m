@@ -524,11 +524,11 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
     [self.connection start];
     
     if(self.connection) {
-        NSLog(@"Connection Successful");
+        NSDebug(@"Connection Successful");
         [self setEnableActivityIndicator:YES];
         self.loginButton.enabled = NO;
     } else {
-        NSLog(@"Connection could not be established");
+        NSDebug(@"Connection could not be established");
         [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
     }
 }
@@ -547,7 +547,7 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
 {
     if(connection == self.connection) {
         [self setEnableActivityIndicator:NO];
-        NSLog(@"NSURLConnection ERROR: %@", error);
+        NSDebug(@"NSURLConnection ERROR: %@", error);
     }
 }
 

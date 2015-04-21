@@ -192,7 +192,7 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
     NSString *zipFileSizeString = @"";
     
     if(!self.zipFileData) {
-        NSLog(@"ZIPing program files failed");
+        NSDebug(@"ZIPing program files failed");
         [self.delegate dismissPopupWithCode:NO];
     } else {
         zipFileSizeString = [self adaptSizeRepresentationString:self.zipFileData.length];
@@ -464,11 +464,11 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
             [self setEnableActivityIndicator:YES];
             self.uploadButton.enabled = NO;
         } else {
-            NSLog(@"Connection could not be established");
+            NSDebug(@"Connection could not be established");
             [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
         }
     } else {
-        NSLog(@"Could not build checksum");
+        NSDebug(@"Could not build checksum");
         [Util alertWithText:kLocalizedUploadProblem];
     }
 }
@@ -486,7 +486,7 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
 {
     if (self.connection == connection) {
         [self setEnableActivityIndicator:NO];
-        NSLog(@"NSURLConnection ERROR: %@", error);
+        NSDebug(@"NSURLConnection ERROR: %@", error);
     }
 }
 

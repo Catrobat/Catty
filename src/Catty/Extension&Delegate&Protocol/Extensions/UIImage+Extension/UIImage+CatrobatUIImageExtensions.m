@@ -225,7 +225,7 @@
     //    CGContextDrawImage(context, rect, cgImage);
     //    unsigned char *data = CGBitmapContextGetData(context);
     //
-    //    NSLog(@"data: %c",data[0]);
+    //    NSDebug(@"data: %c",data[0]);
     //
     //    if (data[0] != '\0' && data != NULL)
     //    {

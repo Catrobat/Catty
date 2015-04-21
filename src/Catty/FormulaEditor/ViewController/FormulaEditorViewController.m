@@ -303,7 +303,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)handleInputWithTitle:(NSString*)title AndButtonType:(int)buttonType
 {
     [self.internFormula handleKeyInputWithName:title butttonType:buttonType];
-    NSLog(@"InternFormulaString: %@",[self.internFormula getExternFormulaString]);
+    NSDebug(@"InternFormulaString: %@",[self.internFormula getExternFormulaString]);
     [self.history push:[self.internFormula getInternFormulaState]];
     [self update];
 }
@@ -848,7 +848,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
   NSInteger row = [self.variablePicker selectedRowInComponent:self.currentComponent];
   if (row >= 0) {
 //      if (self.currentComponent == 0) {
-//          NSLog(@"%@",self.variableSourceObject[row]);
+//          NSDebug(@"%@",self.variableSourceObject[row]);
 //          VariablesContainer* varCont = self.object.program.variables;
 //          UserVariable* var = [varCont getUserVariableNamed:self.variableSourceObject[row] forSpriteObject:self.object];
 //      }else

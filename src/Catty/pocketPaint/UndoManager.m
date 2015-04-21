@@ -41,7 +41,6 @@
   if ([self.canvas.saveView.image isEqual:image])
   {
     [[self prepareWithInvocationTarget:self] setImage:self.canvas.saveView.image]; // Here we let know the undo managed what image was used before
-//    NSLog(@"log");
     
     // post notifications to update UI
   }else{

@@ -152,7 +152,7 @@
             name = [name stringByAppendingFormat:@"[%lu]", (unsigned long)xPathIndex];
         }
         [context.currentPositionStack pushXmlElementName:name];
-        NSLog(@"+ [%@] added to stack", name);
+        NSDebug(@"+ [%@] added to stack", name);
     }
 }
 
@@ -193,9 +193,8 @@
 {
     [XMLError exceptionIf:[context.currentPositionStack isEmpty] equals:YES
                   message:@"Can't pop xml element from stack. Stack is empty!!"];
-    NSString *xmlElementName = [context.currentPositionStack popXmlElementName];
     if (context.currentPositionStack) {
-        NSLog(@"- [%@] removed from stack", xmlElementName);
+        NSDebug(@"- [%@] removed from stack", [context.currentPositionStack popXmlElementName]);
     }
     [self addChild:child];
 }

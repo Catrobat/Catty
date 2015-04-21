@@ -710,7 +710,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIImage *checkImage = [[UIImage alloc] initWithContentsOfFile:path];
     
     if (checkImage) {
-//        NSLog(@"Updating");
+//        NSDebug(@"Updating");
         NSData *imageData = UIImagePNGRepresentation(image);
         NSString *imageDirPath = [[self.object projectPath] stringByAppendingString:kProgramImagesDirName];
         NSString *fileName = [path stringByReplacingOccurrencesOfString:imageDirPath withString:@""];

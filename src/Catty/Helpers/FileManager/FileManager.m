@@ -217,7 +217,7 @@
     NSURL *newURL = [NSURL fileURLWithPath:newPath];
     NSError *error = nil;
     if ([[NSFileManager defaultManager] copyItemAtURL:oldURL toURL:newURL error:&error] != YES) {
-        NSLog(@"Unable to copy file: %@", [error localizedDescription]);
+        NSError(@"Unable to copy file: %@", [error localizedDescription]);
         NSLogError(error);
     }
 }
@@ -240,7 +240,7 @@
     NSURL *newURL = [NSURL fileURLWithPath:newPath];
     NSError *error = nil;
     if ([[NSFileManager defaultManager] moveItemAtURL:oldURL toURL:newURL error:&error] != YES) {
-        NSLog(@"Unable to move file: %@", [error localizedDescription]);
+        NSError(@"Unable to move file: %@", [error localizedDescription]);
         NSLogError(error);
     }
 }
@@ -255,7 +255,7 @@
     NSURL *newURL = [NSURL fileURLWithPath:newPath];
     NSError *error = nil;
     if ([[NSFileManager defaultManager] moveItemAtURL:oldURL toURL:newURL error:&error] != YES) {
-        NSLog(@"Unable to move directory: %@", [error localizedDescription]);
+        NSError(@"Unable to move directory: %@", [error localizedDescription]);
         NSLogError(error);
     }
 }
@@ -264,20 +264,20 @@
 {
     NSError *error = nil;
     if(![[NSFileManager defaultManager] removeItemAtPath:path error:&error]) {
-        NSLog(@"Error while deleting file: %@", path);
+        NSError(@"Error while deleting file: %@", path);
         NSLogError(error);
     } else
-        NSLog(@"File deleted: %@", path);
+        NSDebug(@"File deleted: %@", path);
 }
 
 - (void)deleteDirectory:(NSString *)path
 {
     NSError *error = nil;
     if(![[NSFileManager defaultManager] removeItemAtPath:path error:&error]) {
-        NSLog(@"Error while deleting directory: %@", path);
+        NSError(@"Error while deleting directory: %@", path);
         NSLogError(error);
     } else
-        NSLog(@"Directory deleted: %@", path);
+        NSDebug(@"Directory deleted: %@", path);
 }
 
 - (NSUInteger)sizeOfDirectoryAtPath:(NSString*)path
@@ -613,14 +613,9 @@
 
     if (dictionary) {
         NSNumber *freeFileSystemSizeInBytes = [dictionary objectForKey:NSFileSystemFreeSize];
-#if !kIsRelease // kIsRelease
-        NSNumber *fileSystemSizeInBytes = [dictionary objectForKey: NSFileSystemSize];
-        uint64_t totalSpace = 0;
-        totalSpace = [fileSystemSizeInBytes unsignedLongLongValue];
-#endif // kIsRelease
         totalFreeSpace = [freeFileSystemSizeInBytes unsignedLongLongValue];
 #if !kIsRelease // kIsRelease
-        NSLog(@"Memory Capacity of %llu MiB with %llu MiB Free memory available.", ((totalSpace/1024ll)/1024ll), ((totalFreeSpace/1024ll)/1024ll));
+        NSDebug(@"Memory Capacity of %llu MiB with %llu MiB Free memory available.", (([[dictionary objectForKey: NSFileSystemSize] unsignedLongLongValue]/1024ll)/1024ll), ((totalFreeSpace/1024ll)/1024ll));
 #endif // kIsRelease
     } else {
         NSError(@"Error Obtaining System Memory Info: Domain = %@, Code = %ld", [error domain], (long)[error code]);
@@ -735,7 +730,7 @@
     NSError *error = nil;
     BOOL success = [localFileURL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:&error];
     if (!success) {
-        NSLog(@"Error excluding %@ from backup %@", URL.lastPathComponent, error);
+        NSError(@"Error excluding %@ from backup %@", URL.lastPathComponent, error);
     }
     return success;
 }

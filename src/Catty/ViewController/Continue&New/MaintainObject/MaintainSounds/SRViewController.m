@@ -103,11 +103,11 @@
     [self.session setActive:YES error:&err];
     [self.session setCategory:AVAudioSessionCategoryPlayAndRecord error:&err];
     if( err ){
-        NSLog(@"There was an error creating the audio session");
+        NSError(@"There was an error creating the audio session");
     }
     [self.session overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:NULL];
     if( err ){
-        NSLog(@"There was an error sending the audio to the speakers");
+        NSError(@"There was an error sending the audio to the speakers");
     }
     
     NSMutableDictionary* recordSetting = [[NSMutableDictionary alloc]init];

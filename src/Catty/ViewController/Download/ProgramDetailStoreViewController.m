@@ -270,7 +270,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)sendReportWithMessage:(NSString*)message
 {
-    NSLog(@"ReportMessage::::::%@",message);
+    NSDebug(@"ReportMessage::::::%@",message);
     
     self.data = nil;
     self.data = [[NSMutableData alloc] init];
@@ -293,9 +293,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.connection start];
     
     if(self.connection) {
-        NSLog(@"Connection Successful");
+        NSDebug(@"Connection Successful");
     } else {
-        NSLog(@"Connection could not be made");
+        NSDebug(@"Connection could not be made");
     }
   
 }

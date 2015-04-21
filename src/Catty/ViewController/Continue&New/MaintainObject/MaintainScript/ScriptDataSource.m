@@ -119,14 +119,11 @@
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    NSLog(@"From KVO");
+    NSDebug(@"From KVO");
     
     if([keyPath isEqualToString:@"number"])
     {
-        id oldC = [change objectForKey:NSKeyValueChangeOldKey];
-        id newC = [change objectForKey:NSKeyValueChangeNewKey];
-        
-        NSLog(@"%@ %@", oldC, newC);
+        NSDebug(@"%@ %@", [change objectForKey:NSKeyValueChangeOldKey], [change objectForKey:NSKeyValueChangeNewKey]);
     }
 }
 
