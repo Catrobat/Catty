@@ -55,6 +55,7 @@
 + (BOOL)activateTestMode:(BOOL)activate
 {
     static BOOL alreadyActive = NO;
+    alreadyActive = NO;
     if (activate) {
         alreadyActive = YES;
     }
