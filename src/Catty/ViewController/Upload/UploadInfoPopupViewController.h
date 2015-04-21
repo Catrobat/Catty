@@ -21,16 +21,12 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "UIViewController+CWPopup.h"
+#import "Program.h"
 
-@interface UploadViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UILabel *sizeValueLabel;
+@interface UploadInfoPopupViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *sizeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *programLabel;
-@property (weak, nonatomic) IBOutlet UITextField *programTextField;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
-@property (weak, nonatomic) IBOutlet UITextField *descriptionTextField;
-@property (weak, nonatomic) IBOutlet UIButton *uploadButton;
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (nonatomic, weak) id<DismissPopupDelegate> delegate;
+@property (nonatomic, weak) Program *program;
 
 @end

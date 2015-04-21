@@ -249,10 +249,10 @@
     if (self.popupViewController == nil) {
         LoginPopupViewController *popupViewController = [[LoginPopupViewController alloc] init];
         popupViewController.delegate = self;
-        [self presentPopupViewController:popupViewController WithFrame:self.view.frame isLogin:YES];
+        [self presentPopupViewController:popupViewController WithFrame:self.view.frame upwardsCenterByFactor:4.5];
         self.navigationItem.leftBarButtonItem.enabled = NO;
     } else {
-        [self dismissPopupWithLoginCode:NO];
+        [self dismissPopupWithCode:NO];
     }
 }
 
@@ -522,7 +522,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 
 #pragma mark - popup delegate
-- (BOOL)dismissPopupWithLoginCode:(BOOL)successLogin
+- (BOOL)dismissPopupWithCode:(BOOL)successLogin
 {
     if (self.popupViewController != nil) {
         [self dismissPopupViewController];

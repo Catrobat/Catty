@@ -28,12 +28,10 @@
 #import "ProgramDefines.h"
 #import "AppDelegate.h"
 #import "Sound.h"
-#import "Program.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "LanguageTranslationDefines.h"
 #import "UIDefines.h"
 #import "BaseWebViewController.h"
-#import "ProgramLoadingInfo.h"
 
 @interface FileManager ()
 
@@ -543,6 +541,27 @@
         }
     }
     [self addSkipBackupAttributeToItemAtURL:storePath];
+}
+
+-(NSData*)zipProgram:(Program*)program
+{
+    NSString *targetPath = [NSString stringWithFormat:@"%@temp.zip", NSTemporaryDirectory()];
+    NSDebug(@"ZIPing program:%@ to path:%@", program.header.programName, targetPath);
+    
+    bool success = [SSZipArchive createZipFileAtPath:targetPath withContentsOfDirectory:program.projectPath];
+    
+    if(success) {
+        NSData *zipData = [[NSData alloc] initWithContentsOfFile:targetPath];
+        
+        NSError *error;
+        [[NSFileManager defaultManager] removeItemAtPath:targetPath error:&error];
+        [Logger logError:error];
+        
+        return zipData;
+    } else {
+        NSDebug(@"ZIPing failed");
+        return NULL;
+    }
 }
 
 - (void)stopLoading:(NSURL *)projecturl andImageURL:(NSURL *)imageurl

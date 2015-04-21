@@ -153,7 +153,9 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
 
 #pragma mark - present/dismiss
 
-- (void)presentPopupViewController:(UIViewController *)viewControllerToPresent WithFrame:(CGRect)frame isLogin:(BOOL)isLogin
+//If factor == 1: the popup appears in the middle of the screen
+//Everything >1: moves the popup more to the top
+- (void)presentPopupViewController:(UIViewController *)viewControllerToPresent WithFrame:(CGRect)frame upwardsCenterByFactor:(CGFloat)factor
 {
     if (self.popupViewController == nil) {
         // initial setup
@@ -184,13 +186,9 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
                          animations:^{
                              blurView.alpha = 1.0f;
                              viewControllerToPresent.view.alpha = 1.0f;
-                             if (isLogin) {
-                                    viewControllerToPresent.view.center = CGPointMake(self.view.center.x, self.view.center.y  - 4 * (self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height) / 2);
-                             }else{
-                                    viewControllerToPresent.view.center = CGPointMake(self.view.center.x, self.view.center.y - (self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height) / 2);
-                             }
-
-        } completion:^(BOOL finished) {
+                             viewControllerToPresent.view.center = CGPointMake(self.view.center.x, self.view.center.y - factor * (self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height) / 2);
+                             
+                         } completion:^(BOOL finished) {
             [self.popupViewController didMoveToParentViewController:self];
             [self.popupViewController endAppearanceTransition];
         }];
