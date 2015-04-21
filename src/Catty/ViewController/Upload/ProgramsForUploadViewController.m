@@ -43,6 +43,7 @@
 @property (nonatomic, strong) Program *lastUsedProgram;
 @property (nonatomic, strong) NSMutableArray *programLoadingInfos;
 @property (nonatomic, strong) UIBarButtonItem *uploadButton;
+@property (nonatomic, strong) NSIndexPath *lastSelectedIndexPath;
 
 @end
 
@@ -54,12 +55,7 @@
     [super viewDidLoad];
     
     self.navigationController.title = self.title = kLocalizedUploadProgram;
-    
-    //    //Later there will be an array of programs to upload
-    //    self.programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
-    //    //For now we only upload the latestUsedProgram
-    ProgramLoadingInfo *lastUsedProgramLoadingInfo = [Util lastUsedProgramLoadingInfo];
-    self.programLoadingInfos = [NSMutableArray arrayWithObjects:lastUsedProgramLoadingInfo, nil];
+    self.programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [self setupToolBar];
@@ -192,6 +188,21 @@
         }];
     });
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if(self.lastSelectedIndexPath) {
+        UITableViewCell *lastCell = [tableView cellForRowAtIndexPath:self.lastSelectedIndexPath];
+        lastCell.accessoryType= UITableViewCellAccessoryNone;
+    }
+    
+    
+    UITableViewCell *currentCell = [tableView cellForRowAtIndexPath:indexPath];
+    currentCell.accessoryType= UITableViewCellAccessoryCheckmark;
+    
+    self.lastSelectedIndexPath = indexPath;
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.lastUsedProgram = [Program programWithLoadingInfo:[self.programLoadingInfos objectAtIndex:self.lastSelectedIndexPath.row]];
+}
 
 #pragma mark - Actions
 - (void)uploadProgramAction:(id)sender
@@ -230,13 +241,17 @@
         UploadInfoPopupViewController *popupViewController = [[UploadInfoPopupViewController alloc] init];
         popupViewController.delegate = self;
         
-        //[self.programLoadingInfos firstObject]; //or choosen object
-        popupViewController.program = self.lastUsedProgram;
-        
-        self.tableView.scrollEnabled = NO;
-        [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame upwardsCenterByFactor:4.5];
-        self.navigationItem.leftBarButtonItem.enabled = NO;
-        self.uploadButton.enabled = NO;
+        if (self.lastSelectedIndexPath) {
+            popupViewController.program = self.lastUsedProgram;
+            
+            self.tableView.scrollEnabled = NO;
+            [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame upwardsCenterByFactor:4.5];
+            self.navigationItem.leftBarButtonItem.enabled = NO;
+            self.uploadButton.enabled = NO;
+        } else {
+            NSDebug(@"Please select a program to upload");
+            [Util alertWithText:kLocalizedUploadSelectProgram];
+        }
     } else {
         [self dismissPopupWithCode:NO];
     }

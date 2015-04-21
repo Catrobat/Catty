@@ -51,7 +51,7 @@
     
     OSStatus status = SecItemAdd((__bridge CFDictionaryRef)dict, NULL);
     if(errSecSuccess != status) {
-        NSLog(@"Unable add item with key =%@ error:%d",key,(int)status);
+        NSDebug(@"Unable add item with key =%@ error:%d",key,(int)status);
     }
     return (errSecSuccess == status);
 }
@@ -64,7 +64,7 @@
     OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)dict,&result);
     
     if( status != errSecSuccess) {
-        NSLog(@"Unable to fetch item for key %@ with error:%d",key,(int)status);
+        NSDebug(@"Unable to fetch item for key %@ with error:%d",key,(int)status);
         return nil;
     }
     
@@ -80,7 +80,7 @@
     
     OSStatus status = SecItemUpdate((__bridge CFDictionaryRef)dictKey, (__bridge CFDictionaryRef)dictUpdate);
     if(errSecSuccess != status) {
-        NSLog(@"Unable add update with key =%@ error:%d",key,(int)status);
+        NSDebug(@"Unable add update with key =%@ error:%d",key,(int)status);
     }
     return (errSecSuccess == status);
     
@@ -92,7 +92,7 @@
     NSMutableDictionary *dict = [self prepareDict:key];
     OSStatus status = SecItemDelete((__bridge CFDictionaryRef)dict);
     if( status != errSecSuccess) {
-        NSLog(@"Unable to remove item for key %@ with error:%d",key,(int)status);
+        NSDebug(@"Unable to remove item for key %@ with error:%d",key,(int)status);
         return NO;
     }
     return  YES;

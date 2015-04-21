@@ -428,6 +428,7 @@
 #define kLocalizedRegistrationSuccessfull NSLocalizedString(@"Registration successfull", nil)
 #define kUploadSelectedProgram NSLocalizedString(@"Upload Selected Program", nil)
 #define kLocalizedUploadProblem NSLocalizedString (@"Problems occured while Uploading your program", nil)
+#define kLocalizedUploadSelectProgram NSLocalizedString (@"Please select a program to upload", nil)
 
 //************************************************************************************************************
 //************************************       PAINT                ********************************************
