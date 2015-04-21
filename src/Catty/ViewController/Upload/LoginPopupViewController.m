@@ -69,7 +69,6 @@
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSMutableData *data;
 @property (nonatomic, strong) Keychain *keychain;
-@property (nonatomic, assign) BOOL useTestUrl;
 
 @end
 
@@ -122,7 +121,6 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
     [self initActionButtons];
     [self initForgotPasswordButton];
     [self initTermsOfUse];
-    self.useTestUrl = YES;
     [self.usernameTextField becomeFirstResponder];
 }
 
@@ -481,7 +479,8 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
     //Example URL: https://pocketcode.org/api/loginOrRegister/loginOrRegister.json?registrationUsername=MaxMuster&registrationPassword=MyPassword
     //For testing use: https://catroid-test.catrob.at/api/loginOrRegister/loginOrRegister.json?registrationUsername=MaxMuster&registrationPassword=MyPassword
     
-    NSString *uploadUrl = self.useTestUrl ? kTestLoginOrRegisterUrl : kLoginOrRegisterUrl;
+    BOOL useTestServer = [[NSUserDefaults standardUserDefaults] boolForKey:kUseTestServerForUploadAndLogin];
+    NSString *uploadUrl = useTestServer ? kTestLoginOrRegisterUrl : kLoginOrRegisterUrl;
     NSString *urlString = [NSString stringWithFormat:@"%@/%@", uploadUrl, (NSString*)kConnectionLoginOrRegister];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];

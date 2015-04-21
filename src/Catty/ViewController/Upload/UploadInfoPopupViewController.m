@@ -20,6 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+//Warning: TestServer Uploads are restricted in size (about 1MB)!!!
+
 #import "UploadInfoPopupViewController.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "LanguageTranslationDefines.h"
@@ -77,7 +79,6 @@
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSMutableData *data;
 @property (nonatomic, strong) Keychain *keychain;
-@property (nonatomic, assign) BOOL useTestUrl;
 
 @end
 
@@ -125,7 +126,6 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
     [self initSizeViewElements];
     [self initDescriptionViewElements];
     [self initActionButtons];
-    self.useTestUrl = YES;
     [self.programnameTextField becomeFirstResponder];
 }
 
@@ -394,7 +394,8 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
         //Upload example URL: https://pocketcode.org/api/upload/upload.json?upload=ZIPFile&fileChecksum=MD5&token=loginToken
         //For testing use: https://catroid-test.catrob.at/api/upload/upload.json?upload=ZIPFile&fileChecksum=MD5&token=loginToken
         
-        NSString *uploadUrl = self.useTestUrl ? kTestUploadUrl : kUploadUrl;
+        BOOL useTestServer = [[NSUserDefaults standardUserDefaults] boolForKey:kUseTestServerForUploadAndLogin];
+        NSString *uploadUrl = useTestServer ? kTestUploadUrl : kUploadUrl;
         NSString *urlString = [NSString stringWithFormat:@"%@/%@", uploadUrl, (NSString*)kConnectionUpload];
         
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
