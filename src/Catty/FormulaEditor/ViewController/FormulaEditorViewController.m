@@ -863,6 +863,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
       
   }
 }
+- (IBAction)deleteVariable:(UIButton *)sender {
+}
 
 
 #pragma mark - action sheet delegates
