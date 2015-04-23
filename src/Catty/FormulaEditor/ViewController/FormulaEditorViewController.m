@@ -864,6 +864,29 @@ static NSCharacterSet *blockedCharacterSet = nil;
   }
 }
 - (IBAction)deleteVariable:(UIButton *)sender {
+    NSInteger row = [self.variablePicker selectedRowInComponent:self.currentComponent];
+    if (row >= 0) {
+            //      if (self.currentComponent == 0) {
+            //          NSLog(@"%@",self.variableSourceObject[row]);
+            //          VariablesContainer* varCont = self.object.program.variables;
+            //          UserVariable* var = [varCont getUserVariableNamed:self.variableSourceObject[row] forSpriteObject:self.object];
+            //      }else
+        if (self.currentComponent == 0)
+        {
+            VariablesContainer* varCont = self.object.program.variables;
+            BOOL removed = [varCont removeUserVariableNamed:self.variableSourceProgram[row]  forSpriteObject:self.object];
+            if (removed) {
+                
+                [self.variableSourceProgram removeObjectAtIndex:row];
+                [self.object.program saveToDisk];
+                [self.variablePicker reloadAllComponents];
+            }
+        }
+        
+        
+    }
+  
+    
 }
 
 
