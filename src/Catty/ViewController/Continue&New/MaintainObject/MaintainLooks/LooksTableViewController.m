@@ -690,19 +690,20 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     self.paintImage = image;
     self.paintImagePath = path;
-    [Util confirmAlertWithTitle:kLocalizedSaveToPocketCode message:kLocalizedPaintSaveChanges delegate:self tag:0];
-}
-#pragma mark - alert delegate
-- (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex != 0) {
-            //        NSLog(@"yes");
-        if (self.paintImage) {
-            [self addPaintedImage:self.paintImage andPath:self.paintImagePath];
-        }
-    } 
+    
+    [self performActionOnConfirmation:@selector(savePaintImage)
+                       canceledAction:nil
+                               target:self
+                         confirmTitle:kLocalizedSaveToPocketCode
+                       confirmMessage:kLocalizedPaintSaveChanges];
 }
 
+- (void)savePaintImage
+{
+    if (self.paintImage) {
+        [self addPaintedImage:self.paintImage andPath:self.paintImagePath];
+    }
+}
 
 - (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path
 {

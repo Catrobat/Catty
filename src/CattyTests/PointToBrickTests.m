@@ -92,7 +92,7 @@
 
     dispatch_block_t dispatchBlock = [brick actionBlock];
     dispatchBlock();
-    XCTAssertEqualWithAccuracy(firstObject.rotation, 360.0f, 0.1f, @"PointToBrick not correct");
+    XCTAssertEqualWithAccuracy(firstObject.rotation, 0.0f, 0.1f, @"PointToBrick not correct");
 }
 
 - (void)testPointToBrick45Degrees

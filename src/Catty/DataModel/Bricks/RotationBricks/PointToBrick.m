@@ -92,12 +92,7 @@
         NSDebug(@"Performing: %@, Degreees: (%f), Pointed Object: Position: %@", self.description, rotationDegrees, NSStringFromCGPoint(self.pointedObject.position));
         
         rotationDegrees = [((Scene*)self.script.object.scene) convertDegreesToScene:(CGFloat)rotationDegrees] + kRotationDegreeOffset;
-        
-        if (rotationDegrees > 360.0f) {
-            rotationDegrees -= 360.0f;
-        }
-
-        self.script.object.zRotation = (CGFloat)[Util degreeToRadians:rotationDegrees];
+        [self.script.object setRotation:rotationDegrees];
     };
 }
 

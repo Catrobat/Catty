@@ -66,7 +66,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(object.zRotation, (float)((360-(-70))*M_PI/180), @"PointInDirectionBrick is not correctly calculated");
+    XCTAssertEqualWithAccuracy(object.zRotation, [Util degreeToRadians:(double)(360-(-70))], 0.0001, @"PointInDirectionBrick is not correctly calculated");
 }
 
 @end
