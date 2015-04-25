@@ -651,10 +651,6 @@
 		9238C5821A3AE9920099F061 /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
 		928D4D771A7BD19A00E6DFA8 /* CatrobatUISlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CatrobatUISlider.h; path = CatrobatSlider/CatrobatUISlider.h; sourceTree = "<group>"; };
 		928D4D781A7BD19A00E6DFA8 /* CatrobatUISlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CatrobatUISlider.m; path = CatrobatSlider/CatrobatUISlider.m; sourceTree = "<group>"; };
-		929108261A41F31F0034564D /* Header+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Header+CBXMLHandler.h"; sourceTree = "<group>"; };
-		929108271A41F31F0034564D /* Header+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Header+CBXMLHandler.m"; sourceTree = "<group>"; };
-		9291082A1A41F31F0034564D /* Look+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Look+CBXMLHandler.h"; sourceTree = "<group>"; };
-		9291082C1A41F31F0034564D /* Look+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Look+CBXMLHandler.m"; sourceTree = "<group>"; };
 		929108921A41F32A0034564D /* CBParserNodeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBParserNodeProtocol.h; sourceTree = "<group>"; };
 		929108931A41F32A0034564D /* CBParserProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBParserProtocol.h; sourceTree = "<group>"; };
 		929108941A41F32A0034564D /* CBSerializerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSerializerProtocol.h; sourceTree = "<group>"; };
@@ -1982,8 +1978,6 @@
 			children = (
 				CAA4A5131A43B4C0002A69A0 /* Header+CBXMLHandler.h */,
 				CAA4A5141A43B4C0002A69A0 /* Header+CBXMLHandler.m */,
-				929108261A41F31F0034564D /* Header+CBXMLHandler.h */,
-				929108271A41F31F0034564D /* Header+CBXMLHandler.m */,
 			);
 			path = Header;
 			sourceTree = "<group>";
@@ -1993,8 +1987,6 @@
 			children = (
 				CAA4A5161A43B4D0002A69A0 /* Look+CBXMLHandler.h */,
 				CAA4A5171A43B4D0002A69A0 /* Look+CBXMLHandler.m */,
-				9291082A1A41F31F0034564D /* Look+CBXMLHandler.h */,
-				9291082C1A41F31F0034564D /* Look+CBXMLHandler.m */,
 			);
 			path = Look;
 			sourceTree = "<group>";
