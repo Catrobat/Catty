@@ -26,7 +26,6 @@
 
 @protocol BrickProtocol <ScriptProtocol>
 
-@property (nonatomic, strong) Script *script;
-- (void)setupEmptyBrick;
+@property (nonatomic, weak) Script *script;
 
 @end

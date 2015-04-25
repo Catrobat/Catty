@@ -31,7 +31,6 @@
 #import "ProgramDetailStoreViewController.h"
 #import "ProgramLoadingInfo.h"
 #import "SegueDefines.h"
-#import "Parser.h"
 #import "SpriteObject.h"
 #import "Script.h"
 #import "Brick.h"
@@ -114,7 +113,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = UIColor.skyBlueColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
+
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (! [defaults objectForKey:kUserIsFirstAppLaunch] || [defaults boolForKey:kUserShowIntroductionOnLaunch]) {
         self.tableView.scrollEnabled = NO;
@@ -477,7 +476,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
 }
 
-- (void)introduction:(MYBlurIntroductionView *)introductionView didFinishWithType:(MYFinishType)finishType {
+- (void)introduction:(MYBlurIntroductionView *)introductionView didFinishWithType:(MYFinishType)finishType
+{
     NSDebug(@"Introduction did finish");
     [self initNavigationBar];
     self.tableView.scrollEnabled = YES;

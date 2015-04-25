@@ -22,14 +22,15 @@
 
 #import "Brick.h"
 #import "LoopEndBrick.h"
+#import "BrickConditionalBranchProtocol.h"
 
-@interface LoopBeginBrick : Brick
+@interface LoopBeginBrick : Brick<BrickConditionalBranchProtocol>
 
 @property (nonatomic, weak) LoopEndBrick *loopEndBrick;
+@property (nonatomic) uint64_t loopStartTime;
 
 - (void)reset;
 
-- (BOOL) checkCondition;
-
+- (BOOL)checkCondition;
 
 @end

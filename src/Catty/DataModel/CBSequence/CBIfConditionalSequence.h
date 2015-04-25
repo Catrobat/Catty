@@ -20,13 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "CBConditionalSequence.h"
 
-@class SpriteObject;
+@interface CBIfConditionalSequence : CBConditionalSequence
 
-@interface BroadcastWaitHandler : NSObject
-
-- (void)registerSprite:(SpriteObject*)sprite forMessage:(NSString*)message;
-- (void)removeSpriteMessages;
+@property (nonatomic, strong) NSMutableArray *elseSequenceList;
 
 @end

@@ -28,9 +28,15 @@
 #import "IfLogicEndBrick.h"
 #import "LoopEndBrick.h"
 #import "RepeatBrick.h"
+#import "BroadcastScript.h"
+#import "WaitBrick.h"
+#import "BroadcastBrick.h"
 #import "Formula.h"
 #import "Util.h"
 #import "CBMutableCopyContext.h"
+#import "BroadcastWaitBrick.h"
+#import "NoteBrick.h"
+#include <mach/mach_time.h>
 
 @interface Brick()
 
@@ -43,20 +49,6 @@
 
 
 #pragma mark - NSObject
-
-+ (Brick *)brickWithType:(kBrickType)type andCategory:(kBrickCategoryType)category
-{
-    return [[[self class] alloc] initWithType:type andCategory:category];
-}
-
-- (instancetype)initWithType:(kBrickType)type andCategory:(kBrickCategoryType)category {
-    self = [super init];
-    if (self) {
-        self.brickType = type;
-        self.brickCategoryType = category;
-    }
-    return self;
-}
 
 - (id)init
 {
@@ -175,6 +167,11 @@
     }
     
     return brick;
+}
+
+- (void)removeReferences
+{
+    self.script = nil;
 }
 
 @end

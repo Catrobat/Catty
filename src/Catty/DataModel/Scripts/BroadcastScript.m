@@ -20,7 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Broadcastscript.h"
+#import "BroadcastScript.h"
+#import "SpriteObject.h"
 
 @implementation BroadcastScript
 
@@ -32,32 +33,26 @@
 - (NSString*)description
 {
     NSMutableString *ret = [[NSMutableString alloc] initWithString:@"BroadcastScript: "];
-    if (self.receivedMessage.length) {
-        [ret appendString:self.receivedMessage];
-    }
-    
-    if ([self.brickList count] > 0)
-    {
+    [ret appendString:self.receivedMessage];
+
+    if ([self.brickList count] > 0) {
         [ret appendString:@"\nBricks: \r"];
         for (Brick *brick in self.brickList)
         {
             [ret appendFormat:@"%@\r", brick];
         }
-    }
-    else
-    {
+    } else {
         [ret appendString:@"Bricks array empty!\r"];
     }
-    
     return ret;
 }
 
 - (void)setupEmptyBrick
 {
-    self.receivedMessage = [NSString stringWithString:kLocalizedBroadcastDefaultMessage];
+    self.receivedMessage = [NSString stringWithString:kLocalizedMessage1];
 }
 
-- (void)setMessage:(NSString *)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+- (void)setMessage:(NSString*)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     if(message)
         self.receivedMessage = message;
@@ -66,6 +61,11 @@
 - (NSString *)messageForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.receivedMessage;
+}
+
+- (void)signalForWaitingBroadcasts
+{
+    [self.object.program signalForWaitingBroadcastWithMessage:self.receivedMessage];
 }
 
 @end

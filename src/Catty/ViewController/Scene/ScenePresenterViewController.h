@@ -29,7 +29,7 @@
 
 @interface ScenePresenterViewController : UIViewController
 
-- (id)initWithProgram:(Program *)program;
+@property (nonatomic, strong) Program *program;
 @property (strong,nonatomic) UIButton* menuBtn;
 @property (nonatomic, weak) UIButton* backButton;
 
@@ -46,7 +46,7 @@
 @property (strong,nonatomic) UILabel *menuRestartLabel;
 @property (strong,nonatomic) UILabel *menuAxisLabel;
 
-- (void)pause;
-- (void)resume;
+- (void)pauseAction;
+- (void)resumeAction;
 
 @end

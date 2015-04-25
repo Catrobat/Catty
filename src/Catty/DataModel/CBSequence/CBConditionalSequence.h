@@ -20,13 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "CBSequence.h"
 
-@class SpriteObject;
+@protocol BrickConditionalBranchProtocol;
 
-@interface BroadcastWaitHandler : NSObject
+@interface CBConditionalSequence : CBSequence
 
-- (void)registerSprite:(SpriteObject*)sprite forMessage:(NSString*)message;
-- (void)removeSpriteMessages;
+@property (nonatomic, strong) NSMutableArray *sequenceList;
++ (instancetype)sequenceWithConditionalBrick:(id<BrickConditionalBranchProtocol>)conditionBrick;
+- (BOOL)checkCondition;
 
 @end

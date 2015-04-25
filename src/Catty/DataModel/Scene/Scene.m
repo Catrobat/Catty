@@ -25,6 +25,7 @@
 #import "SpriteObject.h"
 #import "StartScript.h"
 #import "HideBrick.h"
+#import "AudioManager.h"
 
 @implementation Scene
 
@@ -70,9 +71,8 @@
     CGFloat zPosition = 1.0f;
     [self removeAllChildren]; // just to ensure
     self.program.playing = YES;
+    [self.program setupBroadcastHandling];
     for (SpriteObject *spriteObject in self.program.objectList) {
-        // now add the brick with correct visability-state to the Scene
-        [self addChild:spriteObject];
         // minor user experience improvement: check if first Brick in StartScript is HideBrick
         BOOL found = NO;
         for (Script *script in spriteObject.scriptList) {
@@ -85,35 +85,99 @@
             }
         }
         spriteObject.hidden = found;
+        // now add the brick with correct visability-state to the Scene
+        [self addChild:spriteObject];
         NSDebug(@"%f", zPosition);
         [spriteObject start:zPosition];
         [spriteObject setLook];
         spriteObject.userInteractionEnabled = YES;
 
         if (! ([spriteObject isBackground])) {
-            zPosition++;
+            ++zPosition;
         }
     }
 
-    // start StartScripts of all SpriteObjects simultaneously!!
+    // compute all sequence lists
+    for (SpriteObject *spriteObject in self.program.objectList) {
+        for (Script *script in spriteObject.scriptList) {
+            [script computeSequenceList];
+        }
+    }
+
+    // now we are ready to start all StartScripts of all SpriteObjects
     for (SpriteObject *spriteObject in self.program.objectList) {
         for (Script *script in spriteObject.scriptList) {
             if ([script isKindOfClass:[StartScript class]]) {
-                [self startStartScript:(StartScript*)script];
+                [script start];
             }
         }
     }
 }
 
-- (void)startStartScript:(StartScript*)startScript
+- (void)stopProgramWithCompletion:(dispatch_block_t)completion
 {
-    dispatch_queue_t backgroundQueue = dispatch_queue_create("org.catrobat.startScript", 0);
-    dispatch_async(backgroundQueue, ^{
-        [startScript.object startAndAddScript:startScript completion:^{
-            [startScript.object scriptFinished:startScript];
-            NSDebug(@"FINISHED");
-        }];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [[AudioManager sharedAudioManager] stopAllSounds];
+
+        // continue scene so that all SpriteKit actions can be finished
+        self.view.paused = NO;
     });
+
+    // stop all running scripts
+    for (SpriteObject *spriteObject in self.program.objectList) {
+        for (Script *script in spriteObject.scriptList) {
+            @synchronized(script) {
+                if (script.isRunning) {
+                    [script stop];
+                }
+            }
+        }
+    }
+
+    // perform waiting on another thread!
+    // busy waiting until all scripts finished!!
+    for (SpriteObject *spriteObject in self.program.objectList) {
+        for (Script *script in spriteObject.scriptList) {
+            while (script.isRunning) {
+                NSLog(@"%@ in %@ is still running (Scene %@). Waiting until script finished execution...", [script class], spriteObject.name, (self.isPaused ? @"paused" : @"still running"));
+                [NSThread sleepForTimeInterval:0.3f];
+            }
+        }
+    }
+    NSLog(@"All scripts finished execution!");
+
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        self.program.playing = NO;
+        self.view.paused = YES; // pause scene!
+
+        // now all (!) scripts of all (!) objects have been finished! we can safely remove all SpriteObjects from Scene
+        // NOTE: this for-in-loop MUST NOT be combined with previous for-in-loop because there could exist some
+        //       Scripts in SpriteObjects that contain pointToBricks to other (!) SpriteObjects
+        for (SpriteObject *spriteObject in self.program.objectList) {
+            for (Script *script in spriteObject.scriptList) {
+                if ([script inParentHierarchy:spriteObject]) {
+                    [script removeFromParent]; // just to ensure
+                }
+            }
+
+            if ([spriteObject inParentHierarchy:self]) {
+                [spriteObject removeFromParent];
+            }
+        }
+    });
+
+    // remove all references in program hierarchy
+    [self.program removeReferences];
+    NSLog(@"All SpriteObjects and Scripts have been removed from Scene!");
+
+    if (completion) {
+        completion();
+    }
+}
+
+- (void)restartProgramWithCompletion:(dispatch_block_t)completion
+{
+    [self stopProgramWithCompletion:nil];
 }
 
 - (CGPoint)convertPointToScene:(CGPoint)point
@@ -168,7 +232,7 @@
     }
 
     SpriteObject *obj1 = nodesAtPoint[[nodesAtPoint count]-1];
-    NSInteger counter =[nodesAtPoint count]-2;
+    NSInteger counter = [nodesAtPoint count]-2;
     NSDebug(@"How many nodes are touched: %ld",(long)counter);
     NSDebug(@"First Node:%@",obj1);
     if (! obj1.name) {
@@ -178,7 +242,7 @@
     while (! foundObject) {
         CGPoint point = [touch locationInNode:obj1];
         if (! obj1.hidden) {
-            if (![obj1 touchedwith:touches withX:point.x andY:point.y]) {
+            if (! [obj1 touchedwith:touches withX:point.x andY:point.y]) {
                 CGFloat zPosition = obj1.zPosition;
                 zPosition -= 1;
                 if (zPosition == -1 || counter < 0) {

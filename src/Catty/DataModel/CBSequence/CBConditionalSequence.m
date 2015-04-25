@@ -20,12 +20,40 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-@class SpriteObject;
+#import "CBConditionalSequence.h"
+#import "BrickConditionalBranchProtocol.h"
 
-@protocol BroadcastWaitDelegate <NSObject>
+@interface CBConditionalSequence()
+@property (nonatomic, strong) id<BrickConditionalBranchProtocol> conditionBrick;
+@end
 
-- (void)registerSprite:(SpriteObject*)sprite forMessage:(NSString*)message;
-- (void)performBroadcastWaitForMessage:(NSString*)message;
+@implementation CBConditionalSequence
+
+#pragma mark - Getters & Setters
+- (NSMutableArray*)sequenceList
+{
+    if (! _sequenceList) {
+        _sequenceList = [NSMutableArray array];
+    }
+    return _sequenceList;
+}
+
++ (instancetype)sequenceWithConditionalBrick:(id<BrickConditionalBranchProtocol>)conditionBrick
+{
+    CBConditionalSequence *conditionalSequence = [[self class] new];
+    conditionalSequence.conditionBrick = conditionBrick;
+    return conditionalSequence;
+}
+
+#pragma mark - Operations
+- (BOOL)isEmpty
+{
+    return ([self.sequenceList count] == 0);
+}
+
+- (BOOL)checkCondition
+{
+    return [self.conditionBrick checkCondition];
+}
 
 @end

@@ -146,11 +146,15 @@
     }];
 }
 
-#pragma mark - Brick Selection / Play Action
+#pragma mark - actions
 - (void)playSceneAction:(id)sender
 {
+    if ([self respondsToSelector:@selector(stopAllSounds)]) {
+        [self performSelector:@selector(stopAllSounds)];
+    }
     [self.navigationController setToolbarHidden:YES animated:YES];
-    ScenePresenterViewController *vc = [[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]]];
+    ScenePresenterViewController *vc = [ScenePresenterViewController new];
+    vc.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -307,8 +311,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     [self.collectionView insertSections:sections];
     // TODO make save work with KVO
     [self.object.program saveToDisk];
+    [self resetScrollingtoBottomAnimated:NO];
 }
 
+#pragma mark - helpers
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didMoveSection:(NSInteger)section toSection:(NSInteger)newSection{
     [self.collectionView moveSection:section toSection:newSection];
     // TODO make save work with KVO
@@ -426,53 +432,49 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     brickCategoryViewController.delegate = nil;
     [self dismissViewControllerAnimated:YES completion:NULL];
     
-    NSString *brickClassString = [[BrickManager sharedBrickManager] classNameForBrickType:scriptOrBrick.brickType];
+    BrickManager *brickManager = [BrickManager sharedBrickManager];
+    NSString *brickClassString = [brickManager classNameForBrickType:scriptOrBrick.brickType];
     Class brickClass = NSClassFromString(brickClassString);
     
     NSIndexPath *topIndexpath = [NSIndexPath indexPathForItem:0 inSection:0];
-    NSUInteger lastSection = self.scriptDataSource.numberOfSections;
-    NSUInteger itemCount = [self.collectionView numberOfItemsInSection:lastSection - 1];
-    NSIndexPath *bottomIndexPath = [NSIndexPath indexPathForItem:itemCount - 1 inSection:lastSection - 1];
-    
     // Empty Script List, insert start script with added brick
-    if (self.scriptDataSource.scriptList.count == 0 && ![self isScript:scriptOrBrick.brickType]) {
+    if (self.scriptDataSource.scriptList.count == 0 && ![brickManager isScript:scriptOrBrick.brickType]) {
         StartScript *startScript = [StartScript new];
         startScript.object = self.object;
         [self.scriptDataSource addScript:startScript toSection:topIndexpath.section];
         
         NSArray *bricks = [self.scriptDataSource linkedBricksForBrick:scriptOrBrick.brickType];
         [self.scriptDataSource addBricks:bricks atIndexPath:topIndexpath];
+    } else if ([brickManager isScript:scriptOrBrick.brickType]) {
+        Script *scriptBrick = [brickClass new];
+        scriptBrick.object = self.object;
         
-    } else if ([self isScript:scriptOrBrick.brickType]) {
-        if (self.scriptDataSource.numberOfSections > 0) {
-            [self resetScrollingtoBottomWithIndexPath:bottomIndexPath animated:NO];
-        }
-        
-        id newScript = [[brickClass alloc] initWithType:scriptOrBrick.brickType andCategory:scriptOrBrick.brickCategoryType];
-        [self.scriptDataSource addScript:newScript toSection:lastSection];
+        [self.scriptDataSource addScript:scriptBrick toSection:self.scriptDataSource.numberOfSections];
     } else {
         [self resetScrollingtoTopWithIndexPath:topIndexpath animated:NO];
         // Add new brick(s) to top section.
         NSArray *bricks = [self.scriptDataSource linkedBricksForBrick:scriptOrBrick.brickType];
+        
         [self.scriptDataSource addBricks:bricks atIndexPath:topIndexpath];
     }
 }
 
-// TODO: Refactor (move into brick manager oder protocol?)
-- (BOOL)isScript:(kBrickType)brickType {
-    if (brickType == kProgramStartedBrick || brickType == kTappedBrick || brickType == kReceiveBrick) {
-        return YES;
-    }
-    return NO;
-}
-
-- (void)resetScrollingtoTopWithIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated {
+- (void)resetScrollingtoTopWithIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated
+{
     if ([self.collectionView numberOfItemsInSection:0] > 0) {
         [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionTop animated:animated];
     }
 }
 
-- (void)resetScrollingtoBottomWithIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated{
+- (void)resetScrollingtoBottomAnimated:(BOOL)animated
+{
+    if (!self.scriptDataSource.numberOfSections) {
+        return;
+    }
+    
+    NSUInteger lastSection = self.scriptDataSource.numberOfSections;
+    NSUInteger itemCount = [self.collectionView numberOfItemsInSection:lastSection - 1];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:itemCount - 1 inSection:lastSection - 1];
     [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:animated];
 }
 

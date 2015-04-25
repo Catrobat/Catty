@@ -22,11 +22,11 @@
 
 #import <Foundation/Foundation.h>
 
-@class SpriteObject;
+@class Brick;
 
-@interface BroadcastWaitHandler : NSObject
+@interface CBOperation : NSObject
 
-- (void)registerSprite:(SpriteObject*)sprite forMessage:(NSString*)message;
-- (void)removeSpriteMessages;
+@property (nonatomic, strong, readonly) Brick *brick;
++ (instancetype)operationForBrick:(Brick*)brick;
 
 @end

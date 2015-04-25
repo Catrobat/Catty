@@ -632,14 +632,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                           view:self.navigationController.view];
 }
 
-- (void)playSceneAction:(id)sender
-{
-    [self stopAllSounds];
-    [self.navigationController setToolbarHidden:YES animated:YES];
-    ScenePresenterViewController *vc = [[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]]];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 - (void)setupToolBar
 {
     [super setupToolBar];

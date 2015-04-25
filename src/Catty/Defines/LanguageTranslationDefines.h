@@ -347,11 +347,12 @@
 
 #else // kIsRelease
 
+#define kLocalizedMessage1 NSLocalizedString(@"message 1", nil)
+
 // control bricks
 #define kLocalizedWhenProgramStarted NSLocalizedString(@"When program started", nil)
 #define kLocalizedWhenTapped NSLocalizedString(@"When tapped", nil)
 #define kLocalizedWaitNSeconds NSLocalizedString(@"Wait %@ second(s)", nil)
-#define kLocalizedBroadcastDefaultMessage NSLocalizedString(@"message 1", nil)
 #define kLocalizedVibrateNSeconds NSLocalizedString(@"Vibrate %@ second(s)", nil)
 #define kLocalizedWhenIReceive NSLocalizedString(@"When I receive\n%@", nil)
 #define kLocalizedBroadcast NSLocalizedString(@"Broadcast\n%@", nil)

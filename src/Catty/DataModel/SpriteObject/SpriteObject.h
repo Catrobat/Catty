@@ -29,9 +29,6 @@
 @class Script;
 @class Look;
 @class Sound;
-@class Brick;
-@protocol SpriteManagerDelegate;
-@protocol BroadcastWaitDelegate;
 
 @protocol SpriteFormulaProtocol
 
@@ -50,9 +47,6 @@
 @interface SpriteObject : SKSpriteNode <SpriteFormulaProtocol, CBMutableCopying>
 
 @property (assign, nonatomic) CGSize originalSize;
-
-@property (weak, nonatomic) id<SpriteManagerDelegate> spriteManagerDelegate;
-@property (weak, nonatomic) id<BroadcastWaitDelegate> broadcastWaitDelegate;
 
 @property (nonatomic, strong) NSMutableArray *lookList;
 
@@ -82,13 +76,7 @@
 
 // events
 - (void)start:(CGFloat)zPosition;
-- (void)scriptFinished:(Script*)script;
 
-- (void)broadcast:(NSString*)message;
-- (void)broadcastAndWait:(NSString*)message;
-
-- (void)performBroadcastWaitScriptWithMessage:(NSString *)message with:(dispatch_semaphore_t) sema1;
-- (void)startAndAddScript:(Script*)script completion:(dispatch_block_t)completion;
 - (Look*)nextLook;
 - (BOOL)touchedwith:(NSSet*)touches withX:(CGFloat)x andY:(CGFloat)y;
 
@@ -122,6 +110,7 @@
 - (BOOL)hasSound:(Sound*)sound;
 - (Look*)copyLook:(Look*)sourceLook withNameForCopiedLook:(NSString*)nameOfCopiedLook AndSaveToDisk:(BOOL)save;;
 - (Sound*)copySound:(Sound*)sourceSound withNameForCopiedSound:(NSString*)nameOfCopiedSound AndSaveToDisk:(BOOL)save;;
+- (void)removeReferences;
 
 // compare
 - (BOOL)isEqualToSpriteObject:(SpriteObject*)spriteObject;

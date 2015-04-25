@@ -20,13 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "CBSequence.h"
 
-@class SpriteObject;
+@implementation CBSequence
 
-@interface BroadcastWaitHandler : NSObject
-
-- (void)registerSprite:(SpriteObject*)sprite forMessage:(NSString*)message;
-- (void)removeSpriteMessages;
+- (BOOL)isEmpty
+{
+    NSError(@"THIS METHOD MUST BE IMPLEMENTED IN ALL SUBCLASSES!!");
+    abort();
+}
 
 @end
