@@ -68,7 +68,7 @@
         [objectList addObject:spriteObject];
     }
 
-    // sanity check => check if both objectLists are identical
+    // sanity check => check if both objectLists are equal
     [XMLError exceptionIf:[objectList count] notEquals:[context.spriteObjectList count]
                   message:@"Both SpriteObjectLists must be identical!"];
     for (SpriteObject *spriteObject in objectList) {
@@ -82,7 +82,7 @@
         [XMLError exceptionIf:found equals:NO message:@"Both SpriteObjectLists must be equal!"];
     }
 
-    // sanity check => check if all objects from context are in objectList
+    // sanity check => check if objectList in context contains all objects
     for (SpriteObject *pointedObjectInContext in context.pointedSpriteObjectList) {
         BOOL found = NO;
         for (SpriteObject *spriteObject in objectList) {
