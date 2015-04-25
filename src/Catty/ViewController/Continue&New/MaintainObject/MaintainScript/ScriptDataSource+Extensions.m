@@ -240,14 +240,16 @@
     [self informBatchUpdate:^{ batchUpdates(); }];
 }
 
-- (void)insertBricks:(NSArray *)bricks atIndexes:(NSIndexSet *)indexes inSection:(NSUInteger)section
+- (void)insertBricks:(NSArray*)bricks atIndexes:(NSIndexSet*)indexes inSection:(NSUInteger)section
 {
     Script *script = [self scriptAtSection:section];
-    for(Brick *brick in bricks) {
+    for (Brick *brick in bricks) {
         brick.script = script;
-        [brick setupEmptyBrick];
+        if ([brick respondsToSelector:@selector(setupEmptyBrick)]) {
+            [brick performSelector:@selector(setupEmptyBrick)];
+        }
     }
-    
+
     NSMutableArray *brickList = [script.brickList mutableCopy];
     [brickList insertObjects:bricks atIndexes:indexes];
     script.brickList = brickList;
