@@ -616,6 +616,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
             vc.editingPath = nil;
             [self.navigationController pushViewController:vc animated:YES];
             
+        }else{
+            if (self.showAddLookActionSheetAtStart) {
+                if(self.afterSafeBlock) {
+                    self.afterSafeBlock(nil);
+                }
+            }
         }
     }
 }
