@@ -143,24 +143,6 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
-#pragma mark - helper methods
-- (NSString *)deleteMenuItemWithScriptOrBrick:(id<ScriptProtocol>)brick
-{
-    NSString *title = nil;
-    if ([brick isKindOfClass:IfLogicElseBrick.class] ||
-        [brick isKindOfClass:IfLogicEndBrick.class] ||
-        [brick isKindOfClass:IfLogicBeginBrick.class]) {
-        title = kLocalizedDeleteLogicBrick;
-    } else if ([brick isKindOfClass:ForeverBrick.class] ||
-             [brick isKindOfClass:RepeatBrick.class] ||
-             [brick isKindOfClass:LoopEndBrick.class]) {
-        title = kLocalizedDeleteLoopBrick;
-    } else {
-        title = kLocalizedDeleteBrick;
-    }
-    return title;
-}
-
 //- (NSInteger)getAbsoluteButtonIndex:(NSInteger)buttonIndex
 //{
     // WTH?!! weird redundant and error-prone code!!! use tags for action-sheet buttons instead...
@@ -191,9 +173,7 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
     CBAssert(self.scriptOrBrick);
     NSArray *buttons = nil;
     buttons = @[kLocalizedCopyBrick, kLocalizedAnimateBrick, kLocalizedEditFormula];
-    NSString *destructiveTitle = [self.scriptOrBrick isKindOfClass:[Script class]]
-                               ? kLocalizedDeleteScript
-                               : [self deleteMenuItemWithScriptOrBrick:self.scriptOrBrick];
+    NSString *destructiveTitle = kLocalizedDeleteScript;
     self.brickMenu = [Util actionSheetWithTitle:nil
                                        delegate:self
                          destructiveButtonTitle:destructiveTitle

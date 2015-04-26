@@ -155,7 +155,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 @end
 
-NSString * CBTitleFromPageIndexCategoryType(PageIndexCategoryType pageIndexType)
+NSString* CBTitleFromPageIndexCategoryType(PageIndexCategoryType pageIndexType)
 {
     switch (pageIndexType) {
         case kPageIndexScriptBricks:
