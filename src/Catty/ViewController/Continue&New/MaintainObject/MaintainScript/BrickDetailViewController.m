@@ -39,6 +39,7 @@
 #import "CatrobatActionSheet.h"
 #import "BrickFormulaProtocol.h"
 #import "Util.h"
+#import "ActionSheetAlertViewTags.h"
 
 // Button mapping.
 typedef NS_ENUM(NSInteger, EditButtonIndex) {
@@ -69,33 +70,23 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
 - (instancetype)initWithScriptOrBrick:(id<ScriptProtocol>)scriptOrBrick
 {
     if (self = [super init]) {
-        self.modalPresentationStyle = UIModalPresentationCustom;
+//        self.modalPresentationStyle = UIModalPresentationCustom;
         self.state = BrickDetailViewControllerStateNone;
         self.scriptOrBrick = scriptOrBrick;
     }
     return self;
 }
 
-#pragma mark - UIViewController
-- (void)loadView
+#pragma mark - view events
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super loadView];
-    
-    UIView *view = [[UIView alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    view.backgroundColor = [UIColor clearColor];
-    self.view = view;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     [self setupBrickMenu];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    
     self.state = _tempState;  // Just update state when self dismissed.
 }
 
@@ -146,12 +137,10 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
         default:
             break;
     }
-
     [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
 #pragma mark - helper methods
-
 - (NSString *)deleteMenuItemWithScriptOrBrick:(id<ScriptProtocol>)brick
 {
     NSString *title = nil;
@@ -159,8 +148,7 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
         [brick isKindOfClass:IfLogicEndBrick.class] ||
         [brick isKindOfClass:IfLogicBeginBrick.class]) {
         title = kLocalizedDeleteLogicBrick;
-    }
-    else if ([brick isKindOfClass:ForeverBrick.class] ||
+    } else if ([brick isKindOfClass:ForeverBrick.class] ||
              [brick isKindOfClass:RepeatBrick.class] ||
              [brick isKindOfClass:LoopEndBrick.class]) {
         title = kLocalizedDeleteLoopBrick;
@@ -200,16 +188,13 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
                     return kButtonIndexEdit;
             }
             break;
-            
         case kButtonIndexEdit:
             if ((! [self isAnimateableBrick:self.scriptOrBrick]) || (! [self isFormulaBrick:self.scriptOrBrick]))
                 return kButtonIndexCancel;
             break;
-        
         default:
             break;
     }
-    
     return buttonIndex;
 }
 
@@ -219,43 +204,30 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
 - (void)setupBrickMenu
 {
     CBAssert(self.scriptOrBrick);
-    
     NSArray *buttons = nil;
     if ([self isAnimateableBrick:self.scriptOrBrick] && [self isFormulaBrick:self.scriptOrBrick]) {
-        buttons = @[
-                    kLocalizedCopyBrick,
-                    kLocalizedAnimateBricks,
-                    kLocalizedEditFormula
-                    ];
-   
-    }
-    else if ([self isAnimateableBrick:self.scriptOrBrick]) {
-        buttons = @[
-                    kLocalizedCopyBrick,
-                    kLocalizedAnimateBricks,
-                    ];
-    }
-    else if ([self isFormulaBrick:self.scriptOrBrick]) {
-        buttons = @[
-                    kLocalizedCopyBrick,
-                    kLocalizedEditFormula
-                    ];
+        buttons = @[kLocalizedCopyBrick, kLocalizedAnimateBricks, kLocalizedEditFormula];
+    } else if ([self isAnimateableBrick:self.scriptOrBrick]) {
+        buttons = @[kLocalizedCopyBrick, kLocalizedAnimateBricks];
+    } else if ([self isFormulaBrick:self.scriptOrBrick]) {
+        buttons = @[kLocalizedCopyBrick, kLocalizedEditFormula];
     } else {
-        buttons = @[ kLocalizedCopyBrick ];
+        buttons = @[kLocalizedCopyBrick];
     }
 
-    NSMutableArray *otherButtons = [NSMutableArray arrayWithArray:buttons];
-    BOOL isScript = [self.scriptOrBrick isKindOfClass:[Script class]];
-    NSString *destructiveTitle = isScript ? kLocalizedDeleteScript : [self deleteMenuItemWithScriptOrBrick:self.scriptOrBrick];
-    self.brickMenu = [[CatrobatActionSheet alloc] initWithTitle:nil
-                                                       delegate:self
-                                              cancelButtonTitle:kLocalizedClose
-                                         destructiveButtonTitle:destructiveTitle
-                                              otherButtonTitles:nil];
+    NSString *destructiveTitle = [self.scriptOrBrick isKindOfClass:[Script class]]
+                               ? kLocalizedDeleteScript
+                               : [self deleteMenuItemWithScriptOrBrick:self.scriptOrBrick];
 
-    for (NSString *title in otherButtons) { [self.brickMenu addButtonWithTitle:title]; }
+    self.brickMenu = [Util actionSheetWithTitle:nil
+                                       delegate:self
+                         destructiveButtonTitle:destructiveTitle
+                              otherButtonTitles:buttons
+                                            tag:kEditBrickActionSheetTag
+                                           view:self.view];
+
     [self.brickMenu setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.6f]];
-    [self.brickMenu setButtonTextColor:[UIColor lightOrangeColor]];
+    [self.brickMenu setButtonTextColor:[UIColor whiteColor]];
     [self.brickMenu setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
     self.brickMenu.transparentView = nil;
     [self.brickMenu showInView:self.view];

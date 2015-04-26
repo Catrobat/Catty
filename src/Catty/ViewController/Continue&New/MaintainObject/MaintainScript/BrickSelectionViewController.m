@@ -95,9 +95,9 @@
 
 - (void)setupNavBar
 {
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                                          target:self
-                                                                                          action:@selector(dismiss:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                                           target:self
+                                                                                           action:@selector(dismiss:)];
 }
 
 - (void)updateBrickCategoryViewControllerDelegate

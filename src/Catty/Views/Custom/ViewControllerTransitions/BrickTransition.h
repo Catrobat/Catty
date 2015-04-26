@@ -25,8 +25,8 @@
 @interface BrickTransition : BaseTransition
 @property (nonatomic, readonly) UIView *animateView;
 
-- (instancetype)initWithViewToAnimate:(UIView *)view;
+- (instancetype)initWithViewToAnimate:(UIView*)view;
 
-- (void)updateAnimationViewWithView:(UIView *)view;
+- (void)updateAnimationViewWithView:(UIView*)view;
 
 @end

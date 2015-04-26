@@ -67,6 +67,8 @@
 #import "ViewControllerDefines.h"
 #import "Look.h"
 #import "Sound.h"
+#import "ActionSheetAlertViewTags.h"
+#import "CatrobatActionSheet.h"
 
 @interface ScriptCollectionViewController() <UICollectionViewDelegate,
                                              LXReorderableCollectionViewDelegateFlowLayout,
@@ -219,18 +221,54 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)collectionView:(UICollectionView*)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    [collectionView deselectItemAtIndexPath:indexPath animated:NO];
     BrickCell *brickCell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
 
-    [self.brickScaleTransition updateAnimationViewWithView:brickCell];
+//    [self.brickScaleTransition updateAnimationViewWithView:brickCell];
     if (!self.isEditing) {
-        self.trackedIndexPath =  indexPath;
-        BrickDetailViewController *vc = [BrickDetailViewController brickDetailViewControllerWithScriptOrBrick:brickCell.scriptOrBrick];
-        vc.delegate = self;
-        vc.transitioningDelegate = self;
-        [self presentViewController:vc animated:YES completion:NULL];
+        self.trackedIndexPath = indexPath;
+        [self showMenuForBrickOrScript:brickCell.scriptOrBrick];
+//        BrickDetailViewController *vc = [BrickDetailViewController brickDetailViewControllerWithScriptOrBrick:brickCell.scriptOrBrick];
+//        vc.delegate = self;
+//        vc.transitioningDelegate = self;
+//        [self presentViewController:vc animated:YES completion:NULL];
+    } else {
+        [collectionView deselectItemAtIndexPath:indexPath animated:NO];
     }
 }
+
+// TODO: move checks for brick type features (animatee, formula) to brick (category).
+- (void)showMenuForBrickOrScript:(id<ScriptProtocol>)scriptOrBrick
+{
+    CBAssert(scriptOrBrick);
+    NSArray *buttons = nil;
+//    if ([self isAnimateableBrick:self.scriptOrBrick] && [self isFormulaBrick:self.scriptOrBrick]) {
+        buttons = @[kLocalizedCopyBrick, kLocalizedAnimateBricks, kLocalizedEditFormula];
+//    } else if ([self isAnimateableBrick:scriptOrBrick]) {
+//        buttons = @[kLocalizedCopyBrick, kLocalizedAnimateBricks];
+//    } else if ([self isFormulaBrick:scriptOrBrick]) {
+//        buttons = @[kLocalizedCopyBrick, kLocalizedEditFormula];
+//    } else {
+//        buttons = @[kLocalizedCopyBrick];
+//    }
+
+//    NSString *destructiveTitle = [scriptOrBrick isKindOfClass:[Script class]]
+//                               ? kLocalizedDeleteScript
+//                               : [self deleteMenuItemWithScriptOrBrick:scriptOrBrick];
+
+    CatrobatActionSheet *brickMenu = [Util actionSheetWithTitle:nil
+                                                       delegate:nil
+                                         destructiveButtonTitle:kLocalizedDeleteScript
+                                              otherButtonTitles:buttons
+                                                            tag:kEditBrickActionSheetTag
+                                                           view:self.navigationController.view];
+
+    [brickMenu setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.6f]];
+    [brickMenu setButtonTextColor:[UIColor whiteColor]];
+    [brickMenu setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
+    brickMenu.transparentView = nil;
+    [brickMenu showInView:self.navigationController.view];
+}
+
 
 #pragma mark - Reorderable Cells Delegate
 - (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath
