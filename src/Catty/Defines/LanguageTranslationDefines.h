@@ -126,7 +126,7 @@
 #define kLocalizedDeleteLogicBrick NSLocalizedString(@"Delete Condition", nil)
 #define kLocalizedDeleteLoopBrick NSLocalizedString(@"Delete Loop", nil)
 #define kLocalizedDeleteScript NSLocalizedString(@"Delete Script", nil)
-#define kLocalizedAnimateBricks NSLocalizedString(@"Animate Brick", nil)
+#define kLocalizedAnimateBrick NSLocalizedString(@"Animate Brick", nil)
 #define kLocalizedCopyBrick NSLocalizedString(@"Copy Brick", nil)
 #define kLocalizedEditFormula NSLocalizedString(@"Edit Formula", nil)
 #define kLocalizedDeleteSounds NSLocalizedString(@"Delete Sounds", nil)

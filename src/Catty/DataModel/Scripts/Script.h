@@ -38,11 +38,15 @@
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readonly) kBrickType brickType;
 @property (nonatomic, strong, readonly) NSString *brickTitle;
-- (BOOL)isSelectableForObject;
-
 @property (nonatomic, weak) SpriteObject *object;
 @property (nonatomic, strong) NSString *action;
 @property (strong, nonatomic) NSMutableArray *brickList;
+
+- (BOOL)isSelectableForObject;
+
+- (BOOL)isAnimateable;
+
+- (BOOL)isFormulaBrick;
 
 - (void)computeSequenceList;
 

@@ -25,12 +25,15 @@
 #import "Script.h"
 
 @interface RepeatBrick()
-
 @property (nonatomic, assign) int loopCount;
-
 @end
 
 @implementation RepeatBrick
+
+- (BOOL)isAnimateable
+{
+    return YES;
+}
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {

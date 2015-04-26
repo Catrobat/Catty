@@ -32,6 +32,11 @@
     return NO;
 }
 
+- (BOOL)isAnimateable
+{
+    return YES;
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedIfEnd;

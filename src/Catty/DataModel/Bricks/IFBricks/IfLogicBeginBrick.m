@@ -29,6 +29,11 @@
 
 @implementation IfLogicBeginBrick
 
+- (BOOL)isAnimateable
+{
+    return YES;
+}
+
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.ifCondition;

@@ -68,12 +68,22 @@
     return self;
 }
 
-#pragma mark - Custom getter and setter
 - (BOOL)isSelectableForObject
 {
     return YES;
 }
 
+- (BOOL)isAnimateable
+{
+    return NO;
+}
+
+- (BOOL)isFormulaBrick
+{
+    return NO;
+}
+
+#pragma mark - Custom getter and setter
 - (NSString*)brickTitle
 {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException

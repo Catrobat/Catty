@@ -36,6 +36,10 @@
 
 - (BOOL)isSelectableForObject;
 
+- (BOOL)isAnimateable;
+
+- (BOOL)isFormulaBrick;
+
 - (NSString*)description;
 
 - (SKAction*)action;

@@ -948,8 +948,9 @@ replacementString:(NSString*)characters
 
 #pragma mark - Macros
 
-void CBAssertIfNotMainThread(void) {
-    CBAssert(NSThread.isMainThread, @"\nERROR: Not on main thread.\n\nSet breakpoint on CBAssertIfNotMainThread to find out where.\n\nStacktrace: %@", [NSThread callStackSymbols]);
+void CBAssertIfNotMainThread(void)
+{
+    CBAssert([NSThread isMainThread], @"\nERROR: Not on main thread.\n\nSet breakpoint on CBAssertIfNotMainThread to find out where.\n\nStacktrace: %@", [NSThread callStackSymbols]);
 }
 
 

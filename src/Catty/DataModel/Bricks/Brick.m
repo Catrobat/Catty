@@ -67,6 +67,16 @@
     return YES;
 }
 
+- (BOOL)isAnimateable
+{
+    return NO;
+}
+
+- (BOOL)isFormulaBrick
+{
+    return ([self conformsToProtocol:@protocol(BrickFormulaProtocol)]);
+}
+
 - (NSString*)description
 {
     return @"Brick (NO SPECIFIC DESCRIPTION GIVEN! OVERRIDE THE DESCRIPTION METHOD!";

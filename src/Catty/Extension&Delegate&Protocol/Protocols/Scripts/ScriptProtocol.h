@@ -31,5 +31,7 @@
 @property (nonatomic, readonly) kBrickType brickType;
 @property (nonatomic, strong, readonly) NSString *brickTitle;
 - (BOOL)isSelectableForObject;
+- (BOOL)isAnimateable;
+- (BOOL)isFormulaBrick;
 
 @end
