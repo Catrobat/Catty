@@ -77,6 +77,16 @@
     return ([self conformsToProtocol:@protocol(BrickFormulaProtocol)]);
 }
 
+- (BOOL)isIfLogicBrick
+{
+    return NO;
+}
+
+- (BOOL)isLoopBrick
+{
+    return NO;
+}
+
 - (NSString*)description
 {
     return @"Brick (NO SPECIFIC DESCRIPTION GIVEN! OVERRIDE THE DESCRIPTION METHOD!";

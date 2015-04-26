@@ -46,8 +46,6 @@
 
 - (BOOL)isAnimateable;
 
-- (BOOL)isFormulaBrick;
-
 - (void)computeSequenceList;
 
 - (void)start;

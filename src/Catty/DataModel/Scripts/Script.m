@@ -78,11 +78,6 @@
     return NO;
 }
 
-- (BOOL)isFormulaBrick
-{
-    return NO;
-}
-
 #pragma mark - Custom getter and setter
 - (NSString*)brickTitle
 {

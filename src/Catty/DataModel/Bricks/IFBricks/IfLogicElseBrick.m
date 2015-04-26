@@ -37,6 +37,11 @@
     return YES;
 }
 
+- (BOOL)isIfLogicBrick
+{
+    return YES;
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedElse;
