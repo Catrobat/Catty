@@ -25,7 +25,6 @@
 #import "FXBlurView.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "BrickCell.h"
-#import "BrickDetailViewController.h"
 #import "FXBlurView.h"
 #import "math.h"
 
