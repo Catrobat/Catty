@@ -20,6 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#warning DEPRECATED CLASS!!
+
 #import "BrickDetailViewController.h"
 #import "UIDefines.h"
 #import "Brick.h"
@@ -112,31 +114,32 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
 #pragma mark - Action Sheet Delegate
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    self.buttonIndex = [self getAbsoluteButtonIndex:buttonIndex];
-    switch (self.buttonIndex) {
-        case kButtonIndexCancel:
-            _tempState = BrickDetailViewControllerStateNone;
-            break;
-        case kButtonIndexDelete: {
-            if ([self.scriptOrBrick isKindOfClass:[Script class]])
-                _tempState = BrickDetailViewControllerStateDeleteScript;
-             else
-                _tempState = BrickDetailViewControllerStateDeleteBrick;
-            }
-            break;
-        case kButtonIndexCopy:
-            if (![self.scriptOrBrick isKindOfClass:[Script class]])
-                _tempState = BrickDetailViewControllerStateCopyBrick;
-            break;
-        case kButtonIndexEdit:
-            _tempState = BrickDetailViewControllerStateEditFormula;
-            break;
-        case kButtonIndexAnimate:
-            _tempState = BrickDetailViewControllerStateAnimateBrick;
-            break;
-        default:
-            break;
-    }
+    // WTH?!! weird redundant and error-prone code!!! use tags for action-sheet buttons instead...
+//    self.buttonIndex = [self getAbsoluteButtonIndex:buttonIndex];
+//    switch (self.buttonIndex) {
+//        case kButtonIndexCancel:
+//            _tempState = BrickDetailViewControllerStateNone;
+//            break;
+//        case kButtonIndexDelete: {
+//            if ([self.scriptOrBrick isKindOfClass:[Script class]])
+//                _tempState = BrickDetailViewControllerStateDeleteScript;
+//             else
+//                _tempState = BrickDetailViewControllerStateDeleteBrick;
+//            }
+//            break;
+//        case kButtonIndexCopy:
+//            if (![self.scriptOrBrick isKindOfClass:[Script class]])
+//                _tempState = BrickDetailViewControllerStateCopyBrick;
+//            break;
+//        case kButtonIndexEdit:
+//            _tempState = BrickDetailViewControllerStateEditFormula;
+//            break;
+//        case kButtonIndexAnimate:
+//            _tempState = BrickDetailViewControllerStateAnimateBrick;
+//            break;
+//        default:
+//            break;
+//    }
     [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -158,45 +161,27 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
     return title;
 }
 
-
-// TODO: refactor later => use property in brick class for this...
-- (BOOL)isAnimateableBrick:(id<ScriptProtocol>)scriptOrBrick
-{
-    if ([scriptOrBrick isKindOfClass:IfLogicElseBrick.class] ||
-        [scriptOrBrick isKindOfClass:IfLogicEndBrick.class] ||
-        [scriptOrBrick isKindOfClass:ForeverBrick.class] ||
-        [scriptOrBrick isKindOfClass:IfLogicBeginBrick.class] ||
-        [scriptOrBrick isKindOfClass:RepeatBrick.class]) {
-        return YES;
-    }
-    return NO;
-}
-
-- (BOOL)isFormulaBrick:(id<ScriptProtocol>)scriptOrBrick
-{
-    return ([scriptOrBrick conformsToProtocol:@protocol(BrickFormulaProtocol)]);
-}
-
-- (NSInteger)getAbsoluteButtonIndex:(NSInteger)buttonIndex
-{
-    switch (buttonIndex) {
-        case kButtonIndexAnimate:
-            if (! [self isAnimateableBrick:self.scriptOrBrick]) {
-                if(![self isFormulaBrick:self.scriptOrBrick])
-                    return kButtonIndexCancel;
-                else
-                    return kButtonIndexEdit;
-            }
-            break;
-        case kButtonIndexEdit:
-            if ((! [self isAnimateableBrick:self.scriptOrBrick]) || (! [self isFormulaBrick:self.scriptOrBrick]))
-                return kButtonIndexCancel;
-            break;
-        default:
-            break;
-    }
-    return buttonIndex;
-}
+//- (NSInteger)getAbsoluteButtonIndex:(NSInteger)buttonIndex
+//{
+    // WTH?!! weird redundant and error-prone code!!! use tags for action-sheet buttons instead...
+//    switch (buttonIndex) {
+//        case kButtonIndexAnimate:
+//            if (! [self isAnimateableBrick:self.scriptOrBrick]) {
+//                if(![self isFormulaBrick:self.scriptOrBrick])
+//                    return kButtonIndexCancel;
+//                else
+//                    return kButtonIndexEdit;
+//            }
+//            break;
+//        case kButtonIndexEdit:
+//            if ((! [self isAnimateableBrick:self.scriptOrBrick]) || (! [self isFormulaBrick:self.scriptOrBrick]))
+//                return kButtonIndexCancel;
+//            break;
+//        default:
+//            break;
+//    }
+//    return buttonIndex;
+//}
 
 #pragma mark - Setup
 
@@ -205,27 +190,16 @@ typedef NS_ENUM(NSInteger, EditButtonIndex) {
 {
     CBAssert(self.scriptOrBrick);
     NSArray *buttons = nil;
-    if ([self isAnimateableBrick:self.scriptOrBrick] && [self isFormulaBrick:self.scriptOrBrick]) {
-        buttons = @[kLocalizedCopyBrick, kLocalizedAnimateBricks, kLocalizedEditFormula];
-    } else if ([self isAnimateableBrick:self.scriptOrBrick]) {
-        buttons = @[kLocalizedCopyBrick, kLocalizedAnimateBricks];
-    } else if ([self isFormulaBrick:self.scriptOrBrick]) {
-        buttons = @[kLocalizedCopyBrick, kLocalizedEditFormula];
-    } else {
-        buttons = @[kLocalizedCopyBrick];
-    }
-
+    buttons = @[kLocalizedCopyBrick, kLocalizedAnimateBrick, kLocalizedEditFormula];
     NSString *destructiveTitle = [self.scriptOrBrick isKindOfClass:[Script class]]
                                ? kLocalizedDeleteScript
                                : [self deleteMenuItemWithScriptOrBrick:self.scriptOrBrick];
-
     self.brickMenu = [Util actionSheetWithTitle:nil
                                        delegate:self
                          destructiveButtonTitle:destructiveTitle
                               otherButtonTitles:buttons
                                             tag:kEditBrickActionSheetTag
                                            view:self.view];
-
     [self.brickMenu setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.6f]];
     [self.brickMenu setButtonTextColor:[UIColor whiteColor]];
     [self.brickMenu setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];

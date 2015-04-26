@@ -20,6 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#warning DEPRECATED CLASS!!
+
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, BrickDetailViewControllerState) {
