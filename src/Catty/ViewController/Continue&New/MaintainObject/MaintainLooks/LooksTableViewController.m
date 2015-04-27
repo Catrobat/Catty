@@ -375,9 +375,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                                  view:self.navigationController.view];
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         NSDictionary *payload = @{ kDTPayloadLook : [self.object.lookList objectAtIndex:indexPath.row] };
-        DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionEditLook
-                                                                     withPayload:[payload mutableCopy]];
-        actionSheet.dataTransferMessage = message;
+        actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditLook
+                                                                        withPayload:payload];
     } else if (index == 1) {
         // Delete button was pressed
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
@@ -607,7 +606,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
             vc.editingImage = image;
             vc.editingPath = nil;
             [self.navigationController pushViewController:vc animated:YES];
-            
         }
     }
 }

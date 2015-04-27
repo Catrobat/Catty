@@ -450,10 +450,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                                   tag:kEditProgramActionSheetTag
                                                                  view:self.navigationController.view];
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        NSDictionary *payload = @{ kDTPayloadProgramLoadingInfo : [self.programLoadingInfos objectAtIndex:indexPath.row] };
-        DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionEditProgram
-                                                                     withPayload:[payload mutableCopy]];
-        actionSheet.dataTransferMessage = message;
+        actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditProgram
+                                                                        withPayload:@{ kDTPayloadProgramLoadingInfo : [self.programLoadingInfos objectAtIndex:indexPath.row] }];
     } else if (index == 1) {
         // Delete button was pressed
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];

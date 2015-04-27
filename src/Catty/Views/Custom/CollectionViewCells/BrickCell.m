@@ -148,7 +148,6 @@
 - (void)setupBrickCell
 {
     [self renderSubViews];
-    
     if (self.editing) {
         if (self.frame.origin.x == 0.0f) {
             self.center = CGPointMake(self.center.x + kSelectButtonTranslationOffsetX, self.center.y);
@@ -221,8 +220,8 @@
 - (void)selectButtonSelected:(id)sender
 {
     if ([sender isKindOfClass:SelectButton.class]) {
-        if ([self.delegate respondsToSelector:@selector(BrickCell:didSelectBrickCellButton:)]) {
-            [self.delegate BrickCell:self didSelectBrickCellButton:self.selectButton];
+        if ([self.delegate respondsToSelector:@selector(brickCell:didSelectBrickCellButton:)]) {
+            [self.delegate brickCell:self didSelectBrickCellButton:self.selectButton];
         }
     }
 }

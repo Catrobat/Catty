@@ -470,10 +470,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                                   tag:kEditSoundActionSheetTag
                                                                  view:self.navigationController.view];
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        NSDictionary *payload = @{ kDTPayloadSound : [self.object.soundList objectAtIndex:indexPath.row] };
-        DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionEditSound
-                                                                     withPayload:[payload mutableCopy]];
-        actionSheet.dataTransferMessage = message;
+        actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditSound
+                                                                        withPayload:@{ kDTPayloadSound : [self.object.soundList objectAtIndex:indexPath.row] }];
     } else if (index == 1) {
         // Delete button was pressed
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];

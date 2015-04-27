@@ -41,7 +41,7 @@
 
 @protocol BrickCellDelegate<NSObject>
 @optional
-- (void)BrickCell:(BrickCell*)brickCell didSelectBrickCellButton:(SelectButton*)selectButton;
+- (void)brickCell:(BrickCell*)brickCell didSelectBrickCellButton:(SelectButton*)selectButton;
 @end
 
 @interface BrickCell : UICollectionViewCell<BrickCellProtocol>

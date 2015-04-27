@@ -423,10 +423,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                                  view:self.navigationController.view];
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         NSInteger spriteObjectIndex = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
-        NSDictionary *payload = @{ kDTPayloadSpriteObject : [self.program.objectList objectAtIndex:spriteObjectIndex] };
-        DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionEditObject
-                                                                     withPayload:[payload mutableCopy]];
-        actionSheet.dataTransferMessage = message;
+        actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditObject
+                                                                        withPayload:@{ kDTPayloadSpriteObject : [self.program.objectList objectAtIndex:spriteObjectIndex] }];
     } else if (index == 1) {
         // Delete button was pressed
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
