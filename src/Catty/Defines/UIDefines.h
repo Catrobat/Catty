@@ -171,6 +171,8 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     [UIColor variableBrickStrokeColor]\
 ]
 
+#define kWhenScriptDefaultAction @"Tapped" // at the moment Catrobat only supports this type of action for WhenScripts
+
 // map brick classes to corresponding brick type identifiers
 #define kClassNameBrickTypeMap @{\
 \

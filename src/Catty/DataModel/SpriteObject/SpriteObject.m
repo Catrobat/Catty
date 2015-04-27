@@ -332,6 +332,20 @@
     
 }
 
+- (void)removeFromProgram
+{
+    CBAssert(self.program);
+    NSUInteger index = 0;
+    for (SpriteObject *spriteObject in self.program.objectList) {
+        if (spriteObject == self) {
+            [self.program.objectList removeObjectAtIndex:index];
+            self.program = nil;
+            break;
+        }
+        ++index;
+    }
+}
+
 - (void)removeLookFromList:(Look*)look
 {
     // do not use NSArray's removeObject here

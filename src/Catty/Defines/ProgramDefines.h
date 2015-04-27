@@ -61,18 +61,20 @@
 
 typedef NS_ENUM(NSUInteger, kDTMActionType) {
     kDTMActionAskUserForUniqueName = 0,
-    kDTMActionEditProgram = 1,
-    kDTMActionEditObject = 2,
-    kDTMActionEditLook = 3,
-    kDTMActionEditSound = 4,
-    kDTMActionReportMessage = 5,
-    kDTMActionVariableName = 6
+    kDTMActionEditProgram,
+    kDTMActionEditObject,
+    kDTMActionEditLook,
+    kDTMActionEditSound,
+    kDTMActionEditBrickOrScript,
+    kDTMActionReportMessage,
+    kDTMActionVariableName
 };
 
 #define kDTPayloadProgramLoadingInfo @"DTPayloadProgramLoadingInfo"
 #define kDTPayloadSpriteObject @"DTPayloadSpriteObject"
 #define kDTPayloadLook @"DTPayloadLook"
 #define kDTPayloadSound @"DTPayloadSound"
+#define kDTPayloadCellIndexPath @"DTPayloadCellIndexPath"
 #define kDTPayloadAskUserAction @"DTPayloadAskUserAction"
 #define kDTPayloadAskUserTarget @"DTPayloadAskUserTarget"
 #define kDTPayloadAskUserObject @"DTPayloadAskUserObject"
