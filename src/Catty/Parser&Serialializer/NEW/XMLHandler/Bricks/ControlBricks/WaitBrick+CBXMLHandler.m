@@ -32,7 +32,7 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"TIME_TO_WAIT_IN_SECONDS"];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"TIME_TO_WAIT_IN_SECONDS" withContext:context];
     WaitBrick *waitBrick = [self new];
     waitBrick.timeToWaitInSeconds = formula;
     return waitBrick;

@@ -241,14 +241,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
      
 - (FormulaElement*)userVariableForSpriteObject:(SpriteObject*)object
 {
-    ProgramManager *programManager = [ProgramManager sharedProgramManager];
-    VariablesContainer *container = programManager.program.variables;
-    UserVariable *userVariable = [container getUserVariableNamed:self.currentToken.tokenStringValue forSpriteObject:object];
-    FormulaElement *formulaTree = nil;
-    if(userVariable != nil)
-    {
-        formulaTree = [[FormulaElement alloc]initWithElementType:USER_VARIABLE value:[self.currentToken getTokenStringValue] leftChild:nil rightChild:nil parent:nil];
-    }
+    FormulaElement *formulaTree = [[FormulaElement alloc]initWithElementType:USER_VARIABLE value:[self.currentToken getTokenStringValue] leftChild:nil rightChild:nil parent:nil];
     
 //    InternFormulaParserException *exception = [[InternFormulaParserException alloc] initWithName:@"Not implemented yet" reason:nil userInfo:nil];
 //    @throw exception;

@@ -37,6 +37,7 @@
 @property (strong, nonatomic) FormulaEditorHistory *history;
 @property (strong, nonatomic) NSMutableArray *variableSourceProgram;
 @property (strong, nonatomic) NSMutableArray *variableSourceObject;
+@property (strong, nonatomic) NSMutableArray *variableSource;
 @property (weak, nonatomic) SpriteObject *object;
 @property (strong, nonatomic) id<FormulaEditorViewControllerDelegate> delegate;
 

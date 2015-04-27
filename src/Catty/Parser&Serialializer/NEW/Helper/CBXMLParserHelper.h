@@ -30,12 +30,13 @@
 @class UserVariable;
 @class SpriteObject;
 @class OrderedMapTable;
+@class CBXMLContext;
 
 @interface CBXMLParserHelper : NSObject
 
 + (BOOL)validateXMLElement:(GDataXMLElement*)xmlElement forNumberOfChildNodes:(NSUInteger)numberOfChildNodes;
 + (BOOL)validateXMLElement:(GDataXMLElement*)xmlElement forNumberOfChildNodes:(NSUInteger)numberOfChildNodes AndFormulaListWithTotalNumberOfFormulas:(NSUInteger)numberOfFormulas;
-+ (Formula*)formulaInXMLElement:(GDataXMLElement*)xmlElement forCategoryName:(NSString*)categoryName;
++ (Formula*)formulaInXMLElement:(GDataXMLElement*)xmlElement forCategoryName:(NSString*)categoryName withContext:(CBXMLContext*)context;
 
 + (id)valueForHeaderPropertyNode:(GDataXMLNode*)propertyNode;
 + (BOOL)isReferenceElement:(GDataXMLElement*)xmlElement;
