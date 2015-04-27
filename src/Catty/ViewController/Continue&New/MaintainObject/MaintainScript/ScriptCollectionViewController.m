@@ -294,8 +294,25 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 CBAssert([brickCell.scriptOrBrick isKindOfClass:[Brick class]]);
                 Brick *brick = (Brick*)brickCell.scriptOrBrick;
                 if ([brick isLoopBrick]) {
-#warning implement!!
                     // loop brick
+                    LoopBeginBrick *loopBeginBrick = nil;
+                    LoopEndBrick *loopEndBrick = nil;
+                    if ([brick isKindOfClass:[LoopBeginBrick class]]) {
+                        loopBeginBrick = ((LoopBeginBrick*)brick);
+                        loopEndBrick = loopBeginBrick.loopEndBrick;
+                    } else {
+                        CBAssert([brick isKindOfClass:[LoopEndBrick class]]);
+                        loopEndBrick = ((LoopEndBrick*)brick);
+                        loopBeginBrick = loopEndBrick.loopBeginBrick;
+                    }
+                    CBAssert((loopBeginBrick != nil) || (loopEndBrick != nil));
+                    NSUInteger loopBeginIndex = [brick.script.brickList indexOfObject:loopBeginBrick];
+                    NSUInteger loopEndIndex = [brick.script.brickList indexOfObject:loopEndBrick];
+                    [loopBeginBrick removeFromScript];
+                    [loopEndBrick removeFromScript];
+                    NSIndexPath *loopBeginIndexPath = [NSIndexPath indexPathForRow:(loopBeginIndex + 1) inSection:indexPath.section];
+                    NSIndexPath *loopEndIndexPath = [NSIndexPath indexPathForRow:(loopEndIndex + 1) inSection:indexPath.section];
+                    [self.collectionView deleteItemsAtIndexPaths:@[loopBeginIndexPath, loopEndIndexPath]];
                 } else if ([brick isIfLogicBrick]) {
 #warning implement!!
                     // if brick
@@ -338,8 +355,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 copiedLoopEndBrick.loopBeginBrick = copiedLoopBeginBrick;
                 [brick.script addBrick:copiedLoopBeginBrick atIndex:loopBeginIndex];
                 [brick.script addBrick:copiedLoopEndBrick atIndex:loopEndIndex];
-                NSIndexPath *loopBeginIndexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section];
-                NSIndexPath *loopEndIndexPath = [NSIndexPath indexPathForRow:(indexPath.row+1) inSection:indexPath.section];
+                NSIndexPath *loopBeginIndexPath = [NSIndexPath indexPathForRow:(loopBeginIndex + 1) inSection:indexPath.section];
+                NSIndexPath *loopEndIndexPath = [NSIndexPath indexPathForRow:(loopBeginIndex + 2) inSection:indexPath.section];
                 [self.collectionView insertItemsAtIndexPaths:@[loopBeginIndexPath, loopEndIndexPath]];
             } else if ([brick isIfLogicBrick]) {
                 // if brick
@@ -376,9 +393,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 [brick.script addBrick:copiedIfLogicBeginBrick atIndex:ifLogicBeginIndex];
                 [brick.script addBrick:copiedIfLogicElseBrick atIndex:ifLogicElseIndex];
                 [brick.script addBrick:copiedIfLogicEndBrick atIndex:ifLogicEndIndex];
-                NSIndexPath *ifLogicBeginIndexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section];
-                NSIndexPath *ifLogicElseIndexPath = [NSIndexPath indexPathForRow:(indexPath.row+1) inSection:indexPath.section];
-                NSIndexPath *ifLogicEndIndexPath = [NSIndexPath indexPathForRow:(indexPath.row+2) inSection:indexPath.section];
+                NSIndexPath *ifLogicBeginIndexPath = [NSIndexPath indexPathForRow:(ifLogicBeginIndex + 1) inSection:indexPath.section];
+                NSIndexPath *ifLogicElseIndexPath = [NSIndexPath indexPathForRow:(ifLogicBeginIndex + 2) inSection:indexPath.section];
+                NSIndexPath *ifLogicEndIndexPath = [NSIndexPath indexPathForRow:(ifLogicBeginIndex + 3) inSection:indexPath.section];
                 [self.collectionView insertItemsAtIndexPaths:@[ifLogicBeginIndexPath, ifLogicElseIndexPath, ifLogicEndIndexPath]];
             } else {
                 // normal brick
