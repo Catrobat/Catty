@@ -329,7 +329,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                     loopEndBrick = ((LoopEndBrick*)brick);
                     loopBeginBrick = loopEndBrick.loopBeginBrick;
                 }
-                CBAssert((! loopBeginBrick) || (! loopEndBrick));
+                CBAssert((loopBeginBrick != nil) || (loopEndBrick != nil));
                 NSUInteger loopBeginIndex = [brick.script.brickList indexOfObject:loopBeginBrick];
                 NSUInteger loopEndIndex = (loopBeginIndex + 1);
                 LoopBeginBrick *copiedLoopBeginBrick = [loopBeginBrick mutableCopyWithContext:[CBMutableCopyContext new]];
@@ -360,7 +360,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                     ifLogicBeginBrick = ifLogicEndBrick.ifBeginBrick;
                     ifLogicElseBrick = ifLogicEndBrick.ifElseBrick;
                 }
-                //CBAssert((! ifLogicBeginBrick) || (! ifLogicElseBrick) || (! ifLogicEndBrick));
+                CBAssert((ifLogicBeginBrick != nil) && (ifLogicElseBrick != nil) && (ifLogicEndBrick != nil));
                 NSUInteger ifLogicBeginIndex = [brick.script.brickList indexOfObject:ifLogicBeginBrick];
                 NSUInteger ifLogicElseIndex = (ifLogicBeginIndex + 1);
                 NSUInteger ifLogicEndIndex = (ifLogicElseIndex + 1);
