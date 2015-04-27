@@ -30,9 +30,11 @@ typedef NS_ENUM(NSUInteger, ScriptDataSourceState) {
     ScriptDataSourceStateBrickCopied
 };
 
-typedef void (^ScriptCollectionViewConfigureBlock)(id cell);
-
 @class ScriptDataSource;
+@class BrickCell;
+
+typedef void (^ScriptCollectionViewConfigureBlock)(BrickCell *brickCell);
+
 @protocol ScriptDataSourceDelegate <NSObject>
 
 @optional

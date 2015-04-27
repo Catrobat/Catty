@@ -33,7 +33,6 @@
 #import "BrickManager.h"
 #import "StartScriptCell.h"
 #import "BrickTransition.h"
-#import "BrickDetailViewController.h"
 #import "WhenScriptCell.h"
 #import "LanguageTranslationDefines.h"
 #import "PlaceHolderView.h"
@@ -41,7 +40,6 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "BrickManager.h"
 #import "Util.h"
-#import "PlaceHolderView.h"
 #import "LoopBeginBrick.h"
 #import "IfLogicBeginBrick.h"
 #import "LoopEndBrick.h"
@@ -69,6 +67,9 @@
 #import "Sound.h"
 #import "ActionSheetAlertViewTags.h"
 #import "CatrobatActionSheet.h"
+#import "DataTransferMessage.h"
+#import "CBMutableCopyContext.h"
+#import "RepeatBrick.h"
 
 @interface ScriptCollectionViewController() <UICollectionViewDelegate,
                                              LXReorderableCollectionViewDelegateFlowLayout,
@@ -77,48 +78,49 @@
                                              BrickCellDelegate,
                                              ScriptDataSourceDelegate,
                                              iOSComboboxDelegate,
-                                             BrickDetailViewControllerDelegate,
-                                             BrickCellFragmentDelegate>
+                                             BrickCellFragmentDelegate,
+                                             CatrobatActionSheetDelegate>
 
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
 @property (nonatomic, strong) BrickTransition *brickScaleTransition;
-@property (nonatomic, strong) NSIndexPath *trackedIndexPath;
 @property (nonatomic, strong) NSMutableDictionary *selectedIndexPaths;  // refactor
-@property (nonatomic, assign) BOOL selectedAllCells;  // Refactor
+@property (nonatomic, assign) BOOL selectedAllCells;  // refactor
 @property (nonatomic, strong) NSIndexPath *higherRankBrick; // refactor
 @property (nonatomic, strong) NSIndexPath *lowerRankBrick;  // refactor
 @property (nonatomic, strong) ScriptDataSource *scriptDataSource;
 @property (nonatomic, strong) FBKVOController *scriptDataSourceKVOController;
+@property (nonatomic) PageIndexCategoryType lastSelectedBrickCategory;
 
 @end
 
-@implementation ScriptCollectionViewController {
-    PageIndexCategoryType _lastSelectedBrickCategory;
+@implementation ScriptCollectionViewController
+
+#pragma mark - getters and setters
+- (PlaceHolderView*)placeHolderView
+{
+    if (!_placeHolderView) {
+        _placeHolderView = [[PlaceHolderView alloc] initWithFrame:self.collectionView.bounds];
+        [self.view insertSubview:_placeHolderView aboveSubview:self.collectionView];
+        _placeHolderView.hidden = YES;
+    }
+    return _placeHolderView;
 }
 
 #pragma mark - view events
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-    self.navigationController.toolbar.tintColor = [UIColor orangeColor];
     [self setupDataSource];
     [self setupCollectionView];
-    [self setupSubViews];
     [self setupToolBar];
+    self.placeHolderView.title = kLocalizedScripts;
+    self.placeHolderView.hidden = (self.object.scriptList.count != 0);
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.view insertSubview:self.placeHolderView aboveSubview:self.collectionView];
-    [self.collectionView reloadData];
-}
-
-- (void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
-    
-    self.placeHolderView.frame = self.collectionView.bounds;
+//    [self.collectionView reloadData];
 }
 
 #pragma mark - actions
@@ -136,7 +138,7 @@
 - (void)showBrickPickerAction:(id)sender
 {
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-        BrickCategoryViewController *bcvc = [[BrickCategoryViewController alloc] initWithBrickCategory:_lastSelectedBrickCategory];
+        BrickCategoryViewController *bcvc = [[BrickCategoryViewController alloc] initWithBrickCategory:self.lastSelectedBrickCategory];
         bcvc.delegate = self;
         BrickSelectionViewController *bsvc = [[BrickSelectionViewController alloc]
                                               initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
@@ -166,8 +168,7 @@
                                                                   presentingController:(UIViewController*)presenting
                                                                       sourceController:(UIViewController*)source
 {
-    if ([presented isKindOfClass:[BrickDetailViewController class]] ||
-        [presented isKindOfClass:[FormulaEditorViewController class]]) {
+    if ([presented isKindOfClass:[FormulaEditorViewController class]]) {
         self.brickScaleTransition.transitionMode = TransitionModePresent;
         return self.brickScaleTransition;
     }
@@ -176,8 +177,7 @@
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController*)dismissed
 {
-    if ([dismissed isKindOfClass:[BrickDetailViewController class]] ||
-        [dismissed isKindOfClass:[FormulaEditorViewController class]]) {
+    if ([dismissed isKindOfClass:[FormulaEditorViewController class]]) {
         self.brickScaleTransition.transitionMode = TransitionModeDismiss;
         return self.brickScaleTransition;
     }
@@ -216,44 +216,133 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     BrickCell *brickCell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
     if (self.isEditing) {
+        if ([brickCell.scriptOrBrick isKindOfClass:[Script class]]) {
+            return;
+        }
+        Brick *brick = (Brick*)brickCell.scriptOrBrick;
+        if ([brick isKindOfClass:[LoopBeginBrick class]]) {
+            [self selectLoopBeginWithBrick:brick Script:brick.script IndexPath:indexPath andSelectButton:nil];
+        } else if ([brick isKindOfClass:[LoopEndBrick class]]) {
+            [self selectLoopEndWithBrick:brick Script:brick.script IndexPath:indexPath andSelectButton:nil];
+        } else if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
+            [self selectLogicBeginWithBrick:brick Script:brick.script IndexPath:indexPath andSelectButton:nil];
+        } else if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
+            [self selectLogicEndWithBrick:brick Script:brick.script IndexPath:indexPath andSelectButton:nil];
+        } else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
+            [self selectLogicElseWithBrick:brick Script:brick.script IndexPath:indexPath andSelectButton:nil];
+        } else {
+            [self.selectedIndexPaths setObject:indexPath forKey:[self keyWithSelectIndexPath:indexPath]];
+        }
         [collectionView deselectItemAtIndexPath:indexPath animated:NO];
-    } else {
-        self.trackedIndexPath = indexPath;
-        [self showMenuForBrickOrScript:brickCell.scriptOrBrick];
+        return;
     }
-}
 
-- (void)showMenuForBrickOrScript:(id<ScriptProtocol>)scriptOrBrick
-{
-    CBAssert(scriptOrBrick);
-    NSMutableArray *buttonTitles = [NSMutableArray arrayWithObject:kLocalizedCopyBrick];
-    if ([scriptOrBrick isAnimateable]) {
+    BOOL isBrick = [brickCell.scriptOrBrick isKindOfClass:[Brick class]];
+    NSMutableArray *buttonTitles = [NSMutableArray array];
+// TODO: add move brick button!!
+    if (isBrick) {
+        [buttonTitles addObject:kLocalizedCopyBrick];
+    }
+    if ([brickCell.scriptOrBrick isAnimateable]) {
         [buttonTitles addObject:kLocalizedAnimateBrick];
     }
-    if ([scriptOrBrick isKindOfClass:[Brick class]] && [(Brick*)scriptOrBrick isFormulaBrick]) {
+    if (isBrick && [(Brick*)brickCell.scriptOrBrick isFormulaBrick]) {
         [buttonTitles addObject:kLocalizedEditFormula];
     }
 
     // determine destructive title dependend on type of selected Brick/Script
     NSString *destructiveTitle = kLocalizedDeleteScript;
-    if ([scriptOrBrick isKindOfClass:[Brick class]]) {
-        Brick *brick = (Brick*)scriptOrBrick;
+    if ([brickCell.scriptOrBrick isKindOfClass:[Brick class]]) {
+        Brick *brick = (Brick*)brickCell.scriptOrBrick;
         destructiveTitle = ([brick isIfLogicBrick]
-                         ? kLocalizedDeleteLogicBrick
-                         : ([brick isLoopBrick]) ? kLocalizedDeleteBrick : kLocalizedDeleteBrick);
+                            ? kLocalizedDeleteCondition
+                            : ([brick isLoopBrick]) ? kLocalizedDeleteLoop : kLocalizedDeleteBrick);
     }
+    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:nil
+                                                         delegate:self
+                                           destructiveButtonTitle:destructiveTitle
+                                                otherButtonTitles:buttonTitles
+                                                              tag:kEditBrickActionSheetTag
+                                                             view:self.navigationController.view];
+    actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditBrickOrScript
+                                                                    withPayload:@{ kDTPayloadCellIndexPath : indexPath }];
+//    [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.8f]];
+    [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:0 green:37.0f/255.0f blue:52.0f/255.0f alpha:0.95f]];
+    [actionSheet setButtonTextColor:[UIColor whiteColor]];
+    [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
+//    actionSheet.transparentView = nil;
+    [actionSheet showInView:self.navigationController.view];
+}
 
-    CatrobatActionSheet *brickMenu = [Util actionSheetWithTitle:nil
-                                                       delegate:nil
-                                         destructiveButtonTitle:kLocalizedDeleteScript
-                                              otherButtonTitles:buttonTitles
-                                                            tag:kEditBrickActionSheetTag
-                                                           view:self.navigationController.view];
-    [brickMenu setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.6f]];
-    [brickMenu setButtonTextColor:[UIColor whiteColor]];
-    [brickMenu setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
-    brickMenu.transparentView = nil;
-    [brickMenu showInView:self.navigationController.view];
+#pragma mark - action sheet delegates
+- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == actionSheet.cancelButtonIndex) { return; }
+    if (actionSheet.tag == kEditBrickActionSheetTag) {
+        CBAssert(actionSheet.dataTransferMessage.actionType == kDTMActionEditBrickOrScript);
+        CBAssert([actionSheet.dataTransferMessage.payload isKindOfClass:[NSDictionary class]]);
+        NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
+        NSIndexPath *indexPath = payload[kDTPayloadCellIndexPath]; // unwrap payload message
+        BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+
+        // delete script or brick action
+        if (buttonIndex == actionSheet.destructiveButtonIndex) {
+            if ([brickCell.scriptOrBrick isKindOfClass:[Script class]]) {
+                [self.scriptDataSource removeScriptsAtSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
+                [(Script*)brickCell.scriptOrBrick removeFromObject];
+            } else {
+                CBAssert([brickCell.scriptOrBrick isKindOfClass:[Brick class]]);
+                Brick *brick = (Brick*)brickCell.scriptOrBrick;
+                if ([brick isLoopBrick]) {
+#warning implement!!
+                    // loop brick
+                } else if ([brick isIfLogicBrick]) {
+#warning implement!!
+                    // if brick
+                } else {
+                    // normal brick
+                    [brick removeFromScript];
+                    [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+                }
+            }
+            self.placeHolderView.hidden = (self.object.scriptList.count != 0);
+            [self.object.program saveToDisk];
+            return;
+        }
+
+        IBActionSheetButton *selectedButton = [actionSheet.buttons objectAtIndex:buttonIndex];
+        NSString *buttonTitle = selectedButton.titleLabel.text;
+
+        // copy brick action
+        if ([buttonTitle isEqualToString:kLocalizedCopyBrick]) {
+            CBAssert([brickCell.scriptOrBrick isKindOfClass:[Brick class]]);
+            Brick *brick = (Brick*)brickCell.scriptOrBrick;
+            if ([brick isLoopBrick]) {
+#warning implement!!
+                // loop brick
+            } else if ([brick isIfLogicBrick]) {
+#warning implement!!
+                // if brick
+            } else {
+                // normal brick
+                NSUInteger copiedBrickIndex = ([brick.script.brickList indexOfObject:brick] + 1);
+                Brick *copiedBrick = [brick mutableCopyWithContext:[CBMutableCopyContext new]];
+                [brick.script addBrick:copiedBrick atIndex:copiedBrickIndex];
+                NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:(indexPath.row + 1) inSection:indexPath.section];
+                [self.collectionView insertItemsAtIndexPaths:@[newIndexPath]];
+            }
+            self.placeHolderView.hidden = YES;
+            [self.object.program saveToDisk];
+            return;
+        }
+
+        // edit formula
+        if ([buttonTitle isEqualToString:kLocalizedEditFormula]) {
+            BrickCellFormulaFragment *formulaFragment = [[BrickCellFormulaFragment alloc] initWithFrame:CGRectMake(0, 0, 0, 0) andBrickCell:brickCell andLineNumber:0 andParameterNumber:0];
+            [self openFormulaEditor:formulaFragment];
+            return;
+        }
+    }
 }
 
 #pragma mark - Reorderable Cells Delegate
@@ -384,100 +473,111 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }];
 }
 
-#pragma mark - BrickDetailViewControllerDelegate
-
-- (void)brickDetailViewController:(BrickDetailViewController *)brickDetailViewController
-                   didChangeState:(BrickDetailViewControllerState)state
-{
-    switch (brickDetailViewController.state) {
-        case BrickDetailViewControllerStateNone:
-        case BrickDetailViewControllerStateBrickUpdated:
-            break;
-        case BrickDetailViewControllerStateDeleteScript:
-            [self removeScript];
-            break;
-        case BrickDetailViewControllerStateDeleteBrick:
-            [self removeBrick];
-            break;
-        case BrickDetailViewControllerStateCopyBrick:
-            [self copyBrick];
-            break;
-        case BrickDetailViewControllerStateAnimateBrick:
-            // TODO
-            break;
-        case BrickDetailViewControllerStateEditFormula: {
-            // TODO:
-            BrickCell *brickCell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:self.trackedIndexPath];
-            BrickCellFormulaFragment *formulaFragment = [[BrickCellFormulaFragment alloc] initWithFrame:CGRectMake(0, 0, 0, 0) andBrickCell:brickCell andLineNumber:0 andParameterNumber:0];
-            [self openFormulaEditor:formulaFragment];
-        }
-            break;
-            
-        default:
-            break;
-    }
-}
-
-- (void)removeBrick
-{
-    [self.scriptDataSource removeBrickAtIndexPath:self.trackedIndexPath];
-}
-
-- (void)removeScript
-{
-    [self.scriptDataSource removeScriptsAtSections:[NSIndexSet indexSetWithIndex:self.trackedIndexPath.section]];
-}
-
-- (void)copyBrick
-{
-    [self.scriptDataSource copyBrickAtIndexPath:self.trackedIndexPath];
-}
-
-- (void)animateBrick
-{
-}
-
-- (void)editFormula
-{
-    BrickCell *brickCell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:self.trackedIndexPath];
-    BrickCellFormulaFragment *formulaFragment = [[BrickCellFormulaFragment alloc] initWithFrame:CGRectMake(0, 0, 0, 0) andBrickCell:brickCell andLineNumber:0 andParameterNumber:0];
-    [self openFormulaEditor:formulaFragment];
-}
-
 #pragma mark - BrickCategoryViewController delegates
 - (void)brickCategoryViewController:(BrickCategoryViewController*)brickCategoryViewController
              didSelectScriptOrBrick:(id<ScriptProtocol>)scriptOrBrick
 {
-    _lastSelectedBrickCategory = brickCategoryViewController.pageIndexCategoryType;
-    brickCategoryViewController.delegate = nil;
     [self dismissViewControllerAnimated:YES completion:NULL];
-    
+    self.lastSelectedBrickCategory = brickCategoryViewController.pageIndexCategoryType;
+    brickCategoryViewController.delegate = nil;
+
     BrickManager *brickManager = [BrickManager sharedBrickManager];
-    NSString *brickClassString = [brickManager classNameForBrickType:scriptOrBrick.brickType];
-    Class brickClass = NSClassFromString(brickClassString);
-    
-    NSIndexPath *topIndexpath = [NSIndexPath indexPathForItem:0 inSection:0];
-    // Empty Script List, insert start script with added brick
-    if (self.scriptDataSource.scriptList.count == 0 && ![brickManager isScript:scriptOrBrick.brickType]) {
+    NSIndexPath *topIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+    // empty script list, insert start script with added brick
+    if (self.scriptDataSource.scriptList.count == 0 && (! [brickManager isScript:scriptOrBrick.brickType])) {
         StartScript *startScript = [StartScript new];
         startScript.object = self.object;
-        [self.scriptDataSource addScript:startScript toSection:topIndexpath.section];
-        
-        NSArray *bricks = [self.scriptDataSource linkedBricksForBrick:scriptOrBrick.brickType];
-        [self.scriptDataSource addBricks:bricks atIndexPath:topIndexpath];
+        [self.scriptDataSource addScript:startScript toSection:topIndexPath.section];
+        NSArray *bricks = [self linkedBricksForBrick:scriptOrBrick.brickType];
+        [self.scriptDataSource addBricks:bricks atIndexPath:topIndexPath];
     } else if ([brickManager isScript:scriptOrBrick.brickType]) {
-        Script *scriptBrick = [brickClass new];
+        Script *scriptBrick = (Script*)scriptOrBrick;
         scriptBrick.object = self.object;
-        
-        [self.scriptDataSource addScript:scriptBrick toSection:self.scriptDataSource.numberOfSections];
+        [self.scriptDataSource addScript:scriptBrick toSection:self.object.scriptList.count];
     } else {
-        [self resetScrollingtoTopWithIndexPath:topIndexpath animated:NO];
-        // Add new brick(s) to top section.
-        NSArray *bricks = [self.scriptDataSource linkedBricksForBrick:scriptOrBrick.brickType];
-        
-        [self.scriptDataSource addBricks:bricks atIndexPath:topIndexpath];
+        [self resetScrollingtoTopWithIndexPath:topIndexPath animated:NO];
+        // add new brick(s) to the top most section
+        NSArray *bricks = [self linkedBricksForBrick:scriptOrBrick.brickType];
+        [self.scriptDataSource addBricks:bricks atIndexPath:topIndexPath];
     }
+    self.placeHolderView.hidden = (self.object.scriptList.count != 0);
 }
+
+- (NSArray*)linkedBricksForBrick:(kBrickType)brickType
+{
+    NSMutableArray *bricks = [NSMutableArray arrayWithCapacity:3];
+    NSString *brickClassString = [[BrickManager sharedBrickManager]classNameForBrickType:brickType];
+    Class brickClass = NSClassFromString(brickClassString);
+    
+    switch (brickType) {
+        case kForeverBrick:
+            [bricks addObject:[brickClass new]];
+            [bricks addObject:[LoopEndBrick new]];
+            [self linkLoopBeginBrick:[bricks objectAtIndex:0] withLoopEndBrick:[bricks objectAtIndex:1]];
+            break;
+        case kIfBrick:
+            [bricks addObject:[[brickClass class] new]];
+            [bricks addObject:[IfLogicElseBrick new]];
+            [bricks addObject:[IfLogicEndBrick new]];
+            [self linkIfLogicBeginBrick:[bricks objectAtIndex:0]
+                   withIfLogicElseBrick:[bricks objectAtIndex:1]
+                     andIfLogicEndBrick:[bricks objectAtIndex:2]];
+            break;
+        case kIfElseBrick:
+            [bricks addObject:[IfLogicBeginBrick new]];
+            [bricks addObject:[brickClass new]];
+            [bricks addObject:[IfLogicEndBrick new]];
+            [self linkIfLogicBeginBrick:[bricks objectAtIndex:0]
+                   withIfLogicElseBrick:[bricks objectAtIndex:1]
+                     andIfLogicEndBrick:[bricks objectAtIndex:2]];
+            break;
+        case kIfEndBrick:
+            [bricks addObject:[IfLogicBeginBrick new]];
+            [bricks addObject:[IfLogicElseBrick new]];
+            [bricks addObject:[brickClass new]];
+            [self linkIfLogicBeginBrick:[bricks objectAtIndex:0]
+                   withIfLogicElseBrick:[bricks objectAtIndex:1]
+                     andIfLogicEndBrick:[bricks objectAtIndex:2]];
+            break;
+        case kRepeatBrick:
+            [bricks addObject:[brickClass new]];
+            [bricks addObject:[LoopEndBrick new]];
+            [self linkLoopBeginBrick:[bricks objectAtIndex:0] withLoopEndBrick:[bricks objectAtIndex:1]];
+            break;
+        case kLoopEndBrick:
+            [bricks addObject:[brickClass new]];
+            [bricks addObject:[RepeatBrick new]];
+            [self linkLoopBeginBrick:[bricks objectAtIndex:0] withLoopEndBrick:[bricks objectAtIndex:1]];
+            break;
+        default:
+            [bricks addObject:[brickClass new]];
+            break;
+    }
+    return bricks;
+}
+
+- (void)linkLoopBeginBrick:(LoopBeginBrick *)loopBeginBrick withLoopEndBrick:(LoopEndBrick *)loopEndBrick
+{
+    CBAssert(loopEndBrick && loopEndBrick);
+    loopBeginBrick.loopEndBrick = loopEndBrick;
+    loopEndBrick.loopBeginBrick = loopBeginBrick;
+}
+
+- (void)linkIfLogicBeginBrick:(IfLogicBeginBrick*)ifLogicBeginBrick
+         withIfLogicElseBrick:(IfLogicElseBrick*)ifLogicElseBrick
+           andIfLogicEndBrick:(IfLogicEndBrick*)ifLogicEndBrick
+{
+    CBAssert(ifLogicBeginBrick && ifLogicElseBrick && ifLogicEndBrick);
+    ifLogicBeginBrick.ifElseBrick = ifLogicElseBrick;
+    ifLogicBeginBrick.ifEndBrick = ifLogicEndBrick;
+    
+    ifLogicElseBrick.ifBeginBrick = ifLogicBeginBrick;
+    ifLogicElseBrick.ifEndBrick = ifLogicEndBrick;
+    
+    ifLogicEndBrick.ifElseBrick = ifLogicElseBrick;
+    ifLogicEndBrick.ifBeginBrick = ifLogicBeginBrick;
+}
+
 
 - (void)resetScrollingtoTopWithIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated
 {
@@ -499,7 +599,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 }
 
 #pragma mark - Brick Cell Delegate
-- (void)BrickCell:(BrickCell*)brickCell didSelectBrickCellButton:(SelectButton*)selectButton
+- (void)brickCell:(BrickCell*)brickCell didSelectBrickCellButton:(SelectButton*)selectButton
 {
     NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:
                               [self.collectionView convertPoint:selectButton.center fromView:selectButton.superview]];
@@ -530,14 +630,12 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         }
 
     }
-    
-    [self.collectionView reloadData];
 }
 
 #pragma mark - Open Formula Editor
 - (void)openFormulaEditor:(BrickCellFormulaFragment*)formulaFragment
 {
-    if([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
+    if ([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
         FormulaEditorViewController *formulaEditorViewController = (FormulaEditorViewController*)self.presentedViewController;
         if ([formulaEditorViewController changeFormula]) {
             [formulaEditorViewController setBrickCellFormulaFragment:formulaFragment];
@@ -548,14 +646,14 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         if (self.presentedViewController.isViewLoaded && self.presentedViewController.view.window) {
             [self.presentedViewController dismissViewControllerAnimated:NO completion:NULL];
         }
-        
+
         FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCellFormulaFragment:formulaFragment];
         formulaEditorViewController.object = self.object;
         formulaEditorViewController.transitioningDelegate = self;
         formulaEditorViewController.modalPresentationStyle = UIModalPresentationCustom;
         formulaEditorViewController.delegate = formulaFragment;
         [formulaFragment drawBorder:YES];
-        
+
         [self.brickScaleTransition updateAnimationViewWithView:formulaFragment.brickCell];
         [self presentViewController:formulaEditorViewController animated:YES completion:^{
             [formulaEditorViewController setBrickCellFormulaFragment:formulaFragment];
@@ -565,15 +663,13 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 #pragma mark - Helpers
 // TODO: Remove
-- (void)removeBricksWithIndexPaths:(NSArray *)indexPaths
+- (void)removeBricksWithIndexPaths:(NSArray*)indexPaths
 {
     NSArray *sortedIndexPaths = [indexPaths sortedArrayUsingSelector:@selector(compare:)];
     sortedIndexPaths = [[sortedIndexPaths reverseObjectEnumerator] allObjects];
-    
     [self.collectionView performBatchUpdates:^{
         for (NSIndexPath *indexPath in sortedIndexPaths) {
             Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
-            
             if (indexPath.item == 0) {
                 [self.object.scriptList removeObjectAtIndex:indexPath.section];
                 [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
@@ -585,7 +681,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     } completion:^(BOOL finished) {
         [self.selectedIndexPaths removeAllObjects];
         [self.collectionView reloadData];
-        self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
+        self.placeHolderView.hidden = (self.object.scriptList.count != 0);
     }];
 }
 
@@ -1083,8 +1179,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             
         }
         [self animateIf:elsecount and:endcount andIndexPath:indexPath];
-        
-    }else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
+    } else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
         IfLogicElseBrick *elseBrick = (IfLogicElseBrick *)brick;
         NSInteger begincount = 0;
         NSInteger endcount = 0;
@@ -1105,8 +1200,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             
         }
         [self animateIf:begincount and:endcount andIndexPath:indexPath];
-        
-    }else if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
+    } else if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
         IfLogicEndBrick *endBrick = (IfLogicEndBrick *)brick;
         NSInteger elsecount = 0;
         NSInteger begincount = 0;
@@ -1152,14 +1246,19 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 - (void)setupDataSource
 {
     __weak typeof(&*self)weakSelf = self;
-    ScriptCollectionViewConfigureBlock configureCellBlock = ^(id cell) { [weakSelf configureBrickCell:cell]; };
+    ScriptCollectionViewConfigureBlock configureCellBlock = ^(BrickCell *brickCell) {
+        brickCell.enabled = YES;
+        [brickCell setupBrickCell];
+        brickCell.delegate = self;
+        brickCell.fragmentDelegate = self;
+    };
     self.scriptDataSource = [[ScriptDataSource alloc] initWithScriptList:self.object.scriptList
-                                                          cellIdentifier:nil // We dont use the same identifier for all bricks atm.
+                                                          cellIdentifier:nil // We don't use the same identifier for all bricks atm.
                                                       configureCellBlock:configureCellBlock];
     self.scriptDataSource.delegate = self;
     self.collectionView.dataSource = self.scriptDataSource;
     self.collectionView.delegate = self;
-    
+
     // create KVO controller with observer.
     FBKVOController *KVOController = [FBKVOController controllerWithObserver:self];
     self.scriptDataSourceKVOController = KVOController;
@@ -1173,7 +1272,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }];
 }
 
-
 - (void)setupCollectionView
 {
     self.collectionView.backgroundColor = [UIColor darkBlueColor];
@@ -1184,21 +1282,13 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     self.navigationItem.rightBarButtonItems = @[self.editButtonItem];
     self.brickScaleTransition = [[BrickTransition alloc] initWithViewToAnimate:nil];
     self.selectedIndexPaths = [NSMutableDictionary dictionary];
-    
+
     // register brick cells for current brick category
     NSDictionary *allBrickTypes = [[BrickManager sharedBrickManager] classNameBrickTypeMap];
     for (NSString *className in allBrickTypes) {
         [self.collectionView registerClass:NSClassFromString([className stringByAppendingString:@"Cell"])
                 forCellWithReuseIdentifier:className];
     }
-}
-
-- (void)configureBrickCell:(BrickCell *)brickCell
-{
-    brickCell.enabled = YES;
-    [brickCell setupBrickCell];
-    brickCell.delegate = self;
-    brickCell.fragmentDelegate = self;
 }
 
 #pragma mark - Setup Toolbar
@@ -1216,24 +1306,17 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
                                                                          action:@selector(showBrickPickerAction:)];
-    add.enabled =  !self.editing;
+    add.enabled = (! self.editing);
     UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                           target:self
                                                                           action:@selector(playSceneAction:)];
-    play.enabled = !self.editing;
+    play.enabled = (! self.editing);
     if (self.editing) {
         self.toolbarItems = @[flexItem,invisibleButton, delete, invisibleButton, flexItem];
     } else {
         self.toolbarItems = @[flexItem,invisibleButton, add, invisibleButton, flexItem,
                               flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem];
     }
-}
-
-#pragma mark - Init SubViews
-- (void)setupSubViews
-{
-    self.placeHolderView = [[PlaceHolderView alloc] initWithTitle:kLocalizedScripts];
-    self.placeHolderView.hidden = self.object.scriptList.count ? YES : NO;
 }
 
 #pragma mark - BrickCellFragment Delegate

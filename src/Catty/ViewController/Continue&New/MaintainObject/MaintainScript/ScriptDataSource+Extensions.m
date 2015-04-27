@@ -141,28 +141,12 @@
 - (void)removeBrickAtIndexPath:(NSIndexPath *)indexPath
 {
     NSMutableIndexSet *indexes = [NSMutableIndexSet indexSetWithIndex:indexPath.item - 1];
-    
     NSIndexSet *linkedIndexes = [self indexesForLinkedBricksWithBrickAtIndexPath:indexPath];
     [indexes addIndexes:linkedIndexes];
-
     [self removeItemsAtIndexes:indexes inSection:indexPath.section];
 }
 
-- (void)copyBrickAtIndexPath:(NSIndexPath *)atIndexPath
-{
-    // TODO: validate which extra bricks must be added (if else, if end, loop begin, loop end...)
-    Brick *oldBrick = [self brickInScriptAtIndexPath:atIndexPath];
-    CBAssert(oldBrick != nil, @"Error copy brick, brick == nil.");
-    
-    NSArray *addedBricks = [self linkedBricksForBrick:oldBrick.brickType];
-    
-    NSUInteger startIdx = (NSUInteger)atIndexPath.item - 1;
-    NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(startIdx, addedBricks.count)];
-    [self insertBricks:addedBricks atIndexes:indexes inSection:atIndexPath.section];
-}
-
 #pragma mark - Checks
-
 - (BOOL)isSectionAtIndexPathValidScript:(NSIndexPath *)indexPath
 {
     if (indexPath.section >= self.scriptList.count) {
@@ -388,81 +372,6 @@
         [indexes addIndex:[bricks indexOfObject:elseBrick.ifEndBrick]];
     }
     return indexes;
-}
-
-- (NSArray *)linkedBricksForBrick:(kBrickType)brickType
-{
-    NSMutableArray *bricks = [NSMutableArray arrayWithCapacity:3];
-    NSString *brickClassString = [[BrickManager sharedBrickManager]classNameForBrickType:brickType];
-    Class brickClass = NSClassFromString(brickClassString);
-
-    switch (brickType) {
-        case kForeverBrick:
-            [bricks addObject:[brickClass new]];
-            [bricks addObject:[LoopEndBrick new]];
-            [self linkLoopBeginBrick:[bricks objectAtIndex:0] withLoopEndBrick:[bricks objectAtIndex:1]];
-            break;
-        case kIfBrick:
-            [bricks addObject:[[brickClass class] new]];
-            [bricks addObject:[IfLogicElseBrick new]];
-            [bricks addObject:[IfLogicEndBrick new]];
-            [self linkIfLogicBeginBrick:[bricks objectAtIndex:0]
-                   withIfLogicElseBrick:[bricks objectAtIndex:1]
-                   andIfLogicEndBrick:[bricks objectAtIndex:2]];
-            break;
-        case kIfElseBrick:
-            [bricks addObject:[IfLogicBeginBrick new]];
-            [bricks addObject:[brickClass new]];
-            [bricks addObject:[IfLogicEndBrick new]];
-            [self linkIfLogicBeginBrick:[bricks objectAtIndex:0]
-                   withIfLogicElseBrick:[bricks objectAtIndex:1]
-                     andIfLogicEndBrick:[bricks objectAtIndex:2]];
-            break;
-        case kIfEndBrick:
-            [bricks addObject:[IfLogicBeginBrick new]];
-            [bricks addObject:[IfLogicElseBrick new]];
-            [bricks addObject:[brickClass new]];
-            [self linkIfLogicBeginBrick:[bricks objectAtIndex:0]
-                   withIfLogicElseBrick:[bricks objectAtIndex:1]
-                     andIfLogicEndBrick:[bricks objectAtIndex:2]];
-            break;
-        case kRepeatBrick:
-            [bricks addObject:[brickClass new]];
-            [bricks addObject:[LoopEndBrick new]];
-            [self linkLoopBeginBrick:[bricks objectAtIndex:0] withLoopEndBrick:[bricks objectAtIndex:1]];
-            break;
-        case kLoopEndBrick:
-            [bricks addObject:[brickClass new]];
-            [bricks addObject:[RepeatBrick new]];
-            [self linkLoopBeginBrick:[bricks objectAtIndex:0] withLoopEndBrick:[bricks objectAtIndex:1]];
-            break;
-        default:
-            [bricks addObject:[brickClass new]];
-            break;
-    }
-    return bricks;
-}
-
-- (void)linkLoopBeginBrick:(LoopBeginBrick *)loopBeginBrick withLoopEndBrick:(LoopEndBrick *)loopEndBrick
-{
-    CBAssert(loopEndBrick && loopEndBrick);
-    loopBeginBrick.loopEndBrick = loopEndBrick;
-    loopEndBrick.loopBeginBrick = loopBeginBrick;
-}
-
-- (void)linkIfLogicBeginBrick:(IfLogicBeginBrick*)ifLogicBeginBrick
-         withIfLogicElseBrick:(IfLogicElseBrick*)ifLogicElseBrick
-           andIfLogicEndBrick:(IfLogicEndBrick*)ifLogicEndBrick
-{
-    CBAssert(ifLogicBeginBrick && ifLogicElseBrick && ifLogicEndBrick);
-    ifLogicBeginBrick.ifElseBrick = ifLogicElseBrick;
-    ifLogicBeginBrick.ifEndBrick = ifLogicEndBrick;
-
-    ifLogicElseBrick.ifBeginBrick = ifLogicBeginBrick;
-    ifLogicElseBrick.ifEndBrick = ifLogicEndBrick;
-
-    ifLogicEndBrick.ifElseBrick = ifLogicElseBrick;
-    ifLogicEndBrick.ifBeginBrick = ifLogicBeginBrick;
 }
 
 @end

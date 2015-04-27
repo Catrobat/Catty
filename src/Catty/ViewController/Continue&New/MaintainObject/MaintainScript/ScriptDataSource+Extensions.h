@@ -52,7 +52,4 @@
 
 - (BOOL)isSectionAtIndexPathValidScript:(NSIndexPath *)indexPath;
 
-/// Returns linked loop/condition bricks or just one single brick.
-- (NSArray *)linkedBricksForBrick:(kBrickType)brickType;
-
 @end
