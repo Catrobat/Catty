@@ -38,6 +38,7 @@
 #import "BroadcastBrick.h"
 #import "BroadcastWaitBrick.h"
 #import "NoteBrick.h"
+#import "WhenScript.h"
 
 @interface Script()
 
@@ -76,6 +77,13 @@
 - (BOOL)isAnimateable
 {
     return NO;
+}
+
+- (void)addBrick:(Brick*)brick atIndex:(NSUInteger)index
+{
+    CBAssert([self.brickList indexOfObject:brick] == NSNotFound);
+    brick.script = self;
+    [brick.script.brickList insertObject:brick atIndex:index];
 }
 
 #pragma mark - Custom getter and setter
@@ -205,8 +213,10 @@
     Script *copiedScript = [[self class] new];
     copiedScript.brickCategoryType = self.brickCategoryType;
     copiedScript.brickType = self.brickType;
-    if (self.action) {
-        copiedScript.action = [NSString stringWithString:self.action];
+    if ([self isKindOfClass:[WhenScript class]]) {
+        CBAssert([copiedScript isKindOfClass:[WhenScript class]]);
+        WhenScript *whenScript = (WhenScript*)self;
+        ((WhenScript*)copiedScript).action = [NSString stringWithString:whenScript.action];
     }
 
     [context updateReference:self WithReference:copiedScript];
@@ -215,7 +225,6 @@
     copiedScript.brickList = [NSMutableArray arrayWithCapacity:[self.brickList count]];
     for (id brick in self.brickList) {
         if ([brick isKindOfClass:[Brick class]]) {
-            // TODO: issue #308 - implement deep copy for all bricks here!!
             Brick *copiedBrick = [brick mutableCopyWithContext:context]; // there are some bricks that refer to other sound, look, sprite objects...
             copiedBrick.script = copiedScript;
             [copiedScript.brickList addObject:copiedBrick];
@@ -246,19 +255,29 @@
 #pragma mark - isEqualToScript
 - (BOOL)isEqualToScript:(Script *)script
 {
-    if (self.brickCategoryType != script.brickCategoryType)
+    if (self.brickCategoryType != script.brickCategoryType) {
         return NO;
-    if (self.brickType != script.brickType)
+    }
+    if (self.brickType != script.brickType) {
         return NO;
-    if (! [Util isEqual:self.brickTitle toObject:script.brickTitle])
+    }
+    if (! [Util isEqual:self.brickTitle toObject:script.brickTitle]) {
         return NO;
-    if (! [Util isEqual:self.action toObject:script.action])
+    }
+    if ([self isKindOfClass:[WhenScript class]]) {
+        if (! [script isKindOfClass:[WhenScript class]]) {
+            return NO;
+        }
+        if (! [Util isEqual:((WhenScript*)self).action toObject:((WhenScript*)script).action]) {
+            return NO;
+        }
+    }
+    if (! [Util isEqual:self.object.name toObject:script.object.name]) {
         return NO;
-    if (! [Util isEqual:self.object.name toObject:script.object.name])
+    }
+    if ([self.brickList count] != [script.brickList count]) {
         return NO;
-
-    if ([self.brickList count] != [script.brickList count])
-        return NO;
+    }
 
     NSUInteger index;
     for (index = 0; index < [self.brickList count]; ++index) {
@@ -552,6 +571,21 @@
     }
     assert(completionBlock != nil); // this method must NEVER return nil!!
     return completionBlock;
+}
+
+- (void)removeFromObject
+{
+    CBAssert(self.object);
+    NSUInteger index = 0;
+    for (Script *script in self.object.scriptList) {
+        if (script == self) {
+            [self.brickList makeObjectsPerformSelector:@selector(removeFromScript)];
+            [self.object.scriptList removeObjectAtIndex:index];
+            self.object = nil;
+            break;
+        }
+        ++index;
+    }
 }
 
 - (void)removeReferences

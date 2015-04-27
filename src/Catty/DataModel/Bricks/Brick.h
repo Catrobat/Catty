@@ -48,6 +48,8 @@
 
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context AndErrorReporting:(BOOL)reportError;
 
+- (void)removeFromScript;
+
 - (void)removeReferences;
 
 @end

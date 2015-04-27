@@ -39,12 +39,13 @@
 @property (nonatomic, readonly) kBrickType brickType;
 @property (nonatomic, strong, readonly) NSString *brickTitle;
 @property (nonatomic, weak) SpriteObject *object;
-@property (nonatomic, strong) NSString *action;
 @property (strong, nonatomic) NSMutableArray *brickList;
 
 - (BOOL)isSelectableForObject;
 
 - (BOOL)isAnimateable;
+
+- (void)addBrick:(Brick*)brick atIndex:(NSUInteger)index;
 
 - (void)computeSequenceList;
 
@@ -59,6 +60,8 @@
 - (NSString*)description;
 
 - (BOOL)isEqualToScript:(Script*)script;
+
+- (void)removeFromObject;
 
 - (void)removeReferences;
 

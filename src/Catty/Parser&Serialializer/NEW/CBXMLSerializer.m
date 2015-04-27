@@ -92,11 +92,12 @@
         xmlString = [xmlString stringByReplacingOccurrencesOfString:@"&amp;apos;" withString:@"&apos;"];
         // }
 
-        NSLog(@"%@", xmlString);
+        NSDebug(@"%@", xmlString);
         NSError *error = nil;
 
-        if (! [xmlString writeToFile:self.xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error])
+        if (! [xmlString writeToFile:self.xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error]) {
             NSError(@"Program could not saved to disk! %@", error);
+        }
 
         // update last access time
         [Program updateLastModificationTimeForProgramWithName:program.header.programName
