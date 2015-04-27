@@ -329,6 +329,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                     loopEndBrick = ((LoopEndBrick*)brick);
                     loopBeginBrick = loopEndBrick.loopBeginBrick;
                 }
+                CBAssert((! loopBeginBrick) || (! loopEndBrick));
                 NSUInteger loopBeginIndex = [brick.script.brickList indexOfObject:loopBeginBrick];
                 NSUInteger loopEndIndex = (loopBeginIndex + 1);
                 LoopBeginBrick *copiedLoopBeginBrick = [loopBeginBrick mutableCopyWithContext:[CBMutableCopyContext new]];
@@ -341,8 +342,44 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 NSIndexPath *loopEndIndexPath = [NSIndexPath indexPathForRow:(indexPath.row+1) inSection:indexPath.section];
                 [self.collectionView insertItemsAtIndexPaths:@[loopBeginIndexPath, loopEndIndexPath]];
             } else if ([brick isIfLogicBrick]) {
-#warning implement!!
                 // if brick
+                IfLogicBeginBrick *ifLogicBeginBrick = nil;
+                IfLogicElseBrick *ifLogicElseBrick = nil;
+                IfLogicEndBrick *ifLogicEndBrick = nil;
+                if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
+                    ifLogicBeginBrick = ((IfLogicBeginBrick*)brick);
+                    ifLogicElseBrick = ifLogicBeginBrick.ifElseBrick;
+                    ifLogicEndBrick = ifLogicBeginBrick.ifEndBrick;
+                } else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
+                    ifLogicElseBrick = ((IfLogicElseBrick*)brick);
+                    ifLogicBeginBrick = ifLogicElseBrick.ifBeginBrick;
+                    ifLogicEndBrick = ifLogicElseBrick.ifEndBrick;
+                } else {
+                    CBAssert([brick isKindOfClass:[IfLogicEndBrick class]]);
+                    ifLogicEndBrick = ((IfLogicEndBrick*)brick);
+                    ifLogicBeginBrick = ifLogicEndBrick.ifBeginBrick;
+                    ifLogicElseBrick = ifLogicEndBrick.ifElseBrick;
+                }
+                //CBAssert((! ifLogicBeginBrick) || (! ifLogicElseBrick) || (! ifLogicEndBrick));
+                NSUInteger ifLogicBeginIndex = [brick.script.brickList indexOfObject:ifLogicBeginBrick];
+                NSUInteger ifLogicElseIndex = (ifLogicBeginIndex + 1);
+                NSUInteger ifLogicEndIndex = (ifLogicElseIndex + 1);
+                IfLogicBeginBrick *copiedIfLogicBeginBrick = [ifLogicBeginBrick mutableCopyWithContext:[CBMutableCopyContext new]];
+                IfLogicElseBrick *copiedIfLogicElseBrick = [ifLogicElseBrick mutableCopyWithContext:[CBMutableCopyContext new]];
+                IfLogicEndBrick *copiedIfLogicEndBrick = [ifLogicEndBrick mutableCopyWithContext:[CBMutableCopyContext new]];
+                copiedIfLogicBeginBrick.ifElseBrick = copiedIfLogicElseBrick;
+                copiedIfLogicBeginBrick.ifEndBrick = copiedIfLogicEndBrick;
+                copiedIfLogicElseBrick.ifBeginBrick = copiedIfLogicBeginBrick;
+                copiedIfLogicElseBrick.ifEndBrick = copiedIfLogicEndBrick;
+                copiedIfLogicEndBrick.ifBeginBrick = copiedIfLogicBeginBrick;
+                copiedIfLogicEndBrick.ifElseBrick = copiedIfLogicElseBrick;
+                [brick.script addBrick:copiedIfLogicBeginBrick atIndex:ifLogicBeginIndex];
+                [brick.script addBrick:copiedIfLogicElseBrick atIndex:ifLogicElseIndex];
+                [brick.script addBrick:copiedIfLogicEndBrick atIndex:ifLogicEndIndex];
+                NSIndexPath *ifLogicBeginIndexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section];
+                NSIndexPath *ifLogicElseIndexPath = [NSIndexPath indexPathForRow:(indexPath.row+1) inSection:indexPath.section];
+                NSIndexPath *ifLogicEndIndexPath = [NSIndexPath indexPathForRow:(indexPath.row+2) inSection:indexPath.section];
+                [self.collectionView insertItemsAtIndexPaths:@[ifLogicBeginIndexPath, ifLogicElseIndexPath, ifLogicEndIndexPath]];
             } else {
                 // normal brick
                 NSUInteger copiedBrickIndex = ([brick.script.brickList indexOfObject:brick] + 1);

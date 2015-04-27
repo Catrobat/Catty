@@ -297,7 +297,7 @@
 #define kLocalizedForever @"Forever"
 #define kLocalizedIfIsTrueThen @"If %@ is true then"
 #define kLocalizedElse @"Else"
-#define kLocalizedIfEnd @"If End"
+#define kLocalizedEndIf @"End If"
 #define kLocalizedRepeatNTimes @"Repeat %@ times"
 #define kLocalizedEndOfLoop @"End of Loop"
 
@@ -362,7 +362,7 @@
 #define kLocalizedForever NSLocalizedString(@"Forever", nil)
 #define kLocalizedIfIsTrueThen NSLocalizedString(@"If %@ is true then", nil)
 #define kLocalizedElse NSLocalizedString(@"Else", nil)
-#define kLocalizedIfEnd NSLocalizedString(@"If End", nil)
+#define kLocalizedEndIf NSLocalizedString(@"End If", nil)
 #define kLocalizedRepeatNTimes NSLocalizedString(@"Repeat %@ times", nil)
 #define kLocalizedEndOfLoop NSLocalizedString(@"End of Loop", nil)
 

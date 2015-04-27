@@ -105,7 +105,6 @@
                          message:@"IfLogicElseBrick contains no reference to an ifEndBrick"];
         [XMLError exceptionIf:[ifLogicElseBrick.ifEndBrick isKindOfClass:[IfLogicEndBrick class]] equals:NO
                       message:@"Invalid reference class type for ifEndBrick in ifLogicElseBrick given"];
-        
         IfLogicBeginBrick *ifLogicBeginBrick = ifLogicElseBrick.ifBeginBrick;
         if (ifLogicBeginBrick.ifElseBrick != ifLogicElseBrick) {
             [XMLError exceptionWithMessage:@"IfLogicBeginBrick contains no or a reference to other ifElseBrick"];
@@ -126,7 +125,6 @@
         [XMLError exceptionWithMessage:@"Unexpected closing of nesting brick: expected IfLogicBeginBrick or \
          IfLogicElseBrick but got %@", NSStringFromClass([openingNestingBrick class])];
     }
-    
     return brick;
 }
 

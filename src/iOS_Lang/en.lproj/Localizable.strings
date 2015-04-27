@@ -284,6 +284,9 @@
 "Else" = "Else";
 
 /* No comment provided by engineer. */
+"End If" = "End If";
+
+/* No comment provided by engineer. */
 "End of Loop" = "End of Loop";
 
 /* Placeholder for add image-name input field */
@@ -384,9 +387,6 @@
 
 /* No comment provided by engineer. */
 "If %@ is true then" = "If %@ is true then";
-
-/* No comment provided by engineer. */
-"If End" = "If End";
 
 /* No comment provided by engineer. */
 "If on edge, bounce" = "If on edge, bounce";

@@ -44,7 +44,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedIfEnd;
+    return kLocalizedEndIf;
 }
 
 - (void)performFromScript:(Script*)script
