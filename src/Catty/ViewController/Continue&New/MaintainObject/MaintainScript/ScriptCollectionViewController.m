@@ -314,8 +314,35 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                     NSIndexPath *loopEndIndexPath = [NSIndexPath indexPathForRow:(loopEndIndex + 1) inSection:indexPath.section];
                     [self.collectionView deleteItemsAtIndexPaths:@[loopBeginIndexPath, loopEndIndexPath]];
                 } else if ([brick isIfLogicBrick]) {
-#warning implement!!
                     // if brick
+                    IfLogicBeginBrick *ifLogicBeginBrick = nil;
+                    IfLogicElseBrick *ifLogicElseBrick = nil;
+                    IfLogicEndBrick *ifLogicEndBrick = nil;
+                    if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
+                        ifLogicBeginBrick = ((IfLogicBeginBrick*)brick);
+                        ifLogicElseBrick = ifLogicBeginBrick.ifElseBrick;
+                        ifLogicEndBrick = ifLogicBeginBrick.ifEndBrick;
+                    } else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
+                        ifLogicElseBrick = ((IfLogicElseBrick*)brick);
+                        ifLogicBeginBrick = ifLogicElseBrick.ifBeginBrick;
+                        ifLogicEndBrick = ifLogicElseBrick.ifEndBrick;
+                    } else {
+                        CBAssert([brick isKindOfClass:[IfLogicEndBrick class]]);
+                        ifLogicEndBrick = ((IfLogicEndBrick*)brick);
+                        ifLogicBeginBrick = ifLogicEndBrick.ifBeginBrick;
+                        ifLogicElseBrick = ifLogicEndBrick.ifElseBrick;
+                    }
+                    CBAssert((ifLogicBeginBrick != nil) && (ifLogicElseBrick != nil) && (ifLogicEndBrick != nil));
+                    NSUInteger ifLogicBeginIndex = [brick.script.brickList indexOfObject:ifLogicBeginBrick];
+                    NSUInteger ifLogicElseIndex = [brick.script.brickList indexOfObject:ifLogicElseBrick];
+                    NSUInteger ifLogicEndIndex = [brick.script.brickList indexOfObject:ifLogicEndBrick];
+                    [ifLogicBeginBrick removeFromScript];
+                    [ifLogicElseBrick removeFromScript];
+                    [ifLogicEndBrick removeFromScript];
+                    NSIndexPath *ifLogicBeginIndexPath = [NSIndexPath indexPathForRow:(ifLogicBeginIndex + 1) inSection:indexPath.section];
+                    NSIndexPath *ifLogicElseIndexPath = [NSIndexPath indexPathForRow:(ifLogicElseIndex + 1) inSection:indexPath.section];
+                    NSIndexPath *ifLogicEndIndexPath = [NSIndexPath indexPathForRow:(ifLogicEndIndex + 1) inSection:indexPath.section];
+                    [self.collectionView deleteItemsAtIndexPaths:@[ifLogicBeginIndexPath, ifLogicElseIndexPath, ifLogicEndIndexPath]];
                 } else {
                     // normal brick
                     [brick removeFromScript];
