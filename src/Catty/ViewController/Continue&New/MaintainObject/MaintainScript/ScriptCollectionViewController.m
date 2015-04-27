@@ -318,8 +318,28 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             CBAssert([brickCell.scriptOrBrick isKindOfClass:[Brick class]]);
             Brick *brick = (Brick*)brickCell.scriptOrBrick;
             if ([brick isLoopBrick]) {
-#warning implement!!
                 // loop brick
+                LoopBeginBrick *loopBeginBrick = nil;
+                LoopEndBrick *loopEndBrick = nil;
+                if ([brick isKindOfClass:[LoopBeginBrick class]]) {
+                    loopBeginBrick = ((LoopBeginBrick*)brick);
+                    loopEndBrick = loopBeginBrick.loopEndBrick;
+                } else {
+                    CBAssert([brick isKindOfClass:[LoopEndBrick class]]);
+                    loopEndBrick = ((LoopEndBrick*)brick);
+                    loopBeginBrick = loopEndBrick.loopBeginBrick;
+                }
+                NSUInteger loopBeginIndex = [brick.script.brickList indexOfObject:loopBeginBrick];
+                NSUInteger loopEndIndex = (loopBeginIndex + 1);
+                LoopBeginBrick *copiedLoopBeginBrick = [loopBeginBrick mutableCopyWithContext:[CBMutableCopyContext new]];
+                LoopEndBrick *copiedLoopEndBrick = [loopEndBrick mutableCopyWithContext:[CBMutableCopyContext new]];
+                copiedLoopBeginBrick.loopEndBrick = copiedLoopEndBrick;
+                copiedLoopEndBrick.loopBeginBrick = copiedLoopBeginBrick;
+                [brick.script addBrick:copiedLoopBeginBrick atIndex:loopBeginIndex];
+                [brick.script addBrick:copiedLoopEndBrick atIndex:loopEndIndex];
+                NSIndexPath *loopBeginIndexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section];
+                NSIndexPath *loopEndIndexPath = [NSIndexPath indexPathForRow:(indexPath.row+1) inSection:indexPath.section];
+                [self.collectionView insertItemsAtIndexPaths:@[loopBeginIndexPath, loopEndIndexPath]];
             } else if ([brick isIfLogicBrick]) {
 #warning implement!!
                 // if brick
@@ -399,7 +419,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     } else {
         return NO;
     }
-
 }
 
 - (BOOL)collectionView:(UICollectionView*)collectionView canMoveItemAtIndexPath:(NSIndexPath*)indexPath
