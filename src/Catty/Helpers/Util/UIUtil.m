@@ -24,7 +24,6 @@
 #import "UIDefines.h"
 #import "Util.h"
 #import "iOSCombobox.h"
-#import "BrickDetailViewController.h"
 #import "ScriptCollectionViewController.h"
 #import "SetLookBrick.h"
 #import "SetLookBrick.h"

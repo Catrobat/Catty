@@ -212,13 +212,4 @@
 
 + (NSArray*)allMessagesForProgram:(Program*)program;
 
-// https://www.mikeash.com/pyblog/friday-qa-2013-05-03-proper-use-of-asserts.html
-#define CBAssert(expression, ...) \
-do { if(!(expression)) { \
-NSLog(@"%@", [NSString stringWithFormat: @"Assertion failure: %s in %s on line %s:%d. %@", #expression, __PRETTY_FUNCTION__, __FILE__, __LINE__, [NSString stringWithFormat:@"" __VA_ARGS__]]); \
-abort(); }} while(0)
-
-// Check if not on Main Thread.
-void CBAssertIfNotMainThread(void);
-
 @end

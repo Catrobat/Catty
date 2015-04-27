@@ -402,7 +402,7 @@
                                                              tag:kAskUserForUniqueNameAlertViewTag
                                                            value:value];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionAskUserForUniqueName
-                                                                  withPayload:[payload mutableCopy]];
+                                                                  withPayload:payload];
 }
 
 + (void)askUserForReportMessageAndPerformAction:(SEL)action
@@ -432,7 +432,7 @@
                                                              tag:kAskUserForReportMessageAlertViewTag
                                                            value:@""];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionReportMessage
-                                                                  withPayload:[payload mutableCopy]];
+                                                                  withPayload:payload];
 }
 
 + (void)askUserForTextAndPerformAction:(SEL)action
@@ -514,7 +514,7 @@
                                                              tag:kAskUserForVariableNameAlertViewTag
                                                            value:@""];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionVariableName
-                                                                  withPayload:[payload mutableCopy]];
+                                                                  withPayload:payload];
 }
 
 
@@ -945,13 +945,5 @@ replacementString:(NSString*)characters
     }
     return messages;
 }
-
-#pragma mark - Macros
-
-void CBAssertIfNotMainThread(void)
-{
-    CBAssert([NSThread isMainThread], @"\nERROR: Not on main thread.\n\nSet breakpoint on CBAssertIfNotMainThread to find out where.\n\nStacktrace: %@", [NSThread callStackSymbols]);
-}
-
 
 @end

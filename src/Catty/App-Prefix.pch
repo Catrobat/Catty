@@ -21,15 +21,21 @@
  */
 
 #ifdef __OBJC__
-
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
 #import "Logger.h"
 
+#warning ADD THIS RELEASE MODE CONSTANT TO BUILD SETTINGS
 #define kIsRelease 0
 
-#if kIsRelease
+//------------------------------------------------------------------------------------------------------------
+#if kIsRelease // kIsRelease == 1
+//============================================================================================================
+//
+//                                             RELEASE MODE
+//
+//============================================================================================================
+
 #undef DEBUG
 
 // UNCOMMENT ALL LOG AND DEBUG MESSAGES IN FIRST RELEASE VERSION
@@ -39,8 +45,20 @@
 #define NSLogError(...) /* suppress NSLog when in release mode */
 #define NSWarn(...) /* suppress NSLog when in release mode */
 #define NSError(...) /* suppress NSLog when in release mode */
+#define CBAssert(expression, ...) /* suppress CBAssert when in release mode */
+void CBAssertIfNotMainThread() {}  /* suppress CBAssertIfNotMainThread when in release mode */
 
-#else // kIsRelease
+
+
+
+
+//------------------------------------------------------------------------------------------------------------
+#else // kIsRelease == 0
+//============================================================================================================
+//
+//                                            DEVELOPER MODE
+//
+//============================================================================================================
 
 #ifdef DEBUG
 //#define NSDebug(...) [Logger debug:__VA_ARGS__];
@@ -56,5 +74,16 @@
 #define NSError(...) [Logger error:__VA_ARGS__];
 #define NSLogError(error) [Logger logError:error];
 
-#endif
+// https://www.mikeash.com/pyblog/friday-qa-2013-05-03-proper-use-of-asserts.html
+#define CBAssert(expression, ...) \
+do { if(!(expression)) { \
+NSLog(@"%@", [NSString stringWithFormat: @"Assertion failure: %s in %s on line %s:%d. %@", #expression, __PRETTY_FUNCTION__, __FILE__, __LINE__, [NSString stringWithFormat:@"" __VA_ARGS__]]); \
+abort(); }} while(0)
+
+#define CBAssertIfNotMainThread(...) \
+do { if(!([NSThread isMainThread])) { \
+NSLog(@"%@", [NSString stringWithFormat: @"ERROR: Not on main thread. Assertion failure in %s on line %s:%d. %@", __PRETTY_FUNCTION__, __FILE__, __LINE__, [NSString stringWithFormat:@"" __VA_ARGS__]]); \
+abort(); }} while(0)
+
 #endif // kIsRelease
+#endif
