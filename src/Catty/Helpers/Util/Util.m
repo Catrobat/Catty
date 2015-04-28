@@ -355,6 +355,7 @@
 {
     [self askUserForUniqueNameAndPerformAction:action
                                         target:target
+                                  cancelAction:nil
                                     withObject:nil
                                    promptTitle:title
                                  promptMessage:message
@@ -369,6 +370,7 @@
 
 + (void)askUserForUniqueNameAndPerformAction:(SEL)action
                                       target:(id)target
+                                cancelAction:(SEL)cancelAction
                                   withObject:(id)passingObject
                                  promptTitle:(NSString*)title
                                promptMessage:(NSString*)message
@@ -393,7 +395,8 @@
         kDTPayloadAskUserPromptPlaceholder : placeholder,
         kDTPayloadAskUserMinInputLength : @(minInputLength),
         kDTPayloadAskUserInvalidInputAlertMessage : invalidInputAlertMessage,
-        kDTPayloadAskUserExistingNames : (existingNames ? existingNames : [NSNull null])
+        kDTPayloadAskUserExistingNames : (existingNames ? existingNames : [NSNull null]),
+        kDTPayloadCancel : (cancelAction ? [NSValue valueWithPointer:cancelAction] : [NSNull null])
     };
     CatrobatAlertView *alertView = [[self class] promptWithTitle:title
                                                          message:message
@@ -448,6 +451,7 @@
 {
     [self askUserForTextAndPerformAction:action
                                   target:target
+                            cancelAction:nil
                               withObject:nil
                              promptTitle:title
                            promptMessage:message
@@ -461,6 +465,7 @@
 
 + (void)askUserForTextAndPerformAction:(SEL)action
                                 target:(id)target
+                          cancelAction:(SEL)cancelAction
                             withObject:(id)passingObject
                            promptTitle:(NSString*)title
                          promptMessage:(NSString*)message
@@ -473,6 +478,7 @@
 {
     [self askUserForUniqueNameAndPerformAction:action
                                         target:target
+                                  cancelAction:cancelAction
                                     withObject:passingObject
                                    promptTitle:title
                                  promptMessage:message
@@ -522,6 +528,7 @@
 {
     [self askUserForUniqueNameAndPerformAction:action
                                         target:target
+                                  cancelAction:nil
                                     withObject:(id)completion
                                    promptTitle:kLocalizedAddObject
                                  promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]
@@ -671,6 +678,13 @@ replacementString:(NSString*)characters
     NSMutableDictionary *payload = (NSMutableDictionary*)alertView.dataTransferMessage.payload;
     if (alertView.tag == kAskUserForUniqueNameAlertViewTag) {
         if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
+            SEL action = [((NSValue*)payload[kDTPayloadCancel]) pointerValue];
+            id target = payload[kDTPayloadAskUserTarget];
+            if (action && target) {
+                IMP imp = [target methodForSelector:action];
+                void (*func)(id, SEL) = (void *)imp;
+                func(target, action);
+            }
             return;
         }
 

@@ -133,7 +133,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
     LooksTableViewController *ltvc = [self.storyboard instantiateViewControllerWithIdentifier:kLooksTableViewControllerIdentifier];
     [ltvc setObject:[self.program.objectList objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)]];
-    ltvc.showAddLookActionSheetAtStart = YES;
+    ltvc.showAddLookActionSheetAtStartForObject = YES;
+    ltvc.showAddLookActionSheetAtStartForScriptEditor = NO;
     ltvc.afterSafeBlock =  ^(Look* look) {
         [self.navigationController popViewControllerAnimated:YES];
         if (!look) {
@@ -529,6 +530,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [unavailableNames removeString:spriteObject.name];
             [Util askUserForUniqueNameAndPerformAction:@selector(renameObjectActionToName:spriteObject:)
                                                 target:self
+                                          cancelAction:nil
                                             withObject:spriteObject
                                            promptTitle:kLocalizedRenameObject
                                          promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]

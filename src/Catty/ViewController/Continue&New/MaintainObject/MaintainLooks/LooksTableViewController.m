@@ -99,7 +99,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    if(self.showAddLookActionSheetAtStart) {
+    if(self.showAddLookActionSheetAtStartForScriptEditor || self.showAddLookActionSheetAtStartForObject) {
         [self showAddLookActionSheet];
     }
 }
@@ -426,6 +426,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    if (self.showAddLookActionSheetAtStartForScriptEditor || self.showAddLookActionSheetAtStartForObject){
+        if (self.afterSafeBlock) {
+            self.afterSafeBlock(nil);
+        }
+    }
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -469,7 +474,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                    existingNames:[self.object allLookNames]]
                                         andPath:newImageFileName];
 
-        // TODO: outsource this to FileManager
         NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
                                   [self.object projectPath], kProgramImagesDirName, newImageFileName];
         NSString *mediaType = info[UIImagePickerControllerMediaType];
@@ -487,12 +491,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
                     [self hideLoadingView];
                     [self showPlaceHolder:([self.object.lookList count] == 0)];
 
-                    if (self.showAddLookActionSheetAtStart) {
+                    if (self.showAddLookActionSheetAtStartForObject) {
                         [self addLookActionWithName:look.name look:look];
                     }else{
                     // ask user for image name
                     [Util askUserForTextAndPerformAction:@selector(addLookActionWithName:look:)
                                                   target:self
+                                            cancelAction:@selector(cancelPaintSave)
                                               withObject:look
                                              promptTitle:kLocalizedAddImage
                                            promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
@@ -569,6 +574,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             Look *look = (Look*)payload[kDTPayloadLook];
             [Util askUserForTextAndPerformAction:@selector(renameLookActionToName:look:)
                                           target:self
+                                        cancelAction:nil
                                       withObject:look
                                      promptTitle:kLocalizedRenameImage
                                    promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
@@ -621,7 +627,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [self.navigationController pushViewController:vc animated:YES];
             
         }else{
-            if (self.showAddLookActionSheetAtStart) {
+            if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor) {
                 if(self.afterSafeBlock) {
                     self.afterSafeBlock(nil);
                 }
@@ -713,7 +719,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     if (self.paintImage) {
         [self addPaintedImage:self.paintImage andPath:self.paintImagePath];
-    }else if (self.showAddLookActionSheetAtStart){
+    }else if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor){
         if (self.afterSafeBlock) {
             self.afterSafeBlock(nil);
         }
@@ -722,12 +728,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 -(void)cancelPaintSave
 {
-    if (self.showAddLookActionSheetAtStart){
+    if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor){
         if (self.afterSafeBlock) {
             self.afterSafeBlock(nil);
         }
     }
 }
+
 
 - (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path
 {
@@ -816,11 +823,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 [self showPlaceHolder:([self.object.lookList count] == 0)];
                 
                     // ask user for image name
-                if (self.showAddLookActionSheetAtStart) {
+                if (self.showAddLookActionSheetAtStartForObject) {
                     [self addLookActionWithName:look.name look:look];
                 }else{
                 [Util askUserForTextAndPerformAction:@selector(addLookActionWithName:look:)
                                               target:self
+                                        cancelAction:@selector(cancelPaintSave)
                                           withObject:look
                                          promptTitle:kLocalizedAddImage
                                        promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
@@ -832,7 +840,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                             invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
                 }
             }];
-            
         }];
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
         [queue addOperation:saveOp];

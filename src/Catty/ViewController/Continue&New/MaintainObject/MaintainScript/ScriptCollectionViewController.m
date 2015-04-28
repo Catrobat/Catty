@@ -1267,7 +1267,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
             LooksTableViewController *ltvc = [self.storyboard instantiateViewControllerWithIdentifier:kLooksTableViewControllerIdentifier];
             [ltvc setObject:self.object];
-            ltvc.showAddLookActionSheetAtStart = YES;
+            ltvc.showAddLookActionSheetAtStartForScriptEditor = YES;
+            ltvc.showAddLookActionSheetAtStartForObject = NO;
             ltvc.afterSafeBlock =  ^(Look* look) {
                 [lookBrick setLook:look forLineNumber:line andParameterNumber:parameter];
                 [self.navigationController popViewControllerAnimated:YES];
@@ -1316,6 +1317,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
             [Util askUserForUniqueNameAndPerformAction:@selector(addMessageWithName:andCompletion:)
                                                 target:self
+                                          cancelAction:nil 
                                             withObject:(id) ^(NSString* message){
                                                 [messageBrick setMessage:message forLineNumber:line andParameterNumber:parameter];
                                             }
