@@ -61,7 +61,7 @@
         self.yDestination = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValues
 {
     self.durationInSeconds = [[Formula alloc] initWithInteger:1];
     self.xDestination = [[Formula alloc] initWithInteger:100];

@@ -40,7 +40,7 @@
     return kLocalizedSpeak;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValues
 {
     Formula *speakFormula = [Formula new];
     FormulaElement *formulaElement = [FormulaElement new];

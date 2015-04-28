@@ -39,7 +39,7 @@
     self.ifCondition = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValues
 {
     self.ifCondition = [[Formula alloc] initWithInteger:1];
 }

@@ -37,7 +37,7 @@
     self.durationInSeconds = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValues
 {
     self.durationInSeconds = [[Formula alloc] initWithZero];
 }

@@ -36,7 +36,7 @@
     self.steps = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValues
 {
     self.steps = [[Formula alloc] initWithInteger:1];
 }

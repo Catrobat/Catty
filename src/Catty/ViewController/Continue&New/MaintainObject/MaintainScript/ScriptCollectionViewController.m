@@ -438,6 +438,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     if (self.scriptDataSource.scriptList.count == 0 && ![self isScript:scriptOrBrick.brickType]) {
         StartScript *startScript = [StartScript new];
         startScript.object = self.object;
+        [startScript setDefaultValues];
         [self.scriptDataSource addScript:startScript toSection:topIndexpath.section];
         
         NSArray *bricks = [self.scriptDataSource linkedBricksForBrick:scriptOrBrick.brickType];
@@ -449,6 +450,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         }
         
         id newScript = [[brickClass alloc] initWithType:scriptOrBrick.brickType andCategory:scriptOrBrick.brickCategoryType];
+        if([newScript conformsToProtocol:@protocol(ScriptProtocol)])
+            [newScript setDefaultValues];
         [self.scriptDataSource addScript:newScript toSection:lastSection];
     } else {
         [self resetScrollingtoTopWithIndexPath:topIndexpath animated:NO];

@@ -41,7 +41,7 @@
     self.brightness = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValues
 {
     self.brightness = [[Formula alloc] initWithZero];
 }
