@@ -68,7 +68,6 @@
     }
 
     [program addObjectWithName:kLocalizedBackground];
-    [program addObjectWithName:kLocalizedMyObject];
     program.playing = NO;
     NSDebug(@"%@", [program description]);
     return program;
