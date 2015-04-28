@@ -178,21 +178,25 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)editAction:(id)sender
 {
     NSMutableArray *options = [NSMutableArray array];
-    [options addObject:kLocalizedRename];
     if ([self.program numberOfNormalObjects]) {
         [options addObject:kLocalizedDeleteObjects];
     }
+    [options addObject:kLocalizedRenameProgram];
     if (self.useDetailCells) {
         [options addObject:kLocalizedHideDetails];
     } else {
         [options addObject:kLocalizedShowDetails];
     }
-    [Util actionSheetWithTitle:kLocalizedEditProgram
-                      delegate:self
-        destructiveButtonTitle:kLocalizedDelete
-             otherButtonTitles:options
-                           tag:kEditProgramActionSheetTag
-                          view:self.navigationController.view];
+    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditProgram
+                                                         delegate:self
+                                           destructiveButtonTitle:kLocalizedDeleteProgram
+                                                otherButtonTitles:options
+                                                              tag:kEditProgramActionSheetTag
+                                                             view:self.navigationController.view];
+    [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
+    if ([self.program numberOfNormalObjects]) {
+        [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:1];
+    }
 }
 
 - (void)confirmDeleteSelectedObjectsAction:(id)sender
@@ -449,7 +453,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == kEditProgramActionSheetTag) {
-        if (buttonIndex == 1) {
+        if ((buttonIndex == 1) && [self.program numberOfNormalObjects]) {
+            // Delete objects button
+            [self setupEditingToolBar];
+            [super changeToEditingMode:actionSheet];
+        } else if ((buttonIndex == 1) || ((buttonIndex == 2) && [self.program numberOfNormalObjects])) {
             // Rename program button
             NSMutableArray *unavailableNames = [[Program allProgramNames] mutableCopy];
             [unavailableNames removeString:self.program.header.programName];
@@ -465,11 +473,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                    blockedCharacterSet:[self blockedCharacterSet]
                               invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                          existingNames:unavailableNames];
-        } else if (buttonIndex == 2 && [self.program numberOfNormalObjects]) {
-            // Delete objects button
-            [self setupEditingToolBar];
-            [super changeToEditingMode:actionSheet];
-        } else if (buttonIndex == 3 || ((buttonIndex == 2) && (! [self.program numberOfNormalObjects]))) {
+        } else if ((buttonIndex == 2) || ((buttonIndex == 3) && [self.program numberOfNormalObjects])) {
             // Show/Hide details button
             self.useDetailCells = (! self.useDetailCells);
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

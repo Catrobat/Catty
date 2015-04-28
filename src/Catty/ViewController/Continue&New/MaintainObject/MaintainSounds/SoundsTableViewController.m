@@ -173,14 +173,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
             }
         }
     }
-
 }
 
 #pragma mark - actions
 - (void)editAction:(id)sender
 {
     NSMutableArray *options = [NSMutableArray array];
-    if ([self.object.soundList count]) {
+    if (self.object.soundList.count) {
         [options addObject:kLocalizedDeleteSounds];
     }
     if (self.useDetailCells) {
@@ -188,12 +187,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else {
         [options addObject:kLocalizedShowDetails];
     }
-    [Util actionSheetWithTitle:kLocalizedEditSounds
-                      delegate:self
-        destructiveButtonTitle:nil
-             otherButtonTitles:options
-                           tag:kEditSoundsActionSheetTag
-                          view:self.navigationController.view];
+    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditSounds
+                                                         delegate:self
+                                           destructiveButtonTitle:nil
+                                                otherButtonTitles:options
+                                                              tag:kEditSoundsActionSheetTag
+                                                             view:self.navigationController.view];
+    if (self.object.soundList.count) {
+        [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
+    }
 }
 
 - (void)addSoundToObjectAction:(Sound*)sound

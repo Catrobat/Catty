@@ -266,7 +266,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                                                              view:self.navigationController.view];
     actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditBrickOrScript
                                                                     withPayload:@{ kDTPayloadCellIndexPath : indexPath }];
-//    [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.8f]];
     [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:0 green:37.0f/255.0f blue:52.0f/255.0f alpha:0.95f]];
     [actionSheet setButtonTextColor:[UIColor whiteColor]];
     [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
@@ -288,8 +287,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         // delete script or brick action
         if (buttonIndex == actionSheet.destructiveButtonIndex) {
             if ([brickCell.scriptOrBrick isKindOfClass:[Script class]]) {
-                [self.scriptDataSource removeScriptsAtSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
                 [(Script*)brickCell.scriptOrBrick removeFromObject];
+                [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
             } else {
                 CBAssert([brickCell.scriptOrBrick isKindOfClass:[Brick class]]);
                 Brick *brick = (Brick*)brickCell.scriptOrBrick;
@@ -678,7 +677,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     ifLogicEndBrick.ifBeginBrick = ifLogicBeginBrick;
 }
 
-
 - (void)resetScrollingtoTopWithIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated
 {
     if ([self.collectionView numberOfItemsInSection:0] > 0) {
@@ -688,10 +686,9 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 - (void)resetScrollingtoBottomAnimated:(BOOL)animated
 {
-    if (!self.scriptDataSource.numberOfSections) {
+    if (! self.scriptDataSource.numberOfSections) {
         return;
     }
-    
     NSUInteger lastSection = self.scriptDataSource.numberOfSections;
     NSUInteger itemCount = [self.collectionView numberOfItemsInSection:lastSection - 1];
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:itemCount - 1 inSection:lastSection - 1];
@@ -1122,8 +1119,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             ++countEnd;
         }
     }
-    NSIndexPath* elsePath =[NSIndexPath indexPathForItem:(countElse+1) inSection:indexPath.section];
-    NSIndexPath* endPath =[NSIndexPath indexPathForItem:(countEnd+1) inSection:indexPath.section];
+    NSIndexPath *elsePath =[NSIndexPath indexPathForItem:(countElse+1) inSection:indexPath.section];
+    NSIndexPath *endPath =[NSIndexPath indexPathForItem:(countEnd+1) inSection:indexPath.section];
     if (selectButton.selected) {
         selectButton.selected = NO;
         [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:indexPath]];
@@ -1160,7 +1157,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
     NSIndexPath *beginPath =[NSIndexPath indexPathForItem:(countBegin+1) inSection:indexPath.section];
     NSIndexPath *endPath =[NSIndexPath indexPathForItem:(countEnd+1) inSection:indexPath.section];
-    if (!selectButton.selected) {
+    if (! selectButton.selected) {
         selectButton.selected = selectButton.touchInside;
         [self.selectedIndexPaths setObject:indexPath forKey:[self keyWithSelectIndexPath:indexPath]];
         [self.selectedIndexPaths setObject:beginPath forKey:[self keyWithSelectIndexPath:beginPath]];
@@ -1174,14 +1171,14 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     
 }
 
--(void)selectLogicEndWithBrick:(Brick*)brick Script:(Script*)script IndexPath:(NSIndexPath*)indexPath andSelectButton:(SelectButton *)selectButton
+- (void)selectLogicEndWithBrick:(Brick*)brick Script:(Script*)script IndexPath:(NSIndexPath*)indexPath andSelectButton:(SelectButton*)selectButton
 {
     IfLogicEndBrick *endBrick = (IfLogicEndBrick*)brick;
     NSInteger countElse = 0;
     NSInteger countbegin = 0;
     BOOL foundIf = NO;
     for (Brick *checkBrick in script.brickList) {
-        if (!foundIf) {
+        if (! foundIf) {
             if ([checkBrick isEqual:endBrick.ifBeginBrick]) {
                 foundIf = YES;
             }else{
@@ -1190,14 +1187,13 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         }
         if ([checkBrick isEqual:endBrick.ifElseBrick]) {
             break;
-        }else{
+        } else {
             countElse++;
         }
-        
     }
-    NSIndexPath* beginPath =[NSIndexPath indexPathForItem:countbegin+1 inSection:indexPath.section];
-    NSIndexPath* elsePath =[NSIndexPath indexPathForItem:countElse+1 inSection:indexPath.section];
-    if (!selectButton.selected) {
+    NSIndexPath *beginPath =[NSIndexPath indexPathForItem:countbegin+1 inSection:indexPath.section];
+    NSIndexPath *elsePath =[NSIndexPath indexPathForItem:countElse+1 inSection:indexPath.section];
+    if (! selectButton.selected) {
         selectButton.selected = selectButton.touchInside;
         [self.selectedIndexPaths setObject:indexPath forKey:[self keyWithSelectIndexPath:indexPath]];
         [self.selectedIndexPaths setObject:beginPath forKey:[self keyWithSelectIndexPath:beginPath]];
@@ -1208,8 +1204,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:beginPath]];
         [self.selectedIndexPaths removeObjectForKey:[self keyWithSelectIndexPath:elsePath]];
     }
-    
-    
 }
 
 #pragma mark - Animate Logic Bricks
@@ -1264,7 +1258,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         NSInteger endcount = 0;
         BOOL found = NO;
         for (Brick *checkBrick in script.brickList) {
-            if (!found) {
+            if (! found) {
                 if ([checkBrick isEqual:begin.ifElseBrick]) {
                     found = YES;
                 }else{
@@ -1273,7 +1267,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             }
             if ([checkBrick isEqual:begin.ifEndBrick]) {
                 break;
-            }else{
+            } else {
                 endcount++;
             }
             
@@ -1285,19 +1279,18 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         NSInteger endcount = 0;
         BOOL found = NO;
         for (Brick *checkBrick in script.brickList) {
-            if (!found) {
+            if (! found) {
                 if ([checkBrick isEqual:elseBrick.ifBeginBrick]) {
                     found = YES;
-                }else{
+                } else {
                     begincount++;
                 }
             }
             if ([checkBrick isEqual:elseBrick.ifEndBrick]) {
                 break;
-            }else{
+            } else {
                 endcount++;
             }
-            
         }
         [self animateIf:begincount and:endcount andIndexPath:indexPath];
     } else if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
@@ -1306,16 +1299,16 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         NSInteger begincount = 0;
         BOOL found = NO;
         for (Brick *checkBrick in script.brickList) {
-            if (!found) {
+            if (! found) {
                 if ([checkBrick isEqual:endBrick.ifBeginBrick]) {
                     found = YES;
-                }else{
+                } else {
                     begincount++;
                 }
             }
             if ([checkBrick isEqual:endBrick.ifElseBrick]) {
                 break;
-            }else{
+            } else {
                 elsecount++;
             }
             
@@ -1327,7 +1320,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 -(void)animateLoop:(NSInteger)count andIndexPath:(NSIndexPath*)indexPath
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        BrickCell*cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:count+1 inSection:indexPath.section]];
+        BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:count+1 inSection:indexPath.section]];
         [cell animateBrick:YES];
     });
 }
@@ -1335,8 +1328,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 -(void)animateIf:(NSInteger)count1 and:(NSInteger)count2 andIndexPath:(NSIndexPath*)indexPath
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        BrickCell* elsecell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:count1+1 inSection:indexPath.section]];
-        BrickCell* begincell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:count2+1 inSection:indexPath.section]];
+        BrickCell *elsecell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:count1+1 inSection:indexPath.section]];
+        BrickCell *begincell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:count2+1 inSection:indexPath.section]];
         [elsecell animateBrick:YES];
         [begincell animateBrick:YES];
     });
@@ -1443,7 +1436,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 - (void)updateData:(id)data forBrick:(Brick*)brick andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
-    if([brick conformsToProtocol:@protocol(BrickLookProtocol)]) {
+    if ([brick conformsToProtocol:@protocol(BrickLookProtocol)]) {
         Brick<BrickLookProtocol> *lookBrick = (Brick<BrickLookProtocol>*)brick;
         if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
             LooksTableViewController *ltvc = [self.storyboard instantiateViewControllerWithIdentifier:kLooksTableViewControllerIdentifier];
@@ -1459,7 +1452,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [lookBrick setLook:[Util lookWithName:(NSString*)data forObject:self.object] forLineNumber:line andParameterNumber:parameter];
         }
     }
-    if([brick conformsToProtocol:@protocol(BrickSoundProtocol)]) {
+    if ([brick conformsToProtocol:@protocol(BrickSoundProtocol)]) {
         Brick<BrickSoundProtocol> *soundBrick = (Brick<BrickSoundProtocol>*)brick;
         if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
             SoundsTableViewController *ltvc = [self.storyboard instantiateViewControllerWithIdentifier:kSoundsTableViewControllerIdentifier];
@@ -1475,7 +1468,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [soundBrick setSound:[Util soundWithName:(NSString*)data forObject:self.object] forLineNumber:line andParameterNumber:parameter];
         }
     }
-    if([brick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
+    if ([brick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
         Brick<BrickObjectProtocol> *objectBrick = (Brick<BrickObjectProtocol>*)brick;
         if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
             [Util addObjectAlertForProgram:self.object.program andPerformAction:@selector(addObjectWithName:andCompletion:) onTarget:self withCompletion:^(NSString *objectName){
@@ -1486,13 +1479,13 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [objectBrick setObject:[Util objectWithName:(NSString*)data forProgram:self.object.program] forLineNumber:line andParameterNumber:parameter];
         }
     }
-    if([brick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
+    if ([brick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
         [(Brick<BrickFormulaProtocol>*)brick setFormula:(Formula*)data forLineNumber:line andParameterNumber:parameter];
     }
-    if([brick conformsToProtocol:@protocol(BrickTextProtocol)]) {
+    if ([brick conformsToProtocol:@protocol(BrickTextProtocol)]) {
         [(Brick<BrickTextProtocol>*)brick setText:(NSString*)data forLineNumber:line andParameterNumber:parameter];
     }
-    if([brick conformsToProtocol:@protocol(BrickMessageProtocol)]) {
+    if ([brick conformsToProtocol:@protocol(BrickMessageProtocol)]) {
         Brick<BrickMessageProtocol> *messageBrick = (Brick<BrickMessageProtocol>*)brick;
         if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
             [Util askUserForUniqueNameAndPerformAction:@selector(addMessageWithName:andCompletion:)

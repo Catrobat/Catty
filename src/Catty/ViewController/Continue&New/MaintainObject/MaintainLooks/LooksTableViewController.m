@@ -115,7 +115,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)editAction:(id)sender
 {
     NSMutableArray *options = [NSMutableArray array];
-    if ([self.object.lookList count]) {
+    if (self.object.lookList.count) {
         [options addObject:kLocalizedDeleteLooks];
     }
     if (self.useDetailCells) {
@@ -123,12 +123,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else {
         [options addObject:kLocalizedShowDetails];
     }
-    [Util actionSheetWithTitle:kLocalizedEditLooks
-                      delegate:self
-        destructiveButtonTitle:nil
-             otherButtonTitles:options
-                           tag:kEditLooksActionSheetTag
-                          view:self.navigationController.view];
+    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditLooks
+                                                         delegate:self
+                                           destructiveButtonTitle:nil
+                                                otherButtonTitles:options
+                                                              tag:kEditLooksActionSheetTag
+                                                             view:self.navigationController.view];
+    if (self.object.lookList.count) {
+        [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
+    }
 }
 
 - (void)addLookAction:(id)sender

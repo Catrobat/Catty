@@ -197,6 +197,9 @@
 "Delete Objects" = "Delete Objects";
 
 /* No comment provided by engineer. */
+"Delete Program" = "Delete Program";
+
+/* No comment provided by engineer. */
 "Delete Programs" = "Delete Programs";
 
 /* No comment provided by engineer. */
@@ -722,7 +725,7 @@
 "Rename object" = "Rename object";
 
 /* No comment provided by engineer. */
-"Rename program" = "Rename program";
+"Rename Program" = "Rename Program";
 
 /* No comment provided by engineer. */
 "Rename sound" = "Rename sound";

@@ -122,20 +122,23 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)editAction:(id)sender
 {
     NSMutableArray *options = [NSMutableArray array];
+    if (self.programLoadingInfos.count) {
+        [options addObject:kLocalizedDeletePrograms];
+    }
     if (self.useDetailCells) {
         [options addObject:kLocalizedHideDetails];
     } else {
         [options addObject:kLocalizedShowDetails];
     }
-    if ([self.programLoadingInfos count]) {
-        [options addObject:kLocalizedDeletePrograms];
+    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditPrograms
+                                                         delegate:self
+                                           destructiveButtonTitle:nil
+                                                otherButtonTitles:options
+                                                              tag:kEditProgramsActionSheetTag
+                                                             view:self.navigationController.view];
+    if (self.programLoadingInfos.count) {
+        [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
     }
-    [Util actionSheetWithTitle:kLocalizedEditPrograms
-                      delegate:self
-        destructiveButtonTitle:nil
-             otherButtonTitles:options
-                           tag:kEditProgramsActionSheetTag
-                          view:self.navigationController.view];
 }
 
 - (void)addProgramAction:(id)sender
@@ -473,7 +476,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == kEditProgramsActionSheetTag) {
-        if (buttonIndex == 0) {
+        if ((buttonIndex == 0) && self.programLoadingInfos.count) {
+            // Delete Programs button
+            [self setupEditingToolBar];
+            [super changeToEditingMode:actionSheet];
+        } else if ((buttonIndex == 0) || ((buttonIndex == 1) && [self.programLoadingInfos count])) {
             // Show/Hide Details button
             self.useDetailCells = (! self.useDetailCells);
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -489,10 +496,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
             [defaults synchronize];
             [self reloadTableView];
-        } else if ((buttonIndex == 1) && [self.programLoadingInfos count]) {
-            // Delete Programs button
-            [self setupEditingToolBar];
-            [super changeToEditingMode:actionSheet];
         }
     } else if (actionSheet.tag == kEditProgramActionSheetTag) {
         if (buttonIndex == 0) {
@@ -578,7 +581,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return programLoadingInfo;
 }
 
-- (void)removeProgramWithName:(NSString *)programName programID:(NSString *)programID
+- (void)removeProgramWithName:(NSString*)programName programID:(NSString*)programID
 {
     ProgramLoadingInfo *oldProgramLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:programName programID:programID];
     NSInteger rowIndex = 0;
@@ -592,20 +595,19 @@ static NSCharacterSet *blockedCharacterSet = nil;
             self.dataCache = nil;
             // needed to avoid unexpected behaviour when programs are renamed
             [[RuntimeImageCache sharedImageCache] clearImageCache];
-            break;
+            if (! self.programLoadingInfos.count) {
+                [self reloadTableView];
+            }
+            return;
         }
         ++rowIndex;
     }
-    // if last program was removed [programLoadingInfos count] returns 0,
-    // then default program was automatically recreated, therefore reload
-    if (! [self.programLoadingInfos count]) {
-        [self reloadTableView];
-    }
+    [self reloadTableView];
 }
 
-- (void)renameOldProgramWithName:(NSString *)oldProgramName
-                       programID:(NSString *)programID
-                toNewProgramName:(NSString *)newProgramName
+- (void)renameOldProgramWithName:(NSString*)oldProgramName
+                       programID:(NSString*)programID
+                toNewProgramName:(NSString*)newProgramName
 {
     ProgramLoadingInfo *oldProgramLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:oldProgramName
                                                                                                programID:programID];

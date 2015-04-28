@@ -35,8 +35,6 @@
 // Remove single brick.
 - (void)removeBrickAtIndexPath:(NSIndexPath *)indexPath;
 
-- (void)copyBrickAtIndexPath:(NSIndexPath *)atIndexPath;
-
 // Script with brick list array.
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath;
 
