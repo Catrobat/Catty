@@ -487,6 +487,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
                     [self hideLoadingView];
                     [self showPlaceHolder:([self.object.lookList count] == 0)];
 
+                    if (self.showAddLookActionSheetAtStart) {
+                        [self addLookActionWithName:look.name look:look];
+                    }else{
                     // ask user for image name
                     [Util askUserForTextAndPerformAction:@selector(addLookActionWithName:look:)
                                                   target:self
@@ -499,6 +502,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                           maxInputLength:kMaxNumOfLookNameCharacters
                                      blockedCharacterSet:[self blockedCharacterSet]
                                 invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
+                    }
                 }];
             }];
             NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -699,7 +703,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.paintImagePath = path;
     
     [self performActionOnConfirmation:@selector(savePaintImage)
-                       canceledAction:nil
+                       canceledAction:@selector(cancelPaintSave)
                                target:self
                          confirmTitle:kLocalizedSaveToPocketCode
                        confirmMessage:kLocalizedPaintSaveChanges];
@@ -709,6 +713,19 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     if (self.paintImage) {
         [self addPaintedImage:self.paintImage andPath:self.paintImagePath];
+    }else if (self.showAddLookActionSheetAtStart){
+        if (self.afterSafeBlock) {
+            self.afterSafeBlock(nil);
+        }
+    }
+}
+
+-(void)cancelPaintSave
+{
+    if (self.showAddLookActionSheetAtStart){
+        if (self.afterSafeBlock) {
+            self.afterSafeBlock(nil);
+        }
     }
 }
 
@@ -773,7 +790,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self showLoadingView];
         
         NSData *imageData = UIImagePNGRepresentation(image);
-        NSString *lookName = @"TEST";
+        NSString *lookName = @"LOOK";
             // use temporary filename, will be renamed by user afterwards
         NSString *newImageFileName = [NSString stringWithFormat:@"temp_%@.%@",
                                       [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
@@ -799,6 +816,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 [self showPlaceHolder:([self.object.lookList count] == 0)];
                 
                     // ask user for image name
+                if (self.showAddLookActionSheetAtStart) {
+                    [self addLookActionWithName:look.name look:look];
+                }else{
                 [Util askUserForTextAndPerformAction:@selector(addLookActionWithName:look:)
                                               target:self
                                           withObject:look
@@ -810,7 +830,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                       maxInputLength:kMaxNumOfLookNameCharacters
                                  blockedCharacterSet:[self blockedCharacterSet]
                             invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
+                }
             }];
+            
         }];
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
         [queue addOperation:saveOp];
