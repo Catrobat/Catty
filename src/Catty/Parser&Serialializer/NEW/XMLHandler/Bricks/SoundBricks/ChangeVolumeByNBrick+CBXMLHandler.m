@@ -33,7 +33,7 @@
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
     ChangeVolumeByNBrick *changeVolumeByNBrick = [self new];
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VOLUME_CHANGE"];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VOLUME_CHANGE" withContext:context];
     changeVolumeByNBrick.volume = formula;
     return changeVolumeByNBrick;
 }

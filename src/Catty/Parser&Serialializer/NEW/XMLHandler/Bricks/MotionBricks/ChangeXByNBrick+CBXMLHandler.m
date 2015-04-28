@@ -34,7 +34,7 @@
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
     
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"X_POSITION_CHANGE"];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"X_POSITION_CHANGE" withContext:context];
     
     ChangeXByNBrick *changeXByNBrick = [self new];
     changeXByNBrick.xMovement = formula;

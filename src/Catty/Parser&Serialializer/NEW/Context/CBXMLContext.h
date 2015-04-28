@@ -58,6 +58,7 @@
 @property (nonatomic, strong) NSMutableArray *brickList; // contains all bricks (used only by serializer)
 @property (nonatomic, strong) NSMutableArray *programVariableList; // (used for parsing only)
 @property (nonatomic, strong) NSMutableDictionary *spriteObjectNameVariableList; // (used for parsing only)
+@property (nonatomic, strong) NSMutableDictionary *formulaVariableNameList; // (used for parsing only)
 @property (nonatomic, strong) VariablesContainer *variables; // (used for serialization only)
 
 - (id)mutableCopy;

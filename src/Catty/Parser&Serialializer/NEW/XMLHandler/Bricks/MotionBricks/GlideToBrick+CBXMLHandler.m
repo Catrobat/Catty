@@ -34,11 +34,11 @@
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:3];
     Formula *formulaDuration = [CBXMLParserHelper formulaInXMLElement:xmlElement
-                                                      forCategoryName:@"DURATION_IN_SECONDS"];
+                                                      forCategoryName:@"DURATION_IN_SECONDS" withContext:context];
     Formula *formulaXDestination = [CBXMLParserHelper formulaInXMLElement:xmlElement
-                                                          forCategoryName:@"X_DESTINATION"];
+                                                          forCategoryName:@"X_DESTINATION" withContext:context];
     Formula *formulaYDestination = [CBXMLParserHelper formulaInXMLElement:xmlElement
-                                                          forCategoryName:@"Y_DESTINATION"];
+                                                          forCategoryName:@"Y_DESTINATION" withContext:context];
     GlideToBrick *glideToBrick = [self new];
     glideToBrick.durationInSeconds = formulaDuration;
     glideToBrick.xDestination = formulaXDestination;

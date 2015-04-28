@@ -620,6 +620,9 @@
 "Object name" = "Object name";
 
 /* No comment provided by engineer. */
+"Object variables:" = "Object variables:";
+
+/* No comment provided by engineer. */
 "Objects" = "Objects";
 
 /* No comment provided by engineer. */
@@ -693,6 +696,9 @@
 
 /* No comment provided by engineer. */
 "Program name" = "Program name";
+
+/* No comment provided by engineer. */
+"Program variables:" = "Program variables:";
 
 /* No comment provided by engineer. */
 "Programs" = "Programs";
@@ -912,6 +918,9 @@
 
 /* No comment provided by engineer. */
 "This feature is coming soon!" = "This feature is coming soon!";
+
+/* No comment provided by engineer. */
+"This variable can not be deleted because it is still in use." = "This variable can not be deleted because it is still in use.";
 
 /* No comment provided by engineer. */
 "Thursday" = "Thursday";

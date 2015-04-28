@@ -58,7 +58,7 @@
     UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:context];
     [XMLError exceptionIfNil:userVariable message:@"Unable to parse userVariable..."];
 
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VARIABLE"];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VARIABLE" withContext:context];
     SetVariableBrick *setVariableBrick = [self new];
     setVariableBrick.userVariable = userVariable;
     setVariableBrick.variableFormula = formula;
