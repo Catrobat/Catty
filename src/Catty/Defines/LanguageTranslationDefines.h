@@ -133,7 +133,6 @@
 #define kLocalizedDeleteSounds NSLocalizedString(@"Delete Sounds", nil)
 #define kLocalizedHideDetails NSLocalizedString(@"Hide Details", nil)
 #define kLocalizedShowDetails NSLocalizedString(@"Show Details", nil)
-#define kLocalizedShowDetails NSLocalizedString(@"Show Details", nil)
 #define kLocalizedDeleteLooks NSLocalizedString(@"Delete Looks",nil)
 #define kLocalizedFromCamera NSLocalizedString(@"From Camera", nil)
 #define kLocalizedChooseImage NSLocalizedString(@"Choose image", nil)
@@ -159,7 +158,6 @@
 #define kLocalizedDownload NSLocalizedString(@"Download", nil)
 #define kLocalizedMore NSLocalizedString(@"More", nil)
 #define kLocalizedDelete NSLocalizedString(@"Delete", nil)
-#define kLocalizedPocketCode NSLocalizedString(@"Pocket Code", nil)
 #define kLocalizedAddObject NSLocalizedString(@"Add object", nil)
 #define kLocalizedAddImage NSLocalizedString(@"Add image", nil)
 #define kLocalizedRenameObject NSLocalizedString(@"Rename object", nil)
@@ -187,7 +185,6 @@
 #define kLocalizedDelete NSLocalizedString(@"Delete", nil)
 #define kLocalizedLoading NSLocalizedString(@"Loading", nil)
 #define kLocalizedSaved NSLocalizedString(@"Saved", nil)
-#define kLocalizedDescription NSLocalizedString(@"Description", nil)
 #define kLocalizedAuthor NSLocalizedString(@"Author", nil)
 #define kLocalizedDownloads NSLocalizedString(@"Downloads", nil)
 #define kLocalizedUploaded NSLocalizedString(@"Uploaded", nil)
@@ -218,14 +215,12 @@
 #define kLocalizedSound NSLocalizedString(@"Sound", nil)
 #define kLocalizedLooks NSLocalizedString(@"Looks", nil)
 #define kLocalizedVariables NSLocalizedString(@"Variables", nil)
-#define kLocalizedLogin NSLocalizedString(@"Login", nil)
-#define kLocalizedUsername NSLocalizedString(@"Username", nil)
-#define kLocalizedPassword NSLocalizedString(@"Password", nil)
 #define kLocalizedRecording NSLocalizedString(@"Recording", nil)
 #define kLocalizedError NSLocalizedString(@"Error", nil)
 #define kLocalizedMemoryWarning NSLocalizedString(@"Not enough Memory", nil)
 #define kLocalizedReportProgram NSLocalizedString(@"Report as inappropriate", nil)
 #define kLocalizedRecording NSLocalizedString(@"Recording", nil)
+#define kLocalizedName NSLocalizedString(@"Name", nil)
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -412,6 +407,29 @@
 #define kLocalizedChangeVariable NSLocalizedString(@"Change variable\n%@\nby %@", nil)
 
 #endif // kIsRelease
+
+//************************************************************************************************************
+//**********************************       Login/Upload            *******************************************
+//************************************************************************************************************
+
+#define kLocalizedLogin NSLocalizedString(@"Login", nil)
+#define kLocalizedUsername NSLocalizedString(@"Username", nil)
+#define kLocalizedPassword NSLocalizedString(@"Password", nil)
+#define kLocalizedEmail NSLocalizedString(@"Email", nil)
+#define kLocalizedRegister NSLocalizedString(@"Register", nil)
+#define kLocalizedLoginOrRegister NSLocalizedString(@"Login/Register", nil)
+#define kLocalizedUploadProgram NSLocalizedString(@"Upload Program", nil)
+#define kLocalizedLoginUsernameNecessary NSLocalizedString(@"Username is necessary!", nil)
+#define kLocalizedLoginEmailNotValid NSLocalizedString(@"Email is not valid!", nil)
+#define kLocalizedLoginPasswordNotValid NSLocalizedString(@"Password is not vaild! \n It has to contain at least 6 characters/symbols", nil)
+#define kLocalizedUploadProgramNecessary NSLocalizedString(@"Program Name is necessary!", nil)
+#define kLocalizedForgotPassword NSLocalizedString(@"Forgot password", nil)
+#define kLocalizedTermsAgreementPart NSLocalizedString(@"By registering you agree to our", nil)
+#define kLocalizedUploadSuccessfull NSLocalizedString(@"Upload successfull", nil)
+#define kLocalizedRegistrationSuccessfull NSLocalizedString(@"Registration successfull", nil)
+#define kUploadSelectedProgram NSLocalizedString(@"Upload Selected Program", nil)
+#define kLocalizedUploadProblem NSLocalizedString (@"Problems occured while Uploading your program", nil)
+#define kLocalizedUploadSelectProgram NSLocalizedString (@"Please select a program to upload", nil)
 
 //************************************************************************************************************
 //************************************       PAINT                ********************************************

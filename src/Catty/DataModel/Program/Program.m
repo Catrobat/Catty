@@ -90,7 +90,7 @@
     CGFloat languageVersion = [Util detectCBLanguageVersionFromXMLWithPath:xmlPath];
 
     if (languageVersion == kCatrobatInvalidVersion) {
-        NSLog(@"Invalid catrobat language version!");
+        NSDebug(@"Invalid catrobat language version!");
         return nil;
     }
 

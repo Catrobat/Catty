@@ -163,7 +163,7 @@
   
   CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
   if(colorSpaceRef == NULL) {
-    NSLog(@"Error allocating color space");
+    NSDebug(@"Error allocating color space");
     CGDataProviderRelease(provider);
     return nil;
   }
@@ -186,7 +186,7 @@
   uint32_t* pixels = (uint32_t*)malloc(bufferLength);
   
   if(pixels == NULL) {
-    NSLog(@"Error: Memory not allocated for bitmap");
+    NSDebug(@"Error: Memory not allocated for bitmap");
     CGDataProviderRelease(provider);
     CGColorSpaceRelease(colorSpaceRef);
     CGImageRelease(iref);
@@ -202,7 +202,7 @@
                                                   bitmapInfo);
   
   if(newcontext == NULL) {
-    NSLog(@"Error context not created");
+    NSDebug(@"Error context not created");
     free(pixels);
   }
   

@@ -92,6 +92,9 @@
 "brush" = "brush";
 
 /* No comment provided by engineer. */
+"By registering you agree to our" = "By registering you agree to our";
+
+/* No comment provided by engineer. */
 "By switching to the section \"Explore\" you can discover much more interesting stuff." = "By switching to the section \"Explore\" you can discover much more interesting stuff.";
 
 /* No comment provided by engineer. */
@@ -284,6 +287,12 @@
 "Else" = "Else";
 
 /* No comment provided by engineer. */
+"Email" = "Email";
+
+/* No comment provided by engineer. */
+"Email is not valid!" = "Email is not valid!";
+
+/* No comment provided by engineer. */
 "End of Loop" = "End of Loop";
 
 /* Placeholder for add image-name input field */
@@ -463,6 +472,9 @@
 /* No comment provided by engineer. */
 "Login" = "Login";
 
+/* No comment provided by engineer. */
+"Login/Register" = "Login/Register";
+
 /* LOOK */
 "look" = "look";
 
@@ -531,6 +543,9 @@
 
 /* Title for first (default) object */
 "My Object" = "My Object";
+
+/* No comment provided by engineer. */
+"Name" = "Name";
 
 /* No comment provided by engineer. */
 "Name already exists. Please choose another" = "Name already exists. Please choose another";
@@ -646,6 +661,9 @@
 /* No comment provided by engineer. */
 "Password" = "Password";
 
+/* No comment provided by engineer. */
+"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Password is not vaild! \n It has to contain at least 6 characters/symbols";
+
 /* paint */
 "pipette" = "pipette";
 
@@ -657,6 +675,9 @@
 
 /* paint */
 "Please pick an item" = "Please pick an item";
+
+/* No comment provided by engineer. */
+"Please select a program to upload" = "Please select a program to upload";
 
 /* No comment provided by engineer. */
 "Pocket Code" = "Pocket Code";
@@ -695,10 +716,16 @@
 "pos_y" = "pos_y";
 
 /* No comment provided by engineer. */
+"Problems occured while Uploading your program" = "Problems occured while Uploading your program";
+
+/* No comment provided by engineer. */
 "program" = "program";
 
 /* No comment provided by engineer. */
 "Program name" = "Program name";
+
+/* No comment provided by engineer. */
+"Program Name is necessary!" = "Program Name is necessary!";
 
 /* No comment provided by engineer. */
 "Program variables:" = "Program variables:";
@@ -720,6 +747,12 @@
 
 /* paint */
 "Red" = "Red";
+
+/* No comment provided by engineer. */
+"Register" = "Register";
+
+/* No comment provided by engineer. */
+"Registration successfull" = "Registration successfull";
 
 /* No comment provided by engineer. */
 "Rename" = "Rename";
@@ -971,10 +1004,22 @@
 "Upload" = "Upload";
 
 /* No comment provided by engineer. */
+"Upload Program" = "Upload Program";
+
+/* No comment provided by engineer. */
+"Upload Selected Program" = "Upload Selected Program";
+
+/* No comment provided by engineer. */
+"Upload successfull" = "Upload successfull";
+
+/* No comment provided by engineer. */
 "Uploaded" = "Uploaded";
 
 /* No comment provided by engineer. */
 "Username" = "Username";
+
+/* No comment provided by engineer. */
+"Username is necessary!" = "Username is necessary!";
 
 /* No comment provided by engineer. */
 "v" = "v";

@@ -399,7 +399,7 @@
   }
   @catch (NSException *exception)
   {
-    NSLog(@"Exception : %@", exception);
+    NSError(@"Exception : %@", exception);
   }
 }
 

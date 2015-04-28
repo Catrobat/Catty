@@ -497,7 +497,7 @@
 //
 ////        if([sprite.name isEqualToString:@"Spawning"])
 ////        {
-////            NSLog(@"Brick: %@", [brick description]);
+////            NSDebug(@"Brick: %@", [brick description]);
 ////        }
 //
 //        if ([brick isKindOfClass:[ForeverBrick class]]) {
@@ -528,7 +528,7 @@
 //            double startTimeOfLoop = ((NSNumber*)[self.startLoopTimestampStack lastObject]).doubleValue;
 //            [self.startLoopTimestampStack removeLastObject];
 //            double timeToWait = 0.02f - ([[NSDate date]timeIntervalSince1970] - startTimeOfLoop); // 20 milliseconds
-////            NSLog(@"timeToWait (loop): %f", timeToWait);
+////            NSDebug(@"timeToWait (loop): %f", timeToWait);
 //            if (timeToWait > 0)
 //                [NSThread sleepForTimeInterval:timeToWait];
 //
@@ -596,7 +596,7 @@
 //        self.currentBrickIndex += 1;
 //        
 //
-////        NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!! currentBrickIndex=%d", self.currentBrickIndex);
+////        NSDebug(@"!!!!!!!!!!!!!!!!!!!!!!!!!! currentBrickIndex=%d", self.currentBrickIndex);
 //    }
 //}
 

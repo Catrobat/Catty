@@ -297,7 +297,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource stateChanged:(ScriptDataSourceState)state error:(NSError *)error
 {
-    NSLog(@"Script data source state changed: %lu", state);
+    NSDebug(@"Script data source state changed: %lu", state);
 }
 
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didInsertSections:(NSIndexSet *)sections {

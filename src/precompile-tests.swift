@@ -79,7 +79,8 @@ let licenseCheckExcludeFiles = [
     "EAIntroPage.[mh]",
     "MYBlurIntroductionView.[mh]",
     "MYIntroductionPanel.[mh]",
-    "FBKVOController.[mh]"
+    "FBKVOController.[mh]",
+    "Keychain.[mh]"
 ]; let licenseCheckExcludeFilesLine = __LINE__; // CAVE: NEVER separate these two statements by adding a new line
 
 let licenseSearchStringTemplate = "/**\n *  Copyright (C) 2010-%@ The Catrobat Team\n"

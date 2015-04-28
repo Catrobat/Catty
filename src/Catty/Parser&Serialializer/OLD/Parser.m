@@ -34,7 +34,7 @@
 {
     // sanity check
     if (! path || [path isEqualToString:@""]) {
-        NSLog(@"Path (%@) is NOT valid!", path);
+        NSDebug(@"Path (%@) is NOT valid!", path);
         return nil;
     }
     

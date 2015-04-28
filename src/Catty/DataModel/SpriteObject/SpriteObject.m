@@ -169,7 +169,7 @@
                 
                 [self.broadcastWaitDelegate registerSprite:self forMessage:((BroadcastScript*)script).receivedMessage];
             } else {
-                NSLog(@"ERROR: BroadcastWaitDelegate not set! abort()");
+                NSError(@"ERROR: BroadcastWaitDelegate not set! abort()");
                 abort();
             }
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performBroadcastScript:) name:[NSString stringWithFormat:@"%@%@",kCatrobatBroadcastPrefix,((BroadcastScript*)script).receivedMessage] object:nil];
@@ -191,7 +191,7 @@
     for (UITouch *touch in touches) {
         CGPoint touchedPoint = [touch locationInNode:self];
         NSDebug(@"x:%f,y:%f", touchedPoint.x, touchedPoint.y);
-         //NSLog(@"test touch, %@",self.name);
+         //NSDebug(@"test touch, %@",self.name);
 //        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [UIScreen mainScreen].scale);
 //        [self.scene.view drawViewHierarchyInRect:self.frame afterScreenUpdates:NO];
 //        UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();

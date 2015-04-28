@@ -249,10 +249,10 @@
     if (self.popupViewController == nil) {
         LoginPopupViewController *popupViewController = [[LoginPopupViewController alloc] init];
         popupViewController.delegate = self;
-        [self presentPopupViewController:popupViewController WithFrame:self.view.frame isLogin:YES];
+        [self presentPopupViewController:popupViewController WithFrame:self.view.frame upwardsCenterByFactor:4.5];
         self.navigationItem.leftBarButtonItem.enabled = NO;
     } else {
-        [self dismissPopupWithLoginCode:NO];
+        [self dismissPopupWithCode:NO];
     }
 }
 
@@ -270,7 +270,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)sendReportWithMessage:(NSString*)message
 {
-    NSLog(@"ReportMessage::::::%@",message);
+    NSDebug(@"ReportMessage::::::%@",message);
     
     self.data = nil;
     self.data = [[NSMutableData alloc] init];
@@ -293,9 +293,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.connection start];
     
     if(self.connection) {
-        NSLog(@"Connection Successful");
+        NSDebug(@"Connection Successful");
     } else {
-        NSLog(@"Connection could not be made");
+        NSDebug(@"Connection could not be made");
     }
   
 }
@@ -522,7 +522,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 
 #pragma mark - popup delegate
-- (BOOL)dismissPopupWithLoginCode:(BOOL)successLogin
+- (BOOL)dismissPopupWithCode:(BOOL)successLogin
 {
     if (self.popupViewController != nil) {
         [self dismissPopupViewController];
