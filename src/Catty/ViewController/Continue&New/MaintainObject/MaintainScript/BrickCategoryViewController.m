@@ -107,6 +107,11 @@
     brickCell.scriptOrBrick = [self.bricks objectAtIndex:indexPath.item];
     [brickCell.scriptOrBrick setDefaultValues];
     [brickCell setupBrickCell];
+    for(id subview in brickCell.subviews) {
+        if([subview isKindOfClass:[UIView class]]) {
+            [(UIView*)subview setUserInteractionEnabled:NO];
+        }
+    }
     return brickCell;
 }
 
