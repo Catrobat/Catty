@@ -115,6 +115,7 @@
 #define kLocalizedEditLooks NSLocalizedString(@"Edit Looks", @"Action sheet menu title")
 #define kLocalizedEditLook NSLocalizedString(@"Edit Look", @"Action sheet menu title")
 #define kLocalizedAddLook NSLocalizedString(@"Add look", @"Action sheet menu title")
+#define kLocalizedLook NSLocalizedString(@"look", @"LOOK")
 #define kLocalizedEditProgram NSLocalizedString(@"Edit Program", nil)
 #define kLocalizedEditPrograms NSLocalizedString(@"Edit Programs", nil)
 #define kLocalizedEditObject NSLocalizedString(@"Edit Object", nil)

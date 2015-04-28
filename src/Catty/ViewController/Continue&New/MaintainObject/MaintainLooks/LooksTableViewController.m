@@ -797,7 +797,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self showLoadingView];
         
         NSData *imageData = UIImagePNGRepresentation(image);
-        NSString *lookName = @"LOOK";
+        NSString *lookName = kLocalizedLook;
             // use temporary filename, will be renamed by user afterwards
         NSString *newImageFileName = [NSString stringWithFormat:@"temp_%@.%@",
                                       [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
