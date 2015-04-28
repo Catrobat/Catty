@@ -33,7 +33,7 @@
 #define kPreviewImageWidth 160
 #define kPreviewImageHeight 160
 #define kMinNumOfObjects 0
-#define kDefaultNumOfObjects 1
+#define kDefaultNumOfObjects 0
 #define kBackgroundObjects 1
 #define kMinNumOfProgramNameCharacters 1
 #define kMaxNumOfProgramNameCharacters 20
