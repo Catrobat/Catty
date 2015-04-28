@@ -44,7 +44,7 @@
         self.yPosition = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValues
 {
     self.xPosition = [[Formula alloc] initWithInteger:100];
     self.yPosition = [[Formula alloc] initWithInteger:200];

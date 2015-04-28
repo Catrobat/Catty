@@ -20,53 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BroadcastWaitBrick.h"
-#import "Script.h"
+#import "VariablePickerData.h"
 
-@implementation BroadcastWaitBrick
+@implementation VariablePickerData
 
-- (NSString*)brickTitle
-{
-    return kLocalizedBroadcastAndWait;
-}
-
-- (id)initWithMessage:(NSString *)message
+- (instancetype)initWithTitle:(NSString*)title
 {
     self = [super init];
-    
-    if (self)
-    {
-        self.broadcastMessage = message;
+    if(self) {
+        self.title = title;
+        self.isProgramVariable = NO;
+        self.userVariable = nil;
     }
     return self;
 }
 
-- (void)setDefaultValues
+- (instancetype)initWithTitle:(NSString*)title andVariable:(UserVariable*)userVariable
 {
-    self.broadcastMessage = [NSString stringWithString:kLocalizedBroadcastDefaultMessage];
+    self = [self initWithTitle:title];
+    if(self) {
+        self.userVariable = userVariable;
+    }
+    return self;
 }
 
-- (void)performBroadcastWait
+- (BOOL)isLabel
 {
-    NSDebug(@"Performing: %@", self.description);
-    [self.script.object broadcastAndWait:self.broadcastMessage];
-}
-
-- (void)setMessage:(NSString *)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    if(message)
-        self.broadcastMessage = message;
-}
-
-- (NSString*)messageForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    return self.broadcastMessage;
-}
-
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"BroadcastWait (Msg: %@)", self.broadcastMessage];
+    return self.userVariable == nil;
 }
 
 @end

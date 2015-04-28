@@ -34,7 +34,7 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"NOTE"];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"NOTE" withContext:context];
     [XMLError exceptionIf:formula.formulaTree.type notEquals:STRING
                   message:@"FormulaElement contains unknown type %lu! Should be STRING!",
      (unsigned long)formula.formulaTree.type];

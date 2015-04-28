@@ -503,6 +503,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             ProgramLoadingInfo *info = (ProgramLoadingInfo*)payload[kDTPayloadProgramLoadingInfo];
             [Util askUserForUniqueNameAndPerformAction:@selector(copyProgramActionForProgramWithName:sourceProgramLoadingInfo:)
                                                 target:self
+                                          cancelAction:nil
                                             withObject:info
                                            promptTitle:kLocalizedCopyProgram
                                          promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
@@ -521,6 +522,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [unavailableNames removeString:info.visibleName];
             [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionToName:sourceProgramLoadingInfo:)
                                                 target:self
+                                          cancelAction:nil   
                                             withObject:info
                                            promptTitle:kLocalizedRenameProgram
                                          promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
@@ -538,6 +540,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             Program *program = [Program programWithLoadingInfo:info];
             [Util askUserForTextAndPerformAction:@selector(updateProgramDescriptionActionWithText:sourceProgram:)
                                           target:self
+                                    cancelAction:nil 
                                       withObject:program
                                      promptTitle:kLocalizedSetDescription
                                    promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedDescription]

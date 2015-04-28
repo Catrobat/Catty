@@ -245,7 +245,7 @@
     Script *script = [self scriptAtSection:section];
     for(Brick *brick in bricks) {
         brick.script = script;
-        [brick setupEmptyBrick];
+        [brick setDefaultValues];
     }
     
     NSMutableArray *brickList = [script.brickList mutableCopy];

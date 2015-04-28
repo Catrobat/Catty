@@ -325,6 +325,11 @@
     };
 }
 
+- (void)setDefaultValues
+{
+    // Override this method in Script implementation
+}
+
 //- (void)runWithAction:(SKAction*)action
 //{
 //    [self runAction:action completion:^{

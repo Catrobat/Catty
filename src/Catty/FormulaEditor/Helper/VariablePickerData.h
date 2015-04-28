@@ -20,23 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
+#import <Foundation/Foundation.h>
 
-@class SpriteObject;
-@class Brick;
-@class Look;
-@protocol BrickLookProtocol;
+@class UserVariable;
 
-@protocol PaintDelegate <NSObject>
+@interface VariablePickerData : NSObject
 
-- (void)showSavePaintImageAlert:(UIImage*)image andPath:(NSString *)path;
-- (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path;
-@end
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, weak) UserVariable *userVariable;
+@property (nonatomic) BOOL isProgramVariable;
 
-@interface LooksTableViewController : BaseTableViewController <PaintDelegate>
-@property (strong, nonatomic) SpriteObject *object;
-@property (nonatomic) BOOL showAddLookActionSheetAtStartForScriptEditor;
-@property (nonatomic) BOOL showAddLookActionSheetAtStartForObject;
-@property (copy) void (^afterSafeBlock)(Look* look);
+- (instancetype)initWithTitle:(NSString*)title;
+- (instancetype)initWithTitle:(NSString*)title andVariable:(UserVariable*)userVariable;
+- (BOOL)isLabel;
+
 @end

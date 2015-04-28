@@ -438,6 +438,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     if (self.scriptDataSource.scriptList.count == 0 && ![self isScript:scriptOrBrick.brickType]) {
         StartScript *startScript = [StartScript new];
         startScript.object = self.object;
+        [startScript setDefaultValues];
         [self.scriptDataSource addScript:startScript toSection:topIndexpath.section];
         
         NSArray *bricks = [self.scriptDataSource linkedBricksForBrick:scriptOrBrick.brickType];
@@ -449,6 +450,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         }
         
         id newScript = [[brickClass alloc] initWithType:scriptOrBrick.brickType andCategory:scriptOrBrick.brickCategoryType];
+        if([newScript conformsToProtocol:@protocol(ScriptProtocol)])
+            [newScript setDefaultValues];
         [self.scriptDataSource addScript:newScript toSection:lastSection];
     } else {
         [self resetScrollingtoTopWithIndexPath:topIndexpath animated:NO];
@@ -1267,7 +1270,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
             LooksTableViewController *ltvc = [self.storyboard instantiateViewControllerWithIdentifier:kLooksTableViewControllerIdentifier];
             [ltvc setObject:self.object];
-            ltvc.showAddLookActionSheetAtStart = YES;
+            ltvc.showAddLookActionSheetAtStartForScriptEditor = YES;
+            ltvc.showAddLookActionSheetAtStartForObject = NO;
             ltvc.afterSafeBlock =  ^(Look* look) {
                 [lookBrick setLook:look forLineNumber:line andParameterNumber:parameter];
                 [self.navigationController popViewControllerAnimated:YES];
@@ -1316,6 +1320,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
             [Util askUserForUniqueNameAndPerformAction:@selector(addMessageWithName:andCompletion:)
                                                 target:self
+                                          cancelAction:nil 
                                             withObject:(id) ^(NSString* message){
                                                 [messageBrick setMessage:message forLineNumber:line andParameterNumber:parameter];
                                             }

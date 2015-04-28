@@ -85,6 +85,7 @@ typedef NS_ENUM(NSUInteger, kDTMActionType) {
 #define kDTPayloadAskUserInvalidInputAlertMessage @"DTPayloadAskUserInvalidInputAlertMessage"
 #define kDTPayloadAskUserExistingNames @"DTPayloadAskUserExistingNames"
 #define kDTPayloadTextView @"DTPayloadTextView"
+#define kDTPayloadCancel @"DTPayloadCancel"
 
 #define kUserDetailsShowDetailsKey @"showDetails"
 #define kUserIsFirstAppLaunch @"isFirstAppLaunch"

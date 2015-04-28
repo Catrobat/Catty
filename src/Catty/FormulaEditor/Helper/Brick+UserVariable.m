@@ -20,23 +20,30 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
+#import "Brick+UserVariable.h"
+#import "UserVariable.h"
+#import "BrickFormulaProtocol.h"
+#import "FormulaElement+UserVariable.h"
 
-@class SpriteObject;
-@class Brick;
-@class Look;
-@protocol BrickLookProtocol;
+@implementation Brick (UserVariable)
 
-@protocol PaintDelegate <NSObject>
+#define BRICK_MAX_LINE_NUMBER 3
+#define BRICK_MAX_PARAM_NUMBER 3
+- (BOOL)isVariableBeingUsed:(UserVariable*)variable
+{
+    if(![self conformsToProtocol:@protocol(BrickFormulaProtocol)])
+       return NO;
+    
+    for(int line = 0; line <= BRICK_MAX_LINE_NUMBER; line++) {
+        for(int param = 0; param <= BRICK_MAX_PARAM_NUMBER; param++) {
+            id<BrickFormulaProtocol> formulaBrick = (id<BrickFormulaProtocol>)self;
+            Formula *formula = [formulaBrick formulaForLineNumber:line andParameterNumber:param];
+            if(formula && [formula.formulaTree isVariableBeingUsed:variable])
+                return YES;
+        }
+    }
+    
+    return NO;
+}
 
-- (void)showSavePaintImageAlert:(UIImage*)image andPath:(NSString *)path;
-- (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path;
-@end
-
-@interface LooksTableViewController : BaseTableViewController <PaintDelegate>
-@property (strong, nonatomic) SpriteObject *object;
-@property (nonatomic) BOOL showAddLookActionSheetAtStartForScriptEditor;
-@property (nonatomic) BOOL showAddLookActionSheetAtStartForObject;
-@property (copy) void (^afterSafeBlock)(Look* look);
 @end

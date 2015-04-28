@@ -20,23 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
+#import "FormulaElement.h"
 
-@class SpriteObject;
-@class Brick;
-@class Look;
-@protocol BrickLookProtocol;
+@class UserVariable;
 
-@protocol PaintDelegate <NSObject>
+@interface FormulaElement (UserVariable)
 
-- (void)showSavePaintImageAlert:(UIImage*)image andPath:(NSString *)path;
-- (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path;
-@end
+- (BOOL)isVariableBeingUsed:(UserVariable*)variable;
 
-@interface LooksTableViewController : BaseTableViewController <PaintDelegate>
-@property (strong, nonatomic) SpriteObject *object;
-@property (nonatomic) BOOL showAddLookActionSheetAtStartForScriptEditor;
-@property (nonatomic) BOOL showAddLookActionSheetAtStartForObject;
-@property (copy) void (^afterSafeBlock)(Look* look);
 @end

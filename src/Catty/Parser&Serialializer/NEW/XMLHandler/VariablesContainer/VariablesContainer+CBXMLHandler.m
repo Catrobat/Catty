@@ -74,6 +74,8 @@
         }
         varContainer.objectVariableList = objectVariableList;
     }
+    
+    context.variables = varContainer;
     return varContainer;
 }
 
