@@ -156,6 +156,7 @@
 
 + (void)askUserForUniqueNameAndPerformAction:(SEL)action
                                       target:(id)target
+                                cancelAction:(SEL)cancelAction
                                   withObject:(id)passingObject
                                  promptTitle:(NSString*)title
                                promptMessage:(NSString*)message
@@ -180,6 +181,7 @@
 
 + (void)askUserForTextAndPerformAction:(SEL)action
                                 target:(id)target
+                          cancelAction:(SEL)cancelAction
                             withObject:(id)passingObject
                            promptTitle:(NSString*)title
                          promptMessage:(NSString*)message

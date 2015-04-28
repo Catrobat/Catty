@@ -463,6 +463,9 @@
 /* No comment provided by engineer. */
 "Login" = "Login";
 
+/* LOOK */
+"look" = "look";
+
 /* No comment provided by engineer. */
 "Looks" = "Looks";
 

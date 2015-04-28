@@ -99,7 +99,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    if(self.showAddLookActionSheetAtStart) {
+    if(self.showAddLookActionSheetAtStartForScriptEditor || self.showAddLookActionSheetAtStartForObject) {
         [self showAddLookActionSheet];
     }
 }
@@ -426,6 +426,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    if (self.showAddLookActionSheetAtStartForScriptEditor || self.showAddLookActionSheetAtStartForObject){
+        if (self.afterSafeBlock) {
+            self.afterSafeBlock(nil);
+        }
+    }
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -469,7 +474,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                    existingNames:[self.object allLookNames]]
                                         andPath:newImageFileName];
 
-        // TODO: outsource this to FileManager
         NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
                                   [self.object projectPath], kProgramImagesDirName, newImageFileName];
         NSString *mediaType = info[UIImagePickerControllerMediaType];
@@ -487,9 +491,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
                     [self hideLoadingView];
                     [self showPlaceHolder:([self.object.lookList count] == 0)];
 
+                    if (self.showAddLookActionSheetAtStartForObject) {
+                        [self addLookActionWithName:look.name look:look];
+                    }else{
                     // ask user for image name
                     [Util askUserForTextAndPerformAction:@selector(addLookActionWithName:look:)
                                                   target:self
+                                            cancelAction:@selector(cancelPaintSave)
                                               withObject:look
                                              promptTitle:kLocalizedAddImage
                                            promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
@@ -499,6 +507,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                           maxInputLength:kMaxNumOfLookNameCharacters
                                      blockedCharacterSet:[self blockedCharacterSet]
                                 invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
+                    }
                 }];
             }];
             NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -565,6 +574,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             Look *look = (Look*)payload[kDTPayloadLook];
             [Util askUserForTextAndPerformAction:@selector(renameLookActionToName:look:)
                                           target:self
+                                        cancelAction:nil
                                       withObject:look
                                      promptTitle:kLocalizedRenameImage
                                    promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
@@ -603,8 +613,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
             NSDebug(@"Draw new image");
             PaintViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kPaintViewControllerIdentifier];
             vc.delegate = self;
-            NSInteger height = (NSInteger)self.view.frame.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height;
-            CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, height);
+            NSInteger width = self.view.bounds.size.width;
+            NSInteger height = (NSInteger)self.view.bounds.size.height;
+            CGRect rect = CGRectMake(0, 0, width, height);
             UIImage *image = [UIImage new];
             UIGraphicsBeginImageContext(rect.size);
             [image drawInRect:CGRectMake(0, 0, rect.size.width, rect.size.height)];
@@ -615,6 +626,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
             vc.editingPath = nil;
             [self.navigationController pushViewController:vc animated:YES];
             
+        }else{
+            if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor) {
+                if(self.afterSafeBlock) {
+                    self.afterSafeBlock(nil);
+                }
+            }
         }
     }
 }
@@ -692,7 +709,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.paintImagePath = path;
     
     [self performActionOnConfirmation:@selector(savePaintImage)
-                       canceledAction:nil
+                       canceledAction:@selector(cancelPaintSave)
                                target:self
                          confirmTitle:kLocalizedSaveToPocketCode
                        confirmMessage:kLocalizedPaintSaveChanges];
@@ -702,8 +719,22 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     if (self.paintImage) {
         [self addPaintedImage:self.paintImage andPath:self.paintImagePath];
+    }else if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor){
+        if (self.afterSafeBlock) {
+            self.afterSafeBlock(nil);
+        }
     }
 }
+
+-(void)cancelPaintSave
+{
+    if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor){
+        if (self.afterSafeBlock) {
+            self.afterSafeBlock(nil);
+        }
+    }
+}
+
 
 - (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path
 {
@@ -766,7 +797,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self showLoadingView];
         
         NSData *imageData = UIImagePNGRepresentation(image);
-        NSString *lookName = @"TEST";
+        NSString *lookName = kLocalizedLook;
             // use temporary filename, will be renamed by user afterwards
         NSString *newImageFileName = [NSString stringWithFormat:@"temp_%@.%@",
                                       [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
@@ -792,8 +823,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 [self showPlaceHolder:([self.object.lookList count] == 0)];
                 
                     // ask user for image name
+                if (self.showAddLookActionSheetAtStartForObject) {
+                    [self addLookActionWithName:look.name look:look];
+                }else{
                 [Util askUserForTextAndPerformAction:@selector(addLookActionWithName:look:)
                                               target:self
+                                        cancelAction:@selector(cancelPaintSave)
                                           withObject:look
                                          promptTitle:kLocalizedAddImage
                                        promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
@@ -803,6 +838,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                       maxInputLength:kMaxNumOfLookNameCharacters
                                  blockedCharacterSet:[self blockedCharacterSet]
                             invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
+                }
             }];
         }];
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];

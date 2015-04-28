@@ -571,6 +571,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             Sound *sound = (Sound*)payload[kDTPayloadSound];
             [Util askUserForTextAndPerformAction:@selector(renameSoundActionToName:sound:)
                                           target:self
+                                    cancelAction:nil
                                       withObject:sound
                                      promptTitle:kLocalizedRenameSound
                                    promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedSoundName]
