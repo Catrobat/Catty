@@ -621,7 +621,16 @@
                                          UIActivityTypePostToWeibo,
                                          UIActivityTypePostToTwitter,
                                          UIActivityTypeMail]; //or whichever you don't need
-    [self presentViewController:activityVC animated:YES completion:nil];
+    __weak ScenePresenterViewController *weakself = self;
+    [activityVC setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
+        SKView * view= weakself.skView;
+        view.paused=YES;
+    }];
+    
+    [self presentViewController:activityVC animated:YES completion:^(){
+        SKView * view= weakself.skView;
+        view.paused=YES;
+    }];
 }
 
 // Now we have an activity view -> just in case we need change back to the action sheet
