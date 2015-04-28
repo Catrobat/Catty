@@ -188,19 +188,26 @@
         }];
     });
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if(self.lastSelectedIndexPath) {
-        UITableViewCell *lastCell = [tableView cellForRowAtIndexPath:self.lastSelectedIndexPath];
-        lastCell.accessoryType= UITableViewCellAccessoryNone;
-    }
-    
-    
-    UITableViewCell *currentCell = [tableView cellForRowAtIndexPath:indexPath];
-    currentCell.accessoryType= UITableViewCellAccessoryCheckmark;
-    
-    self.lastSelectedIndexPath = indexPath;
+
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
+{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UITableViewCell *currentCell = [tableView cellForRowAtIndexPath:indexPath];
+    if (self.lastSelectedIndexPath) {
+        UITableViewCell *lastCell = [tableView cellForRowAtIndexPath:self.lastSelectedIndexPath];
+        lastCell.accessoryType = UITableViewCellAccessoryNone;
+
+        // if user taps twice on same cell than cell should be deselected
+        if (self.lastSelectedIndexPath.row == indexPath.row) {
+            UITableViewCell *lastCell = [tableView cellForRowAtIndexPath:self.lastSelectedIndexPath];
+            lastCell.accessoryType = UITableViewCellAccessoryNone;
+            self.lastSelectedIndexPath = nil;
+            return;
+        }
+    }
+
+    currentCell.accessoryType = UITableViewCellAccessoryCheckmark;
+    self.lastSelectedIndexPath = indexPath;
     self.lastUsedProgram = [Program programWithLoadingInfo:[self.programLoadingInfos objectAtIndex:self.lastSelectedIndexPath.row]];
 }
 
