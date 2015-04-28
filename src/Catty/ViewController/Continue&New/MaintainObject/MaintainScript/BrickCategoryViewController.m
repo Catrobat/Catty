@@ -105,6 +105,7 @@
     BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickCellIdentifier
                                                                      forIndexPath:indexPath];
     brickCell.scriptOrBrick = [self.bricks objectAtIndex:indexPath.item];
+    [brickCell.scriptOrBrick setDefaultValues];
     [brickCell setupBrickCell];
     return brickCell;
 }

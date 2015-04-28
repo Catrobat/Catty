@@ -38,7 +38,7 @@
     self.transparency = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValues
 {
     self.transparency = [[Formula alloc] initWithZero];
 }

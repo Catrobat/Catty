@@ -40,7 +40,7 @@
     self.degrees = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValues
 {
     self.degrees = [[Formula alloc] initWithFloat:90];
 }

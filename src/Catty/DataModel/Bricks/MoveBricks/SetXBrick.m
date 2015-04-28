@@ -38,7 +38,7 @@
     self.xPosition = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValues
 {
     self.xPosition = [[Formula alloc] initWithInteger:100];
 }

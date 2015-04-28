@@ -172,7 +172,6 @@
     NSMutableArray *selectableBricksForCategoryMutable = [NSMutableArray arrayWithCapacity:[selectableBricks count]];
     for (id<BrickProtocol> brick in selectableBricks) {
         if (brick.brickCategoryType == categoryType) {
-            [brick setupEmptyBrick];
             [selectableBricksForCategoryMutable addObject:brick];
         }
     }

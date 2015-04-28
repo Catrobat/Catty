@@ -36,7 +36,7 @@
     self.yMovement = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValues
 {
     self.yMovement = [[Formula alloc] initWithInteger:10];
 }

@@ -38,7 +38,7 @@
     self.changeGhostEffect = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValues
 {
     self.changeGhostEffect = [[Formula alloc] initWithZero];
 }

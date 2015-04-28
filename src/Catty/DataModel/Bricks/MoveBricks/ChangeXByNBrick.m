@@ -36,7 +36,7 @@
     self.xMovement = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValues
 {
     self.xMovement = [[Formula alloc] initWithInteger:10];
 }
