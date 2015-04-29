@@ -187,12 +187,10 @@
 
 - (void)removeFromScript
 {
-    CBAssert(self.script);
     NSUInteger index = 0;
     for (Brick *brick in self.script.brickList) {
         if (brick == self) {
             [self.script.brickList removeObjectAtIndex:index];
-            brick.script = nil;
             break;
         }
         ++index;
