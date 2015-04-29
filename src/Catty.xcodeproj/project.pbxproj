@@ -17,10 +17,7 @@
 		4CB4419E1AB9A96A005A1DEF /* BrickCellLookFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4419D1AB9A96A005A1DEF /* BrickCellLookFragment.m */; };
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
 		811FB6ED1A49812700957E10 /* BrickCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6EC1A49812700957E10 /* BrickCategoryViewController.m */; };
-		81C0A6791A4CACB7003A77C5 /* ScriptDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A6781A4CACB7003A77C5 /* ScriptDataSource.m */; };
-		81C0A67C1A4D821F003A77C5 /* ScriptDataSource+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67B1A4D821F003A77C5 /* ScriptDataSource+Extensions.m */; };
 		81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */; };
-		81CC62311A57286D002804B7 /* FBKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC62301A57286D002804B7 /* FBKVOController.m */; };
 		92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A461A42F2A3008C771A /* BSKeyboardControls.m */; };
 		92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A481A42F2A3008C771A /* iOSCombobox.m */; };
 		9238C5831A3AE9920099F061 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */; };
@@ -593,15 +590,9 @@
 		811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptCollectionViewController.m; sourceTree = "<group>"; };
 		811FB6EB1A49812700957E10 /* BrickCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCategoryViewController.h; sourceTree = "<group>"; };
 		811FB6EC1A49812700957E10 /* BrickCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCategoryViewController.m; sourceTree = "<group>"; };
-		81C0A6771A4CACB7003A77C5 /* ScriptDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptDataSource.h; sourceTree = "<group>"; };
-		81C0A6781A4CACB7003A77C5 /* ScriptDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptDataSource.m; sourceTree = "<group>"; };
-		81C0A67A1A4D821F003A77C5 /* ScriptDataSource+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ScriptDataSource+Extensions.h"; sourceTree = "<group>"; };
-		81C0A67B1A4D821F003A77C5 /* ScriptDataSource+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ScriptDataSource+Extensions.m"; sourceTree = "<group>"; };
 		81C0A67D1A4EE8CF003A77C5 /* BrickSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSelectionViewController.h; sourceTree = "<group>"; };
 		81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickSelectionViewController.m; sourceTree = "<group>"; };
 		81C27425189EF94600827A95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Catty/Images.xcassets; sourceTree = "<group>"; };
-		81CC622F1A57286D002804B7 /* FBKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBKVOController.h; path = KVOController/FBKVOController.h; sourceTree = "<group>"; };
-		81CC62301A57286D002804B7 /* FBKVOController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBKVOController.m; path = KVOController/FBKVOController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		921FE2F9182F8122001D7CF6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		92289A451A42F2A3008C771A /* BSKeyboardControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSKeyboardControls.h; sourceTree = "<group>"; };
@@ -1787,15 +1778,6 @@
 			name = CatrobatLanguage0.93;
 			sourceTree = "<group>";
 		};
-		81CC622E1A57285D002804B7 /* KVOController */ = {
-			isa = PBXGroup;
-			children = (
-				81CC622F1A57286D002804B7 /* FBKVOController.h */,
-				81CC62301A57286D002804B7 /* FBKVOController.m */,
-			);
-			name = KVOController;
-			sourceTree = "<group>";
-		};
 		92289A441A42F2A3008C771A /* ComboBox */ = {
 			isa = PBXGroup;
 			children = (
@@ -2361,7 +2343,6 @@
 		92FF2E4C1A24C7D800093DA7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				81CC622E1A57285D002804B7 /* KVOController */,
 				92FF2E4D1A24C7D800093DA7 /* AudioManager */,
 				92FF2E521A24C7D800093DA7 /* FileManager */,
 				92FF2E551A24C7D800093DA7 /* Flash */,
@@ -3042,10 +3023,6 @@
 				81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */,
 				811FB6EB1A49812700957E10 /* BrickCategoryViewController.h */,
 				811FB6EC1A49812700957E10 /* BrickCategoryViewController.m */,
-				81C0A6771A4CACB7003A77C5 /* ScriptDataSource.h */,
-				81C0A6781A4CACB7003A77C5 /* ScriptDataSource.m */,
-				81C0A67A1A4D821F003A77C5 /* ScriptDataSource+Extensions.h */,
-				81C0A67B1A4D821F003A77C5 /* ScriptDataSource+Extensions.m */,
 			);
 			path = MaintainScript;
 			sourceTree = "<group>";
@@ -4555,7 +4532,6 @@
 				CAA4A5041A43B48F002A69A0 /* SetVolumeToBrick+CBXMLHandler.m in Sources */,
 				92FF30EE1A24DCAA00093DA7 /* ChangeSizeByNBrick.m in Sources */,
 				92DFB0101A38949E00FA9B0F /* FormulaEditorHistory.m in Sources */,
-				81CC62311A57286D002804B7 /* FBKVOController.m in Sources */,
 				92FF30D41A24DCAA00093DA7 /* GoNStepsBackBrick.m in Sources */,
 				CAA4A4F51A43B47F002A69A0 /* LedOffBrick+CBXMLHandler.m in Sources */,
 				92FF328A1A24E2F400093DA7 /* ClearGraphicEffectBrickCell.m in Sources */,
@@ -4650,7 +4626,6 @@
 				92DFB0561A38960C00FA9B0F /* FillTool.m in Sources */,
 				92FF327F1A24E2F400093DA7 /* IfLogicElseBrickCell.m in Sources */,
 				92FF30F11A24DCAA00093DA7 /* PlaySoundBrick.m in Sources */,
-				81C0A6791A4CACB7003A77C5 /* ScriptDataSource.m in Sources */,
 				92FF2E371A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m in Sources */,
 				92FF314B1A24DEB300093DA7 /* BaseWebViewController.m in Sources */,
 				92FF30DE1A24DCAA00093DA7 /* RepeatBrick.m in Sources */,
@@ -4658,7 +4633,6 @@
 				CAA4A4A81A43B407002A69A0 /* LoopEndBrick+CBXMLHandler.m in Sources */,
 				92FF30F81A24DCAA00093DA7 /* Formula.m in Sources */,
 				92DFB01B1A38949E00FA9B0F /* FormulaEditorViewController.m in Sources */,
-				81C0A67C1A4D821F003A77C5 /* ScriptDataSource+Extensions.m in Sources */,
 				92FF32851A24E2F400093DA7 /* RepeatBrickCell.m in Sources */,
 				92FF30F31A24DCAA00093DA7 /* SpeakBrick.m in Sources */,
 				CAA4A5341A43B51F002A69A0 /* ProjectParser.m in Sources */,
