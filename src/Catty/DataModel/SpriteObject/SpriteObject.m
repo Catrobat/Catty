@@ -79,12 +79,6 @@
     super.position = position;
 }
 
-//- (void)dealloc
-//{
-//    NSDebug(@"Dealloc: %@", self);
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
-//}
-
 - (NSUInteger)numberOfScripts
 {
     return [self.scriptList count];
@@ -165,7 +159,7 @@
     for (UITouch *touch in touches) {
         CGPoint touchedPoint = [touch locationInNode:self];
         NSDebug(@"x:%f,y:%f", touchedPoint.x, touchedPoint.y);
-         //NSLog(@"test touch, %@",self.name);
+         //NSDebug(@"test touch, %@",self.name);
 //        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [UIScreen mainScreen].scale);
 //        [self.scene.view drawViewHierarchyInRect:self.frame afterScreenUpdates:NO];
 //        UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();

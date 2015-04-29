@@ -22,6 +22,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ProgramLoadingInfo.h"
+#import "Program.h"
 
 
 @protocol FileManagerDelegate <NSObject>
@@ -62,5 +63,6 @@
 - (NSArray*)playableSoundsInDirectory:(NSString*)directoryPath;
 - (void)changeModificationDate:(NSDate*)date forFileAtPath:(NSString*)path;
 - (uint64_t)freeDiskspace;
+- (NSData*)zipProgram:(Program*)program;
 
 @end

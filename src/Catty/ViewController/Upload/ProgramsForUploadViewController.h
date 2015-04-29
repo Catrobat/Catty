@@ -21,16 +21,9 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "Util.h"
+#import "BaseTableViewController.h"
+#import "UIViewController+CWPopup.h"
 
-@interface LoginViewController : UIViewController <NSURLConnectionDataDelegate>
-
-@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
-@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
-@property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-@property (weak, nonatomic) IBOutlet UILabel *emailLabel;
-@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
-@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@interface ProgramsForUploadViewController : BaseTableViewController <DismissPopupDelegate>
 
 @end

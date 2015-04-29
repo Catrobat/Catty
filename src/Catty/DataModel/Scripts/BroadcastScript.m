@@ -47,7 +47,7 @@
     return ret;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValues
 {
     self.receivedMessage = [NSString stringWithString:kLocalizedMessage1];
 }

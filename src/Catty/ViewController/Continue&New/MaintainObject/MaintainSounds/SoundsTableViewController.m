@@ -143,7 +143,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     if (self.isAllowed) {
         if (notification.userInfo) {
-                //        NSLog(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
+                NSDebug(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
             id sound = notification.userInfo[kUserInfoSound];
             if ([sound isKindOfClass:[Sound class]]) {
                 [self addSoundToObjectAction:(Sound*)sound];
@@ -156,7 +156,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     if (self.isAllowed) {
         if (notification.userInfo) {
-                //        NSLog(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
+            NSDebug(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
             id sound = notification.userInfo[kUserInfoSound];
             if ([sound isKindOfClass:[Sound class]]) {
                 Sound* recording =(Sound*)sound;
@@ -167,7 +167,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 NSError *error;
                 [fileManager removeItemAtPath:filePath error:&error];
                 if (error) {
-                    NSLog(@"-.-");
+                    NSDebug(@"-.-");
                 }
                 self.isAllowed = NO;
             }
@@ -571,6 +571,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             Sound *sound = (Sound*)payload[kDTPayloadSound];
             [Util askUserForTextAndPerformAction:@selector(renameSoundActionToName:sound:)
                                           target:self
+                                    cancelAction:nil
                                       withObject:sound
                                      promptTitle:kLocalizedRenameSound
                                    promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedSoundName]
@@ -584,7 +585,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else if (actionSheet.tag == kAddSoundActionSheetTag) {
         if (buttonIndex == 0) {
                 //Recorder
-            NSLog(@"Recorder");
+            NSDebug(@"Recorder");
             self.isAllowed = YES;
             [self stopAllSounds];
             SRViewController *soundRecorderViewController;
@@ -592,7 +593,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [self showViewController:soundRecorderViewController sender:self];
         } else if (buttonIndex == 1) {
             // Select music track
-            NSLog(@"Select music track");
+            NSDebug(@"Select music track");
             self.isAllowed = YES;
             AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
             if (! [delegate.fileManager existPlayableSoundsInDirectory:delegate.fileManager.documentsDirectory]) {

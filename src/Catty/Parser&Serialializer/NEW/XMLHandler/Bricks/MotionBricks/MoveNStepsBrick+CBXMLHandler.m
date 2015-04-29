@@ -33,7 +33,7 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"STEPS"];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"STEPS" withContext:context];
     
     MoveNStepsBrick *moveNStepsBrick = [self new];
     moveNStepsBrick.steps = formula;

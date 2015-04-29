@@ -36,7 +36,7 @@
     self.size = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValues
 {
     self.size = [[Formula alloc] initWithZero];
 }

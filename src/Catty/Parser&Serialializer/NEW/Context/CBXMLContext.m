@@ -108,6 +108,14 @@
     return _spriteObjectNameVariableList;
 }
 
+- (NSMutableDictionary*)formulaVariableNameList
+{
+    if (! _formulaVariableNameList) {
+        _formulaVariableNameList = [NSMutableDictionary dictionary];
+    }
+    return _formulaVariableNameList;
+}
+
 - (VariablesContainer*)variables
 {
     if (! _variables) {

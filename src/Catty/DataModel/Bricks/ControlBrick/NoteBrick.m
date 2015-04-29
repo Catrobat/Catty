@@ -37,7 +37,7 @@
     }];
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValues
 {
     self.note = [NSString stringWithString:kLocalizedDefaultNote];
 }

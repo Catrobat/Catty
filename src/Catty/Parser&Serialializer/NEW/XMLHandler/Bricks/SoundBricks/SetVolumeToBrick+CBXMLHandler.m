@@ -33,7 +33,7 @@
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
     SetVolumeToBrick *setVolumeToBrick = [self new];
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VOLUME"];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VOLUME" withContext:context];
     setVolumeToBrick.volume = formula;
     return setVolumeToBrick;
 }

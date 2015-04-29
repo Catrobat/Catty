@@ -36,6 +36,7 @@
 
 @interface LooksTableViewController : BaseTableViewController <PaintDelegate>
 @property (strong, nonatomic) SpriteObject *object;
-@property (nonatomic) BOOL showAddLookActionSheetAtStart;
+@property (nonatomic) BOOL showAddLookActionSheetAtStartForScriptEditor;
+@property (nonatomic) BOOL showAddLookActionSheetAtStartForObject;
 @property (copy) void (^afterSafeBlock)(Look* look);
 @end

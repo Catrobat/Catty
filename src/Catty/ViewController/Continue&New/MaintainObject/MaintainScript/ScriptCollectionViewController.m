@@ -478,7 +478,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 #pragma mark - Collection View Datasource
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView*)collectionView
 {
     return self.object.scriptList.count;
 }
@@ -553,7 +553,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     [self dismissViewControllerAnimated:YES completion:NULL];
     self.lastSelectedBrickCategory = brickCategoryViewController.pageIndexCategoryType;
     brickCategoryViewController.delegate = nil;
-
     BrickManager *brickManager = [BrickManager sharedBrickManager];
 
     if ([brickManager isScript:scriptOrBrick.brickType]) {
@@ -1334,8 +1333,9 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
             LooksTableViewController *ltvc = [self.storyboard instantiateViewControllerWithIdentifier:kLooksTableViewControllerIdentifier];
             [ltvc setObject:self.object];
-            ltvc.showAddLookActionSheetAtStart = YES;
-            ltvc.afterSafeBlock =  ^(Look* look) {
+            ltvc.showAddLookActionSheetAtStartForScriptEditor = YES;
+            ltvc.showAddLookActionSheetAtStartForObject = NO;
+            ltvc.afterSafeBlock = ^(Look* look) {
                 [lookBrick setLook:look forLineNumber:line andParameterNumber:parameter];
                 [self.navigationController popViewControllerAnimated:YES];
             };
@@ -1383,6 +1383,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
             [Util askUserForUniqueNameAndPerformAction:@selector(addMessageWithName:andCompletion:)
                                                 target:self
+                                          cancelAction:nil 
                                             withObject:(id) ^(NSString* message){
                                                 [messageBrick setMessage:message forLineNumber:line andParameterNumber:parameter];
                                             }

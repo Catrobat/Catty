@@ -41,7 +41,7 @@
     return self;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValues
 {
     self.broadcastMessage = [NSString stringWithString:kLocalizedMessage1];
 }

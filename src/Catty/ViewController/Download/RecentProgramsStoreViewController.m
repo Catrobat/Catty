@@ -554,7 +554,7 @@
 #pragma mark - NSURLConnection Delegates
 //- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
 //    if (self.connection == connection) {
-//        NSLog(@"Received data from server");
+//        NSDebug(@"Received data from server");
 //        [self.data appendData:data];
 //    }
 //}
@@ -566,9 +566,9 @@
 //        NSDebug(@"Received response");
 //        NSHTTPURLResponse * httpResponse = (NSHTTPURLResponse *) response;
 //        NSInteger errorCode = httpResponse.statusCode;
-//        NSLog(@"CODE: %li",(long)errorCode);
+//        NSDebug(@"CODE: %li",(long)errorCode);
 //        if (self.information.totalProjects.integerValue <= self.projects.count) {
-//            NSLog(@"stop loading");
+//            NSDebug(@"stop loading");
 //        }
 //    }
 //}

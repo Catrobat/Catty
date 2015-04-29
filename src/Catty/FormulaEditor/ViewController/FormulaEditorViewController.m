@@ -50,6 +50,8 @@
 #import "InternToken.h"
 #import "SpriteObject.h"
 #import "BrickCellFormulaFragment.h"
+#import "VariablePickerData.h"
+#import "Brick+UserVariable.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -172,6 +174,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.variablePicker.tintColor = [UIColor skyBlueColor];
     self.variableSourceProgram = [[NSMutableArray alloc] init];
     self.variableSourceObject = [[NSMutableArray alloc] init];
+    self.variableSource = [[NSMutableArray alloc] init];
     [self updateVariablePickerData];
     self.currentComponent = 0;
     self.mathScrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
@@ -196,9 +199,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.recognizer.numberOfTapsRequired = 1;
     self.recognizer.cancelsTouchesInView = NO;
     [self.view.window addGestureRecognizer:self.recognizer];
-    self.pickerGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chosenVariable)];
-    self.pickerGesture.numberOfTapsRequired = 1;
-    [self.variablePicker addGestureRecognizer:self.pickerGesture];
+    //self.pickerGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chosenVariable:)];
+    //self.pickerGesture.numberOfTapsRequired = 1;
+    //[self.variablePicker addGestureRecognizer:self.pickerGesture];
     [self update];
 }
 
@@ -303,7 +306,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)handleInputWithTitle:(NSString*)title AndButtonType:(int)buttonType
 {
     [self.internFormula handleKeyInputWithName:title butttonType:buttonType];
-    NSLog(@"InternFormulaString: %@",[self.internFormula getExternFormulaString]);
+    NSDebug(@"InternFormulaString: %@",[self.internFormula getExternFormulaString]);
     [self.history push:[self.internFormula getInternFormulaState]];
     [self update];
 }
@@ -719,19 +722,31 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)updateVariablePickerData
 {
     VariablesContainer *variables = self.object.program.variables;
-    [self.variableSourceProgram removeAllObjects];
-    for(UserVariable *userVariable in variables.programVariableList){
-        [self.variableSourceProgram addObject:userVariable.name];
+    [self.variableSource removeAllObjects];
+    if([variables.programVariableList count] > 0)
+        [self.variableSource addObject:[[VariablePickerData alloc] initWithTitle:kUIFEProgramVars]];
+    
+    for(UserVariable *userVariable in variables.programVariableList) {
+        VariablePickerData *pickerData = [[VariablePickerData alloc] initWithTitle:userVariable.name andVariable:userVariable];
+        [pickerData setIsProgramVariable:YES];
+        [self.variableSource addObject:pickerData];
     }
-    NSArray *array = [self.object.program.variables.objectVariableList objectForKey:self.object];
+    
+    NSArray *array = [variables.objectVariableList objectForKey:self.object];
     if (array) {
-        for (UserVariable *var in array) {
-            [self.variableSourceProgram addObject:var.name];
-        }
+        if([array count] > 0)
+            [self.variableSource addObject:[[VariablePickerData alloc] initWithTitle:kUIFEObjectVars]];
         
+        for (UserVariable *var in array) {
+            VariablePickerData *pickerData = [[VariablePickerData alloc] initWithTitle:var.name andVariable:var];
+            [pickerData setIsProgramVariable:NO];
+            [self.variableSource addObject:pickerData];
+        }
     }
   
     [self.variablePicker reloadAllComponents];
+    if([self.variableSource count] > 0)
+        [self.variablePicker selectRow:1 inComponent:0 animated:NO];
 }
 
 - (void)saveVariable:(NSString*)name
@@ -769,6 +784,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
     }
     
+    [self.object.program saveToDisk];
     [self updateVariablePickerData];
 }
 
@@ -798,72 +814,126 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return 1;
 }
 
-
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-//    if (component == 0) {
-//        return self.variableSourceObject.count;
-//    }else
-        if (component == 0){
-        return self.variableSourceProgram.count;
+    if (component == 0) {
+        return self.variableSource.count;
     }
     return 0;
 }
 
-
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-//    if (component == 0) {
-//        return self.variableSourceObject[row];
-//    }else
-        if (component == 0){
-        return self.variableSourceProgram[row];
+    if (component == 0) {
+        return [[self.variableSource objectAtIndex:row] title];
     }
-    return 0;
-   
+    return @"";
 }
 
 - (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    NSString *title;
-    if (component == 0){
-         title =self.variableSourceProgram[row];
-    }else{
-        title =@"";
-    }
-
-    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:[UIColor skyBlueColor]}];
+    NSString *title = [self pickerView:pickerView titleForRow:row forComponent:component];
+    UIColor *color = [UIColor skyBlueColor];
     
+    VariablePickerData *pickerData = [self.variableSource objectAtIndex:row];
+    if([pickerData isLabel])
+        color = [UIColor orangeColor];
+    
+    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:color}];
     return attString;
-    
 }
-
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
+    if(component == 0) {
+        VariablePickerData *pickerData = [self.variableSource objectAtIndex:row];
+        if([pickerData isLabel])
+            [pickerView selectRow:(row + 1) inComponent:component animated:NO];
+    }
     self.currentComponent = component;
 }
 
 - (IBAction)choseVariable:(UIButton *)sender {
-  NSInteger row = [self.variablePicker selectedRowInComponent:self.currentComponent];
-  if (row >= 0) {
-//      if (self.currentComponent == 0) {
-//          NSLog(@"%@",self.variableSourceObject[row]);
-//          VariablesContainer* varCont = self.object.program.variables;
-//          UserVariable* var = [varCont getUserVariableNamed:self.variableSourceObject[row] forSpriteObject:self.object];
-//      }else
-          if (self.currentComponent == 0)
-          {
-            VariablesContainer* varCont = self.object.program.variables;
-              UserVariable* var = [varCont getUserVariableNamed:self.variableSourceProgram[row] forSpriteObject:self.object];
-              NSDebug(@"%@",var.name);
-              [self handleInputWithTitle:var.name AndButtonType:0];
-      }
-  
-      
-  }
+
+// REMAINING CODE FRAGMENT DUE TO PREVIOUS MERGE CONFLICT -> NOT SURE if this is needed any more???
+//  NSInteger row = [self.variablePicker selectedRowInComponent:self.currentComponent];
+//  if (row >= 0) {
+////      if (self.currentComponent == 0) {
+////          NSDebug(@"%@",self.variableSourceObject[row]);
+////          VariablesContainer* varCont = self.object.program.variables;
+////          UserVariable* var = [varCont getUserVariableNamed:self.variableSourceObject[row] forSpriteObject:self.object];
+////      }else
+//          if (self.currentComponent == 0)
+//          {
+//            VariablesContainer* varCont = self.object.program.variables;
+//              UserVariable* var = [varCont getUserVariableNamed:self.variableSourceProgram[row] forSpriteObject:self.object];
+//              NSDebug(@"%@",var.name);
+//              [self handleInputWithTitle:var.name AndButtonType:0];
+//      }
+//  
+//      
+//  }
+    NSInteger row = [self.variablePicker selectedRowInComponent:self.currentComponent];
+    if (row >= 0 && [self.variableSource count] > row) {
+        if (self.currentComponent == 0)
+        {
+            VariablePickerData *pickerData = [self.variableSource objectAtIndex:row];
+            if([pickerData isLabel])
+                return;
+            
+            NSDebug(@"%@",var.name);
+            [self handleInputWithTitle:pickerData.userVariable.name AndButtonType:0];
+        }
+    }
 }
 
+- (IBAction)deleteVariable:(UIButton *)sender {
+    NSInteger row = [self.variablePicker selectedRowInComponent:self.currentComponent];
+    if (row >= 0 && [self.variableSource count] > row) {
+        if (self.currentComponent == 0)
+        {
+            VariablePickerData *pickerData = [self.variableSource objectAtIndex:row];
+            if([pickerData isLabel])
+                return;
+            
+            if(![self isVariableBeingUsed:pickerData.userVariable]) {
+                BOOL removed = [self.object.program.variables removeUserVariableNamed:pickerData.userVariable.name forSpriteObject:self.object];
+                if (removed) {
+                    [self.variableSource removeObjectAtIndex:row];
+                    [self.object.program saveToDisk];
+                    [self updateVariablePickerData];
+                }
+            } else {
+                [Util alertWithText:kUIFEDeleteVarBeingUsed];
+            }
+        }
+    }
+}
+
+- (BOOL)isVariableBeingUsed:(UserVariable*)variable
+{
+    if([self.object.program.variables isProgramVariable:variable]) {
+        for(SpriteObject *spriteObject in self.object.program.objectList) {
+            for(Script *script in spriteObject.scriptList) {
+                for(id brick in script.brickList) {
+                    if([brick isKindOfClass:[Brick class]] && [brick isVariableBeingUsed:variable]) {
+                        return YES;
+                    }
+                }
+            }
+        }
+    } else {
+        for(Script *script in self.object.scriptList) {
+            for(id brick in script.brickList) {
+                if([brick isKindOfClass:[Brick class]] && [brick isVariableBeingUsed:variable]) {
+                    return YES;
+                }
+            }
+        }
+    }
+    
+    return NO;
+}
 
 #pragma mark - action sheet delegates
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

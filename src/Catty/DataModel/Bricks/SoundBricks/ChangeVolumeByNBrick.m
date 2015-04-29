@@ -39,7 +39,7 @@
     self.volume = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValues
 {
     self.volume = [[Formula alloc] initWithFloat:-10];
 }

@@ -165,7 +165,7 @@
     //    cell = [self cellForSearchResultsTableView:tableView atIndexPath:indexPath];
     //  }
     if (! cell) {
-        NSLog(@"Why?! Should not happen!");
+        NSError(@"Why?! Should not happen!");
         abort();
     }
     return cell;
@@ -358,7 +358,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
     if (!cell) {
-        NSLog(@"Should Never happen - since iOS5 Storyboard *always* instantiates our cell!");
+        NSError(@"Should Never happen - since iOS5 Storyboard *always* instantiates our cell!");
         abort();
     }
 

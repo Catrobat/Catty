@@ -33,7 +33,7 @@
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
     
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"TRANSPARENCY_CHANGE"];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"TRANSPARENCY_CHANGE" withContext:context];
     ChangeGhostEffectByNBrick *changeGhostEffectByNBrick = [self new];
     changeGhostEffectByNBrick.changeGhostEffect = formula;
     return changeGhostEffectByNBrick;

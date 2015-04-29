@@ -32,7 +32,7 @@
 #define kPreviewImageWidth 160
 #define kPreviewImageHeight 160
 #define kMinNumOfObjects 0
-#define kDefaultNumOfObjects 1
+#define kDefaultNumOfObjects 0
 #define kBackgroundObjects 1
 #define kMinNumOfProgramNameCharacters 1
 #define kMaxNumOfProgramNameCharacters 20
@@ -86,11 +86,13 @@ typedef NS_ENUM(NSUInteger, kDTMActionType) {
 #define kDTPayloadAskUserInvalidInputAlertMessage @"DTPayloadAskUserInvalidInputAlertMessage"
 #define kDTPayloadAskUserExistingNames @"DTPayloadAskUserExistingNames"
 #define kDTPayloadTextView @"DTPayloadTextView"
+#define kDTPayloadCancel @"DTPayloadCancel"
 
 #define kUserDetailsShowDetailsKey @"showDetails"
 #define kUserIsFirstAppLaunch @"isFirstAppLaunch"
 #define kUserIsLoggedIn @"userIsLoggedIn"
 #define kUserLoginToken @"userLoginToken"
+#define kUseTestServerForUploadAndLogin @"useTestServer" 
 #define kUserShowIntroductionOnLaunch @"showIntroductionOnLaunch"
 #define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
 #define kUserDetailsShowDetailsLooksKey @"detailsForLooks"

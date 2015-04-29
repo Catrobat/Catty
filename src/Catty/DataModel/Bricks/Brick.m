@@ -142,7 +142,7 @@
     return YES;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValues
 {
     // Override this method in Brick implementation
 }

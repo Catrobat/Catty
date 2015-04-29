@@ -157,7 +157,7 @@
                                                     cell.featuredImage.frame = cell.frame;
                                                     cell.featuredImage.frame = CGRectMake(30, 0, self.view.frame.size.width, cell.featuredImage.frame.size.height);
                                                     self.featuredSize = @[[NSNumber numberWithFloat:img.size.width],[NSNumber numberWithFloat:img.size.height]];
-                                                    NSLog(@"%f",img.size.height/(img.size.width / [Util screenWidth]));
+                                                    NSDebug(@"%f",img.size.height/(img.size.width / [Util screenWidth]));
 //                                                    CGFloat factor = img.size.width / [Util screenWidth];
 //                                                    NSDebug(@"%f",img.size.height/factor);
                                                     [self loadingIndicator:NO];
@@ -346,7 +346,7 @@
 #pragma mark - NSURLConnection Delegates
 //- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
 //    if (self.connection == connection) {
-//        NSLog(@"Received data from server");
+//        NSDebug(@"Received data from server");
 //        [self.data appendData:data];
 //    }
 //}

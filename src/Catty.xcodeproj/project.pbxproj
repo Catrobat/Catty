@@ -15,14 +15,16 @@
 		4C5517DA1ABC747B00A52FF4 /* BrickCellObjectFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5517D91ABC747A00A52FF4 /* BrickCellObjectFragment.m */; };
 		4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */; };
 		4CB4419E1AB9A96A005A1DEF /* BrickCellLookFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4419D1AB9A96A005A1DEF /* BrickCellLookFragment.m */; };
+		4CE9D4211AE27AD20058CB24 /* IfOnEdgeBounceBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE9D4201AE27AD20058CB24 /* IfOnEdgeBounceBrickTests.m */; };
+		4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */; };
+		4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */; };
+		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
 		811FB6ED1A49812700957E10 /* BrickCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6EC1A49812700957E10 /* BrickCategoryViewController.m */; };
 		81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */; };
 		92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A461A42F2A3008C771A /* BSKeyboardControls.m */; };
 		92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A481A42F2A3008C771A /* iOSCombobox.m */; };
 		9238C5831A3AE9920099F061 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */; };
-		9238C5841A3AE9920099F061 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C5801A3AE9920099F061 /* LoginViewController.m */; };
-		9238C5851A3AE9920099F061 /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C5821A3AE9920099F061 /* UploadViewController.m */; };
 		928D4D791A7BD19A00E6DFA8 /* CatrobatUISlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 928D4D781A7BD19A00E6DFA8 /* CatrobatUISlider.m */; };
 		92DFAFE61A38943D00FA9B0F /* FormulaEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */; };
 		92DFB00E1A38949E00FA9B0F /* ExternInternRepresentationMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEA1A38949E00FA9B0F /* ExternInternRepresentationMapping.m */; };
@@ -512,6 +514,9 @@
 		CAEE3BF81ABDFAE7009FDA72 /* CBOperationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE3BF31ABDFAE7009FDA72 /* CBOperationSequence.m */; };
 		CAEE3BF91ABDFAE7009FDA72 /* CBSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE3BF41ABDFAE7009FDA72 /* CBSequence.m */; };
 		CAFAEAE61A13BE1F00C9F170 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C3275F91A1360640091C428 /* ValidProgramAllBricks.xml */; };
+		D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */; };
+		D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */; };
+		D638646C1AE63EDD008569E6 /* Keychain.m in Sources */ = {isa = PBXBuildFile; fileRef = D638646B1AE63EDD008569E6 /* Keychain.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -586,6 +591,12 @@
 		4CB4419C1AB9A96A005A1DEF /* BrickCellLookFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellLookFragment.h; path = BrickCellFragments/BrickCellLookFragment.h; sourceTree = "<group>"; };
 		4CB4419D1AB9A96A005A1DEF /* BrickCellLookFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellLookFragment.m; path = BrickCellFragments/BrickCellLookFragment.m; sourceTree = "<group>"; };
 		4CE9D4201AE27AD20058CB24 /* IfOnEdgeBounceBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfOnEdgeBounceBrickTests.m; sourceTree = "<group>"; };
+		4CF773E31AEE3B5100DBBB2B /* VariablePickerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablePickerData.h; sourceTree = "<group>"; };
+		4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablePickerData.m; sourceTree = "<group>"; };
+		4CF773EC1AEE786600DBBB2B /* FormulaElement+UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FormulaElement+UserVariable.h"; sourceTree = "<group>"; };
+		4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FormulaElement+UserVariable.m"; sourceTree = "<group>"; };
+		4CF773F21AEE79A800DBBB2B /* Brick+UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brick+UserVariable.h"; sourceTree = "<group>"; };
+		4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Brick+UserVariable.m"; sourceTree = "<group>"; };
 		811FB6E81A4980EF00957E10 /* ScriptCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptCollectionViewController.h; sourceTree = "<group>"; };
 		811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptCollectionViewController.m; sourceTree = "<group>"; };
 		811FB6EB1A49812700957E10 /* BrickCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCategoryViewController.h; sourceTree = "<group>"; };
@@ -639,10 +650,6 @@
 		92345638192E2E8000464E6B /* NextLookBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextLookBrickTests.m; sourceTree = "<group>"; };
 		9238C57D1A3AE9920099F061 /* LoginPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginPopupViewController.h; sourceTree = "<group>"; };
 		9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginPopupViewController.m; sourceTree = "<group>"; };
-		9238C57F1A3AE9920099F061 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		9238C5801A3AE9920099F061 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		9238C5811A3AE9920099F061 /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
-		9238C5821A3AE9920099F061 /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
 		928D4D771A7BD19A00E6DFA8 /* CatrobatUISlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CatrobatUISlider.h; path = CatrobatSlider/CatrobatUISlider.h; sourceTree = "<group>"; };
 		928D4D781A7BD19A00E6DFA8 /* CatrobatUISlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CatrobatUISlider.m; path = CatrobatSlider/CatrobatUISlider.m; sourceTree = "<group>"; };
 		929108921A41F32A0034564D /* CBParserNodeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBParserNodeProtocol.h; sourceTree = "<group>"; };
@@ -1453,6 +1460,13 @@
 		CAEE3BF21ABDFAE7009FDA72 /* CBOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBOperation.m; path = CBSequence/CBOperation.m; sourceTree = "<group>"; };
 		CAEE3BF31ABDFAE7009FDA72 /* CBOperationSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBOperationSequence.m; path = CBSequence/CBOperationSequence.m; sourceTree = "<group>"; };
 		CAEE3BF41ABDFAE7009FDA72 /* CBSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBSequence.m; path = CBSequence/CBSequence.m; sourceTree = "<group>"; };
+		D63864631AE632FE008569E6 /* ProgramsForUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramsForUploadViewController.h; sourceTree = "<group>"; };
+		D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramsForUploadViewController.m; sourceTree = "<group>"; };
+		D63864661AE6334E008569E6 /* UploadInfoPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadInfoPopupViewController.h; sourceTree = "<group>"; };
+		D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadInfoPopupViewController.m; sourceTree = "<group>"; };
+		D638646A1AE63EDD008569E6 /* Keychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Keychain.h; path = Keychain/Keychain.h; sourceTree = "<group>"; };
+		D638646B1AE63EDD008569E6 /* Keychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Keychain.m; path = Keychain/Keychain.m; sourceTree = "<group>"; };
+		D638646D1AE63F80008569E6 /* KeychainDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainDefines.h; sourceTree = "<group>"; };
 		DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DE3F097711B7BABD009D4DB0 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -1803,10 +1817,10 @@
 			children = (
 				9238C57D1A3AE9920099F061 /* LoginPopupViewController.h */,
 				9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */,
-				9238C57F1A3AE9920099F061 /* LoginViewController.h */,
-				9238C5801A3AE9920099F061 /* LoginViewController.m */,
-				9238C5811A3AE9920099F061 /* UploadViewController.h */,
-				9238C5821A3AE9920099F061 /* UploadViewController.m */,
+				D63864631AE632FE008569E6 /* ProgramsForUploadViewController.h */,
+				D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */,
+				D63864661AE6334E008569E6 /* UploadInfoPopupViewController.h */,
+				D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */,
 			);
 			path = Upload;
 			sourceTree = "<group>";
@@ -2068,6 +2082,12 @@
 			children = (
 				92DFAFF01A38949E00FA9B0F /* NSMutableArray+Reverse.h */,
 				92DFAFF11A38949E00FA9B0F /* NSMutableArray+Reverse.m */,
+				4CF773E31AEE3B5100DBBB2B /* VariablePickerData.h */,
+				4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */,
+				4CF773EC1AEE786600DBBB2B /* FormulaElement+UserVariable.h */,
+				4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */,
+				4CF773F21AEE79A800DBBB2B /* Brick+UserVariable.h */,
+				4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -2162,6 +2182,7 @@
 				92FF2E061A24C3BE00093DA7 /* SegueDefines.h */,
 				92FF2E071A24C3BE00093DA7 /* UIDefines.h */,
 				4C5517BC1ABC16B600A52FF4 /* ViewControllerDefines.h */,
+				D638646D1AE63F80008569E6 /* KeychainDefines.h */,
 			);
 			path = Defines;
 			sourceTree = "<group>";
@@ -2343,6 +2364,8 @@
 		92FF2E4C1A24C7D800093DA7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				D63864691AE63EB4008569E6 /* Keychain */,
+				81CC622E1A57285D002804B7 /* KVOController */,
 				92FF2E4D1A24C7D800093DA7 /* AudioManager */,
 				92FF2E521A24C7D800093DA7 /* FileManager */,
 				92FF2E551A24C7D800093DA7 /* Flash */,
@@ -4168,6 +4191,15 @@
 			path = Catty;
 			sourceTree = "<group>";
 		};
+		D63864691AE63EB4008569E6 /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				D638646A1AE63EDD008569E6 /* Keychain.h */,
+				D638646B1AE63EDD008569E6 /* Keychain.m */,
+			);
+			name = Keychain;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -4514,6 +4546,7 @@
 				92FF2EBC1A24C8A700093DA7 /* CBXMLOpenedNestingBricksStack.m in Sources */,
 				92FF30E11A24DCAA00093DA7 /* GlideToBrick.m in Sources */,
 				92FF32981A24E2F400093DA7 /* MoveNStepsBrickCell.m in Sources */,
+				4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */,
 				92FF31571A24DEB300093DA7 /* ObjectTableViewController.m in Sources */,
 				92FF32BB1A24E2F400093DA7 /* DarkBlueGradientImageCell.m in Sources */,
 				CAA4A4E31A43B472002A69A0 /* ChangeSizeByNBrick+CBXMLHandler.m in Sources */,
@@ -4584,6 +4617,7 @@
 				92FF2E3E1A24C5A700093DA7 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */,
 				92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */,
 				92FF315A1A24DEB300093DA7 /* FeaturedProgramsStoreViewController.m in Sources */,
+				D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */,
 				92FF32841A24E2F400093DA7 /* NoteBrickCell.m in Sources */,
 				92FF2E3C1A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m in Sources */,
 				CAA4A4C31A43B45E002A69A0 /* ClearGraphicEffectBrick+CBXMLHandler.m in Sources */,
@@ -4613,7 +4647,6 @@
 				CAA4A4AC1A43B407002A69A0 /* WaitBrick+CBXMLHandler.m in Sources */,
 				92FF32691A24E2F400093DA7 /* MYBlurIntroductionView.m in Sources */,
 				92FF30D01A24DCAA00093DA7 /* ChangeBrightnessByNBrick.m in Sources */,
-				9238C5851A3AE9920099F061 /* UploadViewController.m in Sources */,
 				92FF2E971A24C7D800093DA7 /* mztools.c in Sources */,
 				92FF32871A24E2F400093DA7 /* WaitBrickCell.m in Sources */,
 				92DFB0531A38960C00FA9B0F /* BrushPickerViewController.m in Sources */,
@@ -4624,6 +4657,7 @@
 				CAA4A4F61A43B47F002A69A0 /* LedOnBrick+CBXMLHandler.m in Sources */,
 				CAA4A4C41A43B45E002A69A0 /* GoNStepsBackBrick+CBXMLHandler.m in Sources */,
 				92DFB0561A38960C00FA9B0F /* FillTool.m in Sources */,
+				4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */,
 				92FF327F1A24E2F400093DA7 /* IfLogicElseBrickCell.m in Sources */,
 				92FF30F11A24DCAA00093DA7 /* PlaySoundBrick.m in Sources */,
 				92FF2E371A24C5A700093DA7 /* NSMutableArray+CustomExtensions.m in Sources */,
@@ -4662,6 +4696,7 @@
 				92FF30FF1A24DCAA00093DA7 /* Program.m in Sources */,
 				92FF30CD1A24DCAA00093DA7 /* IfLogicBeginBrick.m in Sources */,
 				CAA4A4ED1A43B472002A69A0 /* TurnLeftBrick+CBXMLHandler.m in Sources */,
+				D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */,
 				92FF2EBF1A24C8A700093DA7 /* CatrobatProgram.m in Sources */,
 				92FF315B1A24DEB300093DA7 /* ProgramDetailStoreViewController.m in Sources */,
 				92DFB00F1A38949E00FA9B0F /* ExternToken.m in Sources */,
@@ -4690,7 +4725,6 @@
 				92FF32B21A24E2F400093DA7 /* RoundBorderedButton.m in Sources */,
 				92DFB05C1A38960C00FA9B0F /* LinkedListStack.m in Sources */,
 				92FF315C1A24DEB300093DA7 /* RecentProgramsStoreViewController.m in Sources */,
-				9238C5841A3AE9920099F061 /* LoginViewController.m in Sources */,
 				92FF30CB1A24DCAA00093DA7 /* NoteBrick.m in Sources */,
 				92FF32A71A24E2F400093DA7 /* SpeakBrickCell.m in Sources */,
 				92FF327B1A24E2F400093DA7 /* BroadcastBrickCell.m in Sources */,
@@ -4813,6 +4847,7 @@
 				4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */,
 				92FF2E8D1A24C7D800093DA7 /* CatrobatAudioPlayer.m in Sources */,
 				92FF32891A24E2F400093DA7 /* ChangeGhostEffectByNBrickCell.m in Sources */,
+				4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */,
 				92FF31611A24DEB300093DA7 /* ScenePresenterViewController.m in Sources */,
 				92FF30CC1A24DCAA00093DA7 /* WaitBrick.m in Sources */,
 				92DFB0541A38960C00FA9B0F /* ColorPickerViewController.m in Sources */,
@@ -4820,6 +4855,7 @@
 				92FF327C1A24E2F400093DA7 /* BroadcastWaitBrickCell.m in Sources */,
 				92FF32821A24E2F400093DA7 /* LedOnBrickCell.m in Sources */,
 				CAA4A4661A43B388002A69A0 /* CBXMLSerializer.m in Sources */,
+				D638646C1AE63EDD008569E6 /* Keychain.m in Sources */,
 				811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */,
 				92FF30E61A24DCAA00093DA7 /* SetYBrick.m in Sources */,
 				92FF32B41A24E2F400093DA7 /* CellMotionEffect.m in Sources */,

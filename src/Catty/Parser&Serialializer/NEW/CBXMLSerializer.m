@@ -104,7 +104,7 @@
                                                     programID:program.header.programID];
         NSInfo(@"Saving finished...");
     } @catch(NSException *exception) {
-        NSError(@"Program could not be loaded! %@", [exception description]);
+        NSError(@"Program could not be serialized! %@", [exception description]);
     }
 }
 

@@ -40,7 +40,7 @@
     self.variableFormula = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValues
 {
     self.variableFormula = [[Formula alloc] initWithZero];
 }

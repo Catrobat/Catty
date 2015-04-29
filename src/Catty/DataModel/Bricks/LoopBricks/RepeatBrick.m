@@ -45,7 +45,7 @@
     self.timesToRepeat = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValues
 {
     self.timesToRepeat = [[Formula alloc] initWithInteger:10];
 }

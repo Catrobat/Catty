@@ -20,17 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
+#import "Brick.h"
 
-@interface UploadViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UILabel *sizeValueLabel;
+@class UserVariable;
 
-@property (weak, nonatomic) IBOutlet UILabel *sizeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *programLabel;
-@property (weak, nonatomic) IBOutlet UITextField *programTextField;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
-@property (weak, nonatomic) IBOutlet UITextField *descriptionTextField;
-@property (weak, nonatomic) IBOutlet UIButton *uploadButton;
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@interface Brick (UserVariable)
+
+- (BOOL)isVariableBeingUsed:(UserVariable*)variable;
 
 @end

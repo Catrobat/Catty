@@ -124,11 +124,11 @@
             }
         }
         else {
-            NSLog(@"You must pass in panels for the introduction view to have content. 0 panels were found");
+            NSDebug(@"You must pass in panels for the introduction view to have content. 0 panels were found");
         }
     }
     else {
-        NSLog(@"You must pass in panels for the introduction view to have content. The panels object was nil.");
+        NSDebug(@"You must pass in panels for the introduction view to have content. The panels object was nil.");
     }
 }
 
@@ -396,7 +396,7 @@
         }
     }
     else {
-        NSLog(@"The index is out of range for Panels array");
+        NSDebug(@"The index is out of range for Panels array");
     }
 }
 

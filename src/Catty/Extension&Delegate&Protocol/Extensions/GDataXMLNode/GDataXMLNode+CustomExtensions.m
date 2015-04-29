@@ -26,7 +26,7 @@
 
 - (BOOL)isEqualToNode:(GDataXMLNode*)node
 {
-    if(![self.decodedStringValue isEqualToString:node.decodedStringValue]) {
+    if (! [self.decodedStringValue isEqualToString:node.decodedStringValue]) {
         NSDebug(@"GDataXMLNodes not equal: string values are not equal (%@ != %@)!", self.stringValue, node.stringValue);
         return false;
     }
@@ -36,8 +36,8 @@
 - (NSArray*)childrenWithoutComments
 {
     NSMutableArray *children = [NSMutableArray new];
-    for(GDataXMLNode *child in self.children) {
-        if(child.XMLNode->type != XML_COMMENT_NODE)
+    for (GDataXMLNode *child in self.children) {
+        if (child.XMLNode->type != XML_COMMENT_NODE)
             [children addObject:child];
     }
     return children;
