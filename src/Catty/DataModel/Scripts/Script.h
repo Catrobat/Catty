@@ -46,6 +46,8 @@
 
 - (BOOL)isAnimateable;
 
+- (void)setDefaultValues;
+
 - (void)addBrick:(Brick*)brick atIndex:(NSUInteger)index;
 
 - (void)computeSequenceList;

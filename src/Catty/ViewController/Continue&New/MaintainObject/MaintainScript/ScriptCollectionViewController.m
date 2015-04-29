@@ -263,6 +263,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                                                              view:self.navigationController.view];
     actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditBrickOrScript
                                                                     withPayload:@{ kDTPayloadCellIndexPath : indexPath }];
+    [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
 }
 
 #pragma mark - action sheet delegates

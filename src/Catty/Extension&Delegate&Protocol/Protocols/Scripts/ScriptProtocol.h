@@ -33,5 +33,6 @@
 @property (nonatomic, getter=isAnimated) BOOL animate;
 - (BOOL)isSelectableForObject;
 - (BOOL)isAnimateable;
+- (void)setDefaultValues;
 
 @end

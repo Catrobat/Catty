@@ -79,6 +79,11 @@
     return NO;
 }
 
+- (void)setDefaultValues
+{
+    return; // nothing to do
+}
+
 - (void)addBrick:(Brick*)brick atIndex:(NSUInteger)index
 {
     CBAssert([self.brickList indexOfObject:brick] == NSNotFound);
