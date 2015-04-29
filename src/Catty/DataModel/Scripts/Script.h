@@ -40,6 +40,7 @@
 @property (nonatomic, strong, readonly) NSString *brickTitle;
 @property (nonatomic, weak) SpriteObject *object;
 @property (strong, nonatomic) NSMutableArray *brickList;
+@property (nonatomic, getter=isAnimated) BOOL animate;
 
 - (BOOL)isSelectableForObject;
 

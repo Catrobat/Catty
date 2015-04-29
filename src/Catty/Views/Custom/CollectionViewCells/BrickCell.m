@@ -513,20 +513,26 @@
 #pragma mark - animations
 - (void)animateBrick:(BOOL)animate
 {
-    if (animate) {
-        CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
-        animation.keyPath = @"transform";
-        animation.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeRotation((CGFloat)M_PI/200.0f, 0.1f, 0.1f, 0.1f)],
-                              [NSValue valueWithCATransform3D:CATransform3DMakeRotation((CGFloat)M_PI/200.0f, -0.1f, -0.1f, -0.1f)]];
-        animation.autoreverses = YES ;
-        animation.repeatCount = 20;
-        animation.duration = 0.1f ;
-        [self.layer addAnimation:animation forKey:@"whobble"];
-    } else {
-        [self.layer removeAllAnimations];
+    self.scriptOrBrick.animate = animate;
+    if (! animate) {
+        return;
     }
+    self.alpha = 0.2f;
+    NSDate *startTime = [NSDate date];
+    [UIView animateWithDuration:0.3
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionRepeat
+                                | UIViewAnimationOptionAutoreverse
+                                | UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
+                         [UIView setAnimationRepeatCount:10];
+                         self.alpha = 1.0f;
+                     }
+                     completion:^(BOOL finished) {
+                         self.alpha = 1.0f;
+                         NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:startTime];
+                         self.scriptOrBrick.animate = (duration < 3.0f);
+    }];
 }
-
-
 
 @end

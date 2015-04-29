@@ -33,6 +33,7 @@
 @property (nonatomic, readonly) kBrickType brickType;
 @property (nonatomic, strong, readonly) NSString *brickTitle;
 @property (nonatomic, weak) Script *script;
+@property (nonatomic, getter=isAnimated) BOOL animate;
 
 - (BOOL)isSelectableForObject;
 

@@ -109,11 +109,13 @@
         brick = [script.brickList objectAtIndex:indexPath.item - 1];
         cellIdentifier = NSStringFromClass([brick class]);
     }
-    
     brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier
                                                           forIndexPath:indexPath];
     brickCell.scriptOrBrick = indexPath.item == 0 ? script : brick;
     self.configureCellBlock(brickCell);
+    if (brick.isAnimated) {
+        [brickCell animateBrick:YES];
+    }
     return brickCell;
 }
 
