@@ -243,9 +243,13 @@
 - (void)insertBricks:(NSArray *)bricks atIndexes:(NSIndexSet *)indexes inSection:(NSUInteger)section
 {
     Script *script = [self scriptAtSection:section];
+    for(Brick *brick in bricks) {
+        brick.script = script;
+        [brick setDefaultValues];
+    }
+    
     NSMutableArray *brickList = [script.brickList mutableCopy];
     [brickList insertObjects:bricks atIndexes:indexes];
-    
     script.brickList = brickList;
     
     // TODO: Fix exception raised.

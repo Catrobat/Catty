@@ -21,8 +21,9 @@
  */
 
 #import "Script.h"
+#import "BrickMessageProtocol.h"
 
-@interface BroadcastScript : Script
+@interface BroadcastScript : Script<BrickMessageProtocol>
 
 @property (nonatomic, strong) NSString *receivedMessage;
 @property (nonatomic, getter=isCalledByOtherScriptBroadcastWait) BOOL calledByOtherScriptBroadcastWait;

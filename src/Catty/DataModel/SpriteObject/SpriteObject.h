@@ -94,6 +94,7 @@
 - (NSArray*)allSoundNames;
 - (NSUInteger)referenceCountForLook:(NSString*)fileName;
 - (NSUInteger)referenceCountForSound:(NSString*)fileName;
+- (void)setRotation:(CGFloat)rotationInDegrees;
 
 // actions
 - (void)changeLook:(Look*)look;

@@ -52,4 +52,20 @@
     [self.object.program signalForWaitingBroadcastWithMessage:self.receivedMessage];
 }
 
+- (void)setDefaultValues
+{
+    self.receivedMessage = [NSString stringWithString:kLocalizedBroadcastDefaultMessage];
+}
+
+- (void)setMessage:(NSString*)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    if (message)
+        self.receivedMessage = message;
+}
+
+- (NSString *)messageForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    return self.receivedMessage;
+}
+
 @end

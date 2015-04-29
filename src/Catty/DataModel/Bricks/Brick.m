@@ -109,6 +109,11 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
+    if(self.brickCategoryType != brick.brickCategoryType)
+        return NO;
+    if(self.brickType != brick.brickType)
+        return NO;
+
     NSArray *firstPropertyList = [[Util propertiesOfInstance:self] allValues];
     NSArray *secondPropertyList = [[Util propertiesOfInstance:brick] allValues];
     
@@ -120,11 +125,20 @@
         NSObject *firstObject = [firstPropertyList objectAtIndex:index];
         NSObject *secondObject = [secondPropertyList objectAtIndex:index];
         
+        // prevent recursion (e.g. Script->Brick->Script->Brick...)
+        if([firstObject isKindOfClass:[Script class]] && [secondObject isKindOfClass:[Script class]])
+            continue;
+    
         if(![Util isEqual:firstObject toObject:secondObject])
             return NO;
     }
     
     return YES;
+}
+
+- (void)setDefaultValues
+{
+    // Override this method in Brick implementation
 }
 
 #pragma mark - Copy
@@ -140,6 +154,8 @@
     if(!context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
     
     Brick *brick = [[self class] new];
+    brick.brickCategoryType = self.brickCategoryType;
+    brick.brickType = self.brickType;
     [context updateReference:self WithReference:brick];
     
     NSDictionary *properties = [Util propertiesOfInstance:self];

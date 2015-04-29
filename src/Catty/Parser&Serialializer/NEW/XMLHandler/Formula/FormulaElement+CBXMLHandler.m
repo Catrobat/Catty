@@ -23,6 +23,9 @@
 #import "FormulaElement+CBXMLHandler.h"
 #import "CBXMLValidator.h"
 #import "GDataXMLElement+CustomExtensions.h"
+#import "CBXMLContext.h"
+#import "UserVariable.h"
+#import "SpriteObject.h"
 
 @implementation FormulaElement (CBXMLHandler)
 
@@ -55,9 +58,16 @@
         formulaTree.leftChild = leftChildFormula;
     }
     
+    if(formulaTree.type == USER_VARIABLE && context && context.spriteObject) {
+        NSMutableArray *formulaVariableList = [context.formulaVariableNameList objectForKey:context.spriteObject.name];
+        if(!formulaVariableList)
+            formulaVariableList = [NSMutableArray new];
+        [formulaVariableList addObject:formulaTree.value];
+        [context.formulaVariableNameList setObject:formulaVariableList forKey:context.spriteObject.name];
+    }
+        
     return formulaTree;
 }
-
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {

@@ -21,8 +21,9 @@
  */
 
 #import "Brick.h"
+#import "BrickTextProtocol.h"
 
-@interface NoteBrick : Brick
+@interface NoteBrick : Brick<BrickTextProtocol>
 
 @property (nonatomic, strong) NSString* note;
 

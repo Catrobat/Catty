@@ -20,20 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BrickCell.h"
-#import "Formula.h"
-#import "InternFormula.h"
 
-@interface FormulaEditorButton : UIButton
+#import "BrickCellFragmentProtocol.h"
+#import "iOSCombobox.h"
 
-@property (nonatomic, weak) BrickCell *brickCell;
-@property (nonatomic, weak) Formula *formula;
-
-- (id)initWithFrame:(CGRect)frame AndBrickCell:(BrickCell*)brickCell AndFormula:(Formula*)formula;
-- (void)drawBorder:(BOOL)isActive;
-
-+ (Formula*)getActiveFormula;
-+ (void)setActiveFormula:(Formula*)formula;
+@interface BrickCellSoundFragment : iOSCombobox<BrickCellFragmentProtocol, iOSComboboxDelegate>
 
 @end

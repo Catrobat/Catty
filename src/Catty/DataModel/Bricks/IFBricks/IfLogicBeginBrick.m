@@ -29,14 +29,19 @@
 
 @implementation IfLogicBeginBrick
 
-- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.ifCondition;
 }
 
-- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     self.ifCondition = formula;
+}
+
+- (void)setDefaultValues
+{
+    self.ifCondition = [[Formula alloc] initWithInteger:1];
 }
 
 - (NSString*)brickTitle

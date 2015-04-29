@@ -180,6 +180,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+    [self reloadTableView];
     [self hideLoadingView];
 }
 
@@ -196,6 +197,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self renameOldProgramWithName:programLoadingInfo.visibleName
                          programID:programLoadingInfo.programID
                   toNewProgramName:program.header.programName];
+    [self reloadTableView];
     [self hideLoadingView];
 }
 
@@ -204,6 +206,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self showLoadingView];
     [program updateDescriptionWithText:descriptionText];
+    [self reloadTableView];
     [self hideLoadingView];
 }
 
@@ -240,6 +243,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self showLoadingView];
     ProgramLoadingInfo *programLoadingInfo = [self.programLoadingInfos objectAtIndex:indexPath.row];
     [self removeProgramWithName:programLoadingInfo.visibleName programID:programLoadingInfo.programID];
+    [self reloadTableView];
     [self hideLoadingView];
 }
 
@@ -486,7 +490,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                    forKey:kUserDetailsShowDetailsProgramsKey];
             [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
             [defaults synchronize];
-            [self.tableView reloadData];
+            [self reloadTableView];
         } else if ((buttonIndex == 1) && [self.programLoadingInfos count]) {
             // Delete Programs button
             [self setupEditingToolBar];
@@ -499,6 +503,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             ProgramLoadingInfo *info = (ProgramLoadingInfo*)payload[kDTPayloadProgramLoadingInfo];
             [Util askUserForUniqueNameAndPerformAction:@selector(copyProgramActionForProgramWithName:sourceProgramLoadingInfo:)
                                                 target:self
+                                          cancelAction:nil
                                             withObject:info
                                            promptTitle:kLocalizedCopyProgram
                                          promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
@@ -517,6 +522,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [unavailableNames removeString:info.visibleName];
             [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionToName:sourceProgramLoadingInfo:)
                                                 target:self
+                                          cancelAction:nil   
                                             withObject:info
                                            promptTitle:kLocalizedRenameProgram
                                          promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
@@ -534,10 +540,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
             Program *program = [Program programWithLoadingInfo:info];
             [Util askUserForTextAndPerformAction:@selector(updateProgramDescriptionActionWithText:sourceProgram:)
                                           target:self
+                                    cancelAction:nil 
                                       withObject:program
                                      promptTitle:kLocalizedSetDescription
                                    promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedDescription]
-                                     promptValue:program.header.description
+                                     promptValue:program.header.programDescription  
                                promptPlaceholder:kLocalizedEnterYourProgramDescriptionHere
                                   minInputLength:kMinNumOfProgramDescriptionCharacters
                                   maxInputLength:kMaxNumOfProgramDescriptionCharacters
@@ -597,8 +604,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     // if last program was removed [programLoadingInfos count] returns 0,
     // then default program was automatically recreated, therefore reload
     if (! [self.programLoadingInfos count]) {
-        self.programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
-        [self.tableView reloadData];
+        [self reloadTableView];
     }
 }
 
@@ -663,9 +669,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)downloadFinished:(NSNotification*)notification
 {
     if ([[notification name] isEqualToString:kProgramDownloadedNotification]){
-        self.programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
-        [self.tableView reloadData];
+        [self reloadTableView];
+
     }
+}
+
+#pragma mark reload TableView
+
+- (void)reloadTableView
+{
+    self.programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
+    [self.tableView reloadData];
 }
 
 @end

@@ -31,14 +31,19 @@
 
 @implementation SetBrightnessBrick
 
-- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.brightness;
 }
 
-- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     self.brightness = formula;
+}
+
+- (void)setDefaultValues
+{
+    self.brightness = [[Formula alloc] initWithZero];
 }
 
 - (NSString*)brickTitle

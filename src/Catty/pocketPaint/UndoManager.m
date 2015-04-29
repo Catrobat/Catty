@@ -22,6 +22,7 @@
 
 #import "UndoManager.h"
 
+#define kMaxAllowedUndos 10
 @implementation UndoManager
 
 - (id) initWithDrawViewCanvas:(PaintViewController *)canvas
@@ -32,6 +33,7 @@
     self.canvas = canvas;
     self.canvas.undo.enabled = NO;
     self.canvas.redo.enabled = NO;
+    self.levelsOfUndo = kMaxAllowedUndos;
   }
   return self;
 }
@@ -41,7 +43,6 @@
   if ([self.canvas.saveView.image isEqual:image])
   {
     [[self prepareWithInvocationTarget:self] setImage:self.canvas.saveView.image]; // Here we let know the undo managed what image was used before
-//    NSLog(@"log");
     
     // post notifications to update UI
   }else{

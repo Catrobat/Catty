@@ -108,7 +108,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy([object rotation], -60.0f, 0.0001, @"TurnLeftBrick not correct");
+    XCTAssertEqualWithAccuracy([object rotation], 360.0f + (-60.0f), 0.0001, @"TurnLeftBrick not correct");
 }
 
 - (void)testTurnLeftBrickNegativeOver360
@@ -131,7 +131,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy([object rotation], -40.0f, 0.0001, @"TurnLeftBrick not correct");
+    XCTAssertEqualWithAccuracy([object rotation], 360.0f + (-40.0f), 0.0001, @"TurnLeftBrick not correct");
 }
 
 @end

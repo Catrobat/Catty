@@ -20,17 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "Util.h"
 
-@interface LoginViewController : UIViewController <NSURLConnectionDataDelegate>
+#import "BrickCellFragmentProtocol.h"
+#import "FormulaEditorViewController.h"
 
-@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
-@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
-@property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-@property (weak, nonatomic) IBOutlet UILabel *emailLabel;
-@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
-@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@interface BrickCellFormulaFragment : UIButton<BrickCellFragmentProtocol, FormulaEditorViewControllerDelegate>
+
+@property (nonatomic, weak) BrickCell *brickCell;
+
+- (void)drawBorder:(BOOL)isActive;
+- (Formula*)formula;
 
 @end

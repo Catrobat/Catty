@@ -47,6 +47,7 @@
 #import "ProgramLoadingInfo.h"
 #import "SRViewController.h"
 #import "PlaceHolderView.h"
+#import "ViewControllerDefines.h"
 
 @interface SoundsTableViewController () <CatrobatActionSheetDelegate, AVAudioPlayerDelegate,
                                          SWTableViewCellDelegate>
@@ -107,6 +108,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self setupToolBar];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.isAllowed = YES;
+    
+    if(self.showAddSoundActionSheetAtStart) {
+        [self addSoundAction:nil];
+    }
 }
 
 - (void)dealloc
@@ -138,7 +143,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     if (self.isAllowed) {
         if (notification.userInfo) {
-                //        NSLog(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
+                NSDebug(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
             id sound = notification.userInfo[kUserInfoSound];
             if ([sound isKindOfClass:[Sound class]]) {
                 [self addSoundToObjectAction:(Sound*)sound];
@@ -151,7 +156,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     if (self.isAllowed) {
         if (notification.userInfo) {
-                //        NSLog(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
+            NSDebug(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
             id sound = notification.userInfo[kUserInfoSound];
             if ([sound isKindOfClass:[Sound class]]) {
                 Sound* recording =(Sound*)sound;
@@ -162,7 +167,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 NSError *error;
                 [fileManager removeItemAtPath:filePath error:&error];
                 if (error) {
-                    NSLog(@"-.-");
+                    NSDebug(@"-.-");
                 }
                 self.isAllowed = NO;
             }
@@ -214,6 +219,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     [self.object.program saveToDisk];
+    
+    if(self.afterSafeBlock) {
+        self.afterSafeBlock(sound);
+    }
 }
 
 - (void)copySoundActionWithSourceSound:(Sound*)sourceSound
@@ -562,6 +571,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             Sound *sound = (Sound*)payload[kDTPayloadSound];
             [Util askUserForTextAndPerformAction:@selector(renameSoundActionToName:sound:)
                                           target:self
+                                    cancelAction:nil
                                       withObject:sound
                                      promptTitle:kLocalizedRenameSound
                                    promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedSoundName]
@@ -575,16 +585,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else if (actionSheet.tag == kAddSoundActionSheetTag) {
         if (buttonIndex == 0) {
                 //Recorder
-            NSLog(@"Recorder");
+            NSDebug(@"Recorder");
             self.isAllowed = YES;
             [self stopAllSounds];
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
             SRViewController *soundRecorderViewController;
-            soundRecorderViewController = [storyboard instantiateViewControllerWithIdentifier:@"SoundRecorder"];
+            soundRecorderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kSoundRecorderViewControllerIdentifier];
             [self showViewController:soundRecorderViewController sender:self];
         } else if (buttonIndex == 1) {
             // Select music track
-            NSLog(@"Select music track");
+            NSDebug(@"Select music track");
             self.isAllowed = YES;
             AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
             if (! [delegate.fileManager existPlayableSoundsInDirectory:delegate.fileManager.documentsDirectory]) {
@@ -592,9 +601,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 return;
             }
             [self stopAllSounds];
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
             SoundPickerTableViewController *soundPickerTVC;
-            soundPickerTVC = [storyboard instantiateViewControllerWithIdentifier:@"SoundPickerTableViewController"];
+            soundPickerTVC = [self.storyboard instantiateViewControllerWithIdentifier:kSoundPickerTableViewControllerIdentifier];
             soundPickerTVC.directory = delegate.fileManager.documentsDirectory;
             UINavigationController *navigationController = [[UINavigationController alloc]
                                                             initWithRootViewController:soundPickerTVC];

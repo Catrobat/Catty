@@ -30,14 +30,19 @@
 
 @implementation PointInDirectionBrick
 
-- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.degrees;
 }
 
-- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     self.degrees = formula;
+}
+
+- (void)setDefaultValues
+{
+    self.degrees = [[Formula alloc] initWithFloat:90];
 }
 
 - (NSString*)brickTitle
@@ -53,11 +58,10 @@
 - (dispatch_block_t)actionBlock
 {
   return ^{
-    NSDebug(@"Performing: %@", self.description);
-    double degrees = [self.degrees interpretDoubleForSprite:self.script.object] - kRotationDegreeOffset;
-    degrees = [((Scene*)self.script.object.scene) convertDegreesToScene:(CGFloat)degrees];
-    double rad = [Util degreeToRadians:degrees];
-    self.script.object.zRotation = (CGFloat)rad;
+      NSDebug(@"Performing: %@", self.description);
+      double degrees = [self.degrees interpretDoubleForSprite:self.script.object] - kRotationDegreeOffset;
+      degrees = [((Scene*)self.script.object.scene) convertDegreesToScene:(CGFloat)degrees];
+      [self.script.object setRotation:degrees];
   };
 }
 

@@ -21,14 +21,13 @@
  */
 
 #import <Foundation/Foundation.h>
-@protocol ScriptProtocol;
 
-@protocol BrickCellProtocol <NSObject>
+@class Brick;
+@class SpriteObject;
 
-@required
-@property (nonatomic, strong) id<ScriptProtocol> scriptOrBrick;
-@property (nonatomic) BOOL enabled;
-- (kBrickShapeType)brickShapeType;
-+ (CGFloat)cellHeight;
+@protocol BrickObjectProtocol <NSObject>
+
+- (SpriteObject*)objectForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (void)setObject:(SpriteObject*)object forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 
 @end

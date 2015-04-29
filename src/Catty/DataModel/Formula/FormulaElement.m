@@ -85,14 +85,14 @@
     }
 }
 
-- (double)interpretRecursiveForSprite:(SpriteObject*)sprite;
+- (id)interpretRecursiveForSprite:(SpriteObject*)sprite;
 {
-    double result = -1;
+    id result = nil;
     
     switch (self.type) {
         case NUMBER: {
             //NSDebug(@"NUMBER");
-            result = self.value.doubleValue;
+            result = [NSNumber numberWithDouble:self.value.doubleValue];
             break;
         }
             
@@ -114,7 +114,7 @@
             //NSDebug(@"User Variable");
             Program *program = [ProgramManager sharedProgramManager].program;
             UserVariable *var = [program.variables getUserVariableNamed:self.value forSpriteObject:sprite];
-            result = [var.value doubleValue];
+            result = var.value;
             break;
         }
 
@@ -122,9 +122,9 @@
             //NSDebug(@"SENSOR");
             Sensor sensor = [SensorManager sensorForString:self.value];
             if([SensorManager isObjectSensor:sensor]) {
-                result = [self interpretLookSensor:sensor forSprite:sprite];
+                result = [NSNumber numberWithDouble:[self interpretLookSensor:sensor forSprite:sprite]];
             } else {
-                result = [[SensorHandler sharedSensorHandler] valueForSensor:sensor];
+                result = [NSNumber numberWithDouble:[[SensorHandler sharedSensorHandler] valueForSensor:sensor]];
             }
             break;
         }
@@ -134,6 +134,10 @@
             result = [self.rightChild interpretRecursiveForSprite:sprite];
             break;
         }
+        case STRING:
+            		
+            result = [self interpretString:self.value];
+            break;
             
         default:
             NSError(@"Unknown Type: %d", self.type);
@@ -146,43 +150,126 @@
     
 }
 
-- (double) interpretFunction:(Function)function forSprite:(SpriteObject*)sprite
+- (id)interpretString:(NSString *)value
+{
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = NSNumberFormatterDecimalStyle;
+    
+    if(self.parent == nil && self.type != USER_VARIABLE)
+    {
+        NSNumber *anotherValue = [formatter numberFromString:value];
+        
+        if(anotherValue == nil)
+        {
+            return value;
+        }else{
+            return anotherValue;
+        }
+    }
+    
+    if(self.parent != nil)
+    {
+        BOOL isAParentFunction = [Functions getFunctionByValue:self.parent.value] != NO_FUNCTION;
+        if(isAParentFunction && self.parent.type == STRING)
+        {
+               if([Functions getFunctionByValue:self.parent.value] == LETTER && self.parent.leftChild == self)
+               {
+                   NSNumber *anotherValue = [formatter numberFromString:value];
+                   
+                   if(anotherValue == nil)
+                   {
+                       return [NSNumber numberWithDouble:0.0f];
+                   }else{
+                       return anotherValue;
+                   }
+               }
+            return value;
+        }
+        
+        if(isAParentFunction)
+        {
+            NSNumber *anotherValue = [formatter numberFromString:value];
+            
+            if(anotherValue == nil)
+            {
+                return value;
+            }else{
+                return anotherValue;
+            }
+        }
+        
+        BOOL isParentAnOperator = [Operators getOperatorByValue:self.parent.value] != NO_OPERATOR;
+        
+        if(isParentAnOperator && ([Operators getOperatorByValue:self.parent.value] == EQUAL ||
+                                  [Operators getOperatorByValue:self.parent.value] == NOT_EQUAL))
+        {
+            return value;
+        }
+    }
+    
+    if([value length] == 0)
+    {
+        return [NSNumber numberWithDouble:0.0f];
+    }
+    
+    NSNumber *anotherValue = [formatter numberFromString:value];
+    
+    if(anotherValue == nil)
+    {
+        return [NSNumber numberWithDouble:0.0f];
+    }else{
+        return anotherValue;
+    }
+    
+}
+
+-(id) interpretFunction:(Function)function forSprite:(SpriteObject*)sprite
 {
     
-    double left = 0;
-    double right = 0;
+    double left = 0.0f;
+    double right = 0.0f;
+    id leftId = nil;
+    id rightId = nil;
     if(self.leftChild) {
-        left = [self.leftChild interpretRecursiveForSprite:sprite];
+        leftId =[self.leftChild interpretRecursiveForSprite:sprite];
+        if([leftId isKindOfClass:[NSNumber class]])
+        {
+            left = [leftId doubleValue];
+        }
     }
     if (self.rightChild) {
-        right = [self.rightChild interpretRecursiveForSprite:sprite];
+        rightId = [self.rightChild interpretRecursiveForSprite:sprite];
+        if([rightId isKindOfClass:[NSNumber class]])
+        {
+            right = [rightId doubleValue];
+        }
     }
     
-    double result = 0;
+    id result;
     
     switch (function) {
         case SIN: {
-            result = sin([Util degreeToRadians:left]);
+            result = [NSNumber numberWithDouble:sin([Util degreeToRadians:left])];
             break;
         }
         case COS: {
-            result = cos([Util degreeToRadians:left]);
+            result = [NSNumber numberWithDouble:cos([Util degreeToRadians:left])];
             break;
         }
         case TAN: {
-            result = tan([Util degreeToRadians:left]);
+            result = [NSNumber numberWithDouble:tan([Util degreeToRadians:left])];
             break;
         }
         case LN: {
-            result = log(left);
+            result = [NSNumber numberWithDouble:log(left)];
             break;
         }
         case LOG: {
-            result = log10(left);
+            result = [NSNumber numberWithDouble:log10(left)];
             break;
         }
         case SQRT: {
-            result =  sqrt(left);
+            result =  [NSNumber numberWithDouble:sqrt(left)];
             break;
         }
         case RAND: {
@@ -202,27 +289,27 @@
 //            double random = (double)rand() / RAND_MAX;
 //            result = minimum + random * (maximum - minimum);
             double random = (double)arc4random() / ARC4RANDOM_MAX;
-            result = minimum + random*(maximum-minimum);
+            result = [NSNumber numberWithDouble:minimum + random*(maximum-minimum)];
 
             if ([self doubleIsInteger:minimum] && [self doubleIsInteger:maximum]
                 && !(self.rightChild.type == NUMBER && [self.rightChild.value containsString:@"."])
                 && !(self.rightChild.type == NUMBER && [self.rightChild.value containsString:@"."])) {
                 
-                result = (int)round(result);
+                result = [NSNumber numberWithDouble:(int)round([result doubleValue])];
             }
 
             break;
         }
         case ROUND: {
-            result = round(left);
+            result = [NSNumber numberWithDouble:round(left)];
             break;
         }
         case ABS: {
-            result = fabs(left);
+            result = [NSNumber numberWithDouble:fabs(left)];
             break;
         }
         case PI_F: {
-            result = M_PI;
+            result = [NSNumber numberWithDouble:M_PI];
             break;
         }
         case MOD: {
@@ -233,47 +320,59 @@
             while (left < 0) {
                 left += right;
             }
-            result = fmod(left, right);
+            result = [NSNumber numberWithDouble:fmod(left, right)];
             break;
         }
         case ARCSIN: {
             double radians = asin(left);
-            result = [Util radiansToDegree:radians];
+            result = [NSNumber numberWithDouble:[Util radiansToDegree:radians]];
             break;
         }
         case ARCCOS: {
             double radians = acos(left);
-            result = [Util radiansToDegree:radians];
+            result = [NSNumber numberWithDouble:[Util radiansToDegree:radians]];
             break;
         }
         case ARCTAN: {
             double radians = atan(left);
-            result = [Util radiansToDegree:radians];
+            result = [NSNumber numberWithDouble:[Util radiansToDegree:radians]];
             break;
         }
         case POW: {
-            result = pow(left, right);
+            result = [NSNumber numberWithDouble:pow(left, right)];
             break;
         }
         case MAX: {
-            result = MAX(left, right);
+            result = [NSNumber numberWithDouble:MAX(left, right)];
             break;
         }
         case MIN:{
-            result = MIN(left, right);
+            result = [NSNumber numberWithDouble:MIN(left, right)];
             break;
   
         }
         case TRUE_F: {
-            result = 1.0;
+            result = [NSNumber numberWithDouble:1.0];
             break;
         }
         case FALSE_F: {
-            result = 0.0;
+            result = [NSNumber numberWithDouble:0.0];
             break;
         }
         case EXP: {
-            result = exp(left);
+            result = [NSNumber numberWithDouble:exp(left)];
+            break;
+        }
+        case LENGTH: {
+            result = [self interpretFunctionLENGTH:left forSprite:sprite];
+            break;
+        }
+        case LETTER: {
+            result = [self interpretFunctionLETTER:leftId and:rightId];
+            break;
+        }
+        case JOIN: {
+            result = [self interpretFunctionJOIN:sprite];
             break;
         }
         default:
@@ -285,59 +384,188 @@
     
 }
 
-- (double) interpretOperator:(Operator)operator forSprite:(SpriteObject*)sprite
+- (id)interpretFunctionJOIN:(SpriteObject *)sprite
+{
+    NSString *returnValue = [self interpretFunctionJOINParameter:self.leftChild witSprite:sprite];
+    return [returnValue stringByAppendingString:[self interpretFunctionJOINParameter:self.rightChild witSprite:sprite]];
+}
+
+- (NSString *)interpretFunctionJOINParameter:(FormulaElement *)child witSprite:(SpriteObject *)sprite
+{
+    NSString *parameterInterpretation;
+    
+    if(child != nil)
+    {
+        if(child.type == NUMBER)
+        {
+            NSNumber *number = [NSNumber numberWithDouble:[[child interpretRecursiveForSprite:sprite] doubleValue]];
+            if (number != nil) {
+                if([number doubleValue]-(int)[number doubleValue] == 0)
+                {
+                    parameterInterpretation = [NSString stringWithFormat:@"%ld", (long)[number integerValue]];
+                }else{
+                    parameterInterpretation = [NSString stringWithFormat:@"%g", [number doubleValue]];
+                }
+            }
+        }
+        else if(child.type == STRING)
+        {
+            parameterInterpretation = child.value;
+        }else if (child.type != STRING)
+        {
+            id value = [child interpretRecursiveForSprite:sprite];
+            if([value isKindOfClass:[NSNumber class]])
+            {
+                parameterInterpretation = [NSString stringWithFormat:@"%g", [value doubleValue]];
+            }else if([value isKindOfClass:[NSString class]]){
+                parameterInterpretation = value;
+            }
+            
+        }
+    }
+    
+    return parameterInterpretation;
+}
+
+- (id)interpretFunctionLETTER:(id)left and:(id)right
+{
+    int index = [left doubleValue] - 1;
+    NSString *rightString = nil;
+    
+    if([right isKindOfClass:[NSNumber class]])
+    {
+        
+        rightString = [NSString stringWithFormat:@"%g", [right doubleValue]];
+    }else if ([right isKindOfClass:[NSString class]])
+    {
+        rightString = right;
+    }else{
+        rightString = @"";
+    }
+    
+    if(index < 0){
+        return @"";
+    }else if(index >= [rightString length]){
+        return @"";
+    }
+    
+    char temp_char = [rightString characterAtIndex:index];
+    NSString *returnValue = [NSString stringWithFormat:@"%c", temp_char ];
+    
+    return returnValue;
+}
+
+- (id)interpretFunctionLENGTH:(double)left forSprite:(SpriteObject *)sprite
+{
+    NSString *left_string = [NSString stringWithFormat:@"%lf", left];
+    if(self.leftChild == nil)
+    {
+        return [NSNumber numberWithDouble:0.0f];
+    }
+    if(self.leftChild.type == NUMBER || self.leftChild.type == STRING)
+    {
+        return [NSNumber numberWithDouble:[self.leftChild.value length]];
+    }
+    if(self.leftChild.type == USER_VARIABLE)
+    {
+        return [NSNumber numberWithDouble:(double)[self handleLengthUserVariableParameter:sprite]];
+    }
+    
+    
+    return [NSNumber numberWithDouble:[left_string length]];
+}
+
+- (int)handleLengthUserVariableParameter:(SpriteObject *)sprite
+{
+    ProgramManager *programManager = [ProgramManager sharedProgramManager];
+    VariablesContainer *container = programManager.program.variables;
+    UserVariable *userVariable = [container getUserVariableNamed:self.leftChild.value forSpriteObject:sprite];
+    
+    id userVariableVvalue = [userVariable value];
+    if([userVariableVvalue isKindOfClass:[NSString class]])
+    {
+        return (int)[userVariableVvalue length];
+    }else if([userVariableVvalue isKindOfClass:[NSNumber class]])
+    {
+        if([userVariableVvalue doubleValue]-[userVariableVvalue integerValue] == 0)
+        {
+            return (int)[[NSString stringWithFormat:@"%ld", (long)[userVariableVvalue integerValue]] length];
+        }else{
+            return (int)[[NSString stringWithFormat:@"%g", [userVariableVvalue doubleValue]] length];
+        }
+        
+    }
+    
+    return 0;
+}
+
+
+- (id) interpretOperator:(Operator)operator forSprite:(SpriteObject*)sprite
 {
 
-    double result = 0;
+    id result = nil;
     
     if(self.leftChild) { // binary operator
         
-        double left = [self.leftChild interpretRecursiveForSprite:sprite];
-        double right = [self.rightChild interpretRecursiveForSprite:sprite];
+        double left = 0.0f;
+        double right = 0.0f;
+        
+        id leftId = [self.leftChild interpretRecursiveForSprite:sprite];
+        if([leftId isKindOfClass:[NSNumber class]])
+        {
+            left = [leftId doubleValue];
+        }
+        
+        id rightId = [self.rightChild interpretRecursiveForSprite:sprite];
+        if([rightId isKindOfClass:[NSNumber class]])
+        {
+            right = [rightId doubleValue];
+        }
+        
     
         switch (operator) {
             case LOGICAL_AND: {
-                result = (left * right) != 0.0 ? 1.0 : 0.0;
+                result = [NSNumber numberWithDouble:(left * right) != 0.0 ? 1.0 : 0.0];
                 break;
             }
             case LOGICAL_OR: {
-                result = left != 0.0 || right != 0.0 ? 1.0 : 0.0;
+                result = [NSNumber numberWithDouble:left != 0.0 || right != 0.0 ? 1.0 : 0.0];
                 break;
             }
             case EQUAL: {
-                result = left == right ? 1.0 : 0.0;
+                result = [NSNumber numberWithDouble:left == right ? 1.0 : 0.0];
                 break;
             }
             case NOT_EQUAL: {
-                result = left == right ? 0.0 : 1.0;
+                result = [NSNumber numberWithDouble:left == right ? 0.0 : 1.0];
                 break;
             }
             case SMALLER_OR_EQUAL: {
-                result = left <= right ? 1.0 : 0.0;
+                result = [NSNumber numberWithDouble:left <= right ? 1.0 : 0.0];
                 break;
             }
             case GREATER_OR_EQUAL: {
-                result = left >= right ? 1.0 : 0.0;
+                result = [NSNumber numberWithDouble:left >= right ? 1.0 : 0.0];
                 break;
             }
             case SMALLER_THAN: {
-                result = left < right ? 1.0 : 0.0;
+                result = [NSNumber numberWithDouble:left < right ? 1.0 : 0.0];
                 break;
             }
             case GREATER_THAN: {
-                result = left > right ? 1.0 : 0.0;
+                result = [NSNumber numberWithDouble:left > right ? 1.0 : 0.0];
                 break;
             }
             case PLUS: {
-                result =  left + right;
+                result =  [NSNumber numberWithDouble:left + right];
                 break;
             }
             case MINUS: {
-                result = left - right;
+                result = [NSNumber numberWithDouble:left - right];
                 break;
             }
             case MULT: {
-                result = left * right;
+                result = [NSNumber numberWithDouble:left * right];
                 break;
             }
             case DIVIDE: {
@@ -346,7 +574,7 @@
                 } else {
                     result = left;
                 }*/
-                result = left / right;
+                result = [NSNumber numberWithDouble:left / right];
                 break;
             }
 
@@ -358,16 +586,22 @@
     }
     else { // unary operator
         
-        double right = [self.rightChild interpretRecursiveForSprite:sprite];
-
+        
+        double right = 0.0f;
+        
+        id rightId = [self.rightChild interpretRecursiveForSprite:sprite];
+        if([rightId isKindOfClass:[NSNumber class]])
+        {
+            right = [rightId doubleValue];
+        }
         switch (operator) {
             case MINUS: {
-                result = -right;
+                result = [NSNumber numberWithDouble:-right];
                 break;
             }
                 
             case LOGICAL_NOT: {
-                result = right == 0.0 ? 1.0 : 0.0;
+                result = [NSNumber numberWithDouble:right == 0.0 ? 1.0 : 0.0];
                 break;
             }
                 
@@ -582,6 +816,9 @@
         case SENSOR:
             [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:self.value]];
             break;
+            case STRING:
+            [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_STRING AndValue:self.value]];
+            break;
     }
     return internTokenList;
 }
@@ -607,6 +844,33 @@
     }
     return false;
 }
+
+- (BOOL)isLogicalFunction
+{
+    if(self.type == FUNCTION)
+    {
+        Function function = [Functions getFunctionByValue:self.value];
+        if((function == FALSE_F || function == TRUE_F) && self.leftChild == nil && self.rightChild == nil)
+        {
+            return YES;
+        }
+    }else
+    {
+        return NO;
+    }
+    
+    return NO;
+}
+
+//- (BOOL)hasFunctionStringReturnType
+//{
+//    int function = [Functions getFunctionByValue:self.value];
+//    if (function == -1) {
+//        return NO;
+//    }
+//    
+//    return NO;
+//}
 
 - (BOOL)containsElement:(ElementType)elementType
 {

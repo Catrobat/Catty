@@ -308,7 +308,6 @@
         self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+(kContinueButtonSize/2)+kMenuIPhone5ContinueGapSize,  kMenuButtonSize, kMenuButtonSize);
         self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+(kContinueButtonSize/2)+(KMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
     }
-//    NSLog(@"Width: %f",self.menuView.frame.size.width);
 }
 
 - (void)setUpGridView
@@ -527,7 +526,16 @@
                                          UIActivityTypePostToWeibo,
                                          UIActivityTypePostToTwitter,
                                          UIActivityTypeMail]; // or whichever you don't need
-    [self presentViewController:activityVC animated:YES completion:nil];
+    __weak ScenePresenterViewController *weakself = self;
+    [activityVC setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
+        SKView *view= weakself.skView;
+        view.paused=YES;
+    }];
+    
+    [self presentViewController:activityVC animated:YES completion:^(){
+        SKView *view = weakself.skView;
+        view.paused=YES;
+    }];
 }
 
 - (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

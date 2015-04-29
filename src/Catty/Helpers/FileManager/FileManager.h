@@ -21,11 +21,13 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "ProgramLoadingInfo.h"
+#import "Program.h"
 
 
 @protocol FileManagerDelegate <NSObject>
 
-- (void) downloadFinishedWithURL:(NSURL*)url;
+- (void) downloadFinishedWithURL:(NSURL*)url andProgramLoadingInfo:(ProgramLoadingInfo*)info;
 - (void) updateProgress:(double)progress;
 - (void) setBackDownloadStatus;
 
@@ -61,5 +63,6 @@
 - (NSArray*)playableSoundsInDirectory:(NSString*)directoryPath;
 - (void)changeModificationDate:(NSDate*)date forFileAtPath:(NSString*)path;
 - (uint64_t)freeDiskspace;
+- (NSData*)zipProgram:(Program*)program;
 
 @end

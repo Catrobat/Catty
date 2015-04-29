@@ -26,7 +26,7 @@
 
 @implementation PlaceAtBrick
 
-- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     if(paramNumber == 0)
         return self.xPosition;
@@ -36,12 +36,18 @@
     return nil;
 }
 
-- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     if(paramNumber == 0)
         self.xPosition = formula;
     else if(paramNumber == 1)
         self.yPosition = formula;
+}
+
+- (void)setDefaultValues
+{
+    self.xPosition = [[Formula alloc] initWithInteger:100];
+    self.yPosition = [[Formula alloc] initWithInteger:200];
 }
 
 - (NSString*)brickTitle

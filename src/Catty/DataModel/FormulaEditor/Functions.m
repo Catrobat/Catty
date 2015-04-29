@@ -77,9 +77,15 @@
         return POW;
     if([value isEqualToString:@"EXP"])
         return EXP;
+    if([value isEqualToString:@"LETTER"])
+        return LETTER;
+    if([value isEqualToString:@"LENGTH"])
+        return LENGTH;
+    if([value isEqualToString:@"JOIN"])
+        return JOIN;
     
-    [InternFormulaParserException raise:@"Invalid Function Name" format:@"Invalid Function Name: %@", value];
-    return -1;
+//    [InternFormulaParserException raise:@"Invalid Function Name" format:@"Invalid Function Name: %@", value];
+    return NO_FUNCTION;
 }
 
 + (NSString*)getName:(Function)function
@@ -145,12 +151,22 @@
         case EXP:
             return @"EXP";
             break;
+        case JOIN:
+            return @"JOIN";
+            break;
+        case LENGTH:
+            return @"LENGTH";
+            break;
+        case LETTER:
+            return @"LETTER";
+            break;
 
         default:
+            return nil;
             break;
     }
 
-    [InternFormulaParserException raise:@"Invalid Function" format:@"Invalid Function: %i", function];
+//    [InternFormulaParserException raise:@"Invalid Function" format:@"Invalid Function: %i", function];
     return nil;
 }
 
@@ -175,7 +191,7 @@
             return @"log";
             break;
         case SQRT:
-            return [NSString stringWithFormat:NSLocalizedString([self getName:function], nil)];
+            return kUIFEFunctionSqrt;
             break;
         case RAND:
             return @"rand";
@@ -202,10 +218,10 @@
             return @"min";
             break;
         case TRUE_F:
-            return [NSString stringWithFormat:NSLocalizedString([self getName:function], nil)];
+            return kUIFEFunctionTrue;
             break;
         case FALSE_F:
-            return [NSString stringWithFormat:NSLocalizedString([self getName:function], nil)];
+            return kUIFEFunctionFalse;
             break;
         case MOD:
             return @"mod";
@@ -219,8 +235,17 @@
         case EXP:
             return @"exp";
             break;
-            
+        case LETTER:
+            return kUIFEFunctionLetter;
+            break;
+        case LENGTH:
+            return kUIFEFunctionLength;
+            break;
+        case JOIN:
+            return kUIFEFunctionJoin;
+            break;
         default:
+            return @"";
             break;
     }
 }

@@ -97,10 +97,10 @@
     XCTAssertTrue([backgroundCellTitle isEqualToString:kLocalizedBackground], @"The ProgramTableViewController did not create the background cell correctly.");
 }
 
-- (void)testNewProgramObjectCellTitles
+- (void)testNewProgramBackgroundCellTitles
 {
     [self setupForNewProgram];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kObjectIndex inSection:kObjectSectionIndex];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:kBackgroundObjectIndex inSection:kBackgroundSectionIndex];
     [self.programTableViewController viewDidLoad];
     [self.programTableViewController viewWillAppear:NO];
     UITableViewCell *cell = [self.programTableViewController tableView:self.programTableViewController.tableView cellForRowAtIndexPath:indexPath];
@@ -109,7 +109,7 @@
         UITableViewCell <CatrobatImageCell>* imageCell = (UITableViewCell <CatrobatImageCell>*)cell;
         firstObjectCellTitle = imageCell.titleLabel.text;
     }
-    XCTAssertTrue([firstObjectCellTitle isEqualToString:kLocalizedMyObject], @"The ProgramTableViewController did not create the first object cell correctly.");
+    XCTAssertTrue([firstObjectCellTitle isEqualToString:kLocalizedBackground], @"The ProgramTableViewController did not create the background cell correctly.");
 }
 
 - (void)testNewProgramNumberOfSections

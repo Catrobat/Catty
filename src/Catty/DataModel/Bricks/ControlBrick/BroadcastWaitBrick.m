@@ -33,6 +33,7 @@
 - (id)initWithMessage:(NSString*)message
 {
     self = [super init];
+    
     if (self)
     {
         self.broadcastMessage = message;
@@ -59,6 +60,22 @@
 {
     // acts like a normal broadcast!
     [self.script.object.program broadcast:self.broadcastMessage senderScript:self.script];
+}
+
+- (void)setDefaultValues
+{
+    self.broadcastMessage = [NSString stringWithString:kLocalizedBroadcastDefaultMessage];
+}
+
+- (void)setMessage:(NSString *)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    if(message)
+        self.broadcastMessage = message;
+}
+
+- (NSString*)messageForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    return self.broadcastMessage;
 }
 
 #pragma mark - Description

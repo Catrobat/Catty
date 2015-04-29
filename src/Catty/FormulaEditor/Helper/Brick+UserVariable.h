@@ -20,14 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BrickCell.h"
+#import "Brick.h"
 
-@interface NoteBrickTextField : UITextField
+@class UserVariable;
 
-@property (nonatomic,strong)BrickCell *cell;
+@interface Brick (UserVariable)
 
-- (id)initWithFrame:(CGRect)frame AndNote:(NSString*)note;
-- (void)drawBorder:(BOOL)isActive;
-- (void)update;
+- (BOOL)isVariableBeingUsed:(UserVariable*)variable;
+
 @end

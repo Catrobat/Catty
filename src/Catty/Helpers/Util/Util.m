@@ -37,6 +37,12 @@
 #import "CatrobatLanguageDefines.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "Formula.h"
+#import "Sound.h"
+#import "Look.h"
+#import "Script.h"
+#import "BroadcastWaitBrick.h"
+#import "BroadcastBrick.h"
+#import "BroadcastScript.h"
 #import "SpriteObject.h"
 #import <objc/runtime.h>
 
@@ -349,6 +355,7 @@
 {
     [self askUserForUniqueNameAndPerformAction:action
                                         target:target
+                                  cancelAction:nil
                                     withObject:nil
                                    promptTitle:title
                                  promptMessage:message
@@ -363,6 +370,7 @@
 
 + (void)askUserForUniqueNameAndPerformAction:(SEL)action
                                       target:(id)target
+                                cancelAction:(SEL)cancelAction
                                   withObject:(id)passingObject
                                  promptTitle:(NSString*)title
                                promptMessage:(NSString*)message
@@ -387,12 +395,13 @@
         kDTPayloadAskUserPromptPlaceholder : placeholder,
         kDTPayloadAskUserMinInputLength : @(minInputLength),
         kDTPayloadAskUserInvalidInputAlertMessage : invalidInputAlertMessage,
-        kDTPayloadAskUserExistingNames : (existingNames ? existingNames : [NSNull null])
+        kDTPayloadAskUserExistingNames : (existingNames ? existingNames : [NSNull null]),
+        kDTPayloadCancel : (cancelAction ? [NSValue valueWithPointer:cancelAction] : [NSNull null])
     };
     CatrobatAlertView *alertView = [[self class] promptWithTitle:title
                                                          message:message
                                                         delegate:(id<CatrobatAlertViewDelegate>)self
-                                                     placeholder:kLocalizedEnterYourProgramNameHere
+                                                     placeholder:placeholder
                                                              tag:kAskUserForUniqueNameAlertViewTag
                                                            value:value];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionAskUserForUniqueName
@@ -442,6 +451,7 @@
 {
     [self askUserForTextAndPerformAction:action
                                   target:target
+                            cancelAction:nil
                               withObject:nil
                              promptTitle:title
                            promptMessage:message
@@ -455,6 +465,7 @@
 
 + (void)askUserForTextAndPerformAction:(SEL)action
                                 target:(id)target
+                          cancelAction:(SEL)cancelAction
                             withObject:(id)passingObject
                            promptTitle:(NSString*)title
                          promptMessage:(NSString*)message
@@ -467,6 +478,7 @@
 {
     [self askUserForUniqueNameAndPerformAction:action
                                         target:target
+                                  cancelAction:cancelAction
                                     withObject:passingObject
                                    promptTitle:title
                                  promptMessage:message
@@ -512,7 +524,23 @@
 }
 
 
-
++ (void)addObjectAlertForProgram:(Program*)program andPerformAction:(SEL)action onTarget:(id)target withCompletion:(void(^)(NSString*))completion
+{
+    [self askUserForUniqueNameAndPerformAction:action
+                                        target:target
+                                  cancelAction:nil
+                                    withObject:(id)completion
+                                   promptTitle:kLocalizedAddObject
+                                 promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]
+                                   promptValue:nil
+                             promptPlaceholder:kLocalizedEnterYourObjectNameHere
+                                minInputLength:kMinNumOfObjectNameCharacters
+                                maxInputLength:kMaxNumOfObjectNameCharacters
+                           blockedCharacterSet:[[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                                                invertedSet]
+                      invalidInputAlertMessage:kLocalizedObjectNameAlreadyExistsDescription
+                                 existingNames:[[program allObjectNames] mutableCopy]];
+}
 
 + (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames
 {
@@ -618,12 +646,16 @@
 
 + (double)radiansToDegree:(double)rad
 {
-    return rad * 180.0f / M_PI;
+    CGFloat temp = rad * 180.0f / M_PI;
+    temp = fmod(temp, 360.0f);
+    return temp;
 }
 
 + (double)degreeToRadians:(double)deg
 {
-    return deg * M_PI / 180.0f;
+    CGFloat temp = deg * M_PI / 180.0f;
+    temp =  fmod(temp, 2*M_PI);
+    return temp;
 }
 
 #pragma mark - text field delegates
@@ -646,6 +678,13 @@ replacementString:(NSString*)characters
     NSMutableDictionary *payload = (NSMutableDictionary*)alertView.dataTransferMessage.payload;
     if (alertView.tag == kAskUserForUniqueNameAlertViewTag) {
         if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
+            SEL action = [((NSValue*)payload[kDTPayloadCancel]) pointerValue];
+            id target = payload[kDTPayloadAskUserTarget];
+            if (action && target) {
+                IMP imp = [target methodForSelector:action];
+                void (*func)(id, SEL) = (void *)imp;
+                func(target, action);
+            }
             return;
         }
 
@@ -662,7 +701,13 @@ replacementString:(NSString*)characters
         }
 
         NSUInteger textFieldMinInputLength = [payload[kDTPayloadAskUserMinInputLength] unsignedIntegerValue];
-        if (nameAlreadyExists) {
+        if ([input isEqualToString:kLocalizedNewElement]) {
+            CatrobatAlertView *newAlertView = [Util alertWithText:kLocalizedInvalidInputDescription
+                                                         delegate:(id<CatrobatAlertViewDelegate>)self
+                                                              tag:kInvalidNameWarningAlertViewTag];
+            payload[kDTPayloadAskUserPromptValue] = input;
+            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
+        } else if (nameAlreadyExists) {
             CatrobatAlertView *newAlertView = [Util alertWithText:payload[kDTPayloadAskUserInvalidInputAlertMessage]
                                                          delegate:(id<CatrobatAlertViewDelegate>)self
                                                               tag:kInvalidNameWarningAlertViewTag];
@@ -823,7 +868,8 @@ replacementString:(NSString*)characters
         
         // TODO use introspection
         if ([name isEqualToString:@"hash"] || [name isEqualToString:@"superclass"]
-            || [name isEqualToString:@"description"] || [name isEqualToString:@"debugDescription"]) {
+            || [name isEqualToString:@"description"] || [name isEqualToString:@"debugDescription"]
+            || [name isEqualToString:@"brickCategoryType"] || [name isEqualToString:@"brickType"]) {
             continue;
         }
         
@@ -859,6 +905,59 @@ replacementString:(NSString*)characters
     }
     
     return NO;
+}
+
++ (SpriteObject*)objectWithName:(NSString*)objectName forProgram:(Program*)program
+{
+    for(SpriteObject *object in program.objectList) {
+        if([object.name isEqualToString:objectName]) {
+            return object;
+        }
+    }
+    return nil;
+}
+
++ (Sound*)soundWithName:(NSString*)objectName forObject:(SpriteObject*)object
+{
+    for(Sound *sound in object.soundList) {
+        if([sound.name isEqualToString:objectName]) {
+            return sound;
+        }
+    }
+    return nil;
+}
+
++ (Look*)lookWithName:(NSString*)objectName forObject:(SpriteObject*)object
+{
+    for(Look *look in object.lookList) {
+        if([look.name isEqualToString:objectName]) {
+            return look;
+        }
+    }
+    return nil;
+}
+
++ (NSArray*)allMessagesForProgram:(Program*)program
+{
+    NSMutableArray *messages = [[NSMutableArray alloc] init];
+    for(SpriteObject *object in program.objectList) {
+        for(Script *script in object.scriptList) {
+            if([script isKindOfClass:[BroadcastScript class]]) {
+                BroadcastScript *broadcastScript = (BroadcastScript*)script;
+                [messages addObject:broadcastScript.receivedMessage];
+            }
+            for(Brick *brick in script.brickList) {
+                if([brick isKindOfClass:[BroadcastBrick class]]) {
+                    BroadcastBrick *broadcastBrick = (BroadcastBrick*)brick;
+                    [messages addObject:broadcastBrick.broadcastMessage];
+                } else if([brick isKindOfClass:[BroadcastWaitBrick class]]) {
+                    BroadcastWaitBrick *broadcastBrick = (BroadcastWaitBrick*)brick;
+                    [messages addObject:broadcastBrick.broadcastMessage];
+                }
+            }
+        }
+    }
+    return messages;
 }
 
 #pragma mark - Macros

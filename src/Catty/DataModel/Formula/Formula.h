@@ -33,6 +33,7 @@
 @property (nonatomic, strong) FormulaElement* formulaTree;
 @property (nonatomic, weak) NSString* displayString;
 
+- (id)initWithZero;
 - (id)initWithInteger:(int)value;
 - (id)initWithDouble:(double)value;
 - (id)initWithFloat:(float)value;
@@ -51,5 +52,5 @@
 - (NSString*)getDisplayString;
 - (InternFormula*)getInternFormula;
 - (void)setDisplayString:(NSString*)text;
-
+- (NSString *)getResultForComputeDialog:(SpriteObject *)sprite;
 @end

@@ -310,6 +310,11 @@
 {
     [[keyboardControls activeField] resignFirstResponder];
     [self resignFirstResponder];
+    
+    if ([[self delegate] respondsToSelector:@selector(comboboxClosed:withValue:)])
+    {
+        [[self delegate] comboboxClosed:self withValue:[self currentValue]];
+    }
 }
 
 @end

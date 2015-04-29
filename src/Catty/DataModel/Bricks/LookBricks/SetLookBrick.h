@@ -23,8 +23,9 @@
 #import "Brick.h"
 #import "Look.h"
 #import "SpriteObject.h"
+#import "BrickLookProtocol.h"
 
-@interface SetLookBrick : Brick
+@interface SetLookBrick : Brick<BrickLookProtocol>
 
 @property (nonatomic, strong) Look *look;
 

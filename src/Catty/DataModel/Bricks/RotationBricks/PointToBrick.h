@@ -22,10 +22,11 @@
 
 
 #import "Brick.h"
+#import "BrickObjectProtocol.h"
 
 @class SpriteObject;
 
-@interface PointToBrick : Brick
+@interface PointToBrick : Brick<BrickObjectProtocol>
 
 @property (nonatomic, weak) SpriteObject* pointedObject;
 

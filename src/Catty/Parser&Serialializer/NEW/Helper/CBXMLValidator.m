@@ -33,7 +33,7 @@
     NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString componentsSeparatedByCharactersInSet:separatorSet]];
     [array removeObject:@""];
     NSUInteger index = 0;
-    NSLog(@"Stack = %@", [array objectAtIndex:index++]);
+    NSDebug(@"Stack = %@", [array objectAtIndex:index++]);
 #if !kIsRelease // kIsRelease
     NSString *framework = [array objectAtIndex:index++];
     NSString *tempString = [array objectAtIndex:index++];
@@ -47,9 +47,9 @@
         framework = [NSString stringWithFormat:@"%@ %@", framework, tempString];
         memoryAddress = [array objectAtIndex:index++];
     }
-#endif // kIsRelease
     NSLog(@"Framework = %@", framework);
     NSLog(@"Memory address = %@", memoryAddress);
+#endif // kIsRelease
     NSString *classCaller = [array objectAtIndex:index++];
     return classCaller;
 }
@@ -62,7 +62,7 @@
     NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString componentsSeparatedByCharactersInSet:separatorSet]];
     [array removeObject:@""];
     NSUInteger index = 0;
-    NSLog(@"Stack = %@", [array objectAtIndex:index++]);
+    NSDebug(@"Stack = %@", [array objectAtIndex:index++]);
 #if !kIsRelease // kIsRelease
     NSString *framework = [array objectAtIndex:index++];
     NSString *tempString = [array objectAtIndex:index++];
@@ -76,15 +76,16 @@
         framework = [NSString stringWithFormat:@"%@ %@", framework, tempString];
         memoryAddress = [array objectAtIndex:index++];
     }
-#endif // kIsRelease
     NSLog(@"Framework = %@", framework);
     NSLog(@"Memory address = %@", memoryAddress);
+#endif // kIsRelease
+
     NSString *classCaller = [array objectAtIndex:index++];
     NSString *functionCaller = [array objectAtIndex:index++];
     NSString *lineCaller = [array objectAtIndex:index++];
-    NSLog(@"Class caller = %@", classCaller);
-    NSLog(@"Function caller = %@", functionCaller);
-    NSLog(@"Line caller = %@", lineCaller);
+    NSDebug(@"Class caller = %@", classCaller);
+    NSDebug(@"Function caller = %@", functionCaller);
+    NSDebug(@"Line caller = %@", lineCaller);
     return [NSString stringWithFormat:@"[%@:%@(%@)]", classCaller, functionCaller, lineCaller];
 }
 

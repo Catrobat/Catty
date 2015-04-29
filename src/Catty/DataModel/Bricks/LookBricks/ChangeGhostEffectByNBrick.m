@@ -28,14 +28,19 @@
 
 @synthesize changeGhostEffect = _changeGhostEffect;
 
-- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.changeGhostEffect;
 }
 
-- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     self.changeGhostEffect = formula;
+}
+
+- (void)setDefaultValues
+{
+    self.changeGhostEffect = [[Formula alloc] initWithZero];
 }
 
 - (NSString*)brickTitle

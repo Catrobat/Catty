@@ -20,25 +20,31 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "NoteBrickTextField.h"
+
+#import "BrickCellTextFragment.h"
+#import "BrickCell.h"
+#import "Brick.h"
+#import "BrickTextProtocol.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
-#import "Util.h"
 
-
-@interface NoteBrickTextField ()
-
+@interface BrickCellTextFragment() <UITextFieldDelegate>
+@property (nonatomic, weak) BrickCell *brickCell;
+@property (nonatomic) NSInteger lineNumber;
+@property (nonatomic) NSInteger parameterNumber;
 @property (nonatomic, strong) CAShapeLayer *border;
-
 @end
 
+@implementation BrickCellTextFragment
 
-@implementation NoteBrickTextField
-
-- (id)initWithFrame:(CGRect)frame AndNote:(NSString *)note
+- (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell*)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
-    self = [super initWithFrame:frame];
-    
-    if(self) {
+    if(self = [super initWithFrame:frame]) {
+        _brickCell = brickCell;
+        _lineNumber = line;
+        _parameterNumber = parameter;
+        Brick<BrickTextProtocol> *textBrick = (Brick<BrickTextProtocol>*)brickCell.scriptOrBrick;
+        self.text = [textBrick textForLineNumber:line andParameterNumber:parameter];
+        
         self.borderStyle = UITextBorderStyleNone;
         self.font = [UIFont systemFontOfSize:kBrickTextFieldFontSize];
         self.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -46,8 +52,7 @@
         self.returnKeyType = UIReturnKeyDone;
         self.clearButtonMode = UITextFieldViewModeWhileEditing;
         self.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        self.text = note;
-//        self.userInteractionEnabled = NO;
+        //        self.userInteractionEnabled = NO;
         self.textColor = [UIColor whiteColor];
         [self sizeToFit];
         if (self.frame.origin.x + self.frame.size.width + 60 > [Util screenWidth]) {
@@ -55,11 +60,13 @@
         }
         [self setNeedsDisplay];
         [self drawBorder:NO];
+        
+        self.delegate = self;
+        [self addTarget:self action:@selector(textFieldDone:) forControlEvents:UIControlEventEditingDidEndOnExit];
+
     }
-    
     return self;
 }
-
 
 #define BORDER_WIDTH 1.0
 #define BORDER_HEIGHT 4
@@ -78,8 +85,6 @@
     CGPoint startPoint = CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds) - BORDER_PADDING);
     CGPoint endPoint = CGPointMake(CGRectGetMaxX(self.bounds), CGRectGetMaxY(self.bounds) - BORDER_PADDING - BORDER_HEIGHT);
     
-    
-
     [borderPath moveToPoint:startPoint];
     [borderPath addLineToPoint:endPoint];
     
@@ -125,7 +130,20 @@
         self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 250, self.frame.size.height);
     }
     [self drawBorder:NO];
+    
+}
 
+#pragma mark - delegates
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+}
+
+- (void)textFieldDone:(id)sender
+{
+    [self.brickCell.fragmentDelegate updateData:self.text forBrick:(Brick*)self.brickCell.scriptOrBrick andLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
+    [self resignFirstResponder];
 }
 
 @end

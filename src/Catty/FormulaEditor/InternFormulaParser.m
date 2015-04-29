@@ -163,6 +163,9 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
     if ([self.currentToken isOperator] && ([self.currentToken.tokenStringValue isEqualToString:[Operators getName:LOGICAL_AND]]||[self.currentToken.tokenStringValue isEqualToString:[Operators getName:LOGICAL_OR]])){
         self.isBool = YES;
     }
+//    if ([self.currentToken isFunctionName] && ([self.currentToken.tokenStringValue isEqualToString:[Functions getName:TRUE_F]] || [self.currentToken.tokenStringValue isEqualToString:[Functions getName:FALSE_F]])) {
+//        self.isBool = YES;
+//    }
     while ([self.currentToken isOperator] && ![self.currentToken.tokenStringValue isEqualToString:[Operators getName:LOGICAL_NOT]]) {
         operatorStringValue = self.currentToken.tokenStringValue;
         [self getNextToken];
@@ -217,6 +220,10 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
             [currentElement replaceElement:[self sensor]];
             break;
         }
+        case TOKEN_TYPE_STRING: {
+            [currentElement replaceElement:STRING value:[self string]];
+            break;
+        }
          
         case TOKEN_TYPE_USER_VARIABLE: {
             [currentElement replaceElement:[self userVariableForSpriteObject:object]];
@@ -234,14 +241,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
      
 - (FormulaElement*)userVariableForSpriteObject:(SpriteObject*)object
 {
-    ProgramManager *programManager = [ProgramManager sharedProgramManager];
-    VariablesContainer *container = programManager.program.variables;
-    UserVariable *userVariable = [container getUserVariableNamed:self.currentToken.tokenStringValue forSpriteObject:object];
-    FormulaElement *formulaTree = nil;
-    if(userVariable != nil)
-    {
-        formulaTree = [[FormulaElement alloc]initWithElementType:USER_VARIABLE value:[self.currentToken getTokenStringValue] leftChild:nil rightChild:nil parent:nil];
-    }
+    FormulaElement *formulaTree = [[FormulaElement alloc]initWithElementType:USER_VARIABLE value:[self.currentToken getTokenStringValue] leftChild:nil rightChild:nil parent:nil];
     
 //    InternFormulaParserException *exception = [[InternFormulaParserException alloc] initWithName:@"Not implemented yet" reason:nil userInfo:nil];
 //    @throw exception;
@@ -299,6 +299,15 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
          
     [self getNextToken];
     return numberToCheck;
+}
+
+- (NSString *)string
+{
+    NSString *returnValue = self.currentToken.tokenStringValue;
+    [self getNextToken];
+    
+    return returnValue;
+    
 }
 
 - (void)getNextToken

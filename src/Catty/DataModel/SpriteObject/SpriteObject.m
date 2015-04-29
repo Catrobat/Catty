@@ -165,7 +165,7 @@
     for (UITouch *touch in touches) {
         CGPoint touchedPoint = [touch locationInNode:self];
         NSDebug(@"x:%f,y:%f", touchedPoint.x, touchedPoint.y);
-         //NSLog(@"test touch, %@",self.name);
+         //NSDebug(@"test touch, %@",self.name);
 //        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [UIScreen mainScreen].scale);
 //        [self.scene.view drawViewHierarchyInRect:self.frame afterScreenUpdates:NO];
 //        UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -552,7 +552,18 @@
 
 - (CGFloat)rotation
 {
-    return (CGFloat)[Util radiansToDegree:self.zRotation];
+    CGFloat rotation = fmodf([Util radiansToDegree:self.zRotation], 360.0f);
+    if(rotation < 0.0f)
+        rotation += 360.0f;
+    return rotation;
+}
+
+- (void)setRotation:(CGFloat)rotationInDegrees
+{
+    rotationInDegrees = fmodf(rotationInDegrees, 360.0f);
+    if(rotationInDegrees < 0.0f)
+        rotationInDegrees += 360.0f;
+    self.zRotation = [Util degreeToRadians:rotationInDegrees];
 }
 
 - (CGFloat) zIndex

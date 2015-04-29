@@ -55,4 +55,15 @@
     return YES;
 }
 
+- (void)setSound:(Sound *)sound forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    if(sound)
+        self.sound = sound;
+}
+
+- (Sound*)soundForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    return self.sound;
+}
+
 @end

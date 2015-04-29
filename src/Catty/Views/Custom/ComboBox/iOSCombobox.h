@@ -44,5 +44,6 @@
 @protocol iOSComboboxDelegate <NSObject>
 @optional
 - (void) comboboxOpened:(iOSCombobox *)combobox;
+- (void) comboboxClosed:(iOSCombobox *)combobox withValue:(NSString *)value;
 - (void) comboboxChanged:(iOSCombobox *)combobox toValue:(NSString *)toValue;
 @end

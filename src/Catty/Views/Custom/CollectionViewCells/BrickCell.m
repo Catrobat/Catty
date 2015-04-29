@@ -31,6 +31,13 @@
 #import "Script.h"
 #import "NoteBrick.h"
 #import "SpeakBrick.h"
+#import "BrickCellFragmentProtocol.h"
+#import "BrickCellLookFragment.h"
+#import "BrickCellSoundFragment.h"
+#import "BrickCellObjectFragment.h"
+#import "BrickCellFormulaFragment.h"
+#import "BrickCellTextFragment.h"
+#import "BrickCellMessageFragment.h"
 
 // uncomment this to get special log outputs, etc...
 //#define LAYOUT_DEBUG 0
@@ -75,7 +82,7 @@
     @[],                            /* stop all sounds    */\
     @"{FLOAT;range=(-inf,inf)}",    /* set volume to      */\
     @"{FLOAT;range=(-inf,inf)}",    /* change volume to   */\
-    @"{TEXT}"                       /* speak              */\
+    @"{INT}"                       /* speak              */\
 ]
 
 // look bricks
@@ -439,62 +446,24 @@
             inputViewFrame.size.width = kBrickInputFieldMinWidth;
             NSString *afterLabelParam = [params objectAtIndex:counter];
             UIView *inputField = nil;
-            if ([afterLabelParam rangeOfString:@"FLOAT"].location != NSNotFound) {
-                UIButton *formulaEditor = [UIUtil newDefaultBrickFormulaEditorWithFrame:inputViewFrame ForBrickCell:self AndLineNumber: lineNumber AndParameterNumber: counter];
-                inputField = (UIView*)formulaEditor;
-            } else if ([afterLabelParam rangeOfString:@"INT"].location != NSNotFound) {
-                UIButton *formulaEditor = [UIUtil newDefaultBrickFormulaEditorWithFrame:inputViewFrame ForBrickCell:self AndLineNumber: lineNumber AndParameterNumber: counter];
-                inputField = (UIView*)formulaEditor;
+            if ([afterLabelParam rangeOfString:@"FLOAT"].location != NSNotFound || [afterLabelParam rangeOfString:@"INT"].location != NSNotFound) {
+                inputField = [[BrickCellFormulaFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"TEXT"].location != NSNotFound) {
-                UITextField *textField;
-                if ([self.scriptOrBrick isKindOfClass:[NoteBrick class]]) {
-                    NoteBrick *brick = (NoteBrick*)self.scriptOrBrick;
-                    inputViewFrame.origin.y = inputViewFrame.origin.y+10;
-                    inputViewFrame.size.height = kBrickInputFieldHeight;
-                     textField= [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame andNote:brick.note AndBrickCell:self];
-                } else {
-                    SpeakBrick *brick = (SpeakBrick*)self.scriptOrBrick;
-                    inputViewFrame.origin.y = inputViewFrame.origin.y+10;
-                    inputViewFrame.size.height = kBrickInputFieldHeight;
-                    textField= [UIUtil newDefaultBrickTextFieldWithFrame:inputViewFrame andNote:brick.text AndBrickCell:self];
-                }
-                inputField = (UIView*)textField;
+                inputViewFrame.origin.y = inputViewFrame.origin.y+10;
+                inputViewFrame.size.height = kBrickInputFieldHeight;
+                inputField = [[BrickCellTextFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"MESSAGE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
-                NSMutableArray* messages = [[NSMutableArray alloc] init];
-                [messages addObject:@"New..."];
-                [messages addObject:@"message 1"];
-                iOSCombobox *comboBox = [UIUtil newDefaultBrickComboBoxWithFrame:inputViewFrame AndItems:messages];
-                [comboBox setCurrentValue:messages[0]];
-                [comboBox setDelegate:(id<iOSComboboxDelegate>)self.delegate];
-                inputField = (UIView*)comboBox;
+                inputField = [[BrickCellMessageFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"OBJECT"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
-                NSMutableArray* objects = [[NSMutableArray alloc] init];
-                [objects addObject:@"New..."];
-                [objects addObject:@"object 1"];
-                iOSCombobox *comboBox = [UIUtil newDefaultBrickComboBoxWithFrame:inputViewFrame AndItems:objects];
-                [comboBox setDelegate:(id<iOSComboboxDelegate>)self.delegate];
-               [comboBox setCurrentValue:objects[0]];
-                inputField = (UIView*)comboBox;
+                inputField = [[BrickCellObjectFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"SOUND"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
-                NSMutableArray* sounds = [[NSMutableArray alloc] init];
-                [sounds addObject:@"New..."];
-                [sounds addObject:@"sound 1"];
-                iOSCombobox *comboBox = [UIUtil newDefaultBrickComboBoxWithFrame:inputViewFrame AndItems:sounds];
-                [comboBox setDelegate:(id<iOSComboboxDelegate>)self.delegate];
-                [comboBox setCurrentValue:sounds[0]];
-                inputField = (UIView*)comboBox;
+                inputField = [[BrickCellSoundFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"LOOK"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
-                NSMutableArray* looks = [[NSMutableArray alloc] init];
-                [looks addObject:@"New..."];
-                [looks addObject:@"look 1"];
-                iOSCombobox *comboBox = [UIUtil newDefaultBrickComboBoxWithFrame:inputViewFrame AndItems:looks];
-                [comboBox setDelegate:(id<iOSComboboxDelegate>)self.delegate];
-                [comboBox setCurrentValue:looks[0]];
-                inputField = (UIView*)comboBox;
+                inputField = [[BrickCellLookFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"VARIABLE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 NSMutableArray* variables = [[NSMutableArray alloc] init];

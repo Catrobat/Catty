@@ -52,6 +52,9 @@
 #import "CatrobatActionSheet.h"
 #import "DataTransferMessage.h"
 #import "NSMutableArray+CustomExtensions.h"
+#import "ObjectTableViewController.h"
+#import "LooksTableViewController.h"
+#import "ViewControllerDefines.h"
 
 @interface ProgramTableViewController () <CatrobatActionSheetDelegate, UINavigationBarDelegate, SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
@@ -116,17 +119,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - actions
 - (void)addObjectAction:(id)sender
 {
-    [Util askUserForUniqueNameAndPerformAction:@selector(addObjectActionWithName:)
-                                        target:self
-                                   promptTitle:kLocalizedAddObject
-                                 promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]
-                                   promptValue:nil
-                             promptPlaceholder:kLocalizedEnterYourObjectNameHere
-                                minInputLength:kMinNumOfObjectNameCharacters
-                                maxInputLength:kMaxNumOfObjectNameCharacters
-                           blockedCharacterSet:[self blockedCharacterSet]
-                      invalidInputAlertMessage:kLocalizedObjectNameAlreadyExistsDescription
-                                 existingNames:[[self.program allObjectNames] mutableCopy]];
+    [Util addObjectAlertForProgram:self.program andPerformAction:@selector(addObjectActionWithName:) onTarget:self withCompletion:nil];
 }
 
 - (void)addObjectActionWithName:(NSString*)objectName
@@ -137,6 +130,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
     [self.tableView insertRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:(([self.program numberOfNormalObjects] == 1) ? UITableViewRowAnimationFade : UITableViewRowAnimationBottom)];
+
+    LooksTableViewController *ltvc = [self.storyboard instantiateViewControllerWithIdentifier:kLooksTableViewControllerIdentifier];
+    [ltvc setObject:[self.program.objectList objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)]];
+    ltvc.showAddLookActionSheetAtStartForObject = YES;
+    ltvc.showAddLookActionSheetAtStartForScriptEditor = NO;
+    ltvc.afterSafeBlock =  ^(Look* look) {
+        [self.navigationController popViewControllerAnimated:YES];
+        if (!look) {
+            [self deleteObjectForIndexPath:indexPath];
+        }
+    };
+    [self.navigationController pushViewController:ltvc animated:NO];
     [self hideLoadingView];
 }
 
@@ -518,6 +523,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [unavailableNames removeString:spriteObject.name];
             [Util askUserForUniqueNameAndPerformAction:@selector(renameObjectActionToName:spriteObject:)
                                                 target:self
+                                          cancelAction:nil
                                             withObject:spriteObject
                                            promptTitle:kLocalizedRenameObject
                                          promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]

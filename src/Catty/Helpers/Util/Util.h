@@ -156,6 +156,7 @@
 
 + (void)askUserForUniqueNameAndPerformAction:(SEL)action
                                       target:(id)target
+                                cancelAction:(SEL)cancelAction
                                   withObject:(id)passingObject
                                  promptTitle:(NSString*)title
                                promptMessage:(NSString*)message
@@ -180,6 +181,7 @@
 
 + (void)askUserForTextAndPerformAction:(SEL)action
                                 target:(id)target
+                          cancelAction:(SEL)cancelAction
                             withObject:(id)passingObject
                            promptTitle:(NSString*)title
                          promptMessage:(NSString*)message
@@ -189,6 +191,8 @@
                         maxInputLength:(NSUInteger)maxInputLength
                    blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
               invalidInputAlertMessage:(NSString*)invalidInputAlertMessage;
+
++ (void)addObjectAlertForProgram:(Program*)program andPerformAction:(SEL)action onTarget:(id)target withCompletion:(void(^)(NSString*))completion;
 
 + (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames;
 
@@ -201,6 +205,14 @@
 + (NSDictionary*)propertiesOfInstance:(id)instance;
 
 + (BOOL)isEqual:(id)object toObject:(id)objectToCompare;
+
++ (SpriteObject*)objectWithName:(NSString*)objectName forProgram:(Program*)program;
+
++ (Sound*)soundWithName:(NSString*)objectName forObject:(SpriteObject*)object;
+
++ (Look*)lookWithName:(NSString*)objectName forObject:(SpriteObject*)object;
+
++ (NSArray*)allMessagesForProgram:(Program*)program;
 
 // https://www.mikeash.com/pyblog/friday-qa-2013-05-03-proper-use-of-asserts.html
 #define CBAssert(expression, ...) \

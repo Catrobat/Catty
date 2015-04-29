@@ -20,13 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import "Brick.h"
-#import "Formula.h"
+#import <UIKit/UIKit.h>
+#import "BaseTableViewController.h"
+#import "UIViewController+CWPopup.h"
 
-@protocol BrickFormulaProtocol <NSObject>
-
-- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
-- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber;
+@interface ProgramsForUploadViewController : BaseTableViewController <DismissPopupDelegate>
 
 @end

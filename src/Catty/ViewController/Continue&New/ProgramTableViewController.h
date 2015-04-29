@@ -32,4 +32,6 @@
 @property (weak, nonatomic) id<ProgramUpdateDelegate> delegate;
 @property (strong, nonatomic) Program *program;
 
+- (void)addObjectAction:(id)sender;
+
 @end

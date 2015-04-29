@@ -22,6 +22,7 @@
 
 #import "BroadcastBrick.h"
 #import "Script.h"
+#import "LanguageTranslationDefines.h"
 
 @implementation BroadcastBrick
 
@@ -44,6 +45,22 @@
 {
     NSDebug(@"Performing: %@", [weakSelf description]);
     [self.script.object.program broadcast:self.broadcastMessage senderScript:self.script];
+}
+
+- (void)setDefaultValues
+{
+    self.broadcastMessage = [NSString stringWithString:kLocalizedBroadcastDefaultMessage];
+}
+
+- (void)setMessage:(NSString *)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    if(message)
+        self.broadcastMessage = message;
+}
+
+- (NSString*)messageForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    return self.broadcastMessage;
 }
 
 #pragma mark - Description

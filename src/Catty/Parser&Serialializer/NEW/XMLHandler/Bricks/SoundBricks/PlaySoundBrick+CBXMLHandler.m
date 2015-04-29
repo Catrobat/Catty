@@ -33,6 +33,11 @@
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
+    PlaySoundBrick *playSoundBrick = [self new];
+    if([xmlElement childCount] == 0) {
+        return playSoundBrick;
+    }
+    
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
     GDataXMLElement *soundElement = [[xmlElement children] firstObject];
     NSMutableArray *soundList = context.spriteObject.soundList;
@@ -53,7 +58,6 @@
         [XMLError exceptionIfNil:sound message:@"Unable to parse sound..."];
         [soundList addObject:sound];
     }
-    PlaySoundBrick *playSoundBrick = [self new];
     playSoundBrick.sound = sound;
     return playSoundBrick;
 }

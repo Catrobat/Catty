@@ -24,6 +24,9 @@
 #import "BaseTableViewController.h"
 
 @class SpriteObject;
+@class Brick;
+@class Look;
+@protocol BrickLookProtocol;
 
 @protocol PaintDelegate <NSObject>
 
@@ -33,4 +36,7 @@
 
 @interface LooksTableViewController : BaseTableViewController <PaintDelegate>
 @property (strong, nonatomic) SpriteObject *object;
+@property (nonatomic) BOOL showAddLookActionSheetAtStartForScriptEditor;
+@property (nonatomic) BOOL showAddLookActionSheetAtStartForObject;
+@property (copy) void (^afterSafeBlock)(Look* look);
 @end

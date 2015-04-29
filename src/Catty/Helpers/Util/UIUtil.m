@@ -24,11 +24,10 @@
 #import "UIDefines.h"
 #import "Util.h"
 #import "iOSCombobox.h"
-#import "FormulaEditorButton.h"
 #import "BrickDetailViewController.h"
 #import "ScriptCollectionViewController.h"
-#import "BrickFormulaProtocol.h"
-#import "NoteBrickTextField.h"
+#import "SetLookBrick.h"
+#import "SetLookBrick.h"
 
 @implementation UIUtil
 
@@ -65,33 +64,11 @@
     return label;
 }
 
-+ (NoteBrickTextField*)newDefaultBrickTextFieldWithFrame:(CGRect)frame andNote:(NSString *)note AndBrickCell:(BrickCell*)brickCell
-{
-    NoteBrickTextField* textField = [[NoteBrickTextField alloc] initWithFrame:frame AndNote:note];
-    textField.delegate = brickCell.textDelegate;
-    textField.cell = brickCell;
-//    [textField addTarget:brickCell.textDelegate action:@selector(begin:) forControlEvents:UIControlEventTouchUpInside];
-    [textField addTarget:brickCell.textDelegate
-                  action:@selector(textFieldFinished:)
-        forControlEvents:UIControlEventEditingDidEndOnExit];
-    return textField;
-}
-
-+ (UIButton*)newDefaultBrickFormulaEditorWithFrame:(CGRect)frame ForBrickCell:(BrickCell*)brickCell AndLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
-{
-    Brick<BrickFormulaProtocol> *formulaBrick = (Brick<BrickFormulaProtocol>*)brickCell.scriptOrBrick;
-    Formula *formula = [formulaBrick getFormulaForLineNumber:lineNumber AndParameterNumber:paramNumber];
-    FormulaEditorButton *button = [[FormulaEditorButton alloc] initWithFrame:frame AndBrickCell:brickCell AndFormula: formula];
-    return button;
-}
-
 + (iOSCombobox*)newDefaultBrickComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items
 {
     iOSCombobox *comboBox = [[iOSCombobox alloc] initWithFrame:frame];
     [comboBox setValues:items];
     return comboBox;
 }
-
-
 
 @end

@@ -79,7 +79,6 @@
     }
 
     [program addObjectWithName:kLocalizedBackground];
-    [program addObjectWithName:kLocalizedMyObject];
     program.playing = NO;
     NSDebug(@"%@", [program description]);
     return program;
@@ -101,7 +100,7 @@
     CGFloat languageVersion = [Util detectCBLanguageVersionFromXMLWithPath:xmlPath];
 
     if (languageVersion == kCatrobatInvalidVersion) {
-        NSLog(@"Invalid catrobat language version!");
+        NSDebug(@"Invalid catrobat language version!");
         return nil;
     }
 

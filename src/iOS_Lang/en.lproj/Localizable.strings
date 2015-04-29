@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
+
+/* No comment provided by engineer. */
 "A program with the same name already exists, try again." = "A program with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
@@ -6,6 +9,18 @@
 
 /* No comment provided by engineer. */
 "About Pocket Code" = "About Pocket Code";
+
+/* No comment provided by engineer. */
+"acceleration_x" = "acceleration_x";
+
+/* No comment provided by engineer. */
+"acceleration_y" = "acceleration_y";
+
+/* No comment provided by engineer. */
+"acceleration_z" = "acceleration_z";
+
+/* No comment provided by engineer. */
+"add comment here..." = "add comment here...";
 
 /* No comment provided by engineer. */
 "Add image" = "Add image";
@@ -27,6 +42,9 @@
 
 /* No comment provided by engineer. */
 "An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
+
+/* No comment provided by engineer. */
+"and" = "and";
 
 /* No comment provided by engineer. */
 "Animate Brick" = "Animate Brick";
@@ -62,6 +80,9 @@
 "Bricks" = "Bricks";
 
 /* No comment provided by engineer. */
+"brightness" = "brightness";
+
+/* No comment provided by engineer. */
 "Broadcast and wait\n%@" = "Broadcast and wait\n%@";
 
 /* No comment provided by engineer. */
@@ -69,6 +90,9 @@
 
 /* paint */
 "brush" = "brush";
+
+/* No comment provided by engineer. */
+"By registering you agree to our" = "By registering you agree to our";
 
 /* No comment provided by engineer. */
 "By switching to the section \"Explore\" you can discover much more interesting stuff." = "By switching to the section \"Explore\" you can discover much more interesting stuff.";
@@ -117,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "Close" = "Close";
+
+/* No comment provided by engineer. */
+"compass" = "compass";
 
 /* No comment provided by engineer. */
 "Compute" = "Compute";
@@ -199,6 +226,9 @@
 /* No comment provided by engineer. */
 "Details" = "Details";
 
+/* No comment provided by engineer. */
+"direction" = "direction";
+
 /* paint */
 "Discard & Close" = "Discard & Close";
 
@@ -257,10 +287,19 @@
 "Else" = "Else";
 
 /* No comment provided by engineer. */
+"Email" = "Email";
+
+/* No comment provided by engineer. */
+"Email is not valid!" = "Email is not valid!";
+
+/* No comment provided by engineer. */
 "End of Loop" = "End of Loop";
 
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "Enter your image name here...";
+
+/* Placeholder for message input field */
+"Enter your message here..." = "Enter your message here...";
 
 /* Placeholder for add object-name input field */
 "Enter your object name here..." = "Enter your object name here...";
@@ -285,6 +324,9 @@
 
 /* No comment provided by engineer. */
 "Explore apps" = "Explore apps";
+
+/* No comment provided by engineer. */
+"false" = "false";
 
 /* No comment provided by engineer. */
 "Featured Programs" = "Featured Programs";
@@ -338,6 +380,9 @@
 "Grid" = "Grid";
 
 /* No comment provided by engineer. */
+"Hello !" = "Hello !";
+
+/* No comment provided by engineer. */
 "Help" = "Help";
 
 /* No comment provided by engineer. */
@@ -365,7 +410,16 @@
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.";
 
 /* No comment provided by engineer. */
+"inclination_x" = "inclination_x";
+
+/* No comment provided by engineer. */
+"inclination_y" = "inclination_y";
+
+/* No comment provided by engineer. */
 "Information" = "Information";
+
+/* No comment provided by engineer. */
+"Invalid input entered, try again." = "Invalid input entered, try again.";
 
 /* No comment provided by engineer. */
 "Invalid URL given!" = "Invalid URL given!";
@@ -375,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "January" = "January";
+
+/* No comment provided by engineer. */
+"join" = "join";
 
 /* No comment provided by engineer. */
 "Jul" = "Jul";
@@ -392,7 +449,16 @@
 "Last access" = "Last access";
 
 /* No comment provided by engineer. */
+"layer" = "layer";
+
+/* No comment provided by engineer. */
+"length" = "length";
+
+/* No comment provided by engineer. */
 "Length" = "Length";
+
+/* No comment provided by engineer. */
+"letter" = "letter";
 
 /* paint */
 "line" = "line";
@@ -407,7 +473,16 @@
 "Login" = "Login";
 
 /* No comment provided by engineer. */
+"Login/Register" = "Login/Register";
+
+/* LOOK */
+"look" = "look";
+
+/* No comment provided by engineer. */
 "Looks" = "Looks";
+
+/* No comment provided by engineer. */
+"loudness" = "loudness";
 
 /* No comment provided by engineer. */
 "Mar" = "Mar";
@@ -426,6 +501,12 @@
 
 /* paint */
 "Menu" = "Menu";
+
+/* No comment provided by engineer. */
+"Message" = "Message";
+
+/* No comment provided by engineer. */
+"message 1" = "message 1";
 
 /* paint */
 "mirror" = "mirror";
@@ -464,6 +545,9 @@
 "My Object" = "My Object";
 
 /* No comment provided by engineer. */
+"Name" = "Name";
+
+/* No comment provided by engineer. */
 "Name already exists. Please choose another" = "Name already exists. Please choose another";
 
 /* No comment provided by engineer. */
@@ -473,10 +557,19 @@
 "New Canvas" = "New Canvas";
 
 /* No comment provided by engineer. */
+"New Message" = "New Message";
+
+/* No comment provided by engineer. */
 "New Program" = "New Program";
 
 /* No comment provided by engineer. */
+"New Text" = "New Text";
+
+/* No comment provided by engineer. */
 "New Variable" = "New Variable";
+
+/* No comment provided by engineer. */
+"New..." = "New...";
 
 /* No comment provided by engineer. */
 "Newest" = "Newest";
@@ -512,6 +605,9 @@
 "No search results" = "No search results";
 
 /* No comment provided by engineer. */
+"not" = "not";
+
+/* No comment provided by engineer. */
 "Not enough free memory to download this program. Please delete some of your programs" = "Not enough free memory to download this program. Please delete some of your programs";
 
 /* No comment provided by engineer. */
@@ -542,6 +638,9 @@
 "Object name" = "Object name";
 
 /* No comment provided by engineer. */
+"Object variables:" = "Object variables:";
+
+/* No comment provided by engineer. */
 "Objects" = "Objects";
 
 /* No comment provided by engineer. */
@@ -557,7 +656,13 @@
 "only 15 characters allowed" = "only 15 characters allowed";
 
 /* No comment provided by engineer. */
+"or" = "or";
+
+/* No comment provided by engineer. */
 "Password" = "Password";
+
+/* No comment provided by engineer. */
+"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Password is not vaild! \n It has to contain at least 6 characters/symbols";
 
 /* paint */
 "pipette" = "pipette";
@@ -570,6 +675,9 @@
 
 /* paint */
 "Please pick an item" = "Please pick an item";
+
+/* No comment provided by engineer. */
+"Please select a program to upload" = "Please select a program to upload";
 
 /* No comment provided by engineer. */
 "Pocket Code" = "Pocket Code";
@@ -602,10 +710,25 @@
 "pointer" = "pointer";
 
 /* No comment provided by engineer. */
+"pos_x" = "pos_x";
+
+/* No comment provided by engineer. */
+"pos_y" = "pos_y";
+
+/* No comment provided by engineer. */
+"Problems occured while Uploading your program" = "Problems occured while Uploading your program";
+
+/* No comment provided by engineer. */
 "program" = "program";
 
 /* No comment provided by engineer. */
 "Program name" = "Program name";
+
+/* No comment provided by engineer. */
+"Program Name is necessary!" = "Program Name is necessary!";
+
+/* No comment provided by engineer. */
+"Program variables:" = "Program variables:";
 
 /* No comment provided by engineer. */
 "Programs" = "Programs";
@@ -624,6 +747,12 @@
 
 /* paint */
 "Red" = "Red";
+
+/* No comment provided by engineer. */
+"Register" = "Register";
+
+/* No comment provided by engineer. */
+"Registration successfull" = "Registration successfull";
 
 /* No comment provided by engineer. */
 "Rename" = "Rename";
@@ -749,6 +878,9 @@
 "Show Details" = "Show Details";
 
 /* No comment provided by engineer. */
+"size" = "size";
+
+/* No comment provided by engineer. */
 "Size" = "Size";
 
 /* No comment provided by engineer. */
@@ -768,6 +900,9 @@
 
 /* No comment provided by engineer. */
 "Speak %@" = "Speak %@";
+
+/* No comment provided by engineer. */
+"sqrt" = "sqrt";
 
 /* paint */
 "square" = "square";
@@ -803,6 +938,9 @@
 "Terms of Use" = "Terms of Use";
 
 /* No comment provided by engineer. */
+"Text message:" = "Text message:";
+
+/* No comment provided by engineer. */
 "Th" = "Th";
 
 /* No comment provided by engineer. */
@@ -818,10 +956,19 @@
 "This feature is coming soon!" = "This feature is coming soon!";
 
 /* No comment provided by engineer. */
+"This variable can not be deleted because it is still in use." = "This variable can not be deleted because it is still in use.";
+
+/* No comment provided by engineer. */
 "Thursday" = "Thursday";
 
 /* No comment provided by engineer. */
 "Today" = "Today";
+
+/* No comment provided by engineer. */
+"transparency" = "transparency";
+
+/* No comment provided by engineer. */
+"true" = "true";
 
 /* No comment provided by engineer. */
 "Tu" = "Tu";
@@ -857,10 +1004,22 @@
 "Upload" = "Upload";
 
 /* No comment provided by engineer. */
+"Upload Program" = "Upload Program";
+
+/* No comment provided by engineer. */
+"Upload Selected Program" = "Upload Selected Program";
+
+/* No comment provided by engineer. */
+"Upload successfull" = "Upload successfull";
+
+/* No comment provided by engineer. */
 "Uploaded" = "Uploaded";
 
 /* No comment provided by engineer. */
 "Username" = "Username";
+
+/* No comment provided by engineer. */
+"Username is necessary!" = "Username is necessary!";
 
 /* No comment provided by engineer. */
 "v" = "v";

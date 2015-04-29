@@ -20,17 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+@protocol ScriptProtocol;
 
-@interface UploadViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UILabel *sizeValueLabel;
+@protocol BrickCellProtocol <NSObject>
 
-@property (weak, nonatomic) IBOutlet UILabel *sizeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *programLabel;
-@property (weak, nonatomic) IBOutlet UITextField *programTextField;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
-@property (weak, nonatomic) IBOutlet UITextField *descriptionTextField;
-@property (weak, nonatomic) IBOutlet UIButton *uploadButton;
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@required
+@property (nonatomic, strong) id<ScriptProtocol> scriptOrBrick;
+@property (nonatomic) BOOL enabled;
+
+- (kBrickShapeType)brickShapeType;
++ (CGFloat)cellHeight;
 
 @end

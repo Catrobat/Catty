@@ -20,37 +20,37 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "FormulaEditorButton.h"
-#import "Formula.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
+
+#import "BrickCellFormulaFragment.h"
+#import "BrickCell.h"
 #import "BrickFormulaProtocol.h"
 #import "PlaceAtBrickCell.h"
 #import "GlideToBrickCell.h"
-#import "Util.h"
+#import "LanguageTranslationDefines.h"
 
-@interface FormulaEditorButton ()
-
+@interface BrickCellFormulaFragment()
 @property (nonatomic, strong) CAShapeLayer *border;
-
+@property (nonatomic) NSInteger lineNumber;
+@property (nonatomic) NSInteger parameterNumber;
 @end
 
-@implementation FormulaEditorButton
+@implementation BrickCellFormulaFragment
 
-static Formula *activeFormula;
-
-- (id)initWithFrame:(CGRect)frame AndBrickCell:(BrickCell*)brickCell AndFormula:(Formula *)formula
+- (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell*)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
-    self = [super initWithFrame:frame];
-    
-    if(self) {
-        self.brickCell = brickCell;
-        self.formula = formula;
+    Brick<BrickFormulaProtocol> *formulaBrick = (Brick<BrickFormulaProtocol>*)brickCell.scriptOrBrick;
+    Formula *formula = [formulaBrick formulaForLineNumber:line andParameterNumber:parameter
+];
+    if(self = [super initWithFrame:frame]) {
+        _brickCell = brickCell;
+        _lineNumber = line;
+        _parameterNumber = parameter;
         
         self.titleLabel.textColor = [UIColor whiteColor];
         self.titleLabel.font = [UIFont systemFontOfSize:kBrickTextFieldFontSize];
         self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         [self setTitle:[formula getDisplayString] forState:UIControlStateNormal];
-    
+        
         [self sizeToFit];
         if (self.frame.size.width >= kBrickInputFieldMaxWidth) {
             self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, kBrickInputFieldMaxWidth, self.frame.size.height);
@@ -59,43 +59,27 @@ static Formula *activeFormula;
             [self.titleLabel setAdjustsFontSizeToFitWidth:YES];
             self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
             self.titleLabel.minimumScaleFactor = 10./self.titleLabel.font.pointSize;
-        }else if ([brickCell isKindOfClass:[PlaceAtBrickCell class]] || [brickCell isKindOfClass:[GlideToBrickCell class]]) {
+        } else if ([brickCell isKindOfClass:[PlaceAtBrickCell class]] || [brickCell isKindOfClass:[GlideToBrickCell class]]) {
             if (self.frame.size.width > [Util screenWidth]/4.0f ) {
                 CGRect labelFrame = self.frame;
                 labelFrame.size.width = [Util screenWidth]/4.0f;
                 self.frame = labelFrame;
             }
-        }else{
+        } else {
             self.titleLabel.numberOfLines = 1;
             self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
             [self.titleLabel setAdjustsFontSizeToFitWidth:YES];
             self.titleLabel.minimumScaleFactor = 11./self.titleLabel.font.pointSize;
         }
-    
+        
         CGRect labelFrame = self.frame;
         labelFrame.size.height = self.frame.size.height;
         self.frame = labelFrame;
         
         [self addTarget:brickCell.delegate action:@selector(openFormulaEditor:) forControlEvents:UIControlEventTouchUpInside];
-        
-        if([[FormulaEditorButton getActiveFormula] isEqual:formula]) {
-            [self drawBorder:YES];
-        } else {
-            [self drawBorder:NO];
-        }
+        [self drawBorder:NO];
     }
-    
     return self;
-}
-
-+ (Formula*)getActiveFormula
-{
-    return activeFormula;
-}
-
-+ (void)setActiveFormula:(Formula*)formula
-{
-    activeFormula = formula;
 }
 
 #define FORMULA_MAX_LENGTH 15
@@ -143,7 +127,7 @@ static Formula *activeFormula;
     self.border.path = borderPath.CGPath;
     self.border.lineWidth = BORDER_WIDTH;
     [self.border setOpacity:BORDER_TRANSPARENCY];
-
+    
     if (isActive) {
         self.border.strokeColor = [UIColor cellBlueColor].CGColor;
         self.border.shadowColor = [UIColor lightBlueColor].CGColor;
@@ -156,6 +140,21 @@ static Formula *activeFormula;
     }
     
     [self.layer addSublayer:self.border];
+}
+
+- (Formula*)formula
+{
+    Brick<BrickFormulaProtocol> *formulaBrick = (Brick<BrickFormulaProtocol>*)self.brickCell.scriptOrBrick;
+    return [formulaBrick formulaForLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
+}
+
+# pragma mark - Delegate
+
+- (void)saveFormula:(Formula *)formula
+{
+    [self.formula setRoot:formula.formulaTree];
+    [self.brickCell.fragmentDelegate updateData:self.formula forBrick:(Brick*)self.brickCell.scriptOrBrick andLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
+
 }
 
 @end

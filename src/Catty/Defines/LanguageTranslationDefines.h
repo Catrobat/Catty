@@ -29,6 +29,7 @@
 #define kLocalizedExploreApps NSLocalizedString(@"Explore apps", nil)
 #define kLocalizedUpcomingVersion NSLocalizedString(@"Upcoming version", nil)
 #define kLocalizedNewProgram NSLocalizedString(@"New Program", nil)
+#define kLocalizedNewMessage NSLocalizedString(@"New Message", nil)
 #define kLocalizedBackground NSLocalizedString(@"Background", nil)
 #define kLocalizedMyObject NSLocalizedString(@"My Object", @"Title for first (default) object")
 #define kLocalizedMyImage NSLocalizedString(@"My Image", @"Default title of imported photo from camera (taken by camera)")
@@ -89,6 +90,7 @@
 #define kLocalizedTapPlusToAdd NSLocalizedString(@"Tap \"+\" to add %@", nil)
 #define kLocalizedContinue NSLocalizedString(@"Continue", nil)
 #define kLocalizedNew NSLocalizedString(@"New", nil)
+#define kLocalizedNewElement NSLocalizedString(@"New...", nil)
 #define kLocalizedPrograms NSLocalizedString(@"Programs", nil)
 #define kLocalizedHelp NSLocalizedString(@"Help", nil)
 #define kLocalizedExplore NSLocalizedString(@"Explore", nil)
@@ -113,6 +115,7 @@
 #define kLocalizedEditLooks NSLocalizedString(@"Edit Looks", @"Action sheet menu title")
 #define kLocalizedEditLook NSLocalizedString(@"Edit Look", @"Action sheet menu title")
 #define kLocalizedAddLook NSLocalizedString(@"Add look", @"Action sheet menu title")
+#define kLocalizedLook NSLocalizedString(@"look", @"LOOK")
 #define kLocalizedEditProgram NSLocalizedString(@"Edit Program", nil)
 #define kLocalizedEditPrograms NSLocalizedString(@"Edit Programs", nil)
 #define kLocalizedEditObject NSLocalizedString(@"Edit Object", nil)
@@ -129,7 +132,6 @@
 #define kLocalizedEditFormula NSLocalizedString(@"Edit Formula", nil)
 #define kLocalizedDeleteSounds NSLocalizedString(@"Delete Sounds", nil)
 #define kLocalizedHideDetails NSLocalizedString(@"Hide Details", nil)
-#define kLocalizedShowDetails NSLocalizedString(@"Show Details", nil)
 #define kLocalizedShowDetails NSLocalizedString(@"Show Details", nil)
 #define kLocalizedDeleteLooks NSLocalizedString(@"Delete Looks",nil)
 #define kLocalizedFromCamera NSLocalizedString(@"From Camera", nil)
@@ -156,7 +158,6 @@
 #define kLocalizedDownload NSLocalizedString(@"Download", nil)
 #define kLocalizedMore NSLocalizedString(@"More", nil)
 #define kLocalizedDelete NSLocalizedString(@"Delete", nil)
-#define kLocalizedPocketCode NSLocalizedString(@"Pocket Code", nil)
 #define kLocalizedAddObject NSLocalizedString(@"Add object", nil)
 #define kLocalizedAddImage NSLocalizedString(@"Add image", nil)
 #define kLocalizedRenameObject NSLocalizedString(@"Rename object", nil)
@@ -172,6 +173,7 @@
 #define kLocalizedSetDescription NSLocalizedString(@"Set description", nil)
 #define kLocalizedPocketCodeForIOS NSLocalizedString(@"Pocket Code for iOS", nil)
 #define kLocalizedProgramName NSLocalizedString(@"Program name", nil)
+#define kLocalizedMessage NSLocalizedString(@"Message", nil)
 #define kLocalizedDescription NSLocalizedString(@"Description", nil)
 #define kLocalizedObjectName NSLocalizedString(@"Object name", nil)
 #define kLocalizedImageName NSLocalizedString(@"Image name", nil)
@@ -183,7 +185,6 @@
 #define kLocalizedDelete NSLocalizedString(@"Delete", nil)
 #define kLocalizedLoading NSLocalizedString(@"Loading", nil)
 #define kLocalizedSaved NSLocalizedString(@"Saved", nil)
-#define kLocalizedDescription NSLocalizedString(@"Description", nil)
 #define kLocalizedAuthor NSLocalizedString(@"Author", nil)
 #define kLocalizedDownloads NSLocalizedString(@"Downloads", nil)
 #define kLocalizedUploaded NSLocalizedString(@"Uploaded", nil)
@@ -214,14 +215,12 @@
 #define kLocalizedSound NSLocalizedString(@"Sound", nil)
 #define kLocalizedLooks NSLocalizedString(@"Looks", nil)
 #define kLocalizedVariables NSLocalizedString(@"Variables", nil)
-#define kLocalizedLogin NSLocalizedString(@"Login", nil)
-#define kLocalizedUsername NSLocalizedString(@"Username", nil)
-#define kLocalizedPassword NSLocalizedString(@"Password", nil)
 #define kLocalizedRecording NSLocalizedString(@"Recording", nil)
 #define kLocalizedError NSLocalizedString(@"Error", nil)
 #define kLocalizedMemoryWarning NSLocalizedString(@"Not enough Memory", nil)
 #define kLocalizedReportProgram NSLocalizedString(@"Report as inappropriate", nil)
 #define kLocalizedRecording NSLocalizedString(@"Recording", nil)
+#define kLocalizedName NSLocalizedString(@"Name", nil)
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -251,14 +250,17 @@
 #define kLocalizedNotEnoughFreeMemoryDescription NSLocalizedString(@"Not enough free memory to download this program. Please delete some of your programs", nil)
 #define kLocalizedEnterYourProgramNameHere NSLocalizedString(@"Enter your program name here...", @"Placeholder for program-name input field")
 #define kLocalizedEnterYourProgramDescriptionHere NSLocalizedString(@"Enter your program description here...", @"Placeholder for program-description input field")
+#define kLocalizedEnterYourMessageHere NSLocalizedString(@"Enter your message here...", @"Placeholder for message input field")
 #define kLocalizedEnterYourObjectNameHere NSLocalizedString(@"Enter your object name here...", @"Placeholder for add object-name input field")
 #define kLocalizedEnterYourImageNameHere NSLocalizedString(@"Enter your image name here...", @"Placeholder for add image-name input field")
 #define kLocalizedEnterYourSoundNameHere NSLocalizedString(@"Enter your sound name here...", @"Placeholder for add sound-name input field")
 #define kLocalizedNoImportedSoundsFoundDescription NSLocalizedString(@"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.", nil)
 #define kLocalizedNoOrTooShortInputDescription NSLocalizedString(@"No input or the input is too short. Please enter at least %lu character(s).", nil)
+#define kLocalizedInvalidInputDescription NSLocalizedString(@"Invalid input entered, try again.", nil)
 #define kLocalizedProgramNameAlreadyExistsDescription NSLocalizedString(@"A program with the same name already exists, try again.", nil)
 #define kLocalizedInvalidDescriptionDescription NSLocalizedString(@"The description contains invalid characters, try again.", nil)
 #define kLocalizedObjectNameAlreadyExistsDescription NSLocalizedString(@"An object with the same name already exists, try again.", nil)
+#define kLocalizedMessageAlreadyExistsDescription NSLocalizedString(@"A message with the same name already exists, try again.", nil)
 #define kLocalizedInvalidImageNameDescription NSLocalizedString(@"No or invalid image name entered, try again.", nil)
 #define kLocalizedInvalidSoundNameDescription NSLocalizedString(@"No or invalid sound name entered, try again.", nil)
 #define kLocalizedImageNameAlreadyExistsDescription NSLocalizedString(@"An image with the same name already exists, try again.", nil)
@@ -345,11 +347,13 @@
 #define kLocalizedWhenProgramStarted NSLocalizedString(@"When program started", nil)
 #define kLocalizedWhenTapped NSLocalizedString(@"When tapped", nil)
 #define kLocalizedWaitNSeconds NSLocalizedString(@"Wait %@ second(s)", nil)
+#define kLocalizedBroadcastDefaultMessage NSLocalizedString(@"message 1", nil)
 #define kLocalizedVibrateNSeconds NSLocalizedString(@"Vibrate %@ second(s)", nil)
 #define kLocalizedWhenIReceive NSLocalizedString(@"When I receive\n%@", nil)
 #define kLocalizedBroadcast NSLocalizedString(@"Broadcast\n%@", nil)
 #define kLocalizedBroadcastAndWait NSLocalizedString(@"Broadcast and wait\n%@", nil)
 #define kLocalizedNote NSLocalizedString(@"Note %@", nil)
+#define kLocalizedDefaultNote NSLocalizedString(@"add comment here...", nil)
 #define kLocalizedForever NSLocalizedString(@"Forever", nil)
 #define kLocalizedIfIsTrueThen NSLocalizedString(@"If %@ is true then", nil)
 #define kLocalizedElse NSLocalizedString(@"Else", nil)
@@ -396,12 +400,36 @@
 #define kLocalizedSetVolumeTo NSLocalizedString(@"Set volume to %@\%", nil)
 #define kLocalizedChangeVolumeByN NSLocalizedString(@"Change volume by %@", nil)
 #define kLocalizedSpeak NSLocalizedString(@"Speak %@", nil)
+#define kLocalizedDefaultSpeakText NSLocalizedString(@"Hello !", nil)
 
 // variable bricks
 #define kLocalizedSetVariable NSLocalizedString(@"Set variable\n%@\nto %@", nil)
 #define kLocalizedChangeVariable NSLocalizedString(@"Change variable\n%@\nby %@", nil)
 
 #endif // kIsRelease
+
+//************************************************************************************************************
+//**********************************       Login/Upload            *******************************************
+//************************************************************************************************************
+
+#define kLocalizedLogin NSLocalizedString(@"Login", nil)
+#define kLocalizedUsername NSLocalizedString(@"Username", nil)
+#define kLocalizedPassword NSLocalizedString(@"Password", nil)
+#define kLocalizedEmail NSLocalizedString(@"Email", nil)
+#define kLocalizedRegister NSLocalizedString(@"Register", nil)
+#define kLocalizedLoginOrRegister NSLocalizedString(@"Login/Register", nil)
+#define kLocalizedUploadProgram NSLocalizedString(@"Upload Program", nil)
+#define kLocalizedLoginUsernameNecessary NSLocalizedString(@"Username is necessary!", nil)
+#define kLocalizedLoginEmailNotValid NSLocalizedString(@"Email is not valid!", nil)
+#define kLocalizedLoginPasswordNotValid NSLocalizedString(@"Password is not vaild! \n It has to contain at least 6 characters/symbols", nil)
+#define kLocalizedUploadProgramNecessary NSLocalizedString(@"Program Name is necessary!", nil)
+#define kLocalizedForgotPassword NSLocalizedString(@"Forgot password", nil)
+#define kLocalizedTermsAgreementPart NSLocalizedString(@"By registering you agree to our", nil)
+#define kLocalizedUploadSuccessfull NSLocalizedString(@"Upload successfull", nil)
+#define kLocalizedRegistrationSuccessfull NSLocalizedString(@"Registration successfull", nil)
+#define kUploadSelectedProgram NSLocalizedString(@"Upload Selected Program", nil)
+#define kLocalizedUploadProblem NSLocalizedString (@"Problems occured while Uploading your program", nil)
+#define kLocalizedUploadSelectProgram NSLocalizedString (@"Please select a program to upload", nil)
 
 //************************************************************************************************************
 //************************************       PAINT                ********************************************
@@ -468,13 +496,47 @@
 #define kUIFENewVarExists NSLocalizedString(@"Name already exists. Please choose another", nil)
 #define kUIFEonly15Char NSLocalizedString(@"only 15 characters allowed", nil)
 #define kUIFEVarName NSLocalizedString(@"Variable name:", nil)
+#define kUIFEProgramVars NSLocalizedString(@"Program variables:", nil)
+#define kUIFEObjectVars NSLocalizedString(@"Object variables:", nil)
+#define kUIFEDeleteVarBeingUsed NSLocalizedString(@"This variable can not be deleted because it is still in use.", nil)
 #define kUIFEActionVar NSLocalizedString(@"Variable type", nil)
 #define kUIFEActionVarObj NSLocalizedString(@"object", nil)
 #define kUIFEActionVarPro NSLocalizedString(@"program", nil)
 
+#define kUIFEFunctionSqrt NSLocalizedString(@"sqrt", nil)
+#define kUIFEFunctionTrue NSLocalizedString(@"true", nil)
+#define kUIFEFunctionFalse NSLocalizedString(@"false", nil)
+#define kUIFEFunctionLetter NSLocalizedString(@"letter", nil)
+#define kUIFEFunctionJoin NSLocalizedString(@"join", nil)
+#define kUIFEFunctionLength NSLocalizedString(@"length", nil)
+
+#define kUIFEOperatorAnd NSLocalizedString(@"and", nil)
+#define kUIFEOperatorNot NSLocalizedString(@"not", nil)
+#define kUIFEOperatorOr NSLocalizedString(@"or", nil)
+
+#define kUIFEObjectTransparency NSLocalizedString(@"transparency", nil)
+#define kUIFEObjectBrightness NSLocalizedString(@"brightness", nil)
+#define kUIFEObjectSize NSLocalizedString(@"size", nil)
+#define kUIFEObjectDirection NSLocalizedString(@"direction", nil)
+#define kUIFEObjectLayer NSLocalizedString(@"layer", nil)
+#define kUIFEObjectPositionX NSLocalizedString(@"pos_x", nil)
+#define kUIFEObjectPositionY NSLocalizedString(@"pos_y", nil)
+
+#define kUIFESensorCompass NSLocalizedString(@"compass", nil)
+#define kUIFESensorLoudness NSLocalizedString(@"loudness", nil)
+#define kUIFESensorAccelerationX NSLocalizedString(@"acceleration_x", nil)
+#define kUIFESensorAccelerationY NSLocalizedString(@"acceleration_y", nil)
+#define kUIFESensorAccelerationZ NSLocalizedString(@"acceleration_z", nil)
+#define kUIFESensorInclinationX NSLocalizedString(@"inclination_x", nil)
+#define kUIFESensorInclinationY NSLocalizedString(@"inclination_y", nil)
+
+
+
 //************************************************************************************************************
 //************************************       BrickCategoryTitles        ********************************************
 //************************************************************************************************************
+#define kUIFENewText NSLocalizedString(@"New Text", nil)
+#define kUIFETextMessage NSLocalizedString(@"Text message:", nil)
 #define kUIScriptTitle NSLocalizedStringFromTable(@"Script", @"BrickCategoryViewController", nil);
 #define kUIControlTitle NSLocalizedStringFromTable(@"Control", @"BrickCategoryViewController", nil);
 #define kUIMotionTitle  NSLocalizedStringFromTable(@"Motion", @"BrickCategoryViewController", nil);

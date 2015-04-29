@@ -57,6 +57,7 @@
 @property (nonatomic, assign) BOOL useTestUrl;
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSMutableData *data;
+@property (nonatomic, strong) NSString *duplicateName;
 
 @end
 
@@ -82,10 +83,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.duplicateName = self.project.name;
     [self initNavigationBar];
     self.hidesBottomBarWhenPushed = YES;
-    
     self.view.backgroundColor = [UIColor darkBlueColor];
     NSDebug(@"%@",self.project.author);
     self.projectView = [self createViewForProject:self.project];
@@ -136,10 +136,12 @@
         [view viewWithTag:kDownloadButtonTag].hidden = YES;
         [view viewWithTag:kPlayButtonTag].hidden = NO;
         [view viewWithTag:kStopLoadingTag].hidden = YES;
+        [view viewWithTag:kDownloadAgainButtonTag].hidden = NO;
     } else if (self.project.isdownloading) {
         [view viewWithTag:kDownloadButtonTag].hidden = YES;
         [view viewWithTag:kPlayButtonTag].hidden = YES;
         [view viewWithTag:kStopLoadingTag].hidden = NO;
+        [view viewWithTag:kDownloadAgainButtonTag].hidden = YES;
     }
     return view;
 }
@@ -247,10 +249,10 @@
     if (self.popupViewController == nil) {
         LoginPopupViewController *popupViewController = [[LoginPopupViewController alloc] init];
         popupViewController.delegate = self;
-        [self presentPopupViewController:popupViewController WithFrame:self.view.frame isLogin:YES];
+        [self presentPopupViewController:popupViewController WithFrame:self.view.frame upwardsCenterByFactor:4.5];
         self.navigationItem.leftBarButtonItem.enabled = NO;
     } else {
-        [self dismissPopupWithLoginCode:NO];
+        [self dismissPopupWithCode:NO];
     }
 }
 
@@ -268,7 +270,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)sendReportWithMessage:(NSString*)message
 {
-    NSLog(@"ReportMessage::::::%@",message);
+    NSDebug(@"ReportMessage::::::%@",message);
     
     self.data = nil;
     self.data = [[NSMutableData alloc] init];
@@ -291,9 +293,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.connection start];
     
     if(self.connection) {
-        NSLog(@"Connection Successful");
+        NSDebug(@"Connection Successful");
     } else {
-        NSLog(@"Connection could not be made");
+        NSDebug(@"Connection could not be made");
     }
   
 }
@@ -310,17 +312,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.projectView viewWithTag:kDownloadButtonTag].hidden = YES;
     button.hidden = NO;
     button.progress = 0;
-    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
-    appDelegate.fileManager.delegate = self;
-    [appDelegate.fileManager downloadFileFromURL:url withProgramID:self.project.projectID withName:self.project.projectName];
-    NSDebug(@"url screenshot is %@", self.project.screenshotSmall);
-    NSString *urlString = self.project.screenshotSmall;
-    NSDebug(@"screenshot url is: %@", urlString);
-    NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
-    [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url andName:self.project.name];
-    self.project.isdownloading = YES;
-    [self.projects setObject:self.project forKey:url];
+    [self downloadWithName:self.project.name];
 }
 
 - (void)downloadButtonPressed:(id)sender
@@ -328,8 +320,37 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self downloadButtonPressed];
 }
 
+-(void)downloadAgain
+{
+    EVCircularProgressView* button = (EVCircularProgressView*)[self.projectView viewWithTag:kStopLoadingTag];
+    [self.projectView viewWithTag:kPlayButtonTag].hidden = YES;
+    UIButton* downloadAgainButton = (UIButton*)[self.projectView viewWithTag:kDownloadAgainButtonTag];
+    downloadAgainButton.enabled = NO;
+    button.hidden = NO;
+    button.progress = 0;
+    self.duplicateName = [Util uniqueName:self.project.name existingNames:[Program allProgramNames]];
+    NSDebug(@"%@",[Program allProgramNames]);
+    [self downloadWithName:self.duplicateName];
+}
+
+-(void)downloadWithName:(NSString*)name
+{
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSURL *url = [NSURL URLWithString:self.project.downloadUrl];
+    appDelegate.fileManager.delegate = self;
+    [appDelegate.fileManager downloadFileFromURL:url withProgramID:self.project.projectID withName:name];
+    NSDebug(@"url screenshot is %@", self.project.screenshotSmall);
+    NSString *urlString = self.project.screenshotSmall;
+    NSDebug(@"screenshot url is: %@", urlString);
+    NSURL *screenshotSmallUrl = [NSURL URLWithString:urlString];
+    [appDelegate.fileManager downloadScreenshotFromURL:screenshotSmallUrl andBaseUrl:url andName:name];
+    self.project.isdownloading = YES;
+    [self.projects setObject:self.project forKey:url];
+    [self reloadInputViews];
+}
+
 #pragma mark - File Manager Delegate
-- (void) downloadFinishedWithURL:(NSURL*)url
+- (void) downloadFinishedWithURL:(NSURL*)url andProgramLoadingInfo:(ProgramLoadingInfo *)info
 {
     NSDebug(@"Download Finished!!!!!!");
     self.project.isdownloading = NO;
@@ -338,8 +359,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     button.hidden = YES;
     button.progress = 0;
     [self.view viewWithTag:kPlayButtonTag].hidden = NO;
+    UIButton* downloadAgainButton = (UIButton*)[self.projectView viewWithTag:kDownloadAgainButtonTag];
+    downloadAgainButton.enabled = YES;
+    downloadAgainButton.hidden = NO;
     [self loadingIndicator:NO];
-  
 }
 
 #pragma mark - TTTAttributedLabelDelegate
@@ -410,6 +433,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.projectView viewWithTag:kDownloadButtonTag].hidden = NO;
     [self.projectView viewWithTag:kStopLoadingTag].hidden = YES;
     [self.projectView viewWithTag:kPlayButtonTag].hidden = YES;
+    [self.projectView viewWithTag:kDownloadAgainButtonTag].hidden = YES;
 }
 
 #pragma mark - actions
@@ -424,7 +448,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
     EVCircularProgressView* button = (EVCircularProgressView*)[self.view viewWithTag:kStopLoadingTag];
     button.hidden = YES;
     button.progress = 0;
-    [self.view viewWithTag:kDownloadButtonTag].hidden = NO;
+    UIButton* downloadAgainButton = (UIButton*)[self.projectView viewWithTag:kDownloadAgainButtonTag];
+    if(downloadAgainButton.enabled){
+        [self.view viewWithTag:kDownloadButtonTag].hidden = NO;
+    } else {
+        [self.view viewWithTag:kPlayButtonTag].hidden = NO;
+        downloadAgainButton.enabled = YES;
+    }
     [self loadingIndicator:NO];
     
 }
@@ -440,6 +470,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.view viewWithTag:kDownloadButtonTag].hidden = NO;
     [self.view viewWithTag:kPlayButtonTag].hidden = YES;
     [self.view viewWithTag:kStopLoadingTag].hidden = YES;
+    [self.view viewWithTag:kDownloadAgainButtonTag].hidden = YES;
     [self loadingIndicator:NO];
 }
 
@@ -491,7 +522,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 
 #pragma mark - popup delegate
-- (BOOL)dismissPopupWithLoginCode:(BOOL)successLogin
+- (BOOL)dismissPopupWithCode:(BOOL)successLogin
 {
     if (self.popupViewController != nil) {
         [self dismissPopupViewController];

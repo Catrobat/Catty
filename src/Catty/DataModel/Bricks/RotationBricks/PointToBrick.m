@@ -92,12 +92,7 @@
         NSDebug(@"Performing: %@, Degreees: (%f), Pointed Object: Position: %@", self.description, rotationDegrees, NSStringFromCGPoint(self.pointedObject.position));
         
         rotationDegrees = [((Scene*)self.script.object.scene) convertDegreesToScene:(CGFloat)rotationDegrees] + kRotationDegreeOffset;
-        
-        if (rotationDegrees > 360.0f) {
-            rotationDegrees -= 360.0f;
-        }
-
-        self.script.object.zRotation = (CGFloat)[Util degreeToRadians:rotationDegrees];
+        [self.script.object setRotation:rotationDegrees];
     };
 }
 
@@ -112,6 +107,18 @@
     if(![self.pointedObject.name isEqualToString:((PointToBrick*)brick).pointedObject.name])
         return NO;
     return YES;
+}
+
+#pragma mark - BrickObjectProtocol
+- (void)setObject:(SpriteObject *)object forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    if(object)
+        self.pointedObject = object;
+}
+
+- (SpriteObject*)objectForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    return self.pointedObject;
 }
 
 @end

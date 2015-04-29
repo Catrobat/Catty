@@ -27,14 +27,19 @@
 
 @implementation TurnLeftBrick
 
-- (Formula*)getFormulaForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.degrees;
 }
 
-- (void)setFormula:(Formula*)formula ForLineNumber:(NSInteger)lineNumber AndParameterNumber:(NSInteger)paramNumber
+- (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     self.degrees = formula;
+}
+
+- (void)setDefaultValues
+{
+    self.degrees = [[Formula alloc] initWithFloat:15];
 }
 
 - (NSString*)brickTitle
@@ -51,15 +56,9 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        double rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.script.object]];
-        double newRad = self.script.object.zRotation + rad;
-        if (newRad >= 2*M_PI) {
-            newRad -= 2*M_PI;
-        }
-        else if (newRad <= (- 2*M_PI)) {
-            newRad += 2*M_PI;
-        }
-        self.script.object.zRotation = (CGFloat)newRad;
+        double rotation = [self.degrees interpretDoubleForSprite:self.script.object];
+        rotation += [self.script.object rotation];
+        [self.script.object setRotation: rotation];
     };
 }
 

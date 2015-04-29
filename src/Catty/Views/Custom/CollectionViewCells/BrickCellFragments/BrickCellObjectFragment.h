@@ -20,16 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import "UIDefines.h"
-#import "CBMutableCopying.h"
 
-@protocol ScriptProtocol<NSObject, CBMutableCopying>
+#import "BrickCellFragmentProtocol.h"
+#import "iOSCombobox.h"
 
-@required
-@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
-@property (nonatomic, readonly) kBrickType brickType;
-@property (nonatomic, strong, readonly) NSString *brickTitle;
-- (BOOL)isSelectableForObject;
+@interface BrickCellObjectFragment : iOSCombobox<BrickCellFragmentProtocol, iOSComboboxDelegate>
+
+@property (nonatomic, weak) NSArray* objectList;
 
 @end
