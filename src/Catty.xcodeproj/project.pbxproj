@@ -306,6 +306,8 @@
 		92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32511A24E2F400093DA7 /* BaseTransition.m */; };
 		92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
+		CA228A861AF0EF350051AFBB /* CBStack.m in Sources */ = {isa = PBXBuildFile; fileRef = CA228A851AF0EF350051AFBB /* CBStack.m */; };
+		CA228A8B1AF0F17A0051AFBB /* CBStackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA228A8A1AF0F17A0051AFBB /* CBStackTests.m */; };
 		CA538EA519B0EA09008240AB /* ChangeGhostEffectByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */; };
 		CA538EA619B0EA09008240AB /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
 		CA538EA719B0EA09008240AB /* HideBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3F185625E700547C1E /* HideBrickTests.m */; };
@@ -387,8 +389,6 @@
 		CA97A4A11A44F556008C931B /* Word_balloon_demo_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CA97A49F1A44F556008C931B /* Word_balloon_demo_093.xml */; };
 		CA97A4A51A44F594008C931B /* X_Ray_phone_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = CA97A4A31A44F594008C931B /* X_Ray_phone_091.xml */; };
 		CA97A4A61A44F594008C931B /* X_Ray_phone_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CA97A4A41A44F594008C931B /* X_Ray_phone_093.xml */; };
-		CAA067F41ACA113000326EE6 /* faster.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CAA067F21ACA10FC00326EE6 /* faster.catrobat */; };
-		CAA067F51ACA113300326EE6 /* test.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CAA067F31ACA10FC00326EE6 /* test.catrobat */; };
 		CAA4A4651A43B388002A69A0 /* CBXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A4631A43B388002A69A0 /* CBXMLParser.m */; };
 		CAA4A4661A43B388002A69A0 /* CBXMLSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A4641A43B388002A69A0 /* CBXMLSerializer.m */; };
 		CAA4A4691A43B3A9002A69A0 /* CBXMLContext.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A4681A43B3A9002A69A0 /* CBXMLContext.m */; };
@@ -1240,13 +1240,14 @@
 		C34B44EC17F079F500624730 /* CustomExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomExtensionsTests.m; sourceTree = "<group>"; };
 		C3BF754B18117F6000134B77 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		CA05A19D18286CDA0025421A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		CA228A841AF0EF350051AFBB /* CBStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBStack.h; path = CBStack/CBStack.h; sourceTree = "<group>"; };
+		CA228A851AF0EF350051AFBB /* CBStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBStack.m; path = CBStack/CBStack.m; sourceTree = "<group>"; };
+		CA228A8A1AF0F17A0051AFBB /* CBStackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBStackTests.m; sourceTree = "<group>"; };
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
-		CA52403718AD786200052914 /* ProgramTableViewControllerExistingProgramsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerExistingProgramsTests.h; sourceTree = "<group>"; };
 		CA538ECE19B0EA09008240AB /* CattyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA6E4C4719F9C388001B65C3 /* My first program.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My first program.catrobat"; sourceTree = "<group>"; };
 		CA8C247718CD053300314C2B /* ProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTests.m; sourceTree = "<group>"; };
 		CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerNewProgramTests.m; sourceTree = "<group>"; };
-		CA8C247C18CD12C100314C2B /* ProgramTableViewControllerNewProgramTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerNewProgramTests.h; sourceTree = "<group>"; };
 		CA97A4411A44F368008C931B /* Galaxy_War_092.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Galaxy_War_092.xml; path = "Resources/Test Resources/Galaxy_War/Galaxy_War_092.xml"; sourceTree = "<group>"; };
 		CA97A4421A44F368008C931B /* Galaxy_War_093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Galaxy_War_093.xml; path = "Resources/Test Resources/Galaxy_War/Galaxy_War_093.xml"; sourceTree = "<group>"; };
 		CA97A4491A44F38F008C931B /* Air_fight_0.5_091.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Air_fight_0.5_091.xml; path = "Resources/Test Resources/Air_fight_0.5/Air_fight_0.5_091.xml"; sourceTree = "<group>"; };
@@ -1291,8 +1292,6 @@
 		CA97A49F1A44F556008C931B /* Word_balloon_demo_093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Word_balloon_demo_093.xml; path = "Resources/Test Resources/Word_balloon_demo/Word_balloon_demo_093.xml"; sourceTree = "<group>"; };
 		CA97A4A31A44F594008C931B /* X_Ray_phone_091.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = X_Ray_phone_091.xml; path = "Resources/Test Resources/X_Ray_phone/X_Ray_phone_091.xml"; sourceTree = "<group>"; };
 		CA97A4A41A44F594008C931B /* X_Ray_phone_093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = X_Ray_phone_093.xml; path = "Resources/Test Resources/X_Ray_phone/X_Ray_phone_093.xml"; sourceTree = "<group>"; };
-		CAA067F21ACA10FC00326EE6 /* faster.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = faster.catrobat; sourceTree = "<group>"; };
-		CAA067F31ACA10FC00326EE6 /* test.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.catrobat; sourceTree = "<group>"; };
 		CAA4A4611A43B36A002A69A0 /* CBXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBXMLParser.h; path = "Catty/Parser&Serialializer/NEW/CBXMLParser.h"; sourceTree = SOURCE_ROOT; };
 		CAA4A4621A43B36A002A69A0 /* CBXMLSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBXMLSerializer.h; path = "Catty/Parser&Serialializer/NEW/CBXMLSerializer.h"; sourceTree = SOURCE_ROOT; };
 		CAA4A4631A43B388002A69A0 /* CBXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBXMLParser.m; path = "Catty/Parser&Serialializer/NEW/CBXMLParser.m"; sourceTree = SOURCE_ROOT; };
@@ -1515,8 +1514,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				CAA067F21ACA10FC00326EE6 /* faster.catrobat */,
-				CAA067F31ACA10FC00326EE6 /* test.catrobat */,
 				81C27425189EF94600827A95 /* Images.xcassets */,
 				CD0CCE54170CB39600B70036 /* Catty */,
 				92FF32C11A24E33B00093DA7 /* Storyboard+XIB */,
@@ -2485,6 +2482,7 @@
 			isa = PBXGroup;
 			children = (
 				4C2650671A6538470050775B /* CBCopyContext */,
+				CA228A871AF0EF3B0051AFBB /* CBStack */,
 				92FF2EA61A24C8A700093DA7 /* CBXMLOpenedNestingBricksStack */,
 				CAD116DE1A46AAC500F560B4 /* CBXMLPositionStack */,
 				92FF2EA91A24C8A700093DA7 /* DataTransferMessage */,
@@ -3670,6 +3668,7 @@
 			isa = PBXGroup;
 			children = (
 				B46B270917703F9400172837 /* CattyTests.m */,
+				CA228A881AF0F1390051AFBB /* DataStructures */,
 				4CD194F21A0631B200484E4F /* Parser & Serialization */,
 				4C3C03F5199BA5250004F594 /* Formula */,
 				C34B44FB17F3403400624730 /* Extensions */,
@@ -3761,12 +3760,27 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		CA228A871AF0EF3B0051AFBB /* CBStack */ = {
+			isa = PBXGroup;
+			children = (
+				CA228A841AF0EF350051AFBB /* CBStack.h */,
+				CA228A851AF0EF350051AFBB /* CBStack.m */,
+			);
+			name = CBStack;
+			sourceTree = "<group>";
+		};
+		CA228A881AF0F1390051AFBB /* DataStructures */ = {
+			isa = PBXGroup;
+			children = (
+				CA228A8A1AF0F17A0051AFBB /* CBStackTests.m */,
+			);
+			name = DataStructures;
+			sourceTree = "<group>";
+		};
 		CA52403418AD77DB00052914 /* ProgramTableViewController */ = {
 			isa = PBXGroup;
 			children = (
-				CA52403718AD786200052914 /* ProgramTableViewControllerExistingProgramsTests.h */,
 				CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */,
-				CA8C247C18CD12C100314C2B /* ProgramTableViewControllerNewProgramTests.h */,
 				CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */,
 			);
 			name = ProgramTableViewController;
@@ -4312,8 +4326,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA775CBF19FD5BCB00C1E761 /* My first program.catrobat in Resources */,
-				CAA067F41ACA113000326EE6 /* faster.catrobat in Resources */,
-				CAA067F51ACA113300326EE6 /* test.catrobat in Resources */,
 				92FF325E1A24E2F400093DA7 /* LICENSE_EVCircularProgressView in Resources */,
 				92FF32621A24E2F400093DA7 /* PATENTS_FBShimmering in Resources */,
 				CAFAEAE61A13BE1F00C9F170 /* ValidProgramAllBricks.xml in Resources */,
@@ -4388,7 +4400,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "./precompile-tests.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\n  exit $OUT\nfi\n\n./update-localized-strings.sh&\n";
+			shellScript = "#./precompile-tests.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\n  exit $OUT\nfi\n\n./update-localized-strings.sh&\n";
 		};
 		CADBD6D719B0E8C200C62836 /* Add Licenses To Acknowledgements.plist */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4450,6 +4462,7 @@
 				CA538EC219B0EA09008240AB /* PointToBrickTests.m in Sources */,
 				CAA4A5481A43BE37002A69A0 /* XMLParserBrickTests.m in Sources */,
 				CAA4A5501A43BEA6002A69A0 /* XMLSerializerBlackBoxTests.m in Sources */,
+				CA228A8B1AF0F17A0051AFBB /* CBStackTests.m in Sources */,
 				CAA4A5491A43BE37002A69A0 /* XMLParserFormulaTests.m in Sources */,
 				CAA4A5531A43BEC4002A69A0 /* XMLSerializerTests.m in Sources */,
 			);
@@ -4570,6 +4583,7 @@
 				92FF32BA1A24E2F400093DA7 /* DarkBlueGradientFeaturedCell.m in Sources */,
 				92DFB01D1A38949E00FA9B0F /* FormulaEditorTextView.m in Sources */,
 				92FF32751A24E2F400093DA7 /* CatrobatAlertView.m in Sources */,
+				CA228A861AF0EF350051AFBB /* CBStack.m in Sources */,
 				92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */,
 				92FF31081A24DCAA00093DA7 /* UserVariable.m in Sources */,
 				92FF30CE1A24DCAA00093DA7 /* IfLogicElseBrick.m in Sources */,

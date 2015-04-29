@@ -38,6 +38,7 @@
 #import "BroadcastBrick.h"
 #import "BroadcastWaitBrick.h"
 #import "NoteBrick.h"
+#import "CBStack.h"
 
 @interface Script()
 
@@ -128,7 +129,7 @@
 {
     NSMutableArray *scriptSequenceList = [NSMutableArray array];
     CBOperationSequence *currentOperationSequence = [CBOperationSequence new];
-    NSMutableArray *sequenceStack = [NSMutableArray array];
+    CBStack *sequenceStack = [CBStack new];
     NSMutableArray *currentSequenceList = scriptSequenceList;
 
     for (Brick *brick in self.brickList) {
@@ -137,7 +138,7 @@
                 [currentSequenceList addObject:currentOperationSequence];
             }
             // preserve currentSequenceList and push it to stack
-            [sequenceStack addObject:currentSequenceList];
+            [sequenceStack pushElement:currentSequenceList];
             currentSequenceList = [NSMutableArray array]; // new sequence list for If
             currentOperationSequence = [CBOperationSequence new];
         } else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
@@ -145,7 +146,7 @@
                 [currentSequenceList addObject:currentOperationSequence];
             }
             // preserve currentSequenceList and push it to stack
-            [sequenceStack addObject:currentSequenceList];
+            [sequenceStack pushElement:currentSequenceList];
             currentSequenceList = [NSMutableArray array]; // new sequence list for Else
             currentOperationSequence = [CBOperationSequence new];
         } else if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
@@ -160,15 +161,13 @@
                 // currentSequenceList is ElseSequenceList
                 ifSequence.elseSequenceList = currentSequenceList;
                 // pop IfSequenceList from stack
-                currentSequenceList = [sequenceStack lastObject];
-                [sequenceStack removeLastObject];
+                currentSequenceList = [sequenceStack popElement];
             }
             // now currentSequenceList is IfSequenceList
             ifSequence.sequenceList = currentSequenceList;
 
             // pop currentSequenceList from stack
-            currentSequenceList = [sequenceStack lastObject];
-            [sequenceStack removeLastObject];
+            currentSequenceList = [sequenceStack popElement];
             [currentSequenceList addObject:ifSequence];
             currentOperationSequence = [CBOperationSequence new];
         } else if ([brick isKindOfClass:[LoopBeginBrick class]]) {
@@ -176,7 +175,7 @@
                 [currentSequenceList addObject:currentOperationSequence];
             }
             // preserve currentSequenceList and push it to stack
-            [sequenceStack addObject:currentSequenceList];
+            [sequenceStack pushElement:currentSequenceList];
             currentSequenceList = [NSMutableArray array]; // new sequence list for Loop
             currentOperationSequence = [CBOperationSequence new];
         } else if ([brick isKindOfClass:[LoopEndBrick class]]) {
@@ -186,8 +185,7 @@
             // loop end -> fetch currentSequenceList from stack
             CBConditionalSequence *conditionalSequence = [CBConditionalSequence sequenceWithConditionalBrick:((LoopEndBrick*)brick).loopBeginBrick];
             conditionalSequence.sequenceList = currentSequenceList;
-            currentSequenceList = [sequenceStack lastObject];
-            [sequenceStack removeLastObject];
+            currentSequenceList = [sequenceStack popElement];
             [currentSequenceList addObject:conditionalSequence];
             currentOperationSequence = [CBOperationSequence new];
         } else if ([brick isKindOfClass:[NoteBrick class]]) {
