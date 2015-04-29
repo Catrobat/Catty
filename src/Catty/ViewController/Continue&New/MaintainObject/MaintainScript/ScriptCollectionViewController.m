@@ -263,11 +263,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                                                              view:self.navigationController.view];
     actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditBrickOrScript
                                                                     withPayload:@{ kDTPayloadCellIndexPath : indexPath }];
-    [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:0 green:37.0f/255.0f blue:52.0f/255.0f alpha:0.95f]];
-    [actionSheet setButtonTextColor:[UIColor whiteColor]];
-    [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
-//    actionSheet.transparentView = nil;
-    [actionSheet showInView:self.navigationController.view];
 }
 
 #pragma mark - action sheet delegates
@@ -306,8 +301,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                     NSUInteger loopEndIndex = [brick.script.brickList indexOfObject:loopEndBrick];
                     [loopBeginBrick removeFromScript];
                     [loopEndBrick removeFromScript];
-                    NSIndexPath *loopBeginIndexPath = [NSIndexPath indexPathForRow:(loopBeginIndex + 1) inSection:indexPath.section];
-                    NSIndexPath *loopEndIndexPath = [NSIndexPath indexPathForRow:(loopEndIndex + 1) inSection:indexPath.section];
+                    NSIndexPath *loopBeginIndexPath = [NSIndexPath indexPathForItem:(loopBeginIndex + 1) inSection:indexPath.section];
+                    NSIndexPath *loopEndIndexPath = [NSIndexPath indexPathForItem:(loopEndIndex + 1) inSection:indexPath.section];
                     [self.collectionView deleteItemsAtIndexPaths:@[loopBeginIndexPath, loopEndIndexPath]];
                 } else if ([brick isIfLogicBrick]) {
                     // if brick
@@ -335,9 +330,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                     [ifLogicBeginBrick removeFromScript];
                     [ifLogicElseBrick removeFromScript];
                     [ifLogicEndBrick removeFromScript];
-                    NSIndexPath *ifLogicBeginIndexPath = [NSIndexPath indexPathForRow:(ifLogicBeginIndex + 1) inSection:indexPath.section];
-                    NSIndexPath *ifLogicElseIndexPath = [NSIndexPath indexPathForRow:(ifLogicElseIndex + 1) inSection:indexPath.section];
-                    NSIndexPath *ifLogicEndIndexPath = [NSIndexPath indexPathForRow:(ifLogicEndIndex + 1) inSection:indexPath.section];
+                    NSIndexPath *ifLogicBeginIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 1) inSection:indexPath.section];
+                    NSIndexPath *ifLogicElseIndexPath = [NSIndexPath indexPathForItem:(ifLogicElseIndex + 1) inSection:indexPath.section];
+                    NSIndexPath *ifLogicEndIndexPath = [NSIndexPath indexPathForItem:(ifLogicEndIndex + 1) inSection:indexPath.section];
                     [self.collectionView deleteItemsAtIndexPaths:@[ifLogicBeginIndexPath, ifLogicElseIndexPath, ifLogicEndIndexPath]];
                 } else {
                     // normal brick
@@ -378,8 +373,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 copiedLoopEndBrick.loopBeginBrick = copiedLoopBeginBrick;
                 [brick.script addBrick:copiedLoopBeginBrick atIndex:loopBeginIndex];
                 [brick.script addBrick:copiedLoopEndBrick atIndex:loopEndIndex];
-                NSIndexPath *loopBeginIndexPath = [NSIndexPath indexPathForRow:(loopBeginIndex + 1) inSection:indexPath.section];
-                NSIndexPath *loopEndIndexPath = [NSIndexPath indexPathForRow:(loopBeginIndex + 2) inSection:indexPath.section];
+                NSIndexPath *loopBeginIndexPath = [NSIndexPath indexPathForItem:(loopBeginIndex + 1) inSection:indexPath.section];
+                NSIndexPath *loopEndIndexPath = [NSIndexPath indexPathForItem:(loopBeginIndex + 2) inSection:indexPath.section];
                 [self.collectionView insertItemsAtIndexPaths:@[loopBeginIndexPath, loopEndIndexPath]];
             } else if ([brick isIfLogicBrick]) {
                 // if brick
@@ -416,16 +411,16 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 [brick.script addBrick:copiedIfLogicBeginBrick atIndex:ifLogicBeginIndex];
                 [brick.script addBrick:copiedIfLogicElseBrick atIndex:ifLogicElseIndex];
                 [brick.script addBrick:copiedIfLogicEndBrick atIndex:ifLogicEndIndex];
-                NSIndexPath *ifLogicBeginIndexPath = [NSIndexPath indexPathForRow:(ifLogicBeginIndex + 1) inSection:indexPath.section];
-                NSIndexPath *ifLogicElseIndexPath = [NSIndexPath indexPathForRow:(ifLogicBeginIndex + 2) inSection:indexPath.section];
-                NSIndexPath *ifLogicEndIndexPath = [NSIndexPath indexPathForRow:(ifLogicBeginIndex + 3) inSection:indexPath.section];
+                NSIndexPath *ifLogicBeginIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 1) inSection:indexPath.section];
+                NSIndexPath *ifLogicElseIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 2) inSection:indexPath.section];
+                NSIndexPath *ifLogicEndIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 3) inSection:indexPath.section];
                 [self.collectionView insertItemsAtIndexPaths:@[ifLogicBeginIndexPath, ifLogicElseIndexPath, ifLogicEndIndexPath]];
             } else {
                 // normal brick
                 NSUInteger copiedBrickIndex = ([brick.script.brickList indexOfObject:brick] + 1);
                 Brick *copiedBrick = [brick mutableCopyWithContext:[CBMutableCopyContext new]];
                 [brick.script addBrick:copiedBrick atIndex:copiedBrickIndex];
-                NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:(indexPath.row + 1) inSection:indexPath.section];
+                NSIndexPath *newIndexPath = [NSIndexPath indexPathForItem:(indexPath.row + 1) inSection:indexPath.section];
                 [self.collectionView insertItemsAtIndexPaths:@[newIndexPath]];
             }
             self.placeHolderView.hidden = YES;
@@ -516,7 +511,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     brickCell.delegate = self;
     brickCell.fragmentDelegate = self;
 
-//    self.configureCellBlock(brickCell);
     if (brick.isAnimated) {
         [brickCell animateBrick:YES];
     }
@@ -561,32 +555,58 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     brickCategoryViewController.delegate = nil;
 
     BrickManager *brickManager = [BrickManager sharedBrickManager];
-    NSIndexPath *topIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
-
-    // empty script list, insert start script with added brick
-    if ((self.object.scriptList.count == 0) && (! [brickManager isScript:scriptOrBrick.brickType])) {
-        StartScript *startScript = [StartScript new];
-        startScript.object = self.object;
-        [self.object.scriptList addObject:startScript];
-    }
 
     if ([brickManager isScript:scriptOrBrick.brickType]) {
         Script *scriptBrick = (Script*)scriptOrBrick;
         scriptBrick.object = self.object;
         [self.object.scriptList addObject:scriptBrick];
-
-//        brickCell.enabled = YES;
-//        [brickCell setupBrickCell];
-//        brickCell.delegate = self;
-//        brickCell.fragmentDelegate = self;
+        [self.collectionView insertSections:[NSIndexSet indexSetWithIndex:(self.object.scriptList.count - 1)]];
+        [self.collectionView reloadData];
+        self.placeHolderView.hidden = (self.object.scriptList.count != 0);
+        return;
     }
-//    NSArray *bricks = [NSArray arrayWithObject:scriptOrBrick];
-//    [self.scriptDataSource addBricks:bricks atIndexPath:topIndexPath];
-//
-//    [self.collectionView scrollToItemAtIndexPath:topIndexPath atScrollPosition:UICollectionViewScrollPositionTop animated:animated];
-//    // add new brick(s) to the top most section
-//    NSArray *bricks = [self linkedBricksForBrick:scriptOrBrick.brickType];
-//    [self.scriptDataSource addBricks:bricks atIndexPath:topIndexPath];
+
+    // empty script list, insert start script + brick
+    if (self.object.scriptList.count == 0) {
+        StartScript *startScript = [StartScript new];
+        startScript.object = self.object;
+        [self.object.scriptList addObject:startScript];
+        [self.collectionView insertSections:[NSIndexSet indexSetWithIndex:(self.object.scriptList.count - 1)]];
+    }
+
+    Brick *brick = (Brick*)scriptOrBrick;
+    Script *firstScript = [self.object.scriptList firstObject];
+    brick.script = firstScript;
+    if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
+        IfLogicBeginBrick *ifBeginBrick = (IfLogicBeginBrick*)brick;
+        IfLogicElseBrick *ifElseBrick = [IfLogicElseBrick new];
+        IfLogicEndBrick *ifEndBrick = [IfLogicEndBrick new];
+        ifBeginBrick.ifElseBrick = ifElseBrick;
+        ifBeginBrick.ifEndBrick = ifEndBrick;
+        ifElseBrick.ifBeginBrick = ifBeginBrick;
+        ifElseBrick.ifEndBrick = ifEndBrick;
+        ifEndBrick.ifBeginBrick = ifBeginBrick;
+        ifEndBrick.ifElseBrick = ifElseBrick;
+        ifElseBrick.script = firstScript;
+        ifEndBrick.script = firstScript;
+        [firstScript.brickList insertObject:ifEndBrick atIndex:0];
+        [firstScript.brickList insertObject:ifElseBrick atIndex:0];
+        [firstScript.brickList insertObject:ifBeginBrick atIndex:0];
+    } else if ([brick isKindOfClass:[LoopBeginBrick class]]) {
+        LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)brick;
+        LoopEndBrick *loopEndBrick = [LoopEndBrick new];
+        loopBeginBrick.loopEndBrick = loopEndBrick;
+        loopEndBrick.loopBeginBrick = loopBeginBrick;
+        loopEndBrick.script = firstScript;
+        [firstScript.brickList insertObject:loopEndBrick atIndex:0];
+        [firstScript.brickList insertObject:loopBeginBrick atIndex:0];
+    } else {
+        [firstScript.brickList insertObject:brick atIndex:0];
+    }
+    [self.collectionView reloadData];
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]
+                                atScrollPosition:UICollectionViewScrollPositionTop
+                                        animated:YES];
     self.placeHolderView.hidden = (self.object.scriptList.count != 0);
 }
 
@@ -1045,8 +1065,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             ++countEnd;
         }
     }
-    NSIndexPath *beginPath =[NSIndexPath indexPathForItem:(countBegin+1) inSection:indexPath.section];
-    NSIndexPath *endPath =[NSIndexPath indexPathForItem:(countEnd+1) inSection:indexPath.section];
+    NSIndexPath *beginPath = [NSIndexPath indexPathForItem:(countBegin+1) inSection:indexPath.section];
+    NSIndexPath *endPath = [NSIndexPath indexPathForItem:(countEnd+1) inSection:indexPath.section];
     if (! selectButton.selected) {
         selectButton.selected = selectButton.touchInside;
         [self.selectedIndexPaths setObject:indexPath forKey:[self keyWithSelectIndexPath:indexPath]];
@@ -1244,7 +1264,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     self.collectionView.scrollEnabled = YES;
     self.collectionView.collectionViewLayout = [LXReorderableCollectionViewFlowLayout new];
     self.navigationController.title = self.title = kLocalizedScripts;
-    self.navigationItem.rightBarButtonItems = @[self.editButtonItem];
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     self.brickScaleTransition = [[BrickTransition alloc] initWithViewToAnimate:nil];
     self.selectedIndexPaths = [NSMutableDictionary dictionary];
 
