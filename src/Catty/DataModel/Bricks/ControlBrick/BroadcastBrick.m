@@ -43,7 +43,7 @@
 
 - (void)performBroadcast
 {
-    NSDebug(@"Performing: %@", [weakSelf description]);
+    NSDebug(@"Performing: %@", [self description]);
     [self.script.object.program broadcast:self.broadcastMessage senderScript:self.script];
 }
 

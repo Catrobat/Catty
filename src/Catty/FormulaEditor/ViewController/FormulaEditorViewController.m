@@ -881,7 +881,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
             if([pickerData isLabel])
                 return;
             
-            NSDebug(@"%@",var.name);
             [self handleInputWithTitle:pickerData.userVariable.name AndButtonType:0];
         }
     }

@@ -491,7 +491,9 @@
                                  finalCompletionBlock:(dispatch_block_t)finalCompletionBlock
 {
     assert(finalCompletionBlock != nil); // required parameter must NOT be nil!!
-//    NSDate *startTime = [NSDate date];
+#ifdef DEBUG
+    NSDate *startTime = [NSDate date];
+#endif
     __weak Script *weakSelf = self;
     if (finalCompletionBlock) {
         finalCompletionBlock = ^{

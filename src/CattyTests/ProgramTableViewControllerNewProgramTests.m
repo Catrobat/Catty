@@ -43,7 +43,7 @@
 #import "MyProgramsViewController.h"
 #import "LanguageTranslationDefines.h"
 
-@interface ProgramTableViewControllerNewProgramTests : XCTest
+@interface ProgramTableViewControllerNewProgramTests : XCTestCase
 @property (nonatomic, strong) ProgramTableViewController *programTableViewController;
 @property (nonatomic, strong) FileManager *fileManager;
 @property (nonatomic, strong) Program *defaultProgram;
@@ -111,6 +111,7 @@
     }
     XCTAssertTrue([firstObjectCellTitle isEqualToString:kLocalizedBackground], @"The ProgramTableViewController did not create the background cell correctly.");
 }
+
 
 - (void)testNewProgramNumberOfSections
 {

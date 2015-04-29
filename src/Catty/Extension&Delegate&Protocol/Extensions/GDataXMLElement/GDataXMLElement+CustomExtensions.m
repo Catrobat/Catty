@@ -194,7 +194,8 @@
     [XMLError exceptionIf:[context.currentPositionStack isEmpty] equals:YES
                   message:@"Can't pop xml element from stack. Stack is empty!!"];
     if (context.currentPositionStack) {
-        NSDebug(@"- [%@] removed from stack", [context.currentPositionStack popXmlElementName]);
+        id stackElement = [context.currentPositionStack popXmlElementName];
+        NSDebug(@"- [%@] removed from stack", stackElement);
     }
     [self addChild:child];
 }
