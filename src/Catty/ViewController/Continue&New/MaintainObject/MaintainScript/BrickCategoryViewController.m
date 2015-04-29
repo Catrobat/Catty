@@ -160,23 +160,17 @@ NSString* CBTitleFromPageIndexCategoryType(PageIndexCategoryType pageIndexType)
     switch (pageIndexType) {
         case kPageIndexScriptBricks:
             return kUIScriptTitle;
-            break;
         case kPageIndexControlBrick:
             return kUIControlTitle;
-            break;
         case kPageIndexMotionBrick:
             return kUIMotionTitle;
-            break;
         case kPageIndexSoundBrick:
             return kUISoundTitle;
-            break;
         case kPageIndexLookBrick:
             return kUILookTitle;
-            break;
         case kPageIndexVariableBrick:
             return kUIVariableTitle;
-            break;
         default:
-            break;
+            return nil;
     }
 }

@@ -517,21 +517,22 @@
     if (! animate) {
         return;
     }
-    self.alpha = 0.2f;
+    self.alpha = 0.4f;
     NSDate *startTime = [NSDate date];
-    [UIView animateWithDuration:0.3
+    [UIView animateWithDuration:0.25
                           delay:0.0
-                        options:UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionRepeat
+                        options:UIViewAnimationOptionCurveEaseInOut
+                                | UIViewAnimationOptionRepeat
                                 | UIViewAnimationOptionAutoreverse
                                 | UIViewAnimationOptionAllowUserInteraction
                      animations:^{
-                         [UIView setAnimationRepeatCount:10];
+                         [UIView setAnimationRepeatCount:4];
                          self.alpha = 1.0f;
                      }
                      completion:^(BOOL finished) {
                          self.alpha = 1.0f;
                          NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:startTime];
-                         self.scriptOrBrick.animate = (duration < 3.0f);
+                         self.scriptOrBrick.animate = (duration < 2.0f);
     }];
 }
 
