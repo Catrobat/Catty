@@ -459,6 +459,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         [toScript.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
         [toScript.brickList insertObject:toBrick atIndex:toIndexPath.item];
     }
+    [self.object.program saveToDisk];
 }
 
 - (void)collectionView:(UICollectionView*)collectionView
@@ -561,6 +562,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:(self.object.scriptList.count - 1)]
                                     atScrollPosition:UICollectionViewScrollPositionBottom
                                             animated:YES];
+        [self.object.program saveToDisk];
         return;
     }
 
@@ -623,6 +625,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                                  inSection:targetScriptIndex];
     [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionBottom
                                         animated:YES];
+    [self.object.program saveToDisk];
 }
 
 #pragma mark - Brick Cell Delegate
