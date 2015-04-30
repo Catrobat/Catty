@@ -58,7 +58,7 @@
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract
 - (BOOL)isScriptBrick;
 - (void)selectedState:(BOOL)selected setEditingState:(BOOL)editing;
-- (void)animateBrick:(BOOL)animate;
+- (void)animate:(BOOL)animate;
 - (void)setupBrickCell;
 
 @end

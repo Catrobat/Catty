@@ -511,7 +511,7 @@
 }
 
 #pragma mark - animations
-- (void)animateBrick:(BOOL)animate
+- (void)animate:(BOOL)animate
 {
     self.scriptOrBrick.animate = animate;
     if (! animate) {
