@@ -34,7 +34,7 @@
 
 - (void)testNumberOfElementsAfterPushing
 {
-    assert(kMinNumberOfStackElements < kMaxNumberOfStackElements);
+    CBAssert(kMinNumberOfStackElements < kMaxNumberOfStackElements);
     CBStack *stack = [CBStack new];
     for (NSUInteger round = 0; round < kNumberOfRoundsToTest; ++round) {
         NSUInteger numberOfElementsToPush = (arc4random()
@@ -52,7 +52,7 @@
 
 - (void)testNumberOfElementsAfterPopping
 {
-    assert(kMinNumberOfStackElements < kMaxNumberOfStackElements);
+    CBAssert(kMinNumberOfStackElements < kMaxNumberOfStackElements);
     CBStack *stack = [CBStack new];
     for (NSUInteger round = 0; round < kNumberOfRoundsToTest; ++round) {
         for (NSUInteger elementNumber = 0; elementNumber < kMaxNumberOfStackElements; ++elementNumber) {

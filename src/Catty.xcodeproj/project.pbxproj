@@ -465,6 +465,7 @@
 		CAD116DD1A46AAC000F560B4 /* CBXMLPositionStack.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD116DC1A46AAC000F560B4 /* CBXMLPositionStack.m */; };
 		CAD116E51A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD116E41A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.m */; };
 		CAD740E31AF2D2E800C32937 /* CBStack.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD740E21AF2D2E800C32937 /* CBStack.m */; };
+		CAD740E81AF2D42B00C32937 /* CBStackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD740E71AF2D42B00C32937 /* CBStackTests.m */; };
 		CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3A198F685D00455B77 /* SSZipArchive.license */; };
 		CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */; };
 		CADBD6DE19B0E8C200C62836 /* OrderedDictionary.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */; };
@@ -1250,11 +1251,9 @@
 		CA2D8C8B1AEDD98A00A5BDC2 /* CattyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA2D8C961AEDDA2100A5BDC2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
-		CA52403718AD786200052914 /* ProgramTableViewControllerExistingProgramsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerExistingProgramsTests.h; sourceTree = "<group>"; };
 		CA6E4C4719F9C388001B65C3 /* My first program.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My first program.catrobat"; sourceTree = "<group>"; };
 		CA8C247718CD053300314C2B /* ProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTests.m; sourceTree = "<group>"; };
 		CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerNewProgramTests.m; sourceTree = "<group>"; };
-		CA8C247C18CD12C100314C2B /* ProgramTableViewControllerNewProgramTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramTableViewControllerNewProgramTests.h; sourceTree = "<group>"; };
 		CA97A4411A44F368008C931B /* Galaxy_War_092.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Galaxy_War_092.xml; path = "Resources/Test Resources/Galaxy_War/Galaxy_War_092.xml"; sourceTree = "<group>"; };
 		CA97A4421A44F368008C931B /* Galaxy_War_093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Galaxy_War_093.xml; path = "Resources/Test Resources/Galaxy_War/Galaxy_War_093.xml"; sourceTree = "<group>"; };
 		CA97A4491A44F38F008C931B /* Air_fight_0.5_091.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Air_fight_0.5_091.xml; path = "Resources/Test Resources/Air_fight_0.5/Air_fight_0.5_091.xml"; sourceTree = "<group>"; };
@@ -1450,6 +1449,7 @@
 		CAD116E41A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GDataXMLElement+CustomExtensions.m"; path = "Catty/Extension&Delegate&Protocol/Extensions/GDataXMLElement/GDataXMLElement+CustomExtensions.m"; sourceTree = SOURCE_ROOT; };
 		CAD740E11AF2D2E800C32937 /* CBStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBStack.h; path = CBStack/CBStack.h; sourceTree = "<group>"; };
 		CAD740E21AF2D2E800C32937 /* CBStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBStack.m; path = CBStack/CBStack.m; sourceTree = "<group>"; };
+		CAD740E71AF2D42B00C32937 /* CBStackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBStackTests.m; sourceTree = "<group>"; };
 		CADBD7FB19B0E8C200C62836 /* Pocket Code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Code.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAEE3BE91ABDFABD009FDA72 /* BrickConditionalBranchProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickConditionalBranchProtocol.h; sourceTree = "<group>"; };
 		CAEE3BEB1ABDFAE7009FDA72 /* CBConditionalSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBConditionalSequence.h; path = CBSequence/CBConditionalSequence.h; sourceTree = "<group>"; };
@@ -3717,6 +3717,7 @@
 			isa = PBXGroup;
 			children = (
 				4CD194F21A0631B200484E4F /* Parser & Serialization */,
+				CAD740E61AF2D3F600C32937 /* CBStack */,
 				4C3C03F5199BA5250004F594 /* Formula */,
 				C34B44FB17F3403400624730 /* Extensions */,
 				CA8C247918CD06BA00314C2B /* Program */,
@@ -3821,9 +3822,7 @@
 		CA52403418AD77DB00052914 /* ProgramTableViewController */ = {
 			isa = PBXGroup;
 			children = (
-				CA52403718AD786200052914 /* ProgramTableViewControllerExistingProgramsTests.h */,
 				CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */,
-				CA8C247C18CD12C100314C2B /* ProgramTableViewControllerNewProgramTests.h */,
 				CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */,
 			);
 			name = ProgramTableViewController;
@@ -4074,6 +4073,14 @@
 			children = (
 				CAD740E11AF2D2E800C32937 /* CBStack.h */,
 				CAD740E21AF2D2E800C32937 /* CBStack.m */,
+			);
+			name = CBStack;
+			sourceTree = "<group>";
+		};
+		CAD740E61AF2D3F600C32937 /* CBStack */ = {
+			isa = PBXGroup;
+			children = (
+				CAD740E71AF2D42B00C32937 /* CBStackTests.m */,
 			);
 			name = CBStack;
 			sourceTree = "<group>";
@@ -4520,6 +4527,7 @@
 				CA2D8CBD1AEDDA7F00A5BDC2 /* SetSizeToBrickTests.m in Sources */,
 				CA2D8CBE1AEDDA7F00A5BDC2 /* PointToBrickTests.m in Sources */,
 				CA2D8CBF1AEDDA7F00A5BDC2 /* test.png in Sources */,
+				CAD740E81AF2D42B00C32937 /* CBStackTests.m in Sources */,
 				CA2D8CC01AEDDA7F00A5BDC2 /* test2.png in Sources */,
 				CA2D8CC11AEDDA7F00A5BDC2 /* TurnLeftBrickTests.m in Sources */,
 				CA2D8CC21AEDDA7F00A5BDC2 /* TurnRightBrickTests.m in Sources */,
