@@ -151,7 +151,7 @@
 // This function must be overriden by Bricks with references to other Bricks (e.g. ForeverBrick)
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {
-    return [self mutableCopyWithContext:context AndErrorReporting:true];
+    return [self mutableCopyWithContext:context AndErrorReporting:YES];
 }
 
 
@@ -165,6 +165,9 @@
 
     NSDictionary *properties = [Util propertiesOfInstance:self];
     for (NSString *propertyKey in properties) {
+        if ([propertyKey isEqualToString:@"animate"]) {
+            continue; // ignore "animate" property
+        }
         id propertyValue = [properties objectForKey:propertyKey];
         if ([propertyValue conformsToProtocol:@protocol(CBMutableCopying)]) {
             id updatedReference = [context updatedReferenceForReference:propertyValue];
