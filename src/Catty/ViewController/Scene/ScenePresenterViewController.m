@@ -45,6 +45,7 @@
 #import "LanguageTranslationDefines.h"
 #import "LoadingView.h"
 #import "UIDefines.h"
+#import "FlashHelper.h"
 
 @interface ScenePresenterViewController ()<UIActionSheetDelegate>
 @property (nonatomic) BOOL menuOpen;
@@ -120,6 +121,7 @@
     [self.navigationController setToolbarHidden:NO animated:NO];
     UIApplication.sharedApplication.statusBarHidden = NO;
     UIApplication.sharedApplication.idleTimerDisabled = NO;
+    [[FlashHelper sharedFlashHandler] turnOff]; // always turn off flash light when Scene is stopped
 
     // reenable swipe back gesture
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
@@ -391,12 +393,13 @@
     self.menuView.userInteractionEnabled = NO;
     Scene *previousScene = (Scene*)self.skView.scene;
     previousScene.userInteractionEnabled = NO;
-    
+
     // busy waiting on other thread until all SpriteKit actions have been finished
     __weak typeof(self)weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         [previousScene stopProgramWithCompletion:^{
             dispatch_async(dispatch_get_main_queue(), ^{
+                [[FlashHelper sharedFlashHandler] turnOff]; // always turn off flash light when Scene is stopped
                 previousScene.userInteractionEnabled = YES;
                 [self.loadingView hide];
                 [weakSelf.parentViewController.navigationController setToolbarHidden:NO];
@@ -410,6 +413,7 @@
 - (void)restartProgramAction:(UIButton*)sender
 {
 // TODO: NOT YET IMPLEMENTED!!
+    [[FlashHelper sharedFlashHandler] turnOff]; // always turn off flash light when Scene is stopped
     NSError(@"\n\n\n\n\n\n  !!! Not yet implemented !!!\n\n\n");
     abort();
 //    self.view.userInteractionEnabled = NO;
