@@ -127,4 +127,9 @@ NSMutableString *resultString;
     return uuidStr;
 }
 
++ (NSString*)localUniqueIdenfier
+{
+    return [NSString stringWithFormat:@"%@_%@", [self uuid], [NSDate date]];
+}
+
 @end

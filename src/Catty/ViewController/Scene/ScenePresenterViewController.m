@@ -502,7 +502,7 @@
         view.paused=YES;
     }];
     [self presentViewController:activityVC animated:YES completion:^(){
-        SKView *view= weakself.skView;
+        SKView *view = weakself.skView;
         view.paused=YES;
     }];
 }

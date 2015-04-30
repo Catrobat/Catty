@@ -39,6 +39,8 @@
 #import "BroadcastWaitBrick.h"
 #import "NoteBrick.h"
 #import "WhenScript.h"
+#import "CBStack.h"
+#import "NSString+CatrobatNSStringExtensions.h"
 
 @interface Script()
 
@@ -49,11 +51,26 @@
 
 @property (nonatomic, copy) dispatch_block_t abortScriptExecutionCompletion;
 @property (nonatomic, copy) dispatch_block_t fullScriptSequence;
-@property (nonatomic, copy) dispatch_block_t whileSequence; // TEMPORARY!!
+@property (nonatomic, strong) NSMutableDictionary *whileSequences;
 
 @end
 
 @implementation Script
+
+//+ (Script*)scriptWithType:(kBrickType)type andCategory:(kBrickCategoryType)category
+//{
+//    return [[[self class] alloc] initWithType:type andCategory:category]; 
+//}
+//
+//- (instancetype)initWithType:(kBrickType)type andCategory:(kBrickCategoryType)category
+//{
+//    self = [super init];
+//    if (self) {
+//        self.brickType = type;
+//        self.brickCategoryType = category;
+//    }
+//    return self;
+//}
 
 - (id)init
 {
@@ -69,6 +86,7 @@
     return self;
 }
 
+#pragma mark - Getters and Setters
 - (BOOL)isSelectableForObject
 {
     return YES;
@@ -102,16 +120,26 @@
 
 - (NSArray*)sequenceList
 {
-    if (! _sequenceList)
+    if (! _sequenceList) {
         _sequenceList = [NSArray array];
+    }
     return _sequenceList;
 }
 
 - (NSMutableArray*)brickList
 {
-    if (! _brickList)
+    if (! _brickList) {
         _brickList = [NSMutableArray array];
+    }
     return _brickList;
+}
+
+- (NSMutableDictionary*)whileSequences
+{
+    if (! _whileSequences) {
+        _whileSequences = [NSMutableDictionary new];
+    }
+    return _whileSequences;
 }
 
 - (void)dealloc
@@ -133,7 +161,7 @@
 {
     NSMutableArray *scriptSequenceList = [NSMutableArray array];
     CBOperationSequence *currentOperationSequence = [CBOperationSequence new];
-    NSMutableArray *sequenceStack = [NSMutableArray array];
+    CBStack *sequenceStack = [CBStack new];
     NSMutableArray *currentSequenceList = scriptSequenceList;
 
     for (Brick *brick in self.brickList) {
@@ -142,7 +170,7 @@
                 [currentSequenceList addObject:currentOperationSequence];
             }
             // preserve currentSequenceList and push it to stack
-            [sequenceStack addObject:currentSequenceList];
+            [sequenceStack pushElement:currentSequenceList];
             currentSequenceList = [NSMutableArray array]; // new sequence list for If
             currentOperationSequence = [CBOperationSequence new];
         } else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
@@ -150,7 +178,7 @@
                 [currentSequenceList addObject:currentOperationSequence];
             }
             // preserve currentSequenceList and push it to stack
-            [sequenceStack addObject:currentSequenceList];
+            [sequenceStack pushElement:currentSequenceList];
             currentSequenceList = [NSMutableArray array]; // new sequence list for Else
             currentOperationSequence = [CBOperationSequence new];
         } else if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
@@ -165,15 +193,13 @@
                 // currentSequenceList is ElseSequenceList
                 ifSequence.elseSequenceList = currentSequenceList;
                 // pop IfSequenceList from stack
-                currentSequenceList = [sequenceStack lastObject];
-                [sequenceStack removeLastObject];
+                currentSequenceList = [sequenceStack popElement];
             }
             // now currentSequenceList is IfSequenceList
             ifSequence.sequenceList = currentSequenceList;
 
             // pop currentSequenceList from stack
-            currentSequenceList = [sequenceStack lastObject];
-            [sequenceStack removeLastObject];
+            currentSequenceList = [sequenceStack popElement];
             [currentSequenceList addObject:ifSequence];
             currentOperationSequence = [CBOperationSequence new];
         } else if ([brick isKindOfClass:[LoopBeginBrick class]]) {
@@ -181,7 +207,7 @@
                 [currentSequenceList addObject:currentOperationSequence];
             }
             // preserve currentSequenceList and push it to stack
-            [sequenceStack addObject:currentSequenceList];
+            [sequenceStack pushElement:currentSequenceList];
             currentSequenceList = [NSMutableArray array]; // new sequence list for Loop
             currentOperationSequence = [CBOperationSequence new];
         } else if ([brick isKindOfClass:[LoopEndBrick class]]) {
@@ -191,8 +217,7 @@
             // loop end -> fetch currentSequenceList from stack
             CBConditionalSequence *conditionalSequence = [CBConditionalSequence sequenceWithConditionalBrick:((LoopEndBrick*)brick).loopBeginBrick];
             conditionalSequence.sequenceList = currentSequenceList;
-            currentSequenceList = [sequenceStack lastObject];
-            [sequenceStack removeLastObject];
+            currentSequenceList = [sequenceStack popElement];
             [currentSequenceList addObject:conditionalSequence];
             currentOperationSequence = [CBOperationSequence new];
         } else if ([brick isKindOfClass:[NoteBrick class]]) {
@@ -459,8 +484,7 @@
 {
     assert(finalCompletionBlock != nil); // required parameter must NOT be nil!!
     __weak Script *weakSelf = self;
-#warning create fingerprint of individual whileSequence and add it to a dictionary
-    self.whileSequence = nil;
+    NSString *localUniqueIdentifier = [NSString localUniqueIdenfier];
     dispatch_block_t completionBlock = ^{
         if ([conditionalSequence checkCondition]) {
             NSDate *startTime = [NSDate date];
@@ -475,8 +499,9 @@
                     }
                     // now switch back to the main queue for executing the sequence!
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        if (weakSelf.whileSequence) {
-                            weakSelf.whileSequence();
+                        dispatch_block_t whileSequence = weakSelf.whileSequences[localUniqueIdentifier];
+                        if (whileSequence) {
+                            whileSequence();
                         }
                     });
                 });
@@ -487,7 +512,7 @@
             finalCompletionBlock();
         }
     };
-    self.whileSequence = completionBlock;
+    self.whileSequences[localUniqueIdentifier] = completionBlock;
     assert(completionBlock != nil); // this method must NEVER return nil!!
     return completionBlock;
 }
@@ -600,7 +625,7 @@
     self.sequenceList = nil;
     self.abortScriptExecutionCompletion = nil;
     self.fullScriptSequence = nil;
-    self.whileSequence = nil;
+    self.whileSequences = nil;
     [self.brickList makeObjectsPerformSelector:@selector(removeReferences)];
     self.object = nil;
 }

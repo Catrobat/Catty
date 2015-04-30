@@ -52,10 +52,12 @@
     [self.script.object.program broadcast:self.broadcastMessage senderScript:self.script];
 }
 
-- (void)setMessage:(NSString *)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+- (void)setMessage:(NSString*)message forLineNumber:(NSInteger)lineNumber
+andParameterNumber:(NSInteger)paramNumber
 {
-    if(message)
+    if (message) {
         self.broadcastMessage = message;
+    }
 }
 
 - (NSString*)messageForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber

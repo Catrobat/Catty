@@ -20,8 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <XCTest/XCTest.h>
+#import <Foundation/Foundation.h>
 
-@interface ProgramTableViewControllerExistingProgramsTests : XCTestCase
+@interface CBStack : NSObject
+
+@property (nonatomic, strong, readonly) NSMutableArray *stack;
+@property (nonatomic, readonly) NSUInteger numberOfElements;
+
+- (void)pushElement:(id)element;
+- (id)popElement;
+- (void)popAllElements;
+- (BOOL)isEmpty;
+- (id)mutableCopy;
 
 @end

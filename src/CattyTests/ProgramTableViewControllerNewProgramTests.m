@@ -24,7 +24,7 @@
 // visible for this class
 #define CATTY_TESTS 1
 
-#import "ProgramTableViewControllerNewProgramTests.h"
+#import <XCTest/XCTest.h>
 #import "ProgramTableViewController.h"
 #import "Program.h"
 #import "ProgramDefines.h"
@@ -43,7 +43,7 @@
 #import "MyProgramsViewController.h"
 #import "LanguageTranslationDefines.h"
 
-@interface ProgramTableViewControllerNewProgramTests ()
+@interface ProgramTableViewControllerNewProgramTests : XCTestCase
 @property (nonatomic, strong) ProgramTableViewController *programTableViewController;
 @property (nonatomic, strong) FileManager *fileManager;
 @property (nonatomic, strong) Program *defaultProgram;
@@ -111,6 +111,7 @@
     }
     XCTAssertTrue([firstObjectCellTitle isEqualToString:kLocalizedBackground], @"The ProgramTableViewController did not create the background cell correctly.");
 }
+
 
 - (void)testNewProgramNumberOfSections
 {
