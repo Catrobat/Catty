@@ -442,6 +442,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
        itemAtIndexPath:(NSIndexPath*)fromIndexPath
    willMoveToIndexPath:(NSIndexPath*)toIndexPath
 {
+#warning UPDATING THE DATA MODEL WHILE THE USER IS DRAGGING IS NO GOOD PRACTICE AND IS ERROR PRONE!!!
+    // FIXME: USE collectionView:layout:didEndDraggingItemAtIndexPath: DELEGATE METHOD FOR THIS. Updates must happen after the user stopped dragging the brickcell!!!
     if (fromIndexPath.section == toIndexPath.section) {
         Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
         Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
@@ -454,11 +456,17 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
         Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
         
-        [toScript.brickList removeObjectAtIndex:toIndexPath.item -1];
+        [toScript.brickList removeObjectAtIndex:toIndexPath.item - 1];
         [fromScript.brickList removeObjectAtIndex:fromIndexPath.item - 1];
         [toScript.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
         [toScript.brickList insertObject:toBrick atIndex:toIndexPath.item];
     }
+}
+
+- (void)collectionView:(UICollectionView*)collectionView
+                layout:(UICollectionViewLayout*)collectionViewLayout
+didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
+{
     [self.object.program saveToDisk];
 }
 
@@ -468,6 +476,35 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 {
     self.higherRankBrick = nil;
     self.lowerRankBrick = nil;
+}
+
+- (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
+    canMoveToIndexPath:(NSIndexPath*)toIndexPath
+{
+    Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+    Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
+    if (toIndexPath.item != 0) {
+        if ([fromBrick isKindOfClass:[LoopBeginBrick class]]){
+            return [self checkLoopBeginToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick];
+        } else if ([fromBrick isKindOfClass:[LoopEndBrick class]]) {
+            return [self checkLoopEndToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick];
+        } else if ([fromBrick isKindOfClass:[IfLogicBeginBrick class]]){
+            return [self checkIfBeginToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick];
+        } else if ([fromBrick isKindOfClass:[IfLogicElseBrick class]]){
+            return [self checkIfElseToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick];
+        } else if ([fromBrick isKindOfClass:[IfLogicEndBrick class]]){
+            return [self checkIfEndToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick];
+        } else {
+            return (toIndexPath.item != 0);
+        }
+    } else {
+        return NO;
+    }
+}
+
+- (BOOL)collectionView:(UICollectionView*)collectionView canMoveItemAtIndexPath:(NSIndexPath*)indexPath
+{
+    return ((self.isEditing || indexPath.item == 0) ? NO : YES);
 }
 
 #pragma mark - Collection View Datasource
@@ -511,34 +548,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     return brickCell;
 }
 
-- (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
-    canMoveToIndexPath:(NSIndexPath*)toIndexPath
-{
-    Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
-    Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
-    if (toIndexPath.item != 0) {
-        if ([fromBrick isKindOfClass:[LoopBeginBrick class]]){
-            return [self checkLoopBeginToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick];
-        } else if ([fromBrick isKindOfClass:[LoopEndBrick class]]) {
-            return [self checkLoopEndToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick];
-        } else if ([fromBrick isKindOfClass:[IfLogicBeginBrick class]]){
-            return [self checkIfBeginToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick];
-        } else if ([fromBrick isKindOfClass:[IfLogicElseBrick class]]){
-            return [self checkIfElseToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick];
-        } else if ([fromBrick isKindOfClass:[IfLogicEndBrick class]]){
-            return [self checkIfEndToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick];
-        } else {
-            return (toIndexPath.item != 0);
-        }
-    } else {
-        return NO;
-    }
-}
-
-- (BOOL)collectionView:(UICollectionView*)collectionView canMoveItemAtIndexPath:(NSIndexPath*)indexPath
-{
-    return ((self.isEditing || indexPath.item == 0) ? NO : YES);
-}
 
 #pragma mark - BrickCategoryViewController delegates
 - (void)brickCategoryViewController:(BrickCategoryViewController*)brickCategoryViewController
