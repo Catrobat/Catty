@@ -112,7 +112,7 @@
         NSArray *allBrickTypes = [brickTypeClassNameMap allKeys];
         NSArray *orderedBrickTypes = [allBrickTypes sortedArrayUsingSelector:@selector(compare:)];
         // collect class names
-        NSMutableArray *orderedBrickClassNamesMutable = [NSMutableArray arrayWithCapacity:[orderedBrickTypes count]];
+        NSMutableArray *orderedBrickClassNamesMutable = [NSMutableArray arrayWithCapacity:orderedBrickTypes.count];
         for (NSNumber *brickType in orderedBrickTypes) {
             [orderedBrickClassNamesMutable addObject:brickTypeClassNameMap[brickType]];
         }
@@ -143,7 +143,8 @@
     return selectableBricks;
 }
 
-- (NSArray *)selectableScriptBricks {
+- (NSArray*)selectableScriptBricks
+{
     static NSArray *scripts = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

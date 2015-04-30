@@ -580,7 +580,6 @@
 
 - (void)removeFromObject
 {
-    CBAssert(self.object);
     NSUInteger index = 0;
     for (Script *script in self.object.scriptList) {
         if (script == self) {
