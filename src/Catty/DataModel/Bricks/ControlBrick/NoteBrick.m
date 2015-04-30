@@ -39,7 +39,7 @@
 
 - (void)setDefaultValues
 {
-    self.note = [NSString stringWithString:kLocalizedDefaultNote];
+    self.note = [NSString stringWithString:kLocalizedAddCommentHere];
 }
 
 - (NSString*)description

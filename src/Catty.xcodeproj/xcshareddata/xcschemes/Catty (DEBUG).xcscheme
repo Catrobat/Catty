@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CA538EA119B0EA09008240AB"
+               BlueprintIdentifier = "CA2D8C8A1AEDD98A00A5BDC2"
                BuildableName = "CattyTests.xctest"
                BlueprintName = "CattyTests"
                ReferencedContainer = "container:Catty.xcodeproj">
@@ -46,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CA538EA119B0EA09008240AB"
+               BlueprintIdentifier = "CA2D8C8A1AEDD98A00A5BDC2"
                BuildableName = "CattyTests.xctest"
                BlueprintName = "CattyTests"
                ReferencedContainer = "container:Catty.xcodeproj">

@@ -747,7 +747,7 @@
 - (void)waitingForBroadcastWithMessage:(NSString*)message
 {
     dispatch_semaphore_t semaphore = self.broadcastMessageSemaphores[message];
-#warning workaround for synchronization issue
+// FIXME: workaround for synchronization issue
     if (! semaphore) {
         semaphore = dispatch_semaphore_create(0);
         self.broadcastMessageSemaphores[message] = semaphore;

@@ -24,7 +24,7 @@
 
 @interface CBSequence : NSObject
 
-#warning should create protocol instead of class!! no abstract classes possible in ObjC
+// TODO: should create protocol instead of class!! no abstract classes possible in ObjC
 - (BOOL)isEmpty;
 
 @end

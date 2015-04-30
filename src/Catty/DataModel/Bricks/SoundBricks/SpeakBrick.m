@@ -45,7 +45,7 @@
     Formula *speakFormula = [Formula new];
     FormulaElement *formulaElement = [FormulaElement new];
     formulaElement.type = STRING;
-    formulaElement.value = kLocalizedDefaultSpeakText;
+    formulaElement.value = kLocalizedHello;
     speakFormula.formulaTree = formulaElement;
     self.formula = speakFormula;
 }

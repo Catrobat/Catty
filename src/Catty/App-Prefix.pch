@@ -25,18 +25,13 @@
 #import <UIKit/UIKit.h>
 #import "Logger.h"
 
-#warning ADD THIS RELEASE MODE CONSTANT TO BUILD SETTINGS
-#define kIsRelease 0
-
 //------------------------------------------------------------------------------------------------------------
-#if kIsRelease // kIsRelease == 1
+#if DEBUG == 0
 //============================================================================================================
 //
 //                                             RELEASE MODE
 //
 //============================================================================================================
-
-#undef DEBUG
 
 // UNCOMMENT ALL LOG AND DEBUG MESSAGES IN FIRST RELEASE VERSION
 #define NSLog(...) /* suppress NSLog when in release mode */
@@ -46,28 +41,19 @@
 #define NSWarn(...) /* suppress NSLog when in release mode */
 #define NSError(...) /* suppress NSLog when in release mode */
 #define CBAssert(expression, ...) /* suppress CBAssert when in release mode */
-void CBAssertIfNotMainThread() {}  /* suppress CBAssertIfNotMainThread when in release mode */
-
-
-
-
+#define CBAssertIfNotMainThread(...) /* suppress CBAssertIfNotMainThread when in release mode */
 
 //------------------------------------------------------------------------------------------------------------
-#else // kIsRelease == 0
+#else // DEBUG == 1
 //============================================================================================================
 //
 //                                            DEVELOPER MODE
 //
 //============================================================================================================
 
-#ifdef DEBUG
-//#define NSDebug(...) [Logger debug:__VA_ARGS__];
+#define NSDebug(...) [Logger debug:__VA_ARGS__];
 //#define NSDebug(...) NSLog(@"[DEBUG]: %@", [NSString stringWithFormat:__VA_ARGS__]);
 //#define NSDebug(...) NSLog(__VA_ARGS__);
-#define NSDebug(...)
-#else
-#define NSDebug(...)
-#endif
 
 #define NSInfo(...) [Logger info:__VA_ARGS__];
 #define NSWarn(...) [Logger warn:__VA_ARGS__];
@@ -85,5 +71,6 @@ do { if(!([NSThread isMainThread])) { \
 NSLog(@"%@", [NSString stringWithFormat: @"ERROR: Not on main thread. Assertion failure in %s on line %s:%d. %@", __PRETTY_FUNCTION__, __FILE__, __LINE__, [NSString stringWithFormat:@"" __VA_ARGS__]]); \
 abort(); }} while(0)
 
-#endif // kIsRelease
-#endif
+#endif // DEBUG
+
+#endif // ifdef __OBJC__

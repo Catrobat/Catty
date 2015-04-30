@@ -122,9 +122,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
         self.tableView.scrollEnabled = YES;
         [self initNavigationBar];
     }
-    
+
     //Always use the Test-Server for test-uploads and -logins, because Webteam receives emails for each of this actions on the other server
-    [defaults setBool:!kIsRelease forKey:kUseTestServerForUploadAndLogin];
+#if DEBUG == 1
+    [defaults setBool:YES forKey:kUseTestServerForUploadAndLogin];
+#else // DEBUG == 0
+    [defaults setBool:NO forKey:kUseTestServerForUploadAndLogin];
+#endif // DEBUG
 }
 
 - (void)viewWillAppear:(BOOL)animated

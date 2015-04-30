@@ -880,8 +880,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             VariablePickerData *pickerData = [self.variableSource objectAtIndex:row];
             if([pickerData isLabel])
                 return;
-            
-            NSDebug(@"%@",var.name);
+
             [self handleInputWithTitle:pickerData.userVariable.name AndButtonType:0];
         }
     }
