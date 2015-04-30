@@ -52,7 +52,7 @@
 
 + (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(NSInteger)pageIndex
 {
-    if (pageIndex >= 0 && pageIndex <= kPageIndexVariableBrick) {
+    if ((pageIndex >= 0) && (pageIndex <= kPageIndexVariableBrick)) {
         return [[self alloc] initWithBrickCategory:pageIndex];
     }
     return nil;
@@ -98,17 +98,18 @@
     return self.bricks.count;
 }
 
-- (UICollectionViewCell*)collectionView:(UICollectionView*)collectionView cellForItemAtIndexPath:(NSIndexPath*)indexPath
+- (UICollectionViewCell*)collectionView:(UICollectionView*)collectionView
+                 cellForItemAtIndexPath:(NSIndexPath*)indexPath
 {
     id<BrickProtocol> brick = [self.bricks objectAtIndex:indexPath.item];
     NSString *brickCellIdentifier = NSStringFromClass(brick.class);
     BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickCellIdentifier
                                                                      forIndexPath:indexPath];
-    brickCell.scriptOrBrick = [self.bricks objectAtIndex:indexPath.item];
+    brickCell.scriptOrBrick = self.bricks[indexPath.item];
     [brickCell.scriptOrBrick setDefaultValues];
     [brickCell setupBrickCell];
-    for(id subview in brickCell.subviews) {
-        if([subview isKindOfClass:[UIView class]]) {
+    for (id subview in brickCell.subviews) {
+        if ([subview isKindOfClass:[UIView class]]) {
             [(UIView*)subview setUserInteractionEnabled:NO];
         }
     }
@@ -126,12 +127,12 @@
 }
 
 #pragma mark - Collection View Layout
-- (CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout
+- (CGSize)collectionView:(UICollectionView*)collectionView
+                  layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    Brick *brick = [self.bricks objectAtIndex:indexPath.item];
-    CGSize size = [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(brick.class)];
-    return size;
+    Brick *brick = (Brick*)self.bricks[indexPath.item];
+    return [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(brick.class)];
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView*)collectionView
@@ -155,7 +156,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     if (pageIndex == 0 || pageIndex == 1) {
         return kControlBrick;
     }
-    
     return pageIndex - 1; // + 1 (Script category) offset
 }
 

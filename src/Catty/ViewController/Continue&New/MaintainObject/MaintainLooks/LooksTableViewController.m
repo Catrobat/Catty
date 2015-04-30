@@ -232,7 +232,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark - Table view data source
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
 {
     return 1;
 }
@@ -242,7 +242,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return [self.object.lookList count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     static NSString *CellIdentifier = kImageCell;
     static NSString *DetailCellIdentifier = kDetailImageCell;
@@ -322,7 +322,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
   return [TableUtil heightForImageCell];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
 //    static NSString *segueToImage = kSegueToImage;
@@ -364,7 +364,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 //}
 
 #pragma mark - swipe delegates
-- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
+- (void)swipeableTableViewCell:(SWTableViewCell*)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
 {
     [cell hideUtilityButtonsAnimated:YES];
     if (index == 0) {
@@ -393,7 +393,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
 }
 
-- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
+- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell*)cell
 {
     return YES;
 }
@@ -701,7 +701,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     self.paintImage = image;
     self.paintImagePath = path;
-    
     [self performActionOnConfirmation:@selector(savePaintImage)
                        canceledAction:@selector(cancelPaintSave)
                                target:self
@@ -713,14 +712,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     if (self.paintImage) {
         [self addPaintedImage:self.paintImage andPath:self.paintImagePath];
-    }else if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor){
+    } else if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor) {
         if (self.afterSafeBlock) {
             self.afterSafeBlock(nil);
         }
     }
 }
 
--(void)cancelPaintSave
+- (void)cancelPaintSave
 {
     if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor){
         if (self.afterSafeBlock) {
@@ -733,7 +732,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)addPaintedImage:(UIImage *)image andPath:(NSString *)path
 {
     UIImage *checkImage = [[UIImage alloc] initWithContentsOfFile:path];
-    
     if (checkImage) {
 //        NSDebug(@"Updating");
         NSData *imageData = UIImagePNGRepresentation(image);
@@ -786,7 +784,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         
         
         [cache replaceImage:image withName:filePath];
-    }else{
+    } else {
           NSDebug(@"SAVING");  // add image to object now
         [self showLoadingView];
         
@@ -837,9 +835,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         }];
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
         [queue addOperation:saveOp];
-        
-        
-
     }
     [self.tableView reloadData];
 }
