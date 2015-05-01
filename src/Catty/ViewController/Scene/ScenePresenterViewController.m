@@ -46,6 +46,7 @@
 #import "LoadingView.h"
 #import "UIDefines.h"
 #import "FlashHelper.h"
+#import "CatrobatLanguageDefines.h"
 
 @interface ScenePresenterViewController ()<UIActionSheetDelegate>
 @property (nonatomic) BOOL menuOpen;
@@ -450,6 +451,23 @@
 //    });
 }
 
+- (void)configureScene
+{
+    CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
+    Scene *scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
+    scene.name = self.program.header.programName;
+    if ([self.program.header.screenMode isEqualToString:kCatrobatHeaderScreenModeMaximize]) {
+        scene.scaleMode = SKSceneScaleModeFill;
+    } else if ([self.program.header.screenMode isEqualToString:kCatrobatHeaderScreenModeStretch]){
+        scene.scaleMode = SKSceneScaleModeAspectFit;
+    } else {
+        scene.scaleMode = SKSceneScaleModeFill;
+    }
+    self.skView.paused = NO;
+    [self.skView presentScene:scene];
+    [[ProgramManager sharedProgramManager] setProgram:self.program];
+}
+
 #pragma mark User Event Handling
 - (void)backButtonAction:(UIButton*)sender
 {
@@ -468,6 +486,7 @@
 - (void)manageAspectRatioAction:(UIButton *)sender
 {
     self.skView.scene.scaleMode = self.skView.scene.scaleMode == SKSceneScaleModeAspectFit ? SKSceneScaleModeFill : SKSceneScaleModeAspectFit;
+    self.program.header.screenMode = [self.program.header.screenMode isEqualToString:kCatrobatHeaderScreenModeStretch] ? kCatrobatHeaderScreenModeMaximize :kCatrobatHeaderScreenModeStretch;
     [self.skView setNeedsLayout];
     self.menuOpen = YES;
     // pause Scene

@@ -399,7 +399,7 @@
         kDTPayloadAskUserMinInputLength : @(minInputLength),
         kDTPayloadAskUserInvalidInputAlertMessage : invalidInputAlertMessage,
         kDTPayloadAskUserExistingNames : (existingNames ? existingNames : [NSNull null]),
-        kDTPayloadCancel : (cancelAction ? [NSValue valueWithPointer:cancelAction] : [NSNull null])
+        kDTPayloadCancel : (cancelAction ? [NSValue valueWithPointer:cancelAction] : [NSValue valueWithPointer:nil])
     };
     CatrobatAlertView *alertView = [[self class] promptWithTitle:title
                                                          message:message
@@ -681,7 +681,10 @@ replacementString:(NSString*)characters
     NSMutableDictionary *payload = (NSMutableDictionary*)alertView.dataTransferMessage.payload;
     if (alertView.tag == kAskUserForUniqueNameAlertViewTag) {
         if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
-            SEL action = [((NSValue*)payload[kDTPayloadCancel]) pointerValue];
+            SEL action;
+            if ((NSValue*)payload[kDTPayloadCancel] != nil) {
+                action = [((NSValue*)payload[kDTPayloadCancel]) pointerValue];
+            }
             id target = payload[kDTPayloadAskUserTarget];
             if (action && target) {
                 IMP imp = [target methodForSelector:action];
@@ -728,7 +731,10 @@ replacementString:(NSString*)characters
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         } else {
             // no name duplicate => call action on target
-            SEL action = [((NSValue*)payload[kDTPayloadAskUserAction]) pointerValue];
+            SEL action;
+            if (((NSValue*)payload[kDTPayloadAskUserAction]) != nil) {
+                action = [((NSValue*)payload[kDTPayloadAskUserAction]) pointerValue];
+            }
             id target = payload[kDTPayloadAskUserTarget];
             id passingObject = payload[kDTPayloadAskUserObject];
             if ((! passingObject) || [passingObject isKindOfClass:[NSNull class]]) {
@@ -775,7 +781,10 @@ replacementString:(NSString*)characters
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         } else {
                 // no name duplicate => call action on target
-            SEL action = [((NSValue*)payload[kDTPayloadAskUserAction]) pointerValue];
+            SEL action;
+            if (((NSValue*)payload[kDTPayloadAskUserAction]) != nil) {
+                action = [((NSValue*)payload[kDTPayloadAskUserAction]) pointerValue];
+            }
             id target = payload[kDTPayloadAskUserTarget];
             id passingObject = payload[kDTPayloadAskUserObject];
             if ((! passingObject) || [passingObject isKindOfClass:[NSNull class]]) {
@@ -812,8 +821,10 @@ replacementString:(NSString*)characters
             payload[kDTPayloadAskUserPromptValue] = input;
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         } else {
-            
-            SEL action = [((NSValue*)payload[kDTPayloadAskUserAction]) pointerValue];
+            SEL action;
+            if (((NSValue*)payload[kDTPayloadAskUserAction]) != nil) {
+                action = [((NSValue*)payload[kDTPayloadAskUserAction]) pointerValue];
+            }
             id target = payload[kDTPayloadAskUserTarget];
             id passingObject = payload[kDTPayloadAskUserObject];
             if ((! passingObject) || [passingObject isKindOfClass:[NSNull class]]) {

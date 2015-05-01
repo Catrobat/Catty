@@ -45,7 +45,7 @@
         }
         XCTAssertEqual(stack.numberOfElements, numberOfElementsToPush,
                        @"Number of elements on CBStack is %lu but should be %lu",
-                       stack.numberOfElements, numberOfElementsToPush);
+                       (unsigned long)stack.numberOfElements, (unsigned long)numberOfElementsToPush);
         [stack popAllElements];
     }
 }
@@ -67,7 +67,8 @@
         }
         XCTAssertEqual(stack.numberOfElements, (kMaxNumberOfStackElements - numberOfElementsToPop),
                        @"Number of remaining elements on CBStack is %lu but should be %lu",
-                       stack.numberOfElements, (kMaxNumberOfStackElements - numberOfElementsToPop));
+                       (unsigned long)stack.numberOfElements,
+                       (unsigned long)(kMaxNumberOfStackElements - numberOfElementsToPop));
         [stack popAllElements];
     }
 }
