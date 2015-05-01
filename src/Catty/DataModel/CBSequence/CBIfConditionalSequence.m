@@ -20,8 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <XCTest/XCTest.h>
+#import "CBIfConditionalSequence.h"
 
-@interface ProgramTableViewControllerNewProgramTests : XCTestCase
+@interface CBIfConditionalSequence()
+@end
+
+@implementation CBIfConditionalSequence
+
+- (NSMutableArray*)elseSequenceList
+{
+    if (! _elseSequenceList) {
+        _elseSequenceList = [NSMutableArray array];
+    }
+    return _elseSequenceList;
+}
+
+- (BOOL)isEmpty
+{
+    return ([super isEmpty] && ([self.elseSequenceList count] == 0));
+}
 
 @end

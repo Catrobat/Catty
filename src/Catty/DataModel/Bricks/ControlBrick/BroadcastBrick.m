@@ -41,21 +41,15 @@
     return self;
 }
 
+- (void)performBroadcast
+{
+    NSDebug(@"Performing: %@", [self description]);
+    [self.script.object.program broadcast:self.broadcastMessage senderScript:self.script];
+}
+
 - (void)setDefaultValues
 {
     self.broadcastMessage = [NSString stringWithString:kLocalizedBroadcastDefaultMessage];
-}
-
-- (SKAction*)action
-{
-    __weak BroadcastBrick* weakSelf = self;
-    return [SKAction runBlock:^{
-        __weak BroadcastBrick *weakWeakSelf = weakSelf;
-        NSDebug(@"Performing: %@", [weakSelf description]);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakWeakSelf.script.object broadcast:weakWeakSelf.broadcastMessage];
-        });
-    }];
 }
 
 - (void)setMessage:(NSString *)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber

@@ -162,7 +162,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[ProgramManager sharedProgramManager]setProgram:self.object.program];
+    [[ProgramManager sharedProgramManager] setProgram:self.object.program];
     self.view.backgroundColor = UIColor.clearColor;
 
     [self showFormulaEditor];
@@ -881,7 +881,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
             if([pickerData isLabel])
                 return;
             
-            NSDebug(@"%@",var.name);
             [self handleInputWithTitle:pickerData.userVariable.name AndButtonType:0];
         }
     }

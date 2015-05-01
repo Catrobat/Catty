@@ -28,9 +28,15 @@
 #import "IfLogicEndBrick.h"
 #import "LoopEndBrick.h"
 #import "RepeatBrick.h"
+#import "BroadcastScript.h"
+#import "WaitBrick.h"
+#import "BroadcastBrick.h"
 #import "Formula.h"
 #import "Util.h"
 #import "CBMutableCopyContext.h"
+#import "BroadcastWaitBrick.h"
+#import "NoteBrick.h"
+#include <mach/mach_time.h>
 
 @interface Brick()
 
@@ -175,6 +181,11 @@
     }
     
     return brick;
+}
+
+- (void)removeReferences
+{
+    self.script = nil;
 }
 
 @end

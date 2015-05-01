@@ -109,15 +109,15 @@
             result = [self interpretFunction:function forSprite:sprite];
             break;
         }
-            
+
         case USER_VARIABLE: {
             //NSDebug(@"User Variable");
-            Program* program = ProgramManager.sharedProgramManager.program;
-            UserVariable* var = [program.variables getUserVariableNamed:self.value forSpriteObject:sprite];
-            result = [NSNumber numberWithDouble:[var.value doubleValue]];
+            Program *program = [ProgramManager sharedProgramManager].program;
+            UserVariable *var = [program.variables getUserVariableNamed:self.value forSpriteObject:sprite];
+            result = var.value;
             break;
         }
-            
+
         case SENSOR: {
             //NSDebug(@"SENSOR");
             Sensor sensor = [SensorManager sensorForString:self.value];

@@ -136,13 +136,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self showAddLookActionSheet];
 }
 
-- (void)playSceneAction:(id)sender
-{
-    [self.navigationController setToolbarHidden:YES animated:YES];
-    ScenePresenterViewController *vc = [[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]]];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 - (void)addLookActionWithName:(NSString*)lookName look:(Look*)look
 {
     look.name = [Util uniqueName:lookName existingNames:[self.object allLookNames]];

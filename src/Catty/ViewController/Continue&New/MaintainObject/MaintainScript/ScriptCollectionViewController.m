@@ -95,6 +95,8 @@
     PageIndexCategoryType _lastSelectedBrickCategory;
 }
 
+@dynamic collectionView;
+
 #pragma mark - view events
 - (void)viewDidLoad
 {
@@ -146,11 +148,15 @@
     }];
 }
 
-#pragma mark - Brick Selection / Play Action
+#pragma mark - actions
 - (void)playSceneAction:(id)sender
 {
+    if ([self respondsToSelector:@selector(stopAllSounds)]) {
+        [self performSelector:@selector(stopAllSounds)];
+    }
     [self.navigationController setToolbarHidden:YES animated:YES];
-    ScenePresenterViewController *vc = [[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]]];
+    ScenePresenterViewController *vc = [ScenePresenterViewController new];
+    vc.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -309,6 +315,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     [self.object.program saveToDisk];
 }
 
+#pragma mark - helpers
 - (void)scriptDataSource:(ScriptDataSource *)scriptDataSource didMoveSection:(NSInteger)section toSection:(NSInteger)newSection{
     [self.collectionView moveSection:section toSection:newSection];
     // TODO make save work with KVO

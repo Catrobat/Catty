@@ -132,7 +132,7 @@
                 userVariable.name = variableName;
                 [objectVariableList addObject:userVariable];
                 [variablesContainer.objectVariableList setObject:objectVariableList forKey:object];
-                NSDebug(@"Added UserVariable with name %@ to global object variable list with object %@", variableName, object.name;);
+                NSDebug(@"Added UserVariable with name %@ to global object variable list with object %@", variableName, object.name);
             }
         }
     }

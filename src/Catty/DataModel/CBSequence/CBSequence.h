@@ -22,11 +22,9 @@
 
 #import <Foundation/Foundation.h>
 
-@class SpriteObject;
+@interface CBSequence : NSObject
 
-@interface BroadcastWaitHandler : NSObject
-
-- (void)registerSprite:(SpriteObject*)sprite forMessage:(NSString*)message;
-- (void)removeSpriteMessages;
+#warning should create protocol instead of class!! no abstract classes possible in ObjC
+- (BOOL)isEmpty;
 
 @end

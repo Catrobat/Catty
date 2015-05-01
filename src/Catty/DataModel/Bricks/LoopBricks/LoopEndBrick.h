@@ -27,5 +27,6 @@
 @interface LoopEndBrick : Brick
 
 @property (weak, nonatomic) LoopBeginBrick* loopBeginBrick;
+@property (nonatomic, strong) NSDate *loopEndTime;
 
 @end

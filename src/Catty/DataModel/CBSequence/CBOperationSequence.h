@@ -20,13 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "CBSequence.h"
 
-@class SpriteObject;
+@class CBOperation;
 
-@interface BroadcastWaitHandler : NSObject
-
-- (void)registerSprite:(SpriteObject*)sprite forMessage:(NSString*)message;
-- (void)removeSpriteMessages;
-
+@interface CBOperationSequence : CBSequence
+@property (nonatomic, strong, readonly) NSMutableArray *operationList;
+- (void)addOperation:(CBOperation*)operation;
 @end

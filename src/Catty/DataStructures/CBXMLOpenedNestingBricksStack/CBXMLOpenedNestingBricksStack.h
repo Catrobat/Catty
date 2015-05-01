@@ -27,8 +27,7 @@
 @interface CBXMLOpenedNestingBricksStack : NSObject <NSFastEnumeration>
 
 @property (nonatomic, readonly) NSUInteger numberOfOpenedNestingBricks;
-
-- (void)pushAndOpenNestingBrick:(Brick*)openedNestingBricks;
+- (void)pushAndOpenNestingBrick:(Brick*)openedNestingBrick;
 - (Brick*)popAndCloseTopMostNestingBrick;
 - (BOOL)isEmpty;
 - (id)mutableCopy;

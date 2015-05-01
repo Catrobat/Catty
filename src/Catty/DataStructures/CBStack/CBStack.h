@@ -21,11 +21,16 @@
  */
 
 #import <Foundation/Foundation.h>
-@class SpriteObject;
 
-@protocol BroadcastWaitDelegate <NSObject>
+@interface CBStack : NSObject
 
-- (void)registerSprite:(SpriteObject*)sprite forMessage:(NSString*)message;
-- (void)performBroadcastWaitForMessage:(NSString*)message;
+@property (nonatomic, strong, readonly) NSMutableArray *stack;
+@property (nonatomic, readonly) NSUInteger numberOfElements;
+
+- (void)pushElement:(id)element;
+- (id)popElement;
+- (void)popAllElements;
+- (BOOL)isEmpty;
+- (id)mutableCopy;
 
 @end

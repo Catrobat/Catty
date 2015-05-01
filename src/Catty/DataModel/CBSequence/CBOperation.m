@@ -20,13 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "CBOperation.h"
 
-@class SpriteObject;
+@interface CBOperation()
+@property (nonatomic, strong, readwrite) Brick *brick;
+@end
 
-@interface BroadcastWaitHandler : NSObject
+@implementation CBOperation
 
-- (void)registerSprite:(SpriteObject*)sprite forMessage:(NSString*)message;
-- (void)removeSpriteMessages;
++ (instancetype)operationForBrick:(Brick*)brick
+{
+    CBOperation *operation = [CBOperation new];
+    operation.brick = brick;
+    return operation;
+}
 
 @end

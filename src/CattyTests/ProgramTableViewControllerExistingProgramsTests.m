@@ -24,7 +24,7 @@
 // visible for this class
 #define CATTY_TESTS 1
 
-#import "ProgramTableViewControllerExistingProgramsTests.h"
+#import <XCTest/XCTest.h>
 #import "ProgramTableViewController+UnitTestingExtensions.h"
 #import "Program.h"
 #import "ProgramDefines.h"
@@ -43,7 +43,7 @@
 #import "MyProgramsViewController.h"
 #import "LanguageTranslationDefines.h"
 
-@interface ProgramTableViewControllerExistingProgramsTests ()
+@interface ProgramTableViewControllerExistingProgramsTests : XCTestCase
 @property (nonatomic, strong) ProgramTableViewController *programTableViewController;
 @property (nonatomic, strong) FileManager *fileManager;
 @end

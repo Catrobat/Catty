@@ -21,14 +21,13 @@
  */
 #import "Brick.h"
 #import "BrickFormulaProtocol.h"
+#import "BrickConditionalBranchProtocol.h"
 
 @class Formula;
-@class Ifelsebrick;
-@class IfLogicEndBrick;
 @class IfLogicElseBrick;
+@class IfLogicEndBrick;
 
-
-@interface IfLogicBeginBrick : Brick<BrickFormulaProtocol>
+@interface IfLogicBeginBrick : Brick<BrickFormulaProtocol, BrickConditionalBranchProtocol>
 
 @property (nonatomic, strong) Formula *ifCondition;
 @property (nonatomic, weak) IfLogicElseBrick *ifElseBrick;

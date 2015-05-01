@@ -29,6 +29,8 @@
 
 @implementation LCTableViewPickerControl
 
+@dynamic tag;
+
 - (id)initWithFrame:(CGRect)frame title:(NSString*)title value:(actionType)value items:(NSArray *)array offset:(CGPoint)offset
 {
     if (self = [super initWithFrame:frame])

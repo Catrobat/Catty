@@ -20,13 +20,32 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "CBOperationSequence.h"
 
-@class SpriteObject;
+@interface CBOperationSequence()
+@property (nonatomic, strong, readwrite) NSMutableArray *operationList;
+@end
 
-@interface BroadcastWaitHandler : NSObject
+@implementation CBOperationSequence
 
-- (void)registerSprite:(SpriteObject*)sprite forMessage:(NSString*)message;
-- (void)removeSpriteMessages;
+#pragma mark - Getters & Setters
+- (NSMutableArray*)operationList
+{
+    if (! _operationList) {
+        _operationList = [NSMutableArray array];
+    }
+    return _operationList;
+}
+
+#pragma mark - Operations
+- (void)addOperation:(CBOperation*)operation
+{
+    [self.operationList addObject:operation];
+}
+
+- (BOOL)isEmpty
+{
+    return ([self.operationList count] == 0);
+}
 
 @end

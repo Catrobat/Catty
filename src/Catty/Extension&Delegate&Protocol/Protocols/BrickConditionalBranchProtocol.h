@@ -22,11 +22,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class SpriteObject;
-
-@interface BroadcastWaitHandler : NSObject
-
-- (void)registerSprite:(SpriteObject*)sprite forMessage:(NSString*)message;
-- (void)removeSpriteMessages;
-
+@protocol BrickConditionalBranchProtocol <NSObject>
+- (BOOL)checkCondition;
 @end

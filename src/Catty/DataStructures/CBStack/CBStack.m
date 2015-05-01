@@ -20,13 +20,56 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "CBStack.h"
 
-@class SpriteObject;
+@interface CBStack()
+@property (nonatomic, strong, readwrite) NSMutableArray *stack;
+@end
 
-@interface BroadcastWaitHandler : NSObject
+@implementation CBStack
 
-- (void)registerSprite:(SpriteObject*)sprite forMessage:(NSString*)message;
-- (void)removeSpriteMessages;
+#pragma mark - Getters and Setters
+- (NSUInteger)numberOfElements
+{
+    return self.stack.count;
+}
+
+- (NSMutableArray*)stack
+{
+    if(! _stack) {
+        _stack = [NSMutableArray new];
+    }
+    return _stack;
+}
+
+#pragma mark - Operations
+- (void)pushElement:(id)element
+{
+    [self.stack addObject:element];
+}
+
+- (id)popElement
+{
+    NSString *element = self.stack.lastObject;
+    [self.stack removeLastObject];
+    return element;
+}
+
+- (void)popAllElements
+{
+    self.stack = nil;
+}
+
+- (BOOL)isEmpty
+{
+    return (self.numberOfElements == 0);
+}
+
+- (id)mutableCopy
+{
+    CBStack *copiedStack = [[self class] new];
+    copiedStack.stack = [self.stack mutableCopy];
+    return copiedStack;
+}
 
 @end

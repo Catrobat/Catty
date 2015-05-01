@@ -30,7 +30,7 @@
     return kLocalizedBroadcastAndWait;
 }
 
-- (id)initWithMessage:(NSString *)message
+- (id)initWithMessage:(NSString*)message
 {
     self = [super init];
     
@@ -41,15 +41,30 @@
     return self;
 }
 
+- (void)performBroadcastAndWaitWithCompletion:(dispatch_block_t)completionBlock
+{
+    NSDebug(@"Performing: %@", self.description);
+    [self.script.object.program broadcastAndWait:self.broadcastMessage senderScript:self.script];
+    __weak BroadcastWaitBrick *weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // wait here on other queue!!
+        [weakSelf.script.object.program waitingForBroadcastWithMessage:weakSelf.broadcastMessage];
+        // now switch back to the main queue for executing the sequence!
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(); // the script must continue here. upcoming actions are executed!!
+        });
+    });
+}
+
+- (void)performBroadcastButDontWait
+{
+    // acts like a normal broadcast!
+    [self.script.object.program broadcast:self.broadcastMessage senderScript:self.script];
+}
+
 - (void)setDefaultValues
 {
     self.broadcastMessage = [NSString stringWithString:kLocalizedBroadcastDefaultMessage];
-}
-
-- (void)performBroadcastWait
-{
-    NSDebug(@"Performing: %@", self.description);
-    [self.script.object broadcastAndWait:self.broadcastMessage];
 }
 
 - (void)setMessage:(NSString *)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber

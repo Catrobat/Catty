@@ -60,7 +60,6 @@
 - (dispatch_block_t)actionBlock
 {
     return ^{
-        
         double steps = [self.steps interpretDoubleForSprite:self.script.object];
         double rotation = [self.script.object rotation]+90;
         while (rotation >= 360) {

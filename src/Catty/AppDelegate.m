@@ -63,10 +63,10 @@ void uncaughtExceptionHandler(NSException *exception)
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     UINavigationController *vc = (UINavigationController*)self.window.rootViewController;
-    
-    if([vc.topViewController isKindOfClass:[ScenePresenterViewController class]]){
+
+    if ([vc.topViewController isKindOfClass:[ScenePresenterViewController class]]){
         ScenePresenterViewController* spvc = (ScenePresenterViewController*)vc.topViewController;
-        [spvc pause];
+        [spvc pauseAction];
     }
 }
 
@@ -80,14 +80,11 @@ void uncaughtExceptionHandler(NSException *exception)
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     UINavigationController *vc = (UINavigationController*)self.window.rootViewController;
-    
-    if([vc.topViewController isKindOfClass:[ScenePresenterViewController class]]){
+
+    if ([vc.topViewController isKindOfClass:[ScenePresenterViewController class]]){
         ScenePresenterViewController* spvc = (ScenePresenterViewController*)vc.topViewController;
-        [spvc resume];
-        
+        [spvc resumeAction];
     }
-    
-    
 }
 
 - (void)initNavigationBar

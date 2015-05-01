@@ -32,10 +32,9 @@
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readonly) kBrickType brickType;
 @property (nonatomic, strong, readonly) NSString *brickTitle;
-@property (nonatomic, strong) Script *script;
+@property (nonatomic, weak) Script *script;
 
-
-+ (Brick *)brickWithType:(kBrickType)type andCategory:(kBrickCategoryType)category;
++ (Brick*)brickWithType:(kBrickType)type andCategory:(kBrickCategoryType)category;
 
 - (instancetype)initWithType:(kBrickType)type andCategory:(kBrickCategoryType)category;
 
@@ -48,5 +47,7 @@
 - (BOOL)isEqualToBrick:(Brick*)brick;
 
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context AndErrorReporting:(BOOL)reportError;
+
+- (void)removeReferences;
 
 @end

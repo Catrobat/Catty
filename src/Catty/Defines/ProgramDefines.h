@@ -19,10 +19,9 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
-//#import "OrderedDictionary.h"
 
 #define kLastUsedProgram @"lastUsedProgram"
-#define kCatrobatBroadcastPrefix @"iCatty"
+#define kMinLoopDurationTime (20 * 1000 * 1000) // in nanoseconds!
 #define kProgramCodeFileName @"code.xml"
 #define kProgramSoundsDirName @"sounds"
 #define kProgramImagesDirName @"images"

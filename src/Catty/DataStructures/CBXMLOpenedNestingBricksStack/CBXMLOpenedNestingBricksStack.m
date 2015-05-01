@@ -21,50 +21,46 @@
  */
 
 #import "CBXMLOpenedNestingBricksStack.h"
+#import "CBStack.h"
 
 @interface CBXMLOpenedNestingBricksStack ()
-
-@property (nonatomic, strong) NSMutableArray *openedNestingBricks;
-@property (nonatomic, readwrite) NSUInteger numberOfOpenedNestingBricks;
-
+@property (nonatomic, strong) CBStack *stackStorageBackend;
 @end
 
 @implementation CBXMLOpenedNestingBricksStack
 
-- (NSUInteger)numberOfOpenedNestingBricks
+- (CBStack*)stackStorageBackend
 {
-    return [self.openedNestingBricks count];
+    if (! _stackStorageBackend) {
+        _stackStorageBackend = [CBStack new];
+    }
+    return _stackStorageBackend;
 }
 
-- (void)pushAndOpenNestingBrick:(Brick*)openedNestingBricks
+- (NSUInteger)numberOfOpenedNestingBricks
 {
-    if (! openedNestingBricks) {
+    return self.stackStorageBackend.numberOfElements;
+}
+
+- (void)pushAndOpenNestingBrick:(Brick*)openedNestingBrick
+{
+    if (! openedNestingBrick) {
         return;
     }
-    [self.openedNestingBricks addObject:openedNestingBricks];
+    [self.stackStorageBackend pushElement:openedNestingBrick];
 }
 
 - (Brick*)popAndCloseTopMostNestingBrick
 {
-    if ([self.openedNestingBricks count]) {
-        Brick *brick = self.openedNestingBricks.lastObject;
-        [self.openedNestingBricks removeLastObject];
-        return brick;
+    if (self.stackStorageBackend.numberOfElements) {
+        return (Brick*)[self.stackStorageBackend popElement];
     }
     return nil;
 }
 
 - (BOOL)isEmpty
 {
-    return ([self.openedNestingBricks count] == 0);
-}
-
-- (NSMutableArray*)openedNestingBricks
-{
-    if(!_openedNestingBricks) {
-        _openedNestingBricks = [[NSMutableArray alloc] init];
-    }
-    return _openedNestingBricks;
+    return (self.numberOfOpenedNestingBricks == 0);
 }
 
 #pragma mark - NSFastEnumeration
@@ -72,14 +68,13 @@
                                   objects:(__unsafe_unretained id[])buffer
                                     count:(NSUInteger)len
 {
-    return [self.openedNestingBricks countByEnumeratingWithState:state objects:buffer count:len];
+    return [self.stackStorageBackend.stack countByEnumeratingWithState:state objects:buffer count:len];
 }
 
 - (id)mutableCopy
 {
     CBXMLOpenedNestingBricksStack *copiedOpenedNestingBricksStack = [[self class] new];
-    copiedOpenedNestingBricksStack.openedNestingBricks = [self.openedNestingBricks mutableCopy];
-    copiedOpenedNestingBricksStack.numberOfOpenedNestingBricks = self.numberOfOpenedNestingBricks;
+    copiedOpenedNestingBricksStack.stackStorageBackend = [self.stackStorageBackend mutableCopy];
     return copiedOpenedNestingBricksStack;
 }
 
