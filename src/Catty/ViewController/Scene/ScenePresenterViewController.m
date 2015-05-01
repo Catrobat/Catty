@@ -44,6 +44,7 @@
 #import "SaveToProjectActivity.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "LanguageTranslationDefines.h"
+#import "CatrobatLanguageDefines.h"
 
 #define kWidthSlideMenu 150
 #define kBounceEffect 5
@@ -516,7 +517,13 @@
     CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
     Scene *scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
     scene.name = self.program.header.programName;
-    scene.scaleMode = SKSceneScaleModeFill;
+    if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
+        scene.scaleMode = SKSceneScaleModeFill;
+    } else if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
+        scene.scaleMode = SKSceneScaleModeAspectFit;
+    } else {
+        scene.scaleMode = SKSceneScaleModeFill;
+    }
     self.skView.paused = NO;
     [self.skView presentScene:scene];
     [[ProgramManager sharedProgramManager] setProgram:self.program];
@@ -585,6 +592,7 @@
 - (void)manageAspectRatio:(UIButton *)sender
 {
     self.skView.scene.scaleMode = self.skView.scene.scaleMode == SKSceneScaleModeAspectFit ? SKSceneScaleModeFill : SKSceneScaleModeAspectFit;
+    self.program.header.screenMode = [self.program.header.screenMode isEqualToString:kCatrobatHeaderScreenModeStretch] ? kCatrobatHeaderScreenModeMaximize :kCatrobatHeaderScreenModeStretch;
     [self.skView setNeedsLayout];
     self.menuOpen = YES;
     //pause Scene
