@@ -681,8 +681,8 @@ replacementString:(NSString*)characters
     NSMutableDictionary *payload = (NSMutableDictionary*)alertView.dataTransferMessage.payload;
     if (alertView.tag == kAskUserForUniqueNameAlertViewTag) {
         if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
-            SEL action;
-            if ((NSValue*)payload[kDTPayloadCancel] != nil) {
+            SEL action = NULL;
+            if ((NSValue*)payload[kDTPayloadCancel]) {
                 action = [((NSValue*)payload[kDTPayloadCancel]) pointerValue];
             }
             id target = payload[kDTPayloadAskUserTarget];

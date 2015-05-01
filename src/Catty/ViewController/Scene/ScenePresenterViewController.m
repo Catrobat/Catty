@@ -325,7 +325,6 @@
     CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
     Scene *scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
     scene.name = self.program.header.programName;
-#warning TODO: use header screenMode property here! + create enum
     scene.scaleMode = SKSceneScaleModeFill;
     self.skView.paused = NO;
     [self.skView presentScene:scene];

@@ -328,9 +328,9 @@
 - (void)changeAction
 {
     LCTableViewPickerControl *pickerView = [[LCTableViewPickerControl alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, kPickerControlAgeHeight) title:kLocalizedPaintPickItem value:self.activeAction items:self.actionTypeArray offset:CGPointMake(0, 0)];
-    [pickerView setDelegate:self];
+    pickerView.delegate = self;
     self.navigationController.toolbarHidden = YES;
-    [pickerView setTag:0];
+    pickerView.tag = 0;
     [self setBackAllActions];
     self.drawGesture.enabled = NO;
     self.lineToolGesture.enabled = NO;
