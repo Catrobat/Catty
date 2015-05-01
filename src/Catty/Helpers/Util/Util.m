@@ -731,7 +731,7 @@ replacementString:(NSString*)characters
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         } else {
             // no name duplicate => call action on target
-            SEL action;
+            SEL action = NULL;
             if (((NSValue*)payload[kDTPayloadAskUserAction]) != nil) {
                 action = [((NSValue*)payload[kDTPayloadAskUserAction]) pointerValue];
             }
@@ -781,7 +781,7 @@ replacementString:(NSString*)characters
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         } else {
                 // no name duplicate => call action on target
-            SEL action;
+            SEL action = NULL;
             if (((NSValue*)payload[kDTPayloadAskUserAction]) != nil) {
                 action = [((NSValue*)payload[kDTPayloadAskUserAction]) pointerValue];
             }
@@ -821,7 +821,7 @@ replacementString:(NSString*)characters
             payload[kDTPayloadAskUserPromptValue] = input;
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         } else {
-            SEL action;
+            SEL action = NULL;
             if (((NSValue*)payload[kDTPayloadAskUserAction]) != nil) {
                 action = [((NSValue*)payload[kDTPayloadAskUserAction]) pointerValue];
             }
