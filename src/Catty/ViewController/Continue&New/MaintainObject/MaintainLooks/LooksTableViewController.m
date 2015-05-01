@@ -574,7 +574,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             Look *look = (Look*)payload[kDTPayloadLook];
             [Util askUserForTextAndPerformAction:@selector(renameLookActionToName:look:)
                                           target:self
-                                        cancelAction:nil
+                                    cancelAction:nil
                                       withObject:look
                                      promptTitle:kLocalizedRenameImage
                                    promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
