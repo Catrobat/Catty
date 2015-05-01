@@ -302,23 +302,19 @@
 		92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32511A24E2F400093DA7 /* BaseTransition.m */; };
 		92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
-		CA2D8C991AEDDA7F00A5BDC2 /* XMLAbstractTest.h in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5391A43BDD9002A69A0 /* XMLAbstractTest.h */; };
 		CA2D8C9A1AEDDA7F00A5BDC2 /* XMLAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A53A1A43BDD9002A69A0 /* XMLAbstractTest.m */; };
-		CA2D8C9B1AEDDA7F00A5BDC2 /* XMLParserAbstractTest.h in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A53F1A43BE11002A69A0 /* XMLParserAbstractTest.h */; };
 		CA2D8C9C1AEDDA7F00A5BDC2 /* XMLParserAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5401A43BE11002A69A0 /* XMLParserAbstractTest.m */; };
 		CA2D8C9D1AEDDA7F00A5BDC2 /* XMLParserBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5441A43BE37002A69A0 /* XMLParserBrickTests.m */; };
 		CA2D8C9E1AEDDA7F00A5BDC2 /* XMLParserFormulaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5451A43BE37002A69A0 /* XMLParserFormulaTests.m */; };
 		CA2D8C9F1AEDDA7F00A5BDC2 /* XMLParserHeaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5461A43BE37002A69A0 /* XMLParserHeaderTests.m */; };
 		CA2D8CA01AEDDA7F00A5BDC2 /* XMLParserObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5471A43BE37002A69A0 /* XMLParserObjectTests.m */; };
 		CA2D8CA11AEDDA7F00A5BDC2 /* XMLParserBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5421A43BE29002A69A0 /* XMLParserBlackBoxTests.m */; };
-		CA2D8CA21AEDDA7F00A5BDC2 /* XMLSerializerAbstractTest.h in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A54C1A43BE97002A69A0 /* XMLSerializerAbstractTest.h */; };
 		CA2D8CA31AEDDA7F00A5BDC2 /* XMLSerializerAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A54D1A43BE97002A69A0 /* XMLSerializerAbstractTest.m */; };
 		CA2D8CA41AEDDA7F00A5BDC2 /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5521A43BEC4002A69A0 /* XMLSerializerTests.m */; };
 		CA2D8CA51AEDDA7F00A5BDC2 /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A54F1A43BEA6002A69A0 /* XMLSerializerBlackBoxTests.m */; };
 		CA2D8CA61AEDDA7F00A5BDC2 /* FormulaFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */; };
 		CA2D8CA71AEDDA7F00A5BDC2 /* CustomExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44EC17F079F500624730 /* CustomExtensionsTests.m */; };
 		CA2D8CA81AEDDA7F00A5BDC2 /* ProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247718CD053300314C2B /* ProgramTests.m */; };
-		CA2D8CA91AEDDA7F00A5BDC2 /* BrickTests.h in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A341856227200547C1E /* BrickTests.h */; };
 		CA2D8CAA1AEDDA7F00A5BDC2 /* BrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44EA17F079C700624730 /* BrickTests.m */; };
 		CA2D8CAB1AEDDA7F00A5BDC2 /* ChangeBrightnessByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92345634192E2A1B00464E6B /* ChangeBrightnessByNBrickTests.m */; };
 		CA2D8CAC1AEDDA7F00A5BDC2 /* ChangeGhostEffectByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */; };
@@ -340,13 +336,10 @@
 		CA2D8CBC1AEDDA7F00A5BDC2 /* ComeToFrontBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A371856253B00547C1E /* ComeToFrontBrickTests.m */; };
 		CA2D8CBD1AEDDA7F00A5BDC2 /* SetSizeToBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A32185621FF00547C1E /* SetSizeToBrickTests.m */; };
 		CA2D8CBE1AEDDA7F00A5BDC2 /* PointToBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C107ADC194F156F00D9D7ED /* PointToBrickTests.m */; };
-		CA2D8CBF1AEDDA7F00A5BDC2 /* test.png in Sources */ = {isa = PBXBuildFile; fileRef = 923453C1192D2D5F00464E6B /* test.png */; };
-		CA2D8CC01AEDDA7F00A5BDC2 /* test2.png in Sources */ = {isa = PBXBuildFile; fileRef = 92345632192E270B00464E6B /* test2.png */; };
 		CA2D8CC11AEDDA7F00A5BDC2 /* TurnLeftBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A4B1856270500547C1E /* TurnLeftBrickTests.m */; };
 		CA2D8CC21AEDDA7F00A5BDC2 /* TurnRightBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A4D1856271100547C1E /* TurnRightBrickTests.m */; };
 		CA2D8CC31AEDDA7F00A5BDC2 /* SpriteObjectCopyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26506E1A6566F50050775B /* SpriteObjectCopyTest.m */; };
 		CA2D8CC41AEDDA7F00A5BDC2 /* SensorHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B271217703FB700172837 /* SensorHandlerTests.m */; };
-		CA2D8CC51AEDDA7F00A5BDC2 /* CattyTests-Prefix.pch in Sources */ = {isa = PBXBuildFile; fileRef = B46B270B17703F9400172837 /* CattyTests-Prefix.pch */; };
 		CA2D8CC61AEDDB3200A5BDC2 /* PointToBrickWithoutSpriteObject.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CB2AB281A6BF2590086E5A0 /* PointToBrickWithoutSpriteObject.xml */; };
 		CA2D8CC71AEDDB3200A5BDC2 /* Air_fight_0.5_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = CA97A4491A44F38F008C931B /* Air_fight_0.5_091.xml */; };
 		CA2D8CC81AEDDB3200A5BDC2 /* Air_fight_0.5_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CA97A44A1A44F38F008C931B /* Air_fight_0.5_093.xml */; };
@@ -4488,23 +4481,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA2D8C991AEDDA7F00A5BDC2 /* XMLAbstractTest.h in Sources */,
 				CA2D8C9A1AEDDA7F00A5BDC2 /* XMLAbstractTest.m in Sources */,
-				CA2D8C9B1AEDDA7F00A5BDC2 /* XMLParserAbstractTest.h in Sources */,
 				CA2D8C9C1AEDDA7F00A5BDC2 /* XMLParserAbstractTest.m in Sources */,
 				CA2D8C9D1AEDDA7F00A5BDC2 /* XMLParserBrickTests.m in Sources */,
 				CA2D8C9E1AEDDA7F00A5BDC2 /* XMLParserFormulaTests.m in Sources */,
 				CA2D8C9F1AEDDA7F00A5BDC2 /* XMLParserHeaderTests.m in Sources */,
 				CA2D8CA01AEDDA7F00A5BDC2 /* XMLParserObjectTests.m in Sources */,
 				CA2D8CA11AEDDA7F00A5BDC2 /* XMLParserBlackBoxTests.m in Sources */,
-				CA2D8CA21AEDDA7F00A5BDC2 /* XMLSerializerAbstractTest.h in Sources */,
 				CA2D8CA31AEDDA7F00A5BDC2 /* XMLSerializerAbstractTest.m in Sources */,
 				CA2D8CA41AEDDA7F00A5BDC2 /* XMLSerializerTests.m in Sources */,
 				CA2D8CA51AEDDA7F00A5BDC2 /* XMLSerializerBlackBoxTests.m in Sources */,
 				CA2D8CA61AEDDA7F00A5BDC2 /* FormulaFunctionsTest.m in Sources */,
 				CA2D8CA71AEDDA7F00A5BDC2 /* CustomExtensionsTests.m in Sources */,
 				CA2D8CA81AEDDA7F00A5BDC2 /* ProgramTests.m in Sources */,
-				CA2D8CA91AEDDA7F00A5BDC2 /* BrickTests.h in Sources */,
 				CA2D8CAA1AEDDA7F00A5BDC2 /* BrickTests.m in Sources */,
 				CA2D8CAB1AEDDA7F00A5BDC2 /* ChangeBrightnessByNBrickTests.m in Sources */,
 				CA2D8CAC1AEDDA7F00A5BDC2 /* ChangeGhostEffectByNBrickTests.m in Sources */,
@@ -4526,14 +4515,11 @@
 				CA2D8CBC1AEDDA7F00A5BDC2 /* ComeToFrontBrickTests.m in Sources */,
 				CA2D8CBD1AEDDA7F00A5BDC2 /* SetSizeToBrickTests.m in Sources */,
 				CA2D8CBE1AEDDA7F00A5BDC2 /* PointToBrickTests.m in Sources */,
-				CA2D8CBF1AEDDA7F00A5BDC2 /* test.png in Sources */,
 				CAD740E81AF2D42B00C32937 /* CBStackTests.m in Sources */,
-				CA2D8CC01AEDDA7F00A5BDC2 /* test2.png in Sources */,
 				CA2D8CC11AEDDA7F00A5BDC2 /* TurnLeftBrickTests.m in Sources */,
 				CA2D8CC21AEDDA7F00A5BDC2 /* TurnRightBrickTests.m in Sources */,
 				CA2D8CC31AEDDA7F00A5BDC2 /* SpriteObjectCopyTest.m in Sources */,
 				CA2D8CC41AEDDA7F00A5BDC2 /* SensorHandlerTests.m in Sources */,
-				CA2D8CC51AEDDA7F00A5BDC2 /* CattyTests-Prefix.pch in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
