@@ -95,6 +95,8 @@
     PageIndexCategoryType _lastSelectedBrickCategory;
 }
 
+@dynamic collectionView;
+
 #pragma mark - view events
 - (void)viewDidLoad
 {

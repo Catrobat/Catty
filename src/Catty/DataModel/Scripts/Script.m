@@ -492,7 +492,8 @@
 {
     assert(finalCompletionBlock != nil); // required parameter must NOT be nil!!
 #ifdef DEBUG
-    NSDate *startTime = [NSDate date];
+    NSDate *startTime;
+    startTime = [NSDate date];
 #endif
     __weak Script *weakSelf = self;
     if (finalCompletionBlock) {
@@ -584,6 +585,11 @@
     self.whileSequences = nil;
     [self.brickList makeObjectsPerformSelector:@selector(removeReferences)];
     self.object = nil;
+}
+
+- (void)setDefaultValues
+{
+    // Override this method in Script implementation
 }
 
 @end
