@@ -583,18 +583,13 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         script.animate = YES;
     }
 
-    // determine first visible cell
-    // => check to which script it belongs to and use this script as target to insert new bricks
-    NSUInteger targetScriptIndex = 0;
-    NSArray *visibleCells = [self.collectionView indexPathsForVisibleItems];
-    if ((self.object.scriptList.count > 1) && visibleCells.count) {
-        // find bottommost section
-        for (NSIndexPath *indexPath in visibleCells) {
-            if (indexPath.section > targetScriptIndex) {
-                targetScriptIndex = indexPath.section;
-            }
-        }
-    }
+    
+    
+    NSInteger targetScriptIndex = 0;
+    CGRect visibleRect = (CGRect){.origin = self.collectionView.contentOffset, .size = self.collectionView.bounds.size};
+    CGPoint visiblePoint = CGPointMake(CGRectGetMidX(visibleRect), CGRectGetMidY(visibleRect));
+    NSIndexPath *visibleIndexPath = [self.collectionView indexPathForItemAtPoint:visiblePoint];
+    targetScriptIndex = visibleIndexPath.section;
 
     Brick *brick = (Brick*)scriptOrBrick;
     brick.animate = YES;
