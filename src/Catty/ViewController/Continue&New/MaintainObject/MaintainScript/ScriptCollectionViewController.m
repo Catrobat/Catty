@@ -711,7 +711,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 #pragma mark - Helpers
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     if (self.editing) {
-        NSLog(@"BLAAAAAAAAAAAAAAAAAA");
         [self setEditing:YES animated:NO];
         [self.collectionView reloadData];
     }
