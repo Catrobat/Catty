@@ -551,10 +551,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if (brickCell.scriptOrBrick.isAnimated) {
         [brickCell animate:YES];
     }
-    if (self.isEditing){
+    if (self.isEditing) {
         brickCell.center = CGPointMake(brickCell.center.x + kSelectButtonTranslationOffsetX, brickCell.center.y);
         brickCell.selectButton.alpha = 1.0f;
     }
+    brickCell.enabled = (! self.isEditing);
     return brickCell;
 }
 
@@ -794,7 +795,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 }
                 brickCell.selectButton.alpha = 1.0f;
             }
-        } completion:NULL];
+        } completion:^(BOOL finished) {
+            for (BrickCell *brickCell in self.collectionView.visibleCells) {
+                brickCell.enabled = NO;
+            }
+        }];
     } else {
         self.navigationItem.title = kLocalizedScripts;
         self.navigationItem.rightBarButtonItem.tintColor = UIColor.lightOrangeColor;
@@ -806,7 +811,9 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                  brickCell.selectButton.alpha = 0.0f;
                              }
                          } completion:^(BOOL finished) {
- 
+                             for (BrickCell *brickCell in self.collectionView.visibleCells) {
+                                 brickCell.enabled = YES;
+                             }
                          }];
     }
 }
