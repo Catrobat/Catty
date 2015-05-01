@@ -111,6 +111,7 @@
 {
     [super viewDidAppear:animated];
     [self continueProgramAction:nil withDuration:kfirstSwipeDuration];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -359,17 +360,24 @@
 {
     [[AVAudioSession sharedInstance] setActive:NO error:nil];
     [[AudioManager sharedAudioManager] pauseAllSounds];
+    [[FlashHelper sharedFlashHandler] turnOff];
 }
 
 - (void)resumeAction
 {
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     [[AudioManager sharedAudioManager] resumeAllSounds];
+    if ([FlashHelper sharedFlashHandler].wasTurnedOn == FlashON) {
+        [[FlashHelper sharedFlashHandler] turnOn];
+    }
 }
 
 - (void)continueProgramAction:(UIButton*)sender withDuration:(CGFloat)duration
 {
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    if ([FlashHelper sharedFlashHandler].wasTurnedOn == FlashON) {
+        [[FlashHelper sharedFlashHandler] turnOn];
+    }
     CGFloat animateDuration = 0.0f;
     animateDuration = duration > 0.0001f ? duration : 0.35f;
     
@@ -399,7 +407,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         [previousScene stopProgramWithCompletion:^{
             dispatch_async(dispatch_get_main_queue(), ^{
-                [[FlashHelper sharedFlashHandler] turnOff]; // always turn off flash light when Scene is stopped
+                [[FlashHelper sharedFlashHandler] pause];
                 previousScene.userInteractionEnabled = YES;
                 [self.loadingView hide];
                 [weakSelf.parentViewController.navigationController setToolbarHidden:NO];
@@ -413,7 +421,8 @@
 - (void)restartProgramAction:(UIButton*)sender
 {
 // TODO: NOT YET IMPLEMENTED!!
-    [[FlashHelper sharedFlashHandler] turnOff]; // always turn off flash light when Scene is stopped
+    [[FlashHelper sharedFlashHandler] pause];
+    [[FlashHelper sharedFlashHandler] reset];
     NSError(@"\n\n\n\n\n\n  !!! Not yet implemented !!!\n\n\n");
     abort();
 //    self.view.userInteractionEnabled = NO;
@@ -554,8 +563,7 @@
                                  // pause Scene
                                  SKView * view= self.skView;
                                  view.paused=YES;
-                                 [[AudioManager sharedAudioManager] pauseAllSounds];
-
+                                 [self pauseAction];
                                  if (translate.x < (kWidthSlideMenu) && velocityX > 300) {
                                      [self bounceAnimation];
                                  }
@@ -569,7 +577,7 @@
                                  SKView * view = self.skView;
                                  view.paused = NO;
                                  self.menuOpen = NO;
-                                 [[AudioManager sharedAudioManager] resumeAllSounds];
+                                 [self resumeAction];
                              }];
         } else if (translate.x < (-kWidthSlideMenu/4)  && self.menuOpen == YES) {
             [UIView animateWithDuration:0.25
@@ -580,7 +588,7 @@
                                  SKView * view = self.skView;
                                  view.paused = NO;
                                  self.menuOpen = NO;
-                                 [[AudioManager sharedAudioManager] resumeAllSounds];
+                                 [self resumeAction];
                              }];
         } else if (translate.x > (-kWidthSlideMenu/4) && translate.x < 0.0   && self.menuOpen == YES) {
             [UIView animateWithDuration:0.25
@@ -592,7 +600,7 @@
                                  // pause Scene
                                  SKView * view= self.skView;
                                  view.paused=YES;
-                                 [[AudioManager sharedAudioManager] pauseAllSounds];
+                                 [self pauseAction];
                                  if (translate.x > -(kWidthSlideMenu) && velocityX < -100) {
                                      [self bounceAnimation];
                                  }
