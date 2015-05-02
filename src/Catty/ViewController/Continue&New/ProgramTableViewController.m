@@ -114,12 +114,22 @@ static NSCharacterSet *blockedCharacterSet = nil;
         self.title = self.program.header.programName;
     }
     [self setupToolBar];
+    if(self.showAddObjectActionSheetAtStart) {
+        [self addObjectAction:nil];
+    }
 }
 
 #pragma mark - actions
 - (void)addObjectAction:(id)sender
 {
-    [Util addObjectAlertForProgram:self.program andPerformAction:@selector(addObjectActionWithName:) onTarget:self withCompletion:nil];
+    [Util addObjectAlertForProgram:self.program andPerformAction:@selector(addObjectActionWithName:) onTarget:self withCancel:@selector(cancelAddingObjectFromScriptEditor) withCompletion:nil];
+}
+
+-(void)cancelAddingObjectFromScriptEditor
+{
+    if (self.afterSafeBlock) {
+        self.afterSafeBlock(nil);
+    }
 }
 
 - (void)addObjectActionWithName:(NSString*)objectName
@@ -139,6 +149,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self.navigationController popViewControllerAnimated:YES];
         if (!look) {
             [self deleteObjectForIndexPath:indexPath];
+        }
+        if (self.afterSafeBlock && look ) {
+            NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:kObjectSectionIndex];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:kObjectSectionIndex];
+            self.afterSafeBlock([self.program.objectList objectAtIndex:(kBackgroundObjectIndex + indexPath.section + indexPath.row)]);
+        }else if (self.afterSafeBlock && !look){
+            self.afterSafeBlock(nil);
         }
     };
     [self.navigationController pushViewController:ltvc animated:NO];

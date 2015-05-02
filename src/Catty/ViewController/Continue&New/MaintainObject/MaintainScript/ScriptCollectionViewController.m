@@ -1308,9 +1308,14 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     if([brick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
         Brick<BrickObjectProtocol> *objectBrick = (Brick<BrickObjectProtocol>*)brick;
         if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
-            [Util addObjectAlertForProgram:self.object.program andPerformAction:@selector(addObjectWithName:andCompletion:) onTarget:self withCompletion:^(NSString *objectName){
-                [objectBrick setObject:[Util objectWithName:objectName forProgram:self.object.program] forLineNumber:line andParameterNumber:parameter];
-            }];
+            ProgramTableViewController *ptvc = [self.storyboard instantiateViewControllerWithIdentifier:kProgramTableViewControllerIdentifier];
+            [ptvc setProgram:self.object.program];
+            ptvc.showAddObjectActionSheetAtStart = YES;
+            ptvc.afterSafeBlock =  ^(SpriteObject* object) {
+                [objectBrick setObject:object forLineNumber:line andParameterNumber:parameter];
+                [self.navigationController popToViewController:self animated:YES];
+            };
+            [self.navigationController pushViewController:ptvc animated:YES];
             return;
         } else {
             [objectBrick setObject:[Util objectWithName:(NSString*)data forProgram:self.object.program] forLineNumber:line andParameterNumber:parameter];
