@@ -813,7 +813,9 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                          } completion:^(BOOL finished) {
                              for (BrickCell *brickCell in self.collectionView.visibleCells) {
                                  brickCell.enabled = YES;
+                               brickCell.selectButton.selected = NO;
                              }
+                           self.selectedIndexPaths = [NSMutableArray new];
                          }];
     }
 }
