@@ -1396,6 +1396,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             ltvc.showAddLookActionSheetAtStartForObject = NO;
             ltvc.afterSafeBlock = ^(Look* look) {
                 [lookBrick setLook:look forLineNumber:line andParameterNumber:parameter];
+                [self.collectionView reloadData];
                 [self.navigationController popViewControllerAnimated:YES];
             };
             [self.navigationController pushViewController:ltvc animated:YES];
@@ -1412,6 +1413,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             ltvc.showAddSoundActionSheetAtStart = YES;
             ltvc.afterSafeBlock =  ^(Sound* sound) {
                 [soundBrick setSound:sound forLineNumber:line andParameterNumber:parameter];
+                [self.collectionView reloadData];
                 [self.navigationController popViewControllerAnimated:YES];
             };
             [self.navigationController pushViewController:ltvc animated:YES];
