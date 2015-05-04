@@ -97,11 +97,6 @@
     return NO;
 }
 
-- (void)setDefaultValues
-{
-    return; // nothing to do
-}
-
 - (void)addBrick:(Brick*)brick atIndex:(NSUInteger)index
 {
     CBAssert([self.brickList indexOfObject:brick] == NSNotFound);
@@ -521,8 +516,9 @@
                                  finalCompletionBlock:(dispatch_block_t)finalCompletionBlock
 {
     assert(finalCompletionBlock != nil); // required parameter must NOT be nil!!
-#if DEBUG == 1
-    NSDate *startTime = [NSDate date];
+#if DEBUG == 1 
+    NSDate *startTime;
+    startTime = [NSDate date];
 #endif // DEBUG == 1
     __weak Script *weakSelf = self;
     if (finalCompletionBlock) {
@@ -628,6 +624,11 @@
     self.whileSequences = nil;
     [self.brickList makeObjectsPerformSelector:@selector(removeReferences)];
     self.object = nil;
+}
+
+- (void)setDefaultValues
+{
+    // Override this method in Script implementation
 }
 
 @end

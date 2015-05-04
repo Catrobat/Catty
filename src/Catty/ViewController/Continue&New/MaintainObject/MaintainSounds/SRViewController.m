@@ -28,6 +28,7 @@
 #import "TimerLabel.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 
+
 @interface SRViewController ()
 @property (nonatomic,strong)Sound *sound;
 @property (nonatomic,strong)NSString *filePath;
@@ -47,6 +48,7 @@
     [super viewDidLoad];
         // Do any additional setup after loading the view, typically from a nib.
     [self setupToolBar];
+    
     self.record.frame = CGRectMake(self.view.frame.size.width / 2.0 - 125, self.view.frame.size.height * 0.4, 250, 250);
 
     self.timerLabel = [[TimerLabel alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height * 0.2, self.view.frame.size.width, 40)];
@@ -80,6 +82,11 @@
     [self.timerLabel reset];
     [self.record setSelected:NO];
     self.recorder = nil;
+    if(self.soundsTableViewController.afterSafeBlock)
+    {
+        self.soundsTableViewController.afterSafeBlock(nil);
+    }
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -164,7 +171,7 @@
                                              otherButtonTitles:nil];
         [alert show];
     }
-    [self.record setTitle:@"Record" forState:UIControlStateNormal];
+    [self.record setTitle:kLocalizedRecording forState:UIControlStateNormal];
 }
 
     //- (void)updateProgressView
@@ -219,6 +226,11 @@
         [dnc postNotificationName:kRecordAddedNotification
                            object:nil
                          userInfo:@{ kUserInfoSound : self.sound}];
+    }else{
+        if(self.soundsTableViewController.afterSafeBlock)
+        {
+            self.soundsTableViewController.afterSafeBlock(nil);
+        }
     }
     [self.navigationController popViewControllerAnimated:YES];
 }

@@ -101,6 +101,8 @@
     return _placeHolderView;
 }
 
+@dynamic collectionView;
+
 #pragma mark - view events
 - (void)viewDidLoad
 {

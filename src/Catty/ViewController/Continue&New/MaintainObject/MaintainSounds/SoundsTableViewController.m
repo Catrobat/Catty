@@ -151,6 +151,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
             }
         }
     }
+    if (self.afterSafeBlock) {
+        self.afterSafeBlock(nil);
+    }
 }
 - (void)recordAdded:(NSNotification*)notification
 {
@@ -172,6 +175,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 self.isAllowed = NO;
             }
         }
+    }
+    if (self.afterSafeBlock) {
+        self.afterSafeBlock(nil);
     }
 }
 
@@ -590,6 +596,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [self stopAllSounds];
             SRViewController *soundRecorderViewController;
             soundRecorderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kSoundRecorderViewControllerIdentifier];
+            soundRecorderViewController.soundsTableViewController = self;
             [self showViewController:soundRecorderViewController sender:self];
         } else if (buttonIndex == 1) {
             // Select music track
@@ -598,6 +605,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
             AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
             if (! [delegate.fileManager existPlayableSoundsInDirectory:delegate.fileManager.documentsDirectory]) {
                 [Util alertWithText:kLocalizedNoImportedSoundsFoundDescription];
+                if(self.afterSafeBlock) {
+                    self.afterSafeBlock(nil);
+                }
                 return;
             }
             [self stopAllSounds];
@@ -606,7 +616,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
             soundPickerTVC.directory = delegate.fileManager.documentsDirectory;
             UINavigationController *navigationController = [[UINavigationController alloc]
                                                             initWithRootViewController:soundPickerTVC];
-            [self presentViewController:navigationController animated:YES completion:NULL];
+            [self presentViewController:navigationController animated:YES completion:^{
+                if(self.afterSafeBlock) {
+                    self.afterSafeBlock(nil);
+                }
+            }];
+        }
+    }else{
+        if(self.afterSafeBlock) {
+            self.afterSafeBlock(nil);
         }
     }
 }
