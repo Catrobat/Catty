@@ -42,6 +42,7 @@
     return ^{
         NSDebug(@"Performing: %@", self.description);
         FlashHelper *helper = [FlashHelper sharedFlashHandler];
+#warning other queue (serial queue only!!)
         [helper turnOn];
     };
 }
