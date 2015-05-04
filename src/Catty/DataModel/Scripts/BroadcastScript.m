@@ -47,14 +47,9 @@
     return ret;
 }
 
-- (void)signalForWaitingBroadcasts
-{
-    [self.object.program signalForWaitingBroadcastWithMessage:self.receivedMessage];
-}
-
 - (void)setDefaultValues
 {
-    self.receivedMessage = [NSString stringWithString:kLocalizedBroadcastDefaultMessage];
+    self.receivedMessage = [NSString stringWithString:kLocalizedMessage1];
 }
 
 - (void)setMessage:(NSString*)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
@@ -66,6 +61,11 @@
 - (NSString *)messageForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.receivedMessage;
+}
+
+- (void)signalForWaitingBroadcasts
+{
+    [self.object.program signalForWaitingBroadcastWithMessage:self.receivedMessage];
 }
 
 @end

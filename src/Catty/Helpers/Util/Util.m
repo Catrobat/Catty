@@ -201,6 +201,9 @@
                                                                 cancelButtonTitle:kLocalizedCancel
                                                            destructiveButtonTitle:destructiveButtonTitle
                                                            otherButtonTitlesArray:otherButtonTitles];
+    [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:0 green:37.0f/255.0f blue:52.0f/255.0f alpha:0.95f]];
+    [actionSheet setButtonTextColor:[UIColor whiteColor]];
+
 //    [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:1.0f]];
 //    [actionSheet setButtonTextColor:[UIColor lightOrangeColor]];
 //    [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
@@ -405,7 +408,7 @@
                                                              tag:kAskUserForUniqueNameAlertViewTag
                                                            value:value];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionAskUserForUniqueName
-                                                                  withPayload:[payload mutableCopy]];
+                                                                  withPayload:payload];
 }
 
 + (void)askUserForReportMessageAndPerformAction:(SEL)action
@@ -435,7 +438,7 @@
                                                              tag:kAskUserForReportMessageAlertViewTag
                                                            value:@""];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionReportMessage
-                                                                  withPayload:[payload mutableCopy]];
+                                                                  withPayload:payload];
 }
 
 + (void)askUserForTextAndPerformAction:(SEL)action
@@ -520,7 +523,7 @@
                                                              tag:kAskUserForVariableNameAlertViewTag
                                                            value:@""];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionVariableName
-                                                                  withPayload:[payload mutableCopy]];
+                                                                  withPayload:payload];
 }
 
 
@@ -679,7 +682,7 @@ replacementString:(NSString*)characters
     if (alertView.tag == kAskUserForUniqueNameAlertViewTag) {
         if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
             SEL action = NULL;
-            if ((NSValue*)payload[kDTPayloadCancel] != nil) {
+            if ((NSValue*)payload[kDTPayloadCancel]) {
                 action = [((NSValue*)payload[kDTPayloadCancel]) pointerValue];
             }
             id target = payload[kDTPayloadAskUserTarget];
@@ -728,7 +731,7 @@ replacementString:(NSString*)characters
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         } else {
             // no name duplicate => call action on target
-            SEL action;
+            SEL action = NULL;
             if (((NSValue*)payload[kDTPayloadAskUserAction]) != nil) {
                 action = [((NSValue*)payload[kDTPayloadAskUserAction]) pointerValue];
             }
@@ -778,7 +781,7 @@ replacementString:(NSString*)characters
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         } else {
                 // no name duplicate => call action on target
-            SEL action;
+            SEL action = NULL;
             if (((NSValue*)payload[kDTPayloadAskUserAction]) != nil) {
                 action = [((NSValue*)payload[kDTPayloadAskUserAction]) pointerValue];
             }
@@ -818,7 +821,7 @@ replacementString:(NSString*)characters
             payload[kDTPayloadAskUserPromptValue] = input;
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         } else {
-            SEL action;
+            SEL action = NULL;
             if (((NSValue*)payload[kDTPayloadAskUserAction]) != nil) {
                 action = [((NSValue*)payload[kDTPayloadAskUserAction]) pointerValue];
             }
@@ -970,12 +973,5 @@ replacementString:(NSString*)characters
     }
     return messages;
 }
-
-#pragma mark - Macros
-
-void CBAssertIfNotMainThread(void) {
-    CBAssert(NSThread.isMainThread, @"\nERROR: Not on main thread.\n\nSet breakpoint on CBAssertIfNotMainThread to find out where.\n\nStacktrace: %@", [NSThread callStackSymbols]);
-}
-
 
 @end

@@ -614,9 +614,7 @@
     if (dictionary) {
         NSNumber *freeFileSystemSizeInBytes = [dictionary objectForKey:NSFileSystemFreeSize];
         totalFreeSpace = [freeFileSystemSizeInBytes unsignedLongLongValue];
-#if !kIsRelease // kIsRelease
         NSDebug(@"Memory Capacity of %llu MiB with %llu MiB Free memory available.", (([[dictionary objectForKey: NSFileSystemSize] unsignedLongLongValue]/1024ll)/1024ll), ((totalFreeSpace/1024ll)/1024ll));
-#endif // kIsRelease
     } else {
         NSError(@"Error Obtaining System Memory Info: Domain = %@, Code = %ld", [error domain], (long)[error code]);
     }

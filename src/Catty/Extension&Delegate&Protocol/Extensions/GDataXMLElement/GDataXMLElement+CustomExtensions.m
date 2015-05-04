@@ -193,10 +193,12 @@
 {
     [XMLError exceptionIf:[context.currentPositionStack isEmpty] equals:YES
                   message:@"Can't pop xml element from stack. Stack is empty!!"];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-variable" // ignore unused variable warning
+    NSString *name = [context.currentPositionStack popXmlElementName];
+#pragma clang diagnostic pop
     if (context.currentPositionStack) {
-        id stackElement;
-        stackElement = [context.currentPositionStack popXmlElementName];
-        NSDebug(@"- [%@] removed from stack", stackElement);
+        NSDebug(@"- [%@] removed from stack", name);
     }
     [self addChild:child];
 }
@@ -204,7 +206,7 @@
 - (BOOL)isEqualToElement:(GDataXMLElement*)node
 {
     if(![self.decodedName isEqualToString:node.decodedName]) {
-        NSDebug(@"GDataXMLElements not equal: tag names not equal (%@ != %@)!", self.name, node.name);
+        NSLog(@"GDataXMLElements not equal: tag names not equal (%@ != %@)!", self.name, node.name);
     }
     
     NSUInteger attributesCount = [self.attributes count];

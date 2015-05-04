@@ -41,7 +41,7 @@
 
 @protocol BrickCellDelegate<NSObject>
 @optional
-- (void)BrickCell:(BrickCell*)brickCell didSelectBrickCellButton:(SelectButton*)selectButton;
+- (void)brickCell:(BrickCell*)brickCell didSelectBrickCellButton:(SelectButton*)selectButton;
 @end
 
 @interface BrickCell : UICollectionViewCell<BrickCellProtocol>
@@ -58,7 +58,7 @@
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract
 - (BOOL)isScriptBrick;
 - (void)selectedState:(BOOL)selected setEditingState:(BOOL)editing;
-- (void)animateBrick:(BOOL)animate;
+- (void)animate:(BOOL)animate;
 - (void)setupBrickCell;
 
 @end

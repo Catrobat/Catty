@@ -32,6 +32,16 @@
     return NO;
 }
 
+- (BOOL)isAnimateable
+{
+    return YES;
+}
+
+- (BOOL)isIfLogicBrick
+{
+    return YES;
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedElse;

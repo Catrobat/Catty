@@ -34,7 +34,7 @@
 
 - (void)testNumberOfElementsAfterPushing
 {
-    assert(kMinNumberOfStackElements < kMaxNumberOfStackElements);
+    CBAssert(kMinNumberOfStackElements < kMaxNumberOfStackElements);
     CBStack *stack = [CBStack new];
     for (NSUInteger round = 0; round < kNumberOfRoundsToTest; ++round) {
         NSUInteger numberOfElementsToPush = (arc4random()
@@ -45,14 +45,14 @@
         }
         XCTAssertEqual(stack.numberOfElements, numberOfElementsToPush,
                        @"Number of elements on CBStack is %lu but should be %lu",
-                       stack.numberOfElements, numberOfElementsToPush);
+                       (unsigned long)stack.numberOfElements, (unsigned long)numberOfElementsToPush);
         [stack popAllElements];
     }
 }
 
 - (void)testNumberOfElementsAfterPopping
 {
-    assert(kMinNumberOfStackElements < kMaxNumberOfStackElements);
+    CBAssert(kMinNumberOfStackElements < kMaxNumberOfStackElements);
     CBStack *stack = [CBStack new];
     for (NSUInteger round = 0; round < kNumberOfRoundsToTest; ++round) {
         for (NSUInteger elementNumber = 0; elementNumber < kMaxNumberOfStackElements; ++elementNumber) {
@@ -67,7 +67,8 @@
         }
         XCTAssertEqual(stack.numberOfElements, (kMaxNumberOfStackElements - numberOfElementsToPop),
                        @"Number of remaining elements on CBStack is %lu but should be %lu",
-                       stack.numberOfElements, (kMaxNumberOfStackElements - numberOfElementsToPop));
+                       (unsigned long)stack.numberOfElements,
+                       (unsigned long)(kMaxNumberOfStackElements - numberOfElementsToPop));
         [stack popAllElements];
     }
 }

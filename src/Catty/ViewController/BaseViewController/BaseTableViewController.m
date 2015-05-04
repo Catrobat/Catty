@@ -102,9 +102,9 @@
     return _dataCache;
 }
 
-- (PlaceHolderView *)placeHolderView
+- (PlaceHolderView*)placeHolderView
 {
-    if (!_placeHolderView) {
+    if (! _placeHolderView) {
         CGFloat height = __tg_ceil(CGRectGetHeight(self.view.bounds) / 4.0f);
         _placeHolderView = [[PlaceHolderView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds) / 2.0f - height, CGRectGetWidth(self.view.bounds), height)];
         [self.view insertSubview:_placeHolderView aboveSubview:self.tableView];
@@ -425,8 +425,6 @@
         [hud removeFromSuperview];
     }];
 }
-
-#pragma mark - Public 
 
 - (void)showPlaceHolder:(BOOL)show
 {

@@ -148,7 +148,6 @@
 - (void)setupBrickCell
 {
     [self renderSubViews];
-    
     if (self.editing) {
         if (self.frame.origin.x == 0.0f) {
             self.center = CGPointMake(self.center.x + kSelectButtonTranslationOffsetX, self.center.y);
@@ -221,8 +220,8 @@
 - (void)selectButtonSelected:(id)sender
 {
     if ([sender isKindOfClass:SelectButton.class]) {
-        if ([self.delegate respondsToSelector:@selector(BrickCell:didSelectBrickCellButton:)]) {
-            [self.delegate BrickCell:self didSelectBrickCellButton:self.selectButton];
+        if ([self.delegate respondsToSelector:@selector(brickCell:didSelectBrickCellButton:)]) {
+            [self.delegate brickCell:self didSelectBrickCellButton:self.selectButton];
         }
     }
 }
@@ -512,22 +511,29 @@
 }
 
 #pragma mark - animations
-- (void)animateBrick:(BOOL)animate
+- (void)animate:(BOOL)animate
 {
-    if (animate) {
-        CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
-        animation.keyPath = @"transform";
-        animation.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeRotation((CGFloat)M_PI/200.0f, 0.1f, 0.1f, 0.1f)],
-                              [NSValue valueWithCATransform3D:CATransform3DMakeRotation((CGFloat)M_PI/200.0f, -0.1f, -0.1f, -0.1f)]];
-        animation.autoreverses = YES ;
-        animation.repeatCount = 20;
-        animation.duration = 0.1f ;
-        [self.layer addAnimation:animation forKey:@"whobble"];
-    } else {
-        [self.layer removeAllAnimations];
+    self.scriptOrBrick.animate = animate;
+    if (! animate) {
+        return;
     }
+    self.alpha = 0.4f;
+    NSDate *startTime = [NSDate date];
+    [UIView animateWithDuration:0.25
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                                | UIViewAnimationOptionRepeat
+                                | UIViewAnimationOptionAutoreverse
+                                | UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
+                         [UIView setAnimationRepeatCount:4];
+                         self.alpha = 1.0f;
+                     }
+                     completion:^(BOOL finished) {
+                         self.alpha = 1.0f;
+                         NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:startTime];
+                         self.scriptOrBrick.animate = (duration < 2.0f);
+    }];
 }
-
-
 
 @end

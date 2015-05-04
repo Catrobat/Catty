@@ -41,8 +41,24 @@
 
 - (BOOL)isEqualToLoadingInfo:(ProgramLoadingInfo*)loadingInfo
 {
-    return ([self.visibleName isEqualToString:loadingInfo.visibleName]
-            && [self.programID isEqualToString:loadingInfo.programID]);
+    if ([self.visibleName isEqualToString:loadingInfo.visibleName]) {
+        NSString *programID = self.programID;
+        NSString *cmpProgramID = loadingInfo.programID;
+        if ([programID isEqualToString:kNoProgramIDYetPlaceholder]) {
+            programID = nil;
+        }
+        if ([cmpProgramID isEqualToString:kNoProgramIDYetPlaceholder]) {
+            cmpProgramID = nil;
+        }
+
+        if (programID == nil && cmpProgramID == nil) {
+            return YES;
+        }
+        if ([programID isEqualToString:cmpProgramID]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 @end

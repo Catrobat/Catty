@@ -25,7 +25,6 @@
 #import "FXBlurView.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "BrickCell.h"
-#import "BrickDetailViewController.h"
 #import "FXBlurView.h"
 #import "math.h"
 
@@ -42,7 +41,7 @@
     CGPoint _animatedFromPosition;
 }
 
-- (instancetype)initWithViewToAnimate:(UIView *)view
+- (instancetype)initWithViewToAnimate:(UIView*)view
 {
     if (self = [super init]) {
         _animateView = view;
@@ -50,7 +49,7 @@
     return self;
 }
 
-- (void)updateAnimationViewWithView:(UIView *)view
+- (void)updateAnimationViewWithView:(UIView*)view
 {
     self.animateView = [view snapshotViewAfterScreenUpdates:YES];
     self.originalView = view;
@@ -71,7 +70,7 @@
         case TransitionModePresent: {
             for (UIViewController *controller in fromVC.childViewControllers) {
                 if ([controller isKindOfClass:ScriptCollectionViewController.class]) {
-                    scvc = (ScriptCollectionViewController *)controller;
+                    scvc = (ScriptCollectionViewController*)controller;
                     break;
                 }
             }
@@ -99,7 +98,7 @@
             [transitionContext.containerView addSubview:self.blurView];
             [transitionContext.containerView addSubview:toVC.view];
             [transitionContext.containerView addSubview:self.animateView];
-            
+
             __weak BrickTransition *weakself = self;
             fromVC.view.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
             
@@ -118,8 +117,7 @@
                                  [transitionContext completeTransition:YES];
                              }];
         }
-            break;
-            
+        break;
         case TransitionModeDismiss: {
             for (UIViewController *controller in toVC.childViewControllers) {
                 if ([controller isKindOfClass:ScriptCollectionViewController.class]) {
@@ -153,7 +151,7 @@
                                  [transitionContext completeTransition:YES];
                              }];
         }
-            break;
+        break;
     }
 }
 

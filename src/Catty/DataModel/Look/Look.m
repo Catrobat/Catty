@@ -82,11 +82,10 @@
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
 {
     if(!context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
-    
+
     Look *copiedLook = [[Look alloc] init];
     copiedLook.fileName = [NSString stringWithString:self.fileName];
     copiedLook.name = [NSString stringWithString:self.name];
-    
     [context updateReference:self WithReference:copiedLook];
     return copiedLook;
 }

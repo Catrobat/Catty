@@ -40,6 +40,7 @@ static FlashHelper* sharedFlashHandler = nil;
     @synchronized(self) {
         if (sharedFlashHandler == nil) {
             sharedFlashHandler = [[[self class] alloc] init];
+            sharedFlashHandler.wasTurnedOn = FlashUninitialized;
         }
     }
     return sharedFlashHandler;
@@ -67,6 +68,7 @@ static FlashHelper* sharedFlashHandler = nil;
         [self.session addOutput:output];
         [self.session commitConfiguration];
         [self.session startRunning];
+        sharedFlashHandler.wasTurnedOn = FlashON;
     }
 
 }
@@ -74,8 +76,22 @@ static FlashHelper* sharedFlashHandler = nil;
 {
     if (self.session.isRunning) {
         [self.session stopRunning];
+        sharedFlashHandler.wasTurnedOn = FlashOFF;
     }
 
+}
+
+- (void)reset
+{
+    sharedFlashHandler.wasTurnedOn = FlashUninitialized;
+}
+
+- (void)pause
+{
+    if (self.session.isRunning) {
+        [self.session stopRunning];
+        sharedFlashHandler.wasTurnedOn = FlashOFF;
+    }
 }
 
 @end

@@ -200,6 +200,9 @@
 "Delete Objects" = "Delete Objects";
 
 /* No comment provided by engineer. */
+"Delete Program" = "Delete Program";
+
+/* No comment provided by engineer. */
 "Delete Programs" = "Delete Programs";
 
 /* No comment provided by engineer. */
@@ -291,6 +294,9 @@
 
 /* No comment provided by engineer. */
 "Email is not valid!" = "Email is not valid!";
+
+/* No comment provided by engineer. */
+"End If" = "End If";
 
 /* No comment provided by engineer. */
 "End of Loop" = "End of Loop";
@@ -393,9 +399,6 @@
 
 /* No comment provided by engineer. */
 "If %@ is true then" = "If %@ is true then";
-
-/* No comment provided by engineer. */
-"If End" = "If End";
 
 /* No comment provided by engineer. */
 "If on edge, bounce" = "If on edge, bounce";
@@ -764,7 +767,7 @@
 "Rename object" = "Rename object";
 
 /* No comment provided by engineer. */
-"Rename program" = "Rename program";
+"Rename Program" = "Rename Program";
 
 /* No comment provided by engineer. */
 "Rename sound" = "Rename sound";

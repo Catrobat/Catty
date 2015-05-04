@@ -24,6 +24,11 @@
 
 @implementation ForeverBrick
 
+- (BOOL)isAnimateable
+{
+    return YES;
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedForever;

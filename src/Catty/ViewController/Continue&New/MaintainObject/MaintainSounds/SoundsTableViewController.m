@@ -179,14 +179,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (self.afterSafeBlock) {
         self.afterSafeBlock(nil);
     }
-
 }
 
 #pragma mark - actions
 - (void)editAction:(id)sender
 {
     NSMutableArray *options = [NSMutableArray array];
-    if ([self.object.soundList count]) {
+    if (self.object.soundList.count) {
         [options addObject:kLocalizedDeleteSounds];
     }
     if (self.useDetailCells) {
@@ -194,12 +193,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else {
         [options addObject:kLocalizedShowDetails];
     }
-    [Util actionSheetWithTitle:kLocalizedEditSounds
-                      delegate:self
-        destructiveButtonTitle:nil
-             otherButtonTitles:options
-                           tag:kEditSoundsActionSheetTag
-                          view:self.navigationController.view];
+    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditSounds
+                                                         delegate:self
+                                           destructiveButtonTitle:nil
+                                                otherButtonTitles:options
+                                                              tag:kEditSoundsActionSheetTag
+                                                             view:self.navigationController.view];
+    if (self.object.soundList.count) {
+        [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
+    }
 }
 
 - (void)addSoundToObjectAction:(Sound*)sound
@@ -476,10 +478,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                                   tag:kEditSoundActionSheetTag
                                                                  view:self.navigationController.view];
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        NSDictionary *payload = @{ kDTPayloadSound : [self.object.soundList objectAtIndex:indexPath.row] };
-        DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionEditSound
-                                                                     withPayload:[payload mutableCopy]];
-        actionSheet.dataTransferMessage = message;
+        actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditSound
+                                                                        withPayload:@{ kDTPayloadSound : [self.object.soundList objectAtIndex:indexPath.row] }];
     } else if (index == 1) {
         // Delete button was pressed
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];

@@ -38,11 +38,17 @@
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readonly) kBrickType brickType;
 @property (nonatomic, strong, readonly) NSString *brickTitle;
+@property (nonatomic, weak) SpriteObject *object;
+@property (strong, nonatomic) NSMutableArray *brickList;
+@property (nonatomic, getter=isAnimated) BOOL animate;
+
 - (BOOL)isSelectableForObject;
 
-@property (nonatomic, weak) SpriteObject *object;
-@property (nonatomic, strong) NSString *action;
-@property (strong, nonatomic) NSMutableArray *brickList;
+- (BOOL)isAnimateable;
+
+- (void)setDefaultValues;
+
+- (void)addBrick:(Brick*)brick atIndex:(NSUInteger)index;
 
 - (void)computeSequenceList;
 
@@ -52,15 +58,13 @@
 
 - (void)restart;
 
-+ (Script*)scriptWithType:(kBrickType)type andCategory:(kBrickCategoryType)category;
-
-- (instancetype)initWithType:(kBrickType)type andCategory:(kBrickCategoryType)category;
-
 - (void)stop;
 
 - (NSString*)description;
 
 - (BOOL)isEqualToScript:(Script*)script;
+
+- (void)removeFromObject;
 
 - (void)removeReferences;
 

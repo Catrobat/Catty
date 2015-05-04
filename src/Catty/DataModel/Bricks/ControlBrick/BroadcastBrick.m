@@ -41,21 +41,23 @@
     return self;
 }
 
+- (void)setDefaultValues
+{
+    self.broadcastMessage = [NSString stringWithString:kLocalizedMessage1];
+}
+
 - (void)performBroadcast
 {
     NSDebug(@"Performing: %@", [self description]);
     [self.script.object.program broadcast:self.broadcastMessage senderScript:self.script];
 }
 
-- (void)setDefaultValues
+- (void)setMessage:(NSString*)message forLineNumber:(NSInteger)lineNumber
+andParameterNumber:(NSInteger)paramNumber
 {
-    self.broadcastMessage = [NSString stringWithString:kLocalizedBroadcastDefaultMessage];
-}
-
-- (void)setMessage:(NSString *)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    if(message)
+    if (message) {
         self.broadcastMessage = message;
+    }
 }
 
 - (NSString*)messageForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber

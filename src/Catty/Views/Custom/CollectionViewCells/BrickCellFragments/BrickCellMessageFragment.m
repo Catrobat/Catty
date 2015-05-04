@@ -53,23 +53,25 @@ static NSMutableArray *messages = nil;
         [options addObject:kLocalizedNewElement];
         int currentOptionIndex = 0;
         int optionIndex = 1;
-        if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickMessageProtocol)]) {
+        if ([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickMessageProtocol)]) {
             Brick<BrickMessageProtocol> *messageBrick = (Brick<BrickMessageProtocol>*)brickCell.scriptOrBrick;
             NSString *currentMessage = [messageBrick messageForLineNumber:line andParameterNumber:parameter];
             NSArray *messages;
-            if([brickCell.scriptOrBrick isKindOfClass:[Script class]])
+            if ([brickCell.scriptOrBrick isKindOfClass:[Script class]]) {
                 messages = [Util allMessagesForProgram:((Script*)brickCell.scriptOrBrick).object.program];
-            else
+            } else {
                 messages = [Util allMessagesForProgram:messageBrick.script.object.program];
-            for(NSString *message in messages) {
-                if(![options containsObject:message]) {
+            }
+            for (NSString *message in messages) {
+                if (! [options containsObject:message]) {
                     [options addObject:message];
-                    if([message isEqualToString:currentMessage])
+                    if ([message isEqualToString:currentMessage]) {
                         currentOptionIndex = optionIndex;
+                    }
                     optionIndex++;
                 }
             }
-            if(currentMessage && ![options containsObject:currentMessage]) {
+            if (currentMessage && ![options containsObject:currentMessage]) {
                 [options addObject:currentMessage];
                 currentOptionIndex = optionIndex;
             }

@@ -41,6 +41,11 @@
     return self;
 }
 
+- (void)setDefaultValues
+{
+    self.broadcastMessage = [NSString stringWithString:kLocalizedMessage1];
+}
+
 - (void)performBroadcastAndWaitWithCompletion:(dispatch_block_t)completionBlock
 {
     NSDebug(@"Performing: %@", self.description);
@@ -60,11 +65,6 @@
 {
     // acts like a normal broadcast!
     [self.script.object.program broadcast:self.broadcastMessage senderScript:self.script];
-}
-
-- (void)setDefaultValues
-{
-    self.broadcastMessage = [NSString stringWithString:kLocalizedBroadcastDefaultMessage];
 }
 
 - (void)setMessage:(NSString *)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber

@@ -42,7 +42,7 @@
 #pragma mark - Copy
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {
-    if(!context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
+    if(! context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
     
     UserVariable *variable = [[self class] new];
     variable.name = [NSString stringWithString:self.name];

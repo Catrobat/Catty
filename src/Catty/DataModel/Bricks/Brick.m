@@ -50,20 +50,6 @@
 
 #pragma mark - NSObject
 
-+ (Brick *)brickWithType:(kBrickType)type andCategory:(kBrickCategoryType)category
-{
-    return [[[self class] alloc] initWithType:type andCategory:category];
-}
-
-- (instancetype)initWithType:(kBrickType)type andCategory:(kBrickCategoryType)category {
-    self = [super init];
-    if (self) {
-        self.brickType = type;
-        self.brickCategoryType = category;
-    }
-    return self;
-}
-
 - (id)init
 {
     self = [super init];
@@ -79,6 +65,26 @@
 - (BOOL)isSelectableForObject
 {
     return YES;
+}
+
+- (BOOL)isAnimateable
+{
+    return NO;
+}
+
+- (BOOL)isFormulaBrick
+{
+    return ([self conformsToProtocol:@protocol(BrickFormulaProtocol)]);
+}
+
+- (BOOL)isIfLogicBrick
+{
+    return NO;
+}
+
+- (BOOL)isLoopBrick
+{
+    return NO;
 }
 
 - (NSString*)description
@@ -145,42 +151,53 @@
 // This function must be overriden by Bricks with references to other Bricks (e.g. ForeverBrick)
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {
-    return [self mutableCopyWithContext:context AndErrorReporting:true];
+    return [self mutableCopyWithContext:context AndErrorReporting:YES];
 }
 
 
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context AndErrorReporting:(BOOL)reportError
 {
-    if(!context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
-    
+    if (! context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
     Brick *brick = [[self class] new];
     brick.brickCategoryType = self.brickCategoryType;
     brick.brickType = self.brickType;
     [context updateReference:self WithReference:brick];
-    
+
     NSDictionary *properties = [Util propertiesOfInstance:self];
-    
     for (NSString *propertyKey in properties) {
+        if ([propertyKey isEqualToString:@"animate"]) {
+            continue; // ignore "animate" property
+        }
         id propertyValue = [properties objectForKey:propertyKey];
-        
-        if([propertyValue conformsToProtocol:@protocol(CBMutableCopying)]) {
+        if ([propertyValue conformsToProtocol:@protocol(CBMutableCopying)]) {
             id updatedReference = [context updatedReferenceForReference:propertyValue];
-            if(updatedReference) {
+            if (updatedReference) {
                 [brick setValue:updatedReference forKey:propertyKey];
             } else {
                 id propertyValueClone = [propertyValue mutableCopyWithContext:context];
                 [brick setValue:propertyValueClone forKey:propertyKey];
             }
-        } else if([propertyValue conformsToProtocol:@protocol(NSMutableCopying)]) {
+        } else if ([propertyValue conformsToProtocol:@protocol(NSMutableCopying)]) {
             // standard datatypes like NSString are already conforming to the NSMutableCopying protocol
             id propertyValueClone = [propertyValue mutableCopyWithZone:nil];
             [brick setValue:propertyValueClone forKey:propertyKey];
-        } else if(reportError) {
+        } else if (reportError) {
             NSError(@"Property %@ of class %@ in Brick of class %@ does not conform to CBMutableCopying protocol. Implement mutableCopyWithContext method in %@", propertyKey, [propertyValue class], [self class], [self class]);
         }
     }
-    
     return brick;
+}
+
+- (void)removeFromScript
+{
+    NSUInteger index = 0;
+    for (Brick *brick in self.script.brickList) {
+        if (brick == self) {
+            [self.script.brickList removeObjectAtIndex:index];
+            break;
+        }
+        ++index;
+    }
 }
 
 - (void)removeReferences

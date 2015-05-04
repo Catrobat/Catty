@@ -79,8 +79,8 @@
 
 - (void)overwritePageControl
 {
-    UIPageControl * pageControl = [[self.view.subviews
-                                        filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class = %@", [UIPageControl class]]] lastObject];
+    UIPageControl *pageControl = [[self.view.subviews
+                                   filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class = %@", [UIPageControl class]]] lastObject];
     pageControl.currentPageIndicatorTintColor = [UIColor lightOrangeColor];
     pageControl.backgroundColor = [UIColor colorWithWhite:1.f alpha:0.1f];
 }
@@ -95,9 +95,9 @@
 
 - (void)setupNavBar
 {
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                                          target:self
-                                                                                          action:@selector(dismiss:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                                           target:self
+                                                                                           action:@selector(dismiss:)];
 }
 
 - (void)updateBrickCategoryViewControllerDelegate

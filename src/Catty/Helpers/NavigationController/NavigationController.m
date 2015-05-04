@@ -22,10 +22,6 @@
 
 #import "NavigationController.h"
 
-@interface NavigationController ()
-
-@end
-
 @implementation NavigationController
 
 - (void)viewDidLoad
@@ -35,8 +31,8 @@
     // Do any additional setup after loading the view.
 }
 
-
-- (UIStatusBarStyle)preferredStatusBarStyle{
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
     return UIStatusBarStyleLightContent;
 }
 

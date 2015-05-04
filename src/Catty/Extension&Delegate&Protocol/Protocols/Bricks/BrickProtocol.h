@@ -27,5 +27,8 @@
 @protocol BrickProtocol <ScriptProtocol>
 
 @property (nonatomic, weak) Script *script;
+- (BOOL)isFormulaBrick;
+- (BOOL)isIfLogicBrick;
+- (BOOL)isLoopBrick;
 
 @end

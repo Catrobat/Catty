@@ -56,6 +56,7 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
+#warning other queue (serial queue only!!)
         double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.script.object];
         for (int i = 1; i < 2*durationInSeconds; i++) {
             [self performSelector:@selector(vibe:) withObject:self afterDelay:i *.5f];

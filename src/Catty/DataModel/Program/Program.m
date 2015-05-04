@@ -521,9 +521,10 @@
 
 + (BOOL)isLastUsedProgram:(NSString*)programName programID:(NSString*)programID
 {
-    ProgramLoadingInfo *programLoadingInfo = [Util lastUsedProgramLoadingInfo];
-    return ([programName isEqualToString:programLoadingInfo.visibleName]
-            && [programID isEqualToString:programLoadingInfo.programID]);
+    ProgramLoadingInfo *lastUsedInfo = [Util lastUsedProgramLoadingInfo];
+    ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgramWithName:programName
+                                                                              programID:programID];
+    return [lastUsedInfo isEqualToLoadingInfo:info];
 }
 
 + (void)setLastUsedProgram:(Program*)program
@@ -568,7 +569,7 @@
         NSDebug(@"Adding loaded program: %@", info.basePath);
         [programLoadingInfos addObject:info];
     }
-    return [programLoadingInfos copy];
+    return programLoadingInfos;
 }
 
 + (NSString*)programDirectoryNameForProgramName:(NSString*)programName programID:(NSString*)programID
@@ -746,7 +747,7 @@
 - (void)waitingForBroadcastWithMessage:(NSString*)message
 {
     dispatch_semaphore_t semaphore = self.broadcastMessageSemaphores[message];
-#warning workaround for synchronization issue
+// FIXME: workaround for synchronization issue
     if (! semaphore) {
         semaphore = dispatch_semaphore_create(0);
         self.broadcastMessageSemaphores[message] = semaphore;

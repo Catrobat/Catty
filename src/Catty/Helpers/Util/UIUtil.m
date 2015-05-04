@@ -24,7 +24,6 @@
 #import "UIDefines.h"
 #import "Util.h"
 #import "iOSCombobox.h"
-#import "BrickDetailViewController.h"
 #import "ScriptCollectionViewController.h"
 #import "SetLookBrick.h"
 #import "SetLookBrick.h"
@@ -51,7 +50,7 @@
             [label setAdjustsFontSizeToFitWidth:YES];
             label.lineBreakMode = NSLineBreakByTruncatingTail;
             label.minimumScaleFactor = 14./label.font.pointSize;
-        }else{
+        } else {
             label.numberOfLines = 1;
             label.lineBreakMode = NSLineBreakByTruncatingTail;
             [label setAdjustsFontSizeToFitWidth:YES];

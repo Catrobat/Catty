@@ -217,7 +217,7 @@
     }
     [xmlElement addChild:scriptListXmlElement context:context];
 
-    //  Unused at the moment => TODO: implement this after Catroid has decided to officially use this feature!
+    //  Unused at the moment => TODO: implement this after Catroid has decided to officially activate this!
     //    GDataXMLElement *userBricksXmlElement = [GDataXMLElement elementWithName:@"userBricks" context:context];
     //    [xmlElement addChild:userBricksXmlElement context:context];
 
