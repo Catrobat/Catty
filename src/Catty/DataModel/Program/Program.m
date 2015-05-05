@@ -551,21 +551,21 @@
 {
     NSString *basePath = [Program basePath];
     NSError *error;
-    NSArray *subdirectoryNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+    NSArray *subdirNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
 
-    NSMutableArray *programLoadingInfos = [[NSMutableArray alloc] initWithCapacity:[subdirectoryNames count]];
-    for (NSString *subdirectoryName in subdirectoryNames) {
+    NSMutableArray *programLoadingInfos = [[NSMutableArray alloc] initWithCapacity:subdirNames.count];
+    for (NSString *subdirName in subdirNames) {
         // exclude .DS_Store folder on MACOSX simulator
-        if ([subdirectoryName isEqualToString:@".DS_Store"])
-            continue;
-
-        NSArray *directoryNameParts = [subdirectoryName componentsSeparatedByString:kProgramIDSeparator];
-        if ([directoryNameParts count] != 2) {
+        if ([subdirName isEqualToString:@".DS_Store"]) {
             continue;
         }
-        ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgramWithName:[directoryNameParts firstObject]
-                                                                                  programID:[directoryNameParts lastObject]];
+
+        ProgramLoadingInfo *info = [[self class] programLoadingInfoForProgramDirectoryName:subdirName];
+        if (! info) {
+            NSDebug(@"Unable to load program located in directory %@", subdirName);
+            continue;
+        }
         NSDebug(@"Adding loaded program: %@", info.basePath);
         [programLoadingInfos addObject:info];
     }
@@ -574,17 +574,20 @@
 
 + (NSString*)programDirectoryNameForProgramName:(NSString*)programName programID:(NSString*)programID
 {
-    return [NSString stringWithFormat:@"%@%@%@", programName, kProgramIDSeparator, (programID ? programID : kNoProgramIDYetPlaceholder)];
+    return [NSString stringWithFormat:@"%@%@%@", programName, kProgramIDSeparator,
+            (programID ? programID : kNoProgramIDYetPlaceholder)];
 }
 
-+ (ProgramLoadingInfo*)programLoadingInfoForProgramDirectoryName:(NSString*)programDirectoryName
++ (ProgramLoadingInfo*)programLoadingInfoForProgramDirectoryName:(NSString*)directoryName
 {
-    NSArray *parts = [programDirectoryName componentsSeparatedByString:kProgramIDSeparator];
-    if ((! parts) || ([parts count] != 2)) {
+    CBAssert(directoryName);
+    NSArray *directoryNameParts = [directoryName componentsSeparatedByString:kProgramIDSeparator];
+    if (directoryNameParts.count < 2) {
         return nil;
     }
-    return [ProgramLoadingInfo programLoadingInfoForProgramWithName:[parts firstObject]
-                                                          programID:[parts lastObject]];
+    NSString *programID = (NSString*)directoryNameParts.lastObject;
+    NSString *programName = [directoryName substringToIndex:directoryName.length - programID.length - 1];
+    return [ProgramLoadingInfo programLoadingInfoForProgramWithName:programName programID:programID];
 }
 
 + (NSString*)programNameForProgramID:(NSString*)programID
