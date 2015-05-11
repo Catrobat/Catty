@@ -1448,7 +1448,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
             [Util askUserForUniqueNameAndPerformAction:@selector(addMessageWithName:andCompletion:)
                                                 target:self
-                                          cancelAction:nil 
+                                          cancelAction:@selector(reloadData)
                                             withObject:(id) ^(NSString* message){
                                                 [messageBrick setMessage:message forLineNumber:line andParameterNumber:parameter];
                                             }
@@ -1468,6 +1468,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         }
     }
     [self.object.program saveToDisk];
+}
+
+-(void)reloadData
+{
+    [self.collectionView reloadData];
 }
 
 @end
