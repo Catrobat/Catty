@@ -27,7 +27,7 @@
 
 @required
 - (void)updateData:(id)data forBrick:(Brick*)brick andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter;
-
+- (void)disableUserInteraction;
 @end
 
 @protocol BrickCellFragmentProtocol <NSObject>

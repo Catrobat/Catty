@@ -86,6 +86,7 @@
 @property (nonatomic, strong) NSIndexPath *higherRankBrick; // refactor
 @property (nonatomic, strong) NSIndexPath *lowerRankBrick;  // refactor
 @property (nonatomic) PageIndexCategoryType lastSelectedBrickCategory;
+@property (nonatomic, assign) BOOL comboBoxOpened;  // refactor
 
 @end
 
@@ -206,6 +207,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)collectionView:(UICollectionView*)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
+    if (self.comboBoxOpened) {
+        return;
+    }
+    
     BrickCell *brickCell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
     if (self.isEditing) {
         if ([brickCell.scriptOrBrick isKindOfClass:[Script class]]) {
@@ -720,6 +725,9 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 #pragma mark - Open Formula Editor
 - (void)openFormulaEditor:(BrickCellFormulaFragment*)formulaFragment
 {
+    if (self.comboBoxOpened) {
+        return;
+    }
     if ([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
         FormulaEditorViewController *formulaEditorViewController = (FormulaEditorViewController*)self.presentedViewController;
         if ([formulaEditorViewController changeFormula]) {
@@ -1529,7 +1537,21 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [messageBrick setMessage:(NSString*)data forLineNumber:line andParameterNumber:parameter];
         }
     }
+    self.collectionView.scrollEnabled = NO;
+    self.comboBoxOpened = NO;
+    for (BrickCell *cell in self.collectionView.visibleCells) {
+        cell.enabled = YES;
+    }
     [self.object.program saveToDisk];
+}
+
+-(void)disableUserInteraction
+{
+    self.collectionView.scrollEnabled = NO;
+    self.comboBoxOpened = YES;
+    for (BrickCell *cell in self.collectionView.visibleCells) {
+        cell.enabled = NO;
+    }
 }
 
 -(void)reloadData

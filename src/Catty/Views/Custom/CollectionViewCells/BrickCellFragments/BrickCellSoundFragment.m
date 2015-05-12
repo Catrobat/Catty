@@ -72,4 +72,9 @@
     [self.brickCell.fragmentDelegate updateData:value forBrick:(Brick*)self.brickCell.scriptOrBrick andLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
 }
 
+- (void)comboboxOpened:(iOSCombobox *)combobox
+{
+    [self.brickCell.fragmentDelegate disableUserInteraction];
+}
+
 @end
