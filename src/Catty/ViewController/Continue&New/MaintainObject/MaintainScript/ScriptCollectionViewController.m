@@ -229,14 +229,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         }
         [collectionView deselectItemAtIndexPath:indexPath animated:NO];
         return;
-    }else{
-        if (self.isInsertingBrickMode) {
-            [self turnOffInsertingBrickMode];
-            Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
-            Brick *brick = [script.brickList objectAtIndex:indexPath.item - 1];
-            [self insertBrick:brick andIndexPath:indexPath];
-            return;
-        }
+    }
+    if (self.isInsertingBrickMode) {
+        [self turnOffInsertingBrickMode];
+        Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
+        Brick *brick = [script.brickList objectAtIndex:indexPath.item - 1];
+        [self insertBrick:brick andIndexPath:indexPath];
+        return;
     }
 
     BOOL isBrick = [brickCell.scriptOrBrick isKindOfClass:[Brick class]];
@@ -592,10 +591,12 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             brickCell.userInteractionEnabled = YES;
         }else{
             brickCell.userInteractionEnabled = NO;
+            brickCell.alpha = 0.7f;
         }
 
     }else{
         brickCell.userInteractionEnabled = YES;
+        brickCell.alpha = 1.0f;
     }
     return brickCell;
 }
@@ -695,7 +696,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         loopEndBrick.loopBeginBrick = loopBeginBrick;
         loopEndBrick.script = targetScript;
         loopEndBrick.animate = YES;
-        [targetScript.brickList insertObject:loopEndBrick atIndex:path.row];
+        if ([loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+            [targetScript.brickList insertObject:loopEndBrick atIndex:loopBeginBrick.script.brickList.count];
+        }else{
+            [targetScript.brickList insertObject:loopEndBrick atIndex:path.row];
+        }
     }
     brick.animateInsertBrick = NO;
     [self.collectionView reloadData];
@@ -955,11 +960,14 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 - (BOOL)checkLoopEndToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
 {
 // FIXME: YUMMI, SPAGHETTI CODE!!!
+    LoopEndBrick *endbrick = (LoopEndBrick*) fromBrick;
+    if ([endbrick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+        return NO;
+    }
     if (((toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil) && (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil))||(toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil && self.lowerRankBrick == nil) || (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil && self.higherRankBrick == nil)||(self.higherRankBrick==nil && self.lowerRankBrick==nil)) {
         if (fromIndexPath.section == toIndexPath.section) {
             Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
             Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
-            LoopEndBrick *endbrick = (LoopEndBrick*) fromBrick;
             if ([endbrick.loopBeginBrick isEqual:toBrick]) {
                 self.higherRankBrick = toIndexPath;
                 return NO;
