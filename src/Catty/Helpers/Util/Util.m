@@ -705,7 +705,15 @@ replacementString:(NSString*)characters
                 }
             }
         }
-
+        
+        bool atLeastOneNotspace = NO;
+        for(int i =0; i < input.length; i++){
+            NSString * newString = [input substringWithRange:NSMakeRange(i, 1)];
+            if(!([newString  isEqual: @" "])){
+                atLeastOneNotspace = YES;
+                break;
+            }
+        }
         NSUInteger textFieldMinInputLength = [payload[kDTPayloadAskUserMinInputLength] unsignedIntegerValue];
         if ([input isEqualToString:kLocalizedNewElement]) {
             CatrobatAlertView *newAlertView = [Util alertWithText:kLocalizedInvalidInputDescription
@@ -724,6 +732,16 @@ replacementString:(NSString*)characters
                                    textFieldMinInputLength];
             alertText = ((textFieldMinInputLength != 1) ? [[self class] pluralString:alertText]
                                                         : [[self class] singularString:alertText]);
+            CatrobatAlertView *newAlertView = [Util alertWithText:alertText
+                                                         delegate:(id<CatrobatAlertViewDelegate>)self
+                                                              tag:kInvalidNameWarningAlertViewTag];
+            payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
+            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
+        } else if(!atLeastOneNotspace){
+            NSString *alertText = [NSString stringWithFormat:kLocalizedSpaceInputDescription,
+                                   textFieldMinInputLength];
+            alertText = ((textFieldMinInputLength != 1) ? [[self class] pluralString:alertText]
+                         : [[self class] singularString:alertText]);
             CatrobatAlertView *newAlertView = [Util alertWithText:alertText
                                                          delegate:(id<CatrobatAlertViewDelegate>)self
                                                               tag:kInvalidNameWarningAlertViewTag];
