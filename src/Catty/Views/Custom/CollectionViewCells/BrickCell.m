@@ -536,4 +536,30 @@
     }];
 }
 
+- (void)insertAnimate:(BOOL)animate
+{
+    self.scriptOrBrick.animateInsertBrick = animate;
+    if (! animate) {
+        return;
+    }
+            self.alpha = 0.4f;
+            [UIView animateWithDuration:0.25
+                                  delay:0.0
+                                options:UIViewAnimationOptionCurveEaseInOut
+             | UIViewAnimationOptionRepeat
+             | UIViewAnimationOptionAutoreverse
+             | UIViewAnimationOptionAllowUserInteraction
+                             animations:^{
+                                 self.alpha = 1.0f;
+                             }
+                             completion:^(BOOL finished) {
+                                 self.alpha = 1.0f;
+                                 Brick *brick = (Brick*)self.scriptOrBrick;
+                                 if (brick.animateInsertBrick) {
+                                     [self insertAnimate:brick.animateInsertBrick];
+                                 }
+                             }];
+
+}
+
 @end

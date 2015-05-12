@@ -34,6 +34,7 @@
 @property (nonatomic, strong, readonly) NSString *brickTitle;
 @property (nonatomic, weak) Script *script;
 @property (nonatomic, getter=isAnimated) BOOL animate;
+@property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
 
 - (BOOL)isSelectableForObject;
 

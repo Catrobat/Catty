@@ -83,6 +83,7 @@
 @property (nonatomic, strong) NSMutableArray *selectedIndexPaths;  // refactor
 @property (nonatomic, assign) BOOL selectedAllCells;  // refactor
 @property (nonatomic, assign) BOOL scrollEnd;  // refactor
+@property (nonatomic, assign) BOOL isInsertingBrickMode;
 @property (nonatomic, strong) NSIndexPath *higherRankBrick; // refactor
 @property (nonatomic, strong) NSIndexPath *lowerRankBrick;  // refactor
 @property (nonatomic) PageIndexCategoryType lastSelectedBrickCategory;
@@ -114,6 +115,7 @@
     self.collectionView.delegate = self;
     self.placeHolderView.title = kLocalizedScripts;
     self.placeHolderView.hidden = (self.object.scriptList.count != 0);
+    self.isInsertingBrickMode = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -227,6 +229,14 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         }
         [collectionView deselectItemAtIndexPath:indexPath animated:NO];
         return;
+    }else{
+        if (self.isInsertingBrickMode) {
+            [self turnOffInsertingBrickMode];
+            Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
+            Brick *brick = [script.brickList objectAtIndex:indexPath.item - 1];
+            [self insertBrick:brick andIndexPath:indexPath];
+            return;
+        }
     }
 
     BOOL isBrick = [brickCell.scriptOrBrick isKindOfClass:[Brick class]];
@@ -457,7 +467,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
    willMoveToIndexPath:(NSIndexPath*)toIndexPath
 {
 // FIXME: UPDATING THE DATA MODEL WHILE THE USER IS DRAGGING IS NO GOOD PRACTICE AND IS ERROR PRONE!!!
-//        USE collectionView:layout:didEndDraggingItemAtIndexPath: DELEGATE METHOD FOR THIS. Updates must happen after the user stopped dragging the brickcell!!!
+//        USE collectionView:layout:didEndDraggingItemAtIndexPath: DELEGATE METHOD FOR THIS. Updates must happen after the user stopped dragging the brickcell!!
     if (fromIndexPath.section == toIndexPath.section) {
         Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
         Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
@@ -481,6 +491,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 layout:(UICollectionViewLayout*)collectionViewLayout
 didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 {
+    if (self.isInsertingBrickMode) {
+        NSLog(@"INSERT ALL BRICKS");
+        Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
+        Brick *brick = [script.brickList objectAtIndex:indexPath.item - 1];
+        [self insertBrick:brick andIndexPath:indexPath];
+        [self turnOffInsertingBrickMode];
+    }
     [self.object.program saveToDisk];
 }
 
@@ -495,6 +512,9 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 - (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
     canMoveToIndexPath:(NSIndexPath*)toIndexPath
 {
+    if(self.isInsertingBrickMode){
+            return YES;
+    }
     Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
     Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
     if (toIndexPath.item != 0) {
@@ -559,11 +579,24 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if (brickCell.scriptOrBrick.isAnimated) {
         [brickCell animate:YES];
     }
+    if (brickCell.scriptOrBrick.isAnimatedInsertBrick) {
+        [brickCell insertAnimate:brickCell.scriptOrBrick.isAnimatedInsertBrick];
+    }
     if (self.isEditing) {
         brickCell.center = CGPointMake(brickCell.center.x + kSelectButtonTranslationOffsetX, brickCell.center.y);
         brickCell.selectButton.alpha = 1.0f;
     }
     brickCell.enabled = (! self.isEditing);
+    if (self.isInsertingBrickMode) {
+        if (brickCell.scriptOrBrick.isAnimatedInsertBrick) {
+            brickCell.userInteractionEnabled = YES;
+        }else{
+            brickCell.userInteractionEnabled = NO;
+        }
+
+    }else{
+        brickCell.userInteractionEnabled = YES;
+    }
     return brickCell;
 }
 
@@ -582,9 +615,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         Script *script = (Script*)scriptOrBrick;
         script.object = self.object;
         [self.object.scriptList addObject:script];
-
-        // TODO: replace this by using a mind blowing amazing magic hover effect!! ;)
-        //       AND NEVER FORGET TO ADD ALL THOSE EXTRA FANCY BELLS AND WHISTLES TO THE USERINTERFACE!!
         script.animate = YES;
         [self.collectionView reloadData];
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:(self.object.scriptList.count - 1)]
@@ -600,12 +630,14 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         script.object = self.object;
         [self.object.scriptList addObject:script];
         script.animate = YES;
+        Brick *brick = (Brick*)scriptOrBrick;
+        brick.animate = YES;
+        [script.brickList addObject:brick];
+        [self.collectionView reloadData];
+        return;
     }
-
-    
     
     NSInteger targetScriptIndex = 0;
-        //JUST For now, because we do not have the hovering effect
     BOOL smallScript = NO;
     CGRect visibleRect = (CGRect){.origin = self.collectionView.contentOffset, .size = self.collectionView.bounds.size};
     CGPoint visiblePoint = CGPointMake(CGRectGetMidX(visibleRect), CGRectGetMidY(visibleRect));
@@ -616,11 +648,29 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         targetScriptIndex = 0;
         smallScript = YES;
     }
-    
 
     Brick *brick = (Brick*)scriptOrBrick;
-    brick.animate = YES;
     Script *targetScript = self.object.scriptList[targetScriptIndex];
+    brick.script = targetScript;
+    if (smallScript || self.scrollEnd) {
+           [targetScript.brickList addObject:brick];
+    }else{
+         [targetScript.brickList insertObject:brick atIndex:visibleIndexPath.row];
+    }
+
+    
+    brick.animateInsertBrick = YES;
+    
+    [self.collectionView reloadData];
+    [self turnOnInsertingBrickMode];
+    
+}
+
+
+-(void)insertBrick:(Brick*)brick andIndexPath:(NSIndexPath*)path
+{
+    brick.animate = YES;
+    Script *targetScript = self.object.scriptList[path.section];
     brick.script = targetScript;
     if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
         IfLogicBeginBrick *ifBeginBrick = (IfLogicBeginBrick*)brick;
@@ -636,16 +686,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         ifEndBrick.script = targetScript;
         ifElseBrick.animate = YES;
         ifEndBrick.animate = YES;
-        if (smallScript || self.scrollEnd) {
-            [targetScript.brickList addObject:ifBeginBrick];
-            [targetScript.brickList addObject:ifElseBrick];
-            [targetScript.brickList addObject:ifEndBrick];
-        }else{
-            [targetScript.brickList insertObject:ifEndBrick atIndex:visibleIndexPath.row];
-            [targetScript.brickList insertObject:ifElseBrick atIndex:visibleIndexPath.row];
-            [targetScript.brickList insertObject:ifBeginBrick atIndex:visibleIndexPath.row];
-        }
-
+        [targetScript.brickList insertObject:ifEndBrick atIndex:path.row];
+        [targetScript.brickList insertObject:ifElseBrick atIndex:path.row];
     } else if ([brick isKindOfClass:[LoopBeginBrick class]]) {
         LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)brick;
         LoopEndBrick *loopEndBrick = [LoopEndBrick new];
@@ -653,31 +695,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         loopEndBrick.loopBeginBrick = loopBeginBrick;
         loopEndBrick.script = targetScript;
         loopEndBrick.animate = YES;
-        if (smallScript || self.scrollEnd) {
-            [targetScript.brickList addObject:loopBeginBrick];
-            [targetScript.brickList addObject:loopEndBrick];
-        }else{
-            [targetScript.brickList insertObject:loopEndBrick atIndex:visibleIndexPath.row];
-            [targetScript.brickList insertObject:loopBeginBrick atIndex:visibleIndexPath.row];
-        }
-
-    } else {
-        if (smallScript || self.scrollEnd) {
-            [targetScript.brickList addObject:brick];
-        }else{
-            [targetScript.brickList insertObject:brick atIndex:visibleIndexPath.row];
-        }
-
+        [targetScript.brickList insertObject:loopEndBrick atIndex:path.row];
     }
-    [self.collectionView reloadData]; // FIXME: inconvenient temporary workaround used to trigger the brick cell animation...
-
-    if (smallScript || self.scrollEnd) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:targetScript.brickList.count // +1, because script itself is a brick in ScriptEditor too
-                                                     inSection:targetScriptIndex];
-        [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionBottom
-                                            animated:YES];
-    }
-    
+    brick.animateInsertBrick = NO;
+    [self.collectionView reloadData];
+    [self.collectionView setNeedsDisplay];
     [self.object.program saveToDisk];
 }
 
@@ -830,6 +852,30 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         }
     }
     self.selectedIndexPaths =[NSMutableArray new];
+}
+
+-(void)turnOnInsertingBrickMode
+{
+    self.isInsertingBrickMode = YES;
+    for (UIButton *button in self.navigationController.toolbar.items) {
+        button.enabled = NO;
+    }
+    self.navigationController.navigationBar.topItem.leftBarButtonItem.enabled = NO;
+    self.navigationController.navigationBar.topItem.rightBarButtonItem.enabled = NO;
+    self.navigationController.navigationBar.topItem.backBarButtonItem.enabled = NO;
+    [self.navigationItem setHidesBackButton:YES animated:NO];
+}
+
+-(void)turnOffInsertingBrickMode
+{
+    self.isInsertingBrickMode = NO;
+    for (UIButton *button in self.navigationController.toolbar.items) {
+        button.enabled = YES;
+    }
+    self.navigationController.navigationBar.topItem.leftBarButtonItem.enabled = YES;
+    self.navigationController.navigationBar.topItem.rightBarButtonItem.enabled = YES;
+    self.navigationController.navigationBar.topItem.backBarButtonItem.enabled = YES;
+    [self.navigationItem setHidesBackButton:NO animated:NO];
 }
 
 #pragma mark - Editing

@@ -41,6 +41,7 @@
 @property (nonatomic, weak) SpriteObject *object;
 @property (strong, nonatomic) NSMutableArray *brickList;
 @property (nonatomic, getter=isAnimated) BOOL animate;
+@property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
 
 - (BOOL)isSelectableForObject;
 

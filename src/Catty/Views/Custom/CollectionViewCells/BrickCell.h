@@ -59,6 +59,7 @@
 - (BOOL)isScriptBrick;
 - (void)selectedState:(BOOL)selected setEditingState:(BOOL)editing;
 - (void)animate:(BOOL)animate;
+- (void)insertAnimate:(BOOL)animate;
 - (void)setupBrickCell;
 
 @end
