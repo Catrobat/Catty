@@ -60,7 +60,9 @@
         dispatch_async(serialQueue, ^{
             double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.script.object];
             for (int i = 1; i < 2*durationInSeconds; i++) {
-                [self performSelector:@selector(vibe:) withObject:self afterDelay:i *.5f];
+                dispatch_async(dispatch_get_main_queue(), ^(void){
+                    [self performSelector:@selector(vibe:) withObject:self afterDelay:i *.5f];
+                });
             }
         });
     };
