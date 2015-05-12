@@ -22,6 +22,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseTableViewController.h"
+#import "SpriteObject.h"
 
 @class ProgramLoadingInfo;
 @class Program;
@@ -31,6 +32,8 @@
 
 @property (weak, nonatomic) id<ProgramUpdateDelegate> delegate;
 @property (strong, nonatomic) Program *program;
+@property (nonatomic,assign) BOOL showAddObjectActionSheetAtStart;
+@property (copy) void (^afterSafeBlock)(SpriteObject* object);
 
 - (void)addObjectAction:(id)sender;
 

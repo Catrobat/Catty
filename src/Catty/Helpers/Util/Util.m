@@ -527,11 +527,11 @@
 }
 
 
-+ (void)addObjectAlertForProgram:(Program*)program andPerformAction:(SEL)action onTarget:(id)target withCompletion:(void(^)(NSString*))completion
++ (void)addObjectAlertForProgram:(Program*)program andPerformAction:(SEL)action onTarget:(id)target withCancel:(SEL)cancel withCompletion:(void(^)(NSString*))completion
 {
     [self askUserForUniqueNameAndPerformAction:action
                                         target:target
-                                  cancelAction:nil
+                                  cancelAction:cancel
                                     withObject:(id)completion
                                    promptTitle:kLocalizedAddObject
                                  promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]
