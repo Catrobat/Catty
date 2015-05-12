@@ -55,6 +55,7 @@
 #import "BrickObjectProtocol.h"
 #import "BrickTextProtocol.h"
 #import "BrickMessageProtocol.h"
+#import "BrickVariableProtocol.h"
 #import "BrickCellMessageFragment.h"
 #import "LooksTableViewController.h"
 #import "SoundsTableViewController.h"
@@ -1465,6 +1466,15 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             return;
         } else {
             [messageBrick setMessage:(NSString*)data forLineNumber:line andParameterNumber:parameter];
+        }
+    }
+    if ([brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
+        Brick<BrickVariableProtocol> *variableBrick = (Brick<BrickVariableProtocol>*)brick;
+        if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
+            
+        } else {
+            UserVariable *variable = [self.object.program.variables getUserVariableNamed:(NSString*)data forSpriteObject:self.object];
+            [variableBrick setVariable:variable forLineNumber:line andParameterNumber:parameter];
         }
     }
     [self.object.program saveToDisk];

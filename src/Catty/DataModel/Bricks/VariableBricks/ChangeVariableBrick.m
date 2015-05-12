@@ -40,6 +40,16 @@
     self.variableFormula = formula;
 }
 
+- (UserVariable*)variableForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    return self.userVariable;
+}
+
+- (void)setVariable:(UserVariable*)variable forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    self.userVariable = variable;
+}
+
 - (void)setDefaultValues
 {
     self.variableFormula = [[Formula alloc] initWithZero];

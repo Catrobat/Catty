@@ -20,16 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
-#import "BrickFormulaProtocol.h"
-#import "BrickVariableProtocol.h"
 
-@class UserVariable;
-@class Formula;
+#import "BrickCellFragmentProtocol.h"
+#import "iOSCombobox.h"
 
-@interface ChangeVariableBrick : Brick<BrickFormulaProtocol, BrickVariableProtocol>
-
-@property (nonatomic, strong) UserVariable *userVariable;
-@property (nonatomic, strong) Formula *variableFormula;
+@interface BrickCellVariableFragment : iOSCombobox<BrickCellFragmentProtocol, iOSComboboxDelegate>
 
 @end

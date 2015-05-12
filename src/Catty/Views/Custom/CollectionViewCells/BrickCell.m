@@ -38,6 +38,7 @@
 #import "BrickCellFormulaFragment.h"
 #import "BrickCellTextFragment.h"
 #import "BrickCellMessageFragment.h"
+#import "BrickCellVariableFragment.h"
 
 // uncomment this to get special log outputs, etc...
 //#define LAYOUT_DEBUG 0
@@ -465,13 +466,7 @@
                 inputField = [[BrickCellLookFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"VARIABLE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
-                NSMutableArray* variables = [[NSMutableArray alloc] init];
-                [variables addObject:@"New..."];
-                [variables addObject:@"variable 1"];
-                iOSCombobox *comboBox = [UIUtil newDefaultBrickComboBoxWithFrame:inputViewFrame AndItems:variables];
-                [comboBox setDelegate:(id<iOSComboboxDelegate>)self.delegate];
-                [comboBox setCurrentValue:variables[0]];
-                inputField = (UIView*)comboBox;
+                inputField = [[BrickCellVariableFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else {
                 NSError(@"unknown data type %@ given", afterLabelParam);
                 abort();

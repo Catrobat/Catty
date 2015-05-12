@@ -20,16 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
-#import "BrickFormulaProtocol.h"
-#import "BrickVariableProtocol.h"
+#import <Foundation/Foundation.h>
 
+@class Brick;
 @class UserVariable;
-@class Formula;
 
-@interface ChangeVariableBrick : Brick<BrickFormulaProtocol, BrickVariableProtocol>
+@protocol BrickVariableProtocol <NSObject>
 
-@property (nonatomic, strong) UserVariable *userVariable;
-@property (nonatomic, strong) Formula *variableFormula;
+- (UserVariable*)variableForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (void)setVariable:(UserVariable*)variable forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 
 @end
