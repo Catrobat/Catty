@@ -1472,6 +1472,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             ltvc.afterSafeBlock =  ^(Sound* sound) {
                 [soundBrick setSound:sound forLineNumber:line andParameterNumber:parameter];
                 [self.collectionView reloadData];
+                [self.collectionView setNeedsDisplay];
                 [self.navigationController popViewControllerAnimated:YES];
             };
             [self.navigationController pushViewController:ltvc animated:YES];
@@ -1488,6 +1489,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             ptvc.showAddObjectActionSheetAtStart = YES;
             ptvc.afterSafeBlock =  ^(SpriteObject* object) {
                 [objectBrick setObject:object forLineNumber:line andParameterNumber:parameter];
+                [self.collectionView reloadData];
+                [self.collectionView setNeedsDisplay];
                 [self.navigationController popToViewController:self animated:YES];
             };
             [self.navigationController pushViewController:ptvc animated:YES];
