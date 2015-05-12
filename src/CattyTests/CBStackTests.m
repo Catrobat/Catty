@@ -29,8 +29,8 @@
 @implementation CBStackTests
 
 #define kNumberOfRoundsToTest 100
-#define kMinNumberOfStackElements 10000
-#define kMaxNumberOfStackElements 1000000
+#define kMinNumberOfStackElements 1000
+#define kMaxNumberOfStackElements 100000
 
 - (void)testNumberOfElementsAfterPushing
 {
