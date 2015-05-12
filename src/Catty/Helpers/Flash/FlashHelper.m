@@ -72,13 +72,21 @@ static FlashHelper* sharedFlashHandler = nil;
     }
 
 }
+    
 - (void)turnOff
 {
     if (self.session.isRunning) {
-        [self.session stopRunning];
-        sharedFlashHandler.wasTurnedOn = FlashOFF;
+        AVCaptureDevice * device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+        
+        if ([device hasTorch] && [device hasFlash]){
+            [device lockForConfiguration:nil];
+            [device setTorchMode:AVCaptureTorchModeOff];
+            [device setFlashMode:AVCaptureFlashModeOff];
+            [device unlockForConfiguration];
+            [self.session stopRunning];
+            sharedFlashHandler.wasTurnedOn = FlashOFF;
+        }
     }
-
 }
 
 - (void)reset
