@@ -517,7 +517,7 @@
     if (! animate) {
         return;
     }
-    self.alpha = 0.4f;
+    self.alpha = 0.7f;
     NSDate *startTime = [NSDate date];
     [UIView animateWithDuration:0.25
                           delay:0.0
@@ -542,8 +542,8 @@
     if (! animate) {
         return;
     }
-            self.alpha = 0.4f;
-            [UIView animateWithDuration:0.25
+            self.alpha = 0.2f;
+            [UIView animateWithDuration:0.4
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseInOut
              | UIViewAnimationOptionRepeat
