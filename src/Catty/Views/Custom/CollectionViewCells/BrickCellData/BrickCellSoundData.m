@@ -21,16 +21,17 @@
  */
 
 
-#import "BrickCellVariableFragment.h"
+#import "BrickCellSoundData.h"
 #import "iOSCombobox.h"
 #import "BrickCell.h"
-#import "UserVariable.h"
+#import "Sound.h"
 #import "Script.h"
 #import "Brick.h"
-#import "BrickVariableProtocol.h"
+#import "BrickSoundProtocol.h"
+#import "LooksTableViewController.h"
 #import "LanguageTranslationDefines.h"
 
-@implementation BrickCellVariableFragment
+@implementation BrickCellSoundData
 
 - (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell *)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
@@ -43,12 +44,12 @@
         [options addObject:kLocalizedNewElement];
         int currentOptionIndex = 0;
         int optionIndex = 1;
-        if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
-            Brick<BrickVariableProtocol> *variableBrick = (Brick<BrickVariableProtocol>*)brickCell.scriptOrBrick;
-            UserVariable *currentVariable = [variableBrick variableForLineNumber:line andParameterNumber:parameter];
-            for(UserVariable *variable in variableBrick.script.object.program.variables.programVariableList) {
-                [options addObject:variable.name];
-                if([variable.name isEqualToString:currentVariable.name])
+        if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickSoundProtocol)]) {
+            Brick<BrickSoundProtocol> *soundBrick = (Brick<BrickSoundProtocol>*)brickCell.scriptOrBrick;
+            Sound *currentSound = [soundBrick soundForLineNumber:line andParameterNumber:parameter];
+            for(Sound *sound in soundBrick.script.object.soundList) {
+                [options addObject:sound.name];
+                if([sound.name isEqualToString:currentSound.name])
                     currentOptionIndex = optionIndex;
                 optionIndex++;
             }
@@ -62,7 +63,12 @@
 
 - (void)comboboxClosed:(iOSCombobox*)combobox withValue:(NSString*)value
 {
-    [self.brickCell.fragmentDelegate updateData:value forBrick:(Brick*)self.brickCell.scriptOrBrick andLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
+    [self.brickCell.dataDelegate updateData:value forBrick:(Brick*)self.brickCell.scriptOrBrick andLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
+}
+
+- (void)comboboxOpened:(iOSCombobox *)combobox
+{
+    [self.brickCell.dataDelegate disableUserInteraction];
 }
 
 @end

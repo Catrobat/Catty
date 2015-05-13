@@ -49,7 +49,7 @@
 #import "Script.h"
 #import "InternToken.h"
 #import "SpriteObject.h"
-#import "BrickCellFormulaFragment.h"
+#import "BrickCellFormulaData.h"
 #import "VariablePickerData.h"
 #import "Brick+UserVariable.h"
 
@@ -65,7 +65,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 
 @property (weak, nonatomic) Formula *formula;
-@property (weak, nonatomic) BrickCellFormulaFragment *brickCellFragment;
+@property (weak, nonatomic) BrickCellFormulaData *brickCellData;
 @property (nonatomic,assign) NSInteger currentComponent;
 
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
@@ -116,21 +116,21 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 @synthesize formulaEditorTextView;
 
-- (id)initWithBrickCellFormulaFragment:(BrickCellFormulaFragment *)brickCellFragment
+- (id)initWithBrickCellFormulaFragment:(BrickCellFormulaData *)brickCellData
 {
     self = [super init];
     
     if(self) {
-        _brickCellFragment = brickCellFragment;
+        _brickCellData = brickCellData;
     }
     
     return self;
 }
 
-- (void)setBrickCellFormulaFragment:(BrickCellFormulaFragment *)brickCellFragment
+- (void)setBrickCellFormulaData:(BrickCellFormulaData *)brickCellFragment
 
 {
-    _brickCellFragment = brickCellFragment;
+    _brickCellData = brickCellFragment;
     self.formula = brickCellFragment.formula;
     self.internFormula = [[InternFormula alloc] initWithInternTokenList:[self.formula.formulaTree getInternTokenList]];
     self.history = [[FormulaEditorHistory alloc] initWithInternFormulaState:[self.internFormula getInternFormulaState]];
@@ -366,7 +366,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     UIAlertView *alert;
     if (self.internFormula != nil) {
         InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
-        Brick *brick = (Brick*)self.brickCellFragment.brickCell.scriptOrBrick; // must be a brick!
+        Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
         Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormulaForSpriteObject:brick.script.object]];
 
         NSString *computedString;
@@ -528,7 +528,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)showFormulaEditor
 {
-    self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(1, self.brickCellFragment.brickCell.frame.size.height + 41, self.view.frame.size.width - 2, 0) AndFormulaEditorViewController:self];
+    self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(1, self.brickCellData.brickCell.frame.size.height + 41, self.view.frame.size.width - 2, 0) AndFormulaEditorViewController:self];
     [self.view addSubview:self.formulaEditorTextView];
     
     for(int i = 0; i < [self.orangeTypeButton count]; i++) {
@@ -587,14 +587,14 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self.formula setDisplayString:[self.internFormula getExternFormulaString]];
     }
     
-    [self.brickCellFragment.brickCell setupBrickCell];
+    [self.brickCellData.brickCell setupBrickCell];
 }
 
 - (BOOL)saveIfPossible
 {
         if(self.internFormula != nil) {
             InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
-            Brick *brick = (Brick*)self.brickCellFragment.brickCell.scriptOrBrick; // must be a brick!
+            Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
             FormulaElement *formulaElement = [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
             Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
             UIAlertView *alert;

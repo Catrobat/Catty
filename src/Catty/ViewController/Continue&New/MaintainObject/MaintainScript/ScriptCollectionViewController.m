@@ -46,17 +46,17 @@
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
 #import "UIUtil.h"
-#import "BrickCellFormulaFragment.h"
+#import "BrickCellFormulaData.h"
 #import "NoteBrick.h"
 #import "BrickSelectionViewController.h"
-#import "BrickCellFragmentProtocol.h"
+#import "BrickCellDataProtocol.h"
 #import "BrickLookProtocol.h"
 #import "BrickSoundProtocol.h"
 #import "BrickObjectProtocol.h"
 #import "BrickTextProtocol.h"
 #import "BrickMessageProtocol.h"
 #import "BrickVariableProtocol.h"
-#import "BrickCellMessageFragment.h"
+#import "BrickCellMessageData.h"
 #import "LooksTableViewController.h"
 #import "SoundsTableViewController.h"
 #import "ProgramTableViewController.h"
@@ -76,7 +76,7 @@
                                              UIViewControllerTransitioningDelegate,
                                              BrickCellDelegate,
                                              iOSComboboxDelegate,
-                                             BrickCellFragmentDelegate,
+                                             BrickCellDataDelegate,
                                              CatrobatActionSheetDelegate>
 
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
@@ -373,8 +373,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
         // edit formula
         if ([buttonTitle isEqualToString:kLocalizedEditFormula]) {
-            BrickCellFormulaFragment *formulaFragment = [[BrickCellFormulaFragment alloc] initWithFrame:CGRectMake(0, 0, 0, 0) andBrickCell:brickCell andLineNumber:0 andParameterNumber:0];
-            [self openFormulaEditor:formulaFragment];
+            BrickCellFormulaData *formulaData = [[BrickCellFormulaData alloc] initWithFrame:CGRectMake(0, 0, 0, 0) andBrickCell:brickCell andLineNumber:0 andParameterNumber:0];
+            [self openFormulaEditor:formulaData];
             return;
         }
 
@@ -560,7 +560,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     brickCell.enabled = YES;
     [brickCell setupBrickCell];
     brickCell.delegate = self;
-    brickCell.fragmentDelegate = self;
+    brickCell.dataDelegate = self;
 
     if (brickCell.scriptOrBrick.isAnimated) {
         [brickCell animate:YES];
@@ -724,7 +724,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 }
 
 #pragma mark - Open Formula Editor
-- (void)openFormulaEditor:(BrickCellFormulaFragment*)formulaFragment
+- (void)openFormulaEditor:(BrickCellFormulaData*)formulaData
 {
     if (self.comboBoxOpened) {
         return;
@@ -732,8 +732,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if ([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
         FormulaEditorViewController *formulaEditorViewController = (FormulaEditorViewController*)self.presentedViewController;
         if ([formulaEditorViewController changeFormula]) {
-            [formulaEditorViewController setBrickCellFormulaFragment:formulaFragment];
-            [formulaFragment drawBorder:YES];
+            [formulaEditorViewController setBrickCellFormulaData:formulaData];
+            [formulaData drawBorder:YES];
         }
         return;
     }
@@ -743,16 +743,16 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self.presentedViewController dismissViewControllerAnimated:NO completion:NULL];
     }
 
-    FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCellFormulaFragment:formulaFragment];
+    FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCellFormulaFragment:formulaData];
     formulaEditorViewController.object = self.object;
     formulaEditorViewController.transitioningDelegate = self;
     formulaEditorViewController.modalPresentationStyle = UIModalPresentationCustom;
-    formulaEditorViewController.delegate = formulaFragment;
-    [formulaFragment drawBorder:YES];
+    formulaEditorViewController.delegate = formulaData;
+    [formulaData drawBorder:YES];
 
-    [self.brickScaleTransition updateAnimationViewWithView:formulaFragment.brickCell];
+    [self.brickScaleTransition updateAnimationViewWithView:formulaData.brickCell];
     [self presentViewController:formulaEditorViewController animated:YES completion:^{
-        [formulaEditorViewController setBrickCellFormulaFragment:formulaFragment];
+        [formulaEditorViewController setBrickCellFormulaData:formulaData];
     }];
 }
 

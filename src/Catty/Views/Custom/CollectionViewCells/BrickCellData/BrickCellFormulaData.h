@@ -21,10 +21,10 @@
  */
 
 
-#import "BrickCellFragmentProtocol.h"
+#import "BrickCellDataProtocol.h"
 #import "FormulaEditorViewController.h"
 
-@interface BrickCellFormulaFragment : UIButton<BrickCellFragmentProtocol, FormulaEditorViewControllerDelegate>
+@interface BrickCellFormulaData : UIButton<BrickCellDataProtocol, FormulaEditorViewControllerDelegate>
 
 @property (nonatomic, weak) BrickCell *brickCell;
 @property (nonatomic) NSInteger lineNumber;

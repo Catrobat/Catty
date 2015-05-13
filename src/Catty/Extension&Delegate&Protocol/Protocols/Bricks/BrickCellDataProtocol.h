@@ -20,15 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+@class BrickCell;
+@class Brick;
 
-#import "BrickCellFragmentProtocol.h"
-#import "iOSCombobox.h"
+@protocol BrickCellDataDelegate <NSObject>
 
-@interface BrickCellObjectFragment : iOSCombobox<BrickCellFragmentProtocol, iOSComboboxDelegate>
+@required
+- (void)updateData:(id)data forBrick:(Brick*)brick andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter;
+- (void)disableUserInteraction;
+@end
+
+@protocol BrickCellDataProtocol <NSObject>
+
+@required
+- (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell*)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter;
 
 @property (nonatomic, weak) BrickCell *brickCell;
 @property (nonatomic) NSInteger lineNumber;
 @property (nonatomic) NSInteger parameterNumber;
-@property (nonatomic, weak) NSArray* objectList;
 
 @end

@@ -21,17 +21,17 @@
  */
 
 
-#import "BrickCellTextFragment.h"
+#import "BrickCellTextData.h"
 #import "BrickCell.h"
 #import "Brick.h"
 #import "BrickTextProtocol.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 
-@interface BrickCellTextFragment() <UITextFieldDelegate>
+@interface BrickCellTextData() <UITextFieldDelegate>
 @property (nonatomic, strong) CAShapeLayer *border;
 @end
 
-@implementation BrickCellTextFragment
+@implementation BrickCellTextData
 
 - (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell*)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
@@ -139,7 +139,7 @@
 
 - (void)textFieldDone:(id)sender
 {
-    [self.brickCell.fragmentDelegate updateData:self.text forBrick:(Brick*)self.brickCell.scriptOrBrick andLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
+    [self.brickCell.dataDelegate updateData:self.text forBrick:(Brick*)self.brickCell.scriptOrBrick andLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
     [self resignFirstResponder];
 }
 

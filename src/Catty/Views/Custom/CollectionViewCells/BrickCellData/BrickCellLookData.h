@@ -21,10 +21,10 @@
  */
 
 
-#import "BrickCellFragmentProtocol.h"
+#import "BrickCellDataProtocol.h"
 #import "iOSCombobox.h"
 
-@interface BrickCellSoundFragment : iOSCombobox<BrickCellFragmentProtocol, iOSComboboxDelegate>
+@interface BrickCellLookData : iOSCombobox<BrickCellDataProtocol, iOSComboboxDelegate>
 
 @property (nonatomic, weak) BrickCell *brickCell;
 @property (nonatomic) NSInteger lineNumber;
