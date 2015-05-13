@@ -507,7 +507,8 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
 
 #pragma mark Starting from 0.1.0
 - (void)setUpGestureRecognizersOnCollectionView {
-    // Do nothing...
+    self.panGestureRecognizer.enabled = NO;
+    self.panGestureRecognizer.enabled = YES;
 }
 
 @end

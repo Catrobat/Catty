@@ -473,16 +473,27 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         [script.brickList removeObjectAtIndex:toIndexPath.item - 1];
         [script.brickList insertObject:toBrick atIndex:fromIndexPath.item - 1];
     } else {
+
         Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
-        Brick *toBrick = [toScript.brickList objectAtIndex:toIndexPath.item - 1];
-        
         Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
         Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
-        
+        if ([toScript.brickList count] == 0) {
+            [fromScript.brickList removeObjectAtIndex:fromIndexPath.item - 1];
+            [toScript.brickList addObject:fromBrick];
+            LXReorderableCollectionViewFlowLayout *layout =  (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+            [layout setUpGestureRecognizersOnCollectionView];
+
+            return;
+        }
+        Brick *toBrick = [toScript.brickList objectAtIndex:toIndexPath.item - 1];
         [toScript.brickList removeObjectAtIndex:toIndexPath.item - 1];
-        [fromScript.brickList removeObjectAtIndex:fromIndexPath.item - 1];
         [toScript.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
         [toScript.brickList insertObject:toBrick atIndex:toIndexPath.item];
+        if ([fromScript.brickList count] == 1) {
+            [fromScript.brickList removeAllObjects];
+        } else {
+            [fromScript.brickList removeObjectAtIndex:fromIndexPath.item - 1];
+        }
     }
 }
 
@@ -497,6 +508,8 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self insertBrick:brick andIndexPath:indexPath];
         [self turnOffInsertingBrickMode];
     }
+    [self reloadInputViews];
+    [self.collectionView reloadData];
     [self.object.program saveToDisk];
 }
 
@@ -512,7 +525,12 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     canMoveToIndexPath:(NSIndexPath*)toIndexPath
 {
     if(self.isInsertingBrickMode){
+        if (toIndexPath.item != 0) {
             return YES;
+        } else{
+            return NO;
+        }
+        
     }
     Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
     Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
@@ -531,7 +549,13 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             return (toIndexPath.item != 0);
         }
     } else {
-        return NO;
+        Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
+        if ([toScript.brickList count] == 0) {
+            return YES;
+        }else{
+           return NO;
+        }
+        
     }
 }
 
@@ -664,6 +688,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     
     [self.collectionView reloadData];
     [self turnOnInsertingBrickMode];
+    [self.object.program saveToDisk];
     
 }
 
