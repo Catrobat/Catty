@@ -1464,8 +1464,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 [self.collectionView reloadData];
                 [self.collectionView setNeedsDisplay];
                 [self.navigationController popViewControllerAnimated:YES];
+                [self enableUserInteraction];
             };
             [self.navigationController pushViewController:ltvc animated:YES];
+            
             return;
         } else {
             [lookBrick setLook:[Util lookWithName:(NSString*)data forObject:self.object] forLineNumber:line andParameterNumber:parameter];
@@ -1482,6 +1484,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 [self.collectionView reloadData];
                 [self.collectionView setNeedsDisplay];
                 [self.navigationController popViewControllerAnimated:YES];
+                [self enableUserInteraction];
             };
             [self.navigationController pushViewController:ltvc animated:YES];
             return;
@@ -1500,6 +1503,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 [self.collectionView reloadData];
                 [self.collectionView setNeedsDisplay];
                 [self.navigationController popToViewController:self animated:YES];
+                [self enableUserInteraction];
             };
             [self.navigationController pushViewController:ptvc animated:YES];
             return;
@@ -1532,17 +1536,23 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                                         invertedSet]
                               invalidInputAlertMessage:kLocalizedMessageAlreadyExistsDescription
                                          existingNames:[Util allMessagesForProgram:self.object.program]];
+            [self enableUserInteraction];
             return;
         } else {
             [messageBrick setMessage:(NSString*)data forLineNumber:line andParameterNumber:parameter];
         }
     }
+    [self enableUserInteraction];
+    [self.object.program saveToDisk];
+}
+
+-(void)enableUserInteraction
+{
     self.collectionView.scrollEnabled = YES;
     self.comboBoxOpened = NO;
     for (BrickCell *cell in self.collectionView.visibleCells) {
         cell.enabled = YES;
     }
-    [self.object.program saveToDisk];
 }
 
 -(void)disableUserInteraction
