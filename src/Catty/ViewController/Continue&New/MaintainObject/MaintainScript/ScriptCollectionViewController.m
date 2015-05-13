@@ -1390,7 +1390,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     [self.collectionView reloadData];
 }
 
-- (void)updateData:(id)data forBrick:(Brick*)brick andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
+- (void)updateData:(id)data forBrick:(id)brick andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
     if ([brick conformsToProtocol:@protocol(BrickLookProtocol)]) {
         Brick<BrickLookProtocol> *lookBrick = (Brick<BrickLookProtocol>*)brick;
@@ -1474,7 +1474,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             
         } else {
             UserVariable *variable = [self.object.program.variables getUserVariableNamed:(NSString*)data forSpriteObject:self.object];
-            [variableBrick setVariable:variable forLineNumber:line andParameterNumber:parameter];
+            if(variable)
+                [variableBrick setVariable:variable forLineNumber:line andParameterNumber:parameter];
         }
     }
     [self.object.program saveToDisk];

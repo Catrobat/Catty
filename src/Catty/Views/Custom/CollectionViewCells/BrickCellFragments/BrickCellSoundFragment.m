@@ -31,12 +31,6 @@
 #import "LooksTableViewController.h"
 #import "LanguageTranslationDefines.h"
 
-@interface BrickCellSoundFragment()
-@property (nonatomic, weak) BrickCell *brickCell;
-@property (nonatomic) NSInteger lineNumber;
-@property (nonatomic) NSInteger parameterNumber;
-@end
-
 @implementation BrickCellSoundFragment
 
 - (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell *)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter

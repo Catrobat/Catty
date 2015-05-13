@@ -30,12 +30,6 @@
 #import "BrickVariableProtocol.h"
 #import "LanguageTranslationDefines.h"
 
-@interface BrickCellVariableFragment()
-@property (nonatomic, weak) BrickCell *brickCell;
-@property (nonatomic) NSInteger lineNumber;
-@property (nonatomic) NSInteger parameterNumber;
-@end
-
 @implementation BrickCellVariableFragment
 
 - (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell *)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter

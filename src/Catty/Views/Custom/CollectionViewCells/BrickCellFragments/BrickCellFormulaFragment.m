@@ -30,8 +30,6 @@
 
 @interface BrickCellFormulaFragment()
 @property (nonatomic, strong) CAShapeLayer *border;
-@property (nonatomic) NSInteger lineNumber;
-@property (nonatomic) NSInteger parameterNumber;
 @end
 
 @implementation BrickCellFormulaFragment

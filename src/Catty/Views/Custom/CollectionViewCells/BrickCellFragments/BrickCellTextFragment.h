@@ -25,6 +25,10 @@
 
 @interface BrickCellTextFragment : UITextField<BrickCellFragmentProtocol, UITextFieldDelegate>
 
+@property (nonatomic, weak) BrickCell *brickCell;
+@property (nonatomic) NSInteger lineNumber;
+@property (nonatomic) NSInteger parameterNumber;
+
 - (void)drawBorder:(BOOL)isActive;
 - (void)update;
 

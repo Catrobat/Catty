@@ -28,9 +28,6 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 
 @interface BrickCellTextFragment() <UITextFieldDelegate>
-@property (nonatomic, weak) BrickCell *brickCell;
-@property (nonatomic) NSInteger lineNumber;
-@property (nonatomic) NSInteger parameterNumber;
 @property (nonatomic, strong) CAShapeLayer *border;
 @end
 

@@ -33,12 +33,6 @@
 #import "BroadcastBrick.h"
 #import "BroadcastWaitBrick.h"
 
-@interface BrickCellMessageFragment()
-@property (nonatomic, weak) BrickCell *brickCell;
-@property (nonatomic) NSInteger lineNumber;
-@property (nonatomic) NSInteger parameterNumber;
-@end
-
 @implementation BrickCellMessageFragment
 
 static NSMutableArray *messages = nil;

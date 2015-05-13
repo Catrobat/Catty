@@ -26,4 +26,8 @@
 
 @interface BrickCellMessageFragment : iOSCombobox<BrickCellFragmentProtocol, iOSComboboxDelegate>
 
+@property (nonatomic, weak) BrickCell *brickCell;
+@property (nonatomic) NSInteger lineNumber;
+@property (nonatomic) NSInteger parameterNumber;
+
 @end
