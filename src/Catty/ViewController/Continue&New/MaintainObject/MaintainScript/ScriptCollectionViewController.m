@@ -1537,7 +1537,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [messageBrick setMessage:(NSString*)data forLineNumber:line andParameterNumber:parameter];
         }
     }
-    self.collectionView.scrollEnabled = NO;
+    self.collectionView.scrollEnabled = YES;
     self.comboBoxOpened = NO;
     for (BrickCell *cell in self.collectionView.visibleCells) {
         cell.enabled = YES;
