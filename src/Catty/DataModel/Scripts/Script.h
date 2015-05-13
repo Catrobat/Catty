@@ -46,7 +46,7 @@
 
 - (BOOL)isAnimateable;
 
-- (void)setDefaultValues;
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject;
 
 - (void)addBrick:(Brick*)brick atIndex:(NSUInteger)index;
 

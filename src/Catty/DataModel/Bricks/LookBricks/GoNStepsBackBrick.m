@@ -36,7 +36,7 @@
     self.steps = formula;
 }
 
-- (void)setDefaultValues
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.steps = [[Formula alloc] initWithInteger:1];
 }

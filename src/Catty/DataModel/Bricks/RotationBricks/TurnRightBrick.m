@@ -37,7 +37,7 @@
     self.degrees = formula;
 }
 
-- (void)setDefaultValues
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.degrees = [[Formula alloc] initWithFloat:15];
 }

@@ -40,7 +40,7 @@
     return kLocalizedSpeak;
 }
 
-- (void)setDefaultValues
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     Formula *speakFormula = [Formula new];
     FormulaElement *formulaElement = [FormulaElement new];

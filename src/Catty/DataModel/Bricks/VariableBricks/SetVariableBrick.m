@@ -50,9 +50,16 @@
     self.userVariable = variable;
 }
 
-- (void)setDefaultValues
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.variableFormula = [[Formula alloc] initWithZero];
+    if(spriteObject) {
+        NSArray *variables = [spriteObject.program.variables allVariablesForObject:spriteObject];
+        if([variables count] > 0)
+            self.userVariable = [variables objectAtIndex:0];
+        else
+            self.userVariable = nil;
+    }
 }
 
 - (NSString*)brickTitle

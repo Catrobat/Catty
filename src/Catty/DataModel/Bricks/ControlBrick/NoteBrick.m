@@ -37,7 +37,7 @@
     }];
 }
 
-- (void)setDefaultValues
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.note = [NSString stringWithString:kLocalizedAddCommentHere];
 }

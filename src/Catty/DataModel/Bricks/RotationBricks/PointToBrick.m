@@ -121,4 +121,31 @@
     return self.pointedObject;
 }
 
+#pragma mark - Default values
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
+{
+    if(spriteObject) {
+        SpriteObject *firstObject = nil;
+        for(SpriteObject *object in spriteObject.program.objectList) {
+            if(![object.name isEqualToString:spriteObject.name] && ![object.name isEqualToString:kLocalizedBackground]) {
+                firstObject = object;
+                break;
+            }
+        }
+        if(firstObject)
+            self.pointedObject = firstObject;
+        else
+            self.pointedObject = nil;
+    }
+}
+
+#pragma mark - Copy
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
+{
+    PointToBrick *copy = [super mutableCopyWithContext:context];
+    if(self.pointedObject)
+        copy.pointedObject = self.pointedObject;
+    return copy;
+}
+
 @end

@@ -46,11 +46,15 @@
         if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
             Brick<BrickVariableProtocol> *variableBrick = (Brick<BrickVariableProtocol>*)brickCell.scriptOrBrick;
             UserVariable *currentVariable = [variableBrick variableForLineNumber:line andParameterNumber:parameter];
-            for(UserVariable *variable in variableBrick.script.object.program.variables.programVariableList) {
+            for(UserVariable *variable in [variableBrick.script.object.program.variables allVariablesForObject:variableBrick.script.object]) {
                 [options addObject:variable.name];
                 if([variable.name isEqualToString:currentVariable.name])
                     currentOptionIndex = optionIndex;
                 optionIndex++;
+            }
+            if (currentVariable && ![options containsObject:currentVariable.name]) {
+                [options addObject:currentVariable.name];
+                currentOptionIndex = optionIndex;
             }
         }
         [self setValues:options];

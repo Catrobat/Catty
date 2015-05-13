@@ -52,6 +52,10 @@
                     currentOptionIndex = optionIndex;
                 optionIndex++;
             }
+            if (currentLook && ![options containsObject:currentLook.name]) {
+                [options addObject:currentLook.name];
+                currentOptionIndex = optionIndex;
+            }
         }
         [self setValues:options];
         [self setCurrentValue:options[currentOptionIndex]];

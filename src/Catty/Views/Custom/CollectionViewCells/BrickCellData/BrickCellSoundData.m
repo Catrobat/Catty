@@ -53,6 +53,10 @@
                     currentOptionIndex = optionIndex;
                 optionIndex++;
             }
+            if (currentSound && ![options containsObject:currentSound.name]) {
+                [options addObject:currentSound.name];
+                currentOptionIndex = optionIndex;
+            }
         }
         [self setValues:options];
         [self setCurrentValue:options[currentOptionIndex]];

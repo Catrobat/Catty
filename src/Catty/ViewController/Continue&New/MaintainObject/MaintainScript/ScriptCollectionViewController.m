@@ -145,7 +145,7 @@
 - (void)showBrickPickerAction:(id)sender
 {
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-        BrickCategoryViewController *bcvc = [[BrickCategoryViewController alloc] initWithBrickCategory:self.lastSelectedBrickCategory];
+        BrickCategoryViewController *bcvc = [[BrickCategoryViewController alloc] initWithBrickCategory:self.lastSelectedBrickCategory andObject:self.object];
         bcvc.delegate = self;
         BrickSelectionViewController *bsvc = [[BrickSelectionViewController alloc]
                                               initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
