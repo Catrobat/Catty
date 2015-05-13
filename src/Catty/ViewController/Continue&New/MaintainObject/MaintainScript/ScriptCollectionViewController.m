@@ -890,6 +890,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     for (UIButton *button in self.navigationController.toolbar.items) {
         button.enabled = NO;
     }
+    LXReorderableCollectionViewFlowLayout *layout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+    layout.longPressGestureRecognizer.minimumPressDuration = 0.1;
     self.navigationController.navigationBar.topItem.leftBarButtonItem.enabled = NO;
     self.navigationController.navigationBar.topItem.rightBarButtonItem.enabled = NO;
     self.navigationController.navigationBar.topItem.backBarButtonItem.enabled = NO;
@@ -902,6 +904,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     for (UIButton *button in self.navigationController.toolbar.items) {
         button.enabled = YES;
     }
+    LXReorderableCollectionViewFlowLayout *layout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+    layout.longPressGestureRecognizer.minimumPressDuration = 0.5;
     self.navigationController.navigationBar.topItem.leftBarButtonItem.enabled = YES;
     self.navigationController.navigationBar.topItem.rightBarButtonItem.enabled = YES;
     self.navigationController.navigationBar.topItem.backBarButtonItem.enabled = YES;
