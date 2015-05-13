@@ -151,8 +151,7 @@
 - (void)saveFormula:(Formula *)formula
 {
     [self.formula setRoot:formula.formulaTree];
-    [self.brickCell.dataDelegate updateData:self.formula forBrick:(Brick*)self.brickCell.scriptOrBrick andLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
-
+    [self.brickCell.dataDelegate updateBrickCellData:self withValue:self.formula];
 }
 
 @end

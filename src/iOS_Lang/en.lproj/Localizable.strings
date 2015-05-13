@@ -319,6 +319,9 @@
 /* Placeholder for add sound-name input field */
 "Enter your sound name here..." = "Enter your sound name here...";
 
+/* Placeholder for variable input field */
+"Enter your variable name here..." = "Enter your variable name here...";
+
 /* paint */
 "eraser" = "eraser";
 

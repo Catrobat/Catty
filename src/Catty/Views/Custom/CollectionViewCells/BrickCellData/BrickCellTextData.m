@@ -139,7 +139,7 @@
 
 - (void)textFieldDone:(id)sender
 {
-    [self.brickCell.dataDelegate updateData:self.text forBrick:(Brick*)self.brickCell.scriptOrBrick andLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
+    [self.brickCell.dataDelegate updateBrickCellData:self withValue:self.text];
     [self resignFirstResponder];
 }
 

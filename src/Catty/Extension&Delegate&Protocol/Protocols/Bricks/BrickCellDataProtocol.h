@@ -23,13 +23,6 @@
 @class BrickCell;
 @class Brick;
 
-@protocol BrickCellDataDelegate <NSObject>
-
-@required
-- (void)updateData:(id)data forBrick:(Brick*)brick andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter;
-- (void)disableUserInteraction;
-@end
-
 @protocol BrickCellDataProtocol <NSObject>
 
 @required
@@ -39,4 +32,11 @@
 @property (nonatomic) NSInteger lineNumber;
 @property (nonatomic) NSInteger parameterNumber;
 
+@end
+
+@protocol BrickCellDataDelegate <NSObject>
+
+@required
+- (void)updateBrickCellData:(id<BrickCellDataProtocol>)brickCellData withValue:(id)value;
+- (void)disableUserInteraction;
 @end

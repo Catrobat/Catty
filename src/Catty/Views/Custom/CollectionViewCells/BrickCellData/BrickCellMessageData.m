@@ -79,7 +79,7 @@ static NSMutableArray *messages = nil;
 
 - (void)comboboxClosed:(iOSCombobox*)combobox withValue:(NSString*)value
 {
-    [self.brickCell.dataDelegate updateData:value forBrick:(Brick*)self.brickCell.scriptOrBrick andLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
+    [self.brickCell.dataDelegate updateBrickCellData:self withValue:value];
 }
 
 - (void)comboboxOpened:(iOSCombobox *)combobox

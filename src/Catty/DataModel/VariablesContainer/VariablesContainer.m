@@ -151,6 +151,24 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_unlock(&variablesLock);
 }
 
+- (NSArray*)allVariablesForObject:(SpriteObject*)spriteObject
+{
+    NSMutableArray *vars = [NSMutableArray arrayWithArray:self.programVariableList];
+    [vars addObjectsFromArray:[self objectVariablesForObject:spriteObject]];
+    return vars;
+}
+
+- (NSArray*)objectVariablesForObject:(SpriteObject*)spriteObject
+{
+    NSMutableArray *vars = [NSMutableArray new];
+    if([self.objectVariableList objectForKey:spriteObject]) {
+        for(UserVariable *var in [self.objectVariableList objectForKey:spriteObject]) {
+            [vars addObject:var];
+        }
+    }
+    return vars;
+}
+
 - (SpriteObject*)spriteObjectForObjectVariable:(UserVariable*)userVariable
 {
     for (NSUInteger index = 0; index < [self.objectVariableList count]; ++index) {
