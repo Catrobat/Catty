@@ -83,11 +83,9 @@
 @property (nonatomic, strong) BrickTransition *brickScaleTransition;
 @property (nonatomic, strong) NSMutableArray *selectedIndexPaths;  // refactor
 @property (nonatomic, assign) BOOL selectedAllCells;  // refactor
-@property (nonatomic, assign) BOOL scrollEnd;  // refactor
 @property (nonatomic, strong) NSIndexPath *higherRankBrick; // refactor
 @property (nonatomic, strong) NSIndexPath *lowerRankBrick;  // refactor
 @property (nonatomic) PageIndexCategoryType lastSelectedBrickCategory;
-@property (nonatomic, assign) BOOL comboBoxOpened;  // refactor
 
 @end
 
@@ -208,10 +206,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)collectionView:(UICollectionView*)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    if (self.comboBoxOpened) {
-        return;
-    }
-    
     BrickCell *brickCell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
     if (self.isEditing) {
         if ([brickCell.scriptOrBrick isKindOfClass:[Script class]]) {
@@ -265,12 +259,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditBrickOrScript
                                                                     withPayload:@{ kDTPayloadCellIndexPath : indexPath }];
     [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
-    
-    [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically
-                                        animated:YES];
 }
-
-
 
 #pragma mark - action sheet delegates
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -611,18 +600,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     
     
     NSInteger targetScriptIndex = 0;
-        //JUST For now, because we do not have the hovering effect
-    BOOL smallScript = NO;
     CGRect visibleRect = (CGRect){.origin = self.collectionView.contentOffset, .size = self.collectionView.bounds.size};
     CGPoint visiblePoint = CGPointMake(CGRectGetMidX(visibleRect), CGRectGetMidY(visibleRect));
     NSIndexPath *visibleIndexPath = [self.collectionView indexPathForItemAtPoint:visiblePoint];
-    if (visibleIndexPath) {
-        targetScriptIndex = visibleIndexPath.section;
-    } else{
-        targetScriptIndex = 0;
-        smallScript = YES;
-    }
-    
+    targetScriptIndex = visibleIndexPath.section;
 
     Brick *brick = (Brick*)scriptOrBrick;
     brick.animate = YES;
@@ -642,16 +623,9 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         ifEndBrick.script = targetScript;
         ifElseBrick.animate = YES;
         ifEndBrick.animate = YES;
-        if (smallScript || self.scrollEnd) {
-            [targetScript.brickList addObject:ifBeginBrick];
-            [targetScript.brickList addObject:ifElseBrick];
-            [targetScript.brickList addObject:ifEndBrick];
-        }else{
-            [targetScript.brickList insertObject:ifEndBrick atIndex:visibleIndexPath.row];
-            [targetScript.brickList insertObject:ifElseBrick atIndex:visibleIndexPath.row];
-            [targetScript.brickList insertObject:ifBeginBrick atIndex:visibleIndexPath.row];
-        }
-
+        [targetScript.brickList addObject:ifBeginBrick];
+        [targetScript.brickList addObject:ifElseBrick];
+        [targetScript.brickList addObject:ifEndBrick];
     } else if ([brick isKindOfClass:[LoopBeginBrick class]]) {
         LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)brick;
         LoopEndBrick *loopEndBrick = [LoopEndBrick new];
@@ -659,31 +633,16 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         loopEndBrick.loopBeginBrick = loopBeginBrick;
         loopEndBrick.script = targetScript;
         loopEndBrick.animate = YES;
-        if (smallScript || self.scrollEnd) {
-            [targetScript.brickList addObject:loopBeginBrick];
-            [targetScript.brickList addObject:loopEndBrick];
-        }else{
-            [targetScript.brickList insertObject:loopEndBrick atIndex:visibleIndexPath.row];
-            [targetScript.brickList insertObject:loopBeginBrick atIndex:visibleIndexPath.row];
-        }
-
+        [targetScript.brickList addObject:loopBeginBrick];
+        [targetScript.brickList addObject:loopEndBrick];
     } else {
-        if (smallScript || self.scrollEnd) {
-            [targetScript.brickList addObject:brick];
-        }else{
-            [targetScript.brickList insertObject:brick atIndex:visibleIndexPath.row];
-        }
-
+        [targetScript.brickList addObject:brick];
     }
     [self.collectionView reloadData]; // FIXME: inconvenient temporary workaround used to trigger the brick cell animation...
-
-    if (smallScript || self.scrollEnd) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:targetScript.brickList.count // +1, because script itself is a brick in ScriptEditor too
-                                                     inSection:targetScriptIndex];
-        [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionBottom
-                                            animated:YES];
-    }
-    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:targetScript.brickList.count // +1, because script itself is a brick in ScriptEditor too
+                                                 inSection:targetScriptIndex];
+    [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionBottom
+                                        animated:YES];
     [self.object.program saveToDisk];
 }
 
@@ -726,9 +685,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 #pragma mark - Open Formula Editor
 - (void)openFormulaEditor:(BrickCellFormulaFragment*)formulaFragment
 {
-    if (self.comboBoxOpened) {
-        return;
-    }
     if ([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
         FormulaEditorViewController *formulaEditorViewController = (FormulaEditorViewController*)self.presentedViewController;
         if ([formulaEditorViewController changeFormula]) {
@@ -761,23 +717,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if (self.editing) {
         [self setEditing:YES animated:NO];
         [self.collectionView reloadData];
-    }
-    self.scrollEnd = NO;
-}
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
-    if (bottomEdge >= scrollView.contentSize.height) {
-        self.scrollEnd = YES;
-    } else {
-        self.scrollEnd = NO;
-    }
-}
-- (void)scrollViewWillEndDecelerating:(UIScrollView *)scrollView {
-    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
-    if (bottomEdge >= scrollView.contentSize.height) {
-        self.scrollEnd = YES;
-    } else {
-        self.scrollEnd = NO;
     }
 }
 
@@ -1392,7 +1331,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     self.navigationItem.rightBarButtonItem.enabled = YES;
     self.brickScaleTransition = [[BrickTransition alloc] initWithViewToAnimate:nil];
     self.selectedIndexPaths = [NSMutableArray new];
-    self.scrollEnd = NO;
+
     // register brick cells for current brick category
     NSDictionary *allBrickTypes = [[BrickManager sharedBrickManager] classNameBrickTypeMap];
     for (NSString *className in allBrickTypes) {
@@ -1463,12 +1402,9 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             ltvc.afterSafeBlock = ^(Look* look) {
                 [lookBrick setLook:look forLineNumber:line andParameterNumber:parameter];
                 [self.collectionView reloadData];
-                [self.collectionView setNeedsDisplay];
                 [self.navigationController popViewControllerAnimated:YES];
-                [self enableUserInteraction];
             };
             [self.navigationController pushViewController:ltvc animated:YES];
-            
             return;
         } else {
             [lookBrick setLook:[Util lookWithName:(NSString*)data forObject:self.object] forLineNumber:line andParameterNumber:parameter];
@@ -1483,9 +1419,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             ltvc.afterSafeBlock =  ^(Sound* sound) {
                 [soundBrick setSound:sound forLineNumber:line andParameterNumber:parameter];
                 [self.collectionView reloadData];
-                [self.collectionView setNeedsDisplay];
                 [self.navigationController popViewControllerAnimated:YES];
-                [self enableUserInteraction];
             };
             [self.navigationController pushViewController:ltvc animated:YES];
             return;
@@ -1496,17 +1430,9 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if ([brick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
         Brick<BrickObjectProtocol> *objectBrick = (Brick<BrickObjectProtocol>*)brick;
         if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
-            ProgramTableViewController *ptvc = [self.storyboard instantiateViewControllerWithIdentifier:kProgramTableViewControllerIdentifier];
-            [ptvc setProgram:self.object.program];
-            ptvc.showAddObjectActionSheetAtStart = YES;
-            ptvc.afterSafeBlock =  ^(SpriteObject* object) {
-                [objectBrick setObject:object forLineNumber:line andParameterNumber:parameter];
-                [self.collectionView reloadData];
-                [self.collectionView setNeedsDisplay];
-                [self.navigationController popToViewController:self animated:YES];
-                [self enableUserInteraction];
-            };
-            [self.navigationController pushViewController:ptvc animated:YES];
+            [Util addObjectAlertForProgram:self.object.program andPerformAction:@selector(addObjectWithName:andCompletion:) onTarget:self withCompletion:^(NSString *objectName){
+                [objectBrick setObject:[Util objectWithName:objectName forProgram:self.object.program] forLineNumber:line andParameterNumber:parameter];
+            }];
             return;
         } else {
             [objectBrick setObject:[Util objectWithName:(NSString*)data forProgram:self.object.program] forLineNumber:line andParameterNumber:parameter];
@@ -1537,7 +1463,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                                         invertedSet]
                               invalidInputAlertMessage:kLocalizedMessageAlreadyExistsDescription
                                          existingNames:[Util allMessagesForProgram:self.object.program]];
-            [self enableUserInteraction];
             return;
         } else {
             [messageBrick setMessage:(NSString*)data forLineNumber:line andParameterNumber:parameter];
@@ -1553,26 +1478,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 [variableBrick setVariable:variable forLineNumber:line andParameterNumber:parameter];
         }
     }
-    [self enableUserInteraction];
     [self.object.program saveToDisk];
-}
-
--(void)enableUserInteraction
-{
-    self.collectionView.scrollEnabled = YES;
-    self.comboBoxOpened = NO;
-    for (BrickCell *cell in self.collectionView.visibleCells) {
-        cell.enabled = YES;
-    }
-}
-
--(void)disableUserInteraction
-{
-    self.collectionView.scrollEnabled = NO;
-    self.comboBoxOpened = YES;
-    for (BrickCell *cell in self.collectionView.visibleCells) {
-        cell.enabled = NO;
-    }
 }
 
 -(void)reloadData

@@ -1543,6 +1543,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [messageBrick setMessage:(NSString*)data forLineNumber:line andParameterNumber:parameter];
         }
     }
+<<<<<<< HEAD
     if ([brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
         Brick<BrickVariableProtocol> *variableBrick = (Brick<BrickVariableProtocol>*)brick;
         if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
@@ -1553,7 +1554,9 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 [variableBrick setVariable:variable forLineNumber:line andParameterNumber:parameter];
         }
     }
+=======
     [self enableUserInteraction];
+>>>>>>> master
     [self.object.program saveToDisk];
 }
 

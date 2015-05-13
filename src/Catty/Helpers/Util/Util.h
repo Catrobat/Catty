@@ -192,7 +192,7 @@
                    blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
               invalidInputAlertMessage:(NSString*)invalidInputAlertMessage;
 
-+ (void)addObjectAlertForProgram:(Program*)program andPerformAction:(SEL)action onTarget:(id)target withCompletion:(void(^)(NSString*))completion;
++ (void)addObjectAlertForProgram:(Program*)program andPerformAction:(SEL)action onTarget:(id)target withCancel:(SEL)cancel withCompletion:(void(^)(NSString*))completion;
 
 + (NSString*)uniqueName:(NSString*)nameToCheck existingNames:(NSArray*)existingNames;
 

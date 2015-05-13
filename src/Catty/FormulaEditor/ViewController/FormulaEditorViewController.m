@@ -163,7 +163,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     [super viewDidLoad];
     [[ProgramManager sharedProgramManager] setProgram:self.object.program];
-    self.view.backgroundColor = UIColor.clearColor;
+    self.view.backgroundColor = [UIColor darkBlueColor];
 
     [self showFormulaEditor];
     [self hideScrollViews];

@@ -659,6 +659,9 @@
 "only 15 characters allowed" = "only 15 characters allowed";
 
 /* No comment provided by engineer. */
+"Only space is not allowed. Please enter at least %lu other character(s)." = "Only space is not allowed. Please enter at least %lu other character(s).";
+
+/* No comment provided by engineer. */
 "or" = "or";
 
 /* No comment provided by engineer. */

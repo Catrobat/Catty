@@ -56,11 +56,15 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-#warning other queue (serial queue only!!)
-        double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.script.object];
-        for (int i = 1; i < 2*durationInSeconds; i++) {
-            [self performSelector:@selector(vibe:) withObject:self afterDelay:i *.5f];
-        }
+        dispatch_queue_t serialQueue = dispatch_queue_create("org.catrobat.vibrate.queue", DISPATCH_QUEUE_SERIAL);
+        dispatch_async(serialQueue, ^{
+            double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.script.object];
+            for (int i = 1; i < 2*durationInSeconds; i++) {
+                dispatch_async(dispatch_get_main_queue(), ^(void){
+                    [self performSelector:@selector(vibe:) withObject:self afterDelay:i *.5f];
+                });
+            }
+        });
     };
 }
 

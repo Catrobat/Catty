@@ -55,7 +55,6 @@
 #import "BrickObjectProtocol.h"
 #import "BrickTextProtocol.h"
 #import "BrickMessageProtocol.h"
-#import "BrickVariableProtocol.h"
 #import "BrickCellMessageFragment.h"
 #import "LooksTableViewController.h"
 #import "SoundsTableViewController.h"
@@ -1451,7 +1450,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     [self.collectionView reloadData];
 }
 
-- (void)updateData:(id)data forBrick:(id)brick andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
+- (void)updateData:(id)data forBrick:(Brick*)brick andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
     if ([brick conformsToProtocol:@protocol(BrickLookProtocol)]) {
         Brick<BrickLookProtocol> *lookBrick = (Brick<BrickLookProtocol>*)brick;
@@ -1541,16 +1540,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             return;
         } else {
             [messageBrick setMessage:(NSString*)data forLineNumber:line andParameterNumber:parameter];
-        }
-    }
-    if ([brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
-        Brick<BrickVariableProtocol> *variableBrick = (Brick<BrickVariableProtocol>*)brick;
-        if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
-            
-        } else {
-            UserVariable *variable = [self.object.program.variables getUserVariableNamed:(NSString*)data forSpriteObject:self.object];
-            if(variable)
-                [variableBrick setVariable:variable forLineNumber:line andParameterNumber:parameter];
         }
     }
     [self enableUserInteraction];

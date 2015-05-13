@@ -408,7 +408,7 @@
                                                              tag:kAskUserForUniqueNameAlertViewTag
                                                            value:value];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionAskUserForUniqueName
-                                                                  withPayload:payload];
+                                                                  withPayload:[NSMutableDictionary dictionaryWithDictionary: payload]];
 }
 
 + (void)askUserForReportMessageAndPerformAction:(SEL)action
@@ -438,7 +438,7 @@
                                                              tag:kAskUserForReportMessageAlertViewTag
                                                            value:@""];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionReportMessage
-                                                                  withPayload:payload];
+                                                                  withPayload:[NSMutableDictionary dictionaryWithDictionary: payload]];
 }
 
 + (void)askUserForTextAndPerformAction:(SEL)action
@@ -523,15 +523,15 @@
                                                              tag:kAskUserForVariableNameAlertViewTag
                                                            value:@""];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionVariableName
-                                                                  withPayload:payload];
+                                                                  withPayload:[NSMutableDictionary dictionaryWithDictionary: payload]];
 }
 
 
-+ (void)addObjectAlertForProgram:(Program*)program andPerformAction:(SEL)action onTarget:(id)target withCompletion:(void(^)(NSString*))completion
++ (void)addObjectAlertForProgram:(Program*)program andPerformAction:(SEL)action onTarget:(id)target withCancel:(SEL)cancel withCompletion:(void(^)(NSString*))completion
 {
     [self askUserForUniqueNameAndPerformAction:action
                                         target:target
-                                  cancelAction:nil
+                                  cancelAction:cancel
                                     withObject:(id)completion
                                    promptTitle:kLocalizedAddObject
                                  promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedObjectName]
@@ -705,19 +705,27 @@ replacementString:(NSString*)characters
                 }
             }
         }
-
+        
+        bool atLeastOneNotspace = NO;
+        for(int i =0; i < input.length; i++){
+            NSString * newString = [input substringWithRange:NSMakeRange(i, 1)];
+            if(!([newString  isEqual: @" "])){
+                atLeastOneNotspace = YES;
+                break;
+            }
+        }
         NSUInteger textFieldMinInputLength = [payload[kDTPayloadAskUserMinInputLength] unsignedIntegerValue];
         if ([input isEqualToString:kLocalizedNewElement]) {
             CatrobatAlertView *newAlertView = [Util alertWithText:kLocalizedInvalidInputDescription
                                                          delegate:(id<CatrobatAlertViewDelegate>)self
                                                               tag:kInvalidNameWarningAlertViewTag];
-            payload[kDTPayloadAskUserPromptValue] = input;
+            payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         } else if (nameAlreadyExists) {
             CatrobatAlertView *newAlertView = [Util alertWithText:payload[kDTPayloadAskUserInvalidInputAlertMessage]
                                                          delegate:(id<CatrobatAlertViewDelegate>)self
                                                               tag:kInvalidNameWarningAlertViewTag];
-            payload[kDTPayloadAskUserPromptValue] = input;
+            payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         } else if ([input length] < textFieldMinInputLength) {
             NSString *alertText = [NSString stringWithFormat:kLocalizedNoOrTooShortInputDescription,
@@ -727,7 +735,17 @@ replacementString:(NSString*)characters
             CatrobatAlertView *newAlertView = [Util alertWithText:alertText
                                                          delegate:(id<CatrobatAlertViewDelegate>)self
                                                               tag:kInvalidNameWarningAlertViewTag];
-            payload[kDTPayloadAskUserPromptValue] = input;
+            payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
+            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
+        } else if(!atLeastOneNotspace){
+            NSString *alertText = [NSString stringWithFormat:kLocalizedSpaceInputDescription,
+                                   textFieldMinInputLength];
+            alertText = ((textFieldMinInputLength != 1) ? [[self class] pluralString:alertText]
+                         : [[self class] singularString:alertText]);
+            CatrobatAlertView *newAlertView = [Util alertWithText:alertText
+                                                         delegate:(id<CatrobatAlertViewDelegate>)self
+                                                              tag:kInvalidNameWarningAlertViewTag];
+            payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         } else {
             // no name duplicate => call action on target
@@ -777,7 +795,7 @@ replacementString:(NSString*)characters
             CatrobatAlertView *newAlertView = [Util alertWithText:alertText
                                                          delegate:(id<CatrobatAlertViewDelegate>)self
                                                               tag:kInvalidNameWarningAlertViewTag];
-            payload[kDTPayloadAskUserPromptValue] = input;
+            payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         } else {
                 // no name duplicate => call action on target
@@ -818,7 +836,7 @@ replacementString:(NSString*)characters
             CatrobatAlertView *newAlertView = [Util alertWithText:alertText
                                                          delegate:(id<CatrobatAlertViewDelegate>)self
                                                               tag:kInvalidNameWarningAlertViewTag];
-            payload[kDTPayloadAskUserPromptValue] = input;
+            payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         } else {
             SEL action = NULL;
