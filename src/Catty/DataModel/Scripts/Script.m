@@ -626,7 +626,7 @@
     self.object = nil;
 }
 
-- (void)setDefaultValues
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     // Override this method in Script implementation
 }

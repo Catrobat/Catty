@@ -43,6 +43,12 @@
 
 - (void)changeVariable:(UserVariable*)userVariable byValue:(double)value;
 
+// Array of UserVariable
+- (NSArray*)allVariablesForObject:(SpriteObject*)spriteObject;
+
+// Array of UserVariable
+- (NSArray*)objectVariablesForObject:(SpriteObject*)spriteObject;
+
 - (SpriteObject*)spriteObjectForObjectVariable:(UserVariable*)userVariable;
 
 - (BOOL)isVariableOfSpriteObject:(SpriteObject*)spriteObject userVariable:(UserVariable*)userVariable;

@@ -36,7 +36,7 @@
     self.yPosition = formula;
 }
 
-- (void)setDefaultValues
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.yPosition = [[Formula alloc] initWithInteger:200];
 }

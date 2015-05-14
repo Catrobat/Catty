@@ -104,4 +104,16 @@
         self.look = look;
 }
 
+#pragma mark - Default values
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
+{
+    if(spriteObject) {
+        NSArray *looks = spriteObject.lookList;
+        if([looks count] > 0)
+            self.look = [looks objectAtIndex:0];
+        else
+            self.look = nil;
+    }
+}
+
 @end

@@ -22,6 +22,7 @@
 
 #import "BroadcastWaitBrick.h"
 #import "Script.h"
+#import "Util.h"
 
 @implementation BroadcastWaitBrick
 
@@ -41,9 +42,17 @@
     return self;
 }
 
-- (void)setDefaultValues
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.broadcastMessage = [NSString stringWithString:kLocalizedMessage1];
+    if(spriteObject) {
+        NSArray *messages = [Util allMessagesForProgram:spriteObject.program];
+        if([messages count] > 0)
+            self.broadcastMessage = [messages objectAtIndex:0];
+        else
+            self.broadcastMessage = nil;
+    }
+    if(!self.broadcastMessage)
+        self.broadcastMessage = [NSString stringWithString:kLocalizedMessage1];
 }
 
 - (void)performBroadcastAndWaitWithCompletion:(dispatch_block_t)completionBlock

@@ -20,42 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "NoteBrick.h"
 
-@implementation NoteBrick
+#import "BrickCellDataProtocol.h"
+#import "iOSCombobox.h"
 
-- (NSString*)brickTitle
-{
-    return kLocalizedNote;
-}
+@interface BrickCellMessageData : iOSCombobox<BrickCellDataProtocol, iOSComboboxDelegate>
 
-- (SKAction*)action
-{
-    NSError(@"NoteBrick should not be executed!");
-    return [SKAction runBlock:^{
-        NSDebug(@"Performing: %@", self.description);
-    }];
-}
-
-- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
-{
-    self.note = [NSString stringWithString:kLocalizedAddCommentHere];
-}
-
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"NoteBrick: %@", self.note];
-}
-
-- (void)setText:(NSString *)text forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    if(text)
-        self.note = text;
-}
-
-- (NSString*)textForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    return self.note;
-}
+@property (nonatomic, weak) BrickCell *brickCell;
+@property (nonatomic) NSInteger lineNumber;
+@property (nonatomic) NSInteger parameterNumber;
 
 @end

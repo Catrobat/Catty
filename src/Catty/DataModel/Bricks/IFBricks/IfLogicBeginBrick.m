@@ -49,7 +49,7 @@
     self.ifCondition = formula;
 }
 
-- (void)setDefaultValues
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.ifCondition = [[Formula alloc] initWithInteger:1];
 }

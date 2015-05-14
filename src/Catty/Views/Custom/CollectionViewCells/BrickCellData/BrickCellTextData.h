@@ -21,8 +21,15 @@
  */
 
 
-#import "BrickCellFragmentProtocol.h"
-#import "iOSCombobox.h"
+#import "BrickCellDataProtocol.h"
 
-@interface BrickCellLookFragment : iOSCombobox<BrickCellFragmentProtocol, iOSComboboxDelegate>
+@interface BrickCellTextData : UITextField<BrickCellDataProtocol, UITextFieldDelegate>
+
+@property (nonatomic, weak) BrickCell *brickCell;
+@property (nonatomic) NSInteger lineNumber;
+@property (nonatomic) NSInteger parameterNumber;
+
+- (void)drawBorder:(BOOL)isActive;
+- (void)update;
+
 @end

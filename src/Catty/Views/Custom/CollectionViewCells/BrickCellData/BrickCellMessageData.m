@@ -21,7 +21,7 @@
  */
 
 
-#import "BrickCellMessageFragment.h"
+#import "BrickCellMessageData.h"
 #import "iOSCombobox.h"
 #import "BrickCell.h"
 #import "Script.h"
@@ -33,13 +33,7 @@
 #import "BroadcastBrick.h"
 #import "BroadcastWaitBrick.h"
 
-@interface BrickCellMessageFragment()
-@property (nonatomic, weak) BrickCell *brickCell;
-@property (nonatomic) NSInteger lineNumber;
-@property (nonatomic) NSInteger parameterNumber;
-@end
-
-@implementation BrickCellMessageFragment
+@implementation BrickCellMessageData
 
 static NSMutableArray *messages = nil;
 
@@ -85,12 +79,12 @@ static NSMutableArray *messages = nil;
 
 - (void)comboboxClosed:(iOSCombobox*)combobox withValue:(NSString*)value
 {
-    [self.brickCell.fragmentDelegate updateData:value forBrick:(Brick*)self.brickCell.scriptOrBrick andLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
+    [self.brickCell.dataDelegate updateBrickCellData:self withValue:value];
 }
 
 - (void)comboboxOpened:(iOSCombobox *)combobox
 {
-    [self.brickCell.fragmentDelegate disableUserInteraction];
+    [self.brickCell.dataDelegate disableUserInteraction];
 }
 
 @end

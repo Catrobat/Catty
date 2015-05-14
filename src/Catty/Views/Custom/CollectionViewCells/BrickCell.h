@@ -36,7 +36,7 @@
 #define roundedSmallBrick 75.0f
 
 @class Brick, BrickCellInlineView, BrickCell;
-@protocol ScriptProtocol, BrickCellFragmentDelegate;
+@protocol ScriptProtocol, BrickCellDataDelegate;
 
 
 @protocol BrickCellDelegate<NSObject>
@@ -46,7 +46,7 @@
 
 @interface BrickCell : UICollectionViewCell<BrickCellProtocol>
 @property (nonatomic, weak) id<BrickCellDelegate> delegate;
-@property (nonatomic, weak) id<BrickCellFragmentDelegate> fragmentDelegate;
+@property (nonatomic, weak) id<BrickCellDataDelegate> dataDelegate;
 @property (nonatomic, strong) id<ScriptProtocol> scriptOrBrick;
 @property (nonatomic, strong) NSArray *brickCategoryColors;
 @property (nonatomic) BOOL enabled;

@@ -38,7 +38,7 @@
     self.changeBrightness = formula;
 }
 
-- (void)setDefaultValues
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.changeBrightness = [[Formula alloc] initWithZero];
 }

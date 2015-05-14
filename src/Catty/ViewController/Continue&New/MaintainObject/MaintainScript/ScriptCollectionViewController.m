@@ -46,16 +46,22 @@
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
 #import "UIUtil.h"
-#import "BrickCellFormulaFragment.h"
+#import "BrickCellFormulaData.h"
 #import "NoteBrick.h"
 #import "BrickSelectionViewController.h"
-#import "BrickCellFragmentProtocol.h"
+#import "BrickCellDataProtocol.h"
 #import "BrickLookProtocol.h"
 #import "BrickSoundProtocol.h"
 #import "BrickObjectProtocol.h"
 #import "BrickTextProtocol.h"
 #import "BrickMessageProtocol.h"
-#import "BrickCellMessageFragment.h"
+#import "BrickVariableProtocol.h"
+#import "BrickCellLookData.h"
+#import "BrickCellSoundData.h"
+#import "BrickCellObjectData.h"
+#import "BrickCellTextData.h"
+#import "BrickCellMessageData.h"
+#import "BrickCellVariableData.h"
 #import "LooksTableViewController.h"
 #import "SoundsTableViewController.h"
 #import "ProgramTableViewController.h"
@@ -67,6 +73,7 @@
 #import "DataTransferMessage.h"
 #import "CBMutableCopyContext.h"
 #import "RepeatBrick.h"
+#import "OrderedMapTable.h"
 
 @interface ScriptCollectionViewController() <UICollectionViewDelegate,
                                              UICollectionViewDataSource,
@@ -75,7 +82,7 @@
                                              UIViewControllerTransitioningDelegate,
                                              BrickCellDelegate,
                                              iOSComboboxDelegate,
-                                             BrickCellFragmentDelegate,
+                                             BrickCellDataDelegate,
                                              CatrobatActionSheetDelegate>
 
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
@@ -138,7 +145,7 @@
 - (void)showBrickPickerAction:(id)sender
 {
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-        BrickCategoryViewController *bcvc = [[BrickCategoryViewController alloc] initWithBrickCategory:self.lastSelectedBrickCategory];
+        BrickCategoryViewController *bcvc = [[BrickCategoryViewController alloc] initWithBrickCategory:self.lastSelectedBrickCategory andObject:self.object];
         bcvc.delegate = self;
         BrickSelectionViewController *bsvc = [[BrickSelectionViewController alloc]
                                               initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
@@ -372,8 +379,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
         // edit formula
         if ([buttonTitle isEqualToString:kLocalizedEditFormula]) {
-            BrickCellFormulaFragment *formulaFragment = [[BrickCellFormulaFragment alloc] initWithFrame:CGRectMake(0, 0, 0, 0) andBrickCell:brickCell andLineNumber:0 andParameterNumber:0];
-            [self openFormulaEditor:formulaFragment];
+            BrickCellFormulaData *formulaData = [[BrickCellFormulaData alloc] initWithFrame:CGRectMake(0, 0, 0, 0) andBrickCell:brickCell andLineNumber:0 andParameterNumber:0];
+            [self openFormulaEditor:formulaData];
             return;
         }
 
@@ -559,7 +566,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     brickCell.enabled = YES;
     [brickCell setupBrickCell];
     brickCell.delegate = self;
-    brickCell.fragmentDelegate = self;
+    brickCell.dataDelegate = self;
 
     if (brickCell.scriptOrBrick.isAnimated) {
         [brickCell animate:YES];
@@ -723,7 +730,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 }
 
 #pragma mark - Open Formula Editor
-- (void)openFormulaEditor:(BrickCellFormulaFragment*)formulaFragment
+- (void)openFormulaEditor:(BrickCellFormulaData*)formulaData
 {
     if (self.comboBoxOpened) {
         return;
@@ -731,8 +738,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if ([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
         FormulaEditorViewController *formulaEditorViewController = (FormulaEditorViewController*)self.presentedViewController;
         if ([formulaEditorViewController changeFormula]) {
-            [formulaEditorViewController setBrickCellFormulaFragment:formulaFragment];
-            [formulaFragment drawBorder:YES];
+            [formulaEditorViewController setBrickCellFormulaData:formulaData];
+            [formulaData drawBorder:YES];
         }
         return;
     }
@@ -742,16 +749,16 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self.presentedViewController dismissViewControllerAnimated:NO completion:NULL];
     }
 
-    FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCellFormulaFragment:formulaFragment];
+    FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCellFormulaFragment:formulaData];
     formulaEditorViewController.object = self.object;
     formulaEditorViewController.transitioningDelegate = self;
     formulaEditorViewController.modalPresentationStyle = UIModalPresentationCustom;
-    formulaEditorViewController.delegate = formulaFragment;
-    [formulaFragment drawBorder:YES];
+    formulaEditorViewController.delegate = formulaData;
+    [formulaData drawBorder:YES];
 
-    [self.brickScaleTransition updateAnimationViewWithView:formulaFragment.brickCell];
+    [self.brickScaleTransition updateAnimationViewWithView:formulaData.brickCell];
     [self presentViewController:formulaEditorViewController animated:YES completion:^{
-        [formulaEditorViewController setBrickCellFormulaFragment:formulaFragment];
+        [formulaEditorViewController setBrickCellFormulaData:formulaData];
     }];
 }
 
@@ -1428,7 +1435,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
 }
 
-#pragma mark - BrickCellFragment Delegate
+#pragma mark - BrickCellData Delegate
 - (void)addObjectWithName:(NSString*)objectName andCompletion:(id)completion
 {
     NSString *uniqueName = [Util uniqueName:objectName existingNames:[self.object.program allObjectNames]];
@@ -1450,11 +1457,37 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     [self.collectionView reloadData];
 }
 
-- (void)updateData:(id)data forBrick:(Brick*)brick andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
+- (void)addVariableWithName:(NSString*)variableName andCompletion:(id)completion
 {
-    if ([brick conformsToProtocol:@protocol(BrickLookProtocol)]) {
+    UserVariable *variable = [UserVariable new];
+    variable.name = variableName;
+    variable.value = [NSNumber numberWithInt:0];
+    if (true) { // TODO check if object or program variable -> currently always program variable
+        [self.object.program.variables.programVariableList addObject:variable];
+    } else { // object variable
+        NSMutableArray *array = [self.object.program.variables.objectVariableList objectForKey:self.object];
+        if (!array)
+            array = [NSMutableArray new];
+        [array addObject:variable];
+        [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
+    }
+
+    if (completion) {
+        void (^block)(NSString*) = (void (^)(NSString*))completion;
+        block(variableName);
+    }
+    [self.object.program saveToDisk];
+    [self.collectionView reloadData];
+}
+
+- (void)updateBrickCellData:(id<BrickCellDataProtocol>)brickCellData withValue:(id)value
+{
+    NSInteger line = brickCellData.lineNumber;
+    NSInteger parameter = brickCellData.parameterNumber;
+    id brick = brickCellData.brickCell.scriptOrBrick;
+    if ([brickCellData isKindOfClass:[BrickCellLookData class]] && [brick conformsToProtocol:@protocol(BrickLookProtocol)]) {
         Brick<BrickLookProtocol> *lookBrick = (Brick<BrickLookProtocol>*)brick;
-        if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
+        if([(NSString*)value isEqualToString:kLocalizedNewElement]) {
             LooksTableViewController *ltvc = [self.storyboard instantiateViewControllerWithIdentifier:kLooksTableViewControllerIdentifier];
             [ltvc setObject:self.object];
             ltvc.showAddLookActionSheetAtStartForScriptEditor = YES;
@@ -1470,12 +1503,12 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             
             return;
         } else {
-            [lookBrick setLook:[Util lookWithName:(NSString*)data forObject:self.object] forLineNumber:line andParameterNumber:parameter];
+            [lookBrick setLook:[Util lookWithName:(NSString*)value forObject:self.object] forLineNumber:line andParameterNumber:parameter];
         }
-    }
-    if ([brick conformsToProtocol:@protocol(BrickSoundProtocol)]) {
+    } else
+    if ([brickCellData isKindOfClass:[BrickCellSoundData class]] && [brick conformsToProtocol:@protocol(BrickSoundProtocol)]) {
         Brick<BrickSoundProtocol> *soundBrick = (Brick<BrickSoundProtocol>*)brick;
-        if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
+        if([(NSString*)value isEqualToString:kLocalizedNewElement]) {
             SoundsTableViewController *ltvc = [self.storyboard instantiateViewControllerWithIdentifier:kSoundsTableViewControllerIdentifier];
             [ltvc setObject:self.object];
             ltvc.showAddSoundActionSheetAtStart = YES;
@@ -1489,12 +1522,12 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [self.navigationController pushViewController:ltvc animated:YES];
             return;
         } else {
-            [soundBrick setSound:[Util soundWithName:(NSString*)data forObject:self.object] forLineNumber:line andParameterNumber:parameter];
+            [soundBrick setSound:[Util soundWithName:(NSString*)value forObject:self.object] forLineNumber:line andParameterNumber:parameter];
         }
-    }
-    if ([brick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
+    } else
+    if ([brickCellData isKindOfClass:[BrickCellObjectData class]] && [brick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
         Brick<BrickObjectProtocol> *objectBrick = (Brick<BrickObjectProtocol>*)brick;
-        if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
+        if([(NSString*)value isEqualToString:kLocalizedNewElement]) {
             ProgramTableViewController *ptvc = [self.storyboard instantiateViewControllerWithIdentifier:kProgramTableViewControllerIdentifier];
             [ptvc setProgram:self.object.program];
             ptvc.showAddObjectActionSheetAtStart = YES;
@@ -1508,18 +1541,18 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [self.navigationController pushViewController:ptvc animated:YES];
             return;
         } else {
-            [objectBrick setObject:[Util objectWithName:(NSString*)data forProgram:self.object.program] forLineNumber:line andParameterNumber:parameter];
+            [objectBrick setObject:[Util objectWithName:(NSString*)value forProgram:self.object.program] forLineNumber:line andParameterNumber:parameter];
         }
-    }
-    if ([brick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
-        [(Brick<BrickFormulaProtocol>*)brick setFormula:(Formula*)data forLineNumber:line andParameterNumber:parameter];
-    }
-    if ([brick conformsToProtocol:@protocol(BrickTextProtocol)]) {
-        [(Brick<BrickTextProtocol>*)brick setText:(NSString*)data forLineNumber:line andParameterNumber:parameter];
-    }
-    if ([brick conformsToProtocol:@protocol(BrickMessageProtocol)]) {
+    } else
+    if ([brickCellData isKindOfClass:[BrickCellFormulaData class]] && [brick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
+        [(Brick<BrickFormulaProtocol>*)brick setFormula:(Formula*)value forLineNumber:line andParameterNumber:parameter];
+    } else
+    if ([brickCellData isKindOfClass:[BrickCellTextData class]] && [brick conformsToProtocol:@protocol(BrickTextProtocol)]) {
+        [(Brick<BrickTextProtocol>*)brick setText:(NSString*)value forLineNumber:line andParameterNumber:parameter];
+    } else
+    if ([brickCellData isKindOfClass:[BrickCellMessageData class]] && [brick conformsToProtocol:@protocol(BrickMessageProtocol)]) {
         Brick<BrickMessageProtocol> *messageBrick = (Brick<BrickMessageProtocol>*)brick;
-        if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
+        if([(NSString*)value isEqualToString:kLocalizedNewElement]) {
             [Util askUserForUniqueNameAndPerformAction:@selector(addMessageWithName:andCompletion:)
                                                 target:self
                                           cancelAction:@selector(reloadData)
@@ -1539,7 +1572,40 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             [self enableUserInteraction];
             return;
         } else {
-            [messageBrick setMessage:(NSString*)data forLineNumber:line andParameterNumber:parameter];
+            [messageBrick setMessage:(NSString*)value forLineNumber:line andParameterNumber:parameter];
+        }
+    } else
+    if ([brickCellData isKindOfClass:[BrickCellVariableData class]] && [brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
+        Brick<BrickVariableProtocol> *variableBrick = (Brick<BrickVariableProtocol>*)brick;
+        if([(NSString*)value isEqualToString:kLocalizedNewElement]) {
+            NSMutableArray *allVariableNames = [NSMutableArray new];
+            for(UserVariable *var in [self.object.program.variables allVariablesForObject:self.object]) {
+                [allVariableNames addObject:var.name];
+            }
+            [Util askUserForUniqueNameAndPerformAction:@selector(addVariableWithName:andCompletion:)
+                                                target:self
+                                          cancelAction:@selector(reloadData)
+                                            withObject:(id) ^(NSString* variableName) {
+                                                UserVariable *var = [self.object.program.variables getUserVariableNamed:(NSString*)variableName forSpriteObject:self.object];
+                                                if(var)
+                                                    [variableBrick setVariable:var forLineNumber:line andParameterNumber:parameter];
+                                            }
+                                           promptTitle:kUIFENewVar
+                                         promptMessage:kUIFEVarName
+                                           promptValue:nil
+                                     promptPlaceholder:kLocalizedEnterYourVariableNameHere
+                                        minInputLength:kMinNumOfVariableNameCharacters
+                                        maxInputLength:kMaxNumOfVariableNameCharacters
+                                   blockedCharacterSet:[[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                                                        invertedSet]
+                              invalidInputAlertMessage:kUIFENewVarExists
+                                         existingNames:allVariableNames];
+            [self enableUserInteraction];
+            return;
+        } else {
+            UserVariable *variable = [self.object.program.variables getUserVariableNamed:(NSString*)value forSpriteObject:self.object];
+            if(variable)
+                [variableBrick setVariable:variable forLineNumber:line andParameterNumber:parameter];
         }
     }
     [self enableUserInteraction];

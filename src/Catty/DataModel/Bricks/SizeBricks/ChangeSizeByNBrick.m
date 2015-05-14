@@ -36,7 +36,7 @@
     self.size = formula;
 }
 
-- (void)setDefaultValues
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.size = [[Formula alloc] initWithZero];
 }
