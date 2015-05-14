@@ -41,11 +41,7 @@
         self.pageIndexCategoryType = type;
         
         NSUInteger category = [self brickCategoryTypForPageIndex:type];
-        if (type == kPageIndexScriptBricks) {
-            self.bricks = [[BrickManager sharedBrickManager] selectableScriptBricks];
-        } else {
-            self.bricks = [[BrickManager sharedBrickManager] selectableBricksForCategoryType:category];
-        }
+        self.bricks = [[BrickManager sharedBrickManager] selectableBricksForCategoryType:category];
     }
     return self;
 }
@@ -153,10 +149,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 #pragma mark - Helpers
 - (kBrickCategoryType)brickCategoryTypForPageIndex:(NSUInteger)pageIndex {
-    if (pageIndex == 0 || pageIndex == 1) {
-        return kControlBrick;
-    }
-    return pageIndex - 1; // + 1 (Script category) offset
+
+    return pageIndex ;
 }
 
 @end
@@ -164,8 +158,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 NSString* CBTitleFromPageIndexCategoryType(PageIndexCategoryType pageIndexType)
 {
     switch (pageIndexType) {
-        case kPageIndexScriptBricks:
-            return kUIScriptTitle;
         case kPageIndexControlBrick:
             return kUIControlTitle;
         case kPageIndexMotionBrick:

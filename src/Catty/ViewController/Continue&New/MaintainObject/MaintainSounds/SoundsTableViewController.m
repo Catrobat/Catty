@@ -621,6 +621,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
                     self.afterSafeBlock(nil);
                 }
             }];
+        } else {
+            if(self.afterSafeBlock) {
+                self.afterSafeBlock(nil);
+            }
         }
     }else{
         if(self.afterSafeBlock) {

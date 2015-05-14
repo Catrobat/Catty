@@ -171,11 +171,15 @@
 {
     NSArray *selectableBricks = [self selectableBricks];
     NSMutableArray *selectableBricksForCategoryMutable = [NSMutableArray arrayWithCapacity:[selectableBricks count]];
+    if (categoryType == kControlBrick) {
+        [selectableBricksForCategoryMutable addObjectsFromArray:[[BrickManager sharedBrickManager] selectableScriptBricks]];
+    }
     for (id<BrickProtocol> brick in selectableBricks) {
         if (brick.brickCategoryType == categoryType) {
             [selectableBricksForCategoryMutable addObject:brick];
         }
     }
+
     return (NSArray*)selectableBricksForCategoryMutable;
 }
 

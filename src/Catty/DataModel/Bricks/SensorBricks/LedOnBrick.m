@@ -42,8 +42,10 @@
     return ^{
         NSDebug(@"Performing: %@", self.description);
         FlashHelper *helper = [FlashHelper sharedFlashHandler];
-#warning other queue (serial queue only!!)
-        [helper turnOn];
+        dispatch_queue_t serialQueue = dispatch_queue_create("org.catrobat.flash.queue", DISPATCH_QUEUE_SERIAL);
+        dispatch_async(serialQueue, ^{
+            [helper turnOn];
+        });
     };
 }
 

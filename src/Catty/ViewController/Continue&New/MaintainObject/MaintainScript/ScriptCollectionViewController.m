@@ -87,6 +87,7 @@
 @property (nonatomic, strong) NSIndexPath *higherRankBrick; // refactor
 @property (nonatomic, strong) NSIndexPath *lowerRankBrick;  // refactor
 @property (nonatomic) PageIndexCategoryType lastSelectedBrickCategory;
+@property (nonatomic, assign) BOOL comboBoxOpened;  // refactor
 
 @end
 
@@ -208,6 +209,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)collectionView:(UICollectionView*)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
+    if (self.comboBoxOpened) {
+        return;
+    }
+    
     BrickCell *brickCell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
     if (self.isEditing) {
         if ([brickCell.scriptOrBrick isKindOfClass:[Script class]]) {
@@ -772,6 +777,9 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 #pragma mark - Open Formula Editor
 - (void)openFormulaEditor:(BrickCellFormulaFragment*)formulaFragment
 {
+    if (self.comboBoxOpened) {
+        return;
+    }
     if ([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
         FormulaEditorViewController *formulaEditorViewController = (FormulaEditorViewController*)self.presentedViewController;
         if ([formulaEditorViewController changeFormula]) {
@@ -1539,8 +1547,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 [self.collectionView reloadData];
                 [self.collectionView setNeedsDisplay];
                 [self.navigationController popViewControllerAnimated:YES];
+                [self enableUserInteraction];
             };
             [self.navigationController pushViewController:ltvc animated:YES];
+            
             return;
         } else {
             [lookBrick setLook:[Util lookWithName:(NSString*)data forObject:self.object] forLineNumber:line andParameterNumber:parameter];
@@ -1555,7 +1565,9 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             ltvc.afterSafeBlock =  ^(Sound* sound) {
                 [soundBrick setSound:sound forLineNumber:line andParameterNumber:parameter];
                 [self.collectionView reloadData];
+                [self.collectionView setNeedsDisplay];
                 [self.navigationController popViewControllerAnimated:YES];
+                [self enableUserInteraction];
             };
             [self.navigationController pushViewController:ltvc animated:YES];
             return;
@@ -1566,9 +1578,17 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if ([brick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
         Brick<BrickObjectProtocol> *objectBrick = (Brick<BrickObjectProtocol>*)brick;
         if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
-            [Util addObjectAlertForProgram:self.object.program andPerformAction:@selector(addObjectWithName:andCompletion:) onTarget:self withCompletion:^(NSString *objectName){
-                [objectBrick setObject:[Util objectWithName:objectName forProgram:self.object.program] forLineNumber:line andParameterNumber:parameter];
-            }];
+            ProgramTableViewController *ptvc = [self.storyboard instantiateViewControllerWithIdentifier:kProgramTableViewControllerIdentifier];
+            [ptvc setProgram:self.object.program];
+            ptvc.showAddObjectActionSheetAtStart = YES;
+            ptvc.afterSafeBlock =  ^(SpriteObject* object) {
+                [objectBrick setObject:object forLineNumber:line andParameterNumber:parameter];
+                [self.collectionView reloadData];
+                [self.collectionView setNeedsDisplay];
+                [self.navigationController popToViewController:self animated:YES];
+                [self enableUserInteraction];
+            };
+            [self.navigationController pushViewController:ptvc animated:YES];
             return;
         } else {
             [objectBrick setObject:[Util objectWithName:(NSString*)data forProgram:self.object.program] forLineNumber:line andParameterNumber:parameter];
@@ -1585,7 +1605,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         if([(NSString*)data isEqualToString:kLocalizedNewElement]) {
             [Util askUserForUniqueNameAndPerformAction:@selector(addMessageWithName:andCompletion:)
                                                 target:self
-                                          cancelAction:nil 
+                                          cancelAction:@selector(reloadData)
                                             withObject:(id) ^(NSString* message){
                                                 [messageBrick setMessage:message forLineNumber:line andParameterNumber:parameter];
                                             }
@@ -1599,12 +1619,37 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                                         invertedSet]
                               invalidInputAlertMessage:kLocalizedMessageAlreadyExistsDescription
                                          existingNames:[Util allMessagesForProgram:self.object.program]];
+            [self enableUserInteraction];
             return;
         } else {
             [messageBrick setMessage:(NSString*)data forLineNumber:line andParameterNumber:parameter];
         }
     }
+    [self enableUserInteraction];
     [self.object.program saveToDisk];
+}
+
+-(void)enableUserInteraction
+{
+    self.collectionView.scrollEnabled = YES;
+    self.comboBoxOpened = NO;
+    for (BrickCell *cell in self.collectionView.visibleCells) {
+        cell.enabled = YES;
+    }
+}
+
+-(void)disableUserInteraction
+{
+    self.collectionView.scrollEnabled = NO;
+    self.comboBoxOpened = YES;
+    for (BrickCell *cell in self.collectionView.visibleCells) {
+        cell.enabled = NO;
+    }
+}
+
+-(void)reloadData
+{
+    [self.collectionView reloadData];
 }
 
 @end
