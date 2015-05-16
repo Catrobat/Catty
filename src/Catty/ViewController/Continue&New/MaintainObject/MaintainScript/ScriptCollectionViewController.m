@@ -472,6 +472,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
 // FIXME: UPDATING THE DATA MODEL WHILE THE USER IS DRAGGING IS NO GOOD PRACTICE AND IS ERROR PRONE!!!
 //        USE collectionView:layout:didEndDraggingItemAtIndexPath: DELEGATE METHOD FOR THIS. Updates must happen after the user stopped dragging the brickcell!!
+    
     if (fromIndexPath.section == toIndexPath.section) {
         Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
         Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
@@ -510,8 +511,12 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         NSLog(@"INSERT ALL BRICKS");
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
         Brick *brick = [script.brickList objectAtIndex:indexPath.item - 1];
-        [self insertBrick:brick andIndexPath:indexPath];
-        [self turnOffInsertingBrickMode];
+        if (brick.isAnimatedInsertBrick) {
+            [self insertBrick:brick andIndexPath:indexPath];
+            [self turnOffInsertingBrickMode];
+        }else{
+            return;
+        }
     }
     [self reloadInputViews];
     [self.collectionView reloadData];
@@ -529,16 +534,21 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 - (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
     canMoveToIndexPath:(NSIndexPath*)toIndexPath
 {
-    if(self.isInsertingBrickMode){
-        if (toIndexPath.item != 0) {
-            return YES;
-        } else{
-            return NO;
-        }
-        
-    }
     Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
     Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
+    if(self.isInsertingBrickMode){
+        if (fromBrick.isAnimatedInsertBrick) {
+            if (toIndexPath.item != 0) {
+                return YES;
+            } else{
+                return NO;
+            }
+        }else{
+            return NO;
+        }
+
+        
+    }
     if (toIndexPath.item != 0) {
         if ([fromBrick isKindOfClass:[LoopBeginBrick class]]){
             return [self checkLoopBeginToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick];
