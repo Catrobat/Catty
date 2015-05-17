@@ -68,10 +68,14 @@
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
     [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"SetLookBrick"]];
     if (self.look) {
-        GDataXMLElement *referenceXMLElement = [GDataXMLElement elementWithName:@"look" context:context];
-        NSString *refPath = [CBXMLSerializerHelper relativeXPathToLook:self.look inLookList:context.spriteObject.lookList];
-        [referenceXMLElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
-        [brick addChild:referenceXMLElement context:context];
+        if([CBXMLSerializerHelper indexOfElement:self.look inArray:context.spriteObject.lookList] == NSNotFound) {
+            self.look = nil;
+        } else {
+            GDataXMLElement *referenceXMLElement = [GDataXMLElement elementWithName:@"look" context:context];
+            NSString *refPath = [CBXMLSerializerHelper relativeXPathToLook:self.look inLookList:context.spriteObject.lookList];
+            [referenceXMLElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
+            [brick addChild:referenceXMLElement context:context];
+        }
     }
     return brick;
 }
