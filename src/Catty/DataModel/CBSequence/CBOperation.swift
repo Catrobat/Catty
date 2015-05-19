@@ -20,19 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "CBOperation.h"
+@objc class CBOperation {
 
-@interface CBOperation()
-@property (nonatomic, strong, readwrite) Brick *brick;
-@end
+    final /*private */let brick : Brick
 
-@implementation CBOperation
+    // MARK: (private!) initializer
+    private init(brick : Brick) {
+        self.brick = brick
+    }
 
-+ (instancetype)operationForBrick:(Brick*)brick
-{
-    CBOperation *operation = [CBOperation new];
-    operation.brick = brick;
-    return operation;
+    // MARK: Operations
+    final class func createOperationWithBrick(brick : Brick) -> CBOperation {
+        return CBOperation(brick : brick)
+    }
+
 }
-
-@end

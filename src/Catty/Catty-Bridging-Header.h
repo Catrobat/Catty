@@ -20,13 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+//
+//  Use this file to import your target's public headers that you would like to expose to Swift.
+//
 
-@class Brick;
-
-@interface CBOperation : NSObject
-
-@property (nonatomic, strong, readonly) Brick *brick;
-+ (instancetype)operationForBrick:(Brick*)brick;
-
-@end
+#import "Brick.h"
+#import "BrickConditionalBranchProtocol.h"

@@ -20,32 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "CBOperationSequence.h"
+import Foundation
 
-@interface CBOperationSequence()
-@property (nonatomic, strong, readwrite) NSMutableArray *operationList;
-@end
-
-@implementation CBOperationSequence
-
-#pragma mark - Getters & Setters
-- (NSMutableArray*)operationList
+class CBPlayerFrontend
 {
-    if (! _operationList) {
-        _operationList = [NSMutableArray array];
-    }
-    return _operationList;
-}
+    private lazy var sequenceList = [CBSequence]()
 
-#pragma mark - Operations
-- (void)addOperation:(CBOperation*)operation
-{
-    [self.operationList addObject:operation];
 }
-
-- (BOOL)isEmpty
-{
-    return ([self.operationList count] == 0);
-}
-
-@end

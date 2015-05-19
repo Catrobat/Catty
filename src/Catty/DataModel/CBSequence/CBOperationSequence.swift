@@ -20,10 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "CBConditionalSequence.h"
+class CBOperationSequence : NSObject, CBSequence {
 
-@interface CBIfConditionalSequence : CBConditionalSequence
+    final lazy var operationList = [CBOperation]()
 
-@property (nonatomic, strong) NSMutableArray *elseSequenceList;
+    // MARK: Operations
+    final func isEmpty() -> Bool {
+        return (operationList.count == 0)
+    }
 
-@end
+    final func addOperation(operation : CBOperation) {
+        operationList.append(operation)
+    }
+
+}

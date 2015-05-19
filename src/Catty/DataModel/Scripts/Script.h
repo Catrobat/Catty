@@ -34,7 +34,15 @@
 
 @interface Script : SKNode <ScriptProtocol, CBMutableCopying>
 
+// -------- CBPlayer
 @property (nonatomic, readonly, getter=isRunning) BOOL running;
+- (void)computeSequenceList;
+- (void)start;
+- (void)selfBroadcastRestart; // should only be used for self-broadcasts
+- (void)restart;
+- (void)stop;
+// -------- CBPlayer
+
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readonly) kBrickType brickType;
 @property (nonatomic, strong, readonly) NSString *brickTitle;
@@ -49,16 +57,6 @@
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject;
 
 - (void)addBrick:(Brick*)brick atIndex:(NSUInteger)index;
-
-- (void)computeSequenceList;
-
-- (void)start;
-
-- (void)selfBroadcastRestart; // should only be used for self-broadcasts
-
-- (void)restart;
-
-- (void)stop;
 
 - (NSString*)description;
 

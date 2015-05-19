@@ -20,40 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "CBConditionalSequence.h"
-#import "BrickConditionalBranchProtocol.h"
+class CBIfConditionalSequence : CBConditionalSequence {
 
-@interface CBConditionalSequence()
-@property (nonatomic, strong) id<BrickConditionalBranchProtocol> conditionBrick;
-@end
+    final /*private */lazy var elseSequenceList = [CBOperation]()
 
-@implementation CBConditionalSequence
-
-#pragma mark - Getters & Setters
-- (NSMutableArray*)sequenceList
-{
-    if (! _sequenceList) {
-        _sequenceList = [NSMutableArray array];
+    // MARK: initializer
+    override init(conditionBrick : BrickConditionalBranchProtocol) {
+        super.init(conditionBrick: conditionBrick)
     }
-    return _sequenceList;
-}
 
-+ (instancetype)sequenceWithConditionalBrick:(id<BrickConditionalBranchProtocol>)conditionBrick
-{
-    CBConditionalSequence *conditionalSequence = [[self class] new];
-    conditionalSequence.conditionBrick = conditionBrick;
-    return conditionalSequence;
-}
+    // MARK: Operations
+    final override func isEmpty() -> Bool {
+        return (super.isEmpty() && (elseSequenceList.count == 0))
+    }
 
-#pragma mark - Operations
-- (BOOL)isEmpty
-{
-    return ([self.sequenceList count] == 0);
-}
+    final override class func createConditionalSequenceWithConditionBrick(conditionBrick : BrickConditionalBranchProtocol)
+        -> CBIfConditionalSequence {
+        return CBIfConditionalSequence(conditionBrick: conditionBrick)
+    }
 
-- (BOOL)checkCondition
-{
-    return [self.conditionBrick checkCondition];
 }
-
-@end

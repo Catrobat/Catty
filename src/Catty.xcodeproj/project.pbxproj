@@ -16,57 +16,6 @@
 		4C3AE2C21B03554F005E1F57 /* BrickCellTextData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE2BA1B03554F005E1F57 /* BrickCellTextData.m */; };
 		4C3AE2C31B03554F005E1F57 /* BrickCellVariableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE2BC1B03554F005E1F57 /* BrickCellVariableData.m */; };
 		4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */; };
-		4C6A64B61AF7CC6800D04559 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64B41AF7CC6800D04559 /* test.png */; };
-		4C6A64B71AF7CC6800D04559 /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64B51AF7CC6800D04559 /* test2.png */; };
-		4C6A64FF1AF7CC9400D04559 /* Air_fight_0.5_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64B91AF7CC9400D04559 /* Air_fight_0.5_091.xml */; };
-		4C6A65001AF7CC9400D04559 /* Air_fight_0.5_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64BA1AF7CC9400D04559 /* Air_fight_0.5_093.xml */; };
-		4C6A65011AF7CC9400D04559 /* Airplane_with_shadow_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64BC1AF7CC9400D04559 /* Airplane_with_shadow_091.xml */; };
-		4C6A65021AF7CC9400D04559 /* Airplane_with_shadow_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64BD1AF7CC9400D04559 /* Airplane_with_shadow_093.xml */; };
-		4C6A65031AF7CC9400D04559 /* Compass_0.1_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64BF1AF7CC9400D04559 /* Compass_0.1_091.xml */; };
-		4C6A65041AF7CC9400D04559 /* Compass_0.1_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64C01AF7CC9400D04559 /* Compass_0.1_093.xml */; };
-		4C6A65051AF7CC9400D04559 /* Demonstration_09.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64C21AF7CC9400D04559 /* Demonstration_09.xml */; };
-		4C6A65061AF7CC9400D04559 /* Demonstration_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64C31AF7CC9400D04559 /* Demonstration_093.xml */; };
-		4C6A65071AF7CC9400D04559 /* Drink_more_water_09.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64C51AF7CC9400D04559 /* Drink_more_water_09.xml */; };
-		4C6A65081AF7CC9400D04559 /* Drink_more_water_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64C61AF7CC9400D04559 /* Drink_more_water_093.xml */; };
-		4C6A65091AF7CC9400D04559 /* Flap_Pac_Man_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64C81AF7CC9400D04559 /* Flap_Pac_Man_091.xml */; };
-		4C6A650A1AF7CC9400D04559 /* Flap_Pac_Man_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64C91AF7CC9400D04559 /* Flap_Pac_Man_093.xml */; };
-		4C6A650B1AF7CC9400D04559 /* Flappy_v3.0_092.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64CB1AF7CC9400D04559 /* Flappy_v3.0_092.xml */; };
-		4C6A650C1AF7CC9400D04559 /* Flappy_v3.0_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64CC1AF7CC9400D04559 /* Flappy_v3.0_093.xml */; };
-		4C6A650D1AF7CC9400D04559 /* Galaxy_War_092.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64CE1AF7CC9400D04559 /* Galaxy_War_092.xml */; };
-		4C6A650E1AF7CC9400D04559 /* Galaxy_War_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64CF1AF7CC9400D04559 /* Galaxy_War_093.xml */; };
-		4C6A650F1AF7CC9400D04559 /* Gossip_Girl_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64D11AF7CC9400D04559 /* Gossip_Girl_091.xml */; };
-		4C6A65101AF7CC9400D04559 /* Gossip_Girl_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64D21AF7CC9400D04559 /* Gossip_Girl_093.xml */; };
-		4C6A65111AF7CC9400D04559 /* Memory_09.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64D41AF7CC9400D04559 /* Memory_09.xml */; };
-		4C6A65121AF7CC9400D04559 /* Memory_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64D51AF7CC9400D04559 /* Memory_093.xml */; };
-		4C6A65131AF7CC9400D04559 /* Minecraft_Work_In_Progress_092.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64D71AF7CC9400D04559 /* Minecraft_Work_In_Progress_092.xml */; };
-		4C6A65141AF7CC9400D04559 /* Minecraft_Work_In_Progress_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64D81AF7CC9400D04559 /* Minecraft_Work_In_Progress_093.xml */; };
-		4C6A65151AF7CC9400D04559 /* Minions__091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64DA1AF7CC9400D04559 /* Minions__091.xml */; };
-		4C6A65161AF7CC9400D04559 /* Minions__093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64DB1AF7CC9400D04559 /* Minions__093.xml */; };
-		4C6A65171AF7CC9400D04559 /* Nyancat_1.0_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64DD1AF7CC9400D04559 /* Nyancat_1.0_091.xml */; };
-		4C6A65181AF7CC9400D04559 /* Nyancat_1.0_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64DE1AF7CC9400D04559 /* Nyancat_1.0_093.xml */; };
-		4C6A65191AF7CC9400D04559 /* Piano_09.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64E01AF7CC9400D04559 /* Piano_09.xml */; };
-		4C6A651A1AF7CC9400D04559 /* Piano_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64E11AF7CC9400D04559 /* Piano_093.xml */; };
-		4C6A651B1AF7CC9400D04559 /* PointToBrickWithoutSpriteObject.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64E31AF7CC9400D04559 /* PointToBrickWithoutSpriteObject.xml */; };
-		4C6A651C1AF7CC9400D04559 /* Pong_Starter_09.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64E51AF7CC9400D04559 /* Pong_Starter_09.xml */; };
-		4C6A651D1AF7CC9400D04559 /* Pong_Starter_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64E61AF7CC9400D04559 /* Pong_Starter_093.xml */; };
-		4C6A651E1AF7CC9400D04559 /* Pythagorean_Theorem_092.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64E81AF7CC9400D04559 /* Pythagorean_Theorem_092.xml */; };
-		4C6A651F1AF7CC9400D04559 /* Pythagorean_Theorem_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64E91AF7CC9400D04559 /* Pythagorean_Theorem_093.xml */; };
-		4C6A65201AF7CC9400D04559 /* Rock_paper_scissors_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64EB1AF7CC9400D04559 /* Rock_paper_scissors_091.xml */; };
-		4C6A65211AF7CC9400D04559 /* Rock_paper_scissors_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64EC1AF7CC9400D04559 /* Rock_paper_scissors_093.xml */; };
-		4C6A65221AF7CC9400D04559 /* Skydiving_Steve_092.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64EE1AF7CC9400D04559 /* Skydiving_Steve_092.xml */; };
-		4C6A65231AF7CC9400D04559 /* Skydiving_Steve_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64EF1AF7CC9400D04559 /* Skydiving_Steve_093.xml */; };
-		4C6A65241AF7CC9400D04559 /* SKYPASCAL_08.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64F11AF7CC9400D04559 /* SKYPASCAL_08.xml */; };
-		4C6A65251AF7CC9400D04559 /* SKYPASCAL_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64F21AF7CC9400D04559 /* SKYPASCAL_093.xml */; };
-		4C6A65261AF7CC9400D04559 /* Tic_Tac_Toe_Master_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64F41AF7CC9400D04559 /* Tic_Tac_Toe_Master_091.xml */; };
-		4C6A65271AF7CC9400D04559 /* Tic_Tac_Toe_Master_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64F51AF7CC9400D04559 /* Tic_Tac_Toe_Master_093.xml */; };
-		4C6A65281AF7CC9400D04559 /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64F61AF7CC9400D04559 /* ValidFormulaList.xml */; };
-		4C6A65291AF7CC9400D04559 /* ValidProgram.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64F71AF7CC9400D04559 /* ValidProgram.xml */; };
-		4C6A652A1AF7CC9400D04559 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64F81AF7CC9400D04559 /* ValidProgramAllBricks.xml */; };
-		4C6A652B1AF7CC9400D04559 /* Word_balloon_demo_09.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64FA1AF7CC9400D04559 /* Word_balloon_demo_09.xml */; };
-		4C6A652C1AF7CC9400D04559 /* Word_balloon_demo_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64FB1AF7CC9400D04559 /* Word_balloon_demo_093.xml */; };
-		4C6A652D1AF7CC9400D04559 /* X_Ray_phone_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64FD1AF7CC9400D04559 /* X_Ray_phone_091.xml */; };
-		4C6A652E1AF7CC9400D04559 /* X_Ray_phone_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64FE1AF7CC9400D04559 /* X_Ray_phone_093.xml */; };
-		4C6A65301AF7CE2B00D04559 /* Encapsulated.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A652F1AF7CE2B00D04559 /* Encapsulated.xml */; };
 		4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */; };
 		4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */; };
 		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
@@ -354,44 +303,12 @@
 		92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32511A24E2F400093DA7 /* BaseTransition.m */; };
 		92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
-		CA2D8C9A1AEDDA7F00A5BDC2 /* XMLAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A53A1A43BDD9002A69A0 /* XMLAbstractTest.m */; };
-		CA2D8C9C1AEDDA7F00A5BDC2 /* XMLParserAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5401A43BE11002A69A0 /* XMLParserAbstractTest.m */; };
-		CA2D8C9D1AEDDA7F00A5BDC2 /* XMLParserBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5441A43BE37002A69A0 /* XMLParserBrickTests.m */; };
-		CA2D8C9E1AEDDA7F00A5BDC2 /* XMLParserFormulaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5451A43BE37002A69A0 /* XMLParserFormulaTests.m */; };
-		CA2D8C9F1AEDDA7F00A5BDC2 /* XMLParserHeaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5461A43BE37002A69A0 /* XMLParserHeaderTests.m */; };
-		CA2D8CA01AEDDA7F00A5BDC2 /* XMLParserObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5471A43BE37002A69A0 /* XMLParserObjectTests.m */; };
-		CA2D8CA11AEDDA7F00A5BDC2 /* XMLParserBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5421A43BE29002A69A0 /* XMLParserBlackBoxTests.m */; };
-		CA2D8CA31AEDDA7F00A5BDC2 /* XMLSerializerAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A54D1A43BE97002A69A0 /* XMLSerializerAbstractTest.m */; };
-		CA2D8CA41AEDDA7F00A5BDC2 /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5521A43BEC4002A69A0 /* XMLSerializerTests.m */; };
-		CA2D8CA51AEDDA7F00A5BDC2 /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A54F1A43BEA6002A69A0 /* XMLSerializerBlackBoxTests.m */; };
-		CA2D8CA61AEDDA7F00A5BDC2 /* FormulaFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */; };
-		CA2D8CA71AEDDA7F00A5BDC2 /* CustomExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44EC17F079F500624730 /* CustomExtensionsTests.m */; };
-		CA2D8CA81AEDDA7F00A5BDC2 /* ProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247718CD053300314C2B /* ProgramTests.m */; };
-		CA2D8CAA1AEDDA7F00A5BDC2 /* BrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44EA17F079C700624730 /* BrickTests.m */; };
-		CA2D8CAB1AEDDA7F00A5BDC2 /* ChangeBrightnessByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92345634192E2A1B00464E6B /* ChangeBrightnessByNBrickTests.m */; };
-		CA2D8CAC1AEDDA7F00A5BDC2 /* ChangeGhostEffectByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */; };
-		CA2D8CAD1AEDDA7F00A5BDC2 /* ChangeSizeByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A49185626DB00547C1E /* ChangeSizeByNBrickTests.m */; };
-		CA2D8CAE1AEDDA7F00A5BDC2 /* ClearGrafficEffectBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A55185627A300547C1E /* ClearGrafficEffectBrickTests.m */; };
-		CA2D8CAF1AEDDA7F00A5BDC2 /* GoNStepsBackBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A4F1856274700547C1E /* GoNStepsBackBrickTests.m */; };
-		CA2D8CB01AEDDA7F00A5BDC2 /* MoveNStepsBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A531856279600547C1E /* MoveNStepsBrickTests.m */; };
-		CA2D8CB11AEDDA7F00A5BDC2 /* NextLookBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92345638192E2E8000464E6B /* NextLookBrickTests.m */; };
-		CA2D8CB21AEDDA7F00A5BDC2 /* PlaceAtBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A47185626B600547C1E /* PlaceAtBrickTests.m */; };
-		CA2D8CB31AEDDA7F00A5BDC2 /* PointInDirectionBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A451856269100547C1E /* PointInDirectionBrickTests.m */; };
-		CA2D8CB41AEDDA7F00A5BDC2 /* SetBrightnessBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A511856276D00547C1E /* SetBrightnessBrickTests.m */; };
-		CA2D8CB51AEDDA7F00A5BDC2 /* SetGhostEffectBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A411856262700547C1E /* SetGhostEffectBrickTests.m */; };
-		CA2D8CB61AEDDA7F00A5BDC2 /* SetLookBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92345636192E2E6C00464E6B /* SetLookBrickTests.m */; };
-		CA2D8CB71AEDDA7F00A5BDC2 /* ShowBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3D185625D900547C1E /* ShowBrickTests.m */; };
-		CA2D8CB81AEDDA7F00A5BDC2 /* HideBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3F185625E700547C1E /* HideBrickTests.m */; };
-		CA2D8CB91AEDDA7F00A5BDC2 /* IfOnEdgeBounceBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE9D4201AE27AD20058CB24 /* IfOnEdgeBounceBrickTests.m */; };
-		CA2D8CBA1AEDDA7F00A5BDC2 /* SetYBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3B185625A700547C1E /* SetYBrickTests.m */; };
-		CA2D8CBB1AEDDA7F00A5BDC2 /* SetXBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A391856257300547C1E /* SetXBrickTests.m */; };
-		CA2D8CBC1AEDDA7F00A5BDC2 /* ComeToFrontBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A371856253B00547C1E /* ComeToFrontBrickTests.m */; };
-		CA2D8CBD1AEDDA7F00A5BDC2 /* SetSizeToBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A32185621FF00547C1E /* SetSizeToBrickTests.m */; };
-		CA2D8CBE1AEDDA7F00A5BDC2 /* PointToBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C107ADC194F156F00D9D7ED /* PointToBrickTests.m */; };
-		CA2D8CC11AEDDA7F00A5BDC2 /* TurnLeftBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A4B1856270500547C1E /* TurnLeftBrickTests.m */; };
-		CA2D8CC21AEDDA7F00A5BDC2 /* TurnRightBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A4D1856271100547C1E /* TurnRightBrickTests.m */; };
-		CA2D8CC31AEDDA7F00A5BDC2 /* SpriteObjectCopyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26506E1A6566F50050775B /* SpriteObjectCopyTest.m */; };
-		CA2D8CC41AEDDA7F00A5BDC2 /* SensorHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B271217703FB700172837 /* SensorHandlerTests.m */; };
+		CA3E72D61B0BA60000D6B184 /* CBPlayerFrontend.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72D51B0BA60000D6B184 /* CBPlayerFrontend.swift */; };
+		CA3E72D81B0BAA2A00D6B184 /* CBSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72D71B0BAA2A00D6B184 /* CBSequence.swift */; };
+		CA3E72DA1B0BAC0B00D6B184 /* CBOperationSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72D91B0BAC0B00D6B184 /* CBOperationSequence.swift */; };
+		CA3E72DC1B0BAC1400D6B184 /* CBConditionalSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72DB1B0BAC1400D6B184 /* CBConditionalSequence.swift */; };
+		CA3E72DE1B0BAC1F00D6B184 /* CBIfConditionalSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72DD1B0BAC1F00D6B184 /* CBIfConditionalSequence.swift */; };
+		CA3E72E01B0BB55000D6B184 /* CBOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72DF1B0BB55000D6B184 /* CBOperation.swift */; };
 		CA775CBF19FD5BCB00C1E761 /* My first program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CA6E4C4719F9C388001B65C3 /* My first program.catrobat */; };
 		CAA4A4651A43B388002A69A0 /* CBXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A4631A43B388002A69A0 /* CBXMLParser.m */; };
 		CAA4A4661A43B388002A69A0 /* CBXMLSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A4641A43B388002A69A0 /* CBXMLSerializer.m */; };
@@ -461,7 +378,6 @@
 		CAD116DD1A46AAC000F560B4 /* CBXMLPositionStack.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD116DC1A46AAC000F560B4 /* CBXMLPositionStack.m */; };
 		CAD116E51A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD116E41A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.m */; };
 		CAD740E31AF2D2E800C32937 /* CBStack.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD740E21AF2D2E800C32937 /* CBStack.m */; };
-		CAD740E81AF2D42B00C32937 /* CBStackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD740E71AF2D42B00C32937 /* CBStackTests.m */; };
 		CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3A198F685D00455B77 /* SSZipArchive.license */; };
 		CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */; };
 		CADBD6DE19B0E8C200C62836 /* OrderedDictionary.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */; };
@@ -505,25 +421,10 @@
 		CADBD7F519B0E8C200C62836 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */; };
 		CADBD7F619B0E8C200C62836 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */; };
 		CADBD7F719B0E8C200C62836 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F097711B7BABD009D4DB0 /* OpenAL.framework */; };
-		CAEE3BF51ABDFAE7009FDA72 /* CBConditionalSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE3BF01ABDFAE7009FDA72 /* CBConditionalSequence.m */; };
-		CAEE3BF61ABDFAE7009FDA72 /* CBIfConditionalSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE3BF11ABDFAE7009FDA72 /* CBIfConditionalSequence.m */; };
-		CAEE3BF71ABDFAE7009FDA72 /* CBOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE3BF21ABDFAE7009FDA72 /* CBOperation.m */; };
-		CAEE3BF81ABDFAE7009FDA72 /* CBOperationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE3BF31ABDFAE7009FDA72 /* CBOperationSequence.m */; };
-		CAEE3BF91ABDFAE7009FDA72 /* CBSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE3BF41ABDFAE7009FDA72 /* CBSequence.m */; };
 		D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */; };
 		D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */; };
 		D638646C1AE63EDD008569E6 /* Keychain.m in Sources */ = {isa = PBXBuildFile; fileRef = D638646B1AE63EDD008569E6 /* Keychain.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		CA2D8C911AEDD98A00A5BDC2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CADBD6D319B0E8C200C62836;
-			remoteInfo = Catty;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1291,8 +1192,14 @@
 		C34B44EC17F079F500624730 /* CustomExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomExtensionsTests.m; sourceTree = "<group>"; };
 		C3BF754B18117F6000134B77 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		CA05A19D18286CDA0025421A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		CA2D8C8B1AEDD98A00A5BDC2 /* CattyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA2D8C961AEDDA2100A5BDC2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA3E72D41B0BA5FF00D6B184 /* Catty-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Catty-Bridging-Header.h"; path = "Catty/Catty-Bridging-Header.h"; sourceTree = "<group>"; };
+		CA3E72D51B0BA60000D6B184 /* CBPlayerFrontend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerFrontend.swift; path = PlayerEngine/CBPlayerFrontend.swift; sourceTree = "<group>"; };
+		CA3E72D71B0BAA2A00D6B184 /* CBSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSequence.swift; path = CBSequence/CBSequence.swift; sourceTree = "<group>"; };
+		CA3E72D91B0BAC0B00D6B184 /* CBOperationSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBOperationSequence.swift; path = CBSequence/CBOperationSequence.swift; sourceTree = "<group>"; };
+		CA3E72DB1B0BAC1400D6B184 /* CBConditionalSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBConditionalSequence.swift; path = CBSequence/CBConditionalSequence.swift; sourceTree = "<group>"; };
+		CA3E72DD1B0BAC1F00D6B184 /* CBIfConditionalSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBIfConditionalSequence.swift; path = CBSequence/CBIfConditionalSequence.swift; sourceTree = "<group>"; };
+		CA3E72DF1B0BB55000D6B184 /* CBOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBOperation.swift; path = CBSequence/CBOperation.swift; sourceTree = "<group>"; };
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
 		CA6E4C4719F9C388001B65C3 /* My first program.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My first program.catrobat"; sourceTree = "<group>"; };
 		CA8C247718CD053300314C2B /* ProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTests.m; sourceTree = "<group>"; };
@@ -1450,16 +1357,6 @@
 		CAD740E71AF2D42B00C32937 /* CBStackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBStackTests.m; sourceTree = "<group>"; };
 		CADBD7FB19B0E8C200C62836 /* Pocket Code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Code.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAEE3BE91ABDFABD009FDA72 /* BrickConditionalBranchProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickConditionalBranchProtocol.h; sourceTree = "<group>"; };
-		CAEE3BEB1ABDFAE7009FDA72 /* CBConditionalSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBConditionalSequence.h; path = CBSequence/CBConditionalSequence.h; sourceTree = "<group>"; };
-		CAEE3BEC1ABDFAE7009FDA72 /* CBIfConditionalSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBIfConditionalSequence.h; path = CBSequence/CBIfConditionalSequence.h; sourceTree = "<group>"; };
-		CAEE3BED1ABDFAE7009FDA72 /* CBOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBOperation.h; path = CBSequence/CBOperation.h; sourceTree = "<group>"; };
-		CAEE3BEE1ABDFAE7009FDA72 /* CBOperationSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBOperationSequence.h; path = CBSequence/CBOperationSequence.h; sourceTree = "<group>"; };
-		CAEE3BEF1ABDFAE7009FDA72 /* CBSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBSequence.h; path = CBSequence/CBSequence.h; sourceTree = "<group>"; };
-		CAEE3BF01ABDFAE7009FDA72 /* CBConditionalSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBConditionalSequence.m; path = CBSequence/CBConditionalSequence.m; sourceTree = "<group>"; };
-		CAEE3BF11ABDFAE7009FDA72 /* CBIfConditionalSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBIfConditionalSequence.m; path = CBSequence/CBIfConditionalSequence.m; sourceTree = "<group>"; };
-		CAEE3BF21ABDFAE7009FDA72 /* CBOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBOperation.m; path = CBSequence/CBOperation.m; sourceTree = "<group>"; };
-		CAEE3BF31ABDFAE7009FDA72 /* CBOperationSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBOperationSequence.m; path = CBSequence/CBOperationSequence.m; sourceTree = "<group>"; };
-		CAEE3BF41ABDFAE7009FDA72 /* CBSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBSequence.m; path = CBSequence/CBSequence.m; sourceTree = "<group>"; };
 		D63864631AE632FE008569E6 /* ProgramsForUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramsForUploadViewController.h; sourceTree = "<group>"; };
 		D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramsForUploadViewController.m; sourceTree = "<group>"; };
 		D63864661AE6334E008569E6 /* UploadInfoPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadInfoPopupViewController.h; sourceTree = "<group>"; };
@@ -1477,13 +1374,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		CA2D8C881AEDD98A00A5BDC2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CADBD7E419B0E8C200C62836 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1517,7 +1407,6 @@
 			isa = PBXGroup;
 			children = (
 				CADBD7FB19B0E8C200C62836 /* Pocket Code.app */,
-				CA2D8C8B1AEDD98A00A5BDC2 /* CattyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1526,6 +1415,7 @@
 			isa = PBXGroup;
 			children = (
 				81C27425189EF94600827A95 /* Images.xcassets */,
+				CA3E72D41B0BA5FF00D6B184 /* Catty-Bridging-Header.h */,
 				CD0CCE54170CB39600B70036 /* Catty */,
 				92FF32C11A24E33B00093DA7 /* Storyboard+XIB */,
 				29B97315FDCFA39411CA2CEA /* Supporting Files */,
@@ -4048,6 +3938,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		CA3E72D31B0BA46A00D6B184 /* Interpreter */ = {
+			isa = PBXGroup;
+			children = (
+				CA3E72D51B0BA60000D6B184 /* CBPlayerFrontend.swift */,
+			);
+			name = Interpreter;
+			sourceTree = "<group>";
+		};
 		CA52403418AD77DB00052914 /* ProgramTableViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -4166,8 +4064,7 @@
 		CAEE3BFA1ABDFAF5009FDA72 /* Operation */ = {
 			isa = PBXGroup;
 			children = (
-				CAEE3BED1ABDFAE7009FDA72 /* CBOperation.h */,
-				CAEE3BF21ABDFAE7009FDA72 /* CBOperation.m */,
+				CA3E72DF1B0BB55000D6B184 /* CBOperation.swift */,
 			);
 			name = Operation;
 			sourceTree = "<group>";
@@ -4175,14 +4072,10 @@
 		CAEE3BFB1ABDFB03009FDA72 /* Sequence */ = {
 			isa = PBXGroup;
 			children = (
-				CAEE3BEF1ABDFAE7009FDA72 /* CBSequence.h */,
-				CAEE3BF41ABDFAE7009FDA72 /* CBSequence.m */,
-				CAEE3BEE1ABDFAE7009FDA72 /* CBOperationSequence.h */,
-				CAEE3BF31ABDFAE7009FDA72 /* CBOperationSequence.m */,
-				CAEE3BEB1ABDFAE7009FDA72 /* CBConditionalSequence.h */,
-				CAEE3BF01ABDFAE7009FDA72 /* CBConditionalSequence.m */,
-				CAEE3BEC1ABDFAE7009FDA72 /* CBIfConditionalSequence.h */,
-				CAEE3BF11ABDFAE7009FDA72 /* CBIfConditionalSequence.m */,
+				CA3E72D71B0BAA2A00D6B184 /* CBSequence.swift */,
+				CA3E72D91B0BAC0B00D6B184 /* CBOperationSequence.swift */,
+				CA3E72DB1B0BAC1400D6B184 /* CBConditionalSequence.swift */,
+				CA3E72DD1B0BAC1F00D6B184 /* CBIfConditionalSequence.swift */,
 			);
 			name = Sequence;
 			sourceTree = "<group>";
@@ -4224,6 +4117,7 @@
 				92FF2E4C1A24C7D800093DA7 /* Helpers */,
 				92FF2DFD1A24C3BE00093DA7 /* Defines */,
 				B4BCF409170ECFC3008EDF3A /* Extensions & Delegates & Protocols */,
+				CA3E72D31B0BA46A00D6B184 /* Interpreter */,
 				92FF30271A24DCAA00093DA7 /* DataModel */,
 				92FF32C41A24E5F800093DA7 /* Parser & Serializier */,
 				92FF310A1A24DEB300093DA7 /* ViewController */,
@@ -4244,24 +4138,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CA2D8C8A1AEDD98A00A5BDC2 /* CattyTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CA2D8C931AEDD98A00A5BDC2 /* Build configuration list for PBXNativeTarget "CattyTests" */;
-			buildPhases = (
-				CA2D8C871AEDD98A00A5BDC2 /* Sources */,
-				CA2D8C881AEDD98A00A5BDC2 /* Frameworks */,
-				CA2D8C891AEDD98A00A5BDC2 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CA2D8C921AEDD98A00A5BDC2 /* PBXTargetDependency */,
-			);
-			name = CattyTests;
-			productName = CattyTests;
-			productReference = CA2D8C8B1AEDD98A00A5BDC2 /* CattyTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		CADBD6D319B0E8C200C62836 /* Catty */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CADBD7F819B0E8C200C62836 /* Build configuration list for PBXNativeTarget "Catty" */;
@@ -4290,10 +4166,6 @@
 			attributes = {
 				LastUpgradeCheck = 0600;
 				TargetAttributes = {
-					CA2D8C8A1AEDD98A00A5BDC2 = {
-						CreatedOnToolsVersion = 6.3.1;
-						TestTargetID = CADBD6D319B0E8C200C62836;
-					};
 					CADBD6D319B0E8C200C62836 = {
 						DevelopmentTeam = 4V6T7BCGGR;
 					};
@@ -4347,70 +4219,11 @@
 			projectRoot = "";
 			targets = (
 				CADBD6D319B0E8C200C62836 /* Catty */,
-				CA2D8C8A1AEDD98A00A5BDC2 /* CattyTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		CA2D8C891AEDD98A00A5BDC2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4C6A650B1AF7CC9400D04559 /* Flappy_v3.0_092.xml in Resources */,
-				4C6A652B1AF7CC9400D04559 /* Word_balloon_demo_09.xml in Resources */,
-				4C6A65281AF7CC9400D04559 /* ValidFormulaList.xml in Resources */,
-				4C6A65051AF7CC9400D04559 /* Demonstration_09.xml in Resources */,
-				4C6A65021AF7CC9400D04559 /* Airplane_with_shadow_093.xml in Resources */,
-				4C6A65261AF7CC9400D04559 /* Tic_Tac_Toe_Master_091.xml in Resources */,
-				4C6A65081AF7CC9400D04559 /* Drink_more_water_093.xml in Resources */,
-				4C6A652E1AF7CC9400D04559 /* X_Ray_phone_093.xml in Resources */,
-				4C6A65161AF7CC9400D04559 /* Minions__093.xml in Resources */,
-				4C6A65191AF7CC9400D04559 /* Piano_09.xml in Resources */,
-				4C6A65291AF7CC9400D04559 /* ValidProgram.xml in Resources */,
-				4C6A65061AF7CC9400D04559 /* Demonstration_093.xml in Resources */,
-				4C6A65041AF7CC9400D04559 /* Compass_0.1_093.xml in Resources */,
-				4C6A650D1AF7CC9400D04559 /* Galaxy_War_092.xml in Resources */,
-				4C6A64B71AF7CC6800D04559 /* test2.png in Resources */,
-				4C6A65181AF7CC9400D04559 /* Nyancat_1.0_093.xml in Resources */,
-				4C6A651E1AF7CC9400D04559 /* Pythagorean_Theorem_092.xml in Resources */,
-				4C6A651F1AF7CC9400D04559 /* Pythagorean_Theorem_093.xml in Resources */,
-				4C6A65031AF7CC9400D04559 /* Compass_0.1_091.xml in Resources */,
-				4C6A651A1AF7CC9400D04559 /* Piano_093.xml in Resources */,
-				4C6A64B61AF7CC6800D04559 /* test.png in Resources */,
-				4C6A65301AF7CE2B00D04559 /* Encapsulated.xml in Resources */,
-				4C6A65111AF7CC9400D04559 /* Memory_09.xml in Resources */,
-				4C6A650F1AF7CC9400D04559 /* Gossip_Girl_091.xml in Resources */,
-				4C6A652D1AF7CC9400D04559 /* X_Ray_phone_091.xml in Resources */,
-				4C6A65101AF7CC9400D04559 /* Gossip_Girl_093.xml in Resources */,
-				4C6A651D1AF7CC9400D04559 /* Pong_Starter_093.xml in Resources */,
-				4C6A65151AF7CC9400D04559 /* Minions__091.xml in Resources */,
-				4C6A652C1AF7CC9400D04559 /* Word_balloon_demo_093.xml in Resources */,
-				4C6A65201AF7CC9400D04559 /* Rock_paper_scissors_091.xml in Resources */,
-				4C6A65221AF7CC9400D04559 /* Skydiving_Steve_092.xml in Resources */,
-				4C6A65271AF7CC9400D04559 /* Tic_Tac_Toe_Master_093.xml in Resources */,
-				4C6A651C1AF7CC9400D04559 /* Pong_Starter_09.xml in Resources */,
-				4C6A65011AF7CC9400D04559 /* Airplane_with_shadow_091.xml in Resources */,
-				4C6A65231AF7CC9400D04559 /* Skydiving_Steve_093.xml in Resources */,
-				4C6A651B1AF7CC9400D04559 /* PointToBrickWithoutSpriteObject.xml in Resources */,
-				4C6A65091AF7CC9400D04559 /* Flap_Pac_Man_091.xml in Resources */,
-				4C6A65171AF7CC9400D04559 /* Nyancat_1.0_091.xml in Resources */,
-				4C6A65071AF7CC9400D04559 /* Drink_more_water_09.xml in Resources */,
-				4C6A65001AF7CC9400D04559 /* Air_fight_0.5_093.xml in Resources */,
-				4C6A65131AF7CC9400D04559 /* Minecraft_Work_In_Progress_092.xml in Resources */,
-				4C6A65211AF7CC9400D04559 /* Rock_paper_scissors_093.xml in Resources */,
-				4C6A65241AF7CC9400D04559 /* SKYPASCAL_08.xml in Resources */,
-				4C6A64FF1AF7CC9400D04559 /* Air_fight_0.5_091.xml in Resources */,
-				4C6A650E1AF7CC9400D04559 /* Galaxy_War_093.xml in Resources */,
-				4C6A650A1AF7CC9400D04559 /* Flap_Pac_Man_093.xml in Resources */,
-				4C6A65141AF7CC9400D04559 /* Minecraft_Work_In_Progress_093.xml in Resources */,
-				4C6A65251AF7CC9400D04559 /* SKYPASCAL_093.xml in Resources */,
-				4C6A652A1AF7CC9400D04559 /* ValidProgramAllBricks.xml in Resources */,
-				4C6A650C1AF7CC9400D04559 /* Flappy_v3.0_093.xml in Resources */,
-				4C6A65121AF7CC9400D04559 /* Memory_093.xml in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CADBD6D819B0E8C200C62836 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4508,52 +4321,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		CA2D8C871AEDD98A00A5BDC2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CA2D8C9A1AEDDA7F00A5BDC2 /* XMLAbstractTest.m in Sources */,
-				CA2D8C9C1AEDDA7F00A5BDC2 /* XMLParserAbstractTest.m in Sources */,
-				CA2D8C9D1AEDDA7F00A5BDC2 /* XMLParserBrickTests.m in Sources */,
-				CA2D8C9E1AEDDA7F00A5BDC2 /* XMLParserFormulaTests.m in Sources */,
-				CA2D8C9F1AEDDA7F00A5BDC2 /* XMLParserHeaderTests.m in Sources */,
-				CA2D8CA01AEDDA7F00A5BDC2 /* XMLParserObjectTests.m in Sources */,
-				CA2D8CA11AEDDA7F00A5BDC2 /* XMLParserBlackBoxTests.m in Sources */,
-				CA2D8CA31AEDDA7F00A5BDC2 /* XMLSerializerAbstractTest.m in Sources */,
-				CA2D8CA41AEDDA7F00A5BDC2 /* XMLSerializerTests.m in Sources */,
-				CA2D8CA51AEDDA7F00A5BDC2 /* XMLSerializerBlackBoxTests.m in Sources */,
-				CA2D8CA61AEDDA7F00A5BDC2 /* FormulaFunctionsTest.m in Sources */,
-				CA2D8CA71AEDDA7F00A5BDC2 /* CustomExtensionsTests.m in Sources */,
-				CA2D8CA81AEDDA7F00A5BDC2 /* ProgramTests.m in Sources */,
-				CA2D8CAA1AEDDA7F00A5BDC2 /* BrickTests.m in Sources */,
-				CA2D8CAB1AEDDA7F00A5BDC2 /* ChangeBrightnessByNBrickTests.m in Sources */,
-				CA2D8CAC1AEDDA7F00A5BDC2 /* ChangeGhostEffectByNBrickTests.m in Sources */,
-				CA2D8CAD1AEDDA7F00A5BDC2 /* ChangeSizeByNBrickTests.m in Sources */,
-				CA2D8CAE1AEDDA7F00A5BDC2 /* ClearGrafficEffectBrickTests.m in Sources */,
-				CA2D8CAF1AEDDA7F00A5BDC2 /* GoNStepsBackBrickTests.m in Sources */,
-				CA2D8CB01AEDDA7F00A5BDC2 /* MoveNStepsBrickTests.m in Sources */,
-				CA2D8CB11AEDDA7F00A5BDC2 /* NextLookBrickTests.m in Sources */,
-				CA2D8CB21AEDDA7F00A5BDC2 /* PlaceAtBrickTests.m in Sources */,
-				CA2D8CB31AEDDA7F00A5BDC2 /* PointInDirectionBrickTests.m in Sources */,
-				CA2D8CB41AEDDA7F00A5BDC2 /* SetBrightnessBrickTests.m in Sources */,
-				CA2D8CB51AEDDA7F00A5BDC2 /* SetGhostEffectBrickTests.m in Sources */,
-				CA2D8CB61AEDDA7F00A5BDC2 /* SetLookBrickTests.m in Sources */,
-				CA2D8CB71AEDDA7F00A5BDC2 /* ShowBrickTests.m in Sources */,
-				CA2D8CB81AEDDA7F00A5BDC2 /* HideBrickTests.m in Sources */,
-				CA2D8CB91AEDDA7F00A5BDC2 /* IfOnEdgeBounceBrickTests.m in Sources */,
-				CA2D8CBA1AEDDA7F00A5BDC2 /* SetYBrickTests.m in Sources */,
-				CA2D8CBB1AEDDA7F00A5BDC2 /* SetXBrickTests.m in Sources */,
-				CA2D8CBC1AEDDA7F00A5BDC2 /* ComeToFrontBrickTests.m in Sources */,
-				CA2D8CBD1AEDDA7F00A5BDC2 /* SetSizeToBrickTests.m in Sources */,
-				CA2D8CBE1AEDDA7F00A5BDC2 /* PointToBrickTests.m in Sources */,
-				CAD740E81AF2D42B00C32937 /* CBStackTests.m in Sources */,
-				CA2D8CC11AEDDA7F00A5BDC2 /* TurnLeftBrickTests.m in Sources */,
-				CA2D8CC21AEDDA7F00A5BDC2 /* TurnRightBrickTests.m in Sources */,
-				CA2D8CC31AEDDA7F00A5BDC2 /* SpriteObjectCopyTest.m in Sources */,
-				CA2D8CC41AEDDA7F00A5BDC2 /* SensorHandlerTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CADBD70119B0E8C200C62836 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4606,7 +4373,6 @@
 				CAA4A4F51A43B47F002A69A0 /* LedOffBrick+CBXMLHandler.m in Sources */,
 				92FF328A1A24E2F400093DA7 /* ClearGraphicEffectBrickCell.m in Sources */,
 				92FF325B1A24E2F400093DA7 /* BDKNotifyHUD.m in Sources */,
-				CAEE3BF71ABDFAE7009FDA72 /* CBOperation.m in Sources */,
 				CAD116DD1A46AAC000F560B4 /* CBXMLPositionStack.m in Sources */,
 				92FF32BD1A24E2F400093DA7 /* ProgramTableHeaderView.m in Sources */,
 				CAA4A5361A43B51F002A69A0 /* XMLObjectReference.m in Sources */,
@@ -4656,9 +4422,11 @@
 				92FF315A1A24DEB300093DA7 /* FeaturedProgramsStoreViewController.m in Sources */,
 				D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */,
 				92FF32841A24E2F400093DA7 /* NoteBrickCell.m in Sources */,
+				CA3E72DA1B0BAC0B00D6B184 /* CBOperationSequence.swift in Sources */,
 				92FF2E3C1A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m in Sources */,
 				CAA4A4C31A43B45E002A69A0 /* ClearGraphicEffectBrick+CBXMLHandler.m in Sources */,
 				92DFB0551A38960C00FA9B0F /* DrawTool.m in Sources */,
+				CA3E72D81B0BAA2A00D6B184 /* CBSequence.swift in Sources */,
 				92FF2E9B1A24C7D800093DA7 /* Reachability.m in Sources */,
 				92DFB0621A38960C00FA9B0F /* PaintViewController.m in Sources */,
 				92FF30DD1A24DCAA00093DA7 /* LoopEndBrick.m in Sources */,
@@ -4681,7 +4449,6 @@
 				92FF32A41A24E2F400093DA7 /* ChangeVolumeByNBrickCell.m in Sources */,
 				92FF30EB1A24DCAA00093DA7 /* LedOffBrick.m in Sources */,
 				92FF32B81A24E2F400093DA7 /* ContinueImageCell.m in Sources */,
-				CAEE3BF61ABDFAE7009FDA72 /* CBIfConditionalSequence.m in Sources */,
 				CAA4A4AC1A43B407002A69A0 /* WaitBrick+CBXMLHandler.m in Sources */,
 				92FF32691A24E2F400093DA7 /* MYBlurIntroductionView.m in Sources */,
 				92FF30D01A24DCAA00093DA7 /* ChangeBrightnessByNBrick.m in Sources */,
@@ -4725,6 +4492,7 @@
 				92FF30E81A24DCAA00093DA7 /* PointToBrick.m in Sources */,
 				92FF30CA1A24DCAA00093DA7 /* BroadcastWaitBrick.m in Sources */,
 				CAA4A5111A43B4B5002A69A0 /* Formula+CBXMLHandler.m in Sources */,
+				CA3E72D61B0BA60000D6B184 /* CBPlayerFrontend.swift in Sources */,
 				92FF30F21A24DCAA00093DA7 /* SetVolumeToBrick.m in Sources */,
 				92FF2EA11A24C7D800093DA7 /* TimerLabel.m in Sources */,
 				92FF32A91A24E2F400093DA7 /* ChangeVariableBrickCell.m in Sources */,
@@ -4799,7 +4567,6 @@
 				CAA4A4E91A43B472002A69A0 /* PointToBrick+CBXMLHandler.m in Sources */,
 				CAA4A4A21A43B407002A69A0 /* ComeToFrontBrick+CBXMLHandler.m in Sources */,
 				92DFB0661A38960C00FA9B0F /* RGBAHelper.m in Sources */,
-				CAEE3BF91ABDFAE7009FDA72 /* CBSequence.m in Sources */,
 				92DFB0111A38949E00FA9B0F /* NSMutableArray+Reverse.m in Sources */,
 				92FF32A51A24E2F400093DA7 /* PlaySoundBrickCell.m in Sources */,
 				92FF30D81A24DCAA00093DA7 /* SetGhostEffectBrick.m in Sources */,
@@ -4826,21 +4593,21 @@
 				92FF325F1A24E2F400093DA7 /* FBShimmeringLayer.m in Sources */,
 				92FF2EC11A24C8A700093DA7 /* OrderedMapTable.m in Sources */,
 				92FF325D1A24E2F400093DA7 /* EVCircularProgressView.m in Sources */,
-				CAEE3BF51ABDFAE7009FDA72 /* CBConditionalSequence.m in Sources */,
 				CAA4A4A01A43B407002A69A0 /* BroadcastBrick+CBXMLHandler.m in Sources */,
 				92FF32991A24E2F400093DA7 /* PlaceAtBrickCell.m in Sources */,
 				92FF2E8E1A24C7D800093DA7 /* FileManager.m in Sources */,
 				92DFB0611A38960C00FA9B0F /* NKOColorPickerView.m in Sources */,
+				CA3E72DE1B0BAC1F00D6B184 /* CBIfConditionalSequence.swift in Sources */,
 				92FF31021A24DCAA00093DA7 /* BroadcastScript.m in Sources */,
 				92FF30DC1A24DCAA00093DA7 /* LoopBeginBrick.m in Sources */,
 				92FF32771A24E2F400093DA7 /* BrickCellInlineView.m in Sources */,
 				4C3AE2C31B03554F005E1F57 /* BrickCellVariableData.m in Sources */,
 				4C3AE2BE1B03554F005E1F57 /* BrickCellLookData.m in Sources */,
+				CA3E72DC1B0BAC1400D6B184 /* CBConditionalSequence.swift in Sources */,
 				92FF32971A24E2F400093DA7 /* IfOnEdgeBounceBrickCell.m in Sources */,
 				92FF30F51A24DCAA00093DA7 /* ChangeVariableBrick.m in Sources */,
 				92FF2E931A24C7D800093DA7 /* RuntimeImageCache.m in Sources */,
 				92FF31011A24DCAA00093DA7 /* Scene.m in Sources */,
-				CAEE3BF81ABDFAE7009FDA72 /* CBOperationSequence.m in Sources */,
 				92FF2E921A24C7D800093DA7 /* ImageCache.m in Sources */,
 				92FF326D1A24E2F400093DA7 /* SWCellScrollView.m in Sources */,
 				92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */,
@@ -4873,6 +4640,7 @@
 				CAA4A4A31A43B407002A69A0 /* ForeverBrick+CBXMLHandler.m in Sources */,
 				92FF327A1A24E2F400093DA7 /* SelectButton.m in Sources */,
 				92FF30EC1A24DCAA00093DA7 /* LedOnBrick.m in Sources */,
+				CA3E72E01B0BB55000D6B184 /* CBOperation.swift in Sources */,
 				CAA4A4701A43B3BC002A69A0 /* CBXMLParserHelper.m in Sources */,
 				CAA4A5211A43B4EF002A69A0 /* Sound+CBXMLHandler.m in Sources */,
 				92FF30F01A24DCAA00093DA7 /* ChangeVolumeByNBrick.m in Sources */,
@@ -4917,14 +4685,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		CA2D8C921AEDD98A00A5BDC2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CADBD6D319B0E8C200C62836 /* Catty */;
-			targetProxy = CA2D8C911AEDD98A00A5BDC2 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		92300CE918B2196700F2B4DC /* Localizable.strings */ = {
@@ -5000,6 +4760,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 0.1;
+				DEFINES_MODULE = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -5057,6 +4819,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 0.1;
+				DEFINES_MODULE = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
@@ -5091,100 +4855,25 @@
 			};
 			name = Release;
 		};
-		CA2D8C941AEDD98A00A5BDC2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					$SDKROOT/usr/include/libxml2,
-				);
-				INFOPLIST_FILE = CattyTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pocket Code.app/Pocket Code";
-			};
-			name = Debug;
-		};
-		CA2D8C951AEDD98A00A5BDC2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					$SDKROOT/usr/include/libxml2,
-				);
-				INFOPLIST_FILE = CattyTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pocket Code.app/Pocket Code";
-			};
-			name = Release;
-		};
 		CADBD7F919B0E8C200C62836 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = NO;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = NO;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/App-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -5193,6 +4882,8 @@
 				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Catty/Catty-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
 			};
@@ -5203,17 +4894,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = NO;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = NO;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=0";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/App-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -5222,6 +4916,7 @@
 				PRODUCT_NAME = "Pocket Code";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Catty/Catty-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SPARROW_SRC}";
 			};
@@ -5235,15 +4930,6 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CA2D8C931AEDD98A00A5BDC2 /* Build configuration list for PBXNativeTarget "CattyTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CA2D8C941AEDD98A00A5BDC2 /* Debug */,
-				CA2D8C951AEDD98A00A5BDC2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -20,14 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "CBSequence.h"
-
-@implementation CBSequence
-
-- (BOOL)isEmpty
-{
-    NSError(@"THIS METHOD MUST BE IMPLEMENTED IN ALL SUBCLASSES!!");
-    abort();
+@objc protocol CBSequence {
+    func isEmpty() -> Bool
 }
-
-@end

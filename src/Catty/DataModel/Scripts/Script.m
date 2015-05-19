@@ -30,9 +30,6 @@
 #import "IfLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
-#import "CBOperation.h"
-#import "CBIfConditionalSequence.h"
-#import "CBOperationSequence.h"
 #import "LoopBeginBrick.h"
 #import "LoopEndBrick.h"
 #import "BroadcastBrick.h"
@@ -41,6 +38,7 @@
 #import "WhenScript.h"
 #import "CBStack.h"
 #import "NSString+CatrobatNSStringExtensions.h"
+#import "Pocket_Code-Swift.h"
 
 @interface Script()
 
@@ -56,21 +54,6 @@
 @end
 
 @implementation Script
-
-//+ (Script*)scriptWithType:(kBrickType)type andCategory:(kBrickCategoryType)category
-//{
-//    return [[[self class] alloc] initWithType:type andCategory:category]; 
-//}
-//
-//- (instancetype)initWithType:(kBrickType)type andCategory:(kBrickCategoryType)category
-//{
-//    self = [super init];
-//    if (self) {
-//        self.brickType = type;
-//        self.brickCategoryType = category;
-//    }
-//    return self;
-//}
 
 - (id)init
 {
@@ -183,7 +166,7 @@
             IfLogicEndBrick *endBrick = (IfLogicEndBrick*)brick;
             IfLogicBeginBrick *ifBrick = endBrick.ifBeginBrick;
             IfLogicElseBrick *elseBrick = endBrick.ifElseBrick;
-            CBIfConditionalSequence *ifSequence = [CBIfConditionalSequence sequenceWithConditionalBrick:ifBrick];
+            CBIfConditionalSequence *ifSequence = [CBIfConditionalSequence createConditionalSequenceWithConditionBrick:ifBrick];
             if (elseBrick) {
                 // currentSequenceList is ElseSequenceList
                 ifSequence.elseSequenceList = currentSequenceList;
@@ -210,7 +193,7 @@
                 [currentSequenceList addObject:currentOperationSequence];
             }
             // loop end -> fetch currentSequenceList from stack
-            CBConditionalSequence *conditionalSequence = [CBConditionalSequence sequenceWithConditionalBrick:((LoopEndBrick*)brick).loopBeginBrick];
+            CBConditionalSequence *conditionalSequence = [CBConditionalSequence createConditionalSequenceWithConditionBrick:((LoopEndBrick*)brick).loopBeginBrick];
             conditionalSequence.sequenceList = currentSequenceList;
             currentSequenceList = [sequenceStack popElement];
             [currentSequenceList addObject:conditionalSequence];
@@ -218,7 +201,7 @@
         } else if ([brick isKindOfClass:[NoteBrick class]]) {
             // ignore NoteBricks!
         } else {
-            [currentOperationSequence addOperation:[CBOperation operationForBrick:brick]];
+            [currentOperationSequence addOperation:[CBOperation createOperationWithBrick:brick]];
         }
     }
     assert(scriptSequenceList == currentSequenceList); // sanity check just to ensure!
@@ -234,7 +217,7 @@
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {
     if (! context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
-
+    
     Script *copiedScript = [[self class] new];
     copiedScript.brickCategoryType = self.brickCategoryType;
     copiedScript.brickType = self.brickType;
@@ -243,9 +226,9 @@
         WhenScript *whenScript = (WhenScript*)self;
         ((WhenScript*)copiedScript).action = [NSString stringWithString:whenScript.action];
     }
-
+    
     [context updateReference:self WithReference:copiedScript];
-
+    
     // deep copy
     copiedScript.brickList = [NSMutableArray arrayWithCapacity:[self.brickList count]];
     for (id brick in self.brickList) {
@@ -303,12 +286,12 @@
     if ([self.brickList count] != [script.brickList count]) {
         return NO;
     }
-
+    
     NSUInteger index;
     for (index = 0; index < [self.brickList count]; ++index) {
         Brick *firstBrick = [self.brickList objectAtIndex:index];
         Brick *secondBrick = [script.brickList objectAtIndex:index];
-
+        
         if (! [firstBrick isEqualToBrick:secondBrick]) {
             return NO;
         }
@@ -332,12 +315,12 @@
     assert(self.object.program.isPlaying); // ensure that program is playing!
     assert(! self.isRunning); // ensure that script is NOT already running!
     NSLog(@"Starting: %@ of object %@", [self class], [self.object class]);
-
+    
     if (! [self inParentHierarchy:self.object]) {
         NSLog(@" + Adding this node to object");
         [self.object addChild:self];
     }
-
+    
     [self reset]; // just to ensure
     if ([self hasActions]) {
         [self removeAllActions];
@@ -364,7 +347,7 @@
         if ([weakSelf isKindOfClass:[BroadcastScript class]]) {
             NSLog(@"Starting BroadcastScript of object %@", weakSelf.object.name);
         }
-
+        
         [weakSelf reset];
         if ([weakSelf hasActions]) {
             [weakSelf removeAllActions];
@@ -384,7 +367,7 @@
         if ([weakSelf isKindOfClass:[BroadcastScript class]]) {
             NSLog(@"Starting BroadcastScript of object %@", weakSelf.object.name);
         }
-
+        
         [weakSelf reset];
         if ([weakSelf hasActions]) {
             [weakSelf removeAllActions];
@@ -400,9 +383,9 @@
 
 - (void)prepareAllActions
 {
-//    NSString *preservedScriptName = NSStringFromClass([self class]);
-//    NSString *preservedObjectName = self.object.name;
-//    NSDebug(@"Started %@ in object %@", preservedScriptName, preservedObjectName);
+    //    NSString *preservedScriptName = NSStringFromClass([self class]);
+    //    NSString *preservedObjectName = self.object.name;
+    //    NSDebug(@"Started %@ in object %@", preservedScriptName, preservedObjectName);
     __weak Script *weakSelf = self;
     dispatch_block_t scriptEndCompletion = ^{
         @synchronized(weakSelf) {
@@ -448,7 +431,7 @@
     assert(finalCompletionBlock != nil); // required parameter must NOT be nil!!
     __weak Script *weakSelf = self;
     dispatch_block_t completionBlock = finalCompletionBlock;
-    for (CBSequence *sequence in [sequenceList reverseObjectEnumerator]) {
+    for (id<CBSequence, NSObject> sequence in [sequenceList reverseObjectEnumerator]) {
         if ([sequence isKindOfClass:[CBOperationSequence class]]) {
             completionBlock = [self sequenceBlockForOperationSequence:(CBOperationSequence*)sequence
                                                  finalCompletionBlock:completionBlock];
@@ -516,7 +499,7 @@
                                  finalCompletionBlock:(dispatch_block_t)finalCompletionBlock
 {
     assert(finalCompletionBlock != nil); // required parameter must NOT be nil!!
-#if DEBUG == 1 
+#if DEBUG == 1
     NSDate *startTime;
     startTime = [NSDate date];
 #endif // DEBUG == 1
