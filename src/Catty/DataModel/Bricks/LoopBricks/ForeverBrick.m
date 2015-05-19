@@ -36,6 +36,10 @@
 
 - (BOOL)checkCondition
 {
+    if (self.forceConditionEvaluationToEvaluateToFalse) {
+        NSDebug(@"Forced evaluation to evaluate to FALSE!");
+        return NO;
+    }
     return YES;
 }
 

@@ -57,6 +57,10 @@
 
 - (BOOL)checkCondition
 {
+    if (self.forceConditionEvaluationToEvaluateToFalse) {
+        NSDebug(@"Forced evaluation to evaluate to FALSE!");
+        return NO;
+    }
     NSDebug(@"Loop Count: %d", self.loopCount);
     int timesToRepeat = [self.timesToRepeat interpretIntegerForSprite:self.script.object];
     return (self.loopCount++ < timesToRepeat) ? YES : NO;

@@ -26,8 +26,9 @@
 
 @interface LoopBeginBrick : Brick<BrickConditionalBranchProtocol>
 
+@property (nonatomic) BOOL forceConditionEvaluationToEvaluateToFalse;
+
 @property (nonatomic, weak) LoopEndBrick *loopEndBrick;
-@property (nonatomic) uint64_t loopStartTime;
 
 - (void)reset;
 

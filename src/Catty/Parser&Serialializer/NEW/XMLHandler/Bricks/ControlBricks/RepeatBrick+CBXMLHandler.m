@@ -37,7 +37,8 @@
     RepeatBrick *repeatBrick = [self new];
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"TIMES_TO_REPEAT" withContext:context];
     repeatBrick.timesToRepeat = formula;
-    
+    repeatBrick.forceConditionEvaluationToEvaluateToFalse = NO;
+
     // add opening nesting brick on stack
     [context.openedNestingBricksStack pushAndOpenNestingBrick:repeatBrick];
     return repeatBrick;
