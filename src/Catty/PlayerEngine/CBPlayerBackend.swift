@@ -20,6 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class CBPlayerFrontend {
+class CBPlayerBackend {
     private lazy var sequenceList = [CBSequence]()
 }
