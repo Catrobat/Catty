@@ -41,11 +41,7 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        dispatch_queue_t serialQueue = dispatch_queue_create("org.catrobat.flash.queue", DISPATCH_QUEUE_SERIAL);
-        dispatch_async(serialQueue, ^{
-            FlashHelper *helper = [FlashHelper sharedFlashHandler];
-            [helper turnOff];
-        });
+        [[FlashHelper sharedFlashHandler] turnOff];
     };
 }
 
