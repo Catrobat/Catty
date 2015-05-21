@@ -371,7 +371,7 @@
     };
 }
 
-- (void)prepareAllActions
+- (void)prepareAllActionsForScriptSequenceList:(CBScriptSequenceList*)scriptSequenceList
 {
     //    NSString *preservedScriptName = NSStringFromClass([self class]);
     //    NSString *preservedObjectName = self.object.name;
@@ -402,9 +402,9 @@
         }
         
     };
-//    dispatch_block_t sequenceBlock = [self sequenceBlockForSequenceList:self.sequenceList
-//                                                   finalCompletionBlock:scriptEndCompletion];
-//    self.fullScriptSequence = sequenceBlock;
+    dispatch_block_t sequenceBlock = [self sequenceBlockForSequenceList:scriptSequenceList.sequenceList
+                                                   finalCompletionBlock:scriptEndCompletion];
+    self.fullScriptSequence = sequenceBlock;
 }
 
 - (void)runAllActions

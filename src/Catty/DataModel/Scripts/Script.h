@@ -31,12 +31,14 @@
 @class Brick;
 @class SpriteObject;
 @class GDataXMLElement;
+@class CBScriptSequenceList;
 
 @interface Script : SKNode <ScriptProtocol, CBMutableCopying>
 
 // -------- CBPlayer
 @property (nonatomic, readonly, getter=isRunning) BOOL running;
 - (void)reset;
+- (void)prepareAllActionsForScriptSequenceList:(CBScriptSequenceList*)scriptSequenceList;
 - (void)start;
 - (void)selfBroadcastRestart; // should only be used for self-broadcasts
 - (void)restart;

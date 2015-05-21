@@ -157,7 +157,6 @@
         return NO;
     }
 
-    CBPlayerFrontend *frontend = [CBPlayerFrontend new];
     for (UITouch *touch in touches) {
         CGPoint touchedPoint = [touch locationInNode:self];
         NSDebug(@"x:%f,y:%f", touchedPoint.x, touchedPoint.y);
@@ -187,7 +186,8 @@
                     Script *copiedScript = (Script*)[script mutableCopyWithContext:[CBMutableCopyContext new]];
                     [copiedScript reset];
                     copiedScript.object = script.object;
-                    CBSequenceList *sequenceList = [frontend computeSequenceListForScript:script]; // TODO: remove this...
+                    [copiedScript prepareAllActionsForScriptSequenceList:[[CBPlayerFrontend sharedInstance]
+                                                                          computeSequenceListForScript:script]]; // TODO: remove this...
                     // TODO continue here...
                     [copiedScript start];
                 }

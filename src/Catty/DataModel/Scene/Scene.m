@@ -102,18 +102,20 @@
     }
 
     // compute all sequence lists
-    CBPlayerFrontend *frontend = [CBPlayerFrontend new];
-    NSMutableDictionary *objectScriptSequenceLists = [NSMutableDictionary dictionaryWithCapacity:self.program.objectList.count];
+//    NSMutableDictionary *objectScriptSequenceLists = [NSMutableDictionary dictionaryWithCapacity:self.program.objectList.count];
     for (SpriteObject *spriteObject in self.program.objectList) {
-        objectScriptSequenceLists[spriteObject.name] = [NSMutableArray array];
+//        objectScriptSequenceLists[spriteObject.name] = [NSMutableArray array];
         for (Script *script in spriteObject.scriptList) {
-            CBSequenceList *sequenceList = [frontend computeSequenceListForScript:script];
-            [((NSMutableArray*)objectScriptSequenceLists[spriteObject.name]) addObject:sequenceList];
+//            CBScriptSequenceList *scriptSequenceList = [[CBPlayerFrontend sharedInstance] computeSequenceListForScript:script];
+            [script prepareAllActionsForScriptSequenceList:[[CBPlayerFrontend sharedInstance]
+                                                            computeSequenceListForScript:script]]; // TODO: remove this...
+//            [((NSMutableArray*)objectScriptSequenceLists[spriteObject.name]) addObject:scriptSequenceList];
         }
     }
 
     // now we are ready to start all StartScripts of all SpriteObjects
     for (SpriteObject *spriteObject in self.program.objectList) {
+//        objectScriptSequenceLists[spriteObject.name];
         for (Script *script in spriteObject.scriptList) {
             if ([script isKindOfClass:[StartScript class]]) {
                 [script start];

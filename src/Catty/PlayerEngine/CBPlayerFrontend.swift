@@ -20,13 +20,30 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+@objc class CBScriptSequenceList {
+
+    let script : Script
+
+    let sequenceList : CBSequenceList
+
+    init(script : Script, sequenceList : CBSequenceList) {
+        self.script = script
+        self.sequenceList = sequenceList
+    }
+
+    var count : Int { return sequenceList.count }
+
+    func reverseSequenceList() -> CBScriptSequenceList {
+        return CBScriptSequenceList(script: script, sequenceList: sequenceList.reverseSequenceList())
+    }
+
+}
+
 @objc class CBSequenceList {
 
     /*private */lazy var sequenceList = [CBSequence]()
 
-    var count : Int {
-        return sequenceList.count
-    }
+    var count : Int { return sequenceList.count }
 
     func append(let sequence : CBSequence) {
         sequenceList.append(sequence)
@@ -41,27 +58,31 @@
 
     // FIXME: implement reverse generator!
     func reverseSequenceList() -> CBSequenceList {
-        var reverseSequenceList = CBSequenceList()
+        var reverseScriptSequenceList = CBSequenceList()
         for sequence in sequenceList.reverse() {
-            reverseSequenceList.append(sequence)
+            reverseScriptSequenceList.append(sequence)
         }
-        return reverseSequenceList
+        return reverseScriptSequenceList
     }
 
-//    func +=(left: , right: CBSequence) {
-//    var sum = [Int]() // 2
-//    assert(left.count == right.count, "vector of same length only")  // 3
-//    for (key, v) in enumerate(left) {
-//    sum.append(left[key] + right[key]) // 4
-//    }
-//    return sum
-//    }
+    //    func +=(left: , right: CBSequence) {
+    //    var sum = [Int]() // 2
+    //    assert(left.count == right.count, "vector of same length only")  // 3
+    //    for (key, v) in enumerate(left) {
+    //    sum.append(left[key] + right[key]) // 4
+    //    }
+    //    return sum
+    //    }
 
 }
 
 class CBPlayerFrontend : NSObject {
 
-    func computeSequenceListForScript(script : Script) -> CBSequenceList {
+    static let sharedInstance = CBPlayerFrontend() // singleton
+
+    override private init() {} // private constructor
+
+    func computeSequenceListForScript(script : Script) -> CBScriptSequenceList {
         var scriptSequenceList = CBSequenceList()
         var currentOperationSequence = CBOperationSequence()
 
@@ -71,7 +92,6 @@ class CBPlayerFrontend : NSObject {
 
         for brick in brickList {
             if let _ = brick as? IfLogicBeginBrick {
-
                 if currentOperationSequence.isEmpty() == false {
                     currentSequenceList.append(currentOperationSequence)
                 }
@@ -81,7 +101,6 @@ class CBPlayerFrontend : NSObject {
                 currentOperationSequence = CBOperationSequence()
 
             } else if let _ = brick as? IfLogicElseBrick {
-
                 if currentOperationSequence.isEmpty() == false {
                     currentSequenceList.append(currentOperationSequence)
                 }
@@ -91,7 +110,6 @@ class CBPlayerFrontend : NSObject {
                 currentOperationSequence = CBOperationSequence()
 
             } else if let ifLogicEndBrick = brick as? IfLogicEndBrick {
-
                 if currentOperationSequence.isEmpty() == false {
                     currentSequenceList.append(currentOperationSequence)
                 }
@@ -103,20 +121,21 @@ class CBPlayerFrontend : NSObject {
                 if elseBrick != nil {
                     // currentSequenceList is ElseSequenceList
                     ifSequence.elseSequenceList = currentSequenceList
-                    // pop IfSequenceList from stack
-                    currentSequenceList = sequenceStack.pop()! // TODO: abort if nil...
+                    let topMostSequenceList = sequenceStack.pop() // pop IfSequenceList from stack
+                    assert(topMostSequenceList == nil, "topMostSequenceList must NOT be nil!")
+                    currentSequenceList = topMostSequenceList!
                 }
 
                 // now currentSequenceList is IfSequenceList
                 ifSequence.sequenceList = currentSequenceList
 
-                // pop currentSequenceList from stack
-                currentSequenceList = sequenceStack.pop()!
+                let topMostSequenceList = sequenceStack.pop() // pop currentSequenceList from stack
+                assert(topMostSequenceList == nil, "topMostSequenceList must NOT be nil!")
+                currentSequenceList = topMostSequenceList!
                 currentSequenceList.append(ifSequence)
                 currentOperationSequence = CBOperationSequence()
 
             } else if let _ = brick as? LoopBeginBrick {
-
                 if currentOperationSequence.isEmpty() == false {
                     currentSequenceList.append(currentOperationSequence)
                 }
@@ -126,14 +145,16 @@ class CBPlayerFrontend : NSObject {
                 currentOperationSequence = CBOperationSequence()
 
             } else if let loopEndBrick = brick as? LoopEndBrick {
-
                 if currentOperationSequence.isEmpty() == false {
                     currentSequenceList.append(currentOperationSequence)
                 }
                 // loop end -> fetch currentSequenceList from stack
                 let conditionalSequence = CBConditionalSequence.createConditionalSequenceWithConditionBrick(loopEndBrick.loopBeginBrick!)
                 conditionalSequence.sequenceList = currentSequenceList
-                currentSequenceList = sequenceStack.pop()! // TODO: abort if nil...
+
+                let topMostSequenceList = sequenceStack.pop() // pop currentSequenceList from stack
+                assert(topMostSequenceList == nil, "topMostSequenceList must NOT be nil!")
+                currentSequenceList = topMostSequenceList!
                 currentSequenceList.append(conditionalSequence)
                 currentOperationSequence = CBOperationSequence()
 
@@ -144,17 +165,12 @@ class CBPlayerFrontend : NSObject {
             }
 
         }
-        // TODO: create SWIFT assert instead
-        //        assert(scriptSequenceList == currentSequenceList); // sanity check just to ensure!
-        if scriptSequenceList !== currentSequenceList {
-            fatalError("scriptSequenceList !== currentSequenceList")
-        }
+        // sanity check just to ensure!
+        assert(scriptSequenceList === currentSequenceList, "scriptSequenceList !== currentSequenceList")
 
         if currentOperationSequence.isEmpty() == false {
             currentSequenceList.append(currentOperationSequence)
         }
-
-        return currentSequenceList
-//        [self prepareAllActions];
+        return CBScriptSequenceList(script: script, sequenceList: currentSequenceList)
     }
 }
