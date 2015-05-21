@@ -36,7 +36,7 @@
 
 // -------- CBPlayer
 @property (nonatomic, readonly, getter=isRunning) BOOL running;
-- (void)computeSequenceList;
+- (void)reset;
 - (void)start;
 - (void)selfBroadcastRestart; // should only be used for self-broadcasts
 - (void)restart;

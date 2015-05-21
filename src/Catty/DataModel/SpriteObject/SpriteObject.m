@@ -37,6 +37,7 @@
 #import "NSString+FastImageSize.h"
 #import "ProgramDefines.h"
 #import "CBMutableCopyContext.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation SpriteObject
 
@@ -156,6 +157,7 @@
         return NO;
     }
 
+    CBPlayerFrontend *frontend = [CBPlayerFrontend new];
     for (UITouch *touch in touches) {
         CGPoint touchedPoint = [touch locationInNode:self];
         NSDebug(@"x:%f,y:%f", touchedPoint.x, touchedPoint.y);
@@ -183,8 +185,10 @@
                 }
                 if (newScript) {
                     Script *copiedScript = (Script*)[script mutableCopyWithContext:[CBMutableCopyContext new]];
+                    [copiedScript reset];
                     copiedScript.object = script.object;
-                    [copiedScript computeSequenceList]; // TODO: remove this...
+                    CBSequenceList *sequenceList = [frontend computeSequenceListForScript:script]; // TODO: remove this...
+                    // TODO continue here...
                     [copiedScript start];
                 }
             }

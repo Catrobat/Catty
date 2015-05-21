@@ -20,6 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class CBPlayerBackend {
+class CBPlayerBackend : NSObject {
     private lazy var sequenceList = [CBSequence]()
 }

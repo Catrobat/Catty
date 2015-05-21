@@ -27,6 +27,7 @@
 #import "HideBrick.h"
 #import "AudioManager.h"
 #import "BrickConditionalBranchProtocol.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation Scene
 
@@ -101,9 +102,13 @@
     }
 
     // compute all sequence lists
+    CBPlayerFrontend *frontend = [CBPlayerFrontend new];
+    NSMutableDictionary *objectScriptSequenceLists = [NSMutableDictionary dictionaryWithCapacity:self.program.objectList.count];
     for (SpriteObject *spriteObject in self.program.objectList) {
+        objectScriptSequenceLists[spriteObject.name] = [NSMutableArray array];
         for (Script *script in spriteObject.scriptList) {
-            [script computeSequenceList];
+            CBSequenceList *sequenceList = [frontend computeSequenceListForScript:script];
+            [((NSMutableArray*)objectScriptSequenceLists[spriteObject.name]) addObject:sequenceList];
         }
     }
 
