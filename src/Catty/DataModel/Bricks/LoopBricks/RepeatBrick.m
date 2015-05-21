@@ -45,7 +45,7 @@
     self.timesToRepeat = formula;
 }
 
-- (void)setDefaultValues
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.timesToRepeat = [[Formula alloc] initWithInteger:10];
 }

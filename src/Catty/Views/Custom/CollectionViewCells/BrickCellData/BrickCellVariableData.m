@@ -21,42 +21,40 @@
  */
 
 
-#import "BrickCellObjectFragment.h"
+#import "BrickCellVariableData.h"
 #import "iOSCombobox.h"
 #import "BrickCell.h"
+#import "UserVariable.h"
 #import "Script.h"
-#import "Look.h"
 #import "Brick.h"
-#import "BrickObjectProtocol.h"
-#import "LooksTableViewController.h"
+#import "BrickVariableProtocol.h"
 #import "LanguageTranslationDefines.h"
 
-@interface BrickCellObjectFragment()
-@property (nonatomic, weak) BrickCell *brickCell;
-@property (nonatomic) NSInteger lineNumber;
-@property (nonatomic) NSInteger parameterNumber;
-@end
+@implementation BrickCellVariableData
 
-@implementation BrickCellObjectFragment
-
-- (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell*)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
+- (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell *)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
     if(self = [super initWithFrame:frame]) {
         _brickCell = brickCell;
         _lineNumber = line;
         _parameterNumber = parameter;
+        
         NSMutableArray *options = [[NSMutableArray alloc] init];
         [options addObject:kLocalizedNewElement];
         int currentOptionIndex = 0;
         int optionIndex = 1;
-        if([self.brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
-            Brick<BrickObjectProtocol> *objectBrick = (Brick<BrickObjectProtocol>*)self.brickCell.scriptOrBrick;
-            SpriteObject *currentObject = [objectBrick objectForLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
-            for(SpriteObject *object in objectBrick.script.object.program.objectList) {
-                [options addObject:object.name];
-                if([currentObject.name isEqualToString:object.name])
+        if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
+            Brick<BrickVariableProtocol> *variableBrick = (Brick<BrickVariableProtocol>*)brickCell.scriptOrBrick;
+            UserVariable *currentVariable = [variableBrick variableForLineNumber:line andParameterNumber:parameter];
+            for(UserVariable *variable in [variableBrick.script.object.program.variables allVariablesForObject:variableBrick.script.object]) {
+                [options addObject:variable.name];
+                if([variable.name isEqualToString:currentVariable.name])
                     currentOptionIndex = optionIndex;
                 optionIndex++;
+            }
+            if (currentVariable && ![options containsObject:currentVariable.name]) {
+                [options addObject:currentVariable.name];
+                currentOptionIndex = optionIndex;
             }
         }
         [self setValues:options];
@@ -68,12 +66,7 @@
 
 - (void)comboboxClosed:(iOSCombobox*)combobox withValue:(NSString*)value
 {
-    [self.brickCell.fragmentDelegate updateData:value forBrick:(Brick*)self.brickCell.scriptOrBrick andLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
-}
-
-- (void)comboboxOpened:(iOSCombobox *)combobox
-{
-    [self.brickCell.fragmentDelegate disableUserInteraction];
+    [self.brickCell.dataDelegate updateBrickCellData:self withValue:value];
 }
 
 @end

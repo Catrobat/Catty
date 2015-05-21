@@ -22,6 +22,7 @@
 
 #import "BroadcastScript.h"
 #import "SpriteObject.h"
+#import "Util.h"
 
 @implementation BroadcastScript
 
@@ -47,9 +48,17 @@
     return ret;
 }
 
-- (void)setDefaultValues
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.receivedMessage = [NSString stringWithString:kLocalizedMessage1];
+    if(spriteObject) {
+        NSArray *messages = [Util allMessagesForProgram:spriteObject.program];
+        if([messages count] > 0)
+            self.receivedMessage = [messages objectAtIndex:0];
+        else
+            self.receivedMessage = nil;
+    }
+    if(!self.receivedMessage)
+        self.receivedMessage = [NSString stringWithString:kLocalizedMessage1];
 }
 
 - (void)setMessage:(NSString*)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber

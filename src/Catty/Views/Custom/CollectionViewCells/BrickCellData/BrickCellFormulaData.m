@@ -21,20 +21,18 @@
  */
 
 
-#import "BrickCellFormulaFragment.h"
+#import "BrickCellFormulaData.h"
 #import "BrickCell.h"
 #import "BrickFormulaProtocol.h"
 #import "PlaceAtBrickCell.h"
 #import "GlideToBrickCell.h"
 #import "LanguageTranslationDefines.h"
 
-@interface BrickCellFormulaFragment()
+@interface BrickCellFormulaData()
 @property (nonatomic, strong) CAShapeLayer *border;
-@property (nonatomic) NSInteger lineNumber;
-@property (nonatomic) NSInteger parameterNumber;
 @end
 
-@implementation BrickCellFormulaFragment
+@implementation BrickCellFormulaData
 
 - (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell*)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
@@ -153,8 +151,7 @@
 - (void)saveFormula:(Formula *)formula
 {
     [self.formula setRoot:formula.formulaTree];
-    [self.brickCell.fragmentDelegate updateData:self.formula forBrick:(Brick*)self.brickCell.scriptOrBrick andLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
-
+    [self.brickCell.dataDelegate updateBrickCellData:self withValue:self.formula];
 }
 
 @end

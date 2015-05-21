@@ -35,21 +35,22 @@
 @implementation BrickCategoryViewController
 
 #pragma mark - Init
-- (instancetype)initWithBrickCategory:(PageIndexCategoryType)type
+- (instancetype)initWithBrickCategory:(PageIndexCategoryType)type andObject:(SpriteObject*)spriteObject
 {
     if (self = [super initWithCollectionViewLayout:[UICollectionViewFlowLayout new]]) {
         self.pageIndexCategoryType = type;
         
         NSUInteger category = [self brickCategoryTypForPageIndex:type];
         self.bricks = [[BrickManager sharedBrickManager] selectableBricksForCategoryType:category];
+        self.spriteObject = spriteObject;
     }
     return self;
 }
 
-+ (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(NSInteger)pageIndex
++ (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(NSInteger)pageIndex andObject:(SpriteObject*)spriteObject
 {
     if ((pageIndex >= 0) && (pageIndex <= kPageIndexVariableBrick)) {
-        return [[self alloc] initWithBrickCategory:pageIndex];
+        return [[self alloc] initWithBrickCategory:pageIndex andObject:spriteObject];
     }
     return nil;
 }
@@ -98,11 +99,12 @@
                  cellForItemAtIndexPath:(NSIndexPath*)indexPath
 {
     id<BrickProtocol> brick = [self.bricks objectAtIndex:indexPath.item];
+    
     NSString *brickCellIdentifier = NSStringFromClass(brick.class);
     BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickCellIdentifier
                                                                      forIndexPath:indexPath];
     brickCell.scriptOrBrick = self.bricks[indexPath.item];
-    [brickCell.scriptOrBrick setDefaultValues];
+    [brickCell.scriptOrBrick setDefaultValuesForObject:self.spriteObject];
     [brickCell setupBrickCell];
     for (id subview in brickCell.subviews) {
         if ([subview isKindOfClass:[UIView class]]) {

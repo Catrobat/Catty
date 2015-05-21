@@ -37,7 +37,7 @@
     self.durationInSeconds = formula;
 }
 
-- (void)setDefaultValues
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.durationInSeconds = [[Formula alloc] initWithZero];
 }

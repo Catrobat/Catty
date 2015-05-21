@@ -38,7 +38,7 @@
     self.changeGhostEffect = formula;
 }
 
-- (void)setDefaultValues
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.changeGhostEffect = [[Formula alloc] initWithZero];
 }

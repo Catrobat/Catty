@@ -48,7 +48,7 @@
     BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
     NSUInteger pageIndex = bcVC.pageIndex - 1;
     
-    return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:pageIndex];
+    return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:pageIndex andObject:bcVC.spriteObject];
 }
 
 - (UIViewController*)pageViewController:(UIPageViewController*)pageViewController
@@ -56,7 +56,7 @@
 {
     BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
     NSUInteger pageIndex = bcVC.pageIndex + 1;
-    return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:pageIndex];
+    return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:pageIndex andObject:bcVC.spriteObject];
 }
 
 - (void)pageViewController:(UIPageViewController*)pageViewController

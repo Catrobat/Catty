@@ -24,6 +24,8 @@
 #import "UIDefines.h"
 #import "CBMutableCopying.h"
 
+@class SpriteObject;
+
 @protocol ScriptProtocol<NSObject, CBMutableCopying>
 
 @required
@@ -34,6 +36,6 @@
 @property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
 - (BOOL)isSelectableForObject;
 - (BOOL)isAnimateable;
-- (void)setDefaultValues;
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject;
 
 @end

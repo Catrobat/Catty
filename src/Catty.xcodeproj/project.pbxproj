@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C1EB20D1AC185770001F431 /* BrickCellFormulaFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1EB20C1AC185770001F431 /* BrickCellFormulaFragment.m */; };
-		4C1EB2121AC19BC60001F431 /* BrickCellTextFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1EB2111AC19BC60001F431 /* BrickCellTextFragment.m */; };
 		4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2650691A6538710050775B /* CBMutableCopyContext.m */; };
-		4C4867BD1AC2B9C4009D679D /* BrickCellMessageFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4867BC1AC2B9C4009D679D /* BrickCellMessageFragment.m */; };
-		4C5517D21ABC4F9400A52FF4 /* BrickCellSoundFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5517D11ABC4F9400A52FF4 /* BrickCellSoundFragment.m */; };
-		4C5517DA1ABC747B00A52FF4 /* BrickCellObjectFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5517D91ABC747A00A52FF4 /* BrickCellObjectFragment.m */; };
+		4C3AE2BD1B03554F005E1F57 /* BrickCellFormulaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE2B01B03554F005E1F57 /* BrickCellFormulaData.m */; };
+		4C3AE2BE1B03554F005E1F57 /* BrickCellLookData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE2B21B03554F005E1F57 /* BrickCellLookData.m */; };
+		4C3AE2BF1B03554F005E1F57 /* BrickCellMessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE2B41B03554F005E1F57 /* BrickCellMessageData.m */; };
+		4C3AE2C01B03554F005E1F57 /* BrickCellObjectData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE2B61B03554F005E1F57 /* BrickCellObjectData.m */; };
+		4C3AE2C11B03554F005E1F57 /* BrickCellSoundData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE2B81B03554F005E1F57 /* BrickCellSoundData.m */; };
+		4C3AE2C21B03554F005E1F57 /* BrickCellTextData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE2BA1B03554F005E1F57 /* BrickCellTextData.m */; };
+		4C3AE2C31B03554F005E1F57 /* BrickCellVariableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE2BC1B03554F005E1F57 /* BrickCellVariableData.m */; };
 		4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */; };
 		4C6A64B61AF7CC6800D04559 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64B41AF7CC6800D04559 /* test.png */; };
 		4C6A64B71AF7CC6800D04559 /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64B51AF7CC6800D04559 /* test2.png */; };
@@ -65,7 +67,6 @@
 		4C6A652D1AF7CC9400D04559 /* X_Ray_phone_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64FD1AF7CC9400D04559 /* X_Ray_phone_091.xml */; };
 		4C6A652E1AF7CC9400D04559 /* X_Ray_phone_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64FE1AF7CC9400D04559 /* X_Ray_phone_093.xml */; };
 		4C6A65301AF7CE2B00D04559 /* Encapsulated.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A652F1AF7CE2B00D04559 /* Encapsulated.xml */; };
-		4CB4419E1AB9A96A005A1DEF /* BrickCellLookFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4419D1AB9A96A005A1DEF /* BrickCellLookFragment.m */; };
 		4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */; };
 		4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */; };
 		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
@@ -531,33 +532,37 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
 		4C107ADC194F156F00D9D7ED /* PointToBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointToBrickTests.m; sourceTree = "<group>"; };
-		4C1EB20B1AC185770001F431 /* BrickCellFormulaFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellFormulaFragment.h; path = BrickCellFragments/BrickCellFormulaFragment.h; sourceTree = "<group>"; };
-		4C1EB20C1AC185770001F431 /* BrickCellFormulaFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellFormulaFragment.m; path = BrickCellFragments/BrickCellFormulaFragment.m; sourceTree = "<group>"; };
 		4C1EB20F1AC19B3D0001F431 /* BrickTextProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTextProtocol.h; sourceTree = "<group>"; };
-		4C1EB2101AC19BC60001F431 /* BrickCellTextFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellTextFragment.h; path = BrickCellFragments/BrickCellTextFragment.h; sourceTree = "<group>"; };
-		4C1EB2111AC19BC60001F431 /* BrickCellTextFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellTextFragment.m; path = BrickCellFragments/BrickCellTextFragment.m; sourceTree = "<group>"; };
 		4C2650681A6538710050775B /* CBMutableCopyContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopyContext.h; path = CBCopyContext/CBMutableCopyContext.h; sourceTree = "<group>"; };
 		4C2650691A6538710050775B /* CBMutableCopyContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBMutableCopyContext.m; path = CBCopyContext/CBMutableCopyContext.m; sourceTree = "<group>"; };
 		4C26506C1A653A5A0050775B /* CBMutableCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopying.h; path = Copying/CBMutableCopying.h; sourceTree = "<group>"; };
 		4C26506E1A6566F50050775B /* SpriteObjectCopyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpriteObjectCopyTest.m; path = SpriteObject/SpriteObjectCopyTest.m; sourceTree = "<group>"; };
+		4C3AE2991B03526C005E1F57 /* BrickCellDataProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickCellDataProtocol.h; sourceTree = "<group>"; };
+		4C3AE2AF1B03554F005E1F57 /* BrickCellFormulaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellFormulaData.h; path = BrickCellData/BrickCellFormulaData.h; sourceTree = "<group>"; };
+		4C3AE2B01B03554F005E1F57 /* BrickCellFormulaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellFormulaData.m; path = BrickCellData/BrickCellFormulaData.m; sourceTree = "<group>"; };
+		4C3AE2B11B03554F005E1F57 /* BrickCellLookData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellLookData.h; path = BrickCellData/BrickCellLookData.h; sourceTree = "<group>"; };
+		4C3AE2B21B03554F005E1F57 /* BrickCellLookData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellLookData.m; path = BrickCellData/BrickCellLookData.m; sourceTree = "<group>"; };
+		4C3AE2B31B03554F005E1F57 /* BrickCellMessageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellMessageData.h; path = BrickCellData/BrickCellMessageData.h; sourceTree = "<group>"; };
+		4C3AE2B41B03554F005E1F57 /* BrickCellMessageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellMessageData.m; path = BrickCellData/BrickCellMessageData.m; sourceTree = "<group>"; };
+		4C3AE2B51B03554F005E1F57 /* BrickCellObjectData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellObjectData.h; path = BrickCellData/BrickCellObjectData.h; sourceTree = "<group>"; };
+		4C3AE2B61B03554F005E1F57 /* BrickCellObjectData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellObjectData.m; path = BrickCellData/BrickCellObjectData.m; sourceTree = "<group>"; };
+		4C3AE2B71B03554F005E1F57 /* BrickCellSoundData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellSoundData.h; path = BrickCellData/BrickCellSoundData.h; sourceTree = "<group>"; };
+		4C3AE2B81B03554F005E1F57 /* BrickCellSoundData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellSoundData.m; path = BrickCellData/BrickCellSoundData.m; sourceTree = "<group>"; };
+		4C3AE2B91B03554F005E1F57 /* BrickCellTextData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellTextData.h; path = BrickCellData/BrickCellTextData.h; sourceTree = "<group>"; };
+		4C3AE2BA1B03554F005E1F57 /* BrickCellTextData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellTextData.m; path = BrickCellData/BrickCellTextData.m; sourceTree = "<group>"; };
+		4C3AE2BB1B03554F005E1F57 /* BrickCellVariableData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellVariableData.h; path = BrickCellData/BrickCellVariableData.h; sourceTree = "<group>"; };
+		4C3AE2BC1B03554F005E1F57 /* BrickCellVariableData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellVariableData.m; path = BrickCellData/BrickCellVariableData.m; sourceTree = "<group>"; };
 		4C3AEF2E198E7EDD00604ABF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaFunctionsTest.m; sourceTree = "<group>"; };
-		4C4867BB1AC2B9C4009D679D /* BrickCellMessageFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellMessageFragment.h; path = BrickCellFragments/BrickCellMessageFragment.h; sourceTree = "<group>"; };
-		4C4867BC1AC2B9C4009D679D /* BrickCellMessageFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellMessageFragment.m; path = BrickCellFragments/BrickCellMessageFragment.m; sourceTree = "<group>"; };
 		4C4867BF1AC2CA6D009D679D /* BrickMessageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMessageProtocol.h; sourceTree = "<group>"; };
 		4C5517BC1ABC16B600A52FF4 /* ViewControllerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDefines.h; sourceTree = "<group>"; };
-		4C5517C31ABC300800A52FF4 /* BrickCellFragmentProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellFragmentProtocol.h; sourceTree = "<group>"; };
 		4C5517C41ABC300800A52FF4 /* BrickCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellProtocol.h; sourceTree = "<group>"; };
 		4C5517C61ABC300800A52FF4 /* BrickProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickProtocol.h; sourceTree = "<group>"; };
 		4C5517C81ABC303200A52FF4 /* ScriptProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptProtocol.h; sourceTree = "<group>"; };
-		4C5517D01ABC4F9400A52FF4 /* BrickCellSoundFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellSoundFragment.h; path = BrickCellFragments/BrickCellSoundFragment.h; sourceTree = "<group>"; };
-		4C5517D11ABC4F9400A52FF4 /* BrickCellSoundFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellSoundFragment.m; path = BrickCellFragments/BrickCellSoundFragment.m; sourceTree = "<group>"; };
 		4C5517D41ABC6A8100A52FF4 /* BrickFormulaProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickFormulaProtocol.h; sourceTree = "<group>"; };
 		4C5517D51ABC6AA500A52FF4 /* BrickLookProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickLookProtocol.h; sourceTree = "<group>"; };
 		4C5517D61ABC6AB800A52FF4 /* BrickSoundProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSoundProtocol.h; sourceTree = "<group>"; };
 		4C5517D71ABC737C00A52FF4 /* BrickObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickObjectProtocol.h; sourceTree = "<group>"; };
-		4C5517D81ABC747A00A52FF4 /* BrickCellObjectFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellObjectFragment.h; path = BrickCellFragments/BrickCellObjectFragment.h; sourceTree = "<group>"; };
-		4C5517D91ABC747A00A52FF4 /* BrickCellObjectFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellObjectFragment.m; path = BrickCellFragments/BrickCellObjectFragment.m; sourceTree = "<group>"; };
 		4C6066381A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+CustomExtensions.h"; sourceTree = "<group>"; };
 		4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+CustomExtensions.m"; sourceTree = "<group>"; };
 		4C6A64B41AF7CC6800D04559 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = test.png; path = "Resources/Test Resources/Images/test.png"; sourceTree = "<group>"; };
@@ -630,8 +635,7 @@
 		4C9E2D3E198F698100455B77 /* NSString+FastImageSize.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "NSString+FastImageSize.license"; sourceTree = "<group>"; };
 		4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+CWPopup.license"; sourceTree = "<group>"; };
 		4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OrderedDictionary.license; sourceTree = "<group>"; };
-		4CB4419C1AB9A96A005A1DEF /* BrickCellLookFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellLookFragment.h; path = BrickCellFragments/BrickCellLookFragment.h; sourceTree = "<group>"; };
-		4CB4419D1AB9A96A005A1DEF /* BrickCellLookFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellLookFragment.m; path = BrickCellFragments/BrickCellLookFragment.m; sourceTree = "<group>"; };
+		4CC0D51F1B01FB73006193C4 /* BrickVariableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickVariableProtocol.h; sourceTree = "<group>"; };
 		4CE9D4201AE27AD20058CB24 /* IfOnEdgeBounceBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfOnEdgeBounceBrickTests.m; sourceTree = "<group>"; };
 		4CF773E31AEE3B5100DBBB2B /* VariablePickerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablePickerData.h; sourceTree = "<group>"; };
 		4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablePickerData.m; sourceTree = "<group>"; };
@@ -1668,8 +1672,8 @@
 			isa = PBXGroup;
 			children = (
 				4C5517D31ABC6A8100A52FF4 /* BrickData */,
-				4C5517C31ABC300800A52FF4 /* BrickCellFragmentProtocol.h */,
 				4C5517C41ABC300800A52FF4 /* BrickCellProtocol.h */,
+				4C3AE2991B03526C005E1F57 /* BrickCellDataProtocol.h */,
 				4C5517C61ABC300800A52FF4 /* BrickProtocol.h */,
 			);
 			path = Bricks;
@@ -1691,6 +1695,7 @@
 				4C4867BF1AC2CA6D009D679D /* BrickMessageProtocol.h */,
 				4C5517D71ABC737C00A52FF4 /* BrickObjectProtocol.h */,
 				4C5517D61ABC6AB800A52FF4 /* BrickSoundProtocol.h */,
+				4CC0D51F1B01FB73006193C4 /* BrickVariableProtocol.h */,
 				4C1EB20F1AC19B3D0001F431 /* BrickTextProtocol.h */,
 			);
 			path = BrickData;
@@ -1971,23 +1976,25 @@
 			path = Resources/Licenses;
 			sourceTree = "<group>";
 		};
-		4CB4419B1AB9A902005A1DEF /* BrickCellFragments */ = {
+		4CB4419B1AB9A902005A1DEF /* BrickCellData */ = {
 			isa = PBXGroup;
 			children = (
-				4C1EB20B1AC185770001F431 /* BrickCellFormulaFragment.h */,
-				4C1EB20C1AC185770001F431 /* BrickCellFormulaFragment.m */,
-				4CB4419C1AB9A96A005A1DEF /* BrickCellLookFragment.h */,
-				4C4867BB1AC2B9C4009D679D /* BrickCellMessageFragment.h */,
-				4C4867BC1AC2B9C4009D679D /* BrickCellMessageFragment.m */,
-				4CB4419D1AB9A96A005A1DEF /* BrickCellLookFragment.m */,
-				4C5517D81ABC747A00A52FF4 /* BrickCellObjectFragment.h */,
-				4C5517D91ABC747A00A52FF4 /* BrickCellObjectFragment.m */,
-				4C5517D01ABC4F9400A52FF4 /* BrickCellSoundFragment.h */,
-				4C5517D11ABC4F9400A52FF4 /* BrickCellSoundFragment.m */,
-				4C1EB2101AC19BC60001F431 /* BrickCellTextFragment.h */,
-				4C1EB2111AC19BC60001F431 /* BrickCellTextFragment.m */,
+				4C3AE2AF1B03554F005E1F57 /* BrickCellFormulaData.h */,
+				4C3AE2B01B03554F005E1F57 /* BrickCellFormulaData.m */,
+				4C3AE2B11B03554F005E1F57 /* BrickCellLookData.h */,
+				4C3AE2B21B03554F005E1F57 /* BrickCellLookData.m */,
+				4C3AE2B31B03554F005E1F57 /* BrickCellMessageData.h */,
+				4C3AE2B41B03554F005E1F57 /* BrickCellMessageData.m */,
+				4C3AE2B51B03554F005E1F57 /* BrickCellObjectData.h */,
+				4C3AE2B61B03554F005E1F57 /* BrickCellObjectData.m */,
+				4C3AE2B71B03554F005E1F57 /* BrickCellSoundData.h */,
+				4C3AE2B81B03554F005E1F57 /* BrickCellSoundData.m */,
+				4C3AE2B91B03554F005E1F57 /* BrickCellTextData.h */,
+				4C3AE2BA1B03554F005E1F57 /* BrickCellTextData.m */,
+				4C3AE2BB1B03554F005E1F57 /* BrickCellVariableData.h */,
+				4C3AE2BC1B03554F005E1F57 /* BrickCellVariableData.m */,
 			);
-			name = BrickCellFragments;
+			name = BrickCellData;
 			sourceTree = "<group>";
 		};
 		4CD194F21A0631B200484E4F /* Parser & Serialization */ = {
@@ -3526,7 +3533,7 @@
 				92FF31AB1A24E2F400093DA7 /* BrickCell.m */,
 				92FF31AC1A24E2F400093DA7 /* BrickCellInlineView.h */,
 				92FF31AD1A24E2F400093DA7 /* BrickCellInlineView.m */,
-				4CB4419B1AB9A902005A1DEF /* BrickCellFragments */,
+				4CB4419B1AB9A902005A1DEF /* BrickCellData */,
 				92FF31AE1A24E2F400093DA7 /* BrickShapeFactory */,
 				92FF31B11A24E2F400093DA7 /* Buttons */,
 				92FF31B61A24E2F400093DA7 /* ControlBrickCells */,
@@ -4555,7 +4562,6 @@
 				92FF2E9C1A24C7D800093DA7 /* SensorHandler.m in Sources */,
 				92FF32B71A24E2F400093DA7 /* ColoredCell.m in Sources */,
 				CAA4A4AA1A43B407002A69A0 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
-				4C5517DA1ABC747B00A52FF4 /* BrickCellObjectFragment.m in Sources */,
 				92DFB05B1A38960C00FA9B0F /* LineTool.m in Sources */,
 				92FF32711A24E2F400093DA7 /* SWUtilityButtonView.m in Sources */,
 				92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */,
@@ -4567,7 +4573,6 @@
 				92FF30D51A24DCAA00093DA7 /* HideBrick.m in Sources */,
 				92DFB0131A38949E00FA9B0F /* InternFormulaKeyboardAdapter.m in Sources */,
 				92FF32631A24E2F400093DA7 /* FXBlurView.m in Sources */,
-				4C5517D21ABC4F9400A52FF4 /* BrickCellSoundFragment.m in Sources */,
 				92FF326E1A24E2F400093DA7 /* SWLongPressGestureRecognizer.m in Sources */,
 				92FF2EA41A24C7D800093DA7 /* Util.m in Sources */,
 				92FF30D71A24DCAA00093DA7 /* SetBrightnessBrick.m in Sources */,
@@ -4590,11 +4595,13 @@
 				92FF32561A24E2F400093DA7 /* AHKActionSheet.m in Sources */,
 				92FF32BC1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m in Sources */,
 				92FF32B11A24E2F400093DA7 /* CreateView.m in Sources */,
+				4C3AE2C11B03554F005E1F57 /* BrickCellSoundData.m in Sources */,
 				CADBD71A19B0E8C200C62836 /* main.m in Sources */,
 				CAA4A5051A43B48F002A69A0 /* SpeakBrick+CBXMLHandler.m in Sources */,
 				CAA4A5041A43B48F002A69A0 /* SetVolumeToBrick+CBXMLHandler.m in Sources */,
 				92FF30EE1A24DCAA00093DA7 /* ChangeSizeByNBrick.m in Sources */,
 				92DFB0101A38949E00FA9B0F /* FormulaEditorHistory.m in Sources */,
+				4C3AE2BF1B03554F005E1F57 /* BrickCellMessageData.m in Sources */,
 				92FF30D41A24DCAA00093DA7 /* GoNStepsBackBrick.m in Sources */,
 				CAA4A4F51A43B47F002A69A0 /* LedOffBrick+CBXMLHandler.m in Sources */,
 				92FF328A1A24E2F400093DA7 /* ClearGraphicEffectBrickCell.m in Sources */,
@@ -4660,6 +4667,7 @@
 				CAA4A5121A43B4B5002A69A0 /* FormulaElement+CBXMLHandler.m in Sources */,
 				CAA4A4C61A43B45E002A69A0 /* NextLookBrick+CBXMLHandler.m in Sources */,
 				92FF32901A24E2F400093DA7 /* SetGhostEffectBrickCell.m in Sources */,
+				4C3AE2C01B03554F005E1F57 /* BrickCellObjectData.m in Sources */,
 				92FF329A1A24E2F400093DA7 /* PointInDirectionBrickCell.m in Sources */,
 				92FF32591A24E2F400093DA7 /* UIImage+AHKAdditions.m in Sources */,
 				92FF32BA1A24E2F400093DA7 /* DarkBlueGradientFeaturedCell.m in Sources */,
@@ -4680,11 +4688,13 @@
 				92FF2E971A24C7D800093DA7 /* mztools.c in Sources */,
 				92FF32871A24E2F400093DA7 /* WaitBrickCell.m in Sources */,
 				92DFB0531A38960C00FA9B0F /* BrushPickerViewController.m in Sources */,
+				4C3AE2C21B03554F005E1F57 /* BrickCellTextData.m in Sources */,
 				9238C5831A3AE9920099F061 /* LoginPopupViewController.m in Sources */,
 				92FF2E9A1A24C7D800093DA7 /* NavigationController.m in Sources */,
 				92DFB0681A38960C00FA9B0F /* UIImage+FloodFill.m in Sources */,
 				92FF31091A24DCAA00093DA7 /* VariablesContainer.m in Sources */,
 				CAA4A4F61A43B47F002A69A0 /* LedOnBrick+CBXMLHandler.m in Sources */,
+				4C3AE2BD1B03554F005E1F57 /* BrickCellFormulaData.m in Sources */,
 				CAA4A4C41A43B45E002A69A0 /* GoNStepsBackBrick+CBXMLHandler.m in Sources */,
 				92DFB0561A38960C00FA9B0F /* FillTool.m in Sources */,
 				4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */,
@@ -4743,7 +4753,6 @@
 				92FF30C71A24DCAA00093DA7 /* BrickManager.m in Sources */,
 				92FF30E31A24DCAA00093DA7 /* MoveNStepsBrick.m in Sources */,
 				92DFB00E1A38949E00FA9B0F /* ExternInternRepresentationMapping.m in Sources */,
-				4CB4419E1AB9A96A005A1DEF /* BrickCellLookFragment.m in Sources */,
 				CAA4A4E61A43B472002A69A0 /* GlideToBrick+CBXMLHandler.m in Sources */,
 				92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */,
 				92FF30C91A24DCAA00093DA7 /* BroadcastBrick.m in Sources */,
@@ -4786,7 +4795,6 @@
 				92FF30DB1A24DCAA00093DA7 /* ForeverBrick.m in Sources */,
 				92FF32A21A24E2F400093DA7 /* StartScriptCell.m in Sources */,
 				92DFB0121A38949E00FA9B0F /* InternFormula.m in Sources */,
-				4C4867BD1AC2B9C4009D679D /* BrickCellMessageFragment.m in Sources */,
 				92FF30FD1A24DCAA00093DA7 /* Header.m in Sources */,
 				CAA4A4E91A43B472002A69A0 /* PointToBrick+CBXMLHandler.m in Sources */,
 				CAA4A4A21A43B407002A69A0 /* ComeToFrontBrick+CBXMLHandler.m in Sources */,
@@ -4826,6 +4834,8 @@
 				92FF31021A24DCAA00093DA7 /* BroadcastScript.m in Sources */,
 				92FF30DC1A24DCAA00093DA7 /* LoopBeginBrick.m in Sources */,
 				92FF32771A24E2F400093DA7 /* BrickCellInlineView.m in Sources */,
+				4C3AE2C31B03554F005E1F57 /* BrickCellVariableData.m in Sources */,
+				4C3AE2BE1B03554F005E1F57 /* BrickCellLookData.m in Sources */,
 				92FF32971A24E2F400093DA7 /* IfOnEdgeBounceBrickCell.m in Sources */,
 				92FF30F51A24DCAA00093DA7 /* ChangeVariableBrick.m in Sources */,
 				92FF2E931A24C7D800093DA7 /* RuntimeImageCache.m in Sources */,
@@ -4833,7 +4843,6 @@
 				CAEE3BF81ABDFAE7009FDA72 /* CBOperationSequence.m in Sources */,
 				92FF2E921A24C7D800093DA7 /* ImageCache.m in Sources */,
 				92FF326D1A24E2F400093DA7 /* SWCellScrollView.m in Sources */,
-				4C1EB20D1AC185770001F431 /* BrickCellFormulaFragment.m in Sources */,
 				92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */,
 				92FF32731A24E2F400093DA7 /* TTTAttributedLabel.m in Sources */,
 				92DFB0671A38960C00FA9B0F /* SPUserResizableView.m in Sources */,
@@ -4893,7 +4902,6 @@
 				CAA4A4EA1A43B472002A69A0 /* SetSizeToBrick+CBXMLHandler.m in Sources */,
 				CAA4A4C91A43B45E002A69A0 /* SetLookBrick+CBXMLHandler.m in Sources */,
 				92FF32B51A24E2F400093DA7 /* PlaceHolderView.m in Sources */,
-				4C1EB2121AC19BC60001F431 /* BrickCellTextFragment.m in Sources */,
 				92FF30D21A24DCAA00093DA7 /* ClearGraphicEffectBrick.m in Sources */,
 				CAA4A4A11A43B407002A69A0 /* BroadcastWaitBrick+CBXMLHandler.m in Sources */,
 				92FF32921A24E2F400093DA7 /* ShowBrickCell.m in Sources */,

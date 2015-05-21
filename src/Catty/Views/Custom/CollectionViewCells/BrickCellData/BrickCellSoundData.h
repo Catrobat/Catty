@@ -21,14 +21,13 @@
  */
 
 
-#import "BrickCellFragmentProtocol.h"
-#import "FormulaEditorViewController.h"
+#import "BrickCellDataProtocol.h"
+#import "iOSCombobox.h"
 
-@interface BrickCellFormulaFragment : UIButton<BrickCellFragmentProtocol, FormulaEditorViewControllerDelegate>
+@interface BrickCellSoundData : iOSCombobox<BrickCellDataProtocol, iOSComboboxDelegate>
 
 @property (nonatomic, weak) BrickCell *brickCell;
-
-- (void)drawBorder:(BOOL)isActive;
-- (Formula*)formula;
+@property (nonatomic) NSInteger lineNumber;
+@property (nonatomic) NSInteger parameterNumber;
 
 @end

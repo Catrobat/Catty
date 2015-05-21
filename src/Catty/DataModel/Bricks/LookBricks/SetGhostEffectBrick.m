@@ -38,7 +38,7 @@
     self.transparency = formula;
 }
 
-- (void)setDefaultValues
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.transparency = [[Formula alloc] initWithZero];
 }
