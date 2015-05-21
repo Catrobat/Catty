@@ -40,6 +40,10 @@ class CBConditionalSequence : NSObject, CBSequence {
         return conditionBrick.checkCondition()
     }
 
+    final func resetCondition() {
+        conditionBrick.resetCondition()
+    }
+
     class func createConditionalSequenceWithConditionBrick(conditionBrick : BrickConditionalBranchProtocol)
         -> CBConditionalSequence {
         return CBConditionalSequence(conditionBrick: conditionBrick)
