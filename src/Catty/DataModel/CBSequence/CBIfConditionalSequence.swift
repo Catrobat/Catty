@@ -22,7 +22,7 @@
 
 class CBIfConditionalSequence : CBConditionalSequence {
 
-    final /*private */lazy var elseSequenceList = [CBOperation]()
+    final /*private */lazy var elseSequenceList = CBSequenceList()
 
     // MARK: initializer
     override init(conditionBrick : BrickConditionalBranchProtocol) {

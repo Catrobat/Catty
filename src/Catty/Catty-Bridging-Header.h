@@ -26,3 +26,11 @@
 
 #import "Brick.h"
 #import "BrickConditionalBranchProtocol.h"
+#import "Script.h"
+
+#import "IfLogicBeginBrick.h"
+#import "IfLogicElseBrick.h"
+#import "IfLogicEndBrick.h"
+#import "LoopBeginBrick.h"
+#import "LoopEndBrick.h"
+#import "NoteBrick.h"

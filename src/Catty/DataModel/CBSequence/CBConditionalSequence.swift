@@ -22,7 +22,7 @@
 
 class CBConditionalSequence : NSObject, CBSequence {
 
-    final /*private */lazy var sequenceList = [CBOperation]()
+    final /*private */lazy var sequenceList = CBSequenceList()
 
     final private let conditionBrick : BrickConditionalBranchProtocol
 

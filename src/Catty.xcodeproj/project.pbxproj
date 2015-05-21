@@ -310,6 +310,102 @@
 		CA3E72DE1B0BAC1F00D6B184 /* CBIfConditionalSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72DD1B0BAC1F00D6B184 /* CBIfConditionalSequence.swift */; };
 		CA3E72E01B0BB55000D6B184 /* CBOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72DF1B0BB55000D6B184 /* CBOperation.swift */; };
 		CA3E72E21B0BE9A200D6B184 /* CBPlayerBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72E11B0BE9A200D6B184 /* CBPlayerBackend.swift */; };
+		CA3E72E81B0C00A500D6B184 /* CBStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72E71B0C00A500D6B184 /* CBStack.swift */; };
+		CA3E72EC1B0C01CD00D6B184 /* LLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72EB1B0C01CD00D6B184 /* LLNode.swift */; };
+		CA7698B61B0E4B3F000D0340 /* XMLAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A53A1A43BDD9002A69A0 /* XMLAbstractTest.m */; };
+		CA7698B81B0E4B3F000D0340 /* XMLParserAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5401A43BE11002A69A0 /* XMLParserAbstractTest.m */; };
+		CA7698B91B0E4B3F000D0340 /* XMLParserBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5441A43BE37002A69A0 /* XMLParserBrickTests.m */; };
+		CA7698BA1B0E4B3F000D0340 /* XMLParserFormulaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5451A43BE37002A69A0 /* XMLParserFormulaTests.m */; };
+		CA7698BB1B0E4B3F000D0340 /* XMLParserHeaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5461A43BE37002A69A0 /* XMLParserHeaderTests.m */; };
+		CA7698BC1B0E4B3F000D0340 /* XMLParserObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5471A43BE37002A69A0 /* XMLParserObjectTests.m */; };
+		CA7698BD1B0E4B3F000D0340 /* XMLParserBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5421A43BE29002A69A0 /* XMLParserBlackBoxTests.m */; };
+		CA7698BF1B0E4B3F000D0340 /* XMLSerializerAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A54D1A43BE97002A69A0 /* XMLSerializerAbstractTest.m */; };
+		CA7698C01B0E4B3F000D0340 /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5521A43BEC4002A69A0 /* XMLSerializerTests.m */; };
+		CA7698C11B0E4B3F000D0340 /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A54F1A43BEA6002A69A0 /* XMLSerializerBlackBoxTests.m */; };
+		CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD740E71AF2D42B00C32937 /* CBStackTests.m */; };
+		CA7698C31B0E4B3F000D0340 /* FormulaFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */; };
+		CA7698C41B0E4B3F000D0340 /* CustomExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44EC17F079F500624730 /* CustomExtensionsTests.m */; };
+		CA7698C51B0E4B3F000D0340 /* ProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247718CD053300314C2B /* ProgramTests.m */; };
+		CA7698C71B0E4B3F000D0340 /* BrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44EA17F079C700624730 /* BrickTests.m */; };
+		CA7698C81B0E4B3F000D0340 /* ChangeBrightnessByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92345634192E2A1B00464E6B /* ChangeBrightnessByNBrickTests.m */; };
+		CA7698C91B0E4B3F000D0340 /* ChangeGhostEffectByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */; };
+		CA7698CA1B0E4B3F000D0340 /* ChangeSizeByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A49185626DB00547C1E /* ChangeSizeByNBrickTests.m */; };
+		CA7698CB1B0E4B3F000D0340 /* ClearGrafficEffectBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A55185627A300547C1E /* ClearGrafficEffectBrickTests.m */; };
+		CA7698CC1B0E4B3F000D0340 /* GoNStepsBackBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A4F1856274700547C1E /* GoNStepsBackBrickTests.m */; };
+		CA7698CD1B0E4B3F000D0340 /* MoveNStepsBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A531856279600547C1E /* MoveNStepsBrickTests.m */; };
+		CA7698CE1B0E4B3F000D0340 /* NextLookBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92345638192E2E8000464E6B /* NextLookBrickTests.m */; };
+		CA7698CF1B0E4B3F000D0340 /* PlaceAtBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A47185626B600547C1E /* PlaceAtBrickTests.m */; };
+		CA7698D01B0E4B3F000D0340 /* PointInDirectionBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A451856269100547C1E /* PointInDirectionBrickTests.m */; };
+		CA7698D11B0E4B3F000D0340 /* SetBrightnessBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A511856276D00547C1E /* SetBrightnessBrickTests.m */; };
+		CA7698D21B0E4B3F000D0340 /* SetGhostEffectBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A411856262700547C1E /* SetGhostEffectBrickTests.m */; };
+		CA7698D31B0E4B3F000D0340 /* SetLookBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92345636192E2E6C00464E6B /* SetLookBrickTests.m */; };
+		CA7698D41B0E4B3F000D0340 /* ShowBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3D185625D900547C1E /* ShowBrickTests.m */; };
+		CA7698D51B0E4B3F000D0340 /* HideBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3F185625E700547C1E /* HideBrickTests.m */; };
+		CA7698D61B0E4B3F000D0340 /* IfOnEdgeBounceBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE9D4201AE27AD20058CB24 /* IfOnEdgeBounceBrickTests.m */; };
+		CA7698D71B0E4B3F000D0340 /* SetYBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3B185625A700547C1E /* SetYBrickTests.m */; };
+		CA7698D81B0E4B3F000D0340 /* SetXBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A391856257300547C1E /* SetXBrickTests.m */; };
+		CA7698D91B0E4B3F000D0340 /* ComeToFrontBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A371856253B00547C1E /* ComeToFrontBrickTests.m */; };
+		CA7698DA1B0E4B3F000D0340 /* SetSizeToBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A32185621FF00547C1E /* SetSizeToBrickTests.m */; };
+		CA7698DB1B0E4B3F000D0340 /* PointToBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C107ADC194F156F00D9D7ED /* PointToBrickTests.m */; };
+		CA7698DC1B0E4B3F000D0340 /* TurnLeftBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A4B1856270500547C1E /* TurnLeftBrickTests.m */; };
+		CA7698DD1B0E4B3F000D0340 /* TurnRightBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A4D1856271100547C1E /* TurnRightBrickTests.m */; };
+		CA7698DE1B0E4B3F000D0340 /* SpriteObjectCopyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26506E1A6566F50050775B /* SpriteObjectCopyTest.m */; };
+		CA7698DF1B0E4B3F000D0340 /* SensorHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B271217703FB700172837 /* SensorHandlerTests.m */; };
+		CA7698E31B0E4B3F000D0340 /* SceneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B496F51017759968004BF78A /* SceneTests.m */; };
+		CA7698E41B0E4B3F000D0340 /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
+		CA7698E51B0E4B3F000D0340 /* ProgramTableViewControllerNewProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */; };
+		CA7698E61B0E4BB2000D0340 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64B41AF7CC6800D04559 /* test.png */; };
+		CA7698E71B0E4BB2000D0340 /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64B51AF7CC6800D04559 /* test2.png */; };
+		CA7698E81B0E4BB2000D0340 /* Air_fight_0.5_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64B91AF7CC9400D04559 /* Air_fight_0.5_091.xml */; };
+		CA7698E91B0E4BB2000D0340 /* Air_fight_0.5_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64BA1AF7CC9400D04559 /* Air_fight_0.5_093.xml */; };
+		CA7698EA1B0E4BB2000D0340 /* Airplane_with_shadow_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64BC1AF7CC9400D04559 /* Airplane_with_shadow_091.xml */; };
+		CA7698EB1B0E4BB2000D0340 /* Airplane_with_shadow_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64BD1AF7CC9400D04559 /* Airplane_with_shadow_093.xml */; };
+		CA7698EC1B0E4BB2000D0340 /* Compass_0.1_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64BF1AF7CC9400D04559 /* Compass_0.1_091.xml */; };
+		CA7698ED1B0E4BB2000D0340 /* Compass_0.1_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64C01AF7CC9400D04559 /* Compass_0.1_093.xml */; };
+		CA7698EE1B0E4BB2000D0340 /* Demonstration_09.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64C21AF7CC9400D04559 /* Demonstration_09.xml */; };
+		CA7698EF1B0E4BB2000D0340 /* Demonstration_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64C31AF7CC9400D04559 /* Demonstration_093.xml */; };
+		CA7698F01B0E4BB2000D0340 /* Drink_more_water_09.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64C51AF7CC9400D04559 /* Drink_more_water_09.xml */; };
+		CA7698F11B0E4BB2000D0340 /* Drink_more_water_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64C61AF7CC9400D04559 /* Drink_more_water_093.xml */; };
+		CA7698F21B0E4BB2000D0340 /* Flap_Pac_Man_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64C81AF7CC9400D04559 /* Flap_Pac_Man_091.xml */; };
+		CA7698F31B0E4BB2000D0340 /* Flap_Pac_Man_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64C91AF7CC9400D04559 /* Flap_Pac_Man_093.xml */; };
+		CA7698F41B0E4BB2000D0340 /* Flappy_v3.0_092.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64CB1AF7CC9400D04559 /* Flappy_v3.0_092.xml */; };
+		CA7698F51B0E4BB2000D0340 /* Flappy_v3.0_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64CC1AF7CC9400D04559 /* Flappy_v3.0_093.xml */; };
+		CA7698F61B0E4BB2000D0340 /* Galaxy_War_092.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64CE1AF7CC9400D04559 /* Galaxy_War_092.xml */; };
+		CA7698F71B0E4BB2000D0340 /* Galaxy_War_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64CF1AF7CC9400D04559 /* Galaxy_War_093.xml */; };
+		CA7698F81B0E4BB2000D0340 /* Gossip_Girl_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64D11AF7CC9400D04559 /* Gossip_Girl_091.xml */; };
+		CA7698F91B0E4BB2000D0340 /* Gossip_Girl_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64D21AF7CC9400D04559 /* Gossip_Girl_093.xml */; };
+		CA7698FA1B0E4BB2000D0340 /* Memory_09.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64D41AF7CC9400D04559 /* Memory_09.xml */; };
+		CA7698FB1B0E4BB2000D0340 /* Memory_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64D51AF7CC9400D04559 /* Memory_093.xml */; };
+		CA7698FC1B0E4BB2000D0340 /* Minecraft_Work_In_Progress_092.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64D71AF7CC9400D04559 /* Minecraft_Work_In_Progress_092.xml */; };
+		CA7698FD1B0E4BB2000D0340 /* Minecraft_Work_In_Progress_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64D81AF7CC9400D04559 /* Minecraft_Work_In_Progress_093.xml */; };
+		CA7698FE1B0E4BB2000D0340 /* Minions__091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64DA1AF7CC9400D04559 /* Minions__091.xml */; };
+		CA7698FF1B0E4BB2000D0340 /* Minions__093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64DB1AF7CC9400D04559 /* Minions__093.xml */; };
+		CA7699001B0E4BB2000D0340 /* Nyancat_1.0_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64DD1AF7CC9400D04559 /* Nyancat_1.0_091.xml */; };
+		CA7699011B0E4BB2000D0340 /* Nyancat_1.0_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64DE1AF7CC9400D04559 /* Nyancat_1.0_093.xml */; };
+		CA7699021B0E4BB2000D0340 /* Piano_09.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64E01AF7CC9400D04559 /* Piano_09.xml */; };
+		CA7699031B0E4BB2000D0340 /* Piano_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64E11AF7CC9400D04559 /* Piano_093.xml */; };
+		CA7699041B0E4BB2000D0340 /* PointToBrickWithoutSpriteObject.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64E31AF7CC9400D04559 /* PointToBrickWithoutSpriteObject.xml */; };
+		CA7699051B0E4BB2000D0340 /* Pong_Starter_09.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64E51AF7CC9400D04559 /* Pong_Starter_09.xml */; };
+		CA7699061B0E4BB2000D0340 /* Pong_Starter_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64E61AF7CC9400D04559 /* Pong_Starter_093.xml */; };
+		CA7699071B0E4BB2000D0340 /* Pythagorean_Theorem_092.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64E81AF7CC9400D04559 /* Pythagorean_Theorem_092.xml */; };
+		CA7699081B0E4BB2000D0340 /* Pythagorean_Theorem_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64E91AF7CC9400D04559 /* Pythagorean_Theorem_093.xml */; };
+		CA7699091B0E4BB2000D0340 /* Rock_paper_scissors_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64EB1AF7CC9400D04559 /* Rock_paper_scissors_091.xml */; };
+		CA76990A1B0E4BB2000D0340 /* Rock_paper_scissors_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64EC1AF7CC9400D04559 /* Rock_paper_scissors_093.xml */; };
+		CA76990B1B0E4BB2000D0340 /* Skydiving_Steve_092.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64EE1AF7CC9400D04559 /* Skydiving_Steve_092.xml */; };
+		CA76990C1B0E4BB2000D0340 /* Skydiving_Steve_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64EF1AF7CC9400D04559 /* Skydiving_Steve_093.xml */; };
+		CA76990D1B0E4BB2000D0340 /* SKYPASCAL_08.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64F11AF7CC9400D04559 /* SKYPASCAL_08.xml */; };
+		CA76990E1B0E4BB2000D0340 /* SKYPASCAL_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64F21AF7CC9400D04559 /* SKYPASCAL_093.xml */; };
+		CA76990F1B0E4BB2000D0340 /* Tic_Tac_Toe_Master_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64F41AF7CC9400D04559 /* Tic_Tac_Toe_Master_091.xml */; };
+		CA7699101B0E4BB2000D0340 /* Tic_Tac_Toe_Master_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64F51AF7CC9400D04559 /* Tic_Tac_Toe_Master_093.xml */; };
+		CA7699111B0E4BB2000D0340 /* Word_balloon_demo_09.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64FA1AF7CC9400D04559 /* Word_balloon_demo_09.xml */; };
+		CA7699121B0E4BB2000D0340 /* Word_balloon_demo_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64FB1AF7CC9400D04559 /* Word_balloon_demo_093.xml */; };
+		CA7699131B0E4BB2000D0340 /* X_Ray_phone_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64FD1AF7CC9400D04559 /* X_Ray_phone_091.xml */; };
+		CA7699141B0E4BB2000D0340 /* X_Ray_phone_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64FE1AF7CC9400D04559 /* X_Ray_phone_093.xml */; };
+		CA7699151B0E4BB2000D0340 /* Encapsulated.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A652F1AF7CE2B00D04559 /* Encapsulated.xml */; };
+		CA7699161B0E4BB2000D0340 /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64F61AF7CC9400D04559 /* ValidFormulaList.xml */; };
+		CA7699171B0E4BB2000D0340 /* ValidProgram.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64F71AF7CC9400D04559 /* ValidProgram.xml */; };
+		CA7699181B0E4BB2000D0340 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A64F81AF7CC9400D04559 /* ValidProgramAllBricks.xml */; };
+		CA7699191B0E4BFF000D0340 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B405BAC7175DD3F600B1A0FC /* libxml2.dylib */; };
 		CA775CBF19FD5BCB00C1E761 /* My first program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CA6E4C4719F9C388001B65C3 /* My first program.catrobat */; };
 		CAA4A4651A43B388002A69A0 /* CBXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A4631A43B388002A69A0 /* CBXMLParser.m */; };
 		CAA4A4661A43B388002A69A0 /* CBXMLSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A4641A43B388002A69A0 /* CBXMLSerializer.m */; };
@@ -426,6 +522,16 @@
 		D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */; };
 		D638646C1AE63EDD008569E6 /* Keychain.m in Sources */ = {isa = PBXBuildFile; fileRef = D638646B1AE63EDD008569E6 /* Keychain.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CA7698B01B0E4A97000D0340 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CADBD6D319B0E8C200C62836;
+			remoteInfo = Catty;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1202,8 +1308,11 @@
 		CA3E72DD1B0BAC1F00D6B184 /* CBIfConditionalSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBIfConditionalSequence.swift; path = CBSequence/CBIfConditionalSequence.swift; sourceTree = "<group>"; };
 		CA3E72DF1B0BB55000D6B184 /* CBOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBOperation.swift; path = CBSequence/CBOperation.swift; sourceTree = "<group>"; };
 		CA3E72E11B0BE9A200D6B184 /* CBPlayerBackend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerBackend.swift; path = PlayerEngine/CBPlayerBackend.swift; sourceTree = "<group>"; };
+		CA3E72E71B0C00A500D6B184 /* CBStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBStack.swift; path = 3rdParty/Stack/CBStack.swift; sourceTree = "<group>"; };
+		CA3E72EB1B0C01CD00D6B184 /* LLNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LLNode.swift; path = 3rdParty/LLNode/LLNode.swift; sourceTree = "<group>"; };
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
 		CA6E4C4719F9C388001B65C3 /* My first program.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My first program.catrobat"; sourceTree = "<group>"; };
+		CA7698AA1B0E4A97000D0340 /* CattyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA8C247718CD053300314C2B /* ProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTests.m; sourceTree = "<group>"; };
 		CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerNewProgramTests.m; sourceTree = "<group>"; };
 		CAA4A4611A43B36A002A69A0 /* CBXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBXMLParser.h; path = "Catty/Parser&Serialializer/NEW/CBXMLParser.h"; sourceTree = SOURCE_ROOT; };
@@ -1376,6 +1485,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CA7698A71B0E4A97000D0340 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA7699191B0E4BFF000D0340 /* libxml2.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CADBD7E419B0E8C200C62836 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1409,6 +1526,7 @@
 			isa = PBXGroup;
 			children = (
 				CADBD7FB19B0E8C200C62836 /* Pocket Code.app */,
+				CA7698AA1B0E4A97000D0340 /* CattyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2659,6 +2777,7 @@
 		92FF2EA51A24C8A700093DA7 /* DataStructures */ = {
 			isa = PBXGroup;
 			children = (
+				CA3E72E91B0C00C200D6B184 /* 3rdParty */,
 				CAD740E01AF2D2DA00C32937 /* CBStack */,
 				4C2650671A6538470050775B /* CBCopyContext */,
 				92FF2EA61A24C8A700093DA7 /* CBXMLOpenedNestingBricksStack */,
@@ -3940,13 +4059,38 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CA3E72D31B0BA46A00D6B184 /* Interpreter */ = {
+		CA3E72D31B0BA46A00D6B184 /* PlayerEngine */ = {
 			isa = PBXGroup;
 			children = (
 				CA3E72D51B0BA60000D6B184 /* CBPlayerFrontend.swift */,
 				CA3E72E11B0BE9A200D6B184 /* CBPlayerBackend.swift */,
 			);
-			name = Interpreter;
+			name = PlayerEngine;
+			sourceTree = "<group>";
+		};
+		CA3E72E91B0C00C200D6B184 /* 3rdParty */ = {
+			isa = PBXGroup;
+			children = (
+				CA3E72ED1B0C01D200D6B184 /* LLNode */,
+				CA3E72EA1B0C00D500D6B184 /* CBStack */,
+			);
+			name = 3rdParty;
+			sourceTree = "<group>";
+		};
+		CA3E72EA1B0C00D500D6B184 /* CBStack */ = {
+			isa = PBXGroup;
+			children = (
+				CA3E72E71B0C00A500D6B184 /* CBStack.swift */,
+			);
+			name = CBStack;
+			sourceTree = "<group>";
+		};
+		CA3E72ED1B0C01D200D6B184 /* LLNode */ = {
+			isa = PBXGroup;
+			children = (
+				CA3E72EB1B0C01CD00D6B184 /* LLNode.swift */,
+			);
+			name = LLNode;
 			sourceTree = "<group>";
 		};
 		CA52403418AD77DB00052914 /* ProgramTableViewController */ = {
@@ -4120,7 +4264,7 @@
 				92FF2E4C1A24C7D800093DA7 /* Helpers */,
 				92FF2DFD1A24C3BE00093DA7 /* Defines */,
 				B4BCF409170ECFC3008EDF3A /* Extensions & Delegates & Protocols */,
-				CA3E72D31B0BA46A00D6B184 /* Interpreter */,
+				CA3E72D31B0BA46A00D6B184 /* PlayerEngine */,
 				92FF30271A24DCAA00093DA7 /* DataModel */,
 				92FF32C41A24E5F800093DA7 /* Parser & Serializier */,
 				92FF310A1A24DEB300093DA7 /* ViewController */,
@@ -4141,6 +4285,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		CA7698A91B0E4A97000D0340 /* CattyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA7698B21B0E4A97000D0340 /* Build configuration list for PBXNativeTarget "CattyTests" */;
+			buildPhases = (
+				CA7698A61B0E4A97000D0340 /* Sources */,
+				CA7698A71B0E4A97000D0340 /* Frameworks */,
+				CA7698A81B0E4A97000D0340 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CA7698B11B0E4A97000D0340 /* PBXTargetDependency */,
+			);
+			name = CattyTests;
+			productName = CattyTests;
+			productReference = CA7698AA1B0E4A97000D0340 /* CattyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		CADBD6D319B0E8C200C62836 /* Catty */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CADBD7F819B0E8C200C62836 /* Build configuration list for PBXNativeTarget "Catty" */;
@@ -4169,8 +4331,12 @@
 			attributes = {
 				LastUpgradeCheck = 0600;
 				TargetAttributes = {
+					CA7698A91B0E4A97000D0340 = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = CADBD6D319B0E8C200C62836;
+					};
 					CADBD6D319B0E8C200C62836 = {
-						DevelopmentTeam = 9NJ4SV439Q;
+						DevelopmentTeam = 4V6T7BCGGR;
 					};
 				};
 			};
@@ -4222,11 +4388,70 @@
 			projectRoot = "";
 			targets = (
 				CADBD6D319B0E8C200C62836 /* Catty */,
+				CA7698A91B0E4A97000D0340 /* CattyTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CA7698A81B0E4A97000D0340 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA7698E61B0E4BB2000D0340 /* test.png in Resources */,
+				CA7698E71B0E4BB2000D0340 /* test2.png in Resources */,
+				CA7698E81B0E4BB2000D0340 /* Air_fight_0.5_091.xml in Resources */,
+				CA7698E91B0E4BB2000D0340 /* Air_fight_0.5_093.xml in Resources */,
+				CA7698EA1B0E4BB2000D0340 /* Airplane_with_shadow_091.xml in Resources */,
+				CA7698EB1B0E4BB2000D0340 /* Airplane_with_shadow_093.xml in Resources */,
+				CA7698EC1B0E4BB2000D0340 /* Compass_0.1_091.xml in Resources */,
+				CA7698ED1B0E4BB2000D0340 /* Compass_0.1_093.xml in Resources */,
+				CA7698EE1B0E4BB2000D0340 /* Demonstration_09.xml in Resources */,
+				CA7698EF1B0E4BB2000D0340 /* Demonstration_093.xml in Resources */,
+				CA7698F01B0E4BB2000D0340 /* Drink_more_water_09.xml in Resources */,
+				CA7698F11B0E4BB2000D0340 /* Drink_more_water_093.xml in Resources */,
+				CA7698F21B0E4BB2000D0340 /* Flap_Pac_Man_091.xml in Resources */,
+				CA7698F31B0E4BB2000D0340 /* Flap_Pac_Man_093.xml in Resources */,
+				CA7698F41B0E4BB2000D0340 /* Flappy_v3.0_092.xml in Resources */,
+				CA7698F51B0E4BB2000D0340 /* Flappy_v3.0_093.xml in Resources */,
+				CA7698F61B0E4BB2000D0340 /* Galaxy_War_092.xml in Resources */,
+				CA7698F71B0E4BB2000D0340 /* Galaxy_War_093.xml in Resources */,
+				CA7698F81B0E4BB2000D0340 /* Gossip_Girl_091.xml in Resources */,
+				CA7698F91B0E4BB2000D0340 /* Gossip_Girl_093.xml in Resources */,
+				CA7698FA1B0E4BB2000D0340 /* Memory_09.xml in Resources */,
+				CA7698FB1B0E4BB2000D0340 /* Memory_093.xml in Resources */,
+				CA7698FC1B0E4BB2000D0340 /* Minecraft_Work_In_Progress_092.xml in Resources */,
+				CA7698FD1B0E4BB2000D0340 /* Minecraft_Work_In_Progress_093.xml in Resources */,
+				CA7698FE1B0E4BB2000D0340 /* Minions__091.xml in Resources */,
+				CA7698FF1B0E4BB2000D0340 /* Minions__093.xml in Resources */,
+				CA7699001B0E4BB2000D0340 /* Nyancat_1.0_091.xml in Resources */,
+				CA7699011B0E4BB2000D0340 /* Nyancat_1.0_093.xml in Resources */,
+				CA7699021B0E4BB2000D0340 /* Piano_09.xml in Resources */,
+				CA7699031B0E4BB2000D0340 /* Piano_093.xml in Resources */,
+				CA7699041B0E4BB2000D0340 /* PointToBrickWithoutSpriteObject.xml in Resources */,
+				CA7699051B0E4BB2000D0340 /* Pong_Starter_09.xml in Resources */,
+				CA7699061B0E4BB2000D0340 /* Pong_Starter_093.xml in Resources */,
+				CA7699071B0E4BB2000D0340 /* Pythagorean_Theorem_092.xml in Resources */,
+				CA7699081B0E4BB2000D0340 /* Pythagorean_Theorem_093.xml in Resources */,
+				CA7699091B0E4BB2000D0340 /* Rock_paper_scissors_091.xml in Resources */,
+				CA76990A1B0E4BB2000D0340 /* Rock_paper_scissors_093.xml in Resources */,
+				CA76990B1B0E4BB2000D0340 /* Skydiving_Steve_092.xml in Resources */,
+				CA76990C1B0E4BB2000D0340 /* Skydiving_Steve_093.xml in Resources */,
+				CA76990D1B0E4BB2000D0340 /* SKYPASCAL_08.xml in Resources */,
+				CA76990E1B0E4BB2000D0340 /* SKYPASCAL_093.xml in Resources */,
+				CA76990F1B0E4BB2000D0340 /* Tic_Tac_Toe_Master_091.xml in Resources */,
+				CA7699101B0E4BB2000D0340 /* Tic_Tac_Toe_Master_093.xml in Resources */,
+				CA7699111B0E4BB2000D0340 /* Word_balloon_demo_09.xml in Resources */,
+				CA7699121B0E4BB2000D0340 /* Word_balloon_demo_093.xml in Resources */,
+				CA7699131B0E4BB2000D0340 /* X_Ray_phone_091.xml in Resources */,
+				CA7699141B0E4BB2000D0340 /* X_Ray_phone_093.xml in Resources */,
+				CA7699151B0E4BB2000D0340 /* Encapsulated.xml in Resources */,
+				CA7699161B0E4BB2000D0340 /* ValidFormulaList.xml in Resources */,
+				CA7699171B0E4BB2000D0340 /* ValidProgram.xml in Resources */,
+				CA7699181B0E4BB2000D0340 /* ValidProgramAllBricks.xml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CADBD6D819B0E8C200C62836 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4324,6 +4549,55 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CA7698A61B0E4A97000D0340 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA7698B61B0E4B3F000D0340 /* XMLAbstractTest.m in Sources */,
+				CA7698B81B0E4B3F000D0340 /* XMLParserAbstractTest.m in Sources */,
+				CA7698B91B0E4B3F000D0340 /* XMLParserBrickTests.m in Sources */,
+				CA7698BA1B0E4B3F000D0340 /* XMLParserFormulaTests.m in Sources */,
+				CA7698BB1B0E4B3F000D0340 /* XMLParserHeaderTests.m in Sources */,
+				CA7698BC1B0E4B3F000D0340 /* XMLParserObjectTests.m in Sources */,
+				CA7698BD1B0E4B3F000D0340 /* XMLParserBlackBoxTests.m in Sources */,
+				CA7698BF1B0E4B3F000D0340 /* XMLSerializerAbstractTest.m in Sources */,
+				CA7698C01B0E4B3F000D0340 /* XMLSerializerTests.m in Sources */,
+				CA7698C11B0E4B3F000D0340 /* XMLSerializerBlackBoxTests.m in Sources */,
+				CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */,
+				CA7698C31B0E4B3F000D0340 /* FormulaFunctionsTest.m in Sources */,
+				CA7698C41B0E4B3F000D0340 /* CustomExtensionsTests.m in Sources */,
+				CA7698C51B0E4B3F000D0340 /* ProgramTests.m in Sources */,
+				CA7698C71B0E4B3F000D0340 /* BrickTests.m in Sources */,
+				CA7698C81B0E4B3F000D0340 /* ChangeBrightnessByNBrickTests.m in Sources */,
+				CA7698C91B0E4B3F000D0340 /* ChangeGhostEffectByNBrickTests.m in Sources */,
+				CA7698CA1B0E4B3F000D0340 /* ChangeSizeByNBrickTests.m in Sources */,
+				CA7698CB1B0E4B3F000D0340 /* ClearGrafficEffectBrickTests.m in Sources */,
+				CA7698CC1B0E4B3F000D0340 /* GoNStepsBackBrickTests.m in Sources */,
+				CA7698CD1B0E4B3F000D0340 /* MoveNStepsBrickTests.m in Sources */,
+				CA7698CE1B0E4B3F000D0340 /* NextLookBrickTests.m in Sources */,
+				CA7698CF1B0E4B3F000D0340 /* PlaceAtBrickTests.m in Sources */,
+				CA7698D01B0E4B3F000D0340 /* PointInDirectionBrickTests.m in Sources */,
+				CA7698D11B0E4B3F000D0340 /* SetBrightnessBrickTests.m in Sources */,
+				CA7698D21B0E4B3F000D0340 /* SetGhostEffectBrickTests.m in Sources */,
+				CA7698D31B0E4B3F000D0340 /* SetLookBrickTests.m in Sources */,
+				CA7698D41B0E4B3F000D0340 /* ShowBrickTests.m in Sources */,
+				CA7698D51B0E4B3F000D0340 /* HideBrickTests.m in Sources */,
+				CA7698D61B0E4B3F000D0340 /* IfOnEdgeBounceBrickTests.m in Sources */,
+				CA7698D71B0E4B3F000D0340 /* SetYBrickTests.m in Sources */,
+				CA7698D81B0E4B3F000D0340 /* SetXBrickTests.m in Sources */,
+				CA7698D91B0E4B3F000D0340 /* ComeToFrontBrickTests.m in Sources */,
+				CA7698DA1B0E4B3F000D0340 /* SetSizeToBrickTests.m in Sources */,
+				CA7698DB1B0E4B3F000D0340 /* PointToBrickTests.m in Sources */,
+				CA7698DC1B0E4B3F000D0340 /* TurnLeftBrickTests.m in Sources */,
+				CA7698DD1B0E4B3F000D0340 /* TurnRightBrickTests.m in Sources */,
+				CA7698DE1B0E4B3F000D0340 /* SpriteObjectCopyTest.m in Sources */,
+				CA7698DF1B0E4B3F000D0340 /* SensorHandlerTests.m in Sources */,
+				CA7698E31B0E4B3F000D0340 /* SceneTests.m in Sources */,
+				CA7698E41B0E4B3F000D0340 /* ProgramTableViewControllerExistingProgramsTests.m in Sources */,
+				CA7698E51B0E4B3F000D0340 /* ProgramTableViewControllerNewProgramTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CADBD70119B0E8C200C62836 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4494,6 +4768,7 @@
 				92FF2E911A24C7D800093DA7 /* DownloadImageCache.m in Sources */,
 				92FF30E81A24DCAA00093DA7 /* PointToBrick.m in Sources */,
 				92FF30CA1A24DCAA00093DA7 /* BroadcastWaitBrick.m in Sources */,
+				CA3E72EC1B0C01CD00D6B184 /* LLNode.swift in Sources */,
 				CAA4A5111A43B4B5002A69A0 /* Formula+CBXMLHandler.m in Sources */,
 				CA3E72D61B0BA60000D6B184 /* CBPlayerFrontend.swift in Sources */,
 				92FF30F21A24DCAA00093DA7 /* SetVolumeToBrick.m in Sources */,
@@ -4549,6 +4824,7 @@
 				92DFB0581A38960C00FA9B0F /* ImageHelper.m in Sources */,
 				92FF31581A24DEB300093DA7 /* ProgramTableViewController.m in Sources */,
 				92FF32811A24E2F400093DA7 /* LedOffBrickCell.m in Sources */,
+				CA3E72E81B0C00A500D6B184 /* CBStack.swift in Sources */,
 				92FF315E1A24DEB300093DA7 /* HelpWebViewController.m in Sources */,
 				92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */,
 				CAA4A5271A43B506002A69A0 /* UserVariable+CBXMLHandler.m in Sources */,
@@ -4689,6 +4965,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CA7698B11B0E4A97000D0340 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CADBD6D319B0E8C200C62836 /* Catty */;
+			targetProxy = CA7698B01B0E4A97000D0340 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		92300CE918B2196700F2B4DC /* Localizable.strings */ = {
@@ -4859,6 +5143,84 @@
 			};
 			name = Release;
 		};
+		CA7698B31B0E4A97000D0340 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					$SDKROOT/usr/include/libxml2,
+				);
+				INFOPLIST_FILE = CattyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pocket Code.app/Pocket Code";
+			};
+			name = Debug;
+		};
+		CA7698B41B0E4A97000D0340 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					$SDKROOT/usr/include/libxml2,
+				);
+				INFOPLIST_FILE = CattyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pocket Code.app/Pocket Code";
+			};
+			name = Release;
+		};
 		CADBD7F919B0E8C200C62836 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4937,6 +5299,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		CA7698B21B0E4A97000D0340 /* Build configuration list for PBXNativeTarget "CattyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA7698B31B0E4A97000D0340 /* Debug */,
+				CA7698B41B0E4A97000D0340 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		CADBD7F819B0E8C200C62836 /* Build configuration list for PBXNativeTarget "Catty" */ = {
 			isa = XCConfigurationList;
