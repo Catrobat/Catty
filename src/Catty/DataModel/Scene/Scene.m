@@ -258,9 +258,14 @@
                 NSDebug(@"Found Object");
             }
         } else {
-            obj1 = nodesAtPoint[counter];
-            NSDebug(@"NextNode: %@",obj1);
-            --counter;
+            if (counter < 0) {
+                foundObject = YES;
+            }else {
+                obj1 = nodesAtPoint[counter];
+                NSDebug(@"NextNode: %@",obj1);
+                --counter;
+            }
+
         }
     }
     return YES;
