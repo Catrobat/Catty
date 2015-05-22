@@ -62,9 +62,12 @@
 - (BOOL)checkCondition
 {
     NSDebug(@"Performing: %@", self.description);
+    if (self.forceConditionEvaluationToEvaluateToFalse) {
+        NSDebug(@"Forced evaluation to evaluate to FALSE!");
+        return NO;
+    }
     return [self.ifCondition interpretBOOLForSprite:self.script.object];
 }
-
 
 #pragma mark - Description
 - (NSString*)description

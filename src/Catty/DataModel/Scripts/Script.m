@@ -30,9 +30,6 @@
 #import "IfLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
-#import "CBOperation.h"
-#import "CBIfConditionalSequence.h"
-#import "CBOperationSequence.h"
 #import "LoopBeginBrick.h"
 #import "LoopEndBrick.h"
 #import "BroadcastBrick.h"
@@ -41,13 +38,13 @@
 #import "WhenScript.h"
 #import "CBStack.h"
 #import "NSString+CatrobatNSStringExtensions.h"
+#import "Pocket_Code-Swift.h"
 
 @interface Script()
 
 @property (nonatomic, readwrite, getter=isRunning) BOOL running;
 @property (nonatomic, readwrite) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readwrite) kBrickType brickType;
-@property (nonatomic, strong) NSArray *sequenceList;
 
 @property (nonatomic, copy) dispatch_block_t abortScriptExecutionCompletion;
 @property (nonatomic, copy) dispatch_block_t fullScriptSequence;
@@ -56,21 +53,6 @@
 @end
 
 @implementation Script
-
-//+ (Script*)scriptWithType:(kBrickType)type andCategory:(kBrickCategoryType)category
-//{
-//    return [[[self class] alloc] initWithType:type andCategory:category]; 
-//}
-//
-//- (instancetype)initWithType:(kBrickType)type andCategory:(kBrickCategoryType)category
-//{
-//    self = [super init];
-//    if (self) {
-//        self.brickType = type;
-//        self.brickCategoryType = category;
-//    }
-//    return self;
-//}
 
 - (id)init
 {
@@ -81,7 +63,6 @@
         self.brickCategoryType = [brickManager brickCategoryTypeForBrickType:self.brickType];
         self.running = NO;
         self.abortScriptExecutionCompletion = nil;
-        self.sequenceList = nil;
     }
     return self;
 }
@@ -111,14 +92,6 @@
                                    reason:[NSString stringWithFormat:@"You must override %@ in the subclass %@",
                                            NSStringFromSelector(_cmd), NSStringFromClass([self class])]
                                  userInfo:nil];
-}
-
-- (NSArray*)sequenceList
-{
-    if (! _sequenceList) {
-        _sequenceList = [NSArray array];
-    }
-    return _sequenceList;
 }
 
 - (NSMutableArray*)brickList
@@ -152,89 +125,11 @@
     self.abortScriptExecutionCompletion = completion;
 }
 
-- (void)computeSequenceList
-{
-    NSMutableArray *scriptSequenceList = [NSMutableArray array];
-    CBOperationSequence *currentOperationSequence = [CBOperationSequence new];
-    CBStack *sequenceStack = [CBStack new];
-    NSMutableArray *currentSequenceList = scriptSequenceList;
-
-    for (Brick *brick in self.brickList) {
-        if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
-            if (! [currentOperationSequence isEmpty]) {
-                [currentSequenceList addObject:currentOperationSequence];
-            }
-            // preserve currentSequenceList and push it to stack
-            [sequenceStack pushElement:currentSequenceList];
-            currentSequenceList = [NSMutableArray array]; // new sequence list for If
-            currentOperationSequence = [CBOperationSequence new];
-        } else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
-            if (! [currentOperationSequence isEmpty]) {
-                [currentSequenceList addObject:currentOperationSequence];
-            }
-            // preserve currentSequenceList and push it to stack
-            [sequenceStack pushElement:currentSequenceList];
-            currentSequenceList = [NSMutableArray array]; // new sequence list for Else
-            currentOperationSequence = [CBOperationSequence new];
-        } else if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
-            if (! [currentOperationSequence isEmpty]) {
-                [currentSequenceList addObject:currentOperationSequence];
-            }
-            IfLogicEndBrick *endBrick = (IfLogicEndBrick*)brick;
-            IfLogicBeginBrick *ifBrick = endBrick.ifBeginBrick;
-            IfLogicElseBrick *elseBrick = endBrick.ifElseBrick;
-            CBIfConditionalSequence *ifSequence = [CBIfConditionalSequence sequenceWithConditionalBrick:ifBrick];
-            if (elseBrick) {
-                // currentSequenceList is ElseSequenceList
-                ifSequence.elseSequenceList = currentSequenceList;
-                // pop IfSequenceList from stack
-                currentSequenceList = [sequenceStack popElement];
-            }
-            // now currentSequenceList is IfSequenceList
-            ifSequence.sequenceList = currentSequenceList;
-
-            // pop currentSequenceList from stack
-            currentSequenceList = [sequenceStack popElement];
-            [currentSequenceList addObject:ifSequence];
-            currentOperationSequence = [CBOperationSequence new];
-        } else if ([brick isKindOfClass:[LoopBeginBrick class]]) {
-            if (! [currentOperationSequence isEmpty]) {
-                [currentSequenceList addObject:currentOperationSequence];
-            }
-            // preserve currentSequenceList and push it to stack
-            [sequenceStack pushElement:currentSequenceList];
-            currentSequenceList = [NSMutableArray array]; // new sequence list for Loop
-            currentOperationSequence = [CBOperationSequence new];
-        } else if ([brick isKindOfClass:[LoopEndBrick class]]) {
-            if (! [currentOperationSequence isEmpty]) {
-                [currentSequenceList addObject:currentOperationSequence];
-            }
-            // loop end -> fetch currentSequenceList from stack
-            CBConditionalSequence *conditionalSequence = [CBConditionalSequence sequenceWithConditionalBrick:((LoopEndBrick*)brick).loopBeginBrick];
-            conditionalSequence.sequenceList = currentSequenceList;
-            currentSequenceList = [sequenceStack popElement];
-            [currentSequenceList addObject:conditionalSequence];
-            currentOperationSequence = [CBOperationSequence new];
-        } else if ([brick isKindOfClass:[NoteBrick class]]) {
-            // ignore NoteBricks!
-        } else {
-            [currentOperationSequence addOperation:[CBOperation operationForBrick:brick]];
-        }
-    }
-    assert(scriptSequenceList == currentSequenceList); // sanity check just to ensure!
-
-    if (! [currentOperationSequence isEmpty]) {
-        [currentSequenceList addObject:currentOperationSequence];
-    }
-    self.sequenceList = (NSArray*)currentSequenceList;
-    [self prepareAllActions];
-}
-
 #pragma mark - Copy
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {
     if (! context) NSError(@"%@ must not be nil!", [CBMutableCopyContext class]);
-
+    
     Script *copiedScript = [[self class] new];
     copiedScript.brickCategoryType = self.brickCategoryType;
     copiedScript.brickType = self.brickType;
@@ -243,9 +138,9 @@
         WhenScript *whenScript = (WhenScript*)self;
         ((WhenScript*)copiedScript).action = [NSString stringWithString:whenScript.action];
     }
-
+    
     [context updateReference:self WithReference:copiedScript];
-
+    
     // deep copy
     copiedScript.brickList = [NSMutableArray arrayWithCapacity:[self.brickList count]];
     for (id brick in self.brickList) {
@@ -303,12 +198,12 @@
     if ([self.brickList count] != [script.brickList count]) {
         return NO;
     }
-
+    
     NSUInteger index;
     for (index = 0; index < [self.brickList count]; ++index) {
         Brick *firstBrick = [self.brickList objectAtIndex:index];
         Brick *secondBrick = [script.brickList objectAtIndex:index];
-
+        
         if (! [firstBrick isEqualToBrick:secondBrick]) {
             return NO;
         }
@@ -332,12 +227,12 @@
     assert(self.object.program.isPlaying); // ensure that program is playing!
     assert(! self.isRunning); // ensure that script is NOT already running!
     NSLog(@"Starting: %@ of object %@", [self class], [self.object class]);
-
+    
     if (! [self inParentHierarchy:self.object]) {
         NSLog(@" + Adding this node to object");
         [self.object addChild:self];
     }
-
+    
     [self reset]; // just to ensure
     if ([self hasActions]) {
         [self removeAllActions];
@@ -364,7 +259,7 @@
         if ([weakSelf isKindOfClass:[BroadcastScript class]]) {
             NSLog(@"Starting BroadcastScript of object %@", weakSelf.object.name);
         }
-
+        
         [weakSelf reset];
         if ([weakSelf hasActions]) {
             [weakSelf removeAllActions];
@@ -384,7 +279,7 @@
         if ([weakSelf isKindOfClass:[BroadcastScript class]]) {
             NSLog(@"Starting BroadcastScript of object %@", weakSelf.object.name);
         }
-
+        
         [weakSelf reset];
         if ([weakSelf hasActions]) {
             [weakSelf removeAllActions];
@@ -398,11 +293,11 @@
     };
 }
 
-- (void)prepareAllActions
+- (void)prepareAllActionsForScriptSequenceList:(CBScriptSequenceList*)scriptSequenceList
 {
-//    NSString *preservedScriptName = NSStringFromClass([self class]);
-//    NSString *preservedObjectName = self.object.name;
-//    NSDebug(@"Started %@ in object %@", preservedScriptName, preservedObjectName);
+    //    NSString *preservedScriptName = NSStringFromClass([self class]);
+    //    NSString *preservedObjectName = self.object.name;
+    //    NSDebug(@"Started %@ in object %@", preservedScriptName, preservedObjectName);
     __weak Script *weakSelf = self;
     dispatch_block_t scriptEndCompletion = ^{
         @synchronized(weakSelf) {
@@ -429,7 +324,7 @@
         }
         
     };
-    dispatch_block_t sequenceBlock = [self sequenceBlockForSequenceList:self.sequenceList
+    dispatch_block_t sequenceBlock = [self sequenceBlockForSequenceList:scriptSequenceList.sequenceList
                                                    finalCompletionBlock:scriptEndCompletion];
     self.fullScriptSequence = sequenceBlock;
 }
@@ -442,13 +337,14 @@
     self.fullScriptSequence();
 }
 
-- (dispatch_block_t)sequenceBlockForSequenceList:(NSArray*)sequenceList
+- (dispatch_block_t)sequenceBlockForSequenceList:(CBSequenceList*)sequenceList
                             finalCompletionBlock:(dispatch_block_t)finalCompletionBlock
 {
     assert(finalCompletionBlock != nil); // required parameter must NOT be nil!!
     __weak Script *weakSelf = self;
     dispatch_block_t completionBlock = finalCompletionBlock;
-    for (CBSequence *sequence in [sequenceList reverseObjectEnumerator]) {
+    CBSequenceList *reverseSequenceList = [sequenceList reverseSequenceList];
+    for (id<CBSequence, NSObject> sequence in reverseSequenceList.sequenceList) {
         if ([sequence isKindOfClass:[CBOperationSequence class]]) {
             completionBlock = [self sequenceBlockForOperationSequence:(CBOperationSequence*)sequence
                                                  finalCompletionBlock:completionBlock];
@@ -504,6 +400,7 @@
             [weakSelf sequenceBlockForSequenceList:conditionalSequence.sequenceList
                               finalCompletionBlock:loopEndCompletionBlock]();
         } else {
+//            [conditionalSequence resetCondition]; // FIXME!!
             finalCompletionBlock();
         }
     };
@@ -516,7 +413,7 @@
                                  finalCompletionBlock:(dispatch_block_t)finalCompletionBlock
 {
     assert(finalCompletionBlock != nil); // required parameter must NOT be nil!!
-#if DEBUG == 1 
+#if DEBUG == 1
     NSDate *startTime;
     startTime = [NSDate date];
 #endif // DEBUG == 1
@@ -618,7 +515,6 @@
 - (void)removeReferences
 {
     // DO NOT CHANGE ORDER HERE!
-    self.sequenceList = nil;
     self.abortScriptExecutionCompletion = nil;
     self.fullScriptSequence = nil;
     self.whileSequences = nil;

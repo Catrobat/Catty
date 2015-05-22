@@ -20,24 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "CBIfConditionalSequence.h"
+class CBOperationSequence : NSObject, CBSequence {
 
-@interface CBIfConditionalSequence()
-@end
+    final lazy var operationList = [CBOperation]()
 
-@implementation CBIfConditionalSequence
-
-- (NSMutableArray*)elseSequenceList
-{
-    if (! _elseSequenceList) {
-        _elseSequenceList = [NSMutableArray array];
+    // MARK: Operations
+    final func isEmpty() -> Bool {
+        return (operationList.count == 0)
     }
-    return _elseSequenceList;
-}
 
-- (BOOL)isEmpty
-{
-    return ([super isEmpty] && ([self.elseSequenceList count] == 0));
-}
+    final func addOperation(operation : CBOperation) {
+        operationList.append(operation)
+    }
 
-@end
+}

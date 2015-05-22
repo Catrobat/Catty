@@ -20,14 +20,29 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "CBSequence.h"
+class CBConditionalSequence : NSObject, CBSequence {
 
-@implementation CBSequence
+    final /*private */lazy var sequenceList = CBSequenceList()
 
-- (BOOL)isEmpty
-{
-    NSError(@"THIS METHOD MUST BE IMPLEMENTED IN ALL SUBCLASSES!!");
-    abort();
+    final private let conditionBrick : BrickConditionalBranchProtocol
+
+    // MARK: initializer
+    init(conditionBrick : BrickConditionalBranchProtocol) {
+        self.conditionBrick = conditionBrick
+    }
+
+    // MARK: Operations
+    func isEmpty() -> Bool {
+        return (sequenceList.count == 0)
+    }
+
+    final func checkCondition() -> Bool {
+        return conditionBrick.checkCondition()
+    }
+
+    class func createConditionalSequenceWithConditionBrick(conditionBrick : BrickConditionalBranchProtocol)
+        -> CBConditionalSequence {
+        return CBConditionalSequence(conditionBrick: conditionBrick)
+    }
+
 }
-
-@end

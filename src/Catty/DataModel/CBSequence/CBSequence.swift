@@ -20,32 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "CBOperationSequence.h"
-
-@interface CBOperationSequence()
-@property (nonatomic, strong, readwrite) NSMutableArray *operationList;
-@end
-
-@implementation CBOperationSequence
-
-#pragma mark - Getters & Setters
-- (NSMutableArray*)operationList
-{
-    if (! _operationList) {
-        _operationList = [NSMutableArray array];
-    }
-    return _operationList;
+@objc protocol CBSequence {
+    func isEmpty() -> Bool
 }
-
-#pragma mark - Operations
-- (void)addOperation:(CBOperation*)operation
-{
-    [self.operationList addObject:operation];
-}
-
-- (BOOL)isEmpty
-{
-    return ([self.operationList count] == 0);
-}
-
-@end

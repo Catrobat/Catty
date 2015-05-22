@@ -37,6 +37,7 @@
 #import "NSString+FastImageSize.h"
 #import "ProgramDefines.h"
 #import "CBMutableCopyContext.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation SpriteObject
 
@@ -183,8 +184,11 @@
                 }
                 if (newScript) {
                     Script *copiedScript = (Script*)[script mutableCopyWithContext:[CBMutableCopyContext new]];
+                    [copiedScript reset];
                     copiedScript.object = script.object;
-                    [copiedScript computeSequenceList]; // TODO: remove this...
+                    [copiedScript prepareAllActionsForScriptSequenceList:[[CBPlayerFrontend sharedInstance]
+                                                                          computeSequenceListForScript:script]]; // TODO: remove this...
+                    // TODO continue here...
                     [copiedScript start];
                 }
             }

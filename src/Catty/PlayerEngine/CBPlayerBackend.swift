@@ -20,10 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "CBConditionalSequence.h"
-
-@interface CBIfConditionalSequence : CBConditionalSequence
-
-@property (nonatomic, strong) NSMutableArray *elseSequenceList;
-
-@end
+class CBPlayerBackend : NSObject {
+    private lazy var sequenceList = [CBSequence]()
+}

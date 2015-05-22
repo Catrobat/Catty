@@ -276,11 +276,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                                         animated:YES];
 }
 
-
-
 #pragma mark - action sheet delegates
-- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == actionSheet.cancelButtonIndex) { return; }
     if (actionSheet.tag == kEditBrickActionSheetTag) {
         CBAssert(actionSheet.dataTransferMessage.actionType == kDTMActionEditBrickOrScript);
@@ -314,6 +311,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                     loopBeginBrick = loopEndBrick.loopBeginBrick;
                 }
                 CBAssert((loopBeginBrick != nil) || (loopEndBrick != nil));
+                loopBeginBrick.forceConditionEvaluationToEvaluateToFalse = NO;
                 NSUInteger loopBeginIndex = [brick.script.brickList indexOfObject:loopBeginBrick];
                 NSUInteger loopEndIndex = (loopBeginIndex + 1);
                 LoopBeginBrick *copiedLoopBeginBrick = [loopBeginBrick mutableCopyWithContext:[CBMutableCopyContext new]];
@@ -345,6 +343,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                     ifLogicElseBrick = ifLogicEndBrick.ifElseBrick;
                 }
                 CBAssert((ifLogicBeginBrick != nil) && (ifLogicElseBrick != nil) && (ifLogicEndBrick != nil));
+                ifLogicBeginBrick.forceConditionEvaluationToEvaluateToFalse = NO;
                 NSUInteger ifLogicBeginIndex = [brick.script.brickList indexOfObject:ifLogicBeginBrick];
                 NSUInteger ifLogicElseIndex = (ifLogicBeginIndex + 1);
                 NSUInteger ifLogicEndIndex = (ifLogicElseIndex + 1);
@@ -393,9 +392,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     }
 }
 
--(void)removeBrickOrScript:(BrickCell*)brickCell andIndexPath:(NSIndexPath*)indexPath
-{
-
+- (void)removeBrickOrScript:(BrickCell*)brickCell andIndexPath:(NSIndexPath*)indexPath {
         if ([brickCell.scriptOrBrick isKindOfClass:[Script class]]) {
             [(Script*)brickCell.scriptOrBrick removeFromObject];
             [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
@@ -646,6 +643,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         ifEndBrick.ifElseBrick = ifElseBrick;
         ifElseBrick.script = targetScript;
         ifEndBrick.script = targetScript;
+        ifBeginBrick.forceConditionEvaluationToEvaluateToFalse = NO;
         ifElseBrick.animate = YES;
         ifEndBrick.animate = YES;
         if (smallScript || self.scrollEnd) {
@@ -662,6 +660,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)brick;
         LoopEndBrick *loopEndBrick = [LoopEndBrick new];
         loopBeginBrick.loopEndBrick = loopEndBrick;
+        loopBeginBrick.forceConditionEvaluationToEvaluateToFalse = NO;
         loopEndBrick.loopBeginBrick = loopBeginBrick;
         loopEndBrick.script = targetScript;
         loopEndBrick.animate = YES;

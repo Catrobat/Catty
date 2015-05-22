@@ -20,13 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+class CBIfConditionalSequence : CBConditionalSequence {
 
-@class Brick;
+    final /*private */lazy var elseSequenceList = CBSequenceList()
 
-@interface CBOperation : NSObject
+    // MARK: initializer
+    override init(conditionBrick : BrickConditionalBranchProtocol) {
+        super.init(conditionBrick: conditionBrick)
+    }
 
-@property (nonatomic, strong, readonly) Brick *brick;
-+ (instancetype)operationForBrick:(Brick*)brick;
+    // MARK: Operations
+    final override func isEmpty() -> Bool {
+        return (super.isEmpty() && (elseSequenceList.count == 0))
+    }
 
-@end
+    final override class func createConditionalSequenceWithConditionBrick(conditionBrick : BrickConditionalBranchProtocol)
+        -> CBIfConditionalSequence {
+        return CBIfConditionalSequence(conditionBrick: conditionBrick)
+    }
+
+}
