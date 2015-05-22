@@ -526,7 +526,7 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         }
     }
     [self reloadInputViews];
-    [self.collectionView reloadData];
+    [self reloadData];
     [self.object.program saveToDisk];
 }
 
