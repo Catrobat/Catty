@@ -66,8 +66,7 @@
     return (self.loopCount++ < timesToRepeat) ? YES : NO;
 }
 
-
-- (void)reset
+- (void)resetCondition
 {
     self.loopCount = 0;
 }

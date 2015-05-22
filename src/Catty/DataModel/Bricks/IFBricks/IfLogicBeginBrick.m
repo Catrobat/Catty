@@ -69,6 +69,11 @@
     return [self.ifCondition interpretBOOLForSprite:self.script.object];
 }
 
+- (void)resetCondition
+{
+    // nothing to do
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

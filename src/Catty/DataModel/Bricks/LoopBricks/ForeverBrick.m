@@ -43,6 +43,11 @@
     return YES;
 }
 
+- (void)resetCondition
+{
+    // nothing to do
+}
+
 #pragma mark - Description
 - (NSString*)description
 {

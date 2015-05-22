@@ -30,8 +30,4 @@
 
 @property (nonatomic, weak) LoopEndBrick *loopEndBrick;
 
-- (void)reset;
-
-- (BOOL)checkCondition;
-
 @end

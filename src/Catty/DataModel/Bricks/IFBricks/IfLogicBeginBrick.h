@@ -35,5 +35,6 @@
 @property (nonatomic, weak) IfLogicEndBrick *ifEndBrick;
 
 - (BOOL)checkCondition;
+- (void)resetCondition;
 
 @end

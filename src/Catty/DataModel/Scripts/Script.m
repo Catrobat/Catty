@@ -217,7 +217,7 @@
     NSDebug(@"Reset");
     for (Brick *brick in self.brickList) {
         if ([brick isKindOfClass:[LoopBeginBrick class]]) {
-            [((LoopBeginBrick*)brick) reset];
+            [((LoopBeginBrick*)brick) resetCondition];
         }
     }
 }
@@ -400,7 +400,7 @@
             [weakSelf sequenceBlockForSequenceList:conditionalSequence.sequenceList
                               finalCompletionBlock:loopEndCompletionBlock]();
         } else {
-//            [conditionalSequence resetCondition]; // FIXME!!
+            [conditionalSequence resetCondition]; // reset loop counter
             finalCompletionBlock();
         }
     };
