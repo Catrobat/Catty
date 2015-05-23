@@ -175,21 +175,23 @@
             if ([script isKindOfClass:[WhenScript class]]) {
                 BOOL newScript = NO;
                 @synchronized(script) {
-                    if (! script.isRunning) {
-                        [script start];
-                    } else {
-                        newScript = YES;
-//                        [script restart];
-                    }
+#warning TODO!!
+//                    if (! script.isRunning) {
+//                        [script start];
+//                    } else {
+//                        newScript = YES;
+////                        [script restart];
+//                    }
                 }
                 if (newScript) {
-                    Script *copiedScript = (Script*)[script mutableCopyWithContext:[CBMutableCopyContext new]];
-                    [copiedScript reset];
-                    copiedScript.object = script.object;
-                    [copiedScript prepareAllActionsForScriptSequenceList:[[CBPlayerFrontend sharedInstance]
-                                                                          computeSequenceListForScript:script]]; // TODO: remove this...
-                    // TODO continue here...
-                    [copiedScript start];
+#warning TODO!!
+//                    Script *copiedScript = (Script*)[script mutableCopyWithContext:[CBMutableCopyContext new]];
+//                    [copiedScript reset];
+//                    copiedScript.object = script.object;
+//                    [copiedScript prepareAllActionsForScriptSequenceList:[[CBPlayerFrontend sharedInstance]
+//                                                                          computeSequenceListForScript:script]]; // TODO: remove this...
+//                    // TODO continue here...
+//                    [copiedScript start];
                 }
             }
         }

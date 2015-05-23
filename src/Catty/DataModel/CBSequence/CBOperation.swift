@@ -20,18 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+// FIXME: remove @objc!!
 @objc class CBOperation {
 
-    final /*private */let brick : Brick
+    final let brick : Brick
 
-    // MARK: (private!) initializer
-    private init(brick : Brick) {
+    // MARK: initializer
+    init(brick : Brick) {
         self.brick = brick
-    }
-
-    // MARK: Operations
-    final class func createOperationWithBrick(brick : Brick) -> CBOperation {
-        return CBOperation(brick : brick)
     }
 
 }

@@ -20,6 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc protocol CBSequence {
-    func isEmpty() -> Bool
+class CBSequence : NSObject {
+
+    final let rootSequenceList : CBScriptSequenceList
+
+    // MARK: initializer
+    init(rootSequenceList : CBScriptSequenceList) {
+        self.rootSequenceList = rootSequenceList
+        super.init()
+    }
+
+    // MARK: Operations
+    func isEmpty() -> Bool {
+        preconditionFailure("This method is abstract and must be overridden")
+    }
+
 }

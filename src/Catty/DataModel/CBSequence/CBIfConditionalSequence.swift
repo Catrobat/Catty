@@ -22,21 +22,23 @@
 
 class CBIfConditionalSequence : CBConditionalSequence {
 
-    final /*private */lazy var elseSequenceList = CBSequenceList()
+    final /*private */ let elseSequenceList : CBSequenceList?
 
-    // MARK: initializer
-    override init(conditionBrick : BrickConditionalBranchProtocol) {
-        super.init(conditionBrick: conditionBrick)
+    // MARK: initializers
+    override init(rootSequenceList: CBScriptSequenceList, conditionBrick : BrickConditionalBranchProtocol, sequenceList : CBSequenceList) {
+        self.elseSequenceList = nil
+        super.init(rootSequenceList: rootSequenceList, conditionBrick: conditionBrick, sequenceList: sequenceList)
+    }
+
+    init(rootSequenceList: CBScriptSequenceList, conditionBrick : BrickConditionalBranchProtocol, ifSequenceList : CBSequenceList,
+        elseSequenceList : CBSequenceList) {
+        self.elseSequenceList = elseSequenceList
+        super.init(rootSequenceList: rootSequenceList, conditionBrick: conditionBrick, sequenceList: ifSequenceList)
     }
 
     // MARK: Operations
     final override func isEmpty() -> Bool {
-        return (super.isEmpty() && (elseSequenceList.count == 0))
-    }
-
-    final override class func createConditionalSequenceWithConditionBrick(conditionBrick : BrickConditionalBranchProtocol)
-        -> CBIfConditionalSequence {
-        return CBIfConditionalSequence(conditionBrick: conditionBrick)
+        return (super.isEmpty() && (elseSequenceList?.count == 0))
     }
 
 }

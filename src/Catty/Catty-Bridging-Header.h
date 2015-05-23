@@ -34,3 +34,8 @@
 #import "LoopBeginBrick.h"
 #import "LoopEndBrick.h"
 #import "NoteBrick.h"
+#import "BroadcastBrick.h"
+#import "BroadcastWaitBrick.h"
+
+#import "BroadcastScript.h"
+#import "NSString+CatrobatNSStringExtensions.h"

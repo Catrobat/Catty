@@ -20,33 +20,30 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class CBConditionalSequence : NSObject, CBSequence {
+class CBConditionalSequence : CBSequence {
 
-    final /*private */lazy var sequenceList = CBSequenceList()
+    final let sequenceList : CBSequenceList
 
-    final private let conditionBrick : BrickConditionalBranchProtocol
+    final private let _conditionBrick : BrickConditionalBranchProtocol
 
     // MARK: initializer
-    init(conditionBrick : BrickConditionalBranchProtocol) {
-        self.conditionBrick = conditionBrick
+    init(rootSequenceList: CBScriptSequenceList, conditionBrick : BrickConditionalBranchProtocol, sequenceList : CBSequenceList) {
+        self.sequenceList = sequenceList
+        self._conditionBrick = conditionBrick
+        super.init(rootSequenceList: rootSequenceList)
     }
 
     // MARK: Operations
-    func isEmpty() -> Bool {
+    override func isEmpty() -> Bool {
         return (sequenceList.count == 0)
     }
 
     final func checkCondition() -> Bool {
-        return conditionBrick.checkCondition()
+        return _conditionBrick.checkCondition()
     }
 
     final func resetCondition() {
-        conditionBrick.resetCondition()
-    }
-
-    class func createConditionalSequenceWithConditionBrick(conditionBrick : BrickConditionalBranchProtocol)
-        -> CBConditionalSequence {
-        return CBConditionalSequence(conditionBrick: conditionBrick)
+        _conditionBrick.resetCondition()
     }
 
 }

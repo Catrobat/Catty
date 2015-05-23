@@ -20,12 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class CBOperationSequence : NSObject, CBSequence {
+class CBOperationSequence : CBSequence {
 
     final lazy var operationList = [CBOperation]()
 
+    override init(rootSequenceList: CBScriptSequenceList) {
+        super.init(rootSequenceList: rootSequenceList)
+    }
+
     // MARK: Operations
-    final func isEmpty() -> Bool {
+    override final func isEmpty() -> Bool {
         return (operationList.count == 0)
     }
 

@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
 #import "UIDefines.h"
@@ -35,16 +34,6 @@
 
 @interface Script : SKNode <ScriptProtocol, CBMutableCopying>
 
-// -------- CBPlayer
-@property (nonatomic, readonly, getter=isRunning) BOOL running;
-- (void)reset;
-- (void)prepareAllActionsForScriptSequenceList:(CBScriptSequenceList*)scriptSequenceList;
-- (void)start;
-- (void)selfBroadcastRestart; // should only be used for self-broadcasts
-- (void)restart;
-- (void)stop;
-// -------- CBPlayer
-
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readonly) kBrickType brickType;
 @property (nonatomic, strong, readonly) NSString *brickTitle;
@@ -53,19 +42,12 @@
 @property (nonatomic, getter=isAnimated) BOOL animate;
 
 - (BOOL)isSelectableForObject;
-
 - (BOOL)isAnimateable;
-
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject;
-
 - (void)addBrick:(Brick*)brick atIndex:(NSUInteger)index;
-
 - (NSString*)description;
-
 - (BOOL)isEqualToScript:(Script*)script;
-
 - (void)removeFromObject;
-
 - (void)removeReferences;
 
 @end

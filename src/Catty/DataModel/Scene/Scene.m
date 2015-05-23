@@ -102,23 +102,23 @@
     }
 
     // compute all sequence lists
-//    NSMutableDictionary *objectScriptSequenceLists = [NSMutableDictionary dictionaryWithCapacity:self.program.objectList.count];
+    NSMutableDictionary *objectScriptSequenceLists = [NSMutableDictionary dictionaryWithCapacity:self.program.objectList.count];
     for (SpriteObject *spriteObject in self.program.objectList) {
-//        objectScriptSequenceLists[spriteObject.name] = [NSMutableArray array];
+        objectScriptSequenceLists[spriteObject.name] = [NSMutableArray array];
         for (Script *script in spriteObject.scriptList) {
-//            CBScriptSequenceList *scriptSequenceList = [[CBPlayerFrontend sharedInstance] computeSequenceListForScript:script];
-            [script prepareAllActionsForScriptSequenceList:[[CBPlayerFrontend sharedInstance]
-                                                            computeSequenceListForScript:script]]; // TODO: remove this...
-//            [((NSMutableArray*)objectScriptSequenceLists[spriteObject.name]) addObject:scriptSequenceList];
+            CBScriptSequenceList *scriptSequenceList = [[CBPlayerFrontend sharedInstance] computeSequenceListForScript:script];
+            [[CBPlayerBackend sharedInstance] prepareExecutionForScriptSequenceList:scriptSequenceList];
+            [((NSMutableArray*)objectScriptSequenceLists[spriteObject.name]) addObject:scriptSequenceList];
         }
     }
 
     // now we are ready to start all StartScripts of all SpriteObjects
+    [CBPlayerBackend sharedInstance].running = YES;
     for (SpriteObject *spriteObject in self.program.objectList) {
-//        objectScriptSequenceLists[spriteObject.name];
-        for (Script *script in spriteObject.scriptList) {
-            if ([script isKindOfClass:[StartScript class]]) {
-                [script start];
+        NSArray *scriptSequenceLists = objectScriptSequenceLists[spriteObject.name];
+        for (CBScriptSequenceList *scriptSequenceList in scriptSequenceLists) {
+            if ([scriptSequenceList.script isKindOfClass:[StartScript class]]) {
+                [scriptSequenceList runFullScriptSequence];
             }
         }
     }
@@ -144,9 +144,10 @@
                         ((Brick<BrickConditionalBranchProtocol>*)brick).forceConditionEvaluationToEvaluateToFalse = YES;
                     }
                 }
-                if (script.isRunning) {
-                    [script stop];
-                }
+//                if (script.isRunning) {
+#warning TODO!!
+//                    [script stop];
+//                }
             }
         }
     }
@@ -155,10 +156,11 @@
     // busy waiting until all scripts finished!!
     for (SpriteObject *spriteObject in self.program.objectList) {
         for (Script *script in spriteObject.scriptList) {
-            while (script.isRunning) {
-                NSLog(@"%@ in %@ is still running (Scene %@). Waiting until script finished execution...", [script class], spriteObject.name, (self.isPaused ? @"paused" : @"still running"));
-                [NSThread sleepForTimeInterval:0.3f];
-            }
+#warning TODO!!
+//            while (script.isRunning) {
+//                NSLog(@"%@ in %@ is still running (Scene %@). Waiting until script finished execution...", [script class], spriteObject.name, (self.isPaused ? @"paused" : @"still running"));
+//                [NSThread sleepForTimeInterval:0.3f];
+//            }
         }
     }
     NSLog(@"All scripts finished execution!");
