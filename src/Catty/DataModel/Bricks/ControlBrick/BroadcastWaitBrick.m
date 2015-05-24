@@ -23,6 +23,7 @@
 #import "BroadcastWaitBrick.h"
 #import "Script.h"
 #import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation BroadcastWaitBrick
 
@@ -55,7 +56,7 @@
         self.broadcastMessage = [NSString stringWithString:kLocalizedMessage1];
 }
 
-- (void)performBroadcastAndWaitWithCompletion:(dispatch_block_t)completionBlock
+- (void)performBroadcastAndWait
 {
     NSDebug(@"Performing: %@", self.description);
     [self.script.object.program broadcastAndWait:self.broadcastMessage senderScript:self.script];
@@ -65,7 +66,8 @@
         [weakSelf.script.object.program waitingForBroadcastWithMessage:weakSelf.broadcastMessage];
         // now switch back to the main queue for executing the sequence!
         dispatch_async(dispatch_get_main_queue(), ^{
-            completionBlock(); // the script must continue here. upcoming actions are executed!!
+            // the script must continue here. upcoming actions are executed!!
+            [[CBPlayerScheduler sharedInstance] runNextInstructionOfScript:weakSelf.script];
         });
     });
 }

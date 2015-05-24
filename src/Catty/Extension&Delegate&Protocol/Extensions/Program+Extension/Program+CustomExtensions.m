@@ -29,7 +29,6 @@
 
 - (void)updateReferences
 {
-    self.playing = NO;
     for (SpriteObject *sprite in self.objectList) {
         sprite.program = self;
         for (Script *script in sprite.scriptList) {

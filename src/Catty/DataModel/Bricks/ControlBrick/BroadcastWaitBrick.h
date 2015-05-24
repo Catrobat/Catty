@@ -30,7 +30,7 @@
 
 - (id)initWithMessage:(NSString*)message;
 
-- (void)performBroadcastAndWaitWithCompletion:(dispatch_block_t)completionBlock;
+- (void)performBroadcastAndWait;
 
 - (void)performBroadcastButDontWait;
 

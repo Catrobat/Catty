@@ -35,7 +35,6 @@
 @property (nonatomic, strong) Header *header;
 @property (nonatomic, strong) NSMutableArray *objectList;
 @property (nonatomic, strong) VariablesContainer *variables;
-@property (nonatomic, getter=isPlaying) BOOL playing;
 
 // FIXME: remove this property after serialization works
 @property (nonatomic, strong) GDataXMLDocument *XMLdocument;
