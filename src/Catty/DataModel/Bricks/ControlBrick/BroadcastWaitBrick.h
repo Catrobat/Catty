@@ -32,6 +32,4 @@
 
 - (void)performBroadcastAndWait;
 
-- (void)performBroadcastButDontWait;
-
 @end

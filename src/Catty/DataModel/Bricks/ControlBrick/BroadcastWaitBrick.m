@@ -72,12 +72,6 @@
     });
 }
 
-- (void)performBroadcastButDontWait
-{
-    // acts like a normal broadcast!
-    [self.script.object.program broadcast:self.broadcastMessage senderScript:self.script];
-}
-
 - (void)setMessage:(NSString *)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     if(message)

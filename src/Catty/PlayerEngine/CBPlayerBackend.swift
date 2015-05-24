@@ -20,19 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class CBPlayerBackend : NSObject {
+final class CBPlayerBackend : NSObject {
 
     let logger = Swell.getLogger("CBPlayerBackend")
     override init() { super.init() }
 
-    final func executionContextForScriptSequenceList(scriptSequenceList : CBScriptSequenceList) -> CBScriptExecContext {
+    func executionContextForScriptSequenceList(scriptSequenceList : CBScriptSequenceList) -> CBScriptExecContext {
         logger.info("Generating ExecContext of \(scriptSequenceList.script)")
         var instructionList = _instructionListForSequenceList(scriptSequenceList.sequenceList)
         return CBScriptExecContext(script: scriptSequenceList.script, scriptSequenceList: scriptSequenceList,
             instructionList: instructionList)
     }
 
-    final private func _instructionListForSequenceList(sequenceList: CBSequenceList) -> [CBExecClosure] {
+    private func _instructionListForSequenceList(sequenceList: CBSequenceList) -> [CBExecClosure] {
         var instructionList = [CBExecClosure]()
         for sequence in sequenceList.reverseSequenceList().sequenceList {
             if let operationSequence = sequence as? CBOperationSequence {
@@ -112,8 +112,7 @@ class CBPlayerBackend : NSObject {
         for operation in operationSequence.operationList.reverse() {
             if let broadcastBrick = operation.brick as? BroadcastBrick {
                 instructionList += {
-                    let script = broadcastBrick.script
-                    script.object.program.broadcast(broadcastBrick.broadcastMessage, senderScript: script)
+                    CBPlayerScheduler.sharedInstance.broadcastWithMessage(broadcastBrick.broadcastMessage, senderScript: broadcastBrick.script)
                 }
             } else if let broadcastWaitBrick = operation.brick as? BroadcastWaitBrick {
                 // cancel all upcoming actions if BroadcastWaitBrick calls its own script
@@ -129,8 +128,9 @@ class CBPlayerBackend : NSObject {
                             }
                             //                            NSDebug(@"BroadcastScript ended due to self broadcastWait!");
                             // finally perform normal (!) broadcast
-                            // no waiting required, since there all upcoming actions in the sequence are omitted!
-                            broadcastWaitBrick.performBroadcastButDontWait()
+                            // no waiting required, since all upcoming actions in the sequence are omitted!
+                            CBPlayerScheduler.sharedInstance.broadcastWithMessage(broadcastWaitBrick.broadcastMessage, senderScript:broadcastScript)
+
                             // end of script reached!! Scripts will be aborted due to self-calling broadcast
                             // the final closure will never be called (except when script is canceled!) due
                             // to self-broadcast

@@ -108,8 +108,8 @@
                 CBScriptExecContext *execContext = [backend executionContextForScriptSequenceList:scriptSequenceList];
                 [[CBPlayerScheduler sharedInstance] addScriptExecContext:execContext];
             } else if ([script isKindOfClass:[BroadcastScript class]]) {
-                // TODO: register in scheduler!!
-                [CBPlayerScheduler sharedInstance];
+                // register BroadcastScript
+                [[CBPlayerScheduler sharedInstance] registerBroadcastScript:(BroadcastScript*)script];
             }
         }
     }

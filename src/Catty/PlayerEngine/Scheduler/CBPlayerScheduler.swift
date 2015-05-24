@@ -27,35 +27,78 @@ protocol CBPlayerSchedulingAlgorithm {
         scriptExecContextDict: [Script:CBScriptExecContext]) -> CBScriptExecContext
 }
 
-@objc class CBPlayerScheduler {
+@objc final class CBPlayerScheduler {
 
+    // MARK: Constants
+    let selfBroadcastRecursionMaxDepthLimit = 20 // specifies max depth limit for self broadcasts for the same function stack
+
+    // MARK: Properties
     static let sharedInstance = CBPlayerScheduler() // singleton
     let logger = Swell.getLogger("CBPlayerScheduler")
-    final private(set) var running = false
-    final private(set) lazy var scriptExecContextDict = [Script:CBScriptExecContext]()
-    final var schedulingAlgorithm : CBPlayerSchedulingAlgorithm?
-    final private weak var _currentScriptExecContext : CBScriptExecContext?
+    private(set) var running = false
+    private(set) lazy var scriptExecContextDict = [Script:CBScriptExecContext]()
+    var schedulingAlgorithm : CBPlayerSchedulingAlgorithm?
+    private weak var _currentScriptExecContext : CBScriptExecContext?
+    private lazy var _registeredBroadcastScripts = [BroadcastScript]()
+    private lazy var _selfBroadcastCounters = [String:Int]()
 
+    // MARK: Initializers
     private init() {} // private initializer
 
-    final func addScriptExecContext(scriptExecContext: CBScriptExecContext) {
+    // MARK: Getters and Setters
+    func isScriptRunning(script: Script) -> Bool {
+        if let _ = scriptExecContextDict[script] {
+            return true
+        }
+        return false
+    }
+
+    // MARK: Operations
+    private func _resetScript(script: Script) {
+        logger.debug("!!! RESETTING: \(script)");
+        logger.debug("-------------------------------------------------------------")
+        for brick in script.brickList {
+            if let loopBeginBrick = brick as? LoopBeginBrick {
+                loopBeginBrick.resetCondition()
+            }
+        }
+    }
+
+    func addScriptExecContext(scriptExecContext: CBScriptExecContext) {
         assert(scriptExecContextDict[scriptExecContext.script] == nil, "Context already in dictionary!")
         scriptExecContextDict[scriptExecContext.script] = scriptExecContext
     }
 
-    final func addInstructionAfterCurrentInstructionOfScript(script: Script, instruction: CBExecClosure) {
+    func addInstructionAfterCurrentInstructionOfScript(script: Script, instruction: CBExecClosure) {
         if let scriptExecContext = scriptExecContextDict[script] {
             scriptExecContext.addInstructionAtCurrentPosition(instruction)
         }
     }
 
-    final func addInstructionsAfterCurrentInstructionOfScript(script: Script, instructionList: [CBExecClosure]) {
+    func addInstructionsAfterCurrentInstructionOfScript(script: Script, instructionList: [CBExecClosure]) {
         for instruction in instructionList {
             addInstructionAfterCurrentInstructionOfScript(script, instruction: instruction)
         }
     }
 
-    final func runNextInstructionOfScript(script: Script) {
+    func registerBroadcastScript(broadcastScript: BroadcastScript) {
+        assert(contains(_registeredBroadcastScripts, broadcastScript) == false, "FATAL: BroadcastScript already registered!")
+        _registeredBroadcastScripts += broadcastScript
+    }
+
+    func unregisterBroadcastScript(broadcastScript: BroadcastScript) {
+        var index = 0
+        for script in _registeredBroadcastScripts {
+            if script === broadcastScript {
+                _registeredBroadcastScripts.removeAtIndex(index)
+                return
+            }
+            ++index
+        }
+        fatalError("FATAL: Given BroadcastScript is NOT registered!")
+    }
+
+    func runNextInstructionOfScript(script: Script) {
         if scriptExecContextDict.count == 0 { return }
         if schedulingAlgorithm != nil {
             let newScriptExecContext = schedulingAlgorithm?.scriptExecContextForNextInstruction(
@@ -82,7 +125,7 @@ protocol CBPlayerSchedulingAlgorithm {
         }
     }
 
-    final func run() {
+    func run() {
         logger.info("")
         logger.info("#############################################################")
         logger.info("")
@@ -96,7 +139,7 @@ protocol CBPlayerSchedulingAlgorithm {
         }
     }
 
-    final func startScript(script: Script) {
+    func startScript(script: Script) {
         assert(running) // ensure that player is running!
         let context = self.scriptExecContextDict[script]
         // make sure that context has already been added to Scheduler
@@ -108,7 +151,7 @@ protocol CBPlayerSchedulingAlgorithm {
             //            NSLog(@" + Adding this node to object");
             script.object.addChild(script)
         }
-        _resetForScript(script)
+        _resetScript(script)
 
         if script.hasActions() {
             script.removeAllActions()
@@ -116,7 +159,7 @@ protocol CBPlayerSchedulingAlgorithm {
         runNextInstructionOfScript(script) // Ready...Steady...Gooooo!! => invoke first instruction!
     }
 
-    final func restartScript(script: Script) {
+    func restartScript(script: Script) {
         assert(running) // make sure that player is running!
         if let scriptExecContext = scriptExecContextDict[script] {
             stopScript(script, removeReferences:false)
@@ -132,7 +175,7 @@ protocol CBPlayerSchedulingAlgorithm {
         }
     }
 
-    final func stopScript(script: Script, removeReferences: Bool = true) {
+    func stopScript(script: Script, removeReferences: Bool = true) {
         logger.info("!!! STOPPING: \(script)")
         logger.info("-------------------------------------------------------------")
         if removeReferences {
@@ -149,7 +192,7 @@ protocol CBPlayerSchedulingAlgorithm {
         logger.debug("Script \(script) finished!")
     }
 
-    final func shutdown() {
+    func shutdown() {
         logger.info("")
         logger.info("#############################################################")
         logger.info("")
@@ -172,20 +215,63 @@ protocol CBPlayerSchedulingAlgorithm {
         _currentScriptExecContext = nil
     }
 
-    final func isScriptRunning(script: Script) -> Bool {
-        if let _ = scriptExecContextDict[script] {
-            return true
-        }
-        return false
-    }
+    // MARK: Broadcast handling
+    func broadcastWithMessage(message: String, senderScript:Script) {
+        logger.info("Broadcast: \(message)")
+        var runNextInstructionOfSenderScript = true
+        let frontend = CBPlayerFrontend()
+        let backend = CBPlayerBackend()
+        for broadcastScript in _registeredBroadcastScripts {
+            if broadcastScript.receivedMessage != message {
+                continue
+            }
 
-    private final func _resetForScript(script: Script) {
-        logger.debug("!!! RESETTING: \(script)");
-        logger.debug("-------------------------------------------------------------")
-        for brick in script.brickList {
-            if let loopBeginBrick = brick as? LoopBeginBrick {
-                loopBeginBrick.resetCondition()
+            // case broadcastScript == senderScript => restart script
+            if broadcastScript === senderScript {
+                if isScriptRunning(broadcastScript) == false {
+                    return;
+                }
+                broadcastScript.calledByOtherScriptBroadcastWait = false // no synchronization needed here
+                var counter = 0
+                if let counterNumber = _selfBroadcastCounters[message] {
+                    counter = counterNumber
+                }
+                if ++counter % selfBroadcastRecursionMaxDepthLimit == 0 { // XXX: DIRTY PERFORMANCE HACK!!
+                    dispatch_async(dispatch_get_main_queue(), { [weak self] in
+                        self?.restartScript(broadcastScript) // restart this self-listening BroadcastScript
+                    })
+                } else {
+                    restartScript(broadcastScript)
+                }
+                _selfBroadcastCounters[message] = counter
+
+                // end of script reached!! Scripts will be aborted due to self-calling broadcast
+                // the final closure will never be called (except when script is canceled!) due
+                // to self-broadcast
+                runNextInstructionOfSenderScript = false // still enqueued next actions are ignored due to restart!
+                logger.debug("BROADCASTSCRIPT HAS BEEN RESTARTED DUE TO SELF-BROADCAST!!")
+                continue
+            }
+
+            // case broadcastScript != senderScript
+            broadcastScript.calledByOtherScriptBroadcastWait = false
+            if isScriptRunning(broadcastScript) == false {
+                // case broadcastScript is not running
+                let sequenceList = frontend.computeSequenceListForScript(broadcastScript)
+                addScriptExecContext(backend.executionContextForScriptSequenceList(sequenceList))
+                startScript(broadcastScript)
+            } else {
+                // case broadcastScript is running
+                if broadcastScript.calledByOtherScriptBroadcastWait {
+                    broadcastScript.signalForWaitingBroadcasts() // signal finished broadcast!
+                }
+                restartScript(broadcastScript) // trigger script to restart
             }
         }
+        if (runNextInstructionOfSenderScript) {
+            // the script must continue here. upcoming actions are executed!!
+            runNextInstructionOfScript(senderScript)
+        }
     }
+
 }

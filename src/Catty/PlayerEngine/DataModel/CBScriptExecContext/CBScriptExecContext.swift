@@ -22,13 +22,13 @@
 
 typealias CBExecClosure = dispatch_block_t
 
-@objc class CBScriptExecContext {
+@objc final class CBScriptExecContext {
 
-    final let script : Script
-    final private lazy var _instructionList = [CBExecClosure]()
-    final private var _scriptSequenceList : CBScriptSequenceList?
-    final private(set) var reverseInstructionPointer = 0
-    final var count : Int { return _instructionList.count }
+    let script : Script
+    private lazy var _instructionList = [CBExecClosure]()
+    private var _scriptSequenceList : CBScriptSequenceList?
+    private(set) var reverseInstructionPointer = 0
+    var count : Int { return _instructionList.count }
 
     // MARK: Initializers
     init(script: Script, scriptSequenceList: CBScriptSequenceList, instructionList: [CBExecClosure]) {
@@ -40,28 +40,28 @@ typealias CBExecClosure = dispatch_block_t
     }
 
     // MARK: Operations
-    final func appendInstruction(instruction: CBExecClosure) {
+    func appendInstruction(instruction: CBExecClosure) {
         _instructionList.append(instruction)
         ++reverseInstructionPointer
     }
 
-    final func addInstructionAtCurrentPosition(instruction: CBExecClosure) {
+    func addInstructionAtCurrentPosition(instruction: CBExecClosure) {
         _instructionList.insert(instruction, atIndex: reverseInstructionPointer)
         ++reverseInstructionPointer
     }
 
-    final func nextInstruction() -> CBExecClosure? {
+    func nextInstruction() -> CBExecClosure? {
         if (reverseInstructionPointer == 0) || (_instructionList.count == 0) {
             return nil
         }
         return _instructionList[--reverseInstructionPointer]
     }
 
-    final func reset() {
+    func reset() {
         reverseInstructionPointer = _instructionList.count
     }
 
-    final func removeReferences() {
+    func removeReferences() {
         self._instructionList.removeAll(keepCapacity: false)
         self._scriptSequenceList?.sequenceList.rootSequenceList = nil
         if self._scriptSequenceList != nil {

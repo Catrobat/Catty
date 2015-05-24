@@ -37,7 +37,7 @@ final class CBIfConditionalSequence : CBConditionalSequence {
     }
 
     // MARK: Operations
-    final override func isEmpty() -> Bool {
+    override func isEmpty() -> Bool {
         return (super.isEmpty() && (elseSequenceList?.count == 0))
     }
 

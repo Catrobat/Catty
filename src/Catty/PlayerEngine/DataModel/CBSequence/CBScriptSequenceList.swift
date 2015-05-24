@@ -37,7 +37,7 @@
     }
 
     // MARK: Operations
-    final func reverseSequenceList() -> CBScriptSequenceList {
+    func reverseSequenceList() -> CBScriptSequenceList {
         return CBScriptSequenceList(script: script, sequenceList: sequenceList.reverseSequenceList())
     }
 

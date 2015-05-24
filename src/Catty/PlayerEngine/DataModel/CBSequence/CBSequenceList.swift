@@ -32,18 +32,18 @@ final class CBSequenceList : SequenceType {
     }
 
     // MARK: Operations
-    final func append(let sequence : CBSequence) {
+    func append(let sequence : CBSequence) {
         sequenceList.append(sequence)
     }
 
-    final func generate() -> GeneratorOf<CBSequence> {
+    func generate() -> GeneratorOf<CBSequence> {
         var i = 0
         return GeneratorOf<CBSequence> {
             return i >= self.sequenceList.count ? .None : self.sequenceList[i++]
         }
     }
 
-    final func reverseSequenceList() -> CBSequenceList {
+    func reverseSequenceList() -> CBSequenceList {
         var reverseScriptSequenceList = CBSequenceList(rootSequenceList: rootSequenceList)
         reverseScriptSequenceList.sequenceList = sequenceList.reverse()
         return reverseScriptSequenceList

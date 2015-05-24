@@ -24,7 +24,7 @@ final class CBPlayerFrontend : NSObject {
 
     override init() { super.init() }
 
-    final func computeSequenceListForScript(script : Script) -> CBScriptSequenceList {
+    func computeSequenceListForScript(script : Script) -> CBScriptSequenceList {
         var currentSequenceList = CBSequenceList(rootSequenceList: nil)
         let scriptSequenceList = CBScriptSequenceList(script: script, sequenceList: currentSequenceList)
         var currentOperationSequence = CBOperationSequence(rootSequenceList: scriptSequenceList)

@@ -61,7 +61,6 @@
     withNameForCopiedObject:(NSString*)nameOfCopiedObject;
 - (BOOL)isEqualToProgram:(Program*)program;
 - (void)setupBroadcastHandling;
-- (void)broadcast:(NSString*)message senderScript:(Script*)script;
 - (void)broadcastAndWait:(NSString*)message senderScript:(Script*)script;
 - (void)signalForWaitingBroadcastWithMessage:(NSString*)message;
 - (void)waitingForBroadcastWithMessage:(NSString*)message;

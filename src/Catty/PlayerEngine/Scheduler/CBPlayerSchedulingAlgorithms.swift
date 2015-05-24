@@ -23,7 +23,7 @@
 // implements a RoundRobin-like scheduling algorithm
 final class CBPlayerSchedulingRR : CBPlayerSchedulingAlgorithm {
 
-    final func scriptExecContextForNextInstruction(lastScript: Script?,
+    func scriptExecContextForNextInstruction(lastScript: Script?,
         scriptExecContextDict: [Script:CBScriptExecContext]) -> CBScriptExecContext
     {
         assert(scriptExecContextDict.isEmpty == false) // make sure dict is not empty (as specified!)
@@ -50,7 +50,7 @@ final class CBPlayerSchedulingRR : CBPlayerSchedulingAlgorithm {
 // implements a random order scheduling algorithm
 final class CBPlayerSchedulingAlgorithmRandomOrder : CBPlayerSchedulingAlgorithm {
 
-    final func scriptExecContextForNextInstruction(lastScript: Script?,
+    func scriptExecContextForNextInstruction(lastScript: Script?,
         scriptExecContextDict: [Script:CBScriptExecContext]) -> CBScriptExecContext
     {
         assert(scriptExecContextDict.isEmpty == false) // make sure dict is not empty (as specified!)

@@ -22,7 +22,7 @@
 
 final class CBOperationSequence : CBSequence {
 
-    final lazy var operationList = [CBOperation]()
+    lazy var operationList = [CBOperation]()
 
     // MARK: Initializers
     override init(rootSequenceList: CBScriptSequenceList) {
@@ -30,11 +30,11 @@ final class CBOperationSequence : CBSequence {
     }
 
     // MARK: Operations
-    override final func isEmpty() -> Bool {
+    override func isEmpty() -> Bool {
         return (operationList.count == 0)
     }
 
-    final func addOperation(operation : CBOperation) {
+    func addOperation(operation : CBOperation) {
         operationList.append(operation)
     }
 
