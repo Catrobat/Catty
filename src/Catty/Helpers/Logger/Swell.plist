@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SWLQuickFormat</key>
+	<string>LevelMessage</string>
+	<key>SWLLocation</key>
+	<string>console</string>
+	<key>SWLLevel</key>
+	<string>debug</string>
+	<key>SWLLocationFilename</key>
+	<string>Catty.log</string>
+	<key>CBPlayerScheduler</key>
+	<dict>
+		<key>SWLLevel</key>
+		<string>warn</string>
+		<key>SWLLocation</key>
+		<string>console</string>
+		<key>SWLLocationFilename</key>
+		<string>PlayerEngine-Scheduler.log</string>
+		<key>SWLQuickFormat</key>
+		<string>NameMessage</string>
+	</dict>
+	<key>CBPlayerFrontend</key>
+	<dict>
+		<key>SWLLevel</key>
+		<string>info</string>
+		<key>SWLLocation</key>
+		<string>console</string>
+		<key>SWLLocationFilename</key>
+		<string>PlayerEngine-Frontend.log</string>
+		<key>SWLQuickFormat</key>
+		<string>DateNameMessage</string>
+	</dict>
+	<key>CBPlayerBackend</key>
+	<dict>
+		<key>SWLLevel</key>
+		<string>warn</string>
+		<key>SWLLocation</key>
+		<string>console</string>
+		<key>SWLLocationFilename</key>
+		<string>PlayerEngine-Backend.log</string>
+		<key>SWLQuickFormat</key>
+		<string>DateNameMessage</string>
+	</dict>
+</dict>
+</plist>

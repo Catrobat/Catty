@@ -407,21 +407,13 @@
     self.menuView.userInteractionEnabled = NO;
     Scene *previousScene = (Scene*)self.skView.scene;
     previousScene.userInteractionEnabled = NO;
-
-    // busy waiting on other thread until all SpriteKit actions have been finished
-    __weak typeof(self)weakSelf = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        [previousScene stopProgramWithCompletion:^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [[FlashHelper sharedFlashHandler] pause];
-                previousScene.userInteractionEnabled = YES;
-                [self.loadingView hide];
-                [weakSelf.parentViewController.navigationController setToolbarHidden:NO];
-                [weakSelf.parentViewController.navigationController setNavigationBarHidden:NO];
-                [weakSelf.navigationController popViewControllerAnimated:YES];
-            });
-        }];
-    });
+    [previousScene stopProgram];
+    [[FlashHelper sharedFlashHandler] pause];
+    previousScene.userInteractionEnabled = YES;
+    [self.loadingView hide];
+    [self.parentViewController.navigationController setToolbarHidden:NO];
+    [self.parentViewController.navigationController setNavigationBarHidden:NO];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)restartProgramAction:(UIButton*)sender

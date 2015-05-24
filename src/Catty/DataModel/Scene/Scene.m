@@ -24,6 +24,7 @@
 #import "Program.h"
 #import "SpriteObject.h"
 #import "StartScript.h"
+#import "BroadcastScript.h"
 #import "HideBrick.h"
 #import "AudioManager.h"
 #import "BrickConditionalBranchProtocol.h"
@@ -72,7 +73,6 @@
     // init and prepare Scene
     CGFloat zPosition = 1.0f;
     [self removeAllChildren]; // just to ensure
-    self.program.playing = YES;
     [self.program setupBroadcastHandling];
     for (SpriteObject *spriteObject in self.program.objectList) {
         spriteObject.hidden = NO;
@@ -82,9 +82,6 @@
                 for (Brick *brick in script.brickList) {
                     if (! index++ && [brick isKindOfClass:[HideBrick class]]) {
                         spriteObject.hidden = YES;
-                    }
-                    if ([brick conformsToProtocol:@protocol(BrickConditionalBranchProtocol)]) {
-                        ((Brick<BrickConditionalBranchProtocol>*)brick).forceConditionEvaluationToEvaluateToFalse = NO;
                     }
                 }
             }
@@ -102,101 +99,46 @@
     }
 
     // compute all sequence lists
-    NSMutableDictionary *objectScriptSequenceLists = [NSMutableDictionary dictionaryWithCapacity:self.program.objectList.count];
+    CBPlayerFrontend *frontend = [CBPlayerFrontend new];
+    CBPlayerBackend *backend = [CBPlayerBackend new];
     for (SpriteObject *spriteObject in self.program.objectList) {
-        objectScriptSequenceLists[spriteObject.name] = [NSMutableArray array];
         for (Script *script in spriteObject.scriptList) {
-            CBScriptSequenceList *scriptSequenceList = [[CBPlayerFrontend sharedInstance] computeSequenceListForScript:script];
-            [[CBPlayerBackend sharedInstance] prepareExecutionForScriptSequenceList:scriptSequenceList];
-            [((NSMutableArray*)objectScriptSequenceLists[spriteObject.name]) addObject:scriptSequenceList];
-        }
-    }
-
-    // now we are ready to start all StartScripts of all SpriteObjects
-    [CBPlayerBackend sharedInstance].running = YES;
-    for (SpriteObject *spriteObject in self.program.objectList) {
-        NSArray *scriptSequenceLists = objectScriptSequenceLists[spriteObject.name];
-        for (CBScriptSequenceList *scriptSequenceList in scriptSequenceLists) {
-            if ([scriptSequenceList.script isKindOfClass:[StartScript class]]) {
-                [scriptSequenceList runFullScriptSequence];
+            if ([script isKindOfClass:[StartScript class]]) {
+                CBScriptSequenceList *scriptSequenceList = [frontend computeSequenceListForScript:script];
+                CBScriptExecContext *execContext = [backend executionContextForScriptSequenceList:scriptSequenceList];
+                [[CBPlayerScheduler sharedInstance] addScriptExecContext:execContext];
+            } else if ([script isKindOfClass:[BroadcastScript class]]) {
+                // TODO: register in scheduler!!
+                [CBPlayerScheduler sharedInstance];
             }
         }
     }
+    [[CBPlayerScheduler sharedInstance] run];
 }
 
-- (void)stopProgramWithCompletion:(dispatch_block_t)completion
+- (void)stopProgram
 {
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        [[AudioManager sharedAudioManager] stopAllSounds];
+    [[AudioManager sharedAudioManager] stopAllSounds];
+    self.view.paused = YES; // pause scene!
+    [[CBPlayerScheduler sharedInstance] shutdown];
 
-        // continue scene so that all SpriteKit actions can be finished
-        self.view.paused = NO;
-    });
-
-    // stop all running scripts
+    // now all (!) scripts of all (!) objects have been finished! we can safely remove all SpriteObjects from Scene
+    // NOTE: this for-in-loop MUST NOT be combined with previous for-in-loop because there could exist some
+    //       Scripts in SpriteObjects that contain pointToBricks to other (!) SpriteObjects
     for (SpriteObject *spriteObject in self.program.objectList) {
         for (Script *script in spriteObject.scriptList) {
-            @synchronized(script) {
-                for (Brick *brick in script.brickList) {
-                    // force loops to evaluate to NO/FALSE!! This is needed to ensure that all scripts
-                    // will terminate. (e.g. needed to break out of FOREVER loops, ...)
-                    if ([brick conformsToProtocol:@protocol(BrickConditionalBranchProtocol)]) {
-                        ((Brick<BrickConditionalBranchProtocol>*)brick).forceConditionEvaluationToEvaluateToFalse = YES;
-                    }
-                }
-//                if (script.isRunning) {
-#warning TODO!!
-//                    [script stop];
-//                }
+            if ([script inParentHierarchy:spriteObject]) {
+                [script removeFromParent]; // just to ensure
             }
+        }
+        if ([spriteObject inParentHierarchy:self]) {
+            [spriteObject removeFromParent];
         }
     }
-
-    // perform waiting on another thread!
-    // busy waiting until all scripts finished!!
-    for (SpriteObject *spriteObject in self.program.objectList) {
-        for (Script *script in spriteObject.scriptList) {
-#warning TODO!!
-//            while (script.isRunning) {
-//                NSLog(@"%@ in %@ is still running (Scene %@). Waiting until script finished execution...", [script class], spriteObject.name, (self.isPaused ? @"paused" : @"still running"));
-//                [NSThread sleepForTimeInterval:0.3f];
-//            }
-        }
-    }
-    NSLog(@"All scripts finished execution!");
-
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        self.program.playing = NO;
-        self.view.paused = YES; // pause scene!
-
-        // now all (!) scripts of all (!) objects have been finished! we can safely remove all SpriteObjects from Scene
-        // NOTE: this for-in-loop MUST NOT be combined with previous for-in-loop because there could exist some
-        //       Scripts in SpriteObjects that contain pointToBricks to other (!) SpriteObjects
-        for (SpriteObject *spriteObject in self.program.objectList) {
-            for (Script *script in spriteObject.scriptList) {
-                if ([script inParentHierarchy:spriteObject]) {
-                    [script removeFromParent]; // just to ensure
-                }
-            }
-
-            if ([spriteObject inParentHierarchy:self]) {
-                [spriteObject removeFromParent];
-            }
-        }
-    });
 
     // remove all references in program hierarchy
     [self.program removeReferences];
     NSLog(@"All SpriteObjects and Scripts have been removed from Scene!");
-
-    if (completion) {
-        completion();
-    }
-}
-
-- (void)restartProgramWithCompletion:(dispatch_block_t)completion
-{
-    [self stopProgramWithCompletion:nil];
 }
 
 - (CGPoint)convertPointToScene:(CGPoint)point
@@ -236,7 +178,7 @@
 
 - (BOOL)touchedwith:(NSSet*)touches withX:(CGFloat)x andY:(CGFloat)y
 {
-    if (! self.program.isPlaying) {
+    if (! [CBPlayerScheduler sharedInstance].running) {
         return NO;
     }
 

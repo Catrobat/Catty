@@ -153,10 +153,13 @@
 
 - (BOOL)touchedwith:(NSSet*)touches withX:(CGFloat)x andY:(CGFloat)y
 {
-    if (! self.program.isPlaying) {
+    CBPlayerScheduler *scheduler = [CBPlayerScheduler sharedInstance];
+    if (! scheduler.running) {
         return NO;
     }
 
+    CBPlayerFrontend *frontend = [CBPlayerFrontend new];
+    CBPlayerBackend *backend = [CBPlayerBackend new];
     for (UITouch *touch in touches) {
         CGPoint touchedPoint = [touch locationInNode:self];
         NSDebug(@"x:%f,y:%f", touchedPoint.x, touchedPoint.y);
@@ -173,25 +176,20 @@
         }
         for (Script *script in self.scriptList) {
             if ([script isKindOfClass:[WhenScript class]]) {
-                BOOL newScript = NO;
-                @synchronized(script) {
-#warning TODO!!
-//                    if (! script.isRunning) {
-//                        [script start];
-//                    } else {
-//                        newScript = YES;
-////                        [script restart];
-//                    }
-                }
-                if (newScript) {
-#warning TODO!!
+                if (! [scheduler isScriptRunning:script]) {
+                    CBScriptSequenceList *sequenceList = [frontend computeSequenceListForScript:script];
+                    CBScriptExecContext *scriptExecContext = [backend executionContextForScriptSequenceList:sequenceList];
+                    [scheduler addScriptExecContext:scriptExecContext];
+                    [scheduler startScript:script];
+                } else {
+                    [scheduler restartScript:script];
 //                    Script *copiedScript = (Script*)[script mutableCopyWithContext:[CBMutableCopyContext new]];
-//                    [copiedScript reset];
 //                    copiedScript.object = script.object;
-//                    [copiedScript prepareAllActionsForScriptSequenceList:[[CBPlayerFrontend sharedInstance]
-//                                                                          computeSequenceListForScript:script]]; // TODO: remove this...
-//                    // TODO continue here...
-//                    [copiedScript start];
+//                    CBScriptSequenceList *sequenceList = [frontend computeSequenceListForScript:copiedScript];
+//                    CBScriptExecContext *scriptExecContext = [backend executionContextForScriptSequenceList:sequenceList];
+//                    [scheduler addScriptExecContext:scriptExecContext];
+//                    [scheduler startScript:copiedScript];
+//                    // TODO: without copying... (problem: loopCounter...)
                 }
             }
         }

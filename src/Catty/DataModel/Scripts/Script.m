@@ -123,15 +123,12 @@
 - (NSString*)description
 {
     NSMutableString *ret = [[NSMutableString alloc] initWithString:NSStringFromClass([self class])];
-    [ret appendFormat:@"(%@)", self.object.name];
-    if ([self.brickList count] > 0) {
-        [ret appendString:@"Bricks: \r"];
-        for (Brick *brick in self.brickList) {
-            [ret appendFormat:@"%@\r", brick];
-        }
-    } else {
-        [ret appendString:@"Bricks array empty!\r"];
+    const int clipLength = 8;
+    NSString *shortObjectName = self.object.name;
+    if (self.object.name.length > clipLength) {
+        shortObjectName = [NSString stringWithFormat:@"%@...", [shortObjectName substringToIndex:clipLength]];
     }
+    [ret appendFormat:@",object:\"%@\",#bricks:%lu", shortObjectName, self.brickList.count];
     return ret;
 }
 

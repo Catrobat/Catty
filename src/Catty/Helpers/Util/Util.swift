@@ -20,9 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-
-@protocol BrickConditionalBranchProtocol <NSObject>
-- (BOOL)checkCondition;
-- (void)resetCondition;
-@end
+func synchronized(lock: AnyObject, closure: () -> ()) {
+    objc_sync_enter(lock)
+    closure()
+    objc_sync_exit(lock)
+}

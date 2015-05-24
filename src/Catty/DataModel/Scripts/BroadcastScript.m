@@ -31,23 +31,6 @@
     return kLocalizedWhenIReceive;
 }
 
-- (NSString*)description
-{
-    NSMutableString *ret = [[NSMutableString alloc] initWithString:@"BroadcastScript: "];
-    [ret appendString:self.receivedMessage];
-
-    if ([self.brickList count] > 0) {
-        [ret appendString:@"\nBricks: \r"];
-        for (Brick *brick in self.brickList)
-        {
-            [ret appendFormat:@"%@\r", brick];
-        }
-    } else {
-        [ret appendString:@"Bricks array empty!\r"];
-    }
-    return ret;
-}
-
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     if(spriteObject) {
@@ -67,7 +50,7 @@
         self.receivedMessage = message;
 }
 
-- (NSString *)messageForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+- (NSString*)messageForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.receivedMessage;
 }
