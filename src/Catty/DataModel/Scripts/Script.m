@@ -128,7 +128,7 @@
     if (self.object.name.length > clipLength) {
         shortObjectName = [NSString stringWithFormat:@"%@...", [shortObjectName substringToIndex:clipLength]];
     }
-    [ret appendFormat:@",object:\"%@\",#bricks:%lu", shortObjectName, self.brickList.count];
+    [ret appendFormat:@",object:\"%@\",#bricks:%lu", shortObjectName, (unsigned long)self.brickList.count];
     return ret;
 }
 

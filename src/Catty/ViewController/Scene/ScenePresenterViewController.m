@@ -418,34 +418,29 @@
 
 - (void)restartProgramAction:(UIButton*)sender
 {
-// TODO: NOT YET IMPLEMENTED!!
+    [self.loadingView show];
+    self.menuView.userInteractionEnabled = NO;
+    Scene *previousScene = (Scene*)self.skView.scene;
+    previousScene.userInteractionEnabled = NO;
+
+    [previousScene stopProgram];
     [[FlashHelper sharedFlashHandler] pause];
     [[FlashHelper sharedFlashHandler] reset];
-    NSError(@"\n\n\n\n\n\n  !!! Not yet implemented !!!\n\n\n");
-    abort();
-//    self.view.userInteractionEnabled = NO;
-//    dispatch_queue_t backgroundQueue = dispatch_queue_create("org.catrobat.restartProgram", 0);
-//    __weak typeof(self)weakSelf = self;
-//    dispatch_async(backgroundQueue, ^{
-//        @synchronized(weakSelf) {
-//            Scene *previousScene = (Scene*)weakSelf.skView.scene;
-//            [previousScene restartProgramWithCompletion:^{
-//                dispatch_sync(dispatch_get_main_queue(), ^{
-//                    if (! weakSelf.program) {
-//                        [[[UIAlertView alloc] initWithTitle:kLocalizedCantRestartProgram
-//                                                    message:nil
-//                                                   delegate:weakSelf.menuView
-//                                          cancelButtonTitle:kLocalizedOK
-//                                          otherButtonTitles:nil] show];
-//                        return;
-//                    }
-//                    [weakSelf.skView presentScene:previousScene];
-//                    [weakSelf continueProgramAction:nil withDuration:0.0f];
-//                    weakSelf.view.userInteractionEnabled = YES;
-//                });
-//            }];
-//        }
-//    });
+    self.menuView.userInteractionEnabled = YES;
+    previousScene.userInteractionEnabled = YES;
+    [self.loadingView hide];
+
+    ScenePresenterViewController *vc = [ScenePresenterViewController new];
+    vc.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
+    UINavigationController *navController = self.navigationController;
+    NSMutableArray *controllers = [[NSMutableArray alloc] initWithArray:navController.viewControllers];
+    //Remove the last view controller
+    [controllers removeLastObject];
+    //set the new set of view controllers
+    navController.viewControllers = controllers;
+    //Push a new view controller
+    [navController pushViewController:vc animated:NO];
+    [ProgramManager sharedProgramManager].program = vc.program; // TODO: should be removed!
 }
 
 #pragma mark User Event Handling
