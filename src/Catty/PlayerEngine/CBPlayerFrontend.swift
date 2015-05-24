@@ -20,96 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc final class CBScriptSequenceList {
-
-    final let script : Script
-    final let sequenceList : CBSequenceList
-    final var abortScriptExecutionCompletionClosure : dispatch_block_t?
-    final var scriptExecutionClosure : dispatch_block_t?
-    final lazy var whileSequences = [String:dispatch_block_t]()
-    final var running : Bool
-    final var count : Int { return sequenceList.count }
-
-    init(script : Script, sequenceList : CBSequenceList) {
-        self.script = script
-        self.abortScriptExecutionCompletionClosure = nil
-        self.running = false
-        self.sequenceList = sequenceList
-        sequenceList.rootSequenceList = self
-    }
-
-    final func reverseSequenceList() -> CBScriptSequenceList {
-        return CBScriptSequenceList(script: script, sequenceList: sequenceList.reverseSequenceList())
-    }
-
-    final func reset() {
-//        NSDebug(@"Reset");
-        for brick in self.script.brickList {
-            if let loopBeginBrick = brick as? LoopBeginBrick {
-                loopBeginBrick.resetCondition()
-            }
-        }
-    }
-
-    final func runFullScriptSequence() {
-        self.running = true
-        assert(CBPlayerBackend.sharedInstance.running); // ensure that player is running!
-//        NSLog(@"Starting: %@ of object %@", [self class], [self.object class]);
-        
-        if self.script.inParentHierarchy(self.script.object) == false {
-//            NSLog(@" + Adding this node to object");
-            self.script.object.addChild(self.script)
-        }
-        self.reset()
-        if self.script.hasActions() {
-            self.script.removeAllActions()
-        }
-        scriptExecutionClosure?()
-    }
-}
-
-@objc final class CBSequenceList : SequenceType {
-
-    final var rootSequenceList : CBScriptSequenceList?
-    final /*private */lazy var sequenceList = [CBSequence]()
-    final var count : Int { return sequenceList.count }
-
-    init(rootSequenceList : CBScriptSequenceList?) {
-        self.rootSequenceList = rootSequenceList
-    }
-
-    final func append(let sequence : CBSequence) {
-        sequenceList.append(sequence)
-    }
-
-    final func generate() -> GeneratorOf<CBSequence> {
-        var i = 0
-        return GeneratorOf<CBSequence> {
-            return i >= self.sequenceList.count ? .None : self.sequenceList[i++]
-        }
-    }
-
-    // FIXME: implement reverse generator!
-    final func reverseSequenceList() -> CBSequenceList {
-        var reverseScriptSequenceList = CBSequenceList(rootSequenceList: rootSequenceList)
-        for sequence in sequenceList.reverse() {
-            reverseScriptSequenceList += sequence
-        }
-        return reverseScriptSequenceList
-    }
-
-}
-
-// operator overloading for append method in CBSequenceList
-func +=(left: CBSequenceList, right: CBSequence) {
-    left.append(right)
-}
-
 final class CBPlayerFrontend : NSObject {
 
-    static let sharedInstance = CBPlayerFrontend() // singleton
-
-    override private init() {} // private constructor
+    override init() { super.init() }
 
     final func computeSequenceListForScript(script : Script) -> CBScriptSequenceList {
         var currentSequenceList = CBSequenceList(rootSequenceList: nil)
