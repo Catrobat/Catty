@@ -55,12 +55,6 @@
         self.broadcastMessage = [NSString stringWithString:kLocalizedMessage1];
 }
 
-- (void)performBroadcast
-{
-    NSDebug(@"Performing: %@", [self description]);
-    [self.script.object.program broadcast:self.broadcastMessage senderScript:self.script];
-}
-
 - (void)setMessage:(NSString*)message forLineNumber:(NSInteger)lineNumber
 andParameterNumber:(NSInteger)paramNumber
 {
