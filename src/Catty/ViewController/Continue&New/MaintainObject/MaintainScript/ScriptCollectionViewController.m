@@ -133,6 +133,11 @@
 #pragma mark - actions
 - (void)playSceneAction:(id)sender
 {
+    [self playSceneAction:sender animated:YES];
+}
+
+- (void)playSceneAction:(id)sender animated:(BOOL)animated
+{
     if ([self respondsToSelector:@selector(stopAllSounds)]) {
         [self performSelector:@selector(stopAllSounds)];
     }

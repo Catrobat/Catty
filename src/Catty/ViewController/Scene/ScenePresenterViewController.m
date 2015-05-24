@@ -47,6 +47,7 @@
 #import "UIDefines.h"
 #import "FlashHelper.h"
 #import "CatrobatLanguageDefines.h"
+#import "BaseTableViewController.h"
 
 @interface ScenePresenterViewController ()<UIActionSheetDelegate>
 @property (nonatomic) BOOL menuOpen;
@@ -55,6 +56,7 @@
 @property (nonatomic, strong) UIView *gridView;
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) SKView *skView;
+@property (nonatomic) BOOL restartProgram;
 @end
 
 @implementation ScenePresenterViewController
@@ -63,6 +65,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.restartProgram = NO;
+    [[[self class] sharedLoadingView] removeFromSuperview];
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
 
     // MenuImageBackground
@@ -119,8 +123,8 @@
 {
     [super viewWillDisappear:animated];
     [self.menuView removeFromSuperview];
-    self.navigationController.navigationBar.hidden = NO;
-    [self.navigationController setToolbarHidden:NO animated:NO];
+    self.navigationController.navigationBar.hidden = self.restartProgram;
+    self.navigationController.toolbarHidden = self.restartProgram;
     UIApplication.sharedApplication.statusBarHidden = NO;
     UIApplication.sharedApplication.idleTimerDisabled = NO;
     [[FlashHelper sharedFlashHandler] turnOff]; // always turn off flash light when Scene is stopped
@@ -140,6 +144,11 @@
 #pragma mark - Initialization & Setup & Dealloc
 #pragma mark Dealloc
 - (void)dealloc
+{
+    [self freeRessources];
+}
+
+- (void)freeRessources
 {
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
@@ -422,25 +431,48 @@
     self.menuView.userInteractionEnabled = NO;
     Scene *previousScene = (Scene*)self.skView.scene;
     previousScene.userInteractionEnabled = NO;
-
     [previousScene stopProgram];
     [[FlashHelper sharedFlashHandler] pause];
     [[FlashHelper sharedFlashHandler] reset];
+
+    // FIXME: UGLY HACK BUT ACTUALLY WORKS...
+    [self freeRessources];
+    NSMutableArray *controllers = [self.navigationController.viewControllers mutableCopy];
+    [controllers removeLastObject];
+    UIViewController *previousVC = (UIViewController*)controllers.lastObject; // previous object
+    if ([previousVC respondsToSelector:@selector(playSceneAction:animated:)]) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.4 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [((BaseTableViewController*)previousVC) playSceneAction:sender animated:NO];
+        });
+    } else {
+        assert("PLEASE IMPLEMENT playSceneAction:animated method IN UIVIEWCONTROLLER THAT SEGUED TO SCENEPRESENTERVIEWCONTROLLER!!");
+    }
     self.menuView.userInteractionEnabled = YES;
     previousScene.userInteractionEnabled = YES;
     [self.loadingView hide];
 
-    ScenePresenterViewController *vc = [ScenePresenterViewController new];
-    vc.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
-    UINavigationController *navController = self.navigationController;
-    NSMutableArray *controllers = [[NSMutableArray alloc] initWithArray:navController.viewControllers];
-    //Remove the last view controller
-    [controllers removeLastObject];
-    //set the new set of view controllers
-    navController.viewControllers = controllers;
-    //Push a new view controller
-    [navController pushViewController:vc animated:NO];
-    [ProgramManager sharedProgramManager].program = vc.program; // TODO: should be removed!
+    UIView *loadingView = [[self class] sharedLoadingView];
+    [self.parentViewController.view addSubview:loadingView];
+    [self.parentViewController.view bringSubviewToFront:loadingView];
+    self.restartProgram = YES;
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
++ (UIView*)sharedLoadingView
+{
+    static UIView *loadingView = nil;
+    if (loadingView == nil) {
+        loadingView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        UILabel *label = [[UILabel alloc] initWithFrame:loadingView.frame];
+        label.font = [UIFont systemFontOfSize:36];
+        label.text = [NSString stringWithFormat:@"%@...", kLocalizedLoading];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = [UIColor whiteColor];
+        [loadingView addSubview:label];
+        loadingView.backgroundColor = [UIColor airForceBlueColor];
+        loadingView.alpha = 1.0;
+    }
+    return loadingView;
 }
 
 #pragma mark User Event Handling
@@ -668,7 +700,7 @@
 {
     // lazy instantiation
     if (! _loadingView) {
-        _loadingView = [[LoadingView alloc] init];
+        _loadingView = [LoadingView new];
         [self.view addSubview:_loadingView];
         [self.view bringSubviewToFront:_loadingView];
         _loadingView.backgroundColor = [UIColor whiteColor];

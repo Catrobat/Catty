@@ -39,6 +39,7 @@
 - (CGFloat)convertSceneToDegrees:(CGFloat)degrees;
 
 - (BOOL)touchedwith:(NSSet*)touches withX:(CGFloat) x andY:(CGFloat) y;
+- (void)startProgram;
 - (void)stopProgram;
 
 @end
