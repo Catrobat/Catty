@@ -85,7 +85,7 @@
 
 - (void)dealloc
 {
-    NSDebug(@"Dealloc %@ %@", [self class], self.parent);
+    NSDebug(@"Dealloc %@", [self class]);
 }
 
 #pragma mark - Copy

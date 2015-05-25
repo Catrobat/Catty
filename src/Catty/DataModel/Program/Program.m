@@ -365,9 +365,21 @@
 
 - (void)translateDefaultProgram
 {
-    SpriteObject *backgroundObject = [self.objectList objectAtIndex:kBackgroundObjectIndex];
-    backgroundObject.name = kLocalizedBackground;
-    [self renameToProgramName:kLocalizedMyFirstProgram];
+    NSUInteger index = 0;
+    for (SpriteObject *spriteObject in self.objectList) {
+        if (index == kBackgroundObjectIndex) {
+            spriteObject.name = kLocalizedBackground;
+        } else {
+            NSMutableString *spriteObjectName = [NSMutableString stringWithString:spriteObject.name];
+            [spriteObjectName replaceOccurrencesOfString:kDefaultProgramBundleOtherObjectsNamePrefix
+                                              withString:kLocalizedMole
+                                                 options:NSCaseInsensitiveSearch
+                                                   range:NSMakeRange(0, spriteObjectName.length)];
+            spriteObject.name = (NSString*)spriteObjectName;
+        }
+        ++index;
+    }
+    [self renameToProgramName:kLocalizedMyFirstProgram]; // saves to disk!
 }
 
 - (void)renameToProgramName:(NSString*)programName
