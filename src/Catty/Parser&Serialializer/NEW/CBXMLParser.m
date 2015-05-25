@@ -112,7 +112,6 @@
         return nil;
     }
     [program updateReferences];
-    program.XMLdocument = xmlDocument; // TODO: remove this after serialization has been finished!!
     return program;
 }
 

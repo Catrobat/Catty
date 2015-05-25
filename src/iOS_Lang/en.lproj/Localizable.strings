@@ -541,7 +541,7 @@
 /* No comment provided by engineer. */
 "Move %@ step(s)" = "Move %@ step(s)";
 
-/* Name of the default catrobat program */
+/* Name of the default catrobat program (used as filename!!) */
 "My first program" = "My first program";
 
 /* Default title of imported photo from camera (taken by camera) */

@@ -53,7 +53,6 @@
     // return Project object
     Program *program = [parser loadProject:xmlData];
     [program updateReferences];
-    program.XMLdocument = parser.XMLdocument;
     return program;
 }
 

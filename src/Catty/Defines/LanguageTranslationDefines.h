@@ -33,7 +33,7 @@
 #define kLocalizedBackground NSLocalizedString(@"Background", nil)
 #define kLocalizedMyObject NSLocalizedString(@"My Object", @"Title for first (default) object")
 #define kLocalizedMyImage NSLocalizedString(@"My Image", @"Default title of imported photo from camera (taken by camera)")
-#define kLocalizedMyFirstProgram NSLocalizedString(@"My first program", @"Name of the default catrobat program")
+#define kLocalizedMyFirstProgram NSLocalizedString(@"My first program", @"Name of the default catrobat program (used as filename!!)")
 #define kLocalizedMole NSLocalizedString(@"Mole", @"Prefix of default catrobat program object names (except background object)")
 #define kLocalizedToday NSLocalizedString(@"Today", nil)
 #define kLocalizedYesterday NSLocalizedString(@"Yesterday", nil)
