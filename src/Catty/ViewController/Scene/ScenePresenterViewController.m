@@ -341,7 +341,7 @@
     CBPlayerScheduler *scheduler = [[CBPlayerScheduler alloc] initWithLogger:schedulerLogger
                                                                     frontend:frontend
                                                                      backend:backend];
-    backend.scheduler = scheduler; // IMPORTANT: Don't forget to set scheduler in backend!
+    backend.scheduler = scheduler; // IMPORTANT: Don't forget to assign the backend to the scheduler!
     CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue,
                                     self.program.header.screenHeight.floatValue);
     CBPlayerScene *scene = [[CBPlayerScene alloc] initWithSize:programSize

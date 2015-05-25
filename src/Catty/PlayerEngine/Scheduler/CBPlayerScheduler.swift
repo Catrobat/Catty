@@ -72,6 +72,7 @@ final class CBPlayerScheduler : NSObject {
 
     func addScriptExecContext(scriptExecContext: CBScriptExecContext) {
         assert(scriptExecContextDict[scriptExecContext.script] == nil, "Context already in dictionary!")
+        logger.info("Added new CBScriptExecContext for \(scriptExecContext.script)")
         scriptExecContextDict[scriptExecContext.script] = scriptExecContext
     }
 
@@ -93,21 +94,25 @@ final class CBPlayerScheduler : NSObject {
         }
     }
 
-    func registerBroadcastScript(broadcastScript: BroadcastScript, forMessage message: String) {
+    func subscribeBroadcastScript(broadcastScript: BroadcastScript, forMessage message: String) {
         if var broadcastScripts = _registeredBroadcastScripts[message] {
             assert(contains(broadcastScripts, broadcastScript) == false, "FATAL: BroadcastScript already registered!")
             broadcastScripts += broadcastScript
         } else {
             _registeredBroadcastScripts[message] = [broadcastScript]
         }
+        logger.info("Subscribed new BroadcastScript of object \(broadcastScript.object.name) " +
+                    "for message \(message)")
     }
 
-    func unregisterBroadcastScript(broadcastScript: BroadcastScript, forMessage message: String) {
+    func unsubscribeBroadcastScript(broadcastScript: BroadcastScript, forMessage message: String) {
         if var broadcastScripts = _registeredBroadcastScripts[message] {
             var index = 0
             for script in broadcastScripts {
                 if script === broadcastScript {
                     broadcastScripts.removeAtIndex(index)
+                    logger.info("Unsubscribed BroadcastScript of object \(broadcastScript.object.name) " +
+                                "for message \(message)")
                     return
                 }
                 ++index

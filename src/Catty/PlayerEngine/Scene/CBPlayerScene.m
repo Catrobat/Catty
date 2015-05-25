@@ -183,8 +183,8 @@
                 CBScriptExecContext *execContext = [self.backend executionContextForScriptSequenceList:scriptSequenceList];
                 [self.scheduler addScriptExecContext:execContext];
             } else if ([script isKindOfClass:[BroadcastScript class]]) {
-                // register BroadcastScript
-                [self.scheduler registerBroadcastScript:(BroadcastScript*)script forMessage:((BroadcastScript*)script).receivedMessage];
+                // subscribe BroadcastScript
+                [self.scheduler subscribeBroadcastScript:(BroadcastScript*)script forMessage:((BroadcastScript*)script).receivedMessage];
             }
         }
     }

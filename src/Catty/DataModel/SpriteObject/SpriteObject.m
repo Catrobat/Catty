@@ -327,7 +327,6 @@
     if (self.lookList.count > 0) {
         [self changeLook:[self.lookList objectAtIndex:0]];
     }
-    
 }
 
 - (void)removeFromProgram
