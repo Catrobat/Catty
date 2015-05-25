@@ -172,7 +172,6 @@
 		92FF30FE1A24DCAA00093DA7 /* Look.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30A81A24DCAA00093DA7 /* Look.m */; };
 		92FF30FF1A24DCAA00093DA7 /* Program.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30AB1A24DCAA00093DA7 /* Program.m */; };
 		92FF31001A24DCAA00093DA7 /* ProgramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30AE1A24DCAA00093DA7 /* ProgramManager.m */; };
-		92FF31011A24DCAA00093DA7 /* Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30B11A24DCAA00093DA7 /* Scene.m */; };
 		92FF31021A24DCAA00093DA7 /* BroadcastScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30B41A24DCAA00093DA7 /* BroadcastScript.m */; };
 		92FF31031A24DCAA00093DA7 /* Script.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30B61A24DCAA00093DA7 /* Script.m */; };
 		92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30B81A24DCAA00093DA7 /* StartScript.m */; };
@@ -528,6 +527,7 @@
 		CAE485D71B13AA6600DC4485 /* CBPlayerFrontend.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE485D51B13AA6600DC4485 /* CBPlayerFrontend.swift */; };
 		CAE485D81B13AA6600DC4485 /* CBPlayerFrontendFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE485D61B13AA6600DC4485 /* CBPlayerFrontendFilters.swift */; };
 		CAE485DA1B13AA6E00DC4485 /* CBPlayerBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE485D91B13AA6E00DC4485 /* CBPlayerBackend.swift */; };
+		CAE485DD1B13BE3400DC4485 /* CBPlayerScene.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE485DC1B13BE3400DC4485 /* CBPlayerScene.m */; };
 		D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */; };
 		D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */; };
 		D638646C1AE63EDD008569E6 /* Keychain.m in Sources */ = {isa = PBXBuildFile; fileRef = D638646B1AE63EDD008569E6 /* Keychain.m */; };
@@ -1036,8 +1036,6 @@
 		92FF30AB1A24DCAA00093DA7 /* Program.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Program.m; sourceTree = "<group>"; };
 		92FF30AD1A24DCAA00093DA7 /* ProgramManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramManager.h; sourceTree = "<group>"; };
 		92FF30AE1A24DCAA00093DA7 /* ProgramManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramManager.m; sourceTree = "<group>"; };
-		92FF30B01A24DCAA00093DA7 /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scene.h; sourceTree = "<group>"; };
-		92FF30B11A24DCAA00093DA7 /* Scene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scene.m; sourceTree = "<group>"; };
 		92FF30B31A24DCAA00093DA7 /* BroadcastScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastScript.h; sourceTree = "<group>"; };
 		92FF30B41A24DCAA00093DA7 /* BroadcastScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastScript.m; sourceTree = "<group>"; };
 		92FF30B51A24DCAA00093DA7 /* Script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Script.h; sourceTree = "<group>"; };
@@ -1308,6 +1306,7 @@
 		C34B44EA17F079C700624730 /* BrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickTests.m; sourceTree = "<group>"; };
 		C34B44EC17F079F500624730 /* CustomExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomExtensionsTests.m; sourceTree = "<group>"; };
 		C3BF754B18117F6000134B77 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		CA02C5DE1B13C3DD00233FB0 /* LoggerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerDefines.h; sourceTree = "<group>"; };
 		CA05A19D18286CDA0025421A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		CA2D44401B122E8500A3B53D /* SwellAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwellAll.swift; sourceTree = "<group>"; };
 		CA2D44421B12305400A3B53D /* Swell.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Swell.plist; sourceTree = "<group>"; };
@@ -1486,6 +1485,8 @@
 		CAE485D51B13AA6600DC4485 /* CBPlayerFrontend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerFrontend.swift; path = PlayerEngine/Frontend/CBPlayerFrontend.swift; sourceTree = "<group>"; };
 		CAE485D61B13AA6600DC4485 /* CBPlayerFrontendFilters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerFrontendFilters.swift; path = PlayerEngine/Frontend/CBPlayerFrontendFilters.swift; sourceTree = "<group>"; };
 		CAE485D91B13AA6E00DC4485 /* CBPlayerBackend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerBackend.swift; path = PlayerEngine/Backend/CBPlayerBackend.swift; sourceTree = "<group>"; };
+		CAE485DB1B13BE3400DC4485 /* CBPlayerScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBPlayerScene.h; path = Catty/PlayerEngine/Scene/CBPlayerScene.h; sourceTree = SOURCE_ROOT; };
+		CAE485DC1B13BE3400DC4485 /* CBPlayerScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBPlayerScene.m; path = Catty/PlayerEngine/Scene/CBPlayerScene.m; sourceTree = SOURCE_ROOT; };
 		CAEE3BE91ABDFABD009FDA72 /* BrickConditionalBranchProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickConditionalBranchProtocol.h; sourceTree = "<group>"; };
 		D63864631AE632FE008569E6 /* ProgramsForUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramsForUploadViewController.h; sourceTree = "<group>"; };
 		D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramsForUploadViewController.m; sourceTree = "<group>"; };
@@ -2436,6 +2437,7 @@
 			children = (
 				92FF2DFE1A24C3BE00093DA7 /* ActionSheetAlertViewTags.h */,
 				92FF2E001A24C3BE00093DA7 /* ButtonTags.h */,
+				CA02C5DE1B13C3DD00233FB0 /* LoggerDefines.h */,
 				92FF2E011A24C3BE00093DA7 /* CatrobatLanguageDefines.h */,
 				92FF2E021A24C3BE00093DA7 /* CellTagDefines.h */,
 				92FF2E031A24C3BE00093DA7 /* LanguageTranslationDefines.h */,
@@ -2897,7 +2899,6 @@
 				92FF30A61A24DCAA00093DA7 /* Look */,
 				92FF30A91A24DCAA00093DA7 /* Program */,
 				92FF30AC1A24DCAA00093DA7 /* ProgramManager */,
-				92FF30AF1A24DCAA00093DA7 /* Scene */,
 				92FF30B21A24DCAA00093DA7 /* Scripts */,
 				92FF30BB1A24DCAA00093DA7 /* Sound */,
 				92FF30BE1A24DCAA00093DA7 /* SpriteObject */,
@@ -3173,10 +3174,11 @@
 		92FF30AF1A24DCAA00093DA7 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				92FF30B01A24DCAA00093DA7 /* Scene.h */,
-				92FF30B11A24DCAA00093DA7 /* Scene.m */,
+				CAE485DB1B13BE3400DC4485 /* CBPlayerScene.h */,
+				CAE485DC1B13BE3400DC4485 /* CBPlayerScene.m */,
 			);
-			path = Scene;
+			name = Scene;
+			path = DataModel/Scene;
 			sourceTree = "<group>";
 		};
 		92FF30B21A24DCAA00093DA7 /* Scripts */ = {
@@ -4092,6 +4094,7 @@
 		CA3E72D31B0BA46A00D6B184 /* PlayerEngine */ = {
 			isa = PBXGroup;
 			children = (
+				92FF30AF1A24DCAA00093DA7 /* Scene */,
 				CAE485D31B13AA4E00DC4485 /* Frontend */,
 				CAE485D41B13AA5200DC4485 /* Backend */,
 				CA2D44471B1249C400A3B53D /* Scheduler */,
@@ -4949,12 +4952,12 @@
 				92FF32971A24E2F400093DA7 /* IfOnEdgeBounceBrickCell.m in Sources */,
 				92FF30F51A24DCAA00093DA7 /* ChangeVariableBrick.m in Sources */,
 				92FF2E931A24C7D800093DA7 /* RuntimeImageCache.m in Sources */,
-				92FF31011A24DCAA00093DA7 /* Scene.m in Sources */,
 				CA2D44461B123B7E00A3B53D /* Util.swift in Sources */,
 				92FF2E921A24C7D800093DA7 /* ImageCache.m in Sources */,
 				92FF326D1A24E2F400093DA7 /* SWCellScrollView.m in Sources */,
 				92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */,
 				92FF32731A24E2F400093DA7 /* TTTAttributedLabel.m in Sources */,
+				CAE485DD1B13BE3400DC4485 /* CBPlayerScene.m in Sources */,
 				92DFB0671A38960C00FA9B0F /* SPUserResizableView.m in Sources */,
 				92FF30E51A24DCAA00093DA7 /* SetXBrick.m in Sources */,
 				CAA4A4711A43B3BC002A69A0 /* CBXMLSerializerHelper.m in Sources */,
