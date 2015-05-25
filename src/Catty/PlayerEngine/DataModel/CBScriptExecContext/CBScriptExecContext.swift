@@ -22,24 +22,34 @@
 
 typealias CBExecClosure = dispatch_block_t
 
-@objc final class CBScriptExecContext {
+@objc final class CBScriptExecContext : SKNode {
 
+    // MARK: - Properties
     let script : Script
     private lazy var _instructionList = [CBExecClosure]()
     private var _scriptSequenceList : CBScriptSequenceList?
     private(set) var reverseInstructionPointer = 0
     var count : Int { return _instructionList.count }
 
-    // MARK: Initializers
+    // MARK: - Initializers
+    convenience init(script: Script, scriptSequenceList: CBScriptSequenceList) {
+        self.init(script: script, scriptSequenceList: scriptSequenceList, instructionList: [])
+    }
+
     init(script: Script, scriptSequenceList: CBScriptSequenceList, instructionList: [CBExecClosure]) {
         self.script = script
         self._scriptSequenceList = scriptSequenceList
+        super.init()
         for instruction in instructionList {
-            appendInstruction(instruction)
+            self.appendInstruction(instruction)
         }
     }
 
-    // MARK: Operations
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("This initializer must NOT be called")
+    }
+
+    // MARK: - Operations
     func appendInstruction(instruction: CBExecClosure) {
         _instructionList.append(instruction)
         ++reverseInstructionPointer
@@ -48,6 +58,12 @@ typealias CBExecClosure = dispatch_block_t
     func addInstructionAtCurrentPosition(instruction: CBExecClosure) {
         _instructionList.insert(instruction, atIndex: reverseInstructionPointer)
         ++reverseInstructionPointer
+    }
+
+    func removeNumberOfInstructionsBeforeCurrentInstruction(numberOfInstructions: Int) {
+        let startIndex = reverseInstructionPointer
+        let range = Range<Int>(startIndex ..< (startIndex + numberOfInstructions))
+        _instructionList.removeRange(range)
     }
 
     func nextInstruction() -> CBExecClosure? {
@@ -73,7 +89,7 @@ typealias CBExecClosure = dispatch_block_t
     }
 }
 
-// operator overloading for appendInstruction method in CBExecContext
+// MARK: - Custom operators
 func +=(inout left: CBScriptExecContext, right: CBExecClosure) {
     left.appendInstruction(right)
 }

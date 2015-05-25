@@ -32,7 +32,7 @@
 @class GDataXMLElement;
 @class CBScriptSequenceList;
 
-@interface Script : SKNode <ScriptProtocol, CBMutableCopying>
+@interface Script : NSObject <ScriptProtocol, CBMutableCopying>
 
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readonly) kBrickType brickType;

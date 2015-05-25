@@ -22,18 +22,18 @@
 
 class CBConditionalSequence : CBSequence {
 
+    // MARK: - Properties
     final let sequenceList : CBSequenceList
-
     final private weak var _conditionBrick : BrickConditionalBranchProtocol!
 
-    // MARK: Initializers
+    // MARK: - Initializers
     init(rootSequenceList: CBScriptSequenceList, conditionBrick: BrickConditionalBranchProtocol, sequenceList: CBSequenceList) {
         self.sequenceList = sequenceList
         self._conditionBrick = conditionBrick
         super.init(rootSequenceList: rootSequenceList)
     }
 
-    // MARK: Operations
+    // MARK: - Operations
     override func isEmpty() -> Bool {
         return (sequenceList.count == 0)
     }

@@ -156,7 +156,9 @@ final class CBPlayerBackend : NSObject {
                 }
             } else {
                 instructionList += {
-                    operation.brick.script.runAction(operation.brick.action(), completion:{
+                    let scriptExecContext = CBPlayerScheduler.sharedInstance.scriptExecContextDict[operation.brick.script]
+                    assert(scriptExecContext != nil, "FATAL: ScriptExecContext added to Scheduler!")
+                    scriptExecContext?.runAction(operation.brick.action(), completion:{
                         // the script must continue here. upcoming actions are executed!!
                         CBPlayerScheduler.sharedInstance.runNextInstructionOfScript(operation.brick.script)
                     })
