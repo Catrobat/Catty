@@ -31,9 +31,9 @@
 #import "Pocket_Code-Swift.h"
 
 @interface CBPlayerScene()
-@property(nonatomic, weak, readwrite) CBPlayerScheduler *scheduler;
-@property(nonatomic, weak, readwrite) CBPlayerFrontend *frontend;
-@property(nonatomic, weak, readwrite) CBPlayerBackend *backend;
+@property(nonatomic, readwrite) CBPlayerScheduler *scheduler;
+@property(nonatomic, readwrite) CBPlayerFrontend *frontend;
+@property(nonatomic, readwrite) CBPlayerBackend *backend;
 @end
 
 @implementation CBPlayerScene

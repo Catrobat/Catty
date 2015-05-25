@@ -158,8 +158,8 @@
         return NO;
     }
 
-    CBPlayerFrontend *frontend = [CBPlayerFrontend new];
-    CBPlayerBackend *backend = [CBPlayerBackend new];
+    CBPlayerFrontend *frontend = ((CBPlayerScene*)self.scene).frontend;
+    CBPlayerBackend *backend = ((CBPlayerScene*)self.scene).backend;
     for (UITouch *touch in touches) {
         CGPoint touchedPoint = [touch locationInNode:self];
         NSDebug(@"x:%f,y:%f", touchedPoint.x, touchedPoint.y);

@@ -337,6 +337,7 @@
     CBLogger *frontendLogger = [Swell getLogger:kCBLoggerPlayerFrontendID];
     CBLogger *backendLogger = [Swell getLogger:kCBLoggerPlayerBackendID];
     CBPlayerFrontend *frontend = [[CBPlayerFrontend alloc] initWithLogger:frontendLogger program:self.program];
+    [frontend addSequenceFilter:[CBPlayerFilterRedundantBroadcastWaits new]];
     CBPlayerBackend *backend = [[CBPlayerBackend alloc] initWithLogger:backendLogger];
     CBPlayerScheduler *scheduler = [[CBPlayerScheduler alloc] initWithLogger:schedulerLogger
                                                                     frontend:frontend

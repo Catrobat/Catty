@@ -36,6 +36,7 @@ final class CBPlayerFrontend : NSObject {
     init(logger: CBLogger, program: Program) {
         self.logger = logger
         self.program = program
+        super.init()
     }
 
     // MARK: - Operations

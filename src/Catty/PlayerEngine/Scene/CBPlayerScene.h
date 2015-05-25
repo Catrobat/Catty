@@ -28,9 +28,9 @@
 
 @interface CBPlayerScene : SKScene
 
-@property(nonatomic, weak, readonly) CBPlayerScheduler *scheduler;
-@property(nonatomic, weak, readonly) CBPlayerFrontend *frontend;
-@property(nonatomic, weak, readonly) CBPlayerBackend *backend;
+@property(nonatomic, readonly) CBPlayerScheduler *scheduler;
+@property(nonatomic, readonly) CBPlayerFrontend *frontend;
+@property(nonatomic, readonly) CBPlayerBackend *backend;
 
 - (instancetype)init;                      // ATTENTION: may only be used for single action testing purposes!!
 - (instancetype)initWithSize:(CGSize)size; // ATTENTION: may only be used for single action testing purposes!!

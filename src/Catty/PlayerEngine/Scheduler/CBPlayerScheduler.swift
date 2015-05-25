@@ -192,8 +192,8 @@ final class CBPlayerScheduler : NSObject {
             addScriptExecContext(scriptExecContext)
             startScript(script)
         } else {
-//            let sequenceList = frontend.computeSequenceListForScript(script)
-//            let scriptExecContext = CBPlayerBackend().executionContextForScriptSequenceList(sequenceList)
+//            let sequenceList = _frontend.computeSequenceListForScript(script)
+//            let scriptExecContext = _backend.executionContextForScriptSequenceList(sequenceList)
 //            addScriptExecContext(scriptExecContext)
 //            startScript(script)
             fatalError("Script is not running!")
