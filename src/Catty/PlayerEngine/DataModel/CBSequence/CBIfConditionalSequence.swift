@@ -22,9 +22,10 @@
 
 final class CBIfConditionalSequence : CBConditionalSequence {
 
-    final /*private */ let elseSequenceList : CBSequenceList?
+    // MARK: - Properties
+    let elseSequenceList : CBSequenceList?
 
-    // MARK: Initializers
+    // MARK: - Initializers
     override init(rootSequenceList: CBScriptSequenceList, conditionBrick : BrickConditionalBranchProtocol, sequenceList : CBSequenceList) {
         self.elseSequenceList = nil
         super.init(rootSequenceList: rootSequenceList, conditionBrick: conditionBrick, sequenceList: sequenceList)
@@ -36,7 +37,7 @@ final class CBIfConditionalSequence : CBConditionalSequence {
         super.init(rootSequenceList: rootSequenceList, conditionBrick: conditionBrick, sequenceList: ifSequenceList)
     }
 
-    // MARK: Operations
+    // MARK: - Operations
     override func isEmpty() -> Bool {
         return (super.isEmpty() && (elseSequenceList?.count == 0))
     }

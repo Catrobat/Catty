@@ -22,13 +22,14 @@
 
 @objc final class CBScriptSequenceList {
 
+    // MARK: - Properties
     final let script : Script
     final let sequenceList : CBSequenceList
     final lazy var whileSequences = [String:CBExecClosure]()
     final var running : Bool
     final var count : Int { return sequenceList.count }
 
-    // MARK: Initializers
+    // MARK: - Initializers
     init(script : Script, sequenceList : CBSequenceList) {
         self.script = script
         self.running = false
@@ -36,9 +37,8 @@
         sequenceList.rootSequenceList = self
     }
 
-    // MARK: Operations
+    // MARK: - Operations
     func reverseSequenceList() -> CBScriptSequenceList {
         return CBScriptSequenceList(script: script, sequenceList: sequenceList.reverseSequenceList())
     }
-
 }

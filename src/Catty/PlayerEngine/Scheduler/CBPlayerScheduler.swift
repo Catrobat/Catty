@@ -29,10 +29,11 @@ protocol CBPlayerSchedulingAlgorithm {
 
 @objc final class CBPlayerScheduler {
 
-    // MARK: Constants
-    let selfBroadcastRecursionMaxDepthLimit = 20 // specifies max depth limit for self broadcasts for the same function stack
+    // MARK: - Constants
+    // specifies max depth limit for self broadcasts running on the same function stack
+    let selfBroadcastRecursionMaxDepthLimit = 20
 
-    // MARK: Properties
+    // MARK: - Properties
     static let sharedInstance = CBPlayerScheduler() // singleton
     let logger = Swell.getLogger("CBPlayerScheduler")
     private(set) var running = false
@@ -42,10 +43,10 @@ protocol CBPlayerSchedulingAlgorithm {
     private lazy var _registeredBroadcastScripts = [BroadcastScript]()
     private lazy var _selfBroadcastCounters = [String:Int]()
 
-    // MARK: Initializers
+    // MARK: - Initializers
     private init() {} // private initializer
 
-    // MARK: Getters and Setters
+    // MARK: - Getters and Setters
     func isScriptRunning(script: Script) -> Bool {
         if let _ = scriptExecContextDict[script] {
             return true
@@ -53,7 +54,7 @@ protocol CBPlayerSchedulingAlgorithm {
         return false
     }
 
-    // MARK: Operations
+    // MARK: - Operations
     private func _resetScript(script: Script) {
         logger.debug("!!! RESETTING: \(script)");
         logger.debug("-------------------------------------------------------------")
@@ -78,6 +79,12 @@ protocol CBPlayerSchedulingAlgorithm {
     func addInstructionsAfterCurrentInstructionOfScript(script: Script, instructionList: [CBExecClosure]) {
         for instruction in instructionList {
             addInstructionAfterCurrentInstructionOfScript(script, instruction: instruction)
+        }
+    }
+
+    func removeInstructionsBeforeCurrentInstruction(#numberOfInstructions: Int, inScript script: Script) {
+        if let scriptExecContext = scriptExecContextDict[script] {
+            scriptExecContext.removeNumberOfInstructionsBeforeCurrentInstruction(numberOfInstructions)
         }
     }
 
@@ -141,22 +148,24 @@ protocol CBPlayerSchedulingAlgorithm {
 
     func startScript(script: Script) {
         assert(running) // ensure that player is running!
-        let context = self.scriptExecContextDict[script]
+        if let scriptExecContext = scriptExecContextDict[script] {
+            logger.info("    STARTING: \(script)")
+            logger.info("-------------------------------------------------------------")
+
+            if scriptExecContext.inParentHierarchy(scriptExecContext.script.object) == false {
+                //            NSLog(@" + Adding this node to object");
+                scriptExecContext.script.object.addChild(scriptExecContext)
+            }
+            _resetScript(script)
+
+            if scriptExecContext.hasActions() {
+                scriptExecContext.removeAllActions()
+            }
+            runNextInstructionOfScript(script) // Ready...Steady...Gooooo!! => invoke first instruction!
+            return
+        }
         // make sure that context has already been added to Scheduler
-        assert(scriptExecContextDict[script] != nil)
-        logger.info("    STARTING: \(script)")
-        logger.info("-------------------------------------------------------------")
-
-        if script.inParentHierarchy(script.object) == false {
-            //            NSLog(@" + Adding this node to object");
-            script.object.addChild(script)
-        }
-        _resetScript(script)
-
-        if script.hasActions() {
-            script.removeAllActions()
-        }
-        runNextInstructionOfScript(script) // Ready...Steady...Gooooo!! => invoke first instruction!
+        fatalError("Unable to start script! ScriptExecContext not added to scheduler. This should NEVER happen!!")
     }
 
     func restartScript(script: Script) {
@@ -178,18 +187,19 @@ protocol CBPlayerSchedulingAlgorithm {
     func stopScript(script: Script, removeReferences: Bool = true) {
         logger.info("!!! STOPPING: \(script)")
         logger.info("-------------------------------------------------------------")
-        if removeReferences {
-            if let scriptExecContext = scriptExecContextDict[script] {
+        if let scriptExecContext = scriptExecContextDict[script] {
+            if removeReferences {
                 scriptExecContext.removeReferences()
             }
+            if scriptExecContext.inParentHierarchy(script.object) {
+                scriptExecContext.removeFromParent()
+            }
+            scriptExecContext.removeAllActions()
+            scriptExecContextDict.removeValueForKey(script)
+            logger.debug("\(script) finished!")
+            return
         }
-        scriptExecContextDict.removeValueForKey(script)
-
-        script.removeAllActions()
-        if script.inParentHierarchy(script.object) {
-            script.removeFromParent()
-        }
-        logger.debug("Script \(script) finished!")
+        logger.debug("\(script) already stopped!!")
     }
 
     func shutdown() {
@@ -202,20 +212,18 @@ protocol CBPlayerSchedulingAlgorithm {
         for (script, scriptExecContext) in scriptExecContextDict {
             logger.info("!!! STOPPING: \(script)")
             logger.info("-------------------------------------------------------------")
-            if let scriptExecContext = scriptExecContextDict[script] {
-                scriptExecContext.removeReferences()
+            if scriptExecContext.inParentHierarchy(script.object) {
+                scriptExecContext.removeFromParent()
             }
-            if script.inParentHierarchy(script.object) {
-                script.removeFromParent()
-            }
-            logger.debug("Script \(script) finished!")
+            scriptExecContext.removeReferences()
+            logger.debug("\(script) finished!")
         }
         scriptExecContextDict.removeAll(keepCapacity: false)
         running = false
         _currentScriptExecContext = nil
     }
 
-    // MARK: Broadcast handling
+    // MARK: - Broadcast handling
     func broadcastWithMessage(message: String, senderScript:Script) {
         logger.info("Broadcast: \(message)")
         var runNextInstructionOfSenderScript = true

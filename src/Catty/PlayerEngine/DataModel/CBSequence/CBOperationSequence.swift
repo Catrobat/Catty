@@ -22,14 +22,15 @@
 
 final class CBOperationSequence : CBSequence {
 
+    // MARK: - Properties
     lazy var operationList = [CBOperation]()
 
-    // MARK: Initializers
+    // MARK: - Initializers
     override init(rootSequenceList: CBScriptSequenceList) {
         super.init(rootSequenceList: rootSequenceList)
     }
 
-    // MARK: Operations
+    // MARK: - Operations
     override func isEmpty() -> Bool {
         return (operationList.count == 0)
     }

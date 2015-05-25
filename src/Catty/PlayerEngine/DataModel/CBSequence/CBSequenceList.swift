@@ -22,20 +22,22 @@
 
 final class CBSequenceList : SequenceType {
 
-    final weak var rootSequenceList : CBScriptSequenceList?
-    final /*private */lazy var sequenceList = [CBSequence]()
-    final var count : Int { return sequenceList.count }
+    // MARK: - Properties
+    weak var rootSequenceList : CBScriptSequenceList?
+    private(set) lazy var sequenceList = [CBSequence]()
+    var count : Int { return sequenceList.count }
 
-    // MARK: Initializers
+    // MARK: - Initializers
     init(rootSequenceList : CBScriptSequenceList?) {
         self.rootSequenceList = rootSequenceList
     }
 
-    // MARK: Operations
+    // MARK: - Operations
     func append(let sequence : CBSequence) {
         sequenceList.append(sequence)
     }
 
+    // MARK: - Generator
     func generate() -> GeneratorOf<CBSequence> {
         var i = 0
         return GeneratorOf<CBSequence> {
@@ -48,10 +50,9 @@ final class CBSequenceList : SequenceType {
         reverseScriptSequenceList.sequenceList = sequenceList.reverse()
         return reverseScriptSequenceList
     }
-
 }
 
-// operator overloading for append method in CBSequenceList
+// MARK: - Custom operators
 func +=(left: CBSequenceList, right: CBSequence) {
     left.append(right)
 }

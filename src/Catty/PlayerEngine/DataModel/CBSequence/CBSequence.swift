@@ -22,14 +22,15 @@
 
 class CBSequence {
 
+    // MARK: - Properties
     final weak var rootSequenceList : CBScriptSequenceList?
 
-    // MARK: Initializers
+    // MARK: - Initializers
     init(rootSequenceList : CBScriptSequenceList) {
         self.rootSequenceList = rootSequenceList
     }
 
-    // MARK: Operations
+    // MARK: - Operations
     func isEmpty() -> Bool {
         preconditionFailure("This method is abstract and must be overridden")
     }
