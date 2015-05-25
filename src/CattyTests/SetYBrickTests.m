@@ -48,10 +48,10 @@
     
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
-    
-    Scene* scene = [[Scene alloc] init];
+
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
     [scene addChild:object];
-    
+
     Formula* yPosition =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
@@ -72,13 +72,12 @@
 
 - (void)testSetYBrickNegative
 {
-    
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
-    
-    Scene* scene = [[Scene alloc] init];
+
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
     [scene addChild:object];
-    
+
     Formula* yPosition =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
@@ -91,7 +90,7 @@
     SetYBrick* brick = [[SetYBrick alloc]init];
     brick.script = script;
     brick.yPosition = yPosition;
-    
+
     dispatch_block_t action = [brick actionBlock];
     action();
     XCTAssertEqual(object.yPosition, (CGFloat)-20, @"SetyBrick is not correctly calculated");
@@ -99,13 +98,12 @@
 
 - (void)testSetYBrickOutOfRange
 {
-    
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
-    
-    Scene* scene = [[Scene alloc] init];
+
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
     [scene addChild:object];
-    
+
     Formula* yPosition =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
@@ -126,13 +124,12 @@
 
 - (void)testSetYBrickWrongInput
 {
-    
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
-    
-    Scene* scene = [[Scene alloc] init];
+
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
     [scene addChild:object];
-    
+
     Formula* yPosition =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;

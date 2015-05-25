@@ -44,14 +44,14 @@
 
 - (void)testSetXBrickPositive
 {
-    SpriteObject* object = [[SpriteObject alloc] init];
+    SpriteObject *object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
 
-    Scene* scene = [[Scene alloc] init];
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
     [scene addChild:object];
 
-    Formula* xPosition =[[Formula alloc] init];
-    FormulaElement* formulaTree  = [[FormulaElement alloc] init];
+    Formula *xPosition = [[Formula alloc] init];
+    FormulaElement *formulaTree = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"20";
     xPosition.formulaTree = formulaTree;
@@ -73,7 +73,7 @@
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
 
-    Scene* scene = [[Scene alloc] init];
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
     [scene addChild:object];
 
     Formula* xPosition =[[Formula alloc] init];
@@ -98,12 +98,11 @@
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
-
-    Scene* scene = [[Scene alloc] init];
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
     [scene addChild:object];
 
-    Formula* xPosition =[[Formula alloc] init];
-    FormulaElement* formulaTree  = [[FormulaElement alloc] init];
+    Formula *xPosition =[[Formula alloc] init];
+    FormulaElement *formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"50000";
     xPosition.formulaTree = formulaTree;
@@ -122,13 +121,12 @@
 
 - (void)testSetXBrickWrongInput
 {
-    
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
-    
-    Scene* scene = [[Scene alloc] init];
+
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
     [scene addChild:object];
-    
+
     Formula* xPosition =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;

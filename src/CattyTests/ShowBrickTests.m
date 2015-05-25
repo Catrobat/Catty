@@ -47,8 +47,8 @@
     
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
-    
-    Scene* scene = [[Scene alloc] init];
+
+    CBPlayerScene* scene = [[CBPlayerScene alloc] init];
     [scene addChild:object];
 
     Script *script = [[WhenScript alloc] init];
@@ -56,10 +56,9 @@
 
     ShowBrick *brick = [[ShowBrick alloc] init];
     brick.script = script;
-    
+
     dispatch_block_t action = [brick actionBlock];
     action();
-
     XCTAssertEqual(object.hidden, NO, @"ShowBrick is not correctly calculated");
 }
 

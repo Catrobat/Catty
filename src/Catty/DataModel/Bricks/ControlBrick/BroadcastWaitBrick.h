@@ -24,12 +24,14 @@
 #import "Brick.h"
 #import "BrickMessageProtocol.h"
 
+@class CBPlayerScheduler;
+
 @interface BroadcastWaitBrick : Brick<BrickMessageProtocol>
 
 @property (nonatomic, strong) NSString *broadcastMessage;
 
 - (id)initWithMessage:(NSString*)message;
 
-- (void)performBroadcastAndWait;
+- (void)performBroadcastAndWaitWithScheduler:(CBPlayerScheduler*)scheduler;
 
 @end

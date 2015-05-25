@@ -10,36 +10,102 @@
 	<string>debug</string>
 	<key>SWLLocationFilename</key>
 	<string>Catty.log</string>
-	<key>CBPlayerScheduler</key>
+	<key>CBPlayerSchedulerLogger.Release</key>
 	<dict>
 		<key>SWLLevel</key>
 		<string>warn</string>
 		<key>SWLLocation</key>
-		<string>console</string>
+		<string>file</string>
 		<key>SWLLocationFilename</key>
-		<string>PlayerEngine-Scheduler.log</string>
+		<string>PlayerEngine-Scheduler.Release.log</string>
 		<key>SWLQuickFormat</key>
 		<string>NameMessage</string>
 	</dict>
-	<key>CBPlayerFrontend</key>
-	<dict>
-		<key>SWLLevel</key>
-		<string>info</string>
-		<key>SWLLocation</key>
-		<string>console</string>
-		<key>SWLLocationFilename</key>
-		<string>PlayerEngine-Frontend.log</string>
-		<key>SWLQuickFormat</key>
-		<string>DateNameMessage</string>
-	</dict>
-	<key>CBPlayerBackend</key>
+	<key>CBPlayerFrontendLogger.Release</key>
 	<dict>
 		<key>SWLLevel</key>
 		<string>warn</string>
 		<key>SWLLocation</key>
+		<string>file</string>
+		<key>SWLLocationFilename</key>
+		<string>PlayerEngine-Frontend.Release.log</string>
+		<key>SWLQuickFormat</key>
+		<string>DateNameMessage</string>
+	</dict>
+	<key>CBPlayerBackendLogger.Release</key>
+	<dict>
+		<key>SWLLevel</key>
+		<string>warn</string>
+		<key>SWLLocation</key>
+		<string>file</string>
+		<key>SWLLocationFilename</key>
+		<string>PlayerEngine-Backend.Release.log</string>
+		<key>SWLQuickFormat</key>
+		<string>DateNameMessage</string>
+	</dict>
+	<key>CBPlayerSchedulerLogger.Debug</key>
+	<dict>
+		<key>SWLLevel</key>
+		<string>debug</string>
+		<key>SWLLocation</key>
 		<string>console</string>
 		<key>SWLLocationFilename</key>
-		<string>PlayerEngine-Backend.log</string>
+		<string>PlayerEngine-Scheduler.Debug.log</string>
+		<key>SWLQuickFormat</key>
+		<string>NameMessage</string>
+	</dict>
+	<key>CBPlayerFrontendLogger.Debug</key>
+	<dict>
+		<key>SWLLevel</key>
+		<string>debug</string>
+		<key>SWLLocation</key>
+		<string>console</string>
+		<key>SWLLocationFilename</key>
+		<string>PlayerEngine-Frontend.Debug.log</string>
+		<key>SWLQuickFormat</key>
+		<string>DateNameMessage</string>
+	</dict>
+	<key>CBPlayerBackendLogger.Debug</key>
+	<dict>
+		<key>SWLLevel</key>
+		<string>debug</string>
+		<key>SWLLocation</key>
+		<string>console</string>
+		<key>SWLLocationFilename</key>
+		<string>PlayerEngine-Backend.Debug.log</string>
+		<key>SWLQuickFormat</key>
+		<string>DateNameMessage</string>
+	</dict>
+	<key>CBPlayerSchedulerLogger.Test</key>
+	<dict>
+		<key>SWLLevel</key>
+		<string>debug</string>
+		<key>SWLLocation</key>
+		<string>console file</string>
+		<key>SWLLocationFilename</key>
+		<string>PlayerEngine-Scheduler.Test.log</string>
+		<key>SWLQuickFormat</key>
+		<string>DateNameMessage</string>
+	</dict>
+	<key>CBPlayerFrontendLogger.Test</key>
+	<dict>
+		<key>SWLLevel</key>
+		<string>debug</string>
+		<key>SWLLocation</key>
+		<string>console file</string>
+		<key>SWLLocationFilename</key>
+		<string>PlayerEngine-Frontend.Test.log</string>
+		<key>SWLQuickFormat</key>
+		<string>DateNameMessage</string>
+	</dict>
+	<key>CBPlayerBackendLogger.Test</key>
+	<dict>
+		<key>SWLLevel</key>
+		<string>debug</string>
+		<key>SWLLocation</key>
+		<string>console file</string>
+		<key>SWLLocationFilename</key>
+		<string>PlayerEngine-Backend.Test.log</string>
 		<key>SWLQuickFormat</key>
 		<string>DateNameMessage</string>
 	</dict>

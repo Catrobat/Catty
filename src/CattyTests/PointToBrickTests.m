@@ -47,11 +47,11 @@
 {
     SpriteObject *firstObject = [[SpriteObject alloc] init];
     SpriteObject *secondObject = [[SpriteObject alloc] init];
-    
-    Scene *scene = [[Scene alloc] init];
+
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
     [scene addChild:firstObject];
     [scene addChild:secondObject];
-    
+
     [firstObject setPosition:CGPointMake(0, 0)];
     [secondObject setPosition:CGPointMake(0, 10)];
 
@@ -76,7 +76,7 @@
     SpriteObject *firstObject = [[SpriteObject alloc] init];
     SpriteObject *secondObject = [[SpriteObject alloc] init];
 
-    Scene *scene = [[Scene alloc] init];
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
     [scene addChild:firstObject];
     [scene addChild:secondObject];
 
@@ -100,7 +100,7 @@
     SpriteObject *firstObject = [[SpriteObject alloc] init];
     SpriteObject *secondObject = [[SpriteObject alloc] init];
 
-    Scene *scene = [[Scene alloc] init];
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
     [scene addChild:firstObject];
     [scene addChild:secondObject];
 

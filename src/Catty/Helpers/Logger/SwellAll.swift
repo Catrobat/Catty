@@ -88,7 +88,7 @@ public struct LogLevel {
 public protocol LogFormatter {
     
     /// Formats the message provided for the given logger
-    func formatLog<T>(logger: Logger, level: LogLevel, @autoclosure message: () -> T,
+    func formatLog<T>(logger: CBLogger, level: LogLevel, @autoclosure message: () -> T,
                       filename: String?, line: Int?,  function: String?) -> String;
     
     /// Returns an instance of this class given a configuration string
@@ -122,7 +122,7 @@ public class QuickFormatter: LogFormatter {
         self.format = format
     }
     
-    public func formatLog<T>(logger: Logger, level: LogLevel, @autoclosure message givenMessage: () -> T,
+    public func formatLog<T>(logger: CBLogger, level: LogLevel, @autoclosure message givenMessage: () -> T,
                              filename: String?, line: Int?,  function: String?) -> String {
         var s: String;
         let message = givenMessage()
@@ -229,7 +229,7 @@ public class FlexFormatter: LogFormatter {
         return result
     }
     
-    public func formatLog<T>(logger: Logger, level: LogLevel, @autoclosure message givenMessage: () -> T,
+    public func formatLog<T>(logger: CBLogger, level: LogLevel, @autoclosure message givenMessage: () -> T,
         filename: String?, line: Int?,  function: String?) -> String {
             var logMessage = ""
             for (index, part) in enumerate(format) {
@@ -456,7 +456,7 @@ public class FileLocation: LogLocation {
 
 
 //
-//  Logger.swift
+//  CBLogger.swift
 //  Swell
 //
 //  Created by Hubert Rabago on 6/20/14.
@@ -464,7 +464,8 @@ public class FileLocation: LogLocation {
 //
 
 
-public class Logger {
+@objc
+public class CBLogger {
     
     let name: String
     public var level: LogLevel
@@ -589,8 +590,8 @@ public class Logger {
     // Methods to expose this functionality to Objective C code
     
     
-    class func getLogger(name: String) -> Logger {
-        return Logger(name: name);
+    class func getLogger(name: String) -> CBLogger {
+        return CBLogger(name: name);
     }
     
     public func traceMessage(message: String) {
@@ -657,7 +658,7 @@ public class LogSelector {
 
     }
 
-    func shouldEnable(logger: Logger) -> Bool {
+    func shouldEnable(logger: CBLogger) -> Bool {
         let name = logger.name
         return shouldEnableLoggerWithName(name)
     }
@@ -768,15 +769,16 @@ struct LoggerConfiguration {
 let globalSwell = Swell();
 
 
+@objc
 public class Swell {
     
-    lazy var swellLogger: Logger = {
+    lazy var swellLogger: CBLogger = {
         let result = getLogger("Shared")
         return result
     }()
 
     var selector = LogSelector()
-    var allLoggers = Dictionary<String, Logger>()
+    var allLoggers = Dictionary<String, CBLogger>()
     var rootConfiguration = LoggerConfiguration(name: "ROOT")
     var sharedConfiguration = LoggerConfiguration(name: "Shared")
     var allConfigurations = Dictionary<String, LoggerConfiguration>()
@@ -855,7 +857,7 @@ public class Swell {
 
     /// Returns the logger configured for the given name.
     /// This is the recommended way of retrieving a Swell logger.
-    public class func getLogger(name: String) -> Logger {
+    public class func getLogger(name: String) -> CBLogger {
         return globalSwell.getLogger(name);
     }
     
@@ -887,27 +889,27 @@ public class Swell {
     // Register the given logger.  This method should be called
     // for ALL loggers created.  This facilitates enabling/disabling of
     // loggers based on user configuration.
-    class func registerLogger(logger: Logger) {
+    class func registerLogger(logger: CBLogger) {
         globalSwell.registerLogger(logger);
     }
     
-    func registerLogger(logger: Logger) {
+    func registerLogger(logger: CBLogger) {
         allLoggers[logger.name] = logger;
         evaluateLoggerEnabled(logger);
     }
     
-    func evaluateLoggerEnabled(logger: Logger) {
+    func evaluateLoggerEnabled(logger: CBLogger) {
         logger.enabled = self.enabled && selector.shouldEnable(logger);
     }
     
     /// Returns the Logger instance configured for a given logger name.
     /// Use this to get Logger instances for use in classes.
-    func getLogger(name: String) -> Logger {
+    func getLogger(name: String) -> CBLogger {
         var logger = allLoggers[name]
         if (logger != nil) {
             return logger!
         } else {
-            let result: Logger = createLogger(name)
+            let result: CBLogger = createLogger(name)
             allLoggers[name] = result
             return result
         }
@@ -916,9 +918,9 @@ public class Swell {
     /// Creates a new Logger instance based on configuration returned by getConfigurationForLoggerName()
     /// This is intended to be in an internal method and should not be called by other classes.
     /// Use getLogger(name) to get a logger for normal use.
-    func createLogger(name: String) -> Logger {
+    func createLogger(name: String) -> CBLogger {
         let config = getConfigurationForLoggerName(name)
-        var result = Logger(name: name, level: config.level!, formatter: config.formatter!, logLocation: config.locations[0])
+        var result = CBLogger(name: name, level: config.level!, formatter: config.formatter!, logLocation: config.locations[0])
         
         // Now we need to handle potentially > 1 locations
         if config.locations.count > 1 {

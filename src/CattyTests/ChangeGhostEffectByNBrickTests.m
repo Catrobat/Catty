@@ -23,9 +23,10 @@
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
 #import "WhenScript.h"
+#import "LoggerDefines.h"
+//#import "Pocket_Code-Swift.h"
 
 @interface ChangeGhostEffectByNBrickTests : BrickTests
-
 @end
 
 @implementation ChangeGhostEffectByNBrickTests
@@ -47,7 +48,7 @@
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
 
-    Scene* scene = [[Scene alloc] init];
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
     [scene addChild:object];
 
     Formula* transparency =[[Formula alloc] init];
@@ -75,7 +76,7 @@
     object.position = CGPointMake(0, 0);
     object.alpha = 0.4;
 
-    Scene* scene = [[Scene alloc] init];
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
     [scene addChild:object];
 
     Formula* transparency =[[Formula alloc] init];
@@ -99,14 +100,13 @@
 
 - (void)testChangeGhostEffectByNBrickOutOfRange
 {
-    
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
     object.alpha = 0.4;
-    
-    Scene* scene = [[Scene alloc] init];
+
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
     [scene addChild:object];
-    
+
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
@@ -127,13 +127,12 @@
 
 - (void)testChangeGhostEffectByNBrickWrongInput
 {
-    
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
-    
-    Scene* scene = [[Scene alloc] init];
+
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
     [scene addChild:object];
-    
+
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
@@ -151,7 +150,5 @@
     action();
     XCTAssertEqual(object.alpha, 1.0f, @"ChangeGhostEffectBrick is not correctly calculated");
 }
-
-
 
 @end

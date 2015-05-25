@@ -28,11 +28,15 @@
 final class CBPlayerFrontend : NSObject {
 
     // MARK: - Properties
-    let logger = Swell.getLogger("CBPlayerFrontend")
+    let logger : CBLogger
+    private(set) weak var program : Program?
     private lazy var _sequenceFilters = [CBPlayerFrontendSequenceFilter]()
 
     // MARK: - Initializers
-    override init() { super.init() }
+    init(logger: CBLogger, program: Program) {
+        self.logger = logger
+        self.program = program
+    }
 
     // MARK: - Operations
     func addSequenceFilter(sequenceFilter: CBPlayerFrontendSequenceFilter) {

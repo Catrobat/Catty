@@ -56,7 +56,7 @@
         self.broadcastMessage = [NSString stringWithString:kLocalizedMessage1];
 }
 
-- (void)performBroadcastAndWait
+- (void)performBroadcastAndWaitWithScheduler:(CBPlayerScheduler*)scheduler
 {
     NSDebug(@"Performing: %@", self.description);
 //    [self.script.object.program broadcastAndWait:self.broadcastMessage senderScript:self.script];
@@ -67,7 +67,7 @@
         // now switch back to the main queue for executing the sequence!
         dispatch_async(dispatch_get_main_queue(), ^{
             // the script must continue here. upcoming actions are executed!!
-            [[CBPlayerScheduler sharedInstance] runNextInstructionOfScript:weakSelf.script];
+            [scheduler runNextInstructionOfScript:weakSelf.script];
         });
     });
 }

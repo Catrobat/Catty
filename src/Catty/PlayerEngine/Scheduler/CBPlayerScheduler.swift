@@ -27,24 +27,29 @@ protocol CBPlayerSchedulingAlgorithm {
         scriptExecContextDict: [Script:CBScriptExecContext]) -> CBScriptExecContext
 }
 
-@objc final class CBPlayerScheduler {
+final class CBPlayerScheduler : NSObject {
 
     // MARK: - Constants
     // specifies max depth limit for self broadcasts running on the same function stack
     let selfBroadcastRecursionMaxDepthLimit = 20
 
     // MARK: - Properties
-    static let sharedInstance = CBPlayerScheduler() // singleton
-    let logger = Swell.getLogger("CBPlayerScheduler")
+    var logger : CBLogger
+    private let _frontend : CBPlayerFrontend
+    private let _backend : CBPlayerBackend
     private(set) var running = false
     private(set) lazy var scriptExecContextDict = [Script:CBScriptExecContext]()
     var schedulingAlgorithm : CBPlayerSchedulingAlgorithm?
     private weak var _currentScriptExecContext : CBScriptExecContext?
-    private lazy var _registeredBroadcastScripts = [BroadcastScript]()
+    private lazy var _registeredBroadcastScripts = [String:[BroadcastScript]]()
     private lazy var _selfBroadcastCounters = [String:Int]()
 
     // MARK: - Initializers
-    private init() {} // private initializer
+    init(logger: CBLogger, frontend: CBPlayerFrontend, backend: CBPlayerBackend) {
+        self.logger = logger
+        _frontend = frontend
+        _backend = backend
+    }
 
     // MARK: - Getters and Setters
     func isScriptRunning(script: Script) -> Bool {
@@ -88,19 +93,25 @@ protocol CBPlayerSchedulingAlgorithm {
         }
     }
 
-    func registerBroadcastScript(broadcastScript: BroadcastScript) {
-        assert(contains(_registeredBroadcastScripts, broadcastScript) == false, "FATAL: BroadcastScript already registered!")
-        _registeredBroadcastScripts += broadcastScript
+    func registerBroadcastScript(broadcastScript: BroadcastScript, forMessage message: String) {
+        if var broadcastScripts = _registeredBroadcastScripts[message] {
+            assert(contains(broadcastScripts, broadcastScript) == false, "FATAL: BroadcastScript already registered!")
+            broadcastScripts += broadcastScript
+        } else {
+            _registeredBroadcastScripts[message] = [broadcastScript]
+        }
     }
 
-    func unregisterBroadcastScript(broadcastScript: BroadcastScript) {
-        var index = 0
-        for script in _registeredBroadcastScripts {
-            if script === broadcastScript {
-                _registeredBroadcastScripts.removeAtIndex(index)
-                return
+    func unregisterBroadcastScript(broadcastScript: BroadcastScript, forMessage message: String) {
+        if var broadcastScripts = _registeredBroadcastScripts[message] {
+            var index = 0
+            for script in broadcastScripts {
+                if script === broadcastScript {
+                    broadcastScripts.removeAtIndex(index)
+                    return
+                }
+                ++index
             }
-            ++index
         }
         fatalError("FATAL: Given BroadcastScript is NOT registered!")
     }
@@ -176,7 +187,7 @@ protocol CBPlayerSchedulingAlgorithm {
             addScriptExecContext(scriptExecContext)
             startScript(script)
         } else {
-//            let sequenceList = CBPlayerFrontend().computeSequenceListForScript(script)
+//            let sequenceList = frontend.computeSequenceListForScript(script)
 //            let scriptExecContext = CBPlayerBackend().executionContextForScriptSequenceList(sequenceList)
 //            addScriptExecContext(scriptExecContext)
 //            startScript(script)
@@ -224,56 +235,55 @@ protocol CBPlayerSchedulingAlgorithm {
     }
 
     // MARK: - Broadcast handling
-    func broadcastWithMessage(message: String, senderScript:Script) {
+    func performBroadcastWithMessage(message: String, senderScript:Script) {
+
         logger.info("Broadcast: \(message)")
         var runNextInstructionOfSenderScript = true
-        let frontend = CBPlayerFrontend()
-        let backend = CBPlayerBackend()
-        for broadcastScript in _registeredBroadcastScripts {
-            if broadcastScript.receivedMessage != message {
-                continue
-            }
 
-            // case broadcastScript == senderScript => restart script
-            if broadcastScript === senderScript {
+        if let broadcastScripts = _registeredBroadcastScripts[message] {
+            for broadcastScript in broadcastScripts {
+                // case broadcastScript == senderScript => restart script
+                if broadcastScript === senderScript {
+                    // if sender script stopped in the meanwhile => do NOT restart and abort this broadcast!
+                    if isScriptRunning(broadcastScript) == false {
+                        return;
+                    }
+                    broadcastScript.calledByOtherScriptBroadcastWait = false // no synchronization needed here
+                    var counter = 0
+                    if let counterNumber = _selfBroadcastCounters[message] {
+                        counter = counterNumber
+                    }
+                    if ++counter % selfBroadcastRecursionMaxDepthLimit == 0 { // XXX: DIRTY PERFORMANCE HACK!!
+                        dispatch_async(dispatch_get_main_queue(), { [weak self] in
+                            self?.restartScript(broadcastScript) // restart this self-listening BroadcastScript
+                        })
+                    } else {
+                        restartScript(broadcastScript)
+                    }
+                    _selfBroadcastCounters[message] = counter
+
+                    // end of script reached!! Scripts will be aborted due to self-calling broadcast
+                    // the final closure will never be called (except when script is canceled!) due
+                    // to self-broadcast
+                    runNextInstructionOfSenderScript = false // still enqueued next actions are ignored due to restart!
+                    logger.debug("BROADCASTSCRIPT HAS BEEN RESTARTED DUE TO SELF-BROADCAST!!")
+                    continue
+                }
+
+                // case broadcastScript != senderScript
+                broadcastScript.calledByOtherScriptBroadcastWait = false
                 if isScriptRunning(broadcastScript) == false {
-                    return;
-                }
-                broadcastScript.calledByOtherScriptBroadcastWait = false // no synchronization needed here
-                var counter = 0
-                if let counterNumber = _selfBroadcastCounters[message] {
-                    counter = counterNumber
-                }
-                if ++counter % selfBroadcastRecursionMaxDepthLimit == 0 { // XXX: DIRTY PERFORMANCE HACK!!
-                    dispatch_async(dispatch_get_main_queue(), { [weak self] in
-                        self?.restartScript(broadcastScript) // restart this self-listening BroadcastScript
-                    })
+                    // case broadcastScript is not running
+                    let sequenceList = _frontend.computeSequenceListForScript(broadcastScript)
+                    addScriptExecContext(_backend.executionContextForScriptSequenceList(sequenceList))
+                    startScript(broadcastScript)
                 } else {
-                    restartScript(broadcastScript)
+                    // case broadcastScript is running
+                    if broadcastScript.calledByOtherScriptBroadcastWait {
+                        broadcastScript.signalForWaitingBroadcasts() // signal finished broadcast!
+                    }
+                    restartScript(broadcastScript) // trigger script to restart
                 }
-                _selfBroadcastCounters[message] = counter
-
-                // end of script reached!! Scripts will be aborted due to self-calling broadcast
-                // the final closure will never be called (except when script is canceled!) due
-                // to self-broadcast
-                runNextInstructionOfSenderScript = false // still enqueued next actions are ignored due to restart!
-                logger.debug("BROADCASTSCRIPT HAS BEEN RESTARTED DUE TO SELF-BROADCAST!!")
-                continue
-            }
-
-            // case broadcastScript != senderScript
-            broadcastScript.calledByOtherScriptBroadcastWait = false
-            if isScriptRunning(broadcastScript) == false {
-                // case broadcastScript is not running
-                let sequenceList = frontend.computeSequenceListForScript(broadcastScript)
-                addScriptExecContext(backend.executionContextForScriptSequenceList(sequenceList))
-                startScript(broadcastScript)
-            } else {
-                // case broadcastScript is running
-                if broadcastScript.calledByOtherScriptBroadcastWait {
-                    broadcastScript.signalForWaitingBroadcasts() // signal finished broadcast!
-                }
-                restartScript(broadcastScript) // trigger script to restart
             }
         }
         if (runNextInstructionOfSenderScript) {
@@ -281,5 +291,69 @@ protocol CBPlayerSchedulingAlgorithm {
             runNextInstructionOfScript(senderScript)
         }
     }
+
+    //- (void)broadcastAndWait:(NSString*)message senderScript:(Script*)script
+    //{
+    //    NSDebug(@"BroadcastWait: %@", message);
+    //    CBPlayerScheduler *scheduler = [CBPlayerScheduler sharedInstance];
+    //    CBPlayerFrontend *frontend = [CBPlayerFrontend new];
+    //    CBPlayerBackend *backend = [CBPlayerBackend new];
+    //    for (NSString *spriteObjectName in self.spriteObjectBroadcastScripts) {
+    //        NSArray *broadcastScriptList = self.spriteObjectBroadcastScripts[spriteObjectName];
+    //        for (BroadcastScript *broadcastScript in broadcastScriptList) {
+    //            if (! [broadcastScript.receivedMessage isEqualToString:message]) {
+    //                continue;
+    //            }
+    //
+    //            dispatch_semaphore_t semaphore = self.broadcastMessageSemaphores[broadcastScript.receivedMessage];
+    //            if (! semaphore) {
+    //                semaphore = dispatch_semaphore_create(0);
+    //                self.broadcastMessageSemaphores[broadcastScript.receivedMessage] = semaphore;
+    //            }
+    //
+    //            // case sender script equals receiver script => restart receiver script
+    //            // (sets brick action instruction pointer to zero)
+    //            if (broadcastScript == script) {
+    //                if (! [scheduler isScriptRunning:broadcastScript]) {
+    //                    if (self.broadcastMessageSemaphores[broadcastScript.receivedMessage]) {
+    //                        dispatch_semaphore_signal(self.broadcastMessageSemaphores[broadcastScript.receivedMessage]);
+    //                    }
+    //                    return;
+    //                }
+    //                broadcastScript.calledByOtherScriptBroadcastWait = NO; // no synchronization required here
+    //                NSNumber *counterNumber = self.broadcastScriptCounters[message];
+    //                NSUInteger counter = 0;
+    //                if (counterNumber) {
+    //                    counter = [counterNumber integerValue];
+    //                }
+    //                if (++counter % 12) { // XXX: DIRTY HACK!!
+    //                    [scheduler restartScript:broadcastScript];
+    //                } else {
+    //                    dispatch_async(dispatch_get_main_queue(), ^{
+    //                        [scheduler restartScript:broadcastScript]; // restart this self-listening BroadcastScript
+    //                    });
+    //                }
+    //                self.broadcastScriptCounters[message] = @(counter);
+    //                continue;
+    //            }
+    //
+    //            // case sender script does not equal receiver script => check if receiver script
+    //            // if broadcastScript is not running then start broadcastScript!
+    //            broadcastScript.calledByOtherScriptBroadcastWait = YES; // synchronized!
+    //            if (! [scheduler isScriptRunning:broadcastScript]) {
+    //                // broadcastScript != senderScript
+    //                CBScriptSequenceList *sequenceList = [frontend computeSequenceListForScript:broadcastScript];
+    //                [scheduler addScriptExecContext:[backend executionContextForScriptSequenceList:sequenceList]];
+    //                [scheduler startScript:broadcastScript];
+    //            } else {
+    //                // case broadcast script is already running!
+    //                if (broadcastScript.isCalledByOtherScriptBroadcastWait) {
+    //                    dispatch_semaphore_signal(semaphore); // signal finished broadcast!
+    //                }
+    //                [scheduler restartScript:broadcastScript]; // trigger script to restart
+    //            }
+    //        }
+    //    }
+    //}
 
 }

@@ -63,8 +63,8 @@
     
     self.brick = [[IfOnEdgeBounceBrick alloc] init];
     self.brick.script = self.script;
-    
-    self.scene = [[Scene alloc] initWithSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
+
+    self.scene = [[CBPlayerScene alloc] initWithSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
     [self.scene addChild:self.spriteObject];
 }
 
@@ -211,7 +211,7 @@
 - (NSNumber*)convertCBToSKDegrees:(CGFloat)degrees
 {
     double deg = degrees - ROTATION_DEGREE_OFFSET;
-    NSNumber *test = [NSNumber numberWithFloat:fmodf([(Scene*)self.scene convertDegreesToScene:(CGFloat)deg], 360.0f)];
+    NSNumber *test = [NSNumber numberWithFloat:fmodf([(CBPlayerScene*)self.scene convertDegreesToScene:(CGFloat)deg], 360.0f)];
     NSLog(@"%f CB = %f IOS", degrees, [test floatValue]);
     return test;
 }

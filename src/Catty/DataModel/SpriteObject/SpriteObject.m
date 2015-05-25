@@ -25,7 +25,7 @@
 #import "WhenScript.h"
 #import "Look.h"
 #import "Sound.h"
-#import "Scene.h"
+#import "CBPlayerScene.h"
 #import "Util.h"
 #import "Brick.h"
 #import "SetLookBrick.h"
@@ -67,12 +67,12 @@
 
 - (CGPoint)position
 {
-    return [((Scene*)self.scene) convertSceneCoordinateToPoint:super.position];
+    return [((CBPlayerScene*)self.scene) convertSceneCoordinateToPoint:super.position];
 }
 
 - (void)setPosition:(CGPoint)position
 {
-    super.position = [((Scene*)self.scene) convertPointToScene:position];
+    super.position = [((CBPlayerScene*)self.scene) convertPointToScene:position];
 }
 
 - (void)setPositionForCropping:(CGPoint)position
@@ -153,7 +153,7 @@
 
 - (BOOL)touchedwith:(NSSet*)touches withX:(CGFloat)x andY:(CGFloat)y
 {
-    CBPlayerScheduler *scheduler = [CBPlayerScheduler sharedInstance];
+    CBPlayerScheduler *scheduler = ((CBPlayerScene*)self.scene).scheduler;
     if (! scheduler.running) {
         return NO;
     }

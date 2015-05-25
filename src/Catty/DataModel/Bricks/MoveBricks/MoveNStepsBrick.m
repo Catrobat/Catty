@@ -23,7 +23,7 @@
 #import "MoveNStepsBrick.h"
 #import "Formula.h"
 #import "Util.h"
-#import "Scene.h"
+#import "CBPlayerScene.h"
 #import "Script.h"
 
 @implementation MoveNStepsBrick

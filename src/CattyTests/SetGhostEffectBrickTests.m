@@ -46,10 +46,10 @@
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
-    
-    Scene* scene = [[Scene alloc] init];
+
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
     [scene addChild:object];
-    
+
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
@@ -74,10 +74,10 @@
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
-    
-    Scene* scene = [[Scene alloc] init];
+
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
     [scene addChild:object];
-    
+
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
@@ -103,10 +103,10 @@
     SpriteObject* object = [[SpriteObject alloc] init];
     object.position = CGPointMake(0, 0);
     object.alpha = 1.0f;
-    
-    Scene* scene = [[Scene alloc] init];
+
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
     [scene addChild:object];
-    
+
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
@@ -125,6 +125,5 @@
     
     XCTAssertEqual(object.alpha, 1.0f, @"ShowBrick is not correctly calculated");
 }
-
 
 @end

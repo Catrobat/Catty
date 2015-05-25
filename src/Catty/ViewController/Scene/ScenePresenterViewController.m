@@ -21,7 +21,7 @@
  */
 
 #import "ScenePresenterViewController.h"
-#import "Scene.h"
+#import "CBPlayerScene.h"
 #import "ProgramLoadingInfo.h"
 #import "Parser.h"
 #import "ProgramDefines.h"
@@ -48,8 +48,10 @@
 #import "FlashHelper.h"
 #import "CatrobatLanguageDefines.h"
 #import "BaseTableViewController.h"
+#import "LoggerDefines.h"
+#import "Pocket_Code-Swift.h"
 
-@interface ScenePresenterViewController ()<UIActionSheetDelegate>
+@interface ScenePresenterViewController() <UIActionSheetDelegate>
 @property (nonatomic) BOOL menuOpen;
 @property (nonatomic) CGPoint firstGestureTouchPoint;
 @property (nonatomic) UIImage *snapshotImage;
@@ -331,8 +333,21 @@
 
 - (void)setupScene
 {
-    CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
-    Scene *scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
+    CBLogger *schedulerLogger = [Swell getLogger:kCBLoggerPlayerSchedulerID];
+    CBLogger *frontendLogger = [Swell getLogger:kCBLoggerPlayerFrontendID];
+    CBLogger *backendLogger = [Swell getLogger:kCBLoggerPlayerBackendID];
+    CBPlayerFrontend *frontend = [[CBPlayerFrontend alloc] initWithLogger:frontendLogger program:self.program];
+    CBPlayerBackend *backend = [[CBPlayerBackend alloc] initWithLogger:backendLogger];
+    CBPlayerScheduler *scheduler = [[CBPlayerScheduler alloc] initWithLogger:schedulerLogger
+                                                                    frontend:frontend
+                                                                     backend:backend];
+    backend.scheduler = scheduler; // IMPORTANT: Don't forget to set scheduler in backend!
+    CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue,
+                                    self.program.header.screenHeight.floatValue);
+    CBPlayerScene *scene = [[CBPlayerScene alloc] initWithSize:programSize
+                                                     scheduler:scheduler
+                                                      frontend:frontend
+                                                       backend:backend];
     scene.name = self.program.header.programName;
     if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
         scene.scaleMode = SKSceneScaleModeFill;
@@ -362,8 +377,8 @@
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:self.skView];
         NSDebug(@"StartTouchinScenePresenter");
-        
-        Scene *scene = (Scene *)self.skView.scene;
+
+        CBPlayerScene *scene = (CBPlayerScene*)self.skView.scene;
         if ([scene touchedwith:touches withX:location.x andY:location.y]) {
             break;
         }
@@ -414,7 +429,7 @@
 {
     [self.loadingView show];
     self.menuView.userInteractionEnabled = NO;
-    Scene *previousScene = (Scene*)self.skView.scene;
+    CBPlayerScene *previousScene = (CBPlayerScene*)self.skView.scene;
     previousScene.userInteractionEnabled = NO;
     [previousScene stopProgram];
     [[FlashHelper sharedFlashHandler] pause];
@@ -429,7 +444,7 @@
 {
     [self.loadingView show];
     self.menuView.userInteractionEnabled = NO;
-    Scene *previousScene = (Scene*)self.skView.scene;
+    CBPlayerScene *previousScene = (CBPlayerScene*)self.skView.scene;
     previousScene.userInteractionEnabled = NO;
     [previousScene stopProgram];
     [[FlashHelper sharedFlashHandler] pause];
