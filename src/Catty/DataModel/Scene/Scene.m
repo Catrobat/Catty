@@ -73,7 +73,6 @@
     // init and prepare Scene
     CGFloat zPosition = 1.0f;
     [self removeAllChildren]; // just to ensure
-    [self.program setupBroadcastHandling];
     for (SpriteObject *spriteObject in self.program.objectList) {
         spriteObject.hidden = NO;
         for (Script *script in spriteObject.scriptList) {
@@ -100,6 +99,7 @@
 
     // compute all sequence lists
     CBPlayerFrontend *frontend = [CBPlayerFrontend new];
+    [frontend addSequenceFilter:[CBPlayerFilterRedundantBroadcastWaits new]];
     CBPlayerBackend *backend = [CBPlayerBackend new];
     for (SpriteObject *spriteObject in self.program.objectList) {
         for (Script *script in spriteObject.scriptList) {
@@ -126,11 +126,6 @@
     // NOTE: this for-in-loop MUST NOT be combined with previous for-in-loop because there could exist some
     //       Scripts in SpriteObjects that contain pointToBricks to other (!) SpriteObjects
     for (SpriteObject *spriteObject in self.program.objectList) {
-        for (Script *script in spriteObject.scriptList) {
-            if ([script inParentHierarchy:spriteObject]) {
-                [script removeFromParent]; // just to ensure
-            }
-        }
         if ([spriteObject inParentHierarchy:self]) {
             [spriteObject removeFromParent];
         }
