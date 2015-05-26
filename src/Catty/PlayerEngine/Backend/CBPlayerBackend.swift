@@ -37,14 +37,16 @@ final class CBPlayerBackend : NSObject {
     }
 
     // MARK: - Operations
-    func executionContextForScriptSequenceList(scriptSequenceList : CBScriptSequenceList) -> CBScriptExecContext {
+    func executionContextForScriptSequenceList(scriptSequenceList: CBScriptSequenceList,
+        spriteNode: CBSpriteNode) -> CBScriptExecContext
+    {
         if scheduler == nil {
             logger.warn("No scheduler set!")
         }
         logger.info("Generating ExecContext of \(scriptSequenceList.script)")
         var instructionList = _instructionListForSequenceList(scriptSequenceList.sequenceList)
-        return CBScriptExecContext(script: scriptSequenceList.script, scriptSequenceList: scriptSequenceList,
-            instructionList: instructionList)
+        return CBScriptExecContext(script: scriptSequenceList.script,
+            scriptSequenceList: scriptSequenceList, instructionList: instructionList)
     }
 
     private func _instructionListForSequenceList(sequenceList: CBSequenceList) -> [CBExecClosure] {

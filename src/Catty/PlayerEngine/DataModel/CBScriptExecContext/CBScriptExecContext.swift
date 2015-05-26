@@ -25,11 +25,11 @@ typealias CBExecClosure = dispatch_block_t
 @objc final class CBScriptExecContext : SKNode {
 
     // MARK: - Properties
-    let script : Script
+    let script: Script
     private lazy var _instructionList = [CBExecClosure]()
-    private var _scriptSequenceList : CBScriptSequenceList?
+    private var _scriptSequenceList: CBScriptSequenceList?
     private(set) var reverseInstructionPointer = 0
-    var count : Int { return _instructionList.count }
+    var count: Int { return _instructionList.count }
 
     // MARK: - Initializers
     convenience init(script: Script, scriptSequenceList: CBScriptSequenceList) {

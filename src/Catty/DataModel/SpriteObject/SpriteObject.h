@@ -29,56 +29,23 @@
 @class Script;
 @class Look;
 @class Sound;
+@class CBSpriteNode;
 
-@protocol SpriteFormulaProtocol
+@interface SpriteObject : NSObject <CBMutableCopying>
 
-- (CGFloat) xPosition;
-- (CGFloat) yPosition;
-- (CGFloat) zIndex;
-- (CGFloat) alpha;
-- (CGFloat) brightness;
-- (CGFloat) scaleX;
-- (CGFloat) scaleY;
-- (CGFloat) rotation;
-
-@end
-
-
-@interface SpriteObject : SKSpriteNode <SpriteFormulaProtocol, CBMutableCopying>
-
-@property (assign, nonatomic) CGSize originalSize;
-
+@property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSMutableArray *lookList;
-
 @property (nonatomic, strong) NSMutableArray *soundList;
-
 @property (nonatomic, strong) NSMutableArray *scriptList;
-
-@property (nonatomic, strong) Look *currentLook;
-
-@property (strong, nonatomic) UIImage *currentUIImageLook;
-
-@property (nonatomic) CGFloat currentLookBrightness;
-
 @property (nonatomic, weak) Program *program;
+@property (nonatomic, weak) CBSpriteNode *spriteNode;
 
 - (NSUInteger)numberOfScripts;
-
 - (NSUInteger)numberOfTotalBricks; // including script bricks
-
 - (NSUInteger)numberOfNormalBricks; // excluding script bricks
-
 - (NSUInteger)numberOfLooks;
-
 - (NSUInteger)numberOfSounds;
-
 - (BOOL)isBackground;
-
-// events
-- (void)start:(CGFloat)zPosition;
-
-- (Look*)nextLook;
-- (BOOL)touchedwith:(NSSet*)touches withX:(CGFloat)x andY:(CGFloat)y;
 
 // helpers
 - (NSString*)projectPath; //for image-path!!!
@@ -94,11 +61,8 @@
 - (NSArray*)allSoundNames;
 - (NSUInteger)referenceCountForLook:(NSString*)fileName;
 - (NSUInteger)referenceCountForSound:(NSString*)fileName;
-- (void)setRotation:(CGFloat)rotationInDegrees;
 
 // actions
-- (void)changeLook:(Look*)look;
-- (void)setLook;
 - (void)addLook:(Look*)look AndSaveToDisk:(BOOL)save;
 - (void)removeFromProgram;
 - (void)removeLooks:(NSArray*)looks AndSaveToDisk:(BOOL)save;

@@ -168,9 +168,9 @@ final class CBPlayerScheduler : NSObject {
             logger.info("    STARTING: \(script)")
             logger.info("-------------------------------------------------------------")
 
-            if scriptExecContext.inParentHierarchy(scriptExecContext.script.object) == false {
+            if scriptExecContext.inParentHierarchy(scriptExecContext.script.object.spriteNode) == false {
                 //            NSLog(@" + Adding this node to object");
-                scriptExecContext.script.object.addChild(scriptExecContext)
+                scriptExecContext.script.object.spriteNode.addChild(scriptExecContext)
             }
             _resetScript(script)
 
@@ -207,7 +207,7 @@ final class CBPlayerScheduler : NSObject {
             if removeReferences {
                 scriptExecContext.removeReferences()
             }
-            if scriptExecContext.inParentHierarchy(script.object) {
+            if scriptExecContext.inParentHierarchy(scriptExecContext.script.object.spriteNode) {
                 scriptExecContext.removeFromParent()
             }
             scriptExecContext.removeAllActions()
@@ -228,7 +228,7 @@ final class CBPlayerScheduler : NSObject {
         for (script, scriptExecContext) in scriptExecContextDict {
             logger.info("!!! STOPPING: \(script)")
             logger.info("-------------------------------------------------------------")
-            if scriptExecContext.inParentHierarchy(script.object) {
+            if scriptExecContext.inParentHierarchy(scriptExecContext.script.object.spriteNode) {
                 scriptExecContext.removeFromParent()
             }
             scriptExecContext.removeReferences()
@@ -280,8 +280,14 @@ final class CBPlayerScheduler : NSObject {
                 if isScriptRunning(broadcastScript) == false {
                     // case broadcastScript is not running
                     let sequenceList = _frontend.computeSequenceListForScript(broadcastScript)
-                    addScriptExecContext(_backend.executionContextForScriptSequenceList(sequenceList))
-                    startScript(broadcastScript)
+                    if let senderScriptExecContext = scriptExecContextDict[senderScript] {
+                        if let scene = senderScriptExecContext.scene {
+                            if let spriteNode = CBSpriteNode.spriteNodeWithName(broadcastScript.object.name, inScene: scene) {
+                                addScriptExecContext(_backend.executionContextForScriptSequenceList(sequenceList, spriteNode: spriteNode))
+                                startScript(broadcastScript)
+                            }
+                        }
+                    }
                 } else {
                     // case broadcastScript is running
                     if broadcastScript.calledByOtherScriptBroadcastWait {

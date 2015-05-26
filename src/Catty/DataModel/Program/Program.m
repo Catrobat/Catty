@@ -164,7 +164,7 @@
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     //object.originalSize;
-    object.currentLook = nil;
+    object.spriteNode.currentLook = nil;
 
     object.name = [Util uniqueName:objectName existingNames:[self allObjectNames]];
     object.program = self;

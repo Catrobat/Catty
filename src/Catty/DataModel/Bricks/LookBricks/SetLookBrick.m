@@ -26,6 +26,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation SetLookBrick
 
@@ -45,31 +46,31 @@
     SKTexture* texture = nil;
     if ([self.script.object isBackground]) {
         texture = [SKTexture textureWithImage:image];
-        self.script.object.currentUIImageLook = image;
+        self.script.object.spriteNode.currentUIImageLook = image;
     } else {
         //        CGRect newRect = [image cropRectForImage:image];
         //        CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
         //        UIImage *newImage = [UIImage imageWithCGImage:imageRef];
         //        CGImageRelease(imageRef);
         texture = [SKTexture textureWithImage:image];
-        self.script.object.currentUIImageLook = image;
+        self.script.object.spriteNode.currentUIImageLook = image;
     }
-    self.script.object.currentLookBrightness = 0;
+    self.script.object.spriteNode.currentLookBrightness = 0;
     return ^{
         NSDebug(@"Performing: %@", self.description);
         if(image && texture) {
-            double xScale = self.script.object.xScale;
-            double yScale = self.script.object.yScale;
-            self.script.object.xScale = 1.0;
-            self.script.object.yScale = 1.0;
-            self.script.object.size = texture.size;
-            self.script.object.texture = texture;
-            self.script.object.currentLook = self.look;
+            double xScale = self.script.object.spriteNode.xScale;
+            double yScale = self.script.object.spriteNode.yScale;
+            self.script.object.spriteNode.xScale = 1.0;
+            self.script.object.spriteNode.yScale = 1.0;
+            self.script.object.spriteNode.size = texture.size;
+            self.script.object.spriteNode.texture = texture;
+            self.script.object.spriteNode.currentLook = self.look;
             if(xScale != 1.0) {
-                self.script.object.xScale = (CGFloat)xScale;
+                self.script.object.spriteNode.xScale = (CGFloat)xScale;
             }
             if(yScale != 1.0) {
-                self.script.object.yScale = (CGFloat)yScale;
+                self.script.object.spriteNode.yScale = (CGFloat)yScale;
             }
         }
     };

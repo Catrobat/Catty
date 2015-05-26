@@ -23,6 +23,7 @@
 #import "Changesizebynbrick.h"
 #import "Formula.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation ChangeSizeByNBrick
 
@@ -56,11 +57,11 @@
     return ^{
         NSDebug(@"Performing: %@", self.description);
         double sizeInPercent = [self.size interpretDoubleForSprite:self.script.object];
-        [self.script.object setXScale:(CGFloat)(self.script.object.xScale + sizeInPercent/100.0)];
-        [self.script.object setYScale:(CGFloat)(self.script.object.yScale + sizeInPercent/100.0)];
+        [self.script.object.spriteNode setXScale:(CGFloat)(self.script.object.spriteNode.xScale + sizeInPercent/100.0)];
+        [self.script.object.spriteNode setYScale:(CGFloat)(self.script.object.spriteNode.yScale + sizeInPercent/100.0)];
         //for touch issue
-        CGImageRef image = [self.script.object.currentUIImageLook CGImage];
-        self.script.object.currentUIImageLook = [UIImage imageWithCGImage:image scale:(CGFloat)(self.script.object.xScale + 1.0f/(sizeInPercent/100.0f)) orientation:UIImageOrientationUp];
+        CGImageRef image = [self.script.object.spriteNode.currentUIImageLook CGImage];
+        self.script.object.spriteNode.currentUIImageLook = [UIImage imageWithCGImage:image scale:(CGFloat)(self.script.object.spriteNode.xScale + 1.0f/(sizeInPercent/100.0f)) orientation:UIImageOrientationUp];
     };
 
 }

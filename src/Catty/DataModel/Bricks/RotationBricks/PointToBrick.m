@@ -22,8 +22,8 @@
 
 #import "PointToBrick.h"
 #import "Util.h"
-#import "CBPlayerScene.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation PointToBrick
 
@@ -49,8 +49,8 @@
 - (dispatch_block_t)actionBlock
 {
     return ^{
-        CGPoint objectPosition = [self.script.object position];
-        CGPoint pointedObjectPosition = [self.pointedObject position];
+        CGPoint objectPosition = [self.script.object.spriteNode position];
+        CGPoint pointedObjectPosition = [self.pointedObject.spriteNode position];
         
         double rotationDegrees = 0;
         
@@ -89,10 +89,10 @@
             
         }
 
-        NSDebug(@"Performing: %@, Degreees: (%f), Pointed Object: Position: %@", self.description, rotationDegrees, NSStringFromCGPoint(self.pointedObject.position));
+        NSDebug(@"Performing: %@, Degreees: (%f), Pointed Object: Position: %@", self.description, rotationDegrees, NSStringFromCGPoint(self.pointedObject.spriteNode.scenePosition));
 
-        rotationDegrees = [((CBPlayerScene*)self.script.object.scene) convertDegreesToScene:(CGFloat)rotationDegrees] + kRotationDegreeOffset;
-        [self.script.object setRotation:rotationDegrees];
+        rotationDegrees = [((CBPlayerScene*)self.script.object.spriteNode.scene) convertDegreesToScene:(CGFloat)rotationDegrees] + kRotationDegreeOffset;
+        [self.script.object.spriteNode setRotation:rotationDegrees];
     };
 }
 

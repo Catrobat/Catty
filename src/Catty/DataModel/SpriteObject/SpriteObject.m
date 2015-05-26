@@ -25,12 +25,10 @@
 #import "WhenScript.h"
 #import "Look.h"
 #import "Sound.h"
-#import "CBPlayerScene.h"
 #import "Util.h"
 #import "Brick.h"
 #import "SetLookBrick.h"
 #import "FileManager.h"
-#import "UIImage+CatrobatUIImageExtensions.h"
 #import "UIDefines.h"
 #import "AudioManager.h"
 #import "AppDelegate.h"
@@ -65,21 +63,6 @@
     return _scriptList;
 }
 
-- (CGPoint)position
-{
-    return [((CBPlayerScene*)self.scene) convertSceneCoordinateToPoint:super.position];
-}
-
-- (void)setPosition:(CGPoint)position
-{
-    super.position = [((CBPlayerScene*)self.scene) convertPointToScene:position];
-}
-
-- (void)setPositionForCropping:(CGPoint)position
-{
-    super.position = position;
-}
-
 - (NSUInteger)numberOfScripts
 {
     return [self.scriptList count];
@@ -109,7 +92,7 @@
     return [self.soundList count];
 }
 
-- (NSString *)projectPath
+- (NSString*)projectPath
 {
   return [self.program projectPath];
 }
@@ -137,73 +120,6 @@
     if (self.program && [self.program.objectList count])
         return ([self.program.objectList objectAtIndex:0] == self);
     return NO;
-}
-
-- (void)start:(CGFloat)zPosition
-{
-    self.position = CGPointMake(0, 0);
-    self.zRotation = 0;
-    self.currentLookBrightness = 0;
-    if ([self isBackground]){
-        self.zPosition = 0;
-    } else {
-        self.zPosition = zPosition;
-    }
-}
-
-- (BOOL)touchedwith:(NSSet*)touches withX:(CGFloat)x andY:(CGFloat)y
-{
-    CBPlayerScheduler *scheduler = ((CBPlayerScene*)self.scene).scheduler;
-    if (! scheduler.running) {
-        return NO;
-    }
-
-    CBPlayerFrontend *frontend = ((CBPlayerScene*)self.scene).frontend;
-    CBPlayerBackend *backend = ((CBPlayerScene*)self.scene).backend;
-    for (UITouch *touch in touches) {
-        CGPoint touchedPoint = [touch locationInNode:self];
-        NSDebug(@"x:%f,y:%f", touchedPoint.x, touchedPoint.y);
-         //NSDebug(@"test touch, %@",self.name);
-//        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [UIScreen mainScreen].scale);
-//        [self.scene.view drawViewHierarchyInRect:self.frame afterScreenUpdates:NO];
-//        UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
-//        UIGraphicsEndImageContext();
-        NSDebug(@"image : x:%f,y:%f", self.currentUIImageLook.size.width, self.currentUIImageLook.size.height);
-        BOOL isTransparent = [self.currentUIImageLook isTransparentPixel:self.currentUIImageLook withX:touchedPoint.x andY:touchedPoint.y];
-        if (isTransparent) {
-            NSDebug(@"I'm transparent at this point");
-            return NO;
-        }
-        for (Script *script in self.scriptList) {
-            if ([script isKindOfClass:[WhenScript class]]) {
-                if (! [scheduler isScriptRunning:script]) {
-                    CBScriptSequenceList *sequenceList = [frontend computeSequenceListForScript:script];
-                    CBScriptExecContext *scriptExecContext = [backend executionContextForScriptSequenceList:sequenceList];
-                    [scheduler addScriptExecContext:scriptExecContext];
-                    [scheduler startScript:script];
-                } else {
-                    [scheduler restartScript:script];
-//                    Script *copiedScript = (Script*)[script mutableCopyWithContext:[CBMutableCopyContext new]];
-//                    copiedScript.object = script.object;
-//                    CBScriptSequenceList *sequenceList = [frontend computeSequenceListForScript:copiedScript];
-//                    CBScriptExecContext *scriptExecContext = [backend executionContextForScriptSequenceList:sequenceList];
-//                    [scheduler addScriptExecContext:scriptExecContext];
-//                    [scheduler startScript:copiedScript];
-//                    // TODO: without copying... (problem: loopCounter...)
-                }
-            }
-        }
-        return YES;
-    }
-    return YES;
-}
-
-- (Look*)nextLook
-{
-    NSInteger index = [self.lookList indexOfObject:self.currentLook];
-    ++index;
-    index %= [self.lookList count];
-    return [self.lookList objectAtIndex:index];
 }
 
 - (NSString*)pathForLook:(Look*)look
@@ -278,57 +194,6 @@
     return;
 }
 
-- (void)changeLook:(Look *)look
-{
-    UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
-    SKTexture* texture = nil;
-    if ([self isBackground]) {
-        texture = [SKTexture textureWithImage:image];
-        self.currentUIImageLook = image;
-    } else {
-// We do not need cropping if touch through transparent pixel is possible!!!!
-        
-//        CGRect newRect = [image cropRectForImage:image];
-        
-//        if ((newRect.size.height <= image.size.height - 50 && newRect.size.height <= image.size.height - 50)) {
-//            CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
-//            UIImage *newImage = [UIImage imageWithCGImage:imageRef];
-////            NSLog(@"%f,%f,%f,%f",newRect.origin.x,newRect.origin.y,newRect.size.width,newRect.size.height);
-//            [self setPositionForCropping:CGPointMake(newRect.origin.x+newRect.size.width/2,self.scene.size.height-newRect.origin.y-newRect.size.height/2)];
-//            CGImageRelease(imageRef);
-//            texture = [SKTexture textureWithImage:newImage];
-//            self.currentUIImageLook = newImage;
-//        }
-//        else{
-            texture = [SKTexture textureWithImage:image];
-            self.currentUIImageLook = image;
-//        }
-    }
-
-    double xScale = self.xScale;
-    double yScale = self.yScale;
-    self.xScale = 1.0;
-    self.yScale = 1.0;
-    self.size = texture.size;
-    self.texture = texture;
-    self.currentLook = look;
-
-    if (xScale != 1.0) {
-        self.xScale = (CGFloat)xScale;
-    }
-    if (yScale != 1.0) {
-        self.yScale = (CGFloat)yScale;
-    }
-
-}
-
-- (void)setLook
-{
-    if (self.lookList.count > 0) {
-        [self changeLook:[self.lookList objectAtIndex:0]];
-    }
-}
-
 - (void)removeFromProgram
 {
     CBAssert(self.program);
@@ -400,7 +265,7 @@
             ++index;
             continue;
         }
-        
+
         // count references in all object of that sound file
         NSUInteger soundReferenceCounter = [self referenceCountForSound:sound.fileName];
         // if sound is not used by other objects, delete it
@@ -558,53 +423,6 @@
     return YES;
 }
 
-#pragma mark - Formula Protocol
-- (CGFloat)xPosition
-{
-    return self.position.x;
-}
-
-- (CGFloat)yPosition
-{
-    return self.position.y;
-}
-
-- (CGFloat)rotation
-{
-    CGFloat rotation = fmodf([Util radiansToDegree:self.zRotation], 360.0f);
-    if(rotation < 0.0f)
-        rotation += 360.0f;
-    return rotation;
-}
-
-- (void)setRotation:(CGFloat)rotationInDegrees
-{
-    rotationInDegrees = fmodf(rotationInDegrees, 360.0f);
-    if(rotationInDegrees < 0.0f)
-        rotationInDegrees += 360.0f;
-    self.zRotation = [Util degreeToRadians:rotationInDegrees];
-}
-
-- (CGFloat) zIndex
-{
-    return [self zPosition];
-}
-
-- (CGFloat) brightness
-{
-    return 100 * self.currentLookBrightness;
-}
-
-- (CGFloat) scaleX
-{
-    return [self xScale]*100;
-}
-
-- (CGFloat) scaleY
-{
-    return [self yScale]*100;
-}
-
 #pragma mark - Copy
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
 {
@@ -613,8 +431,6 @@
     SpriteObject *newObject = [[SpriteObject alloc] init];
     newObject.name = [NSString stringWithString:self.name];
     newObject.program = self.program;
-    newObject.currentLook = nil;
-    newObject.currentUIImageLook = nil;
     [context updateReference:self WithReference:newObject];
 
     // deep copy
