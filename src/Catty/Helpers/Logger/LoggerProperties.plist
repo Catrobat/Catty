@@ -20,6 +20,8 @@
 	<string>warn</string>
 	<key>ScenePresenterViewController</key>
 	<string>warn</string>
+	<key>CBPlayerScene</key>
+	<string>warn</string>
 	<key>PointInDirectionBrick</key>
 	<string>warn</string>
 	<key>IfLogicBeginBrick</key>

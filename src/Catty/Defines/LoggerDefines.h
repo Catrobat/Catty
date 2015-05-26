@@ -28,6 +28,7 @@
 //                                             RELEASE MODE
 //
 //============================================================================================================
+#define kCBLoggerPlayerSceneID @"CBPlayerSceneLogger.Release"
 #define kCBLoggerPlayerSchedulerID @"CBPlayerSchedulerLogger.Release"
 #define kCBLoggerPlayerFrontendID @"CBPlayerFrontendLogger.Release"
 #define kCBLoggerPlayerBackendID @"CBPlayerBackendLogger.Release"
@@ -40,6 +41,7 @@
 //
 //============================================================================================================
 
+#define kCBLoggerPlayerSceneID @"CBPlayerSceneLogger.Debug"
 #define kCBLoggerPlayerSchedulerID @"CBPlayerSchedulerLogger.Debug"
 #define kCBLoggerPlayerFrontendID @"CBPlayerFrontendLogger.Debug"
 #define kCBLoggerPlayerBackendID @"CBPlayerBackendLogger.Debug"
@@ -55,6 +57,7 @@
 //============================================================================================================
 
 // Test logger names configured in Swell.plist
+#define kCBTestLoggerPlayerSceneID @"CBPlayerSceneLogger.test"
 #define kCBTestLoggerPlayerSchedulerID @"CBPlayerSchedulerLogger.Test"
 #define kCBTestLoggerPlayerFrontendID @"CBPlayerFrontendLogger.Test"
 #define kCBTestLoggerPlayerBackendID @"CBPlayerBackendLogger.Test"

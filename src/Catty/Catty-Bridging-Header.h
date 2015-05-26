@@ -24,10 +24,18 @@
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
 
+//------------------------------------------------------------------------------------------------------------
+// Data model classes
+//------------------------------------------------------------------------------------------------------------
+
+// Scripts
+#import "StartScript.h"
+#import "WhenScript.h"
+#import "BroadcastScript.h"
+
+// Bricks
 #import "Brick.h"
 #import "BrickConditionalBranchProtocol.h"
-#import "Script.h"
-
 #import "IfLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
@@ -36,6 +44,20 @@
 #import "NoteBrick.h"
 #import "BroadcastBrick.h"
 #import "BroadcastWaitBrick.h"
+#import "HideBrick.h"
 
-#import "BroadcastScript.h"
+// Assets
+#import "Look.h"
+
+//------------------------------------------------------------------------------------------------------------
+// Extension classes
+//------------------------------------------------------------------------------------------------------------
+
 #import "NSString+CatrobatNSStringExtensions.h"
+#import "UIImage+CatrobatUIImageExtensions.h"
+
+//------------------------------------------------------------------------------------------------------------
+// Util classes
+//------------------------------------------------------------------------------------------------------------
+
+#import "Util.h"

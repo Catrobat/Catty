@@ -10,6 +10,17 @@
 	<string>debug</string>
 	<key>SWLLocationFilename</key>
 	<string>Catty.log</string>
+	<key>CBPlayerSceneLogger.Release</key>
+	<dict>
+		<key>SWLLevel</key>
+		<string>warn</string>
+		<key>SWLLocation</key>
+		<string>file</string>
+		<key>SWLLocationFilename</key>
+		<string>PlayerEngine-Scene.Release.log</string>
+		<key>SWLQuickFormat</key>
+		<string>NameMessage</string>
+	</dict>
 	<key>CBPlayerSchedulerLogger.Release</key>
 	<dict>
 		<key>SWLLevel</key>
@@ -43,10 +54,21 @@
 		<key>SWLQuickFormat</key>
 		<string>DateNameMessage</string>
 	</dict>
+	<key>CBPlayerSceneLogger.Debug</key>
+	<dict>
+		<key>SWLLevel</key>
+		<string>warn</string>
+		<key>SWLLocation</key>
+		<string>console</string>
+		<key>SWLLocationFilename</key>
+		<string>PlayerEngine-Scene.Debug.log</string>
+		<key>SWLQuickFormat</key>
+		<string>NameMessage</string>
+	</dict>
 	<key>CBPlayerSchedulerLogger.Debug</key>
 	<dict>
 		<key>SWLLevel</key>
-		<string>debug</string>
+		<string>warn</string>
 		<key>SWLLocation</key>
 		<string>console</string>
 		<key>SWLLocationFilename</key>
@@ -68,11 +90,22 @@
 	<key>CBPlayerBackendLogger.Debug</key>
 	<dict>
 		<key>SWLLevel</key>
-		<string>debug</string>
+		<string>warn</string>
 		<key>SWLLocation</key>
 		<string>console</string>
 		<key>SWLLocationFilename</key>
 		<string>PlayerEngine-Backend.Debug.log</string>
+		<key>SWLQuickFormat</key>
+		<string>DateNameMessage</string>
+	</dict>
+	<key>CBPlayerSceneLogger.Test</key>
+	<dict>
+		<key>SWLLevel</key>
+		<string>debug</string>
+		<key>SWLLocation</key>
+		<string>console file</string>
+		<key>SWLLocationFilename</key>
+		<string>PlayerEngine-Scene.Test.log</string>
 		<key>SWLQuickFormat</key>
 		<string>DateNameMessage</string>
 	</dict>

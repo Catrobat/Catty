@@ -21,7 +21,6 @@
  */
 
 #import "ScenePresenterViewController.h"
-#import "CBPlayerScene.h"
 #import "ProgramLoadingInfo.h"
 #import "Parser.h"
 #import "ProgramDefines.h"
@@ -333,6 +332,7 @@
 
 - (void)setupScene
 {
+    CBLogger *sceneLogger = [Swell getLogger:kCBLoggerPlayerSceneID];
     CBLogger *schedulerLogger = [Swell getLogger:kCBLoggerPlayerSchedulerID];
     CBLogger *frontendLogger = [Swell getLogger:kCBLoggerPlayerFrontendID];
     CBLogger *backendLogger = [Swell getLogger:kCBLoggerPlayerBackendID];
@@ -346,6 +346,7 @@
     CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue,
                                     self.program.header.screenHeight.floatValue);
     CBPlayerScene *scene = [[CBPlayerScene alloc] initWithSize:programSize
+                                                        logger:sceneLogger
                                                      scheduler:scheduler
                                                       frontend:frontend
                                                        backend:backend];
@@ -380,7 +381,7 @@
         NSDebug(@"StartTouchinScenePresenter");
 
         CBPlayerScene *scene = (CBPlayerScene*)self.skView.scene;
-        if ([scene touchedwith:touches withX:location.x andY:location.y]) {
+        if ([scene touchedWithTouches:touches withX:location.x andY:location.y]) {
             break;
         }
     }
@@ -433,6 +434,7 @@
     CBPlayerScene *previousScene = (CBPlayerScene*)self.skView.scene;
     previousScene.userInteractionEnabled = NO;
     [previousScene stopProgram];
+    [[AudioManager sharedAudioManager] stopAllSounds];
     [[FlashHelper sharedFlashHandler] pause];
     previousScene.userInteractionEnabled = YES;
     [self.loadingView hide];
