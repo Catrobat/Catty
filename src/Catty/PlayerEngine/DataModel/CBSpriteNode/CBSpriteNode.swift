@@ -197,13 +197,6 @@
                             }
                         } else {
                             scheduler?.restartScript(whenScript)
-                            //                    Script *copiedScript = (Script*)[script mutableCopyWithContext:[CBMutableCopyContext new]];
-                            //                    copiedScript.object = script.object;
-                            //                    CBScriptSequenceList *sequenceList = [frontend computeSequenceListForScript:copiedScript];
-                            //                    CBScriptExecContext *scriptExecContext = [backend executionContextForScriptSequenceList:sequenceList];
-                            //                    [scheduler addScriptExecContext:scriptExecContext];
-                            //                    [scheduler startScript:copiedScript];
-                            //                    // TODO: without copying... (problem: loopCounter...)
                         }
                     }
                 }

@@ -105,6 +105,7 @@ final class CBPlayerScheduler : NSObject {
         if var broadcastScripts = _registeredBroadcastScripts[message] {
             assert(contains(broadcastScripts, broadcastScript) == false, "FATAL: BroadcastScript already registered!")
             broadcastScripts += broadcastScript
+            _registeredBroadcastScripts[message] = broadcastScripts
         } else {
             _registeredBroadcastScripts[message] = [broadcastScript]
         }
@@ -195,8 +196,10 @@ final class CBPlayerScheduler : NSObject {
         assert(running) // make sure that player is running!
         if let scriptExecContext = scriptExecContextDict[script] {
             stopScript(script, removeReferences:false)
-            scriptExecContext.reset()
-            addScriptExecContext(scriptExecContext)
+            //            scriptExecContext.reset()
+            let sequenceList = _frontend.computeSequenceListForScript(script)
+            let newScriptExecContext = _backend.executionContextForScriptSequenceList(sequenceList, spriteNode: script.object.spriteNode)
+            addScriptExecContext(newScriptExecContext)
             startScript(script)
         } else {
 //            let sequenceList = _frontend.computeSequenceListForScript(script)
@@ -296,6 +299,7 @@ final class CBPlayerScheduler : NSObject {
                         }
                     }
                 } else {
+                    // FIXME: START ANOTHER BROADCAST SCRIPT INSTANCE!!
                     // case broadcastScript is running
                     if broadcastScript.calledByOtherScriptBroadcastWait {
                         broadcastScript.signalForWaitingBroadcasts() // signal finished broadcast!

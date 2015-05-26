@@ -44,6 +44,12 @@
 	<string>warn</string>
 	<key>SetYBrick</key>
 	<string>warn</string>
+	<key>TurnRightBrick</key>
+	<string>warn</string>
+	<key>TurnLeftBrick</key>
+	<string>warn</string>
+	<key>SetSizeToBrick</key>
+	<string>warn</string>
 	<key>ShowBrick</key>
 	<string>warn</string>
 	<key>HideBrick</key>
