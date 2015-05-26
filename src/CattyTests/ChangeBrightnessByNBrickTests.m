@@ -24,8 +24,7 @@
 #import "BrickTests.h"
 #import "WhenScript.h"
 
-@interface ChangeBrightnessByNBrickTests  : BrickTests
-
+@interface ChangeBrightnessByNBrickTests : BrickTests
 @end
 
 @implementation ChangeBrightnessByNBrickTests
@@ -74,7 +73,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy([object brightness], 200.0f,0.1f, @"ChangeBrightnessBrick - Brightness not correct");
+    XCTAssertEqualWithAccuracy([object.spriteNode brightness], 200.0f,0.1f, @"ChangeBrightnessBrick - Brightness not correct");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -146,7 +145,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy([object brightness], 50.0f,0.1f, @"ChangeBrightnessBrick - Brightness not correct");
+    XCTAssertEqualWithAccuracy([object.spriteNode brightness], 50.0f,0.1f, @"ChangeBrightnessBrick - Brightness not correct");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
