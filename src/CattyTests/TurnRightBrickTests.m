@@ -23,9 +23,9 @@
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
 #import "WhenScript.h"
+#import "Pocket_Code-Swift.h"
 
 @interface TurnRightBrickTests : BrickTests
-
 @end
 
 @implementation TurnRightBrickTests
@@ -45,7 +45,9 @@
 - (void)testTurnrightBrick
 {
     SpriteObject *object = [[SpriteObject alloc] init];
-    object.zRotation = 0;
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
+    spriteNode.zRotation = 0;
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -62,14 +64,16 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    NSLog(@"Rotation: %f",[object rotation]);
-    XCTAssertEqualWithAccuracy([object rotation], 360.0f + (-20.0f), 0.0001, @"TurnRightBrick not correct");
+    NSLog(@"Rotation: %f", spriteNode.rotation);
+    XCTAssertEqualWithAccuracy(spriteNode.rotation, 360.0f + (-20.0f), 0.0001, @"TurnRightBrick not correct");
 }
 
 - (void)testTurnrightBrickOver360
 {
     SpriteObject *object = [[SpriteObject alloc] init];
-    object.zRotation = 0;
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
+    spriteNode.zRotation = 0;
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -86,14 +90,16 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    NSLog(@"Rotation: %f",[object rotation]);
-    XCTAssertEqualWithAccuracy([object rotation], 360.0f + (-40.0f), 0.0001, @"TurnRightBrick not correct");
+    NSLog(@"Rotation: %f", spriteNode.rotation);
+    XCTAssertEqualWithAccuracy(spriteNode.rotation, 360.0f + (-40.0f), 0.0001, @"TurnRightBrick not correct");
 }
 
 - (void)testTurnrightBrickNegative
 {
     SpriteObject *object = [[SpriteObject alloc] init];
-    object.zRotation = 0;
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
+    spriteNode.zRotation = 0;
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -110,14 +116,16 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    NSLog(@"Rotation: %f",[object rotation]);
-    XCTAssertEqualWithAccuracy([object rotation], 20.0f, 0.0001, @"TurnRightBrick not correct");
+    NSLog(@"Rotation: %f", spriteNode.rotation);
+    XCTAssertEqualWithAccuracy(spriteNode.rotation, 20.0f, 0.0001, @"TurnRightBrick not correct");
 }
 
 - (void)testTurnrightBrickNegativeOver360
 {
     SpriteObject *object = [[SpriteObject alloc] init];
-    object.zRotation = 0;
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
+    spriteNode.zRotation = 0;
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -134,14 +142,16 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    NSLog(@"Rotation: %f",[object rotation]);
-    XCTAssertEqualWithAccuracy([object rotation], 40.0f, 0.0001, @"TurnRightBrick not correct");
+    NSLog(@"Rotation: %f", spriteNode.rotation);
+    XCTAssertEqualWithAccuracy(spriteNode.rotation, 40.0f, 0.0001, @"TurnRightBrick not correct");
 }
 
 - (void)testTurnrightBrickWrongInput
 {
     SpriteObject *object = [[SpriteObject alloc] init];
-    object.zRotation = 0;
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
+    spriteNode.zRotation = 0;
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -158,8 +168,8 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    NSLog(@"Rotation: %f",[object rotation]);
-    XCTAssertEqualWithAccuracy([object rotation], 0.0, 0.0001, @"TurnRightBrick not correct");
+    NSLog(@"Rotation: %f", spriteNode.rotation);
+    XCTAssertEqualWithAccuracy(spriteNode.rotation, 0.0, 0.0001, @"TurnRightBrick not correct");
 }
 
 @end

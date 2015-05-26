@@ -25,6 +25,7 @@
 #import "Script.h"
 #import "WhenScript.h"
 #import "IfOnEdgeBounceBrick.h"
+#import "Pocket_Code-Swift.h"
 
 @interface IfOnEdgeBounceBrickTests : BrickTests
 
@@ -54,18 +55,21 @@
 - (void)setUp
 {
     [super setUp];
-    self.spriteObject = [[SpriteObject alloc] initWithColor:[UIColor blackColor] size:CGSizeMake(OBJECT_WIDTH, OBJECT_HEIGHT)];
-    self.spriteObject.position = CGPointMake(0, 0);
+    self.scene = [[CBPlayerScene alloc] initWithSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
+    self.spriteObject = [[SpriteObject alloc] init];
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:self.spriteObject];
+    [self.scene addChild:spriteNode];
+    spriteNode.color = [UIColor blackColor];
+    spriteNode.size = CGSizeMake(OBJECT_WIDTH, OBJECT_HEIGHT);
+    self.spriteObject.spriteNode = spriteNode;
+    spriteNode.scenePosition = CGPointMake(0, 0);
     self.spriteObject.name = @"Test";
-    
+
     self.script = [[WhenScript alloc] init];
     self.script.object = self.spriteObject;
-    
+
     self.brick = [[IfOnEdgeBounceBrick alloc] init];
     self.brick.script = self.script;
-
-    self.scene = [[CBPlayerScene alloc] initWithSize:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
-    [self.scene addChild:self.spriteObject];
 }
 
 - (void)tearDown
@@ -117,7 +121,7 @@
                            @[[self convertCBToSKDegrees:0], [self convertCBToSKDegrees:0]],
                            @[[self convertCBToSKDegrees:30], [self convertCBToSKDegrees:30]],
                            @[[self convertCBToSKDegrees:60], [self convertCBToSKDegrees:60]]];
-    
+
     for (NSArray *rotation in rotations) {
         NSNumber *rotationBefore = rotation[0];
         NSNumber *rotationAfter = rotation[1];
@@ -140,7 +144,7 @@
                            @[[self convertCBToSKDegrees:0], [self convertCBToSKDegrees:0]],
                            @[[self convertCBToSKDegrees:30], [self convertCBToSKDegrees:30]],
                            @[[self convertCBToSKDegrees:60], [self convertCBToSKDegrees:60]]];
-    
+
     for (NSArray *rotation in rotations) {
         NSNumber *rotationBefore = rotation[0];
         NSNumber *rotationAfter = rotation[1];
@@ -218,17 +222,19 @@
 
 - (void)setPosition:(CGPoint)position AndRotation:(NSNumber*)rotation
 {
-    self.spriteObject.position = position;
-    [self.spriteObject setRotation:[rotation floatValue]];
+    self.spriteObject.spriteNode.scenePosition = position;
+    self.spriteObject.spriteNode.rotation = rotation.floatValue;
     dispatch_block_t action = [self.brick actionBlock];
     action();
 }
 
 - (void)checkPosition:(CGPoint)position AndRotation:(NSNumber*)rotation
 {
-    XCTAssertEqualWithAccuracy(position.x, self.spriteObject.position.x, EPSILON, @"Wrong x after bounce");
-    XCTAssertEqualWithAccuracy(position.y, self.spriteObject.position.y, EPSILON, @"Wrong y after bounce");
-    XCTAssertEqualWithAccuracy([rotation floatValue], [self.spriteObject rotation], EPSILON, @"Wrong rotation after bounce");
+    XCTAssertEqualWithAccuracy(position.x, self.spriteObject.spriteNode.scenePosition.x, EPSILON, @"Wrong x after bounce");
+    XCTAssertEqualWithAccuracy(position.y, self.spriteObject.spriteNode.scenePosition.y, EPSILON, @"Wrong y after bounce");
+    if ((rotation.floatValue != 0.0f) || (fabs(self.spriteObject.spriteNode.rotation - 360.0f) > EPSILON)) {
+        XCTAssertEqualWithAccuracy(rotation.floatValue, self.spriteObject.spriteNode.rotation, EPSILON, @"Wrong rotation after bounce");
+    }
 }
 
 @end

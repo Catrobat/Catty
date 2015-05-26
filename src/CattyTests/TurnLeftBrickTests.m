@@ -23,9 +23,9 @@
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
 #import "WhenScript.h"
+#import "Pocket_Code-Swift.h"
 
 @interface TurnLeftBrickTests : BrickTests
-
 @end
 
 @implementation TurnLeftBrickTests
@@ -44,8 +44,10 @@
 
 - (void)testTurnLeftBrick
 {
-    SpriteObject* object = [[SpriteObject alloc] init];
-    object.zRotation = 0;
+    SpriteObject *object = [[SpriteObject alloc] init];
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
+    spriteNode.zRotation = 0;
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -62,13 +64,15 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy([object rotation], 60.0f, 0.0001, @"TurnLeftBrick not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.rotation, 60.0f, 0.0001, @"TurnLeftBrick not correct");
 }
 
 - (void)testTurnLeftBrickOver360
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    object.zRotation = 0;
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
+    spriteNode.zRotation = 0;
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -85,13 +89,15 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy([object rotation], 40.0f, 0.0001, @"TurnLeftBrick not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.rotation, 40.0f, 0.0001, @"TurnLeftBrick not correct");
 }
 
 - (void)testTurnLeftBrickNegative
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    object.zRotation = 0;
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
+    spriteNode.zRotation = 0;
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -108,13 +114,15 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy([object rotation], 360.0f + (-60.0f), 0.0001, @"TurnLeftBrick not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.rotation, 360.0f + (-60.0f), 0.0001, @"TurnLeftBrick not correct");
 }
 
 - (void)testTurnLeftBrickNegativeOver360
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    object.zRotation = 0;
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
+    spriteNode.zRotation = 0;
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -131,7 +139,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy([object rotation], 360.0f + (-40.0f), 0.0001, @"TurnLeftBrick not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.rotation, 360.0f + (-40.0f), 0.0001, @"TurnLeftBrick not correct");
 }
 
 @end

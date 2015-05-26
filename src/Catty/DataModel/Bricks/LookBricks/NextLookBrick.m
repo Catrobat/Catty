@@ -46,7 +46,7 @@
         NSDebug(@"Performing: %@", self.description);
         Look* look = [self.script.object.spriteNode nextLook];
         UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
-        SKTexture* texture= nil;
+        SKTexture *texture = nil;
         if ([self.script.object isBackground]) {
             texture = [SKTexture textureWithImage:image];
             self.script.object.spriteNode.currentUIImageLook = image;
@@ -64,13 +64,13 @@
         double yScale = self.script.object.spriteNode.yScale;
         self.script.object.spriteNode.xScale = 1.0;
         self.script.object.spriteNode.yScale = 1.0;
-        self.script.object.spriteNode.size = texture.size;
+        self.script.object.spriteNode.size = [texture size];
         self.script.object.spriteNode.texture = texture;
         self.script.object.spriteNode.currentLook = look;
-        if(xScale != 1.0) {
+        if (xScale != 1.0) {
             self.script.object.spriteNode.xScale = (CGFloat)xScale;
         }
-        if(yScale != 1.0) {
+        if (yScale != 1.0) {
             self.script.object.spriteNode.yScale = (CGFloat)yScale;
         }
     };

@@ -23,9 +23,9 @@
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
 #import "WhenScript.h"
+#import "Pocket_Code-Swift.h"
 
 @interface PlaceAtBrickTests : BrickTests
-
 @end
 
 @implementation PlaceAtBrickTests
@@ -46,23 +46,24 @@
 - (void)testPlaceAtBrickPositive
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    object.position = CGPointMake(0, 0);
-
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
     CBPlayerScene *scene = [[CBPlayerScene alloc] init];
-    [scene addChild:object];
+    [scene addChild:spriteNode];
+    spriteNode.scenePosition = CGPointMake(0, 0);
 
     Formula* yPosition =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"20";
     yPosition.formulaTree = formulaTree;
-    
+
     Formula* xPosition =[[Formula alloc] init];
     FormulaElement* formulaTree1  = [[FormulaElement alloc] init];
     formulaTree1.type = NUMBER;
     formulaTree1.value = @"20";
     xPosition.formulaTree = formulaTree1;
-    
+
     Script *script = [[WhenScript alloc] init];
     script.object = object;
 
@@ -75,16 +76,17 @@
     action();
 
     CGPoint testPoint = CGPointMake(20, 20);
-    XCTAssertTrue(CGPointEqualToPoint(object.position, testPoint), @"PlaceAtBrick is not correctly calculated");
+    XCTAssertTrue(CGPointEqualToPoint(spriteNode.scenePosition, testPoint), @"PlaceAtBrick is not correctly calculated");
 }
 
 - (void)testPlaceAtBrickNegative
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    object.position = CGPointMake(0, 0);
-
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
     CBPlayerScene *scene = [[CBPlayerScene alloc] init];
-    [scene addChild:object];
+    [scene addChild:spriteNode];
+    spriteNode.scenePosition = CGPointMake(0, 0);
 
     Formula* yPosition =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
@@ -110,23 +112,24 @@
     action();
     
     CGPoint testPoint = CGPointMake(-20, -20);
-    XCTAssertTrue(CGPointEqualToPoint(object.position, testPoint), @"PlaceAtBrick is not correctly calculated");
+    XCTAssertTrue(CGPointEqualToPoint(spriteNode.scenePosition, testPoint), @"PlaceAtBrick is not correctly calculated");
 }
 
 - (void)testPlaceAtBrickOutOfRange
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    object.position = CGPointMake(0, 0);
-
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
     CBPlayerScene *scene = [[CBPlayerScene alloc] init];
-    [scene addChild:object];
+    [scene addChild:spriteNode];
+    spriteNode.scenePosition = CGPointMake(0, 0);
 
     Formula* yPosition =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"-20000";
     yPosition.formulaTree = formulaTree;
-    
+
     Formula* xPosition =[[Formula alloc] init];
     FormulaElement* formulaTree1  = [[FormulaElement alloc] init];
     formulaTree1.type = NUMBER;
@@ -140,34 +143,35 @@
     brick.script = script;
     brick.yPosition = yPosition;
     brick.xPosition = xPosition;
-    
+
     dispatch_block_t action = [brick actionBlock];
     action();
-    
+
     CGPoint testPoint = CGPointMake(-20000, -20000);
-    XCTAssertTrue(CGPointEqualToPoint(object.position, testPoint), @"PlaceAtBrick is not correctly calculated");
+    XCTAssertTrue(CGPointEqualToPoint(spriteNode.scenePosition, testPoint), @"PlaceAtBrick is not correctly calculated");
 }
 
 - (void)testPlaceAtBrickWrongInput
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    object.position = CGPointMake(0, 0);
-
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
     CBPlayerScene *scene = [[CBPlayerScene alloc] init];
-    [scene addChild:object];
+    [scene addChild:spriteNode];
+    spriteNode.scenePosition = CGPointMake(0, 0);
 
     Formula* yPosition =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"a";
     yPosition.formulaTree = formulaTree;
-    
+
     Formula* xPosition =[[Formula alloc] init];
     FormulaElement* formulaTree1  = [[FormulaElement alloc] init];
     formulaTree1.type = NUMBER;
     formulaTree1.value = @"a";
     xPosition.formulaTree = formulaTree1;
-    
+
     Script *script = [[WhenScript alloc] init];
     script.object = object;
 
@@ -180,7 +184,7 @@
     action();
 
     CGPoint testPoint = CGPointMake(0, 0);
-    XCTAssertTrue(CGPointEqualToPoint(object.position, testPoint), @"PlaceAtBrick is not correctly calculated");
+    XCTAssertTrue(CGPointEqualToPoint(spriteNode.scenePosition, testPoint), @"PlaceAtBrick is not correctly calculated");
 }
 
 @end

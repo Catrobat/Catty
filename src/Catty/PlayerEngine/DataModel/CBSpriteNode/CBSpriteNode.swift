@@ -41,9 +41,7 @@
     var rotation: Double {
         set {
             var rotationInDegrees = newValue%360.0 // swift equivalent for fmodf
-            if rotationInDegrees < 0.0 {
-                rotationInDegrees += 360.0
-            }
+            if rotationInDegrees < 0.0 { rotationInDegrees += 360.0 }
             self.zRotation = CGFloat(Util.degreeToRadians(rotationInDegrees))
         }
         get {

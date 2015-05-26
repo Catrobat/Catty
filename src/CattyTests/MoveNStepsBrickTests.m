@@ -68,7 +68,7 @@
     //
     //    CGPoint checkPoint = CGPointMake(30, 20);
     //
-    //    XCTAssertEqual(object1.position.x, checkPoint.x, @"MoveNSteps Brick is not correctly calculated");
-    //    XCTAssertEqual(object1.position.y, checkPoint.y, @"MoveNSteps Brick is not correctly calculated");
+    //    XCTAssertEqual(spriteNode1.scenePosition.x, checkPoint.x, @"MoveNSteps Brick is not correctly calculated");
+    //    XCTAssertEqual(spriteNode1.scenePosition.y, checkPoint.y, @"MoveNSteps Brick is not correctly calculated");
 }
 @end

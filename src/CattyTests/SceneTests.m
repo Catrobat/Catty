@@ -20,9 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "SceneTests.h"
-#import "CBPlayerScene.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation SceneTests
 
@@ -35,8 +34,6 @@
 {
     [super tearDown];
 }
-
-
 
 #pragma mark - Coordinate System
 #pragma mark Pocket Code to Scene

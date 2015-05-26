@@ -23,9 +23,9 @@
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
 #import "WhenScript.h"
+#import "Pocket_Code-Swift.h"
 
 @interface ComeToFrontBrickTests : BrickTests
-
 @end
 
 @implementation ComeToFrontBrickTests
@@ -44,33 +44,35 @@
 
 - (void)testComeToFrontBrick
 {
-    Program* program = [[Program alloc] init];
-    
-    SpriteObject* background = [[SpriteObject alloc] init];
+    Program *program = [[Program alloc] init];
+    SpriteObject *background = [[SpriteObject alloc] init];
+    CBSpriteNode *spriteNodeBG = [[CBSpriteNode alloc] initWithSpriteObject:background];
+    background.spriteNode = spriteNodeBG;
     background.program = program;
-    
+
     SpriteObject* object1 = [[SpriteObject alloc] init];
+    CBSpriteNode *spriteNode1 = [[CBSpriteNode alloc] initWithSpriteObject:object1];
+    object1.spriteNode = spriteNode1;
     object1.program = program;
-    object1.zPosition = 1;
-    
+    spriteNode1.zPosition = 1;
+
     SpriteObject* object2 = [[SpriteObject alloc] init];
-    object2.zPosition = 2;
-    
+    CBSpriteNode *spriteNode2 = [[CBSpriteNode alloc] initWithSpriteObject:object2];
+    object2.spriteNode = spriteNode2;
+    spriteNode2.zPosition = 2;
+
     [program.objectList addObject:background];
     [program.objectList addObject:object1];
     [program.objectList addObject:object2];
-    
+
     Script *script = [[WhenScript alloc] init];
     script.object = object1;
-    
     ComeToFrontBrick* brick = [[ComeToFrontBrick alloc] init];
     brick.script = script;
-    
     dispatch_block_t action = [brick actionBlock];
     action();
-    
-    XCTAssertEqual(object1.zPosition, (CGFloat)2.0, @"ComeToFront is not correctly calculated");
-    XCTAssertEqual(object2.zPosition, (CGFloat)1.0, @"ComeToFront is not correctly calculated");
+    XCTAssertEqual(spriteNode1.zPosition, (CGFloat)2.0, @"ComeToFront is not correctly calculated");
+    XCTAssertEqual(spriteNode2.zPosition, (CGFloat)1.0, @"ComeToFront is not correctly calculated");
 }
 
 @end

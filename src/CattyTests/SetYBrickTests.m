@@ -23,9 +23,9 @@
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
 #import "WhenScript.h"
+#import "Pocket_Code-Swift.h"
 
 @interface SetYBrickTests : BrickTests
-
 @end
 
 @implementation SetYBrickTests
@@ -45,12 +45,12 @@
 
 - (void)testSetYBrickPositive
 {
-    
-    SpriteObject* object = [[SpriteObject alloc] init];
-    object.position = CGPointMake(0, 0);
-
+    SpriteObject *object = [[SpriteObject alloc] init];
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
     CBPlayerScene *scene = [[CBPlayerScene alloc] init];
-    [scene addChild:object];
+    [scene addChild:spriteNode];
+    spriteNode.scenePosition = CGPointMake(0, 0);
 
     Formula* yPosition =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
@@ -67,16 +67,17 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(object.yPosition, (CGFloat)20, @"SetyBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.yPosition, (CGFloat)20, @"SetyBrick is not correctly calculated");
 }
 
 - (void)testSetYBrickNegative
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    object.position = CGPointMake(0, 0);
-
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
     CBPlayerScene *scene = [[CBPlayerScene alloc] init];
-    [scene addChild:object];
+    [scene addChild:spriteNode];
+    spriteNode.scenePosition = CGPointMake(0, 0);
 
     Formula* yPosition =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
@@ -93,16 +94,17 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(object.yPosition, (CGFloat)-20, @"SetyBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.yPosition, (CGFloat)-20, @"SetyBrick is not correctly calculated");
 }
 
 - (void)testSetYBrickOutOfRange
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    object.position = CGPointMake(0, 0);
-
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
     CBPlayerScene *scene = [[CBPlayerScene alloc] init];
-    [scene addChild:object];
+    [scene addChild:spriteNode];
+    spriteNode.scenePosition = CGPointMake(0, 0);
 
     Formula* yPosition =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
@@ -119,16 +121,17 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(object.yPosition, (CGFloat)50000, @"SetyBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.yPosition, (CGFloat)50000, @"SetyBrick is not correctly calculated");
 }
 
 - (void)testSetYBrickWrongInput
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    object.position = CGPointMake(0, 0);
-
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
     CBPlayerScene *scene = [[CBPlayerScene alloc] init];
-    [scene addChild:object];
+    [scene addChild:spriteNode];
+    spriteNode.scenePosition = CGPointMake(0, 0);
 
     Formula* yPosition =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
@@ -145,7 +148,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(object.yPosition, (CGFloat)0, @"SetyBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.yPosition, (CGFloat)0, @"SetyBrick is not correctly calculated");
 }
 
 @end

@@ -23,9 +23,9 @@
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
 #import "WhenScript.h"
+#import "Pocket_Code-Swift.h"
 
 @interface ClearGrafficEffectBrickTests : BrickTests
-
 @end
 
 @implementation ClearGrafficEffectBrickTests
@@ -44,14 +44,17 @@
 
 - (void)testClearGraphicEffectBrick
 {
-    SpriteObject* object = [[SpriteObject alloc] init];
+    SpriteObject *object = [[SpriteObject alloc] init];
     Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     object.program = program;
-    object.position = CGPointMake(0.0f, 0.0f);
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
+    [scene addChild:spriteNode];
+    spriteNode.scenePosition = CGPointMake(0.0f, 0.0f);
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString * filePath = [bundle pathForResource:@"test.png"
-                                           ofType:nil];
+    NSString *filePath = [bundle pathForResource:@"test.png" ofType:nil];
     NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
     Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
     [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
@@ -83,20 +86,23 @@
     action = [clearBrick actionBlock];
     action();
 
-    XCTAssertEqualWithAccuracy([object alpha], 1.0,0.0001f, @"ClearGraphic is not correctly calculated");
+    XCTAssertEqualWithAccuracy(spriteNode.alpha, 1.0,0.0001f, @"ClearGraphic is not correctly calculated");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
 - (void)testClearGraphicEffectBrick2
 {
-    SpriteObject* object = [[SpriteObject alloc] init];
+    SpriteObject *object = [[SpriteObject alloc] init];
     Program *program = [Program defaultProgramWithName:@"a" programID:nil];
     object.program = program;
-    object.position = CGPointMake(0.0f, 0.0f);
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
+    [scene addChild:spriteNode];
+    spriteNode.scenePosition = CGPointMake(0.0f, 0.0f);
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString * filePath = [bundle pathForResource:@"test.png"
-                                           ofType:nil];
+    NSString * filePath = [bundle pathForResource:@"test.png" ofType:nil];
     NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
     Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
     [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
@@ -129,7 +135,7 @@
     action = [clearBrick actionBlock];
     action();
 
-    XCTAssertEqualWithAccuracy([object alpha], 1.0,0.0001f, @"ClearGraphic is not correctly calculated");
+    XCTAssertEqualWithAccuracy(spriteNode.alpha, 1.0,0.0001f, @"ClearGraphic is not correctly calculated");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -137,8 +143,12 @@
 {
     SpriteObject *object = [[SpriteObject alloc] init];
     Program *program = [Program defaultProgramWithName:@"a" programID:nil];
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
     object.program = program;
-    object.position = CGPointMake(0.0f, 0.0f);
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
+    [scene addChild:spriteNode];
+    spriteNode.scenePosition = CGPointMake(0.0f, 0.0f);
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString * filePath = [bundle pathForResource:@"test.png"
@@ -156,13 +166,13 @@
     Script *script = [[WhenScript alloc] init];
     script.object = object;
 
-    SetBrightnessBrick* brick = [[SetBrightnessBrick alloc]init];
+    SetBrightnessBrick *brick = [[SetBrightnessBrick alloc]init];
     brick.script = script;
     [object.lookList addObject:look];
     [object.lookList addObject:look];
-    object.spriteNode.currentLook = look;
-    object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookBrightness = 1.0f;
+    spriteNode.currentLook = look;
+    spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
+    spriteNode.currentLookBrightness = 1.0f;
     brick.script = script;
     brick.brightness = brightness;
 
@@ -175,7 +185,7 @@
     action = [clearBrick actionBlock];
     action();
 
-    XCTAssertEqualWithAccuracy([object brightness], 0.0f,0.0001f, @"ClearGraphic is not correctly calculated");
+    XCTAssertEqualWithAccuracy(spriteNode.brightness, 0.0f,0.0001f, @"ClearGraphic is not correctly calculated");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 

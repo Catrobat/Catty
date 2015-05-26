@@ -24,9 +24,9 @@
 #import "BrickTests.h"
 #import "Look.h"
 #import "WhenScript.h"
+#import "Pocket_Code-Swift.h"
 
 @interface SetBrightnessBrickTests : BrickTests
-
 @end
 
 @implementation SetBrightnessBrickTests
@@ -47,6 +47,8 @@
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     Program *program = [Program defaultProgramWithName:@"a" programID:nil];
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
     object.program = program;
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
@@ -74,7 +76,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy([object brightness], -70.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.brightness, -70.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -82,6 +84,8 @@
 {
     SpriteObject *object = [[SpriteObject alloc] init];
     Program *program = [Program defaultProgramWithName:@"a" programID:nil];
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
     object.program = program;
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
@@ -109,7 +113,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy([object brightness], 30.0f,0.1f ,@"SetBrightnessBrick - Brightness not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.brightness, 30.0f,0.1f ,@"SetBrightnessBrick - Brightness not correct");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -117,6 +121,8 @@
 {
     SpriteObject *object = [[SpriteObject alloc] init];
     Program *program = [Program defaultProgramWithName:@"a" programID:nil];
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
     object.program = program;
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
@@ -145,7 +151,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy([object brightness], -100.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.brightness, -100.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -153,6 +159,8 @@
 {
     SpriteObject *object = [[SpriteObject alloc] init];
     Program *program = [Program defaultProgramWithName:@"a" programID:nil];
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
     object.program = program;
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
@@ -168,9 +176,9 @@
     brick.script = script;
     [object.lookList addObject:look];
     [object.lookList addObject:look];
-    object.spriteNode.currentLook = look;
-    object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.spriteNode.currentLookBrightness = 1.0f;
+    spriteNode.currentLook = look;
+    spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
+    spriteNode.currentLookBrightness = 1.0f;
 
     Formula *brightness = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -181,7 +189,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy([object brightness], 100.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.brightness, 100.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
@@ -189,6 +197,8 @@
 {
     SpriteObject *object = [[SpriteObject alloc] init];
     Program *program = [Program defaultProgramWithName:@"a" programID:nil];
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
     object.program = program;
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
@@ -217,7 +227,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqualWithAccuracy([object brightness], -100.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.brightness, -100.0f,0.1f, @"SetBrightnessBrick - Brightness not correct");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 
