@@ -94,6 +94,9 @@ final class CBPlayerBackend : NSObject {
                 instructionList += {
                     // high priority queue only needed for blocking purposes...
                     // the reason for this is that you should NEVER block the (serial) main_queue!!
+                    let startIndex = scheduler?.currentInstructionPointerPositionOfScript(script)
+                    assert(startIndex != nil, "Unable to retrieve instruction pointer position of current script!")
+                    let previousloopEndInstructionPointerPosition = startIndex!
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
                         let duration = NSDate().timeIntervalSinceDate(startTime)
                         self?.logger.debug("  Duration for Sequence: \(duration*1000)ms")
@@ -104,8 +107,9 @@ final class CBPlayerBackend : NSObject {
                         dispatch_async(dispatch_get_main_queue(), {
                             if let numOfBodyInstructions = numberOfBodyInstructions {
                                 let numberOfInstructionsOfPreviousLoopIteration = numOfBodyInstructions + 2 // body + head + tail
-                                scheduler?.removeInstructionsBeforeCurrentInstruction(
-                                    numberOfInstructions: numberOfInstructionsOfPreviousLoopIteration,
+                                scheduler?.removeNumberOfInstructions(
+                                    numberOfInstructionsOfPreviousLoopIteration,
+                                    instructionStartIndex: previousloopEndInstructionPointerPosition,
                                     inScript: script
                                 )
                             }

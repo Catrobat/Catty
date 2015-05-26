@@ -88,10 +88,17 @@ final class CBPlayerScheduler : NSObject {
         }
     }
 
-    func removeInstructionsBeforeCurrentInstruction(#numberOfInstructions: Int, inScript script: Script) {
+    func removeNumberOfInstructions(numberOfInstructions: Int, instructionStartIndex startIndex: Int, inScript script: Script) {
         if let scriptExecContext = scriptExecContextDict[script] {
-            scriptExecContext.removeNumberOfInstructionsBeforeCurrentInstruction(numberOfInstructions)
+            scriptExecContext.removeNumberOfInstructions(numberOfInstructions, instructionStartIndex: startIndex)
         }
+    }
+
+    func currentInstructionPointerPositionOfScript(script: Script) -> Int? {
+        if let scriptExecContext = scriptExecContextDict[script] {
+            return scriptExecContext.reverseInstructionPointer
+        }
+        return nil
     }
 
     func subscribeBroadcastScript(broadcastScript: BroadcastScript, forMessage message: String) {

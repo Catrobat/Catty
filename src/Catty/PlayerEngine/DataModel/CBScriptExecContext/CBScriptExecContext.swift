@@ -60,9 +60,9 @@ typealias CBExecClosure = dispatch_block_t
         ++reverseInstructionPointer
     }
 
-    func removeNumberOfInstructionsBeforeCurrentInstruction(numberOfInstructions: Int) {
-        let startIndex = reverseInstructionPointer
+    func removeNumberOfInstructions(numberOfInstructions: Int, instructionStartIndex startIndex: Int) {
         let range = Range<Int>(startIndex ..< (startIndex + numberOfInstructions))
+        reverseInstructionPointer = startIndex
         _instructionList.removeRange(range)
     }
 
