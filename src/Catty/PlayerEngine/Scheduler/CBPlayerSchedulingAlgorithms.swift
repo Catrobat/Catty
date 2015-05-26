@@ -21,7 +21,7 @@
  */
 
 // implements a RoundRobin-like scheduling algorithm
-final class CBPlayerSchedulingRR : CBPlayerSchedulingAlgorithm {
+final class CBPlayerSchedulingRR : NSObject, CBPlayerSchedulingAlgorithm {
 
     func scriptExecContextForNextInstruction(lastScript: Script?,
         scriptExecContextDict: [Script:CBScriptExecContext]) -> CBScriptExecContext
@@ -48,7 +48,7 @@ final class CBPlayerSchedulingRR : CBPlayerSchedulingAlgorithm {
 }
 
 // implements a random order scheduling algorithm
-final class CBPlayerSchedulingAlgorithmRandomOrder : CBPlayerSchedulingAlgorithm {
+final class CBPlayerSchedulingAlgorithmRandomOrder : NSObject, CBPlayerSchedulingAlgorithm {
 
     func scriptExecContextForNextInstruction(lastScript: Script?,
         scriptExecContextDict: [Script:CBScriptExecContext]) -> CBScriptExecContext

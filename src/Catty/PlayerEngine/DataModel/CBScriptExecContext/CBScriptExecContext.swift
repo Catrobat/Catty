@@ -22,7 +22,7 @@
 
 typealias CBExecClosure = dispatch_block_t
 
-@objc final class CBScriptExecContext : SKNode {
+final class CBScriptExecContext : SKNode {
 
     // MARK: - Properties
     let script: Script
@@ -62,8 +62,8 @@ typealias CBExecClosure = dispatch_block_t
 
     func removeNumberOfInstructions(numberOfInstructions: Int, instructionStartIndex startIndex: Int) {
         let range = Range<Int>(startIndex ..< (startIndex + numberOfInstructions))
-        reverseInstructionPointer = startIndex
         _instructionList.removeRange(range)
+        reverseInstructionPointer = startIndex
     }
 
     func nextInstruction() -> CBExecClosure? {

@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBPlayerSchedulingAlgorithm {
+@objc protocol CBPlayerSchedulingAlgorithm {
     // param: lastScript (nilable)
     // param: scriptExecContextDict is a non empty list!
     func scriptExecContextForNextInstruction(lastScript: Script?,
@@ -34,13 +34,13 @@ final class CBPlayerScheduler : NSObject {
     let selfBroadcastRecursionMaxDepthLimit = 20
 
     // MARK: - Properties
-    var logger : CBLogger
-    private let _frontend : CBPlayerFrontend
-    private let _backend : CBPlayerBackend
+    var logger: CBLogger
+    private let _frontend: CBPlayerFrontend
+    private let _backend: CBPlayerBackend
     private(set) var running = false
     private(set) lazy var scriptExecContextDict = [Script:CBScriptExecContext]()
-    var schedulingAlgorithm : CBPlayerSchedulingAlgorithm?
-    private weak var _currentScriptExecContext : CBScriptExecContext?
+    var schedulingAlgorithm: CBPlayerSchedulingAlgorithm?
+    private weak var _currentScriptExecContext: CBScriptExecContext?
     private lazy var _registeredBroadcastScripts = [String:[BroadcastScript]]()
     private lazy var _selfBroadcastCounters = [String:Int]()
 
