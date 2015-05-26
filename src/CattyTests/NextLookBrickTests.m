@@ -64,14 +64,14 @@
     brick.script = script;
     [object.lookList addObject:look];
     [object.lookList addObject:look1];
-    object.currentLook = look;
-    object.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.currentLookBrightness = 0.0f;
+    object.spriteNode.currentLook = look;
+    object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
+    object.spriteNode.currentLookBrightness = 0.0f;
 
     dispatch_block_t action = [brick actionBlock];
 
     action();
-    XCTAssertEqual(object.currentLook,look1, @"NextLookBrick not correct");
+    XCTAssertEqual(object.spriteNode.currentLook,look1, @"NextLookBrick not correct");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 

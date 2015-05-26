@@ -24,7 +24,6 @@
 #import <XCTest/XCTest.h>
 #import <XCTest/XCTest.h>
 #import "SpriteObject.h"
-#import "CBPlayerScene.h"
 #import "Script.h"
 #import "Formula.h"
 #import "FormulaElement.h"

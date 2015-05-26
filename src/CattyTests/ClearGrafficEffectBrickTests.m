@@ -69,9 +69,9 @@
     brick.script = script;
     [object.lookList addObject:look];
     [object.lookList addObject:look];
-    object.currentLook = look;
-    object.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.currentLookBrightness = 1.0f;
+    object.spriteNode.currentLook = look;
+    object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
+    object.spriteNode.currentLookBrightness = 1.0f;
     brick.script = script;
     brick.transparency = transparency;
 
@@ -114,9 +114,9 @@
     brick.script = script;
     [object.lookList addObject:look];
     [object.lookList addObject:look];
-    object.currentLook = look;
-    object.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.currentLookBrightness = 1.0f;
+    object.spriteNode.currentLook = look;
+    object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
+    object.spriteNode.currentLookBrightness = 1.0f;
     brick.script = script;
     brick.transparency = transparency;
 
@@ -160,9 +160,9 @@
     brick.script = script;
     [object.lookList addObject:look];
     [object.lookList addObject:look];
-    object.currentLook = look;
-    object.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.currentLookBrightness = 1.0f;
+    object.spriteNode.currentLook = look;
+    object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
+    object.spriteNode.currentLookBrightness = 1.0f;
     brick.script = script;
     brick.brightness = brightness;
 

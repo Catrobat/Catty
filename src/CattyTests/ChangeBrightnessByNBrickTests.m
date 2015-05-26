@@ -61,9 +61,9 @@
     brick.script = script;
     [object.lookList addObject:look];
     [object.lookList addObject:look];
-    object.currentLook = look;
-    object.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.currentLookBrightness = 1.0f;
+    object.spriteNode.currentLook = look;
+    object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
+    object.spriteNode.currentLookBrightness = 1.0f;
 
     Formula *brightness = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -97,9 +97,9 @@
     brick.script = script;
     [object.lookList addObject:look];
     [object.lookList addObject:look];
-    object.currentLook = look;
-    object.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.currentLookBrightness = 1.0f;
+    object.spriteNode.currentLook = look;
+    object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
+    object.spriteNode.currentLookBrightness = 1.0f;
 
     Formula *brightness = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -133,9 +133,9 @@
     brick.script = script;
     [object.lookList addObject:look];
     [object.lookList addObject:look];
-    object.currentLook = look;
-    object.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.currentLookBrightness = 0.0f;
+    object.spriteNode.currentLook = look;
+    object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
+    object.spriteNode.currentLookBrightness = 0.0f;
 
     Formula *brightness = [[Formula alloc] init];
     FormulaElement *formulaTree = [[FormulaElement alloc] init];
@@ -169,9 +169,9 @@
     brick.script = script;
     [object.lookList addObject:look];
     [object.lookList addObject:look];
-    object.currentLook = look;
-    object.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.currentLookBrightness = 1.0f;
+    object.spriteNode.currentLook = look;
+    object.spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
+    object.spriteNode.currentLookBrightness = 1.0f;
 
     Formula* brightness = [[Formula alloc] init];
     FormulaElement* formulaTree = [[FormulaElement alloc] init];
