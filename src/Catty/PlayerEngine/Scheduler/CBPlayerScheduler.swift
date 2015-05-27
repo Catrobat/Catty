@@ -20,14 +20,36 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc protocol CBPlayerSchedulingAlgorithmProtocol {
-    // param: lastScript (nilable)
-    // param: scriptExecContextDict is a non empty list!
-    func scriptExecContextForNextInstruction(lastScript: Script?,
-        scriptExecContextDict: [Script:CBScriptExecContext]) -> CBScriptExecContext
+@objc protocol CBPlayerSchedulerProtocol {
+    // properties
+    var scriptExecContextDict:[Script:CBScriptExecContext] { get }
+    var running:Bool { get }
+
+    // main events
+    func run()
+    func shutdown()
+
+    // script handling
+    func addScriptExecContext(scriptExecContext: CBScriptExecContext)
+    func startScript(script: Script)
+    func restartScript(script: Script)
+
+    // broadcast script handling
+    func subscribeBroadcastScript(broadcastScript: BroadcastScript, forMessage message: String)
+    func unsubscribeBroadcastScript(broadcastScript: BroadcastScript, forMessage message: String)
+
+    // operations
+    func isScriptScheduled(script: Script) -> Bool
+    func addInstructionsAfterCurrentInstructionOfScript(script: Script, instructionList: [CBExecClosure])
+    func addInstructionAfterCurrentInstructionOfScript(script: Script, instruction: CBExecClosure)
+    func removeNumberOfInstructions(numberOfInstructions: Int, instructionStartIndex: Int, inScript script: Script)
+    func currentInstructionPointerPositionOfScript(script: Script) -> Int
+    func setStateForScript(script: Script, state: CBScriptState)
+    func runNextInstructionOfScript(script: Script)
+    func performBroadcastWithMessage(message: String, senderScript:Script)
 }
 
-final class CBPlayerScheduler : NSObject {
+final class CBPlayerScheduler : NSObject, CBPlayerSchedulerProtocol {
 
     // MARK: - Constants
     // specifies max depth limit for self broadcasts running on the same function stack
@@ -39,15 +61,15 @@ final class CBPlayerScheduler : NSObject {
     private(set) var running = false
     private(set) lazy var scriptExecContextDict = [Script:CBScriptExecContext]()
 
-    private let _frontend: CBPlayerFrontend
-    private let _backend: CBPlayerBackend
+    private let _frontend: CBPlayerFrontendProtocol
+    private let _backend: CBPlayerBackendProtocol
     private weak var _currentScriptExecContext: CBScriptExecContext?
     private lazy var _registeredBroadcastScripts = [String:[BroadcastScript]]()
     private lazy var _broadcastStartQueueBuffer = [CBBroadcastQueueElement]()
     private lazy var _selfBroadcastCounters = [String:Int]()
 
     // MARK: - Initializers
-    init(logger: CBLogger, frontend: CBPlayerFrontend, backend: CBPlayerBackend) {
+    init(logger: CBLogger, frontend: CBPlayerFrontendProtocol, backend: CBPlayerBackendProtocol) {
         self.logger = logger
         _frontend = frontend
         _backend = backend
@@ -86,11 +108,11 @@ final class CBPlayerScheduler : NSObject {
         }
     }
 
-    func currentInstructionPointerPositionOfScript(script: Script) -> Int? {
+    func currentInstructionPointerPositionOfScript(script: Script) -> Int {
         if let scriptExecContext = scriptExecContextDict[script] {
             return scriptExecContext.reverseInstructionPointer
         }
-        return nil
+        return -1 // ATTENTION: cannot return nil here, because this requires "Int?" => would be not compatible with Objective-C
     }
 
     func subscribeBroadcastScript(broadcastScript: BroadcastScript, forMessage message: String) {
@@ -436,6 +458,22 @@ final class CBPlayerScheduler : NSObject {
     //    }
     //}
 
+//    - (void)performBroadcastAndWaitWithScheduler:(CBPlayerScheduler*)scheduler
+//    {
+//    NSDebug(@"Performing: %@", self.description);
+//    //    [self.script.object.program broadcastAndWait:self.broadcastMessage senderScript:self.script];
+//    __weak BroadcastWaitBrick *weakSelf = self;
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//    // wait here on other queue!!
+//    //        [weakSelf.script.object.program waitingForBroadcastWithMessage:weakSelf.broadcastMessage];
+//    // now switch back to the main queue for executing the sequence!
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//    // the script must continue here. upcoming actions are executed!!
+//    //            [scheduler runNextInstructionOfScript:weakSelf.script];
+//    });
+//    });
+//    }
+//
 //    #pragma mark - broadcasting handling
 //    - (void)setupBroadcastHandling
 //    {

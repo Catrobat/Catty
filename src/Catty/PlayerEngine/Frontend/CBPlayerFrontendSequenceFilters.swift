@@ -20,11 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+@objc protocol CBPlayerFrontendSequenceFilterProtocol {
+    func filterScriptSequenceList(scriptSequenceList: CBScriptSequenceList) -> CBScriptSequenceList
+}
 
-#import "Brick.h"
-#import "BrickMessageProtocol.h"
-
-@interface BroadcastWaitBrick : Brick<BrickMessageProtocol>
-@property (nonatomic, strong) NSString *broadcastMessage;
-- (id)initWithMessage:(NSString*)message;
-@end
+// analyzes script sequence list for redundant BroadcastWait operations
+// and replaces them by simple Broadcast operations
+final class CBPlayerFilterRedundantBroadcastWaits : NSObject, CBPlayerFrontendSequenceFilterProtocol {
+    
+    func filterScriptSequenceList(scriptSequenceList: CBScriptSequenceList) -> CBScriptSequenceList {
+        // TODO: implement this...
+        return scriptSequenceList
+    }
+    
+}

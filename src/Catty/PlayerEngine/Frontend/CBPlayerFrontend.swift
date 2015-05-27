@@ -20,21 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc protocol CBPlayerFrontendSequenceFilterProtocol {
-    // param: scriptSequenceList script sequence list
-    func filterScriptSequenceList(scriptSequenceList: CBScriptSequenceList) -> CBScriptSequenceList
+@objc protocol CBPlayerFrontendProtocol {
+    weak var program: Program? { get }
+    func computeSequenceListForScript(script : Script) -> CBScriptSequenceList
+    func addSequenceFilter(sequenceFilter: CBPlayerFrontendSequenceFilterProtocol)
 }
 
-//@objc protocol CBPlayerFrontendProtocol {
-//    // param: scriptSequenceList script sequence list
-//    func filterScriptSequenceList(scriptSequenceList: CBScriptSequenceList) -> CBScriptSequenceList
-//}
-
-final class CBPlayerFrontend : NSObject {
+final class CBPlayerFrontend : NSObject, CBPlayerFrontendProtocol {
 
     // MARK: - Properties
-    let logger : CBLogger
-    private(set) weak var program : Program?
+    let logger: CBLogger
+    private(set) weak var program: Program?
     private lazy var _sequenceFilters = [CBPlayerFrontendSequenceFilterProtocol]()
 
     // MARK: - Initializers

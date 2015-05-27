@@ -20,14 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-final class CBPlayerBackend : NSObject {
+@objc protocol CBPlayerBackendProtocol {
+    func executionContextForScriptSequenceList(scriptSequenceList: CBScriptSequenceList,
+        spriteNode: CBSpriteNode) -> CBScriptExecContext
+}
+
+final class CBPlayerBackend : NSObject, CBPlayerBackendProtocol {
 
     // MARK: - Properties
     var logger : CBLogger
-    weak var scheduler : CBPlayerScheduler?
+    weak var scheduler : CBPlayerSchedulerProtocol?
 
     // MARK: - Initializers
-    init(logger: CBLogger, scheduler: CBPlayerScheduler?) {
+    init(logger: CBLogger, scheduler: CBPlayerSchedulerProtocol?) {
         self.logger = logger
         self.scheduler = scheduler
     }
@@ -96,7 +101,7 @@ final class CBPlayerBackend : NSObject {
                     // high priority queue only needed for blocking purposes...
                     // the reason for this is that you should NEVER block the (serial) main_queue!!
                     let startIndex = scheduler?.currentInstructionPointerPositionOfScript(script)
-                    assert(startIndex != nil, "Unable to retrieve instruction pointer position of current script!")
+                    assert(startIndex >= 0, "Unable to retrieve instruction pointer position of current script!")
                     let previousloopEndInstructionPointerPosition = startIndex!
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
                         let duration = NSDate().timeIntervalSinceDate(startTime)
@@ -180,7 +185,7 @@ final class CBPlayerBackend : NSObject {
                 }
                 instructionList += { [weak self] in
                     if let scheduler = self?.scheduler {
-                        broadcastWaitBrick.performBroadcastAndWaitWithScheduler(scheduler)
+//                        broadcastWaitBrick.performBroadcastAndWaitWithScheduler(scheduler)
                     }
                 }
             } else {

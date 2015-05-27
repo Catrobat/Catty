@@ -20,11 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
-#import "Brick.h"
-#import "BrickMessageProtocol.h"
-
-@interface BroadcastWaitBrick : Brick<BrickMessageProtocol>
-@property (nonatomic, strong) NSString *broadcastMessage;
-- (id)initWithMessage:(NSString*)message;
-@end
+@objc protocol CBPlayerFrontendProtocol {
+    func computeSequenceListForScript(script : Script) -> CBScriptSequenceList
+    func addSequenceFilter(sequenceFilter: CBPlayerFrontendSequenceFilterProtocol)
+}

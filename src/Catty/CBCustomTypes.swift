@@ -25,7 +25,7 @@ typealias CBBroadcastQueueElement = (message: String, senderScript: Script)
 typealias CBExecClosure = dispatch_block_t
 
 // MARK: Enums
-enum CBScriptState {
+@objc enum CBScriptState : Int { // ATTENTION: Int needed to stay compatible with Objective-C (@objc keyword)
     case Runnable
     case Running
     case RunningMature // for StartScripts => broadcast + broadcast wait start queue

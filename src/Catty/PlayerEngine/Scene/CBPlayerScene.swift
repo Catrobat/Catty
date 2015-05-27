@@ -26,9 +26,9 @@ final class CBPlayerScene : SKScene {
 
     // MARK: - Properties
     let logger : CBLogger?
-    private(set) var scheduler : CBPlayerScheduler?
-    private(set) var frontend : CBPlayerFrontend?
-    private(set) var backend : CBPlayerBackend?
+    private(set) var scheduler : CBPlayerSchedulerProtocol?
+    private(set) var frontend : CBPlayerFrontendProtocol?
+    private(set) var backend : CBPlayerBackendProtocol?
 
     // MARK: - Initializers
 

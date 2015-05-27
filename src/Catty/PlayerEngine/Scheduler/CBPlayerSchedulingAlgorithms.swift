@@ -20,6 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+@objc protocol CBPlayerSchedulingAlgorithmProtocol {
+    func scriptExecContextForNextInstruction(lastScript: Script?,
+        scriptExecContextDict: [Script:CBScriptExecContext]) -> CBScriptExecContext
+}
+
 // implements a RoundRobin-like scheduling algorithm
 final class CBPlayerSchedulingRR : NSObject, CBPlayerSchedulingAlgorithmProtocol {
 

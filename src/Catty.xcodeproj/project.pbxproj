@@ -528,7 +528,7 @@
 		CADBD7F619B0E8C200C62836 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */; };
 		CADBD7F719B0E8C200C62836 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F097711B7BABD009D4DB0 /* OpenAL.framework */; };
 		CAE485D71B13AA6600DC4485 /* CBPlayerFrontend.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE485D51B13AA6600DC4485 /* CBPlayerFrontend.swift */; };
-		CAE485D81B13AA6600DC4485 /* CBPlayerFrontendFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE485D61B13AA6600DC4485 /* CBPlayerFrontendFilters.swift */; };
+		CAE485D81B13AA6600DC4485 /* CBPlayerFrontendSequenceFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE485D61B13AA6600DC4485 /* CBPlayerFrontendSequenceFilters.swift */; };
 		CAE485DA1B13AA6E00DC4485 /* CBPlayerBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE485D91B13AA6E00DC4485 /* CBPlayerBackend.swift */; };
 		D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */; };
 		D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */; };
@@ -1488,7 +1488,7 @@
 		CAD740E71AF2D42B00C32937 /* CBStackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBStackTests.m; sourceTree = "<group>"; };
 		CADBD7FB19B0E8C200C62836 /* Pocket Code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Code.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAE485D51B13AA6600DC4485 /* CBPlayerFrontend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerFrontend.swift; path = PlayerEngine/Frontend/CBPlayerFrontend.swift; sourceTree = "<group>"; };
-		CAE485D61B13AA6600DC4485 /* CBPlayerFrontendFilters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerFrontendFilters.swift; path = PlayerEngine/Frontend/CBPlayerFrontendFilters.swift; sourceTree = "<group>"; };
+		CAE485D61B13AA6600DC4485 /* CBPlayerFrontendSequenceFilters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerFrontendSequenceFilters.swift; path = PlayerEngine/Frontend/CBPlayerFrontendSequenceFilters.swift; sourceTree = "<group>"; };
 		CAE485D91B13AA6E00DC4485 /* CBPlayerBackend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerBackend.swift; path = PlayerEngine/Backend/CBPlayerBackend.swift; sourceTree = "<group>"; };
 		CAEE3BE91ABDFABD009FDA72 /* BrickConditionalBranchProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickConditionalBranchProtocol.h; sourceTree = "<group>"; };
 		D63864631AE632FE008569E6 /* ProgramsForUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramsForUploadViewController.h; sourceTree = "<group>"; };
@@ -4247,7 +4247,7 @@
 			isa = PBXGroup;
 			children = (
 				CAE485D51B13AA6600DC4485 /* CBPlayerFrontend.swift */,
-				CAE485D61B13AA6600DC4485 /* CBPlayerFrontendFilters.swift */,
+				CAE485D61B13AA6600DC4485 /* CBPlayerFrontendSequenceFilters.swift */,
 			);
 			name = Frontend;
 			sourceTree = "<group>";
@@ -4846,7 +4846,7 @@
 				92FF329C1A24E2F400093DA7 /* SetSizeToBrickCell.m in Sources */,
 				92FF31551A24DEB300093DA7 /* SoundsTableViewController.m in Sources */,
 				92FF31561A24DEB300093DA7 /* SRViewController.m in Sources */,
-				CAE485D81B13AA6600DC4485 /* CBPlayerFrontendFilters.swift in Sources */,
+				CAE485D81B13AA6600DC4485 /* CBPlayerFrontendSequenceFilters.swift in Sources */,
 				92DFB01A1A38949E00FA9B0F /* InternToken.m in Sources */,
 				92FF2E911A24C7D800093DA7 /* DownloadImageCache.m in Sources */,
 				92FF30E81A24DCAA00093DA7 /* PointToBrick.m in Sources */,
