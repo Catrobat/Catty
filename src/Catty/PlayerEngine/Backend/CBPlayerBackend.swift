@@ -30,15 +30,19 @@ final class CBPlayerBackend : NSObject, CBPlayerBackendProtocol {
     // MARK: - Properties
     var logger : CBLogger
     weak var scheduler : CBPlayerSchedulerProtocol?
+    weak var broadcastHandler : CBPlayerBroadcastHandlerProtocol?
 
     // MARK: - Initializers
-    init(logger: CBLogger, scheduler: CBPlayerSchedulerProtocol?) {
+    init(logger: CBLogger, scheduler: CBPlayerSchedulerProtocol?,
+        broadcastHandler: CBPlayerBroadcastHandlerProtocol?)
+    {
         self.logger = logger
         self.scheduler = scheduler
+        self.broadcastHandler = broadcastHandler
     }
 
     convenience init(logger: CBLogger) {
-        self.init(logger: logger, scheduler: nil)
+        self.init(logger: logger, scheduler: nil, broadcastHandler: nil)
     }
 
     // MARK: - Operations
@@ -153,7 +157,7 @@ final class CBPlayerBackend : NSObject, CBPlayerBackendProtocol {
         for operation in operationSequence.operationList.reverse() {
             if let broadcastBrick = operation.brick as? BroadcastBrick {
                 instructionList += { [weak self] in
-                    self?.scheduler?.performBroadcastWithMessage(broadcastBrick.broadcastMessage,
+                    self?.broadcastHandler?.performBroadcastWithMessage(broadcastBrick.broadcastMessage,
                         senderScript: broadcastBrick.script)
                 }
             } else if let broadcastWaitBrick = operation.brick as? BroadcastWaitBrick {
@@ -172,7 +176,7 @@ final class CBPlayerBackend : NSObject, CBPlayerBackendProtocol {
                             //                            NSDebug(@"BroadcastScript ended due to self broadcastWait!");
                             // finally perform normal (!) broadcast
                             // no waiting required, since all upcoming actions in the sequence are omitted!
-                            self?.scheduler?.performBroadcastWithMessage(broadcastWaitBrick.broadcastMessage,
+                            self?.broadcastHandler?.performBroadcastWithMessage(broadcastWaitBrick.broadcastMessage,
                                 senderScript:broadcastScript)
 
                             // end of script reached!! Scripts will be aborted due to self-calling broadcast

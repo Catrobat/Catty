@@ -31,7 +31,6 @@
 #import "Program.h"
 #import "Parser.h"
 #import "Look.h"
-#import "BroadcastWaitHandler.h"
 #import <SpriteKit/SpriteKit.h>
 #import "UserVariable.h"
 #import "VariablesContainer.h"

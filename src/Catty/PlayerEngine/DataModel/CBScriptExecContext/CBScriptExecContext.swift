@@ -23,11 +23,11 @@
 final class CBScriptExecContext : SKNode {
 
     // MARK: - Properties
-    let script:Script
-    let scriptType:CBScriptType
-    var state:CBScriptState
+    let script : Script
+    let scriptType : CBScriptType
+    var state : CBScriptState
     private(set) var reverseInstructionPointer = 0
-    var count:Int { return _instructionList.count }
+    var count : Int { return _instructionList.count }
 
     private lazy var _instructionList = [CBExecClosure]()
     private var _scriptSequenceList: CBScriptSequenceList?

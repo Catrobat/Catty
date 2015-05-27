@@ -29,6 +29,7 @@ final class CBPlayerScene : SKScene {
     private(set) var scheduler : CBPlayerSchedulerProtocol?
     private(set) var frontend : CBPlayerFrontendProtocol?
     private(set) var backend : CBPlayerBackendProtocol?
+    private(set) var broadcastHandler : CBPlayerBroadcastHandlerProtocol?
 
     // MARK: - Initializers
 
@@ -45,15 +46,19 @@ final class CBPlayerScene : SKScene {
         scheduler = nil
         frontend = nil
         backend = nil
+        broadcastHandler = nil
         super.init(size: size)
     }
 
     // MARK: Designated initializer
-    init(size: CGSize, logger: CBLogger, scheduler: CBPlayerScheduler, frontend: CBPlayerFrontend, backend: CBPlayerBackend) {
+    init(size: CGSize, logger: CBLogger, scheduler: CBPlayerScheduler, frontend: CBPlayerFrontend,
+        backend: CBPlayerBackend, broadcastHandler: CBPlayerBroadcastHandlerProtocol)
+    {
         self.logger = logger
         self.scheduler = scheduler
         self.frontend = frontend
         self.backend = backend
+        self.broadcastHandler = broadcastHandler
         super.init(size: size)
         self.backgroundColor = UIColor.whiteColor()
     }
@@ -196,7 +201,7 @@ final class CBPlayerScene : SKScene {
                             }
                         } else if let broadcastScript = script as? BroadcastScript {
                             // subscribe BroadcastScript
-                            scheduler?.subscribeBroadcastScript(broadcastScript, forMessage:broadcastScript.receivedMessage)
+                            broadcastHandler?.subscribeBroadcastScript(broadcastScript, forMessage:broadcastScript.receivedMessage)
                         }
                     }
                 }

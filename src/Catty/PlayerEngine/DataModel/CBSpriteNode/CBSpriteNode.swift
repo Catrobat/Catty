@@ -23,21 +23,21 @@
 @objc final class CBSpriteNode : SKSpriteNode {
 
     // MARK: - Properties
-    private(set) var spriteObject: SpriteObject?
-    var currentLook: Look?
-    var currentUIImageLook: UIImage?
-    var currentLookBrightness: CGFloat = 1.0
+    private(set) var spriteObject : SpriteObject?
+    var currentLook : Look?
+    var currentUIImageLook : UIImage?
+    var currentLookBrightness : CGFloat = 1.0
     var scenePosition : CGPoint {
         set { self.position = (scene as! CBPlayerScene).convertPointToScene(newValue) }
         get { return (scene as! CBPlayerScene).convertSceneCoordinateToPoint(self.position) }
     }
-    var xPosition: CGFloat { return self.scenePosition.x }
-    var yPosition: CGFloat { return self.scenePosition.y }
-    var zIndex: CGFloat { return zPosition }
-    var brightness: CGFloat { return (100 * self.currentLookBrightness) }
-    var scaleX: CGFloat { return (100 * xScale) }
-    var scaleY: CGFloat { return (100 * yScale) }
-    var rotation: Double {
+    var xPosition : CGFloat { return self.scenePosition.x }
+    var yPosition : CGFloat { return self.scenePosition.y }
+    var zIndex : CGFloat { return zPosition }
+    var brightness : CGFloat { return (100 * self.currentLookBrightness) }
+    var scaleX : CGFloat { return (100 * xScale) }
+    var scaleY : CGFloat { return (100 * yScale) }
+    var rotation : Double {
         set {
             var rotationInDegrees = newValue%360.0 // swift equivalent for fmodf
             if rotationInDegrees < 0.0 { rotationInDegrees += 360.0 }

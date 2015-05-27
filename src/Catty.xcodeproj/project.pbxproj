@@ -162,7 +162,6 @@
 		92FF30F41A24DCAA00093DA7 /* StopAllSoundsBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF308E1A24DCAA00093DA7 /* StopAllSoundsBrick.m */; };
 		92FF30F51A24DCAA00093DA7 /* ChangeVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30911A24DCAA00093DA7 /* ChangeVariableBrick.m */; };
 		92FF30F61A24DCAA00093DA7 /* SetVariableBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30931A24DCAA00093DA7 /* SetVariableBrick.m */; };
-		92FF30F71A24DCAA00093DA7 /* BroadcastWaitHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30961A24DCAA00093DA7 /* BroadcastWaitHandler.m */; };
 		92FF30F81A24DCAA00093DA7 /* Formula.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30991A24DCAA00093DA7 /* Formula.m */; };
 		92FF30F91A24DCAA00093DA7 /* FormulaElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF309B1A24DCAA00093DA7 /* FormulaElement.m */; };
 		92FF30FA1A24DCAA00093DA7 /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF309E1A24DCAA00093DA7 /* Functions.m */; };
@@ -313,6 +312,7 @@
 		CA3E72E81B0C00A500D6B184 /* CBStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72E71B0C00A500D6B184 /* CBStack.swift */; };
 		CA3E72EC1B0C01CD00D6B184 /* LLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72EB1B0C01CD00D6B184 /* LLNode.swift */; };
 		CA403F2C1B1631A8004ADCB2 /* CBCustomTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA403F2B1B1631A8004ADCB2 /* CBCustomTypes.swift */; };
+		CA43C4BA1B165C0B009B604F /* CBPlayerBroadcastHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA43C4B91B165C0B009B604F /* CBPlayerBroadcastHandler.swift */; };
 		CA7698B61B0E4B3F000D0340 /* XMLAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A53A1A43BDD9002A69A0 /* XMLAbstractTest.m */; };
 		CA7698B81B0E4B3F000D0340 /* XMLParserAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5401A43BE11002A69A0 /* XMLParserAbstractTest.m */; };
 		CA7698B91B0E4B3F000D0340 /* XMLParserBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5441A43BE37002A69A0 /* XMLParserBrickTests.m */; };
@@ -1018,8 +1018,6 @@
 		92FF30911A24DCAA00093DA7 /* ChangeVariableBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVariableBrick.m; sourceTree = "<group>"; };
 		92FF30921A24DCAA00093DA7 /* SetVariableBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetVariableBrick.h; sourceTree = "<group>"; };
 		92FF30931A24DCAA00093DA7 /* SetVariableBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetVariableBrick.m; sourceTree = "<group>"; };
-		92FF30951A24DCAA00093DA7 /* BroadcastWaitHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastWaitHandler.h; sourceTree = "<group>"; };
-		92FF30961A24DCAA00093DA7 /* BroadcastWaitHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastWaitHandler.m; sourceTree = "<group>"; };
 		92FF30981A24DCAA00093DA7 /* Formula.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Formula.h; sourceTree = "<group>"; };
 		92FF30991A24DCAA00093DA7 /* Formula.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Formula.m; sourceTree = "<group>"; };
 		92FF309A1A24DCAA00093DA7 /* FormulaElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormulaElement.h; sourceTree = "<group>"; };
@@ -1322,6 +1320,7 @@
 		CA3E72E71B0C00A500D6B184 /* CBStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBStack.swift; path = 3rdParty/Stack/CBStack.swift; sourceTree = "<group>"; };
 		CA3E72EB1B0C01CD00D6B184 /* LLNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LLNode.swift; path = 3rdParty/LLNode/LLNode.swift; sourceTree = "<group>"; };
 		CA403F2B1B1631A8004ADCB2 /* CBCustomTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCustomTypes.swift; sourceTree = "<group>"; };
+		CA43C4B91B165C0B009B604F /* CBPlayerBroadcastHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerBroadcastHandler.swift; path = PlayerEngine/Scheduler/CBPlayerBroadcastHandler.swift; sourceTree = "<group>"; };
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
 		CA6E4C4719F9C388001B65C3 /* My first program.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My first program.catrobat"; sourceTree = "<group>"; };
 		CA7698AA1B0E4A97000D0340 /* CattyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2895,7 +2894,6 @@
 			children = (
 				92FF30281A24DCAA00093DA7 /* BrickManager */,
 				92FF302B1A24DCAA00093DA7 /* Bricks */,
-				92FF30941A24DCAA00093DA7 /* BroadcastWait */,
 				92FF30971A24DCAA00093DA7 /* Formula */,
 				92FF309C1A24DCAA00093DA7 /* FormulaEditor */,
 				92FF30A31A24DCAA00093DA7 /* Header */,
@@ -3103,15 +3101,6 @@
 				92FF30931A24DCAA00093DA7 /* SetVariableBrick.m */,
 			);
 			path = VariableBricks;
-			sourceTree = "<group>";
-		};
-		92FF30941A24DCAA00093DA7 /* BroadcastWait */ = {
-			isa = PBXGroup;
-			children = (
-				92FF30951A24DCAA00093DA7 /* BroadcastWaitHandler.h */,
-				92FF30961A24DCAA00093DA7 /* BroadcastWaitHandler.m */,
-			);
-			path = BroadcastWait;
 			sourceTree = "<group>";
 		};
 		92FF30971A24DCAA00093DA7 /* Formula */ = {
@@ -4108,6 +4097,7 @@
 				CAE485D31B13AA4E00DC4485 /* Frontend */,
 				CAE485D41B13AA5200DC4485 /* Backend */,
 				CA2D44471B1249C400A3B53D /* Scheduler */,
+				CA43C4B81B165BB1009B604F /* BroadcastHandler */,
 				CAD232181B10F12600570370 /* DataModel */,
 			);
 			name = PlayerEngine;
@@ -4144,6 +4134,14 @@
 				CA403F2B1B1631A8004ADCB2 /* CBCustomTypes.swift */,
 			);
 			name = CBCustomTypes;
+			sourceTree = "<group>";
+		};
+		CA43C4B81B165BB1009B604F /* BroadcastHandler */ = {
+			isa = PBXGroup;
+			children = (
+				CA43C4B91B165C0B009B604F /* CBPlayerBroadcastHandler.swift */,
+			);
+			name = BroadcastHandler;
 			sourceTree = "<group>";
 		};
 		CA52403418AD77DB00052914 /* ProgramTableViewController */ = {
@@ -4800,6 +4798,7 @@
 				92DFB01D1A38949E00FA9B0F /* FormulaEditorTextView.m in Sources */,
 				92FF32751A24E2F400093DA7 /* CatrobatAlertView.m in Sources */,
 				92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */,
+				CA43C4BA1B165C0B009B604F /* CBPlayerBroadcastHandler.swift in Sources */,
 				92FF31081A24DCAA00093DA7 /* UserVariable.m in Sources */,
 				92FF30CE1A24DCAA00093DA7 /* IfLogicElseBrick.m in Sources */,
 				92FF2E941A24C7D800093DA7 /* Logger.m in Sources */,
@@ -5001,7 +5000,6 @@
 				92FF2E981A24C7D800093DA7 /* unzip.c in Sources */,
 				92FF326F1A24E2F400093DA7 /* SWTableViewCell.m in Sources */,
 				92DFB0631A38960C00FA9B0F /* PipetteTool.m in Sources */,
-				92FF30F71A24DCAA00093DA7 /* BroadcastWaitHandler.m in Sources */,
 				CAA4A4C21A43B45E002A69A0 /* ChangeGhostEffectByNBrick+CBXMLHandler.m in Sources */,
 				92FF32741A24E2F400093DA7 /* CatrobatActionSheet.m in Sources */,
 				CAA4A4A31A43B407002A69A0 /* ForeverBrick+CBXMLHandler.m in Sources */,

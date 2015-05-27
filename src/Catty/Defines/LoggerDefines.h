@@ -32,6 +32,7 @@
 #define kCBLoggerPlayerSchedulerID @"CBPlayerSchedulerLogger.Release"
 #define kCBLoggerPlayerFrontendID @"CBPlayerFrontendLogger.Release"
 #define kCBLoggerPlayerBackendID @"CBPlayerBackendLogger.Release"
+#define kCBLoggerPlayerBroadcastHandlerID @"CBPlayerBroadcastHandlerLogger.Release"
 //------------------------------------------------------------------------------------------------------------
 
 #else // DEBUG == 1
@@ -45,6 +46,7 @@
 #define kCBLoggerPlayerSchedulerID @"CBPlayerSchedulerLogger.Debug"
 #define kCBLoggerPlayerFrontendID @"CBPlayerFrontendLogger.Debug"
 #define kCBLoggerPlayerBackendID @"CBPlayerBackendLogger.Debug"
+#define kCBLoggerPlayerBroadcastHandlerID @"CBPlayerBroadcastHandlerLogger.Debug"
 
 #endif // DEBUG
 
@@ -61,3 +63,4 @@
 #define kCBTestLoggerPlayerSchedulerID @"CBPlayerSchedulerLogger.Test"
 #define kCBTestLoggerPlayerFrontendID @"CBPlayerFrontendLogger.Test"
 #define kCBTestLoggerPlayerBackendID @"CBPlayerBackendLogger.Test"
+#define kCBTestLoggerPlayerBroadcastHandlerID @"CBPlayerBroadcastHandlerLogger.Test"
