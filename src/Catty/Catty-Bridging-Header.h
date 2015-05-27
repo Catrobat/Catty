@@ -45,6 +45,7 @@
 #import "BroadcastBrick.h"
 #import "BroadcastWaitBrick.h"
 #import "HideBrick.h"
+#import "WaitBrick.h"
 
 // Assets
 #import "Look.h"

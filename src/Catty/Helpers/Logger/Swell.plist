@@ -68,7 +68,7 @@
 	<key>CBPlayerSchedulerLogger.Debug</key>
 	<dict>
 		<key>SWLLevel</key>
-		<string>warn</string>
+		<string>info</string>
 		<key>SWLLocation</key>
 		<string>console</string>
 		<key>SWLLocationFilename</key>

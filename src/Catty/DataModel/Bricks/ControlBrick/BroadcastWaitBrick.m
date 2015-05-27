@@ -67,7 +67,7 @@
         // now switch back to the main queue for executing the sequence!
         dispatch_async(dispatch_get_main_queue(), ^{
             // the script must continue here. upcoming actions are executed!!
-            [scheduler runNextInstructionOfScript:weakSelf.script];
+//            [scheduler runNextInstructionOfScript:weakSelf.script];
         });
     });
 }
