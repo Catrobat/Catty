@@ -22,7 +22,7 @@
 
 // analyzes script sequence list for redundant BroadcastWait operations
 // and replaces them by simple Broadcast operations
-final class CBPlayerFilterRedundantBroadcastWaits : NSObject, CBPlayerFrontendSequenceFilter {
+final class CBPlayerFilterRedundantBroadcastWaits : NSObject, CBPlayerFrontendSequenceFilterProtocol {
 
     func filterScriptSequenceList(scriptSequenceList: CBScriptSequenceList) -> CBScriptSequenceList {
         // TODO: implement this...

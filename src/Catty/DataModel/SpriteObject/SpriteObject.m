@@ -35,7 +35,6 @@
 #import "NSString+FastImageSize.h"
 #import "ProgramDefines.h"
 #import "CBMutableCopyContext.h"
-#import "Pocket_Code-Swift.h"
 
 @implementation SpriteObject
 

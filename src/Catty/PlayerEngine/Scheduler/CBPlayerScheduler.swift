@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc protocol CBPlayerSchedulingAlgorithm {
+@objc protocol CBPlayerSchedulingAlgorithmProtocol {
     // param: lastScript (nilable)
     // param: scriptExecContextDict is a non empty list!
     func scriptExecContextForNextInstruction(lastScript: Script?,
@@ -35,7 +35,7 @@ final class CBPlayerScheduler : NSObject {
 
     // MARK: - Properties
     var logger: CBLogger
-    var schedulingAlgorithm: CBPlayerSchedulingAlgorithm?
+    var schedulingAlgorithm: CBPlayerSchedulingAlgorithmProtocol?
     private(set) var running = false
     private(set) lazy var scriptExecContextDict = [Script:CBScriptExecContext]()
 
@@ -435,5 +435,48 @@ final class CBPlayerScheduler : NSObject {
     //        }
     //    }
     //}
+
+//    #pragma mark - broadcasting handling
+//    - (void)setupBroadcastHandling
+//    {
+//    // reset all lazy (!) instantiated objects
+//    self.broadcastWaitHandler = nil;
+//    self.spriteObjectBroadcastScripts = nil;
+//    
+//    for (SpriteObject *spriteObject in self.objectList) {
+//    NSMutableArray *broadcastScripts = [NSMutableArray array];
+//    for (Script *script in spriteObject.scriptList) {
+//    if (! [script isKindOfClass:[BroadcastScript class]]) {
+//    continue;
+//    }
+//    
+//    BroadcastScript *broadcastScript = (BroadcastScript*)script;
+//    [self.broadcastWaitHandler registerSprite:spriteObject forMessage:broadcastScript.receivedMessage];
+//    [broadcastScripts addObject:broadcastScript];
+//    }
+//    [self.spriteObjectBroadcastScripts setObject:broadcastScripts forKey:spriteObject.name];
+//    }
+//    }
+//    
+//    #warning !! REMOVE THIS LATER !!
+//    - (void)signalForWaitingBroadcastWithMessage:(NSString*)message
+//    {
+//    dispatch_semaphore_t semaphore = self.broadcastMessageSemaphores[message];
+//    assert(semaphore);
+//    dispatch_semaphore_signal(semaphore);
+//    }
+//    
+//    - (void)waitingForBroadcastWithMessage:(NSString*)message
+//    {
+//    dispatch_semaphore_t semaphore = self.broadcastMessageSemaphores[message];
+//    // FIXME: workaround for synchronization issue
+//    if (! semaphore) {
+//    semaphore = dispatch_semaphore_create(0);
+//    self.broadcastMessageSemaphores[message] = semaphore;
+//    }
+//    assert(semaphore);
+//    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+//    }
+
 
 }

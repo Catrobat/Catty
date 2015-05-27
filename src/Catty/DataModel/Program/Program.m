@@ -26,7 +26,6 @@
 #import "SpriteObject.h"
 #import "AppDelegate.h"
 #import "FileManager.h"
-#import "SensorHandler.h"
 #import "ProgramLoadingInfo.h"
 #import "Parser.h"
 #import "Script.h"
@@ -38,18 +37,7 @@
 #import "CBXMLParser.h"
 #import "CBXMLSerializer.h"
 #import "CBMutableCopyContext.h"
-#import "BroadcastScript.h"
-#import "BroadcastWaitHandler.h"
 #import "Pocket_Code-Swift.h"
-
-@interface Program()
-
-@property (nonatomic, strong) BroadcastWaitHandler *broadcastWaitHandler;
-@property (nonatomic, strong) NSMutableDictionary *spriteObjectBroadcastScripts;
-@property (nonatomic, strong) NSMutableDictionary *broadcastScriptCounters;
-@property (nonatomic, strong) NSMutableDictionary *broadcastMessageSemaphores;
-
-@end
 
 @implementation Program
 
@@ -218,39 +206,6 @@
 }
 
 #pragma mark - Custom getter and setter
-- (BroadcastWaitHandler*)broadcastWaitHandler
-{
-    // lazy instantiation
-    if (! _broadcastWaitHandler) {
-        _broadcastWaitHandler = [BroadcastWaitHandler new];
-    }
-    return _broadcastWaitHandler;
-}
-
-- (NSMutableDictionary*)spriteObjectBroadcastScripts
-{
-    if (! _spriteObjectBroadcastScripts) {
-        _spriteObjectBroadcastScripts = [NSMutableDictionary dictionary];
-    }
-    return _spriteObjectBroadcastScripts;
-}
-
-- (NSMutableDictionary*)broadcastScriptCounters
-{
-    if (! _broadcastScriptCounters) {
-        _broadcastScriptCounters = [NSMutableDictionary dictionary];
-    }
-    return _broadcastScriptCounters;
-}
-
-- (NSMutableDictionary*)broadcastMessageSemaphores
-{
-    if (! _broadcastMessageSemaphores) {
-        _broadcastMessageSemaphores = [NSMutableDictionary dictionary];
-    }
-    return _broadcastMessageSemaphores;
-}
-
 - (NSMutableArray*)objectList
 {
     if (! _objectList) {
@@ -262,8 +217,9 @@
 - (void)setObjectList:(NSMutableArray*)objectList
 {
     for (id object in objectList) {
-        if ([object isKindOfClass:[SpriteObject class]])
-            ((SpriteObject*) object).program = self;
+        if ([object isKindOfClass:[SpriteObject class]]) {
+            ((SpriteObject*)object).program = self;
+        }
     }
     _objectList = objectList;
 }
@@ -617,52 +573,7 @@
 
 - (void)removeReferences
 {
-    [self.broadcastWaitHandler removeSpriteMessages];
-    self.broadcastWaitHandler = nil;
-    self.spriteObjectBroadcastScripts = nil;
     [self.objectList makeObjectsPerformSelector:@selector(removeReferences)];
-}
-
-#pragma mark - broadcasting handling
-- (void)setupBroadcastHandling
-{
-    // reset all lazy (!) instantiated objects
-    self.broadcastWaitHandler = nil;
-    self.spriteObjectBroadcastScripts = nil;
-
-    for (SpriteObject *spriteObject in self.objectList) {
-        NSMutableArray *broadcastScripts = [NSMutableArray array];
-        for (Script *script in spriteObject.scriptList) {
-            if (! [script isKindOfClass:[BroadcastScript class]]) {
-                continue;
-            }
-
-            BroadcastScript *broadcastScript = (BroadcastScript*)script;
-            [self.broadcastWaitHandler registerSprite:spriteObject forMessage:broadcastScript.receivedMessage];
-            [broadcastScripts addObject:broadcastScript];
-        }
-        [self.spriteObjectBroadcastScripts setObject:broadcastScripts forKey:spriteObject.name];
-    }
-}
-
-#warning !! REMOVE THIS LATER !!
-- (void)signalForWaitingBroadcastWithMessage:(NSString*)message
-{
-    dispatch_semaphore_t semaphore = self.broadcastMessageSemaphores[message];
-    assert(semaphore);
-    dispatch_semaphore_signal(semaphore);
-}
-
-- (void)waitingForBroadcastWithMessage:(NSString*)message
-{
-    dispatch_semaphore_t semaphore = self.broadcastMessageSemaphores[message];
-// FIXME: workaround for synchronization issue
-    if (! semaphore) {
-        semaphore = dispatch_semaphore_create(0);
-        self.broadcastMessageSemaphores[message] = semaphore;
-    }
-    assert(semaphore);
-    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 }
 
 @end

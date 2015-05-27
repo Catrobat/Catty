@@ -20,17 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc protocol CBPlayerFrontendSequenceFilter {
+@objc protocol CBPlayerFrontendSequenceFilterProtocol {
     // param: scriptSequenceList script sequence list
     func filterScriptSequenceList(scriptSequenceList: CBScriptSequenceList) -> CBScriptSequenceList
 }
+
+//@objc protocol CBPlayerFrontendProtocol {
+//    // param: scriptSequenceList script sequence list
+//    func filterScriptSequenceList(scriptSequenceList: CBScriptSequenceList) -> CBScriptSequenceList
+//}
 
 final class CBPlayerFrontend : NSObject {
 
     // MARK: - Properties
     let logger : CBLogger
     private(set) weak var program : Program?
-    private lazy var _sequenceFilters = [CBPlayerFrontendSequenceFilter]()
+    private lazy var _sequenceFilters = [CBPlayerFrontendSequenceFilterProtocol]()
 
     // MARK: - Initializers
     init(logger: CBLogger, program: Program) {
@@ -40,7 +45,7 @@ final class CBPlayerFrontend : NSObject {
     }
 
     // MARK: - Operations
-    func addSequenceFilter(sequenceFilter: CBPlayerFrontendSequenceFilter) {
+    func addSequenceFilter(sequenceFilter: CBPlayerFrontendSequenceFilterProtocol) {
         _sequenceFilters += sequenceFilter
     }
 
