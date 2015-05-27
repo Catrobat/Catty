@@ -27,8 +27,6 @@
         scriptExecContextDict: [Script:CBScriptExecContext]) -> CBScriptExecContext
 }
 
-typealias CBBroadcastQueueElement = (message: String, senderScript: Script)
-
 final class CBPlayerScheduler : NSObject {
 
     // MARK: - Constants
@@ -153,7 +151,7 @@ final class CBPlayerScheduler : NSObject {
         }
     }
 
-    func setStateForScript(script: Script, state: CBScriptExecContext.CBState) {
+    func setStateForScript(script: Script, state: CBScriptState) {
         if let scriptExecContext = scriptExecContextDict[script] {
             scriptExecContext.state = state
         }

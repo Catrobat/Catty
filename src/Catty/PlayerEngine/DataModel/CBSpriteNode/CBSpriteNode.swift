@@ -24,7 +24,6 @@
 
     // MARK: - Properties
     private(set) var spriteObject: SpriteObject?
-//    var originalSize: CGSize
     var currentLook: Look?
     var currentUIImageLook: UIImage?
     var currentLookBrightness: CGFloat = 1.0
@@ -50,6 +49,7 @@
             return rotation
         }
     }
+
     // MARK: Custom getters and setters
     func setPositionForCropping(position: CGPoint) {
         self.position = position
@@ -106,14 +106,14 @@
         let image = UIImage(contentsOfFile:filePathForLook!)
         if image == nil { return }
         let texture = SKTexture(image: image!)
-        if spriteObject?.isBackground() == true {
-            self.currentUIImageLook = image
-            self.size = texture.size()
-        } else {
+        self.currentUIImageLook = image
+        self.size = texture.size()
+        //if spriteObject?.isBackground() == true {
+        //    self.currentUIImageLook = image
+        //    self.size = texture.size()
+        //} else {
             // We do not need cropping if touch through transparent pixel is possible!!!!
-            
             //        CGRect newRect = [image cropRectForImage:image];
-            
             //        if ((newRect.size.height <= image.size.height - 50 && newRect.size.height <= image.size.height - 50)) {
             //            CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
             //            UIImage *newImage = [UIImage imageWithCGImage:imageRef];
@@ -124,10 +124,10 @@
             //            self.currentUIImageLook = newImage;
             //        }
             //        else{
-            self.currentUIImageLook = image
+            //          self.currentUIImageLook = image
             //        }
-            self.size = texture.size()
-        }
+            //        self.size = texture.size()
+        //}
         let xScale = self.xScale
         let yScale = self.yScale
         self.xScale = 1.0
@@ -171,16 +171,16 @@
         for touchAnyObject in touches {
             let touch = touchAnyObject as! UITouch
             let touchedPoint = touch.locationInNode(self)
-//                NSDebug(@"x:%f,y:%f", touchedPoint.x, touchedPoint.y);
-            //NSDebug(@"test touch, %@",self.name);
+//                println(@"x:%f,y:%f", touchedPoint.x, touchedPoint.y);
+            //println(@"test touch, %@",self.name);
             //        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [UIScreen mainScreen].scale);
             //        [self.scene.view drawViewHierarchyInRect:self.frame afterScreenUpdates:NO];
             //        UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
             //        UIGraphicsEndImageContext();
-//                NSDebug(@"image : x:%f,y:%f", self.currentUIImageLook.size.width, self.currentUIImageLook.size.height);
+//                println(@"image : x:%f,y:%f", self.currentUIImageLook.size.width, self.currentUIImageLook.size.height);
             let isTransparent = self.currentUIImageLook?.isTransparentPixel(self.currentUIImageLook, withX:touchedPoint.x, andY:touchedPoint.y)
             if isTransparent == true {
-//                    NSDebug(@"I'm transparent at this point");
+//                    println(@"I'm transparent at this point");
                 return false
             }
             if let spriteObject = self.spriteObject, let scriptList = spriteObject.scriptList as NSArray as? [Script] {

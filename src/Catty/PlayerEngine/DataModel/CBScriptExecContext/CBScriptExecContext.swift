@@ -20,34 +20,26 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-typealias CBExecClosure = dispatch_block_t
-
 final class CBScriptExecContext : SKNode {
-
-    enum CBState {
-        case Runnable
-        case Running
-        case RunningMature // for StartScripts => broadcast + broadcast wait start queue
-        case Waiting       // for broadcast wait!!
-        case Sleeping
-        case Dead
-    }
 
     // MARK: - Properties
     let script:Script
-    var state:CBState
-    private lazy var _instructionList = [CBExecClosure]()
-    private var _scriptSequenceList: CBScriptSequenceList?
+    let scriptType:CBScriptType
+    var state:CBScriptState
     private(set) var reverseInstructionPointer = 0
     var count:Int { return _instructionList.count }
+
+    private lazy var _instructionList = [CBExecClosure]()
+    private var _scriptSequenceList: CBScriptSequenceList?
 
     // MARK: - Initializers
     convenience init(script: Script, scriptSequenceList: CBScriptSequenceList) {
         self.init(script: script, state: .Runnable, scriptSequenceList: scriptSequenceList, instructionList: [])
     }
 
-    init(script: Script, state: CBState, scriptSequenceList: CBScriptSequenceList, instructionList: [CBExecClosure]) {
+    init(script: Script, state: CBScriptState, scriptSequenceList: CBScriptSequenceList, instructionList: [CBExecClosure]) {
         self.script = script
+        self.scriptType = CBScriptType.scriptTypeOfScript(script)
         self.state = state
         self._scriptSequenceList = scriptSequenceList
         super.init()
