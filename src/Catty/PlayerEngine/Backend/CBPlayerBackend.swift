@@ -45,7 +45,7 @@ final class CBPlayerBackend : NSObject {
         }
         logger.info("Generating ExecContext of \(scriptSequenceList.script)")
         var instructionList = _instructionListForSequenceList(scriptSequenceList.sequenceList)
-        return CBScriptExecContext(script: scriptSequenceList.script,
+        return CBScriptExecContext(script: scriptSequenceList.script, state: .Runnable,
             scriptSequenceList: scriptSequenceList, instructionList: instructionList)
     }
 
@@ -68,6 +68,7 @@ final class CBPlayerBackend : NSObject {
                             self?.scheduler?.addInstructionsAfterCurrentInstructionOfScript(script!, instructionList: instructionList)
                         }
                     }
+                    self?.scheduler?.setStateForScript(script!, state: .RunningMature)
                     self?.scheduler?.runNextInstructionOfScript(script!)
                 }
             } else if let conditionalSequence = sequence as? CBConditionalSequence {
@@ -116,6 +117,7 @@ final class CBPlayerBackend : NSObject {
                             let instruction = scriptSequenceList!.whileSequences[localUniqueID]
                             assert(instruction != nil, "This should NEVER happen!")
                             scheduler?.addInstructionAfterCurrentInstructionOfScript(script, instruction: instruction!)
+                            scheduler?.setStateForScript(script, state: .RunningMature)
                             scheduler?.runNextInstructionOfScript(script)
                             return
                         })
@@ -130,6 +132,7 @@ final class CBPlayerBackend : NSObject {
             } else {
                 // leaving loop now!
                 conditionalSequence.resetCondition() // reset loop counter right now
+                scheduler?.setStateForScript(script, state: .RunningMature)
                 scheduler?.runNextInstructionOfScript(script) // run next action after loop
             }
         }
@@ -186,6 +189,12 @@ final class CBPlayerBackend : NSObject {
                     assert(scriptExecContext != nil, "FATAL: ScriptExecContext added to Scheduler!")
                     scriptExecContext?.runAction(operation.brick.action(), completion:{
                         // the script must continue here. upcoming actions are executed!!
+                        if operation.brick.script.object.name == "Hintergrund" {
+                            self?.logger.debug("TEST!!!")
+                        }
+                        if let waitBrick = operation.brick as? WaitBrick {
+                            self?.scheduler?.setStateForScript(waitBrick.script, state: .RunningMature)
+                        }
                         self?.scheduler?.runNextInstructionOfScript(operation.brick.script)
                     })
                 }

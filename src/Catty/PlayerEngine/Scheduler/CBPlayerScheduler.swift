@@ -27,6 +27,8 @@
         scriptExecContextDict: [Script:CBScriptExecContext]) -> CBScriptExecContext
 }
 
+typealias CBBroadcastQueueElement = (message: String, senderScript: Script)
+
 final class CBPlayerScheduler : NSObject {
 
     // MARK: - Constants
@@ -35,13 +37,15 @@ final class CBPlayerScheduler : NSObject {
 
     // MARK: - Properties
     var logger: CBLogger
-    private let _frontend: CBPlayerFrontend
-    private let _backend: CBPlayerBackend
+    var schedulingAlgorithm: CBPlayerSchedulingAlgorithm?
     private(set) var running = false
     private(set) lazy var scriptExecContextDict = [Script:CBScriptExecContext]()
-    var schedulingAlgorithm: CBPlayerSchedulingAlgorithm?
+
+    private let _frontend: CBPlayerFrontend
+    private let _backend: CBPlayerBackend
     private weak var _currentScriptExecContext: CBScriptExecContext?
     private lazy var _registeredBroadcastScripts = [String:[BroadcastScript]]()
+    private lazy var _broadcastStartQueueBuffer = [CBBroadcastQueueElement]()
     private lazy var _selfBroadcastCounters = [String:Int]()
 
     // MARK: - Initializers
@@ -52,24 +56,14 @@ final class CBPlayerScheduler : NSObject {
     }
 
     // MARK: - Getters and Setters
-    func isScriptRunning(script: Script) -> Bool {
-        if let _ = scriptExecContextDict[script] {
+    func isScriptScheduled(script: Script) -> Bool {
+        if let scriptExecContext = scriptExecContextDict[script] {
             return true
         }
         return false
     }
 
     // MARK: - Operations
-    private func _resetScript(script: Script) {
-        logger.debug("!!! RESETTING: \(script)");
-        logger.debug("-------------------------------------------------------------")
-        for brick in script.brickList {
-            if let loopBeginBrick = brick as? LoopBeginBrick {
-                loopBeginBrick.resetCondition()
-            }
-        }
-    }
-
     func addScriptExecContext(scriptExecContext: CBScriptExecContext) {
         assert(scriptExecContextDict[scriptExecContext.script] == nil, "Context already in dictionary!")
         logger.info("Added new CBScriptExecContext for \(scriptExecContext.script)")
@@ -129,8 +123,11 @@ final class CBPlayerScheduler : NSObject {
         fatalError("FATAL: Given BroadcastScript is NOT registered!")
     }
 
+    // MARK: - Scheduling
     func runNextInstructionOfScript(script: Script) {
         if scriptExecContextDict.count == 0 { return }
+
+        // apply scheduling => chooses script to be scheduled NOW!
         if schedulingAlgorithm != nil {
             let newScriptExecContext = schedulingAlgorithm?.scriptExecContextForNextInstruction(
                 _currentScriptExecContext?.script,
@@ -156,6 +153,13 @@ final class CBPlayerScheduler : NSObject {
         }
     }
 
+    func setStateForScript(script: Script, state: CBScriptExecContext.CBState) {
+        if let scriptExecContext = scriptExecContextDict[script] {
+            scriptExecContext.state = state
+        }
+    }
+
+    // MARK: - Events
     func run() {
         logger.info("")
         logger.info("#############################################################")
@@ -163,8 +167,34 @@ final class CBPlayerScheduler : NSObject {
         logger.info(" => SCHEDULER STARTED")
         logger.info("")
         logger.info("#############################################################\n\n")
+
+        // set running flag
         running = true
 
+        // setup broadcast start queue handler
+        let broadcastQueue = dispatch_queue_create("org.catrobat.broadcastStart.queue", DISPATCH_QUEUE_CONCURRENT)
+        dispatch_async(broadcastQueue, { [weak self] in
+            while self?._allStartScriptsReachedMatureState() == false {
+                NSThread.sleepForTimeInterval(0.1)
+            }
+
+            // if mature state reached => perform all already enqueued broadcasts
+            dispatch_async(dispatch_get_main_queue(), { [weak self] in
+                if self?._broadcastStartQueueBuffer.count > 0 {
+                    if self?._allStartScriptsReachedMatureState() == true {
+                        if let broadcastStartQueueBuffer = self?._broadcastStartQueueBuffer {
+                            for (message, senderScript) in broadcastStartQueueBuffer {
+                                self?.performBroadcastWithMessage(message, senderScript: senderScript)
+                            }
+                            self?._broadcastStartQueueBuffer.removeAll(keepCapacity: false)
+                        }
+                    }
+                }
+            })
+        })
+
+        // start all StartScripts
+        _broadcastStartQueueBuffer.removeAll()
         for (script, _) in scriptExecContextDict {
             startScript(script)
         }
@@ -181,10 +211,10 @@ final class CBPlayerScheduler : NSObject {
                 scriptExecContext.script.object.spriteNode.addChild(scriptExecContext)
             }
             _resetScript(script)
-
             if scriptExecContext.hasActions() {
                 scriptExecContext.removeAllActions()
             }
+            scriptExecContext.state = .Running
             runNextInstructionOfScript(script) // Ready...Steady...Gooooo!! => invoke first instruction!
             return
         }
@@ -214,6 +244,7 @@ final class CBPlayerScheduler : NSObject {
         logger.info("!!! STOPPING: \(script)")
         logger.info("-------------------------------------------------------------")
         if let scriptExecContext = scriptExecContextDict[script] {
+            scriptExecContext.state = .Dead
             if removeReferences {
                 scriptExecContext.removeReferences()
             }
@@ -226,6 +257,16 @@ final class CBPlayerScheduler : NSObject {
             return
         }
         logger.debug("\(script) already stopped!!")
+    }
+
+    private func _resetScript(script: Script) {
+        logger.debug("!!! RESETTING: \(script)");
+        logger.debug("-------------------------------------------------------------")
+        for brick in script.brickList {
+            if let loopBeginBrick = brick as? LoopBeginBrick {
+                loopBeginBrick.resetCondition()
+            }
+        }
     }
 
     func shutdown() {
@@ -249,18 +290,37 @@ final class CBPlayerScheduler : NSObject {
         _currentScriptExecContext = nil
     }
 
-    // MARK: - Broadcast handling
-    func performBroadcastWithMessage(message: String, senderScript:Script) {
+    // MARK: - Broadcast Handling
+    private func _allStartScriptsReachedMatureState() -> Bool {
+        for (script, scriptExecContext) in scriptExecContextDict {
+            if let startScript = script as? StartScript {
+                if (scriptExecContext.state != .RunningMature) && (scriptExecContext.state != .Dead) {
+                    return false
+                }
+            }
+        }
+        return true
+    }
 
-        logger.info("Broadcast: \(message)")
+    func performBroadcastWithMessage(message: String, senderScript:Script) {
+        if let senderScriptExecContext = scriptExecContextDict[senderScript] {
+            senderScriptExecContext.state = .RunningMature
+        }
+        if _allStartScriptsReachedMatureState() == false {
+            logger.info("Enqueuing broadcast: \(message)")
+            _broadcastStartQueueBuffer += (message, senderScript)
+            return
+        }
+
+        logger.info("Performing broadcast: \(message)")
         var runNextInstructionOfSenderScript = true
 
         if let broadcastScripts = _registeredBroadcastScripts[message] {
             for broadcastScript in broadcastScripts {
                 // case broadcastScript == senderScript => restart script
                 if broadcastScript === senderScript {
-                    // if sender script stopped in the meanwhile => do NOT restart and abort this broadcast!
-                    if isScriptRunning(broadcastScript) == false {
+                    // if sender script stopped in the mean while => do NOT restart and abort this broadcast!
+                    if isScriptScheduled(broadcastScript) == false {
                         return;
                     }
                     broadcastScript.calledByOtherScriptBroadcastWait = false // no synchronization needed here
@@ -287,7 +347,7 @@ final class CBPlayerScheduler : NSObject {
 
                 // case broadcastScript != senderScript
                 broadcastScript.calledByOtherScriptBroadcastWait = false
-                if isScriptRunning(broadcastScript) == false {
+                if isScriptScheduled(broadcastScript) == false {
                     // case broadcastScript is not running
                     let sequenceList = _frontend.computeSequenceListForScript(broadcastScript)
                     if let senderScriptExecContext = scriptExecContextDict[senderScript] {
