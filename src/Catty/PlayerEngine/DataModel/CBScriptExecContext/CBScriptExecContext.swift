@@ -24,20 +24,31 @@ typealias CBExecClosure = dispatch_block_t
 
 final class CBScriptExecContext : SKNode {
 
+    enum CBState {
+        case Runnable
+        case Running
+        case RunningMature // for StartScripts => broadcast + broadcast wait start queue
+        case Waiting       // for broadcast wait!!
+        case Sleeping
+        case Dead
+    }
+
     // MARK: - Properties
-    let script: Script
+    let script:Script
+    var state:CBState
     private lazy var _instructionList = [CBExecClosure]()
     private var _scriptSequenceList: CBScriptSequenceList?
     private(set) var reverseInstructionPointer = 0
-    var count: Int { return _instructionList.count }
+    var count:Int { return _instructionList.count }
 
     // MARK: - Initializers
     convenience init(script: Script, scriptSequenceList: CBScriptSequenceList) {
-        self.init(script: script, scriptSequenceList: scriptSequenceList, instructionList: [])
+        self.init(script: script, state: .Runnable, scriptSequenceList: scriptSequenceList, instructionList: [])
     }
 
-    init(script: Script, scriptSequenceList: CBScriptSequenceList, instructionList: [CBExecClosure]) {
+    init(script: Script, state: CBState, scriptSequenceList: CBScriptSequenceList, instructionList: [CBExecClosure]) {
         self.script = script
+        self.state = state
         self._scriptSequenceList = scriptSequenceList
         super.init()
         for instruction in instructionList {
@@ -56,17 +67,20 @@ final class CBScriptExecContext : SKNode {
     }
 
     func addInstructionAtCurrentPosition(instruction: CBExecClosure) {
+        assert((state == .Running) || (state == .RunningMature))
         _instructionList.insert(instruction, atIndex: reverseInstructionPointer)
         ++reverseInstructionPointer
     }
 
     func removeNumberOfInstructions(numberOfInstructions: Int, instructionStartIndex startIndex: Int) {
+        assert((state == .Running) || (state == .RunningMature))
         let range = Range<Int>(startIndex ..< (startIndex + numberOfInstructions))
         _instructionList.removeRange(range)
         reverseInstructionPointer = startIndex
     }
 
     func nextInstruction() -> CBExecClosure? {
+        assert((state == .Running) || (state == .RunningMature))
         if (reverseInstructionPointer == 0) || (_instructionList.count == 0) {
             return nil
         }
