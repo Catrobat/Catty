@@ -416,6 +416,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 [allVariableNames addObject:var.name];
             }
         }
+        self.higherRankBrick = indexPath;
         
         [Util askUserForUniqueNameAndPerformAction:@selector(addVariableWithName:andCompletion:)
                                                 target:self
@@ -433,11 +434,21 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                                                     [array addObject:variable];
                                                     [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
                                                 }
+                                                UserVariable *var = [self.object.program.variables getUserVariableNamed:(NSString*)variableName forSpriteObject:self.object];
+                                                BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.higherRankBrick];
+                                                Brick * brick = (Brick*)brickCell.scriptOrBrick;
+                                                Brick<BrickVariableProtocol> *variableBrick;
+                                                if ([brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
+                                                    variableBrick = (Brick<BrickVariableProtocol>*)brick;
+                                                }
+
+                                                if(var)
+                                                    [variableBrick setVariable:var forLineNumber:self.higherRankBrick.row andParameterNumber:self.higherRankBrick.section];
+                                                
                                                 [self.object.program saveToDisk];
                                                 [self.collectionView reloadData];
-                                                UserVariable *var = [self.object.program.variables getUserVariableNamed:(NSString*)variableName forSpriteObject:self.object];
-                                                if(var && variableBrick)
-                                                    [variableBrick setVariable:var forLineNumber:indexPath.row andParameterNumber:indexPath.section];
+
+        
                                             }
                                            promptTitle:kUIFENewVar
                                          promptMessage:kUIFEVarName
@@ -1624,6 +1635,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if ([brickCellData isKindOfClass:[BrickCellVariableData class]] && [brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
         Brick<BrickVariableProtocol> *variableBrick = (Brick<BrickVariableProtocol>*)brick;
         if([(NSString*)value isEqualToString:kLocalizedNewElement]) {
+            NSIndexPath *path = [self.collectionView indexPathForCell:brickCellData.brickCell];
             CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIFEActionVar
                                                                  delegate:self
                                                    destructiveButtonTitle:nil
@@ -1631,7 +1643,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                                                       tag:kVariabletypeActionSheetTag
                                                                      view:self.navigationController.view];
             actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditBrickOrScript
-                                                                            withPayload:@{ kDTPayloadCellIndexPath : [NSIndexPath indexPathForRow:line inSection:parameter] }];
+                                                                            withPayload:@{ kDTPayloadCellIndexPath : path}];
+            
             [self enableUserInteraction];
             return;
         } else {
