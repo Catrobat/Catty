@@ -541,6 +541,9 @@
 /* No comment provided by engineer. */
 "Move %@ step(s)" = "Move %@ step(s)";
 
+/* No comment provided by engineer. */
+"Move Brick" = "Move Brick";
+
 /* Name of the default catrobat program */
 "My first program" = "My first program";
 

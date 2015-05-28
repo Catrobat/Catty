@@ -130,6 +130,7 @@
 #define kLocalizedAnimateBrick NSLocalizedString(@"Animate Brick", nil)
 #define kLocalizedCopyBrick NSLocalizedString(@"Copy Brick", nil)
 #define kLocalizedEditFormula NSLocalizedString(@"Edit Formula", nil)
+#define kLocalizedMoveBrick NSLocalizedString(@"Move Brick", nil)
 #define kLocalizedDeleteSounds NSLocalizedString(@"Delete Sounds", nil)
 #define kLocalizedHideDetails NSLocalizedString(@"Hide Details", nil)
 #define kLocalizedShowDetails NSLocalizedString(@"Show Details", nil)

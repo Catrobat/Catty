@@ -252,10 +252,17 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
     BOOL isBrick = [brickCell.scriptOrBrick isKindOfClass:[Brick class]];
     NSMutableArray *buttonTitles = [NSMutableArray array];
-// TODO: add move brick button!!
+    for(BrickCell *cell in collectionView.visibleCells)
+    {
+        if (![cell isEqual:brickCell]) {
+            cell.alpha = 0.3f;
+        }
+    }
     if (isBrick) {
         [buttonTitles addObject:kLocalizedCopyBrick];
+        [buttonTitles addObject:kLocalizedMoveBrick];
     }
+
     if ([brickCell.scriptOrBrick isAnimateable]) {
         [buttonTitles addObject:kLocalizedAnimateBrick];
     }
@@ -290,7 +297,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 #pragma mark - action sheet delegates
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == actionSheet.cancelButtonIndex) { return; }
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        [self reloadData];
+        return;
+    }
     if (actionSheet.tag == kEditBrickActionSheetTag) {
         CBAssert(actionSheet.dataTransferMessage.actionType == kDTMActionEditBrickOrScript);
         CBAssert([actionSheet.dataTransferMessage.payload isKindOfClass:[NSDictionary class]]);
@@ -298,7 +308,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         NSIndexPath *indexPath = payload[kDTPayloadCellIndexPath]; // unwrap payload message
         BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
 
-        // delete script or brick action
+        brickCell.alpha = 1.0f;
+            // delete script or brick action
         if (buttonIndex == actionSheet.destructiveButtonIndex) {
             [self removeBrickOrScript:brickCell andIndexPath:indexPath];
         }
@@ -399,6 +410,15 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [self animate:indexPath brickCell:brickCell];
             return;
         }
+            // move Brick
+        if ([buttonTitle isEqualToString:kLocalizedMoveBrick]) {
+            Brick *brick = (Brick*)brickCell.scriptOrBrick;
+            brick.animateInsertBrick = YES;
+            [self turnOnInsertingBrickMode];
+            [self reloadData];
+            return;
+        }
+        
     }
 }
 
