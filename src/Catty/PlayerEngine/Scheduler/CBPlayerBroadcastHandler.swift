@@ -157,6 +157,7 @@ final class CBPlayerBroadcastHandler : NSObject, CBPlayerBroadcastHandlerProtoco
             }
         }
 
+        var isSelfBroadcast = false
         if let broadcastScripts = _registeredBroadcastScripts[message] {
             var waitingForBroadcastScripts = [BroadcastScript]()
             for broadcastScript in broadcastScripts {
@@ -164,11 +165,13 @@ final class CBPlayerBroadcastHandler : NSObject, CBPlayerBroadcastHandlerProtoco
                 if broadcastScript === senderScript {
                     // end of script reached!! Scripts will be aborted due to self-calling broadcast
                     _performSelfBroadcastWithMessage(message, broadcastScript: broadcastScript)
+                    isSelfBroadcast = true
+                    receivingScriptInitialState = .Running
                     runNextInstructionOfSenderScript = false // still enqueued next actions are ignored due to restart!
                     continue
                 }
-
                 waitingForBroadcastScripts += broadcastScript
+
                 // case broadcastScript != senderScript
                 if scheduler?.isScriptScheduled(broadcastScript) == false {
                     // case broadcastScript is not running
@@ -186,7 +189,10 @@ final class CBPlayerBroadcastHandler : NSObject, CBPlayerBroadcastHandlerProtoco
                     scheduler?.restartScript(broadcastScript, withInitialState: receivingScriptInitialState)
                 }
             }
-            broadcastWaitingScriptsQueue[senderScript] = waitingForBroadcastScripts
+            // do not wait for broadcastscript if self broadcast == senderScript (never execute further actions of senderScript!)
+            if isSelfBroadcast == false {
+                broadcastWaitingScriptsQueue[senderScript] = waitingForBroadcastScripts
+            }
         } else {
             logger.info("The program does not contain broadcast scripts listening for message: '\(message)'.")
         }
@@ -208,7 +214,7 @@ final class CBPlayerBroadcastHandler : NSObject, CBPlayerBroadcastHandlerProtoco
         if ++counter % selfBroadcastRecursionMaxDepthLimit == 0 { // XXX: DIRTY PERFORMANCE HACK!!
             dispatch_async(dispatch_get_main_queue(), { [weak self] in
                 self?.scheduler?.restartScript(broadcastScript) // restart this self-listening BroadcastScript
-                })
+            })
         } else {
             scheduler?.restartScript(broadcastScript)
         }
