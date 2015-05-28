@@ -54,6 +54,17 @@
 		<key>SWLQuickFormat</key>
 		<string>DateNameMessage</string>
 	</dict>
+	<key>CBPlayerBroadcastHandlerLogger.Release</key>
+	<dict>
+		<key>SWLLevel</key>
+		<string>warn</string>
+		<key>SWLLocation</key>
+		<string>file</string>
+		<key>SWLLocationFilename</key>
+		<string>PlayerEngine-BroadcastHandler.Release.log</string>
+		<key>SWLQuickFormat</key>
+		<string>DateNameMessage</string>
+	</dict>
 	<key>CBPlayerSceneLogger.Debug</key>
 	<dict>
 		<key>SWLLevel</key>
@@ -98,6 +109,17 @@
 		<key>SWLQuickFormat</key>
 		<string>DateNameMessage</string>
 	</dict>
+	<key>CBPlayerBroadcastHandlerLogger.Debug</key>
+	<dict>
+		<key>SWLLevel</key>
+		<string>warn</string>
+		<key>SWLLocation</key>
+		<string>console</string>
+		<key>SWLLocationFilename</key>
+		<string>PlayerEngine-BroadcastHandler.Debug.log</string>
+		<key>SWLQuickFormat</key>
+		<string>DateNameMessage</string>
+	</dict>
 	<key>CBPlayerSceneLogger.Test</key>
 	<dict>
 		<key>SWLLevel</key>
@@ -139,6 +161,17 @@
 		<string>console file</string>
 		<key>SWLLocationFilename</key>
 		<string>PlayerEngine-Backend.Test.log</string>
+		<key>SWLQuickFormat</key>
+		<string>DateNameMessage</string>
+	</dict>
+	<key>CBPlayerBroadcastHandlerLogger.Test</key>
+	<dict>
+		<key>SWLLevel</key>
+		<string>debug</string>
+		<key>SWLLocation</key>
+		<string>console file</string>
+		<key>SWLLocationFilename</key>
+		<string>PlayerEngine-BroadcastHandler.Test.log</string>
 		<key>SWLQuickFormat</key>
 		<string>DateNameMessage</string>
 	</dict>

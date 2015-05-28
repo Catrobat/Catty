@@ -55,9 +55,4 @@
     return self.receivedMessage;
 }
 
-- (void)signalForWaitingBroadcasts
-{
-//    [self.object.program signalForWaitingBroadcastWithMessage:self.receivedMessage];
-}
-
 @end

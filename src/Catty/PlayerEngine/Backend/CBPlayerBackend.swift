@@ -158,52 +158,22 @@ final class CBPlayerBackend : NSObject, CBPlayerBackendProtocol {
             if let broadcastBrick = operation.brick as? BroadcastBrick {
                 instructionList += { [weak self] in
                     self?.broadcastHandler?.performBroadcastWithMessage(broadcastBrick.broadcastMessage,
-                        senderScript: broadcastBrick.script)
+                        senderScript: broadcastBrick.script, broadcastType: .Broadcast)
                 }
             } else if let broadcastWaitBrick = operation.brick as? BroadcastWaitBrick {
-                // TODO!!!
-                // cancel all upcoming actions if BroadcastWaitBrick calls its own script
-                if let broadcastScript = broadcastWaitBrick.script as? BroadcastScript {
-                    assert(broadcastWaitBrick.broadcastMessage != nil, "broadcastMessage in BroadcastWaitBrick must NOT be nil")
-                    assert(broadcastScript.receivedMessage != nil, "receivedMessage in BroadcastScript must NOT be nil")
-                    if broadcastWaitBrick.broadcastMessage == broadcastScript.receivedMessage {
-                        // DO NOT call completionBlock here so that upcoming actions are ignored!
-                        instructionList += { [weak self] in
-                            // end of script reached!! Scripts will be aborted due to self-calling broadcast
-                            if broadcastScript.calledByOtherScriptBroadcastWait {
-                                broadcastScript.signalForWaitingBroadcasts() // signal finished broadcast!
-                            }
-                            //                            NSDebug(@"BroadcastScript ended due to self broadcastWait!");
-                            // finally perform normal (!) broadcast
-                            // no waiting required, since all upcoming actions in the sequence are omitted!
-                            self?.broadcastHandler?.performBroadcastWithMessage(broadcastWaitBrick.broadcastMessage,
-                                senderScript:broadcastScript)
-
-                            // end of script reached!! Scripts will be aborted due to self-calling broadcast
-                            // the final closure will never be called (except when script is canceled!) due
-                            // to self-broadcast
-                            println("SCRIPT HAS BEEN RESTARTED DUE TO SELF-BROADCASTWAIT!!")
-                        }
-                        continue
-                    }
-                }
                 instructionList += { [weak self] in
-                    if let scheduler = self?.scheduler {
-//                        broadcastWaitBrick.performBroadcastAndWaitWithScheduler(scheduler)
-                    }
+                    self?.broadcastHandler?.performBroadcastWithMessage(broadcastWaitBrick.broadcastMessage,
+                        senderScript: broadcastWaitBrick.script, broadcastType: .BroadcastWait)
                 }
             } else {
                 instructionList += { [weak self] in
                     let scriptExecContext = self?.scheduler?.scriptExecContextDict[operation.brick.script]
                     assert(scriptExecContext != nil, "FATAL: ScriptExecContext added to Scheduler!")
+                    if let waitBrick = operation.brick as? WaitBrick {
+                        self?.scheduler?.setStateForScript(waitBrick.script, state: .RunningMature)
+                    }
                     scriptExecContext?.runAction(operation.brick.action(), completion:{
                         // the script must continue here. upcoming actions are executed!!
-                        if operation.brick.script.object.name == "Hintergrund" {
-                            self?.logger.debug("TEST!!!")
-                        }
-                        if let waitBrick = operation.brick as? WaitBrick {
-                            self?.scheduler?.setStateForScript(waitBrick.script, state: .RunningMature)
-                        }
                         self?.scheduler?.runNextInstructionOfScript(operation.brick.script)
                     })
                 }

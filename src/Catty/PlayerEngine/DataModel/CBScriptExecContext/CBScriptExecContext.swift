@@ -25,7 +25,12 @@ final class CBScriptExecContext : SKNode {
     // MARK: - Properties
     let script : Script
     let scriptType : CBScriptType
-    var state : CBScriptState
+    private var _stateStorage : CBScriptState
+    var state : CBScriptState {
+        get { return _stateStorage }
+        // if script is RunningBlocking (BroadcastScript called by BroadcastWait) then do not change state!
+        set { if _stateStorage != .RunningBlocking || newValue != .RunningMature { _stateStorage = newValue } }
+    }
     private(set) var reverseInstructionPointer = 0
     var count : Int { return _instructionList.count }
 
@@ -40,7 +45,7 @@ final class CBScriptExecContext : SKNode {
     init(script: Script, state: CBScriptState, scriptSequenceList: CBScriptSequenceList, instructionList: [CBExecClosure]) {
         self.script = script
         self.scriptType = CBScriptType.scriptTypeOfScript(script)
-        self.state = state
+        _stateStorage = state
         self._scriptSequenceList = scriptSequenceList
         super.init()
         for instruction in instructionList {
@@ -59,20 +64,20 @@ final class CBScriptExecContext : SKNode {
     }
 
     func addInstructionAtCurrentPosition(instruction: CBExecClosure) {
-        assert((state == .Running) || (state == .RunningMature))
+        assert((state == .Running) || (state == .RunningMature) || (state == .RunningBlocking))
         _instructionList.insert(instruction, atIndex: reverseInstructionPointer)
         ++reverseInstructionPointer
     }
 
     func removeNumberOfInstructions(numberOfInstructions: Int, instructionStartIndex startIndex: Int) {
-        assert((state == .Running) || (state == .RunningMature))
+        assert((state == .Running) || (state == .RunningMature) || (state == .RunningBlocking))
         let range = Range<Int>(startIndex ..< (startIndex + numberOfInstructions))
         _instructionList.removeRange(range)
         reverseInstructionPointer = startIndex
     }
 
     func nextInstruction() -> CBExecClosure? {
-        assert((state == .Running) || (state == .RunningMature))
+        assert((state == .Running) || (state == .RunningMature) || (state == .RunningBlocking))
         if (reverseInstructionPointer == 0) || (_instructionList.count == 0) {
             return nil
         }

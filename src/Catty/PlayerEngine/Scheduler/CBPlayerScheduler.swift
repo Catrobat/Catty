@@ -33,7 +33,9 @@
     // script handling
     func addScriptExecContext(scriptExecContext: CBScriptExecContext)
     func startScript(script: Script)
+    func startScript(script: Script, withInitialState: CBScriptState)
     func restartScript(script: Script)
+    func restartScript(script: Script, withInitialState: CBScriptState)
 
     // operations
     func isScriptScheduled(script: Script) -> Bool
@@ -57,9 +59,6 @@ final class CBPlayerScheduler : NSObject, CBPlayerSchedulerProtocol {
     private let _backend : CBPlayerBackendProtocol
     private let _broadcastHandler : CBPlayerBroadcastHandlerProtocol
     private var _currentScriptExecContext : CBScriptExecContext?
-    private lazy var _registeredBroadcastScripts = [String:[BroadcastScript]]()
-    private lazy var _broadcastStartQueueBuffer = [CBBroadcastQueueElement]()
-    private lazy var _selfBroadcastCounters = [String:Int]()
 
     // MARK: - Initializers
     init(logger: CBLogger, frontend: CBPlayerFrontendProtocol, backend: CBPlayerBackendProtocol,
@@ -110,34 +109,6 @@ final class CBPlayerScheduler : NSObject, CBPlayerSchedulerProtocol {
             return scriptExecContext.reverseInstructionPointer
         }
         return -1 // ATTENTION: cannot return nil here, because this requires "Int?" => would be not compatible with Objective-C
-    }
-
-    func subscribeBroadcastScript(broadcastScript: BroadcastScript, forMessage message: String) {
-        if var broadcastScripts = _registeredBroadcastScripts[message] {
-            assert(contains(broadcastScripts, broadcastScript) == false, "FATAL: BroadcastScript already registered!")
-            broadcastScripts += broadcastScript
-            _registeredBroadcastScripts[message] = broadcastScripts
-        } else {
-            _registeredBroadcastScripts[message] = [broadcastScript]
-        }
-        logger.info("Subscribed new BroadcastScript of object \(broadcastScript.object.name) " +
-                    "for message \(message)")
-    }
-
-    func unsubscribeBroadcastScript(broadcastScript: BroadcastScript, forMessage message: String) {
-        if var broadcastScripts = _registeredBroadcastScripts[message] {
-            var index = 0
-            for script in broadcastScripts {
-                if script === broadcastScript {
-                    broadcastScripts.removeAtIndex(index)
-                    logger.info("Unsubscribed BroadcastScript of object \(broadcastScript.object.name) " +
-                                "for message \(message)")
-                    return
-                }
-                ++index
-            }
-        }
-        fatalError("FATAL: Given BroadcastScript is NOT registered!")
     }
 
     // MARK: - Scheduling
@@ -195,6 +166,10 @@ final class CBPlayerScheduler : NSObject, CBPlayerSchedulerProtocol {
     }
 
     func startScript(script: Script) {
+        startScript(script, withInitialState: .Running)
+    }
+
+    func startScript(script: Script, withInitialState initialState: CBScriptState) {
         assert(running) // ensure that player is running!
         if let scriptExecContext = scriptExecContextDict[script] {
             logger.info("    STARTING: \(script)")
@@ -208,7 +183,7 @@ final class CBPlayerScheduler : NSObject, CBPlayerSchedulerProtocol {
             if scriptExecContext.hasActions() {
                 scriptExecContext.removeAllActions()
             }
-            scriptExecContext.state = .Running
+            scriptExecContext.state = initialState
             runNextInstructionOfScript(script) // Ready...Steady...Gooooo!! => invoke first instruction!
             return
         }
@@ -217,14 +192,20 @@ final class CBPlayerScheduler : NSObject, CBPlayerSchedulerProtocol {
     }
 
     func restartScript(script: Script) {
+        restartScript(script, withInitialState: .Running)
+    }
+
+    func restartScript(script: Script, withInitialState initialState: CBScriptState = .Running) {
         assert(running) // make sure that player is running!
         if let scriptExecContext = scriptExecContextDict[script] {
+            // remove it from waiting list
+            _broadcastHandler.removeWaitingScriptDueToRestart(script)
             stopScript(script, removeReferences:false)
             //            scriptExecContext.reset()
             let sequenceList = _frontend.computeSequenceListForScript(script)
             let newScriptExecContext = _backend.executionContextForScriptSequenceList(sequenceList, spriteNode: script.object.spriteNode)
             addScriptExecContext(newScriptExecContext)
-            startScript(script)
+            startScript(script, withInitialState: initialState)
         } else {
 //            let sequenceList = _frontend.computeSequenceListForScript(script)
 //            let scriptExecContext = _backend.executionContextForScriptSequenceList(sequenceList)
@@ -239,6 +220,14 @@ final class CBPlayerScheduler : NSObject, CBPlayerSchedulerProtocol {
         logger.info("-------------------------------------------------------------")
         if let scriptExecContext = scriptExecContextDict[script] {
             scriptExecContext.state = .Dead
+            if scriptExecContext.scriptType == .Broadcast {
+                // continue all broadcastWaiting scripts
+                if let broadcastScript = script as? BroadcastScript { // sanity check
+                    _broadcastHandler.continueForBroadcastScriptTerminationWaitingScripts(broadcastScript: broadcastScript)
+                } else {
+                    fatalError("This should never happen!")
+                }
+            }
             if removeReferences {
                 scriptExecContext.removeReferences()
             }

@@ -21,16 +21,17 @@
  */
 
 // MARK: Typedefs
-typealias CBBroadcastQueueElement = (message: String, senderScript: Script)
+typealias CBBroadcastQueueElement = (message: String, senderScript: Script, broadcastType: CBBroadcastType)
 typealias CBExecClosure = dispatch_block_t
 
 // MARK: Enums
 @objc enum CBScriptState : Int { // ATTENTION: Int needed to stay compatible with Objective-C (@objc keyword)
     case Runnable
     case Running
-    case RunningMature // for StartScripts => broadcast + broadcast wait start queue
-    case Waiting       // for broadcast wait!!
-    case Sleeping
+    case RunningMature   // for StartScripts => broadcast + broadcast wait start queue
+    case RunningBlocking // for broadcast wait!! (BroadcastScript called by BroadcastWaitBrick)
+    case Waiting         // for broadcast wait!! (BroadcastWaitBrick!)
+//    case Sleeping        // unused at the moment!
     case Dead
 }
 
@@ -49,6 +50,19 @@ enum CBScriptType {
             return Broadcast
         } else {
             return Unknown
+        }
+    }
+}
+
+@objc enum CBBroadcastType : Int { // ATTENTION: Int needed to stay compatible with Objective-C (@objc keyword)
+    case Broadcast
+    case BroadcastWait
+    func typeName() -> String {
+        switch self {
+        case .Broadcast:
+            return "Broadcast"
+        case .BroadcastWait:
+            return "BroadcastWait"
         }
     }
 }
