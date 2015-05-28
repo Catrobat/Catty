@@ -495,7 +495,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [toScript.brickList addObject:fromBrick];
             LXReorderableCollectionViewFlowLayout *layout =  (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
             [layout setUpGestureRecognizersOnCollectionView];
-
             return;
         }
         Brick *toBrick = [toScript.brickList objectAtIndex:toIndexPath.item - 1];
@@ -517,7 +516,12 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if (self.isInsertingBrickMode) {
         NSLog(@"INSERT ALL BRICKS");
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
-        Brick *brick = [script.brickList objectAtIndex:indexPath.item - 1];
+        Brick *brick;
+        if (script.brickList.count > 1) {
+            brick = [script.brickList objectAtIndex:indexPath.item - 1];
+        }else{
+            brick = [script.brickList objectAtIndex:indexPath.item];
+        }
         if (brick.isAnimatedInsertBrick) {
             [self insertBrick:brick andIndexPath:indexPath];
             [self turnOffInsertingBrickMode];
@@ -548,6 +552,15 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             if (toIndexPath.item != 0) {
                 return YES;
             } else{
+                BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:toIndexPath];
+                if ([brickCell.scriptOrBrick isKindOfClass:[Script class]]) {
+                    Script *script = (Script*)brickCell.scriptOrBrick;
+                    if (script.brickList.count == 0) {
+                        return YES;
+                    }else {
+                        return NO;
+                    }
+                }
                 return NO;
             }
         }else{
