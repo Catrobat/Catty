@@ -389,6 +389,77 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [self animate:indexPath brickCell:brickCell];
             return;
         }
+    } else if (actionSheet.tag == kVariabletypeActionSheetTag){
+        CBAssert(actionSheet.dataTransferMessage.actionType == kDTMActionEditBrickOrScript);
+        CBAssert([actionSheet.dataTransferMessage.payload isKindOfClass:[NSDictionary class]]);
+        NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
+        NSIndexPath *indexPath = payload[kDTPayloadCellIndexPath]; // unwrap payload message
+        BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+         Brick * brick = (Brick*)brickCell.scriptOrBrick;
+        Brick<BrickVariableProtocol> *variableBrick;
+        if ([brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
+            variableBrick = (Brick<BrickVariableProtocol>*)brick;
+        }
+
+        IBActionSheetButton *selectedButton = [actionSheet.buttons objectAtIndex:buttonIndex];
+        NSString *buttonTitle = selectedButton.titleLabel.text;
+        NSMutableArray *allVariableNames = [NSMutableArray new];
+            // programVariable
+        BOOL isProgramVar = NO;
+        if ([buttonTitle isEqualToString:kUIFEActionVarPro]) {
+            for(UserVariable *var in [self.object.program.variables allVariablesForObject:self.object]) {
+                [allVariableNames addObject:var.name];
+            }
+            isProgramVar = YES;
+        } else if ([buttonTitle isEqualToString:kUIFEActionVarObj]) {
+            for(UserVariable *var in [self.object.program.variables objectVariablesForObject:self.object]) {
+                [allVariableNames addObject:var.name];
+            }
+        }
+        self.higherRankBrick = indexPath;
+        
+        [Util askUserForUniqueNameAndPerformAction:@selector(addVariableWithName:andCompletion:)
+                                                target:self
+                                          cancelAction:@selector(reloadData)
+                                            withObject:(id) ^(NSString* variableName) {
+                                                UserVariable *variable = [UserVariable new];
+                                                variable.name = variableName;
+                                                variable.value = [NSNumber numberWithInt:0];
+                                                if (isProgramVar) {
+                                                    [self.object.program.variables.programVariableList addObject:variable];
+                                                } else { // object variable
+                                                    NSMutableArray *array = [self.object.program.variables.objectVariableList objectForKey:self.object];
+                                                    if (!array)
+                                                        array = [NSMutableArray new];
+                                                    [array addObject:variable];
+                                                    [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
+                                                }
+                                                UserVariable *var = [self.object.program.variables getUserVariableNamed:(NSString*)variableName forSpriteObject:self.object];
+                                                BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.higherRankBrick];
+                                                Brick * brick = (Brick*)brickCell.scriptOrBrick;
+                                                Brick<BrickVariableProtocol> *variableBrick;
+                                                if ([brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
+                                                    variableBrick = (Brick<BrickVariableProtocol>*)brick;
+                                                }
+
+                                                if(var)
+                                                    [variableBrick setVariable:var forLineNumber:self.higherRankBrick.row andParameterNumber:self.higherRankBrick.section];
+                                                
+                                                [self.object.program saveToDisk];
+                                                [self.collectionView reloadData];
+
+        
+                                            }
+                                           promptTitle:kUIFENewVar
+                                         promptMessage:kUIFEVarName
+                                           promptValue:nil
+                                     promptPlaceholder:kLocalizedEnterYourVariableNameHere
+                                        minInputLength:kMinNumOfVariableNameCharacters
+                                        maxInputLength:kMaxNumOfVariableNameCharacters
+                                   blockedCharacterSet:[[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                                                        invertedSet]
+                              invalidInputAlertMessage:kUIFENewVarExists
+                                         existingNames:allVariableNames];
     }
 }
 
@@ -1458,25 +1529,12 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 - (void)addVariableWithName:(NSString*)variableName andCompletion:(id)completion
 {
-    UserVariable *variable = [UserVariable new];
-    variable.name = variableName;
-    variable.value = [NSNumber numberWithInt:0];
-    if (true) { // TODO check if object or program variable -> currently always program variable
-        [self.object.program.variables.programVariableList addObject:variable];
-    } else { // object variable
-        NSMutableArray *array = [self.object.program.variables.objectVariableList objectForKey:self.object];
-        if (!array)
-            array = [NSMutableArray new];
-        [array addObject:variable];
-        [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
-    }
 
     if (completion) {
         void (^block)(NSString*) = (void (^)(NSString*))completion;
         block(variableName);
     }
-    [self.object.program saveToDisk];
-    [self.collectionView reloadData];
+
 }
 
 - (void)updateBrickCellData:(id<BrickCellDataProtocol>)brickCellData withValue:(id)value
@@ -1577,28 +1635,16 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if ([brickCellData isKindOfClass:[BrickCellVariableData class]] && [brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
         Brick<BrickVariableProtocol> *variableBrick = (Brick<BrickVariableProtocol>*)brick;
         if([(NSString*)value isEqualToString:kLocalizedNewElement]) {
-            NSMutableArray *allVariableNames = [NSMutableArray new];
-            for(UserVariable *var in [self.object.program.variables allVariablesForObject:self.object]) {
-                [allVariableNames addObject:var.name];
-            }
-            [Util askUserForUniqueNameAndPerformAction:@selector(addVariableWithName:andCompletion:)
-                                                target:self
-                                          cancelAction:@selector(reloadData)
-                                            withObject:(id) ^(NSString* variableName) {
-                                                UserVariable *var = [self.object.program.variables getUserVariableNamed:(NSString*)variableName forSpriteObject:self.object];
-                                                if(var)
-                                                    [variableBrick setVariable:var forLineNumber:line andParameterNumber:parameter];
-                                            }
-                                           promptTitle:kUIFENewVar
-                                         promptMessage:kUIFEVarName
-                                           promptValue:nil
-                                     promptPlaceholder:kLocalizedEnterYourVariableNameHere
-                                        minInputLength:kMinNumOfVariableNameCharacters
-                                        maxInputLength:kMaxNumOfVariableNameCharacters
-                                   blockedCharacterSet:[[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                                                        invertedSet]
-                              invalidInputAlertMessage:kUIFENewVarExists
-                                         existingNames:allVariableNames];
+            NSIndexPath *path = [self.collectionView indexPathForCell:brickCellData.brickCell];
+            CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIFEActionVar
+                                                                 delegate:self
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:@[kUIFEActionVarPro,kUIFEActionVarObj]
+                                                                      tag:kVariabletypeActionSheetTag
+                                                                     view:self.navigationController.view];
+            actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditBrickOrScript
+                                                                            withPayload:@{ kDTPayloadCellIndexPath : path}];
+            
             [self enableUserInteraction];
             return;
         } else {
