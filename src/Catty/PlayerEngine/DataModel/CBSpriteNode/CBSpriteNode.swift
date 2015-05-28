@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc final class CBSpriteNode : SKSpriteNode {
+final class CBSpriteNode : SKSpriteNode {
 
     // MARK: - Properties
     private(set) var spriteObject : SpriteObject?
