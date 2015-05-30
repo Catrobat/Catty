@@ -33,6 +33,7 @@
 @property (nonatomic, readonly) kBrickType brickType;
 @property (nonatomic, strong, readonly) NSString *brickTitle;
 @property (nonatomic, getter=isAnimated) BOOL animate;
+@property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
 - (BOOL)isSelectableForObject;
 - (BOOL)isAnimateable;
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject;
