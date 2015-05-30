@@ -942,7 +942,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         FormulaEditorViewController *formulaEditorViewController = (FormulaEditorViewController*)self.presentedViewController;
         if ([formulaEditorViewController changeFormula]) {
             [formulaEditorViewController setBrickCellFormulaData:formulaData];
-            [formulaData drawBorder:YES];
         }
         return;
     }
@@ -952,12 +951,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self.presentedViewController dismissViewControllerAnimated:NO completion:NULL];
     }
 
-    FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCellFormulaFragment:formulaData];
+    FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCellFormulaData:formulaData];
     formulaEditorViewController.object = self.object;
     formulaEditorViewController.transitioningDelegate = self;
     formulaEditorViewController.modalPresentationStyle = UIModalPresentationCustom;
     formulaEditorViewController.delegate = formulaData;
-    [formulaData drawBorder:YES];
 
     [self.brickScaleTransition updateAnimationViewWithView:formulaData.brickCell];
     [self presentViewController:formulaEditorViewController animated:YES completion:^{

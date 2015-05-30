@@ -41,7 +41,7 @@
 @property (weak, nonatomic) SpriteObject *object;
 @property (strong, nonatomic) id<FormulaEditorViewControllerDelegate> delegate;
 
-- (id)initWithBrickCellFormulaFragment:(BrickCellFormulaData*)brickCellData;
+- (id)initWithBrickCellFormulaData:(BrickCellFormulaData*)brickCellData;
 - (void)setBrickCellFormulaData:(BrickCellFormulaData*)brickCellData;
 - (void)update;
 - (void)updateDeleteButton:(BOOL)enabled;

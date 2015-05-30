@@ -116,12 +116,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 @synthesize formulaEditorTextView;
 
-- (id)initWithBrickCellFormulaFragment:(BrickCellFormulaData *)brickCellData
+- (id)initWithBrickCellFormulaData:(BrickCellFormulaData *)brickCellData
 {
     self = [super init];
     
     if(self) {
-        _brickCellData = brickCellData;
+        [self setBrickCellFormulaData:brickCellData];
     }
     
     return self;
@@ -587,7 +587,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self.formula setDisplayString:[self.internFormula getExternFormulaString]];
     }
     
-    [self.brickCellData.brickCell setupBrickCell];
+    //[self.brickCellData.brickCell setupBrickCell];
+    [self.brickCellData drawBorder:YES];
 }
 
 - (BOOL)saveIfPossible
