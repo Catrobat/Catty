@@ -20,13 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+@objc class CBOperation {
 
-@class Brick;
+    final /*private */let brick : Brick
 
-@interface CBOperation : NSObject
+    // MARK: (private!) initializer
+    private init(brick : Brick) {
+        self.brick = brick
+    }
 
-@property (nonatomic, strong, readonly) Brick *brick;
-+ (instancetype)operationForBrick:(Brick*)brick;
+    // MARK: Operations
+    final class func createOperationWithBrick(brick : Brick) -> CBOperation {
+        return CBOperation(brick : brick)
+    }
 
-@end
+}

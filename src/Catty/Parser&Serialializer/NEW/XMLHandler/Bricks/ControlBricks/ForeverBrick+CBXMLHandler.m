@@ -33,7 +33,8 @@
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
     ForeverBrick *foreverBrick = [self new];
-    
+    foreverBrick.forceConditionEvaluationToEvaluateToFalse = NO;
+
     // add opening nesting brick on stack
     [context.openedNestingBricksStack pushAndOpenNestingBrick:foreverBrick];
     return foreverBrick;

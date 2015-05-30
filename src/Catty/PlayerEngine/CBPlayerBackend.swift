@@ -20,19 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "CBOperation.h"
-
-@interface CBOperation()
-@property (nonatomic, strong, readwrite) Brick *brick;
-@end
-
-@implementation CBOperation
-
-+ (instancetype)operationForBrick:(Brick*)brick
-{
-    CBOperation *operation = [CBOperation new];
-    operation.brick = brick;
-    return operation;
+class CBPlayerBackend : NSObject {
+    private lazy var sequenceList = [CBSequence]()
 }
-
-@end

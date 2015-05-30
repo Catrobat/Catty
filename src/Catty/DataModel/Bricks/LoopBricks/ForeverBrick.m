@@ -36,7 +36,16 @@
 
 - (BOOL)checkCondition
 {
+    if (self.forceConditionEvaluationToEvaluateToFalse) {
+        NSDebug(@"Forced evaluation to evaluate to FALSE!");
+        return NO;
+    }
     return YES;
+}
+
+- (void)resetCondition
+{
+    // nothing to do
 }
 
 #pragma mark - Description

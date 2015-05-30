@@ -26,6 +26,8 @@
 #import "StartScript.h"
 #import "HideBrick.h"
 #import "AudioManager.h"
+#import "BrickConditionalBranchProtocol.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation Scene
 
@@ -73,18 +75,20 @@
     self.program.playing = YES;
     [self.program setupBroadcastHandling];
     for (SpriteObject *spriteObject in self.program.objectList) {
-        // minor user experience improvement: check if first Brick in StartScript is HideBrick
-        BOOL found = NO;
+        spriteObject.hidden = NO;
         for (Script *script in spriteObject.scriptList) {
             if ([script isKindOfClass:[StartScript class]]) {
-                id firstBrick = [script.brickList firstObject];
-                if ([firstBrick isKindOfClass:[HideBrick class]]) {
-                    found = YES;
+                NSUInteger index = 0;
+                for (Brick *brick in script.brickList) {
+                    if (! index++ && [brick isKindOfClass:[HideBrick class]]) {
+                        spriteObject.hidden = YES;
+                    }
+                    if ([brick conformsToProtocol:@protocol(BrickConditionalBranchProtocol)]) {
+                        ((Brick<BrickConditionalBranchProtocol>*)brick).forceConditionEvaluationToEvaluateToFalse = NO;
+                    }
                 }
-                break;
             }
         }
-        spriteObject.hidden = found;
         // now add the brick with correct visability-state to the Scene
         [self addChild:spriteObject];
         NSDebug(@"%f", zPosition);
@@ -98,14 +102,20 @@
     }
 
     // compute all sequence lists
+//    NSMutableDictionary *objectScriptSequenceLists = [NSMutableDictionary dictionaryWithCapacity:self.program.objectList.count];
     for (SpriteObject *spriteObject in self.program.objectList) {
+//        objectScriptSequenceLists[spriteObject.name] = [NSMutableArray array];
         for (Script *script in spriteObject.scriptList) {
-            [script computeSequenceList];
+//            CBScriptSequenceList *scriptSequenceList = [[CBPlayerFrontend sharedInstance] computeSequenceListForScript:script];
+            [script prepareAllActionsForScriptSequenceList:[[CBPlayerFrontend sharedInstance]
+                                                            computeSequenceListForScript:script]]; // TODO: remove this...
+//            [((NSMutableArray*)objectScriptSequenceLists[spriteObject.name]) addObject:scriptSequenceList];
         }
     }
 
     // now we are ready to start all StartScripts of all SpriteObjects
     for (SpriteObject *spriteObject in self.program.objectList) {
+//        objectScriptSequenceLists[spriteObject.name];
         for (Script *script in spriteObject.scriptList) {
             if ([script isKindOfClass:[StartScript class]]) {
                 [script start];
@@ -127,6 +137,13 @@
     for (SpriteObject *spriteObject in self.program.objectList) {
         for (Script *script in spriteObject.scriptList) {
             @synchronized(script) {
+                for (Brick *brick in script.brickList) {
+                    // force loops to evaluate to NO/FALSE!! This is needed to ensure that all scripts
+                    // will terminate. (e.g. needed to break out of FOREVER loops, ...)
+                    if ([brick conformsToProtocol:@protocol(BrickConditionalBranchProtocol)]) {
+                        ((Brick<BrickConditionalBranchProtocol>*)brick).forceConditionEvaluationToEvaluateToFalse = YES;
+                    }
+                }
                 if (script.isRunning) {
                     [script stop];
                 }
@@ -258,9 +275,14 @@
                 NSDebug(@"Found Object");
             }
         } else {
-            obj1 = nodesAtPoint[counter];
-            NSDebug(@"NextNode: %@",obj1);
-            --counter;
+            if (counter < 0) {
+                foundObject = YES;
+            }else {
+                obj1 = nodesAtPoint[counter];
+                NSDebug(@"NextNode: %@",obj1);
+                --counter;
+            }
+
         }
     }
     return YES;

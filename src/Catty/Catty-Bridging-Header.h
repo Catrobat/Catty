@@ -20,40 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "CBConditionalSequence.h"
+//
+//  Use this file to import your target's public headers that you would like to expose to Swift.
+//
+
+#import "Brick.h"
 #import "BrickConditionalBranchProtocol.h"
+#import "Script.h"
 
-@interface CBConditionalSequence()
-@property (nonatomic, strong) id<BrickConditionalBranchProtocol> conditionBrick;
-@end
-
-@implementation CBConditionalSequence
-
-#pragma mark - Getters & Setters
-- (NSMutableArray*)sequenceList
-{
-    if (! _sequenceList) {
-        _sequenceList = [NSMutableArray array];
-    }
-    return _sequenceList;
-}
-
-+ (instancetype)sequenceWithConditionalBrick:(id<BrickConditionalBranchProtocol>)conditionBrick
-{
-    CBConditionalSequence *conditionalSequence = [[self class] new];
-    conditionalSequence.conditionBrick = conditionBrick;
-    return conditionalSequence;
-}
-
-#pragma mark - Operations
-- (BOOL)isEmpty
-{
-    return ([self.sequenceList count] == 0);
-}
-
-- (BOOL)checkCondition
-{
-    return [self.conditionBrick checkCondition];
-}
-
-@end
+#import "IfLogicBeginBrick.h"
+#import "IfLogicElseBrick.h"
+#import "IfLogicEndBrick.h"
+#import "LoopBeginBrick.h"
+#import "LoopEndBrick.h"
+#import "NoteBrick.h"

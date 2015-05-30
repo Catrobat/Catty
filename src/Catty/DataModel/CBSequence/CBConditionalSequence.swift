@@ -20,24 +20,33 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "CBIfConditionalSequence.h"
+class CBConditionalSequence : NSObject, CBSequence {
 
-@interface CBIfConditionalSequence()
-@end
+    final /*private */lazy var sequenceList = CBSequenceList()
 
-@implementation CBIfConditionalSequence
+    final private let conditionBrick : BrickConditionalBranchProtocol
 
-- (NSMutableArray*)elseSequenceList
-{
-    if (! _elseSequenceList) {
-        _elseSequenceList = [NSMutableArray array];
+    // MARK: initializer
+    init(conditionBrick : BrickConditionalBranchProtocol) {
+        self.conditionBrick = conditionBrick
     }
-    return _elseSequenceList;
-}
 
-- (BOOL)isEmpty
-{
-    return ([super isEmpty] && ([self.elseSequenceList count] == 0));
-}
+    // MARK: Operations
+    func isEmpty() -> Bool {
+        return (sequenceList.count == 0)
+    }
 
-@end
+    final func checkCondition() -> Bool {
+        return conditionBrick.checkCondition()
+    }
+
+    final func resetCondition() {
+        conditionBrick.resetCondition()
+    }
+
+    class func createConditionalSequenceWithConditionBrick(conditionBrick : BrickConditionalBranchProtocol)
+        -> CBConditionalSequence {
+        return CBConditionalSequence(conditionBrick: conditionBrick)
+    }
+
+}

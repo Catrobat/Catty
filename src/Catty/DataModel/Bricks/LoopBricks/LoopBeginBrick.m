@@ -37,8 +37,9 @@
     return NO;
 }
 
-- (void)reset
+- (void)resetCondition
 {
+    NSError(@"Abstract class. Override resetCondition in Subclass: %@", [self class]);
 }
 
 #pragma mark - Compare

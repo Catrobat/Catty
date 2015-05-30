@@ -505,8 +505,8 @@
 #define kUIFEObjectVars NSLocalizedString(@"Object variables:", nil)
 #define kUIFEDeleteVarBeingUsed NSLocalizedString(@"This variable can not be deleted because it is still in use.", nil)
 #define kUIFEActionVar NSLocalizedString(@"Variable type", nil)
-#define kUIFEActionVarObj NSLocalizedString(@"object", nil)
-#define kUIFEActionVarPro NSLocalizedString(@"program", nil)
+#define kUIFEActionVarObj NSLocalizedString(@"for this object", nil)
+#define kUIFEActionVarPro NSLocalizedString(@"for all objects", nil)
 
 #define kUIFEFunctionSqrt NSLocalizedString(@"sqrt", nil)
 #define kUIFEFunctionTrue NSLocalizedString(@"true", nil)
