@@ -172,7 +172,6 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
                 // case broadcastScript != senderScript
                 if scheduler?.isContextScheduled(registeredContext) == false {
                     // case broadcastScript is not running
-                    scheduler?.registerContext(registeredContext)
                     scheduler?.startContext(registeredContext, withInitialState: receivingScriptInitialState)
                 } else {
                     // case broadcastScript is running

@@ -201,13 +201,11 @@ final class CBPlayerScene : SKScene {
                         if let scriptSequence = frontend?.computeSequenceListForScript(script),
                            let scriptContext = backend?.scriptContextForSequenceList(scriptSequence)
                         {
-                            if let startScript = script as? StartScript {
-                                // register StartScript
-                                scheduler?.registerContext(scriptContext)
-                            } else if let whenScript = script as? WhenScript {
-                                // register WhenScript
-                                scheduler?.registerContext(scriptContext)
-                            } else if let broadcastScript = script as? BroadcastScript {
+                            // register script
+                            scheduler?.registerContext(scriptContext)
+
+                            // IMPORTANT: broadcast scripts have to be registered in BroadcastHandler as well!
+                            if let broadcastScript = script as? BroadcastScript {
                                 // register BroadcastScript
                                 if let bcScriptContext = scriptContext as? CBBroadcastScriptContext {
                                     broadcastHandler?.subscribeBroadcastScriptContext(bcScriptContext)

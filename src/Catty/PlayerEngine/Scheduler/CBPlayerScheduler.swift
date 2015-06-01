@@ -98,8 +98,8 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
             if let nextInstruction = scriptContext.nextInstruction() {
                 nextInstruction()
             } else {
-                logger.debug("All actions/instructions have been finished!")
                 _stopContext(context)
+                logger.debug("All actions/instructions have been finished!")
             }
         }
     }
@@ -173,12 +173,11 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
 
         // remove it from waiting list
         _broadcastHandler.removeWaitingContextDueToRestart(context)
-        _stopContext(context, removeReferences:false)
-        context.reset()
+        _stopContext(context)
         startContext(context, withInitialState: initialState)
     }
 
-    private func _stopContext(context: CBScriptContextAbstract, removeReferences: Bool = true) {
+    private func _stopContext(context: CBScriptContextAbstract) {
         assert(contains(_registeredScriptContexts, context), "Unable to stop context! Context not registered any more.")
         if contains(_scheduledScriptContexts, context) == false {
             return
@@ -193,9 +192,6 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
             // continue all broadcastWaiting scripts
             _broadcastHandler.continueContextsWaitingForTerminationOfBroadcastScriptContext(broadcastScriptContext)
         }
-        if removeReferences {
-            context.removeReferences()
-        }
         if context.inParentHierarchy(context.script.object.spriteNode) {
             context.removeFromParent()
         }
@@ -205,6 +201,7 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
     }
 
     private func _resetContext(context: CBScriptContextAbstract) {
+        context.reset()
         logger.debug("!!! RESETTING: \(context.script)");
         logger.debug("-------------------------------------------------------------")
         for brick in context.script.brickList {
@@ -231,8 +228,11 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
             if context.inParentHierarchy(script.object.spriteNode) {
                 context.removeFromParent()
             }
-            context.removeReferences()
             logger.debug("\(script) finished!")
+            context.removeReferences()
+        }
+        for context in _registeredScriptContexts {
+            context.removeReferences() // IMPORTANT: remove references of other registered scripts as well!
         }
         _scheduledScriptContexts.removeAll(keepCapacity: false)
         _registeredScriptContexts.removeAll(keepCapacity: false)
