@@ -19,26 +19,3 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
-
-final class CBScriptSequenceList {
-
-    // MARK: - Properties
-    final let script : Script
-    final let sequenceList : CBSequenceList
-    final lazy var whileSequences = [String:CBExecClosure]()
-    final var running : Bool
-    final var count : Int { return sequenceList.count }
-
-    // MARK: - Initializers
-    init(script : Script, sequenceList : CBSequenceList) {
-        self.script = script
-        self.running = false
-        self.sequenceList = sequenceList
-        sequenceList.rootSequenceList = self
-    }
-
-    // MARK: - Operations
-    func reverseSequenceList() -> CBScriptSequenceList {
-        return CBScriptSequenceList(script: script, sequenceList: sequenceList.reverseSequenceList())
-    }
-}

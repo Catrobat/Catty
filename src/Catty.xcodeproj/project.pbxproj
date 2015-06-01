@@ -313,6 +313,7 @@
 		CA3E72EC1B0C01CD00D6B184 /* LLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72EB1B0C01CD00D6B184 /* LLNode.swift */; };
 		CA403F2C1B1631A8004ADCB2 /* CBCustomTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA403F2B1B1631A8004ADCB2 /* CBCustomTypes.swift */; };
 		CA43C4BA1B165C0B009B604F /* CBPlayerBroadcastHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA43C4B91B165C0B009B604F /* CBPlayerBroadcastHandler.swift */; };
+		CA4C506B1B1C891000BB43E1 /* SetupScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4C506A1B1C891000BB43E1 /* SetupScene.swift */; };
 		CA7698B61B0E4B3F000D0340 /* XMLAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A53A1A43BDD9002A69A0 /* XMLAbstractTest.m */; };
 		CA7698B81B0E4B3F000D0340 /* XMLParserAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5401A43BE11002A69A0 /* XMLParserAbstractTest.m */; };
 		CA7698B91B0E4B3F000D0340 /* XMLParserBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5441A43BE37002A69A0 /* XMLParserBrickTests.m */; };
@@ -1321,6 +1322,7 @@
 		CA3E72EB1B0C01CD00D6B184 /* LLNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LLNode.swift; path = 3rdParty/LLNode/LLNode.swift; sourceTree = "<group>"; };
 		CA403F2B1B1631A8004ADCB2 /* CBCustomTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCustomTypes.swift; sourceTree = "<group>"; };
 		CA43C4B91B165C0B009B604F /* CBPlayerBroadcastHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerBroadcastHandler.swift; path = PlayerEngine/Scheduler/CBPlayerBroadcastHandler.swift; sourceTree = "<group>"; };
+		CA4C506A1B1C891000BB43E1 /* SetupScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetupScene.swift; path = Catty/PlayerEngine/Scene/SetupScene.swift; sourceTree = SOURCE_ROOT; };
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
 		CA6E4C4719F9C388001B65C3 /* My first program.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My first program.catrobat"; sourceTree = "<group>"; };
 		CA7698AA1B0E4A97000D0340 /* CattyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3167,6 +3169,7 @@
 			isa = PBXGroup;
 			children = (
 				CA02C5E41B14385500233FB0 /* CBPlayerScene.swift */,
+				CA4C506A1B1C891000BB43E1 /* SetupScene.swift */,
 			);
 			name = Scene;
 			path = DataModel/Scene;
@@ -4684,6 +4687,7 @@
 				CAA4A4AA1A43B407002A69A0 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
 				92DFB05B1A38960C00FA9B0F /* LineTool.m in Sources */,
 				92FF32711A24E2F400093DA7 /* SWUtilityButtonView.m in Sources */,
+				CA4C506B1B1C891000BB43E1 /* SetupScene.swift in Sources */,
 				92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */,
 				CAA4A50C1A43B499002A69A0 /* SetVariableBrick+CBXMLHandler.m in Sources */,
 				CAD740E31AF2D2E800C32937 /* CBStack.m in Sources */,

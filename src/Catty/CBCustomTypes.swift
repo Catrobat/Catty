@@ -25,7 +25,7 @@ typealias CBBroadcastQueueElement = (message: String, senderScript: Script, broa
 typealias CBExecClosure = dispatch_block_t
 
 // MARK: Enums
-@objc enum CBScriptState : Int { // ATTENTION: Int needed to stay compatible with Objective-C (@objc keyword)
+enum CBScriptState {
     case Runnable
     case Running
     case RunningMature   // for StartScripts => broadcast + broadcast wait start queue
@@ -54,7 +54,7 @@ enum CBScriptType {
     }
 }
 
-@objc enum CBBroadcastType : Int { // ATTENTION: Int needed to stay compatible with Objective-C (@objc keyword)
+enum CBBroadcastType {
     case Broadcast
     case BroadcastWait
     func typeName() -> String {
@@ -65,4 +65,54 @@ enum CBScriptType {
             return "BroadcastWait"
         }
     }
+}
+
+// Logger names for release and debug mode configured in Swell.plist
+//------------------------------------------------------------------------------------------------------------
+#if DEBUG
+//============================================================================================================
+//
+//                                            DEVELOPER MODE
+//
+//============================================================================================================
+
+struct LoggerConfig {
+    static let PlayerSceneID = "CBPlayerSceneLogger.Debug"
+    static let PlayerSchedulerID = "CBPlayerSchedulerLogger.Debug"
+    static let PlayerFrontendID = "CBPlayerFrontendLogger.Debug"
+    static let PlayerBackendID = "CBPlayerBackendLogger.Debug"
+    static let PlayerBroadcastHandlerID = "CBPlayerBroadcastHandlerLogger.Debug"
+}
+
+#else // DEBUG == 1
+//============================================================================================================
+//
+//                                             RELEASE MODE
+//
+//============================================================================================================
+
+struct LoggerConfig {
+    static let PlayerSceneID = "CBPlayerSceneLogger.Release"
+    static let PlayerSchedulerID = "CBPlayerSchedulerLogger.Release"
+    static let PlayerFrontendID = "CBPlayerFrontendLogger.Release"
+    static let PlayerBackendID = "CBPlayerBackendLogger.Release"
+    static let PlayerBroadcastHandlerID = "CBPlayerBroadcastHandlerLogger.Release"
+}
+
+////------------------------------------------------------------------------------------------------------------
+#endif // DEBUG
+
+//============================================================================================================
+//
+//                                            TEST MODE
+//
+//============================================================================================================
+
+// Test logger names configured in Swell.plist
+struct LoggerTestConfig {
+    static let PlayerSceneID = "CBPlayerSceneLogger.Test"
+    static let PlayerSchedulerID = "CBPlayerSchedulerLogger.Test"
+    static let PlayerFrontendID = "CBPlayerFrontendLogger.Test"
+    static let PlayerBackendID = "CBPlayerBackendLogger.Test"
+    static let PlayerBroadcastHandlerID = "CBPlayerBroadcastHandlerLogger.Test"
 }

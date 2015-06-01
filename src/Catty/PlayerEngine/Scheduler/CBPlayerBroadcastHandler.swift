@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc protocol CBPlayerBroadcastHandlerProtocol {
+protocol CBPlayerBroadcastHandlerProtocol : class {
     func setupHandler()
     func subscribeBroadcastScript(broadcastScript: BroadcastScript, forMessage message: String)
     func unsubscribeBroadcastScript(broadcastScript: BroadcastScript, forMessage message: String)
@@ -29,17 +29,17 @@
     func removeWaitingScriptDueToRestart(script: Script)
 }
 
-final class CBPlayerBroadcastHandler : NSObject, CBPlayerBroadcastHandlerProtocol {
+final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
 
     // MARK: - Constants
     // specifies max depth limit for self broadcasts running on the same function stack
     let selfBroadcastRecursionMaxDepthLimit = 20
 
     // MARK: - Properties
-    var logger : CBLogger
-    let frontend : CBPlayerFrontendProtocol
-    let backend : CBPlayerBackendProtocol
-    weak var scheduler : CBPlayerSchedulerProtocol?
+    var logger: CBLogger
+    let frontend: CBPlayerFrontendProtocol
+    let backend: CBPlayerBackendProtocol
+    weak var scheduler: CBPlayerSchedulerProtocol?
     private(set) lazy var broadcastWaitingScriptsQueue = [Script:[BroadcastScript]]()
     private lazy var _registeredBroadcastScripts = [String:[BroadcastScript]]()
     private lazy var _broadcastStartQueueBuffer = [CBBroadcastQueueElement]()
@@ -136,12 +136,12 @@ final class CBPlayerBroadcastHandler : NSObject, CBPlayerBroadcastHandlerProtoco
             senderScriptExecContext.state = .RunningMature
         }
         if _allStartScriptsReachedMatureState() == false {
-            logger.info("Enqueuing \(broadcastType.rawValue): \(message)")
+            logger.info("Enqueuing \(broadcastType.typeName()): \(message)")
             _broadcastStartQueueBuffer += (message, senderScript, broadcastType)
             return
         }
 
-        logger.info("Performing \(broadcastType.rawValue): \(message)")
+        logger.info("Performing \(broadcastType.typeName()): \(message)")
         var runNextInstructionOfSenderScript = true
         var receivingScriptInitialState : CBScriptState = .Running
         if broadcastType == .BroadcastWait {

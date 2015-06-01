@@ -20,13 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc protocol CBPlayerFrontendProtocol {
+protocol CBPlayerFrontendProtocol {
     weak var program: Program? { get }
     func computeSequenceListForScript(script : Script) -> CBScriptSequenceList
     func addSequenceFilter(sequenceFilter: CBPlayerFrontendSequenceFilterProtocol)
 }
 
-final class CBPlayerFrontend : NSObject, CBPlayerFrontendProtocol {
+final class CBPlayerFrontend : CBPlayerFrontendProtocol {
 
     // MARK: - Properties
     let logger: CBLogger
@@ -37,7 +37,6 @@ final class CBPlayerFrontend : NSObject, CBPlayerFrontendProtocol {
     init(logger: CBLogger, program: Program) {
         self.logger = logger
         self.program = program
-        super.init()
     }
 
     // MARK: - Operations

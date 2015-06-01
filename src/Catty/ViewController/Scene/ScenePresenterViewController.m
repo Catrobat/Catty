@@ -47,7 +47,6 @@
 #import "FlashHelper.h"
 #import "CatrobatLanguageDefines.h"
 #import "BaseTableViewController.h"
-#import "LoggerDefines.h"
 #import "Pocket_Code-Swift.h"
 
 @interface ScenePresenterViewController() <UIActionSheetDelegate>
@@ -332,43 +331,7 @@
 
 - (void)setupScene
 {
-    // create all player loggers
-    CBLogger *sceneLogger = [Swell getLogger:kCBLoggerPlayerSceneID];
-    CBLogger *schedulerLogger = [Swell getLogger:kCBLoggerPlayerSchedulerID];
-    CBLogger *frontendLogger = [Swell getLogger:kCBLoggerPlayerFrontendID];
-    CBLogger *backendLogger = [Swell getLogger:kCBLoggerPlayerBackendID];
-    CBLogger *bcHandlerLogger = [Swell getLogger:kCBLoggerPlayerBroadcastHandlerID];
-
-    // setup frontend
-    CBPlayerFrontend *frontend = [[CBPlayerFrontend alloc] initWithLogger:frontendLogger program:self.program];
-    [frontend addSequenceFilter:[CBPlayerFilterRedundantBroadcastWaits new]];
-
-    // setup backend
-    CBPlayerBackend *backend = [[CBPlayerBackend alloc] initWithLogger:backendLogger];
-
-    // setup broadcast handler
-    CBPlayerBroadcastHandler *bcHandler = [[CBPlayerBroadcastHandler alloc] initWithLogger:bcHandlerLogger
-                                                                                  frontend:frontend
-                                                                                   backend:backend];
-
-    // setup scheduler
-    CBPlayerScheduler *scheduler = [[CBPlayerScheduler alloc] initWithLogger:schedulerLogger
-                                                                    frontend:frontend
-                                                                     backend:backend
-                                                            broadcastHandler:bcHandler];
-    scheduler.schedulingAlgorithm = nil; // default scheduling algorithm!
-//    scheduler.schedulingAlgorithm = [CBPlayerSchedulingAlgorithmRandomOrder new];
-    backend.scheduler = scheduler; // IMPORTANT: Don't forget to assign the scheduler to the backend!
-    backend.broadcastHandler = bcHandler; // IMPORTANT: Don't forget to assign the broadcast handler to the backend!
-    bcHandler.scheduler = scheduler;
-    CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue,
-                                    self.program.header.screenHeight.floatValue);
-    CBPlayerScene *scene = [[CBPlayerScene alloc] initWithSize:programSize
-                                                        logger:sceneLogger
-                                                     scheduler:scheduler
-                                                      frontend:frontend
-                                                       backend:backend
-                                              broadcastHandler:bcHandler];
+    CBPlayerScene *scene = [SetupScene setupSceneForProgram:self.program];
     scene.name = self.program.header.programName;
     if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
         scene.scaleMode = SKSceneScaleModeFill;

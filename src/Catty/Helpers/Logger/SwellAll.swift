@@ -464,7 +464,6 @@ public class FileLocation: LogLocation {
 //
 
 
-@objc
 public class CBLogger {
     
     let name: String
@@ -769,7 +768,6 @@ struct LoggerConfiguration {
 let globalSwell = Swell();
 
 
-@objc
 public class Swell {
     
     lazy var swellLogger: CBLogger = {
