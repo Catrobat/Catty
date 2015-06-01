@@ -179,9 +179,7 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
 
     private func _stopContext(context: CBScriptContextAbstract) {
         assert(contains(_registeredScriptContexts, context), "Unable to stop context! Context not registered any more.")
-        if contains(_scheduledScriptContexts, context) == false {
-            return
-        }
+        assert(contains(_scheduledScriptContexts, context))
 
         let script = context.script
         logger.info("!!! STOPPING: \(script)")

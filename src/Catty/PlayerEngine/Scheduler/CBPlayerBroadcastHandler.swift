@@ -150,7 +150,6 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
             if let _ = _broadcastWaitingScriptContextsQueue[senderScriptContext] {
                 logger.warn("Sender script is still running but waiting for BroadcastScripts to finish." +
                             "THIS SHOULD NOT HAPPEN!!")
-                _broadcastWaitingScriptContextsQueue[senderScriptContext] = [CBBroadcastScriptContext]()
             }
         }
 
@@ -180,7 +179,7 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
                 }
             }
             // do not wait for broadcastscript if self broadcast == senderScript (never execute further actions of senderScript!)
-            if isSelfBroadcast == false {
+            if isSelfBroadcast == false && broadcastType == .BroadcastWait {
                 _broadcastWaitingScriptContextsQueue[senderScriptContext] = waitingForBroadcastScriptContexts
             }
         } else {

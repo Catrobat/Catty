@@ -85,6 +85,9 @@ class CBScriptContextAbstract : SKNode {
     final func removeNumberOfInstructions(numberOfInstructions: Int, instructionStartIndex startIndex: Int) {
         assert((state == .Running) || (state == .RunningMature) || (state == .RunningBlocking))
         let range = Range<Int>(startIndex ..< (startIndex + numberOfInstructions))
+        if startIndex + numberOfInstructions > _instructionList.count {
+            return // HACK: workaround for bad access bug
+        }
         _instructionList.removeRange(range)
         reverseInstructionPointer = startIndex
     }
