@@ -149,7 +149,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 {
     if([self canChangeFormula]) {
+        BOOL didMakeChanges = [self.history undoIsPossible] || [self.history redoIsPossible];
         [self setBrickCellFormulaData:brickCellData];
+        if(didMakeChanges)
+            [self showChangesSavedView];
     } else {
         [self showSyntaxErrorView];
     }
