@@ -124,10 +124,14 @@ final class CBPlayerScene : SKScene {
                         foundObject = true
                         logger?.debug("Found Object")
                     }
-                } else {
-                    spriteNode1 = nodesAtPoint[counter] as? CBSpriteNode
-                    logger?.debug("NextNode: \(spriteNode1)")
-                    --counter
+                } else if spriteNode1 != nil {
+                    if counter < 0 {
+                        foundObject = true
+                    } else {
+                        spriteNode1 = nodesAtPoint[counter] as? CBSpriteNode
+                        logger?.debug("NextNode: \(spriteNode1)")
+                        --counter
+                    }
                 }
             }
             return true

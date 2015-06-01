@@ -135,7 +135,7 @@ final class CBSpriteNode : SKSpriteNode {
         self.texture = texture
         self.currentLook = look
         if xScale != 1.0 {
-            self.xScale = xScale;
+            self.xScale = xScale
         }
         if yScale != 1.0 {
             self.yScale = yScale
@@ -171,16 +171,16 @@ final class CBSpriteNode : SKSpriteNode {
         for touchAnyObject in touches {
             let touch = touchAnyObject as! UITouch
             let touchedPoint = touch.locationInNode(self)
-//                println(@"x:%f,y:%f", touchedPoint.x, touchedPoint.y);
-            //println(@"test touch, %@",self.name);
+//                println("x:%f,y:%f", touchedPoint.x, touchedPoint.y)
+            //println("test touch, %@",self.name)
             //        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [UIScreen mainScreen].scale);
             //        [self.scene.view drawViewHierarchyInRect:self.frame afterScreenUpdates:NO];
             //        UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
             //        UIGraphicsEndImageContext();
-//                println(@"image : x:%f,y:%f", self.currentUIImageLook.size.width, self.currentUIImageLook.size.height);
+//                println("image : x:%f,y:%f", self.currentUIImageLook.size.width, self.currentUIImageLook.size.height)
             let isTransparent = self.currentUIImageLook?.isTransparentPixel(self.currentUIImageLook, withX:touchedPoint.x, andY:touchedPoint.y)
             if isTransparent == true {
-//                    println(@"I'm transparent at this point");
+//                    println(@"I'm transparent at this point")
                 return false
             }
             if let spriteObject = self.spriteObject, let scriptList = spriteObject.scriptList as NSArray as? [Script] {
