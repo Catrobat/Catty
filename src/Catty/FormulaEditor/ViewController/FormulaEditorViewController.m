@@ -52,6 +52,7 @@
 #import "BrickCellFormulaData.h"
 #import "VariablePickerData.h"
 #import "Brick+UserVariable.h"
+#import "BDKNotifyHUD.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -142,6 +143,16 @@ NS_ENUM(NSInteger, ButtonIndex) {
                        start:0
                          end:(int)[[self.internFormula getExternFormulaString] length]];
     [self.internFormula selectWholeFormula];
+}
+
+- (void)changeBrickCellFormulaData:(BrickCellFormulaData *)brickCellData
+
+{
+    if([self canChangeFormula]) {
+        [self setBrickCellFormulaData:brickCellData];
+    } else {
+        [self showSyntaxErrorView];
+    }
 }
 
 - (void)setCursorPositionToEndOfFormula
@@ -386,20 +397,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
                                         otherButtonTitles:nil,nil];
                 break;
             case FORMULA_PARSER_STACK_OVERFLOW:
-                alert = [[UIAlertView alloc]initWithTitle: kUIFEError
-                                                  message: kUIFEtooLongFormula
-                                                 delegate: self
-                                        cancelButtonTitle:kLocalizedOK
-                                        otherButtonTitles:nil,nil];
+                [self showFormulaTooLongView];
                 break;
             default:
-                alert = [[UIAlertView alloc]initWithTitle: kUIFEError
-                                                  message: kUIFESyntaxError
-                                                 delegate: self
-                                        cancelButtonTitle:kLocalizedOK
-                                        otherButtonTitles:nil,nil];
+                [self showSyntaxErrorView];
                 [self.formulaEditorTextView setParseErrorCursorAndSelection];
-                
                 break;
         }
         [alert show];
@@ -407,7 +409,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
 }
 
-- (BOOL)changeFormula
+- (BOOL)canChangeFormula
 {
     if ([self saveIfPossible]) {
         return YES;
@@ -612,7 +614,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
             Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
             FormulaElement *formulaElement = [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
             Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
-            UIAlertView *alert;
             switch ([internFormulaParser getErrorTokenIndex]) {
                 case FORMULA_PARSER_OK:
                     if(self.delegate) {
@@ -621,22 +622,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
                     return YES;
                     break;
                 case FORMULA_PARSER_STACK_OVERFLOW:
-                    alert = [[UIAlertView alloc]initWithTitle: kUIFEError
-                                                                   message: kUIFEtooLongFormula
-                                                                  delegate: self
-                                                         cancelButtonTitle:kLocalizedOK
-                                                         otherButtonTitles:nil,nil];
-                    [alert show];
+                    [self showFormulaTooLongView];
                     break;
                 default:
-                    alert = [[UIAlertView alloc]initWithTitle: kUIFEError
-                                                      message: kUIFESyntaxError
-                                                     delegate: self
-                                            cancelButtonTitle:kLocalizedOK
-                                            otherButtonTitles:nil,nil];
+                    [self showSyntaxErrorView];
                     [self.formulaEditorTextView setParseErrorCursorAndSelection];
-                    [alert show];
-                    
                     break;
             }
         }
@@ -959,6 +949,38 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVar promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
 //    }
     
+}
+
+- (void)showNotification:(NSString*)text
+{
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:nil
+                                                    text:text];
+    hud.destinationOpacity = 0.30f;
+    hud.center = CGPointMake(self.view.center.x, self.view.center.y - 20);
+    [self.view addSubview:hud];
+    [hud presentWithDuration:1.0f speed:0.1f inView:self.view completion:^{
+        [hud removeFromSuperview];
+    }];
+}
+
+- (void)showChangesSavedView
+{
+    [self showNotification:kUIFEChangesSaved];
+}
+
+- (void)showChangesDiscardedView
+{
+    [self showNotification:kUIFEChangesDiscarded];
+}
+
+- (void)showSyntaxErrorView
+{
+    [self showNotification:kUIFESyntaxError];
+}
+
+- (void)showFormulaTooLongView
+{
+    [self showNotification:kUIFEtooLongFormula];
 }
 
 @end

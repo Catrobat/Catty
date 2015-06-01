@@ -46,6 +46,6 @@
 - (void)update;
 - (void)updateDeleteButton:(BOOL)enabled;
 - (void)backspace:(id)sender;
-- (BOOL)changeFormula;
+- (void)changeBrickCellFormulaData:(BrickCellFormulaData*)brickCellData;
 
 @end

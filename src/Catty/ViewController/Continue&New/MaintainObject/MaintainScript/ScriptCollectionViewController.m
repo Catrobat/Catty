@@ -940,9 +940,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
     if ([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
         FormulaEditorViewController *formulaEditorViewController = (FormulaEditorViewController*)self.presentedViewController;
-        if ([formulaEditorViewController changeFormula]) {
-            [formulaEditorViewController setBrickCellFormulaData:formulaData];
-        }
+        [formulaEditorViewController changeBrickCellFormulaData:formulaData];
         return;
     }
 

@@ -131,6 +131,12 @@
 "Change Y by %@" = "Change Y by %@";
 
 /* No comment provided by engineer. */
+"Changes discarded!" = "Changes discarded!";
+
+/* No comment provided by engineer. */
+"Changes saved!" = "Changes saved!";
+
+/* No comment provided by engineer. */
 "Choose image" = "Choose image";
 
 /* No comment provided by engineer. */
