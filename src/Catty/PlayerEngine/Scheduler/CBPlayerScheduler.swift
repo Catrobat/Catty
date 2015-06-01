@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc protocol CBPlayerSchedulerProtocol {
+protocol CBPlayerSchedulerProtocol : class {
     // properties
-    var schedulingAlgorithm: CBPlayerSchedulingAlgorithmProtocol? { get set }
+    var schedulingAlgorithm:CBPlayerSchedulingAlgorithmProtocol? { get set }
     var scriptExecContextDict:[Script:CBScriptExecContext] { get }
     var running:Bool { get }
 
@@ -42,23 +42,23 @@
     func addInstructionsAfterCurrentInstructionOfScript(script: Script, instructionList: [CBExecClosure])
     func addInstructionAfterCurrentInstructionOfScript(script: Script, instruction: CBExecClosure)
     func removeNumberOfInstructions(numberOfInstructions: Int, instructionStartIndex: Int, inScript script: Script)
-    func currentInstructionPointerPositionOfScript(script: Script) -> Int
+    func currentInstructionPointerPositionOfScript(script: Script) -> Int?
     func setStateForScript(script: Script, state: CBScriptState)
     func runNextInstructionOfScript(script: Script)
 }
 
-final class CBPlayerScheduler : NSObject, CBPlayerSchedulerProtocol {
+final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
 
     // MARK: - Properties
-    var logger : CBLogger
-    var schedulingAlgorithm : CBPlayerSchedulingAlgorithmProtocol?
+    var logger: CBLogger
+    var schedulingAlgorithm: CBPlayerSchedulingAlgorithmProtocol?
     private(set) var running = false
     private(set) lazy var scriptExecContextDict = [Script:CBScriptExecContext]()
 
-    private let _frontend : CBPlayerFrontendProtocol
-    private let _backend : CBPlayerBackendProtocol
-    private let _broadcastHandler : CBPlayerBroadcastHandlerProtocol
-    private var _currentScriptExecContext : CBScriptExecContext?
+    private let _frontend: CBPlayerFrontendProtocol
+    private let _backend: CBPlayerBackendProtocol
+    private let _broadcastHandler: CBPlayerBroadcastHandlerProtocol
+    private var _currentScriptExecContext: CBScriptExecContext?
 
     // MARK: - Initializers
     init(logger: CBLogger, frontend: CBPlayerFrontendProtocol, backend: CBPlayerBackendProtocol,
@@ -104,18 +104,18 @@ final class CBPlayerScheduler : NSObject, CBPlayerSchedulerProtocol {
         }
     }
 
-    func currentInstructionPointerPositionOfScript(script: Script) -> Int {
+    func currentInstructionPointerPositionOfScript(script: Script) -> Int? {
         if let scriptExecContext = scriptExecContextDict[script] {
             return scriptExecContext.reverseInstructionPointer
         }
-        return -1 // ATTENTION: cannot return nil here, because this requires "Int?" => would be not compatible with Objective-C
+        return nil
     }
 
     // MARK: - Scheduling
     func runNextInstructionOfScript(script: Script) {
         if scriptExecContextDict.count == 0 { return }
 
-        // apply scheduling => chooses script to be scheduled NOW!
+        // apply scheduling via StrategyPattern => selects script to be scheduled NOW!
         if schedulingAlgorithm != nil {
             let newScriptExecContext = schedulingAlgorithm?.scriptExecContextForNextInstruction(
                 _currentScriptExecContext?.script,
@@ -201,10 +201,10 @@ final class CBPlayerScheduler : NSObject, CBPlayerSchedulerProtocol {
             // remove it from waiting list
             _broadcastHandler.removeWaitingScriptDueToRestart(script)
             stopScript(script, removeReferences:false)
-            //            scriptExecContext.reset()
-            let sequenceList = _frontend.computeSequenceListForScript(script)
-            let newScriptExecContext = _backend.executionContextForScriptSequenceList(sequenceList, spriteNode: script.object.spriteNode)
-            addScriptExecContext(newScriptExecContext)
+            scriptExecContext.reset()
+//            let sequenceList = _frontend.computeSequenceListForScript(script)
+//            let newScriptExecContext = _backend.executionContextForScriptSequenceList(sequenceList, spriteNode: script.object.spriteNode)
+            addScriptExecContext(scriptExecContext)
             startScript(script, withInitialState: initialState)
         } else {
 //            let sequenceList = _frontend.computeSequenceListForScript(script)

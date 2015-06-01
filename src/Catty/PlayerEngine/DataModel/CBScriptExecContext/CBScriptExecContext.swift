@@ -81,6 +81,10 @@ final class CBScriptExecContext : SKNode {
         if (reverseInstructionPointer == 0) || (_instructionList.count == 0) {
             return nil
         }
+        // after first instruction executed => set state to RunningMature
+        if state == .Running {
+            state = .RunningMature
+        }
         return _instructionList[--reverseInstructionPointer]
     }
 

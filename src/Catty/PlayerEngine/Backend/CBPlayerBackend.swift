@@ -20,12 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc protocol CBPlayerBackendProtocol {
+protocol CBPlayerBackendProtocol {
     func executionContextForScriptSequenceList(scriptSequenceList: CBScriptSequenceList,
         spriteNode: CBSpriteNode) -> CBScriptExecContext
 }
 
-final class CBPlayerBackend : NSObject, CBPlayerBackendProtocol {
+final class CBPlayerBackend : CBPlayerBackendProtocol {
 
     // MARK: - Properties
     var logger : CBLogger
@@ -77,7 +77,6 @@ final class CBPlayerBackend : NSObject, CBPlayerBackendProtocol {
                             self?.scheduler?.addInstructionsAfterCurrentInstructionOfScript(script!, instructionList: instructionList)
                         }
                     }
-                    self?.scheduler?.setStateForScript(script!, state: .RunningMature)
                     self?.scheduler?.runNextInstructionOfScript(script!)
                 }
             } else if let conditionalSequence = sequence as? CBConditionalSequence {
@@ -105,7 +104,7 @@ final class CBPlayerBackend : NSObject, CBPlayerBackendProtocol {
                     // high priority queue only needed for blocking purposes...
                     // the reason for this is that you should NEVER block the (serial) main_queue!!
                     let startIndex = scheduler?.currentInstructionPointerPositionOfScript(script)
-                    assert(startIndex >= 0, "Unable to retrieve instruction pointer position of current script!")
+                    assert(startIndex != nil, "Unable to retrieve instruction pointer position of current script!")
                     let previousloopEndInstructionPointerPosition = startIndex!
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
                         let duration = NSDate().timeIntervalSinceDate(startTime)
@@ -126,7 +125,6 @@ final class CBPlayerBackend : NSObject, CBPlayerBackendProtocol {
                             let instruction = scriptSequenceList!.whileSequences[localUniqueID]
                             assert(instruction != nil, "This should NEVER happen!")
                             scheduler?.addInstructionAfterCurrentInstructionOfScript(script, instruction: instruction!)
-                            scheduler?.setStateForScript(script, state: .RunningMature)
                             scheduler?.runNextInstructionOfScript(script)
                             return
                         })
@@ -141,7 +139,6 @@ final class CBPlayerBackend : NSObject, CBPlayerBackendProtocol {
             } else {
                 // leaving loop now!
                 conditionalSequence.resetCondition() // reset loop counter right now
-                scheduler?.setStateForScript(script, state: .RunningMature)
                 scheduler?.runNextInstructionOfScript(script) // run next action after loop
             }
         }
@@ -169,9 +166,6 @@ final class CBPlayerBackend : NSObject, CBPlayerBackendProtocol {
                 instructionList += { [weak self] in
                     let scriptExecContext = self?.scheduler?.scriptExecContextDict[operation.brick.script]
                     assert(scriptExecContext != nil, "FATAL: ScriptExecContext added to Scheduler!")
-                    if let waitBrick = operation.brick as? WaitBrick {
-                        self?.scheduler?.setStateForScript(waitBrick.script, state: .RunningMature)
-                    }
                     scriptExecContext?.runAction(operation.brick.action(), completion:{
                         // the script must continue here. upcoming actions are executed!!
                         self?.scheduler?.runNextInstructionOfScript(operation.brick.script)
