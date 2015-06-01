@@ -22,6 +22,7 @@
 
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "DownloadImageCache.h"
+#import "RGBAHelper.h"
 #import <CoreImage/CoreImage.h>
 
 #define kImageDownloadQueue "at.tugraz.ist.catrobat.ImageDownloadQueue"
@@ -204,76 +205,27 @@
 
 - (BOOL)isTransparentPixel:(UIImage*)image withX:(CGFloat)x andY:(CGFloat)y
 {
-    
-    x += (image.size.width/2);
-    y += (image.size.height/2);
-    y = image.size.height - y;
-    //    CGImageRef cgImage = image.CGImage;
-    //
-    //    CGContextRef context = [self newARGBBitmapContextFromImage:cgImage];
-    //    if (context == NULL) return NO;
-    //
-    //
-    //    size_t width = CGImageGetHeight(cgImage);
-    //    //size_t width = image.size.width;
-    //    //size_t width = CGBitmapContextGetHeight(context);
-    //    size_t height = CGImageGetWidth(cgImage);
-    //    //size_t height = image.size.height;
-    //    //size_t height = CGBitmapContextGetWidth(context);
-    //    CGRect rect = CGRectMake(0, 0, width, height);
-    //
-    //    CGContextDrawImage(context, rect, cgImage);
-    //    unsigned char *data = CGBitmapContextGetData(context);
-    //
-    //    NSDebug(@"data: %c",data[0]);
-    //
-    //    if (data[0] != '\0' && data != NULL)
-    //    {
-    //        int pixelIndex = (int)(width*y + x)*4;
-    //        NSDebug(@"alpha:%d",(int)data[pixelIndex]);
-    //                if ((int)data[pixelIndex] == 0) {
-    //                    free(data);
-    //                    CGContextRelease(context);
-    //                    return YES;
-    //                }else{
-    //                    free(data);
-    //                    CGContextRelease(context);
-    //                    return NO;
-    //                }
-    //    }
-    //    free(data);
-    //    CGContextRelease(context);
-    //    return NO;
-    NSInteger pointX = (NSInteger)x;
-    NSInteger pointY = (NSInteger)y;
-    CGImageRef cgImage = image.CGImage;
-    NSUInteger width = (NSUInteger)image.size.width;
-    NSUInteger height = (NSUInteger)image.size.height;
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    int bytesPerPixel = 4;
-    int bytesPerRow = bytesPerPixel * 1;
-    NSUInteger bitsPerComponent = 8;
-    unsigned char pixelData[4] = { 0, 0, 0, 0 };
-    CGContextRef context = CGBitmapContextCreate(pixelData,
-                                                 1,
-                                                 1,
-                                                 bitsPerComponent,
-                                                 bytesPerRow,
-                                                 colorSpace,
-                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
-    CGColorSpaceRelease(colorSpace);
-    CGContextSetBlendMode(context, kCGBlendModeCopy);
-    
-    // Draw the pixel we are interested in onto the bitmap context
-    CGContextTranslateCTM(context, -pointX, pointY-(CGFloat)height);
-    CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, (CGFloat)width, (CGFloat)height), cgImage);
-    CGContextRelease(context);
-    
-    CGFloat alpha = (CGFloat)pixelData[3] / 255.0f;
-    if (alpha == 0){
-        return YES;
-    } else
-        return NO;
+    CGFloat r,g,b,a;
+    NSInteger xCounter = -1;
+    NSInteger yCounter = -1;
+    a = 0.0f;
+    while (xCounter <= 1) {
+        yCounter = -1;
+        while (yCounter <= 1) {
+            UIColor *color = [RGBAHelper getRGBAsFromImage:image atX:x+xCounter andY:y+yCounter];
+            [color getRed:&r green:&g blue:&b alpha:&a];
+            if(a <= 0.001f){
+                return YES;
+            }
+
+            yCounter++;
+        }
+        xCounter++;
+
+    }
+
+    return NO;
+
 }
 
 @end

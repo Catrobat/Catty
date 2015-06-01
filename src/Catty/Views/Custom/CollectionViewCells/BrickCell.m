@@ -512,7 +512,7 @@
     if (! animate) {
         return;
     }
-    self.alpha = 0.4f;
+    self.alpha = 0.7f;
     NSDate *startTime = [NSDate date];
     [UIView animateWithDuration:0.25
                           delay:0.0
@@ -529,6 +529,32 @@
                          NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:startTime];
                          self.scriptOrBrick.animate = (duration < 2.0f);
     }];
+}
+
+- (void)insertAnimate:(BOOL)animate
+{
+    self.scriptOrBrick.animateInsertBrick = animate;
+    if (! animate) {
+        return;
+    }
+            self.alpha = 0.2f;
+            [UIView animateWithDuration:0.4
+                                  delay:0.0
+                                options:UIViewAnimationOptionCurveEaseInOut
+             | UIViewAnimationOptionRepeat
+             | UIViewAnimationOptionAutoreverse
+             | UIViewAnimationOptionAllowUserInteraction
+                             animations:^{
+                                 self.alpha = 1.0f;
+                             }
+                             completion:^(BOOL finished) {
+                                 self.alpha = 1.0f;
+                                 Brick *brick = (Brick*)self.scriptOrBrick;
+                                 if (brick.animateInsertBrick) {
+                                     [self insertAnimate:brick.animateInsertBrick];
+                                 }
+                             }];
+
 }
 
 @end

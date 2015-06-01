@@ -356,6 +356,12 @@
 "Flashlight on" = "Flashlight on";
 
 /* No comment provided by engineer. */
+"for all objects" = "for all objects";
+
+/* No comment provided by engineer. */
+"for this object" = "for this object";
+
+/* No comment provided by engineer. */
 "Forever" = "Forever";
 
 /* No comment provided by engineer. */
@@ -541,6 +547,9 @@
 /* No comment provided by engineer. */
 "Move %@ step(s)" = "Move %@ step(s)";
 
+/* No comment provided by engineer. */
+"Move Brick" = "Move Brick";
+
 /* Name of the default catrobat program (used as filename!!) */
 "My first program" = "My first program";
 
@@ -635,9 +644,6 @@
 "Numbers" = "Numbers";
 
 /* No comment provided by engineer. */
-"object" = "object";
-
-/* No comment provided by engineer. */
 "Object" = "Object";
 
 /* No comment provided by engineer. */
@@ -726,9 +732,6 @@
 
 /* No comment provided by engineer. */
 "Problems occured while Uploading your program" = "Problems occured while Uploading your program";
-
-/* No comment provided by engineer. */
-"program" = "program";
 
 /* No comment provided by engineer. */
 "Program name" = "Program name";

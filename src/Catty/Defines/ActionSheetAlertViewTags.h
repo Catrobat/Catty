@@ -32,6 +32,7 @@
 #define kEditSoundActionSheetTag 9
 #define kAddNewVarActionSheetTag 10
 #define kEditBrickActionSheetTag 11
+#define kVariabletypeActionSheetTag 12
 
 // Alert view tags
 #define kAskUserForUniqueNameAlertViewTag 100

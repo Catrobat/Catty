@@ -130,6 +130,7 @@
 #define kLocalizedAnimateBrick NSLocalizedString(@"Animate Brick", nil)
 #define kLocalizedCopyBrick NSLocalizedString(@"Copy Brick", nil)
 #define kLocalizedEditFormula NSLocalizedString(@"Edit Formula", nil)
+#define kLocalizedMoveBrick NSLocalizedString(@"Move Brick", nil)
 #define kLocalizedDeleteSounds NSLocalizedString(@"Delete Sounds", nil)
 #define kLocalizedHideDetails NSLocalizedString(@"Hide Details", nil)
 #define kLocalizedShowDetails NSLocalizedString(@"Show Details", nil)
@@ -504,8 +505,8 @@
 #define kUIFEObjectVars NSLocalizedString(@"Object variables:", nil)
 #define kUIFEDeleteVarBeingUsed NSLocalizedString(@"This variable can not be deleted because it is still in use.", nil)
 #define kUIFEActionVar NSLocalizedString(@"Variable type", nil)
-#define kUIFEActionVarObj NSLocalizedString(@"object", nil)
-#define kUIFEActionVarPro NSLocalizedString(@"program", nil)
+#define kUIFEActionVarObj NSLocalizedString(@"for this object", nil)
+#define kUIFEActionVarPro NSLocalizedString(@"for all objects", nil)
 
 #define kUIFEFunctionSqrt NSLocalizedString(@"sqrt", nil)
 #define kUIFEFunctionTrue NSLocalizedString(@"true", nil)
