@@ -22,6 +22,11 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol BrickCellDataProtocol;
+
 @interface BrickCellInlineView : UIView
+
+- (id<BrickCellDataProtocol>)brickCellDataForLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter;
+- (id<BrickCellDataProtocol>)brickCellDataWithType:(Class)className;
 
 @end

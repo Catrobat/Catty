@@ -36,7 +36,7 @@
 #define roundedSmallBrick 75.0f
 
 @class Brick, BrickCellInlineView, BrickCell;
-@protocol ScriptProtocol, BrickCellDataDelegate;
+@protocol ScriptProtocol, BrickCellDataDelegate, BrickCellDataProtocol;
 
 
 @protocol BrickCellDelegate<NSObject>
@@ -61,5 +61,6 @@
 - (void)animate:(BOOL)animate;
 - (void)insertAnimate:(BOOL)animate;
 - (void)setupBrickCell;
+- (BrickCellInlineView*)inlineView;
 
 @end

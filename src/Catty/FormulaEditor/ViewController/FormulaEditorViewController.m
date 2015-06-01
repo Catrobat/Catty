@@ -35,6 +35,7 @@
 #import "RepeatBrickCell.h"
 #import "BroadcastScriptCell.h"
 #import "BrickCell.h"
+#import "BrickCellInlineView.h"
 #import "FormulaElement.h"
 #import "LanguageTranslationDefines.h"
 #import "AHKActionSheet.h"
@@ -130,7 +131,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)setBrickCellFormulaData:(BrickCellFormulaData *)brickCellFragment
 
 {
-    _brickCellData = brickCellFragment;
+    self.brickCellData = brickCellFragment;
+    self.delegate = brickCellFragment;
     self.formula = brickCellFragment.formula;
     self.internFormula = [[InternFormula alloc] initWithInternTokenList:[self.formula.formulaTree getInternTokenList]];
     self.history = [[FormulaEditorHistory alloc] initWithInternFormulaState:[self.internFormula getInternFormulaState]];
@@ -587,7 +589,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self.formula setDisplayString:[self.internFormula getExternFormulaString]];
     }
     
-    //[self.brickCellData.brickCell setupBrickCell];
+    BrickCell *brickCell = self.brickCellData.brickCell;
+    NSInteger line = self.brickCellData.lineNumber;
+    NSInteger parameter = self.brickCellData.parameterNumber;
+    [self.brickCellData.brickCell setupBrickCell];
+    self.brickCellData = (BrickCellFormulaData*)([brickCell.inlineView brickCellDataForLineNumber:line andParameterNumber:parameter]);
     [self.brickCellData drawBorder:YES];
 }
 

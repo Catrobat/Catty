@@ -955,7 +955,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     formulaEditorViewController.object = self.object;
     formulaEditorViewController.transitioningDelegate = self;
     formulaEditorViewController.modalPresentationStyle = UIModalPresentationCustom;
-    formulaEditorViewController.delegate = formulaData;
 
     [self.brickScaleTransition updateAnimationViewWithView:formulaData.brickCell];
     [self presentViewController:formulaEditorViewController animated:YES completion:^{
