@@ -178,7 +178,8 @@ final class CBSpriteNode : SKSpriteNode {
             //        UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
             //        UIGraphicsEndImageContext();
 //                println("image : x:%f,y:%f", self.currentUIImageLook.size.width, self.currentUIImageLook.size.height)
-            let isTransparent = self.currentUIImageLook?.isTransparentPixel(self.currentUIImageLook, withX:touchedPoint.x, andY:touchedPoint.y)
+//            let isTransparent = self.currentUIImageLook?.isTransparentPixel(self.currentUIImageLook, withX:touchedPoint.x, andY:touchedPoint.y)
+            let isTransparent = self.currentUIImageLook?.isTransparentPixelOLDMETHOD(self.currentUIImageLook, withX:touchedPoint.x, andY:touchedPoint.y)
             if isTransparent == true {
 //                    println(@"I'm transparent at this point")
                 return false

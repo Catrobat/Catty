@@ -228,4 +228,43 @@
 
 }
 
+// XXX: Unfortunately touch-detection has still problems with the above extension-method!
+- (BOOL)isTransparentPixelOLDMETHOD:(UIImage*)image withX:(CGFloat)x andY:(CGFloat)y
+{
+    x += (image.size.width/2);
+    y += (image.size.height/2);
+    y = image.size.height - y;
+    NSInteger pointX = (NSInteger)x;
+    NSInteger pointY = (NSInteger)y;
+    CGImageRef cgImage = image.CGImage;
+    NSUInteger width = (NSUInteger)image.size.width;
+    NSUInteger height = (NSUInteger)image.size.height;
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    int bytesPerPixel = 4;
+    int bytesPerRow = bytesPerPixel * 1;
+    NSUInteger bitsPerComponent = 8;
+    unsigned char pixelData[4] = { 0, 0, 0, 0 };
+    CGContextRef context = CGBitmapContextCreate(pixelData,
+                                                 1,
+                                                 1,
+                                                 bitsPerComponent,
+                                                 bytesPerRow,
+                                                 colorSpace,
+                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    CGColorSpaceRelease(colorSpace);
+    CGContextSetBlendMode(context, kCGBlendModeCopy);
+    
+    // Draw the pixel we are interested in onto the bitmap context
+    CGContextTranslateCTM(context, -pointX, pointY-(CGFloat)height);
+    CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, (CGFloat)width, (CGFloat)height), cgImage);
+    CGContextRelease(context);
+    
+    CGFloat alpha = (CGFloat)pixelData[3] / 255.0f;
+    if (alpha == 0){
+        return YES;
+    } else
+        return NO;
+}
+
+
 @end
