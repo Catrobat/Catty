@@ -40,7 +40,7 @@ class CBScriptContextAbstract : SKNode {
         // if script is RunningBlocking (BroadcastScript called by BroadcastWait) then do not change state!
         set { if _stateStorage != .RunningBlocking || newValue != .RunningMature { _stateStorage = newValue } }
     }
-    final private(set) var reverseInstructionPointer = 0
+    final private(set) var reverseInstructionPointer : Int = 0
     final var count: Int { return _instructionList.count }
 
     final private lazy var _instructionList = [CBExecClosure]()
@@ -71,6 +71,7 @@ class CBScriptContextAbstract : SKNode {
     }
 
     final func addInstructionAtCurrentPosition(instruction: CBExecClosure) {
+        if state == .Dead { return } // must be an old deprecated enqueued dispatch closure
         assert((state == .Running) || (state == .RunningMature) || (state == .RunningBlocking))
         _instructionList.insert(instruction, atIndex: reverseInstructionPointer)
         ++reverseInstructionPointer
@@ -83,20 +84,15 @@ class CBScriptContextAbstract : SKNode {
     }
 
     final func removeNumberOfInstructions(numberOfInstructions: Int, instructionStartIndex startIndex: Int) {
+        if state == .Dead { return } // must be an old deprecated enqueued dispatch closure
         assert((state == .Running) || (state == .RunningMature) || (state == .RunningBlocking))
         let range = Range<Int>(startIndex ..< (startIndex + numberOfInstructions))
-        if startIndex + numberOfInstructions > _instructionList.count {
-            return // HACK: workaround for bad access bug
-        }
         _instructionList.removeRange(range)
         reverseInstructionPointer = startIndex
     }
 
     final func nextInstruction() -> CBExecClosure? {
-        if state == .Dead {
-            return nil
-        }
-
+        if state == .Dead { return nil } // must be an old deprecated enqueued dispatch closure
         assert((state == .Running) || (state == .RunningMature) || (state == .RunningBlocking))
         if (reverseInstructionPointer == 0) || (_instructionList.count == 0) {
             return nil
@@ -107,6 +103,17 @@ class CBScriptContextAbstract : SKNode {
             state = .RunningMature
         }
         return _instructionList[--reverseInstructionPointer]
+    }
+
+    final func jumpForward(numberOfInstructions: Int) {
+        if state == .Dead { return } // must be an old deprecated enqueued dispatch closure
+        assert(numberOfInstructions >= 0)
+        assert((state == .Running) || (state == .RunningMature) || (state == .RunningBlocking))
+        let newInstructionPointerPosition = reverseInstructionPointer - numberOfInstructions
+        if newInstructionPointerPosition < 0 {
+            return
+        }
+        reverseInstructionPointer = newInstructionPointerPosition
     }
 
     final func reset() {

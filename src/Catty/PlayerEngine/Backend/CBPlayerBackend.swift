@@ -81,16 +81,32 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
             if let operationSequence = sequence as? CBOperationSequence {
                 instructionList += _instructionsForOperationSequence(operationSequence, context: context)
             } else if let ifSequence = sequence as? CBIfConditionalSequence {
-                // if else sequence
+                // check if else branch is empty!
+                var numberOfElseInstructions = 0
+                if ifSequence.elseSequenceList != nil {
+                    // add else instructions
+                    let elseInstructions = _instructionsForSequence(ifSequence.elseSequenceList!, context: context)
+                    numberOfElseInstructions = elseInstructions.count
+                    instructionList += elseInstructions
+
+                    // add jump instruction to be the last if instruction (needed to avoid executing else sequence)
+                    instructionList += {
+                        [weak self] in context.jumpForward(numberOfElseInstructions)
+                        self?.scheduler?.runNextInstructionOfContext(context)
+                    }
+                }
+                // add if instructions
+                let ifInstructions = _instructionsForSequence(ifSequence.sequenceList, context: context)
+                let numberOfIfInstructions = ifInstructions.count
+                instructionList += ifInstructions
+                // add if condition evaluation instruction
                 instructionList += { [weak self] in
-                    if ifSequence.checkCondition() {
-                        if let instructionList = self?._instructionsForSequence(ifSequence.sequenceList, context: context) {
-                            context.addInstructionsAtCurrentPosition(instructionList)
+                    if ifSequence.checkCondition() == false {
+                        var numberOfInstructionsToJump = numberOfIfInstructions
+                        if ifSequence.elseSequenceList != nil {
+                            ++numberOfInstructionsToJump // includes jump instruction at the end of if sequence
                         }
-                    } else if ifSequence.elseSequenceList != nil {
-                        if let instructionList = self?._instructionsForSequence(ifSequence.elseSequenceList!, context: context) {
-                            context.addInstructionsAtCurrentPosition(instructionList)
-                        }
+                        context.jumpForward(numberOfInstructionsToJump)
                     }
                     self?.scheduler?.runNextInstructionOfContext(context)
                 }

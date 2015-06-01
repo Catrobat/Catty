@@ -178,8 +178,11 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
     }
 
     private func _stopContext(context: CBScriptContextAbstract) {
+        if context.state == .Dead { return } // already stopped => must be an old deprecated enqueued dispatch closure
         assert(contains(_registeredScriptContexts, context), "Unable to stop context! Context not registered any more.")
-        assert(contains(_scheduledScriptContexts, context))
+        if contains(_scheduledScriptContexts, context) == false {
+            return
+        }
 
         let script = context.script
         logger.info("!!! STOPPING: \(script)")
