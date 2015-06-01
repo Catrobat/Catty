@@ -23,7 +23,6 @@
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
 #import "WhenScript.h"
-#import "LoggerDefines.h"
 #import "Pocket_Code-Swift.h"
 
 @interface ChangeGhostEffectByNBrickTests : BrickTests

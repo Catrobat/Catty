@@ -186,15 +186,14 @@ final class CBSpriteNode : SKSpriteNode {
             if let spriteObject = self.spriteObject, let scriptList = spriteObject.scriptList as NSArray as? [Script] {
                 for script in scriptList {
                     if let whenScript = script as? WhenScript {
-                        if scheduler?.isScriptScheduled(whenScript) == false {
-                            if let sequenceList = frontend?.computeSequenceListForScript(whenScript),
-                               let scriptExecContext = backend?.executionContextForScriptSequenceList(sequenceList, spriteNode: self)
-                            {
-                                scheduler?.addScriptExecContext(scriptExecContext)
-                                scheduler?.startScript(whenScript)
+                        if let whenScriptContext = scheduler?.registeredContextForScript(whenScript) {
+                            if scheduler?.isContextScheduled(whenScriptContext) == false {
+                                scheduler?.startContext(whenScriptContext)
+                            } else {
+                                scheduler?.restartContext(whenScriptContext)
                             }
                         } else {
-                            scheduler?.restartScript(whenScript)
+                            fatalError("WhenScript not registered in Scheduler! This should NEVER HAPPEN!")
                         }
                     }
                 }

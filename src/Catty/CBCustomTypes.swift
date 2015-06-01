@@ -20,43 +20,106 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-// MARK: Typedefs
-typealias CBBroadcastQueueElement = (message: String, senderScript: Script, broadcastType: CBBroadcastType)
-typealias CBExecClosure = dispatch_block_t
-
-// MARK: Enums
-enum CBScriptState {
-    case Runnable
-    case Running
-    case RunningMature   // for StartScripts => broadcast + broadcast wait start queue
-    case RunningBlocking // for broadcast wait!! (BroadcastScript called by BroadcastWaitBrick)
-    case Waiting         // for broadcast wait!! (BroadcastWaitBrick!)
-//    case Sleeping        // unused at the moment!
-    case Dead
-}
-
-enum CBScriptType {
-    case Unknown
-    case Start
-    case When
-    case Broadcast
-
-    static func scriptTypeOfScript(script: Script) -> CBScriptType {
-        if let _ = script as? StartScript {
-            return Start
-        } else if let _ = script as? WhenScript {
-            return When
-        } else if let _ = script as? BroadcastScript {
-            return Broadcast
-        } else {
-            return Unknown
+// MARK: Extensions
+extension Array {
+    mutating func removeObject<U: Equatable>(object: U) {
+        var index: Int?
+        for (idx, objectToCompare) in enumerate(self) {
+            if let to = objectToCompare as? U {
+                if object == to {
+                    index = idx
+                }
+            }
+        }
+        if(index != nil) {
+            self.removeAtIndex(index!)
         }
     }
 }
 
+func +=<T>(inout left: [T], right: T) {
+    left.append(right)
+}
+
+// MARK: Typedefs
+typealias CBBroadcastQueueElement = (message: String, senderScriptContext: CBScriptContextAbstract,
+    broadcastType: CBBroadcastType)
+typealias CBExecClosure = dispatch_block_t
+
+// MARK: Enums
+enum CBExecType {
+    case Runnable
+    case Running
+}
+
+//############################################################################################################
+//
+//                    _____ __        __          ____  _
+//                   / ___// /_____ _/ /____     / __ \(_)___ _____ __________ _____ ___
+//                   \__ \/ __/ __ `/ __/ _ \   / / / / / __ `/ __ `/ ___/ __ `/ __ `__ \
+//                  ___/ / /_/ /_/ / /_/  __/  / /_/ / / /_/ / /_/ / /  / /_/ / / / / / /
+//                 /____/\__/\__,_/\__/\___/  /_____/_/\__,_/\__, /_/   \__,_/_/ /_/ /_/
+//                                                          /____/
+//
+//############################################################################################################
+//
+//                                                           +---------------+
+//                                                           | RunningMature |----------+
+//                                                           +---------------+          |
+//                                                                   ^                  v
+//                     +----------+        +-----------+             |             +--------+
+//         o---------->| Runnable |------->|  Running  |-------------+             |  Dead  |-------->o
+//  (Initial state)    +----------+        +-----------+             |             +--------+   (Final state)
+//                                              | ^                  v                  ^
+//                                              | |         +-----------------+         |
+//                                              | |         | RunningBlocking |---------+
+//                                              | |         +-----------------+
+//                                              v |
+//                                         +-----------+
+//                                         |  Waiting  |
+//                                         +-----------+
+//
+//############################################################################################################
+
+enum CBScriptState {
+
+    // initial state for a CBScriptExecContext that has
+    // not yet been added to the scheduler
+    case Runnable
+
+    // indicates that CBScriptExecContext has already
+    // been added to the scheduler
+    case Running
+
+    // indicates that a running CBScriptExecContext of
+    // a StartScript has reached a mature state
+    // After CBScriptExecContexts of all StartScripts have reached
+    // a mature state already enqueued "broadcast"- and
+    // "broadcast wait"-calls can be performed
+    case RunningMature
+
+    // indicates that a running CBScriptExecContext of a BroadcastScript
+    // is blocking the calling CBScriptExecContext's script
+    case RunningBlocking
+
+    // indicates that a script is waiting for all BroadcastWait scripts
+    // (listening to the broadcastMessage of this script) to be finished!!
+    case Waiting
+
+//    // unused at the moment!
+//    case Sleeping
+
+    // indicates that CBScriptExecContext is going to be removed
+    // from the scheduler soon
+    case Dead
+
+}
+
 enum CBBroadcastType {
+
     case Broadcast
     case BroadcastWait
+
     func typeName() -> String {
         switch self {
         case .Broadcast:

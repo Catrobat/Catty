@@ -21,8 +21,7 @@
  */
 
 protocol CBPlayerBackendProtocol {
-    func executionContextForScriptSequenceList(scriptSequenceList: CBScriptSequenceList,
-        spriteNode: CBSpriteNode) -> CBScriptExecContext
+    func scriptContextForSequenceList(sequenceList: CBScriptSequenceList) -> CBScriptContextAbstract
 }
 
 final class CBPlayerBackend : CBPlayerBackendProtocol {
@@ -46,66 +45,86 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
     }
 
     // MARK: - Operations
-    func executionContextForScriptSequenceList(scriptSequenceList: CBScriptSequenceList,
-        spriteNode: CBSpriteNode) -> CBScriptExecContext
+    func scriptContextForSequenceList(sequenceList: CBScriptSequenceList) -> CBScriptContextAbstract
     {
         if scheduler == nil {
             logger.warn("No scheduler set!")
         }
-        logger.info("Generating ExecContext of \(scriptSequenceList.script)")
-        var instructionList = _instructionListForSequenceList(scriptSequenceList.sequenceList)
-        return CBScriptExecContext(script: scriptSequenceList.script, state: .Runnable,
-            scriptSequenceList: scriptSequenceList, instructionList: instructionList)
+
+        let script = sequenceList.script
+        logger.info("Generating ScriptContext of \(script)")
+
+        // create right context depending on script type
+        var scriptContext: CBScriptContextAbstract? = nil
+        if let startScript = script as? StartScript {
+            scriptContext = CBStartScriptContext(startScript: startScript, state: .Runnable, scriptSequenceList: sequenceList)
+        } else if let whenScript = script as? WhenScript {
+            scriptContext = CBWhenScriptContext(whenScript: whenScript, state: .Runnable, scriptSequenceList: sequenceList)
+        } else if let bcScript = script as? BroadcastScript {
+            scriptContext = CBBroadcastScriptContext(broadcastScript: bcScript, state: .Runnable, scriptSequenceList: sequenceList)
+        } else {
+            fatalError("Unknown script! THIS SHOULD NEVER HAPPEN!")
+        }
+
+        // generated instructions and add them to script context
+        let instructionList = _instructionsForSequence(sequenceList.sequenceList, context: scriptContext!)
+        for instruction in instructionList {
+            scriptContext! += instruction
+        }
+        return scriptContext!
     }
 
-    private func _instructionListForSequenceList(sequenceList: CBSequenceList) -> [CBExecClosure] {
+    private func _instructionsForSequence(sequenceList: CBSequenceList, context: CBScriptContextAbstract) -> [CBExecClosure]
+    {
         var instructionList = [CBExecClosure]()
         for sequence in sequenceList.reverseSequenceList().sequenceList {
             if let operationSequence = sequence as? CBOperationSequence {
-                instructionList += _instructionListForOperationSequence(operationSequence)
+                instructionList += _instructionsForOperationSequence(operationSequence, context: context)
             } else if let ifSequence = sequence as? CBIfConditionalSequence {
                 // if else sequence
-                instructionList += { [weak self] in
-                    let script = ifSequence.rootSequenceList?.script
-                    assert(script != nil, "This should never happen!")
-                    if ifSequence.checkCondition() {
-                        if let instructionList = self?._instructionListForSequenceList(ifSequence.sequenceList) {
-                            self?.scheduler?.addInstructionsAfterCurrentInstructionOfScript(script!, instructionList: instructionList)
-                        }
-                    } else if ifSequence.elseSequenceList != nil {
-                        if let instructionList = self?._instructionListForSequenceList(ifSequence.elseSequenceList!) {
-                            self?.scheduler?.addInstructionsAfterCurrentInstructionOfScript(script!, instructionList: instructionList)
-                        }
-                    }
-                    self?.scheduler?.runNextInstructionOfScript(script!)
-                }
+                // TODO............
+//                instructionList += { [weak self] in
+//                    let script = ifSequence.rootSequenceList?.script
+//                    assert(script != nil, "This should never happen!")
+//                    if ifSequence.checkCondition() {
+//                        if let instructionList = self?._instructionListForSequenceList(ifSequence.sequenceList) {
+//                            self?.scheduler?.addInstructionsAfterCurrentInstructionOfScript(script!, instructionList: instructionList)
+//                        }
+//                    } else if ifSequence.elseSequenceList != nil {
+//                        if let instructionList = self?._instructionListForSequenceList(ifSequence.elseSequenceList!) {
+//                            self?.scheduler?.addInstructionsAfterCurrentInstructionOfScript(script!, instructionList: instructionList)
+//                        }
+//                    }
+//                    self?.scheduler?.runNextInstructionOfScript(script!)
+//                }
             } else if let conditionalSequence = sequence as? CBConditionalSequence {
                 // loop sequence
-                instructionList += _instructionListForLoopSequence(conditionalSequence)
+                instructionList += _instructionsForLoopSequence(conditionalSequence, context: context)
             }
         }
         return instructionList
     }
 
-    private func _instructionListForLoopSequence(conditionalSequence: CBConditionalSequence) -> CBExecClosure {
+    private func _instructionsForLoopSequence(conditionalSequence: CBConditionalSequence,
+        context: CBScriptContextAbstract) -> CBExecClosure
+    {
         let localUniqueID = NSString.localUniqueIdenfier()
         let loopInstruction : CBExecClosure = { [weak self] in
             let scriptSequenceList = conditionalSequence.rootSequenceList
             assert(scriptSequenceList != nil, "This should never happen!")
-            let script = scriptSequenceList!.script
+//            let script = scriptSequenceList!.script
             let scheduler = self?.scheduler
             if conditionalSequence.checkCondition() {
                 let startTime = NSDate()
                 var instructionList = [CBExecClosure]()
                 // add loop end check
-                let bodyInstructions = self?._instructionListForSequenceList(conditionalSequence.sequenceList)
+                let bodyInstructions = self?._instructionsForSequence(conditionalSequence.sequenceList, context: context)
                 let numberOfBodyInstructions = bodyInstructions?.count
                 instructionList += {
                     // high priority queue only needed for blocking purposes...
                     // the reason for this is that you should NEVER block the (serial) main_queue!!
-                    let startIndex = scheduler?.currentInstructionPointerPositionOfScript(script)
-                    assert(startIndex != nil, "Unable to retrieve instruction pointer position of current script!")
-                    let previousloopEndInstructionPointerPosition = startIndex!
+                    let startIndex = context.reverseInstructionPointer
+                    let previousLoopEndInstructionPointerPosition = startIndex
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
                         let duration = NSDate().timeIntervalSinceDate(startTime)
                         self?.logger.debug("  Duration for Sequence: \(duration*1000)ms")
@@ -116,16 +135,15 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
                         dispatch_async(dispatch_get_main_queue(), {
                             if let numOfBodyInstructions = numberOfBodyInstructions {
                                 let numberOfInstructionsOfPreviousLoopIteration = numOfBodyInstructions + 2 // body + head + tail
-                                scheduler?.removeNumberOfInstructions(
+                                context.removeNumberOfInstructions(
                                     numberOfInstructionsOfPreviousLoopIteration,
-                                    instructionStartIndex: previousloopEndInstructionPointerPosition,
-                                    inScript: script
+                                    instructionStartIndex: previousLoopEndInstructionPointerPosition
                                 )
                             }
                             let instruction = scriptSequenceList!.whileSequences[localUniqueID]
                             assert(instruction != nil, "This should NEVER happen!")
-                            scheduler?.addInstructionAfterCurrentInstructionOfScript(script, instruction: instruction!)
-                            scheduler?.runNextInstructionOfScript(script)
+                            context.addInstructionAtCurrentPosition(instruction!)
+                            scheduler?.runNextInstructionOfContext(context)
                             return
                         })
                     })
@@ -134,12 +152,12 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
                 if let bodyInstructs = bodyInstructions {
                     instructionList += bodyInstructs
                 }
-                scheduler?.addInstructionsAfterCurrentInstructionOfScript(script, instructionList: instructionList)
-                scheduler?.runNextInstructionOfScript(script)
+                context.addInstructionsAtCurrentPosition(instructionList)
+                scheduler?.runNextInstructionOfContext(context)
             } else {
                 // leaving loop now!
                 conditionalSequence.resetCondition() // reset loop counter right now
-                scheduler?.runNextInstructionOfScript(script) // run next action after loop
+                scheduler?.runNextInstructionOfContext(context) // run next action after loop
             }
         }
         assert(conditionalSequence.rootSequenceList != nil, "This should never happen!")
@@ -147,28 +165,28 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
         return loopInstruction
     }
 
-    private func _instructionListForOperationSequence(operationSequence: CBOperationSequence)
-        -> [CBExecClosure]
+    private func _instructionsForOperationSequence(operationSequence: CBOperationSequence,
+        context: CBScriptContextAbstract) -> [CBExecClosure]
     {
         var instructionList = [CBExecClosure]()
         for operation in operationSequence.operationList.reverse() {
             if let broadcastBrick = operation.brick as? BroadcastBrick {
                 instructionList += { [weak self] in
-                    self?.broadcastHandler?.performBroadcastWithMessage(broadcastBrick.broadcastMessage,
-                        senderScript: broadcastBrick.script, broadcastType: .Broadcast)
+                    let msg = broadcastBrick.broadcastMessage
+                    self?.broadcastHandler?.performBroadcastWithMessage(msg, senderScriptContext: context,
+                        broadcastType: .Broadcast)
                 }
             } else if let broadcastWaitBrick = operation.brick as? BroadcastWaitBrick {
                 instructionList += { [weak self] in
-                    self?.broadcastHandler?.performBroadcastWithMessage(broadcastWaitBrick.broadcastMessage,
-                        senderScript: broadcastWaitBrick.script, broadcastType: .BroadcastWait)
+                    let msg = broadcastWaitBrick.broadcastMessage
+                    self?.broadcastHandler?.performBroadcastWithMessage(msg, senderScriptContext: context,
+                        broadcastType: .BroadcastWait)
                 }
             } else {
                 instructionList += { [weak self] in
-                    let scriptExecContext = self?.scheduler?.scriptExecContextDict[operation.brick.script]
-                    assert(scriptExecContext != nil, "FATAL: ScriptExecContext added to Scheduler!")
-                    scriptExecContext?.runAction(operation.brick.action(), completion:{
+                    context.runAction(operation.brick.action(), completion:{
                         // the script must continue here. upcoming actions are executed!!
-                        self?.scheduler?.runNextInstructionOfScript(operation.brick.script)
+                        self?.scheduler?.runNextInstructionOfContext(context)
                     })
                 }
             }

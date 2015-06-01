@@ -192,20 +192,27 @@ final class CBPlayerScene : SKScene {
         }
 
         // compute all sequence lists
+        // TODO: remove spaghetti code => extend backend + frontend to pass Program!!
         if let spriteObjectList = frontend?.program?.objectList as? [SpriteObject] {
             for spriteObject in spriteObjectList {
+                let spriteNode = spriteNodes[spriteObject.name]!
                 if var scriptList = spriteObject.scriptList as NSArray as? [Script] {
                     for script in scriptList {
-                        if let startScript = script as? StartScript {
-                            if let scriptSequenceList = frontend?.computeSequenceListForScript(startScript),
-                               let spriteNode = spriteNodes[spriteObject.name],
-                               let execContext = backend?.executionContextForScriptSequenceList(scriptSequenceList, spriteNode:spriteNode)
-                            {
-                                    scheduler?.addScriptExecContext(execContext)
+                        if let scriptSequence = frontend?.computeSequenceListForScript(script),
+                           let scriptContext = backend?.scriptContextForSequenceList(scriptSequence)
+                        {
+                            if let startScript = script as? StartScript {
+                                // register StartScript
+                                scheduler?.registerContext(scriptContext)
+                            } else if let whenScript = script as? WhenScript {
+                                // register WhenScript
+                                scheduler?.registerContext(scriptContext)
+                            } else if let broadcastScript = script as? BroadcastScript {
+                                // register BroadcastScript
+                                if let bcScriptContext = scriptContext as? CBBroadcastScriptContext {
+                                    broadcastHandler?.subscribeBroadcastScriptContext(bcScriptContext)
+                                }
                             }
-                        } else if let broadcastScript = script as? BroadcastScript {
-                            // subscribe BroadcastScript
-                            broadcastHandler?.subscribeBroadcastScript(broadcastScript, forMessage:broadcastScript.receivedMessage)
                         }
                     }
                 }

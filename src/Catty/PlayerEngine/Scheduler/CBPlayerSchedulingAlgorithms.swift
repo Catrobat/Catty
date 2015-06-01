@@ -21,28 +21,27 @@
  */
 
 protocol CBPlayerSchedulingAlgorithmProtocol : class {
-    func scriptExecContextForNextInstruction(lastScript: Script?,
-        scriptExecContextDict: [Script:CBScriptExecContext]) -> CBScriptExecContext
+    func contextForNextInstruction(lastContext: CBScriptContextAbstract?, scheduledContexts: [CBScriptContextAbstract]) -> CBScriptContextAbstract
 }
 
 // implements a RoundRobin-like scheduling algorithm
 final class CBPlayerSchedulingRR : CBPlayerSchedulingAlgorithmProtocol {
 
-    func scriptExecContextForNextInstruction(lastScript: Script?,
-        scriptExecContextDict: [Script:CBScriptExecContext]) -> CBScriptExecContext
+    func contextForNextInstruction(lastContext: CBScriptContextAbstract?,
+        scheduledContexts: [CBScriptContextAbstract]) -> CBScriptContextAbstract
     {
-        assert(scriptExecContextDict.isEmpty == false) // make sure dict is not empty (as specified!)
-        if lastScript == nil {
-            return scriptExecContextDict.values.first! // take first context
+        assert(scheduledContexts.isEmpty == false) // make sure dict is not empty (as specified!)
+        if lastContext == nil {
+            return scheduledContexts.first! // take first context
         }
         var takeNextScript = false
         var rounds = 2
         while rounds-- > 0 {
-            for (script, context) in scriptExecContextDict {
+            for context in scheduledContexts {
                 if takeNextScript {
                     return context
                 }
-                if script == lastScript {
+                if context == lastContext {
                     takeNextScript = true
                     continue
                 }
@@ -55,11 +54,11 @@ final class CBPlayerSchedulingRR : CBPlayerSchedulingAlgorithmProtocol {
 // implements a random order scheduling algorithm
 final class CBPlayerSchedulingAlgorithmRandomOrder : CBPlayerSchedulingAlgorithmProtocol {
 
-    func scriptExecContextForNextInstruction(lastScript: Script?,
-        scriptExecContextDict: [Script:CBScriptExecContext]) -> CBScriptExecContext
+    func contextForNextInstruction(lastContext: CBScriptContextAbstract?,
+        scheduledContexts: [CBScriptContextAbstract]) -> CBScriptContextAbstract
     {
-        assert(scriptExecContextDict.isEmpty == false) // make sure dict is not empty (as specified!)
-        let randomIndex = arc4random_uniform(UInt32(scriptExecContextDict.count))
-        return Array(scriptExecContextDict.values)[Int(randomIndex)]
+        assert(scheduledContexts.isEmpty == false) // make sure dict is not empty (as specified!)
+        let randomIndex = arc4random_uniform(UInt32(scheduledContexts.count))
+        return scheduledContexts[Int(randomIndex)]
     }
 }

@@ -20,31 +20,38 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-final class CBScriptExecContext : SKNode {
+class CBScriptContextAbstract : SKNode {
 
     // MARK: - Properties
-    let script : Script
-    let scriptType : CBScriptType
-    private var _stateStorage : CBScriptState
-    var state : CBScriptState {
+    final var script:Script {
+        if let startScriptCtxt = self as? CBStartScriptContext {
+            return startScriptCtxt.startScript
+        } else if let whenScriptCtxt = self as? CBWhenScriptContext {
+            return whenScriptCtxt.whenScript
+        } else if let broadcastScriptCtxt = self as? CBBroadcastScriptContext {
+            return broadcastScriptCtxt.broadcastScript
+        } else {
+            fatalError("No or unknown subclass of abstract CBScriptContextAbstract class!!!")
+        }
+    }
+    final private var _stateStorage: CBScriptState
+    final var state: CBScriptState {
         get { return _stateStorage }
         // if script is RunningBlocking (BroadcastScript called by BroadcastWait) then do not change state!
         set { if _stateStorage != .RunningBlocking || newValue != .RunningMature { _stateStorage = newValue } }
     }
-    private(set) var reverseInstructionPointer = 0
-    var count : Int { return _instructionList.count }
+    final private(set) var reverseInstructionPointer = 0
+    final var count: Int { return _instructionList.count }
 
-    private lazy var _instructionList = [CBExecClosure]()
-    private var _scriptSequenceList: CBScriptSequenceList?
+    final private lazy var _instructionList = [CBExecClosure]()
+    final private var _scriptSequenceList: CBScriptSequenceList?
 
     // MARK: - Initializers
-    convenience init(script: Script, scriptSequenceList: CBScriptSequenceList) {
-        self.init(script: script, state: .Runnable, scriptSequenceList: scriptSequenceList, instructionList: [])
+    convenience init(scriptSequenceList: CBScriptSequenceList) {
+        self.init(state: .Runnable, scriptSequenceList: scriptSequenceList, instructionList: [])
     }
 
-    init(script: Script, state: CBScriptState, scriptSequenceList: CBScriptSequenceList, instructionList: [CBExecClosure]) {
-        self.script = script
-        self.scriptType = CBScriptType.scriptTypeOfScript(script)
+    init(state: CBScriptState, scriptSequenceList: CBScriptSequenceList, instructionList: [CBExecClosure]) {
         _stateStorage = state
         self._scriptSequenceList = scriptSequenceList
         super.init()
@@ -58,29 +65,40 @@ final class CBScriptExecContext : SKNode {
     }
 
     // MARK: - Operations
-    func appendInstruction(instruction: CBExecClosure) {
+    final func appendInstruction(instruction: CBExecClosure) {
         _instructionList.append(instruction)
         ++reverseInstructionPointer
     }
 
-    func addInstructionAtCurrentPosition(instruction: CBExecClosure) {
+    final func addInstructionAtCurrentPosition(instruction: CBExecClosure) {
         assert((state == .Running) || (state == .RunningMature) || (state == .RunningBlocking))
         _instructionList.insert(instruction, atIndex: reverseInstructionPointer)
         ++reverseInstructionPointer
     }
 
-    func removeNumberOfInstructions(numberOfInstructions: Int, instructionStartIndex startIndex: Int) {
+    final func addInstructionsAtCurrentPosition(instructionList: [CBExecClosure]) {
+        for instruction in instructionList {
+            addInstructionAtCurrentPosition(instruction)
+        }
+    }
+
+    final func removeNumberOfInstructions(numberOfInstructions: Int, instructionStartIndex startIndex: Int) {
         assert((state == .Running) || (state == .RunningMature) || (state == .RunningBlocking))
         let range = Range<Int>(startIndex ..< (startIndex + numberOfInstructions))
         _instructionList.removeRange(range)
         reverseInstructionPointer = startIndex
     }
 
-    func nextInstruction() -> CBExecClosure? {
+    final func nextInstruction() -> CBExecClosure? {
+        if state == .Dead {
+            return nil
+        }
+
         assert((state == .Running) || (state == .RunningMature) || (state == .RunningBlocking))
         if (reverseInstructionPointer == 0) || (_instructionList.count == 0) {
             return nil
         }
+
         // after first instruction executed => set state to RunningMature
         if state == .Running {
             state = .RunningMature
@@ -88,11 +106,11 @@ final class CBScriptExecContext : SKNode {
         return _instructionList[--reverseInstructionPointer]
     }
 
-    func reset() {
+    final func reset() {
         reverseInstructionPointer = _instructionList.count
     }
 
-    func removeReferences() {
+    final func removeReferences() {
         self._instructionList.removeAll(keepCapacity: false)
         self._scriptSequenceList?.sequenceList.rootSequenceList = nil
         if self._scriptSequenceList != nil {
@@ -105,10 +123,6 @@ final class CBScriptExecContext : SKNode {
 }
 
 // MARK: - Custom operators
-func +=(inout left: CBScriptExecContext, right: CBExecClosure) {
+func +=(inout left: CBScriptContextAbstract, right: CBExecClosure) {
     left.appendInstruction(right)
-}
-
-func +=<T>(inout left: [T], right: T) {
-    left.append(right)
 }

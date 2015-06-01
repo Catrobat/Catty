@@ -23,28 +23,22 @@
 protocol CBPlayerSchedulerProtocol : class {
     // properties
     var schedulingAlgorithm:CBPlayerSchedulingAlgorithmProtocol? { get set }
-    var scriptExecContextDict:[Script:CBScriptExecContext] { get }
     var running:Bool { get }
 
-    // main events
-    func run()
-    func shutdown()
-
-    // script handling
-    func addScriptExecContext(scriptExecContext: CBScriptExecContext)
-    func startScript(script: Script)
-    func startScript(script: Script, withInitialState: CBScriptState)
-    func restartScript(script: Script)
-    func restartScript(script: Script, withInitialState: CBScriptState)
+    // queries
+    func isContextScheduled(context: CBScriptContextAbstract) -> Bool
+    func allStartScriptContextsReachedMatureState() -> Bool
 
     // operations
-    func isScriptScheduled(script: Script) -> Bool
-    func addInstructionsAfterCurrentInstructionOfScript(script: Script, instructionList: [CBExecClosure])
-    func addInstructionAfterCurrentInstructionOfScript(script: Script, instruction: CBExecClosure)
-    func removeNumberOfInstructions(numberOfInstructions: Int, instructionStartIndex: Int, inScript script: Script)
-    func currentInstructionPointerPositionOfScript(script: Script) -> Int?
-    func setStateForScript(script: Script, state: CBScriptState)
-    func runNextInstructionOfScript(script: Script)
+    func run()
+    func shutdown()
+    func registerContext(context: CBScriptContextAbstract)
+    func registeredContextForScript(script: Script) -> CBScriptContextAbstract?
+    func startContext(context: CBScriptContextAbstract)
+    func startContext(context: CBScriptContextAbstract, withInitialState: CBScriptState)
+    func restartContext(context: CBScriptContextAbstract)
+    func restartContext(context: CBScriptContextAbstract, withInitialState: CBScriptState)
+    func runNextInstructionOfContext(context: CBScriptContextAbstract)
 }
 
 final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
@@ -53,12 +47,13 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
     var logger: CBLogger
     var schedulingAlgorithm: CBPlayerSchedulingAlgorithmProtocol?
     private(set) var running = false
-    private(set) lazy var scriptExecContextDict = [Script:CBScriptExecContext]()
 
+    private lazy var _scheduledScriptContexts = [CBScriptContextAbstract]()
+    private lazy var _registeredScriptContexts = [CBScriptContextAbstract]()
     private let _frontend: CBPlayerFrontendProtocol
     private let _backend: CBPlayerBackendProtocol
     private let _broadcastHandler: CBPlayerBroadcastHandlerProtocol
-    private var _currentScriptExecContext: CBScriptExecContext?
+    private var _currentContext: CBScriptContextAbstract?
 
     // MARK: - Initializers
     init(logger: CBLogger, frontend: CBPlayerFrontendProtocol, backend: CBPlayerBackendProtocol,
@@ -71,79 +66,41 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
         _broadcastHandler = broadcastHandler
     }
 
-    // MARK: - Getters and Setters
-    func isScriptScheduled(script: Script) -> Bool {
-        if let scriptExecContext = scriptExecContextDict[script] {
-            return true
-        }
-        return false
+    // MARK: - Queries
+    func isContextScheduled(context: CBScriptContextAbstract) -> Bool {
+        return contains(_scheduledScriptContexts, context)
     }
 
-    // MARK: - Operations
-    func addScriptExecContext(scriptExecContext: CBScriptExecContext) {
-        assert(scriptExecContextDict[scriptExecContext.script] == nil, "Context already in dictionary!")
-        logger.info("Added new CBScriptExecContext for \(scriptExecContext.script)")
-        scriptExecContextDict[scriptExecContext.script] = scriptExecContext
-    }
-
-    func addInstructionAfterCurrentInstructionOfScript(script: Script, instruction: CBExecClosure) {
-        if let scriptExecContext = scriptExecContextDict[script] {
-            scriptExecContext.addInstructionAtCurrentPosition(instruction)
+    func allStartScriptContextsReachedMatureState() -> Bool {
+        for registeredContext in _scheduledScriptContexts {
+            if let startContext = registeredContext as? CBStartScriptContext {
+                if startContext.state != .RunningMature {
+                    return false
+                }
+            }
         }
-    }
-
-    func addInstructionsAfterCurrentInstructionOfScript(script: Script, instructionList: [CBExecClosure]) {
-        for instruction in instructionList {
-            addInstructionAfterCurrentInstructionOfScript(script, instruction: instruction)
-        }
-    }
-
-    func removeNumberOfInstructions(numberOfInstructions: Int, instructionStartIndex startIndex: Int, inScript script: Script) {
-        if let scriptExecContext = scriptExecContextDict[script] {
-            scriptExecContext.removeNumberOfInstructions(numberOfInstructions, instructionStartIndex: startIndex)
-        }
-    }
-
-    func currentInstructionPointerPositionOfScript(script: Script) -> Int? {
-        if let scriptExecContext = scriptExecContextDict[script] {
-            return scriptExecContext.reverseInstructionPointer
-        }
-        return nil
+        return true
     }
 
     // MARK: - Scheduling
-    func runNextInstructionOfScript(script: Script) {
-        if scriptExecContextDict.count == 0 { return }
+    func runNextInstructionOfContext(context: CBScriptContextAbstract) {
+        if _scheduledScriptContexts.count == 0 { return }
 
         // apply scheduling via StrategyPattern => selects script to be scheduled NOW!
         if schedulingAlgorithm != nil {
-            let newScriptExecContext = schedulingAlgorithm?.scriptExecContextForNextInstruction(
-                _currentScriptExecContext?.script,
-                scriptExecContextDict: scriptExecContextDict
-            )
-            _currentScriptExecContext = newScriptExecContext
+            _currentContext = schedulingAlgorithm?.contextForNextInstruction(_currentContext,
+                scheduledContexts: _scheduledScriptContexts)
         } else {
-            _currentScriptExecContext = scriptExecContextDict[script]
+            _currentContext = context
         }
 
-        if let scriptExecContext = _currentScriptExecContext {
-            if let nextInstruction = scriptExecContext.nextInstruction() {
+        if let scriptContext = _currentContext {
+            if let nextInstruction = scriptContext.nextInstruction() {
                 nextInstruction()
             } else {
                 logger.debug("All actions/instructions have been finished!")
-                stopScript(script)
+                _stopContext(context)
             }
-        } else {
-            // TODO: review!!
-            logger.debug("Script already removed from scheduler!")
-            logger.debug("Force stopping script now!")
-            stopScript(script)
-        }
-    }
-
-    func setStateForScript(script: Script, state: CBScriptState) {
-        if let scriptExecContext = scriptExecContextDict[script] {
-            scriptExecContext.state = state
         }
     }
 
@@ -160,92 +117,97 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
         running = true
         _broadcastHandler.setupHandler()
 
-        for (script, _) in scriptExecContextDict {
-            startScript(script)
+        // start all StartScripts
+        for context in _registeredScriptContexts {
+            if let _ = context as? CBStartScriptContext {
+                startContext(context, withInitialState: .Running)
+            }
         }
     }
 
-    func startScript(script: Script) {
-        startScript(script, withInitialState: .Running)
+    func registerContext(context: CBScriptContextAbstract) {
+        assert(contains(_registeredScriptContexts, context) == false) // ensure that same context is not added twice
+        _registeredScriptContexts += context
     }
 
-    func startScript(script: Script, withInitialState initialState: CBScriptState) {
-        assert(running) // ensure that player is running!
-        if let scriptExecContext = scriptExecContextDict[script] {
-            logger.info("    STARTING: \(script)")
-            logger.info("-------------------------------------------------------------")
+    func registeredContextForScript(script: Script) -> CBScriptContextAbstract? {
+        for registeredScriptContext in _registeredScriptContexts {
+            if registeredScriptContext.script == script {
+                return registeredScriptContext
+            }
+        }
+        return nil
+    }
 
-            if scriptExecContext.inParentHierarchy(scriptExecContext.script.object.spriteNode) == false {
-                //            NSLog(@" + Adding this node to object");
-                scriptExecContext.script.object.spriteNode.addChild(scriptExecContext)
-            }
-            _resetScript(script)
-            if scriptExecContext.hasActions() {
-                scriptExecContext.removeAllActions()
-            }
-            scriptExecContext.state = initialState
-            runNextInstructionOfScript(script) // Ready...Steady...Gooooo!! => invoke first instruction!
+    func startContext(context: CBScriptContextAbstract) {
+        startContext(context, withInitialState: .Running)
+    }
+
+    func startContext(context: CBScriptContextAbstract, withInitialState initialState: CBScriptState) {
+        assert(running) // make sure that player is running!
+        assert(contains(_registeredScriptContexts, context), "Unable to start context! Context not registered.")
+        assert(contains(_scheduledScriptContexts, context) == false, "Unable to start context! Context already scheduled.")
+        logger.info("    STARTING: \(context.script)")
+        logger.info("-------------------------------------------------------------")
+
+        if context.inParentHierarchy(context.script.object.spriteNode) == false {
+            //            NSLog(@" + Adding this node to object");
+            context.script.object.spriteNode.addChild(context)
+        }
+        _resetContext(context)
+        if context.hasActions() {
+            context.removeAllActions()
+        }
+        context.state = initialState
+        _scheduledScriptContexts += context
+        runNextInstructionOfContext(context) // Ready...Steady...Gooooo!! => invoke first instruction!
+    }
+
+    func restartContext(context: CBScriptContextAbstract) {
+        restartContext(context, withInitialState: .Running)
+    }
+
+    func restartContext(context: CBScriptContextAbstract, withInitialState initialState: CBScriptState) {
+        assert(running) // make sure that player is running!
+        assert(contains(_scheduledScriptContexts, context), "Unable to restart context! Context is not running.")
+
+        // remove it from waiting list
+        _broadcastHandler.removeWaitingContextDueToRestart(context)
+        _stopContext(context, removeReferences:false)
+        context.reset()
+        startContext(context, withInitialState: initialState)
+    }
+
+    private func _stopContext(context: CBScriptContextAbstract, removeReferences: Bool = true) {
+        assert(contains(_registeredScriptContexts, context), "Unable to stop context! Context not registered any more.")
+        if contains(_scheduledScriptContexts, context) == false {
             return
         }
-        // make sure that context has already been added to Scheduler
-        fatalError("Unable to start script! ScriptExecContext not added to scheduler. This should NEVER happen!!")
-    }
 
-    func restartScript(script: Script) {
-        restartScript(script, withInitialState: .Running)
-    }
-
-    func restartScript(script: Script, withInitialState initialState: CBScriptState = .Running) {
-        assert(running) // make sure that player is running!
-        if let scriptExecContext = scriptExecContextDict[script] {
-            // remove it from waiting list
-            _broadcastHandler.removeWaitingScriptDueToRestart(script)
-            stopScript(script, removeReferences:false)
-            scriptExecContext.reset()
-//            let sequenceList = _frontend.computeSequenceListForScript(script)
-//            let newScriptExecContext = _backend.executionContextForScriptSequenceList(sequenceList, spriteNode: script.object.spriteNode)
-            addScriptExecContext(scriptExecContext)
-            startScript(script, withInitialState: initialState)
-        } else {
-//            let sequenceList = _frontend.computeSequenceListForScript(script)
-//            let scriptExecContext = _backend.executionContextForScriptSequenceList(sequenceList)
-//            addScriptExecContext(scriptExecContext)
-//            startScript(script)
-            fatalError("Script is not running!")
-        }
-    }
-
-    func stopScript(script: Script, removeReferences: Bool = true) {
+        let script = context.script
         logger.info("!!! STOPPING: \(script)")
         logger.info("-------------------------------------------------------------")
-        if let scriptExecContext = scriptExecContextDict[script] {
-            scriptExecContext.state = .Dead
-            if scriptExecContext.scriptType == .Broadcast {
-                // continue all broadcastWaiting scripts
-                if let broadcastScript = script as? BroadcastScript { // sanity check
-                    _broadcastHandler.continueForBroadcastScriptTerminationWaitingScripts(broadcastScript: broadcastScript)
-                } else {
-                    fatalError("This should never happen!")
-                }
-            }
-            if removeReferences {
-                scriptExecContext.removeReferences()
-            }
-            if scriptExecContext.inParentHierarchy(scriptExecContext.script.object.spriteNode) {
-                scriptExecContext.removeFromParent()
-            }
-            scriptExecContext.removeAllActions()
-            scriptExecContextDict.removeValueForKey(script)
-            logger.debug("\(script) finished!")
-            return
+        context.state = .Dead
+
+        if let broadcastScriptContext = context as? CBBroadcastScriptContext {
+            // continue all broadcastWaiting scripts
+            _broadcastHandler.continueContextsWaitingForTerminationOfBroadcastScriptContext(broadcastScriptContext)
         }
-        logger.debug("\(script) already stopped!!")
+        if removeReferences {
+            context.removeReferences()
+        }
+        if context.inParentHierarchy(context.script.object.spriteNode) {
+            context.removeFromParent()
+        }
+        context.removeAllActions()
+        _scheduledScriptContexts.removeObject(context)
+        logger.debug("\(script) finished!")
     }
 
-    private func _resetScript(script: Script) {
-        logger.debug("!!! RESETTING: \(script)");
+    private func _resetContext(context: CBScriptContextAbstract) {
+        logger.debug("!!! RESETTING: \(context.script)");
         logger.debug("-------------------------------------------------------------")
-        for brick in script.brickList {
+        for brick in context.script.brickList {
             if let loopBeginBrick = brick as? LoopBeginBrick {
                 loopBeginBrick.resetCondition()
             }
@@ -259,17 +221,23 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
         logger.info("!!! SCHEDULER SHUTDOWN")
         logger.info("")
         logger.info("#############################################################\n\n")
-        for (script, scriptExecContext) in scriptExecContextDict {
+
+        // stop all currently (!) scheduled script contexts
+        for context in _scheduledScriptContexts {
+            assert(contains(_registeredScriptContexts, context), "Unable to stop context! Context not registered any more.")
+            let script = context.script
             logger.info("!!! STOPPING: \(script)")
             logger.info("-------------------------------------------------------------")
-            if scriptExecContext.inParentHierarchy(scriptExecContext.script.object.spriteNode) {
-                scriptExecContext.removeFromParent()
+            if context.inParentHierarchy(script.object.spriteNode) {
+                context.removeFromParent()
             }
-            scriptExecContext.removeReferences()
+            context.removeReferences()
             logger.debug("\(script) finished!")
         }
-        scriptExecContextDict.removeAll(keepCapacity: false)
+        _scheduledScriptContexts.removeAll(keepCapacity: false)
+        _registeredScriptContexts.removeAll(keepCapacity: false)
+        _broadcastHandler.tearDownHandler()
         running = false
-        _currentScriptExecContext = nil
+        _currentContext = nil
     }
 }

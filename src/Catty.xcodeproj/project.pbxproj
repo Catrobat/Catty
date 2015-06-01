@@ -314,6 +314,10 @@
 		CA403F2C1B1631A8004ADCB2 /* CBCustomTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA403F2B1B1631A8004ADCB2 /* CBCustomTypes.swift */; };
 		CA43C4BA1B165C0B009B604F /* CBPlayerBroadcastHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA43C4B91B165C0B009B604F /* CBPlayerBroadcastHandler.swift */; };
 		CA4C506B1B1C891000BB43E1 /* SetupScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4C506A1B1C891000BB43E1 /* SetupScene.swift */; };
+		CA4E48BA1B1CEAE9003EA71E /* CBBroadcastScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E48B61B1CEAE9003EA71E /* CBBroadcastScriptContext.swift */; };
+		CA4E48BB1B1CEAE9003EA71E /* CBScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E48B71B1CEAE9003EA71E /* CBScriptContext.swift */; };
+		CA4E48BC1B1CEAE9003EA71E /* CBStartScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E48B81B1CEAE9003EA71E /* CBStartScriptContext.swift */; };
+		CA4E48BD1B1CEAE9003EA71E /* CBWhenScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E48B91B1CEAE9003EA71E /* CBWhenScriptContext.swift */; };
 		CA7698B61B0E4B3F000D0340 /* XMLAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A53A1A43BDD9002A69A0 /* XMLAbstractTest.m */; };
 		CA7698B81B0E4B3F000D0340 /* XMLParserAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5401A43BE11002A69A0 /* XMLParserAbstractTest.m */; };
 		CA7698B91B0E4B3F000D0340 /* XMLParserBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5441A43BE37002A69A0 /* XMLParserBrickTests.m */; };
@@ -483,7 +487,6 @@
 		CABF43BC1B115E6400419A55 /* CBSequenceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B51B115E6400419A55 /* CBSequenceList.swift */; };
 		CAD116DD1A46AAC000F560B4 /* CBXMLPositionStack.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD116DC1A46AAC000F560B4 /* CBXMLPositionStack.m */; };
 		CAD116E51A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD116E41A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.m */; };
-		CAD2322B1B10F68300570370 /* CBScriptExecContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD2322A1B10F68300570370 /* CBScriptExecContext.swift */; };
 		CAD740E31AF2D2E800C32937 /* CBStack.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD740E21AF2D2E800C32937 /* CBStack.m */; };
 		CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3A198F685D00455B77 /* SSZipArchive.license */; };
 		CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */; };
@@ -1323,6 +1326,10 @@
 		CA403F2B1B1631A8004ADCB2 /* CBCustomTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCustomTypes.swift; sourceTree = "<group>"; };
 		CA43C4B91B165C0B009B604F /* CBPlayerBroadcastHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerBroadcastHandler.swift; path = PlayerEngine/Scheduler/CBPlayerBroadcastHandler.swift; sourceTree = "<group>"; };
 		CA4C506A1B1C891000BB43E1 /* SetupScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetupScene.swift; path = Catty/PlayerEngine/Scene/SetupScene.swift; sourceTree = SOURCE_ROOT; };
+		CA4E48B61B1CEAE9003EA71E /* CBBroadcastScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBroadcastScriptContext.swift; path = PlayerEngine/DataModel/CBScriptContexts/CBBroadcastScriptContext.swift; sourceTree = "<group>"; };
+		CA4E48B71B1CEAE9003EA71E /* CBScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBScriptContext.swift; path = PlayerEngine/DataModel/CBScriptContexts/CBScriptContext.swift; sourceTree = "<group>"; };
+		CA4E48B81B1CEAE9003EA71E /* CBStartScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBStartScriptContext.swift; path = PlayerEngine/DataModel/CBScriptContexts/CBStartScriptContext.swift; sourceTree = "<group>"; };
+		CA4E48B91B1CEAE9003EA71E /* CBWhenScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBWhenScriptContext.swift; path = PlayerEngine/DataModel/CBScriptContexts/CBWhenScriptContext.swift; sourceTree = "<group>"; };
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
 		CA6E4C4719F9C388001B65C3 /* My first program.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My first program.catrobat"; sourceTree = "<group>"; };
 		CA7698AA1B0E4A97000D0340 /* CattyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1483,7 +1490,6 @@
 		CAD116DC1A46AAC000F560B4 /* CBXMLPositionStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBXMLPositionStack.m; path = CBXMLPositionStack/CBXMLPositionStack.m; sourceTree = "<group>"; };
 		CAD116E31A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GDataXMLElement+CustomExtensions.h"; path = "Catty/Extension&Delegate&Protocol/Extensions/GDataXMLElement/GDataXMLElement+CustomExtensions.h"; sourceTree = SOURCE_ROOT; };
 		CAD116E41A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GDataXMLElement+CustomExtensions.m"; path = "Catty/Extension&Delegate&Protocol/Extensions/GDataXMLElement/GDataXMLElement+CustomExtensions.m"; sourceTree = SOURCE_ROOT; };
-		CAD2322A1B10F68300570370 /* CBScriptExecContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBScriptExecContext.swift; path = PlayerEngine/DataModel/CBScriptExecContext/CBScriptExecContext.swift; sourceTree = "<group>"; };
 		CAD740E11AF2D2E800C32937 /* CBStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBStack.h; path = CBStack/CBStack.h; sourceTree = "<group>"; };
 		CAD740E21AF2D2E800C32937 /* CBStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBStack.m; path = CBStack/CBStack.m; sourceTree = "<group>"; };
 		CAD740E71AF2D42B00C32937 /* CBStackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBStackTests.m; sourceTree = "<group>"; };
@@ -4213,18 +4219,21 @@
 			children = (
 				CA403F2D1B1631DC004ADCB2 /* CBCustomTypes */,
 				CA02C5E81B14386E00233FB0 /* CBSpriteNode */,
-				CAD232191B10F13100570370 /* CBScriptExecContext */,
+				CAD232191B10F13100570370 /* CBScriptExecContexts */,
 				CAEE3BEA1ABDFADE009FDA72 /* CBSequence */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
 		};
-		CAD232191B10F13100570370 /* CBScriptExecContext */ = {
+		CAD232191B10F13100570370 /* CBScriptExecContexts */ = {
 			isa = PBXGroup;
 			children = (
-				CAD2322A1B10F68300570370 /* CBScriptExecContext.swift */,
+				CA4E48B61B1CEAE9003EA71E /* CBBroadcastScriptContext.swift */,
+				CA4E48B71B1CEAE9003EA71E /* CBScriptContext.swift */,
+				CA4E48B81B1CEAE9003EA71E /* CBStartScriptContext.swift */,
+				CA4E48B91B1CEAE9003EA71E /* CBWhenScriptContext.swift */,
 			);
-			name = CBScriptExecContext;
+			name = CBScriptExecContexts;
 			sourceTree = "<group>";
 		};
 		CAD740E01AF2D2DA00C32937 /* CBStack */ = {
@@ -4700,6 +4709,7 @@
 				CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */,
 				92FF32631A24E2F400093DA7 /* FXBlurView.m in Sources */,
 				92FF326E1A24E2F400093DA7 /* SWLongPressGestureRecognizer.m in Sources */,
+				CA4E48BB1B1CEAE9003EA71E /* CBScriptContext.swift in Sources */,
 				92FF2EA41A24C7D800093DA7 /* Util.m in Sources */,
 				92FF30D71A24DCAA00093DA7 /* SetBrightnessBrick.m in Sources */,
 				92FF31031A24DCAA00093DA7 /* Script.m in Sources */,
@@ -4805,6 +4815,7 @@
 				CA43C4BA1B165C0B009B604F /* CBPlayerBroadcastHandler.swift in Sources */,
 				92FF31081A24DCAA00093DA7 /* UserVariable.m in Sources */,
 				92FF30CE1A24DCAA00093DA7 /* IfLogicElseBrick.m in Sources */,
+				CA4E48BD1B1CEAE9003EA71E /* CBWhenScriptContext.swift in Sources */,
 				92FF2E941A24C7D800093DA7 /* Logger.m in Sources */,
 				CAA4A5241A43B4FD002A69A0 /* SpriteObject+CBXMLHandler.m in Sources */,
 				92FF32A41A24E2F400093DA7 /* ChangeVolumeByNBrickCell.m in Sources */,
@@ -4883,8 +4894,8 @@
 				92FF32A81A24E2F400093DA7 /* StopAllSoundsBrickCell.m in Sources */,
 				92FF32791A24E2F400093DA7 /* ScriptDeleteButton.m in Sources */,
 				92FF30C71A24DCAA00093DA7 /* BrickManager.m in Sources */,
-				CAD2322B1B10F68300570370 /* CBScriptExecContext.swift in Sources */,
 				92FF30E31A24DCAA00093DA7 /* MoveNStepsBrick.m in Sources */,
+				CA4E48BC1B1CEAE9003EA71E /* CBStartScriptContext.swift in Sources */,
 				92DFB00E1A38949E00FA9B0F /* ExternInternRepresentationMapping.m in Sources */,
 				CAA4A4E61A43B472002A69A0 /* GlideToBrick+CBXMLHandler.m in Sources */,
 				CABF43BA1B115E6400419A55 /* CBScriptSequenceList.swift in Sources */,
@@ -4903,6 +4914,7 @@
 				92FF327B1A24E2F400093DA7 /* BroadcastBrickCell.m in Sources */,
 				CAA4A5061A43B48F002A69A0 /* StopAllSoundsBrick+CBXMLHandler.m in Sources */,
 				92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */,
+				CA4E48BA1B1CEAE9003EA71E /* CBBroadcastScriptContext.swift in Sources */,
 				92FF32A01A24E2F400093DA7 /* TurnRightBrickCell.m in Sources */,
 				811FB6ED1A49812700957E10 /* BrickCategoryViewController.m in Sources */,
 				92DFB0181A38949E00FA9B0F /* InternFormulaUtils.m in Sources */,
