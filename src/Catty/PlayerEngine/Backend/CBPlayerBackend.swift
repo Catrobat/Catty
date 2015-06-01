@@ -82,21 +82,18 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
                 instructionList += _instructionsForOperationSequence(operationSequence, context: context)
             } else if let ifSequence = sequence as? CBIfConditionalSequence {
                 // if else sequence
-                // TODO............
-//                instructionList += { [weak self] in
-//                    let script = ifSequence.rootSequenceList?.script
-//                    assert(script != nil, "This should never happen!")
-//                    if ifSequence.checkCondition() {
-//                        if let instructionList = self?._instructionListForSequenceList(ifSequence.sequenceList) {
-//                            self?.scheduler?.addInstructionsAfterCurrentInstructionOfScript(script!, instructionList: instructionList)
-//                        }
-//                    } else if ifSequence.elseSequenceList != nil {
-//                        if let instructionList = self?._instructionListForSequenceList(ifSequence.elseSequenceList!) {
-//                            self?.scheduler?.addInstructionsAfterCurrentInstructionOfScript(script!, instructionList: instructionList)
-//                        }
-//                    }
-//                    self?.scheduler?.runNextInstructionOfScript(script!)
-//                }
+                instructionList += { [weak self] in
+                    if ifSequence.checkCondition() {
+                        if let instructionList = self?._instructionsForSequence(ifSequence.sequenceList, context: context) {
+                            context.addInstructionsAtCurrentPosition(instructionList)
+                        }
+                    } else if ifSequence.elseSequenceList != nil {
+                        if let instructionList = self?._instructionsForSequence(ifSequence.elseSequenceList!, context: context) {
+                            context.addInstructionsAtCurrentPosition(instructionList)
+                        }
+                    }
+                    self?.scheduler?.runNextInstructionOfContext(context)
+                }
             } else if let conditionalSequence = sequence as? CBConditionalSequence {
                 // loop sequence
                 instructionList += _instructionsForLoopSequence(conditionalSequence, context: context)
@@ -112,7 +109,6 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
         let loopInstruction : CBExecClosure = { [weak self] in
             let scriptSequenceList = conditionalSequence.rootSequenceList
             assert(scriptSequenceList != nil, "This should never happen!")
-//            let script = scriptSequenceList!.script
             let scheduler = self?.scheduler
             if conditionalSequence.checkCondition() {
                 let startTime = NSDate()
