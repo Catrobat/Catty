@@ -399,7 +399,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
         // edit formula
         if ([buttonTitle isEqualToString:kLocalizedEditFormula]) {
-            BrickCellFormulaData *formulaData = [[BrickCellFormulaData alloc] initWithFrame:CGRectMake(0, 0, 0, 0) andBrickCell:brickCell andLineNumber:0 andParameterNumber:0];
+            BrickCellFormulaData *formulaData = (BrickCellFormulaData*)[brickCell dataWithType:[BrickCellFormulaData class]];
             [self openFormulaEditor:formulaData];
             return;
         }

@@ -557,4 +557,15 @@
 
 }
 
+#pragma mark - BrickCellData
+- (id<BrickCellDataProtocol>)dataForLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
+{
+    return [self.inlineView dataForLineNumber:line andParameterNumber:parameter];
+}
+
+- (id<BrickCellDataProtocol>)dataWithType:(Class)className
+{
+    return [self.inlineView dataWithType:className];
+}
+
 @end

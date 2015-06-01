@@ -35,7 +35,6 @@
 #import "RepeatBrickCell.h"
 #import "BroadcastScriptCell.h"
 #import "BrickCell.h"
-#import "BrickCellInlineView.h"
 #import "FormulaElement.h"
 #import "LanguageTranslationDefines.h"
 #import "AHKActionSheet.h"
@@ -593,7 +592,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     NSInteger line = self.brickCellData.lineNumber;
     NSInteger parameter = self.brickCellData.parameterNumber;
     [self.brickCellData.brickCell setupBrickCell];
-    self.brickCellData = (BrickCellFormulaData*)([brickCell.inlineView brickCellDataForLineNumber:line andParameterNumber:parameter]);
+    self.brickCellData = (BrickCellFormulaData*)([brickCell dataForLineNumber:line andParameterNumber:parameter]);
     [self.brickCellData drawBorder:YES];
 }
 

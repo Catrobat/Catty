@@ -26,7 +26,7 @@
 
 @interface BrickCellInlineView : UIView
 
-- (id<BrickCellDataProtocol>)brickCellDataForLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter;
-- (id<BrickCellDataProtocol>)brickCellDataWithType:(Class)className;
+- (id<BrickCellDataProtocol>)dataForLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter;
+- (id<BrickCellDataProtocol>)dataWithType:(Class)className;
 
 @end
