@@ -35,7 +35,7 @@
 }
 
 #pragma mark - BrickCellData
-- (id<BrickCellDataProtocol>)dataForLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
+- (id<BrickCellDataProtocol>)dataSubviewForLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
     for (UIView *view in self.subviews) {
         if([view conformsToProtocol:@protocol(BrickCellDataProtocol)]) {
@@ -47,7 +47,7 @@
     return nil;
 }
 
-- (id<BrickCellDataProtocol>)dataWithType:(Class)className
+- (id<BrickCellDataProtocol>)dataSubviewWithType:(Class)className
 {
     for (UIView *view in self.subviews) {
         if([view conformsToProtocol:@protocol(BrickCellDataProtocol)] && [view isKindOfClass:className]) {
@@ -56,6 +56,17 @@
         }
     }
     return nil;
+}
+
+- (NSArray*)dataSubviews
+{
+    NSMutableArray *dataSubviews = [NSMutableArray new];
+    for (UIView *view in self.subviews) {
+        if([view conformsToProtocol:@protocol(BrickCellDataProtocol)]) {
+            [dataSubviews addObject:view];
+        }
+    }
+    return dataSubviews;
 }
 
 /*

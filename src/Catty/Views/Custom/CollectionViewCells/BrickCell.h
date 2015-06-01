@@ -62,7 +62,8 @@
 - (void)insertAnimate:(BOOL)animate;
 - (void)setupBrickCell;
 
-- (id<BrickCellDataProtocol>)dataForLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter;
-- (id<BrickCellDataProtocol>)dataWithType:(Class)className;
+- (id<BrickCellDataProtocol>)dataSubviewForLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter;
+- (id<BrickCellDataProtocol>)dataSubviewWithType:(Class)className;
+- (NSArray*)dataSubviews; // of id<BrickCellDataProtocol>
 
 @end

@@ -127,12 +127,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
     return self;
 }
 
-- (void)setBrickCellFormulaData:(BrickCellFormulaData *)brickCellFragment
+- (void)setBrickCellFormulaData:(BrickCellFormulaData *)brickCellData
 
 {
-    self.brickCellData = brickCellFragment;
-    self.delegate = brickCellFragment;
-    self.formula = brickCellFragment.formula;
+    self.brickCellData = brickCellData;
+    self.delegate = brickCellData;
+    self.formula = brickCellData.formula;
     self.internFormula = [[InternFormula alloc] initWithInternTokenList:[self.formula.formulaTree getInternTokenList]];
     self.history = [[FormulaEditorHistory alloc] initWithInternFormulaState:[self.internFormula getInternFormulaState]];
     
@@ -217,8 +217,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     [super viewDidDisappear:animated];
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(formulaEditorViewController:withBrickCell:)]) {
-//        [self.delegate formulaEditorViewController:self withBrickCell:self.brickCell];
+    // enable userinteraction for all subviews
+    for (id subview in [self.brickCellData.brickCell dataSubviews]) {
+        if([subview isKindOfClass:[UIView class]])
+            [(UIView*)subview setUserInteractionEnabled:YES];
     }
 }
 
@@ -592,8 +594,15 @@ NS_ENUM(NSInteger, ButtonIndex) {
     NSInteger line = self.brickCellData.lineNumber;
     NSInteger parameter = self.brickCellData.parameterNumber;
     [self.brickCellData.brickCell setupBrickCell];
-    self.brickCellData = (BrickCellFormulaData*)([brickCell dataForLineNumber:line andParameterNumber:parameter]);
+    self.brickCellData = (BrickCellFormulaData*)([brickCell dataSubviewForLineNumber:line andParameterNumber:parameter]);
     [self.brickCellData drawBorder:YES];
+    
+    // disable userinteraction for all subviews different than BrickCellFormulaData
+    for (id subview in [self.brickCellData.brickCell dataSubviews]) {
+        if ([subview isKindOfClass:[UIView class]] && ![subview isKindOfClass:[BrickCellFormulaData class]]) {
+            [(UIView*)subview setUserInteractionEnabled:NO];
+        }
+    }
 }
 
 - (BOOL)saveIfPossible
