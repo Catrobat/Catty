@@ -108,6 +108,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (strong, nonatomic) AHKActionSheet *mathFunctionsMenu;
 @property (strong, nonatomic) AHKActionSheet *logicalOperatorsMenu;
 @property (nonatomic) BOOL isProgramVariable;
+@property (nonatomic) BOOL didShowSyntaxErrorView;
 
 @end
 
@@ -136,6 +137,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.formula = brickCellData.formula;
     self.internFormula = [[InternFormula alloc] initWithInternTokenList:[self.formula.formulaTree getInternTokenList]];
     self.history = [[FormulaEditorHistory alloc] initWithInternFormulaState:[self.internFormula getInternFormulaState]];
+    self.didShowSyntaxErrorView = NO;
     
     [self setCursorPositionToEndOfFormula];
     [self update];
@@ -145,17 +147,35 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.internFormula selectWholeFormula];
 }
 
-- (void)changeBrickCellFormulaData:(BrickCellFormulaData *)brickCellData
+- (BOOL)changeBrickCellFormulaData:(BrickCellFormulaData *)brickCellData
 
 {
-    if([self canChangeFormula]) {
+    InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
+    Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
+    [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
+    FormulaParserStatus formulaParserStatus = [internFormulaParser getErrorTokenIndex];
+    
+    if(formulaParserStatus == FORMULA_PARSER_OK) {
         BOOL didMakeChanges = [self.history undoIsPossible] || [self.history redoIsPossible];
         [self setBrickCellFormulaData:brickCellData];
-        if(didMakeChanges)
+        if(didMakeChanges) {
+            [self saveIfPossible];
             [self showChangesSavedView];
+            return YES;
+        }
+    } else if(formulaParserStatus == FORMULA_PARSER_STACK_OVERFLOW) {
+        [self showFormulaTooLongView];
     } else {
-        [self showSyntaxErrorView];
+        if(self.didShowSyntaxErrorView && brickCellData != self.brickCellData) {
+            [self setBrickCellFormulaData:brickCellData];
+            [self showChangesDiscardedView];
+            return YES;
+        } else {
+            [self showSyntaxErrorView];
+        }
     }
+    
+    return NO;
 }
 
 - (void)setCursorPositionToEndOfFormula
@@ -385,7 +405,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
         InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
         Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
         Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormulaForSpriteObject:brick.script.object]];
-
         NSString *computedString;
 
         switch ([internFormulaParser getErrorTokenIndex]) {
@@ -398,27 +417,17 @@ NS_ENUM(NSInteger, ButtonIndex) {
                                                  delegate: self
                                         cancelButtonTitle:kLocalizedOK
                                         otherButtonTitles:nil,nil];
+                [alert show];
                 break;
             case FORMULA_PARSER_STACK_OVERFLOW:
                 [self showFormulaTooLongView];
                 break;
             default:
                 [self showSyntaxErrorView];
-                [self.formulaEditorTextView setParseErrorCursorAndSelection];
                 break;
         }
-        [alert show];
     }
     
-}
-
-- (BOOL)canChangeFormula
-{
-    if ([self saveIfPossible]) {
-        return YES;
-    }else {
-        return NO;
-    }
 }
 
 #pragma mark - Getter and setter
@@ -629,7 +638,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
                     break;
                 default:
                     [self showSyntaxErrorView];
-                    [self.formulaEditorTextView setParseErrorCursorAndSelection];
                     break;
             }
         }
@@ -979,6 +987,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)showSyntaxErrorView
 {
     [self showNotification:kUIFESyntaxError];
+    [self.formulaEditorTextView setParseErrorCursorAndSelection];
+    self.didShowSyntaxErrorView = YES;
 }
 
 - (void)showFormulaTooLongView
