@@ -27,6 +27,7 @@ protocol CBPlayerBroadcastHandlerProtocol : class {
     func unsubscribeBroadcastScriptContext(context: CBBroadcastScriptContext)
     func performBroadcastWithMessage(message: String, senderScriptContext: CBScriptContextAbstract, broadcastType: CBBroadcastType)
     func continueContextsWaitingForTerminationOfBroadcastScriptContext(context: CBBroadcastScriptContext)
+    func removeWaitingContext(context: CBScriptContextAbstract)
 }
 
 final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
@@ -224,11 +225,16 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
             // finally remove waitingContext from dictionary
             _broadcastWaitingScriptContextsQueue.removeValueForKey(waitingContext)
             // schedule next instruction!
+            assert(waitingContext.state == .Waiting) // just to ensure
             dispatch_async(dispatch_get_main_queue(), { [weak self] in
                 assert(waitingContext.state == .Waiting) // just to ensure
                 waitingContext.state = .Running // running again!
                 self?.scheduler?.runNextInstructionOfContext(waitingContext)
             })
         }
+    }
+
+    func removeWaitingContext(context: CBScriptContextAbstract) {
+        _broadcastWaitingScriptContextsQueue.removeValueForKey(context)
     }
 }

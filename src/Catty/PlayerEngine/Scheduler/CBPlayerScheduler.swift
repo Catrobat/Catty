@@ -202,6 +202,10 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
         logger.info("-------------------------------------------------------------")
         context.state = .Dead
 
+        // if script has been stopped (e.g. WhenScript via restart)
+        // => remove it from broadcast waiting list
+        _broadcastHandler.removeWaitingContext(context)
+
         if let broadcastScriptContext = context as? CBBroadcastScriptContext {
             // continue all broadcastWaiting scripts
             _broadcastHandler.continueContextsWaitingForTerminationOfBroadcastScriptContext(broadcastScriptContext)
