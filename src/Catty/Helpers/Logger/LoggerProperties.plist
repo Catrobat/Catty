@@ -54,6 +54,8 @@
 	<string>warn</string>
 	<key>HideBrick</key>
 	<string>warn</string>
+	<key>ChangeGhostEffectByNBrick</key>
+	<string>warn</string>
 	<key>SetLookBrick</key>
 	<string>warn</string>
 	<key>NextLookBrick</key>

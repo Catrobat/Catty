@@ -27,7 +27,6 @@ protocol CBPlayerBroadcastHandlerProtocol : class {
     func unsubscribeBroadcastScriptContext(context: CBBroadcastScriptContext)
     func performBroadcastWithMessage(message: String, senderScriptContext: CBScriptContextAbstract, broadcastType: CBBroadcastType)
     func continueContextsWaitingForTerminationOfBroadcastScriptContext(context: CBBroadcastScriptContext)
-    func removeWaitingContextDueToRestart(context: CBScriptContextAbstract)
 }
 
 final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
@@ -211,36 +210,23 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
     }
 
     func continueContextsWaitingForTerminationOfBroadcastScriptContext(context: CBBroadcastScriptContext) {
-        var waitingContextsToRemove = [CBScriptContextAbstract]()
+        var waitingContextsToBeContinued = [CBScriptContextAbstract]()
         for (waitingContext, var runningBroadcastScriptContexts) in _broadcastWaitingScriptContextsQueue {
-            var index = 0
-            var found = false
-            for runningBroadcastScriptContext in runningBroadcastScriptContexts {
-                if runningBroadcastScriptContext == context {
-                    runningBroadcastScriptContexts.removeAtIndex(index)
-                    found = true
-                    break
-                }
-                ++index
-            }
-            if found && runningBroadcastScriptContexts.count == 0 {
-                // schedule next instruction!
-                dispatch_async(dispatch_get_main_queue(), { [weak self] in
-//                    assert(waitingContext.state == .Waiting) // just to ensure
-                    waitingContext.state = .Running // running again!
-                    self?.scheduler?.runNextInstructionOfContext(waitingContext)
-                })
-                waitingContextsToRemove += waitingContext
+            assert(waitingContext != context)
+            runningBroadcastScriptContexts.removeObject(context)
+            if runningBroadcastScriptContexts.isEmpty {
+                waitingContextsToBeContinued += waitingContext
             }
             _broadcastWaitingScriptContextsQueue[waitingContext] = runningBroadcastScriptContexts
             assert(_broadcastWaitingScriptContextsQueue[waitingContext]!.count == runningBroadcastScriptContexts.count)
         }
-        for waitingContext in waitingContextsToRemove {
-            _broadcastWaitingScriptContextsQueue.removeValueForKey(waitingContext)
+        for waitingContext in waitingContextsToBeContinued {
+            // schedule next instruction!
+            dispatch_async(dispatch_get_main_queue(), { [weak self] in
+                assert(waitingContext.state == .Waiting) // just to ensure
+                waitingContext.state = .Running // running again!
+                self?.scheduler?.runNextInstructionOfContext(waitingContext)
+            })
         }
-    }
-
-    func removeWaitingContextDueToRestart(context: CBScriptContextAbstract) {
-        _broadcastWaitingScriptContextsQueue.removeValueForKey(context)
     }
 }

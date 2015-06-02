@@ -83,7 +83,6 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
     }
 
     // MARK: - Scheduling
-    var counter : Int = 0
     func runNextInstructionOfContext(context: CBScriptContextAbstract) {
         assert(context.state != .Waiting, "This should NEVER happen!")
         if _scheduledScriptContexts.count == 0 { return }
@@ -98,13 +97,7 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
 
         if let scriptContext = _currentContext {
             if let nextInstruction = scriptContext.nextInstruction() {
-                if ++counter%60 == 0 {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        nextInstruction()
-                    })
-                } else {
-                    nextInstruction()
-                }
+                nextInstruction()
             } else {
                 _stopContext(context)
                 logger.debug("All actions/instructions have been finished!")
@@ -178,9 +171,6 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
     func restartContext(context: CBScriptContextAbstract, withInitialState initialState: CBScriptState) {
         assert(running) // make sure that player is running!
         assert(contains(_scheduledScriptContexts, context), "Unable to restart context! Context is not running.")
-
-        // remove it from waiting list
-        _broadcastHandler.removeWaitingContextDueToRestart(context)
         _stopContext(context)
         startContext(context, withInitialState: initialState)
     }
