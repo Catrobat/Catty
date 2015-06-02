@@ -46,7 +46,7 @@
         let scheduler = CBPlayerScheduler(logger: schedulerLogger, frontend: frontend,
             backend: backend, broadcastHandler: bcHandler)
         scheduler.schedulingAlgorithm = nil // default scheduling algorithm!
-//        scheduler.schedulingAlgorithm = CBPlayerSchedulingAlgorithmRandomOrder()
+//        scheduler.schedulingAlgorithm = CBPlayerSchedulingAlgorithmLoadBalancing()
         backend.scheduler = scheduler // IMPORTANT: Don't forget to assign the scheduler to the backend!
         backend.broadcastHandler = bcHandler // IMPORTANT: Don't forget to assign the broadcast handler to the backend!
         bcHandler.scheduler = scheduler

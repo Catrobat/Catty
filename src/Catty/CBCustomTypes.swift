@@ -41,6 +41,17 @@ func +=<T>(inout left: [T], right: T) {
     left.append(right)
 }
 
+func ==(lhs: NSDate, rhs: NSDate) -> Bool {
+    return lhs.timeIntervalSince1970 == rhs.timeIntervalSince1970
+}
+
+func <(lhs: NSDate, rhs: NSDate) -> Bool {
+    if lhs.compare(rhs) == .OrderedAscending {
+        return true
+    }
+    return false
+}
+
 // MARK: Typedefs
 typealias CBBroadcastQueueElement = (message: String, senderScriptContext: CBScriptContextAbstract,
     broadcastType: CBBroadcastType)

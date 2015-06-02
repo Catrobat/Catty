@@ -34,6 +34,7 @@ class CBScriptContextAbstract : SKNode {
             fatalError("No or unknown subclass of abstract CBScriptContextAbstract class!!!")
         }
     }
+    final var isLocked = false
     final private var _stateStorage: CBScriptState
     final var state: CBScriptState {
         get { return _stateStorage }

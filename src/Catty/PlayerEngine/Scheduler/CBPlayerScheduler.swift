@@ -92,18 +92,32 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
         if schedulingAlgorithm != nil {
             _currentContext = schedulingAlgorithm?.contextForNextInstruction(_currentContext,
                 scheduledContexts: _scheduledScriptContexts)
+            if _currentContext == nil {
+                _currentContext = context
+            }
         } else {
             _currentContext = context
         }
 
         if let scriptContext = _currentContext {
+            if scriptContext != context && context.isLocked == false {
+                // remember this runNextInstruction call for current context
+                // => postpone it via async block!!
+                dispatch_async(dispatch_get_main_queue(), { [weak self] in
+                    self?.runNextInstructionOfContext(context)
+                })
+            }
+            if scriptContext.isLocked { return }
             if let nextInstruction = scriptContext.nextInstruction() {
                 nextInstruction()
             } else {
-                stopContext(context)
+                assert(scriptContext.isLocked == false)
+                stopContext(scriptContext)
                 logger.debug("All actions/instructions have been finished!")
             }
+            return
         }
+        fatalError("This should NEVER happen!!")
     }
 
     // MARK: - Events
