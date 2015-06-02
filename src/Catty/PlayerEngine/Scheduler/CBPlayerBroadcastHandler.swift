@@ -168,11 +168,15 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
                 // case broadcastScript != senderScript
                 if scheduler?.isContextScheduled(registeredContext) == false {
                     // case broadcastScript is not running
-                    scheduler?.startContext(registeredContext, withInitialState: receivingScriptInitialState)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        scheduler?.startContext(registeredContext, withInitialState: receivingScriptInitialState)
+                    })
                 } else {
                     // case broadcastScript is running
                     // trigger script to restart
-                    scheduler?.restartContext(registeredContext, withInitialState: receivingScriptInitialState)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        scheduler?.restartContext(registeredContext, withInitialState: receivingScriptInitialState)
+                    })
                 }
             }
             // do not wait for broadcastscript if self broadcast == senderScript (never execute further actions of senderScript!)
@@ -221,6 +225,8 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
             assert(_broadcastWaitingScriptContextsQueue[waitingContext]!.count == runningBroadcastScriptContexts.count)
         }
         for waitingContext in waitingContextsToBeContinued {
+            // finally remove waitingContext from dictionary
+            _broadcastWaitingScriptContextsQueue.removeValueForKey(waitingContext)
             // schedule next instruction!
             dispatch_async(dispatch_get_main_queue(), { [weak self] in
                 assert(waitingContext.state == .Waiting) // just to ensure
