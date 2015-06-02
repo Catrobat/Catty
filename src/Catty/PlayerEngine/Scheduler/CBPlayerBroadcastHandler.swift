@@ -153,35 +153,40 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
         var isSelfBroadcast = false
         if let registeredContexts = _registeredBroadcastScriptContexts[message] {
             var waitingForBroadcastScriptContexts = [CBBroadcastScriptContext]()
+            var broadcastScriptContextsToBeStarted = [CBBroadcastScriptContext]()
             for registeredContext in registeredContexts {
                 // case broadcastScript == senderScript => restart script
                 if registeredContext === senderScriptContext {
-                    // end of script reached!! Scripts will be aborted due to self-calling broadcast
-                    _performSelfBroadcastForContext(registeredContext)
+                    // end of script reached!! Script will be aborted due to self-calling broadcast
                     isSelfBroadcast = true
                     receivingScriptInitialState = .Running
                     runNextInstructionOfSenderScript = false // still enqueued next actions are ignored due to restart!
+                    scheduler?.stopContext(registeredContext) // stop own script (sender script!)
                     continue
                 }
                 waitingForBroadcastScriptContexts += registeredContext
 
-                // case broadcastScript != senderScript
-                if scheduler?.isContextScheduled(registeredContext) == false {
-                    // case broadcastScript is not running
-                    dispatch_async(dispatch_get_main_queue(), {
-                        scheduler?.startContext(registeredContext, withInitialState: receivingScriptInitialState)
-                    })
-                } else {
-                    // case broadcastScript is running
-                    // trigger script to restart
-                    dispatch_async(dispatch_get_main_queue(), {
-                        scheduler?.restartContext(registeredContext, withInitialState: receivingScriptInitialState)
-                    })
+                // case broadcastScript != senderScript (=> other broadcastscript)
+                if scheduler?.isContextScheduled(registeredContext) == true {
+                    // case broadcastScript is running => stop it
+                    scheduler?.stopContext(registeredContext)
                 }
+                broadcastScriptContextsToBeStarted += registeredContext // collect other (!) broadcastScript
             }
+
             // do not wait for broadcastscript if self broadcast == senderScript (never execute further actions of senderScript!)
             if isSelfBroadcast == false && broadcastType == .BroadcastWait {
                 _broadcastWaitingScriptContextsQueue[senderScriptContext] = waitingForBroadcastScriptContexts
+            }
+
+            // launch self (!) listening broadcast script
+            if isSelfBroadcast {
+                _performSelfBroadcastForContext(senderScriptContext as! CBBroadcastScriptContext)
+            }
+
+            // finally launch all other (!) (collected) listening broadcast scripts
+            for broadcastScriptContext in broadcastScriptContextsToBeStarted {
+                scheduler?.startContext(broadcastScriptContext, withInitialState: receivingScriptInitialState)
             }
         } else {
             logger.info("The program does not contain broadcast scripts listening for message: '\(message)'.")
@@ -193,10 +198,6 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
     }
 
     private func _performSelfBroadcastForContext(context: CBBroadcastScriptContext) {
-        // if sender script stopped in the mean while => do NOT restart and abort this broadcast!
-        if scheduler?.isContextScheduled(context) == false {
-            return;
-        }
         let message = context.broadcastMessage
         var counter = 0
         if let counterNumber = _selfBroadcastCounters[message] {
@@ -204,10 +205,10 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
         }
         if ++counter % selfBroadcastRecursionMaxDepthLimit == 0 { // XXX: DIRTY PERFORMANCE HACK!!
             dispatch_async(dispatch_get_main_queue(), { [weak self] in
-                self?.scheduler?.restartContext(context) // restart this self-listening BroadcastScript
+                self?.scheduler?.startContext(context) // restart this self-listening BroadcastScript
             })
         } else {
-            scheduler?.restartContext(context)
+            scheduler?.startContext(context)
         }
         _selfBroadcastCounters[message] = counter
         logger.debug("BROADCASTSCRIPT HAS BEEN RESTARTED DUE TO SELF-BROADCAST!!")

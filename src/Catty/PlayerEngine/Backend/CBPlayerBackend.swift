@@ -151,6 +151,7 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
                     });
                 });
             } else {
+                // now switch back to the main queue for executing the sequence!
                 context.jump(numberOfInstructions: numOfInstructionsToJump)
                 self?.scheduler?.runNextInstructionOfContext(context)
             }

@@ -38,6 +38,7 @@ protocol CBPlayerSchedulerProtocol : class {
     func startContext(context: CBScriptContextAbstract, withInitialState: CBScriptState)
     func restartContext(context: CBScriptContextAbstract)
     func restartContext(context: CBScriptContextAbstract, withInitialState: CBScriptState)
+    func stopContext(context: CBScriptContextAbstract)
     func runNextInstructionOfContext(context: CBScriptContextAbstract)
 }
 
@@ -99,7 +100,7 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
             if let nextInstruction = scriptContext.nextInstruction() {
                 nextInstruction()
             } else {
-                _stopContext(context)
+                stopContext(context)
                 logger.debug("All actions/instructions have been finished!")
             }
         }
@@ -171,11 +172,11 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
     func restartContext(context: CBScriptContextAbstract, withInitialState initialState: CBScriptState) {
         assert(running) // make sure that player is running!
         assert(contains(_scheduledScriptContexts, context), "Unable to restart context! Context is not running.")
-        _stopContext(context)
+        stopContext(context)
         startContext(context, withInitialState: initialState)
     }
 
-    private func _stopContext(context: CBScriptContextAbstract) {
+    func stopContext(context: CBScriptContextAbstract) {
         if context.state == .Dead { return } // already stopped => must be an old deprecated enqueued dispatch closure
         assert(contains(_registeredScriptContexts, context), "Unable to stop context! Context not registered any more.")
         if contains(_scheduledScriptContexts, context) == false {
