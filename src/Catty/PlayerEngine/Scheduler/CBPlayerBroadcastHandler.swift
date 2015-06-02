@@ -145,8 +145,9 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
         var isSelfBroadcast = false
         let registeredContexts = _registeredBroadcastScriptContexts[message]
 
-        if registeredContexts == nil {
+        if registeredContexts == nil || registeredContexts?.count == 0 {
             logger.info("No broadcast scripts subscribed for message: '\(message)'.")
+            scheduler?.runNextInstructionOfContext(senderScriptContext) // continue sender script as usual
             return
         }
 
