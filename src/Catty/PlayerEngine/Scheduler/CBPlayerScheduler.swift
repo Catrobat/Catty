@@ -83,7 +83,9 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
     }
 
     // MARK: - Scheduling
+    var counter : Int = 0
     func runNextInstructionOfContext(context: CBScriptContextAbstract) {
+        assert(context.state != .Waiting, "This should NEVER happen!")
         if _scheduledScriptContexts.count == 0 { return }
 
         // apply scheduling via StrategyPattern => selects script to be scheduled NOW!
@@ -96,7 +98,13 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
 
         if let scriptContext = _currentContext {
             if let nextInstruction = scriptContext.nextInstruction() {
-                nextInstruction()
+                if ++counter%60 == 0 {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        nextInstruction()
+                    })
+                } else {
+                    nextInstruction()
+                }
             } else {
                 _stopContext(context)
                 logger.debug("All actions/instructions have been finished!")
