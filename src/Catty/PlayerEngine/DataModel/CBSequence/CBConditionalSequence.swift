@@ -23,8 +23,9 @@
 class CBConditionalSequence : CBSequence {
 
     // MARK: - Properties
-    final let sequenceList : CBSequenceList
-    final private weak var _conditionBrick : BrickConditionalBranchProtocol!
+    final let sequenceList: CBSequenceList
+    final var lastLoopIterationStartTime: NSDate = NSDate()
+    final private weak var _conditionBrick: BrickConditionalBranchProtocol!
 
     // MARK: - Initializers
     init(rootSequenceList: CBScriptSequenceList, conditionBrick: BrickConditionalBranchProtocol, sequenceList: CBSequenceList) {

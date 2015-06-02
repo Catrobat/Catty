@@ -25,7 +25,6 @@ final class CBScriptSequenceList {
     // MARK: - Properties
     final let script : Script
     final let sequenceList : CBSequenceList
-    final lazy var whileSequences = [String:CBExecClosure]()
     final var running : Bool
     final var count : Int { return sequenceList.count }
 
@@ -41,4 +40,7 @@ final class CBScriptSequenceList {
     func reverseSequenceList() -> CBScriptSequenceList {
         return CBScriptSequenceList(script: script, sequenceList: sequenceList.reverseSequenceList())
     }
+
+    // TODO: visitor pattern for sequence filter!
+
 }

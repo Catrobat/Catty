@@ -91,7 +91,8 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
 
                     // add jump instruction to be the last if instruction (needed to avoid executing else sequence)
                     instructionList += {
-                        [weak self] in context.jumpForward(numberOfElseInstructions)
+                        [weak self] in
+                        context.jump(numberOfInstructions: numberOfElseInstructions)
                         self?.scheduler?.runNextInstructionOfContext(context)
                     }
                 }
@@ -106,7 +107,7 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
                         if ifSequence.elseSequenceList != nil {
                             ++numberOfInstructionsToJump // includes jump instruction at the end of if sequence
                         }
-                        context.jumpForward(numberOfInstructionsToJump)
+                        context.jump(numberOfInstructions: numberOfInstructionsToJump)
                     }
                     self?.scheduler?.runNextInstructionOfContext(context)
                 }
@@ -119,62 +120,57 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
     }
 
     private func _instructionsForLoopSequence(conditionalSequence: CBConditionalSequence,
-        context: CBScriptContextAbstract) -> CBExecClosure
+        context: CBScriptContextAbstract) -> [CBExecClosure]
     {
-        let localUniqueID = NSString.localUniqueIdenfier()
-        let loopInstruction : CBExecClosure = { [weak self] in
-            let scriptSequenceList = conditionalSequence.rootSequenceList
-            assert(scriptSequenceList != nil, "This should never happen!")
-            let scheduler = self?.scheduler
+        let bodyInstructions = _instructionsForSequence(conditionalSequence.sequenceList, context: context)
+        let numOfBodyInstructions = bodyInstructions.count
+
+        let loopEndInstruction : CBExecClosure = { [weak self] in
+            var numOfInstructionsToJump = 0
             if conditionalSequence.checkCondition() {
-                let startTime = NSDate()
-                var instructionList = [CBExecClosure]()
-                // add loop end check
-                let bodyInstructions = self?._instructionsForSequence(conditionalSequence.sequenceList, context: context)
-                let numberOfBodyInstructions = bodyInstructions?.count
-                instructionList += {
+                numOfInstructionsToJump -= numOfBodyInstructions + 1 // includes current instruction
+                conditionalSequence.lastLoopIterationStartTime = NSDate()
+            } else {
+                conditionalSequence.resetCondition() // IMPORTANT: reset loop counter right now
+            }
+
+            // minimum duration (CatrobatLanguage specification!)
+            let duration = NSDate().timeIntervalSinceDate(conditionalSequence.lastLoopIterationStartTime)
+            self?.logger.debug("  Duration for Sequence: \(duration*1000)ms")
+            if duration < 0.02 {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
                     // high priority queue only needed for blocking purposes...
                     // the reason for this is that you should NEVER block the (serial) main_queue!!
-                    let startIndex = context.reverseInstructionPointer
-                    let previousLoopEndInstructionPointerPosition = startIndex
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-                        let duration = NSDate().timeIntervalSinceDate(startTime)
-                        self?.logger.debug("  Duration for Sequence: \(duration*1000)ms")
-                        if duration < 0.02 {
-                            NSThread.sleepForTimeInterval(0.02 - duration)
-                        }
-                        // now switch back to the main queue for executing the sequence!
-                        dispatch_async(dispatch_get_main_queue(), {
-                            if let numOfBodyInstructions = numberOfBodyInstructions {
-                                let numberOfInstructionsOfPreviousLoopIteration = numOfBodyInstructions + 2 // body + head + tail
-                                context.removeNumberOfInstructions(
-                                    numberOfInstructionsOfPreviousLoopIteration,
-                                    instructionStartIndex: previousLoopEndInstructionPointerPosition
-                                )
-                            }
-                            let instruction = scriptSequenceList!.whileSequences[localUniqueID]
-                            assert(instruction != nil, "This should NEVER happen!")
-                            context.addInstructionAtCurrentPosition(instruction!)
-                            scheduler?.runNextInstructionOfContext(context)
-                            return
-                        })
-                    })
-                }
-                // now add all instructions within the loop
-                if let bodyInstructs = bodyInstructions {
-                    instructionList += bodyInstructs
-                }
-                context.addInstructionsAtCurrentPosition(instructionList)
-                scheduler?.runNextInstructionOfContext(context)
+                    self?.logger.debug("Waiting on high priority queue")
+                    NSThread.sleepForTimeInterval(0.02 - duration)
+
+                    // now switch back to the main queue for executing the sequence!
+                    dispatch_async(dispatch_get_main_queue(), {
+                        context.jump(numberOfInstructions: numOfInstructionsToJump)
+                        self?.scheduler?.runNextInstructionOfContext(context)
+                    });
+                });
             } else {
-                // leaving loop now!
-                conditionalSequence.resetCondition() // reset loop counter right now
-                scheduler?.runNextInstructionOfContext(context) // run next action after loop
+                context.jump(numberOfInstructions: numOfInstructionsToJump)
+                self?.scheduler?.runNextInstructionOfContext(context)
             }
         }
-        assert(conditionalSequence.rootSequenceList != nil, "This should never happen!")
-        conditionalSequence.rootSequenceList!.whileSequences[localUniqueID] = loopInstruction
-        return loopInstruction
+        let loopBeginInstruction : CBExecClosure = { [weak self] in
+            var numOfInstructionsToJump = 0
+            if conditionalSequence.checkCondition() {
+                conditionalSequence.lastLoopIterationStartTime = NSDate()
+            } else {
+                numOfInstructionsToJump += numOfBodyInstructions + 1 // includes loop end instruction!
+            }
+            context.jump(numberOfInstructions: numOfInstructionsToJump)
+            self?.scheduler?.runNextInstructionOfContext(context)
+        }
+        // finally add all instructions to list (reverse order!)
+        var instructionList = [CBExecClosure]()
+        instructionList += loopEndInstruction
+        instructionList += bodyInstructions
+        instructionList += loopBeginInstruction
+        return instructionList
     }
 
     private func _instructionsForOperationSequence(operationSequence: CBOperationSequence,

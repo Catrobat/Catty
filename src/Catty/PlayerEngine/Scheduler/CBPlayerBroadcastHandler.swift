@@ -34,7 +34,7 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
 
     // MARK: - Constants
     // specifies max depth limit for self broadcasts running on the same function stack
-    let selfBroadcastRecursionMaxDepthLimit = 20
+    let selfBroadcastRecursionMaxDepthLimit = 30
 
     // MARK: - Properties
     var logger: CBLogger
