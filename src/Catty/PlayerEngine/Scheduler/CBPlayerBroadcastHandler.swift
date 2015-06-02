@@ -138,60 +138,55 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
         }
 
         logger.info("Performing \(broadcastType.typeName()): \(message)")
-        var runNextInstructionOfSenderScript = true
-        var receivingScriptInitialState : CBScriptState = .Running
-        if broadcastType == .BroadcastWait {
-            runNextInstructionOfSenderScript = false
-            receivingScriptInitialState = .RunningBlocking
-            senderScriptContext.state = .Waiting
-
-            // sanity check
-            let enqueuedWaitingScripts = _broadcastWaitingScriptContextsQueue[senderScriptContext]
-            assert(enqueuedWaitingScripts == nil || enqueuedWaitingScripts?.count == 0)
-        }
+        let enqueuedWaitingScripts = _broadcastWaitingScriptContextsQueue[senderScriptContext]
+        assert(enqueuedWaitingScripts == nil || enqueuedWaitingScripts?.count == 0) // sanity check
 
         var isSelfBroadcast = false
-        if let registeredContexts = _registeredBroadcastScriptContexts[message] {
-            var waitingForBroadcastScriptContexts = [CBBroadcastScriptContext]()
-            var broadcastScriptContextsToBeStarted = [CBBroadcastScriptContext]()
-            for registeredContext in registeredContexts {
-                // case broadcastScript == senderScript => restart script
-                if registeredContext === senderScriptContext {
-                    // end of script reached!! Script will be aborted due to self-calling broadcast
-                    isSelfBroadcast = true
-                    receivingScriptInitialState = .Running
-                    runNextInstructionOfSenderScript = false // still enqueued next actions are ignored due to restart!
-                    scheduler?.stopContext(registeredContext) // stop own script (sender script!)
-                    continue
-                }
-                waitingForBroadcastScriptContexts += registeredContext
+        let registeredContexts = _registeredBroadcastScriptContexts[message]
 
-                // case broadcastScript != senderScript (=> other broadcastscript)
-                if scheduler?.isContextScheduled(registeredContext) == true {
-                    // case broadcastScript is running => stop it
-                    scheduler?.stopContext(registeredContext)
-                }
-                broadcastScriptContextsToBeStarted += registeredContext // collect other (!) broadcastScript
-            }
-
-            // do not wait for broadcastscript if self broadcast == senderScript (never execute further actions of senderScript!)
-            if isSelfBroadcast == false && broadcastType == .BroadcastWait {
-                _broadcastWaitingScriptContextsQueue[senderScriptContext] = waitingForBroadcastScriptContexts
-            }
-
-            // launch self (!) listening broadcast script
-            if isSelfBroadcast {
-                _performSelfBroadcastForContext(senderScriptContext as! CBBroadcastScriptContext)
-            }
-
-            // finally launch all other (!) (collected) listening broadcast scripts
-            for broadcastScriptContext in broadcastScriptContextsToBeStarted {
-                scheduler?.startContext(broadcastScriptContext, withInitialState: receivingScriptInitialState)
-            }
-        } else {
-            logger.info("The program does not contain broadcast scripts listening for message: '\(message)'.")
+        if registeredContexts == nil {
+            logger.info("No broadcast scripts subscribed for message: '\(message)'.")
+            return
         }
-        if (runNextInstructionOfSenderScript) {
+
+        // collect all broadcast recipients
+        var recipientContexts = [CBBroadcastScriptContext]()
+        for registeredContext in registeredContexts! {
+            // case broadcastScript == senderScript => restart script
+            if registeredContext === senderScriptContext {
+                // end of script reached!! Script will be aborted due to self-calling broadcast
+                isSelfBroadcast = true
+                scheduler?.stopContext(registeredContext) // stop own script (sender script!)
+                continue
+            }
+
+            // case broadcastScript != senderScript (=> other broadcastscript)
+            if scheduler?.isContextScheduled(registeredContext) == true {
+                scheduler?.stopContext(registeredContext) // case broadcastScript is running => stop it
+            }
+            recipientContexts += registeredContext // collect other (!) broadcastScript
+        }
+
+        var recipientsInitialState: CBScriptState = .Running
+        if isSelfBroadcast == false && broadcastType == .BroadcastWait {
+            // do not wait for broadcastscript if self broadcast == senderScript
+            // => do not execute further actions of senderScript!
+            senderScriptContext.state = .Waiting
+            recipientsInitialState = .RunningBlocking
+            _broadcastWaitingScriptContextsQueue[senderScriptContext] = recipientContexts
+        }
+
+        // launch self (!) listening broadcast script
+        if isSelfBroadcast {
+            _performSelfBroadcastForContext(senderScriptContext as! CBBroadcastScriptContext)
+        }
+
+        // finally launch all other (!) (collected) listening broadcast scripts
+        for recipientContext in recipientContexts {
+            scheduler?.startContext(recipientContext, withInitialState: recipientsInitialState)
+        }
+
+        if isSelfBroadcast == false && broadcastType == .Broadcast {
             // the script must continue here. upcoming actions are executed!!
             scheduler?.runNextInstructionOfContext(senderScriptContext)
         }
