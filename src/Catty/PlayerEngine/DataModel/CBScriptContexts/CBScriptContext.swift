@@ -39,7 +39,7 @@ class CBScriptContextAbstract : SKNode {
     final var state: CBScriptState {
         get { return _stateStorage }
         // if script is RunningBlocking (BroadcastScript called by BroadcastWait) then do not change state!
-        set { if _stateStorage != .RunningBlocking || newValue != .RunningMature { _stateStorage = newValue } }
+        set { _stateStorage = (_stateStorage != .RunningBlocking || newValue != .RunningMature) ? newValue : _stateStorage }
     }
     final var count: Int { return _instructionList.count }
 
