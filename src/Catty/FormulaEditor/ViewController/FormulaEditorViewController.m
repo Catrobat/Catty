@@ -109,6 +109,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (strong, nonatomic) AHKActionSheet *logicalOperatorsMenu;
 @property (nonatomic) BOOL isProgramVariable;
 @property (nonatomic) BOOL didShowSyntaxErrorView;
+@property (nonatomic, strong) BDKNotifyHUD *notficicationHud;
 
 @end
 
@@ -156,13 +157,14 @@ NS_ENUM(NSInteger, ButtonIndex) {
     FormulaParserStatus formulaParserStatus = [internFormulaParser getErrorTokenIndex];
     
     if(formulaParserStatus == FORMULA_PARSER_OK) {
-        BOOL didMakeChanges = [self.history undoIsPossible] || [self.history redoIsPossible];
-        [self setBrickCellFormulaData:brickCellData];
-        if(didMakeChanges) {
+        BOOL saved = NO;
+        if([self.history undoIsPossible] || [self.history redoIsPossible]) {
             [self saveIfPossible];
             [self showChangesSavedView];
-            return YES;
+            saved = YES;
         }
+        [self setBrickCellFormulaData:brickCellData];
+        return saved;
     } else if(formulaParserStatus == FORMULA_PARSER_STACK_OVERFLOW) {
         [self showFormulaTooLongView];
     } else {
@@ -964,13 +966,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)showNotification:(NSString*)text
 {
-    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:nil
-                                                    text:text];
-    hud.destinationOpacity = 0.30f;
-    hud.center = CGPointMake(self.view.center.x, self.view.center.y - 20);
-    [self.view addSubview:hud];
-    [hud presentWithDuration:1.0f speed:0.1f inView:self.view completion:^{
-        [hud removeFromSuperview];
+    if(self.notficicationHud)
+        [self.notficicationHud removeFromSuperview];
+    
+    self.notficicationHud = [BDKNotifyHUD notifyHUDWithImage:nil text:text];
+    self.notficicationHud.destinationOpacity = 0.30f;
+    self.notficicationHud.center = CGPointMake(self.view.center.x, self.view.center.y - 20);
+    [self.view addSubview:self.notficicationHud];
+    [self.notficicationHud presentWithDuration:1.0f speed:0.1f inView:self.view completion:^{
+        [self.notficicationHud removeFromSuperview];
     }];
 }
 
