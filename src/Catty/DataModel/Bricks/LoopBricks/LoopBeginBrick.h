@@ -25,9 +25,5 @@
 #import "BrickConditionalBranchProtocol.h"
 
 @interface LoopBeginBrick : Brick<BrickConditionalBranchProtocol>
-
-@property (nonatomic) BOOL forceConditionEvaluationToEvaluateToFalse;
-
 @property (nonatomic, weak) LoopEndBrick *loopEndBrick;
-
 @end

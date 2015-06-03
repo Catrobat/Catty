@@ -23,9 +23,9 @@
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
 #import "WhenScript.h"
+#import "Pocket_Code-Swift.h"
 
 @interface GoNStepsBackBrickTests : BrickTests
-
 @end
 
 @implementation GoNStepsBackBrickTests
@@ -46,11 +46,15 @@
 {
     Program* program = [[Program alloc] init];
     SpriteObject* object1 = [[SpriteObject alloc] init];
+    CBSpriteNode *spriteNode1 = [[CBSpriteNode alloc] initWithSpriteObject:object1];
+    object1.spriteNode = spriteNode1;
     object1.program = program;
-    object1.zPosition = 5;
+    spriteNode1.zPosition = 5;
 
     SpriteObject* object2 = [[SpriteObject alloc] init];
-    object2.zPosition = 3;
+    CBSpriteNode *spriteNode2 = [[CBSpriteNode alloc] initWithSpriteObject:object2];
+    object2.spriteNode = spriteNode2;
+    spriteNode2.zPosition = 3;
 
     [program.objectList addObject:object1];
     [program.objectList addObject:object2];
@@ -70,19 +74,23 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(object1.zPosition, (CGFloat)4.0, @"GoNStepsBack is not correctly calculated");
-    XCTAssertEqual(object2.zPosition, (CGFloat)3.0, @"GoNStepsBack is not correctly calculated");
+    XCTAssertEqual(spriteNode1.zPosition, (CGFloat)4.0, @"GoNStepsBack is not correctly calculated");
+    XCTAssertEqual(spriteNode2.zPosition, (CGFloat)3.0, @"GoNStepsBack is not correctly calculated");
 }
 
 - (void)testGoNStepsBackBrickTwice
 {
     Program *program = [[Program alloc] init];
     SpriteObject *object1 = [[SpriteObject alloc] init];
+    CBSpriteNode *spriteNode1 = [[CBSpriteNode alloc] initWithSpriteObject:object1];
+    object1.spriteNode = spriteNode1;
     object1.program = program;
-    object1.zPosition = 6;
+    spriteNode1.zPosition = 6;
 
     SpriteObject *object2 = [[SpriteObject alloc] init];
-    object2.zPosition = 3;
+    CBSpriteNode *spriteNode2 = [[CBSpriteNode alloc] initWithSpriteObject:object2];
+    object2.spriteNode = spriteNode2;
+    spriteNode2.zPosition = 3;
 
     [program.objectList addObject:object1];
     [program.objectList addObject:object2];
@@ -102,8 +110,8 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(object1.zPosition, (CGFloat)4.0, @"GoNStepsBack is not correctly calculated");
-    XCTAssertEqual(object2.zPosition, (CGFloat)3.0, @"GoNStepsBack is not correctly calculated");
+    XCTAssertEqual(spriteNode1.zPosition, (CGFloat)4.0, @"GoNStepsBack is not correctly calculated");
+    XCTAssertEqual(spriteNode2.zPosition, (CGFloat)3.0, @"GoNStepsBack is not correctly calculated");
 }
 
 - (void)testGoNStepsBackBrickComeToSameLayer
@@ -111,10 +119,14 @@
     Program *program = [[Program alloc] init];
     SpriteObject *object1 = [[SpriteObject alloc] init];
     object1.program = program;
-    object1.zPosition = 5;
+    CBSpriteNode *spriteNode1 = [[CBSpriteNode alloc] initWithSpriteObject:object1];
+    object1.spriteNode = spriteNode1;
+    spriteNode1.zPosition = 5;
 
     SpriteObject *object2 = [[SpriteObject alloc] init];
-    object2.zPosition = 3;
+    CBSpriteNode *spriteNode2 = [[CBSpriteNode alloc] initWithSpriteObject:object2];
+    object2.spriteNode = spriteNode2;
+    spriteNode2.zPosition = 3;
 
     [program.objectList addObject:object1];
     [program.objectList addObject:object2];
@@ -134,19 +146,23 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(object1.zPosition, (CGFloat)3.0, @"GoNStepsBack is not correctly calculated");
-    XCTAssertEqual(object2.zPosition, (CGFloat)4.0, @"GoNStepsBack is not correctly calculated");
+    XCTAssertEqual(spriteNode1.zPosition, (CGFloat)3.0, @"GoNStepsBack is not correctly calculated");
+    XCTAssertEqual(spriteNode2.zPosition, (CGFloat)4.0, @"GoNStepsBack is not correctly calculated");
 }
 
 - (void)testGoNStepsBackBrickOutOfRange
 {
     Program *program = [[Program alloc] init];
     SpriteObject *object1 = [[SpriteObject alloc] init];
+    CBSpriteNode *spriteNode1 = [[CBSpriteNode alloc] initWithSpriteObject:object1];
+    object1.spriteNode = spriteNode1;
     object1.program = program;
-    object1.zPosition = 5;
+    spriteNode1.zPosition = 5;
 
     SpriteObject *object2 = [[SpriteObject alloc] init];
-    object2.zPosition = 3;
+    CBSpriteNode *spriteNode2 = [[CBSpriteNode alloc] initWithSpriteObject:object2];
+    object2.spriteNode = spriteNode2;
+    spriteNode2.zPosition = 3;
 
     [program.objectList addObject:object1];
     [program.objectList addObject:object2];
@@ -166,8 +182,8 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(object1.zPosition, (CGFloat)1.0, @"GoNStepsBack is not correctly calculated");
-    XCTAssertEqual(object2.zPosition, (CGFloat)4.0, @"GoNStepsBack is not correctly calculated");
+    XCTAssertEqual(spriteNode1.zPosition, (CGFloat)1.0, @"GoNStepsBack is not correctly calculated");
+    XCTAssertEqual(spriteNode2.zPosition, (CGFloat)4.0, @"GoNStepsBack is not correctly calculated");
 }
 
 - (void)testGoNStepsBackBrickWronginput
@@ -175,10 +191,14 @@
     Program *program = [[Program alloc] init];
     SpriteObject *object1 = [[SpriteObject alloc] init];
     object1.program = program;
-    object1.zPosition = 5;
+    CBSpriteNode *spriteNode1 = [[CBSpriteNode alloc] initWithSpriteObject:object1];
+    object1.spriteNode = spriteNode1;
+    spriteNode1.zPosition = 5;
 
     SpriteObject *object2 = [[SpriteObject alloc] init];
-    object2.zPosition = 3;
+    CBSpriteNode *spriteNode2 = [[CBSpriteNode alloc] initWithSpriteObject:object2];
+    object2.spriteNode = spriteNode2;
+    spriteNode2.zPosition = 3;
 
     [program.objectList addObject:object1];
     [program.objectList addObject:object2];
@@ -198,8 +218,8 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(object1.zPosition, (CGFloat)5.0, @"GoNStepsBack is not correctly calculated");
-    XCTAssertEqual(object2.zPosition, (CGFloat)3.0, @"GoNStepsBack is not correctly calculated");
+    XCTAssertEqual(spriteNode1.zPosition, (CGFloat)5.0, @"GoNStepsBack is not correctly calculated");
+    XCTAssertEqual(spriteNode2.zPosition, (CGFloat)3.0, @"GoNStepsBack is not correctly calculated");
 }
 
 @end

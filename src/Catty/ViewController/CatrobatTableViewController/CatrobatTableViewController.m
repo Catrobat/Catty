@@ -174,9 +174,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                   kLocalizedExplore,
                   kLocalizedUpload, nil];
     self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNamePrograms, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
-
-    //[[NSUserDefaults standardUserDefaults] setBool:false forKey:kUserIsLoggedIn]; //just for testing to trigger login view. TODO: remove
-    
     self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
 }
 

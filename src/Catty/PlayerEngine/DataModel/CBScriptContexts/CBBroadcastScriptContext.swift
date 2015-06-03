@@ -20,26 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <SpriteKit/SpriteKit.h>
+final class CBBroadcastScriptContext : CBScriptContextAbstract {
 
-@class Program;
+    final let broadcastScript: BroadcastScript
+    final var broadcastMessage: String { return broadcastScript.receivedMessage }
 
-@interface Scene : SKScene
+    convenience init(broadcastScript: BroadcastScript, state: CBScriptState, scriptSequenceList: CBScriptSequenceList) {
+        self.init(broadcastScript: broadcastScript, state: state, scriptSequenceList: scriptSequenceList, instructionList: [])
+    }
 
-@property(nonatomic, weak) Program *program;
+    init(broadcastScript: BroadcastScript, state: CBScriptState, scriptSequenceList: CBScriptSequenceList,
+        instructionList: [CBExecClosure])
+    {
+        self.broadcastScript = broadcastScript
+        super.init(state: state, scriptSequenceList: scriptSequenceList,
+            instructionList: instructionList)
+    }
 
-- (id)initWithSize:(CGSize)size andProgram:(Program*)program;
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
-- (CGPoint)convertPointToScene:(CGPoint)point;
-- (CGFloat)convertYCoordinateToScene:(CGFloat)y;
-- (CGFloat)convertXCoordinateToScene:(CGFloat)x;
-- (CGFloat)convertDegreesToScene:(CGFloat)degrees;
-
-- (CGPoint)convertSceneCoordinateToPoint:(CGPoint)point;
-- (CGFloat)convertSceneToDegrees:(CGFloat)degrees;
-
-- (BOOL)touchedwith:(NSSet*)touches withX:(CGFloat) x andY:(CGFloat) y;
-- (void)stopProgramWithCompletion:(dispatch_block_t)completion;
-- (void)restartProgramWithCompletion:(dispatch_block_t)completion;
-
-@end
+}

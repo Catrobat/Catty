@@ -22,6 +22,7 @@
 
 #import "ComeToFrontBrick.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation ComeToFrontBrick
 
@@ -44,16 +45,15 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        CGFloat zValue = self.script.object.zPosition;
+        CGFloat zValue = self.script.object.spriteNode.zPosition;
         CGFloat frontValue = [self.script.object.program numberOfNormalObjects];
-        self.script.object.zPosition = frontValue;
+        self.script.object.spriteNode.zPosition = frontValue;
         for(SpriteObject *obj in self.script.object.program.objectList){
-            if((obj.zPosition > zValue) && (obj.zPosition <= frontValue) && (obj != self.script.object)) {
-                obj.zPosition -=1;
+            if((obj.spriteNode.zPosition > zValue) && (obj.spriteNode.zPosition <= frontValue) && (obj != self.script.object)) {
+                obj.spriteNode.zPosition -=1;
             }
         }
-
-        NSDebug(@"%f",self.script.object.zPosition );
+        NSDebug(@"%f",self.script.object.spriteNode.zPosition);
     };
 }
 

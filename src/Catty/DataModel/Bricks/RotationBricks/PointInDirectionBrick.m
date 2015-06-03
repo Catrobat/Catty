@@ -23,8 +23,8 @@
 #import "PointInDirectionBrick.h"
 #import "Formula.h"
 #import "Util.h"
-#import "Scene.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 #define kRotationDegreeOffset 90.0
 
@@ -60,8 +60,8 @@
   return ^{
       NSDebug(@"Performing: %@", self.description);
       double degrees = [self.degrees interpretDoubleForSprite:self.script.object] - kRotationDegreeOffset;
-      degrees = [((Scene*)self.script.object.scene) convertDegreesToScene:(CGFloat)degrees];
-      [self.script.object setRotation:degrees];
+      degrees = [((CBPlayerScene*)self.script.object.spriteNode.scene) convertDegreesToScene:(CGFloat)degrees];
+      [self.script.object.spriteNode setRotation:degrees];
   };
 }
 

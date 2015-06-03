@@ -48,7 +48,9 @@
 //  Program* program = [[Program alloc] init];
 //  
 //  SpriteObject* object = [[SpriteObject alloc] init];
-//  object.position = CGPointMake(0, 0);
+//  CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+//  object.spriteNode = spriteNode;
+//  spriteNode.position = CGPointMake(0, 0);
 //  
 //  object.program = program;
 //

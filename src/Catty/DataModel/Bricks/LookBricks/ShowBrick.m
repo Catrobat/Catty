@@ -22,6 +22,7 @@
 
 #import "ShowBrick.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation ShowBrick
 
@@ -39,7 +40,7 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        self.script.object.hidden = NO;
+        self.script.object.spriteNode.hidden = NO;
     };
 }
 

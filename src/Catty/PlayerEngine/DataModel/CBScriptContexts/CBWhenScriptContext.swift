@@ -20,6 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class CBPlayerBackend : NSObject {
-    private lazy var sequenceList = [CBSequence]()
+final class CBWhenScriptContext : CBScriptContextAbstract {
+
+    final let whenScript: WhenScript
+
+    convenience init(whenScript: WhenScript, state: CBScriptState, scriptSequenceList: CBScriptSequenceList) {
+        self.init(whenScript: whenScript, state: state, scriptSequenceList: scriptSequenceList, instructionList: [])
+    }
+
+    init(whenScript: WhenScript, state: CBScriptState, scriptSequenceList: CBScriptSequenceList,
+        instructionList: [CBExecClosure])
+    {
+        self.whenScript = whenScript
+        super.init(state: state, scriptSequenceList: scriptSequenceList, instructionList: instructionList)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
 }

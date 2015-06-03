@@ -26,7 +26,6 @@
 #import "SpriteObject.h"
 #import "AppDelegate.h"
 #import "FileManager.h"
-#import "SensorHandler.h"
 #import "ProgramLoadingInfo.h"
 #import "Parser.h"
 #import "Script.h"
@@ -38,17 +37,7 @@
 #import "CBXMLParser.h"
 #import "CBXMLSerializer.h"
 #import "CBMutableCopyContext.h"
-#import "BroadcastScript.h"
-#import "BroadcastWaitHandler.h"
-
-@interface Program()
-
-@property (nonatomic, strong) BroadcastWaitHandler *broadcastWaitHandler;
-@property (nonatomic, strong) NSMutableDictionary *spriteObjectBroadcastScripts;
-@property (nonatomic, strong) NSMutableDictionary *broadcastScriptCounters;
-@property (nonatomic, strong) NSMutableDictionary *broadcastMessageSemaphores;
-
-@end
+#import "Pocket_Code-Swift.h"
 
 @implementation Program
 
@@ -79,7 +68,6 @@
     }
 
     [program addObjectWithName:kLocalizedBackground];
-    program.playing = NO;
     NSDebug(@"%@", [program description]);
     return program;
 }
@@ -113,7 +101,6 @@
         program = [catrobatParser parseAndCreateProgram];
     }
     program.header.programID = loadingInfo.programID;
-    program.playing = NO;
 
     if (! program)
         return nil;
@@ -165,7 +152,7 @@
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     //object.originalSize;
-    object.currentLook = nil;
+    object.spriteNode.currentLook = nil;
 
     object.name = [Util uniqueName:objectName existingNames:[self allObjectNames]];
     object.program = self;
@@ -219,39 +206,6 @@
 }
 
 #pragma mark - Custom getter and setter
-- (BroadcastWaitHandler*)broadcastWaitHandler
-{
-    // lazy instantiation
-    if (! _broadcastWaitHandler) {
-        _broadcastWaitHandler = [BroadcastWaitHandler new];
-    }
-    return _broadcastWaitHandler;
-}
-
-- (NSMutableDictionary*)spriteObjectBroadcastScripts
-{
-    if (! _spriteObjectBroadcastScripts) {
-        _spriteObjectBroadcastScripts = [NSMutableDictionary dictionary];
-    }
-    return _spriteObjectBroadcastScripts;
-}
-
-- (NSMutableDictionary*)broadcastScriptCounters
-{
-    if (! _broadcastScriptCounters) {
-        _broadcastScriptCounters = [NSMutableDictionary dictionary];
-    }
-    return _broadcastScriptCounters;
-}
-
-- (NSMutableDictionary*)broadcastMessageSemaphores
-{
-    if (! _broadcastMessageSemaphores) {
-        _broadcastMessageSemaphores = [NSMutableDictionary dictionary];
-    }
-    return _broadcastMessageSemaphores;
-}
-
 - (NSMutableArray*)objectList
 {
     if (! _objectList) {
@@ -263,8 +217,9 @@
 - (void)setObjectList:(NSMutableArray*)objectList
 {
     for (id object in objectList) {
-        if ([object isKindOfClass:[SpriteObject class]])
-            ((SpriteObject*) object).program = self;
+        if ([object isKindOfClass:[SpriteObject class]]) {
+            ((SpriteObject*)object).program = self;
+        }
     }
     _objectList = objectList;
 }
@@ -366,9 +321,21 @@
 
 - (void)translateDefaultProgram
 {
-    SpriteObject *backgroundObject = [self.objectList objectAtIndex:kBackgroundObjectIndex];
-    backgroundObject.name = kLocalizedBackground;
-    [self renameToProgramName:kLocalizedMyFirstProgram];
+    NSUInteger index = 0;
+    for (SpriteObject *spriteObject in self.objectList) {
+        if (index == kBackgroundObjectIndex) {
+            spriteObject.name = kLocalizedBackground;
+        } else {
+            NSMutableString *spriteObjectName = [NSMutableString stringWithString:spriteObject.name];
+            [spriteObjectName replaceOccurrencesOfString:kDefaultProgramBundleOtherObjectsNamePrefix
+                                              withString:kLocalizedMole
+                                                 options:NSCaseInsensitiveSearch
+                                                   range:NSMakeRange(0, spriteObjectName.length)];
+            spriteObject.name = (NSString*)spriteObjectName;
+        }
+        ++index;
+    }
+    [self renameToProgramName:kLocalizedMyFirstProgram]; // saves to disk!
 }
 
 - (void)renameToProgramName:(NSString*)programName
@@ -606,157 +573,7 @@
 
 - (void)removeReferences
 {
-    [self.broadcastWaitHandler removeSpriteMessages];
-    self.broadcastWaitHandler = nil;
-    self.spriteObjectBroadcastScripts = nil;
-    self.playing = NO;
     [self.objectList makeObjectsPerformSelector:@selector(removeReferences)];
-}
-
-#pragma mark - broadcasting handling
-- (void)setupBroadcastHandling
-{
-    // reset all lazy (!) instantiated objects
-    self.broadcastWaitHandler = nil;
-    self.spriteObjectBroadcastScripts = nil;
-
-    for (SpriteObject *spriteObject in self.objectList) {
-        NSMutableArray *broadcastScripts = [NSMutableArray array];
-        for (Script *script in spriteObject.scriptList) {
-            if (! [script isKindOfClass:[BroadcastScript class]]) {
-                continue;
-            }
-
-            BroadcastScript *broadcastScript = (BroadcastScript*)script;
-            [self.broadcastWaitHandler registerSprite:spriteObject forMessage:broadcastScript.receivedMessage];
-            [broadcastScripts addObject:broadcastScript];
-        }
-        [self.spriteObjectBroadcastScripts setObject:broadcastScripts forKey:spriteObject.name];
-    }
-}
-
-- (void)broadcast:(NSString*)message senderScript:(Script*)script
-{
-    NSDebug(@"Broadcast: %@", message);
-    for (NSString *spriteObjectName in self.spriteObjectBroadcastScripts) {
-        NSArray *broadcastScriptList = self.spriteObjectBroadcastScripts[spriteObjectName];
-        for (BroadcastScript *broadcastScript in broadcastScriptList) {
-            if (! [broadcastScript.receivedMessage isEqualToString:message]) {
-                continue;
-            }
-
-            // case sender script equals receiver script => restart receiver script
-            // (sets brick action instruction pointer to zero)
-            if (broadcastScript == script) {
-                assert(broadcastScript.isRunning);
-                broadcastScript.calledByOtherScriptBroadcastWait = NO; // no synchronization required here
-                NSNumber *counterNumber = self.broadcastScriptCounters[message];
-                NSUInteger counter = 0;
-                if (counterNumber) {
-                    counter = [counterNumber integerValue];
-                }
-                if (++counter % 12) { // XXX: DIRTY HACK!!
-                    [broadcastScript selfBroadcastRestart];
-                } else {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [broadcastScript selfBroadcastRestart]; // restart this self-listening BroadcastScript
-                    });
-                }
-                self.broadcastScriptCounters[message] = @(counter);
-                continue;
-            }
-
-            // case sender script does not equal receiver script => check if receiver script
-            // if broadcastScript is not running then start broadcastScript!
-            @synchronized(broadcastScript) {
-                broadcastScript.calledByOtherScriptBroadcastWait = NO; // synchronized!
-                if (! broadcastScript.isRunning) {
-                    // we are already running on highpriority queue, but broadcastScript != senderScript
-                    [broadcastScript start];
-                } else {
-                    // case broadcast script is already running!
-                    if (broadcastScript.isCalledByOtherScriptBroadcastWait) {
-                        [broadcastScript signalForWaitingBroadcasts]; // signal finished broadcast!
-                    }
-                    [broadcastScript restart]; // trigger script to restart
-                }
-            }
-        }
-    }
-}
-
-- (void)broadcastAndWait:(NSString*)message senderScript:(Script*)script
-{
-    for (NSString *spriteObjectName in self.spriteObjectBroadcastScripts) {
-        NSArray *broadcastScriptList = self.spriteObjectBroadcastScripts[spriteObjectName];
-        for (BroadcastScript *broadcastScript in broadcastScriptList) {
-            if (! [broadcastScript.receivedMessage isEqualToString:message]) {
-                continue;
-            }
-
-            dispatch_semaphore_t semaphore = self.broadcastMessageSemaphores[broadcastScript.receivedMessage];
-            if (! semaphore) {
-                semaphore = dispatch_semaphore_create(0);
-                self.broadcastMessageSemaphores[broadcastScript.receivedMessage] = semaphore;
-            }
-
-            // case sender script equals receiver script => restart receiver script
-            // (sets brick action instruction pointer to zero)
-            if (broadcastScript == script) {
-                assert(broadcastScript.isRunning);
-                broadcastScript.calledByOtherScriptBroadcastWait = NO; // no synchronization required here
-                NSNumber *counterNumber = self.broadcastScriptCounters[message];
-                NSUInteger counter = 0;
-                if (counterNumber) {
-                    counter = [counterNumber integerValue];
-                }
-                if (++counter % 12) { // XXX: DIRTY HACK!!
-                    [broadcastScript selfBroadcastRestart];
-                } else {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [broadcastScript selfBroadcastRestart]; // restart this self-listening BroadcastScript
-                    });
-                }
-                self.broadcastScriptCounters[message] = @(counter);
-                continue;
-            }
-
-            // case sender script does not equal receiver script => check if receiver script
-            // if broadcastScript is not running then start broadcastScript!
-            @synchronized(broadcastScript) {
-                broadcastScript.calledByOtherScriptBroadcastWait = YES; // synchronized!
-                if (! broadcastScript.isRunning) {
-                    // we are already running on highpriority queue, but broadcastScript != senderScript
-                    [broadcastScript start];
-                } else {
-                    // case broadcast script is already running!
-                    if (broadcastScript.isCalledByOtherScriptBroadcastWait) {
-                        dispatch_semaphore_signal(semaphore); // signal finished broadcast!
-                    }
-                    [broadcastScript restart]; // trigger script to restart
-                }
-            }
-        }
-    }
-}
-
-- (void)signalForWaitingBroadcastWithMessage:(NSString*)message
-{
-    dispatch_semaphore_t semaphore = self.broadcastMessageSemaphores[message];
-    assert(semaphore);
-    dispatch_semaphore_signal(semaphore);
-}
-
-- (void)waitingForBroadcastWithMessage:(NSString*)message
-{
-    dispatch_semaphore_t semaphore = self.broadcastMessageSemaphores[message];
-// FIXME: workaround for synchronization issue
-    if (! semaphore) {
-        semaphore = dispatch_semaphore_create(0);
-        self.broadcastMessageSemaphores[message] = semaphore;
-    }
-    assert(semaphore);
-    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 }
 
 @end

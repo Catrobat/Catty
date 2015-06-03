@@ -19,24 +19,3 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
-
-class CBIfConditionalSequence : CBConditionalSequence {
-
-    final /*private */lazy var elseSequenceList = CBSequenceList()
-
-    // MARK: initializer
-    override init(conditionBrick : BrickConditionalBranchProtocol) {
-        super.init(conditionBrick: conditionBrick)
-    }
-
-    // MARK: Operations
-    final override func isEmpty() -> Bool {
-        return (super.isEmpty() && (elseSequenceList.count == 0))
-    }
-
-    final override class func createConditionalSequenceWithConditionBrick(conditionBrick : BrickConditionalBranchProtocol)
-        -> CBIfConditionalSequence {
-        return CBIfConditionalSequence(conditionBrick: conditionBrick)
-    }
-
-}

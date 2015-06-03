@@ -24,6 +24,7 @@
 #import "Formula.h"
 #import "Util.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation TurnLeftBrick
 
@@ -57,8 +58,8 @@
     return ^{
         NSDebug(@"Performing: %@", self.description);
         double rotation = [self.degrees interpretDoubleForSprite:self.script.object];
-        rotation += [self.script.object rotation];
-        [self.script.object setRotation: rotation];
+        rotation += [self.script.object.spriteNode rotation];
+        [self.script.object.spriteNode setRotation:rotation];
     };
 }
 

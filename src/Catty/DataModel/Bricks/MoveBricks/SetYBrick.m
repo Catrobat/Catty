@@ -23,6 +23,7 @@
 #import "SetYBrick.h"
 #import "Formula.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation SetYBrick
 
@@ -54,11 +55,11 @@
 
 - (dispatch_block_t)actionBlock
 {
-  return ^{
-    NSDebug(@"Performing: %@", self.description);
-    double yPosition = [self.yPosition interpretDoubleForSprite:self.script.object];
-    self.script.object.position = CGPointMake(self.script.object.xPosition, (CGFloat)yPosition);
-  };
+    return ^{
+        NSDebug(@"Performing: %@", self.description);
+        double yPosition = [self.yPosition interpretDoubleForSprite:self.script.object];
+        self.script.object.spriteNode.scenePosition = CGPointMake(self.script.object.spriteNode.xPosition, (CGFloat)yPosition);
+    };
 }
 
 #pragma mark - Description

@@ -34,6 +34,7 @@
 #import "InternToken.h"
 #import "Operators.h"
 #import "InternFormulaParserException.h"
+#import "Pocket_Code-Swift.h"
 
 #define ARC4RANDOM_MAX 0x100000000
 
@@ -625,31 +626,31 @@
     switch (sensor) {
             
         case OBJECT_X: {
-            result = sprite.xPosition;
+            result = sprite.spriteNode.xPosition;
             break;
         }
         case OBJECT_Y: {
-            result = sprite.yPosition;
+            result = sprite.spriteNode.yPosition;
             break;
         }
         case OBJECT_GHOSTEFFECT: {
-            result = sprite.alpha;
+            result = sprite.spriteNode.alpha;
             break;
         }
         case OBJECT_BRIGHTNESS: {
-            result = sprite.brightness;
+            result = sprite.spriteNode.brightness;
             break;
         }
         case OBJECT_SIZE: {
-            result = sprite.scaleX;
+            result = sprite.spriteNode.scaleX;
             break;
         }
         case OBJECT_ROTATION: {
-            result = sprite.rotation;
+            result = sprite.spriteNode.rotation;
             break;
         }
         case OBJECT_LAYER: {
-            result = sprite.zIndex;
+            result = sprite.spriteNode.zIndex;
             break;
         }
             

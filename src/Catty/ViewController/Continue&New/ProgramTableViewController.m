@@ -95,8 +95,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [super viewWillAppear:YES];
     [self.tableView reloadData];
-    [self.navigationController setNavigationBarHidden:NO];
-    [self.navigationController setToolbarHidden:NO];
 }
 
 - (void)viewDidLoad

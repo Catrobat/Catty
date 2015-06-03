@@ -339,50 +339,10 @@
     if ([Program areThereAnyPrograms]) {
         return;
     }
-        [self addNewBundleProgramWithName:kDefaultProgramBundleName];
-
-//############################################################################################################
-//############################################################################################################
-//############################################################################################################
-#define kDefaultProgramBundleBackgroundName @"Background"
-#define kDefaultProgramBundleOtherObjectsNamePrefix @"Mole"
-        // XXX: HACK serialization-workaround
-        if (! [kDefaultProgramBundleName isEqualToString:kLocalizedMyFirstProgram]) {
-            // SYNC and NOT ASYNC here because the UI must wait!!
-            dispatch_queue_t translateBundleQ = dispatch_queue_create("translate bundle", NULL);
-            dispatch_sync(translateBundleQ, ^{
-                NSString *xmlPath = [[Program projectPathForProgramWithName:kDefaultProgramBundleName programID:nil]
-                                     stringByAppendingString:kProgramCodeFileName];
-                NSError *nserror = nil;
-                NSMutableString *xmlString = [NSMutableString stringWithContentsOfFile:xmlPath
-                                                                              encoding:NSUTF8StringEncoding
-                                                                                 error:&nserror];
-                NSLogError(nserror);
-                [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<programName>%@</programName>", kDefaultProgramBundleName]
-                                           withString:[NSString stringWithFormat:@"<programName>%@</programName>", kLocalizedMyFirstProgram]
-                                              options:NSCaseInsensitiveSearch
-                                                range:NSMakeRange(0, [xmlString length])];
-                [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<object name=\"%@\">", kDefaultProgramBundleBackgroundName]
-                                           withString:[NSString stringWithFormat:@"<object name=\"%@\">", kLocalizedBackground]
-                                              options:NSCaseInsensitiveSearch
-                                                range:NSMakeRange(0, [xmlString length])];
-                [xmlString replaceOccurrencesOfString:[NSString stringWithFormat:@"<object name=\"%@\">", kDefaultProgramBundleOtherObjectsNamePrefix]
-                                           withString:[NSString stringWithFormat:@"<object name=\"%@\">", kLocalizedMole]
-                                              options:NSCaseInsensitiveSearch
-                                                range:NSMakeRange(0, [xmlString length])];
-                [xmlString writeToFile:xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&nserror];
-                NSLogError(nserror);
-                [self moveExistingDirectoryAtPath:[Program projectPathForProgramWithName:kDefaultProgramBundleName programID:nil]
-                                           toPath:[Program projectPathForProgramWithName:kLocalizedMyFirstProgram programID:nil]];
-            });
-        }
-//############################################################################################################
-//############################################################################################################
-//############################################################################################################
-
-//        ProgramLoadingInfo *loadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:kDefaultProgramBundleName programID:nil];
-//        Program *program = [Program programWithLoadingInfo:loadingInfo];
-//        [program translateDefaultProgram];
+    [self addNewBundleProgramWithName:kDefaultProgramBundleName];
+    ProgramLoadingInfo *loadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:kDefaultProgramBundleName programID:nil];
+    Program *program = [Program programWithLoadingInfo:loadingInfo];
+    [program translateDefaultProgram];
 }
 
 - (void)addNewBundleProgramWithName:(NSString*)projectName

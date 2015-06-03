@@ -23,7 +23,7 @@
 #import "NSString+CatrobatNSStringExtensions.h"
 #import <CommonCrypto/CommonDigest.h>
 
-@implementation NSString (CustomExtensions)
+@implementation NSString (CatrobatNSStringExtensions)
 
 - (NSString*)sha1
 {

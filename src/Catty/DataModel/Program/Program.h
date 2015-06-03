@@ -26,19 +26,12 @@
 @class VariablesContainer;
 @class SpriteObject;
 @class ProgramLoadingInfo;
-@class GDataXMLDocument;
-@class Script;
-@class BroadcastScript;
 
 @interface Program : NSObject
 
 @property (nonatomic, strong) Header *header;
 @property (nonatomic, strong) NSMutableArray *objectList;
 @property (nonatomic, strong) VariablesContainer *variables;
-@property (nonatomic, getter=isPlaying) BOOL playing;
-
-// FIXME: remove this property after serialization works
-@property (nonatomic, strong) GDataXMLDocument *XMLdocument;
 
 - (NSInteger)numberOfTotalObjects;
 - (NSInteger)numberOfBackgroundObjects;
@@ -61,11 +54,6 @@
 - (SpriteObject*)copyObject:(SpriteObject*)sourceObject
     withNameForCopiedObject:(NSString*)nameOfCopiedObject;
 - (BOOL)isEqualToProgram:(Program*)program;
-- (void)setupBroadcastHandling;
-- (void)broadcast:(NSString*)message senderScript:(Script*)script;
-- (void)broadcastAndWait:(NSString*)message senderScript:(Script*)script;
-- (void)signalForWaitingBroadcastWithMessage:(NSString*)message;
-- (void)waitingForBroadcastWithMessage:(NSString*)message;
 
 + (instancetype)defaultProgramWithName:(NSString*)programName programID:(NSString*)programID;
 + (instancetype)lastUsedProgram;
@@ -74,7 +62,6 @@
 + (BOOL)programExistsWithProgramName:(NSString*)programName programID:(NSString*)programID;
 + (BOOL)programExistsWithProgramID:(NSString*)programID;
 + (BOOL)areThereAnyPrograms;
-
 + (void)copyProgramWithSourceProgramName:(NSString*)sourceProgramName
                          sourceProgramID:(NSString*)sourceProgramID
                   destinationProgramName:(NSString*)destinationProgramName;
@@ -87,8 +74,5 @@
 + (NSString*)programDirectoryNameForProgramName:(NSString*)programName programID:(NSString*)programID;
 + (ProgramLoadingInfo*)programLoadingInfoForProgramDirectoryName:(NSString*)programDirectoryName;
 + (NSString*)programNameForProgramID:(NSString*)programID;
-
-// FIXME: remove that later... after serialization works... (issue#84)
-+ (NSString*)projectPathForProgramWithName:(NSString*)programName programID:(NSString*)programID;
 
 @end

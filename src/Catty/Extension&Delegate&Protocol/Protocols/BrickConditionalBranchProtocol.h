@@ -23,7 +23,6 @@
 #import <Foundation/Foundation.h>
 
 @protocol BrickConditionalBranchProtocol <NSObject>
-@property (nonatomic) BOOL forceConditionEvaluationToEvaluateToFalse;
 - (BOOL)checkCondition;
 - (void)resetCondition;
 @end

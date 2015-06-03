@@ -20,18 +20,26 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc class CBOperation {
+final class CBIfConditionalSequence : CBConditionalSequence {
 
-    final /*private */let brick : Brick
+    // MARK: - Properties
+    let elseSequenceList : CBSequenceList?
 
-    // MARK: (private!) initializer
-    private init(brick : Brick) {
-        self.brick = brick
+    // MARK: - Initializers
+    override init(rootSequenceList: CBScriptSequenceList, conditionBrick : BrickConditionalBranchProtocol, sequenceList : CBSequenceList) {
+        self.elseSequenceList = nil
+        super.init(rootSequenceList: rootSequenceList, conditionBrick: conditionBrick, sequenceList: sequenceList)
     }
 
-    // MARK: Operations
-    final class func createOperationWithBrick(brick : Brick) -> CBOperation {
-        return CBOperation(brick : brick)
+    init(rootSequenceList: CBScriptSequenceList, conditionBrick : BrickConditionalBranchProtocol, ifSequenceList : CBSequenceList,
+        elseSequenceList : CBSequenceList) {
+        self.elseSequenceList = elseSequenceList
+        super.init(rootSequenceList: rootSequenceList, conditionBrick: conditionBrick, sequenceList: ifSequenceList)
+    }
+
+    // MARK: - Operations
+    override func isEmpty() -> Bool {
+        return (super.isEmpty() && (elseSequenceList?.count == 0))
     }
 
 }
