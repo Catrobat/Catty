@@ -51,19 +51,13 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
 
     private lazy var _scheduledScriptContexts = [CBScriptContextAbstract]()
     private lazy var _registeredScriptContexts = [CBScriptContextAbstract]()
-    private let _frontend: CBPlayerFrontendProtocol
-    private let _backend: CBPlayerBackendProtocol
     private let _broadcastHandler: CBPlayerBroadcastHandlerProtocol
     private var _currentContext: CBScriptContextAbstract?
 
     // MARK: - Initializers
-    init(logger: CBLogger, frontend: CBPlayerFrontendProtocol, backend: CBPlayerBackendProtocol,
-        broadcastHandler: CBPlayerBroadcastHandlerProtocol)
-    {
+    init(logger: CBLogger, broadcastHandler: CBPlayerBroadcastHandlerProtocol) {
         self.logger = logger
         self.schedulingAlgorithm = nil // default scheduling behavior
-        _frontend = frontend
-        _backend = backend
         _broadcastHandler = broadcastHandler
     }
 

@@ -20,6 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+import Darwin // usleep
+
 protocol CBPlayerBackendProtocol {
     func scriptContextForSequenceList(sequenceList: CBScriptSequenceList) -> CBScriptContextAbstract
 }
@@ -28,29 +30,20 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
 
     // MARK: - Properties
     var logger : CBLogger
-    weak var scheduler : CBPlayerSchedulerProtocol?
-    weak var broadcastHandler : CBPlayerBroadcastHandlerProtocol?
+    private let _scheduler : CBPlayerSchedulerProtocol
+    private let _broadcastHandler : CBPlayerBroadcastHandlerProtocol
 
     // MARK: - Initializers
-    init(logger: CBLogger, scheduler: CBPlayerSchedulerProtocol?,
-        broadcastHandler: CBPlayerBroadcastHandlerProtocol?)
+    init(logger: CBLogger, scheduler: CBPlayerSchedulerProtocol, broadcastHandler: CBPlayerBroadcastHandlerProtocol)
     {
         self.logger = logger
-        self.scheduler = scheduler
-        self.broadcastHandler = broadcastHandler
-    }
-
-    convenience init(logger: CBLogger) {
-        self.init(logger: logger, scheduler: nil, broadcastHandler: nil)
+        _scheduler = scheduler
+        _broadcastHandler = broadcastHandler
     }
 
     // MARK: - Operations
     func scriptContextForSequenceList(sequenceList: CBScriptSequenceList) -> CBScriptContextAbstract
     {
-        if scheduler == nil {
-            logger.warn("No scheduler set!")
-        }
-
         let script = sequenceList.script
         logger.info("Generating ScriptContext of \(script)")
 
@@ -93,7 +86,7 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
                     instructionList += {
                         [weak self] in
                         context.jump(numberOfInstructions: numberOfElseInstructions)
-                        self?.scheduler?.runNextInstructionOfContext(context)
+                        self?._scheduler.runNextInstructionOfContext(context)
                     }
                 }
                 // add if instructions
@@ -109,7 +102,7 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
                         }
                         context.jump(numberOfInstructions: numberOfInstructionsToJump)
                     }
-                    self?.scheduler?.runNextInstructionOfContext(context)
+                    self?._scheduler.runNextInstructionOfContext(context)
                 }
             } else if let conditionalSequence = sequence as? CBConditionalSequence {
                 // loop sequence
@@ -143,20 +136,22 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
                     // high priority queue only needed for blocking purposes...
                     // the reason for this is that you should NEVER block the (serial) main_queue!!
                     self?.logger.debug("Waiting on high priority queue")
-                    NSThread.sleepForTimeInterval(0.02 - duration)
+                    let uduration = UInt32((0.02 - duration) * 1_000_000) // in microseconds
+                    usleep(uduration)
+//                    NSThread.sleepForTimeInterval(0.02 - duration)
 
                     // now switch back to the main queue for executing the sequence!
                     dispatch_async(dispatch_get_main_queue(), {
                         context.jump(numberOfInstructions: numOfInstructionsToJump)
                         context.isLocked = false
-                        self?.scheduler?.runNextInstructionOfContext(context)
+                        self?._scheduler.runNextInstructionOfContext(context)
                     });
                 });
             } else {
                 // now switch back to the main queue for executing the sequence!
                 context.jump(numberOfInstructions: numOfInstructionsToJump)
                 context.isLocked = false
-                self?.scheduler?.runNextInstructionOfContext(context)
+                self?._scheduler.runNextInstructionOfContext(context)
             }
         }
         let loopBeginInstruction : CBExecClosure = { [weak self] in
@@ -167,7 +162,7 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
                 numOfInstructionsToJump += numOfBodyInstructions + 1 // includes loop end instruction!
             }
             context.jump(numberOfInstructions: numOfInstructionsToJump)
-            self?.scheduler?.runNextInstructionOfContext(context)
+            self?._scheduler.runNextInstructionOfContext(context)
         }
         // finally add all instructions to list (reverse order!)
         var instructionList = [CBExecClosure]()
@@ -185,20 +180,42 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
             if let broadcastBrick = operation.brick as? BroadcastBrick {
                 instructionList += { [weak self] in
                     let msg = broadcastBrick.broadcastMessage
-                    self?.broadcastHandler?.performBroadcastWithMessage(msg, senderScriptContext: context,
+                    self?._broadcastHandler.performBroadcastWithMessage(msg, senderScriptContext: context,
                         broadcastType: .Broadcast)
                 }
             } else if let broadcastWaitBrick = operation.brick as? BroadcastWaitBrick {
                 instructionList += { [weak self] in
                     let msg = broadcastWaitBrick.broadcastMessage
-                    self?.broadcastHandler?.performBroadcastWithMessage(msg, senderScriptContext: context,
+                    self?._broadcastHandler.performBroadcastWithMessage(msg, senderScriptContext: context,
                         broadcastType: .BroadcastWait)
+                }
+            } else if let waitBrick = operation.brick as? WaitBrick {
+                instructionList += { [weak self] in
+                    let duration = waitBrick.timeToWaitInSeconds.interpretDoubleForSprite(waitBrick.script.object)
+                    let uduration = UInt32(duration * 1_000_000) // in microseconds
+                    // >1ms => duration for queue switch ~0.1ms => less than 10% inaccuracy
+                    if uduration > 1_000 {
+                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+                            // high priority queue only needed for blocking purposes...
+                            // the reason for this is that you should NEVER block the (serial) main_queue!!
+                            usleep(uduration)
+
+                            // now switch back to the main queue for executing the next instruction!
+                            dispatch_async(dispatch_get_main_queue(), {
+                                self?._scheduler.runNextInstructionOfContext(context)
+                            });
+                        });
+                    } else {
+                        // to be honest: duration of <1ms is too short for a queue switch due to >10% accuracy
+                        usleep(uduration)
+                        self?._scheduler.runNextInstructionOfContext(context)
+                    }
                 }
             } else {
                 instructionList += { [weak self] in
                     context.runAction(operation.brick.action(), completion:{
                         // the script must continue here. upcoming actions are executed!!
-                        self?.scheduler?.runNextInstructionOfContext(context)
+                        self?._scheduler.runNextInstructionOfContext(context)
                     })
                 }
             }

@@ -32,24 +32,23 @@
         let backendLogger = Swell.getLogger(LoggerConfig.PlayerBackendID)
         let bcHandlerLogger = Swell.getLogger(LoggerConfig.PlayerBroadcastHandlerID)
 
+        // setup broadcast handler
+        let bcHandler = CBPlayerBroadcastHandler(logger: bcHandlerLogger)
+
+        // setup scheduler
+        let scheduler = CBPlayerScheduler(logger: schedulerLogger, broadcastHandler: bcHandler)
+        scheduler.schedulingAlgorithm = nil // default scheduling algorithm!
+//        scheduler.schedulingAlgorithm = CBPlayerSchedulingAlgorithmLoadBalancing()
+        bcHandler.scheduler = scheduler
+
         // setup frontend
         let frontend = CBPlayerFrontend(logger: frontendLogger, program: program)
         frontend.addSequenceFilter(CBPlayerFilterRedundantBroadcastWaits())
 
         // setup backend
-        let backend = CBPlayerBackend(logger: backendLogger)
+        let backend = CBPlayerBackend(logger: backendLogger, scheduler: scheduler, broadcastHandler: bcHandler)
 
-        // setup broadcast handler
-        let bcHandler = CBPlayerBroadcastHandler(logger: bcHandlerLogger, frontend: frontend, backend: backend)
-
-        // setup scheduler
-        let scheduler = CBPlayerScheduler(logger: schedulerLogger, frontend: frontend,
-            backend: backend, broadcastHandler: bcHandler)
-        scheduler.schedulingAlgorithm = nil // default scheduling algorithm!
-//        scheduler.schedulingAlgorithm = CBPlayerSchedulingAlgorithmLoadBalancing()
-        backend.scheduler = scheduler // IMPORTANT: Don't forget to assign the scheduler to the backend!
-        backend.broadcastHandler = bcHandler // IMPORTANT: Don't forget to assign the broadcast handler to the backend!
-        bcHandler.scheduler = scheduler
+        // finally create scene
         let programSize = CGSizeMake(CGFloat(program.header.screenWidth.floatValue),
             CGFloat(program.header.screenHeight.floatValue))
         return CBPlayerScene(size: programSize, logger: sceneLogger, scheduler: scheduler,

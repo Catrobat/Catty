@@ -38,8 +38,6 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
 
     // MARK: - Properties
     var logger: CBLogger
-    let frontend: CBPlayerFrontendProtocol
-    let backend: CBPlayerBackendProtocol
     weak var scheduler: CBPlayerSchedulerProtocol?
     private lazy var _broadcastWaitingScriptContextsQueue = [CBScriptContextAbstract:[CBBroadcastScriptContext]]()
     private lazy var _registeredBroadcastScriptContexts = [String:[CBBroadcastScriptContext]]()
@@ -47,17 +45,14 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
     private lazy var _selfBroadcastCounters = [String:Int]()
 
     // MARK: - Initializers
-    init(logger: CBLogger, frontend: CBPlayerFrontendProtocol, backend: CBPlayerBackendProtocol,
-        scheduler: CBPlayerSchedulerProtocol?)
+    init(logger: CBLogger, scheduler: CBPlayerSchedulerProtocol?)
     {
         self.logger = logger
         self.scheduler = scheduler
-        self.frontend = frontend
-        self.backend = backend
     }
 
-    convenience init(logger: CBLogger, frontend: CBPlayerFrontendProtocol, backend: CBPlayerBackendProtocol) {
-        self.init(logger: logger, frontend: frontend, backend: backend, scheduler: nil)
+    convenience init(logger: CBLogger) {
+        self.init(logger: logger, scheduler: nil)
     }
 
     // MARK: - Operations
