@@ -21,6 +21,7 @@
  */
 
 #import "BrickCellInlineView.h"
+#import "BrickCellDataProtocol.h"
 
 @implementation BrickCellInlineView
 
@@ -31,6 +32,41 @@
         // Initialization code
     }
     return self;
+}
+
+#pragma mark - BrickCellData
+- (id<BrickCellDataProtocol>)dataSubviewForLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
+{
+    for (UIView *view in self.subviews) {
+        if([view conformsToProtocol:@protocol(BrickCellDataProtocol)]) {
+            id<BrickCellDataProtocol> brickCellData = (id<BrickCellDataProtocol>)view;
+            if(brickCellData.lineNumber == line && brickCellData.parameterNumber == parameter)
+                return brickCellData;
+        }
+    }
+    return nil;
+}
+
+- (id<BrickCellDataProtocol>)dataSubviewWithType:(Class)className
+{
+    for (UIView *view in self.subviews) {
+        if([view conformsToProtocol:@protocol(BrickCellDataProtocol)] && [view isKindOfClass:className]) {
+            id<BrickCellDataProtocol> brickCellData = (id<BrickCellDataProtocol>)view;
+            return brickCellData;
+        }
+    }
+    return nil;
+}
+
+- (NSArray*)dataSubviews
+{
+    NSMutableArray *dataSubviews = [NSMutableArray new];
+    for (UIView *view in self.subviews) {
+        if([view conformsToProtocol:@protocol(BrickCellDataProtocol)]) {
+            [dataSubviews addObject:view];
+        }
+    }
+    return dataSubviews;
 }
 
 /*
