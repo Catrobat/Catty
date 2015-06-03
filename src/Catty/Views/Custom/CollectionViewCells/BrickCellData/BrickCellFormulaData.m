@@ -37,8 +37,8 @@
 - (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell*)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
     Brick<BrickFormulaProtocol> *formulaBrick = (Brick<BrickFormulaProtocol>*)brickCell.scriptOrBrick;
-    Formula *formula = [formulaBrick formulaForLineNumber:line andParameterNumber:parameter
-];
+    Formula *formula = [formulaBrick formulaForLineNumber:line andParameterNumber:parameter];
+    
     if(self = [super initWithFrame:frame]) {
         _brickCell = brickCell;
         _lineNumber = line;

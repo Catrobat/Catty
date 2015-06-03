@@ -557,4 +557,20 @@
 
 }
 
+#pragma mark - BrickCellData
+- (id<BrickCellDataProtocol>)dataSubviewForLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
+{
+    return [self.inlineView dataSubviewForLineNumber:line andParameterNumber:parameter];
+}
+
+- (id<BrickCellDataProtocol>)dataSubviewWithType:(Class)className
+{
+    return [self.inlineView dataSubviewWithType:className];
+}
+
+- (NSArray*)dataSubviews
+{
+    return [self.inlineView dataSubviews];
+}
+
 @end

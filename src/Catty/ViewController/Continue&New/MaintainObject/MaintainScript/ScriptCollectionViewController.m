@@ -402,7 +402,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
         // edit formula
         if ([buttonTitle isEqualToString:kLocalizedEditFormula]) {
-            BrickCellFormulaData *formulaData = [[BrickCellFormulaData alloc] initWithFrame:CGRectMake(0, 0, 0, 0) andBrickCell:brickCell andLineNumber:0 andParameterNumber:0];
+            BrickCellFormulaData *formulaData = (BrickCellFormulaData*)[brickCell dataSubviewWithType:[BrickCellFormulaData class]];
             [self openFormulaEditor:formulaData];
             return;
         }
@@ -941,10 +941,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
     if ([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
         FormulaEditorViewController *formulaEditorViewController = (FormulaEditorViewController*)self.presentedViewController;
-        if ([formulaEditorViewController changeFormula]) {
-            [formulaEditorViewController setBrickCellFormulaData:formulaData];
-            [formulaData drawBorder:YES];
-        }
+        [formulaEditorViewController changeBrickCellFormulaData:formulaData];
         return;
     }
 
@@ -953,12 +950,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self.presentedViewController dismissViewControllerAnimated:NO completion:NULL];
     }
 
-    FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCellFormulaFragment:formulaData];
+    FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCellFormulaData:formulaData];
     formulaEditorViewController.object = self.object;
     formulaEditorViewController.transitioningDelegate = self;
     formulaEditorViewController.modalPresentationStyle = UIModalPresentationCustom;
-    formulaEditorViewController.delegate = formulaData;
-    [formulaData drawBorder:YES];
 
     [self.brickScaleTransition updateAnimationViewWithView:formulaData.brickCell];
     [self presentViewController:formulaEditorViewController animated:YES completion:^{
