@@ -54,6 +54,7 @@
                        confirmTitle:(NSString*)confirmTitle
                      confirmMessage:(NSString*)confirmMessage;
 - (void)playSceneAction:(id)sender;
+- (void)playSceneAction:(id)sender animated:(BOOL)animated;
 - (void)showLoadingView;
 - (void)hideLoadingView;
 

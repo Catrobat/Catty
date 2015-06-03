@@ -135,6 +135,11 @@
 #pragma mark - actions
 - (void)playSceneAction:(id)sender
 {
+    [self playSceneAction:sender animated:YES];
+}
+
+- (void)playSceneAction:(id)sender animated:(BOOL)animated
+{
     if ([self respondsToSelector:@selector(stopAllSounds)]) {
         [self performSelector:@selector(stopAllSounds)];
     }
@@ -332,7 +337,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                     loopBeginBrick = loopEndBrick.loopBeginBrick;
                 }
                 CBAssert((loopBeginBrick != nil) || (loopEndBrick != nil));
-                loopBeginBrick.forceConditionEvaluationToEvaluateToFalse = NO;
                 NSUInteger loopBeginIndex = [brick.script.brickList indexOfObject:loopBeginBrick];
                 NSUInteger loopEndIndex = (loopBeginIndex + 1);
                 LoopBeginBrick *copiedLoopBeginBrick = [loopBeginBrick mutableCopyWithContext:[CBMutableCopyContext new]];
@@ -364,7 +368,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                     ifLogicElseBrick = ifLogicEndBrick.ifElseBrick;
                 }
                 CBAssert((ifLogicBeginBrick != nil) && (ifLogicElseBrick != nil) && (ifLogicEndBrick != nil));
-                ifLogicBeginBrick.forceConditionEvaluationToEvaluateToFalse = NO;
                 NSUInteger ifLogicBeginIndex = [brick.script.brickList indexOfObject:ifLogicBeginBrick];
                 NSUInteger ifLogicElseIndex = (ifLogicBeginIndex + 1);
                 NSUInteger ifLogicEndIndex = (ifLogicElseIndex + 1);
@@ -851,7 +854,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         ifEndBrick.ifElseBrick = ifElseBrick;
         ifElseBrick.script = targetScript;
         ifEndBrick.script = targetScript;
-        ifBeginBrick.forceConditionEvaluationToEvaluateToFalse = NO;
         ifElseBrick.animate = YES;
         ifEndBrick.animate = YES;
         [targetScript.brickList insertObject:ifEndBrick atIndex:path.row];
@@ -860,7 +862,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)brick;
         LoopEndBrick *loopEndBrick = [LoopEndBrick new];
         loopBeginBrick.loopEndBrick = loopEndBrick;
-        loopBeginBrick.forceConditionEvaluationToEvaluateToFalse = NO;
         loopEndBrick.loopBeginBrick = loopBeginBrick;
         loopEndBrick.script = targetScript;
         loopEndBrick.animate = YES;

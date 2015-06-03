@@ -23,6 +23,7 @@
 #import "Setghosteffectbrick.h"
 #import "Formula.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation SetGhostEffectBrick
 
@@ -60,13 +61,13 @@
     double transparency = [self.transparency interpretDoubleForSprite:self.script.object];
       double alpha = 1.0-transparency/100.0f;
       if (alpha < 0) {
-          self.script.object.alpha = 0;
+          self.script.object.spriteNode.alpha = 0;
       }
       else if (alpha > 1){
-          self.script.object.alpha = 1;
+          self.script.object.spriteNode.alpha = 1;
       }
       else{
-          self.script.object.alpha = (CGFloat)alpha;
+          self.script.object.spriteNode.alpha = (CGFloat)alpha;
       }
       };
 }

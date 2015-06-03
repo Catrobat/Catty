@@ -20,33 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class CBConditionalSequence : NSObject, CBSequence {
+class CBSequence {
 
-    final /*private */lazy var sequenceList = CBSequenceList()
+    // MARK: - Properties
+    final weak var rootSequenceList : CBScriptSequenceList?
 
-    final private let conditionBrick : BrickConditionalBranchProtocol
-
-    // MARK: initializer
-    init(conditionBrick : BrickConditionalBranchProtocol) {
-        self.conditionBrick = conditionBrick
+    // MARK: - Initializers
+    init(rootSequenceList : CBScriptSequenceList) {
+        self.rootSequenceList = rootSequenceList
     }
 
-    // MARK: Operations
+    // MARK: - Operations
     func isEmpty() -> Bool {
-        return (sequenceList.count == 0)
-    }
-
-    final func checkCondition() -> Bool {
-        return conditionBrick.checkCondition()
-    }
-
-    final func resetCondition() {
-        conditionBrick.resetCondition()
-    }
-
-    class func createConditionalSequenceWithConditionBrick(conditionBrick : BrickConditionalBranchProtocol)
-        -> CBConditionalSequence {
-        return CBConditionalSequence(conditionBrick: conditionBrick)
+        preconditionFailure("This method is abstract and must be overridden")
     }
 
 }

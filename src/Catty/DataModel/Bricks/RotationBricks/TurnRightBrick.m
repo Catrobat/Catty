@@ -24,6 +24,7 @@
 #import "Formula.h"
 #import "Util.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation TurnRightBrick
 
@@ -56,9 +57,9 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        CGFloat rotation = [self.script.object rotation];
+        CGFloat rotation = [self.script.object.spriteNode rotation];
         rotation -= [self.degrees interpretDoubleForSprite:self.script.object];
-        [self.script.object setRotation:rotation];
+        [self.script.object.spriteNode setRotation:rotation];
     };
 }
 

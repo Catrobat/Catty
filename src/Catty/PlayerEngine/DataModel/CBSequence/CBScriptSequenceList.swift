@@ -20,17 +20,27 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class CBOperationSequence : NSObject, CBSequence {
+final class CBScriptSequenceList {
 
-    final lazy var operationList = [CBOperation]()
+    // MARK: - Properties
+    final let script : Script
+    final let sequenceList : CBSequenceList
+    final var running : Bool
+    final var count : Int { return sequenceList.count }
 
-    // MARK: Operations
-    final func isEmpty() -> Bool {
-        return (operationList.count == 0)
+    // MARK: - Initializers
+    init(script : Script, sequenceList : CBSequenceList) {
+        self.script = script
+        self.running = false
+        self.sequenceList = sequenceList
+        sequenceList.rootSequenceList = self
     }
 
-    final func addOperation(operation : CBOperation) {
-        operationList.append(operation)
+    // MARK: - Operations
+    func reverseSequenceList() -> CBScriptSequenceList {
+        return CBScriptSequenceList(script: script, sequenceList: sequenceList.reverseSequenceList())
     }
+
+    // TODO: visitor pattern for sequence filter!
 
 }

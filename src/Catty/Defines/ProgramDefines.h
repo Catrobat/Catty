@@ -54,6 +54,7 @@
 #define kProgramIDSeparator @"_"
 
 #define kDefaultProgramBundleName @"My first program"
+#define kDefaultProgramBundleOtherObjectsNamePrefix @"Mole"
 
 // indexes
 #define kNumberOfSectionsInProgramTableViewController 2

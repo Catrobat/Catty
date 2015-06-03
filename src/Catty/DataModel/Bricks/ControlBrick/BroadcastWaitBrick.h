@@ -25,13 +25,6 @@
 #import "BrickMessageProtocol.h"
 
 @interface BroadcastWaitBrick : Brick<BrickMessageProtocol>
-
 @property (nonatomic, strong) NSString *broadcastMessage;
-
 - (id)initWithMessage:(NSString*)message;
-
-- (void)performBroadcastAndWaitWithCompletion:(dispatch_block_t)completionBlock;
-
-- (void)performBroadcastButDontWait;
-
 @end

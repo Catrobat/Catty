@@ -23,6 +23,7 @@
 #import "Placeatbrick.h"
 #import "Formula.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation PlaceAtBrick
 
@@ -62,12 +63,12 @@
 
 - (dispatch_block_t)actionBlock
 {
-  return ^{
-    NSDebug(@"Performing: %@", self.description);
-    double xPosition = [self.xPosition interpretDoubleForSprite:self.script.object];
-    double yPosition = [self.yPosition interpretDoubleForSprite:self.script.object];
-    self.script.object.position = CGPointMake((CGFloat)xPosition, (CGFloat)yPosition);
-  };
+    return ^{
+        NSDebug(@"Performing: %@", self.description);
+        double xPosition = [self.xPosition interpretDoubleForSprite:self.script.object];
+        double yPosition = [self.yPosition interpretDoubleForSprite:self.script.object];
+        self.script.object.spriteNode.scenePosition = CGPointMake((CGFloat)xPosition, (CGFloat)yPosition);
+    };
 }
 
 #pragma mark - Description

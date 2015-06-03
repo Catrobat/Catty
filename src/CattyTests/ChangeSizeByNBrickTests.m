@@ -23,9 +23,9 @@
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
 #import "WhenScript.h"
+#import "Pocket_Code-Swift.h"
 
 @interface ChangeSizeByNBrickTests : BrickTests
-
 @end
 
 @implementation ChangeSizeByNBrickTests
@@ -45,8 +45,10 @@
 - (void)testChangeSizeByNBrickPositive
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    object.xScale = 10;
-    object.yScale = 10;
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
+    spriteNode.xScale = 10;
+    spriteNode.yScale = 10;
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -64,15 +66,17 @@
     dispatch_block_t action = [brick actionBlock];
     action();
 
-    XCTAssertEqualWithAccuracy([object scaleX], 1030.0f, 0.0001, @"X - Scale not correct");
-    XCTAssertEqualWithAccuracy([object scaleY], 1030.0f, 0.0001, @"Y - Scale not correct");
+    XCTAssertEqualWithAccuracy([spriteNode scaleX], 1030.0f, 0.0001, @"X - Scale not correct");
+    XCTAssertEqualWithAccuracy([spriteNode scaleY], 1030.0f, 0.0001, @"Y - Scale not correct");
 }
 
 - (void)testChangeSizeByNBrickNegative
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    object.xScale = 10;
-    object.yScale = 10;
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
+    spriteNode.xScale = 10;
+    spriteNode.yScale = 10;
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -90,15 +94,17 @@
     dispatch_block_t action = [brick actionBlock];
     action();
 
-    XCTAssertEqualWithAccuracy([object scaleX], 970.0f, 0.0001, @"X - Scale not correct");
-    XCTAssertEqualWithAccuracy([object scaleY], 970.0f, 0.0001, @"Y - Scale not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.scaleX, 970.0f, 0.0001, @"X - Scale not correct");
+    XCTAssertEqualWithAccuracy(spriteNode.scaleY, 970.0f, 0.0001, @"Y - Scale not correct");
 }
 
 - (void)testChangeSizeByNBrickWrongInput
 {
     SpriteObject *object = [[SpriteObject alloc] init];
-    object.xScale = 10;
-    object.yScale = 10;
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
+    spriteNode.xScale = 10;
+    spriteNode.yScale = 10;
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -116,8 +122,8 @@
     dispatch_block_t action = [brick actionBlock];
     action();
 
-    XCTAssertEqualWithAccuracy([object scaleX], 1000.0f, 0.0001, @"X - Scale not correct");
-    XCTAssertEqualWithAccuracy([object scaleY], 1000.0f, 0.0001, @"Y - Scale not correct");
+    XCTAssertEqualWithAccuracy([spriteNode scaleX], 1000.0f, 0.0001, @"X - Scale not correct");
+    XCTAssertEqualWithAccuracy([spriteNode scaleY], 1000.0f, 0.0001, @"Y - Scale not correct");
 }
 
 @end

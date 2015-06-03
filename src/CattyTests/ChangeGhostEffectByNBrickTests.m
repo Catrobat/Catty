@@ -23,9 +23,9 @@
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
 #import "WhenScript.h"
+#import "Pocket_Code-Swift.h"
 
 @interface ChangeGhostEffectByNBrickTests : BrickTests
-
 @end
 
 @implementation ChangeGhostEffectByNBrickTests
@@ -44,11 +44,12 @@
 
 - (void)testChangeGhostEffectByNBrickPositive
 {
-    SpriteObject* object = [[SpriteObject alloc] init];
-    object.position = CGPointMake(0, 0);
-
-    Scene* scene = [[Scene alloc] init];
-    [scene addChild:object];
+    SpriteObject *object = [[SpriteObject alloc] init];
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    spriteNode = spriteNode;
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
+    [scene addChild:spriteNode];
+    spriteNode.scenePosition = CGPointMake(0, 0);
 
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
@@ -65,21 +66,22 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(object.alpha, 0.8f, @"ChangeGhostEffectBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.alpha, 0.8f, @"ChangeGhostEffectBrick is not correctly calculated");
 }
 
 
 - (void)testChangeGhostEffectByNBrickNegative
 {
     SpriteObject* object = [[SpriteObject alloc] init];
-    object.position = CGPointMake(0, 0);
-    object.alpha = 0.4;
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
+    [scene addChild:spriteNode];
+    spriteNode.scenePosition = CGPointMake(0, 0);
+    spriteNode.alpha = 0.4;
 
-    Scene* scene = [[Scene alloc] init];
-    [scene addChild:object];
-
-    Formula* transparency =[[Formula alloc] init];
-    FormulaElement* formulaTree  = [[FormulaElement alloc] init];
+    Formula *transparency =[[Formula alloc] init];
+    FormulaElement *formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"-20";
     transparency.formulaTree = formulaTree;
@@ -93,20 +95,20 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(object.alpha, 0.6f, @"ChangeGhostEffectBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.alpha, 0.6f, @"ChangeGhostEffectBrick is not correctly calculated");
 }
 
 
 - (void)testChangeGhostEffectByNBrickOutOfRange
 {
-    
     SpriteObject* object = [[SpriteObject alloc] init];
-    object.position = CGPointMake(0, 0);
-    object.alpha = 0.4;
-    
-    Scene* scene = [[Scene alloc] init];
-    [scene addChild:object];
-    
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
+    [scene addChild:spriteNode];
+    spriteNode.scenePosition = CGPointMake(0, 0);
+    spriteNode.alpha = 0.4;
+
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
@@ -122,18 +124,18 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(object.alpha, 0.0f, @"ChangeGhostEffectBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.alpha, 0.0f, @"ChangeGhostEffectBrick is not correctly calculated");
 }
 
 - (void)testChangeGhostEffectByNBrickWrongInput
 {
-    
     SpriteObject* object = [[SpriteObject alloc] init];
-    object.position = CGPointMake(0, 0);
-    
-    Scene* scene = [[Scene alloc] init];
-    [scene addChild:object];
-    
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
+    [scene addChild:spriteNode];
+    spriteNode.scenePosition = CGPointMake(0, 0);
+
     Formula* transparency =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
@@ -149,9 +151,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(object.alpha, 1.0f, @"ChangeGhostEffectBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.alpha, 1.0f, @"ChangeGhostEffectBrick is not correctly calculated");
 }
-
-
 
 @end

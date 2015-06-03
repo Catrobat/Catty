@@ -21,7 +21,6 @@
  */
 
 #import "ScenePresenterViewController.h"
-#import "Scene.h"
 #import "ProgramLoadingInfo.h"
 #import "Parser.h"
 #import "ProgramDefines.h"
@@ -47,14 +46,17 @@
 #import "UIDefines.h"
 #import "FlashHelper.h"
 #import "CatrobatLanguageDefines.h"
+#import "BaseTableViewController.h"
+#import "Pocket_Code-Swift.h"
 
-@interface ScenePresenterViewController ()<UIActionSheetDelegate>
+@interface ScenePresenterViewController() <UIActionSheetDelegate>
 @property (nonatomic) BOOL menuOpen;
 @property (nonatomic) CGPoint firstGestureTouchPoint;
 @property (nonatomic) UIImage *snapshotImage;
 @property (nonatomic, strong) UIView *gridView;
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) SKView *skView;
+@property (nonatomic) BOOL restartProgram;
 @end
 
 @implementation ScenePresenterViewController
@@ -63,6 +65,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.restartProgram = NO;
+    [[[self class] sharedLoadingView] removeFromSuperview];
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
 
     // MenuImageBackground
@@ -119,8 +123,8 @@
 {
     [super viewWillDisappear:animated];
     [self.menuView removeFromSuperview];
-    self.navigationController.navigationBar.hidden = NO;
-    [self.navigationController setToolbarHidden:NO animated:NO];
+    self.navigationController.navigationBar.hidden = self.restartProgram;
+    self.navigationController.toolbarHidden = self.restartProgram;
     UIApplication.sharedApplication.statusBarHidden = NO;
     UIApplication.sharedApplication.idleTimerDisabled = NO;
     [[FlashHelper sharedFlashHandler] turnOff]; // always turn off flash light when Scene is stopped
@@ -140,6 +144,11 @@
 #pragma mark - Initialization & Setup & Dealloc
 #pragma mark Dealloc
 - (void)dealloc
+{
+    [self freeRessources];
+}
+
+- (void)freeRessources
 {
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
@@ -322,8 +331,7 @@
 
 - (void)setupScene
 {
-    CGSize programSize = CGSizeMake(self.program.header.screenWidth.floatValue, self.program.header.screenHeight.floatValue);
-    Scene *scene = [[Scene alloc] initWithSize:programSize andProgram:self.program];
+    CBPlayerScene *scene = [SetupScene setupSceneForProgram:self.program];
     scene.name = self.program.header.programName;
     if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
         scene.scaleMode = SKSceneScaleModeFill;
@@ -353,9 +361,9 @@
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:self.skView];
         NSDebug(@"StartTouchinScenePresenter");
-        
-        Scene *scene = (Scene *)self.skView.scene;
-        if ([scene touchedwith:touches withX:location.x andY:location.y]) {
+
+        CBPlayerScene *scene = (CBPlayerScene*)self.skView.scene;
+        if ([scene touchedWithTouches:touches withX:location.x andY:location.y]) {
             break;
         }
     }
@@ -405,55 +413,66 @@
 {
     [self.loadingView show];
     self.menuView.userInteractionEnabled = NO;
-    Scene *previousScene = (Scene*)self.skView.scene;
+    CBPlayerScene *previousScene = (CBPlayerScene*)self.skView.scene;
     previousScene.userInteractionEnabled = NO;
-
-    // busy waiting on other thread until all SpriteKit actions have been finished
-    __weak typeof(self)weakSelf = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        [previousScene stopProgramWithCompletion:^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [[FlashHelper sharedFlashHandler] pause];
-                previousScene.userInteractionEnabled = YES;
-                [self.loadingView hide];
-                [weakSelf.parentViewController.navigationController setToolbarHidden:NO];
-                [weakSelf.parentViewController.navigationController setNavigationBarHidden:NO];
-                [weakSelf.navigationController popViewControllerAnimated:YES];
-            });
-        }];
-    });
+    [previousScene stopProgram];
+    [[AudioManager sharedAudioManager] stopAllSounds];
+    [[FlashHelper sharedFlashHandler] pause];
+    previousScene.userInteractionEnabled = YES;
+    [self.loadingView hide];
+    [self.parentViewController.navigationController setToolbarHidden:NO];
+    [self.parentViewController.navigationController setNavigationBarHidden:NO];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)restartProgramAction:(UIButton*)sender
 {
-// TODO: NOT YET IMPLEMENTED!!
+    [self.loadingView show];
+    self.menuView.userInteractionEnabled = NO;
+    CBPlayerScene *previousScene = (CBPlayerScene*)self.skView.scene;
+    previousScene.userInteractionEnabled = NO;
+    [previousScene stopProgram];
     [[FlashHelper sharedFlashHandler] pause];
     [[FlashHelper sharedFlashHandler] reset];
-    NSError(@"\n\n\n\n\n\n  !!! Not yet implemented !!!\n\n\n");
-    abort();
-//    self.view.userInteractionEnabled = NO;
-//    dispatch_queue_t backgroundQueue = dispatch_queue_create("org.catrobat.restartProgram", 0);
-//    __weak typeof(self)weakSelf = self;
-//    dispatch_async(backgroundQueue, ^{
-//        @synchronized(weakSelf) {
-//            Scene *previousScene = (Scene*)weakSelf.skView.scene;
-//            [previousScene restartProgramWithCompletion:^{
-//                dispatch_sync(dispatch_get_main_queue(), ^{
-//                    if (! weakSelf.program) {
-//                        [[[UIAlertView alloc] initWithTitle:kLocalizedCantRestartProgram
-//                                                    message:nil
-//                                                   delegate:weakSelf.menuView
-//                                          cancelButtonTitle:kLocalizedOK
-//                                          otherButtonTitles:nil] show];
-//                        return;
-//                    }
-//                    [weakSelf.skView presentScene:previousScene];
-//                    [weakSelf continueProgramAction:nil withDuration:0.0f];
-//                    weakSelf.view.userInteractionEnabled = YES;
-//                });
-//            }];
-//        }
-//    });
+
+    // FIXME: UGLY HACK BUT ACTUALLY WORKS...
+    [self freeRessources];
+    NSMutableArray *controllers = [self.navigationController.viewControllers mutableCopy];
+    [controllers removeLastObject];
+    UIViewController *previousVC = (UIViewController*)controllers.lastObject; // previous object
+    if ([previousVC respondsToSelector:@selector(playSceneAction:animated:)]) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.4 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [((BaseTableViewController*)previousVC) playSceneAction:sender animated:NO];
+        });
+    } else {
+        assert("PLEASE IMPLEMENT playSceneAction:animated method IN UIVIEWCONTROLLER THAT SEGUED TO SCENEPRESENTERVIEWCONTROLLER!!");
+    }
+    self.menuView.userInteractionEnabled = YES;
+    previousScene.userInteractionEnabled = YES;
+    [self.loadingView hide];
+
+    UIView *loadingView = [[self class] sharedLoadingView];
+    [self.parentViewController.view addSubview:loadingView];
+    [self.parentViewController.view bringSubviewToFront:loadingView];
+    self.restartProgram = YES;
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
++ (UIView*)sharedLoadingView
+{
+    static UIView *loadingView = nil;
+    if (loadingView == nil) {
+        loadingView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        UILabel *label = [[UILabel alloc] initWithFrame:loadingView.frame];
+        label.font = [UIFont systemFontOfSize:36];
+        label.text = [NSString stringWithFormat:@"%@...", kLocalizedLoading];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = [UIColor whiteColor];
+        [loadingView addSubview:label];
+        loadingView.backgroundColor = [UIColor airForceBlueColor];
+        loadingView.alpha = 1.0;
+    }
+    return loadingView;
 }
 
 #pragma mark User Event Handling
@@ -681,7 +700,7 @@
 {
     // lazy instantiation
     if (! _loadingView) {
-        _loadingView = [[LoadingView alloc] init];
+        _loadingView = [LoadingView new];
         [self.view addSubview:_loadingView];
         [self.view bringSubviewToFront:_loadingView];
         _loadingView.backgroundColor = [UIColor whiteColor];

@@ -24,7 +24,6 @@
 #import <XCTest/XCTest.h>
 #import <XCTest/XCTest.h>
 #import "SpriteObject.h"
-#import "Scene.h"
 #import "Script.h"
 #import "Formula.h"
 #import "FormulaElement.h"
@@ -32,7 +31,6 @@
 #import "Program.h"
 #import "Parser.h"
 #import "Look.h"
-#import "BroadcastWaitHandler.h"
 #import <SpriteKit/SpriteKit.h>
 #import "UserVariable.h"
 #import "VariablesContainer.h"

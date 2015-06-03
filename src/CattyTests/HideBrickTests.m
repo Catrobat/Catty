@@ -23,9 +23,9 @@
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
 #import "WhenScript.h"
+#import "Pocket_Code-Swift.h"
 
 @interface HideBrickTests : BrickTests
-
 @end
 
 @implementation HideBrickTests
@@ -44,12 +44,12 @@
 
 - (void)testHideBrick
 {
-    
-    SpriteObject* object = [[SpriteObject alloc] init];
-    object.position = CGPointMake(0, 0);
-    
-    Scene* scene = [[Scene alloc] init];
-    [scene addChild:object];
+    SpriteObject *object = [[SpriteObject alloc] init];
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
+    [scene addChild:spriteNode];
+    spriteNode.scenePosition = CGPointMake(0, 0);
 
     Script *script = [[WhenScript alloc] init];
     script.object = object;
@@ -59,9 +59,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    
-    
-    XCTAssertEqual(object.hidden, YES, @"HideBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.hidden, YES, @"HideBrick is not correctly calculated");
 }
 
 @end

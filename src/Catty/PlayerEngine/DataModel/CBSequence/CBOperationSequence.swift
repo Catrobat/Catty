@@ -20,6 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-@objc protocol CBSequence {
-    func isEmpty() -> Bool
+final class CBOperationSequence : CBSequence {
+
+    // MARK: - Properties
+    lazy var operationList = [CBOperation]()
+
+    // MARK: - Initializers
+    override init(rootSequenceList: CBScriptSequenceList) {
+        super.init(rootSequenceList: rootSequenceList)
+    }
+
+    // MARK: - Operations
+    override func isEmpty() -> Bool {
+        return (operationList.count == 0)
+    }
+
+    func addOperation(operation : CBOperation) {
+        operationList.append(operation)
+    }
+
 }

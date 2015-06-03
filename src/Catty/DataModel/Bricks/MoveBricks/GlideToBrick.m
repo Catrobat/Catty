@@ -24,6 +24,7 @@
 #import "Script.h"
 #import "Formula.h"
 #import "CBMutableCopyContext.h"
+#import "Pocket_Code-Swift.h"
 
 @interface GlideToBrick()
 
@@ -94,14 +95,14 @@
         
         if(!self.isInitialized) {
             self.isInitialized = YES;
-            self.currentPoint = self.script.object.position;
+            self.currentPoint = self.script.object.spriteNode.scenePosition;
             self.startingPoint = self.currentPoint;
         }
         // TODO: handle extreme movemenets and set currentPoint accordingly
         CGFloat percent = (CGFloat)(elapsedTime / durationInSeconds);
         CGFloat xPoint = (CGFloat)(self.startingPoint.x + (xDestination - self.startingPoint.x) * percent);
         CGFloat yPoint = (CGFloat)(self.startingPoint.y + (yDestination - self.startingPoint.y) * percent);
-        self.script.object.position = self.currentPoint = CGPointMake(xPoint, yPoint);
+        self.script.object.spriteNode.scenePosition = self.currentPoint = CGPointMake(xPoint, yPoint);
     }];
 }
 
