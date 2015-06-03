@@ -191,8 +191,11 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
                 }
             } else if let waitBrick = operation.brick as? WaitBrick {
                 instructionList += { [weak self] in
-                    let duration = waitBrick.timeToWaitInSeconds.interpretDoubleForSprite(waitBrick.script.object)
-                    let uduration = UInt32(duration * 1_000_000) // in microseconds
+                    var duration = waitBrick.timeToWaitInSeconds.interpretDoubleForSprite(waitBrick.script.object) * 1_000_000;
+                    if duration > Double(UINT32_MAX) {
+                        duration = Double(UINT32_MAX)
+                    }
+                    let uduration = UInt32(duration) // in microseconds
                     // >1ms => duration for queue switch ~0.1ms => less than 10% inaccuracy
                     if uduration > 1_000 {
                         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
