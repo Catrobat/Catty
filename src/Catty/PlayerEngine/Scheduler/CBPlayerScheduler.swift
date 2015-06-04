@@ -82,7 +82,7 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
 
     // MARK: - Scheduling
     func runNextInstructionOfContext(context: CBScriptContextAbstract) {
-        assert(context.state != .Waiting, "This should NEVER happen!")
+        if context.state == .Waiting { return }
         if _scheduledScriptContexts.count == 0 { return }
 
         // apply scheduling via StrategyPattern => selects script to be scheduled NOW!

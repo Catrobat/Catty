@@ -64,10 +64,19 @@ final class CBPlayerSchedulingAlgorithmLoadBalancing : CBPlayerSchedulingAlgorit
     private var _priorityQueue = PriorityQueue<CBContextElement>({
         $0.numOfPastInstructions < $1.numOfPastInstructions
     })
+    private var _lastContextElement: CBScriptContextAbstract? = nil
+    private var _lastContextElementInstructions: Int = 0
 
     func contextForNextInstruction(lastContext: CBScriptContextAbstract?,
         scheduledContexts: [CBScriptContextAbstract]) -> CBScriptContextAbstract?
     {
+        if --_lastContextElementInstructions > 0 && _lastContextElement != nil {
+            return _lastContextElement
+        }
+
+        let instructionsPerSchedulingFrame = 3
+
+        let startTime = NSDate()
         assert(scheduledContexts.isEmpty == false) // make sure dict is not empty (as specified!)
         var runningContexts = [CBScriptContextAbstract]()
         for scheduledContext in scheduledContexts {
@@ -102,12 +111,16 @@ final class CBPlayerSchedulingAlgorithmLoadBalancing : CBPlayerSchedulingAlgorit
                     }
                     continue
                 }
-                ++contextElement.numOfPastInstructions // current instruction
+                contextElement.numOfPastInstructions += instructionsPerSchedulingFrame
+                _lastContextElement = contextElement.context
+                _lastContextElementInstructions += instructionsPerSchedulingFrame
                 _priorityQueue.push(contextElement)
-                for element in _priorityQueue.heap {
-                    println("\(element.numOfPastInstructions): \(element.context.script.description())")
-                }
+//                for element in _priorityQueue.heap {
+//                    println("\(element.numOfPastInstructions): \(element.context.script.description())")
+//                }
                 assert(context.isLocked == false)
+                let duration = NSDate().timeIntervalSinceDate(startTime)
+                println("Scheduler-Algorithm Duration: \(duration)s")
                 return context
             } else {
                 return nil
