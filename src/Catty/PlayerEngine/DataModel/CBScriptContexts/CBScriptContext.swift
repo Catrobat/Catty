@@ -79,7 +79,7 @@ class CBScriptContextAbstract : SKNode {
         }
 
         // after first instruction executed => set state to RunningMature
-        if state == .Running && ((_reverseInstructionPointer - 1) < (_instructionList.count - 3)) {
+        if state == .Running {
             state = .RunningMature
         }
         return _instructionList[--_reverseInstructionPointer]
