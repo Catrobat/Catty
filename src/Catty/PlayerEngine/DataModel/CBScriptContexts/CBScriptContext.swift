@@ -38,7 +38,7 @@ class CBScriptContextAbstract : SKNode {
     final private var _stateStorage: CBScriptState
     final var state: CBScriptState {
         get { return _stateStorage }
-        // if script is RunningBlocking (BroadcastScript called by BroadcastWait) then do not change state!
+        // if script is RunningBlocking (i.e. BroadcastScript called by BroadcastWait) => do not change state!
         set { _stateStorage = (_stateStorage != .RunningBlocking || newValue != .RunningMature) ? newValue : _stateStorage }
     }
     final var count: Int { return _instructionList.count }
@@ -79,7 +79,7 @@ class CBScriptContextAbstract : SKNode {
         }
 
         // after first instruction executed => set state to RunningMature
-        if state == .Running {
+        if state == .Running && ((_reverseInstructionPointer - 1) < (_instructionList.count - 3)) {
             state = .RunningMature
         }
         return _instructionList[--_reverseInstructionPointer]

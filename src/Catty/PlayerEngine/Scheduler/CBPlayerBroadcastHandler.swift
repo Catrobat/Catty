@@ -126,12 +126,13 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
     func performBroadcastWithMessage(message: String, senderScriptContext: CBScriptContextAbstract,
         broadcastType: CBBroadcastType)
     {
-        senderScriptContext.state = .RunningMature
+        senderScriptContext.state = .Waiting
         if scheduler?.allStartScriptContextsReachedMatureState() == false {
             logger.info("Enqueuing \(broadcastType.typeName()): \(message)")
             _broadcastStartQueueBuffer += (message, senderScriptContext, broadcastType)
             return
         }
+        senderScriptContext.state = .RunningMature
 
         logger.info("Performing \(broadcastType.typeName()): \(message)")
         let enqueuedWaitingScripts = _broadcastWaitingScriptContextsQueue[senderScriptContext]

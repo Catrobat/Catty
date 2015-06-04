@@ -34,7 +34,8 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
     private let _broadcastHandler : CBPlayerBroadcastHandlerProtocol
 
     // MARK: - Initializers
-    init(logger: CBLogger, scheduler: CBPlayerSchedulerProtocol, broadcastHandler: CBPlayerBroadcastHandlerProtocol)
+    init(logger: CBLogger, scheduler: CBPlayerSchedulerProtocol,
+        broadcastHandler: CBPlayerBroadcastHandlerProtocol)
     {
         self.logger = logger
         _scheduler = scheduler
@@ -67,47 +68,60 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
         return scriptContext!
     }
 
-    private func _instructionsForSequence(sequenceList: CBSequenceList, context: CBScriptContextAbstract) -> [CBExecClosure]
+    private func _instructionsForSequence(sequenceList: CBSequenceList, context: CBScriptContextAbstract)
+        -> [CBExecClosure]
     {
         var instructionList = [CBExecClosure]()
-        for sequence in sequenceList.reverseSequenceList().sequenceList {
+        for sequence in sequenceList.reverseSequenceList().sequenceList { // reverse order!
             if let operationSequence = sequence as? CBOperationSequence {
+                // operation sequence
                 instructionList += _instructionsForOperationSequence(operationSequence, context: context)
             } else if let ifSequence = sequence as? CBIfConditionalSequence {
-                // check if else branch is empty!
-                var numberOfElseInstructions = 0
-                if ifSequence.elseSequenceList != nil {
-                    // add else instructions
-                    let elseInstructions = _instructionsForSequence(ifSequence.elseSequenceList!, context: context)
-                    numberOfElseInstructions = elseInstructions.count
-                    instructionList += elseInstructions
-
-                    // add jump instruction to be the last if instruction (needed to avoid executing else sequence)
-                    instructionList += {
-                        [weak self] in
-                        context.jump(numberOfInstructions: numberOfElseInstructions)
-                        self?._scheduler.runNextInstructionOfContext(context)
-                    }
-                }
-                // add if instructions
-                let ifInstructions = _instructionsForSequence(ifSequence.sequenceList, context: context)
-                let numberOfIfInstructions = ifInstructions.count
-                instructionList += ifInstructions
-                // add if condition evaluation instruction
-                instructionList += { [weak self] in
-                    if ifSequence.checkCondition() == false {
-                        var numberOfInstructionsToJump = numberOfIfInstructions
-                        if ifSequence.elseSequenceList != nil {
-                            ++numberOfInstructionsToJump // includes jump instruction at the end of if sequence
-                        }
-                        context.jump(numberOfInstructions: numberOfInstructionsToJump)
-                    }
-                    self?._scheduler.runNextInstructionOfContext(context)
-                }
+                // if sequence
+                instructionList += _instructionsForIfSequence(ifSequence, context: context)
             } else if let conditionalSequence = sequence as? CBConditionalSequence {
                 // loop sequence
                 instructionList += _instructionsForLoopSequence(conditionalSequence, context: context)
             }
+        }
+        return instructionList
+    }
+
+    private func _instructionsForIfSequence(ifSequence: CBIfConditionalSequence,
+        context: CBScriptContextAbstract) -> [CBExecClosure]
+    {
+        var instructionList = [CBExecClosure]() // reverse order!
+        // check if else branch is empty!
+        var numberOfElseInstructions = 0
+        if ifSequence.elseSequenceList != nil {
+            // add else instructions
+            let elseInstructions = _instructionsForSequence(ifSequence.elseSequenceList!, context: context)
+            numberOfElseInstructions = elseInstructions.count
+            instructionList += elseInstructions
+
+            // add jump instruction to be the last if instruction (needed to avoid executing else sequence)
+            instructionList += { [weak self] in
+                context.state = .RunningMature
+                context.jump(numberOfInstructions: numberOfElseInstructions)
+                self?._scheduler.runNextInstructionOfContext(context)
+            }
+        }
+
+        // add if instructions
+        let ifInstructions = _instructionsForSequence(ifSequence.sequenceList, context: context)
+        let numberOfIfInstructions = ifInstructions.count
+        instructionList += ifInstructions
+        // add if condition evaluation instruction
+        instructionList += { [weak self] in
+            if ifSequence.checkCondition() == false {
+                context.state = .RunningMature
+                var numberOfInstructionsToJump = numberOfIfInstructions
+                if ifSequence.elseSequenceList != nil {
+                    ++numberOfInstructionsToJump // includes jump instruction at the end of if sequence
+                }
+                context.jump(numberOfInstructions: numberOfInstructionsToJump)
+            }
+            self?._scheduler.runNextInstructionOfContext(context)
         }
         return instructionList
     }
@@ -117,9 +131,9 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
     {
         let bodyInstructions = _instructionsForSequence(conditionalSequence.sequenceList, context: context)
         let numOfBodyInstructions = bodyInstructions.count
-
-        let loopEndInstruction : CBExecClosure = { [weak self] in
+        let loopEndInstruction: CBExecClosure = { [weak self] in
             context.isLocked = true
+            context.state = .RunningMature
             var numOfInstructionsToJump = 0
             if conditionalSequence.checkCondition() {
                 numOfInstructionsToJump -= numOfBodyInstructions + 1 // includes current instruction
@@ -138,7 +152,6 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
                     self?.logger.debug("Waiting on high priority queue")
                     let uduration = UInt32((0.02 - duration) * 1_000_000) // in microseconds
                     usleep(uduration)
-//                    NSThread.sleepForTimeInterval(0.02 - duration)
 
                     // now switch back to the main queue for executing the sequence!
                     dispatch_async(dispatch_get_main_queue(), {
@@ -154,14 +167,14 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
                 self?._scheduler.runNextInstructionOfContext(context)
             }
         }
-        let loopBeginInstruction : CBExecClosure = { [weak self] in
-            var numOfInstructionsToJump = 0
+        let loopBeginInstruction: CBExecClosure = { [weak self] in
             if conditionalSequence.checkCondition() {
                 conditionalSequence.lastLoopIterationStartTime = NSDate()
             } else {
-                numOfInstructionsToJump += numOfBodyInstructions + 1 // includes loop end instruction!
+                context.state = .RunningMature
+                let numOfInstructionsToJump = numOfBodyInstructions + 1 // includes loop end instruction!
+                context.jump(numberOfInstructions: numOfInstructionsToJump)
             }
-            context.jump(numberOfInstructions: numOfInstructionsToJump)
             self?._scheduler.runNextInstructionOfContext(context)
         }
         // finally add all instructions to list (reverse order!)
@@ -176,7 +189,7 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
         context: CBScriptContextAbstract) -> [CBExecClosure]
     {
         var instructionList = [CBExecClosure]()
-        for operation in operationSequence.operationList.reverse() {
+        for operation in operationSequence.operationList.reverse() { // reverse order!
             if let broadcastBrick = operation.brick as? BroadcastBrick {
                 instructionList += { [weak self] in
                     let msg = broadcastBrick.broadcastMessage
@@ -208,6 +221,7 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
         -> CBExecClosure
     {
         return { [weak self] in
+            context.state = .RunningMature
             let object = waitBrick.script.object
             let durationInSeconds = waitBrick.timeToWaitInSeconds.interpretDoubleForSprite(object)
 
