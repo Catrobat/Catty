@@ -190,30 +190,7 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
                         broadcastType: .BroadcastWait)
                 }
             } else if let waitBrick = operation.brick as? WaitBrick {
-                instructionList += { [weak self] in
-                    var duration = waitBrick.timeToWaitInSeconds.interpretDoubleForSprite(waitBrick.script.object) * 1_000_000;
-                    if duration > Double(UINT32_MAX) {
-                        duration = Double(UINT32_MAX)
-                    }
-                    let uduration = UInt32(duration) // in microseconds
-                    // >1ms => duration for queue switch ~0.1ms => less than 10% inaccuracy
-                    if uduration > 1_000 {
-                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-                            // high priority queue only needed for blocking purposes...
-                            // the reason for this is that you should NEVER block the (serial) main_queue!!
-                            usleep(uduration)
-
-                            // now switch back to the main queue for executing the next instruction!
-                            dispatch_async(dispatch_get_main_queue(), {
-                                self?._scheduler.runNextInstructionOfContext(context)
-                            });
-                        });
-                    } else {
-                        // to be honest: duration of <1ms is too short for a queue switch due to >10% accuracy
-                        usleep(uduration)
-                        self?._scheduler.runNextInstructionOfContext(context)
-                    }
-                }
+                instructionList += _instructionForWaitBrick(waitBrick, context: context)
             } else {
                 instructionList += { [weak self] in
                     context.runAction(operation.brick.action(), completion:{
@@ -224,5 +201,60 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
             }
         }
         return instructionList
+    }
+
+    // MARK: Custom Brick Instructions
+    private func _instructionForWaitBrick(waitBrick: WaitBrick, context: CBScriptContextAbstract)
+        -> CBExecClosure
+    {
+        return { [weak self] in
+            let object = waitBrick.script.object
+            let durationInSeconds = waitBrick.timeToWaitInSeconds.interpretDoubleForSprite(object)
+
+            // ignore wait operation if an invalid duration is given!
+            // => UInt32 underflow not possible any more!
+            if durationInSeconds <= 0.0 {
+                self?._scheduler.runNextInstructionOfContext(context)
+                return
+            }
+
+            if durationInSeconds > 60.0 {
+                self?.logger.warn("WOW!!! long time to sleep (more than 1 minute!!!)...")
+                let wakeUpTime = NSDate().dateByAddingTimeInterval(durationInSeconds)
+                self?.logger.debug("Sleeping now until \(wakeUpTime)...")
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+                    NSThread.sleepUntilDate(wakeUpTime)
+                    // now switch back to the main queue for executing the next instruction!
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self?._scheduler.runNextInstructionOfContext(context)
+                    });
+                });
+            } else {
+                let durationInMicroSeconds = durationInSeconds * 1_000_000
+                // no worry about UInt32 overflow => not possible any more
+                // because of previous if condition!
+                let uduration = UInt32(durationInMicroSeconds) // in microseconds
+                // >1ms => duration for queue switch ~0.1ms => less than 10% inaccuracy
+                if uduration > 1_000 {
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+                        // high priority queue only needed for blocking purposes...
+                        // the reason for this is that you should NEVER block (serial) main_queue!!
+                        usleep(uduration)
+                        
+                        // now switch back to the main queue for executing the next instruction!
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self?._scheduler.runNextInstructionOfContext(context)
+                        });
+                    });
+                } else {
+                    // to be honest: duration of <1ms is too short for a queue
+                    //               switch due to >10% accuracy
+                    if uduration > 0 { // maybe duration is too small and became 0 after UInt32 conversion
+                        usleep(uduration)
+                    }
+                    self?._scheduler.runNextInstructionOfContext(context)
+                }
+            }
+        }
     }
 }
