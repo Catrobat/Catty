@@ -203,7 +203,13 @@
         if(isParentAnOperator && ([Operators getOperatorByValue:self.parent.value] == EQUAL ||
                                   [Operators getOperatorByValue:self.parent.value] == NOT_EQUAL))
         {
-            return value;
+            NSNumber *anotherValue = [formatter numberFromString:value];
+            if(anotherValue == nil)
+            {
+                return value;
+            }else{
+                return anotherValue;
+            }
         }
     }
     
@@ -216,7 +222,8 @@
     
     if(anotherValue == nil)
     {
-        return [NSNumber numberWithDouble:0.0f];
+        return value;
+        //return [NSNumber numberWithDouble:0.0f];
     }else{
         return anotherValue;
     }
@@ -393,6 +400,9 @@
         double left = 0.0f;
         double right = 0.0f;
         
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        formatter.numberStyle = NSNumberFormatterDecimalStyle;
+        
         id leftId = [self.leftChild interpretRecursiveForSprite:sprite];
         if([leftId isKindOfClass:[NSNumber class]])
         {
@@ -405,7 +415,6 @@
             right = [rightId doubleValue];
         }
         
-    
         switch (operator) {
             case LOGICAL_AND: {
                 result = [NSNumber numberWithDouble:(left * right) != 0.0 ? 1.0 : 0.0];
@@ -416,11 +425,68 @@
                 break;
             }
             case EQUAL: {
-                result = [NSNumber numberWithDouble:left == right ? 1.0 : 0.0];
+                if([leftId isKindOfClass:[NSString class]] && [rightId isKindOfClass:[NSString class]])
+                {
+                    if([leftId isEqualToString:rightId])
+                    {
+                        return [NSNumber numberWithDouble:1.0f];
+                    }
+                    else
+                    {
+                        return [NSNumber numberWithDouble:0.0f];
+                    }
+                }else{
+                    if([leftId isKindOfClass:[NSString class]])
+                    {
+                        leftId = [formatter numberFromString:leftId];
+                    }
+                    
+                    if([rightId isKindOfClass:[NSString class]])
+                    {
+                        rightId = [formatter numberFromString:rightId];
+                    }
+                    
+                    
+                    if(leftId == nil || rightId == nil)
+                    {
+                        return [NSNumber numberWithDouble:0.0f];
+                    }else{
+                        result = [NSNumber numberWithDouble:left == right ? 1.0 : 0.0];
+                    }
+                }
                 break;
             }
             case NOT_EQUAL: {
-                result = [NSNumber numberWithDouble:left == right ? 0.0 : 1.0];
+                if([leftId isKindOfClass:[NSString class]] && [rightId isKindOfClass:[NSString class]])
+                {
+                    if([leftId isEqualToString:rightId])
+                    {
+                        return [NSNumber numberWithDouble:0.0f];
+                    }
+                    else
+                    {
+                        return [NSNumber numberWithDouble:1.0f];
+                    }
+                }else{
+                    if([leftId isKindOfClass:[NSString class]])
+                    {
+                        leftId = [formatter numberFromString:leftId];
+                    }
+                    
+                    if([rightId isKindOfClass:[NSString class]])
+                    {
+                        rightId = [formatter numberFromString:rightId];
+                    }
+                    
+                    
+                    if(leftId == nil || rightId == nil)
+                    {
+                        return [NSNumber numberWithDouble:1.0f];
+                    }else{
+                        result = [NSNumber numberWithDouble:left == right ? 0.0 : 1.0];
+                    }
+                }
+                
                 break;
             }
             case SMALLER_OR_EQUAL: {
@@ -458,6 +524,7 @@
                     result = left;
                 }*/
                 result = [NSNumber numberWithDouble:left / right];
+                
                 break;
             }
 
@@ -465,6 +532,19 @@
                 //abort();
                 [InternFormulaParserException raise:@"Unknown Operator" format:@"Unknown Operator: %d", operator];
                 break;
+        }
+        if([leftId isKindOfClass:[NSString class]])
+        {
+            leftId = [formatter numberFromString:leftId];
+        }
+        
+        if([rightId isKindOfClass:[NSString class]])
+        {
+            rightId = [formatter numberFromString:rightId];
+        }
+        if(rightId == nil || leftId == nil)
+        {
+            result = nil;
         }
     }
     else { // unary operator
