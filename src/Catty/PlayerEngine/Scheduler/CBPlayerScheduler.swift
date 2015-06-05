@@ -69,7 +69,10 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
     func allStartScriptContextsReachedMatureState() -> Bool {
         for registeredContext in _scheduledScriptContexts {
             if let startContext = registeredContext as? CBStartScriptContext {
-                if startContext.state != .RunningMature {
+                if startContext.state != .RunningMature
+                    && startContext.state != .Waiting
+                    && startContext.state != .Dead
+                {
                     return false
                 }
             }
