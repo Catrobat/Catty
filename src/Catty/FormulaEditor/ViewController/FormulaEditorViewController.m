@@ -160,10 +160,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
         BOOL saved = NO;
         if([self.history undoIsPossible] || [self.history redoIsPossible]) {
             [self saveIfPossible];
-            [self showChangesSavedView];
             saved = YES;
         }
         [self setBrickCellFormulaData:brickCellData];
+        if(saved) {
+            [self showChangesSavedView];
+        }
         return saved;
     } else if(formulaParserStatus == FORMULA_PARSER_STACK_OVERFLOW) {
         [self showFormulaTooLongView];
@@ -964,14 +966,28 @@ static NSCharacterSet *blockedCharacterSet = nil;
     
 }
 
+#define kBDKNotifyHUDPaddingTop 30.0f
+
 - (void)showNotification:(NSString*)text
 {
     if(self.notficicationHud)
         [self.notficicationHud removeFromSuperview];
     
+    CGFloat brickAndInputHeight = self.navigationController.navigationBar.frame.size.height + self.brickCellData.brickCell.frame.size.height + self.formulaEditorTextView.frame.size.height + [[UIApplication sharedApplication] statusBarFrame].size.height + 10;
+    CGFloat keyboardHeight = self.formulaEditorTextView.inputView.frame.size.height;
+    CGFloat spacerHeight = self.view.frame.size.height - brickAndInputHeight - keyboardHeight;
+    CGFloat offset;
+    
     self.notficicationHud = [BDKNotifyHUD notifyHUDWithImage:nil text:text];
     self.notficicationHud.destinationOpacity = 0.30f;
-    self.notficicationHud.center = CGPointMake(self.view.center.x, self.view.center.y - 20);
+    
+    if(spacerHeight < self.notficicationHud.frame.size.height)
+        offset = brickAndInputHeight / 2 + self.notficicationHud.frame.size.height / 2;
+    else
+        offset = brickAndInputHeight + self.notficicationHud.frame.size.height / 2 + kBDKNotifyHUDPaddingTop;
+    
+    self.notficicationHud.center = CGPointMake(self.view.center.x, offset);
+    
     [self.view addSubview:self.notficicationHud];
     [self.notficicationHud presentWithDuration:1.0f speed:0.1f inView:self.view completion:^{
         [self.notficicationHud removeFromSuperview];
