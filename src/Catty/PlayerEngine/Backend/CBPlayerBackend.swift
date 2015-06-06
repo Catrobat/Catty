@@ -171,6 +171,7 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
             if conditionalSequence.checkCondition() {
                 conditionalSequence.lastLoopIterationStartTime = NSDate()
             } else {
+                conditionalSequence.resetCondition() // IMPORTANT: reset loop counter right now
                 context.state = .RunningMature
                 let numOfInstructionsToJump = numOfBodyInstructions + 1 // includes loop end instruction!
                 context.jump(numberOfInstructions: numOfInstructionsToJump)
