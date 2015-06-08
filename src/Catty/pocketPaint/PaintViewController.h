@@ -23,10 +23,10 @@
 #import <UIKit/UIKit.h>
 #import "BrushPickerViewController.h"
 #import "ColorPickerViewController.h"
-#import "LCTableViewPickerControl.h"
 #import "LooksTableViewController.h"
 #import "Util.h"
 #import "CatrobatAlertView.h"
+#import "LCTableViewPickerControl.h"
 
 @interface PaintViewController : UIViewController  <BrushPickerViewControllerDelegate,ColorPickerViewControllerDelegate,UIGestureRecognizerDelegate,UIScrollViewDelegate,UINavigationControllerDelegate,LCItemPickerDelegate,UIActionSheetDelegate,CatrobatAlertViewDelegate> {
   CGPoint lastPoint;

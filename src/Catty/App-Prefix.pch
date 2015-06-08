@@ -21,16 +21,17 @@
  */
 
 #ifdef __OBJC__
-
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
 #import "Logger.h"
 
-#define kIsRelease 0
-
-#if kIsRelease
-#undef DEBUG
+//------------------------------------------------------------------------------------------------------------
+#if DEBUG == 0
+//============================================================================================================
+//
+//                                             RELEASE MODE
+//
+//============================================================================================================
 
 // UNCOMMENT ALL LOG AND DEBUG MESSAGES IN FIRST RELEASE VERSION
 #define NSLog(...) /* suppress NSLog when in release mode */
@@ -39,22 +40,37 @@
 #define NSLogError(...) /* suppress NSLog when in release mode */
 #define NSWarn(...) /* suppress NSLog when in release mode */
 #define NSError(...) /* suppress NSLog when in release mode */
+#define CBAssert(expression, ...) /* suppress CBAssert when in release mode */
+#define CBAssertIfNotMainThread(...) /* suppress CBAssertIfNotMainThread when in release mode */
 
-#else // kIsRelease
+//------------------------------------------------------------------------------------------------------------
+#else // DEBUG == 1
+//============================================================================================================
+//
+//                                            DEVELOPER MODE
+//
+//============================================================================================================
 
-#ifdef DEBUG
-//#define NSDebug(...) [Logger debug:__VA_ARGS__];
+#define NSDebug(...) [Logger debug:__VA_ARGS__];
 //#define NSDebug(...) NSLog(@"[DEBUG]: %@", [NSString stringWithFormat:__VA_ARGS__]);
 //#define NSDebug(...) NSLog(__VA_ARGS__);
-#define NSDebug(...)
-#else
-#define NSDebug(...)
-#endif
 
 #define NSInfo(...) [Logger info:__VA_ARGS__];
 #define NSWarn(...) [Logger warn:__VA_ARGS__];
 #define NSError(...) [Logger error:__VA_ARGS__];
 #define NSLogError(error) [Logger logError:error];
 
-#endif
-#endif // kIsRelease
+// https://www.mikeash.com/pyblog/friday-qa-2013-05-03-proper-use-of-asserts.html
+#define CBAssert(expression, ...) \
+do { if(!(expression)) { \
+NSLog(@"%@", [NSString stringWithFormat: @"Assertion failure: %s in %s on line %s:%d. %@", #expression, __PRETTY_FUNCTION__, __FILE__, __LINE__, [NSString stringWithFormat:@"" __VA_ARGS__]]); \
+abort(); }} while(0)
+
+#define CBAssertIfNotMainThread(...) \
+do { if(!([NSThread isMainThread])) { \
+NSLog(@"%@", [NSString stringWithFormat: @"ERROR: Not on main thread. Assertion failure in %s on line %s:%d. %@", __PRETTY_FUNCTION__, __FILE__, __LINE__, [NSString stringWithFormat:@"" __VA_ARGS__]]); \
+abort(); }} while(0)
+
+#endif // DEBUG
+
+#endif // ifdef __OBJC__

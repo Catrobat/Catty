@@ -40,9 +40,26 @@
     self.variableFormula = formula;
 }
 
-- (void)setupEmptyBrick
+- (UserVariable*)variableForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    return self.userVariable;
+}
+
+- (void)setVariable:(UserVariable*)variable forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    self.userVariable = variable;
+}
+
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.variableFormula = [[Formula alloc] initWithZero];
+    if(spriteObject) {
+        NSArray *variables = [spriteObject.program.variables allVariablesForObject:spriteObject];
+        if([variables count] > 0)
+            self.userVariable = [variables objectAtIndex:0];
+        else
+            self.userVariable = nil;
+    }
 }
 
 - (NSString*)brickTitle
@@ -57,16 +74,18 @@
 
 - (dispatch_block_t)actionBlock
 {
-  return ^{
-    NSDebug(@"Performing: %@ on: %@", self.description, self.script.object);
-    
-    double result = [self.variableFormula interpretDoubleForSprite:self.script.object];
-    
-    Program* program = ProgramManager.sharedProgramManager.program;
-    VariablesContainer* variables = program.variables;
-    
-    [variables setUserVariable:self.userVariable toValue:result];
-  };
+    return ^{
+        NSDebug(@"Performing: %@ on: %@", self.description, self.script.object);
+        double result = [self.variableFormula interpretDoubleForSprite:self.script.object];
+
+        if ([self.userVariable.name isEqualToString:@"digit"]) {
+            NSLog(@"Result is %f", result);
+        }
+
+        Program *program = ProgramManager.sharedProgramManager.program;
+        VariablesContainer *variables = program.variables;
+        [variables setUserVariable:self.userVariable toValue:result];
+    };
 }
 
 #pragma mark - Description

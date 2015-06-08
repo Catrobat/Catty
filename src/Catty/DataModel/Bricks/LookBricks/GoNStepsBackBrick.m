@@ -23,6 +23,7 @@
 #import "GoNStepsBackBrick.h"
 #import "Formula.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation GoNStepsBackBrick
 
@@ -36,7 +37,7 @@
     self.steps = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.steps = [[Formula alloc] initWithInteger:1];
 }
@@ -62,13 +63,13 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        CGFloat zValue = self.script.object.zPosition;
+        CGFloat zValue = self.script.object.spriteNode.zPosition;
         int steps = [self.steps interpretIntegerForSprite:self.script.object];
-        NSDebug(@"%f",self.script.object.zPosition-steps);
-        self.script.object.zPosition = MAX(1, self.script.object.zPosition-steps);
+        NSDebug(@"%f",self.script.object.spriteNode.zPosition-steps);
+        self.script.object.spriteNode.zPosition = MAX(1, self.script.object.spriteNode.zPosition-steps);
         for(SpriteObject *obj in self.script.object.program.objectList){
-            if ((obj.zPosition < zValue) && (obj.zPosition >= self.script.object.zPosition) && (obj != self.script.object)) {
-                obj.zPosition +=1;
+            if ((obj.spriteNode.zPosition < zValue) && (obj.spriteNode.zPosition >= self.script.object.spriteNode.zPosition) && (obj != self.script.object)) {
+                obj.spriteNode.zPosition +=1;
             }
         }
     };

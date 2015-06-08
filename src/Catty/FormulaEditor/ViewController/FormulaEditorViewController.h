@@ -31,20 +31,21 @@
 - (void)saveFormula:(Formula*)formula;
 @end
 
-@class BrickCellFormulaFragment;
+@class BrickCellFormulaData;
 @interface FormulaEditorViewController : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate>
 @property (strong, nonatomic) InternFormula *internFormula;
 @property (strong, nonatomic) FormulaEditorHistory *history;
 @property (strong, nonatomic) NSMutableArray *variableSourceProgram;
 @property (strong, nonatomic) NSMutableArray *variableSourceObject;
+@property (strong, nonatomic) NSMutableArray *variableSource;
 @property (weak, nonatomic) SpriteObject *object;
 @property (strong, nonatomic) id<FormulaEditorViewControllerDelegate> delegate;
 
-- (id)initWithBrickCellFormulaFragment:(BrickCellFormulaFragment*)brickCellFragment;
-- (void)setBrickCellFormulaFragment:(BrickCellFormulaFragment*)brickCellFragment;
+- (id)initWithBrickCellFormulaData:(BrickCellFormulaData*)brickCellData;
+- (void)setBrickCellFormulaData:(BrickCellFormulaData*)brickCellData;
 - (void)update;
 - (void)updateDeleteButton:(BOOL)enabled;
 - (void)backspace:(id)sender;
-- (BOOL)changeFormula;
+- (BOOL)changeBrickCellFormulaData:(BrickCellFormulaData*)brickCellData;
 
 @end

@@ -29,68 +29,23 @@
 @class Script;
 @class Look;
 @class Sound;
-@class Brick;
-@protocol SpriteManagerDelegate;
-@protocol BroadcastWaitDelegate;
+@class CBSpriteNode;
 
-@protocol SpriteFormulaProtocol
+@interface SpriteObject : NSObject <CBMutableCopying>
 
-- (CGFloat) xPosition;
-- (CGFloat) yPosition;
-- (CGFloat) zIndex;
-- (CGFloat) alpha;
-- (CGFloat) brightness;
-- (CGFloat) scaleX;
-- (CGFloat) scaleY;
-- (CGFloat) rotation;
-
-@end
-
-
-@interface SpriteObject : SKSpriteNode <SpriteFormulaProtocol, CBMutableCopying>
-
-@property (assign, nonatomic) CGSize originalSize;
-
-@property (weak, nonatomic) id<SpriteManagerDelegate> spriteManagerDelegate;
-@property (weak, nonatomic) id<BroadcastWaitDelegate> broadcastWaitDelegate;
-
+@property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSMutableArray *lookList;
-
 @property (nonatomic, strong) NSMutableArray *soundList;
-
 @property (nonatomic, strong) NSMutableArray *scriptList;
-
-@property (nonatomic, strong) Look *currentLook;
-
-@property (strong, nonatomic) UIImage *currentUIImageLook;
-
-@property (nonatomic) CGFloat currentLookBrightness;
-
 @property (nonatomic, weak) Program *program;
+@property (nonatomic, weak) CBSpriteNode *spriteNode;
 
 - (NSUInteger)numberOfScripts;
-
 - (NSUInteger)numberOfTotalBricks; // including script bricks
-
 - (NSUInteger)numberOfNormalBricks; // excluding script bricks
-
 - (NSUInteger)numberOfLooks;
-
 - (NSUInteger)numberOfSounds;
-
 - (BOOL)isBackground;
-
-// events
-- (void)start:(CGFloat)zPosition;
-- (void)scriptFinished:(Script*)script;
-
-- (void)broadcast:(NSString*)message;
-- (void)broadcastAndWait:(NSString*)message;
-
-- (void)performBroadcastWaitScriptWithMessage:(NSString *)message with:(dispatch_semaphore_t) sema1;
-- (void)startAndAddScript:(Script*)script completion:(dispatch_block_t)completion;
-- (Look*)nextLook;
-- (BOOL)touchedwith:(NSSet*)touches withX:(CGFloat)x andY:(CGFloat)y;
 
 // helpers
 - (NSString*)projectPath; //for image-path!!!
@@ -108,9 +63,8 @@
 - (NSUInteger)referenceCountForSound:(NSString*)fileName;
 
 // actions
-- (void)changeLook:(Look*)look;
-- (void)setLook;
 - (void)addLook:(Look*)look AndSaveToDisk:(BOOL)save;
+- (void)removeFromProgram;
 - (void)removeLooks:(NSArray*)looks AndSaveToDisk:(BOOL)save;
 - (void)removeLook:(Look*)look AndSaveToDisk:(BOOL)save;
 - (void)removeSounds:(NSArray*)sounds AndSaveToDisk:(BOOL)save;
@@ -121,6 +75,7 @@
 - (BOOL)hasSound:(Sound*)sound;
 - (Look*)copyLook:(Look*)sourceLook withNameForCopiedLook:(NSString*)nameOfCopiedLook AndSaveToDisk:(BOOL)save;;
 - (Sound*)copySound:(Sound*)sourceSound withNameForCopiedSound:(NSString*)nameOfCopiedSound AndSaveToDisk:(BOOL)save;;
+- (void)removeReferences;
 
 // compare
 - (BOOL)isEqualToSpriteObject:(SpriteObject*)spriteObject;

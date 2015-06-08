@@ -20,25 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
-#import <UIKit/UIKit.h>
 #import "Header.h"
 #import "ProgramDefines.h"
 
 @class VariablesContainer;
 @class SpriteObject;
 @class ProgramLoadingInfo;
-@class GDataXMLDocument;
 
 @interface Program : NSObject
 
 @property (nonatomic, strong) Header *header;
 @property (nonatomic, strong) NSMutableArray *objectList;
 @property (nonatomic, strong) VariablesContainer *variables;
-@property (nonatomic, getter=isPlaying) BOOL playing;
-
-// FIXME: remove this property after serialization works
-@property (nonatomic, strong) GDataXMLDocument *XMLdocument;
 
 - (NSInteger)numberOfTotalObjects;
 - (NSInteger)numberOfBackgroundObjects;
@@ -69,7 +62,6 @@
 + (BOOL)programExistsWithProgramName:(NSString*)programName programID:(NSString*)programID;
 + (BOOL)programExistsWithProgramID:(NSString*)programID;
 + (BOOL)areThereAnyPrograms;
-
 + (void)copyProgramWithSourceProgramName:(NSString*)sourceProgramName
                          sourceProgramID:(NSString*)sourceProgramID
                   destinationProgramName:(NSString*)destinationProgramName;
@@ -82,8 +74,5 @@
 + (NSString*)programDirectoryNameForProgramName:(NSString*)programName programID:(NSString*)programID;
 + (ProgramLoadingInfo*)programLoadingInfoForProgramDirectoryName:(NSString*)programDirectoryName;
 + (NSString*)programNameForProgramID:(NSString*)programID;
-
-// FIXME: remove that later... after serialization works... (issue#84)
-+ (NSString*)projectPathForProgramWithName:(NSString*)programName programID:(NSString*)programID;
 
 @end

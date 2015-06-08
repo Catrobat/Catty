@@ -24,7 +24,5 @@
 #import "BrickMessageProtocol.h"
 
 @interface BroadcastScript : Script<BrickMessageProtocol>
-
 @property (nonatomic, strong) NSString *receivedMessage;
-
 @end

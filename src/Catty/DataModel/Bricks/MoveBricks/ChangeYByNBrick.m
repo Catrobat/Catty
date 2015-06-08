@@ -23,6 +23,7 @@
 #import "ChangeYByNBrick.h"
 #import "Formula.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation ChangeYByNBrick
 
@@ -36,7 +37,7 @@
     self.yMovement = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.yMovement = [[Formula alloc] initWithInteger:10];
 }
@@ -56,7 +57,7 @@
     return ^{
         NSDebug(@"Performing: %@", self.description);
         float yMov = (float)[self.yMovement interpretDoubleForSprite:self.script.object];
-        self.script.object.position = CGPointMake(self.script.object.position.x, self.script.object.position.y + yMov);
+        self.script.object.spriteNode.scenePosition = CGPointMake(self.script.object.spriteNode.scenePosition.x, self.script.object.spriteNode.scenePosition.y + yMov);
     };
 }
 

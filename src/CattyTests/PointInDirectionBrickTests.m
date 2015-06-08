@@ -24,6 +24,7 @@
 #import "BrickTests.h"
 #import "Script.h"
 #import "WhenScript.h"
+#import "Pocket_Code-Swift.h"
 
 @interface PointInDirectionBrickTests : BrickTests
 
@@ -45,13 +46,14 @@
 
 - (void)testPointInDirectionBrick
 {
-    SpriteObject* object = [[SpriteObject alloc] init];
-    object.position = CGPointMake(0, 0);
-    
-    Scene* scene = [[Scene alloc] init];
-    [scene addChild:object];
-    
-    Formula* degrees =[[Formula alloc] init];
+    SpriteObject *object = [[SpriteObject alloc] init];
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
+    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
+    [scene addChild:spriteNode];
+    spriteNode.scenePosition = CGPointMake(0, 0);
+
+    Formula *degrees =[[Formula alloc] init];
     FormulaElement* formulaTree  = [[FormulaElement alloc] init];
     formulaTree.type = NUMBER;
     formulaTree.value = @"20";
@@ -66,7 +68,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(object.zRotation, (float)((360-(-70))*M_PI/180), @"PointInDirectionBrick is not correctly calculated");
+    XCTAssertEqualWithAccuracy(spriteNode.zRotation, [Util degreeToRadians:(double)(360-(-70))], 0.0001, @"PointInDirectionBrick is not correctly calculated");
 }
 
 @end

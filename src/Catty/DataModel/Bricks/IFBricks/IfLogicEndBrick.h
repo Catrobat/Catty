@@ -27,7 +27,7 @@
 
 @interface IfLogicEndBrick : Brick
 
-@property (nonatomic, weak) IfLogicBeginBrick* ifBeginBrick;
-@property (nonatomic, weak) IfLogicElseBrick* ifElseBrick;
+@property (nonatomic, weak) IfLogicBeginBrick *ifBeginBrick;
+@property (nonatomic, weak) IfLogicElseBrick *ifElseBrick;
 
 @end

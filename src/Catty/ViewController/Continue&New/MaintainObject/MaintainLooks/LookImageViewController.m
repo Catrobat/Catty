@@ -127,7 +127,7 @@
     self.view.backgroundColor = [UIColor darkBlueColor];
     self.imageView.backgroundColor = [UIColor darkBlueColor];
     vc.editingImage = img;
-//    NSLog(@"%@",img);
+//    NSDebug(@"%@",img);
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -143,7 +143,7 @@
 - (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex != 0) {
-            //        NSLog(@"yes");
+            //        NSDebug(@"yes");
         if (self.paintImagePath && self.paintImage) {
             [self addPaintedImage:self.paintImage andPath:self.paintImagePath];
         }

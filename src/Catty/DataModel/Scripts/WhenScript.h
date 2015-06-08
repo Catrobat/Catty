@@ -25,4 +25,6 @@
 
 @interface WhenScript : Script
 
+@property (nonatomic, strong) NSString *action;
+
 @end

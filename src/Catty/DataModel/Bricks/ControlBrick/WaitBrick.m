@@ -37,7 +37,7 @@
     self.timeToWaitInSeconds = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.timeToWaitInSeconds = [[Formula alloc] initWithInteger:1];
 }

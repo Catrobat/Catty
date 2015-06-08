@@ -174,6 +174,25 @@
         case POW:
             return [self buildFunctionWithoutParametersAndBrackets:POW];
             break;
+        case LETTER:
+            return [self buildDoubleParameterFunction:LETTER
+                               withFirstParameterType:TOKEN_TYPE_NUMBER
+                                    andParameterValue:[NSString stringWithFormat:@"%d",1]
+                              withSecondParameterType:TOKEN_TYPE_STRING
+                              andSecondParameterValue:[NSString stringWithFormat:@"hello world"]];
+            break;
+        case LENGTH:
+            return [self buildSingleParameterFunction:LENGTH
+                               withFirstParameterType:TOKEN_TYPE_STRING
+                                    andParameterValue:@"hello world"];
+            break;
+        case JOIN:
+            return [self buildDoubleParameterFunction:JOIN
+                               withFirstParameterType:TOKEN_TYPE_STRING
+                                    andParameterValue:[NSString stringWithFormat:@"hello"]
+                              withSecondParameterType:TOKEN_TYPE_STRING
+                              andSecondParameterValue:[NSString stringWithFormat:@" world"]];
+            break;
         
         //PERIOD
             

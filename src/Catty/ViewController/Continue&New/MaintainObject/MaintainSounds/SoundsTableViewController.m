@@ -143,7 +143,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     if (self.isAllowed) {
         if (notification.userInfo) {
-                //        NSLog(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
+                NSDebug(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
             id sound = notification.userInfo[kUserInfoSound];
             if ([sound isKindOfClass:[Sound class]]) {
                 [self addSoundToObjectAction:(Sound*)sound];
@@ -151,12 +151,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
             }
         }
     }
+    if (self.afterSafeBlock) {
+        self.afterSafeBlock(nil);
+    }
 }
 - (void)recordAdded:(NSNotification*)notification
 {
     if (self.isAllowed) {
         if (notification.userInfo) {
-                //        NSLog(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
+            NSDebug(@"soundAdded notification received with userInfo: %@", [notification.userInfo description]);
             id sound = notification.userInfo[kUserInfoSound];
             if ([sound isKindOfClass:[Sound class]]) {
                 Sound* recording =(Sound*)sound;
@@ -167,20 +170,22 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 NSError *error;
                 [fileManager removeItemAtPath:filePath error:&error];
                 if (error) {
-                    NSLog(@"-.-");
+                    NSDebug(@"-.-");
                 }
                 self.isAllowed = NO;
             }
         }
     }
-
+    if (self.afterSafeBlock) {
+        self.afterSafeBlock(nil);
+    }
 }
 
 #pragma mark - actions
 - (void)editAction:(id)sender
 {
     NSMutableArray *options = [NSMutableArray array];
-    if ([self.object.soundList count]) {
+    if (self.object.soundList.count) {
         [options addObject:kLocalizedDeleteSounds];
     }
     if (self.useDetailCells) {
@@ -188,12 +193,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else {
         [options addObject:kLocalizedShowDetails];
     }
-    [Util actionSheetWithTitle:kLocalizedEditSounds
-                      delegate:self
-        destructiveButtonTitle:nil
-             otherButtonTitles:options
-                           tag:kEditSoundsActionSheetTag
-                          view:self.navigationController.view];
+    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditSounds
+                                                         delegate:self
+                                           destructiveButtonTitle:nil
+                                                otherButtonTitles:options
+                                                              tag:kEditSoundsActionSheetTag
+                                                             view:self.navigationController.view];
+    if (self.object.soundList.count) {
+        [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
+    }
 }
 
 - (void)addSoundToObjectAction:(Sound*)sound
@@ -470,10 +478,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                                   tag:kEditSoundActionSheetTag
                                                                  view:self.navigationController.view];
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        NSDictionary *payload = @{ kDTPayloadSound : [self.object.soundList objectAtIndex:indexPath.row] };
-        DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionEditSound
-                                                                     withPayload:[payload mutableCopy]];
-        actionSheet.dataTransferMessage = message;
+        actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditSound
+                                                                        withPayload:@{ kDTPayloadSound : [self.object.soundList objectAtIndex:indexPath.row] }];
     } else if (index == 1) {
         // Delete button was pressed
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
@@ -571,6 +577,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             Sound *sound = (Sound*)payload[kDTPayloadSound];
             [Util askUserForTextAndPerformAction:@selector(renameSoundActionToName:sound:)
                                           target:self
+                                    cancelAction:nil
                                       withObject:sound
                                      promptTitle:kLocalizedRenameSound
                                    promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedSoundName]
@@ -584,19 +591,23 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else if (actionSheet.tag == kAddSoundActionSheetTag) {
         if (buttonIndex == 0) {
                 //Recorder
-            NSLog(@"Recorder");
+            NSDebug(@"Recorder");
             self.isAllowed = YES;
             [self stopAllSounds];
             SRViewController *soundRecorderViewController;
             soundRecorderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kSoundRecorderViewControllerIdentifier];
+            soundRecorderViewController.soundsTableViewController = self;
             [self showViewController:soundRecorderViewController sender:self];
         } else if (buttonIndex == 1) {
             // Select music track
-            NSLog(@"Select music track");
+            NSDebug(@"Select music track");
             self.isAllowed = YES;
             AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
             if (! [delegate.fileManager existPlayableSoundsInDirectory:delegate.fileManager.documentsDirectory]) {
                 [Util alertWithText:kLocalizedNoImportedSoundsFoundDescription];
+                if(self.afterSafeBlock) {
+                    self.afterSafeBlock(nil);
+                }
                 return;
             }
             [self stopAllSounds];
@@ -605,7 +616,19 @@ static NSCharacterSet *blockedCharacterSet = nil;
             soundPickerTVC.directory = delegate.fileManager.documentsDirectory;
             UINavigationController *navigationController = [[UINavigationController alloc]
                                                             initWithRootViewController:soundPickerTVC];
-            [self presentViewController:navigationController animated:YES completion:NULL];
+            [self presentViewController:navigationController animated:YES completion:^{
+                if(self.afterSafeBlock) {
+                    self.afterSafeBlock(nil);
+                }
+            }];
+        } else {
+            if(self.afterSafeBlock) {
+                self.afterSafeBlock(nil);
+            }
+        }
+    }else{
+        if(self.afterSafeBlock) {
+            self.afterSafeBlock(nil);
         }
     }
 }
@@ -630,14 +653,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
              otherButtonTitles:@[kLocalizedPocketCodeRecorder, kLocalizedChooseSound]
                            tag:kAddSoundActionSheetTag
                           view:self.navigationController.view];
-}
-
-- (void)playSceneAction:(id)sender
-{
-    [self stopAllSounds];
-    [self.navigationController setToolbarHidden:YES animated:YES];
-    ScenePresenterViewController *vc = [[ScenePresenterViewController alloc] initWithProgram:[Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]]];
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)setupToolBar

@@ -34,5 +34,6 @@
 - (BOOL)containsString:(NSString*)string;
 
 + (NSString*)uuid;
++ (NSString*)localUniqueIdenfier;
 
 @end

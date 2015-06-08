@@ -28,6 +28,10 @@
 #import "CBXMLContext.h"
 #import "Header+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
+#import "Script.h"
+#import "BrickFormulaProtocol.h"
+#import "UserVariable.h"
+#import "OrderedMapTable.h"
 
 @implementation Program (CBXMLHandler)
 
@@ -41,6 +45,8 @@
     program.header = [self parseAndCreateHeaderFromElement:xmlElement];
     program.variables = [self parseAndCreateVariablesFromElement:xmlElement withContext:context];
     program.objectList = [self parseAndCreateObjectsFromElement:xmlElement withContext:context];
+    
+    [self addMissingVariablesToVariablesContainer:program.variables withContext:context];
     return program;
 }
 
@@ -68,7 +74,7 @@
         [objectList addObject:spriteObject];
     }
 
-    // sanity check => check if both objectLists are identical
+    // sanity check => check if both objectLists are equal
     [XMLError exceptionIf:[objectList count] notEquals:[context.spriteObjectList count]
                   message:@"Both SpriteObjectLists must be identical!"];
     for (SpriteObject *spriteObject in objectList) {
@@ -82,7 +88,7 @@
         [XMLError exceptionIf:found equals:NO message:@"Both SpriteObjectLists must be equal!"];
     }
 
-    // sanity check => check if all objects from context are in objectList
+    // sanity check => check if objectList in context contains all objects
     for (SpriteObject *pointedObjectInContext in context.pointedSpriteObjectList) {
         BOOL found = NO;
         for (SpriteObject *spriteObject in objectList) {
@@ -99,6 +105,37 @@
                                               withContext:(CBXMLContext*)context
 {
     return [VariablesContainer parseFromElement:programElement withContext:context];
+}
+
++ (void)addMissingVariablesToVariablesContainer:(VariablesContainer*)variablesContainer withContext:(CBXMLContext*)context
+{
+    for(NSString *objectName in context.formulaVariableNameList) {
+        NSArray *variableList = [context.formulaVariableNameList objectForKey:objectName];
+        SpriteObject *object = nil;
+        for(SpriteObject *spriteObject in context.spriteObjectList) {
+            if([spriteObject.name isEqualToString:objectName]) {
+                object = spriteObject;
+                break;
+            }
+        }
+        if(!object) {
+            NSWarn(@"SpriteObject with name %@ is not found in object list", objectName);
+            return;
+        }
+        
+        for(NSString *variableName in variableList) {
+            if(![variablesContainer getUserVariableNamed:variableName forSpriteObject:object]) {
+                NSMutableArray *objectVariableList = [variablesContainer.objectVariableList objectForKey:object];
+                if(!objectVariableList)
+                    objectVariableList = [NSMutableArray new];
+                UserVariable *userVariable = [UserVariable new];
+                userVariable.name = variableName;
+                [objectVariableList addObject:userVariable];
+                [variablesContainer.objectVariableList setObject:objectVariableList forKey:object];
+                NSDebug(@"Added UserVariable with name %@ to global object variable list with object %@", variableName, object.name);
+            }
+        }
+    }
 }
 
 #pragma mark - Serialization

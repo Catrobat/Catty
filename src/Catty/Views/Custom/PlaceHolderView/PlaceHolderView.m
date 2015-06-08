@@ -26,13 +26,12 @@
 
 @interface PlaceHolderView ()
 @property (nonatomic, strong) UILabel *placeholderDescriptionLabel;
-
 @end
 
 
 @implementation PlaceHolderView
 
-- (id)initWithTitle:(NSString *)title
+- (id)initWithTitle:(NSString*)title
 {
     if (self = [super init]) {
         self.title = title;

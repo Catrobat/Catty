@@ -26,15 +26,20 @@
 
 @implementation LoopBeginBrick
 
-- (BOOL) checkCondition
+- (BOOL)isLoopBrick
+{
+    return YES;
+}
+
+- (BOOL)checkCondition
 {
     NSError(@"Abstract class. Override checkCondition in Subclass: %@", [self class]);
     return NO;
 }
 
-
-- (void)reset
+- (void)resetCondition
 {
+    NSError(@"Abstract class. Override resetCondition in Subclass: %@", [self class]);
 }
 
 #pragma mark - Compare

@@ -39,7 +39,8 @@
 {
     NSUInteger childCount = [xmlElement.childrenWithoutComments count];
     if (childCount == 3) {
-        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:childCount AndFormulaListWithTotalNumberOfFormulas:1];
+        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:3 AndFormulaListWithTotalNumberOfFormulas:1];
+        
         // optional
         GDataXMLElement *inUserBrickElement = [xmlElement childWithElementName:@"inUserBrick"];
         [XMLError exceptionIfNil:inUserBrickElement message:@"No inUserBrickElement element found..."];
@@ -47,21 +48,26 @@
         // TODO: handle inUserBrick here...
 
     } else if (childCount == 2) {
-        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:childCount AndFormulaListWithTotalNumberOfFormulas:1];
+        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:2 AndFormulaListWithTotalNumberOfFormulas:1];
+    } else if (childCount == 1) {
+        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
     } else {
         [XMLError exceptionWithMessage:@"Too many or too less child elements..."];
     }
 
-    GDataXMLElement *userVariableElement = [xmlElement childWithElementName:@"userVariable"];
-    [XMLError exceptionIfNil:userVariableElement message:@"No userVariableElement element found..."];
-
-    UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:context];
-    [XMLError exceptionIfNil:userVariable message:@"Unable to parse userVariable..."];
-
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VARIABLE_CHANGE"];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VARIABLE_CHANGE" withContext:context];
     ChangeVariableBrick *changeVariableBrick = [self new];
-    changeVariableBrick.userVariable = userVariable;
     changeVariableBrick.variableFormula = formula;
+    
+    if(childCount > 1) {
+        GDataXMLElement *userVariableElement = [xmlElement childWithElementName:@"userVariable"];
+        [XMLError exceptionIfNil:userVariableElement message:@"No userVariableElement element found..."];
+        
+        UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:context];
+        [XMLError exceptionIfNil:userVariable message:@"Unable to parse userVariable..."];
+        
+        changeVariableBrick.userVariable = userVariable;
+    }
     return changeVariableBrick;
 }
 
@@ -80,7 +86,8 @@
     //    [brick addChild:[GDataXMLElement elementWithName:@"inUserBrick" stringValue:@"false"
     //                                             context:context] context:context];
 
-    [brick addChild:[self.userVariable xmlElementWithContext:context] context:context];
+    if(self.userVariable)
+        [brick addChild:[self.userVariable xmlElementWithContext:context] context:context];
     return brick;
 }
 

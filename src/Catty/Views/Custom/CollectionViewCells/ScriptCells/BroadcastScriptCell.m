@@ -45,7 +45,7 @@
     return kBrickHeightControl2h;
 }
 
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
+- (void)hookUpSubViews:(NSArray*)inlineViewSubViews
 {
     self.textLabel = inlineViewSubViews[0];
     self.messageComboBoxView = inlineViewSubViews[1];

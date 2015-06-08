@@ -22,8 +22,8 @@
 
 #import "PointToBrick.h"
 #import "Util.h"
-#import "Scene.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation PointToBrick
 
@@ -49,8 +49,8 @@
 - (dispatch_block_t)actionBlock
 {
     return ^{
-        CGPoint objectPosition = [self.script.object position];
-        CGPoint pointedObjectPosition = [self.pointedObject position];
+        CGPoint objectPosition = [self.script.object.spriteNode position];
+        CGPoint pointedObjectPosition = [self.pointedObject.spriteNode position];
         
         double rotationDegrees = 0;
         
@@ -89,15 +89,10 @@
             
         }
 
-        NSDebug(@"Performing: %@, Degreees: (%f), Pointed Object: Position: %@", self.description, rotationDegrees, NSStringFromCGPoint(self.pointedObject.position));
-        
-        rotationDegrees = [((Scene*)self.script.object.scene) convertDegreesToScene:(CGFloat)rotationDegrees] + kRotationDegreeOffset;
-        
-        if (rotationDegrees > 360.0f) {
-            rotationDegrees -= 360.0f;
-        }
+        NSDebug(@"Performing: %@, Degreees: (%f), Pointed Object: Position: %@", self.description, rotationDegrees, NSStringFromCGPoint(self.pointedObject.spriteNode.scenePosition));
 
-        self.script.object.zRotation = (CGFloat)[Util degreeToRadians:rotationDegrees];
+        rotationDegrees = [((CBPlayerScene*)self.script.object.spriteNode.scene) convertDegreesToScene:(CGFloat)rotationDegrees] + kRotationDegreeOffset;
+        [self.script.object.spriteNode setRotation:rotationDegrees];
     };
 }
 
@@ -124,6 +119,33 @@
 - (SpriteObject*)objectForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.pointedObject;
+}
+
+#pragma mark - Default values
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
+{
+    if(spriteObject) {
+        SpriteObject *firstObject = nil;
+        for(SpriteObject *object in spriteObject.program.objectList) {
+            if(![object.name isEqualToString:spriteObject.name] && ![object.name isEqualToString:kLocalizedBackground]) {
+                firstObject = object;
+                break;
+            }
+        }
+        if(firstObject)
+            self.pointedObject = firstObject;
+        else
+            self.pointedObject = nil;
+    }
+}
+
+#pragma mark - Copy
+- (id)mutableCopyWithContext:(CBMutableCopyContext*)context
+{
+    PointToBrick *copy = [super mutableCopyWithContext:context];
+    if(self.pointedObject)
+        copy.pointedObject = self.pointedObject;
+    return copy;
 }
 
 @end

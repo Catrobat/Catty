@@ -23,6 +23,7 @@
 #import "ChangeXByNBrick.h"
 #import "Formula.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation ChangeXByNBrick
 
@@ -36,7 +37,7 @@
     self.xMovement = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.xMovement = [[Formula alloc] initWithInteger:10];
 }
@@ -56,7 +57,7 @@
     return ^{
         NSDebug(@"Performing: %@", self.description);
         double xMov = [self.xMovement interpretDoubleForSprite:self.script.object];
-        self.script.object.position = CGPointMake((CGFloat)(self.script.object.position.x+xMov), self.script.object.position.y);
+        self.script.object.spriteNode.scenePosition = CGPointMake((CGFloat)(self.script.object.spriteNode.scenePosition.x+xMov), self.script.object.spriteNode.scenePosition.y);
 
     };
 }

@@ -32,6 +32,7 @@
 #import "LoadingView.h"
 #import "BDKNotifyHUD.h"
 #import "PlaceHolderView.h"
+#import "ScenePresenterViewController.h"
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"
@@ -101,9 +102,9 @@
     return _dataCache;
 }
 
-- (PlaceHolderView *)placeHolderView
+- (PlaceHolderView*)placeHolderView
 {
-    if (!_placeHolderView) {
+    if (! _placeHolderView) {
         CGFloat height = __tg_ceil(CGRectGetHeight(self.view.bounds) / 4.0f);
         _placeHolderView = [[PlaceHolderView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetHeight(UIScreen.mainScreen.bounds) / 2.0f - height, CGRectGetWidth(self.view.bounds), height)];
         [self.view insertSubview:_placeHolderView aboveSubview:self.tableView];
@@ -341,6 +342,22 @@
                        confirmMessage:confirmMessage];
 }
 
+- (void)playSceneAction:(id)sender
+{
+    [self playSceneAction:sender animated:YES];
+}
+
+- (void)playSceneAction:(id)sender animated:(BOOL)animated;
+{
+    if ([self respondsToSelector:@selector(stopAllSounds)]) {
+        [self performSelector:@selector(stopAllSounds)];
+    }
+    [self.navigationController setToolbarHidden:YES animated:YES];
+    ScenePresenterViewController *vc = [ScenePresenterViewController new];
+    vc.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark - alert view delegate handlers
 - (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -373,6 +390,7 @@
 
 - (void)showLoadingView
 {
+    // TODO: create getter for loadingView property and use lazy instantiation instead!
     if (! self.loadingView) {
         self.loadingView = [[LoadingView alloc] init];
         [self.view addSubview:self.loadingView];
@@ -400,7 +418,6 @@
     [self.loadingView hide];
 }
 
-
 - (void)showSavedView
 {
     BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:@"checkmark.png"]
@@ -413,8 +430,6 @@
         [hud removeFromSuperview];
     }];
 }
-
-#pragma mark - Public 
 
 - (void)showPlaceHolder:(BOOL)show
 {

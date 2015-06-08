@@ -36,9 +36,9 @@
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
     IfLogicBeginBrick *ifLogicBeginBrick = [self new];
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"IF_CONDITION"];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"IF_CONDITION" withContext:context];
     ifLogicBeginBrick.ifCondition = formula;
-    
+
     // add opening nesting brick on stack
     [context.openedNestingBricksStack pushAndOpenNestingBrick:ifLogicBeginBrick];
     return ifLogicBeginBrick;

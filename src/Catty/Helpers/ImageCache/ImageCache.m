@@ -73,7 +73,7 @@ static NSMutableDictionary *sharedImageCaches = nil;
 - (dispatch_queue_t)imageCacheQueue
 {
     if (! _imageCacheQueue) {
-        _imageCacheQueue = dispatch_queue_create(kImageCacheQueue, DISPATCH_QUEUE_SERIAL);
+        _imageCacheQueue = dispatch_queue_create(kImageCacheQueue, DISPATCH_QUEUE_CONCURRENT);
     }
     return _imageCacheQueue;
 }

@@ -24,6 +24,7 @@
 #import "Formula.h"
 #import "Util.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation TurnLeftBrick
 
@@ -37,7 +38,7 @@
     self.degrees = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.degrees = [[Formula alloc] initWithFloat:15];
 }
@@ -56,15 +57,9 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        double rad = [Util degreeToRadians:[self.degrees interpretDoubleForSprite:self.script.object]];
-        double newRad = self.script.object.zRotation + rad;
-        if (newRad >= 2*M_PI) {
-            newRad -= 2*M_PI;
-        }
-        else if (newRad <= (- 2*M_PI)) {
-            newRad += 2*M_PI;
-        }
-        self.script.object.zRotation = (CGFloat)newRad;
+        double rotation = [self.degrees interpretDoubleForSprite:self.script.object];
+        rotation += [self.script.object.spriteNode rotation];
+        [self.script.object.spriteNode setRotation:rotation];
     };
 }
 

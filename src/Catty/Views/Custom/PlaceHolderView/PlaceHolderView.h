@@ -23,8 +23,8 @@
 #import "FBShimmeringView.h"
 
 @interface PlaceHolderView : FBShimmeringView
-- (id)initWithTitle:(NSString *)title;
 
+- (id)initWithTitle:(NSString*)title;
 @property (nonatomic, strong) NSString *title;
 
 @end

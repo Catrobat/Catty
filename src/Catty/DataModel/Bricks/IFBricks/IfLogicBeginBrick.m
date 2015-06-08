@@ -29,6 +29,16 @@
 
 @implementation IfLogicBeginBrick
 
+- (BOOL)isAnimateable
+{
+    return YES;
+}
+
+- (BOOL)isIfLogicBrick
+{
+    return YES;
+}
+
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.ifCondition;
@@ -39,7 +49,7 @@
     self.ifCondition = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.ifCondition = [[Formula alloc] initWithInteger:1];
 }
@@ -55,6 +65,10 @@
     return [self.ifCondition interpretBOOLForSprite:self.script.object];
 }
 
+- (void)resetCondition
+{
+    // nothing to do
+}
 
 #pragma mark - Description
 - (NSString*)description

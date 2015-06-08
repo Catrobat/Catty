@@ -46,7 +46,7 @@ typedef enum ActionType actionType;
 @interface LCTableViewPickerControl : UIView <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak) id <LCItemPickerDelegate> delegate;
-@property (nonatomic, assign) NSInteger tag;
+//@property (nonatomic, assign) NSInteger tag; // leads to warning, because this property is already implemented in superclass (UIView)
 @property (nonatomic, strong) NSString *key;
 
 - (id)initWithFrame:(CGRect)frame title:(NSString*)title value:(actionType)value items:(NSArray*)array offset:(CGPoint)offset;

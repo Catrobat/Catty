@@ -23,7 +23,7 @@
 #import "NSString+CatrobatNSStringExtensions.h"
 #import <CommonCrypto/CommonDigest.h>
 
-@implementation NSString (CustomExtensions)
+@implementation NSString (CatrobatNSStringExtensions)
 
 - (NSString*)sha1
 {
@@ -125,6 +125,11 @@ NSMutableString *resultString;
     NSString *uuidStr = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
     CFRelease(uuid);
     return uuidStr;
+}
+
++ (NSString*)localUniqueIdenfier
+{
+    return [NSString stringWithFormat:@"%@_%@", [self uuid], [NSDate date]];
 }
 
 @end

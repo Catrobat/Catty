@@ -25,13 +25,14 @@
 // TODO: Add favourite brick page.
 typedef NS_ENUM(NSUInteger, PageIndexCategoryType) {
   /*  kPageIndexScriptFavourites,*/
-    kPageIndexScriptBricks,
     kPageIndexControlBrick,
     kPageIndexMotionBrick,
     kPageIndexSoundBrick,
     kPageIndexLookBrick,
     kPageIndexVariableBrick
 };
+
+@class SpriteObject;
 
 @class BrickCategoryViewController;
 @protocol BrickCategoryViewControllerDelegate<NSObject>
@@ -45,10 +46,11 @@ typedef NS_ENUM(NSUInteger, PageIndexCategoryType) {
 @property(nonatomic, weak) id<BrickCategoryViewControllerDelegate> delegate;
 @property(nonatomic, readonly) NSArray *bricks;
 @property(nonatomic, readonly) NSUInteger pageIndex;
+@property(nonatomic, weak) SpriteObject *spriteObject;
 
-- (instancetype)initWithBrickCategory:(PageIndexCategoryType)type;
+- (instancetype)initWithBrickCategory:(PageIndexCategoryType)type andObject:(SpriteObject*)spriteObject;
 
-+ (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(NSInteger)pageIndex;
++ (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(NSInteger)pageIndex andObject:(SpriteObject*)spriteObject;
 
 // disallow init
 - (instancetype)init __attribute__((unavailable("init is not a supported initializer for this class.")));

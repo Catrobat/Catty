@@ -17,6 +17,9 @@
 "acceleration_y" = "acceleration_y";
 
 /* No comment provided by engineer. */
+"acceleration_z" = "acceleration_z";
+
+/* No comment provided by engineer. */
 "add comment here..." = "add comment here...";
 
 /* No comment provided by engineer. */
@@ -89,6 +92,9 @@
 "brush" = "brush";
 
 /* No comment provided by engineer. */
+"By registering you agree to our" = "By registering you agree to our";
+
+/* No comment provided by engineer. */
 "By switching to the section \"Explore\" you can discover much more interesting stuff." = "By switching to the section \"Explore\" you can discover much more interesting stuff.";
 
 /* No comment provided by engineer. */
@@ -123,6 +129,12 @@
 
 /* No comment provided by engineer. */
 "Change Y by %@" = "Change Y by %@";
+
+/* No comment provided by engineer. */
+"Changes discarded!" = "Changes discarded!";
+
+/* No comment provided by engineer. */
+"Changes saved!" = "Changes saved!";
 
 /* No comment provided by engineer. */
 "Choose image" = "Choose image";
@@ -192,6 +204,9 @@
 
 /* No comment provided by engineer. */
 "Delete Objects" = "Delete Objects";
+
+/* No comment provided by engineer. */
+"Delete Program" = "Delete Program";
 
 /* No comment provided by engineer. */
 "Delete Programs" = "Delete Programs";
@@ -281,6 +296,15 @@
 "Else" = "Else";
 
 /* No comment provided by engineer. */
+"Email" = "Email";
+
+/* No comment provided by engineer. */
+"Email is not valid!" = "Email is not valid!";
+
+/* No comment provided by engineer. */
+"End If" = "End If";
+
+/* No comment provided by engineer. */
 "End of Loop" = "End of Loop";
 
 /* Placeholder for add image-name input field */
@@ -301,6 +325,9 @@
 /* Placeholder for add sound-name input field */
 "Enter your sound name here..." = "Enter your sound name here...";
 
+/* Placeholder for variable input field */
+"Enter your variable name here..." = "Enter your variable name here...";
+
 /* paint */
 "eraser" = "eraser";
 
@@ -312,6 +339,8 @@
 
 /* No comment provided by engineer. */
 "Explore apps" = "Explore apps";
+
+/* No comment provided by engineer. */
 "false" = "false";
 
 /* No comment provided by engineer. */
@@ -331,6 +360,12 @@
 
 /* No comment provided by engineer. */
 "Flashlight on" = "Flashlight on";
+
+/* No comment provided by engineer. */
+"for all objects" = "for all objects";
+
+/* No comment provided by engineer. */
+"for this object" = "for this object";
 
 /* No comment provided by engineer. */
 "Forever" = "Forever";
@@ -381,9 +416,6 @@
 "If %@ is true then" = "If %@ is true then";
 
 /* No comment provided by engineer. */
-"If End" = "If End";
-
-/* No comment provided by engineer. */
 "If on edge, bounce" = "If on edge, bounce";
 
 /* paint */
@@ -394,12 +426,15 @@
 
 /* No comment provided by engineer. */
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.";
+
+/* No comment provided by engineer. */
 "inclination_x" = "inclination_x";
 
 /* No comment provided by engineer. */
+"inclination_y" = "inclination_y";
 
 /* No comment provided by engineer. */
-"inclination_y" = "inclination_y";
+"Information" = "Information";
 
 /* No comment provided by engineer. */
 "Invalid input entered, try again." = "Invalid input entered, try again.";
@@ -412,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "January" = "January";
+
+/* No comment provided by engineer. */
+"join" = "join";
 
 /* No comment provided by engineer. */
 "Jul" = "Jul";
@@ -432,7 +470,13 @@
 "layer" = "layer";
 
 /* No comment provided by engineer. */
+"length" = "length";
+
+/* No comment provided by engineer. */
 "Length" = "Length";
+
+/* No comment provided by engineer. */
+"letter" = "letter";
 
 /* paint */
 "line" = "line";
@@ -445,6 +489,12 @@
 
 /* No comment provided by engineer. */
 "Login" = "Login";
+
+/* No comment provided by engineer. */
+"Login/Register" = "Login/Register";
+
+/* LOOK */
+"look" = "look";
 
 /* No comment provided by engineer. */
 "Looks" = "Looks";
@@ -503,7 +553,10 @@
 /* No comment provided by engineer. */
 "Move %@ step(s)" = "Move %@ step(s)";
 
-/* Name of the default catrobat program */
+/* No comment provided by engineer. */
+"Move Brick" = "Move Brick";
+
+/* Name of the default catrobat program (used as filename!!) */
 "My first program" = "My first program";
 
 /* Default title of imported photo from camera (taken by camera) */
@@ -511,6 +564,9 @@
 
 /* Title for first (default) object */
 "My Object" = "My Object";
+
+/* No comment provided by engineer. */
+"Name" = "Name";
 
 /* No comment provided by engineer. */
 "Name already exists. Please choose another" = "Name already exists. Please choose another";
@@ -523,6 +579,9 @@
 
 /* No comment provided by engineer. */
 "New Message" = "New Message";
+
+/* No comment provided by engineer. */
+"New Program" = "New Program";
 
 /* No comment provided by engineer. */
 "New Text" = "New Text";
@@ -591,13 +650,13 @@
 "Numbers" = "Numbers";
 
 /* No comment provided by engineer. */
-"object" = "object";
-
-/* No comment provided by engineer. */
 "Object" = "Object";
 
 /* No comment provided by engineer. */
 "Object name" = "Object name";
+
+/* No comment provided by engineer. */
+"Object variables:" = "Object variables:";
 
 /* No comment provided by engineer. */
 "Objects" = "Objects";
@@ -615,10 +674,16 @@
 "only 15 characters allowed" = "only 15 characters allowed";
 
 /* No comment provided by engineer. */
+"Only space is not allowed. Please enter at least %lu other character(s)." = "Only space is not allowed. Please enter at least %lu other character(s).";
+
+/* No comment provided by engineer. */
 "or" = "or";
 
 /* No comment provided by engineer. */
 "Password" = "Password";
+
+/* No comment provided by engineer. */
+"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Password is not vaild! \n It has to contain at least 6 characters/symbols";
 
 /* paint */
 "pipette" = "pipette";
@@ -631,6 +696,9 @@
 
 /* paint */
 "Please pick an item" = "Please pick an item";
+
+/* No comment provided by engineer. */
+"Please select a program to upload" = "Please select a program to upload";
 
 /* No comment provided by engineer. */
 "Pocket Code" = "Pocket Code";
@@ -669,10 +737,16 @@
 "pos_y" = "pos_y";
 
 /* No comment provided by engineer. */
-"program" = "program";
+"Problems occured while Uploading your program" = "Problems occured while Uploading your program";
 
 /* No comment provided by engineer. */
 "Program name" = "Program name";
+
+/* No comment provided by engineer. */
+"Program Name is necessary!" = "Program Name is necessary!";
+
+/* No comment provided by engineer. */
+"Program variables:" = "Program variables:";
 
 /* No comment provided by engineer. */
 "Programs" = "Programs";
@@ -693,6 +767,12 @@
 "Red" = "Red";
 
 /* No comment provided by engineer. */
+"Register" = "Register";
+
+/* No comment provided by engineer. */
+"Registration successfull" = "Registration successfull";
+
+/* No comment provided by engineer. */
 "Rename" = "Rename";
 
 /* No comment provided by engineer. */
@@ -702,7 +782,7 @@
 "Rename object" = "Rename object";
 
 /* No comment provided by engineer. */
-"Rename program" = "Rename program";
+"Rename Program" = "Rename Program";
 
 /* No comment provided by engineer. */
 "Rename sound" = "Rename sound";
@@ -894,6 +974,9 @@
 "This feature is coming soon!" = "This feature is coming soon!";
 
 /* No comment provided by engineer. */
+"This variable can not be deleted because it is still in use." = "This variable can not be deleted because it is still in use.";
+
+/* No comment provided by engineer. */
 "Thursday" = "Thursday";
 
 /* No comment provided by engineer. */
@@ -939,10 +1022,22 @@
 "Upload" = "Upload";
 
 /* No comment provided by engineer. */
+"Upload Program" = "Upload Program";
+
+/* No comment provided by engineer. */
+"Upload Selected Program" = "Upload Selected Program";
+
+/* No comment provided by engineer. */
+"Upload successfull" = "Upload successfull";
+
+/* No comment provided by engineer. */
 "Uploaded" = "Uploaded";
 
 /* No comment provided by engineer. */
 "Username" = "Username";
+
+/* No comment provided by engineer. */
+"Username is necessary!" = "Username is necessary!";
 
 /* No comment provided by engineer. */
 "v" = "v";

@@ -25,7 +25,7 @@
 #import "Util.h"
 #import "BrickFormulaProtocol.h"
 #import "Formula.h"
-#import "Script.h"
+#import "WhenScript.h"
 
 @implementation BrickManager {
     NSDictionary *_brickHeightDictionary;
@@ -112,7 +112,7 @@
         NSArray *allBrickTypes = [brickTypeClassNameMap allKeys];
         NSArray *orderedBrickTypes = [allBrickTypes sortedArrayUsingSelector:@selector(compare:)];
         // collect class names
-        NSMutableArray *orderedBrickClassNamesMutable = [NSMutableArray arrayWithCapacity:[orderedBrickTypes count]];
+        NSMutableArray *orderedBrickClassNamesMutable = [NSMutableArray arrayWithCapacity:orderedBrickTypes.count];
         for (NSNumber *brickType in orderedBrickTypes) {
             [orderedBrickClassNamesMutable addObject:brickTypeClassNameMap[brickType]];
         }
@@ -143,9 +143,9 @@
     return selectableBricks;
 }
 
-- (NSArray *)selectableScriptBricks {
+- (NSArray*)selectableScriptBricks
+{
     static NSArray *scripts = nil;
-    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSArray *allBricks = [self brickClassNamesOrderedByBrickType];
@@ -155,14 +155,15 @@
             Class class = NSClassFromString(obj);
             id brickOrScript = [class new];
             if ([brickOrScript isKindOfClass:[Script class]] && [brickOrScript conformsToProtocol:@protocol(ScriptProtocol)]) {
+                if ([brickOrScript isKindOfClass:[WhenScript class]]) {
+                    ((WhenScript*)brickOrScript).action = kWhenScriptDefaultAction;
+                }
                 id<ScriptProtocol> scriptBrick = brickOrScript;
                 [mutableScriptBricks addObject:scriptBrick];
             }
         }];
-        
         scripts = mutableScriptBricks;
     });
-    
     return scripts;
 }
 
@@ -170,12 +171,15 @@
 {
     NSArray *selectableBricks = [self selectableBricks];
     NSMutableArray *selectableBricksForCategoryMutable = [NSMutableArray arrayWithCapacity:[selectableBricks count]];
+    if (categoryType == kControlBrick) {
+        [selectableBricksForCategoryMutable addObjectsFromArray:[[BrickManager sharedBrickManager] selectableScriptBricks]];
+    }
     for (id<BrickProtocol> brick in selectableBricks) {
         if (brick.brickCategoryType == categoryType) {
-            [brick setupEmptyBrick];
             [selectableBricksForCategoryMutable addObject:brick];
         }
     }
+
     return (NSArray*)selectableBricksForCategoryMutable;
 }
 
@@ -189,7 +193,7 @@
     return (brickType % 100);
 }
 
-- (CGSize)sizeForBrick:(NSString *)brickName
+- (CGSize)sizeForBrick:(NSString*)brickName
 {
     CGSize size = CGSizeZero;
     if (IS_IPHONE5 || IS_IPHONE) {
@@ -197,6 +201,14 @@
         size = CGSizeMake(UIScreen.mainScreen.bounds.size.width, [height floatValue]);
     }
     return size;
+}
+
+- (BOOL)isScript:(kBrickType)type
+{
+    if (type == kProgramStartedBrick || type == kTappedBrick || type == kReceiveBrick) {
+        return YES;
+    }
+    return NO;
 }
 
 @end

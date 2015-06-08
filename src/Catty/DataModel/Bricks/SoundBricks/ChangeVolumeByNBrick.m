@@ -39,7 +39,7 @@
     self.volume = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.volume = [[Formula alloc] initWithFloat:-10];
 }

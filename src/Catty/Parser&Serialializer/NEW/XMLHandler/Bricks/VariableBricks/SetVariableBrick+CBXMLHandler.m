@@ -37,31 +37,35 @@
 {
     NSUInteger childCount = [xmlElement.childrenWithoutComments count];
     if (childCount == 3) {
-        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:childCount
+        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:3
       AndFormulaListWithTotalNumberOfFormulas:1];
         // optional
         GDataXMLElement *inUserBrickElement = [xmlElement childWithElementName:@"inUserBrick"];
         [XMLError exceptionIfNil:inUserBrickElement message:@"No inUserBrickElement element found..."];
 
-        // TODO: handle inUserBrick here...
+        // inUserBrick code goes here...
 
     } else if (childCount == 2) {
-        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:childCount
+        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:2
       AndFormulaListWithTotalNumberOfFormulas:1];
+    } else if (childCount == 1) {
+        [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
     } else {
         [XMLError exceptionWithMessage:@"Too many or too less child elements..."];
     }
 
-    GDataXMLElement *userVariableElement = [xmlElement childWithElementName:@"userVariable"];
-    [XMLError exceptionIfNil:userVariableElement message:@"No userVariableElement element found..."];
-
-    UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:context];
-    [XMLError exceptionIfNil:userVariable message:@"Unable to parse userVariable..."];
-
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VARIABLE"];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VARIABLE" withContext:context];
     SetVariableBrick *setVariableBrick = [self new];
-    setVariableBrick.userVariable = userVariable;
     setVariableBrick.variableFormula = formula;
+    if (childCount > 1) {
+        GDataXMLElement *userVariableElement = [xmlElement childWithElementName:@"userVariable"];
+        [XMLError exceptionIfNil:userVariableElement message:@"No userVariableElement element found..."];
+    
+        UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:context];
+        [XMLError exceptionIfNil:userVariable message:@"Unable to parse userVariable..."];
+        
+        setVariableBrick.userVariable = userVariable;
+    }
     return setVariableBrick;
 }
 
@@ -76,11 +80,11 @@
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
 
-    //  Unused at the moment => TODO: implement this after Catroid has decided to officially use this feature!
+    //  Unused at the moment => implement this after Catroid has decided to officially use this feature!
     //    [brick addChild:[GDataXMLElement elementWithName:@"inUserBrick" stringValue:@"false"
     //                                             context:context] context:context];
-
-    [brick addChild:[self.userVariable xmlElementWithContext:context] context:context];
+    if (self.userVariable)
+        [brick addChild:[self.userVariable xmlElementWithContext:context] context:context];
     return brick;
 }
 

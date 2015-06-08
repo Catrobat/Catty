@@ -34,7 +34,7 @@
 {
     // sanity check
     if (! path || [path isEqualToString:@""]) {
-        NSLog(@"Path (%@) is NOT valid!", path);
+        NSDebug(@"Path (%@) is NOT valid!", path);
         return nil;
     }
     
@@ -53,7 +53,6 @@
     // return Project object
     Program *program = [parser loadProject:xmlData];
     [program updateReferences];
-    program.XMLdocument = parser.XMLdocument;
     return program;
 }
 

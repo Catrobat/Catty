@@ -66,4 +66,16 @@
     return self.sound;
 }
 
+#pragma mark - Default values
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
+{
+    if(spriteObject) {
+        NSArray *sounds = spriteObject.soundList;
+        if([sounds count] > 0)
+            self.sound = [sounds objectAtIndex:0];
+        else
+            self.sound = nil;
+    }
+}
+
 @end

@@ -122,20 +122,23 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)editAction:(id)sender
 {
     NSMutableArray *options = [NSMutableArray array];
+    if (self.programLoadingInfos.count) {
+        [options addObject:kLocalizedDeletePrograms];
+    }
     if (self.useDetailCells) {
         [options addObject:kLocalizedHideDetails];
     } else {
         [options addObject:kLocalizedShowDetails];
     }
-    if ([self.programLoadingInfos count]) {
-        [options addObject:kLocalizedDeletePrograms];
+    CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditPrograms
+                                                         delegate:self
+                                           destructiveButtonTitle:nil
+                                                otherButtonTitles:options
+                                                              tag:kEditProgramsActionSheetTag
+                                                             view:self.navigationController.view];
+    if (self.programLoadingInfos.count) {
+        [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
     }
-    [Util actionSheetWithTitle:kLocalizedEditPrograms
-                      delegate:self
-        destructiveButtonTitle:nil
-             otherButtonTitles:options
-                           tag:kEditProgramsActionSheetTag
-                          view:self.navigationController.view];
 }
 
 - (void)addProgramAction:(id)sender
@@ -180,6 +183,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+    [self reloadTableView];
     [self hideLoadingView];
 }
 
@@ -196,6 +200,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self renameOldProgramWithName:programLoadingInfo.visibleName
                          programID:programLoadingInfo.programID
                   toNewProgramName:program.header.programName];
+    [self reloadTableView];
     [self hideLoadingView];
 }
 
@@ -204,6 +209,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self showLoadingView];
     [program updateDescriptionWithText:descriptionText];
+    [self reloadTableView];
     [self hideLoadingView];
 }
 
@@ -240,6 +246,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self showLoadingView];
     ProgramLoadingInfo *programLoadingInfo = [self.programLoadingInfos objectAtIndex:indexPath.row];
     [self removeProgramWithName:programLoadingInfo.visibleName programID:programLoadingInfo.programID];
+    [self reloadTableView];
     [self hideLoadingView];
 }
 
@@ -446,10 +453,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                                   tag:kEditProgramActionSheetTag
                                                                  view:self.navigationController.view];
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        NSDictionary *payload = @{ kDTPayloadProgramLoadingInfo : [self.programLoadingInfos objectAtIndex:indexPath.row] };
-        DataTransferMessage *message = [DataTransferMessage messageForActionType:kDTMActionEditProgram
-                                                                     withPayload:[payload mutableCopy]];
-        actionSheet.dataTransferMessage = message;
+        actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditProgram
+                                                                        withPayload:@{ kDTPayloadProgramLoadingInfo : [self.programLoadingInfos objectAtIndex:indexPath.row] }];
     } else if (index == 1) {
         // Delete button was pressed
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
@@ -471,7 +476,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == kEditProgramsActionSheetTag) {
-        if (buttonIndex == 0) {
+        if ((buttonIndex == 0) && self.programLoadingInfos.count) {
+            // Delete Programs button
+            [self setupEditingToolBar];
+            [super changeToEditingMode:actionSheet];
+        } else if ((buttonIndex == 0) || ((buttonIndex == 1) && [self.programLoadingInfos count])) {
             // Show/Hide Details button
             self.useDetailCells = (! self.useDetailCells);
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -486,11 +495,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                    forKey:kUserDetailsShowDetailsProgramsKey];
             [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
             [defaults synchronize];
-            [self.tableView reloadData];
-        } else if ((buttonIndex == 1) && [self.programLoadingInfos count]) {
-            // Delete Programs button
-            [self setupEditingToolBar];
-            [super changeToEditingMode:actionSheet];
+            [self reloadTableView];
         }
     } else if (actionSheet.tag == kEditProgramActionSheetTag) {
         if (buttonIndex == 0) {
@@ -499,6 +504,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             ProgramLoadingInfo *info = (ProgramLoadingInfo*)payload[kDTPayloadProgramLoadingInfo];
             [Util askUserForUniqueNameAndPerformAction:@selector(copyProgramActionForProgramWithName:sourceProgramLoadingInfo:)
                                                 target:self
+                                          cancelAction:nil
                                             withObject:info
                                            promptTitle:kLocalizedCopyProgram
                                          promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
@@ -517,6 +523,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [unavailableNames removeString:info.visibleName];
             [Util askUserForUniqueNameAndPerformAction:@selector(renameProgramActionToName:sourceProgramLoadingInfo:)
                                                 target:self
+                                          cancelAction:nil   
                                             withObject:info
                                            promptTitle:kLocalizedRenameProgram
                                          promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
@@ -534,10 +541,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
             Program *program = [Program programWithLoadingInfo:info];
             [Util askUserForTextAndPerformAction:@selector(updateProgramDescriptionActionWithText:sourceProgram:)
                                           target:self
+                                    cancelAction:nil 
                                       withObject:program
                                      promptTitle:kLocalizedSetDescription
                                    promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedDescription]
-                                     promptValue:program.header.description
+                                     promptValue:program.header.programDescription  
                                promptPlaceholder:kLocalizedEnterYourProgramDescriptionHere
                                   minInputLength:kMinNumOfProgramDescriptionCharacters
                                   maxInputLength:kMaxNumOfProgramDescriptionCharacters
@@ -576,7 +584,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return programLoadingInfo;
 }
 
-- (void)removeProgramWithName:(NSString *)programName programID:(NSString *)programID
+- (void)removeProgramWithName:(NSString*)programName programID:(NSString*)programID
 {
     ProgramLoadingInfo *oldProgramLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:programName programID:programID];
     NSInteger rowIndex = 0;
@@ -590,21 +598,19 @@ static NSCharacterSet *blockedCharacterSet = nil;
             self.dataCache = nil;
             // needed to avoid unexpected behaviour when programs are renamed
             [[RuntimeImageCache sharedImageCache] clearImageCache];
-            break;
+            if (! self.programLoadingInfos.count) {
+                [self reloadTableView];
+            }
+            return;
         }
         ++rowIndex;
     }
-    // if last program was removed [programLoadingInfos count] returns 0,
-    // then default program was automatically recreated, therefore reload
-    if (! [self.programLoadingInfos count]) {
-        self.programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
-        [self.tableView reloadData];
-    }
+    [self reloadTableView];
 }
 
-- (void)renameOldProgramWithName:(NSString *)oldProgramName
-                       programID:(NSString *)programID
-                toNewProgramName:(NSString *)newProgramName
+- (void)renameOldProgramWithName:(NSString*)oldProgramName
+                       programID:(NSString*)programID
+                toNewProgramName:(NSString*)newProgramName
 {
     ProgramLoadingInfo *oldProgramLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:oldProgramName
                                                                                                programID:programID];
@@ -663,9 +669,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)downloadFinished:(NSNotification*)notification
 {
     if ([[notification name] isEqualToString:kProgramDownloadedNotification]){
-        self.programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
-        [self.tableView reloadData];
+        [self reloadTableView];
+
     }
+}
+
+#pragma mark reload TableView
+
+- (void)reloadTableView
+{
+    self.programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
+    [self.tableView reloadData];
 }
 
 @end

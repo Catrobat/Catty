@@ -68,11 +68,15 @@
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
     [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"PlaySoundBrick"]];
     if (self.sound) {
-        GDataXMLElement *referenceXMLElement = [GDataXMLElement elementWithName:@"sound" context:context];
-        NSString *refPath = [CBXMLSerializerHelper relativeXPathToSound:self.sound
+        if([CBXMLSerializerHelper indexOfElement:self.sound inArray:context.spriteObject.soundList] == NSNotFound) {
+            self.sound = nil;
+        } else {
+            GDataXMLElement *referenceXMLElement = [GDataXMLElement elementWithName:@"sound" context:context];
+            NSString *refPath = [CBXMLSerializerHelper relativeXPathToSound:self.sound
                                                             inSoundList:context.spriteObject.soundList];
-        [referenceXMLElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
-        [brick addChild:referenceXMLElement context:context];
+            [referenceXMLElement addAttribute:[GDataXMLElement attributeWithName:@"reference" escapedStringValue:refPath]];
+            [brick addChild:referenceXMLElement context:context];
+        }
     }
     return brick;
 }

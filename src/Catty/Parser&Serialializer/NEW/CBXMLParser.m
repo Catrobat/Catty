@@ -87,7 +87,7 @@
         return nil;
     }
 
-    //NSLog(@"%@", xmlFile);
+    //NSDebug(@"%@", xmlFile);
     NSData *xmlData = [xmlFile dataUsingEncoding:NSUTF8StringEncoding];
 
     // sanity check
@@ -112,7 +112,6 @@
         return nil;
     }
     [program updateReferences];
-    program.XMLdocument = xmlDocument; // TODO: remove this after serialization has been finished!!
     return program;
 }
 

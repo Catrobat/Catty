@@ -32,6 +32,16 @@
     return NO;
 }
 
+- (BOOL)isAnimateable
+{
+    return YES;
+}
+
+- (BOOL)isLoopBrick
+{
+    return YES;
+}
+
 - (NSString*)brickTitle
 {
     return kLocalizedEndOfLoop;

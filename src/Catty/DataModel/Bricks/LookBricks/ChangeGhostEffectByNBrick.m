@@ -23,6 +23,7 @@
 #import "ChangeGhostEffectByNBrick.h"
 #import "Formula.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation ChangeGhostEffectByNBrick
 
@@ -38,7 +39,7 @@
     self.changeGhostEffect = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.changeGhostEffect = [[Formula alloc] initWithZero];
 }
@@ -58,16 +59,16 @@
   return ^{
     NSDebug(@"Performing: %@", self.description);
     double transparency = [self.changeGhostEffect interpretDoubleForSprite:self.script.object];
-      CGFloat alpha = (CGFloat)(self.script.object.alpha - transparency/100.0f);
+      CGFloat alpha = (CGFloat)(self.script.object.spriteNode.alpha - transparency/100.0f);
       if (alpha < 0) {
-          self.script.object.alpha = 0;
+          self.script.object.spriteNode.alpha = 0;
           
       }
       else if (alpha > 1){
-          self.script.object.alpha = 1;
+          self.script.object.spriteNode.alpha = 1;
       }
       else{
-          self.script.object.alpha = alpha;
+          self.script.object.spriteNode.alpha = alpha;
       }
   };
 }

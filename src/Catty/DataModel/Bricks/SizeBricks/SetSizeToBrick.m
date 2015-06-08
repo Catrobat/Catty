@@ -23,6 +23,7 @@
 #import "SetSizeToBrick.h"
 #import "Formula.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation SetSizeToBrick
 
@@ -36,7 +37,7 @@
     self.size = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.size = [[Formula alloc] initWithZero];
 }
@@ -56,11 +57,11 @@
     return ^{
         NSDebug(@"Performing: %@", self.description);
         double sizeInPercent = [self.size interpretDoubleForSprite:self.script.object];
-        [self.script.object setXScale:(CGFloat)(sizeInPercent/100.0f)];
-        [self.script.object setYScale:(CGFloat)(sizeInPercent/100.0f)];
+        [self.script.object.spriteNode setXScale:(CGFloat)(sizeInPercent/100.0f)];
+        [self.script.object.spriteNode setYScale:(CGFloat)(sizeInPercent/100.0f)];
         //for touch issue
-        CGImageRef image = [self.script.object.currentUIImageLook CGImage];
-        self.script.object.currentUIImageLook = [UIImage imageWithCGImage:image scale:(CGFloat)(1.0f/(sizeInPercent/100.0f)) orientation:UIImageOrientationUp];
+        CGImageRef image = [self.script.object.spriteNode.currentUIImageLook CGImage];
+        self.script.object.spriteNode.currentUIImageLook = [UIImage imageWithCGImage:image scale:(CGFloat)(1.0f/(sizeInPercent/100.0f)) orientation:UIImageOrientationUp];
     };
     
 }

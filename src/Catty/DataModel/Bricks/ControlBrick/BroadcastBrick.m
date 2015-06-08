@@ -22,6 +22,7 @@
 
 #import "BroadcastBrick.h"
 #import "Script.h"
+#import "Util.h"
 #import "LanguageTranslationDefines.h"
 
 @implementation BroadcastBrick
@@ -41,27 +42,25 @@
     return self;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.broadcastMessage = [NSString stringWithString:kLocalizedBroadcastDefaultMessage];
+    if(spriteObject) {
+        NSArray *messages = [Util allMessagesForProgram:spriteObject.program];
+        if([messages count] > 0)
+            self.broadcastMessage = [messages objectAtIndex:0];
+        else
+            self.broadcastMessage = nil;
+    }
+    if(!self.broadcastMessage)
+        self.broadcastMessage = [NSString stringWithString:kLocalizedMessage1];
 }
 
-- (SKAction*)action
+- (void)setMessage:(NSString*)message forLineNumber:(NSInteger)lineNumber
+andParameterNumber:(NSInteger)paramNumber
 {
-    __weak BroadcastBrick* weakSelf = self;
-    return [SKAction runBlock:^{
-        __weak BroadcastBrick *weakWeakSelf = weakSelf;
-        NSDebug(@"Performing: %@", [weakSelf description]);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakWeakSelf.script.object broadcast:weakWeakSelf.broadcastMessage];
-        });
-    }];
-}
-
-- (void)setMessage:(NSString *)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    if(message)
+    if (message) {
         self.broadcastMessage = message;
+    }
 }
 
 - (NSString*)messageForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber

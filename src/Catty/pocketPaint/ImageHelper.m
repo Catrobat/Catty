@@ -69,7 +69,7 @@
 		free(bitmapData);
 		
 	} else {
-		NSLog(@"Error getting bitmap pixel data\n");
+		NSError(@"Error getting bitmap pixel data\n");
 	}
 	
 	CGContextRelease(context);
@@ -95,7 +95,7 @@
 	colorSpace = CGColorSpaceCreateDeviceRGB();
 	
 	if(!colorSpace) {
-		NSLog(@"Error allocating color space RGB\n");
+		NSError(@"Error allocating color space RGB\n");
 		return NULL;
 	}
 	
@@ -103,7 +103,7 @@
 	bitmapData = (uint32_t *)malloc(bufferLength);
 	
 	if(!bitmapData) {
-		NSLog(@"Error allocating memory for bitmap\n");
+		NSError(@"Error allocating memory for bitmap\n");
 		CGColorSpaceRelease(colorSpace);
 		return NULL;
 	}
@@ -120,7 +120,7 @@
 	
 	if(!context) {
 		free(bitmapData);
-		NSLog(@"Bitmap context not created");
+		NSError(@"Bitmap context not created");
 	}
 	
 	CGColorSpaceRelease(colorSpace);
@@ -141,7 +141,7 @@
 	
 	CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
 	if(colorSpaceRef == NULL) {
-		NSLog(@"Error allocating color space");
+		NSError(@"Error allocating color space");
 		CGDataProviderRelease(provider);
 		return nil;
 	}
@@ -163,7 +163,7 @@
 	uint32_t* pixels = (uint32_t*)malloc(bufferLength);
 	
 	if(pixels == NULL) {
-		NSLog(@"Error: Memory not allocated for bitmap");
+		NSError(@"Error: Memory not allocated for bitmap");
 		CGDataProviderRelease(provider);
 		CGColorSpaceRelease(colorSpaceRef);
 		CGImageRelease(iref);		
@@ -179,7 +179,7 @@
                                                  bitmapInfo);
 	
 	if(context == NULL) {
-		NSLog(@"Error context not created");
+		NSError(@"Error context not created");
 		free(pixels);
 	}
 	

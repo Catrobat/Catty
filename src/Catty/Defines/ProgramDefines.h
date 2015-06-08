@@ -19,10 +19,9 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
-//#import "OrderedDictionary.h"
 
 #define kLastUsedProgram @"lastUsedProgram"
-#define kCatrobatBroadcastPrefix @"iCatty"
+#define kMinLoopDurationTime (20 * 1000 * 1000) // in nanoseconds!
 #define kProgramCodeFileName @"code.xml"
 #define kProgramSoundsDirName @"sounds"
 #define kProgramImagesDirName @"images"
@@ -33,7 +32,7 @@
 #define kPreviewImageWidth 160
 #define kPreviewImageHeight 160
 #define kMinNumOfObjects 0
-#define kDefaultNumOfObjects 1
+#define kDefaultNumOfObjects 0
 #define kBackgroundObjects 1
 #define kMinNumOfProgramNameCharacters 1
 #define kMaxNumOfProgramNameCharacters 20
@@ -47,11 +46,15 @@
 #define kMaxNumOfSoundNameCharacters 20
 #define kMinNumOfMessageNameCharacters 1
 #define kMaxNumOfMessageNameCharacters 20
+#define kMinNumOfVariableNameCharacters 1
+#define kMaxNumOfVariableNameCharacters 15
+
 
 #define kNoProgramIDYetPlaceholder @"x"
 #define kProgramIDSeparator @"_"
 
 #define kDefaultProgramBundleName @"My first program"
+#define kDefaultProgramBundleOtherObjectsNamePrefix @"Mole"
 
 // indexes
 #define kNumberOfSectionsInProgramTableViewController 2
@@ -62,18 +65,20 @@
 
 typedef NS_ENUM(NSUInteger, kDTMActionType) {
     kDTMActionAskUserForUniqueName = 0,
-    kDTMActionEditProgram = 1,
-    kDTMActionEditObject = 2,
-    kDTMActionEditLook = 3,
-    kDTMActionEditSound = 4,
-    kDTMActionReportMessage = 5,
-    kDTMActionVariableName = 6
+    kDTMActionEditProgram,
+    kDTMActionEditObject,
+    kDTMActionEditLook,
+    kDTMActionEditSound,
+    kDTMActionEditBrickOrScript,
+    kDTMActionReportMessage,
+    kDTMActionVariableName
 };
 
 #define kDTPayloadProgramLoadingInfo @"DTPayloadProgramLoadingInfo"
 #define kDTPayloadSpriteObject @"DTPayloadSpriteObject"
 #define kDTPayloadLook @"DTPayloadLook"
 #define kDTPayloadSound @"DTPayloadSound"
+#define kDTPayloadCellIndexPath @"DTPayloadCellIndexPath"
 #define kDTPayloadAskUserAction @"DTPayloadAskUserAction"
 #define kDTPayloadAskUserTarget @"DTPayloadAskUserTarget"
 #define kDTPayloadAskUserObject @"DTPayloadAskUserObject"
@@ -85,11 +90,13 @@ typedef NS_ENUM(NSUInteger, kDTMActionType) {
 #define kDTPayloadAskUserInvalidInputAlertMessage @"DTPayloadAskUserInvalidInputAlertMessage"
 #define kDTPayloadAskUserExistingNames @"DTPayloadAskUserExistingNames"
 #define kDTPayloadTextView @"DTPayloadTextView"
+#define kDTPayloadCancel @"DTPayloadCancel"
 
 #define kUserDetailsShowDetailsKey @"showDetails"
 #define kUserIsFirstAppLaunch @"isFirstAppLaunch"
 #define kUserIsLoggedIn @"userIsLoggedIn"
 #define kUserLoginToken @"userLoginToken"
+#define kUseTestServerForUploadAndLogin @"useTestServer" 
 #define kUserShowIntroductionOnLaunch @"showIntroductionOnLaunch"
 #define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
 #define kUserDetailsShowDetailsLooksKey @"detailsForLooks"

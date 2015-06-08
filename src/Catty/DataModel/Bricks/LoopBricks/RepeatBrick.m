@@ -25,12 +25,15 @@
 #import "Script.h"
 
 @interface RepeatBrick()
-
 @property (nonatomic, assign) int loopCount;
-
 @end
 
 @implementation RepeatBrick
+
+- (BOOL)isAnimateable
+{
+    return YES;
+}
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
@@ -42,7 +45,7 @@
     self.timesToRepeat = formula;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.timesToRepeat = [[Formula alloc] initWithInteger:10];
 }
@@ -59,8 +62,7 @@
     return (self.loopCount++ < timesToRepeat) ? YES : NO;
 }
 
-
-- (void)reset
+- (void)resetCondition
 {
     self.loopCount = 0;
 }

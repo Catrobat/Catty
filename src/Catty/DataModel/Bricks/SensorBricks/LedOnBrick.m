@@ -24,6 +24,8 @@
 #import "UIDefines.h"
 #import "FlashHelper.h"
 #import "Script.h"
+#import "SpriteObject.h"
+#import "Program.h"
 
 @implementation LedOnBrick
 
@@ -41,8 +43,7 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        FlashHelper *helper = [FlashHelper sharedFlashHandler];
-        [helper turnOn];
+        [[FlashHelper sharedFlashHandler] turnOn];
     };
 }
 

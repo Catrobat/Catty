@@ -33,7 +33,7 @@
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
     
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"BRIGHTNESS"];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"BRIGHTNESS" withContext:context];
     SetBrightnessBrick *setBrightnessBrick = [self new];
     setBrightnessBrick.brightness = formula;
     return setBrightnessBrick;

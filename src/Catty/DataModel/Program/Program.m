@@ -26,7 +26,6 @@
 #import "SpriteObject.h"
 #import "AppDelegate.h"
 #import "FileManager.h"
-#import "SensorHandler.h"
 #import "ProgramLoadingInfo.h"
 #import "Parser.h"
 #import "Script.h"
@@ -38,6 +37,7 @@
 #import "CBXMLParser.h"
 #import "CBXMLSerializer.h"
 #import "CBMutableCopyContext.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation Program
 
@@ -68,8 +68,6 @@
     }
 
     [program addObjectWithName:kLocalizedBackground];
-    [program addObjectWithName:kLocalizedMyObject];
-    program.playing = NO;
     NSDebug(@"%@", [program description]);
     return program;
 }
@@ -90,7 +88,7 @@
     CGFloat languageVersion = [Util detectCBLanguageVersionFromXMLWithPath:xmlPath];
 
     if (languageVersion == kCatrobatInvalidVersion) {
-        NSLog(@"Invalid catrobat language version!");
+        NSDebug(@"Invalid catrobat language version!");
         return nil;
     }
 
@@ -103,7 +101,6 @@
         program = [catrobatParser parseAndCreateProgram];
     }
     program.header.programID = loadingInfo.programID;
-    program.playing = NO;
 
     if (! program)
         return nil;
@@ -155,9 +152,7 @@
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     //object.originalSize;
-    //object.spriteManagerDelegate;
-    //object.broadcastWaitDelegate = self.broadcastWaitHandler;
-    object.currentLook = nil;
+    object.spriteNode.currentLook = nil;
 
     object.name = [Util uniqueName:objectName existingNames:[self allObjectNames]];
     object.program = self;
@@ -222,8 +217,9 @@
 - (void)setObjectList:(NSMutableArray*)objectList
 {
     for (id object in objectList) {
-        if ([object isKindOfClass:[SpriteObject class]])
-            ((SpriteObject*) object).program = self;
+        if ([object isKindOfClass:[SpriteObject class]]) {
+            ((SpriteObject*)object).program = self;
+        }
     }
     _objectList = objectList;
 }
@@ -325,9 +321,21 @@
 
 - (void)translateDefaultProgram
 {
-    SpriteObject *backgroundObject = [self.objectList objectAtIndex:kBackgroundObjectIndex];
-    backgroundObject.name = kLocalizedBackground;
-    [self renameToProgramName:kLocalizedMyFirstProgram];
+    NSUInteger index = 0;
+    for (SpriteObject *spriteObject in self.objectList) {
+        if (index == kBackgroundObjectIndex) {
+            spriteObject.name = kLocalizedBackground;
+        } else {
+            NSMutableString *spriteObjectName = [NSMutableString stringWithString:spriteObject.name];
+            [spriteObjectName replaceOccurrencesOfString:kDefaultProgramBundleOtherObjectsNamePrefix
+                                              withString:kLocalizedMole
+                                                 options:NSCaseInsensitiveSearch
+                                                   range:NSMakeRange(0, spriteObjectName.length)];
+            spriteObject.name = (NSString*)spriteObjectName;
+        }
+        ++index;
+    }
+    [self renameToProgramName:kLocalizedMyFirstProgram]; // saves to disk!
 }
 
 - (void)renameToProgramName:(NSString*)programName
@@ -480,9 +488,10 @@
 
 + (BOOL)isLastUsedProgram:(NSString*)programName programID:(NSString*)programID
 {
-    ProgramLoadingInfo *programLoadingInfo = [Util lastUsedProgramLoadingInfo];
-    return ([programName isEqualToString:programLoadingInfo.visibleName]
-            && [programID isEqualToString:programLoadingInfo.programID]);
+    ProgramLoadingInfo *lastUsedInfo = [Util lastUsedProgramLoadingInfo];
+    ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgramWithName:programName
+                                                                              programID:programID];
+    return [lastUsedInfo isEqualToLoadingInfo:info];
 }
 
 + (void)setLastUsedProgram:(Program*)program
@@ -509,40 +518,43 @@
 {
     NSString *basePath = [Program basePath];
     NSError *error;
-    NSArray *subdirectoryNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
+    NSArray *subdirNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basePath error:&error];
     NSLogError(error);
 
-    NSMutableArray *programLoadingInfos = [[NSMutableArray alloc] initWithCapacity:[subdirectoryNames count]];
-    for (NSString *subdirectoryName in subdirectoryNames) {
+    NSMutableArray *programLoadingInfos = [[NSMutableArray alloc] initWithCapacity:subdirNames.count];
+    for (NSString *subdirName in subdirNames) {
         // exclude .DS_Store folder on MACOSX simulator
-        if ([subdirectoryName isEqualToString:@".DS_Store"])
-            continue;
-
-        NSArray *directoryNameParts = [subdirectoryName componentsSeparatedByString:kProgramIDSeparator];
-        if ([directoryNameParts count] != 2) {
+        if ([subdirName isEqualToString:@".DS_Store"]) {
             continue;
         }
-        ProgramLoadingInfo *info = [ProgramLoadingInfo programLoadingInfoForProgramWithName:[directoryNameParts firstObject]
-                                                                                  programID:[directoryNameParts lastObject]];
+
+        ProgramLoadingInfo *info = [[self class] programLoadingInfoForProgramDirectoryName:subdirName];
+        if (! info) {
+            NSDebug(@"Unable to load program located in directory %@", subdirName);
+            continue;
+        }
         NSDebug(@"Adding loaded program: %@", info.basePath);
         [programLoadingInfos addObject:info];
     }
-    return [programLoadingInfos copy];
+    return programLoadingInfos;
 }
 
 + (NSString*)programDirectoryNameForProgramName:(NSString*)programName programID:(NSString*)programID
 {
-    return [NSString stringWithFormat:@"%@%@%@", programName, kProgramIDSeparator, (programID ? programID : kNoProgramIDYetPlaceholder)];
+    return [NSString stringWithFormat:@"%@%@%@", programName, kProgramIDSeparator,
+            (programID ? programID : kNoProgramIDYetPlaceholder)];
 }
 
-+ (ProgramLoadingInfo*)programLoadingInfoForProgramDirectoryName:(NSString*)programDirectoryName
++ (ProgramLoadingInfo*)programLoadingInfoForProgramDirectoryName:(NSString*)directoryName
 {
-    NSArray *parts = [programDirectoryName componentsSeparatedByString:kProgramIDSeparator];
-    if ((! parts) || ([parts count] != 2)) {
+    CBAssert(directoryName);
+    NSArray *directoryNameParts = [directoryName componentsSeparatedByString:kProgramIDSeparator];
+    if (directoryNameParts.count < 2) {
         return nil;
     }
-    return [ProgramLoadingInfo programLoadingInfoForProgramWithName:[parts firstObject]
-                                                          programID:[parts lastObject]];
+    NSString *programID = (NSString*)directoryNameParts.lastObject;
+    NSString *programName = [directoryName substringToIndex:directoryName.length - programID.length - 1];
+    return [ProgramLoadingInfo programLoadingInfoForProgramWithName:programName programID:programID];
 }
 
 + (NSString*)programNameForProgramID:(NSString*)programID
@@ -559,35 +571,9 @@
     return nil;
 }
 
-#pragma mark - Dealloc
 - (void)removeReferences
 {
-    if (! self.objectList)
-        return;
-
-    for (SpriteObject *sprite in self.objectList) {
-        sprite.broadcastWaitDelegate = nil;
-        sprite.spriteManagerDelegate = nil;
-
-        if(sprite.scriptList) {
-            for (Script *script in sprite.scriptList) {
-                script.allowRunNextAction = NO;
-                if(script.brickList) {
-                    for (Brick *brick in script.brickList) {
-                        brick.script = nil;
-                    }
-                }
-                script.object = nil;
-            }
-        }
-        sprite.program = nil;
-    }
-}
-
-- (void)dealloc
-{
-    [self removeReferences];
-    NSDebug(@"Dealloc Program");
+    [self.objectList makeObjectsPerformSelector:@selector(removeReferences)];
 }
 
 @end

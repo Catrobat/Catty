@@ -20,7 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Broadcastscript.h"
+#import "BroadcastScript.h"
+#import "SpriteObject.h"
+#import "Util.h"
 
 @implementation BroadcastScript
 
@@ -29,41 +31,26 @@
     return kLocalizedWhenIReceive;
 }
 
-- (NSString*)description
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    NSMutableString *ret = [[NSMutableString alloc] initWithString:@"BroadcastScript: "];
-    if (self.receivedMessage.length) {
-        [ret appendString:self.receivedMessage];
+    if(spriteObject) {
+        NSArray *messages = [Util allMessagesForProgram:spriteObject.program];
+        if([messages count] > 0)
+            self.receivedMessage = [messages objectAtIndex:0];
+        else
+            self.receivedMessage = nil;
     }
-    
-    if ([self.brickList count] > 0)
-    {
-        [ret appendString:@"\nBricks: \r"];
-        for (Brick *brick in self.brickList)
-        {
-            [ret appendFormat:@"%@\r", brick];
-        }
-    }
-    else
-    {
-        [ret appendString:@"Bricks array empty!\r"];
-    }
-    
-    return ret;
+    if(!self.receivedMessage)
+        self.receivedMessage = [NSString stringWithString:kLocalizedMessage1];
 }
 
-- (void)setupEmptyBrick
+- (void)setMessage:(NSString*)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
-    self.receivedMessage = [NSString stringWithString:kLocalizedBroadcastDefaultMessage];
-}
-
-- (void)setMessage:(NSString *)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    if(message)
+    if (message)
         self.receivedMessage = message;
 }
 
-- (NSString *)messageForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+- (NSString*)messageForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.receivedMessage;
 }

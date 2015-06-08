@@ -22,6 +22,7 @@
 
 #import "Hidebrick.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation HideBrick
 
@@ -40,7 +41,7 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        self.script.object.hidden = YES;
+        self.script.object.spriteNode.hidden = YES;
     };
 }
 

@@ -78,6 +78,25 @@ static pthread_mutex_t variablesLock;
     return variable;
 }
 
+- (BOOL)removeUserVariableNamed:(NSString*)name forSpriteObject:(SpriteObject*)sprite
+{
+    NSMutableArray *objectUserVariables = [self.objectVariableList objectForKey:sprite];
+    UserVariable *variable = [self findUserVariableNamed:name inArray:objectUserVariables];
+    if (variable) {
+            //TODO REMOVE
+        [self removeObjectUserVariableNamed:name inArray:objectUserVariables forSpriteObject:sprite];
+        return YES;
+    } else {
+        variable = [self findUserVariableNamed:name inArray:self.programVariableList];
+        if (variable) {
+                //TODO REMOVE
+                [self removeProgramUserVariableNamed:name];
+            return YES;
+        }
+    }
+    return NO;
+}
+
 - (UserVariable*)findUserVariableNamed:(NSString*)name inArray:(NSArray*)userVariables
 {
     UserVariable *variable = nil;
@@ -92,6 +111,31 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_unlock(&variablesLock);
     return variable;
 }
+- (void)removeObjectUserVariableNamed:(NSString*)name inArray:(NSMutableArray*)userVariables forSpriteObject:(SpriteObject*)sprite
+{
+    pthread_mutex_lock(&variablesLock);
+    for (int i = 0; i < [userVariables count]; ++i) {
+        UserVariable *var = [userVariables objectAtIndex:i];
+        if ([var.name isEqualToString:name]) {
+            [userVariables removeObjectAtIndex:i];
+            [self.objectVariableList setObject:userVariables forKey:sprite];
+            break;
+        }
+    }
+    pthread_mutex_unlock(&variablesLock);
+}
+- (void)removeProgramUserVariableNamed:(NSString*)name
+{
+    pthread_mutex_lock(&variablesLock);
+    for (int i = 0; i < [self.programVariableList count]; ++i) {
+        UserVariable *var = [self.programVariableList objectAtIndex:i];
+        if ([var.name isEqualToString:name]) {
+            [self.programVariableList removeObjectAtIndex:i];
+            break;
+        }
+    }
+    pthread_mutex_unlock(&variablesLock);
+}
 
 - (void)setUserVariable:(UserVariable*)userVariable toValue:(double)value
 {
@@ -105,6 +149,24 @@ static pthread_mutex_t variablesLock;
     pthread_mutex_lock(&variablesLock);
     userVariable.value = [NSNumber numberWithFloat:(CGFloat)(([userVariable.value doubleValue] + value))];
     pthread_mutex_unlock(&variablesLock);
+}
+
+- (NSArray*)allVariablesForObject:(SpriteObject*)spriteObject
+{
+    NSMutableArray *vars = [NSMutableArray arrayWithArray:self.programVariableList];
+    [vars addObjectsFromArray:[self objectVariablesForObject:spriteObject]];
+    return vars;
+}
+
+- (NSArray*)objectVariablesForObject:(SpriteObject*)spriteObject
+{
+    NSMutableArray *vars = [NSMutableArray new];
+    if([self.objectVariableList objectForKey:spriteObject]) {
+        for(UserVariable *var in [self.objectVariableList objectForKey:spriteObject]) {
+            [vars addObject:var];
+        }
+    }
+    return vars;
 }
 
 - (SpriteObject*)spriteObjectForObjectVariable:(UserVariable*)userVariable

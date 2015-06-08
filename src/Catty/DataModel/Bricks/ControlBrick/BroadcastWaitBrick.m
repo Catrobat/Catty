@@ -22,6 +22,8 @@
 
 #import "BroadcastWaitBrick.h"
 #import "Script.h"
+#import "Util.h"
+#import "Pocket_Code-Swift.h"
 
 @implementation BroadcastWaitBrick
 
@@ -30,7 +32,7 @@
     return kLocalizedBroadcastAndWait;
 }
 
-- (id)initWithMessage:(NSString *)message
+- (id)initWithMessage:(NSString*)message
 {
     self = [super init];
     
@@ -41,18 +43,20 @@
     return self;
 }
 
-- (void)setupEmptyBrick
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.broadcastMessage = [NSString stringWithString:kLocalizedBroadcastDefaultMessage];
+    if(spriteObject) {
+        NSArray *messages = [Util allMessagesForProgram:spriteObject.program];
+        if([messages count] > 0)
+            self.broadcastMessage = [messages objectAtIndex:0];
+        else
+            self.broadcastMessage = nil;
+    }
+    if(!self.broadcastMessage)
+        self.broadcastMessage = [NSString stringWithString:kLocalizedMessage1];
 }
 
-- (void)performBroadcastWait
-{
-    NSDebug(@"Performing: %@", self.description);
-    [self.script.object broadcastAndWait:self.broadcastMessage];
-}
-
-- (void)setMessage:(NSString *)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+- (void)setMessage:(NSString*)message forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     if(message)
         self.broadcastMessage = message;

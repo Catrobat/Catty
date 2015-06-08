@@ -40,9 +40,26 @@
     self.variableFormula = formula;
 }
 
-- (void)setupEmptyBrick
+- (UserVariable*)variableForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    return self.userVariable;
+}
+
+- (void)setVariable:(UserVariable*)variable forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    self.userVariable = variable;
+}
+
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.variableFormula = [[Formula alloc] initWithZero];
+    if(spriteObject) {
+        NSArray *variables = [spriteObject.program.variables allVariablesForObject:spriteObject];
+        if([variables count] > 0)
+            self.userVariable = [variables objectAtIndex:0];
+        else
+            self.userVariable = nil;
+    }
 }
 
 - (NSString*)brickTitle

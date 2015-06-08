@@ -32,9 +32,19 @@
     return NO;
 }
 
+- (BOOL)isAnimateable
+{
+    return YES;
+}
+
+- (BOOL)isIfLogicBrick
+{
+    return YES;
+}
+
 - (NSString*)brickTitle
 {
-    return kLocalizedIfEnd;
+    return kLocalizedEndIf;
 }
 
 - (void)performFromScript:(Script*)script

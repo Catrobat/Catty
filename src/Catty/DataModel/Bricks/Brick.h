@@ -32,14 +32,16 @@
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readonly) kBrickType brickType;
 @property (nonatomic, strong, readonly) NSString *brickTitle;
-@property (nonatomic, strong) Script *script;
-
-
-+ (Brick *)brickWithType:(kBrickType)type andCategory:(kBrickCategoryType)category;
-
-- (instancetype)initWithType:(kBrickType)type andCategory:(kBrickCategoryType)category;
+@property (nonatomic, weak) Script *script;
+@property (nonatomic, getter=isAnimated) BOOL animate;
+@property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
+@property (nonatomic) BOOL isSelected;
 
 - (BOOL)isSelectableForObject;
+
+- (BOOL)isAnimateable;
+
+- (BOOL)isFormulaBrick;
 
 - (NSString*)description;
 
@@ -48,5 +50,9 @@
 - (BOOL)isEqualToBrick:(Brick*)brick;
 
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context AndErrorReporting:(BOOL)reportError;
+
+- (void)removeFromScript;
+
+- (void)removeReferences;
 
 @end

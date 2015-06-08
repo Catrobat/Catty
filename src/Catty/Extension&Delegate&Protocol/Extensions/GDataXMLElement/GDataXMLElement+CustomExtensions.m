@@ -152,7 +152,7 @@
             name = [name stringByAppendingFormat:@"[%lu]", (unsigned long)xPathIndex];
         }
         [context.currentPositionStack pushXmlElementName:name];
-        NSLog(@"+ [%@] added to stack", name);
+        NSDebug(@"+ [%@] added to stack", name);
     }
 }
 
@@ -193,9 +193,12 @@
 {
     [XMLError exceptionIf:[context.currentPositionStack isEmpty] equals:YES
                   message:@"Can't pop xml element from stack. Stack is empty!!"];
-    NSString *xmlElementName = [context.currentPositionStack popXmlElementName];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-variable" // ignore unused variable warning
+    NSString *name = [context.currentPositionStack popXmlElementName];
+#pragma clang diagnostic pop
     if (context.currentPositionStack) {
-        NSLog(@"- [%@] removed from stack", xmlElementName);
+        NSDebug(@"- [%@] removed from stack", name);
     }
     [self addChild:child];
 }
@@ -203,7 +206,7 @@
 - (BOOL)isEqualToElement:(GDataXMLElement*)node
 {
     if(![self.decodedName isEqualToString:node.decodedName]) {
-        NSDebug(@"GDataXMLElements not equal: tag names not equal (%@ != %@)!", self.name, node.name);
+        NSLog(@"GDataXMLElements not equal: tag names not equal (%@ != %@)!", self.name, node.name);
     }
     
     NSUInteger attributesCount = [self.attributes count];

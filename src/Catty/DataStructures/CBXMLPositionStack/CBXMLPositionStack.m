@@ -21,44 +21,47 @@
  */
 
 #import "CBXMLPositionStack.h"
+#import "CBStack.h"
 
 @interface CBXMLPositionStack ()
-
-@property (nonatomic, strong, readwrite) NSMutableArray *stack;
-@property (nonatomic, readwrite) NSUInteger numberOfXmlElements;
-
+@property (nonatomic, strong) CBStack *stackStorageBackend;
 @end
 
 @implementation CBXMLPositionStack
 
+#pragma mark - Getters and Setters
 - (NSUInteger)numberOfXmlElements
 {
-    return [self.stack count];
-}
-
-- (void)pushXmlElementName:(NSString*)xmlElementName
-{
-    [self.stack addObject:xmlElementName];
-}
-
-- (NSString*)popXmlElementName
-{
-    NSString *xmlElement = self.stack.lastObject;
-    [self.stack removeLastObject];
-    return xmlElement;
-}
-
-- (BOOL)isEmpty
-{
-    return ([self.stack count] == 0);
+    return self.stackStorageBackend.numberOfElements;
 }
 
 - (NSMutableArray*)stack
 {
-    if(! _stack) {
-        _stack = [[NSMutableArray alloc] init];
+    return self.stackStorageBackend.stack;
+}
+
+- (CBStack*)stackStorageBackend
+{
+    if (! _stackStorageBackend) {
+        _stackStorageBackend = [CBStack new];
     }
-    return _stack;
+    return _stackStorageBackend;
+}
+
+#pragma mark - Operations
+- (void)pushXmlElementName:(NSString*)xmlElementName
+{
+    [self.stackStorageBackend pushElement:xmlElementName];
+}
+
+- (NSString*)popXmlElementName
+{
+    return (NSString*)[self.stackStorageBackend popElement];
+}
+
+- (BOOL)isEmpty
+{
+    return (self.numberOfXmlElements == 0);
 }
 
 #pragma mark - NSFastEnumeration
@@ -66,14 +69,13 @@
                                   objects:(__unsafe_unretained id[])buffer
                                     count:(NSUInteger)len
 {
-    return [self.stack countByEnumeratingWithState:state objects:buffer count:len];
+    return [self.stackStorageBackend.stack countByEnumeratingWithState:state objects:buffer count:len];
 }
 
 - (id)mutableCopy
 {
     CBXMLPositionStack *copiedPositionStack = [[self class] new];
-    copiedPositionStack.stack = [self.stack mutableCopy];
-    copiedPositionStack.numberOfXmlElements = self.numberOfXmlElements;
+    copiedPositionStack.stackStorageBackend = [self.stackStorageBackend mutableCopy];
     return copiedPositionStack;
 }
 

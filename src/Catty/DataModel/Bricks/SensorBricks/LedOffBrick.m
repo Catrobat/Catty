@@ -41,8 +41,7 @@
 {
     return ^{
         NSDebug(@"Performing: %@", self.description);
-        FlashHelper *helper = [FlashHelper sharedFlashHandler];
-        [helper turnOff];
+        [[FlashHelper sharedFlashHandler] turnOff];
     };
 }
 

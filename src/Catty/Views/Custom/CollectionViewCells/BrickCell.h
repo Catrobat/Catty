@@ -36,17 +36,17 @@
 #define roundedSmallBrick 75.0f
 
 @class Brick, BrickCellInlineView, BrickCell;
-@protocol ScriptProtocol, BrickCellFragmentDelegate;
+@protocol ScriptProtocol, BrickCellDataDelegate, BrickCellDataProtocol;
 
 
 @protocol BrickCellDelegate<NSObject>
 @optional
-- (void)BrickCell:(BrickCell*)brickCell didSelectBrickCellButton:(SelectButton*)selectButton;
+- (void)brickCell:(BrickCell*)brickCell didSelectBrickCellButton:(SelectButton*)selectButton;
 @end
 
 @interface BrickCell : UICollectionViewCell<BrickCellProtocol>
 @property (nonatomic, weak) id<BrickCellDelegate> delegate;
-@property (nonatomic, weak) id<BrickCellFragmentDelegate> fragmentDelegate;
+@property (nonatomic, weak) id<BrickCellDataDelegate> dataDelegate;
 @property (nonatomic, strong) id<ScriptProtocol> scriptOrBrick;
 @property (nonatomic, strong) NSArray *brickCategoryColors;
 @property (nonatomic) BOOL enabled;
@@ -58,7 +58,12 @@
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews; // abstract
 - (BOOL)isScriptBrick;
 - (void)selectedState:(BOOL)selected setEditingState:(BOOL)editing;
-- (void)animateBrick:(BOOL)animate;
+- (void)animate:(BOOL)animate;
+- (void)insertAnimate:(BOOL)animate;
 - (void)setupBrickCell;
+
+- (id<BrickCellDataProtocol>)dataSubviewForLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter;
+- (id<BrickCellDataProtocol>)dataSubviewWithType:(Class)className;
+- (NSArray*)dataSubviews; // of id<BrickCellDataProtocol>
 
 @end

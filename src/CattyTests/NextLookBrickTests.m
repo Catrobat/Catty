@@ -23,9 +23,9 @@
 #import <XCTest/XCTest.h>
 #import "BrickTests.h"
 #import "WhenScript.h"
+#import "Pocket_Code-Swift.h"
 
 @interface NextLookBrickTests : BrickTests
-
 @end
 
 @implementation NextLookBrickTests
@@ -44,13 +44,14 @@
 
 - (void)testNextLookBrick
 {
-    SpriteObject* object = [[SpriteObject alloc] init];
+    SpriteObject *object = [[SpriteObject alloc] init];
     Program *program = [Program defaultProgramWithName:@"a" programID:nil];
+    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
+    object.spriteNode = spriteNode;
     object.program = program;
-    
+
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString * filePath = [bundle pathForResource:@"test.png"
-                                           ofType:nil];
+    NSString * filePath = [bundle pathForResource:@"test.png" ofType:nil];
     NSData *imageData = UIImagePNGRepresentation([UIImage imageWithContentsOfFile:filePath]);
     Look* look = [[Look alloc] initWithName:@"test" andPath:@"test.png"];
     [imageData writeToFile:[NSString stringWithFormat:@"%@images/%@", [object projectPath], @"test.png"]atomically:YES];
@@ -64,14 +65,14 @@
     brick.script = script;
     [object.lookList addObject:look];
     [object.lookList addObject:look1];
-    object.currentLook = look;
-    object.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
-    object.currentLookBrightness = 0.0f;
+    spriteNode.currentLook = look;
+    spriteNode.currentUIImageLook = [UIImage imageWithContentsOfFile:filePath];
+    spriteNode.currentLookBrightness = 0.0f;
 
     dispatch_block_t action = [brick actionBlock];
 
     action();
-    XCTAssertEqual(object.currentLook,look1, @"NextLookBrick not correct");
+    XCTAssertEqual(spriteNode.currentLook,look1, @"NextLookBrick not correct");
     [Program removeProgramFromDiskWithProgramName:program.header.programName programID:program.header.programID];
 }
 

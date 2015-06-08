@@ -31,11 +31,9 @@
 #import "ProgramDetailStoreViewController.h"
 #import "ProgramLoadingInfo.h"
 #import "SegueDefines.h"
-#import "Parser.h"
 #import "SpriteObject.h"
 #import "Script.h"
 #import "Brick.h"
-#import "Util.h"
 #import "ScenePresenterViewController.h"
 #import "ProgramTableViewController.h"
 #import "ProgramDefines.h"
@@ -49,6 +47,7 @@
 #import "InfoPopupViewController.h"
 #import "MYBlurIntroductionView.h"
 #import "LoginPopupViewController.h"
+#import "ProgramsForUploadViewController.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
     kContinueProgramVC = 0,
@@ -114,7 +113,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = UIColor.skyBlueColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
+
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (! [defaults objectForKey:kUserIsFirstAppLaunch] || [defaults boolForKey:kUserShowIntroductionOnLaunch]) {
         self.tableView.scrollEnabled = NO;
@@ -123,8 +122,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
         self.tableView.scrollEnabled = YES;
         [self initNavigationBar];
     }
-    
-    //[[NSUserDefaults standardUserDefaults] setBool:NO forKey:kUserIsLoggedIn]; //Just for testing, TODO: remove
+
+    //Always use the Test-Server for test-uploads and -logins, because Webteam receives emails for each of this actions on the other server
+#if DEBUG == 1
+    [defaults setBool:YES forKey:kUseTestServerForUploadAndLogin];
+#else // DEBUG == 0
+    [defaults setBool:NO forKey:kUseTestServerForUploadAndLogin];
+#endif // DEBUG
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -170,16 +174,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                   kLocalizedExplore,
                   kLocalizedUpload, nil];
     self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNamePrograms, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
-
-    BOOL userIsLoggedIn = [[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue];
-    
-    if (userIsLoggedIn) {
-        self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
-    } else {
-        self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToLogin, nil];
-    }
-    
-    
+    self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
 }
 
 - (void)initNavigationBar
@@ -198,22 +193,22 @@ static NSCharacterSet *blockedCharacterSet = nil;
         InfoPopupViewController *popupViewController = [[InfoPopupViewController alloc] init];
         popupViewController.delegate = self;
         self.tableView.scrollEnabled = NO;
-        [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame isLogin:NO];
+        [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame upwardsCenterByFactor:1];
     } else {
-        [self dismissPopupWithLoginCode:NO];
+        [self dismissPopupWithCode:NO];
     }
 }
 
-- (void)showLoginView:(id)sender
+- (void)showLoginView
 {
     if (self.popupViewController == nil) {
         LoginPopupViewController *popupViewController = [[LoginPopupViewController alloc] init];
         popupViewController.delegate = self;
         self.tableView.scrollEnabled = NO;
-        [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame isLogin:YES];
+        [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame upwardsCenterByFactor:4.5];
         self.navigationItem.leftBarButtonItem.enabled = NO;
     } else {
-        [self dismissPopupWithLoginCode:NO];
+        [self dismissPopupWithCode:NO];
     }
 }
 
@@ -261,7 +256,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    if ([self dismissPopupWithLoginCode:NO]) {
+    if ([self dismissPopupWithCode:NO]) {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
         return;
     }
@@ -295,15 +290,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
             }
             break;
         case kUploadVC:
-
-            //some ugly code to get login logic running, will be removed
             if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
-                self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
                 if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
                     [self performSegueWithIdentifier:identifier sender:self];
                 }
+                
             } else {
-                    [self showLoginView:self];
+                    [self showLoginView];
             }
 
             break;
@@ -349,7 +342,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - segue handling
 - (BOOL)shouldPerformSegueWithIdentifider:(NSString*)identifier sender:(id)sender
 {
-    if ([self dismissPopupWithLoginCode:NO]) {
+    if ([self dismissPopupWithCode:NO]) {
         return NO;
     }
     if ([identifier isEqualToString:kSegueToContinue]) {
@@ -372,7 +365,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             return NO;
         }
         return YES;
-    } else if([identifier isEqualToString:kSegueToExplore]||[identifier isEqualToString:kSegueToHelp]){
+    } else if([identifier isEqualToString:kSegueToExplore]||[identifier isEqualToString:kSegueToHelp]||[identifier isEqualToString:kSegueToUpload]){
         NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
         
         if(remoteHostStatus == NotReachable) {
@@ -386,7 +379,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
             }else{
                 NSDebug(@"reachable via wifi but no data");
                 if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
-                    [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]) {
+                    [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]] ||
+                    [self.navigationController.topViewController isKindOfClass:[LoginPopupViewController class]] ||
+                    [self.navigationController.topViewController isKindOfClass:[ProgramsForUploadViewController class]] ) {
                     [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
                     [self.navigationController popToRootViewControllerAnimated:YES];
                     return NO;
@@ -433,7 +428,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if(remoteHostStatus == NotReachable) {
         if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
             [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]] ||
-            [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]] ) {
+            [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]] ||
+            [self.navigationController.topViewController isKindOfClass:[LoginPopupViewController class]] ||
+            [self.navigationController.topViewController isKindOfClass:[ProgramsForUploadViewController class]] ) {
             [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
@@ -445,7 +442,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
             NSDebug(@"reachable via wifi but no data");
             if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
                 [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]||
-                [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]]) {
+                [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]] ||
+                [self.navigationController.topViewController isKindOfClass:[LoginPopupViewController class]] ||
+                [self.navigationController.topViewController isKindOfClass:[ProgramsForUploadViewController class]] ) {
                 [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
@@ -457,7 +456,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
            NSDebug(@"reachable via cellular but no data");
             if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
                 [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]||
-                [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]]) {
+                [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]] ||
+                [self.navigationController.topViewController isKindOfClass:[LoginPopupViewController class]] ||
+                [self.navigationController.topViewController isKindOfClass:[ProgramsForUploadViewController class]] ) {
                 [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
@@ -467,7 +468,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)dealloc
 {
-    [self.identifiers removeAllObjects]; //Is this needed?
+    [self.identifiers removeAllObjects];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
@@ -477,7 +478,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
 }
 
-- (void)introduction:(MYBlurIntroductionView *)introductionView didFinishWithType:(MYFinishType)finishType {
+- (void)introduction:(MYBlurIntroductionView *)introductionView didFinishWithType:(MYFinishType)finishType
+{
     NSDebug(@"Introduction did finish");
     [self initNavigationBar];
     self.tableView.scrollEnabled = YES;
@@ -487,15 +489,21 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark - popup delegate
-- (BOOL)dismissPopupWithLoginCode:(BOOL)successLogin
+- (BOOL)dismissPopupWithCode:(BOOL)successLogin
 {
     if (self.popupViewController != nil) {
         self.tableView.scrollEnabled = YES;
         [self dismissPopupViewController];
         self.navigationItem.leftBarButtonItem.enabled = YES;
         if (successLogin) {
-                // TODO no trigger because popup is visible
-            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                
+                NSString *identifier = kSegueToUpload;
+                if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
+                    [self performSegueWithIdentifier:identifier sender:self];
+                }
+                
+            });
         }
         return YES;
     }

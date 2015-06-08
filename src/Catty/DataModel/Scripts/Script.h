@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
 #import "UIDefines.h"
@@ -32,28 +31,24 @@
 @class SpriteObject;
 @class GDataXMLElement;
 
-@interface Script : SKNode <ScriptProtocol, CBMutableCopying>
+@interface Script : NSObject <ScriptProtocol, CBMutableCopying>
 
 @property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
 @property (nonatomic, readonly) kBrickType brickType;
 @property (nonatomic, strong, readonly) NSString *brickTitle;
-- (BOOL)isSelectableForObject;
-
-@property (atomic) BOOL allowRunNextAction;
 @property (nonatomic, weak) SpriteObject *object;
-@property (nonatomic, strong) NSString *action;
 @property (strong, nonatomic) NSMutableArray *brickList;
+@property (nonatomic, getter=isAnimated) BOOL animate;
+@property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
+@property (nonatomic) BOOL isSelected;
 
-+ (Script *)scriptWithType:(kBrickType)type andCategory:(kBrickCategoryType)category;
-
-- (instancetype)initWithType:(kBrickType)type andCategory:(kBrickCategoryType)category;
-
-- (void)startWithCompletion:(dispatch_block_t)block;
-
-- (void)stop;
-
+- (BOOL)isSelectableForObject;
+- (BOOL)isAnimateable;
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject;
+- (void)addBrick:(Brick*)brick atIndex:(NSUInteger)index;
 - (NSString*)description;
-
 - (BOOL)isEqualToScript:(Script*)script;
+- (void)removeFromObject;
+- (void)removeReferences;
 
 @end

@@ -22,12 +22,18 @@
 
 
 #import <Foundation/Foundation.h>
+#define FlashUninitialized 10000
+#define FlashON 10001
+#define FlashOFF 10002
 
 @interface FlashHelper : NSObject
 
 + (instancetype)sharedFlashHandler;
+@property (nonatomic,assign) NSInteger wasTurnedOn;
 
 - (void)turnOn;
 - (void)turnOff;
+- (void)reset;
+- (void)pause;
 
 @end

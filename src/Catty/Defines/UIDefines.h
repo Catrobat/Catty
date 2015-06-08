@@ -22,6 +22,26 @@
 
 #import "LanguageTranslationDefines.h"
 
+// ScenePresenterViewController
+#define kWidthSlideMenu 150
+#define kBounceEffect 5
+#define kPlaceOfButtons 17
+#define kSlidingStartArea 40
+#define kIphone4ScreenHeight 480.0f
+#define kContinueButtonSize 85
+#define kContinueOffset 15
+#define kMenuButtonSize 44
+#define kMenuIPhone4GapSize 30
+#define KMenuIPhone5GapSize 35
+#define kMenuIPhone4ContinueGapSize 40
+#define kMenuIPhone5ContinueGapSize 45
+#define kMenuLabelWidth 50
+#define kMenuLabelHeight 20
+#define kPlaceofLabels (kPlaceOfButtons-29)
+#define kPlaceofContinueLabel (kPlaceOfButtons)
+#define kDontResumeSounds 4
+#define kfirstSwipeDuration 0.8f
+
 // XXX: which characters in program, object, image names do we have to support?
 #define kTextFieldAllowedCharacters @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzäöü#?!()[]{}^*|~<>£¥=+-.,:;\"'&@%$€ 1234567890"
 
@@ -171,6 +191,8 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     [UIColor variableBrickStrokeColor]\
 ]
 
+#define kWhenScriptDefaultAction @"Tapped" // at the moment Catrobat only supports this type of action for WhenScripts
+
 // map brick classes to corresponding brick type identifiers
 #define kClassNameBrickTypeMap @{\
 \
@@ -296,7 +318,7 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"ClearGraphicEffectBrick"   : @(kBrickHeight1h),\
 @"LedOnBrick"                : @(kBrickHeight1h),\
 @"LedOffBrick"               : @(kBrickHeight1h),\
-@"VibrationBrick"            : @(kBrickHeight2h),\
+@"VibrationBrick"            : @(kBrickHeight1h),\
 \
 /* variable bricks */\
 @"SetVariableBrick"          : @(kBrickHeight3h),\

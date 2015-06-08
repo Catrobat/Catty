@@ -49,7 +49,10 @@
 #import "Script.h"
 #import "InternToken.h"
 #import "SpriteObject.h"
-#import "BrickCellFormulaFragment.h"
+#import "BrickCellFormulaData.h"
+#import "VariablePickerData.h"
+#import "Brick+UserVariable.h"
+#import "BDKNotifyHUD.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -63,7 +66,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 
 @property (weak, nonatomic) Formula *formula;
-@property (weak, nonatomic) BrickCellFormulaFragment *brickCellFragment;
+@property (weak, nonatomic) BrickCellFormulaData *brickCellData;
 @property (nonatomic,assign) NSInteger currentComponent;
 
 @property (strong, nonatomic) UITapGestureRecognizer *recognizer;
@@ -105,6 +108,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (strong, nonatomic) AHKActionSheet *mathFunctionsMenu;
 @property (strong, nonatomic) AHKActionSheet *logicalOperatorsMenu;
 @property (nonatomic) BOOL isProgramVariable;
+@property (nonatomic) BOOL didShowSyntaxErrorView;
+@property (nonatomic, strong) BDKNotifyHUD *notficicationHud;
 
 @end
 
@@ -114,24 +119,26 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 @synthesize formulaEditorTextView;
 
-- (id)initWithBrickCellFormulaFragment:(BrickCellFormulaFragment *)brickCellFragment
+- (id)initWithBrickCellFormulaData:(BrickCellFormulaData *)brickCellData
 {
     self = [super init];
     
     if(self) {
-        _brickCellFragment = brickCellFragment;
+        [self setBrickCellFormulaData:brickCellData];
     }
     
     return self;
 }
 
-- (void)setBrickCellFormulaFragment:(BrickCellFormulaFragment *)brickCellFragment
+- (void)setBrickCellFormulaData:(BrickCellFormulaData *)brickCellData
 
 {
-    _brickCellFragment = brickCellFragment;
-    self.formula = brickCellFragment.formula;
+    self.brickCellData = brickCellData;
+    self.delegate = brickCellData;
+    self.formula = brickCellData.formula;
     self.internFormula = [[InternFormula alloc] initWithInternTokenList:[self.formula.formulaTree getInternTokenList]];
     self.history = [[FormulaEditorHistory alloc] initWithInternFormulaState:[self.internFormula getInternFormulaState]];
+    self.didShowSyntaxErrorView = NO;
     
     [self setCursorPositionToEndOfFormula];
     [self update];
@@ -139,6 +146,40 @@ NS_ENUM(NSInteger, ButtonIndex) {
                        start:0
                          end:(int)[[self.internFormula getExternFormulaString] length]];
     [self.internFormula selectWholeFormula];
+}
+
+- (BOOL)changeBrickCellFormulaData:(BrickCellFormulaData *)brickCellData
+
+{
+    InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
+    Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
+    [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
+    FormulaParserStatus formulaParserStatus = [internFormulaParser getErrorTokenIndex];
+    
+    if(formulaParserStatus == FORMULA_PARSER_OK) {
+        BOOL saved = NO;
+        if([self.history undoIsPossible] || [self.history redoIsPossible]) {
+            [self saveIfPossible];
+            saved = YES;
+        }
+        [self setBrickCellFormulaData:brickCellData];
+        if(saved) {
+            [self showChangesSavedView];
+        }
+        return saved;
+    } else if(formulaParserStatus == FORMULA_PARSER_STACK_OVERFLOW) {
+        [self showFormulaTooLongView];
+    } else {
+        if(self.didShowSyntaxErrorView && brickCellData != self.brickCellData) {
+            [self setBrickCellFormulaData:brickCellData];
+            [self showChangesDiscardedView];
+            return YES;
+        } else {
+            [self showSyntaxErrorView];
+        }
+    }
+    
+    return NO;
 }
 
 - (void)setCursorPositionToEndOfFormula
@@ -160,8 +201,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[ProgramManager sharedProgramManager]setProgram:self.object.program];
-    self.view.backgroundColor = UIColor.clearColor;
+    [[ProgramManager sharedProgramManager] setProgram:self.object.program];
+    self.view.backgroundColor = [UIColor darkBlueColor];
 
     [self showFormulaEditor];
     [self hideScrollViews];
@@ -172,6 +213,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.variablePicker.tintColor = [UIColor skyBlueColor];
     self.variableSourceProgram = [[NSMutableArray alloc] init];
     self.variableSourceObject = [[NSMutableArray alloc] init];
+    self.variableSource = [[NSMutableArray alloc] init];
     [self updateVariablePickerData];
     self.currentComponent = 0;
     self.mathScrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
@@ -196,9 +238,9 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.recognizer.numberOfTapsRequired = 1;
     self.recognizer.cancelsTouchesInView = NO;
     [self.view.window addGestureRecognizer:self.recognizer];
-    self.pickerGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chosenVariable)];
-    self.pickerGesture.numberOfTapsRequired = 1;
-    [self.variablePicker addGestureRecognizer:self.pickerGesture];
+    //self.pickerGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chosenVariable:)];
+    //self.pickerGesture.numberOfTapsRequired = 1;
+    //[self.variablePicker addGestureRecognizer:self.pickerGesture];
     [self update];
 }
 
@@ -213,8 +255,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     [super viewDidDisappear:animated];
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(formulaEditorViewController:withBrickCell:)]) {
-//        [self.delegate formulaEditorViewController:self withBrickCell:self.brickCell];
+    // enable userinteraction for all subviews
+    for (id subview in [self.brickCellData.brickCell dataSubviews]) {
+        if([subview isKindOfClass:[UIView class]])
+            [(UIView*)subview setUserInteractionEnabled:YES];
     }
 }
 
@@ -303,7 +347,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)handleInputWithTitle:(NSString*)title AndButtonType:(int)buttonType
 {
     [self.internFormula handleKeyInputWithName:title butttonType:buttonType];
-    NSLog(@"InternFormulaString: %@",[self.internFormula getExternFormulaString]);
+    NSDebug(@"InternFormulaString: %@",[self.internFormula getExternFormulaString]);
     [self.history push:[self.internFormula getInternFormulaState]];
     [self update];
 }
@@ -363,9 +407,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
     UIAlertView *alert;
     if (self.internFormula != nil) {
         InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
-        Brick *brick = (Brick*)self.brickCellFragment.brickCell.scriptOrBrick; // must be a brick!
+        Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
         Formula *formula = [[Formula alloc] initWithFormulaElement:[internFormulaParser parseFormulaForSpriteObject:brick.script.object]];
-
         NSString *computedString;
 
         switch ([internFormulaParser getErrorTokenIndex]) {
@@ -378,36 +421,17 @@ NS_ENUM(NSInteger, ButtonIndex) {
                                                  delegate: self
                                         cancelButtonTitle:kLocalizedOK
                                         otherButtonTitles:nil,nil];
+                [alert show];
                 break;
             case FORMULA_PARSER_STACK_OVERFLOW:
-                alert = [[UIAlertView alloc]initWithTitle: kUIFEError
-                                                  message: kUIFEtooLongFormula
-                                                 delegate: self
-                                        cancelButtonTitle:kLocalizedOK
-                                        otherButtonTitles:nil,nil];
+                [self showFormulaTooLongView];
                 break;
             default:
-                alert = [[UIAlertView alloc]initWithTitle: kUIFEError
-                                                  message: kUIFESyntaxError
-                                                 delegate: self
-                                        cancelButtonTitle:kLocalizedOK
-                                        otherButtonTitles:nil,nil];
-                [self.formulaEditorTextView setParseErrorCursorAndSelection];
-                
+                [self showSyntaxErrorView];
                 break;
         }
-        [alert show];
     }
     
-}
-
-- (BOOL)changeFormula
-{
-    if ([self saveIfPossible]) {
-        return YES;
-    }else {
-        return NO;
-    }
 }
 
 #pragma mark - Getter and setter
@@ -525,7 +549,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)showFormulaEditor
 {
-    self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(1, self.brickCellFragment.brickCell.frame.size.height + 41, self.view.frame.size.width - 2, 0) AndFormulaEditorViewController:self];
+    self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(1, self.brickCellData.brickCell.frame.size.height + 41, self.view.frame.size.width - 2, 0) AndFormulaEditorViewController:self];
     [self.view addSubview:self.formulaEditorTextView];
     
     for(int i = 0; i < [self.orangeTypeButton count]; i++) {
@@ -584,17 +608,28 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self.formula setDisplayString:[self.internFormula getExternFormulaString]];
     }
     
-    [self.brickCellFragment.brickCell setupBrickCell];
+    BrickCell *brickCell = self.brickCellData.brickCell;
+    NSInteger line = self.brickCellData.lineNumber;
+    NSInteger parameter = self.brickCellData.parameterNumber;
+    [self.brickCellData.brickCell setupBrickCell];
+    self.brickCellData = (BrickCellFormulaData*)([brickCell dataSubviewForLineNumber:line andParameterNumber:parameter]);
+    [self.brickCellData drawBorder:YES];
+    
+    // disable userinteraction for all subviews different than BrickCellFormulaData
+    for (id subview in [self.brickCellData.brickCell dataSubviews]) {
+        if ([subview isKindOfClass:[UIView class]] && ![subview isKindOfClass:[BrickCellFormulaData class]]) {
+            [(UIView*)subview setUserInteractionEnabled:NO];
+        }
+    }
 }
 
 - (BOOL)saveIfPossible
 {
         if(self.internFormula != nil) {
             InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
-            Brick *brick = (Brick*)self.brickCellFragment.brickCell.scriptOrBrick; // must be a brick!
+            Brick *brick = (Brick*)self.brickCellData.brickCell.scriptOrBrick; // must be a brick!
             FormulaElement *formulaElement = [internFormulaParser parseFormulaForSpriteObject:brick.script.object];
             Formula *formula = [[Formula alloc] initWithFormulaElement:formulaElement];
-            UIAlertView *alert;
             switch ([internFormulaParser getErrorTokenIndex]) {
                 case FORMULA_PARSER_OK:
                     if(self.delegate) {
@@ -603,22 +638,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
                     return YES;
                     break;
                 case FORMULA_PARSER_STACK_OVERFLOW:
-                    alert = [[UIAlertView alloc]initWithTitle: kUIFEError
-                                                                   message: kUIFEtooLongFormula
-                                                                  delegate: self
-                                                         cancelButtonTitle:kLocalizedOK
-                                                         otherButtonTitles:nil,nil];
-                    [alert show];
+                    [self showFormulaTooLongView];
                     break;
                 default:
-                    alert = [[UIAlertView alloc]initWithTitle: kUIFEError
-                                                      message: kUIFESyntaxError
-                                                     delegate: self
-                                            cancelButtonTitle:kLocalizedOK
-                                            otherButtonTitles:nil,nil];
-                    [self.formulaEditorTextView setParseErrorCursorAndSelection];
-                    [alert show];
-                    
+                    [self showSyntaxErrorView];
                     break;
             }
         }
@@ -719,26 +742,38 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)updateVariablePickerData
 {
     VariablesContainer *variables = self.object.program.variables;
-    [self.variableSourceProgram removeAllObjects];
-    for(UserVariable *userVariable in variables.programVariableList){
-        [self.variableSourceProgram addObject:userVariable.name];
+    [self.variableSource removeAllObjects];
+    if([variables.programVariableList count] > 0)
+        [self.variableSource addObject:[[VariablePickerData alloc] initWithTitle:kUIFEProgramVars]];
+    
+    for(UserVariable *userVariable in variables.programVariableList) {
+        VariablePickerData *pickerData = [[VariablePickerData alloc] initWithTitle:userVariable.name andVariable:userVariable];
+        [pickerData setIsProgramVariable:YES];
+        [self.variableSource addObject:pickerData];
     }
-    NSArray *array = [self.object.program.variables.objectVariableList objectForKey:self.object];
+    
+    NSArray *array = [variables.objectVariableList objectForKey:self.object];
     if (array) {
-        for (UserVariable *var in array) {
-            [self.variableSourceProgram addObject:var.name];
-        }
+        if([array count] > 0)
+            [self.variableSource addObject:[[VariablePickerData alloc] initWithTitle:kUIFEObjectVars]];
         
+        for (UserVariable *var in array) {
+            VariablePickerData *pickerData = [[VariablePickerData alloc] initWithTitle:var.name andVariable:var];
+            [pickerData setIsProgramVariable:NO];
+            [self.variableSource addObject:pickerData];
+        }
     }
   
     [self.variablePicker reloadAllComponents];
+    if([self.variableSource count] > 0)
+        [self.variablePicker selectRow:1 inComponent:0 animated:NO];
 }
 
 - (void)saveVariable:(NSString*)name
 {
     for (UserVariable* variable in self.object.program.variables.programVariableList) {
         if ([variable.name isEqualToString:name]) {
-            [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVarExists promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+            [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVarExists promptMessage:kUIFEVarName minInputLength:kMinNumOfVariableNameCharacters maxInputLength:kMaxNumOfVariableNameCharacters blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
             return;
         }
     }
@@ -746,7 +781,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         if ([self.object.program.variables.objectVariableList objectForKey:self.object]) {
             for (UserVariable* variable in [self.object.program.variables.objectVariableList objectForKey:self.object]) {
                 if ([variable.name isEqualToString:name]) {
-                    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVarExists promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+                    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVarExists promptMessage:kUIFEVarName minInputLength:kMinNumOfVariableNameCharacters maxInputLength:kMaxNumOfVariableNameCharacters blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
                     return;
                 }
             }
@@ -769,6 +804,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
     }
     
+    [self.object.program saveToDisk];
     [self updateVariablePickerData];
 }
 
@@ -798,72 +834,124 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return 1;
 }
 
-
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-//    if (component == 0) {
-//        return self.variableSourceObject.count;
-//    }else
-        if (component == 0){
-        return self.variableSourceProgram.count;
+    if (component == 0) {
+        return self.variableSource.count;
     }
     return 0;
 }
 
-
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-//    if (component == 0) {
-//        return self.variableSourceObject[row];
-//    }else
-        if (component == 0){
-        return self.variableSourceProgram[row];
+    if (component == 0) {
+        return [[self.variableSource objectAtIndex:row] title];
     }
-    return 0;
-   
+    return @"";
 }
 
 - (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    NSString *title;
-    if (component == 0){
-         title =self.variableSourceProgram[row];
-    }else{
-        title =@"";
-    }
-
-    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:[UIColor skyBlueColor]}];
+    NSString *title = [self pickerView:pickerView titleForRow:row forComponent:component];
+    UIColor *color = [UIColor skyBlueColor];
     
+    VariablePickerData *pickerData = [self.variableSource objectAtIndex:row];
+    if([pickerData isLabel])
+        color = [UIColor orangeColor];
+    
+    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:color}];
     return attString;
-    
 }
-
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
+    if(component == 0) {
+        VariablePickerData *pickerData = [self.variableSource objectAtIndex:row];
+        if([pickerData isLabel])
+            [pickerView selectRow:(row + 1) inComponent:component animated:NO];
+    }
     self.currentComponent = component;
 }
 
 - (IBAction)choseVariable:(UIButton *)sender {
-  NSInteger row = [self.variablePicker selectedRowInComponent:self.currentComponent];
-  if (row >= 0) {
-//      if (self.currentComponent == 0) {
-//          NSLog(@"%@",self.variableSourceObject[row]);
-//          VariablesContainer* varCont = self.object.program.variables;
-//          UserVariable* var = [varCont getUserVariableNamed:self.variableSourceObject[row] forSpriteObject:self.object];
-//      }else
-          if (self.currentComponent == 0)
-          {
-            VariablesContainer* varCont = self.object.program.variables;
-              UserVariable* var = [varCont getUserVariableNamed:self.variableSourceProgram[row] forSpriteObject:self.object];
-              NSDebug(@"%@",var.name);
-              [self handleInputWithTitle:var.name AndButtonType:0];
-      }
-  
-      
-  }
+
+// REMAINING CODE FRAGMENT DUE TO PREVIOUS MERGE CONFLICT -> NOT SURE if this is needed any more???
+//  NSInteger row = [self.variablePicker selectedRowInComponent:self.currentComponent];
+//  if (row >= 0) {
+////      if (self.currentComponent == 0) {
+////          NSDebug(@"%@",self.variableSourceObject[row]);
+////          VariablesContainer* varCont = self.object.program.variables;
+////          UserVariable* var = [varCont getUserVariableNamed:self.variableSourceObject[row] forSpriteObject:self.object];
+////      }else
+//          if (self.currentComponent == 0)
+//          {
+//            VariablesContainer* varCont = self.object.program.variables;
+//              UserVariable* var = [varCont getUserVariableNamed:self.variableSourceProgram[row] forSpriteObject:self.object];
+//              NSDebug(@"%@",var.name);
+//              [self handleInputWithTitle:var.name AndButtonType:0];
+//      }
+//  
+//      
+//  }
+    NSInteger row = [self.variablePicker selectedRowInComponent:self.currentComponent];
+    if (row >= 0 && [self.variableSource count] > row) {
+        if (self.currentComponent == 0)
+        {
+            VariablePickerData *pickerData = [self.variableSource objectAtIndex:row];
+            if([pickerData isLabel])
+                return;
+            [self handleInputWithTitle:pickerData.userVariable.name AndButtonType:0];
+        }
+    }
 }
 
+- (IBAction)deleteVariable:(UIButton *)sender {
+    NSInteger row = [self.variablePicker selectedRowInComponent:self.currentComponent];
+    if (row >= 0 && [self.variableSource count] > row) {
+        if (self.currentComponent == 0)
+        {
+            VariablePickerData *pickerData = [self.variableSource objectAtIndex:row];
+            if([pickerData isLabel])
+                return;
+            
+            if(![self isVariableBeingUsed:pickerData.userVariable]) {
+                BOOL removed = [self.object.program.variables removeUserVariableNamed:pickerData.userVariable.name forSpriteObject:self.object];
+                if (removed) {
+                    [self.variableSource removeObjectAtIndex:row];
+                    [self.object.program saveToDisk];
+                    [self updateVariablePickerData];
+                }
+            } else {
+                [Util alertWithText:kUIFEDeleteVarBeingUsed];
+            }
+        }
+    }
+}
+
+- (BOOL)isVariableBeingUsed:(UserVariable*)variable
+{
+    if([self.object.program.variables isProgramVariable:variable]) {
+        for(SpriteObject *spriteObject in self.object.program.objectList) {
+            for(Script *script in spriteObject.scriptList) {
+                for(id brick in script.brickList) {
+                    if([brick isKindOfClass:[Brick class]] && [brick isVariableBeingUsed:variable]) {
+                        return YES;
+                    }
+                }
+            }
+        }
+    } else {
+        for(Script *script in self.object.scriptList) {
+            for(id brick in script.brickList) {
+                if([brick isKindOfClass:[Brick class]] && [brick isVariableBeingUsed:variable]) {
+                    return YES;
+                }
+            }
+        }
+    }
+    
+    return NO;
+}
 
 #pragma mark - action sheet delegates
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -876,6 +964,56 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVar promptMessage:kUIFEVarName minInputLength:1 maxInputLength:15 blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
 //    }
     
+}
+
+#define kBDKNotifyHUDPaddingTop 30.0f
+
+- (void)showNotification:(NSString*)text
+{
+    if(self.notficicationHud)
+        [self.notficicationHud removeFromSuperview];
+    
+    CGFloat brickAndInputHeight = self.navigationController.navigationBar.frame.size.height + self.brickCellData.brickCell.frame.size.height + self.formulaEditorTextView.frame.size.height + [[UIApplication sharedApplication] statusBarFrame].size.height + 10;
+    CGFloat keyboardHeight = self.formulaEditorTextView.inputView.frame.size.height;
+    CGFloat spacerHeight = self.view.frame.size.height - brickAndInputHeight - keyboardHeight;
+    CGFloat offset;
+    
+    self.notficicationHud = [BDKNotifyHUD notifyHUDWithImage:nil text:text];
+    self.notficicationHud.destinationOpacity = 0.30f;
+    
+    if(spacerHeight < self.notficicationHud.frame.size.height)
+        offset = brickAndInputHeight / 2 + self.notficicationHud.frame.size.height / 2;
+    else
+        offset = brickAndInputHeight + self.notficicationHud.frame.size.height / 2 + kBDKNotifyHUDPaddingTop;
+    
+    self.notficicationHud.center = CGPointMake(self.view.center.x, offset);
+    
+    [self.view addSubview:self.notficicationHud];
+    [self.notficicationHud presentWithDuration:1.0f speed:0.1f inView:self.view completion:^{
+        [self.notficicationHud removeFromSuperview];
+    }];
+}
+
+- (void)showChangesSavedView
+{
+    [self showNotification:kUIFEChangesSaved];
+}
+
+- (void)showChangesDiscardedView
+{
+    [self showNotification:kUIFEChangesDiscarded];
+}
+
+- (void)showSyntaxErrorView
+{
+    [self showNotification:kUIFESyntaxError];
+    [self.formulaEditorTextView setParseErrorCursorAndSelection];
+    self.didShowSyntaxErrorView = YES;
+}
+
+- (void)showFormulaTooLongView
+{
+    [self showNotification:kUIFEtooLongFormula];
 }
 
 @end

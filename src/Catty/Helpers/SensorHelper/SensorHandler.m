@@ -202,7 +202,7 @@ static SensorHandler* sharedSensorHandler = nil;
         [self.motionManager startDeviceMotionUpdates];
         [NSThread sleepForTimeInterval:kSensorUpdateInterval];
     }
-    double xInclination = -self.motionManager.deviceMotion.attitude.roll;
+    double xInclination = -self.motionManager.deviceMotion.attitude.roll * 2;
     
     return [Util radiansToDegree:xInclination];
 }
@@ -214,7 +214,7 @@ static SensorHandler* sharedSensorHandler = nil;
         [NSThread sleepForTimeInterval:kSensorUpdateInterval];
     }
         
-    double yInclination = self.motionManager.deviceMotion.attitude.pitch;
+    double yInclination = self.motionManager.deviceMotion.attitude.pitch * 2;
     
     yInclination =  [Util radiansToDegree:yInclination];
     

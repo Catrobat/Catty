@@ -2,8 +2,72 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Program</key>
+	<string>warn</string>
+	<key>SpriteObject</key>
+	<string>warn</string>
+	<key>Script</key>
+	<string>warn</string>
+	<key>WhenScript</key>
+	<string>warn</string>
+	<key>BroadcastScript</key>
+	<string>warn</string>
+	<key>StartScript</key>
+	<string>warn</string>
+	<key>SpeakBrick</key>
+	<string>warn</string>
+	<key>BroadcastBrick</key>
+	<string>warn</string>
+	<key>ScenePresenterViewController</key>
+	<string>warn</string>
+	<key>CBPlayerScene</key>
+	<string>warn</string>
+	<key>PointInDirectionBrick</key>
+	<string>warn</string>
 	<key>IfLogicBeginBrick</key>
-	<string>debug</string>
+	<string>warn</string>
+	<key>IfLogicElseBrick</key>
+	<string>warn</string>
+	<key>IfLogicEndBrick</key>
+	<string>warn</string>
+	<key>WaitBrick</key>
+	<string>warn</string>
+	<key>ChangeXByNBrick</key>
+	<string>warn</string>
+	<key>ChangeYByNBrick</key>
+	<string>warn</string>
+	<key>GlideToBrick</key>
+	<string>warn</string>
+	<key>PlaceAtBrick</key>
+	<string>warn</string>
+	<key>SetXBrick</key>
+	<string>warn</string>
+	<key>SetYBrick</key>
+	<string>warn</string>
+	<key>TurnRightBrick</key>
+	<string>warn</string>
+	<key>TurnLeftBrick</key>
+	<string>warn</string>
+	<key>SetSizeToBrick</key>
+	<string>warn</string>
+	<key>ShowBrick</key>
+	<string>warn</string>
+	<key>HideBrick</key>
+	<string>warn</string>
+	<key>ChangeGhostEffectByNBrick</key>
+	<string>warn</string>
+	<key>SetLookBrick</key>
+	<string>warn</string>
+	<key>NextLookBrick</key>
+	<string>warn</string>
+	<key>SetVariableBrick</key>
+	<string>warn</string>
+	<key>RepeatBrick</key>
+	<string>warn</string>
+	<key>PlaySoundBrick</key>
+	<string>warn</string>
+	<key>SensorHandler</key>
+	<string>warn</string>
 	<key>ExampleClass</key>
 	<string>warn</string>
 </dict>

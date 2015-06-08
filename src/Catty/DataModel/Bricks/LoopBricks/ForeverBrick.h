@@ -25,5 +25,4 @@
 
 @interface ForeverBrick : LoopBeginBrick
 
-
 @end

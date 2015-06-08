@@ -31,13 +31,14 @@
 #import "Script.h"
 #import "NoteBrick.h"
 #import "SpeakBrick.h"
-#import "BrickCellFragmentProtocol.h"
-#import "BrickCellLookFragment.h"
-#import "BrickCellSoundFragment.h"
-#import "BrickCellObjectFragment.h"
-#import "BrickCellFormulaFragment.h"
-#import "BrickCellTextFragment.h"
-#import "BrickCellMessageFragment.h"
+#import "BrickCellDataProtocol.h"
+#import "BrickCellLookData.h"
+#import "BrickCellSoundData.h"
+#import "BrickCellObjectData.h"
+#import "BrickCellFormulaData.h"
+#import "BrickCellTextData.h"
+#import "BrickCellMessageData.h"
+#import "BrickCellVariableData.h"
 
 // uncomment this to get special log outputs, etc...
 //#define LAYOUT_DEBUG 0
@@ -148,7 +149,6 @@
 - (void)setupBrickCell
 {
     [self renderSubViews];
-    
     if (self.editing) {
         if (self.frame.origin.x == 0.0f) {
             self.center = CGPointMake(self.center.x + kSelectButtonTranslationOffsetX, self.center.y);
@@ -221,8 +221,8 @@
 - (void)selectButtonSelected:(id)sender
 {
     if ([sender isKindOfClass:SelectButton.class]) {
-        if ([self.delegate respondsToSelector:@selector(BrickCell:didSelectBrickCellButton:)]) {
-            [self.delegate BrickCell:self didSelectBrickCellButton:self.selectButton];
+        if ([self.delegate respondsToSelector:@selector(brickCell:didSelectBrickCellButton:)]) {
+            [self.delegate brickCell:self didSelectBrickCellButton:self.selectButton];
         }
     }
 }
@@ -447,32 +447,26 @@
             NSString *afterLabelParam = [params objectAtIndex:counter];
             UIView *inputField = nil;
             if ([afterLabelParam rangeOfString:@"FLOAT"].location != NSNotFound || [afterLabelParam rangeOfString:@"INT"].location != NSNotFound) {
-                inputField = [[BrickCellFormulaFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
+                inputField = [[BrickCellFormulaData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"TEXT"].location != NSNotFound) {
                 inputViewFrame.origin.y = inputViewFrame.origin.y+10;
                 inputViewFrame.size.height = kBrickInputFieldHeight;
-                inputField = [[BrickCellTextFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
+                inputField = [[BrickCellTextData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"MESSAGE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
-                inputField = [[BrickCellMessageFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
+                inputField = [[BrickCellMessageData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"OBJECT"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
-                inputField = [[BrickCellObjectFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
+                inputField = [[BrickCellObjectData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"SOUND"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
-                inputField = [[BrickCellSoundFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
+                inputField = [[BrickCellSoundData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"LOOK"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
-                inputField = [[BrickCellLookFragment alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
+                inputField = [[BrickCellLookData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"VARIABLE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
-                NSMutableArray* variables = [[NSMutableArray alloc] init];
-                [variables addObject:@"New..."];
-                [variables addObject:@"variable 1"];
-                iOSCombobox *comboBox = [UIUtil newDefaultBrickComboBoxWithFrame:inputViewFrame AndItems:variables];
-                [comboBox setDelegate:(id<iOSComboboxDelegate>)self.delegate];
-                [comboBox setCurrentValue:variables[0]];
-                inputField = (UIView*)comboBox;
+                inputField = [[BrickCellVariableData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else {
                 NSError(@"unknown data type %@ given", afterLabelParam);
                 abort();
@@ -512,22 +506,71 @@
 }
 
 #pragma mark - animations
-- (void)animateBrick:(BOOL)animate
+- (void)animate:(BOOL)animate
 {
-    if (animate) {
-        CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
-        animation.keyPath = @"transform";
-        animation.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeRotation((CGFloat)M_PI/200.0f, 0.1f, 0.1f, 0.1f)],
-                              [NSValue valueWithCATransform3D:CATransform3DMakeRotation((CGFloat)M_PI/200.0f, -0.1f, -0.1f, -0.1f)]];
-        animation.autoreverses = YES ;
-        animation.repeatCount = 20;
-        animation.duration = 0.1f ;
-        [self.layer addAnimation:animation forKey:@"whobble"];
-    } else {
-        [self.layer removeAllAnimations];
+    self.scriptOrBrick.animate = animate;
+    if (! animate) {
+        return;
     }
+    self.alpha = 0.7f;
+    NSDate *startTime = [NSDate date];
+    [UIView animateWithDuration:0.25
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                                | UIViewAnimationOptionRepeat
+                                | UIViewAnimationOptionAutoreverse
+                                | UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
+                         [UIView setAnimationRepeatCount:4];
+                         self.alpha = 1.0f;
+                     }
+                     completion:^(BOOL finished) {
+                         self.alpha = 1.0f;
+                         NSTimeInterval duration = [[NSDate date] timeIntervalSinceDate:startTime];
+                         self.scriptOrBrick.animate = (duration < 2.0f);
+    }];
 }
 
+- (void)insertAnimate:(BOOL)animate
+{
+    self.scriptOrBrick.animateInsertBrick = animate;
+    if (! animate) {
+        return;
+    }
+            self.alpha = 0.2f;
+            [UIView animateWithDuration:0.4
+                                  delay:0.0
+                                options:UIViewAnimationOptionCurveEaseInOut
+             | UIViewAnimationOptionRepeat
+             | UIViewAnimationOptionAutoreverse
+             | UIViewAnimationOptionAllowUserInteraction
+                             animations:^{
+                                 self.alpha = 1.0f;
+                             }
+                             completion:^(BOOL finished) {
+                                 self.alpha = 1.0f;
+                                 Brick *brick = (Brick*)self.scriptOrBrick;
+                                 if (brick.animateInsertBrick) {
+                                     [self insertAnimate:brick.animateInsertBrick];
+                                 }
+                             }];
 
+}
+
+#pragma mark - BrickCellData
+- (id<BrickCellDataProtocol>)dataSubviewForLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
+{
+    return [self.inlineView dataSubviewForLineNumber:line andParameterNumber:parameter];
+}
+
+- (id<BrickCellDataProtocol>)dataSubviewWithType:(Class)className
+{
+    return [self.inlineView dataSubviewWithType:className];
+}
+
+- (NSArray*)dataSubviews
+{
+    return [self.inlineView dataSubviews];
+}
 
 @end

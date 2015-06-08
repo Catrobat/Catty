@@ -32,7 +32,7 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VIBRATE_DURATION_IN_SECONDS"];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VIBRATE_DURATION_IN_SECONDS" withContext:context];
     VibrationBrick *vibrationBrick = [self new];
     vibrationBrick.durationInSeconds = formula;
     return vibrationBrick;

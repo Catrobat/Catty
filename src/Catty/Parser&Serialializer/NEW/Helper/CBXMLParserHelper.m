@@ -67,7 +67,7 @@
     return true;
 }
 
-+ (Formula*)formulaInXMLElement:(GDataXMLElement*)xmlElement forCategoryName:(NSString*)categoryName
++ (Formula*)formulaInXMLElement:(GDataXMLElement*)xmlElement forCategoryName:(NSString*)categoryName withContext:(CBXMLContext*)context
 {
     GDataXMLElement *formulaListElement = [xmlElement childWithElementName:@"formulaList"];
     [XMLError exceptionIfNil:formulaListElement message:@"No formulaList element found..."];
@@ -75,7 +75,7 @@
                                                            containingAttribute:@"category"
                                                                      withValue:categoryName];
     [XMLError exceptionIfNil:formulaElement message:@"No formula with category %@ found...", categoryName];
-    Formula *formula = [Formula parseFromElement:formulaElement withContext:nil];
+    Formula *formula = [Formula parseFromElement:formulaElement withContext:context];
     [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
     return formula;
 }

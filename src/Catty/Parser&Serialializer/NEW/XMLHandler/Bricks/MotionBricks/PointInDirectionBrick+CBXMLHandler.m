@@ -33,7 +33,7 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"DEGREES"];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"DEGREES" withContext:context];
     [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
     
     PointInDirectionBrick *pointInDirectionBrick = [self new];

@@ -20,4 +20,6 @@ Pods
 *.orig
 Mockup/*
 *.yaml
+src/precompile-tests
 src/ObjectiveGit
+
