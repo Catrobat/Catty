@@ -16,6 +16,20 @@
 		4C3AE2C21B03554F005E1F57 /* BrickCellTextData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE2BA1B03554F005E1F57 /* BrickCellTextData.m */; };
 		4C3AE2C31B03554F005E1F57 /* BrickCellVariableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE2BC1B03554F005E1F57 /* BrickCellVariableData.m */; };
 		4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */; };
+		4C68FC891B25A00B00AB3EE8 /* FormulaEditorUtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7B1B25A00B00AB3EE8 /* FormulaEditorUtilTests.m */; };
+		4C68FC8A1B25A00B00AB3EE8 /* FormulaElementTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7C1B25A00B00AB3EE8 /* FormulaElementTest.m */; };
+		4C68FC8B1B25A00B00AB3EE8 /* FormulaFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7D1B25A00B00AB3EE8 /* FormulaFunctionsTest.m */; };
+		4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7E1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m */; };
+		4C68FC8D1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7F1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m */; };
+		4C68FC8E1B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC801B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m */; };
+		4C68FC8F1B25A00B00AB3EE8 /* FormulaParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC811B25A00B00AB3EE8 /* FormulaParserTest.m */; };
+		4C68FC901B25A00B00AB3EE8 /* FormulaTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC821B25A00B00AB3EE8 /* FormulaTest.m */; };
+		4C68FC911B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC831B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m */; };
+		4C68FC921B25A00B00AB3EE8 /* InternFormulaStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC841B25A00B00AB3EE8 /* InternFormulaStateTest.m */; };
+		4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC851B25A00B00AB3EE8 /* InternFormulaTest.m */; };
+		4C68FC941B25A00B00AB3EE8 /* InternFormulaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC861B25A00B00AB3EE8 /* InternFormulaTests.m */; };
+		4C68FC951B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC871B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m */; };
+		4C68FC961B25A00B00AB3EE8 /* InternFormulaUtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC881B25A00B00AB3EE8 /* InternFormulaUtilsTest.m */; };
 		4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */; };
 		4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */; };
 		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
@@ -329,7 +343,6 @@
 		CA7698C01B0E4B3F000D0340 /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5521A43BEC4002A69A0 /* XMLSerializerTests.m */; };
 		CA7698C11B0E4B3F000D0340 /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A54F1A43BEA6002A69A0 /* XMLSerializerBlackBoxTests.m */; };
 		CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD740E71AF2D42B00C32937 /* CBStackTests.m */; };
-		CA7698C31B0E4B3F000D0340 /* FormulaFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */; };
 		CA7698C41B0E4B3F000D0340 /* CustomExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44EC17F079F500624730 /* CustomExtensionsTests.m */; };
 		CA7698C51B0E4B3F000D0340 /* ProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247718CD053300314C2B /* ProgramTests.m */; };
 		CA7698C71B0E4B3F000D0340 /* BrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44EA17F079C700624730 /* BrickTests.m */; };
@@ -577,7 +590,6 @@
 		4C3AE2BB1B03554F005E1F57 /* BrickCellVariableData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellVariableData.h; path = BrickCellData/BrickCellVariableData.h; sourceTree = "<group>"; };
 		4C3AE2BC1B03554F005E1F57 /* BrickCellVariableData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellVariableData.m; path = BrickCellData/BrickCellVariableData.m; sourceTree = "<group>"; };
 		4C3AEF2E198E7EDD00604ABF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormulaFunctionsTest.m; sourceTree = "<group>"; };
 		4C4867BF1AC2CA6D009D679D /* BrickMessageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMessageProtocol.h; sourceTree = "<group>"; };
 		4C5517BC1ABC16B600A52FF4 /* ViewControllerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDefines.h; sourceTree = "<group>"; };
 		4C5517C41ABC300800A52FF4 /* BrickCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellProtocol.h; sourceTree = "<group>"; };
@@ -589,6 +601,20 @@
 		4C5517D71ABC737C00A52FF4 /* BrickObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickObjectProtocol.h; sourceTree = "<group>"; };
 		4C6066381A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+CustomExtensions.h"; sourceTree = "<group>"; };
 		4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+CustomExtensions.m"; sourceTree = "<group>"; };
+		4C68FC7B1B25A00B00AB3EE8 /* FormulaEditorUtilTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaEditorUtilTests.m; path = Formula/FormulaEditorUtilTests.m; sourceTree = "<group>"; };
+		4C68FC7C1B25A00B00AB3EE8 /* FormulaElementTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaElementTest.m; path = Formula/FormulaElementTest.m; sourceTree = "<group>"; };
+		4C68FC7D1B25A00B00AB3EE8 /* FormulaFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaFunctionsTest.m; path = Formula/FormulaFunctionsTest.m; sourceTree = "<group>"; };
+		4C68FC7E1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaParserErrorDetectionTest.m; path = Formula/FormulaParserErrorDetectionTest.m; sourceTree = "<group>"; };
+		4C68FC7F1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaParserFunctionsTest.m; path = Formula/FormulaParserFunctionsTest.m; sourceTree = "<group>"; };
+		4C68FC801B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaParserOperatorsTest.m; path = Formula/FormulaParserOperatorsTest.m; sourceTree = "<group>"; };
+		4C68FC811B25A00B00AB3EE8 /* FormulaParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaParserTest.m; path = Formula/FormulaParserTest.m; sourceTree = "<group>"; };
+		4C68FC821B25A00B00AB3EE8 /* FormulaTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaTest.m; path = Formula/FormulaTest.m; sourceTree = "<group>"; };
+		4C68FC831B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaParserStringFunctionsTest.m; path = Formula/InternFormulaParserStringFunctionsTest.m; sourceTree = "<group>"; };
+		4C68FC841B25A00B00AB3EE8 /* InternFormulaStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaStateTest.m; path = Formula/InternFormulaStateTest.m; sourceTree = "<group>"; };
+		4C68FC851B25A00B00AB3EE8 /* InternFormulaTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaTest.m; path = Formula/InternFormulaTest.m; sourceTree = "<group>"; };
+		4C68FC861B25A00B00AB3EE8 /* InternFormulaTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaTests.m; path = Formula/InternFormulaTests.m; sourceTree = "<group>"; };
+		4C68FC871B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaTokenSelectionTest.m; path = Formula/InternFormulaTokenSelectionTest.m; sourceTree = "<group>"; };
+		4C68FC881B25A00B00AB3EE8 /* InternFormulaUtilsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternFormulaUtilsTest.m; path = Formula/InternFormulaUtilsTest.m; sourceTree = "<group>"; };
 		4C6A64B41AF7CC6800D04559 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = test.png; path = "Resources/Test Resources/Images/test.png"; sourceTree = "<group>"; };
 		4C6A64B51AF7CC6800D04559 /* test2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = test2.png; path = "Resources/Test Resources/Images/test2.png"; sourceTree = "<group>"; };
 		4C6A64B91AF7CC9400D04559 /* Air_fight_0.5_091.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Air_fight_0.5_091.xml; sourceTree = "<group>"; };
@@ -1703,7 +1729,20 @@
 		4C3C03F5199BA5250004F594 /* Formula */ = {
 			isa = PBXGroup;
 			children = (
-				4C3C03F6199BA5610004F594 /* FormulaFunctionsTest.m */,
+				4C68FC7B1B25A00B00AB3EE8 /* FormulaEditorUtilTests.m */,
+				4C68FC7C1B25A00B00AB3EE8 /* FormulaElementTest.m */,
+				4C68FC7D1B25A00B00AB3EE8 /* FormulaFunctionsTest.m */,
+				4C68FC7E1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m */,
+				4C68FC7F1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m */,
+				4C68FC801B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m */,
+				4C68FC811B25A00B00AB3EE8 /* FormulaParserTest.m */,
+				4C68FC821B25A00B00AB3EE8 /* FormulaTest.m */,
+				4C68FC831B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m */,
+				4C68FC841B25A00B00AB3EE8 /* InternFormulaStateTest.m */,
+				4C68FC851B25A00B00AB3EE8 /* InternFormulaTest.m */,
+				4C68FC861B25A00B00AB3EE8 /* InternFormulaTests.m */,
+				4C68FC871B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m */,
+				4C68FC881B25A00B00AB3EE8 /* InternFormulaUtilsTest.m */,
 			);
 			name = Formula;
 			sourceTree = "<group>";
@@ -4649,11 +4688,14 @@
 				CA7698BC1B0E4B3F000D0340 /* XMLParserObjectTests.m in Sources */,
 				CA7698BD1B0E4B3F000D0340 /* XMLParserBlackBoxTests.m in Sources */,
 				CA7698BF1B0E4B3F000D0340 /* XMLSerializerAbstractTest.m in Sources */,
+				4C68FC8E1B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m in Sources */,
 				CA7698C01B0E4B3F000D0340 /* XMLSerializerTests.m in Sources */,
 				CA7698C11B0E4B3F000D0340 /* XMLSerializerBlackBoxTests.m in Sources */,
 				CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */,
-				CA7698C31B0E4B3F000D0340 /* FormulaFunctionsTest.m in Sources */,
 				CA7698C41B0E4B3F000D0340 /* CustomExtensionsTests.m in Sources */,
+				4C68FC901B25A00B00AB3EE8 /* FormulaTest.m in Sources */,
+				4C68FC961B25A00B00AB3EE8 /* InternFormulaUtilsTest.m in Sources */,
+				4C68FC8B1B25A00B00AB3EE8 /* FormulaFunctionsTest.m in Sources */,
 				CA7698C51B0E4B3F000D0340 /* ProgramTests.m in Sources */,
 				CA7698C71B0E4B3F000D0340 /* BrickTests.m in Sources */,
 				CA7698C81B0E4B3F000D0340 /* ChangeBrightnessByNBrickTests.m in Sources */,
@@ -4663,13 +4705,20 @@
 				CA7698CC1B0E4B3F000D0340 /* GoNStepsBackBrickTests.m in Sources */,
 				CA7698CD1B0E4B3F000D0340 /* MoveNStepsBrickTests.m in Sources */,
 				CA7698CE1B0E4B3F000D0340 /* NextLookBrickTests.m in Sources */,
+				4C68FC891B25A00B00AB3EE8 /* FormulaEditorUtilTests.m in Sources */,
+				4C68FC951B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m in Sources */,
+				4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */,
 				CA7698CF1B0E4B3F000D0340 /* PlaceAtBrickTests.m in Sources */,
+				4C68FC8A1B25A00B00AB3EE8 /* FormulaElementTest.m in Sources */,
 				CA7698D01B0E4B3F000D0340 /* PointInDirectionBrickTests.m in Sources */,
 				CA7698D11B0E4B3F000D0340 /* SetBrightnessBrickTests.m in Sources */,
 				CA7698D21B0E4B3F000D0340 /* SetGhostEffectBrickTests.m in Sources */,
 				CA7698D31B0E4B3F000D0340 /* SetLookBrickTests.m in Sources */,
+				4C68FC921B25A00B00AB3EE8 /* InternFormulaStateTest.m in Sources */,
 				CA7698D41B0E4B3F000D0340 /* ShowBrickTests.m in Sources */,
 				CA7698D51B0E4B3F000D0340 /* HideBrickTests.m in Sources */,
+				4C68FC8F1B25A00B00AB3EE8 /* FormulaParserTest.m in Sources */,
+				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
 				CA7698D61B0E4B3F000D0340 /* IfOnEdgeBounceBrickTests.m in Sources */,
 				CA7698D71B0E4B3F000D0340 /* SetYBrickTests.m in Sources */,
 				CA7698D81B0E4B3F000D0340 /* SetXBrickTests.m in Sources */,
@@ -4677,11 +4726,14 @@
 				CA7698DA1B0E4B3F000D0340 /* SetSizeToBrickTests.m in Sources */,
 				CA7698DB1B0E4B3F000D0340 /* PointToBrickTests.m in Sources */,
 				CA7698DC1B0E4B3F000D0340 /* TurnLeftBrickTests.m in Sources */,
+				4C68FC8D1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m in Sources */,
 				CA7698DD1B0E4B3F000D0340 /* TurnRightBrickTests.m in Sources */,
 				CA7698DE1B0E4B3F000D0340 /* SpriteObjectCopyTest.m in Sources */,
 				CA7698DF1B0E4B3F000D0340 /* SensorHandlerTests.m in Sources */,
 				CA7698E31B0E4B3F000D0340 /* SceneTests.m in Sources */,
+				4C68FC941B25A00B00AB3EE8 /* InternFormulaTests.m in Sources */,
 				CA7698E41B0E4B3F000D0340 /* ProgramTableViewControllerExistingProgramsTests.m in Sources */,
+				4C68FC911B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m in Sources */,
 				CA7698E51B0E4B3F000D0340 /* ProgramTableViewControllerNewProgramTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

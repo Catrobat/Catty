@@ -88,13 +88,9 @@
 
 - (void)testCheckDegeneratedDoubleValues
 {
-    FormulaElement *formulaElement = [[FormulaElement alloc] initWithElementType:OPERATOR
-                                                                           value:[Operators getName:PLUS]
-                                                                       leftChild:[[FormulaElement alloc] initWithElementType:NUMBER
-                                                                                  value:[NSString stringWithFormat:@"%f", DBL_MAX]
-                                                                                  leftChild:nil
-                                                                                  rightChild:nil
-                                                                                  parent:nil]
+    FormulaElement *formulaElement = [[FormulaElement alloc] initWithElementType:NUMBER
+                                                                           value:[NSString stringWithFormat:@"%f", DBL_MAX]
+                                                                       leftChild:nil
                                                                       rightChild:nil
                                                                           parent:nil];
     XCTAssertEqual(DBL_MAX, [[formulaElement interpretRecursiveForSprite:nil] doubleValue], @"Degenerated double values error");
