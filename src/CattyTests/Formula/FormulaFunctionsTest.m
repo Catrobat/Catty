@@ -72,6 +72,7 @@ const double DELTA = 0.001;
     
     formula = [self getFormulaElementForFunction:SIN WithLeftValue:@"-750" AndRightValue:nil];
     XCTAssertEqualWithAccuracy(-0.5, [[formula interpretRecursiveForSprite:nil]doubleValue], DELTA, @"Wrong result for sin(-750)");
+    
 }
 
 - (void)testCos

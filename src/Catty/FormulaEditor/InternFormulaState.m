@@ -66,12 +66,21 @@
         for (int index = 0; index < [self.internTokenFormulaList count]; index++) {
             InternToken *original = [self.internTokenFormulaList objectAtIndex:index];
             InternToken *internTokenToCompare = [stateToCompare.internTokenFormulaList objectAtIndex:index];
-            if([original getInternTokenType] != [internTokenToCompare getInternTokenType]
-               || ![[original getTokenStringValue] isEqualToString:[internTokenToCompare getTokenStringValue]])
+            
+            
+            if([original getInternTokenType] != [internTokenToCompare getInternTokenType])
             {
                 return NO;
             }
+            if(!([original getTokenStringValue] == nil && [internTokenToCompare getTokenStringValue] == nil))
+            {
+                if(![[original getTokenStringValue] isEqualToString:[internTokenToCompare getTokenStringValue]])
+                {
+                    return NO;
+                }
+            }
         }
+        
         
         return YES;
     }

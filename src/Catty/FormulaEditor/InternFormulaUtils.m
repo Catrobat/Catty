@@ -119,7 +119,7 @@
                 break;
                 
             default:
-                continue;
+                break;
         }
         
         [functionInternTokenList addObject:tempSearchToken];
@@ -159,7 +159,7 @@
                 break;
                 
             default:
-                continue;
+                break;
         }
         
         [functionInternTokenList addObject:tempSearchToken];
@@ -274,7 +274,7 @@
                 break;
                 
             default:
-                continue;
+                break;
         }
         
         [bracketInternTokenListToReturn addObject:tempSearchToken];
@@ -314,7 +314,7 @@
                 break;
                 
             default:
-                continue;
+                break;
         }
         
         [bracketInternTokenListToReturn addObject:tempSearchToken];
@@ -426,7 +426,7 @@
     @try {
         firstInternTokenType = [self getFirstInternTokenType:internTokens];
     } @catch(InternFormulaParserException *e) {
-        return true;
+        return false;
     }
     
     if (firstInternTokenType == TOKEN_TYPE_FUNCTION_NAME) {
@@ -443,7 +443,7 @@
     @try {
         firstInternTokenType = [self getFirstInternTokenType:internTokens];
     } @catch(InternFormulaParserException *e) {
-        return true;
+        return false;
     }
     
     if ([internTokens count] <= 1 && firstInternTokenType == TOKEN_TYPE_NUMBER) {
@@ -461,6 +461,26 @@
     }
     
     return internTokensToReplaceWith;
+}
+
++ (NSMutableArray*)insertOperatorToNumberToken:(InternToken*)numberTokenToBeModified
+                         numberOffset:(int)externNumberOffset
+                               operator:(InternToken*)operatorToInsert
+{
+    NSMutableArray *replaceTokenList = [[NSMutableArray alloc]init];
+    NSString *numberString = [numberTokenToBeModified getTokenStringValue];
+    NSString *leftPart = [numberString substringWithRange:NSMakeRange(0, externNumberOffset)];
+    NSString *rightPart = [numberString substringFromIndex:externNumberOffset];
+    
+    InternToken *leftNumber = [[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:leftPart];
+    InternToken *rightNumber = [[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:rightPart];
+    [replaceTokenList addObject:leftNumber];
+    [replaceTokenList addObject:operatorToInsert];
+    [replaceTokenList addObject:rightNumber];
+    
+    return replaceTokenList;
+    
+    
 }
 
 + (InternToken*)insertIntoNumberToken:(InternToken*)numberTokenToBeModified
@@ -548,7 +568,7 @@
                 break;
                 
             default:
-                continue;
+                break;
         }
         
         searchIndex++;
