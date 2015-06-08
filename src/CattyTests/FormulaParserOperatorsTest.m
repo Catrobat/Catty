@@ -447,7 +447,57 @@
 }
 
 
+- (void)testMultiplication
+{
+    NSString *firstOperand = @"9.0";
+    NSString *secondOperand = @"2";
+    NSString *result = @"18.0";
+    
+    
+    NSMutableArray *firstTerm = [self buildBinaryOperator:TOKEN_TYPE_NUMBER firstValue:firstOperand withOperator:MULT secondTokenType:TOKEN_TYPE_NUMBER secondValue:secondOperand];
+    [self binaryOperatorTest:firstTerm withExpectedResult:result];
+    
+    firstTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:firstOperand withOperator:MULT secondTokenType:TOKEN_TYPE_STRING secondValue:secondOperand];
+    [self binaryOperatorTest:firstTerm withExpectedResult:result];
+    
+    firstTerm = [self buildBinaryOperator:TOKEN_TYPE_NUMBER firstValue:firstOperand withOperator:MULT secondTokenType:TOKEN_TYPE_STRING secondValue:secondOperand];
+    [self binaryOperatorTest:firstTerm withExpectedResult:result];
+    
+    firstTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:firstOperand withOperator:MULT secondTokenType:TOKEN_TYPE_NUMBER secondValue:secondOperand];
+    [self binaryOperatorTest:firstTerm withExpectedResult:result];
+    
+    firstOperand = @"NotANumber";
+    secondOperand = @"3.14";
+    
+    firstTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:firstOperand withOperator:MULT secondTokenType:TOKEN_TYPE_NUMBER secondValue:secondOperand];
+    [self binaryOperatorTest:firstTerm withExpectedResult:nil];
+}
 
+- (void)testMinus
+{
+    NSString *firstOperand = @"9.0";
+    NSString *secondOperand = @"2";
+    NSString *result = @"7.0";
+    
+    
+    NSMutableArray *firstTerm = [self buildBinaryOperator:TOKEN_TYPE_NUMBER firstValue:firstOperand withOperator:MINUS secondTokenType:TOKEN_TYPE_NUMBER secondValue:secondOperand];
+    [self binaryOperatorTest:firstTerm withExpectedResult:result];
+    
+    firstTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:firstOperand withOperator:MINUS secondTokenType:TOKEN_TYPE_STRING secondValue:secondOperand];
+    [self binaryOperatorTest:firstTerm withExpectedResult:result];
+    
+    firstTerm = [self buildBinaryOperator:TOKEN_TYPE_NUMBER firstValue:firstOperand withOperator:MINUS secondTokenType:TOKEN_TYPE_STRING secondValue:secondOperand];
+    [self binaryOperatorTest:firstTerm withExpectedResult:result];
+    
+    firstTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:firstOperand withOperator:MINUS secondTokenType:TOKEN_TYPE_NUMBER secondValue:secondOperand];
+    [self binaryOperatorTest:firstTerm withExpectedResult:result];
+    
+    firstOperand = @"NotANumber";
+    secondOperand = @"3.14";
+    
+    firstTerm = [self buildBinaryOperator:TOKEN_TYPE_STRING firstValue:firstOperand withOperator:MINUS secondTokenType:TOKEN_TYPE_NUMBER secondValue:secondOperand];
+    [self binaryOperatorTest:firstTerm withExpectedResult:nil];
+}
 
 
 
