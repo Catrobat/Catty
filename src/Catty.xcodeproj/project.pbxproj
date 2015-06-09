@@ -31,6 +31,8 @@
 		4C68FC951B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC871B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m */; };
 		4C68FC961B25A00B00AB3EE8 /* InternFormulaUtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC881B25A00B00AB3EE8 /* InternFormulaUtilsTest.m */; };
 		4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BC6631B26C298001C7E32 /* iOSComboboxPickerView.m */; };
+		4CD669701B272A990008602D /* LegoNxtMotorActionBrick.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CD6696F1B272A990008602D /* LegoNxtMotorActionBrick.xml */; };
+		4CD669731B272B050008602D /* XMLParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD669721B272B050008602D /* XMLParserTests.m */; };
 		4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */; };
 		4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */; };
 		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
@@ -689,6 +691,8 @@
 		4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+CWPopup.license"; sourceTree = "<group>"; };
 		4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OrderedDictionary.license; sourceTree = "<group>"; };
 		4CC0D51F1B01FB73006193C4 /* BrickVariableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickVariableProtocol.h; sourceTree = "<group>"; };
+		4CD6696F1B272A990008602D /* LegoNxtMotorActionBrick.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = LegoNxtMotorActionBrick.xml; path = "Resources/Test Resources/ParserTests/LegoNxtMotorActionBrick.xml"; sourceTree = "<group>"; };
+		4CD669721B272B050008602D /* XMLParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserTests.m; sourceTree = "<group>"; };
 		4CE9D4201AE27AD20058CB24 /* IfOnEdgeBounceBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfOnEdgeBounceBrickTests.m; sourceTree = "<group>"; };
 		4CF773E31AEE3B5100DBBB2B /* VariablePickerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablePickerData.h; sourceTree = "<group>"; };
 		4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablePickerData.m; sourceTree = "<group>"; };
@@ -1691,6 +1695,7 @@
 				4C6A64F61AF7CC9400D04559 /* ValidFormulaList.xml */,
 				4C6A64F71AF7CC9400D04559 /* ValidProgram.xml */,
 				4C6A64F81AF7CC9400D04559 /* ValidProgramAllBricks.xml */,
+				4CD6696F1B272A990008602D /* LegoNxtMotorActionBrick.xml */,
 			);
 			name = ParserTests;
 			sourceTree = "<group>";
@@ -2082,6 +2087,7 @@
 		4CD194F21A0631B200484E4F /* Parser & Serialization */ = {
 			isa = PBXGroup;
 			children = (
+				4CD669711B272AB60008602D /* CatrobatLanguage0.92 */,
 				4CD194F61A0632C600484E4F /* CatrobatLanguage0.93 */,
 			);
 			name = "Parser & Serialization";
@@ -2105,6 +2111,14 @@
 				CAEE0A231A328CDF007CB248 /* XMLSerializerTests */,
 			);
 			name = CatrobatLanguage0.93;
+			sourceTree = "<group>";
+		};
+		4CD669711B272AB60008602D /* CatrobatLanguage0.92 */ = {
+			isa = PBXGroup;
+			children = (
+				4CD669721B272B050008602D /* XMLParserTests.m */,
+			);
+			name = CatrobatLanguage0.92;
 			sourceTree = "<group>";
 		};
 		92289A441A42F2A3008C771A /* ComboBox */ = {
@@ -4578,6 +4592,7 @@
 				CA7699141B0E4BB2000D0340 /* X_Ray_phone_093.xml in Resources */,
 				CA7699151B0E4BB2000D0340 /* Encapsulated.xml in Resources */,
 				CA7699161B0E4BB2000D0340 /* ValidFormulaList.xml in Resources */,
+				4CD669701B272A990008602D /* LegoNxtMotorActionBrick.xml in Resources */,
 				CA7699171B0E4BB2000D0340 /* ValidProgram.xml in Resources */,
 				CA7699181B0E4BB2000D0340 /* ValidProgramAllBricks.xml in Resources */,
 			);
@@ -4737,6 +4752,7 @@
 				CA7698DF1B0E4B3F000D0340 /* SensorHandlerTests.m in Sources */,
 				CA7698E31B0E4B3F000D0340 /* SceneTests.m in Sources */,
 				4C68FC941B25A00B00AB3EE8 /* InternFormulaTests.m in Sources */,
+				4CD669731B272B050008602D /* XMLParserTests.m in Sources */,
 				CA7698E41B0E4B3F000D0340 /* ProgramTableViewControllerExistingProgramsTests.m in Sources */,
 				4C68FC911B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m in Sources */,
 				CA7698E51B0E4B3F000D0340 /* ProgramTableViewControllerNewProgramTests.m in Sources */,
