@@ -20,31 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import <UIKit/UIResponder.h>
 #import "iOSComboboxPickerView.h"
-#import "BSKeyboardControls.h"
 
-@protocol iOSComboboxDelegate;
+@implementation iOSComboboxPickerView
 
-@interface iOSCombobox : UIControl <UIPickerViewDataSource, UIPickerViewDelegate, iOSComboboxPickerViewDelegate, BSKeyboardControlsDelegate>
+- (void)willMoveToSuperview:(UIView *)newSuperview
 {
-    BOOL active;
+    [super willMoveToSuperview:newSuperview];
+    if (newSuperview == nil && [self.delegate conformsToProtocol:@protocol(iOSComboboxPickerViewDelegate)]) {
+        [(id<iOSComboboxPickerViewDelegate>) self.delegate pickerViewClosed:self];
+    }
 }
 
-@property (nonatomic, strong) NSArray *values;
-@property (nonatomic, strong) UIPickerView *pickerView;
-@property (nonatomic, strong) NSString *currentValue;
-@property (nonatomic, weak) id<iOSComboboxDelegate>delegate;
-@property (nonatomic, strong) BSKeyboardControls *keyboard;
-@property (readwrite, strong) UIView *inputView;
-@property (readwrite, strong) UIView *inputAccessoryView;
-
-@end
-
-@protocol iOSComboboxDelegate <NSObject>
-@optional
-- (void)comboboxOpened:(iOSCombobox *)combobox;
-- (void)comboboxClosed:(iOSCombobox *)combobox withValue:(NSString*)value;
-- (void)comboboxChanged:(iOSCombobox *)combobox toValue:(NSString*)toValue;
 @end
