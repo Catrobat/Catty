@@ -74,7 +74,8 @@
         labelFrame.size.height = self.frame.size.height;
         self.frame = labelFrame;
         
-        [self addTarget:brickCell.delegate action:@selector(openFormulaEditor:) forControlEvents:UIControlEventTouchUpInside];
+        [self addTarget:brickCell.delegate action:@selector(openFormulaEditor:withEvent:) forControlEvents:UIControlEventTouchUpInside];
+        [self addTarget:brickCell.delegate action:@selector(openFormulaEditor:withEvent:) forControlEvents:UIControlEventTouchDownRepeat];
         [self drawBorder:NO];
     }
     return self;

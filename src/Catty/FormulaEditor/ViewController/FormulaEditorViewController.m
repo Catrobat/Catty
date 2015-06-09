@@ -108,7 +108,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (strong, nonatomic) AHKActionSheet *mathFunctionsMenu;
 @property (strong, nonatomic) AHKActionSheet *logicalOperatorsMenu;
 @property (nonatomic) BOOL isProgramVariable;
-@property (nonatomic) BOOL didShowSyntaxErrorView;
 @property (nonatomic, strong) BDKNotifyHUD *notficicationHud;
 
 @end
@@ -138,7 +137,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.formula = brickCellData.formula;
     self.internFormula = [[InternFormula alloc] initWithInternTokenList:[self.formula.formulaTree getInternTokenList]];
     self.history = [[FormulaEditorHistory alloc] initWithInternFormulaState:[self.internFormula getInternFormulaState]];
-    self.didShowSyntaxErrorView = NO;
     
     [self setCursorPositionToEndOfFormula];
     [self update];
@@ -148,7 +146,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.internFormula selectWholeFormula];
 }
 
-- (BOOL)changeBrickCellFormulaData:(BrickCellFormulaData *)brickCellData
+- (BOOL)changeBrickCellFormulaData:(BrickCellFormulaData *)brickCellData andForce:(BOOL)forceChange
 
 {
     InternFormulaParser *internFormulaParser = [self.internFormula getInternFormulaParser];
@@ -170,7 +168,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     } else if(formulaParserStatus == FORMULA_PARSER_STACK_OVERFLOW) {
         [self showFormulaTooLongView];
     } else {
-        if(self.didShowSyntaxErrorView && brickCellData != self.brickCellData) {
+        if(forceChange) {
             [self setBrickCellFormulaData:brickCellData];
             [self showChangesDiscardedView];
             return YES;
@@ -1008,7 +1006,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     [self showNotification:kUIFESyntaxError];
     [self.formulaEditorTextView setParseErrorCursorAndSelection];
-    self.didShowSyntaxErrorView = YES;
 }
 
 - (void)showFormulaTooLongView

@@ -403,7 +403,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         // edit formula
         if ([buttonTitle isEqualToString:kLocalizedEditFormula]) {
             BrickCellFormulaData *formulaData = (BrickCellFormulaData*)[brickCell dataSubviewWithType:[BrickCellFormulaData class]];
-            [self openFormulaEditor:formulaData];
+            [self openFormulaEditor:formulaData withEvent:nil];
             return;
         }
 
@@ -934,14 +934,17 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 }
 
 #pragma mark - Open Formula Editor
-- (void)openFormulaEditor:(BrickCellFormulaData*)formulaData
+- (void)openFormulaEditor:(BrickCellFormulaData*)formulaData withEvent:(UIEvent*)event
 {
     if (self.comboBoxOpened) {
         return;
     }
     if ([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
         FormulaEditorViewController *formulaEditorViewController = (FormulaEditorViewController*)self.presentedViewController;
-        [formulaEditorViewController changeBrickCellFormulaData:formulaData];
+        BOOL forceChange = NO;
+        if (event != nil && ((UITouch*)[[event allTouches] anyObject]).tapCount == 2)
+            forceChange = YES;
+        [formulaEditorViewController changeBrickCellFormulaData:formulaData andForce:forceChange];
         return;
     }
 
