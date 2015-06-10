@@ -656,7 +656,7 @@
 
 + (double)degreeToRadians:(double)deg
 {
-    CGFloat temp = deg * M_PI / 180.0f;
+    double temp = deg * M_PI / 180.0f;
     temp =  fmod(temp, 2*M_PI);
     return temp;
 }
