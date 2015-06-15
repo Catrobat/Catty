@@ -133,6 +133,11 @@
     self.navigationController.interactivePopGestureRecognizer.cancelsTouchesInView = NO;
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    self.navigationController.interactivePopGestureRecognizer.cancelsTouchesInView = YES;
+}
+
 #pragma mark - actions
 - (void)playSceneAction:(id)sender
 {
