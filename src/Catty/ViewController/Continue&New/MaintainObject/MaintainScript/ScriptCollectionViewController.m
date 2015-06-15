@@ -219,12 +219,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     return kBrickOverlapHeight;
 }
 
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return !self.comboBoxOpened;
+}
+
 - (void)collectionView:(UICollectionView*)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    if (self.comboBoxOpened) {
-        return;
-    }
-    
     BrickCell *brickCell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
     if (self.isEditing) {
         if ([brickCell.scriptOrBrick isKindOfClass:[Script class]]) {
@@ -1856,8 +1857,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)enableUserInteraction
 {
+    LXReorderableCollectionViewFlowLayout *collectionViewLayout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+    collectionViewLayout.longPressGestureRecognizer.enabled = YES;
     self.collectionView.scrollEnabled = YES;
     self.comboBoxOpened = NO;
+    
     for (BrickCell *cell in self.collectionView.visibleCells) {
         cell.enabled = YES;
     }
@@ -1865,8 +1869,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)disableUserInteraction
 {
+    LXReorderableCollectionViewFlowLayout *collectionViewLayout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+    collectionViewLayout.longPressGestureRecognizer.enabled = NO;
     self.collectionView.scrollEnabled = NO;
     self.comboBoxOpened = YES;
+    
     for (BrickCell *cell in self.collectionView.visibleCells) {
         cell.enabled = NO;
     }
