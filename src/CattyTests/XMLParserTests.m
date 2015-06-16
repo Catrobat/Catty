@@ -55,11 +55,11 @@
         }
     }
     
-    XCTAssertTrue([program.objectList count] > 1, @"Too few SpriteObjects");
+    XCTAssertEqual(6, [program.objectList count], @"Invalid number of SpriteObjects");
     SpriteObject *spriteObject = [program.objectList objectAtIndex:1];
-    XCTAssertTrue([spriteObject.scriptList count] > 0, @"Too few Scripts");
+    XCTAssertEqual(1, [spriteObject.scriptList count], @"Invalid number of Scripts");
     Script *script = [spriteObject.scriptList objectAtIndex:0];
-    XCTAssertTrue([script.brickList count] > 0, @"Too few Bricks");
+    XCTAssertEqual(1, [script.brickList count], @"Invalid number of Bricks");
     Brick *brick = [script.brickList objectAtIndex:0];
     XCTAssertTrue([brick isKindOfClass:[NoteBrick class]], @"Invalid Brick type: Brick should be of type %@", [NoteBrick class]);
 }
