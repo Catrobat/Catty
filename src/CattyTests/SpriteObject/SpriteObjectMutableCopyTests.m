@@ -24,11 +24,11 @@
 #import "XMLAbstractTest.h"
 #import "CBMutableCopyContext.h"
 
-@interface SpriteObjectCopyTest : XMLAbstractTest
+@interface SpriteObjectMutableCopyTests : XMLAbstractTest
 
 @end
 
-@implementation SpriteObjectCopyTest
+@implementation SpriteObjectMutableCopyTests
 
 - (void)testIfCopiedSpriteObjectsAreEqualToOriginalForValidProgramAllBricks
 {

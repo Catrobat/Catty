@@ -15,6 +15,7 @@
 		4C3AE2C11B03554F005E1F57 /* BrickCellSoundData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE2B81B03554F005E1F57 /* BrickCellSoundData.m */; };
 		4C3AE2C21B03554F005E1F57 /* BrickCellTextData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE2BA1B03554F005E1F57 /* BrickCellTextData.m */; };
 		4C3AE2C31B03554F005E1F57 /* BrickCellVariableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE2BC1B03554F005E1F57 /* BrickCellVariableData.m */; };
+		4C5E8E721B30662000204EE6 /* BrickMutableCopyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E8E711B30662000204EE6 /* BrickMutableCopyTests.m */; };
 		4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */; };
 		4C68FC891B25A00B00AB3EE8 /* FormulaEditorUtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7B1B25A00B00AB3EE8 /* FormulaEditorUtilTests.m */; };
 		4C68FC8A1B25A00B00AB3EE8 /* FormulaElementTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7C1B25A00B00AB3EE8 /* FormulaElementTest.m */; };
@@ -369,7 +370,7 @@
 		CA7698DB1B0E4B3F000D0340 /* PointToBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C107ADC194F156F00D9D7ED /* PointToBrickTests.m */; };
 		CA7698DC1B0E4B3F000D0340 /* TurnLeftBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A4B1856270500547C1E /* TurnLeftBrickTests.m */; };
 		CA7698DD1B0E4B3F000D0340 /* TurnRightBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A4D1856271100547C1E /* TurnRightBrickTests.m */; };
-		CA7698DE1B0E4B3F000D0340 /* SpriteObjectCopyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26506E1A6566F50050775B /* SpriteObjectCopyTest.m */; };
+		CA7698DE1B0E4B3F000D0340 /* SpriteObjectMutableCopyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C26506E1A6566F50050775B /* SpriteObjectMutableCopyTests.m */; };
 		CA7698DF1B0E4B3F000D0340 /* SensorHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B46B271217703FB700172837 /* SensorHandlerTests.m */; };
 		CA7698E31B0E4B3F000D0340 /* SceneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B496F51017759968004BF78A /* SceneTests.m */; };
 		CA7698E41B0E4B3F000D0340 /* ProgramTableViewControllerExistingProgramsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */; };
@@ -574,7 +575,7 @@
 		4C2650681A6538710050775B /* CBMutableCopyContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopyContext.h; path = CBCopyContext/CBMutableCopyContext.h; sourceTree = "<group>"; };
 		4C2650691A6538710050775B /* CBMutableCopyContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBMutableCopyContext.m; path = CBCopyContext/CBMutableCopyContext.m; sourceTree = "<group>"; };
 		4C26506C1A653A5A0050775B /* CBMutableCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopying.h; path = Copying/CBMutableCopying.h; sourceTree = "<group>"; };
-		4C26506E1A6566F50050775B /* SpriteObjectCopyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpriteObjectCopyTest.m; path = SpriteObject/SpriteObjectCopyTest.m; sourceTree = "<group>"; };
+		4C26506E1A6566F50050775B /* SpriteObjectMutableCopyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpriteObjectMutableCopyTests.m; path = SpriteObject/SpriteObjectMutableCopyTests.m; sourceTree = "<group>"; };
 		4C3AE2991B03526C005E1F57 /* BrickCellDataProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickCellDataProtocol.h; sourceTree = "<group>"; };
 		4C3AE2AF1B03554F005E1F57 /* BrickCellFormulaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellFormulaData.h; path = BrickCellData/BrickCellFormulaData.h; sourceTree = "<group>"; };
 		4C3AE2B01B03554F005E1F57 /* BrickCellFormulaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellFormulaData.m; path = BrickCellData/BrickCellFormulaData.m; sourceTree = "<group>"; };
@@ -600,6 +601,7 @@
 		4C5517D51ABC6AA500A52FF4 /* BrickLookProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickLookProtocol.h; sourceTree = "<group>"; };
 		4C5517D61ABC6AB800A52FF4 /* BrickSoundProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSoundProtocol.h; sourceTree = "<group>"; };
 		4C5517D71ABC737C00A52FF4 /* BrickObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickObjectProtocol.h; sourceTree = "<group>"; };
+		4C5E8E711B30662000204EE6 /* BrickMutableCopyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMutableCopyTests.m; sourceTree = "<group>"; };
 		4C6066381A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+CustomExtensions.h"; sourceTree = "<group>"; };
 		4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GDataXMLNode+CustomExtensions.m"; sourceTree = "<group>"; };
 		4C68FC7B1B25A00B00AB3EE8 /* FormulaEditorUtilTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaEditorUtilTests.m; path = Formula/FormulaEditorUtilTests.m; sourceTree = "<group>"; };
@@ -1339,7 +1341,6 @@
 		C34B44EA17F079C700624730 /* BrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickTests.m; sourceTree = "<group>"; };
 		C34B44EC17F079F500624730 /* CustomExtensionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomExtensionsTests.m; sourceTree = "<group>"; };
 		C3BF754B18117F6000134B77 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		CA02C5DE1B13C3DD00233FB0 /* LoggerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerDefines.h; sourceTree = "<group>"; };
 		CA02C5E41B14385500233FB0 /* CBPlayerScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerScene.swift; path = Catty/PlayerEngine/Scene/CBPlayerScene.swift; sourceTree = SOURCE_ROOT; };
 		CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSpriteNode.swift; path = PlayerEngine/DataModel/CBSpriteNode/CBSpriteNode.swift; sourceTree = "<group>"; };
 		CA05A19D18286CDA0025421A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -1715,7 +1716,7 @@
 		4C26506D1A6566C60050775B /* SpriteObject */ = {
 			isa = PBXGroup;
 			children = (
-				4C26506E1A6566F50050775B /* SpriteObjectCopyTest.m */,
+				4C26506E1A6566F50050775B /* SpriteObjectMutableCopyTests.m */,
 			);
 			name = SpriteObject;
 			sourceTree = "<group>";
@@ -2491,7 +2492,6 @@
 			children = (
 				92FF2DFE1A24C3BE00093DA7 /* ActionSheetAlertViewTags.h */,
 				92FF2E001A24C3BE00093DA7 /* ButtonTags.h */,
-				CA02C5DE1B13C3DD00233FB0 /* LoggerDefines.h */,
 				92FF2E011A24C3BE00093DA7 /* CatrobatLanguageDefines.h */,
 				92FF2E021A24C3BE00093DA7 /* CellTagDefines.h */,
 				92FF2E031A24C3BE00093DA7 /* LanguageTranslationDefines.h */,
@@ -4106,6 +4106,7 @@
 				4C107ADC194F156F00D9D7ED /* PointToBrickTests.m */,
 				92C37A4B1856270500547C1E /* TurnLeftBrickTests.m */,
 				92C37A4D1856271100547C1E /* TurnRightBrickTests.m */,
+				4C5E8E711B30662000204EE6 /* BrickMutableCopyTests.m */,
 			);
 			name = Bricks;
 			sourceTree = "<group>";
@@ -4715,6 +4716,7 @@
 				4C68FC8C1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m in Sources */,
 				CA7698CF1B0E4B3F000D0340 /* PlaceAtBrickTests.m in Sources */,
 				4C68FC8A1B25A00B00AB3EE8 /* FormulaElementTest.m in Sources */,
+				4C5E8E721B30662000204EE6 /* BrickMutableCopyTests.m in Sources */,
 				CA7698D01B0E4B3F000D0340 /* PointInDirectionBrickTests.m in Sources */,
 				CA7698D11B0E4B3F000D0340 /* SetBrightnessBrickTests.m in Sources */,
 				CA7698D21B0E4B3F000D0340 /* SetGhostEffectBrickTests.m in Sources */,
@@ -4733,7 +4735,7 @@
 				CA7698DC1B0E4B3F000D0340 /* TurnLeftBrickTests.m in Sources */,
 				4C68FC8D1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m in Sources */,
 				CA7698DD1B0E4B3F000D0340 /* TurnRightBrickTests.m in Sources */,
-				CA7698DE1B0E4B3F000D0340 /* SpriteObjectCopyTest.m in Sources */,
+				CA7698DE1B0E4B3F000D0340 /* SpriteObjectMutableCopyTests.m in Sources */,
 				CA7698DF1B0E4B3F000D0340 /* SensorHandlerTests.m in Sources */,
 				CA7698E31B0E4B3F000D0340 /* SceneTests.m in Sources */,
 				4C68FC941B25A00B00AB3EE8 /* InternFormulaTests.m in Sources */,
