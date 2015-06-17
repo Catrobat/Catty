@@ -129,7 +129,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    [self.collectionView reloadData];
+    self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+    self.navigationController.interactivePopGestureRecognizer.cancelsTouchesInView = NO;
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    self.navigationController.interactivePopGestureRecognizer.cancelsTouchesInView = YES;
 }
 
 #pragma mark - actions
