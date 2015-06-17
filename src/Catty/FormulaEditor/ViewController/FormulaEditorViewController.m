@@ -769,19 +769,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)saveVariable:(NSString*)name
 {
-    for (UserVariable* variable in self.object.program.variables.programVariableList) {
-        if ([variable.name isEqualToString:name]) {
-            [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVarExists promptMessage:kUIFEVarName minInputLength:kMinNumOfVariableNameCharacters maxInputLength:kMaxNumOfVariableNameCharacters blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
-            return;
+    if (self.isProgramVariable){
+        for (UserVariable* variable in [self.object.program.variables allVariables]) {
+            if ([variable.name isEqualToString:name]) {
+                [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVarExists promptMessage:kUIFEVarName minInputLength:kMinNumOfVariableNameCharacters maxInputLength:kMaxNumOfVariableNameCharacters blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+                return;
+            }
         }
-    }
-    if(!self.isProgramVariable){
-        if ([self.object.program.variables.objectVariableList objectForKey:self.object]) {
-            for (UserVariable* variable in [self.object.program.variables.objectVariableList objectForKey:self.object]) {
-                if ([variable.name isEqualToString:name]) {
-                    [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVarExists promptMessage:kUIFEVarName minInputLength:kMinNumOfVariableNameCharacters maxInputLength:kMaxNumOfVariableNameCharacters blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
-                    return;
-                }
+    } else {
+        for (UserVariable* variable in [self.object.program.variables allVariablesForObject:self.object]) {
+            if ([variable.name isEqualToString:name]) {
+                [Util askUserForVariableNameAndPerformAction:@selector(saveVariable:) target:self promptTitle:kUIFENewVarExists promptMessage:kUIFEVarName minInputLength:kMinNumOfVariableNameCharacters maxInputLength:kMaxNumOfVariableNameCharacters blockedCharacterSet:[self blockedCharacterSet] invalidInputAlertMessage:kUIFEonly15Char andTextField:self.formulaEditorTextView];
+                return;
             }
         }
         

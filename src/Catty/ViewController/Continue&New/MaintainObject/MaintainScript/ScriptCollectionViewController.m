@@ -441,12 +441,12 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             // programVariable
         BOOL isProgramVar = NO;
         if ([buttonTitle isEqualToString:kUIFEActionVarPro]) {
-            for(UserVariable *var in [self.object.program.variables allVariablesForObject:self.object]) {
+            for(UserVariable *var in [self.object.program.variables allVariables]) {
                 [allVariableNames addObject:var.name];
             }
             isProgramVar = YES;
         } else if ([buttonTitle isEqualToString:kUIFEActionVarObj]) {
-            for(UserVariable *var in [self.object.program.variables objectVariablesForObject:self.object]) {
+            for(UserVariable *var in [self.object.program.variables allVariablesForObject:self.object]) {
                 [allVariableNames addObject:var.name];
             }
         }
