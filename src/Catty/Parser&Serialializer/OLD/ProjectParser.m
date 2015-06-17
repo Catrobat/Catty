@@ -35,6 +35,7 @@
 #import "OrderedMapTable.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "SpriteObject.h"
+#import "NoteBrick.h"
 #import "GDataXMLElement+CustomExtensions.h"
 
 #define kCatroidXMLPrefix               @"org.catrobat.catroid.content."
@@ -136,8 +137,16 @@
     className = [self classNameForString:className];
     
     id object = [[NSClassFromString(className) alloc] init];
-    if (! object)
-        [NSException raise:@"ClassNotFoundException" format:@"Implementation of <%@> NOT FOUND!", className];
+    if (! object) {
+        if ([className hasSuffix:@"Brick"]) {
+            NSWarn(@"Unsupported brick type: %@ => to be replaced by a NoteBrick", className);
+            object = [NoteBrick new];
+            [(NoteBrick*)object setNote:[NSString stringWithFormat:@"Unsupported brick: %@. Replaced by NoteBrick", className]];
+            return object;
+        } else {
+            [NSException raise:@"ClassNotFoundException" format:@"Implementation of <%@> NOT FOUND!", className];
+        }
+    }
     
     if([object isKindOfClass:[Program class]])
         self.program = object;

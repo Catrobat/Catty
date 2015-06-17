@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<program>
+  <header>
+    <applicationBuildName/>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.9.14</applicationVersion>
+    <catrobatLanguageVersion>0.92</catrobatLanguageVersion>
+    <dateTimeUpload/>
+    <description>Les noms des moteurs sont a vérifier.</description>
+    <deviceName>GT-S5369</deviceName>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v4</mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>10</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>Lego</programName>
+    <remixOf/>
+    <screenHeight>320</screenHeight>
+    <screenMode>STRETCH</screenMode>
+    <screenWidth>240</screenWidth>
+    <tags/>
+    <url>http://pocketcode.org/details/2640</url>
+    <userHandle>hugo</userHandle>
+  </header>
+  <objectList>
+    <object>
+      <lookList>
+        <look>
+          <fileName>c79680f9010451864cbf5882f0a60bc6_visuel.png</fileName>
+          <name>visuel</name>
+        </look>
+      </lookList>
+      <name>Arrière plan</name>
+      <scriptList/>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>7f982e14c6b397bf72f9f81fbec83cf6_visuel.png</fileName>
+          <name>Reculer</name>
+        </look>
+      </lookList>
+      <name>Reculer</name>
+      <scriptList>
+        <whenScript>
+          <brickList>
+            <legoNxtMotorActionBrick>
+              <object reference="../../../../.."/>
+              <motor>MOTOR_A_C</motor>
+              <speed>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>80</value>
+                </formulaTree>
+              </speed>
+            </legoNxtMotorActionBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>1a8bf91eba5a0924071b3a5867ac62b2_visuel.png</fileName>
+          <name>Avancer</name>
+        </look>
+      </lookList>
+      <name>Avancer</name>
+      <scriptList>
+        <whenScript>
+          <brickList>
+            <legoNxtMotorActionBrick>
+              <object reference="../../../../.."/>
+              <motor>MOTOR_A_C</motor>
+              <speed>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>80</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </speed>
+            </legoNxtMotorActionBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>548813dc501f1e084f216b42793adf3b_visuel.png</fileName>
+          <name>Mon objet</name>
+        </look>
+      </lookList>
+      <name>Gauche</name>
+      <scriptList>
+        <whenScript>
+          <brickList>
+            <legoNxtMotorActionBrick>
+              <object reference="../../../../.."/>
+              <motor>MOTOR_A</motor>
+              <speed>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>50</value>
+                </formulaTree>
+              </speed>
+            </legoNxtMotorActionBrick>
+            <legoNxtMotorStopBrick>
+              <object reference="../../../../.."/>
+              <motor>MOTOR_C</motor>
+            </legoNxtMotorStopBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>77b81d912deaf0963dc2c245f3b29cf8_visuel.png</fileName>
+          <name>Droite</name>
+        </look>
+      </lookList>
+      <name>Droite</name>
+      <scriptList>
+        <whenScript>
+          <brickList>
+            <legoNxtMotorActionBrick>
+              <object reference="../../../../.."/>
+              <motor>MOTOR_C</motor>
+              <speed>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>50</value>
+                </formulaTree>
+              </speed>
+            </legoNxtMotorActionBrick>
+            <legoNxtMotorStopBrick>
+              <object reference="../../../../.."/>
+              <motor>MOTOR_A</motor>
+            </legoNxtMotorStopBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>729e89f9db24121d8ece770edb096485_visuel.png</fileName>
+          <name>Stop</name>
+        </look>
+      </lookList>
+      <name>Stop</name>
+      <scriptList>
+        <whenScript>
+          <brickList>
+            <legoNxtMotorStopBrick>
+              <object reference="../../../../.."/>
+              <motor>ALL_MOTORS</motor>
+            </legoNxtMotorStopBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList/>
+    </object>
+  </objectList>
+  <variables>
+    <objectVariableList/>
+    <programVariableList/>
+  </variables>
+</program>
