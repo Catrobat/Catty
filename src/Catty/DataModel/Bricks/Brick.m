@@ -165,10 +165,8 @@
 
     NSDictionary *properties = [Util propertiesOfInstance:self];
     for (NSString *propertyKey in properties) {
-        if ([propertyKey isEqualToString:@"animate"]) {
-            continue; // ignore "animate" property
-        }
         id propertyValue = [properties objectForKey:propertyKey];
+        Class propertyClazz = [propertyValue class];        
         if ([propertyValue conformsToProtocol:@protocol(CBMutableCopying)]) {
             id updatedReference = [context updatedReferenceForReference:propertyValue];
             if (updatedReference) {
@@ -181,6 +179,12 @@
             // standard datatypes like NSString are already conforming to the NSMutableCopying protocol
             id propertyValueClone = [propertyValue mutableCopyWithZone:nil];
             [brick setValue:propertyValueClone forKey:propertyKey];
+        } else if (propertyClazz == [@(YES) class]) {
+            // 64-bit bool -> typedef bool BOOL
+            [brick setValue:propertyValue forKey:propertyKey];
+        } else if (propertyClazz == [@(1) class]) {
+            // 32-bit bool -> typedef signed char BOOL
+            [brick setValue:propertyValue forKey:propertyKey];
         } else if (reportError) {
             NSError(@"Property %@ of class %@ in Brick of class %@ does not conform to CBMutableCopying protocol. Implement mutableCopyWithContext method in %@", propertyKey, [propertyValue class], [self class], [self class]);
         }
