@@ -1,52 +1,19 @@
 Catty
 =====
 
-iOS implementation of the Catrobat language
+Catty, also known as **Pocket Code for iOS**, is an on-device visual programming system for iPhones.
+
+Catrobat is a visual programming language and set of creativity tools for smartphones, tablets, and mobile browsers. Catrobat programs can be written by using the Catroid programming system on Android phones and tablets, using Catroid, or Catty for iPhones.
+
+For more information oriented towards developers please visit our [developers page](http://developer.catrobat.org/).
+# Issues #
+
+For reporting issues use our [JIRA Bugtracking System](https://jira.catrob.at/secure/RapidBoard.jspa?rapidView=75). Before, please browse our currently open issues [here](https://jira.catrob.at/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+IOS+AND+resolution+%3D+Unresolved+ORDER+BY+priority+DESC%2C+key+DESC&mode=hide).
 
 # Questions?
 Please ask on our Google Plus community: http://goo.gl/fOjQi
 
-# First steps for intern Teammembers
-## Learn iOS development?
-We recommend [iPad and iPhone App Development](https://itunes.apple.com/us/course/ipad-iphone-app-development/id495052415) from the Stanford University.
 
-## Setting Up Your First Project - Step by Step
-For a step-by-step guide how to deploy your first project, see: http://goo.gl/R0tmG
-
-## ... Short Version
-* First of all you need an Apple ID if you haven't got it by now create it. [Create Apple ID](https://appleid.apple.com/cgi-bin/WebObjects/MyAppleId.woa/135/wa/createAppleId?wosid=4buecjiwQGa14dIxx55bYM&localang=de_DE)
-* Now write a mail to your administrator of your Apple Developer Program. The Mail should look like this:
-
-> Subject: [Catroid iOS Developer Team] Apple Development Certificates
-> 
-> Hi,
-> 
-> I am from the Catroid iOS-Team and would like to develop/test on my iDevice.
-> Would you be so kind and send me an invitation.
-> 
-> Cheers,
->  Your Name
-
-* Now you have to wait a bit until your administrator sends you an invitation through Apple.
-* When you get the mail there is a link in it. Just click it and login with your Apple ID.
-* Now continue with the following [guide](http://itunes.tugraz.at/media/items/ios_application_development_2011_pdf/1298971525-12_-_App_Deployment.pdf) from Josef Kolbitsch.
-* Then write a mail to your administrator:
-
-> I have uploaded my certificate and here is some additional data
-> 
-> Device ID: <PASTE IN YOUR DEVICE Identifiere>
-> App ID: at.tugraz.DEVist.catroid-demo-app-1
-> App Name: Catroid Player
-
-* We strictly use Test-Driven Development(URL 
-http://c2.com/cgi/wiki?TestDrivenDevelopment) and Clean Code(URL 
-https://www.ufm.edu/images/0/04/Clean_Code.pdf), so first read 
-everything you can about these development methods. Code developed in a 
-different style will not be accepted.
-
-* Download XCode (at least version 6) from the Mac App Store
-
-* Clone this project by using git clone
 
 <!--
  1. Make sure you have installed [Brew][1], a package manage for OSX, which the `bootstrap` script uses to pull dependencies
@@ -62,8 +29,6 @@ different style will not be accepted.
  1. `sudo brew install homebrew/versions/perl516`
  -->
 
-* Finished
-
 
 # First steps for extern Contributors
 ## Learn iOS development?
@@ -74,19 +39,17 @@ For a step-by-step guide how to deploy your first project, see: http://goo.gl/R0
 
 ## ... Short Version
 
-* We strictly use Test-Driven Development(URL 
-http://c2.com/cgi/wiki?TestDrivenDevelopment) and Clean Code(URL 
-https://www.ufm.edu/images/0/04/Clean_Code.pdf), so first read 
-everything you can about these development methods. Code developed in a 
-different style will not be accepted.
+* If you want to contribute we suggest that you start with [forking](https://help.github.com/articles/fork-a-repo/) our repository and browse the code. Then you can look at our [Issue-Tracker](https://jira.catrob.at/secure/RapidBoard.jspa?rapidView=75) and start with fixing one ticket. We strictly use [Test-Driven Development](http://c2.com/cgi/wiki?TestDrivenDevelopment) and [Clean Code](http://www.planetgeek.ch/wp-content/uploads/2013/06/Clean-Code-V2.2.pdf), so first read everything you can about these development methods. Code developed in a different style will not be accepted. 
+After you've created a pull request we will review your code and do a full testrun on your branch.
+
+* If you want to implement a new feature, please ask about the details in JIRA or our IRC channel (#catrobat or #catrobatdev) first.
 
 * Download XCode (at least version 6) from the Mac App Store
 
 * Clone this project by using git clone
 
-* If you have any further questions please use our IRC Channel or Google Plus community: http://goo.gl/fOjQi
+* If you have any further questions please use our IRC Channel(#catrobat or #catrobatdev) or Google Plus community: http://goo.gl/fOjQi
 
-* Finished
 
 
 
