@@ -550,3 +550,12 @@
 #define kUISoundTitle  NSLocalizedStringFromTable(@"Sound", @"BrickCategoryViewController", nil);
 #define kUILookTitle  NSLocalizedStringFromTable(@"Look", @"BrickCategoryViewController", nil);
 #define kUIVariableTitle  NSLocalizedStringFromTable(@"Variable", @"BrickCategoryViewController", nil);
+
+
+#if DEBUG == 1
+//************************************************************************************************************
+//****************************************       Debug        ************************************************
+//************************************************************************************************************
+#define kLocalizedDebugModeTitle NSLocalizedString(@"Debug mode", nil)
+#define kLocalizedStartedInDebugMode NSLocalizedString(@"Pocket Code has been started in debug mode.", nil)
+#endif
