@@ -100,6 +100,10 @@
 
 @implementation ScriptCollectionViewController
 
+#define kBrickCellInactiveWhileEditingOpacity 0.3f
+#define kBrickCellInactiveWhileInsertingOpacity 0.7f
+#define kBrickCellActiveOpacity 1.0f
+
 #pragma mark - getters and setters
 - (PlaceHolderView*)placeHolderView
 {
@@ -547,11 +551,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             brickCell.userInteractionEnabled = YES;
         } else {
             brickCell.userInteractionEnabled = NO;
-            brickCell.alpha = 0.7f;
+            brickCell.alpha = kBrickCellInactiveWhileInsertingOpacity;
         }
     } else {
         brickCell.userInteractionEnabled = YES;
-        brickCell.alpha = self.isEditingBrickMode ? 0.3f : 1.0f;
+        brickCell.alpha = self.isEditingBrickMode ? kBrickCellInactiveWhileEditingOpacity : kBrickCellActiveOpacity;
     }
     return brickCell;
 }
@@ -1864,21 +1868,21 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     
     for (BrickCell *cell in self.collectionView.visibleCells) {
         cell.enabled = YES;
-        cell.alpha = 1.0f;
+        cell.alpha = kBrickCellActiveOpacity;
     }
 }
 
 -(void)disableUserInteractionAndHighlight:(BrickCell*)brickCell
 {
     LXReorderableCollectionViewFlowLayout *collectionViewLayout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
-    collectionViewLayout.longPressGestureRecognizer.enabled = NO;
+    collectionViewLayout.long   PressGestureRecognizer.enabled = NO;
     self.collectionView.scrollEnabled = NO;
     self.isEditingBrickMode = YES;
     
     for (BrickCell *cell in self.collectionView.visibleCells) {
         cell.enabled = NO;
         if (cell != brickCell) {
-            cell.alpha = 0.3f;
+            cell.alpha = kBrickCellInactiveWhileEditingOpacity;
         }
     }
     
