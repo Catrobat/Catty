@@ -1642,11 +1642,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                         
                                         if(var)
                                             [variableBrick setVariable:var forLineNumber:self.higherRankBrick.row andParameterNumber:self.higherRankBrick.section];
-                                        
-                                        [self.object.program saveToDisk];
-                                        [self.collectionView reloadData];
-                                        
-                                        
                                     }
                                    promptTitle:kUIFENewVar
                                  promptMessage:kUIFEVarName
@@ -1710,17 +1705,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 }
 
 #pragma mark - BrickCellData Delegate
-- (void)addObjectWithName:(NSString*)objectName andCompletion:(id)completion
-{
-    NSString *uniqueName = [Util uniqueName:objectName existingNames:[self.object.program allObjectNames]];
-    [self.object.program addObjectWithName:uniqueName];
-    if (completion) {
-        void (^block)(NSString*) = (void (^)(NSString*))completion;
-        block(objectName);
-    }
-    [self.collectionView reloadData];
-}
-
 - (void)addMessageWithName:(NSString*)messageName andCompletion:(id)completion
 {
     if (completion) {
@@ -1737,6 +1721,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         void (^block)(NSString*) = (void (^)(NSString*))completion;
         block(variableName);
     }
+    [self.object.program saveToDisk];
+    [self.collectionView reloadData];
 }
 
 - (void)updateBrickCellData:(id<BrickCellDataProtocol>)brickCellData withValue:(id)value
@@ -1759,7 +1745,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 [self enableUserInteractionAndResetHighlight];
             };
             [self.navigationController pushViewController:ltvc animated:YES];
-            
             return;
         } else {
             [lookBrick setLook:[Util lookWithName:(NSString*)value forObject:self.object] forLineNumber:line andParameterNumber:parameter];
@@ -1875,7 +1860,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 -(void)disableUserInteractionAndHighlight:(BrickCell*)brickCell
 {
     LXReorderableCollectionViewFlowLayout *collectionViewLayout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
-    collectionViewLayout.long   PressGestureRecognizer.enabled = NO;
+    collectionViewLayout.longPressGestureRecognizer.enabled = NO;
     self.collectionView.scrollEnabled = NO;
     self.isEditingBrickMode = YES;
     
