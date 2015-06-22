@@ -72,7 +72,7 @@
 
 - (void)comboboxOpened:(iOSCombobox *)combobox
 {
-    [self.brickCell.dataDelegate disableUserInteraction];
+    [self.brickCell.dataDelegate disableUserInteractionAndHighlight:self.brickCell];
 }
 
 @end

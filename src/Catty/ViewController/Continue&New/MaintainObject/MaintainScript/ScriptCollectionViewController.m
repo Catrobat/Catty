@@ -91,10 +91,10 @@
 @property (nonatomic, assign) BOOL selectedAllCells;  // refactor
 @property (nonatomic, assign) BOOL scrollEnd;  // refactor
 @property (nonatomic, assign) BOOL isInsertingBrickMode;
+@property (nonatomic, assign) BOOL isEditingBrickMode;
 @property (nonatomic, strong) NSIndexPath *higherRankBrick; // refactor
 @property (nonatomic, strong) NSIndexPath *lowerRankBrick;  // refactor
 @property (nonatomic) PageIndexCategoryType lastSelectedBrickCategory;
-@property (nonatomic, assign) BOOL comboBoxOpened;  // refactor
 
 @end
 
@@ -124,6 +124,7 @@
     self.placeHolderView.title = kLocalizedScripts;
     self.placeHolderView.hidden = (self.object.scriptList.count != 0);
     self.isInsertingBrickMode = NO;
+    self.isEditingBrickMode = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -227,7 +228,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return !self.comboBoxOpened;
+    return !self.isEditingBrickMode;
 }
 
 - (void)collectionView:(UICollectionView*)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
@@ -262,7 +263,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         return;
     }
 
-    [self highlightBrickCell:brickCell];
     BOOL isBrick = [brickCell.scriptOrBrick isKindOfClass:[Brick class]];
     NSMutableArray *buttonTitles = [NSMutableArray array];
     if (isBrick) {
@@ -294,14 +294,14 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditBrickOrScript
                                                                     withPayload:@{ kDTPayloadCellIndexPath : indexPath }];
     [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
-    
-    [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically
-                                        animated:YES];
+    [self disableUserInteractionAndHighlight:brickCell];
 }
 
 #pragma mark - action sheet delegates
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    [self enableUserInteractionAndResetHighlight];
+    
     if (buttonIndex == actionSheet.cancelButtonIndex) {
         [self reloadData];
         return;
@@ -339,9 +339,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [self turnOnInsertingBrickMode];
             [self reloadData];
         }
-        
-        [self resetHighlightBrickCell:brickCell];
-        
     } else if (actionSheet.tag == kVariabletypeActionSheetTag){
         CBAssert(actionSheet.dataTransferMessage.actionType == kDTMActionEditBrickOrScript);
         CBAssert([actionSheet.dataTransferMessage.payload isKindOfClass:[NSDictionary class]]);
@@ -353,10 +350,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)actionSheetCancelOnTouch:(CatrobatActionSheet *)actionSheet
 {
-    for(BrickCell *cell in self.collectionView.visibleCells)
-    {
-        cell.alpha = 1.0f;
-    }
+    [self enableUserInteractionAndResetHighlight];
 }
 
 #pragma mark - Reorderable Cells Delegate
@@ -551,14 +545,13 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if (self.isInsertingBrickMode) {
         if (brickCell.scriptOrBrick.isAnimatedInsertBrick) {
             brickCell.userInteractionEnabled = YES;
-        }else{
+        } else {
             brickCell.userInteractionEnabled = NO;
             brickCell.alpha = 0.7f;
         }
-
-    }else{
+    } else {
         brickCell.userInteractionEnabled = YES;
-        brickCell.alpha = 1.0f;
+        brickCell.alpha = self.isEditingBrickMode ? 0.3f : 1.0f;
     }
     return brickCell;
 }
@@ -730,7 +723,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 #pragma mark - Open Formula Editor
 - (void)openFormulaEditor:(BrickCellFormulaData*)formulaData withEvent:(UIEvent*)event
 {
-    if (self.comboBoxOpened) {
+    if (self.isEditingBrickMode) {
         return;
     }
     if ([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
@@ -869,25 +862,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     self.navigationController.navigationBar.topItem.rightBarButtonItem.enabled = YES;
     self.navigationController.navigationBar.topItem.backBarButtonItem.enabled = YES;
     [self.navigationItem setHidesBackButton:NO animated:NO];
-}
-
-- (void)highlightBrickCell:(BrickCell*)brickCell
-{
-    for(BrickCell *cell in self.collectionView.visibleCells)
-    {
-        if (![cell isEqual:brickCell]) {
-            cell.alpha = 0.3f;
-        }
-    }
-}
-
-- (void)resetHighlightBrickCell:(BrickCell*)brickCell
-{
-    for(BrickCell *cell in self.collectionView.visibleCells)
-    {
-        cell.alpha = 1.0f;
-    }
-
 }
 
 #pragma mark - Editing
@@ -1778,7 +1752,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 [self.collectionView reloadData];
                 [self.collectionView setNeedsDisplay];
                 [self.navigationController popViewControllerAnimated:YES];
-                [self enableUserInteraction];
+                [self enableUserInteractionAndResetHighlight];
             };
             [self.navigationController pushViewController:ltvc animated:YES];
             
@@ -1798,7 +1772,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 [self.collectionView reloadData];
                 [self.collectionView setNeedsDisplay];
                 [self.navigationController popViewControllerAnimated:YES];
-                [self enableUserInteraction];
+                [self enableUserInteractionAndResetHighlight];
             };
             [self.navigationController pushViewController:ltvc animated:YES];
             return;
@@ -1817,7 +1791,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 [self.collectionView reloadData];
                 [self.collectionView setNeedsDisplay];
                 [self.navigationController popToViewController:self animated:YES];
-                [self enableUserInteraction];
+                [self enableUserInteractionAndResetHighlight];
             };
             [self.navigationController pushViewController:ptvc animated:YES];
             return;
@@ -1850,7 +1824,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                                         invertedSet]
                               invalidInputAlertMessage:kLocalizedMessageAlreadyExistsDescription
                                          existingNames:[Util allMessagesForProgram:self.object.program]];
-            [self enableUserInteraction];
+            [self enableUserInteractionAndResetHighlight];
             return;
         } else {
             [messageBrick setMessage:(NSString*)value forLineNumber:line andParameterNumber:parameter];
@@ -1869,7 +1843,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditBrickOrScript
                                                                             withPayload:@{ kDTPayloadCellIndexPath : path}];
             
-            [self enableUserInteraction];
+            [self enableUserInteractionAndResetHighlight];
             return;
         } else {
             UserVariable *variable = [self.object.program.variables getUserVariableNamed:(NSString*)value forSpriteObject:self.object];
@@ -1877,32 +1851,40 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 [variableBrick setVariable:variable forLineNumber:line andParameterNumber:parameter];
         }
     }
-    [self enableUserInteraction];
+    [self enableUserInteractionAndResetHighlight];
     [self.object.program saveToDisk];
 }
 
--(void)enableUserInteraction
+-(void)enableUserInteractionAndResetHighlight
 {
     LXReorderableCollectionViewFlowLayout *collectionViewLayout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     collectionViewLayout.longPressGestureRecognizer.enabled = YES;
     self.collectionView.scrollEnabled = YES;
-    self.comboBoxOpened = NO;
+    self.isEditingBrickMode = NO;
     
     for (BrickCell *cell in self.collectionView.visibleCells) {
         cell.enabled = YES;
+        cell.alpha = 1.0f;
     }
 }
 
--(void)disableUserInteraction
+-(void)disableUserInteractionAndHighlight:(BrickCell*)brickCell
 {
     LXReorderableCollectionViewFlowLayout *collectionViewLayout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     collectionViewLayout.longPressGestureRecognizer.enabled = NO;
     self.collectionView.scrollEnabled = NO;
-    self.comboBoxOpened = YES;
+    self.isEditingBrickMode = YES;
     
     for (BrickCell *cell in self.collectionView.visibleCells) {
         cell.enabled = NO;
+        if (cell != brickCell) {
+            cell.alpha = 0.3f;
+        }
     }
+    
+    [self.collectionView scrollToItemAtIndexPath:[self.collectionView indexPathForCell:brickCell]
+                                atScrollPosition:UICollectionViewScrollPositionCenteredVertically
+                                        animated:YES];
 }
 
 -(void)reloadData

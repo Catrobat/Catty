@@ -38,5 +38,5 @@
 
 @required
 - (void)updateBrickCellData:(id<BrickCellDataProtocol>)brickCellData withValue:(id)value;
-- (void)disableUserInteraction;
+- (void)disableUserInteractionAndHighlight:(BrickCell*)brickCell;
 @end
