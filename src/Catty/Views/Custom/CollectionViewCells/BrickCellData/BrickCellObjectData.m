@@ -71,7 +71,7 @@
 
 - (void)comboboxOpened:(iOSCombobox *)combobox
 {
-    [self.brickCell.dataDelegate disableUserInteractionAndHighlight:self.brickCell];
+    [self.brickCell.dataDelegate disableUserInteractionAndHighlight:self.brickCell withMarginBottom:305.0f];
 }
 
 @end

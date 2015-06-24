@@ -298,26 +298,21 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditBrickOrScript
                                                                     withPayload:@{ kDTPayloadCellIndexPath : indexPath }];
     [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
-    [self disableUserInteractionAndHighlight:brickCell];
+    [self disableUserInteractionAndHighlight:brickCell withMarginBottom:actionSheet.frame.size.height];
 }
 
 #pragma mark - action sheet delegates
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [self enableUserInteractionAndResetHighlight];
-    
-    if (buttonIndex == actionSheet.cancelButtonIndex) {
-        [self reloadData];
-        return;
-    }
-    
     NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
     NSIndexPath *indexPath = payload[kDTPayloadCellIndexPath]; // unwrap payload message
     BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     CBAssert([brickCell.scriptOrBrick isKindOfClass:[Brick class]]);
     Brick *brick = (Brick*)brickCell.scriptOrBrick;
-
-    if (actionSheet.tag == kEditBrickActionSheetTag) {
+    
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        [self reloadData];
+    } else if (actionSheet.tag == kEditBrickActionSheetTag) {
         CBAssert(actionSheet.dataTransferMessage.actionType == kDTMActionEditBrickOrScript);
         CBAssert([actionSheet.dataTransferMessage.payload isKindOfClass:[NSDictionary class]]);
         IBActionSheetButton *selectedButton = [actionSheet.buttons objectAtIndex:buttonIndex];
@@ -350,6 +345,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         BOOL isProgramVar = [selectedButton.titleLabel.text isEqualToString:kUIFEActionVarPro];
         [self addVariableForBrick:brick atIndexPath:indexPath andIsProgramVariable:isProgramVar];
     }
+    
+    [self enableUserInteractionAndResetHighlight];
 }
 
 - (void)actionSheetCancelOnTouch:(CatrobatActionSheet *)actionSheet
@@ -1855,9 +1852,16 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         cell.enabled = YES;
         cell.alpha = kBrickCellActiveOpacity;
     }
+    
+    CGFloat collectionViewHeight = self.collectionView.frame.size.height;
+    CGFloat contentOffset = self.collectionView.contentOffset.y;
+    if (contentOffset > collectionViewHeight) {
+        [self.collectionView setContentOffset:CGPointMake(0, collectionViewHeight) animated:YES];
+    }
 }
 
--(void)disableUserInteractionAndHighlight:(BrickCell*)brickCell
+#define kHighlightedBrickCellMarginBottom 10
+-(void)disableUserInteractionAndHighlight:(BrickCell*)brickCell withMarginBottom:(CGFloat)marginBottom
 {
     LXReorderableCollectionViewFlowLayout *collectionViewLayout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     collectionViewLayout.longPressGestureRecognizer.enabled = NO;
@@ -1871,9 +1875,16 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         }
     }
     
-    [self.collectionView scrollToItemAtIndexPath:[self.collectionView indexPathForCell:brickCell]
-                                atScrollPosition:UICollectionViewScrollPositionCenteredVertically
-                                        animated:YES];
+    // only scroll if BrickCell is covered by option view
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:brickCell];
+    UICollectionViewLayoutAttributes *brickCellAttributes = [self.collectionView layoutAttributesForItemAtIndexPath:indexPath];
+    CGFloat collectionViewHeight = self.collectionView.frame.size.height;
+    CGFloat brickCellOriginVert = [self.collectionView convertRect:brickCellAttributes.frame toView:[self.collectionView superview]].origin.y + brickCell.frame.size.height - kBrickHeight1h;
+
+    if ((collectionViewHeight - brickCellOriginVert) < marginBottom) {
+        CGFloat additionalOffset = marginBottom - (collectionViewHeight - brickCellOriginVert) + kHighlightedBrickCellMarginBottom;
+        [self.collectionView setContentOffset:CGPointMake(0, self.collectionView.contentOffset.y + additionalOffset) animated:YES];
+    }
 }
 
 -(void)reloadData

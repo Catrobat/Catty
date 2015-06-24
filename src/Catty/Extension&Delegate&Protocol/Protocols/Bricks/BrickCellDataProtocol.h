@@ -38,5 +38,5 @@
 
 @required
 - (void)updateBrickCellData:(id<BrickCellDataProtocol>)brickCellData withValue:(id)value;
-- (void)disableUserInteractionAndHighlight:(BrickCell*)brickCell;
+- (void)disableUserInteractionAndHighlight:(BrickCell*)brickCell withMarginBottom:(CGFloat)marginBottom;
 @end
