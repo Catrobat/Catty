@@ -34,8 +34,6 @@
 #import "Util.h"
 #import "LanguageTranslationDefines.h"
 
-#define kMaxProgramResults 50
-
 @interface SearchStoreViewController ()
 
 @property (nonatomic, strong) NSMutableArray *searchResults;
@@ -333,7 +331,7 @@
     self.data = nil; // cleanup
     self.data = [[NSMutableData alloc] init];
     
-    NSString *queryString = [NSString stringWithFormat:@"%@/%@?q=%@&%@%i&%@%i", kConnectionHost, kConnectionSearch, [searchString stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet], kProgramsLimit, kMaxProgramResults, kProgramsOffset, 0];
+    NSString *queryString = [NSString stringWithFormat:@"%@/%@?q=%@&%@%i&%@%i", kConnectionHost, kConnectionSearch, [searchString stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet], kProgramsLimit, kMaxSearchResults, kProgramsOffset, 0];
     NSDebug(@"Query string: %@", queryString);
     
     NSURL *url = [NSURL URLWithString:queryString];
