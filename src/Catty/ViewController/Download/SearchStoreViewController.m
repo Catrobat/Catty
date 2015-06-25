@@ -333,7 +333,7 @@
     self.data = nil; // cleanup
     self.data = [[NSMutableData alloc] init];
     
-    NSString *queryString = [NSString stringWithFormat:@"%@/%@?q=%@&%@%i&%@%i", kConnectionHost, kConnectionSearch, searchString, kProgramsLimit, kMaxProgramResults, kProgramsOffset, 0];
+    NSString *queryString = [NSString stringWithFormat:@"%@/%@?q=%@&%@%i&%@%i", kConnectionHost, kConnectionSearch, [searchString stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet], kProgramsLimit, kMaxProgramResults, kProgramsOffset, 0];
     NSDebug(@"Query string: %@", queryString);
     
     NSURL *url = [NSURL URLWithString:queryString];
