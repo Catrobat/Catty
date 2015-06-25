@@ -233,7 +233,6 @@
         imageCell.titleLabel.text = project.projectName;
 
         [self loadImage:project.screenshotSmall forCell:imageCell atIndexPath:indexPath];
-        NSDebug(@"Normal Cell");
         //        }
     }
     return cell;
@@ -715,7 +714,6 @@
 
 - (void)changeView
 {
-    NSDebug(@"test %li", (long)self.downloadSegmentedControl.selectedSegmentIndex);
     switch (self.previousSelectedIndex) {
         case 0:
             self.mostDownloadedProgramListOffset = self.programListOffset;
