@@ -43,7 +43,6 @@
 @property (nonatomic, strong) NSMutableArray *projects;
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (assign)            int programListOffset;
-@property (assign)            int programListLimit;
 @property (nonatomic, strong) CatrobatInformation* information;
 @property (nonatomic, strong) NSMutableArray* mostDownloadedProjects;
 @property (nonatomic, strong) NSMutableArray* mostViewedProjects;
@@ -69,7 +68,6 @@
 
 - (void)viewDidLoad
 {
-    self.programListLimit = 20;
     self.programListOffset = 0;
 
     [super viewDidLoad];
@@ -265,15 +263,15 @@
     NSURL *url = [NSURL alloc];
     switch (self.downloadSegmentedControl.selectedSegmentIndex) {
         case 0:
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionMostDownloadedFull, kProgramsOffset, self.programListOffset, kProgramsLimit, self.programListLimit]];
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionMostDownloadedFull, kProgramsOffset, self.programListOffset, kProgramsLimit, kRecentProgramsMaxResults]];
             
             break;
         case 1:
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionMostViewed, kProgramsOffset, self.programListOffset, kProgramsLimit, self.programListLimit]];
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionMostViewed, kProgramsOffset, self.programListOffset, kProgramsLimit, kRecentProgramsMaxResults]];
             
             break;
         case 2:
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionRecent, kProgramsOffset, self.programListOffset, kProgramsLimit, self.programListLimit]];
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionRecent, kProgramsOffset, self.programListOffset, kProgramsLimit, kRecentProgramsMaxResults]];
             
             break;
             
@@ -294,7 +292,7 @@
     }
     [self loadingIndicator:YES];
     
-    self.programListOffset += self.programListLimit;
+    self.programListOffset += kRecentProgramsMaxResults;
 }
 
 - (void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response

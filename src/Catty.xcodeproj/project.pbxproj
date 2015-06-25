@@ -32,6 +32,7 @@
 		4C68FC941B25A00B00AB3EE8 /* InternFormulaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC861B25A00B00AB3EE8 /* InternFormulaTests.m */; };
 		4C68FC951B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC871B25A00B00AB3EE8 /* InternFormulaTokenSelectionTest.m */; };
 		4C68FC961B25A00B00AB3EE8 /* InternFormulaUtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC881B25A00B00AB3EE8 /* InternFormulaUtilsTest.m */; };
+		4C79F5551B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79F5541B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m */; };
 		4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BC6631B26C298001C7E32 /* iOSComboboxPickerView.m */; };
 		4CD669701B272A990008602D /* LegoNxtMotorActionBrick.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CD6696F1B272A990008602D /* LegoNxtMotorActionBrick.xml */; };
 		4CD669731B272B050008602D /* XMLParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD669721B272B050008602D /* XMLParserTests.m */; };
@@ -674,6 +675,8 @@
 		4C6A64FD1AF7CC9400D04559 /* X_Ray_phone_091.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = X_Ray_phone_091.xml; sourceTree = "<group>"; };
 		4C6A64FE1AF7CC9400D04559 /* X_Ray_phone_093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = X_Ray_phone_093.xml; sourceTree = "<group>"; };
 		4C6A652F1AF7CE2B00D04559 /* Encapsulated.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Encapsulated.xml; path = "Resources/Test Resources/ParserTests/X_Ray_phone/Encapsulated.xml"; sourceTree = "<group>"; };
+		4C79F5531B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecentProgramsStoreViewControllerTests.h; path = Download/RecentProgramsStoreViewControllerTests.h; sourceTree = "<group>"; };
+		4C79F5541B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecentProgramsStoreViewControllerTests.m; path = Download/RecentProgramsStoreViewControllerTests.m; sourceTree = "<group>"; };
 		4C8BC6621B26C298001C7E32 /* iOSComboboxPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSComboboxPickerView.h; sourceTree = "<group>"; };
 		4C8BC6631B26C298001C7E32 /* iOSComboboxPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSComboboxPickerView.m; sourceTree = "<group>"; };
 		4C9E2D1E198EA6B600455B77 /* SMPageControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SMPageControl.license; sourceTree = "<group>"; };
@@ -1795,6 +1798,8 @@
 		4C5B27FC1B3C155C00509FDB /* Download */ = {
 			isa = PBXGroup;
 			children = (
+				4C79F5531B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.h */,
+				4C79F5541B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m */,
 				4C5B27FF1B3C194900509FDB /* SearchStoreViewControllerTests.h */,
 				4C5B27FD1B3C15AC00509FDB /* SearchStoreViewControllerTests.m */,
 			);
@@ -4751,6 +4756,7 @@
 				CA7698D21B0E4B3F000D0340 /* SetGhostEffectBrickTests.m in Sources */,
 				CA7698D31B0E4B3F000D0340 /* SetLookBrickTests.m in Sources */,
 				4C68FC921B25A00B00AB3EE8 /* InternFormulaStateTest.m in Sources */,
+				4C79F5551B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m in Sources */,
 				CA7698D41B0E4B3F000D0340 /* ShowBrickTests.m in Sources */,
 				CA7698D51B0E4B3F000D0340 /* HideBrickTests.m in Sources */,
 				4C68FC8F1B25A00B00AB3EE8 /* FormulaParserTest.m in Sources */,

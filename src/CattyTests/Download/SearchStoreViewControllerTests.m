@@ -44,9 +44,6 @@
 {
     [super setUp];
     self.searchStoreViewController = [TestSearchStoreViewController new];
-    [self.searchStoreViewController viewDidLoad];
-    [self.searchStoreViewController viewWillAppear:NO];
-    [self.searchStoreViewController viewDidAppear:NO];
 }
 
 - (void)tearDown
@@ -61,8 +58,10 @@
     while (!self.searchStoreViewController.isDownloadFinished) {
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
     }
+    
     XCTAssertTrue(self.searchStoreViewController.isDownloadFinished, @"Download not finished!");
-    XCTAssertEqual([self.searchStoreViewController.searchResults count], kMaxSearchResults, @"Search results not received completely!");
+    XCTAssertEqual([self.searchStoreViewController.searchResults count], kSearchStoreMaxResults, @"Search results not received completely!");
+    
     for(CatrobatProgram *catrobatProject in self.searchStoreViewController.searchResults) {
         XCTAssertTrue([catrobatProject.author length] > 0, @"Invalid author");
         XCTAssertTrue([catrobatProject.downloadUrl length] > 0, @"Invalid downloadUrl");

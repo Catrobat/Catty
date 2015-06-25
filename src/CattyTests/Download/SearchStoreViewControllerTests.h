@@ -28,7 +28,6 @@
 @end
 
 @interface TestSearchStoreViewController : SearchStoreViewController
-@property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSMutableArray *searchResults;
 @property (nonatomic, assign, getter=isDownloadFinished) BOOL downloadFinished;
 @end
