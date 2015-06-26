@@ -29,7 +29,8 @@
 
 @interface TestSearchStoreViewController : SearchStoreViewController
 @property (nonatomic, strong) NSMutableArray *searchResults;
-@property (nonatomic, assign, getter=isDownloadFinished) BOOL downloadFinished;
+@property (nonatomic, strong) XCTestExpectation *downloadFinished;
+- (id)initWithExpectation:(XCTestExpectation*) expectation;
 @end
 
 @interface SearchStoreViewControllerTests : XCTestCase

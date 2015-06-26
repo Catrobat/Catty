@@ -34,7 +34,8 @@
 @property (nonatomic, strong) NSMutableArray* mostDownloadedProjects;
 @property (nonatomic, strong) NSMutableArray* mostViewedProjects;
 @property (nonatomic, strong) NSMutableArray* mostRecentProjects;
-@property (nonatomic, assign, getter=isDownloadFinished) BOOL downloadFinished;
+@property (nonatomic, strong) XCTestExpectation *downloadFinished;
+- (id)initWithExpectation:(XCTestExpectation*) expectation;
 @end
 
 @interface RecentProgramsStoreViewControllerTests : XCTestCase

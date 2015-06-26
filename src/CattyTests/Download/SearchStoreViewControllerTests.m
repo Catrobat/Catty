@@ -20,21 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import "SearchStoreViewControllerTests.h"
 #import "CatrobatProgram.h"
 
+#define CONNECTION_TIMEOUT 10
+
 @implementation TestSearchStoreViewController
-- (id)init
+- (id)initWithExpectation:(XCTestExpectation*) expectation
 {
     self = [super init];
-    self.downloadFinished = NO;
+    self.downloadFinished = expectation;
     return self;
 }
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     [super connectionDidFinishLoading:connection];
-    self.downloadFinished = YES;
+    [self.downloadFinished fulfill];
 }
 @end
 
@@ -43,7 +46,8 @@
 - (void)setUp
 {
     [super setUp];
-    self.searchStoreViewController = [TestSearchStoreViewController new];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"downloadFinished"];
+    self.searchStoreViewController = [[TestSearchStoreViewController alloc] initWithExpectation: expectation];
 }
 
 - (void)tearDown
@@ -55,11 +59,11 @@
 - (void)testSearchStore
 {
     [self.searchStoreViewController queryServerForSearchString:@"a"];
-    while (!self.searchStoreViewController.isDownloadFinished) {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-    }
     
-    XCTAssertTrue(self.searchStoreViewController.isDownloadFinished, @"Download not finished!");
+    [self waitForExpectationsWithTimeout:CONNECTION_TIMEOUT handler:^(NSError *error) {
+        XCTAssertNil(error, "Expectation Failed with error: %@", error);
+    }];
+    
     XCTAssertEqual([self.searchStoreViewController.searchResults count], kSearchStoreMaxResults, @"Search results not received completely!");
     
     for(CatrobatProgram *catrobatProject in self.searchStoreViewController.searchResults) {

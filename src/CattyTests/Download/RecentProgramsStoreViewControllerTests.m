@@ -26,17 +26,19 @@
 #import "CatrobatProgram.h"
 #import "LanguageTranslationDefines.h"
 
+#define CONNECTION_TIMEOUT 10
+
 @implementation TestRecentProgramsStoreViewController
-- (id)init
+- (id)initWithExpectation:(XCTestExpectation*) expectation
 {
     self = [super init];
-    self.downloadFinished = NO;
+    self.downloadFinished = expectation;
     return self;
 }
 - (void)loadIDForArray:(NSMutableArray*)projects andInformation:(CatrobatInformation*) information andProjects:(NSArray*)catrobatProjects
 {
     [super loadIDForArray:projects andInformation:information andProjects:catrobatProjects];
-    self.downloadFinished = YES;
+    [self.downloadFinished fulfill];
 }
 - (UISegmentedControl*)downloadSegmentedControl
 {
@@ -45,6 +47,9 @@
         segmentControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:kLocalizedMostDownloaded, kLocalizedMostViewed, kLocalizedNewest, nil]];
     return segmentControl;
 }
+- (void)viewDidLoad
+{
+}
 @end
 
 @implementation RecentProgramsStoreViewControllerTests
@@ -52,7 +57,8 @@
 - (void)setUp
 {
     [super setUp];
-    self.recentProgramsStoreViewController = [TestRecentProgramsStoreViewController new];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"downloadFinished"];
+    self.recentProgramsStoreViewController = [[TestRecentProgramsStoreViewController alloc] initWithExpectation:expectation];
 }
 
 - (void)tearDown
@@ -66,11 +72,11 @@
     UISegmentedControl *segmentedControl = self.recentProgramsStoreViewController.downloadSegmentedControl;
     segmentedControl.selectedSegmentIndex = 0;
     [self.recentProgramsStoreViewController loadProjectsWithIndicator:0];
-    while (!self.recentProgramsStoreViewController.isDownloadFinished) {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-    }
     
-    XCTAssertTrue(self.recentProgramsStoreViewController.isDownloadFinished, @"Download not finished!");
+    [self waitForExpectationsWithTimeout:CONNECTION_TIMEOUT handler:^(NSError *error) {
+        XCTAssertNil(error, "Expectation Failed with error: %@", error);
+    }];
+    
     XCTAssertEqual([self.recentProgramsStoreViewController.mostDownloadedProjects count], kRecentProgramsMaxResults, @"Recent programs not received completely!");
     
     for(CatrobatProgram *catrobatProject in self.recentProgramsStoreViewController.mostDownloadedProjects) {
@@ -89,11 +95,11 @@
     UISegmentedControl *segmentedControl = self.recentProgramsStoreViewController.downloadSegmentedControl;
     segmentedControl.selectedSegmentIndex = 1;
     [self.recentProgramsStoreViewController loadProjectsWithIndicator:0];
-    while (!self.recentProgramsStoreViewController.isDownloadFinished) {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-    }
     
-    XCTAssertTrue(self.recentProgramsStoreViewController.isDownloadFinished, @"Download not finished!");
+    [self waitForExpectationsWithTimeout:CONNECTION_TIMEOUT handler:^(NSError *error) {
+        XCTAssertNil(error, "Expectation Failed with error: %@", error);
+    }];;
+    
     XCTAssertEqual([self.recentProgramsStoreViewController.mostViewedProjects count], kRecentProgramsMaxResults, @"Recent programs not received completely!");
     
     for(CatrobatProgram *catrobatProject in self.recentProgramsStoreViewController.mostViewedProjects) {
@@ -107,11 +113,11 @@
     UISegmentedControl *segmentedControl = self.recentProgramsStoreViewController.downloadSegmentedControl;
     segmentedControl.selectedSegmentIndex = 2;
     [self.recentProgramsStoreViewController loadProjectsWithIndicator:0];
-    while (!self.recentProgramsStoreViewController.isDownloadFinished) {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-    }
     
-    XCTAssertTrue(self.recentProgramsStoreViewController.isDownloadFinished, @"Download not finished!");
+    [self waitForExpectationsWithTimeout:CONNECTION_TIMEOUT handler:^(NSError *error) {
+        XCTAssertNil(error, "Expectation Failed with error: %@", error);
+    }];
+    
     XCTAssertEqual([self.recentProgramsStoreViewController.mostRecentProjects count], kRecentProgramsMaxResults, @"Newest programs not received completely!");
     
     for(CatrobatProgram *catrobatProject in self.recentProgramsStoreViewController.mostRecentProjects) {
