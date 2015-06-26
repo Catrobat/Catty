@@ -300,12 +300,11 @@
     if (data == nil) {
         if (self.shouldShowAlert) {
             self.shouldShowAlert = NO;
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kLocalizedPocketCode
-                                                                message:kLocalizedSlowInternetConnection
-                                                               delegate:self.navigationController.visibleViewController
-                                                      cancelButtonTitle:kLocalizedOK
-                                                      otherButtonTitles:nil];
-            [alertView show];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:kLocalizedPocketCode message:kLocalizedSlowInternetConnection preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            }];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
         }
         return;
     }
@@ -427,12 +426,11 @@
     if (data == nil) {
         if (self.shouldShowAlert) {
             self.shouldShowAlert = NO;
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kLocalizedPocketCode
-                                                                message:kLocalizedSlowInternetConnection
-                                                               delegate:self.navigationController.visibleViewController
-                                                      cancelButtonTitle:kLocalizedOK
-                                                      otherButtonTitles:nil];
-            [alertView show];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:kLocalizedPocketCode message:kLocalizedSlowInternetConnection preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            }];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
         }
         return;
     }

@@ -399,7 +399,7 @@
         kDTPayloadAskUserMinInputLength : @(minInputLength),
         kDTPayloadAskUserInvalidInputAlertMessage : invalidInputAlertMessage,
         kDTPayloadAskUserExistingNames : (existingNames ? existingNames : [NSNull null]),
-        kDTPayloadCancel : (cancelAction ? [NSValue valueWithPointer:cancelAction] : [NSValue valueWithPointer:nil])
+        kDTPayloadCancel : (cancelAction ? [NSValue valueWithPointer:cancelAction] : [NSValue valueWithPointer:@""])
     };
     CatrobatAlertView *alertView = [[self class] promptWithTitle:title
                                                          message:message
@@ -682,7 +682,7 @@ replacementString:(NSString*)characters
     if (alertView.tag == kAskUserForUniqueNameAlertViewTag) {
         if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
             SEL action = NULL;
-            if ((NSValue*)payload[kDTPayloadCancel]) {
+            if (((NSValue*)payload[kDTPayloadCancel]).pointerValue != @"") {
                 action = [((NSValue*)payload[kDTPayloadCancel]) pointerValue];
             }
             id target = payload[kDTPayloadAskUserTarget];
