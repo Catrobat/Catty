@@ -38,6 +38,8 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "LanguageTranslationDefines.h"
 
+#define kFeaturedProgramsMaxResults 10
+
 @interface FeaturedProgramsStoreViewController ()
 
 @property (nonatomic, strong) NSMutableData *data;
@@ -176,7 +178,7 @@
 - (void)loadFeaturedProjects
 {
     //self.data = [[NSMutableData alloc] init];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", kConnectionHost, kConnectionFeatured]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i", kConnectionHost, kConnectionFeatured, kProgramsLimit, kFeaturedProgramsMaxResults]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
     
     //    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
