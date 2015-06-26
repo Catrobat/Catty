@@ -32,18 +32,48 @@
   cancelButtonTitle:(NSString *)cancelButtonTitle
   otherButtonTitles:(NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION
 {
-    CatrobatAlertView *alertView = [super initWithTitle:title
-                                                message:message
-                                               delegate:(id<UIAlertViewDelegate>)delegate
-                                      cancelButtonTitle:cancelButtonTitle
-                                      otherButtonTitles:otherButtonTitles, nil];
-    alertView.dataTransferMessage = nil;
+    CatrobatAlertView *alertView = [CatrobatAlertView alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+                                    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelButtonTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
+                                   {
+                                       
+                                       [Util checkUserInput:alertView buttonIndex:0];
+                                       
+                                   }];
+    
+    [alertView addAction:cancelAction];
+    
+    if(otherButtonTitles && [otherButtonTitles isEqualToString:kLocalizedOK]){
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:otherButtonTitles style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                                      {
+                                          
+                                          [Util checkUserInput:alertView buttonIndex:1];
+                                          
+                                      }];
+    
+    [alertView addAction:okAction];
+    }
+    if (otherButtonTitles && ![otherButtonTitles isEqualToString:kLocalizedOK])
+    {
+        UIAlertAction *otherAction = [UIAlertAction actionWithTitle:otherButtonTitles style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                                      {
+                                        
+                                          [Util checkUserInput:alertView buttonIndex:2];
+                                          
+                                      }];
+        
+        [alertView addAction:otherAction];
+    }
+        //TODO add otherButtonActions!!!
+    
     return alertView;
 }
 
+
 - (BOOL)textFieldShouldReturn:(UITextField*)textField
 {
-    [self dismissWithClickedButtonIndex:0 animated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     [textField resignFirstResponder]; // dismiss the keyboard
     [[Util class] alertView:self clickedButtonAtIndex:kAlertViewButtonOK];
     return YES;

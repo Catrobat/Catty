@@ -363,7 +363,7 @@
 {
     if (alertView.tag == kConfirmAlertViewTag) {
         // check if user agreed
-        if (buttonIndex != alertView.cancelButtonIndex) {
+//        if (buttonIndex != alertView.cancelButtonIndex) {
             // XXX: hack to avoid compiler warning
             // http://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown
             SEL selector = self.confirmedAction;
@@ -377,14 +377,14 @@
                     func(self.target, selector, self.passingObject);
                 }
             }
-        } else {
-            SEL selector = self.canceledAction;
-            if (selector) {
-                IMP imp = [self.target methodForSelector:selector];
-                void (*func)(id, SEL) = (void *)imp;
-                func(self.target, selector);
-            }
-        }
+//        } else {
+//            SEL selector = self.canceledAction;
+//            if (selector) {
+//                IMP imp = [self.target methodForSelector:selector];
+//                void (*func)(id, SEL) = (void *)imp;
+//                func(self.target, selector);
+//            }
+//        }
     }
 }
 

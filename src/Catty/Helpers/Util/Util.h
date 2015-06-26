@@ -214,4 +214,6 @@
 
 + (NSArray*)allMessagesForProgram:(Program*)program;
 
++ (void)checkUserInput:(CatrobatAlertView*)alertView buttonIndex:(NSInteger)index;
+
 @end

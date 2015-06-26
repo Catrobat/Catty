@@ -24,6 +24,7 @@
 #import "BaseTableViewController.h"
 #import "UIViewController+CWPopup.h"
 
+
 @interface CatrobatTableViewController : BaseTableViewController <DismissPopupDelegate>
 
 @end
