@@ -143,9 +143,7 @@
                                                           otherButtonTitles:nil];
     UIAlertAction *yesAction = [UIAlertAction actionWithTitle:kLocalizedYes style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
                                    {
-                                       
-                                           //TODO: BaseTableViewController 
-                                       
+                                       [delegate alertView:alertView clickedButtonAtIndex:1];
                                    }];
     
     [alertView addAction:yesAction];
@@ -693,7 +691,7 @@ replacementString:(NSString*)characters
 }
 
 #pragma mark - alert view delegates
-+ (void)checkUserInput:(CatrobatAlertView *)alertView buttonIndex:(NSInteger)buttonIndex
++ (void)alertView:(CatrobatAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSMutableDictionary *payload = (NSMutableDictionary*)alertView.dataTransferMessage.payload;
     if (alertView.tag == kAskUserForUniqueNameAlertViewTag) {

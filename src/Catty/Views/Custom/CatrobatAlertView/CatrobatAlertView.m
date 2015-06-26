@@ -23,6 +23,7 @@
 #import "CatrobatAlertView.h"
 #import "ActionSheetAlertViewTags.h"
 #import "Util.h"
+#import "BaseTableViewController.h"
 
 @implementation CatrobatAlertView
 
@@ -36,8 +37,7 @@
                                     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelButtonTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
                                    {
-                                       
-                                       [Util checkUserInput:alertView buttonIndex:0];
+                                        [delegate alertView:alertView clickedButtonAtIndex:0];
                                        
                                    }];
     
@@ -48,7 +48,7 @@
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:otherButtonTitles style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
                                       {
                                           
-                                          [Util checkUserInput:alertView buttonIndex:1];
+                                          [delegate alertView:alertView clickedButtonAtIndex:1];
                                           
                                       }];
     
@@ -59,8 +59,7 @@
         UIAlertAction *otherAction = [UIAlertAction actionWithTitle:otherButtonTitles style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
                                       {
                                         
-                                          [Util checkUserInput:alertView buttonIndex:2];
-                                          
+                                          [delegate alertView:alertView clickedButtonAtIndex:2];
                                       }];
         
         [alertView addAction:otherAction];
