@@ -21,7 +21,7 @@
  */
 
 #define kConnectionTimeout 30
-#define kBaseUrl @"https://pocketcode.org/"
+#define kBaseUrl @"https://share.catrob.at/pocketcode/"
 #define kTestUrl @"https://catroid-test.catrob.at/"
 #define kConnectionHost kBaseUrl @"api/projects"
 #define kLoginOrRegisterUrlExtension @"api/loginOrRegister"
@@ -33,7 +33,7 @@
 #define kReportProgramUrl kBaseUrl kReportProgramExtension
 #define kUploadUrl kBaseUrl kUploadUrlExtension
 #define kTestUploadUrl kTestUrl kUploadUrlExtension
-#define kForumURL kBaseUrl @"tutorial"
+#define kForumURL kBaseUrl @"help"
 #define kSourceCodeLicenseURL @"http://developer.catrobat.org/licenses"
 #define kAboutCatrobatURL @"http://www.catrobat.org"
 #define kTermsOfUseURL @"https://www.pocketcode.org/termsOfUse"

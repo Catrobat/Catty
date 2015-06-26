@@ -20,15 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
+#import "SearchStoreViewController.h"
 
-#define kSearchStoreMaxResults 50
+@interface SearchStoreViewController (Test)
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection;
+- (void)queryServerForSearchString:(NSString*)searchString;
+@end
 
-@interface SearchStoreViewController : UIViewController<UISearchBarDelegate,UITableViewDelegate, UITableViewDataSource,UIScrollViewDelegate>
+@interface TestSearchStoreViewController : SearchStoreViewController
+@property (nonatomic, strong) NSMutableArray *searchResults;
+@property (nonatomic, strong) XCTestExpectation *downloadFinished;
+- (id)initWithExpectation:(XCTestExpectation*) expectation;
+@end
 
-@property (nonatomic) BOOL checkSearch;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-
+@interface SearchStoreViewControllerTests : XCTestCase
+@property (nonatomic, strong) TestSearchStoreViewController *searchStoreViewController;
 @end

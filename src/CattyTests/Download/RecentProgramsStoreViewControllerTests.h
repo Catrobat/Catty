@@ -20,15 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
+#import "RecentProgramsStoreViewController.h"
 
-#define kSearchStoreMaxResults 50
+@class CatrobatInformation;
 
-@interface SearchStoreViewController : UIViewController<UISearchBarDelegate,UITableViewDelegate, UITableViewDataSource,UIScrollViewDelegate>
+@interface RecentProgramsStoreViewController (Test)
+- (void)loadProjectsWithIndicator:(NSInteger)indicator;
+- (void)loadIDForArray:(NSMutableArray*)projects andInformation:(CatrobatInformation*) information andProjects:(NSArray*)catrobatProjects;
+- (void)initSegmentedControl;
+@end
 
-@property (nonatomic) BOOL checkSearch;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@interface TestRecentProgramsStoreViewController : RecentProgramsStoreViewController
+@property (nonatomic, strong) NSMutableArray* mostDownloadedProjects;
+@property (nonatomic, strong) NSMutableArray* mostViewedProjects;
+@property (nonatomic, strong) NSMutableArray* mostRecentProjects;
+@property (nonatomic, strong) XCTestExpectation *downloadFinished;
+- (id)initWithExpectation:(XCTestExpectation*) expectation;
+@end
 
+@interface RecentProgramsStoreViewControllerTests : XCTestCase
+@property (nonatomic, strong) TestRecentProgramsStoreViewController *recentProgramsStoreViewController;
 @end
