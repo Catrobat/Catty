@@ -76,15 +76,15 @@ final class CBPlayerSchedulingAlgorithmLoadBalancing : CBPlayerSchedulingAlgorit
             || scheduledContext.state == .RunningBlocking
             {
                 runningContexts += scheduledContext
-                var spriteNameScriptContexts = _spriteNameScriptContexts[scheduledContext.script.object.name]
+                var spriteNameScriptContexts = _spriteNameScriptContexts[scheduledContext.script.object!.name]
                 if spriteNameScriptContexts == nil {
                     spriteNameScriptContexts = [CBScriptContextAbstract]()
                 }
-                if contains(spriteNameScriptContexts!, scheduledContext) == false {
+                if (spriteNameScriptContexts!).contains(scheduledContext) == false {
                     spriteNameScriptContexts! += scheduledContext
                     _priorityQueue.push(CBContextElement(context: scheduledContext))
                 }
-                _spriteNameScriptContexts[scheduledContext.script.object.name] = spriteNameScriptContexts!
+                _spriteNameScriptContexts[scheduledContext.script.object!.name] = spriteNameScriptContexts!
             }
         }
 
@@ -95,17 +95,17 @@ final class CBPlayerSchedulingAlgorithmLoadBalancing : CBPlayerSchedulingAlgorit
         while true {
             if var contextElement = _priorityQueue.pop() {
                 let context = contextElement.context
-                if contains(runningContexts, context) == false || context.isLocked {
-                    if var spriteNameScriptContexts = _spriteNameScriptContexts[context.script.object.name] {
+                if runningContexts.contains(context) == false || context.isLocked {
+                    if var spriteNameScriptContexts = _spriteNameScriptContexts[context.script.object!.name] {
                         spriteNameScriptContexts.removeObject(context)
-                        _spriteNameScriptContexts[context.script.object.name] = spriteNameScriptContexts
+                        _spriteNameScriptContexts[context.script.object!.name] = spriteNameScriptContexts
                     }
                     continue
                 }
                 ++contextElement.numOfPastInstructions // current instruction
                 _priorityQueue.push(contextElement)
                 for element in _priorityQueue.heap {
-                    println("\(element.numOfPastInstructions): \(element.context.script.description())")
+                    print("\(element.numOfPastInstructions): \(element.context.script.description())")
                 }
                 assert(context.isLocked == false)
                 return context
@@ -141,15 +141,15 @@ final class CBPlayerSchedulingAlgorithmPriorityQueue : CBPlayerSchedulingAlgorit
             || scheduledContext.state == .RunningBlocking
             {
                 runningContexts += scheduledContext
-                var spriteNameScriptContexts = _spriteNameScriptContexts[scheduledContext.script.object.name]
+                var spriteNameScriptContexts = _spriteNameScriptContexts[scheduledContext.script.object!.name]
                 if spriteNameScriptContexts == nil {
                     spriteNameScriptContexts = [CBScriptContextAbstract]()
                 }
-                if contains(spriteNameScriptContexts!, scheduledContext) == false {
+                if (spriteNameScriptContexts!).contains(scheduledContext) == false {
                     spriteNameScriptContexts! += scheduledContext
                     _priorityQueue.push(CBContextPriorityElement(context: scheduledContext))
                 }
-                _spriteNameScriptContexts[scheduledContext.script.object.name] = spriteNameScriptContexts!
+                _spriteNameScriptContexts[scheduledContext.script.object!.name] = spriteNameScriptContexts!
             }
         }
         if runningContexts.isEmpty {
@@ -157,13 +157,13 @@ final class CBPlayerSchedulingAlgorithmPriorityQueue : CBPlayerSchedulingAlgorit
             return nil
         }
         if var nextContextPriorityElement = _priorityQueue.pop() {
-            while contains(runningContexts, nextContextPriorityElement.context) == false {
-                var temp = _priorityQueue.pop()
+            while runningContexts.contains(nextContextPriorityElement.context) == false {
+                let temp = _priorityQueue.pop()
                 if temp == nil { return nil }
                 nextContextPriorityElement = temp!
             }
             let thresholdDate = NSDate().dateByAddingTimeInterval(-0.1)
-            var lastDate: NSDate? = nil
+            var lastDate: NSDate?
             while true {
                 if let date = nextContextPriorityElement.timeStampsOfPastInstructionsWithinLast100ms.pop() {
                     if date < thresholdDate {
@@ -311,7 +311,7 @@ extension PriorityQueue {
     
     public func update<T2 where T2: Equatable>(element: T2) -> T? {
         assert(element is T)  // How to enforce this with type constraints?
-        for (index, item) in enumerate(_heap) {
+        for (index, item) in _heap.enumerate() {
             if (item as! T2) == element {
                 _heap[index] = element as! T
                 if siftDown(index) || siftUp(index) {
@@ -324,7 +324,7 @@ extension PriorityQueue {
     
     public func remove<T2 where T2: Equatable>(element: T2) -> T? {
         assert(element is T)  // How to enforce this with type constraints?
-        for (index, item) in enumerate(_heap) {
+        for (index, item) in _heap.enumerate() {
             if (item as! T2) == element {
                 swap(&_heap[index], &_heap[_heap.endIndex - 1])
                 _heap.removeLast()

@@ -74,7 +74,7 @@ static Logger* instance;
 {
     va_list args;
     va_start(args, format);
-    [[Logger instance] logAtLevel:warn withFormat:format arguments:args];
+    [[Logger instance] logAtLevel:warning withFormat:format arguments:args];
     va_end(args);
 }
 
@@ -145,7 +145,7 @@ static Logger* instance;
             return @"INFO";
             break;
             
-        case warn:
+        case warning:
             return @"WARN";
             break;
             
@@ -168,7 +168,7 @@ static Logger* instance;
         return info;
     }
     if([level isEqualToString:@"warn"]) {
-        return warn;
+        return warning;
     }
     if([level isEqualToString:@"error"]) {
         return error;

@@ -85,7 +85,7 @@ class CBScriptContextAbstract : SKNode {
         return _instructionList[--_reverseInstructionPointer]
     }
 
-    final func jump(#numberOfInstructions: Int) {
+    final func jump(numberOfInstructions numberOfInstructions: Int) {
         if state == .Dead { return } // must be an old deprecated enqueued dispatch closure
         if numberOfInstructions == 0 { return }
         assert((state == .Running) || (state == .RunningMature) || (state == .RunningBlocking))
