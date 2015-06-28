@@ -92,7 +92,7 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
     func subscribeBroadcastScriptContext(context: CBBroadcastScriptContext) {
         let message = context.broadcastMessage
         if var registeredContexts = _registeredBroadcastScriptContexts[message] {
-            assert(contains(registeredContexts, context) == false,
+            assert(registeredContexts.contains(context) == false,
                 "FATAL: BroadcastScriptContext already registered!")
             registeredContexts += context
             _registeredBroadcastScriptContexts[message] = registeredContexts
@@ -102,7 +102,7 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
         }
 
         let object = context.broadcastScript.object
-        logger.info("Subscribed new CBBroadcastScriptContext of object \(object.name) for message \(message)")
+        logger.info("Subscribed new CBBroadcastScriptContext of object \(object!.name) for message \(message)")
     }
 
     func unsubscribeBroadcastScriptContext(context: CBBroadcastScriptContext) {
@@ -113,7 +113,7 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
                 if registeredContext === context {
                     registeredContexts.removeAtIndex(index)
                     let object = context.broadcastScript.object
-                    logger.info("Unsubscribed CBBroadcastScriptContext of object \(object.name) for message \(message)")
+                    logger.info("Unsubscribed CBBroadcastScriptContext of object \(object!.name) for message \(message)")
                     return
                 }
                 ++index

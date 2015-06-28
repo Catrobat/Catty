@@ -20,11 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-final class CBSequenceList : SequenceType {
+final class CBSequenceList {
 
     // MARK: - Properties
     weak var rootSequenceList : CBScriptSequenceList?
-    private(set) lazy var sequenceList = [CBSequence]()
+    lazy var sequenceList = [CBSequence]()
     var count : Int { return sequenceList.count }
 
     // MARK: - Initializers
@@ -37,16 +37,8 @@ final class CBSequenceList : SequenceType {
         sequenceList.append(sequence)
     }
 
-    // MARK: - Generator
-    func generate() -> GeneratorOf<CBSequence> {
-        var i = 0
-        return GeneratorOf<CBSequence> {
-            return i >= self.sequenceList.count ? .None : self.sequenceList[i++]
-        }
-    }
-
     func reverseSequenceList() -> CBSequenceList {
-        var reverseScriptSequenceList = CBSequenceList(rootSequenceList: rootSequenceList)
+        let reverseScriptSequenceList = CBSequenceList(rootSequenceList: rootSequenceList)
         reverseScriptSequenceList.sequenceList = sequenceList.reverse()
         return reverseScriptSequenceList
     }

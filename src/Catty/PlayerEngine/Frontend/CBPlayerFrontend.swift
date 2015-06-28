@@ -48,7 +48,7 @@ final class CBPlayerFrontend : CBPlayerFrontendProtocol {
         var currentSequenceList = CBSequenceList(rootSequenceList: nil)
         let scriptSequenceList = CBScriptSequenceList(script: script, sequenceList: currentSequenceList)
         var currentOperationSequence = CBOperationSequence(rootSequenceList: scriptSequenceList)
-        var sequenceStack = CBStack<CBSequenceList>()
+        let sequenceStack = CBStack<CBSequenceList>()
 
         for brick in (script.brickList as NSArray as! [Brick]) {
             if let _ = brick as? IfLogicBeginBrick {
@@ -76,7 +76,7 @@ final class CBPlayerFrontend : CBPlayerFrontendProtocol {
 
                 let ifBrick = ifLogicEndBrick.ifBeginBrick
                 let elseBrick = ifLogicEndBrick.ifElseBrick
-                var ifSequence = CBIfConditionalSequence(rootSequenceList: scriptSequenceList, conditionBrick: ifBrick, sequenceList: currentSequenceList)
+                var ifSequence = CBIfConditionalSequence(rootSequenceList: scriptSequenceList, conditionBrick: ifBrick!, sequenceList: currentSequenceList)
 
                 if elseBrick != nil {
                     // currentSequenceList is ElseSequenceList
@@ -84,7 +84,7 @@ final class CBPlayerFrontend : CBPlayerFrontendProtocol {
                     let topMostSequenceList = sequenceStack.pop() // pop IfSequenceList from stack
                     assert(topMostSequenceList != nil, "topMostSequenceList must NOT be nil!")
                     currentSequenceList = topMostSequenceList!
-                    ifSequence = CBIfConditionalSequence(rootSequenceList: scriptSequenceList, conditionBrick: ifBrick,
+                    ifSequence = CBIfConditionalSequence(rootSequenceList: scriptSequenceList, conditionBrick: ifBrick!,
                         ifSequenceList:currentSequenceList, elseSequenceList: elseSequenceList)
                 }
                 let topMostSequenceList = sequenceStack.pop() // pop currentSequenceList from stack

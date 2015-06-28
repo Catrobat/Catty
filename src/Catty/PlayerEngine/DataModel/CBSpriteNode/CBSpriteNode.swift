@@ -77,7 +77,7 @@ final class CBSpriteNode : SKSpriteNode {
         spriteObject.spriteNode = self
     }
 
-    override init(texture: SKTexture, color: UIColor, size: CGSize) {
+    required override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
     }
 
@@ -166,8 +166,6 @@ final class CBSpriteNode : SKSpriteNode {
         if scheduler?.running == false {
             return false
         }
-        let frontend = playerScene.frontend
-        let backend = playerScene.backend
         for touchAnyObject in touches {
             let touch = touchAnyObject as! UITouch
             let touchedPoint = touch.locationInNode(self)

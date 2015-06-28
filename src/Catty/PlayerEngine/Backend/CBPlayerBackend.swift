@@ -223,7 +223,7 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
     {
         return { [weak self] in
             context.state = .RunningMature
-            let object = waitBrick.script.object
+            let object = waitBrick.script!.object
             let durationInSeconds = waitBrick.timeToWaitInSeconds.interpretDoubleForSprite(object)
 
             // ignore wait operation if an invalid duration is given!

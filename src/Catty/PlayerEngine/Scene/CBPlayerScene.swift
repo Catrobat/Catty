@@ -106,7 +106,7 @@ final class CBPlayerScene : SKScene {
             }
 
             while foundObject == false {
-                let point = touch.locationInNode(spriteNode1)
+                let point = touch.locationInNode(spriteNode1!)
                 if spriteNode1?.hidden == false {
                     if spriteNode1?.touchedWithTouches(touches as Set<NSObject>, withX:point.x, andY:point.y) == false {
                         if var zPosition = spriteNode1?.zPosition {
@@ -156,15 +156,15 @@ final class CBPlayerScene : SKScene {
 
         // init and prepare Scene
         self.removeAllChildren() // just to ensure
-        let spriteObjectList = frontend?.program?.objectList as? [SpriteObject]
-        if spriteObjectList == nil {
-            logger?.error("!! No sprite object list given !! This should never happen!")
-            return
-        }
+        let spriteObjectList = frontend!.program!.objectList as! [SpriteObject]
+//        if spriteObjectList == nil {
+//            logger?.error("!! No sprite object list given !! This should never happen!")
+//            return
+//        }
 
         var zPosition = 1.0
         var spriteNodes = [String:CBSpriteNode]()
-        for spriteObject in spriteObjectList! {
+        for spriteObject in spriteObjectList {
             let spriteNode = CBSpriteNode(spriteObject: spriteObject)
             spriteNode.hidden = false
             let scriptList = spriteObject.scriptList as NSArray as? [Script]
@@ -193,23 +193,20 @@ final class CBPlayerScene : SKScene {
 
         // compute all sequence lists
         // TODO: remove spaghetti code => extend backend + frontend to pass Program!!
-        if let spriteObjectList = frontend?.program?.objectList as? [SpriteObject] {
-            for spriteObject in spriteObjectList {
-                let spriteNode = spriteNodes[spriteObject.name]!
-                if var scriptList = spriteObject.scriptList as NSArray as? [Script] {
-                    for script in scriptList {
-                        if let scriptSequence = frontend?.computeSequenceListForScript(script),
-                           let scriptContext = backend?.scriptContextForSequenceList(scriptSequence)
-                        {
-                            // register script
-                            scheduler?.registerContext(scriptContext)
+        for spriteObject in spriteObjectList {
+            if let scriptList = spriteObject.scriptList as NSArray as? [Script] {
+                for script in scriptList {
+                    if let scriptSequence = frontend?.computeSequenceListForScript(script),
+                       let scriptContext = backend?.scriptContextForSequenceList(scriptSequence)
+                    {
+                        // register script
+                        scheduler?.registerContext(scriptContext)
 
-                            // IMPORTANT: broadcast scripts have to be registered in BroadcastHandler as well!
-                            if let broadcastScript = script as? BroadcastScript {
-                                // register BroadcastScript
-                                if let bcScriptContext = scriptContext as? CBBroadcastScriptContext {
-                                    broadcastHandler?.subscribeBroadcastScriptContext(bcScriptContext)
-                                }
+                        // IMPORTANT: broadcast scripts have to be registered in BroadcastHandler as well!
+                        if let _ = script as? BroadcastScript {
+                            // register BroadcastScript
+                            if let bcScriptContext = scriptContext as? CBBroadcastScriptContext {
+                                broadcastHandler?.subscribeBroadcastScriptContext(bcScriptContext)
                             }
                         }
                     }

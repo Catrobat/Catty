@@ -58,10 +58,10 @@
         NSDebug(@"Performing: %@", self.description);
         AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];
         AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:self.formula.formulaTree.value];
-        if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1) {
+        if (floor(NSFoundationVersionNumber) < 1200) {
             utterance.rate = 0.15;
         } else {
-            utterance.rate = 0.3;
+            utterance.rate = 0.5;
         }
         [synthesizer speakUtterance:utterance];
 
