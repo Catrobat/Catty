@@ -156,15 +156,18 @@ final class CBPlayerScene : SKScene {
 
         // init and prepare Scene
         self.removeAllChildren() // just to ensure
-        let spriteObjectList = frontend!.program!.objectList as! [SpriteObject]
-//        if spriteObjectList == nil {
-//            logger?.error("!! No sprite object list given !! This should never happen!")
-//            return
-//        }
+        guard let spriteObjectList = frontend?.program?.objectList else {
+            logger?.error("!! No sprite object list given !! This should never happen!")
+            return
+        }
 
         var zPosition = 1.0
         var spriteNodes = [String:CBSpriteNode]()
         for spriteObject in spriteObjectList {
+            guard let spriteObject = spriteObject as? SpriteObject else {
+                logger?.error("!! Invalid sprite object given !! This should never happen!")
+                return
+            }
             let spriteNode = CBSpriteNode(spriteObject: spriteObject)
             spriteNode.hidden = false
             let scriptList = spriteObject.scriptList as NSArray as? [Script]
