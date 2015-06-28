@@ -307,8 +307,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
     NSIndexPath *indexPath = payload[kDTPayloadCellIndexPath]; // unwrap payload message
     BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
-    CBAssert([brickCell.scriptOrBrick isKindOfClass:[Brick class]]);
-    Brick *brick = (Brick*)brickCell.scriptOrBrick;
     
     if (buttonIndex == actionSheet.cancelButtonIndex) {
         [self reloadData];
@@ -323,7 +321,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [self removeBrickOrScript:brickCell.scriptOrBrick atIndexPath:indexPath];
         } else if ([buttonTitle isEqualToString:kLocalizedCopyBrick]) {
             // copy brick action
-            [self copyBrick:brick atIndexPath:indexPath];
+            CBAssert([brickCell.scriptOrBrick isKindOfClass:[Brick class]]);
+            [self copyBrick:(Brick*)brickCell.scriptOrBrick atIndexPath:indexPath];
         } else if ([buttonTitle isEqualToString:kLocalizedEditFormula]) {
             // edit formula
             BrickCellFormulaData *formulaData = (BrickCellFormulaData*)[brickCell dataSubviewWithType:[BrickCellFormulaData class]];
@@ -334,6 +333,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [self animate:indexPath brickCell:brickCell];
         } else if ([buttonTitle isEqualToString:kLocalizedMoveBrick]) {
             // move Brick
+            CBAssert([brickCell.scriptOrBrick isKindOfClass:[Brick class]]);
+            Brick *brick = (Brick*)brickCell.scriptOrBrick;
             brick.animateInsertBrick = YES;
             [self turnOnInsertingBrickMode];
             [self reloadData];
@@ -341,9 +342,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     } else if (actionSheet.tag == kVariabletypeActionSheetTag){
         CBAssert(actionSheet.dataTransferMessage.actionType == kDTMActionEditBrickOrScript);
         CBAssert([actionSheet.dataTransferMessage.payload isKindOfClass:[NSDictionary class]]);
+        CBAssert([brickCell.scriptOrBrick isKindOfClass:[Brick class]]);
         IBActionSheetButton *selectedButton = [actionSheet.buttons objectAtIndex:buttonIndex];
         BOOL isProgramVar = [selectedButton.titleLabel.text isEqualToString:kUIFEActionVarPro];
-        [self addVariableForBrick:brick atIndexPath:indexPath andIsProgramVariable:isProgramVar];
+        [self addVariableForBrick:(Brick*)brickCell.scriptOrBrick atIndexPath:indexPath andIsProgramVariable:isProgramVar];
     }
     
     [self enableUserInteractionAndResetHighlight];
