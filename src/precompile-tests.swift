@@ -113,7 +113,7 @@ let licenseSearchStringTemplate = "/**\n *  Copyright (C) 2010-%@ The Catrobat T
 let ERR_SUCCESS : Int32 = 0
 let ERR_FAILED : Int32 = 1
 
-let components : NSDateComponents = NSCalendar.currentCalendar().components(.CalendarUnitYear, fromDate: NSDate())
+let components : NSDateComponents = NSCalendar.currentCalendar().components(.Year, fromDate: NSDate())
 let licenseSearchStringCurrentYear = String(format:licenseSearchStringTemplate, String(components.year))
 let licenseSearchStringPreviousYear = String(format:licenseSearchStringTemplate, String(components.year - 1))
 
@@ -121,7 +121,7 @@ let licenseSearchStringPreviousYear = String(format:licenseSearchStringTemplate,
 //                                 FUNCTIONS
 //------------------------------------------------------------------------------------------------------------
 // helper functions
-func printResultErrorAndExitIfFailed(#failed: Bool, #errorMessage: String?)
+func printResultErrorAndExitIfFailed(failed: Bool, errorMessage: String?)
 {
     if failed {
         printErrorAndExitIfFailed(errorMessage!)
@@ -145,14 +145,14 @@ extension String {
 }
 
 // checking functions
-func localizedStringCheck(#filePath : String, #fileContent : String) -> (failed: Bool, errorMessage: String?)
+func localizedStringCheck(filePath : String, fileContent : String) -> (failed: Bool, errorMessage: String?)
 {
     let range = fileContent.rangeOfString("NSLocalizedString")
     if range == nil {
         return (false, nil)
     }
 
-    var newRange : Range<String.Index> = Range<String.Index>(start: fileContent.startIndex, end: range!.startIndex)
+    let newRange : Range<String.Index> = Range<String.Index>(start: fileContent.startIndex, end: range!.startIndex)
     let substring : String = fileContent.substringWithRange(newRange)
     var lineNumber : Int = substring.componentsSeparatedByString("\n").count
     if lineNumber == 0 {
@@ -162,14 +162,14 @@ func localizedStringCheck(#filePath : String, #fileContent : String) -> (failed:
     return (true, errorMessage)
 }
 
-func licenseCheck(#filePath : String, #fileContent : String, lineNumberOffset : Int = 0)
+func licenseCheck(filePath : String, fileContent : String, lineNumberOffset : Int = 0)
     -> (failed: Bool, errorMessage: String?)
 {
     let range = fileContent.rangeOfString(licenseSearchStringCurrentYear)
     if range != nil {
         let index: Int = distance(fileContent.startIndex, range!.startIndex)
         if index != 0 {
-            var newRange : Range<String.Index> = Range<String.Index>(start: fileContent.startIndex, end: range!.startIndex)
+            let newRange : Range<String.Index> = Range<String.Index>(start: fileContent.startIndex, end: range!.startIndex)
             let substring : String = fileContent.substringWithRange(newRange)
             var lineNumber : Int = substring.componentsSeparatedByString("\n").count
             if lineNumber == 0 {
@@ -187,7 +187,7 @@ func licenseCheck(#filePath : String, #fileContent : String, lineNumberOffset : 
         let index: Int = distance(fileContent.startIndex, rangePreviousYear!.startIndex)
         var lineNumber : Int = 1
         if index != 0 {
-            var newRange : Range<String.Index> = Range<String.Index>(start: fileContent.startIndex, end: rangePreviousYear!.startIndex)
+            let newRange : Range<String.Index> = Range<String.Index>(start: fileContent.startIndex, end: rangePreviousYear!.startIndex)
             let substring : String = fileContent.substringWithRange(newRange)
             lineNumber = substring.componentsSeparatedByString("\n").count
             if lineNumber == 0 {
@@ -202,7 +202,7 @@ func licenseCheck(#filePath : String, #fileContent : String, lineNumberOffset : 
     return (true, errorMessage)
 }
 
-func licenseCheckForReadme(#filePath : String, #fileContent : String) -> (failed: Bool, errorMessage: String?)
+func licenseCheckForReadme(filePath : String, fileContent : String) -> (failed: Bool, errorMessage: String?)
 {
     let range = fileContent.rangeOfString("## License Header")
     if range == nil {
@@ -216,10 +216,10 @@ func licenseCheckForReadme(#filePath : String, #fileContent : String) -> (failed
     }
     let licenseString = sectionString.substringWithRange(Range<String.Index>(start: advance(sectionRange!.endIndex, 1),
                                                                                end: sectionString.endIndex))
-    var newLineCountRange = Range<String.Index>(start: fileContent.startIndex, end: range!.endIndex)
+    let newLineCountRange = Range<String.Index>(start: fileContent.startIndex, end: range!.endIndex)
     let newLineCountSubString = fileContent.substringWithRange(newLineCountRange)
-    var lineNumberOfLicenseHeaderStart : Int = newLineCountSubString.componentsSeparatedByString("\n").count
-    return licenseCheck(filePath: pathToReadmeFile,
+    let lineNumberOfLicenseHeaderStart : Int = newLineCountSubString.componentsSeparatedByString("\n").count
+    return licenseCheck(pathToReadmeFile,
                      fileContent: licenseString,
                 lineNumberOffset: lineNumberOfLicenseHeaderStart)
 }
@@ -295,18 +295,18 @@ while let filePath = enumerator!.nextObject() as? String {
 
     // localized string check
     var content : String? = nil
-    if contains(localizedStringCheckSeparatedExcludeFiles, fileName) == false {
-        content = String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding, error: nil)
+    if localizedStringCheckSeparatedExcludeFiles.contains(fileName) == false {
+        content = try String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
         if (content == nil) {
             continue
         }
 
-        let (failed, errorMessage) = localizedStringCheck(filePath:filePath, fileContent:content!)
-        printResultErrorAndExitIfFailed(failed:failed, errorMessage:errorMessage)
+        let (failed, errorMessage) = localizedStringCheck(filePath, fileContent:content!)
+        printResultErrorAndExitIfFailed(failed, errorMessage:errorMessage)
     }
 
     // license header check
-    if contains(licenseCheckSeparatedExcludeFiles, fileName) == false {
+    if licenseCheckSeparatedExcludeFiles.contains(fileName) == false {
         var fileIsStoredInAnExcludedDir = false
         for excludeDir in licenseCheckExcludeDirs {
             let range = filePath.rangeOfString(excludeDir)
@@ -320,20 +320,24 @@ while let filePath = enumerator!.nextObject() as? String {
         }
 
         if content == nil { // read in file if not yet done
-            content = String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding, error: nil)
+            content = try String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
             if content == nil {
                 continue
             }
         }
-        let (failed, errorMessage) = licenseCheck(filePath:filePath, fileContent:content!)
-        printResultErrorAndExitIfFailed(failed:failed, errorMessage:errorMessage)
+        let (failed, errorMessage) = licenseCheck(filePath, fileContent:content!)
+        printResultErrorAndExitIfFailed(failed, errorMessage:errorMessage)
     }
 }
 
 // license check for README.md
-let readmeFileContent = String(contentsOfFile: pathToReadmeFile, encoding: NSUTF8StringEncoding, error: nil)
-if (readmeFileContent == nil) {
+do{
+let readmeFileContent =  try String(contentsOfFile: pathToReadmeFile, encoding: NSUTF8StringEncoding)
+let (failed, errorMessage) = licenseCheckForReadme(pathToReadmeFile, fileContent: readmeFileContent)
+printResultErrorAndExitIfFailed(failed, errorMessage:errorMessage)
+}
+catch {
     printErrorAndExitIfFailed("\(__FILE__):\(pathToReadmeFileLine): error: Unable to open file or invalid filePath given!\n")
 }
-let (failed, errorMessage) = licenseCheckForReadme(filePath: pathToReadmeFile, fileContent: readmeFileContent!)
-printResultErrorAndExitIfFailed(failed:failed, errorMessage:errorMessage)
+
+

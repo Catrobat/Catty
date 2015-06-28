@@ -151,11 +151,11 @@ static Logger* instance;
         case LINFO:
             return @"INFO";
             break;
-            
+
         case LWARN:
             return @"WARN";
             break;
-            
+
         case LERROR:
             return @"ERROR";
             break;

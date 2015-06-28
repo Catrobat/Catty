@@ -122,7 +122,7 @@ class CBStack<T> {
     func isEmpty() -> Bool {
         
         //determine if the key or instance exist
-        if let _ = self.top?.key {
+        if let _: T = self.top?.key {
             return false
         }
             

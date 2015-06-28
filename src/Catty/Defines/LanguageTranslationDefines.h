@@ -491,7 +491,6 @@
 #define kUIFECompute NSLocalizedString(@"Compute", nil)
 #define kUIFEDone NSLocalizedString(@"Done", nil)
 #define kUIFEError NSLocalizedString(@"Error", nil)
-#define kUIFESyntaxError NSLocalizedString(@"Syntax Error!", nil)
 #define kUIFEtooLongFormula NSLocalizedString(@"Formula too long!", nil)
 #define kUIFEResult NSLocalizedString(@"Result", nil)
 #define kUIFEComputed NSLocalizedString(@"Computed result is %.2f", nil)
@@ -507,6 +506,9 @@
 #define kUIFEActionVar NSLocalizedString(@"Variable type", nil)
 #define kUIFEActionVarObj NSLocalizedString(@"for this object", nil)
 #define kUIFEActionVarPro NSLocalizedString(@"for all objects", nil)
+#define kUIFEChangesSaved NSLocalizedString(@"Changes saved!", nil)
+#define kUIFEChangesDiscarded NSLocalizedString(@"Changes discarded!", nil)
+#define kUIFESyntaxError NSLocalizedString(@"Syntax Error!", nil)
 
 #define kUIFEFunctionSqrt NSLocalizedString(@"sqrt", nil)
 #define kUIFEFunctionTrue NSLocalizedString(@"true", nil)

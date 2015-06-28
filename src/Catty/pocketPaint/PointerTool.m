@@ -254,7 +254,7 @@
         [self.canvas.drawView.image drawInRect:CGRectMake(self.canvas.drawView.frame.origin.x, self.canvas.drawView.frame.origin.y, self.canvas.drawView.frame.size.width, self.canvas.drawView.frame.size.height) blendMode:kCGBlendModeNormal alpha:self.canvas.opacity];
         
         //UNDO-Manager
-        [[self.canvas getUndoManager] setImage:self.canvas.saveView.image];
+        [[self.canvas getUndoManager] setImage:self.canvas.saveView.image.CIImage];
         self.canvas.saveView.image = UIGraphicsGetImageFromCurrentImageContext();
         self.canvas.drawView.image = nil;
         UIGraphicsEndImageContext();

@@ -21,30 +21,15 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <UIKit/UIResponder.h>
-#import "iOSComboboxPickerView.h"
-#import "BSKeyboardControls.h"
 
-@protocol iOSComboboxDelegate;
-
-@interface iOSCombobox : UIControl <UIPickerViewDataSource, UIPickerViewDelegate, iOSComboboxPickerViewDelegate, BSKeyboardControlsDelegate>
-{
-    BOOL active;
-}
-
-@property (nonatomic, strong) NSArray *values;
-@property (nonatomic, strong) UIPickerView *pickerView;
-@property (nonatomic, strong) NSString *currentValue;
-@property (nonatomic, weak) id<iOSComboboxDelegate>delegate;
-@property (nonatomic, strong) BSKeyboardControls *keyboard;
-@property (readwrite, strong) UIView *inputView;
-@property (readwrite, strong) UIView *inputAccessoryView;
+@interface iOSComboboxPickerView : UIPickerView
 
 @end
 
-@protocol iOSComboboxDelegate <NSObject>
-@optional
-- (void)comboboxOpened:(iOSCombobox *)combobox;
-- (void)comboboxClosed:(iOSCombobox *)combobox withValue:(NSString*)value;
-- (void)comboboxChanged:(iOSCombobox *)combobox toValue:(NSString*)toValue;
+@protocol iOSComboboxPickerViewDelegate<NSObject>
+
+@required
+- (void)pickerViewClosed:(UIPickerView *)pickerView;
+
 @end
+

@@ -123,7 +123,7 @@
                                                                    delegate:delegate
                                                           cancelButtonTitle:kLocalizedOK
                                                           otherButtonTitles:nil];
-    alertView.tag = tag;
+//    alertView.tag = tag;
     if (! [self activateTestMode:NO]) {
         [alertView show];
     }

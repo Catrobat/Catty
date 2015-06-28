@@ -48,7 +48,7 @@
     self.backgroundColor = [UIColor clearColor];
     CGFloat pickerY = [[UIScreen mainScreen] bounds].size.height - PICKER_VIEW_HEIGHT;
     CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
-    self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0.0f, pickerY, screenWidth, PICKER_VIEW_HEIGHT)];
+    self.pickerView = [[iOSComboboxPickerView alloc] initWithFrame:CGRectMake(0.0f, pickerY, screenWidth, PICKER_VIEW_HEIGHT)];
     [self.pickerView setShowsSelectionIndicator:YES];
     [self.pickerView setDataSource:self];
     [self.pickerView setDelegate:self];
@@ -260,6 +260,14 @@
     }
 }
 
+- (void)pickerViewClosed:(UIPickerView *)pickerView
+{
+    if ([[self delegate] respondsToSelector:@selector(comboboxClosed:withValue:)])
+    {
+        [[self delegate] comboboxClosed:self withValue:[self currentValue]];
+    }
+}
+
 /***********************************************************
  **  FIRST RESPONDER AND USER INTERFACE
  **********************************************************/
@@ -310,11 +318,6 @@
 {
     [[keyboardControls activeField] resignFirstResponder];
     [self resignFirstResponder];
-    
-    if ([[self delegate] respondsToSelector:@selector(comboboxClosed:withValue:)])
-    {
-        [[self delegate] comboboxClosed:self withValue:[self currentValue]];
-    }
 }
 
 @end

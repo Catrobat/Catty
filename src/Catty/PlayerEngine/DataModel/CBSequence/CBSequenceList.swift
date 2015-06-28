@@ -37,11 +37,20 @@ final class CBSequenceList {
         sequenceList.append(sequence)
     }
 
+    // MARK: - Generator
+    func generate() -> AnyGenerator<CBSequence> {
+        var i = 0
+        return anyGenerator {
+            return i >= self.sequenceList.count ? .None : self.sequenceList[i++]
+        }
+    }
+
     func reverseSequenceList() -> CBSequenceList {
         let reverseScriptSequenceList = CBSequenceList(rootSequenceList: rootSequenceList)
-        reverseScriptSequenceList.sequenceList = sequenceList.reverse()
+        reverseScriptSequenceList.sequenceList = Array(sequenceList.reverse())
         return reverseScriptSequenceList
     }
+
 }
 
 // MARK: - Custom operators

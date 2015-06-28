@@ -42,11 +42,11 @@
 {
   if ([self.canvas.saveView.image isEqual:image])
   {
-    [[self prepareWithInvocationTarget:self] setImage:self.canvas.saveView.image]; // Here we let know the undo managed what image was used before
+    [[self prepareWithInvocationTarget:self] setImage:self.canvas.saveView.image.CIImage]; // Here we let know the undo managed what image was used before
     
     // post notifications to update UI
   }else{
-    [[self prepareWithInvocationTarget:self] setImage:self.canvas.saveView.image];
+    [[self prepareWithInvocationTarget:self] setImage:self.canvas.saveView.image.CIImage];
 //    self.canvas.helper.frame = CGRectMake(self.canvas.helper.frame.origin.x,self.canvas.helper.frame.origin.y, image.size.width, image.size.height);
 //    self.canvas.saveView.frame = CGRectMake(self.canvas.saveView.frame.origin.x, self.canvas.saveView.frame.origin.y, image.size.width, image.size.height);
 //    self.canvas.drawView.frame = CGRectMake(self.canvas.drawView.frame.origin.x, self.canvas.drawView.frame.origin.y, image.size.width, image.size.height);

@@ -47,6 +47,9 @@
 - (NSArray*)allVariablesForObject:(SpriteObject*)spriteObject;
 
 // Array of UserVariable
+- (NSArray*)allVariables;
+
+// Array of UserVariable
 - (NSArray*)objectVariablesForObject:(SpriteObject*)spriteObject;
 
 - (SpriteObject*)spriteObjectForObjectVariable:(UserVariable*)userVariable;

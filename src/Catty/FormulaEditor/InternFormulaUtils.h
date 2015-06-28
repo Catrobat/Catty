@@ -54,6 +54,10 @@
 + (NSArray*)replaceFunctionByTokens:(NSArray*)functionToReplace
                         replaceWith:(NSArray*)internTokensToReplaceWith;
 
++ (NSMutableArray*)insertOperatorToNumberToken:(InternToken*)numberTokenToBeModified
+                                  numberOffset:(int)externNumberOffset
+                                        operator:(InternToken*)operatorToInsert;
+
 + (InternToken*)insertIntoNumberToken:(InternToken*)numberTokenToBeModified
                          numberOffset:(int)externNumberOffset
                                number:(NSString*)numberToInsert;

@@ -37,8 +37,8 @@
 - (instancetype)initWithFrame:(CGRect)frame andBrickCell:(BrickCell*)brickCell andLineNumber:(NSInteger)line andParameterNumber:(NSInteger)parameter
 {
     Brick<BrickFormulaProtocol> *formulaBrick = (Brick<BrickFormulaProtocol>*)brickCell.scriptOrBrick;
-    Formula *formula = [formulaBrick formulaForLineNumber:line andParameterNumber:parameter
-];
+    Formula *formula = [formulaBrick formulaForLineNumber:line andParameterNumber:parameter];
+    
     if(self = [super initWithFrame:frame]) {
         _brickCell = brickCell;
         _lineNumber = line;
@@ -74,7 +74,8 @@
         labelFrame.size.height = self.frame.size.height;
         self.frame = labelFrame;
         
-        [self addTarget:brickCell.delegate action:@selector(openFormulaEditor:) forControlEvents:UIControlEventTouchUpInside];
+        [self addTarget:brickCell.delegate action:@selector(openFormulaEditor:withEvent:) forControlEvents:UIControlEventTouchUpInside];
+        [self addTarget:brickCell.delegate action:@selector(openFormulaEditor:withEvent:) forControlEvents:UIControlEventTouchDownRepeat];
         [self drawBorder:NO];
     }
     return self;

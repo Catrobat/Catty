@@ -129,7 +129,14 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    [self.collectionView reloadData];
+    self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+    self.navigationController.interactivePopGestureRecognizer.cancelsTouchesInView = NO;
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    self.navigationController.interactivePopGestureRecognizer.cancelsTouchesInView = YES;
 }
 
 #pragma mark - actions
@@ -219,12 +226,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     return kBrickOverlapHeight;
 }
 
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return !self.comboBoxOpened;
+}
+
 - (void)collectionView:(UICollectionView*)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    if (self.comboBoxOpened) {
-        return;
-    }
-    
     BrickCell *brickCell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
     if (self.isEditing) {
         if ([brickCell.scriptOrBrick isKindOfClass:[Script class]]) {
@@ -402,8 +410,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
         // edit formula
         if ([buttonTitle isEqualToString:kLocalizedEditFormula]) {
-            BrickCellFormulaData *formulaData = [[BrickCellFormulaData alloc] initWithFrame:CGRectMake(0, 0, 0, 0) andBrickCell:brickCell andLineNumber:0 andParameterNumber:0];
-            [self openFormulaEditor:formulaData];
+            BrickCellFormulaData *formulaData = (BrickCellFormulaData*)[brickCell dataSubviewWithType:[BrickCellFormulaData class]];
+            [self openFormulaEditor:formulaData withEvent:nil];
             return;
         }
 
@@ -430,9 +438,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         NSIndexPath *indexPath = payload[kDTPayloadCellIndexPath]; // unwrap payload message
         BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
          Brick * brick = (Brick*)brickCell.scriptOrBrick;
-        Brick<BrickVariableProtocol> *variableBrick;
+//        Brick<BrickVariableProtocol> *variableBrick;
         if ([brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
-            variableBrick = (Brick<BrickVariableProtocol>*)brick;
+                //variableBrick = (Brick<BrickVariableProtocol>*)brick;
         }
 
         IBActionSheetButton *selectedButton = [actionSheet.buttons objectAtIndex:buttonIndex];
@@ -441,12 +449,12 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             // programVariable
         BOOL isProgramVar = NO;
         if ([buttonTitle isEqualToString:kUIFEActionVarPro]) {
-            for(UserVariable *var in [self.object.program.variables allVariablesForObject:self.object]) {
+            for(UserVariable *var in [self.object.program.variables allVariables]) {
                 [allVariableNames addObject:var.name];
             }
             isProgramVar = YES;
         } else if ([buttonTitle isEqualToString:kUIFEActionVarObj]) {
-            for(UserVariable *var in [self.object.program.variables objectVariablesForObject:self.object]) {
+            for(UserVariable *var in [self.object.program.variables allVariablesForObject:self.object]) {
                 [allVariableNames addObject:var.name];
             }
         }
@@ -934,17 +942,17 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 }
 
 #pragma mark - Open Formula Editor
-- (void)openFormulaEditor:(BrickCellFormulaData*)formulaData
+- (void)openFormulaEditor:(BrickCellFormulaData*)formulaData withEvent:(UIEvent*)event
 {
     if (self.comboBoxOpened) {
         return;
     }
     if ([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
         FormulaEditorViewController *formulaEditorViewController = (FormulaEditorViewController*)self.presentedViewController;
-        if ([formulaEditorViewController changeFormula]) {
-            [formulaEditorViewController setBrickCellFormulaData:formulaData];
-            [formulaData drawBorder:YES];
-        }
+        BOOL forceChange = NO;
+        if (event != nil && ((UITouch*)[[event allTouches] anyObject]).tapCount == 2)
+            forceChange = YES;
+        [formulaEditorViewController changeBrickCellFormulaData:formulaData andForce:forceChange];
         return;
     }
 
@@ -953,12 +961,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self.presentedViewController dismissViewControllerAnimated:NO completion:NULL];
     }
 
-    FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCellFormulaFragment:formulaData];
+    FormulaEditorViewController *formulaEditorViewController = [[FormulaEditorViewController alloc] initWithBrickCellFormulaData:formulaData];
     formulaEditorViewController.object = self.object;
     formulaEditorViewController.transitioningDelegate = self;
     formulaEditorViewController.modalPresentationStyle = UIModalPresentationCustom;
-    formulaEditorViewController.delegate = formulaData;
-    [formulaData drawBorder:YES];
 
     [self.brickScaleTransition updateAnimationViewWithView:formulaData.brickCell];
     [self presentViewController:formulaEditorViewController animated:YES completion:^{
@@ -1834,7 +1840,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if ([brickCellData isKindOfClass:[BrickCellVariableData class]] && [brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
         Brick<BrickVariableProtocol> *variableBrick = (Brick<BrickVariableProtocol>*)brick;
         if([(NSString*)value isEqualToString:kLocalizedNewElement]) {
-            NSIndexPath *path = [self.collectionView indexPathForCell:brickCellData.brickCell];
+            NSIndexPath *path = [self.collectionView indexPathForCell:(UICollectionViewCell*)brickCellData.brickCell];
             CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIFEActionVar
                                                                  delegate:self
                                                    destructiveButtonTitle:nil
@@ -1858,8 +1864,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)enableUserInteraction
 {
+    LXReorderableCollectionViewFlowLayout *collectionViewLayout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+    collectionViewLayout.longPressGestureRecognizer.enabled = YES;
     self.collectionView.scrollEnabled = YES;
     self.comboBoxOpened = NO;
+    
     for (BrickCell *cell in self.collectionView.visibleCells) {
         cell.enabled = YES;
     }
@@ -1867,8 +1876,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)disableUserInteraction
 {
+    LXReorderableCollectionViewFlowLayout *collectionViewLayout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
+    collectionViewLayout.longPressGestureRecognizer.enabled = NO;
     self.collectionView.scrollEnabled = NO;
     self.comboBoxOpened = YES;
+    
     for (BrickCell *cell in self.collectionView.visibleCells) {
         cell.enabled = NO;
     }

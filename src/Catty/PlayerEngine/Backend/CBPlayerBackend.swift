@@ -190,7 +190,7 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
         context: CBScriptContextAbstract) -> [CBExecClosure]
     {
         var instructionList = [CBExecClosure]()
-        for operation in operationSequence.operationList.reverse() { // reverse order!
+        for operation in Array(operationSequence.operationList.reverse()) { // reverse order!
             if let broadcastBrick = operation.brick as? BroadcastBrick {
                 instructionList += { [weak self] in
                     let msg = broadcastBrick.broadcastMessage
