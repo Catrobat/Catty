@@ -120,7 +120,7 @@ final class CBPlayerSchedulingAlgorithmLoadBalancing : CBPlayerSchedulingAlgorit
 //                }
                 assert(context.isLocked == false)
                 let duration = NSDate().timeIntervalSinceDate(startTime)
-                println("Scheduler-Algorithm Duration: \(duration)s")
+                print("Scheduler-Algorithm Duration: \(duration)s")
                 return context
             } else {
                 return nil
