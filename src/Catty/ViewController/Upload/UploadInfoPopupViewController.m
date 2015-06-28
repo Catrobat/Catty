@@ -76,8 +76,8 @@
 @property (nonatomic, strong) UIButton *cancelButton;
 @property (nonatomic, strong) NSData *zipFileData;
 
-@property (nonatomic, strong) NSURLConnection *connection;
-@property (nonatomic, strong) NSMutableData *data;
+@property (strong, nonatomic) NSURLSession *session;
+@property (strong, nonatomic) NSURLSessionDataTask *dataTask;
 @property (nonatomic, strong) Keychain *keychain;
 
 @end
@@ -115,6 +115,22 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
     }
     return self;
 }
+
+- (NSURLSession *)session {
+    if (!_session) {
+            // Initialize Session Configuration
+        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        
+            // Configure Session Configuration
+        [sessionConfiguration setHTTPAdditionalHeaders:@{ @"Accept" : @"application/json" }];
+        
+            // Initialize Session
+        _session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
+    }
+    
+    return _session;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -368,7 +384,7 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
 #pragma mark Actions
 -(void)cancel
 {
-    [self.connection cancel];
+    [self.dataTask cancel];
     [self.delegate dismissPopupWithCode:NO];
 }
 
@@ -379,9 +395,6 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
         return;
     }
     
-    //reset data
-    self.data = nil;
-    self.data = [[NSMutableData alloc] init];
     
     NSString *checksum = nil;
     if (self.zipFileData) {
@@ -456,10 +469,60 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
         NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[body length]];
         [request addValue:postLength forHTTPHeaderField:@"Content-Length"];
         
-        self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-        [self.connection start];
+        self.dataTask = [self.session dataTaskWithRequest:request  completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            if (error) {
+                if (error.code != -999) {
+                    NSLog(@"%@", error);
+                }
+                [self setEnableActivityIndicator:NO];
+                
+            } else {
+                [self setEnableActivityIndicator:NO];
+                
+                NSError *error = nil;
+                NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                NSString *statusCode = [NSString stringWithFormat:@"%@", [dictionary valueForKey:statusCodeTag]];
+                NSDebug(@"StatusCode is %@", statusCode);
+                
+                if ([statusCode isEqualToString:statusCodeOK]) {
+                    NSDebug(@"Upload successful");
+                    
+                        //Set unique Program-ID received from server
+                    self.program.header.programID = [NSString stringWithFormat:@"%@", [dictionary valueForKey:projectIDTag]];
+                    [self.program saveToDisk];
+                    
+                        //Set new token
+                    NSString *newToken = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenParameterTag]];
+                    [[NSUserDefaults standardUserDefaults] setValue:newToken forKey:kUserLoginToken];
+                    
+                    [self.delegate dismissPopupWithCode:YES];
+                    
+                } else {
+                    [self.delegate dismissPopupWithCode:NO];
+                    NSString *serverResponse = [dictionary valueForKey:answerTag];
+                    NSDebug(@"Error: %@", serverResponse);
+                    [Util alertWithText:serverResponse];
+                    
+                    if([statusCode isEqualToString:statusCodeTokenWrong]) {
+                            //Token not valid
+                        [[NSUserDefaults standardUserDefaults] setBool:false forKey:kUserIsLoggedIn];
+                        
+                        NSMutableArray *viewArray = [NSMutableArray arrayWithArray:self.parentViewController.navigationController.viewControllers];
+                        [viewArray removeLastObject];
+                        NSArray *newViewArray = [NSArray arrayWithArray:viewArray];
+                        [self.parentViewController.navigationController setViewControllers:newViewArray animated:YES];
+                    }
+                }
+
+            }
+        }];
         
-        if(self.connection) {
+        if (self.dataTask) {
+            [self.dataTask resume];
+        }
+
+        
+        if(self.dataTask) {
             NSDebug(@"Connection Successful");
             [self setEnableActivityIndicator:YES];
             self.uploadButton.enabled = NO;
@@ -474,67 +537,67 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
 }
 
 #pragma mark NSURLConnection Delegates
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
-{
-    NSDebug(@"Received Data from server");
-    if (self.connection == connection) {
-        [self.data appendData:data];
-    }
-}
+//- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
+//{
+//    NSDebug(@"Received Data from server");
+//    if (self.connection == connection) {
+//        [self.data appendData:data];
+//    }
+//}
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    if (self.connection == connection) {
-        [self setEnableActivityIndicator:NO];
-        NSDebug(@"NSURLConnection ERROR: %@", error);
-    }
-}
+//- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+//{
+//    if (self.connection == connection) {
+//        [self setEnableActivityIndicator:NO];
+//        NSDebug(@"NSURLConnection ERROR: %@", error);
+//    }
+//}
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    if (self.connection == connection) {
-        NSDebug(@"Finished upload");
-        [self setEnableActivityIndicator:NO];
-        
-        NSError *error = nil;
-        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:self.data options:kNilOptions error:&error];
-        NSString *statusCode = [NSString stringWithFormat:@"%@", [dictionary valueForKey:statusCodeTag]];
-        NSDebug(@"StatusCode is %@", statusCode);
-        
-        if ([statusCode isEqualToString:statusCodeOK]) {
-            NSDebug(@"Upload successful");
-            
-            //Set unique Program-ID received from server
-            self.program.header.programID = [NSString stringWithFormat:@"%@", [dictionary valueForKey:projectIDTag]];
-            [self.program saveToDisk];
-            
-            //Set new token
-            NSString *newToken = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenParameterTag]];
-            [[NSUserDefaults standardUserDefaults] setValue:newToken forKey:kUserLoginToken];
-            
-            [self.delegate dismissPopupWithCode:YES];
-            
-        } else {
-            [self.delegate dismissPopupWithCode:NO];
-            NSString *serverResponse = [dictionary valueForKey:answerTag];
-            NSDebug(@"Error: %@", serverResponse);
-            [Util alertWithText:serverResponse];
-            
-            if([statusCode isEqualToString:statusCodeTokenWrong]) {
-                //Token not valid
-                [[NSUserDefaults standardUserDefaults] setBool:false forKey:kUserIsLoggedIn];
-                
-                NSMutableArray *viewArray = [NSMutableArray arrayWithArray:self.parentViewController.navigationController.viewControllers];
-                [viewArray removeLastObject];
-                NSArray *newViewArray = [NSArray arrayWithArray:viewArray];
-                [self.parentViewController.navigationController setViewControllers:newViewArray animated:YES];
-            }
-        }
-        
-        self.data = nil;
-        self.connection = nil;
-    }
-}
+//- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+//{
+//    if (self.connection == connection) {
+//        NSDebug(@"Finished upload");
+//        [self setEnableActivityIndicator:NO];
+//        
+//        NSError *error = nil;
+//        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:self.data options:kNilOptions error:&error];
+//        NSString *statusCode = [NSString stringWithFormat:@"%@", [dictionary valueForKey:statusCodeTag]];
+//        NSDebug(@"StatusCode is %@", statusCode);
+//        
+//        if ([statusCode isEqualToString:statusCodeOK]) {
+//            NSDebug(@"Upload successful");
+//            
+//            //Set unique Program-ID received from server
+//            self.program.header.programID = [NSString stringWithFormat:@"%@", [dictionary valueForKey:projectIDTag]];
+//            [self.program saveToDisk];
+//            
+//            //Set new token
+//            NSString *newToken = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenParameterTag]];
+//            [[NSUserDefaults standardUserDefaults] setValue:newToken forKey:kUserLoginToken];
+//            
+//            [self.delegate dismissPopupWithCode:YES];
+//            
+//        } else {
+//            [self.delegate dismissPopupWithCode:NO];
+//            NSString *serverResponse = [dictionary valueForKey:answerTag];
+//            NSDebug(@"Error: %@", serverResponse);
+//            [Util alertWithText:serverResponse];
+//            
+//            if([statusCode isEqualToString:statusCodeTokenWrong]) {
+//                //Token not valid
+//                [[NSUserDefaults standardUserDefaults] setBool:false forKey:kUserIsLoggedIn];
+//                
+//                NSMutableArray *viewArray = [NSMutableArray arrayWithArray:self.parentViewController.navigationController.viewControllers];
+//                [viewArray removeLastObject];
+//                NSArray *newViewArray = [NSArray arrayWithArray:viewArray];
+//                [self.parentViewController.navigationController setViewControllers:newViewArray animated:YES];
+//            }
+//        }
+//        
+//        self.data = nil;
+//        self.connection = nil;
+//    }
+//}
 
 - (void)setEnableActivityIndicator:(BOOL)enabled
 {

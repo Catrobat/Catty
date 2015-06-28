@@ -38,8 +38,9 @@
 
 @interface RecentProgramsStoreViewController ()
 
-@property (nonatomic, strong) NSMutableData *data;
-@property (nonatomic, strong) NSURLConnection *connection;
+@property (strong, nonatomic) NSURLSession *session;
+@property (strong, nonatomic) NSURLSessionDataTask *idTask;
+@property (strong, nonatomic) NSURLSessionDataTask *infoTask;
 @property (nonatomic, strong) NSMutableArray *projects;
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (assign)            int programListOffset;
@@ -64,6 +65,21 @@
     if (self) {
     }
     return self;
+}
+
+- (NSURLSession *)session {
+    if (!_session) {
+            // Initialize Session Configuration
+        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        
+            // Configure Session Configuration
+        [sessionConfiguration setHTTPAdditionalHeaders:@{ @"Accept" : @"application/json" }];
+        
+            // Initialize Session
+        _session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
+    }
+    
+    return _session;
 }
 
 - (void)viewDidLoad
@@ -259,7 +275,6 @@
 
 - (void)loadProjectsWithIndicator:(NSInteger)indicator
 {
-    self.data = [[NSMutableData alloc] init];
     NSURL *url = [NSURL alloc];
     switch (self.downloadSegmentedControl.selectedSegmentIndex) {
         case 0:
@@ -281,12 +296,27 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
     
     NSDebug(@"url is: %@", url);
-    //    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    //    self.connection = connection;
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               [self loadIDsWith:data andResponse:response];}];
+
+    if (self.idTask) {
+        [self.idTask cancel];
+    }
+    self.idTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            if (error.code != -999) {
+                NSLog(@"%@", error);
+            }
+            
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self loadIDsWith:data andResponse:response];
+            });
+        }
+    }];
+    
+    if (self.idTask) {
+        [self.idTask resume];
+    }
+
     if (indicator==0) {
         [self showLoadingView];
     }
@@ -399,13 +429,26 @@
             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?id=%@", kConnectionHost, kConnectionIDQuery,project.projectID]];
             NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
             
-            //    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-            //    self.connection = connection;
+
+            if (self.infoTask) {
+                [self.infoTask cancel];
+            }
+            self.infoTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                if (error) {
+                    if (error.code != -999) {
+                        NSLog(@"%@", error);
+                    }
+                    
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self loadInfosWith:data andResponse:response];
+                    });
+                }
+            }];
             
-            [NSURLConnection sendAsynchronousRequest:request
-                                               queue:[NSOperationQueue mainQueue]
-                                   completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                       [self loadInfosWith:data andResponse:response];}];
+            if (self.infoTask) {
+                [self.infoTask resume];
+            }
 //            [self showLoadingView];
         }
         else
