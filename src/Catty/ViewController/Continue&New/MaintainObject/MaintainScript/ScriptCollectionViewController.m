@@ -1855,10 +1855,9 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         cell.alpha = kBrickCellActiveOpacity;
     }
     
-    CGFloat collectionViewHeight = self.collectionView.frame.size.height;
-    CGFloat contentOffset = self.collectionView.contentOffset.y;
-    if (contentOffset > collectionViewHeight) {
-        [self.collectionView setContentOffset:CGPointMake(0, collectionViewHeight) animated:YES];
+    CGFloat maxContentOffset = self.collectionView.contentSize.height + self.collectionView.contentInset.bottom - self.collectionView.bounds.size.height;    
+    if (self.collectionView.contentOffset.y > maxContentOffset) {
+        [self.collectionView setContentOffset:CGPointMake(0, maxContentOffset) animated:YES];
     }
 }
 
