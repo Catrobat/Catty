@@ -182,18 +182,20 @@ final class CBSpriteNode : SKSpriteNode {
 //                    println(@"I'm transparent at this point")
                 return false
             }
-            if let spriteObject = self.spriteObject, let scriptList = spriteObject.scriptList as NSArray as? [Script] {
-                for script in scriptList {
-                    if let whenScript = script as? WhenScript {
-                        if let whenScriptContext = scheduler?.registeredContextForScript(whenScript) {
-                            if scheduler?.isContextScheduled(whenScriptContext) == false {
-                                scheduler?.startContext(whenScriptContext)
-                            } else {
-                                scheduler?.restartContext(whenScriptContext)
-                            }
+            guard let spriteObject = self.spriteObject,
+                  let scriptList = spriteObject.scriptList as NSArray as? [Script] else {
+                fatalError("Invalid spriteObject or scriptList!")
+            }
+            for script in scriptList {
+                if let whenScript = script as? WhenScript {
+                    if let whenScriptContext = scheduler?.registeredContextForScript(whenScript) {
+                        if scheduler?.isContextScheduled(whenScriptContext) == false {
+                            scheduler?.startContext(whenScriptContext)
                         } else {
-                            fatalError("WhenScript not registered in Scheduler! This should NEVER HAPPEN!")
+                            scheduler?.restartContext(whenScriptContext)
                         }
+                    } else {
+                        fatalError("WhenScript not registered in Scheduler! This should NEVER HAPPEN!")
                     }
                 }
             }

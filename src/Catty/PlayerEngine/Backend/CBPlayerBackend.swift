@@ -72,7 +72,7 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
         -> [CBExecClosure]
     {
         var instructionList = [CBExecClosure]()
-        for sequence in sequenceList.reverseSequenceList().sequenceList { // reverse order!
+        for sequence in sequenceList.reverseSequenceList() { // reverse order!
             if let operationSequence = sequence as? CBOperationSequence {
                 // operation sequence
                 instructionList += _instructionsForOperationSequence(operationSequence, context: context)
@@ -82,6 +82,8 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
             } else if let conditionalSequence = sequence as? CBConditionalSequence {
                 // loop sequence
                 instructionList += _instructionsForLoopSequence(conditionalSequence, context: context)
+            } else {
+                fatalError("Unknown sequence type! THIS SHOULD NEVER HAPPEN!")
             }
         }
         return instructionList
