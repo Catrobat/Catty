@@ -161,11 +161,15 @@ final class CBSpriteNode : SKSpriteNode {
     }
 
     func touchedWithTouches(touches: NSSet, withX x: CGFloat, andY y: CGFloat) -> Bool {
-        let playerScene = (scene as! CBPlayerScene)
-        let scheduler = playerScene.scheduler
-        if scheduler?.running == false {
+        guard let playerScene = (scene as? CBPlayerScene),
+              let scheduler = playerScene.scheduler else {
             return false
         }
+        // FIXME: this check does not work any more since Swift 2.0! seems to be a compiler problem!
+//        if scheduler.running == false {
+//            return false
+//        }
+
         for touchAnyObject in touches {
             let touch = touchAnyObject as! UITouch
             let touchedPoint = touch.locationInNode(self)
@@ -186,17 +190,17 @@ final class CBSpriteNode : SKSpriteNode {
                   let scriptList = spriteObject.scriptList as NSArray as? [Script] else {
                 fatalError("Invalid spriteObject or scriptList!")
             }
+
             for script in scriptList {
-                if let whenScript = script as? WhenScript {
-                    if let whenScriptContext = scheduler?.registeredContextForScript(whenScript) {
-                        if scheduler?.isContextScheduled(whenScriptContext) == false {
-                            scheduler?.startContext(whenScriptContext)
-                        } else {
-                            scheduler?.restartContext(whenScriptContext)
-                        }
-                    } else {
-                        fatalError("WhenScript not registered in Scheduler! This should NEVER HAPPEN!")
-                    }
+                guard let whenScript = script as? WhenScript else { continue }
+                guard let whenScriptContext = scheduler.registeredContextForScript(whenScript) else {
+                    fatalError("WhenScript not registered in Scheduler! This should NEVER HAPPEN!")
+                }
+
+                if scheduler.isContextScheduled(whenScriptContext) == false {
+                    scheduler.startContext(whenScriptContext)
+                } else {
+                    scheduler.restartContext(whenScriptContext)
                 }
             }
             return true

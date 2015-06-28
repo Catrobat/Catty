@@ -45,12 +45,6 @@ final class CBSequenceList : SequenceType {
         }
     }
 
-    func reverseSequenceList() -> CBSequenceList {
-        let reverseScriptSequenceList = CBSequenceList(rootSequenceList: rootSequenceList)
-        reverseScriptSequenceList.sequenceList = Array(sequenceList.reverse())
-        return reverseScriptSequenceList
-    }
-
 }
 
 // MARK: - Custom operators

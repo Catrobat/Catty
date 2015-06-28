@@ -43,7 +43,7 @@ class CBScriptContextAbstract : SKNode {
     }
     final var count: Int { return _instructionList.count }
 
-    final private var _reverseInstructionPointer : Int = 0
+    final private var _instructionPointer: Int = 0
     final private lazy var _instructionList = [CBExecClosure]()
     final private var _scriptSequenceList: CBScriptSequenceList?
 
@@ -55,6 +55,7 @@ class CBScriptContextAbstract : SKNode {
     init(state: CBScriptState, scriptSequenceList: CBScriptSequenceList, instructionList: [CBExecClosure]) {
         _stateStorage = state
         self._scriptSequenceList = scriptSequenceList
+        _instructionPointer = 0
         super.init()
         for instruction in instructionList {
             self.appendInstruction(instruction)
@@ -68,13 +69,12 @@ class CBScriptContextAbstract : SKNode {
     // MARK: - Operations
     final func appendInstruction(instruction: CBExecClosure) {
         _instructionList.append(instruction)
-        ++_reverseInstructionPointer
     }
 
     final func nextInstruction() -> CBExecClosure? {
         if state == .Dead { return nil } // must be an old deprecated enqueued dispatch closure
-        assert((state == .Running) || (state == .RunningMature) || (state == .RunningBlocking))
-        if (_reverseInstructionPointer == 0) || (_instructionList.count == 0) {
+        precondition((state == .Running) || (state == .RunningMature) || (state == .RunningBlocking))
+        if (_instructionPointer == _instructionList.count) || (_instructionList.count == 0) {
             return nil
         }
 
@@ -82,22 +82,22 @@ class CBScriptContextAbstract : SKNode {
         if state == .Running {
             state = .RunningMature
         }
-        return _instructionList[--_reverseInstructionPointer]
+        return _instructionList[_instructionPointer++]
     }
 
     final func jump(numberOfInstructions numberOfInstructions: Int) {
         if state == .Dead { return } // must be an old deprecated enqueued dispatch closure
         if numberOfInstructions == 0 { return }
-        assert((state == .Running) || (state == .RunningMature) || (state == .RunningBlocking))
-        let newInstructionPointerPosition = _reverseInstructionPointer - numberOfInstructions
+        precondition((state == .Running) || (state == .RunningMature) || (state == .RunningBlocking))
+        let newInstructionPointerPosition = _instructionPointer + numberOfInstructions
         if newInstructionPointerPosition < 0 || newInstructionPointerPosition > _instructionList.count {
             return
         }
-        _reverseInstructionPointer = newInstructionPointerPosition
+        _instructionPointer = newInstructionPointerPosition
     }
 
     final func reset() {
-        _reverseInstructionPointer = _instructionList.count
+        _instructionPointer = 0
     }
 
     final func removeReferences() {

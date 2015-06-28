@@ -108,7 +108,7 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
             if let nextInstruction = scriptContext.nextInstruction() {
                 nextInstruction()
             } else {
-                assert(scriptContext.isLocked == false)
+                precondition(scriptContext.isLocked == false)
                 stopContext(scriptContext)
                 logger.debug("All actions/instructions have been finished!")
             }
@@ -139,7 +139,7 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
     }
 
     func registerContext(context: CBScriptContextAbstract) {
-        assert(_registeredScriptContexts.contains(context) == false) // ensure that same context is not added twice
+        precondition(_registeredScriptContexts.contains(context) == false) // ensure that same context is not added twice
         _registeredScriptContexts += context
     }
 
@@ -157,9 +157,9 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
     }
 
     func startContext(context: CBScriptContextAbstract, withInitialState initialState: CBScriptState) {
-        assert(running) // make sure that player is running!
-        assert(_registeredScriptContexts.contains(context), "Unable to start context! Context not registered.")
-        assert(_scheduledScriptContexts.contains(context) == false, "Unable to start context! Context already scheduled.")
+        precondition(running) // make sure that player is running!
+        precondition(_registeredScriptContexts.contains(context), "Unable to start context! Context not registered.")
+        precondition(_scheduledScriptContexts.contains(context) == false, "Unable to start context! Context already scheduled.")
         logger.info("    STARTING: \(context.script)")
         logger.info("-------------------------------------------------------------")
 
@@ -181,15 +181,15 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
     }
 
     func restartContext(context: CBScriptContextAbstract, withInitialState initialState: CBScriptState) {
-        assert(running) // make sure that player is running!
-        assert(_scheduledScriptContexts.contains(context), "Unable to restart context! Context is not running.")
+        precondition(running) // make sure that player is running!
+        precondition(_scheduledScriptContexts.contains(context), "Unable to restart context! Context is not running.")
         stopContext(context)
         startContext(context, withInitialState: initialState)
     }
 
     func stopContext(context: CBScriptContextAbstract) {
         if context.state == .Dead { return } // already stopped => must be an old deprecated enqueued dispatch closure
-        assert(_registeredScriptContexts.contains(context), "Unable to stop context! Context not registered any more.")
+        precondition(_registeredScriptContexts.contains(context), "Unable to stop context! Context not registered any more.")
         if _scheduledScriptContexts.contains(context) == false {
             return
         }
@@ -236,7 +236,7 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
 
         // stop all currently (!) scheduled script contexts
         for context in _scheduledScriptContexts {
-            assert(_registeredScriptContexts.contains(context), "Unable to stop context! Context not registered any more.")
+            precondition(_registeredScriptContexts.contains(context), "Unable to stop context! Context not registered any more.")
             let script = context.script
             logger.info("!!! STOPPING: \(script)")
             logger.info("-------------------------------------------------------------")

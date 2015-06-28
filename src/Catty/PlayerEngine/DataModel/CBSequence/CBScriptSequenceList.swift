@@ -25,22 +25,16 @@ final class CBScriptSequenceList {
     // MARK: - Properties
     final let script : Script
     final let sequenceList : CBSequenceList
-    final var running : Bool
     final var count : Int { return sequenceList.count }
 
     // MARK: - Initializers
     init(script : Script, sequenceList : CBSequenceList) {
         self.script = script
-        self.running = false
         self.sequenceList = sequenceList
         sequenceList.rootSequenceList = self
     }
 
     // MARK: - Operations
-    func reverseSequenceList() -> CBScriptSequenceList {
-        return CBScriptSequenceList(script: script, sequenceList: sequenceList.reverseSequenceList())
-    }
-
     // TODO: visitor pattern for sequence filter!
 
 }
