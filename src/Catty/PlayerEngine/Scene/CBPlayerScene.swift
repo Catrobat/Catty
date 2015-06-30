@@ -156,27 +156,33 @@ final class CBPlayerScene : SKScene {
 
         // init and prepare Scene
         self.removeAllChildren() // just to ensure
-        let spriteObjectList = frontend?.program?.objectList as? [SpriteObject!]
-        if spriteObjectList == nil {
+        guard let spriteObjectList = frontend?.program?.objectList else {
             logger?.error("!! No sprite object list given !! This should never happen!")
             return
         }
 
         var zPosition = 1.0
         var spriteNodes = [String:CBSpriteNode]()
-        for spriteObject in spriteObjectList! {
+        for spriteObject in spriteObjectList {
+            guard let spriteObject = spriteObject as? SpriteObject else {
+                logger?.error("!! Invalid sprite object given !! This should never happen!")
+                return
+            }
             let spriteNode = CBSpriteNode(spriteObject: spriteObject)
             spriteNode.hidden = false
             let scriptList = spriteObject.scriptList as NSArray as? [Script]
-            if scriptList == nil {
+            guard scriptList != nil else {
                 logger?.error("!! No script list given in object: \(spriteObject) !! This should never happen!")
                 return
             }
             for script in scriptList! {
-                if let startScript = script as? StartScript, let _ = startScript.brickList.firstObject as? HideBrick {
-                    spriteNode.hidden = true
-                    break
+                guard let startScript = script as? StartScript,
+                      let _ = startScript.brickList.firstObject as? HideBrick else {
+                    continue
                 }
+                spriteNode.hidden = true
+                break
+
             }
 
             // now add the brick with correct visability-state to the Scene
@@ -192,28 +198,20 @@ final class CBPlayerScene : SKScene {
         }
 
         // compute all sequence lists
-        // TODO: remove spaghetti code => extend backend + frontend to pass Program!!
-        if let spriteObjectList = frontend?.program?.objectList as? [SpriteObject] {
-            for spriteObject in spriteObjectList {
-                _ = spriteNodes[spriteObject.name]!
-                if let scriptList = spriteObject.scriptList as NSArray as? [Script] {
-                    for script in scriptList {
-                        if let scriptSequence = frontend?.computeSequenceListForScript(script),
-                           let scriptContext = backend?.scriptContextForSequenceList(scriptSequence)
-                        {
-                            // register script
-                            scheduler?.registerContext(scriptContext)
-
-                            // IMPORTANT: broadcast scripts have to be registered in BroadcastHandler as well!
-                            if let _ = script as? BroadcastScript {
-                                // register BroadcastScript
-                                if let bcScriptContext = scriptContext as? CBBroadcastScriptContext {
-                                    broadcastHandler?.subscribeBroadcastScriptContext(bcScriptContext)
-                                }
-                            }
-                        }
-                    }
+        for spriteObject in spriteObjectList {
+            guard let scriptList = spriteObject.scriptList as NSArray as? [Script] else { return }
+            for script in scriptList {
+                guard let scriptSequence = frontend?.computeSequenceListForScript(script),
+                      let scriptContext = backend?.scriptContextForSequenceList(scriptSequence) else {
+                    fatalError("Unable to create ScriptSequence and ScriptContext")
                 }
+
+                // register script
+                scheduler?.registerContext(scriptContext)
+
+                // IMPORTANT: BroadcastHandler registration for broadcast scripts required
+                guard let bcsContext = scriptContext as? CBBroadcastScriptContext else { continue }
+                broadcastHandler?.subscribeBroadcastScriptContext(bcsContext)
             }
         }
         scheduler?.run()

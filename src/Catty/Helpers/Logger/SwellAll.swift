@@ -1121,9 +1121,6 @@ public class Swell {
 
     
     func readLoggerPList(loggerName: String, map: Dictionary<String, AnyObject>) -> LoggerConfiguration {
-//        var level: LogLevel?
-//        var formatter: LogFormatter?
-//        var location: LogLocation?
         var configuration = LoggerConfiguration(name: loggerName)
         var item: AnyObject? = nil
         // Set the LogLevel

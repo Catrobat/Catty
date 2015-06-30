@@ -64,10 +64,19 @@ final class CBPlayerSchedulingAlgorithmLoadBalancing : CBPlayerSchedulingAlgorit
     private var _priorityQueue = PriorityQueue<CBContextElement>({
         $0.numOfPastInstructions < $1.numOfPastInstructions
     })
+    private var _lastContextElement: CBScriptContextAbstract? = nil
+    private var _lastContextElementInstructions: Int = 0
 
     func contextForNextInstruction(lastContext: CBScriptContextAbstract?,
         scheduledContexts: [CBScriptContextAbstract]) -> CBScriptContextAbstract?
     {
+        if --_lastContextElementInstructions > 0 && _lastContextElement != nil {
+            return _lastContextElement
+        }
+
+        let instructionsPerSchedulingFrame = 3
+
+        let startTime = NSDate()
         assert(scheduledContexts.isEmpty == false) // make sure dict is not empty (as specified!)
         var runningContexts = [CBScriptContextAbstract]()
         for scheduledContext in scheduledContexts {
@@ -80,7 +89,7 @@ final class CBPlayerSchedulingAlgorithmLoadBalancing : CBPlayerSchedulingAlgorit
                 if spriteNameScriptContexts == nil {
                     spriteNameScriptContexts = [CBScriptContextAbstract]()
                 }
-                if (spriteNameScriptContexts!).contains(scheduledContext) == false {
+                if spriteNameScriptContexts!.contains(scheduledContext) == false {
                     spriteNameScriptContexts! += scheduledContext
                     _priorityQueue.push(CBContextElement(context: scheduledContext))
                 }
@@ -102,12 +111,16 @@ final class CBPlayerSchedulingAlgorithmLoadBalancing : CBPlayerSchedulingAlgorit
                     }
                     continue
                 }
-                ++contextElement.numOfPastInstructions // current instruction
+                contextElement.numOfPastInstructions += instructionsPerSchedulingFrame
+                _lastContextElement = contextElement.context
+                _lastContextElementInstructions += instructionsPerSchedulingFrame
                 _priorityQueue.push(contextElement)
-                for element in _priorityQueue.heap {
-                    print("\(element.numOfPastInstructions): \(element.context.script.description())")
-                }
+//                for element in _priorityQueue.heap {
+//                    println("\(element.numOfPastInstructions): \(element.context.script.description())")
+//                }
                 assert(context.isLocked == false)
+                let duration = NSDate().timeIntervalSinceDate(startTime)
+                print("Scheduler-Algorithm Duration: \(duration)s")
                 return context
             } else {
                 return nil
@@ -145,7 +158,7 @@ final class CBPlayerSchedulingAlgorithmPriorityQueue : CBPlayerSchedulingAlgorit
                 if spriteNameScriptContexts == nil {
                     spriteNameScriptContexts = [CBScriptContextAbstract]()
                 }
-                if (spriteNameScriptContexts!).contains(scheduledContext) == false {
+                if spriteNameScriptContexts!.contains(scheduledContext) == false {
                     spriteNameScriptContexts! += scheduledContext
                     _priorityQueue.push(CBContextPriorityElement(context: scheduledContext))
                 }
@@ -163,13 +176,13 @@ final class CBPlayerSchedulingAlgorithmPriorityQueue : CBPlayerSchedulingAlgorit
                 nextContextPriorityElement = temp!
             }
             let thresholdDate = NSDate().dateByAddingTimeInterval(-0.1)
-            var lastDate: NSDate?
+//            var lastDate: NSDate? = nil
             while true {
                 if let date = nextContextPriorityElement.timeStampsOfPastInstructionsWithinLast100ms.pop() {
                     if date < thresholdDate {
                         break
                     } else {
-                        lastDate = date
+//                        lastDate = date
                     }
                 } else {
                     break

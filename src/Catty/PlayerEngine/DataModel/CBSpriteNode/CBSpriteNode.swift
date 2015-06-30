@@ -77,7 +77,7 @@ final class CBSpriteNode : SKSpriteNode {
         spriteObject.spriteNode = self
     }
 
-    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
+    required override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
     }
 
@@ -161,13 +161,15 @@ final class CBSpriteNode : SKSpriteNode {
     }
 
     func touchedWithTouches(touches: NSSet, withX x: CGFloat, andY y: CGFloat) -> Bool {
-        let playerScene = (scene as! CBPlayerScene)
-        let scheduler = playerScene.scheduler
-        if scheduler?.running == false {
+        guard let playerScene = (scene as? CBPlayerScene),
+              let scheduler = playerScene.scheduler else {
             return false
         }
-        _ = playerScene.frontend
-        _ = playerScene.backend
+        // FIXME: this check does not work any more since Swift 2.0! seems to be a compiler problem!
+//        if scheduler.running == false {
+//            return false
+//        }
+
         for touchAnyObject in touches {
             let touch = touchAnyObject as! UITouch
             let touchedPoint = touch.locationInNode(self)
@@ -184,19 +186,21 @@ final class CBSpriteNode : SKSpriteNode {
 //                    println(@"I'm transparent at this point")
                 return false
             }
-            if let spriteObject = self.spriteObject, let scriptList = spriteObject.scriptList as NSArray as? [Script] {
-                for script in scriptList {
-                    if let whenScript = script as? WhenScript {
-                        if let whenScriptContext = scheduler?.registeredContextForScript(whenScript) {
-                            if scheduler?.isContextScheduled(whenScriptContext) == false {
-                                scheduler?.startContext(whenScriptContext)
-                            } else {
-                                scheduler?.restartContext(whenScriptContext)
-                            }
-                        } else {
-                            fatalError("WhenScript not registered in Scheduler! This should NEVER HAPPEN!")
-                        }
-                    }
+            guard let spriteObject = self.spriteObject,
+                  let scriptList = spriteObject.scriptList as NSArray as? [Script] else {
+                fatalError("Invalid spriteObject or scriptList!")
+            }
+
+            for script in scriptList {
+                guard let whenScript = script as? WhenScript else { continue }
+                guard let whenScriptContext = scheduler.registeredContextForScript(whenScript) else {
+                    fatalError("WhenScript not registered in Scheduler! This should NEVER HAPPEN!")
+                }
+
+                if scheduler.isContextScheduled(whenScriptContext) == false {
+                    scheduler.startContext(whenScriptContext)
+                } else {
+                    scheduler.restartContext(whenScriptContext)
                 }
             }
             return true

@@ -261,7 +261,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return [self.programLoadingInfos count];
 }
 
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     static NSString *CellIdentifier = kImageCell;
     static NSString *DetailCellIdentifier = kDetailImageCell;
@@ -285,20 +285,44 @@ static NSCharacterSet *blockedCharacterSet = nil;
         detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
         detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedSize];
         detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
-
+        detailCell.topRightDetailLabel.text = [kLocalizedLoading stringByAppendingString:@"..."];
+        detailCell.bottomRightDetailLabel.text = [kLocalizedLoading stringByAppendingString:@"..."];
         ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
         NSNumber *programSize = [self.dataCache objectForKey:info.visibleName];
         AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-        if (! programSize) {
-            NSUInteger resultSize = [appDelegate.fileManager sizeOfDirectoryAtPath:info.basePath];
-            programSize = [NSNumber numberWithUnsignedInteger:resultSize];
-            [self.dataCache setObject:programSize forKey:info.visibleName];
+        if (programSize) {
+            NSString *xmlPath = [NSString stringWithFormat:@"%@/%@", info.basePath, kProgramCodeFileName];
+            NSDate *lastAccessDate = [appDelegate.fileManager lastModificationTimeOfFile:xmlPath];
+            detailCell.topRightDetailLabel.text = [lastAccessDate humanFriendlyFormattedString];
+            detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[programSize unsignedIntegerValue]
+                                                                                    countStyle:NSByteCountFormatterCountStyleBinary];
+            return detailCell;
         }
-        NSString *xmlPath = [NSString stringWithFormat:@"%@/%@", info.basePath, kProgramCodeFileName];
-        NSDate *lastAccessDate = [appDelegate.fileManager lastModificationTimeOfFile:xmlPath];
-        detailCell.topRightDetailLabel.text = [lastAccessDate humanFriendlyFormattedString];
-        detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[programSize unsignedIntegerValue]
-                                                                                countStyle:NSByteCountFormatterCountStyleBinary];
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+        dispatch_async(queue, ^{
+            // check if cell still needed
+            if (! [detailCell.indexPath isEqual:indexPath]) {
+                return;
+            } else if (! [tableView.indexPathsForVisibleRows containsObject:indexPath]) {
+                return;
+            }
+
+            ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
+            NSNumber *programSize = [self.dataCache objectForKey:info.visibleName];
+            if (! programSize) {
+                NSUInteger resultSize = [appDelegate.fileManager sizeOfDirectoryAtPath:info.basePath];
+                programSize = [NSNumber numberWithUnsignedInteger:resultSize];
+                [self.dataCache setObject:programSize forKey:info.visibleName];
+            }
+
+            NSString *xmlPath = [NSString stringWithFormat:@"%@/%@", info.basePath, kProgramCodeFileName];
+            NSDate *lastAccessDate = [appDelegate.fileManager lastModificationTimeOfFile:xmlPath];
+            detailCell.topRightDetailLabel.text = [lastAccessDate humanFriendlyFormattedString];
+            detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[programSize unsignedIntegerValue]
+                                                                                    countStyle:NSByteCountFormatterCountStyleBinary];
+            [detailCell setNeedsLayout];
+            [self.tableView endUpdates];
+        });
         return detailCell;
     }
     return imageCell;

@@ -24,7 +24,7 @@ final class CBSequenceList : SequenceType {
 
     // MARK: - Properties
     weak var rootSequenceList : CBScriptSequenceList?
-    private(set) lazy var sequenceList = [CBSequence]()
+    lazy var sequenceList = [CBSequence]()
     var count : Int { return sequenceList.count }
 
     // MARK: - Initializers
@@ -45,11 +45,6 @@ final class CBSequenceList : SequenceType {
         }
     }
 
-    func reverseSequenceList() -> CBSequenceList {
-        let reverseScriptSequenceList = CBSequenceList(rootSequenceList: rootSequenceList)
-        reverseScriptSequenceList.sequenceList = Array(sequenceList.reverse())
-        return reverseScriptSequenceList
-    }
 }
 
 // MARK: - Custom operators

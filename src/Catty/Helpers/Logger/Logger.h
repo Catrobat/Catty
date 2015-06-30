@@ -24,20 +24,11 @@
 #import <Foundation/Foundation.h>
 
 
-#define kLogLevel     debug
+#define kLogLevel     LDEBUG
 #define kAbortAtError YES
 
 
 // NSDebug(...), NSInfo(...), NSWarn(...), NSError(...), NSLogError(error) defined in Prefix header. Use these Macros!
-
-
-typedef enum  {
-    debug,
-    info,
-    warning,
-    error
-} LogLevel;
-
 
 @interface Logger : NSObject
 
