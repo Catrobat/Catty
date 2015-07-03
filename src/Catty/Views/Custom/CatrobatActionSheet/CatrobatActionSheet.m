@@ -22,7 +22,25 @@
 
 #import "CatrobatActionSheet.h"
 
+@interface IBActionSheet()
+- (void)removeFromView;
+@end
+
 @implementation CatrobatActionSheet
+
+- (id)init {
+    self = [super init];
+    
+    for (UIGestureRecognizer *recognizer in self.transparentView.gestureRecognizers)
+    {
+        [self.transparentView removeGestureRecognizer:recognizer];
+    }
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelOnTouch)];
+    tap.numberOfTapsRequired = 1;
+    [self.transparentView addGestureRecognizer:tap];
+    
+    return self;
+}
 
 #pragma mark - getters and setters
 - (void)addDestructiveButtonWithTitle:(NSString *)destructiveTitle
@@ -102,6 +120,14 @@ otherButtonTitlesArray:(NSArray *)otherTitlesArray
         actionSheet.cancelButtonIndex = NSIntegerMin;
     }
     return actionSheet;
+}
+
+- (void)cancelOnTouch {
+    [super removeFromView];
+    
+    if (self.shouldCancelOnTouch && [self.delegate respondsToSelector:@selector(actionSheetCancelOnTouch:)]) {
+        [(id<CatrobatActionSheetDelegate>) self.delegate actionSheetCancelOnTouch:self];
+    }
 }
 
 @end

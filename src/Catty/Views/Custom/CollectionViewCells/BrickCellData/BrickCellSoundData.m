@@ -65,14 +65,14 @@
     return self;
 }
 
-- (void)comboboxClosed:(iOSCombobox*)combobox withValue:(NSString*)value
+- (void)comboboxDonePressed:(iOSCombobox *)combobox withValue:(NSString *)value
 {
     [self.brickCell.dataDelegate updateBrickCellData:self withValue:value];
 }
 
 - (void)comboboxOpened:(iOSCombobox *)combobox
 {
-    [self.brickCell.dataDelegate disableUserInteraction];
+    [self.brickCell.dataDelegate disableUserInteractionAndHighlight:self.brickCell withMarginBottom:kiOSComboboxTotalHeight];
 }
 
 @end

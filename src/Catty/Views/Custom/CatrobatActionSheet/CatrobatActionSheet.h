@@ -30,6 +30,10 @@
 
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
 
+@optional
+// Called when we cancel the action sheet (e.g. the user clicks somewhere on the screen). This is not called when the user clicks the cancel button or any other button.
+- (void)actionSheetCancelOnTouch:(CatrobatActionSheet *)actionSheet;
+
 @end
 
 @interface CatrobatActionSheet : IBActionSheet

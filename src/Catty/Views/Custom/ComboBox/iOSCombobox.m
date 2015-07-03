@@ -316,6 +316,11 @@
 
 - (void)keyboardControlsDonePressed:(BSKeyboardControls *)keyboardControls
 {
+    if ([[self delegate] respondsToSelector:@selector(comboboxDonePressed:withValue:)])
+    {
+        [[self delegate] comboboxDonePressed:self withValue:[self currentValue]];
+    }
+
     [[keyboardControls activeField] resignFirstResponder];
     [self resignFirstResponder];
 }
