@@ -156,33 +156,49 @@ final class CBPlayerScene : SKScene {
 
         // init and prepare Scene
         self.removeAllChildren() // just to ensure
-        guard let spriteObjectList = frontend?.program?.objectList else {
-            logger?.error("!! No sprite object list given !! This should never happen!")
-            return
-        }
+
+// [Swift2.0] DO NOT REMOVE!!!
+//        guard let spriteObjectList = frontend?.program?.objectList else {
+//            logger?.error("!! No sprite object list given !! This should never happen!")
+//            return
+//        }
+        let spriteObjectList = frontend?.program?.objectList!
 
         var zPosition = 1.0
         var spriteNodes = [String:CBSpriteNode]()
-        for spriteObject in spriteObjectList {
-            guard let spriteObject = spriteObject as? SpriteObject else {
-                logger?.error("!! Invalid sprite object given !! This should never happen!")
-                return
-            }
+// [Swift2.0] DO NOT REMOVE!!!
+//        for spriteObject in spriteObjectList {
+        for spriteObject in spriteObjectList as! NSArray as! [SpriteObject] {
+// [Swift2.0] DO NOT REMOVE!!!
+//            guard let spriteObject = spriteObject as? SpriteObject else {
+//                logger?.error("!! Invalid sprite object given !! This should never happen!")
+//                return
+//            }
             let spriteNode = CBSpriteNode(spriteObject: spriteObject)
             spriteNode.hidden = false
             let scriptList = spriteObject.scriptList as NSArray as? [Script]
-            guard scriptList != nil else {
-                logger?.error("!! No script list given in object: \(spriteObject) !! This should never happen!")
-                return
-            }
+// [Swift2.0] DO NOT REMOVE!!!
+//            guard scriptList != nil else {
+//                logger?.error("!! No script list given in object: \(spriteObject) !! This should never happen!")
+//                return
+//            }
             for script in scriptList! {
-                guard let startScript = script as? StartScript,
-                      let _ = startScript.brickList.firstObject as? HideBrick else {
-                    continue
-                }
+// [Swift2.0] DO NOT REMOVE!!!
+//                guard let startScript = script as? StartScript,
+//                      let _ = startScript.brickList.firstObject as? HideBrick else {
+//                    continue
+//                }
+// [Swift1.2] DO NOT REMOVE!!!
+                if let startScript = script as? StartScript,
+                    let _ = startScript.brickList.firstObject as? HideBrick {
+// [Swift1.2] DO NOT REMOVE!!!
+
                 spriteNode.hidden = true
                 break
 
+// [Swift1.2] DO NOT REMOVE!!!
+                }
+// [Swift1.2] DO NOT REMOVE!!!
             }
 
             // now add the brick with correct visability-state to the Scene
@@ -197,23 +213,45 @@ final class CBPlayerScene : SKScene {
             }
         }
 
+// [Swift2.0] DO NOT REMOVE!!!
         // compute all sequence lists
-        for spriteObject in spriteObjectList {
-            guard let scriptList = spriteObject.scriptList as NSArray as? [Script] else { return }
-            for script in scriptList {
-                guard let scriptSequence = frontend?.computeSequenceListForScript(script),
-                      let scriptContext = backend?.scriptContextForSequenceList(scriptSequence) else {
-                    fatalError("Unable to create ScriptSequence and ScriptContext")
+//        for spriteObject in spriteObjectList {
+//            guard let scriptList = spriteObject.scriptList as NSArray as? [Script] else { return }
+//            for script in scriptList {
+//                guard let scriptSequence = frontend?.computeSequenceListForScript(script),
+//                      let scriptContext = backend?.scriptContextForSequenceList(scriptSequence) else {
+//                    fatalError("Unable to create ScriptSequence and ScriptContext")
+//                }
+//
+//                // register script
+//                scheduler?.registerContext(scriptContext)
+//
+//                // IMPORTANT: BroadcastHandler registration for broadcast scripts required
+//                guard let bcsContext = scriptContext as? CBBroadcastScriptContext else { continue }
+//                broadcastHandler?.subscribeBroadcastScriptContext(bcsContext)
+//            }
+//        }
+// [Swift2.0] DO NOT REMOVE!!!
+// [Swift1.2] DO NOT REMOVE!!!
+        // compute all sequence lists
+        for spriteObject in spriteObjectList! {
+            if let scriptList = spriteObject.scriptList as NSArray as? [Script] {
+                for script in scriptList {
+                    if let scriptSequence = frontend?.computeSequenceListForScript(script),
+                       let scriptContext = backend?.scriptContextForSequenceList(scriptSequence) {
+                        // register script
+                        scheduler?.registerContext(scriptContext)
+
+                        // IMPORTANT: BroadcastHandler registration for broadcast scripts required
+                        if let bcsContext = scriptContext as? CBBroadcastScriptContext {
+                            broadcastHandler?.subscribeBroadcastScriptContext(bcsContext)
+                        }
+                    }
                 }
-
-                // register script
-                scheduler?.registerContext(scriptContext)
-
-                // IMPORTANT: BroadcastHandler registration for broadcast scripts required
-                guard let bcsContext = scriptContext as? CBBroadcastScriptContext else { continue }
-                broadcastHandler?.subscribeBroadcastScriptContext(bcsContext)
             }
         }
+// [Swift1.2] DO NOT REMOVE!!!
+
         scheduler?.run()
     }
 

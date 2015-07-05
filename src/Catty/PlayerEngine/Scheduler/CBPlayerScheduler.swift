@@ -63,7 +63,12 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
 
     // MARK: - Queries
     func isContextScheduled(context: CBScriptContextAbstract) -> Bool {
-        return _scheduledScriptContexts.contains(context)
+// [Swift2.0] DO NOT REMOVE!!!
+//        return _scheduledScriptContexts.contains(context)
+// [Swift2.0] DO NOT REMOVE!!!
+// [Swift1.2] DO NOT REMOVE!!!
+        return contains(_scheduledScriptContexts, context)
+// [Swift1.2] DO NOT REMOVE!!!
     }
 
     func allStartScriptContextsReachedMatureState() -> Bool {
@@ -139,7 +144,12 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
     }
 
     func registerContext(context: CBScriptContextAbstract) {
-        precondition(_registeredScriptContexts.contains(context) == false) // ensure that same context is not added twice
+// [Swift2.0] DO NOT REMOVE!!!
+//        precondition(_registeredScriptContexts.contains(context) == false) // ensure that same context is not added twice
+// [Swift2.0] DO NOT REMOVE!!!
+// [Swift1.2] DO NOT REMOVE!!!
+        precondition(!contains(_registeredScriptContexts, context)) // ensure that same context is not added twice
+// [Swift1.2] DO NOT REMOVE!!!
         _registeredScriptContexts += context
     }
 
@@ -158,8 +168,14 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
 
     func startContext(context: CBScriptContextAbstract, withInitialState initialState: CBScriptState) {
         precondition(running) // make sure that player is running!
-        precondition(_registeredScriptContexts.contains(context), "Unable to start context! Context not registered.")
-        precondition(_scheduledScriptContexts.contains(context) == false, "Unable to start context! Context already scheduled.")
+// [Swift2.0] DO NOT REMOVE!!!
+//        precondition(_registeredScriptContexts.contains(context), "Unable to start context! Context not registered.")
+//        precondition(_scheduledScriptContexts.contains(context) == false, "Unable to start context! Context already scheduled.")
+// [Swift2.0] DO NOT REMOVE!!!
+// [Swift1.2] DO NOT REMOVE!!!
+        precondition(contains(_registeredScriptContexts, context), "Unable to start context! Context not registered.")
+        precondition(!contains(_scheduledScriptContexts, context), "Unable to start context! Context already scheduled.")
+// [Swift1.2] DO NOT REMOVE!!!
         logger.info("    STARTING: \(context.script)")
         logger.info("-------------------------------------------------------------")
 
@@ -182,17 +198,30 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
 
     func restartContext(context: CBScriptContextAbstract, withInitialState initialState: CBScriptState) {
         precondition(running) // make sure that player is running!
-        precondition(_scheduledScriptContexts.contains(context), "Unable to restart context! Context is not running.")
+// [Swift2.0] DO NOT REMOVE!!!
+//        precondition(_scheduledScriptContexts.contains(context), "Unable to restart context! Context is not running.")
+// [Swift2.0] DO NOT REMOVE!!!
+// [Swift1.2] DO NOT REMOVE!!!
+        precondition(contains(_scheduledScriptContexts, context), "Unable to restart context! Context is not running.")
+// [Swift1.2] DO NOT REMOVE!!!
         stopContext(context)
         startContext(context, withInitialState: initialState)
     }
 
     func stopContext(context: CBScriptContextAbstract) {
         if context.state == .Dead { return } // already stopped => must be an old deprecated enqueued dispatch closure
-        precondition(_registeredScriptContexts.contains(context), "Unable to stop context! Context not registered any more.")
-        if _scheduledScriptContexts.contains(context) == false {
+// [Swift2.0] DO NOT REMOVE!!!
+//        precondition(_registeredScriptContexts.contains(context), "Unable to stop context! Context not registered any more.")
+//        if _scheduledScriptContexts.contains(context) == false {
+//            return
+//        }
+// [Swift2.0] DO NOT REMOVE!!!
+// [Swift1.2] DO NOT REMOVE!!!
+        precondition(contains(_registeredScriptContexts, context), "Unable to stop context! Context not registered any more.")
+        if !contains(_scheduledScriptContexts, context) {
             return
         }
+// [Swift1.2] DO NOT REMOVE!!!
 
         let script = context.script
         logger.info("!!! STOPPING: \(script)")
@@ -236,7 +265,12 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
 
         // stop all currently (!) scheduled script contexts
         for context in _scheduledScriptContexts {
-            precondition(_registeredScriptContexts.contains(context), "Unable to stop context! Context not registered any more.")
+// [Swift2.0] DO NOT REMOVE!!!
+//            precondition(_registeredScriptContexts.contains(context), "Unable to stop context! Context not registered any more.")
+// [Swift2.0] DO NOT REMOVE!!!
+// [Swift1.2] DO NOT REMOVE!!!
+            precondition(contains(_registeredScriptContexts, context), "Unable to stop context! Context not registered any more.")
+// [Swift1.2] DO NOT REMOVE!!!
             let script = context.script
             logger.info("!!! STOPPING: \(script)")
             logger.info("-------------------------------------------------------------")

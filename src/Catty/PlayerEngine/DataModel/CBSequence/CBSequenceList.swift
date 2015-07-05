@@ -38,12 +38,22 @@ final class CBSequenceList : SequenceType {
     }
 
     // MARK: - Generator
-    func generate() -> AnyGenerator<CBSequence> {
+// [Swift2.0] DO NOT REMOVE!!!
+//    func generate() -> AnyGenerator<CBSequence> {
+//        var i = 0
+//        return anyGenerator {
+//            return i >= self.sequenceList.count ? .None : self.sequenceList[i++]
+//        }
+//    }
+// [Swift2.0] DO NOT REMOVE!!!
+// [Swift1.2] DO NOT REMOVE!!!
+    func generate() -> GeneratorOf<CBSequence> {
         var i = 0
-        return anyGenerator {
+        return GeneratorOf<CBSequence> {
             return i >= self.sequenceList.count ? .None : self.sequenceList[i++]
         }
     }
+// [Swift1.2] DO NOT REMOVE!!!
 
 }
 

@@ -85,7 +85,12 @@ class CBScriptContextAbstract : SKNode {
         return _instructionList[_instructionPointer++]
     }
 
-    final func jump(numberOfInstructions numberOfInstructions: Int) {
+// [Swift2.0] DO NOT REMOVE!!!
+//    final func jump(numberOfInstructions numberOfInstructions: Int) {
+// [Swift2.0] DO NOT REMOVE!!!
+// [Swift1.2] DO NOT REMOVE!!!
+    final func jump(#numberOfInstructions: Int) {
+// [Swift1.2] DO NOT REMOVE!!!
         if state == .Dead { return } // must be an old deprecated enqueued dispatch closure
         if numberOfInstructions == 0 { return }
         precondition((state == .Running) || (state == .RunningMature) || (state == .RunningBlocking))
