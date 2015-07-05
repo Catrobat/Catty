@@ -20,23 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-final class CBScriptSequenceList : CBSequenceVisitProtocol {
+protocol CBOptimizeSequenceVisitorProtocol {
+    func visit(sequence: CBScriptSequenceList)
+    func visit(sequence: CBSequenceList)
+    func visit(sequence: CBOperationSequence)
+    func visit(sequence: CBConditionalSequence)
+    func visit(sequence: CBIfConditionalSequence)
+}
 
-    // MARK: - Properties
-    final let script : Script
-    final let sequenceList : CBSequenceList
-    final var count : Int { return sequenceList.count }
-
-    // MARK: - Initializers
-    init(script : Script, sequenceList : CBSequenceList) {
-        self.script = script
-        self.sequenceList = sequenceList
-        sequenceList.rootSequenceList = self
-    }
-
-    // MARK: - Operations
-    func accept(visitor: CBOptimizeSequenceVisitorProtocol) {
-        visitor.visit(self)
-    }
-
+protocol CBSequenceVisitProtocol {
+    func accept(visitor: CBOptimizeSequenceVisitorProtocol)
 }

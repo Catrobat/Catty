@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-final class CBIfConditionalSequence : CBConditionalSequence {
+final class CBIfConditionalSequence : CBConditionalSequence, CBSequenceVisitProtocol {
 
     // MARK: - Properties
     let elseSequenceList : CBSequenceList?
@@ -40,6 +40,10 @@ final class CBIfConditionalSequence : CBConditionalSequence {
     // MARK: - Operations
     override func isEmpty() -> Bool {
         return (super.isEmpty() && (elseSequenceList?.count == 0))
+    }
+
+    override func accept(visitor: CBOptimizeSequenceVisitorProtocol) {
+        visitor.visit(self)
     }
 
 }

@@ -20,19 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class CBSequence {
+protocol CBSequenceProtocol {
 
     // MARK: - Properties
-    final weak var rootSequenceList : CBScriptSequenceList?
-
-    // MARK: - Initializers
-    init(rootSequenceList : CBScriptSequenceList) {
-        self.rootSequenceList = rootSequenceList
-    }
+    weak var rootSequenceList: CBScriptSequenceList? { get set }
 
     // MARK: - Operations
-    func isEmpty() -> Bool {
-        preconditionFailure("This method is abstract and must be overridden")
-    }
+    func isEmpty() -> Bool
 
 }

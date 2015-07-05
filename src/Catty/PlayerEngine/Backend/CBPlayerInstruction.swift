@@ -145,12 +145,12 @@ final class CBPlayerInstruction {
         scheduler: CBPlayerSchedulerProtocol, context: CBScriptContextAbstract) -> CBExecClosure
     {
         let spriteObject = setVolumeToBrick.script.object
-        let volume = setVolumeToBrick.volume.interpretDoubleForSprite(spriteObject)
         let audioManager = AudioManager.sharedAudioManager()
         let spriteObjectName = spriteObject.name
 
         return {
 //            self?.logger.debug("Performing: SetVolumeToBrick")
+            let volume = setVolumeToBrick.volume.interpretDoubleForSprite(spriteObject)
             audioManager.setVolumeToPercent(CGFloat(volume), forKey: spriteObjectName)
             scheduler.runNextInstructionOfContext(context)
         }
@@ -160,15 +160,16 @@ final class CBPlayerInstruction {
         scheduler: CBPlayerSchedulerProtocol, context: CBScriptContextAbstract) -> CBExecClosure
     {
         let spriteObject = setVariableBrick.script.object
-        let result = setVariableBrick.variableFormula.interpretDoubleForSprite(spriteObject)
         let variables = spriteObject.program.variables
         let userVariable = setVariableBrick.userVariable
+        let variableFormula = setVariableBrick.variableFormula
 
         return {
             //            self?.logger.debug("Performing: SetVariableBrick")
 //            if setVariableBrick.userVariable.name == "digit" {
 //                println("Result is %f", result)
 //            }
+            let result = variableFormula.interpretDoubleForSprite(spriteObject)
             variables.setUserVariable(userVariable, toValue: result)
             scheduler.runNextInstructionOfContext(context)
         }
@@ -178,12 +179,13 @@ final class CBPlayerInstruction {
         scheduler: CBPlayerSchedulerProtocol, context: CBScriptContextAbstract) -> CBExecClosure
     {
         let spriteObject = changeVariableBrick.script.object
-        let result = changeVariableBrick.variableFormula.interpretDoubleForSprite(spriteObject)
         let variables = spriteObject.program.variables
         let userVariable = changeVariableBrick.userVariable
+        let variableFormula = changeVariableBrick.variableFormula
 
         return {
             //            self?.logger.debug("Performing: ChangeVariableBrick")
+            let result = variableFormula.interpretDoubleForSprite(spriteObject)
             variables.changeVariable(userVariable, byValue: result)
             scheduler.runNextInstructionOfContext(context)
         }

@@ -504,7 +504,6 @@
 		CABF43B81B115E6400419A55 /* CBOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B11B115E6400419A55 /* CBOperation.swift */; };
 		CABF43B91B115E6400419A55 /* CBOperationSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B21B115E6400419A55 /* CBOperationSequence.swift */; };
 		CABF43BA1B115E6400419A55 /* CBScriptSequenceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B31B115E6400419A55 /* CBScriptSequenceList.swift */; };
-		CABF43BB1B115E6400419A55 /* CBSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B41B115E6400419A55 /* CBSequence.swift */; };
 		CABF43BC1B115E6400419A55 /* CBSequenceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B51B115E6400419A55 /* CBSequenceList.swift */; };
 		CAD116DD1A46AAC000F560B4 /* CBXMLPositionStack.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD116DC1A46AAC000F560B4 /* CBXMLPositionStack.m */; };
 		CAD116E51A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD116E41A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.m */; };
@@ -552,6 +551,8 @@
 		CADBD7F519B0E8C200C62836 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093711B7B9DC009D4DB0 /* AVFoundation.framework */; };
 		CADBD7F619B0E8C200C62836 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F093911B7B9DC009D4DB0 /* AudioToolbox.framework */; };
 		CADBD7F719B0E8C200C62836 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F097711B7BABD009D4DB0 /* OpenAL.framework */; };
+		CAE3C79C1B49FABC00AFE9D7 /* CBSequenceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3C79A1B49FABC00AFE9D7 /* CBSequenceProtocol.swift */; };
+		CAE3C79D1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3C79B1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift */; };
 		CAE485D71B13AA6600DC4485 /* CBPlayerFrontend.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE485D51B13AA6600DC4485 /* CBPlayerFrontend.swift */; };
 		CAE485D81B13AA6600DC4485 /* CBPlayerFrontendSequenceFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE485D61B13AA6600DC4485 /* CBPlayerFrontendSequenceFilters.swift */; };
 		CAE485DA1B13AA6E00DC4485 /* CBPlayerBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE485D91B13AA6E00DC4485 /* CBPlayerBackend.swift */; };
@@ -1528,7 +1529,6 @@
 		CABF43B11B115E6400419A55 /* CBOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBOperation.swift; path = Catty/PlayerEngine/DataModel/CBSequence/CBOperation.swift; sourceTree = SOURCE_ROOT; };
 		CABF43B21B115E6400419A55 /* CBOperationSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBOperationSequence.swift; path = Catty/PlayerEngine/DataModel/CBSequence/CBOperationSequence.swift; sourceTree = SOURCE_ROOT; };
 		CABF43B31B115E6400419A55 /* CBScriptSequenceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBScriptSequenceList.swift; path = Catty/PlayerEngine/DataModel/CBSequence/CBScriptSequenceList.swift; sourceTree = SOURCE_ROOT; };
-		CABF43B41B115E6400419A55 /* CBSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSequence.swift; path = Catty/PlayerEngine/DataModel/CBSequence/CBSequence.swift; sourceTree = SOURCE_ROOT; };
 		CABF43B51B115E6400419A55 /* CBSequenceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSequenceList.swift; path = Catty/PlayerEngine/DataModel/CBSequence/CBSequenceList.swift; sourceTree = SOURCE_ROOT; };
 		CAC22DA31809D5730071CC5D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CAD116DB1A46AAC000F560B4 /* CBXMLPositionStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBXMLPositionStack.h; path = CBXMLPositionStack/CBXMLPositionStack.h; sourceTree = "<group>"; };
@@ -1539,6 +1539,8 @@
 		CAD740E21AF2D2E800C32937 /* CBStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBStack.m; path = CBStack/CBStack.m; sourceTree = "<group>"; };
 		CAD740E71AF2D42B00C32937 /* CBStackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBStackTests.m; sourceTree = "<group>"; };
 		CADBD7FB19B0E8C200C62836 /* Pocket Code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Code.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAE3C79A1B49FABC00AFE9D7 /* CBSequenceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSequenceProtocol.swift; path = Catty/PlayerEngine/DataModel/CBSequence/CBSequenceProtocol.swift; sourceTree = SOURCE_ROOT; };
+		CAE3C79B1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSequenceVisitProtocol.swift; path = Catty/PlayerEngine/DataModel/CBSequence/CBSequenceVisitProtocol.swift; sourceTree = SOURCE_ROOT; };
 		CAE485D51B13AA6600DC4485 /* CBPlayerFrontend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerFrontend.swift; path = PlayerEngine/Frontend/CBPlayerFrontend.swift; sourceTree = "<group>"; };
 		CAE485D61B13AA6600DC4485 /* CBPlayerFrontendSequenceFilters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerFrontendSequenceFilters.swift; path = PlayerEngine/Frontend/CBPlayerFrontendSequenceFilters.swift; sourceTree = "<group>"; };
 		CAE485D91B13AA6E00DC4485 /* CBPlayerBackend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerBackend.swift; path = PlayerEngine/Backend/CBPlayerBackend.swift; sourceTree = "<group>"; };
@@ -4386,9 +4388,10 @@
 		CAEE3BEA1ABDFADE009FDA72 /* CBSequence */ = {
 			isa = PBXGroup;
 			children = (
+				CAE3C79A1B49FABC00AFE9D7 /* CBSequenceProtocol.swift */,
+				CAE3C79B1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift */,
 				CABF43B31B115E6400419A55 /* CBScriptSequenceList.swift */,
 				CABF43B51B115E6400419A55 /* CBSequenceList.swift */,
-				CABF43B41B115E6400419A55 /* CBSequence.swift */,
 				CABF43AF1B115E6400419A55 /* CBConditionalSequence.swift */,
 				CABF43B01B115E6400419A55 /* CBIfConditionalSequence.swift */,
 				CABF43B21B115E6400419A55 /* CBOperationSequence.swift */,
@@ -4870,6 +4873,7 @@
 				928D4D791A7BD19A00E6DFA8 /* CatrobatUISlider.m in Sources */,
 				92FF30DA1A24DCAA00093DA7 /* ShowBrick.m in Sources */,
 				CAA4A4691A43B3A9002A69A0 /* CBXMLContext.m in Sources */,
+				CAE3C79C1B49FABC00AFE9D7 /* CBSequenceProtocol.swift in Sources */,
 				92FF2E9D1A24C7D800093DA7 /* SensorManager.m in Sources */,
 				92DFB0691A38960C00FA9B0F /* UIImage+Rotate.m in Sources */,
 				CAA4A5031A43B48F002A69A0 /* PlaySoundBrick+CBXMLHandler.m in Sources */,
@@ -5052,7 +5056,6 @@
 				92FF32A21A24E2F400093DA7 /* StartScriptCell.m in Sources */,
 				92DFB0121A38949E00FA9B0F /* InternFormula.m in Sources */,
 				92FF30FD1A24DCAA00093DA7 /* Header.m in Sources */,
-				CABF43BB1B115E6400419A55 /* CBSequence.swift in Sources */,
 				CAA4A4E91A43B472002A69A0 /* PointToBrick+CBXMLHandler.m in Sources */,
 				CABF43B81B115E6400419A55 /* CBOperation.swift in Sources */,
 				CAA4A4A21A43B407002A69A0 /* ComeToFrontBrick+CBXMLHandler.m in Sources */,
@@ -5162,6 +5165,7 @@
 				CAA4A4A11A43B407002A69A0 /* BroadcastWaitBrick+CBXMLHandler.m in Sources */,
 				92FF32921A24E2F400093DA7 /* ShowBrickCell.m in Sources */,
 				92FF31071A24DCAA00093DA7 /* SpriteObject.m in Sources */,
+				CAE3C79D1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift in Sources */,
 				CAA4A4A61A43B407002A69A0 /* IfLogicEndBrick+CBXMLHandler.m in Sources */,
 				92FF30D91A24DCAA00093DA7 /* SetLookBrick.m in Sources */,
 				92FF32A11A24E2F400093DA7 /* BroadcastScriptCell.m in Sources */,
@@ -5282,7 +5286,6 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -5340,7 +5343,6 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
