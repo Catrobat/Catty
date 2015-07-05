@@ -184,7 +184,25 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [button addTarget:self action:@selector(infoPressed:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *infoItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.leftBarButtonItem = infoItem;
+
+#if DEBUG == 1
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:kLocalizedDebugModeTitle
+                                                                              style:UIBarButtonItemStylePlain
+                                                                             target:self
+                                                                             action:@selector(debugInfo:)];
+#endif
 }
+
+#if DEBUG == 1
+- (void)debugInfo:(id)sender
+{
+    [[[UIAlertView alloc] initWithTitle:kLocalizedDebugModeTitle
+                                message:kLocalizedStartedInDebugMode
+                               delegate:nil
+                      cancelButtonTitle:kLocalizedOK
+                      otherButtonTitles:nil] show];
+}
+#endif
 
 #pragma mark - actions
 - (void)infoPressed:(id)sender

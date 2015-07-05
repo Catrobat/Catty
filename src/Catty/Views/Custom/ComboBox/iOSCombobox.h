@@ -25,6 +25,8 @@
 #import "iOSComboboxPickerView.h"
 #import "BSKeyboardControls.h"
 
+#define kiOSComboboxTotalHeight 305.0f
+
 @protocol iOSComboboxDelegate;
 
 @interface iOSCombobox : UIControl <UIPickerViewDataSource, UIPickerViewDelegate, iOSComboboxPickerViewDelegate, BSKeyboardControlsDelegate>
@@ -47,4 +49,5 @@
 - (void)comboboxOpened:(iOSCombobox *)combobox;
 - (void)comboboxClosed:(iOSCombobox *)combobox withValue:(NSString*)value;
 - (void)comboboxChanged:(iOSCombobox *)combobox toValue:(NSString*)toValue;
+- (void)comboboxDonePressed:(iOSCombobox *)combobox withValue:(NSString*)value;
 @end
