@@ -25,6 +25,8 @@
 #import "BaseTableViewController.h"
 #import "CatrobatProgram.h"
 
+#define kRecentProgramsMaxResults 20
+
 @protocol RecentProgramsStoreDelegate <NSObject>
 
 - (void)reloadWithProject:(CatrobatProgram *)loadedProject;

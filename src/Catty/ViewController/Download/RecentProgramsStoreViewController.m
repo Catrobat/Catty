@@ -38,12 +38,12 @@
 
 @interface RecentProgramsStoreViewController ()
 
-@property (nonatomic, strong) NSMutableData *data;
-@property (nonatomic, strong) NSURLConnection *connection;
+@property (strong, nonatomic) NSURLSession *session;
+@property (strong, nonatomic) NSURLSessionDataTask *idTask;
+@property (strong, nonatomic) NSURLSessionDataTask *infoTask;
 @property (nonatomic, strong) NSMutableArray *projects;
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (assign)            int programListOffset;
-@property (assign)            int programListLimit;
 @property (nonatomic, strong) CatrobatInformation* information;
 @property (nonatomic, strong) NSMutableArray* mostDownloadedProjects;
 @property (nonatomic, strong) NSMutableArray* mostViewedProjects;
@@ -67,9 +67,23 @@
     return self;
 }
 
+- (NSURLSession *)session {
+    if (!_session) {
+            // Initialize Session Configuration
+        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        
+            // Configure Session Configuration
+        [sessionConfiguration setHTTPAdditionalHeaders:@{ @"Accept" : @"application/json" }];
+        
+            // Initialize Session
+        _session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
+    }
+    
+    return _session;
+}
+
 - (void)viewDidLoad
 {
-    self.programListLimit = 20;
     self.programListOffset = 0;
 
     [super viewDidLoad];
@@ -233,7 +247,6 @@
         imageCell.titleLabel.text = project.projectName;
 
         [self loadImage:project.screenshotSmall forCell:imageCell atIndexPath:indexPath];
-        NSDebug(@"Normal Cell");
         //        }
     }
     return cell;
@@ -262,19 +275,18 @@
 
 - (void)loadProjectsWithIndicator:(NSInteger)indicator
 {
-    self.data = [[NSMutableData alloc] init];
     NSURL *url = [NSURL alloc];
     switch (self.downloadSegmentedControl.selectedSegmentIndex) {
         case 0:
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionMostDownloadedFull, kProgramsOffset, self.programListOffset, kProgramsLimit, self.programListLimit]];
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionMostDownloadedFull, kProgramsOffset, self.programListOffset, kProgramsLimit, kRecentProgramsMaxResults]];
             
             break;
         case 1:
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionMostViewed, kProgramsOffset, self.programListOffset, kProgramsLimit, self.programListLimit]];
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionMostViewed, kProgramsOffset, self.programListOffset, kProgramsLimit, kRecentProgramsMaxResults]];
             
             break;
         case 2:
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionRecent, kProgramsOffset, self.programListOffset, kProgramsLimit, self.programListLimit]];
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i&%@%i", kConnectionHost, kConnectionRecent, kProgramsOffset, self.programListOffset, kProgramsLimit, kRecentProgramsMaxResults]];
             
             break;
             
@@ -284,18 +296,33 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
     
     NSDebug(@"url is: %@", url);
-    //    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    //    self.connection = connection;
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               [self loadIDsWith:data andResponse:response];}];
+
+    if (self.idTask) {
+        [self.idTask cancel];
+    }
+    self.idTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            if (error.code != -999) {
+                NSLog(@"%@", error);
+            }
+            
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self loadIDsWith:data andResponse:response];
+            });
+        }
+    }];
+    
+    if (self.idTask) {
+        [self.idTask resume];
+    }
+
     if (indicator==0) {
         [self showLoadingView];
     }
     [self loadingIndicator:YES];
     
-    self.programListOffset += self.programListLimit;
+    self.programListOffset += kRecentProgramsMaxResults;
 }
 
 - (void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response
@@ -303,12 +330,11 @@
     if (data == nil) {
         if (self.shouldShowAlert) {
             self.shouldShowAlert = NO;
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kLocalizedPocketCode
-                                                                message:kLocalizedSlowInternetConnection
-                                                               delegate:self.navigationController.visibleViewController
-                                                      cancelButtonTitle:kLocalizedOK
-                                                      otherButtonTitles:nil];
-            [alertView show];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:kLocalizedPocketCode message:kLocalizedSlowInternetConnection preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            }];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
         }
         return;
     }
@@ -403,13 +429,26 @@
             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?id=%@", kConnectionHost, kConnectionIDQuery,project.projectID]];
             NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
             
-            //    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-            //    self.connection = connection;
+
+            if (self.infoTask) {
+                [self.infoTask cancel];
+            }
+            self.infoTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                if (error) {
+                    if (error.code != -999) {
+                        NSLog(@"%@", error);
+                    }
+                    
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self loadInfosWith:data andResponse:response];
+                    });
+                }
+            }];
             
-            [NSURLConnection sendAsynchronousRequest:request
-                                               queue:[NSOperationQueue mainQueue]
-                                   completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                       [self loadInfosWith:data andResponse:response];}];
+            if (self.infoTask) {
+                [self.infoTask resume];
+            }
 //            [self showLoadingView];
         }
         else
@@ -430,12 +469,11 @@
     if (data == nil) {
         if (self.shouldShowAlert) {
             self.shouldShowAlert = NO;
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kLocalizedPocketCode
-                                                                message:kLocalizedSlowInternetConnection
-                                                               delegate:self.navigationController.visibleViewController
-                                                      cancelButtonTitle:kLocalizedOK
-                                                      otherButtonTitles:nil];
-            [alertView show];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:kLocalizedPocketCode message:kLocalizedSlowInternetConnection preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            }];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
         }
         return;
     }
@@ -715,7 +753,6 @@
 
 - (void)changeView
 {
-    NSDebug(@"test %li", (long)self.downloadSegmentedControl.selectedSegmentIndex);
     switch (self.previousSelectedIndex) {
         case 0:
             self.mostDownloadedProgramListOffset = self.programListOffset;

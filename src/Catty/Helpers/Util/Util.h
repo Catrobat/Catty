@@ -214,4 +214,6 @@
 
 + (NSArray*)allMessagesForProgram:(Program*)program;
 
++ (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)index;
+
 @end

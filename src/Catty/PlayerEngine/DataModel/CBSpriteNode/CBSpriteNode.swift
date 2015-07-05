@@ -212,13 +212,18 @@ final class CBSpriteNode : SKSpriteNode {
 
 // [Swift1.2] DO NOT REMOVE!!!
     func touchedWithTouches(touches: NSSet, withX x: CGFloat, andY y: CGFloat) -> Bool {
-        let playerScene = (scene as! CBPlayerScene)
-        let scheduler = playerScene.scheduler
-        if scheduler?.running == false {
+        // FIXME: this check does not work any more since Swift 2.0! seems to be a compiler problem!
+        if scene as? CBPlayerScene == nil {
             return false
         }
-        let frontend = playerScene.frontend
-        let backend = playerScene.backend
+        if (scene as! CBPlayerScene).scheduler == nil {
+            return false
+        }
+        let scheduler = (scene as! CBPlayerScene).scheduler!
+        if !scheduler.running {
+            return false
+        }
+
         for touchAnyObject in touches {
             let touch = touchAnyObject as! UITouch
             let touchedPoint = touch.locationInNode(self)
@@ -235,17 +240,14 @@ final class CBSpriteNode : SKSpriteNode {
                 //                    println(@"I'm transparent at this point")
                 return false
             }
-            if let spriteObject = self.spriteObject, let scriptList = spriteObject.scriptList as NSArray as? [Script] {
+            if let scriptList = spriteObject!.scriptList as NSArray as? [Script] {
                 for script in scriptList {
-                    if let whenScript = script as? WhenScript {
-                        if let whenScriptContext = scheduler?.registeredContextForScript(whenScript) {
-                            if scheduler?.isContextScheduled(whenScriptContext) == false {
-                                scheduler?.startContext(whenScriptContext)
-                            } else {
-                                scheduler?.restartContext(whenScriptContext)
-                            }
+                    if let whenScript = script as? WhenScript,
+                       let whenScriptContext = scheduler.registeredContextForScript(whenScript) {
+                        if scheduler.isContextScheduled(whenScriptContext) == false {
+                            scheduler.startContext(whenScriptContext)
                         } else {
-                            fatalError("WhenScript not registered in Scheduler! This should NEVER HAPPEN!")
+                            scheduler.restartContext(whenScriptContext)
                         }
                     }
                 }

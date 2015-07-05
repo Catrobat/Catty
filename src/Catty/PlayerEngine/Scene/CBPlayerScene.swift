@@ -251,7 +251,6 @@ final class CBPlayerScene : SKScene {
             }
         }
 // [Swift1.2] DO NOT REMOVE!!!
-
         scheduler?.run()
     }
 

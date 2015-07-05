@@ -239,12 +239,11 @@
         [self.loadingView hide];
     });
     if (error.code != -999) {
-        [[[UIAlertView alloc] initWithTitle:@"Info"
-                                    message:error.localizedDescription
-                                   delegate:self
-                          cancelButtonTitle:kLocalizedOK
-                          otherButtonTitles:nil] show];
-        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        }];
+        [alert addAction:cancelAction];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
