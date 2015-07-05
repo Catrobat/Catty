@@ -622,7 +622,7 @@
                                  if (translate.x < (kWidthSlideMenu) && velocityX > 300) {
                                      [self bounceAnimation];
                                  }
-//                                 [((CBPlayerScene*)view.scene) stopScreenRecording];
+                                 [((CBPlayerScene*)view.scene) stopScreenRecording];
                              }];
         } else if(translate.x > 0.0 && translate.x <(kWidthSlideMenu/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
             [UIView animateWithDuration:0.25
