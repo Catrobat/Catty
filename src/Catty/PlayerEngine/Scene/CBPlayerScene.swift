@@ -22,10 +22,20 @@
 
 import SpriteKit
 
+//#if os(iOS9)
+    import ReplayKit
+//#endif
+
 final class CBPlayerScene : SKScene {
 
     // MARK: - Properties
     let logger : CBLogger?
+
+//    #if os(iOS9)
+    /// ReplayKit preview view controller used when viewing recorded content.
+    var previewViewController: RPPreviewViewController?
+//    #endif
+
     private(set) var scheduler : CBPlayerSchedulerProtocol?
     private(set) var frontend : CBPlayerFrontendProtocol?
     private(set) var backend : CBPlayerBackendProtocol?
@@ -214,11 +224,33 @@ final class CBPlayerScene : SKScene {
                 broadcastHandler?.subscribeBroadcastScriptContext(bcsContext)
             }
         }
+        if #available(iOS 9.0, *) {
+            startScreenRecording()
+        }
         scheduler?.run()
+    }
+
+    func stopScreenRecording() {
+        if #available(iOS 9.0, *) {
+            stopScreenRecordingWithHandler {
+                //        if #available(iOS 9, *) {
+                guard let previewViewController = self.previewViewController else {
+                    fatalError("The user requested playback, but a valid preview controller does not exist.")
+                }
+                guard let rootViewController = self.view?.window?.rootViewController else {
+                    fatalError("The scene must be contained in a window with e root view controller.")
+                }
+                // RPPreviewViewController only supports full screen modal presentation.
+                previewViewController.modalPresentationStyle = UIModalPresentationStyle.FullScreen
+                rootViewController.presentViewController(previewViewController, animated:true, completion:nil)
+                //        }
+            }
+        }
     }
 
     // MARK: - Stop program
     func stopProgram() {
+
         view?.paused = true // pause scene!
         scheduler?.shutdown() // stops scheduler and removes all ressources
 
