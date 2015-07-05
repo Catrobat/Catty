@@ -23,13 +23,13 @@
 #import "SearchStoreViewController.h"
 
 @interface SearchStoreViewController (Test)
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection;
-- (void)queryServerForSearchString:(NSString*)searchString;
+- (void)processResults:(NSArray *)results;
+- (void)performSearch;
 @end
 
 @interface TestSearchStoreViewController : SearchStoreViewController
 @property (nonatomic, strong) NSMutableArray *searchResults;
-@property (nonatomic, strong) XCTestExpectation *downloadFinished;
+@property (nonatomic, weak) XCTestExpectation *downloadFinished;
 - (id)initWithExpectation:(XCTestExpectation*) expectation;
 @end
 

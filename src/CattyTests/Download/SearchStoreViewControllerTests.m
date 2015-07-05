@@ -34,9 +34,9 @@
     self.downloadFinished = expectation;
     return self;
 }
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+- (void)processResults:(NSArray *)results
 {
-    [super connectionDidFinishLoading:connection];
+    [super processResults:results];
     [self.downloadFinished fulfill];
 }
 @end
@@ -58,7 +58,10 @@
 
 - (void)testSearchStore
 {
-    [self.searchStoreViewController queryServerForSearchString:@"a"];
+    UISearchBar *searchBar = [UISearchBar new];
+    self.searchStoreViewController.searchBar = searchBar;
+    self.searchStoreViewController.searchBar.text = @"a";
+    [self.searchStoreViewController performSearch];
     
     [self waitForExpectationsWithTimeout:CONNECTION_TIMEOUT handler:^(NSError *error) {
         XCTAssertNil(error, "Expectation Failed with error: %@", error);

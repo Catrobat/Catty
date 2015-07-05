@@ -29,7 +29,7 @@
 
 @interface TestFeaturedProgramsStoreViewController : FeaturedProgramsStoreViewController
 @property (nonatomic, strong) NSMutableArray* projects;
-@property (nonatomic, strong) XCTestExpectation *downloadFinished;
+@property (nonatomic, weak) XCTestExpectation *downloadFinished;
 - (id)initWithExpectation:(XCTestExpectation*) expectation;
 @end
 
