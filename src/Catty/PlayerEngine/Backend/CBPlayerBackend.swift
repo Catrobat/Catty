@@ -21,6 +21,7 @@
  */
 
 import Darwin // usleep
+import AVFoundation
 
 protocol CBPlayerBackendProtocol {
     func scriptContextForSequenceList(sequenceList: CBScriptSequenceList) -> CBScriptContextAbstract
@@ -205,7 +206,38 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
                         broadcastType: .BroadcastWait)
                 }
             } else if let waitBrick = operation.brick as? WaitBrick {
-                instructionList += _instructionForWaitBrick(waitBrick, context: context)
+                instructionList += CBPlayerInstruction.instructionForWaitBrick(waitBrick,
+                    scheduler: _scheduler, context: context)
+            } else if let playSoundBrick = operation.brick as? PlaySoundBrick {
+                instructionList += CBPlayerInstruction.instructionForPlaySoundBrick(playSoundBrick,
+                    scheduler: _scheduler, context: context)
+            } else if let stopAllSoundsBrick = operation.brick as? StopAllSoundsBrick {
+                instructionList += CBPlayerInstruction.instructionForStopAllSoundsBrick(stopAllSoundsBrick,
+                    scheduler: _scheduler, context: context)
+            } else if let speakBrick = operation.brick as? SpeakBrick {
+                instructionList += CBPlayerInstruction.instructionForSpeakBrick(speakBrick,
+                    scheduler: _scheduler, context: context)
+            } else if let changeVolByNBrick = operation.brick as? ChangeVolumeByNBrick {
+                instructionList += CBPlayerInstruction.instructionForChangeVolumeByNBrick(changeVolByNBrick,
+                    scheduler: _scheduler, context: context)
+            } else if let setVolToBrick = operation.brick as? SetVolumeToBrick {
+                instructionList += CBPlayerInstruction.instructionForSetVolumeToBrick(setVolToBrick,
+                    scheduler: _scheduler, context: context)
+            } else if let setVarBrick = operation.brick as? SetVariableBrick {
+                instructionList += CBPlayerInstruction.instructionForSetVariableBrick(setVarBrick,
+                    scheduler: _scheduler, context: context)
+            } else if let changeVarBrick = operation.brick as? ChangeVariableBrick {
+                instructionList += CBPlayerInstruction.instructionForChangeVariableBrick(changeVarBrick,
+                    scheduler: _scheduler, context: context)
+            } else if let flashLightOnBrick = operation.brick as? LedOnBrick {
+                instructionList += CBPlayerInstruction.instructionForFlashLightOnBrick(
+                    flashLightOnBrick, scheduler: _scheduler, context: context)
+            } else if let flashLightOffBrick = operation.brick as? LedOffBrick {
+                instructionList += CBPlayerInstruction.instructionForFlashLightOffBrick(
+                    flashLightOffBrick, scheduler: _scheduler, context: context)
+            } else if let vibrationBrick = operation.brick as? VibrationBrick {
+                instructionList += CBPlayerInstruction.instructionForVibrationBrick(
+                    vibrationBrick, scheduler: _scheduler, context: context)
             } else {
                 instructionList += { [weak self] in
                     context.runAction(operation.brick.action(), completion:{
@@ -218,59 +250,4 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
         return instructionList
     }
 
-    // MARK: Custom Brick Instructions
-    private func _instructionForWaitBrick(waitBrick: WaitBrick, context: CBScriptContextAbstract)
-        -> CBExecClosure
-    {
-        return { [weak self] in
-            context.state = .RunningMature
-            let object = waitBrick.script!.object
-            let durationInSeconds = waitBrick.timeToWaitInSeconds.interpretDoubleForSprite(object)
-
-            // ignore wait operation if an invalid duration is given!
-            // => UInt32 underflow not possible any more!
-            if durationInSeconds <= 0.0 {
-                self?._scheduler.runNextInstructionOfContext(context)
-                return
-            }
-
-            if durationInSeconds > 60.0 {
-                self?.logger.warn("WOW!!! long time to sleep (more than 1 minute!!!)...")
-                let wakeUpTime = NSDate().dateByAddingTimeInterval(durationInSeconds)
-                self?.logger.debug("Sleeping now until \(wakeUpTime)...")
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-                    NSThread.sleepUntilDate(wakeUpTime)
-                    // now switch back to the main queue for executing the next instruction!
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self?._scheduler.runNextInstructionOfContext(context)
-                    });
-                });
-            } else {
-                let durationInMicroSeconds = durationInSeconds * 1_000_000
-                // no worry about UInt32 overflow => not possible any more
-                // because of previous if condition!
-                let uduration = UInt32(durationInMicroSeconds) // in microseconds
-                // >1ms => duration for queue switch ~0.1ms => less than 10% inaccuracy
-                if uduration > 1_000 {
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-                        // high priority queue only needed for blocking purposes...
-                        // the reason for this is that you should NEVER block (serial) main_queue!!
-                        usleep(uduration)
-                        
-                        // now switch back to the main queue for executing the next instruction!
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self?._scheduler.runNextInstructionOfContext(context)
-                        });
-                    });
-                } else {
-                    // to be honest: duration of <1ms is too short for a queue
-                    //               switch due to >10% accuracy
-                    if uduration > 0 { // maybe duration is too small and became 0 after UInt32 conversion
-                        usleep(uduration)
-                    }
-                    self?._scheduler.runNextInstructionOfContext(context)
-                }
-            }
-        }
-    }
 }

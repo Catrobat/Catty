@@ -23,5 +23,4 @@
 #import "Brick.h"
 
 @interface LedOnBrick : Brick
-
 @end

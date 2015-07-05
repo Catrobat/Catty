@@ -22,24 +22,12 @@
 
 #import "PlaySoundBrick.h"
 #import "Sound.h"
-#import "AudioManager.h"
-#import "Script.h"
 
 @implementation PlaySoundBrick
 
 - (NSString*)brickTitle
 {
     return kLocalizedPlaySound;
-}
-
-- (SKAction*)action
-{
-    NSDebug(@"Adding: %@", self.description);
-    NSDebug(@"Test: %@", [self.script.object description]);
-    return [SKAction runBlock:^{
-        NSDebug(@"Performing: %@", self.description);
-        [[AudioManager sharedAudioManager] playSoundWithFileName:self.sound.fileName andKey:self.script.object.name atFilePath:[NSString stringWithFormat:@"%@%@", [self.script.object projectPath], kProgramSoundsDirName]];
-    }];
 }
 
 #pragma mark - Description
@@ -57,8 +45,9 @@
 
 - (void)setSound:(Sound *)sound forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
-    if(sound)
+    if (sound) {
         self.sound = sound;
+    }
 }
 
 - (Sound*)soundForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber

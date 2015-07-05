@@ -21,7 +21,6 @@
  */
 
 #import "StopAllSoundsBrick.h"
-#import "AudioManager.h"
 
 @implementation StopAllSoundsBrick
 
@@ -29,16 +28,6 @@
 {
     return kLocalizedStopAllSounds;
 }
-
-- (SKAction*)action
-{    
-    return [SKAction runBlock:^{
-        NSDebug(@"Performing: %@", self.description);
-        [[AudioManager sharedAudioManager]stopAllSounds];
-
-    }];
-}
-
 
 #pragma mark - Description
 - (NSString*)description

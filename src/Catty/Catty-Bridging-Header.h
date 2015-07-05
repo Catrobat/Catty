@@ -46,9 +46,20 @@
 #import "BroadcastWaitBrick.h"
 #import "HideBrick.h"
 #import "WaitBrick.h"
+#import "PlaySoundBrick.h"
+#import "StopAllSoundsBrick.h"
+#import "SpeakBrick.h"
+#import "ChangeVolumeByNBrick.h"
+#import "SetVolumeToBrick.h"
+#import "SetVariableBrick.h"
+#import "ChangeVariableBrick.h"
+#import "LedOnBrick.h"
+#import "LedOffBrick.h"
+#import "VibrationBrick.h"
 
 // Assets
 #import "Look.h"
+#import "Sound.h"
 
 //------------------------------------------------------------------------------------------------------------
 // Extension classes
@@ -61,3 +72,6 @@
 //------------------------------------------------------------------------------------------------------------
 
 #import "Util.h"
+#import "AudioManager.h"
+#import "ProgramDefines.h"
+#import "FlashHelper.h"

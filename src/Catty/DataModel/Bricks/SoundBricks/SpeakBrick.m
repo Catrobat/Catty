@@ -23,7 +23,6 @@
 #import "SpeakBrick.h"
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "Sound.h"
-#import <AVFoundation/AVSpeechSynthesis.h>
 
 @implementation SpeakBrick
 
@@ -48,24 +47,6 @@
     formulaElement.value = kLocalizedHello;
     speakFormula.formulaTree = formulaElement;
     self.formula = speakFormula;
-}
-
-- (SKAction*)action
-{
-    NSDebug(@"Adding: %@", self.description);
-    
-    return [SKAction runBlock:^{
-        NSDebug(@"Performing: %@", self.description);
-        AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];
-        AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:self.formula.formulaTree.value];
-        if (floor(NSFoundationVersionNumber) < 1200) {
-            utterance.rate = 0.15;
-        } else {
-            utterance.rate = 0.5;
-        }
-        [synthesizer speakUtterance:utterance];
-
-    }];
 }
 
 - (void)setText:(NSString*)text
@@ -96,7 +77,8 @@
         self.formula = formula;
 }
 
-- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber{
+- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
     return self.formula;
 }
 
