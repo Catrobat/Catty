@@ -398,7 +398,7 @@
 + (InternTokenType)getFirstInternTokenType:(NSArray*)internTokens
 {
     if (internTokens == nil || [internTokens count] == 0) {
-        [InternFormulaParserException raise:@"Parse Error" format:nil];
+        [InternFormulaParserException raise:@"Parse Error" format:@""];
     }
     
     return ((InternToken*)[internTokens objectAtIndex:0]).internTokenType;

@@ -41,9 +41,10 @@
 - (BOOL)alertViewShouldEnableFirstOtherButton:(CatrobatAlertView*)alertView;
 @end
 
-@interface CatrobatAlertView : UIAlertView<UITextFieldDelegate>
+@interface CatrobatAlertView : UIAlertController <UITextFieldDelegate>
 
 @property (nonatomic, strong) DataTransferMessage *dataTransferMessage; // DTO design pattern
+@property (nonatomic) NSInteger tag;
 
 - (id)initWithTitle:(NSString *)title
             message:(NSString *)message

@@ -83,7 +83,7 @@
     [self.canvas.saveView.image drawInRect:CGRectMake(0, 0, self.canvas.saveView.frame.size.width, self.canvas.saveView.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
     [self.canvas.drawView.image drawInRect:CGRectMake(0, 0, self.canvas.drawView.frame.size.width, self.canvas.drawView.frame.size.height) blendMode:kCGBlendModeNormal alpha:self.canvas.opacity];
     //UNDO-Manager
-    [[self.canvas getUndoManager] setImage:self.canvas.saveView.image];
+      [[self.canvas getUndoManager] setImage:self.canvas.saveView.image]; //.CIImage for IOS9
     self.canvas.saveView.image = UIGraphicsGetImageFromCurrentImageContext();
     self.canvas.drawView.image = nil;
     UIGraphicsEndImageContext();

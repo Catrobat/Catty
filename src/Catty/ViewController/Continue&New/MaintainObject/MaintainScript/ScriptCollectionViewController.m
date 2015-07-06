@@ -140,6 +140,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
     self.navigationController.interactivePopGestureRecognizer.cancelsTouchesInView = YES;
 }
 
@@ -347,7 +348,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         BOOL isProgramVar = [selectedButton.titleLabel.text isEqualToString:kUIFEActionVarPro];
         [self addVariableForBrick:(Brick*)brickCell.scriptOrBrick atIndexPath:indexPath andIsProgramVariable:isProgramVar];
     }
-    
     [self enableUserInteractionAndResetHighlight];
 }
 
@@ -1821,7 +1821,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if ([brickCellData isKindOfClass:[BrickCellVariableData class]] && [brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
         Brick<BrickVariableProtocol> *variableBrick = (Brick<BrickVariableProtocol>*)brick;
         if([(NSString*)value isEqualToString:kLocalizedNewElement]) {
-            NSIndexPath *path = [self.collectionView indexPathForCell:brickCellData.brickCell];
+            NSIndexPath *path = [self.collectionView indexPathForCell:(UICollectionViewCell*)brickCellData.brickCell];
             CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kUIFEActionVar
                                                                  delegate:self
                                                    destructiveButtonTitle:nil

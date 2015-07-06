@@ -164,12 +164,13 @@
 
 - (void) audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag{
     if (!flag) {
-        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Error"
-                                                       message:@"Not enough Memory"
-                                                      delegate:nil
-                                             cancelButtonTitle:@"OK"
-                                             otherButtonTitles:nil];
-        [alert show];
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Not enough Memory" preferredStyle:UIAlertControllerStyleAlert];
+                                    
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
     }
     [self.record setTitle:kLocalizedRecording forState:UIControlStateNormal];
 }

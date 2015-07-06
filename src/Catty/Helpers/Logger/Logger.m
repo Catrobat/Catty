@@ -23,6 +23,13 @@
 
 #import "Logger.h"
 
+typedef enum  {
+    LDEBUG,
+    LINFO,
+    LWARN,
+    LERROR
+} LogLevel;
+
 @interface Logger()
 
 @property LogLevel logLevel;
@@ -58,7 +65,7 @@ static Logger* instance;
 {
     va_list args;
     va_start(args, format);
-    [[Logger instance] logAtLevel:debug withFormat:format arguments:args];
+    [[Logger instance] logAtLevel:LDEBUG withFormat:format arguments:args];
     va_end(args);
 }
 
@@ -66,7 +73,7 @@ static Logger* instance;
 {
     va_list args;
     va_start(args, format);
-    [[Logger instance] logAtLevel:info withFormat:format arguments:args];
+    [[Logger instance] logAtLevel:LINFO withFormat:format arguments:args];
     va_end(args);
 }
 
@@ -74,7 +81,7 @@ static Logger* instance;
 {
     va_list args;
     va_start(args, format);
-    [[Logger instance] logAtLevel:warn withFormat:format arguments:args];
+    [[Logger instance] logAtLevel:LWARN withFormat:format arguments:args];
     va_end(args);
 }
 
@@ -82,7 +89,7 @@ static Logger* instance;
 {
     va_list args;
     va_start(args, format);
-    [[Logger instance] logAtLevel:error withFormat:format arguments:args];
+    [[Logger instance] logAtLevel:LERROR withFormat:format arguments:args];
     va_end(args);
 }
 
@@ -91,7 +98,7 @@ static Logger* instance;
     if(logError) {
         NSString* description = [logError localizedDescription];
         if(description) {
-            [[Logger instance] logAtLevel:error withFormat:description arguments:nil];
+            [[Logger instance] logAtLevel:LERROR withFormat:description arguments:nil];
         }
     }
 }
@@ -104,7 +111,7 @@ static Logger* instance;
         if ([self loggingEnabledForClass:callerClass logLevel:level]) {
             NSLog(@"[%@] %@: %@" ,[self stringForLogLevel:level], callerClass, [[NSString alloc] initWithFormat:format arguments:args]);
         }
-        if(level == error && kAbortAtError) {
+        if(level == LERROR && kAbortAtError) {
             NSDebug(@"----------FAIILLL------------");
             //abort();
         }
@@ -114,7 +121,7 @@ static Logger* instance;
 - (BOOL)loggingEnabledForClass:(NSString*)className logLevel:(LogLevel)level
 {    
     id classLvl = [self.loggerProperties objectForKey:className];
-    LogLevel classLogLevel = debug;
+    LogLevel classLogLevel = LDEBUG;
     if(classLvl) {
         classLogLevel = [self logLevelForString:classLvl];
     }
@@ -137,19 +144,19 @@ static Logger* instance;
 
 - (NSString*)stringForLogLevel:(LogLevel)level{
     switch (level) {
-        case debug:
+        case LDEBUG:
             return @"DEBUG";
             break;
             
-        case info:
+        case LINFO:
             return @"INFO";
             break;
-            
-        case warn:
+
+        case LWARN:
             return @"WARN";
             break;
-            
-        case error:
+
+        case LERROR:
             return @"ERROR";
             break;
             
@@ -162,16 +169,16 @@ static Logger* instance;
 - (LogLevel)logLevelForString:(NSString*)level
 {
     if([level isEqualToString:@"debug"]) {
-        return debug;
+        return LDEBUG;
     }
     if([level isEqualToString:@"info"]) {
-        return info;
+        return LINFO;
     }
     if([level isEqualToString:@"warn"]) {
-        return warn;
+        return LWARN;
     }
     if([level isEqualToString:@"error"]) {
-        return error;
+        return LERROR;
     }
     return -1;
 }

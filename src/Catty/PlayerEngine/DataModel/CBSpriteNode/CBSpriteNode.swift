@@ -77,7 +77,7 @@ final class CBSpriteNode : SKSpriteNode {
         spriteObject.spriteNode = self
     }
 
-    override init(texture: SKTexture, color: UIColor, size: CGSize) {
+    required override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
     }
 
@@ -160,41 +160,94 @@ final class CBSpriteNode : SKSpriteNode {
         }
     }
 
+// [Swift2.0] DO NOT REMOVE!!!
+//    func touchedWithTouches(touches: NSSet, withX x: CGFloat, andY y: CGFloat) -> Bool {
+//        guard let playerScene = (scene as? CBPlayerScene),
+//              let scheduler = playerScene.scheduler else {
+//            return false
+//        }
+//        // FIXME: this check does not work any more since Swift 2.0! seems to be a compiler problem!
+////        if scheduler.running == false {
+////            return false
+////        }
+//
+//        for touchAnyObject in touches {
+//            let touch = touchAnyObject as! UITouch
+//            let touchedPoint = touch.locationInNode(self)
+////                println("x:%f,y:%f", touchedPoint.x, touchedPoint.y)
+//            //println("test touch, %@",self.name)
+//            //        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [UIScreen mainScreen].scale);
+//            //        [self.scene.view drawViewHierarchyInRect:self.frame afterScreenUpdates:NO];
+//            //        UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
+//            //        UIGraphicsEndImageContext();
+////                println("image : x:%f,y:%f", self.currentUIImageLook.size.width, self.currentUIImageLook.size.height)
+////            let isTransparent = self.currentUIImageLook?.isTransparentPixel(self.currentUIImageLook, withX:touchedPoint.x, andY:touchedPoint.y)
+//            let isTransparent = self.currentUIImageLook?.isTransparentPixelOLDMETHOD(self.currentUIImageLook, withX:touchedPoint.x, andY:touchedPoint.y)
+//            if isTransparent == true {
+////                    println(@"I'm transparent at this point")
+//                return false
+//            }
+//            guard let spriteObject = self.spriteObject,
+//                  let scriptList = spriteObject.scriptList as NSArray as? [Script] else {
+//                fatalError("Invalid spriteObject or scriptList!")
+//            }
+//
+//            for script in scriptList {
+//                guard let whenScript = script as? WhenScript else { continue }
+//                guard let whenScriptContext = scheduler.registeredContextForScript(whenScript) else {
+//                    fatalError("WhenScript not registered in Scheduler! This should NEVER HAPPEN!")
+//                }
+//
+//                if scheduler.isContextScheduled(whenScriptContext) == false {
+//                    scheduler.startContext(whenScriptContext)
+//                } else {
+//                    scheduler.restartContext(whenScriptContext)
+//                }
+//            }
+//            return true
+//        }
+//        return true
+//    }
+// [Swift2.0] DO NOT REMOVE!!!
+
+// [Swift1.2] DO NOT REMOVE!!!
     func touchedWithTouches(touches: NSSet, withX x: CGFloat, andY y: CGFloat) -> Bool {
-        let playerScene = (scene as! CBPlayerScene)
-        let scheduler = playerScene.scheduler
-        if scheduler?.running == false {
+        // FIXME: this check does not work any more since Swift 2.0! seems to be a compiler problem!
+        if scene as? CBPlayerScene == nil {
             return false
         }
-        let frontend = playerScene.frontend
-        let backend = playerScene.backend
+        if (scene as! CBPlayerScene).scheduler == nil {
+            return false
+        }
+        let scheduler = (scene as! CBPlayerScene).scheduler!
+        if !scheduler.running {
+            return false
+        }
+
         for touchAnyObject in touches {
             let touch = touchAnyObject as! UITouch
             let touchedPoint = touch.locationInNode(self)
-//                println("x:%f,y:%f", touchedPoint.x, touchedPoint.y)
+            //                println("x:%f,y:%f", touchedPoint.x, touchedPoint.y)
             //println("test touch, %@",self.name)
             //        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [UIScreen mainScreen].scale);
             //        [self.scene.view drawViewHierarchyInRect:self.frame afterScreenUpdates:NO];
             //        UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
             //        UIGraphicsEndImageContext();
-//                println("image : x:%f,y:%f", self.currentUIImageLook.size.width, self.currentUIImageLook.size.height)
-//            let isTransparent = self.currentUIImageLook?.isTransparentPixel(self.currentUIImageLook, withX:touchedPoint.x, andY:touchedPoint.y)
+            //                println("image : x:%f,y:%f", self.currentUIImageLook.size.width, self.currentUIImageLook.size.height)
+            //            let isTransparent = self.currentUIImageLook?.isTransparentPixel(self.currentUIImageLook, withX:touchedPoint.x, andY:touchedPoint.y)
             let isTransparent = self.currentUIImageLook?.isTransparentPixelOLDMETHOD(self.currentUIImageLook, withX:touchedPoint.x, andY:touchedPoint.y)
             if isTransparent == true {
-//                    println(@"I'm transparent at this point")
+                //                    println(@"I'm transparent at this point")
                 return false
             }
-            if let spriteObject = self.spriteObject, let scriptList = spriteObject.scriptList as NSArray as? [Script] {
+            if let scriptList = spriteObject!.scriptList as NSArray as? [Script] {
                 for script in scriptList {
-                    if let whenScript = script as? WhenScript {
-                        if let whenScriptContext = scheduler?.registeredContextForScript(whenScript) {
-                            if scheduler?.isContextScheduled(whenScriptContext) == false {
-                                scheduler?.startContext(whenScriptContext)
-                            } else {
-                                scheduler?.restartContext(whenScriptContext)
-                            }
+                    if let whenScript = script as? WhenScript,
+                       let whenScriptContext = scheduler.registeredContextForScript(whenScript) {
+                        if scheduler.isContextScheduled(whenScriptContext) == false {
+                            scheduler.startContext(whenScriptContext)
                         } else {
-                            fatalError("WhenScript not registered in Scheduler! This should NEVER HAPPEN!")
+                            scheduler.restartContext(whenScriptContext)
                         }
                     }
                 }
@@ -203,6 +256,7 @@ final class CBSpriteNode : SKSpriteNode {
         }
         return true
     }
+// [Swift1.2] DO NOT REMOVE!!!
 
     // MARK: Helper
     class func spriteNodeWithName(name: String, inScene scene: SKScene) -> CBSpriteNode? {

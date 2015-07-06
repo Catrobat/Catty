@@ -24,7 +24,7 @@ final class CBSequenceList : SequenceType {
 
     // MARK: - Properties
     weak var rootSequenceList : CBScriptSequenceList?
-    private(set) lazy var sequenceList = [CBSequence]()
+    lazy var sequenceList = [CBSequence]()
     var count : Int { return sequenceList.count }
 
     // MARK: - Initializers
@@ -38,18 +38,23 @@ final class CBSequenceList : SequenceType {
     }
 
     // MARK: - Generator
+// [Swift2.0] DO NOT REMOVE!!!
+//    func generate() -> AnyGenerator<CBSequence> {
+//        var i = 0
+//        return anyGenerator {
+//            return i >= self.sequenceList.count ? .None : self.sequenceList[i++]
+//        }
+//    }
+// [Swift2.0] DO NOT REMOVE!!!
+// [Swift1.2] DO NOT REMOVE!!!
     func generate() -> GeneratorOf<CBSequence> {
         var i = 0
         return GeneratorOf<CBSequence> {
             return i >= self.sequenceList.count ? .None : self.sequenceList[i++]
         }
     }
+// [Swift1.2] DO NOT REMOVE!!!
 
-    func reverseSequenceList() -> CBSequenceList {
-        var reverseScriptSequenceList = CBSequenceList(rootSequenceList: rootSequenceList)
-        reverseScriptSequenceList.sequenceList = sequenceList.reverse()
-        return reverseScriptSequenceList
-    }
 }
 
 // MARK: - Custom operators

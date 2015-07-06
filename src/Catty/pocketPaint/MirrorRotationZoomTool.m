@@ -52,7 +52,7 @@
     self.canvas.vertical=NO;
   }
   //UNDO-Manager
-  [[self.canvas getUndoManager] setImage:self.canvas.saveView.image];
+ [[self.canvas getUndoManager] setImage:self.canvas.saveView.image]; //.CIImage for IOS9
   self.canvas.saveView.image = flippedImage;
   self.canvas.drawView.image = nil;
 }
@@ -72,7 +72,7 @@
     self.canvas.horizontal=NO;
   }
   //UNDO-Manager
-  [[self.canvas getUndoManager] setImage:self.canvas.saveView.image];
+ [[self.canvas getUndoManager] setImage:self.canvas.saveView.image]; //.CIImage for IOS9
   self.canvas.saveView.image = flippedImage;
   self.canvas.drawView.image = nil;
 }
@@ -92,7 +92,7 @@
 
     
   //UNDO-Manager
-  [[self.canvas getUndoManager] setImage:self.canvas.saveView.image];
+  [[self.canvas getUndoManager] setImage:self.canvas.saveView.image]; //.CIImage for IOS9
   self.canvas.saveView.image = image;
 }
 
@@ -107,7 +107,7 @@
   self.canvas.helper.frame =CGRectMake(self.canvas.helper.frame.origin.x,self.canvas.helper.frame.origin.y, self.canvas.helper.frame.size.height, self.canvas.helper.frame.size.width);
   self.canvas.scrollView.zoomScale = zoomScale;
   //UNDO-Manager
-  [[self.canvas getUndoManager] setImage:self.canvas.saveView.image];
+  [[self.canvas getUndoManager] setImage:self.canvas.saveView.image]; //.CIImage for IOS9
   self.canvas.saveView.image = image;
 }
 

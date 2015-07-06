@@ -47,6 +47,7 @@
 #import <objc/runtime.h>
 
 @interface Util () <CatrobatAlertViewDelegate>
+#define ROOTVIEW [[[UIApplication sharedApplication] keyWindow] rootViewController]
 
 @end
 
@@ -77,7 +78,7 @@
                                                       cancelButtonTitle:kLocalizedOK
                                                       otherButtonTitles:nil];
     if (! [self activateTestMode:NO]) {
-        [alert show];
+        [ROOTVIEW presentViewController:alert animated:YES completion:^{}];
     }
 }
 
@@ -125,7 +126,7 @@
                                                           otherButtonTitles:nil];
     alertView.tag = tag;
     if (! [self activateTestMode:NO]) {
-        [alertView show];
+        [ROOTVIEW presentViewController:alertView animated:YES completion:^{}];
     }
     return alertView;
 }
@@ -140,10 +141,15 @@
                                                                    delegate:delegate
                                                           cancelButtonTitle:kLocalizedNo
                                                           otherButtonTitles:nil];
-    [alertView addButtonWithTitle:kLocalizedYes];
+    UIAlertAction *yesAction = [UIAlertAction actionWithTitle:kLocalizedYes style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                                   {
+                                       [delegate alertView:alertView clickedButtonAtIndex:1];
+                                   }];
+    
+    [alertView addAction:yesAction];
     alertView.tag = tag;
     if (! [self activateTestMode:NO]) {
-        [alertView show];
+        [ROOTVIEW presentViewController:alertView animated:YES completion:^{}];
     }
     return alertView;
 }
@@ -175,16 +181,25 @@
                                                           cancelButtonTitle:kLocalizedCancel
                                                           otherButtonTitles:kLocalizedOK, nil];
     alertView.tag = tag;
-    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    UITextField *textField = [alertView textFieldAtIndex:0];
-    textField.placeholder = placeholder;
-    [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
-    textField.text = value;
-    textField.delegate = alertView;
-    textField.returnKeyType = UIReturnKeyDone;
-    [textField becomeFirstResponder];
+//    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+//    UITextField *textField = [alertView textFieldAtIndex:0];
+//    textField.placeholder = placeholder;
+//    [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
+//    textField.text = value;
+//    textField.delegate = alertView;
+//    textField.returnKeyType = UIReturnKeyDone;
+//    [textField becomeFirstResponder];
+    [alertView addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = placeholder;
+        textField.keyboardType = UIKeyboardTypeDefault;
+        [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
+        textField.text = value;
+        textField.returnKeyType = UIReturnKeyDone;
+        [textField becomeFirstResponder];
+    }];
+
     if (! [self activateTestMode:NO]) {
-        [alertView show];
+        [ROOTVIEW presentViewController:alertView animated:YES completion:^{}];
     }
     return alertView;
 }
@@ -399,7 +414,7 @@
         kDTPayloadAskUserMinInputLength : @(minInputLength),
         kDTPayloadAskUserInvalidInputAlertMessage : invalidInputAlertMessage,
         kDTPayloadAskUserExistingNames : (existingNames ? existingNames : [NSNull null]),
-        kDTPayloadCancel : (cancelAction ? [NSValue valueWithPointer:cancelAction] : [NSValue valueWithPointer:nil])
+        kDTPayloadCancel : (cancelAction ? [NSValue valueWithPointer:cancelAction] : [NSValue valueWithPointer:@""])
     };
     CatrobatAlertView *alertView = [[self class] promptWithTitle:title
                                                          message:message
@@ -676,13 +691,13 @@ replacementString:(NSString*)characters
 }
 
 #pragma mark - alert view delegates
-+ (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
++ (void)alertView:(CatrobatAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSMutableDictionary *payload = (NSMutableDictionary*)alertView.dataTransferMessage.payload;
     if (alertView.tag == kAskUserForUniqueNameAlertViewTag) {
-        if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
+        if ((buttonIndex == kAlertViewCancel) || (buttonIndex != kAlertViewButtonOK)) {
             SEL action = NULL;
-            if ((NSValue*)payload[kDTPayloadCancel]) {
+            if (((NSValue*)payload[kDTPayloadCancel]).pointerValue != @"") {
                 action = [((NSValue*)payload[kDTPayloadCancel]) pointerValue];
             }
             id target = payload[kDTPayloadAskUserTarget];
@@ -694,7 +709,7 @@ replacementString:(NSString*)characters
             return;
         }
 
-        NSString *input = [alertView textFieldAtIndex:0].text;
+        NSString *input = ((UITextField*)[alertView.textFields objectAtIndex:0]).text;
         id existingNamesObject = payload[kDTPayloadAskUserExistingNames];
         BOOL nameAlreadyExists = NO;
         if ([existingNamesObject isKindOfClass:[NSArray class]]) {
@@ -771,7 +786,7 @@ replacementString:(NSString*)characters
         }
     } else if (alertView.tag == kInvalidNameWarningAlertViewTag) {
         // title of cancel button is "OK"
-        if (buttonIndex == alertView.cancelButtonIndex) {
+        if (buttonIndex == kAlertViewCancel) {
             id value = payload[kDTPayloadAskUserPromptValue];
             CatrobatAlertView *newAlertView = [Util promptWithTitle:payload[kDTPayloadAskUserPromptTitle]
                                                             message:payload[kDTPayloadAskUserPromptMessage]
@@ -782,10 +797,10 @@ replacementString:(NSString*)characters
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         }
     } else if (alertView.tag == kAskUserForReportMessageAlertViewTag){
-        if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
+        if ((buttonIndex == kAlertViewCancel) || (buttonIndex != kAlertViewButtonOK)) {
             return;
         }
-        NSString *input = [alertView textFieldAtIndex:0].text;
+        NSString *input = ((UITextField*)[alertView.textFields objectAtIndex:0]).text;
         NSUInteger textFieldMinInputLength = [payload[kDTPayloadAskUserMinInputLength] unsignedIntegerValue];
         if ([input length] < textFieldMinInputLength) {
             NSString *alertText = [NSString stringWithFormat:kLocalizedNoOrTooShortInputDescription,
@@ -821,12 +836,12 @@ replacementString:(NSString*)characters
         }
 
     }else if (alertView.tag == kAskUserForVariableNameAlertViewTag) {
-        if ((buttonIndex == alertView.cancelButtonIndex) || (buttonIndex != kAlertViewButtonOK)) {
+        if ((buttonIndex == kAlertViewCancel) || (buttonIndex != kAlertViewButtonOK)) {
             FormulaEditorTextView *textView = (FormulaEditorTextView*)payload[kDTPayloadTextView];
             [textView becomeFirstResponder];
             return;
         }
-        NSString *input = [alertView textFieldAtIndex:0].text;
+        NSString *input = ((UITextField*)[alertView.textFields objectAtIndex:0]).text;
         NSUInteger textFieldMinInputLength = [payload[kDTPayloadAskUserMinInputLength] unsignedIntegerValue];
         if ([input length] < textFieldMinInputLength) {
             NSString *alertText = [NSString stringWithFormat:kLocalizedNoOrTooShortInputDescription,
@@ -861,7 +876,7 @@ replacementString:(NSString*)characters
         }
     }
 }
-
+//
 + (NSString*)singularString:(NSString*)string
 {
     NSMutableString *mutableString = [string mutableCopy];

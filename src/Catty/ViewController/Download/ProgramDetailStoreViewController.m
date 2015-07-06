@@ -55,8 +55,8 @@
 @property (nonatomic, strong) LoadingView *loadingView;
 @property (nonatomic, strong) Program *loadedProgram;
 @property (nonatomic, assign) BOOL useTestUrl;
-@property (nonatomic, strong) NSURLConnection *connection;
-@property (nonatomic, strong) NSMutableData *data;
+@property (strong, nonatomic) NSURLSession *session;
+@property (strong, nonatomic) NSURLSessionDataTask *dataTask;
 @property (nonatomic, strong) NSString *duplicateName;
 
 @end
@@ -69,6 +69,21 @@
         _projects = [[NSMutableDictionary alloc] init];
     }
     return _projects;
+}
+
+- (NSURLSession *)session {
+    if (!_session) {
+            // Initialize Session Configuration
+        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        
+            // Configure Session Configuration
+        [sessionConfiguration setHTTPAdditionalHeaders:@{ @"Accept" : @"application/json" }];
+        
+            // Initialize Session
+        _session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
+    }
+    
+    return _session;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -272,9 +287,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     NSDebug(@"ReportMessage::::::%@",message);
     
-    self.data = nil;
-    self.data = [[NSMutableData alloc] init];
-    
     NSString *reportUrl = self.useTestUrl ? kTestReportProgramUrl : kReportProgramUrl;
 
     NSString *post = [NSString stringWithFormat:@"%@=%@&%@=%@",@"id",self.project.projectID,@"message",message];
@@ -287,17 +299,39 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:postData];
     
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    self.connection = connection;
+
+    self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            if (error.code != -999) {
+                NSLog(@"%@", error);
+            }
+            
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSError *error = nil;
+                NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                NSString *statusCode = [NSString stringWithFormat:@"%@", [dictionary valueForKey:@"statusCode"]];
+                    //int statusCode = [dictionary valueForKey:@"statusCode"];
+                NSDebug(@"StatusCode is %@", statusCode);
+                
+                    //some ugly code just to get logic working
+                if ([statusCode isEqualToString:@"200"] || [statusCode  isEqualToString:@"201"]) {
+                    
+                    
+                } else {
+                    [Util alertWithText:[dictionary valueForKey:@"answer"]];
+                }
+
+            });
+        }
+    }];
     
-    [self.connection start];
-    
-    if(self.connection) {
+    if (self.dataTask) {
+        [self.dataTask resume];
         NSDebug(@"Connection Successful");
     } else {
-        NSDebug(@"Connection could not be made");
+         NSDebug(@"Connection could not be made");
     }
-  
 }
 
 - (void)playButtonPressed:(id)sender
@@ -376,8 +410,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIDevice *device = [UIDevice currentDevice];
     if ([[device model] isEqualToString:@"iPhone"] ) {
         //NSString* telpromt = [phoneNumber stringByReplacingOccurrencesOfString:@"tel:" withString:@""];
-        NSString *cleanedString = [[phoneNumber componentsSeparatedByCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789-+()"] invertedSet]] componentsJoinedByString:@""];
-        NSString *escapedPhoneNumber = [cleanedString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *escapedPhoneNumber = [phoneNumber stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789-+()"] invertedSet]];
         NSString *phoneURLString = [NSString stringWithFormat:@"telprompt:%@", escapedPhoneNumber];
         NSURL *url = [NSURL URLWithString:phoneURLString];
         [[UIApplication sharedApplication] openURL:url];
@@ -478,46 +511,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = value;
-}
-
-
-#pragma mark - URLDelegate
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
-{
-    NSDebug(@"Received Data from server");
-    if (self.connection == connection) {
-        [self.data appendData:data];
-    }
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    NSDebug(@"response");
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    if (self.connection == connection) {
-        NSDebug(@"Finished loading");
-        
-        NSError *error = nil;
-        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:self.data options:kNilOptions error:&error];
-        NSString *statusCode = [NSString stringWithFormat:@"%@", [dictionary valueForKey:@"statusCode"]];
-            //int statusCode = [dictionary valueForKey:@"statusCode"];
-        NSDebug(@"StatusCode is %@", statusCode);
-        
-            //some ugly code just to get logic working
-        if ([statusCode isEqualToString:@"200"] || [statusCode  isEqualToString:@"201"]) {
-            
-
-        } else {
-            [Util alertWithText:[dictionary valueForKey:@"answer"]];
-        }
-        self.data = nil;
-        self.connection = nil;
-    }
-
 }
 
 

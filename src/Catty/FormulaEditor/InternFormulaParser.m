@@ -205,7 +205,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
             [currentElement replaceElement:newFormulaElement];
             
             if (![self.currentToken isBracketClose]) {
-                [InternFormulaParserException raise:@"Parse Error" format:nil];
+                [InternFormulaParserException raise:@"Parse Error" format:@""];
             }
             [self getNextToken];
             break;
@@ -231,7 +231,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
         }
          
         default: {
-            [InternFormulaParserException raise:@"Parse Error" format:nil];
+            [InternFormulaParserException raise:@"Parse Error" format:@""];
             break;
         }
     }
@@ -254,7 +254,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
     FormulaElement *functionTree;
     
     if (![Functions isFunction:self.currentToken.tokenStringValue]) {
-        [InternFormulaParserException raise:@"Parse Error" format:nil];
+        [InternFormulaParserException raise:@"Parse Error" format:@""];
     }
     
     functionTree = [[FormulaElement alloc] initWithElementType:FUNCTION value:self.currentToken.tokenStringValue leftChild:nil rightChild:nil parent:nil];
@@ -270,7 +270,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
             functionTree.rightChild = [self termListForSpriteObject:object];
         }
         if (![self.currentToken isFunctionParameterBracketClose]) {
-            [InternFormulaParserException raise:@"Parse Error" format:nil];
+            [InternFormulaParserException raise:@"Parse Error" format:@""];
         }
         [self getNextToken];
     }
@@ -280,7 +280,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
 - (FormulaElement*)sensor
 {
     if ((NSInteger)[SensorManager sensorForString:self.currentToken.tokenStringValue] == -1) {
-        [InternFormulaParserException raise:@"Parse Error" format:nil];
+        [InternFormulaParserException raise:@"Parse Error" format:@""];
     }
          
     FormulaElement *sensorTree = [[FormulaElement alloc] initWithElementType:SENSOR value:self.currentToken.tokenStringValue leftChild:nil rightChild:nil parent:nil];
@@ -294,7 +294,7 @@ const int MAXIMUM_TOKENS_TO_PARSE = 1000;
     NSString* numberToCheck = self.currentToken.tokenStringValue;
     NSRange range = [numberToCheck rangeOfString:@"^(\\d)+(\\.(\\d)+)?$" options:NSRegularExpressionSearch];
     if (range.location == NSNotFound) {
-        [InternFormulaParserException raise:@"Parse Error" format:nil];
+        [InternFormulaParserException raise:@"Parse Error" format:@""];
     }
          
     [self getNextToken];

@@ -42,8 +42,8 @@
 
 @interface FeaturedProgramsStoreViewController ()
 
-@property (nonatomic, strong) NSMutableData *data;
-@property (nonatomic, strong) NSURLConnection *connection;
+@property (strong, nonatomic) NSURLSession *session;
+@property (strong, nonatomic) NSURLSessionDataTask *dataTask;
 @property (nonatomic, strong) NSMutableArray *projects;
 @property (nonatomic, strong) NSArray *featuredSize;
 @property (nonatomic, strong) LoadingView* loadingView;
@@ -60,6 +60,22 @@
     }
     return self;
 }
+
+- (NSURLSession *)session {
+    if (!_session) {
+            // Initialize Session Configuration
+        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        
+            // Configure Session Configuration
+        [sessionConfiguration setHTTPAdditionalHeaders:@{ @"Accept" : @"application/json" }];
+        
+            // Initialize Session
+        _session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
+    }
+    
+    return _session;
+}
+
 
 - (void)viewDidLoad
 {
@@ -181,15 +197,27 @@
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?%@%i", kConnectionHost, kConnectionFeatured, kProgramsLimit, kFeaturedProgramsMaxResults]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
     
-    //    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    //    self.connection = connection;
+
+    self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            if (error.code != -999) {
+                NSLog(@"%@", error);
+            }
+            
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self loadIDsWith:data andResponse:response];
+            });
+            
+        }
+    }];
     
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               [self loadIDsWith:data andResponse:response];}];
+    if (self.dataTask) {
+        [self.dataTask resume];
+        [self showLoadingView];
+    }
     
-    [self showLoadingView];
+
 }
 
 - (void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response
@@ -197,12 +225,15 @@
     if (data == nil) {
         if (self.shouldShowAlert) {
             self.shouldShowAlert = NO;
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kLocalizedPocketCode
-                                                                message:kLocalizedSlowInternetConnection
-                                                               delegate:self.navigationController.visibleViewController
-                                                      cancelButtonTitle:kLocalizedOK
-                                                      otherButtonTitles:nil];
-            [alertView show];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:kLocalizedPocketCode message:kLocalizedSlowInternetConnection preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            }];
+            
+        [alert addAction:okAction];
+            
+            
+            [self presentViewController:alert animated:YES completion:nil];
+    
         }
         return;
     }
@@ -234,14 +265,25 @@
         
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?id=%@", kConnectionHost, kConnectionIDQuery,project.projectID]];
         NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
+
+        NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            if (error) {
+                if (error.code != -999) {
+                    NSLog(@"%@", error);
+                }
+                
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                        [self loadInfosWith:data andResponse:response];
+                });
+                
+            }
+        }];
         
-        //    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-        //    self.connection = connection;
-        
-        [NSURLConnection sendAsynchronousRequest:request
-                                           queue:[NSOperationQueue mainQueue]
-                               completionHandler:^(NSURLResponse *completionResponse, NSData *completionData, NSError *completionError) {
-                                   [self loadInfosWith:completionData andResponse:completionResponse];}];
+        if (task) {
+            [task resume];
+            [self showLoadingView];
+        }
     }
     [self showLoadingView];
   
@@ -251,12 +293,11 @@
     if (data == nil) {
         if (self.shouldShowAlert) {
             self.shouldShowAlert = NO;
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:kLocalizedPocketCode
-                                                                message:kLocalizedSlowInternetConnection
-                                                               delegate:self.navigationController.visibleViewController
-                                                      cancelButtonTitle:kLocalizedOK
-                                                      otherButtonTitles:nil];
-            [alertView show];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:kLocalizedPocketCode message:kLocalizedSlowInternetConnection preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            }];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
         }
         return;
     }
