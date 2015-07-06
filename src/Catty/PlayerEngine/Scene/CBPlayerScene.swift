@@ -162,13 +162,13 @@ final class CBPlayerScene : SKScene {
 //            logger?.error("!! No sprite object list given !! This should never happen!")
 //            return
 //        }
-        let spriteObjectList = frontend?.program?.objectList!
+        let spriteObjectList = frontend?.program?.objectList! as! [AnyObject] as! [SpriteObject]
 
         var zPosition = 1.0
         var spriteNodes = [String:CBSpriteNode]()
 // [Swift2.0] DO NOT REMOVE!!!
 //        for spriteObject in spriteObjectList {
-        for spriteObject in spriteObjectList as! NSArray as! [SpriteObject] {
+        for spriteObject in spriteObjectList {
 // [Swift2.0] DO NOT REMOVE!!!
 //            guard let spriteObject = spriteObject as? SpriteObject else {
 //                logger?.error("!! Invalid sprite object given !! This should never happen!")
@@ -234,7 +234,7 @@ final class CBPlayerScene : SKScene {
 // [Swift2.0] DO NOT REMOVE!!!
 // [Swift1.2] DO NOT REMOVE!!!
         // compute all sequence lists
-        for spriteObject in spriteObjectList! {
+        for spriteObject in spriteObjectList {
             if let scriptList = spriteObject.scriptList as NSArray as? [Script] {
                 for script in scriptList {
                     if let scriptSequence = frontend?.computeSequenceListForScript(script),
