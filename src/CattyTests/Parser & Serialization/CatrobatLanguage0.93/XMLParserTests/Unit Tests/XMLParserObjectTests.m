@@ -40,7 +40,7 @@
     NSArray *objectElements = [[objectListElements firstObject] children];
     NSMutableArray *objectList = [NSMutableArray arrayWithCapacity:[objectElements count]];
 
-    CBXMLContext *context = [CBXMLContext new];
+    CBXMLParserContext *context = [CBXMLParserContext new];
     UserVariable *userVariable = [UserVariable new];
     userVariable.name = @"random from";
     [context.programVariableList addObject:userVariable];
@@ -89,7 +89,7 @@
     NSArray *objectElements = [[objectListElements firstObject] children];
     NSMutableArray *objectList = [NSMutableArray arrayWithCapacity:[objectElements count]];
 
-    CBXMLContext *context = [CBXMLContext new];
+    CBXMLParserContext *context = [CBXMLParserContext new];
     UserVariable *userVariable = [UserVariable new];
     userVariable.name = @"global";
     [context.programVariableList addObject:userVariable];

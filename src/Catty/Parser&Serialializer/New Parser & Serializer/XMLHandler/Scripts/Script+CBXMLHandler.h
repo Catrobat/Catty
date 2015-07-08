@@ -20,16 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "Script.h"
+#import "CBXMLNodeProtocol.h"
 
-@class GDataXMLElement;
-@class CBXMLSerializerContext;
-@class CBXMLParserContext;
+@class CBXMLContext;
 
-@protocol CBXMLNodeProtocol <NSObject>
+@interface Script (CBXMLHandler) <CBXMLNodeProtocol>
 
-@required
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context;
-- (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context;
 
 @end

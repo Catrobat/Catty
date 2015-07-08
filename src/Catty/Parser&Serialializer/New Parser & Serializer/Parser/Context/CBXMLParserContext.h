@@ -21,15 +21,23 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "CBXMLAbstractContext.h"
 
-@class GDataXMLElement;
-@class CBXMLSerializerContext;
-@class CBXMLParserContext;
+@class CBXMLOpenedNestingBricksStack;
+@class CBXMLPositionStack;
+@class SpriteObject;
+@class VariablesContainer;
 
-@protocol CBXMLNodeProtocol <NSObject>
+@interface CBXMLParserContext : CBXMLAbstractContext
 
-@required
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context;
-- (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context;
+//------------------------------------------------------------------------------------------------------------
+// ressources data used while traversing the tree
+//------------------------------------------------------------------------------------------------------------
+// TODO: refactor this later: remove brickList here and dynamically find brick in scriptList. maybe scripts should be referenced in bricks as well!!
+@property (nonatomic, strong) NSMutableArray *programVariableList; // (used for parsing only)
+@property (nonatomic, strong) NSMutableDictionary *spriteObjectNameVariableList; // (used for parsing only)
+@property (nonatomic, strong) NSMutableDictionary *formulaVariableNameList; // (used for parsing only)
+
+- (id)mutableCopy;
 
 @end

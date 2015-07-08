@@ -44,7 +44,7 @@
     NSMutableArray *lookList = [SpriteObject parseAndCreateLooks:objectElement];
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    CBXMLContext *context = [CBXMLContext new];
+    CBXMLParserContext *context = [CBXMLParserContext new];
     context.spriteObject = [SpriteObject new];
     context.spriteObject.lookList = lookList;
     Brick *brick = [SetLookBrick parseFromElement:brickXMLElement withContext:context];
@@ -95,7 +95,7 @@
     NSMutableArray *lookList = [SpriteObject parseAndCreateLooks:objectElement];
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
 
-    CBXMLContext *context = [CBXMLContext new];
+    CBXMLParserContext *context = [CBXMLParserContext new];
     context.spriteObject = [SpriteObject new];
     context.spriteObject.lookList = lookList;
     Brick *brick = [SetSizeToBrick parseFromElement:brickXMLElement withContext:context];
@@ -116,7 +116,7 @@
 
 - (void)testValidForeverBrickAndLoopEndlessBrick
 {
-    CBXMLContext *context = [[CBXMLContext alloc] init];
+    CBXMLParserContext *context = [[CBXMLParserContext alloc] init];
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
@@ -268,7 +268,7 @@
     NSMutableArray *soundList = [SpriteObject parseAndCreateSounds:objectElement];
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
 
-    CBXMLContext *context = [CBXMLContext new];
+    CBXMLParserContext *context = [CBXMLParserContext new];
     context.spriteObject = [SpriteObject new];
     context.spriteObject.soundList = soundList;
     Brick *brick = [PlaySoundBrick parseFromElement:brickXMLElement withContext:context];
@@ -520,7 +520,7 @@
     NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[10]" error:nil];
     XCTAssertEqual([brickElement count], 1);
     
-    CBXMLContext *context = [CBXMLContext new];
+    CBXMLParserContext *context = [CBXMLParserContext new];
     
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     

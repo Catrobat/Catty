@@ -20,16 +20,16 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "SpriteObject.h"
+#import "CBXMLNodeProtocol.h"
 
-@class GDataXMLElement;
-@class CBXMLSerializerContext;
-@class CBXMLParserContext;
+@interface SpriteObject (CBXMLHandler) <CBXMLNodeProtocol>
 
-@protocol CBXMLNodeProtocol <NSObject>
+#ifdef CATTY_TESTS
++ (NSMutableArray*)parseAndCreateLooks:(GDataXMLElement*)objectElement;
++ (NSMutableArray*)parseAndCreateSounds:(GDataXMLElement*)objectElement;
+#endif
 
-@required
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context;
-- (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context;
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context asPointedObject:(BOOL)asPointedObject;
 
 @end

@@ -20,16 +20,27 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
+#import "ShowBrick+CBXMLHandler.h"
+#import "CBXMLParserHelper.h"
+#import "GDataXMLElement+CustomExtensions.h"
+#import "CBXMLParserContext.h"
+#import "CBXMLSerializerContext.h"
+#import "CBXMLSerializerHelper.h"
 
-@class GDataXMLElement;
-@class CBXMLSerializerContext;
-@class CBXMLParserContext;
+@implementation ShowBrick (CBXMLHandler)
 
-@protocol CBXMLNodeProtocol <NSObject>
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
+{
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
+    return [self new]; // nothing else to do!
+}
 
-@required
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context;
-- (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context;
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
+{
+    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"ShowBrick"]];
+    return brick;
+}
 
 @end
