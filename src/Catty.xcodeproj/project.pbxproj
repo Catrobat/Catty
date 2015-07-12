@@ -848,7 +848,6 @@
 		9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginPopupViewController.m; sourceTree = "<group>"; };
 		928D4D771A7BD19A00E6DFA8 /* CatrobatUISlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CatrobatUISlider.h; path = CatrobatSlider/CatrobatUISlider.h; sourceTree = "<group>"; };
 		928D4D781A7BD19A00E6DFA8 /* CatrobatUISlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CatrobatUISlider.m; path = CatrobatSlider/CatrobatUISlider.m; sourceTree = "<group>"; };
-		929108921A41F32A0034564D /* CBParserNodeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBParserNodeProtocol.h; sourceTree = "<group>"; };
 		929108931A41F32A0034564D /* CBParserProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBParserProtocol.h; sourceTree = "<group>"; };
 		929108941A41F32A0034564D /* CBSerializerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSerializerProtocol.h; sourceTree = "<group>"; };
 		929108951A41F32A0034564D /* CBXMLNodeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLNodeProtocol.h; sourceTree = "<group>"; };
@@ -2318,7 +2317,6 @@
 		929108911A41F32A0034564D /* Parser&Serializer */ = {
 			isa = PBXGroup;
 			children = (
-				929108921A41F32A0034564D /* CBParserNodeProtocol.h */,
 				929108931A41F32A0034564D /* CBParserProtocol.h */,
 				929108941A41F32A0034564D /* CBSerializerProtocol.h */,
 				929108951A41F32A0034564D /* CBXMLNodeProtocol.h */,
