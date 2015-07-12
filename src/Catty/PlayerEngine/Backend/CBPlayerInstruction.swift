@@ -31,7 +31,7 @@ final class CBPlayerInstruction {
     class func instructionForWaitBrick(waitBrick: WaitBrick, scheduler: CBPlayerSchedulerProtocol,
         context: CBScriptContextAbstract) -> CBExecClosure
     {
-        let object = waitBrick.script.object
+        guard let object = waitBrick.script?.object else { fatalError("This should never happen!") }
         return {
             context.state = .RunningMature
             let durationInSeconds = waitBrick.timeToWaitInSeconds.interpretDoubleForSprite(object)
@@ -87,8 +87,11 @@ final class CBPlayerInstruction {
         scheduler: CBPlayerSchedulerProtocol, context: CBScriptContextAbstract) -> CBExecClosure
     {
         let fileName = playSoundBrick.sound.fileName
-        let objectName = playSoundBrick.script.object.name
-        let filePath = playSoundBrick.script.object.projectPath() + kProgramSoundsDirName
+        guard let objectName = playSoundBrick.script?.object?.name,
+              let projectPath = playSoundBrick.script?.object?.projectPath() else {
+                fatalError("This should never happen!")
+        }
+        let filePath = projectPath + kProgramSoundsDirName
         let audioManager = AudioManager.sharedAudioManager()
 
         return {
@@ -128,7 +131,9 @@ final class CBPlayerInstruction {
     class func instructionForChangeVolumeByNBrick(changeVolumeByNBrick: ChangeVolumeByNBrick,
         scheduler: CBPlayerSchedulerProtocol, context: CBScriptContextAbstract) -> CBExecClosure
     {
-        let spriteObject = changeVolumeByNBrick.script.object
+        guard let spriteObject = changeVolumeByNBrick.script?.object else {
+            fatalError("This should never happen!")
+        }
         let volumeFormula = changeVolumeByNBrick.volume
         let audioManager = AudioManager.sharedAudioManager()
         let spriteObjectName = spriteObject.name
@@ -144,7 +149,9 @@ final class CBPlayerInstruction {
     static func instructionForSetVolumeToBrick(setVolumeToBrick: SetVolumeToBrick,
         scheduler: CBPlayerSchedulerProtocol, context: CBScriptContextAbstract) -> CBExecClosure
     {
-        let spriteObject = setVolumeToBrick.script.object
+        guard let spriteObject = setVolumeToBrick.script?.object else {
+            fatalError("This should never happen")
+        }
         let audioManager = AudioManager.sharedAudioManager()
         let spriteObjectName = spriteObject.name
 
@@ -159,8 +166,10 @@ final class CBPlayerInstruction {
     class func instructionForSetVariableBrick(setVariableBrick: SetVariableBrick,
         scheduler: CBPlayerSchedulerProtocol, context: CBScriptContextAbstract) -> CBExecClosure
     {
-        let spriteObject = setVariableBrick.script.object
-        let variables = spriteObject.program.variables
+        guard let spriteObject = setVariableBrick.script?.object,
+              let variables = spriteObject.program?.variables else {
+            fatalError("This should never happen!")
+        }
         let userVariable = setVariableBrick.userVariable
         let variableFormula = setVariableBrick.variableFormula
 
@@ -178,8 +187,10 @@ final class CBPlayerInstruction {
     class func instructionForChangeVariableBrick(changeVariableBrick: ChangeVariableBrick,
         scheduler: CBPlayerSchedulerProtocol, context: CBScriptContextAbstract) -> CBExecClosure
     {
-        let spriteObject = changeVariableBrick.script.object
-        let variables = spriteObject.program.variables
+        guard let spriteObject = changeVariableBrick.script?.object,
+              let variables = spriteObject.program?.variables else {
+            fatalError("This should never happen!")
+        }
         let userVariable = changeVariableBrick.userVariable
         let variableFormula = changeVariableBrick.variableFormula
 
@@ -217,7 +228,9 @@ final class CBPlayerInstruction {
         scheduler: CBPlayerSchedulerProtocol, context: CBScriptContextAbstract) -> CBExecClosure
     {
         let durationFormula = vibrationBrick.durationInSeconds
-        let spriteObject = vibrationBrick.script.object
+        guard let spriteObject = vibrationBrick.script?.object else {
+            fatalError("This should never happen!")
+        }
         return {
             //            self?.logger.debug("Performing: VibrationBrick")
             dispatch_async(CBPlayerInstruction.vibrateSerialQueue, {

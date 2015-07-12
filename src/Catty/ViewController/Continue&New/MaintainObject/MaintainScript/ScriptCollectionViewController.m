@@ -1597,11 +1597,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 #pragma mark - Add new Variable
 - (void)addVariableForBrick:(Brick*)brick atIndexPath:(NSIndexPath*)indexPath andIsProgramVariable:(BOOL)isProgramVar
 {
-    Brick<BrickVariableProtocol> *variableBrick;
-    if ([brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
-        variableBrick = (Brick<BrickVariableProtocol>*)brick;
-    }
-    
     NSMutableArray *allVariableNames = [NSMutableArray new];
     if (isProgramVar) {
         for(UserVariable *var in [self.object.program.variables allVariables]) {

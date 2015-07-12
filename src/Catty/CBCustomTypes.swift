@@ -24,12 +24,7 @@
 extension Array {
     mutating func removeObject<U: Equatable>(object: U) {
         var index: Int?
-// [Swift2.0] DO NOT REMOVE!!!
-//        for (idx, objectToCompare) in self.enumerate() {
-// [Swift2.0] DO NOT REMOVE!!!
-// [Swift1.2] DO NOT REMOVE!!!
-        for (idx, objectToCompare) in enumerate(self) {
-// [Swift1.2] DO NOT REMOVE!!!
+        for (idx, objectToCompare) in self.enumerate() {
             if let to = objectToCompare as? U {
                 if object == to {
                     index = idx

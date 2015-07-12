@@ -217,12 +217,7 @@ public class FlexFormatter: LogFormatter {
     func getFunctionFormat(function: String) -> String {
         var result = function;
         if (result.hasPrefix("Optional(")) {
-// [Swift2.0] DO NOT REMOVE!!!
-//            let len = "Optional(".characters.count
-// [Swift2.0] DO NOT REMOVE!!!
-// [Swift1.2] DO NOT REMOVE!!!
-            let len = count("Optional(")
-// [Swift1.2] DO NOT REMOVE!!!
+            let len = "Optional(".characters.count
             let start = advance(result.startIndex, len)
             let end = advance(result.endIndex, -len)
             let range = start..<end
@@ -237,12 +232,7 @@ public class FlexFormatter: LogFormatter {
     public func formatLog<T>(logger: CBLogger, level: LogLevel, @autoclosure message givenMessage: () -> T,
         filename: String?, line: Int?,  function: String?) -> String {
             var logMessage = ""
-// [Swift2.0] DO NOT REMOVE!!!
-//            for (index, part) in format.enumerate() {
-// [Swift2.0] DO NOT REMOVE!!!
-// [Swift1.2] DO NOT REMOVE!!!
-            for (index, part) in enumerate(format) {
-// [Swift1.2] DO NOT REMOVE!!!
+            for (index, part) in format.enumerate() {
                 switch part {
                 case .MESSAGE:
                     let message = givenMessage()
@@ -290,12 +280,7 @@ public class FlexFormatter: LogFormatter {
 
     public func description() -> String {
         var desc = ""
-// [Swift2.0] DO NOT REMOVE!!!
-//        for (index, part) in format.enumerate() {
-// [Swift2.0] DO NOT REMOVE!!!
-// [Swift1.2] DO NOT REMOVE!!!
-        for (index, part) in enumerate(format) {
-// [Swift1.2] DO NOT REMOVE!!!
+        for (index, part) in format.enumerate() {
             switch part {
             case .MESSAGE: desc += "MESSAGE"
             case .NAME: desc += "NAME"
@@ -735,12 +720,7 @@ public class LogSelector {
         let temp = string.componentsSeparatedByString(",")
         for s: String in temp {
             // 'countElements(s)' returns s.length
-// [Swift2.0] DO NOT REMOVE!!!
-//            if (s.characters.count > 0) {
-// [Swift2.0] DO NOT REMOVE!!!
-// [Swift1.2] DO NOT REMOVE!!!
-            if (count(s) > 0) {
-// [Swift1.2] DO NOT REMOVE!!!
+            if (s.characters.count > 0) {
                 result.append(s)
             }
             //if (s.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0) {
@@ -942,12 +922,7 @@ public class Swell {
         
         // Now we need to handle potentially > 1 locations
         if config.locations.count > 1 {
-// [Swift2.0] DO NOT REMOVE!!!
-//            for (index,location) in config.locations.enumerate() {
-// [Swift2.0] DO NOT REMOVE!!!
-// [Swift1.2] DO NOT REMOVE!!!
-            for (index,location) in enumerate(config.locations) {
-// [Swift1.2] DO NOT REMOVE!!!
+            for (index,location) in config.locations.enumerate() {
                 if (index > 0) {
                     result.locations += [location]
                 }
@@ -1247,17 +1222,11 @@ public class Swell {
         
         return nil;
     }
-    
 
     func getFunctionFormat(function: String) -> String {
         var result = function;
         if (result.hasPrefix("Optional(")) {
-// [Swift2.0] DO NOT REMOVE!!!
-//            let len = "Optional(".characters.count
-// [Swift2.0] DO NOT REMOVE!!!
-// [Swift1.2] DO NOT REMOVE!!!
-            let len = count("Optional(")
-// [Swift1.2] DO NOT REMOVE!!!
+            let len = "Optional(".characters.count
             let start = advance(result.startIndex, len)
             let end = advance(result.endIndex, -len)
             let range = start..<end

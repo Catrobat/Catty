@@ -92,12 +92,7 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
     func subscribeBroadcastScriptContext(context: CBBroadcastScriptContext) {
         let message = context.broadcastMessage
         if var registeredContexts = _registeredBroadcastScriptContexts[message] {
-// [Swift2.0] DO NOT REMOVE!!!
-//            assert(registeredContexts.contains(context) == false, "FATAL: BroadcastScriptContext already registered!")
-// [Swift2.0] DO NOT REMOVE!!!
-// [Swift1.2] DO NOT REMOVE!!!
-            assert(!contains(registeredContexts, context), "FATAL: BroadcastScriptContext already registered!")
-// [Swift1.2] DO NOT REMOVE!!!
+            assert(registeredContexts.contains(context) == false, "FATAL: BroadcastScriptContext already registered!")
             registeredContexts += context
             _registeredBroadcastScriptContexts[message] = registeredContexts
 

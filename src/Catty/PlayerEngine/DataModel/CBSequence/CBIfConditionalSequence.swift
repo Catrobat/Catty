@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-final class CBIfConditionalSequence : CBConditionalSequence, CBSequenceVisitProtocol {
+final class CBIfConditionalSequence : CBConditionalSequence {
 
     // MARK: - Properties
     let elseSequenceList : CBSequenceList?
