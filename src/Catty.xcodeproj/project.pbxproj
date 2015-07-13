@@ -544,7 +544,6 @@
 		CAE3E55F1B4C50B300CC88BD /* Tic_Tac_Toe_Master_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E52A1B4C50B300CC88BD /* Tic_Tac_Toe_Master_093.xml */; };
 		CAE3E5601B4C50B300CC88BD /* Word_balloon_demo_09.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E52C1B4C50B300CC88BD /* Word_balloon_demo_09.xml */; };
 		CAE3E5611B4C50B300CC88BD /* Word_balloon_demo_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E52D1B4C50B300CC88BD /* Word_balloon_demo_093.xml */; };
-		CAE3E5621B4C50B300CC88BD /* Encapsulated.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E52F1B4C50B300CC88BD /* Encapsulated.xml */; };
 		CAE3E5631B4C50B300CC88BD /* X_Ray_phone_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5301B4C50B300CC88BD /* X_Ray_phone_091.xml */; };
 		CAE3E5641B4C50B300CC88BD /* X_Ray_phone_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5311B4C50B300CC88BD /* X_Ray_phone_093.xml */; };
 		CAE3E5651B4C50B300CC88BD /* Encapsulated.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5321B4C50B300CC88BD /* Encapsulated.xml */; };
@@ -4585,7 +4584,6 @@
 				CAE3E5661B4C50B300CC88BD /* LegoNxtMotorActionBrick.xml in Resources */,
 				CAE3E5411B4C50B300CC88BD /* Flap_Pac_Man_091.xml in Resources */,
 				CAE3E53A1B4C50B300CC88BD /* Airplane_with_shadow_093.xml in Resources */,
-				CAE3E5621B4C50B300CC88BD /* Encapsulated.xml in Resources */,
 				CAE3E5561B4C50B300CC88BD /* Pythagorean_Theorem_092.xml in Resources */,
 				CAE3E5491B4C50B300CC88BD /* Memory_09.xml in Resources */,
 				CAE3E5501B4C50B300CC88BD /* Nyancat_1.0_093.xml in Resources */,
