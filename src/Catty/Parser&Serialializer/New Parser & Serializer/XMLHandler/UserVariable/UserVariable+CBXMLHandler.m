@@ -46,26 +46,24 @@
     NSString *userVariableName = [xmlElement stringValue];
     [XMLError exceptionIfNil:userVariableName message:@"No name for user variable given"];
     UserVariable *userVariable = nil;
-    if (context.variablesParsed) {
-        SpriteObject *spriteObject = context.spriteObject;
-        if (spriteObject) {
-            [XMLError exceptionIfNil:spriteObject.name message:@"Given SpriteObject has no name."];
-            NSMutableArray *objectUserVariables = [context.spriteObjectNameVariableList objectForKey:spriteObject.name];
-            for (UserVariable *userVariableToCompare in objectUserVariables) {
-                if ([userVariableToCompare.name isEqualToString:userVariableName]) {
-                    return userVariableToCompare;
-                }
+    
+    SpriteObject *spriteObject = context.spriteObject;
+    if (spriteObject) {
+        [XMLError exceptionIfNil:spriteObject.name message:@"Given SpriteObject has no name."];
+        NSMutableArray *objectUserVariables = [context.spriteObjectNameVariableList objectForKey:spriteObject.name];
+        for (UserVariable *userVariableToCompare in objectUserVariables) {
+            if ([userVariableToCompare.name isEqualToString:userVariableName]) {
+                return userVariableToCompare;
             }
         }
-        userVariable = [CBXMLParserHelper findUserVariableInArray:context.programVariableList
-                                                         withName:userVariableName];
-        if (userVariable) {
-            return userVariable;
-        }
-        [XMLError exceptionWithMessage:@"UserVariable not found. This should never happen."];
     }
-
-    // Variables not parsed yet -> this method has been called from VariablesContainer+CBXMLHandler
+    userVariable = [CBXMLParserHelper findUserVariableInArray:context.programVariableList
+                                                     withName:userVariableName];
+    if (userVariable) {
+        return userVariable;
+    }
+    
+    // Init new UserVariable -> this method has been called from VariablesContainer+CBXMLHandler
     userVariable = [UserVariable new];
     userVariable.name = userVariableName;
     return userVariable;

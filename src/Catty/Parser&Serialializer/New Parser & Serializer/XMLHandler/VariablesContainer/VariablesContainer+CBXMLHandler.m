@@ -78,7 +78,6 @@
     }
     
     context.variables = varContainer;
-    context.variablesParsed = YES;
     return varContainer;
 }
 
