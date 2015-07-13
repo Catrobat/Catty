@@ -59,7 +59,7 @@ let licenseCheckExcludeDirs = [
     "UIViewController+CWPopup",
     "OrderedDictionary",
     "3rdParty",
-    "pocketPaint"
+    "PocketPaint"
 ]; let licenseCheckExcludeDirsLine = __LINE__; // CAVE: NEVER separate these two statements by adding a new line
 
 let licenseCheckExcludeFiles = [
