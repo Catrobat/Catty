@@ -50,6 +50,7 @@
 #import <netdb.h>
 #import <sys/socket.h>
 
+
 #import <CoreFoundation/CoreFoundation.h>
 
 #import "Reachability.h"
@@ -114,7 +115,10 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 		{
 			returnValue->_reachabilityRef = reachability;
 			returnValue->_alwaysReturnLocalWiFiStatus = NO;
-		}
+        }else{
+          CFRelease(reachability);  
+        }
+        
 	}
 	return returnValue;
 }
@@ -123,6 +127,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 + (instancetype)reachabilityWithAddress:(const struct sockaddr_in *)hostAddress
 {
 	SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault, (const struct sockaddr *)hostAddress);
+    
 
 	Reachability* returnValue = NULL;
 
@@ -133,7 +138,10 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 		{
 			returnValue->_reachabilityRef = reachability;
 			returnValue->_alwaysReturnLocalWiFiStatus = NO;
-		}
+        }else{
+            CFRelease(reachability);
+        }
+        
 	}
 	return returnValue;
 }

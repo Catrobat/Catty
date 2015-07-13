@@ -20,15 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
+protocol CBOptimizeSequenceVisitorProtocol {
+    func visit(sequence: CBScriptSequenceList)
+    func visit(sequence: CBSequenceList)
+    func visit(sequence: CBOperationSequence)
+    func visit(sequence: CBConditionalSequence)
+    func visit(sequence: CBIfConditionalSequence)
+}
 
-#define kSearchStoreMaxResults 50
-
-@interface SearchStoreViewController : UIViewController<UISearchBarDelegate,UITableViewDelegate, UITableViewDataSource,UIScrollViewDelegate>
-
-@property (nonatomic) BOOL checkSearch;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-
-@end
+protocol CBSequenceVisitProtocol {
+    func accept(visitor: CBOptimizeSequenceVisitorProtocol)
+}

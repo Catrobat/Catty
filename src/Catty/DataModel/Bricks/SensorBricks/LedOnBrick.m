@@ -22,29 +22,14 @@
 
 #import "LedOnBrick.h"
 #import "UIDefines.h"
-#import "FlashHelper.h"
 #import "Script.h"
 #import "SpriteObject.h"
-#import "Program.h"
 
 @implementation LedOnBrick
 
 - (NSString*)brickTitle
 {
     return kLocalizedLedOn;
-}
-
-- (SKAction*)action
-{
-    return [SKAction runBlock:[self actionBlock]];
-}
-
-- (dispatch_block_t)actionBlock
-{
-    return ^{
-        NSDebug(@"Performing: %@", self.description);
-        [[FlashHelper sharedFlashHandler] turnOn];
-    };
 }
 
 #pragma mark - Description

@@ -20,15 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
+#import "FeaturedProgramsStoreViewController.h"
 
-#define kSearchStoreMaxResults 50
+@interface FeaturedProgramsStoreViewController (Test)
+- (void)loadIDsWith:(NSData*)data andResponse:(NSURLResponse*)response;
+- (void)loadFeaturedProjects;
+@end
 
-@interface SearchStoreViewController : UIViewController<UISearchBarDelegate,UITableViewDelegate, UITableViewDataSource,UIScrollViewDelegate>
+@interface TestFeaturedProgramsStoreViewController : FeaturedProgramsStoreViewController
+@property (nonatomic, strong) NSMutableArray* projects;
+@property (nonatomic, weak) XCTestExpectation *downloadFinished;
+- (id)initWithExpectation:(XCTestExpectation*) expectation;
+@end
 
-@property (nonatomic) BOOL checkSearch;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-
+@interface FeaturedProgramsStoreViewControllerTests : XCTestCase
+@property (nonatomic, strong) TestFeaturedProgramsStoreViewController *featuredProgramsStoreViewController;
 @end

@@ -166,33 +166,27 @@ final class CBPlayerScene : SKScene {
 
         // init and prepare Scene
         self.removeAllChildren() // just to ensure
-        guard let spriteObjectList = frontend?.program?.objectList else {
-            logger?.error("!! No sprite object list given !! This should never happen!")
-            return
-        }
 
         var zPosition = 1.0
         var spriteNodes = [String:CBSpriteNode]()
+        guard let spriteObjectList = frontend?.program?.objectList as NSArray? as? [SpriteObject] else {
+            logger?.error("!! Invalid sprite object list given !! This should never happen!")
+            return
+        }
         for spriteObject in spriteObjectList {
-            guard let spriteObject = spriteObject as? SpriteObject else {
-                logger?.error("!! Invalid sprite object given !! This should never happen!")
-                return
-            }
             let spriteNode = CBSpriteNode(spriteObject: spriteObject)
             spriteNode.hidden = false
-            let scriptList = spriteObject.scriptList as NSArray as? [Script]
-            guard scriptList != nil else {
+            guard let scriptList = spriteObject.scriptList as NSArray? as? [Script] else {
                 logger?.error("!! No script list given in object: \(spriteObject) !! This should never happen!")
                 return
             }
-            for script in scriptList! {
+            for script in scriptList {
                 guard let startScript = script as? StartScript,
                       let _ = startScript.brickList.firstObject as? HideBrick else {
                     continue
                 }
                 spriteNode.hidden = true
                 break
-
             }
 
             // now add the brick with correct visability-state to the Scene

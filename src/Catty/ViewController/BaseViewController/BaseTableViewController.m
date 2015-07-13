@@ -363,7 +363,7 @@
 {
     if (alertView.tag == kConfirmAlertViewTag) {
         // check if user agreed
-        if (buttonIndex != alertView.cancelButtonIndex) {
+        if (buttonIndex != 0) {
             // XXX: hack to avoid compiler warning
             // http://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown
             SEL selector = self.confirmedAction;

@@ -66,8 +66,8 @@
 @property (nonatomic, strong) NSString *userEmail;
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *password;
-@property (nonatomic, strong) NSURLConnection *connection;
-@property (nonatomic, strong) NSMutableData *data;
+@property (strong, nonatomic) NSURLSession *session;
+@property (strong, nonatomic) NSURLSessionDataTask *dataTask;
 @property (nonatomic, strong) Keychain *keychain;
 
 @end
@@ -108,6 +108,22 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
     }
     return self;
 }
+
+- (NSURLSession *)session {
+    if (!_session) {
+            // Initialize Session Configuration
+        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        
+            // Configure Session Configuration
+        [sessionConfiguration setHTTPAdditionalHeaders:@{ @"Accept" : @"application/json" }];
+        
+            // Initialize Session
+        _session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
+    }
+    
+    return _session;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -472,9 +488,6 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
 - (void)loginAtServerWithUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email
 {
     NSDebug(@"Login started with username:%@ and password:%@ and email:%@", username, password, email);
-    // reset data
-    self.data = nil;
-    self.data = [[NSMutableData alloc] init];
     
     //Example URL: https://pocketcode.org/api/loginOrRegister/loginOrRegister.json?registrationUsername=MaxMuster&registrationPassword=MyPassword
     //For testing use: https://catroid-test.catrob.at/api/loginOrRegister/loginOrRegister.json?registrationUsername=MaxMuster&registrationPassword=MyPassword
@@ -518,12 +531,56 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[body length]];
     [request addValue:postLength forHTTPHeaderField:@"Content-Length"];
     
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    self.connection = connection;
+
+    self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            if (error.code != -999) {
+                NSLog(@"%@", error);
+            }
+            
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setEnableActivityIndicator:NO];
+                
+                NSError *error = nil;
+                NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                NSString *statusCode = [NSString stringWithFormat:@"%@", [dictionary valueForKey:statusCodeTag]];
+                NSDebug(@"StatusCode is %@", statusCode);
+                
+                if ([statusCode isEqualToString:statusCodeOK] || [statusCode  isEqualToString:statusCodeRegistrationOK]) {
+                    
+                    if ([statusCode isEqualToString:statusCodeRegistrationOK]) {
+                        [Util alertWithText:kLocalizedRegistrationSuccessfull];
+                    }
+                    
+                    NSDebug(@"Login successful");
+                    NSString *token = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenTag]];
+                    NSDebug(@"Token is %@", token);
+                    
+                        //save username, password and email in keychain and token in nsuserdefaults
+                    [[NSUserDefaults standardUserDefaults] setBool:true forKey:kUserIsLoggedIn];
+                    [[NSUserDefaults standardUserDefaults] setValue:token forKey:kUserLoginToken];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    
+                    [self addOrUpdateKeychainItem:kcUsername withData:self.userName];
+                    [self addOrUpdateKeychainItem:kcPassword withData:self.password];
+                    [self addOrUpdateKeychainItem:kcEmail withData:self.userEmail];
+                    
+                    [self.delegate dismissPopupWithCode:YES];
+                    
+                } else {
+                    self.loginButton.enabled = YES;
+                    
+                    NSString *serverResponse = [dictionary valueForKey:answerTag];
+                    NSDebug(@"Error: %@", serverResponse);
+                    [Util alertWithText:serverResponse];
+                }
+            });
+        }
+    }];
     
-    [self.connection start];
-    
-    if(self.connection) {
+    if (self.dataTask) {
+        [self.dataTask resume];
         NSDebug(@"Connection Successful");
         [self setEnableActivityIndicator:YES];
         self.loginButton.enabled = NO;
@@ -533,68 +590,6 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
     }
 }
 
-
-#pragma mark - NSURLConnection Delegates
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
-{
-    if (self.connection == connection) {
-        NSDebug(@"Received Data from server");
-        [self.data appendData:data];
-    }
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    if(connection == self.connection) {
-        [self setEnableActivityIndicator:NO];
-        NSDebug(@"NSURLConnection ERROR: %@", error);
-    }
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    if (self.connection == connection) {
-        NSDebug(@"Finished loading");
-        [self setEnableActivityIndicator:NO];
-        
-        NSError *error = nil;
-        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:self.data options:kNilOptions error:&error];
-        NSString *statusCode = [NSString stringWithFormat:@"%@", [dictionary valueForKey:statusCodeTag]];
-        NSDebug(@"StatusCode is %@", statusCode);
-        
-        if ([statusCode isEqualToString:statusCodeOK] || [statusCode  isEqualToString:statusCodeRegistrationOK]) {
-            
-            if ([statusCode isEqualToString:statusCodeRegistrationOK]) {
-                [Util alertWithText:kLocalizedRegistrationSuccessfull];
-            }
-            
-            NSDebug(@"Login successful");
-            NSString *token = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenTag]];
-            NSDebug(@"Token is %@", token);
-            
-            //save username, password and email in keychain and token in nsuserdefaults
-            [[NSUserDefaults standardUserDefaults] setBool:true forKey:kUserIsLoggedIn];
-            [[NSUserDefaults standardUserDefaults] setValue:token forKey:kUserLoginToken];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            
-            [self addOrUpdateKeychainItem:kcUsername withData:self.userName];
-            [self addOrUpdateKeychainItem:kcPassword withData:self.password];
-            [self addOrUpdateKeychainItem:kcEmail withData:self.userEmail];
-            
-            [self.delegate dismissPopupWithCode:YES];
-            
-        } else {
-            self.loginButton.enabled = YES;
-            
-            NSString *serverResponse = [dictionary valueForKey:answerTag];
-            NSDebug(@"Error: %@", serverResponse);
-            [Util alertWithText:serverResponse];
-        }
-        
-        self.data = nil;
-        self.connection = nil;
-    }
-}
 
 - (void)openURLAction:(id)sender
 {

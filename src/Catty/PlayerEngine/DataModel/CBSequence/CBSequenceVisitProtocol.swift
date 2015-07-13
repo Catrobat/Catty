@@ -20,15 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
+protocol CBSequenceProtocol {
 
-#define kSearchStoreMaxResults 50
+    // MARK: - Properties
+    weak var rootSequenceList: CBScriptSequenceList? { get set }
 
-@interface SearchStoreViewController : UIViewController<UISearchBarDelegate,UITableViewDelegate, UITableViewDataSource,UIScrollViewDelegate>
+    // MARK: - Operations
+    func isEmpty() -> Bool
 
-@property (nonatomic) BOOL checkSearch;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-
-@end
+}

@@ -59,7 +59,7 @@ let licenseCheckExcludeDirs = [
     "UIViewController+CWPopup",
     "OrderedDictionary",
     "3rdParty",
-    "pocketPaint"
+    "PocketPaint"
 ]; let licenseCheckExcludeDirsLine = __LINE__; // CAVE: NEVER separate these two statements by adding a new line
 
 let licenseCheckExcludeFiles = [
@@ -331,13 +331,10 @@ while let filePath = enumerator!.nextObject() as? String {
 }
 
 // license check for README.md
-do{
-let readmeFileContent =  try String(contentsOfFile: pathToReadmeFile, encoding: NSUTF8StringEncoding)
-let (failed, errorMessage) = licenseCheckForReadme(pathToReadmeFile, fileContent: readmeFileContent)
-printResultErrorAndExitIfFailed(failed, errorMessage:errorMessage)
-}
-catch {
+do {
+    let readmeFileContent = try String(contentsOfFile: pathToReadmeFile, encoding: NSUTF8StringEncoding)
+    let (failed, errorMessage) = licenseCheckForReadme(pathToReadmeFile, fileContent: readmeFileContent)
+    printResultErrorAndExitIfFailed(failed, errorMessage:errorMessage)
+} catch {
     printErrorAndExitIfFailed("\(__FILE__):\(pathToReadmeFileLine): error: Unable to open file or invalid filePath given!\n")
 }
-
-

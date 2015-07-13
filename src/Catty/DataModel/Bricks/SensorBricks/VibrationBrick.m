@@ -22,8 +22,6 @@
 
 #import "VibrationBrick.h"
 #import "Script.h"
-#import "Formula.h"
-#import <AudioToolbox/AudioToolbox.h>
 
 @implementation VibrationBrick
 
@@ -45,31 +43,6 @@
 - (NSString*)brickTitle
 {
     return kLocalizedVibrateNSeconds;
-}
-
-- (SKAction*)action
-{
-    return [SKAction runBlock:[self actionBlock]];
-}
-
-- (dispatch_block_t)actionBlock
-{
-    return ^{
-        NSDebug(@"Performing: %@", self.description);
-        dispatch_queue_t serialQueue = dispatch_queue_create("org.catrobat.vibrate.queue", DISPATCH_QUEUE_SERIAL);
-        dispatch_async(serialQueue, ^{
-            double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.script.object];
-            for (int i = 1; i < 2*durationInSeconds; i++) {
-                dispatch_async(dispatch_get_main_queue(), ^(void){
-                    [self performSelector:@selector(vibe:) withObject:self afterDelay:i *.5f];
-                });
-            }
-        });
-    };
-}
-
-- (void)vibe:(id)sender {
-    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
 
 #pragma mark - Description

@@ -37,8 +37,8 @@
 @interface SearchStoreViewController ()
 
 @property (nonatomic, strong) NSMutableArray *searchResults;
-@property (nonatomic, strong) NSMutableData *data;
-@property (nonatomic, strong) NSURLConnection *connection;
+@property (strong, nonatomic) NSURLSession *session;
+@property (strong, nonatomic) NSURLSessionDataTask *dataTask;
 @property (nonatomic, strong) UILabel *noSearchResultsLabel;
 @property (nonatomic, strong) UISearchController* searchController;
 
@@ -52,6 +52,21 @@
     if (self) {
     }
     return self;
+}
+
+- (NSURLSession *)session {
+    if (!_session) {
+            // Initialize Session Configuration
+        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        
+            // Configure Session Configuration
+        [sessionConfiguration setHTTPAdditionalHeaders:@{ @"Accept" : @"application/json" }];
+        
+            // Initialize Session
+        _session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
+    }
+    
+    return _session;
 }
 
 - (void)viewDidLoad
@@ -76,7 +91,12 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     self.view.backgroundColor = [UIColor darkBlueColor];
-    [[UITextField appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]] setTextColor:[UIColor lightOrangeColor]];
+// [iOS9] DO NOT REMOVE!!!
+//    [[UITextField appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]] setTextColor:[UIColor lightOrangeColor]];
+// [iOS9] DO NOT REMOVE!!!
+// [iOS8] DO NOT REMOVE!!!
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor lightOrangeColor]];
+// [iOS8] DO NOT REMOVE!!!
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame)+44, 0);
 }
@@ -191,49 +211,7 @@
     return self.tableView.rowHeight;
 }
 
-#pragma mark - NSURLConnection Delegates
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
-{
-    if (self.connection == connection) {
-        [self.data appendData:data];
-    }
-}
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    if (self.connection == connection) {
-        NSDebug(@"Finished");
-        
-        self.searchResults = nil;
-        self.searchResults = [[NSMutableArray alloc] init];
-        
-        NSError *error = nil;
-        id jsonObject = [NSJSONSerialization JSONObjectWithData:self.data
-                                                        options:NSJSONReadingMutableContainers
-                                                          error:&error];
-        
-        NSDebug(@"array: %@", jsonObject);
-        
-        if ([jsonObject isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *catrobatInformation = [jsonObject valueForKey:@"CatrobatInformation"];
-            
-            CatrobatInformation *information = [[CatrobatInformation alloc] initWithDict:catrobatInformation];
-            
-            NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
-            
-            self.searchResults = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
-            
-            for (NSDictionary *projectDict in catrobatProjects) {
-                CatrobatProgram *project = [[CatrobatProgram alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
-                [self.searchResults addObject:project];
-            }
-        }
-        self.data = nil;
-        self.connection = nil;
-        [self update];
-        [self loadingIndicator:NO];
-    }
-}
 
 - (void)loadingIndicator:(BOOL)value
 {
@@ -245,9 +223,25 @@
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    if (! [searchText isEqualToString:@""]) {
-        [self performSelector:@selector(queryServerForSearchString:) withObject:searchText afterDelay:0.2];
+    if (!searchText) return;
+    
+    if (searchText.length <= 2) {
+        [self resetSearch];
+        
+    } else {
+        if (! [searchText isEqualToString:@""]) {
+        [self performSearch];
+        }
     }
+
+}
+
+- (void)resetSearch {
+        // Update Data Source
+    [self.searchResults removeAllObjects];
+    
+        // Update Table View
+    [self update];
 }
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar*)searchBar
@@ -265,7 +259,7 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
-    [self queryServerForSearchString:searchBar.text];
+    [self performSearch];
     self.tabBarController.tabBar.translucent = YES;
     [self update];
     [self loadingIndicator:YES];
@@ -324,30 +318,78 @@
 }
 
 #pragma mark - Helper
-- (void)queryServerForSearchString:(NSString*)searchString
-{
-    NSDebug(@"Begin custom query to server");
-    // reset data
-    self.data = nil; // cleanup
-    self.data = [[NSMutableData alloc] init];
+
+
+- (void)performSearch {
+    NSString *searchString = self.searchBar.text;
     
-    NSString *queryString = [NSString stringWithFormat:@"%@/%@?offset=0&query=%@", kConnectionHost, kConnectionSearch, searchString];
+    if (self.dataTask) {
+        [self.dataTask cancel];
+    }
+ NSString *queryString = [NSString stringWithFormat:@"%@/%@?q=%@&%@%i&%@%i", kConnectionHost, kConnectionSearch, [searchString stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet], kProgramsLimit, kSearchStoreMaxResults, kProgramsOffset, 0];
+    self.dataTask = [self.session dataTaskWithURL:[NSURL URLWithString:queryString]  completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            if (error.code != -999) {
+                NSLog(@"%@", error);
+            }
+            
+        } else {
+            NSMutableArray *results;
+            id jsonObject = [NSJSONSerialization JSONObjectWithData:data
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:&error];
+            
+            NSDebug(@"array: %@", jsonObject);
+            
+            if ([jsonObject isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *catrobatInformation = [jsonObject valueForKey:@"CatrobatInformation"];
+                
+                CatrobatInformation *information = [[CatrobatInformation alloc] initWithDict:catrobatInformation];
+                
+                NSArray *catrobatProjects = [jsonObject valueForKey:@"CatrobatProjects"];
+                
+                results = [[NSMutableArray alloc] initWithCapacity:[catrobatProjects count]];
+                
+                for (NSDictionary *projectDict in catrobatProjects) {
+                    CatrobatProgram *project = [[CatrobatProgram alloc] initWithDict:projectDict andBaseUrl:information.baseURL];
+                    [results addObject:project];
+                }
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (results) {
+                    [self processResults:results];
+                }
+            });
+        }
+    }];
+    
+    if (self.dataTask) {
+        [self.dataTask resume];
+    }
+}
+
+- (NSURL *)urlForQuery:(NSString *)query {
+    NSString *queryString = [NSString stringWithFormat:@"%@/%@?q=%@&%@%i&%@%i", kConnectionHost, kConnectionSearch, [query stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet], kProgramsLimit, kSearchStoreMaxResults, kProgramsOffset, 0];
     NSDebug(@"Query string: %@", queryString);
+    return [NSURL URLWithString:queryString];
+}
+
+- (void)processResults:(NSArray *)results {
+    if (!self.searchResults) {
+        self.searchResults = [NSMutableArray array];
+    }
     
-    NSURL *url = [NSURL URLWithString:queryString];
+        // Update Data Source
+    [self.searchResults removeAllObjects];
+    [self.searchResults addObjectsFromArray:results];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
-    
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    self.connection = connection;
-    
-    NSDebug(@"Finished custom query to server");
+        // Update Table View
+    [self update];
 }
 
 - (void)update
 {
-    //  [self.searchDisplayController.searchResultsTableView reloadData];
-    
     self.noSearchResultsLabel.hidden = [self.searchResults count] == 0 ? NO : YES;
     [self.tableView reloadData];
 }

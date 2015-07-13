@@ -104,9 +104,9 @@ class CBScriptContextAbstract : SKNode {
         self._instructionList.removeAll(keepCapacity: false)
         self._scriptSequenceList?.sequenceList.rootSequenceList = nil
         if self._scriptSequenceList != nil {
-            for sequence in self._scriptSequenceList!.sequenceList.sequenceList {
-                sequence.rootSequenceList = nil
-            }
+//            for sequence in self._scriptSequenceList!.sequenceList.sequenceList {
+//                sequence.rootSequenceList = nil
+//            }
         }
         self._scriptSequenceList = nil
     }

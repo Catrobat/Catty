@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-final class CBScriptSequenceList {
+final class CBScriptSequenceList : CBSequenceVisitProtocol {
 
     // MARK: - Properties
     final let script : Script
@@ -35,6 +35,8 @@ final class CBScriptSequenceList {
     }
 
     // MARK: - Operations
-    // TODO: visitor pattern for sequence filter!
+    func accept(visitor: CBOptimizeSequenceVisitorProtocol) {
+        visitor.visit(self)
+    }
 
 }

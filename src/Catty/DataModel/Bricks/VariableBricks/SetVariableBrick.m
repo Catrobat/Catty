@@ -67,27 +67,6 @@
     return kLocalizedSetVariable;
 }
 
-- (SKAction*)action
-{
-  return [SKAction runBlock:[self actionBlock]];
-}
-
-- (dispatch_block_t)actionBlock
-{
-    return ^{
-        NSDebug(@"Performing: %@ on: %@", self.description, self.script.object);
-        double result = [self.variableFormula interpretDoubleForSprite:self.script.object];
-
-        if ([self.userVariable.name isEqualToString:@"digit"]) {
-            NSLog(@"Result is %f", result);
-        }
-
-        Program *program = ProgramManager.sharedProgramManager.program;
-        VariablesContainer *variables = program.variables;
-        [variables setUserVariable:self.userVariable toValue:result];
-    };
-}
-
 #pragma mark - Description
 - (NSString*)description
 {

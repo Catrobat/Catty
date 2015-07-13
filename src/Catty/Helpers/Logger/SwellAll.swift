@@ -1222,7 +1222,6 @@ public class Swell {
         
         return nil;
     }
-    
 
     func getFunctionFormat(function: String) -> String {
         var result = function;

@@ -92,8 +92,7 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
     func subscribeBroadcastScriptContext(context: CBBroadcastScriptContext) {
         let message = context.broadcastMessage
         if var registeredContexts = _registeredBroadcastScriptContexts[message] {
-            assert(registeredContexts.contains(context) == false,
-                "FATAL: BroadcastScriptContext already registered!")
+            assert(registeredContexts.contains(context) == false, "FATAL: BroadcastScriptContext already registered!")
             registeredContexts += context
             _registeredBroadcastScriptContexts[message] = registeredContexts
 

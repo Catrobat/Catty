@@ -46,3 +46,4 @@
 
 // Alert view button indexes
 #define kAlertViewButtonOK 1
+#define kAlertViewCancel 0

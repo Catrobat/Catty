@@ -282,14 +282,34 @@
 
 - (void)editAction
 {
-    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:kLocalizedPaintSelect delegate:self cancelButtonTitle:kLocalizedCancel destructiveButtonTitle:nil otherButtonTitles:
-                            kLocalizedPaintSave,
-                            kLocalizedPaintSaveClose,
-                            kLocalizedPaintDiscardClose,
-                            kLocalizedPaintNewCanvas,
-                            nil];
-    popup.tag = 1;
-    [popup showInView:[UIApplication sharedApplication].keyWindow];
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:kLocalizedPaintSelect message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedCancel style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    }];
+    [actionSheet addAction:cancelAction];
+    
+    UIAlertAction *saveAction = [UIAlertAction actionWithTitle:kLocalizedPaintSave style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self saveAction];
+    }];
+    [actionSheet addAction:saveAction];
+    
+    UIAlertAction *saveCloseAction = [UIAlertAction actionWithTitle:kLocalizedPaintSaveClose style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self saveAndCloseAction];
+    }];
+    [actionSheet addAction:saveCloseAction];
+    
+    
+    UIAlertAction *discardAction = [UIAlertAction actionWithTitle:kLocalizedPaintDiscardClose style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self discardAndCloseAction];
+    }];
+    [actionSheet addAction:discardAction];
+    
+    UIAlertAction *newCanvasAction = [UIAlertAction actionWithTitle:kLocalizedPaintNewCanvas style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self newCanvasAction];
+    }];
+    [actionSheet addAction:newCanvasAction];
+    
+    [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
 - (void)setupUndoManager
@@ -556,8 +576,14 @@
             recognizer.enabled = NO;
         }
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kLocalizedInformation message:kLocalizedPaintNoCrop delegate:self cancelButtonTitle:kLocalizedOK otherButtonTitles:nil];
-        [alert show];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:kLocalizedInformation message:kLocalizedPaintNoCrop preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        }];
+        [alert addAction:cancelAction];
+        
+    
+        [self presentViewController:alert animated:YES completion:nil];
     }
     
 }
@@ -739,35 +765,6 @@
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-#pragma mark actionSheetDelegate
-
-- (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    switch (popup.tag) {
-        case 1: {
-            switch (buttonIndex) {
-                case 0:
-                    [self saveAction];
-                    break;
-                case 1:
-                    [self saveAndCloseAction];
-                    break;
-                case 2:
-                    [self discardAndCloseAction];
-                    break;
-                case 3:
-                    [self newCanvasAction];
-                    break;
-                default:
-                    break;
-            }
-            break;
-        }
-        default:
-            break;
-    }
-}
-
 
 
 #pragma mark actionSheetActions
@@ -800,22 +797,26 @@
 }
 - (void)newCanvasAction
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:kLocalizedPaintNewCanvas
-                                                    message:kLocalizedPaintAskNewCanvas
-                                                   delegate:self
-                                          cancelButtonTitle:kLocalizedYes
-                                          otherButtonTitles:kLocalizedNo, nil];
-    [alert show];
-}
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
+   
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:kLocalizedPaintNewCanvas message:kLocalizedPaintAskNewCanvas preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *yesAction = [UIAlertAction actionWithTitle:kLocalizedYes style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
         UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         self.saveView.image = blank;
-    }
+    }];
+    
+    UIAlertAction *noAction = [UIAlertAction actionWithTitle:kLocalizedNo style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    }];
+    
+        // Add actions to the controller so they will appear
+    [alert addAction:yesAction];
+    [alert addAction:noAction];
+    
+     [self presentViewController:alert animated:YES completion:nil];
 }
+
 
 #pragma mark Getter
 

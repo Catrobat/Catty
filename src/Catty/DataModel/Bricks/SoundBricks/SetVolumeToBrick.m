@@ -22,7 +22,6 @@
 
 #import "SetVolumeToBrick.h"
 #import "Formula.h"
-#import "AudioManager.h"
 #import "Script.h"
 
 @implementation SetVolumeToBrick
@@ -46,19 +45,6 @@
 {
     return kLocalizedSetVolumeTo;
 }
-
-- (SKAction*)action
-{
-    NSDebug(@"Adding: %@", self.description);
-    
-    return [SKAction runBlock:^{
-        NSDebug(@"Performing: %@", self.description);
-        double volume = [self.volume interpretDoubleForSprite:self.script.object];
-        [[AudioManager sharedAudioManager] setVolumeToPercent:(CGFloat)volume forKey:self.script.object.name];
-        
-    }];
-}
-
 
 #pragma mark - Description
 - (NSString*)description

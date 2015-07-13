@@ -53,34 +53,19 @@
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
     self.variableFormula = [[Formula alloc] initWithZero];
-    if(spriteObject) {
+    if (spriteObject) {
         NSArray *variables = [spriteObject.program.variables allVariablesForObject:spriteObject];
-        if([variables count] > 0)
+        if([variables count] > 0) {
             self.userVariable = [variables objectAtIndex:0];
-        else
+        } else {
             self.userVariable = nil;
+        }
     }
 }
 
 - (NSString*)brickTitle
 {
     return kLocalizedChangeVariable;
-}
-
-- (SKAction*)action
-{
-    
-    return [SKAction runBlock:^{
-        NSDebug(@"Performing: %@ on: %@", self.description, self.script.object);
-        
-        double result = [self.variableFormula interpretDoubleForSprite:self.script.object];
-        
-        Program* program = ProgramManager.sharedProgramManager.program;
-        VariablesContainer* variables = program.variables;
-        
-        [variables changeVariable:self.userVariable byValue:result];
-    }];
-    
 }
 
 #pragma mark - Description
@@ -91,10 +76,12 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if(![self.userVariable isEqualToUserVariable:((ChangeVariableBrick*)brick).userVariable])
+    if (![self.userVariable isEqualToUserVariable:((ChangeVariableBrick*)brick).userVariable]) {
         return NO;
-    if(![self.variableFormula isEqualToFormula:((ChangeVariableBrick*)brick).variableFormula])
+    }
+    if (![self.variableFormula isEqualToFormula:((ChangeVariableBrick*)brick).variableFormula]) {
         return NO;
+    }
     return YES;
 }
 

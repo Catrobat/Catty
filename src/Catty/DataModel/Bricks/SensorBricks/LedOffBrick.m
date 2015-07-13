@@ -22,7 +22,6 @@
 
 #import "LedOffBrick.h"
 #import "UIDefines.h"
-#import "FlashHelper.h"
 #import "Script.h"
 
 @implementation LedOffBrick
@@ -30,19 +29,6 @@
 - (NSString*)brickTitle
 {
     return kLocalizedLedOff;
-}
-
-- (SKAction*)action
-{
-    return [SKAction runBlock:[self actionBlock]];
-}
-
-- (dispatch_block_t)actionBlock
-{
-    return ^{
-        NSDebug(@"Performing: %@", self.description);
-        [[FlashHelper sharedFlashHandler] turnOff];
-    };
 }
 
 #pragma mark - Description

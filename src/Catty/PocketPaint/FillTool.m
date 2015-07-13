@@ -50,7 +50,7 @@
     self.canvas.saveView.image = blank;
   }
   //UNDO-Manager
-  [[self.canvas getUndoManager] setImage:self.canvas.saveView.image.CIImage];
+  [[self.canvas getUndoManager] setImage:self.canvas.saveView.image]; //.CIImage for IOS9
 //  NSDebug(@"%@",self.canvas.saveView.image);
     UIImage *image = self.canvas.saveView.image;
   image = [self fillImage:image startingPoint:lastPoint andColor:[UIColor colorWithRed:self.canvas.red green:self.canvas.green blue:self.canvas.blue alpha:self.canvas.opacity]];

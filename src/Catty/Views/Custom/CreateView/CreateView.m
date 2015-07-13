@@ -311,7 +311,7 @@
     version = [version stringByReplacingOccurrencesOfString:@"&lt;" withString:@""];
     version = [version stringByAppendingString:@" MB"];
 
-    NSArray* informationArray = [[NSArray alloc] initWithObjects:views, uploaded, version,downloads, nil];
+    NSArray* informationArray = [[NSArray alloc] initWithObjects:[views stringValue], uploaded, version, [downloads stringValue], nil];
     NSArray* informationTitleArray = [[NSArray alloc] initWithObjects:
                                       [UIImage imageNamed:@"viewsIcon"],
                                       [UIImage imageNamed:@"timeIcon"],

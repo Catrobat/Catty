@@ -20,19 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class CBSequence {
+#import "SearchStoreViewController.h"
 
-    // MARK: - Properties
-    final weak var rootSequenceList : CBScriptSequenceList?
+@interface SearchStoreViewController (Test)
+- (void)processResults:(NSArray *)results;
+- (void)performSearch;
+@end
 
-    // MARK: - Initializers
-    init(rootSequenceList : CBScriptSequenceList) {
-        self.rootSequenceList = rootSequenceList
-    }
+@interface TestSearchStoreViewController : SearchStoreViewController
+@property (nonatomic, strong) NSMutableArray *searchResults;
+@property (nonatomic, weak) XCTestExpectation *downloadFinished;
+- (id)initWithExpectation:(XCTestExpectation*) expectation;
+@end
 
-    // MARK: - Operations
-    func isEmpty() -> Bool {
-        preconditionFailure("This method is abstract and must be overridden")
-    }
-
-}
+@interface SearchStoreViewControllerTests : XCTestCase
+@property (nonatomic, strong) TestSearchStoreViewController *searchStoreViewController;
+@end
