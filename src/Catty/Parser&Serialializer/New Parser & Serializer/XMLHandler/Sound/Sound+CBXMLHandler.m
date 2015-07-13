@@ -31,7 +31,7 @@
 @implementation Sound (CBXMLHandler)
 
 #pragma mark - Parsing
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(id)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"sound"];
     Sound *sound = [self new];
@@ -54,6 +54,11 @@
     sound.name = [nameChildNode stringValue];
     sound.fileName = [fileNameChildNode stringValue];
     return sound;
+}
+
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
+{
+    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 #pragma mark - Serialization

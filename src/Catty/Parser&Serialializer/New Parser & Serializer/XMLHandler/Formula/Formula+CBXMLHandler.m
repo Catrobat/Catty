@@ -23,15 +23,21 @@
 #import "Formula+CBXMLHandler.h"
 #import "FormulaElement+CBXMLHandler.h"
 #import "GDataXMLElement+CustomExtensions.h"
+#import "CBXMLParserContext.h"
 
 @implementation Formula (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
-    FormulaElement *formulaTree = [FormulaElement parseFromElement:xmlElement withContext:context];
+    FormulaElement *formulaTree = [context parseFromElement:xmlElement withClass:[FormulaElement class]];
     Formula *formula = [Formula new];
     formula.formulaTree = formulaTree;
     return formula;
+}
+
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
+{
+    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context

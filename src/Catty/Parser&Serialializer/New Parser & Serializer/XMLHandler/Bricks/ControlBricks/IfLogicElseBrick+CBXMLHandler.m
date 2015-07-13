@@ -33,7 +33,7 @@
 
 @implementation IfLogicElseBrick (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:0];
     IfLogicElseBrick *ifLogicElseBrick = [self new];
@@ -50,6 +50,11 @@
     // add opening nesting brick on stack
     [context.openedNestingBricksStack pushAndOpenNestingBrick:ifLogicElseBrick];
     return ifLogicElseBrick;
+}
+
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
+{
+    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context

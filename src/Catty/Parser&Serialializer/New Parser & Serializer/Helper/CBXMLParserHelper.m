@@ -75,7 +75,7 @@
                                                            containingAttribute:@"category"
                                                                      withValue:categoryName];
     [XMLError exceptionIfNil:formulaElement message:@"No formula with category %@ found...", categoryName];
-    Formula *formula = [Formula parseFromElement:formulaElement withContext:context];
+    Formula *formula = [context parseFromElement:formulaElement withClass:[Formula class]];
     [XMLError exceptionIfNil:formula message:@"Unable to parse formula..."];
     return formula;
 }

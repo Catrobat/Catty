@@ -34,7 +34,7 @@
 
 @implementation SetVariableBrick (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
     NSUInteger childCount = [xmlElement.childrenWithoutComments count];
     if (childCount == 3) {
@@ -62,12 +62,17 @@
         GDataXMLElement *userVariableElement = [xmlElement childWithElementName:@"userVariable"];
         [XMLError exceptionIfNil:userVariableElement message:@"No userVariableElement element found..."];
     
-        UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:context];
+        UserVariable *userVariable = [context parseFromElement:userVariableElement withClass:[UserVariable class]];
         [XMLError exceptionIfNil:userVariable message:@"Unable to parse userVariable..."];
         
         setVariableBrick.userVariable = userVariable;
     }
     return setVariableBrick;
+}
+
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
+{
+    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context

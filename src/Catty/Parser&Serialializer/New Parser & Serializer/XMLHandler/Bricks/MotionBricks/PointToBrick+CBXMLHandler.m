@@ -34,7 +34,7 @@
 
 @implementation PointToBrick (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
     if([xmlElement childCount] > 1) {
         [XMLError exceptionWithMessage:@"Too many child nodes found... (0 or 1 expected, actual %lu)", (unsigned long)[xmlElement childCount]];
@@ -49,7 +49,7 @@
     
         // check if pointed sprite object already exists in context (e.g. already created by other PointToBrick)
         CBXMLParserContext *newContext = [context mutableCopy]; // IMPORTANT: copy context!!!
-        SpriteObject *spriteObject = [SpriteObject parseFromElement:pointedObjectElement withContext:newContext];
+        SpriteObject *spriteObject = [newContext parseFromElement:pointedObjectElement withClass:[SpriteObject class]];
         context.spriteObjectList = newContext.spriteObjectList;
         context.pointedSpriteObjectList = newContext.pointedSpriteObjectList;
 
@@ -65,6 +65,11 @@
     }
 
     return pointToBrick;
+}
+
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
+{
+    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context

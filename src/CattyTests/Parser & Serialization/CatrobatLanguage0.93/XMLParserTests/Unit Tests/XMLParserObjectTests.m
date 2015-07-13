@@ -30,7 +30,7 @@
 @implementation XMLParserObjectTests
 
 - (void)testValidObjectList {
-    
+    CBXMLParserContext *parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.93f];
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]];
     GDataXMLElement *xmlElement = [document rootElement];
 
@@ -48,7 +48,7 @@
     userVariable.name = @"random to";
     [context.programVariableList addObject:userVariable];
     for (GDataXMLElement *objectElement in objectElements) {
-        SpriteObject *spriteObject = [SpriteObject parseFromElement:objectElement withContext:context];
+        SpriteObject *spriteObject = [parserContext parseFromElement:objectElement withClass:[SpriteObject class]];
         [objectList addObject:spriteObject];
     }
 
@@ -78,8 +78,9 @@
     XCTAssertTrue([sound.fileName isEqualToString: @"6f231e6406d3554d691f3c9ffb37c043_Hit1.m4a"], @"SpriteObject[1]: Sound fileName not correctly parsed");
 }
 
-- (void)testValidObjectListForAllBricks {
-    
+- (void)testValidObjectListForAllBricks
+{
+    CBXMLParserContext *parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.93f];
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgramAllBricks"]];
     GDataXMLElement *xmlElement = [document rootElement];
 
@@ -97,7 +98,7 @@
     userVariable.name = @"lokal";
     [context.programVariableList addObject:userVariable];
     for (GDataXMLElement *objectElement in objectElements) {
-        SpriteObject *spriteObject = [SpriteObject parseFromElement:objectElement withContext:context];
+        SpriteObject *spriteObject = [parserContext parseFromElement:objectElement withClass:[SpriteObject class]];
         [objectList addObject:spriteObject];
     }
 

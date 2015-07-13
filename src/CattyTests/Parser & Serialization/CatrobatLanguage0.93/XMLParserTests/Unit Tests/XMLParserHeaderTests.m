@@ -30,12 +30,13 @@
 
 @implementation XMLParserHeaderTests
 
-- (void)testValidHeader {
-    
+- (void)testValidHeader
+{
+    CBXMLParserContext *parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.93f];
     GDataXMLDocument* xmlRoot = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]];
     
-    Header *header = [Header parseFromElement:[[xmlRoot.rootElement elementsForName:@"header"] objectAtIndex:0]
-                                  withContext:nil];
+    Header *header = [parserContext parseFromElement:[[xmlRoot.rootElement elementsForName:@"header"] objectAtIndex:0]
+                                  withClass:[Header class]];
     XCTAssertNotNil(header, @"Header is nil");
     
     XCTAssertTrue([header.applicationBuildName isEqualToString: @"applicationBuildName"], @"applicationBuildName not correctly parsed");

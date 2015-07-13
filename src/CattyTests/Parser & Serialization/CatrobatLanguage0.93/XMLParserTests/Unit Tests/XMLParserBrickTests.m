@@ -25,9 +25,16 @@
 
 @interface XMLParserBrickTests : XMLParserAbstractTest
 
+@property (nonatomic, strong) CBXMLParserContext *parserContext;
+
 @end
 
 @implementation XMLParserBrickTests
+
+- (void)setUp
+{
+    self.parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.93f];
+}
 
 - (void)testValidSetLookBrick
 {
@@ -41,13 +48,12 @@
     XCTAssertEqual([objectArray count], 1);
     GDataXMLElement *objectElement = [objectArray objectAtIndex:0];
     
-    NSMutableArray *lookList = [SpriteObject parseAndCreateLooks:objectElement];
+    NSMutableArray *lookList = [SpriteObject parseAndCreateLooks:objectElement withContext:self.parserContext];
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    CBXMLParserContext *context = [CBXMLParserContext new];
-    context.spriteObject = [SpriteObject new];
-    context.spriteObject.lookList = lookList;
-    Brick *brick = [SetLookBrick parseFromElement:brickXMLElement withContext:context];
+    self.parserContext.spriteObject = [SpriteObject new];
+    self.parserContext.spriteObject.lookList = lookList;
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[SetLookBrick class]];
     
     XCTAssertTrue(brick.brickType == kSetLookBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[SetLookBrick class]], @"Invalid brick class");
@@ -67,7 +73,7 @@
     XCTAssertEqual([brickElement count], 1);
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
 
-    Brick *brick = [SetVariableBrick parseFromElement:brickXMLElement withContext:nil];
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[SetVariableBrick class]];
     XCTAssertTrue(brick.brickType == kSetVariableBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[SetVariableBrick class]], @"Invalid brick class");
     
@@ -92,13 +98,13 @@
     XCTAssertEqual([objectArray count], 1);
     GDataXMLElement *objectElement = [objectArray objectAtIndex:0];
     
-    NSMutableArray *lookList = [SpriteObject parseAndCreateLooks:objectElement];
+    NSMutableArray *lookList = [SpriteObject parseAndCreateLooks:objectElement withContext:self.parserContext];
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
 
     CBXMLParserContext *context = [CBXMLParserContext new];
     context.spriteObject = [SpriteObject new];
     context.spriteObject.lookList = lookList;
-    Brick *brick = [SetSizeToBrick parseFromElement:brickXMLElement withContext:context];
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[SetSizeToBrick class]];
 
     XCTAssertTrue(brick.brickType == kSetSizeToBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[SetSizeToBrick class]], @"Invalid brick class");
@@ -125,7 +131,7 @@
     
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    Brick *brick = [ForeverBrick parseFromElement:brickXMLElement withContext:context];
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[ForeverBrick class]];
     
     XCTAssertTrue(brick.brickType == kForeverBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[ForeverBrick class]], @"Invalid brick class");
@@ -135,7 +141,7 @@
     
     brickXMLElement = [brickElement objectAtIndex:0];
     
-    brick = [LoopEndBrick parseFromElement:brickXMLElement withContext:context];
+    brick = [self.parserContext parseFromElement:brickXMLElement withClass:[LoopEndBrick class]];
     
     XCTAssertTrue(brick.brickType == kLoopEndBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[LoopEndBrick class]], @"Invalid brick class");
@@ -153,7 +159,7 @@
     
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    Brick *brick = [PlaceAtBrick parseFromElement:brickXMLElement withContext:nil];
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[PlaceAtBrick class]];
     
     XCTAssertTrue(brick.brickType == kPlaceAtBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[PlaceAtBrick class]], @"Invalid brick class");
@@ -178,7 +184,7 @@
     
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    Brick *brick = [WaitBrick parseFromElement:brickXMLElement withContext:nil];
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[WaitBrick class]];
     
     XCTAssertTrue(brick.brickType == kWaitBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[WaitBrick class]], @"Invalid brick class");
@@ -201,7 +207,7 @@
     
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    Brick *brick = [ShowBrick parseFromElement:brickXMLElement withContext:nil];
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[ShowBrick class]];
     
     XCTAssertTrue(brick.brickType == kShowBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[ShowBrick class]], @"Invalid brick class");
@@ -217,7 +223,7 @@
     
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    Brick *brick = [GlideToBrick parseFromElement:brickXMLElement withContext:nil];
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[GlideToBrick class]];
     
     XCTAssertTrue(brick.brickType == kGlideToBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[GlideToBrick class]], @"Invalid brick class");
@@ -247,7 +253,7 @@
     
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    Brick *brick = [HideBrick parseFromElement:brickXMLElement withContext:nil];
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[HideBrick class]];
     
     XCTAssertTrue(brick.brickType == kHideBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[HideBrick class]], @"Invalid brick class");
@@ -265,13 +271,12 @@
     XCTAssertEqual([objectArray count], 1);
     GDataXMLElement *objectElement = [objectArray objectAtIndex:0];
     
-    NSMutableArray *soundList = [SpriteObject parseAndCreateSounds:objectElement];
+    NSMutableArray *soundList = [SpriteObject parseAndCreateSounds:objectElement withContext:self.parserContext];
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
 
-    CBXMLParserContext *context = [CBXMLParserContext new];
-    context.spriteObject = [SpriteObject new];
-    context.spriteObject.soundList = soundList;
-    Brick *brick = [PlaySoundBrick parseFromElement:brickXMLElement withContext:context];
+    self.parserContext.spriteObject = [SpriteObject new];
+    self.parserContext.spriteObject.soundList = soundList;
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[PlaySoundBrick class]];
 
     XCTAssertTrue(brick.brickType == kPlaySoundBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[PlaySoundBrick class]], @"Invalid brick class");
@@ -293,7 +298,7 @@
     
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    Brick *brick = [SetXBrick parseFromElement:brickXMLElement withContext:nil];
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[SetXBrick class]];
     
     XCTAssertTrue(brick.brickType == kSetXBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[SetXBrick class]], @"Invalid brick class");
@@ -316,7 +321,7 @@
     
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    Brick *brick = [SetXBrick parseFromElement:brickXMLElement withContext:nil];
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[SetXBrick class]];
     
     XCTAssertTrue(brick.brickType == kSetXBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[SetXBrick class]], @"Invalid brick class");
@@ -350,7 +355,7 @@
     
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    Brick *brick = [SetYBrick parseFromElement:brickXMLElement withContext:nil];
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[SetYBrick class]];
     
     XCTAssertTrue(brick.brickType == kSetYBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[SetYBrick class]], @"Invalid brick class");
@@ -373,7 +378,7 @@
     
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    Brick *brick = [ChangeXByNBrick parseFromElement:brickXMLElement withContext:nil];
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[ChangeXByNBrick class]];
     
     XCTAssertTrue(brick.brickType == kChangeXByNBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[ChangeXByNBrick class]], @"Invalid brick class");
@@ -396,7 +401,7 @@
     
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    Brick *brick = [ChangeYByNBrick parseFromElement:brickXMLElement withContext:nil];
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[ChangeYByNBrick class]];
     
     XCTAssertTrue(brick.brickType == kChangeYByNBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[ChangeYByNBrick class]], @"Invalid brick class");
@@ -418,7 +423,7 @@
     
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    Brick *brick = [MoveNStepsBrick parseFromElement:brickXMLElement withContext:nil];
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[MoveNStepsBrick class]];
     
     XCTAssertTrue(brick.brickType == kMoveNStepsBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[MoveNStepsBrick class]], @"Invalid brick class");
@@ -440,7 +445,7 @@
     
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    Brick *brick = [TurnLeftBrick parseFromElement:brickXMLElement withContext:nil];
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[TurnLeftBrick class]];
     
     XCTAssertTrue(brick.brickType == kTurnLeftBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[TurnLeftBrick class]], @"Invalid brick class");
@@ -462,7 +467,7 @@
     
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    Brick *brick = [TurnRightBrick parseFromElement:brickXMLElement withContext:nil];
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[TurnRightBrick class]];
     
     XCTAssertTrue(brick.brickType == kTurnRightBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[TurnRightBrick class]], @"Invalid brick class");
@@ -484,7 +489,7 @@
     
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    Brick *brick = [PointInDirectionBrick parseFromElement:brickXMLElement withContext:nil];
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[PointInDirectionBrick class]];
     
     XCTAssertTrue(brick.brickType == kPointInDirectionBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[PointInDirectionBrick class]], @"Invalid brick class");
@@ -506,7 +511,7 @@
     
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    Brick *brick = [StopAllSoundsBrick parseFromElement:brickXMLElement withContext:nil];
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[StopAllSoundsBrick class]];
     
     XCTAssertTrue(brick.brickType == kStopAllSoundsBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[StopAllSoundsBrick class]], @"Invalid brick class");
@@ -520,11 +525,9 @@
     NSArray *brickElement = [xmlElement nodesForXPath:@"//program/objectList/object[1]/scriptList/script[1]/brickList/brick[10]" error:nil];
     XCTAssertEqual([brickElement count], 1);
     
-    CBXMLParserContext *context = [CBXMLParserContext new];
-    
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
     
-    Brick *brick = [PointToBrick parseFromElement:brickXMLElement withContext:context];
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[PointToBrick class]];
     
     XCTAssertTrue(brick.brickType == kPointToBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[PointToBrick class]], @"Invalid brick class");

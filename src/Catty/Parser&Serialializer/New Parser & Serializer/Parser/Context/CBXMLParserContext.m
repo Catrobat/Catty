@@ -24,8 +24,34 @@
 #import "CBXMLOpenedNestingBricksStack.h"
 #import "CBXMLPositionStack.h"
 #import "VariablesContainer.h"
+#import "GDataXMLElement+CustomExtensions.h"
+#import "CBXMLNodeProtocol.h"
 
 @implementation CBXMLParserContext
+
+#pragma mark - Initialisation
+- (id)initWithLanguageVersion:(CGFloat)languageVersion
+{
+    self = [super init];
+    if (self) {
+        _languageVersion = languageVersion;
+    }
+    return self;
+}
+
+#pragma mark - CatrobatLanguageVersion selection
+- (id)parseFromElement:(GDataXMLElement*)xmlElement withClass:(Class<CBXMLNodeProtocol>)modelClass
+{
+    if (self.languageVersion == 0.93f) {
+        return [modelClass parseFromElement:xmlElement withContextForLanguageVersion093:self];
+    } else if (self.languageVersion == 0.94f || self.languageVersion == 0.95f) {
+        return [modelClass parseFromElement:xmlElement withContextForLanguageVersion095:self];
+    } else {
+        NSError(@"Unsupported CatrobatLanguageVersion %@", self.languageVersion);
+    }
+    
+    return nil;
+}
 
 #pragma mark - Getters and Setters
 - (NSMutableArray*)programVariableList
@@ -52,12 +78,20 @@
     return _formulaVariableNameList;
 }
 
+- (void)setLanguageVersion:(CGFloat)languageVersion
+{
+    _languageVersion = languageVersion;
+}
+
+#pragma mark - Copy
 - (id)mutableCopy
 {
     CBXMLParserContext *copiedContext = [super mutableCopy];
+    [copiedContext setLanguageVersion:self.languageVersion];
     copiedContext.programVariableList = [self.programVariableList mutableCopy];
     copiedContext.formulaVariableNameList = [self.formulaVariableNameList mutableCopy];
     copiedContext.spriteObjectNameVariableList = [self.spriteObjectNameVariableList mutableCopy];
+    copiedContext.variablesParsed = self.variablesParsed;
     return copiedContext;
 }
 

@@ -32,7 +32,7 @@
 
 @implementation PlaySoundBrick (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
     PlaySoundBrick *playSoundBrick = [self new];
     if([xmlElement childCount] == 0) {
@@ -42,7 +42,7 @@
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
     GDataXMLElement *soundElement = [[xmlElement children] firstObject];
     NSMutableArray *soundList = context.spriteObject.soundList;
-
+    
     Sound *sound = nil;
     if ([CBXMLParserHelper isReferenceElement:soundElement]) {
         GDataXMLNode *referenceAttribute = [soundElement attributeForName:@"reference"];
@@ -55,12 +55,17 @@
         [XMLError exceptionIfNil:sound message:@"Fatal error: no sound found in list, but should already exist!"];
     } else {
         // OMG!! a sound has been defined within the brick element...
-        sound = [Sound parseFromElement:xmlElement withContext:nil];
+        sound = [context parseFromElement:xmlElement withClass:[Sound class]];
         [XMLError exceptionIfNil:sound message:@"Unable to parse sound..."];
         [soundList addObject:sound];
     }
     playSoundBrick.sound = sound;
     return playSoundBrick;
+}
+
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
+{
+    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context

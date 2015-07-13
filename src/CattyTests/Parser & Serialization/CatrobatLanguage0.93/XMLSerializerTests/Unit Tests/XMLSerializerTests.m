@@ -61,6 +61,8 @@
 
 - (void)testRemoveObjectAndSerializeProgram
 {
+    CBXMLParserContext *parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.93f];
+    
     Program *referenceProgram = [self getProgramForXML:@"ValidProgram"];
     Program *program = [self getProgramForXML:@"ValidProgram"];
     SpriteObject *moleOne = [program.objectList objectAtIndex:1];
@@ -71,7 +73,7 @@
     XCTAssertEqual([program.objectList count] + 1, [referenceProgram.objectList count], @"Object not properly removed");
     XCTAssertFalse([[referenceProgram xmlElementWithContext:[CBXMLSerializerContext new]] isEqualToElement:xmlElement], @"Object not properly removed");
     
-    Program *parsedProgram = [Program parseFromElement:xmlElement withContext:[CBXMLParserContext new]];
+    Program *parsedProgram = [parserContext parseFromElement:xmlElement withClass:[Program class]];
     XCTAssertTrue([parsedProgram isEqualToProgram:program], @"Programs are not equal");
 }
 

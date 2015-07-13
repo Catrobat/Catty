@@ -37,7 +37,7 @@
 @implementation SpriteObject (CBXMLHandler)
 
 #pragma mark - Parsing
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
     [XMLError exceptionIfNil:xmlElement message:@"The rootElement nil"];
     if (! [xmlElement.name isEqualToString:@"object"] && ![xmlElement.name isEqualToString:@"pointedObject"]) {
@@ -93,13 +93,19 @@
 
     // IMPORTANT: DO NOT CHANGE ORDER HERE!
     [context.spriteObjectList addObject:spriteObject];
-    spriteObject.lookList = [self parseAndCreateLooks:xmlElement];
-    spriteObject.soundList = [self parseAndCreateSounds:xmlElement];
+    
+    spriteObject.lookList = [self parseAndCreateLooks:xmlElement withContext:context];
+    spriteObject.soundList = [self parseAndCreateSounds:xmlElement withContext:context];
     spriteObject.scriptList = [self parseAndCreateScripts:xmlElement withContext:context];
     return spriteObject;
 }
 
-+ (NSMutableArray*)parseAndCreateLooks:(GDataXMLElement*)objectElement
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
+{
+    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
+}
+
++ (NSMutableArray*)parseAndCreateLooks:(GDataXMLElement*)objectElement withContext:(CBXMLParserContext*)context
 {
     NSArray *lookListElements = [objectElement elementsForName:@"lookList"];
     [XMLError exceptionIf:[lookListElements count] notEquals:1 message:@"No lookList given!"];
@@ -111,14 +117,14 @@
     
     NSMutableArray *lookList = [NSMutableArray arrayWithCapacity:[lookElements count]];
     for (GDataXMLElement *lookElement in lookElements) {
-        Look *look = [Look parseFromElement:lookElement withContext:nil];
+        Look *look = [context parseFromElement:lookElement withClass:[Look class]];
         [XMLError exceptionIfNil:look message:@"Unable to parse look..."];
         [lookList addObject:look];
     }
     return lookList;
 }
 
-+ (NSMutableArray*)parseAndCreateSounds:(GDataXMLElement*)objectElement
++ (NSMutableArray*)parseAndCreateSounds:(GDataXMLElement*)objectElement withContext:(CBXMLParserContext*)context
 {
     NSArray *soundListElements = [objectElement elementsForName:@"soundList"];
     [XMLError exceptionIf:[soundListElements count] notEquals:1 message:@"No soundList given!"];
@@ -130,7 +136,7 @@
 
     NSMutableArray *soundList = [NSMutableArray arrayWithCapacity:[soundElements count]];
     for (GDataXMLElement *soundElement in soundElements) {
-        Sound *sound = [Sound parseFromElement:soundElement withContext:nil];
+        Sound *sound = [context parseFromElement:soundElement withClass:[Sound class]];
         [XMLError exceptionIfNil:sound message:@"Unable to parse sound..."];
         [soundList addObject:sound];
     }
@@ -150,7 +156,7 @@
 
     NSMutableArray *scriptList = [NSMutableArray arrayWithCapacity:[scriptElements count]];
     for (GDataXMLElement *scriptElement in scriptElements) {
-        Script *script = [Script parseFromElement:scriptElement withContext:context];
+        Script *script = [context parseFromElement:scriptElement withClass:[Script class]];
         [XMLError exceptionIfNil:script message:@"Unable to parse script..."];
         [scriptList addObject:script];
     }

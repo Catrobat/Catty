@@ -30,7 +30,7 @@
 
 @implementation BroadcastBrick (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
     GDataXMLElement *broadcastMessageElement = [xmlElement childWithElementName:@"broadcastMessage"];
@@ -43,6 +43,11 @@
     BroadcastBrick *broadcastBrick = [self new];
     broadcastBrick.broadcastMessage = broadcastMessage;
     return broadcastBrick;
+}
+
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
+{
+    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context

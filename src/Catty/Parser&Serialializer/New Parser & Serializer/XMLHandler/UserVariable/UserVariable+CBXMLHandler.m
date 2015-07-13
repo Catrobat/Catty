@@ -34,7 +34,7 @@
 @implementation UserVariable (CBXMLHandler)
 
 #pragma mark - Parsing
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"userVariable"];
     if ([CBXMLParserHelper isReferenceElement:xmlElement]) {
@@ -46,7 +46,7 @@
     NSString *userVariableName = [xmlElement stringValue];
     [XMLError exceptionIfNil:userVariableName message:@"No name for user variable given"];
     UserVariable *userVariable = nil;
-    if (context) {
+    if (context.variablesParsed) {
         SpriteObject *spriteObject = context.spriteObject;
         if (spriteObject) {
             [XMLError exceptionIfNil:spriteObject.name message:@"Given SpriteObject has no name."];
@@ -62,13 +62,18 @@
         if (userVariable) {
             return userVariable;
         }
-        [XMLError exceptionWithMessage:@"This should never happen."];
+        [XMLError exceptionWithMessage:@"UserVariable not found. This should never happen."];
     }
 
-    // no context given => this method has been called from VariablesContainer+CBXMLHandler
+    // Variables not parsed yet -> this method has been called from VariablesContainer+CBXMLHandler
     userVariable = [UserVariable new];
     userVariable.name = userVariableName;
     return userVariable;
+}
+
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
+{
+    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 #pragma mark - Serialization

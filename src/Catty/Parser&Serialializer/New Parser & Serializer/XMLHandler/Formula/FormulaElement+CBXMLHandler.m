@@ -30,7 +30,7 @@
 
 @implementation FormulaElement (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
     GDataXMLElement *typeElement = [xmlElement childWithElementName:@"type"];
     [XMLError exceptionIfNil:xmlElement message:@"No type element found..."];
@@ -47,14 +47,14 @@
     
     GDataXMLElement *rightChildElement = [xmlElement childWithElementName:@"rightChild"];
     if (rightChildElement) {
-        FormulaElement *rightChildFormula = [self parseFromElement:rightChildElement withContext:context];
+        FormulaElement *rightChildFormula = [context parseFromElement:rightChildElement withClass:[self class]];
         rightChildFormula.parent = formulaTree;
         formulaTree.rightChild = rightChildFormula;
     }
     
     GDataXMLElement *leftChildElement = [xmlElement childWithElementName:@"leftChild"];
     if (leftChildElement) {
-        FormulaElement *leftChildFormula = [self parseFromElement:leftChildElement withContext:context];
+        FormulaElement *leftChildFormula = [context parseFromElement:leftChildElement withClass:[self class]];
         leftChildFormula.parent = formulaTree;
         formulaTree.leftChild = leftChildFormula;
     }
@@ -68,6 +68,11 @@
     }
         
     return formulaTree;
+}
+
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
+{
+    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context

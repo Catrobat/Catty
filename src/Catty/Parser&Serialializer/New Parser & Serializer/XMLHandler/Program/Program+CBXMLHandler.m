@@ -37,13 +37,13 @@
 @implementation Program (CBXMLHandler)
 
 #pragma mark - Parsing
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"program"];
     [XMLError exceptionIfNil:context message:@"No context given!"];
     Program *program = [Program new];
     // IMPORTANT: DO NOT CHANGE ORDER HERE!!
-    program.header = [self parseAndCreateHeaderFromElement:xmlElement];
+    program.header = [self parseAndCreateHeaderFromElement:xmlElement withContext:context];
     program.variables = [self parseAndCreateVariablesFromElement:xmlElement withContext:context];
     program.objectList = [self parseAndCreateObjectsFromElement:xmlElement withContext:context];
     
@@ -51,12 +51,17 @@
     return program;
 }
 
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
+{
+    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
+}
+
 #pragma mark Header parsing
-+ (Header*)parseAndCreateHeaderFromElement:(GDataXMLElement*)programElement
++ (Header*)parseAndCreateHeaderFromElement:(GDataXMLElement*)programElement withContext:(CBXMLParserContext*)context
 {
     NSArray *headerNodes = [programElement elementsForName:@"header"];
     [XMLError exceptionIf:[headerNodes count] notEquals:1 message:@"Invalid header given!"];
-    return [Header parseFromElement:[headerNodes objectAtIndex:0] withContext:nil];
+    return [context parseFromElement:[headerNodes objectAtIndex:0] withClass:[Header class]];
 }
 
 #pragma mark Object parsing
@@ -70,7 +75,7 @@
                   message:@"No objects in objectList, but there must exist at least 1 object (background)!!"];
     NSMutableArray *objectList = [NSMutableArray arrayWithCapacity:[objectElements count]];
     for (GDataXMLElement *objectElement in objectElements) {
-        SpriteObject *spriteObject = [SpriteObject parseFromElement:objectElement withContext:context];
+        SpriteObject *spriteObject = [context parseFromElement:objectElement withClass:[SpriteObject class]];
         [XMLError exceptionIfNil:spriteObject message:@"Unable to parse SpriteObject!"];
         [objectList addObject:spriteObject];
     }
@@ -105,7 +110,7 @@
 + (VariablesContainer*)parseAndCreateVariablesFromElement:(GDataXMLElement*)programElement
                                               withContext:(CBXMLParserContext*)context
 {
-    return [VariablesContainer parseFromElement:programElement withContext:context];
+    return [context parseFromElement:programElement withClass:[VariablesContainer class]];
 }
 
 + (void)addMissingVariablesToVariablesContainer:(VariablesContainer*)variablesContainer withContext:(CBXMLParserContext*)context

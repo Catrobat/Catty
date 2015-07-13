@@ -38,7 +38,7 @@
 @implementation Script (CBXMLHandler)
 
 #pragma mark - Parsing
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"script"];
     NSArray *attributes = [xmlElement attributes];
@@ -78,6 +78,11 @@
     script.object = context.spriteObject;
     script.brickList = [self parseAndCreateBricks:xmlElement forScript:script withContext:context];
     return script;
+}
+
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
+{
+    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 + (NSMutableArray*)parseAndCreateBricks:(GDataXMLElement*)scriptElement forScript:(Script*)script
@@ -127,9 +132,9 @@
             brickXmlElement = brickElement;
         }
         [XMLError exceptionIf:[class conformsToProtocol:@protocol(CBXMLNodeProtocol)] equals:NO
-                      message:@"%@ must have a category %@+CBXMLHandler that implements CBParserNodeProtocol",
+                      message:@"%@ must have a category %@+CBXMLHandler that implements CBXMLNodeProtocol",
                               brickClassName, brickClassName];
-        Brick *brick = [class parseFromElement:brickXmlElement withContext:context];
+        Brick *brick = [context parseFromElement:brickXmlElement withClass:class];
         [XMLError exceptionIfNil:brick message:@"Unable to parse brick..."];
         brick.script = script;
         [brickList addObject:brick];

@@ -30,7 +30,7 @@
 @implementation Header (CBXMLHandler)
 
 #pragma mark - Parsing
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
     [XMLError exceptionIfNil:xmlElement message:@"No xml element given!"];
     Header *header = [self defaultHeader];
@@ -49,6 +49,11 @@
         [header setValue:value forKey:headerPropertyName]; // Note: weak properties are not yet supported!!
     }
     return header;
+}
+
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
+{
+    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 #pragma mark - Serialization

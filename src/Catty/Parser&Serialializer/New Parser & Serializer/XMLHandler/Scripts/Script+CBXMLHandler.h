@@ -27,6 +27,4 @@
 
 @interface Script (CBXMLHandler) <CBXMLNodeProtocol>
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context;
-
 @end

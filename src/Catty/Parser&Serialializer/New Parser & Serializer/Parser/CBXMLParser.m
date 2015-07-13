@@ -26,10 +26,11 @@
 #import "Program+CBXMLHandler.h"
 #import "Program+CustomExtensions.h"
 #import "CBXMLParserContext.h"
+#import "Util.h"
 
 // NEVER MOVE THESE DEFINE CONSTANTS TO ANOTHER (HEADER) FILE
 #define kCatrobatXMLParserMinSupportedLanguageVersion 0.93f
-#define kCatrobatXMLParserMaxSupportedLanguageVersion CGFLOAT_MAX
+#define kCatrobatXMLParserMaxSupportedLanguageVersion 0.95f
 
 @interface CBXMLParser()
 
@@ -104,8 +105,11 @@
 
     Program *program = nil;
     @try {
-        NSInfo(@"Parsing Program...");
-        program = [Program parseFromElement:xmlDocument.rootElement withContext:[CBXMLParserContext new]];
+        CGFloat languageVersion = [Util detectCBLanguageVersionFromXMLWithPath:self.xmlPath];
+        NSInfo(@"Parsing Program with CatrobatLanguageVersion %.2f...", languageVersion);
+        CBXMLParserContext *parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:languageVersion];
+        program = [parserContext parseFromElement:xmlDocument.rootElement
+                                        withClass:[Program class]];
         NSInfo(@"Parsing finished...");
     } @catch(NSException *exception) {
         NSError(@"Program could not be loaded! %@", [exception description]);

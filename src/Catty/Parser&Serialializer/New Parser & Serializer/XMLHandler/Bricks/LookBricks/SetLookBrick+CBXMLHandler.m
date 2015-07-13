@@ -31,7 +31,7 @@
 
 @implementation SetLookBrick (CBXMLHandler)
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
     SetLookBrick *setLookBrick = [self new];
     if([xmlElement childCount] == 0) {
@@ -55,12 +55,17 @@
         [XMLError exceptionIfNil:look message:@"Fatal error: no look found in list, but should already exist!"];
     } else {
         // OMG!! a look has been defined within the brick element...
-        look = [Look parseFromElement:xmlElement withContext:nil];
+        look = [context parseFromElement:xmlElement withClass:[Look class]];
         [XMLError exceptionIfNil:look message:@"Unable to parse look..."];
         [lookList addObject:look];
     }
     setLookBrick.look = look;
     return setLookBrick;
+}
+
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
+{
+    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context

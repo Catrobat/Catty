@@ -37,7 +37,7 @@
 @implementation VariablesContainer (CBXMLHandler)
 
 #pragma mark - Parsing
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContext:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext *)context
 {
     NSArray *variablesElements = [xmlElement elementsForName:@"variables"];
     [XMLError exceptionIf:[variablesElements count] notEquals:1 message:@"Too many variable-elements given!"];
@@ -49,7 +49,7 @@
         [XMLError exceptionIf:[programVarListElements count] notEquals:1
                       message:@"Too many programVariableList-elements!"];
         GDataXMLElement *programVarListElement = [programVarListElements firstObject];
-        varContainer.programVariableList = [[self class] parseAndCreateProgramVariables:programVarListElement];
+        varContainer.programVariableList = [[self class] parseAndCreateProgramVariables:programVarListElement withContext:context];
         context.programVariableList = varContainer.programVariableList;
     }
 
@@ -59,7 +59,8 @@
         GDataXMLElement *objectVarListElement = [objectVarListElements firstObject];
         NSMutableDictionary *spriteObjectElementMap = [NSMutableDictionary dictionary];
         NSMutableDictionary *objectVariableMap = [[self class] parseAndCreateObjectVariables:objectVarListElement
-                                                                        spriteObjectElements:spriteObjectElementMap];
+                                                                        spriteObjectElements:spriteObjectElementMap
+                                                                                 withContext:context];
         context.spriteObjectNameVariableList = objectVariableMap; // needed to correctly parse SpriteObjects
 
         // create ordered map table and parse all those SpriteObjects that contain objectUserVariable(s)
@@ -68,7 +69,7 @@
             GDataXMLElement *xmlElement = [spriteObjectElementMap objectForKey:spriteObjectName];
             [XMLError exceptionIfNil:xmlElement message:@"Xml element for SpriteObject missing. This \
              should never happen!"];
-            SpriteObject *spriteObject = [SpriteObject parseFromElement:xmlElement withContext:context];
+            SpriteObject *spriteObject = [context parseFromElement:xmlElement withClass:[SpriteObject class]];
             [XMLError exceptionIfNil:spriteObject message:@"Unable to parse SpriteObject!"];
             [objectVariableList setObject:[objectVariableMap objectForKey:spriteObjectName]
                                    forKey:spriteObject];
@@ -77,11 +78,16 @@
     }
     
     context.variables = varContainer;
+    context.variablesParsed = YES;
     return varContainer;
 }
 
-+ (OrderedDictionary*)parseAndCreateObjectVariables:(GDataXMLElement*)objectVarListElement
-                                 spriteObjectElements:(NSMutableDictionary*)spriteObjectElementMap
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext *)context
+{
+    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
+}
+
++ (OrderedDictionary*)parseAndCreateObjectVariables:(GDataXMLElement*)objectVarListElement spriteObjectElements:(NSMutableDictionary*)spriteObjectElementMap withContext:(CBXMLParserContext*)context
 {
     NSArray *entries = [objectVarListElement children];
     OrderedDictionary *objectVariableMap = [[OrderedDictionary alloc] initWithCapacity:[entries count]];
@@ -115,7 +121,7 @@
         // create all user variables of this sprite object
         NSArray *listElements = [entry elementsForName:@"list"];
         GDataXMLElement *listElement = [listElements firstObject];
-        [objectVariableMap insertObject:[[self class] parseUserVariablesList:[listElement children]]
+        [objectVariableMap insertObject:[[self class] parseUserVariablesList:[listElement children] withContext:context]
                                  forKey:spriteObjectName
                                 atIndex:index];
         ++index;
@@ -123,17 +129,17 @@
     return objectVariableMap;
 }
 
-+ (NSMutableArray*)parseAndCreateProgramVariables:(GDataXMLElement*)programVarListElement
++ (NSMutableArray*)parseAndCreateProgramVariables:(GDataXMLElement*)programVarListElement withContext:(CBXMLParserContext*)context
 {
-    return [[self class] parseUserVariablesList:[programVarListElement children]];
+    return [[self class] parseUserVariablesList:[programVarListElement children] withContext:context];
 }
 
-+ (NSMutableArray*)parseUserVariablesList:(NSArray*)userVariablesListElements
++ (NSMutableArray*)parseUserVariablesList:(NSArray*)userVariablesListElements withContext:(CBXMLParserContext*)context
 {
     NSMutableArray *userVariablesList = [NSMutableArray arrayWithCapacity:[userVariablesListElements count]];
     for (GDataXMLElement *userVariableElement in userVariablesListElements) {
         [XMLError exceptionIfNode:userVariableElement isNilOrNodeNameNotEquals:@"userVariable"];
-        UserVariable *userVariable = [UserVariable parseFromElement:userVariableElement withContext:nil];
+        UserVariable *userVariable = [context parseFromElement:userVariableElement withClass:[UserVariable class]];
         [XMLError exceptionIfNil:userVariable message:@"Unable to parse user variable..."];
         
         if ([CBXMLParserHelper findUserVariableInArray:userVariablesList withName:userVariable.name]) {
