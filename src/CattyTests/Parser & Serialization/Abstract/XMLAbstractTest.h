@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#define CATTY_TESTS 1
+
 #import <XCTest/XCTest.h>
-#import "XMLAbstractTest.h"
-#import "CBXMLParser.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "UIDefines.h"
 #import "Program.h"
@@ -66,12 +66,16 @@
 #import "PointToBrick+CBXMLHandler.h"
 #import "StopAllSoundsBrick+CBXMLHandler.h"
 
-@class GDataXMLDocument;
+@interface XMLAbstractTest : XCTestCase
 
-@interface XMLParserAbstractTest : XMLAbstractTest
+- (NSString*)getPathForXML:(NSString*)xmlFile;
+- (GDataXMLDocument*)getXMLDocumentForPath:(NSString*)xmlPath;
+- (Program*)getProgramForXML:(NSString*)xmlFile;
+- (void)compareProgram:(NSString*)firstProgram withProgram:(NSString*)secondProgramName;
 
-- (NSString*)getPathForXML: (NSString*)xmlFile;
-- (GDataXMLDocument*)getXMLDocumentForPath: (NSString*)xmlPath;
-- (void)compareProgram:(NSString*)programName092 withProgram:(NSString*)programName093;
+- (BOOL)isXMLElement:(GDataXMLElement*)xmlElement equalToXMLElementForXPath:(NSString*)xPath inProgramForXML:(NSString*)program;
+- (BOOL)isProgram:(Program*)firstProgram equalToXML:(NSString*)secondProgram;
+- (void)saveProgram:(Program*)program;
+- (void)testParseXMLAndSerializeProgramAndCompareXML:(NSString*)xmlFile;
 
 @end

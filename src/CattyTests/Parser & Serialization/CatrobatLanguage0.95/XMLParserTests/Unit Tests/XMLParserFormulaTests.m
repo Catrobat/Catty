@@ -25,13 +25,18 @@
 
 @interface XMLParserFormulaTests : XMLParserAbstractTest
 
+@property (nonatomic, strong) CBXMLParserContext *parserContext;
+
 @end
 
 @implementation XMLParserFormulaTests
 
+- (void)setUp
+{
+    self.parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.93f];
+}
+
 - (void)testValidFormulaList {
-    CBXMLParserContext *parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.93f];
-    
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidFormulaList"]];
     GDataXMLElement *xmlElement = [document rootElement];
     
@@ -39,7 +44,7 @@
     XCTAssertEqual([brickElement count], 1);
     GDataXMLElement *brickXMLElement = [brickElement objectAtIndex:0];
 
-    Brick *brick = [parserContext parseFromElement:brickXMLElement withClass:[SetVariableBrick class]];
+    Brick *brick = [self.parserContext parseFromElement:brickXMLElement withClass:[SetVariableBrick class]];
     XCTAssertTrue(brick.brickType == kSetVariableBrick, @"Invalid brick type");
     XCTAssertTrue([brick isKindOfClass:[SetVariableBrick class]], @"Invalid brick class");
     

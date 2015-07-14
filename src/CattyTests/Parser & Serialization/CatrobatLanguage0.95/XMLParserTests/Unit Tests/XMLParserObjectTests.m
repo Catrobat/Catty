@@ -25,12 +25,18 @@
 
 @interface XMLParserObjectTests : XMLParserAbstractTest
 
+@property (nonatomic, strong) CBXMLParserContext *parserContext;
+
 @end
 
 @implementation XMLParserObjectTests
 
+- (void)setUp
+{
+    self.parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.93f];
+}
+
 - (void)testValidObjectList {
-    CBXMLParserContext *parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.93f];
     GDataXMLDocument *document = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]];
     GDataXMLElement *xmlElement = [document rootElement];
 
@@ -48,7 +54,7 @@
     userVariable.name = @"random to";
     [context.programVariableList addObject:userVariable];
     for (GDataXMLElement *objectElement in objectElements) {
-        SpriteObject *spriteObject = [parserContext parseFromElement:objectElement withClass:[SpriteObject class]];
+        SpriteObject *spriteObject = [self.parserContext parseFromElement:objectElement withClass:[SpriteObject class]];
         [objectList addObject:spriteObject];
     }
 

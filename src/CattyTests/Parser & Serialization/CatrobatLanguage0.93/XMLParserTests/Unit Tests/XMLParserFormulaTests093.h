@@ -22,11 +22,8 @@
 
 #import "XMLAbstractTest.h"
 
-@interface XMLSerializerAbstractTest : XMLAbstractTest
+@interface XMLParserFormulaTests093 : XMLAbstractTest
 
-- (BOOL)isXMLElement:(GDataXMLElement*)xmlElement equalToXMLElementForXPath:(NSString*)xPath inProgramForXML:(NSString*)program;
-- (BOOL)isProgram:(Program*)firstProgram equalToXML:(NSString*)secondProgram;
-- (void)saveProgram:(Program*)program;
-- (void)testParseXMLAndSerializeProgramAndCompareXML:(NSString*)xmlFile;
+@property (nonatomic, strong) CBXMLParserContext *parserContext;
 
 @end

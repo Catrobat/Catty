@@ -20,22 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <XCTest/XCTest.h>
-#import "XMLParserAbstractTest.h"
-#import "Header+CBXMLHandler.h"
+#import "XMLParserHeaderTests093.h"
 
-@interface XMLParserHeaderTests : XMLParserAbstractTest
+@implementation XMLParserHeaderTests093
 
-@end
-
-@implementation XMLParserHeaderTests
+- (void)setUp
+{
+    self.parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.93f];
+}
 
 - (void)testValidHeader
 {
-    CBXMLParserContext *parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.93f];
     GDataXMLDocument* xmlRoot = [self getXMLDocumentForPath:[self getPathForXML:@"ValidProgram"]];
     
-    Header *header = [parserContext parseFromElement:[[xmlRoot.rootElement elementsForName:@"header"] objectAtIndex:0]
+    Header *header = [self.parserContext parseFromElement:[[xmlRoot.rootElement elementsForName:@"header"] objectAtIndex:0]
                                   withClass:[Header class]];
     XCTAssertNotNil(header, @"Header is nil");
     

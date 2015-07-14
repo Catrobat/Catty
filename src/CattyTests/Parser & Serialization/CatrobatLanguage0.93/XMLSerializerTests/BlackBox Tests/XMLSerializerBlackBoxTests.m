@@ -21,10 +21,10 @@
  */
 
 #import <XCTest/XCTest.h>
-#import "XMLSerializerAbstractTest.h"
+#import "XMLAbstractTest.h"
 #import "Program.h"
 
-@interface XMLSerializerBlackBoxTests : XMLSerializerAbstractTest
+@interface XMLSerializerBlackBoxTests : XMLAbstractTest
 
 @end
 

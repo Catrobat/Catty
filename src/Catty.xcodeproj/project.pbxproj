@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2650691A6538710050775B /* CBMutableCopyContext.m */; };
+		4C2A00C01B5546DF00CD4492 /* XMLParserBrickTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00B91B5546DF00CD4492 /* XMLParserBrickTests093.m */; };
+		4C2A00C11B5546DF00CD4492 /* XMLParserFormulaTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00BB1B5546DF00CD4492 /* XMLParserFormulaTests093.m */; };
+		4C2A00C21B5546DF00CD4492 /* XMLParserHeaderTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00BD1B5546DF00CD4492 /* XMLParserHeaderTests093.m */; };
+		4C2A00C31B5546DF00CD4492 /* XMLParserObjectTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00BF1B5546DF00CD4492 /* XMLParserObjectTests093.m */; };
+		4C2A00C71B5547EB00CD4492 /* XMLAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00C61B5547EB00CD4492 /* XMLAbstractTest.m */; };
+		4C2A00C91B554CBF00CD4492 /* XMLParserTests092.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00C81B554CBF00CD4492 /* XMLParserTests092.m */; };
+		4C2A00CB1B554CE900CD4492 /* XMLParserBlackBoxTests092.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00CA1B554CE900CD4492 /* XMLParserBlackBoxTests092.m */; };
 		4C3AE2BD1B03554F005E1F57 /* BrickCellFormulaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE2B01B03554F005E1F57 /* BrickCellFormulaData.m */; };
 		4C3AE2BE1B03554F005E1F57 /* BrickCellLookData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE2B21B03554F005E1F57 /* BrickCellLookData.m */; };
 		4C3AE2BF1B03554F005E1F57 /* BrickCellMessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE2B41B03554F005E1F57 /* BrickCellMessageData.m */; };
@@ -102,7 +109,6 @@
 		4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E651B4D3EC500E27479 /* CBXMLSerializerContext.m */; };
 		4C79F5551B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79F5541B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m */; };
 		4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BC6631B26C298001C7E32 /* iOSComboboxPickerView.m */; };
-		4CD669731B272B050008602D /* XMLParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD669721B272B050008602D /* XMLParserTests.m */; };
 		4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */; };
 		4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */; };
 		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
@@ -405,14 +411,6 @@
 		CA4E48BB1B1CEAE9003EA71E /* CBScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E48B71B1CEAE9003EA71E /* CBScriptContext.swift */; };
 		CA4E48BC1B1CEAE9003EA71E /* CBStartScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E48B81B1CEAE9003EA71E /* CBStartScriptContext.swift */; };
 		CA4E48BD1B1CEAE9003EA71E /* CBWhenScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E48B91B1CEAE9003EA71E /* CBWhenScriptContext.swift */; };
-		CA7698B61B0E4B3F000D0340 /* XMLAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A53A1A43BDD9002A69A0 /* XMLAbstractTest.m */; };
-		CA7698B81B0E4B3F000D0340 /* XMLParserAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5401A43BE11002A69A0 /* XMLParserAbstractTest.m */; };
-		CA7698B91B0E4B3F000D0340 /* XMLParserBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5441A43BE37002A69A0 /* XMLParserBrickTests.m */; };
-		CA7698BA1B0E4B3F000D0340 /* XMLParserFormulaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5451A43BE37002A69A0 /* XMLParserFormulaTests.m */; };
-		CA7698BB1B0E4B3F000D0340 /* XMLParserHeaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5461A43BE37002A69A0 /* XMLParserHeaderTests.m */; };
-		CA7698BC1B0E4B3F000D0340 /* XMLParserObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5471A43BE37002A69A0 /* XMLParserObjectTests.m */; };
-		CA7698BD1B0E4B3F000D0340 /* XMLParserBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5421A43BE29002A69A0 /* XMLParserBlackBoxTests.m */; };
-		CA7698BF1B0E4B3F000D0340 /* XMLSerializerAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A54D1A43BE97002A69A0 /* XMLSerializerAbstractTest.m */; };
 		CA7698C01B0E4B3F000D0340 /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5521A43BEC4002A69A0 /* XMLSerializerTests.m */; };
 		CA7698C11B0E4B3F000D0340 /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A54F1A43BEA6002A69A0 /* XMLSerializerBlackBoxTests.m */; };
 		CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD740E71AF2D42B00C32937 /* CBStackTests.m */; };
@@ -583,6 +581,18 @@
 		4C2650691A6538710050775B /* CBMutableCopyContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBMutableCopyContext.m; path = CBCopyContext/CBMutableCopyContext.m; sourceTree = "<group>"; };
 		4C26506C1A653A5A0050775B /* CBMutableCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopying.h; path = Copying/CBMutableCopying.h; sourceTree = "<group>"; };
 		4C26506E1A6566F50050775B /* SpriteObjectMutableCopyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpriteObjectMutableCopyTests.m; path = SpriteObject/SpriteObjectMutableCopyTests.m; sourceTree = "<group>"; };
+		4C2A00B81B5546DF00CD4492 /* XMLParserBrickTests093.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLParserBrickTests093.h; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserBrickTests093.h"; sourceTree = "<group>"; };
+		4C2A00B91B5546DF00CD4492 /* XMLParserBrickTests093.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserBrickTests093.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserBrickTests093.m"; sourceTree = "<group>"; };
+		4C2A00BA1B5546DF00CD4492 /* XMLParserFormulaTests093.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLParserFormulaTests093.h; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserFormulaTests093.h"; sourceTree = "<group>"; };
+		4C2A00BB1B5546DF00CD4492 /* XMLParserFormulaTests093.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserFormulaTests093.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserFormulaTests093.m"; sourceTree = "<group>"; };
+		4C2A00BC1B5546DF00CD4492 /* XMLParserHeaderTests093.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLParserHeaderTests093.h; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserHeaderTests093.h"; sourceTree = "<group>"; };
+		4C2A00BD1B5546DF00CD4492 /* XMLParserHeaderTests093.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserHeaderTests093.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserHeaderTests093.m"; sourceTree = "<group>"; };
+		4C2A00BE1B5546DF00CD4492 /* XMLParserObjectTests093.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLParserObjectTests093.h; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserObjectTests093.h"; sourceTree = "<group>"; };
+		4C2A00BF1B5546DF00CD4492 /* XMLParserObjectTests093.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserObjectTests093.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserObjectTests093.m"; sourceTree = "<group>"; };
+		4C2A00C51B5547EB00CD4492 /* XMLAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLAbstractTest.h; sourceTree = "<group>"; };
+		4C2A00C61B5547EB00CD4492 /* XMLAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLAbstractTest.m; sourceTree = "<group>"; };
+		4C2A00C81B554CBF00CD4492 /* XMLParserTests092.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserTests092.m; path = "Parser & Serialization/CatrobatLanguage0.92/XMLParserTests092.m"; sourceTree = "<group>"; };
+		4C2A00CA1B554CE900CD4492 /* XMLParserBlackBoxTests092.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserBlackBoxTests092.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/BlackBox Tests/XMLParserBlackBoxTests092.m"; sourceTree = "<group>"; };
 		4C3AE2991B03526C005E1F57 /* BrickCellDataProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickCellDataProtocol.h; sourceTree = "<group>"; };
 		4C3AE2AF1B03554F005E1F57 /* BrickCellFormulaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellFormulaData.h; path = BrickCellData/BrickCellFormulaData.h; sourceTree = "<group>"; };
 		4C3AE2B01B03554F005E1F57 /* BrickCellFormulaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellFormulaData.m; path = BrickCellData/BrickCellFormulaData.m; sourceTree = "<group>"; };
@@ -787,7 +797,6 @@
 		4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+CWPopup.license"; sourceTree = "<group>"; };
 		4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OrderedDictionary.license; sourceTree = "<group>"; };
 		4CC0D51F1B01FB73006193C4 /* BrickVariableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickVariableProtocol.h; sourceTree = "<group>"; };
-		4CD669721B272B050008602D /* XMLParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserTests.m; sourceTree = "<group>"; };
 		4CE9D4201AE27AD20058CB24 /* IfOnEdgeBounceBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfOnEdgeBounceBrickTests.m; sourceTree = "<group>"; };
 		4CF773E31AEE3B5100DBBB2B /* VariablePickerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablePickerData.h; sourceTree = "<group>"; };
 		4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablePickerData.m; sourceTree = "<group>"; };
@@ -1461,17 +1470,6 @@
 		CA7698AA1B0E4A97000D0340 /* CattyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA8C247718CD053300314C2B /* ProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTests.m; sourceTree = "<group>"; };
 		CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerNewProgramTests.m; sourceTree = "<group>"; };
-		CAA4A5391A43BDD9002A69A0 /* XMLAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLAbstractTest.h; path = "Parser & Serialization/CatrobatLanguage0.93/Abstract/XMLAbstractTest.h"; sourceTree = "<group>"; };
-		CAA4A53A1A43BDD9002A69A0 /* XMLAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLAbstractTest.m; path = "Parser & Serialization/CatrobatLanguage0.93/Abstract/XMLAbstractTest.m"; sourceTree = "<group>"; };
-		CAA4A53F1A43BE11002A69A0 /* XMLParserAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLParserAbstractTest.h; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Abstract/XMLParserAbstractTest.h"; sourceTree = "<group>"; };
-		CAA4A5401A43BE11002A69A0 /* XMLParserAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserAbstractTest.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Abstract/XMLParserAbstractTest.m"; sourceTree = "<group>"; };
-		CAA4A5421A43BE29002A69A0 /* XMLParserBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserBlackBoxTests.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/BlackBox Tests/XMLParserBlackBoxTests.m"; sourceTree = "<group>"; };
-		CAA4A5441A43BE37002A69A0 /* XMLParserBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = XMLParserBrickTests.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserBrickTests.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		CAA4A5451A43BE37002A69A0 /* XMLParserFormulaTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserFormulaTests.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserFormulaTests.m"; sourceTree = "<group>"; };
-		CAA4A5461A43BE37002A69A0 /* XMLParserHeaderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserHeaderTests.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserHeaderTests.m"; sourceTree = "<group>"; };
-		CAA4A5471A43BE37002A69A0 /* XMLParserObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParserObjectTests.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLParserTests/Unit Tests/XMLParserObjectTests.m"; sourceTree = "<group>"; };
-		CAA4A54C1A43BE97002A69A0 /* XMLSerializerAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLSerializerAbstractTest.h; path = "Parser & Serialization/CatrobatLanguage0.93/XMLSerializerTests/Abstract/XMLSerializerAbstractTest.h"; sourceTree = "<group>"; };
-		CAA4A54D1A43BE97002A69A0 /* XMLSerializerAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLSerializerAbstractTest.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLSerializerTests/Abstract/XMLSerializerAbstractTest.m"; sourceTree = "<group>"; };
 		CAA4A54F1A43BEA6002A69A0 /* XMLSerializerBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLSerializerBlackBoxTests.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLSerializerTests/BlackBox Tests/XMLSerializerBlackBoxTests.m"; sourceTree = "<group>"; };
 		CAA4A5521A43BEC4002A69A0 /* XMLSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = XMLSerializerTests.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLSerializerTests/Unit Tests/XMLSerializerTests.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		CABF43AF1B115E6400419A55 /* CBConditionalSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBConditionalSequence.swift; path = Catty/PlayerEngine/DataModel/CBSequence/CBConditionalSequence.swift; sourceTree = SOURCE_ROOT; };
@@ -1741,13 +1739,14 @@
 			name = SpriteObject;
 			sourceTree = "<group>";
 		};
-		4C3275E51A135BE40091C428 /* Abstract */ = {
+		4C2A00C41B5547EB00CD4492 /* Abstract */ = {
 			isa = PBXGroup;
 			children = (
-				CAA4A53F1A43BE11002A69A0 /* XMLParserAbstractTest.h */,
-				CAA4A5401A43BE11002A69A0 /* XMLParserAbstractTest.m */,
+				4C2A00C51B5547EB00CD4492 /* XMLAbstractTest.h */,
+				4C2A00C61B5547EB00CD4492 /* XMLAbstractTest.m */,
 			);
 			name = Abstract;
+			path = "Parser & Serialization/Abstract";
 			sourceTree = "<group>";
 		};
 		4C3C03F5199BA5250004F594 /* Formula */ = {
@@ -2236,6 +2235,7 @@
 		4CD194F21A0631B200484E4F /* Parser & Serialization */ = {
 			isa = PBXGroup;
 			children = (
+				4C2A00C41B5547EB00CD4492 /* Abstract */,
 				4CD669711B272AB60008602D /* CatrobatLanguage0.92 */,
 				4CD194F61A0632C600484E4F /* CatrobatLanguage0.93 */,
 			);
@@ -2245,7 +2245,6 @@
 		4CD194F51A0632AA00484E4F /* XMLParserTests */ = {
 			isa = PBXGroup;
 			children = (
-				4C3275E51A135BE40091C428 /* Abstract */,
 				CAA4A5371A43BD9E002A69A0 /* Unit Tests */,
 				CAA4A5381A43BDA9002A69A0 /* BlackBox Tests */,
 			);
@@ -2255,7 +2254,6 @@
 		4CD194F61A0632C600484E4F /* CatrobatLanguage0.93 */ = {
 			isa = PBXGroup;
 			children = (
-				CAEE0A241A328CEA007CB248 /* Abstract */,
 				4CD194F51A0632AA00484E4F /* XMLParserTests */,
 				CAEE0A231A328CDF007CB248 /* XMLSerializerTests */,
 			);
@@ -2265,7 +2263,7 @@
 		4CD669711B272AB60008602D /* CatrobatLanguage0.92 */ = {
 			isa = PBXGroup;
 			children = (
-				4CD669721B272B050008602D /* XMLParserTests.m */,
+				4C2A00C81B554CBF00CD4492 /* XMLParserTests092.m */,
 			);
 			name = CatrobatLanguage0.92;
 			sourceTree = "<group>";
@@ -4084,10 +4082,14 @@
 		CAA4A5371A43BD9E002A69A0 /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
-				CAA4A5441A43BE37002A69A0 /* XMLParserBrickTests.m */,
-				CAA4A5451A43BE37002A69A0 /* XMLParserFormulaTests.m */,
-				CAA4A5461A43BE37002A69A0 /* XMLParserHeaderTests.m */,
-				CAA4A5471A43BE37002A69A0 /* XMLParserObjectTests.m */,
+				4C2A00B81B5546DF00CD4492 /* XMLParserBrickTests093.h */,
+				4C2A00B91B5546DF00CD4492 /* XMLParserBrickTests093.m */,
+				4C2A00BA1B5546DF00CD4492 /* XMLParserFormulaTests093.h */,
+				4C2A00BB1B5546DF00CD4492 /* XMLParserFormulaTests093.m */,
+				4C2A00BC1B5546DF00CD4492 /* XMLParserHeaderTests093.h */,
+				4C2A00BD1B5546DF00CD4492 /* XMLParserHeaderTests093.m */,
+				4C2A00BE1B5546DF00CD4492 /* XMLParserObjectTests093.h */,
+				4C2A00BF1B5546DF00CD4492 /* XMLParserObjectTests093.m */,
 			);
 			name = "Unit Tests";
 			sourceTree = "<group>";
@@ -4095,7 +4097,7 @@
 		CAA4A5381A43BDA9002A69A0 /* BlackBox Tests */ = {
 			isa = PBXGroup;
 			children = (
-				CAA4A5421A43BE29002A69A0 /* XMLParserBlackBoxTests.m */,
+				4C2A00CA1B554CE900CD4492 /* XMLParserBlackBoxTests092.m */,
 			);
 			name = "BlackBox Tests";
 			sourceTree = "<group>";
@@ -4414,29 +4416,10 @@
 		CAEE0A231A328CDF007CB248 /* XMLSerializerTests */ = {
 			isa = PBXGroup;
 			children = (
-				CAEE0A251A328D2E007CB248 /* Abstract */,
 				CAA4A5541A43BEDB002A69A0 /* Unit Tests */,
 				CAA4A5511A43BEAE002A69A0 /* BlackBox Tests */,
 			);
 			name = XMLSerializerTests;
-			sourceTree = "<group>";
-		};
-		CAEE0A241A328CEA007CB248 /* Abstract */ = {
-			isa = PBXGroup;
-			children = (
-				CAA4A5391A43BDD9002A69A0 /* XMLAbstractTest.h */,
-				CAA4A53A1A43BDD9002A69A0 /* XMLAbstractTest.m */,
-			);
-			name = Abstract;
-			sourceTree = "<group>";
-		};
-		CAEE0A251A328D2E007CB248 /* Abstract */ = {
-			isa = PBXGroup;
-			children = (
-				CAA4A54C1A43BE97002A69A0 /* XMLSerializerAbstractTest.h */,
-				CAA4A54D1A43BE97002A69A0 /* XMLSerializerAbstractTest.m */,
-			);
-			name = Abstract;
 			sourceTree = "<group>";
 		};
 		CAEE3BEA1ABDFADE009FDA72 /* CBSequence */ = {
@@ -4756,25 +4739,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA7698B61B0E4B3F000D0340 /* XMLAbstractTest.m in Sources */,
-				CA7698B81B0E4B3F000D0340 /* XMLParserAbstractTest.m in Sources */,
-				CA7698B91B0E4B3F000D0340 /* XMLParserBrickTests.m in Sources */,
-				CA7698BA1B0E4B3F000D0340 /* XMLParserFormulaTests.m in Sources */,
-				CA7698BB1B0E4B3F000D0340 /* XMLParserHeaderTests.m in Sources */,
-				CA7698BC1B0E4B3F000D0340 /* XMLParserObjectTests.m in Sources */,
-				CA7698BD1B0E4B3F000D0340 /* XMLParserBlackBoxTests.m in Sources */,
-				CA7698BF1B0E4B3F000D0340 /* XMLSerializerAbstractTest.m in Sources */,
 				4C68FC8E1B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m in Sources */,
 				CA7698C01B0E4B3F000D0340 /* XMLSerializerTests.m in Sources */,
+				4C2A00C01B5546DF00CD4492 /* XMLParserBrickTests093.m in Sources */,
 				CA7698C11B0E4B3F000D0340 /* XMLSerializerBlackBoxTests.m in Sources */,
+				4C2A00C11B5546DF00CD4492 /* XMLParserFormulaTests093.m in Sources */,
 				CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */,
 				CA7698C41B0E4B3F000D0340 /* CustomExtensionsTests.m in Sources */,
 				4C68FC901B25A00B00AB3EE8 /* FormulaTest.m in Sources */,
+				4C2A00C31B5546DF00CD4492 /* XMLParserObjectTests093.m in Sources */,
 				4C68FC961B25A00B00AB3EE8 /* InternFormulaUtilsTest.m in Sources */,
 				4C68FC8B1B25A00B00AB3EE8 /* FormulaFunctionsTest.m in Sources */,
 				CA7698C51B0E4B3F000D0340 /* ProgramTests.m in Sources */,
 				CA7698C71B0E4B3F000D0340 /* BrickTests.m in Sources */,
 				CA7698C81B0E4B3F000D0340 /* ChangeBrightnessByNBrickTests.m in Sources */,
+				4C2A00C71B5547EB00CD4492 /* XMLAbstractTest.m in Sources */,
 				CA7698C91B0E4B3F000D0340 /* ChangeGhostEffectByNBrickTests.m in Sources */,
 				CA7698CA1B0E4B3F000D0340 /* ChangeSizeByNBrickTests.m in Sources */,
 				CA7698CB1B0E4B3F000D0340 /* ClearGrafficEffectBrickTests.m in Sources */,
@@ -4793,15 +4772,18 @@
 				CA7698D11B0E4B3F000D0340 /* SetBrightnessBrickTests.m in Sources */,
 				CA7698D21B0E4B3F000D0340 /* SetGhostEffectBrickTests.m in Sources */,
 				CA7698D31B0E4B3F000D0340 /* SetLookBrickTests.m in Sources */,
+				4C2A00C91B554CBF00CD4492 /* XMLParserTests092.m in Sources */,
 				4C68FC921B25A00B00AB3EE8 /* InternFormulaStateTest.m in Sources */,
 				4C79F5551B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m in Sources */,
 				CA7698D41B0E4B3F000D0340 /* ShowBrickTests.m in Sources */,
 				CA7698D51B0E4B3F000D0340 /* HideBrickTests.m in Sources */,
+				4C2A00CB1B554CE900CD4492 /* XMLParserBlackBoxTests092.m in Sources */,
 				4C68FC8F1B25A00B00AB3EE8 /* FormulaParserTest.m in Sources */,
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
 				CA7698D61B0E4B3F000D0340 /* IfOnEdgeBounceBrickTests.m in Sources */,
 				CA7698D71B0E4B3F000D0340 /* SetYBrickTests.m in Sources */,
 				CA7698D81B0E4B3F000D0340 /* SetXBrickTests.m in Sources */,
+				4C2A00C21B5546DF00CD4492 /* XMLParserHeaderTests093.m in Sources */,
 				CA7698D91B0E4B3F000D0340 /* ComeToFrontBrickTests.m in Sources */,
 				CA7698DA1B0E4B3F000D0340 /* SetSizeToBrickTests.m in Sources */,
 				CA7698DB1B0E4B3F000D0340 /* PointToBrickTests.m in Sources */,
@@ -4812,7 +4794,6 @@
 				CA7698DF1B0E4B3F000D0340 /* SensorHandlerTests.m in Sources */,
 				CA7698E31B0E4B3F000D0340 /* SceneTests.m in Sources */,
 				4C68FC941B25A00B00AB3EE8 /* InternFormulaTests.m in Sources */,
-				4CD669731B272B050008602D /* XMLParserTests.m in Sources */,
 				CA7698E41B0E4B3F000D0340 /* ProgramTableViewControllerExistingProgramsTests.m in Sources */,
 				4C68FC911B25A00B00AB3EE8 /* InternFormulaParserStringFunctionsTest.m in Sources */,
 				CA7698E51B0E4B3F000D0340 /* ProgramTableViewControllerNewProgramTests.m in Sources */,

@@ -21,11 +21,11 @@
  */
 
 #import <XCTest/XCTest.h>
-#import "XMLParserAbstractTest.h"
+#import "XMLAbstractTest.h"
 #import "CBXMLParser.h"
 #import "Parser.h"
 
-@interface XMLParserBlackBoxTests : XMLParserAbstractTest
+@interface XMLParserBlackBoxTests : XMLAbstractTest
 
 @end
 

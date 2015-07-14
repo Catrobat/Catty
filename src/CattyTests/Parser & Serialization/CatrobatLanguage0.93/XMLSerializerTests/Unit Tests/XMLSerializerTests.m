@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "XMLSerializerAbstractTest.h"
+#import "XMLAbstractTest.h"
 #import "Program+CBXMLHandler.h"
 #import "CBXMLParserContext.h"
 #import "CBXMLSerializerContext.h"
@@ -28,7 +28,7 @@
 #import "CBXMLParser.h"
 #import "GDataXMLElement+CustomExtensions.h"
 
-@interface XMLSerializerTests : XMLSerializerAbstractTest
+@interface XMLSerializerTests : XMLAbstractTest
 
 @end
 
