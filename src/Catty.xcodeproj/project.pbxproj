@@ -33,7 +33,6 @@
 		4C2EE3FD1B5557AD006DE9B8 /* Minecraft_Work_In_Progress_095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C2EE3FC1B5557AD006DE9B8 /* Minecraft_Work_In_Progress_095.xml */; };
 		4C2EE3FF1B5557BF006DE9B8 /* Minions__095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C2EE3FE1B5557BF006DE9B8 /* Minions__095.xml */; };
 		4C2EE4011B5557CF006DE9B8 /* Nyancat_1.0_095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C2EE4001B5557CF006DE9B8 /* Nyancat_1.0_095.xml */; };
-		4C2EE4031B5557DE006DE9B8 /* Piano_095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C2EE4021B5557DE006DE9B8 /* Piano_095.xml */; };
 		4C2EE4051B5557F3006DE9B8 /* Pong_Starter_095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C2EE4041B5557F3006DE9B8 /* Pong_Starter_095.xml */; };
 		4C2EE4071B555811006DE9B8 /* Pythagorean_Theorem_095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C2EE4061B555811006DE9B8 /* Pythagorean_Theorem_095.xml */; };
 		4C2EE4091B555826006DE9B8 /* Rock_paper_scissors_095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C2EE4081B555826006DE9B8 /* Rock_paper_scissors_095.xml */; };
@@ -45,6 +44,7 @@
 		4C2EE41E1B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE4171B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m */; };
 		4C2EE41F1B555B55006DE9B8 /* CBXMLPositionStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE41A1B555B55006DE9B8 /* CBXMLPositionStack.m */; };
 		4C2EE4201B555B55006DE9B8 /* CBXMLPropertyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE41D1B555B55006DE9B8 /* CBXMLPropertyMapping.m */; };
+		4C2EE4221B555E99006DE9B8 /* XMLParserUserVariableTests095.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE4211B555E99006DE9B8 /* XMLParserUserVariableTests095.m */; };
 		4C3AE2BD1B03554F005E1F57 /* BrickCellFormulaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE2B01B03554F005E1F57 /* BrickCellFormulaData.m */; };
 		4C3AE2BE1B03554F005E1F57 /* BrickCellLookData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE2B21B03554F005E1F57 /* BrickCellLookData.m */; };
 		4C3AE2BF1B03554F005E1F57 /* BrickCellMessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE2B41B03554F005E1F57 /* BrickCellMessageData.m */; };
@@ -639,7 +639,6 @@
 		4C2EE3FC1B5557AD006DE9B8 /* Minecraft_Work_In_Progress_095.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Minecraft_Work_In_Progress_095.xml; sourceTree = "<group>"; };
 		4C2EE3FE1B5557BF006DE9B8 /* Minions__095.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Minions__095.xml; sourceTree = "<group>"; };
 		4C2EE4001B5557CF006DE9B8 /* Nyancat_1.0_095.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Nyancat_1.0_095.xml; sourceTree = "<group>"; };
-		4C2EE4021B5557DE006DE9B8 /* Piano_095.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Piano_095.xml; sourceTree = "<group>"; };
 		4C2EE4041B5557F3006DE9B8 /* Pong_Starter_095.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pong_Starter_095.xml; sourceTree = "<group>"; };
 		4C2EE4061B555811006DE9B8 /* Pythagorean_Theorem_095.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pythagorean_Theorem_095.xml; sourceTree = "<group>"; };
 		4C2EE4081B555826006DE9B8 /* Rock_paper_scissors_095.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Rock_paper_scissors_095.xml; sourceTree = "<group>"; };
@@ -654,6 +653,7 @@
 		4C2EE41A1B555B55006DE9B8 /* CBXMLPositionStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLPositionStack.m; sourceTree = "<group>"; };
 		4C2EE41C1B555B55006DE9B8 /* CBXMLPropertyMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLPropertyMapping.h; sourceTree = "<group>"; };
 		4C2EE41D1B555B55006DE9B8 /* CBXMLPropertyMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLPropertyMapping.m; sourceTree = "<group>"; };
+		4C2EE4211B555E99006DE9B8 /* XMLParserUserVariableTests095.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserUserVariableTests095.m; sourceTree = "<group>"; };
 		4C3AE2991B03526C005E1F57 /* BrickCellDataProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrickCellDataProtocol.h; sourceTree = "<group>"; };
 		4C3AE2AF1B03554F005E1F57 /* BrickCellFormulaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickCellFormulaData.h; path = BrickCellData/BrickCellFormulaData.h; sourceTree = "<group>"; };
 		4C3AE2B01B03554F005E1F57 /* BrickCellFormulaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickCellFormulaData.m; path = BrickCellData/BrickCellFormulaData.m; sourceTree = "<group>"; };
@@ -1839,6 +1839,7 @@
 				4C2EE3E01B5554D7006DE9B8 /* XMLParserFormulaTests095.m */,
 				4C2EE3E11B5554D7006DE9B8 /* XMLParserHeaderTests095.m */,
 				4C2EE3E21B5554D7006DE9B8 /* XMLParserObjectTests095.m */,
+				4C2EE4211B555E99006DE9B8 /* XMLParserUserVariableTests095.m */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
@@ -4283,9 +4284,9 @@
 		CAE3E4ED1B4C50B300CC88BD /* Air_fight_0.5 */ = {
 			isa = PBXGroup;
 			children = (
-				4C2EE3E81B5556FC006DE9B8 /* Air_fight_0.5_095.xml */,
 				CAE3E4EE1B4C50B300CC88BD /* Air_fight_0.5_091.xml */,
 				CAE3E4EF1B4C50B300CC88BD /* Air_fight_0.5_093.xml */,
+				4C2EE3E81B5556FC006DE9B8 /* Air_fight_0.5_095.xml */,
 			);
 			name = Air_fight_0.5;
 			path = CattyTests/Resources/ParserTests/Air_fight_0.5;
@@ -4294,9 +4295,9 @@
 		CAE3E4F01B4C50B300CC88BD /* Airplane_with_shadow */ = {
 			isa = PBXGroup;
 			children = (
-				4C2EE3EA1B55570C006DE9B8 /* Airplane_with_shadow_095.xml */,
 				CAE3E4F11B4C50B300CC88BD /* Airplane_with_shadow_091.xml */,
 				CAE3E4F21B4C50B300CC88BD /* Airplane_with_shadow_093.xml */,
+				4C2EE3EA1B55570C006DE9B8 /* Airplane_with_shadow_095.xml */,
 			);
 			name = Airplane_with_shadow;
 			path = CattyTests/Resources/ParserTests/Airplane_with_shadow;
@@ -4426,7 +4427,6 @@
 		CAE3E5141B4C50B300CC88BD /* Piano */ = {
 			isa = PBXGroup;
 			children = (
-				4C2EE4021B5557DE006DE9B8 /* Piano_095.xml */,
 				CAE3E5151B4C50B300CC88BD /* Piano_09.xml */,
 				CAE3E5161B4C50B300CC88BD /* Piano_093.xml */,
 			);
@@ -4446,9 +4446,9 @@
 		CAE3E5191B4C50B300CC88BD /* Pong_Starter */ = {
 			isa = PBXGroup;
 			children = (
-				4C2EE4041B5557F3006DE9B8 /* Pong_Starter_095.xml */,
 				CAE3E51A1B4C50B300CC88BD /* Pong_Starter_09.xml */,
 				CAE3E51B1B4C50B300CC88BD /* Pong_Starter_093.xml */,
+				4C2EE4041B5557F3006DE9B8 /* Pong_Starter_095.xml */,
 			);
 			name = Pong_Starter;
 			path = CattyTests/Resources/ParserTests/Pong_Starter;
@@ -4733,7 +4733,6 @@
 				CAE3E53D1B4C50B300CC88BD /* Demonstration_09.xml in Resources */,
 				CAE3E5371B4C50B300CC88BD /* Air_fight_0.5_091.xml in Resources */,
 				4C2EE3FD1B5557AD006DE9B8 /* Minecraft_Work_In_Progress_095.xml in Resources */,
-				4C2EE4031B5557DE006DE9B8 /* Piano_095.xml in Resources */,
 				4C2EE4011B5557CF006DE9B8 /* Nyancat_1.0_095.xml in Resources */,
 				CAE3E55F1B4C50B300CC88BD /* Tic_Tac_Toe_Master_093.xml in Resources */,
 				CAE3E5661B4C50B300CC88BD /* LegoNxtMotorActionBrick.xml in Resources */,
@@ -4909,6 +4908,7 @@
 				4C68FC8B1B25A00B00AB3EE8 /* FormulaFunctionsTest.m in Sources */,
 				CA7698C51B0E4B3F000D0340 /* ProgramTests.m in Sources */,
 				CA7698C71B0E4B3F000D0340 /* BrickTests.m in Sources */,
+				4C2EE4221B555E99006DE9B8 /* XMLParserUserVariableTests095.m in Sources */,
 				CA7698C81B0E4B3F000D0340 /* ChangeBrightnessByNBrickTests.m in Sources */,
 				4C2A00C71B5547EB00CD4492 /* XMLAbstractTest.m in Sources */,
 				CA7698C91B0E4B3F000D0340 /* ChangeGhostEffectByNBrickTests.m in Sources */,
