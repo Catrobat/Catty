@@ -2,26 +2,26 @@
 <program>
   <header>
     <applicationBuildName>applicationBuildName</applicationBuildName>
-    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationBuildNumber>123</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
-    <applicationVersion>0.9.4</applicationVersion>
+    <applicationVersion>applicationVersion</applicationVersion>
     <catrobatLanguageVersion>0.95</catrobatLanguageVersion>
-    <dateTimeUpload></dateTimeUpload>
-    <description>You can now shoot down your opponent! Steer with your device&apos;s inclination. Shoot by tapping anywhere.</description>
-    <deviceName>HTC Sensation Z710e</deviceName>
+    <dateTimeUpload>2014-11-0211:00:00</dateTimeUpload>
+    <description>description</description>
+    <deviceName>Android SDK built for x86</deviceName>
     <isPhiroProProject>false</isPhiroProProject>
-    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
+    <mediaLicense>mediaLicense</mediaLicense>
     <platform>Android</platform>
-    <platformVersion>15.0</platformVersion>
-    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
-    <programName>Air fight 0.5</programName>
-    <remixOf>http://pocketcode.org/details/0</remixOf>
-    <screenHeight>960</screenHeight>
+    <platformVersion>19.0</platformVersion>
+    <programLicense>programLicense</programLicense>
+    <programName>programName</programName>
+    <remixOf>remixOf</remixOf>
+    <screenHeight>1184</screenHeight>
     <screenMode>STRETCH</screenMode>
-    <screenWidth>540</screenWidth>
-    <tags></tags>
-    <url>http://pocketcode.org/details/965</url>
-    <userHandle>hej-wickie-hej</userHandle>
+    <screenWidth>768</screenWidth>
+    <tags>tags</tags>
+    <url>url</url>
+    <userHandle>userHandle</userHandle>
   </header>
   <objectList>
     <object name="Background">

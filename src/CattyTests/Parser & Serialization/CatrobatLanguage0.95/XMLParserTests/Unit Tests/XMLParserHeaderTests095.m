@@ -34,6 +34,31 @@
 
 - (void)testValidHeader
 {
+    GDataXMLDocument* xmlRoot = [self getXMLDocumentForPath:[self getPathForXML:@"ValidHeader095"]];
+    
+    Header *header = [self.parserContext parseFromElement:[[xmlRoot.rootElement elementsForName:@"header"] objectAtIndex:0]
+                                                withClass:[Header class]];
+    XCTAssertNotNil(header, @"Header is nil");
+    
+    XCTAssertTrue([header.applicationBuildName isEqualToString: @"applicationBuildName"], @"applicationBuildName not correctly parsed");
+    XCTAssertTrue([header.applicationBuildNumber isEqualToString: @"123"], @"applicationBuildNumber not correctly parsed");
+    XCTAssertTrue([header.applicationVersion isEqualToString: @"applicationVersion"], @"applicationVersion not correctly parsed");
+    XCTAssertTrue([header.catrobatLanguageVersion isEqualToString: @"0.95"], @"catrobatLanguageVersion not correctly parsed");
+    
+    XCTAssertTrue([[[Header headerDateFormatter] stringFromDate:header.dateTimeUpload] isEqualToString: @"2014-11-0211:00:00"],
+                  @"dateTimeUpload not correctly parsed");
+    XCTAssertTrue([header.programDescription isEqualToString: @"description"], @"description not correctly parsed");
+    XCTAssertTrue([header.deviceName isEqualToString: @"Android SDK built for x86"], @"deviceName not correctly parsed");
+    XCTAssertTrue([header.mediaLicense isEqualToString: @"mediaLicense"], @"mediaLicense not correctly parsed");
+    XCTAssertTrue([header.platform isEqualToString: @"Android"], @"platform not correctly parsed");
+    XCTAssertTrue([header.programLicense isEqualToString: @"programLicense"], @"programLicense not correctly parsed");
+    XCTAssertTrue([header.programName isEqualToString: @"programName"], @"programName not correctly parsed");
+    XCTAssertTrue([header.remixOf isEqualToString: @"remixOf"], @"remixOf not correctly parsed");
+    XCTAssertEqual([header.screenHeight intValue], 1184, @"screenHeight not correctly parsed");
+    XCTAssertEqual([header.screenWidth intValue], 768, @"screenWidth not correctly parsed");
+    XCTAssertTrue([header.tags isEqualToString: @"tags"], @"tags not correctly parsed");
+    XCTAssertTrue([header.url isEqualToString: @"url"], @"url not correctly parsed");
+    XCTAssertTrue([header.userHandle isEqualToString: @"userHandle"], @"userHandle not correctly parsed");
 }
 
 @end
