@@ -1,0 +1,1226 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<program>
+  <header>
+    <applicationBuildName/>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Pocket Code</applicationName>
+    <applicationVersion>0.9.2</applicationVersion>
+    <catrobatLanguageVersion>0.9</catrobatLanguageVersion>
+    <dateTimeUpload/>
+    <description>Tap to play each note.
+REMIX TIPS:
+ * Change the sound of the piano
+ * Change the looks</description>
+    <deviceName>Nexus 7</deviceName>
+    <mediaLicense>http://developer.catrobat.org/ccbysa_v3</mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>18</platformVersion>
+    <programLicense>http://developer.catrobat.org/agpl_v3</programLicense>
+    <programName>Piano</programName>
+    <remixOf/>
+    <screenHeight>1920</screenHeight>
+    <screenWidth>1080</screenWidth>
+    <tags/>
+    <url>http://pocketcode.org/details/968</url>
+    <userHandle>PocketCodeTeam</userHandle>
+  </header>
+  <objectList>
+    <object>
+      <lookList/>
+      <name>Background</name>
+      <scriptList/>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>3e6ca586e83356d801a79f17aca31297_c1.png</fileName>
+          <name>c1</name>
+        </look>
+        <look>
+          <fileName>e06ce783dbab2eb7959f5c41a9b917fe_c2.png</fileName>
+          <name>c2</name>
+        </look>
+      </lookList>
+      <name>c</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>680</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <turnRightBrick>
+              <object reference="../../../../.."/>
+              <degrees>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formulaTree>
+              </degrees>
+            </turnRightBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>350</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <whenScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+            <playSoundBrick>
+              <object reference="../../../../.."/>
+              <sound>
+                <fileName>3ec79f9addcf5055e069ec794db954e8_c.mp3</fileName>
+                <name>c</name>
+              </sound>
+            </playSoundBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList>
+        <sound reference="../../scriptList/whenScript/brickList/playSoundBrick/sound"/>
+      </soundList>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>3e6ca586e83356d801a79f17aca31297_c1.png</fileName>
+          <name>d1</name>
+        </look>
+        <look>
+          <fileName>e06ce783dbab2eb7959f5c41a9b917fe_c2.png</fileName>
+          <name>d2</name>
+        </look>
+      </lookList>
+      <name>d</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>350</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <turnRightBrick>
+              <object reference="../../../../.."/>
+              <degrees>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formulaTree>
+              </degrees>
+            </turnRightBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>450</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <whenScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+            <playSoundBrick>
+              <object reference="../../../../.."/>
+              <sound>
+                <fileName>778fc114464dcf4b368c7d2841863beb_d.mp3</fileName>
+                <name>d</name>
+              </sound>
+            </playSoundBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList>
+        <sound reference="../../scriptList/whenScript/brickList/playSoundBrick/sound"/>
+      </soundList>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>3e6ca586e83356d801a79f17aca31297_c1.png</fileName>
+          <name>e1</name>
+        </look>
+        <look>
+          <fileName>e06ce783dbab2eb7959f5c41a9b917fe_c2.png</fileName>
+          <name>e2</name>
+        </look>
+      </lookList>
+      <name>e</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>350</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>220</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <turnRightBrick>
+              <object reference="../../../../.."/>
+              <degrees>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formulaTree>
+              </degrees>
+            </turnRightBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <whenScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+            <playSoundBrick>
+              <object reference="../../../../.."/>
+              <sound>
+                <fileName>152badadc1a428c7a89b46cf6d82a43b_e.mp3</fileName>
+                <name>e</name>
+              </sound>
+            </playSoundBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList>
+        <sound reference="../../scriptList/whenScript/brickList/playSoundBrick/sound"/>
+      </soundList>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>3e6ca586e83356d801a79f17aca31297_c1.png</fileName>
+          <name>f1</name>
+        </look>
+        <look>
+          <fileName>e06ce783dbab2eb7959f5c41a9b917fe_c2.png</fileName>
+          <name>f2</name>
+        </look>
+      </lookList>
+      <name>f</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>350</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>10</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <turnRightBrick>
+              <object reference="../../../../.."/>
+              <degrees>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formulaTree>
+              </degrees>
+            </turnRightBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <whenScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+            <playSoundBrick>
+              <object reference="../../../../.."/>
+              <sound>
+                <fileName>dbdd35220c46b04c7ace3f04af185702_f.mp3</fileName>
+                <name>f</name>
+              </sound>
+            </playSoundBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList>
+        <sound reference="../../scriptList/whenScript/brickList/playSoundBrick/sound"/>
+      </soundList>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>3e6ca586e83356d801a79f17aca31297_c1.png</fileName>
+          <name>g1</name>
+        </look>
+        <look>
+          <fileName>e06ce783dbab2eb7959f5c41a9b917fe_c2.png</fileName>
+          <name>g2</name>
+        </look>
+      </lookList>
+      <name>g</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>350</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>240</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <turnRightBrick>
+              <object reference="../../../../.."/>
+              <degrees>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formulaTree>
+              </degrees>
+            </turnRightBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <whenScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+            <playSoundBrick>
+              <object reference="../../../../.."/>
+              <sound>
+                <fileName>e2b1d3b4f3d65de8f6468539ad695e94_g.mp3</fileName>
+                <name>g</name>
+              </sound>
+            </playSoundBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList>
+        <sound reference="../../scriptList/whenScript/brickList/playSoundBrick/sound"/>
+      </soundList>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>3e6ca586e83356d801a79f17aca31297_c1.png</fileName>
+          <name>a1</name>
+        </look>
+        <look>
+          <fileName>e06ce783dbab2eb7959f5c41a9b917fe_c2.png</fileName>
+          <name>a2</name>
+        </look>
+      </lookList>
+      <name>a</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>350</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>470</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <turnRightBrick>
+              <object reference="../../../../.."/>
+              <degrees>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formulaTree>
+              </degrees>
+            </turnRightBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <whenScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+            <playSoundBrick>
+              <object reference="../../../../.."/>
+              <sound>
+                <fileName>ba454104796ff54154552e6501870d10_a.mp3</fileName>
+                <name>a</name>
+              </sound>
+            </playSoundBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList>
+        <sound reference="../../scriptList/whenScript/brickList/playSoundBrick/sound"/>
+      </soundList>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>3e6ca586e83356d801a79f17aca31297_c1.png</fileName>
+          <name>h1</name>
+        </look>
+        <look>
+          <fileName>e06ce783dbab2eb7959f5c41a9b917fe_c2.png</fileName>
+          <name>h2</name>
+        </look>
+      </lookList>
+      <name>h</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>350</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>700</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <turnRightBrick>
+              <object reference="../../../../.."/>
+              <degrees>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formulaTree>
+              </degrees>
+            </turnRightBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <whenScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+            <playSoundBrick>
+              <object reference="../../../../.."/>
+              <sound>
+                <fileName>9cfb811c257d934d69671369ac15e88e_H.mp3</fileName>
+                <name>H</name>
+              </sound>
+            </playSoundBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList>
+        <sound reference="../../scriptList/whenScript/brickList/playSoundBrick/sound"/>
+      </soundList>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>0b156debb898dd65e2da94112d319b84_c#1.png</fileName>
+          <name>c#1</name>
+        </look>
+        <look>
+          <fileName>ff56c5a5973c6739efb642917c77eca0_c#2.png</fileName>
+          <name>c#2</name>
+        </look>
+      </lookList>
+      <name>c#</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>500</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>200</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>570</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <turnRightBrick>
+              <object reference="../../../../.."/>
+              <degrees>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formulaTree>
+              </degrees>
+            </turnRightBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <whenScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>900</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <playSoundBrick>
+              <object reference="../../../../.."/>
+              <sound>
+                <fileName>8586959b14c74023b91e2c17da40cab4_c#.mp3</fileName>
+                <name>c#</name>
+              </sound>
+            </playSoundBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>500</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList>
+        <sound reference="../../scriptList/whenScript/brickList/playSoundBrick/sound"/>
+      </soundList>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>0b156debb898dd65e2da94112d319b84_c#1.png</fileName>
+          <name>c#1</name>
+        </look>
+        <look>
+          <fileName>ff56c5a5973c6739efb642917c77eca0_c#2.png</fileName>
+          <name>c#2</name>
+        </look>
+      </lookList>
+      <name>d#</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>500</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>200</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>340</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <turnRightBrick>
+              <object reference="../../../../.."/>
+              <degrees>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formulaTree>
+              </degrees>
+            </turnRightBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <whenScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>900</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <playSoundBrick>
+              <object reference="../../../../.."/>
+              <sound>
+                <fileName>3bdf92aad67a35e1d67f8b9c304cc732_d#.mp3</fileName>
+                <name>d#</name>
+              </sound>
+            </playSoundBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>500</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList>
+        <sound reference="../../scriptList/whenScript/brickList/playSoundBrick/sound"/>
+      </soundList>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>0b156debb898dd65e2da94112d319b84_c#1.png</fileName>
+          <name>c#1</name>
+        </look>
+        <look>
+          <fileName>ff56c5a5973c6739efb642917c77eca0_c#2.png</fileName>
+          <name>c#2</name>
+        </look>
+      </lookList>
+      <name>e#</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>500</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>200</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>120</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <turnRightBrick>
+              <object reference="../../../../.."/>
+              <degrees>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formulaTree>
+              </degrees>
+            </turnRightBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <whenScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>900</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <playSoundBrick>
+              <object reference="../../../../.."/>
+              <sound>
+                <fileName>7511b8919dadb9d098d77ab228d41ca5_e#.mp3</fileName>
+                <name>e#</name>
+              </sound>
+            </playSoundBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>500</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList>
+        <sound reference="../../scriptList/whenScript/brickList/playSoundBrick/sound"/>
+      </soundList>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>0b156debb898dd65e2da94112d319b84_c#1.png</fileName>
+          <name>c#1</name>
+        </look>
+        <look>
+          <fileName>ff56c5a5973c6739efb642917c77eca0_c#2.png</fileName>
+          <name>c#2</name>
+        </look>
+      </lookList>
+      <name>f#</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>500</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>200</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>350</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <turnRightBrick>
+              <object reference="../../../../.."/>
+              <degrees>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formulaTree>
+              </degrees>
+            </turnRightBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <whenScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>900</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <playSoundBrick>
+              <object reference="../../../../.."/>
+              <sound>
+                <fileName>459ab4eb37f698e3cee4a7f773870a79_f#.mp3</fileName>
+                <name>f#</name>
+              </sound>
+            </playSoundBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>500</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList>
+        <sound reference="../../scriptList/whenScript/brickList/playSoundBrick/sound"/>
+      </soundList>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>0b156debb898dd65e2da94112d319b84_c#1.png</fileName>
+          <name>c#1</name>
+        </look>
+        <look>
+          <fileName>ff56c5a5973c6739efb642917c77eca0_c#2.png</fileName>
+          <name>c#2</name>
+        </look>
+      </lookList>
+      <name>g#</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>500</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>200</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>580</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <turnRightBrick>
+              <object reference="../../../../.."/>
+              <degrees>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>90</value>
+                </formulaTree>
+              </degrees>
+            </turnRightBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <whenScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>900</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <playSoundBrick>
+              <object reference="../../../../.."/>
+              <sound>
+                <fileName>590e4930d1a4d647da8b5d43919fd2ab_g#.mp3</fileName>
+                <name>g#</name>
+              </sound>
+            </playSoundBrick>
+            <waitBrick>
+              <object reference="../../../../.."/>
+              <timeToWaitInSeconds>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0.2</value>
+                </formulaTree>
+              </timeToWaitInSeconds>
+            </waitBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>500</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList>
+        <sound reference="../../scriptList/whenScript/brickList/playSoundBrick/sound"/>
+      </soundList>
+    </object>
+  </objectList>
+  <variables>
+    <objectVariableList>
+      <entry>
+        <object reference="../../../../objectList/object[10]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[13]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[7]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[12]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[5]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[11]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[9]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[8]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[6]"/>
+        <list/>
+      </entry>
+    </objectVariableList>
+    <programVariableList/>
+  </variables>
+</program>

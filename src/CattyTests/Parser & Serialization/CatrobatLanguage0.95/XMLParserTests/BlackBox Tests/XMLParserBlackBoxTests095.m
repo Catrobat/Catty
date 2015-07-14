@@ -25,11 +25,11 @@
 #import "CBXMLParser.h"
 #import "Parser.h"
 
-@interface XMLParserBlackBoxTests092 : XMLAbstractTest
+@interface XMLParserBlackBoxTests095 : XMLAbstractTest
 
 @end
 
-@implementation XMLParserBlackBoxTests092
+@implementation XMLParserBlackBoxTests095
 
 - (void)testAirFight05
 {
