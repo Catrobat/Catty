@@ -131,6 +131,9 @@
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"deviceName"
                                                     stringValue:self.deviceName context:context]
                        context:context];
+    [headerXMLElement addChild:[GDataXMLElement elementWithName:@"isPhiroProProject"
+                                                    stringValue:@"false" context:context]
+                       context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"mediaLicense"
                                                     stringValue:self.mediaLicense context:context]
                        context:context];

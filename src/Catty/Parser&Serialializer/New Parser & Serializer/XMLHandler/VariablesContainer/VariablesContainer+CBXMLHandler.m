@@ -192,7 +192,7 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"variables" context:context];
+    GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"data" context:context];
     GDataXMLElement *objectVariableListXmlElement = [GDataXMLElement elementWithName:@"objectVariableList" context:context];
     NSUInteger totalNumOfObjectVariables = [self.objectVariableList count];
 
@@ -242,6 +242,8 @@
     //    GDataXMLElement *userBrickVariableListXmlElement = [GDataXMLElement elementWithName:@"userBrickVariableList"
     //                                                                                context:context];
     //    [xmlElement addChild:userBrickVariableListXmlElement context:context];
+    
+    // TODO implement objectListOfList and programListOfLists
 
     return xmlElement;
 }

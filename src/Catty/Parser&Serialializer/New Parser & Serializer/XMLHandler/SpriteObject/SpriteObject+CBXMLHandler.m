@@ -227,6 +227,9 @@
     //  Unused at the moment => implement this after Catroid has decided to officially activate this!
     //    GDataXMLElement *userBricksXmlElement = [GDataXMLElement elementWithName:@"userBricks" context:context];
     //    [xmlElement addChild:userBricksXmlElement context:context];
+    
+    // add pseudo <userBricks/> element to produce a Catroid equivalent XML (unused at the moment)
+    [xmlElement addChild:[GDataXMLElement elementWithName:@"userBricks" context:nil]];
 
     return xmlElement;
 }

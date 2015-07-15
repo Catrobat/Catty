@@ -166,6 +166,10 @@
     if (self.variables) {
         [xmlElement addChild:[self.variables xmlElementWithContext:context] context:context];
     }
+    
+    // add pseudo <settings/> element to produce a Catroid equivalent XML (unused at the moment)
+    [xmlElement addChild:[GDataXMLElement elementWithName:@"settings" context:nil]];
+     
     return xmlElement;
 }
 

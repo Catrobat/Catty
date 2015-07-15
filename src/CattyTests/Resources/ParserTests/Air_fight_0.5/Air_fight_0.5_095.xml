@@ -418,14 +418,14 @@
                 </formula>
               </formulaList>
             </brick>
-            <org.catrobat.catroid.content.bricks.SetGhostEffectBrick type="SetGhostEffectBrick">
+            <brick type="SetGhostEffectBrick">
               <formulaList>
                 <formula category="TRANSPARENCY">
                   <type>NUMBER</type>
                   <value>70</value>
                 </formula>
               </formulaList>
-            </org.catrobat.catroid.content.bricks.SetGhostEffectBrick>
+            </brick>
             <brick type="ComeToFrontBrick"/>
             <brick type="WaitBrick">
               <formulaList>
@@ -5438,14 +5438,14 @@
                 </formula>
               </formulaList>
             </brick>
-            <org.catrobat.catroid.content.bricks.ChangeGhostEffectByNBrick type="ChangeGhostEffectByNBrick">
+            <brick type="ChangeGhostEffectByNBrick">
               <formulaList>
                 <formula category="TRANSPARENCY_CHANGE">
                   <type>NUMBER</type>
                   <value>1</value>
                 </formula>
               </formulaList>
-            </org.catrobat.catroid.content.bricks.ChangeGhostEffectByNBrick>
+            </brick>
             <brick type="LoopEndBrick"/>
           </brickList>
           <receivedMessage>Opponent hit!</receivedMessage>
@@ -5513,14 +5513,14 @@
                 </formula>
               </formulaList>
             </brick>
-            <org.catrobat.catroid.content.bricks.SetGhostEffectBrick type="SetGhostEffectBrick">
+            <brick type="SetGhostEffectBrick">
               <formulaList>
                 <formula category="TRANSPARENCY">
                   <type>NUMBER</type>
                   <value>70.0</value>
                 </formula>
               </formulaList>
-            </org.catrobat.catroid.content.bricks.SetGhostEffectBrick>
+            </brick>
             <brick type="SetVariableBrick">
               <formulaList>
                 <formula category="VARIABLE">
@@ -5603,14 +5603,14 @@
         </script>
         <script type="BroadcastScript">
           <brickList>
-            <org.catrobat.catroid.content.bricks.SetGhostEffectBrick type="SetGhostEffectBrick">
+            <brick type="SetGhostEffectBrick">
               <formulaList>
                 <formula category="TRANSPARENCY">
                   <type>NUMBER</type>
                   <value>10</value>
                 </formula>
               </formulaList>
-            </org.catrobat.catroid.content.bricks.SetGhostEffectBrick>
+            </brick>
             <brick type="SetLookBrick">
               <look reference="../../../../../lookList/look[2]"/>
             </brick>
