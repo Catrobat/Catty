@@ -55,6 +55,8 @@
 		4C3BE65B1B3D2E0A00D99AB2 /* FeaturedProgramsStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BE65A1B3D2E0A00D99AB2 /* FeaturedProgramsStoreViewControllerTests.m */; };
 		4C4A71921B52733C00BBE32B /* CBXMLAbstractContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A71911B52733C00BBE32B /* CBXMLAbstractContext.m */; };
 		4C4A71A11B527E2F00BBE32B /* CBXMLParserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A71A01B527E2F00BBE32B /* CBXMLParserContext.m */; };
+		4C59D9C61B56596900595C99 /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C59D9C31B56596900595C99 /* XMLSerializerBlackBoxTests.m */; };
+		4C59D9C71B56596900595C99 /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C59D9C51B56596900595C99 /* XMLSerializerTests.m */; };
 		4C5B27FE1B3C15AC00509FDB /* SearchStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5B27FD1B3C15AC00509FDB /* SearchStoreViewControllerTests.m */; };
 		4C5E8E721B30662000204EE6 /* BrickMutableCopyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5E8E711B30662000204EE6 /* BrickMutableCopyTests.m */; };
 		4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */; };
@@ -440,8 +442,6 @@
 		CA4E48BB1B1CEAE9003EA71E /* CBScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E48B71B1CEAE9003EA71E /* CBScriptContext.swift */; };
 		CA4E48BC1B1CEAE9003EA71E /* CBStartScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E48B81B1CEAE9003EA71E /* CBStartScriptContext.swift */; };
 		CA4E48BD1B1CEAE9003EA71E /* CBWhenScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E48B91B1CEAE9003EA71E /* CBWhenScriptContext.swift */; };
-		CA7698C01B0E4B3F000D0340 /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5521A43BEC4002A69A0 /* XMLSerializerTests.m */; };
-		CA7698C11B0E4B3F000D0340 /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A54F1A43BEA6002A69A0 /* XMLSerializerBlackBoxTests.m */; };
 		CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD740E71AF2D42B00C32937 /* CBStackTests.m */; };
 		CA7698C41B0E4B3F000D0340 /* CustomExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44EC17F079F500624730 /* CustomExtensionsTests.m */; };
 		CA7698C51B0E4B3F000D0340 /* ProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247718CD053300314C2B /* ProgramTests.m */; };
@@ -685,6 +685,8 @@
 		4C5517D51ABC6AA500A52FF4 /* BrickLookProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickLookProtocol.h; sourceTree = "<group>"; };
 		4C5517D61ABC6AB800A52FF4 /* BrickSoundProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSoundProtocol.h; sourceTree = "<group>"; };
 		4C5517D71ABC737C00A52FF4 /* BrickObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickObjectProtocol.h; sourceTree = "<group>"; };
+		4C59D9C31B56596900595C99 /* XMLSerializerBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerBlackBoxTests.m; sourceTree = "<group>"; };
+		4C59D9C51B56596900595C99 /* XMLSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerTests.m; sourceTree = "<group>"; };
 		4C5B27FD1B3C15AC00509FDB /* SearchStoreViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchStoreViewControllerTests.m; path = Download/SearchStoreViewControllerTests.m; sourceTree = "<group>"; };
 		4C5B27FF1B3C194900509FDB /* SearchStoreViewControllerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchStoreViewControllerTests.h; path = Download/SearchStoreViewControllerTests.h; sourceTree = "<group>"; };
 		4C5E8E711B30662000204EE6 /* BrickMutableCopyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMutableCopyTests.m; sourceTree = "<group>"; };
@@ -1529,8 +1531,6 @@
 		CA7698AA1B0E4A97000D0340 /* CattyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA8C247718CD053300314C2B /* ProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTests.m; sourceTree = "<group>"; };
 		CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerNewProgramTests.m; sourceTree = "<group>"; };
-		CAA4A54F1A43BEA6002A69A0 /* XMLSerializerBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLSerializerBlackBoxTests.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLSerializerTests/BlackBox Tests/XMLSerializerBlackBoxTests.m"; sourceTree = "<group>"; };
-		CAA4A5521A43BEC4002A69A0 /* XMLSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = XMLSerializerTests.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLSerializerTests/Unit Tests/XMLSerializerTests.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		CABF43AF1B115E6400419A55 /* CBConditionalSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBConditionalSequence.swift; path = Catty/PlayerEngine/DataModel/CBSequence/CBConditionalSequence.swift; sourceTree = SOURCE_ROOT; };
 		CABF43B01B115E6400419A55 /* CBIfConditionalSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBIfConditionalSequence.swift; path = Catty/PlayerEngine/DataModel/CBSequence/CBIfConditionalSequence.swift; sourceTree = SOURCE_ROOT; };
 		CABF43B11B115E6400419A55 /* CBOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBOperation.swift; path = Catty/PlayerEngine/DataModel/CBSequence/CBOperation.swift; sourceTree = SOURCE_ROOT; };
@@ -1810,6 +1810,7 @@
 			isa = PBXGroup;
 			children = (
 				4C2EE3DB1B5554D7006DE9B8 /* XMLParserTests */,
+				4C59D9C11B56596900595C99 /* XMLSerializerTests */,
 			);
 			name = CatrobatLanguage0.95;
 			path = "Parser & Serialization/CatrobatLanguage0.95";
@@ -1960,6 +1961,31 @@
 				4C1EB20F1AC19B3D0001F431 /* BrickTextProtocol.h */,
 			);
 			path = BrickData;
+			sourceTree = "<group>";
+		};
+		4C59D9C11B56596900595C99 /* XMLSerializerTests */ = {
+			isa = PBXGroup;
+			children = (
+				4C59D9C21B56596900595C99 /* BlackBox Tests */,
+				4C59D9C41B56596900595C99 /* Unit Tests */,
+			);
+			path = XMLSerializerTests;
+			sourceTree = "<group>";
+		};
+		4C59D9C21B56596900595C99 /* BlackBox Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4C59D9C31B56596900595C99 /* XMLSerializerBlackBoxTests.m */,
+			);
+			path = "BlackBox Tests";
+			sourceTree = "<group>";
+		};
+		4C59D9C41B56596900595C99 /* Unit Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4C59D9C51B56596900595C99 /* XMLSerializerTests.m */,
+			);
+			path = "Unit Tests";
 			sourceTree = "<group>";
 		};
 		4C5B27FC1B3C155C00509FDB /* Download */ = {
@@ -2389,7 +2415,6 @@
 			isa = PBXGroup;
 			children = (
 				4CD194F51A0632AA00484E4F /* XMLParserTests */,
-				CAEE0A231A328CDF007CB248 /* XMLSerializerTests */,
 			);
 			name = CatrobatLanguage0.93;
 			sourceTree = "<group>";
@@ -4226,22 +4251,6 @@
 			name = "BlackBox Tests";
 			sourceTree = "<group>";
 		};
-		CAA4A5511A43BEAE002A69A0 /* BlackBox Tests */ = {
-			isa = PBXGroup;
-			children = (
-				CAA4A54F1A43BEA6002A69A0 /* XMLSerializerBlackBoxTests.m */,
-			);
-			name = "BlackBox Tests";
-			sourceTree = "<group>";
-		};
-		CAA4A5541A43BEDB002A69A0 /* Unit Tests */ = {
-			isa = PBXGroup;
-			children = (
-				CAA4A5521A43BEC4002A69A0 /* XMLSerializerTests.m */,
-			);
-			name = "Unit Tests";
-			sourceTree = "<group>";
-		};
 		CAD232181B10F12600570370 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -4545,15 +4554,6 @@
 				CAE485D91B13AA6E00DC4485 /* CBPlayerBackend.swift */,
 			);
 			name = Backend;
-			sourceTree = "<group>";
-		};
-		CAEE0A231A328CDF007CB248 /* XMLSerializerTests */ = {
-			isa = PBXGroup;
-			children = (
-				CAA4A5541A43BEDB002A69A0 /* Unit Tests */,
-				CAA4A5511A43BEAE002A69A0 /* BlackBox Tests */,
-			);
-			name = XMLSerializerTests;
 			sourceTree = "<group>";
 		};
 		CAEE3BEA1ABDFADE009FDA72 /* CBSequence */ = {
@@ -4896,9 +4896,7 @@
 			files = (
 				4C68FC8E1B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m in Sources */,
 				4C2EE3E41B5554D7006DE9B8 /* XMLParserBrickTests095.m in Sources */,
-				CA7698C01B0E4B3F000D0340 /* XMLSerializerTests.m in Sources */,
 				4C2A00C01B5546DF00CD4492 /* XMLParserBrickTests093.m in Sources */,
-				CA7698C11B0E4B3F000D0340 /* XMLSerializerBlackBoxTests.m in Sources */,
 				4C2A00C11B5546DF00CD4492 /* XMLParserFormulaTests093.m in Sources */,
 				CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */,
 				CA7698C41B0E4B3F000D0340 /* CustomExtensionsTests.m in Sources */,
@@ -4909,12 +4907,14 @@
 				CA7698C51B0E4B3F000D0340 /* ProgramTests.m in Sources */,
 				CA7698C71B0E4B3F000D0340 /* BrickTests.m in Sources */,
 				4C2EE4221B555E99006DE9B8 /* XMLParserUserVariableTests095.m in Sources */,
+				4C59D9C71B56596900595C99 /* XMLSerializerTests.m in Sources */,
 				CA7698C81B0E4B3F000D0340 /* ChangeBrightnessByNBrickTests.m in Sources */,
 				4C2A00C71B5547EB00CD4492 /* XMLAbstractTest.m in Sources */,
 				CA7698C91B0E4B3F000D0340 /* ChangeGhostEffectByNBrickTests.m in Sources */,
 				CA7698CA1B0E4B3F000D0340 /* ChangeSizeByNBrickTests.m in Sources */,
 				CA7698CB1B0E4B3F000D0340 /* ClearGrafficEffectBrickTests.m in Sources */,
 				4C5B27FE1B3C15AC00509FDB /* SearchStoreViewControllerTests.m in Sources */,
+				4C59D9C61B56596900595C99 /* XMLSerializerBlackBoxTests.m in Sources */,
 				4C3BE65B1B3D2E0A00D99AB2 /* FeaturedProgramsStoreViewControllerTests.m in Sources */,
 				CA7698CC1B0E4B3F000D0340 /* GoNStepsBackBrickTests.m in Sources */,
 				CA7698CD1B0E4B3F000D0340 /* MoveNStepsBrickTests.m in Sources */,
