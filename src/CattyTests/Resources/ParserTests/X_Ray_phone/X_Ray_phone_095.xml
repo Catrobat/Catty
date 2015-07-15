@@ -197,18 +197,12 @@
     </objectVariableList>
     <programListOfLists/>
     <programVariableList>
-      <userVariable>
-        </userVariable>
-      <userVariable>
-        </userVariable>
-      <userVariable>
-        </userVariable>
-      <userVariable>
-        </userVariable>
-      <userVariable>
-        </userVariable>
-      <userVariable>
-        </userVariable>
+      <userVariable>X</userVariable>
+      <userVariable>Y</userVariable>
+      <userVariable>Yp</userVariable>
+      <userVariable>Xp</userVariable>
+      <userVariable>Yoffset</userVariable>
+      <userVariable>Xoffset</userVariable>
       <userVariable reference="../../../objectList/object[2]/scriptList/script/brickList/brick[2]/userVariable"/>
     </programVariableList>
     <userBrickVariableList/>

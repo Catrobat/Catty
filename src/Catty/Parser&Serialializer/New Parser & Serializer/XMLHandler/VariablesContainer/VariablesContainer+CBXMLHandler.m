@@ -180,11 +180,13 @@
         UserVariable *userVariable = [context parseFromElement:userVariableElement withClass:[UserVariable class]];
         [XMLError exceptionIfNil:userVariable message:@"Unable to parse user variable..."];
         
-        if ([CBXMLParserHelper findUserVariableInArray:userVariablesList withName:userVariable.name]) {
-            [XMLError exceptionWithMessage:@"An userVariable-entry of the same UserVariable already \
-             exists. This should never happen!"];
+        if([userVariable.name length] > 0) {
+            if ([CBXMLParserHelper findUserVariableInArray:userVariablesList withName:userVariable.name]) {
+                [XMLError exceptionWithMessage:@"An userVariable-entry of the same UserVariable already \
+                 exists. This should never happen!"];
+            }
+            [userVariablesList addObject:userVariable];
         }
-        [userVariablesList addObject:userVariable];
     }
     return userVariablesList;
 }

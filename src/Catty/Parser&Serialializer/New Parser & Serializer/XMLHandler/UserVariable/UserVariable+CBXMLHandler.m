@@ -44,6 +44,10 @@
         [XMLError exceptionIfNil:xmlElement message:@"Invalid reference in UserVariable!"];
     }
     NSString *userVariableName = [xmlElement stringValue];
+    // remove leading and trailing whitespace
+    NSCharacterSet *ws = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    userVariableName = [userVariableName stringByTrimmingCharactersInSet:ws];
+    
     [XMLError exceptionIfNil:userVariableName message:@"No name for user variable given"];
     UserVariable *userVariable = nil;
     

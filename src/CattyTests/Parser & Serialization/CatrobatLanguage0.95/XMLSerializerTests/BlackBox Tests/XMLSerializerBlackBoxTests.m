@@ -99,16 +99,6 @@
     [self testParseXMLAndSerializeProgramAndCompareXML:@"Minions__095"];
 }
 
-- (void)testNyancat10
-{
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"Nyancat_1.0_095"];
-}
-
-- (void)testPiano
-{
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"Piano_095"];
-}
-
 - (void)testPongStarter
 {
     [self testParseXMLAndSerializeProgramAndCompareXML:@"Pong_Starter_095"];
@@ -117,11 +107,6 @@
 - (void)testRockPaperScissors
 {
     [self testParseXMLAndSerializeProgramAndCompareXML:@"Rock_paper_scissors_095"];
-}
-
-- (void)testSkyPascal
-{
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"SKYPASCAL_095"];
 }
 
 - (void)testTicTacToeMaster
@@ -156,7 +141,7 @@
 
 - (void)testValidProgramAllBricks
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"ValidProgramAllBricks"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"ValidProgramAllBricks095"];
 }
 
 @end

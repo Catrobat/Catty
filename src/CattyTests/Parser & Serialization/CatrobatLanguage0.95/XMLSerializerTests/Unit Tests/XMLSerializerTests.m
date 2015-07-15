@@ -44,10 +44,10 @@
 
 - (void)testInvalidHeader
 {
-    Program *program = [self getProgramForXML:@"ValidProgram"];
+    Program *program = [self getProgramForXML:@"ValidHeader095"];
     Header *header = program.header;
     header.programDescription = @"Invalid";
-    BOOL equal = [self isXMLElement:[header xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/header" inProgramForXML:@"ValidProgram"];
+    BOOL equal = [self isXMLElement:[header xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/header" inProgramForXML:@"ValidHeader095"];
     XCTAssertFalse(equal, @"GDataXMLElement::isEqualToElement not working correctly!");
 }
 
@@ -63,8 +63,8 @@
 {
     CBXMLParserContext *parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.95f];
     
-    Program *referenceProgram = [self getProgramForXML:@"ValidProgram"];
-    Program *program = [self getProgramForXML:@"ValidProgram"];
+    Program *referenceProgram = [self getProgramForXML:@"ValidProgram095"];
+    Program *program = [self getProgramForXML:@"ValidProgram095"];
     SpriteObject *moleOne = [program.objectList objectAtIndex:1];
     [program removeObject:moleOne];
     
