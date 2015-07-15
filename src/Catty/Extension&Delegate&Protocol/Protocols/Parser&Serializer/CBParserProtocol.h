@@ -23,6 +23,9 @@
 #import <Foundation/Foundation.h>
 
 @class Program;
+@class GDataXMLElement;
+@class CBXMLParserContext;
+@protocol CBXMLNodeProtocol;
 
 @protocol CBParserProtocol <NSObject>
 
