@@ -25,10 +25,10 @@
 #import "WhenScript.h"
 #import "Pocket_Code-Swift.h"
 
-@interface ChangeGhostEffectByNBrickTests : BrickTests
+@interface ChangeTransparencyByNBrickTests : BrickTests
 @end
 
-@implementation ChangeGhostEffectByNBrickTests
+@implementation ChangeTransparencyByNBrickTests
 
 - (void)setUp
 {
@@ -60,7 +60,7 @@
     Script *script = [[WhenScript alloc] init];
     script.object = object;
 
-    ChangeGhostEffectByNBrick* brick = [[ChangeGhostEffectByNBrick alloc]init];
+    ChangeTransparencyByNBrick *brick = [[ChangeTransparencyByNBrick alloc]init];
     brick.script = script;
     brick.changeGhostEffect = transparency;
 
@@ -89,7 +89,7 @@
     Script *script = [[WhenScript alloc] init];
     script.object = object;
 
-    ChangeGhostEffectByNBrick* brick = [[ChangeGhostEffectByNBrick alloc]init];
+    ChangeTransparencyByNBrick *brick = [[ChangeTransparencyByNBrick alloc]init];
     brick.script = script;
     brick.changeGhostEffect = transparency;
 
@@ -118,7 +118,7 @@
     Script *script = [[WhenScript alloc] init];
     script.object = object;
 
-    ChangeGhostEffectByNBrick* brick = [[ChangeGhostEffectByNBrick alloc]init];
+    ChangeTransparencyByNBrick *brick = [[ChangeTransparencyByNBrick alloc]init];
     brick.script = script;
     brick.changeGhostEffect = transparency;
 
@@ -145,7 +145,7 @@
     Script *script = [[WhenScript alloc] init];
     script.object = object;
 
-    ChangeGhostEffectByNBrick* brick = [[ChangeGhostEffectByNBrick alloc]init];
+    ChangeTransparencyByNBrick *brick = [[ChangeTransparencyByNBrick alloc]init];
     brick.script = script;
     brick.changeGhostEffect = transparency;
 

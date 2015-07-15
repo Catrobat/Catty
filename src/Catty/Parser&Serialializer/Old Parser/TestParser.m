@@ -51,7 +51,7 @@
 #import "TurnRightBrick.h"
 #import "SetBrightnessBrick.h"
 #import "PointInDirectionBrick.h"
-#import "SetGhostEffectBrick.h"
+#import "SetTransparencyBrick.h"
 #import "GoNStepsBackBrick.h"
 
 #define IMAGE_FILE_NAME @"tmp.png"

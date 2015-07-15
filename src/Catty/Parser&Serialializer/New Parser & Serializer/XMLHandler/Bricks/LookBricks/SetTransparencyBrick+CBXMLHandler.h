@@ -20,13 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
-#import "BrickFormulaProtocol.h"
+#import "SetTransparencyBrick.h"
+#import "CBXMLNodeProtocol.h"
 
-@class Formula;
-
-@interface SetGhostEffectBrick : Brick<BrickFormulaProtocol>
-
-@property (nonatomic, strong) Formula *transparency;
+@interface SetTransparencyBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

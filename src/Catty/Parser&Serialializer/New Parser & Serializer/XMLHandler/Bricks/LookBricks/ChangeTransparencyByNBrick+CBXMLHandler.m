@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ChangeGhostEffectByNBrick+CBXMLHandler.h"
+#import "ChangeTransparencyByNBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "Formula+CBXMLHandler.h"
@@ -28,16 +28,16 @@
 #import "CBXMLParserContext.h"
 #import "CBXMLSerializerHelper.h"
 
-@implementation ChangeGhostEffectByNBrick (CBXMLHandler)
+@implementation ChangeTransparencyByNBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
     
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"TRANSPARENCY_CHANGE" withContext:context];
-    ChangeGhostEffectByNBrick *changeGhostEffectByNBrick = [self new];
-    changeGhostEffectByNBrick.changeGhostEffect = formula;
-    return changeGhostEffectByNBrick;
+    ChangeTransparencyByNBrick *changeTransparencyByNBrick = [self new];
+    changeTransparencyByNBrick.changeGhostEffect = formula;
+    return changeTransparencyByNBrick;
 }
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
@@ -49,7 +49,7 @@
 {
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"ChangeGhostEffectByNBrick"]];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"ChangeTransparencyByNBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.changeGhostEffect xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"TRANSPARENCY_CHANGE"]];

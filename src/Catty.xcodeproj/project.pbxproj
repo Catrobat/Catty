@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C227A091B56BE8400DA37B7 /* ChangeTransparencyByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C227A081B56BE8400DA37B7 /* ChangeTransparencyByNBrick.m */; };
+		4C227A0C1B56BEB900DA37B7 /* SetTransparencyBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C227A0B1B56BEB900DA37B7 /* SetTransparencyBrick.m */; };
+		4C227A0F1B56BF2000DA37B7 /* ChangeTransparencyByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C227A0E1B56BF2000DA37B7 /* ChangeTransparencyByNBrick+CBXMLHandler.m */; };
+		4C227A121B56BF3C00DA37B7 /* SetTransparencyBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C227A111B56BF3C00DA37B7 /* SetTransparencyBrick+CBXMLHandler.m */; };
+		4C227A141B56C02C00DA37B7 /* ChangeTransparencyByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C227A131B56C02C00DA37B7 /* ChangeTransparencyByNBrickTests.m */; };
+		4C227A161B56C0B700DA37B7 /* SetTransparencyBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C227A151B56C0B700DA37B7 /* SetTransparencyBrickTests.m */; };
 		4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2650691A6538710050775B /* CBMutableCopyContext.m */; };
 		4C2A00C01B5546DF00CD4492 /* XMLParserBrickTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00B91B5546DF00CD4492 /* XMLParserBrickTests093.m */; };
 		4C2A00C11B5546DF00CD4492 /* XMLParserFormulaTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00BB1B5546DF00CD4492 /* XMLParserFormulaTests093.m */; };
@@ -93,13 +99,11 @@
 		4C724E341B4D3E8C00E27479 /* RepeatBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724DB41B4D3E8C00E27479 /* RepeatBrick+CBXMLHandler.m */; };
 		4C724E351B4D3E8C00E27479 /* WaitBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724DB61B4D3E8C00E27479 /* WaitBrick+CBXMLHandler.m */; };
 		4C724E361B4D3E8C00E27479 /* ChangeBrightnessByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724DB91B4D3E8C00E27479 /* ChangeBrightnessByNBrick+CBXMLHandler.m */; };
-		4C724E371B4D3E8C00E27479 /* ChangeGhostEffectByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724DBB1B4D3E8C00E27479 /* ChangeGhostEffectByNBrick+CBXMLHandler.m */; };
 		4C724E381B4D3E8C00E27479 /* ClearGraphicEffectBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724DBD1B4D3E8C00E27479 /* ClearGraphicEffectBrick+CBXMLHandler.m */; };
 		4C724E391B4D3E8C00E27479 /* GoNStepsBackBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724DBF1B4D3E8C00E27479 /* GoNStepsBackBrick+CBXMLHandler.m */; };
 		4C724E3A1B4D3E8C00E27479 /* HideBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724DC11B4D3E8C00E27479 /* HideBrick+CBXMLHandler.m */; };
 		4C724E3B1B4D3E8C00E27479 /* NextLookBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724DC31B4D3E8C00E27479 /* NextLookBrick+CBXMLHandler.m */; };
 		4C724E3C1B4D3E8C00E27479 /* SetBrightnessBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724DC51B4D3E8C00E27479 /* SetBrightnessBrick+CBXMLHandler.m */; };
-		4C724E3D1B4D3E8C00E27479 /* SetGhostEffectBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724DC71B4D3E8C00E27479 /* SetGhostEffectBrick+CBXMLHandler.m */; };
 		4C724E3E1B4D3E8C00E27479 /* SetLookBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724DC91B4D3E8C00E27479 /* SetLookBrick+CBXMLHandler.m */; };
 		4C724E3F1B4D3E8C00E27479 /* ShowBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724DCB1B4D3E8C00E27479 /* ShowBrick+CBXMLHandler.m */; };
 		4C724E401B4D3E8C00E27479 /* ChangeSizeByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724DCE1B4D3E8C00E27479 /* ChangeSizeByNBrick+CBXMLHandler.m */; };
@@ -248,14 +252,12 @@
 		92FF30CE1A24DCAA00093DA7 /* IfLogicElseBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF303B1A24DCAA00093DA7 /* IfLogicElseBrick.m */; };
 		92FF30CF1A24DCAA00093DA7 /* IfLogicEndBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF303D1A24DCAA00093DA7 /* IfLogicEndBrick.m */; };
 		92FF30D01A24DCAA00093DA7 /* ChangeBrightnessByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30401A24DCAA00093DA7 /* ChangeBrightnessByNBrick.m */; };
-		92FF30D11A24DCAA00093DA7 /* ChangeGhostEffectByNBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30421A24DCAA00093DA7 /* ChangeGhostEffectByNBrick.m */; };
 		92FF30D21A24DCAA00093DA7 /* ClearGraphicEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30441A24DCAA00093DA7 /* ClearGraphicEffectBrick.m */; };
 		92FF30D31A24DCAA00093DA7 /* ComeToFrontBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30461A24DCAA00093DA7 /* ComeToFrontBrick.m */; };
 		92FF30D41A24DCAA00093DA7 /* GoNStepsBackBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30481A24DCAA00093DA7 /* GoNStepsBackBrick.m */; };
 		92FF30D51A24DCAA00093DA7 /* HideBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF304A1A24DCAA00093DA7 /* HideBrick.m */; };
 		92FF30D61A24DCAA00093DA7 /* NextLookBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF304C1A24DCAA00093DA7 /* NextLookBrick.m */; };
 		92FF30D71A24DCAA00093DA7 /* SetBrightnessBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF304E1A24DCAA00093DA7 /* SetBrightnessBrick.m */; };
-		92FF30D81A24DCAA00093DA7 /* SetGhostEffectBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30501A24DCAA00093DA7 /* SetGhostEffectBrick.m */; };
 		92FF30D91A24DCAA00093DA7 /* SetLookBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30521A24DCAA00093DA7 /* SetLookBrick.m */; };
 		92FF30DA1A24DCAA00093DA7 /* ShowBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30541A24DCAA00093DA7 /* ShowBrick.m */; };
 		92FF30DB1A24DCAA00093DA7 /* ForeverBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30571A24DCAA00093DA7 /* ForeverBrick.m */; };
@@ -447,7 +449,6 @@
 		CA7698C51B0E4B3F000D0340 /* ProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247718CD053300314C2B /* ProgramTests.m */; };
 		CA7698C71B0E4B3F000D0340 /* BrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44EA17F079C700624730 /* BrickTests.m */; };
 		CA7698C81B0E4B3F000D0340 /* ChangeBrightnessByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92345634192E2A1B00464E6B /* ChangeBrightnessByNBrickTests.m */; };
-		CA7698C91B0E4B3F000D0340 /* ChangeGhostEffectByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */; };
 		CA7698CA1B0E4B3F000D0340 /* ChangeSizeByNBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A49185626DB00547C1E /* ChangeSizeByNBrickTests.m */; };
 		CA7698CB1B0E4B3F000D0340 /* ClearGrafficEffectBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A55185627A300547C1E /* ClearGrafficEffectBrickTests.m */; };
 		CA7698CC1B0E4B3F000D0340 /* GoNStepsBackBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A4F1856274700547C1E /* GoNStepsBackBrickTests.m */; };
@@ -456,7 +457,6 @@
 		CA7698CF1B0E4B3F000D0340 /* PlaceAtBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A47185626B600547C1E /* PlaceAtBrickTests.m */; };
 		CA7698D01B0E4B3F000D0340 /* PointInDirectionBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A451856269100547C1E /* PointInDirectionBrickTests.m */; };
 		CA7698D11B0E4B3F000D0340 /* SetBrightnessBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A511856276D00547C1E /* SetBrightnessBrickTests.m */; };
-		CA7698D21B0E4B3F000D0340 /* SetGhostEffectBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A411856262700547C1E /* SetGhostEffectBrickTests.m */; };
 		CA7698D31B0E4B3F000D0340 /* SetLookBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92345636192E2E6C00464E6B /* SetLookBrickTests.m */; };
 		CA7698D41B0E4B3F000D0340 /* ShowBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3D185625D900547C1E /* ShowBrickTests.m */; };
 		CA7698D51B0E4B3F000D0340 /* HideBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C37A3F185625E700547C1E /* HideBrickTests.m */; };
@@ -605,6 +605,16 @@
 		32CA4F630368D1EE00C91783 /* App-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Prefix.pch"; sourceTree = "<group>"; };
 		4C107ADC194F156F00D9D7ED /* PointToBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointToBrickTests.m; sourceTree = "<group>"; };
 		4C1EB20F1AC19B3D0001F431 /* BrickTextProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTextProtocol.h; sourceTree = "<group>"; };
+		4C227A071B56BE8400DA37B7 /* ChangeTransparencyByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeTransparencyByNBrick.h; sourceTree = "<group>"; };
+		4C227A081B56BE8400DA37B7 /* ChangeTransparencyByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeTransparencyByNBrick.m; sourceTree = "<group>"; };
+		4C227A0A1B56BEB900DA37B7 /* SetTransparencyBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTransparencyBrick.h; sourceTree = "<group>"; };
+		4C227A0B1B56BEB900DA37B7 /* SetTransparencyBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTransparencyBrick.m; sourceTree = "<group>"; };
+		4C227A0D1B56BF2000DA37B7 /* ChangeTransparencyByNBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChangeTransparencyByNBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		4C227A0E1B56BF2000DA37B7 /* ChangeTransparencyByNBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChangeTransparencyByNBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		4C227A101B56BF3C00DA37B7 /* SetTransparencyBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetTransparencyBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
+		4C227A111B56BF3C00DA37B7 /* SetTransparencyBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetTransparencyBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		4C227A131B56C02C00DA37B7 /* ChangeTransparencyByNBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeTransparencyByNBrickTests.m; sourceTree = "<group>"; };
+		4C227A151B56C0B700DA37B7 /* SetTransparencyBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTransparencyBrickTests.m; sourceTree = "<group>"; };
 		4C2650681A6538710050775B /* CBMutableCopyContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopyContext.h; path = CBCopyContext/CBMutableCopyContext.h; sourceTree = "<group>"; };
 		4C2650691A6538710050775B /* CBMutableCopyContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBMutableCopyContext.m; path = CBCopyContext/CBMutableCopyContext.m; sourceTree = "<group>"; };
 		4C26506C1A653A5A0050775B /* CBMutableCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopying.h; path = Copying/CBMutableCopying.h; sourceTree = "<group>"; };
@@ -744,8 +754,6 @@
 		4C724DB61B4D3E8C00E27479 /* WaitBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "WaitBrick+CBXMLHandler.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C724DB81B4D3E8C00E27479 /* ChangeBrightnessByNBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChangeBrightnessByNBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		4C724DB91B4D3E8C00E27479 /* ChangeBrightnessByNBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "ChangeBrightnessByNBrick+CBXMLHandler.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		4C724DBA1B4D3E8C00E27479 /* ChangeGhostEffectByNBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChangeGhostEffectByNBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
-		4C724DBB1B4D3E8C00E27479 /* ChangeGhostEffectByNBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "ChangeGhostEffectByNBrick+CBXMLHandler.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C724DBC1B4D3E8C00E27479 /* ClearGraphicEffectBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ClearGraphicEffectBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		4C724DBD1B4D3E8C00E27479 /* ClearGraphicEffectBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "ClearGraphicEffectBrick+CBXMLHandler.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C724DBE1B4D3E8C00E27479 /* GoNStepsBackBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GoNStepsBackBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
@@ -756,8 +764,6 @@
 		4C724DC31B4D3E8C00E27479 /* NextLookBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NextLookBrick+CBXMLHandler.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C724DC41B4D3E8C00E27479 /* SetBrightnessBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetBrightnessBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		4C724DC51B4D3E8C00E27479 /* SetBrightnessBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "SetBrightnessBrick+CBXMLHandler.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		4C724DC61B4D3E8C00E27479 /* SetGhostEffectBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetGhostEffectBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
-		4C724DC71B4D3E8C00E27479 /* SetGhostEffectBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "SetGhostEffectBrick+CBXMLHandler.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C724DC81B4D3E8C00E27479 /* SetLookBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetLookBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		4C724DC91B4D3E8C00E27479 /* SetLookBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "SetLookBrick+CBXMLHandler.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C724DCA1B4D3E8C00E27479 /* ShowBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ShowBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
@@ -930,8 +936,6 @@
 		92C37A3B185625A700547C1E /* SetYBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetYBrickTests.m; sourceTree = "<group>"; };
 		92C37A3D185625D900547C1E /* ShowBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowBrickTests.m; sourceTree = "<group>"; };
 		92C37A3F185625E700547C1E /* HideBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HideBrickTests.m; sourceTree = "<group>"; };
-		92C37A411856262700547C1E /* SetGhostEffectBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetGhostEffectBrickTests.m; sourceTree = "<group>"; };
-		92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeGhostEffectByNBrickTests.m; sourceTree = "<group>"; };
 		92C37A451856269100547C1E /* PointInDirectionBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointInDirectionBrickTests.m; sourceTree = "<group>"; };
 		92C37A47185626B600547C1E /* PlaceAtBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceAtBrickTests.m; sourceTree = "<group>"; };
 		92C37A49185626DB00547C1E /* ChangeSizeByNBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeSizeByNBrickTests.m; sourceTree = "<group>"; };
@@ -1143,8 +1147,6 @@
 		92FF303D1A24DCAA00093DA7 /* IfLogicEndBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfLogicEndBrick.m; sourceTree = "<group>"; };
 		92FF303F1A24DCAA00093DA7 /* ChangeBrightnessByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeBrightnessByNBrick.h; sourceTree = "<group>"; };
 		92FF30401A24DCAA00093DA7 /* ChangeBrightnessByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeBrightnessByNBrick.m; sourceTree = "<group>"; };
-		92FF30411A24DCAA00093DA7 /* ChangeGhostEffectByNBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeGhostEffectByNBrick.h; sourceTree = "<group>"; };
-		92FF30421A24DCAA00093DA7 /* ChangeGhostEffectByNBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeGhostEffectByNBrick.m; sourceTree = "<group>"; };
 		92FF30431A24DCAA00093DA7 /* ClearGraphicEffectBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearGraphicEffectBrick.h; sourceTree = "<group>"; };
 		92FF30441A24DCAA00093DA7 /* ClearGraphicEffectBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearGraphicEffectBrick.m; sourceTree = "<group>"; };
 		92FF30451A24DCAA00093DA7 /* ComeToFrontBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComeToFrontBrick.h; sourceTree = "<group>"; };
@@ -1157,8 +1159,6 @@
 		92FF304C1A24DCAA00093DA7 /* NextLookBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextLookBrick.m; sourceTree = "<group>"; };
 		92FF304D1A24DCAA00093DA7 /* SetBrightnessBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetBrightnessBrick.h; sourceTree = "<group>"; };
 		92FF304E1A24DCAA00093DA7 /* SetBrightnessBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetBrightnessBrick.m; sourceTree = "<group>"; };
-		92FF304F1A24DCAA00093DA7 /* SetGhostEffectBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetGhostEffectBrick.h; sourceTree = "<group>"; };
-		92FF30501A24DCAA00093DA7 /* SetGhostEffectBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetGhostEffectBrick.m; sourceTree = "<group>"; };
 		92FF30511A24DCAA00093DA7 /* SetLookBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetLookBrick.h; sourceTree = "<group>"; };
 		92FF30521A24DCAA00093DA7 /* SetLookBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetLookBrick.m; sourceTree = "<group>"; };
 		92FF30531A24DCAA00093DA7 /* ShowBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowBrick.h; sourceTree = "<group>"; };
@@ -2151,8 +2151,8 @@
 			children = (
 				4C724DB81B4D3E8C00E27479 /* ChangeBrightnessByNBrick+CBXMLHandler.h */,
 				4C724DB91B4D3E8C00E27479 /* ChangeBrightnessByNBrick+CBXMLHandler.m */,
-				4C724DBA1B4D3E8C00E27479 /* ChangeGhostEffectByNBrick+CBXMLHandler.h */,
-				4C724DBB1B4D3E8C00E27479 /* ChangeGhostEffectByNBrick+CBXMLHandler.m */,
+				4C227A0D1B56BF2000DA37B7 /* ChangeTransparencyByNBrick+CBXMLHandler.h */,
+				4C227A0E1B56BF2000DA37B7 /* ChangeTransparencyByNBrick+CBXMLHandler.m */,
 				4C724DBC1B4D3E8C00E27479 /* ClearGraphicEffectBrick+CBXMLHandler.h */,
 				4C724DBD1B4D3E8C00E27479 /* ClearGraphicEffectBrick+CBXMLHandler.m */,
 				4C724DBE1B4D3E8C00E27479 /* GoNStepsBackBrick+CBXMLHandler.h */,
@@ -2163,8 +2163,8 @@
 				4C724DC31B4D3E8C00E27479 /* NextLookBrick+CBXMLHandler.m */,
 				4C724DC41B4D3E8C00E27479 /* SetBrightnessBrick+CBXMLHandler.h */,
 				4C724DC51B4D3E8C00E27479 /* SetBrightnessBrick+CBXMLHandler.m */,
-				4C724DC61B4D3E8C00E27479 /* SetGhostEffectBrick+CBXMLHandler.h */,
-				4C724DC71B4D3E8C00E27479 /* SetGhostEffectBrick+CBXMLHandler.m */,
+				4C227A101B56BF3C00DA37B7 /* SetTransparencyBrick+CBXMLHandler.h */,
+				4C227A111B56BF3C00DA37B7 /* SetTransparencyBrick+CBXMLHandler.m */,
 				4C724DC81B4D3E8C00E27479 /* SetLookBrick+CBXMLHandler.h */,
 				4C724DC91B4D3E8C00E27479 /* SetLookBrick+CBXMLHandler.m */,
 				4C724DCA1B4D3E8C00E27479 /* ShowBrick+CBXMLHandler.h */,
@@ -3134,8 +3134,8 @@
 			children = (
 				92FF303F1A24DCAA00093DA7 /* ChangeBrightnessByNBrick.h */,
 				92FF30401A24DCAA00093DA7 /* ChangeBrightnessByNBrick.m */,
-				92FF30411A24DCAA00093DA7 /* ChangeGhostEffectByNBrick.h */,
-				92FF30421A24DCAA00093DA7 /* ChangeGhostEffectByNBrick.m */,
+				4C227A071B56BE8400DA37B7 /* ChangeTransparencyByNBrick.h */,
+				4C227A081B56BE8400DA37B7 /* ChangeTransparencyByNBrick.m */,
 				92FF30431A24DCAA00093DA7 /* ClearGraphicEffectBrick.h */,
 				92FF30441A24DCAA00093DA7 /* ClearGraphicEffectBrick.m */,
 				92FF30451A24DCAA00093DA7 /* ComeToFrontBrick.h */,
@@ -3148,8 +3148,8 @@
 				92FF304C1A24DCAA00093DA7 /* NextLookBrick.m */,
 				92FF304D1A24DCAA00093DA7 /* SetBrightnessBrick.h */,
 				92FF304E1A24DCAA00093DA7 /* SetBrightnessBrick.m */,
-				92FF304F1A24DCAA00093DA7 /* SetGhostEffectBrick.h */,
-				92FF30501A24DCAA00093DA7 /* SetGhostEffectBrick.m */,
+				4C227A0A1B56BEB900DA37B7 /* SetTransparencyBrick.h */,
+				4C227A0B1B56BEB900DA37B7 /* SetTransparencyBrick.m */,
 				92FF30511A24DCAA00093DA7 /* SetLookBrick.h */,
 				92FF30521A24DCAA00093DA7 /* SetLookBrick.m */,
 				92FF30531A24DCAA00093DA7 /* ShowBrick.h */,
@@ -4098,7 +4098,7 @@
 				92C37A341856227200547C1E /* BrickTests.h */,
 				C34B44EA17F079C700624730 /* BrickTests.m */,
 				92345634192E2A1B00464E6B /* ChangeBrightnessByNBrickTests.m */,
-				92C37A431856264700547C1E /* ChangeGhostEffectByNBrickTests.m */,
+				4C227A131B56C02C00DA37B7 /* ChangeTransparencyByNBrickTests.m */,
 				92C37A49185626DB00547C1E /* ChangeSizeByNBrickTests.m */,
 				92C37A55185627A300547C1E /* ClearGrafficEffectBrickTests.m */,
 				92C37A4F1856274700547C1E /* GoNStepsBackBrickTests.m */,
@@ -4107,7 +4107,7 @@
 				92C37A47185626B600547C1E /* PlaceAtBrickTests.m */,
 				92C37A451856269100547C1E /* PointInDirectionBrickTests.m */,
 				92C37A511856276D00547C1E /* SetBrightnessBrickTests.m */,
-				92C37A411856262700547C1E /* SetGhostEffectBrickTests.m */,
+				4C227A151B56C0B700DA37B7 /* SetTransparencyBrickTests.m */,
 				92345636192E2E6C00464E6B /* SetLookBrickTests.m */,
 				92C37A3D185625D900547C1E /* ShowBrickTests.m */,
 				92C37A3F185625E700547C1E /* HideBrickTests.m */,
@@ -4425,9 +4425,9 @@
 		CAE3E5111B4C50B300CC88BD /* Nyancat_1.0 */ = {
 			isa = PBXGroup;
 			children = (
-				4C2EE4001B5557CF006DE9B8 /* Nyancat_1.0_095.xml */,
 				CAE3E5121B4C50B300CC88BD /* Nyancat_1.0_091.xml */,
 				CAE3E5131B4C50B300CC88BD /* Nyancat_1.0_093.xml */,
+				4C2EE4001B5557CF006DE9B8 /* Nyancat_1.0_095.xml */,
 			);
 			name = Nyancat_1.0;
 			path = CattyTests/Resources/ParserTests/Nyancat_1.0;
@@ -4895,6 +4895,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C68FC8E1B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m in Sources */,
+				4C227A141B56C02C00DA37B7 /* ChangeTransparencyByNBrickTests.m in Sources */,
 				4C2EE3E41B5554D7006DE9B8 /* XMLParserBrickTests095.m in Sources */,
 				4C2A00C01B5546DF00CD4492 /* XMLParserBrickTests093.m in Sources */,
 				4C2A00C11B5546DF00CD4492 /* XMLParserFormulaTests093.m in Sources */,
@@ -4909,8 +4910,8 @@
 				4C2EE4221B555E99006DE9B8 /* XMLParserUserVariableTests095.m in Sources */,
 				4C59D9C71B56596900595C99 /* XMLSerializerTests.m in Sources */,
 				CA7698C81B0E4B3F000D0340 /* ChangeBrightnessByNBrickTests.m in Sources */,
+				4C227A161B56C0B700DA37B7 /* SetTransparencyBrickTests.m in Sources */,
 				4C2A00C71B5547EB00CD4492 /* XMLAbstractTest.m in Sources */,
-				CA7698C91B0E4B3F000D0340 /* ChangeGhostEffectByNBrickTests.m in Sources */,
 				CA7698CA1B0E4B3F000D0340 /* ChangeSizeByNBrickTests.m in Sources */,
 				CA7698CB1B0E4B3F000D0340 /* ClearGrafficEffectBrickTests.m in Sources */,
 				4C5B27FE1B3C15AC00509FDB /* SearchStoreViewControllerTests.m in Sources */,
@@ -4927,7 +4928,6 @@
 				4C5E8E721B30662000204EE6 /* BrickMutableCopyTests.m in Sources */,
 				CA7698D01B0E4B3F000D0340 /* PointInDirectionBrickTests.m in Sources */,
 				CA7698D11B0E4B3F000D0340 /* SetBrightnessBrickTests.m in Sources */,
-				CA7698D21B0E4B3F000D0340 /* SetGhostEffectBrickTests.m in Sources */,
 				4C2EE3E71B5554D7006DE9B8 /* XMLParserObjectTests095.m in Sources */,
 				CA7698D31B0E4B3F000D0340 /* SetLookBrickTests.m in Sources */,
 				4C2A00C91B554CBF00CD4492 /* XMLParserTests092.m in Sources */,
@@ -4973,7 +4973,6 @@
 				92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */,
 				4C724E251B4D3E8C00E27479 /* CBXMLParser.m in Sources */,
 				CAD740E31AF2D2E800C32937 /* CBStack.m in Sources */,
-				92FF30D11A24DCAA00093DA7 /* ChangeGhostEffectByNBrick.m in Sources */,
 				92FF32601A24E2F400093DA7 /* FBShimmeringView.m in Sources */,
 				92FF30D61A24DCAA00093DA7 /* NextLookBrick.m in Sources */,
 				92FF30D51A24DCAA00093DA7 /* HideBrick.m in Sources */,
@@ -4987,7 +4986,6 @@
 				92FF30D71A24DCAA00093DA7 /* SetBrightnessBrick.m in Sources */,
 				92FF31031A24DCAA00093DA7 /* Script.m in Sources */,
 				92FF30D31A24DCAA00093DA7 /* ComeToFrontBrick.m in Sources */,
-				4C724E371B4D3E8C00E27479 /* ChangeGhostEffectByNBrick+CBXMLHandler.m in Sources */,
 				92FF30E11A24DCAA00093DA7 /* GlideToBrick.m in Sources */,
 				92FF32981A24E2F400093DA7 /* MoveNStepsBrickCell.m in Sources */,
 				4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */,
@@ -5037,6 +5035,7 @@
 				92FF30DA1A24DCAA00093DA7 /* ShowBrick.m in Sources */,
 				92FF2E9D1A24C7D800093DA7 /* SensorManager.m in Sources */,
 				92DFB0691A38960C00FA9B0F /* UIImage+Rotate.m in Sources */,
+				4C227A0F1B56BF2000DA37B7 /* ChangeTransparencyByNBrick+CBXMLHandler.m in Sources */,
 				4C724E3B1B4D3E8C00E27479 /* NextLookBrick+CBXMLHandler.m in Sources */,
 				92DFB0171A38949E00FA9B0F /* InternFormulaTokenSelection.m in Sources */,
 				92FF2E3A1A24C5A700093DA7 /* NSString+FastImageSize.m in Sources */,
@@ -5217,6 +5216,7 @@
 				92FF32881A24E2F400093DA7 /* ChangeBrightnessByNBrickCell.m in Sources */,
 				92FF30FA1A24DCAA00093DA7 /* Functions.m in Sources */,
 				92FF32781A24E2F400093DA7 /* BrickShapeFactory.m in Sources */,
+				4C227A121B56BF3C00DA37B7 /* SetTransparencyBrick+CBXMLHandler.m in Sources */,
 				4C724E461B4D3E8C00E27479 /* PointToBrick+CBXMLHandler.m in Sources */,
 				92FF31001A24DCAA00093DA7 /* ProgramManager.m in Sources */,
 				4C724E3C1B4D3E8C00E27479 /* SetBrightnessBrick+CBXMLHandler.m in Sources */,
@@ -5232,7 +5232,6 @@
 				4C724E271B4D3E8C00E27479 /* CBXMLSerializer.m in Sources */,
 				92DFB0111A38949E00FA9B0F /* NSMutableArray+Reverse.m in Sources */,
 				92FF32A51A24E2F400093DA7 /* PlaySoundBrickCell.m in Sources */,
-				92FF30D81A24DCAA00093DA7 /* SetGhostEffectBrick.m in Sources */,
 				4C724E321B4D3E8C00E27479 /* NoteBrick+CBXMLHandler.m in Sources */,
 				4C724E5C1B4D3E8C00E27479 /* Sound+CBXMLHandler.m in Sources */,
 				92FF329E1A24E2F400093DA7 /* SetYBrickCell.m in Sources */,
@@ -5240,6 +5239,7 @@
 				92DFB06B1A38960C00FA9B0F /* UndoManager.m in Sources */,
 				92FF2E8C1A24C7D800093DA7 /* AudioManager.m in Sources */,
 				92FF2E9F1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m in Sources */,
+				4C227A091B56BE8400DA37B7 /* ChangeTransparencyByNBrick.m in Sources */,
 				4C724E5E1B4D3E8C00E27479 /* UserVariable+CBXMLHandler.m in Sources */,
 				92FF30F91A24DCAA00093DA7 /* FormulaElement.m in Sources */,
 				92FF32701A24E2F400093DA7 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
@@ -5284,6 +5284,7 @@
 				92FF2E901A24C7D800093DA7 /* GDataXMLNode.m in Sources */,
 				92FF2E8F1A24C7D800093DA7 /* FlashHelper.m in Sources */,
 				92DFB0141A38949E00FA9B0F /* InternFormulaParser.m in Sources */,
+				4C227A0C1B56BEB900DA37B7 /* SetTransparencyBrick.m in Sources */,
 				92FF328D1A24E2F400093DA7 /* HideBrickCell.m in Sources */,
 				92FF2E961A24C7D800093DA7 /* ioapi.c in Sources */,
 				92FF329F1A24E2F400093DA7 /* TurnLeftBrickCell.m in Sources */,
@@ -5316,7 +5317,6 @@
 				4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */,
 				92FF31611A24DEB300093DA7 /* ScenePresenterViewController.m in Sources */,
 				92FF30CC1A24DCAA00093DA7 /* WaitBrick.m in Sources */,
-				4C724E3D1B4D3E8C00E27479 /* SetGhostEffectBrick+CBXMLHandler.m in Sources */,
 				92DFB0541A38960C00FA9B0F /* ColorPickerViewController.m in Sources */,
 				92FF32B31A24E2F400093DA7 /* LoadingView.m in Sources */,
 				4C4A71921B52733C00BBE32B /* CBXMLAbstractContext.m in Sources */,

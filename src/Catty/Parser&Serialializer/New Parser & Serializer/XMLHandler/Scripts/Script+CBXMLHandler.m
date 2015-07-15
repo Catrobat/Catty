@@ -152,6 +152,12 @@
     if ([brickTypeName isEqualToString:@"LoopEndlessBrick"]) {
         return @"LoopEndBrick";
     }
+    if ([brickTypeName isEqualToString:@"SetGhostEffectBrick"]) {
+        return @"SetTransparencyBrick";
+    }
+    if ([brickTypeName isEqualToString:@"ChangeGhostEffectByNBrick"]) {
+        return @"ChangeTransparencyByNBrick";
+    }
     return (NSString*)brickXMLHandlerClassName;
 }
 

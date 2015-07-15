@@ -25,10 +25,10 @@
 #import "WhenScript.h"
 #import "Pocket_Code-Swift.h"
 
-@interface SetGhostEffectBrickTests : BrickTests
+@interface SetTransparencyBrickTests : BrickTests
 @end
 
-@implementation SetGhostEffectBrickTests
+@implementation SetTransparencyBrickTests
 
 - (void)setUp
 {
@@ -60,7 +60,7 @@
     Script *script = [[WhenScript alloc] init];
     script.object = object;
 
-    SetGhostEffectBrick* brick = [[SetGhostEffectBrick alloc]init];
+    SetTransparencyBrick *brick = [[SetTransparencyBrick alloc]init];
     brick.script = script;
     brick.transparency = transparency;
 
@@ -87,7 +87,7 @@
     Script *script = [[WhenScript alloc] init];
     script.object = object;
 
-    SetGhostEffectBrick* brick = [[SetGhostEffectBrick alloc]init];
+    SetTransparencyBrick *brick = [[SetTransparencyBrick alloc]init];
     brick.script = script;
     brick.transparency = transparency;
     
@@ -115,7 +115,7 @@
     Script *script = [[WhenScript alloc] init];
     script.object = object;
 
-    SetGhostEffectBrick* brick = [[SetGhostEffectBrick alloc]init];
+    SetTransparencyBrick *brick = [[SetTransparencyBrick alloc]init];
     brick.script = script;
     brick.transparency = transparency;
     

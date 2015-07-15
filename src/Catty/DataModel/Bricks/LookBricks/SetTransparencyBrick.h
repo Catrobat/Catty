@@ -20,14 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-
 #import "Brick.h"
 #import "BrickFormulaProtocol.h"
 
 @class Formula;
 
-@interface ChangeGhostEffectByNBrick : Brick<BrickFormulaProtocol>
+@interface SetTransparencyBrick : Brick<BrickFormulaProtocol>
 
-@property (nonatomic, strong) Formula *changeGhostEffect;
+@property (nonatomic, strong) Formula *transparency;
 
 @end

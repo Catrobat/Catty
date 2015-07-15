@@ -20,9 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SetGhostEffectBrick.h"
+#import "ChangeTransparencyByNBrick.h"
 #import "CBXMLNodeProtocol.h"
 
-@interface SetGhostEffectBrick (CBXMLHandler) <CBXMLNodeProtocol>
+@interface ChangeTransparencyByNBrick (CBXMLHandler) <CBXMLNodeProtocol>
 
 @end

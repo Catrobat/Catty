@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SetGhostEffectBrick+CBXMLHandler.h"
+#import "SetTransparencyBrick+CBXMLHandler.h"
 #import "CBXMLParserHelper.h"
 #import "GDataXMLElement+CustomExtensions.h"
 #import "Formula+CBXMLHandler.h"
@@ -28,16 +28,16 @@
 #import "CBXMLSerializerContext.h"
 #import "CBXMLSerializerHelper.h"
 
-@implementation SetGhostEffectBrick (CBXMLHandler)
+@implementation SetTransparencyBrick (CBXMLHandler)
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:1];
     
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"TRANSPARENCY" withContext:context];
-    SetGhostEffectBrick *setGhostEffectBrick = [self new];
-    setGhostEffectBrick.transparency = formula;
-    return setGhostEffectBrick;
+    SetTransparencyBrick *setTransparencyBrick = [self new];
+    setTransparencyBrick.transparency = formula;
+    return setTransparencyBrick;
 }
 
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
@@ -49,7 +49,7 @@
 {
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"SetGhostEffectBrick"]];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"SetTransparencyBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.transparency xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"TRANSPARENCY"]];

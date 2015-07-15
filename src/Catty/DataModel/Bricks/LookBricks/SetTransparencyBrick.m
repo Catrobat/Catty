@@ -20,12 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Setghosteffectbrick.h"
+#import "SetTransparencyBrick.h"
 #import "Formula.h"
 #import "Script.h"
 #import "Pocket_Code-Swift.h"
 
-@implementation SetGhostEffectBrick
+@implementation SetTransparencyBrick
 
 @synthesize transparency = _transparency;
 
@@ -75,7 +75,7 @@
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"SetGhostEffect (%f%%)", [self.transparency interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"SetTransparencyBrick (%f%%)", [self.transparency interpretDoubleForSprite:self.script.object]];
 }
 
 @end

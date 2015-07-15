@@ -68,7 +68,7 @@
     Script *script = [[WhenScript alloc] init];
     script.object = object;
 
-    SetGhostEffectBrick* brick = [[SetGhostEffectBrick alloc]init];
+    SetTransparencyBrick *brick = [[SetTransparencyBrick alloc] init];
     brick.script = script;
     [object.lookList addObject:look];
     [object.lookList addObject:look];
@@ -116,7 +116,7 @@
     Script *script = [[WhenScript alloc] init];
     script.object = object;
 
-    SetGhostEffectBrick* brick = [[SetGhostEffectBrick alloc]init];
+    SetTransparencyBrick *brick = [[SetTransparencyBrick alloc]init];
     brick.script = script;
     [object.lookList addObject:look];
     [object.lookList addObject:look];

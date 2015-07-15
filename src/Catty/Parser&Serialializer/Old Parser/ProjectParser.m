@@ -606,6 +606,14 @@ const char *property_getTypeString(objc_property_t property)
     else if([className isEqualToString:@"LoopEndlessBrick"]) {
         className = @"LoopEndBrick";
     }
+    
+    else if([className isEqualToString:@"SetGhostEffectBrick"]) {
+        className = @"SetTransparencyBrick";
+    }
+    
+    else if([className isEqualToString:@"ChangeGhostEffectByNBrick"]) {
+        className = @"ChangeTransparencyByNBrick";
+    }
     return className;
 }
 
