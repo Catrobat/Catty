@@ -226,7 +226,14 @@
         [entryXmlElement addChild:listXmlElement context:context];
         [objectVariableListXmlElement addChild:entryXmlElement context:context];
     }
+    
+    // add pseudo element to produce a Catroid equivalent XML (unused at the moment)
+    [xmlElement addChild:[GDataXMLElement elementWithName:@"objectListOfList" context:context] context:context];
+
     [xmlElement addChild:objectVariableListXmlElement context:context];
+    
+    // add pseudo element to produce a Catroid equivalent XML (unused at the moment)
+    [xmlElement addChild:[GDataXMLElement elementWithName:@"programListOfLists" context:context] context:context];
 
     GDataXMLElement *programVariableListXmlElement = [GDataXMLElement elementWithName:@"programVariableList"
                                                                               context:context];
@@ -238,12 +245,10 @@
     }
     [xmlElement addChild:programVariableListXmlElement context:context];
 
-    //  Unused at the moment => TODO: implement this after Catroid has decided to officially use this feature!
-    //    GDataXMLElement *userBrickVariableListXmlElement = [GDataXMLElement elementWithName:@"userBrickVariableList"
-    //                                                                                context:context];
-    //    [xmlElement addChild:userBrickVariableListXmlElement context:context];
+    // add pseudo element to produce a Catroid equivalent XML (unused at the moment)
+    [xmlElement addChild:[GDataXMLElement elementWithName:@"userBrickVariableList" context:context] context:context];
     
-    // TODO implement objectListOfList and programListOfLists
+    // TODO implement objectListOfList, programListOfLists and userBrickVariableList
 
     return xmlElement;
 }

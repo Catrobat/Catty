@@ -34,7 +34,7 @@
 #import "SpriteObject.h"
 #import "CBXMLSerializerHelper.h"
 #import "UIDefines.h"
-#import "SetVariableBrick.h"
+#import "StartScript.h"
 
 @implementation Script (CBXMLHandler)
 
@@ -187,13 +187,9 @@
         [XMLError exceptionWithMessage:@"Unsupported script type: %@!", NSStringFromClass([self class])];
     }
     
-    // add pseudo <isUserScript> element to produce a Catroid equivalent XML (unused at the moment)
-    for (id brick in self.brickList) {
-        if ([brick isKindOfClass:[SetVariableBrick class]]) {
-            // only add element if Script contains a SetVariableBrick
-            [xmlElement addChild:[GDataXMLElement elementWithName:@"isUserScript" stringValue:@"false" context:nil]];
-            break;
-        }
+    // add pseudo <isUserScript> element for StartScript to produce a Catroid equivalent XML (unused at the moment)
+    if ([self isKindOfClass:[StartScript class]]) {
+        [xmlElement addChild:[GDataXMLElement elementWithName:@"isUserScript" stringValue:@"false" context:context] context:context];
     }
     
     return xmlElement;

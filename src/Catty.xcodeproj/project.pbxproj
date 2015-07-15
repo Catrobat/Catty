@@ -1966,8 +1966,8 @@
 		4C59D9C11B56596900595C99 /* XMLSerializerTests */ = {
 			isa = PBXGroup;
 			children = (
-				4C59D9C21B56596900595C99 /* BlackBox Tests */,
 				4C59D9C41B56596900595C99 /* Unit Tests */,
+				4C59D9C21B56596900595C99 /* BlackBox Tests */,
 			);
 			path = XMLSerializerTests;
 			sourceTree = "<group>";

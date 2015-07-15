@@ -88,9 +88,8 @@
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
 
-    //  Unused at the moment => TODO: implement this after Catroid has decided to officially use this feature!
-    //    [brick addChild:[GDataXMLElement elementWithName:@"inUserBrick" stringValue:@"false"
-    //                                             context:context] context:context];
+    // add pseudo <inUserBrick> element to produce a Catroid equivalent XML (unused at the moment)
+    [brick addChild:[GDataXMLElement elementWithName:@"inUserBrick" stringValue:@"false" context:context] context:context];
 
     if(self.userVariable)
         [brick addChild:[self.userVariable xmlElementWithContext:context] context:context];
