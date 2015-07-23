@@ -78,7 +78,8 @@
                              delegate:(id<CatrobatAlertViewDelegate>)delegate
                           placeholder:(NSString*)placeholder
                                   tag:(NSInteger)tag
-                                value:(NSString*)value;
+                                value:(NSString*)value
+                               target:(id)target;
 
 + (CatrobatActionSheet*)actionSheetWithTitle:(NSString*)title
                                     delegate:(id<CatrobatActionSheetDelegate>)delegate
