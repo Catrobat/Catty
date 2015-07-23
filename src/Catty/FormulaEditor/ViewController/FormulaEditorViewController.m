@@ -569,10 +569,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
       
     if([[self.normalTypeButton objectAtIndex:i] tag] == 3011)
     {
-        if([self.brickCellData.brickCell.scriptOrBrick isKindOfClass:[SpeakBrick class]])
-        {
-            [[self.normalTypeButton objectAtIndex:i] setEnabled:YES];
-        }else{
+        if(![self.brickCellData.brickCell.scriptOrBrick isKindOfClass:[SpeakBrick class]])
+       {
             [[self.normalTypeButton objectAtIndex:i] setEnabled:NO];
             [[self.normalTypeButton objectAtIndex:i] setBackgroundColor:[UIColor grayColor]];
         }
