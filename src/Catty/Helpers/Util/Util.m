@@ -149,6 +149,7 @@
     [alertView addAction:yesAction];
     alertView.tag = tag;
     if (! [self activateTestMode:NO]) {
+        
         [ROOTVIEW presentViewController:alertView animated:YES completion:^{}];
     }
     return alertView;
@@ -165,7 +166,8 @@
                         delegate:delegate
                      placeholder:placeholder
                              tag:tag
-                           value:nil];
+                           value:nil
+                          target:nil];
 }
 
 + (CatrobatAlertView*)promptWithTitle:(NSString*)title
@@ -174,6 +176,7 @@
                           placeholder:(NSString*)placeholder
                                   tag:(NSInteger)tag
                                 value:(NSString*)value
+                               target:(id)target
 {
     CatrobatAlertView *alertView = [[CatrobatAlertView alloc] initWithTitle:title
                                                                     message:message
@@ -199,7 +202,11 @@
     }];
 
     if (! [self activateTestMode:NO]) {
+        if (target != nil) {
+            [(UIViewController *)target presentViewController:alertView animated:YES completion:^{}];
+        }else{
         [ROOTVIEW presentViewController:alertView animated:YES completion:^{}];
+        }
     }
     return alertView;
 }
@@ -421,7 +428,8 @@
                                                         delegate:(id<CatrobatAlertViewDelegate>)self
                                                      placeholder:placeholder
                                                              tag:kAskUserForUniqueNameAlertViewTag
-                                                           value:value];
+                                                           value:value
+                                                          target:target];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionAskUserForUniqueName
                                                                   withPayload:[NSMutableDictionary dictionaryWithDictionary: payload]];
 }
@@ -451,7 +459,8 @@
                                                         delegate:(id<CatrobatAlertViewDelegate>)self
                                                      placeholder:@""
                                                              tag:kAskUserForReportMessageAlertViewTag
-                                                           value:@""];
+                                                           value:@""
+                                                          target:target];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionReportMessage
                                                                   withPayload:[NSMutableDictionary dictionaryWithDictionary: payload]];
 }
@@ -536,7 +545,8 @@
                                                         delegate:(id<CatrobatAlertViewDelegate>)self
                                                      placeholder:@""
                                                              tag:kAskUserForVariableNameAlertViewTag
-                                                           value:@""];
+                                                           value:@""
+                                                          target:target];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionVariableName
                                                                   withPayload:[NSMutableDictionary dictionaryWithDictionary: payload]];
 }
@@ -793,7 +803,8 @@ replacementString:(NSString*)characters
                                                            delegate:(id<CatrobatAlertViewDelegate>)self
                                                         placeholder:payload[kDTPayloadAskUserPromptPlaceholder]
                                                                 tag:kAskUserForUniqueNameAlertViewTag
-                                                              value:([value isKindOfClass:[NSString class]] ? value : nil)];
+                                                              value:([value isKindOfClass:[NSString class]] ? value : nil)
+                                                             target:nil];
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         }
     } else if (alertView.tag == kAskUserForReportMessageAlertViewTag){
