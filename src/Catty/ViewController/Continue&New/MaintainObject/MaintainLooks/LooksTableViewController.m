@@ -23,6 +23,7 @@
 #import "LooksTableViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <AVFoundation/AVFoundation.h>
 #import "ProgramDefines.h"
 #import "UIDefines.h"
 #import "TableUtil.h"
@@ -581,6 +582,40 @@ static NSCharacterSet *blockedCharacterSet = nil;
                         invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
         }
     } else if (actionSheet.tag == kAddLookActionSheetTag) {
+
+        ALAuthorizationStatus statusCameraRoll = [ALAssetsLibrary authorizationStatus];
+        //status for camera
+        AVAuthorizationStatus statusCamera = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+        
+        UIAlertController *alertControllerCameraRoll = [UIAlertController
+                                              alertControllerWithTitle:nil
+                                              message:kLocalizedNoAccesToImagesCheckSettingsDescription
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alertControllerCamera = [UIAlertController
+                                                    alertControllerWithTitle:nil
+                                                    message:kLocalizedNoAccesToCameraCheckSettingsDescription
+                                                    preferredStyle:UIAlertControllerStyleAlert];
+        
+        
+        UIAlertAction *cancelAction = [UIAlertAction
+                                       actionWithTitle:kLocalizedCancel
+                                       style:UIAlertActionStyleCancel
+                                       handler:nil];
+        
+        UIAlertAction *settingsAction = [UIAlertAction
+                                       actionWithTitle:kLocalizedSettings
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                       }];
+        
+        
+        [alertControllerCameraRoll addAction:cancelAction];
+        [alertControllerCameraRoll addAction:settingsAction];
+        [alertControllerCamera addAction:cancelAction];
+        [alertControllerCamera addAction:settingsAction];
+        
         NSInteger importFromCameraIndex = NSIntegerMin;
         NSInteger chooseImageIndex = NSIntegerMin;
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
@@ -598,10 +633,20 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
         if (buttonIndex == importFromCameraIndex) {
             // take picture from camera
-            [self presentImagePicker:UIImagePickerControllerSourceTypeCamera];
+            if(statusCamera == AVAuthorizationStatusAuthorized)
+            {
+                [self presentImagePicker:UIImagePickerControllerSourceTypeCamera];
+            }else{
+                [self presentViewController:alertControllerCamera animated:YES completion:nil];
+            }
+            
         } else if (buttonIndex == chooseImageIndex) {
             // choose picture from camera roll
-            [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+            if (statusCameraRoll != ALAuthorizationStatusAuthorized) {
+                [self presentViewController:alertControllerCameraRoll animated:YES completion:nil];
+            }else{
+                [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+            }
         } else if (buttonIndex != actionSheet.cancelButtonIndex) {
             // implement this after Pocket Paint is fully integrated
             // draw new image

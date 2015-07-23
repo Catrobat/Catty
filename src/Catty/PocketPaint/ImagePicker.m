@@ -21,6 +21,8 @@
  */
 
 #import "ImagePicker.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <AVFoundation/AVFoundation.h>
 
 @implementation ImagePicker
 
@@ -36,24 +38,81 @@
 
 - (void)cameraImagePickerAction
 {
+  AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+  UIAlertController *alertControllerCamera = [UIAlertController
+                                              alertControllerWithTitle:nil
+                                              message:kLocalizedNoAccesToCameraCheckSettingsDescription
+                                              preferredStyle:UIAlertControllerStyleAlert];
+    
+  UIAlertAction *cancelAction = [UIAlertAction
+                                 actionWithTitle:kLocalizedCancel
+                                 style:UIAlertActionStyleCancel
+                                 handler:nil];
+    
+  UIAlertAction *settingsAction = [UIAlertAction
+                                   actionWithTitle:kLocalizedSettings
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                   }];
+    
+    
+  [alertControllerCamera addAction:cancelAction];
+  [alertControllerCamera addAction:settingsAction];
+
   //IMAGEPICKER CAMERA
-  UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-  picker.delegate = self;
-  picker.allowsEditing = YES;
-  picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+  if(authStatus == AVAuthorizationStatusAuthorized)
+  {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
   
-  [self.canvas presentViewController:picker animated:YES completion:NULL];
+    [self.canvas presentViewController:picker animated:YES completion:NULL];
+  }
+  else{
+    [self.canvas presentViewController:alertControllerCamera animated:YES completion:nil];
+  }
 }
 
 - (void)imagePickerAction
 {
+  ALAuthorizationStatus statusCameraRoll = [ALAssetsLibrary authorizationStatus];
+  UIAlertController *alertControllerCameraRoll = [UIAlertController
+                                              alertControllerWithTitle:nil
+                                              message:kLocalizedNoAccesToImagesCheckSettingsDescription
+                                              preferredStyle:UIAlertControllerStyleAlert];
+  
+  UIAlertAction *cancelAction = [UIAlertAction
+                                 actionWithTitle:kLocalizedCancel
+                                 style:UIAlertActionStyleCancel
+                                 handler:nil];
+  
+  UIAlertAction *settingsAction = [UIAlertAction
+                                   actionWithTitle:kLocalizedSettings
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                   }];
+    
+  [alertControllerCameraRoll addAction:cancelAction];
+  [alertControllerCameraRoll addAction:settingsAction];
+
+
   //IMAGEPICKER CameraRoll
+  if (statusCameraRoll == ALAuthorizationStatusAuthorized) {
   UIImagePickerController *picker = [[UIImagePickerController alloc] init];
   picker.delegate = self;
   picker.allowsEditing = YES;
   picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
   
   [self.canvas presentViewController:picker animated:YES completion:NULL];
+  }else
+  {
+    [self.canvas presentViewController:alertControllerCameraRoll animated:YES completion:nil];
+  }
 }
 #pragma mark imagePicker delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
