@@ -79,10 +79,9 @@ static CGSize minSize = {40, 40};
         self.overlayView = [[YKImageCropperOverlayView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width , screenRect.size.height)];
         
         [self addSubview:self.overlayView];
+        
         [self autoCropWithImage:self.image];
         
-
-//        [self reset];
     }
 
     return self;
@@ -361,7 +360,6 @@ static CGSize minSize = {40, 40};
     self.imageView.center = newCenter;
 }
 
-// Auto crop section
 - (void)autoCropWithImage:(UIImage *)image
 {
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -384,35 +382,32 @@ static CGSize minSize = {40, 40};
                                                  colorSpace,
                                                  CGImageGetBitmapInfo(imageRef));
     
-    
     CGColorSpaceRelease(colorSpace);
     
     CGContextDrawImage(context, CGRectMake(0, 0, img_width, img_height), imageRef);
     
-    //Action
-    float firstXValue = 0;
-    float firstYValue = 0;
-    float lastXValue = self.frame.size.width;
-    float lastYValue = self.frame.size.height;
+    float firstXValue = 0.0f;
+    float firstYValue = 0.0f;
+    float lastXValue = 0.0f;
+    float lastYValue = 0.0f;
+    
     CGFloat scale = self.image.size.width / self.imageView.frame.size.width;
 
     UIColor *compareColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     const CGFloat *components = CGColorGetComponents(compareColor.CGColor);
-    int compareRed, compareGreen, compareBlue, compareAlpha;
-
     
+    int compareRed, compareGreen, compareBlue, compareAlpha;
     compareRed   = compareGreen = compareBlue = components[0] * 255;
     compareAlpha = components[1] * 255;
 
-    unsigned int old_color = (compareRed << 24) | (compareGreen << 16) | (compareBlue << 8) | compareAlpha;
+    unsigned int compare_color = (compareRed << 24) | (compareGreen << 16) | (compareBlue << 8) | compareAlpha;
 
     for (float y = 0; y < self.image.size.height; y++) {
         for (float x = 0; x < self.image.size.width; x++) {
             NSUInteger byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
             unsigned int color = getColorCodeForAutoCrop(byteIndex, imageData);
-            if (!compareColorForAutoCrop(old_color, color, 0)) {
+            if (!compareColorForAutoCrop(compare_color, color, 0)) {
                 firstYValue = y;
-                //                NSDebug(@"X: %d, Y: %d - END X: %d, END Y: %d", firstXValue, firstYValue, lastXValue, lastYValue);
                 break;
             }
         }
@@ -422,9 +417,8 @@ static CGSize minSize = {40, 40};
         for (float x = 0; x < self.image.size.width; x++) {
             NSUInteger byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
             unsigned int color = getColorCodeForAutoCrop(byteIndex, imageData);
-            if (!compareColorForAutoCrop(old_color, color, 0)) {
+            if (!compareColorForAutoCrop(compare_color, color, 0)) {
                 lastYValue = y;
-                //                NSDebug(@"X: %d, Y: %d - END X: %d, END Y: %d", firstXValue, firstYValue, lastXValue, lastYValue);
                 break;
             }
         }
@@ -433,9 +427,8 @@ static CGSize minSize = {40, 40};
         for (float y = 0; y < self.image.size.height; y++) {
             NSUInteger byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
             unsigned int color = getColorCodeForAutoCrop(byteIndex, imageData);
-            if (!compareColorForAutoCrop(old_color, color, 0)) {
+            if (!compareColorForAutoCrop(compare_color, color, 0)) {
                 firstXValue = x;
-                //                NSDebug(@"X: %d, Y: %d - END X: %d, END Y: %d", firstXValue, firstYValue, lastXValue, lastYValue);
                 break;
             }
         }
@@ -445,32 +438,26 @@ static CGSize minSize = {40, 40};
         for (float y = 0; y < self.image.size.height; y++) {
             NSUInteger byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
             unsigned int color = getColorCodeForAutoCrop(byteIndex, imageData);
-            if (!compareColorForAutoCrop(old_color, color, 0)) {
+            if (!compareColorForAutoCrop(compare_color, color, 0)) {
                 lastXValue = x;
-                //                NSDebug(@"X: %d, Y: %d - END X: %d, END Y: %d", firstXValue, firstYValue, lastXValue, lastYValue);
                 break;
             }
         }
     }
-    
-//    self.currentScale = 1.0;
+
     self.imageView.frame = self.baseRect;
     CGRect clearRect = self.baseRect;
-    float diffx = (self.frame.size.width- self.baseRect.size.width) / 2.0f;
-    float diffy = (self.frame.size.height - self.baseRect.size.height) / 2.0f;
-    float width = (firstXValue-lastXValue) / scale;
-    float height = (firstYValue-lastYValue) / scale;
-    float start_x = lastXValue;
-    float start_y = lastYValue;
     
-    NSDebug(@"Diff x: %f, Diff y: %f", diffx, diffy);
-    NSDebug(@"Scale : %f", scale);
+    float diffx = (self.frame.size.width - self.baseRect.size.width) / 2.0f;
+    float diffy = (self.frame.size.height - self.baseRect.size.height) / 2.0f;
+    float width = (firstXValue - lastXValue) / scale;
+    float height = (firstYValue - lastYValue) / scale;
+    float start_x = (lastXValue / scale) + diffx;
+    float start_y = (lastYValue / scale ) + diffy;
+    
     clearRect = CGRectMake(start_x, start_y, width, height);
-    NSDebug(@"X: %f, Y: %f - WIDTH: %f, HEIGHT: %f", start_x, start_y, width, height);
-
     self.overlayView.clearRect = clearRect;
     [self.overlayView setNeedsDisplay];
-    //Action end
     
     CGContextRelease(context);
     free(imageData);
