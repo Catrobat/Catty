@@ -100,15 +100,14 @@
   [alertControllerCameraRoll addAction:cancelAction];
   [alertControllerCameraRoll addAction:settingsAction];
 
-
   //IMAGEPICKER CameraRoll
   if (statusCameraRoll == ALAuthorizationStatusAuthorized) {
-  UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-  picker.delegate = self;
-  picker.allowsEditing = YES;
-  picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
   
-  [self.canvas presentViewController:picker animated:YES completion:NULL];
+    [self.canvas presentViewController:picker animated:YES completion:NULL];
   }else
   {
     [self.canvas presentViewController:alertControllerCameraRoll animated:YES completion:nil];

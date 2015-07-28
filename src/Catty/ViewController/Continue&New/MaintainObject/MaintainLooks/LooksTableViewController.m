@@ -597,24 +597,39 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                     preferredStyle:UIAlertControllerStyleAlert];
         
         
-        UIAlertAction *cancelAction = [UIAlertAction
+        UIAlertAction *cancelActionCamera = [UIAlertAction
                                        actionWithTitle:kLocalizedCancel
                                        style:UIAlertActionStyleCancel
                                        handler:nil];
         
-        UIAlertAction *settingsAction = [UIAlertAction
+        UIAlertAction *settingsActionCamera = [UIAlertAction
                                        actionWithTitle:kLocalizedSettings
                                        style:UIAlertActionStyleDefault
                                        handler:^(UIAlertAction *action)
                                        {
+                                           NSDebug(@"Settings Action");
                                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
                                        }];
         
+        UIAlertAction *cancelActionCameraRoll = [UIAlertAction
+                                             actionWithTitle:kLocalizedCancel
+                                             style:UIAlertActionStyleCancel
+                                             handler:nil];
         
-        [alertControllerCameraRoll addAction:cancelAction];
-        [alertControllerCameraRoll addAction:settingsAction];
-        [alertControllerCamera addAction:cancelAction];
-        [alertControllerCamera addAction:settingsAction];
+        UIAlertAction *settingsActionCameraRoll = [UIAlertAction
+                                               actionWithTitle:kLocalizedSettings
+                                               style:UIAlertActionStyleDefault
+                                               handler:^(UIAlertAction *action)
+                                               {
+                                                   NSDebug(@"Settings Action");
+                                                   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                               }];
+        
+        
+        [alertControllerCameraRoll addAction:cancelActionCameraRoll];
+        [alertControllerCameraRoll addAction:settingsActionCameraRoll];
+        [alertControllerCamera addAction:cancelActionCamera];
+        [alertControllerCamera addAction:settingsActionCamera];
         
         NSInteger importFromCameraIndex = NSIntegerMin;
         NSInteger chooseImageIndex = NSIntegerMin;
