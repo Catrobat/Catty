@@ -1856,7 +1856,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
     
     CGFloat maxContentOffset = self.collectionView.contentSize.height + self.collectionView.contentInset.bottom - self.collectionView.bounds.size.height;    
-    if (self.collectionView.contentOffset.y > maxContentOffset) {
+    if (self.collectionView.contentOffset.y > maxContentOffset && maxContentOffset > 0) {
         [self.collectionView setContentOffset:CGPointMake(0, maxContentOffset) animated:YES];
     }
 }
