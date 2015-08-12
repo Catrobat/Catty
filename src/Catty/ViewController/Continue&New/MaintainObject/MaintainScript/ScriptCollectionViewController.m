@@ -629,7 +629,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)insertBrick:(Brick*)brick andIndexPath:(NSIndexPath*)path
 {
-    brick.animate = YES;
     Script *targetScript = self.object.scriptList[path.section];
     brick.script = targetScript;
     if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
