@@ -830,6 +830,18 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)deleteSelectedBricks
 {
+    [self.selectedIndexPaths sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSInteger r1 = [obj1 row];
+        NSInteger r2 = [obj2 row];
+        if (r1 < r2) {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        if (r1 > r2) {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+    
     for (NSIndexPath *path in self.selectedIndexPaths) {
         BrickCell* cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:path];
         if (cell) {
