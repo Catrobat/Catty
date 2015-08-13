@@ -35,7 +35,6 @@
 #import "DarkBlueGradientFeaturedCell.h"
 
 #import "UIImage+CatrobatUIImageExtensions.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "LanguageTranslationDefines.h"
 
 #define kFeaturedProgramsMaxResults 10
@@ -342,6 +341,7 @@
 {
     if(!self.loadingView) {
         self.loadingView = [[LoadingView alloc] init];
+        [self.loadingView setBackgroundColor:[UIColor globalTintColor]];
         [self.view addSubview:self.loadingView];
     }
     [self.loadingView show];

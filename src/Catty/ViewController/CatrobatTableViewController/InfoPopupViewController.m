@@ -125,7 +125,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     NSString *version = [[NSString alloc] initWithFormat:@"%@%@", kLocalizedVersionLabel, [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
     
     UILabel *versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2, HEADER_PADDING_TOP, self.view.frame.size.width, HEADER_LABEL_HEIGHT)];
-    [versionLabel setTextColor:[UIColor skyBlueColor]];
+    [versionLabel setTextColor:[UIColor lightTextTintColor]];
     [versionLabel setTextAlignment:NSTextAlignmentRight];
     [versionLabel setText:version];
     [versionLabel sizeToFit];
@@ -143,15 +143,15 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     [path addLineToPoint:CGPointMake(self.view.frame.size.width, button.frame.origin.y + button.frame.size.height + MENU_BUTTON_MARGIN_HORIZONTAL)];
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.path = [path CGPath];
-    shapeLayer.strokeColor = [[UIColor skyBlueColor] CGColor];
-    shapeLayer.lineWidth = 2.0;
+    shapeLayer.strokeColor = [[UIColor globalTintColor] CGColor];
+    shapeLayer.lineWidth = 1.0;
     shapeLayer.fillColor = [[UIColor clearColor] CGColor];
     [self.view.layer addSublayer:shapeLayer];
 }
 
 - (void)addLinkButton:(UIButton *)button
 {
-    [button setTitleColor:[UIColor lightOrangeColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor globalTintColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(openURLAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView insertSubview:button belowSubview:self.bodyTextView];
 }
@@ -164,7 +164,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 
     //init header
     UILabel *aboutPocketCodeLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2, HEADER_PADDING_TOP, self.view.frame.size.width, HEADER_LABEL_HEIGHT)];
-    [aboutPocketCodeLabel setTextColor:[UIColor skyBlueColor]];
+    [aboutPocketCodeLabel setTextColor:[UIColor darkTextTintColor]];
     [aboutPocketCodeLabel setText:headerTitle];
     [aboutPocketCodeLabel sizeToFit];
     aboutPocketCodeLabel.frame = CGRectMake(self.view.frame.size.width / 2 - aboutPocketCodeLabel.frame.size.width / 2, HEADER_PADDING_TOP, aboutPocketCodeLabel.frame.size.width, aboutPocketCodeLabel.frame.size.height);
@@ -176,8 +176,8 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     [path addLineToPoint:CGPointMake(self.contentView.frame.size.width, HEADER_LABEL_HEIGHT)];
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.path = [path CGPath];
-    shapeLayer.strokeColor = [[UIColor skyBlueColor] CGColor];
-    shapeLayer.lineWidth = 2.0;
+    shapeLayer.strokeColor = [[UIColor globalTintColor] CGColor];
+    shapeLayer.lineWidth = 1.0;
     shapeLayer.fillColor = [[UIColor clearColor] CGColor];
     [self.contentView.layer addSublayer:shapeLayer];
 
@@ -187,7 +187,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     self.bodyTextView.textAlignment = NSTextAlignmentCenter;
     [self.bodyTextView sizeToFit];
     self.bodyTextView.frame = CGRectMake(FRAME_PADDING_HORIZONTAL, HEADER_LABEL_HEIGHT + BODY_PADDING_TOP, self.view.frame.size.width - 2 * FRAME_PADDING_HORIZONTAL, self.bodyTextView.frame.size.height);
-    self.bodyTextView.textColor = [UIColor skyBlueColor];
+    self.bodyTextView.textColor = [UIColor lightTextTintColor];
     self.bodyTextView.backgroundColor = [UIColor backgroundColor];
     self.bodyTextView.editable = NO;
     [self.contentView addSubview:self.bodyTextView];
@@ -207,9 +207,9 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     [backPath addLineToPoint:CGPointMake(self.contentView.frame.size.width, backButton.frame.origin.y - BODY_PADDING_BOTTOM / 2)];
     CAShapeLayer *backShapeLayer = [CAShapeLayer layer];
     backShapeLayer.path = [backPath CGPath];
-    backShapeLayer.fillColor = [[UIColor skyBlueColor] CGColor];
-    backShapeLayer.strokeColor = [[UIColor skyBlueColor] CGColor];
-    backShapeLayer.lineWidth = 2.0f;
+    backShapeLayer.fillColor = [[UIColor globalTintColor] CGColor];
+    backShapeLayer.strokeColor = [[UIColor globalTintColor] CGColor];
+    backShapeLayer.lineWidth = 1.0f;
     backShapeLayer.fillColor = [[UIColor clearColor] CGColor];
     [self.contentView.layer addSublayer:backShapeLayer];
 }

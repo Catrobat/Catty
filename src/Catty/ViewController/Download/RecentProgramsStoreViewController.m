@@ -89,12 +89,12 @@
     [super viewDidLoad];
     [self loadProjectsWithIndicator:0];
     [self initTableView];
-    self.view.backgroundColor = [UIColor darkBlueColor];
+    self.view.backgroundColor = [UIColor backgroundColor];
     [self initSegmentedControl];
     [self initFooterView];
     self.previousSelectedIndex = 0;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    self.tableView.separatorColor = UIColor.skyBlueColor;
+    self.tableView.separatorColor = UIColor.globalTintColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.shouldShowAlert = YES;
 }
@@ -167,7 +167,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.tableView.backgroundColor = [UIColor darkBlueColor];
+    self.tableView.backgroundColor = [UIColor backgroundColor];
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     CGFloat segmentedcontrolHeight = self.segmentedControlView.frame.size.height;
     self.tableView.frame = CGRectMake(0, navigationBarHeight+segmentedcontrolHeight+[UIApplication sharedApplication].statusBarFrame.size.height, self.tableView.frame.size.width, [Util screenHeight] - (navigationBarHeight + segmentedcontrolHeight));
@@ -183,10 +183,10 @@
     
 
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
-    self.downloadSegmentedControl.backgroundColor = [UIColor darkBlueColor];
-    self.downloadSegmentedControl.tintColor = [UIColor lightOrangeColor];
+    self.downloadSegmentedControl.backgroundColor = [UIColor backgroundColor];
+    self.downloadSegmentedControl.tintColor = [UIColor globalTintColor];
     self.segmentedControlView.frame = CGRectMake(0, navigationBarHeight+[UIApplication sharedApplication].statusBarFrame.size.height, self.view.frame.size.width, self.segmentedControlView.frame.size.height);
-    self.segmentedControlView.backgroundColor = [UIColor darkBlueColor];
+    self.segmentedControlView.backgroundColor = [UIColor backgroundColor];
     self.downloadSegmentedControl.frame = CGRectMake(9, 9, self.view.frame.size.width - 18, self.downloadSegmentedControl.frame.size.height);
 
 }
@@ -559,6 +559,7 @@
 {
     if(!self.loadingView) {
         self.loadingView = [[LoadingView alloc] init];
+        [self.loadingView setBackgroundColor:[UIColor globalTintColor]];
         [self.view addSubview:self.loadingView];
     }
     [self.loadingView show];

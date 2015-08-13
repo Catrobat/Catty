@@ -59,7 +59,7 @@
         //    [self.view addSubview:self.timeProgress];
     self.timerLabel.timeLabel.backgroundColor = [UIColor clearColor];
     self.timerLabel.timeLabel.font = [UIFont systemFontOfSize:28.0f];
-    self.timerLabel.timeLabel.textColor = [UIColor lightOrangeColor];
+    self.timerLabel.timeLabel.textColor = [UIColor lightTextTintColor];
     self.timerLabel.timeLabel.textAlignment = NSTextAlignmentCenter;
     
     
@@ -67,7 +67,7 @@
     [self.timerLabel addGestureRecognizer:recognizer];
         //    [self.timeProgress addGestureRecognizer:recognizer];
     
-    self.view.backgroundColor = [UIColor airForceBlueColor];
+    self.view.backgroundColor = [UIColor backgroundColor];
     
     
     self.isRecording = NO;

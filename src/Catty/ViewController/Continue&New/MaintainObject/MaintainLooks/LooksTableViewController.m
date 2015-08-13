@@ -130,7 +130,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                               tag:kEditLooksActionSheetTag
                                                              view:self.navigationController.view];
     if (self.object.lookList.count) {
-        [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
+        [actionSheet setButtonTextColor:[UIColor destructiveTintColor] forButtonAtIndex:0];
     }
 }
 
@@ -260,7 +260,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     CatrobatBaseCell<CatrobatImageCell>* imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
     Look *look = [self.object.lookList objectAtIndex:indexPath.row];
     imageCell.iconImageView.image = nil;
-    [imageCell.iconImageView setBorder:[UIColor skyBlueColor] Width:kDefaultImageCellBorderWidth];
+    [imageCell.iconImageView setBorder:[UIColor globalTintColor] Width:kDefaultImageCellBorderWidth];
     imageCell.rightUtilityButtons = @[[Util slideViewButtonMore], [Util slideViewButtonDelete]];
     imageCell.delegate = self;
 
@@ -290,9 +290,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
-        detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.topLeftDetailLabel.textColor = [UIColor lightTextTintColor];
         detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedMeasure];
-        detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.topRightDetailLabel.textColor = [UIColor lightTextTintColor];
 
         NSValue *value = [self.dataCache objectForKey:look.fileName];
         CGSize dimensions;
@@ -305,9 +305,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
         detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%lux%lu",
                                                (unsigned long)dimensions.width,
                                                (unsigned long)dimensions.height];
-        detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.bottomLeftDetailLabel.textColor = [UIColor lightTextTintColor];
         detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedSize];
-        detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.bottomRightDetailLabel.textColor = [UIColor lightTextTintColor];
         NSUInteger resultSize = [self.object fileSizeOfLook:look];
         NSNumber *sizeOfSound = [NSNumber numberWithUnsignedInteger:resultSize];
         detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[sizeOfSound unsignedIntegerValue]
@@ -413,6 +413,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     picker.mediaTypes = @[(NSString*)kUTTypeImage];
     picker.allowsEditing = NO;
     picker.delegate = self;
+    picker.navigationBar.tintColor = [UIColor navTintColor];
     [self presentViewController:picker animated:YES completion:^{
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     }];

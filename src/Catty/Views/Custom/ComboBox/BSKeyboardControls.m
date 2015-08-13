@@ -22,6 +22,7 @@
 
 #import "BSKeyboardControls.h"
 #import "iOSCombobox.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
 @interface BSKeyboardControls ()
 @property (nonatomic, strong) UIToolbar *toolbar;
@@ -58,7 +59,7 @@
                                                              style:UIBarButtonItemStyleDone
                                                             target:self
                                                             action:@selector(doneButtonPressed:)]];
-      self.doneButton.tintColor = [UIColor orangeColor];
+      self.doneButton.tintColor = [UIColor globalTintColor];
         
         [self setVisibleControls:(BSKeyboardControlPreviousNext | BSKeyboardControlDone)];
         

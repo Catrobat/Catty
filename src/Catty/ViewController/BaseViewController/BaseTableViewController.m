@@ -64,8 +64,8 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor backgroundColor];
-    self.tableView.separatorColor = [UIColor skyBlueColor];
-    self.view.backgroundColor = [UIColor darkBlueColor];
+    self.tableView.separatorColor = [UIColor globalTintColor];
+    self.view.backgroundColor = [UIColor backgroundColor];
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self
                            selector:@selector(hideLoadingView)
@@ -222,8 +222,8 @@
 - (void)setupToolBar
 {
     [self.navigationController setToolbarHidden:NO];
-    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-    self.navigationController.toolbar.tintColor = [UIColor orangeColor];
+    self.navigationController.toolbar.barStyle = UIBarStyleDefault;
+    self.navigationController.toolbar.tintColor = [UIColor globalTintColor];
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
 }
 

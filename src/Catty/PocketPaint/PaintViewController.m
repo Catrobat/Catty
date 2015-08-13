@@ -32,6 +32,8 @@
 #import "Util.h"
 #import "LanguageTranslationDefines.h"
 #import "QuartzCore/QuartzCore.h"
+#import "CatrobatActionSheet.h"
+#import "ActionSheetAlertViewTags.h"
 
 //Helper
 #import "RGBAHelper.h"
@@ -260,9 +262,9 @@
 - (void)setupToolbar
 {
     [self.navigationController setToolbarHidden:NO];
-    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-    self.navigationController.toolbar.barTintColor = [UIColor navBarColor];
-    self.navigationController.toolbar.tintColor = [UIColor lightOrangeColor];
+    self.navigationController.toolbar.barStyle = UIBarStyleDefault;
+//    self.navigationController.toolbar.barTintColor = [UIColor clearColor];
+    self.navigationController.toolbar.tintColor = [UIColor globalTintColor];
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     [self updateToolbar];
     
@@ -271,7 +273,7 @@
 - (void)setupNavigationBar
 {
     self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationBar.tintColor = [UIColor lightOrangeColor];
+    self.navigationController.navigationBar.tintColor = [UIColor navTintColor];
     self.navigationItem.title = @"Pocket Paint";
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedPaintMenu
                                                                    style:UIBarButtonItemStylePlain
@@ -282,34 +284,73 @@
 
 - (void)editAction
 {
-    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:kLocalizedPaintSelect message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedCancel style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-    }];
-    [actionSheet addAction:cancelAction];
+    NSMutableArray *options = [NSMutableArray array];
+    [options addObject:kLocalizedPaintSave];
+    [options addObject:kLocalizedPaintSaveClose];
+    [options addObject:kLocalizedPaintDiscardClose];
+    [options addObject:kLocalizedPaintNewCanvas];
     
-    UIAlertAction *saveAction = [UIAlertAction actionWithTitle:kLocalizedPaintSave style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self saveAction];
-    }];
-    [actionSheet addAction:saveAction];
+   [Util actionSheetWithTitle:kLocalizedPaintSelect
+                     delegate:self
+       destructiveButtonTitle:nil
+            otherButtonTitles:options
+                          tag:kPocketPaintActionSheetTag
+                         view:self.navigationController.view];
+                                        
     
-    UIAlertAction *saveCloseAction = [UIAlertAction actionWithTitle:kLocalizedPaintSaveClose style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self saveAndCloseAction];
-    }];
-    [actionSheet addAction:saveCloseAction];
+//    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedCancel style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+//    }];
+//    [actionSheet addAction:cancelAction];
+//    
+//    UIAlertAction *saveAction = [UIAlertAction actionWithTitle:kLocalizedPaintSave style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//        [self saveAction];
+//    }];
+//    [actionSheet addAction:saveAction];
+//    
+//    UIAlertAction *saveCloseAction = [UIAlertAction actionWithTitle:kLocalizedPaintSaveClose style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//        [self saveAndCloseAction];
+//    }];
+//    [actionSheet addAction:saveCloseAction];
+//    
+//    
+//    UIAlertAction *discardAction = [UIAlertAction actionWithTitle:kLocalizedPaintDiscardClose style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//        [self discardAndCloseAction];
+//    }];
+//    [actionSheet addAction:discardAction];
+//    
+//    UIAlertAction *newCanvasAction = [UIAlertAction actionWithTitle:kLocalizedPaintNewCanvas style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//        [self newCanvasAction];
+//    }];
+//    [actionSheet addAction:newCanvasAction];
+//    
+//    [self presentViewController:actionSheet animated:YES completion:nil];
+}
+
+- (void)actionSheet:(CatrobatActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag == kPocketPaintActionSheetTag) {
+        switch (buttonIndex) {
+            case 0:
+                [self saveAction];
+                break;
+            case 1:
+                [self saveAndCloseAction];
+                break;
+            case 2:
+                [self discardAndCloseAction];
+                break;
+            case 3:
+                [self newCanvasAction];
+                break;
+            case 4:
+                
+                break;
+            default:
+                break;
+        }
     
-    
-    UIAlertAction *discardAction = [UIAlertAction actionWithTitle:kLocalizedPaintDiscardClose style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self discardAndCloseAction];
-    }];
-    [actionSheet addAction:discardAction];
-    
-    UIAlertAction *newCanvasAction = [UIAlertAction actionWithTitle:kLocalizedPaintNewCanvas style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self newCanvasAction];
-    }];
-    [actionSheet addAction:newCanvasAction];
-    
-    [self presentViewController:actionSheet animated:YES completion:nil];
+    }
 }
 
 - (void)setupUndoManager
@@ -459,7 +500,7 @@
     self.fillRecognizer.enabled = NO;
     
     [self.handTool disableHandTool];
-    self.pointerToolBarButtonItem.tintColor = [UIColor lightOrangeColor];
+    self.pointerToolBarButtonItem.tintColor = [UIColor globalTintColor];
     if (self.resizeViewManager.resizeViewer.hidden == NO) {
         [self.resizeViewManager hideResizeView];
     }

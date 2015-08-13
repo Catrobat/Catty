@@ -133,7 +133,7 @@
     CGContextSetLineCap(ctx, kCGLineCapButt);
     CGContextAddPath(ctx, background);
     if (active) {
-        CGContextSetStrokeColorWithColor(ctx, [UIColor lightBlueColor].CGColor);
+        CGContextSetStrokeColorWithColor(ctx, [UIColor globalTintColor].CGColor);
     }
     else {
         CGContextSetStrokeColorWithColor(ctx, [UIColor whiteColor].CGColor);
@@ -147,7 +147,7 @@
     CGContextSaveGState(ctx);
     CGContextSetLineWidth(ctx, BORDER_WIDTH);
     if (active) {
-        CGContextSetStrokeColorWithColor(ctx, [UIColor lightBlueColor].CGColor);
+        CGContextSetStrokeColorWithColor(ctx, [UIColor globalTintColor].CGColor);
     }
     else {
         CGContextSetStrokeColorWithColor(ctx, [UIColor whiteColor].CGColor);
@@ -181,7 +181,7 @@
     CGPathCloseSubpath(path);
     
   if (active) {
-        CGContextSetFillColorWithColor(ctx, [[UIColor lightBlueColor] CGColor]);
+        CGContextSetFillColorWithColor(ctx, [[UIColor globalTintColor] CGColor]);
   }
   else {
        CGContextSetFillColorWithColor(ctx, [[UIColor whiteColor] CGColor]);

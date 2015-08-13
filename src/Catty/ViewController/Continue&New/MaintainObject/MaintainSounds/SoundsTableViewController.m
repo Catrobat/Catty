@@ -200,7 +200,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                               tag:kEditSoundsActionSheetTag
                                                              view:self.navigationController.view];
     if (self.object.soundList.count) {
-        [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
+        [actionSheet setButtonTextColor:[UIColor destructiveTintColor] forButtonAtIndex:0];
     }
 }
 
@@ -363,9 +363,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
-        detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.topLeftDetailLabel.textColor = [UIColor lightTextTintColor];
         detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedLength];
-        detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.topRightDetailLabel.textColor = [UIColor lightTextTintColor];
 
         NSNumber *number = [self.dataCache objectForKey:sound.fileName];
         CGFloat duration;
@@ -377,9 +377,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
         }
 
         detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%.02fs", (float)duration];
-        detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.bottomLeftDetailLabel.textColor = [UIColor lightTextTintColor];
         detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedSize];
-        detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.bottomRightDetailLabel.textColor = [UIColor lightTextTintColor];
         NSUInteger resultSize = [self.object fileSizeOfSound:sound];
         NSNumber *sizeOfSound = [NSNumber numberWithUnsignedInteger:resultSize];
         detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[sizeOfSound unsignedIntegerValue]

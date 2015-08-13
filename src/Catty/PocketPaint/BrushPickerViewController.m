@@ -64,7 +64,7 @@
 {
     [super viewDidLoad];
   [self setupToolBar];
-  self.view.backgroundColor = [UIColor cellBlueColor];
+  self.view.backgroundColor = [UIColor backgroundColor];
 
   
     // Do any additional setup after loading the view.
@@ -86,8 +86,8 @@
   UIBarButtonItem *flexibleItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
   [self.toolBar setItems:@[flexibleItem, self.doneButton]];
   self.toolBar.frame = CGRectMake(0, 0, self.view.frame.size.width, self.toolBar.frame.size.height);
-  self.toolBar.tintColor = [UIColor lightOrangeColor];
-    self.toolBar.barTintColor = UIColor.navBarColor;
+  self.toolBar.tintColor = [UIColor navTintColor];
+  self.toolBar.barTintColor = UIColor.navBarColor;
   
 }
 
@@ -99,7 +99,7 @@
   self.brushEndingControl = [[UISegmentedControl alloc] initWithItems:mySegments];
   CGFloat width = self.view.frame.size.width-140.0f;
   self.brushEndingControl.frame =CGRectMake(self.view.center.x-width/2.0f, self.view.frame.size.height*0.9f, width, 20);
-  self.brushEndingControl.tintColor = [UIColor lightOrangeColor];
+  self.brushEndingControl.tintColor = [UIColor globalTintColor];
   switch (self.brushEnding) {
     case Round:
       self.brushEndingControl.selectedSegmentIndex = 0;
@@ -127,14 +127,14 @@
   self.brushSlider.maximumValue = 75.0f;
   self.brushSlider.continuous = YES;
   self.brushSlider.value = self.brush;
-  self.brushSlider.tintColor = [UIColor lightOrangeColor];
+  self.brushSlider.tintColor = [UIColor globalTintColor];
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.55f, 40, 10)];
   label.text = kLocalizedPaintThickness;
   [label sizeToFit];
-  label.textColor = [UIColor lightBlueColor];
+  label.textColor = [UIColor lightTextTintColor];
   self.thicknessLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.brushSlider.frame.origin.x+self.brushSlider.frame.size.width +20, self.view.frame.size.height*0.7f-7, 40, 10)];
   self.thicknessLabel.text = [NSString stringWithFormat:@"%.0f",roundf(self.brush)];
-  self.thicknessLabel.textColor = [UIColor lightBlueColor];
+  self.thicknessLabel.textColor = [UIColor lightTextTintColor];
   [self.thicknessLabel sizeToFit];
   
   [self.view addSubview:label];

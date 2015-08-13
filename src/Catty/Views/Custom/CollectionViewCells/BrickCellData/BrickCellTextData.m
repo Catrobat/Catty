@@ -102,9 +102,9 @@
     
     if(isActive) {
         
-        self.border.strokeColor = [UIColor cellBlueColor].CGColor;
+        self.border.strokeColor = [UIColor globalTintColor].CGColor;
         
-        self.border.shadowColor = [UIColor lightBlueColor].CGColor;
+        self.border.shadowColor = [UIColor globalTintColor].CGColor;
         self.border.shadowRadius = 1;
         self.border.shadowOpacity = 1.0;
         self.border.shadowOffset = CGSizeMake(0, 0);

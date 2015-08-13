@@ -892,7 +892,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         }];
     } else {
         self.navigationItem.title = kLocalizedScripts;
-        self.navigationItem.rightBarButtonItem.tintColor = UIColor.lightOrangeColor;
+        self.navigationItem.rightBarButtonItem.tintColor = [UIColor navTintColor];
         
         [UIView animateWithDuration:animated ? 0.3f : 0.0f delay:0.0f usingSpringWithDamping:0.65f initialSpringVelocity:0.5f options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
@@ -1657,7 +1657,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 #pragma mark - Setup
 - (void)setupCollectionView
 {
-    self.collectionView.backgroundColor = [UIColor darkBlueColor];
+    self.collectionView.backgroundColor = [UIColor backgroundColor];
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.scrollEnabled = YES;
     self.collectionView.collectionViewLayout = [LXReorderableCollectionViewFlowLayout new];

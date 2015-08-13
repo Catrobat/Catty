@@ -50,7 +50,7 @@
   self.resizeViewer.delegate = self;
   self.resizeViewer.hidden = YES;
   [self.resizeViewer showEditingHandles];
-  [self.resizeViewer changeBorderWithColor:[UIColor lightOrangeColor]];
+  [self.resizeViewer changeBorderWithColor:[UIColor globalTintColor]];
   
   self.rotateView = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotate:)];
   self.rotateView.delegate = self.canvas;
@@ -308,7 +308,7 @@
   } else{
     [self.resizeViewer showEditingHandles];
   }
-  [self.resizeViewer changeBorderWithColor:[UIColor lightOrangeColor]];
+  [self.resizeViewer changeBorderWithColor:[UIColor globalTintColor]];
 }
 
 

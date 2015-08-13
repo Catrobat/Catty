@@ -37,7 +37,7 @@
 
 - (void)configure
 {
-    self.backgroundColor = UIColor.darkBlueColor;
+    self.backgroundColor = [UIColor backgroundColor];
 }
 
 @end

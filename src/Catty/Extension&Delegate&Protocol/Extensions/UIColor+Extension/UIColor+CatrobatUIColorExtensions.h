@@ -24,33 +24,22 @@
 
 @interface UIColor (CatrobatUIColorExtensions)
 
-+ (UIColor*) skyBlueColor;
++ (UIColor*) globalTintColor;
 
-+ (UIColor*) blueGrayColor;
++ (UIColor*) navBarColor;
 
-+ (UIColor*) airForceBlueColor;
++ (UIColor*) navTintColor;
 
-+ (UIColor*) darkBlueColor;
++ (UIColor*) lightTextTintColor;
 
-+ (UIColor*)shadeDarkBlueColor;
++ (UIColor*) darkTextTintColor;
 
-+ (UIColor*) brightGrayColor;
++ (UIColor*) destructiveTintColor;
 
-+ (UIColor*) lightOrangeColor;
++ (UIColor*) backgroundColor;
 
-+ (UIColor*) lightBlueColor;
 
-+ (UIColor*) lightRedColor;
-
-+ (UIColor*) violetColor;
-
-+ (UIColor*)menuDarkBlueColor;
-
-+ (UIColor*)headerTextColor;
-
-+ (UIColor*)cellBlueColor;
-
-+ (UIColor*)navBarColor;
+// Bricks & Scripts Colors
 
 + (UIColor*)brickSelectionBackgroundColor;
 
@@ -73,6 +62,4 @@
 + (UIColor*)soundBrickVioletColor;
 
 + (UIColor*)soundBrickStrokeColor;
-
-+ (UIColor*)backgroundColor;
 @end
