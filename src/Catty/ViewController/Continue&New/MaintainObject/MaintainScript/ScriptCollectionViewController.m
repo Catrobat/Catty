@@ -726,7 +726,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 #pragma mark - Open Formula Editor
 - (void)openFormulaEditor:(BrickCellFormulaData*)formulaData withEvent:(UIEvent*)event
 {
-    if (self.isEditingBrickMode) {
+    if (self.isEditingBrickMode && event) {
         return;
     }
     if ([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
