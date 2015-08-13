@@ -95,7 +95,7 @@
 #define kLocalizedHelp NSLocalizedString(@"Help", nil)
 #define kLocalizedExplore NSLocalizedString(@"Explore", nil)
 #define kLocalizedUpload NSLocalizedString(@"Upload", nil)
-#define kLocalizedEditMenu NSLocalizedString(@"Edit Mode", nil)
+#define kLocalizedDeletionMenu NSLocalizedString(@"Deletion Mode", nil)
 #define kLocalizedAboutPocketCode NSLocalizedString(@"About Pocket Code", nil)
 #define kLocalizedTermsOfUse NSLocalizedString(@"Terms of Use", nil)
 #define kLocalizedForgotPassword NSLocalizedString(@"Forgot password", nil)

@@ -875,7 +875,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     [self setupToolBar];
 
     if (self.isEditing) {
-        self.navigationItem.title = kLocalizedEditMenu;
+        self.navigationItem.title = kLocalizedDeletionMenu;
         self.navigationItem.rightBarButtonItem.title = kLocalizedCancel;
 
         [UIView animateWithDuration:animated ? 0.5f : 0.0f  delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -1662,6 +1662,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     self.collectionView.scrollEnabled = YES;
     self.collectionView.collectionViewLayout = [LXReorderableCollectionViewFlowLayout new];
     self.navigationController.title = self.title = kLocalizedScripts;
+    [self.editButtonItem setTitle:kLocalizedDelete];
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.navigationItem.rightBarButtonItem.enabled = YES;
     self.brickScaleTransition = [[BrickTransition alloc] initWithViewToAnimate:nil];
