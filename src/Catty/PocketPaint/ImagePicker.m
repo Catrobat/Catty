@@ -21,6 +21,7 @@
  */
 
 #import "ImagePicker.h"
+#import "UIImage+CatrobatUIImageExtensions.h"
 
 @implementation ImagePicker
 
@@ -59,9 +60,8 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
   
   self.originalImage = info[UIImagePickerControllerEditedImage];
-  
-  //TODO change size of image
-  [self.canvas setImagePickerImage:self.originalImage];
+  UIImage* image = [UIImage imageWithImage:self.originalImage scaledToSize:self.canvas.saveView.frame.size];
+  [self.canvas setImagePickerImage:image];
   
   [picker dismissViewControllerAnimated:YES completion:NULL];
   
