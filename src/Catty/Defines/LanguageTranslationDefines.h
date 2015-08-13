@@ -440,7 +440,7 @@
 //************************************       PAINT                ********************************************
 //************************************************************************************************************
 
-#define kLocalizedPaintThickness NSLocalizedString(@"Thickness", @"paint")
+#define kLocalizedPaintWidth NSLocalizedString(@"Width", @"paint")
 #define kLocalizedPaintRed NSLocalizedString(@"Red", @"paint")
 #define kLocalizedPaintGreen NSLocalizedString(@"Green", @"paint")
 #define kLocalizedPaintBlue NSLocalizedString(@"Blue", @"paint")
