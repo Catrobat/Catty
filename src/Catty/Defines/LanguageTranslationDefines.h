@@ -473,6 +473,8 @@
 #define kLocalizedPaintRound NSLocalizedString(@"round", @"paint")
 #define kLocalizedPaintSquare NSLocalizedString(@"square", @"paint")
 #define kLocalizedPaintPocketPaint NSLocalizedString(@"Pocket Paint", @"paint")
+#define kLocalizedPaintStamped NSLocalizedString(@"Stamped", @"paint")
+#define kLocalizedPaintInserted NSLocalizedString(@"Inserted", @"paint")
 
 //************************************************************************************************************
 //************************************       FormulaEditor        ********************************************
