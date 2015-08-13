@@ -48,6 +48,7 @@
 #import "MYBlurIntroductionView.h"
 #import "LoginPopupViewController.h"
 #import "ProgramsForUploadViewController.h"
+#import "UIImage+CatrobatUIImageExtensions.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
     kContinueProgramVC = 0,
@@ -335,7 +336,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)configureImageCell:(UITableViewCell <CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     cell.titleLabel.text = [self.cells objectAtIndex:indexPath.row];
-    cell.iconImageView.image = [UIImage imageNamed:[self.imageNames objectAtIndex:indexPath.row]];
+    cell.iconImageView.image = [UIImage changeImage:[UIImage imageNamed:[self.imageNames objectAtIndex:indexPath.row]] toColor:[UIColor globalTintColor]];
+    
+    ;
 }
 
 - (void)configureSubtitleLabelForCell:(UITableViewCell*)cell

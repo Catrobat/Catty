@@ -26,6 +26,7 @@
 #import "LooksTableViewController.h"
 #import "Util.h"
 #import "CatrobatAlertView.h"
+#import "CatrobatActionSheet.h"
 #import "LCTableViewPickerControl.h"
 
 @interface PaintViewController : UIViewController  <BrushPickerViewControllerDelegate,ColorPickerViewControllerDelegate,UIGestureRecognizerDelegate,UIScrollViewDelegate,UINavigationControllerDelegate,LCItemPickerDelegate,CatrobatActionSheetDelegate,CatrobatAlertViewDelegate> {

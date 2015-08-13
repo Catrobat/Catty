@@ -42,4 +42,5 @@
 // XXX: Unfortunately touch-detection has still problems with the above extension-method!
 - (BOOL)isTransparentPixelOLDMETHOD:(UIImage*)image withX:(CGFloat)x andY:(CGFloat)y;
 
++ (UIImage*)changeImage:(UIImage*)image toColor:(UIColor*)color;
 @end

@@ -71,6 +71,7 @@
 
     // MenuImageBackground
     UIImage *menuBackgroundImage = [UIImage imageNamed:@"stage_dialog_background_middle_1"];
+    menuBackgroundImage = [UIImage changeImage:menuBackgroundImage toColor:[UIColor backgroundColor]];
     UIImage *newBackgroundImage;
 
     if ([Util screenHeight] == kIphone4ScreenHeight) {
@@ -110,6 +111,7 @@
     [self setUpMenuFrames];
     [self setUpLabels];
     [self setUpGridView];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
