@@ -270,8 +270,8 @@
 
 - (void)setupBrushPreview
 {
-  self.brushView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.center.x-self.view.frame.size.height * 0.05f, 90, self.view.frame.size.height * 0.1f, self.view.frame.size.height * 0.1f)];
-  self.brushView.layer.cornerRadius = 20.0f;
+  self.brushView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.center.x-self.view.frame.size.height * 0.05f, 90, self.view.frame.size.height * 0.1f, self.view.frame.size.height * 0.05f)];
+  self.brushView.layer.cornerRadius = 10.0f;
   [self updatePreview];
   [self.view addSubview:self.brushView];
 
