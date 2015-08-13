@@ -349,6 +349,14 @@ NS_ENUM(NSInteger, ButtonIndex) {
     NSDebug(@"InternFormulaString: %@",[self.internFormula getExternFormulaString]);
     [self.history push:[self.internFormula getInternFormulaState]];
     [self update];
+    [self switchBack];
+}
+
+-(void)switchBack
+{
+    if (self.calcScrollView.hidden == YES) {
+        [self showCalc:nil];
+    }
 }
 
 - (IBAction)undo:(id)sender
