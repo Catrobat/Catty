@@ -239,6 +239,7 @@
 #define kLocalizedNoInternetConnectionAvailable NSLocalizedString(@"No internet connection available.", nil)
 #define kLocalizedSlowInternetConnection NSLocalizedString(@"Slow Internet Connection!",nil)
 #define kLocalizedInvalidURLGiven NSLocalizedString(@"Invalid URL given!",nil)
+#define kLocalizedNoCamera NSLocalizedString(@"No Camera available",nil)
 
 //************************************************************************************************************
 //**********************************       LONG DESCRIPTIONS      ********************************************
@@ -473,6 +474,8 @@
 #define kLocalizedPaintRound NSLocalizedString(@"round", @"paint")
 #define kLocalizedPaintSquare NSLocalizedString(@"square", @"paint")
 #define kLocalizedPaintPocketPaint NSLocalizedString(@"Pocket Paint", @"paint")
+#define kLocalizedPaintStamped NSLocalizedString(@"Stamped", @"paint")
+#define kLocalizedPaintInserted NSLocalizedString(@"Inserted", @"paint")
 
 //************************************************************************************************************
 //************************************       FormulaEditor        ********************************************

@@ -21,6 +21,7 @@
  */
 
 #import "ImagePicker.h"
+#import "UIImage+CatrobatUIImageExtensions.h"
 
 @implementation ImagePicker
 
@@ -36,13 +37,18 @@
 
 - (void)cameraImagePickerAction
 {
-  //IMAGEPICKER CAMERA
-  UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-  picker.delegate = self;
-  picker.allowsEditing = YES;
-  picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    //IMAGEPICKER CAMERA
+  if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+      UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+      picker.delegate = self;
+      picker.allowsEditing = YES;
+      picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+      
+      [self.canvas presentViewController:picker animated:YES completion:NULL];
+  } else {
+      [Util alertWithText:kLocalizedNoCamera];
+  }
   
-  [self.canvas presentViewController:picker animated:YES completion:NULL];
 }
 
 - (void)imagePickerAction
@@ -59,9 +65,8 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
   
   self.originalImage = info[UIImagePickerControllerEditedImage];
-  
-  //TODO change size of image
-  [self.canvas setImagePickerImage:self.originalImage];
+  UIImage* image = [UIImage imageWithImage:self.originalImage scaledToSize:self.canvas.saveView.frame.size];
+  [self.canvas setImagePickerImage:image];
   
   [picker dismissViewControllerAnimated:YES completion:NULL];
   
