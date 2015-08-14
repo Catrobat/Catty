@@ -332,7 +332,7 @@
 
 - (void)checkAspectRatio
 {
-    if (![self.program.header.screenMode isEqualToString:kCatrobatHeaderScreenModeMaximize]) {
+    if (self.program.header.screenWidth.floatValue == [Util screenWidth] && self.program.header.screenHeight.floatValue == [Util screenHeight]) {
         self.menuAspectRatioButton.hidden = YES;
     }
 }
