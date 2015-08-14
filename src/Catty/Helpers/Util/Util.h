@@ -58,6 +58,9 @@
 
 + (CatrobatAlertView*)alertWithText:(NSString*)text;
 
++ (CatrobatAlertView*)alertWithTitle:(NSString*)title
+                             andText:(NSString*)text;
+
 + (CatrobatAlertView*)alertWithText:(NSString*)text
                            delegate:(id<CatrobatAlertViewDelegate>)delegate
                                 tag:(NSInteger)tag;
