@@ -115,6 +115,14 @@
     return [self alertWithText:text delegate:nil tag:0];
 }
 
++(CatrobatAlertView *)alertWithTitle:(NSString *)title
+                             andText:(NSString *)text
+{
+    CatrobatAlertView* alertView = [self alertWithText:text];
+    alertView.title = title;
+    return alertView;
+}
+
 + (CatrobatAlertView*)alertWithText:(NSString*)text
                            delegate:(id<CatrobatAlertViewDelegate>)delegate
                                 tag:(NSInteger)tag
