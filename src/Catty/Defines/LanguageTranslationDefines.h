@@ -208,7 +208,7 @@
 #define kLocalizedRestart NSLocalizedString(@"Restart", nil)
 #define kLocalizedContinue NSLocalizedString(@"Continue", nil)
 #define kLocalizedScreenshot NSLocalizedString(@"Screenshot", nil)
-#define kLocalizedGrid NSLocalizedString(@"Grid", nil)
+#define kLocalizedAxes NSLocalizedString(@"Axes", @"Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size.")
 #define kLocalizedMostDownloaded NSLocalizedString(@"Most Downloaded", nil)
 #define kLocalizedMostViewed NSLocalizedString(@"Most Viewed", nil)
 #define kLocalizedNewest NSLocalizedString(@"Newest", nil)

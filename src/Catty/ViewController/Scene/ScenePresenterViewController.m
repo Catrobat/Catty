@@ -203,7 +203,7 @@
                                kLocalizedRestart,
                                kLocalizedContinue,
                                kLocalizedScreenshot,
-                               kLocalizedGrid, nil];
+                               kLocalizedAxes, nil];
     NSArray* labelArray = [[NSArray alloc] initWithObjects:self.menuBackLabel,self.menuRestartLabel,self.menuContinueLabel, self.menuScreenshotLabel, self.menuAxisLabel,nil];
     for (int i = 0; i < [labelTextArray count]; ++i) {
         [self setupLabel:labelTextArray[i]

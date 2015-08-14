@@ -64,6 +64,9 @@
 /* No comment provided by engineer. */
 "Author" = "Author";
 
+/* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
+"Axes" = "Axes";
+
 /* No comment provided by engineer. */
 "Back" = "Back";
 
@@ -233,6 +236,9 @@
 "Delete this sound" = "Delete this sound";
 
 /* No comment provided by engineer. */
+"Deletion Mode" = "Deletion Mode";
+
+/* No comment provided by engineer. */
 "Description" = "Description";
 
 /* No comment provided by engineer. */
@@ -273,9 +279,6 @@
 
 /* Action sheet menu title */
 "Edit Looks" = "Edit Looks";
-
-/* No comment provided by engineer. */
-"Edit Mode" = "Edit Mode";
 
 /* No comment provided by engineer. */
 "Edit Object" = "Edit Object";
@@ -401,9 +404,6 @@
 "Green" = "Green";
 
 /* No comment provided by engineer. */
-"Grid" = "Grid";
-
-/* No comment provided by engineer. */
 "Hello !" = "Hello !";
 
 /* No comment provided by engineer. */
@@ -438,6 +438,9 @@
 
 /* No comment provided by engineer. */
 "Information" = "Information";
+
+/* paint */
+"Inserted" = "Inserted";
 
 /* No comment provided by engineer. */
 "Invalid input entered, try again." = "Invalid input entered, try again.";
@@ -606,6 +609,9 @@
 
 /* No comment provided by engineer. */
 "No" = "No";
+
+/* No comment provided by engineer. */
+"No Camera available" = "No Camera available";
 
 /* No comment provided by engineer. */
 "No Description available" = "No Description available";
@@ -934,6 +940,9 @@
 /* paint */
 "stamp" = "stamp";
 
+/* paint */
+"Stamped" = "Stamped";
+
 /* No comment provided by engineer. */
 "Start sound\n%@" = "Start sound\n%@";
 
@@ -969,9 +978,6 @@
 
 /* No comment provided by engineer. */
 "The description contains invalid characters, try again." = "The description contains invalid characters, try again.";
-
-/* paint */
-"Thickness" = "Thickness";
 
 /* No comment provided by engineer. */
 "This action can not be undone!" = "This action can not be undone!";
@@ -1086,6 +1092,9 @@
 
 /* No comment provided by engineer. */
 "When tapped" = "When tapped";
+
+/* paint */
+"Width" = "Width";
 
 /* No comment provided by engineer. */
 "Yes" = "Yes";
