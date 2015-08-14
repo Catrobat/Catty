@@ -358,7 +358,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark - segue handling
-- (BOOL)shouldPerformSegueWithIdentifider:(NSString*)identifier sender:(id)sender
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString*)identifier sender:(id)sender
 {
     if ([self dismissPopupWithCode:NO]) {
         return NO;
@@ -404,6 +404,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                     [self.navigationController popToRootViewControllerAnimated:YES];
                     return NO;
                 }
+                return NO;
             }
             return YES;
         } else if (remoteHostStatus == ReachableViaWWAN){
