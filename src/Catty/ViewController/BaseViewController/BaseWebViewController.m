@@ -30,6 +30,7 @@
 #import "LoadingView.h"
 #import "Program.h"
 #import "LanguageTranslationDefines.h"
+#import "NetworkDefines.h"
 
 @interface BaseWebViewController ()
 @property (nonatomic, strong) UIWebView *webView;
@@ -275,7 +276,7 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     
-    if ([request.URL.absoluteString rangeOfString:@"https://pocketcode.org/download/"].location == NSNotFound) {
+    if ([request.URL.absoluteString rangeOfString:kDownloadUrl].location == NSNotFound) {
         return YES;
     }
     NSDebug(@"Download");
