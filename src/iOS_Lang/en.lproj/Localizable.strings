@@ -64,6 +64,9 @@
 /* No comment provided by engineer. */
 "Author" = "Author";
 
+/* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
+"Axes" = "Axes";
+
 /* No comment provided by engineer. */
 "Back" = "Back";
 
@@ -399,9 +402,6 @@
 
 /* paint */
 "Green" = "Green";
-
-/* No comment provided by engineer. */
-"Grid" = "Grid";
 
 /* No comment provided by engineer. */
 "Hello !" = "Hello !";
