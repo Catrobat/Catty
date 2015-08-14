@@ -31,6 +31,7 @@
 #import "Program.h"
 #import "LanguageTranslationDefines.h"
 #import "NetworkDefines.h"
+#import "BDKNotifyHUD.h"
 
 @interface BaseWebViewController ()
 @property (nonatomic, strong) UIWebView *webView;
@@ -458,7 +459,21 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.loadingView hide];
+        [self showDownloadedView];
     });
+}
+
+- (void)showDownloadedView
+{
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:@"checkmark.png"]
+                                                    text:kLocalizedDownloaded];
+    hud.destinationOpacity = 0.30f;
+    hud.center = CGPointMake(self.view.center.x, self.view.center.y - 20);
+    hud.tag = kSavedViewTag;
+    [self.view addSubview:hud];
+    [hud presentWithDuration:0.8f speed:0.1f inView:self.view completion:^{
+        [hud removeFromSuperview];
+    }];
 }
 
 - (void)setBackDownloadStatus
