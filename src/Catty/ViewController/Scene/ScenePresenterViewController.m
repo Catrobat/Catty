@@ -110,6 +110,7 @@
     [self setUpMenuFrames];
     [self setUpLabels];
     [self setUpGridView];
+    [self checkAspectRatio];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -327,6 +328,13 @@
     [self.gridView addSubview:negativeHeight];
     
     [self.view insertSubview:self.gridView aboveSubview:self.skView];
+}
+
+- (void)checkAspectRatio
+{
+    if (![self.program.header.screenMode isEqualToString:kCatrobatHeaderScreenModeMaximize]) {
+        self.menuAspectRatioButton.hidden = YES;
+    }
 }
 
 - (void)setupScene
