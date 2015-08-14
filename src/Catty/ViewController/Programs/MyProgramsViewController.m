@@ -88,16 +88,20 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.navigationController.title = self.title = kLocalizedPrograms;
     self.programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
     [self initNavigationBar];
-
     self.defaultProgram = nil;
     self.selectedProgram = nil;
     [self setupToolBar];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.separatorInset = UIEdgeInsetsZero;
+    
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(downloadFinished:)
                                                  name:kProgramDownloadedNotification
                                                object:nil];
 }
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -271,6 +275,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:DetailCellIdentifier forIndexPath:indexPath];
     }
+
+    cell.layoutMargins = UIEdgeInsetsZero;
+    cell.preservesSuperviewLayoutMargins = NO;
+    
     if (! [cell isKindOfClass:[CatrobatBaseCell class]] || ! [cell conformsToProtocol:@protocol(CatrobatImageCell)]) {
         return cell;
     }
