@@ -401,7 +401,7 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         NSLog(@"INSERT ALL BRICKS");
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
         Brick *brick;
-        if (script.brickList.count > 1) {
+        if (script.brickList.count >= 1) {
             brick = [script.brickList objectAtIndex:indexPath.item - 1];
         }else{
             brick = [script.brickList objectAtIndex:indexPath.item];
@@ -892,6 +892,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         }];
     } else {
         self.navigationItem.title = kLocalizedScripts;
+        self.navigationItem.rightBarButtonItem.title = kLocalizedDelete;
         self.navigationItem.rightBarButtonItem.tintColor = UIColor.lightOrangeColor;
         
         [UIView animateWithDuration:animated ? 0.3f : 0.0f delay:0.0f usingSpringWithDamping:0.65f initialSpringVelocity:0.5f options:UIViewAnimationOptionCurveEaseInOut
