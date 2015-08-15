@@ -94,19 +94,13 @@
         return NO;
     if (! [self.programName isEqualToString:header.programName])
         return NO;
-    if (! [self.remixOf isEqualToString:header.remixOf])
-        return NO;
     if (! [self.screenHeight isEqualToNumber:header.screenHeight])
         return NO;
     if (! [self.screenWidth isEqualToNumber:header.screenWidth])
         return NO;
     if (! [self.screenMode isEqualToString:header.screenMode])
         return NO;
-    if (! [self.tags isEqualToString:header.tags])
-        return NO;
     if (! [self.url isEqualToString:header.url])
-        return NO;
-    if (! [self.userHandle isEqualToString:header.userHandle])
         return NO;
     return YES;
 }
