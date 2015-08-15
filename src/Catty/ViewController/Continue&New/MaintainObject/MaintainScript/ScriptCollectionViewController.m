@@ -583,7 +583,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         return;
     }
 
-    // empty script list, insert start script and continue to insert brick
+    // empty script list, insert start script and continue to insert the chosen brick
     if (self.object.scriptList.count == 0) {
         StartScript *script = [StartScript new];
         script.object = self.object;
