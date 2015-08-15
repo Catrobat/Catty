@@ -99,12 +99,12 @@
         [header setValue:value forKey:headerProperty.classPropertyName]; // Note: weak properties are not yet supported!!
     }
     return header;
-
 }
 
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
+    [self updateRelevantHeaderInfosBeforeSerialization];
     GDataXMLElement *headerXMLElement = [GDataXMLElement elementWithName:@"header" context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"applicationBuildName"
                                                     stringValue:self.applicationBuildName context:context]

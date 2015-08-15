@@ -55,6 +55,33 @@
     return header;
 }
 
+- (void)updateRelevantHeaderInfosBeforeSerialization
+{
+    // needed to update headers in catrobat programs that have not been
+    // created on this device (e.g. downloaded programs...)
+    self.applicationBuildName = [Util appBuildName];
+    self.applicationBuildNumber = [Util appBuildVersion];
+    self.applicationName = [Util appName];
+    self.applicationVersion = [Util appVersion];
+    self.applicationVersion = [Util appVersion];
+    self.catrobatLanguageVersion = [Util catrobatLanguageVersion];
+    self.deviceName = [Util deviceName];
+    self.mediaLicense = [Util catrobatMediaLicense]; // always use most recent license!
+    self.platform = [Util platformName];
+    self.platformVersion = [Util platformVersion];
+    self.programLicense = [Util catrobatProgramLicense]; // always use most recent license!
+
+    // now, this becomes a remixed version
+    // ... but URL must be valid ...
+    if (self.url && ([self.url hasPrefix:@"http://"] || [self.url hasPrefix:@"https://"])) {
+        self.remixOf = self.url;
+    }
+
+    // invalidate all web fields (current user now becomes the creator of this remix!)
+    self.tags = nil;
+    self.userHandle = nil;
+}
+
 - (BOOL)isEqualToHeader:(Header*)header
 {
     if (! [self.applicationName isEqualToString:header.applicationName])
