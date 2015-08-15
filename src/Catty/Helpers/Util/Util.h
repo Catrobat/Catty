@@ -220,4 +220,8 @@
 
 + (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)index;
 
++ (NSArray*)networkErrorCodes;
+
+
+
 @end

@@ -236,6 +236,7 @@
 #define kLocalizedUnableToLoadProgram NSLocalizedString(@"Unable to load program!", nil)
 #define kLocalizedThisActionCannotBeUndone NSLocalizedString(@"This action can not be undone!", nil)
 #define kLocalizedNoInternetConnectionAvailable NSLocalizedString(@"No internet connection available.", nil)
+#define kLocalizedNoInternetConnection NSLocalizedString(@"No Internet Connection", nil)
 #define kLocalizedSlowInternetConnection NSLocalizedString(@"Slow Internet Connection!",nil)
 #define kLocalizedInvalidURLGiven NSLocalizedString(@"Invalid URL given!",nil)
 #define kLocalizedNoCamera NSLocalizedString(@"No Camera available",nil)
