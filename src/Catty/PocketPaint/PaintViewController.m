@@ -699,7 +699,7 @@
     //  self.resizeViewManager.border.frame = CGRectMake(0, 0,
     //                                 (int)width,
     //                                 (int)height);
-    self.resizeViewManager.resizeViewer.bounds = CGRectMake(self.resizeViewManager.resizeViewer.bounds.origin.x, self.resizeViewManager.resizeViewer.bounds.origin.y,
+    self.resizeViewManager.resizeViewer.frame = CGRectMake(self.resizeViewManager.resizeViewer.frame.origin.x, self.resizeViewManager.resizeViewer.frame.origin.y,
                                                             (int)width,
                                                             (int)height);
     
