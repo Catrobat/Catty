@@ -583,17 +583,14 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         return;
     }
 
-    // empty script list, insert start script + brick
+    // empty script list, insert start script and continue to insert brick
     if (self.object.scriptList.count == 0) {
         StartScript *script = [StartScript new];
         script.object = self.object;
         [self.object.scriptList addObject:script];
         script.animate = YES;
-        Brick *brick = (Brick*)scriptOrBrick;
-        brick.animate = YES;
-        [script.brickList addObject:brick];
         [self.collectionView reloadData];
-        return;
+        [self.object.program saveToDisk];
     }
     
     NSInteger targetScriptIndex = 0;
