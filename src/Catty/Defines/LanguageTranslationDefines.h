@@ -461,7 +461,7 @@
 #define kLocalizedPaintZoom NSLocalizedString(@"zoom", @"paint")
 #define kLocalizedPaintPointer NSLocalizedString(@"pointer", @"paint")
 #define kLocalizedPaintSaveChanges NSLocalizedString(@"Do you want to save the changes", @"paint")
-#define kLocalizedPaintMenu NSLocalizedString(@"Menu", @"paint")
+#define kLocalizedPaintMenuButtonTitle NSLocalizedString(@"Menu", @"paint")
 #define kLocalizedPaintSelect NSLocalizedString(@"Select option:", @"paint")
 #define kLocalizedPaintSave NSLocalizedString(@"Save to CameraRoll", @"paint")
 #define kLocalizedPaintSaveClose NSLocalizedString(@"Save & Close Paint", @"paint")
