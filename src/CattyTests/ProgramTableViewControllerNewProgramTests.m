@@ -20,10 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-// NOTE: needed for ProgramTableViewController.h to make some non-public methods that are needed for testing
-// visible for this class
-#define CATTY_TESTS 1
-
 #import <XCTest/XCTest.h>
 #import "ProgramTableViewController.h"
 #import "Program.h"

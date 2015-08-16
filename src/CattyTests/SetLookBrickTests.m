@@ -25,8 +25,6 @@
 #import "WhenScript.h"
 #import "Pocket_Code-Swift.h"
 
-#define CATTY_TESTS 1
-
 @interface SetLookBrickTests : BrickTests
 @end
 

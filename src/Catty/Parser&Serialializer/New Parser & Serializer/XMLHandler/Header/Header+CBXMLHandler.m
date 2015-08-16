@@ -27,6 +27,7 @@
 #import "CatrobatLanguageDefines.h"
 #import "CBXMLSerializer.h"
 #import "CBXMLPropertyMapping.h"
+#import "Util.h"
 
 @implementation Header (CBXMLHandler)
 
@@ -104,7 +105,11 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-    [self updateRelevantHeaderInfosBeforeSerialization];
+//#if TESTMODE == 0 // fails...
+    if (! [Util activateTestMode:NO]) {
+        [self updateRelevantHeaderInfosBeforeSerialization];
+    }
+//#endif
     GDataXMLElement *headerXMLElement = [GDataXMLElement elementWithName:@"header" context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"applicationBuildName"
                                                     stringValue:self.applicationBuildName context:context]

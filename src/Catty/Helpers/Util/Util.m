@@ -157,7 +157,6 @@
     [alertView addAction:yesAction];
     alertView.tag = tag;
     if (! [self activateTestMode:NO]) {
-        
         [ROOTVIEW presentViewController:alertView animated:YES completion:^{}];
     }
     return alertView;
@@ -212,8 +211,8 @@
     if (! [self activateTestMode:NO]) {
         if (target != nil) {
             [(UIViewController *)target presentViewController:alertView animated:YES completion:^{}];
-        }else{
-        [ROOTVIEW presentViewController:alertView animated:YES completion:^{}];
+        } else {
+            [ROOTVIEW presentViewController:alertView animated:YES completion:^{}];
         }
     }
     return alertView;
