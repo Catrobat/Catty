@@ -46,8 +46,6 @@
 
 #define kScrollViewOffset 0.0f
 
-#define kIphone5ScreenHeight 568.0f
-#define kIphone4ScreenHeight 480.0f
 
 @interface ProgramDetailStoreViewController () <ProgramUpdateDelegate>
 
