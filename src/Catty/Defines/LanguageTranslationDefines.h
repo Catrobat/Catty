@@ -240,6 +240,7 @@
 #define kLocalizedSlowInternetConnection NSLocalizedString(@"Slow Internet Connection!",nil)
 #define kLocalizedInvalidURLGiven NSLocalizedString(@"Invalid URL given!",nil)
 #define kLocalizedNoCamera NSLocalizedString(@"No Camera available",nil)
+#define kLocalizedImagePickerSourceNotAvailable NSLocalizedString(@"Image source not available",nil)
 
 //************************************************************************************************************
 //**********************************       LONG DESCRIPTIONS      ********************************************

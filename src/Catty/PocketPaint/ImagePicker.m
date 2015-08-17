@@ -166,12 +166,16 @@
 
 - (void)openPicker:(UIImagePickerControllerSourceType)pickerType
 {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = pickerType;
-    
-    [self.canvas presentViewController:picker animated:YES completion:NULL];
+    if ([UIImagePickerController isSourceTypeAvailable:pickerType]) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = pickerType;
+        
+        [self.canvas presentViewController:picker animated:YES completion:NULL];
+    } else {
+        [Util alertWithText:pickerType == UIImagePickerControllerSourceTypeCamera ? kLocalizedNoCamera : kLocalizedImagePickerSourceNotAvailable];
+    }
 }
 
 
