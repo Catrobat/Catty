@@ -48,6 +48,7 @@
 #import "MYBlurIntroductionView.h"
 #import "LoginPopupViewController.h"
 #import "ProgramsForUploadViewController.h"
+#import "Util.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
     kContinueProgramVC = 0,
@@ -200,8 +201,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #if DEBUG == 1
 - (void)debugInfo:(id)sender
 {
+    NSString *message = [NSString stringWithFormat:@"%@\n\nBuild version:%@",
+                         kLocalizedStartedInDebugMode, [Util appBuildVersion]];
     [[[UIAlertView alloc] initWithTitle:kLocalizedDebugModeTitle
-                                message:kLocalizedStartedInDebugMode
+                                message:message
                                delegate:nil
                       cancelButtonTitle:kLocalizedOK
                       otherButtonTitles:nil] show];
