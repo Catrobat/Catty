@@ -37,8 +37,8 @@
 #define kDownloadUrl kBaseUrl @"download"
 #define kSourceCodeLicenseURL @"http://developer.catrobat.org/licenses"
 #define kAboutCatrobatURL @"http://www.catrobat.org"
-#define kTermsOfUseURL @"https://www.pocketcode.org/termsOfUse"
-#define kRecoverPassword @"https://pocketcode.org/passwordrecovery"
+#define kTermsOfUseURL kBaseUrl @"termsOfUse"
+#define kRecoverPassword kBaseUrl @"resetting/request"
 #define kAppStoreURL @"itms-apps://itunes.apple.com/app/CATTY_APP_ID"
 
 #define kConnectionSearch @"search.json"
