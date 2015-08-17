@@ -619,7 +619,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     
     [self.collectionView reloadData];
     [self turnOnInsertingBrickMode];
-    [self.object.program saveToDisk];
+//    [self.object.program saveToDisk];
     
 }
 
@@ -653,7 +653,30 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         loopEndBrick.script = targetScript;
         loopEndBrick.animate = YES;
         if ([loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
-            [targetScript.brickList insertObject:loopEndBrick atIndex:loopBeginBrick.script.brickList.count];
+            NSInteger index = loopBeginBrick.script.brickList.count;
+            NSInteger insertionIndex = index;
+            if (targetScript.brickList.count >=1) {
+                while ([[targetScript.brickList objectAtIndex:index-1] isKindOfClass:[LoopEndBrick class]]) {
+                    LoopEndBrick* loopEndBrickCheck = [targetScript.brickList objectAtIndex:index-1];
+                    NSInteger loopbeginIndex = 0;
+                    for (Brick *brick in targetScript.brickList) {
+                        if (brick  == loopEndBrickCheck.loopBeginBrick) {
+                            break;
+                        }
+                        loopbeginIndex++;
+                    }
+                    if (loopbeginIndex < path.row) {
+                        insertionIndex = index-1;
+                    } else if(loopbeginIndex > path.row){
+                        insertionIndex = index;
+                    }else{
+                            //should not be possible
+                        insertionIndex = index;
+                    }
+                    index--;
+                }
+            }
+            [targetScript.brickList insertObject:loopEndBrick atIndex:insertionIndex];
         }else{
             [targetScript.brickList insertObject:loopEndBrick atIndex:path.row];
         }
@@ -919,7 +942,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             if ([loopBeginBrick.loopEndBrick isEqual:toBrick]) {
                 self.lowerRankBrick = toIndexPath;
                 return NO;
-            }else if([toBrick isKindOfClass:[IfLogicBeginBrick class]]||[toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]){
+            }else if([toBrick isKindOfClass:[IfLogicBeginBrick class]]||[toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[LoopBeginBrick class]]){
                 if (toIndexPath.item < fromIndexPath.item) {
                     self.higherRankBrick = toIndexPath;
                     return NO;
@@ -927,7 +950,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                     self.lowerRankBrick = toIndexPath;
                     return NO;
                 }
-            } else {
+            }else {
                 return YES;
             }
         } else {
@@ -953,7 +976,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             if ([endbrick.loopBeginBrick isEqual:toBrick]) {
                 self.higherRankBrick = toIndexPath;
                 return NO;
-            }else if([toBrick isKindOfClass:[IfLogicBeginBrick class]]||[toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]){
+            }else if([toBrick isKindOfClass:[IfLogicBeginBrick class]]||[toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[LoopBeginBrick class]]||[toBrick isKindOfClass:[LoopEndBrick class]]){
                 if (toIndexPath.item < fromIndexPath.item) {
                     self.higherRankBrick = toIndexPath;
                     return NO;
