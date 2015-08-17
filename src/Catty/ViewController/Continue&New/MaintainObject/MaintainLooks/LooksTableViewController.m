@@ -23,6 +23,7 @@
 #import "LooksTableViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <AVFoundation/AVFoundation.h>
 #import "ProgramDefines.h"
 #import "UIDefines.h"
 #import "TableUtil.h"
@@ -581,6 +582,55 @@ static NSCharacterSet *blockedCharacterSet = nil;
                         invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
         }
     } else if (actionSheet.tag == kAddLookActionSheetTag) {
+
+        ALAuthorizationStatus statusCameraRoll = [ALAssetsLibrary authorizationStatus];
+        //status for camera
+        AVAuthorizationStatus statusCamera = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+        
+        UIAlertController *alertControllerCameraRoll = [UIAlertController
+                                              alertControllerWithTitle:nil
+                                              message:kLocalizedNoAccesToImagesCheckSettingsDescription
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alertControllerCamera = [UIAlertController
+                                                    alertControllerWithTitle:nil
+                                                    message:kLocalizedNoAccesToCameraCheckSettingsDescription
+                                                    preferredStyle:UIAlertControllerStyleAlert];
+        
+        
+        UIAlertAction *cancelActionCamera = [UIAlertAction
+                                       actionWithTitle:kLocalizedCancel
+                                       style:UIAlertActionStyleCancel
+                                       handler:nil];
+        
+        UIAlertAction *settingsActionCamera = [UIAlertAction
+                                       actionWithTitle:kLocalizedSettings
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           NSDebug(@"Settings Action");
+                                           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                       }];
+        
+        UIAlertAction *cancelActionCameraRoll = [UIAlertAction
+                                             actionWithTitle:kLocalizedCancel
+                                             style:UIAlertActionStyleCancel
+                                             handler:nil];
+        
+        UIAlertAction *settingsActionCameraRoll = [UIAlertAction
+                                               actionWithTitle:kLocalizedSettings
+                                               style:UIAlertActionStyleDefault
+                                               handler:^(UIAlertAction *action)
+                                               {
+                                                   NSDebug(@"Settings Action");
+                                                   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                               }];
+        
+        
+        [alertControllerCameraRoll addAction:cancelActionCameraRoll];
+        [alertControllerCameraRoll addAction:settingsActionCameraRoll];
+        [alertControllerCamera addAction:cancelActionCamera];
+        [alertControllerCamera addAction:settingsActionCamera];
+        
         NSInteger importFromCameraIndex = NSIntegerMin;
         NSInteger chooseImageIndex = NSIntegerMin;
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
@@ -598,10 +648,26 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
         if (buttonIndex == importFromCameraIndex) {
             // take picture from camera
-            [self presentImagePicker:UIImagePickerControllerSourceTypeCamera];
+            if([self checkUserAuthorisation:UIImagePickerControllerSourceTypeCamera])
+            {
+                if(statusCamera == AVAuthorizationStatusAuthorized)
+                {
+                    [self presentImagePicker:UIImagePickerControllerSourceTypeCamera];
+                }else{
+                    [self presentViewController:alertControllerCamera animated:YES completion:nil];
+                }
+            }
+            
         } else if (buttonIndex == chooseImageIndex) {
             // choose picture from camera roll
-            [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+            if([self checkUserAuthorisation:UIImagePickerControllerSourceTypePhotoLibrary])
+            {
+                if (statusCameraRoll != ALAuthorizationStatusAuthorized) {
+                    [self presentViewController:alertControllerCameraRoll animated:YES completion:nil];
+                }else{
+                    [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+                }
+            }
         } else if (buttonIndex != actionSheet.cancelButtonIndex) {
             // implement this after Pocket Paint is fully integrated
             // draw new image
@@ -837,6 +903,45 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [queue addOperation:saveOp];
     }
     [self.tableView reloadData];
+}
+
+- (BOOL)checkUserAuthorisation:(UIImagePickerControllerSourceType)pickerType
+{
+    
+    BOOL state = NO;
+    
+    if(pickerType == UIImagePickerControllerSourceTypePhotoLibrary)
+    {
+        if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusNotDetermined) {
+            ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+            [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+                if (*stop) {
+                    [self presentImagePicker:pickerType];
+                    return;
+                }
+                *stop = TRUE;
+            } failureBlock:^(NSError *error) {
+                return;
+                
+            }];
+        }else{
+            state = YES;
+        }
+    }else if (pickerType == UIImagePickerControllerSourceTypeCamera)
+    {
+        AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+        if(authStatus == AVAuthorizationStatusNotDetermined){
+            [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+                if(granted){
+                    [self presentImagePicker:pickerType];
+                    return;
+                }
+            }];
+        }else{
+            state = YES;
+        }
+    }
+    return state;
 }
 
 @end
