@@ -293,7 +293,13 @@
 
 + (NSString*)appBuildVersion
 {
-    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSString *buildVersion = [[bundle infoDictionary] objectForKey:@"CFBundleVersion"];
+    NSString *content = [NSString stringWithContentsOfFile:[bundle pathForResource:@"commit"
+                                                                            ofType:@"txt"]
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:NULL];
+    return [NSString stringWithFormat:@"%@-%@", buildVersion, content];
 }
 
 + (NSString*)catrobatLanguageVersion
