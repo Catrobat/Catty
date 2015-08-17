@@ -32,6 +32,8 @@
 #import "Util.h"
 #import "LanguageTranslationDefines.h"
 #import "QuartzCore/QuartzCore.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <AVFoundation/AVFoundation.h>
 
 //Helper
 #import "RGBAHelper.h"
@@ -125,37 +127,10 @@
             NSData *data1 = UIImagePNGRepresentation(self.saveView.image);
             NSData *data2 = UIImagePNGRepresentation(self.checkImage);
             if (![data1 isEqual:data2]) {
-                ALAuthorizationStatus statusCameraRoll = [ALAssetsLibrary authorizationStatus];
-                UIAlertController *alertControllerCameraRoll = [UIAlertController
-                                                                alertControllerWithTitle:nil
-                                                                message:kLocalizedNoAccesToImagesCheckSettingsDescription
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-                
-                UIAlertAction *cancelAction = [UIAlertAction
-                                               actionWithTitle:kLocalizedCancel
-                                               style:UIAlertActionStyleCancel
-                                               handler:nil];
-                
-                UIAlertAction *settingsAction = [UIAlertAction
-                                                 actionWithTitle:kLocalizedSettings
-                                                 style:UIAlertActionStyleDefault
-                                                 handler:^(UIAlertAction *action)
-                                                 {
-                                                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                                                 }];
-                
-                [alertControllerCameraRoll addAction:cancelAction];
-                [alertControllerCameraRoll addAction:settingsAction];
-                
-                if (statusCameraRoll == ALAuthorizationStatusAuthorized) {
-                    if (![self.saveView.image isEqual:self.editingImage] && self.editingImage != nil) {
-                        [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
-                    } else if (self.editingPath == nil) {
-                        [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
-                    }
-                }else
-                {
-                    [self presentViewController:alertControllerCameraRoll animated:YES completion:nil];
+                if (![self.saveView.image isEqual:self.editingImage] && self.editingImage != nil) {
+                    [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
+                } else if (self.editingPath == nil) {
+                    [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
                 }
             }
         }
@@ -822,11 +797,14 @@
     [alertControllerCameraRoll addAction:settingsAction];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if (statusCameraRoll == ALAuthorizationStatusAuthorized) {
-            UIImageWriteToSavedPhotosAlbum(self.saveView.image, nil, nil, nil);
-        }else
+        if([self checkUserAuthorisation:false])
         {
-            [self presentViewController:alertControllerCameraRoll animated:YES completion:nil];
+            if (statusCameraRoll == ALAuthorizationStatusAuthorized) {
+                UIImageWriteToSavedPhotosAlbum(self.saveView.image, nil, nil, nil);
+            }else
+            {
+                [self presentViewController:alertControllerCameraRoll animated:YES completion:nil];
+            }
         }
         
     });
@@ -857,19 +835,24 @@
     [alertControllerCameraRoll addAction:settingsAction];
     
     NSDebug(@"save and close");
-    if (statusCameraRoll == ALAuthorizationStatusAuthorized) {
-        if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
-            UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
-            UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            if (![self.saveView.image isEqual:blank]) {
-                [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
-            }
-        }
-        [self.navigationController popViewControllerAnimated:YES];
-    }else
+    if([self checkUserAuthorisation:true])
     {
-        [self presentViewController:alertControllerCameraRoll animated:YES completion:nil];
+        if (statusCameraRoll == ALAuthorizationStatusAuthorized)
+        {
+            if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)])
+            {
+                UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
+                UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+                if (![self.saveView.image isEqual:blank]) {
+                    [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
+                }
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+        }else
+        {
+            [self presentViewController:alertControllerCameraRoll animated:YES completion:nil];
+        }
     }
 }
 - (void)discardAndCloseAction
@@ -942,6 +925,57 @@
     self.fillTool = nil;
     self.fillRecognizer = nil;
     NSLog(@"dealloc");
+}
+
+- (BOOL)checkUserAuthorisation:(BOOL)close
+{
+    
+    BOOL state = NO;
+    
+    if(close)
+    {
+        if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusNotDetermined) {
+            ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+            [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+                if (*stop) {
+                    if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
+                        UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
+                        UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
+                        UIGraphicsEndImageContext();
+                        if (![self.saveView.image isEqual:blank]) {
+                            [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
+                        }
+                    }
+                    [self.navigationController popViewControllerAnimated:YES];
+                    return;
+                }
+                *stop = TRUE;
+            } failureBlock:^(NSError *error) {
+                return;
+                
+            }];
+        }else{
+            state = YES;
+        }
+    }else
+    {
+        if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusNotDetermined) {
+            ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+            [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+                if (*stop) {
+                    UIImageWriteToSavedPhotosAlbum(self.saveView.image, nil, nil, nil);
+                    return;
+                }
+                *stop = TRUE;
+            } failureBlock:^(NSError *error) {
+                return;
+                
+            }];
+        }else{
+            state = YES;
+        }
+    }
+    return state;
 }
 
 @end

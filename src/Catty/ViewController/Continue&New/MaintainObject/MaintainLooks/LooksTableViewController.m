@@ -648,19 +648,25 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
         if (buttonIndex == importFromCameraIndex) {
             // take picture from camera
-            if(statusCamera == AVAuthorizationStatusAuthorized)
+            if([self checkUserAuthorisation:UIImagePickerControllerSourceTypeCamera])
             {
-                [self presentImagePicker:UIImagePickerControllerSourceTypeCamera];
-            }else{
-                [self presentViewController:alertControllerCamera animated:YES completion:nil];
+                if(statusCamera == AVAuthorizationStatusAuthorized)
+                {
+                    [self presentImagePicker:UIImagePickerControllerSourceTypeCamera];
+                }else{
+                    [self presentViewController:alertControllerCamera animated:YES completion:nil];
+                }
             }
             
         } else if (buttonIndex == chooseImageIndex) {
             // choose picture from camera roll
-            if (statusCameraRoll != ALAuthorizationStatusAuthorized) {
-                [self presentViewController:alertControllerCameraRoll animated:YES completion:nil];
-            }else{
-                [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+            if([self checkUserAuthorisation:UIImagePickerControllerSourceTypePhotoLibrary])
+            {
+                if (statusCameraRoll != ALAuthorizationStatusAuthorized) {
+                    [self presentViewController:alertControllerCameraRoll animated:YES completion:nil];
+                }else{
+                    [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+                }
             }
         } else if (buttonIndex != actionSheet.cancelButtonIndex) {
             // implement this after Pocket Paint is fully integrated
@@ -897,6 +903,45 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [queue addOperation:saveOp];
     }
     [self.tableView reloadData];
+}
+
+- (BOOL)checkUserAuthorisation:(UIImagePickerControllerSourceType)pickerType
+{
+    
+    BOOL state = NO;
+    
+    if(pickerType == UIImagePickerControllerSourceTypePhotoLibrary)
+    {
+        if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusNotDetermined) {
+            ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+            [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+                if (*stop) {
+                    [self presentImagePicker:pickerType];
+                    return;
+                }
+                *stop = TRUE;
+            } failureBlock:^(NSError *error) {
+                return;
+                
+            }];
+        }else{
+            state = YES;
+        }
+    }else if (pickerType == UIImagePickerControllerSourceTypeCamera)
+    {
+        AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+        if(authStatus == AVAuthorizationStatusNotDetermined){
+            [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+                if(granted){
+                    [self presentImagePicker:pickerType];
+                    return;
+                }
+            }];
+        }else{
+            state = YES;
+        }
+    }
+    return state;
 }
 
 @end

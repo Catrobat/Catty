@@ -60,20 +60,18 @@
     
   [alertControllerCamera addAction:cancelAction];
   [alertControllerCamera addAction:settingsAction];
-
+    
   //IMAGEPICKER CAMERA
-  if(authStatus == AVAuthorizationStatusAuthorized)
-  {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    if ([self checkUserAuthorisation:UIImagePickerControllerSourceTypeCamera]) {
+        if(authStatus == AVAuthorizationStatusAuthorized)
+        {
+            [self openPicker:UIImagePickerControllerSourceTypeCamera];
+        }
+        else{
+            [self.canvas presentViewController:alertControllerCamera animated:YES completion:nil];
+        }
+    }
   
-    [self.canvas presentViewController:picker animated:YES completion:NULL];
-  }
-  else{
-    [self.canvas presentViewController:alertControllerCamera animated:YES completion:nil];
-  }
 }
 
 - (void)imagePickerAction
@@ -100,18 +98,15 @@
   [alertControllerCameraRoll addAction:cancelAction];
   [alertControllerCameraRoll addAction:settingsAction];
 
-  //IMAGEPICKER CameraRoll
-  if (statusCameraRoll == ALAuthorizationStatusAuthorized) {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-  
-    [self.canvas presentViewController:picker animated:YES completion:NULL];
-  }else
-  {
-    [self.canvas presentViewController:alertControllerCameraRoll animated:YES completion:nil];
-  }
+    //IMAGEPICKER CameraRoll
+    if ([self checkUserAuthorisation:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        if (statusCameraRoll == ALAuthorizationStatusAuthorized) {
+            [self openPicker:UIImagePickerControllerSourceTypePhotoLibrary];
+        }else
+        {
+            [self.canvas presentViewController:alertControllerCameraRoll animated:YES completion:nil];
+        }
+    }
 }
 #pragma mark imagePicker delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
@@ -128,6 +123,55 @@
   
   [picker dismissViewControllerAnimated:YES completion:NULL];
   
+}
+
+- (BOOL)checkUserAuthorisation:(UIImagePickerControllerSourceType)pickerType
+{
+    
+    BOOL state = NO;
+    
+    if(pickerType == UIImagePickerControllerSourceTypePhotoLibrary)
+    {
+        if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusNotDetermined) {
+            ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+            [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+                if (*stop) {
+                    [self openPicker:pickerType];
+                    return;
+                }
+                *stop = TRUE;
+            } failureBlock:^(NSError *error) {
+                return;
+            
+            }];
+        }else{
+            state = YES;
+        }
+    }else if (pickerType == UIImagePickerControllerSourceTypeCamera)
+    {
+        AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+        if(authStatus == AVAuthorizationStatusNotDetermined){
+            [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+                if(granted){
+                    [self openPicker:pickerType];
+                    return;
+                }
+            }];
+        }else{
+            state = YES;
+        }
+    }
+    return state;
+}
+
+- (void)openPicker:(UIImagePickerControllerSourceType)pickerType
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = pickerType;
+    
+    [self.canvas presentViewController:picker animated:YES completion:NULL];
 }
 
 
