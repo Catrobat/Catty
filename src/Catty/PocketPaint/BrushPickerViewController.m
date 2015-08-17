@@ -129,7 +129,7 @@
   self.brushSlider.value = self.brush;
   self.brushSlider.tintColor = [UIColor lightOrangeColor];
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.55f, 40, 10)];
-  label.text = kLocalizedPaintThickness;
+  label.text = kLocalizedPaintWidth;
   [label sizeToFit];
   label.textColor = [UIColor lightBlueColor];
   self.thicknessLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.brushSlider.frame.origin.x+self.brushSlider.frame.size.width +20, self.view.frame.size.height*0.7f-7, 40, 10)];

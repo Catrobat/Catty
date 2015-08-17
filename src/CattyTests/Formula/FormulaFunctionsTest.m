@@ -113,6 +113,7 @@ const double DELTA = 0.001;
     // for tan(90) see http://math.stackexchange.com/questions/536144/why-does-the-google-calculator-give-tan-90-degrees-1-6331779e16
     formula = [self getFormulaElementForFunction:TAN WithLeftValue:@"90" AndRightValue:nil];
     XCTAssertEqualWithAccuracy(1.633123935319537 * pow(10,16), [[formula interpretRecursiveForSprite:nil]doubleValue], DELTA, @"Wrong result for tan(90)");
+    //XCTAssertEqualWithAccuracy(tan(1.57079637), [[formula interpretRecursiveForSprite:nil]doubleValue], DELTA, @"Wrong result for tan(90)");
     
     formula = [self getFormulaElementForFunction:TAN WithLeftValue:@"-90" AndRightValue:nil];
     XCTAssertEqualWithAccuracy(-1.633123935319537 * pow(10,16), [[formula interpretRecursiveForSprite:nil]doubleValue], DELTA, @"Wrong result for tan(-90)");

@@ -401,7 +401,7 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         NSLog(@"INSERT ALL BRICKS");
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
         Brick *brick;
-        if (script.brickList.count > 1) {
+        if (script.brickList.count >= 1) {
             brick = [script.brickList objectAtIndex:indexPath.item - 1];
         }else{
             brick = [script.brickList objectAtIndex:indexPath.item];
@@ -583,17 +583,14 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         return;
     }
 
-    // empty script list, insert start script + brick
+    // empty script list, insert start script and continue to insert the chosen brick
     if (self.object.scriptList.count == 0) {
         StartScript *script = [StartScript new];
         script.object = self.object;
         [self.object.scriptList addObject:script];
         script.animate = YES;
-        Brick *brick = (Brick*)scriptOrBrick;
-        brick.animate = YES;
-        [script.brickList addObject:brick];
         [self.collectionView reloadData];
-        return;
+        [self.object.program saveToDisk];
     }
     
     NSInteger targetScriptIndex = 0;
@@ -726,7 +723,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 #pragma mark - Open Formula Editor
 - (void)openFormulaEditor:(BrickCellFormulaData*)formulaData withEvent:(UIEvent*)event
 {
-    if (self.isEditingBrickMode) {
+    if (self.isEditingBrickMode && event) {
         return;
     }
     if ([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
@@ -875,7 +872,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     [self setupToolBar];
 
     if (self.isEditing) {
-        self.navigationItem.title = kLocalizedEditMenu;
+        self.navigationItem.title = kLocalizedDeletionMenu;
         self.navigationItem.rightBarButtonItem.title = kLocalizedCancel;
 
         [UIView animateWithDuration:animated ? 0.5f : 0.0f  delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -892,6 +889,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         }];
     } else {
         self.navigationItem.title = kLocalizedScripts;
+        self.navigationItem.rightBarButtonItem.title = kLocalizedDelete;
         self.navigationItem.rightBarButtonItem.tintColor = UIColor.lightOrangeColor;
         
         [UIView animateWithDuration:animated ? 0.3f : 0.0f delay:0.0f usingSpringWithDamping:0.65f initialSpringVelocity:0.5f options:UIViewAnimationOptionCurveEaseInOut
@@ -1662,6 +1660,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     self.collectionView.scrollEnabled = YES;
     self.collectionView.collectionViewLayout = [LXReorderableCollectionViewFlowLayout new];
     self.navigationController.title = self.title = kLocalizedScripts;
+    [self.editButtonItem setTitle:kLocalizedDelete];
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.navigationItem.rightBarButtonItem.enabled = YES;
     self.brickScaleTransition = [[BrickTransition alloc] initWithViewToAnimate:nil];
@@ -1856,7 +1855,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
     
     CGFloat maxContentOffset = self.collectionView.contentSize.height + self.collectionView.contentInset.bottom - self.collectionView.bounds.size.height;    
-    if (self.collectionView.contentOffset.y > maxContentOffset) {
+    if (self.collectionView.contentOffset.y > maxContentOffset && maxContentOffset > 0) {
         [self.collectionView setContentOffset:CGPointMake(0, maxContentOffset) animated:YES];
     }
 }

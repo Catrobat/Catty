@@ -115,6 +115,14 @@
     return [self alertWithText:text delegate:nil tag:0];
 }
 
++(CatrobatAlertView *)alertWithTitle:(NSString *)title
+                             andText:(NSString *)text
+{
+    CatrobatAlertView* alertView = [self alertWithText:text];
+    alertView.title = title;
+    return alertView;
+}
+
 + (CatrobatAlertView*)alertWithText:(NSString*)text
                            delegate:(id<CatrobatAlertViewDelegate>)delegate
                                 tag:(NSInteger)tag
@@ -165,7 +173,8 @@
                         delegate:delegate
                      placeholder:placeholder
                              tag:tag
-                           value:nil];
+                           value:nil
+                          target:nil];
 }
 
 + (CatrobatAlertView*)promptWithTitle:(NSString*)title
@@ -174,6 +183,7 @@
                           placeholder:(NSString*)placeholder
                                   tag:(NSInteger)tag
                                 value:(NSString*)value
+                               target:(id)target
 {
     CatrobatAlertView *alertView = [[CatrobatAlertView alloc] initWithTitle:title
                                                                     message:message
@@ -199,7 +209,11 @@
     }];
 
     if (! [self activateTestMode:NO]) {
-        [ROOTVIEW presentViewController:alertView animated:YES completion:^{}];
+        if (target != nil) {
+            [(UIViewController *)target presentViewController:alertView animated:YES completion:^{}];
+        } else {
+            [ROOTVIEW presentViewController:alertView animated:YES completion:^{}];
+        }
     }
     return alertView;
 }
@@ -312,16 +326,27 @@
   return [[UIDevice currentDevice] systemVersion];
 }
 
++ (CGSize)screenSize
+{
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    float iOSVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (iOSVersion < 8 && UIInterfaceOrientationIsLandscape(orientation))
+    {
+        screenSize.height = screenSize.width;
+        screenSize.width = [[UIScreen mainScreen] bounds].size.height;
+    }
+    return screenSize;
+}
+
 + (CGFloat)screenHeight
 {
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    return screenRect.size.height;
+    return [self screenSize].height;
 }
 
 + (CGFloat)screenWidth
 {
-  CGRect screenRect = [[UIScreen mainScreen] bounds];
-  return screenRect.size.width;
+    return [self screenSize].width;
 }
 
 + (CATransition*)getPushCATransition
@@ -421,7 +446,8 @@
                                                         delegate:(id<CatrobatAlertViewDelegate>)self
                                                      placeholder:placeholder
                                                              tag:kAskUserForUniqueNameAlertViewTag
-                                                           value:value];
+                                                           value:value
+                                                          target:target];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionAskUserForUniqueName
                                                                   withPayload:[NSMutableDictionary dictionaryWithDictionary: payload]];
 }
@@ -451,7 +477,8 @@
                                                         delegate:(id<CatrobatAlertViewDelegate>)self
                                                      placeholder:@""
                                                              tag:kAskUserForReportMessageAlertViewTag
-                                                           value:@""];
+                                                           value:@""
+                                                          target:target];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionReportMessage
                                                                   withPayload:[NSMutableDictionary dictionaryWithDictionary: payload]];
 }
@@ -536,7 +563,8 @@
                                                         delegate:(id<CatrobatAlertViewDelegate>)self
                                                      placeholder:@""
                                                              tag:kAskUserForVariableNameAlertViewTag
-                                                           value:@""];
+                                                           value:@""
+                                                          target:target];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionVariableName
                                                                   withPayload:[NSMutableDictionary dictionaryWithDictionary: payload]];
 }
@@ -671,7 +699,7 @@
 
 + (double)degreeToRadians:(double)deg
 {
-    CGFloat temp = deg * M_PI / 180.0f;
+    double temp = deg * M_PI / 180.0f;
     temp =  fmod(temp, 2*M_PI);
     return temp;
 }
@@ -793,7 +821,8 @@ replacementString:(NSString*)characters
                                                            delegate:(id<CatrobatAlertViewDelegate>)self
                                                         placeholder:payload[kDTPayloadAskUserPromptPlaceholder]
                                                                 tag:kAskUserForUniqueNameAlertViewTag
-                                                              value:([value isKindOfClass:[NSString class]] ? value : nil)];
+                                                              value:([value isKindOfClass:[NSString class]] ? value : nil)
+                                                             target:nil];
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         }
     } else if (alertView.tag == kAskUserForReportMessageAlertViewTag){

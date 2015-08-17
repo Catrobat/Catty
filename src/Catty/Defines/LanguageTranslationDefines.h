@@ -95,7 +95,7 @@
 #define kLocalizedHelp NSLocalizedString(@"Help", nil)
 #define kLocalizedExplore NSLocalizedString(@"Explore", nil)
 #define kLocalizedUpload NSLocalizedString(@"Upload", nil)
-#define kLocalizedEditMenu NSLocalizedString(@"Edit Mode", nil)
+#define kLocalizedDeletionMenu NSLocalizedString(@"Deletion Mode", nil)
 #define kLocalizedAboutPocketCode NSLocalizedString(@"About Pocket Code", nil)
 #define kLocalizedTermsOfUse NSLocalizedString(@"Terms of Use", nil)
 #define kLocalizedForgotPassword NSLocalizedString(@"Forgot password", nil)
@@ -149,7 +149,6 @@
 #define kLocalizedChooseSound NSLocalizedString(@"Choose sound", nil)
 #define kLocalizedCameraRoll NSLocalizedString(@"Camera Roll", nil)
 #define kLocalizedProject NSLocalizedString(@"Project", nil)
-#define kLocalizedCancel NSLocalizedString(@"Cancel", nil)
 #define kLocalizedDelete NSLocalizedString(@"Delete", nil)
 #define kLocalizedControl NSLocalizedString(@"Control", nil)
 #define kLocalizedMotion NSLocalizedString(@"Motion", nil)
@@ -181,7 +180,6 @@
 #define kLocalizedImageName NSLocalizedString(@"Image name", nil)
 #define kLocalizedSoundName NSLocalizedString(@"Sound name", nil)
 #define kLocalizedOK NSLocalizedString(@"OK", nil)
-#define kLocalizedCancel NSLocalizedString(@"Cancel", nil)
 #define kLocalizedYes NSLocalizedString(@"Yes", nil)
 #define kLocalizedNo NSLocalizedString(@"No", nil)
 #define kLocalizedDeleteProgram NSLocalizedString(@"Delete Program", nil)
@@ -208,7 +206,7 @@
 #define kLocalizedRestart NSLocalizedString(@"Restart", nil)
 #define kLocalizedContinue NSLocalizedString(@"Continue", nil)
 #define kLocalizedScreenshot NSLocalizedString(@"Screenshot", nil)
-#define kLocalizedGrid NSLocalizedString(@"Grid", nil)
+#define kLocalizedAxes NSLocalizedString(@"Axes", @"Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size.")
 #define kLocalizedMostDownloaded NSLocalizedString(@"Most Downloaded", nil)
 #define kLocalizedMostViewed NSLocalizedString(@"Most Viewed", nil)
 #define kLocalizedNewest NSLocalizedString(@"Newest", nil)
@@ -223,6 +221,7 @@
 #define kLocalizedReportProgram NSLocalizedString(@"Report as inappropriate", nil)
 #define kLocalizedRecording NSLocalizedString(@"Recording", nil)
 #define kLocalizedName NSLocalizedString(@"Name", nil)
+#define kLocalizedDownloaded NSLocalizedString(@"Download sucessful", nil)
 #define kLocalizedSettings NSLocalizedString(@"Settings", nil)
 
 //************************************************************************************************************
@@ -240,6 +239,7 @@
 #define kLocalizedNoInternetConnectionAvailable NSLocalizedString(@"No internet connection available.", nil)
 #define kLocalizedSlowInternetConnection NSLocalizedString(@"Slow Internet Connection!",nil)
 #define kLocalizedInvalidURLGiven NSLocalizedString(@"Invalid URL given!",nil)
+#define kLocalizedNoCamera NSLocalizedString(@"No Camera available",nil)
 
 //************************************************************************************************************
 //**********************************       LONG DESCRIPTIONS      ********************************************
@@ -258,7 +258,8 @@
 #define kLocalizedEnterYourObjectNameHere NSLocalizedString(@"Enter your object name here...", @"Placeholder for add object-name input field")
 #define kLocalizedEnterYourImageNameHere NSLocalizedString(@"Enter your image name here...", @"Placeholder for add image-name input field")
 #define kLocalizedEnterYourSoundNameHere NSLocalizedString(@"Enter your sound name here...", @"Placeholder for add sound-name input field")
-#define kLocalizedNoImportedSoundsFoundDescription NSLocalizedString(@"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.", nil)
+#define kLocalizedNoImportedSoundsFoundTitle NSLocalizedString(@"No imported sounds found", @"Title of AlertView if the user tries to import a sound but no sound has been imported using iTunes.")
+#define kLocalizedNoImportedSoundsFoundDescription NSLocalizedString(@"Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.", @"Description of AlertView if the user tries to import a sound but no sound has been imported using iTunes.")
 #define kLocalizedNoOrTooShortInputDescription NSLocalizedString(@"No input or the input is too short. Please enter at least %lu character(s).", nil)
 #define kLocalizedSpaceInputDescription NSLocalizedString(@"Only space is not allowed. Please enter at least %lu other character(s).", nil)
 #define kLocalizedInvalidInputDescription NSLocalizedString(@"Invalid input entered, try again.", nil)
@@ -442,7 +443,7 @@
 //************************************       PAINT                ********************************************
 //************************************************************************************************************
 
-#define kLocalizedPaintThickness NSLocalizedString(@"Thickness", @"paint")
+#define kLocalizedPaintWidth NSLocalizedString(@"Width", @"paint")
 #define kLocalizedPaintRed NSLocalizedString(@"Red", @"paint")
 #define kLocalizedPaintGreen NSLocalizedString(@"Green", @"paint")
 #define kLocalizedPaintBlue NSLocalizedString(@"Blue", @"paint")
@@ -462,7 +463,7 @@
 #define kLocalizedPaintZoom NSLocalizedString(@"zoom", @"paint")
 #define kLocalizedPaintPointer NSLocalizedString(@"pointer", @"paint")
 #define kLocalizedPaintSaveChanges NSLocalizedString(@"Do you want to save the changes", @"paint")
-#define kLocalizedPaintMenu NSLocalizedString(@"Menu", @"paint")
+#define kLocalizedPaintMenuButtonTitle NSLocalizedString(@"Menu", @"paint")
 #define kLocalizedPaintSelect NSLocalizedString(@"Select option:", @"paint")
 #define kLocalizedPaintSave NSLocalizedString(@"Save to CameraRoll", @"paint")
 #define kLocalizedPaintSaveClose NSLocalizedString(@"Save & Close Paint", @"paint")
@@ -475,6 +476,8 @@
 #define kLocalizedPaintRound NSLocalizedString(@"round", @"paint")
 #define kLocalizedPaintSquare NSLocalizedString(@"square", @"paint")
 #define kLocalizedPaintPocketPaint NSLocalizedString(@"Pocket Paint", @"paint")
+#define kLocalizedPaintStamped NSLocalizedString(@"Stamped", @"paint")
+#define kLocalizedPaintInserted NSLocalizedString(@"Inserted", @"paint")
 
 //************************************************************************************************************
 //************************************       FormulaEditor        ********************************************

@@ -276,7 +276,7 @@
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.tintColor = [UIColor lightOrangeColor];
     self.navigationItem.title = @"Pocket Paint";
-    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedPaintMenu
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedPaintMenuButtonTitle
                                                                    style:UIBarButtonItemStylePlain
                                                                   target:self
                                                                   action:@selector(editAction)];
@@ -702,7 +702,7 @@
     //  self.resizeViewManager.border.frame = CGRectMake(0, 0,
     //                                 (int)width,
     //                                 (int)height);
-    self.resizeViewManager.resizeViewer.bounds = CGRectMake(self.resizeViewManager.resizeViewer.bounds.origin.x, self.resizeViewManager.resizeViewer.bounds.origin.y,
+    self.resizeViewManager.resizeViewer.frame = CGRectMake(self.resizeViewManager.resizeViewer.frame.origin.x, self.resizeViewManager.resizeViewer.frame.origin.y,
                                                             (int)width,
                                                             (int)height);
     

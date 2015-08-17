@@ -5,10 +5,11 @@
     <applicationBuildNumber>0</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
     <applicationVersion>0.9.2955</applicationVersion>
-    <catrobatLanguageVersion>0.93</catrobatLanguageVersion>
+    <catrobatLanguageVersion>0.95</catrobatLanguageVersion>
     <dateTimeUpload></dateTimeUpload>
     <description></description>
     <deviceName>SM-T230</deviceName>
+    <isPhiroProProject>false</isPhiroProProject>
     <mediaLicense></mediaLicense>
     <platform>Android</platform>
     <platformVersion>19</platformVersion>
@@ -69,8 +70,10 @@
                                             <pointedObject reference="../../../../../../../../../../../../../../.."/>
                                           </brick>
                                         </brickList>
+                                        <isUserScript>false</isUserScript>
                                       </script>
                                     </scriptList>
+                                    <userBricks/>
                                   </pointedObject>
                                 </brick>
                                 <brick type="TurnLeftBrick">
@@ -82,25 +85,35 @@
                                   </formulaList>
                                 </brick>
                               </brickList>
+                              <isUserScript>false</isUserScript>
                             </script>
                           </scriptList>
+                          <userBricks/>
                         </pointedObject>
                       </brick>
                     </brickList>
+                    <isUserScript>false</isUserScript>
                   </script>
                 </scriptList>
+                <userBricks/>
               </pointedObject>
             </brick>
           </brickList>
+          <isUserScript>false</isUserScript>
         </script>
       </scriptList>
+      <userBricks/>
     </object>
     <object reference="../object/scriptList/script/brickList/brick/pointedObject"/>
     <object reference="../object/scriptList/script/brickList/brick/pointedObject/scriptList/script/brickList/brick/pointedObject"/>
     <object reference="../object/scriptList/script/brickList/brick/pointedObject/scriptList/script/brickList/brick/pointedObject/scriptList/script/brickList/brick[2]/pointedObject"/>
   </objectList>
-  <variables>
+  <data>
+    <objectListOfList/>
     <objectVariableList/>
+    <programListOfLists/>
     <programVariableList/>
-  </variables>
+    <userBrickVariableList/>
+  </data>
+  <settings/>
 </program>

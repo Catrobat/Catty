@@ -34,6 +34,7 @@
 #define kUploadUrl kBaseUrl kUploadUrlExtension
 #define kTestUploadUrl kTestUrl kUploadUrlExtension
 #define kForumURL kBaseUrl @"help"
+#define kDownloadUrl kBaseUrl @"download"
 #define kSourceCodeLicenseURL @"http://developer.catrobat.org/licenses"
 #define kAboutCatrobatURL @"http://www.catrobat.org"
 #define kTermsOfUseURL @"https://www.pocketcode.org/termsOfUse"
