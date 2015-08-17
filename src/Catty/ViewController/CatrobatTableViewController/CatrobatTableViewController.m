@@ -201,8 +201,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #if DEBUG == 1
 - (void)debugInfo:(id)sender
 {
-    NSString *message = [NSString stringWithFormat:@"%@\n\nBuild version:%@",
-                         kLocalizedStartedInDebugMode, [Util appBuildVersion]];
+    NSString *message = [NSString stringWithFormat:@"%@\n\n-------------------\n\nBuild version:\n\n%@",
+                         kLocalizedStartedInDebugMode, [Util appBuildVersion:YES]];
     [[[UIAlertView alloc] initWithTitle:kLocalizedDebugModeTitle
                                 message:message
                                delegate:nil
