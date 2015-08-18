@@ -111,7 +111,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.reachability startNotifier];
     self.tableView.delaysContentTouches = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+
     self.tableView.separatorColor = UIColor.skyBlueColor;
+    self.tableView.separatorInset = UIEdgeInsetsZero;
+
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -122,7 +125,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         self.tableView.scrollEnabled = YES;
         [self initNavigationBar];
     }
-
+    
     //Always use the Test-Server for test-uploads and -logins, because Webteam receives emails for each of this actions on the other server
 #if DEBUG == 1
     [defaults setBool:YES forKey:kUseTestServerForUploadAndLogin];
@@ -173,6 +176,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                   kLocalizedHelp,
                   kLocalizedExplore,
                   kLocalizedUpload, nil];
+
     self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNamePrograms, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
     self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
 }
@@ -268,6 +272,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self configureSubtitleLabelForCell:cell];
     }
     
+    cell.layoutMargins = UIEdgeInsetsZero;
+    cell.preservesSuperviewLayoutMargins = NO;
+    
     return cell;
 }
 
@@ -335,6 +342,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     cell.titleLabel.text = [self.cells objectAtIndex:indexPath.row];
     cell.iconImageView.image = [UIImage imageNamed:[self.imageNames objectAtIndex:indexPath.row]];
+    if(IS_IPHONE4 && (indexPath.row!=0)) {
+        CGRect frame = cell.iconImageView.frame;
+        frame.size.height = kIconDownsizeFactorIphone4*cell.iconImageView.frame.size.height;
+        cell.iconImageView.frame= frame;
+        cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
 }
 
 - (void)configureSubtitleLabelForCell:(UITableViewCell*)cell

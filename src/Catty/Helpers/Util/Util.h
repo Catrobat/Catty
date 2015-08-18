@@ -24,10 +24,14 @@
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
 #import "FormulaEditorTextView.h"
+#import "UIDefines.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
-#define IS_IPHONE5 ((UIScreen.mainScreen.bounds.size.height - 568) ? NO : YES)
+#define IS_IPHONE4 (([Util screenHeight] - kIphone4ScreenHeight) ? NO : YES)
+#define IS_IPHONE5 (([Util screenHeight] - kIphone5ScreenHeight) ? NO : YES)
+#define IS_IPHONE6 (([Util screenHeight] - kIphone6ScreenHeight) ? NO : YES)
+#define IS_IPHONE6P (([Util screenHeight] - kIphone6PScreenHeight) ? NO : YES)
 
 #define IS_OS_5_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5.0)
 #define IS_OS_6_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0)
@@ -46,9 +50,9 @@
 
 @interface Util : NSObject
 
-#ifdef CATTY_TESTS
-+ (void)activateTestMode:(BOOL)activate;
-#endif
+//#if TESTMODE // fails...
++ (BOOL)activateTestMode:(BOOL)activate;
+//#endif
 
 + (NSString*)applicationDocumentsDirectory;
 
@@ -135,6 +139,8 @@
 + (NSString*)platformName;
 
 + (NSString*)platformVersion;
+
++ (CGSize)screenSize;
 
 + (CGFloat)screenHeight;
 

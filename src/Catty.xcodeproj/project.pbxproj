@@ -4632,6 +4632,7 @@
 				CADBD70119B0E8C200C62836 /* Sources */,
 				CADBD7E419B0E8C200C62836 /* Frameworks */,
 				CA0BB4151AA7709900E5A88D /* Add version number to Root.plist */,
+				AACFFF611B7FE5F50002F899 /* Automatic Version Tracking */,
 			);
 			buildRules = (
 			);
@@ -4849,6 +4850,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		AACFFF611B7FE5F50002F899 /* Automatic Version Tracking */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Automatic Version Tracking";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/usr/bin/env python";
+			shellScript = "#!/usr/bin/env python\n\nfrom __future__ import print_function\nimport os, sys\n\n# immutable paths\nenv = os.environ\nassert(env['PROJECT_DIR'])\nPROJECT_DIR = env['PROJECT_DIR']\nPLIST_PATH = os.path.join(PROJECT_DIR, env['INFOPLIST_FILE'])\nPROJECT_ROOT_DIR = os.path.normpath(os.path.join(PROJECT_DIR, \"..\")) # get out of \"src\" subfolder\nHOOK_DIR = os.path.join(PROJECT_ROOT_DIR, \".git\", \"hooks\")\n\n# helpers\ndef make_dir_if_not_exists(path):\n    try:\n        if not os.path.exists(path):\n            os.makedirs(path)\n        elif not os.path.isdir(path):\n            print(\"An error occured!\", \"Invalid path '{0}'. This is NO directory.\".format(path), \"\", 0)\n    except Exception, e:\n        print(e)\n        raise e\n\n# inject hook code\nmake_dir_if_not_exists(HOOK_DIR)\nassert(os.access(HOOK_DIR, os.W_OK))\nhook_path = os.path.join(HOOK_DIR, \"pre-commit\")\n\nshell_script_code = \"\"\"\n    \\#!/bin/sh\n    PROJECT_ROOT_DIR=\"%s\"\n    PLIST_PATH=\"%s\"\n\n    branchName=`/usr/bin/env git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\n    gitCount=`/usr/bin/env git rev-list $branchName |wc -l | sed 's/^ *//;s/ *$//'`\n    simpleBranchName=`/usr/bin/env git rev-parse --abbrev-ref HEAD`\n\n    buildNumber=\"$((gitCount + 1))\"\n    buildNumber+=\"-$simpleBranchName\"\n    /usr/libexec/PlistBuddy -c \"Set CFBundleVersion $buildNumber\" \"${PLIST_PATH}\"\n\n    # Add modified plist to the staging area\n    cd ${PROJECT_ROOT_DIR}\n    /usr/bin/env git add ${PLIST_PATH}\n    exit 0\n\"\"\" % (PROJECT_ROOT_DIR, PLIST_PATH)\n\n# remove line indentation\nshell_script_code = \"\".join([(line.lstrip() + \"\\n\") for line in shell_script_code.split(\"\\n\")[1:]])\n\nhook_existed_before = os.path.isfile(hook_path)\n\nwith open(hook_path, \"w\") as shell_script_file:\n    shell_script_file.write(shell_script_code[1:])\nos.chmod(hook_path, 0755) # make script editable and executable\n\nhook_exists_now = os.path.isfile(hook_path)\n\nif hook_exists_now and not hook_existed_before:\n    # inform developer!\n    os.system(\"say -v Alex \\\"{0}\\\"\".format(\"A local git hook has been created! The script will automatically keep track of the project's build number. You should never hear this message again. The app is launching now!\"))\n";
+		};
 		CA0BB4151AA7709900E5A88D /* Add version number to Root.plist */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -5548,7 +5563,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
-					"$(inherited)",
+					"TESTMODE=1",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -5586,6 +5601,10 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=0",
+					"TESTMODE=1",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -5619,7 +5638,10 @@
 				DEFINES_MODULE = NO;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"TESTMODE=0",
+					"DEBUG=1",
+				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/App-Info.plist";
@@ -5654,7 +5676,10 @@
 				DEFINES_MODULE = NO;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREFIX_HEADER = "Catty/App-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=0";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"TESTMODE=0",
+					"DEBUG=0",
+				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/App-Info.plist";

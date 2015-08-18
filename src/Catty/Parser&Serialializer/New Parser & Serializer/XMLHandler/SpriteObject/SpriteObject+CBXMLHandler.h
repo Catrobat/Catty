@@ -25,7 +25,7 @@
 
 @interface SpriteObject (CBXMLHandler) <CBXMLNodeProtocol>
 
-#ifdef CATTY_TESTS
+#if TESTMODE
 + (NSMutableArray*)parseAndCreateLooks:(GDataXMLElement*)objectElement withContext:(CBXMLParserContext*)context;
 + (NSMutableArray*)parseAndCreateSounds:(GDataXMLElement*)objectElement withContext:(CBXMLParserContext*)context;
 #endif

@@ -157,7 +157,6 @@
     [alertView addAction:yesAction];
     alertView.tag = tag;
     if (! [self activateTestMode:NO]) {
-        
         [ROOTVIEW presentViewController:alertView animated:YES completion:^{}];
     }
     return alertView;
@@ -212,8 +211,8 @@
     if (! [self activateTestMode:NO]) {
         if (target != nil) {
             [(UIViewController *)target presentViewController:alertView animated:YES completion:^{}];
-        }else{
-        [ROOTVIEW presentViewController:alertView animated:YES completion:^{}];
+        } else {
+            [ROOTVIEW presentViewController:alertView animated:YES completion:^{}];
         }
     }
     return alertView;
@@ -327,16 +326,27 @@
   return [[UIDevice currentDevice] systemVersion];
 }
 
++ (CGSize)screenSize
+{
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    float iOSVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (iOSVersion < 8 && UIInterfaceOrientationIsLandscape(orientation))
+    {
+        screenSize.height = screenSize.width;
+        screenSize.width = [[UIScreen mainScreen] bounds].size.height;
+    }
+    return screenSize;
+}
+
 + (CGFloat)screenHeight
 {
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    return screenRect.size.height;
+    return [self screenSize].height;
 }
 
 + (CGFloat)screenWidth
 {
-  CGRect screenRect = [[UIScreen mainScreen] bounds];
-  return screenRect.size.width;
+    return [self screenSize].width;
 }
 
 + (CATransition*)getPushCATransition

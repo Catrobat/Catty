@@ -32,6 +32,8 @@
 #import "Util.h"
 #import "LanguageTranslationDefines.h"
 #import "QuartzCore/QuartzCore.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <AVFoundation/AVFoundation.h>
 
 //Helper
 #import "RGBAHelper.h"
@@ -46,6 +48,7 @@
 #import "HandTool.h"
 #import "ResizeViewManager.h"
 #import "PointerTool.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 
 #define kStackSize 5
@@ -273,7 +276,7 @@
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.tintColor = [UIColor lightOrangeColor];
     self.navigationItem.title = @"Pocket Paint";
-    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedPaintMenu
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedPaintMenuButtonTitle
                                                                    style:UIBarButtonItemStylePlain
                                                                   target:self
                                                                   action:@selector(editAction)];
@@ -699,7 +702,7 @@
     //  self.resizeViewManager.border.frame = CGRectMake(0, 0,
     //                                 (int)width,
     //                                 (int)height);
-    self.resizeViewManager.resizeViewer.bounds = CGRectMake(self.resizeViewManager.resizeViewer.bounds.origin.x, self.resizeViewManager.resizeViewer.bounds.origin.y,
+    self.resizeViewManager.resizeViewer.frame = CGRectMake(self.resizeViewManager.resizeViewer.frame.origin.x, self.resizeViewManager.resizeViewer.frame.origin.y,
                                                             (int)width,
                                                             (int)height);
     
@@ -771,24 +774,86 @@
 
 - (void)saveAction
 {
+    ALAuthorizationStatus statusCameraRoll = [ALAssetsLibrary authorizationStatus];
+    UIAlertController *alertControllerCameraRoll = [UIAlertController
+                                                    alertControllerWithTitle:nil
+                                                    message:kLocalizedNoAccesToImagesCheckSettingsDescription
+                                                    preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:kLocalizedCancel
+                                   style:UIAlertActionStyleCancel
+                                   handler:nil];
+    
+    UIAlertAction *settingsAction = [UIAlertAction
+                                     actionWithTitle:kLocalizedSettings
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction *action)
+                                     {
+                                         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                     }];
+    
+    [alertControllerCameraRoll addAction:cancelAction];
+    [alertControllerCameraRoll addAction:settingsAction];
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        UIImageWriteToSavedPhotosAlbum(self.saveView.image, nil, nil, nil);
+        if([self checkUserAuthorisation:false])
+        {
+            if (statusCameraRoll == ALAuthorizationStatusAuthorized) {
+                UIImageWriteToSavedPhotosAlbum(self.saveView.image, nil, nil, nil);
+            }else
+            {
+                [self presentViewController:alertControllerCameraRoll animated:YES completion:nil];
+            }
+        }
         
     });
     NSDebug(@"saved to Camera Roll");
 }
 - (void)saveAndCloseAction
 {
+    ALAuthorizationStatus statusCameraRoll = [ALAssetsLibrary authorizationStatus];
+    UIAlertController *alertControllerCameraRoll = [UIAlertController
+                                                    alertControllerWithTitle:nil
+                                                    message:kLocalizedNoAccesToImagesCheckSettingsDescription
+                                                    preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:kLocalizedCancel
+                                   style:UIAlertActionStyleCancel
+                                   handler:nil];
+    
+    UIAlertAction *settingsAction = [UIAlertAction
+                                     actionWithTitle:kLocalizedSettings
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction *action)
+                                     {
+                                         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                     }];
+    
+    [alertControllerCameraRoll addAction:cancelAction];
+    [alertControllerCameraRoll addAction:settingsAction];
+    
     NSDebug(@"save and close");
-    if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
-        UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
-        UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        if (![self.saveView.image isEqual:blank]) {
-            [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
+    if([self checkUserAuthorisation:true])
+    {
+        if (statusCameraRoll == ALAuthorizationStatusAuthorized)
+        {
+            if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)])
+            {
+                UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
+                UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+                if (![self.saveView.image isEqual:blank]) {
+                    [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
+                }
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+        }else
+        {
+            [self presentViewController:alertControllerCameraRoll animated:YES completion:nil];
         }
     }
-    [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)discardAndCloseAction
 {
@@ -860,6 +925,57 @@
     self.fillTool = nil;
     self.fillRecognizer = nil;
     NSLog(@"dealloc");
+}
+
+- (BOOL)checkUserAuthorisation:(BOOL)close
+{
+    
+    BOOL state = NO;
+    
+    if(close)
+    {
+        if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusNotDetermined) {
+            ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+            [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+                if (*stop) {
+                    if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
+                        UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
+                        UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
+                        UIGraphicsEndImageContext();
+                        if (![self.saveView.image isEqual:blank]) {
+                            [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
+                        }
+                    }
+                    [self.navigationController popViewControllerAnimated:YES];
+                    return;
+                }
+                *stop = TRUE;
+            } failureBlock:^(NSError *error) {
+                return;
+                
+            }];
+        }else{
+            state = YES;
+        }
+    }else
+    {
+        if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusNotDetermined) {
+            ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+            [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+                if (*stop) {
+                    UIImageWriteToSavedPhotosAlbum(self.saveView.image, nil, nil, nil);
+                    return;
+                }
+                *stop = TRUE;
+            } failureBlock:^(NSError *error) {
+                return;
+                
+            }];
+        }else{
+            state = YES;
+        }
+    }
+    return state;
 }
 
 @end
