@@ -371,7 +371,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark - segue handling
-- (BOOL)shouldPerformSegueWithIdentifider:(NSString*)identifier sender:(id)sender
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString*)identifier sender:(id)sender
 {
     if ([self dismissPopupWithCode:NO]) {
         return NO;
@@ -400,7 +400,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
         
         if(remoteHostStatus == NotReachable) {
-            [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
+            [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
             NSDebug(@"not reachable");
             return NO;
         } else if (remoteHostStatus == ReachableViaWiFi) {
@@ -413,10 +413,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
                     [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]] ||
                     [self.navigationController.topViewController isKindOfClass:[LoginPopupViewController class]] ||
                     [self.navigationController.topViewController isKindOfClass:[ProgramsForUploadViewController class]] ) {
-                    [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
+                    [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
                     [self.navigationController popToRootViewControllerAnimated:YES];
                     return NO;
                 }
+                return NO;
             }
             return YES;
         } else if (remoteHostStatus == ReachableViaWWAN){
@@ -425,7 +426,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 return YES;
             }else{
                 NSDebug(@" not reachable via celullar");
-                [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
+                [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
                 return NO;
             }
             return YES;
@@ -462,7 +463,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]] ||
             [self.navigationController.topViewController isKindOfClass:[LoginPopupViewController class]] ||
             [self.navigationController.topViewController isKindOfClass:[ProgramsForUploadViewController class]] ) {
-            [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
+            [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
         NSDebug(@"not reachable");
@@ -476,7 +477,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]] ||
                 [self.navigationController.topViewController isKindOfClass:[LoginPopupViewController class]] ||
                 [self.navigationController.topViewController isKindOfClass:[ProgramsForUploadViewController class]] ) {
-                [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
+                [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
         }
@@ -490,7 +491,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]] ||
                 [self.navigationController.topViewController isKindOfClass:[LoginPopupViewController class]] ||
                 [self.navigationController.topViewController isKindOfClass:[ProgramsForUploadViewController class]] ) {
-                [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
+                [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
         }

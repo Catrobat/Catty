@@ -1036,4 +1036,52 @@ replacementString:(NSString*)characters
     return messages;
 }
 
+
++(NSArray*)networkErrorCodes
+{
+    static NSArray *codesArray;
+    if (![codesArray count]){
+        @synchronized(self){
+            const int codes[] = {
+                    //kCFURLErrorUnknown,     //-998
+                    //kCFURLErrorCancelled,   //-999
+                    //kCFURLErrorBadURL,      //-1000
+                    //kCFURLErrorTimedOut,    //-1001
+                    //kCFURLErrorUnsupportedURL, //-1002
+                    //kCFURLErrorCannotFindHost, //-1003
+                kCFURLErrorCannotConnectToHost,     //-1004
+                kCFURLErrorNetworkConnectionLost,   //-1005
+                kCFURLErrorDNSLookupFailed,         //-1006
+                                                    //kCFURLErrorHTTPTooManyRedirects,    //-1007
+                kCFURLErrorResourceUnavailable,     //-1008
+                kCFURLErrorNotConnectedToInternet,  //-1009
+                                                    //kCFURLErrorRedirectToNonExistentLocation,   //-1010
+                kCFURLErrorBadServerResponse,               //-1011
+                                                            //kCFURLErrorUserCancelledAuthentication,     //-1012
+                                                            //kCFURLErrorUserAuthenticationRequired,      //-1013
+                                                            //kCFURLErrorZeroByteResource,        //-1014
+                                                            //kCFURLErrorCannotDecodeRawData,     //-1015
+                                                            //kCFURLErrorCannotDecodeContentData, //-1016
+                                                            //kCFURLErrorCannotParseResponse,     //-1017
+                kCFURLErrorInternationalRoamingOff, //-1018
+                kCFURLErrorCallIsActive,                //-1019
+                                                        //kCFURLErrorDataNotAllowed,              //-1020
+                                                        //kCFURLErrorRequestBodyStreamExhausted,  //-1021
+                kCFURLErrorFileDoesNotExist,            //-1100
+                                                        //kCFURLErrorFileIsDirectory,             //-1101
+                kCFURLErrorNoPermissionsToReadFile,     //-1102
+                                                        //kCFURLErrorDataLengthExceedsMaximum,     //-1103
+            };
+            int size = sizeof(codes)/sizeof(int);
+            NSMutableArray *array = [[NSMutableArray alloc] init];
+            for (int i=0;i<size;++i){
+                [array addObject:[NSNumber numberWithInt:codes[i]]];
+            }
+            codesArray = [array copy];
+        }
+    }
+    return codesArray;
+}
+
+
 @end
