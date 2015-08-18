@@ -313,8 +313,10 @@
                     [alert addAction:cancelAction];
                     [self presentViewController:alert animated:YES completion:nil];
                 }
-                [self hideLoadingView];
-                [self loadingIndicator:NO];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self hideLoadingView];
+                    [self loadingIndicator:NO];
+                });
             }
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -456,9 +458,10 @@
                             [alert addAction:cancelAction];
                             [self presentViewController:alert animated:YES completion:nil];
                         }
-                        [self hideLoadingView];
-                        [self loadingIndicator:NO];
-                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self hideLoadingView];
+                            [self loadingIndicator:NO];
+                        });
                     }
                 } else {
                     dispatch_async(dispatch_get_main_queue(), ^{
