@@ -538,7 +538,7 @@
         return;
     }
             self.alpha = 0.2f;
-            [UIView animateWithDuration:0.4
+            [UIView animateWithDuration:0.8
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseInOut
              | UIViewAnimationOptionRepeat
