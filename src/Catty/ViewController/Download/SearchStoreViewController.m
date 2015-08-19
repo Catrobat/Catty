@@ -332,7 +332,9 @@
             if (error.code != -999) {
                 if ([[Util networkErrorCodes] containsObject:[NSNumber
                                                               numberWithInteger:error.code]]){
-                    [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+                    });
                 } else {
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
