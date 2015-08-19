@@ -434,6 +434,14 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if(self.isInsertingBrickMode){
         if (fromBrick.isAnimatedInsertBrick) {
             if (toIndexPath.item != 0) {
+                Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+                Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
+                if ([toBrick isKindOfClass:[LoopEndBrick class]]) {
+                    LoopEndBrick* loopEndBrick = (LoopEndBrick*) toBrick;
+                    if ([loopEndBrick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+                        return NO;
+                    }
+                }
                 return YES;
             } else{
                 BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:toIndexPath];
@@ -454,6 +462,14 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         
     }
     if (toIndexPath.item != 0) {
+        Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+        Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
+        if ([toBrick isKindOfClass:[LoopEndBrick class]]) {
+            LoopEndBrick* loopEndBrick = (LoopEndBrick*) toBrick;
+            if ([loopEndBrick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+                return NO;
+            }
+        }
         if ([fromBrick isKindOfClass:[LoopBeginBrick class]]){
             return [self checkLoopBeginToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick];
         } else if ([fromBrick isKindOfClass:[LoopEndBrick class]]) {
@@ -608,10 +624,24 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     Brick *brick = (Brick*)scriptOrBrick;
     Script *targetScript = self.object.scriptList[targetScriptIndex];
     brick.script = targetScript;
-    if (smallScript || self.scrollEnd) {
+    NSInteger index = brick.script.brickList.count;
+    NSInteger insertionIndex = visibleIndexPath.row;
+    BOOL hasForeverLoop = NO;
+    if (targetScript.brickList.count >=1) {
+        while ([[targetScript.brickList objectAtIndex:index-1] isKindOfClass:[LoopEndBrick class]]) {
+            LoopEndBrick* loopEndBrickCheck = [targetScript.brickList objectAtIndex:index-1];
+            if ([loopEndBrickCheck.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+                insertionIndex = index-1;
+                hasForeverLoop = YES;
+            }
+            index--;
+        }
+    }
+
+    if ((smallScript || self.scrollEnd) && !hasForeverLoop ) {
            [targetScript.brickList addObject:brick];
     }else{
-         [targetScript.brickList insertObject:brick atIndex:visibleIndexPath.row];
+         [targetScript.brickList insertObject:brick atIndex:insertionIndex];
     }
 
     
@@ -629,6 +659,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     brick.animate = YES;
     Script *targetScript = self.object.scriptList[path.section];
     brick.script = targetScript;
+    NSInteger insertionIndex = path.row;
+    NSInteger check = [self checkForeverLoopEndBrickWithStartingIndex:insertionIndex andScript:targetScript];
+    if (check != -1) {
+        insertionIndex = check - 1;
+    }
     if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
         IfLogicBeginBrick *ifBeginBrick = (IfLogicBeginBrick*)brick;
         IfLogicElseBrick *ifElseBrick = [IfLogicElseBrick new];
@@ -643,8 +678,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         ifEndBrick.script = targetScript;
         ifElseBrick.animate = YES;
         ifEndBrick.animate = YES;
-        [targetScript.brickList insertObject:ifEndBrick atIndex:path.row];
-        [targetScript.brickList insertObject:ifElseBrick atIndex:path.row];
+        [targetScript.brickList insertObject:ifEndBrick atIndex:insertionIndex];
+        [targetScript.brickList insertObject:ifElseBrick atIndex:insertionIndex];
     } else if ([brick isKindOfClass:[LoopBeginBrick class]]) {
         LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)brick;
         LoopEndBrick *loopEndBrick = [LoopEndBrick new];
@@ -654,7 +689,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         loopEndBrick.animate = YES;
         if ([loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
             NSInteger index = loopBeginBrick.script.brickList.count;
-            NSInteger insertionIndex = index;
+            insertionIndex = index;
             if (targetScript.brickList.count >=1) {
                 while ([[targetScript.brickList objectAtIndex:index-1] isKindOfClass:[LoopEndBrick class]]) {
                     LoopEndBrick* loopEndBrickCheck = [targetScript.brickList objectAtIndex:index-1];
@@ -676,15 +711,29 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                     index--;
                 }
             }
-            [targetScript.brickList insertObject:loopEndBrick atIndex:insertionIndex];
-        }else{
-            [targetScript.brickList insertObject:loopEndBrick atIndex:path.row];
         }
+        [targetScript.brickList insertObject:loopEndBrick atIndex:insertionIndex];
+
     }
     brick.animateInsertBrick = NO;
     [self.collectionView reloadData];
     [self.collectionView setNeedsDisplay];
     [self.object.program saveToDisk];
+}
+
+-(NSInteger)checkForeverLoopEndBrickWithStartingIndex:(NSInteger)counter andScript:(Script*)script
+{
+        //Check if there is a Forever Loop End-brick
+    while (counter >= 1) {
+        if ([[script.brickList objectAtIndex:counter-1] isKindOfClass:[LoopEndBrick class]]) {
+            LoopEndBrick *brick =[script.brickList objectAtIndex:counter-1];
+            if ([brick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+                return counter;
+            }
+        }
+        counter--;
+    }
+    return -1;
 }
 
 #pragma mark - Brick Cell Delegate
