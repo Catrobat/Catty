@@ -674,6 +674,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if (! indexPath) {
         return;
     }
+    
+    NSLog(@"IndexPath.section: %d", indexPath.section);
     Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
     if (! script.brickList.count) {
         return;
@@ -830,9 +832,9 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)deleteSelectedBricks
 {
-    [self.selectedIndexPaths sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSInteger r1 = [obj1 row];
-        NSInteger r2 = [obj2 row];
+    [self.selectedIndexPaths sortUsingComparator:^NSComparisonResult(NSIndexPath *obj1, NSIndexPath *obj2) {
+        NSInteger r1 = obj1.section;
+        NSInteger r2 = obj2.section;
         if (r1 < r2) {
             return (NSComparisonResult)NSOrderedDescending;
         }
@@ -915,7 +917,18 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                          } completion:^(BOOL finished) {
                              for (BrickCell *brickCell in self.collectionView.visibleCells) {
                                  brickCell.enabled = YES;
-                               brickCell.selectButton.selected = NO;
+                                 brickCell.selectButton.selected = NO;
+                                 
+                             }
+                             for (Script *script in self.object.scriptList)
+                             {
+                                 script.isSelected = NO;
+                                 if(script.brickList.count != 0)
+                                 {
+                                     for (Brick *brick in script.brickList) {
+                                         brick.isSelected = NO;
+                                     }
+                                 }
                              }
                            self.selectedIndexPaths = [NSMutableArray new];
                          }];
