@@ -544,6 +544,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 brickCell.selectButton.selected = NO;
             }
         }
+    }else{
+      brickCell.selectButton.selected = NO;
     }
     brickCell.enabled = (! self.isEditing);
     if (self.isInsertingBrickMode) {
@@ -924,10 +926,17 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                          } completion:^(BOOL finished) {
                              for (BrickCell *brickCell in self.collectionView.visibleCells) {
                                  brickCell.enabled = YES;
-                               brickCell.selectButton.selected = NO;
+                                 brickCell.selectButton.selected = NO;
+                             }
+                             for (Script* script in self.object.scriptList) {
+                                 script.isSelected = NO;
+                                 for (Brick* brick in script.brickList) {
+                                     brick.isSelected = NO;
+                                 }
                              }
                            self.selectedIndexPaths = [NSMutableArray new];
                          }];
+        
     }
 }
 
