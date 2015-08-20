@@ -20,6 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#define kLengthOfShortCommitHash 7
 #define kLastUsedProgram @"lastUsedProgram"
 #define kMinLoopDurationTime (20 * 1000 * 1000) // in nanoseconds!
 #define kProgramCodeFileName @"code.xml"

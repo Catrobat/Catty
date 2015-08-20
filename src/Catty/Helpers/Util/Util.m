@@ -299,8 +299,8 @@
                                                                                       ofType:nil]
                                                             encoding:NSUTF8StringEncoding
                                                                error:NULL];
-    if (shortVersion) {
-        currentCommitHash = [currentCommitHash substringToIndex:7];
+    if (shortVersion && currentCommitHash.length > kLengthOfShortCommitHash) {
+        currentCommitHash = [currentCommitHash substringToIndex:kLengthOfShortCommitHash];
     }
     return [NSString stringWithFormat:@"%@-{current:%@}", buildVersion, currentCommitHash];
 }
