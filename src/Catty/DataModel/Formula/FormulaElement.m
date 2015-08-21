@@ -156,6 +156,8 @@
 {
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     formatter.numberStyle = NSNumberFormatterDecimalStyle;
+    NSLocale *en_US = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    formatter.locale = en_US;
     
     if(self.parent == nil && self.type != USER_VARIABLE)
     {
@@ -521,6 +523,8 @@
         
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
         formatter.numberStyle = NSNumberFormatterDecimalStyle;
+        NSLocale *en_US = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+        formatter.locale = en_US;
         
         id leftId = [self.leftChild interpretRecursiveForSprite:sprite];
         if([leftId isKindOfClass:[NSNumber class]])
