@@ -22,7 +22,7 @@
 
 // ATTENTION: this class is subject to be removed soon. => better Swift-Objective-C compatibility
 
-@objc final class SetupScene {
+final class SetupScene : NSObject {
 
     static func setupSceneForProgram(program: Program) -> CBPlayerScene {
         // create all player loggers

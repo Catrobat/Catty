@@ -26,15 +26,20 @@ final class CBIfConditionalSequence : CBConditionalSequence {
     let elseSequenceList : CBSequenceList?
 
     // MARK: - Initializers
-    override init(rootSequenceList: CBScriptSequenceList, conditionBrick : BrickConditionalBranchProtocol, sequenceList : CBSequenceList) {
+    override init(rootSequenceList: CBScriptSequenceList,
+        conditionBrick : BrickConditionalBranchProtocol, sequenceList : CBSequenceList)
+    {
         self.elseSequenceList = nil
-        super.init(rootSequenceList: rootSequenceList, conditionBrick: conditionBrick, sequenceList: sequenceList)
+        super.init(rootSequenceList: rootSequenceList, conditionBrick: conditionBrick,
+            sequenceList: sequenceList)
     }
 
-    init(rootSequenceList: CBScriptSequenceList, conditionBrick : BrickConditionalBranchProtocol, ifSequenceList : CBSequenceList,
-        elseSequenceList : CBSequenceList) {
+    init(rootSequenceList: CBScriptSequenceList, conditionBrick : BrickConditionalBranchProtocol,
+        ifSequenceList : CBSequenceList, elseSequenceList : CBSequenceList)
+    {
         self.elseSequenceList = elseSequenceList
-        super.init(rootSequenceList: rootSequenceList, conditionBrick: conditionBrick, sequenceList: ifSequenceList)
+        super.init(rootSequenceList: rootSequenceList, conditionBrick: conditionBrick,
+            sequenceList: ifSequenceList)
     }
 
     // MARK: - Operations

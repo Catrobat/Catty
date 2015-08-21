@@ -34,7 +34,7 @@ final class CBPlayerFrontend : CBPlayerFrontendProtocol {
     private lazy var _sequenceFilters = [CBPlayerFrontendSequenceFilterProtocol]()
 
     // MARK: - Initializers
-    init(logger: CBLogger, program: Program) {
+    init(logger: CBLogger, program: Program?) {
         self.logger = logger
         self.program = program
     }

@@ -232,12 +232,15 @@ let stderr = NSFileHandle.fileHandleWithStandardError()
 let fileManager = NSFileManager.defaultManager()
 let enumerator:NSDirectoryEnumerator? = fileManager.enumeratorAtPath(".")
 
-var fileNameOfThisScript : String? = Process.arguments.first?.lastPathComponent
-if fileNameOfThisScript == nil {
-    printErrorAndExitIfFailed("\(__FILE__):\(__LINE__ - 1): error: WTH is going on here!! Unable to determine the file name of this script!\n")
+guard let firstArgument = Process.arguments.first else {
+    printErrorAndExitIfFailed("\(__FILE__):\(__LINE__ - 1): error: WTH is going on here!! "
+        + "Unable to determine the file name of this script!\n")
+    exit(ERR_FAILED)
 }
-if fileNameOfThisScript!.hasSuffix(".swift") == false {
-    fileNameOfThisScript = fileNameOfThisScript! + ".swift"
+
+var fileNameOfThisScript = (firstArgument as NSString).lastPathComponent
+if fileNameOfThisScript.hasSuffix(".swift") == false {
+    fileNameOfThisScript += ".swift"
 }
 
 // prepare lists
@@ -261,7 +264,7 @@ for excludeFile in localizedStringCheckExcludeFiles {
     }
     ++index
 }
-localizedStringCheckSeparatedExcludeFiles.append(fileNameOfThisScript!)
+localizedStringCheckSeparatedExcludeFiles.append(fileNameOfThisScript)
 
 index = 0
 var licenseCheckSeparatedExcludeFiles = [String]()
@@ -283,7 +286,7 @@ for excludeFile in licenseCheckExcludeFiles {
     }
     ++index
 }
-licenseCheckSeparatedExcludeFiles.append(fileNameOfThisScript!)
+licenseCheckSeparatedExcludeFiles.append(fileNameOfThisScript)
 
 while let filePath = enumerator!.nextObject() as? String {
     // only check source files
@@ -291,7 +294,7 @@ while let filePath = enumerator!.nextObject() as? String {
         continue
     }
 
-    let fileName = filePath.lastPathComponent
+    let fileName = (filePath as NSString).lastPathComponent
 
     // localized string check
     var content : String? = nil

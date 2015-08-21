@@ -358,14 +358,14 @@ extension PriorityQueue {
 }
 
 extension PriorityQueue: GeneratorType {
-    typealias Element = T
+    public typealias Element = T
     public func next() -> Element? {
         return pop()
     }
 }
 
 extension PriorityQueue: SequenceType {
-    typealias Generator = PriorityQueue
+    public typealias Generator = PriorityQueue
     public func generate() -> Generator {
         return self
     }
