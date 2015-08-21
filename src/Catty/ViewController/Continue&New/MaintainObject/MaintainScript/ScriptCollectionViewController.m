@@ -88,6 +88,7 @@
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
 @property (nonatomic, strong) BrickTransition *brickScaleTransition;
 @property (nonatomic, strong) NSMutableArray *selectedIndexPaths;  // refactor
+@property (nonatomic, strong) NSMutableArray *selectedIndexPositions;  // refactor
 @property (nonatomic, assign) BOOL selectedAllCells;  // refactor
 @property (nonatomic, assign) BOOL scrollEnd;  // refactor
 @property (nonatomic, assign) BOOL isInsertingBrickMode;
@@ -674,8 +675,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if (! indexPath) {
         return;
     }
-    
-    NSLog(@"IndexPath.section: %d", indexPath.section);
+
     Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
     if (! script.brickList.count) {
         return;
@@ -832,6 +832,20 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)deleteSelectedBricks
 {
+    NSMutableArray *cellsToDelete = [[NSMutableArray alloc]init];
+    
+    [self.selectedIndexPaths sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSInteger r1 = [obj1 row];
+        NSInteger r2 = [obj2 row];
+        if (r1 < r2) {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        if (r1 > r2) {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+    
     [self.selectedIndexPaths sortUsingComparator:^NSComparisonResult(NSIndexPath *obj1, NSIndexPath *obj2) {
         NSInteger r1 = obj1.section;
         NSInteger r2 = obj2.section;
@@ -845,11 +859,20 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }];
     
     for (NSIndexPath *path in self.selectedIndexPaths) {
-        BrickCell* cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:path];
+        [self.collectionView scrollToItemAtIndexPath:path atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:NO];
+        [self.collectionView layoutIfNeeded];
+        [cellsToDelete addObject: (BrickCell*)[self.collectionView cellForItemAtIndexPath:path]];
+    }
+    int i = 0;
+    for (NSIndexPath *path in self.selectedIndexPaths) {
+        BrickCell *cell = [cellsToDelete objectAtIndex:i];
         if (cell) {
             [self removeBrickOrScript:cell.scriptOrBrick atIndexPath:path];
+            [self.collectionView layoutIfNeeded];
         }
+        i++;
     }
+    
     self.selectedIndexPaths =[NSMutableArray new];
 }
 
@@ -1571,13 +1594,16 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 loopBeginBrick = loopEndBrick.loopBeginBrick;
             }
             CBAssert((loopBeginBrick != nil) || (loopEndBrick != nil));
-            NSUInteger loopBeginIndex = [brick.script.brickList indexOfObject:loopBeginBrick];
-            NSUInteger loopEndIndex = [brick.script.brickList indexOfObject:loopEndBrick];
-            [loopBeginBrick removeFromScript];
-            [loopEndBrick removeFromScript];
-            NSIndexPath *loopBeginIndexPath = [NSIndexPath indexPathForItem:(loopBeginIndex + 1) inSection:indexPath.section];
-            NSIndexPath *loopEndIndexPath = [NSIndexPath indexPathForItem:(loopEndIndex + 1) inSection:indexPath.section];
-            [self.collectionView deleteItemsAtIndexPaths:@[loopBeginIndexPath, loopEndIndexPath]];
+            if([brick.script.brickList containsObject:loopBeginBrick] || [brick.script.brickList containsObject:loopEndBrick])
+            {
+                NSUInteger loopBeginIndex = [brick.script.brickList indexOfObject:loopBeginBrick];
+                NSUInteger loopEndIndex = [brick.script.brickList indexOfObject:loopEndBrick];
+                [loopBeginBrick removeFromScript];
+                [loopEndBrick removeFromScript];
+                NSIndexPath *loopBeginIndexPath = [NSIndexPath indexPathForItem:(loopBeginIndex + 1) inSection:indexPath.section];
+                NSIndexPath *loopEndIndexPath = [NSIndexPath indexPathForItem:(loopEndIndex + 1) inSection:indexPath.section];
+                [self.collectionView deleteItemsAtIndexPaths:@[loopBeginIndexPath, loopEndIndexPath]];
+            }
         } else if ([brick isIfLogicBrick]) {
             // if brick
             IfLogicBeginBrick *ifLogicBeginBrick = nil;
@@ -1598,18 +1624,21 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 ifLogicElseBrick = ifLogicEndBrick.ifElseBrick;
             }
             CBAssert((ifLogicBeginBrick != nil) && (ifLogicElseBrick != nil) && (ifLogicEndBrick != nil));
-            NSUInteger ifLogicBeginIndex = [brick.script.brickList indexOfObject:ifLogicBeginBrick];
-            NSUInteger ifLogicElseIndex = [brick.script.brickList indexOfObject:ifLogicElseBrick];
-            NSUInteger ifLogicEndIndex = [brick.script.brickList indexOfObject:ifLogicEndBrick];
-            [ifLogicBeginBrick removeFromScript];
-            [ifLogicElseBrick removeFromScript];
-            [ifLogicEndBrick removeFromScript];
-            NSIndexPath *ifLogicBeginIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 1) inSection:indexPath.section];
-            NSIndexPath *ifLogicElseIndexPath = [NSIndexPath indexPathForItem:(ifLogicElseIndex + 1) inSection:indexPath.section];
-            NSIndexPath *ifLogicEndIndexPath = [NSIndexPath indexPathForItem:(ifLogicEndIndex + 1) inSection:indexPath.section];
-            [self.collectionView deleteItemsAtIndexPaths:@[ifLogicBeginIndexPath, ifLogicElseIndexPath, ifLogicEndIndexPath]];
+            if([brick.script.brickList containsObject:ifLogicBeginBrick] || [brick.script.brickList containsObject:ifLogicElseBrick] || [brick.script.brickList containsObject:ifLogicEndBrick])
+            {
+                NSUInteger ifLogicBeginIndex = [brick.script.brickList indexOfObject:ifLogicBeginBrick];
+                NSUInteger ifLogicElseIndex = [brick.script.brickList indexOfObject:ifLogicElseBrick];
+                NSUInteger ifLogicEndIndex = [brick.script.brickList indexOfObject:ifLogicEndBrick];
+                [ifLogicBeginBrick removeFromScript];
+                [ifLogicElseBrick removeFromScript];
+                [ifLogicEndBrick removeFromScript];
+                NSIndexPath *ifLogicBeginIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 1) inSection:indexPath.section];
+                NSIndexPath *ifLogicElseIndexPath = [NSIndexPath indexPathForItem:(ifLogicElseIndex + 1) inSection:indexPath.section];
+                NSIndexPath *ifLogicEndIndexPath = [NSIndexPath indexPathForItem:(ifLogicEndIndex + 1) inSection:indexPath.section];
+                [self.collectionView deleteItemsAtIndexPaths:@[ifLogicBeginIndexPath, ifLogicElseIndexPath, ifLogicEndIndexPath]];
+            }
+            
         } else {
-            // normal brick
             [brick removeFromScript];
             [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
         }
