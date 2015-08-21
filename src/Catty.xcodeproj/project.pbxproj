@@ -321,6 +321,7 @@
 		92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32511A24E2F400093DA7 /* BaseTransition.m */; };
 		92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
+		AA70F7F11B866E9B003057C6 /* CBPlayerFrontentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA70F7F01B866E9B003057C6 /* CBPlayerFrontentTests.swift */; };
 		CA02C5E51B14385500233FB0 /* CBPlayerScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E41B14385500233FB0 /* CBPlayerScene.swift */; };
 		CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */; };
 		CA2D44411B122E8500A3B53D /* SwellAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D44401B122E8500A3B53D /* SwellAll.swift */; };
@@ -1287,6 +1288,8 @@
 		92FF32521A24E2F400093DA7 /* BrickTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTransition.h; sourceTree = "<group>"; };
 		92FF32531A24E2F400093DA7 /* BrickTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickTransition.m; sourceTree = "<group>"; };
 		92FF32C21A24E33B00093DA7 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
+		AA70F7EC1B866E52003057C6 /* CattyTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CattyTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		AA70F7F01B866E9B003057C6 /* CBPlayerFrontentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerFrontentTests.swift; path = PlayerEngine/CBPlayerFrontentTests.swift; sourceTree = "<group>"; };
 		B405BAC7175DD3F600B1A0FC /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		B450309F170F22EF009265D6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -3824,6 +3827,14 @@
 			path = OLD;
 			sourceTree = "<group>";
 		};
+		AA70F7EF1B866E63003057C6 /* PlayerEngine */ = {
+			isa = PBXGroup;
+			children = (
+				AA70F7F01B866E9B003057C6 /* CBPlayerFrontentTests.swift */,
+			);
+			name = PlayerEngine;
+			sourceTree = "<group>";
+		};
 		B43498471927A3AB002F9075 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -3838,6 +3849,7 @@
 		B46B270317703F9400172837 /* CattyTests */ = {
 			isa = PBXGroup;
 			children = (
+				AA70F7EF1B866E63003057C6 /* PlayerEngine */,
 				4CD194F21A0631B200484E4F /* Parser & Serialization */,
 				CAD740E61AF2D3F600C32937 /* CBStack */,
 				4C3C03F5199BA5250004F594 /* Formula */,
@@ -3921,6 +3933,7 @@
 				92C37A4B1856270500547C1E /* TurnLeftBrickTests.m */,
 				92C37A4D1856271100547C1E /* TurnRightBrickTests.m */,
 				4C5E8E711B30662000204EE6 /* BrickMutableCopyTests.m */,
+				AA70F7EC1B866E52003057C6 /* CattyTests-Bridging-Header.h */,
 			);
 			name = Bricks;
 			sourceTree = "<group>";
@@ -4736,6 +4749,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA7698B61B0E4B3F000D0340 /* XMLAbstractTest.m in Sources */,
+				AA70F7F11B866E9B003057C6 /* CBPlayerFrontentTests.swift in Sources */,
 				CA7698B81B0E4B3F000D0340 /* XMLParserAbstractTest.m in Sources */,
 				CA7698B91B0E4B3F000D0340 /* XMLParserBrickTests.m in Sources */,
 				CA7698BA1B0E4B3F000D0340 /* XMLParserFormulaTests.m in Sources */,
@@ -4802,13 +4816,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAE3C79C1B49FABC00AFE9D7 /* CBSequenceProtocol.swift in Sources */,
+				CAE3C79D1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift in Sources */,
+				CABF43BA1B115E6400419A55 /* CBScriptSequenceList.swift in Sources */,
+				CABF43BC1B115E6400419A55 /* CBSequenceList.swift in Sources */,
+				CABF43B61B115E6400419A55 /* CBConditionalSequence.swift in Sources */,
+				CABF43B71B115E6400419A55 /* CBIfConditionalSequence.swift in Sources */,
+				CABF43B91B115E6400419A55 /* CBOperationSequence.swift in Sources */,
+				CABF43B81B115E6400419A55 /* CBOperation.swift in Sources */,
+				CA02C5E51B14385500233FB0 /* CBPlayerScene.swift in Sources */,
+				CA4C506B1B1C891000BB43E1 /* SetupScene.swift in Sources */,
+				CAE485D71B13AA6600DC4485 /* CBPlayerFrontend.swift in Sources */,
+				CAE485D81B13AA6600DC4485 /* CBPlayerFrontendSequenceFilters.swift in Sources */,
+				CAE485DA1B13AA6E00DC4485 /* CBPlayerBackend.swift in Sources */,
+				CAA4CA481B49CED800DDDE9D /* CBPlayerInstruction.swift in Sources */,
+				CA2D44491B1249DD00A3B53D /* CBPlayerScheduler.swift in Sources */,
+				CA2D444F1B1251BF00A3B53D /* CBPlayerSchedulingAlgorithms.swift in Sources */,
+				CA43C4BA1B165C0B009B604F /* CBPlayerBroadcastHandler.swift in Sources */,
+				CA403F2C1B1631A8004ADCB2 /* CBCustomTypes.swift in Sources */,
+				CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */,
+				CA4E48BA1B1CEAE9003EA71E /* CBBroadcastScriptContext.swift in Sources */,
+				CA4E48BB1B1CEAE9003EA71E /* CBScriptContext.swift in Sources */,
+				CA4E48BC1B1CEAE9003EA71E /* CBStartScriptContext.swift in Sources */,
+				CA4E48BD1B1CEAE9003EA71E /* CBWhenScriptContext.swift in Sources */,
 				CAA4A4C81A43B45E002A69A0 /* SetGhostEffectBrick+CBXMLHandler.m in Sources */,
 				92FF2E9C1A24C7D800093DA7 /* SensorHandler.m in Sources */,
 				92FF32B71A24E2F400093DA7 /* ColoredCell.m in Sources */,
 				CAA4A4AA1A43B407002A69A0 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
 				92DFB05B1A38960C00FA9B0F /* LineTool.m in Sources */,
 				92FF32711A24E2F400093DA7 /* SWUtilityButtonView.m in Sources */,
-				CA4C506B1B1C891000BB43E1 /* SetupScene.swift in Sources */,
 				92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */,
 				CAA4A50C1A43B499002A69A0 /* SetVariableBrick+CBXMLHandler.m in Sources */,
 				CAD740E31AF2D2E800C32937 /* CBStack.m in Sources */,
@@ -4818,10 +4854,8 @@
 				92FF30D51A24DCAA00093DA7 /* HideBrick.m in Sources */,
 				CA2D44411B122E8500A3B53D /* SwellAll.swift in Sources */,
 				92DFB0131A38949E00FA9B0F /* InternFormulaKeyboardAdapter.m in Sources */,
-				CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */,
 				92FF32631A24E2F400093DA7 /* FXBlurView.m in Sources */,
 				92FF326E1A24E2F400093DA7 /* SWLongPressGestureRecognizer.m in Sources */,
-				CA4E48BB1B1CEAE9003EA71E /* CBScriptContext.swift in Sources */,
 				92FF2EA41A24C7D800093DA7 /* Util.m in Sources */,
 				92FF30D71A24DCAA00093DA7 /* SetBrightnessBrick.m in Sources */,
 				92FF31031A24DCAA00093DA7 /* Script.m in Sources */,
@@ -4847,7 +4881,6 @@
 				CADBD71A19B0E8C200C62836 /* main.m in Sources */,
 				CAA4A5051A43B48F002A69A0 /* SpeakBrick+CBXMLHandler.m in Sources */,
 				CAA4A5041A43B48F002A69A0 /* SetVolumeToBrick+CBXMLHandler.m in Sources */,
-				CABF43B71B115E6400419A55 /* CBIfConditionalSequence.swift in Sources */,
 				92FF30EE1A24DCAA00093DA7 /* ChangeSizeByNBrick.m in Sources */,
 				92DFB0101A38949E00FA9B0F /* FormulaEditorHistory.m in Sources */,
 				4C3AE2BF1B03554F005E1F57 /* BrickCellMessageData.m in Sources */,
@@ -4865,7 +4898,6 @@
 				92FF314C1A24DEB300093DA7 /* CatrobatTableViewController.m in Sources */,
 				92FF315D1A24DEB300093DA7 /* SearchStoreViewController.m in Sources */,
 				92FF2E351A24C5A700093DA7 /* NSData+Hashes.m in Sources */,
-				CAA4CA481B49CED800DDDE9D /* CBPlayerInstruction.swift in Sources */,
 				CAA4A4E81A43B472002A69A0 /* PointInDirectionBrick+CBXMLHandler.m in Sources */,
 				92FF31541A24DEB300093DA7 /* SoundPickerTableViewController.m in Sources */,
 				CAA4A4EB1A43B472002A69A0 /* SetXBrick+CBXMLHandler.m in Sources */,
@@ -4877,7 +4909,6 @@
 				928D4D791A7BD19A00E6DFA8 /* CatrobatUISlider.m in Sources */,
 				92FF30DA1A24DCAA00093DA7 /* ShowBrick.m in Sources */,
 				CAA4A4691A43B3A9002A69A0 /* CBXMLContext.m in Sources */,
-				CAE3C79C1B49FABC00AFE9D7 /* CBSequenceProtocol.swift in Sources */,
 				92FF2E9D1A24C7D800093DA7 /* SensorManager.m in Sources */,
 				92DFB0691A38960C00FA9B0F /* UIImage+Rotate.m in Sources */,
 				CAA4A5031A43B48F002A69A0 /* PlaySoundBrick+CBXMLHandler.m in Sources */,
@@ -4899,10 +4930,8 @@
 				CAA4A5151A43B4C0002A69A0 /* Header+CBXMLHandler.m in Sources */,
 				92FF2EA01A24C7D800093DA7 /* SSZipArchive.m in Sources */,
 				92FF327E1A24E2F400093DA7 /* IfLogicBeginBrickCell.m in Sources */,
-				CABF43B61B115E6400419A55 /* CBConditionalSequence.swift in Sources */,
 				92FF2E381A24C5A700093DA7 /* NSString+CatrobatNSStringExtensions.m in Sources */,
 				92FF30E71A24DCAA00093DA7 /* PointInDirectionBrick.m in Sources */,
-				CABF43BC1B115E6400419A55 /* CBSequenceList.swift in Sources */,
 				92FF32681A24E2F400093DA7 /* LXReorderableCollectionViewFlowLayout.m in Sources */,
 				92FF2E3E1A24C5A700093DA7 /* UIImageView+CatrobatUIImageViewExtensions.m in Sources */,
 				92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */,
@@ -4927,10 +4956,8 @@
 				92DFB01D1A38949E00FA9B0F /* FormulaEditorTextView.m in Sources */,
 				92FF32751A24E2F400093DA7 /* CatrobatAlertView.m in Sources */,
 				92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */,
-				CA43C4BA1B165C0B009B604F /* CBPlayerBroadcastHandler.swift in Sources */,
 				92FF31081A24DCAA00093DA7 /* UserVariable.m in Sources */,
 				92FF30CE1A24DCAA00093DA7 /* IfLogicElseBrick.m in Sources */,
-				CA4E48BD1B1CEAE9003EA71E /* CBWhenScriptContext.swift in Sources */,
 				92FF2E941A24C7D800093DA7 /* Logger.m in Sources */,
 				CAA4A5241A43B4FD002A69A0 /* SpriteObject+CBXMLHandler.m in Sources */,
 				92FF32A41A24E2F400093DA7 /* ChangeVolumeByNBrickCell.m in Sources */,
@@ -4967,7 +4994,6 @@
 				92FF30CF1A24DCAA00093DA7 /* IfLogicEndBrick.m in Sources */,
 				92FF30DF1A24DCAA00093DA7 /* ChangeXByNBrick.m in Sources */,
 				92FF329B1A24E2F400093DA7 /* PointToBrickCell.m in Sources */,
-				CABF43B91B115E6400419A55 /* CBOperationSequence.swift in Sources */,
 				92FF32571A24E2F400093DA7 /* AHKActionSheetViewController.m in Sources */,
 				CAA4A4C71A43B45E002A69A0 /* SetBrightnessBrick+CBXMLHandler.m in Sources */,
 				92FF32931A24E2F400093DA7 /* ChangeSizeByNBrickCell.m in Sources */,
@@ -4975,7 +5001,6 @@
 				92FF329C1A24E2F400093DA7 /* SetSizeToBrickCell.m in Sources */,
 				92FF31551A24DEB300093DA7 /* SoundsTableViewController.m in Sources */,
 				92FF31561A24DEB300093DA7 /* SRViewController.m in Sources */,
-				CAE485D81B13AA6600DC4485 /* CBPlayerFrontendSequenceFilters.swift in Sources */,
 				92DFB01A1A38949E00FA9B0F /* InternToken.m in Sources */,
 				92FF2E911A24C7D800093DA7 /* DownloadImageCache.m in Sources */,
 				92FF30E81A24DCAA00093DA7 /* PointToBrick.m in Sources */,
@@ -4995,7 +5020,6 @@
 				CAA4A4ED1A43B472002A69A0 /* TurnLeftBrick+CBXMLHandler.m in Sources */,
 				D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */,
 				92FF2EBF1A24C8A700093DA7 /* CatrobatProgram.m in Sources */,
-				CA2D444F1B1251BF00A3B53D /* CBPlayerSchedulingAlgorithms.swift in Sources */,
 				92FF315B1A24DEB300093DA7 /* ProgramDetailStoreViewController.m in Sources */,
 				92DFB00F1A38949E00FA9B0F /* ExternToken.m in Sources */,
 				CAA4A5331A43B51F002A69A0 /* Parser.m in Sources */,
@@ -5010,10 +5034,8 @@
 				92FF32791A24E2F400093DA7 /* ScriptDeleteButton.m in Sources */,
 				92FF30C71A24DCAA00093DA7 /* BrickManager.m in Sources */,
 				92FF30E31A24DCAA00093DA7 /* MoveNStepsBrick.m in Sources */,
-				CA4E48BC1B1CEAE9003EA71E /* CBStartScriptContext.swift in Sources */,
 				92DFB00E1A38949E00FA9B0F /* ExternInternRepresentationMapping.m in Sources */,
 				CAA4A4E61A43B472002A69A0 /* GlideToBrick+CBXMLHandler.m in Sources */,
-				CABF43BA1B115E6400419A55 /* CBScriptSequenceList.swift in Sources */,
 				92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */,
 				92FF30C91A24DCAA00093DA7 /* BroadcastBrick.m in Sources */,
 				CAA4A4E41A43B472002A69A0 /* ChangeXByNBrick+CBXMLHandler.m in Sources */,
@@ -5029,13 +5051,11 @@
 				92FF327B1A24E2F400093DA7 /* BroadcastBrickCell.m in Sources */,
 				CAA4A5061A43B48F002A69A0 /* StopAllSoundsBrick+CBXMLHandler.m in Sources */,
 				92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */,
-				CA4E48BA1B1CEAE9003EA71E /* CBBroadcastScriptContext.swift in Sources */,
 				92FF32A01A24E2F400093DA7 /* TurnRightBrickCell.m in Sources */,
 				811FB6ED1A49812700957E10 /* BrickCategoryViewController.m in Sources */,
 				92DFB0181A38949E00FA9B0F /* InternFormulaUtils.m in Sources */,
 				CAA4A5021A43B48F002A69A0 /* ChangeVolumeByNBrick+CBXMLHandler.m in Sources */,
 				CAA4A4651A43B388002A69A0 /* CBXMLParser.m in Sources */,
-				CAE485DA1B13AA6E00DC4485 /* CBPlayerBackend.swift in Sources */,
 				92FF328E1A24E2F400093DA7 /* NextLookBrickCell.m in Sources */,
 				92DFB0581A38960C00FA9B0F /* ImageHelper.m in Sources */,
 				92FF31581A24DEB300093DA7 /* ProgramTableViewController.m in Sources */,
@@ -5044,7 +5064,6 @@
 				92FF315E1A24DEB300093DA7 /* HelpWebViewController.m in Sources */,
 				92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */,
 				CAA4A5271A43B506002A69A0 /* UserVariable+CBXMLHandler.m in Sources */,
-				CAE485D71B13AA6600DC4485 /* CBPlayerFrontend.swift in Sources */,
 				92DFB06D1A38960C00FA9B0F /* YKImageCropperView.m in Sources */,
 				CAA4A5181A43B4D0002A69A0 /* Look+CBXMLHandler.m in Sources */,
 				92DFB0161A38949E00FA9B0F /* InternFormulaState.m in Sources */,
@@ -5061,7 +5080,6 @@
 				92DFB0121A38949E00FA9B0F /* InternFormula.m in Sources */,
 				92FF30FD1A24DCAA00093DA7 /* Header.m in Sources */,
 				CAA4A4E91A43B472002A69A0 /* PointToBrick+CBXMLHandler.m in Sources */,
-				CABF43B81B115E6400419A55 /* CBOperation.swift in Sources */,
 				CAA4A4A21A43B407002A69A0 /* ComeToFrontBrick+CBXMLHandler.m in Sources */,
 				92DFB0661A38960C00FA9B0F /* RGBAHelper.m in Sources */,
 				92DFB0111A38949E00FA9B0F /* NSMutableArray+Reverse.m in Sources */,
@@ -5109,7 +5127,6 @@
 				92FF32731A24E2F400093DA7 /* TTTAttributedLabel.m in Sources */,
 				92DFB0671A38960C00FA9B0F /* SPUserResizableView.m in Sources */,
 				92FF30E51A24DCAA00093DA7 /* SetXBrick.m in Sources */,
-				CA403F2C1B1631A8004ADCB2 /* CBCustomTypes.swift in Sources */,
 				CAA4A4711A43B3BC002A69A0 /* CBXMLSerializerHelper.m in Sources */,
 				CAA4A4CA1A43B45E002A69A0 /* ShowBrick+CBXMLHandler.m in Sources */,
 				92FF314A1A24DEB300093DA7 /* BaseTableViewController.m in Sources */,
@@ -5161,7 +5178,6 @@
 				92FF30E61A24DCAA00093DA7 /* SetYBrick.m in Sources */,
 				92FF32B41A24E2F400093DA7 /* CellMotionEffect.m in Sources */,
 				92FF314F1A24DEB300093DA7 /* LooksTableViewController.m in Sources */,
-				CA2D44491B1249DD00A3B53D /* CBPlayerScheduler.swift in Sources */,
 				CAA4A4EA1A43B472002A69A0 /* SetSizeToBrick+CBXMLHandler.m in Sources */,
 				CAA4A4C91A43B45E002A69A0 /* SetLookBrick+CBXMLHandler.m in Sources */,
 				92FF32B51A24E2F400093DA7 /* PlaceHolderView.m in Sources */,
@@ -5169,14 +5185,12 @@
 				CAA4A4A11A43B407002A69A0 /* BroadcastWaitBrick+CBXMLHandler.m in Sources */,
 				92FF32921A24E2F400093DA7 /* ShowBrickCell.m in Sources */,
 				92FF31071A24DCAA00093DA7 /* SpriteObject.m in Sources */,
-				CAE3C79D1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift in Sources */,
 				CAA4A4A61A43B407002A69A0 /* IfLogicEndBrick+CBXMLHandler.m in Sources */,
 				92FF30D91A24DCAA00093DA7 /* SetLookBrick.m in Sources */,
 				92FF32A11A24E2F400093DA7 /* BroadcastScriptCell.m in Sources */,
 				92FF32861A24E2F400093DA7 /* VibrationBrickCell.m in Sources */,
 				92FF30F41A24DCAA00093DA7 /* StopAllSoundsBrick.m in Sources */,
 				92FF32651A24E2F400093DA7 /* IBActionSheet.m in Sources */,
-				CA02C5E51B14385500233FB0 /* CBPlayerScene.swift in Sources */,
 				92FF31061A24DCAA00093DA7 /* Sound.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5368,6 +5382,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
@@ -5391,11 +5406,13 @@
 					"\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"",
 				);
 				INFOPLIST_FILE = CattyTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.catrobat.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CattyTests/CattyTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pocket Code.app/Pocket Code";
 			};
 			name = Debug;
@@ -5407,6 +5424,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
@@ -5426,11 +5444,12 @@
 					"\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"",
 				);
 				INFOPLIST_FILE = CattyTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.catrobat.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CattyTests/CattyTests-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pocket Code.app/Pocket Code";
 			};
 			name = Release;
