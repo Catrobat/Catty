@@ -28,6 +28,7 @@
 #define kSirenAlertTypeSkip 3
 #define kSirenAlertTypeNone 4
 
+#define kLengthOfShortCommitHash 7
 #define kLastUsedProgram @"lastUsedProgram"
 #define kMinLoopDurationTime (20 * 1000 * 1000) // in nanoseconds!
 #define kProgramCodeFileName @"code.xml"
