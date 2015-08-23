@@ -55,6 +55,8 @@
 
 + (instancetype)defaultHeader;
 
+- (void)updateRelevantHeaderInfosBeforeSerialization;
+
 - (BOOL)isEqualToHeader:(Header*)header;
 
 @end

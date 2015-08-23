@@ -30,6 +30,12 @@
 
 @implementation XMLAbstractTest
 
+- (void)setUp
+{
+    [super setUp];
+    [Util activateTestMode:YES];
+}
+
 - (NSString*)getPathForXML:(NSString*)xmlFile
 {
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];

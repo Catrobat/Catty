@@ -402,7 +402,7 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         NSLog(@"INSERT ALL BRICKS");
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
         Brick *brick;
-        if (script.brickList.count > 1) {
+        if (script.brickList.count >= 1) {
             brick = [script.brickList objectAtIndex:indexPath.item - 1];
         }else{
             brick = [script.brickList objectAtIndex:indexPath.item];
@@ -508,6 +508,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
     if (indexPath.item == 0) {
         cellIdentifier = NSStringFromClass([script class]);
+        script.animate = NO;
     } else {
         brick = [script.brickList objectAtIndex:indexPath.item - 1];
         cellIdentifier = NSStringFromClass([brick class]);
@@ -544,6 +545,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 brickCell.selectButton.selected = NO;
             }
         }
+    }else{
+      brickCell.selectButton.selected = NO;
     }
     brickCell.enabled = (! self.isEditing);
     if (self.isInsertingBrickMode) {
@@ -584,17 +587,14 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         return;
     }
 
-    // empty script list, insert start script + brick
+    // empty script list, insert start script and continue to insert the chosen brick
     if (self.object.scriptList.count == 0) {
         StartScript *script = [StartScript new];
         script.object = self.object;
         [self.object.scriptList addObject:script];
         script.animate = YES;
-        Brick *brick = (Brick*)scriptOrBrick;
-        brick.animate = YES;
-        [script.brickList addObject:brick];
         [self.collectionView reloadData];
-        return;
+        [self.object.program saveToDisk];
     }
     
     NSInteger targetScriptIndex = 0;
@@ -623,14 +623,13 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     
     [self.collectionView reloadData];
     [self turnOnInsertingBrickMode];
-    [self.object.program saveToDisk];
+//    [self.object.program saveToDisk];
     
 }
 
 
 -(void)insertBrick:(Brick*)brick andIndexPath:(NSIndexPath*)path
 {
-    brick.animate = YES;
     Script *targetScript = self.object.scriptList[path.section];
     brick.script = targetScript;
     if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
@@ -657,7 +656,30 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         loopEndBrick.script = targetScript;
         loopEndBrick.animate = YES;
         if ([loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
-            [targetScript.brickList insertObject:loopEndBrick atIndex:loopBeginBrick.script.brickList.count];
+            NSInteger index = loopBeginBrick.script.brickList.count;
+            NSInteger insertionIndex = index;
+            if (targetScript.brickList.count >=1) {
+                while ([[targetScript.brickList objectAtIndex:index-1] isKindOfClass:[LoopEndBrick class]]) {
+                    LoopEndBrick* loopEndBrickCheck = [targetScript.brickList objectAtIndex:index-1];
+                    NSInteger loopbeginIndex = 0;
+                    for (Brick *brick in targetScript.brickList) {
+                        if (brick  == loopEndBrickCheck.loopBeginBrick) {
+                            break;
+                        }
+                        loopbeginIndex++;
+                    }
+                    if (loopbeginIndex < path.row) {
+                        insertionIndex = index-1;
+                    } else if(loopbeginIndex > path.row){
+                        insertionIndex = index;
+                    }else{
+                            //should not be possible
+                        insertionIndex = index;
+                    }
+                    index--;
+                }
+            }
+            [targetScript.brickList insertObject:loopEndBrick atIndex:insertionIndex];
         }else{
             [targetScript.brickList insertObject:loopEndBrick atIndex:path.row];
         }
@@ -728,7 +750,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 #pragma mark - Open Formula Editor
 - (void)openFormulaEditor:(BrickCellFormulaData*)formulaData withEvent:(UIEvent*)event
 {
-    if (self.isEditingBrickMode) {
+    if (self.isEditingBrickMode && event) {
         return;
     }
     if ([self.presentedViewController isKindOfClass:[FormulaEditorViewController class]]) {
@@ -912,7 +934,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     [self setupToolBar];
 
     if (self.isEditing) {
-        self.navigationItem.title = kLocalizedEditMenu;
+        self.navigationItem.title = kLocalizedDeletionMenu;
         self.navigationItem.rightBarButtonItem.title = kLocalizedCancel;
 
         [UIView animateWithDuration:animated ? 0.5f : 0.0f  delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.5f options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -929,6 +951,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         }];
     } else {
         self.navigationItem.title = kLocalizedScripts;
+        self.navigationItem.rightBarButtonItem.title = kLocalizedDelete;
         self.navigationItem.rightBarButtonItem.tintColor = UIColor.lightOrangeColor;
         
         [UIView animateWithDuration:animated ? 0.3f : 0.0f delay:0.0f usingSpringWithDamping:0.65f initialSpringVelocity:0.5f options:UIViewAnimationOptionCurveEaseInOut
@@ -941,20 +964,16 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                              for (BrickCell *brickCell in self.collectionView.visibleCells) {
                                  brickCell.enabled = YES;
                                  brickCell.selectButton.selected = NO;
-                                 
                              }
-                             for (Script *script in self.object.scriptList)
-                             {
+                             for (Script *script in self.object.scriptList) {
                                  script.isSelected = NO;
-                                 if(script.brickList.count != 0)
-                                 {
-                                     for (Brick *brick in script.brickList) {
-                                         brick.isSelected = NO;
-                                     }
+                                 for (Brick *brick in script.brickList) {
+                                     brick.isSelected = NO;
                                  }
                              }
                            self.selectedIndexPaths = [NSMutableArray new];
                          }];
+        
     }
 }
 
@@ -969,7 +988,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             if ([loopBeginBrick.loopEndBrick isEqual:toBrick]) {
                 self.lowerRankBrick = toIndexPath;
                 return NO;
-            }else if([toBrick isKindOfClass:[IfLogicBeginBrick class]]||[toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]){
+            }else if([toBrick isKindOfClass:[IfLogicBeginBrick class]]||[toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[LoopBeginBrick class]]){
                 if (toIndexPath.item < fromIndexPath.item) {
                     self.higherRankBrick = toIndexPath;
                     return NO;
@@ -977,7 +996,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                     self.lowerRankBrick = toIndexPath;
                     return NO;
                 }
-            } else {
+            }else {
                 return YES;
             }
         } else {
@@ -1003,7 +1022,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             if ([endbrick.loopBeginBrick isEqual:toBrick]) {
                 self.higherRankBrick = toIndexPath;
                 return NO;
-            }else if([toBrick isKindOfClass:[IfLogicBeginBrick class]]||[toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]){
+            }else if([toBrick isKindOfClass:[IfLogicBeginBrick class]]||[toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[LoopBeginBrick class]]||[toBrick isKindOfClass:[LoopEndBrick class]]){
                 if (toIndexPath.item < fromIndexPath.item) {
                     self.higherRankBrick = toIndexPath;
                     return NO;
@@ -1716,6 +1735,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     self.collectionView.scrollEnabled = YES;
     self.collectionView.collectionViewLayout = [LXReorderableCollectionViewFlowLayout new];
     self.navigationController.title = self.title = kLocalizedScripts;
+    [self.editButtonItem setTitle:kLocalizedDelete];
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.navigationItem.rightBarButtonItem.enabled = YES;
     self.brickScaleTransition = [[BrickTransition alloc] initWithViewToAnimate:nil];
