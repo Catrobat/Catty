@@ -27,7 +27,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "ScenePresenterViewController.h"
 #import "Pocket_Code-Swift.h"
-#import "ProgramDefines.h"
+#import "NetworkDefines.h"
 
 void uncaughtExceptionHandler(NSException *exception)
 {
@@ -48,7 +48,6 @@ void uncaughtExceptionHandler(NSException *exception)
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     
     Siren* siren = Siren.sharedInstance;
-    // TODO: change to actual AppID as we get into AppStore (current iTunes Connect App)
     siren.appID = kAppStoreIdentifier;
     [siren checkVersion:kSirenUpdateIntervallImmediately];
     // TODO: change to Optional (deactivated using None during development)

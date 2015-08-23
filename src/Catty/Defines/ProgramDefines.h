@@ -28,8 +28,6 @@
 #define kSirenAlertTypeSkip 3
 #define kSirenAlertTypeNone 4
 
-#define kAppStoreIdentifier @"376771144"    // TODO: change as we get into AppStore (currently iTunes Connect App)
-
 #define kLastUsedProgram @"lastUsedProgram"
 #define kMinLoopDurationTime (20 * 1000 * 1000) // in nanoseconds!
 #define kProgramCodeFileName @"code.xml"
