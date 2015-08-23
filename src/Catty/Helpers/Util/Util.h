@@ -126,7 +126,7 @@
 
 + (NSString*)appBuildName;
 
-+ (NSString*)appBuildVersion;
++ (NSString*)appBuildVersion:(BOOL)shortVersion;
 
 + (NSString*)catrobatLanguageVersion;
 
@@ -225,5 +225,9 @@
 + (NSArray*)allMessagesForProgram:(Program*)program;
 
 + (void)alertView:(CatrobatAlertView*)alertView clickedButtonAtIndex:(NSInteger)index;
+
++ (NSArray*)networkErrorCodes;
+
+
 
 @end
