@@ -122,11 +122,17 @@
     CGPoint point = [recognizer locationInView:formulaView];
     point.x -= formulaView.textContainerInset.left;
     point.y -= formulaView.textContainerInset.top;
+    CGFloat fraction = 0.0f;
+    
     
     NSLayoutManager *layoutManager = formulaView.layoutManager;
     NSUInteger cursorPostionIndex = [layoutManager characterIndexForPoint:point
                                                           inTextContainer:formulaView.textContainer
-                                 fractionOfDistanceBetweenInsertionPoints:NULL] + 1;
+                                 fractionOfDistanceBetweenInsertionPoints:&fraction];
+    if(fraction > 0.5f)
+    {
+        cursorPostionIndex++;
+    }
     [self.formulaEditorViewController.internFormula setCursorAndSelection:(int)cursorPostionIndex selected:NO];
     int startIndex = [self.formulaEditorViewController.internFormula getExternSelectionStartIndex];
     int endIndex = [self.formulaEditorViewController.internFormula getExternSelectionEndIndex];
