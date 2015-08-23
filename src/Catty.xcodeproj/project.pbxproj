@@ -428,6 +428,8 @@
 		92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32511A24E2F400093DA7 /* BaseTransition.m */; };
 		92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
+		A918B6B51B89F5690017B92F /* Siren.swift in Sources */ = {isa = PBXBuildFile; fileRef = A918B6B41B89F5690017B92F /* Siren.swift */; };
+		A918B6B71B89F5870017B92F /* Siren.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A918B6B61B89F5870017B92F /* Siren.bundle */; };
 		CA02C5E51B14385500233FB0 /* CBPlayerScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E41B14385500233FB0 /* CBPlayerScene.swift */; };
 		CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */; };
 		CA2D44411B122E8500A3B53D /* SwellAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D44401B122E8500A3B53D /* SwellAll.swift */; };
@@ -1491,6 +1493,8 @@
 		92FF32521A24E2F400093DA7 /* BrickTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTransition.h; sourceTree = "<group>"; };
 		92FF32531A24E2F400093DA7 /* BrickTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickTransition.m; sourceTree = "<group>"; };
 		92FF32C21A24E33B00093DA7 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
+		A918B6B41B89F5690017B92F /* Siren.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Siren.swift; path = Siren/Siren.swift; sourceTree = "<group>"; };
+		A918B6B61B89F5870017B92F /* Siren.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Siren.bundle; sourceTree = "<group>"; };
 		B405BAC7175DD3F600B1A0FC /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		B450309F170F22EF009265D6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -2806,6 +2810,7 @@
 		92FF2E4C1A24C7D800093DA7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A918B6B31B89F4CD0017B92F /* Siren */,
 				D63864691AE63EB4008569E6 /* Keychain */,
 				92FF2E4D1A24C7D800093DA7 /* AudioManager */,
 				92FF2E521A24C7D800093DA7 /* FileManager */,
@@ -4027,6 +4032,15 @@
 			path = "Catty/Storyboard+XIB";
 			sourceTree = "<group>";
 		};
+		A918B6B31B89F4CD0017B92F /* Siren */ = {
+			isa = PBXGroup;
+			children = (
+				A918B6B41B89F5690017B92F /* Siren.swift */,
+				A918B6B61B89F5870017B92F /* Siren.bundle */,
+			);
+			name = Siren;
+			sourceTree = "<group>";
+		};
 		B43498471927A3AB002F9075 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -4826,6 +4840,7 @@
 				92FF326B1A24E2F400093DA7 /* LICENSE_SWTableViewCell in Resources */,
 				92FF32611A24E2F400093DA7 /* LICENSE_FBShimmering in Resources */,
 				CADBD6EA19B0E8C200C62836 /* IBActionSheet.license in Resources */,
+				A918B6B71B89F5870017B92F /* Siren.bundle in Resources */,
 				92FF325C1A24E2F400093DA7 /* LICENSE_BDKNotifyHUD in Resources */,
 				92FF32581A24E2F400093DA7 /* LICENSE_AHKActionSheet in Resources */,
 				CADBD6EB19B0E8C200C62836 /* EVCircularProgressView.license in Resources */,
@@ -5243,6 +5258,7 @@
 				92FF30DB1A24DCAA00093DA7 /* ForeverBrick.m in Sources */,
 				92FF32A21A24E2F400093DA7 /* StartScriptCell.m in Sources */,
 				4C724E421B4D3E8C00E27479 /* ChangeYByNBrick+CBXMLHandler.m in Sources */,
+				A918B6B51B89F5690017B92F /* Siren.swift in Sources */,
 				92DFB0121A38949E00FA9B0F /* InternFormula.m in Sources */,
 				92FF30FD1A24DCAA00093DA7 /* Header.m in Sources */,
 				CABF43BB1B115E6400419A55 /* CBSequence.swift in Sources */,
