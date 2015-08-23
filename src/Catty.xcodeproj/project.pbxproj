@@ -382,6 +382,8 @@
 		CA7698E51B0E4B3F000D0340 /* ProgramTableViewControllerNewProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */; };
 		CA7699191B0E4BFF000D0340 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B405BAC7175DD3F600B1A0FC /* libxml2.dylib */; };
 		CA775CBF19FD5BCB00C1E761 /* My first program.catrobat in Resources */ = {isa = PBXBuildFile; fileRef = CA6E4C4719F9C388001B65C3 /* My first program.catrobat */; };
+		CA8003EA1B48720500A8D99B /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8003E91B48720500A8D99B /* ReplayKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		CA8003EC1B487ED100A8D99B /* CBPlayerScene+ScreenRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8003EB1B487ED100A8D99B /* CBPlayerScene+ScreenRecording.swift */; };
 		CAA4A4651A43B388002A69A0 /* CBXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A4631A43B388002A69A0 /* CBXMLParser.m */; };
 		CAA4A4661A43B388002A69A0 /* CBXMLSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A4641A43B388002A69A0 /* CBXMLSerializer.m */; };
 		CAA4A4691A43B3A9002A69A0 /* CBXMLContext.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A4681A43B3A9002A69A0 /* CBXMLContext.m */; };
@@ -1330,6 +1332,8 @@
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
 		CA6E4C4719F9C388001B65C3 /* My first program.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My first program.catrobat"; sourceTree = "<group>"; };
 		CA7698AA1B0E4A97000D0340 /* CattyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA8003E91B48720500A8D99B /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
+		CA8003EB1B487ED100A8D99B /* CBPlayerScene+ScreenRecording.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CBPlayerScene+ScreenRecording.swift"; path = "Catty/PlayerEngine/Scene/CBPlayerScene+ScreenRecording.swift"; sourceTree = SOURCE_ROOT; };
 		CA8C247718CD053300314C2B /* ProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTests.m; sourceTree = "<group>"; };
 		CA8C247A18CD127C00314C2B /* ProgramTableViewControllerNewProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerNewProgramTests.m; sourceTree = "<group>"; };
 		CAA4A4611A43B36A002A69A0 /* CBXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBXMLParser.h; path = "Catty/Parser&Serialializer/NEW/CBXMLParser.h"; sourceTree = SOURCE_ROOT; };
@@ -1579,6 +1583,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA8003EA1B48720500A8D99B /* ReplayKit.framework in Frameworks */,
 				CADBD7E519B0E8C200C62836 /* SystemConfiguration.framework in Frameworks */,
 				CADBD7E619B0E8C200C62836 /* CoreImage.framework in Frameworks */,
 				CADBD7E719B0E8C200C62836 /* AssetsLibrary.framework in Frameworks */,
@@ -1648,6 +1653,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CA8003E91B48720500A8D99B /* ReplayKit.framework */,
 				92E3351D18FBB6750056C390 /* SystemConfiguration.framework */,
 				921FE2F9182F8122001D7CF6 /* CoreImage.framework */,
 				CA05A19D18286CDA0025421A /* AssetsLibrary.framework */,
@@ -3034,8 +3040,9 @@
 		92FF30AF1A24DCAA00093DA7 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				CA02C5E41B14385500233FB0 /* CBPlayerScene.swift */,
 				CA4C506A1B1C891000BB43E1 /* SetupScene.swift */,
+				CA02C5E41B14385500233FB0 /* CBPlayerScene.swift */,
+				CA8003EB1B487ED100A8D99B /* CBPlayerScene+ScreenRecording.swift */,
 			);
 			name = Scene;
 			path = DataModel/Scene;
@@ -5105,6 +5112,7 @@
 				92DFB06C1A38960C00FA9B0F /* YKImageCropperOverlayView.m in Sources */,
 				92FF2E361A24C5A700093DA7 /* NSDate+CustomExtensions.m in Sources */,
 				92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */,
+				CA8003EC1B487ED100A8D99B /* CBPlayerScene+ScreenRecording.swift in Sources */,
 				92FF325F1A24E2F400093DA7 /* FBShimmeringLayer.m in Sources */,
 				92FF2EC11A24C8A700093DA7 /* OrderedMapTable.m in Sources */,
 				92FF325D1A24E2F400093DA7 /* EVCircularProgressView.m in Sources */,
@@ -5472,6 +5480,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/App-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -5508,6 +5517,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/App-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
