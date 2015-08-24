@@ -236,7 +236,7 @@
 //    [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:1.0f]];
 //    [actionSheet setButtonTextColor:[UIColor lightOrangeColor]];
 //    [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
-    actionSheet.transparentView.alpha = 1.0f;
+    
 
 //    if (destructiveButtonTitle) {
 //        [actionSheet addDestructiveButtonWithTitle:destructiveButtonTitle];
@@ -251,6 +251,9 @@
     actionSheet.tag = tag;
     if (! [self activateTestMode:NO]) {
         [actionSheet showInView:view];
+        if (tag == kEditBrickActionSheetTag) {
+            actionSheet.transparentView.alpha = 0.0f;
+        }
     }
     return actionSheet;
 }
