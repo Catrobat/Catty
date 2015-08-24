@@ -49,7 +49,7 @@ void uncaughtExceptionHandler(NSException *exception)
     
     Siren* siren = Siren.sharedInstance;
     siren.appID = kAppStoreIdentifier;
-    [siren checkVersion:kSirenUpdateIntervallImmediately];
+    [siren checkVersion:kSirenUpdateIntervallDaily];
     // TODO: change to Optional (deactivated using None during development)
     [siren setAlertType:kSirenAlertTypeNone];
     
