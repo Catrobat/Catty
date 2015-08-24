@@ -122,7 +122,10 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 
 - (void)initProgramVersion
 {
-    NSString *version = [[NSString alloc] initWithFormat:@"%@%@", kLocalizedVersionLabel, [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+    NSString *version = [[NSString alloc] initWithFormat:@"%@%@ (%@)",
+                         kLocalizedVersionLabel,
+                         [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
+                         [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
     
     UILabel *versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2, HEADER_PADDING_TOP, self.view.frame.size.width, HEADER_LABEL_HEIGHT)];
     [versionLabel setTextColor:[UIColor skyBlueColor]];
