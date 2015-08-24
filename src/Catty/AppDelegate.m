@@ -49,7 +49,8 @@ void uncaughtExceptionHandler(NSException *exception)
     
     Siren* siren = Siren.sharedInstance;
     siren.appID = kAppStoreIdentifier;
-    [siren checkVersion:kSirenUpdateIntervallImmediately];
+
+    [siren checkVersion:kSirenUpdateIntervallDaily];
     [siren setAlertType:kSirenAlertTypeOption];
     
     [self initNavigationBar];
