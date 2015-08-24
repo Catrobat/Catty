@@ -26,12 +26,11 @@ import ReplayKit
 extension CBPlayerScene: RPPreviewViewControllerDelegate, RPScreenRecorderDelegate {
 
     // MARK: Computed Properties
-    @available(iOS 9.0, *)
     var screenRecordingToggleEnabled: Bool {
         return true
 //        return NSUserDefaults.standardUserDefaults().boolForKey(screenRecorderEnabledKey)
     }
-    
+
     // MARK: Start/Stop Screen Recording
     func startScreenRecording() {
         // Do nothing if screen recording hasn't been enabled.
@@ -47,7 +46,6 @@ extension CBPlayerScene: RPPreviewViewControllerDelegate, RPScreenRecorderDelega
         }
     }
 
-    @available(iOS 9.0, *)
     func stopScreenRecordingWithHandler(handler:(() -> Void)) {
         let sharedRecorder = RPScreenRecorder.sharedRecorder()
         sharedRecorder.stopRecordingWithHandler { (previewViewController: RPPreviewViewController?, error: NSError?) in
@@ -71,7 +69,6 @@ extension CBPlayerScene: RPPreviewViewControllerDelegate, RPScreenRecorderDelega
         }
     }
 
-    @available(iOS 9.0, *)
     func showScreenRecordingAlert(message: String) {
         // Pause the scene and un-pause after the alert returns.
         paused = true
@@ -93,7 +90,6 @@ extension CBPlayerScene: RPPreviewViewControllerDelegate, RPScreenRecorderDelega
     }
 
     // MARK: RPScreenRecorderDelegate
-    @available(iOS 9.0, *)
     func screenRecorder(screenRecorder: RPScreenRecorder, didStopRecordingWithError error: NSError,
         previewViewController: RPPreviewViewController?) {
         // Display the error the user to alert them that the recording failed.
@@ -113,7 +109,6 @@ extension CBPlayerScene: RPPreviewViewControllerDelegate, RPScreenRecorderDelega
     }
 
     // MARK: RPPreviewViewControllerDelegate
-    @available(iOS 9.0, *)
     func previewControllerDidFinish(previewController: RPPreviewViewController) {
         previewViewController?.dismissViewControllerAnimated(true, completion: nil)
     }

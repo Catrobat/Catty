@@ -107,7 +107,12 @@ final class CBPlayerScene : SKScene {
                 return false
             }
 
-            var spriteNode1 = nodesAtPoint[nodesAtPoint.count - 1] as? CBSpriteNode
+            var spriteNode1: CBSpriteNode? = nil
+            if #available(iOS 9, *) {
+                spriteNode1 = nodesAtPoint[0] as? CBSpriteNode
+            } else {
+                spriteNode1 = nodesAtPoint[nodesAtPoint.count - 1] as? CBSpriteNode
+            }
             var counter = nodesAtPoint.count - 2
             logger?.debug("How many nodes are touched: \(counter)")
             logger?.debug("First Node:\(spriteNode1)")
@@ -118,6 +123,7 @@ final class CBPlayerScene : SKScene {
             while foundObject == false {
                 let point = touch.locationInNode(spriteNode1!)
                 if spriteNode1?.hidden == false {
+                    print("\(spriteNode1?.spriteObject?.name)")
                     if spriteNode1?.touchedWithTouches(touches as Set<NSObject>, withX:point.x, andY:point.y) == false {
                         if var zPosition = spriteNode1?.zPosition {
                             zPosition -= 1
