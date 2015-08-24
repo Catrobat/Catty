@@ -446,7 +446,6 @@ static CGSize minSize = {40, 40};
     }
 
     self.imageView.frame = self.baseRect;
-    CGRect clearRect = self.baseRect;
     
     float diffx = (self.frame.size.width - self.baseRect.size.width) / 2.0f;
     float diffy = (self.frame.size.height - self.baseRect.size.height) / 2.0f;
@@ -455,7 +454,7 @@ static CGSize minSize = {40, 40};
     float start_x = (lastXValue / scale) + diffx;
     float start_y = (lastYValue / scale ) + diffy;
     
-    clearRect = CGRectMake(start_x, start_y, width, height);
+    CGRect clearRect = CGRectMake(start_x, start_y, width, height);
     self.overlayView.clearRect = clearRect;
     [self.overlayView setNeedsDisplay];
     

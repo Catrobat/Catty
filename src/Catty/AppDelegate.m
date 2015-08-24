@@ -26,6 +26,8 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import <AVFoundation/AVFoundation.h>
 #import "ScenePresenterViewController.h"
+#import "Pocket_Code-Swift.h"
+#import "NetworkDefines.h"
 
 void uncaughtExceptionHandler(NSException *exception)
 {
@@ -45,8 +47,12 @@ void uncaughtExceptionHandler(NSException *exception)
 {
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     
-    [self initNavigationBar];
+    Siren* siren = Siren.sharedInstance;
+    siren.appID = kAppStoreIdentifier;
+    [siren checkVersion:kSirenUpdateIntervallImmediately];
+    [siren setAlertType:kSirenAlertTypeOption];
     
+    [self initNavigationBar];
     
     [UITextField appearance].keyboardAppearance = UIKeyboardAppearanceDark;
     
@@ -60,10 +66,15 @@ void uncaughtExceptionHandler(NSException *exception)
     return YES;
 }
 
+-(void)applicationDidBecomeActive:(UIApplication *)application
+{
+    [Siren.sharedInstance checkVersion:kSirenUpdateIntervallDaily];
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     UINavigationController *vc = (UINavigationController*)self.window.rootViewController;
-
+    
     if ([vc.topViewController isKindOfClass:[ScenePresenterViewController class]]){
         ScenePresenterViewController* spvc = (ScenePresenterViewController*)vc.topViewController;
         [spvc pauseAction];
@@ -80,11 +91,13 @@ void uncaughtExceptionHandler(NSException *exception)
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     UINavigationController *vc = (UINavigationController*)self.window.rootViewController;
-
+    
     if ([vc.topViewController isKindOfClass:[ScenePresenterViewController class]]){
         ScenePresenterViewController* spvc = (ScenePresenterViewController*)vc.topViewController;
         [spvc resumeAction];
     }
+    
+    [Siren.sharedInstance checkVersion:kSirenUpdateIntervallDaily];
 }
 
 - (void)initNavigationBar

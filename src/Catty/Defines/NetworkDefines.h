@@ -20,6 +20,9 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#define kAppStoreIdentifier @"CHANGEME"    // TODO: change as we get into AppStore (IOS-4)
+#define kAppStoreURL @"itms-apps://itunes.apple.com/app/" kAppStoreIdentifier
+
 #define kConnectionTimeout 30
 #define kBaseUrl @"https://share.catrob.at/pocketcode/"
 #define kTestUrl @"https://catroid-test.catrob.at/"
@@ -37,9 +40,8 @@
 #define kDownloadUrl kBaseUrl @"download"
 #define kSourceCodeLicenseURL @"http://developer.catrobat.org/licenses"
 #define kAboutCatrobatURL @"http://www.catrobat.org"
-#define kTermsOfUseURL @"https://www.pocketcode.org/termsOfUse"
-#define kRecoverPassword @"https://pocketcode.org/passwordrecovery"
-#define kAppStoreURL @"itms-apps://itunes.apple.com/app/CATTY_APP_ID"
+#define kTermsOfUseURL kBaseUrl @"termsOfUse"
+#define kRecoverPassword kBaseUrl @"resetting/request"
 
 #define kConnectionSearch @"search.json"
 #define kConnectionRecent @"recentIDs.json"

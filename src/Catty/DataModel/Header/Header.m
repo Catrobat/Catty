@@ -31,7 +31,7 @@
 {
     Header *header = [self new];
     header.applicationBuildName = [Util appBuildName];
-    header.applicationBuildNumber = [Util appBuildVersion];
+    header.applicationBuildNumber = [Util appBuildVersion:NO];
     header.applicationName = [Util appName];
     header.applicationVersion = [Util appVersion];
     header.catrobatLanguageVersion = [Util catrobatLanguageVersion];
@@ -60,7 +60,7 @@
     // needed to update headers in catrobat programs that have not been
     // created on this device (e.g. downloaded programs...)
     self.applicationBuildName = [Util appBuildName];
-    self.applicationBuildNumber = [Util appBuildVersion];
+    self.applicationBuildNumber = [Util appBuildVersion:NO];
     self.applicationName = [Util appName];
     self.applicationVersion = [Util appVersion];
     self.applicationVersion = [Util appVersion];
