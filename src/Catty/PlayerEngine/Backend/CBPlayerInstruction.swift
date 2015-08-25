@@ -116,7 +116,16 @@ final class CBPlayerInstruction {
     class func instructionForSpeakBrick(speakBrick: SpeakBrick, scheduler: CBPlayerSchedulerProtocol,
         context: CBScriptContextAbstract) -> CBExecClosure
     {
-        let speakText = speakBrick.formula.formulaTree.value
+        guard let object = speakBrick.script?.object else { fatalError("This should never happen!") }
+
+        var speakText = ""
+        if speakBrick.formula.formulaTree.type == STRING {
+            speakText = speakBrick.formula.formulaTree.value
+        } else {
+            // remove trailing 0's behind the decimal point!!
+            func removeTailingZeros(number: Double) -> String { return String(format: "%g", number) }
+            speakText = removeTailingZeros(speakBrick.formula.interpretDoubleForSprite(object))
+        }
         let utterance = AVSpeechUtterance(string: speakText)
         utterance.rate = (floor(NSFoundationVersionNumber) < 1200 ? 0.15 : 0.5)
 

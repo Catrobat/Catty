@@ -35,11 +35,6 @@
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1];
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"SPEAK" withContext:context];
-    [XMLError exceptionIf:formula.formulaTree.type notEquals:STRING
-                  message:@"FormulaElement contains unknown type %lu! Should be STRING!",
-     (unsigned long)formula.formulaTree.type];
-    [XMLError exceptionIfNil:formula.formulaTree.value message:@"FormulaElement contains no value!!"];
-    
     SpeakBrick *speakBrick = [self new];
     speakBrick.formula = formula;
     return speakBrick;
@@ -47,7 +42,6 @@
 
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLContext*)context
 {
-
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
     [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"SpeakBrick"]];

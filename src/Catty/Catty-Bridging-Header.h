@@ -57,6 +57,10 @@
 #import "LedOffBrick.h"
 #import "VibrationBrick.h"
 
+// Formulas
+#import "Formula.h"
+#import "FormulaElement.h"
+
 // Assets
 #import "Look.h"
 #import "Sound.h"
