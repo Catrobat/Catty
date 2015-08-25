@@ -101,7 +101,7 @@
 
 @implementation ScriptCollectionViewController
 
-#define kBrickCellInactiveWhileEditingOpacity 0.3f
+#define kBrickCellInactiveWhileEditingOpacity 0.7f
 #define kBrickCellInactiveWhileInsertingOpacity 0.7f
 #define kBrickCellActiveOpacity 1.0f
 
