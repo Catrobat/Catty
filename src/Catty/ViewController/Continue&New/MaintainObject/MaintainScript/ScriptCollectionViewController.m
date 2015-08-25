@@ -95,6 +95,7 @@
 @property (nonatomic, assign) BOOL isEditingBrickMode;
 @property (nonatomic, strong) NSIndexPath *higherRankBrick; // refactor
 @property (nonatomic, strong) NSIndexPath *lowerRankBrick;  // refactor
+@property (nonatomic, assign) BOOL moveToOtherScript;   //refactor
 @property (nonatomic) PageIndexCategoryType lastSelectedBrickCategory;
 
 @end
@@ -425,6 +426,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 {
     self.higherRankBrick = nil;
     self.lowerRankBrick = nil;
+    self.moveToOtherScript = NO;
 }
 
 - (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
@@ -435,7 +437,12 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if(self.isInsertingBrickMode){
         if (fromBrick.isAnimatedInsertBrick) {
             if (toIndexPath.item != 0) {
-                Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+                Script *script;
+                if (self.moveToOtherScript) {
+                    script = [self.object.scriptList objectAtIndex:toIndexPath.section];
+                }else{
+                    script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+                }
                 Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
                 if ([toBrick isKindOfClass:[LoopEndBrick class]]) {
                     LoopEndBrick* loopEndBrick = (LoopEndBrick*) toBrick;
@@ -446,6 +453,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 return YES;
             } else{
                 BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:toIndexPath];
+                self.moveToOtherScript = YES;
                 if ([brickCell.scriptOrBrick isKindOfClass:[Script class]]) {
                     Script *script = (Script*)brickCell.scriptOrBrick;
                     if (script.brickList.count == 0) {
@@ -463,7 +471,13 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         
     }
     if (toIndexPath.item != 0) {
-        Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+        Script *script;
+        if (self.moveToOtherScript) {
+            script = [self.object.scriptList objectAtIndex:toIndexPath.section];
+        }else{
+            script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+        }
+        
         Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
         if ([toBrick isKindOfClass:[LoopEndBrick class]]) {
             LoopEndBrick* loopEndBrick = (LoopEndBrick*) toBrick;
@@ -486,6 +500,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         }
     } else {
         Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
+        self.moveToOtherScript = YES;
         if ([toScript.brickList count] == 0) {
             return YES;
         }else{
@@ -494,6 +509,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         
     }
 }
+
 
 - (BOOL)collectionView:(UICollectionView*)collectionView canMoveItemAtIndexPath:(NSIndexPath*)indexPath
 {
