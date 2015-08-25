@@ -140,7 +140,7 @@ extension String {
         let temp = self as NSString
         let stringLength = temp.length // FIXME: workaround for count(self)
         let substringIndex = (stringLength < count) ? 0 : stringLength - count
-        return self.substringToIndex(advance(self.startIndex, substringIndex))
+        return self.substringToIndex(self.startIndex.advancedBy(substringIndex))
     }
 }
 
@@ -167,7 +167,7 @@ func licenseCheck(filePath : String, fileContent : String, lineNumberOffset : In
 {
     let range = fileContent.rangeOfString(licenseSearchStringCurrentYear)
     if range != nil {
-        let index: Int = distance(fileContent.startIndex, range!.startIndex)
+        let index: Int = fileContent.startIndex.distanceTo(range!.startIndex)
         if index != 0 {
             let newRange : Range<String.Index> = Range<String.Index>(start: fileContent.startIndex, end: range!.startIndex)
             let substring : String = fileContent.substringWithRange(newRange)
@@ -184,7 +184,7 @@ func licenseCheck(filePath : String, fileContent : String, lineNumberOffset : In
 
     let rangePreviousYear = fileContent.rangeOfString(licenseSearchStringPreviousYear)
     if rangePreviousYear != nil {
-        let index: Int = distance(fileContent.startIndex, rangePreviousYear!.startIndex)
+        let index: Int = fileContent.startIndex.distanceTo(rangePreviousYear!.startIndex)
         var lineNumber : Int = 1
         if index != 0 {
             let newRange : Range<String.Index> = Range<String.Index>(start: fileContent.startIndex, end: rangePreviousYear!.startIndex)
@@ -214,7 +214,7 @@ func licenseCheckForReadme(filePath : String, fileContent : String) -> (failed: 
     if sectionRange == nil {
         return (true, "\(pathToReadmeFile):1: error: Unable to find code section within license header section\n")
     }
-    let licenseString = sectionString.substringWithRange(Range<String.Index>(start: advance(sectionRange!.endIndex, 1),
+    let licenseString = sectionString.substringWithRange(Range<String.Index>(start: sectionRange!.endIndex.advancedBy(1),
                                                                                end: sectionString.endIndex))
     let newLineCountRange = Range<String.Index>(start: fileContent.startIndex, end: range!.endIndex)
     let newLineCountSubString = fileContent.substringWithRange(newLineCountRange)

@@ -218,8 +218,8 @@ public class FlexFormatter: LogFormatter {
         var result = function;
         if (result.hasPrefix("Optional(")) {
             let len = "Optional(".characters.count
-            let start = advance(result.startIndex, len)
-            let end = advance(result.endIndex, -len)
+            let start = result.startIndex.advancedBy(len)
+            let end = result.endIndex.advancedBy(-len)
             let range = start..<end
             result = result[range]
         }
@@ -228,7 +228,7 @@ public class FlexFormatter: LogFormatter {
         }
         return result
     }
-    
+
     public func formatLog<T>(logger: CBLogger, level: LogLevel, @autoclosure message givenMessage: () -> T,
         filename: String?, line: Int?,  function: String?) -> String {
             var logMessage = ""
@@ -1213,8 +1213,8 @@ public class Swell {
     func getFormatKey(map: Dictionary<String, AnyObject>) -> String? {
         for (key, _) in map {
             if ((key.hasPrefix("SWL")) && (key.hasSuffix("Format"))) {
-                let start = advance(key.startIndex, 3)
-                let end = advance(key.endIndex, -6)
+                let start = key.startIndex.advancedBy(3)
+                let end = key.endIndex.advancedBy(-6)
                 let result: String = key[start..<end]
                 return result
             }
@@ -1227,8 +1227,8 @@ public class Swell {
         var result = function;
         if (result.hasPrefix("Optional(")) {
             let len = "Optional(".characters.count
-            let start = advance(result.startIndex, len)
-            let end = advance(result.endIndex, -len)
+            let start = result.startIndex.advancedBy(len)
+            let end = result.endIndex.advancedBy(-len)
             let range = start..<end
             result = result[range]
         }
