@@ -52,37 +52,49 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
         // create right context depending on script type
         var scriptContext: CBScriptContextAbstract? = nil
         if let startScript = script as? StartScript {
-            scriptContext = CBStartScriptContext(startScript: startScript, state: .Runnable, scriptSequenceList: sequenceList)
+            scriptContext = CBStartScriptContext(
+                startScript: startScript,
+                state: .Runnable,
+                scriptSequenceList: sequenceList)
         } else if let whenScript = script as? WhenScript {
-            scriptContext = CBWhenScriptContext(whenScript: whenScript, state: .Runnable, scriptSequenceList: sequenceList)
+            scriptContext = CBWhenScriptContext(
+                whenScript: whenScript,
+                state: .Runnable,
+                scriptSequenceList: sequenceList)
         } else if let bcScript = script as? BroadcastScript {
-            scriptContext = CBBroadcastScriptContext(broadcastScript: bcScript, state: .Runnable, scriptSequenceList: sequenceList)
+            scriptContext = CBBroadcastScriptContext(
+                broadcastScript: bcScript,
+                state: .Runnable,
+                scriptSequenceList: sequenceList)
         } else {
             fatalError("Unknown script! THIS SHOULD NEVER HAPPEN!")
         }
 
         // generated instructions and add them to script context
-        let instructionList = _instructionsForSequence(sequenceList.sequenceList, context: scriptContext!)
+        let instructionList = _instructionsForSequence(sequenceList.sequenceList,
+            context: scriptContext!)
         for instruction in instructionList {
             scriptContext! += instruction
         }
         return scriptContext!
     }
 
-    private func _instructionsForSequence(sequenceList: CBSequenceList, context: CBScriptContextAbstract)
-        -> [CBExecClosure]
+    private func _instructionsForSequence(sequenceList: CBSequenceList,
+        context: CBScriptContextAbstract) -> [CBExecClosure]
     {
         var instructionList = [CBExecClosure]()
         for sequence in sequenceList {
             if let operationSequence = sequence as? CBOperationSequence {
                 // operation sequence
-                instructionList += _instructionsForOperationSequence(operationSequence, context: context)
+                instructionList += _instructionsForOperationSequence(operationSequence,
+                    context: context)
             } else if let ifSequence = sequence as? CBIfConditionalSequence {
                 // if sequence
                 instructionList += _instructionsForIfSequence(ifSequence, context: context)
             } else if let conditionalSequence = sequence as? CBConditionalSequence {
                 // loop sequence
-                instructionList += _instructionsForLoopSequence(conditionalSequence, context: context)
+                instructionList += _instructionsForLoopSequence(conditionalSequence,
+                    context: context)
             } else {
                 fatalError("Unknown sequence type! THIS SHOULD NEVER HAPPEN!")
             }
@@ -103,7 +115,7 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
                 context.state = .RunningMature
                 var numberOfInstructionsToJump = numberOfIfInstructions
                 if ifSequence.elseSequenceList != nil {
-                    ++numberOfInstructionsToJump // includes jump instruction at the end of if sequence
+                    ++numberOfInstructionsToJump // includes jump instr. at the end of if sequence
                 }
                 context.jump(numberOfInstructions: numberOfInstructionsToJump)
             }
@@ -115,9 +127,11 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
         var numberOfElseInstructions = 0
         if ifSequence.elseSequenceList != nil {
             // add else instructions
-            let elseInstructions = _instructionsForSequence(ifSequence.elseSequenceList!, context: context)
+            let elseInstructions = _instructionsForSequence(ifSequence.elseSequenceList!,
+                context: context)
             numberOfElseInstructions = elseInstructions.count
-            // add jump instruction to be the last if-instruction (needed to avoid execution of else sequence)
+            // add jump instruction to be the last if-instruction
+            // (needed to avoid execution of else sequence)
             instructionList += { [weak self] in
                 context.state = .RunningMature
                 context.jump(numberOfInstructions: numberOfElseInstructions)
@@ -131,7 +145,8 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
     private func _instructionsForLoopSequence(conditionalSequence: CBConditionalSequence,
         context: CBScriptContextAbstract) -> [CBExecClosure]
     {
-        let bodyInstructions = _instructionsForSequence(conditionalSequence.sequenceList, context: context)
+        let bodyInstructions = _instructionsForSequence(conditionalSequence.sequenceList,
+            context: context)
         let numOfBodyInstructions = bodyInstructions.count
         let loopEndInstruction: CBExecClosure = { [weak self] in
             context.isLocked = true
@@ -175,7 +190,7 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
             } else {
                 conditionalSequence.resetCondition() // IMPORTANT: reset loop counter right now
                 context.state = .RunningMature
-                let numOfInstructionsToJump = numOfBodyInstructions + 1 // includes loop end instruction!
+                let numOfInstructionsToJump = numOfBodyInstructions + 1 // includes loop end instr.!
                 context.jump(numberOfInstructions: numOfInstructionsToJump)
             }
             self?._scheduler.runNextInstructionOfContext(context)
@@ -191,55 +206,69 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
     private func _instructionsForOperationSequence(operationSequence: CBOperationSequence,
         context: CBScriptContextAbstract) -> [CBExecClosure]
     {
-        var instructionList = [CBExecClosure]()
+        var instructions = [CBExecClosure]()
+
+        // TODO: use mapping (register handler...)
         for operation in operationSequence.operationList {
-            if let broadcastBrick = operation.brick as? BroadcastBrick {
-                instructionList += { [weak self] in
-                    let msg = broadcastBrick.broadcastMessage
-                    self?._broadcastHandler.performBroadcastWithMessage(msg, senderScriptContext: context,
-                        broadcastType: .Broadcast)
+            switch operation.brick {
+            case let bcBrick as BroadcastBrick:
+                instructions += { [weak self] in
+                    self?._broadcastHandler.performBroadcastWithMessage(bcBrick.broadcastMessage,
+                        senderScriptContext: context, broadcastType: .Broadcast)
                 }
-            } else if let broadcastWaitBrick = operation.brick as? BroadcastWaitBrick {
-                instructionList += { [weak self] in
-                    let msg = broadcastWaitBrick.broadcastMessage
-                    self?._broadcastHandler.performBroadcastWithMessage(msg, senderScriptContext: context,
-                        broadcastType: .BroadcastWait)
+
+            case let bcWaitBrick as BroadcastWaitBrick:
+                instructions += { [weak self] in
+                    self?._broadcastHandler.performBroadcastWithMessage(bcWaitBrick.broadcastMessage,
+                        senderScriptContext: context, broadcastType: .BroadcastWait)
                 }
-            } else if let waitBrick = operation.brick as? WaitBrick {
-                instructionList += CBPlayerInstruction.instructionForWaitBrick(waitBrick,
+
+            case let waitBrick as WaitBrick:
+                instructions += CBPlayerInstruction.instructionForWaitBrick(waitBrick,
                     scheduler: _scheduler, context: context)
-            } else if let playSoundBrick = operation.brick as? PlaySoundBrick {
-                instructionList += CBPlayerInstruction.instructionForPlaySoundBrick(playSoundBrick,
+
+            case let playSoundBrick as PlaySoundBrick:
+                instructions += CBPlayerInstruction.instructionForPlaySoundBrick(playSoundBrick,
                     scheduler: _scheduler, context: context)
-            } else if let stopAllSoundsBrick = operation.brick as? StopAllSoundsBrick {
-                instructionList += CBPlayerInstruction.instructionForStopAllSoundsBrick(stopAllSoundsBrick,
+
+            case let stopAllSBrick as StopAllSoundsBrick:
+                instructions += CBPlayerInstruction.instructionForStopAllSoundsBrick(stopAllSBrick,
                     scheduler: _scheduler, context: context)
-            } else if let speakBrick = operation.brick as? SpeakBrick {
-                instructionList += CBPlayerInstruction.instructionForSpeakBrick(speakBrick,
+
+            case let speakBrick as SpeakBrick:
+                instructions += CBPlayerInstruction.instructionForSpeakBrick(speakBrick,
                     scheduler: _scheduler, context: context)
-            } else if let changeVolByNBrick = operation.brick as? ChangeVolumeByNBrick {
-                instructionList += CBPlayerInstruction.instructionForChangeVolumeByNBrick(changeVolByNBrick,
+
+            case let chgVolBrick as ChangeVolumeByNBrick:
+                instructions += CBPlayerInstruction.instructionForChangeVolumeByNBrick(chgVolBrick,
                     scheduler: _scheduler, context: context)
-            } else if let setVolToBrick = operation.brick as? SetVolumeToBrick {
-                instructionList += CBPlayerInstruction.instructionForSetVolumeToBrick(setVolToBrick,
+
+            case let setVolToBrick as SetVolumeToBrick:
+                instructions += CBPlayerInstruction.instructionForSetVolumeToBrick(setVolToBrick,
                     scheduler: _scheduler, context: context)
-            } else if let setVarBrick = operation.brick as? SetVariableBrick {
-                instructionList += CBPlayerInstruction.instructionForSetVariableBrick(setVarBrick,
+
+            case let setVarBrick as SetVariableBrick:
+                instructions += CBPlayerInstruction.instructionForSetVariableBrick(setVarBrick,
                     scheduler: _scheduler, context: context)
-            } else if let changeVarBrick = operation.brick as? ChangeVariableBrick {
-                instructionList += CBPlayerInstruction.instructionForChangeVariableBrick(changeVarBrick,
+
+            case let chgVarBrick as ChangeVariableBrick:
+                instructions += CBPlayerInstruction.instructionForChangeVariableBrick(chgVarBrick,
                     scheduler: _scheduler, context: context)
-            } else if let flashLightOnBrick = operation.brick as? LedOnBrick {
-                instructionList += CBPlayerInstruction.instructionForFlashLightOnBrick(
+
+            case let flashLightOnBrick as LedOnBrick:
+                instructions += CBPlayerInstruction.instructionForFlashLightOnBrick(
                     flashLightOnBrick, scheduler: _scheduler, context: context)
-            } else if let flashLightOffBrick = operation.brick as? LedOffBrick {
-                instructionList += CBPlayerInstruction.instructionForFlashLightOffBrick(
+
+            case let flashLightOffBrick as LedOffBrick:
+                instructions += CBPlayerInstruction.instructionForFlashLightOffBrick(
                     flashLightOffBrick, scheduler: _scheduler, context: context)
-            } else if let vibrationBrick = operation.brick as? VibrationBrick {
-                instructionList += CBPlayerInstruction.instructionForVibrationBrick(
+
+            case let vibrationBrick as VibrationBrick:
+                instructions += CBPlayerInstruction.instructionForVibrationBrick(
                     vibrationBrick, scheduler: _scheduler, context: context)
-            } else {
-                instructionList += { [weak self] in
+
+            default:
+                instructions += { [weak self] in
                     context.runAction(operation.brick.action(), completion:{
                         // the script must continue here. upcoming actions are executed!!
                         self?._scheduler.runNextInstructionOfContext(context)
@@ -247,7 +276,7 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
                 }
             }
         }
-        return instructionList
+        return instructions
     }
 
 }
