@@ -1923,6 +1923,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     collectionViewLayout.longPressGestureRecognizer.enabled = YES;
     self.collectionView.scrollEnabled = YES;
     self.isEditingBrickMode = NO;
+    self.navigationController.toolbar.userInteractionEnabled = YES;
+    self.navigationController.navigationBar.userInteractionEnabled = YES;
     
     for (BrickCell *cell in self.collectionView.visibleCells) {
         cell.enabled = YES;
@@ -1942,6 +1944,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     collectionViewLayout.longPressGestureRecognizer.enabled = NO;
     self.collectionView.scrollEnabled = NO;
     self.isEditingBrickMode = YES;
+    self.navigationController.toolbar.userInteractionEnabled = NO;
+    self.navigationController.navigationBar.userInteractionEnabled = NO;
     
     for (BrickCell *cell in self.collectionView.visibleCells) {
         cell.enabled = NO;
