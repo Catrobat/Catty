@@ -102,7 +102,7 @@
 
 @implementation ScriptCollectionViewController
 
-#define kBrickCellInactiveWhileEditingOpacity 0.3f
+#define kBrickCellInactiveWhileEditingOpacity 0.7f
 #define kBrickCellInactiveWhileInsertingOpacity 0.7f
 #define kBrickCellActiveOpacity 1.0f
 
@@ -2008,7 +2008,12 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     collectionViewLayout.longPressGestureRecognizer.enabled = YES;
     self.collectionView.scrollEnabled = YES;
     self.isEditingBrickMode = NO;
-    
+    self.navigationController.toolbar.userInteractionEnabled = YES;
+    self.navigationController.navigationBar.userInteractionEnabled = YES;
+        // enable swipe back gesture
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }
     for (BrickCell *cell in self.collectionView.visibleCells) {
         cell.enabled = YES;
         cell.alpha = kBrickCellActiveOpacity;
@@ -2027,6 +2032,12 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     collectionViewLayout.longPressGestureRecognizer.enabled = NO;
     self.collectionView.scrollEnabled = NO;
     self.isEditingBrickMode = YES;
+    self.navigationController.toolbar.userInteractionEnabled = NO;
+    self.navigationController.navigationBar.userInteractionEnabled = NO;
+        // disable swipe back gesture
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
     
     for (BrickCell *cell in self.collectionView.visibleCells) {
         cell.enabled = NO;
