@@ -748,6 +748,7 @@
     }
     [self dismissSemiModalView];
 }
+
 - (void)closeColorPicker:(id)sender
 {
     self.red =((ColorPickerViewController*)sender).red;
@@ -807,56 +808,13 @@
     });
     NSDebug(@"saved to Camera Roll");
 }
+
 - (void)closeAction
-{
-    ALAuthorizationStatus statusCameraRoll = [ALAssetsLibrary authorizationStatus];
-    UIAlertController *alertControllerCameraRoll = [UIAlertController
-                                                    alertControllerWithTitle:nil
-                                                    message:kLocalizedNoAccesToImagesCheckSettingsDescription
-                                                    preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *cancelAction = [UIAlertAction
-                                   actionWithTitle:kLocalizedCancel
-                                   style:UIAlertActionStyleCancel
-                                   handler:nil];
-    
-    UIAlertAction *settingsAction = [UIAlertAction
-                                     actionWithTitle:kLocalizedSettings
-                                     style:UIAlertActionStyleDefault
-                                     handler:^(UIAlertAction *action)
-                                     {
-                                         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                                     }];
-    
-    [alertControllerCameraRoll addAction:cancelAction];
-    [alertControllerCameraRoll addAction:settingsAction];
-    
-    NSDebug(@"save and close");
-    if([self checkUserAuthorisation:true])
-    {
-        if (statusCameraRoll == ALAuthorizationStatusAuthorized)
-        {
-            if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)])
-            {
-                UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
-                UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
-                UIGraphicsEndImageContext();
-                if (![self.saveView.image isEqual:blank]) {
-                    [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
-                }
-            }
-            [self.navigationController popViewControllerAnimated:YES];
-        }else
-        {
-            [self presentViewController:alertControllerCameraRoll animated:YES completion:nil];
-        }
-    }
-}
-- (void)discardAndCloseAction
 {
     NSDebug(@"don't save and close");
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (void)newCanvasAction
 {
    
