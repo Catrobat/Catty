@@ -288,36 +288,32 @@
 
 - (void)editAction
 {
-  UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:kLocalizedPaintSelect message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-  
-  UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedCancel style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-  }];
-  [actionSheet addAction:cancelAction];
-  
-  UIAlertAction *saveAction = [UIAlertAction actionWithTitle:kLocalizedPaintSave style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-    [self saveAction];
-  }];
-  [actionSheet addAction:saveAction];
-  
-  UIAlertAction *saveCloseAction = [UIAlertAction actionWithTitle:kLocalizedPaintSaveClose style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-    [self saveAndCloseAction];
-  }];
-  [actionSheet addAction:saveCloseAction];
-  
-  
-  UIAlertAction *discardAction = [UIAlertAction actionWithTitle:kLocalizedPaintDiscardClose style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-    [self discardAndCloseAction];
-  }];
-  [actionSheet addAction:discardAction];
-  
-  UIAlertAction *newCanvasAction = [UIAlertAction actionWithTitle:kLocalizedPaintNewCanvas style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-    [self newCanvasAction];
-  }];
-  [actionSheet addAction:newCanvasAction];
-  
-  [self presentViewController:actionSheet animated:YES completion:nil];
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:kLocalizedPaintSelect
+                                                                         message:@""
+                                                                  preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedCancel
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction *action) {}];
+    [actionSheet addAction:cancelAction];
+    
+    UIAlertAction *saveAction = [UIAlertAction actionWithTitle:kLocalizedPaintSave
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction *action) { [self saveAction]; }];
+    [actionSheet addAction:saveAction];
+    
+    UIAlertAction *saveCloseAction = [UIAlertAction actionWithTitle:kLocalizedPaintClose
+                                                              style:UIAlertActionStyleDefault
+                                                            handler:^(UIAlertAction *action) { [self closeAction]; }];
+    [actionSheet addAction:saveCloseAction];
+    
+    UIAlertAction *newCanvasAction = [UIAlertAction actionWithTitle:kLocalizedPaintNewCanvas
+                                                              style:UIAlertActionStyleDefault
+                                                            handler:^(UIAlertAction *action) { [self newCanvasAction]; }];
+    [actionSheet addAction:newCanvasAction];
+    
+    [self presentViewController:actionSheet animated:YES completion:nil];
 }
-
 
 - (void)setupUndoManager
 {
@@ -755,6 +751,7 @@
     }
     [self dismissSemiModalView];
 }
+
 - (void)closeColorPicker:(id)sender
 {
     self.red =((ColorPickerViewController*)sender).red;
@@ -831,60 +828,16 @@
     [self.view addSubview:hud];
     [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
                        speed:kBDKNotifyHUDPresentationSpeed
-                       inView:self.view
-                       completion:^{ [hud removeFromSuperview]; }];
+                      inView:self.view
+                  completion:^{ [hud removeFromSuperview]; }];
 }
 
-- (void)saveAndCloseAction
-{
-    ALAuthorizationStatus statusCameraRoll = [ALAssetsLibrary authorizationStatus];
-    UIAlertController *alertControllerCameraRoll = [UIAlertController
-                                                    alertControllerWithTitle:nil
-                                                    message:kLocalizedNoAccesToImagesCheckSettingsDescription
-                                                    preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *cancelAction = [UIAlertAction
-                                   actionWithTitle:kLocalizedCancel
-                                   style:UIAlertActionStyleCancel
-                                   handler:nil];
-    
-    UIAlertAction *settingsAction = [UIAlertAction
-                                     actionWithTitle:kLocalizedSettings
-                                     style:UIAlertActionStyleDefault
-                                     handler:^(UIAlertAction *action)
-                                     {
-                                         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                                     }];
-    
-    [alertControllerCameraRoll addAction:cancelAction];
-    [alertControllerCameraRoll addAction:settingsAction];
-    
-    NSDebug(@"save and close");
-    if([self checkUserAuthorisation:true])
-    {
-        if (statusCameraRoll == ALAuthorizationStatusAuthorized)
-        {
-            if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)])
-            {
-        UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
-        UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        if (![self.saveView.image isEqual:blank]) {
-            [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
-        }
-    }
-    [self.navigationController popViewControllerAnimated:YES];
-        }else
-        {
-            [self presentViewController:alertControllerCameraRoll animated:YES completion:nil];
-        }
-    }
-}
-- (void)discardAndCloseAction
+- (void)closeAction
 {
     NSDebug(@"don't save and close");
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (void)newCanvasAction
 {
    
