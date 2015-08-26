@@ -20,28 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBPlayerSchedulerProtocol : class {
-    // properties
-    var schedulingAlgorithm:CBPlayerSchedulingAlgorithmProtocol? { get set }
-    var running:Bool { get }
-
-    // queries
-    func isContextScheduled(context: CBScriptContextAbstract) -> Bool
-    func allStartScriptContextsReachedMatureState() -> Bool
-
-    // operations
-    func run()
-    func shutdown()
-    func registerContext(context: CBScriptContextAbstract)
-    func registeredContextForScript(script: Script) -> CBScriptContextAbstract?
-    func startContext(context: CBScriptContextAbstract)
-    func startContext(context: CBScriptContextAbstract, withInitialState: CBScriptState)
-    func restartContext(context: CBScriptContextAbstract)
-    func restartContext(context: CBScriptContextAbstract, withInitialState: CBScriptState)
-    func stopContext(context: CBScriptContextAbstract)
-    func runNextInstructionOfContext(context: CBScriptContextAbstract)
-}
-
 final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
 
     // MARK: - Properties

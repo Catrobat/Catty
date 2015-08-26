@@ -20,13 +20,26 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
-#import "BrickFormulaProtocol.h"
+protocol CBPlayerSchedulerProtocol : class {
 
-@class Formula;
+    // properties
+    var schedulingAlgorithm:CBPlayerSchedulingAlgorithmProtocol? { get set }
+    var running:Bool { get }
 
-@interface WaitBrick : Brick<BrickFormulaProtocol>
+    // queries
+    func isContextScheduled(context: CBScriptContextAbstract) -> Bool
+    func allStartScriptContextsReachedMatureState() -> Bool
 
-@property (nonatomic, strong, nonnull) Formula *timeToWaitInSeconds;
+    // operations
+    func run()
+    func shutdown()
+    func registerContext(context: CBScriptContextAbstract)
+    func registeredContextForScript(script: Script) -> CBScriptContextAbstract?
+    func startContext(context: CBScriptContextAbstract)
+    func startContext(context: CBScriptContextAbstract, withInitialState: CBScriptState)
+    func restartContext(context: CBScriptContextAbstract)
+    func restartContext(context: CBScriptContextAbstract, withInitialState: CBScriptState)
+    func stopContext(context: CBScriptContextAbstract)
+    func runNextInstructionOfContext(context: CBScriptContextAbstract)
 
-@end
+}

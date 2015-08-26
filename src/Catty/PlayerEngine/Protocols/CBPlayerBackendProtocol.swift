@@ -20,13 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
-#import "BrickFormulaProtocol.h"
+protocol CBPlayerBackendProtocol {
 
-@class Formula;
+    func scriptContextForSequenceList(sequenceList: CBScriptSequenceList) -> CBScriptContextAbstract
 
-@interface WaitBrick : Brick<BrickFormulaProtocol>
-
-@property (nonatomic, strong, nonnull) Formula *timeToWaitInSeconds;
-
-@end
+}

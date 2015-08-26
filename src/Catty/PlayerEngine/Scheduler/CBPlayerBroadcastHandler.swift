@@ -20,16 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBPlayerBroadcastHandlerProtocol : class {
-    func setupHandler()
-    func tearDownHandler()
-    func subscribeBroadcastScriptContext(context: CBBroadcastScriptContext)
-    func unsubscribeBroadcastScriptContext(context: CBBroadcastScriptContext)
-    func performBroadcastWithMessage(message: String, senderScriptContext: CBScriptContextAbstract, broadcastType: CBBroadcastType)
-    func continueContextsWaitingForTerminationOfBroadcastScriptContext(context: CBBroadcastScriptContext)
-    func removeWaitingContext(context: CBScriptContextAbstract)
-}
-
 final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
 
     // MARK: - Constants

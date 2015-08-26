@@ -23,10 +23,6 @@
 import Darwin // usleep
 import AVFoundation
 
-protocol CBPlayerBackendProtocol {
-    func scriptContextForSequenceList(sequenceList: CBScriptSequenceList) -> CBScriptContextAbstract
-}
-
 final class CBPlayerBackend : CBPlayerBackendProtocol {
 
     // MARK: - Properties

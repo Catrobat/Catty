@@ -321,7 +321,12 @@
 		92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32511A24E2F400093DA7 /* BaseTransition.m */; };
 		92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
+		AA101E411B8D3A3900797DEF /* Encapsulated.xml in Resources */ = {isa = PBXBuildFile; fileRef = AA101E401B8D3A3900797DEF /* Encapsulated.xml */; settings = {ASSET_TAGS = (); }; };
 		AA70F7F11B866E9B003057C6 /* CBPlayerFrontentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA70F7F01B866E9B003057C6 /* CBPlayerFrontentTests.swift */; };
+		AAD498B71B8D245C005894C4 /* CBPlayerFrontendProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD498B61B8D245C005894C4 /* CBPlayerFrontendProtocol.swift */; settings = {ASSET_TAGS = (); }; };
+		AAD498B91B8D248C005894C4 /* CBPlayerSchedulerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD498B81B8D248C005894C4 /* CBPlayerSchedulerProtocol.swift */; settings = {ASSET_TAGS = (); }; };
+		AAD498BB1B8D255F005894C4 /* CBPlayerBroadcastHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD498BA1B8D255F005894C4 /* CBPlayerBroadcastHandlerProtocol.swift */; settings = {ASSET_TAGS = (); }; };
+		AAD498BD1B8D259A005894C4 /* CBPlayerBackendProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD498BC1B8D259A005894C4 /* CBPlayerBackendProtocol.swift */; settings = {ASSET_TAGS = (); }; };
 		CA02C5E51B14385500233FB0 /* CBPlayerScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E41B14385500233FB0 /* CBPlayerScene.swift */; };
 		CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */; };
 		CA2D44411B122E8500A3B53D /* SwellAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D44401B122E8500A3B53D /* SwellAll.swift */; };
@@ -549,10 +554,8 @@
 		CAE3E55F1B4C50B300CC88BD /* Tic_Tac_Toe_Master_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E52A1B4C50B300CC88BD /* Tic_Tac_Toe_Master_093.xml */; };
 		CAE3E5601B4C50B300CC88BD /* Word_balloon_demo_09.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E52C1B4C50B300CC88BD /* Word_balloon_demo_09.xml */; };
 		CAE3E5611B4C50B300CC88BD /* Word_balloon_demo_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E52D1B4C50B300CC88BD /* Word_balloon_demo_093.xml */; };
-		CAE3E5621B4C50B300CC88BD /* Encapsulated.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E52F1B4C50B300CC88BD /* Encapsulated.xml */; };
 		CAE3E5631B4C50B300CC88BD /* X_Ray_phone_091.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5301B4C50B300CC88BD /* X_Ray_phone_091.xml */; };
 		CAE3E5641B4C50B300CC88BD /* X_Ray_phone_093.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5311B4C50B300CC88BD /* X_Ray_phone_093.xml */; };
-		CAE3E5651B4C50B300CC88BD /* Encapsulated.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5321B4C50B300CC88BD /* Encapsulated.xml */; };
 		CAE3E5661B4C50B300CC88BD /* LegoNxtMotorActionBrick.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5331B4C50B300CC88BD /* LegoNxtMotorActionBrick.xml */; };
 		CAE3E5671B4C50B300CC88BD /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5341B4C50B300CC88BD /* ValidFormulaList.xml */; };
 		CAE3E5681B4C50B300CC88BD /* ValidProgram.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5351B4C50B300CC88BD /* ValidProgram.xml */; };
@@ -1290,8 +1293,13 @@
 		92FF32521A24E2F400093DA7 /* BrickTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickTransition.h; sourceTree = "<group>"; };
 		92FF32531A24E2F400093DA7 /* BrickTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickTransition.m; sourceTree = "<group>"; };
 		92FF32C21A24E33B00093DA7 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
+		AA101E401B8D3A3900797DEF /* Encapsulated.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Encapsulated.xml; sourceTree = "<group>"; };
 		AA70F7EC1B866E52003057C6 /* CattyTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CattyTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		AA70F7F01B866E9B003057C6 /* CBPlayerFrontentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerFrontentTests.swift; path = PlayerEngine/CBPlayerFrontentTests.swift; sourceTree = "<group>"; };
+		AAD498B61B8D245C005894C4 /* CBPlayerFrontendProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerFrontendProtocol.swift; path = PlayerEngine/Protocols/CBPlayerFrontendProtocol.swift; sourceTree = "<group>"; };
+		AAD498B81B8D248C005894C4 /* CBPlayerSchedulerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerSchedulerProtocol.swift; path = PlayerEngine/Protocols/CBPlayerSchedulerProtocol.swift; sourceTree = "<group>"; };
+		AAD498BA1B8D255F005894C4 /* CBPlayerBroadcastHandlerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerBroadcastHandlerProtocol.swift; path = PlayerEngine/Protocols/CBPlayerBroadcastHandlerProtocol.swift; sourceTree = "<group>"; };
+		AAD498BC1B8D259A005894C4 /* CBPlayerBackendProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerBackendProtocol.swift; path = PlayerEngine/Protocols/CBPlayerBackendProtocol.swift; sourceTree = "<group>"; };
 		B405BAC7175DD3F600B1A0FC /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		B450309F170F22EF009265D6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -1542,10 +1550,8 @@
 		CAE3E52A1B4C50B300CC88BD /* Tic_Tac_Toe_Master_093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Tic_Tac_Toe_Master_093.xml; sourceTree = "<group>"; };
 		CAE3E52C1B4C50B300CC88BD /* Word_balloon_demo_09.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Word_balloon_demo_09.xml; sourceTree = "<group>"; };
 		CAE3E52D1B4C50B300CC88BD /* Word_balloon_demo_093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Word_balloon_demo_093.xml; sourceTree = "<group>"; };
-		CAE3E52F1B4C50B300CC88BD /* Encapsulated.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Encapsulated.xml; sourceTree = "<group>"; };
 		CAE3E5301B4C50B300CC88BD /* X_Ray_phone_091.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = X_Ray_phone_091.xml; sourceTree = "<group>"; };
 		CAE3E5311B4C50B300CC88BD /* X_Ray_phone_093.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = X_Ray_phone_093.xml; sourceTree = "<group>"; };
-		CAE3E5321B4C50B300CC88BD /* Encapsulated.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Encapsulated.xml; path = CattyTests/Resources/ParserTests/Encapsulated.xml; sourceTree = SOURCE_ROOT; };
 		CAE3E5331B4C50B300CC88BD /* LegoNxtMotorActionBrick.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = LegoNxtMotorActionBrick.xml; path = CattyTests/Resources/ParserTests/LegoNxtMotorActionBrick.xml; sourceTree = SOURCE_ROOT; };
 		CAE3E5341B4C50B300CC88BD /* ValidFormulaList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidFormulaList.xml; path = CattyTests/Resources/ParserTests/ValidFormulaList.xml; sourceTree = SOURCE_ROOT; };
 		CAE3E5351B4C50B300CC88BD /* ValidProgram.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidProgram.xml; path = CattyTests/Resources/ParserTests/ValidProgram.xml; sourceTree = SOURCE_ROOT; };
@@ -1698,6 +1704,7 @@
 				CAE3E4F31B4C50B300CC88BD /* Compass_0.1 */,
 				CAE3E4F61B4C50B300CC88BD /* Demonstration */,
 				CAE3E4F91B4C50B300CC88BD /* Drink_more_water */,
+				AA101E3F1B8D3A3900797DEF /* Encapsulated */,
 				CAE3E4FC1B4C50B300CC88BD /* Flap_Pac_Man */,
 				CAE3E4FF1B4C50B300CC88BD /* Flappy_v3.0 */,
 				CAE3E5021B4C50B300CC88BD /* Galaxy_War */,
@@ -1716,7 +1723,6 @@
 				CAE3E5281B4C50B300CC88BD /* Tic_Tac_Toe_Master */,
 				CAE3E52B1B4C50B300CC88BD /* Word_balloon_demo */,
 				CAE3E52E1B4C50B300CC88BD /* X_Ray_phone */,
-				CAE3E5321B4C50B300CC88BD /* Encapsulated.xml */,
 				CAE3E5331B4C50B300CC88BD /* LegoNxtMotorActionBrick.xml */,
 				CAE3E5341B4C50B300CC88BD /* ValidFormulaList.xml */,
 				CAE3E5351B4C50B300CC88BD /* ValidProgram.xml */,
@@ -3834,12 +3840,32 @@
 			path = OLD;
 			sourceTree = "<group>";
 		};
+		AA101E3F1B8D3A3900797DEF /* Encapsulated */ = {
+			isa = PBXGroup;
+			children = (
+				AA101E401B8D3A3900797DEF /* Encapsulated.xml */,
+			);
+			name = Encapsulated;
+			path = CattyTests/Resources/ParserTests/Encapsulated;
+			sourceTree = SOURCE_ROOT;
+		};
 		AA70F7EF1B866E63003057C6 /* PlayerEngine */ = {
 			isa = PBXGroup;
 			children = (
 				AA70F7F01B866E9B003057C6 /* CBPlayerFrontentTests.swift */,
 			);
 			name = PlayerEngine;
+			sourceTree = "<group>";
+		};
+		AAD498B51B8D2431005894C4 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				AAD498B61B8D245C005894C4 /* CBPlayerFrontendProtocol.swift */,
+				AAD498BC1B8D259A005894C4 /* CBPlayerBackendProtocol.swift */,
+				AAD498B81B8D248C005894C4 /* CBPlayerSchedulerProtocol.swift */,
+				AAD498BA1B8D255F005894C4 /* CBPlayerBroadcastHandlerProtocol.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 		B43498471927A3AB002F9075 /* Resources */ = {
@@ -3981,6 +4007,7 @@
 		CA3E72D31B0BA46A00D6B184 /* PlayerEngine */ = {
 			isa = PBXGroup;
 			children = (
+				AAD498B51B8D2431005894C4 /* Protocols */,
 				92FF30AF1A24DCAA00093DA7 /* Scene */,
 				CAE485D31B13AA4E00DC4485 /* Frontend */,
 				CAE485D41B13AA5200DC4485 /* Backend */,
@@ -4354,7 +4381,6 @@
 		CAE3E52E1B4C50B300CC88BD /* X_Ray_phone */ = {
 			isa = PBXGroup;
 			children = (
-				CAE3E52F1B4C50B300CC88BD /* Encapsulated.xml */,
 				CAE3E5301B4C50B300CC88BD /* X_Ray_phone_091.xml */,
 				CAE3E5311B4C50B300CC88BD /* X_Ray_phone_093.xml */,
 			);
@@ -4596,7 +4622,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAE3E5651B4C50B300CC88BD /* Encapsulated.xml in Resources */,
 				CAE3E55E1B4C50B300CC88BD /* Tic_Tac_Toe_Master_091.xml in Resources */,
 				CAE3E5611B4C50B300CC88BD /* Word_balloon_demo_093.xml in Resources */,
 				CAE3E54D1B4C50B300CC88BD /* Minions__091.xml in Resources */,
@@ -4611,7 +4636,6 @@
 				CAE3E5661B4C50B300CC88BD /* LegoNxtMotorActionBrick.xml in Resources */,
 				CAE3E5411B4C50B300CC88BD /* Flap_Pac_Man_091.xml in Resources */,
 				CAE3E53A1B4C50B300CC88BD /* Airplane_with_shadow_093.xml in Resources */,
-				CAE3E5621B4C50B300CC88BD /* Encapsulated.xml in Resources */,
 				CAE3E5561B4C50B300CC88BD /* Pythagorean_Theorem_092.xml in Resources */,
 				CAE3E5491B4C50B300CC88BD /* Memory_09.xml in Resources */,
 				CAE3E5501B4C50B300CC88BD /* Nyancat_1.0_093.xml in Resources */,
@@ -4634,6 +4658,7 @@
 				CAE3E55B1B4C50B300CC88BD /* Skydiving_Steve_093.xml in Resources */,
 				CAE3E54A1B4C50B300CC88BD /* Memory_093.xml in Resources */,
 				CAE3E5571B4C50B300CC88BD /* Pythagorean_Theorem_093.xml in Resources */,
+				AA101E411B8D3A3900797DEF /* Encapsulated.xml in Resources */,
 				CAE3E53B1B4C50B300CC88BD /* Compass_0.1_091.xml in Resources */,
 				CAE3E54E1B4C50B300CC88BD /* Minions__093.xml in Resources */,
 				CAE3E54B1B4C50B300CC88BD /* Minecraft_Work_In_Progress_092.xml in Resources */,
@@ -4849,6 +4874,7 @@
 				CAA4A4C81A43B45E002A69A0 /* SetGhostEffectBrick+CBXMLHandler.m in Sources */,
 				92FF2E9C1A24C7D800093DA7 /* SensorHandler.m in Sources */,
 				92FF32B71A24E2F400093DA7 /* ColoredCell.m in Sources */,
+				AAD498BB1B8D255F005894C4 /* CBPlayerBroadcastHandlerProtocol.swift in Sources */,
 				CAA4A4AA1A43B407002A69A0 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
 				92DFB05B1A38960C00FA9B0F /* LineTool.m in Sources */,
 				92FF32711A24E2F400093DA7 /* SWUtilityButtonView.m in Sources */,
@@ -5042,6 +5068,7 @@
 				92FF30C71A24DCAA00093DA7 /* BrickManager.m in Sources */,
 				92FF30E31A24DCAA00093DA7 /* MoveNStepsBrick.m in Sources */,
 				92DFB00E1A38949E00FA9B0F /* ExternInternRepresentationMapping.m in Sources */,
+				AAD498BD1B8D259A005894C4 /* CBPlayerBackendProtocol.swift in Sources */,
 				CAA4A4E61A43B472002A69A0 /* GlideToBrick+CBXMLHandler.m in Sources */,
 				92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */,
 				92FF30C91A24DCAA00093DA7 /* BroadcastBrick.m in Sources */,
@@ -5093,6 +5120,7 @@
 				92FF32A51A24E2F400093DA7 /* PlaySoundBrickCell.m in Sources */,
 				92FF30D81A24DCAA00093DA7 /* SetGhostEffectBrick.m in Sources */,
 				CAA4A4E51A43B472002A69A0 /* ChangeYByNBrick+CBXMLHandler.m in Sources */,
+				AAD498B71B8D245C005894C4 /* CBPlayerFrontendProtocol.swift in Sources */,
 				92FF329E1A24E2F400093DA7 /* SetYBrickCell.m in Sources */,
 				92FF325A1A24E2F400093DA7 /* UIWindow+AHKAdditions.m in Sources */,
 				92DFB06B1A38960C00FA9B0F /* UndoManager.m in Sources */,
@@ -5159,6 +5187,7 @@
 				92FF32741A24E2F400093DA7 /* CatrobatActionSheet.m in Sources */,
 				CAA4A4A31A43B407002A69A0 /* ForeverBrick+CBXMLHandler.m in Sources */,
 				92FF327A1A24E2F400093DA7 /* SelectButton.m in Sources */,
+				AAD498B91B8D248C005894C4 /* CBPlayerSchedulerProtocol.swift in Sources */,
 				92FF30EC1A24DCAA00093DA7 /* LedOnBrick.m in Sources */,
 				CAA4A4701A43B3BC002A69A0 /* CBXMLParserHelper.m in Sources */,
 				CAA4A5211A43B4EF002A69A0 /* Sound+CBXMLHandler.m in Sources */,
@@ -5312,6 +5341,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -5369,6 +5399,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -5480,7 +5511,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/App-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -5517,7 +5547,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = $SDKROOT/usr/include/libxml2;
 				INFOPLIST_FILE = "Catty/App-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (

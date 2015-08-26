@@ -20,12 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBPlayerFrontendProtocol {
-    weak var program: Program? { get }
-    func computeSequenceListForScript(script : Script) -> CBScriptSequenceList
-    func addSequenceFilter(sequenceFilter: CBPlayerFrontendSequenceFilterProtocol)
-}
-
 final class CBPlayerFrontend : CBPlayerFrontendProtocol {
 
     // MARK: - Properties

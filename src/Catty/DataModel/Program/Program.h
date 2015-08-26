@@ -29,50 +29,55 @@
 
 @interface Program : NSObject
 
-@property (nonatomic, strong) Header *header;
-@property (nonatomic, strong) NSMutableArray *objectList;
-@property (nonatomic, strong) VariablesContainer *variables;
+@property (nonatomic, strong, nonnull) Header *header;
+@property (nonatomic, strong, nonnull) NSMutableArray *objectList;
+@property (nonatomic, strong, nonnull) VariablesContainer *variables;
 
 - (NSInteger)numberOfTotalObjects;
 - (NSInteger)numberOfBackgroundObjects;
 - (NSInteger)numberOfNormalObjects;
-- (SpriteObject*)addObjectWithName:(NSString*)objectName;
-- (void)removeObjects:(NSArray*)objects;
-- (void)removeObject:(SpriteObject*)object;
-- (NSString*)projectPath;
+- (SpriteObject* _Nonnull)addObjectWithName:(NSString* _Nonnull)objectName;
+- (void)removeObjects:(NSArray* _Nonnull)objects;
+- (void)removeObject:(SpriteObject* _Nonnull)object;
+- (NSString* _Nonnull)projectPath;
 - (void)removeFromDisk;
 - (void)removeReferences;
 - (void)saveToDisk;
 - (BOOL)isLastUsedProgram;
 - (void)setAsLastUsedProgram;
 - (void)translateDefaultProgram;
-- (void)renameToProgramName:(NSString*)programName;
-- (void)renameObject:(SpriteObject*)object toName:(NSString*)newObjectName;
-- (void)updateDescriptionWithText:(NSString*)descriptionText;
-- (NSArray*)allObjectNames;
-- (BOOL)hasObject:(SpriteObject*)object;
-- (SpriteObject*)copyObject:(SpriteObject*)sourceObject
-    withNameForCopiedObject:(NSString*)nameOfCopiedObject;
-- (BOOL)isEqualToProgram:(Program*)program;
+- (void)renameToProgramName:(NSString* _Nonnull)programName;
+- (void)renameObject:(SpriteObject* _Nonnull)object toName:(NSString* _Nonnull)newObjectName;
+- (void)updateDescriptionWithText:(NSString* _Nonnull)descriptionText;
+- (nonnull NSArray*)allObjectNames;
+- (BOOL)hasObject:(SpriteObject* _Nonnull)object;
+- (SpriteObject* _Nonnull)copyObject:(SpriteObject* _Nonnull)sourceObject
+    withNameForCopiedObject:(NSString* _Nonnull)nameOfCopiedObject;
+- (BOOL)isEqualToProgram:(Program* _Nonnull)program;
 
-+ (instancetype)defaultProgramWithName:(NSString*)programName programID:(NSString*)programID;
-+ (instancetype)lastUsedProgram;
-+ (void)updateLastModificationTimeForProgramWithName:(NSString*)programName programID:(NSString*)programID;
-+ (instancetype)programWithLoadingInfo:(ProgramLoadingInfo*)loadingInfo;
-+ (BOOL)programExistsWithProgramName:(NSString*)programName programID:(NSString*)programID;
-+ (BOOL)programExistsWithProgramID:(NSString*)programID;
++ (instancetype _Nonnull)defaultProgramWithName:(NSString* _Nonnull)programName
+                                      programID:(NSString* _Nullable)programID;
++ (instancetype _Nonnull)lastUsedProgram;
++ (void)updateLastModificationTimeForProgramWithName:(NSString* _Nonnull)programName
+                                           programID:(NSString* _Nonnull)programID;
++ (instancetype _Nonnull)programWithLoadingInfo:(ProgramLoadingInfo* _Nonnull)loadingInfo;
++ (BOOL)programExistsWithProgramName:(NSString* _Nonnull)programName
+                           programID:(NSString* _Nonnull)programID;
++ (BOOL)programExistsWithProgramID:(NSString* _Nonnull)programID;
 + (BOOL)areThereAnyPrograms;
-+ (void)copyProgramWithSourceProgramName:(NSString*)sourceProgramName
-                         sourceProgramID:(NSString*)sourceProgramID
-                  destinationProgramName:(NSString*)destinationProgramName;
-+ (void)removeProgramFromDiskWithProgramName:(NSString*)programName programID:(NSString*)programID;
-+ (BOOL)isLastUsedProgram:(NSString*)programName programID:(NSString*)programID;
-+ (void)setLastUsedProgram:(Program*)program;
-+ (NSString*)basePath;
-+ (NSArray*)allProgramNames;
-+ (NSArray*)allProgramLoadingInfos;
-+ (NSString*)programDirectoryNameForProgramName:(NSString*)programName programID:(NSString*)programID;
-+ (ProgramLoadingInfo*)programLoadingInfoForProgramDirectoryName:(NSString*)programDirectoryName;
-+ (NSString*)programNameForProgramID:(NSString*)programID;
++ (void)copyProgramWithSourceProgramName:(NSString* _Nonnull)sourceProgramName
+                         sourceProgramID:(NSString* _Nonnull)sourceProgramID
+                  destinationProgramName:(NSString* _Nonnull)destinationProgramName;
++ (void)removeProgramFromDiskWithProgramName:(NSString* _Nonnull)programName
+                                   programID:(NSString* _Nonnull)programID;
++ (BOOL)isLastUsedProgram:(NSString* _Nonnull)programName programID:(NSString* _Nonnull)programID;
++ (void)setLastUsedProgram:(Program* _Nonnull)program;
++ (NSString* _Nonnull)basePath;
++ (NSArray* _Nonnull)allProgramNames;
++ (NSArray* _Nonnull)allProgramLoadingInfos;
++ (NSString* _Nonnull)programDirectoryNameForProgramName:(NSString* _Nonnull)programName
+                                               programID:(NSString* _Nullable)programID;
++ (ProgramLoadingInfo* _Nonnull)programLoadingInfoForProgramDirectoryName:(NSString* _Nonnull)programDirectoryName;
++ (NSString* _Nonnull)programNameForProgramID:(NSString* _Nonnull)programID;
 
 @end

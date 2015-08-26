@@ -20,13 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
-#import "BrickFormulaProtocol.h"
+protocol CBPlayerBroadcastHandlerProtocol : class {
 
-@class Formula;
+    func setupHandler()
+    func tearDownHandler()
+    func subscribeBroadcastScriptContext(context: CBBroadcastScriptContext)
+    func unsubscribeBroadcastScriptContext(context: CBBroadcastScriptContext)
+    func performBroadcastWithMessage(message: String, senderScriptContext: CBScriptContextAbstract, broadcastType: CBBroadcastType)
+    func continueContextsWaitingForTerminationOfBroadcastScriptContext(context: CBBroadcastScriptContext)
+    func removeWaitingContext(context: CBScriptContextAbstract)
 
-@interface WaitBrick : Brick<BrickFormulaProtocol>
-
-@property (nonatomic, strong, nonnull) Formula *timeToWaitInSeconds;
-
-@end
+}
