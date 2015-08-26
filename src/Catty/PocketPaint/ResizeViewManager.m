@@ -298,30 +298,31 @@
 
 - (void)showUserAction
 {
-  [self.resizeViewer changeBorderWithColor:[UIColor greenColor]];
-  [self.resizeViewer showEditingHandles];
-  [NSTimer scheduledTimerWithTimeInterval:0.15f target:self selector:@selector(hideShowUserAction) userInfo:nil repeats:NO];
+    [self.resizeViewer changeBorderWithColor:[UIColor greenColor]];
+    [self.resizeViewer showEditingHandles];
+    [NSTimer scheduledTimerWithTimeInterval:0.15f target:self selector:@selector(hideShowUserAction) userInfo:nil repeats:NO];
     BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:nil
                                                     text:kLocalizedPaintInserted];
-    hud.destinationOpacity = 0.30f;
-    hud.center = CGPointMake(self.canvas.view.center.x, self.canvas.view.center.y - 20);
+    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
+    hud.center = CGPointMake(self.canvas.view.center.x, self.canvas.view.center.y + kBDKNotifyHUDCenterOffsetY);
     [self.canvas.view addSubview:hud];
-    [hud presentWithDuration:0.5f speed:0.1f inView:self.canvas.view completion:^{
-        [hud removeFromSuperview];
-    }];
+    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
+                       speed:kBDKNotifyHUDPresentationSpeed
+                      inView:self.canvas.view
+                  completion:^{ [hud removeFromSuperview]; }];
 }
 
 - (void)showStampAction
 {
-    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:@"checkmark.png"]
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName]
                                                     text:kLocalizedPaintStamped];
-    hud.destinationOpacity = 0.30f;
-    hud.center = CGPointMake(self.canvas.view.center.x, self.canvas.view.center.y - 20);
+    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
+    hud.center = CGPointMake(self.canvas.view.center.x, self.canvas.view.center.y + kBDKNotifyHUDCenterOffsetY);
     [self.canvas.view addSubview:hud];
-    [hud presentWithDuration:0.5f speed:0.1f inView:self.canvas.view completion:^{
-        [hud removeFromSuperview];
-    }];
-
+    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
+                       speed:kBDKNotifyHUDPresentationSpeed
+                      inView:self.canvas.view
+                  completion:^{ [hud removeFromSuperview]; }];
 }
 
 - (void)hideShowUserAction

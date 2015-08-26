@@ -34,6 +34,7 @@
 #import "QuartzCore/QuartzCore.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
+#import "BDKNotifyHUD.h"
 
 //Helper
 #import "RGBAHelper.h"
@@ -780,6 +781,7 @@
                                                     message:kLocalizedNoAccesToImagesCheckSettingsDescription
                                                     preferredStyle:UIAlertControllerStyleAlert];
     
+    
     UIAlertAction *cancelAction = [UIAlertAction
                                    actionWithTitle:kLocalizedCancel
                                    style:UIAlertActionStyleCancel
@@ -808,8 +810,28 @@
         }
         
     });
+    
+    if([self checkUserAuthorisation:false] && (statusCameraRoll == ALAuthorizationStatusAuthorized))
+    {
+        [self showSavedView];
+    }
+    
     NSDebug(@"saved to Camera Roll");
 }
+
+- (void)showSavedView
+{
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName]
+                                                    text:kLocalizedSaved];
+    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
+    hud.center = CGPointMake(self.view.center.x, self.view.center.y + kBDKNotifyHUDCenterOffsetY);
+    [self.view addSubview:hud];
+    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
+                       speed:kBDKNotifyHUDPresentationSpeed
+                       inView:self.view
+                       completion:^{ [hud removeFromSuperview]; }];
+}
+
 - (void)saveAndCloseAction
 {
     ALAuthorizationStatus statusCameraRoll = [ALAssetsLibrary authorizationStatus];
