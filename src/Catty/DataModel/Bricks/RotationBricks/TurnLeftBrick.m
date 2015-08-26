@@ -40,7 +40,7 @@
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.degrees = [[Formula alloc] initWithFloat:15];
+    self.degrees = [[Formula alloc] initWithInteger:15];
 }
 
 - (NSString*)brickTitle

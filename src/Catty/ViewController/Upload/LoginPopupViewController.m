@@ -583,7 +583,7 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
         self.loginButton.enabled = NO;
     } else {
         NSDebug(@"Connection could not be established");
-        [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
+        [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
     }
 }
 

@@ -115,6 +115,14 @@
     return [self alertWithText:text delegate:nil tag:0];
 }
 
++(CatrobatAlertView *)alertWithTitle:(NSString *)title
+                             andText:(NSString *)text
+{
+    CatrobatAlertView* alertView = [self alertWithText:text];
+    alertView.title = title;
+    return alertView;
+}
+
 + (CatrobatAlertView*)alertWithText:(NSString*)text
                            delegate:(id<CatrobatAlertViewDelegate>)delegate
                                 tag:(NSInteger)tag
@@ -149,7 +157,6 @@
     [alertView addAction:yesAction];
     alertView.tag = tag;
     if (! [self activateTestMode:NO]) {
-        
         [ROOTVIEW presentViewController:alertView animated:YES completion:^{}];
     }
     return alertView;
@@ -204,8 +211,8 @@
     if (! [self activateTestMode:NO]) {
         if (target != nil) {
             [(UIViewController *)target presentViewController:alertView animated:YES completion:^{}];
-        }else{
-        [ROOTVIEW presentViewController:alertView animated:YES completion:^{}];
+        } else {
+            [ROOTVIEW presentViewController:alertView animated:YES completion:^{}];
         }
     }
     return alertView;
@@ -229,7 +236,7 @@
 //    [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:1.0f]];
 //    [actionSheet setButtonTextColor:[UIColor globalTintColor]];
 //    [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
-    actionSheet.transparentView.alpha = 1.0f;
+    
 
 //    if (destructiveButtonTitle) {
 //        [actionSheet addDestructiveButtonWithTitle:destructiveButtonTitle];
@@ -244,6 +251,9 @@
     actionSheet.tag = tag;
     if (! [self activateTestMode:NO]) {
         [actionSheet showInView:view];
+        if (tag == kEditBrickActionSheetTag) {
+            actionSheet.transparentView.alpha = 0.0f;
+        }
     }
     return actionSheet;
 }
@@ -284,9 +294,18 @@
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CatrobatBuildName"];
 }
 
-+ (NSString*)appBuildVersion
++ (NSString*)appBuildVersion:(BOOL)shortVersion
 {
-    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSString *buildVersion = [[bundle infoDictionary] objectForKey:@"CFBundleVersion"];
+    NSString *currentCommitHash = [NSString stringWithContentsOfFile:[bundle pathForResource:@"commit"
+                                                                                      ofType:nil]
+                                                            encoding:NSUTF8StringEncoding
+                                                               error:NULL];
+    if (shortVersion && currentCommitHash.length > kLengthOfShortCommitHash) {
+        currentCommitHash = [currentCommitHash substringToIndex:kLengthOfShortCommitHash];
+    }
+    return [NSString stringWithFormat:@"%@-{current:%@}", buildVersion, currentCommitHash];
 }
 
 + (NSString*)catrobatLanguageVersion
@@ -319,16 +338,27 @@
   return [[UIDevice currentDevice] systemVersion];
 }
 
++ (CGSize)screenSize
+{
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    float iOSVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (iOSVersion < 8 && UIInterfaceOrientationIsLandscape(orientation))
+    {
+        screenSize.height = screenSize.width;
+        screenSize.width = [[UIScreen mainScreen] bounds].size.height;
+    }
+    return screenSize;
+}
+
 + (CGFloat)screenHeight
 {
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    return screenRect.size.height;
+    return [self screenSize].height;
 }
 
 + (CGFloat)screenWidth
 {
-  CGRect screenRect = [[UIScreen mainScreen] bounds];
-  return screenRect.size.width;
+    return [self screenSize].width;
 }
 
 + (CATransition*)getPushCATransition
@@ -1017,5 +1047,53 @@ replacementString:(NSString*)characters
     }
     return messages;
 }
+
+
++(NSArray*)networkErrorCodes
+{
+    static NSArray *codesArray;
+    if (![codesArray count]){
+        @synchronized(self){
+            const int codes[] = {
+                    //kCFURLErrorUnknown,     //-998
+                    //kCFURLErrorCancelled,   //-999
+                    //kCFURLErrorBadURL,      //-1000
+                    //kCFURLErrorTimedOut,    //-1001
+                    //kCFURLErrorUnsupportedURL, //-1002
+                    //kCFURLErrorCannotFindHost, //-1003
+                kCFURLErrorCannotConnectToHost,     //-1004
+                kCFURLErrorNetworkConnectionLost,   //-1005
+                kCFURLErrorDNSLookupFailed,         //-1006
+                                                    //kCFURLErrorHTTPTooManyRedirects,    //-1007
+                kCFURLErrorResourceUnavailable,     //-1008
+                kCFURLErrorNotConnectedToInternet,  //-1009
+                                                    //kCFURLErrorRedirectToNonExistentLocation,   //-1010
+                kCFURLErrorBadServerResponse,               //-1011
+                                                            //kCFURLErrorUserCancelledAuthentication,     //-1012
+                                                            //kCFURLErrorUserAuthenticationRequired,      //-1013
+                                                            //kCFURLErrorZeroByteResource,        //-1014
+                                                            //kCFURLErrorCannotDecodeRawData,     //-1015
+                                                            //kCFURLErrorCannotDecodeContentData, //-1016
+                                                            //kCFURLErrorCannotParseResponse,     //-1017
+                kCFURLErrorInternationalRoamingOff, //-1018
+                kCFURLErrorCallIsActive,                //-1019
+                                                        //kCFURLErrorDataNotAllowed,              //-1020
+                                                        //kCFURLErrorRequestBodyStreamExhausted,  //-1021
+                kCFURLErrorFileDoesNotExist,            //-1100
+                                                        //kCFURLErrorFileIsDirectory,             //-1101
+                kCFURLErrorNoPermissionsToReadFile,     //-1102
+                                                        //kCFURLErrorDataLengthExceedsMaximum,     //-1103
+            };
+            int size = sizeof(codes)/sizeof(int);
+            NSMutableArray *array = [[NSMutableArray alloc] init];
+            for (int i=0;i<size;++i){
+                [array addObject:[NSNumber numberWithInt:codes[i]]];
+            }
+            codesArray = [array copy];
+        }
+    }
+    return codesArray;
+}
+
 
 @end

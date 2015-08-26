@@ -526,7 +526,7 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
             self.uploadButton.enabled = NO;
         } else {
             NSDebug(@"Connection could not be established");
-            [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
+            [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
         }
     } else {
         NSDebug(@"Could not build checksum");

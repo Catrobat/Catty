@@ -330,7 +330,18 @@
     self.dataTask = [self.session dataTaskWithURL:[NSURL URLWithString:queryString]  completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
             if (error.code != -999) {
-                NSLog(@"%@", error);
+                if ([[Util networkErrorCodes] containsObject:[NSNumber
+                                                              numberWithInteger:error.code]]){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+                    });
+                } else {
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                    }];
+                    [alert addAction:cancelAction];
+                    [self presentViewController:alert animated:YES completion:nil];
+                }
             }
             
         } else {

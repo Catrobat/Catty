@@ -303,9 +303,21 @@
     self.idTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
             if (error.code != -999) {
-                NSLog(@"%@", error);
+                if ([[Util networkErrorCodes] containsObject:[NSNumber
+                                                              numberWithInteger:error.code]]){
+                    [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+                } else {
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                    }];
+                    [alert addAction:cancelAction];
+                    [self presentViewController:alert animated:YES completion:nil];
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self hideLoadingView];
+                    [self loadingIndicator:NO];
+                });
             }
-            
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self loadIDsWith:data andResponse:response];
@@ -436,9 +448,21 @@
             self.infoTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                 if (error) {
                     if (error.code != -999) {
-                        NSLog(@"%@", error);
+                        if ([[Util networkErrorCodes] containsObject:[NSNumber
+                                                                      numberWithInteger:error.code]]){
+                            [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+                        } else {
+                            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+                            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                            }];
+                            [alert addAction:cancelAction];
+                            [self presentViewController:alert animated:YES completion:nil];
+                        }
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self hideLoadingView];
+                            [self loadingIndicator:NO];
+                        });
                     }
-                    
                 } else {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self loadInfosWith:data andResponse:response];

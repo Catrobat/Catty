@@ -22,12 +22,28 @@
 
 #import "LanguageTranslationDefines.h"
 
+// Screen Sizes in Points
+#define kIphone4ScreenHeight 480.0f
+#define kIphone4ScreenWidth 320.0f
+#define kIphone5ScreenHeight 568.0f
+#define kIphone5ScreenWidth 320.0f
+#define kIphone6ScreenHeight 667.0f
+#define kIphone6ScreenWidth 375.0f
+#define kIphone6PScreenHeight 736.0f
+#define kIphone6PScreenWidth 414.0f
+#define kIpadScreenHeight 1028.0f
+#define kIpadScreenWidth 768.0f
+#define kIpadRetinaScreenHeight 2048.0f
+#define kIpadRetinaScreenWidth 1536.0f
+
+// CatrobatTableViewController
+#define kIconDownsizeFactorIphone4 0.85f
+
 // ScenePresenterViewController
 #define kWidthSlideMenu 150
 #define kBounceEffect 5
 #define kPlaceOfButtons 17
 #define kSlidingStartArea 40
-#define kIphone4ScreenHeight 480.0f
 #define kContinueButtonSize 85
 #define kContinueOffset 15
 #define kMenuButtonSize 44
@@ -57,16 +73,12 @@
 #define kLoadingViewTag 99998
 #define kSavedViewTag   99999
 
-#define kIphone5ScreenHeight 568.0f
-#define kIphone4ScreenHeight 480.0f
-#define kIpadScreenHeight 1028.0f
 #define kAddScriptCategoryTableViewBottomMargin 15.0f
 
 // delete button bricks
 #define kBrickCellDeleteButtonWidthHeight 22.0f
 #define kSelectButtonnOffset 30.0f
 #define kSelectButtonTranslationOffsetX 60.0f
-
 #define kScriptCollectionViewTopInsets 10.0f
 #define kScriptCollectionViewBottomInsets 5.0f
 

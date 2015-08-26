@@ -111,7 +111,7 @@
     [self setUpMenuFrames];
     [self setUpLabels];
     [self setUpGridView];
-
+    [self checkAspectRatio];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -205,7 +205,7 @@
                                kLocalizedRestart,
                                kLocalizedContinue,
                                kLocalizedScreenshot,
-                               kLocalizedGrid, nil];
+                               kLocalizedAxes, nil];
     NSArray* labelArray = [[NSArray alloc] initWithObjects:self.menuBackLabel,self.menuRestartLabel,self.menuContinueLabel, self.menuScreenshotLabel, self.menuAxisLabel,nil];
     for (int i = 0; i < [labelTextArray count]; ++i) {
         [self setupLabel:labelTextArray[i]
@@ -329,6 +329,13 @@
     [self.gridView addSubview:negativeHeight];
     
     [self.view insertSubview:self.gridView aboveSubview:self.skView];
+}
+
+- (void)checkAspectRatio
+{
+    if (self.program.header.screenWidth.floatValue == [Util screenWidth] && self.program.header.screenHeight.floatValue == [Util screenHeight]) {
+        self.menuAspectRatioButton.hidden = YES;
+    }
 }
 
 - (void)setupScene

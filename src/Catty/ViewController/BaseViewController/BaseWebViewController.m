@@ -30,6 +30,8 @@
 #import "LoadingView.h"
 #import "Program.h"
 #import "LanguageTranslationDefines.h"
+#import "NetworkDefines.h"
+#import "BDKNotifyHUD.h"
 
 @interface BaseWebViewController ()
 @property (nonatomic, strong) UIWebView *webView;
@@ -240,13 +242,21 @@
         [self.loadingView hide];
     });
     if (error.code != -999) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        }];
-        [alert addAction:cancelAction];
-        [self presentViewController:alert animated:YES completion:nil];
+        if ([[Util networkErrorCodes] containsObject:[NSNumber
+                                                      numberWithInteger:error.code]]){
+                [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+        } else {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            }];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
+
+        
+        }
     }
 }
+
 
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
@@ -276,7 +286,7 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     
-    if ([request.URL.absoluteString rangeOfString:@"https://pocketcode.org/download/"].location == NSNotFound) {
+    if ([request.URL.absoluteString rangeOfString:kDownloadUrl].location == NSNotFound) {
         return YES;
     }
     NSDebug(@"Download");
@@ -458,7 +468,21 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.loadingView hide];
+        [self showDownloadedView];
     });
+}
+
+- (void)showDownloadedView
+{
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:@"checkmark.png"]
+                                                    text:kLocalizedDownloaded];
+    hud.destinationOpacity = 0.30f;
+    hud.center = CGPointMake(self.view.center.x, self.view.center.y - 20);
+    hud.tag = kSavedViewTag;
+    [self.view addSubview:hud];
+    [hud presentWithDuration:0.8f speed:0.1f inView:self.view completion:^{
+        [hud removeFromSuperview];
+    }];
 }
 
 - (void)setBackDownloadStatus

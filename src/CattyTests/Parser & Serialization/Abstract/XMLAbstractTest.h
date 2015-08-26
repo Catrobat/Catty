@@ -20,8 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#define CATTY_TESTS 1
-
 #import <XCTest/XCTest.h>
 #import "GDataXMLElement+CustomExtensions.h"
 #import "UIDefines.h"

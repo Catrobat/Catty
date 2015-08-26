@@ -604,7 +604,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
             self.isAllowed = YES;
             AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
             if (! [delegate.fileManager existPlayableSoundsInDirectory:delegate.fileManager.documentsDirectory]) {
-                [Util alertWithText:kLocalizedNoImportedSoundsFoundDescription];
+                [Util alertWithTitle:kLocalizedNoImportedSoundsFoundTitle
+                             andText:kLocalizedNoImportedSoundsFoundDescription];
                 if(self.afterSafeBlock) {
                     self.afterSafeBlock(nil);
                 }
