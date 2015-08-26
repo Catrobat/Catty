@@ -475,13 +475,14 @@
 {
     BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:@"checkmark.png"]
                                                     text:kLocalizedDownloaded];
-    hud.destinationOpacity = 0.30f;
-    hud.center = CGPointMake(self.view.center.x, self.view.center.y - 20);
+    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
+    hud.center = CGPointMake(self.view.center.x, self.view.center.y + kBDKNotifyHUDCenterOffsetY);
     hud.tag = kSavedViewTag;
     [self.view addSubview:hud];
-    [hud presentWithDuration:0.8f speed:0.1f inView:self.view completion:^{
-        [hud removeFromSuperview];
-    }];
+    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
+                       speed:kBDKNotifyHUDPresentationSpeed
+                       inView:self.view
+                       completion:^{ [hud removeFromSuperview]; }];
 }
 
 - (void)setBackDownloadStatus

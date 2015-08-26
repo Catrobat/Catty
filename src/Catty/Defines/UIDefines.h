@@ -103,6 +103,14 @@ static NSString *const kUserInfoSound = @"UserInfoSound";
 #define kHandleImageWidth 40.0f
 #define kOffsetTopBrickSelectionView 70.0f
 
+//BDKNotifyHUD
+#define kBDKNotifyHUDDestinationOpacity 0.3f
+#define kBDKNotifyHUDCenterOffsetY (-20.0f)
+#define kBDKNotifyHUDPresentationDuration 0.5f
+#define kBDKNotifyHUDPresentationSpeed 0.1f
+#define kBDKNotifyHUDPaddingTop 30.0f
+static NSString *const kBDKNotifyHUDCheckmarkImageName = @"checkmark.png";
+
 // ---------------------- BRICK CONFIG ---------------------------------------
 // brick categories
 typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
