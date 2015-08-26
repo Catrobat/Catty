@@ -284,9 +284,17 @@
                 if ([toBrick isKindOfClass:[LoopEndBrick class]]) {
                     LoopEndBrick* loopEndBrick = (LoopEndBrick*) toBrick;
                     if ([loopEndBrick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+                        NSInteger counter = fromScript.brickList.count;
+                        while ([[fromScript.brickList objectAtIndex:counter-1] isKindOfClass:[LoopEndBrick class]]) {
+                            counter--;
+                        }
+                        if (toIndexPath.item < counter) {
+                            return YES;
+                        }
                         return NO;
                     }
                 }
+
                 return YES;
             } else{
                 BrickCell *brickCell = (BrickCell*)[collectionView cellForItemAtIndexPath:toIndexPath];

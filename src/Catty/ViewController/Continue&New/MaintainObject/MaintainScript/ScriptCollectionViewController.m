@@ -403,7 +403,7 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         NSLog(@"INSERT ALL BRICKS");
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
         Brick *brick;
-        if (script.brickList.count >= 1) {
+        if (script.brickList.count > 1) {
             brick = [script.brickList objectAtIndex:indexPath.item - 1];
         }else{
             brick = [script.brickList objectAtIndex:indexPath.item];
@@ -1126,25 +1126,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                     }
                     index--;
                 }
-                NSInteger logicBrickCounter = 0;
-                for (NSInteger counter = 0;counter<path.row;counter++) {
-                    Brick *brick = [targetScript.brickList objectAtIndex:counter];
-                    if (([brick isKindOfClass:[IfLogicBeginBrick class]]||[brick isKindOfClass:[IfLogicElseBrick class]])) {
-                        logicBrickCounter++;
-                    }
-                    if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
-                        logicBrickCounter -= 2;
-                    }
+                if ([self checkForeverBrickInsideLogicBricks:targetScript andIndexPath:path]) {
+                    insertionIndex = path.row;
                 }
-                if (logicBrickCounter != 0) {
-                    switch (logicBrickCounter) {
-                        case 1:
-                        case 2:
-                            insertionIndex = path.row;
-                            break;
-                        default:
-                            break;
-                    }
+                if ([self checkForeverBrickInsideRepeatBricks:targetScript andIndexPath:path]) {
+                    insertionIndex = path.row;
                 }
             }
         }
@@ -1155,6 +1141,58 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     [self.collectionView reloadData];
     [self.collectionView setNeedsDisplay];
     [self.object.program saveToDisk];
+}
+
+-(BOOL)checkForeverBrickInsideLogicBricks:(Script*)targetScript andIndexPath:(NSIndexPath*)path
+{
+    NSInteger logicBrickCounter = 0;
+    for (NSInteger counter = 0;counter<path.row;counter++) {
+        Brick *brick = [targetScript.brickList objectAtIndex:counter];
+        if (([brick isKindOfClass:[IfLogicBeginBrick class]]||[brick isKindOfClass:[IfLogicElseBrick class]])) {
+            logicBrickCounter++;
+        }
+        if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
+            logicBrickCounter -= 2;
+        }
+    }
+    if (logicBrickCounter != 0) {
+        switch (logicBrickCounter) {
+            case 1:
+            case 2:
+                return YES;
+                break;
+            default:
+                break;
+        }
+    }
+    return NO;
+}
+
+-(BOOL)checkForeverBrickInsideRepeatBricks:(Script*)targetScript andIndexPath:(NSIndexPath*)path
+{
+    NSInteger repeatBrickCounter = 0;
+    for (NSInteger counter = 0;counter<path.row;counter++) {
+        Brick *brick = [targetScript.brickList objectAtIndex:counter];
+        if (([brick isKindOfClass:[LoopBeginBrick class]]&&(![brick isKindOfClass:[ForeverBrick class]]))) {
+            repeatBrickCounter++;
+        }
+        if ([brick isKindOfClass:[LoopEndBrick class]]) {
+            LoopEndBrick* endBrick = (LoopEndBrick*)brick;
+            if (![endBrick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+                repeatBrickCounter -= 1;
+            }
+        }
+    }
+    if (repeatBrickCounter != 0) {
+        switch (repeatBrickCounter) {
+            case 1:
+                return YES;
+                break;
+            default:
+                break;
+        }
+    }
+    return NO;
 }
 
 -(NSInteger)checkForeverLoopEndBrickWithStartingIndex:(NSInteger)counter andScript:(Script*)script
