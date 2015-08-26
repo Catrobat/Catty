@@ -314,7 +314,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSInteger index = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
     SpriteObject *object = [self.program.objectList objectAtIndex:index];
     imageCell.iconImageView.image = nil;
-    [imageCell.iconImageView setBorder:[UIColor globalTintColor] Width:kDefaultImageCellBorderWidth];
+    [imageCell.iconImageView setBorder:[UIColor utilityTintColor] Width:kDefaultImageCellBorderWidth];
     if (indexPath.section == kObjectSectionIndex) {
         imageCell.rightUtilityButtons = @[[Util slideViewButtonMore], [Util slideViewButtonDelete]];
         imageCell.delegate = self;

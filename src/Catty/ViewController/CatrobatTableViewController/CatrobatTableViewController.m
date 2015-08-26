@@ -114,7 +114,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.tableView.delaysContentTouches = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 
-    self.tableView.separatorColor = UIColor.globalTintColor;
     self.tableView.separatorInset = UIEdgeInsetsZero;
 
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];

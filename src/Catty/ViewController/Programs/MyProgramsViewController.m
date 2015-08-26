@@ -351,7 +351,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     cell.delegate = self;
     cell.iconImageView.image = nil;
     cell.indexPath = indexPath;
-    [cell.iconImageView setBorder:[UIColor globalTintColor] Width:kDefaultImageCellBorderWidth];
+    [cell.iconImageView setBorder:[UIColor utilityTintColor] Width:kDefaultImageCellBorderWidth];
 
     // check if one of these screenshot files is available in memory
     FileManager *fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;

@@ -26,9 +26,13 @@
 
 + (UIColor*) globalTintColor;
 
++ (UIColor*) utilityTintColor;
+
 + (UIColor*) navBarColor;
 
 + (UIColor*) navTintColor;
+
++ (UIColor*) navTextColor;
 
 + (UIColor*) lightTextTintColor;
 

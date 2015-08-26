@@ -64,7 +64,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor backgroundColor];
-    self.tableView.separatorColor = [UIColor globalTintColor];
+    self.tableView.separatorColor = [UIColor utilityTintColor];
     self.view.backgroundColor = [UIColor backgroundColor];
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self

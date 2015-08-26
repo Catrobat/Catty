@@ -42,7 +42,7 @@
 - (void)setupView
 {
     self.contentView.backgroundColor = UIColor.backgroundColor;
-    self.bottomBoarder.backgroundColor = UIColor.backgroundColor.CGColor;
+    self.bottomBoarder.backgroundColor = [UIColor utilityTintColor].CGColor;
     [self.contentView.layer addSublayer:self.bottomBoarder];
 }
 

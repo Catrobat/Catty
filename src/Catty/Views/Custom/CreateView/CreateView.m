@@ -187,7 +187,7 @@
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.layer.cornerRadius = 8.0;
     imageView.layer.masksToBounds = YES;
-    imageView.layer.borderColor = [UIColor globalTintColor].CGColor;
+    imageView.layer.borderColor = [UIColor utilityTintColor].CGColor;
     imageView.layer.borderWidth = 1.0;
     
     [view addSubview:imageView];
@@ -354,7 +354,7 @@
     [self setMaxHeightIfGreaterForView:view withHeight:height];
     CGFloat offset = view.frame.size.height + 1;
     UIView *lineView =[[UIView alloc] initWithFrame:CGRectMake(view.frame.size.width/15 -10, offset,view.frame.size.width , 1)];
-    lineView.backgroundColor = [UIColor globalTintColor];
+    lineView.backgroundColor = [UIColor utilityTintColor];
     [view addSubview:lineView];
 }
 

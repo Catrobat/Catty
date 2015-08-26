@@ -45,7 +45,7 @@
             accessoryImage = [UIImage imageNamed:@"accessory"];
             accessoryImage = [accessoryImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             self.accessoryView = [[UIImageView alloc] initWithImage:accessoryImage];
-            self.accessoryView.tintColor = UIColor.globalTintColor;
+            self.accessoryView.tintColor = [UIColor utilityTintColor];
         default:
             break;
     }

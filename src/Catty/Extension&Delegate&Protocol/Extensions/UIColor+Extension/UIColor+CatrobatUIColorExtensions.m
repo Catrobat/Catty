@@ -46,6 +46,10 @@
     return [UIColor colorWithRed:(CGFloat)(232.0/255.0) green:146.0f/255.0f blue:6.0f/255.0f alpha:1.0f];
 }
 
++ (UIColor*) utilityTintColor
+{
+    return [self lightTextTintColor];
+}
 
 + (UIColor*)navBarColor
 {
@@ -55,6 +59,11 @@
 + (UIColor*)navTintColor
 {
     return [self globalTintColor];
+}
+
++ (UIColor*)navTextColor
+{
+    return [self lightTextTintColor];
 }
 
 + (UIColor*)lightTextTintColor

@@ -261,7 +261,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     CatrobatBaseCell<CatrobatImageCell>* imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
     Look *look = [self.object.lookList objectAtIndex:indexPath.row];
     imageCell.iconImageView.image = nil;
-    [imageCell.iconImageView setBorder:[UIColor globalTintColor] Width:kDefaultImageCellBorderWidth];
+    [imageCell.iconImageView setBorder:[UIColor utilityTintColor] Width:kDefaultImageCellBorderWidth];
     imageCell.rightUtilityButtons = @[[Util slideViewButtonMore], [Util slideViewButtonDelete]];
     imageCell.delegate = self;
 
