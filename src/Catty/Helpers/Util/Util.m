@@ -99,8 +99,8 @@
     MYBlurIntroductionView *introductionView = [[MYBlurIntroductionView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
     introductionView.delegate = delegate;
     [introductionView setEnabled:YES];
-    introductionView.BackgroundImageView.image = [UIImage imageWithColor:[UIColor darkBlueColor]];
-    [introductionView setBackgroundColor:[UIColor darkBlueColor]];
+    introductionView.BackgroundImageView.image = [UIImage imageWithColor:[UIColor lightTextTintColor]];
+    [introductionView setBackgroundColor:[UIColor backgroundColor]];
     //introductionView.LanguageDirection = MYLanguageDirectionRightToLeft;
     
     //Build the introduction with desired panels
@@ -230,11 +230,11 @@
                                                                 cancelButtonTitle:kLocalizedCancel
                                                            destructiveButtonTitle:destructiveButtonTitle
                                                            otherButtonTitlesArray:otherButtonTitles];
-    [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:0 green:37.0f/255.0f blue:52.0f/255.0f alpha:0.95f]];
-    [actionSheet setButtonTextColor:[UIColor whiteColor]];
+    [actionSheet setButtonBackgroundColor:[UIColor backgroundColor]];
+    [actionSheet setButtonTextColor:[UIColor lightTextTintColor]];
 
 //    [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:1.0f]];
-//    [actionSheet setButtonTextColor:[UIColor lightOrangeColor]];
+//    [actionSheet setButtonTextColor:[UIColor globalTintColor]];
 //    [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
     
 
@@ -263,20 +263,20 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.backgroundColor = backgroundColor;
     [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateNormal];
     return button;
 }
 
 + (UIButton*)slideViewButtonMore
 {
     return [Util slideViewButtonWithTitle:kLocalizedMore
-                          backgroundColor:[UIColor colorWithRed:0.78f green:0.78f blue:0.8f alpha:1.0]];
+                          backgroundColor:[UIColor backgroundColor]];
 }
 
 + (UIButton*)slideViewButtonDelete
 {
     return [Util slideViewButtonWithTitle:kLocalizedDelete
-                          backgroundColor:[UIColor colorWithRed:1.0f green:0.231f blue:0.188f alpha:1.0f]];
+                          backgroundColor:[UIColor destructiveTintColor]];
 }
 
 + (NSString*)appName

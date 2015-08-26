@@ -27,13 +27,11 @@
 #import "NetworkDefines.h"
 #import "ProgramDefines.h"
 #import "SegueDefines.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "Util.h"
 #import "Keychain.h"
 
 #import "NetworkDefines.h"
 #import "ProgramDefines.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "LanguageTranslationDefines.h"
 #import "KeychainDefines.h"
@@ -152,13 +150,13 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
                                              positionY:LOGIN_VIEW_PADDING
                                               withText:kLocalizedLogin
                                               fontSize:LOGIN_VIEW_HEADER_FONT_SIZE
-                                              andColor:[UIColor skyBlueColor]
+                                              andColor:[UIColor darkTextTintColor]
                                        centerXPosition:true];
     
     [self addHorizontalBorderLineAtY:loginHeader.frame.size.height + 2*LOGIN_VIEW_PADDING
                                Width:self.contentView.frame.size.width
                        withLineWidth:LOGIN_VIEW_STANDARD_LINEWIDTH
-                            andColor:[UIColor skyBlueColor]];
+                            andColor:[UIColor globalTintColor]];
 }
 
 - (void)initUsernameViewElements
@@ -167,7 +165,7 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
                                                positionY:LOGIN_VIEW_USERNAME_LABEL_POSITION_Y
                                                 withText:[NSString stringWithFormat:@"%@:", (NSString*)kLocalizedUsername]
                                                 fontSize:LOGIN_VIEW_LABEL_FONT_SIZE
-                                                andColor:[UIColor skyBlueColor]
+                                                andColor:[UIColor lightTextTintColor]
                                          centerXPosition:false];
     
     self.usernameTextField = [self setUpUserDataTextFieldAtPositionX:LOGIN_VIEW_TEXTFIELD_POSITION_X
@@ -189,7 +187,7 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
                                                positionY:LOGIN_VIEW_PASSWORD_LABEL_POSITION_Y
                                                 withText:[NSString stringWithFormat:@"%@:", (NSString*)kLocalizedPassword]
                                                 fontSize:LOGIN_VIEW_LABEL_FONT_SIZE
-                                                andColor:[UIColor skyBlueColor]
+                                                andColor:[UIColor lightTextTintColor]
                                          centerXPosition:false];
     
     self.passwordTextField = [self setUpUserDataTextFieldAtPositionX:LOGIN_VIEW_TEXTFIELD_POSITION_X
@@ -212,7 +210,7 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
                                             positionY:LOGIN_VIEW_EMAIL_LABEL_POSITION_Y
                                              withText:[NSString stringWithFormat:@"%@:", (NSString*)kLocalizedEmail]
                                              fontSize:LOGIN_VIEW_LABEL_FONT_SIZE
-                                             andColor:[UIColor skyBlueColor]
+                                             andColor:[UIColor lightTextTintColor]
                                       centerXPosition:false];
     
     self.emailTextField = [self setUpUserDataTextFieldAtPositionX:LOGIN_VIEW_TEXTFIELD_POSITION_X
@@ -238,7 +236,7 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
     [self addHorizontalBorderLineAtY:beginPositionY
                                Width:self.contentView.frame.size.width
                        withLineWidth:LOGIN_VIEW_STANDARD_LINEWIDTH
-                            andColor:[UIColor skyBlueColor]];
+                            andColor:[UIColor globalTintColor]];
     
     [self setUpButtonWithCenterAtPositionX:self.contentView.frame.size.width/4
                                  positionY:beginPositionY + (endPositionY - beginPositionY)/2
@@ -253,7 +251,7 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
     [self addHorizontalBorderLineAtY:endPositionY
                                Width:self.contentView.frame.size.width
                        withLineWidth:LOGIN_VIEW_STANDARD_LINEWIDTH
-                            andColor:[UIColor skyBlueColor]];
+                            andColor:[UIColor globalTintColor]];
     
     //add button separator line
     UIBezierPath *path = [UIBezierPath bezierPath];
@@ -261,7 +259,7 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
     [path addLineToPoint:CGPointMake([Util screenWidth] / 2, endPositionY)];
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.path = [path CGPath];
-    shapeLayer.strokeColor = [[UIColor skyBlueColor] CGColor];
+    shapeLayer.strokeColor = [[UIColor globalTintColor] CGColor];
     shapeLayer.lineWidth = LOGIN_VIEW_STANDARD_LINEWIDTH;
     shapeLayer.fillColor = [[UIColor clearColor] CGColor];
     [self.view.layer addSublayer:shapeLayer];
@@ -281,7 +279,7 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
     [self addHorizontalBorderLineAtY:LOGIN_VIEW_FORGOTTEN_PWD_POSITION_Y + LOGIN_VIEW_LABEL_FONT_SIZE
                                Width:self.contentView.frame.size.width
                        withLineWidth:LOGIN_VIEW_STANDARD_LINEWIDTH
-                            andColor:[UIColor skyBlueColor]];
+                            andColor:[UIColor globalTintColor]];
 }
 
 - (void)initTermsOfUse
@@ -292,7 +290,7 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
                                                  positionY:beginPositionY
                                                   withText:kLocalizedTermsAgreementPart
                                                   fontSize:3*LOGIN_VIEW_LABEL_FONT_SIZE/4
-                                                  andColor:[UIColor skyBlueColor]
+                                                  andColor:[UIColor lightTextTintColor]
                                            centerXPosition:true];
     
     UIButton *termsOfUseButton = [self setUpButtonWithCenterAtPositionX:self.contentView.frame.size.width/2
@@ -348,7 +346,7 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
 - (UITextField*)setUpUserDataTextFieldAtPositionX:(CGFloat)x positionY:(CGFloat)y width:(CGFloat)width andHeight:(CGFloat)height
 {
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(x,y,width,height)];
-    textField.textColor = [UIColor lightOrangeColor];
+    textField.textColor = [UIColor lightTextTintColor];
     textField.backgroundColor = [UIColor whiteColor];
     [textField setBorderStyle:UITextBorderStyleRoundedRect];
     [textField setAutocorrectionType:UITextAutocorrectionTypeNo];
@@ -364,7 +362,7 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button setTitle:name forState:UIControlStateNormal];
     [button.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:LOGIN_VIEW_LABEL_FONT_SIZE]];
-    [button.titleLabel setTextColor:[UIColor orangeColor]];
+    [button setTitleColor:[UIColor globalTintColor] forState:UIControlStateNormal];
     button.titleLabel.textAlignment = NSTextAlignmentCenter;
     [button sizeToFit];
     button.frame = CGRectMake((x - button.frame.size.width/2), (y - button.frame.size.height/2), button.frame.size.width, button.frame.size.height);
@@ -376,7 +374,6 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
 
 - (void)addLinkButton:(UIButton *)button
 {
-    [button setTitleColor:[UIColor lightOrangeColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(openURLAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView insertSubview:button belowSubview:self.bodyTextView];
 }

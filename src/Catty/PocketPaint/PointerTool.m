@@ -55,7 +55,7 @@
 
   
   
-  self.canvas.pointerToolBarButtonItem.tintColor = [UIColor lightOrangeColor];
+  self.canvas.pointerToolBarButtonItem.tintColor = [UIColor globalTintColor];
   self.drawingEnabled = NO;
   
   
@@ -118,7 +118,7 @@
   if (self.drawingEnabled == YES) {
     self.drawingEnabled = NO;
     self.colorView.hidden = YES;
-    self.canvas.pointerToolBarButtonItem.tintColor = [UIColor lightOrangeColor];
+    self.canvas.pointerToolBarButtonItem.tintColor = [UIColor globalTintColor];
     
   } else{
     self.drawingEnabled = YES;

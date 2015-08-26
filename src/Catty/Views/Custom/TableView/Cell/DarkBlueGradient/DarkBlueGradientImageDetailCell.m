@@ -32,7 +32,7 @@
 
 - (void)configureImageCell
 {
-    self.titleLabel.textColor = UIColor.skyBlueColor;
+    self.titleLabel.textColor = [UIColor lightTextTintColor];
 }
 
 @end

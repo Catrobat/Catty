@@ -201,7 +201,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     [super viewDidLoad];
     [[ProgramManager sharedProgramManager] setProgram:self.object.program];
-    self.view.backgroundColor = [UIColor darkBlueColor];
+    self.view.backgroundColor = [UIColor backgroundColor];
 
     [self showFormulaEditor];
     [self hideScrollViews];
@@ -209,7 +209,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.calcButton setSelected:YES];
     self.variablePicker.delegate = self;
     self.variablePicker.dataSource = self;
-    self.variablePicker.tintColor = [UIColor skyBlueColor];
+    self.variablePicker.tintColor = [UIColor globalTintColor];
     self.variableSourceProgram = [[NSMutableArray alloc] init];
     self.variableSourceObject = [[NSMutableArray alloc] init];
     self.variableSource = [[NSMutableArray alloc] init];
@@ -470,10 +470,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
         
         _mathFunctionsMenu = [[AHKActionSheet alloc]initWithTitle:kUIActionSheetTitleSelectMathematicalFunction];
         _mathFunctionsMenu.blurTintColor = [UIColor colorWithWhite:0.0f alpha:0.7f];
-        _mathFunctionsMenu.separatorColor = UIColor.skyBlueColor;
+        _mathFunctionsMenu.separatorColor = UIColor.globalTintColor;
         _mathFunctionsMenu.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:14.0f] ,
-                                                    NSForegroundColorAttributeName : UIColor.skyBlueColor};
-        _mathFunctionsMenu.cancelButtonTextAttributes = @{NSForegroundColorAttributeName : UIColor.lightOrangeColor};
+                                                    NSForegroundColorAttributeName : UIColor.globalTintColor};
+        _mathFunctionsMenu.cancelButtonTextAttributes = @{NSForegroundColorAttributeName : [UIColor destructiveTintColor]};
         _mathFunctionsMenu.buttonTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
         _mathFunctionsMenu.selectedBackgroundColor = [UIColor colorWithWhite:0.0f alpha:0.3f];
         _mathFunctionsMenu.automaticallyTintButtonImages = NO;
@@ -519,10 +519,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
         
         _logicalOperatorsMenu = [[AHKActionSheet alloc]initWithTitle:kUIActionSheetTitleSelectLogicalOperator];
         _logicalOperatorsMenu.blurTintColor = [UIColor colorWithWhite:0.0f alpha:0.7f];
-        _logicalOperatorsMenu.separatorColor = UIColor.skyBlueColor;
+        _logicalOperatorsMenu.separatorColor = UIColor.globalTintColor;
         _logicalOperatorsMenu.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:14.0f] ,
-                                                   NSForegroundColorAttributeName : UIColor.skyBlueColor};
-        _logicalOperatorsMenu.cancelButtonTextAttributes = @{NSForegroundColorAttributeName : UIColor.lightOrangeColor};
+                                                   NSForegroundColorAttributeName : UIColor.globalTintColor};
+        _logicalOperatorsMenu.cancelButtonTextAttributes = @{NSForegroundColorAttributeName : [UIColor destructiveTintColor]};
         _logicalOperatorsMenu.buttonTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
         _logicalOperatorsMenu.selectedBackgroundColor = [UIColor colorWithWhite:0.0f alpha:0.3f];
         _logicalOperatorsMenu.automaticallyTintButtonImages = NO;
@@ -561,17 +561,17 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.view addSubview:self.formulaEditorTextView];
     
     for(int i = 0; i < [self.orangeTypeButton count]; i++) {
-        [[self.orangeTypeButton objectAtIndex:i] setTitleColor:[UIColor darkBlueColor] forState:UIControlStateNormal];
-        [[self.orangeTypeButton objectAtIndex:i] setBackgroundColor:[UIColor lightOrangeColor]];
+        [[self.orangeTypeButton objectAtIndex:i] setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateNormal];
+        [[self.orangeTypeButton objectAtIndex:i] setBackgroundColor:[UIColor globalTintColor]];
       
-        [[self.orangeTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor orangeColor]] forState:UIControlStateHighlighted];
+        [[self.orangeTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor globalTintColor]] forState:UIControlStateHighlighted];
         [[[self.orangeTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
         [[[self.orangeTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor backgroundColor].CGColor];
     }
   for(int i = 0; i < [self.normalTypeButton count]; i++) {
-    [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor darkBlueColor] forState:UIControlStateNormal];
-    [[self.normalTypeButton objectAtIndex:i] setBackgroundColor:[UIColor skyBlueColor]];
-    [[self.normalTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateHighlighted];
+    [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateNormal];
+    [[self.normalTypeButton objectAtIndex:i] setBackgroundColor:[UIColor globalTintColor]];
+    [[self.normalTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor globalTintColor]] forState:UIControlStateHighlighted];
     [[[self.normalTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
     [[[self.normalTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor backgroundColor].CGColor];
       
@@ -585,22 +585,22 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
   }
   for(int i = 0; i < [self.toolTypeButton count]; i++) {
-    [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor skyBlueColor] forState:UIControlStateNormal];
-    [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor darkBlueColor] forState:UIControlStateHighlighted];
-    [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor darkBlueColor] forState:UIControlStateSelected];
-    [[self.toolTypeButton objectAtIndex:i] setBackgroundColor:[UIColor darkBlueColor]];
-    [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor skyBlueColor]] forState:UIControlStateHighlighted];
-          [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor skyBlueColor]] forState:UIControlStateSelected];
+    [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor globalTintColor] forState:UIControlStateNormal];
+    [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateHighlighted];
+    [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateSelected];
+    [[self.toolTypeButton objectAtIndex:i] setBackgroundColor:[UIColor lightTextTintColor]];
+    [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor globalTintColor]] forState:UIControlStateHighlighted];
+          [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor globalTintColor]] forState:UIControlStateSelected];
       [[[self.toolTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
       [[[self.toolTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor backgroundColor].CGColor];
   }
 
     for(int i = 0; i < [self.highlightedButtons count]; i++) {
-        [[self.highlightedButtons objectAtIndex:i] setTitleColor:[UIColor lightOrangeColor] forState:UIControlStateNormal];
+        [[self.highlightedButtons objectAtIndex:i] setTitleColor:[UIColor globalTintColor] forState:UIControlStateNormal];
         [[self.highlightedButtons objectAtIndex:i] setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
-        [[self.highlightedButtons objectAtIndex:i] setBackgroundColor:[UIColor shadeDarkBlueColor]];
-        [[self.highlightedButtons objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateHighlighted];
-        [[self.highlightedButtons objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateSelected];
+        [[self.highlightedButtons objectAtIndex:i] setBackgroundColor:[UIColor lightTextTintColor]];
+        [[self.highlightedButtons objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor globalTintColor]] forState:UIControlStateHighlighted];
+        [[self.highlightedButtons objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor globalTintColor]] forState:UIControlStateSelected];
         [[[self.highlightedButtons objectAtIndex:i] layer] setBorderWidth:1.0f];
         [[[self.highlightedButtons objectAtIndex:i] layer] setBorderColor:[UIColor backgroundColor].CGColor];
     }
@@ -869,11 +869,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     NSString *title = [self pickerView:pickerView titleForRow:row forComponent:component];
-    UIColor *color = [UIColor skyBlueColor];
+    UIColor *color = [UIColor globalTintColor];
     
     VariablePickerData *pickerData = [self.variableSource objectAtIndex:row];
     if([pickerData isLabel])
-        color = [UIColor orangeColor];
+        color = [UIColor globalTintColor];
     
     NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:color}];
     return attString;

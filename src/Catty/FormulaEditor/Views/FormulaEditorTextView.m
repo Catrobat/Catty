@@ -52,7 +52,7 @@
         //self.selectable = NO;
         [self addGestureRecognizer:self.tapRecognizer];
         self.inputView = [[[NSBundle mainBundle] loadNibNamed:@"FormulaEditor" owner:self.formulaEditorViewController options:nil] lastObject];
-        self.inputView.backgroundColor = UIColor.airForceBlueColor;
+        self.inputView.backgroundColor = UIColor.backgroundColor;
         self.userInteractionEnabled = YES;
         [self setAutocorrectionType:UITextAutocorrectionTypeNo];
         self.backgroundColor = [UIColor whiteColor];
@@ -64,7 +64,7 @@
         self.backspaceButton = [[UIButton alloc] init];
         [self.backspaceButton setImage:[UIImage imageNamed:@"del_active"] forState:UIControlStateNormal];
         [self.backspaceButton setImage:[UIImage imageNamed:@"del"] forState:UIControlStateDisabled];
-        self.backspaceButton.tintColor = UIColor.airForceBlueColor;
+        self.backspaceButton.tintColor = [UIColor globalTintColor];
         self.backspaceButton.frame = CGRectMake(self.frame.size.width - BACKSPACE_WIDTH, 0, BACKSPACE_HEIGHT, BACKSPACE_WIDTH);
         [self.backspaceButton addTarget:self action:@selector(clear) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.backspaceButton];
@@ -150,7 +150,7 @@
     {
         selectionColor = [UIColor redColor];
     }else{
-        selectionColor = [UIColor lightOrangeColor];
+        selectionColor = [UIColor globalTintColor];
     }
     
     NSMutableAttributedString *formulaString = [[NSMutableAttributedString alloc] initWithString:[self text] attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20.0f]}];

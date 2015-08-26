@@ -166,8 +166,8 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
         
         // rounded corners
         viewControllerToPresent.view.layer.cornerRadius = 15.0f;
-        viewControllerToPresent.view.layer.borderWidth = 4.0f;
-        viewControllerToPresent.view.layer.borderColor = [UIColor skyBlueColor].CGColor;
+        viewControllerToPresent.view.layer.borderWidth = 2.0f;
+        viewControllerToPresent.view.layer.borderColor = [UIColor globalTintColor].CGColor;
         
         // blurview
         [self addBlurViewWithFrame:frame];
