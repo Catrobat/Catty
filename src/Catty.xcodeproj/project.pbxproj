@@ -156,6 +156,7 @@
 		92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A481A42F2A3008C771A /* iOSCombobox.m */; };
 		9238C5831A3AE9920099F061 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */; };
 		928D4D791A7BD19A00E6DFA8 /* CatrobatUISlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 928D4D781A7BD19A00E6DFA8 /* CatrobatUISlider.m */; };
+		92D346BD1B8DDC0A009EB8F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */; };
 		92DFAFE61A38943D00FA9B0F /* FormulaEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */; };
 		92DFB00E1A38949E00FA9B0F /* ExternInternRepresentationMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEA1A38949E00FA9B0F /* ExternInternRepresentationMapping.m */; };
 		92DFB00F1A38949E00FA9B0F /* ExternToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEC1A38949E00FA9B0F /* ExternToken.m */; };
@@ -950,6 +951,7 @@
 		92C37A511856276D00547C1E /* SetBrightnessBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetBrightnessBrickTests.m; sourceTree = "<group>"; };
 		92C37A531856279600547C1E /* MoveNStepsBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveNStepsBrickTests.m; sourceTree = "<group>"; };
 		92C37A55185627A300547C1E /* ClearGrafficEffectBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearGrafficEffectBrickTests.m; sourceTree = "<group>"; };
+		92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormulaEditor.xib; sourceTree = "<group>"; };
 		92DFAFE91A38949E00FA9B0F /* ExternInternRepresentationMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternInternRepresentationMapping.h; sourceTree = "<group>"; };
 		92DFAFEA1A38949E00FA9B0F /* ExternInternRepresentationMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternInternRepresentationMapping.m; sourceTree = "<group>"; };
@@ -4030,6 +4032,7 @@
 			children = (
 				92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */,
 				92FF32C21A24E33B00093DA7 /* iPhone.storyboard */,
+				92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */,
 			);
 			name = "Storyboard+XIB";
 			path = "Catty/Storyboard+XIB";
@@ -4827,6 +4830,7 @@
 				CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */,
 				CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */,
 				CADBD6DE19B0E8C200C62836 /* OrderedDictionary.license in Resources */,
+				92D346BD1B8DDC0A009EB8F7 /* LaunchScreen.storyboard in Resources */,
 				92DFB05E1A38960C00FA9B0F /* nko_brightness_guide.png in Resources */,
 				CADBD6DF19B0E8C200C62836 /* AHKActionSheet.license in Resources */,
 				CADBD6E019B0E8C200C62836 /* SMPageControl.license in Resources */,
@@ -5648,7 +5652,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = NO;
@@ -5686,7 +5689,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_RECEIVER_WEAK = NO;
