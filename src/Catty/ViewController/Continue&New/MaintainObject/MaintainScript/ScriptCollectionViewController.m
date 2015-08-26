@@ -729,6 +729,26 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                     }
                     index--;
                 }
+                NSInteger logicBrickCounter = 0;
+                for (NSInteger counter = 0;counter<path.row;counter++) {
+                    Brick *brick = [targetScript.brickList objectAtIndex:counter];
+                    if (([brick isKindOfClass:[IfLogicBeginBrick class]]||[brick isKindOfClass:[IfLogicElseBrick class]])) {
+                        logicBrickCounter++;
+                    }
+                    if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
+                        logicBrickCounter -= 2;
+                    }
+                }
+                if (logicBrickCounter != 0) {
+                    switch (logicBrickCounter) {
+                        case 1:
+                        case 2:
+                            insertionIndex = path.row;
+                            break;
+                        default:
+                            break;
+                    }
+                }
             }
         }
         [targetScript.brickList insertObject:loopEndBrick atIndex:insertionIndex];
@@ -1053,7 +1073,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             if ([loopBeginBrick.loopEndBrick isEqual:toBrick]) {
                 self.lowerRankBrick = toIndexPath;
                 return NO;
-            }else if([toBrick isKindOfClass:[IfLogicBeginBrick class]]||[toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[LoopBeginBrick class]]){
+            }else if([toBrick isKindOfClass:[IfLogicBeginBrick class]]||[toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[LoopBeginBrick class]]||[toBrick isKindOfClass:[LoopEndBrick class]]){
                 if (toIndexPath.item < fromIndexPath.item) {
                     self.higherRankBrick = toIndexPath;
                     return NO;
