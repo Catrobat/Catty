@@ -285,31 +285,28 @@
 
 - (void)editAction
 {
-    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:kLocalizedPaintSelect message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:kLocalizedPaintSelect
+                                                                         message:@""
+                                                                  preferredStyle:UIAlertControllerStyleActionSheet];
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedCancel style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedCancel
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction *action) {}];
     [actionSheet addAction:cancelAction];
     
-    UIAlertAction *saveAction = [UIAlertAction actionWithTitle:kLocalizedPaintSave style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self saveAction];
-    }];
+    UIAlertAction *saveAction = [UIAlertAction actionWithTitle:kLocalizedPaintSave
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction *action) { [self saveAction]; }];
     [actionSheet addAction:saveAction];
     
-    UIAlertAction *saveCloseAction = [UIAlertAction actionWithTitle:kLocalizedPaintSaveClose style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self saveAndCloseAction];
-    }];
+    UIAlertAction *saveCloseAction = [UIAlertAction actionWithTitle:kLocalizedPaintClose
+                                                              style:UIAlertActionStyleDefault
+                                                            handler:^(UIAlertAction *action) { [self closeAction]; }];
     [actionSheet addAction:saveCloseAction];
     
-    
-    UIAlertAction *discardAction = [UIAlertAction actionWithTitle:kLocalizedPaintDiscardClose style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self discardAndCloseAction];
-    }];
-    [actionSheet addAction:discardAction];
-    
-    UIAlertAction *newCanvasAction = [UIAlertAction actionWithTitle:kLocalizedPaintNewCanvas style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self newCanvasAction];
-    }];
+    UIAlertAction *newCanvasAction = [UIAlertAction actionWithTitle:kLocalizedPaintNewCanvas
+                                                              style:UIAlertActionStyleDefault
+                                                            handler:^(UIAlertAction *action) { [self newCanvasAction]; }];
     [actionSheet addAction:newCanvasAction];
     
     [self presentViewController:actionSheet animated:YES completion:nil];
@@ -810,7 +807,7 @@
     });
     NSDebug(@"saved to Camera Roll");
 }
-- (void)saveAndCloseAction
+- (void)closeAction
 {
     ALAuthorizationStatus statusCameraRoll = [ALAssetsLibrary authorizationStatus];
     UIAlertController *alertControllerCameraRoll = [UIAlertController
