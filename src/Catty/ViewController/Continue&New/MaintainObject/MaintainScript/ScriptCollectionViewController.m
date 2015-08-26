@@ -74,6 +74,7 @@
 #import "CBMutableCopyContext.h"
 #import "RepeatBrick.h"
 #import "OrderedMapTable.h"
+#import "BrickMoveManager.h"
 
 @interface ScriptCollectionViewController() <UICollectionViewDelegate,
                                              UICollectionViewDataSource,
@@ -91,11 +92,9 @@
 @property (nonatomic, strong) NSMutableArray *selectedIndexPositions;  // refactor
 @property (nonatomic, assign) BOOL selectedAllCells;  // refactor
 @property (nonatomic, assign) BOOL scrollEnd;  // refactor
+@property (nonatomic, strong) NSIndexPath *variableIndexPath;
 @property (nonatomic, assign) BOOL isInsertingBrickMode;
 @property (nonatomic, assign) BOOL isEditingBrickMode;
-@property (nonatomic, strong) NSIndexPath *higherRankBrick; // refactor
-@property (nonatomic, strong) NSIndexPath *lowerRankBrick;  // refactor
-@property (nonatomic, assign) BOOL moveToOtherScript;   //refactor
 @property (nonatomic) PageIndexCategoryType lastSelectedBrickCategory;
 
 @end
@@ -144,6 +143,7 @@
 {
     [super viewDidDisappear:animated];
     self.navigationController.interactivePopGestureRecognizer.cancelsTouchesInView = YES;
+    [[BrickMoveManager sharedBrickMoveManager] cleanUp];
 }
 
 #pragma mark - actions
@@ -424,90 +424,13 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 layout:(UICollectionViewLayout*)collectionViewLayout
 willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    self.higherRankBrick = nil;
-    self.lowerRankBrick = nil;
-    self.moveToOtherScript = NO;
+    [[BrickMoveManager sharedBrickMoveManager] resetBrickMoveManager];
 }
 
 - (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
     canMoveToIndexPath:(NSIndexPath*)toIndexPath
 {
-    Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
-    Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
-    if(self.isInsertingBrickMode){
-        if (fromBrick.isAnimatedInsertBrick) {
-            if (toIndexPath.item != 0) {
-                Script *script;
-                if (self.moveToOtherScript) {
-                    script = [self.object.scriptList objectAtIndex:toIndexPath.section];
-                }else{
-                    script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
-                }
-                Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
-                if ([toBrick isKindOfClass:[LoopEndBrick class]]) {
-                    LoopEndBrick* loopEndBrick = (LoopEndBrick*) toBrick;
-                    if ([loopEndBrick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
-                        return NO;
-                    }
-                }
-                return YES;
-            } else{
-                BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:toIndexPath];
-                self.moveToOtherScript = YES;
-                if ([brickCell.scriptOrBrick isKindOfClass:[Script class]]) {
-                    Script *script = (Script*)brickCell.scriptOrBrick;
-                    if (script.brickList.count == 0) {
-                        return YES;
-                    }else {
-                        return NO;
-                    }
-                }
-                return NO;
-            }
-        }else{
-            return NO;
-        }
-
-        
-    }
-    if (toIndexPath.item != 0) {
-        Script *script;
-        if (self.moveToOtherScript) {
-            script = [self.object.scriptList objectAtIndex:toIndexPath.section];
-        }else{
-            script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
-        }
-        
-        Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
-        if ([toBrick isKindOfClass:[LoopEndBrick class]]) {
-            LoopEndBrick* loopEndBrick = (LoopEndBrick*) toBrick;
-            if ([loopEndBrick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
-                return NO;
-            }
-        }
-        if ([fromBrick isKindOfClass:[LoopBeginBrick class]]){
-            return [self checkLoopBeginToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick];
-        } else if ([fromBrick isKindOfClass:[LoopEndBrick class]]) {
-            return [self checkLoopEndToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick];
-        } else if ([fromBrick isKindOfClass:[IfLogicBeginBrick class]]){
-            return [self checkIfBeginToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick];
-        } else if ([fromBrick isKindOfClass:[IfLogicElseBrick class]]){
-            return [self checkIfElseToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick];
-        } else if ([fromBrick isKindOfClass:[IfLogicEndBrick class]]){
-            return [self checkIfEndToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick];
-        } else {
-            return (toIndexPath.item != 0);
-        }
-    } else {
-        Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
-        self.moveToOtherScript = YES;
-        if ([toScript.brickList count] == 0) {
-            return YES;
-        }else{
-           return NO;
-        }
-        
-    }
+    return [[BrickMoveManager sharedBrickMoveManager] collectionView:self.collectionView itemAtIndexPath:fromIndexPath canMoveToIndexPath:toIndexPath IsInserting:self.isInsertingBrickMode andObject:self.object];
 }
 
 
@@ -673,107 +596,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     
 }
 
-
--(void)insertBrick:(Brick*)brick andIndexPath:(NSIndexPath*)path
-{
-    Script *targetScript = self.object.scriptList[path.section];
-    brick.script = targetScript;
-    NSInteger insertionIndex = path.row;
-    NSInteger check = [self checkForeverLoopEndBrickWithStartingIndex:insertionIndex andScript:targetScript];
-    if (check != -1) {
-        insertionIndex = check - 1;
-    }
-    if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
-        IfLogicBeginBrick *ifBeginBrick = (IfLogicBeginBrick*)brick;
-        IfLogicElseBrick *ifElseBrick = [IfLogicElseBrick new];
-        IfLogicEndBrick *ifEndBrick = [IfLogicEndBrick new];
-        ifBeginBrick.ifElseBrick = ifElseBrick;
-        ifBeginBrick.ifEndBrick = ifEndBrick;
-        ifElseBrick.ifBeginBrick = ifBeginBrick;
-        ifElseBrick.ifEndBrick = ifEndBrick;
-        ifEndBrick.ifBeginBrick = ifBeginBrick;
-        ifEndBrick.ifElseBrick = ifElseBrick;
-        ifElseBrick.script = targetScript;
-        ifEndBrick.script = targetScript;
-        ifElseBrick.animate = YES;
-        ifEndBrick.animate = YES;
-        [targetScript.brickList insertObject:ifEndBrick atIndex:insertionIndex];
-        [targetScript.brickList insertObject:ifElseBrick atIndex:insertionIndex];
-    } else if ([brick isKindOfClass:[LoopBeginBrick class]]) {
-        LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)brick;
-        LoopEndBrick *loopEndBrick = [LoopEndBrick new];
-        loopBeginBrick.loopEndBrick = loopEndBrick;
-        loopEndBrick.loopBeginBrick = loopBeginBrick;
-        loopEndBrick.script = targetScript;
-        loopEndBrick.animate = YES;
-        if ([loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
-            NSInteger index = loopBeginBrick.script.brickList.count;
-            insertionIndex = index;
-            if (targetScript.brickList.count >=1) {
-                while ([[targetScript.brickList objectAtIndex:index-1] isKindOfClass:[LoopEndBrick class]]) {
-                    LoopEndBrick* loopEndBrickCheck = [targetScript.brickList objectAtIndex:index-1];
-                    NSInteger loopbeginIndex = 0;
-                    for (Brick *brick in targetScript.brickList) {
-                        if (brick  == loopEndBrickCheck.loopBeginBrick) {
-                            break;
-                        }
-                        loopbeginIndex++;
-                    }
-                    if (loopbeginIndex < path.row) {
-                        insertionIndex = index-1;
-                    } else if(loopbeginIndex > path.row){
-                        insertionIndex = index;
-                    }else{
-                            //should not be possible
-                        insertionIndex = index;
-                    }
-                    index--;
-                }
-                NSInteger logicBrickCounter = 0;
-                for (NSInteger counter = 0;counter<path.row;counter++) {
-                    Brick *brick = [targetScript.brickList objectAtIndex:counter];
-                    if (([brick isKindOfClass:[IfLogicBeginBrick class]]||[brick isKindOfClass:[IfLogicElseBrick class]])) {
-                        logicBrickCounter++;
-                    }
-                    if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
-                        logicBrickCounter -= 2;
-                    }
-                }
-                if (logicBrickCounter != 0) {
-                    switch (logicBrickCounter) {
-                        case 1:
-                        case 2:
-                            insertionIndex = path.row;
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-        }
-        [targetScript.brickList insertObject:loopEndBrick atIndex:insertionIndex];
-
-    }
-    brick.animateInsertBrick = NO;
-    [self.collectionView reloadData];
-    [self.collectionView setNeedsDisplay];
-    [self.object.program saveToDisk];
-}
-
--(NSInteger)checkForeverLoopEndBrickWithStartingIndex:(NSInteger)counter andScript:(Script*)script
-{
-        //Check if there is a Forever Loop End-brick
-    while (counter >= 1) {
-        if ([[script.brickList objectAtIndex:counter-1] isKindOfClass:[LoopEndBrick class]]) {
-            LoopEndBrick *brick =[script.brickList objectAtIndex:counter-1];
-            if ([brick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
-                return counter;
-            }
-        }
-        counter--;
-    }
-    return -1;
-}
 
 #pragma mark - Brick Cell Delegate
 - (void)brickCell:(BrickCell*)brickCell didSelectBrickCellButton:(SelectButton*)selectButton
@@ -1062,213 +884,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
 }
 
-#pragma mark - check movelogic
-- (BOOL)checkLoopBeginToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
-{
-    if (((toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil) && (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil))||(toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil && self.lowerRankBrick == nil) || (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil && self.higherRankBrick == nil)||(self.higherRankBrick==nil && self.lowerRankBrick==nil))  {
-        if (fromIndexPath.section == toIndexPath.section) {
-            Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
-            Brick *toBrick = [toScript.brickList objectAtIndex:toIndexPath.item - 1];
-            LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)fromBrick;
-            if ([loopBeginBrick.loopEndBrick isEqual:toBrick]) {
-                self.lowerRankBrick = toIndexPath;
-                return NO;
-            }else if([toBrick isKindOfClass:[IfLogicBeginBrick class]]||[toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[LoopBeginBrick class]]||[toBrick isKindOfClass:[LoopEndBrick class]]){
-                if (toIndexPath.item < fromIndexPath.item) {
-                    self.higherRankBrick = toIndexPath;
-                    return NO;
-                } else {
-                    self.lowerRankBrick = toIndexPath;
-                    return NO;
-                }
-            }else {
-                return YES;
-            }
-        } else {
-            return NO;
-        }
-        
-    }else{
-        return NO;
-    }
-}
-
-- (BOOL)checkLoopEndToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
-{
-// FIXME: YUMMI, SPAGHETTI CODE!!!
-    LoopEndBrick *endbrick = (LoopEndBrick*) fromBrick;
-    if ([endbrick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
-        return NO;
-    }
-    if (((toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil) && (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil))||(toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil && self.lowerRankBrick == nil) || (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil && self.higherRankBrick == nil)||(self.higherRankBrick==nil && self.lowerRankBrick==nil)) {
-        if (fromIndexPath.section == toIndexPath.section) {
-            Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
-            Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
-            if ([endbrick.loopBeginBrick isEqual:toBrick]) {
-                self.higherRankBrick = toIndexPath;
-                return NO;
-            }else if([toBrick isKindOfClass:[IfLogicBeginBrick class]]||[toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[LoopBeginBrick class]]||[toBrick isKindOfClass:[LoopEndBrick class]]){
-                if (toIndexPath.item < fromIndexPath.item) {
-                    self.higherRankBrick = toIndexPath;
-                    return NO;
-                }else{
-                    self.lowerRankBrick = toIndexPath;
-                    return NO;
-                }
-            }else{
-                return YES;
-            }
-        }else{
-            return NO;
-        }
-        
-    }else{
-        return NO;
-    }
-}
-
-- (BOOL)checkIfBeginToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
-{
-    if (((toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil) && (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil))||(toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil && self.lowerRankBrick == nil) || (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil && self.higherRankBrick == nil)||(self.higherRankBrick==nil && self.lowerRankBrick==nil))  {
-        if (fromIndexPath.section == toIndexPath.section) {
-            Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
-            Brick *toBrick = [toScript.brickList objectAtIndex:toIndexPath.item - 1];
-            IfLogicBeginBrick *ifBeginBrick = (IfLogicBeginBrick*)fromBrick;
-            if ([ifBeginBrick.ifElseBrick isEqual:toBrick]) {
-                self.lowerRankBrick = toIndexPath;
-                return NO;
-            }else if([ifBeginBrick.ifEndBrick isEqual:toBrick]) {
-                return NO;
-                
-            }else if([toBrick isKindOfClass:[LoopBeginBrick class]]) {
-                if (toIndexPath.item < fromIndexPath.item) {
-                    self.higherRankBrick = toIndexPath;
-                    return NO;
-                }else{
-                    self.lowerRankBrick = toIndexPath;
-                    return NO;
-                }
-                
-            } else if([toBrick isKindOfClass:[LoopEndBrick class]]) {
-                if (toIndexPath.item < fromIndexPath.item) {
-                    self.higherRankBrick = toIndexPath;
-                    return NO;
-                }else{
-                    self.lowerRankBrick = toIndexPath;
-                    return NO;
-                }
-                
-            } else{
-                return YES;
-            }
-            
-        }else{
-            return NO;
-        }
-    }else {
-        return NO;
-    }
-}
-
-
-- (BOOL)checkIfElseToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
-{
-    if (((toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil) && (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil))||(toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil && self.lowerRankBrick == nil) || (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil && self.higherRankBrick == nil)||(self.higherRankBrick==nil && self.lowerRankBrick==nil)) {
-        if (fromIndexPath.section == toIndexPath.section) {
-            Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
-            Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
-            if ([toBrick isKindOfClass:[IfLogicBeginBrick class]]) {
-                IfLogicBeginBrick *beginBrick = (IfLogicBeginBrick*)toBrick;
-                if ([beginBrick.ifElseBrick isEqual:fromBrick]) {
-                    self.higherRankBrick = toIndexPath;
-                    return NO;
-                }else{
-                    return YES;
-                }
-            }else if([toBrick isKindOfClass:[IfLogicEndBrick class]] ){
-                IfLogicEndBrick *beginBrick = (IfLogicEndBrick*)toBrick;
-                if ([beginBrick.ifElseBrick isEqual:fromBrick]) {
-                    self.lowerRankBrick = toIndexPath;
-                    return NO;
-                }else{
-                    return YES;
-                }
-            }else if([toBrick isKindOfClass:[LoopBeginBrick class]]) {
-                if (toIndexPath.item < fromIndexPath.item) {
-                    self.higherRankBrick = toIndexPath;
-                    return NO;
-                }else{
-                    self.lowerRankBrick = toIndexPath;
-                    return NO;
-                }
-                
-            } else if([toBrick isKindOfClass:[LoopEndBrick class]]) {
-                if (toIndexPath.item < fromIndexPath.item) {
-                    self.higherRankBrick = toIndexPath;
-                    return NO;
-                }else{
-                    self.lowerRankBrick = toIndexPath;
-                    return NO;
-                }
-                
-            }else{
-                return YES;
-            }
-            
-        }else{
-            
-            return NO;
-        }
-        
-    }else{
-        return NO;
-    }
-
-}
-
-- (BOOL)checkIfEndToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick
-{
-    if (toIndexPath.item > self.higherRankBrick.item || self.higherRankBrick==nil) {
-        if (fromIndexPath.section == toIndexPath.section) {
-            Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
-            Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
-            if([toBrick isKindOfClass:[IfLogicElseBrick class]] ){
-                IfLogicElseBrick *beginBrick = (IfLogicElseBrick*)toBrick;
-                if ([beginBrick.ifEndBrick isEqual:fromBrick]) {
-                    self.higherRankBrick = toIndexPath;
-                    return NO;
-                }else{
-                    return YES;
-                }
-            }else if([toBrick isKindOfClass:[LoopBeginBrick class]]) {
-                if (toIndexPath.item < fromIndexPath.item) {
-                    self.higherRankBrick = toIndexPath;
-                    return NO;
-                }else{
-                    self.lowerRankBrick = toIndexPath;
-                    return NO;
-                }
-                
-            } else if([toBrick isKindOfClass:[LoopEndBrick class]]) {
-                if (toIndexPath.item < fromIndexPath.item) {
-                    self.higherRankBrick = toIndexPath;
-                    return NO;
-                }else{
-                    self.lowerRankBrick = toIndexPath;
-                    return NO;
-                }
-            }else{
-                return YES;
-            }
-            
-        }else{
-            
-            return NO;
-        }
-    }else{
-        return NO;
-    }
-}
 
 #pragma mark - selectLogic/Loop bricks
 -(void)selectLoopBeginWithBrick:(Brick*)brick Script:(Script*)script IndexPath:(NSIndexPath*)indexPath andSelectButton:(SelectButton *)selectButton
@@ -1453,6 +1068,108 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self.selectedIndexPaths removeObject:beginPath];
         [self.selectedIndexPaths removeObject:elsePath];
     }
+}
+
+#pragma mark - Insert Brick Logic
+-(void)insertBrick:(Brick*)brick andIndexPath:(NSIndexPath*)path
+{
+    Script *targetScript = self.object.scriptList[path.section];
+    brick.script = targetScript;
+    NSInteger insertionIndex = path.row;
+    NSInteger check = [self checkForeverLoopEndBrickWithStartingIndex:insertionIndex andScript:targetScript];
+    if (check != -1) {
+        insertionIndex = check - 1;
+    }
+    if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
+        IfLogicBeginBrick *ifBeginBrick = (IfLogicBeginBrick*)brick;
+        IfLogicElseBrick *ifElseBrick = [IfLogicElseBrick new];
+        IfLogicEndBrick *ifEndBrick = [IfLogicEndBrick new];
+        ifBeginBrick.ifElseBrick = ifElseBrick;
+        ifBeginBrick.ifEndBrick = ifEndBrick;
+        ifElseBrick.ifBeginBrick = ifBeginBrick;
+        ifElseBrick.ifEndBrick = ifEndBrick;
+        ifEndBrick.ifBeginBrick = ifBeginBrick;
+        ifEndBrick.ifElseBrick = ifElseBrick;
+        ifElseBrick.script = targetScript;
+        ifEndBrick.script = targetScript;
+        ifElseBrick.animate = YES;
+        ifEndBrick.animate = YES;
+        [targetScript.brickList insertObject:ifEndBrick atIndex:insertionIndex];
+        [targetScript.brickList insertObject:ifElseBrick atIndex:insertionIndex];
+    } else if ([brick isKindOfClass:[LoopBeginBrick class]]) {
+        LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)brick;
+        LoopEndBrick *loopEndBrick = [LoopEndBrick new];
+        loopBeginBrick.loopEndBrick = loopEndBrick;
+        loopEndBrick.loopBeginBrick = loopBeginBrick;
+        loopEndBrick.script = targetScript;
+        loopEndBrick.animate = YES;
+        if ([loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+            NSInteger index = loopBeginBrick.script.brickList.count;
+            insertionIndex = index;
+            if (targetScript.brickList.count >=1) {
+                while ([[targetScript.brickList objectAtIndex:index-1] isKindOfClass:[LoopEndBrick class]]) {
+                    LoopEndBrick* loopEndBrickCheck = [targetScript.brickList objectAtIndex:index-1];
+                    NSInteger loopbeginIndex = 0;
+                    for (Brick *brick in targetScript.brickList) {
+                        if (brick  == loopEndBrickCheck.loopBeginBrick) {
+                            break;
+                        }
+                        loopbeginIndex++;
+                    }
+                    if (loopbeginIndex < path.row) {
+                        insertionIndex = index-1;
+                    } else if(loopbeginIndex > path.row){
+                        insertionIndex = index;
+                    }else{
+                            //should not be possible
+                        insertionIndex = index;
+                    }
+                    index--;
+                }
+                NSInteger logicBrickCounter = 0;
+                for (NSInteger counter = 0;counter<path.row;counter++) {
+                    Brick *brick = [targetScript.brickList objectAtIndex:counter];
+                    if (([brick isKindOfClass:[IfLogicBeginBrick class]]||[brick isKindOfClass:[IfLogicElseBrick class]])) {
+                        logicBrickCounter++;
+                    }
+                    if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
+                        logicBrickCounter -= 2;
+                    }
+                }
+                if (logicBrickCounter != 0) {
+                    switch (logicBrickCounter) {
+                        case 1:
+                        case 2:
+                            insertionIndex = path.row;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+        [targetScript.brickList insertObject:loopEndBrick atIndex:insertionIndex];
+        
+    }
+    brick.animateInsertBrick = NO;
+    [self.collectionView reloadData];
+    [self.collectionView setNeedsDisplay];
+    [self.object.program saveToDisk];
+}
+
+-(NSInteger)checkForeverLoopEndBrickWithStartingIndex:(NSInteger)counter andScript:(Script*)script
+{
+        //Check if there is a Forever Loop End-brick
+    while (counter >= 1) {
+        if ([[script.brickList objectAtIndex:counter-1] isKindOfClass:[LoopEndBrick class]]) {
+            LoopEndBrick *brick =[script.brickList objectAtIndex:counter-1];
+            if ([brick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+                return counter;
+            }
+        }
+        counter--;
+    }
+    return -1;
 }
 
 #pragma mark - Animate Logic Bricks
@@ -1771,7 +1488,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         }
     }
     
-    self.higherRankBrick = indexPath;
+    self.variableIndexPath = indexPath;
     
     [Util askUserForUniqueNameAndPerformAction:@selector(addVariableWithName:andCompletion:)
                                         target:self
@@ -1790,7 +1507,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                             [self.object.program.variables.objectVariableList setObject:array forKey:self.object];
                                         }
                                         UserVariable *var = [self.object.program.variables getUserVariableNamed:(NSString*)variableName forSpriteObject:self.object];
-                                        BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.higherRankBrick];
+                                        BrickCell *brickCell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:self.variableIndexPath];
                                         Brick * brick = (Brick*)brickCell.scriptOrBrick;
                                         Brick<BrickVariableProtocol> *variableBrick;
                                         if ([brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
@@ -1798,7 +1515,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                         }
                                         
                                         if(var)
-                                            [variableBrick setVariable:var forLineNumber:self.higherRankBrick.row andParameterNumber:self.higherRankBrick.section];
+                                            [variableBrick setVariable:var forLineNumber:self.variableIndexPath.row andParameterNumber:self.variableIndexPath.section];
                                     }
                                    promptTitle:kUIFENewVar
                                  promptMessage:kUIFEVarName
