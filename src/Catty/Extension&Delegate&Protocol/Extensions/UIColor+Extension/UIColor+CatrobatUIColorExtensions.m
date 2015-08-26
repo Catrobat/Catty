@@ -43,28 +43,28 @@
 
 + (UIColor*)globalTintColor
 {
-    return [UIColor blueColor];
+    return [UIColor colorWithRed:(CGFloat)(232.0/255.0) green:146.0f/255.0f blue:6.0f/255.0f alpha:1.0f];
 }
 
 
 + (UIColor*)navBarColor
 {
-    return [UIColor globalTintColor];
+    return [self backgroundColor];
 }
 
 + (UIColor*)navTintColor
 {
-    return [UIColor whiteColor];
+    return [self globalTintColor];
 }
 
 + (UIColor*)lightTextTintColor
 {
-    return [UIColor lightGrayColor];
+    return [UIColor colorWithRed:168.0f/255.0f green:223.0f/255.0f blue:244/255.0f alpha:1.0f];
 }
 
 + (UIColor*)darkTextTintColor
 {
-    return [UIColor grayColor];
+    return [UIColor colorWithRed:111.0f/255.0f green:142.0f/255.0f blue:155.0f/255.0f alpha:1.0f];
 }
 
 
@@ -75,7 +75,7 @@
 
 + (UIColor*)backgroundColor
 {
-    return [UIColor whiteColor];
+    return [UIColor colorWithRed:0 green:37.0f/255.0f blue:52.0f/255.0f alpha:1.0f];
 }
 
 

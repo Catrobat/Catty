@@ -389,7 +389,7 @@
     }else{
         label.font = [UIFont boldSystemFontOfSize:12];
     }
-    label.textColor = [UIColor globalTintColor];
+    label.textColor = [UIColor lightTextTintColor];
     label.layer.shadowColor = [[UIColor whiteColor] CGColor];
     label.layer.shadowOffset = CGSizeMake(0.0, 0.0);
 }
@@ -401,7 +401,7 @@
     }else{
         label.font = [UIFont boldSystemFontOfSize:12];
     }
-    label.textColor = [UIColor globalTintColor];
+    label.textColor = [UIColor lightTextTintColor];
     label.layer.shadowColor = [[UIColor whiteColor] CGColor];
     label.layer.shadowOffset = CGSizeMake(0.0, 0.0);
 }
@@ -418,7 +418,7 @@
 {
     UILabel* detailInformationLabel = [[UILabel alloc] initWithFrame:CGRectMake(xPosition, yPosition, 155, 25)];
     detailInformationLabel.text =  [title stringByEscapingHTMLEntities];
-    detailInformationLabel.textColor = [UIColor globalTintColor];
+    detailInformationLabel.textColor = [UIColor lightTextTintColor];
     if (height == kIpadScreenHeight) {
         detailInformationLabel.font = [UIFont systemFontOfSize:18.0f];
     }else{

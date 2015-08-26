@@ -266,7 +266,7 @@
 + (UIButton*)slideViewButtonDelete
 {
     return [Util slideViewButtonWithTitle:kLocalizedDelete
-                          backgroundColor:[UIColor backgroundColor]];
+                          backgroundColor:[UIColor destructiveTintColor]];
 }
 
 + (NSString*)appName

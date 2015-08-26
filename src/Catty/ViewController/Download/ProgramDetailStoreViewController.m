@@ -450,7 +450,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     if(!self.loadingView) {
         self.loadingView = [[LoadingView alloc] init];
-        [self.loadingView setBackgroundColor:[UIColor globalTintColor]];
+//        [self.loadingView setBackgroundColor:[UIColor globalTintColor]];
         [self.view addSubview:self.loadingView];
     }
     [self.loadingView show];

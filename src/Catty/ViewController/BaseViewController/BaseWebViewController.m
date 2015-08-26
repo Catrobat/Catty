@@ -92,6 +92,7 @@
     [self.navigationController setToolbarHidden:NO];
     self.navigationController.toolbar.barStyle = UIBarStyleDefault;
     self.navigationController.toolbar.tintColor = [UIColor globalTintColor];
+    self.navigationController.toolbar.barTintColor = [UIColor backgroundColor];
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
 
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
@@ -142,7 +143,7 @@
     [self.webView.scrollView.delegate scrollViewDidScroll:self.webView.scrollView];
     if (!_loadingView) {
         _loadingView = [[LoadingView alloc] init];
-        _loadingView.backgroundColor = [UIColor globalTintColor];
+//        _loadingView.backgroundColor = [UIColor globalTintColor];
         [self.view addSubview:self.loadingView];
     }
     [self.loadingView show];
