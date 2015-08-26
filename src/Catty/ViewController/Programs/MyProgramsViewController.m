@@ -141,7 +141,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                               tag:kEditProgramsActionSheetTag
                                                              view:self.navigationController.view];
     if (self.programLoadingInfos.count) {
-        [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
+        [actionSheet setButtonTextColor:[UIColor destructiveTintColor] forButtonAtIndex:0];
     }
 }
 
@@ -287,12 +287,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self configureImageCell:imageCell atIndexPath:indexPath];
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
-        detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.topLeftDetailLabel.textColor = [UIColor lightTextTintColor];
         detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedLastAccess];
-        detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
-        detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.topRightDetailLabel.textColor = [UIColor lightTextTintColor];
+        detailCell.bottomLeftDetailLabel.textColor = [UIColor lightTextTintColor];
         detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedSize];
-        detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.bottomRightDetailLabel.textColor = [UIColor lightTextTintColor];
         detailCell.topRightDetailLabel.text = [kLocalizedLoading stringByAppendingString:@"..."];
         detailCell.bottomRightDetailLabel.text = [kLocalizedLoading stringByAppendingString:@"..."];
         ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
@@ -351,7 +351,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     cell.delegate = self;
     cell.iconImageView.image = nil;
     cell.indexPath = indexPath;
-    [cell.iconImageView setBorder:[UIColor skyBlueColor] Width:kDefaultImageCellBorderWidth];
+    [cell.iconImageView setBorder:[UIColor utilityTintColor] Width:kDefaultImageCellBorderWidth];
 
     // check if one of these screenshot files is available in memory
     FileManager *fileManager = ((AppDelegate*)[UIApplication sharedApplication].delegate).fileManager;

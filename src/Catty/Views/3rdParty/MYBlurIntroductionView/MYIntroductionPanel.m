@@ -7,6 +7,7 @@
 //
 
 #import "MYIntroductionPanel.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
 @implementation MYIntroductionPanel
 
@@ -89,9 +90,9 @@
 
 - (void)initializeConstants{
     kTitleFont = [UIFont boldSystemFontOfSize:21];
-    kTitleTextColor = [UIColor whiteColor];
+    kTitleTextColor = [UIColor darkTextTintColor];
     kDescriptionFont = [UIFont systemFontOfSize:14];
-    kDescriptionTextColor = [UIColor whiteColor];
+    kDescriptionTextColor = [UIColor lightTextTintColor];
     kSeparatorLineColor = [UIColor colorWithWhite:0 alpha:0.1];
     
     self.backgroundColor = [UIColor clearColor];

@@ -952,7 +952,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     } else {
         self.navigationItem.title = kLocalizedScripts;
         self.navigationItem.rightBarButtonItem.title = kLocalizedDelete;
-        self.navigationItem.rightBarButtonItem.tintColor = UIColor.lightOrangeColor;
+        self.navigationItem.rightBarButtonItem.tintColor = [UIColor navTintColor];
         
         [UIView animateWithDuration:animated ? 0.3f : 0.0f delay:0.0f usingSpringWithDamping:0.65f initialSpringVelocity:0.5f options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
@@ -963,7 +963,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                          } completion:^(BOOL finished) {
                              for (BrickCell *brickCell in self.collectionView.visibleCells) {
                                  brickCell.enabled = YES;
-                                 brickCell.selectButton.selected = NO;
+                               brickCell.selectButton.selected = NO;
                              }
                              for (Script *script in self.object.scriptList) {
                                  script.isSelected = NO;
@@ -1615,13 +1615,13 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             CBAssert((loopBeginBrick != nil) || (loopEndBrick != nil));
             if([brick.script.brickList containsObject:loopBeginBrick] || [brick.script.brickList containsObject:loopEndBrick])
             {
-                NSUInteger loopBeginIndex = [brick.script.brickList indexOfObject:loopBeginBrick];
-                NSUInteger loopEndIndex = [brick.script.brickList indexOfObject:loopEndBrick];
-                [loopBeginBrick removeFromScript];
-                [loopEndBrick removeFromScript];
-                NSIndexPath *loopBeginIndexPath = [NSIndexPath indexPathForItem:(loopBeginIndex + 1) inSection:indexPath.section];
-                NSIndexPath *loopEndIndexPath = [NSIndexPath indexPathForItem:(loopEndIndex + 1) inSection:indexPath.section];
-                [self.collectionView deleteItemsAtIndexPaths:@[loopBeginIndexPath, loopEndIndexPath]];
+            NSUInteger loopBeginIndex = [brick.script.brickList indexOfObject:loopBeginBrick];
+            NSUInteger loopEndIndex = [brick.script.brickList indexOfObject:loopEndBrick];
+            [loopBeginBrick removeFromScript];
+            [loopEndBrick removeFromScript];
+            NSIndexPath *loopBeginIndexPath = [NSIndexPath indexPathForItem:(loopBeginIndex + 1) inSection:indexPath.section];
+            NSIndexPath *loopEndIndexPath = [NSIndexPath indexPathForItem:(loopEndIndex + 1) inSection:indexPath.section];
+            [self.collectionView deleteItemsAtIndexPaths:@[loopBeginIndexPath, loopEndIndexPath]];
             }
         } else if ([brick isIfLogicBrick]) {
             // if brick
@@ -1645,16 +1645,16 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             CBAssert((ifLogicBeginBrick != nil) && (ifLogicElseBrick != nil) && (ifLogicEndBrick != nil));
             if([brick.script.brickList containsObject:ifLogicBeginBrick] || [brick.script.brickList containsObject:ifLogicElseBrick] || [brick.script.brickList containsObject:ifLogicEndBrick])
             {
-                NSUInteger ifLogicBeginIndex = [brick.script.brickList indexOfObject:ifLogicBeginBrick];
-                NSUInteger ifLogicElseIndex = [brick.script.brickList indexOfObject:ifLogicElseBrick];
-                NSUInteger ifLogicEndIndex = [brick.script.brickList indexOfObject:ifLogicEndBrick];
-                [ifLogicBeginBrick removeFromScript];
-                [ifLogicElseBrick removeFromScript];
-                [ifLogicEndBrick removeFromScript];
-                NSIndexPath *ifLogicBeginIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 1) inSection:indexPath.section];
-                NSIndexPath *ifLogicElseIndexPath = [NSIndexPath indexPathForItem:(ifLogicElseIndex + 1) inSection:indexPath.section];
-                NSIndexPath *ifLogicEndIndexPath = [NSIndexPath indexPathForItem:(ifLogicEndIndex + 1) inSection:indexPath.section];
-                [self.collectionView deleteItemsAtIndexPaths:@[ifLogicBeginIndexPath, ifLogicElseIndexPath, ifLogicEndIndexPath]];
+            NSUInteger ifLogicBeginIndex = [brick.script.brickList indexOfObject:ifLogicBeginBrick];
+            NSUInteger ifLogicElseIndex = [brick.script.brickList indexOfObject:ifLogicElseBrick];
+            NSUInteger ifLogicEndIndex = [brick.script.brickList indexOfObject:ifLogicEndBrick];
+            [ifLogicBeginBrick removeFromScript];
+            [ifLogicElseBrick removeFromScript];
+            [ifLogicEndBrick removeFromScript];
+            NSIndexPath *ifLogicBeginIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 1) inSection:indexPath.section];
+            NSIndexPath *ifLogicElseIndexPath = [NSIndexPath indexPathForItem:(ifLogicElseIndex + 1) inSection:indexPath.section];
+            NSIndexPath *ifLogicEndIndexPath = [NSIndexPath indexPathForItem:(ifLogicEndIndex + 1) inSection:indexPath.section];
+            [self.collectionView deleteItemsAtIndexPaths:@[ifLogicBeginIndexPath, ifLogicElseIndexPath, ifLogicEndIndexPath]];
             }
             
         } else {
@@ -1670,10 +1670,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 #pragma mark - Add new Variable
 - (void)addVariableForBrick:(Brick*)brick atIndexPath:(NSIndexPath*)indexPath andIsProgramVariable:(BOOL)isProgramVar
 {
-    Brick<BrickVariableProtocol> *variableBrick;
-    if ([brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
-        variableBrick = (Brick<BrickVariableProtocol>*)brick;
-    }
+//    Brick<BrickVariableProtocol> *variableBrick;
+//    if ([brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
+//        variableBrick = (Brick<BrickVariableProtocol>*)brick;
+//    }
     
     NSMutableArray *allVariableNames = [NSMutableArray new];
     if (isProgramVar) {
@@ -1730,7 +1730,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 #pragma mark - Setup
 - (void)setupCollectionView
 {
-    self.collectionView.backgroundColor = [UIColor darkBlueColor];
+    self.collectionView.backgroundColor = [UIColor backgroundColor];
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.scrollEnabled = YES;
     self.collectionView.collectionViewLayout = [LXReorderableCollectionViewFlowLayout new];

@@ -60,7 +60,7 @@
     [self.placeholderDescriptionLabel setFont:[UIFont systemFontOfSize:25]];
     self.placeholderDescriptionLabel.text = [NSString stringWithFormat:kLocalizedTapPlusToAdd, self.title];
     self.placeholderDescriptionLabel.backgroundColor = UIColor.clearColor;
-    self.placeholderDescriptionLabel.textColor = UIColor.skyBlueColor;
+    self.placeholderDescriptionLabel.textColor = UIColor.globalTintColor;
     self.placeholderDescriptionLabel.numberOfLines = 0;
     self.contentView = self.placeholderDescriptionLabel;
     self.shimmering = YES;

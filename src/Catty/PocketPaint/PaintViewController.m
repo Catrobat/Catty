@@ -34,6 +34,9 @@
 #import "QuartzCore/QuartzCore.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
+#import "CatrobatActionSheet.h"
+#import "ActionSheetAlertViewTags.h"
+#import "BDKNotifyHUD.h"
 
 //Helper
 #import "RGBAHelper.h"
@@ -263,9 +266,9 @@
 - (void)setupToolbar
 {
     [self.navigationController setToolbarHidden:NO];
-    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-    self.navigationController.toolbar.barTintColor = [UIColor navBarColor];
-    self.navigationController.toolbar.tintColor = [UIColor lightOrangeColor];
+    self.navigationController.toolbar.barStyle = UIBarStyleDefault;
+//    self.navigationController.toolbar.barTintColor = [UIColor clearColor];
+    self.navigationController.toolbar.tintColor = [UIColor globalTintColor];
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     [self updateToolbar];
     
@@ -274,7 +277,7 @@
 - (void)setupNavigationBar
 {
     self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationBar.tintColor = [UIColor lightOrangeColor];
+    self.navigationController.navigationBar.tintColor = [UIColor navTintColor];
     self.navigationItem.title = @"Pocket Paint";
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedPaintMenuButtonTitle
                                                                    style:UIBarButtonItemStylePlain
@@ -459,7 +462,7 @@
     self.fillRecognizer.enabled = NO;
     
     [self.handTool disableHandTool];
-    self.pointerToolBarButtonItem.tintColor = [UIColor lightOrangeColor];
+    self.pointerToolBarButtonItem.tintColor = [UIColor globalTintColor];
     if (self.resizeViewManager.resizeViewer.hidden == NO) {
         [self.resizeViewManager hideResizeView];
     }
@@ -778,6 +781,7 @@
                                                     message:kLocalizedNoAccesToImagesCheckSettingsDescription
                                                     preferredStyle:UIAlertControllerStyleAlert];
     
+    
     UIAlertAction *cancelAction = [UIAlertAction
                                    actionWithTitle:kLocalizedCancel
                                    style:UIAlertActionStyleCancel
@@ -798,7 +802,7 @@
         if([self checkUserAuthorisation:false])
         {
             if (statusCameraRoll == ALAuthorizationStatusAuthorized) {
-                UIImageWriteToSavedPhotosAlbum(self.saveView.image, nil, nil, nil);
+        UIImageWriteToSavedPhotosAlbum(self.saveView.image, nil, nil, nil);
             }else
             {
                 [self presentViewController:alertControllerCameraRoll animated:YES completion:nil];
@@ -806,7 +810,26 @@
         }
         
     });
+    
+    if([self checkUserAuthorisation:false] && (statusCameraRoll == ALAuthorizationStatusAuthorized))
+    {
+        [self showSavedView];
+    }
+    
     NSDebug(@"saved to Camera Roll");
+}
+
+- (void)showSavedView
+{
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName]
+                                                    text:kLocalizedSaved];
+    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
+    hud.center = CGPointMake(self.view.center.x, self.view.center.y + kBDKNotifyHUDCenterOffsetY);
+    [self.view addSubview:hud];
+    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
+                       speed:kBDKNotifyHUDPresentationSpeed
+                      inView:self.view
+                  completion:^{ [hud removeFromSuperview]; }];
 }
 
 - (void)closeAction

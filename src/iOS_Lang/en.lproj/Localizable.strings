@@ -151,6 +151,9 @@
 /* No comment provided by engineer. */
 "Close" = "Close";
 
+/* paint */
+"Close Paint" = "Close Paint";
+
 /* No comment provided by engineer. */
 "compass" = "compass";
 
@@ -246,9 +249,6 @@
 
 /* No comment provided by engineer. */
 "direction" = "direction";
-
-/* paint */
-"Discard & Close" = "Discard & Close";
 
 /* paint */
 "Do you really want to delete the current drawing?" = "Do you really want to delete the current drawing?";
@@ -840,9 +840,6 @@
 
 /* No comment provided by engineer. */
 "Saturday" = "Saturday";
-
-/* paint */
-"Save & Close Paint" = "Save & Close Paint";
 
 /* Action sheet menu title */
 "Save Screenshot to" = "Save Screenshot to";
