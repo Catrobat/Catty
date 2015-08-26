@@ -172,7 +172,11 @@
             return [self buildFunctionWithoutParametersAndBrackets:FALSE_F];
             break;
         case POW:
-            return [self buildFunctionWithoutParametersAndBrackets:POW];
+            return [self buildDoubleParameterFunction:POW
+                               withFirstParameterType:TOKEN_TYPE_NUMBER
+                                    andParameterValue:[NSString stringWithFormat:@"%d",1]
+                              withSecondParameterType:TOKEN_TYPE_NUMBER
+                              andSecondParameterValue:[NSString stringWithFormat:@"%d",1]];
             break;
         case LETTER:
             return [self buildDoubleParameterFunction:LETTER

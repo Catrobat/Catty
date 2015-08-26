@@ -982,7 +982,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     
 }
 
-#define kBDKNotifyHUDPaddingTop 30.0f
 
 - (void)showNotification:(NSString*)text
 {
@@ -995,7 +994,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     CGFloat offset;
     
     self.notficicationHud = [BDKNotifyHUD notifyHUDWithImage:nil text:text];
-    self.notficicationHud.destinationOpacity = 0.30f;
+    self.notficicationHud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
     
     if(spacerHeight < self.notficicationHud.frame.size.height)
         offset = brickAndInputHeight / 2 + self.notficicationHud.frame.size.height / 2;
@@ -1005,9 +1004,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.notficicationHud.center = CGPointMake(self.view.center.x, offset);
     
     [self.view addSubview:self.notficicationHud];
-    [self.notficicationHud presentWithDuration:1.0f speed:0.1f inView:self.view completion:^{
-        [self.notficicationHud removeFromSuperview];
-    }];
+    [self.notficicationHud presentWithDuration:kBDKNotifyHUDPresentationDuration
+                                         speed:kBDKNotifyHUDPresentationSpeed
+                                        inView:self.view completion:^{ [self.notficicationHud removeFromSuperview]; }];
 }
 
 - (void)showChangesSavedView
