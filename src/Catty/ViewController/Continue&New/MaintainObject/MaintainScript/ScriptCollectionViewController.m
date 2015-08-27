@@ -863,48 +863,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)deleteSelectedBricks
 {
-    NSMutableArray *cellsToDelete = [[NSMutableArray alloc]init];
-    
-    [self.selectedIndexPaths sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSInteger r1 = [obj1 row];
-        NSInteger r2 = [obj2 row];
-        if (r1 < r2) {
-            return (NSComparisonResult)NSOrderedDescending;
-        }
-        if (r1 > r2) {
-            return (NSComparisonResult)NSOrderedAscending;
-        }
-        return (NSComparisonResult)NSOrderedSame;
-    }];
-    
-    [self.selectedIndexPaths sortUsingComparator:^NSComparisonResult(NSIndexPath *obj1, NSIndexPath *obj2) {
-        NSInteger r1 = obj1.section;
-        NSInteger r2 = obj2.section;
-        if (r1 < r2) {
-            return (NSComparisonResult)NSOrderedDescending;
-        }
-        if (r1 > r2) {
-            return (NSComparisonResult)NSOrderedAscending;
-        }
-        return (NSComparisonResult)NSOrderedSame;
-    }];
-    
-    for (NSIndexPath *path in self.selectedIndexPaths) {
-        [self.collectionView scrollToItemAtIndexPath:path atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:NO];
-        [self.collectionView layoutIfNeeded];
-        [cellsToDelete addObject: (BrickCell*)[self.collectionView cellForItemAtIndexPath:path]];
-    }
-    int i = 0;
-    for (NSIndexPath *path in self.selectedIndexPaths) {
-        BrickCell *cell = [cellsToDelete objectAtIndex:i];
-        if (cell) {
-            [self removeBrickOrScript:cell.scriptOrBrick atIndexPath:path deleteAllControllParts:NO];
-            [self.collectionView layoutIfNeeded];
-        }
-        i++;
-    }
-    
-    self.selectedIndexPaths =[NSMutableArray new];
+    [self removeBricksWithIndexPaths:self.selectedIndexPaths];
 }
 
 -(void)turnOnInsertingBrickMode
