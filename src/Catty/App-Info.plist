@@ -25,7 +25,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2868-IOS-153-{parent:6dbd4bb}</string>
+	<string>2869-IOS-153-{parent:c476b78}</string>
 	<key>CatrobatApplicationName</key>
 	<string>Pocket Code (Catty iOS)</string>
 	<key>CatrobatBuildName</key>
@@ -41,7 +41,7 @@
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
-	<string>iPhone</string>
+	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>iPhone</string>
 	<key>UIStatusBarHidden</key>

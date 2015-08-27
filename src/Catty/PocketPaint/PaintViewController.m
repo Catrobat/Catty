@@ -34,6 +34,9 @@
 #import "QuartzCore/QuartzCore.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
+#import "CatrobatActionSheet.h"
+#import "ActionSheetAlertViewTags.h"
+#import "BDKNotifyHUD.h"
 
 //Helper
 #import "RGBAHelper.h"
@@ -263,9 +266,9 @@
 - (void)setupToolbar
 {
     [self.navigationController setToolbarHidden:NO];
-    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-    self.navigationController.toolbar.barTintColor = [UIColor navBarColor];
-    self.navigationController.toolbar.tintColor = [UIColor lightOrangeColor];
+    self.navigationController.toolbar.barStyle = UIBarStyleDefault;
+//    self.navigationController.toolbar.barTintColor = [UIColor clearColor];
+    self.navigationController.toolbar.tintColor = [UIColor globalTintColor];
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     [self updateToolbar];
     
@@ -274,7 +277,7 @@
 - (void)setupNavigationBar
 {
     self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationBar.tintColor = [UIColor lightOrangeColor];
+    self.navigationController.navigationBar.tintColor = [UIColor navTintColor];
     self.navigationItem.title = @"Pocket Paint";
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedPaintMenuButtonTitle
                                                                    style:UIBarButtonItemStylePlain
@@ -285,31 +288,28 @@
 
 - (void)editAction
 {
-    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:kLocalizedPaintSelect message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:kLocalizedPaintSelect
+                                                                         message:@""
+                                                                  preferredStyle:UIAlertControllerStyleActionSheet];
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedCancel style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedCancel
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction *action) {}];
     [actionSheet addAction:cancelAction];
     
-    UIAlertAction *saveAction = [UIAlertAction actionWithTitle:kLocalizedPaintSave style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self saveAction];
-    }];
+    UIAlertAction *saveAction = [UIAlertAction actionWithTitle:kLocalizedPaintSave
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction *action) { [self saveAction]; }];
     [actionSheet addAction:saveAction];
     
-    UIAlertAction *saveCloseAction = [UIAlertAction actionWithTitle:kLocalizedPaintSaveClose style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self saveAndCloseAction];
-    }];
+    UIAlertAction *saveCloseAction = [UIAlertAction actionWithTitle:kLocalizedPaintClose
+                                                              style:UIAlertActionStyleDefault
+                                                            handler:^(UIAlertAction *action) { [self closeAction]; }];
     [actionSheet addAction:saveCloseAction];
     
-    
-    UIAlertAction *discardAction = [UIAlertAction actionWithTitle:kLocalizedPaintDiscardClose style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self discardAndCloseAction];
-    }];
-    [actionSheet addAction:discardAction];
-    
-    UIAlertAction *newCanvasAction = [UIAlertAction actionWithTitle:kLocalizedPaintNewCanvas style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self newCanvasAction];
-    }];
+    UIAlertAction *newCanvasAction = [UIAlertAction actionWithTitle:kLocalizedPaintNewCanvas
+                                                              style:UIAlertActionStyleDefault
+                                                            handler:^(UIAlertAction *action) { [self newCanvasAction]; }];
     [actionSheet addAction:newCanvasAction];
     
     [self presentViewController:actionSheet animated:YES completion:nil];
@@ -462,7 +462,7 @@
     self.fillRecognizer.enabled = NO;
     
     [self.handTool disableHandTool];
-    self.pointerToolBarButtonItem.tintColor = [UIColor lightOrangeColor];
+    self.pointerToolBarButtonItem.tintColor = [UIColor globalTintColor];
     if (self.resizeViewManager.resizeViewer.hidden == NO) {
         [self.resizeViewManager hideResizeView];
     }
@@ -751,6 +751,7 @@
     }
     [self dismissSemiModalView];
 }
+
 - (void)closeColorPicker:(id)sender
 {
     self.red =((ColorPickerViewController*)sender).red;
@@ -780,6 +781,7 @@
                                                     message:kLocalizedNoAccesToImagesCheckSettingsDescription
                                                     preferredStyle:UIAlertControllerStyleAlert];
     
+    
     UIAlertAction *cancelAction = [UIAlertAction
                                    actionWithTitle:kLocalizedCancel
                                    style:UIAlertActionStyleCancel
@@ -800,7 +802,7 @@
         if([self checkUserAuthorisation:false])
         {
             if (statusCameraRoll == ALAuthorizationStatusAuthorized) {
-                UIImageWriteToSavedPhotosAlbum(self.saveView.image, nil, nil, nil);
+        UIImageWriteToSavedPhotosAlbum(self.saveView.image, nil, nil, nil);
             }else
             {
                 [self presentViewController:alertControllerCameraRoll animated:YES completion:nil];
@@ -808,58 +810,34 @@
         }
         
     });
+    
+    if([self checkUserAuthorisation:false] && (statusCameraRoll == ALAuthorizationStatusAuthorized))
+    {
+        [self showSavedView];
+    }
+    
     NSDebug(@"saved to Camera Roll");
 }
-- (void)saveAndCloseAction
+
+- (void)showSavedView
 {
-    ALAuthorizationStatus statusCameraRoll = [ALAssetsLibrary authorizationStatus];
-    UIAlertController *alertControllerCameraRoll = [UIAlertController
-                                                    alertControllerWithTitle:nil
-                                                    message:kLocalizedNoAccesToImagesCheckSettingsDescription
-                                                    preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *cancelAction = [UIAlertAction
-                                   actionWithTitle:kLocalizedCancel
-                                   style:UIAlertActionStyleCancel
-                                   handler:nil];
-    
-    UIAlertAction *settingsAction = [UIAlertAction
-                                     actionWithTitle:kLocalizedSettings
-                                     style:UIAlertActionStyleDefault
-                                     handler:^(UIAlertAction *action)
-                                     {
-                                         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                                     }];
-    
-    [alertControllerCameraRoll addAction:cancelAction];
-    [alertControllerCameraRoll addAction:settingsAction];
-    
-    NSDebug(@"save and close");
-    if([self checkUserAuthorisation:true])
-    {
-        if (statusCameraRoll == ALAuthorizationStatusAuthorized)
-        {
-            if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)])
-            {
-                UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
-                UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
-                UIGraphicsEndImageContext();
-                if (![self.saveView.image isEqual:blank]) {
-                    [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
-                }
-            }
-            [self.navigationController popViewControllerAnimated:YES];
-        }else
-        {
-            [self presentViewController:alertControllerCameraRoll animated:YES completion:nil];
-        }
-    }
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName]
+                                                    text:kLocalizedSaved];
+    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
+    hud.center = CGPointMake(self.view.center.x, self.view.center.y + kBDKNotifyHUDCenterOffsetY);
+    [self.view addSubview:hud];
+    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
+                       speed:kBDKNotifyHUDPresentationSpeed
+                      inView:self.view
+                  completion:^{ [hud removeFromSuperview]; }];
 }
-- (void)discardAndCloseAction
+
+- (void)closeAction
 {
     NSDebug(@"don't save and close");
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (void)newCanvasAction
 {
    

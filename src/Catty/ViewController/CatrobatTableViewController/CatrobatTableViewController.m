@@ -49,6 +49,7 @@
 #import "LoginPopupViewController.h"
 #import "ProgramsForUploadViewController.h"
 #import "Util.h"
+#import "UIImage+CatrobatUIImageExtensions.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
     kContinueProgramVC = 0,
@@ -113,7 +114,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.tableView.delaysContentTouches = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 
-    self.tableView.separatorColor = UIColor.skyBlueColor;
     self.tableView.separatorInset = UIEdgeInsetsZero;
 
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -126,7 +126,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         self.tableView.scrollEnabled = YES;
         [self initNavigationBar];
     }
-    
+
     //Always use the Test-Server for test-uploads and -logins, because Webteam receives emails for each of this actions on the other server
 #if DEBUG == 1
     [defaults setBool:YES forKey:kUseTestServerForUploadAndLogin];
@@ -185,6 +185,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)initNavigationBar
 {
     self.navigationItem.title = kLocalizedPocketCode;
+    self.navigationController.navigationBar.tintColor = [UIColor navTintColor];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoLight];
     [button addTarget:self action:@selector(infoPressed:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *infoItem = [[UIBarButtonItem alloc] initWithCustomView:button];
@@ -356,7 +357,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)configureSubtitleLabelForCell:(UITableViewCell*)cell
 {
     UILabel *subtitleLabel = (UILabel*)[cell viewWithTag:kSubtitleLabelTag];
-    subtitleLabel.textColor = [UIColor brightGrayColor];
+    subtitleLabel.textColor = [UIColor lightTextTintColor];
     ProgramLoadingInfo *loadingInfo = [Util lastUsedProgramLoadingInfo];
     subtitleLabel.text = loadingInfo.visibleName;
 }

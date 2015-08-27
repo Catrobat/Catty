@@ -64,8 +64,8 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor backgroundColor];
-    self.tableView.separatorColor = [UIColor skyBlueColor];
-    self.view.backgroundColor = [UIColor darkBlueColor];
+    self.tableView.separatorColor = [UIColor utilityTintColor];
+    self.view.backgroundColor = [UIColor backgroundColor];
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self
                            selector:@selector(hideLoadingView)
@@ -222,8 +222,9 @@
 - (void)setupToolBar
 {
     [self.navigationController setToolbarHidden:NO];
-    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-    self.navigationController.toolbar.tintColor = [UIColor orangeColor];
+    self.navigationController.toolbar.barStyle = UIBarStyleDefault;
+    self.navigationController.toolbar.tintColor = [UIColor globalTintColor];
+    self.navigationController.toolbar.barTintColor = [UIColor backgroundColor];
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
 }
 
@@ -420,15 +421,16 @@
 
 - (void)showSavedView
 {
-    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:@"checkmark.png"]
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName]
                                                     text:kLocalizedSaved];
-    hud.destinationOpacity = 0.30f;
-    hud.center = CGPointMake(self.view.center.x, self.view.center.y - 20);
+    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
+    hud.center = CGPointMake(self.view.center.x, self.view.center.y + kBDKNotifyHUDCenterOffsetY);
     hud.tag = kSavedViewTag;
     [self.view addSubview:hud];
-    [hud presentWithDuration:0.5f speed:0.1f inView:self.view completion:^{
-        [hud removeFromSuperview];
-    }];
+    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
+                       speed:kBDKNotifyHUDPresentationSpeed
+                       inView:self.view
+                       completion:^{ [hud removeFromSuperview]; }];
 }
 
 - (void)showPlaceHolder:(BOOL)show

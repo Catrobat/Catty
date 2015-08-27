@@ -99,7 +99,7 @@
     self.duplicateName = self.project.name;
     [self initNavigationBar];
     self.hidesBottomBarWhenPushed = YES;
-    self.view.backgroundColor = [UIColor darkBlueColor];
+    self.view.backgroundColor = [UIColor backgroundColor];
     NSDebug(@"%@",self.project.author);
     self.projectView = [self createViewForProject:self.project];
     if(!self.project.author){
@@ -458,6 +458,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     if(!self.loadingView) {
         self.loadingView = [[LoadingView alloc] init];
+//        [self.loadingView setBackgroundColor:[UIColor globalTintColor]];
         [self.view addSubview:self.loadingView];
     }
     [self.loadingView show];

@@ -28,7 +28,7 @@
 #import "LanguageTranslationDefines.h"
 
 #define kLoadingBackgroundHeight 100
-#define kLoadingBackgroundWidth 270
+#define kLoadingBackgroundWidth 200
 
 @interface LoadingView()
 
@@ -52,7 +52,7 @@
   if (self = [super initWithFrame:CGRectMake(25, 130, kLoadingBackgroundWidth, kLoadingBackgroundHeight)]) {
     self.tag = kLoadingViewTag;
     self.backgroundColor = [UIColor clearColor];
-    self.alpha = 0.80f;
+    self.alpha = 0.90f;
     self.layer.cornerRadius = 5;
     [self initLoadingLabel];
     [self initActivityIndicator];
@@ -87,9 +87,9 @@
 
 - (void)initLoadingLabel
 {
-  self.loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 65, 240, 20)];
+  self.loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 65, 170, 20)];
   self.loadingLabel.backgroundColor = [UIColor clearColor];
-  self.loadingLabel.textColor = [UIColor blueGrayColor];
+  self.loadingLabel.textColor = [UIColor lightTextTintColor];
   NSString* loadingText = [[NSString alloc] initWithFormat:@"%@...", kLocalizedLoading];
   self.loadingLabel.text = loadingText;
   self.loadingLabel.textAlignment = NSTextAlignmentCenter;
@@ -101,7 +101,7 @@
 - (void)initActivityIndicator
 {
   self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-  self.activityIndicator.frame = CGRectMake(115, 15, 40, 40);
+  self.activityIndicator.frame = CGRectMake(80, 15, 40, 40);
   [self addSubview:self.activityIndicator];
 }
 

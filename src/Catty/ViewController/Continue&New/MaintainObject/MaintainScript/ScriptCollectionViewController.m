@@ -921,7 +921,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     } else {
         self.navigationItem.title = kLocalizedScripts;
         self.navigationItem.rightBarButtonItem.title = kLocalizedDelete;
-        self.navigationItem.rightBarButtonItem.tintColor = UIColor.lightOrangeColor;
+        self.navigationItem.rightBarButtonItem.tintColor = [UIColor navTintColor];
         
         [UIView animateWithDuration:animated ? 0.3f : 0.0f delay:0.0f usingSpringWithDamping:0.65f initialSpringVelocity:0.5f options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
@@ -932,7 +932,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                          } completion:^(BOOL finished) {
                              for (BrickCell *brickCell in self.collectionView.visibleCells) {
                                  brickCell.enabled = YES;
-                                 brickCell.selectButton.selected = NO;
+                               brickCell.selectButton.selected = NO;
                              }
                              for (Script *script in self.object.scriptList) {
                                  script.isSelected = NO;
@@ -1677,10 +1677,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 #pragma mark - Add new Variable
 - (void)addVariableForBrick:(Brick*)brick atIndexPath:(NSIndexPath*)indexPath andIsProgramVariable:(BOOL)isProgramVar
 {
-    Brick<BrickVariableProtocol> *variableBrick;
-    if ([brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
-        variableBrick = (Brick<BrickVariableProtocol>*)brick;
-    }
+//    Brick<BrickVariableProtocol> *variableBrick;
+//    if ([brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
+//        variableBrick = (Brick<BrickVariableProtocol>*)brick;
+//    }
     
     NSMutableArray *allVariableNames = [NSMutableArray new];
     if (isProgramVar) {
@@ -1737,7 +1737,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 #pragma mark - Setup
 - (void)setupCollectionView
 {
-    self.collectionView.backgroundColor = [UIColor darkBlueColor];
+    self.collectionView.backgroundColor = [UIColor backgroundColor];
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.scrollEnabled = YES;
     self.collectionView.collectionViewLayout = [LXReorderableCollectionViewFlowLayout new];
@@ -1930,7 +1930,12 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     collectionViewLayout.longPressGestureRecognizer.enabled = YES;
     self.collectionView.scrollEnabled = YES;
     self.isEditingBrickMode = NO;
-    
+    self.navigationController.toolbar.userInteractionEnabled = YES;
+    self.navigationController.navigationBar.userInteractionEnabled = YES;
+        // enable swipe back gesture
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }
     for (BrickCell *cell in self.collectionView.visibleCells) {
         cell.enabled = YES;
         cell.alpha = kBrickCellActiveOpacity;
@@ -1949,6 +1954,12 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     collectionViewLayout.longPressGestureRecognizer.enabled = NO;
     self.collectionView.scrollEnabled = NO;
     self.isEditingBrickMode = YES;
+    self.navigationController.toolbar.userInteractionEnabled = NO;
+    self.navigationController.navigationBar.userInteractionEnabled = NO;
+        // disable swipe back gesture
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
     
     for (BrickCell *cell in self.collectionView.visibleCells) {
         cell.enabled = NO;
