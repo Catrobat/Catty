@@ -35,7 +35,7 @@
     [super viewDidLoad];
     self.dataSource = self;
     self.delegate = self;
-    self.view.backgroundColor = [UIColor darkBlueColor];
+    self.view.backgroundColor = [UIColor backgroundColor];
     self.navigationController.toolbarHidden = YES;
     [self setupNavBar];
     [self updateTitle];
@@ -81,8 +81,9 @@
 {
     UIPageControl *pageControl = [[self.view.subviews
                                    filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class = %@", [UIPageControl class]]] lastObject];
-    pageControl.currentPageIndicatorTintColor = [UIColor lightOrangeColor];
-    pageControl.backgroundColor = [UIColor colorWithWhite:1.f alpha:0.1f];
+    pageControl.currentPageIndicatorTintColor = [UIColor globalTintColor];
+    pageControl.pageIndicatorTintColor = [UIColor lightTextTintColor];
+    pageControl.backgroundColor = [UIColor clearColor];
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController*)pageViewController
@@ -95,9 +96,11 @@
 
 - (void)setupNavBar
 {
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                                                            target:self
                                                                                            action:@selector(dismiss:)];
+    
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor navTintColor];
 }
 
 - (void)updateBrickCategoryViewControllerDelegate

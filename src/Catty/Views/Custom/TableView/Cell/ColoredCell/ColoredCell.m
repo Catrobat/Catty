@@ -44,7 +44,7 @@
 {
     self.contentView.backgroundColor = [UIColor clearColor];
     self.textLabel.backgroundColor = [UIColor clearColor];
-    self.textLabel.textColor = [UIColor whiteColor];
+    self.textLabel.textColor = [UIColor lightTextTintColor];
 }
 
 @end

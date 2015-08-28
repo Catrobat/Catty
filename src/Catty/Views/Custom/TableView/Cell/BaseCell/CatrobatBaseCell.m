@@ -45,7 +45,7 @@
             accessoryImage = [UIImage imageNamed:@"accessory"];
             accessoryImage = [accessoryImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             self.accessoryView = [[UIImageView alloc] initWithImage:accessoryImage];
-            self.accessoryView.tintColor = UIColor.skyBlueColor;
+            self.accessoryView.tintColor = [UIColor utilityTintColor];
         default:
             break;
     }
@@ -54,7 +54,7 @@
 - (UIView*)createSelectedBackground
 {
     UIView *bgColorView = [[UIView alloc] init];
-    [bgColorView setBackgroundColor:[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.09f]];
+    [bgColorView setBackgroundColor:[UIColor backgroundColor]];
     return bgColorView;
 }
 

@@ -274,6 +274,7 @@
     closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                 target:self
                                                                 action:@selector(dismissSoundPickerTVC:)];
+    closeButton.tintColor = [UIColor navTintColor];
     self.navigationItem.rightBarButtonItems = @[closeButton];
 }
 

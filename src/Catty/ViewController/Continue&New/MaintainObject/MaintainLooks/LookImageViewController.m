@@ -84,8 +84,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor darkBlueColor];
-    self.imageView.backgroundColor = [UIColor darkBlueColor];
+    self.view.backgroundColor = [UIColor backgroundColor];
+    self.imageView.backgroundColor = [UIColor backgroundColor];
     self.navigationController.toolbar.hidden = YES;
     self.navigationController.title = self.title = self.imageName;
     UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction)];
@@ -124,8 +124,8 @@
     [self.imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    self.view.backgroundColor = [UIColor darkBlueColor];
-    self.imageView.backgroundColor = [UIColor darkBlueColor];
+    self.view.backgroundColor = [UIColor backgroundColor];
+    self.imageView.backgroundColor = [UIColor backgroundColor];
     vc.editingImage = img;
 //    NSDebug(@"%@",img);
     [self.navigationController pushViewController:vc animated:YES];

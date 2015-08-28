@@ -26,9 +26,10 @@
 #import "LooksTableViewController.h"
 #import "Util.h"
 #import "CatrobatAlertView.h"
+#import "CatrobatActionSheet.h"
 #import "LCTableViewPickerControl.h"
 
-@interface PaintViewController : UIViewController  <BrushPickerViewControllerDelegate,ColorPickerViewControllerDelegate,UIGestureRecognizerDelegate,UIScrollViewDelegate,UINavigationControllerDelegate,LCItemPickerDelegate,UIActionSheetDelegate,CatrobatAlertViewDelegate> {
+@interface PaintViewController : UIViewController  <BrushPickerViewControllerDelegate,ColorPickerViewControllerDelegate,UIGestureRecognizerDelegate,UIScrollViewDelegate,UINavigationControllerDelegate,LCItemPickerDelegate,CatrobatAlertViewDelegate> {
   CGPoint lastPoint;
   BOOL fingerSwiped;
 }

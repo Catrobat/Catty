@@ -29,7 +29,6 @@
 #import "NetworkDefines.h"
 #import "ProgramDefines.h"
 #import "SegueDefines.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "Util.h"
 #import "FileManager.h"
 #import "AppDelegate.h"
@@ -38,7 +37,6 @@
 
 #import "NetworkDefines.h"
 #import "ProgramDefines.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "LanguageTranslationDefines.h"
 #import "NSData+Hashes.h"
@@ -156,13 +154,13 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
     UILabel *uploadHeader = [self setUpLabelAtPositionX:self.contentView.frame.size.width/2
                                               positionY:PADDING
                                                withText:kUploadSelectedProgram
-                                               andColor:[UIColor skyBlueColor]
+                                               andColor:[UIColor lightTextTintColor]
                                      centeringXPosition:true];
     
     [self addHorizontalBorderLineAtY:(uploadHeader.frame.size.height + 2*PADDING)
                                Width:self.contentView.frame.size.width
                        withLineWidth:STANDARD_LINEWIDTH
-                            andColor:[UIColor skyBlueColor]];
+                            andColor:[UIColor globalTintColor]];
 }
 
 - (void)initProgramNameViewElements
@@ -170,13 +168,13 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
     UILabel *programnameLabel = [self setUpLabelAtPositionX:2*PADDING
                                                   positionY:NAME_LABEL_POSITION_Y
                                                    withText:kLocalizedName
-                                                   andColor:[UIColor skyBlueColor]
+                                                   andColor:[UIColor lightTextTintColor]
                                          centeringXPosition:false];
     
     [self addHorizontalBorderLineAtY:(NAME_LABEL_POSITION_Y + programnameLabel.frame.size.height/2 + 2*PADDING)
                                Width:self.contentView.frame.size.width - 4*PADDING
                        withLineWidth:1.5f
-                            andColor:[UIColor grayColor]];
+                            andColor:[UIColor globalTintColor]];
     
     self.programnameTextField =
     [self setUpProgramDataTextFieldAtPositionX:2*PADDING
@@ -194,13 +192,13 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
     UILabel *sizeNameLabel = [self setUpLabelAtPositionX:2*PADDING
                                                positionY:SIZE_LABEL_POSITION_Y
                                                 withText:kLocalizedSize
-                                                andColor:[UIColor skyBlueColor]
+                                                andColor:[UIColor lightTextTintColor]
                                       centeringXPosition:false];
     
     [self addHorizontalBorderLineAtY:(SIZE_LABEL_POSITION_Y + sizeNameLabel.frame.size.height/2 + 2*PADDING)
                                Width:self.contentView.frame.size.width - 4*PADDING
                        withLineWidth:1.5f
-                            andColor:[UIColor grayColor]];
+                            andColor:[UIColor globalTintColor]];
     
     AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     self.zipFileData = nil;
@@ -217,7 +215,7 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
     [self setUpLabelAtPositionX:2*PADDING
                       positionY:SIZE_LABEL_POSITION_Y + sizeNameLabel.frame.size.height + 1*PADDING
                        withText:zipFileSizeString
-                       andColor:[UIColor lightOrangeColor]
+                       andColor:[UIColor globalTintColor]
              centeringXPosition:false];
 }
 
@@ -226,13 +224,13 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
     UILabel *descriptionLabel = [self setUpLabelAtPositionX:2*PADDING
                                                   positionY:DESCRIPTION_LABEL_POSITION_Y
                                                    withText:kLocalizedDescription
-                                                   andColor:[UIColor skyBlueColor]
+                                                   andColor:[UIColor lightTextTintColor]
                                          centeringXPosition:false];
     
     [self addHorizontalBorderLineAtY:(DESCRIPTION_LABEL_POSITION_Y + descriptionLabel.frame.size.height/2 + 2*PADDING)
                                Width:self.contentView.frame.size.width - 4*PADDING
                        withLineWidth:1.5f
-                            andColor:[UIColor grayColor]];
+                            andColor:[UIColor globalTintColor]];
     
     self.descriptionTextField =
     [self setUpProgramDataTextFieldAtPositionX:2*PADDING
@@ -252,7 +250,7 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
     [self addHorizontalBorderLineAtY:buttonSectionBeginY
                                Width:self.contentView.frame.size.width
                        withLineWidth:STANDARD_LINEWIDTH
-                            andColor:[UIColor skyBlueColor]];
+                            andColor:[UIColor globalTintColor]];
     
     CGFloat buttonPositionY = buttonSectionBeginY + ((self.contentView.frame.size.height - buttonSectionBeginY)/2);
     
@@ -274,7 +272,7 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
     [path addLineToPoint:CGPointMake([Util screenWidth] / 2, self.contentView.frame.size.height)];
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.path = [path CGPath];
-    shapeLayer.strokeColor = [[UIColor skyBlueColor] CGColor];
+    shapeLayer.strokeColor = [[UIColor globalTintColor] CGColor];
     shapeLayer.lineWidth = 2.0;
     shapeLayer.fillColor = [[UIColor clearColor] CGColor];
     [self.view.layer addSublayer:shapeLayer];
@@ -318,7 +316,7 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
 - (UITextField*)setUpProgramDataTextFieldAtPositionX:(CGFloat)x positionY:(CGFloat)y width:(CGFloat)width andHeight:(CGFloat)height
 {
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(x,y,width,height)];
-    textField.textColor = [UIColor lightOrangeColor];
+    textField.textColor = [UIColor lightTextTintColor];
     textField.backgroundColor = [UIColor whiteColor];
     [textField setBorderStyle:UITextBorderStyleRoundedRect];
     [textField setAutocorrectionType:UITextAutocorrectionTypeNo];
@@ -334,7 +332,7 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button setTitle:name forState:UIControlStateNormal];
     [button.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:LABEL_FONT_SIZE]];
-    [button.titleLabel setTextColor:[UIColor lightOrangeColor]];
+    [button.titleLabel setTextColor:[UIColor lightTextTintColor]];
     button.titleLabel.textAlignment = NSTextAlignmentCenter;
     [button sizeToFit];
     button.frame = CGRectMake((x - button.frame.size.width/2), (y - button.frame.size.height/2), button.frame.size.width, button.frame.size.height);

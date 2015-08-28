@@ -8,6 +8,7 @@
 
 #import "MYBlurIntroductionView.h"
 #import "LanguageTranslationDefines.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
 @implementation MYBlurIntroductionView
 @synthesize delegate;
@@ -71,6 +72,7 @@
     [self.LeftSkipButton setTitle:skipString forState:UIControlStateNormal];
     [self.LeftSkipButton.titleLabel setFont:kSkipButtonFont];
     [self.LeftSkipButton addTarget:self action:@selector(didPressSkipButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.LeftSkipButton setTitleColor:[UIColor globalTintColor] forState:UIControlStateNormal];
     [self addSubview:self.LeftSkipButton];
     
     //Right Skip Button
@@ -79,6 +81,7 @@
     [self.RightSkipButton.titleLabel setFont:kSkipButtonFont];
     [self.RightSkipButton setTitle:skipString forState:UIControlStateNormal];
     [self.RightSkipButton addTarget:self action:@selector(didPressSkipButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.RightSkipButton setTitleColor:[UIColor globalTintColor] forState:UIControlStateNormal];
     [self addSubview:self.RightSkipButton];
 }
 

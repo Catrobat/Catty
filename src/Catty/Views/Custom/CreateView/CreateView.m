@@ -177,7 +177,7 @@
                                          }];
     
     if(!imageView.image) {
-        UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         activity.tag = kActivityIndicator;
         activity.frame = CGRectMake(imageView.frame.size.width/2.0f - 25.0f/2.0f, imageView.frame.size.height/2.0f - 25.0f/2.0f, 25.0f, 25.0f);
         [imageView addSubview:activity];
@@ -187,7 +187,7 @@
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.layer.cornerRadius = 8.0;
     imageView.layer.masksToBounds = YES;
-    imageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    imageView.layer.borderColor = [UIColor utilityTintColor].CGColor;
     imageView.layer.borderWidth = 1.0;
     
     [view addSubview:imageView];
@@ -241,11 +241,11 @@
     downloadButton.tag = kDownloadButtonTag;
     downloadButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     [downloadButton setTitle:kLocalizedDownload forState:UIControlStateNormal];
-    [downloadButton setTintColor:[UIColor lightOrangeColor]];
+    [downloadButton setTintColor:[UIColor globalTintColor]];
     
     [downloadButton addTarget:target action:@selector(downloadButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     
-    UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     activity.tag = kActivityIndicator;
     activity.frame = CGRectMake(5, 0, 25, 25);
     [downloadButton addSubview:activity];
@@ -263,7 +263,7 @@
     playButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     [playButton setTitle:kLocalizedPlay forState:UIControlStateNormal];
     [playButton addTarget:target action:@selector(playButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [playButton setTintColor:[UIColor lightOrangeColor]];
+    [playButton setTintColor:[UIColor globalTintColor]];
     [playButton sizeToFit];
     
     
@@ -274,11 +274,11 @@
 {
     RoundBorderedButton *downloadAgainButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(view.frame.size.width/2-10,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 100, 25) andBorder:NO];
     downloadAgainButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    [downloadAgainButton setTitleColor:[UIColor lightOrangeColor] forState:UIControlStateNormal];
-    [downloadAgainButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [downloadAgainButton setTitleColor:[UIColor globalTintColor] forState:UIControlStateNormal];
+    [downloadAgainButton setTitleColor:[UIColor globalTintColor] forState:UIControlStateHighlighted];
     [downloadAgainButton setTitle:kLocalizedDownload forState:UIControlStateNormal];
     [downloadAgainButton addTarget:target action:@selector(downloadAgain) forControlEvents:UIControlEventTouchUpInside];
-    [downloadAgainButton setTintColor:[UIColor lightOrangeColor]];
+    [downloadAgainButton setTintColor:[UIColor globalTintColor]];
     downloadAgainButton.tag = kDownloadAgainButtonTag;
     downloadAgainButton.hidden = YES;
     [downloadAgainButton sizeToFit];
@@ -290,7 +290,7 @@
 {
     EVCircularProgressView *button = [[EVCircularProgressView alloc] init];
     button.tag = kStopLoadingTag;
-    button.tintColor = [UIColor lightOrangeColor];
+    button.tintColor = [UIColor globalTintColor];
     button.frame = CGRectMake(2*view.frame.size.width/3+30,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 28, 28);
     button.hidden = YES;
     [button addTarget:target action:@selector(stopLoading) forControlEvents:UIControlEventTouchUpInside];
@@ -338,12 +338,12 @@
     [self addHorizontalLineToView:view andHeight:view.frame.size.height + height*0.01f-15];
     UIButton *reportButton = [[UIButton alloc] initWithFrame:CGRectMake(view.frame.size.width/15,view.frame.size.height + height*0.01f, 130, 25)];
     reportButton.titleLabel.font = [UIFont boldSystemFontOfSize:10];
-    [reportButton.titleLabel setTintColor:[UIColor lightOrangeColor]];
+    [reportButton.titleLabel setTintColor:[UIColor globalTintColor]];
     [reportButton setTitle:kLocalizedReportProgram forState:UIControlStateNormal];
     [reportButton addTarget:target action:@selector(reportProgram) forControlEvents:UIControlEventTouchUpInside];
     [reportButton sizeToFit];
-    [reportButton setTintColor:[UIColor lightOrangeColor]];
-    
+    [reportButton setTintColor:[UIColor globalTintColor]];
+    [reportButton setTitleColor:[UIColor globalTintColor] forState:UIControlStateNormal];
     
     [view addSubview:reportButton];
     [self setMaxHeightIfGreaterForView:view withHeight:view.frame.size.height + height*0.01f];
@@ -354,7 +354,7 @@
     [self setMaxHeightIfGreaterForView:view withHeight:height];
     CGFloat offset = view.frame.size.height + 1;
     UIView *lineView =[[UIView alloc] initWithFrame:CGRectMake(view.frame.size.width/15 -10, offset,view.frame.size.width , 1)];
-    lineView.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1];
+    lineView.backgroundColor = [UIColor utilityTintColor];
     [view addSubview:lineView];
 }
 
@@ -375,7 +375,7 @@
     }else{
         label.font = [UIFont boldSystemFontOfSize:17];
     }
-    label.textColor = [UIColor blueGrayColor];
+    label.textColor = [UIColor globalTintColor];
     label.layer.shadowColor = [[UIColor whiteColor] CGColor];
     label.layer.shadowOffset = CGSizeMake(0.0, 0.0);
 }
@@ -389,7 +389,7 @@
     }else{
         label.font = [UIFont boldSystemFontOfSize:12];
     }
-    label.textColor = [UIColor blueGrayColor];
+    label.textColor = [UIColor lightTextTintColor];
     label.layer.shadowColor = [[UIColor whiteColor] CGColor];
     label.layer.shadowOffset = CGSizeMake(0.0, 0.0);
 }
@@ -401,7 +401,7 @@
     }else{
         label.font = [UIFont boldSystemFontOfSize:12];
     }
-    label.textColor = [UIColor whiteColor];
+    label.textColor = [UIColor lightTextTintColor];
     label.layer.shadowColor = [[UIColor whiteColor] CGColor];
     label.layer.shadowOffset = CGSizeMake(0.0, 0.0);
 }
@@ -418,7 +418,7 @@
 {
     UILabel* detailInformationLabel = [[UILabel alloc] initWithFrame:CGRectMake(xPosition, yPosition, 155, 25)];
     detailInformationLabel.text =  [title stringByEscapingHTMLEntities];
-    detailInformationLabel.textColor = [UIColor blueGrayColor];
+    detailInformationLabel.textColor = [UIColor lightTextTintColor];
     if (height == kIpadScreenHeight) {
         detailInformationLabel.font = [UIFont systemFontOfSize:18.0f];
     }else{
@@ -449,11 +449,11 @@
     label.verticalAlignment = TTTAttributedLabelVerticalAlignmentTop;
     
     NSMutableDictionary *mutableLinkAttributes = [NSMutableDictionary dictionary];
-    [mutableLinkAttributes setObject:[UIColor brightGrayColor] forKey:(NSString*)kCTForegroundColorAttributeName];
+    [mutableLinkAttributes setObject:[UIColor lightTextTintColor] forKey:(NSString*)kCTForegroundColorAttributeName];
     [mutableLinkAttributes setObject:[NSNumber numberWithBool:YES] forKey:(NSString *)kCTUnderlineStyleAttributeName];
     
     NSMutableDictionary *mutableActiveLinkAttributes = [NSMutableDictionary dictionary];
-    [mutableActiveLinkAttributes setObject:[UIColor whiteColor] forKey:(NSString*)kCTForegroundColorAttributeName];
+    [mutableActiveLinkAttributes setObject:[UIColor brownColor] forKey:(NSString*)kCTForegroundColorAttributeName];
     [mutableActiveLinkAttributes setObject:[NSNumber numberWithBool:NO] forKey:(NSString *)kCTUnderlineStyleAttributeName];
     
     label.linkAttributes = mutableLinkAttributes;
