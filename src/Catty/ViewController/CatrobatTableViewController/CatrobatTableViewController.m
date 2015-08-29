@@ -346,11 +346,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     cell.titleLabel.text = [self.cells objectAtIndex:indexPath.row];
     cell.iconImageView.image = [UIImage imageNamed:[self.imageNames objectAtIndex:indexPath.row]];
+    cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     if(IS_IPHONE4 && (indexPath.row!=0)) {
         CGRect frame = cell.iconImageView.frame;
         frame.size.height = kIconDownsizeFactorIphone4*cell.iconImageView.frame.size.height;
         cell.iconImageView.frame= frame;
-        cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
 }
 
