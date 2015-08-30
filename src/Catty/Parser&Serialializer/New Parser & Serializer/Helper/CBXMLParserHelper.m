@@ -58,12 +58,17 @@
 + (BOOL)validateXMLElement:(GDataXMLElement*)xmlElement forNumberOfChildNodes:(NSUInteger)numberOfChildNodes AndFormulaListWithTotalNumberOfFormulas:(NSUInteger)numberOfFormulas
 {
     [[self class] validateXMLElement:xmlElement forNumberOfChildNodes:numberOfChildNodes];
-    
+    [[self class] validateXMLElement:xmlElement forFormulaListWithTotalNumberOfFormulas:numberOfFormulas];
+    return true;
+}
+
++ (BOOL)validateXMLElement:(GDataXMLElement*)xmlElement forFormulaListWithTotalNumberOfFormulas:(NSUInteger)numberOfFormulas
+{
     GDataXMLElement *formulaListElement = [xmlElement childWithElementName:@"formulaList"];
     [XMLError exceptionIfNil:formulaListElement message:@"No formulaList element found..."];
     [XMLError exceptionIf:[formulaListElement childCount]
                 notEquals:numberOfFormulas
-                  message:@"Too many formulas found (%lu expected)", (unsigned long)numberOfFormulas];
+                  message:@"Invalid number of formulas found (%lu expected)", (unsigned long)numberOfFormulas];
     return true;
 }
 
