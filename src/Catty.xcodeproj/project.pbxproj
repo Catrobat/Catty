@@ -146,6 +146,9 @@
 		4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C724E651B4D3EC500E27479 /* CBXMLSerializerContext.m */; };
 		4C79F5551B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79F5541B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m */; };
 		4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BC6631B26C298001C7E32 /* iOSComboboxPickerView.m */; };
+		4CC45BCE1B91B58B006759C5 /* BrickMoveManagerAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC45BCC1B91B58B006759C5 /* BrickMoveManagerAbstractTest.m */; };
+		4CC45BCF1B91B58B006759C5 /* BrickMoveManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC45BCD1B91B58B006759C5 /* BrickMoveManagerTests.m */; };
+		4CC45BD11B91B6BA006759C5 /* BrickMoveManagerNestedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC45BD01B91B6BA006759C5 /* BrickMoveManagerNestedTests.m */; };
 		4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */; };
 		4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */; };
 		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
@@ -156,8 +159,8 @@
 		92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A481A42F2A3008C771A /* iOSCombobox.m */; };
 		9238C5831A3AE9920099F061 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */; };
 		928D4D791A7BD19A00E6DFA8 /* CatrobatUISlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 928D4D781A7BD19A00E6DFA8 /* CatrobatUISlider.m */; };
-		92D7A69D1B8D9EBA00F312A1 /* BrickMoveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D7A69C1B8D9EBA00F312A1 /* BrickMoveManager.m */; };
 		92D346BD1B8DDC0A009EB8F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */; };
+		92D7A69D1B8D9EBA00F312A1 /* BrickMoveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D7A69C1B8D9EBA00F312A1 /* BrickMoveManager.m */; };
 		92DFAFE61A38943D00FA9B0F /* FormulaEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */; };
 		92DFB00E1A38949E00FA9B0F /* ExternInternRepresentationMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEA1A38949E00FA9B0F /* ExternInternRepresentationMapping.m */; };
 		92DFB00F1A38949E00FA9B0F /* ExternToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEC1A38949E00FA9B0F /* ExternToken.m */; };
@@ -873,6 +876,10 @@
 		4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+CWPopup.license"; sourceTree = "<group>"; };
 		4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OrderedDictionary.license; sourceTree = "<group>"; };
 		4CC0D51F1B01FB73006193C4 /* BrickVariableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickVariableProtocol.h; sourceTree = "<group>"; };
+		4CC45BCB1B91B58B006759C5 /* BrickMoveManagerAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMoveManagerAbstractTest.h; sourceTree = "<group>"; };
+		4CC45BCC1B91B58B006759C5 /* BrickMoveManagerAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManagerAbstractTest.m; sourceTree = "<group>"; };
+		4CC45BCD1B91B58B006759C5 /* BrickMoveManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManagerTests.m; sourceTree = "<group>"; };
+		4CC45BD01B91B6BA006759C5 /* BrickMoveManagerNestedTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManagerNestedTests.m; sourceTree = "<group>"; };
 		4CE9D4201AE27AD20058CB24 /* IfOnEdgeBounceBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IfOnEdgeBounceBrickTests.m; sourceTree = "<group>"; };
 		4CF773E31AEE3B5100DBBB2B /* VariablePickerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablePickerData.h; sourceTree = "<group>"; };
 		4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablePickerData.m; sourceTree = "<group>"; };
@@ -952,9 +959,9 @@
 		92C37A511856276D00547C1E /* SetBrightnessBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetBrightnessBrickTests.m; sourceTree = "<group>"; };
 		92C37A531856279600547C1E /* MoveNStepsBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveNStepsBrickTests.m; sourceTree = "<group>"; };
 		92C37A55185627A300547C1E /* ClearGrafficEffectBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearGrafficEffectBrickTests.m; sourceTree = "<group>"; };
+		92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92D7A69B1B8D9EBA00F312A1 /* BrickMoveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMoveManager.h; sourceTree = "<group>"; };
 		92D7A69C1B8D9EBA00F312A1 /* BrickMoveManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManager.m; sourceTree = "<group>"; };
-		92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormulaEditor.xib; sourceTree = "<group>"; };
 		92DFAFE91A38949E00FA9B0F /* ExternInternRepresentationMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternInternRepresentationMapping.h; sourceTree = "<group>"; };
 		92DFAFEA1A38949E00FA9B0F /* ExternInternRepresentationMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternInternRepresentationMapping.m; sourceTree = "<group>"; };
@@ -2405,6 +2412,25 @@
 				4C3AE2BC1B03554F005E1F57 /* BrickCellVariableData.m */,
 			);
 			name = BrickCellData;
+			sourceTree = "<group>";
+		};
+		4CC45BC91B91B58B006759C5 /* BrickMoveManager */ = {
+			isa = PBXGroup;
+			children = (
+				4CC45BCA1B91B58B006759C5 /* Abstract */,
+				4CC45BCD1B91B58B006759C5 /* BrickMoveManagerTests.m */,
+				4CC45BD01B91B6BA006759C5 /* BrickMoveManagerNestedTests.m */,
+			);
+			path = BrickMoveManager;
+			sourceTree = "<group>";
+		};
+		4CC45BCA1B91B58B006759C5 /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				4CC45BCB1B91B58B006759C5 /* BrickMoveManagerAbstractTest.h */,
+				4CC45BCC1B91B58B006759C5 /* BrickMoveManagerAbstractTest.m */,
+			);
+			path = Abstract;
 			sourceTree = "<group>";
 		};
 		4CD194F21A0631B200484E4F /* Parser & Serialization */ = {
@@ -4072,6 +4098,7 @@
 				C34B44FB17F3403400624730 /* Extensions */,
 				CA8C247918CD06BA00314C2B /* Program */,
 				C34B44FA17F3402300624730 /* Bricks */,
+				4CC45BC91B91B58B006759C5 /* BrickMoveManager */,
 				4C26506D1A6566C60050775B /* SpriteObject */,
 				B46B271417703FBE00172837 /* SensorHandler */,
 				B46B270417703F9400172837 /* Supporting Files */,
@@ -4981,6 +5008,7 @@
 				4C68FC921B25A00B00AB3EE8 /* InternFormulaStateTest.m in Sources */,
 				4C2EE3E51B5554D7006DE9B8 /* XMLParserFormulaTests095.m in Sources */,
 				4C79F5551B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m in Sources */,
+				4CC45BCE1B91B58B006759C5 /* BrickMoveManagerAbstractTest.m in Sources */,
 				4C2EE3E61B5554D7006DE9B8 /* XMLParserHeaderTests095.m in Sources */,
 				CA7698D41B0E4B3F000D0340 /* ShowBrickTests.m in Sources */,
 				CA7698D51B0E4B3F000D0340 /* HideBrickTests.m in Sources */,
@@ -4989,6 +5017,7 @@
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
 				CA7698D61B0E4B3F000D0340 /* IfOnEdgeBounceBrickTests.m in Sources */,
 				CA7698D71B0E4B3F000D0340 /* SetYBrickTests.m in Sources */,
+				4CC45BD11B91B6BA006759C5 /* BrickMoveManagerNestedTests.m in Sources */,
 				4C2EE3E31B5554D7006DE9B8 /* XMLParserBlackBoxTests095.m in Sources */,
 				CA7698D81B0E4B3F000D0340 /* SetXBrickTests.m in Sources */,
 				4C2A00C21B5546DF00CD4492 /* XMLParserHeaderTests093.m in Sources */,
@@ -5000,6 +5029,7 @@
 				CA7698DD1B0E4B3F000D0340 /* TurnRightBrickTests.m in Sources */,
 				CA7698DE1B0E4B3F000D0340 /* SpriteObjectMutableCopyTests.m in Sources */,
 				CA7698DF1B0E4B3F000D0340 /* SensorHandlerTests.m in Sources */,
+				4CC45BCF1B91B58B006759C5 /* BrickMoveManagerTests.m in Sources */,
 				CA7698E31B0E4B3F000D0340 /* SceneTests.m in Sources */,
 				4C68FC941B25A00B00AB3EE8 /* InternFormulaTests.m in Sources */,
 				CA7698E41B0E4B3F000D0340 /* ProgramTableViewControllerExistingProgramsTests.m in Sources */,
