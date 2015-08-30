@@ -36,6 +36,7 @@
 
 + (BOOL)validateXMLElement:(GDataXMLElement*)xmlElement forNumberOfChildNodes:(NSUInteger)numberOfChildNodes;
 + (BOOL)validateXMLElement:(GDataXMLElement*)xmlElement forNumberOfChildNodes:(NSUInteger)numberOfChildNodes AndFormulaListWithTotalNumberOfFormulas:(NSUInteger)numberOfFormulas;
++ (BOOL)validateXMLElement:(GDataXMLElement*)xmlElement forFormulaListWithTotalNumberOfFormulas:(NSUInteger)numberOfFormulas;
 + (Formula*)formulaInXMLElement:(GDataXMLElement*)xmlElement forCategoryName:(NSString*)categoryName withContext:(CBXMLParserContext*)context;
 
 + (id)valueForHeaderPropertyNode:(GDataXMLNode*)propertyNode;
