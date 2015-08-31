@@ -31,6 +31,7 @@ final class SetupScene : NSObject {
         let frontendLogger = Swell.getLogger(LoggerConfig.PlayerFrontendID)
         let backendLogger = Swell.getLogger(LoggerConfig.PlayerBackendID)
         let bcHandlerLogger = Swell.getLogger(LoggerConfig.PlayerBroadcastHandlerID)
+        let instrHandlerLogger = Swell.getLogger(LoggerConfig.PlayerInstructionHandlerID)
 
         // setup broadcast handler
         let bcHandler = CBPlayerBroadcastHandler(logger: bcHandlerLogger)
@@ -41,12 +42,16 @@ final class SetupScene : NSObject {
 //        scheduler.schedulingAlgorithm = CBPlayerSchedulingAlgorithmLoadBalancing()
         bcHandler.scheduler = scheduler
 
+        // setup instruction handler
+        let instructionHandler = CBPlayerInstructionHandler(logger: instrHandlerLogger,
+            scheduler: scheduler, broadcastHandler: bcHandler)
+
         // setup frontend
         let frontend = CBPlayerFrontend(logger: frontendLogger, program: program)
         frontend.addSequenceFilter(CBPlayerFilterRedundantBroadcastWaits())
 
         // setup backend
-        let backend = CBPlayerBackend(logger: backendLogger, scheduler: scheduler, broadcastHandler: bcHandler)
+        let backend = CBPlayerBackend(logger: backendLogger, scheduler: scheduler, instructionHandler: instructionHandler)
 
         // finally create scene
         let programSize = CGSizeMake(CGFloat(program.header.screenWidth.floatValue),

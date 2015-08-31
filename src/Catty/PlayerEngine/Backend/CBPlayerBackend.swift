@@ -21,22 +21,21 @@
  */
 
 import Darwin // usleep
-import AVFoundation
 
 final class CBPlayerBackend : CBPlayerBackendProtocol {
 
     // MARK: - Properties
     var logger: CBLogger
     private let _scheduler: CBPlayerSchedulerProtocol
-    private let _broadcastHandler: CBPlayerBroadcastHandlerProtocol
+    private let _instructionHandler: CBPlayerInstructionHandlerProtocol
 
     // MARK: - Initializers
     init(logger: CBLogger, scheduler: CBPlayerSchedulerProtocol,
-        broadcastHandler: CBPlayerBroadcastHandlerProtocol)
+        instructionHandler: CBPlayerInstructionHandlerProtocol)
     {
         self.logger = logger
         _scheduler = scheduler
-        _broadcastHandler = broadcastHandler
+        _instructionHandler = instructionHandler
     }
 
     // MARK: - Operations
@@ -80,18 +79,16 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
     {
         var instructionList = [CBExecClosure]()
         for sequence in sequenceList {
-            if let operationSequence = sequence as? CBOperationSequence {
-                // operation sequence
-                instructionList += _instructionsForOperationSequence(operationSequence,
-                    context: context)
-            } else if let ifSequence = sequence as? CBIfConditionalSequence {
-                // if sequence
-                instructionList += _instructionsForIfSequence(ifSequence, context: context)
-            } else if let conditionalSequence = sequence as? CBConditionalSequence {
-                // loop sequence
-                instructionList += _instructionsForLoopSequence(conditionalSequence,
-                    context: context)
-            } else {
+            switch sequence {
+            case let opSequence as CBOperationSequence:
+                instructionList += opSequence.operationList.map {
+                    return _instructionHandler.instructionForBrick($0.brick, withContext: context)
+                }
+            case let ifSequence as CBIfConditionalSequence:
+                instructionList += self._instructionsForIfSequence(ifSequence, context: context)
+            case let condSequence as CBConditionalSequence:
+                instructionList += self._instructionsForLoopSequence(condSequence, context: context)
+            default:
                 fatalError("Unknown sequence type! THIS SHOULD NEVER HAPPEN!")
             }
         }
@@ -197,82 +194,6 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
         instructionList += bodyInstructions
         instructionList += loopEndInstruction
         return instructionList
-    }
-
-    private func _instructionsForOperationSequence(operationSequence: CBOperationSequence,
-        context: CBScriptContextAbstract) -> [CBExecClosure]
-    {
-        var instructions = [CBExecClosure]()
-
-        // TODO: use mapping (register handler...)
-        for operation in operationSequence.operationList {
-            switch operation.brick {
-            case let bcBrick as BroadcastBrick:
-                instructions += { [weak self] in
-                    self?._broadcastHandler.performBroadcastWithMessage(bcBrick.broadcastMessage,
-                        senderScriptContext: context, broadcastType: .Broadcast)
-                }
-
-            case let bcWaitBrick as BroadcastWaitBrick:
-                instructions += { [weak self] in
-                    self?._broadcastHandler.performBroadcastWithMessage(bcWaitBrick.broadcastMessage,
-                        senderScriptContext: context, broadcastType: .BroadcastWait)
-                }
-
-            case let waitBrick as WaitBrick:
-                instructions += CBPlayerInstruction.instructionForWaitBrick(waitBrick,
-                    scheduler: _scheduler, context: context)
-
-            case let playSoundBrick as PlaySoundBrick:
-                instructions += CBPlayerInstruction.instructionForPlaySoundBrick(playSoundBrick,
-                    scheduler: _scheduler, context: context)
-
-            case let stopAllSBrick as StopAllSoundsBrick:
-                instructions += CBPlayerInstruction.instructionForStopAllSoundsBrick(stopAllSBrick,
-                    scheduler: _scheduler, context: context)
-
-            case let speakBrick as SpeakBrick:
-                instructions += CBPlayerInstruction.instructionForSpeakBrick(speakBrick,
-                    scheduler: _scheduler, context: context)
-
-            case let chgVolBrick as ChangeVolumeByNBrick:
-                instructions += CBPlayerInstruction.instructionForChangeVolumeByNBrick(chgVolBrick,
-                    scheduler: _scheduler, context: context)
-
-            case let setVolToBrick as SetVolumeToBrick:
-                instructions += CBPlayerInstruction.instructionForSetVolumeToBrick(setVolToBrick,
-                    scheduler: _scheduler, context: context)
-
-            case let setVarBrick as SetVariableBrick:
-                instructions += CBPlayerInstruction.instructionForSetVariableBrick(setVarBrick,
-                    scheduler: _scheduler, context: context)
-
-            case let chgVarBrick as ChangeVariableBrick:
-                instructions += CBPlayerInstruction.instructionForChangeVariableBrick(chgVarBrick,
-                    scheduler: _scheduler, context: context)
-
-            case let flashLightOnBrick as LedOnBrick:
-                instructions += CBPlayerInstruction.instructionForFlashLightOnBrick(
-                    flashLightOnBrick, scheduler: _scheduler, context: context)
-
-            case let flashLightOffBrick as LedOffBrick:
-                instructions += CBPlayerInstruction.instructionForFlashLightOffBrick(
-                    flashLightOffBrick, scheduler: _scheduler, context: context)
-
-            case let vibrationBrick as VibrationBrick:
-                instructions += CBPlayerInstruction.instructionForVibrationBrick(
-                    vibrationBrick, scheduler: _scheduler, context: context)
-
-            default:
-                instructions += { [weak self] in
-                    context.runAction(operation.brick.action(), completion:{
-                        // the script must continue here. upcoming actions are executed!!
-                        self?._scheduler.runNextInstructionOfContext(context)
-                    })
-                }
-            }
-        }
-        return instructions
     }
 
 }

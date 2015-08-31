@@ -56,6 +56,7 @@ func <(lhs: NSDate, rhs: NSDate) -> Bool {
 typealias CBBroadcastQueueElement = (message: String, senderScriptContext: CBScriptContextAbstract,
     broadcastType: CBBroadcastType)
 typealias CBExecClosure = dispatch_block_t
+typealias CBInstruction = (brick: Brick, context: CBScriptContextAbstract) -> CBExecClosure
 
 // MARK: Enums
 enum CBExecType {
@@ -156,6 +157,7 @@ struct LoggerConfig {
     static let PlayerFrontendID = "CBPlayerFrontendLogger.Debug"
     static let PlayerBackendID = "CBPlayerBackendLogger.Debug"
     static let PlayerBroadcastHandlerID = "CBPlayerBroadcastHandlerLogger.Debug"
+    static let PlayerInstructionHandlerID = "CBPlayerInstructionHandlerLogger.Debug"
 }
 
 #else // DEBUG == 1
@@ -171,6 +173,7 @@ struct LoggerConfig {
     static let PlayerFrontendID = "CBPlayerFrontendLogger.Release"
     static let PlayerBackendID = "CBPlayerBackendLogger.Release"
     static let PlayerBroadcastHandlerID = "CBPlayerBroadcastHandlerLogger.Release"
+    static let PlayerInstructionHandlerID = "CBPlayerInstructionHandlerLogger.Release"
 }
 
 ////------------------------------------------------------------------------------------------------------------
@@ -189,4 +192,5 @@ struct LoggerTestConfig {
     static let PlayerFrontendID = "CBPlayerFrontendLogger.Test"
     static let PlayerBackendID = "CBPlayerBackendLogger.Test"
     static let PlayerBroadcastHandlerID = "CBPlayerBroadcastHandlerLogger.Test"
+    static let PlayerInstructionHandlerID = "CBPlayerInstructionHandlerLogger.Test"
 }

@@ -323,6 +323,7 @@
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
 		AA101E411B8D3A3900797DEF /* Encapsulated.xml in Resources */ = {isa = PBXBuildFile; fileRef = AA101E401B8D3A3900797DEF /* Encapsulated.xml */; settings = {ASSET_TAGS = (); }; };
 		AA70F7F11B866E9B003057C6 /* CBPlayerFrontentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA70F7F01B866E9B003057C6 /* CBPlayerFrontentTests.swift */; };
+		AA963A081B93E97700F6B708 /* CBPlayerInstructionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA963A071B93E97700F6B708 /* CBPlayerInstructionHandler.swift */; settings = {ASSET_TAGS = (); }; };
 		AAD498B71B8D245C005894C4 /* CBPlayerFrontendProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD498B61B8D245C005894C4 /* CBPlayerFrontendProtocol.swift */; settings = {ASSET_TAGS = (); }; };
 		AAD498B91B8D248C005894C4 /* CBPlayerSchedulerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD498B81B8D248C005894C4 /* CBPlayerSchedulerProtocol.swift */; settings = {ASSET_TAGS = (); }; };
 		AAD498BB1B8D255F005894C4 /* CBPlayerBroadcastHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD498BA1B8D255F005894C4 /* CBPlayerBroadcastHandlerProtocol.swift */; settings = {ASSET_TAGS = (); }; };
@@ -454,7 +455,6 @@
 		CAA4A5341A43B51F002A69A0 /* ProjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5301A43B51F002A69A0 /* ProjectParser.m */; };
 		CAA4A5351A43B51F002A69A0 /* TestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5311A43B51F002A69A0 /* TestParser.m */; };
 		CAA4A5361A43B51F002A69A0 /* XMLObjectReference.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA4A5321A43B51F002A69A0 /* XMLObjectReference.m */; };
-		CAA4CA481B49CED800DDDE9D /* CBPlayerInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA4CA471B49CED800DDDE9D /* CBPlayerInstruction.swift */; };
 		CABF43B61B115E6400419A55 /* CBConditionalSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43AF1B115E6400419A55 /* CBConditionalSequence.swift */; };
 		CABF43B71B115E6400419A55 /* CBIfConditionalSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B01B115E6400419A55 /* CBIfConditionalSequence.swift */; };
 		CABF43B81B115E6400419A55 /* CBOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B11B115E6400419A55 /* CBOperation.swift */; };
@@ -1296,6 +1296,7 @@
 		AA101E401B8D3A3900797DEF /* Encapsulated.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Encapsulated.xml; sourceTree = "<group>"; };
 		AA70F7EC1B866E52003057C6 /* CattyTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CattyTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		AA70F7F01B866E9B003057C6 /* CBPlayerFrontentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerFrontentTests.swift; path = PlayerEngine/CBPlayerFrontentTests.swift; sourceTree = "<group>"; };
+		AA963A071B93E97700F6B708 /* CBPlayerInstructionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerInstructionHandler.swift; path = PlayerEngine/Backend/CBPlayerInstructionHandler.swift; sourceTree = "<group>"; };
 		AAD498B61B8D245C005894C4 /* CBPlayerFrontendProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerFrontendProtocol.swift; path = PlayerEngine/Protocols/CBPlayerFrontendProtocol.swift; sourceTree = "<group>"; };
 		AAD498B81B8D248C005894C4 /* CBPlayerSchedulerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerSchedulerProtocol.swift; path = PlayerEngine/Protocols/CBPlayerSchedulerProtocol.swift; sourceTree = "<group>"; };
 		AAD498BA1B8D255F005894C4 /* CBPlayerBroadcastHandlerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerBroadcastHandlerProtocol.swift; path = PlayerEngine/Protocols/CBPlayerBroadcastHandlerProtocol.swift; sourceTree = "<group>"; };
@@ -1487,7 +1488,6 @@
 		CAA4A54D1A43BE97002A69A0 /* XMLSerializerAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLSerializerAbstractTest.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLSerializerTests/Abstract/XMLSerializerAbstractTest.m"; sourceTree = "<group>"; };
 		CAA4A54F1A43BEA6002A69A0 /* XMLSerializerBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLSerializerBlackBoxTests.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLSerializerTests/BlackBox Tests/XMLSerializerBlackBoxTests.m"; sourceTree = "<group>"; };
 		CAA4A5521A43BEC4002A69A0 /* XMLSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLSerializerTests.m; path = "Parser & Serialization/CatrobatLanguage0.93/XMLSerializerTests/Unit Tests/XMLSerializerTests.m"; sourceTree = "<group>"; };
-		CAA4CA471B49CED800DDDE9D /* CBPlayerInstruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerInstruction.swift; path = PlayerEngine/Backend/CBPlayerInstruction.swift; sourceTree = "<group>"; };
 		CABF43AF1B115E6400419A55 /* CBConditionalSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBConditionalSequence.swift; path = Catty/PlayerEngine/DataModel/CBSequence/CBConditionalSequence.swift; sourceTree = SOURCE_ROOT; };
 		CABF43B01B115E6400419A55 /* CBIfConditionalSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBIfConditionalSequence.swift; path = Catty/PlayerEngine/DataModel/CBSequence/CBIfConditionalSequence.swift; sourceTree = SOURCE_ROOT; };
 		CABF43B11B115E6400419A55 /* CBOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBOperation.swift; path = Catty/PlayerEngine/DataModel/CBSequence/CBOperation.swift; sourceTree = SOURCE_ROOT; };
@@ -4401,7 +4401,7 @@
 			isa = PBXGroup;
 			children = (
 				CAE485D91B13AA6E00DC4485 /* CBPlayerBackend.swift */,
-				CAA4CA471B49CED800DDDE9D /* CBPlayerInstruction.swift */,
+				AA963A071B93E97700F6B708 /* CBPlayerInstructionHandler.swift */,
 			);
 			name = Backend;
 			sourceTree = "<group>";
@@ -4861,7 +4861,6 @@
 				CAE485D71B13AA6600DC4485 /* CBPlayerFrontend.swift in Sources */,
 				CAE485D81B13AA6600DC4485 /* CBPlayerFrontendSequenceFilters.swift in Sources */,
 				CAE485DA1B13AA6E00DC4485 /* CBPlayerBackend.swift in Sources */,
-				CAA4CA481B49CED800DDDE9D /* CBPlayerInstruction.swift in Sources */,
 				CA2D44491B1249DD00A3B53D /* CBPlayerScheduler.swift in Sources */,
 				CA2D444F1B1251BF00A3B53D /* CBPlayerSchedulingAlgorithms.swift in Sources */,
 				CA43C4BA1B165C0B009B604F /* CBPlayerBroadcastHandler.swift in Sources */,
@@ -5168,6 +5167,7 @@
 				92FF314A1A24DEB300093DA7 /* BaseTableViewController.m in Sources */,
 				92FF2E901A24C7D800093DA7 /* GDataXMLNode.m in Sources */,
 				92FF2E8F1A24C7D800093DA7 /* FlashHelper.m in Sources */,
+				AA963A081B93E97700F6B708 /* CBPlayerInstructionHandler.swift in Sources */,
 				92DFB0141A38949E00FA9B0F /* InternFormulaParser.m in Sources */,
 				92FF328D1A24E2F400093DA7 /* HideBrickCell.m in Sources */,
 				92FF2E961A24C7D800093DA7 /* ioapi.c in Sources */,
