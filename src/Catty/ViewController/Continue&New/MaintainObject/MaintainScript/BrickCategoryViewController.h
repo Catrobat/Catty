@@ -24,7 +24,7 @@
 
 // TODO: Add favourite brick page.
 typedef NS_ENUM(NSUInteger, PageIndexCategoryType) {
-  /*  kPageIndexScriptFavourites,*/
+    kPageIndexScriptFavourites,
     kPageIndexControlBrick,
     kPageIndexMotionBrick,
     kPageIndexSoundBrick,

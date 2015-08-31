@@ -1095,5 +1095,82 @@ replacementString:(NSString*)characters
     return codesArray;
 }
 
+#pragma mark - brick statistics
+
++ (NSDictionary*)getBrickInsertionDictionaryFromUserDefaults
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *insertionStatistic = [userDefaults objectForKey:kUserDefaultsBrickSelectionStatisticsMap];
+    if(insertionStatistic == nil)
+    {
+        insertionStatistic = [[NSDictionary alloc] init];
+        [userDefaults setObject:insertionStatistic
+                         forKey:kUserDefaultsBrickSelectionStatisticsMap];
+        [userDefaults synchronize];
+    }
+    return insertionStatistic;
+}
+
++ (void)setBrickInsertionDictionaryToUserDefaults:(NSDictionary*) statistics
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:statistics
+                     forKey:kUserDefaultsBrickSelectionStatisticsMap];
+    [userDefaults synchronize];
+}
+
+
++ (void)incrementStatisticCountForBrickNamed:(NSString *)brickName
+{
+    NSDictionary *insertionStatistic = [self getBrickInsertionDictionaryFromUserDefaults];
+    NSNumber *old_count = [insertionStatistic objectForKey:brickName];
+    NSMutableDictionary* mutableInsertionStatistic = [insertionStatistic mutableCopy];
+    [mutableInsertionStatistic setValue:[NSNumber numberWithInt:old_count.intValue+1] forKey:brickName];
+    insertionStatistic = [NSDictionary dictionaryWithDictionary:mutableInsertionStatistic];
+    [self setBrickInsertionDictionaryToUserDefaults:insertionStatistic];
+}
+
++ (void)printBrickStatistics
+{
+    NSDictionary* insertionStatistic = [self getBrickInsertionDictionaryFromUserDefaults];
+    NSDebug(@"%@", insertionStatistic);
+}
+
++ (void)printSubsetOfTheMost:(NSUInteger)N
+{
+    NSDictionary* insertionStatistic = [self getBrickInsertionDictionaryFromUserDefaults];
+    NSArray* subset = [self getSubsetOfTheMost:N usedBricksInDictionary:insertionStatistic];
+    NSDebug(@"%@", subset);
+}
+
++ (NSArray*) getSubsetOfTheMost:(NSUInteger)N usedBricksInDictionary:(NSDictionary *)brickCountDictionary
+{
+    NSArray *sortedBricks = [brickCountDictionary
+                             keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2)
+                             {
+                                 NSNumber* number1 = (NSNumber*)obj1;
+                                 NSNumber* number2 = (NSNumber*)obj2;
+                                 if (number1 < number2) {
+                                     return NSOrderedDescending;
+                                 }else{
+                                     return NSOrderedAscending;
+                                 }
+                             }];
+    
+    NSUInteger count = ([sortedBricks count] >= N) ? N : [sortedBricks count];
+    NSRange range;
+    range.location = 0;
+    range.length = count;
+
+    return [sortedBricks subarrayWithRange:range];
+}
+
++ (void)resetBrickStatistics
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:[[NSDictionary alloc] init] forKey:kUserDefaultsBrickSelectionStatisticsMap];
+    [userDefaults synchronize];
+}
+
 
 @end
