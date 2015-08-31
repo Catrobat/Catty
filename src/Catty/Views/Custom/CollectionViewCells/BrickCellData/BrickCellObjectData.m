@@ -74,4 +74,10 @@
     [self.brickCell.dataDelegate disableUserInteractionAndHighlight:self.brickCell withMarginBottom:kiOSComboboxTotalHeight];
 }
 
+# pragma mark - User interaction
+- (BOOL)isUserInteractionEnabled
+{
+    return self.brickCell.scriptOrBrick.isAnimatedInsertBrick == NO;
+}
+
 @end
