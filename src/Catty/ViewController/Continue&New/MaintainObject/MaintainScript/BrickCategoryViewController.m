@@ -125,8 +125,6 @@ didSelectItemAtIndexPath:(NSIndexPath*)indexPath
     if ([self.delegate respondsToSelector:@selector(brickCategoryViewController:didSelectScriptOrBrick:)]) {
         [self.delegate brickCategoryViewController:self didSelectScriptOrBrick:cell.scriptOrBrick];
     }
-    [Util printBrickStatistics];
-    [Util printSubsetOfTheMost:3];
 }
 
 #pragma mark - Collection View Layout

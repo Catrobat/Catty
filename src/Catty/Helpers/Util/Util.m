@@ -1134,14 +1134,14 @@ replacementString:(NSString*)characters
 + (void)printBrickStatistics
 {
     NSDictionary* insertionStatistic = [self getBrickInsertionDictionaryFromUserDefaults];
-    NSDebug(@"%@", insertionStatistic);
+    NSDebug(@"Brick Statistics:\n%@", insertionStatistic);
 }
 
 + (void)printSubsetOfTheMost:(NSUInteger)N
 {
     NSDictionary* insertionStatistic = [self getBrickInsertionDictionaryFromUserDefaults];
     NSArray* subset = [self getSubsetOfTheMost:N usedBricksInDictionary:insertionStatistic];
-    NSDebug(@"%@", subset);
+    NSDebug(@"Most %d used Bricks with their identifier:\n%@", N, subset);
 }
 
 + (NSArray*) getSubsetOfTheMost:(NSUInteger)N usedBricksInDictionary:(NSDictionary *)brickCountDictionary
