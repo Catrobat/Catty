@@ -780,6 +780,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 -(void)deleteSelectedBricks
 {
     [self removeBricksWithIndexPaths:self.selectedIndexPaths];
+    [self setEditing:NO animated:NO];
 }
 
 -(void)turnOnInsertingBrickMode
@@ -815,7 +816,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
-    [self setupToolBar];
 
     if (self.isEditing) {
         self.navigationItem.title = kLocalizedDeletionMenu;
@@ -859,6 +859,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                          }];
         
     }
+    [self setupToolBar];
 }
 
 
