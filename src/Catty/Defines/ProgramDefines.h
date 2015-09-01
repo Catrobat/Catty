@@ -111,5 +111,3 @@ typedef NS_ENUM(NSUInteger, kDTMActionType) {
 #define kUserDetailsShowDetailsSoundsKey @"detailsForSounds"
 #define kUserDetailsShowDetailsProgramsKey @"detailsForPrograms"
 #define kScreenshotThumbnailPrefix @".thumb_"
-
-#define kUserDefaultsBrickSelectionStatisticsMap @"BrickStatisticsMap"
