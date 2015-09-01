@@ -31,6 +31,8 @@
 - (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
     canInsertToIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object;
 
+-(void)insertBrick:(Brick*)brick IndexPath:(NSIndexPath*)path andObject:(SpriteObject*)object;
+
 -(void)reset;
 
 @end
