@@ -99,7 +99,7 @@
 
 - (kBrickCategoryType)brickCategoryTypeForBrickType:(kBrickType)brickType
 {
-    return (kBrickCategoryType)(((NSUInteger)brickType) / 100);
+    return (kBrickCategoryType)(((NSUInteger)brickType) / 100)+1;
 }
 
 - (NSArray*)brickClassNamesOrderedByBrickType
@@ -174,6 +174,7 @@
     if (categoryType == kControlBrick) {
         [selectableBricksForCategoryMutable addObjectsFromArray:[[BrickManager sharedBrickManager] selectableScriptBricks]];
     }
+    //TODO: check favourite -> select them!
     for (id<BrickProtocol> brick in selectableBricks) {
         if (brick.brickCategoryType == categoryType) {
             [selectableBricksForCategoryMutable addObject:brick];
@@ -185,7 +186,7 @@
 
 - (kBrickType)brickTypeForCategoryType:(kBrickCategoryType)categoryType andBrickIndex:(NSUInteger)index
 {
-    return (kBrickType)(categoryType * 100 + index);
+    return (kBrickType)((categoryType-1) * 100 + index);
 }
 
 - (NSUInteger)brickIndexForBrickType:(kBrickType)brickType

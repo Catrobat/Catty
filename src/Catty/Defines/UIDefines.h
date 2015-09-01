@@ -114,11 +114,12 @@ static NSString *const kBDKNotifyHUDCheckmarkImageName = @"checkmark.png";
 // ---------------------- BRICK CONFIG ---------------------------------------
 // brick categories
 typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
-    kControlBrick              = 0,
-    kMotionBrick               = 1,
-    kSoundBrick                = 2,
-    kLookBrick                 = 3,
-    kVariableBrick             = 4
+    kControlBrick              = 1,
+    kMotionBrick               = 2,
+    kSoundBrick                = 3,
+    kLookBrick                 = 4,
+    kVariableBrick             = 5,
+    kFavouriteBricks           = 0
 };
 
 // brick type identifiers

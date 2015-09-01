@@ -134,7 +134,8 @@
         self.border.shadowOpacity = 1.0;
         self.border.shadowOffset = CGSizeMake(0, 0);
     } else {
-        UIColor *borderColor = kBrickCategoryStrokeColors[self.brickCell.scriptOrBrick.brickCategoryType];
+        //UIColor *borderColor = kBrickCategoryStrokeColors[self.brickCell.scriptOrBrick.brickCategoryType];
+        UIColor *borderColor = self.brickCell.brickCategoryColors[self.brickCell.scriptOrBrick.brickCategoryType-1];
         self.border.strokeColor = borderColor.CGColor;
     }
     
