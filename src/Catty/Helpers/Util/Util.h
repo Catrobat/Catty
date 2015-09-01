@@ -228,6 +228,22 @@
 
 + (NSArray*)networkErrorCodes;
 
++ (NSDictionary*)getBrickInsertionDictionaryFromUserDefaults;
 
++ (void)setBrickInsertionDictionaryToUserDefaults:(NSDictionary*) statistics;
+
++ (void)incrementStatisticCountForBrickType:(kBrickType)brickType;
+
++ (void)printBrickStatistics;
+
++ (void)printSubsetOfTheMost:(NSUInteger)N;
+
++ (NSArray*)getSubsetOfTheMost:(NSUInteger)N usedBricksInDictionary:(NSDictionary*) brickCountDictionary;
+
++ (NSArray*)getSubsetOfTheMostFavoriteChosenBricks:(NSUInteger) amount;
+
++ (void)resetBrickStatistics;
+
++ (NSDictionary*)defaultBrickStatisticDictionary;
 
 @end
