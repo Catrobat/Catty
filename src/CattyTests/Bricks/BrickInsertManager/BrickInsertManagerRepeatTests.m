@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickMoveManagerAbstractTest.h"
+#import "BrickInsertManagerAbstractTest.h"
 #import "WaitBrick.h"
 #import "SetVariableBrick.h"
 #import "ForeverBrick.h"
@@ -30,36 +30,36 @@
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
 #import "WhenScript.h"
-#import "BrickMoveManager.h"
+#import "BrickInsertManager.h"
 
-@interface BrickMoveManagerForeverTests : BrickMoveManagerAbstractTest
+@interface BrickInsertManagerRepeatTests : BrickInsertManagerAbstractTest
 
 @end
 
-@implementation BrickMoveManagerForeverTests
+@implementation BrickInsertManagerRepeatTests
 
-- (void)testMoveNestedForeverBricks {
+- (void)testInsertNestedRepeatBricks {
     [self.viewController.collectionView reloadData];
     
-    ForeverBrick *foreverBrickA = [[ForeverBrick alloc] init];
-    foreverBrickA.script = self.startScript;
-    [self.startScript.brickList addObject:foreverBrickA];
+    RepeatBrick *repeatBrickA = [[RepeatBrick alloc] init];
+    repeatBrickA.script = self.startScript;
+    [self.startScript.brickList addObject:repeatBrickA];
     
     LoopEndBrick *loopEndBrickA = [[LoopEndBrick alloc] init];
     loopEndBrickA.script = self.startScript;
-    loopEndBrickA.loopBeginBrick = foreverBrickA;
+    loopEndBrickA.loopBeginBrick = repeatBrickA;
     [self.startScript.brickList addObject:loopEndBrickA];
-    foreverBrickA.loopEndBrick = loopEndBrickA;
+    repeatBrickA.loopEndBrick = loopEndBrickA;
     
-    ForeverBrick *foreverBrickB = [[ForeverBrick alloc] init];
-    foreverBrickB.script = self.startScript;
-    [self.startScript.brickList addObject:foreverBrickB];
+    RepeatBrick *repeatBrickB = [[RepeatBrick alloc] init];
+    repeatBrickB.script = self.startScript;
+    [self.startScript.brickList addObject:repeatBrickB];
     
     LoopEndBrick *loopEndBrickB = [[LoopEndBrick alloc] init];
     loopEndBrickB.script = self.startScript;
-    loopEndBrickB.loopBeginBrick = foreverBrickB;
+    loopEndBrickB.loopBeginBrick = repeatBrickB;
     [self.startScript.brickList addObject:loopEndBrickB];
-    foreverBrickB.loopEndBrick = loopEndBrickB;
+    repeatBrickB.loopEndBrick = loopEndBrickB;
     
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
     XCTAssertEqual(5, [self.viewController.collectionView numberOfItemsInSection:0]);
@@ -67,20 +67,21 @@
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:1 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:3 inSection:0];
     
-    BOOL canMoveInsideForeverBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+    repeatBrickA.animateInsertBrick = YES;
+    BOOL canMoveInsideRepeatBrickInsertMode = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
                                                                                       itemAtIndexPath:indexPathFrom
-                                                                                   canMoveToIndexPath:indexPathTo
+                                                                                   canInsertToIndexPath:indexPathTo
                                                                                             andObject:self.spriteObject];
-    XCTAssertFalse(canMoveInsideForeverBrickEditMode, @"Should not be allowed to move ForeverBrick inside other ForeverBrick");
+    XCTAssertTrue(canMoveInsideRepeatBrickInsertMode, @"Should be allowed to insert RepeatBrick inside other RepeatBrick");
 }
 
-- (void)testMoveIfBrickInsideForeverBrick {
+- (void)testInsertIfBrickInsideRepeatBrick {
     [self.viewController.collectionView reloadData];
     
-    ForeverBrick *foreverBrick = [[ForeverBrick alloc] init];
-    foreverBrick.script = self.startScript;
-    [self.startScript.brickList addObject:foreverBrick];
-
+    RepeatBrick *repeatBrick = [[RepeatBrick alloc] init];
+    repeatBrick.script = self.startScript;
+    [self.startScript.brickList addObject:repeatBrick];
+    
     // start if
     IfLogicBeginBrick *ifLogicBeginBrick = [[IfLogicBeginBrick alloc] init];
     ifLogicBeginBrick.script = self.startScript;
@@ -91,7 +92,7 @@
     ifLogicElseBrick.ifBeginBrick = ifLogicBeginBrick;
     [self.startScript.brickList addObject:ifLogicElseBrick];
     ifLogicBeginBrick.ifElseBrick = ifLogicElseBrick;
-
+    
     IfLogicEndBrick *ifLogicEndBrick = [[IfLogicEndBrick alloc] init];
     ifLogicEndBrick.script = self.startScript;
     ifLogicEndBrick.ifBeginBrick = ifLogicBeginBrick;
@@ -104,22 +105,23 @@
     
     LoopEndBrick *loopEndBrick = [[LoopEndBrick alloc] init];
     loopEndBrick.script = self.startScript;
-    loopEndBrick.loopBeginBrick = foreverBrick;
+    loopEndBrick.loopBeginBrick = repeatBrick;
     [self.startScript.brickList addObject:loopEndBrick];
-    foreverBrick.loopEndBrick = loopEndBrick;
+    repeatBrick.loopEndBrick = loopEndBrick;
     
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
     XCTAssertEqual(6, [self.viewController.collectionView numberOfItemsInSection:0]);
     
-    // if brick above forever brick
+    // if brick above repeat brick
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:2 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:1 inSection:0];
     
-    BOOL canMoveAboveForeverBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                       itemAtIndexPath:indexPathFrom
-                                                                                    canMoveToIndexPath:indexPathTo
-                                                                                             andObject:self.spriteObject];
-    XCTAssertFalse(canMoveAboveForeverBrickEditMode, @"Should not be allowed to move IfBrick inside forever-loop above ForeverBrick");    
+    ifLogicBeginBrick.animateInsertBrick = YES;
+    BOOL canMoveAboveRepeatBrickInsertMode = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                                        itemAtIndexPath:indexPathFrom
+                                                                                     canInsertToIndexPath:indexPathTo
+                                                                                              andObject:self.spriteObject];
+    XCTAssertTrue(canMoveAboveRepeatBrickInsertMode, @"Should be allowed to move IfBrick inside repeat-loop above RepeatBrick");
 }
 
 @end

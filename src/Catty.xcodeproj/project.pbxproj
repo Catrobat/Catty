@@ -174,6 +174,11 @@
 		4CEB22681B95E47500B3BE2F /* ShowBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB224B1B95E47500B3BE2F /* ShowBrickTests.m */; };
 		4CEB22691B95E47500B3BE2F /* TurnLeftBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB224C1B95E47500B3BE2F /* TurnLeftBrickTests.m */; };
 		4CEB226A1B95E47500B3BE2F /* TurnRightBrickTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB224D1B95E47500B3BE2F /* TurnRightBrickTests.m */; };
+		4CEB22731B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB226E1B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m */; };
+		4CEB22741B95E4BC00B3BE2F /* BrickInsertManagerForeverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB226F1B95E4BC00B3BE2F /* BrickInsertManagerForeverTests.m */; };
+		4CEB22751B95E4BC00B3BE2F /* BrickInsertManagerLogicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22701B95E4BC00B3BE2F /* BrickInsertManagerLogicTests.m */; };
+		4CEB22761B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22711B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m */; };
+		4CEB22771B95E4BC00B3BE2F /* BrickInsertManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22721B95E4BC00B3BE2F /* BrickInsertManagerTests.m */; };
 		4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */; };
 		4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */; };
 		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
@@ -910,6 +915,12 @@
 		4CEB224B1B95E47500B3BE2F /* ShowBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowBrickTests.m; sourceTree = "<group>"; };
 		4CEB224C1B95E47500B3BE2F /* TurnLeftBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TurnLeftBrickTests.m; sourceTree = "<group>"; };
 		4CEB224D1B95E47500B3BE2F /* TurnRightBrickTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TurnRightBrickTests.m; sourceTree = "<group>"; };
+		4CEB226D1B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickInsertManagerAbstractTest.h; sourceTree = "<group>"; };
+		4CEB226E1B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickInsertManagerAbstractTest.m; sourceTree = "<group>"; };
+		4CEB226F1B95E4BC00B3BE2F /* BrickInsertManagerForeverTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickInsertManagerForeverTests.m; sourceTree = "<group>"; };
+		4CEB22701B95E4BC00B3BE2F /* BrickInsertManagerLogicTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickInsertManagerLogicTests.m; sourceTree = "<group>"; };
+		4CEB22711B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickInsertManagerRepeatTests.m; sourceTree = "<group>"; };
+		4CEB22721B95E4BC00B3BE2F /* BrickInsertManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickInsertManagerTests.m; sourceTree = "<group>"; };
 		4CF773E31AEE3B5100DBBB2B /* VariablePickerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablePickerData.h; sourceTree = "<group>"; };
 		4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablePickerData.m; sourceTree = "<group>"; };
 		4CF773EC1AEE786600DBBB2B /* FormulaElement+UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FormulaElement+UserVariable.h"; sourceTree = "<group>"; };
@@ -2472,6 +2483,7 @@
 			isa = PBXGroup;
 			children = (
 				4CEB222D1B95E47500B3BE2F /* BrickMoveManager */,
+				4CEB226B1B95E4BC00B3BE2F /* BrickInsertManager */,
 				4CEB22351B95E47500B3BE2F /* BrickMutableCopyTests.m */,
 				4CEB22361B95E47500B3BE2F /* BrickTests.h */,
 				4CEB22371B95E47500B3BE2F /* BrickTests.m */,
@@ -2518,6 +2530,27 @@
 			children = (
 				4CEB222F1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.h */,
 				4CEB22301B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m */,
+			);
+			path = Abstract;
+			sourceTree = "<group>";
+		};
+		4CEB226B1B95E4BC00B3BE2F /* BrickInsertManager */ = {
+			isa = PBXGroup;
+			children = (
+				4CEB226C1B95E4BC00B3BE2F /* Abstract */,
+				4CEB226F1B95E4BC00B3BE2F /* BrickInsertManagerForeverTests.m */,
+				4CEB22701B95E4BC00B3BE2F /* BrickInsertManagerLogicTests.m */,
+				4CEB22711B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m */,
+				4CEB22721B95E4BC00B3BE2F /* BrickInsertManagerTests.m */,
+			);
+			path = BrickInsertManager;
+			sourceTree = "<group>";
+		};
+		4CEB226C1B95E4BC00B3BE2F /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				4CEB226D1B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.h */,
+				4CEB226E1B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m */,
 			);
 			path = Abstract;
 			sourceTree = "<group>";
@@ -5008,6 +5041,7 @@
 				CA7698C51B0E4B3F000D0340 /* ProgramTests.m in Sources */,
 				4C2EE4221B555E99006DE9B8 /* XMLParserUserVariableTests095.m in Sources */,
 				4CEB22511B95E47500B3BE2F /* BrickMoveManagerRepeatTests.m in Sources */,
+				4CEB22751B95E4BC00B3BE2F /* BrickInsertManagerLogicTests.m in Sources */,
 				4CEB225D1B95E47500B3BE2F /* MoveNStepsBrickTests.m in Sources */,
 				4CEB22531B95E47500B3BE2F /* BrickMutableCopyTests.m in Sources */,
 				4CEB22661B95E47500B3BE2F /* SetXBrickTests.m in Sources */,
@@ -5019,9 +5053,12 @@
 				4C59D9C61B56596900595C99 /* XMLSerializerBlackBoxTests.m in Sources */,
 				4CEB22581B95E47500B3BE2F /* ClearGrafficEffectBrickTests.m in Sources */,
 				4CEB22501B95E47500B3BE2F /* BrickMoveManagerLogicTests.m in Sources */,
+				4CEB22761B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m in Sources */,
 				4CEB225F1B95E47500B3BE2F /* PlaceAtBrickTests.m in Sources */,
 				4CEB22631B95E47500B3BE2F /* SetLookBrickTests.m in Sources */,
+				4CEB22771B95E4BC00B3BE2F /* BrickInsertManagerTests.m in Sources */,
 				4C3BE65B1B3D2E0A00D99AB2 /* FeaturedProgramsStoreViewControllerTests.m in Sources */,
+				4CEB22741B95E4BC00B3BE2F /* BrickInsertManagerForeverTests.m in Sources */,
 				4CEB225B1B95E47500B3BE2F /* HideBrickTests.m in Sources */,
 				4CEB224F1B95E47500B3BE2F /* BrickMoveManagerForeverTests.m in Sources */,
 				4C68FC891B25A00B00AB3EE8 /* FormulaEditorUtilTests.m in Sources */,
@@ -5037,6 +5074,7 @@
 				4C79F5551B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m in Sources */,
 				4C2EE3E61B5554D7006DE9B8 /* XMLParserHeaderTests095.m in Sources */,
 				4CEB22691B95E47500B3BE2F /* TurnLeftBrickTests.m in Sources */,
+				4CEB22731B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m in Sources */,
 				4C2A00CB1B554CE900CD4492 /* XMLParserBlackBoxTests092.m in Sources */,
 				4C68FC8F1B25A00B00AB3EE8 /* FormulaParserTest.m in Sources */,
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,

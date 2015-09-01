@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickMoveManagerAbstractTest.h"
+#import "BrickInsertManagerAbstractTest.h"
 #import "WaitBrick.h"
 #import "SetVariableBrick.h"
 #import "ForeverBrick.h"
@@ -30,15 +30,15 @@
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
 #import "WhenScript.h"
-#import "BrickMoveManager.h"
+#import "BrickInsertManager.h"
 
-@interface BrickMoveManagerLogicTests : BrickMoveManagerAbstractTest
+@interface BrickInsertManagerLogicTests : BrickInsertManagerAbstractTest
 
 @end
 
-@implementation BrickMoveManagerLogicTests
+@implementation BrickInsertManagerLogicTests
 
-- (void)testMoveForeverBrickInsideIfBrick {
+- (void)testInsertForeverBrickInsideIfBrick {
     [self.viewController.collectionView reloadData];
     
     IfLogicBeginBrick *ifLogicBeginBrick = [[IfLogicBeginBrick alloc] init];
@@ -77,25 +77,26 @@
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:4 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:2 inSection:0];
     
-    BOOL canMoveInsideIfBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                       itemAtIndexPath:indexPathFrom
-                                                                                    canMoveToIndexPath:indexPathTo
-                                                                                             andObject:self.spriteObject];
-    XCTAssertFalse(canMoveInsideIfBrickEditMode, @"Should not be allowed to move ForeverBrick inside if-branch of IfLogicBeginBrick");
+    foreverBrick.animateInsertBrick = YES;
+    BOOL canMoveInsideIfBrickInsertMode = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                                         itemAtIndexPath:indexPathFrom
+                                                                                      canInsertToIndexPath:indexPathTo
+                                                                                               andObject:self.spriteObject];
+    XCTAssertTrue(canMoveInsideIfBrickInsertMode, @"Should be allowed to move ForeverBrick inside if-branch IfLogicBeginBrick");
     
     // else-branch
     indexPathFrom = [NSIndexPath indexPathForRow:4 inSection:0];
     indexPathTo = [NSIndexPath indexPathForRow:3 inSection:0];
     
-    foreverBrick.animateInsertBrick = NO;
-    canMoveInsideIfBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                             itemAtIndexPath:indexPathFrom
-                                                                          canMoveToIndexPath:indexPathTo
-                                                                                   andObject:self.spriteObject];
-    XCTAssertFalse(canMoveInsideIfBrickEditMode, @"Should not be allowed to move ForeverBrick inside else-branch of IfLogicBeginBrick");
+    foreverBrick.animateInsertBrick = YES;
+    canMoveInsideIfBrickInsertMode = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                               itemAtIndexPath:indexPathFrom
+                                                                            canInsertToIndexPath:indexPathTo
+                                                                                     andObject:self.spriteObject];
+    XCTAssertTrue(canMoveInsideIfBrickInsertMode, @"Should be allowed to move ForeverBrick inside else-branch of IfLogicBeginBrick");
 }
 
-- (void)testMoveIfBrickAboveIfBrick {
+- (void)testInsertIfBrickAboveIfBrick {
     [self.viewController.collectionView reloadData];
     
     IfLogicBeginBrick *ifLogicBeginBrick1 = [[IfLogicBeginBrick alloc] init];
@@ -146,14 +147,15 @@
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:2 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:1 inSection:0];
     
-    BOOL canMoveAboveIfBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                  itemAtIndexPath:indexPathFrom
-                                                                               canMoveToIndexPath:indexPathTo
-                                                                                        andObject:self.spriteObject];
-    XCTAssertFalse(canMoveAboveIfBrickEditMode, @"Should not be allowed to move nested IfLogicBeginBrick above main IfLogicBeginBrick");
+    ifLogicBeginBrick2.animateInsertBrick = YES;
+    BOOL canInsertAboveIfBrickInsertMode = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                                    itemAtIndexPath:indexPathFrom
+                                                                                 canInsertToIndexPath:indexPathTo
+                                                                                          andObject:self.spriteObject];
+    XCTAssertTrue(canInsertAboveIfBrickInsertMode, @"Should be allowed to insert nested IfLogicBeginBrick above main IfLogicBeginBrick");
 }
 
-- (void)testMoveIfLogicBeginBricksInsideElseBranch {
+- (void)testInsertIfLogicBeginBricksInsideElseBranch {
     [self.viewController.collectionView reloadData];
     
     IfLogicBeginBrick *ifLogicBeginBrick1 = [[IfLogicBeginBrick alloc] init];
@@ -204,24 +206,27 @@
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:3 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:2 inSection:0];
     
-    BOOL canMoveAboveIfBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                 itemAtIndexPath:indexPathFrom
-                                                                              canMoveToIndexPath:indexPathTo
-                                                                                       andObject:self.spriteObject];
-    XCTAssertFalse(canMoveAboveIfBrickEditMode, @"Should not be allowed to move nested IfLogicBeginBrick above main IfLogicElseBrick");
+    ifLogicBeginBrick2.animateInsertBrick = YES;
+    BOOL canInsertAboveIfBrickInsertMode = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                                   itemAtIndexPath:indexPathFrom
+                                                                                canInsertToIndexPath:indexPathTo
+                                                                                         andObject:self.spriteObject];
+    XCTAssertTrue(canInsertAboveIfBrickInsertMode, @"Should be allowed to insert nested IfLogicBeginBrick above main IfLogicElseBrick");
     
     // main else brick
+    ifLogicBeginBrick2.animateInsertBrick = NO;
     indexPathFrom = [NSIndexPath indexPathForRow:2 inSection:0];
     indexPathTo = [NSIndexPath indexPathForRow:3 inSection:0];
     
-    BOOL canMoveBelowIfBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                 itemAtIndexPath:indexPathFrom
-                                                                              canMoveToIndexPath:indexPathTo
-                                                                                       andObject:self.spriteObject];
-    XCTAssertFalse(canMoveBelowIfBrickEditMode, @"Should not be allowed to move main IfLogicElseBrick below nested IfLogicElseBrick");
+    ifLogicElseBrick1.animateInsertBrick = YES;
+    BOOL canInsertBelowIfBrickInsertMode = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                                   itemAtIndexPath:indexPathFrom
+                                                                                canInsertToIndexPath:indexPathTo
+                                                                                         andObject:self.spriteObject];
+    XCTAssertTrue(canInsertBelowIfBrickInsertMode, @"Should be allowed to insert main IfLogicElseBrick below nested IfLogicElseBrick");
 }
 
-- (void)testMoveLogicBricks {
+- (void)testInsertMoveLogicBricks {
     [self.viewController.collectionView reloadData];
     
     IfLogicBeginBrick *ifLogicBeginBrick1 = [[IfLogicBeginBrick alloc] init];
@@ -269,21 +274,25 @@
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:4 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:3 inSection:0];
     
-    BOOL canMoveAboveEndBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                  itemAtIndexPath:indexPathFrom
-                                                                               canMoveToIndexPath:indexPathTo
-                                                                                        andObject:self.spriteObject];
-    XCTAssertFalse(canMoveAboveEndBrickEditMode, @"Should not be allowed to move IfLogicBeginBrick above IfLogicEndBrick");
+    ifLogicBeginBrick2.animateInsertBrick = YES;
+    BOOL canInsertAboveEndBrickInsertMode = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                                    itemAtIndexPath:indexPathFrom
+                                                                                 canInsertToIndexPath:indexPathTo
+                                                                                          andObject:self.spriteObject];
+    XCTAssertTrue(canInsertAboveEndBrickInsertMode, @"Should be allowed to insert IfLogicBeginBrick above IfLogicEndBrick");
+    
     
     // first end brick (move down)
+    ifLogicBeginBrick2.animateInsertBrick = NO;
     indexPathFrom = [NSIndexPath indexPathForRow:3 inSection:0];
     indexPathTo = [NSIndexPath indexPathForRow:4 inSection:0];
     
-    BOOL canMoveBelowIfBeginBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                      itemAtIndexPath:indexPathFrom
-                                                                                   canMoveToIndexPath:indexPathTo
-                                                                                            andObject:self.spriteObject];
-    XCTAssertFalse(canMoveBelowIfBeginBrickEditMode, @"Should not be allowed to move IfLogicEndBrick below IfLogicBeginBrick");    
+    ifLogicEndBrick1.animateInsertBrick = YES;
+    BOOL canInsertBelowIfBeginBrickInsertMode = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                                        itemAtIndexPath:indexPathFrom
+                                                                                     canInsertToIndexPath:indexPathTo
+                                                                                              andObject:self.spriteObject];
+    XCTAssertTrue(canInsertBelowIfBeginBrickInsertMode, @"Should not allowed to insert IfLogicEndBrick below IfLogicBeginBrick");
 }
 
 @end

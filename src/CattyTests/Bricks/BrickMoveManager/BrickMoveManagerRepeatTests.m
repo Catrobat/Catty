@@ -38,7 +38,7 @@
 
 @implementation BrickMoveManagerRepeatTests
 
-- (void)testNestedRepeatBricks {
+- (void)testMoveNestedRepeatBricks {
     [self.viewController.collectionView reloadData];
     
     RepeatBrick *repeatBrickA = [[RepeatBrick alloc] init];
@@ -71,17 +71,10 @@
                                                                               itemAtIndexPath:indexPathFrom
                                                                            canMoveToIndexPath:indexPathTo
                                                                                     andObject:self.spriteObject];
-    XCTAssertFalse(canMoveInsideRepeatBrickEditMode, @"Should not be allowed to move RepeatBrick inside other RepeatBrick in edit mode");
-    
-    repeatBrickA.animateInsertBrick = YES;
-    BOOL canMoveInsideRepeatBrickInsertMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                      itemAtIndexPath:indexPathFrom
-                                                                                   canMoveToIndexPath:indexPathTo
-                                                                                            andObject:self.spriteObject];
-    XCTAssertTrue(canMoveInsideRepeatBrickInsertMode, @"Should be allowed to move RepeatBrick inside other RepeatBrick in insert mode");
+    XCTAssertFalse(canMoveInsideRepeatBrickEditMode, @"Should not be allowed to move RepeatBrick inside other RepeatBrick");
 }
 
-- (void)testIfBrickInsideRepeatBrick {
+- (void)testMoveIfBrickInsideRepeatBrick {
     [self.viewController.collectionView reloadData];
     
     RepeatBrick *repeatBrick = [[RepeatBrick alloc] init];
@@ -126,14 +119,7 @@
                                                                                       itemAtIndexPath:indexPathFrom
                                                                                    canMoveToIndexPath:indexPathTo
                                                                                             andObject:self.spriteObject];
-    XCTAssertFalse(canMoveAboveRepeatBrickEditMode, @"Should not be allowed to move IfBrick inside repeat-loop above RepeatBrick in edit mode");
-    
-    ifLogicBeginBrick.animateInsertBrick = YES;
-    BOOL canMoveAboveRepeatBrickInsertMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                        itemAtIndexPath:indexPathFrom
-                                                                                     canMoveToIndexPath:indexPathTo
-                                                                                              andObject:self.spriteObject];
-    XCTAssertTrue(canMoveAboveRepeatBrickInsertMode, @"Should be allowed to move IfBrick inside repeat-loop above RepeatBrick in insert mode");
+    XCTAssertFalse(canMoveAboveRepeatBrickEditMode, @"Should not be allowed to move IfBrick inside repeat-loop above RepeatBrick");    
 }
 
 @end

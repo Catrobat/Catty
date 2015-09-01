@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BrickMoveManagerAbstractTest.h"
+#import "BrickInsertManagerAbstractTest.h"
 #import "WaitBrick.h"
 #import "SetVariableBrick.h"
 #import "ForeverBrick.h"
@@ -30,15 +30,15 @@
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
 #import "WhenScript.h"
-#import "BrickMoveManager.h"
+#import "BrickInsertManager.h"
 
-@interface BrickMoveManagerForeverTests : BrickMoveManagerAbstractTest
+@interface BrickInsertManagerForeverTests : BrickInsertManagerAbstractTest
 
 @end
 
-@implementation BrickMoveManagerForeverTests
+@implementation BrickInsertManagerForeverTests
 
-- (void)testMoveNestedForeverBricks {
+- (void)testInsertNestedForeverBricks {
     [self.viewController.collectionView reloadData];
     
     ForeverBrick *foreverBrickA = [[ForeverBrick alloc] init];
@@ -67,14 +67,15 @@
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:1 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:3 inSection:0];
     
-    BOOL canMoveInsideForeverBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                      itemAtIndexPath:indexPathFrom
-                                                                                   canMoveToIndexPath:indexPathTo
-                                                                                            andObject:self.spriteObject];
-    XCTAssertFalse(canMoveInsideForeverBrickEditMode, @"Should not be allowed to move ForeverBrick inside other ForeverBrick");
+    foreverBrickA.animateInsertBrick = YES;
+    BOOL canMoveInsideForeverBrickInsertMode = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                                        itemAtIndexPath:indexPathFrom
+                                                                                     canInsertToIndexPath:indexPathTo
+                                                                                              andObject:self.spriteObject];
+    XCTAssertTrue(canMoveInsideForeverBrickInsertMode, @"Should be allowed to move ForeverBrick inside other ForeverBrick");
 }
 
-- (void)testMoveIfBrickInsideForeverBrick {
+- (void)testInsertIfBrickInsideForeverBrick {
     [self.viewController.collectionView reloadData];
     
     ForeverBrick *foreverBrick = [[ForeverBrick alloc] init];
@@ -115,11 +116,12 @@
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:2 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:1 inSection:0];
     
-    BOOL canMoveAboveForeverBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                       itemAtIndexPath:indexPathFrom
-                                                                                    canMoveToIndexPath:indexPathTo
-                                                                                             andObject:self.spriteObject];
-    XCTAssertFalse(canMoveAboveForeverBrickEditMode, @"Should not be allowed to move IfBrick inside forever-loop above ForeverBrick");    
+    ifLogicBeginBrick.animateInsertBrick = YES;
+    BOOL canMoveAboveForeverBrickInsertMode = [[BrickInsertManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                                         itemAtIndexPath:indexPathFrom
+                                                                                      canInsertToIndexPath:indexPathTo
+                                                                                               andObject:self.spriteObject];
+    XCTAssertTrue(canMoveAboveForeverBrickInsertMode, @"Should be allowed to move IfBrick inside forever-loop above ForeverBrick");
 }
 
 @end
