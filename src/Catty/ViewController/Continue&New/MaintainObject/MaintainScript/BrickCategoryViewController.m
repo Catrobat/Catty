@@ -90,7 +90,8 @@
     return 1;
 }
 
-- (NSInteger)collectionView:(UICollectionView*)collectionView numberOfItemsInSection:(NSInteger)section
+- (NSInteger)collectionView:(UICollectionView*)collectionView
+     numberOfItemsInSection:(NSInteger)section
 {
     return self.bricks.count;
 }
@@ -114,11 +115,13 @@
     return brickCell;
 }
 
-- (void)collectionView:(UICollectionView*)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
+-   (void)collectionView:(UICollectionView*)collectionView
+didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:NO];
     BrickCell *cell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
     NSAssert(cell.scriptOrBrick, @"Error, no brick.");
+    [Util incrementStatisticCountForBrickType:[cell.scriptOrBrick brickType]];
     if ([self.delegate respondsToSelector:@selector(brickCategoryViewController:didSelectScriptOrBrick:)]) {
         [self.delegate brickCategoryViewController:self didSelectScriptOrBrick:cell.scriptOrBrick];
     }
@@ -152,7 +155,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 #pragma mark - Helpers
 - (kBrickCategoryType)brickCategoryTypForPageIndex:(NSUInteger)pageIndex {
 
-    return pageIndex ;
+    return pageIndex;
 }
 
 @end
@@ -160,6 +163,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 NSString* CBTitleFromPageIndexCategoryType(PageIndexCategoryType pageIndexType)
 {
     switch (pageIndexType) {
+        case kPageIndexScriptFavourites:
+            return kUIFavouritesTitle;
         case kPageIndexControlBrick:
             return kUIControlTitle;
         case kPageIndexMotionBrick:
@@ -171,6 +176,9 @@ NSString* CBTitleFromPageIndexCategoryType(PageIndexCategoryType pageIndexType)
         case kPageIndexVariableBrick:
             return kUIVariableTitle;
         default:
+        {
+            NSDebug(@"Invalid pageIndexCategoryType found in BrickCategoryViewController.")
             return nil;
+        }
     }
 }
