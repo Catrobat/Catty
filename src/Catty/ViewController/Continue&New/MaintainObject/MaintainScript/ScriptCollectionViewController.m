@@ -1775,7 +1775,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     self.isEditingBrickMode = NO;
     self.navigationController.toolbar.userInteractionEnabled = YES;
     self.navigationController.navigationBar.userInteractionEnabled = YES;
-        // enable swipe back gesture
+    // enable swipe back gesture
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     }
@@ -1784,8 +1784,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         cell.alpha = kBrickCellActiveOpacity;
     }
     
-    CGFloat maxContentOffset = self.collectionView.contentSize.height + self.collectionView.contentInset.bottom - self.collectionView.bounds.size.height;    
-    if (self.collectionView.contentOffset.y > maxContentOffset && maxContentOffset > 0) {
+    CGFloat maxContentOffset = self.collectionView.contentSize.height + self.collectionView.contentInset.bottom - self.collectionView.bounds.size.height;
+    if(maxContentOffset < -self.collectionView.contentInset.top)
+        maxContentOffset = -self.collectionView.contentInset.top;
+    
+    if (self.collectionView.contentOffset.y > maxContentOffset) {
         [self.collectionView setContentOffset:CGPointMake(0, maxContentOffset) animated:YES];
     }
 }
