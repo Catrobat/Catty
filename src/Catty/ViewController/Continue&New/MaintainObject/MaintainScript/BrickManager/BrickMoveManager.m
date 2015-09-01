@@ -56,33 +56,25 @@
         if (fromIndexPath.section == toIndexPath.section) {
             Script *toScript = [object.scriptList objectAtIndex:toIndexPath.section];
             Brick *toBrick = [toScript.brickList objectAtIndex:toIndexPath.item - 1];
-            LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)fromBrick;
-            if ([loopBeginBrick.loopEndBrick isEqual:toBrick]) {
-                self.lowerRankBrick = toIndexPath;
-                return NO;
-            }else if([toBrick isKindOfClass:[IfLogicBeginBrick class]]||[toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[LoopBeginBrick class]]||[toBrick isKindOfClass:[LoopEndBrick class]]){
+            
+            if([toBrick isKindOfClass:[IfLogicBeginBrick class]]||[toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[LoopBeginBrick class]]||[toBrick isKindOfClass:[LoopEndBrick class]]){
                 if (toIndexPath.item < fromIndexPath.item) {
                     self.higherRankBrick = toIndexPath;
-                    return NO;
                 } else {
                     self.lowerRankBrick = toIndexPath;
-                    return NO;
                 }
-            }else {
+                return NO;
+            } else {
                 return YES;
             }
-        } else {
-            return NO;
         }
-        
-    }else{
-        return NO;
     }
+    return NO;
 }
 
 - (BOOL)checkLoopEndToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick andObject:(SpriteObject*)object
 {
-        // FIXME: YUMMI, SPAGHETTI CODE!!!
+    // FIXME: YUMMI, SPAGHETTI CODE!!!
     LoopEndBrick *endbrick = (LoopEndBrick*) fromBrick;
     if ([endbrick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
         return NO;
@@ -91,27 +83,20 @@
         if (fromIndexPath.section == toIndexPath.section) {
             Script *script = [object.scriptList objectAtIndex:fromIndexPath.section];
             Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
-            if ([endbrick.loopBeginBrick isEqual:toBrick]) {
-                self.higherRankBrick = toIndexPath;
-                return NO;
-            }else if([toBrick isKindOfClass:[IfLogicBeginBrick class]]||[toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[LoopBeginBrick class]]||[toBrick isKindOfClass:[LoopEndBrick class]]){
+            
+            if([toBrick isKindOfClass:[IfLogicBeginBrick class]]||[toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[LoopBeginBrick class]]||[toBrick isKindOfClass:[LoopEndBrick class]]){
                 if (toIndexPath.item < fromIndexPath.item) {
                     self.higherRankBrick = toIndexPath;
-                    return NO;
-                }else{
+                } else {
                     self.lowerRankBrick = toIndexPath;
-                    return NO;
                 }
-            }else{
+                return NO;
+            } else {
                 return YES;
             }
-        }else{
-            return NO;
         }
-        
-    }else{
-        return NO;
     }
+    return NO;
 }
 
 - (BOOL)checkIfBeginToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick andObject:(SpriteObject*)object
@@ -133,13 +118,10 @@
                 return YES;
             }
             
-        } else {
-            return NO;
         }
     }
     return NO;
 }
-
 
 - (BOOL)checkIfElseToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick andObject:(SpriteObject*)object
 {
@@ -158,8 +140,6 @@
             } else {
                 return YES;
             }
-        } else {
-            return NO;
         }
     }
     return NO;
@@ -182,14 +162,10 @@
                 return YES;
             }
             
-        } else {
-            return NO;
         }
     }
     return NO;
 }
-
-
 
 - (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
     canMoveToIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object
@@ -197,7 +173,6 @@
     Script *fromScript = [object.scriptList objectAtIndex:fromIndexPath.section];
     Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
     
-    // move
     if (toIndexPath.item != 0) {
         Script *script;
         if (self.moveToOtherScript) {
