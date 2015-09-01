@@ -25,18 +25,12 @@
 #import "SpriteObject.h"
 
 @interface BrickMoveManager : NSObject
-@property (nonatomic, strong) NSIndexPath *higherRankBrick;
-@property (nonatomic, strong) NSIndexPath *lowerRankBrick;
-@property (nonatomic, assign) BOOL moveToOtherScript;
 
-
-+(id)sharedBrickMoveManager;
-
--(void)cleanUp;
-
++(id)sharedInstance;
 
 - (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
-    canMoveToIndexPath:(NSIndexPath*)toIndexPath IsInserting:(BOOL)inserting andObject:(SpriteObject*)object;
+    canMoveToIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object;
 
--(void)resetBrickMoveManager;
+-(void)reset;
+
 @end

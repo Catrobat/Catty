@@ -20,9 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
+#import <XCTest/XCTest.h>
+#import "StartScript.h"
+#import "ScriptCollectionViewController.h"
+#import "SpriteObject.h"
 
-#define kMaxPages 6
+@interface BrickInsertManagerAbstractTest : XCTestCase
 
-@interface BrickSelectionViewController : UIPageViewController
+@property (nonatomic, strong) SpriteObject *spriteObject;
+@property (nonatomic, strong) StartScript *startScript;
+@property (nonatomic, strong) ScriptCollectionViewController *viewController;
+
 @end

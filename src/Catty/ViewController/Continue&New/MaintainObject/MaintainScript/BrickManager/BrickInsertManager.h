@@ -20,9 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "Brick.h"
+#import "SpriteObject.h"
 
-#define kMaxPages 6
+@interface BrickInsertManager : NSObject
 
-@interface BrickSelectionViewController : UIPageViewController
++(id)sharedInstance;
+
+- (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
+    canInsertToIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object;
+
+-(void)reset;
+
 @end

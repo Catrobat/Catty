@@ -134,7 +134,8 @@
         self.border.shadowOpacity = 1.0;
         self.border.shadowOffset = CGSizeMake(0, 0);
     } else {
-        UIColor *borderColor = kBrickCategoryStrokeColors[self.brickCell.scriptOrBrick.brickCategoryType];
+        //UIColor *borderColor = kBrickCategoryStrokeColors[self.brickCell.scriptOrBrick.brickCategoryType];
+        UIColor *borderColor = self.brickCell.brickCategoryColors[self.brickCell.scriptOrBrick.brickCategoryType-1];
         self.border.strokeColor = borderColor.CGColor;
     }
     
@@ -147,12 +148,18 @@
     return [formulaBrick formulaForLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
 }
 
-# pragma mark - Delegate
 
+# pragma mark - Delegate
 - (void)saveFormula:(Formula *)formula
 {
     [self.formula setRoot:formula.formulaTree];
     [self.brickCell.dataDelegate updateBrickCellData:self withValue:self.formula];
+}
+
+# pragma mark - User interaction
+- (BOOL)isUserInteractionEnabled
+{
+    return self.brickCell.scriptOrBrick.isAnimatedInsertBrick == NO;
 }
 
 @end
