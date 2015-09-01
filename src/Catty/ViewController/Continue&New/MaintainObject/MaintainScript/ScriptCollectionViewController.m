@@ -546,7 +546,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self.object.program saveToDisk];
         return;
     }
-
     // empty script list, insert start script and continue to insert the chosen brick
     if (self.object.scriptList.count == 0) {
         StartScript *script = [StartScript new];
@@ -556,7 +555,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self.collectionView reloadData];
         [self.object.program saveToDisk];
     }
-    
+
     NSInteger targetScriptIndex = 0;
     BOOL smallScript = NO;
     CGRect visibleRect = (CGRect){.origin = self.collectionView.contentOffset, .size = self.collectionView.bounds.size};
@@ -585,13 +584,17 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             index--;
         }
     }
-
     if ((smallScript || self.scrollEnd) && !hasForeverLoop ) {
-           [targetScript.brickList addObject:brick];
+        [targetScript.brickList addObject:brick];
     }else{
-         [targetScript.brickList insertObject:brick atIndex:insertionIndex];
+        [targetScript.brickList insertObject:brick atIndex:insertionIndex];
     }
-
+    // empty script list, insert first brick and continue
+    if (targetScript.brickList.count == 1) {
+        
+        [self insertBrick:brick andIndexPath:[NSIndexPath indexPathForRow:0 inSection:self.object.scriptList.count-1]];
+        return;
+    }
     
     brick.animateInsertBrick = YES;
     
