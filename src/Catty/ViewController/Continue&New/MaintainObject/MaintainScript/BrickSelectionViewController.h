@@ -22,7 +22,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define kMaxPages 5
+#define kMaxPages 6
 
 @interface BrickSelectionViewController : UIPageViewController
 @end
