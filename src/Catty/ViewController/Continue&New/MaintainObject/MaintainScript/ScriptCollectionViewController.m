@@ -74,6 +74,7 @@
 #import "CBMutableCopyContext.h"
 #import "RepeatBrick.h"
 #import "OrderedMapTable.h"
+#import "BrickInsertManager.h"
 #import "BrickMoveManager.h"
 
 @interface ScriptCollectionViewController() <UICollectionViewDelegate,
@@ -143,7 +144,7 @@
 {
     [super viewDidDisappear:animated];
     self.navigationController.interactivePopGestureRecognizer.cancelsTouchesInView = YES;
-    [[BrickMoveManager sharedBrickMoveManager] cleanUp];
+    [[BrickMoveManager sharedInstance] reset];
 }
 
 #pragma mark - actions
@@ -424,13 +425,17 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 layout:(UICollectionViewLayout*)collectionViewLayout
 willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    [[BrickMoveManager sharedBrickMoveManager] resetBrickMoveManager];
+    [[BrickMoveManager sharedInstance] reset];
 }
 
 - (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
     canMoveToIndexPath:(NSIndexPath*)toIndexPath
 {
-    return [[BrickMoveManager sharedBrickMoveManager] collectionView:self.collectionView itemAtIndexPath:fromIndexPath canMoveToIndexPath:toIndexPath IsInserting:self.isInsertingBrickMode andObject:self.object];
+    if (self.isInsertingBrickMode) {
+        return [[BrickInsertManager sharedInstance] collectionView:self.collectionView itemAtIndexPath:fromIndexPath canInsertToIndexPath:toIndexPath andObject:self.object];
+    }
+        
+    return [[BrickMoveManager sharedInstance] collectionView:self.collectionView itemAtIndexPath:fromIndexPath canMoveToIndexPath:toIndexPath andObject:self.object];
 }
 
 

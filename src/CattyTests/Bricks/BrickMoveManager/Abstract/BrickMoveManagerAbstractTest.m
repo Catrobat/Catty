@@ -54,7 +54,7 @@
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
     XCTAssertEqual(1, [self.viewController.collectionView numberOfItemsInSection:0]);
     
-    [[BrickMoveManager sharedBrickMoveManager] resetBrickMoveManager];
+    [[BrickMoveManager sharedInstance] reset];
 }
 
 @end
