@@ -174,7 +174,6 @@
     if (categoryType == kControlBrick) {
         [selectableBricksForCategoryMutable addObjectsFromArray:[[BrickManager sharedBrickManager] selectableScriptBricks]];
     }
-    //TODO: check favourite -> select them!
     if (categoryType == kFavouriteBricks) {
         NSArray *selectableBricksOrScripts = [selectableBricks arrayByAddingObjectsFromArray:[[BrickManager sharedBrickManager] selectableScriptBricks]];
         NSArray *favouriteBricks = [Util getSubsetOfTheMostFavoriteChosenBricks:kMaxNumberOfFavouriteBricksShown];

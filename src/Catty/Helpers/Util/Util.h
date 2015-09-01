@@ -244,4 +244,6 @@
 
 + (void)resetBrickStatistics;
 
++ (NSDictionary*)defaultBrickStatisticDictionary;
+
 @end

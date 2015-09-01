@@ -122,8 +122,6 @@ typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
     kFavouriteBricks           = 0
 };
 
-#define kMaxNumberOfFavouriteBricksShown 5
-
 // brick type identifiers
 typedef NS_ENUM(NSUInteger, kBrickType) {
     // invalid brick type
@@ -188,6 +186,24 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kChangeVariableBrick       = 401
 
 };
+
+#define kMaxNumberOfFavouriteBricksShown 10
+
+#define WRAP_BRICK_TYPE_IN_NSSTRING(brick) (WRAP_UINT_IN_NSNUMBER(brick).stringValue)
+#define WRAP_UINT_IN_NSNUMBER(number) ([NSNumber numberWithUnsignedInteger:number])
+#define kNSNumberZero WRAP_UINT_IN_NSNUMBER(0)
+
+#define kDefaultFavouriteBricksStatistic @{\
+        WRAP_BRICK_TYPE_IN_NSSTRING(kTappedBrick) : kNSNumberZero,\
+        WRAP_BRICK_TYPE_IN_NSSTRING(kForeverBrick) : kNSNumberZero,\
+        WRAP_BRICK_TYPE_IN_NSSTRING(kIfBrick) : kNSNumberZero,\
+        WRAP_BRICK_TYPE_IN_NSSTRING(kPlaceAtBrick) : kNSNumberZero,\
+        WRAP_BRICK_TYPE_IN_NSSTRING(kPlaySoundBrick) : kNSNumberZero,\
+        WRAP_BRICK_TYPE_IN_NSSTRING(kSpeakBrick) : kNSNumberZero,\
+        WRAP_BRICK_TYPE_IN_NSSTRING(kSetLookBrick) : kNSNumberZero,\
+        WRAP_BRICK_TYPE_IN_NSSTRING(kSetVariableBrick) : kNSNumberZero,\
+        WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick) : kNSNumberZero\
+        }
 
 // brick categories
 #define kBrickCategoryNames @[\

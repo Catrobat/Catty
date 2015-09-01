@@ -1103,7 +1103,7 @@ replacementString:(NSString*)characters
     NSDictionary *insertionStatistic = [userDefaults objectForKey:kUserDefaultsBrickSelectionStatisticsMap];
     if(insertionStatistic == nil)
     {
-        insertionStatistic = [[NSDictionary alloc] init];
+        insertionStatistic = [self defaultBrickStatisticDictionary];
         [userDefaults setObject:insertionStatistic
                          forKey:kUserDefaultsBrickSelectionStatisticsMap];
         [userDefaults synchronize];
@@ -1175,9 +1175,14 @@ replacementString:(NSString*)characters
 + (void)resetBrickStatistics
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:[[NSDictionary alloc] init] forKey:kUserDefaultsBrickSelectionStatisticsMap];
+    [userDefaults setObject:[self defaultBrickStatisticDictionary] forKey:kUserDefaultsBrickSelectionStatisticsMap];
     [userDefaults synchronize];
 }
 
++ (NSDictionary*)defaultBrickStatisticDictionary
+{
+    NSDictionary* defaultStatistics = kDefaultFavouriteBricksStatistic;
+    return defaultStatistics;
+}
 
 @end
