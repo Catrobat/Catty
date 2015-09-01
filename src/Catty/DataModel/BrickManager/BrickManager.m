@@ -175,6 +175,20 @@
         [selectableBricksForCategoryMutable addObjectsFromArray:[[BrickManager sharedBrickManager] selectableScriptBricks]];
     }
     //TODO: check favourite -> select them!
+    if (categoryType == kFavouriteBricks) {
+        NSArray *selectableBricksOrScripts = [selectableBricks arrayByAddingObjectsFromArray:[[BrickManager sharedBrickManager] selectableScriptBricks]];
+        NSArray *favouriteBricks = [Util getSubsetOfTheMostFavoriteChosenBricks:kMaxNumberOfFavouriteBricksShown];
+        for(id<BrickProtocol> scriptOrBrick in selectableBricksOrScripts) {
+            NSString *wrappedBrickType = [NSNumber numberWithUnsignedInteger:(NSUInteger)[scriptOrBrick brickType]].stringValue;
+            for(NSString* oneFavouriteBrickTitle in favouriteBricks) {
+                if([wrappedBrickType isEqualToString:oneFavouriteBrickTitle]) {
+                    [selectableBricksForCategoryMutable addObject:scriptOrBrick];
+                }
+            }
+        }
+        return (NSArray*)selectableBricksForCategoryMutable;
+    }
+    
     for (id<BrickProtocol> brick in selectableBricks) {
         if (brick.brickCategoryType == categoryType) {
             [selectableBricksForCategoryMutable addObject:brick];

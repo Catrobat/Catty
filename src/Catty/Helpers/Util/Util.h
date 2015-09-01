@@ -232,13 +232,15 @@
 
 + (void)setBrickInsertionDictionaryToUserDefaults:(NSDictionary*) statistics;
 
-+ (void)incrementStatisticCountForBrickNamed:(NSString*)brickName;
++ (void)incrementStatisticCountForBrickType:(kBrickType)brickType;
 
 + (void)printBrickStatistics;
 
 + (void)printSubsetOfTheMost:(NSUInteger)N;
 
 + (NSArray*)getSubsetOfTheMost:(NSUInteger)N usedBricksInDictionary:(NSDictionary*) brickCountDictionary;
+
++ (NSArray*)getSubsetOfTheMostFavoriteChosenBricks:(NSUInteger) amount;
 
 + (void)resetBrickStatistics;
 

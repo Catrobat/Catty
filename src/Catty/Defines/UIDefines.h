@@ -122,6 +122,8 @@ typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
     kFavouriteBricks           = 0
 };
 
+#define kMaxNumberOfFavouriteBricksShown 5
+
 // brick type identifiers
 typedef NS_ENUM(NSUInteger, kBrickType) {
     // invalid brick type

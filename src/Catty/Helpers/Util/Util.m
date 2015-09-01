@@ -1120,12 +1120,13 @@ replacementString:(NSString*)characters
 }
 
 
-+ (void)incrementStatisticCountForBrickNamed:(NSString *)brickName
++ (void)incrementStatisticCountForBrickType:(kBrickType)brickType
 {
     NSDictionary *insertionStatistic = [self getBrickInsertionDictionaryFromUserDefaults];
-    NSNumber *old_count = [insertionStatistic objectForKey:brickName];
+    NSString *wrappedBrickType = [NSNumber numberWithUnsignedInteger:(NSUInteger)brickType].stringValue;
+    NSNumber *old_count = [insertionStatistic objectForKey:wrappedBrickType];
     NSMutableDictionary* mutableInsertionStatistic = [insertionStatistic mutableCopy];
-    [mutableInsertionStatistic setValue:[NSNumber numberWithInt:old_count.intValue+1] forKey:brickName];
+    [mutableInsertionStatistic setValue:[NSNumber numberWithInt:old_count.intValue+1] forKey:wrappedBrickType];
     insertionStatistic = [NSDictionary dictionaryWithDictionary:mutableInsertionStatistic];
     [self setBrickInsertionDictionaryToUserDefaults:insertionStatistic];
 }
@@ -1163,6 +1164,12 @@ replacementString:(NSString*)characters
     range.length = count;
 
     return [sortedBricks subarrayWithRange:range];
+}
+
++ (NSArray*) getSubsetOfTheMostFavoriteChosenBricks:(NSUInteger)amount
+{
+    return [self getSubsetOfTheMost:amount
+             usedBricksInDictionary:[self getBrickInsertionDictionaryFromUserDefaults]];
 }
 
 + (void)resetBrickStatistics
