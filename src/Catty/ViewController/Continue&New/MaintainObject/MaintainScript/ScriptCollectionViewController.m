@@ -782,141 +782,15 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 #pragma mark - Animate Logic Bricks
 -(void)animate:(NSIndexPath*)indexPath brickCell:(BrickCell*)brickCell
 {
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [brickCell animate:YES];
     });
     Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
     if (script.brickList.count) {
         Brick *brick = [script.brickList objectAtIndex:indexPath.item -1];
-        if ([brick isKindOfClass:[LoopBeginBrick class]] || [brick isKindOfClass:[LoopEndBrick class]]) {
-            [self loopBrickForAnimation:brick IndexPath:indexPath andScript:script];
-        } else if ([brick isKindOfClass:[IfLogicBeginBrick class]] || [brick isKindOfClass:[IfLogicElseBrick class]] || [brick isKindOfClass:[IfLogicEndBrick class]]) {
-            [self ifBrickForAnimation:brick IndexPath:indexPath andScript:script];
-        }
+        [brick animateWithIndexPath:indexPath Script:script andCollectionView:self.collectionView];
     }
-}
-
-- (void)loopBrickForAnimation:(Brick*)brick IndexPath:(NSIndexPath*)indexPath andScript:(Script*)script
-{
-    if ([brick isKindOfClass:[LoopBeginBrick class]]) {
-        LoopBeginBrick *begin = (LoopBeginBrick*)brick;
-        NSInteger count = 0;
-        for (Brick *check in script.brickList) {
-            if ([check isEqual:begin.loopEndBrick]) {
-                break;
-            }
-            ++count;
-        }
-        begin.animate = YES;
-        begin.loopEndBrick.animate = YES;
-        [self animateLoop:count andIndexPath:indexPath];
-    } else if ([brick isKindOfClass:[LoopEndBrick class]]) {
-        LoopEndBrick *endBrick = (LoopEndBrick *)brick;
-        NSInteger count = 0;
-        for (Brick *check in script.brickList) {
-            if ([check isEqual:endBrick.loopBeginBrick]) {
-                break;
-            }
-            ++count;
-        }
-        endBrick.animate = YES;
-        endBrick.loopBeginBrick.animate = YES;
-        [self animateLoop:count andIndexPath:indexPath];
-    }
-}
-
-- (void)ifBrickForAnimation:(Brick*)brick IndexPath:(NSIndexPath*)indexPath andScript:(Script*)script
-{
-    if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
-        IfLogicBeginBrick *begin = (IfLogicBeginBrick*)brick;
-        NSInteger elsecount = 0;
-        NSInteger endcount = 0;
-        BOOL found = NO;
-        for (Brick *checkBrick in script.brickList) {
-            if (! found) {
-                if ([checkBrick isEqual:begin.ifElseBrick]) {
-                    found = YES;
-                } else {
-                    ++elsecount;
-                }
-            }
-            if ([checkBrick isEqual:begin.ifEndBrick]) {
-                break;
-            } else {
-                ++endcount;
-            }
-            
-        }
-        begin.animate = YES;
-        begin.ifElseBrick.animate = YES;
-        begin.ifEndBrick.animate = YES;
-        [self animateIf:elsecount and:endcount andIndexPath:indexPath];
-    } else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
-        IfLogicElseBrick *elseBrick = (IfLogicElseBrick*)brick;
-        NSInteger begincount = 0;
-        NSInteger endcount = 0;
-        BOOL found = NO;
-        for (Brick *checkBrick in script.brickList) {
-            if (! found) {
-                if ([checkBrick isEqual:elseBrick.ifBeginBrick]) {
-                    found = YES;
-                } else {
-                    ++begincount;
-                }
-            }
-            if ([checkBrick isEqual:elseBrick.ifEndBrick]) {
-                break;
-            } else {
-                ++endcount;
-            }
-        }
-        elseBrick.animate = YES;
-        elseBrick.ifBeginBrick.animate = YES;
-        elseBrick.ifEndBrick.animate = YES;
-        [self animateIf:begincount and:endcount andIndexPath:indexPath];
-    } else if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
-        IfLogicEndBrick *endBrick = (IfLogicEndBrick*)brick;
-        NSInteger elsecount = 0;
-        NSInteger begincount = 0;
-        BOOL found = NO;
-        for (Brick *checkBrick in script.brickList) {
-            if (! found) {
-                if ([checkBrick isEqual:endBrick.ifBeginBrick]) {
-                    found = YES;
-                } else {
-                    ++begincount;
-                }
-            }
-            if ([checkBrick isEqual:endBrick.ifElseBrick]) {
-                break;
-            } else {
-                ++elsecount;
-            }
-            
-        }
-        endBrick.animate = YES;
-        endBrick.ifElseBrick.animate = YES;
-        endBrick.ifBeginBrick.animate = YES;
-        [self animateIf:elsecount and:begincount andIndexPath:indexPath];
-    }
-}
-
--(void)animateLoop:(NSInteger)count andIndexPath:(NSIndexPath*)indexPath
-{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:count+1 inSection:indexPath.section]];
-        [cell animate:YES];
-    });
-}
-
--(void)animateIf:(NSInteger)count1 and:(NSInteger)count2 andIndexPath:(NSIndexPath*)indexPath
-{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        BrickCell *elsecell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:count1+1 inSection:indexPath.section]];
-        BrickCell *begincell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:count2+1 inSection:indexPath.section]];
-        [elsecell animate:YES];
-        [begincell animate:YES];
-    });
 }
 
 #pragma mark - Copy Brick

@@ -27,6 +27,7 @@
 #import "IfLogicBeginBrick.h"
 #import "IfLogicEndBrick.h"
 #import "LoopEndBrick.h"
+#import "LoopBeginBrick.h"
 #import "RepeatBrick.h"
 #import "BroadcastScript.h"
 #import "WaitBrick.h"
@@ -37,6 +38,7 @@
 #import "BroadcastWaitBrick.h"
 #import "NoteBrick.h"
 #include <mach/mach_time.h>
+#import "BrickCell.h"
 
 @interface Brick()
 
@@ -209,4 +211,136 @@
     self.script = nil;
 }
 
+
+#pragma mark Animation
+- (void)animateWithIndexPath:(NSIndexPath*)path Script:(Script*)script andCollectionView:(UICollectionView*)collectionView
+{
+    if ([self isKindOfClass:[LoopBeginBrick class]] || [self isKindOfClass:[LoopEndBrick class]]) {
+        [self loopBrickForAnimationIndexPath:path Script:script andCollectionView:collectionView];
+    } else if ([self isKindOfClass:[IfLogicBeginBrick class]] || [self isKindOfClass:[IfLogicElseBrick class]] || [self isKindOfClass:[IfLogicEndBrick class]]) {
+        [self ifBrickForAnimationIndexPath:path Script:script andCollectionView:collectionView];
+    }
+}
+- (void)loopBrickForAnimationIndexPath:(NSIndexPath*)indexPath Script:(Script*)script andCollectionView:(UICollectionView*)collectionView
+{
+    if ([self isKindOfClass:[LoopBeginBrick class]]) {
+        LoopBeginBrick *begin = (LoopBeginBrick*)self;
+        NSInteger count = 0;
+        for (Brick *check in script.brickList) {
+            if ([check isEqual:begin.loopEndBrick]) {
+                break;
+            }
+            ++count;
+        }
+        begin.animate = YES;
+        begin.loopEndBrick.animate = YES;
+        [self animateLoop:count IndexPath:indexPath andCollectionView:collectionView];
+    } else if ([self isKindOfClass:[LoopEndBrick class]]) {
+        LoopEndBrick *endBrick = (LoopEndBrick *)self;
+        NSInteger count = 0;
+        for (Brick *check in script.brickList) {
+            if ([check isEqual:endBrick.loopBeginBrick]) {
+                break;
+            }
+            ++count;
+        }
+        endBrick.animate = YES;
+        endBrick.loopBeginBrick.animate = YES;
+        [self animateLoop:count IndexPath:indexPath andCollectionView:collectionView];
+    }
+}
+
+- (void)ifBrickForAnimationIndexPath:(NSIndexPath*)indexPath Script:(Script*)script andCollectionView:(UICollectionView*)collectionView
+{
+    if ([self isKindOfClass:[IfLogicBeginBrick class]]) {
+        IfLogicBeginBrick *begin = (IfLogicBeginBrick*)self;
+        NSInteger elsecount = 0;
+        NSInteger endcount = 0;
+        BOOL found = NO;
+        for (Brick *checkBrick in script.brickList) {
+            if (! found) {
+                if ([checkBrick isEqual:begin.ifElseBrick]) {
+                    found = YES;
+                } else {
+                    ++elsecount;
+                }
+            }
+            if ([checkBrick isEqual:begin.ifEndBrick]) {
+                break;
+            } else {
+                ++endcount;
+            }
+            
+        }
+        begin.animate = YES;
+        begin.ifElseBrick.animate = YES;
+        begin.ifEndBrick.animate = YES;
+        [self animateIf:elsecount and:endcount IndexPath:indexPath andCollectionView:collectionView];
+    } else if ([self isKindOfClass:[IfLogicElseBrick class]]) {
+        IfLogicElseBrick *elseBrick = (IfLogicElseBrick*)self;
+        NSInteger begincount = 0;
+        NSInteger endcount = 0;
+        BOOL found = NO;
+        for (Brick *checkBrick in script.brickList) {
+            if (! found) {
+                if ([checkBrick isEqual:elseBrick.ifBeginBrick]) {
+                    found = YES;
+                } else {
+                    ++begincount;
+                }
+            }
+            if ([checkBrick isEqual:elseBrick.ifEndBrick]) {
+                break;
+            } else {
+                ++endcount;
+            }
+        }
+        elseBrick.animate = YES;
+        elseBrick.ifBeginBrick.animate = YES;
+        elseBrick.ifEndBrick.animate = YES;
+        [self animateIf:begincount and:endcount IndexPath:indexPath andCollectionView:collectionView];
+    } else if ([self isKindOfClass:[IfLogicEndBrick class]]) {
+        IfLogicEndBrick *endBrick = (IfLogicEndBrick*)self;
+        NSInteger elsecount = 0;
+        NSInteger begincount = 0;
+        BOOL found = NO;
+        for (Brick *checkBrick in script.brickList) {
+            if (! found) {
+                if ([checkBrick isEqual:endBrick.ifBeginBrick]) {
+                    found = YES;
+                } else {
+                    ++begincount;
+                }
+            }
+            if ([checkBrick isEqual:endBrick.ifElseBrick]) {
+                break;
+            } else {
+                ++elsecount;
+            }
+            
+        }
+        endBrick.animate = YES;
+        endBrick.ifElseBrick.animate = YES;
+        endBrick.ifBeginBrick.animate = YES;
+        [self animateIf:elsecount and:begincount IndexPath:indexPath andCollectionView:collectionView];
+    }
+}
+
+-(void)animateLoop:(NSInteger)count IndexPath:(NSIndexPath*)indexPath andCollectionView:(UICollectionView*)collectionView
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        BrickCell *cell = (BrickCell*)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:count+1 inSection:indexPath.section]];
+        [cell animate:YES];
+    });
+}
+
+-(void)animateIf:(NSInteger)count1 and:(NSInteger)count2 IndexPath:(NSIndexPath*)indexPath andCollectionView:(UICollectionView*)collectionView
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        BrickCell *elsecell = (BrickCell*)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:count1+1 inSection:indexPath.section]];
+        BrickCell *begincell = (BrickCell*)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:count2+1 inSection:indexPath.section]];
+        [elsecell animate:YES];
+        [begincell animate:YES];
+    });
+}
 @end
