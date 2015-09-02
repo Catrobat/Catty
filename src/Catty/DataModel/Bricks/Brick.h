@@ -55,8 +55,8 @@
 
 - (void)removeReferences;
 
-- (void)animateWithIndexPath:(NSIndexPath*)path Script:(Script*)script andCollectionView:(UICollectionView*)collectionView;
+- (NSArray*)animateWithIndexPath:(NSIndexPath*)path Script:(Script*)script;
 
-- (void)scriptCollectionCopyBrick:(UICollectionView*)collectionView andIndexPath:(NSIndexPath*)indexPath;
+- (NSArray*)scriptCollectionCopyBrickWithIndexPath:(NSIndexPath*)indexPath;
 
 @end

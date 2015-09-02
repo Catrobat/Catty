@@ -213,15 +213,17 @@
 
 
 #pragma mark Animation
-- (void)animateWithIndexPath:(NSIndexPath*)path Script:(Script*)script andCollectionView:(UICollectionView*)collectionView
+- (NSArray*)animateWithIndexPath:(NSIndexPath*)path Script:(Script*)script
 {
     if ([self isKindOfClass:[LoopBeginBrick class]] || [self isKindOfClass:[LoopEndBrick class]]) {
-        [self loopBrickForAnimationIndexPath:path Script:script andCollectionView:collectionView];
+        return [self loopBrickForAnimationIndexPath:path Script:script];
     } else if ([self isKindOfClass:[IfLogicBeginBrick class]] || [self isKindOfClass:[IfLogicElseBrick class]] || [self isKindOfClass:[IfLogicEndBrick class]]) {
-        [self ifBrickForAnimationIndexPath:path Script:script andCollectionView:collectionView];
+        return [self ifBrickForAnimationIndexPath:path Script:script];
+    } else {
+        return nil;
     }
 }
-- (void)loopBrickForAnimationIndexPath:(NSIndexPath*)indexPath Script:(Script*)script andCollectionView:(UICollectionView*)collectionView
+- (NSArray*)loopBrickForAnimationIndexPath:(NSIndexPath*)indexPath Script:(Script*)script
 {
     if ([self isKindOfClass:[LoopBeginBrick class]]) {
         LoopBeginBrick *begin = (LoopBeginBrick*)self;
@@ -234,7 +236,7 @@
         }
         begin.animate = YES;
         begin.loopEndBrick.animate = YES;
-        [self animateLoop:count IndexPath:indexPath andCollectionView:collectionView];
+        return @[[NSNumber numberWithInteger:count+1]];
     } else if ([self isKindOfClass:[LoopEndBrick class]]) {
         LoopEndBrick *endBrick = (LoopEndBrick *)self;
         NSInteger count = 0;
@@ -246,11 +248,12 @@
         }
         endBrick.animate = YES;
         endBrick.loopBeginBrick.animate = YES;
-        [self animateLoop:count IndexPath:indexPath andCollectionView:collectionView];
+         return @[[NSNumber numberWithInteger:count+1]];
     }
+    return nil;
 }
 
-- (void)ifBrickForAnimationIndexPath:(NSIndexPath*)indexPath Script:(Script*)script andCollectionView:(UICollectionView*)collectionView
+- (NSArray*)ifBrickForAnimationIndexPath:(NSIndexPath*)indexPath Script:(Script*)script
 {
     if ([self isKindOfClass:[IfLogicBeginBrick class]]) {
         IfLogicBeginBrick *begin = (IfLogicBeginBrick*)self;
@@ -275,7 +278,7 @@
         begin.animate = YES;
         begin.ifElseBrick.animate = YES;
         begin.ifEndBrick.animate = YES;
-        [self animateIf:elsecount and:endcount IndexPath:indexPath andCollectionView:collectionView];
+        return @[[NSNumber numberWithInteger:elsecount+1],[NSNumber numberWithInteger:endcount+1]];
     } else if ([self isKindOfClass:[IfLogicElseBrick class]]) {
         IfLogicElseBrick *elseBrick = (IfLogicElseBrick*)self;
         NSInteger begincount = 0;
@@ -298,7 +301,7 @@
         elseBrick.animate = YES;
         elseBrick.ifBeginBrick.animate = YES;
         elseBrick.ifEndBrick.animate = YES;
-        [self animateIf:begincount and:endcount IndexPath:indexPath andCollectionView:collectionView];
+        return @[[NSNumber numberWithInteger:begincount+1],[NSNumber numberWithInteger:endcount+1]];
     } else if ([self isKindOfClass:[IfLogicEndBrick class]]) {
         IfLogicEndBrick *endBrick = (IfLogicEndBrick*)self;
         NSInteger elsecount = 0;
@@ -322,31 +325,14 @@
         endBrick.animate = YES;
         endBrick.ifElseBrick.animate = YES;
         endBrick.ifBeginBrick.animate = YES;
-        [self animateIf:elsecount and:begincount IndexPath:indexPath andCollectionView:collectionView];
+        return @[[NSNumber numberWithInteger:elsecount+1],[NSNumber numberWithInteger:begincount+1]];
     }
-}
-
--(void)animateLoop:(NSInteger)count IndexPath:(NSIndexPath*)indexPath andCollectionView:(UICollectionView*)collectionView
-{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        BrickCell *cell = (BrickCell*)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:count+1 inSection:indexPath.section]];
-        [cell animate:YES];
-    });
-}
-
--(void)animateIf:(NSInteger)count1 and:(NSInteger)count2 IndexPath:(NSIndexPath*)indexPath andCollectionView:(UICollectionView*)collectionView
-{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        BrickCell *elsecell = (BrickCell*)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:count1+1 inSection:indexPath.section]];
-        BrickCell *begincell = (BrickCell*)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:count2+1 inSection:indexPath.section]];
-        [elsecell animate:YES];
-        [begincell animate:YES];
-    });
+    return nil;
 }
 
 #pragma mark ScriptCollectionViewController Copy
 
-- (void)scriptCollectionCopyBrick:(UICollectionView*)collectionView andIndexPath:(NSIndexPath*)indexPath
+- (NSArray*)scriptCollectionCopyBrickWithIndexPath:(NSIndexPath*)indexPath
 {
     if ([self isLoopBrick]) {
         // loop brick
@@ -371,7 +357,7 @@
         [self.script addBrick:copiedLoopEndBrick atIndex:loopEndIndex];
         NSIndexPath *loopBeginIndexPath = [NSIndexPath indexPathForItem:(loopBeginIndex + 1) inSection:indexPath.section];
         NSIndexPath *loopEndIndexPath = [NSIndexPath indexPathForItem:(loopBeginIndex + 2) inSection:indexPath.section];
-        [collectionView insertItemsAtIndexPaths:@[loopBeginIndexPath, loopEndIndexPath]];
+        return @[loopBeginIndexPath, loopEndIndexPath];
         
     } else if ([self isIfLogicBrick]) {
         // if brick
@@ -411,7 +397,7 @@
         NSIndexPath *ifLogicBeginIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 1) inSection:indexPath.section];
         NSIndexPath *ifLogicElseIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 2) inSection:indexPath.section];
         NSIndexPath *ifLogicEndIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 3) inSection:indexPath.section];
-        [collectionView insertItemsAtIndexPaths:@[ifLogicBeginIndexPath, ifLogicElseIndexPath, ifLogicEndIndexPath]];
+        return @[ifLogicBeginIndexPath, ifLogicElseIndexPath, ifLogicEndIndexPath];
         
     } else {
         // normal brick
@@ -419,7 +405,7 @@
         Brick *copiedBrick = [self mutableCopyWithContext:[CBMutableCopyContext new]];
         [self.script addBrick:copiedBrick atIndex:copiedBrickIndex];
         NSIndexPath *newIndexPath = [NSIndexPath indexPathForItem:(indexPath.row + 1) inSection:indexPath.section];
-        [collectionView insertItemsAtIndexPaths:@[newIndexPath]];
+        return @[newIndexPath];
     }
 }
 

@@ -789,14 +789,23 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
     if (script.brickList.count) {
         Brick *brick = [script.brickList objectAtIndex:indexPath.item -1];
-        [brick animateWithIndexPath:indexPath Script:script andCollectionView:self.collectionView];
+        NSArray* animationArray = [brick animateWithIndexPath:indexPath Script:script];
+        if (animationArray) {
+            for (NSNumber* number in animationArray) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    BrickCell *cell = (BrickCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:number.integerValue inSection:indexPath.section]];
+                    [cell animate:YES];
+                });
+            }
+        }
     }
 }
 
 #pragma mark - Copy Brick
 - (void)copyBrick:(Brick*)brick atIndexPath:(NSIndexPath*)indexPath
 {
-    [brick scriptCollectionCopyBrick:self.collectionView andIndexPath:indexPath];
+    NSArray* indexArray = [brick  scriptCollectionCopyBrickWithIndexPath:indexPath];
+    [self.collectionView insertItemsAtIndexPaths:indexArray];
     self.placeHolderView.hidden = YES;
     [self.object.program saveToDisk];
 }
