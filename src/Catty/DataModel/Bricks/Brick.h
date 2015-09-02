@@ -57,4 +57,6 @@
 
 - (void)animateWithIndexPath:(NSIndexPath*)path Script:(Script*)script andCollectionView:(UICollectionView*)collectionView;
 
+- (void)scriptCollectionCopyBrick:(UICollectionView*)collectionView andIndexPath:(NSIndexPath*)indexPath;
+
 @end
