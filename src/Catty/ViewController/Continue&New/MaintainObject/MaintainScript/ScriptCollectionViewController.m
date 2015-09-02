@@ -94,7 +94,6 @@
 @property (nonatomic, assign) BOOL selectedAllCells;  // refactor
 @property (nonatomic, assign) BOOL scrollEnd;  // refactor
 @property (nonatomic, strong) NSIndexPath *variableIndexPath;
-@property (nonatomic, assign) BOOL isInsertingBrickMode;
 @property (nonatomic, assign) BOOL isEditingBrickMode;
 @property (nonatomic) PageIndexCategoryType lastSelectedBrickCategory;
 
@@ -129,7 +128,7 @@
     self.collectionView.delegate = self;
     self.placeHolderView.title = kLocalizedScripts;
     self.placeHolderView.hidden = (self.object.scriptList.count != 0);
-    self.isInsertingBrickMode = NO;
+    [[BrickInsertManager sharedInstance] reset];
     self.isEditingBrickMode = NO;
 }
 
@@ -263,7 +262,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         [collectionView deselectItemAtIndexPath:indexPath animated:NO];
         return;
     }
-    if (self.isInsertingBrickMode) {
+    if ([[BrickInsertManager sharedInstance] isBrickInsertionMode]) {
         [self turnOffInsertingBrickMode];
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
         Brick *brick = [script.brickList objectAtIndex:indexPath.item - 1];
@@ -403,7 +402,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                 layout:(UICollectionViewLayout*)collectionViewLayout
 didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    if (self.isInsertingBrickMode) {
+    if ([[BrickInsertManager sharedInstance] isBrickInsertionMode]) {
         NSLog(@"INSERT ALL BRICKS");
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
         Brick *brick;
@@ -435,7 +434,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 - (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
     canMoveToIndexPath:(NSIndexPath*)toIndexPath
 {
-    if (self.isInsertingBrickMode) {
+    if ([[BrickInsertManager sharedInstance] isBrickInsertionMode]) {
         return [[BrickInsertManager sharedInstance] collectionView:self.collectionView itemAtIndexPath:fromIndexPath canInsertToIndexPath:toIndexPath andObject:self.object];
     }
         
@@ -513,7 +512,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
       brickCell.selectButton.selected = NO;
     }
     brickCell.enabled = (! self.isEditing);
-    if (self.isInsertingBrickMode) {
+    if ([[BrickInsertManager sharedInstance] isBrickInsertionMode]) {
         if (brickCell.scriptOrBrick.isAnimatedInsertBrick) {
             brickCell.userInteractionEnabled = YES;
         } else {
@@ -736,7 +735,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)turnOnInsertingBrickMode
 {
-    self.isInsertingBrickMode = YES;
+    [[BrickInsertManager sharedInstance] setBrickInsertionMode:YES];
     for (UIButton *button in self.navigationController.toolbar.items) {
         button.enabled = NO;
     }
@@ -750,7 +749,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)turnOffInsertingBrickMode
 {
-    self.isInsertingBrickMode = NO;
+    [[BrickInsertManager sharedInstance] reset];
     for (UIButton *button in self.navigationController.toolbar.items) {
         button.enabled = YES;
     }

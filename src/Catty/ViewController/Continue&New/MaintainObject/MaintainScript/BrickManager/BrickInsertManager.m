@@ -33,6 +33,7 @@
 @interface BrickInsertManager()
 
 @property (nonatomic, assign) BOOL moveToOtherScript;
+@property (nonatomic, assign) BOOL insertionMode;
 
 @end
 
@@ -43,8 +44,17 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedBrickInsertManager = [[self alloc] init];
+        [sharedBrickInsertManager reset];
     });
     return sharedBrickInsertManager;
+}
+
+- (BOOL)isBrickInsertionMode{
+    return self.insertionMode;
+}
+
+- (void)setBrickInsertionMode:(BOOL)isInserting{
+    self.insertionMode = isInserting;
 }
 
 #pragma mark - check insert logic
@@ -239,6 +249,7 @@
 -(void)reset
 {
     self.moveToOtherScript = NO;
+    self.insertionMode = NO;
 }
 
 @end

@@ -26,6 +26,10 @@
 
 @interface BrickInsertManager : NSObject
 
+- (BOOL)isBrickInsertionMode;
+
+- (void)setBrickInsertionMode:(BOOL)isInserting;
+
 +(id)sharedInstance;
 
 - (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
