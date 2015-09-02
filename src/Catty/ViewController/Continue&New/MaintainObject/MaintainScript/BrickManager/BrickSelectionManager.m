@@ -33,6 +33,7 @@
 @interface BrickSelectionManager()
 
 @property (nonatomic, strong) NSMutableArray *selectedIndexPaths;
+@property (nonatomic, assign) BOOL selectedAllCells;
 
 @end
 
@@ -44,6 +45,7 @@
     dispatch_once(&onceToken, ^{
         sharedBrickSelectionManager = [[self alloc] init];
         sharedBrickSelectionManager.selectedIndexPaths = [NSMutableArray new];
+        [sharedBrickSelectionManager reset];
     });
     return sharedBrickSelectionManager;
 }
@@ -307,11 +309,30 @@
     }
 }
 
-
+- (void)selectAllBricks:(UICollectionView*)collectionView{
+    if (! self.selectedAllCells) {
+        self.selectedAllCells = YES;
+        for (BrickCell *cell in collectionView.visibleCells) {
+            cell.selectButton.selected = YES;
+            NSIndexPath *indexPath = [collectionView indexPathForCell:cell];
+            [self addToSelectedIndexPaths:indexPath];
+        }
+        return;
+    }
+    
+    self.selectedAllCells = NO;
+    for (BrickCell *cell in collectionView.visibleCells) {
+        cell.selectButton.selected = NO;
+        NSIndexPath *indexPath = [collectionView indexPathForCell:cell];
+        [self removeFromSelectedIndexPaths:indexPath];
+    }
+  
+}
 
 -(void)reset
 {
     [self.selectedIndexPaths removeAllObjects];
+    self.selectedAllCells = NO;
 }
 
 @end

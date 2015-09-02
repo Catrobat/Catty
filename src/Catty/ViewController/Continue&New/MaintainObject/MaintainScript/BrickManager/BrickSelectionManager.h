@@ -39,6 +39,7 @@
 - (NSMutableArray*) selectedIndexPaths;
 - (void)addToSelectedIndexPaths:(NSIndexPath*)path;
 - (void)removeFromSelectedIndexPaths:(NSIndexPath*)path;
+- (void)selectAllBricks:(UICollectionView*)collectionView;
 - (void)reset;
 
 @end

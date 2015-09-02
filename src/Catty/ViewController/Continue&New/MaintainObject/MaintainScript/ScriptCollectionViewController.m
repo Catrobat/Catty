@@ -90,9 +90,7 @@
 
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
 @property (nonatomic, strong) BrickTransition *brickScaleTransition;
-@property (nonatomic, strong) NSMutableArray *selectedIndexPositions;  // refactor
-@property (nonatomic, assign) BOOL selectedAllCells;  // refactor
-@property (nonatomic, assign) BOOL scrollEnd;  // refactor
+//@property (nonatomic, strong) NSMutableArray *selectedIndexPositions;  // refactor
 @property (nonatomic, strong) NSIndexPath *variableIndexPath;
 @property (nonatomic, assign) BOOL isEditingBrickMode;
 @property (nonatomic) PageIndexCategoryType lastSelectedBrickCategory;
@@ -587,7 +585,9 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             index--;
         }
     }
-    if ((smallScript || self.scrollEnd) && !hasForeverLoop ) {
+    
+    float bottomEdge = self.collectionView.contentOffset.y + self.collectionView.frame.size.height;
+    if ((smallScript || bottomEdge >= self.collectionView.contentSize.height) && !hasForeverLoop ) {
         [targetScript.brickList addObject:brick];
     }else{
         [targetScript.brickList insertObject:brick atIndex:insertionIndex];
@@ -658,25 +658,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self setEditing:YES animated:NO];
         [self.collectionView reloadData];
     }
-    self.scrollEnd = NO;
 }
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
-    if (bottomEdge >= scrollView.contentSize.height) {
-        self.scrollEnd = YES;
-    } else {
-        self.scrollEnd = NO;
-    }
-}
-- (void)scrollViewWillEndDecelerating:(UIScrollView *)scrollView {
-    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
-    if (bottomEdge >= scrollView.contentSize.height) {
-        self.scrollEnd = YES;
-    } else {
-        self.scrollEnd = NO;
-    }
-}
-
 
 // TODO: Remove
 - (void)removeBricksWithIndexPaths:(NSArray*)indexPaths
@@ -704,22 +686,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 - (void)selectAllBricks
 {
-    if (! self.selectedAllCells) {
-        self.selectedAllCells = YES;
-        for (BrickCell *cell in self.collectionView.visibleCells) {
-            cell.selectButton.selected = YES;
-            NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
-            [[BrickSelectionManager sharedInstance] addToSelectedIndexPaths:indexPath];
-        }
-        return;
-    }
-
-    self.selectedAllCells = NO;
-    for (BrickCell *cell in self.collectionView.visibleCells) {
-        cell.selectButton.selected = NO;
-        NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
-        [[BrickSelectionManager sharedInstance] removeFromSelectedIndexPaths:indexPath];
-    }
+    [[BrickSelectionManager sharedInstance] selectAllBricks:self.collectionView];
 }
 
 - (NSString*)keyWithSelectIndexPath:(NSIndexPath*)indexPath
@@ -1220,7 +1187,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     self.navigationItem.rightBarButtonItem.enabled = YES;
     self.brickScaleTransition = [[BrickTransition alloc] initWithViewToAnimate:nil];
     [[BrickSelectionManager sharedInstance] reset];
-    self.scrollEnd = NO;
     // register brick cells for current brick category
     NSDictionary *allBrickTypes = [[BrickManager sharedBrickManager] classNameBrickTypeMap];
     for (NSString *className in allBrickTypes) {
