@@ -59,4 +59,6 @@
 
 - (NSArray*)scriptCollectionCopyBrickWithIndexPath:(NSIndexPath*)indexPath;
 
+- (NSArray*)getIndexPathsForRemovingBricks:(NSIndexPath*)indexPath;
+
 @end

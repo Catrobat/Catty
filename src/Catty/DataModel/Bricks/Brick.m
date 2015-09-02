@@ -409,4 +409,111 @@
     }
 }
 
+
+#pragma mark RemovingBrick from CollectionView
+
+- (NSArray*)getIndexPathsForRemovingBricks:(NSIndexPath*)indexPath
+{
+    if ([self isLoopBrick]) {
+        // loop brick
+        LoopBeginBrick *loopBeginBrick = nil;
+        LoopEndBrick *loopEndBrick = nil;
+        if ([self isKindOfClass:[LoopBeginBrick class]]) {
+            loopBeginBrick = ((LoopBeginBrick*)self);
+            NSUInteger loopBeginIndex = [self.script.brickList indexOfObject:loopBeginBrick];
+            NSIndexPath *loopBeginIndexPath = [NSIndexPath indexPathForItem:(loopBeginIndex + 1) inSection:indexPath.section];
+            
+            loopEndBrick = loopBeginBrick.loopEndBrick;
+            NSUInteger loopEndIndex = [self.script.brickList indexOfObject:loopEndBrick];
+            NSIndexPath *loopEndIndexPath = [NSIndexPath indexPathForItem:(loopEndIndex + 1) inSection:indexPath.section];
+            
+            [loopBeginBrick removeFromScript];
+            [loopEndBrick removeFromScript];
+            return @[loopBeginIndexPath,loopEndIndexPath];
+        } else {
+            CBAssert([self isKindOfClass:[LoopEndBrick class]]);
+            loopEndBrick = ((LoopEndBrick*)self);
+            NSUInteger loopEndIndex = [self.script.brickList indexOfObject:loopEndBrick];
+            NSIndexPath *loopEndIndexPath = [NSIndexPath indexPathForItem:(loopEndIndex + 1) inSection:indexPath.section];
+            
+            loopBeginBrick = loopEndBrick.loopBeginBrick;
+            NSUInteger loopBeginIndex = [self.script.brickList indexOfObject:loopBeginBrick];
+            NSIndexPath *loopBeginIndexPath = [NSIndexPath indexPathForItem:(loopBeginIndex + 1) inSection:indexPath.section];
+            
+            [loopBeginBrick removeFromScript];
+            [loopEndBrick removeFromScript];
+            return @[loopBeginIndexPath,loopEndIndexPath];
+        }
+        
+    } else if ([self isIfLogicBrick]) {
+        // if brick
+        IfLogicBeginBrick *ifLogicBeginBrick = nil;
+        IfLogicElseBrick *ifLogicElseBrick = nil;
+        IfLogicEndBrick *ifLogicEndBrick = nil;
+        if ([self isKindOfClass:[IfLogicBeginBrick class]]) {
+            ifLogicBeginBrick = ((IfLogicBeginBrick*)self);
+            NSUInteger ifLogicBeginIndex = [self.script.brickList indexOfObject:ifLogicBeginBrick];
+            NSIndexPath *ifLogicBeginIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 1) inSection:indexPath.section];
+            
+            ifLogicElseBrick = ifLogicBeginBrick.ifElseBrick;
+            NSUInteger ifLogicElseIndex = [self.script.brickList indexOfObject:ifLogicElseBrick];
+            NSIndexPath *ifLogicElseIndexPath = [NSIndexPath indexPathForItem:(ifLogicElseIndex + 1) inSection:indexPath.section];
+            
+            ifLogicEndBrick = ifLogicBeginBrick.ifEndBrick;
+            NSUInteger ifLogicEndIndex = [self.script.brickList indexOfObject:ifLogicEndBrick];
+            NSIndexPath *ifLogicEndIndexPath = [NSIndexPath indexPathForItem:(ifLogicEndIndex + 1) inSection:indexPath.section];
+            
+            [ifLogicBeginBrick removeFromScript];
+            [ifLogicElseBrick removeFromScript];
+            [ifLogicEndBrick removeFromScript];
+            
+            return @[ifLogicBeginIndexPath,ifLogicElseIndexPath,ifLogicEndIndexPath];
+            
+        } else if ([self isKindOfClass:[IfLogicElseBrick class]]) {
+            ifLogicElseBrick = ((IfLogicElseBrick*)self);
+            NSUInteger ifLogicElseIndex = [self.script.brickList indexOfObject:ifLogicElseBrick];
+            NSIndexPath *ifLogicElseIndexPath = [NSIndexPath indexPathForItem:(ifLogicElseIndex + 1) inSection:indexPath.section];
+            
+            ifLogicBeginBrick = ifLogicElseBrick.ifBeginBrick;
+            NSUInteger ifLogicBeginIndex = [self.script.brickList indexOfObject:ifLogicBeginBrick];
+            NSIndexPath *ifLogicBeginIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 1) inSection:indexPath.section];
+            
+            ifLogicEndBrick = ifLogicElseBrick.ifEndBrick;
+            NSUInteger ifLogicEndIndex = [self.script.brickList indexOfObject:ifLogicEndBrick];
+            NSIndexPath *ifLogicEndIndexPath = [NSIndexPath indexPathForItem:(ifLogicEndIndex + 1) inSection:indexPath.section];
+            
+            [ifLogicElseBrick removeFromScript];
+            [ifLogicBeginBrick removeFromScript];
+            [ifLogicEndBrick removeFromScript];
+            return @[ifLogicBeginIndexPath,ifLogicElseIndexPath,ifLogicEndIndexPath];
+            
+        } else {
+            CBAssert([self isKindOfClass:[IfLogicEndBrick class]]);
+            ifLogicEndBrick = ((IfLogicEndBrick*)self);
+            NSUInteger ifLogicEndIndex = [self.script.brickList indexOfObject:ifLogicEndBrick];
+            NSIndexPath *ifLogicEndIndexPath = [NSIndexPath indexPathForItem:(ifLogicEndIndex + 1) inSection:indexPath.section];
+            
+            ifLogicBeginBrick = ifLogicEndBrick.ifBeginBrick;
+            NSUInteger ifLogicBeginIndex = [self.script.brickList indexOfObject:ifLogicBeginBrick];
+            NSIndexPath *ifLogicBeginIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 1) inSection:indexPath.section];
+            
+            ifLogicElseBrick = ifLogicEndBrick.ifElseBrick;
+            NSUInteger ifLogicElseIndex = [self.script.brickList indexOfObject:ifLogicElseBrick];
+            NSIndexPath *ifLogicElseIndexPath = [NSIndexPath indexPathForItem:(ifLogicElseIndex + 1) inSection:indexPath.section];
+            
+            [ifLogicBeginBrick removeFromScript];
+            [ifLogicEndBrick removeFromScript];
+            [ifLogicElseBrick removeFromScript];
+            return @[ifLogicBeginIndexPath,ifLogicElseIndexPath,ifLogicEndIndexPath];
+            
+        }
+        
+    } else {
+        [self removeFromScript];
+        return @[indexPath];
+    }
+
+}
+
+
 @end
