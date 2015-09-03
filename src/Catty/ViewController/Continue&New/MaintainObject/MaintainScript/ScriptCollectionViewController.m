@@ -572,22 +572,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     Brick *brick = (Brick*)scriptOrBrick;
     Script *targetScript = self.object.scriptList[targetScriptIndex];
     brick.script = targetScript;
-    NSInteger index = brick.script.brickList.count;
     NSInteger insertionIndex = visibleIndexPath.row;
-    BOOL hasForeverLoop = NO;
-    if (targetScript.brickList.count >=1) {
-        while ([[targetScript.brickList objectAtIndex:index-1] isKindOfClass:[LoopEndBrick class]]) {
-            LoopEndBrick* loopEndBrickCheck = [targetScript.brickList objectAtIndex:index-1];
-            if ([loopEndBrickCheck.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
-                insertionIndex = index-1;
-                hasForeverLoop = YES;
-            }
-            index--;
-        }
-    }
-    
+
     float bottomEdge = self.collectionView.contentOffset.y + self.collectionView.frame.size.height;
-    if ((smallScript || bottomEdge >= self.collectionView.contentSize.height) && !hasForeverLoop ) {
+    if ((smallScript || bottomEdge >= self.collectionView.contentSize.height) ) {
         [targetScript.brickList addObject:brick];
     }else{
         [targetScript.brickList insertObject:brick atIndex:insertionIndex];
