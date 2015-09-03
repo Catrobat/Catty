@@ -21,6 +21,10 @@
  */
 
 #import "LoopEndBrickCell.h"
+#import "Brick.h"
+#import "Script.h"
+#import "LoopEndBrick.h"
+#import "ForeverBrick.h"
 
 @interface LoopEndBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -30,7 +34,32 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+    LoopEndBrick *brick = (LoopEndBrick*)self.scriptOrBrick;
+    if ([brick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+        NSInteger count = 0;
+        for (count = 0; count < brick.script.brickList.count;count++) {
+            Brick* equalBrick = brick.script.brickList[count];
+            if (equalBrick == brick) {
+                if (count-1 > 0) {
+                    Brick* checkBrick = brick.script.brickList[count-1];
+                    if ([checkBrick isKindOfClass:[LoopEndBrick class]] ) {
+                        LoopEndBrick* endCheckBrick = (LoopEndBrick*)checkBrick;
+                        if ([endCheckBrick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+                            [BrickShapeFactory drawEndForeverLoopShape2WithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+                            return;
+                        }
+                        [BrickShapeFactory drawEndForeverLoopShape1WithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+                        return;
+                    }
+
+                }
+            }
+        }
+        [BrickShapeFactory drawEndForeverLoopShape1WithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+        
+    } else {
+        [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+    }
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews
