@@ -130,8 +130,8 @@
         ifEndBrick.script = targetScript;
         ifElseBrick.animate = YES;
         ifEndBrick.animate = YES;
-        [targetScript.brickList insertObject:ifEndBrick atIndex:insertionIndex];
-        [targetScript.brickList insertObject:ifElseBrick atIndex:insertionIndex];
+        [targetScript.brickList insertObject:ifEndBrick atIndex:insertionIndex==0?1:insertionIndex];
+        [targetScript.brickList insertObject:ifElseBrick atIndex:insertionIndex==0?1:insertionIndex];
     } else if ([brick isKindOfClass:[LoopBeginBrick class]]) {
         LoopBeginBrick *loopBeginBrick = (LoopBeginBrick*)brick;
         LoopEndBrick *loopEndBrick = [LoopEndBrick new];
@@ -170,11 +170,7 @@
                 }
             }
         }
-        if (insertionIndex == 0) {
-            [targetScript.brickList insertObject:loopEndBrick atIndex:1];
-        } else {
-           [targetScript.brickList insertObject:loopEndBrick atIndex:insertionIndex];
-        }
+        [targetScript.brickList insertObject:loopEndBrick atIndex:insertionIndex==0?1:insertionIndex];
     }
     brick.animateInsertBrick = NO;
     [object.program saveToDisk];
