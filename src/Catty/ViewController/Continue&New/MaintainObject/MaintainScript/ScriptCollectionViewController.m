@@ -573,10 +573,24 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     Script *targetScript = self.object.scriptList[targetScriptIndex];
     brick.script = targetScript;
     NSInteger insertionIndex = visibleIndexPath.row;
-
+    NSInteger index = brick.script.brickList.count;
+    BOOL hasForeverLoop = NO;
+    if (targetScript.brickList.count >=1) {
+        while ([[targetScript.brickList objectAtIndex:index-1] isKindOfClass:[LoopEndBrick class]]) {
+            LoopEndBrick* loopEndBrickCheck = [targetScript.brickList objectAtIndex:index-1];
+            if ([loopEndBrickCheck.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+                hasForeverLoop = YES;
+            }
+            index--;
+        }
+    }
     float bottomEdge = self.collectionView.contentOffset.y + self.collectionView.frame.size.height;
     if ((smallScript || bottomEdge >= self.collectionView.contentSize.height) ) {
-        [targetScript.brickList addObject:brick];
+        if (hasForeverLoop) {
+            [targetScript.brickList insertObject:brick atIndex:index];
+        } else {
+          [targetScript.brickList addObject:brick];
+        }
     }else{
         [targetScript.brickList insertObject:brick atIndex:insertionIndex];
     }
@@ -1138,8 +1152,12 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 -(void)reloadData
 {
-    [self.collectionView reloadData];
-    [self changeDeleteBarButtonState];
+    dispatch_async(dispatch_get_main_queue(),^{
+            //do something
+        [self.collectionView reloadData];
+        [self changeDeleteBarButtonState];
+        
+    });
 }
 
 @end
