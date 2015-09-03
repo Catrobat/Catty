@@ -540,7 +540,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         script.object = self.object;
         [self.object.scriptList addObject:script];
         script.animate = YES;
-        [self.collectionView reloadData];
+        [self reloadData];
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:(self.object.scriptList.count - 1)]
                                     atScrollPosition:UICollectionViewScrollPositionBottom
                                             animated:YES];
@@ -553,7 +553,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         script.object = self.object;
         [self.object.scriptList addObject:script];
         script.animate = YES;
-        [self.collectionView reloadData];
+        [self reloadData];
         [self.object.program saveToDisk];
     }
 
@@ -596,14 +596,14 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if (targetScript.brickList.count == 1) {
         
         [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:[NSIndexPath indexPathForRow:0 inSection:self.object.scriptList.count-1] andObject:self.object];
-        [self.collectionView reloadData];
+        [self reloadData];
         [self.collectionView setNeedsDisplay];
         return;
     }
     
     brick.animateInsertBrick = YES;
     
-    [self.collectionView reloadData];
+    [self reloadData];
     [self turnOnInsertingBrickMode];
 //    [self.object.program saveToDisk];
 }
@@ -656,7 +656,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     if (self.editing) {
         [self setEditing:YES animated:NO];
-        [self.collectionView reloadData];
+        [self reloadData];
     }
 }
 
@@ -678,7 +678,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         }
     } completion:^(BOOL finished) {
         [[BrickSelectionManager sharedInstance] reset];
-        [self.collectionView reloadData];
+        [self reloadData];
         self.placeHolderView.hidden = (self.object.scriptList.count != 0);
         [self.object.program saveToDisk];
     }];
@@ -726,6 +726,15 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     self.navigationController.navigationBar.topItem.rightBarButtonItem.enabled = YES;
     self.navigationController.navigationBar.topItem.backBarButtonItem.enabled = YES;
     [self.navigationItem setHidesBackButton:NO animated:NO];
+}
+
+- (void)changeDeleteBarButtonState
+{
+    if (self.object.scriptList.count) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    } else {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
 }
 
 #pragma mark - Editing
@@ -901,7 +910,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     self.navigationController.title = self.title = kLocalizedScripts;
     [self.editButtonItem setTitle:kLocalizedDelete];
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.navigationItem.rightBarButtonItem.enabled = YES;
+    [self changeDeleteBarButtonState];
     self.brickScaleTransition = [[BrickTransition alloc] initWithViewToAnimate:nil];
     [[BrickSelectionManager sharedInstance] reset];
     // register brick cells for current brick category
@@ -948,7 +957,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         block(messageName);
     }
     [self.object.program saveToDisk];
-    [self.collectionView reloadData];
+    [self reloadData];
 }
 
 - (void)addVariableWithName:(NSString*)variableName andCompletion:(id)completion
@@ -958,7 +967,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         block(variableName);
     }
     [self.object.program saveToDisk];
-    [self.collectionView reloadData];
+    [self reloadData];
 }
 
 - (void)updateBrickCellData:(id<BrickCellDataProtocol>)brickCellData withValue:(id)value
@@ -975,7 +984,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             ltvc.showAddLookActionSheetAtStartForObject = NO;
             ltvc.afterSafeBlock = ^(Look* look) {
                 [lookBrick setLook:look forLineNumber:line andParameterNumber:parameter];
-                [self.collectionView reloadData];
+                [self reloadData];
                 [self.collectionView setNeedsDisplay];
                 [self.navigationController popViewControllerAnimated:YES];
                 [self enableUserInteractionAndResetHighlight];
@@ -994,7 +1003,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             ltvc.showAddSoundActionSheetAtStart = YES;
             ltvc.afterSafeBlock =  ^(Sound* sound) {
                 [soundBrick setSound:sound forLineNumber:line andParameterNumber:parameter];
-                [self.collectionView reloadData];
+                [self reloadData];
                 [self.collectionView setNeedsDisplay];
                 [self.navigationController popViewControllerAnimated:YES];
                 [self enableUserInteractionAndResetHighlight];
@@ -1013,7 +1022,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             ptvc.showAddObjectActionSheetAtStart = YES;
             ptvc.afterSafeBlock =  ^(SpriteObject* object) {
                 [objectBrick setObject:object forLineNumber:line andParameterNumber:parameter];
-                [self.collectionView reloadData];
+                [self reloadData];
                 [self.collectionView setNeedsDisplay];
                 [self.navigationController popToViewController:self animated:YES];
                 [self enableUserInteractionAndResetHighlight];
@@ -1142,6 +1151,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 -(void)reloadData
 {
     [self.collectionView reloadData];
+    [self changeDeleteBarButtonState];
 }
 
 @end
