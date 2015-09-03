@@ -34,43 +34,15 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    LoopEndBrick *brick = (LoopEndBrick*)self.scriptOrBrick;
-    if ([brick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
-        NSInteger count = brick.script.brickList.count;
-        NSInteger foreverCounter = 0;
-        while ([[brick.script.brickList objectAtIndex:count-1] isKindOfClass:[LoopEndBrick class]]) {
-            LoopEndBrick* loopEndBrickCheck = [brick.script.brickList objectAtIndex:count-1];
-            if ([loopEndBrickCheck.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
-                foreverCounter++;
-            }
-            count--;
-        }
-        count = 0;
-        for (count = 0; count < brick.script.brickList.count;count++) {
-            Brick* equalBrick = brick.script.brickList[count];
-            if (equalBrick == brick) {
-                if (count-1 >= 0) {
-                    Brick* checkBrick = brick.script.brickList[count-1];
-                    if ([checkBrick isKindOfClass:[LoopEndBrick class]] ) {
-                        LoopEndBrick* endCheckBrick = (LoopEndBrick*)checkBrick;
-                        if ([endCheckBrick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
-                            [BrickShapeFactory drawEndForeverLoopShape2WithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
-                            return;
-                        }
-                        if (count < brick.script.brickList.count-foreverCounter-1) {
-                                [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
-                            return;
-                        }
-                    }
-
-                }
-            }
-        }
-       [BrickShapeFactory drawEndForeverLoopShape1WithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
-        return;
-        
+    if (self.type == 2) {
+        [BrickShapeFactory drawEndForeverLoopShape2WithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+    } else if ( self.type == 1){
+        [BrickShapeFactory drawEndForeverLoopShape1WithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+    } else if ( self.type == 3){
+        [BrickShapeFactory drawEndForeverLoopShape3WithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+    } else {
+        [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
     }
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews

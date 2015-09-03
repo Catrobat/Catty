@@ -480,6 +480,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     [brickCell setupBrickCell];
     brickCell.delegate = self;
     brickCell.dataDelegate = self;
+    [brickCell setNeedsDisplay];
 
     if (brickCell.scriptOrBrick.isAnimated) {
         [brickCell animate:YES];
@@ -521,6 +522,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         brickCell.userInteractionEnabled = YES;
         brickCell.alpha = self.isEditingBrickMode ? kBrickCellInactiveWhileEditingOpacity : kBrickCellActiveOpacity;
     }
+    
     return brickCell;
 }
 

@@ -26,6 +26,10 @@
 #import "BrickFormulaProtocol.h"
 #import "Formula.h"
 #import "WhenScript.h"
+#import "LoopEndBrick.h"
+#import "LoopBeginBrick.h"
+#import "BrickCell.h"
+#import "ForeverBrick.h"
 
 @implementation BrickManager {
     NSDictionary *_brickHeightDictionary;
@@ -225,4 +229,63 @@
     return NO;
 }
 
+- (NSInteger)checkEndLoopBrickTypeForDrawing:(BrickCell*)cell
+{
+    LoopEndBrick *brick = (LoopEndBrick*)cell.scriptOrBrick;
+    if ([brick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+        NSInteger count = brick.script.brickList.count;
+        BOOL before = YES;
+        BOOL after = NO;
+        for (count = 0; count < brick.script.brickList.count; count++) {
+            Brick* equalBrick = brick.script.brickList[count];
+            if (equalBrick == brick) {
+                if (count-1 >= 0) {
+                    //CheckBrick before
+                    before = [self checkBrickbeforeBrick:brick andIndex:count-1];
+                }
+                if (count+1 < brick.script.brickList.count) {
+                    //CheckBrick after
+                    after = [self checkBrickafterBrick:brick andIndex:count+1];
+                }
+            }
+        }
+        if (after && before) {
+            return 0;
+        } else if (!after && !before){
+            return 2;
+        } else if (!after && before){
+            return 1;
+        } else if (after && !before){
+            return 3;
+        }
+      
+    }
+    return 0;
+}
+
+- (BOOL)checkBrickafterBrick:(Brick*)brick andIndex:(NSInteger)index
+{
+    Brick* afterBrick = brick.script.brickList[index];
+    if ([afterBrick isKindOfClass:[LoopEndBrick class]]) {
+        LoopEndBrick *afterLoopEndBrick = (LoopEndBrick*)afterBrick;
+        if (![afterLoopEndBrick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+            return YES;
+        }
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)checkBrickbeforeBrick:(Brick*)brick andIndex:(NSInteger)index
+{
+    Brick* beforeBrick = brick.script.brickList[index];
+    if ([beforeBrick isKindOfClass:[LoopEndBrick class]]) {
+        LoopEndBrick *beforeLoopEndBrick = (LoopEndBrick*)beforeBrick;
+        if (![beforeLoopEndBrick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+            return YES;
+        }
+        return NO;
+    }
+    return YES;
+}
 @end
