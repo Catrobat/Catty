@@ -170,8 +170,11 @@
                 }
             }
         }
-        [targetScript.brickList insertObject:loopEndBrick atIndex:insertionIndex];
-        
+        if (insertionIndex == 0) {
+            [targetScript.brickList insertObject:loopEndBrick atIndex:1];
+        } else {
+           [targetScript.brickList insertObject:loopEndBrick atIndex:insertionIndex];
+        }
     }
     brick.animateInsertBrick = NO;
     [object.program saveToDisk];
