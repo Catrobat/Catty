@@ -159,6 +159,7 @@
                     }else{
                         //should not be possible
                         insertionIndex = index;
+                        break;
                     }
                     index--;
                 }

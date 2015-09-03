@@ -46,7 +46,6 @@
             count--;
         }
         count = 0;
-        foreverCounter = 2;
         for (count = 0; count < brick.script.brickList.count;count++) {
             Brick* equalBrick = brick.script.brickList[count];
             if (equalBrick == brick) {
