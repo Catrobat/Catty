@@ -48,10 +48,10 @@
 #import "DataTransferMessage.h"
 #import "NSMutableArray+CustomExtensions.h"
 #import "UIDefines.h"
+#import "UIUtil.h"
 
 @interface MyProgramsViewController () <CatrobatActionSheetDelegate, ProgramUpdateDelegate,
-                                        CatrobatAlertViewDelegate, UITextFieldDelegate,
-                                        SWTableViewCellDelegate>
+                                        CatrobatAlertViewDelegate, UITextFieldDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic, strong) NSMutableArray *programLoadingInfos;
 @property (nonatomic, strong) Program *selectedProgram;
@@ -121,6 +121,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - actions
 - (void)editAction:(id)sender
 {
+    [self.tableView setEditing:false animated:YES];
     NSMutableArray *options = [NSMutableArray array];
     if (self.programLoadingInfos.count) {
         [options addObject:kLocalizedDeletePrograms];
@@ -143,6 +144,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)addProgramAction:(id)sender
 {
+    [self.tableView setEditing:false animated:YES];
     [Util askUserForUniqueNameAndPerformAction:@selector(addProgramAndSegueToItActionForProgramWithName:)
                                         target:self
                                    promptTitle:kLocalizedNewProgram
@@ -328,6 +330,45 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return imageCell;
 }
 
+- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    // INFO: NEVER REMOVE THIS EMPTY METHOD!!
+    // This activates the swipe gesture handler for TableViewCells.
+}
+
+- (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    return YES;
+}
+
+- (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
+                editActionsForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    UITableViewRowAction *moreAction = [UIUtil tableViewMoreRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        // More button was pressed
+        NSArray *options = @[kLocalizedCopy, kLocalizedRename,
+                             kLocalizedDescription/*, kLocalizedUpload*/];
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditProgram
+                                                             delegate:self
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:options
+                                                                  tag:kEditProgramActionSheetTag
+                                                                 view:self.navigationController.view];
+        actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditProgram
+                                                                        withPayload:@{ kDTPayloadProgramLoadingInfo : [self.programLoadingInfos objectAtIndex:indexPath.row] }];
+    }];
+    UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        // Delete button was pressed
+        [self performActionOnConfirmation:@selector(deleteProgramForIndexPath:)
+                           canceledAction:nil
+                               withObject:indexPath
+                                   target:self
+                             confirmTitle:kLocalizedDeleteThisProgram
+                           confirmMessage:kLocalizedThisActionCannotBeUndone];
+    }];
+    return @[deleteAction, moreAction];
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [TableUtil heightForImageCell];
@@ -339,8 +380,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
     cell.titleLabel.text = info.visibleName;
     cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
-    cell.rightUtilityButtons = @[[Util slideViewButtonMore], [Util slideViewButtonDelete]];
-    cell.delegate = self;
     cell.iconImageView.image = nil;
     cell.indexPath = indexPath;
     [cell.iconImageView setBorder:[UIColor skyBlueColor] Width:kDefaultImageCellBorderWidth];
@@ -462,43 +501,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
 }
 
-#pragma mark - swipe delegates
-- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
-{
-    [cell hideUtilityButtonsAnimated:YES];
-    if (index == 0) {
-        // More button was pressed
-        NSArray *options = @[kLocalizedCopy, kLocalizedRename,
-                             kLocalizedDescription/*, kLocalizedUpload*/];
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditProgram
-                                                             delegate:self
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:options
-                                                                  tag:kEditProgramActionSheetTag
-                                                                 view:self.navigationController.view];
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditProgram
-                                                                        withPayload:@{ kDTPayloadProgramLoadingInfo : [self.programLoadingInfos objectAtIndex:indexPath.row] }];
-    } else if (index == 1) {
-        // Delete button was pressed
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        [self performActionOnConfirmation:@selector(deleteProgramForIndexPath:)
-                           canceledAction:nil
-                               withObject:indexPath
-                                   target:self
-                             confirmTitle:kLocalizedDeleteThisProgram
-                           confirmMessage:kLocalizedThisActionCannotBeUndone];
-    }
-}
-
-- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
-{
-    return YES;
-}
-
 #pragma mark - action sheet delegates
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    [self.tableView setEditing:false animated:YES];
     if (actionSheet.tag == kEditProgramsActionSheetTag) {
         if ((buttonIndex == 0) && self.programLoadingInfos.count) {
             // Delete Programs button

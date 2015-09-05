@@ -55,10 +55,11 @@
 #import "ScriptCollectionViewController.h"
 #import "BrickLookProtocol.h"
 #import "ViewControllerDefines.h"
+#import "UIUtil.h"
 
 @interface LooksTableViewController () <CatrobatActionSheetDelegate, UIImagePickerControllerDelegate,
                                         UINavigationControllerDelegate, CatrobatAlertViewDelegate,
-                                        UITextFieldDelegate, SWTableViewCellDelegate>
+                                        UITextFieldDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic,strong)UIImage* paintImage;
 @property (nonatomic,strong)NSString* paintImagePath;
@@ -114,6 +115,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - actions
 - (void)editAction:(id)sender
 {
+    [self.tableView setEditing:false animated:YES];
     NSMutableArray *options = [NSMutableArray array];
     if (self.object.lookList.count) {
         [options addObject:kLocalizedDeleteLooks];
@@ -136,6 +138,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)addLookAction:(id)sender
 {
+    [self.tableView setEditing:false animated:YES];
     [self showAddLookActionSheet];
 }
 
@@ -261,8 +264,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     Look *look = [self.object.lookList objectAtIndex:indexPath.row];
     imageCell.iconImageView.image = nil;
     [imageCell.iconImageView setBorder:[UIColor skyBlueColor] Width:kDefaultImageCellBorderWidth];
-    imageCell.rightUtilityButtons = @[[Util slideViewButtonMore], [Util slideViewButtonDelete]];
-    imageCell.delegate = self;
 
     imageCell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
@@ -317,6 +318,45 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return imageCell;
 }
 
+- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    // INFO: NEVER REMOVE THIS EMPTY METHOD!!
+    // This activates the swipe gesture handler for TableViewCells.
+}
+
+- (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    return YES;
+}
+
+- (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
+                editActionsForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    UITableViewRowAction *moreAction = [UIUtil tableViewMoreRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        // More button was pressed
+        NSArray *options = @[kLocalizedCopy, kLocalizedRename];
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditLook
+                                                             delegate:self
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:options
+                                                                  tag:kEditLookActionSheetTag
+                                                                 view:self.navigationController.view];
+        NSDictionary *payload = @{ kDTPayloadLook : [self.object.lookList objectAtIndex:indexPath.row] };
+        actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditLook
+                                                                        withPayload:payload];
+    }];
+    UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        // Delete button was pressed
+        [self performActionOnConfirmation:@selector(deleteLookForIndexPath:)
+                           canceledAction:nil
+                               withObject:indexPath
+                                   target:self
+                             confirmTitle:kLocalizedDeleteThisLook
+                           confirmMessage:kLocalizedThisActionCannotBeUndone];
+    }];
+    return @[deleteAction, moreAction];
+}
+
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
   return [TableUtil heightForImageCell];
@@ -337,65 +377,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         vc.editingPath = lookImagePath;
         [self.navigationController pushViewController:vc animated:YES];
     }
-}
-
-//#pragma mark - Navigation
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    static NSString* segueToImageIdentifier = kSegueToImage;
-//    UIViewController* destController = segue.destinationViewController;
-//
-//    if ([sender isKindOfClass:[UITableViewCell class]]) {
-//        UITableViewCell *cell = (UITableViewCell*)sender;
-//        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-//        if ([segue.identifier isEqualToString:segueToImageIdentifier]) {
-//            if ([destController isKindOfClass:[LookImageViewController class]]) {
-//                LookImageViewController *livc = (LookImageViewController*)destController;
-//                livc.spriteObject = self.object;
-//                if ([livc respondsToSelector:@selector(setImageName:)] && [livc respondsToSelector:@selector(setImagePath:)]) {
-//                    Look *look = [self.object.lookList objectAtIndex:indexPath.row];
-//                    [livc performSelector:@selector(setImageName:) withObject:look.name];
-//                    NSString *lookImagePath = [self.object pathForLook:look];
-//                    [livc performSelector:@selector(setImagePath:) withObject:lookImagePath];
-//                }
-//            }
-//        }
-//    }
-//}
-
-#pragma mark - swipe delegates
-- (void)swipeableTableViewCell:(SWTableViewCell*)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
-{
-    [cell hideUtilityButtonsAnimated:YES];
-    if (index == 0) {
-        // More button was pressed
-        NSArray *options = @[kLocalizedCopy, kLocalizedRename];
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditLook
-                                                             delegate:self
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:options
-                                                                  tag:kEditLookActionSheetTag
-                                                                 view:self.navigationController.view];
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        NSDictionary *payload = @{ kDTPayloadLook : [self.object.lookList objectAtIndex:indexPath.row] };
-        actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditLook
-                                                                        withPayload:payload];
-    } else if (index == 1) {
-        // Delete button was pressed
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        [cell hideUtilityButtonsAnimated:YES];
-        [self performActionOnConfirmation:@selector(deleteLookForIndexPath:)
-                           canceledAction:nil
-                               withObject:indexPath
-                                   target:self
-                             confirmTitle:kLocalizedDeleteThisLook
-                           confirmMessage:kLocalizedThisActionCannotBeUndone];
-    }
-}
-
-- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell*)cell
-{
-    return YES;
 }
 
 #pragma mark - UIImagePicker Handler
@@ -528,6 +509,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - action sheet delegates
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    [self.tableView setEditing:false animated:YES];
     if (actionSheet.tag == kEditLooksActionSheetTag) {
         BOOL showHideSelected = NO;
         if ([self.object.lookList count]) {

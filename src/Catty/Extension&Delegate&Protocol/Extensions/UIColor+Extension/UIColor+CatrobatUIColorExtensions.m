@@ -50,8 +50,7 @@
 
 + (UIColor*)backgroundColor
 {
-    return [UIColor colorWithRed:18.0f/255.0f green:18.0f/255.0f blue:18.0f/255.0f alpha:1.0f];
-    
+    return [UIColor colorWithRed:0 green:37.0f/255.0f blue:52.0f/255.0f alpha:1.0f];
 }
 
 + (UIColor *)skyBlueColor
@@ -176,6 +175,11 @@
 + (UIColor*)soundBrickStrokeColor
 {
     return [UIColor colorWithRed:179.0f/255.0f green:137.0f/255.0f blue:255.0f/255.0f alpha:1.0f];
+}
+
++ (UIColor*)destructiveTintColor
+{
+    return [self colorWithHex: 0xF26C4F];
 }
 
 @end

@@ -75,4 +75,7 @@
 + (UIColor*)soundBrickStrokeColor;
 
 + (UIColor*)backgroundColor;
+
++ (UIColor*)destructiveTintColor;
+
 @end

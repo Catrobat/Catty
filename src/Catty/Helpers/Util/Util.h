@@ -106,12 +106,6 @@
                             blockedCharacterSet:(NSCharacterSet*)blockedCharacterSet
                        invalidInputAlertMessage:(NSString*)invalidInputAlertMessage;
 
-+ (UIButton*)slideViewButtonWithTitle:(NSString*)title backgroundColor:(UIColor*)backgroundColor;
-
-+ (UIButton*)slideViewButtonMore;
-
-+ (UIButton*)slideViewButtonDelete;
-
 + (NSString*)appName;
 
 + (NSString*)appVersion;

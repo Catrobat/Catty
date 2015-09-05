@@ -48,15 +48,14 @@
 #import "SRViewController.h"
 #import "PlaceHolderView.h"
 #import "ViewControllerDefines.h"
+#import "UIUtil.h"
 
-@interface SoundsTableViewController () <CatrobatActionSheetDelegate, AVAudioPlayerDelegate,
-                                         SWTableViewCellDelegate>
+@interface SoundsTableViewController () <CatrobatActionSheetDelegate, AVAudioPlayerDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @property (atomic, strong) Sound *currentPlayingSong;
 @property (atomic, weak) UITableViewCell<CatrobatImageCell> *currentPlayingSongCell;
 @property (nonatomic, strong) SharkfoodMuteSwitchDetector *silentDetector;
 @property (nonatomic,assign) BOOL isAllowed;
-
 @end
 
 @implementation SoundsTableViewController
@@ -184,6 +183,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - actions
 - (void)editAction:(id)sender
 {
+    [self.tableView setEditing:false animated:YES];
     NSMutableArray *options = [NSMutableArray array];
     if (self.object.soundList.count) {
         [options addObject:kLocalizedDeleteSounds];
@@ -325,8 +325,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         return cell;
     }
     CatrobatBaseCell<CatrobatImageCell>* imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
-    imageCell.rightUtilityButtons = @[[Util slideViewButtonMore], [Util slideViewButtonDelete]];
-    imageCell.delegate = self;
     imageCell.indexPath = indexPath;
 
     static NSString *playIconName = @"ic_media_play";
@@ -387,6 +385,44 @@ static NSCharacterSet *blockedCharacterSet = nil;
         return detailCell;
     }
     return imageCell;
+}
+
+- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    // INFO: NEVER REMOVE THIS EMPTY METHOD!!
+    // This activates the swipe gesture handler for TableViewCells.
+}
+
+- (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    return YES;
+}
+
+- (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
+                editActionsForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    UITableViewRowAction *moreAction = [UIUtil tableViewMoreRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        // More button was pressed
+        NSArray *options = @[kLocalizedCopy, kLocalizedRename];
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditSound
+                                                             delegate:self
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:options
+                                                                  tag:kEditSoundActionSheetTag
+                                                                 view:self.navigationController.view];
+        actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditSound
+                                                                        withPayload:@{ kDTPayloadSound : [self.object.soundList objectAtIndex:indexPath.row] }];
+    }];
+    UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        // Delete button was pressed
+        [self performActionOnConfirmation:@selector(deleteSoundForIndexPath:)
+                           canceledAction:nil
+                               withObject:indexPath
+                                   target:self
+                             confirmTitle:kLocalizedDeleteThisSound
+                           confirmMessage:kLocalizedThisActionCannotBeUndone];
+    }];
+    return @[deleteAction, moreAction];
 }
 
 #pragma mark - player actions
@@ -464,39 +500,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return [TableUtil heightForImageCell];
 }
 
-#pragma mark - swipe delegates
-- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
-{
-    [cell hideUtilityButtonsAnimated:YES];
-    if (index == 0) {
-        // More button was pressed
-        NSArray *options = @[kLocalizedCopy, kLocalizedRename];
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditSound
-                                                             delegate:self
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:options
-                                                                  tag:kEditSoundActionSheetTag
-                                                                 view:self.navigationController.view];
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditSound
-                                                                        withPayload:@{ kDTPayloadSound : [self.object.soundList objectAtIndex:indexPath.row] }];
-    } else if (index == 1) {
-        // Delete button was pressed
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        [self performActionOnConfirmation:@selector(deleteSoundForIndexPath:)
-                           canceledAction:nil
-                               withObject:indexPath
-                                   target:self
-                             confirmTitle:kLocalizedDeleteThisSound
-                           confirmMessage:kLocalizedThisActionCannotBeUndone];
-    }
-}
-
-- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
-{
-    return YES;
-}
-
 #pragma mark audio delegate
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)player successfully:(BOOL)flag
 {
@@ -535,6 +538,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - action sheet handlers
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    [self.tableView setEditing:false animated:YES];
     if (actionSheet.tag == kEditSoundsActionSheetTag) {
         BOOL showHideSelected = NO;
         if ([self.object.soundList count]) {
@@ -647,6 +651,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)addSoundAction:(id)sender
 {
+    [self.tableView setEditing:false animated:YES];
     [Util actionSheetWithTitle:kLocalizedAddSound
                       delegate:self
         destructiveButtonTitle:nil

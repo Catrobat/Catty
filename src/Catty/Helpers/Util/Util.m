@@ -241,27 +241,6 @@
     return actionSheet;
 }
 
-+ (UIButton*)slideViewButtonWithTitle:(NSString*)title backgroundColor:(UIColor*)backgroundColor
-{
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.backgroundColor = backgroundColor;
-    [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    return button;
-}
-
-+ (UIButton*)slideViewButtonMore
-{
-    return [Util slideViewButtonWithTitle:kLocalizedMore
-                          backgroundColor:[UIColor colorWithRed:0.78f green:0.78f blue:0.8f alpha:1.0]];
-}
-
-+ (UIButton*)slideViewButtonDelete
-{
-    return [Util slideViewButtonWithTitle:kLocalizedDelete
-                          backgroundColor:[UIColor colorWithRed:1.0f green:0.231f blue:0.188f alpha:1.0f]];
-}
-
 + (NSString*)appName
 {
   return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];

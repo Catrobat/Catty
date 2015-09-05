@@ -32,6 +32,7 @@
 #import "CatrobatImageCell.h"
 #import "DarkBlueGradientImageDetailCell.h"
 #import "Util.h"
+#import "UIUtil.h"
 #import "UIDefines.h"
 #import "ProgramDefines.h"
 #import "ProgramLoadingInfo.h"
@@ -56,7 +57,7 @@
 #import "LooksTableViewController.h"
 #import "ViewControllerDefines.h"
 
-@interface ProgramTableViewController () <CatrobatActionSheetDelegate, UINavigationBarDelegate, SWTableViewCellDelegate>
+@interface ProgramTableViewController () <CatrobatActionSheetDelegate, UINavigationBarDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @end
 
@@ -120,6 +121,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - actions
 - (void)addObjectAction:(id)sender
 {
+    [self.tableView setEditing:false animated:YES];
     [Util addObjectAlertForProgram:self.program andPerformAction:@selector(addObjectActionWithName:) onTarget:self withCancel:@selector(cancelAddingObjectFromScriptEditor) withCompletion:nil];
 }
 
@@ -207,6 +209,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)editAction:(id)sender
 {
+    [self.tableView setEditing:false animated:YES];
     NSMutableArray *options = [NSMutableArray array];
     if ([self.program numberOfNormalObjects]) {
         [options addObject:kLocalizedDeleteObjects];
@@ -315,13 +318,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     SpriteObject *object = [self.program.objectList objectAtIndex:index];
     imageCell.iconImageView.image = nil;
     [imageCell.iconImageView setBorder:[UIColor skyBlueColor] Width:kDefaultImageCellBorderWidth];
-    if (indexPath.section == kObjectSectionIndex) {
-        imageCell.rightUtilityButtons = @[[Util slideViewButtonMore], [Util slideViewButtonDelete]];
-        imageCell.delegate = self;
-    } else {
-        imageCell.rightUtilityButtons = nil;
-        imageCell.delegate = nil;
-    }
 
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
@@ -373,6 +369,52 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [TableUtil heightForImageCell];
+}
+
+- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    // INFO: NEVER REMOVE THIS EMPTY METHOD!!
+    // This activates the swipe gesture handler for TableViewCells.
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
+                editActionsForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    if (indexPath.section != kObjectSectionIndex) {
+        return @[];
+    }
+    UITableViewRowAction *moreAction = [UIUtil tableViewMoreRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        // More button was pressed
+        NSArray *options = @[kLocalizedCopy, kLocalizedRename];
+        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditObject
+                                                             delegate:self
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:options
+                                                                  tag:kEditObjectActionSheetTag
+                                                                 view:self.navigationController.view];
+        NSInteger spriteObjectIndex = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
+        actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditObject
+                                                                        withPayload:@{ kDTPayloadSpriteObject : [self.program.objectList objectAtIndex:spriteObjectIndex] }];
+    }];
+    UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        // Delete button was pressed
+        // check just to ensure that background object can never be deleted!!
+        if (indexPath.section != kObjectSectionIndex) {
+            return;
+        }
+        [self performActionOnConfirmation:@selector(deleteObjectForIndexPath:)
+                           canceledAction:nil
+                               withObject:indexPath
+                                   target:self
+                             confirmTitle:kLocalizedDeleteThisObject
+                           confirmMessage:kLocalizedThisActionCannotBeUndone];
+    }];
+    return @[deleteAction, moreAction];
 }
 
 #pragma mark - Header View
@@ -442,46 +484,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
 }
 
-#pragma mark - swipe delegates
-- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
-{
-    [cell hideUtilityButtonsAnimated:YES];
-    if (index == 0) {
-        // More button was pressed
-        NSArray *options = @[kLocalizedCopy, kLocalizedRename];
-        CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditObject
-                                                             delegate:self
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:options
-                                                                  tag:kEditObjectActionSheetTag
-                                                                 view:self.navigationController.view];
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        NSInteger spriteObjectIndex = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
-        actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditObject
-                                                                        withPayload:@{ kDTPayloadSpriteObject : [self.program.objectList objectAtIndex:spriteObjectIndex] }];
-    } else if (index == 1) {
-        // Delete button was pressed
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        [cell hideUtilityButtonsAnimated:YES];
-        if (indexPath.section == kObjectSectionIndex) {
-            [self performActionOnConfirmation:@selector(deleteObjectForIndexPath:)
-                               canceledAction:nil
-                                   withObject:indexPath
-                                       target:self
-                                 confirmTitle:kLocalizedDeleteThisObject
-                               confirmMessage:kLocalizedThisActionCannotBeUndone];
-        }
-    }
-}
-
-- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
-{
-    return YES;
-}
-
 #pragma mark - action sheet delegates
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    [self.tableView setEditing:false animated:YES];
     if (actionSheet.tag == kEditProgramActionSheetTag) {
         if ((buttonIndex == 1) && [self.program numberOfNormalObjects]) {
             // Delete objects button
