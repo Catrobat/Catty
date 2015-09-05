@@ -286,7 +286,8 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
     
     [self setAnchorPoint:point];
     
-    [self setTransform:CGAffineTransformScale(CGAffineTransformMakeRotation(0), 1, 1)];
+    // restore to normal cords
+    [self setTransform:CGAffineTransformIdentity];
     
     // (1) Update the touch point if we're outside the superview.
     
@@ -357,10 +358,10 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
         [[self delegate] userResizableViewNewRealFrame:self];
     }
     
-    // resotre the transform
-//    CGAffineTransform transform     = CGAffineTransformMakeRotation(rotation);
+    // restore the transform
+   CGAffineTransform transform     = CGAffineTransformMakeRotation(rotation);
     
-    [self setTransform:CGAffineTransformScale(CGAffineTransformMakeRotation(rotation), scaleX, scaleY)];
+    [self setTransform:CGAffineTransformScale(transform, scaleX, scaleY)];
 
     touchStart = touchPoint;
 }
@@ -412,17 +413,17 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     // is disabled or there are more touches
-    self.transform = CGAffineTransformMakeRotation(0);
+    
     if (![self isDisabledForTouches:touches]) {
         if ([self isResizing]) {
             [self resizeUsingTouchLocation:[[touches anyObject] locationInView:self.superview]];
         } else if (![self disablePan]){
-            
+            self.transform = CGAffineTransformMakeRotation(0);
             [self translateUsingTouchLocation:[[touches anyObject] locationInView:self]];
-            
+            self.transform = CGAffineTransformMakeRotation(self.rotation);
         }
     }
-    self.transform = CGAffineTransformMakeRotation(self.rotation);
+    
 }
 
 - (void)changeBorderWithColor:(UIColor*)color

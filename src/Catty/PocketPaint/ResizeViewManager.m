@@ -72,9 +72,34 @@
   if (self.canvas.activeAction == stamp) {
     return;
   }
-
-    self.resizeViewer.rotation = [recognizer rotation];
-    self.resizeViewer.transform = CGAffineTransformMakeRotation(self.resizeViewer.rotation);
+//    if([(UIRotationGestureRecognizer*)recognizer state] == UIGestureRecognizerStateEnded) {
+//        self.rotation = 0.0f;
+//        return;
+//    }
+//    CGFloat rotation = 0.0 - (self.rotation - [recognizer rotation]);
+//    self.resizeViewer.rotation +=[recognizer rotation];
+//    self.rotation = [recognizer rotation];
+////    self.resizeViewer.transform = CGAffineTransformMakeRotation(self.resizeViewer.rotation);
+//    CGAffineTransform currentTransform = self.resizeViewer.transform;
+//    CGAffineTransform newTransform = CGAffineTransformRotate(currentTransform,rotation);
+//    
+//    [self.resizeViewer setTransform:newTransform];
+    
+    if([(UIRotationGestureRecognizer*)recognizer state] == UIGestureRecognizerStateEnded) {
+        
+        self.rotation = 0.0;
+        return;
+    }
+    
+    CGFloat rotation = 0.0 - (self.rotation - [recognizer rotation]);
+    
+    CGAffineTransform currentTransform = self.resizeViewer.transform;
+    CGAffineTransform newTransform = CGAffineTransformRotate(currentTransform,rotation);
+    
+    [self.resizeViewer setTransform:newTransform];
+    
+    self.rotation = [(UIRotationGestureRecognizer*)recognizer rotation];
+    self.resizeViewer.rotation += self.rotation;
 }
 
 - (void)updateShape

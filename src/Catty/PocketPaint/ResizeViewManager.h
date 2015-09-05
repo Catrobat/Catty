@@ -30,7 +30,6 @@
 
 @property (nonatomic,strong) SPUserResizableView *resizeViewer;
 @property (nonatomic)        CGFloat rotation;
-@property (nonatomic)        CGPoint translation;
 @property (nonatomic,weak) PaintViewController* canvas;
 @property (nonatomic,strong) ImagePicker *imagePicker;
 @property (nonatomic) BOOL gotImage;
