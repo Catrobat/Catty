@@ -546,8 +546,8 @@
     
     Script *script = [moleTwo.scriptList objectAtIndex:0];
     XCTAssertNotNil(script, @"Script must not be nil!");
-    
-    PointToBrick *pointToBrick = [script.brickList objectAtIndex:7];
+
+    PointToBrick *pointToBrick = (PointToBrick*)[script.brickList objectAtIndex:7];
     XCTAssertNotNil(pointToBrick, @"PointToBrick must not be nil!");
     
     SpriteObject *pointedObject = pointToBrick.pointedObject;
