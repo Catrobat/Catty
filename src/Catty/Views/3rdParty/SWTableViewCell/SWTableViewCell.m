@@ -260,7 +260,7 @@ static NSString * const kTableViewPanState = @"state";
 {
     if (![_rightUtilityButtons sw_isEqualToButtons:rightUtilityButtons]) {
         _rightUtilityButtons = rightUtilityButtons;
-        
+
         self.rightUtilityButtonsView.utilityButtons = rightUtilityButtons;
         
         [self layoutIfNeeded];
