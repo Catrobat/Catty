@@ -241,13 +241,6 @@
 		92FF32681A24E2F400093DA7 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF318A1A24E2F400093DA7 /* LXReorderableCollectionViewFlowLayout.m */; };
 		92FF32691A24E2F400093DA7 /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF318D1A24E2F400093DA7 /* MYBlurIntroductionView.m */; };
 		92FF326A1A24E2F400093DA7 /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF318F1A24E2F400093DA7 /* MYIntroductionPanel.m */; };
-		92FF326B1A24E2F400093DA7 /* LICENSE_SWTableViewCell in Resources */ = {isa = PBXBuildFile; fileRef = 92FF31911A24E2F400093DA7 /* LICENSE_SWTableViewCell */; };
-		92FF326C1A24E2F400093DA7 /* NSMutableArray+SWUtilityButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31931A24E2F400093DA7 /* NSMutableArray+SWUtilityButtons.m */; };
-		92FF326D1A24E2F400093DA7 /* SWCellScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31951A24E2F400093DA7 /* SWCellScrollView.m */; };
-		92FF326E1A24E2F400093DA7 /* SWLongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31971A24E2F400093DA7 /* SWLongPressGestureRecognizer.m */; };
-		92FF326F1A24E2F400093DA7 /* SWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31991A24E2F400093DA7 /* SWTableViewCell.m */; };
-		92FF32701A24E2F400093DA7 /* SWUtilityButtonTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF319B1A24E2F400093DA7 /* SWUtilityButtonTapGestureRecognizer.m */; };
-		92FF32711A24E2F400093DA7 /* SWUtilityButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF319D1A24E2F400093DA7 /* SWUtilityButtonView.m */; };
 		92FF32721A24E2F400093DA7 /* LICENSE_TTTAttributedLabel in Resources */ = {isa = PBXBuildFile; fileRef = 92FF319F1A24E2F400093DA7 /* LICENSE_TTTAttributedLabel */; };
 		92FF32731A24E2F400093DA7 /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31A11A24E2F400093DA7 /* TTTAttributedLabel.m */; };
 		92FF32741A24E2F400093DA7 /* CatrobatActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31A51A24E2F400093DA7 /* CatrobatActionSheet.m */; };
@@ -311,7 +304,6 @@
 		92FF32B41A24E2F400093DA7 /* CellMotionEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32331A24E2F400093DA7 /* CellMotionEffect.m */; };
 		92FF32B51A24E2F400093DA7 /* PlaceHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32361A24E2F400093DA7 /* PlaceHolderView.m */; };
 		92FF32B61A24E2F400093DA7 /* CatrobatBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF323B1A24E2F400093DA7 /* CatrobatBaseCell.m */; };
-		92FF32B71A24E2F400093DA7 /* ColoredCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF323F1A24E2F400093DA7 /* ColoredCell.m */; };
 		92FF32B81A24E2F400093DA7 /* ContinueImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32421A24E2F400093DA7 /* ContinueImageCell.m */; };
 		92FF32B91A24E2F400093DA7 /* DarkBlueGradientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32451A24E2F400093DA7 /* DarkBlueGradientCell.m */; };
 		92FF32BA1A24E2F400093DA7 /* DarkBlueGradientFeaturedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32471A24E2F400093DA7 /* DarkBlueGradientFeaturedCell.m */; };
@@ -323,7 +315,9 @@
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
 		AA101E411B8D3A3900797DEF /* Encapsulated.xml in Resources */ = {isa = PBXBuildFile; fileRef = AA101E401B8D3A3900797DEF /* Encapsulated.xml */; settings = {ASSET_TAGS = (); }; };
 		AA70F7F11B866E9B003057C6 /* CBPlayerFrontentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA70F7F01B866E9B003057C6 /* CBPlayerFrontentTests.swift */; };
+		AA85F6DF1B9B361200398DC7 /* ProgramTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85F6DE1B9B361200398DC7 /* ProgramTVCTests.swift */; settings = {ASSET_TAGS = (); }; };
 		AA963A081B93E97700F6B708 /* CBPlayerInstructionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA963A071B93E97700F6B708 /* CBPlayerInstructionHandler.swift */; settings = {ASSET_TAGS = (); }; };
+		AAADA0071B9B29D500E0CA9A /* MyProgramsVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAADA0061B9B29D500E0CA9A /* MyProgramsVCTests.swift */; };
 		AAD498B71B8D245C005894C4 /* CBPlayerFrontendProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD498B61B8D245C005894C4 /* CBPlayerFrontendProtocol.swift */; settings = {ASSET_TAGS = (); }; };
 		AAD498B91B8D248C005894C4 /* CBPlayerSchedulerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD498B81B8D248C005894C4 /* CBPlayerSchedulerProtocol.swift */; settings = {ASSET_TAGS = (); }; };
 		AAD498BB1B8D255F005894C4 /* CBPlayerBroadcastHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD498BA1B8D255F005894C4 /* CBPlayerBroadcastHandlerProtocol.swift */; settings = {ASSET_TAGS = (); }; };
@@ -569,6 +563,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AAADA0091B9B29D500E0CA9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CADBD6D319B0E8C200C62836;
+			remoteInfo = Catty;
+		};
 		CA7698B01B0E4A97000D0340 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -1135,19 +1136,6 @@
 		92FF318D1A24E2F400093DA7 /* MYBlurIntroductionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYBlurIntroductionView.m; sourceTree = "<group>"; };
 		92FF318E1A24E2F400093DA7 /* MYIntroductionPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYIntroductionPanel.h; sourceTree = "<group>"; };
 		92FF318F1A24E2F400093DA7 /* MYIntroductionPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYIntroductionPanel.m; sourceTree = "<group>"; };
-		92FF31911A24E2F400093DA7 /* LICENSE_SWTableViewCell */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_SWTableViewCell; sourceTree = "<group>"; };
-		92FF31921A24E2F400093DA7 /* NSMutableArray+SWUtilityButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+SWUtilityButtons.h"; sourceTree = "<group>"; };
-		92FF31931A24E2F400093DA7 /* NSMutableArray+SWUtilityButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+SWUtilityButtons.m"; sourceTree = "<group>"; };
-		92FF31941A24E2F400093DA7 /* SWCellScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCellScrollView.h; sourceTree = "<group>"; };
-		92FF31951A24E2F400093DA7 /* SWCellScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCellScrollView.m; sourceTree = "<group>"; };
-		92FF31961A24E2F400093DA7 /* SWLongPressGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWLongPressGestureRecognizer.h; sourceTree = "<group>"; };
-		92FF31971A24E2F400093DA7 /* SWLongPressGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWLongPressGestureRecognizer.m; sourceTree = "<group>"; };
-		92FF31981A24E2F400093DA7 /* SWTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWTableViewCell.h; sourceTree = "<group>"; };
-		92FF31991A24E2F400093DA7 /* SWTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWTableViewCell.m; sourceTree = "<group>"; };
-		92FF319A1A24E2F400093DA7 /* SWUtilityButtonTapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUtilityButtonTapGestureRecognizer.h; sourceTree = "<group>"; };
-		92FF319B1A24E2F400093DA7 /* SWUtilityButtonTapGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonTapGestureRecognizer.m; sourceTree = "<group>"; };
-		92FF319C1A24E2F400093DA7 /* SWUtilityButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUtilityButtonView.h; sourceTree = "<group>"; };
-		92FF319D1A24E2F400093DA7 /* SWUtilityButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUtilityButtonView.m; sourceTree = "<group>"; };
 		92FF319F1A24E2F400093DA7 /* LICENSE_TTTAttributedLabel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_TTTAttributedLabel; sourceTree = "<group>"; };
 		92FF31A01A24E2F400093DA7 /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
 		92FF31A11A24E2F400093DA7 /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
@@ -1274,8 +1262,6 @@
 		92FF323A1A24E2F400093DA7 /* CatrobatBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatBaseCell.h; sourceTree = "<group>"; };
 		92FF323B1A24E2F400093DA7 /* CatrobatBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatBaseCell.m; sourceTree = "<group>"; };
 		92FF323C1A24E2F400093DA7 /* CatrobatImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatImageCell.h; sourceTree = "<group>"; };
-		92FF323E1A24E2F400093DA7 /* ColoredCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColoredCell.h; sourceTree = "<group>"; };
-		92FF323F1A24E2F400093DA7 /* ColoredCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColoredCell.m; sourceTree = "<group>"; };
 		92FF32411A24E2F400093DA7 /* ContinueImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContinueImageCell.h; sourceTree = "<group>"; };
 		92FF32421A24E2F400093DA7 /* ContinueImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContinueImageCell.m; sourceTree = "<group>"; };
 		92FF32441A24E2F400093DA7 /* DarkBlueGradientCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkBlueGradientCell.h; sourceTree = "<group>"; };
@@ -1296,7 +1282,11 @@
 		AA101E401B8D3A3900797DEF /* Encapsulated.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Encapsulated.xml; sourceTree = "<group>"; };
 		AA70F7EC1B866E52003057C6 /* CattyTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CattyTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		AA70F7F01B866E9B003057C6 /* CBPlayerFrontentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerFrontentTests.swift; path = PlayerEngine/CBPlayerFrontentTests.swift; sourceTree = "<group>"; };
+		AA85F6DE1B9B361200398DC7 /* ProgramTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramTVCTests.swift; sourceTree = "<group>"; };
 		AA963A071B93E97700F6B708 /* CBPlayerInstructionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerInstructionHandler.swift; path = PlayerEngine/Backend/CBPlayerInstructionHandler.swift; sourceTree = "<group>"; };
+		AAADA0041B9B29D500E0CA9A /* Catty UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Catty UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAADA0061B9B29D500E0CA9A /* MyProgramsVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProgramsVCTests.swift; sourceTree = "<group>"; };
+		AAADA0081B9B29D500E0CA9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAD498B61B8D245C005894C4 /* CBPlayerFrontendProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerFrontendProtocol.swift; path = PlayerEngine/Protocols/CBPlayerFrontendProtocol.swift; sourceTree = "<group>"; };
 		AAD498B81B8D248C005894C4 /* CBPlayerSchedulerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerSchedulerProtocol.swift; path = PlayerEngine/Protocols/CBPlayerSchedulerProtocol.swift; sourceTree = "<group>"; };
 		AAD498BA1B8D255F005894C4 /* CBPlayerBroadcastHandlerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerBroadcastHandlerProtocol.swift; path = PlayerEngine/Protocols/CBPlayerBroadcastHandlerProtocol.swift; sourceTree = "<group>"; };
@@ -1577,6 +1567,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AAADA0011B9B29D500E0CA9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CA7698A71B0E4A97000D0340 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1620,6 +1617,7 @@
 			children = (
 				CADBD7FB19B0E8C200C62836 /* Pocket Code.app */,
 				CA7698AA1B0E4A97000D0340 /* CattyTests.xctest */,
+				AAADA0041B9B29D500E0CA9A /* Catty UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1634,6 +1632,7 @@
 				29B97315FDCFA39411CA2CEA /* Supporting Files */,
 				B43498471927A3AB002F9075 /* Resources */,
 				B46B270317703F9400172837 /* CattyTests */,
+				AAADA0051B9B29D500E0CA9A /* Catty UITests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -3269,7 +3268,6 @@
 				92FF31831A24E2F400093DA7 /* IBActionSheet */,
 				92FF31871A24E2F400093DA7 /* LXReorderableCollectionViewFlowLayout */,
 				92FF318B1A24E2F400093DA7 /* MYBlurIntroductionView */,
-				92FF31901A24E2F400093DA7 /* SWTableViewCell */,
 				92FF319E1A24E2F400093DA7 /* TTTAttributedLabel */,
 			);
 			path = 3rdParty;
@@ -3365,26 +3363,6 @@
 				92FF318F1A24E2F400093DA7 /* MYIntroductionPanel.m */,
 			);
 			path = MYBlurIntroductionView;
-			sourceTree = "<group>";
-		};
-		92FF31901A24E2F400093DA7 /* SWTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				92FF31911A24E2F400093DA7 /* LICENSE_SWTableViewCell */,
-				92FF31921A24E2F400093DA7 /* NSMutableArray+SWUtilityButtons.h */,
-				92FF31931A24E2F400093DA7 /* NSMutableArray+SWUtilityButtons.m */,
-				92FF31941A24E2F400093DA7 /* SWCellScrollView.h */,
-				92FF31951A24E2F400093DA7 /* SWCellScrollView.m */,
-				92FF31961A24E2F400093DA7 /* SWLongPressGestureRecognizer.h */,
-				92FF31971A24E2F400093DA7 /* SWLongPressGestureRecognizer.m */,
-				92FF31981A24E2F400093DA7 /* SWTableViewCell.h */,
-				92FF31991A24E2F400093DA7 /* SWTableViewCell.m */,
-				92FF319A1A24E2F400093DA7 /* SWUtilityButtonTapGestureRecognizer.h */,
-				92FF319B1A24E2F400093DA7 /* SWUtilityButtonTapGestureRecognizer.m */,
-				92FF319C1A24E2F400093DA7 /* SWUtilityButtonView.h */,
-				92FF319D1A24E2F400093DA7 /* SWUtilityButtonView.m */,
-			);
-			path = SWTableViewCell;
 			sourceTree = "<group>";
 		};
 		92FF319E1A24E2F400093DA7 /* TTTAttributedLabel */ = {
@@ -3663,7 +3641,6 @@
 			children = (
 				92FF32391A24E2F400093DA7 /* BaseCell */,
 				92FF323C1A24E2F400093DA7 /* CatrobatImageCell.h */,
-				92FF323D1A24E2F400093DA7 /* ColoredCell */,
 				92FF32401A24E2F400093DA7 /* ContinueImage */,
 				92FF32431A24E2F400093DA7 /* DarkBlueGradient */,
 			);
@@ -3677,15 +3654,6 @@
 				92FF323B1A24E2F400093DA7 /* CatrobatBaseCell.m */,
 			);
 			path = BaseCell;
-			sourceTree = "<group>";
-		};
-		92FF323D1A24E2F400093DA7 /* ColoredCell */ = {
-			isa = PBXGroup;
-			children = (
-				92FF323E1A24E2F400093DA7 /* ColoredCell.h */,
-				92FF323F1A24E2F400093DA7 /* ColoredCell.m */,
-			);
-			path = ColoredCell;
 			sourceTree = "<group>";
 		};
 		92FF32401A24E2F400093DA7 /* ContinueImage */ = {
@@ -3855,6 +3823,16 @@
 				AA70F7F01B866E9B003057C6 /* CBPlayerFrontentTests.swift */,
 			);
 			name = PlayerEngine;
+			sourceTree = "<group>";
+		};
+		AAADA0051B9B29D500E0CA9A /* Catty UITests */ = {
+			isa = PBXGroup;
+			children = (
+				AAADA0061B9B29D500E0CA9A /* MyProgramsVCTests.swift */,
+				AA85F6DE1B9B361200398DC7 /* ProgramTVCTests.swift */,
+				AAADA0081B9B29D500E0CA9A /* Info.plist */,
+			);
+			path = "Catty UITests";
 			sourceTree = "<group>";
 		};
 		AAD498B51B8D2431005894C4 /* Protocols */ = {
@@ -4508,6 +4486,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AAADA0031B9B29D500E0CA9A /* Catty UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AAADA00D1B9B29D500E0CA9A /* Build configuration list for PBXNativeTarget "Catty UITests" */;
+			buildPhases = (
+				AAADA0001B9B29D500E0CA9A /* Sources */,
+				AAADA0011B9B29D500E0CA9A /* Frameworks */,
+				AAADA0021B9B29D500E0CA9A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AAADA00A1B9B29D500E0CA9A /* PBXTargetDependency */,
+			);
+			name = "Catty UITests";
+			productName = "Catty UITests";
+			productReference = AAADA0041B9B29D500E0CA9A /* Catty UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		CA7698A91B0E4A97000D0340 /* CattyTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CA7698B21B0E4A97000D0340 /* Build configuration list for PBXNativeTarget "CattyTests" */;
@@ -4555,6 +4551,10 @@
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				TargetAttributes = {
+					AAADA0031B9B29D500E0CA9A = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = CADBD6D319B0E8C200C62836;
+					};
 					CA7698A91B0E4A97000D0340 = {
 						CreatedOnToolsVersion = 6.3.1;
 						TestTargetID = CADBD6D319B0E8C200C62836;
@@ -4613,11 +4613,19 @@
 			targets = (
 				CADBD6D319B0E8C200C62836 /* Catty */,
 				CA7698A91B0E4A97000D0340 /* CattyTests */,
+				AAADA0031B9B29D500E0CA9A /* Catty UITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AAADA0021B9B29D500E0CA9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CA7698A81B0E4A97000D0340 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4704,7 +4712,6 @@
 				92FF32661A24E2F400093DA7 /* LICENSE_IBActionSheet in Resources */,
 				CADBD6E719B0E8C200C62836 /* LXReorderableCollectionViewFlowLayout.license in Resources */,
 				CADBD6E819B0E8C200C62836 /* FXBlurView.license in Resources */,
-				92FF326B1A24E2F400093DA7 /* LICENSE_SWTableViewCell in Resources */,
 				92FF32611A24E2F400093DA7 /* LICENSE_FBShimmering in Resources */,
 				CADBD6EA19B0E8C200C62836 /* IBActionSheet.license in Resources */,
 				92FF325C1A24E2F400093DA7 /* LICENSE_BDKNotifyHUD in Resources */,
@@ -4776,6 +4783,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AAADA0001B9B29D500E0CA9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA85F6DF1B9B361200398DC7 /* ProgramTVCTests.swift in Sources */,
+				AAADA0071B9B29D500E0CA9A /* MyProgramsVCTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CA7698A61B0E4A97000D0340 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4872,11 +4888,9 @@
 				CA4E48BD1B1CEAE9003EA71E /* CBWhenScriptContext.swift in Sources */,
 				CAA4A4C81A43B45E002A69A0 /* SetGhostEffectBrick+CBXMLHandler.m in Sources */,
 				92FF2E9C1A24C7D800093DA7 /* SensorHandler.m in Sources */,
-				92FF32B71A24E2F400093DA7 /* ColoredCell.m in Sources */,
 				AAD498BB1B8D255F005894C4 /* CBPlayerBroadcastHandlerProtocol.swift in Sources */,
 				CAA4A4AA1A43B407002A69A0 /* PlaceAtBrick+CBXMLHandler.m in Sources */,
 				92DFB05B1A38960C00FA9B0F /* LineTool.m in Sources */,
-				92FF32711A24E2F400093DA7 /* SWUtilityButtonView.m in Sources */,
 				92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */,
 				CAA4A50C1A43B499002A69A0 /* SetVariableBrick+CBXMLHandler.m in Sources */,
 				CAD740E31AF2D2E800C32937 /* CBStack.m in Sources */,
@@ -4887,7 +4901,6 @@
 				CA2D44411B122E8500A3B53D /* SwellAll.swift in Sources */,
 				92DFB0131A38949E00FA9B0F /* InternFormulaKeyboardAdapter.m in Sources */,
 				92FF32631A24E2F400093DA7 /* FXBlurView.m in Sources */,
-				92FF326E1A24E2F400093DA7 /* SWLongPressGestureRecognizer.m in Sources */,
 				92FF2EA41A24C7D800093DA7 /* Util.m in Sources */,
 				92FF30D71A24DCAA00093DA7 /* SetBrightnessBrick.m in Sources */,
 				92FF31031A24DCAA00093DA7 /* Script.m in Sources */,
@@ -5055,7 +5068,6 @@
 				92FF315B1A24DEB300093DA7 /* ProgramDetailStoreViewController.m in Sources */,
 				92DFB00F1A38949E00FA9B0F /* ExternToken.m in Sources */,
 				CAA4A5331A43B51F002A69A0 /* Parser.m in Sources */,
-				92FF326C1A24E2F400093DA7 /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				92DFB0191A38949E00FA9B0F /* InternToExternGenerator.m in Sources */,
 				CAA4A4A71A43B407002A69A0 /* IfOnEdgeBounceBrick+CBXMLHandler.m in Sources */,
 				CAA4A4C11A43B45E002A69A0 /* ChangeBrightnessByNBrick+CBXMLHandler.m in Sources */,
@@ -5126,7 +5138,6 @@
 				92FF2E8C1A24C7D800093DA7 /* AudioManager.m in Sources */,
 				92FF2E9F1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m in Sources */,
 				92FF30F91A24DCAA00093DA7 /* FormulaElement.m in Sources */,
-				92FF32701A24E2F400093DA7 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				92FF30FC1A24DCAA00093DA7 /* Operators.m in Sources */,
 				92FF30E91A24DCAA00093DA7 /* TurnLeftBrick.m in Sources */,
 				92FF328B1A24E2F400093DA7 /* ComeToFrontBrickCell.m in Sources */,
@@ -5157,7 +5168,6 @@
 				92FF2E931A24C7D800093DA7 /* RuntimeImageCache.m in Sources */,
 				CA2D44461B123B7E00A3B53D /* Util.swift in Sources */,
 				92FF2E921A24C7D800093DA7 /* ImageCache.m in Sources */,
-				92FF326D1A24E2F400093DA7 /* SWCellScrollView.m in Sources */,
 				92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */,
 				92FF32731A24E2F400093DA7 /* TTTAttributedLabel.m in Sources */,
 				92DFB0671A38960C00FA9B0F /* SPUserResizableView.m in Sources */,
@@ -5181,7 +5191,6 @@
 				92FF30E01A24DCAA00093DA7 /* ChangeYByNBrick.m in Sources */,
 				92FF326A1A24E2F400093DA7 /* MYIntroductionPanel.m in Sources */,
 				92FF2E981A24C7D800093DA7 /* unzip.c in Sources */,
-				92FF326F1A24E2F400093DA7 /* SWTableViewCell.m in Sources */,
 				92DFB0631A38960C00FA9B0F /* PipetteTool.m in Sources */,
 				CAA4A4C21A43B45E002A69A0 /* ChangeGhostEffectByNBrick+CBXMLHandler.m in Sources */,
 				92FF32741A24E2F400093DA7 /* CatrobatActionSheet.m in Sources */,
@@ -5235,6 +5244,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		AAADA00A1B9B29D500E0CA9A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CADBD6D319B0E8C200C62836 /* Catty */;
+			targetProxy = AAADA0091B9B29D500E0CA9A /* PBXContainerItemProxy */;
+		};
 		CA7698B11B0E4A97000D0340 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CADBD6D319B0E8C200C62836 /* Catty */;
@@ -5294,6 +5308,68 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		AAADA00B1B9B29D500E0CA9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Catty UITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tigerpirates.Catty-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_TARGET_NAME = Catty;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		AAADA00C1B9B29D500E0CA9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Catty UITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tigerpirates.Catty-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Catty;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -5568,6 +5644,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AAADA00D1B9B29D500E0CA9A /* Build configuration list for PBXNativeTarget "Catty UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAADA00B1B9B29D500E0CA9A /* Debug */,
+				AAADA00C1B9B29D500E0CA9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Catty" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
