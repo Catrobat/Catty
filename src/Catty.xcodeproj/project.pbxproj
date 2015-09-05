@@ -1330,7 +1330,7 @@
 		CA4E48B91B1CEAE9003EA71E /* CBWhenScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBWhenScriptContext.swift; path = PlayerEngine/DataModel/CBScriptContexts/CBWhenScriptContext.swift; sourceTree = "<group>"; };
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
 		CA6E4C4719F9C388001B65C3 /* My first program.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My first program.catrobat"; sourceTree = "<group>"; };
-		CA7698AA1B0E4A97000D0340 /* CattyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CattyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA7698AA1B0E4A97000D0340 /* Catty Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Catty Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA8003E91B48720500A8D99B /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
 		CA8003EB1B487ED100A8D99B /* CBPlayerScene+ScreenRecording.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CBPlayerScene+ScreenRecording.swift"; path = "Catty/PlayerEngine/Scene/CBPlayerScene+ScreenRecording.swift"; sourceTree = SOURCE_ROOT; };
 		CA8C247718CD053300314C2B /* ProgramTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTests.m; sourceTree = "<group>"; };
@@ -1616,7 +1616,7 @@
 			isa = PBXGroup;
 			children = (
 				CADBD7FB19B0E8C200C62836 /* Pocket Code.app */,
-				CA7698AA1B0E4A97000D0340 /* CattyTests.xctest */,
+				CA7698AA1B0E4A97000D0340 /* Catty Tests.xctest */,
 				AAADA0041B9B29D500E0CA9A /* Catty UITests.xctest */,
 			);
 			name = Products;
@@ -4504,9 +4504,9 @@
 			productReference = AAADA0041B9B29D500E0CA9A /* Catty UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		CA7698A91B0E4A97000D0340 /* CattyTests */ = {
+		CA7698A91B0E4A97000D0340 /* Catty Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CA7698B21B0E4A97000D0340 /* Build configuration list for PBXNativeTarget "CattyTests" */;
+			buildConfigurationList = CA7698B21B0E4A97000D0340 /* Build configuration list for PBXNativeTarget "Catty Tests" */;
 			buildPhases = (
 				CA7698A61B0E4A97000D0340 /* Sources */,
 				CA7698A71B0E4A97000D0340 /* Frameworks */,
@@ -4517,9 +4517,9 @@
 			dependencies = (
 				CA7698B11B0E4A97000D0340 /* PBXTargetDependency */,
 			);
-			name = CattyTests;
+			name = "Catty Tests";
 			productName = CattyTests;
-			productReference = CA7698AA1B0E4A97000D0340 /* CattyTests.xctest */;
+			productReference = CA7698AA1B0E4A97000D0340 /* Catty Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		CADBD6D319B0E8C200C62836 /* Catty */ = {
@@ -4612,7 +4612,7 @@
 			projectRoot = "";
 			targets = (
 				CADBD6D319B0E8C200C62836 /* Catty */,
-				CA7698A91B0E4A97000D0340 /* CattyTests */,
+				CA7698A91B0E4A97000D0340 /* Catty Tests */,
 				AAADA0031B9B29D500E0CA9A /* Catty UITests */,
 			);
 		};
@@ -5662,7 +5662,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CA7698B21B0E4A97000D0340 /* Build configuration list for PBXNativeTarget "CattyTests" */ = {
+		CA7698B21B0E4A97000D0340 /* Build configuration list for PBXNativeTarget "Catty Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CA7698B31B0E4A97000D0340 /* Debug */,
