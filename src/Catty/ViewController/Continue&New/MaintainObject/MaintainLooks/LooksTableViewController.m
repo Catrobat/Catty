@@ -675,16 +675,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
             NSDebug(@"Draw new image");
             PaintViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kPaintViewControllerIdentifier];
             vc.delegate = self;
-            NSInteger width = self.view.bounds.size.width;
-            NSInteger height = (NSInteger)self.view.bounds.size.height;
-            CGRect rect = CGRectMake(0, 0, width, height);
-            UIImage *image = [UIImage new];
-            UIGraphicsBeginImageContext(rect.size);
-            [image drawInRect:CGRectMake(0, 0, rect.size.width, rect.size.height)];
-            image = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-
-            vc.editingImage = image;
             vc.editingPath = nil;
             [self.navigationController pushViewController:vc animated:YES];
         } else {

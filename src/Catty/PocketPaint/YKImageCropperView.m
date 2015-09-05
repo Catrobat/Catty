@@ -44,7 +44,7 @@ static CGSize minSize = {40, 40};
 
 @implementation YKImageCropperView
 
-- (id)initWithImage:(UIImage *)image andFrame:(CGRect)frame
+- (id)initWithImage:(UIImage *)image checkImage:(UIImage *)checkImage andFrame:(CGRect)frame
 {
     self = [super init];
     if (self) {
@@ -79,8 +79,11 @@ static CGSize minSize = {40, 40};
         self.overlayView = [[YKImageCropperOverlayView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width , screenRect.size.height)];
         
         [self addSubview:self.overlayView];
-        
-        [self autoCropWithImage:self.image];
+        if (checkImage) {
+            [self autoCropWithImage:self.image];
+        }else{
+           [self reset];
+        }
         
     }
 
@@ -325,16 +328,16 @@ static CGSize minSize = {40, 40};
     self.overlayView.clearRect = newClearRect;
 
     // Check x
-    if ([self shouldRevertX]) {
-        newClearRect.origin.x = oldClearRect.origin.x;
-        newClearRect.size.width = oldClearRect.size.width;
-    }
-
-    // Check y
-    if ([self shouldRevertY]) {
-        newClearRect.origin.y = oldClearRect.origin.y;
-        newClearRect.size.height = oldClearRect.size.height;
-    }
+//    if ([self shouldRevertX]) {
+//        newClearRect.origin.x = oldClearRect.origin.x;
+//        newClearRect.size.width = oldClearRect.size.width;
+//    }
+//
+//    // Check y
+//    if ([self shouldRevertY]) {
+//        newClearRect.origin.y = oldClearRect.origin.y;
+//        newClearRect.size.height = oldClearRect.size.height;
+//    }
     
     self.overlayView.clearRect = newClearRect;
     [self.overlayView setNeedsDisplay];
@@ -342,20 +345,20 @@ static CGSize minSize = {40, 40};
 
 - (void)panImage:(UIPanGestureRecognizer *)sender {
     CGPoint d = [sender translationInView:self];
-    NSDebug(@"Point: %@", d);
+//    NSDebug(@"Point: %@", d);
     CGPoint newCenter = CGPointMake(self.imageView.center.x + d.x,
                                     self.imageView.center.y + d.y);
     self.imageView.center = newCenter;
 
-    // Check x
-    if ([self shouldRevertX]) {
-        newCenter.x -= d.x;
-    }
-
-    // Check y
-    if ([self shouldRevertY]) {
-        newCenter.y -= d.y;
-    }
+//    // Check x
+//    if ([self shouldRevertX]) {
+//        newCenter.x -= d.x;
+//    }
+//
+//    // Check y
+//    if ([self shouldRevertY]) {
+//        newCenter.y -= d.y;
+//    }
 
     self.imageView.center = newCenter;
 }

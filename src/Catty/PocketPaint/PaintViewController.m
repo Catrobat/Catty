@@ -129,7 +129,7 @@
         if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
             NSData *data1 = UIImagePNGRepresentation(self.saveView.image);
             NSData *data2 = UIImagePNGRepresentation(self.checkImage);
-            if (![data1 isEqual:data2]) {
+            if (![data1 isEqual:data2] && self.checkImage) {
                 if (![self.saveView.image isEqual:self.editingImage] && self.editingImage != nil) {
                     [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
                 } else if (self.editingPath == nil) {
@@ -594,7 +594,7 @@
 - (void)cropInitAction
 {
     if (self.saveView.image) {
-        self.cropperView = [[YKImageCropperView alloc] initWithImage:self.saveView.image andFrame:self.view.frame];
+        self.cropperView = [[YKImageCropperView alloc] initWithImage:self.saveView.image checkImage:self.checkImage andFrame:self.view.frame];
         [self.view addSubview:self.cropperView];
         self.drawView.hidden = YES;
         self.saveView.hidden = YES;
@@ -673,7 +673,7 @@
         for (UIGestureRecognizer *recognizer in [self.scrollView gestureRecognizers]) {
             recognizer.enabled = YES;
         }
-        [self.scrollView zoomToRect:CGRectMake(0, 0, 500, 500) animated:YES];
+        [self.scrollView zoomToRect:CGRectMake(0, 0, croppedImage.size.width, croppedImage.size.height) animated:NO];
     } else {
         [self cropInitAction];
     }
