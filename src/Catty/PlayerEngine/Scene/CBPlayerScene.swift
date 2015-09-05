@@ -21,20 +21,24 @@
  */
 
 import SpriteKit
-
-//#if os(iOS9)
-    import ReplayKit
-//#endif
+import ReplayKit
 
 final class CBPlayerScene : SKScene {
 
     // MARK: - Properties
     let logger : CBLogger?
 
-//    #if os(iOS9)
     /// ReplayKit preview view controller used when viewing recorded content.
-    var previewViewController: RPPreviewViewController?
-//    #endif
+    private var _previewViewController: AnyObject?
+    @available(iOS 9.0, *)
+    var previewViewController: RPPreviewViewController? {
+        get {
+            return _previewViewController as? RPPreviewViewController
+        }
+        set {
+            _previewViewController = newValue
+        }
+    }
 
     private(set) var scheduler : CBPlayerSchedulerProtocol?
     private(set) var frontend : CBPlayerFrontendProtocol?
