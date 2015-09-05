@@ -59,11 +59,6 @@
   [self.canvas.view addGestureRecognizer:self.rotateView];
   self.rotateView.enabled = NO;
   
-  self.resizeView = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handleResize:)];
-  self.resizeView.delegate = self.canvas;
-  [self.canvas.view addGestureRecognizer:self.resizeView];
-  self.resizeView.enabled = NO;
-  
   self.takeView =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(takeImage:)];
   self.takeView.delegate = self.canvas;
   [self.resizeViewer addGestureRecognizer:self.takeView];
@@ -71,59 +66,15 @@
 }
 
 
-- (void)moveView:(UIPanGestureRecognizer *)recognizer {
-  
-  CGPoint translation = [recognizer translationInView:self.canvas.helper];
-  self.resizeViewer.center = CGPointMake(self.resizeViewer.center.x + translation.x,
-                                            self.resizeViewer.center.y + translation.y);
-  [recognizer setTranslation:CGPointMake(0, 0) inView:self.canvas.helper];
-  
-}
+
 - (void)handleRotate:(UIRotationGestureRecognizer *)recognizer {
   
   if (self.canvas.activeAction == stamp) {
     return;
   }
-  if([(UIRotationGestureRecognizer*)recognizer state] == UIGestureRecognizerStateEnded) {
-    
-    self.rotation = 0.0;
-    return;
-  }
-  
-  CGFloat rotation = 0.0 - (self.rotation - [recognizer rotation]);
-  
-  CGAffineTransform currentTransform = self.resizeViewer.transform;
-  CGAffineTransform newTransform = CGAffineTransformRotate(currentTransform,rotation);
-  
-  [self.resizeViewer setTransform:newTransform];
-  
-  self.rotation = [(UIRotationGestureRecognizer*)recognizer rotation];
-  
-}
 
-- (void)handleResize:(UIPinchGestureRecognizer *)gestureRecognizer {
-//  if([gestureRecognizer state] == UIGestureRecognizerStateBegan) {
-//      // Reset the last scale, necessary if there are multiple objects with different scales
-//    self.scale = [gestureRecognizer scale];
-//  }
-//  
-//  if ([gestureRecognizer state] == UIGestureRecognizerStateBegan ||
-//      [gestureRecognizer state] == UIGestureRecognizerStateChanged) {
-//    
-//    CGFloat currentScale = [[self.resizeViewer.layer valueForKeyPath:@"transform.scale"] floatValue];
-//    
-//      // Constants to adjust the max/min values of zoom
-//    const CGFloat kMaxScale = 2.0;
-//    const CGFloat kMinScale = 1.0;
-//    
-//    CGFloat newScale = 1 -  (self.scale - [gestureRecognizer scale]);
-//    newScale = MIN(newScale, kMaxScale / currentScale);
-//    newScale = MAX(newScale, kMinScale / currentScale);
-//    CGAffineTransform transform = CGAffineTransformScale([self.resizeViewer transform], newScale, newScale);
-//    self.resizeViewer.transform = transform;
-//    
-//    self.scale = [gestureRecognizer scale];  // Store the previous scale factor for the next pinch gesture call
-//  }
+    self.resizeViewer.rotation = [recognizer rotation];
+    self.resizeViewer.transform = CGAffineTransformMakeRotation(self.resizeViewer.rotation);
 }
 
 - (void)updateShape
@@ -213,7 +164,6 @@
   self.resizeViewer.hidden = NO;
   self.takeView.enabled = YES;
   self.rotateView.enabled = YES;
-  self.resizeView.enabled = YES;
   for (UIGestureRecognizer *recognizer in [self.canvas.scrollView gestureRecognizers]) {
     recognizer.enabled = NO;
   }
@@ -225,7 +175,6 @@
   
   self.takeView.enabled = NO;
   self.rotateView.enabled = NO;
-  self.resizeView.enabled = NO;
   
   self.resizeViewer.transform = CGAffineTransformMakeRotation(0);
   self.resizeViewer.frame = CGRectMake(50 , 50, 150 , 150);
