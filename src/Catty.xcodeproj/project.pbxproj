@@ -60,8 +60,6 @@
 		4C3BE65B1B3D2E0A00D99AB2 /* FeaturedProgramsStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BE65A1B3D2E0A00D99AB2 /* FeaturedProgramsStoreViewControllerTests.m */; };
 		4C4A71921B52733C00BBE32B /* CBXMLAbstractContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A71911B52733C00BBE32B /* CBXMLAbstractContext.m */; };
 		4C4A71A11B527E2F00BBE32B /* CBXMLParserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A71A01B527E2F00BBE32B /* CBXMLParserContext.m */; };
-		4C59D9C61B56596900595C99 /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C59D9C31B56596900595C99 /* XMLSerializerBlackBoxTests.m */; };
-		4C59D9C71B56596900595C99 /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C59D9C51B56596900595C99 /* XMLSerializerTests.m */; };
 		4C5B27FE1B3C15AC00509FDB /* SearchStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5B27FD1B3C15AC00509FDB /* SearchStoreViewControllerTests.m */; };
 		4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */; };
 		4C68FC891B25A00B00AB3EE8 /* FormulaEditorUtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7B1B25A00B00AB3EE8 /* FormulaEditorUtilTests.m */; };
@@ -199,6 +197,9 @@
 		4CEF0CE21B9C6445003C9B20 /* Skydiving_Steve_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CE11B9C6445003C9B20 /* Skydiving_Steve_096.xml */; };
 		4CEF0CE41B9C6463003C9B20 /* ValidProgram096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CE31B9C6463003C9B20 /* ValidProgram096.xml */; };
 		4CEF0CE61B9C646A003C9B20 /* ValidProgramAllBricks096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CE51B9C646A003C9B20 /* ValidProgramAllBricks096.xml */; };
+		4CEF0CF01B9C655B003C9B20 /* XMLParserBlackBoxTests096.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEF0CEA1B9C655B003C9B20 /* XMLParserBlackBoxTests096.m */; };
+		4CEF0CF11B9C655B003C9B20 /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEF0CED1B9C655B003C9B20 /* XMLSerializerBlackBoxTests.m */; };
+		4CEF0CF21B9C655B003C9B20 /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEF0CEF1B9C655B003C9B20 /* XMLSerializerTests.m */; };
 		4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */; };
 		4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */; };
 		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
@@ -730,8 +731,6 @@
 		4C5517D51ABC6AA500A52FF4 /* BrickLookProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickLookProtocol.h; sourceTree = "<group>"; };
 		4C5517D61ABC6AB800A52FF4 /* BrickSoundProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSoundProtocol.h; sourceTree = "<group>"; };
 		4C5517D71ABC737C00A52FF4 /* BrickObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickObjectProtocol.h; sourceTree = "<group>"; };
-		4C59D9C31B56596900595C99 /* XMLSerializerBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerBlackBoxTests.m; sourceTree = "<group>"; };
-		4C59D9C51B56596900595C99 /* XMLSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerTests.m; sourceTree = "<group>"; };
 		4C5B27FD1B3C15AC00509FDB /* SearchStoreViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchStoreViewControllerTests.m; path = Download/SearchStoreViewControllerTests.m; sourceTree = "<group>"; };
 		4C5B27FF1B3C194900509FDB /* SearchStoreViewControllerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchStoreViewControllerTests.h; path = Download/SearchStoreViewControllerTests.h; sourceTree = "<group>"; };
 		4C6066381A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+CustomExtensions.h"; sourceTree = "<group>"; };
@@ -961,6 +960,9 @@
 		4CEF0CE11B9C6445003C9B20 /* Skydiving_Steve_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Skydiving_Steve_096.xml; sourceTree = "<group>"; };
 		4CEF0CE31B9C6463003C9B20 /* ValidProgram096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidProgram096.xml; path = CattyTests/Resources/ParserTests/ValidProgram096.xml; sourceTree = SOURCE_ROOT; };
 		4CEF0CE51B9C646A003C9B20 /* ValidProgramAllBricks096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidProgramAllBricks096.xml; path = CattyTests/Resources/ParserTests/ValidProgramAllBricks096.xml; sourceTree = SOURCE_ROOT; };
+		4CEF0CEA1B9C655B003C9B20 /* XMLParserBlackBoxTests096.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests096.m; sourceTree = "<group>"; };
+		4CEF0CED1B9C655B003C9B20 /* XMLSerializerBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerBlackBoxTests.m; sourceTree = "<group>"; };
+		4CEF0CEF1B9C655B003C9B20 /* XMLSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerTests.m; sourceTree = "<group>"; };
 		4CF773E31AEE3B5100DBBB2B /* VariablePickerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablePickerData.h; sourceTree = "<group>"; };
 		4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablePickerData.m; sourceTree = "<group>"; };
 		4CF773EC1AEE786600DBBB2B /* FormulaElement+UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FormulaElement+UserVariable.h"; sourceTree = "<group>"; };
@@ -1893,7 +1895,6 @@
 			isa = PBXGroup;
 			children = (
 				4C2EE3DB1B5554D7006DE9B8 /* XMLParserTests */,
-				4C59D9C11B56596900595C99 /* XMLSerializerTests */,
 			);
 			name = CatrobatLanguage0.95;
 			path = "Parser & Serialization/CatrobatLanguage0.95";
@@ -2044,31 +2045,6 @@
 				4C1EB20F1AC19B3D0001F431 /* BrickTextProtocol.h */,
 			);
 			path = BrickData;
-			sourceTree = "<group>";
-		};
-		4C59D9C11B56596900595C99 /* XMLSerializerTests */ = {
-			isa = PBXGroup;
-			children = (
-				4C59D9C41B56596900595C99 /* Unit Tests */,
-				4C59D9C21B56596900595C99 /* BlackBox Tests */,
-			);
-			path = XMLSerializerTests;
-			sourceTree = "<group>";
-		};
-		4C59D9C21B56596900595C99 /* BlackBox Tests */ = {
-			isa = PBXGroup;
-			children = (
-				4C59D9C31B56596900595C99 /* XMLSerializerBlackBoxTests.m */,
-			);
-			path = "BlackBox Tests";
-			sourceTree = "<group>";
-		};
-		4C59D9C41B56596900595C99 /* Unit Tests */ = {
-			isa = PBXGroup;
-			children = (
-				4C59D9C51B56596900595C99 /* XMLSerializerTests.m */,
-			);
-			path = "Unit Tests";
 			sourceTree = "<group>";
 		};
 		4C5B27FC1B3C155C00509FDB /* Download */ = {
@@ -2492,6 +2468,7 @@
 				4CD669711B272AB60008602D /* CatrobatLanguage0.92 */,
 				4CD194F61A0632C600484E4F /* CatrobatLanguage0.93 */,
 				4C2EE3DA1B5554D7006DE9B8 /* CatrobatLanguage0.95 */,
+				4CEF0CE71B9C655B003C9B20 /* CatrobatLanguage0.96 */,
 			);
 			name = "Parser & Serialization";
 			sourceTree = "<group>";
@@ -2595,6 +2572,57 @@
 				4CEB226E1B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m */,
 			);
 			path = Abstract;
+			sourceTree = "<group>";
+		};
+		4CEF0CE71B9C655B003C9B20 /* CatrobatLanguage0.96 */ = {
+			isa = PBXGroup;
+			children = (
+				4CEF0CE81B9C655B003C9B20 /* XMLParserTests */,
+				4CEF0CEB1B9C655B003C9B20 /* XMLSerializerTests */,
+			);
+			name = CatrobatLanguage0.96;
+			path = "CattyTests/Parser & Serialization/CatrobatLanguage0.96";
+			sourceTree = SOURCE_ROOT;
+		};
+		4CEF0CE81B9C655B003C9B20 /* XMLParserTests */ = {
+			isa = PBXGroup;
+			children = (
+				4CEF0CE91B9C655B003C9B20 /* BlackBox Tests */,
+			);
+			path = XMLParserTests;
+			sourceTree = "<group>";
+		};
+		4CEF0CE91B9C655B003C9B20 /* BlackBox Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4CEF0CEA1B9C655B003C9B20 /* XMLParserBlackBoxTests096.m */,
+			);
+			path = "BlackBox Tests";
+			sourceTree = "<group>";
+		};
+		4CEF0CEB1B9C655B003C9B20 /* XMLSerializerTests */ = {
+			isa = PBXGroup;
+			children = (
+				4CEF0CEC1B9C655B003C9B20 /* BlackBox Tests */,
+				4CEF0CEE1B9C655B003C9B20 /* Unit Tests */,
+			);
+			path = XMLSerializerTests;
+			sourceTree = "<group>";
+		};
+		4CEF0CEC1B9C655B003C9B20 /* BlackBox Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4CEF0CED1B9C655B003C9B20 /* XMLSerializerBlackBoxTests.m */,
+			);
+			path = "BlackBox Tests";
+			sourceTree = "<group>";
+		};
+		4CEF0CEE1B9C655B003C9B20 /* Unit Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4CEF0CEF1B9C655B003C9B20 /* XMLSerializerTests.m */,
+			);
+			path = "Unit Tests";
 			sourceTree = "<group>";
 		};
 		92289A441A42F2A3008C771A /* ComboBox */ = {
@@ -5106,6 +5134,7 @@
 				4C2EE3E41B5554D7006DE9B8 /* XMLParserBrickTests095.m in Sources */,
 				4CEB22591B95E47500B3BE2F /* ComeToFrontBrickTests.m in Sources */,
 				4C2A00C01B5546DF00CD4492 /* XMLParserBrickTests093.m in Sources */,
+				4CEF0CF21B9C655B003C9B20 /* XMLSerializerTests.m in Sources */,
 				4CEB225E1B95E47500B3BE2F /* NextLookBrickTests.m in Sources */,
 				4C2A00C11B5546DF00CD4492 /* XMLParserFormulaTests093.m in Sources */,
 				CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */,
@@ -5125,16 +5154,15 @@
 				4CEB225D1B95E47500B3BE2F /* MoveNStepsBrickTests.m in Sources */,
 				4CEB22531B95E47500B3BE2F /* BrickMutableCopyTests.m in Sources */,
 				4CEB22661B95E47500B3BE2F /* SetXBrickTests.m in Sources */,
-				4C59D9C71B56596900595C99 /* XMLSerializerTests.m in Sources */,
 				4C2A00C71B5547EB00CD4492 /* XMLAbstractTest.m in Sources */,
 				4C5B27FE1B3C15AC00509FDB /* SearchStoreViewControllerTests.m in Sources */,
 				4CEB22651B95E47500B3BE2F /* SetTransparencyBrickTests.m in Sources */,
 				4CEB22611B95E47500B3BE2F /* PointToBrickTests.m in Sources */,
-				4C59D9C61B56596900595C99 /* XMLSerializerBlackBoxTests.m in Sources */,
 				4CEB22581B95E47500B3BE2F /* ClearGrafficEffectBrickTests.m in Sources */,
 				4CEB22501B95E47500B3BE2F /* BrickMoveManagerLogicTests.m in Sources */,
 				4CEB22761B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m in Sources */,
 				4CEB225F1B95E47500B3BE2F /* PlaceAtBrickTests.m in Sources */,
+				4CEF0CF11B9C655B003C9B20 /* XMLSerializerBlackBoxTests.m in Sources */,
 				4CEB22631B95E47500B3BE2F /* SetLookBrickTests.m in Sources */,
 				4CEB22771B95E4BC00B3BE2F /* BrickInsertManagerTests.m in Sources */,
 				4C3BE65B1B3D2E0A00D99AB2 /* FeaturedProgramsStoreViewControllerTests.m in Sources */,
@@ -5149,6 +5177,7 @@
 				4C2EE3E71B5554D7006DE9B8 /* XMLParserObjectTests095.m in Sources */,
 				4CEB225C1B95E47500B3BE2F /* IFOnEdgeBounceBrickTests.m in Sources */,
 				4C2A00C91B554CBF00CD4492 /* XMLParserTests092.m in Sources */,
+				4CEF0CF01B9C655B003C9B20 /* XMLParserBlackBoxTests096.m in Sources */,
 				4C68FC921B25A00B00AB3EE8 /* InternFormulaStateTest.m in Sources */,
 				4C2EE3E51B5554D7006DE9B8 /* XMLParserFormulaTests095.m in Sources */,
 				4C79F5551B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m in Sources */,
