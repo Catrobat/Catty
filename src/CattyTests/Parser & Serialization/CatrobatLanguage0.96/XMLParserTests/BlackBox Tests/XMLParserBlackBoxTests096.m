@@ -31,7 +31,7 @@
 
 @implementation XMLParserBlackBoxTests096
 
-- (void)testAirFight06
+- (void)testAirFight
 {
     [self compareProgram:@"Air_fight_0.5_095" withProgram:@"Air_fight_0.5_096"];
 }
@@ -93,12 +93,12 @@
 
 - (void)testNyancat10
 {
-    [self compareProgram:@"Nyancat_1.0_095" withProgram:@"Nyancat_1.0_096"];
+    [self compareProgram:@"Nyancat_1.0_093" withProgram:@"Nyancat_1.0_096"];
 }
 
 - (void)testPiano
 {
-    [self compareProgram:@"Piano_095" withProgram:@"Piano_096"];
+    [self compareProgram:@"Piano_093" withProgram:@"Piano_096"];
 }
 
 - (void)testPongStarter
@@ -123,17 +123,17 @@
 
 - (void)testTicTacToeMaster
 {
-    [self compareProgram:@"Tic_Tac_Toe_Master_095" withProgram:@"Tic_Tac_Toe_Master_096"];
+    [self compareProgram:@"Tic_Tac_Toe_Master_093" withProgram:@"Tic_Tac_Toe_Master_095"];
 }
 
 - (void)testWordBalloonDemo
 {
-    [self compareProgram:@"Word_balloon_demo_095" withProgram:@"Word_balloon_demo_096"];
+    [self compareProgram:@"Word_balloon_demo_093" withProgram:@"Word_balloon_demo_095"];
 }
 
 - (void)testXRayPhone
 {
-    [self compareProgram:@"X_Ray_phone_095" withProgram:@"X_Ray_phone_096"];
+    [self compareProgram:@"X_Ray_phone_093" withProgram:@"X_Ray_phone_095"];
 }
 
 @end

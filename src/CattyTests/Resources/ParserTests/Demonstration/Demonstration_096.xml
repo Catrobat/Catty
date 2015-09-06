@@ -807,8 +807,7 @@
     </objectVariableList>
     <programListOfLists/>
     <programVariableList>
-      <userVariable>
-        </userVariable>
+      <userVariable>test</userVariable>
     </programVariableList>
     <userBrickVariableList/>
   </data>
