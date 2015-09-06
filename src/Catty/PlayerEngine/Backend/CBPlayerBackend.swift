@@ -41,36 +41,29 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
     // MARK: - Operations
     func scriptContextForSequenceList(sequenceList: CBScriptSequenceList) -> CBScriptContextAbstract
     {
-        let script = sequenceList.script
-        logger.info("Generating ScriptContext of \(script)")
-
-        // create right context depending on script type
+        logger.info("Generating ScriptContext of \(sequenceList.script)")
         var scriptContext: CBScriptContextAbstract? = nil
-        if let startScript = script as? StartScript {
-            scriptContext = CBStartScriptContext(
-                startScript: startScript,
-                state: .Runnable,
+
+        switch sequenceList.script {
+
+        case let startScript as StartScript:
+            scriptContext = CBStartScriptContext(startScript: startScript, state: .Runnable,
                 scriptSequenceList: sequenceList)
-        } else if let whenScript = script as? WhenScript {
-            scriptContext = CBWhenScriptContext(
-                whenScript: whenScript,
-                state: .Runnable,
+
+        case let whenScript as WhenScript:
+            scriptContext = CBWhenScriptContext(whenScript: whenScript, state: .Runnable,
                 scriptSequenceList: sequenceList)
-        } else if let bcScript = script as? BroadcastScript {
-            scriptContext = CBBroadcastScriptContext(
-                broadcastScript: bcScript,
-                state: .Runnable,
+
+        case let bcScript as BroadcastScript:
+            scriptContext = CBBroadcastScriptContext(broadcastScript: bcScript, state: .Runnable,
                 scriptSequenceList: sequenceList)
-        } else {
+
+        default:
             fatalError("Unknown script! THIS SHOULD NEVER HAPPEN!")
         }
 
-        // generated instructions and add them to script context
-        let instructionList = _instructionsForSequence(sequenceList.sequenceList,
-            context: scriptContext!)
-        for instruction in instructionList {
-            scriptContext! += instruction
-        }
+        // generate instructions and add them to script context
+        scriptContext! += _instructionsForSequence(sequenceList.sequenceList, context: scriptContext!)
         return scriptContext!
     }
 
@@ -78,8 +71,8 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
         context: CBScriptContextAbstract) -> [CBExecClosure]
     {
         var instructionList = [CBExecClosure]()
-        for sequence in sequenceList {
-            switch sequence {
+        sequenceList.forEach {
+            switch $0 {
             case let opSequence as CBOperationSequence:
                 instructionList += opSequence.operationList.map {
                     return _instructionHandler.instructionForBrick($0.brick, withContext: context)

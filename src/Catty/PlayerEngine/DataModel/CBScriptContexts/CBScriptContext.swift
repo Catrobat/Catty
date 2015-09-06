@@ -68,7 +68,11 @@ class CBScriptContextAbstract : SKNode {
 
     // MARK: - Operations
     final func appendInstruction(instruction: CBExecClosure) {
-        _instructionList.append(instruction)
+        _instructionList += instruction
+    }
+
+    final func appendInstructions(instructionList: [CBExecClosure]) {
+        _instructionList += instructionList
     }
 
     final func nextInstruction() -> CBExecClosure? {
@@ -115,4 +119,8 @@ class CBScriptContextAbstract : SKNode {
 // MARK: - Custom operators
 func +=(inout left: CBScriptContextAbstract, right: CBExecClosure) {
     left.appendInstruction(right)
+}
+
+func +=(inout left: CBScriptContextAbstract, right: [CBExecClosure]) {
+    left.appendInstructions(right)
 }

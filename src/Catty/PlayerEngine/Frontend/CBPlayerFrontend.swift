@@ -45,32 +45,42 @@ final class CBPlayerFrontend : CBPlayerFrontendProtocol {
         let sequenceStack = CBStack<CBSequenceList>()
 
         for brick in (script.brickList as NSArray as! [Brick]) {
-            if let _ = brick as? IfLogicBeginBrick {
-                if currentOperationSequence.isEmpty() == false {
+
+            switch brick {
+            case _ as IfLogicBeginBrick,
+                 _ as IfLogicElseBrick,
+                 _ as IfLogicEndBrick,
+                 _ as LoopBeginBrick,
+                 _ as LoopEndBrick:
+
+                if !currentOperationSequence.isEmpty() {
                     currentSequenceList += currentOperationSequence
                 }
+
+            default: break
+            }
+
+            switch brick {
+
+            case is IfLogicBeginBrick:
                 // preserve currentSequenceList and push it to stack
                 sequenceStack.push(currentSequenceList)
-                currentSequenceList = CBSequenceList(rootSequenceList: scriptSequenceList) // new sequence list for If
+                // new sequence list for If
+                currentSequenceList = CBSequenceList(rootSequenceList: scriptSequenceList)
                 currentOperationSequence = CBOperationSequence(rootSequenceList: scriptSequenceList)
 
-            } else if let _ = brick as? IfLogicElseBrick {
-                if currentOperationSequence.isEmpty() == false {
-                    currentSequenceList += currentOperationSequence
-                }
+            case is IfLogicElseBrick:
                 // preserve currentSequenceList and push it to stack
                 sequenceStack.push(currentSequenceList)
-                currentSequenceList = CBSequenceList(rootSequenceList: scriptSequenceList) // new sequence list for Else
+                // new sequence list for else
+                currentSequenceList = CBSequenceList(rootSequenceList: scriptSequenceList)
                 currentOperationSequence = CBOperationSequence(rootSequenceList: scriptSequenceList)
 
-            } else if let ifLogicEndBrick = brick as? IfLogicEndBrick {
-                if currentOperationSequence.isEmpty() == false {
-                    currentSequenceList += currentOperationSequence
-                }
-
+            case let ifLogicEndBrick as IfLogicEndBrick:
                 let ifBrick = ifLogicEndBrick.ifBeginBrick
                 let elseBrick = ifLogicEndBrick.ifElseBrick
-                var ifSequence = CBIfConditionalSequence(rootSequenceList: scriptSequenceList, conditionBrick: ifBrick!, sequenceList: currentSequenceList)
+                var ifSequence = CBIfConditionalSequence(rootSequenceList: scriptSequenceList,
+                    conditionBrick: ifBrick!, sequenceList: currentSequenceList)
 
                 if elseBrick != nil {
                     // currentSequenceList is ElseSequenceList
@@ -78,8 +88,9 @@ final class CBPlayerFrontend : CBPlayerFrontendProtocol {
                     let topMostSequenceList = sequenceStack.pop() // pop IfSequenceList from stack
                     assert(topMostSequenceList != nil, "topMostSequenceList must NOT be nil!")
                     currentSequenceList = topMostSequenceList!
-                    ifSequence = CBIfConditionalSequence(rootSequenceList: scriptSequenceList, conditionBrick: ifBrick!,
-                        ifSequenceList:currentSequenceList, elseSequenceList: elseSequenceList)
+                    ifSequence = CBIfConditionalSequence(rootSequenceList: scriptSequenceList,
+                        conditionBrick: ifBrick!, ifSequenceList:currentSequenceList,
+                        elseSequenceList: elseSequenceList)
                 }
                 let topMostSequenceList = sequenceStack.pop() // pop currentSequenceList from stack
                 assert(topMostSequenceList != nil, "topMostSequenceList must NOT be nil!")
@@ -87,45 +98,40 @@ final class CBPlayerFrontend : CBPlayerFrontendProtocol {
                 currentSequenceList += ifSequence
                 currentOperationSequence = CBOperationSequence(rootSequenceList: scriptSequenceList)
 
-            } else if let _ = brick as? LoopBeginBrick {
-                if currentOperationSequence.isEmpty() == false {
-                    currentSequenceList += currentOperationSequence
-                }
+            case is LoopBeginBrick:
                 // preserve currentSequenceList and push it to stack
                 sequenceStack.push(currentSequenceList)
-                currentSequenceList = CBSequenceList(rootSequenceList: scriptSequenceList) // new sequence list for Loop
+                // new sequence list for Loop
+                currentSequenceList = CBSequenceList(rootSequenceList: scriptSequenceList)
                 currentOperationSequence = CBOperationSequence(rootSequenceList: scriptSequenceList)
 
-            } else if let loopEndBrick = brick as? LoopEndBrick {
-                if currentOperationSequence.isEmpty() == false {
-                    currentSequenceList += currentOperationSequence
-                }
+            case let loopEndBrick as LoopEndBrick:
                 // loop end -> fetch currentSequenceList from stack
-                let conditionalSequence = CBConditionalSequence(rootSequenceList: scriptSequenceList, conditionBrick: loopEndBrick.loopBeginBrick!, sequenceList: currentSequenceList)
+                let conditionalSequence = CBConditionalSequence(rootSequenceList: scriptSequenceList,
+                    conditionBrick: loopEndBrick.loopBeginBrick!, sequenceList: currentSequenceList)
                 let topMostSequenceList = sequenceStack.pop() // pop currentSequenceList from stack
                 assert(topMostSequenceList != nil, "topMostSequenceList must NOT be nil!")
                 currentSequenceList = topMostSequenceList!
                 currentSequenceList += conditionalSequence
                 currentOperationSequence = CBOperationSequence(rootSequenceList: scriptSequenceList)
 
-            } else if let _ = brick as? NoteBrick {
-                // ignore NoteBricks!
-            } else {
+            case is NoteBrick:
+                break // ignore NoteBricks!
+
+            default:
                 currentOperationSequence.addOperation(CBOperation(brick: brick))
             }
         }
-        assert(scriptSequenceList.sequenceList === currentSequenceList, "scriptSequenceList.sequenceList !== currentSequenceList")
+        assert(scriptSequenceList.sequenceList === currentSequenceList)
 
         // add last operation sequence to script's sequence list
-        if currentOperationSequence.isEmpty() == false {
+        if !currentOperationSequence.isEmpty() {
             scriptSequenceList.sequenceList += currentOperationSequence
         }
 
         // finally apply all filters on script's sequence list
-        var filteredScriptSequenceList = scriptSequenceList
-        for filter in _sequenceFilters {
-            filteredScriptSequenceList = filter.filterScriptSequenceList(filteredScriptSequenceList)
-        }
-        return filteredScriptSequenceList
+        var filteredList = scriptSequenceList
+        _sequenceFilters.forEach { filteredList = $0.filterScriptSequenceList(filteredList) }
+        return filteredList
     }
 }
