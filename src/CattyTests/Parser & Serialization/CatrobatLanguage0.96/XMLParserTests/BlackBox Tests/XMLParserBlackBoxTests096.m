@@ -123,17 +123,17 @@
 
 - (void)testTicTacToeMaster
 {
-    [self compareProgram:@"Tic_Tac_Toe_Master_093" withProgram:@"Tic_Tac_Toe_Master_095"];
+    [self compareProgram:@"Tic_Tac_Toe_Master_095" withProgram:@"Tic_Tac_Toe_Master_096"];
 }
 
 - (void)testWordBalloonDemo
 {
-    [self compareProgram:@"Word_balloon_demo_093" withProgram:@"Word_balloon_demo_095"];
+    [self compareProgram:@"Word_balloon_demo_095" withProgram:@"Word_balloon_demo_096"];
 }
 
 - (void)testXRayPhone
 {
-    [self compareProgram:@"X_Ray_phone_093" withProgram:@"X_Ray_phone_095"];
+    [self compareProgram:@"X_Ray_phone_095" withProgram:@"X_Ray_phone_096"];
 }
 
 @end
