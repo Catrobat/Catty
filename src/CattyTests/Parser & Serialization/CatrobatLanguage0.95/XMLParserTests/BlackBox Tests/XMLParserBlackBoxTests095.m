@@ -48,7 +48,7 @@
 
 - (void)testDemonstration
 {
-    [self compareProgram:@"Demonstration_09" withProgram:@"Demonstration_095"];
+    [self compareProgram:@"Demonstration_093" withProgram:@"Demonstration_095"];
 }
 
 - (void)testDrinkMoreWater
