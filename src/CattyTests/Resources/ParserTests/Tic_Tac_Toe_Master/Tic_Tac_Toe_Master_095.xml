@@ -5230,6 +5230,7 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
               <inUserBrick>false</inUserBrick>
               <userVariable reference="../../../../../../object[3]/scriptList/script[3]/brickList/brick[3]/userVariable"/>
             </brick>
+            <brick type="StopAllSoundsBrick"/>
             <brick type="IfLogicElseBrick"/>
             <brick type="IfLogicEndBrick"/>
             <brick type="BroadcastWaitBrick">
