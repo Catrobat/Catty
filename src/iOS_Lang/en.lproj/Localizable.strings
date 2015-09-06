@@ -203,6 +203,9 @@
 "Delete Brick" = "Delete Brick";
 
 /* No comment provided by engineer. */
+"Delete Bricks" = "Delete Bricks";
+
+/* No comment provided by engineer. */
 "Delete Condition" = "Delete Condition";
 
 /* No comment provided by engineer. */
@@ -222,6 +225,9 @@
 
 /* No comment provided by engineer. */
 "Delete Script" = "Delete Script";
+
+/* No comment provided by engineer. */
+"Delete Scripts" = "Delete Scripts";
 
 /* No comment provided by engineer. */
 "Delete Sounds" = "Delete Sounds";
@@ -786,6 +792,9 @@
 
 /* No comment provided by engineer. */
 "Rate Us" = "Rate Us";
+
+/* Title of View where the user can see the recently used bricks. */
+"Recently Used" = "Recently Used";
 
 /* No comment provided by engineer. */
 "Recording" = "Recording";
