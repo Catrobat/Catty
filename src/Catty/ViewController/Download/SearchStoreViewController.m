@@ -90,6 +90,11 @@
     self.tableView.separatorColor = UIColor.globalTintColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                          action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+
+    
     self.view.backgroundColor = [UIColor backgroundColor];
 // [iOS9] DO NOT REMOVE!!!
 //    [[UITextField appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]] setTextColor:[UIColor lightTextTintColor]];
@@ -246,13 +251,17 @@
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar*)searchBar
 {
-    self.searchBar.showsCancelButton = YES;
+    BOOL smallIPhone = IS_IPHONE4 || IS_IPHONE5;
+    if(!smallIPhone)
+        self.searchBar.showsCancelButton = YES;
     return YES;
 }
 
 - (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
 {
-    self.searchBar.showsCancelButton = NO;
+    BOOL smallIPhone = IS_IPHONE4 || IS_IPHONE5;
+    if(!smallIPhone)
+        self.searchBar.showsCancelButton = NO;
     return YES;
 }
 
@@ -301,6 +310,10 @@
             [(UITextField *)subView setKeyboardAppearance: UIKeyboardAppearanceAlert];
         }
     }
+}
+
+-(void)dismissKeyboard {
+    [self.searchBar resignFirstResponder];
 }
 
 #pragma mark - Segue

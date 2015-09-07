@@ -70,6 +70,7 @@
 #import "Sound.h"
 #import "ActionSheetAlertViewTags.h"
 #import "CatrobatActionSheet.h"
+#import "CatrobatAlertView.h"
 #import "DataTransferMessage.h"
 #import "CBMutableCopyContext.h"
 #import "RepeatBrick.h"
@@ -86,7 +87,8 @@
                                              BrickCellDelegate,
                                              iOSComboboxDelegate,
                                              BrickCellDataDelegate,
-                                             CatrobatActionSheetDelegate>
+                                             CatrobatActionSheetDelegate,
+                                             CatrobatAlertViewDelegate>
 
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
 @property (nonatomic, strong) BrickTransition *brickScaleTransition;
@@ -303,6 +305,52 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
                                                                     withPayload:@{ kDTPayloadCellIndexPath : indexPath }];
     [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
     [self disableUserInteractionAndHighlight:brickCell withMarginBottom:actionSheet.frame.size.height];
+}
+
+#pragma mark- UIAlertViewDelegate
+- (void)deleteAlertView
+{
+    NSString *title = [[NSString alloc] init];
+    NSString *titleBuffer = [[NSString alloc] initWithString:kLocalizedDeleteBrick];
+    BOOL firstIteration = YES;
+    
+    for (NSIndexPath *selectedPaths in self.selectedIndexPaths)
+    {
+        BrickCell *brickCell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:selectedPaths];
+        BOOL isBrick = [brickCell.scriptOrBrick isKindOfClass:[Brick class]];
+        if (isBrick)
+        {
+            Brick *brick = (Brick*)brickCell.scriptOrBrick;
+            titleBuffer = ([brick isIfLogicBrick] ? kLocalizedDeleteCondition
+                           : ([brick isLoopBrick]) ? kLocalizedDeleteLoop : kLocalizedDeleteBricks);
+        }
+        else
+        {
+            titleBuffer = kLocalizedDeleteScripts;
+        }
+        
+        if (firstIteration)
+        {
+            title = titleBuffer;
+            titleBuffer = isBrick ? kLocalizedDeleteBrick : kLocalizedDeleteScript;
+            firstIteration = NO;
+        }
+        else if (title != titleBuffer)
+        {
+            titleBuffer = kLocalizedDeleteBricks;
+            break;
+        }
+    }
+    NSString *alertTitle = titleBuffer;
+    [Util confirmAlertWithTitle:alertTitle message:kLocalizedThisActionCannotBeUndone delegate:self tag:kConfirmAlertViewTag];
+}
+
+- (void)alertView:(CatrobatAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        [self deleteSelectedBricks];
+    }
 }
 
 #pragma mark - action sheet delegates
@@ -935,7 +983,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     UIBarButtonItem *delete = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
                                                                             target:self
-                                                                            action:@selector(deleteSelectedBricks)];
+                                                                            action:@selector(deleteAlertView)];
     delete.tintColor = [UIColor redColor];
     UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                          target:self
