@@ -150,6 +150,32 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    if (UIEventSubtypeMotionShake && self.undoManager.canUndo) {
+    
+        UIAlertController *undoAlert = [UIAlertController alertControllerWithTitle:nil
+                                                                           message:kLocalizedUndoDrawingDescription
+                                                                           preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedCancel
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:^(UIAlertAction *action) { }];
+        [undoAlert addAction:cancelAction];
+        
+        UIAlertAction *undoAction = [UIAlertAction actionWithTitle:kLocalizedUndo
+                                                             style:UIAlertActionStyleDefault
+                                                           handler:^(UIAlertAction *action) { [self undoAction]; }];
+        [undoAlert addAction:undoAction];
+        [self presentViewController:undoAlert animated:YES completion:nil];
+    }
+}
+
+
+
 #pragma mark initView
 
 - (void)setupCanvas
