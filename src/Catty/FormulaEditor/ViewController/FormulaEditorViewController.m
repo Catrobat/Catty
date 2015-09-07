@@ -268,6 +268,30 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
 }
 
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    if (UIEventSubtypeMotionShake && [self.history undoIsPossible]) {
+        
+        UIAlertController *undoAlert = [UIAlertController alertControllerWithTitle:nil
+                                                                           message:kLocalizedUndoTypingDescription
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedCancel
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:^(UIAlertAction *action) { }];
+        [undoAlert addAction:cancelAction];
+        
+        UIAlertAction *undoAction = [UIAlertAction actionWithTitle:kLocalizedUndo
+                                                             style:UIAlertActionStyleDefault
+                                                           handler:^(UIAlertAction *action) { [self undo]; }];
+        [undoAlert addAction:undoAction];
+        [self presentViewController:undoAlert animated:YES completion:nil];
+    }
+}
+
 #pragma mark - localizeView
 
 - (void)localizeView
@@ -359,7 +383,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
 }
 
-- (IBAction)undo:(id)sender
+- (IBAction)undo
 {
     if (![self.history undoIsPossible]) {
         return;

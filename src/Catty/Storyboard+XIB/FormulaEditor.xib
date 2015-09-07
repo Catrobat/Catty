@@ -156,7 +156,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="undo:" destination="-1" eventType="touchUpInside" id="2xJ-wI-fYf"/>
+                        <action selector="undo" destination="-1" eventType="touchUpInside" id="RSZ-Tc-VBd"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wxl-Bw-XuK">
