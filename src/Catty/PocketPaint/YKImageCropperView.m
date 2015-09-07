@@ -308,7 +308,7 @@ static CGSize minSize = {40, 40};
 
 - (void)panOverlayView:(UIPanGestureRecognizer *)sender {
     CGPoint d = [sender translationInView:self];
-    CGRect oldClearRect = self.overlayView.clearRect;
+//    CGRect oldClearRect = self.overlayView.clearRect;
     CGRect newClearRect = self.overlayView.clearRect;
 
     if (self.OverlayViewPanningMode & OverlayViewPanningModeLeft) {

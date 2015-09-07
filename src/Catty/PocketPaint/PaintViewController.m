@@ -105,7 +105,7 @@
     _activeAction = brush;
     _degrees = 0;
     
-    self.actionTypeArray = @[@(brush),@(eraser),@(crop),@(pipette),@(mirror),@(image),@(line),@(rectangle),@(ellipse),@(stamp),@(rotate),@(zoom),@(pointer),@(fillTool)];
+    self.actionTypeArray = @[@(brush),@(eraser),@(resize),@(pipette),@(mirror),@(image),@(line),@(rectangle),@(ellipse),@(stamp),@(rotate),@(zoom),@(pointer),@(fillTool)];
     
     [self setupCanvas];
     [self setupTools];
@@ -409,9 +409,9 @@
             self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,brushPicker,self.undo,self.redo, nil];
         }
             break;
-        case crop:{
-            UIBarButtonItem* crop = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"crop_cut"] style:UIBarButtonItemStylePlain target:self action:@selector(cropAction)];
-            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,crop,self.undo,self.redo, nil];
+        case resize:{
+            UIBarButtonItem* resize = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"crop_cut"] style:UIBarButtonItemStylePlain target:self action:@selector(resizeAction)];
+            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,resize,self.undo,self.redo, nil];
         }
             break;
         case pipette:{
@@ -521,8 +521,8 @@
         case eraser:
             [self eraserAction];
             break;
-        case crop:
-            [self cropInitAction];
+        case resize:
+            [self resizeInitAction];
             break;
         case pipette:
             [self initPipette];
@@ -591,7 +591,7 @@
     self.saveView.hidden = YES;
 }
 
-- (void)cropInitAction
+- (void)resizeInitAction
 {
     if (self.saveView.image) {
         self.cropperView = [[YKImageCropperView alloc] initWithImage:self.saveView.image checkImage:self.checkImage andFrame:self.view.frame];
@@ -653,7 +653,7 @@
 
 #pragma mark tool actions
 
-- (void)cropAction
+- (void)resizeAction
 {
     if ([self.cropperView superview] == self.view) {
         UIImage* croppedImage = [self.cropperView editedImage];
@@ -675,7 +675,7 @@
         }
         [self.scrollView zoomToRect:CGRectMake(0, 0, croppedImage.size.width, croppedImage.size.height) animated:NO];
     } else {
-        [self cropInitAction];
+        [self resizeInitAction];
     }
     
 }
