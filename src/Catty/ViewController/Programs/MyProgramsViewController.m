@@ -96,7 +96,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self setSectionHeaders];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorInset = UIEdgeInsetsZero;
-    self.tableView.sectionIndexBackgroundColor = [UIColor backgroundColor];
+    self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(downloadFinished:)
