@@ -19,13 +19,13 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
-protocol CBPlayerSchedulingAlgorithmProtocol : class {
+protocol CBSchedulingAlgorithmProtocol : class {
     func contextForNextInstruction(lastContext: CBScriptContextAbstract?,
         scheduledContexts: [CBScriptContextAbstract]) -> CBScriptContextAbstract?
 }
 
 // implements a RoundRobin-like scheduling algorithm
-final class CBPlayerSchedulingRR : CBPlayerSchedulingAlgorithmProtocol {
+final class CBSchedulingRR : CBSchedulingAlgorithmProtocol {
 
     func contextForNextInstruction(lastContext: CBScriptContextAbstract?,
         scheduledContexts: [CBScriptContextAbstract]) -> CBScriptContextAbstract?
@@ -52,7 +52,7 @@ final class CBPlayerSchedulingRR : CBPlayerSchedulingAlgorithmProtocol {
 }
 
 // implements a load balancing scheduling algorithm
-final class CBPlayerSchedulingAlgorithmLoadBalancing : CBPlayerSchedulingAlgorithmProtocol {
+final class CBSchedulingAlgorithmLoadBalancing : CBSchedulingAlgorithmProtocol {
 
     struct CBContextElement {
         let context: CBScriptContextAbstract
@@ -103,7 +103,7 @@ final class CBPlayerSchedulingAlgorithmLoadBalancing : CBPlayerSchedulingAlgorit
         while true {
             if var contextElement = _priorityQueue.pop() {
                 let context = contextElement.context
-                if runningContexts.contains(context) == false || context.isLocked {
+                if runningContexts.contains(context) == false {
                     if var spriteNameScriptContexts = _spriteNameScriptContexts[context.script.object!.name] {
                         spriteNameScriptContexts.removeObject(context)
                         _spriteNameScriptContexts[context.script.object!.name] = spriteNameScriptContexts
@@ -117,7 +117,6 @@ final class CBPlayerSchedulingAlgorithmLoadBalancing : CBPlayerSchedulingAlgorit
 //                for element in _priorityQueue.heap {
 //                    println("\(element.numOfPastInstructions): \(element.context.script.description())")
 //                }
-                assert(context.isLocked == false)
                 let duration = NSDate().timeIntervalSinceDate(startTime)
                 print("Scheduler-Algorithm Duration: \(duration)s")
                 return context
@@ -129,7 +128,7 @@ final class CBPlayerSchedulingAlgorithmLoadBalancing : CBPlayerSchedulingAlgorit
 }
 
 // implements a priority scheduling algorithm
-final class CBPlayerSchedulingAlgorithmPriorityQueue : CBPlayerSchedulingAlgorithmProtocol {
+final class CBSchedulingAlgorithmPriorityQueue : CBSchedulingAlgorithmProtocol {
 
     struct CBContextPriorityElement {
         let context: CBScriptContextAbstract
@@ -198,7 +197,7 @@ final class CBPlayerSchedulingAlgorithmPriorityQueue : CBPlayerSchedulingAlgorit
 }
 
 // implements a random order scheduling algorithm
-final class CBPlayerSchedulingAlgorithmRandomOrder : CBPlayerSchedulingAlgorithmProtocol {
+final class CBSchedulingAlgorithmRandomOrder : CBSchedulingAlgorithmProtocol {
 
     func contextForNextInstruction(lastContext: CBScriptContextAbstract?,
         scheduledContexts: [CBScriptContextAbstract]) -> CBScriptContextAbstract?

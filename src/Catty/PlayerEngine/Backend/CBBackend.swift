@@ -22,7 +22,7 @@
 
 import Darwin // usleep
 
-final class CBPlayerBackend : CBPlayerBackendProtocol {
+final class CBBackend : CBBackendProtocol {
 
     // MARK: - Properties
     var logger: CBLogger
@@ -135,7 +135,6 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
             context: context)
         let numOfBodyInstructions = bodyInstructions.count
         let loopEndInstruction: CBExecClosure = { [weak self] in
-            context.isLocked = true
             context.state = .RunningMature
             var numOfInstructionsToJump = 0
             if conditionalSequence.checkCondition() {
@@ -159,14 +158,12 @@ final class CBPlayerBackend : CBPlayerBackendProtocol {
                     // now switch back to the main queue for executing the sequence!
                     dispatch_async(dispatch_get_main_queue(), {
                         context.jump(numberOfInstructions: numOfInstructionsToJump)
-                        context.isLocked = false
                         self?._scheduler.runNextInstructionOfContext(context)
                     });
                 });
             } else {
                 // now switch back to the main queue for executing the sequence!
                 context.jump(numberOfInstructions: numOfInstructionsToJump)
-                context.isLocked = false
                 self?._scheduler.runNextInstructionOfContext(context)
             }
         }

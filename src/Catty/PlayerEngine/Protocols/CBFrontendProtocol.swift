@@ -20,17 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBPlayerFrontendSequenceFilterProtocol : class {
-    func filterScriptSequenceList(scriptSequenceList: CBScriptSequenceList) -> CBScriptSequenceList
-}
+protocol CBFrontendProtocol {
 
-// analyzes script sequence list for redundant BroadcastWait operations
-// and replaces them by simple Broadcast operations
-final class CBPlayerFilterRedundantBroadcastWaits: CBPlayerFrontendSequenceFilterProtocol {
-
-    func filterScriptSequenceList(scriptSequenceList: CBScriptSequenceList) -> CBScriptSequenceList {
-        // TODO: implement this...
-        return scriptSequenceList
-    }
+    weak var program: Program? { get }
+    func computeSequenceListForScript(script : Script) -> CBScriptSequenceList
+    func addSequenceFilter(sequenceFilter: CBPlayerFrontendSequenceFilterProtocol)
 
 }

@@ -35,6 +35,10 @@ extension Array {
             self.removeAtIndex(index!)
         }
     }
+
+    mutating func prepend(newElement: Element) {
+        self.insert(newElement, atIndex: 0)
+    }
 }
 
 func +=<T>(inout left: [T], right: T) {
@@ -55,8 +59,7 @@ func <(lhs: NSDate, rhs: NSDate) -> Bool {
 // MARK: Typedefs
 typealias CBBroadcastQueueElement = (message: String, senderScriptContext: CBScriptContextAbstract,
     broadcastType: CBBroadcastType)
-typealias CBExecClosure = dispatch_block_t
-typealias CBInstruction = (brick: Brick, context: CBScriptContextAbstract) -> CBExecClosure
+typealias CBInstruction = (brick: Brick, context: CBScriptContextAbstract) -> SKAction
 
 // MARK: Enums
 enum CBExecType {
@@ -64,34 +67,32 @@ enum CBExecType {
     case Running
 }
 
-//############################################################################################################
+//##################################################################################################
+//                _____ __        __          ____  _
+//               / ___// /_____ _/ /____     / __ \(_)___ _____ __________ _____ ___
+//               \__ \/ __/ __ `/ __/ _ \   / / / / / __ `/ __ `/ ___/ __ `/ __ `__ \
+//              ___/ / /_/ /_/ / /_/  __/  / /_/ / / /_/ / /_/ / /  / /_/ / / / / / /
+//             /____/\__/\__,_/\__/\___/  /_____/_/\__,_/\__, /_/   \__,_/_/ /_/ /_/
+//                                                      /____/
+//##################################################################################################
 //
-//                    _____ __        __          ____  _
-//                   / ___// /_____ _/ /____     / __ \(_)___ _____ __________ _____ ___
-//                   \__ \/ __/ __ `/ __/ _ \   / / / / / __ `/ __ `/ ___/ __ `/ __ `__ \
-//                  ___/ / /_/ /_/ / /_/  __/  / /_/ / / /_/ / /_/ / /  / /_/ / / / / / /
-//                 /____/\__/\__,_/\__/\___/  /_____/_/\__,_/\__, /_/   \__,_/_/ /_/ /_/
-//                                                          /____/
+//                                                       +---------------+
+//                                                       | RunningMature |----------+
+//                                                       +---------------+          |
+//                                                               ^                  v
+//                 +----------+        +-----------+             |             +--------+
+//     o---------->| Runnable |------->|  Running  |-------------+             |  Dead  |-------->o
+//  (Initial state)+----------+        +-----------+             |             +--------+   (Final
+//                                          | ^                  v                  ^        state)
+//                                          | |         +-----------------+         |
+//                                          | |         | RunningBlocking |---------+
+//                                          | |         +-----------------+
+//                                          v |
+//                                     +-----------+
+//                                     |  Waiting  |
+//                                     +-----------+
 //
-//############################################################################################################
-//
-//                                                           +---------------+
-//                                                           | RunningMature |----------+
-//                                                           +---------------+          |
-//                                                                   ^                  v
-//                     +----------+        +-----------+             |             +--------+
-//         o---------->| Runnable |------->|  Running  |-------------+             |  Dead  |-------->o
-//  (Initial state)    +----------+        +-----------+             |             +--------+   (Final state)
-//                                              | ^                  v                  ^
-//                                              | |         +-----------------+         |
-//                                              | |         | RunningBlocking |---------+
-//                                              | |         +-----------------+
-//                                              v |
-//                                         +-----------+
-//                                         |  Waiting  |
-//                                         +-----------+
-//
-//############################################################################################################
+//##################################################################################################
 
 enum CBScriptState {
 
@@ -103,15 +104,16 @@ enum CBScriptState {
     // been added to the scheduler
     case Running
 
-    // indicates that a running CBScriptExecContext of
-    // a StartScript has reached a mature state
-    // After CBScriptExecContexts of all StartScripts have reached
-    // a mature state already enqueued "broadcast"- and
-    // "broadcast wait"-calls can be performed
-    case RunningMature
+//    // indicates that a running CBScriptExecContext of
+//    // a StartScript has reached a mature state
+//    // After CBScriptExecContexts of all StartScripts have reached
+//    // a mature state already enqueued "broadcast"- and
+//    // "broadcast wait"-calls can be performed
+//    case RunningMature
 
     // indicates that a running CBScriptExecContext of a BroadcastScript
     // is blocking the calling CBScriptExecContext's script
+    // i.e. BroadcastScript called by BroadcastWait
     case RunningBlocking
 
     // indicates that a script is waiting for all BroadcastWait scripts
@@ -143,54 +145,48 @@ enum CBBroadcastType {
 }
 
 // Logger names for release and debug mode configured in Swell.plist
-//------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 #if DEBUG
-//============================================================================================================
-//
-//                                            DEVELOPER MODE
-//
-//============================================================================================================
+//==================================================================================================
+//                                      DEVELOPER MODE
+//==================================================================================================
 
 struct LoggerConfig {
-    static let PlayerSceneID = "CBPlayerSceneLogger.Debug"
-    static let PlayerSchedulerID = "CBPlayerSchedulerLogger.Debug"
-    static let PlayerFrontendID = "CBPlayerFrontendLogger.Debug"
-    static let PlayerBackendID = "CBPlayerBackendLogger.Debug"
-    static let PlayerBroadcastHandlerID = "CBPlayerBroadcastHandlerLogger.Debug"
-    static let PlayerInstructionHandlerID = "CBPlayerInstructionHandlerLogger.Debug"
+    static let PlayerSceneID = "CBSceneLogger.Debug"
+    static let PlayerSchedulerID = "CBSchedulerLogger.Debug"
+    static let PlayerFrontendID = "CBFrontendLogger.Debug"
+    static let PlayerBackendID = "CBBackendLogger.Debug"
+    static let PlayerBroadcastHandlerID = "CBBroadcastHandlerLogger.Debug"
+    static let PlayerInstructionHandlerID = "CBInstructionHandlerLogger.Debug"
 }
 
 #else // DEBUG == 1
-//============================================================================================================
-//
-//                                             RELEASE MODE
-//
-//============================================================================================================
+//==================================================================================================
+//                                       RELEASE MODE
+//==================================================================================================
 
 struct LoggerConfig {
-    static let PlayerSceneID = "CBPlayerSceneLogger.Release"
-    static let PlayerSchedulerID = "CBPlayerSchedulerLogger.Release"
-    static let PlayerFrontendID = "CBPlayerFrontendLogger.Release"
-    static let PlayerBackendID = "CBPlayerBackendLogger.Release"
-    static let PlayerBroadcastHandlerID = "CBPlayerBroadcastHandlerLogger.Release"
-    static let PlayerInstructionHandlerID = "CBPlayerInstructionHandlerLogger.Release"
+    static let PlayerSceneID = "CBSceneLogger.Release"
+    static let PlayerSchedulerID = "CBSchedulerLogger.Release"
+    static let PlayerFrontendID = "CBFrontendLogger.Release"
+    static let PlayerBackendID = "CBBackendLogger.Release"
+    static let PlayerBroadcastHandlerID = "CBBroadcastHandlerLogger.Release"
+    static let PlayerInstructionHandlerID = "CBInstructionHandlerLogger.Release"
 }
 
-////------------------------------------------------------------------------------------------------------------
+////------------------------------------------------------------------------------------------------
 #endif // DEBUG
 
-//============================================================================================================
-//
-//                                            TEST MODE
-//
-//============================================================================================================
+//==================================================================================================
+//                                        TEST MODE
+//==================================================================================================
 
 // Test logger names configured in Swell.plist
 struct LoggerTestConfig {
-    static let PlayerSceneID = "CBPlayerSceneLogger.Test"
-    static let PlayerSchedulerID = "CBPlayerSchedulerLogger.Test"
-    static let PlayerFrontendID = "CBPlayerFrontendLogger.Test"
-    static let PlayerBackendID = "CBPlayerBackendLogger.Test"
-    static let PlayerBroadcastHandlerID = "CBPlayerBroadcastHandlerLogger.Test"
-    static let PlayerInstructionHandlerID = "CBPlayerInstructionHandlerLogger.Test"
+    static let PlayerSceneID = "CBSceneLogger.Test"
+    static let PlayerSchedulerID = "CBSchedulerLogger.Test"
+    static let PlayerFrontendID = "CBFrontendLogger.Test"
+    static let PlayerBackendID = "CBBackendLogger.Test"
+    static let PlayerBroadcastHandlerID = "CBBroadcastHandlerLogger.Test"
+    static let PlayerInstructionHandlerID = "CBInstructionHandlerLogger.Test"
 }

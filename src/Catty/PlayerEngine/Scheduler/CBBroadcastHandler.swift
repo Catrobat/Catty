@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
+final class CBBroadcastHandler : CBBroadcastHandlerProtocol {
 
     // MARK: - Constants
     // specifies max depth limit for self broadcasts running on the same function stack
@@ -28,14 +28,14 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
 
     // MARK: - Properties
     var logger: CBLogger
-    weak var scheduler: CBPlayerSchedulerProtocol?
+    weak var scheduler: CBSchedulerProtocol?
     private lazy var _broadcastWaitingScriptContextsQueue = [CBScriptContextAbstract:[CBBroadcastScriptContext]]()
     private lazy var _registeredBroadcastScriptContexts = [String:[CBBroadcastScriptContext]]()
     private lazy var _broadcastStartQueueBuffer = [CBBroadcastQueueElement]()
     private lazy var _selfBroadcastCounters = [String:Int]()
 
     // MARK: - Initializers
-    init(logger: CBLogger, scheduler: CBPlayerSchedulerProtocol?)
+    init(logger: CBLogger, scheduler: CBSchedulerProtocol?)
     {
         self.logger = logger
         self.scheduler = scheduler
@@ -50,7 +50,7 @@ final class CBPlayerBroadcastHandler : CBPlayerBroadcastHandlerProtocol {
         // setup broadcast start queue handler
         let broadcastQueue = dispatch_queue_create("org.catrobat.broadcastStart.queue", DISPATCH_QUEUE_CONCURRENT)
         dispatch_async(broadcastQueue, { [weak self] in
-            while self?.scheduler?.allStartScriptContextsReachedMatureState() == false {
+            while !self?.scheduler?.allStartScriptContextsReachedMatureState() {
                 NSThread.sleepForTimeInterval(0.1)
             }
 

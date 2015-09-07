@@ -328,12 +328,12 @@
 		CA2D44431B12305400A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
 		CA2D44441B1231F900A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
 		CA2D44461B123B7E00A3B53D /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D44451B123B7E00A3B53D /* Util.swift */; };
-		CA2D44491B1249DD00A3B53D /* CBPlayerScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D44481B1249DD00A3B53D /* CBPlayerScheduler.swift */; };
-		CA2D444F1B1251BF00A3B53D /* CBPlayerSchedulingAlgorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D444E1B1251BF00A3B53D /* CBPlayerSchedulingAlgorithms.swift */; };
+		CA2D44491B1249DD00A3B53D /* CBScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D44481B1249DD00A3B53D /* CBScheduler.swift */; };
+		CA2D444F1B1251BF00A3B53D /* CBSchedulingAlgorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D444E1B1251BF00A3B53D /* CBSchedulingAlgorithms.swift */; };
 		CA3E72E81B0C00A500D6B184 /* CBStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72E71B0C00A500D6B184 /* CBStack.swift */; };
 		CA3E72EC1B0C01CD00D6B184 /* LLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72EB1B0C01CD00D6B184 /* LLNode.swift */; };
 		CA403F2C1B1631A8004ADCB2 /* CBCustomTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA403F2B1B1631A8004ADCB2 /* CBCustomTypes.swift */; };
-		CA43C4BA1B165C0B009B604F /* CBPlayerBroadcastHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA43C4B91B165C0B009B604F /* CBPlayerBroadcastHandler.swift */; };
+		CA43C4BA1B165C0B009B604F /* CBBroadcastHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA43C4B91B165C0B009B604F /* CBBroadcastHandler.swift */; };
 		CA4C506B1B1C891000BB43E1 /* SetupScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4C506A1B1C891000BB43E1 /* SetupScene.swift */; };
 		CA4E48BA1B1CEAE9003EA71E /* CBBroadcastScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E48B61B1CEAE9003EA71E /* CBBroadcastScriptContext.swift */; };
 		CA4E48BB1B1CEAE9003EA71E /* CBScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E48B71B1CEAE9003EA71E /* CBScriptContext.swift */; };
@@ -1315,14 +1315,14 @@
 		CA2D44401B122E8500A3B53D /* SwellAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwellAll.swift; sourceTree = "<group>"; };
 		CA2D44421B12305400A3B53D /* Swell.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Swell.plist; sourceTree = "<group>"; };
 		CA2D44451B123B7E00A3B53D /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
-		CA2D44481B1249DD00A3B53D /* CBPlayerScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerScheduler.swift; path = PlayerEngine/Scheduler/CBPlayerScheduler.swift; sourceTree = "<group>"; };
-		CA2D444E1B1251BF00A3B53D /* CBPlayerSchedulingAlgorithms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerSchedulingAlgorithms.swift; path = PlayerEngine/Scheduler/CBPlayerSchedulingAlgorithms.swift; sourceTree = "<group>"; };
+		CA2D44481B1249DD00A3B53D /* CBScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBScheduler.swift; path = PlayerEngine/Scheduler/CBScheduler.swift; sourceTree = "<group>"; };
+		CA2D444E1B1251BF00A3B53D /* CBSchedulingAlgorithms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBSchedulingAlgorithms.swift; path = PlayerEngine/Scheduler/CBSchedulingAlgorithms.swift; sourceTree = "<group>"; };
 		CA2D8C961AEDDA2100A5BDC2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA3E72D41B0BA5FF00D6B184 /* Catty-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Catty-Bridging-Header.h"; path = "Catty/Catty-Bridging-Header.h"; sourceTree = "<group>"; };
 		CA3E72E71B0C00A500D6B184 /* CBStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBStack.swift; path = 3rdParty/Stack/CBStack.swift; sourceTree = "<group>"; };
 		CA3E72EB1B0C01CD00D6B184 /* LLNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LLNode.swift; path = 3rdParty/LLNode/LLNode.swift; sourceTree = "<group>"; };
 		CA403F2B1B1631A8004ADCB2 /* CBCustomTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCustomTypes.swift; sourceTree = "<group>"; };
-		CA43C4B91B165C0B009B604F /* CBPlayerBroadcastHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerBroadcastHandler.swift; path = PlayerEngine/Scheduler/CBPlayerBroadcastHandler.swift; sourceTree = "<group>"; };
+		CA43C4B91B165C0B009B604F /* CBBroadcastHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBroadcastHandler.swift; path = PlayerEngine/Scheduler/CBBroadcastHandler.swift; sourceTree = "<group>"; };
 		CA4C506A1B1C891000BB43E1 /* SetupScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetupScene.swift; path = Catty/PlayerEngine/Scene/SetupScene.swift; sourceTree = SOURCE_ROOT; };
 		CA4E48B61B1CEAE9003EA71E /* CBBroadcastScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBroadcastScriptContext.swift; path = PlayerEngine/DataModel/CBScriptContexts/CBBroadcastScriptContext.swift; sourceTree = "<group>"; };
 		CA4E48B71B1CEAE9003EA71E /* CBScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBScriptContext.swift; path = PlayerEngine/DataModel/CBScriptContexts/CBScriptContext.swift; sourceTree = "<group>"; };
@@ -3968,8 +3968,8 @@
 		CA2D44471B1249C400A3B53D /* Scheduler */ = {
 			isa = PBXGroup;
 			children = (
-				CA2D44481B1249DD00A3B53D /* CBPlayerScheduler.swift */,
-				CA2D444E1B1251BF00A3B53D /* CBPlayerSchedulingAlgorithms.swift */,
+				CA2D44481B1249DD00A3B53D /* CBScheduler.swift */,
+				CA2D444E1B1251BF00A3B53D /* CBSchedulingAlgorithms.swift */,
 			);
 			name = Scheduler;
 			sourceTree = "<group>";
@@ -4032,7 +4032,7 @@
 		CA43C4B81B165BB1009B604F /* BroadcastHandler */ = {
 			isa = PBXGroup;
 			children = (
-				CA43C4B91B165C0B009B604F /* CBPlayerBroadcastHandler.swift */,
+				CA43C4B91B165C0B009B604F /* CBBroadcastHandler.swift */,
 			);
 			name = BroadcastHandler;
 			sourceTree = "<group>";
@@ -4112,8 +4112,8 @@
 		CAD232191B10F13100570370 /* CBScriptExecContexts */ = {
 			isa = PBXGroup;
 			children = (
-				CA4E48B61B1CEAE9003EA71E /* CBBroadcastScriptContext.swift */,
 				CA4E48B71B1CEAE9003EA71E /* CBScriptContext.swift */,
+				CA4E48B61B1CEAE9003EA71E /* CBBroadcastScriptContext.swift */,
 				CA4E48B81B1CEAE9003EA71E /* CBStartScriptContext.swift */,
 				CA4E48B91B1CEAE9003EA71E /* CBWhenScriptContext.swift */,
 			);
@@ -4877,9 +4877,9 @@
 				CAE485D71B13AA6600DC4485 /* CBPlayerFrontend.swift in Sources */,
 				CAE485D81B13AA6600DC4485 /* CBPlayerFrontendSequenceFilters.swift in Sources */,
 				CAE485DA1B13AA6E00DC4485 /* CBPlayerBackend.swift in Sources */,
-				CA2D44491B1249DD00A3B53D /* CBPlayerScheduler.swift in Sources */,
-				CA2D444F1B1251BF00A3B53D /* CBPlayerSchedulingAlgorithms.swift in Sources */,
-				CA43C4BA1B165C0B009B604F /* CBPlayerBroadcastHandler.swift in Sources */,
+				CA2D44491B1249DD00A3B53D /* CBScheduler.swift in Sources */,
+				CA2D444F1B1251BF00A3B53D /* CBSchedulingAlgorithms.swift in Sources */,
+				CA43C4BA1B165C0B009B604F /* CBBroadcastHandler.swift in Sources */,
 				CA403F2C1B1631A8004ADCB2 /* CBCustomTypes.swift in Sources */,
 				CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */,
 				CA4E48BA1B1CEAE9003EA71E /* CBBroadcastScriptContext.swift in Sources */,

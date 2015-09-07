@@ -40,8 +40,8 @@ final class CBPlayerScene : SKScene {
         }
     }
     private(set) var scheduler : CBPlayerSchedulerProtocol?
-    private(set) var frontend : CBPlayerFrontendProtocol?
-    private(set) var backend : CBPlayerBackendProtocol?
+    private(set) var frontend : CBFrontendProtocol?
+    private(set) var backend : CBBackendProtocol?
     private(set) var broadcastHandler : CBPlayerBroadcastHandlerProtocol?
 
     // MARK: - Initializers
@@ -64,8 +64,8 @@ final class CBPlayerScene : SKScene {
     }
 
     // MARK: Designated initializer
-    init(size: CGSize, logger: CBLogger, scheduler: CBPlayerScheduler, frontend: CBPlayerFrontend,
-        backend: CBPlayerBackend, broadcastHandler: CBPlayerBroadcastHandlerProtocol)
+    init(size: CGSize, logger: CBLogger, scheduler: CBPlayerScheduler, frontend: CBFrontend,
+        backend: CBBackend, broadcastHandler: CBPlayerBroadcastHandlerProtocol)
     {
         self.logger = logger
         self.scheduler = scheduler

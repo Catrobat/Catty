@@ -23,12 +23,12 @@
 import AudioToolbox
 import Darwin // usleep
 
-protocol CBPlayerInstructionHandlerProtocol {
+protocol CBInstructionHandlerProtocol {
     func instructionForBrick(brick: Brick, withContext context: CBScriptContextAbstract)
         -> CBExecClosure
 }
 
-final class CBPlayerInstructionHandler : CBPlayerInstructionHandlerProtocol {
+final class CBInstructionHandler : CBInstructionHandlerProtocol {
 
     var logger: CBLogger
     private let _scheduler: CBPlayerSchedulerProtocol
@@ -332,7 +332,7 @@ final class CBPlayerInstructionHandler : CBPlayerInstructionHandlerProtocol {
 
         return {
             self.logger.debug("Performing: VibrationBrick")
-            dispatch_async(CBPlayerInstructionHandler.vibrateSerialQueue, {
+            dispatch_async(CBInstructionHandler.vibrateSerialQueue, {
                 let durationInSeconds = durationFormula.interpretDoubleForSprite(spriteObject)
                 let max = Int(2 * durationInSeconds)
                 for var i = 1; i < max; i++ {

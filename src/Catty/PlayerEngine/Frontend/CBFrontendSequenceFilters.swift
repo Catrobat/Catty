@@ -20,26 +20,17 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBPlayerSchedulerProtocol : class {
+protocol CBFrontendSequenceFilterProtocol : class {
+    func filterScriptSequenceList(scriptSequenceList: CBScriptSequenceList) -> CBScriptSequenceList
+}
 
-    // properties
-    var schedulingAlgorithm:CBPlayerSchedulingAlgorithmProtocol? { get set }
-    var running:Bool { get }
+// analyzes script sequence list for redundant BroadcastWait operations
+// and replaces them by simple Broadcast operations
+final class CBFilterRedundantBroadcastWaits: CBFrontendSequenceFilterProtocol {
 
-    // queries
-    func isContextScheduled(context: CBScriptContextAbstract) -> Bool
-    func allStartScriptContextsReachedMatureState() -> Bool
-
-    // operations
-    func run()
-    func shutdown()
-    func registerContext(context: CBScriptContextAbstract)
-    func registeredContextForScript(script: Script) -> CBScriptContextAbstract?
-    func startContext(context: CBScriptContextAbstract)
-    func startContext(context: CBScriptContextAbstract, withInitialState: CBScriptState)
-    func restartContext(context: CBScriptContextAbstract)
-    func restartContext(context: CBScriptContextAbstract, withInitialState: CBScriptState)
-    func stopContext(context: CBScriptContextAbstract)
-    func runNextInstructionOfContext(context: CBScriptContextAbstract)
+    func filterScriptSequenceList(scriptSequenceList: CBScriptSequenceList) -> CBScriptSequenceList {
+        // TODO: implement this...
+        return scriptSequenceList
+    }
 
 }

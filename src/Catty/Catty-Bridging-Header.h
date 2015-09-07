@@ -79,3 +79,4 @@
 #import "AudioManager.h"
 #import "ProgramDefines.h"
 #import "FlashHelper.h"
+#import "LanguageTranslationDefines.h"

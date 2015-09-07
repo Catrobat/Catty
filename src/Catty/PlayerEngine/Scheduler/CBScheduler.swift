@@ -20,79 +20,72 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
+//    func allStartScriptContextsReachedMatureState() -> Bool {
+//        let startScriptContexts = _scriptContexts.filter{ return $0 is CBStartScriptContext }
+//        for context in startScriptContexts {
+//            if context.state != .RunningMature && context.state != .Waiting && context.state != .Dead {
+//                return false
+//            }
+//        }
+//        return true
+//    }
+
+final class CBScheduler : CBSchedulerProtocol {
 
     // MARK: - Properties
     var logger: CBLogger
-    var schedulingAlgorithm: CBPlayerSchedulingAlgorithmProtocol?
     private(set) var running = false
 
-    private lazy var _scheduledScriptContexts = [CBScriptContextAbstract]()
-    private lazy var _registeredScriptContexts = [CBScriptContextAbstract]()
-    private let _broadcastHandler: CBPlayerBroadcastHandlerProtocol
-    private var _currentContext: CBScriptContextAbstract?
+    private lazy var _scriptContexts = [CBScriptContextAbstract]()
+    private let _broadcastHandler: CBBroadcastHandlerProtocol
 
     // MARK: - Initializers
-    init(logger: CBLogger, broadcastHandler: CBPlayerBroadcastHandlerProtocol) {
+    init(logger: CBLogger, broadcastHandler: CBBroadcastHandlerProtocol) {
         self.logger = logger
-        self.schedulingAlgorithm = nil // default scheduling behavior
         _broadcastHandler = broadcastHandler
     }
 
     // MARK: - Queries
     func isContextScheduled(context: CBScriptContextAbstract) -> Bool {
-        return _scheduledScriptContexts.contains(context)
-    }
-
-    func allStartScriptContextsReachedMatureState() -> Bool {
-        for registeredContext in _scheduledScriptContexts {
-            if let startContext = registeredContext as? CBStartScriptContext {
-                if startContext.state != .RunningMature
-                    && startContext.state != .Waiting
-                    && startContext.state != .Dead
-                {
-                    return false
-                }
-            }
-        }
-        return true
+        return context.state == .Running && _scriptContexts.contains(context)
     }
 
     // MARK: - Scheduling
-    func runNextInstructionOfContext(context: CBScriptContextAbstract) {
-        if context.state == .Waiting { return }
-        if _scheduledScriptContexts.count == 0 { return }
+    func schedule() {
 
-        // apply scheduling via StrategyPattern => selects script to be scheduled NOW!
-        if schedulingAlgorithm != nil {
-            _currentContext = schedulingAlgorithm?.contextForNextInstruction(_currentContext,
-                scheduledContexts: _scheduledScriptContexts)
-            if _currentContext == nil {
-                _currentContext = context
-            }
-        } else {
-            _currentContext = context
-        }
+        let kMaxNumOfParallelRunningScripts = 4
+        let kMaxNumOfInstructionsInSequence = 6
 
-        if let scriptContext = _currentContext {
-            if scriptContext != context && context.isLocked == false {
-                // remember this runNextInstruction call for current context
-                // => postpone it via async block!!
-                dispatch_async(dispatch_get_main_queue(), { [weak self] in
-                    self?.runNextInstructionOfContext(context)
-                })
+        while running {
+
+            var parallelInstructionList = [[CBExecClosure]]()
+            let runnableContexts = _scriptContexts.filter{ return $0.state == .Runnable }
+
+            for context in runnableContexts {
+
+                var nextNInstructions = context.nextNInstructions(kMaxNumOfInstructionsInSequence)
+                if nextNInstructions.isEmpty {
+                    continue
+                }
+
+                SKAction()
+                SKAction.sequence([SKAction]())
+                nextNInstructions.prepend({ context.state = .Running }) // Tells the scheduler script is running
+                nextNInstructions.append({ context.state = .Runnable }) // Tell scheduler to continue
+                parallelInstructionList += nextNInstructions
             }
-            if scriptContext.isLocked { return }
-            if let nextInstruction = scriptContext.nextInstruction() {
-                nextInstruction()
-            } else {
-                precondition(scriptContext.isLocked == false)
-                stopContext(scriptContext)
-                logger.debug("All actions/instructions have been finished!")
+            if parallelInstructionList.count > kMaxNumOfParallelRunningScripts {
+                parallelInstructionList = Array(parallelInstructionList[0..<kMaxNumOfParallelRunningScripts])
             }
-            return
+            SKAction.group([repeatAnimation, repeatMove])
+
+            // enqueue instructions...
+            dispatch_async(dispatch_get_main_queue(), { [weak self] in
+                context.runAction(brick.action(), completion:{
+                }
+            })
+            NSThread.sleepForTimeInterval(0.01)
         }
-        fatalError("This should NEVER happen!!")
     }
 
     // MARK: - Events
@@ -106,16 +99,19 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
         _broadcastHandler.setupHandler()
 
         // start all StartScripts
-        _registeredScriptContexts.filter{ $0 is CBStartScriptContext }.forEach{ startContext($0) }
+        _scriptContexts.filter{ $0 is CBStartScriptContext }.forEach{ startContext($0) }
+
+        let schedulerQueue = dispatch_queue_create("org.catrobat.scheduler.queue", DISPATCH_QUEUE_SERIAL)
+        dispatch_async(schedulerQueue, { [weak self] in self?.schedule() })
     }
 
     func registerContext(context: CBScriptContextAbstract) {
-        precondition(_registeredScriptContexts.contains(context) == false) // ensure that same context is not added twice
-        _registeredScriptContexts += context
+        precondition(_scriptContexts.contains(context) == false) // ensure that same context is not added twice
+        _scriptContexts += context
     }
 
     func registeredContextForScript(script: Script) -> CBScriptContextAbstract? {
-        return _registeredScriptContexts.filter{ $0.script == script }.first
+        return _scriptContexts.filter{ $0.script == script }.first
     }
 
     func startContext(context: CBScriptContextAbstract) {
@@ -123,9 +119,9 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
     }
 
     func startContext(context: CBScriptContextAbstract, withInitialState initialState: CBScriptState) {
-        precondition(running) // make sure that player is running!
-        precondition(_registeredScriptContexts.contains(context), "Unable to start context! Context not registered.")
-        precondition(_scheduledScriptContexts.contains(context) == false, "Unable to start context! Context already scheduled.")
+        precondition(running)
+        precondition(_scriptContexts.contains(context), "Unable to start context! Context not registered.")
+        precondition(context.state == .Running, "Unable to start context! Context already scheduled.")
         logger.info("    STARTING: \(context.script)")
         logger.info("-------------------------------------------------------------")
 
@@ -138,8 +134,6 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
             context.removeAllActions()
         }
         context.state = initialState
-        _scheduledScriptContexts += context
-        runNextInstructionOfContext(context) // Ready...Steady...Gooooo!! => invoke first instruction!
     }
 
     func restartContext(context: CBScriptContextAbstract) {
@@ -147,16 +141,16 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
     }
 
     func restartContext(context: CBScriptContextAbstract, withInitialState initialState: CBScriptState) {
-        precondition(running) // make sure that player is running!
-        precondition(_scheduledScriptContexts.contains(context), "Unable to restart context! Context is not running.")
+        precondition(running)
+        precondition(_scriptContexts.contains(context), "Unable to restart context! Context is not running.")
         stopContext(context)
         startContext(context, withInitialState: initialState)
     }
 
     func stopContext(context: CBScriptContextAbstract) {
         if context.state == .Dead { return } // already stopped => must be an old deprecated enqueued dispatch closure
-        precondition(_registeredScriptContexts.contains(context), "Unable to stop context! Context not registered any more.")
-        if _scheduledScriptContexts.contains(context) == false {
+        precondition(_scriptContexts.contains(context), "Unable to stop context! Context not registered any more.")
+        if _scriptContexts.contains(context) == false {
             return
         }
 
@@ -177,7 +171,7 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
             context.removeFromParent()
         }
         context.removeAllActions()
-        _scheduledScriptContexts.removeObject(context)
+        _scriptContexts.removeObject(context)
         logger.debug("\(script) finished!")
     }
 
@@ -193,8 +187,8 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
                   + "#############################################################\n\n")
 
         // stop all currently (!) scheduled script contexts
-        for context in _scheduledScriptContexts {
-            precondition(_registeredScriptContexts.contains(context), "Unable to stop context! Context not registered any more.")
+        for context in _scriptContexts {
+            precondition(_scriptContexts.contains(context), "Unable to stop context! Context not registered any more.")
             let script = context.script
             logger.info("!!! STOPPING: \(script)")
             logger.info("-------------------------------------------------------------")
@@ -205,11 +199,10 @@ final class CBPlayerScheduler : CBPlayerSchedulerProtocol {
             context.removeReferences()
         }
         // IMPORTANT: remove references of other registered scripts as well!
-        _registeredScriptContexts.forEach{ $0.removeReferences() }
-        _scheduledScriptContexts.removeAll(keepCapacity: false)
-        _registeredScriptContexts.removeAll(keepCapacity: false)
+        _scriptContexts.forEach{ $0.removeReferences() }
+        _scriptContexts.removeAll(keepCapacity: false)
+        _scriptContexts.removeAll(keepCapacity: false)
         _broadcastHandler.tearDownHandler()
         running = false
-        _currentContext = nil
     }
 }

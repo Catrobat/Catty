@@ -91,7 +91,7 @@
 
         NSDebug(@"Performing: %@, Degreees: (%f), Pointed Object: Position: %@", self.description, rotationDegrees, NSStringFromCGPoint(self.pointedObject.spriteNode.scenePosition));
 
-        rotationDegrees = [((CBPlayerScene*)self.script.object.spriteNode.scene) convertDegreesToScene:(CGFloat)rotationDegrees] + kRotationDegreeOffset;
+        rotationDegrees = [((CBScene*)self.script.object.spriteNode.scene) convertDegreesToScene:(CGFloat)rotationDegrees] + kRotationDegreeOffset;
         [self.script.object.spriteNode setRotation:rotationDegrees];
     };
 }
