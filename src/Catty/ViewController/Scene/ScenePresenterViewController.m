@@ -331,7 +331,7 @@
 
 - (void)setupScene
 {
-    CBPlayerScene *scene = [SetupScene setupSceneForProgram:self.program];
+    CBScene *scene = [SetupScene setupSceneForProgram:self.program];
     scene.name = self.program.header.programName;
     if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
         scene.scaleMode = SKSceneScaleModeFill;
@@ -362,7 +362,7 @@
         CGPoint location = [touch locationInView:self.skView];
         NSDebug(@"StartTouchinScenePresenter");
 
-        CBPlayerScene *scene = (CBPlayerScene*)self.skView.scene;
+        CBScene *scene = (CBScene*)self.skView.scene;
         if ([scene touchedWithTouches:touches withX:location.x andY:location.y]) {
             break;
         }
@@ -413,7 +413,7 @@
 {
     [self.loadingView show];
     self.menuView.userInteractionEnabled = NO;
-    CBPlayerScene *previousScene = (CBPlayerScene*)self.skView.scene;
+    CBScene *previousScene = (CBScene*)self.skView.scene;
     previousScene.userInteractionEnabled = NO;
     [previousScene stopProgram];
     [[AudioManager sharedAudioManager] stopAllSounds];
@@ -429,7 +429,7 @@
 {
     [self.loadingView show];
     self.menuView.userInteractionEnabled = NO;
-    CBPlayerScene *previousScene = (CBPlayerScene*)self.skView.scene;
+    CBScene *previousScene = (CBScene*)self.skView.scene;
     previousScene.userInteractionEnabled = NO;
     [previousScene stopProgram];
     [[FlashHelper sharedFlashHandler] pause];
@@ -587,7 +587,7 @@
                                  if (translate.x < (kWidthSlideMenu) && velocityX > 300) {
                                      [self bounceAnimation];
                                  }
-//                                 [((CBPlayerScene*)view.scene) stopScreenRecording];
+//                                 [((CBScene*)view.scene) stopScreenRecording];
                              }];
         } else if(translate.x > 0.0 && translate.x <(kWidthSlideMenu/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
             [UIView animateWithDuration:0.25
@@ -625,7 +625,7 @@
                                  if (translate.x > -(kWidthSlideMenu) && velocityX < -100) {
                                      [self bounceAnimation];
                                  }
-//                                 [((CBPlayerScene*)view.scene) stopScreenRecording];
+//                                 [((CBScene*)view.scene) stopScreenRecording];
                              }];
         }
     }

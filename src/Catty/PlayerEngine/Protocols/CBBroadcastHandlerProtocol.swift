@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBPlayerBroadcastHandlerProtocol : class {
+protocol CBBroadcastHandlerProtocol : class {
 
     func setupHandler()
     func tearDownHandler()

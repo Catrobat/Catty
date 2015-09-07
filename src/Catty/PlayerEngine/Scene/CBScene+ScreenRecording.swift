@@ -23,7 +23,7 @@
 import ReplayKit
 
 @available(iOS 9.0, *)
-extension CBPlayerScene: RPPreviewViewControllerDelegate, RPScreenRecorderDelegate {
+extension CBScene: RPPreviewViewControllerDelegate, RPScreenRecorderDelegate {
 
     // MARK: Computed Properties
     var screenRecordingToggleEnabled: Bool {

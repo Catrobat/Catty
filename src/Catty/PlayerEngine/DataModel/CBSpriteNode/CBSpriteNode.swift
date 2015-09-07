@@ -28,8 +28,8 @@ final class CBSpriteNode : SKSpriteNode {
     var currentUIImageLook : UIImage?
     var currentLookBrightness : CGFloat = 1.0
     var scenePosition : CGPoint {
-        set { self.position = (scene as! CBPlayerScene).convertPointToScene(newValue) }
-        get { return (scene as! CBPlayerScene).convertSceneCoordinateToPoint(self.position) }
+        set { self.position = (scene as! CBScene).convertPointToScene(newValue) }
+        get { return (scene as! CBScene).convertSceneCoordinateToPoint(self.position) }
     }
     var xPosition : CGFloat { return self.scenePosition.x }
     var yPosition : CGFloat { return self.scenePosition.y }
@@ -161,7 +161,7 @@ final class CBSpriteNode : SKSpriteNode {
     }
 
     func touchedWithTouches(touches: NSSet, withX x: CGFloat, andY y: CGFloat) -> Bool {
-        guard let playerScene = (scene as? CBPlayerScene),
+        guard let playerScene = (scene as? CBScene),
               let scheduler = playerScene.scheduler else {
             return false
         }

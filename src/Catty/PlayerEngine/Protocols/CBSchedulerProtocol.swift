@@ -20,6 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+//    func allStartScriptContextsReachedMatureState() -> Bool
+
 protocol CBSchedulerProtocol : class {
 
     // properties
@@ -27,7 +29,6 @@ protocol CBSchedulerProtocol : class {
 
     // queries
     func isContextScheduled(context: CBScriptContextAbstract) -> Bool
-    func allStartScriptContextsReachedMatureState() -> Bool
 
     // operations
     func run()

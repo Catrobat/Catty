@@ -23,7 +23,7 @@
 import SpriteKit
 import ReplayKit
 
-final class CBPlayerScene : SKScene {
+final class CBScene : SKScene {
 
     // MARK: - Properties
     let logger : CBLogger?
@@ -39,10 +39,10 @@ final class CBPlayerScene : SKScene {
             _previewViewController = newValue
         }
     }
-    private(set) var scheduler : CBPlayerSchedulerProtocol?
+    private(set) var scheduler : CBSchedulerProtocol?
     private(set) var frontend : CBFrontendProtocol?
     private(set) var backend : CBBackendProtocol?
-    private(set) var broadcastHandler : CBPlayerBroadcastHandlerProtocol?
+    private(set) var broadcastHandler : CBBroadcastHandlerProtocol?
 
     // MARK: - Initializers
 
@@ -64,8 +64,8 @@ final class CBPlayerScene : SKScene {
     }
 
     // MARK: Designated initializer
-    init(size: CGSize, logger: CBLogger, scheduler: CBPlayerScheduler, frontend: CBFrontend,
-        backend: CBBackend, broadcastHandler: CBPlayerBroadcastHandlerProtocol)
+    init(size: CGSize, logger: CBLogger, scheduler: CBScheduler, frontend: CBFrontend,
+        backend: CBBackend, broadcastHandler: CBBroadcastHandlerProtocol)
     {
         self.logger = logger
         self.scheduler = scheduler

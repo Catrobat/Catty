@@ -24,7 +24,7 @@
 
 final class SetupScene : NSObject {
 
-    static func setupSceneForProgram(program: Program) -> CBPlayerScene {
+    static func setupSceneForProgram(program: Program) -> CBScene {
         // create all player loggers
         let sceneLogger = Swell.getLogger(LoggerConfig.PlayerSceneID)
         let schedulerLogger = Swell.getLogger(LoggerConfig.PlayerSchedulerID)
@@ -34,29 +34,27 @@ final class SetupScene : NSObject {
         let instrHandlerLogger = Swell.getLogger(LoggerConfig.PlayerInstructionHandlerID)
 
         // setup broadcast handler
-        let bcHandler = CBPlayerBroadcastHandler(logger: bcHandlerLogger)
+        let bcHandler = CBBroadcastHandler(logger: bcHandlerLogger)
 
         // setup scheduler
-        let scheduler = CBPlayerScheduler(logger: schedulerLogger, broadcastHandler: bcHandler)
-        scheduler.schedulingAlgorithm = nil // default scheduling algorithm!
-//        scheduler.schedulingAlgorithm = CBPlayerSchedulingAlgorithmLoadBalancing()
+        let scheduler = CBScheduler(logger: schedulerLogger, broadcastHandler: bcHandler)
         bcHandler.scheduler = scheduler
 
         // setup instruction handler
-        let instructionHandler = CBPlayerInstructionHandler(logger: instrHandlerLogger,
+        let instructionHandler = CBInstructionHandler(logger: instrHandlerLogger,
             scheduler: scheduler, broadcastHandler: bcHandler)
 
         // setup frontend
-        let frontend = CBPlayerFrontend(logger: frontendLogger, program: program)
-        frontend.addSequenceFilter(CBPlayerFilterRedundantBroadcastWaits())
+        let frontend = CBFrontend(logger: frontendLogger, program: program)
+        frontend.addSequenceFilter(CBFilterRedundantBroadcastWaits())
 
         // setup backend
-        let backend = CBPlayerBackend(logger: backendLogger, scheduler: scheduler, instructionHandler: instructionHandler)
+        let backend = CBBackend(logger: backendLogger, scheduler: scheduler, instructionHandler: instructionHandler)
 
         // finally create scene
         let programSize = CGSizeMake(CGFloat(program.header.screenWidth.floatValue),
             CGFloat(program.header.screenHeight.floatValue))
-        return CBPlayerScene(size: programSize, logger: sceneLogger, scheduler: scheduler,
+        return CBScene(size: programSize, logger: sceneLogger, scheduler: scheduler,
             frontend: frontend, backend: backend, broadcastHandler: bcHandler)
     }
 

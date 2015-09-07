@@ -20,12 +20,12 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-final class CBPlayerFrontend : CBPlayerFrontendProtocol {
+final class CBFrontend : CBFrontendProtocol {
 
     // MARK: - Properties
     let logger: CBLogger
     private(set) weak var program: Program?
-    private lazy var _sequenceFilters = [CBPlayerFrontendSequenceFilterProtocol]()
+    private lazy var _sequenceFilters = [CBFrontendSequenceFilterProtocol]()
 
     // MARK: - Initializers
     init(logger: CBLogger, program: Program?) {
@@ -34,7 +34,7 @@ final class CBPlayerFrontend : CBPlayerFrontendProtocol {
     }
 
     // MARK: - Operations
-    func addSequenceFilter(sequenceFilter: CBPlayerFrontendSequenceFilterProtocol) {
+    func addSequenceFilter(sequenceFilter: CBFrontendSequenceFilterProtocol) {
         _sequenceFilters += sequenceFilter
     }
 
