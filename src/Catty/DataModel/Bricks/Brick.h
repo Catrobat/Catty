@@ -55,10 +55,4 @@
 
 - (void)removeReferences;
 
-- (NSArray*)animateWithIndexPath:(NSIndexPath*)path Script:(Script*)script;
-
-- (NSArray*)scriptCollectionCopyBrickWithIndexPath:(NSIndexPath*)indexPath;
-
-- (NSArray*)getIndexPathsForRemovingBricks:(NSIndexPath*)indexPath;
-
 @end

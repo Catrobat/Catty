@@ -235,6 +235,7 @@
 		92DFB06B1A38960C00FA9B0F /* UndoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB04E1A38960C00FA9B0F /* UndoManager.m */; };
 		92DFB06C1A38960C00FA9B0F /* YKImageCropperOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB0501A38960C00FA9B0F /* YKImageCropperOverlayView.m */; };
 		92DFB06D1A38960C00FA9B0F /* YKImageCropperView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB0521A38960C00FA9B0F /* YKImageCropperView.m */; };
+		92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FC85CD1B9E1EB5001C728F /* BrickManager.m */; };
 		92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E0D1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m */; };
 		92FF2E351A24C5A700093DA7 /* NSData+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E131A24C5A700093DA7 /* NSData+Hashes.m */; };
 		92FF2E361A24C5A700093DA7 /* NSDate+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E161A24C5A700093DA7 /* NSDate+CustomExtensions.m */; };
@@ -279,7 +280,6 @@
 		92FF2EC01A24C8A700093DA7 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2EB51A24C8A700093DA7 /* OrderedDictionary.m */; };
 		92FF2EC11A24C8A700093DA7 /* OrderedMapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2EB81A24C8A700093DA7 /* OrderedMapTable.m */; };
 		92FF2EC21A24C8A700093DA7 /* ProgramLoadingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2EBB1A24C8A700093DA7 /* ProgramLoadingInfo.m */; };
-		92FF30C71A24DCAA00093DA7 /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF302A1A24DCAA00093DA7 /* BrickManager.m */; };
 		92FF30C81A24DCAA00093DA7 /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF302D1A24DCAA00093DA7 /* Brick.m */; };
 		92FF30C91A24DCAA00093DA7 /* BroadcastBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30301A24DCAA00093DA7 /* BroadcastBrick.m */; };
 		92FF30CA1A24DCAA00093DA7 /* BroadcastWaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30321A24DCAA00093DA7 /* BroadcastWaitBrick.m */; };
@@ -1069,6 +1069,8 @@
 		92DFB0511A38960C00FA9B0F /* YKImageCropperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKImageCropperView.h; sourceTree = "<group>"; };
 		92DFB0521A38960C00FA9B0F /* YKImageCropperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKImageCropperView.m; sourceTree = "<group>"; };
 		92E3351D18FBB6750056C390 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		92FC85CC1B9E1EB5001C728F /* BrickManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickManager.h; path = "Catty/ViewController/Continue&New/MaintainObject/MaintainScript/BrickManager/BrickManager.h"; sourceTree = SOURCE_ROOT; };
+		92FC85CD1B9E1EB5001C728F /* BrickManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickManager.m; path = "Catty/ViewController/Continue&New/MaintainObject/MaintainScript/BrickManager/BrickManager.m"; sourceTree = SOURCE_ROOT; };
 		92FF2DFE1A24C3BE00093DA7 /* ActionSheetAlertViewTags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetAlertViewTags.h; sourceTree = "<group>"; };
 		92FF2E001A24C3BE00093DA7 /* ButtonTags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonTags.h; sourceTree = "<group>"; };
 		92FF2E011A24C3BE00093DA7 /* CatrobatLanguageDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatLanguageDefines.h; sourceTree = "<group>"; };
@@ -1168,8 +1170,6 @@
 		92FF2EB81A24C8A700093DA7 /* OrderedMapTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedMapTable.m; sourceTree = "<group>"; };
 		92FF2EBA1A24C8A700093DA7 /* ProgramLoadingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramLoadingInfo.h; sourceTree = "<group>"; };
 		92FF2EBB1A24C8A700093DA7 /* ProgramLoadingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramLoadingInfo.m; sourceTree = "<group>"; };
-		92FF30291A24DCAA00093DA7 /* BrickManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickManager.h; sourceTree = "<group>"; };
-		92FF302A1A24DCAA00093DA7 /* BrickManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickManager.m; sourceTree = "<group>"; };
 		92FF302C1A24DCAA00093DA7 /* Brick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brick.h; sourceTree = "<group>"; };
 		92FF302D1A24DCAA00093DA7 /* Brick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Brick.m; sourceTree = "<group>"; };
 		92FF302F1A24DCAA00093DA7 /* BroadcastBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastBrick.h; sourceTree = "<group>"; };
@@ -3211,8 +3211,8 @@
 		92FF30281A24DCAA00093DA7 /* BrickManager */ = {
 			isa = PBXGroup;
 			children = (
-				92FF30291A24DCAA00093DA7 /* BrickManager.h */,
-				92FF302A1A24DCAA00093DA7 /* BrickManager.m */,
+				92FC85CC1B9E1EB5001C728F /* BrickManager.h */,
+				92FC85CD1B9E1EB5001C728F /* BrickManager.m */,
 			);
 			path = BrickManager;
 			sourceTree = "<group>";
@@ -5311,7 +5311,6 @@
 				92FF32A81A24E2F400093DA7 /* StopAllSoundsBrickCell.m in Sources */,
 				92FF32791A24E2F400093DA7 /* ScriptDeleteButton.m in Sources */,
 				4C724E511B4D3E8C00E27479 /* SetVolumeToBrick+CBXMLHandler.m in Sources */,
-				92FF30C71A24DCAA00093DA7 /* BrickManager.m in Sources */,
 				4CB4FE071B95DF2900431757 /* BrickMoveManager.m in Sources */,
 				4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */,
 				92FF30E31A24DCAA00093DA7 /* MoveNStepsBrick.m in Sources */,
@@ -5332,6 +5331,7 @@
 				4C724E611B4D3E8C00E27479 /* ProjectParser.m in Sources */,
 				92DFB05C1A38960C00FA9B0F /* LinkedListStack.m in Sources */,
 				92FF315C1A24DEB300093DA7 /* RecentProgramsStoreViewController.m in Sources */,
+				92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */,
 				92FF30CB1A24DCAA00093DA7 /* NoteBrick.m in Sources */,
 				92FF32A71A24E2F400093DA7 /* SpeakBrickCell.m in Sources */,
 				92FF327B1A24E2F400093DA7 /* BroadcastBrickCell.m in Sources */,

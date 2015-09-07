@@ -314,7 +314,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     NSString *titleBuffer = [[NSString alloc] initWithString:kLocalizedDeleteBrick];
     BOOL firstIteration = YES;
     
-    for (NSIndexPath *selectedPaths in self.selectedIndexPaths)
+    for (NSIndexPath *selectedPaths in [[BrickSelectionManager sharedInstance] selectedIndexPaths])
     {
         BrickCell *brickCell = (BrickCell *)[self.collectionView cellForItemAtIndexPath:selectedPaths];
         BOOL isBrick = [brickCell.scriptOrBrick isKindOfClass:[Brick class]];
@@ -850,7 +850,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
     if (script.brickList.count) {
         Brick *brick = [script.brickList objectAtIndex:indexPath.item -1];
-        NSArray* animationArray = [brick animateWithIndexPath:indexPath Script:script];
+        NSArray* animationArray = [[BrickManager sharedBrickManager] animateWithIndexPath:indexPath Script:script andBrick:brick];
         if (animationArray) {
             for (NSNumber* number in animationArray) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -865,7 +865,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 #pragma mark - Copy Brick
 - (void)copyBrick:(Brick*)brick atIndexPath:(NSIndexPath*)indexPath
 {
-    NSArray* indexArray = [brick  scriptCollectionCopyBrickWithIndexPath:indexPath];
+    NSArray* indexArray = [[BrickManager sharedBrickManager] scriptCollectionCopyBrickWithIndexPath:indexPath andBrick:brick];
     [self.collectionView insertItemsAtIndexPaths:indexArray];
     self.placeHolderView.hidden = YES;
     [self.object.program saveToDisk];
@@ -881,7 +881,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     } else {
         CBAssert([scriptOrBrick isKindOfClass:[Brick class]]);
         Brick *brick = (Brick*)scriptOrBrick;
-        NSArray* removingBrickIndexPaths = [brick getIndexPathsForRemovingBricks:indexPath];
+        NSArray* removingBrickIndexPaths = [[BrickManager sharedBrickManager] getIndexPathsForRemovingBricks:indexPath andBrick:brick];
         if (removingBrickIndexPaths) {
             [self.collectionView deleteItemsAtIndexPaths:removingBrickIndexPaths];
         }
