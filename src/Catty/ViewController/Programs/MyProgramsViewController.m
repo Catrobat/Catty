@@ -96,7 +96,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self setSectionHeaders];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorInset = UIEdgeInsetsZero;
-    self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
+    self.tableView.sectionIndexBackgroundColor = [UIColor backgroundColor];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(downloadFinished:)
@@ -364,6 +364,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    if (self.programsCounter < 10) {
+        return nil;
+    }
     return [self.sectionTitles objectAtIndex:section];
 }
 
@@ -449,8 +452,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    return self.sectionTitles;
-//    return @[@"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z"];
+    if (self.programsCounter < 10) {
+        return nil;
+    }
+//    return self.sectionTitles; // only the existing ones
+    return @[@"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z"];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
@@ -678,8 +684,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
             {
                 // Section is now completely empty, so delete the entire section.
                 [self setSectionHeaders];
-                [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]
-                         withRowAnimation:UITableViewRowAnimationTop];
+                // There should be always one program so don't delete sections of the tableView
+                if (self.programsCounter > 1) {
+                    [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]
+                                  withRowAnimation:UITableViewRowAnimationTop];
+                }
             }
             // flush cache
             self.dataCache = nil;
@@ -728,7 +737,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         if ([info isEqualToLoadingInfo:oldProgramLoadingInfo]) {
             ProgramLoadingInfo *newInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:newProgramName
                                                                                          programID:oldProgramLoadingInfo.programID];
-//            TODO
             [programLoadingInfos replaceObjectAtIndex:rowIndex withObject:newInfo];
             // flush cache
             self.dataCache = nil;
