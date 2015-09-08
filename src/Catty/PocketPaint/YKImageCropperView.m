@@ -471,6 +471,14 @@ static CGSize minSize = {40, 40};
     
     CGContextRelease(context);
     free(imageData);
+    if (width == 0.0f && height == 0.0f) {
+        UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0);
+        UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+
+        self.image = blank;
+        [self reset];
+    }
     
 }
 
