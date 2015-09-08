@@ -72,36 +72,18 @@
   if (self.canvas.activeAction == stamp) {
     return;
   }
-//    if([(UIRotationGestureRecognizer*)recognizer state] == UIGestureRecognizerStateEnded) {
-//        self.rotation = 0.0f;
-//        return;
-//    }
-//    CGFloat rotation = 0.0 - (self.rotation - [recognizer rotation]);
-//    self.resizeViewer.rotation +=[recognizer rotation];
-//    self.rotation = [recognizer rotation];
-////    self.resizeViewer.transform = CGAffineTransformMakeRotation(self.resizeViewer.rotation);
-//    CGAffineTransform currentTransform = self.resizeViewer.transform;
-//    CGAffineTransform newTransform = CGAffineTransformRotate(currentTransform,rotation);
-//    
-//    [self.resizeViewer setTransform:newTransform];
     
     if([(UIRotationGestureRecognizer*)recognizer state] == UIGestureRecognizerStateEnded) {
+        self.resizeViewer.rotation = self.resizeViewer.rotation +[(UIRotationGestureRecognizer*)recognizer rotation];
         self.resizeViewer.rotation = fmodf(self.resizeViewer.rotation,2 * M_PI);
         if (self.resizeViewer.rotation < 0.0f) {
             self.resizeViewer.rotation = 2 * M_PI + self.resizeViewer.rotation;
         }
-        NSLog(@"RotationAFter: %f",(self.resizeViewer.rotation) * (180.0 / M_PI));
         return;
     }
-    
 
-    NSLog(@"Rotation: %f",[recognizer rotation] * (180.0 / M_PI));
-
-    CGAffineTransform newTransform = CGAffineTransformMakeRotation([recognizer rotation]);
-    
+    CGAffineTransform newTransform = CGAffineTransformMakeRotation(self.resizeViewer.rotation + [recognizer rotation]);
     [self.resizeViewer setTransform:newTransform];
-
-    self.resizeViewer.rotation = [(UIRotationGestureRecognizer*)recognizer rotation];
 }
 
 - (void)updateShape

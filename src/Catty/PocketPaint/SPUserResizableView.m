@@ -270,7 +270,6 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
     // save current rotation and scales
     CGFloat scaleX      = [[self valueForKeyPath:@"layer.transform.scale.x"] floatValue];
     CGFloat scaleY      = [[self valueForKeyPath:@"layer.transform.scale.y"] floatValue];
-    CGFloat rotation    = [[self valueForKeyPath:@"layer.transform.rotation"] floatValue];
     // update current anchor point to update frane with transform
     
     CGPoint point;
