@@ -82,7 +82,7 @@
 @property (nonatomic,strong) HandTool* handTool;
 @property (nonatomic,strong) ResizeViewManager* resizeViewManager;
 @property (nonatomic,strong) PointerTool* pointerTool;
-@property (nonatomic,strong) UIImage* checkImage;
+
 @end
 
 @implementation PaintViewController
@@ -133,17 +133,12 @@
             NSData *blankdata = UIImagePNGRepresentation(blank);
             NSData *saveViewData = UIImagePNGRepresentation(self.saveView.image);
             if (![blankdata isEqualToData:saveViewData]) {
-                NSData *checkData = UIImagePNGRepresentation(self.checkImage);
-                if (!([checkData isEqualToData:saveViewData])) {
-                     NSData *editingData = UIImagePNGRepresentation(self.editingImage);
-                    if (self.editingImage != nil && ![saveViewData isEqual:editingData]) {
-                        [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
-                    } else if (self.editingPath == nil) {
-                        [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
-                    }
-
+                NSData *editingData = UIImagePNGRepresentation(self.editingImage);
+                if (self.editingImage != nil && ![saveViewData isEqual:editingData]) {
+                    [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
+                } else if (self.editingPath == nil) {
+                    [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
                 }
-                
             }
 
         }
@@ -224,7 +219,9 @@
         UIGraphicsEndImageContext();
         self.saveView.image = blank;
     }
-    self.checkImage = self.saveView.image;
+    
+    self.editingImage = self.saveView.image;
+
     [self.helper addSubview:self.saveView];
     [self.helper addSubview:self.drawView];
     
@@ -286,7 +283,7 @@
     NSInteger height = (NSInteger)self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height;
     NSInteger imageWidth = self.editingImage.size.width;
     NSInteger imageHeight = self.editingImage.size.height;
-    if ((imageWidth >= width) || (imageHeight >= height)) {
+    if ((imageWidth > width) || (imageHeight > height)) {
         [self.scrollView zoomToRect:CGRectMake(0, 0, imageWidth, imageHeight) animated:NO];
     }
     
@@ -302,6 +299,7 @@
 - (void)setupToolbar
 {
     [self.navigationController setToolbarHidden:NO];
+    self.navigationController.navigationBar.userInteractionEnabled = YES;
     self.navigationController.toolbar.barStyle = UIBarStyleDefault;
 //    self.navigationController.toolbar.barTintColor = [UIColor clearColor];
     self.navigationController.toolbar.tintColor = [UIColor globalTintColor];
@@ -389,6 +387,7 @@
     LCTableViewPickerControl *pickerView = [[LCTableViewPickerControl alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, kPickerControlAgeHeight) title:kLocalizedPaintPickItem value:self.activeAction items:self.actionTypeArray offset:CGPointMake(0, 0)];
     pickerView.delegate = self;
     self.navigationController.toolbarHidden = YES;
+    self.navigationController.navigationBar.userInteractionEnabled = NO;
     pickerView.tag = 0;
     [self setBackAllActions];
     self.drawGesture.enabled = NO;
@@ -484,6 +483,7 @@
             break;
     }
     self.navigationController.toolbarHidden = NO;
+     self.navigationController.navigationBar.userInteractionEnabled = YES;
 }
 
 - (void)setBackAllActions
@@ -884,7 +884,7 @@
         UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         self.saveView.image = blank;
-        self.checkImage = blank;
+        self.editingImage = blank;
     }];
     
     UIAlertAction *noAction = [UIAlertAction actionWithTitle:kLocalizedNo style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
