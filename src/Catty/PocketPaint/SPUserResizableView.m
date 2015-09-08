@@ -16,6 +16,8 @@
 #define kSPUserResizableViewDefaultMinHeight 40.0
 #define kSPUserResizableViewInteractiveBorderSize 30.0
 
+#define RADIANS_TO_DEGREES(radians) ((radians) * (180.0 / M_PI))
+
 static SPUserResizableViewAnchorPoint SPUserResizableViewNoResizeAnchorPoint = { 0.0, 0.0, 0.0, 0.0 };
 static SPUserResizableViewAnchorPoint SPUserResizableViewUpperLeftAnchorPoint = { 1.0, 1.0, -1.0, 1.0 };
 static SPUserResizableViewAnchorPoint SPUserResizableViewMiddleLeftAnchorPoint = { 1.0, 0.0, 0.0, 1.0 };
@@ -306,11 +308,36 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
             touchPoint.y = self.superview.bounds.size.height - border;
         }
     }
+    CGPoint start   = touchStart;
+    CGPoint end     = touchPoint;
+    
+    float rotationDeg   = RADIANS_TO_DEGREES(self.rotation);
+    
+    if (rotationDeg >= 45.0 && rotationDeg < 135.0) {
+        
+        start.x     = touchStart.y;
+        start.y     = touchPoint.x;
+        
+        end.x     = touchPoint.y;
+        end.y     = touchStart.x;
+        
+    } else if (225.0 > rotationDeg && rotationDeg >= 135.0) {
+        start   = touchPoint;
+        end     = touchStart;
+
+        
+    } else if (rotationDeg >= 225.0 && rotationDeg < 315.0) {
+        start.x     = touchPoint.y;
+        start.y     = touchStart.x;
+        
+        end.x     = touchStart.y;
+        end.y     = touchPoint.x;
+    }
     
     // (2) Calculate the deltas using the current anchor point.
-    CGFloat deltaW = anchorPoint.adjustsW * (touchStart.x - touchPoint.x) / scaleX;
+    CGFloat deltaW = anchorPoint.adjustsW * (start.x - end.x) / scaleX;
     CGFloat deltaX = anchorPoint.adjustsX * (-1.0 * deltaW);
-    CGFloat deltaH = anchorPoint.adjustsH * (touchPoint.y - touchStart.y) / scaleY;
+    CGFloat deltaH = anchorPoint.adjustsH * (end.y - start.y) / scaleY;
     CGFloat deltaY = anchorPoint.adjustsY * (-1.0 * deltaH);
     
     // (3) Calculate the new frame.
@@ -359,7 +386,7 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
     }
     
     // restore the transform
-   CGAffineTransform transform     = CGAffineTransformMakeRotation(rotation);
+   CGAffineTransform transform     = CGAffineTransformMakeRotation(self.rotation);
     
     [self setTransform:CGAffineTransformScale(transform, scaleX, scaleY)];
 
