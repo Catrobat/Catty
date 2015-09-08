@@ -127,15 +127,25 @@
 {
     if (![parent isEqual:self.parentViewController]) {
         if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
-            NSData *data1 = UIImagePNGRepresentation(self.saveView.image);
-            NSData *data2 = UIImagePNGRepresentation(self.checkImage);
-            if (![data1 isEqual:data2] && self.checkImage) {
-                if (![self.saveView.image isEqual:self.editingImage] && self.editingImage != nil) {
-                    [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
-                } else if (self.editingPath == nil) {
-                    [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
+            UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
+            UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            NSData *blankdata = UIImagePNGRepresentation(blank);
+            NSData *saveViewData = UIImagePNGRepresentation(self.saveView.image);
+            if (![blankdata isEqualToData:saveViewData]) {
+                NSData *checkData = UIImagePNGRepresentation(self.checkImage);
+                if (!([checkData isEqualToData:saveViewData])) {
+                     NSData *editingData = UIImagePNGRepresentation(self.editingImage);
+                    if (self.editingImage != nil && ![saveViewData isEqual:editingData]) {
+                        [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
+                    } else if (self.editingPath == nil) {
+                        [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
+                    }
+
                 }
+                
             }
+
         }
         // reenable swipe back gesture
         if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
@@ -198,7 +208,7 @@
         self.saveView.image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         self.editingImage = self.saveView.image;
-        self.checkImage = self.saveView.image;
+        
         
         NSInteger imageWidth = self.editingImage.size.width;
         NSInteger imageHeight = self.editingImage.size.height;
@@ -214,7 +224,7 @@
         UIGraphicsEndImageContext();
         self.saveView.image = blank;
     }
-    
+    self.checkImage = self.saveView.image;
     [self.helper addSubview:self.saveView];
     [self.helper addSubview:self.drawView];
     
@@ -594,13 +604,13 @@
 - (void)resizeInitAction
 {
     if (self.saveView.image) {
-        self.cropperView = [[YKImageCropperView alloc] initWithImage:self.saveView.image checkImage:self.checkImage andFrame:self.view.frame];
+        self.cropperView = [[YKImageCropperView alloc] initWithImage:self.saveView.image andFrame:self.view.frame];
         [self.view addSubview:self.cropperView];
         self.drawView.hidden = YES;
         self.saveView.hidden = YES;
         self.helper.hidden = YES;
         //    enabled = NO;
-        [self.navigationController setNavigationBarHidden:YES animated:YES];
+        [self.navigationController setNavigationBarHidden:YES animated:YES]; 
         for (UIGestureRecognizer *recognizer in [self.scrollView gestureRecognizers]) {
             recognizer.enabled = NO;
         }
@@ -874,6 +884,7 @@
         UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         self.saveView.image = blank;
+        self.checkImage = blank;
     }];
     
     UIAlertAction *noAction = [UIAlertAction actionWithTitle:kLocalizedNo style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {

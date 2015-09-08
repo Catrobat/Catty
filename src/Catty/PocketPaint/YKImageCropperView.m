@@ -6,6 +6,7 @@
 #import "YKImageCropperView.h"
 
 #import "YKImageCropperOverlayView.h"
+#import "ImageHelper.h"
 
 typedef NS_ENUM(NSUInteger, OverlayViewPanningMode) {
     OverlayViewPanningModeNone     = 0,
@@ -44,7 +45,7 @@ static CGSize minSize = {40, 40};
 
 @implementation YKImageCropperView
 
-- (id)initWithImage:(UIImage *)image checkImage:(UIImage *)checkImage andFrame:(CGRect)frame
+- (id)initWithImage:(UIImage *)image andFrame:(CGRect)frame
 {
     self = [super init];
     if (self) {
@@ -79,12 +80,19 @@ static CGSize minSize = {40, 40};
         self.overlayView = [[YKImageCropperOverlayView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width , screenRect.size.height)];
         
         [self addSubview:self.overlayView];
-        if (checkImage) {
+        UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0);
+        UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        NSData *imgdata1 = UIImagePNGRepresentation(blank);
+        
+        NSData *imgdata2 = UIImagePNGRepresentation(image);
+        
+        if (![imgdata1 isEqualToData:imgdata2]) {
             [self autoCropWithImage:self.image];
         }else{
            [self reset];
         }
-        
     }
 
     return self;
