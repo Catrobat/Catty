@@ -39,6 +39,8 @@
 #import "BrickCellTextData.h"
 #import "BrickCellMessageData.h"
 #import "BrickCellVariableData.h"
+#import "LoopEndBrickCell.h"
+#import "BrickManager.h"
 
 // uncomment this to get special log outputs, etc...
 //#define LAYOUT_DEBUG 0
@@ -148,6 +150,10 @@
 
 - (void)setupBrickCell
 {
+    if ([self isKindOfClass:[LoopEndBrickCell class]]) {
+        LoopEndBrickCell* cell = (LoopEndBrickCell*)self;
+        cell.type = [[BrickManager sharedBrickManager] checkEndLoopBrickTypeForDrawing:cell];
+    }
     [self renderSubViews];
     if (self.editing) {
         if (self.frame.origin.x == 0.0f) {
