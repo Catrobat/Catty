@@ -17,7 +17,7 @@
 enum ActionType {
   brush,
   eraser,
-  crop,
+  resize,
   pipette,
   mirror,
   image,

@@ -184,9 +184,6 @@
 /* No comment provided by engineer. */
 "Copy program" = "Copy program";
 
-/* paint */
-"crop" = "crop";
-
 /* No comment provided by engineer. */
 "Debug mode" = "Debug mode";
 
@@ -831,6 +828,9 @@
 
 /* No comment provided by engineer. */
 "Report as inappropriate" = "Report as inappropriate";
+
+/* paint */
+"resize" = "resize";
 
 /* No comment provided by engineer. */
 "Restart" = "Restart";
