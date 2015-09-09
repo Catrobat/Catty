@@ -414,8 +414,30 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
 // FIXME: UPDATING THE DATA MODEL WHILE THE USER IS DRAGGING IS NO GOOD PRACTICE AND IS ERROR PRONE!!!
 //        USE collectionView:layout:didEndDraggingItemAtIndexPath: DELEGATE METHOD FOR THIS. Updates must happen after the user stopped dragging the brickcell!!
-    
+    NSLog(@"YESS");
     if (fromIndexPath.section == toIndexPath.section) {
+        if ([[BrickMoveManager sharedInstance] fromAboveBrick]|| [[BrickInsertManager sharedInstance] fromAboveBrick]) {
+            Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+            Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
+            
+            Brick *secondtoBrick = [script.brickList objectAtIndex:toIndexPath.item - 2];
+            [script.brickList removeObjectAtIndex:toIndexPath.item - 1];
+            [script.brickList removeObjectAtIndex:toIndexPath.item - 2];
+            [script.brickList insertObject:toBrick atIndex:fromIndexPath.item - 1];
+            [script.brickList insertObject:secondtoBrick atIndex:fromIndexPath.item - 1];
+            return;
+        }
+        if ([[BrickMoveManager sharedInstance] fromBelowBrick]|| [[BrickInsertManager sharedInstance] fromBelowBrick]) {
+            Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+            Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
+            
+            Brick *secondtoBrick = [script.brickList objectAtIndex:toIndexPath.item];
+            [script.brickList removeObjectAtIndex:toIndexPath.item];
+            [script.brickList removeObjectAtIndex:toIndexPath.item - 1];
+            [script.brickList insertObject:secondtoBrick atIndex:toIndexPath.item];
+            [script.brickList insertObject:toBrick atIndex:toIndexPath.item];
+            return;
+        }
         Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
         Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
         [script.brickList removeObjectAtIndex:toIndexPath.item - 1];
@@ -442,6 +464,14 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [fromScript.brickList removeObjectAtIndex:fromIndexPath.item - 1];
         }
     }
+}
+
+- (void)collectionView:(UICollectionView*)collectionView
+       itemAtIndexPath:(NSIndexPath*)fromIndexPath
+   didMoveToIndexPath:(NSIndexPath*)toIndexPath
+{
+    [[BrickMoveManager sharedInstance] reset];
+    NSLog(@"RESET");
 }
 
 - (void)collectionView:(UICollectionView*)collectionView

@@ -30,6 +30,9 @@
 
 - (void)setBrickInsertionMode:(BOOL)isInserting;
 
+@property (nonatomic,strong)Brick* fromAboveBrick;
+@property (nonatomic,strong)Brick* fromBelowBrick;
+
 +(id)sharedInstance;
 
 - (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath

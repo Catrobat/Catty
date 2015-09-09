@@ -193,7 +193,22 @@
                         }
                         index--;
                     }
-                    return YES;
+                    //from above
+                    if (!self.fromBelowBrick) {
+                        Brick *checkafterEndBrick = [script.brickList objectAtIndex:toIndexPath.item];
+                        if ([checkafterEndBrick isKindOfClass:[IfLogicElseBrick class]] ||[checkafterEndBrick isKindOfClass:[IfLogicEndBrick class]]) {
+                            self.fromAboveBrick = checkafterEndBrick;
+                            return NO;
+                        } else if ([checkafterEndBrick isKindOfClass:[LoopEndBrick class]]){
+                            LoopEndBrick *endBrickCheck = (LoopEndBrick*)checkafterEndBrick;
+                            if (![endBrickCheck.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+                                self.fromAboveBrick = checkafterEndBrick;
+                                return NO;
+                            }
+                        }
+
+                    }
+                   return YES;
                 }
                 return NO;
             }
@@ -209,6 +224,18 @@
         } else if ([fromBrick isKindOfClass:[IfLogicEndBrick class]]){
             return [self checkIfEndToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick andObject:object];
         } else {
+            //From Below
+            if (!self.fromAboveBrick) {
+                if ([toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[LoopEndBrick class]]) { //check if repeat?!
+                    Brick *checkBeforeEndBrick = [script.brickList objectAtIndex:toIndexPath.item - 2];
+                    if ([checkBeforeEndBrick isKindOfClass:[LoopEndBrick class]]) {
+                        self.fromBelowBrick = checkBeforeEndBrick;
+                        return NO;
+                    }
+                }
+
+            }
+            
             return (toIndexPath.item != 0);
         }
     } else {
@@ -229,6 +256,8 @@
     self.higherRankBrick = nil;
     self.lowerRankBrick = nil;
     self.moveToOtherScript = NO;
+    self.fromAboveBrick = nil;
+    self.fromBelowBrick = nil;
 }
 
 @end
