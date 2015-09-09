@@ -184,9 +184,6 @@
 /* No comment provided by engineer. */
 "Copy program" = "Copy program";
 
-/* paint */
-"crop" = "crop";
-
 /* No comment provided by engineer. */
 "Debug mode" = "Debug mode";
 
@@ -832,6 +829,9 @@
 /* No comment provided by engineer. */
 "Report as inappropriate" = "Report as inappropriate";
 
+/* paint */
+"resize" = "resize";
+
 /* No comment provided by engineer. */
 "Restart" = "Restart";
 
@@ -1050,6 +1050,15 @@
 
 /* No comment provided by engineer. */
 "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.";
+
+/* Button title of alert view to invoke undo if user shakes device */
+"Undo" = "Undo";
+
+/* Description text in alert view if user shakes the device */
+"Undo Drawing?" = "Undo Drawing?";
+
+/* Description text in alert view if user shakes the device */
+"Undo Typing?" = "Undo Typing?";
 
 /* No comment provided by engineer. */
 "Unselect All" = "Unselect All";

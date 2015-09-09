@@ -53,7 +53,9 @@
                                         CatrobatAlertViewDelegate, UITextFieldDelegate,
                                         SWTableViewCellDelegate>
 @property (nonatomic) BOOL useDetailCells;
-@property (nonatomic, strong) NSMutableArray *programLoadingInfos;
+@property (nonatomic) NSInteger programsCounter;
+@property (nonatomic, strong) NSArray *sectionTitles;
+@property (nonatomic, strong) NSMutableDictionary *programLoadingInfoDict;
 @property (nonatomic, strong) Program *selectedProgram;
 @property (nonatomic, strong) Program *defaultProgram;
 @end
@@ -86,15 +88,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsProgramsKey];
     self.useDetailCells = [showDetailsProgramsValue boolValue];
     self.navigationController.title = self.title = kLocalizedPrograms;
-    self.programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
     [self initNavigationBar];
     self.defaultProgram = nil;
     self.selectedProgram = nil;
     [self setupToolBar];
     
+    [self setSectionHeaders];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorInset = UIEdgeInsetsZero;
-    
+    self.tableView.sectionIndexBackgroundColor = [UIColor backgroundColor];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(downloadFinished:)
@@ -118,7 +120,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     self.tableView.dataSource = nil;
     self.tableView.delegate = nil;
-    self.programLoadingInfos = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -126,7 +127,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)editAction:(id)sender
 {
     NSMutableArray *options = [NSMutableArray array];
-    if (self.programLoadingInfos.count) {
+    if (self.programsCounter) {
         [options addObject:kLocalizedDeletePrograms];
     }
     if (self.useDetailCells) {
@@ -140,7 +141,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                 otherButtonTitles:options
                                                               tag:kEditProgramsActionSheetTag
                                                              view:self.navigationController.view];
-    if (self.programLoadingInfos.count) {
+    if (self.programsCounter) {
         [actionSheet setButtonTextColor:[UIColor destructiveTintColor] forButtonAtIndex:0];
     }
 }
@@ -184,9 +185,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
                               sourceProgramID:sourceProgramLoadingInfo.programID
                        destinationProgramName:programName];
     [self.dataCache removeObjectForKey:destinationProgramLoadingInfo.visibleName];
-    NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+    NSIndexPath* indexPath = [self getPathForProgramLoadingInfo:destinationProgramLoadingInfo];
+    if (indexPath.section < self.tableView.numberOfSections)
+    {
+        [self setSectionHeaders];
+        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+    } else {
+        // Section is now completely empty, so delete the entire section.
+        [self setSectionHeaders];
+        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationTop];
+    }
+
+    
     [self reloadTableView];
     [self hideLoadingView];
 }
@@ -234,8 +244,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSArray *selectedRowsIndexPaths = [self.tableView indexPathsForSelectedRows];
     NSMutableArray *programLoadingInfosToRemove = [NSMutableArray arrayWithCapacity:[selectedRowsIndexPaths count]];
     for (NSIndexPath *selectedRowIndexPath in selectedRowsIndexPaths) {
-        ProgramLoadingInfo *programLoadingInfo = [self.programLoadingInfos objectAtIndex:selectedRowIndexPath.row];
-        [programLoadingInfosToRemove addObject:programLoadingInfo];
+        NSString *sectionTitle = [self.sectionTitles objectAtIndex:selectedRowIndexPath.section];
+        NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
+        ProgramLoadingInfo *info = [sectionInfos objectAtIndex:selectedRowIndexPath.row];
+        [programLoadingInfosToRemove addObject:info];
     }
     for (ProgramLoadingInfo *programLoadingInfoToRemove in programLoadingInfosToRemove) {
         [self removeProgramWithName:programLoadingInfoToRemove.visibleName
@@ -248,8 +260,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)deleteProgramForIndexPath:(NSIndexPath*)indexPath
 {
     [self showLoadingView];
-    ProgramLoadingInfo *programLoadingInfo = [self.programLoadingInfos objectAtIndex:indexPath.row];
-    [self removeProgramWithName:programLoadingInfo.visibleName programID:programLoadingInfo.programID];
+    NSString *sectionTitle = [self.sectionTitles objectAtIndex:indexPath.section];
+    NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
+    ProgramLoadingInfo *info = [sectionInfos objectAtIndex:indexPath.row];
+    [self removeProgramWithName:info.visibleName programID:info.programID];
     [self reloadTableView];
     [self hideLoadingView];
 }
@@ -257,12 +271,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return self.sectionTitles.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.programLoadingInfos count];
+    NSString *sectionTitle = [self.sectionTitles objectAtIndex:section];
+    NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
+    
+    return [sectionInfos count];
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
@@ -295,7 +312,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
         detailCell.bottomRightDetailLabel.textColor = [UIColor lightTextTintColor];
         detailCell.topRightDetailLabel.text = [kLocalizedLoading stringByAppendingString:@"..."];
         detailCell.bottomRightDetailLabel.text = [kLocalizedLoading stringByAppendingString:@"..."];
-        ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
+        NSString *sectionTitle = [self.sectionTitles objectAtIndex:indexPath.section];
+        NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
+        ProgramLoadingInfo *info = [sectionInfos objectAtIndex:indexPath.row];
         NSNumber *programSize = [self.dataCache objectForKey:info.visibleName];
         AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
         if (programSize) {
@@ -315,7 +334,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 return;
             }
 
-            ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
+            NSString *sectionTitle = [self.sectionTitles objectAtIndex:indexPath.section];
+            NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
+            ProgramLoadingInfo *info = [sectionInfos objectAtIndex:indexPath.row];
             NSNumber *programSize = [self.dataCache objectForKey:info.visibleName];
             if (! programSize) {
                 NSUInteger resultSize = [appDelegate.fileManager sizeOfDirectoryAtPath:info.basePath];
@@ -341,10 +362,20 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return [TableUtil heightForImageCell];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (self.programsCounter < 10) {
+        return nil;
+    }
+    return [self.sectionTitles objectAtIndex:section];
+}
+
 #pragma mark - table view helpers
 - (void)configureImageCell:(CatrobatBaseCell<CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
+    NSString *sectionTitle = [self.sectionTitles objectAtIndex:indexPath.section];
+    NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
+    ProgramLoadingInfo *info = [sectionInfos objectAtIndex:indexPath.row];
     cell.titleLabel.text = info.visibleName;
     cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     cell.rightUtilityButtons = @[[Util slideViewButtonMore], [Util slideViewButtonDelete]];
@@ -419,6 +450,19 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
 }
 
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    if (self.programsCounter < 10) {
+        return nil;
+    }
+//    return self.sectionTitles; // only the existing ones
+    return @[@"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z"];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+{
+    return [self.sectionTitles indexOfObject:title];
+}
 #pragma mark - segue handling
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
@@ -432,7 +476,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
         if ([sender isKindOfClass:[UITableViewCell class]]) {
             NSIndexPath *path = [self.tableView indexPathForCell:sender];
             // check if program loaded successfully -> not nil
-            self.selectedProgram = [Program programWithLoadingInfo:[self.programLoadingInfos objectAtIndex:path.row]];
+            NSString *sectionTitle = [self.sectionTitles objectAtIndex:path.section];
+            NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
+            ProgramLoadingInfo *info = [sectionInfos objectAtIndex:path.row];
+            self.selectedProgram =[Program programWithLoadingInfo:info];
             if (self.selectedProgram) {
                 return YES;
             }
@@ -485,8 +532,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                                   tag:kEditProgramActionSheetTag
                                                                  view:self.navigationController.view];
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        NSString *sectionTitle = [self.sectionTitles objectAtIndex:indexPath.section];
+        NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
+        ProgramLoadingInfo *info = [sectionInfos objectAtIndex:indexPath.row];
         actionSheet.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionEditProgram
-                                                                        withPayload:@{ kDTPayloadProgramLoadingInfo : [self.programLoadingInfos objectAtIndex:indexPath.row] }];
+                                                                        withPayload:@{ kDTPayloadProgramLoadingInfo : info }];
     } else if (index == 1) {
         // Delete button was pressed
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
@@ -508,11 +558,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)actionSheet:(CatrobatActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == kEditProgramsActionSheetTag) {
-        if ((buttonIndex == 0) && self.programLoadingInfos.count) {
+        if ((buttonIndex == 0) && self.programsCounter) {
             // Delete Programs button
             [self setupEditingToolBar];
             [super changeToEditingMode:actionSheet];
-        } else if ((buttonIndex == 0) || ((buttonIndex == 1) && [self.programLoadingInfos count])) {
+        } else if ((buttonIndex == 0) || ((buttonIndex == 1) && self.programsCounter)) {
             // Show/Hide Details button
             self.useDetailCells = (! self.useDetailCells);
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -594,7 +644,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     // check if program already exists, then update
     BOOL exists = NO;
-    for (ProgramLoadingInfo *programLoadingInfo in self.programLoadingInfos) {
+    NSMutableArray* programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
+    for (ProgramLoadingInfo *programLoadingInfo in programLoadingInfos) {
         if ([programLoadingInfo.visibleName isEqualToString:programName])
             exists = YES;
     }
@@ -606,13 +657,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
         programLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:programName
                                                                             programID:nil];
         NSDebug(@"Adding program: %@", programLoadingInfo.basePath);
-        [self.programLoadingInfos addObject:programLoadingInfo];
-
-        // create new cell
-        NSInteger numberOfRowsInLastSection = [self tableView:self.tableView numberOfRowsInSection:0];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:(numberOfRowsInLastSection - 1) inSection:0];
-        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+    
+        
     }
+    [self reloadTableView];
     return programLoadingInfo;
 }
 
@@ -620,24 +668,61 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     ProgramLoadingInfo *oldProgramLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:programName programID:programID];
     NSInteger rowIndex = 0;
-    for (ProgramLoadingInfo *info in self.programLoadingInfos) {
+    NSMutableArray* programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
+    for (ProgramLoadingInfo *info in programLoadingInfos) {
         if ([info isEqualToLoadingInfo:oldProgramLoadingInfo]) {
             [Program removeProgramFromDiskWithProgramName:programName programID:programID];
-            [self.programLoadingInfos removeObjectAtIndex:rowIndex];
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+            NSIndexPath* indexPath = [self getPathForProgramLoadingInfo:info];
+
+            if ([self.tableView numberOfRowsInSection:indexPath.section] > 1)
+            {
+                [self setSectionHeaders];
+                [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                                 withRowAnimation:UITableViewRowAnimationTop];
+            }
+            else
+            {
+                // Section is now completely empty, so delete the entire section.
+                [self setSectionHeaders];
+                // There should be always one program so don't delete sections of the tableView
+                if (self.programsCounter > 1) {
+                    [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]
+                                  withRowAnimation:UITableViewRowAnimationTop];
+                }
+            }
             // flush cache
             self.dataCache = nil;
             // needed to avoid unexpected behaviour when programs are renamed
             [[RuntimeImageCache sharedImageCache] clearImageCache];
-            if (! self.programLoadingInfos.count) {
-                [self reloadTableView];
-            }
+            [self reloadTableView];
             return;
         }
         ++rowIndex;
     }
     [self reloadTableView];
+}
+
+- (NSIndexPath*)getPathForProgramLoadingInfo:(ProgramLoadingInfo*)info
+{
+    NSInteger sectionCounter = 0;
+    for (NSString* sectionTitle in self.sectionTitles) {
+        if ([sectionTitle isEqualToString:[[info.visibleName substringToIndex:1] uppercaseString]]) {
+            break;
+        }
+        sectionCounter++;
+    }
+    
+    NSMutableArray* infosArray = [self.programLoadingInfoDict objectForKey:[[info.visibleName substringToIndex:1] uppercaseString]];
+    NSInteger rowCounter = 0;
+    for (ProgramLoadingInfo *programInfo in infosArray) {
+        if ([programInfo isEqualToLoadingInfo:info]) {
+            break;
+        }
+        rowCounter++;
+    }
+    
+    
+    return [NSIndexPath indexPathForRow:rowCounter inSection:sectionCounter];
 }
 
 - (void)renameOldProgramWithName:(NSString*)oldProgramName
@@ -647,19 +732,19 @@ static NSCharacterSet *blockedCharacterSet = nil;
     ProgramLoadingInfo *oldProgramLoadingInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:oldProgramName
                                                                                                programID:programID];
     NSInteger rowIndex = 0;
-    for (ProgramLoadingInfo *info in self.programLoadingInfos) {
+    NSMutableArray* programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
+    for (ProgramLoadingInfo *info in programLoadingInfos) {
         if ([info isEqualToLoadingInfo:oldProgramLoadingInfo]) {
             ProgramLoadingInfo *newInfo = [ProgramLoadingInfo programLoadingInfoForProgramWithName:newProgramName
                                                                                          programID:oldProgramLoadingInfo.programID];
-            [self.programLoadingInfos replaceObjectAtIndex:rowIndex withObject:newInfo];
+            [programLoadingInfos replaceObjectAtIndex:rowIndex withObject:newInfo];
             // flush cache
             self.dataCache = nil;
             // needed to avoid unexpected behaviour when renaming programs
             [[RuntimeImageCache sharedImageCache] clearImageCache];
 
             // update table view
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:0];
-            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            [self.tableView reloadRowsAtIndexPaths:@[[self getPathForProgramLoadingInfo:info]] withRowAnimation:UITableViewRowAnimationNone];
             break;
         }
         ++rowIndex;
@@ -697,6 +782,24 @@ static NSCharacterSet *blockedCharacterSet = nil;
                          invisibleButton, deleteButton, nil];
 }
 
+- (void)setSectionHeaders
+{
+    self.programLoadingInfoDict = [NSMutableDictionary new];
+    self.programsCounter = 0;
+    NSArray* programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
+    for (ProgramLoadingInfo* info in programLoadingInfos) {
+        NSMutableArray* array = [self.programLoadingInfoDict objectForKey:[[info.visibleName substringToIndex:1] uppercaseString]];
+        if (!array.count) {
+           array = [NSMutableArray new];
+        }
+        [array addObject:info];
+        [self.programLoadingInfoDict setObject:array forKey:[[info.visibleName substringToIndex:1] uppercaseString]];
+        self.programsCounter++;
+    }
+    
+    self.sectionTitles = [[self.programLoadingInfoDict allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+}
+
 #pragma mark Filemanager notification
 - (void)downloadFinished:(NSNotification*)notification
 {
@@ -710,7 +813,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (void)reloadTableView
 {
-    self.programLoadingInfos = [[Program allProgramLoadingInfos] mutableCopy];
+    [self setSectionHeaders];
     [self.tableView reloadData];
 }
 

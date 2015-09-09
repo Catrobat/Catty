@@ -589,7 +589,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         Script *script = (Script*)scriptOrBrick;
         script.object = self.object;
         [self.object.scriptList addObject:script];
-        script.animate = YES;
         [self reloadData];
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:(self.object.scriptList.count - 1)]
                                     atScrollPosition:UICollectionViewScrollPositionBottom
@@ -602,7 +601,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         StartScript *script = [StartScript new];
         script.object = self.object;
         [self.object.scriptList addObject:script];
-        script.animate = YES;
         [self reloadData];
         [self.object.program saveToDisk];
     }
