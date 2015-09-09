@@ -185,6 +185,17 @@
         if ([toBrick isKindOfClass:[LoopEndBrick class]]) {
             LoopEndBrick* loopEndBrick = (LoopEndBrick*) toBrick;
             if ([loopEndBrick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+                if (script.brickList.count >=1 && ![fromBrick isKindOfClass:[LoopEndBrick class]]) {
+                    NSInteger index = loopEndBrick.script.brickList.count;
+                    while ([[script.brickList objectAtIndex:index-1] isKindOfClass:[LoopEndBrick class]]) {
+                        LoopEndBrick* loopEndBrickCheck = [script.brickList objectAtIndex:index-1];
+                        if ([loopEndBrick isEqualToBrick:loopEndBrickCheck]) {
+                            return NO;
+                        }
+                        index--;
+                    }
+                    return YES;
+                }
                 return NO;
             }
         }
