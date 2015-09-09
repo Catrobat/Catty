@@ -163,11 +163,49 @@
                     }
                     index--;
                 }
-                if ([self checkForeverBrickInsideLogicBricks:targetScript andIndexPath:path]) {
-                    insertionIndex = path.row;
+                Brick* foreverInsideBrick = [self checkForeverBrickInsideLogicBricks:targetScript andIndexPath:path];
+                if (foreverInsideBrick) {
+                    if ([foreverInsideBrick isKindOfClass:[IfLogicBeginBrick class]]) {
+                        IfLogicBeginBrick* logicBeginBrick = (IfLogicBeginBrick*) foreverInsideBrick;
+                        NSInteger counter = 0;
+                        for (Brick* checkBrick in targetScript.brickList) {
+                            if ([checkBrick isKindOfClass:[IfLogicElseBrick class]]) {
+                                if (checkBrick == logicBeginBrick.ifElseBrick) {
+                                    insertionIndex = counter;
+                                }
+                            }
+                            counter++;
+                        }
+                    } else if ([foreverInsideBrick isKindOfClass:[IfLogicElseBrick class]]){
+                        IfLogicElseBrick* logicBeginBrick = (IfLogicElseBrick*) foreverInsideBrick;
+                        NSInteger counter = 0;
+                        for (Brick* checkBrick in targetScript.brickList) {
+                            if ([checkBrick isKindOfClass:[IfLogicEndBrick class]]) {
+                                if (checkBrick == logicBeginBrick.ifEndBrick) {
+                                    insertionIndex = counter;
+                                }
+                            }
+                            counter++;
+                        }
+                    }
                 }
-                if ([self checkForeverBrickInsideRepeatBricks:targetScript andIndexPath:path]) {
-                    insertionIndex = path.row;
+                if (!foreverInsideBrick) {
+                    foreverInsideBrick = [self checkForeverBrickInsideRepeatBricks:targetScript andIndexPath:path];
+                    if (foreverInsideBrick) {
+                        if ([foreverInsideBrick isKindOfClass:[LoopBeginBrick class]]) {
+                            LoopBeginBrick* loopBeginBrick = (LoopBeginBrick*) foreverInsideBrick;
+                            NSInteger counter = 0;
+                            for (Brick* checkBrick in targetScript.brickList) {
+                                if ([checkBrick isKindOfClass:[LoopEndBrick class]]) {
+                                    if (checkBrick == loopBeginBrick.loopEndBrick) {
+                                        insertionIndex = counter;
+                                    }
+                                }
+                                counter++;
+                            }
+                        }
+                    }
+
                 }
             }
         }
@@ -177,56 +215,38 @@
     [object.program saveToDisk];
 }
 
--(BOOL)checkForeverBrickInsideLogicBricks:(Script*)targetScript andIndexPath:(NSIndexPath*)path
+-(Brick*)checkForeverBrickInsideLogicBricks:(Script*)targetScript andIndexPath:(NSIndexPath*)path
 {
-    NSInteger logicBrickCounter = 0;
+    Brick* checkBrick;
     for (NSInteger counter = 0;counter<path.row;counter++) {
         Brick *brick = [targetScript.brickList objectAtIndex:counter];
-        if (([brick isKindOfClass:[IfLogicBeginBrick class]]||[brick isKindOfClass:[IfLogicElseBrick class]])) {
-            logicBrickCounter++;
-        }
-        if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
-            logicBrickCounter -= 2;
-        }
-    }
-    if (logicBrickCounter != 0) {
-        switch (logicBrickCounter) {
-            case 1:
-            case 2:
-                return YES;
-                break;
-            default:
-                break;
+        if (([brick isKindOfClass:[IfLogicBeginBrick class]])) {
+            checkBrick = brick;
+        } else if ([brick isKindOfClass:[IfLogicElseBrick class]]){
+            checkBrick = brick;
+        } else if ([brick isKindOfClass:[IfLogicEndBrick class]]) {
+            checkBrick  = nil;
         }
     }
-    return NO;
+    return checkBrick;
 }
 
--(BOOL)checkForeverBrickInsideRepeatBricks:(Script*)targetScript andIndexPath:(NSIndexPath*)path
+-(Brick*)checkForeverBrickInsideRepeatBricks:(Script*)targetScript andIndexPath:(NSIndexPath*)path
 {
-    NSInteger repeatBrickCounter = 0;
+    Brick* checkBrick;
     for (NSInteger counter = 0;counter<path.row;counter++) {
         Brick *brick = [targetScript.brickList objectAtIndex:counter];
         if (([brick isKindOfClass:[LoopBeginBrick class]]&&(![brick isKindOfClass:[ForeverBrick class]]))) {
-            repeatBrickCounter++;
+            checkBrick = brick;
         }
         if ([brick isKindOfClass:[LoopEndBrick class]]) {
             LoopEndBrick* endBrick = (LoopEndBrick*)brick;
             if (![endBrick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
-                repeatBrickCounter -= 1;
+                checkBrick = nil;
             }
         }
     }
-    if (repeatBrickCounter != 0) {
-        switch (repeatBrickCounter) {
-            case 1:
-                return YES;
-                break;
-            default:
-                break;
-        }
-    }
-    return NO;
+    return checkBrick;
 }
 
 -(NSInteger)checkForeverLoopEndBrickWithStartingIndex:(NSInteger)counter andScript:(Script*)script
