@@ -874,6 +874,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
                     // ask user for image name
                 if (self.showAddLookActionSheetAtStartForObject) {
                     [self addLookActionWithName:look.name look:look];
+                } else if (path){
+                    [self addLookActionWithName:@"settings_save" look:look];
                 } else {
                     [Util askUserForTextAndPerformAction:@selector(addLookActionWithName:look:)
                                                   target:self

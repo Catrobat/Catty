@@ -828,6 +828,13 @@
                                      style:UIAlertActionStyleDefault
                                      handler:^(UIAlertAction *action)
                                      {
+                                         if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
+                                             if (self.editingPath) {
+                                                 [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
+                                             } else {
+                                                 [self.delegate addPaintedImage:self.saveView.image andPath:@"settings"];
+                                             }
+                                         }
                                          [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
                                      }];
     
