@@ -180,7 +180,13 @@
     [self.downloadSegmentedControl setTitle:kLocalizedMostDownloaded forSegmentAtIndex:0];
     [self.downloadSegmentedControl setTitle:kLocalizedMostViewed forSegmentAtIndex:1];
     [self.downloadSegmentedControl setTitle:kLocalizedNewest forSegmentAtIndex:2];
-    
+    if (IS_IPHONE4||IS_IPHONE5) {
+        UIFont *font = [UIFont boldSystemFontOfSize:10.0f];
+        NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
+                                                               forKey:NSFontAttributeName];
+        [self.downloadSegmentedControl setTitleTextAttributes:attributes
+                                        forState:UIControlStateNormal];
+    }
 
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     self.downloadSegmentedControl.backgroundColor = [UIColor backgroundColor];

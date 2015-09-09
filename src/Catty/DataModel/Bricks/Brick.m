@@ -27,6 +27,7 @@
 #import "IfLogicBeginBrick.h"
 #import "IfLogicEndBrick.h"
 #import "LoopEndBrick.h"
+#import "LoopBeginBrick.h"
 #import "RepeatBrick.h"
 #import "BroadcastScript.h"
 #import "WaitBrick.h"
@@ -37,6 +38,7 @@
 #import "BroadcastWaitBrick.h"
 #import "NoteBrick.h"
 #include <mach/mach_time.h>
+#import "BrickCell.h"
 
 @interface Brick()
 
@@ -208,5 +210,6 @@
 {
     self.script = nil;
 }
+
 
 @end
