@@ -621,9 +621,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self.object.scriptList addObject:script];
         script.animate = YES;
         [self reloadData];
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:(self.object.scriptList.count - 1)]
-                                    atScrollPosition:UICollectionViewScrollPositionBottom
-                                            animated:YES];
+        //TODO
+//        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:(self.object.scriptList.count - 1)]
+//                                    atScrollPosition:UICollectionViewScrollPositionBottom
+//                                            animated:YES];
         [self.object.program saveToDisk];
         return;
     }

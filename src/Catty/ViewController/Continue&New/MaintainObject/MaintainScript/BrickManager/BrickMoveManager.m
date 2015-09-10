@@ -194,7 +194,7 @@
                         index--;
                     }
                     //from above
-                    if (!self.fromBelowBrick) {
+                    if (!self.fromBelowBrick && toIndexPath.item > fromIndexPath.item) {
                         Brick *checkafterEndBrick = [script.brickList objectAtIndex:toIndexPath.item];
                         if ([checkafterEndBrick isKindOfClass:[IfLogicElseBrick class]] ||[checkafterEndBrick isKindOfClass:[IfLogicEndBrick class]]) {
                             self.fromAboveBrick = checkafterEndBrick;
@@ -225,7 +225,7 @@
             return [self checkIfEndToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick andObject:object];
         } else {
             //From Below
-            if (!self.fromAboveBrick) {
+            if (!self.fromAboveBrick && toIndexPath.item < fromIndexPath.item) {
                 if ([toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[LoopEndBrick class]]) { //check if repeat?!
                     Brick *checkBeforeEndBrick = [script.brickList objectAtIndex:toIndexPath.item - 2];
                     if ([checkBeforeEndBrick isKindOfClass:[LoopEndBrick class]]) {

@@ -87,16 +87,19 @@
                 }
                 //from above
                 if (!self.fromBelowBrick) {
-                    Brick *checkafterEndBrick = [script.brickList objectAtIndex:toIndexPath.item];
-                    if ([checkafterEndBrick isKindOfClass:[IfLogicElseBrick class]] ||[checkafterEndBrick isKindOfClass:[IfLogicEndBrick class]]) {
-                        self.fromAboveBrick = checkafterEndBrick;
-                        return NO;
-                    } else if ([checkafterEndBrick isKindOfClass:[LoopEndBrick class]]){
-                        LoopEndBrick *endBrickCheck = (LoopEndBrick*)checkafterEndBrick;
-                        if (![endBrickCheck.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+                    if (script.brickList.count > toIndexPath.item) {
+                        Brick *checkafterEndBrick = [script.brickList objectAtIndex:toIndexPath.item];
+                        if ([checkafterEndBrick isKindOfClass:[IfLogicElseBrick class]] ||[checkafterEndBrick isKindOfClass:[IfLogicEndBrick class]]) {
                             self.fromAboveBrick = checkafterEndBrick;
                             return NO;
+                        } else if ([checkafterEndBrick isKindOfClass:[LoopEndBrick class]]){
+                            LoopEndBrick *endBrickCheck = (LoopEndBrick*)checkafterEndBrick;
+                            if (![endBrickCheck.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+                                self.fromAboveBrick = checkafterEndBrick;
+                                return NO;
+                            }
                         }
+
                     }
                     
                 }
@@ -105,10 +108,13 @@
             //From Below
             if (!self.fromAboveBrick) {
                 if ([toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[LoopEndBrick class]]) { //check if repeat?!
-                    Brick *checkBeforeEndBrick = [script.brickList objectAtIndex:toIndexPath.item - 2];
-                    if ([checkBeforeEndBrick isKindOfClass:[LoopEndBrick class]]) {
-                        self.fromBelowBrick = checkBeforeEndBrick;
-                        return NO;
+                    if (script.brickList.count && toIndexPath.item - 2 >=0) {
+                        Brick *checkBeforeEndBrick = [script.brickList objectAtIndex:toIndexPath.item - 2];
+                        if ([checkBeforeEndBrick isKindOfClass:[LoopEndBrick class]]) {
+                            self.fromBelowBrick = checkBeforeEndBrick;
+                            return NO;
+                        }
+
                     }
                 }
                 
