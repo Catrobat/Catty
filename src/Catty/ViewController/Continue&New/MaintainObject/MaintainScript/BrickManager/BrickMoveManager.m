@@ -171,7 +171,12 @@
     canMoveToIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object
 {
     Script *fromScript = [object.scriptList objectAtIndex:fromIndexPath.section];
-    Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
+    Brick *fromBrick;
+    if (fromIndexPath.item == 0) {
+        fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item];
+    } else{
+        fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
+    }
     
     if (toIndexPath.item != 0) {
         Script *script;

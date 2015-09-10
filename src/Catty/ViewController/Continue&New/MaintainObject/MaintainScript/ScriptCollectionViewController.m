@@ -441,7 +441,12 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
         Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
         [script.brickList removeObjectAtIndex:toIndexPath.item - 1];
-        [script.brickList insertObject:toBrick atIndex:fromIndexPath.item - 1];
+        if (fromIndexPath.item == 0) {
+            [script.brickList addObject:toBrick];
+        } else {
+            [script.brickList insertObject:toBrick atIndex:fromIndexPath.item - 1];
+        }
+        
     } else {
 
         Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
@@ -450,8 +455,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         if ([toScript.brickList count] == 0) {
             [fromScript.brickList removeObjectAtIndex:fromIndexPath.item - 1];
             [toScript.brickList addObject:fromBrick];
-            LXReorderableCollectionViewFlowLayout *layout =  (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
-            [layout setUpGestureRecognizersOnCollectionView];
             return;
         }
         Brick *toBrick = [toScript.brickList objectAtIndex:toIndexPath.item - 1];
@@ -621,10 +624,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self.object.scriptList addObject:script];
         script.animate = YES;
         [self reloadData];
-        //TODO
-//        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:(self.object.scriptList.count - 1)]
-//                                    atScrollPosition:UICollectionViewScrollPositionBottom
-//                                            animated:YES];
+        [self.collectionView reloadData];
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:(self.object.scriptList.count - 1)]
+                                    atScrollPosition:UICollectionViewScrollPositionBottom
+                                            animated:YES];
         [self.object.program saveToDisk];
         return;
     }
