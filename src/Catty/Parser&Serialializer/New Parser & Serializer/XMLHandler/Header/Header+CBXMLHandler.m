@@ -41,7 +41,8 @@
             [[CBXMLPropertyMapping alloc] initWithClassPropertyName:@"applicationVersion"],
             [[CBXMLPropertyMapping alloc] initWithClassPropertyName:@"catrobatLanguageVersion"],
             [[CBXMLPropertyMapping alloc] initWithClassPropertyName:@"dateTimeUpload"],
-            [[CBXMLPropertyMapping alloc] initWithClassPropertyName:@"programDescription" andXMLElementName:@"description"],
+            [[CBXMLPropertyMapping alloc] initWithClassPropertyName:@"programDescription"
+                                                  andXMLElementName:@"description"],
             [[CBXMLPropertyMapping alloc] initWithClassPropertyName:@"deviceName"],
             [[CBXMLPropertyMapping alloc] initWithClassPropertyName:@"mediaLicense"],
             [[CBXMLPropertyMapping alloc] initWithClassPropertyName:@"platform"],
@@ -66,38 +67,49 @@
 }
 
 #pragma mark - Parsing
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement
+withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
     [XMLError exceptionIfNil:xmlElement message:@"No xml element given!"];
     Header *header = [self defaultHeader];
     NSArray *headerProperties = [self headerPropertiesForLanguageVersion093];
-    [XMLError exceptionIf:[[xmlElement children] count] notEquals:[headerProperties count] message:@"Invalid number of header properties in XML!"];
-    
+    [XMLError exceptionIf:[[xmlElement children] count] notEquals:[headerProperties count]
+                  message:@"Invalid number of header properties in XML!"];
+
     for (CBXMLPropertyMapping *headerProperty in headerProperties) {
         GDataXMLElement *headerPropertyNode = [xmlElement childWithElementName:headerProperty.xmlElementName];
-        [XMLError exceptionIfNil:headerPropertyNode message:@"No XML property named %@ in header!", headerProperty.xmlElementName];
-        id value = [CBXMLParserHelper valueForHeaderProperty:headerProperty.classPropertyName andXMLNode:headerPropertyNode];
-        [header setValue:value forKey:headerProperty.classPropertyName]; // Note: weak properties are not yet supported!!
+        [XMLError exceptionIfNil:headerPropertyNode message:@"No XML property named %@ in header!",
+         headerProperty.xmlElementName];
+        id value = [CBXMLParserHelper valueForHeaderProperty:headerProperty.classPropertyName
+                                                  andXMLNode:headerPropertyNode];
+        // Note: weak properties are not yet supported!!
+        [header setValue:value forKey:headerProperty.classPropertyName];
     }
     return header;
 }
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement
+withContextForLanguageVersion095:(CBXMLParserContext*)context
 {
     [XMLError exceptionIfNil:xmlElement message:@"No xml element given!"];
     Header *header = [self defaultHeader];
     NSArray *headerProperties = [self headerPropertiesForLanguageVersion095];
-    [XMLError exceptionIf:[[xmlElement children] count] notEquals:[headerProperties count] message:@"Invalid number of header properties in XML!"];
-    
+    [XMLError exceptionIf:[[xmlElement children] count] notEquals:[headerProperties count]
+                  message:@"Invalid number of header properties in XML!"];
+
     for (CBXMLPropertyMapping *headerProperty in headerProperties) {
         // ignore isPhiroProProject property
-        if ([headerProperty.xmlElementName isEqualToString:@"isPhiroProProject"])
+        if ([headerProperty.xmlElementName isEqualToString:@"isPhiroProProject"]) {
             continue;
-            
+        }
+
         GDataXMLElement *headerPropertyNode = [xmlElement childWithElementName:headerProperty.xmlElementName];
-        [XMLError exceptionIfNil:headerPropertyNode message:@"No XML property named %@ in header!", headerProperty.xmlElementName];
-        id value = [CBXMLParserHelper valueForHeaderProperty:headerProperty.classPropertyName andXMLNode:headerPropertyNode];
-        [header setValue:value forKey:headerProperty.classPropertyName]; // Note: weak properties are not yet supported!!
+        [XMLError exceptionIfNil:headerPropertyNode message:@"No XML property named %@ in header!",
+         headerProperty.xmlElementName];
+        id value = [CBXMLParserHelper valueForHeaderProperty:headerProperty.classPropertyName
+                                                  andXMLNode:headerPropertyNode];
+        // Note: weak properties are not yet supported!!
+        [header setValue:value forKey:headerProperty.classPropertyName];
     }
     return header;
 }
@@ -105,11 +117,9 @@
 #pragma mark - Serialization
 - (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
 {
-//#if TESTMODE == 0 // fails...
     if (! [Util activateTestMode:NO]) {
         [self updateRelevantHeaderInfosBeforeSerialization];
     }
-//#endif
     GDataXMLElement *headerXMLElement = [GDataXMLElement elementWithName:@"header" context:context];
     [headerXMLElement addChild:[GDataXMLElement elementWithName:@"applicationBuildName"
                                                     stringValue:self.applicationBuildName context:context]
