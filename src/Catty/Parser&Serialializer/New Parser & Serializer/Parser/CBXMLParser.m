@@ -75,20 +75,22 @@
 {
     NSError *error;
     NSString *xmlFile;
-    
-    if(self.xmlContent)
+
+    if (self.xmlContent) {
         xmlFile = self.xmlContent;
-    else
+    } else {
         xmlFile = [NSString stringWithContentsOfFile:self.xmlPath
                                                   encoding:NSUTF8StringEncoding
                                                      error:&error];
+    }
+
     // sanity check
     if (error) {
         NSError(@"XML file could not be loaded!");
         return nil;
     }
 
-    //NSDebug(@"%@", xmlFile);
+    NSDebug(@"%@", xmlFile);
     NSData *xmlData = [xmlFile dataUsingEncoding:NSUTF8StringEncoding];
 
     // sanity check
@@ -107,9 +109,9 @@
     @try {
         CGFloat languageVersion = [Util detectCBLanguageVersionFromXMLWithPath:self.xmlPath];
         NSInfo(@"Parsing Program with CatrobatLanguageVersion %.2f...", languageVersion);
-        CBXMLParserContext *parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:languageVersion];
-        program = [parserContext parseFromElement:xmlDocument.rootElement
-                                        withClass:[Program class]];
+        CBXMLParserContext *parserContext = [[CBXMLParserContext alloc]
+                                             initWithLanguageVersion:languageVersion];
+        program = [parserContext parseFromElement:xmlDocument.rootElement withClass:[Program class]];
         NSInfo(@"Parsing finished...");
     } @catch(NSException *exception) {
         NSError(@"Program could not be loaded! %@", [exception description]);
