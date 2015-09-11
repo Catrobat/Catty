@@ -38,7 +38,7 @@
 {
     Program *program = [self getProgramForXML:@"ValidHeader095"];
     Header *header = program.header;
-    BOOL equal = [self isXMLElement:[header xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/header" inProgramForXML:@"ValidHeader095"];
+    BOOL equal = [self isXMLElement:[header xmlElementWithContext:nil] equalToXMLElementForXPath:@"//program/header" inProgramForXML:@"ValidHeader096"];
     XCTAssertTrue(equal, @"XMLElement invalid!");
 }
 
@@ -61,10 +61,10 @@
 
 - (void)testRemoveObjectAndSerializeProgram
 {
-    CBXMLParserContext *parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.95f];
+    CBXMLParserContext *parserContext = [[CBXMLParserContext alloc] initWithLanguageVersion:0.96f];
     
-    Program *referenceProgram = [self getProgramForXML:@"ValidProgram095"];
-    Program *program = [self getProgramForXML:@"ValidProgram095"];
+    Program *referenceProgram = [self getProgramForXML:@"ValidProgram096"];
+    Program *program = [self getProgramForXML:@"ValidProgram096"];
     SpriteObject *moleOne = [program.objectList objectAtIndex:1];
     [program removeObject:moleOne];
     

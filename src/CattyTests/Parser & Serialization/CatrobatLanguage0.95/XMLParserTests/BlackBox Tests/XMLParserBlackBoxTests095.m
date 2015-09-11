@@ -33,112 +33,97 @@
 
 - (void)testAirFight05
 {
-    [self compareProgram:@"Air_fight_0.5_091" withProgram:@"Air_fight_0.5_093"];
+    [self compareProgram:@"Air_fight_0.5_093" withProgram:@"Air_fight_0.5_095"];
 }
 
 - (void)testAirplaneWithShadow
 {
-    [self compareProgram:@"Airplane_with_shadow_091" withProgram:@"Airplane_with_shadow_093"];
+    [self compareProgram:@"Airplane_with_shadow_093" withProgram:@"Airplane_with_shadow_095"];
 }
 
 - (void)testCompass01
 {
-    [self compareProgram:@"Compass_0.1_091" withProgram:@"Compass_0.1_093"];
+    [self compareProgram:@"Compass_0.1_093" withProgram:@"Compass_0.1_095"];
 }
 
 - (void)testDemonstration
 {
-    [self compareProgram:@"Demonstration_09" withProgram:@"Demonstration_093"];
+    [self compareProgram:@"Demonstration_093" withProgram:@"Demonstration_095"];
 }
 
 - (void)testDrinkMoreWater
 {
-    [self compareProgram:@"Drink_more_water_09" withProgram:@"Drink_more_water_093"];
+    [self compareProgram:@"Drink_more_water_093" withProgram:@"Drink_more_water_095"];
 }
 
 - (void)testFlapPacMan
 {
-    [self compareProgram:@"Flap_Pac_Man_091" withProgram:@"Flap_Pac_Man_093"];
+    [self compareProgram:@"Flap_Pac_Man_093" withProgram:@"Flap_Pac_Man_095"];
 }
 
 - (void)testFlappy30
 {
-    [self compareProgram:@"Flappy_v3.0_092" withProgram:@"Flappy_v3.0_093"];
+    [self compareProgram:@"Flappy_v3.0_093" withProgram:@"Flappy_v3.0_095"];
 }
 
 - (void)testGalaxyWar
 {
-    [self compareProgram:@"Galaxy_War_092" withProgram:@"Galaxy_War_093"];
+    [self compareProgram:@"Galaxy_War_093" withProgram:@"Galaxy_War_093"];
 }
 
 - (void)testGossipGirl
 {
-    [self compareProgram:@"Gossip_Girl_091" withProgram:@"Gossip_Girl_093"];
+    [self compareProgram:@"Gossip_Girl_091" withProgram:@"Gossip_Girl_095"];
 }
 
 - (void)testMemory
 {
-    [self compareProgram:@"Memory_09" withProgram:@"Memory_093"];
+    [self compareProgram:@"Memory_093" withProgram:@"Memory_095"];
 }
 
 - (void)testMinecraftWorkInProgress
 {
-    [self compareProgram:@"Minecraft_Work_In_Progress_092" withProgram:@"Minecraft_Work_In_Progress_093"];
+    [self compareProgram:@"Minecraft_Work_In_Progress_093" withProgram:@"Minecraft_Work_In_Progress_095"];
 }
 
 - (void)testMinions_
 {
-    [self compareProgram:@"Minions__091" withProgram:@"Minions__093"];
-}
-
-- (void)testNyancat10
-{
-    [self compareProgram:@"Nyancat_1.0_091" withProgram:@"Nyancat_1.0_093"];
-}
-
-- (void)testPiano
-{
-    [self compareProgram:@"Piano_09" withProgram:@"Piano_093"];
+    [self compareProgram:@"Minions__093" withProgram:@"Minions__095"];
 }
 
 - (void)testPongStarter
 {
-    [self compareProgram:@"Pong_Starter_09" withProgram:@"Pong_Starter_093"];
+    [self compareProgram:@"Pong_Starter_093" withProgram:@"Pong_Starter_095"];
 }
 
 - (void)testPythagoreanTheorem
 {
-    [self compareProgram:@"Pythagorean_Theorem_092" withProgram:@"Pythagorean_Theorem_093"];
+    [self compareProgram:@"Pythagorean_Theorem_093" withProgram:@"Pythagorean_Theorem_095"];
 }
 
 - (void)testRockPaperScissors
 {
-    [self compareProgram:@"Rock_paper_scissors_091" withProgram:@"Rock_paper_scissors_093"];
-}
-
-- (void)testSkyPascal
-{
-    [self compareProgram:@"SKYPASCAL_08" withProgram:@"SKYPASCAL_093"];
+    [self compareProgram:@"Rock_paper_scissors_093" withProgram:@"Rock_paper_scissors_095"];
 }
 
 - (void)testSkydivingSteve
 {
-    [self compareProgram:@"Skydiving_Steve_092" withProgram:@"Skydiving_Steve_093"];
+    [self compareProgram:@"Skydiving_Steve_093" withProgram:@"Skydiving_Steve_095"];
 }
 
 - (void)testTicTacToeMaster
 {
-    [self compareProgram:@"Tic_Tac_Toe_Master_091" withProgram:@"Tic_Tac_Toe_Master_093"];
+    [self compareProgram:@"Tic_Tac_Toe_Master_093" withProgram:@"Tic_Tac_Toe_Master_095"];
 }
 
 - (void)testWordBalloonDemo
 {
-    [self compareProgram:@"Word_balloon_demo_09" withProgram:@"Word_balloon_demo_093"];
+    [self compareProgram:@"Word_balloon_demo_093" withProgram:@"Word_balloon_demo_095"];
 }
 
 - (void)testXRayPhone
 {
-    [self compareProgram:@"X_Ray_phone_091" withProgram:@"X_Ray_phone_093"];
+    [self compareProgram:@"X_Ray_phone_093" withProgram:@"X_Ray_phone_095"];
 }
 
 @end
