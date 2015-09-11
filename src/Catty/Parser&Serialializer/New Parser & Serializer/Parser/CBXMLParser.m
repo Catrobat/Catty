@@ -30,7 +30,7 @@
 
 // NEVER MOVE THESE DEFINE CONSTANTS TO ANOTHER (HEADER) FILE
 #define kCatrobatXMLParserMinSupportedLanguageVersion 0.93f
-#define kCatrobatXMLParserMaxSupportedLanguageVersion 0.96f
+#define kCatrobatXMLParserMaxSupportedLanguageVersion [[Util catrobatLanguageVersion] floatValue]
 
 @interface CBXMLParser()
 
