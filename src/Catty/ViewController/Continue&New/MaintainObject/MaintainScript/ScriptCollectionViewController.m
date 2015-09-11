@@ -1171,6 +1171,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 [variableBrick setVariable:variable forLineNumber:line andParameterNumber:parameter];
         }
     }
+    [self reloadData];
     [self enableUserInteractionAndResetHighlight];
     [self.object.program saveToDisk];
 }

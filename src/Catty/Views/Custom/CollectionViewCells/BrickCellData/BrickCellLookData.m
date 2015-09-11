@@ -40,6 +40,7 @@
         _lineNumber = line;
         _parameterNumber = parameter;
         NSMutableArray *options = [[NSMutableArray alloc] init];
+        NSMutableArray *images = [[NSMutableArray alloc] init];
         [options addObject:kLocalizedNewElement];
         int currentOptionIndex = 0;
         int optionIndex = 1;
@@ -48,6 +49,7 @@
             Look *currentLook = [lookBrick lookForLineNumber:line andParameterNumber:parameter];
             for(Look *look in lookBrick.script.object.lookList) {
                 [options addObject:look.name];
+                [images addObject:[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@%@/%@", [lookBrick.script.object projectPath], kProgramImagesDirName, look.fileName]]];
                 if([look.name isEqualToString:currentLook.name])
                     currentOptionIndex = optionIndex;
                 optionIndex++;
@@ -55,9 +57,17 @@
             if (currentLook && ![options containsObject:currentLook.name]) {
                 [options addObject:currentLook.name];
                 currentOptionIndex = optionIndex;
+                [images addObject:[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@%@/%@", [lookBrick.script.object projectPath], kProgramImagesDirName, currentLook.fileName]]];
             }
         }
         [self setValues:options];
+        [self setImages:images];
+        if (currentOptionIndex > 0) {
+            [self setCurrentImage:images[currentOptionIndex-1]];
+        } else {
+            [self setCurrentImage:nil];
+        }
+        
         [self setCurrentValue:options[currentOptionIndex]];
         [self setDelegate:(id<iOSComboboxDelegate>)self];
     }
@@ -67,6 +77,8 @@
 - (void)comboboxDonePressed:(iOSCombobox *)combobox withValue:(NSString *)value
 {
     [self.brickCell.dataDelegate updateBrickCellData:self withValue:value];
+    [combobox reloadInputViews];
+    [combobox setNeedsDisplay];
 }
 
 - (void)comboboxOpened:(iOSCombobox *)combobox

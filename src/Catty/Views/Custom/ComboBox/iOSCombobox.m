@@ -55,10 +55,9 @@
     [self.pickerView selectRow:[self.values indexOfObject:[self currentValue]] inComponent:0 animated:NO];
     self.keyboard = [[BSKeyboardControls alloc] initWithFields:@[self]];
     [self.keyboard setDelegate:self];
-    
+//    [self setCurrentImagee:[UIImage imageNamed:@"brush"]];
     self.inputView = self.pickerView;
 }
-
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -191,6 +190,27 @@
     CGContextFillPath(ctx);
     CGPathRelease(path);
     CGContextRestoreGState(ctx);
+    // ==============================
+    // Draw the image
+    // ==============================
+    if (self.currentImage) {
+        CGContextSaveGState(ctx);
+        
+        CGMutablePathRef path = CGPathCreateMutable();
+        
+        // the height of the triangle should be probably be about 40% of the height
+        // of the overall rectangle, based on the Safari dropdown
+        CGFloat centerX = rect.size.width - (ARROW_BOX_WIDTH)-20 - BORDER_OFFSET;
+        CGFloat centerY = rect.size.height / 2 + BORDER_OFFSET;
+        [self.currentImage drawInRect:CGRectMake(centerX-10,centerY-7.5f, 30, 15)];
+//        CGContextDrawImage(ctx, CGRectMake(centerX-10,centerY-7.5f, 30, 15), self.currentImage.CGImage);
+        
+        CGContextAddPath(ctx, path);
+        CGContextFillPath(ctx);
+        CGPathRelease(path);
+        CGContextRestoreGState(ctx);
+    }
+    
     
     // ==============================
     // Draw the text
@@ -231,6 +251,12 @@
     }
 }
 
+- (void)setCurrentImagee:(UIImage *)image
+{
+    self.currentImage = image;
+    [self setNeedsDisplay];
+}
+
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
@@ -252,6 +278,12 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     [self setCurrentValue:[self.values objectAtIndex:row]];
+    if (row > 0) {
+        [self setCurrentImage:[self.images objectAtIndex:row-1]];
+    } else {
+        [self setCurrentImagee:nil];
+    }
+    
     [self setNeedsDisplay];
     
     if ([self.delegate respondsToSelector:@selector(comboboxChanged:toValue:)])
