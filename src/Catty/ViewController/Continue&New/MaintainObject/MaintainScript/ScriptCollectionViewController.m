@@ -794,10 +794,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
     LXReorderableCollectionViewFlowLayout *layout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     layout.longPressGestureRecognizer.minimumPressDuration = 0.1;
-    self.navigationController.navigationBar.topItem.leftBarButtonItem.enabled = NO;
-    self.navigationController.navigationBar.topItem.rightBarButtonItem.enabled = NO;
-    self.navigationController.navigationBar.topItem.backBarButtonItem.enabled = NO;
     [self.navigationItem setHidesBackButton:YES animated:NO];
+    dispatch_async(dispatch_get_main_queue(), ^{
+       self.navigationItem.rightBarButtonItem.enabled = NO;
+    });
+    
 }
 
 -(void)turnOffInsertingBrickMode
@@ -808,10 +809,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
     LXReorderableCollectionViewFlowLayout *layout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     layout.longPressGestureRecognizer.minimumPressDuration = 0.5;
-    self.navigationController.navigationBar.topItem.leftBarButtonItem.enabled = YES;
-    self.navigationController.navigationBar.topItem.rightBarButtonItem.enabled = YES;
-    self.navigationController.navigationBar.topItem.backBarButtonItem.enabled = YES;
     [self.navigationItem setHidesBackButton:NO animated:NO];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    });
 }
 
 - (void)changeDeleteBarButtonState
