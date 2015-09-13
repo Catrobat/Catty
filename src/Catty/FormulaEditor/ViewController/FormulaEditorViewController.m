@@ -221,6 +221,13 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.sensorScrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
     self.calcScrollView.contentSize = CGSizeMake(self.calcScrollView.frame.size.width,self.calcScrollView.frame.size.height);
     
+    UITapGestureRecognizer* tapToDismissRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissFormulaEditor)];
+    [self.view addGestureRecognizer:tapToDismissRecognizer];
+    
+    UISwipeGestureRecognizer* swipeToDismissRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(dismissFormulaEditor)];
+    swipeToDismissRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
+    [self.view addGestureRecognizer:swipeToDismissRecognizer];
+    
     [self localizeView];
   
 }
@@ -347,6 +354,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
 }
 
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
 #pragma mark - TextField Actions
 - (IBAction)buttonPressed:(id)sender
 {
@@ -428,6 +440,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
     
 }
+
+-(void)dismissFormulaEditor
+{
+    [self dismissFormulaEditorViewController];
+}
+
 - (void)updateDeleteButton:(BOOL)enabled
 {
     [self.deleteButton setEnabled:enabled];
