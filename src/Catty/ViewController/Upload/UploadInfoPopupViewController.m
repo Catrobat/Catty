@@ -499,7 +499,9 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
                     [self.delegate dismissPopupWithCode:NO];
                     NSString *serverResponse = [dictionary valueForKey:answerTag];
                     NSDebug(@"Error: %@", serverResponse);
-                    [Util alertWithText:serverResponse];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [Util alertWithText:serverResponse];
+                    });
                     
                     if([statusCode isEqualToString:statusCodeTokenWrong]) {
                             //Token not valid

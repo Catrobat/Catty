@@ -216,6 +216,8 @@
 		92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A481A42F2A3008C771A /* iOSCombobox.m */; };
 		922FE8E11B963BDE005A19FA /* BrickSelectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 922FE8E01B963BDE005A19FA /* BrickSelectionManager.m */; };
 		922FE8E31B96430D005A19FA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 922FE8E21B96430D005A19FA /* Default-568h@2x.png */; };
+		923503901BA707DE00021F6A /* BaseLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9235038D1BA707DE00021F6A /* BaseLoginController.m */; };
+		923503911BA707DE00021F6A /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9235038F1BA707DE00021F6A /* LoginController.m */; };
 		9238C5831A3AE9920099F061 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */; };
 		928D4D791A7BD19A00E6DFA8 /* CatrobatUISlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 928D4D781A7BD19A00E6DFA8 /* CatrobatUISlider.m */; };
 		92D346BD1B8DDC0A009EB8F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */; };
@@ -1030,6 +1032,10 @@
 		92300D0818B2196700F2B4DC /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92300D0918B2196700F2B4DC /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92300D0A18B2196700F2B4DC /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9235038C1BA707DE00021F6A /* BaseLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLoginController.h; sourceTree = "<group>"; };
+		9235038D1BA707DE00021F6A /* BaseLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseLoginController.m; sourceTree = "<group>"; };
+		9235038E1BA707DE00021F6A /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
+		9235038F1BA707DE00021F6A /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
 		9238C57D1A3AE9920099F061 /* LoginPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginPopupViewController.h; sourceTree = "<group>"; };
 		9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginPopupViewController.m; sourceTree = "<group>"; };
 		928D4D771A7BD19A00E6DFA8 /* CatrobatUISlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CatrobatUISlider.h; path = CatrobatSlider/CatrobatUISlider.h; sourceTree = "<group>"; };
@@ -2692,6 +2698,10 @@
 		9238C57C1A3AE9920099F061 /* Upload */ = {
 			isa = PBXGroup;
 			children = (
+				9235038C1BA707DE00021F6A /* BaseLoginController.h */,
+				9235038D1BA707DE00021F6A /* BaseLoginController.m */,
+				9235038E1BA707DE00021F6A /* LoginController.h */,
+				9235038F1BA707DE00021F6A /* LoginController.m */,
 				9238C57D1A3AE9920099F061 /* LoginPopupViewController.h */,
 				9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */,
 				D63864631AE632FE008569E6 /* ProgramsForUploadViewController.h */,
@@ -5382,6 +5392,7 @@
 				92FF31081A24DCAA00093DA7 /* UserVariable.m in Sources */,
 				4C724E221B4D3E8C00E27479 /* CBXMLParserHelper.m in Sources */,
 				92FF30CE1A24DCAA00093DA7 /* IfLogicElseBrick.m in Sources */,
+				923503911BA707DE00021F6A /* LoginController.m in Sources */,
 				CA4E48BD1B1CEAE9003EA71E /* CBWhenScriptContext.swift in Sources */,
 				92FF2E941A24C7D800093DA7 /* Logger.m in Sources */,
 				92FF32A41A24E2F400093DA7 /* ChangeVolumeByNBrickCell.m in Sources */,
@@ -5432,6 +5443,7 @@
 				92FF2E911A24C7D800093DA7 /* DownloadImageCache.m in Sources */,
 				92FF30E81A24DCAA00093DA7 /* PointToBrick.m in Sources */,
 				4C724E341B4D3E8C00E27479 /* RepeatBrick+CBXMLHandler.m in Sources */,
+				923503901BA707DE00021F6A /* BaseLoginController.m in Sources */,
 				4C724E2E1B4D3E8C00E27479 /* IfLogicElseBrick+CBXMLHandler.m in Sources */,
 				4C724E311B4D3E8C00E27479 /* LoopEndBrick+CBXMLHandler.m in Sources */,
 				92FF30CA1A24DCAA00093DA7 /* BroadcastWaitBrick.m in Sources */,

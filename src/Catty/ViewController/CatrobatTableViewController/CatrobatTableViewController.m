@@ -325,7 +325,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 }
                 
             } else {
-                    [self showLoginView];
+                    [self performSegueWithIdentifier:@"segueToLogin" sender:self];
             }
 
             break;

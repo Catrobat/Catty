@@ -43,12 +43,21 @@
 @property (nonatomic, strong) Program *lastUsedProgram;
 @property (nonatomic, strong) NSMutableArray *programLoadingInfos;
 @property (nonatomic, strong) UIBarButtonItem *uploadButton;
-@property (nonatomic, strong) NSIndexPath *lastSelectedIndexPath;
+@property (nonatomic, strong) NSMutableArray *selectedIndexPaths;
+@property (nonatomic, strong) NSMutableArray *uploadingProgramInfos;
 
 @end
 
 
 @implementation ProgramsForUploadViewController
+
+- (NSMutableArray*)uploadingProgramInfos
+{
+    if (!_uploadingProgramInfos) {
+        _uploadingProgramInfos = [NSMutableArray new];
+    }
+    return _uploadingProgramInfos;
+}
 
 #pragma mark - View Events
 - (void)viewDidLoad {
@@ -114,7 +123,8 @@
     
     CatrobatBaseCell<CatrobatImageCell> *imageCell = (CatrobatBaseCell<CatrobatImageCell>*)cell;
     [self configureImageCell:imageCell atIndexPath:indexPath];
-    
+
+
     return imageCell;
 }
 
@@ -127,6 +137,18 @@
 - (void)configureImageCell:(CatrobatBaseCell<CatrobatImageCell>*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     ProgramLoadingInfo *info = [self.programLoadingInfos objectAtIndex:indexPath.row];
+    BOOL isSelcted = NO;
+    for (ProgramLoadingInfo *checkInfo in self.uploadingProgramInfos) {
+        if ([info isEqualToLoadingInfo:checkInfo]) {
+            isSelcted = YES;
+            break;
+        }
+    }
+    if (isSelcted) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     cell.titleLabel.text = info.visibleName;
     cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     cell.rightUtilityButtons = nil;
@@ -193,22 +215,20 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UITableViewCell *currentCell = [tableView cellForRowAtIndexPath:indexPath];
-    if (self.lastSelectedIndexPath) {
-        UITableViewCell *lastCell = [tableView cellForRowAtIndexPath:self.lastSelectedIndexPath];
-        lastCell.accessoryType = UITableViewCellAccessoryNone;
-
-        // if user taps twice on same cell than cell should be deselected
-        if (self.lastSelectedIndexPath.row == indexPath.row) {
-            UITableViewCell *lastCell = [tableView cellForRowAtIndexPath:self.lastSelectedIndexPath];
-            lastCell.accessoryType = UITableViewCellAccessoryNone;
-            self.lastSelectedIndexPath = nil;
-            return;
+    if (currentCell.accessoryType == UITableViewCellAccessoryNone) {
+        //ONLY allow 1 selection
+        [self.uploadingProgramInfos removeAllObjects];
+        for (UITableViewCell * cell in self.tableView.visibleCells) {
+            cell.accessoryType = UITableViewCellAccessoryNone;
         }
+        currentCell.accessoryType = UITableViewCellAccessoryCheckmark;
+        //
+        [self.uploadingProgramInfos addObject:[self.programLoadingInfos objectAtIndex:indexPath.row]];
+    }else{
+        currentCell.accessoryType = UITableViewCellAccessoryNone;
+        [self.uploadingProgramInfos removeObject:[self.programLoadingInfos objectAtIndex:indexPath.row]];
     }
 
-    currentCell.accessoryType = UITableViewCellAccessoryCheckmark;
-    self.lastSelectedIndexPath = indexPath;
-    self.lastUsedProgram = [Program programWithLoadingInfo:[self.programLoadingInfos objectAtIndex:self.lastSelectedIndexPath.row]];
 }
 
 #pragma mark - Actions
@@ -248,11 +268,12 @@
         UploadInfoPopupViewController *popupViewController = [[UploadInfoPopupViewController alloc] init];
         popupViewController.delegate = self;
         
-        if (self.lastSelectedIndexPath) {
-            popupViewController.program = self.lastUsedProgram;
+        if (self.uploadingProgramInfos.count) {
+            popupViewController.program = [Program programWithLoadingInfo:self.uploadingProgramInfos[0]];
             
             self.tableView.scrollEnabled = NO;
-            [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame upwardsCenterByFactor:4.5];
+            CGRect rect = CGRectMake(0, self.tableView.contentOffset.y, self.tableView.frame.size.width, self.tableView.contentOffset.y+self.tableView.frame.size.height);
+            [self presentPopupViewController:popupViewController WithFrame:rect upwardsCenterByFactor:4.5];
             self.navigationItem.leftBarButtonItem.enabled = NO;
             self.uploadButton.enabled = NO;
         } else {
