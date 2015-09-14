@@ -200,9 +200,18 @@
         
         // the height of the triangle should be probably be about 40% of the height
         // of the overall rectangle, based on the Safari dropdown
-        CGFloat centerX = rect.size.width - (ARROW_BOX_WIDTH)-20 - BORDER_OFFSET;
+        CGFloat centerX = rect.size.width - (ARROW_BOX_WIDTH)- 20 - BORDER_OFFSET;
         CGFloat centerY = rect.size.height / 2 + BORDER_OFFSET;
-        [self.currentImage drawInRect:CGRectMake(centerX-10,centerY-7.5f, 30, 15)];
+        CGFloat width = 0;
+        CGFloat height = 20;
+        if (self.currentImage.size.width > self.currentImage.size.height) {
+            width = 30;
+        } else if (self.currentImage.size.width < self.currentImage.size.height) {
+            width = 15;
+        } else{
+            width = 20;
+        }
+        [self.currentImage drawInRect:CGRectMake(centerX - 10,centerY - 10.0f, width, height)];
 //        CGContextDrawImage(ctx, CGRectMake(centerX-10,centerY-7.5f, 30, 15), self.currentImage.CGImage);
         
         CGContextAddPath(ctx, path);
