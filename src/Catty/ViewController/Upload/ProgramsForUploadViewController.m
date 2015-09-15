@@ -269,7 +269,8 @@
         popupViewController.delegate = self;
         
         if (self.uploadingProgramInfos.count) {
-            popupViewController.program = [Program programWithLoadingInfo:self.uploadingProgramInfos[0]];
+            Program * prog = [Program programWithLoadingInfo:self.uploadingProgramInfos[0]];
+            popupViewController.program = prog;
             
             self.tableView.scrollEnabled = NO;
             CGRect rect = CGRectMake(0, self.tableView.contentOffset.y, self.tableView.frame.size.width, self.tableView.contentOffset.y+self.tableView.frame.size.height);
@@ -293,9 +294,10 @@
         self.uploadButton.enabled = YES;
         [self dismissPopupViewController];
         self.navigationItem.leftBarButtonItem.enabled = YES;
-        if (uploadSuccessfull) {
-            [Util alertWithText:kLocalizedUploadSuccessfull];
-        }
+        //TODO SCHOW NOTIFIER
+//        if (uploadSuccessfull) {
+//            [Util alertWithText:kLocalizedUploadSuccessfull];
+//        }
         return YES;
     }
     return NO;

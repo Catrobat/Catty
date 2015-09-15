@@ -50,6 +50,7 @@
 #import "ProgramsForUploadViewController.h"
 #import "Util.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
+#import "LoginController.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
     kContinueProgramVC = 0,
@@ -321,11 +322,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
         case kUploadVC:
             if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
                 if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
-                    [self performSegueWithIdentifier:identifier sender:self];
+                    [self performSegueWithIdentifier:@"segueToUpload" sender:self];
                 }
                 
             } else {
-                    [self performSegueWithIdentifier:@"segueToLogin" sender:self];
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
+                LoginController * vc = [storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
+                vc.catTVC = self;
+                [self.navigationController pushViewController:vc animated:YES];
             }
 
             break;
@@ -335,6 +339,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+-(void)afterSuccessfulLogin
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
+            if ([self shouldPerformSegueWithIdentifier:@"segueToUpload" sender:self]) {
+                [self performSegueWithIdentifier:@"segueToUpload" sender:self];
+            }
+        }
+    });
+}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

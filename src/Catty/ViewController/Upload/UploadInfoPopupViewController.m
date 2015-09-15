@@ -40,8 +40,8 @@
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "LanguageTranslationDefines.h"
 #import "NSData+Hashes.h"
-#import "Keychain.h"
 #import "KeychainDefines.h"
+#import "JNKeychain.h"
 
 #define uploadParameterTag @"upload"                 //zip file with program
 #define fileChecksumParameterTag @"fileChecksum"     //md5 hash
@@ -76,7 +76,6 @@
 
 @property (strong, nonatomic) NSURLSession *session;
 @property (strong, nonatomic) NSURLSessionDataTask *dataTask;
-@property (nonatomic, strong) Keychain *keychain;
 
 @end
 
@@ -134,7 +133,6 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
     [super viewDidLoad];
     self.view.frame = CGRectMake(0,0, [Util screenWidth]-10, POPUP_FRAME_HEIGHT);
     self.view.backgroundColor = [UIColor backgroundColor];
-    self.keychain = [[Keychain alloc] initWithService:kcServiceName withGroup:nil];
     [self initLoginHeader];
     [self initProgramNameViewElements];
     [self initSizeViewElements];
@@ -418,6 +416,7 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
         
         NSMutableData *body = [NSMutableData data];
         
+        //TODO NAME & DESCRIPTION WRONG
         //Program Name
         [self setFormDataParameter:programNameTag withData:[self.program.header.programName dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
         
@@ -425,32 +424,18 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
         [self setFormDataParameter:programDescriptionTag withData:[self.program.header.programDescription dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
         
         //User Email
-        NSString *userEmail = @"";
-        NSData *userEmailData = [self.keychain find:kcEmail];
-        if(userEmailData) {
-            userEmail = [[NSString alloc] initWithData:userEmailData encoding:NSUTF8StringEncoding];
-            NSDebug(@"Email is %@", userEmail);
-        } else {
-            NSDebug(@"No email address found in keychain!");
-        }
-        [self setFormDataParameter:userEmailTag withData:[[[NSUserDefaults standardUserDefaults] valueForKey:userEmail] dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
+        [self setFormDataParameter:userEmailTag withData:[[[NSUserDefaults standardUserDefaults] valueForKey:kcEmail] dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
         
         //checksum
         [self setFormDataParameter:fileChecksumParameterTag withData:[checksum dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
         
+        
+        NSString*token = [JNKeychain loadValueForKey:kUserLoginToken];
         //token
-        [self setFormDataParameter:tokenParameterTag withData:[[[NSUserDefaults standardUserDefaults] valueForKey:kUserLoginToken] dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
+        [self setFormDataParameter:tokenParameterTag withData:[token dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
         
         //Username
-        NSString *userName = @"";
-        NSData *usernameData = [self.keychain find:kcUsername];
-        if(usernameData) {
-            userName = [[NSString alloc] initWithData:usernameData encoding:NSUTF8StringEncoding];
-            NSDebug(@"Username is %@", userName);
-        } else {
-            NSDebug(@"No username found in keychain!");
-        }
-        [self setFormDataParameter:userNameTag withData:[[[NSUserDefaults standardUserDefaults] valueForKey:userName] dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
+        [self setFormDataParameter:userNameTag withData:[[[NSUserDefaults standardUserDefaults] valueForKey:kcUsername] dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
         
         //Language
         [self setFormDataParameter:deviceLanguageTag withData:[[[NSLocale preferredLanguages] objectAtIndex:0] dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
@@ -486,17 +471,18 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
                     NSDebug(@"Upload successful");
                     
                         //Set unique Program-ID received from server
-                    self.program.header.programID = [NSString stringWithFormat:@"%@", [dictionary valueForKey:projectIDTag]];
+                    NSString* projectId = [NSString stringWithFormat:@"%@", [dictionary valueForKey:projectIDTag]];
+                    self.program.header.programID = projectId;
                     [self.program saveToDisk];
                     
                         //Set new token
                     NSString *newToken = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenParameterTag]];
-                    [[NSUserDefaults standardUserDefaults] setValue:newToken forKey:kUserLoginToken];
-                    
+                    [JNKeychain saveValue:newToken forKey:kUserLoginToken];
+                    //TODO is not dismissing
                     [self.delegate dismissPopupWithCode:YES];
                     
                 } else {
-                    [self.delegate dismissPopupWithCode:NO];
+                    
                     NSString *serverResponse = [dictionary valueForKey:answerTag];
                     NSDebug(@"Error: %@", serverResponse);
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -512,7 +498,9 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
                         NSArray *newViewArray = [NSArray arrayWithArray:viewArray];
                         [self.parentViewController.navigationController setViewControllers:newViewArray animated:YES];
                     }
+                    [self.delegate dismissPopupWithCode:NO];
                 }
+                
 
             }
         }];

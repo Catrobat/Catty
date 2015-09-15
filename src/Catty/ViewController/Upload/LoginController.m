@@ -28,7 +28,8 @@
 #import "ProgramDefines.h"
 #import "SegueDefines.h"
 #import "Util.h"
-#import "Keychain.h"
+#import "JNKeychain.h"
+#import "CatrobatTableViewController.h"
 
 #import "NetworkDefines.h"
 #import "ProgramDefines.h"
@@ -58,7 +59,7 @@
 @property (nonatomic, strong) NSString *password;
 @property (strong, nonatomic) NSURLSession *session;
 @property (strong, nonatomic) NSURLSessionDataTask *dataTask;
-@property (nonatomic, strong) Keychain *keychain;
+//@property (nonatomic, strong) Keychain *keychain;
 @end
 
 @implementation LoginController
@@ -170,7 +171,17 @@
     [self.registerButton setTitle:@"Register" forState:UIControlStateNormal];
     [self.registerButton setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateNormal];
     [self.registerButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
+    [self.registerButton addTarget:self action:@selector(registerAction) forControlEvents:UIControlEventTouchUpInside];
     self.registerButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.registerButton.frame.size.height);
+    
+}
+
+-(void)willMoveToParentViewController:(UIViewController *)parent
+{
+    if (!parent) {
+        [self.catTVC afterSuccessfulLogin];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -245,20 +256,20 @@
     [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
--(void)addOrUpdateKeychainItem:(NSString*)key withData:(NSString*)dataString
-{
-    NSData * value = [dataString dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSData *existingData = [self.keychain find:key];
-    if (existingData == nil) {
-        [self.keychain insert:key :value];
-        NSDebug(@"No existing entry in keychain for %@", key);
-        
-    } else {
-        [self.keychain update:key :value];
-        NSDebug(@"Updated entry in keychain for %@", key);
-    }
-}
+//-(void)addOrUpdateKeychainItem:(NSString*)key withData:(NSString*)dataString
+//{
+//    NSData * value = [dataString dataUsingEncoding:NSUTF8StringEncoding];
+//    
+//    NSData *existingData = [self.keychain find:key];
+//    if (existingData == nil) {
+//        [self.keychain insert:key :value];
+//        NSDebug(@"No existing entry in keychain for %@", key);
+//        
+//    } else {
+//        [self.keychain update:key :value];
+//        NSDebug(@"Updated entry in keychain for %@", key);
+//    }
+//}
 
 
 #pragma mark Actions
@@ -300,9 +311,6 @@
 {
     NSDebug(@"Login started with username:%@ and password:%@ and email:%@", username, password, email);
     
-    //Example URL: https://pocketcode.org/api/loginOrRegister/loginOrRegister.json?registrationUsername=MaxMuster&registrationPassword=MyPassword
-    //For testing use: https://catroid-test.catrob.at/api/loginOrRegister/loginOrRegister.json?registrationUsername=MaxMuster&registrationPassword=MyPassword
-    
     BOOL useTestServer = [[NSUserDefaults standardUserDefaults] boolForKey:kUseTestServerForUploadAndLogin];
     NSString *uploadUrl = useTestServer ? kTestLoginOrRegisterUrl : kLoginOrRegisterUrl;
     NSString *urlString = [NSString stringWithFormat:@"%@/%@", uploadUrl, (NSString*)kConnectionLoginOrRegister];
@@ -334,6 +342,8 @@
     NSDebug(@"Current Country is: %@", countryCode);
     [self setFormDataParameter:registrationCountryTag withData:[countryCode dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
     
+    //Language ?! 
+    
     // close form
     [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", httpBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
     // set request body
@@ -361,7 +371,8 @@
                 if ([statusCode isEqualToString:statusCodeOK] || [statusCode  isEqualToString:statusCodeRegistrationOK]) {
                     
                     if ([statusCode isEqualToString:statusCodeRegistrationOK]) {
-                        [Util alertWithText:kLocalizedRegistrationSuccessfull];
+                        //TODO Notify
+//                        [Util alertWithText:kLocalizedRegistrationSuccessfull];
                     }
                     
                     NSDebug(@"Login successful");
@@ -371,11 +382,14 @@
                     //save username, password and email in keychain and token in nsuserdefaults
                     [[NSUserDefaults standardUserDefaults] setBool:true forKey:kUserIsLoggedIn];
                     [[NSUserDefaults standardUserDefaults] setValue:token forKey:kUserLoginToken];
+                    [[NSUserDefaults standardUserDefaults] setValue:self.userName forKey:kcUsername];
+                    [[NSUserDefaults standardUserDefaults] setValue:self.userEmail forKey:kcEmail];
                     [[NSUserDefaults standardUserDefaults] synchronize];
-                    
-                    [self addOrUpdateKeychainItem:kcUsername withData:self.userName];
-                    [self addOrUpdateKeychainItem:kcPassword withData:self.password];
-                    [self addOrUpdateKeychainItem:kcEmail withData:self.userEmail];
+            
+                    [JNKeychain saveValue:self.password forKey:kcPassword];
+                    [JNKeychain saveValue:token forKey:kUserLoginToken];
+
+                    [self.navigationController popViewControllerAnimated:NO];
                     
                 } else {
                     self.loginButton.enabled = YES;
@@ -397,6 +411,22 @@
         NSDebug(@"Connection could not be established");
         [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
     }
+}
+
+
+- (NSURLSession *)session {
+    if (!_session) {
+        // Initialize Session Configuration
+        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        
+        // Configure Session Configuration
+        [sessionConfiguration setHTTPAdditionalHeaders:@{ @"Accept" : @"application/json" }];
+        
+        // Initialize Session
+        _session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
+    }
+    
+    return _session;
 }
 
 -(void)openTermsOfUse

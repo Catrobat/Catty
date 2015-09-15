@@ -22,9 +22,11 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseLoginController.h"
+#import "CatrobatTableViewController.h"
 
 @interface LoginController : BaseLoginController
 
+@property (nonatomic, weak) CatrobatTableViewController * catTVC;
 @property (nonatomic, weak) IBOutlet UITextField * usernameField;
 
 @property (nonatomic, weak) IBOutlet UITextField * passwordField;

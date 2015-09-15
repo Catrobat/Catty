@@ -28,7 +28,7 @@
 #import "ProgramDefines.h"
 #import "SegueDefines.h"
 #import "Util.h"
-#import "Keychain.h"
+
 
 #import "NetworkDefines.h"
 #import "ProgramDefines.h"
@@ -66,7 +66,6 @@
 @property (nonatomic, strong) NSString *password;
 @property (strong, nonatomic) NSURLSession *session;
 @property (strong, nonatomic) NSURLSessionDataTask *dataTask;
-@property (nonatomic, strong) Keychain *keychain;
 
 @end
 
@@ -127,7 +126,6 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
     [super viewDidLoad];
     self.view.frame = CGRectMake(0,0, [Util screenWidth]-10, LOGIN_VIEW_FRAME_HEIGHT);
     self.view.backgroundColor = [UIColor backgroundColor];
-    self.keychain = [[Keychain alloc] initWithService:kcServiceName withGroup:nil];
     [self initLoginHeader];
     [self initUsernameViewElements];
     [self initPasswordViewElements];
@@ -173,11 +171,7 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
                                                                width:self.contentView.frame.size.width - LOGIN_VIEW_TEXTFIELD_POSITION_X - 2*LOGIN_VIEW_PADDING
                                                            andHeight:LOGIN_VIEW_TEXTFIELD_HEIGHT];
     
-    NSString *userName = @"";
-    NSData *usernameData = [self.keychain find:kcUsername];
-    if(usernameData) {
-        userName = [[NSString alloc] initWithData:usernameData encoding:NSUTF8StringEncoding];
-    }
+    NSString *userName = [[NSUserDefaults standardUserDefaults] stringForKey:kcUsername];
     [self.usernameTextField setText:userName];
 }
 
@@ -196,11 +190,7 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
                                                            andHeight:LOGIN_VIEW_TEXTFIELD_HEIGHT];
     [self.passwordTextField setSecureTextEntry:YES];
     
-    NSString *password = @"";
-    NSData *passwordData = [self.keychain find:kcPassword];
-    if(passwordData) {
-        password = [[NSString alloc] initWithData:passwordData encoding:NSUTF8StringEncoding];
-    }
+    NSString *password = [[NSUserDefaults standardUserDefaults] stringForKey:kcPassword];
     [self.passwordTextField setText:password];
 }
 
@@ -220,11 +210,7 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
     
     [self.emailTextField setKeyboardType:UIKeyboardTypeEmailAddress];
     
-    NSString *userEmail = @"";
-    NSData *emailData = [self.keychain find:kcEmail];
-    if(emailData) {
-        userEmail = [[NSString alloc] initWithData:emailData encoding:NSUTF8StringEncoding];
-    }
+    NSString *userEmail = [[NSUserDefaults standardUserDefaults] stringForKey:kcEmail];
     [self.emailTextField setText:userEmail];
 }
 
@@ -442,20 +428,20 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
     [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
--(void)addOrUpdateKeychainItem:(NSString*)key withData:(NSString*)dataString
-{
-    NSData * value = [dataString dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSData *existingData = [self.keychain find:key];
-    if (existingData == nil) {
-        [self.keychain insert:key :value];
-        NSDebug(@"No existing entry in keychain for %@", key);
-        
-    } else {
-        [self.keychain update:key :value];
-        NSDebug(@"Updated entry in keychain for %@", key);
-    }
-}
+//-(void)addOrUpdateKeychainItem:(NSString*)key withData:(NSString*)dataString
+//{
+//    NSData * value = [dataString dataUsingEncoding:NSUTF8StringEncoding];
+//    
+//    NSData *existingData = [self.keychain find:key];
+//    if (existingData == nil) {
+//        [self.keychain insert:key :value];
+//        NSDebug(@"No existing entry in keychain for %@", key);
+//        
+//    } else {
+//        [self.keychain update:key :value];
+//        NSDebug(@"Updated entry in keychain for %@", key);
+//    }
+//}
 
 
 #pragma mark Actions
@@ -559,9 +545,10 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
                     [[NSUserDefaults standardUserDefaults] setValue:token forKey:kUserLoginToken];
                     [[NSUserDefaults standardUserDefaults] synchronize];
                     
-                    [self addOrUpdateKeychainItem:kcUsername withData:self.userName];
-                    [self addOrUpdateKeychainItem:kcPassword withData:self.password];
-                    [self addOrUpdateKeychainItem:kcEmail withData:self.userEmail];
+                    //LOOK FOR LOGINCONTROLLER
+//                    [self addOrUpdateKeychainItem:kcUsername withData:self.userName];
+//                    [self addOrUpdateKeychainItem:kcPassword withData:self.password];
+//                    [self addOrUpdateKeychainItem:kcEmail withData:self.userEmail];
                     
                     [self.delegate dismissPopupWithCode:YES];
                     
