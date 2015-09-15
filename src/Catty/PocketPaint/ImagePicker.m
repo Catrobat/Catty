@@ -93,6 +93,13 @@
                                    style:UIAlertActionStyleDefault
                                    handler:^(UIAlertAction *action)
                                    {
+                                       if ([self.canvas.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
+                                           if (self.canvas.editingPath) {
+                                               [self.canvas.delegate addPaintedImage:self.canvas.saveView.image andPath:self.canvas.editingPath];
+                                           } else {
+                                               [self.canvas.delegate addPaintedImage:self.canvas.saveView.image andPath:@"settings"];
+                                           }
+                                       }
                                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
                                    }];
     
