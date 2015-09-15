@@ -58,14 +58,15 @@
     // sanity check => stack must contain only one element!!
     // only <program> root-element must remain on the stack!!
     if (context.currentPositionStack.numberOfXmlElements != 1) {
-        NSError(@"FATAL! Unable to serialize program. Current position stack contains no or more than \
-                1 element but should contain only one element named 'program'");
+        NSError(@"FATAL! Unable to serialize program. Current position stack contains no or more \
+                than 1 element but should contain only one element named 'program'");
         abort();
     }
     NSString *remainingXmlElementName = [context.currentPositionStack popXmlElementName];
     if (! [remainingXmlElementName isEqualToString:@"program"]) {
-        NSError(@"FATAL! Unable to serialize program. Current position stack contains an element named \
-                '%@' but should contain an element with name 'program'", remainingXmlElementName);
+        NSError(@"FATAL! Unable to serialize program. Current position stack contains an element \
+                'named %@' but should contain an element with name 'program'",
+                remainingXmlElementName);
         abort();
     }
     
@@ -81,18 +82,7 @@
         NSString *xmlString = [NSString stringWithFormat:@"%@\n%@", kCatrobatHeaderXMLDeclaration,
                                [document.rootElement XMLStringPrettyPrinted:YES]];
 
-        // FIXME: [GDataXMLElement XMLStringPrettyPrinted] always adds "&amp;" to already escaped strings
-        //        Unfortunately XMLStringPrettyPrinted only escapes "&" to "&amp;" and ignores all other
-        //        invalid characters that have to be escaped. Therefore we can't rely on
-        //        the XMLStringPrettyPrinted method. {
-        xmlString = [xmlString stringByReplacingOccurrencesOfString:@"&amp;lt;" withString:@"&lt;"];
-        xmlString = [xmlString stringByReplacingOccurrencesOfString:@"&amp;gt;" withString:@"&gt;"];
-        xmlString = [xmlString stringByReplacingOccurrencesOfString:@"&amp;amp;" withString:@"&amp;"];
-        xmlString = [xmlString stringByReplacingOccurrencesOfString:@"&amp;quot;" withString:@"&quot;"];
-        xmlString = [xmlString stringByReplacingOccurrencesOfString:@"&amp;apos;" withString:@"&apos;"];
-        // }
-
-        NSDebug(@"%@", xmlString);
+        NSDebug(@"Generated XML output:\n%@", xmlString);
         NSError *error = nil;
 
         if (! [xmlString writeToFile:self.xmlPath atomically:YES encoding:NSUTF8StringEncoding error:&error]) {
@@ -107,5 +97,6 @@
         NSError(@"Program could not be serialized! %@", [exception description]);
     }
 }
+
 
 @end

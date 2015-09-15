@@ -37,7 +37,8 @@
 @implementation Program (CBXMLHandler)
 
 #pragma mark - Parsing
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement
+withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
     [XMLError exceptionIfNode:xmlElement isNilOrNodeNameNotEquals:@"program"];
     [XMLError exceptionIfNil:context message:@"No context given!"];
@@ -51,13 +52,15 @@
     return program;
 }
 
-+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement
+withContextForLanguageVersion095:(CBXMLParserContext*)context
 {
     return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
 }
 
 #pragma mark Header parsing
-+ (Header*)parseAndCreateHeaderFromElement:(GDataXMLElement*)programElement withContext:(CBXMLParserContext*)context
++ (Header*)parseAndCreateHeaderFromElement:(GDataXMLElement*)programElement
+                               withContext:(CBXMLParserContext*)context
 {
     NSArray *headerNodes = [programElement elementsForName:@"header"];
     [XMLError exceptionIf:[headerNodes count] notEquals:1 message:@"Invalid header given!"];
@@ -72,10 +75,12 @@
     [XMLError exceptionIf:[objectListElements count] notEquals:1 message:@"No objectList given!"];
     NSArray *objectElements = [[objectListElements firstObject] children];
     [XMLError exceptionIf:[objectListElements count] equals:0
-                  message:@"No objects in objectList, but there must exist at least 1 object (background)!!"];
+                  message:@"No objects in objectList, but there must exist "\
+                          "at least 1 object (background)!!"];
     NSMutableArray *objectList = [NSMutableArray arrayWithCapacity:[objectElements count]];
     for (GDataXMLElement *objectElement in objectElements) {
-        SpriteObject *spriteObject = [context parseFromElement:objectElement withClass:[SpriteObject class]];
+        SpriteObject *spriteObject = [context parseFromElement:objectElement
+                                                     withClass:[SpriteObject class]];
         [XMLError exceptionIfNil:spriteObject message:@"Unable to parse SpriteObject!"];
         [objectList addObject:spriteObject];
     }
@@ -101,7 +106,9 @@
             if (pointedObjectInContext == spriteObject)
                 found = YES;
         }
-        [XMLError exceptionIf:found equals:NO message:@"Pointed object with name %@ not found in object list!", pointedObjectInContext.name];
+        [XMLError exceptionIf:found equals:NO
+                      message:@"Pointed object with name %@ not found in object list!",
+         pointedObjectInContext.name];
     }
     return objectList;
 }
@@ -113,7 +120,8 @@
     return [context parseFromElement:programElement withClass:[VariablesContainer class]];
 }
 
-+ (void)addMissingVariablesToVariablesContainer:(VariablesContainer*)variablesContainer withContext:(CBXMLParserContext*)context
++ (void)addMissingVariablesToVariablesContainer:(VariablesContainer*)variablesContainer
+                                    withContext:(CBXMLParserContext*)context
 {
     for(NSString *objectName in context.formulaVariableNameList) {
         NSArray *variableList = [context.formulaVariableNameList objectForKey:objectName];
@@ -131,14 +139,16 @@
         
         for(NSString *variableName in variableList) {
             if(![variablesContainer getUserVariableNamed:variableName forSpriteObject:object]) {
-                NSMutableArray *objectVariableList = [variablesContainer.objectVariableList objectForKey:object];
+                NSMutableArray *objectVariableList = [variablesContainer.objectVariableList
+                                                      objectForKey:object];
                 if(!objectVariableList)
                     objectVariableList = [NSMutableArray new];
                 UserVariable *userVariable = [UserVariable new];
                 userVariable.name = variableName;
                 [objectVariableList addObject:userVariable];
                 [variablesContainer.objectVariableList setObject:objectVariableList forKey:object];
-                NSDebug(@"Added UserVariable with name %@ to global object variable list with object %@", variableName, object.name);
+                NSDebug(@"Added UserVariable with name %@ to global object "\
+                        "variable list with object %@", variableName, object.name);
             }
         }
     }
@@ -155,21 +165,22 @@
     GDataXMLElement *xmlElement = [GDataXMLElement elementWithName:@"program" context:context];
     [xmlElement addChild:[self.header xmlElementWithContext:context] context:context];
 
-    GDataXMLElement *objectListXmlElement = [GDataXMLElement elementWithName:@"objectList" context:context];
+    GDataXMLElement *objectListXmlElement = [GDataXMLElement elementWithName:@"objectList"
+                                                                     context:context];
     for (id object in self.objectList) {
         [XMLError exceptionIf:[object isKindOfClass:[SpriteObject class]] equals:NO
                       message:@"Invalid sprite object instance given"];
-        [objectListXmlElement addChild:[((SpriteObject*)object) xmlElementWithContext:context] context:context];
+        [objectListXmlElement addChild:[((SpriteObject*)object) xmlElementWithContext:context]
+                               context:context];
     }
     [xmlElement addChild:objectListXmlElement context:context];
 
     if (self.variables) {
         [xmlElement addChild:[self.variables xmlElementWithContext:context] context:context];
     }
-    
+
     // add pseudo <settings/> element to produce a Catroid equivalent XML (unused at the moment)
     [xmlElement addChild:[GDataXMLElement elementWithName:@"settings" context:nil]];
-     
     return xmlElement;
 }
 
