@@ -2695,7 +2695,7 @@
 			path = ../iOS_Lang;
 			sourceTree = "<group>";
 		};
-		9238C57C1A3AE9920099F061 /* Upload */ = {
+		9238C57C1A3AE9920099F061 /* Upload/Login */ = {
 			isa = PBXGroup;
 			children = (
 				9235038C1BA707DE00021F6A /* BaseLoginController.h */,
@@ -2709,6 +2709,7 @@
 				D63864661AE6334E008569E6 /* UploadInfoPopupViewController.h */,
 				D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */,
 			);
+			name = Upload/Login;
 			path = Upload;
 			sourceTree = "<group>";
 		};
@@ -3640,7 +3641,7 @@
 		92FF310A1A24DEB300093DA7 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				9238C57C1A3AE9920099F061 /* Upload */,
+				9238C57C1A3AE9920099F061 /* Upload/Login */,
 				92FF310B1A24DEB300093DA7 /* BaseViewController */,
 				92FF31121A24DEB300093DA7 /* CatrobatTableViewController */,
 				92FF31171A24DEB300093DA7 /* Continue&New */,

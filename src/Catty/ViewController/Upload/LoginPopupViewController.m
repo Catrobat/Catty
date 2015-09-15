@@ -533,7 +533,7 @@ const CGFloat LOGIN_VIEW_STANDARD_LINEWIDTH = 2.0f;
                 if ([statusCode isEqualToString:statusCodeOK] || [statusCode  isEqualToString:statusCodeRegistrationOK]) {
                     
                     if ([statusCode isEqualToString:statusCodeRegistrationOK]) {
-                        [Util alertWithText:kLocalizedRegistrationSuccessfull];
+                        [Util alertWithText:kLocalizedRegistrationSuccessful];
                     }
                     
                     NSDebug(@"Login successful");

@@ -30,6 +30,7 @@
 #import "Util.h"
 #import "JNKeychain.h"
 #import "CatrobatTableViewController.h"
+#import "BDKNotifyHUD.h"
 
 #import "NetworkDefines.h"
 #import "ProgramDefines.h"
@@ -371,8 +372,7 @@
                 if ([statusCode isEqualToString:statusCodeOK] || [statusCode  isEqualToString:statusCodeRegistrationOK]) {
                     
                     if ([statusCode isEqualToString:statusCodeRegistrationOK]) {
-                        //TODO Notify
-//                        [Util alertWithText:kLocalizedRegistrationSuccessfull];
+                        [self showRegistrationSuccessfulView];
                     }
                     
                     NSDebug(@"Login successful");
@@ -413,6 +413,32 @@
     }
 }
 
+- (void)showRegistrationSuccessfulView
+{
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName]
+                                                    text:kLocalizedRegistrationSuccessful];
+    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
+    hud.center = CGPointMake(self.view.center.x, self.view.center.y + kBDKNotifyHUDCenterOffsetY);
+    hud.tag = kRegistrationViewTag;
+    [self.view addSubview:hud];
+    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
+                       speed:kBDKNotifyHUDPresentationSpeed
+                      inView:self.view
+                  completion:^{ [hud removeFromSuperview]; }];
+}
+- (void)showLoginSuccessfulView
+{
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName]
+                                                    text:kLocalizedLoginSuccessful];
+    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
+    hud.center = CGPointMake(self.view.center.x, self.view.center.y + kBDKNotifyHUDCenterOffsetY);
+    hud.tag = kLoginViewTag;
+    [self.view addSubview:hud];
+    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
+                       speed:kBDKNotifyHUDPresentationSpeed
+                      inView:self.view
+                  completion:^{ [hud removeFromSuperview]; }];
+}
 
 - (NSURLSession *)session {
     if (!_session) {

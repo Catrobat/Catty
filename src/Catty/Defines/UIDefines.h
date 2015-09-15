@@ -69,9 +69,12 @@
 #define kMenuImageNameUpload @"upload"
 
 // view tags
-#define kPlaceHolderTag 99997
-#define kLoadingViewTag 99998
-#define kSavedViewTag   99999
+#define kPlaceHolderTag        99994
+#define kLoadingViewTag        99995
+#define kSavedViewTag          99996
+#define kRegistrationViewTag   99997
+#define kLoginViewTag          99998
+#define kUploadViewTag         99999
 
 #define kAddScriptCategoryTableViewBottomMargin 15.0f
 

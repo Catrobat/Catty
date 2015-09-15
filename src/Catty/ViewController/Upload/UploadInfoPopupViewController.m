@@ -476,10 +476,13 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
                     [self.program saveToDisk];
                     
                         //Set new token
-                    NSString *newToken = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenParameterTag]];
-                    [JNKeychain saveValue:newToken forKey:kUserLoginToken];
-                    //TODO is not dismissing
-                    [self.delegate dismissPopupWithCode:YES];
+//                    NSString *newToken = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenParameterTag]];
+//                    [JNKeychain saveValue:newToken forKey:kUserLoginToken];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.delegate dismissPopupWithCode:YES];
+                    });
+                    
                     
                 } else {
                     
@@ -487,6 +490,7 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
                     NSDebug(@"Error: %@", serverResponse);
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [Util alertWithText:serverResponse];
+                        [self.delegate dismissPopupWithCode:NO];
                     });
                     
                     if([statusCode isEqualToString:statusCodeTokenWrong]) {
@@ -498,7 +502,7 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
                         NSArray *newViewArray = [NSArray arrayWithArray:viewArray];
                         [self.parentViewController.navigationController setViewControllers:newViewArray animated:YES];
                     }
-                    [self.delegate dismissPopupWithCode:NO];
+                    
                 }
                 
 
