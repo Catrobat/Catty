@@ -50,7 +50,7 @@
 #import "ProgramsForUploadViewController.h"
 #import "Util.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
-#import "LoginController.h"
+#import "LoginViewController.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
     kContinueProgramVC = 0,
@@ -327,7 +327,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 
             } else {
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
-                LoginController * vc = [storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
+                LoginViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
                 vc.catTVC = self;
                 [self.navigationController pushViewController:vc animated:YES];
             }

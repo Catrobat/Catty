@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "LoginController.h"
+#import "LoginViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "LanguageTranslationDefines.h"
@@ -54,7 +54,7 @@
 
 //web status codes are on: https://github.com/Catrobat/Catroweb/blob/master/statusCodes.php
 
-@interface LoginController ()
+@interface LoginViewController ()
 @property (nonatomic, strong) NSString *userEmail;
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *password;
@@ -63,7 +63,7 @@
 //@property (nonatomic, strong) Keychain *keychain;
 @end
 
-@implementation LoginController
+@implementation LoginViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -78,6 +78,13 @@
 {
     [super viewDidLoad];
 	
+    [self initView];
+    
+}
+
+
+-(void)initView
+{
     UIColor* mainColor = [UIColor backgroundColor];
     UIColor* darkColor = [UIColor globalTintColor];
     
@@ -98,7 +105,7 @@
     self.infoLabel.font =  [UIFont fontWithName:boldFontName size:14.0f];
     self.infoLabel.text = @"Welcome back, please login below";
     self.infoLabel.frame = CGRectMake(0, 100, self.view.frame.size.width, self.infoLabel.frame.size.height);
-
+    
     currentHeight = 100+self.infoLabel.frame.size.height;
     self.usernameField.backgroundColor = [UIColor whiteColor];
     self.usernameField.placeholder = @"Username";
@@ -134,6 +141,7 @@
     [self.loginButton setTitle:@"Login" forState:UIControlStateNormal];
     [self.loginButton setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateNormal];
     [self.loginButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
+    [self.loginButton addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
     self.loginButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.loginButton.frame.size.height);
     currentHeight+= self.loginButton.frame.size.height;
     
@@ -158,7 +166,7 @@
     leftView3.image = [UIImage imageNamed:@"email"];
     self.emailField.leftViewMode = UITextFieldViewModeAlways;
     self.emailField.leftView = leftView3;
-
+    
     self.termsOfUseButton.backgroundColor = [UIColor clearColor];
     self.termsOfUseButton.titleLabel.font = [UIFont fontWithName:boldFontName size:14.0f];
     [self.termsOfUseButton setTitle:[NSString stringWithFormat:@"%@ %@",kLocalizedTermsAgreementPart,kLocalizedTermsOfUse] forState:UIControlStateNormal];
@@ -174,7 +182,6 @@
     [self.registerButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
     [self.registerButton addTarget:self action:@selector(registerAction) forControlEvents:UIControlEventTouchUpInside];
     self.registerButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.registerButton.frame.size.height);
-    
 }
 
 -(void)willMoveToParentViewController:(UIViewController *)parent

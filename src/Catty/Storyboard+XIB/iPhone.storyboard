@@ -1208,10 +1208,10 @@
             </objects>
             <point key="canvasLocation" x="135" y="-3778"/>
         </scene>
-        <!--Login Controller-->
+        <!--Login View Controller-->
         <scene sceneID="lmF-jf-e0m">
             <objects>
-                <viewController storyboardIdentifier="LoginController" id="ygY-KL-qXA" customClass="LoginController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginController" id="ygY-KL-qXA" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sp5-pE-tC9">
                         <rect key="frame" x="0.0" y="20" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

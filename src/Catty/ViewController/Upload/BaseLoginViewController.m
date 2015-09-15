@@ -20,13 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "BaseLoginController.h"
+#import "BaseLoginViewController.h"
 
-@interface BaseLoginController ()
+@interface BaseLoginViewController ()
 
 @end
 
-@implementation BaseLoginController
+@implementation BaseLoginViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
