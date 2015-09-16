@@ -22,7 +22,7 @@
 
 #import "CBSerializerProtocol.h"
 
-#define kCBXMLSerializerLanguageVersion @"0.95"
+#define kCBXMLSerializerLanguageVersion [Util catrobatLanguageVersion]
 
 @class GDataXMLDocument;
 

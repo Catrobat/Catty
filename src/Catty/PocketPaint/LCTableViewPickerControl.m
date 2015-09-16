@@ -239,8 +239,8 @@
       cell.imageView.image = [UIImage imageNamed:@"eraser"];
     }
       break;
-    case crop:{
-      [cell.textLabel setText:kLocalizedPaintCrop];
+    case resize:{
+      [cell.textLabel setText:kLocalizedPaintResize];
       cell.imageView.image = [UIImage imageNamed:@"crop"];
     }
       break;

@@ -150,8 +150,6 @@
         ifEndBrick.ifElseBrick = ifElseBrick;
         ifElseBrick.script = targetScript;
         ifEndBrick.script = targetScript;
-        ifElseBrick.animate = YES;
-        ifEndBrick.animate = YES;
         [targetScript.brickList insertObject:ifEndBrick atIndex:insertionIndex==0?1:insertionIndex];
         [targetScript.brickList insertObject:ifElseBrick atIndex:insertionIndex==0?1:insertionIndex];
     } else if ([brick isKindOfClass:[LoopBeginBrick class]]) {
@@ -160,7 +158,6 @@
         loopBeginBrick.loopEndBrick = loopEndBrick;
         loopEndBrick.loopBeginBrick = loopBeginBrick;
         loopEndBrick.script = targetScript;
-        loopEndBrick.animate = YES;
         if ([loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
             NSInteger index = loopBeginBrick.script.brickList.count;
             insertionIndex = index;
