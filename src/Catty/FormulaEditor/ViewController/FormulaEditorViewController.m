@@ -224,10 +224,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     UITapGestureRecognizer* tapToDismissRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissFormulaEditor)];
     [self.view addGestureRecognizer:tapToDismissRecognizer];
     
-    UISwipeGestureRecognizer* swipeToDismissRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(dismissFormulaEditor)];
-    swipeToDismissRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
-    [self.view addGestureRecognizer:swipeToDismissRecognizer];
-    
     [self localizeView];
   
 }
