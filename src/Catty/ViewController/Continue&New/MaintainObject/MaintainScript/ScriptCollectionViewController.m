@@ -416,9 +416,12 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 //        USE collectionView:layout:didEndDraggingItemAtIndexPath: DELEGATE METHOD FOR THIS. Updates must happen after the user stopped dragging the brickcell!!
     if (fromIndexPath.section == toIndexPath.section) {
         Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
-        Brick *fromBrick = [script.brickList objectAtIndex:fromIndexPath.item - 1];
-        [script.brickList removeObjectAtIndex:fromIndexPath.item - 1];
-        [script.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
+        if (fromIndexPath.item >0) {
+            Brick *fromBrick = [script.brickList objectAtIndex:fromIndexPath.item - 1];
+            [script.brickList removeObjectAtIndex:fromIndexPath.item - 1];
+            [script.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
+        }
+
     } else {
 
         Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
