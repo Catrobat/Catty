@@ -33,7 +33,6 @@
 #import "FileManager.h"
 #import "AppDelegate.h"
 #import "CatrobatAlertView.h"
-#import "LoginPopupViewController.h"
 
 #import "NetworkDefines.h"
 #import "ProgramDefines.h"

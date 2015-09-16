@@ -46,7 +46,6 @@
 #import "DataTransferMessage.h"
 #import "InfoPopupViewController.h"
 #import "MYBlurIntroductionView.h"
-#import "LoginPopupViewController.h"
 #import "ProgramsForUploadViewController.h"
 #import "Util.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
@@ -221,19 +220,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         popupViewController.delegate = self;
         self.tableView.scrollEnabled = NO;
         [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame upwardsCenterByFactor:1];
-    } else {
-        [self dismissPopupWithCode:NO];
-    }
-}
-
-- (void)showLoginView
-{
-    if (self.popupViewController == nil) {
-        LoginPopupViewController *popupViewController = [[LoginPopupViewController alloc] init];
-        popupViewController.delegate = self;
-        self.tableView.scrollEnabled = NO;
-        [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame upwardsCenterByFactor:4.5];
-        self.navigationItem.leftBarButtonItem.enabled = NO;
     } else {
         [self dismissPopupWithCode:NO];
     }
@@ -431,7 +417,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 NSDebug(@"reachable via wifi but no data");
                 if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
                     [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]] ||
-                    [self.navigationController.topViewController isKindOfClass:[LoginPopupViewController class]] ||
+                    [self.navigationController.topViewController isKindOfClass:[LoginViewController class]] ||
                     [self.navigationController.topViewController isKindOfClass:[ProgramsForUploadViewController class]] ) {
                     [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
                     [self.navigationController popToRootViewControllerAnimated:YES];
@@ -481,7 +467,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
             [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]] ||
             [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]] ||
-            [self.navigationController.topViewController isKindOfClass:[LoginPopupViewController class]] ||
+            [self.navigationController.topViewController isKindOfClass:[LoginViewController class]] ||
             [self.navigationController.topViewController isKindOfClass:[ProgramsForUploadViewController class]] ) {
             [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
             [self.navigationController popToRootViewControllerAnimated:YES];
@@ -495,7 +481,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
                 [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]||
                 [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]] ||
-                [self.navigationController.topViewController isKindOfClass:[LoginPopupViewController class]] ||
+                [self.navigationController.topViewController isKindOfClass:[LoginViewController class]] ||
                 [self.navigationController.topViewController isKindOfClass:[ProgramsForUploadViewController class]] ) {
                 [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
                 [self.navigationController popToRootViewControllerAnimated:YES];
@@ -509,7 +495,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
                 [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]||
                 [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]] ||
-                [self.navigationController.topViewController isKindOfClass:[LoginPopupViewController class]] ||
+                [self.navigationController.topViewController isKindOfClass:[LoginViewController class]] ||
                 [self.navigationController.topViewController isKindOfClass:[ProgramsForUploadViewController class]] ) {
                 [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
                 [self.navigationController popToRootViewControllerAnimated:YES];

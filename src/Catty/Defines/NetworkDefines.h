@@ -28,10 +28,16 @@
 #define kTestUrl @"https://catroid-test.catrob.at/pocketcode/"
 #define kConnectionHost kBaseUrl @"api/projects"
 #define kLoginOrRegisterUrlExtension @"api/loginOrRegister"
+#define kLoginUrlExtension @"api/login"
+#define kRegisterUrlExtension @"api/register"
 #define kReportProgramExtension @"flagInappropriate/flag.json"
 #define kUploadUrlExtension @"api/upload"
 #define kLoginOrRegisterUrl kBaseUrl kLoginOrRegisterUrlExtension
 #define kTestLoginOrRegisterUrl kTestUrl kLoginOrRegisterUrlExtension
+#define kLoginUrl kBaseUrl kLoginUrlExtension
+#define kTestLoginUrl kTestUrl kLoginUrlExtension
+#define kRegisterUrl kBaseUrl kRegisterUrlExtension
+#define kTestRegisterUrl kTestUrl kRegisterUrlExtension
 #define kTestReportProgramUrl kTestUrl kReportProgramExtension
 #define kReportProgramUrl kBaseUrl kReportProgramExtension
 #define kUploadUrl kBaseUrl kUploadUrlExtension
@@ -53,6 +59,8 @@
 #define kConnectionMostViewedFull @"mostViewed.json"
 #define kConnectionIDQuery @"getInfoById.json"
 #define kConnectionLoginOrRegister @"loginOrRegister.json"
+#define kConnectionLogin @"Login.json"
+#define kConnectionRegister @"Register.json"
 #define kConnectionUpload @ "upload.json"
 
 #define kProgramsOffset @"offset="

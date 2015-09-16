@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "LoginViewController.h"
+#import "RegisterViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "LanguageTranslationDefines.h"
@@ -31,7 +31,6 @@
 #import "JNKeychain.h"
 #import "CatrobatTableViewController.h"
 #import "BDKNotifyHUD.h"
-#import "RegisterViewController.h"
 
 #import "NetworkDefines.h"
 #import "ProgramDefines.h"
@@ -53,9 +52,8 @@
 //random boundary string
 #define httpBoundary @"---------------------------98598263596598246508247098291---------------------------"
 
-//web status codes are on: https://github.com/Catrobat/Catroweb/blob/master/statusCodes.php
 
-@interface LoginViewController ()
+@interface RegisterViewController ()
 @property (nonatomic, strong) NSString *userEmail;
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *password;
@@ -64,7 +62,7 @@
 //@property (nonatomic, strong) Keychain *keychain;
 @end
 
-@implementation LoginViewController
+@implementation RegisterViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -78,7 +76,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.title  = kLocalizedLogin;
+	self.navigationController.title  = kLocalizedRegister;
     [self initView];
     
 }
@@ -111,7 +109,7 @@
     
     self.infoLabel.textColor =  [UIColor lightTextTintColor];
     self.infoLabel.font =  [UIFont fontWithName:boldFontName size:14.0f];
-    self.infoLabel.text = @"Welcome back, please login below";
+    self.infoLabel.text = @"Welcome back, please register below";
     self.infoLabel.frame = CGRectMake(0, headerHeight, self.view.frame.size.width, self.infoLabel.frame.size.height);
     
     currentHeight = headerHeight+self.infoLabel.frame.size.height;
@@ -142,27 +140,29 @@
     self.passwordField.leftViewMode = UITextFieldViewModeAlways;
     self.passwordField.leftView = leftView2;
     
-    self.loginButton.backgroundColor = darkColor;
-    self.loginButton.titleLabel.font = [UIFont fontWithName:boldFontName size:20.0f];
-    [self.loginButton setTitle:@"Login" forState:UIControlStateNormal];
-    [self.loginButton setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateNormal];
-    [self.loginButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
-    [self.loginButton addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
-    self.loginButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.loginButton.frame.size.height);
-    currentHeight+= self.loginButton.frame.size.height+10;
+    self.emailField.backgroundColor = [UIColor whiteColor];
+    self.emailField.placeholder = @"Email";
+    self.emailField.font = [UIFont fontWithName:fontName size:16.0f];
+    self.emailField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
+    self.emailField.layer.borderWidth = 1.0f;
+    self.emailField.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.emailField.frame.size.height);
+    currentHeight+= self.emailField.frame.size.height;
+    UIImageView* leftView3 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    leftView3.image = [UIImage imageNamed:@"email"];
+    self.emailField.leftViewMode = UITextFieldViewModeAlways;
+    self.emailField.leftView = leftView3;
     
-    self.forgotButton.backgroundColor = [UIColor clearColor];
-    self.forgotButton.titleLabel.font = [UIFont fontWithName:fontName size:16.0f];
-    [self.forgotButton setTitle:@"Forgot Password?" forState:UIControlStateNormal];
-    [self.forgotButton setTitleColor:darkColor forState:UIControlStateNormal];
-    [self.forgotButton setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5] forState:UIControlStateHighlighted];
-    [self.forgotButton addTarget:self action:@selector(forgotPassword) forControlEvents:UIControlEventTouchUpInside];
-    self.forgotButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.forgotButton.frame.size.height);
-    currentHeight+= self.forgotButton.frame.size.height+20;
-    
+    self.termsOfUseButton.backgroundColor = [UIColor clearColor];
+    self.termsOfUseButton.titleLabel.font = [UIFont fontWithName:boldFontName size:14.0f];
+    [self.termsOfUseButton setTitle:[NSString stringWithFormat:@"%@ %@",kLocalizedTermsAgreementPart,kLocalizedTermsOfUse] forState:UIControlStateNormal];
+    [self.termsOfUseButton setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateNormal];
+    [self.termsOfUseButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
+    [self.termsOfUseButton addTarget:self action:@selector(openTermsOfUse) forControlEvents:UIControlEventTouchUpInside];
+    self.termsOfUseButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.termsOfUseButton.frame.size.height);
+    currentHeight+= self.termsOfUseButton.frame.size.height;
     self.registerButton.backgroundColor = darkColor;
     self.registerButton.titleLabel.font = [UIFont fontWithName:boldFontName size:20.0f];
-    [self.registerButton setTitle:@"Register" forState:UIControlStateNormal];
+    [self.registerButton setTitle:@"Done" forState:UIControlStateNormal];
     [self.registerButton setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateNormal];
     [self.registerButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
     [self.registerButton addTarget:self action:@selector(registerAction) forControlEvents:UIControlEventTouchUpInside];
@@ -251,7 +251,8 @@
 
 #pragma mark Actions
 
--(void)loginAction
+
+-(void)registerAction
 {
     if ([self.usernameField.text isEqualToString:@""]) {
         [Util alertWithText:kLocalizedLoginUsernameNecessary];
@@ -259,32 +260,23 @@
     } else if (![self validPassword:self.passwordField.text]) {
         [Util alertWithText:kLocalizedLoginPasswordNotValid];
         return;
+    } else if ([self.emailField.text isEqualToString:@""] || ![self NSStringIsValidEmail:self.emailField.text]) {
+        [Util alertWithText:kLocalizedLoginEmailNotValid];
+        return;
     }
     
-    [self loginAtServerWithUsername:self.usernameField.text
-                        andPassword:self.passwordField.text];
+    [self registerAtServerWithUsername:self.usernameField.text
+                        andPassword:self.passwordField.text
+                           andEmail:self.emailField.text];
 }
 
--(void)registerAction
+- (void)registerAtServerWithUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email
 {
-//TODO present registerViewController
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
-    RegisterViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"RegisterController"];
-    vc.catTVC = self.catTVC;
-    vc.usernameField.text = self.usernameField.text;
-    vc.passwordField.text = self.passwordField.text;
-    
-    [self.navigationController pushViewController:vc animated:YES];
-
-}
-
-- (void)loginAtServerWithUsername:(NSString*)username andPassword:(NSString*)password
-{
-    NSDebug(@"Login started with username:%@ and password:%@ ", username, password);
+    NSDebug(@"Register started with username:%@ and password:%@ and email:%@", username, password, email);
     
     BOOL useTestServer = [[NSUserDefaults standardUserDefaults] boolForKey:kUseTestServerForUploadAndLogin];
-    NSString *uploadUrl = useTestServer ? kTestLoginUrl : kLoginUrl;
-    NSString *urlString = [NSString stringWithFormat:@"%@/%@", uploadUrl, (NSString*)kConnectionLogin];
+    NSString *uploadUrl = useTestServer ? kTestRegisterUrl : kRegisterUrl;
+    NSString *urlString = [NSString stringWithFormat:@"%@/%@", uploadUrl, (NSString*)kConnectionRegister];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:urlString]];
@@ -302,6 +294,10 @@
     //password
     self.password = password;
     [self setFormDataParameter:passwordTag withData:[password dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
+    
+    //email
+    self.userEmail = email;
+    [self setFormDataParameter:registrationEmailTag withData:[email dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
     
 //    //Country
 //    NSLocale *currentLocale = [NSLocale currentLocale];
@@ -335,8 +331,11 @@
                 NSString *statusCode = [NSString stringWithFormat:@"%@", [dictionary valueForKey:statusCodeTag]];
                 NSDebug(@"StatusCode is %@", statusCode);
                 
-                if ([statusCode isEqualToString:statusCodeOK]) {
-
+                if ([statusCode isEqualToString:statusCodeOK] || [statusCode  isEqualToString:statusCodeRegistrationOK]) {
+                    
+                    if ([statusCode isEqualToString:statusCodeRegistrationOK]) {
+                        [self showRegistrationSuccessfulView];
+                    }
                     
                     NSDebug(@"Login successful");
                     NSString *token = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenTag]];
@@ -346,8 +345,6 @@
                     [[NSUserDefaults standardUserDefaults] setBool:true forKey:kUserIsLoggedIn];
                     [[NSUserDefaults standardUserDefaults] setValue:token forKey:kUserLoginToken];
                     [[NSUserDefaults standardUserDefaults] setValue:self.userName forKey:kcUsername];
-                    
-                    //TODO email?!
                     [[NSUserDefaults standardUserDefaults] setValue:self.userEmail forKey:kcEmail];
                     [[NSUserDefaults standardUserDefaults] synchronize];
             
@@ -357,7 +354,7 @@
                     [self.navigationController popViewControllerAnimated:NO];
                     
                 } else {
-                    self.loginButton.enabled = YES;
+                    self.registerButton.enabled = YES;
                     
                     NSString *serverResponse = [dictionary valueForKey:answerTag];
                     NSDebug(@"Error: %@", serverResponse);
@@ -371,26 +368,27 @@
         [self.dataTask resume];
         NSDebug(@"Connection Successful");
         [self setEnableActivityIndicator:YES];
-        self.loginButton.enabled = NO;
+        self.registerButton.enabled = NO;
     } else {
         NSDebug(@"Connection could not be established");
         [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
     }
 }
 
-- (void)showLoginSuccessfulView
+- (void)showRegistrationSuccessfulView
 {
     BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName]
-                                                    text:kLocalizedLoginSuccessful];
+                                                    text:kLocalizedRegistrationSuccessful];
     hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
     hud.center = CGPointMake(self.view.center.x, self.view.center.y + kBDKNotifyHUDCenterOffsetY);
-    hud.tag = kLoginViewTag;
+    hud.tag = kRegistrationViewTag;
     [self.view addSubview:hud];
     [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
                        speed:kBDKNotifyHUDPresentationSpeed
                       inView:self.view
                   completion:^{ [hud removeFromSuperview]; }];
 }
+
 
 - (NSURLSession *)session {
     if (!_session) {
@@ -413,11 +411,6 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
 
-- (void)forgotPassword
-{
-    NSString *url = kRecoverPassword;
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-}
 
 - (void)setEnableActivityIndicator:(BOOL)enabled
 {
