@@ -91,22 +91,29 @@
     NSString* fontName = @"Avenir-Book";
     NSString* boldFontName = @"Avenir-Black";
     CGFloat currentHeight = 0.0f;
+    CGFloat headerHeight;
+    if (IS_IPHONE4||IS_IPHONE5) {
+        headerHeight = 100.0f;
+    } else {
+        headerHeight = 200.0f;
+    }
+    
     self.view.backgroundColor = mainColor;
     self.headerImageView.image = [UIImage imageNamed:@"cat"];
     self.headerImageView.contentMode = UIViewContentModeScaleAspectFit;
-    self.headerImageView.frame = CGRectMake(0, 0, self.view.frame.size.width, 100);
+    self.headerImageView.frame = CGRectMake(0, 0, self.view.frame.size.width, headerHeight);
     
     self.titleLabel.textColor =  [UIColor lightTextTintColor];
     self.titleLabel.font =  [UIFont fontWithName:boldFontName size:16.0f];
     self.titleLabel.text = @"GOOD TO SEE YOU";
-    self.titleLabel.frame = CGRectMake(self.view.frame.size.width/2, 0, self.view.frame.size.width/2, 40);
+    self.titleLabel.frame = CGRectMake(self.view.frame.size.width/2, 0, self.view.frame.size.width/2, headerHeight/2);
     
     self.infoLabel.textColor =  [UIColor lightTextTintColor];
     self.infoLabel.font =  [UIFont fontWithName:boldFontName size:14.0f];
     self.infoLabel.text = @"Welcome back, please login below";
-    self.infoLabel.frame = CGRectMake(0, 100, self.view.frame.size.width, self.infoLabel.frame.size.height);
+    self.infoLabel.frame = CGRectMake(0, headerHeight, self.view.frame.size.width, self.infoLabel.frame.size.height);
     
-    currentHeight = 100+self.infoLabel.frame.size.height;
+    currentHeight = headerHeight+self.infoLabel.frame.size.height;
     self.usernameField.backgroundColor = [UIColor whiteColor];
     self.usernameField.placeholder = @"Username";
     self.usernameField.font = [UIFont fontWithName:fontName size:16.0f];
