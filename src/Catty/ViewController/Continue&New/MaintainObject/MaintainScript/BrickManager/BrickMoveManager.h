@@ -28,9 +28,6 @@
 
 +(id)sharedInstance;
 
-@property (nonatomic,strong)Brick* fromAboveBrick;
-@property (nonatomic,strong)Brick* fromBelowBrick;
-
 - (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
     canMoveToIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object;
 

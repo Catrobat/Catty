@@ -49,7 +49,10 @@
             Look *currentLook = [lookBrick lookForLineNumber:line andParameterNumber:parameter];
             for(Look *look in lookBrick.script.object.lookList) {
                 [options addObject:look.name];
-                [images addObject:[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@%@/%@", [lookBrick.script.object projectPath], kProgramImagesDirName, look.fileName]]];
+                UIImage *image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@%@/%@", [lookBrick.script.object projectPath], kProgramImagesDirName, look.fileName]];
+                if (image) {
+                    [images addObject:image];
+                }
                 if([look.name isEqualToString:currentLook.name])
                     currentOptionIndex = optionIndex;
                 optionIndex++;
@@ -57,12 +60,16 @@
             if (currentLook && ![options containsObject:currentLook.name]) {
                 [options addObject:currentLook.name];
                 currentOptionIndex = optionIndex;
-                [images addObject:[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@%@/%@", [lookBrick.script.object projectPath], kProgramImagesDirName, currentLook.fileName]]];
+                UIImage *image  =[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@%@/%@", [lookBrick.script.object projectPath], kProgramImagesDirName, currentLook.fileName]];
+                if (image) {
+                    [images addObject:image];
+                }
+
             }
         }
         [self setValues:options];
         [self setImages:images];
-        if (currentOptionIndex > 0) {
+        if (currentOptionIndex > 0 && images.count) {
             [self setCurrentImage:images[currentOptionIndex-1]];
         } else {
             [self setCurrentImage:nil];

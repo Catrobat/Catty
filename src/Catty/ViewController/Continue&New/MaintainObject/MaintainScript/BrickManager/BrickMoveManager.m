@@ -74,7 +74,6 @@
 
 - (BOOL)checkLoopEndToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick andObject:(SpriteObject*)object
 {
-    // FIXME: YUMMI, SPAGHETTI CODE!!!
     LoopEndBrick *endbrick = (LoopEndBrick*) fromBrick;
     if ([endbrick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
         return NO;
@@ -199,15 +198,13 @@
                         index--;
                     }
                     //from above
-                    if (!self.fromBelowBrick && toIndexPath.item > fromIndexPath.item) {
+                    if (toIndexPath.item > fromIndexPath.item) {
                         Brick *checkafterEndBrick = [script.brickList objectAtIndex:toIndexPath.item];
                         if ([checkafterEndBrick isKindOfClass:[IfLogicElseBrick class]] ||[checkafterEndBrick isKindOfClass:[IfLogicEndBrick class]]) {
-                            self.fromAboveBrick = checkafterEndBrick;
                             return NO;
                         } else if ([checkafterEndBrick isKindOfClass:[LoopEndBrick class]]){
                             LoopEndBrick *endBrickCheck = (LoopEndBrick*)checkafterEndBrick;
                             if (![endBrickCheck.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
-                                self.fromAboveBrick = checkafterEndBrick;
                                 return NO;
                             }
                         }
@@ -230,11 +227,10 @@
             return [self checkIfEndToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick andObject:object];
         } else {
             //From Below
-            if (!self.fromAboveBrick && toIndexPath.item < fromIndexPath.item) {
+            if (toIndexPath.item < fromIndexPath.item) {
                 if ([toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[LoopEndBrick class]]) { //check if repeat?!
                     Brick *checkBeforeEndBrick = [script.brickList objectAtIndex:toIndexPath.item - 2];
                     if ([checkBeforeEndBrick isKindOfClass:[LoopEndBrick class]]) {
-                        self.fromBelowBrick = checkBeforeEndBrick;
                         return NO;
                     }
                 }
@@ -261,8 +257,6 @@
     self.higherRankBrick = nil;
     self.lowerRankBrick = nil;
     self.moveToOtherScript = NO;
-    self.fromAboveBrick = nil;
-    self.fromBelowBrick = nil;
 }
 
 @end
