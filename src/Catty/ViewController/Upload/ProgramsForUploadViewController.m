@@ -265,26 +265,28 @@
 
 - (void)showUploadInfoView
 {
-    if (self.popupViewController == nil) {
-        UploadInfoPopupViewController *popupViewController = [[UploadInfoPopupViewController alloc] init];
-        popupViewController.delegate = self;
-        
+
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
+        UploadInfoViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"UploadController"];
         if (self.uploadingProgramInfos.count) {
             Program * prog = [Program programWithLoadingInfo:self.uploadingProgramInfos[0]];
-            popupViewController.program = prog;
-            
+            vc.program = prog;
+            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc];
             self.tableView.scrollEnabled = NO;
-            CGRect rect = CGRectMake(0, self.tableView.contentOffset.y, self.tableView.frame.size.width, self.tableView.contentOffset.y+self.tableView.frame.size.height);
-            [self presentPopupViewController:popupViewController WithFrame:rect upwardsCenterByFactor:4.5];
+
+            [self.navigationController presentViewController:navController animated:YES completion:^{
+                self.tableView.scrollEnabled = YES;
+                self.uploadButton.enabled = YES;
+                self.navigationItem.leftBarButtonItem.enabled = YES;
+                //[self showUploadSuccessfulView];
+            }];
             self.navigationItem.leftBarButtonItem.enabled = NO;
             self.uploadButton.enabled = NO;
         } else {
             NSDebug(@"Please select a program to upload");
             [Util alertWithText:kLocalizedUploadSelectProgram];
         }
-    } else {
-        [self dismissPopupWithCode:NO];
-    }
+
 }
 
 #pragma mark - popup delegate

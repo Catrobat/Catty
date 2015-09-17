@@ -446,6 +446,11 @@
 #define kUploadSelectedProgram NSLocalizedString(@"Upload Selected Program", nil)
 #define kLocalizedUploadProblem NSLocalizedString (@"Problems occured while Uploading your program", nil)
 #define kLocalizedUploadSelectProgram NSLocalizedString (@"Please select a program to upload", nil)
+#define kLocalizedTitleLogin NSLocalizedString(@"GOOD TO SEE YOU",nil)
+#define kLocalizedTitleRegister NSLocalizedString(@"GOOD TO SEE YOU",nil)
+
+#define kLocalizedInfoLogin NSLocalizedString(@"Welcome back, please login below",nil)
+#define kLocalizedInfoRegister NSLocalizedString(@"Please register below",nil)
 
 //************************************************************************************************************
 //************************************       PAINT                ********************************************

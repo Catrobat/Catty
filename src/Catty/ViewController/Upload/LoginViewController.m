@@ -78,8 +78,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.title  = kLocalizedLogin;
+    self.navigationController.title  = self.title = kLocalizedLogin;
     [self initView];
+    [self addDoneToTextFields];
     
 }
 
@@ -106,20 +107,21 @@
     
     self.titleLabel.textColor =  [UIColor lightTextTintColor];
     self.titleLabel.font =  [UIFont fontWithName:boldFontName size:16.0f];
-    self.titleLabel.text = @"GOOD TO SEE YOU";
+    self.titleLabel.text = kLocalizedTitleLogin;
     self.titleLabel.frame = CGRectMake(self.view.frame.size.width/2, 0, self.view.frame.size.width/2, headerHeight/2);
     
     self.infoLabel.textColor =  [UIColor lightTextTintColor];
     self.infoLabel.font =  [UIFont fontWithName:boldFontName size:14.0f];
-    self.infoLabel.text = @"Welcome back, please login below";
+    self.infoLabel.text = kLocalizedInfoLogin;
     self.infoLabel.frame = CGRectMake(0, headerHeight, self.view.frame.size.width, self.infoLabel.frame.size.height);
     
     currentHeight = headerHeight+self.infoLabel.frame.size.height;
     self.usernameField.backgroundColor = [UIColor whiteColor];
-    self.usernameField.placeholder = @"Username";
+    self.usernameField.placeholder =kLocalizedUsername;
     self.usernameField.font = [UIFont fontWithName:fontName size:16.0f];
     self.usernameField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.usernameField.layer.borderWidth = 1.0f;
+    self.usernameField.tag = 1;
     self.usernameField.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.usernameField.frame.size.height);
     currentHeight+= self.usernameField.frame.size.height;
     UIImageView* leftView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
@@ -129,11 +131,12 @@
     
     
     self.passwordField.backgroundColor = [UIColor whiteColor];
-    self.passwordField.placeholder = @"Password";
+    self.passwordField.placeholder =kLocalizedPassword;
     [self.passwordField setSecureTextEntry:YES];
     self.passwordField.font = [UIFont fontWithName:fontName size:16.0f];
     self.passwordField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.passwordField.layer.borderWidth = 1.0f;
+    self.passwordField.tag = 2;
     self.passwordField.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.passwordField.frame.size.height);
     currentHeight+= self.passwordField.frame.size.height;
     
@@ -144,7 +147,7 @@
     
     self.loginButton.backgroundColor = darkColor;
     self.loginButton.titleLabel.font = [UIFont fontWithName:boldFontName size:20.0f];
-    [self.loginButton setTitle:@"Login" forState:UIControlStateNormal];
+    [self.loginButton setTitle:kLocalizedLogin forState:UIControlStateNormal];
     [self.loginButton setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateNormal];
     [self.loginButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
     [self.loginButton addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
@@ -153,7 +156,7 @@
     
     self.forgotButton.backgroundColor = [UIColor clearColor];
     self.forgotButton.titleLabel.font = [UIFont fontWithName:fontName size:16.0f];
-    [self.forgotButton setTitle:@"Forgot Password?" forState:UIControlStateNormal];
+    [self.forgotButton setTitle:kLocalizedForgotPassword forState:UIControlStateNormal];
     [self.forgotButton setTitleColor:darkColor forState:UIControlStateNormal];
     [self.forgotButton setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5] forState:UIControlStateHighlighted];
     [self.forgotButton addTarget:self action:@selector(forgotPassword) forControlEvents:UIControlEventTouchUpInside];
@@ -162,11 +165,23 @@
     
     self.registerButton.backgroundColor = darkColor;
     self.registerButton.titleLabel.font = [UIFont fontWithName:boldFontName size:20.0f];
-    [self.registerButton setTitle:@"Register" forState:UIControlStateNormal];
+    [self.registerButton setTitle:kLocalizedRegister forState:UIControlStateNormal];
     [self.registerButton setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateNormal];
     [self.registerButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
     [self.registerButton addTarget:self action:@selector(registerAction) forControlEvents:UIControlEventTouchUpInside];
     self.registerButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.registerButton.frame.size.height);
+}
+
+-(void)addDoneToTextFields
+{
+    [self.usernameField setReturnKeyType:UIReturnKeyNext];
+    [self.usernameField addTarget:self
+                           action:@selector(textFieldShouldReturn:)
+                 forControlEvents:UIControlEventEditingDidEndOnExit];
+    [self.passwordField setReturnKeyType:UIReturnKeyDone];
+    [self.passwordField addTarget:self
+                           action:@selector(loginAction)
+                 forControlEvents:UIControlEventEditingDidEndOnExit];
 }
 
 -(void)willMoveToParentViewController:(UIViewController *)parent
@@ -337,7 +352,7 @@
                 
                 if ([statusCode isEqualToString:statusCodeOK]) {
 
-                    
+                    [self showLoginSuccessfulView];
                     NSDebug(@"Login successful");
                     NSString *token = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenTag]];
                     NSDebug(@"Token is %@", token);

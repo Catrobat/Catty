@@ -62,46 +62,20 @@
 
 //web status codes are on: https://github.com/Catrobat/Catroweb/blob/master/statusCodes.php
 
+const CGFloat LABEL_FONT_SIZE = 16.0f;
+const CGFloat TEXTFIELD_HEIGHT = 30.0f;
+const CGFloat PADDING = 5.0f;
 
-@interface UploadInfoPopupViewController ()
-@property (nonatomic, strong) UIView *contentView;
-@property (nonatomic, strong) UITextView *bodyTextView;
-@property (nonatomic, strong) UITextField *programnameTextField;
-@property (nonatomic, strong) UITextField *sizeTextField;
-@property (nonatomic, strong) UITextField *descriptionTextField;
-@property (nonatomic, strong) UIButton *uploadButton;
-@property (nonatomic, strong) UIButton *cancelButton;
+@interface UploadInfoViewController ()
 @property (nonatomic, strong) NSData *zipFileData;
-
+@property (nonatomic) CGFloat currentHeight;
 @property (strong, nonatomic) NSURLSession *session;
 @property (strong, nonatomic) NSURLSessionDataTask *dataTask;
 
 @end
 
-@implementation UploadInfoPopupViewController
+@implementation UploadInfoViewController
 
-const CGFloat POPUP_FRAME_HEIGHT = 250.0f;
-const CGFloat HEADER_FONT_SIZE = 20.0f;
-const CGFloat LABEL_FONT_SIZE = 16.0f;
-const CGFloat TEXTFIELD_HEIGHT = 30.0f;
-const CGFloat PADDING = 5.0f;
-const CGFloat NAME_LABEL_POSITION_Y = 30.0f;
-const CGFloat SIZE_LABEL_POSITION_Y = 95.0f;
-const CGFloat DESCRIPTION_LABEL_POSITION_Y = 140.0f;
-const CGFloat STANDARD_LINEWIDTH = 2.0f;
-
-
-- (UITextView *)bodyTextView
-{
-    if(!_bodyTextView) _bodyTextView = [[UITextView alloc] init];
-    return _bodyTextView;
-}
-
-- (UIView *)contentView
-{
-    if(!_contentView) _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    return _contentView;
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -130,14 +104,17 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.frame = CGRectMake(0,0, [Util screenWidth]-10, POPUP_FRAME_HEIGHT);
     self.view.backgroundColor = [UIColor backgroundColor];
-    [self initLoginHeader];
+    self.currentHeight = 100;
     [self initProgramNameViewElements];
     [self initSizeViewElements];
     [self initDescriptionViewElements];
     [self initActionButtons];
-    [self.programnameTextField becomeFirstResponder];
+    self.navigationController.toolbarHidden = NO;
+    self.navigationController.title = self.title = kLocalizedUpload;
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissView)];
+    self.navigationItem.rightBarButtonItem = rightButton;
+    [self.programNameTextField becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -146,56 +123,41 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
 }
 
 #pragma mark Initialization
-- (void)initLoginHeader
-{
-    UILabel *uploadHeader = [self setUpLabelAtPositionX:self.contentView.frame.size.width/2
-                                              positionY:PADDING
-                                               withText:kUploadSelectedProgram
-                                               andColor:[UIColor lightTextTintColor]
-                                     centeringXPosition:true];
-    
-    [self addHorizontalBorderLineAtY:(uploadHeader.frame.size.height + 2*PADDING)
-                               Width:self.contentView.frame.size.width
-                       withLineWidth:STANDARD_LINEWIDTH
-                            andColor:[UIColor globalTintColor]];
-}
 
 - (void)initProgramNameViewElements
 {
-    UILabel *programnameLabel = [self setUpLabelAtPositionX:2*PADDING
-                                                  positionY:NAME_LABEL_POSITION_Y
-                                                   withText:kLocalizedName
-                                                   andColor:[UIColor lightTextTintColor]
-                                         centeringXPosition:false];
+    self.programNamelabel.frame = CGRectMake(2*PADDING, self.currentHeight, 100, self.programNamelabel.frame.size.height);
+    [self.programNamelabel setTextColor:[UIColor lightTextTintColor]];
+    [self.programNamelabel setText:kLocalizedName];
+    [self.programNamelabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:LABEL_FONT_SIZE]];
+    [self.programNamelabel sizeToFit];
+
+
     
-    [self addHorizontalBorderLineAtY:(NAME_LABEL_POSITION_Y + programnameLabel.frame.size.height/2 + 2*PADDING)
-                               Width:self.contentView.frame.size.width - 4*PADDING
-                       withLineWidth:1.5f
-                            andColor:[UIColor globalTintColor]];
+    self.programNameTextField.frame = CGRectMake(self.view.frame.size.width/3.0f, self.currentHeight, 2*self.view.frame.size.width/3.0f -20, TEXTFIELD_HEIGHT);
     
-    self.programnameTextField =
-    [self setUpProgramDataTextFieldAtPositionX:2*PADDING
-                                     positionY:NAME_LABEL_POSITION_Y + programnameLabel.frame.size.height + 2*PADDING
-                                         width:(self.contentView.frame.size.width - 6*PADDING)
-                                     andHeight:TEXTFIELD_HEIGHT];
+    self.programNameTextField.textColor = [UIColor lightTextTintColor];
+    self.programNameTextField.backgroundColor = [UIColor whiteColor];
+    [self.programNameTextField setBorderStyle:UITextBorderStyleRoundedRect];
+    [self.programNameTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [self.programNameTextField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+    [self.programNameTextField setKeyboardType:UIKeyboardTypeDefault];
+
     
     if(self.program.header.programName) {
-        self.programnameTextField.text = self.program.header.programName;
+        self.programNameTextField.text = self.program.header.programName;
     }
+    self.currentHeight += self.programNameTextField.frame.size.height+4*PADDING;
+    
 }
 
 - (void)initSizeViewElements
 {
-    UILabel *sizeNameLabel = [self setUpLabelAtPositionX:2*PADDING
-                                               positionY:SIZE_LABEL_POSITION_Y
-                                                withText:kLocalizedSize
-                                                andColor:[UIColor lightTextTintColor]
-                                      centeringXPosition:false];
-    
-    [self addHorizontalBorderLineAtY:(SIZE_LABEL_POSITION_Y + sizeNameLabel.frame.size.height/2 + 2*PADDING)
-                               Width:self.contentView.frame.size.width - 4*PADDING
-                       withLineWidth:1.5f
-                            andColor:[UIColor globalTintColor]];
+    self.sizeLabel.frame = CGRectMake(2*PADDING, self.currentHeight, 100, self.sizeLabel.frame.size.height);
+    [self.sizeLabel setTextColor:[UIColor lightTextTintColor]];
+    [self.sizeLabel setText:kLocalizedSize];
+    [self.sizeLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:LABEL_FONT_SIZE]];
+    [self.sizeLabel sizeToFit];
     
     AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     self.zipFileData = nil;
@@ -209,135 +171,51 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
         zipFileSizeString = [self adaptSizeRepresentationString:self.zipFileData.length];
     }
     
-    [self setUpLabelAtPositionX:2*PADDING
-                      positionY:SIZE_LABEL_POSITION_Y + sizeNameLabel.frame.size.height + 1*PADDING
-                       withText:zipFileSizeString
-                       andColor:[UIColor globalTintColor]
-             centeringXPosition:false];
+    self.sizeValueLabel.frame = CGRectMake(self.view.frame.size.width/3.0f, self.currentHeight, 100, self.sizeValueLabel.frame.size.height);
+    [self.sizeValueLabel setTextColor:[UIColor lightTextTintColor]];
+    [self.sizeValueLabel setText:zipFileSizeString];
+    [self.sizeValueLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:LABEL_FONT_SIZE]];
+    [self.sizeValueLabel sizeToFit];
+    self.currentHeight += 4*PADDING +self.sizeLabel.frame.size.height;
 }
 
 - (void)initDescriptionViewElements
 {
-    UILabel *descriptionLabel = [self setUpLabelAtPositionX:2*PADDING
-                                                  positionY:DESCRIPTION_LABEL_POSITION_Y
-                                                   withText:kLocalizedDescription
-                                                   andColor:[UIColor lightTextTintColor]
-                                         centeringXPosition:false];
+
+    self.descriptionLabel.frame = CGRectMake(2*PADDING, self.currentHeight, 100, self.descriptionLabel.frame.size.height);
+    [self.descriptionLabel setTextColor:[UIColor lightTextTintColor]];
+    [self.descriptionLabel setText:kLocalizedDescription];
+    [self.descriptionLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:LABEL_FONT_SIZE]];
+    [self.descriptionLabel sizeToFit];
     
-    [self addHorizontalBorderLineAtY:(DESCRIPTION_LABEL_POSITION_Y + descriptionLabel.frame.size.height/2 + 2*PADDING)
-                               Width:self.contentView.frame.size.width - 4*PADDING
-                       withLineWidth:1.5f
-                            andColor:[UIColor globalTintColor]];
+    self.descriptionTextView.frame = CGRectMake(self.view.frame.size.width/3.0f,self.currentHeight,2*self.view.frame.size.width/3.0f -20,100);
     
-    self.descriptionTextField =
-    [self setUpProgramDataTextFieldAtPositionX:2*PADDING
-                                     positionY:DESCRIPTION_LABEL_POSITION_Y + descriptionLabel.frame.size.height + 2*PADDING
-                                         width:(self.contentView.frame.size.width - 6*PADDING)
-                                     andHeight:TEXTFIELD_HEIGHT];
+    self.descriptionTextView.textColor = [UIColor lightTextTintColor];
+    self.descriptionTextView.backgroundColor = [UIColor whiteColor];
+    [self.descriptionTextView setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [self.descriptionTextView setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+    [self.descriptionTextView setKeyboardType:UIKeyboardTypeDefault];
     
     if(self.program.header.programDescription) {
-        self.descriptionTextField.text = self.program.header.programDescription;
+        self.descriptionTextView.text = self.program.header.programDescription;
     }
+    self.currentHeight += self.descriptionTextView.frame.size.height + 4*PADDING;
 }
 
 - (void)initActionButtons
 {
-    CGFloat buttonSectionBeginY = self.descriptionTextField.frame.origin.y + self.descriptionTextField.frame.size.height + 2*PADDING;
-    
-    [self addHorizontalBorderLineAtY:buttonSectionBeginY
-                               Width:self.contentView.frame.size.width
-                       withLineWidth:STANDARD_LINEWIDTH
-                            andColor:[UIColor globalTintColor]];
-    
-    CGFloat buttonPositionY = buttonSectionBeginY + ((self.contentView.frame.size.height - buttonSectionBeginY)/2);
-    
-    
-    self.cancelButton = [self setUpButtonWithCenterAtPositionX:self.contentView.frame.size.width/4
-                                                     positionY:buttonPositionY
-                                                          name:kLocalizedCancel
-                                                      selector:@selector(cancel)];
-    
-    self.uploadButton = [self setUpButtonWithCenterAtPositionX:3*self.contentView.frame.size.width/4
-                                                     positionY:buttonPositionY
-                                                          name:kLocalizedUpload
-                                                      selector:@selector(uploadAction)];
-    
-    
-    //add button separator line
-    UIBezierPath *path = [UIBezierPath bezierPath];
-    [path moveToPoint:CGPointMake([Util screenWidth] / 2, buttonSectionBeginY)];
-    [path addLineToPoint:CGPointMake([Util screenWidth] / 2, self.contentView.frame.size.height)];
-    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-    shapeLayer.path = [path CGPath];
-    shapeLayer.strokeColor = [[UIColor globalTintColor] CGColor];
-    shapeLayer.lineWidth = 2.0;
-    shapeLayer.fillColor = [[UIColor clearColor] CGColor];
-    [self.view.layer addSublayer:shapeLayer];
-    
+    [self.uploadButton setTitle:kLocalizedUpload forState:UIControlStateNormal];
+    [self.uploadButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:LABEL_FONT_SIZE+4]];
+    [self.uploadButton.titleLabel setTextColor:[UIColor lightTextTintColor]];
+    [self.uploadButton setBackgroundColor:[UIColor globalTintColor]];
+    self.uploadButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [self.uploadButton sizeToFit];
+    self.uploadButton.frame = CGRectMake(0, self.currentHeight, self.view.frame.size.width, self.uploadButton.frame.size.height);
+    [self.uploadButton addTarget:self action:@selector(uploadAction) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark Helpers
-- (void)addHorizontalBorderLineAtY:(CGFloat)positionX Width:(CGFloat)width withLineWidth:(CGFloat)lineWidth andColor:(UIColor*)color
-{
-    UIBezierPath *path = [UIBezierPath bezierPath];
-    [path moveToPoint:CGPointMake((self.contentView.frame.size.width/2 - width/2), positionX)];
-    [path addLineToPoint:CGPointMake(width, positionX)];
-    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-    shapeLayer.path = [path CGPath];
-    shapeLayer.strokeColor = [color CGColor];
-    shapeLayer.lineWidth = lineWidth;
-    shapeLayer.fillColor = [[UIColor clearColor] CGColor];
-    [self.view.layer addSublayer:shapeLayer];
-}
 
--(UILabel*)setUpLabelAtPositionX:(CGFloat)x positionY:(CGFloat)y withText:(NSString*)text andColor:(UIColor*)color centeringXPosition:(BOOL)inCenter
-{
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,0,0,0)];
-    [label setTextColor:color];
-    [label setText:text];
-    [label setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:LABEL_FONT_SIZE]];
-    [label sizeToFit];
-    
-    if(inCenter)
-    {
-        x = x - label.frame.size.width/2;
-    }
-    
-    label.frame = CGRectMake(x,y,label.frame.size.width,label.frame.size.height);
-    label.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:label];
-    
-    return label;
-}
-
-- (UITextField*)setUpProgramDataTextFieldAtPositionX:(CGFloat)x positionY:(CGFloat)y width:(CGFloat)width andHeight:(CGFloat)height
-{
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(x,y,width,height)];
-    textField.textColor = [UIColor lightTextTintColor];
-    textField.backgroundColor = [UIColor whiteColor];
-    [textField setBorderStyle:UITextBorderStyleRoundedRect];
-    [textField setAutocorrectionType:UITextAutocorrectionTypeNo];
-    [textField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
-    [textField setKeyboardType:UIKeyboardTypeDefault];
-    [self.view addSubview:textField];
-    
-    return textField;
-}
-
--(UIButton*)setUpButtonWithCenterAtPositionX:(CGFloat)x positionY:(CGFloat)y name:(NSString*)name selector:(SEL)selector
-{
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button setTitle:name forState:UIControlStateNormal];
-    [button.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:LABEL_FONT_SIZE]];
-    [button.titleLabel setTextColor:[UIColor lightTextTintColor]];
-    button.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [button sizeToFit];
-    button.frame = CGRectMake((x - button.frame.size.width/2), (y - button.frame.size.height/2), button.frame.size.width, button.frame.size.height);
-    [button addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
-    
-    return button;
-}
 
 -(void)setFormDataParameter:(NSString*)parameterID withData:(NSData*)data forHTTPBody:(NSMutableData*)body
 {
@@ -385,7 +263,7 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
 
 -(void)uploadAction
 {
-    if ([self.programnameTextField.text isEqualToString:@""]) {
+    if ([self.programNameTextField.text isEqualToString:@""]) {
         [Util alertWithText:kLocalizedUploadProgramNecessary];
         return;
     }
@@ -527,72 +405,15 @@ const CGFloat STANDARD_LINEWIDTH = 2.0f;
     }
 }
 
-#pragma mark NSURLConnection Delegates
-//- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
-//{
-//    NSDebug(@"Received Data from server");
-//    if (self.connection == connection) {
-//        [self.data appendData:data];
-//    }
-//}
-
-//- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-//{
-//    if (self.connection == connection) {
-//        [self setEnableActivityIndicator:NO];
-//        NSDebug(@"NSURLConnection ERROR: %@", error);
-//    }
-//}
-
-//- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-//{
-//    if (self.connection == connection) {
-//        NSDebug(@"Finished upload");
-//        [self setEnableActivityIndicator:NO];
-//        
-//        NSError *error = nil;
-//        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:self.data options:kNilOptions error:&error];
-//        NSString *statusCode = [NSString stringWithFormat:@"%@", [dictionary valueForKey:statusCodeTag]];
-//        NSDebug(@"StatusCode is %@", statusCode);
-//        
-//        if ([statusCode isEqualToString:statusCodeOK]) {
-//            NSDebug(@"Upload successful");
-//            
-//            //Set unique Program-ID received from server
-//            self.program.header.programID = [NSString stringWithFormat:@"%@", [dictionary valueForKey:projectIDTag]];
-//            [self.program saveToDisk];
-//            
-//            //Set new token
-//            NSString *newToken = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenParameterTag]];
-//            [[NSUserDefaults standardUserDefaults] setValue:newToken forKey:kUserLoginToken];
-//            
-//            [self.delegate dismissPopupWithCode:YES];
-//            
-//        } else {
-//            [self.delegate dismissPopupWithCode:NO];
-//            NSString *serverResponse = [dictionary valueForKey:answerTag];
-//            NSDebug(@"Error: %@", serverResponse);
-//            [Util alertWithText:serverResponse];
-//            
-//            if([statusCode isEqualToString:statusCodeTokenWrong]) {
-//                //Token not valid
-//                [[NSUserDefaults standardUserDefaults] setBool:false forKey:kUserIsLoggedIn];
-//                
-//                NSMutableArray *viewArray = [NSMutableArray arrayWithArray:self.parentViewController.navigationController.viewControllers];
-//                [viewArray removeLastObject];
-//                NSArray *newViewArray = [NSArray arrayWithArray:viewArray];
-//                [self.parentViewController.navigationController setViewControllers:newViewArray animated:YES];
-//            }
-//        }
-//        
-//        self.data = nil;
-//        self.connection = nil;
-//    }
-//}
 
 - (void)setEnableActivityIndicator:(BOOL)enabled
 {
     [UIApplication.sharedApplication setNetworkActivityIndicatorVisible:enabled];
+}
+
+-(void)dismissView
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
