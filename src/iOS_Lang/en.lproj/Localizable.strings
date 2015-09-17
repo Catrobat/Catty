@@ -200,9 +200,6 @@
 "Delete Brick" = "Delete Brick";
 
 /* No comment provided by engineer. */
-"Delete Bricks" = "Delete Bricks";
-
-/* No comment provided by engineer. */
 "Delete Condition" = "Delete Condition";
 
 /* No comment provided by engineer. */
@@ -224,19 +221,40 @@
 "Delete Script" = "Delete Script";
 
 /* No comment provided by engineer. */
-"Delete Scripts" = "Delete Scripts";
-
-/* No comment provided by engineer. */
 "Delete Sounds" = "Delete Sounds";
 
 /* No comment provided by engineer. */
+"Delete these Bricks?" = "Delete these Bricks?";
+
+/* No comment provided by engineer. */
+"Delete these Conditions?" = "Delete these Conditions?";
+
+/* No comment provided by engineer. */
+"Delete these Loops?" = "Delete these Loops?";
+
+/* No comment provided by engineer. */
+"Delete these Scripts?" = "Delete these Scripts?";
+
+/* No comment provided by engineer. */
+"Delete this Brick?" = "Delete this Brick?";
+
+/* No comment provided by engineer. */
+"Delete this Condition?" = "Delete this Condition?";
+
+/* No comment provided by engineer. */
 "Delete this look" = "Delete this look";
+
+/* No comment provided by engineer. */
+"Delete this Loop?" = "Delete this Loop?";
 
 /* No comment provided by engineer. */
 "Delete this object" = "Delete this object";
 
 /* No comment provided by engineer. */
 "Delete this program" = "Delete this program";
+
+/* No comment provided by engineer. */
+"Delete this Script?" = "Delete this Script?";
 
 /* No comment provided by engineer. */
 "Delete this sound" = "Delete this sound";

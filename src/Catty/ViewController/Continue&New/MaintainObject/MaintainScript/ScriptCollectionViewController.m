@@ -311,7 +311,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (void)deleteAlertView
 {
     NSString *title = [[NSString alloc] init];
-    NSString *titleBuffer = [[NSString alloc] initWithString:kLocalizedDeleteBrick];
+    NSString *titleBuffer = [[NSString alloc] init];
     BOOL firstIteration = YES;
     
     for (NSIndexPath *selectedPaths in [[BrickSelectionManager sharedInstance] selectedIndexPaths])
@@ -321,28 +321,40 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         if (isBrick)
         {
             Brick *brick = (Brick*)brickCell.scriptOrBrick;
-            titleBuffer = ([brick isIfLogicBrick] ? kLocalizedDeleteCondition
-                           : ([brick isLoopBrick]) ? kLocalizedDeleteLoop : kLocalizedDeleteBricks);
+            if ([self.selectedIndexPaths count] < 4)
+            {
+                title = ([brick isIfLogicBrick] ? kLocalizedDeleteThisCondition
+                           : ([brick isLoopBrick]) ? kLocalizedDeleteThisLoop : kLocalizedDeleteTheseBricks);
+            }
+            else
+            {
+                title = ([brick isIfLogicBrick] ? kLocalizedDeleteTheseConditions
+                               : ([brick isLoopBrick]) ? kLocalizedDeleteTheseLoops : kLocalizedDeleteTheseBricks);
+            }
         }
         else
         {
-            titleBuffer = kLocalizedDeleteScripts;
+            title = kLocalizedDeleteTheseScripts;
         }
         
         if (firstIteration)
         {
-            title = titleBuffer;
-            titleBuffer = isBrick ? kLocalizedDeleteBrick : kLocalizedDeleteScript;
+            titleBuffer = title;
+            title = isBrick ? kLocalizedDeleteThisBrick : kLocalizedDeleteThisScript;
             firstIteration = NO;
         }
         else if (title != titleBuffer)
         {
-            titleBuffer = kLocalizedDeleteBricks;
+            title = kLocalizedDeleteTheseBricks;
             break;
         }
     }
-    NSString *alertTitle = titleBuffer;
-    [Util confirmAlertWithTitle:alertTitle message:kLocalizedThisActionCannotBeUndone delegate:self tag:kConfirmAlertViewTag];
+
+    if ([self.selectedIndexPaths count])
+    {
+        NSString *alertTitle = title;
+        [Util confirmAlertWithTitle:alertTitle message:kLocalizedThisActionCannotBeUndone delegate:self tag:kConfirmAlertViewTag];
+    }
 }
 
 - (void)alertView:(CatrobatAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
