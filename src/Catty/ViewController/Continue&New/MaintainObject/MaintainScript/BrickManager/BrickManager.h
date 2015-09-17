@@ -22,7 +22,7 @@
 
 #import <Foundation/Foundation.h>
 #import "UIDefines.h"
-
+#import "BrickCell.h"
 
 @interface BrickManager : NSObject
 
@@ -41,5 +41,9 @@
 - (NSUInteger)brickIndexForBrickType:(kBrickType)brickType;
 - (CGSize)sizeForBrick:(NSString *)brickName;
 - (BOOL)isScript:(kBrickType)type;
+- (NSInteger)checkEndLoopBrickTypeForDrawing:(BrickCell*)cell;
+- (NSArray*)animateWithIndexPath:(NSIndexPath*)path Script:(Script*)script andBrick:(Brick*)brick;
+- (NSArray*)scriptCollectionCopyBrickWithIndexPath:(NSIndexPath*)indexPath andBrick:(Brick*)brick;
+- (NSArray*)getIndexPathsForRemovingBricks:(NSIndexPath*)indexPath andBrick:(Brick*)brick;
 
 @end

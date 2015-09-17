@@ -21,6 +21,10 @@
  */
 
 #import "LoopEndBrickCell.h"
+#import "Brick.h"
+#import "Script.h"
+#import "LoopEndBrick.h"
+#import "ForeverBrick.h"
 
 @interface LoopEndBrickCell ()
 @property (nonatomic, strong) UILabel *textLabel;
@@ -30,7 +34,15 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+    if (self.type == 2) {
+        [BrickShapeFactory drawEndForeverLoopShape2WithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+    } else if ( self.type == 1){
+        [BrickShapeFactory drawEndForeverLoopShape1WithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+    } else if ( self.type == 3){
+        [BrickShapeFactory drawEndForeverLoopShape3WithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+    } else {
+        [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.controlBrickOrangeColor strokeColor:UIColor.controlBrickStrokeColor height:smallBrick width:[Util screenWidth]];
+    }
 }
 
 - (void)hookUpSubViews:(NSArray *)inlineViewSubViews

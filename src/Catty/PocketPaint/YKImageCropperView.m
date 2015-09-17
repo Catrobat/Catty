@@ -6,6 +6,7 @@
 #import "YKImageCropperView.h"
 
 #import "YKImageCropperOverlayView.h"
+#import "ImageHelper.h"
 
 typedef NS_ENUM(NSUInteger, OverlayViewPanningMode) {
     OverlayViewPanningModeNone     = 0,
@@ -79,9 +80,19 @@ static CGSize minSize = {40, 40};
         self.overlayView = [[YKImageCropperOverlayView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width , screenRect.size.height)];
         
         [self addSubview:self.overlayView];
+        UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0);
+        UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
         
-        [self autoCropWithImage:self.image];
+        NSData *imgdata1 = UIImagePNGRepresentation(blank);
         
+        NSData *imgdata2 = UIImagePNGRepresentation(image);
+        
+        if (![imgdata1 isEqualToData:imgdata2]) {
+            [self autoCropWithImage:self.image];
+        }else{
+           [self reset];
+        }
     }
 
     return self;
@@ -305,7 +316,7 @@ static CGSize minSize = {40, 40};
 
 - (void)panOverlayView:(UIPanGestureRecognizer *)sender {
     CGPoint d = [sender translationInView:self];
-    CGRect oldClearRect = self.overlayView.clearRect;
+//    CGRect oldClearRect = self.overlayView.clearRect;
     CGRect newClearRect = self.overlayView.clearRect;
 
     if (self.OverlayViewPanningMode & OverlayViewPanningModeLeft) {
@@ -325,16 +336,16 @@ static CGSize minSize = {40, 40};
     self.overlayView.clearRect = newClearRect;
 
     // Check x
-    if ([self shouldRevertX]) {
-        newClearRect.origin.x = oldClearRect.origin.x;
-        newClearRect.size.width = oldClearRect.size.width;
-    }
-
-    // Check y
-    if ([self shouldRevertY]) {
-        newClearRect.origin.y = oldClearRect.origin.y;
-        newClearRect.size.height = oldClearRect.size.height;
-    }
+//    if ([self shouldRevertX]) {
+//        newClearRect.origin.x = oldClearRect.origin.x;
+//        newClearRect.size.width = oldClearRect.size.width;
+//    }
+//
+//    // Check y
+//    if ([self shouldRevertY]) {
+//        newClearRect.origin.y = oldClearRect.origin.y;
+//        newClearRect.size.height = oldClearRect.size.height;
+//    }
     
     self.overlayView.clearRect = newClearRect;
     [self.overlayView setNeedsDisplay];
@@ -342,20 +353,20 @@ static CGSize minSize = {40, 40};
 
 - (void)panImage:(UIPanGestureRecognizer *)sender {
     CGPoint d = [sender translationInView:self];
-    NSDebug(@"Point: %@", d);
+//    NSDebug(@"Point: %@", d);
     CGPoint newCenter = CGPointMake(self.imageView.center.x + d.x,
                                     self.imageView.center.y + d.y);
     self.imageView.center = newCenter;
 
-    // Check x
-    if ([self shouldRevertX]) {
-        newCenter.x -= d.x;
-    }
-
-    // Check y
-    if ([self shouldRevertY]) {
-        newCenter.y -= d.y;
-    }
+//    // Check x
+//    if ([self shouldRevertX]) {
+//        newCenter.x -= d.x;
+//    }
+//
+//    // Check y
+//    if ([self shouldRevertY]) {
+//        newCenter.y -= d.y;
+//    }
 
     self.imageView.center = newCenter;
 }
@@ -460,6 +471,14 @@ static CGSize minSize = {40, 40};
     
     CGContextRelease(context);
     free(imageData);
+    if (width == 0.0f && height == 0.0f) {
+        UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0);
+        UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+
+        self.image = blank;
+        [self reset];
+    }
     
 }
 

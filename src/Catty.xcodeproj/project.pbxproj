@@ -11,8 +11,6 @@
 		4C227A0C1B56BEB900DA37B7 /* SetTransparencyBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C227A0B1B56BEB900DA37B7 /* SetTransparencyBrick.m */; };
 		4C227A0F1B56BF2000DA37B7 /* ChangeTransparencyByNBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C227A0E1B56BF2000DA37B7 /* ChangeTransparencyByNBrick+CBXMLHandler.m */; };
 		4C227A121B56BF3C00DA37B7 /* SetTransparencyBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C227A111B56BF3C00DA37B7 /* SetTransparencyBrick+CBXMLHandler.m */; };
-		4C227A181B56CA6500DA37B7 /* ValidProgramAllBricks095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C227A171B56CA6500DA37B7 /* ValidProgramAllBricks095.xml */; };
-		4C227A1A1B56CECE00DA37B7 /* ValidProgram095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C227A191B56CECE00DA37B7 /* ValidProgram095.xml */; };
 		4C26506A1A6538710050775B /* CBMutableCopyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2650691A6538710050775B /* CBMutableCopyContext.m */; };
 		4C2A00C01B5546DF00CD4492 /* XMLParserBrickTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00B91B5546DF00CD4492 /* XMLParserBrickTests093.m */; };
 		4C2A00C11B5546DF00CD4492 /* XMLParserFormulaTests093.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2A00BB1B5546DF00CD4492 /* XMLParserFormulaTests093.m */; };
@@ -45,7 +43,6 @@
 		4C2EE40D1B55585B006DE9B8 /* Tic_Tac_Toe_Master_095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C2EE40C1B55585B006DE9B8 /* Tic_Tac_Toe_Master_095.xml */; };
 		4C2EE40F1B555871006DE9B8 /* Word_balloon_demo_095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C2EE40E1B555871006DE9B8 /* Word_balloon_demo_095.xml */; };
 		4C2EE4111B555882006DE9B8 /* X_Ray_phone_095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C2EE4101B555882006DE9B8 /* X_Ray_phone_095.xml */; };
-		4C2EE4131B555952006DE9B8 /* ValidHeader095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C2EE4121B555952006DE9B8 /* ValidHeader095.xml */; };
 		4C2EE41E1B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE4171B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m */; };
 		4C2EE41F1B555B55006DE9B8 /* CBXMLPositionStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE41A1B555B55006DE9B8 /* CBXMLPositionStack.m */; };
 		4C2EE4201B555B55006DE9B8 /* CBXMLPropertyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2EE41D1B555B55006DE9B8 /* CBXMLPropertyMapping.m */; };
@@ -60,8 +57,6 @@
 		4C3BE65B1B3D2E0A00D99AB2 /* FeaturedProgramsStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BE65A1B3D2E0A00D99AB2 /* FeaturedProgramsStoreViewControllerTests.m */; };
 		4C4A71921B52733C00BBE32B /* CBXMLAbstractContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A71911B52733C00BBE32B /* CBXMLAbstractContext.m */; };
 		4C4A71A11B527E2F00BBE32B /* CBXMLParserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A71A01B527E2F00BBE32B /* CBXMLParserContext.m */; };
-		4C59D9C61B56596900595C99 /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C59D9C31B56596900595C99 /* XMLSerializerBlackBoxTests.m */; };
-		4C59D9C71B56596900595C99 /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C59D9C51B56596900595C99 /* XMLSerializerTests.m */; };
 		4C5B27FE1B3C15AC00509FDB /* SearchStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5B27FD1B3C15AC00509FDB /* SearchStoreViewControllerTests.m */; };
 		4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6066391A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m */; };
 		4C68FC891B25A00B00AB3EE8 /* FormulaEditorUtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C68FC7B1B25A00B00AB3EE8 /* FormulaEditorUtilTests.m */; };
@@ -145,6 +140,17 @@
 		4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BC6631B26C298001C7E32 /* iOSComboboxPickerView.m */; };
 		4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE031B95DF2900431757 /* BrickInsertManager.m */; };
 		4CB4FE071B95DF2900431757 /* BrickMoveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE051B95DF2900431757 /* BrickMoveManager.m */; };
+		4CC85CD21B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CD11B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml */; };
+		4CC85CD41B9C6EC80097E470 /* Word_balloon_demo_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CD31B9C6EC80097E470 /* Word_balloon_demo_096.xml */; };
+		4CC85CD61B9C6F220097E470 /* X_Ray_phone_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CD51B9C6F220097E470 /* X_Ray_phone_096.xml */; };
+		4CC85CE41B9C717C0097E470 /* ValidHeader095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CDA1B9C717C0097E470 /* ValidHeader095.xml */; };
+		4CC85CE51B9C717C0097E470 /* ValidHeader096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CDB1B9C717C0097E470 /* ValidHeader096.xml */; };
+		4CC85CE61B9C717C0097E470 /* ValidProgram.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CDD1B9C717C0097E470 /* ValidProgram.xml */; };
+		4CC85CE71B9C717C0097E470 /* ValidProgram095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CDE1B9C717C0097E470 /* ValidProgram095.xml */; };
+		4CC85CE81B9C717C0097E470 /* ValidProgram096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CDF1B9C717C0097E470 /* ValidProgram096.xml */; };
+		4CC85CE91B9C717C0097E470 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CE11B9C717C0097E470 /* ValidProgramAllBricks.xml */; };
+		4CC85CEA1B9C717C0097E470 /* ValidProgramAllBricks095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CE21B9C717C0097E470 /* ValidProgramAllBricks095.xml */; };
+		4CC85CEB1B9C717C0097E470 /* ValidProgramAllBricks096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CE31B9C717C0097E470 /* ValidProgramAllBricks096.xml */; };
 		4CEB224E1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22301B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m */; };
 		4CEB224F1B95E47500B3BE2F /* BrickMoveManagerForeverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22311B95E47500B3BE2F /* BrickMoveManagerForeverTests.m */; };
 		4CEB22501B95E47500B3BE2F /* BrickMoveManagerLogicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22321B95E47500B3BE2F /* BrickMoveManagerLogicTests.m */; };
@@ -179,6 +185,27 @@
 		4CEB22751B95E4BC00B3BE2F /* BrickInsertManagerLogicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22701B95E4BC00B3BE2F /* BrickInsertManagerLogicTests.m */; };
 		4CEB22761B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22711B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m */; };
 		4CEB22771B95E4BC00B3BE2F /* BrickInsertManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22721B95E4BC00B3BE2F /* BrickInsertManagerTests.m */; };
+		4CEF0CC01B9C6360003C9B20 /* Air_fight_0.5_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CBF1B9C6360003C9B20 /* Air_fight_0.5_096.xml */; };
+		4CEF0CC21B9C636A003C9B20 /* Airplane_with_shadow_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CC11B9C636A003C9B20 /* Airplane_with_shadow_096.xml */; };
+		4CEF0CC41B9C6373003C9B20 /* Compass_0.1_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CC31B9C6373003C9B20 /* Compass_0.1_096.xml */; };
+		4CEF0CC61B9C637D003C9B20 /* Demonstration_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CC51B9C637D003C9B20 /* Demonstration_096.xml */; };
+		4CEF0CC81B9C63A2003C9B20 /* Drink_more_water_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CC71B9C63A2003C9B20 /* Drink_more_water_096.xml */; };
+		4CEF0CCA1B9C63AD003C9B20 /* Flap_Pac_Man_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CC91B9C63AD003C9B20 /* Flap_Pac_Man_096.xml */; };
+		4CEF0CCC1B9C63BA003C9B20 /* Flappy_v3.0_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CCB1B9C63BA003C9B20 /* Flappy_v3.0_096.xml */; };
+		4CEF0CCE1B9C63C2003C9B20 /* Galaxy_War_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CCD1B9C63C2003C9B20 /* Galaxy_War_096.xml */; };
+		4CEF0CD01B9C63DB003C9B20 /* Gossip_Girl_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CCF1B9C63DB003C9B20 /* Gossip_Girl_096.xml */; };
+		4CEF0CD21B9C63E7003C9B20 /* Memory_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CD11B9C63E7003C9B20 /* Memory_096.xml */; };
+		4CEF0CD41B9C63F3003C9B20 /* Minecraft_Work_In_Progress_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CD31B9C63F3003C9B20 /* Minecraft_Work_In_Progress_096.xml */; };
+		4CEF0CD61B9C6406003C9B20 /* Minions__096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CD51B9C6406003C9B20 /* Minions__096.xml */; };
+		4CEF0CD81B9C6413003C9B20 /* Nyancat_1.0_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CD71B9C6413003C9B20 /* Nyancat_1.0_096.xml */; };
+		4CEF0CDA1B9C641E003C9B20 /* Piano_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CD91B9C641E003C9B20 /* Piano_096.xml */; };
+		4CEF0CDC1B9C642A003C9B20 /* Pong_Starter_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CDB1B9C642A003C9B20 /* Pong_Starter_096.xml */; };
+		4CEF0CDE1B9C6434003C9B20 /* Pythagorean_Theorem_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CDD1B9C6434003C9B20 /* Pythagorean_Theorem_096.xml */; };
+		4CEF0CE01B9C643E003C9B20 /* Rock_paper_scissors_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CDF1B9C643E003C9B20 /* Rock_paper_scissors_096.xml */; };
+		4CEF0CE21B9C6445003C9B20 /* Skydiving_Steve_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CEF0CE11B9C6445003C9B20 /* Skydiving_Steve_096.xml */; };
+		4CEF0CF01B9C655B003C9B20 /* XMLParserBlackBoxTests096.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEF0CEA1B9C655B003C9B20 /* XMLParserBlackBoxTests096.m */; };
+		4CEF0CF11B9C655B003C9B20 /* XMLSerializerBlackBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEF0CED1B9C655B003C9B20 /* XMLSerializerBlackBoxTests.m */; };
+		4CEF0CF21B9C655B003C9B20 /* XMLSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEF0CEF1B9C655B003C9B20 /* XMLSerializerTests.m */; };
 		4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */; };
 		4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */; };
 		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
@@ -187,6 +214,8 @@
 		81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */; };
 		92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A461A42F2A3008C771A /* BSKeyboardControls.m */; };
 		92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A481A42F2A3008C771A /* iOSCombobox.m */; };
+		922FE8E11B963BDE005A19FA /* BrickSelectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 922FE8E01B963BDE005A19FA /* BrickSelectionManager.m */; };
+		922FE8E31B96430D005A19FA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 922FE8E21B96430D005A19FA /* Default-568h@2x.png */; };
 		9238C5831A3AE9920099F061 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9238C57E1A3AE9920099F061 /* LoginPopupViewController.m */; };
 		928D4D791A7BD19A00E6DFA8 /* CatrobatUISlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 928D4D781A7BD19A00E6DFA8 /* CatrobatUISlider.m */; };
 		92D346BD1B8DDC0A009EB8F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */; };
@@ -233,6 +262,7 @@
 		92DFB06B1A38960C00FA9B0F /* UndoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB04E1A38960C00FA9B0F /* UndoManager.m */; };
 		92DFB06C1A38960C00FA9B0F /* YKImageCropperOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB0501A38960C00FA9B0F /* YKImageCropperOverlayView.m */; };
 		92DFB06D1A38960C00FA9B0F /* YKImageCropperView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFB0521A38960C00FA9B0F /* YKImageCropperView.m */; };
+		92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FC85CD1B9E1EB5001C728F /* BrickManager.m */; };
 		92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E0D1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m */; };
 		92FF2E351A24C5A700093DA7 /* NSData+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E131A24C5A700093DA7 /* NSData+Hashes.m */; };
 		92FF2E361A24C5A700093DA7 /* NSDate+CustomExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E161A24C5A700093DA7 /* NSDate+CustomExtensions.m */; };
@@ -277,7 +307,6 @@
 		92FF2EC01A24C8A700093DA7 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2EB51A24C8A700093DA7 /* OrderedDictionary.m */; };
 		92FF2EC11A24C8A700093DA7 /* OrderedMapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2EB81A24C8A700093DA7 /* OrderedMapTable.m */; };
 		92FF2EC21A24C8A700093DA7 /* ProgramLoadingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2EBB1A24C8A700093DA7 /* ProgramLoadingInfo.m */; };
-		92FF30C71A24DCAA00093DA7 /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF302A1A24DCAA00093DA7 /* BrickManager.m */; };
 		92FF30C81A24DCAA00093DA7 /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF302D1A24DCAA00093DA7 /* Brick.m */; };
 		92FF30C91A24DCAA00093DA7 /* BroadcastBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30301A24DCAA00093DA7 /* BroadcastBrick.m */; };
 		92FF30CA1A24DCAA00093DA7 /* BroadcastWaitBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30321A24DCAA00093DA7 /* BroadcastWaitBrick.m */; };
@@ -464,7 +493,6 @@
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
 		A918B6B51B89F5690017B92F /* Siren.swift in Sources */ = {isa = PBXBuildFile; fileRef = A918B6B41B89F5690017B92F /* Siren.swift */; };
 		A918B6B71B89F5870017B92F /* Siren.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A918B6B61B89F5870017B92F /* Siren.bundle */; };
-		AA039CF11B826328003ADEE0 /* commit in Resources */ = {isa = PBXBuildFile; fileRef = AA039CF01B826328003ADEE0 /* commit */; };
 		CA02C5E51B14385500233FB0 /* CBPlayerScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E41B14385500233FB0 /* CBPlayerScene.swift */; };
 		CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */; };
 		CA2D44411B122E8500A3B53D /* SwellAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D44401B122E8500A3B53D /* SwellAll.swift */; };
@@ -594,8 +622,6 @@
 		CAE3E5651B4C50B300CC88BD /* Encapsulated.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5321B4C50B300CC88BD /* Encapsulated.xml */; };
 		CAE3E5661B4C50B300CC88BD /* LegoNxtMotorActionBrick.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5331B4C50B300CC88BD /* LegoNxtMotorActionBrick.xml */; };
 		CAE3E5671B4C50B300CC88BD /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5341B4C50B300CC88BD /* ValidFormulaList.xml */; };
-		CAE3E5681B4C50B300CC88BD /* ValidProgram.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5351B4C50B300CC88BD /* ValidProgram.xml */; };
-		CAE3E5691B4C50B300CC88BD /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5361B4C50B300CC88BD /* ValidProgramAllBricks.xml */; };
 		CAE485D71B13AA6600DC4485 /* CBPlayerFrontend.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE485D51B13AA6600DC4485 /* CBPlayerFrontend.swift */; };
 		CAE485D81B13AA6600DC4485 /* CBPlayerFrontendSequenceFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE485D61B13AA6600DC4485 /* CBPlayerFrontendSequenceFilters.swift */; };
 		CAE485DA1B13AA6E00DC4485 /* CBPlayerBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE485D91B13AA6E00DC4485 /* CBPlayerBackend.swift */; };
@@ -629,8 +655,6 @@
 		4C227A0E1B56BF2000DA37B7 /* ChangeTransparencyByNBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChangeTransparencyByNBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		4C227A101B56BF3C00DA37B7 /* SetTransparencyBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SetTransparencyBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		4C227A111B56BF3C00DA37B7 /* SetTransparencyBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SetTransparencyBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		4C227A171B56CA6500DA37B7 /* ValidProgramAllBricks095.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidProgramAllBricks095.xml; path = CattyTests/Resources/ParserTests/ValidProgramAllBricks095.xml; sourceTree = SOURCE_ROOT; };
-		4C227A191B56CECE00DA37B7 /* ValidProgram095.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidProgram095.xml; path = CattyTests/Resources/ParserTests/ValidProgram095.xml; sourceTree = SOURCE_ROOT; };
 		4C2650681A6538710050775B /* CBMutableCopyContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopyContext.h; path = CBCopyContext/CBMutableCopyContext.h; sourceTree = "<group>"; };
 		4C2650691A6538710050775B /* CBMutableCopyContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBMutableCopyContext.m; path = CBCopyContext/CBMutableCopyContext.m; sourceTree = "<group>"; };
 		4C26506C1A653A5A0050775B /* CBMutableCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBMutableCopying.h; path = Copying/CBMutableCopying.h; sourceTree = "<group>"; };
@@ -671,7 +695,6 @@
 		4C2EE40C1B55585B006DE9B8 /* Tic_Tac_Toe_Master_095.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Tic_Tac_Toe_Master_095.xml; sourceTree = "<group>"; };
 		4C2EE40E1B555871006DE9B8 /* Word_balloon_demo_095.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Word_balloon_demo_095.xml; sourceTree = "<group>"; };
 		4C2EE4101B555882006DE9B8 /* X_Ray_phone_095.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = X_Ray_phone_095.xml; sourceTree = "<group>"; };
-		4C2EE4121B555952006DE9B8 /* ValidHeader095.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidHeader095.xml; path = CattyTests/Resources/ParserTests/ValidHeader095.xml; sourceTree = SOURCE_ROOT; };
 		4C2EE4161B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLOpenedNestingBricksStack.h; sourceTree = "<group>"; };
 		4C2EE4171B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBXMLOpenedNestingBricksStack.m; sourceTree = "<group>"; };
 		4C2EE4191B555B55006DE9B8 /* CBXMLPositionStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLPositionStack.h; sourceTree = "<group>"; };
@@ -710,8 +733,6 @@
 		4C5517D51ABC6AA500A52FF4 /* BrickLookProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickLookProtocol.h; sourceTree = "<group>"; };
 		4C5517D61ABC6AB800A52FF4 /* BrickSoundProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSoundProtocol.h; sourceTree = "<group>"; };
 		4C5517D71ABC737C00A52FF4 /* BrickObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickObjectProtocol.h; sourceTree = "<group>"; };
-		4C59D9C31B56596900595C99 /* XMLSerializerBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerBlackBoxTests.m; sourceTree = "<group>"; };
-		4C59D9C51B56596900595C99 /* XMLSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerTests.m; sourceTree = "<group>"; };
 		4C5B27FD1B3C15AC00509FDB /* SearchStoreViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchStoreViewControllerTests.m; path = Download/SearchStoreViewControllerTests.m; sourceTree = "<group>"; };
 		4C5B27FF1B3C194900509FDB /* SearchStoreViewControllerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchStoreViewControllerTests.h; path = Download/SearchStoreViewControllerTests.h; sourceTree = "<group>"; };
 		4C6066381A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GDataXMLNode+CustomExtensions.h"; sourceTree = "<group>"; };
@@ -884,6 +905,17 @@
 		4CB4FE041B95DF2900431757 /* BrickMoveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMoveManager.h; sourceTree = "<group>"; };
 		4CB4FE051B95DF2900431757 /* BrickMoveManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManager.m; sourceTree = "<group>"; };
 		4CC0D51F1B01FB73006193C4 /* BrickVariableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickVariableProtocol.h; sourceTree = "<group>"; };
+		4CC85CD11B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Tic_Tac_Toe_Master_096.xml; sourceTree = "<group>"; };
+		4CC85CD31B9C6EC80097E470 /* Word_balloon_demo_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Word_balloon_demo_096.xml; sourceTree = "<group>"; };
+		4CC85CD51B9C6F220097E470 /* X_Ray_phone_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = X_Ray_phone_096.xml; sourceTree = "<group>"; };
+		4CC85CDA1B9C717C0097E470 /* ValidHeader095.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidHeader095.xml; sourceTree = "<group>"; };
+		4CC85CDB1B9C717C0097E470 /* ValidHeader096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidHeader096.xml; sourceTree = "<group>"; };
+		4CC85CDD1B9C717C0097E470 /* ValidProgram.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgram.xml; sourceTree = "<group>"; };
+		4CC85CDE1B9C717C0097E470 /* ValidProgram095.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgram095.xml; sourceTree = "<group>"; };
+		4CC85CDF1B9C717C0097E470 /* ValidProgram096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgram096.xml; sourceTree = "<group>"; };
+		4CC85CE11B9C717C0097E470 /* ValidProgramAllBricks.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgramAllBricks.xml; sourceTree = "<group>"; };
+		4CC85CE21B9C717C0097E470 /* ValidProgramAllBricks095.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgramAllBricks095.xml; sourceTree = "<group>"; };
+		4CC85CE31B9C717C0097E470 /* ValidProgramAllBricks096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgramAllBricks096.xml; sourceTree = "<group>"; };
 		4CEB222F1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMoveManagerAbstractTest.h; sourceTree = "<group>"; };
 		4CEB22301B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManagerAbstractTest.m; sourceTree = "<group>"; };
 		4CEB22311B95E47500B3BE2F /* BrickMoveManagerForeverTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManagerForeverTests.m; sourceTree = "<group>"; };
@@ -921,6 +953,27 @@
 		4CEB22701B95E4BC00B3BE2F /* BrickInsertManagerLogicTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickInsertManagerLogicTests.m; sourceTree = "<group>"; };
 		4CEB22711B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickInsertManagerRepeatTests.m; sourceTree = "<group>"; };
 		4CEB22721B95E4BC00B3BE2F /* BrickInsertManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickInsertManagerTests.m; sourceTree = "<group>"; };
+		4CEF0CBF1B9C6360003C9B20 /* Air_fight_0.5_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Air_fight_0.5_096.xml; sourceTree = "<group>"; };
+		4CEF0CC11B9C636A003C9B20 /* Airplane_with_shadow_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Airplane_with_shadow_096.xml; sourceTree = "<group>"; };
+		4CEF0CC31B9C6373003C9B20 /* Compass_0.1_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Compass_0.1_096.xml; sourceTree = "<group>"; };
+		4CEF0CC51B9C637D003C9B20 /* Demonstration_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Demonstration_096.xml; sourceTree = "<group>"; };
+		4CEF0CC71B9C63A2003C9B20 /* Drink_more_water_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Drink_more_water_096.xml; sourceTree = "<group>"; };
+		4CEF0CC91B9C63AD003C9B20 /* Flap_Pac_Man_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Flap_Pac_Man_096.xml; sourceTree = "<group>"; };
+		4CEF0CCB1B9C63BA003C9B20 /* Flappy_v3.0_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Flappy_v3.0_096.xml; sourceTree = "<group>"; };
+		4CEF0CCD1B9C63C2003C9B20 /* Galaxy_War_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Galaxy_War_096.xml; sourceTree = "<group>"; };
+		4CEF0CCF1B9C63DB003C9B20 /* Gossip_Girl_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Gossip_Girl_096.xml; sourceTree = "<group>"; };
+		4CEF0CD11B9C63E7003C9B20 /* Memory_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Memory_096.xml; sourceTree = "<group>"; };
+		4CEF0CD31B9C63F3003C9B20 /* Minecraft_Work_In_Progress_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Minecraft_Work_In_Progress_096.xml; sourceTree = "<group>"; };
+		4CEF0CD51B9C6406003C9B20 /* Minions__096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Minions__096.xml; sourceTree = "<group>"; };
+		4CEF0CD71B9C6413003C9B20 /* Nyancat_1.0_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Nyancat_1.0_096.xml; sourceTree = "<group>"; };
+		4CEF0CD91B9C641E003C9B20 /* Piano_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Piano_096.xml; sourceTree = "<group>"; };
+		4CEF0CDB1B9C642A003C9B20 /* Pong_Starter_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pong_Starter_096.xml; sourceTree = "<group>"; };
+		4CEF0CDD1B9C6434003C9B20 /* Pythagorean_Theorem_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pythagorean_Theorem_096.xml; sourceTree = "<group>"; };
+		4CEF0CDF1B9C643E003C9B20 /* Rock_paper_scissors_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Rock_paper_scissors_096.xml; sourceTree = "<group>"; };
+		4CEF0CE11B9C6445003C9B20 /* Skydiving_Steve_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Skydiving_Steve_096.xml; sourceTree = "<group>"; };
+		4CEF0CEA1B9C655B003C9B20 /* XMLParserBlackBoxTests096.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserBlackBoxTests096.m; sourceTree = "<group>"; };
+		4CEF0CED1B9C655B003C9B20 /* XMLSerializerBlackBoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerBlackBoxTests.m; sourceTree = "<group>"; };
+		4CEF0CEF1B9C655B003C9B20 /* XMLSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLSerializerTests.m; sourceTree = "<group>"; };
 		4CF773E31AEE3B5100DBBB2B /* VariablePickerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariablePickerData.h; sourceTree = "<group>"; };
 		4CF773E41AEE3B5100DBBB2B /* VariablePickerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariablePickerData.m; sourceTree = "<group>"; };
 		4CF773EC1AEE786600DBBB2B /* FormulaElement+UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FormulaElement+UserVariable.h"; sourceTree = "<group>"; };
@@ -933,13 +986,16 @@
 		811FB6EC1A49812700957E10 /* BrickCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCategoryViewController.m; sourceTree = "<group>"; };
 		81C0A67D1A4EE8CF003A77C5 /* BrickSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSelectionViewController.h; sourceTree = "<group>"; };
 		81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickSelectionViewController.m; sourceTree = "<group>"; };
-		81C27425189EF94600827A95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Catty/Images.xcassets; sourceTree = "<group>"; };
+		81C27425189EF94600827A95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		921FE2F9182F8122001D7CF6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		92289A451A42F2A3008C771A /* BSKeyboardControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSKeyboardControls.h; sourceTree = "<group>"; };
 		92289A461A42F2A3008C771A /* BSKeyboardControls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSKeyboardControls.m; sourceTree = "<group>"; };
 		92289A471A42F2A3008C771A /* iOSCombobox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSCombobox.h; sourceTree = "<group>"; };
 		92289A481A42F2A3008C771A /* iOSCombobox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSCombobox.m; sourceTree = "<group>"; };
+		922FE8DF1B963BDE005A19FA /* BrickSelectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSelectionManager.h; sourceTree = "<group>"; };
+		922FE8E01B963BDE005A19FA /* BrickSelectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickSelectionManager.m; sourceTree = "<group>"; };
+		922FE8E21B96430D005A19FA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		92300CEA18B2196700F2B4DC /* af */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = af; path = af.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92300CEB18B2196700F2B4DC /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92300CEC18B2196700F2B4DC /* bs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bs; path = bs.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1064,6 +1120,8 @@
 		92DFB0511A38960C00FA9B0F /* YKImageCropperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKImageCropperView.h; sourceTree = "<group>"; };
 		92DFB0521A38960C00FA9B0F /* YKImageCropperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKImageCropperView.m; sourceTree = "<group>"; };
 		92E3351D18FBB6750056C390 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		92FC85CC1B9E1EB5001C728F /* BrickManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickManager.h; path = "Catty/ViewController/Continue&New/MaintainObject/MaintainScript/BrickManager/BrickManager.h"; sourceTree = SOURCE_ROOT; };
+		92FC85CD1B9E1EB5001C728F /* BrickManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrickManager.m; path = "Catty/ViewController/Continue&New/MaintainObject/MaintainScript/BrickManager/BrickManager.m"; sourceTree = SOURCE_ROOT; };
 		92FF2DFE1A24C3BE00093DA7 /* ActionSheetAlertViewTags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetAlertViewTags.h; sourceTree = "<group>"; };
 		92FF2E001A24C3BE00093DA7 /* ButtonTags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonTags.h; sourceTree = "<group>"; };
 		92FF2E011A24C3BE00093DA7 /* CatrobatLanguageDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatLanguageDefines.h; sourceTree = "<group>"; };
@@ -1163,8 +1221,6 @@
 		92FF2EB81A24C8A700093DA7 /* OrderedMapTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedMapTable.m; sourceTree = "<group>"; };
 		92FF2EBA1A24C8A700093DA7 /* ProgramLoadingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramLoadingInfo.h; sourceTree = "<group>"; };
 		92FF2EBB1A24C8A700093DA7 /* ProgramLoadingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramLoadingInfo.m; sourceTree = "<group>"; };
-		92FF30291A24DCAA00093DA7 /* BrickManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickManager.h; sourceTree = "<group>"; };
-		92FF302A1A24DCAA00093DA7 /* BrickManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickManager.m; sourceTree = "<group>"; };
 		92FF302C1A24DCAA00093DA7 /* Brick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brick.h; sourceTree = "<group>"; };
 		92FF302D1A24DCAA00093DA7 /* Brick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Brick.m; sourceTree = "<group>"; };
 		92FF302F1A24DCAA00093DA7 /* BroadcastBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastBrick.h; sourceTree = "<group>"; };
@@ -1554,7 +1610,7 @@
 		CA2D44481B1249DD00A3B53D /* CBPlayerScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerScheduler.swift; path = PlayerEngine/Scheduler/CBPlayerScheduler.swift; sourceTree = "<group>"; };
 		CA2D444E1B1251BF00A3B53D /* CBPlayerSchedulingAlgorithms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerSchedulingAlgorithms.swift; path = PlayerEngine/Scheduler/CBPlayerSchedulingAlgorithms.swift; sourceTree = "<group>"; };
 		CA2D8C961AEDDA2100A5BDC2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CA3E72D41B0BA5FF00D6B184 /* Catty-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Catty-Bridging-Header.h"; path = "Catty/Catty-Bridging-Header.h"; sourceTree = "<group>"; };
+		CA3E72D41B0BA5FF00D6B184 /* Catty-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Catty-Bridging-Header.h"; sourceTree = "<group>"; };
 		CA3E72E71B0C00A500D6B184 /* CBStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBStack.swift; path = 3rdParty/Stack/CBStack.swift; sourceTree = "<group>"; };
 		CA3E72EB1B0C01CD00D6B184 /* LLNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LLNode.swift; path = 3rdParty/LLNode/LLNode.swift; sourceTree = "<group>"; };
 		CA403F2B1B1631A8004ADCB2 /* CBCustomTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCustomTypes.swift; sourceTree = "<group>"; };
@@ -1633,8 +1689,6 @@
 		CAE3E5321B4C50B300CC88BD /* Encapsulated.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Encapsulated.xml; path = CattyTests/Resources/ParserTests/Encapsulated.xml; sourceTree = SOURCE_ROOT; };
 		CAE3E5331B4C50B300CC88BD /* LegoNxtMotorActionBrick.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = LegoNxtMotorActionBrick.xml; path = CattyTests/Resources/ParserTests/LegoNxtMotorActionBrick.xml; sourceTree = SOURCE_ROOT; };
 		CAE3E5341B4C50B300CC88BD /* ValidFormulaList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidFormulaList.xml; path = CattyTests/Resources/ParserTests/ValidFormulaList.xml; sourceTree = SOURCE_ROOT; };
-		CAE3E5351B4C50B300CC88BD /* ValidProgram.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidProgram.xml; path = CattyTests/Resources/ParserTests/ValidProgram.xml; sourceTree = SOURCE_ROOT; };
-		CAE3E5361B4C50B300CC88BD /* ValidProgramAllBricks.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ValidProgramAllBricks.xml; path = CattyTests/Resources/ParserTests/ValidProgramAllBricks.xml; sourceTree = SOURCE_ROOT; };
 		CAE485D51B13AA6600DC4485 /* CBPlayerFrontend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerFrontend.swift; path = PlayerEngine/Frontend/CBPlayerFrontend.swift; sourceTree = "<group>"; };
 		CAE485D61B13AA6600DC4485 /* CBPlayerFrontendSequenceFilters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerFrontendSequenceFilters.swift; path = PlayerEngine/Frontend/CBPlayerFrontendSequenceFilters.swift; sourceTree = "<group>"; };
 		CAE485D91B13AA6E00DC4485 /* CBPlayerBackend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBPlayerBackend.swift; path = PlayerEngine/Backend/CBPlayerBackend.swift; sourceTree = "<group>"; };
@@ -1705,8 +1759,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				81C27425189EF94600827A95 /* Images.xcassets */,
-				CA3E72D41B0BA5FF00D6B184 /* Catty-Bridging-Header.h */,
 				CD0CCE54170CB39600B70036 /* Catty */,
 				92FF32C11A24E33B00093DA7 /* Storyboard+XIB */,
 				29B97315FDCFA39411CA2CEA /* Supporting Files */,
@@ -1725,6 +1777,7 @@
 			children = (
 				AA039CF01B826328003ADEE0 /* commit */,
 				92300CE818B2196700F2B4DC /* iOS_Lang */,
+				CA3E72D41B0BA5FF00D6B184 /* Catty-Bridging-Header.h */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				B4F243CB170EBEF7007A071D /* AppDelegate.h */,
 				B4F243CC170EBEF7007A071D /* AppDelegate.m */,
@@ -1800,14 +1853,12 @@
 				CAE3E5281B4C50B300CC88BD /* Tic_Tac_Toe_Master */,
 				CAE3E52B1B4C50B300CC88BD /* Word_balloon_demo */,
 				CAE3E52E1B4C50B300CC88BD /* X_Ray_phone */,
+				4CC85CD91B9C717C0097E470 /* ValidHeader */,
+				4CC85CDC1B9C717C0097E470 /* ValidProgram */,
+				4CC85CE01B9C717C0097E470 /* ValidProgramAllBricks */,
 				CAE3E5321B4C50B300CC88BD /* Encapsulated.xml */,
 				CAE3E5331B4C50B300CC88BD /* LegoNxtMotorActionBrick.xml */,
 				CAE3E5341B4C50B300CC88BD /* ValidFormulaList.xml */,
-				CAE3E5351B4C50B300CC88BD /* ValidProgram.xml */,
-				4C227A191B56CECE00DA37B7 /* ValidProgram095.xml */,
-				CAE3E5361B4C50B300CC88BD /* ValidProgramAllBricks.xml */,
-				4C227A171B56CA6500DA37B7 /* ValidProgramAllBricks095.xml */,
-				4C2EE4121B555952006DE9B8 /* ValidHeader095.xml */,
 			);
 			name = ParserTests;
 			sourceTree = "<group>";
@@ -1851,7 +1902,6 @@
 			isa = PBXGroup;
 			children = (
 				4C2EE3DB1B5554D7006DE9B8 /* XMLParserTests */,
-				4C59D9C11B56596900595C99 /* XMLSerializerTests */,
 			);
 			name = CatrobatLanguage0.95;
 			path = "Parser & Serialization/CatrobatLanguage0.95";
@@ -2002,31 +2052,6 @@
 				4C1EB20F1AC19B3D0001F431 /* BrickTextProtocol.h */,
 			);
 			path = BrickData;
-			sourceTree = "<group>";
-		};
-		4C59D9C11B56596900595C99 /* XMLSerializerTests */ = {
-			isa = PBXGroup;
-			children = (
-				4C59D9C41B56596900595C99 /* Unit Tests */,
-				4C59D9C21B56596900595C99 /* BlackBox Tests */,
-			);
-			path = XMLSerializerTests;
-			sourceTree = "<group>";
-		};
-		4C59D9C21B56596900595C99 /* BlackBox Tests */ = {
-			isa = PBXGroup;
-			children = (
-				4C59D9C31B56596900595C99 /* XMLSerializerBlackBoxTests.m */,
-			);
-			path = "BlackBox Tests";
-			sourceTree = "<group>";
-		};
-		4C59D9C41B56596900595C99 /* Unit Tests */ = {
-			isa = PBXGroup;
-			children = (
-				4C59D9C51B56596900595C99 /* XMLSerializerTests.m */,
-			);
-			path = "Unit Tests";
 			sourceTree = "<group>";
 		};
 		4C5B27FC1B3C155C00509FDB /* Download */ = {
@@ -2435,6 +2460,8 @@
 		4CB4FE011B95DF2900431757 /* BrickManager */ = {
 			isa = PBXGroup;
 			children = (
+				922FE8DF1B963BDE005A19FA /* BrickSelectionManager.h */,
+				922FE8E01B963BDE005A19FA /* BrickSelectionManager.m */,
 				4CB4FE021B95DF2900431757 /* BrickInsertManager.h */,
 				4CB4FE031B95DF2900431757 /* BrickInsertManager.m */,
 				4CB4FE041B95DF2900431757 /* BrickMoveManager.h */,
@@ -2443,6 +2470,38 @@
 			path = BrickManager;
 			sourceTree = "<group>";
 		};
+		4CC85CD91B9C717C0097E470 /* ValidHeader */ = {
+			isa = PBXGroup;
+			children = (
+				4CC85CDA1B9C717C0097E470 /* ValidHeader095.xml */,
+				4CC85CDB1B9C717C0097E470 /* ValidHeader096.xml */,
+			);
+			name = ValidHeader;
+			path = CattyTests/Resources/ParserTests/ValidHeader;
+			sourceTree = SOURCE_ROOT;
+		};
+		4CC85CDC1B9C717C0097E470 /* ValidProgram */ = {
+			isa = PBXGroup;
+			children = (
+				4CC85CDD1B9C717C0097E470 /* ValidProgram.xml */,
+				4CC85CDE1B9C717C0097E470 /* ValidProgram095.xml */,
+				4CC85CDF1B9C717C0097E470 /* ValidProgram096.xml */,
+			);
+			name = ValidProgram;
+			path = CattyTests/Resources/ParserTests/ValidProgram;
+			sourceTree = SOURCE_ROOT;
+		};
+		4CC85CE01B9C717C0097E470 /* ValidProgramAllBricks */ = {
+			isa = PBXGroup;
+			children = (
+				4CC85CE11B9C717C0097E470 /* ValidProgramAllBricks.xml */,
+				4CC85CE21B9C717C0097E470 /* ValidProgramAllBricks095.xml */,
+				4CC85CE31B9C717C0097E470 /* ValidProgramAllBricks096.xml */,
+			);
+			name = ValidProgramAllBricks;
+			path = CattyTests/Resources/ParserTests/ValidProgramAllBricks;
+			sourceTree = SOURCE_ROOT;
+		};
 		4CD194F21A0631B200484E4F /* Parser & Serialization */ = {
 			isa = PBXGroup;
 			children = (
@@ -2450,6 +2509,7 @@
 				4CD669711B272AB60008602D /* CatrobatLanguage0.92 */,
 				4CD194F61A0632C600484E4F /* CatrobatLanguage0.93 */,
 				4C2EE3DA1B5554D7006DE9B8 /* CatrobatLanguage0.95 */,
+				4CEF0CE71B9C655B003C9B20 /* CatrobatLanguage0.96 */,
 			);
 			name = "Parser & Serialization";
 			sourceTree = "<group>";
@@ -2553,6 +2613,57 @@
 				4CEB226E1B95E4BC00B3BE2F /* BrickInsertManagerAbstractTest.m */,
 			);
 			path = Abstract;
+			sourceTree = "<group>";
+		};
+		4CEF0CE71B9C655B003C9B20 /* CatrobatLanguage0.96 */ = {
+			isa = PBXGroup;
+			children = (
+				4CEF0CE81B9C655B003C9B20 /* XMLParserTests */,
+				4CEF0CEB1B9C655B003C9B20 /* XMLSerializerTests */,
+			);
+			name = CatrobatLanguage0.96;
+			path = "CattyTests/Parser & Serialization/CatrobatLanguage0.96";
+			sourceTree = SOURCE_ROOT;
+		};
+		4CEF0CE81B9C655B003C9B20 /* XMLParserTests */ = {
+			isa = PBXGroup;
+			children = (
+				4CEF0CE91B9C655B003C9B20 /* BlackBox Tests */,
+			);
+			path = XMLParserTests;
+			sourceTree = "<group>";
+		};
+		4CEF0CE91B9C655B003C9B20 /* BlackBox Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4CEF0CEA1B9C655B003C9B20 /* XMLParserBlackBoxTests096.m */,
+			);
+			path = "BlackBox Tests";
+			sourceTree = "<group>";
+		};
+		4CEF0CEB1B9C655B003C9B20 /* XMLSerializerTests */ = {
+			isa = PBXGroup;
+			children = (
+				4CEF0CEC1B9C655B003C9B20 /* BlackBox Tests */,
+				4CEF0CEE1B9C655B003C9B20 /* Unit Tests */,
+			);
+			path = XMLSerializerTests;
+			sourceTree = "<group>";
+		};
+		4CEF0CEC1B9C655B003C9B20 /* BlackBox Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4CEF0CED1B9C655B003C9B20 /* XMLSerializerBlackBoxTests.m */,
+			);
+			path = "BlackBox Tests";
+			sourceTree = "<group>";
+		};
+		4CEF0CEE1B9C655B003C9B20 /* Unit Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4CEF0CEF1B9C655B003C9B20 /* XMLSerializerTests.m */,
+			);
+			path = "Unit Tests";
 			sourceTree = "<group>";
 		};
 		92289A441A42F2A3008C771A /* ComboBox */ = {
@@ -3203,8 +3314,8 @@
 		92FF30281A24DCAA00093DA7 /* BrickManager */ = {
 			isa = PBXGroup;
 			children = (
-				92FF30291A24DCAA00093DA7 /* BrickManager.h */,
-				92FF302A1A24DCAA00093DA7 /* BrickManager.m */,
+				92FC85CC1B9E1EB5001C728F /* BrickManager.h */,
+				92FC85CD1B9E1EB5001C728F /* BrickManager.m */,
 			);
 			path = BrickManager;
 			sourceTree = "<group>";
@@ -4166,6 +4277,8 @@
 		B43498471927A3AB002F9075 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				81C27425189EF94600827A95 /* Images.xcassets */,
+				922FE8E21B96430D005A19FA /* Default-568h@2x.png */,
 				4C9E2D1D198EA6B600455B77 /* Licenses */,
 				CA6E4C4719F9C388001B65C3 /* My first program.catrobat */,
 				4C3AEF2E198E7EDD00604ABF /* Settings.bundle */,
@@ -4404,6 +4517,7 @@
 				CAE3E4EE1B4C50B300CC88BD /* Air_fight_0.5_091.xml */,
 				CAE3E4EF1B4C50B300CC88BD /* Air_fight_0.5_093.xml */,
 				4C2EE3E81B5556FC006DE9B8 /* Air_fight_0.5_095.xml */,
+				4CEF0CBF1B9C6360003C9B20 /* Air_fight_0.5_096.xml */,
 			);
 			name = Air_fight_0.5;
 			path = CattyTests/Resources/ParserTests/Air_fight_0.5;
@@ -4415,6 +4529,7 @@
 				CAE3E4F11B4C50B300CC88BD /* Airplane_with_shadow_091.xml */,
 				CAE3E4F21B4C50B300CC88BD /* Airplane_with_shadow_093.xml */,
 				4C2EE3EA1B55570C006DE9B8 /* Airplane_with_shadow_095.xml */,
+				4CEF0CC11B9C636A003C9B20 /* Airplane_with_shadow_096.xml */,
 			);
 			name = Airplane_with_shadow;
 			path = CattyTests/Resources/ParserTests/Airplane_with_shadow;
@@ -4426,6 +4541,7 @@
 				4C2EE3EC1B55571D006DE9B8 /* Compass_0.1_095.xml */,
 				CAE3E4F41B4C50B300CC88BD /* Compass_0.1_091.xml */,
 				CAE3E4F51B4C50B300CC88BD /* Compass_0.1_093.xml */,
+				4CEF0CC31B9C6373003C9B20 /* Compass_0.1_096.xml */,
 			);
 			name = Compass_0.1;
 			path = CattyTests/Resources/ParserTests/Compass_0.1;
@@ -4437,6 +4553,7 @@
 				CAE3E4F71B4C50B300CC88BD /* Demonstration_09.xml */,
 				CAE3E4F81B4C50B300CC88BD /* Demonstration_093.xml */,
 				4C2EE3EE1B55572D006DE9B8 /* Demonstration_095.xml */,
+				4CEF0CC51B9C637D003C9B20 /* Demonstration_096.xml */,
 			);
 			name = Demonstration;
 			path = CattyTests/Resources/ParserTests/Demonstration;
@@ -4448,6 +4565,7 @@
 				CAE3E4FA1B4C50B300CC88BD /* Drink_more_water_09.xml */,
 				CAE3E4FB1B4C50B300CC88BD /* Drink_more_water_093.xml */,
 				4C2EE3F01B555740006DE9B8 /* Drink_more_water_095.xml */,
+				4CEF0CC71B9C63A2003C9B20 /* Drink_more_water_096.xml */,
 			);
 			name = Drink_more_water;
 			path = CattyTests/Resources/ParserTests/Drink_more_water;
@@ -4459,6 +4577,7 @@
 				4C2EE3F21B555754006DE9B8 /* Flap_Pac_Man_095.xml */,
 				CAE3E4FD1B4C50B300CC88BD /* Flap_Pac_Man_091.xml */,
 				CAE3E4FE1B4C50B300CC88BD /* Flap_Pac_Man_093.xml */,
+				4CEF0CC91B9C63AD003C9B20 /* Flap_Pac_Man_096.xml */,
 			);
 			name = Flap_Pac_Man;
 			path = CattyTests/Resources/ParserTests/Flap_Pac_Man;
@@ -4470,6 +4589,7 @@
 				CAE3E5001B4C50B300CC88BD /* Flappy_v3.0_092.xml */,
 				CAE3E5011B4C50B300CC88BD /* Flappy_v3.0_093.xml */,
 				4C2EE3F41B555766006DE9B8 /* Flappy_v3.0_095.xml */,
+				4CEF0CCB1B9C63BA003C9B20 /* Flappy_v3.0_096.xml */,
 			);
 			name = Flappy_v3.0;
 			path = CattyTests/Resources/ParserTests/Flappy_v3.0;
@@ -4481,6 +4601,7 @@
 				CAE3E5031B4C50B300CC88BD /* Galaxy_War_092.xml */,
 				CAE3E5041B4C50B300CC88BD /* Galaxy_War_093.xml */,
 				4C2EE3F61B55577C006DE9B8 /* Galaxy_War_095.xml */,
+				4CEF0CCD1B9C63C2003C9B20 /* Galaxy_War_096.xml */,
 			);
 			name = Galaxy_War;
 			path = CattyTests/Resources/ParserTests/Galaxy_War;
@@ -4489,9 +4610,10 @@
 		CAE3E5051B4C50B300CC88BD /* Gossip_Girl */ = {
 			isa = PBXGroup;
 			children = (
-				4C2EE3F81B55578C006DE9B8 /* Gossip_Girl_095.xml */,
 				CAE3E5061B4C50B300CC88BD /* Gossip_Girl_091.xml */,
 				CAE3E5071B4C50B300CC88BD /* Gossip_Girl_093.xml */,
+				4C2EE3F81B55578C006DE9B8 /* Gossip_Girl_095.xml */,
+				4CEF0CCF1B9C63DB003C9B20 /* Gossip_Girl_096.xml */,
 			);
 			name = Gossip_Girl;
 			path = CattyTests/Resources/ParserTests/Gossip_Girl;
@@ -4503,6 +4625,7 @@
 				CAE3E5091B4C50B300CC88BD /* Memory_09.xml */,
 				CAE3E50A1B4C50B300CC88BD /* Memory_093.xml */,
 				4C2EE3FA1B55579D006DE9B8 /* Memory_095.xml */,
+				4CEF0CD11B9C63E7003C9B20 /* Memory_096.xml */,
 			);
 			name = Memory;
 			path = CattyTests/Resources/ParserTests/Memory;
@@ -4511,9 +4634,10 @@
 		CAE3E50B1B4C50B300CC88BD /* Minecraft_Work_In_Progress */ = {
 			isa = PBXGroup;
 			children = (
-				4C2EE3FC1B5557AD006DE9B8 /* Minecraft_Work_In_Progress_095.xml */,
 				CAE3E50C1B4C50B300CC88BD /* Minecraft_Work_In_Progress_092.xml */,
 				CAE3E50D1B4C50B300CC88BD /* Minecraft_Work_In_Progress_093.xml */,
+				4C2EE3FC1B5557AD006DE9B8 /* Minecraft_Work_In_Progress_095.xml */,
+				4CEF0CD31B9C63F3003C9B20 /* Minecraft_Work_In_Progress_096.xml */,
 			);
 			name = Minecraft_Work_In_Progress;
 			path = CattyTests/Resources/ParserTests/Minecraft_Work_In_Progress;
@@ -4522,9 +4646,10 @@
 		CAE3E50E1B4C50B300CC88BD /* Minions_ */ = {
 			isa = PBXGroup;
 			children = (
-				4C2EE3FE1B5557BF006DE9B8 /* Minions__095.xml */,
 				CAE3E50F1B4C50B300CC88BD /* Minions__091.xml */,
 				CAE3E5101B4C50B300CC88BD /* Minions__093.xml */,
+				4C2EE3FE1B5557BF006DE9B8 /* Minions__095.xml */,
+				4CEF0CD51B9C6406003C9B20 /* Minions__096.xml */,
 			);
 			name = Minions_;
 			path = CattyTests/Resources/ParserTests/Minions_;
@@ -4535,6 +4660,7 @@
 			children = (
 				CAE3E5121B4C50B300CC88BD /* Nyancat_1.0_091.xml */,
 				CAE3E5131B4C50B300CC88BD /* Nyancat_1.0_093.xml */,
+				4CEF0CD71B9C6413003C9B20 /* Nyancat_1.0_096.xml */,
 			);
 			name = Nyancat_1.0;
 			path = CattyTests/Resources/ParserTests/Nyancat_1.0;
@@ -4545,6 +4671,7 @@
 			children = (
 				CAE3E5151B4C50B300CC88BD /* Piano_09.xml */,
 				CAE3E5161B4C50B300CC88BD /* Piano_093.xml */,
+				4CEF0CD91B9C641E003C9B20 /* Piano_096.xml */,
 			);
 			name = Piano;
 			path = CattyTests/Resources/ParserTests/Piano;
@@ -4565,6 +4692,7 @@
 				CAE3E51A1B4C50B300CC88BD /* Pong_Starter_09.xml */,
 				CAE3E51B1B4C50B300CC88BD /* Pong_Starter_093.xml */,
 				4C2EE4041B5557F3006DE9B8 /* Pong_Starter_095.xml */,
+				4CEF0CDB1B9C642A003C9B20 /* Pong_Starter_096.xml */,
 			);
 			name = Pong_Starter;
 			path = CattyTests/Resources/ParserTests/Pong_Starter;
@@ -4576,6 +4704,7 @@
 				CAE3E51D1B4C50B300CC88BD /* Pythagorean_Theorem_092.xml */,
 				CAE3E51E1B4C50B300CC88BD /* Pythagorean_Theorem_093.xml */,
 				4C2EE4061B555811006DE9B8 /* Pythagorean_Theorem_095.xml */,
+				4CEF0CDD1B9C6434003C9B20 /* Pythagorean_Theorem_096.xml */,
 			);
 			name = Pythagorean_Theorem;
 			path = CattyTests/Resources/ParserTests/Pythagorean_Theorem;
@@ -4587,6 +4716,7 @@
 				CAE3E5201B4C50B300CC88BD /* Rock_paper_scissors_091.xml */,
 				CAE3E5211B4C50B300CC88BD /* Rock_paper_scissors_093.xml */,
 				4C2EE4081B555826006DE9B8 /* Rock_paper_scissors_095.xml */,
+				4CEF0CDF1B9C643E003C9B20 /* Rock_paper_scissors_096.xml */,
 			);
 			name = Rock_paper_scissors;
 			path = CattyTests/Resources/ParserTests/Rock_paper_scissors;
@@ -4598,6 +4728,7 @@
 				CAE3E5231B4C50B300CC88BD /* Skydiving_Steve_092.xml */,
 				CAE3E5241B4C50B300CC88BD /* Skydiving_Steve_093.xml */,
 				4C2EE40A1B55583F006DE9B8 /* Skydiving_Steve_095.xml */,
+				4CEF0CE11B9C6445003C9B20 /* Skydiving_Steve_096.xml */,
 			);
 			name = Skydiving_Steve;
 			path = CattyTests/Resources/ParserTests/Skydiving_Steve;
@@ -4619,6 +4750,7 @@
 				CAE3E5291B4C50B300CC88BD /* Tic_Tac_Toe_Master_091.xml */,
 				CAE3E52A1B4C50B300CC88BD /* Tic_Tac_Toe_Master_093.xml */,
 				4C2EE40C1B55585B006DE9B8 /* Tic_Tac_Toe_Master_095.xml */,
+				4CC85CD11B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml */,
 			);
 			name = Tic_Tac_Toe_Master;
 			path = CattyTests/Resources/ParserTests/Tic_Tac_Toe_Master;
@@ -4630,6 +4762,7 @@
 				CAE3E52C1B4C50B300CC88BD /* Word_balloon_demo_09.xml */,
 				CAE3E52D1B4C50B300CC88BD /* Word_balloon_demo_093.xml */,
 				4C2EE40E1B555871006DE9B8 /* Word_balloon_demo_095.xml */,
+				4CC85CD31B9C6EC80097E470 /* Word_balloon_demo_096.xml */,
 			);
 			name = Word_balloon_demo;
 			path = CattyTests/Resources/ParserTests/Word_balloon_demo;
@@ -4641,6 +4774,7 @@
 				CAE3E5301B4C50B300CC88BD /* X_Ray_phone_091.xml */,
 				CAE3E5311B4C50B300CC88BD /* X_Ray_phone_093.xml */,
 				4C2EE4101B555882006DE9B8 /* X_Ray_phone_095.xml */,
+				4CC85CD51B9C6F220097E470 /* X_Ray_phone_096.xml */,
 			);
 			name = X_Ray_phone;
 			path = CattyTests/Resources/ParserTests/X_Ray_phone;
@@ -4824,10 +4958,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAE3E5651B4C50B300CC88BD /* Encapsulated.xml in Resources */,
+				4CC85CD41B9C6EC80097E470 /* Word_balloon_demo_096.xml in Resources */,
 				CAE3E55E1B4C50B300CC88BD /* Tic_Tac_Toe_Master_091.xml in Resources */,
+				4CC85CE91B9C717C0097E470 /* ValidProgramAllBricks.xml in Resources */,
 				CAE3E5611B4C50B300CC88BD /* Word_balloon_demo_093.xml in Resources */,
 				CAE3E54D1B4C50B300CC88BD /* Minions__091.xml in Resources */,
 				CAE3E55A1B4C50B300CC88BD /* Skydiving_Steve_092.xml in Resources */,
+				4CEF0CDC1B9C642A003C9B20 /* Pong_Starter_096.xml in Resources */,
 				CAE3E55D1B4C50B300CC88BD /* SKYPASCAL_093.xml in Resources */,
 				4C2EE3F11B555740006DE9B8 /* Drink_more_water_095.xml in Resources */,
 				4C2EE3FB1B55579D006DE9B8 /* Memory_095.xml in Resources */,
@@ -4836,43 +4973,61 @@
 				CAE3E53E1B4C50B300CC88BD /* Demonstration_093.xml in Resources */,
 				4C2EE3F91B55578C006DE9B8 /* Gossip_Girl_095.xml in Resources */,
 				4C2EE40B1B55583F006DE9B8 /* Skydiving_Steve_095.xml in Resources */,
+				4CEF0CC01B9C6360003C9B20 /* Air_fight_0.5_096.xml in Resources */,
 				4C2EE3E91B5556FC006DE9B8 /* Air_fight_0.5_095.xml in Resources */,
+				4CEF0CD21B9C63E7003C9B20 /* Memory_096.xml in Resources */,
+				4CC85CEB1B9C717C0097E470 /* ValidProgramAllBricks096.xml in Resources */,
 				CAE3E5381B4C50B300CC88BD /* Air_fight_0.5_093.xml in Resources */,
 				CAE3E53D1B4C50B300CC88BD /* Demonstration_09.xml in Resources */,
+				4CEF0CD41B9C63F3003C9B20 /* Minecraft_Work_In_Progress_096.xml in Resources */,
 				CAE3E5371B4C50B300CC88BD /* Air_fight_0.5_091.xml in Resources */,
 				4C2EE3FD1B5557AD006DE9B8 /* Minecraft_Work_In_Progress_095.xml in Resources */,
 				CAE3E55F1B4C50B300CC88BD /* Tic_Tac_Toe_Master_093.xml in Resources */,
+				4CEF0CC41B9C6373003C9B20 /* Compass_0.1_096.xml in Resources */,
 				CAE3E5661B4C50B300CC88BD /* LegoNxtMotorActionBrick.xml in Resources */,
+				4CEF0CE21B9C6445003C9B20 /* Skydiving_Steve_096.xml in Resources */,
 				CAE3E5411B4C50B300CC88BD /* Flap_Pac_Man_091.xml in Resources */,
+				4CC85CE41B9C717C0097E470 /* ValidHeader095.xml in Resources */,
+				4CEF0CE01B9C643E003C9B20 /* Rock_paper_scissors_096.xml in Resources */,
 				CAE3E53A1B4C50B300CC88BD /* Airplane_with_shadow_093.xml in Resources */,
 				CAE3E5561B4C50B300CC88BD /* Pythagorean_Theorem_092.xml in Resources */,
 				CAE3E5491B4C50B300CC88BD /* Memory_09.xml in Resources */,
+				4CEF0CDE1B9C6434003C9B20 /* Pythagorean_Theorem_096.xml in Resources */,
 				CAE3E5501B4C50B300CC88BD /* Nyancat_1.0_093.xml in Resources */,
 				4C2EE3ED1B55571D006DE9B8 /* Compass_0.1_095.xml in Resources */,
+				4CEF0CC61B9C637D003C9B20 /* Demonstration_096.xml in Resources */,
 				CAE3E53F1B4C50B300CC88BD /* Drink_more_water_09.xml in Resources */,
+				4CEF0CD01B9C63DB003C9B20 /* Gossip_Girl_096.xml in Resources */,
 				CAE3E5441B4C50B300CC88BD /* Flappy_v3.0_093.xml in Resources */,
-				4C227A181B56CA6500DA37B7 /* ValidProgramAllBricks095.xml in Resources */,
+				4CEF0CCE1B9C63C2003C9B20 /* Galaxy_War_096.xml in Resources */,
 				CAE3E54F1B4C50B300CC88BD /* Nyancat_1.0_091.xml in Resources */,
+				4CEF0CC81B9C63A2003C9B20 /* Drink_more_water_096.xml in Resources */,
 				CAE3E5641B4C50B300CC88BD /* X_Ray_phone_093.xml in Resources */,
 				CAE3E54C1B4C50B300CC88BD /* Minecraft_Work_In_Progress_093.xml in Resources */,
 				CA2D44441B1231F900A3B53D /* Swell.plist in Resources */,
 				4C2EE40F1B555871006DE9B8 /* Word_balloon_demo_095.xml in Resources */,
 				CAE3E5671B4C50B300CC88BD /* ValidFormulaList.xml in Resources */,
+				4CEF0CCA1B9C63AD003C9B20 /* Flap_Pac_Man_096.xml in Resources */,
 				CAE3E4EB1B4C509800CC88BD /* test.png in Resources */,
 				4C2EE4091B555826006DE9B8 /* Rock_paper_scissors_095.xml in Resources */,
+				4CC85CEA1B9C717C0097E470 /* ValidProgramAllBricks095.xml in Resources */,
+				4CC85CE61B9C717C0097E470 /* ValidProgram.xml in Resources */,
 				4C2EE3EF1B55572D006DE9B8 /* Demonstration_095.xml in Resources */,
 				CAE3E5631B4C50B300CC88BD /* X_Ray_phone_091.xml in Resources */,
 				CAE3E5511B4C50B300CC88BD /* Piano_09.xml in Resources */,
 				CAE3E4EC1B4C509800CC88BD /* test2.png in Resources */,
 				CAE3E5551B4C50B300CC88BD /* Pong_Starter_093.xml in Resources */,
-				CAE3E5691B4C50B300CC88BD /* ValidProgramAllBricks.xml in Resources */,
+				4CC85CE81B9C717C0097E470 /* ValidProgram096.xml in Resources */,
 				CAE3E5481B4C50B300CC88BD /* Gossip_Girl_093.xml in Resources */,
 				4C2EE4071B555811006DE9B8 /* Pythagorean_Theorem_095.xml in Resources */,
-				4C227A1A1B56CECE00DA37B7 /* ValidProgram095.xml in Resources */,
 				CAE3E5601B4C50B300CC88BD /* Word_balloon_demo_09.xml in Resources */,
 				4C2EE3F71B55577C006DE9B8 /* Galaxy_War_095.xml in Resources */,
 				4C2EE40D1B55585B006DE9B8 /* Tic_Tac_Toe_Master_095.xml in Resources */,
+				4CC85CD21B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml in Resources */,
+				4CC85CD61B9C6F220097E470 /* X_Ray_phone_096.xml in Resources */,
+				4CEF0CCC1B9C63BA003C9B20 /* Flappy_v3.0_096.xml in Resources */,
 				CAE3E5591B4C50B300CC88BD /* Rock_paper_scissors_093.xml in Resources */,
+				4CEF0CD81B9C6413003C9B20 /* Nyancat_1.0_096.xml in Resources */,
 				CAE3E55B1B4C50B300CC88BD /* Skydiving_Steve_093.xml in Resources */,
 				CAE3E54A1B4C50B300CC88BD /* Memory_093.xml in Resources */,
 				CAE3E5571B4C50B300CC88BD /* Pythagorean_Theorem_093.xml in Resources */,
@@ -4880,24 +5035,27 @@
 				CAE3E54E1B4C50B300CC88BD /* Minions__093.xml in Resources */,
 				4C2EE4111B555882006DE9B8 /* X_Ray_phone_095.xml in Resources */,
 				CAE3E54B1B4C50B300CC88BD /* Minecraft_Work_In_Progress_092.xml in Resources */,
+				4CEF0CDA1B9C641E003C9B20 /* Piano_096.xml in Resources */,
+				4CC85CE71B9C717C0097E470 /* ValidProgram095.xml in Resources */,
 				CAE3E5471B4C50B300CC88BD /* Gossip_Girl_091.xml in Resources */,
 				4C2EE4051B5557F3006DE9B8 /* Pong_Starter_095.xml in Resources */,
 				CAE3E5421B4C50B300CC88BD /* Flap_Pac_Man_093.xml in Resources */,
 				CAE3E5581B4C50B300CC88BD /* Rock_paper_scissors_091.xml in Resources */,
 				CAE3E5461B4C50B300CC88BD /* Galaxy_War_093.xml in Resources */,
-				4C2EE4131B555952006DE9B8 /* ValidHeader095.xml in Resources */,
 				CAE3E5401B4C50B300CC88BD /* Drink_more_water_093.xml in Resources */,
 				CAE3E5431B4C50B300CC88BD /* Flappy_v3.0_092.xml in Resources */,
+				4CEF0CD61B9C6406003C9B20 /* Minions__096.xml in Resources */,
 				4C2EE3EB1B55570C006DE9B8 /* Airplane_with_shadow_095.xml in Resources */,
 				CAE3E5531B4C50B300CC88BD /* PointToBrickWithoutSpriteObject.xml in Resources */,
 				4C2EE3F31B555754006DE9B8 /* Flap_Pac_Man_095.xml in Resources */,
 				CAE3E5541B4C50B300CC88BD /* Pong_Starter_09.xml in Resources */,
 				CAE3E5451B4C50B300CC88BD /* Galaxy_War_092.xml in Resources */,
 				CAE3E55C1B4C50B300CC88BD /* SKYPASCAL_08.xml in Resources */,
-				CAE3E5681B4C50B300CC88BD /* ValidProgram.xml in Resources */,
 				4C2EE3F51B555766006DE9B8 /* Flappy_v3.0_095.xml in Resources */,
 				CAE3E53C1B4C50B300CC88BD /* Compass_0.1_093.xml in Resources */,
 				CAE3E5521B4C50B300CC88BD /* Piano_093.xml in Resources */,
+				4CC85CE51B9C717C0097E470 /* ValidHeader096.xml in Resources */,
+				4CEF0CC21B9C636A003C9B20 /* Airplane_with_shadow_096.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4905,7 +5063,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA039CF11B826328003ADEE0 /* commit in Resources */,
 				CA2D44431B12305400A3B53D /* Swell.plist in Resources */,
 				CA775CBF19FD5BCB00C1E761 /* My first program.catrobat in Resources */,
 				92FF325E1A24E2F400093DA7 /* LICENSE_EVCircularProgressView in Resources */,
@@ -4934,6 +5091,7 @@
 				CADBD6EA19B0E8C200C62836 /* IBActionSheet.license in Resources */,
 				A918B6B71B89F5870017B92F /* Siren.bundle in Resources */,
 				92FF325C1A24E2F400093DA7 /* LICENSE_BDKNotifyHUD in Resources */,
+				922FE8E31B96430D005A19FA /* Default-568h@2x.png in Resources */,
 				92FF32581A24E2F400093DA7 /* LICENSE_AHKActionSheet in Resources */,
 				CADBD6EB19B0E8C200C62836 /* EVCircularProgressView.license in Resources */,
 				CADBD6ED19B0E8C200C62836 /* SharkfoodMuteSwitchDetector.license in Resources */,
@@ -4969,7 +5127,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/usr/bin/env python";
-			shellScript = "#!/usr/bin/env python\n\nimport os, sys\n\n# config\nsuccess_msg = \"A local git hook has been created! The script will automatically keep track of the project's build number. You should never hear this message again. The app is launching now!\"\nalert_msg_template = \"Can't create local {0} commit git hook! Please stop commiting to the repository and inform the team leader.\"\n\n# immutable paths\nenv = os.environ\nassert(env['PROJECT_DIR'])\nPROJECT_SRC_DIR = env['PROJECT_DIR']\nPLIST_PATH = os.path.join(PROJECT_SRC_DIR, env['INFOPLIST_FILE'])\nPROJECT_ROOT_DIR = os.path.normpath(os.path.join(PROJECT_SRC_DIR, \"..\")) # get out of \"src\" subfolder\nHOOK_DIR = os.path.join(PROJECT_ROOT_DIR, \".git\", \"hooks\")\n\n# helpers\ndef touch(path):\n    if os.path.exists(path):\n        os.utime(path, None)\n    else:\n        open(fname, 'a').close()\n\ndef make_dir_if_not_exists(path):\n    try:\n        if not os.path.exists(path):\n            os.makedirs(path)\n        elif not os.path.isdir(path):\n            print(\"An error occured! Invalid path '{0}'. This is NO directory.\".format(path))\n    except Exception, e:\n        print(e)\n        raise e\n\n# inject hook code\nmake_dir_if_not_exists(HOOK_DIR)\nassert(os.access(HOOK_DIR, os.W_OK))\npre_commit_hook_path = os.path.join(HOOK_DIR, \"pre-commit\")\npost_commit_hook_path = os.path.join(HOOK_DIR, \"post-commit\")\ncommit_hash_path = os.path.join(PROJECT_SRC_DIR, \"commit\")\ntouch(commit_hash_path)\n\npre_commit_code = \"\"\"\n    \\#!/bin/sh\n    PROJECT_ROOT_DIR=\"%s\"\n    PLIST_PATH=\"%s\"\n\n    branchName=`/usr/bin/env git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\n    gitCount=`/usr/bin/env git rev-list $branchName |wc -l | sed 's/^ *//;s/ *$//'`\n    simpleBranchName=`/usr/bin/env git rev-parse --abbrev-ref HEAD`\n    shortHash=`/usr/bin/env git rev-parse --short HEAD`\n\n    buildNumber=\"$((gitCount + 1))\"\n    buildNumber+=\"-${simpleBranchName}\"\n    buildNumber+=\"-{parent:${shortHash}}\"\n    /usr/libexec/PlistBuddy -c \"Set CFBundleVersion $buildNumber\" \"${PLIST_PATH}\"\n\n    # Add modified plist to the staging area\n    cd ${PROJECT_ROOT_DIR}\n    /usr/bin/env git add ${PLIST_PATH}\n    exit 0\n\"\"\" % (PROJECT_ROOT_DIR, PLIST_PATH)\n\npost_commit_code = \"\"\"\n    \\#!/bin/sh\n    COMMIT_HASH_PATH=\"%s\"\n    longHash=`/usr/bin/env git rev-parse HEAD`\n    echo \"${longHash}\" > \"${COMMIT_HASH_PATH}\"\n    /usr/bin/env git update-index --assume-unchanged ${COMMIT_HASH_PATH}\n    exit 0\n\"\"\" % (commit_hash_path)\n\n# remove line indentation\npre_commit_code = \"\".join([(line.lstrip() + \"\\n\") for line in pre_commit_code.split(\"\\n\")[1:]])\npost_commit_code = \"\".join([(line.lstrip() + \"\\n\") for line in post_commit_code.split(\"\\n\")[1:]])\n\nhook_existed_before = os.path.isfile(pre_commit_hook_path) and os.path.isfile(post_commit_hook_path)\n\nwith open(pre_commit_hook_path, \"w\") as shell_script_file:\n    shell_script_file.write(pre_commit_code[1:])\n\nwith open(post_commit_hook_path, \"w\") as shell_script_file:\n    shell_script_file.write(post_commit_code[1:])\n\nos.chmod(pre_commit_hook_path, 0755) # make script editable and executable\nos.chmod(post_commit_hook_path, 0755) # make script editable and executable\n\nhook_exists_now = os.path.isfile(pre_commit_hook_path) and os.path.isfile(post_commit_hook_path)\n\n# inform developer!\nif hook_exists_now and not hook_existed_before:\n    os.system(\"say -v Alex \\\"{0}\\\"\".format(success_msg))\nif not os.path.isfile(pre_commit_hook_path):\n    os.system(\"say -v Alex \\\"{0}\\\"\".format(alert_msg_template.format(\"pre\")))\nif not os.path.isfile(post_commit_hook_path):\n    os.system(\"say -v Alex \\\"{0}\\\"\".format(alert_msg_template.format(\"post\")))\n";
+			shellScript = "#!/usr/bin/env python\n\nimport os, sys\n\n# config\nsuccess_msg = \"A local git hook has been created! The script will automatically keep track of the project's build number. You should never hear this message again. The app is launching now!\"\nalert_msg_template = \"Can't create local {0} commit git hook! Please stop commiting to the repository and inform the team leader.\"\n\n# immutable paths\nenv = os.environ\nassert(env['PROJECT_DIR'])\nPROJECT_SRC_DIR = env['PROJECT_DIR']\nPLIST_PATH = os.path.join(PROJECT_SRC_DIR, env['INFOPLIST_FILE'])\nPROJECT_ROOT_DIR = os.path.normpath(os.path.join(PROJECT_SRC_DIR, \"..\")) # get out of \"src\" subfolder\nHOOK_DIR = os.path.join(PROJECT_ROOT_DIR, \".git\", \"hooks\")\n\n# helpers\ndef touch(path):\n    if os.path.exists(path):\n        os.utime(path, None)\n    else:\n        open(fname, 'a').close()\n\ndef make_dir_if_not_exists(path):\n    try:\n        if not os.path.exists(path):\n            os.makedirs(path)\n        elif not os.path.isdir(path):\n            print(\"An error occured! Invalid path '{0}'. This is NO directory.\".format(path))\n    except Exception, e:\n        print(e)\n        raise e\n\n# inject hook code\nmake_dir_if_not_exists(HOOK_DIR)\nassert(os.access(HOOK_DIR, os.W_OK))\npre_commit_hook_path = os.path.join(HOOK_DIR, \"pre-commit\")\n\n# TODO: TEMPORARY TODO SECTION => remove this section later {\npost_commit_hook_path = os.path.join(HOOK_DIR, \"post-commit\")\n\nimport datetime\nexpire_date = datetime.datetime(2015, 10, 7)\nnow_date = datetime.datetime.now()\nif now_date > expire_date:\n    os.system(\"say -v Alex \\\"Hello Catty administrator! PLEASE remove the temporary TODO section in the Automatic Version Tracking run script! Again, again, PLEASE don't forget to remove the temporary TODO section in the Automatic Version Tracking run script!\\\"\")\n\nif os.path.isfile(post_commit_hook_path):\n    os.remove(post_commit_hook_path)\n    if not os.path.isfile(post_commit_hook_path):\n        os.system(\"say -v Alex \\\"Successfully removed post-commit hook file. You should never hear this message again. The app is launching now!\\\"\")\n    else:\n        os.system(\"say -v Alex \\\"Cannot remove post-commit hook file. The app is launching now!\\\"\")\n# }\n\npre_commit_code = \"\"\"\n    \\#!/bin/sh\n    PROJECT_ROOT_DIR=\"%s\"\n    PLIST_PATH=\"%s\"\n\n    branchName=`/usr/bin/env git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\n    gitCount=`/usr/bin/env git rev-list $branchName |wc -l | sed 's/^ *//;s/ *$//'`\n    simpleBranchName=`/usr/bin/env git rev-parse --abbrev-ref HEAD`\n    shortHash=`/usr/bin/env git rev-parse --short HEAD`\n\n    buildNumber=\"$((gitCount + 1))\"\n    buildNumber+=\"-${simpleBranchName}\"\n    buildNumber+=\"-{parent:${shortHash}}\"\n    /usr/libexec/PlistBuddy -c \"Set CFBundleVersion $buildNumber\" \"${PLIST_PATH}\"\n\n    # Add modified plist to the staging area\n    cd ${PROJECT_ROOT_DIR}\n    /usr/bin/env git add ${PLIST_PATH}\n    exit 0\n\"\"\" % (PROJECT_ROOT_DIR, PLIST_PATH)\n\n# remove line indentation\npre_commit_code = \"\".join([(line.lstrip() + \"\\n\") for line in pre_commit_code.split(\"\\n\")[1:]])\n\nhook_existed_before = os.path.isfile(pre_commit_hook_path)\n\nwith open(pre_commit_hook_path, \"w\") as shell_script_file:\n    shell_script_file.write(pre_commit_code[1:])\n\nos.chmod(pre_commit_hook_path, 0755) # make script editable and executable\n\nhook_exists_now = os.path.isfile(pre_commit_hook_path)\n\n# inform developer!\nif hook_exists_now and not hook_existed_before:\n    os.system(\"say -v Alex \\\"{0}\\\"\".format(success_msg))\nif not os.path.isfile(pre_commit_hook_path):\n    os.system(\"say -v Alex \\\"{0}\\\"\".format(alert_msg_template.format(\"pre\")))\n";
 		};
 		CA0BB4151AA7709900E5A88D /* Add version number to Root.plist */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -5026,6 +5184,7 @@
 				4C2EE3E41B5554D7006DE9B8 /* XMLParserBrickTests095.m in Sources */,
 				4CEB22591B95E47500B3BE2F /* ComeToFrontBrickTests.m in Sources */,
 				4C2A00C01B5546DF00CD4492 /* XMLParserBrickTests093.m in Sources */,
+				4CEF0CF21B9C655B003C9B20 /* XMLSerializerTests.m in Sources */,
 				4CEB225E1B95E47500B3BE2F /* NextLookBrickTests.m in Sources */,
 				4C2A00C11B5546DF00CD4492 /* XMLParserFormulaTests093.m in Sources */,
 				CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */,
@@ -5045,16 +5204,15 @@
 				4CEB225D1B95E47500B3BE2F /* MoveNStepsBrickTests.m in Sources */,
 				4CEB22531B95E47500B3BE2F /* BrickMutableCopyTests.m in Sources */,
 				4CEB22661B95E47500B3BE2F /* SetXBrickTests.m in Sources */,
-				4C59D9C71B56596900595C99 /* XMLSerializerTests.m in Sources */,
 				4C2A00C71B5547EB00CD4492 /* XMLAbstractTest.m in Sources */,
 				4C5B27FE1B3C15AC00509FDB /* SearchStoreViewControllerTests.m in Sources */,
 				4CEB22651B95E47500B3BE2F /* SetTransparencyBrickTests.m in Sources */,
 				4CEB22611B95E47500B3BE2F /* PointToBrickTests.m in Sources */,
-				4C59D9C61B56596900595C99 /* XMLSerializerBlackBoxTests.m in Sources */,
 				4CEB22581B95E47500B3BE2F /* ClearGrafficEffectBrickTests.m in Sources */,
 				4CEB22501B95E47500B3BE2F /* BrickMoveManagerLogicTests.m in Sources */,
 				4CEB22761B95E4BC00B3BE2F /* BrickInsertManagerRepeatTests.m in Sources */,
 				4CEB225F1B95E47500B3BE2F /* PlaceAtBrickTests.m in Sources */,
+				4CEF0CF11B9C655B003C9B20 /* XMLSerializerBlackBoxTests.m in Sources */,
 				4CEB22631B95E47500B3BE2F /* SetLookBrickTests.m in Sources */,
 				4CEB22771B95E4BC00B3BE2F /* BrickInsertManagerTests.m in Sources */,
 				4C3BE65B1B3D2E0A00D99AB2 /* FeaturedProgramsStoreViewControllerTests.m in Sources */,
@@ -5069,6 +5227,7 @@
 				4C2EE3E71B5554D7006DE9B8 /* XMLParserObjectTests095.m in Sources */,
 				4CEB225C1B95E47500B3BE2F /* IFOnEdgeBounceBrickTests.m in Sources */,
 				4C2A00C91B554CBF00CD4492 /* XMLParserTests092.m in Sources */,
+				4CEF0CF01B9C655B003C9B20 /* XMLParserBlackBoxTests096.m in Sources */,
 				4C68FC921B25A00B00AB3EE8 /* InternFormulaStateTest.m in Sources */,
 				4C2EE3E51B5554D7006DE9B8 /* XMLParserFormulaTests095.m in Sources */,
 				4C79F5551B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m in Sources */,
@@ -5302,7 +5461,6 @@
 				92FF32A81A24E2F400093DA7 /* StopAllSoundsBrickCell.m in Sources */,
 				92FF32791A24E2F400093DA7 /* ScriptDeleteButton.m in Sources */,
 				4C724E511B4D3E8C00E27479 /* SetVolumeToBrick+CBXMLHandler.m in Sources */,
-				92FF30C71A24DCAA00093DA7 /* BrickManager.m in Sources */,
 				4CB4FE071B95DF2900431757 /* BrickMoveManager.m in Sources */,
 				4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */,
 				92FF30E31A24DCAA00093DA7 /* MoveNStepsBrick.m in Sources */,
@@ -5323,6 +5481,7 @@
 				4C724E611B4D3E8C00E27479 /* ProjectParser.m in Sources */,
 				92DFB05C1A38960C00FA9B0F /* LinkedListStack.m in Sources */,
 				92FF315C1A24DEB300093DA7 /* RecentProgramsStoreViewController.m in Sources */,
+				92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */,
 				92FF30CB1A24DCAA00093DA7 /* NoteBrick.m in Sources */,
 				92FF32A71A24E2F400093DA7 /* SpeakBrickCell.m in Sources */,
 				92FF327B1A24E2F400093DA7 /* BroadcastBrickCell.m in Sources */,
@@ -5422,6 +5581,7 @@
 				4C724E4F1B4D3E8C00E27479 /* ChangeVolumeByNBrick+CBXMLHandler.m in Sources */,
 				92FF2E901A24C7D800093DA7 /* GDataXMLNode.m in Sources */,
 				92FF2E8F1A24C7D800093DA7 /* FlashHelper.m in Sources */,
+				922FE8E11B963BDE005A19FA /* BrickSelectionManager.m in Sources */,
 				92DFB0141A38949E00FA9B0F /* InternFormulaParser.m in Sources */,
 				4C227A0C1B56BEB900DA37B7 /* SetTransparencyBrick.m in Sources */,
 				92FF328D1A24E2F400093DA7 /* HideBrickCell.m in Sources */,

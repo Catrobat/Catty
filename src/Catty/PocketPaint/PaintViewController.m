@@ -82,7 +82,7 @@
 @property (nonatomic,strong) HandTool* handTool;
 @property (nonatomic,strong) ResizeViewManager* resizeViewManager;
 @property (nonatomic,strong) PointerTool* pointerTool;
-@property (nonatomic,strong) UIImage* checkImage;
+
 @end
 
 @implementation PaintViewController
@@ -105,7 +105,7 @@
     _activeAction = brush;
     _degrees = 0;
     
-    self.actionTypeArray = @[@(brush),@(eraser),@(crop),@(pipette),@(mirror),@(image),@(line),@(rectangle),@(ellipse),@(stamp),@(rotate),@(zoom),@(pointer),@(fillTool)];
+    self.actionTypeArray = @[@(brush),@(eraser),@(resize),@(pipette),@(mirror),@(image),@(line),@(rectangle),@(ellipse),@(stamp),@(rotate),@(zoom),@(pointer),@(fillTool)];
     
     [self setupCanvas];
     [self setupTools];
@@ -127,15 +127,20 @@
 {
     if (![parent isEqual:self.parentViewController]) {
         if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
-            NSData *data1 = UIImagePNGRepresentation(self.saveView.image);
-            NSData *data2 = UIImagePNGRepresentation(self.checkImage);
-            if (![data1 isEqual:data2]) {
-                if (![self.saveView.image isEqual:self.editingImage] && self.editingImage != nil) {
+            UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
+            UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            NSData *blankdata = UIImagePNGRepresentation(blank);
+            NSData *saveViewData = UIImagePNGRepresentation(self.saveView.image);
+            if (![blankdata isEqualToData:saveViewData]) {
+                NSData *editingData = UIImagePNGRepresentation(self.editingImage);
+                if (self.editingImage != nil && ![saveViewData isEqual:editingData]) {
                     [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
                 } else if (self.editingPath == nil) {
                     [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
                 }
             }
+
         }
         // reenable swipe back gesture
         if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
@@ -149,6 +154,32 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    if (UIEventSubtypeMotionShake && self.undoManager.canUndo) {
+    
+        UIAlertController *undoAlert = [UIAlertController alertControllerWithTitle:nil
+                                                                           message:kLocalizedUndoDrawingDescription
+                                                                           preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedCancel
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:^(UIAlertAction *action) { }];
+        [undoAlert addAction:cancelAction];
+        
+        UIAlertAction *undoAction = [UIAlertAction actionWithTitle:kLocalizedUndo
+                                                             style:UIAlertActionStyleDefault
+                                                           handler:^(UIAlertAction *action) { [self undoAction]; }];
+        [undoAlert addAction:undoAction];
+        [self presentViewController:undoAlert animated:YES completion:nil];
+    }
+}
+
+
 
 #pragma mark initView
 
@@ -172,7 +203,7 @@
         self.saveView.image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         self.editingImage = self.saveView.image;
-        self.checkImage = self.saveView.image;
+        
         
         NSInteger imageWidth = self.editingImage.size.width;
         NSInteger imageHeight = self.editingImage.size.height;
@@ -189,6 +220,8 @@
         self.saveView.image = blank;
     }
     
+    self.editingImage = self.saveView.image;
+
     [self.helper addSubview:self.saveView];
     [self.helper addSubview:self.drawView];
     
@@ -250,7 +283,7 @@
     NSInteger height = (NSInteger)self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height;
     NSInteger imageWidth = self.editingImage.size.width;
     NSInteger imageHeight = self.editingImage.size.height;
-    if ((imageWidth >= width) || (imageHeight >= height)) {
+    if ((imageWidth > width) || (imageHeight > height)) {
         [self.scrollView zoomToRect:CGRectMake(0, 0, imageWidth, imageHeight) animated:NO];
     }
     
@@ -266,6 +299,7 @@
 - (void)setupToolbar
 {
     [self.navigationController setToolbarHidden:NO];
+    self.navigationController.navigationBar.userInteractionEnabled = YES;
     self.navigationController.toolbar.barStyle = UIBarStyleDefault;
 //    self.navigationController.toolbar.barTintColor = [UIColor clearColor];
     self.navigationController.toolbar.tintColor = [UIColor globalTintColor];
@@ -353,6 +387,7 @@
     LCTableViewPickerControl *pickerView = [[LCTableViewPickerControl alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, kPickerControlAgeHeight) title:kLocalizedPaintPickItem value:self.activeAction items:self.actionTypeArray offset:CGPointMake(0, 0)];
     pickerView.delegate = self;
     self.navigationController.toolbarHidden = YES;
+    self.navigationController.navigationBar.userInteractionEnabled = NO;
     pickerView.tag = 0;
     [self setBackAllActions];
     self.drawGesture.enabled = NO;
@@ -383,9 +418,9 @@
             self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,brushPicker,self.undo,self.redo, nil];
         }
             break;
-        case crop:{
-            UIBarButtonItem* crop = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"crop_cut"] style:UIBarButtonItemStylePlain target:self action:@selector(cropAction)];
-            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,crop,self.undo,self.redo, nil];
+        case resize:{
+            UIBarButtonItem* resize = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"crop_cut"] style:UIBarButtonItemStylePlain target:self action:@selector(resizeAction)];
+            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,resize,self.undo,self.redo, nil];
         }
             break;
         case pipette:{
@@ -448,6 +483,7 @@
             break;
     }
     self.navigationController.toolbarHidden = NO;
+     self.navigationController.navigationBar.userInteractionEnabled = YES;
 }
 
 - (void)setBackAllActions
@@ -495,8 +531,8 @@
         case eraser:
             [self eraserAction];
             break;
-        case crop:
-            [self cropInitAction];
+        case resize:
+            [self resizeInitAction];
             break;
         case pipette:
             [self initPipette];
@@ -565,7 +601,7 @@
     self.saveView.hidden = YES;
 }
 
-- (void)cropInitAction
+- (void)resizeInitAction
 {
     if (self.saveView.image) {
         self.cropperView = [[YKImageCropperView alloc] initWithImage:self.saveView.image andFrame:self.view.frame];
@@ -574,7 +610,7 @@
         self.saveView.hidden = YES;
         self.helper.hidden = YES;
         //    enabled = NO;
-        [self.navigationController setNavigationBarHidden:YES animated:YES];
+        [self.navigationController setNavigationBarHidden:YES animated:YES]; 
         for (UIGestureRecognizer *recognizer in [self.scrollView gestureRecognizers]) {
             recognizer.enabled = NO;
         }
@@ -627,7 +663,7 @@
 
 #pragma mark tool actions
 
-- (void)cropAction
+- (void)resizeAction
 {
     if ([self.cropperView superview] == self.view) {
         UIImage* croppedImage = [self.cropperView editedImage];
@@ -647,9 +683,9 @@
         for (UIGestureRecognizer *recognizer in [self.scrollView gestureRecognizers]) {
             recognizer.enabled = YES;
         }
-        [self.scrollView zoomToRect:CGRectMake(0, 0, 500, 500) animated:YES];
+        [self.scrollView zoomToRect:CGRectMake(0, 0, croppedImage.size.width, croppedImage.size.height) animated:NO];
     } else {
-        [self cropInitAction];
+        [self resizeInitAction];
     }
     
 }
@@ -848,6 +884,7 @@
         UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         self.saveView.image = blank;
+        self.editingImage = blank;
     }];
     
     UIAlertAction *noAction = [UIAlertAction actionWithTitle:kLocalizedNo style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
