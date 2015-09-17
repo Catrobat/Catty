@@ -41,6 +41,7 @@
 #import "NSData+Hashes.h"
 #import "KeychainDefines.h"
 #import "JNKeychain.h"
+#import "BDKNotifyHUD.h"
 
 #define uploadParameterTag @"upload"                 //zip file with program
 #define fileChecksumParameterTag @"fileChecksum"     //md5 hash
@@ -352,12 +353,14 @@ const CGFloat PADDING = 5.0f;
                     self.program.header.programID = projectId;
                     [self.program saveToDisk];
                     
-                        //Set new token
+                        //Set new token but when? everytime is wrong
 //                    NSString *newToken = [NSString stringWithFormat:@"%@", [dictionary valueForKey:tokenParameterTag]];
 //                    [JNKeychain saveValue:newToken forKey:kUserLoginToken];
                     
+                    [self showUploadSuccessfulView];
+                    
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.delegate dismissPopupWithCode:YES];
+                        [self dismissView];
                     });
                     
                     
@@ -415,6 +418,21 @@ const CGFloat PADDING = 5.0f;
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (void)showUploadSuccessfulView
+{
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName]
+                                                    text:kLocalizedUploadSuccessful];
+    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
+    hud.center = CGPointMake(self.view.center.x, self.view.center.y + kBDKNotifyHUDCenterOffsetY);
+    hud.tag = kUploadViewTag;
+    [self.view addSubview:hud];
+    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
+                       speed:kBDKNotifyHUDPresentationSpeed
+                      inView:self.view
+                  completion:^{ [hud removeFromSuperview]; }];
+}
+
 
 
 @end

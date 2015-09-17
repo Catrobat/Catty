@@ -289,33 +289,6 @@
 
 }
 
-#pragma mark - popup delegate
-- (BOOL)dismissPopupWithCode:(BOOL)uploadSuccessfull
-{
-    if (self.popupViewController != nil) {
-        self.tableView.scrollEnabled = YES;
-        self.uploadButton.enabled = YES;
-        [self dismissPopupViewController];
-        self.navigationItem.leftBarButtonItem.enabled = YES;
-        if (uploadSuccessfull) {
-            [self showUploadSuccessfulView];
-        }
-        return YES;
-    }
-    return NO;
-}
-- (void)showUploadSuccessfulView
-{
-    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName]
-                                                    text:kLocalizedUploadSuccessful];
-    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
-    hud.center = CGPointMake(self.view.center.x, self.view.center.y + kBDKNotifyHUDCenterOffsetY);
-    hud.tag = kUploadViewTag;
-    [self.view addSubview:hud];
-    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
-                       speed:kBDKNotifyHUDPresentationSpeed
-                      inView:self.view
-                  completion:^{ [hud removeFromSuperview]; }];
-}
+
 
 @end
