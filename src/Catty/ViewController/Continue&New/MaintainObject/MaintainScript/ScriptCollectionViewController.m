@@ -321,7 +321,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         if (isBrick)
         {
             Brick *brick = (Brick*)brickCell.scriptOrBrick;
-            if ([self.selectedIndexPaths count] < 4)
+            if ([[[BrickSelectionManager sharedInstance] selectedIndexPaths] count] < 4)
             {
                 title = ([brick isIfLogicBrick] ? kLocalizedDeleteThisCondition
                            : ([brick isLoopBrick]) ? kLocalizedDeleteThisLoop : kLocalizedDeleteTheseBricks);
@@ -350,7 +350,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         }
     }
 
-    if ([self.selectedIndexPaths count])
+    if ([[[BrickSelectionManager sharedInstance] selectedIndexPaths] count])
     {
         NSString *alertTitle = title;
         [Util confirmAlertWithTitle:alertTitle message:kLocalizedThisActionCannotBeUndone delegate:self tag:kConfirmAlertViewTag];
