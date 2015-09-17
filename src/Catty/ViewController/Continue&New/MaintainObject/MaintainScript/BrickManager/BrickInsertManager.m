@@ -137,11 +137,13 @@
     Script *targetScript = object.scriptList[path.section];
     brick.script = targetScript;
     NSInteger insertionIndex = path.row;
-    NSInteger check = [self checkForeverLoopEndBrickWithStartingIndex:insertionIndex andScript:targetScript];
-    if (check != -1) {
-        insertionIndex = check - 1;
-    }
+//    NSInteger check = [self checkForeverLoopEndBrickWithStartingIndex:insertionIndex andScript:targetScript];
+//    if (check != -1) {
+//        insertionIndex = check - 1;
+//    }
     if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
+        //ELSE&END ALWAYS right after IFBEGIN
+//        NSInteger insertionIndex = path.row;
         IfLogicBeginBrick *ifBeginBrick = (IfLogicBeginBrick*)brick;
         IfLogicElseBrick *ifElseBrick = [IfLogicElseBrick new];
         IfLogicEndBrick *ifEndBrick = [IfLogicEndBrick new];
@@ -161,7 +163,8 @@
         loopBeginBrick.loopEndBrick = loopEndBrick;
         loopEndBrick.loopBeginBrick = loopBeginBrick;
         loopEndBrick.script = targetScript;
-        if ([loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+        //REPEAT END just after Repeat BEGIN
+        if ([loopBeginBrick isKindOfClass:[ForeverBrick class]]) { // FOREVER END always last possible position (NESTED!!)
             NSInteger index = loopBeginBrick.script.brickList.count;
             insertionIndex = index;
             if (targetScript.brickList.count >=1) {
