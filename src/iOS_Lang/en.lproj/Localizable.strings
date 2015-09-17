@@ -734,10 +734,10 @@
 "Pocket Code has been started in debug mode." = "Pocket Code has been started in debug mode.";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your camera. To permit access, tap settings and activate camera." = "Pocket Code has no access to your camera. To permit access, tap settings and activate camera.";
+"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.";
 
 /* No comment provided by engineer. */
-"Pocket Code has no access to your images. To permit access, tap settings and activate images." = "Pocket Code has no access to your images. To permit access, tap settings and activate images.";
+"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.";
 
 /* No comment provided by engineer. */
 "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:";
