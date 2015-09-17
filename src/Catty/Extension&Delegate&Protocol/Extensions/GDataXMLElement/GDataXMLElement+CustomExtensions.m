@@ -31,35 +31,59 @@
 
 - (NSString *)XMLStringPrettyPrinted:(BOOL)isPrettyPrinted
 {
-  NSString *str = nil;
+    NSString *str = nil;
 
-  if (xmlNode_ != NULL) {
-
-    xmlBufferPtr buff = xmlBufferCreate();
-    if (buff) {
-
-      xmlDocPtr doc = NULL;
-      int level = 0;
-
-      // NOTE: Yes, strange but true. It's exactly the same code as in the XMLString-method, but this local
-      // format-variable is set to fixed value 0.
-      int format = (isPrettyPrinted ? 1 : 0);
-
-      int result = xmlNodeDump(buff, doc, xmlNode_, level, format);
-
-      if (result > -1) {
-        str = [[NSString alloc] initWithBytes:(xmlBufferContent(buff))
-                                        length:(xmlBufferLength(buff))
-                                      encoding:NSUTF8StringEncoding];
-      }
-      xmlBufferFree(buff);
+    if (xmlNode_ != NULL) {
+        
+        xmlBufferPtr buff = xmlBufferCreate();
+        if (buff) {
+            
+            xmlDocPtr doc = NULL;
+            int level = 0;
+            
+            // NOTE: Yes, strange but true. It's exactly the same code as in the XMLString-method, but this local
+            // format-variable is set to fixed value 0.
+            int format = (isPrettyPrinted ? 1 : 0);
+            
+            int result = xmlNodeDump(buff, doc, xmlNode_, level, format);
+            
+            if (result > -1) {
+                str = [[NSString alloc] initWithBytes:(xmlBufferContent(buff))
+                                               length:(xmlBufferLength(buff))
+                                             encoding:NSUTF8StringEncoding];
+            }
+            xmlBufferFree(buff);
+        }
     }
-  }
 
-  // remove leading and trailing whitespace
-  NSCharacterSet *ws = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-  NSString *trimmed = [str stringByTrimmingCharactersInSet:ws];
-  return trimmed;
+    // remove leading and trailing whitespace
+    NSCharacterSet *ws = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    NSString *trimmed = [str stringByTrimmingCharactersInSet:ws];
+    return [self escapeXMLString:trimmed];
+}
+
+- (NSString*)escapeXMLString:(NSString*)xmlString
+{
+    // [GDataXMLElement XMLStringPrettyPrinted] always adds "&amp;" to already escaped
+    // strings. Unfortunately XMLStringPrettyPrinted only escapes "&" to "&amp;" and
+    // ignores all other invalid characters that have to be escaped as well. Therefore
+    // we can't rely on the XMLStringPrettyPrinted method.
+    NSDictionary *replaceStrings = @{
+        @"&amp;lt;":   @"&lt;",
+        @"&amp;gt;":   @"&gt;",
+        @"&amp;amp;":  @"&amp;",
+        @"&amp;quot;": @"&quot;",
+        @"&amp;apos;": @"&apos;"
+    };
+    for (NSString *stringToBeReplaced in replaceStrings) {
+        NSString *withString = replaceStrings[stringToBeReplaced];
+        if ([xmlString rangeOfString:stringToBeReplaced].location != NSNotFound) {
+            NSLog(@"found!!");
+        }
+        xmlString = [xmlString stringByReplacingOccurrencesOfString:stringToBeReplaced
+                                                         withString:withString];
+    }
+    return xmlString;
 }
 
 - (NSString*)XMLRootElementAsString

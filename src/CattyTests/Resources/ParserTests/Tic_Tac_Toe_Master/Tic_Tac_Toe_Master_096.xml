@@ -5,7 +5,7 @@
     <applicationBuildNumber>0</applicationBuildNumber>
     <applicationName>Pocket Code</applicationName>
     <applicationVersion>0.9.6</applicationVersion>
-    <catrobatLanguageVersion>0.95</catrobatLanguageVersion>
+    <catrobatLanguageVersion>0.96</catrobatLanguageVersion>
     <dateTimeUpload></dateTimeUpload>
     <description>Three in one win. However, the computer is a master strategist! 
 
@@ -8221,39 +8221,7 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
     <objectListOfList/>
     <objectVariableList>
       <entry>
-        <object reference="../../../../objectList/object[6]"/>
-        <list/>
-      </entry>
-      <entry>
-        <object reference="../../../../objectList/object[13]"/>
-        <list/>
-      </entry>
-      <entry>
-        <object reference="../../../../objectList/object[14]"/>
-        <list/>
-      </entry>
-      <entry>
-        <object reference="../../../../objectList/object[3]"/>
-        <list/>
-      </entry>
-      <entry>
-        <object reference="../../../../objectList/object[2]"/>
-        <list/>
-      </entry>
-      <entry>
-        <object reference="../../../../objectList/object[4]"/>
-        <list/>
-      </entry>
-      <entry>
-        <object reference="../../../../objectList/object[5]"/>
-        <list/>
-      </entry>
-      <entry>
-        <object reference="../../../../objectList/object[7]"/>
-        <list/>
-      </entry>
-      <entry>
-        <object reference="../../../../objectList/object[12]"/>
+        <object reference="../../../../objectList/object[9]"/>
         <list/>
       </entry>
       <entry>
@@ -8261,15 +8229,35 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
         <list/>
       </entry>
       <entry>
+        <object reference="../../../../objectList/object[13]"/>
+        <list/>
+      </entry>
+      <entry>
         <object reference="../../../../objectList/object[11]"/>
         <list/>
       </entry>
       <entry>
-        <object reference="../../../../objectList/object[9]"/>
+        <object reference="../../../../objectList/object[7]"/>
         <list/>
       </entry>
       <entry>
-        <object reference="../../../../objectList/object[8]"/>
+        <object reference="../../../../objectList/object[4]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[12]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[14]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[5]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[6]"/>
         <list/>
       </entry>
       <entry>
@@ -8277,7 +8265,19 @@ The text was composed using PicSay - http://catrob.at/PicSay as explained on htt
         <list/>
       </entry>
       <entry>
+        <object reference="../../../../objectList/object[2]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[8]"/>
+        <list/>
+      </entry>
+      <entry>
         <object reference="../../../../objectList/object"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[3]"/>
         <list/>
       </entry>
     </objectVariableList>
