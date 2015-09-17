@@ -171,10 +171,8 @@
 
 -(void)willMoveToParentViewController:(UIViewController *)parent
 {
-    if (!parent) {
-        [self.catTVC afterSuccessfulLogin];
-    }
-    
+    // TODO when successful registration -> it pops to CtrobatTableViewController ->
+    // make sure it will go back to upload. For now user has to klick again.
 }
 
 - (void)didReceiveMemoryWarning
@@ -299,13 +297,13 @@
     self.userEmail = email;
     [self setFormDataParameter:registrationEmailTag withData:[email dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
     
-//    //Country
-//    NSLocale *currentLocale = [NSLocale currentLocale];
-//    NSString *countryCode = [currentLocale objectForKey:NSLocaleCountryCode];
-//    NSDebug(@"Current Country is: %@", countryCode);
-//    [self setFormDataParameter:registrationCountryTag withData:[countryCode dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
-//    
-//    //Language ?! 
+    //Country
+    NSLocale *currentLocale = [NSLocale currentLocale];
+    NSString *countryCode = [currentLocale objectForKey:NSLocaleCountryCode];
+    NSDebug(@"Current Country is: %@", countryCode);
+    [self setFormDataParameter:registrationCountryTag withData:[countryCode dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
+    
+    //Language ?! 
     
     // close form
     [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", httpBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -351,7 +349,7 @@
                     [JNKeychain saveValue:self.password forKey:kcPassword];
                     [JNKeychain saveValue:token forKey:kUserLoginToken];
 
-                    [self.navigationController popViewControllerAnimated:NO];
+                    [self.navigationController popToRootViewControllerAnimated:NO];
                     
                 } else {
                     self.registerButton.enabled = YES;
