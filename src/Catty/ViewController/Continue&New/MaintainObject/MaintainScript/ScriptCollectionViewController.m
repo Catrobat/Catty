@@ -741,8 +741,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 [self.object.scriptList removeObjectAtIndex:indexPath.section];
                 [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
             } else {
-                [script.brickList removeObjectAtIndex:indexPath.item - 1];
-                [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+                if (script.brickList.count) {
+                    [script.brickList removeObjectAtIndex:indexPath.item - 1];
+                    [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+                }
             }
         }
     } completion:^(BOOL finished) {
@@ -893,21 +895,25 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 - (void)removeBrickOrScript:(id<ScriptProtocol>)scriptOrBrick
                 atIndexPath:(NSIndexPath*)indexPath
 {
-    if ([scriptOrBrick isKindOfClass:[Script class]]) {
-        [(Script*)scriptOrBrick removeFromObject];
-        [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
-    } else {
-        CBAssert([scriptOrBrick isKindOfClass:[Brick class]]);
-        Brick *brick = (Brick*)scriptOrBrick;
-        NSArray* removingBrickIndexPaths = [[BrickManager sharedBrickManager] getIndexPathsForRemovingBricks:indexPath andBrick:brick];
-        if (removingBrickIndexPaths) {
-            [self.collectionView deleteItemsAtIndexPaths:removingBrickIndexPaths];
+    [self.collectionView performBatchUpdates:^{
+        if ([scriptOrBrick isKindOfClass:[Script class]]) {
+            [(Script*)scriptOrBrick removeFromObject];
+            [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
+        } else {
+            CBAssert([scriptOrBrick isKindOfClass:[Brick class]]);
+            Brick *brick = (Brick*)scriptOrBrick;
+            NSArray* removingBrickIndexPaths = [[BrickManager sharedBrickManager] getIndexPathsForRemovingBricks:indexPath andBrick:brick];
+            if (removingBrickIndexPaths) {
+                [self.collectionView deleteItemsAtIndexPaths:removingBrickIndexPaths];
+            }
         }
-    }
-    self.placeHolderView.hidden = (self.object.scriptList.count != 0);
-    [self reloadData];
-    [self.object.program saveToDisk];
-    [self setEditing:NO animated:NO];
+    } completion:^(BOOL finished) {
+        self.placeHolderView.hidden = (self.object.scriptList.count != 0);
+        [self reloadData];
+        [self.object.program saveToDisk];
+        [self setEditing:NO animated:NO];
+    }];
+
 }
 
 #pragma mark - Add new Variable
