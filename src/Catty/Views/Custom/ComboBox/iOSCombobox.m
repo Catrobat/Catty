@@ -230,8 +230,18 @@
     }
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:FONT_NAME size:rect.size.height/2], NSFontAttributeName,
                                 [UIColor whiteColor], NSForegroundColorAttributeName, nil];
-    [self.currentValue drawInRect:CGRectMake(TEXT_LEFT, rect.size.height/2 - rect.size.height/3,
-                                             rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT,
+    CGSize size = [self.currentValue sizeWithAttributes:@{NSFontAttributeName : [UIFont fontWithName:FONT_NAME size:rect.size.height/2]}];
+    NSString* drawString = self.currentValue;
+    if(size.width > rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30){
+        const int clipLength = 7;
+        if([drawString length]>clipLength)
+        {
+            drawString = [NSString stringWithFormat:@"%@...",[drawString substringToIndex:clipLength]];
+        }
+        
+    }
+    [drawString drawInRect:CGRectMake(TEXT_LEFT, rect.size.height/2 - rect.size.height/3,
+                                             rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30,
                                              rect.size.height - BORDER_WIDTH)
                          withAttributes:attributes];
     
