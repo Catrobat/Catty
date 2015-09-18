@@ -281,6 +281,28 @@
     return [self.values objectAtIndex:row];
 }
 
+- (UIView*) pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+{
+    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 110, 60)];
+    if (self.images) {
+        if (row != 0) {
+            UIImage *img = [self.images objectAtIndex:row-1];
+            UIImageView *temp = [[UIImageView alloc] initWithImage:img];
+            temp.frame = CGRectMake(-100, 15, 50, 30);
+            [tmpView insertSubview:temp atIndex:0];
+        }
+    }
+    
+    UILabel *channelLabel = [[UILabel alloc] initWithFrame:CGRectMake(-20, -5, 150, 60)];
+    channelLabel.text = [self.values objectAtIndex:row];
+    channelLabel.textAlignment = NSTextAlignmentLeft;
+    channelLabel.backgroundColor = [UIColor clearColor];
+   
+    [tmpView insertSubview:channelLabel atIndex:1];
+    
+    return tmpView;
+}
+
 /***********************************************************
  **  UIPICKERVIEW DELEGATE COMMANDS
  **********************************************************/
