@@ -311,7 +311,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 - (void)deleteAlertView
 {
     NSString *title = [[NSString alloc] init];
-    NSString *titleBuffer = [[NSString alloc] initWithString:kLocalizedDeleteBrick];
+    NSString *titleBuffer = [[NSString alloc] init];
     BOOL firstIteration = YES;
     
     for (NSIndexPath *selectedPaths in [[BrickSelectionManager sharedInstance] selectedIndexPaths])
@@ -321,28 +321,40 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         if (isBrick)
         {
             Brick *brick = (Brick*)brickCell.scriptOrBrick;
-            titleBuffer = ([brick isIfLogicBrick] ? kLocalizedDeleteCondition
-                           : ([brick isLoopBrick]) ? kLocalizedDeleteLoop : kLocalizedDeleteBricks);
+            if ([[[BrickSelectionManager sharedInstance] selectedIndexPaths] count] < 4)
+            {
+                title = ([brick isIfLogicBrick] ? kLocalizedDeleteThisCondition
+                           : ([brick isLoopBrick]) ? kLocalizedDeleteThisLoop : kLocalizedDeleteTheseBricks);
+            }
+            else
+            {
+                title = ([brick isIfLogicBrick] ? kLocalizedDeleteTheseConditions
+                               : ([brick isLoopBrick]) ? kLocalizedDeleteTheseLoops : kLocalizedDeleteTheseBricks);
+            }
         }
         else
         {
-            titleBuffer = kLocalizedDeleteScripts;
+            title = kLocalizedDeleteTheseScripts;
         }
         
         if (firstIteration)
         {
-            title = titleBuffer;
-            titleBuffer = isBrick ? kLocalizedDeleteBrick : kLocalizedDeleteScript;
+            titleBuffer = title;
+            title = isBrick ? kLocalizedDeleteThisBrick : kLocalizedDeleteThisScript;
             firstIteration = NO;
         }
         else if (title != titleBuffer)
         {
-            titleBuffer = kLocalizedDeleteBricks;
+            title = kLocalizedDeleteTheseBricks;
             break;
         }
     }
-    NSString *alertTitle = titleBuffer;
-    [Util confirmAlertWithTitle:alertTitle message:kLocalizedThisActionCannotBeUndone delegate:self tag:kConfirmAlertViewTag];
+
+    if ([[[BrickSelectionManager sharedInstance] selectedIndexPaths] count])
+    {
+        NSString *alertTitle = title;
+        [Util confirmAlertWithTitle:alertTitle message:kLocalizedThisActionCannotBeUndone delegate:self tag:kConfirmAlertViewTag];
+    }
 }
 
 - (void)alertView:(CatrobatAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -414,12 +426,14 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
 // FIXME: UPDATING THE DATA MODEL WHILE THE USER IS DRAGGING IS NO GOOD PRACTICE AND IS ERROR PRONE!!!
 //        USE collectionView:layout:didEndDraggingItemAtIndexPath: DELEGATE METHOD FOR THIS. Updates must happen after the user stopped dragging the brickcell!!
-    
     if (fromIndexPath.section == toIndexPath.section) {
         Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
-        Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
-        [script.brickList removeObjectAtIndex:toIndexPath.item - 1];
-        [script.brickList insertObject:toBrick atIndex:fromIndexPath.item - 1];
+        if (fromIndexPath.item >0) {
+            Brick *fromBrick = [script.brickList objectAtIndex:fromIndexPath.item - 1];
+            [script.brickList removeObjectAtIndex:fromIndexPath.item - 1];
+            [script.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
+        }
+
     } else {
 
         Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
@@ -428,8 +442,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         if ([toScript.brickList count] == 0) {
             [fromScript.brickList removeObjectAtIndex:fromIndexPath.item - 1];
             [toScript.brickList addObject:fromBrick];
-            LXReorderableCollectionViewFlowLayout *layout =  (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
-            [layout setUpGestureRecognizersOnCollectionView];
             return;
         }
         Brick *toBrick = [toScript.brickList objectAtIndex:toIndexPath.item - 1];
@@ -445,11 +457,17 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 }
 
 - (void)collectionView:(UICollectionView*)collectionView
+       itemAtIndexPath:(NSIndexPath*)fromIndexPath
+   didMoveToIndexPath:(NSIndexPath*)toIndexPath
+{
+    [[BrickMoveManager sharedInstance] reset];
+}
+
+- (void)collectionView:(UICollectionView*)collectionView
                 layout:(UICollectionViewLayout*)collectionViewLayout
 didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 {
     if ([[BrickInsertManager sharedInstance] isBrickInsertionMode]) {
-        NSLog(@"INSERT ALL BRICKS");
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
         Brick *brick;
         if (script.brickList.count > 1) {
@@ -590,6 +608,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         script.object = self.object;
         [self.object.scriptList addObject:script];
         [self reloadData];
+        [self.collectionView reloadData];
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:(self.object.scriptList.count - 1)]
                                     atScrollPosition:UICollectionViewScrollPositionBottom
                                             animated:YES];
@@ -758,10 +777,11 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
     LXReorderableCollectionViewFlowLayout *layout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     layout.longPressGestureRecognizer.minimumPressDuration = 0.1;
-    self.navigationController.navigationBar.topItem.leftBarButtonItem.enabled = NO;
-    self.navigationController.navigationBar.topItem.rightBarButtonItem.enabled = NO;
-    self.navigationController.navigationBar.topItem.backBarButtonItem.enabled = NO;
     [self.navigationItem setHidesBackButton:YES animated:NO];
+    dispatch_async(dispatch_get_main_queue(), ^{
+       self.navigationItem.rightBarButtonItem.enabled = NO;
+    });
+    
 }
 
 -(void)turnOffInsertingBrickMode
@@ -772,10 +792,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
     LXReorderableCollectionViewFlowLayout *layout = (LXReorderableCollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
     layout.longPressGestureRecognizer.minimumPressDuration = 0.5;
-    self.navigationController.navigationBar.topItem.leftBarButtonItem.enabled = YES;
-    self.navigationController.navigationBar.topItem.rightBarButtonItem.enabled = YES;
-    self.navigationController.navigationBar.topItem.backBarButtonItem.enabled = YES;
     [self.navigationItem setHidesBackButton:NO animated:NO];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    });
 }
 
 - (void)changeDeleteBarButtonState
@@ -1135,6 +1155,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 [variableBrick setVariable:variable forLineNumber:line andParameterNumber:parameter];
         }
     }
+    [self reloadData];
     [self enableUserInteractionAndResetHighlight];
     [self.object.program saveToDisk];
 }
