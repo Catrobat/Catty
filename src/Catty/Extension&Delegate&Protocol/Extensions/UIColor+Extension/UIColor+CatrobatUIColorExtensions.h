@@ -42,13 +42,6 @@
 
 + (UIColor*) backgroundColor;
 
-// FE
-
-+ (UIColor*)formulaEditorOperatorColor;
-
-+ (UIColor*)formulaEditorHighlightColor;
-
-+ (UIColor*)formulaEditorOperandColor;
 
 // Bricks & Scripts Colors
 
