@@ -214,6 +214,9 @@
         size = ((indexPath.item == 0)
              ? [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(script.class)]
              : [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass([script.brickList[indexPath.item - 1] class])]);
+        if (script.brickList.count <=1) {
+            size =[BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(script.class)];
+        }
     }
     return size;
 }
