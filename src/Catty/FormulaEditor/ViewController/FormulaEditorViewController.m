@@ -233,7 +233,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
+    self.recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     self.recognizer.numberOfTapsRequired = 1;
     self.recognizer.cancelsTouchesInView = NO;
     [self.view.window addGestureRecognizer:self.recognizer];
@@ -261,15 +261,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
 }
 
-- (void)handleGesture:(UIGestureRecognizer *)gestureRecognizer {
-    if ([gestureRecognizer isEqual:self.recognizer]) {
-        CGPoint p = [gestureRecognizer locationInView:self.view];
-        CGRect rect = CGRectMake(0, self.formulaEditorTextView.frame.origin.y+self.formulaEditorTextView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height);
-        if (CGRectContainsPoint(rect, p)) {
-            [self dismissFormulaEditorViewController];
-        }
+- (void)handleTap:(UITapGestureRecognizer *)sender
+{
+    if ([sender isKindOfClass:UITapGestureRecognizer.class]) {
+        //[self dismissFormulaEditorViewController];
     }
-
 }
 
 - (BOOL)canBecomeFirstResponder {
@@ -349,11 +345,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
     }
     
-}
-
--(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    return YES;
 }
 
 #pragma mark - TextField Actions
@@ -437,12 +428,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
     
 }
-
--(void)dismissFormulaEditor
-{
-    [self dismissFormulaEditorViewController];
-}
-
 - (void)updateDeleteButton:(BOOL)enabled
 {
     [self.deleteButton setEnabled:enabled];
