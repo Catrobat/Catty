@@ -294,7 +294,7 @@
 - (UIView*) pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
     UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 110, 60)];
-    if (self.images) {
+    if (self.images.count) {
         if (row != 0) {
             UIImage *img = [self.images objectAtIndex:row-1];
             UIImageView *temp = [[UIImageView alloc] initWithImage:img];
