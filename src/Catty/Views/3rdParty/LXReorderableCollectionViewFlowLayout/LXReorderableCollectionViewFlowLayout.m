@@ -274,6 +274,7 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
 
 
 - (void)handleLongPressGesture:(UILongPressGestureRecognizer *)gestureRecognizer {
+    @synchronized(@"moveBrick"){
     if([[BrickInsertManager sharedInstance] isBrickInsertionMode]){
         NSIndexPath *currentIndexPath = [self.collectionView indexPathForItemAtPoint:[gestureRecognizer locationInView:self.collectionView]];
         ScriptCollectionViewController* cvc = (ScriptCollectionViewController*)self.delegate;
@@ -350,7 +351,9 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
             
             if (currentIndexPath) {
                 if ([self.delegate respondsToSelector:@selector(collectionView:layout:willEndDraggingItemAtIndexPath:)]) {
-                    [self.delegate collectionView:self.collectionView layout:self willEndDraggingItemAtIndexPath:currentIndexPath];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.delegate collectionView:self.collectionView layout:self willEndDraggingItemAtIndexPath:currentIndexPath];
+                    });
                 }
                 
                 self.selectedItemIndexPath = nil;
@@ -400,6 +403,8 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
             
         default: break;
     }
+    }
+    
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)gestureRecognizer {
