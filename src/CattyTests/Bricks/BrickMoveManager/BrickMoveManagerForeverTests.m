@@ -122,4 +122,66 @@
     XCTAssertFalse(canMoveAboveForeverBrickEditMode, @"Should not be allowed to move IfBrick inside forever-loop above ForeverBrick");    
 }
 
+- (void)testMoveWaitBrickBelowForeverBrickInsideIfBrick {
+    [self.viewController.collectionView reloadData];
+    
+    // start if
+    IfLogicBeginBrick *ifLogicBeginBrick = [[IfLogicBeginBrick alloc] init];
+    ifLogicBeginBrick.script = self.startScript;
+    [self.startScript.brickList addObject:ifLogicBeginBrick];
+    
+    ForeverBrick *foreverBrick1 = [[ForeverBrick alloc] init];
+    foreverBrick1.script = self.startScript;
+    [self.startScript.brickList addObject:foreverBrick1];
+    
+    LoopEndBrick *loopEndBrick1 = [[LoopEndBrick alloc] init];
+    loopEndBrick1.script = self.startScript;
+    loopEndBrick1.loopBeginBrick = foreverBrick1;
+    [self.startScript.brickList addObject:loopEndBrick1];
+    foreverBrick1.loopEndBrick = loopEndBrick1;
+    
+    IfLogicElseBrick *ifLogicElseBrick = [[IfLogicElseBrick alloc] init];
+    ifLogicElseBrick.script = self.startScript;
+    ifLogicElseBrick.ifBeginBrick = ifLogicBeginBrick;
+    [self.startScript.brickList addObject:ifLogicElseBrick];
+    ifLogicBeginBrick.ifElseBrick = ifLogicElseBrick;
+    
+    ForeverBrick *foreverBrick2 = [[ForeverBrick alloc] init];
+    foreverBrick2.script = self.startScript;
+    [self.startScript.brickList addObject:foreverBrick2];
+    
+    WaitBrick *waitBrick = [[WaitBrick alloc] init];
+    waitBrick.script = self.startScript;
+    [self.startScript.brickList addObject:waitBrick];
+    
+    LoopEndBrick *loopEndBrick2 = [[LoopEndBrick alloc] init];
+    loopEndBrick2.script = self.startScript;
+    loopEndBrick2.loopBeginBrick = foreverBrick2;
+    [self.startScript.brickList addObject:loopEndBrick2];
+    foreverBrick2.loopEndBrick = loopEndBrick2;
+    
+    IfLogicEndBrick *ifLogicEndBrick = [[IfLogicEndBrick alloc] init];
+    ifLogicEndBrick.script = self.startScript;
+    ifLogicEndBrick.ifBeginBrick = ifLogicBeginBrick;
+    ifLogicEndBrick.ifElseBrick = ifLogicElseBrick;
+    [self.startScript.brickList addObject:ifLogicEndBrick];
+    
+    ifLogicBeginBrick.ifEndBrick = ifLogicEndBrick;
+    ifLogicElseBrick.ifEndBrick = ifLogicEndBrick;
+    // end if
+    
+    XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
+    XCTAssertEqual(9, [self.viewController.collectionView numberOfItemsInSection:0]);
+    
+    // wait brick below forever end brick of if branch
+    NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:7 inSection:0];
+    NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:5 inSection:0];
+    
+    BOOL canMoveBelowForeverEndBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                                 itemAtIndexPath:indexPathFrom
+                                                                              canMoveToIndexPath:indexPathTo
+                                                                                       andObject:self.spriteObject];
+    XCTAssertFalse(canMoveBelowForeverEndBrickEditMode, @"Should not be allowed to move WaitBrick below forever-loop of if-branch");
+}
+
 @end
