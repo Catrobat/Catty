@@ -442,6 +442,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
         Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
         Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
+        fromBrick.script = toScript;
         if ([toScript.brickList count] == 0) {
             [fromScript.brickList removeObjectAtIndex:fromIndexPath.item - 1];
             [toScript.brickList addObject:fromBrick];
@@ -665,7 +666,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [targetScript.brickList insertObject:brick atIndex:insertionIndex];
     }
     // empty script list, insert first brick and continue
-    if (targetScript.brickList.count == 1) {
+    if (targetScript.brickList.count == 1 && self.object.scriptList.count == 1) {
         
         [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:[NSIndexPath indexPathForRow:0 inSection:self.object.scriptList.count-1] andObject:self.object];
         [self reloadData];
@@ -907,7 +908,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             Brick *brick = (Brick*)scriptOrBrick;
             NSArray* removingBrickIndexPaths = [[BrickManager sharedBrickManager] getIndexPathsForRemovingBricks:indexPath andBrick:brick];
             if (removingBrickIndexPaths) {
-                [self.collectionView deleteItemsAtIndexPaths:removingBrickIndexPaths];
+                [self.collectionView deleteItemsAtIndexPaths:removingBrickIndexPaths];//@[[NSIndexPath indexPathForItem:1 inSection:1]]];
             }
         }
     } completion:^(BOOL finished) {
