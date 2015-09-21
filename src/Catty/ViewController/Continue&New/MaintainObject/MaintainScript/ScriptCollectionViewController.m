@@ -908,7 +908,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             Brick *brick = (Brick*)scriptOrBrick;
             NSArray* removingBrickIndexPaths = [[BrickManager sharedBrickManager] getIndexPathsForRemovingBricks:indexPath andBrick:brick];
             if (removingBrickIndexPaths) {
-                [self.collectionView deleteItemsAtIndexPaths:removingBrickIndexPaths];//@[[NSIndexPath indexPathForItem:1 inSection:1]]];
+                [self.collectionView deleteItemsAtIndexPaths:removingBrickIndexPaths];
             }
         }
     } completion:^(BOOL finished) {
