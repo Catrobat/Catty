@@ -32,7 +32,7 @@
 @end
 
 @class BrickCellFormulaData;
-@interface FormulaEditorViewController : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate>
+@interface FormulaEditorViewController : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate,UIGestureRecognizerDelegate>
 @property (strong, nonatomic) InternFormula *internFormula;
 @property (strong, nonatomic) FormulaEditorHistory *history;
 @property (strong, nonatomic) NSMutableArray *variableSourceProgram;
