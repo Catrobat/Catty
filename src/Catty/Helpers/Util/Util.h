@@ -126,7 +126,7 @@
 
 + (NSString*)appBuildName;
 
-+ (NSString*)appBuildVersion:(BOOL)shortVersion;
++ (NSString*)appBuildVersion;
 
 + (NSString*)catrobatLanguageVersion;
 
