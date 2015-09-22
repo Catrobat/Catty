@@ -128,14 +128,14 @@
     [self.border setOpacity:BORDER_TRANSPARENCY];
     
     if (isActive) {
-        self.border.strokeColor = [UIColor globalTintColor].CGColor;
-        self.border.shadowColor = [UIColor globalTintColor].CGColor;
+        self.border.strokeColor = [UIColor backgroundColor].CGColor;
+        self.border.shadowColor = [UIColor clearColor].CGColor;
         self.border.shadowRadius = 1;
         self.border.shadowOpacity = 1.0;
         self.border.shadowOffset = CGSizeMake(0, 0);
     } else {
-        //UIColor *borderColor = kBrickCategoryStrokeColors[self.brickCell.scriptOrBrick.brickCategoryType];
-        UIColor *borderColor = self.brickCell.brickCategoryColors[self.brickCell.scriptOrBrick.brickCategoryType-1];
+        UIColor *borderColor = kBrickCategoryStrokeColors[self.brickCell.scriptOrBrick.brickCategoryType-1];
+        //        UIColor *borderColor = self.brickCell.brickCategoryColors[self.brickCell.scriptOrBrick.brickCategoryType-1];
         self.border.strokeColor = borderColor.CGColor;
     }
     
