@@ -21,11 +21,26 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "UIViewController+CWPopup.h"
-#import "NetworkDefines.h"
+#import "BaseLoginViewController.h"
+#import "CatrobatTableViewController.h"
 
-@interface LoginPopupViewController : UIViewController <NSURLConnectionDataDelegate>
+@interface LoginViewController : BaseLoginViewController
 
-@property (nonatomic, weak) id<DismissPopupDelegate> delegate;
+@property (nonatomic, weak) CatrobatTableViewController * catTVC;
 
+@property (nonatomic, weak) IBOutlet UITextField * usernameField;
+
+@property (nonatomic, weak) IBOutlet UITextField * passwordField;
+
+@property (nonatomic, weak) IBOutlet UIButton *loginButton;
+
+@property (nonatomic, weak) IBOutlet UIButton * forgotButton;
+
+@property (nonatomic, weak) IBOutlet UILabel * titleLabel;
+
+@property (nonatomic, weak) IBOutlet UIImageView * headerImageView;
+
+@property (nonatomic, weak) IBOutlet UILabel * infoLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
 @end

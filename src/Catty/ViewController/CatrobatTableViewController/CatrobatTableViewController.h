@@ -27,4 +27,6 @@
 
 @interface CatrobatTableViewController : BaseTableViewController <DismissPopupDelegate>
 
+-(void)afterSuccessfulLogin;
+
 @end

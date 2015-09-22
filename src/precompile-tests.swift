@@ -82,7 +82,7 @@ let licenseCheckExcludeFiles = [
     "MYBlurIntroductionView.[mh]",
     "MYIntroductionPanel.[mh]",
     "FBKVOController.[mh]",
-    "Keychain.[mh]",
+    "JNKeychain.[mh]",
     "SwellAll.swift"
 ]; let licenseCheckExcludeFilesLine = __LINE__; // CAVE: NEVER separate these two statements by adding a new line
 

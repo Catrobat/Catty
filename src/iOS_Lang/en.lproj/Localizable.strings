@@ -424,6 +424,9 @@
 /* No comment provided by engineer. */
 "Go to front" = "Go to front";
 
+/* No comment provided by engineer. */
+"GOOD TO SEE YOU" = "GOOD TO SEE YOU";
+
 /* paint */
 "Green" = "Green";
 
@@ -503,10 +506,10 @@
 "layer" = "layer";
 
 /* No comment provided by engineer. */
-"length" = "length";
+"Length" = "Length";
 
 /* No comment provided by engineer. */
-"Length" = "Length";
+"length" = "length";
 
 /* No comment provided by engineer. */
 "letter" = "letter";
@@ -522,6 +525,9 @@
 
 /* No comment provided by engineer. */
 "Login" = "Login";
+
+/* No comment provided by engineer. */
+"Login successful" = "Login successful";
 
 /* No comment provided by engineer. */
 "Login/Register" = "Login/Register";
@@ -740,6 +746,9 @@
 "Please pick an item" = "Please pick an item";
 
 /* No comment provided by engineer. */
+"Please register below" = "Please register below";
+
+/* No comment provided by engineer. */
 "Please select a program to upload" = "Please select a program to upload";
 
 /* No comment provided by engineer. */
@@ -824,7 +833,7 @@
 "Register" = "Register";
 
 /* No comment provided by engineer. */
-"Registration successfull" = "Registration successfull";
+"Registration successful" = "Registration successful";
 
 /* No comment provided by engineer. */
 "Rename" = "Rename";
@@ -1094,7 +1103,7 @@
 "Upload Selected Program" = "Upload Selected Program";
 
 /* No comment provided by engineer. */
-"Upload successfull" = "Upload successfull";
+"Upload successful" = "Upload successful";
 
 /* No comment provided by engineer. */
 "Uploaded" = "Uploaded";
@@ -1134,6 +1143,9 @@
 
 /* No comment provided by engineer. */
 "Wednesday" = "Wednesday";
+
+/* No comment provided by engineer. */
+"Welcome back, please login below" = "Welcome back, please login below";
 
 /* No comment provided by engineer. */
 "Welcome to Pocket Code" = "Welcome to Pocket Code";

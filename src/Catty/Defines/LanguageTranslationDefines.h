@@ -446,11 +446,17 @@
 #define kLocalizedUploadProgramNecessary NSLocalizedString(@"Program Name is necessary!", nil)
 #define kLocalizedForgotPassword NSLocalizedString(@"Forgot password", nil)
 #define kLocalizedTermsAgreementPart NSLocalizedString(@"By registering you agree to our", nil)
-#define kLocalizedUploadSuccessfull NSLocalizedString(@"Upload successfull", nil)
-#define kLocalizedRegistrationSuccessfull NSLocalizedString(@"Registration successfull", nil)
+#define kLocalizedUploadSuccessful NSLocalizedString(@"Upload successful", nil)
+#define kLocalizedRegistrationSuccessful NSLocalizedString(@"Registration successful", nil)
+#define kLocalizedLoginSuccessful NSLocalizedString(@"Login successful", nil)
 #define kUploadSelectedProgram NSLocalizedString(@"Upload Selected Program", nil)
 #define kLocalizedUploadProblem NSLocalizedString (@"Problems occured while Uploading your program", nil)
 #define kLocalizedUploadSelectProgram NSLocalizedString (@"Please select a program to upload", nil)
+#define kLocalizedTitleLogin NSLocalizedString(@"GOOD TO SEE YOU",nil)
+#define kLocalizedTitleRegister NSLocalizedString(@"GOOD TO SEE YOU",nil)
+
+#define kLocalizedInfoLogin NSLocalizedString(@"Welcome back, please login below",nil)
+#define kLocalizedInfoRegister NSLocalizedString(@"Please register below",nil)
 
 //************************************************************************************************************
 //************************************       PAINT                ********************************************
