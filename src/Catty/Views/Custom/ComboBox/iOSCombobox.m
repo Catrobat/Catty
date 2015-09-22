@@ -55,10 +55,9 @@
     [self.pickerView selectRow:[self.values indexOfObject:[self currentValue]] inComponent:0 animated:NO];
     self.keyboard = [[BSKeyboardControls alloc] initWithFields:@[self]];
     [self.keyboard setDelegate:self];
-    
+//    [self setCurrentImagee:[UIImage imageNamed:@"brush"]];
     self.inputView = self.pickerView;
 }
-
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -191,6 +190,36 @@
     CGContextFillPath(ctx);
     CGPathRelease(path);
     CGContextRestoreGState(ctx);
+    // ==============================
+    // Draw the image
+    // ==============================
+    if (self.currentImage) {
+        CGContextSaveGState(ctx);
+        
+        CGMutablePathRef path = CGPathCreateMutable();
+        
+        // the height of the triangle should be probably be about 40% of the height
+        // of the overall rectangle, based on the Safari dropdown
+        CGFloat centerX = rect.size.width - (ARROW_BOX_WIDTH)- 20 - BORDER_OFFSET;
+        CGFloat centerY = rect.size.height / 2 + BORDER_OFFSET;
+        CGFloat width = 0;
+        CGFloat height = 20;
+        if (self.currentImage.size.width > self.currentImage.size.height) {
+            width = 30;
+        } else if (self.currentImage.size.width < self.currentImage.size.height) {
+            width = 15;
+        } else{
+            width = 20;
+        }
+        [self.currentImage drawInRect:CGRectMake(centerX - 10,centerY - 10.0f, width, height)];
+//        CGContextDrawImage(ctx, CGRectMake(centerX-10,centerY-7.5f, 30, 15), self.currentImage.CGImage);
+        
+        CGContextAddPath(ctx, path);
+        CGContextFillPath(ctx);
+        CGPathRelease(path);
+        CGContextRestoreGState(ctx);
+    }
+    
     
     // ==============================
     // Draw the text
@@ -201,8 +230,18 @@
     }
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:FONT_NAME size:rect.size.height/2], NSFontAttributeName,
                                 [UIColor whiteColor], NSForegroundColorAttributeName, nil];
-    [self.currentValue drawInRect:CGRectMake(TEXT_LEFT, rect.size.height/2 - rect.size.height/3,
-                                             rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT,
+    CGSize size = [self.currentValue sizeWithAttributes:@{NSFontAttributeName : [UIFont fontWithName:FONT_NAME size:rect.size.height/2]}];
+    NSString* drawString = self.currentValue;
+    if(size.width > rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30){
+        const int clipLength = 7;
+        if([drawString length]>clipLength)
+        {
+            drawString = [NSString stringWithFormat:@"%@...",[drawString substringToIndex:clipLength]];
+        }
+        
+    }
+    [drawString drawInRect:CGRectMake(TEXT_LEFT, rect.size.height/2 - rect.size.height/3,
+                                             rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30,
                                              rect.size.height - BORDER_WIDTH)
                          withAttributes:attributes];
     
@@ -231,6 +270,12 @@
     }
 }
 
+- (void)setCurrentImagee:(UIImage *)image
+{
+    self.currentImage = image;
+    [self setNeedsDisplay];
+}
+
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
@@ -246,12 +291,40 @@
     return [self.values objectAtIndex:row];
 }
 
+- (UIView*) pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+{
+    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 110, 60)];
+    if (self.images.count) {
+        if (row != 0) {
+            UIImage *img = [self.images objectAtIndex:row-1];
+            UIImageView *temp = [[UIImageView alloc] initWithImage:img];
+            temp.frame = CGRectMake(-100, 15, 50, 30);
+            [tmpView insertSubview:temp atIndex:0];
+        }
+    }
+    
+    UILabel *channelLabel = [[UILabel alloc] initWithFrame:CGRectMake(-20, -5, 150, 60)];
+    channelLabel.text = [self.values objectAtIndex:row];
+    channelLabel.textAlignment = NSTextAlignmentLeft;
+    channelLabel.backgroundColor = [UIColor clearColor];
+   
+    [tmpView insertSubview:channelLabel atIndex:1];
+    
+    return tmpView;
+}
+
 /***********************************************************
  **  UIPICKERVIEW DELEGATE COMMANDS
  **********************************************************/
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     [self setCurrentValue:[self.values objectAtIndex:row]];
+    if (row > 0) {
+        [self setCurrentImage:[self.images objectAtIndex:row-1]];
+    } else {
+        [self setCurrentImagee:nil];
+    }
+    
     [self setNeedsDisplay];
     
     if ([self.delegate respondsToSelector:@selector(comboboxChanged:toValue:)])

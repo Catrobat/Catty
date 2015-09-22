@@ -35,8 +35,10 @@
 }
 
 @property (nonatomic, strong) NSArray *values;
+@property (nonatomic, strong) NSArray *images;
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) NSString *currentValue;
+@property (nonatomic, strong) UIImage *currentImage;
 @property (nonatomic, weak) id<iOSComboboxDelegate>delegate;
 @property (nonatomic, strong) BSKeyboardControls *keyboard;
 @property (readwrite, strong) UIView *inputView;
