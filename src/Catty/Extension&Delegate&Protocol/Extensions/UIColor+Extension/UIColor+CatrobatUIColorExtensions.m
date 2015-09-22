@@ -41,6 +41,8 @@
 	return color;
 }
 
+# pragma mark Global
+
 + (UIColor*)globalTintColor
 {
     return [UIColor colorWithRed:(CGFloat)(232.0/255.0) green:146.0f/255.0f blue:6.0f/255.0f alpha:1.0f];
@@ -87,8 +89,23 @@
     return [UIColor colorWithRed:0 green:37.0f/255.0f blue:52.0f/255.0f alpha:1.0f];
 }
 
+# pragma mark FormulaEditor
++ (UIColor*)formulaEditorOperatorColor
+{
+    return [self globalTintColor];
+}
 
-    // just for bricks
++ (UIColor*)formulaEditorHighlightColor
+{
+    return [self globalTintColor];
+}
+
++ (UIColor*)formulaEditorOperandColor
+{
+    return [self lightTextTintColor];
+}
+
+# pragma mark IDE
 + (UIColor*)brickSelectionBackgroundColor
 {
     return [UIColor colorWithRed:13.0f/255.0f green:13.0f/255.0f blue:13.0f/255.0f alpha:1.0f];
