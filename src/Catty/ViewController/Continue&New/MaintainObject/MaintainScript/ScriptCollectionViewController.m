@@ -667,7 +667,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     // empty script list, insert first brick and continue
     if (targetScript.brickList.count == 1) {
         
-        [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:[NSIndexPath indexPathForRow:0 inSection:self.object.scriptList.count-1] andObject:self.object];
+        [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:[NSIndexPath indexPathForRow:0 inSection:targetScriptIndex] andObject:self.object];
         [self reloadData];
         [self.collectionView setNeedsDisplay];
         return;
