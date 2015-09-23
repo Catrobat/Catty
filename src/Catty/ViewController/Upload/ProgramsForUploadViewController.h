@@ -24,6 +24,6 @@
 #import "BaseTableViewController.h"
 #import "UIViewController+CWPopup.h"
 
-@interface ProgramsForUploadViewController : BaseTableViewController <DismissPopupDelegate>
+@interface ProgramsForUploadViewController : BaseTableViewController
 
 @end

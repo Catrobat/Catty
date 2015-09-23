@@ -46,8 +46,10 @@
 #import "DataTransferMessage.h"
 #import "InfoPopupViewController.h"
 #import "MYBlurIntroductionView.h"
-#import "LoginPopupViewController.h"
 #import "ProgramsForUploadViewController.h"
+#import "Util.h"
+#import "UIImage+CatrobatUIImageExtensions.h"
+#import "LoginViewController.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
     kContinueProgramVC = 0,
@@ -111,7 +113,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.reachability startNotifier];
     self.tableView.delaysContentTouches = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    self.tableView.separatorColor = UIColor.skyBlueColor;
+
+    self.tableView.separatorInset = UIEdgeInsetsZero;
+
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -173,6 +177,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                   kLocalizedHelp,
                   kLocalizedExplore,
                   kLocalizedUpload, nil];
+
     self.imageNames = [[NSArray alloc] initWithObjects:kMenuImageNameContinue, kMenuImageNameNew, kMenuImageNamePrograms, kMenuImageNameHelp, kMenuImageNameExplore, kMenuImageNameUpload, nil];
     self.identifiers = [[NSMutableArray alloc] initWithObjects:kSegueToContinue, kSegueToNewProgram, kSegueToPrograms, kSegueToHelp, kSegueToExplore, kSegueToUpload, nil];
 }
@@ -180,6 +185,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)initNavigationBar
 {
     self.navigationItem.title = kLocalizedPocketCode;
+    self.navigationController.navigationBar.tintColor = [UIColor navTintColor];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoLight];
     [button addTarget:self action:@selector(infoPressed:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *infoItem = [[UIBarButtonItem alloc] initWithCustomView:button];
@@ -196,8 +202,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #if DEBUG == 1
 - (void)debugInfo:(id)sender
 {
+    NSString *message = [NSString stringWithFormat:@"%@\n\n-------------------\n\nBuild version:\n\n%@",
+                         kLocalizedStartedInDebugMode, [Util appBuildVersion]];
     [[[UIAlertView alloc] initWithTitle:kLocalizedDebugModeTitle
-                                message:kLocalizedStartedInDebugMode
+                                message:message
                                delegate:nil
                       cancelButtonTitle:kLocalizedOK
                       otherButtonTitles:nil] show];
@@ -212,19 +220,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         popupViewController.delegate = self;
         self.tableView.scrollEnabled = NO;
         [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame upwardsCenterByFactor:1];
-    } else {
-        [self dismissPopupWithCode:NO];
-    }
-}
-
-- (void)showLoginView
-{
-    if (self.popupViewController == nil) {
-        LoginPopupViewController *popupViewController = [[LoginPopupViewController alloc] init];
-        popupViewController.delegate = self;
-        self.tableView.scrollEnabled = NO;
-        [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame upwardsCenterByFactor:4.5];
-        self.navigationItem.leftBarButtonItem.enabled = NO;
     } else {
         [self dismissPopupWithCode:NO];
     }
@@ -268,6 +263,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [self configureSubtitleLabelForCell:cell];
     }
     
+    cell.layoutMargins = UIEdgeInsetsZero;
+    cell.preservesSuperviewLayoutMargins = NO;
+    
     return cell;
 }
 
@@ -310,11 +308,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
         case kUploadVC:
             if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
                 if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
-                    [self performSegueWithIdentifier:identifier sender:self];
+                    [self performSegueWithIdentifier:@"segueToUpload" sender:self];
                 }
-                
+    
             } else {
-                    [self showLoginView];
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
+                LoginViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
+                vc.catTVC = self;
+                [self.navigationController pushViewController:vc animated:YES];
             }
 
             break;
@@ -324,6 +325,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+-(void)afterSuccessfulLogin
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([[[NSUserDefaults standardUserDefaults] valueForKey:kUserIsLoggedIn] boolValue]) {
+            if ([self shouldPerformSegueWithIdentifier:@"segueToUpload" sender:self]) {
+                [self performSegueWithIdentifier:@"segueToUpload" sender:self];
+            }
+        }
+    });
+}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -335,12 +348,18 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     cell.titleLabel.text = [self.cells objectAtIndex:indexPath.row];
     cell.iconImageView.image = [UIImage imageNamed:[self.imageNames objectAtIndex:indexPath.row]];
+    cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+    if(IS_IPHONE4 && (indexPath.row!=0)) {
+        CGRect frame = cell.iconImageView.frame;
+        frame.size.height = kIconDownsizeFactorIphone4*cell.iconImageView.frame.size.height;
+        cell.iconImageView.frame= frame;
+    }
 }
 
 - (void)configureSubtitleLabelForCell:(UITableViewCell*)cell
 {
     UILabel *subtitleLabel = (UILabel*)[cell viewWithTag:kSubtitleLabelTag];
-    subtitleLabel.textColor = [UIColor brightGrayColor];
+    subtitleLabel.textColor = [UIColor lightTextTintColor];
     ProgramLoadingInfo *loadingInfo = [Util lastUsedProgramLoadingInfo];
     subtitleLabel.text = loadingInfo.visibleName;
 }
@@ -358,7 +377,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 }
 
 #pragma mark - segue handling
-- (BOOL)shouldPerformSegueWithIdentifider:(NSString*)identifier sender:(id)sender
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString*)identifier sender:(id)sender
 {
     if ([self dismissPopupWithCode:NO]) {
         return NO;
@@ -387,7 +406,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         NetworkStatus remoteHostStatus = [self.reachability currentReachabilityStatus];
         
         if(remoteHostStatus == NotReachable) {
-            [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
+            [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
             NSDebug(@"not reachable");
             return NO;
         } else if (remoteHostStatus == ReachableViaWiFi) {
@@ -398,12 +417,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 NSDebug(@"reachable via wifi but no data");
                 if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
                     [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]] ||
-                    [self.navigationController.topViewController isKindOfClass:[LoginPopupViewController class]] ||
+                    [self.navigationController.topViewController isKindOfClass:[LoginViewController class]] ||
                     [self.navigationController.topViewController isKindOfClass:[ProgramsForUploadViewController class]] ) {
-                    [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
+                    [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
                     [self.navigationController popToRootViewControllerAnimated:YES];
                     return NO;
                 }
+                return NO;
             }
             return YES;
         } else if (remoteHostStatus == ReachableViaWWAN){
@@ -412,7 +432,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 return YES;
             }else{
                 NSDebug(@" not reachable via celullar");
-                [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
+                [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
                 return NO;
             }
             return YES;
@@ -447,9 +467,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
         if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
             [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]] ||
             [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]] ||
-            [self.navigationController.topViewController isKindOfClass:[LoginPopupViewController class]] ||
+            [self.navigationController.topViewController isKindOfClass:[LoginViewController class]] ||
             [self.navigationController.topViewController isKindOfClass:[ProgramsForUploadViewController class]] ) {
-            [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
+            [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
         NSDebug(@"not reachable");
@@ -461,9 +481,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
             if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
                 [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]||
                 [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]] ||
-                [self.navigationController.topViewController isKindOfClass:[LoginPopupViewController class]] ||
+                [self.navigationController.topViewController isKindOfClass:[LoginViewController class]] ||
                 [self.navigationController.topViewController isKindOfClass:[ProgramsForUploadViewController class]] ) {
-                [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
+                [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
         }
@@ -475,9 +495,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
             if ([self.navigationController.topViewController isKindOfClass:[DownloadTabBarController class]] ||
                 [self.navigationController.topViewController isKindOfClass:[ProgramDetailStoreViewController class]]||
                 [self.navigationController.topViewController isKindOfClass:[HelpWebViewController class]] ||
-                [self.navigationController.topViewController isKindOfClass:[LoginPopupViewController class]] ||
+                [self.navigationController.topViewController isKindOfClass:[LoginViewController class]] ||
                 [self.navigationController.topViewController isKindOfClass:[ProgramsForUploadViewController class]] ) {
-                [Util alertWithText:kLocalizedNoInternetConnectionAvailable];
+                [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
         }

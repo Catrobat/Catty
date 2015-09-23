@@ -10,11 +10,13 @@
 /* Let's inset everything that's drawn (the handles and the content view)
    so that users can trigger a resize from a few pixels outside of
    what they actually see as the bounding box. */
-#define kSPUserResizableViewGlobalInset 10.0
+#define kSPUserResizableViewGlobalInset -15.0
 
-#define kSPUserResizableViewDefaultMinWidth 20.0
-#define kSPUserResizableViewDefaultMinHeight 20.0
-#define kSPUserResizableViewInteractiveBorderSize 20.0
+#define kSPUserResizableViewDefaultMinWidth 40.0
+#define kSPUserResizableViewDefaultMinHeight 40.0
+#define kSPUserResizableViewInteractiveBorderSize 30.0
+
+#define RADIANS_TO_DEGREES(radians) ((radians) * (180.0 / M_PI))
 
 static SPUserResizableViewAnchorPoint SPUserResizableViewNoResizeAnchorPoint = { 0.0, 0.0, 0.0, 0.0 };
 static SPUserResizableViewAnchorPoint SPUserResizableViewUpperLeftAnchorPoint = { 1.0, 1.0, -1.0, 1.0 };
@@ -46,7 +48,7 @@ static SPUserResizableViewAnchorPoint SPUserResizableViewLowerMiddleAnchorPoint 
     CGContextSaveGState(context);
     
     // (1) Draw the bounding box.
-    CGContextSetLineWidth(context, 4.0);
+    CGContextSetLineWidth(context, 3.0);
     CGContextSetStrokeColorWithColor(context, self.borderColor.CGColor);
     CGContextAddRect(context, CGRectInset(self.bounds, kSPUserResizableViewInteractiveBorderSize/2, kSPUserResizableViewInteractiveBorderSize/2));
     CGContextStrokePath(context);
@@ -130,6 +132,7 @@ static SPUserResizableViewAnchorPoint SPUserResizableViewLowerMiddleAnchorPoint 
     self.minWidth = kSPUserResizableViewDefaultMinWidth;
     self.minHeight = kSPUserResizableViewDefaultMinHeight;
     self.preventsPositionOutsideSuperview = YES;
+    self.rotation = 0;
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -213,9 +216,7 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
     if ([self isDisabledForTouches:touches]) {
         return;
     }
-    
     m_originalAnchorPoint    = [[self layer] anchorPoint];
-    
     // Notify the delegate we've begun our editing session.
     if (self.delegate && [self.delegate respondsToSelector:@selector(userResizableViewDidBeginEditing:)]) {
         [self.delegate userResizableViewDidBeginEditing:self];
@@ -224,17 +225,17 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
     [_borderView setHidden:NO];
     UITouch *touch = [touches anyObject];
     anchorPoint = [self anchorPointForTouchLocation:[touch locationInView:self]];
-    
+
     // When resizing, all calculations are done in the superview's coordinate space.
     touchStart = [touch locationInView:self.superview];
     if (![self isResizing]) {
         // When translating, all calculations are done in the view's coordinate space.
         touchStart = [touch locationInView:self];
     }
+    
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    
     [self setAnchorPoint:m_originalAnchorPoint];
     
     // Notify the delegate we've ended our editing session.
@@ -269,8 +270,6 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
     // save current rotation and scales
     CGFloat scaleX      = [[self valueForKeyPath:@"layer.transform.scale.x"] floatValue];
     CGFloat scaleY      = [[self valueForKeyPath:@"layer.transform.scale.y"] floatValue];
-    CGFloat rotation    = [[self valueForKeyPath:@"layer.transform.rotation"] floatValue];
-    
     // update current anchor point to update frane with transform
     
     CGPoint point;
@@ -308,11 +307,36 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
             touchPoint.y = self.superview.bounds.size.height - border;
         }
     }
+    CGPoint start   = touchStart;
+    CGPoint end     = touchPoint;
+    
+    float rotationDeg   = RADIANS_TO_DEGREES(self.rotation);
+    
+    if (rotationDeg >= 45.0 && rotationDeg < 135.0) {
+        
+        start.x     = touchStart.y;
+        start.y     = touchPoint.x;
+        
+        end.x     = touchPoint.y;
+        end.y     = touchStart.x;
+        
+    } else if (225.0 > rotationDeg && rotationDeg >= 135.0) {
+        start   = touchPoint;
+        end     = touchStart;
+
+        
+    } else if (rotationDeg >= 225.0 && rotationDeg < 315.0) {
+        start.x     = touchPoint.y;
+        start.y     = touchStart.x;
+        
+        end.x     = touchStart.y;
+        end.y     = touchPoint.x;
+    }
     
     // (2) Calculate the deltas using the current anchor point.
-    CGFloat deltaW = anchorPoint.adjustsW * (touchStart.x - touchPoint.x) / scaleX;
+    CGFloat deltaW = anchorPoint.adjustsW * (start.x - end.x) / scaleX;
     CGFloat deltaX = anchorPoint.adjustsX * (-1.0 * deltaW);
-    CGFloat deltaH = anchorPoint.adjustsH * (touchPoint.y - touchStart.y) / scaleY;
+    CGFloat deltaH = anchorPoint.adjustsH * (end.y - start.y) / scaleY;
     CGFloat deltaY = anchorPoint.adjustsY * (-1.0 * deltaH);
     
     // (3) Calculate the new frame.
@@ -360,16 +384,16 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
         [[self delegate] userResizableViewNewRealFrame:self];
     }
     
-    // resotre the transform
-    CGAffineTransform transform     = CGAffineTransformMakeRotation(rotation);
+    // restore the transform
+   CGAffineTransform transform     = CGAffineTransformMakeRotation(self.rotation);
     
     [self setTransform:CGAffineTransformScale(transform, scaleX, scaleY)];
 
-    
     touchStart = touchPoint;
 }
 
 - (void)translateUsingTouchLocation:(CGPoint)touchPoint {
+    
     [self setAnchorPoint:CGPointMake(0.5, 0.5)];
     CGPoint newCenter = CGPointMake(self.center.x + touchPoint.x - touchStart.x, self.center.y + touchPoint.y - touchStart.y);
     if (self.preventsPositionOutsideSuperview) {
@@ -415,13 +439,17 @@ typedef struct CGPointSPUserResizableViewAnchorPointPair {
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     // is disabled or there are more touches
+    
     if (![self isDisabledForTouches:touches]) {
         if ([self isResizing]) {
             [self resizeUsingTouchLocation:[[touches anyObject] locationInView:self.superview]];
         } else if (![self disablePan]){
+            self.transform = CGAffineTransformMakeRotation(0);
             [self translateUsingTouchLocation:[[touches anyObject] locationInView:self]];
+            self.transform = CGAffineTransformMakeRotation(self.rotation);
         }
     }
+    
 }
 
 - (void)changeBorderWithColor:(UIColor*)color

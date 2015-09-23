@@ -25,13 +25,13 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2744-iOS9_IOS-13_101_159-{parent:580ef35}</string>
+	<string>2745-IOS-194_new-{parent:61ce221}</string>
 	<key>CatrobatApplicationName</key>
 	<string>Pocket Code (Catty iOS)</string>
 	<key>CatrobatBuildName</key>
 	<string>Catty</string>
 	<key>CatrobatLanguageVersion</key>
-	<string>0.9.4</string>
+	<string>0.96</string>
 	<key>CatrobatMediaLicense</key>
 	<string>http://developer.catrobat.org/ccbysa_v3</string>
 	<key>CatrobatProgramLicense</key>
@@ -41,7 +41,7 @@
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
-	<string>iPhone</string>
+	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>iPhone</string>
 	<key>UIStatusBarHidden</key>

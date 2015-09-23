@@ -50,7 +50,7 @@ final class CBBroadcastHandler : CBBroadcastHandlerProtocol {
         // setup broadcast start queue handler
         let broadcastQueue = dispatch_queue_create("org.catrobat.broadcastStart.queue", DISPATCH_QUEUE_CONCURRENT)
         dispatch_async(broadcastQueue, { [weak self] in
-            while !self?.scheduler?.allStartScriptContextsReachedMatureState() {
+            while self?.scheduler?.allStartScriptContextsReachedMatureState() == false {
                 NSThread.sleepForTimeInterval(0.1)
             }
 

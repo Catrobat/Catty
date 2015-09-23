@@ -42,7 +42,7 @@
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.degrees = [[Formula alloc] initWithFloat:90];
+    self.degrees = [[Formula alloc] initWithInteger:90];
 }
 
 - (NSString*)brickTitle
@@ -60,7 +60,7 @@
   return ^{
       NSDebug(@"Performing: %@", self.description);
       double degrees = [self.degrees interpretDoubleForSprite:self.script.object] - kRotationDegreeOffset;
-      degrees = [((CBPlayerScene*)self.script.object.spriteNode.scene) convertDegreesToScene:(CGFloat)degrees];
+      degrees = [((CBScene*)self.script.object.spriteNode.scene) convertDegreesToScene:(CGFloat)degrees];
       [self.script.object.spriteNode setRotation:degrees];
   };
 }

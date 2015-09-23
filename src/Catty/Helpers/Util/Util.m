@@ -99,8 +99,8 @@
     MYBlurIntroductionView *introductionView = [[MYBlurIntroductionView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
     introductionView.delegate = delegate;
     [introductionView setEnabled:YES];
-    introductionView.BackgroundImageView.image = [UIImage imageWithColor:[UIColor darkBlueColor]];
-    [introductionView setBackgroundColor:[UIColor darkBlueColor]];
+    introductionView.BackgroundImageView.image = [UIImage imageWithColor:[UIColor lightTextTintColor]];
+    [introductionView setBackgroundColor:[UIColor backgroundColor]];
     //introductionView.LanguageDirection = MYLanguageDirectionRightToLeft;
     
     //Build the introduction with desired panels
@@ -113,6 +113,14 @@
 + (CatrobatAlertView*)alertWithText:(NSString*)text
 {
     return [self alertWithText:text delegate:nil tag:0];
+}
+
++(CatrobatAlertView *)alertWithTitle:(NSString *)title
+                             andText:(NSString *)text
+{
+    CatrobatAlertView* alertView = [self alertWithText:text];
+    alertView.title = title;
+    return alertView;
 }
 
 + (CatrobatAlertView*)alertWithText:(NSString*)text
@@ -165,7 +173,8 @@
                         delegate:delegate
                      placeholder:placeholder
                              tag:tag
-                           value:nil];
+                           value:nil
+                          target:nil];
 }
 
 + (CatrobatAlertView*)promptWithTitle:(NSString*)title
@@ -174,6 +183,7 @@
                           placeholder:(NSString*)placeholder
                                   tag:(NSInteger)tag
                                 value:(NSString*)value
+                               target:(id)target
 {
     CatrobatAlertView *alertView = [[CatrobatAlertView alloc] initWithTitle:title
                                                                     message:message
@@ -199,7 +209,11 @@
     }];
 
     if (! [self activateTestMode:NO]) {
-        [ROOTVIEW presentViewController:alertView animated:YES completion:^{}];
+        if (target != nil) {
+            [(UIViewController *)target presentViewController:alertView animated:YES completion:^{}];
+        } else {
+            [ROOTVIEW presentViewController:alertView animated:YES completion:^{}];
+        }
     }
     return alertView;
 }
@@ -216,13 +230,13 @@
                                                                 cancelButtonTitle:kLocalizedCancel
                                                            destructiveButtonTitle:destructiveButtonTitle
                                                            otherButtonTitlesArray:otherButtonTitles];
-    [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:0 green:37.0f/255.0f blue:52.0f/255.0f alpha:0.95f]];
-    [actionSheet setButtonTextColor:[UIColor whiteColor]];
+    [actionSheet setButtonBackgroundColor:[UIColor backgroundColor]];
+    [actionSheet setButtonTextColor:[UIColor lightTextTintColor]];
 
 //    [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:1.0f]];
-//    [actionSheet setButtonTextColor:[UIColor lightOrangeColor]];
+//    [actionSheet setButtonTextColor:[UIColor globalTintColor]];
 //    [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
-    actionSheet.transparentView.alpha = 1.0f;
+    
 
 //    if (destructiveButtonTitle) {
 //        [actionSheet addDestructiveButtonWithTitle:destructiveButtonTitle];
@@ -237,6 +251,9 @@
     actionSheet.tag = tag;
     if (! [self activateTestMode:NO]) {
         [actionSheet showInView:view];
+        if (tag == kEditBrickActionSheetTag) {
+            actionSheet.transparentView.alpha = 0.0f;
+        }
     }
     return actionSheet;
 }
@@ -258,7 +275,9 @@
 
 + (NSString*)appBuildVersion
 {
-    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSString *buildVersion = [[bundle infoDictionary] objectForKey:@"CFBundleVersion"];
+    return buildVersion;
 }
 
 + (NSString*)catrobatLanguageVersion
@@ -291,16 +310,27 @@
   return [[UIDevice currentDevice] systemVersion];
 }
 
++ (CGSize)screenSize
+{
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    float iOSVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (iOSVersion < 8 && UIInterfaceOrientationIsLandscape(orientation))
+    {
+        screenSize.height = screenSize.width;
+        screenSize.width = [[UIScreen mainScreen] bounds].size.height;
+    }
+    return screenSize;
+}
+
 + (CGFloat)screenHeight
 {
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    return screenRect.size.height;
+    return [self screenSize].height;
 }
 
 + (CGFloat)screenWidth
 {
-  CGRect screenRect = [[UIScreen mainScreen] bounds];
-  return screenRect.size.width;
+    return [self screenSize].width;
 }
 
 + (CATransition*)getPushCATransition
@@ -400,7 +430,8 @@
                                                         delegate:(id<CatrobatAlertViewDelegate>)self
                                                      placeholder:placeholder
                                                              tag:kAskUserForUniqueNameAlertViewTag
-                                                           value:value];
+                                                           value:value
+                                                          target:target];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionAskUserForUniqueName
                                                                   withPayload:[NSMutableDictionary dictionaryWithDictionary: payload]];
 }
@@ -430,7 +461,8 @@
                                                         delegate:(id<CatrobatAlertViewDelegate>)self
                                                      placeholder:@""
                                                              tag:kAskUserForReportMessageAlertViewTag
-                                                           value:@""];
+                                                           value:@""
+                                                          target:target];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionReportMessage
                                                                   withPayload:[NSMutableDictionary dictionaryWithDictionary: payload]];
 }
@@ -515,7 +547,8 @@
                                                         delegate:(id<CatrobatAlertViewDelegate>)self
                                                      placeholder:@""
                                                              tag:kAskUserForVariableNameAlertViewTag
-                                                           value:@""];
+                                                           value:@""
+                                                          target:target];
     alertView.dataTransferMessage = [DataTransferMessage messageForActionType:kDTMActionVariableName
                                                                   withPayload:[NSMutableDictionary dictionaryWithDictionary: payload]];
 }
@@ -650,7 +683,7 @@
 
 + (double)degreeToRadians:(double)deg
 {
-    CGFloat temp = deg * M_PI / 180.0f;
+    double temp = deg * M_PI / 180.0f;
     temp =  fmod(temp, 2*M_PI);
     return temp;
 }
@@ -772,7 +805,8 @@ replacementString:(NSString*)characters
                                                            delegate:(id<CatrobatAlertViewDelegate>)self
                                                         placeholder:payload[kDTPayloadAskUserPromptPlaceholder]
                                                                 tag:kAskUserForUniqueNameAlertViewTag
-                                                              value:([value isKindOfClass:[NSString class]] ? value : nil)];
+                                                              value:([value isKindOfClass:[NSString class]] ? value : nil)
+                                                             target:nil];
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         }
     } else if (alertView.tag == kAskUserForReportMessageAlertViewTag){
@@ -984,6 +1018,143 @@ replacementString:(NSString*)characters
         }
     }
     return messages;
+}
+
+
++(NSArray*)networkErrorCodes
+{
+    static NSArray *codesArray;
+    if (![codesArray count]){
+        @synchronized(self){
+            const int codes[] = {
+                    //kCFURLErrorUnknown,     //-998
+                    //kCFURLErrorCancelled,   //-999
+                    //kCFURLErrorBadURL,      //-1000
+                    //kCFURLErrorTimedOut,    //-1001
+                    //kCFURLErrorUnsupportedURL, //-1002
+                    //kCFURLErrorCannotFindHost, //-1003
+                kCFURLErrorCannotConnectToHost,     //-1004
+                kCFURLErrorNetworkConnectionLost,   //-1005
+                kCFURLErrorDNSLookupFailed,         //-1006
+                                                    //kCFURLErrorHTTPTooManyRedirects,    //-1007
+                kCFURLErrorResourceUnavailable,     //-1008
+                kCFURLErrorNotConnectedToInternet,  //-1009
+                                                    //kCFURLErrorRedirectToNonExistentLocation,   //-1010
+                kCFURLErrorBadServerResponse,               //-1011
+                                                            //kCFURLErrorUserCancelledAuthentication,     //-1012
+                                                            //kCFURLErrorUserAuthenticationRequired,      //-1013
+                                                            //kCFURLErrorZeroByteResource,        //-1014
+                                                            //kCFURLErrorCannotDecodeRawData,     //-1015
+                                                            //kCFURLErrorCannotDecodeContentData, //-1016
+                                                            //kCFURLErrorCannotParseResponse,     //-1017
+                kCFURLErrorInternationalRoamingOff, //-1018
+                kCFURLErrorCallIsActive,                //-1019
+                                                        //kCFURLErrorDataNotAllowed,              //-1020
+                                                        //kCFURLErrorRequestBodyStreamExhausted,  //-1021
+                kCFURLErrorFileDoesNotExist,            //-1100
+                                                        //kCFURLErrorFileIsDirectory,             //-1101
+                kCFURLErrorNoPermissionsToReadFile,     //-1102
+                                                        //kCFURLErrorDataLengthExceedsMaximum,     //-1103
+            };
+            int size = sizeof(codes)/sizeof(int);
+            NSMutableArray *array = [[NSMutableArray alloc] init];
+            for (int i=0;i<size;++i){
+                [array addObject:[NSNumber numberWithInt:codes[i]]];
+            }
+            codesArray = [array copy];
+        }
+    }
+    return codesArray;
+}
+
+#pragma mark - brick statistics
+
++ (NSDictionary*)getBrickInsertionDictionaryFromUserDefaults
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *insertionStatistic = [userDefaults objectForKey:kUserDefaultsBrickSelectionStatisticsMap];
+    if(insertionStatistic == nil)
+    {
+        insertionStatistic = [self defaultBrickStatisticDictionary];
+        [userDefaults setObject:insertionStatistic
+                         forKey:kUserDefaultsBrickSelectionStatisticsMap];
+        [userDefaults synchronize];
+    }
+    return insertionStatistic;
+}
+
++ (void)setBrickInsertionDictionaryToUserDefaults:(NSDictionary*) statistics
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:statistics
+                     forKey:kUserDefaultsBrickSelectionStatisticsMap];
+    [userDefaults synchronize];
+}
+
+
++ (void)incrementStatisticCountForBrickType:(kBrickType)brickType
+{
+    NSDictionary *insertionStatistic = [self getBrickInsertionDictionaryFromUserDefaults];
+    NSString *wrappedBrickType = [NSNumber numberWithUnsignedInteger:(NSUInteger)brickType].stringValue;
+    NSNumber *old_count = [insertionStatistic objectForKey:wrappedBrickType];
+    NSMutableDictionary* mutableInsertionStatistic = [insertionStatistic mutableCopy];
+    [mutableInsertionStatistic setValue:[NSNumber numberWithInt:old_count.intValue+1] forKey:wrappedBrickType];
+    insertionStatistic = [NSDictionary dictionaryWithDictionary:mutableInsertionStatistic];
+    [self setBrickInsertionDictionaryToUserDefaults:insertionStatistic];
+}
+
++ (void)printBrickStatistics
+{
+    NSDictionary* insertionStatistic = [self getBrickInsertionDictionaryFromUserDefaults];
+    NSDebug(@"Brick Statistics:\n%@", insertionStatistic);
+}
+
++ (void)printSubsetOfTheMost:(NSUInteger)N
+{
+    NSDictionary* insertionStatistic = [self getBrickInsertionDictionaryFromUserDefaults];
+    NSArray* subset = [self getSubsetOfTheMost:N usedBricksInDictionary:insertionStatistic];
+    NSDebug(@"Most %d used Bricks with their identifier:\n%@", N, subset);
+}
+
++ (NSArray*) getSubsetOfTheMost:(NSUInteger)N usedBricksInDictionary:(NSDictionary *)brickCountDictionary
+{
+    NSArray *sortedBricks = [brickCountDictionary
+                             keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2)
+                             {
+                                 NSNumber* number1 = (NSNumber*)obj1;
+                                 NSNumber* number2 = (NSNumber*)obj2;
+                                 if (number1 < number2) {
+                                     return NSOrderedDescending;
+                                 }else{
+                                     return NSOrderedAscending;
+                                 }
+                             }];
+    
+    NSUInteger count = ([sortedBricks count] >= N) ? N : [sortedBricks count];
+    NSRange range;
+    range.location = 0;
+    range.length = count;
+
+    return [sortedBricks subarrayWithRange:range];
+}
+
++ (NSArray*) getSubsetOfTheMostFavoriteChosenBricks:(NSUInteger)amount
+{
+    return [self getSubsetOfTheMost:amount
+             usedBricksInDictionary:[self getBrickInsertionDictionaryFromUserDefaults]];
+}
+
++ (void)resetBrickStatistics
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:[self defaultBrickStatisticDictionary] forKey:kUserDefaultsBrickSelectionStatisticsMap];
+    [userDefaults synchronize];
+}
+
++ (NSDictionary*)defaultBrickStatisticDictionary
+{
+    NSDictionary* defaultStatistics = kDefaultFavouriteBricksStatistic;
+    return defaultStatistics;
 }
 
 @end

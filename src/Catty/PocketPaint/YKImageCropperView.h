@@ -10,9 +10,11 @@
 @property (nonatomic, strong) UIImage *image;
 
 - (UIImage *)editedImage;
-- (id)initWithImage:(UIImage *)image andFrame:(CGRect)frame;
+- (id) initWithImage:(UIImage *)image andFrame:(CGRect)frame;
 - (void)reset;
 - (void)square;
 - (void)setConstrain:(CGSize)size;
+//- (UIColor *)colorAtPoint:(CGPoint)pixelPoint fromImage:(UIImage *)image;
+
 
 @end

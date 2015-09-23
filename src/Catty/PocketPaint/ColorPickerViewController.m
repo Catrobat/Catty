@@ -63,10 +63,10 @@
   [self setupStandardColorsView];
   [self setupRGBAView];
   [self setupBrushPreview];
-  self.view.backgroundColor = [UIColor cellBlueColor];
+  self.view.backgroundColor = [UIColor backgroundColor];
 
   self.toolBar.frame = CGRectMake(0, 0, self.view.frame.size.width, self.toolBar.frame.size.height);
-  self.toolBar.tintColor = [UIColor lightOrangeColor];
+  self.toolBar.tintColor = [UIColor navTintColor];
   self.toolBar.barTintColor = UIColor.navBarColor;
 }
 
@@ -78,7 +78,7 @@
   self.viewChanger = [[UISegmentedControl alloc] initWithItems:itemArray];
   self.viewChanger.frame =CGRectMake(0, self.toolBar.frame.size.height, self.view.frame.size.width, 40);
   self.viewChanger.selectedSegmentIndex = 0;
-  self.viewChanger.tintColor = [UIColor lightOrangeColor];
+  self.viewChanger.tintColor = [UIColor globalTintColor];
   [self.viewChanger addTarget:self
                               action:@selector(viewChanged:)
                     forControlEvents:UIControlEventValueChanged];
@@ -154,11 +154,11 @@
   self.redSlider.maximumValue = 255.0;
   self.redSlider.continuous = YES;
   self.redSlider.value = self.red*255.0f;
-  self.redSlider.tintColor = [UIColor lightOrangeColor];
+  self.redSlider.tintColor = [UIColor globalTintColor];
   self.redLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.redSlider.frame.origin.x+self.redSlider.frame.size.width+20, self.view.frame.size.height*0.05f-7, 40, 10)];
   self.redLabel.text = [NSString stringWithFormat:@"%.0f",roundf(self.red*255.0f)];
   [self.redLabel sizeToFit];
-  self.redLabel.textColor = [UIColor lightBlueColor];
+  self.redLabel.textColor = [UIColor lightTextTintColor];
   
   
   [self.rgbaSliderView addSubview:label];
@@ -182,11 +182,11 @@
   self.greenSlider.maximumValue = 255.0;
   self.greenSlider.continuous = YES;
   self.greenSlider.value = self.green*255.0f;
-  self.greenSlider.tintColor = [UIColor orangeColor];
+  self.greenSlider.tintColor = [UIColor globalTintColor];
   self.greenLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.greenSlider.frame.origin.x+self.greenSlider.frame.size.width+20, self.view.frame.size.height*0.15f-7, 40, 10)];
   self.greenLabel.text = [NSString stringWithFormat:@"%.0f",roundf(self.green*255.0f)];
   [self.greenLabel sizeToFit];
-  self.greenLabel.textColor = [UIColor lightBlueColor];
+  self.greenLabel.textColor = [UIColor lightTextTintColor];
   
   
   [self.rgbaSliderView addSubview:label];
@@ -208,11 +208,11 @@
   self.blueSlider.maximumValue = 255.0;
   self.blueSlider.continuous = YES;
   self.blueSlider.value = self.blue*255.0f;
-  self.blueSlider.tintColor = [UIColor orangeColor];
+  self.blueSlider.tintColor = [UIColor globalTintColor];
   self.blueLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.blueSlider.frame.origin.x+self.blueSlider.frame.size.width+20, self.view.frame.size.height*0.25f-7, 40, 10)];
   self.blueLabel.text = [NSString stringWithFormat:@"%.0f",roundf(self.blue*255.0f)];
   [self.blueLabel sizeToFit];
-  self.blueLabel.textColor = [UIColor lightBlueColor];
+  self.blueLabel.textColor = [UIColor lightTextTintColor];
   
   
   [self.rgbaSliderView addSubview:label];
@@ -236,11 +236,11 @@
   self.opacitySlider.maximumValue = 255.0;
   self.opacitySlider.continuous = YES;
   self.opacitySlider.value = self.opacity*255.0f;
-  self.opacitySlider.tintColor = [UIColor orangeColor];
+  self.opacitySlider.tintColor = [UIColor globalTintColor];
   self.opacityLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.opacitySlider.frame.origin.x+self.opacitySlider.frame.size.width+20, self.view.frame.size.height*0.35f-7, 40, 10)];
   self.opacityLabel.text = [NSString stringWithFormat:@"%.0f%%",roundf(self.opacity*100.0f)];
   [self.opacityLabel sizeToFit];
-  self.opacityLabel.textColor = [UIColor lightBlueColor];
+  self.opacityLabel.textColor = [UIColor lightTextTintColor];
   
   
   [self.rgbaSliderView addSubview:label];
@@ -270,8 +270,8 @@
 
 - (void)setupBrushPreview
 {
-  self.brushView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.center.x-self.view.frame.size.height * 0.05f, 90, self.view.frame.size.height * 0.1f, self.view.frame.size.height * 0.1f)];
-  self.brushView.layer.cornerRadius = 20.0f;
+  self.brushView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.center.x-self.view.frame.size.height * 0.05f, 90, self.view.frame.size.height * 0.1f, self.view.frame.size.height * 0.05f)];
+  self.brushView.layer.cornerRadius = 10.0f;
   [self updatePreview];
   [self.view addSubview:self.brushView];
 

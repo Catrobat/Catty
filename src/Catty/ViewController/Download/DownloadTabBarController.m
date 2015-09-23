@@ -45,12 +45,11 @@
 {
     [super viewDidLoad];
     self.navigationItem.title = kLocalizedExplore;
-    //self.tabBar.backgroundImage =  [[UIImage imageNamed:@"darkblue"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-    //self.tabBar.selectionIndicatorImage = [UIImage imageWithColor:[UIColor clearColor]];
-    //self.tabBar.barTintColor = [UIColor darkBlueColor];
-    self.tabBar.tintColor = [UIColor lightOrangeColor];
+    self.tabBar.barTintColor = [UIColor backgroundColor];
+    self.tabBar.barStyle = UIBarStyleDefault;
+    self.tabBar.tintColor = [UIColor globalTintColor];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f],
-                                                      NSForegroundColorAttributeName : [UIColor lightOrangeColor]
+                                                      NSForegroundColorAttributeName : [UIColor globalTintColor]
                                                       } forState:UIControlStateSelected];
   
 }

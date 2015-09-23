@@ -49,7 +49,7 @@
         // Do any additional setup after loading the view, typically from a nib.
     [self setupToolBar];
     
-    self.record.frame = CGRectMake(self.view.frame.size.width / 2.0 - 125, self.view.frame.size.height * 0.4, 250, 250);
+    self.record.frame = CGRectMake(self.view.frame.size.width / 2.0 - (self.view.frame.size.height * 0.4 / 2.0f), self.view.frame.size.height * 0.4, self.view.frame.size.height * 0.4, self.view.frame.size.height * 0.4);
 
     self.timerLabel = [[TimerLabel alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height * 0.2, self.view.frame.size.width, 40)];
         //    self.timeProgress = [[UIProgressView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2.0 - 125 ,self.view.frame.size.height * 0.3, 250, 10)];
@@ -59,7 +59,7 @@
         //    [self.view addSubview:self.timeProgress];
     self.timerLabel.timeLabel.backgroundColor = [UIColor clearColor];
     self.timerLabel.timeLabel.font = [UIFont systemFontOfSize:28.0f];
-    self.timerLabel.timeLabel.textColor = [UIColor lightOrangeColor];
+    self.timerLabel.timeLabel.textColor = [UIColor lightTextTintColor];
     self.timerLabel.timeLabel.textAlignment = NSTextAlignmentCenter;
     
     
@@ -67,7 +67,7 @@
     [self.timerLabel addGestureRecognizer:recognizer];
         //    [self.timeProgress addGestureRecognizer:recognizer];
     
-    self.view.backgroundColor = [UIColor airForceBlueColor];
+    self.view.backgroundColor = [UIColor backgroundColor];
     
     
     self.isRecording = NO;

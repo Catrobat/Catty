@@ -59,7 +59,8 @@ let licenseCheckExcludeDirs = [
     "UIViewController+CWPopup",
     "OrderedDictionary",
     "3rdParty",
-    "PocketPaint"
+    "PocketPaint",
+    "Siren"
 ]; let licenseCheckExcludeDirsLine = __LINE__; // CAVE: NEVER separate these two statements by adding a new line
 
 let licenseCheckExcludeFiles = [
@@ -81,7 +82,7 @@ let licenseCheckExcludeFiles = [
     "MYBlurIntroductionView.[mh]",
     "MYIntroductionPanel.[mh]",
     "FBKVOController.[mh]",
-    "Keychain.[mh]",
+    "JNKeychain.[mh]",
     "SwellAll.swift"
 ]; let licenseCheckExcludeFilesLine = __LINE__; // CAVE: NEVER separate these two statements by adding a new line
 

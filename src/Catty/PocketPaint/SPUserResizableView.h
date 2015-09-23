@@ -95,6 +95,8 @@ typedef struct SPUserResizableViewAnchorPoint {
 
 - (void)changeBorderWithColor:(UIColor*)color;
 
+@property(nonatomic) CGFloat rotation;
+
 
 @end
 

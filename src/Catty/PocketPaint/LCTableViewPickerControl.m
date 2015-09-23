@@ -75,15 +75,15 @@
   
   UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel
                                                                   style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
-  rightButton.tintColor = [UIColor lightOrangeColor];
+  rightButton.tintColor = [UIColor navTintColor];
   UINavigationItem *item = [[UINavigationItem alloc] initWithTitle:_title];
   item.rightBarButtonItem = rightButton;
   item.hidesBackButton = YES;
-  item.titleView.tintColor = [UIColor yellowColor];
+  item.titleView.tintColor = [UIColor globalTintColor];
   [_navBar pushNavigationItem:item animated:NO];
     self.aTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavBarHeight, frame.size.width, frame.size.height - kNavBarHeight) style:UITableViewStylePlain];
-  self.aTableView.backgroundColor = [UIColor cellBlueColor];
-  self.aTableView.separatorColor = [UIColor lightBlueColor];
+  self.aTableView.backgroundColor = [UIColor backgroundColor];
+  self.aTableView.separatorColor = [UIColor globalTintColor];
     [_aTableView setDelegate:self];
     [_aTableView setDataSource:self];
     [self addSubview:_navBar];
@@ -223,9 +223,10 @@
     }else{
       cell.accessoryType = UITableViewCellAccessoryNone;
     }
-  cell.imageView.backgroundColor = [UIColor cellBlueColor];
-  cell.textLabel.textColor = [UIColor lightBlueColor];
-  cell.backgroundColor = [UIColor cellBlueColor];
+    cell.tintColor = [UIColor globalTintColor];
+  cell.imageView.backgroundColor = [UIColor backgroundColor];
+  cell.textLabel.textColor = [UIColor lightTextTintColor];
+  cell.backgroundColor = [UIColor backgroundColor];
   
   switch (item) {
     case brush:{
@@ -238,8 +239,8 @@
       cell.imageView.image = [UIImage imageNamed:@"eraser"];
     }
       break;
-    case crop:{
-      [cell.textLabel setText:kLocalizedPaintCrop];
+    case resize:{
+      [cell.textLabel setText:kLocalizedPaintResize];
       cell.imageView.image = [UIImage imageNamed:@"crop"];
     }
       break;

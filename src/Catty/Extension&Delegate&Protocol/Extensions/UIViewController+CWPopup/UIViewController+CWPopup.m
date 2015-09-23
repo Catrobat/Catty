@@ -144,8 +144,8 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
 
 - (void)addBlurViewWithFrame:(CGRect)frame {
     UIImageView *blurView = [UIImageView new];
-    blurView.frame = frame;//CGRectMake(0, 0, frame.size.width, frame.size.height);
-    blurView.image = [[self getScreenImageWithFrame:frame] applyBlurWithRadius:15.0f];
+    blurView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    blurView.image = [[self getScreenImageWithFrame:CGRectMake(0, frame.origin.y, frame.size.width, frame.size.height)] applyBlurWithRadius:15.0f];
     [self.view addSubview:blurView];
     [self.view bringSubviewToFront:self.popupViewController.view];
     objc_setAssociatedObject(self, &CWBlurViewKey, blurView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -166,8 +166,8 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
         
         // rounded corners
         viewControllerToPresent.view.layer.cornerRadius = 15.0f;
-        viewControllerToPresent.view.layer.borderWidth = 4.0f;
-        viewControllerToPresent.view.layer.borderColor = [UIColor skyBlueColor].CGColor;
+        viewControllerToPresent.view.layer.borderWidth = 2.0f;
+        viewControllerToPresent.view.layer.borderColor = [UIColor globalTintColor].CGColor;
         
         // blurview
         [self addBlurViewWithFrame:frame];
@@ -186,7 +186,7 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
                          animations:^{
                              blurView.alpha = 1.0f;
                              viewControllerToPresent.view.alpha = 1.0f;
-                             viewControllerToPresent.view.center = CGPointMake(self.view.center.x, self.view.center.y - factor * (self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height) / 2);
+                             viewControllerToPresent.view.center = CGPointMake(self.view.center.x, self.view.center.y+frame.origin.y);
                              
                          } completion:^(BOOL finished) {
             [self.popupViewController didMoveToParentViewController:self];

@@ -22,7 +22,7 @@
 
 #import "GDataXMLNode.h"
 
-@class CBXMLContext;
+@class CBXMLSerializerContext;
 
 @interface GDataXMLElement (CustomExtensions)
 
@@ -35,15 +35,15 @@
                      containingAttribute:(NSString*)attributeName
                                withValue:(NSString*)attributeValue;
 - (GDataXMLElement*)singleNodeForCatrobatXPath:(NSString*)catrobatXPath;
-+ (GDataXMLElement*)elementWithName:(NSString*)name context:(CBXMLContext*)context;
++ (GDataXMLElement*)elementWithName:(NSString*)name context:(CBXMLSerializerContext*)context;
 + (GDataXMLElement*)elementWithName:(NSString*)name xPathIndex:(NSUInteger)xPathIndex
-                            context:(CBXMLContext*)context;
+                            context:(CBXMLSerializerContext*)context;
 + (GDataXMLElement*)elementWithName:(NSString*)name stringValue:(NSString*)value
-                            context:(CBXMLContext*)context;
+                            context:(CBXMLSerializerContext*)context;
 + (GDataXMLElement*)elementWithName:(NSString*)name xPathIndex:(NSUInteger)xPathIndex
-                        stringValue:(NSString*)value context:(CBXMLContext*)context;
+                        stringValue:(NSString*)value context:(CBXMLSerializerContext*)context;
 + (id)attributeWithName:(NSString*)name escapedStringValue:(NSString*)value;
-- (void)addChild:(GDataXMLNode*)child context:(CBXMLContext*)context;
+- (void)addChild:(GDataXMLNode*)child context:(CBXMLSerializerContext*)context;
 - (BOOL)isEqualToElement:(GDataXMLElement*)node;
 
 @end

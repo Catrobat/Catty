@@ -67,11 +67,18 @@
 - (void)comboboxDonePressed:(iOSCombobox *)combobox withValue:(NSString *)value
 {
     [self.brickCell.dataDelegate updateBrickCellData:self withValue:value];
+    [combobox setNeedsDisplay];
 }
 
 - (void)comboboxOpened:(iOSCombobox *)combobox
 {
     [self.brickCell.dataDelegate disableUserInteractionAndHighlight:self.brickCell withMarginBottom:kiOSComboboxTotalHeight];
+}
+
+# pragma mark - User interaction
+- (BOOL)isUserInteractionEnabled
+{
+    return self.brickCell.scriptOrBrick.isAnimatedInsertBrick == NO;
 }
 
 @end

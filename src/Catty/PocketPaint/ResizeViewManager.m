@@ -23,6 +23,8 @@
 #import "ResizeViewManager.h"
 #import "RGBAHelper.h"
 #import "YKImageCropperOverlayView.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
+#import "BDKNotifyHUD.h"
 
 
 #define kControlSize 45.0f
@@ -50,17 +52,12 @@
   self.resizeViewer.delegate = self;
   self.resizeViewer.hidden = YES;
   [self.resizeViewer showEditingHandles];
-  [self.resizeViewer changeBorderWithColor:[UIColor lightOrangeColor]];
+  [self.resizeViewer changeBorderWithColor:[UIColor globalTintColor]];
   
   self.rotateView = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotate:)];
   self.rotateView.delegate = self.canvas;
   [self.canvas.view addGestureRecognizer:self.rotateView];
   self.rotateView.enabled = NO;
-  
-  self.resizeView = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handleResize:)];
-  self.resizeView.delegate = self.canvas;
-  [self.canvas.view addGestureRecognizer:self.resizeView];
-  self.resizeView.enabled = NO;
   
   self.takeView =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(takeImage:)];
   self.takeView.delegate = self.canvas;
@@ -69,59 +66,24 @@
 }
 
 
-- (void)moveView:(UIPanGestureRecognizer *)recognizer {
-  
-  CGPoint translation = [recognizer translationInView:self.canvas.helper];
-  self.resizeViewer.center = CGPointMake(self.resizeViewer.center.x + translation.x,
-                                            self.resizeViewer.center.y + translation.y);
-  [recognizer setTranslation:CGPointMake(0, 0) inView:self.canvas.helper];
-  
-}
+
 - (void)handleRotate:(UIRotationGestureRecognizer *)recognizer {
   
   if (self.canvas.activeAction == stamp) {
     return;
   }
-  if([(UIRotationGestureRecognizer*)recognizer state] == UIGestureRecognizerStateEnded) {
     
-    self.rotation = 0.0;
-    return;
-  }
-  
-  CGFloat rotation = 0.0 - (self.rotation - [recognizer rotation]);
-  
-  CGAffineTransform currentTransform = self.resizeViewer.transform;
-  CGAffineTransform newTransform = CGAffineTransformRotate(currentTransform,rotation);
-  
-  [self.resizeViewer setTransform:newTransform];
-  
-  self.rotation = [(UIRotationGestureRecognizer*)recognizer rotation];
-  
-}
+    if([(UIRotationGestureRecognizer*)recognizer state] == UIGestureRecognizerStateEnded) {
+        self.resizeViewer.rotation = self.resizeViewer.rotation +[(UIRotationGestureRecognizer*)recognizer rotation];
+        self.resizeViewer.rotation = fmodf(self.resizeViewer.rotation,2 * M_PI);
+        if (self.resizeViewer.rotation < 0.0f) {
+            self.resizeViewer.rotation = 2 * M_PI + self.resizeViewer.rotation;
+        }
+        return;
+    }
 
-- (void)handleResize:(UIPinchGestureRecognizer *)gestureRecognizer {
-//  if([gestureRecognizer state] == UIGestureRecognizerStateBegan) {
-//      // Reset the last scale, necessary if there are multiple objects with different scales
-//    self.scale = [gestureRecognizer scale];
-//  }
-//  
-//  if ([gestureRecognizer state] == UIGestureRecognizerStateBegan ||
-//      [gestureRecognizer state] == UIGestureRecognizerStateChanged) {
-//    
-//    CGFloat currentScale = [[self.resizeViewer.layer valueForKeyPath:@"transform.scale"] floatValue];
-//    
-//      // Constants to adjust the max/min values of zoom
-//    const CGFloat kMaxScale = 2.0;
-//    const CGFloat kMinScale = 1.0;
-//    
-//    CGFloat newScale = 1 -  (self.scale - [gestureRecognizer scale]);
-//    newScale = MIN(newScale, kMaxScale / currentScale);
-//    newScale = MAX(newScale, kMinScale / currentScale);
-//    CGAffineTransform transform = CGAffineTransformScale([self.resizeViewer transform], newScale, newScale);
-//    self.resizeViewer.transform = transform;
-//    
-//    self.scale = [gestureRecognizer scale];  // Store the previous scale factor for the next pinch gesture call
-//  }
+    CGAffineTransform newTransform = CGAffineTransformMakeRotation(self.resizeViewer.rotation + [recognizer rotation]);
+    [self.resizeViewer setTransform:newTransform];
 }
 
 - (void)updateShape
@@ -211,7 +173,6 @@
   self.resizeViewer.hidden = NO;
   self.takeView.enabled = YES;
   self.rotateView.enabled = YES;
-  self.resizeView.enabled = YES;
   for (UIGestureRecognizer *recognizer in [self.canvas.scrollView gestureRecognizers]) {
     recognizer.enabled = NO;
   }
@@ -223,7 +184,6 @@
   
   self.takeView.enabled = NO;
   self.rotateView.enabled = NO;
-  self.resizeView.enabled = NO;
   
   self.resizeViewer.transform = CGAffineTransformMakeRotation(0);
   self.resizeViewer.frame = CGRectMake(50 , 50, 150 , 150);
@@ -263,7 +223,7 @@
                 UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
                 UIGraphicsEndImageContext();
                 self.canvas.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
-                
+                [self showStampAction];
                 self.stampImage = viewImage;
                 self.resizeViewer.contentView.image = viewImage;
                 self.gotImage = YES;
@@ -296,9 +256,31 @@
 
 - (void)showUserAction
 {
-  [self.resizeViewer changeBorderWithColor:[UIColor greenColor]];
-  [self.resizeViewer showEditingHandles];
-  [NSTimer scheduledTimerWithTimeInterval:0.15f target:self selector:@selector(hideShowUserAction) userInfo:nil repeats:NO];
+    [self.resizeViewer changeBorderWithColor:[UIColor greenColor]];
+    [self.resizeViewer showEditingHandles];
+    [NSTimer scheduledTimerWithTimeInterval:0.15f target:self selector:@selector(hideShowUserAction) userInfo:nil repeats:NO];
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:nil
+                                                    text:kLocalizedPaintInserted];
+    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
+    hud.center = CGPointMake(self.canvas.view.center.x, self.canvas.view.center.y + kBDKNotifyHUDCenterOffsetY);
+    [self.canvas.view addSubview:hud];
+    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
+                       speed:kBDKNotifyHUDPresentationSpeed
+                      inView:self.canvas.view
+                  completion:^{ [hud removeFromSuperview]; }];
+}
+
+- (void)showStampAction
+{
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName]
+                                                    text:kLocalizedPaintStamped];
+    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
+    hud.center = CGPointMake(self.canvas.view.center.x, self.canvas.view.center.y + kBDKNotifyHUDCenterOffsetY);
+    [self.canvas.view addSubview:hud];
+    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
+                       speed:kBDKNotifyHUDPresentationSpeed
+                      inView:self.canvas.view
+                  completion:^{ [hud removeFromSuperview]; }];
 }
 
 - (void)hideShowUserAction
@@ -308,7 +290,7 @@
   } else{
     [self.resizeViewer showEditingHandles];
   }
-  [self.resizeViewer changeBorderWithColor:[UIColor lightOrangeColor]];
+  [self.resizeViewer changeBorderWithColor:[UIColor globalTintColor]];
 }
 
 

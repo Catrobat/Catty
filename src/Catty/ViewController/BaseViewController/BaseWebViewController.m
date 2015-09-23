@@ -30,6 +30,8 @@
 #import "LoadingView.h"
 #import "Program.h"
 #import "LanguageTranslationDefines.h"
+#import "NetworkDefines.h"
+#import "BDKNotifyHUD.h"
 
 @interface BaseWebViewController ()
 @property (nonatomic, strong) UIWebView *webView;
@@ -90,8 +92,9 @@
 - (void)setupToolBar
 {
     [self.navigationController setToolbarHidden:NO];
-    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-    self.navigationController.toolbar.tintColor = [UIColor orangeColor];
+    self.navigationController.toolbar.barStyle = UIBarStyleDefault;
+    self.navigationController.toolbar.tintColor = [UIColor globalTintColor];
+    self.navigationController.toolbar.barTintColor = [UIColor backgroundColor];
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
 
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
@@ -142,7 +145,7 @@
     [self.webView.scrollView.delegate scrollViewDidScroll:self.webView.scrollView];
     if (!_loadingView) {
         _loadingView = [[LoadingView alloc] init];
-        _loadingView.backgroundColor = [UIColor blackColor];
+//        _loadingView.backgroundColor = [UIColor globalTintColor];
         [self.view addSubview:self.loadingView];
     }
     [self.loadingView show];
@@ -167,8 +170,8 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    _topViewController.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : UIColor.skyBlueColor };
-    _topViewController.navigationController.navigationBar.tintColor = [UIColor lightOrangeColor];
+    _topViewController.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : [UIColor navTintColor] };
+    _topViewController.navigationController.navigationBar.tintColor = [UIColor navTintColor];
     _topViewController.navigationController.navigationBar.transform = CGAffineTransformIdentity;
 }
 
@@ -206,9 +209,9 @@
 {
     if (!_progressView) {
         _progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
-        CGFloat height = 2.0f;
+        CGFloat height = 3.0f;
         _progressView.frame = CGRectMake(0, CGRectGetHeight(self.navigationController.navigationBar.bounds) - height, CGRectGetWidth(self.navigationController.navigationBar.bounds), height);
-        _progressView.tintColor = self.tintColor;
+        _progressView.tintColor = [UIColor navTintColor];
         
     }
     return _progressView;
@@ -220,7 +223,7 @@
         _urlTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, CGRectGetHeight(self.navigationController.navigationBar.bounds) + kURLViewHeight, CGRectGetWidth(UIScreen.mainScreen.bounds), kURLViewHeight)];
         _urlTitleLabel.backgroundColor = UIColor.backgroundColor;
         _urlTitleLabel.font = [UIFont systemFontOfSize:13.0f];
-        _urlTitleLabel.textColor = UIColor.lightBlueColor;
+        _urlTitleLabel.textColor = [UIColor lightTextTintColor];
         _urlTitleLabel.textAlignment = NSTextAlignmentCenter;
         _urlTitleLabel.alpha = 0.6f;
     }
@@ -239,13 +242,21 @@
         [self.loadingView hide];
     });
     if (error.code != -999) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        }];
-        [alert addAction:cancelAction];
-        [self presentViewController:alert animated:YES completion:nil];
+        if ([[Util networkErrorCodes] containsObject:[NSNumber
+                                                      numberWithInteger:error.code]]){
+                [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+        } else {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            }];
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
+
+        
+        }
     }
 }
+
 
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
@@ -275,7 +286,7 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     
-    if ([request.URL.absoluteString rangeOfString:@"https://pocketcode.org/download/"].location == NSNotFound) {
+    if ([request.URL.absoluteString rangeOfString:kDownloadUrl].location == NSNotFound) {
         return YES;
     }
     NSDebug(@"Download");
@@ -432,7 +443,7 @@
         self.navigationController.navigationBar.transform = CGAffineTransformIdentity;
         self.navigationController.toolbar.transform = CGAffineTransformIdentity;
         self.navigationController.navigationBar.tintColor = [self.navigationController.navigationBar.tintColor colorWithAlphaComponent:1.0f];
-        self.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : [UIColor.skyBlueColor colorWithAlphaComponent:1.0f] };
+        self.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : [UIColor.navTintColor colorWithAlphaComponent:1.0f] };
         self.urlTitleLabel.alpha = 0.6f;
     } completion:^(BOOL finished) {
         if (finished)
@@ -457,7 +468,22 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.loadingView hide];
+        [self showDownloadedView];
     });
+}
+
+- (void)showDownloadedView
+{
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:@"checkmark.png"]
+                                                    text:kLocalizedDownloaded];
+    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
+    hud.center = CGPointMake(self.view.center.x, self.view.center.y + kBDKNotifyHUDCenterOffsetY);
+    hud.tag = kSavedViewTag;
+    [self.view addSubview:hud];
+    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
+                       speed:kBDKNotifyHUDPresentationSpeed
+                       inView:self.view
+                       completion:^{ [hud removeFromSuperview]; }];
 }
 
 - (void)setBackDownloadStatus

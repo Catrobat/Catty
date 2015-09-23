@@ -32,6 +32,11 @@
 #import "Util.h"
 #import "LanguageTranslationDefines.h"
 #import "QuartzCore/QuartzCore.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <AVFoundation/AVFoundation.h>
+#import "CatrobatActionSheet.h"
+#import "ActionSheetAlertViewTags.h"
+#import "BDKNotifyHUD.h"
 
 //Helper
 #import "RGBAHelper.h"
@@ -46,6 +51,7 @@
 #import "HandTool.h"
 #import "ResizeViewManager.h"
 #import "PointerTool.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 
 #define kStackSize 5
@@ -76,7 +82,7 @@
 @property (nonatomic,strong) HandTool* handTool;
 @property (nonatomic,strong) ResizeViewManager* resizeViewManager;
 @property (nonatomic,strong) PointerTool* pointerTool;
-@property (nonatomic,strong) UIImage* checkImage;
+
 @end
 
 @implementation PaintViewController
@@ -99,7 +105,7 @@
     _activeAction = brush;
     _degrees = 0;
     
-    self.actionTypeArray = @[@(brush),@(eraser),@(crop),@(pipette),@(mirror),@(image),@(line),@(rectangle),@(ellipse),@(stamp),@(rotate),@(zoom),@(pointer),@(fillTool)];
+    self.actionTypeArray = @[@(brush),@(eraser),@(resize),@(pipette),@(mirror),@(image),@(line),@(rectangle),@(ellipse),@(stamp),@(rotate),@(zoom),@(pointer),@(fillTool)];
     
     [self setupCanvas];
     [self setupTools];
@@ -121,15 +127,20 @@
 {
     if (![parent isEqual:self.parentViewController]) {
         if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
-            NSData *data1 = UIImagePNGRepresentation(self.saveView.image);
-            NSData *data2 = UIImagePNGRepresentation(self.checkImage);
-            if (![data1 isEqual:data2]) {
-                if (![self.saveView.image isEqual:self.editingImage] && self.editingImage != nil) {
+            UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
+            UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            NSData *blankdata = UIImagePNGRepresentation(blank);
+            NSData *saveViewData = UIImagePNGRepresentation(self.saveView.image);
+            if (![blankdata isEqualToData:saveViewData]) {
+                NSData *editingData = UIImagePNGRepresentation(self.editingImage);
+                if (self.editingImage != nil && ![saveViewData isEqual:editingData]) {
                     [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
                 } else if (self.editingPath == nil) {
                     [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
                 }
             }
+
         }
         // reenable swipe back gesture
         if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
@@ -143,6 +154,32 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    if (UIEventSubtypeMotionShake && self.undoManager.canUndo) {
+    
+        UIAlertController *undoAlert = [UIAlertController alertControllerWithTitle:nil
+                                                                           message:kLocalizedUndoDrawingDescription
+                                                                           preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedCancel
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:^(UIAlertAction *action) { }];
+        [undoAlert addAction:cancelAction];
+        
+        UIAlertAction *undoAction = [UIAlertAction actionWithTitle:kLocalizedUndo
+                                                             style:UIAlertActionStyleDefault
+                                                           handler:^(UIAlertAction *action) { [self undoAction]; }];
+        [undoAlert addAction:undoAction];
+        [self presentViewController:undoAlert animated:YES completion:nil];
+    }
+}
+
+
 
 #pragma mark initView
 
@@ -166,7 +203,7 @@
         self.saveView.image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         self.editingImage = self.saveView.image;
-        self.checkImage = self.saveView.image;
+        
         
         NSInteger imageWidth = self.editingImage.size.width;
         NSInteger imageHeight = self.editingImage.size.height;
@@ -183,6 +220,8 @@
         self.saveView.image = blank;
     }
     
+    self.editingImage = self.saveView.image;
+
     [self.helper addSubview:self.saveView];
     [self.helper addSubview:self.drawView];
     
@@ -244,7 +283,7 @@
     NSInteger height = (NSInteger)self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height;
     NSInteger imageWidth = self.editingImage.size.width;
     NSInteger imageHeight = self.editingImage.size.height;
-    if ((imageWidth >= width) || (imageHeight >= height)) {
+    if ((imageWidth > width) || (imageHeight > height)) {
         [self.scrollView zoomToRect:CGRectMake(0, 0, imageWidth, imageHeight) animated:NO];
     }
     
@@ -260,9 +299,10 @@
 - (void)setupToolbar
 {
     [self.navigationController setToolbarHidden:NO];
-    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
-    self.navigationController.toolbar.barTintColor = [UIColor navBarColor];
-    self.navigationController.toolbar.tintColor = [UIColor lightOrangeColor];
+    self.navigationController.navigationBar.userInteractionEnabled = YES;
+    self.navigationController.toolbar.barStyle = UIBarStyleDefault;
+//    self.navigationController.toolbar.barTintColor = [UIColor clearColor];
+    self.navigationController.toolbar.tintColor = [UIColor globalTintColor];
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     [self updateToolbar];
     
@@ -271,9 +311,9 @@
 - (void)setupNavigationBar
 {
     self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationBar.tintColor = [UIColor lightOrangeColor];
+    self.navigationController.navigationBar.tintColor = [UIColor navTintColor];
     self.navigationItem.title = @"Pocket Paint";
-    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedPaintMenu
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:kLocalizedPaintMenuButtonTitle
                                                                    style:UIBarButtonItemStylePlain
                                                                   target:self
                                                                   action:@selector(editAction)];
@@ -282,31 +322,28 @@
 
 - (void)editAction
 {
-    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:kLocalizedPaintSelect message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:kLocalizedPaintSelect
+                                                                         message:@""
+                                                                  preferredStyle:UIAlertControllerStyleActionSheet];
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedCancel style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedCancel
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction *action) {}];
     [actionSheet addAction:cancelAction];
     
-    UIAlertAction *saveAction = [UIAlertAction actionWithTitle:kLocalizedPaintSave style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self saveAction];
-    }];
+    UIAlertAction *saveAction = [UIAlertAction actionWithTitle:kLocalizedPaintSave
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction *action) { [self saveAction]; }];
     [actionSheet addAction:saveAction];
     
-    UIAlertAction *saveCloseAction = [UIAlertAction actionWithTitle:kLocalizedPaintSaveClose style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self saveAndCloseAction];
-    }];
+    UIAlertAction *saveCloseAction = [UIAlertAction actionWithTitle:kLocalizedPaintClose
+                                                              style:UIAlertActionStyleDefault
+                                                            handler:^(UIAlertAction *action) { [self closeAction]; }];
     [actionSheet addAction:saveCloseAction];
     
-    
-    UIAlertAction *discardAction = [UIAlertAction actionWithTitle:kLocalizedPaintDiscardClose style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self discardAndCloseAction];
-    }];
-    [actionSheet addAction:discardAction];
-    
-    UIAlertAction *newCanvasAction = [UIAlertAction actionWithTitle:kLocalizedPaintNewCanvas style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self newCanvasAction];
-    }];
+    UIAlertAction *newCanvasAction = [UIAlertAction actionWithTitle:kLocalizedPaintNewCanvas
+                                                              style:UIAlertActionStyleDefault
+                                                            handler:^(UIAlertAction *action) { [self newCanvasAction]; }];
     [actionSheet addAction:newCanvasAction];
     
     [self presentViewController:actionSheet animated:YES completion:nil];
@@ -350,6 +387,7 @@
     LCTableViewPickerControl *pickerView = [[LCTableViewPickerControl alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, kPickerControlAgeHeight) title:kLocalizedPaintPickItem value:self.activeAction items:self.actionTypeArray offset:CGPointMake(0, 0)];
     pickerView.delegate = self;
     self.navigationController.toolbarHidden = YES;
+    self.navigationController.navigationBar.userInteractionEnabled = NO;
     pickerView.tag = 0;
     [self setBackAllActions];
     self.drawGesture.enabled = NO;
@@ -380,9 +418,9 @@
             self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,brushPicker,self.undo,self.redo, nil];
         }
             break;
-        case crop:{
-            UIBarButtonItem* crop = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"crop_cut"] style:UIBarButtonItemStylePlain target:self action:@selector(cropAction)];
-            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,crop,self.undo,self.redo, nil];
+        case resize:{
+            UIBarButtonItem* resize = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"crop_cut"] style:UIBarButtonItemStylePlain target:self action:@selector(resizeAction)];
+            self.toolbarItems = [NSArray arrayWithObjects: action, self.handToolBarButtonItem ,resize,self.undo,self.redo, nil];
         }
             break;
         case pipette:{
@@ -445,6 +483,7 @@
             break;
     }
     self.navigationController.toolbarHidden = NO;
+     self.navigationController.navigationBar.userInteractionEnabled = YES;
 }
 
 - (void)setBackAllActions
@@ -459,7 +498,7 @@
     self.fillRecognizer.enabled = NO;
     
     [self.handTool disableHandTool];
-    self.pointerToolBarButtonItem.tintColor = [UIColor lightOrangeColor];
+    self.pointerToolBarButtonItem.tintColor = [UIColor globalTintColor];
     if (self.resizeViewManager.resizeViewer.hidden == NO) {
         [self.resizeViewManager hideResizeView];
     }
@@ -492,8 +531,8 @@
         case eraser:
             [self eraserAction];
             break;
-        case crop:
-            [self cropInitAction];
+        case resize:
+            [self resizeInitAction];
             break;
         case pipette:
             [self initPipette];
@@ -562,7 +601,7 @@
     self.saveView.hidden = YES;
 }
 
-- (void)cropInitAction
+- (void)resizeInitAction
 {
     if (self.saveView.image) {
         self.cropperView = [[YKImageCropperView alloc] initWithImage:self.saveView.image andFrame:self.view.frame];
@@ -571,7 +610,7 @@
         self.saveView.hidden = YES;
         self.helper.hidden = YES;
         //    enabled = NO;
-        [self.navigationController setNavigationBarHidden:YES animated:YES];
+        [self.navigationController setNavigationBarHidden:YES animated:YES]; 
         for (UIGestureRecognizer *recognizer in [self.scrollView gestureRecognizers]) {
             recognizer.enabled = NO;
         }
@@ -624,7 +663,7 @@
 
 #pragma mark tool actions
 
-- (void)cropAction
+- (void)resizeAction
 {
     if ([self.cropperView superview] == self.view) {
         UIImage* croppedImage = [self.cropperView editedImage];
@@ -644,9 +683,9 @@
         for (UIGestureRecognizer *recognizer in [self.scrollView gestureRecognizers]) {
             recognizer.enabled = YES;
         }
-        [self.scrollView zoomToRect:CGRectMake(0, 0, 500, 500) animated:YES];
+        [self.scrollView zoomToRect:CGRectMake(0, 0, croppedImage.size.width, croppedImage.size.height) animated:NO];
     } else {
-        [self cropInitAction];
+        [self resizeInitAction];
     }
     
 }
@@ -699,7 +738,7 @@
     //  self.resizeViewManager.border.frame = CGRectMake(0, 0,
     //                                 (int)width,
     //                                 (int)height);
-    self.resizeViewManager.resizeViewer.bounds = CGRectMake(self.resizeViewManager.resizeViewer.bounds.origin.x, self.resizeViewManager.resizeViewer.bounds.origin.y,
+    self.resizeViewManager.resizeViewer.frame = CGRectMake(self.resizeViewManager.resizeViewer.frame.origin.x, self.resizeViewManager.resizeViewer.frame.origin.y,
                                                             (int)width,
                                                             (int)height);
     
@@ -748,6 +787,7 @@
     }
     [self dismissSemiModalView];
 }
+
 - (void)closeColorPicker:(id)sender
 {
     self.red =((ColorPickerViewController*)sender).red;
@@ -771,30 +811,76 @@
 
 - (void)saveAction
 {
+    ALAuthorizationStatus statusCameraRoll = [ALAssetsLibrary authorizationStatus];
+    UIAlertController *alertControllerCameraRoll = [UIAlertController
+                                                    alertControllerWithTitle:nil
+                                                    message:kLocalizedNoAccesToImagesCheckSettingsDescription
+                                                    preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:kLocalizedCancel
+                                   style:UIAlertActionStyleCancel
+                                   handler:nil];
+    
+    UIAlertAction *settingsAction = [UIAlertAction
+                                     actionWithTitle:kLocalizedSettings
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction *action)
+                                     {
+                                         if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
+                                             if (self.editingPath) {
+                                                 [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
+                                             } else {
+                                                 [self.delegate addPaintedImage:self.saveView.image andPath:@"settings"];
+                                             }
+                                         }
+                                         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                     }];
+    
+    [alertControllerCameraRoll addAction:cancelAction];
+    [alertControllerCameraRoll addAction:settingsAction];
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if([self checkUserAuthorisation:false])
+        {
+            if (statusCameraRoll == ALAuthorizationStatusAuthorized) {
         UIImageWriteToSavedPhotosAlbum(self.saveView.image, nil, nil, nil);
+            }else
+            {
+                [self presentViewController:alertControllerCameraRoll animated:YES completion:nil];
+            }
+        }
         
     });
+    
+    if([self checkUserAuthorisation:false] && (statusCameraRoll == ALAuthorizationStatusAuthorized))
+    {
+        [self showSavedView];
+    }
+    
     NSDebug(@"saved to Camera Roll");
 }
-- (void)saveAndCloseAction
+
+- (void)showSavedView
 {
-    NSDebug(@"save and close");
-    if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
-        UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
-        UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        if (![self.saveView.image isEqual:blank]) {
-            [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
-        }
-    }
-    [self.navigationController popViewControllerAnimated:YES];
+    BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:kBDKNotifyHUDCheckmarkImageName]
+                                                    text:kLocalizedSaved];
+    hud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
+    hud.center = CGPointMake(self.view.center.x, self.view.center.y + kBDKNotifyHUDCenterOffsetY);
+    [self.view addSubview:hud];
+    [hud presentWithDuration:kBDKNotifyHUDPresentationDuration
+                       speed:kBDKNotifyHUDPresentationSpeed
+                      inView:self.view
+                  completion:^{ [hud removeFromSuperview]; }];
 }
-- (void)discardAndCloseAction
+
+- (void)closeAction
 {
     NSDebug(@"don't save and close");
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (void)newCanvasAction
 {
    
@@ -805,6 +891,7 @@
         UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         self.saveView.image = blank;
+        self.editingImage = blank;
     }];
     
     UIAlertAction *noAction = [UIAlertAction actionWithTitle:kLocalizedNo style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
@@ -860,6 +947,57 @@
     self.fillTool = nil;
     self.fillRecognizer = nil;
     NSLog(@"dealloc");
+}
+
+- (BOOL)checkUserAuthorisation:(BOOL)close
+{
+    
+    BOOL state = NO;
+    
+    if(close)
+    {
+        if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusNotDetermined) {
+            ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+            [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+                if (*stop) {
+                    if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
+                        UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
+                        UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
+                        UIGraphicsEndImageContext();
+                        if (![self.saveView.image isEqual:blank]) {
+                            [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
+                        }
+                    }
+                    [self.navigationController popViewControllerAnimated:YES];
+                    return;
+                }
+                *stop = TRUE;
+            } failureBlock:^(NSError *error) {
+                return;
+                
+            }];
+        }else{
+            state = YES;
+        }
+    }else
+    {
+        if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusNotDetermined) {
+            ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+            [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+                if (*stop) {
+                    UIImageWriteToSavedPhotosAlbum(self.saveView.image, nil, nil, nil);
+                    return;
+                }
+                *stop = TRUE;
+            } failureBlock:^(NSError *error) {
+                return;
+                
+            }];
+        }else{
+            state = YES;
+        }
+    }
+    return state;
 }
 
 @end

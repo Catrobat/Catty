@@ -50,7 +50,6 @@
     PointerTool *pointerTool =(PointerTool*)[self.canvas getPointerTool];
     pointerTool.moveView.enabled = NO;
     self.canvas.lineToolGesture.enabled = NO;
-    resizeViewManager.resizeView.enabled = NO;
     self.canvas.scrollView.scrollEnabled = YES;
     for (UIGestureRecognizer *recognizer in [self.canvas.scrollView gestureRecognizers]) {
       recognizer.enabled = YES;
@@ -64,7 +63,7 @@
 
 - (void)disableHandTool
 {
-  self.canvas.handToolBarButtonItem.tintColor = [UIColor lightOrangeColor];
+  self.canvas.handToolBarButtonItem.tintColor = [UIColor globalTintColor];
   if (self.canvas.activeAction == brush || self.canvas.activeAction == eraser) {
     self.canvas.drawGesture.enabled = YES;
   } else if (self.canvas.activeAction == pipette){
@@ -72,10 +71,7 @@
   }else if ( self.canvas.activeAction == rectangle || self.canvas.activeAction == image || self.canvas.activeAction == stamp || self.canvas.activeAction == ellipse)
   {
     ResizeViewManager *resizeViewManager =(ResizeViewManager*)[self.canvas getResizeViewManager];
-//    resizeViewManager.moveView.enabled = YES;
     resizeViewManager.rotateView.enabled = YES;
-    resizeViewManager.resizeView.enabled = YES;
-//    resizeViewManager.controlGesture.enabled = YES;
     resizeViewManager.resizeViewer.userInteractionEnabled = YES;
     for (UIGestureRecognizer *recognizer in [self.canvas.scrollView gestureRecognizers]) {
       recognizer.enabled = NO;

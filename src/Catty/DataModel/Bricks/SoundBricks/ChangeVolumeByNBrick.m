@@ -40,7 +40,7 @@
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.volume = [[Formula alloc] initWithFloat:-10];
+    self.volume = [[Formula alloc] initWithInteger:-10];
 }
 
 - (NSString*)brickTitle

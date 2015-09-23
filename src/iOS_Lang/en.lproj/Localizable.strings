@@ -64,6 +64,9 @@
 /* No comment provided by engineer. */
 "Author" = "Author";
 
+/* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
+"Axes" = "Axes";
+
 /* No comment provided by engineer. */
 "Back" = "Back";
 
@@ -148,6 +151,9 @@
 /* No comment provided by engineer. */
 "Close" = "Close";
 
+/* paint */
+"Close Paint" = "Close Paint";
+
 /* No comment provided by engineer. */
 "compass" = "compass";
 
@@ -177,9 +183,6 @@
 
 /* No comment provided by engineer. */
 "Copy program" = "Copy program";
-
-/* paint */
-"crop" = "crop";
 
 /* No comment provided by engineer. */
 "Debug mode" = "Debug mode";
@@ -221,7 +224,28 @@
 "Delete Sounds" = "Delete Sounds";
 
 /* No comment provided by engineer. */
+"Delete these Bricks?" = "Delete these Bricks?";
+
+/* No comment provided by engineer. */
+"Delete these Conditions?" = "Delete these Conditions?";
+
+/* No comment provided by engineer. */
+"Delete these Loops?" = "Delete these Loops?";
+
+/* No comment provided by engineer. */
+"Delete these Scripts?" = "Delete these Scripts?";
+
+/* No comment provided by engineer. */
+"Delete this Brick?" = "Delete this Brick?";
+
+/* No comment provided by engineer. */
+"Delete this Condition?" = "Delete this Condition?";
+
+/* No comment provided by engineer. */
 "Delete this look" = "Delete this look";
+
+/* No comment provided by engineer. */
+"Delete this Loop?" = "Delete this Loop?";
 
 /* No comment provided by engineer. */
 "Delete this object" = "Delete this object";
@@ -230,7 +254,13 @@
 "Delete this program" = "Delete this program";
 
 /* No comment provided by engineer. */
+"Delete this Script?" = "Delete this Script?";
+
+/* No comment provided by engineer. */
 "Delete this sound" = "Delete this sound";
+
+/* No comment provided by engineer. */
+"Deletion Mode" = "Deletion Mode";
 
 /* No comment provided by engineer. */
 "Description" = "Description";
@@ -240,9 +270,6 @@
 
 /* No comment provided by engineer. */
 "direction" = "direction";
-
-/* paint */
-"Discard & Close" = "Discard & Close";
 
 /* paint */
 "Do you really want to delete the current drawing?" = "Do you really want to delete the current drawing?";
@@ -255,6 +282,9 @@
 
 /* No comment provided by engineer. */
 "Download" = "Download";
+
+/* No comment provided by engineer. */
+"Download sucessful" = "Download sucessful";
 
 /* No comment provided by engineer. */
 "Downloads" = "Downloads";
@@ -273,9 +303,6 @@
 
 /* Action sheet menu title */
 "Edit Looks" = "Edit Looks";
-
-/* No comment provided by engineer. */
-"Edit Mode" = "Edit Mode";
 
 /* No comment provided by engineer. */
 "Edit Object" = "Edit Object";
@@ -397,11 +424,11 @@
 /* No comment provided by engineer. */
 "Go to front" = "Go to front";
 
+/* No comment provided by engineer. */
+"GOOD TO SEE YOU" = "GOOD TO SEE YOU";
+
 /* paint */
 "Green" = "Green";
-
-/* No comment provided by engineer. */
-"Grid" = "Grid";
 
 /* No comment provided by engineer. */
 "Hello !" = "Hello !";
@@ -428,6 +455,9 @@
 "Image name" = "Image name";
 
 /* No comment provided by engineer. */
+"Image source not available" = "Image source not available";
+
+/* No comment provided by engineer. */
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.";
 
 /* No comment provided by engineer. */
@@ -438,6 +468,9 @@
 
 /* No comment provided by engineer. */
 "Information" = "Information";
+
+/* paint */
+"Inserted" = "Inserted";
 
 /* No comment provided by engineer. */
 "Invalid input entered, try again." = "Invalid input entered, try again.";
@@ -473,10 +506,10 @@
 "layer" = "layer";
 
 /* No comment provided by engineer. */
-"length" = "length";
+"Length" = "Length";
 
 /* No comment provided by engineer. */
-"Length" = "Length";
+"length" = "length";
 
 /* No comment provided by engineer. */
 "letter" = "letter";
@@ -492,6 +525,9 @@
 
 /* No comment provided by engineer. */
 "Login" = "Login";
+
+/* No comment provided by engineer. */
+"Login successful" = "Login successful";
 
 /* No comment provided by engineer. */
 "Login/Register" = "Login/Register";
@@ -608,13 +644,19 @@
 "No" = "No";
 
 /* No comment provided by engineer. */
-"No Description available" = "No Description available";
+"No Camera available" = "No Camera available";
 
 /* No comment provided by engineer. */
-"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
+"No Description available" = "No Description available";
+
+/* Title of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
+"No imported sounds found" = "No imported sounds found";
 
 /* No comment provided by engineer. */
 "No input or the input is too short. Please enter at least %lu character(s)." = "No input or the input is too short. Please enter at least %lu character(s).";
+
+/* No comment provided by engineer. */
+"No Internet Connection" = "No Internet Connection";
 
 /* No comment provided by engineer. */
 "No internet connection available." = "No internet connection available.";
@@ -697,8 +739,14 @@
 /* No comment provided by engineer. */
 "Play" = "Play";
 
+/* Description of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
+"Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
+
 /* paint */
 "Please pick an item" = "Please pick an item";
+
+/* No comment provided by engineer. */
+"Please register below" = "Please register below";
 
 /* No comment provided by engineer. */
 "Please select a program to upload" = "Please select a program to upload";
@@ -711,6 +759,12 @@
 
 /* No comment provided by engineer. */
 "Pocket Code has been started in debug mode." = "Pocket Code has been started in debug mode.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.";
 
 /* No comment provided by engineer. */
 "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:";
@@ -763,6 +817,9 @@
 /* No comment provided by engineer. */
 "Rate Us" = "Rate Us";
 
+/* Title of View where the user can see the recently used bricks. */
+"Recently Used" = "Recently Used";
+
 /* No comment provided by engineer. */
 "Record" = "Record";
 
@@ -779,7 +836,7 @@
 "Register" = "Register";
 
 /* No comment provided by engineer. */
-"Registration successfull" = "Registration successfull";
+"Registration successful" = "Registration successful";
 
 /* No comment provided by engineer. */
 "Rename" = "Rename";
@@ -802,6 +859,9 @@
 /* No comment provided by engineer. */
 "Report as inappropriate" = "Report as inappropriate";
 
+/* paint */
+"resize" = "resize";
+
 /* No comment provided by engineer. */
 "Restart" = "Restart";
 
@@ -819,9 +879,6 @@
 
 /* No comment provided by engineer. */
 "Saturday" = "Saturday";
-
-/* paint */
-"Save & Close Paint" = "Save & Close Paint";
 
 /* Action sheet menu title */
 "Save Screenshot to" = "Save Screenshot to";
@@ -899,6 +956,9 @@
 "Set Y to %@" = "Set Y to %@";
 
 /* No comment provided by engineer. */
+"Settings" = "Settings";
+
+/* No comment provided by engineer. */
 "Show" = "Show";
 
 /* No comment provided by engineer. */
@@ -937,6 +997,9 @@
 /* paint */
 "stamp" = "stamp";
 
+/* paint */
+"Stamped" = "Stamped";
+
 /* No comment provided by engineer. */
 "Start sound\n%@" = "Start sound\n%@";
 
@@ -972,9 +1035,6 @@
 
 /* No comment provided by engineer. */
 "The description contains invalid characters, try again." = "The description contains invalid characters, try again.";
-
-/* paint */
-"Thickness" = "Thickness";
 
 /* No comment provided by engineer. */
 "This action can not be undone!" = "This action can not be undone!";
@@ -1021,6 +1081,15 @@
 /* No comment provided by engineer. */
 "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.";
 
+/* Button title of alert view to invoke undo if user shakes device */
+"Undo" = "Undo";
+
+/* Description text in alert view if user shakes the device */
+"Undo Drawing?" = "Undo Drawing?";
+
+/* Description text in alert view if user shakes the device */
+"Undo Typing?" = "Undo Typing?";
+
 /* No comment provided by engineer. */
 "Unselect All" = "Unselect All";
 
@@ -1037,7 +1106,7 @@
 "Upload Selected Program" = "Upload Selected Program";
 
 /* No comment provided by engineer. */
-"Upload successfull" = "Upload successfull";
+"Upload successful" = "Upload successful";
 
 /* No comment provided by engineer. */
 "Uploaded" = "Uploaded";
@@ -1079,6 +1148,9 @@
 "Wednesday" = "Wednesday";
 
 /* No comment provided by engineer. */
+"Welcome back, please login below" = "Welcome back, please login below";
+
+/* No comment provided by engineer. */
 "Welcome to Pocket Code" = "Welcome to Pocket Code";
 
 /* No comment provided by engineer. */
@@ -1089,6 +1161,9 @@
 
 /* No comment provided by engineer. */
 "When tapped" = "When tapped";
+
+/* paint */
+"Width" = "Width";
 
 /* No comment provided by engineer. */
 "Yes" = "Yes";

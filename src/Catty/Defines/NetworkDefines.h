@@ -20,25 +20,34 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#define kAppStoreIdentifier @"CHANGEME"    // TODO: change as we get into AppStore (IOS-4)
+#define kAppStoreURL @"itms-apps://itunes.apple.com/app/" kAppStoreIdentifier
+
 #define kConnectionTimeout 30
 #define kBaseUrl @"https://share.catrob.at/pocketcode/"
-#define kTestUrl @"https://catroid-test.catrob.at/"
+#define kTestUrl @"https://catroid-test.catrob.at/pocketcode/"
 #define kConnectionHost kBaseUrl @"api/projects"
 #define kLoginOrRegisterUrlExtension @"api/loginOrRegister"
+#define kLoginUrlExtension @"api/login"
+#define kRegisterUrlExtension @"api/register"
 #define kReportProgramExtension @"flagInappropriate/flag.json"
 #define kUploadUrlExtension @"api/upload"
 #define kLoginOrRegisterUrl kBaseUrl kLoginOrRegisterUrlExtension
 #define kTestLoginOrRegisterUrl kTestUrl kLoginOrRegisterUrlExtension
+#define kLoginUrl kBaseUrl kLoginUrlExtension
+#define kTestLoginUrl kTestUrl kLoginUrlExtension
+#define kRegisterUrl kBaseUrl kRegisterUrlExtension
+#define kTestRegisterUrl kTestUrl kRegisterUrlExtension
 #define kTestReportProgramUrl kTestUrl kReportProgramExtension
 #define kReportProgramUrl kBaseUrl kReportProgramExtension
 #define kUploadUrl kBaseUrl kUploadUrlExtension
 #define kTestUploadUrl kTestUrl kUploadUrlExtension
 #define kForumURL kBaseUrl @"help"
+#define kDownloadUrl kBaseUrl @"download"
 #define kSourceCodeLicenseURL @"http://developer.catrobat.org/licenses"
 #define kAboutCatrobatURL @"http://www.catrobat.org"
-#define kTermsOfUseURL @"https://www.pocketcode.org/termsOfUse"
-#define kRecoverPassword @"https://pocketcode.org/passwordrecovery"
-#define kAppStoreURL @"itms-apps://itunes.apple.com/app/CATTY_APP_ID"
+#define kTermsOfUseURL kBaseUrl @"termsOfUse"
+#define kRecoverPassword kBaseUrl @"resetting/request"
 
 #define kConnectionSearch @"search.json"
 #define kConnectionRecent @"recentIDs.json"
@@ -50,6 +59,8 @@
 #define kConnectionMostViewedFull @"mostViewed.json"
 #define kConnectionIDQuery @"getInfoById.json"
 #define kConnectionLoginOrRegister @"loginOrRegister.json"
+#define kConnectionLogin @"Login.json"
+#define kConnectionRegister @"Register.json"
 #define kConnectionUpload @ "upload.json"
 
 #define kProgramsOffset @"offset="

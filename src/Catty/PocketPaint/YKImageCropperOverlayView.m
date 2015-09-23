@@ -131,7 +131,7 @@
     CGContextRestoreGState(c);
 
     // Grid
-    CGContextSetStrokeColorWithColor(c, [UIColor whiteColor].CGColor);
+    CGContextSetStrokeColorWithColor(c, [UIColor blackColor].CGColor);
     CGContextSetLineWidth(c, 1);
 
     CGContextAddRect(c, self.clearRect);

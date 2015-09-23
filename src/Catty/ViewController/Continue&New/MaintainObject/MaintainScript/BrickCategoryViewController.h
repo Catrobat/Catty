@@ -22,9 +22,8 @@
 
 #import "Brick.h"
 
-// TODO: Add favourite brick page.
 typedef NS_ENUM(NSUInteger, PageIndexCategoryType) {
-  /*  kPageIndexScriptFavourites,*/
+    kPageIndexScriptFavourites,
     kPageIndexControlBrick,
     kPageIndexMotionBrick,
     kPageIndexSoundBrick,
@@ -57,5 +56,4 @@ typedef NS_ENUM(NSUInteger, PageIndexCategoryType) {
 
 @end
 
-extern NSString * CBTitleFromPageIndexCategoryType(PageIndexCategoryType pageIndexType);
-
+extern NSString *CBTitleFromPageIndexCategoryType(PageIndexCategoryType pageIndexType);

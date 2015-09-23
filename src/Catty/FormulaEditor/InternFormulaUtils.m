@@ -604,6 +604,9 @@
 + (BOOL)applyBracketCorrection:(NSMutableArray*)internFormula
 {
     NSMutableArray *stack = [[NSMutableArray alloc] init];
+    NSNumber *temp_number;
+    NSNumber *bracket_open_number = [NSNumber numberWithInt:TOKEN_TYPE_BRACKET_OPEN];
+    NSNumber *bracket_function_open_number = [NSNumber numberWithInt:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN];
     
     for (int index = 0; index < [internFormula count]; index++) {
         
@@ -617,7 +620,8 @@
                 break;
                 
             case TOKEN_TYPE_BRACKET_CLOSE:
-                if ((NSNumber*)[stack lastObject] == [NSNumber numberWithInt:TOKEN_TYPE_BRACKET_OPEN]) {
+                temp_number = (NSNumber*)[stack lastObject];
+                if ([temp_number intValue] == [bracket_open_number intValue]) {
                     [stack removeLastObject];
                 } else {
                     if ([self swapBrackets:internFormula firstBrackIndex:index tokenType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]) {
@@ -629,7 +633,8 @@
                 break;
                 
             case TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE:
-                if ((NSNumber*)[stack lastObject] == [NSNumber numberWithInt:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]) {
+                temp_number = (NSNumber*)[stack lastObject];
+                if ([temp_number intValue] == [bracket_function_open_number intValue]) {
                     [stack removeLastObject];
                 } else {
                     if ([self swapBrackets:internFormula firstBrackIndex:index tokenType:TOKEN_TYPE_BRACKET_CLOSE]) {
@@ -641,7 +646,7 @@
                 break;
                 
             default:
-                continue;
+                break;
         }
         
     }

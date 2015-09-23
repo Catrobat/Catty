@@ -71,6 +71,7 @@
 
     // MenuImageBackground
     UIImage *menuBackgroundImage = [UIImage imageNamed:@"stage_dialog_background_middle_1"];
+    menuBackgroundImage = [UIImage changeImage:menuBackgroundImage toColor:[UIColor backgroundColor]];
     UIImage *newBackgroundImage;
 
     if ([Util screenHeight] == kIphone4ScreenHeight) {
@@ -110,6 +111,7 @@
     [self setUpMenuFrames];
     [self setUpLabels];
     [self setUpGridView];
+    [self checkAspectRatio];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -203,7 +205,7 @@
                                kLocalizedRestart,
                                kLocalizedContinue,
                                kLocalizedScreenshot,
-                               kLocalizedGrid, nil];
+                               kLocalizedAxes, nil];
     NSArray* labelArray = [[NSArray alloc] initWithObjects:self.menuBackLabel,self.menuRestartLabel,self.menuContinueLabel, self.menuScreenshotLabel, self.menuAxisLabel,nil];
     for (int i = 0; i < [labelTextArray count]; ++i) {
         [self setupLabel:labelTextArray[i]
@@ -214,7 +216,7 @@
 - (void)setupLabel:(NSString*)name andView:(UILabel*)label
 {
     label.text = name;
-    label.textColor = [UIColor lightGrayColor];
+    label.textColor = [UIColor lightTextTintColor];
     label.font = [UIFont fontWithName:@"Helvetica Neue" size:(14.0)];
     label.textAlignment = NSTextAlignmentCenter;
     [self.menuView addSubview:label];
@@ -327,6 +329,13 @@
     [self.gridView addSubview:negativeHeight];
     
     [self.view insertSubview:self.gridView aboveSubview:self.skView];
+}
+
+- (void)checkAspectRatio
+{
+    if (self.program.header.screenWidth.floatValue == [Util screenWidth] && self.program.header.screenHeight.floatValue == [Util screenHeight]) {
+        self.menuAspectRatioButton.hidden = YES;
+    }
 }
 
 - (void)setupScene
@@ -469,7 +478,7 @@
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = [UIColor whiteColor];
         [loadingView addSubview:label];
-        loadingView.backgroundColor = [UIColor airForceBlueColor];
+        loadingView.backgroundColor = [UIColor backgroundColor];
         loadingView.alpha = 1.0;
     }
     return loadingView;

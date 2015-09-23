@@ -77,25 +77,30 @@
     [self initNoSearchResultsLabel];
     
     self.searchController = [[UISearchController alloc] init];
-    self.searchController.searchBar.backgroundColor = [UIColor darkBlueColor];
+    self.searchController.searchBar.backgroundColor = [UIColor backgroundColor];
     [self.searchController setActive:YES ];
     [self.searchController.searchBar becomeFirstResponder];
     self.searchController.searchBar.delegate = self;
     self.searchController.searchBar.barTintColor = UIColor.navBarColor;
     self.searchController.searchBar.barStyle = UISearchBarStyleMinimal;
 
-    self.tableView.backgroundColor = [UIColor darkBlueColor];
+    self.tableView.backgroundColor = [UIColor backgroundColor];
     self.checkSearch = YES;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    self.tableView.separatorColor = UIColor.skyBlueColor;
+    self.tableView.separatorColor = UIColor.globalTintColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    self.view.backgroundColor = [UIColor darkBlueColor];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                          action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+
+    
+    self.view.backgroundColor = [UIColor backgroundColor];
 // [iOS9] DO NOT REMOVE!!!
-//    [[UITextField appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]] setTextColor:[UIColor lightOrangeColor]];
+//    [[UITextField appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]] setTextColor:[UIColor lightTextTintColor]];
 // [iOS9] DO NOT REMOVE!!!
 // [iOS8] DO NOT REMOVE!!!
-    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor lightOrangeColor]];
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor lightTextTintColor]];
 // [iOS8] DO NOT REMOVE!!!
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame)+44, 0);
@@ -108,7 +113,7 @@
     self.navigationController.navigationBar.translucent =YES;
     //    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.searchBar.searchBarStyle = UISearchBarStyleMinimal;
-    self.searchBar.tintColor = [UIColor lightOrangeColor];
+    self.searchBar.tintColor = [UIColor globalTintColor];
     self.searchBar.translucent = YES;
     
 }
@@ -174,7 +179,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:loadingCellIdentifier forIndexPath:indexPath];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:loadingCellIdentifier];
-            cell.textLabel.textColor = [UIColor blueGrayColor];
+            cell.textLabel.textColor = [UIColor lightTextTintColor];
             cell.textLabel.text = @"";
         }
     }
@@ -246,13 +251,17 @@
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar*)searchBar
 {
-    self.searchBar.showsCancelButton = YES;
+    BOOL smallIPhone = IS_IPHONE4 || IS_IPHONE5;
+    if(!smallIPhone)
+        self.searchBar.showsCancelButton = YES;
     return YES;
 }
 
 - (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
 {
-    self.searchBar.showsCancelButton = NO;
+    BOOL smallIPhone = IS_IPHONE4 || IS_IPHONE5;
+    if(!smallIPhone)
+        self.searchBar.showsCancelButton = NO;
     return YES;
 }
 
@@ -278,7 +287,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.tableView.backgroundColor = [UIColor darkBlueColor];
+    self.tableView.backgroundColor = [UIColor backgroundColor];
 }
 
 - (void)initNoSearchResultsLabel
@@ -286,8 +295,8 @@
     self.noSearchResultsLabel = [[UILabel alloc] init];
     self.noSearchResultsLabel.text = kLocalizedNoSearchResults;
     self.noSearchResultsLabel.textAlignment = NSTextAlignmentCenter;
-    self.noSearchResultsLabel.textColor = [UIColor lightOrangeColor];
-    self.noSearchResultsLabel.tintColor = [UIColor lightOrangeColor];
+    self.noSearchResultsLabel.textColor = [UIColor lightTextTintColor];
+    self.noSearchResultsLabel.tintColor = [UIColor globalTintColor];
     self.noSearchResultsLabel.frame = self.view.frame;
     self.noSearchResultsLabel.hidden = YES;
     [self.view addSubview:self.noSearchResultsLabel];
@@ -301,6 +310,10 @@
             [(UITextField *)subView setKeyboardAppearance: UIKeyboardAppearanceAlert];
         }
     }
+}
+
+-(void)dismissKeyboard {
+    [self.searchBar resignFirstResponder];
 }
 
 #pragma mark - Segue
@@ -330,7 +343,18 @@
     self.dataTask = [self.session dataTaskWithURL:[NSURL URLWithString:queryString]  completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
             if (error.code != -999) {
-                NSLog(@"%@", error);
+                if ([[Util networkErrorCodes] containsObject:[NSNumber
+                                                              numberWithInteger:error.code]]){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+                    });
+                } else {
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                    }];
+                    [alert addAction:cancelAction];
+                    [self presentViewController:alert animated:YES completion:nil];
+                }
             }
             
         } else {

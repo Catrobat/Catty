@@ -52,7 +52,7 @@
         //self.selectable = NO;
         [self addGestureRecognizer:self.tapRecognizer];
         self.inputView = [[[NSBundle mainBundle] loadNibNamed:@"FormulaEditor" owner:self.formulaEditorViewController options:nil] lastObject];
-        self.inputView.backgroundColor = UIColor.airForceBlueColor;
+        self.inputView.backgroundColor = UIColor.backgroundColor;
         self.userInteractionEnabled = YES;
         [self setAutocorrectionType:UITextAutocorrectionTypeNo];
         self.backgroundColor = [UIColor whiteColor];
@@ -64,7 +64,7 @@
         self.backspaceButton = [[UIButton alloc] init];
         [self.backspaceButton setImage:[UIImage imageNamed:@"del_active"] forState:UIControlStateNormal];
         [self.backspaceButton setImage:[UIImage imageNamed:@"del"] forState:UIControlStateDisabled];
-        self.backspaceButton.tintColor = UIColor.airForceBlueColor;
+        self.backspaceButton.tintColor = [UIColor globalTintColor];
         self.backspaceButton.frame = CGRectMake(self.frame.size.width - BACKSPACE_WIDTH, 0, BACKSPACE_HEIGHT, BACKSPACE_WIDTH);
         [self.backspaceButton addTarget:self action:@selector(clear) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.backspaceButton];
@@ -122,11 +122,17 @@
     CGPoint point = [recognizer locationInView:formulaView];
     point.x -= formulaView.textContainerInset.left;
     point.y -= formulaView.textContainerInset.top;
+    CGFloat fraction = 0.0f;
+    
     
     NSLayoutManager *layoutManager = formulaView.layoutManager;
     NSUInteger cursorPostionIndex = [layoutManager characterIndexForPoint:point
                                                           inTextContainer:formulaView.textContainer
-                                 fractionOfDistanceBetweenInsertionPoints:NULL] + 1;
+                                 fractionOfDistanceBetweenInsertionPoints:&fraction];
+    if(fraction > 0.5f)
+    {
+        cursorPostionIndex++;
+    }
     [self.formulaEditorViewController.internFormula setCursorAndSelection:(int)cursorPostionIndex selected:NO];
     int startIndex = [self.formulaEditorViewController.internFormula getExternSelectionStartIndex];
     int endIndex = [self.formulaEditorViewController.internFormula getExternSelectionEndIndex];
@@ -144,7 +150,7 @@
     {
         selectionColor = [UIColor redColor];
     }else{
-        selectionColor = [UIColor lightOrangeColor];
+        selectionColor = [UIColor globalTintColor];
     }
     
     NSMutableAttributedString *formulaString = [[NSMutableAttributedString alloc] initWithString:[self text] attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:20.0f]}];

@@ -22,12 +22,28 @@
 
 #import "LanguageTranslationDefines.h"
 
+// Screen Sizes in Points
+#define kIphone4ScreenHeight 480.0f
+#define kIphone4ScreenWidth 320.0f
+#define kIphone5ScreenHeight 568.0f
+#define kIphone5ScreenWidth 320.0f
+#define kIphone6ScreenHeight 667.0f
+#define kIphone6ScreenWidth 375.0f
+#define kIphone6PScreenHeight 736.0f
+#define kIphone6PScreenWidth 414.0f
+#define kIpadScreenHeight 1028.0f
+#define kIpadScreenWidth 768.0f
+#define kIpadRetinaScreenHeight 2048.0f
+#define kIpadRetinaScreenWidth 1536.0f
+
+// CatrobatTableViewController
+#define kIconDownsizeFactorIphone4 0.85f
+
 // ScenePresenterViewController
 #define kWidthSlideMenu 150
 #define kBounceEffect 5
 #define kPlaceOfButtons 17
 #define kSlidingStartArea 40
-#define kIphone4ScreenHeight 480.0f
 #define kContinueButtonSize 85
 #define kContinueOffset 15
 #define kMenuButtonSize 44
@@ -53,20 +69,19 @@
 #define kMenuImageNameUpload @"upload"
 
 // view tags
-#define kPlaceHolderTag 99997
-#define kLoadingViewTag 99998
-#define kSavedViewTag   99999
+#define kPlaceHolderTag        99994
+#define kLoadingViewTag        99995
+#define kSavedViewTag          99996
+#define kRegistrationViewTag   99997
+#define kLoginViewTag          99998
+#define kUploadViewTag         99999
 
-#define kIphone5ScreenHeight 568.0f
-#define kIphone4ScreenHeight 480.0f
-#define kIpadScreenHeight 1028.0f
 #define kAddScriptCategoryTableViewBottomMargin 15.0f
 
 // delete button bricks
 #define kBrickCellDeleteButtonWidthHeight 22.0f
 #define kSelectButtonnOffset 30.0f
 #define kSelectButtonTranslationOffsetX 60.0f
-
 #define kScriptCollectionViewTopInsets 10.0f
 #define kScriptCollectionViewBottomInsets 5.0f
 
@@ -91,14 +106,23 @@ static NSString *const kUserInfoSound = @"UserInfoSound";
 #define kHandleImageWidth 40.0f
 #define kOffsetTopBrickSelectionView 70.0f
 
+//BDKNotifyHUD
+#define kBDKNotifyHUDDestinationOpacity 0.3f
+#define kBDKNotifyHUDCenterOffsetY (-20.0f)
+#define kBDKNotifyHUDPresentationDuration 0.5f
+#define kBDKNotifyHUDPresentationSpeed 0.1f
+#define kBDKNotifyHUDPaddingTop 30.0f
+static NSString *const kBDKNotifyHUDCheckmarkImageName = @"checkmark.png";
+
 // ---------------------- BRICK CONFIG ---------------------------------------
 // brick categories
 typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
-    kControlBrick              = 0,
-    kMotionBrick               = 1,
-    kSoundBrick                = 2,
-    kLookBrick                 = 3,
-    kVariableBrick             = 4
+    kControlBrick              = 1,
+    kMotionBrick               = 2,
+    kSoundBrick                = 3,
+    kLookBrick                 = 4,
+    kVariableBrick             = 5,
+    kFavouriteBricks           = 0
 };
 
 // brick type identifiers
@@ -165,6 +189,24 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kChangeVariableBrick       = 401
 
 };
+
+#define kMaxNumberOfFavouriteBricksShown 10
+
+#define WRAP_BRICK_TYPE_IN_NSSTRING(brick) (WRAP_UINT_IN_NSNUMBER(brick).stringValue)
+#define WRAP_UINT_IN_NSNUMBER(number) ([NSNumber numberWithUnsignedInteger:number])
+#define kNSNumberZero WRAP_UINT_IN_NSNUMBER(0)
+
+#define kDefaultFavouriteBricksStatistic @{\
+        WRAP_BRICK_TYPE_IN_NSSTRING(kTappedBrick) : kNSNumberZero,\
+        WRAP_BRICK_TYPE_IN_NSSTRING(kForeverBrick) : kNSNumberZero,\
+        WRAP_BRICK_TYPE_IN_NSSTRING(kIfBrick) : kNSNumberZero,\
+        WRAP_BRICK_TYPE_IN_NSSTRING(kPlaceAtBrick) : kNSNumberZero,\
+        WRAP_BRICK_TYPE_IN_NSSTRING(kPlaySoundBrick) : kNSNumberZero,\
+        WRAP_BRICK_TYPE_IN_NSSTRING(kSpeakBrick) : kNSNumberZero,\
+        WRAP_BRICK_TYPE_IN_NSSTRING(kSetLookBrick) : kNSNumberZero,\
+        WRAP_BRICK_TYPE_IN_NSSTRING(kSetVariableBrick) : kNSNumberZero,\
+        WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick) : kNSNumberZero\
+        }
 
 // brick categories
 #define kBrickCategoryNames @[\

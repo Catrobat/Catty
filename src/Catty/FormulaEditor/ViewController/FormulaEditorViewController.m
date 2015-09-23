@@ -53,6 +53,7 @@
 #import "VariablePickerData.h"
 #import "Brick+UserVariable.h"
 #import "BDKNotifyHUD.h"
+#import "Speakbrick.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -200,7 +201,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 {
     [super viewDidLoad];
     [[ProgramManager sharedProgramManager] setProgram:self.object.program];
-    self.view.backgroundColor = [UIColor darkBlueColor];
+    self.view.backgroundColor = [UIColor backgroundColor];
 
     [self showFormulaEditor];
     [self hideScrollViews];
@@ -208,16 +209,16 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.calcButton setSelected:YES];
     self.variablePicker.delegate = self;
     self.variablePicker.dataSource = self;
-    self.variablePicker.tintColor = [UIColor skyBlueColor];
+    self.variablePicker.tintColor = [UIColor globalTintColor];
     self.variableSourceProgram = [[NSMutableArray alloc] init];
     self.variableSourceObject = [[NSMutableArray alloc] init];
     self.variableSource = [[NSMutableArray alloc] init];
     [self updateVariablePickerData];
     self.currentComponent = 0;
-    self.mathScrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
-    self.logicScrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
-    self.objectScrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
-    self.sensorScrollView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
+    self.mathScrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+    self.logicScrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+    self.objectScrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+    self.sensorScrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
     self.calcScrollView.contentSize = CGSizeMake(self.calcScrollView.frame.size.width,self.calcScrollView.frame.size.height);
     
     [self localizeView];
@@ -232,10 +233,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    self.recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
     self.recognizer.numberOfTapsRequired = 1;
     self.recognizer.cancelsTouchesInView = NO;
-    [self.view.window addGestureRecognizer:self.recognizer];
+    [self.view addGestureRecognizer:self.recognizer];
     //self.pickerGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chosenVariable:)];
     //self.pickerGesture.numberOfTapsRequired = 1;
     //[self.variablePicker addGestureRecognizer:self.pickerGesture];
@@ -260,10 +261,37 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
 }
 
-- (void)handleTap:(UITapGestureRecognizer *)sender
-{
-    if ([sender isKindOfClass:UITapGestureRecognizer.class]) {
-        //[self dismissFormulaEditorViewController];
+- (void)handleGesture:(UIGestureRecognizer *)gestureRecognizer {
+    if ([gestureRecognizer isEqual:self.recognizer]) {
+        CGPoint p = [gestureRecognizer locationInView:self.view];
+        CGRect rect = CGRectMake(0, self.formulaEditorTextView.frame.origin.y+self.formulaEditorTextView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height);
+        if (CGRectContainsPoint(rect, p)) {
+            [self dismissFormulaEditorViewController];
+        }
+    }
+}
+
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    if (UIEventSubtypeMotionShake && [self.history undoIsPossible]) {
+        
+        UIAlertController *undoAlert = [UIAlertController alertControllerWithTitle:nil
+                                                                           message:kLocalizedUndoTypingDescription
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedCancel
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:^(UIAlertAction *action) { }];
+        [undoAlert addAction:cancelAction];
+        
+        UIAlertAction *undoAction = [UIAlertAction actionWithTitle:kLocalizedUndo
+                                                             style:UIAlertActionStyleDefault
+                                                           handler:^(UIAlertAction *action) { [self undo]; }];
+        [undoAlert addAction:undoAction];
+        [self presentViewController:undoAlert animated:YES completion:nil];
     }
 }
 
@@ -322,6 +350,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
     
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
 #pragma mark - TextField Actions
 - (IBAction)buttonPressed:(id)sender
 {
@@ -348,9 +381,17 @@ NS_ENUM(NSInteger, ButtonIndex) {
     NSDebug(@"InternFormulaString: %@",[self.internFormula getExternFormulaString]);
     [self.history push:[self.internFormula getInternFormulaState]];
     [self update];
+    [self switchBack];
 }
 
-- (IBAction)undo:(id)sender
+-(void)switchBack
+{
+    if (self.calcScrollView.hidden == YES) {
+        [self showCalc:nil];
+    }
+}
+
+- (IBAction)undo
 {
     if (![self.history undoIsPossible]) {
         return;
@@ -461,10 +502,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
         
         _mathFunctionsMenu = [[AHKActionSheet alloc]initWithTitle:kUIActionSheetTitleSelectMathematicalFunction];
         _mathFunctionsMenu.blurTintColor = [UIColor colorWithWhite:0.0f alpha:0.7f];
-        _mathFunctionsMenu.separatorColor = UIColor.skyBlueColor;
+        _mathFunctionsMenu.separatorColor = UIColor.globalTintColor;
         _mathFunctionsMenu.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:14.0f] ,
-                                                    NSForegroundColorAttributeName : UIColor.skyBlueColor};
-        _mathFunctionsMenu.cancelButtonTextAttributes = @{NSForegroundColorAttributeName : UIColor.lightOrangeColor};
+                                                    NSForegroundColorAttributeName : UIColor.globalTintColor};
+        _mathFunctionsMenu.cancelButtonTextAttributes = @{NSForegroundColorAttributeName : [UIColor destructiveTintColor]};
         _mathFunctionsMenu.buttonTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
         _mathFunctionsMenu.selectedBackgroundColor = [UIColor colorWithWhite:0.0f alpha:0.3f];
         _mathFunctionsMenu.automaticallyTintButtonImages = NO;
@@ -510,10 +551,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
         
         _logicalOperatorsMenu = [[AHKActionSheet alloc]initWithTitle:kUIActionSheetTitleSelectLogicalOperator];
         _logicalOperatorsMenu.blurTintColor = [UIColor colorWithWhite:0.0f alpha:0.7f];
-        _logicalOperatorsMenu.separatorColor = UIColor.skyBlueColor;
+        _logicalOperatorsMenu.separatorColor = UIColor.globalTintColor;
         _logicalOperatorsMenu.titleTextAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:14.0f] ,
-                                                   NSForegroundColorAttributeName : UIColor.skyBlueColor};
-        _logicalOperatorsMenu.cancelButtonTextAttributes = @{NSForegroundColorAttributeName : UIColor.lightOrangeColor};
+                                                   NSForegroundColorAttributeName : UIColor.globalTintColor};
+        _logicalOperatorsMenu.cancelButtonTextAttributes = @{NSForegroundColorAttributeName : [UIColor destructiveTintColor]};
         _logicalOperatorsMenu.buttonTextAttributes = @{NSForegroundColorAttributeName : UIColor.whiteColor};
         _logicalOperatorsMenu.selectedBackgroundColor = [UIColor colorWithWhite:0.0f alpha:0.3f];
         _logicalOperatorsMenu.automaticallyTintButtonImages = NO;
@@ -552,39 +593,41 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self.view addSubview:self.formulaEditorTextView];
     
     for(int i = 0; i < [self.orangeTypeButton count]; i++) {
-        [[self.orangeTypeButton objectAtIndex:i] setTitleColor:[UIColor darkBlueColor] forState:UIControlStateNormal];
-        [[self.orangeTypeButton objectAtIndex:i] setBackgroundColor:[UIColor lightOrangeColor]];
-      
-        [[self.orangeTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor orangeColor]] forState:UIControlStateHighlighted];
+        [[self.orangeTypeButton objectAtIndex:i] setTitleColor:[UIColor backgroundColor] forState:UIControlStateNormal];
+        [[self.orangeTypeButton objectAtIndex:i] setBackgroundColor:[UIColor formulaEditorOperatorColor]];
         [[[self.orangeTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
-        [[[self.orangeTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor backgroundColor].CGColor];
+        [[[self.orangeTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor lightTextTintColor].CGColor];
     }
   for(int i = 0; i < [self.normalTypeButton count]; i++) {
-    [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor darkBlueColor] forState:UIControlStateNormal];
-    [[self.normalTypeButton objectAtIndex:i] setBackgroundColor:[UIColor skyBlueColor]];
-    [[self.normalTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateHighlighted];
-      [[[self.normalTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
-      [[[self.normalTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor backgroundColor].CGColor];
+    [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor formulaEditorOperandColor] forState:UIControlStateNormal];
+    [[self.normalTypeButton objectAtIndex:i] setBackgroundColor:[UIColor backgroundColor]];
+    [[[self.normalTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
+    [[[self.normalTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor lightTextTintColor].CGColor];
+      
+    if([[self.normalTypeButton objectAtIndex:i] tag] == 3011)
+    {
+        if(![self.brickCellData.brickCell.scriptOrBrick isKindOfClass:[SpeakBrick class]])
+       {
+            [[self.normalTypeButton objectAtIndex:i] setEnabled:NO];
+            [[self.normalTypeButton objectAtIndex:i] setBackgroundColor:[UIColor grayColor]];
+        }
+    }
   }
   for(int i = 0; i < [self.toolTypeButton count]; i++) {
-    [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor skyBlueColor] forState:UIControlStateNormal];
-    [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor darkBlueColor] forState:UIControlStateHighlighted];
-    [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor darkBlueColor] forState:UIControlStateSelected];
-    [[self.toolTypeButton objectAtIndex:i] setBackgroundColor:[UIColor darkBlueColor]];
-    [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor skyBlueColor]] forState:UIControlStateHighlighted];
-          [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor skyBlueColor]] forState:UIControlStateSelected];
-      [[[self.toolTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
-      [[[self.toolTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor backgroundColor].CGColor];
+    [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor formulaEditorHighlightColor] forState:UIControlStateNormal];
+    [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateHighlighted];
+    [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateSelected];
+    [[self.toolTypeButton objectAtIndex:i] setBackgroundColor:[UIColor backgroundColor]];
+    [[[self.toolTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
+    [[[self.toolTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor lightTextTintColor].CGColor];
   }
 
     for(int i = 0; i < [self.highlightedButtons count]; i++) {
-        [[self.highlightedButtons objectAtIndex:i] setTitleColor:[UIColor lightOrangeColor] forState:UIControlStateNormal];
+        [[self.highlightedButtons objectAtIndex:i] setTitleColor:[UIColor formulaEditorHighlightColor] forState:UIControlStateNormal];
         [[self.highlightedButtons objectAtIndex:i] setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
-        [[self.highlightedButtons objectAtIndex:i] setBackgroundColor:[UIColor shadeDarkBlueColor]];
-        [[self.highlightedButtons objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateHighlighted];
-        [[self.highlightedButtons objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor lightOrangeColor]] forState:UIControlStateSelected];
+        [[self.highlightedButtons objectAtIndex:i] setBackgroundColor:[UIColor backgroundColor]];
         [[[self.highlightedButtons objectAtIndex:i] layer] setBorderWidth:1.0f];
-        [[[self.highlightedButtons objectAtIndex:i] layer] setBorderColor:[UIColor backgroundColor].CGColor];
+        [[[self.highlightedButtons objectAtIndex:i] layer] setBorderColor:[UIColor lightTextTintColor].CGColor];
     }
   
     [self update];
@@ -851,11 +894,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     NSString *title = [self pickerView:pickerView titleForRow:row forComponent:component];
-    UIColor *color = [UIColor skyBlueColor];
+    UIColor *color = [UIColor globalTintColor];
     
     VariablePickerData *pickerData = [self.variableSource objectAtIndex:row];
     if([pickerData isLabel])
-        color = [UIColor orangeColor];
+        color = [UIColor globalTintColor];
     
     NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:color}];
     return attString;
@@ -964,7 +1007,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     
 }
 
-#define kBDKNotifyHUDPaddingTop 30.0f
 
 - (void)showNotification:(NSString*)text
 {
@@ -977,7 +1019,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     CGFloat offset;
     
     self.notficicationHud = [BDKNotifyHUD notifyHUDWithImage:nil text:text];
-    self.notficicationHud.destinationOpacity = 0.30f;
+    self.notficicationHud.destinationOpacity = kBDKNotifyHUDDestinationOpacity;
     
     if(spacerHeight < self.notficicationHud.frame.size.height)
         offset = brickAndInputHeight / 2 + self.notficicationHud.frame.size.height / 2;
@@ -987,9 +1029,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.notficicationHud.center = CGPointMake(self.view.center.x, offset);
     
     [self.view addSubview:self.notficicationHud];
-    [self.notficicationHud presentWithDuration:1.0f speed:0.1f inView:self.view completion:^{
-        [self.notficicationHud removeFromSuperview];
-    }];
+    [self.notficicationHud presentWithDuration:kBDKNotifyHUDPresentationDuration
+                                         speed:kBDKNotifyHUDPresentationSpeed
+                                        inView:self.view completion:^{ [self.notficicationHud removeFromSuperview]; }];
 }
 
 - (void)showChangesSavedView

@@ -31,14 +31,14 @@ protocol CBInstructionHandlerProtocol {
 final class CBInstructionHandler : CBInstructionHandlerProtocol {
 
     var logger: CBLogger
-    private let _scheduler: CBPlayerSchedulerProtocol
-    private let _broadcastHandler: CBPlayerBroadcastHandlerProtocol
+    private let _scheduler: CBSchedulerProtocol
+    private let _broadcastHandler: CBBroadcastHandlerProtocol
     private var _brickInstructionMap = [String:CBInstruction]()
     static let vibrateSerialQueue = dispatch_queue_create("org.catrobat.vibrate.queue", DISPATCH_QUEUE_SERIAL)
 
     // MARK: - Initializers
-    init(logger: CBLogger, scheduler: CBPlayerSchedulerProtocol,
-        broadcastHandler: CBPlayerBroadcastHandlerProtocol)
+    init(logger: CBLogger, scheduler: CBSchedulerProtocol,
+        broadcastHandler: CBBroadcastHandlerProtocol)
     {
         self.logger = logger
         _scheduler = scheduler

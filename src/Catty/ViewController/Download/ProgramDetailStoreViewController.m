@@ -39,15 +39,12 @@
 #import "Reachability.h"
 #import "ProgramUpdateDelegate.h"
 #import "UIDefines.h"
-#import "LoginPopupViewController.h"
 
 #define kUIBarHeight 49
 #define kNavBarHeight 44
 
 #define kScrollViewOffset 0.0f
 
-#define kIphone5ScreenHeight 568.0f
-#define kIphone4ScreenHeight 480.0f
 
 @interface ProgramDetailStoreViewController () <ProgramUpdateDelegate>
 
@@ -101,7 +98,7 @@
     self.duplicateName = self.project.name;
     [self initNavigationBar];
     self.hidesBottomBarWhenPushed = YES;
-    self.view.backgroundColor = [UIColor darkBlueColor];
+    self.view.backgroundColor = [UIColor backgroundColor];
     NSDebug(@"%@",self.project.author);
     self.projectView = [self createViewForProject:self.project];
     if(!self.project.author){
@@ -255,21 +252,11 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://pocketcode.org/details/%@",self.project.projectID]]];
 
 //    } else {
-//        [self showLoginView];
+//       
 //    }
 }
 
-- (void)showLoginView
-{
-    if (self.popupViewController == nil) {
-        LoginPopupViewController *popupViewController = [[LoginPopupViewController alloc] init];
-        popupViewController.delegate = self;
-        [self presentPopupViewController:popupViewController WithFrame:self.view.frame upwardsCenterByFactor:4.5];
-        self.navigationItem.leftBarButtonItem.enabled = NO;
-    } else {
-        [self dismissPopupWithCode:NO];
-    }
-}
+
 
 static NSCharacterSet *blockedCharacterSet = nil;
 
@@ -303,7 +290,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
             if (error.code != -999) {
-                NSLog(@"%@", error);
+                if ([[Util networkErrorCodes] containsObject:[NSNumber
+                                                              numberWithInteger:error.code]]){
+                    [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+                } else {
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                    }];
+                    [alert addAction:cancelAction];
+                    [self presentViewController:alert animated:YES completion:nil];
+                }
+                [self hideLoadingView];
             }
             
         } else {
@@ -450,6 +447,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     if(!self.loadingView) {
         self.loadingView = [[LoadingView alloc] init];
+//        [self.loadingView setBackgroundColor:[UIColor globalTintColor]];
         [self.view addSubview:self.loadingView];
     }
     [self.loadingView show];

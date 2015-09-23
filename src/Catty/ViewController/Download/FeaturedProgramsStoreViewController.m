@@ -35,7 +35,6 @@
 #import "DarkBlueGradientFeaturedCell.h"
 
 #import "UIImage+CatrobatUIImageExtensions.h"
-#import "UIColor+CatrobatUIColorExtensions.h"
 #import "LanguageTranslationDefines.h"
 
 #define kFeaturedProgramsMaxResults 10
@@ -201,7 +200,17 @@
     self.dataTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
             if (error.code != -999) {
-                NSLog(@"%@", error);
+                if ([[Util networkErrorCodes] containsObject:[NSNumber
+                                                              numberWithInteger:error.code]]){
+                    [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+                } else {
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                    }];
+                    [alert addAction:cancelAction];
+                    [self presentViewController:alert animated:YES completion:nil];
+                }
+                [self hideLoadingView];
             }
             
         } else {
@@ -342,6 +351,7 @@
 {
     if(!self.loadingView) {
         self.loadingView = [[LoadingView alloc] init];
+//        [self.loadingView setBackgroundColor:[UIColor globalTintColor]];
         [self.view addSubview:self.loadingView];
     }
     [self.loadingView show];

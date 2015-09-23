@@ -226,9 +226,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                 otherButtonTitles:options
                                                               tag:kEditProgramActionSheetTag
                                                              view:self.navigationController.view];
-    [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:0];
+    [actionSheet setButtonTextColor:[UIColor destructiveTintColor] forButtonAtIndex:0];
     if ([self.program numberOfNormalObjects]) {
-        [actionSheet setButtonTextColor:[UIColor redColor] forButtonAtIndex:1];
+        [actionSheet setButtonTextColor:[UIColor destructiveTintColor] forButtonAtIndex:1];
     }
 }
 
@@ -317,20 +317,20 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSInteger index = (kBackgroundSectionIndex + indexPath.section + indexPath.row);
     SpriteObject *object = [self.program.objectList objectAtIndex:index];
     imageCell.iconImageView.image = nil;
-    [imageCell.iconImageView setBorder:[UIColor skyBlueColor] Width:kDefaultImageCellBorderWidth];
+    [imageCell.iconImageView setBorder:[UIColor utilityTintColor] Width:kDefaultImageCellBorderWidth];
 
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
-        detailCell.topLeftDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.topLeftDetailLabel.textColor = [UIColor lightTextTintColor];
         detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kLocalizedScripts,
                                               (unsigned long)[object numberOfScripts]];
-        detailCell.topRightDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.topRightDetailLabel.textColor = [UIColor lightTextTintColor];
         detailCell.topRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kLocalizedBricks,
                                                (unsigned long)[object numberOfTotalBricks]];
-        detailCell.bottomLeftDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.bottomLeftDetailLabel.textColor = [UIColor lightTextTintColor];
         detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kLocalizedLooks,
                                                  (unsigned long)[object numberOfLooks]];
-        detailCell.bottomRightDetailLabel.textColor = [UIColor whiteColor];
+        detailCell.bottomRightDetailLabel.textColor = [UIColor lightTextTintColor];
         detailCell.bottomRightDetailLabel.text = [NSString stringWithFormat:@"%@: %lu", kLocalizedSounds,
                                                   (unsigned long)[object numberOfSounds]];
     }
@@ -459,7 +459,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 {
     ProgramTableHeaderView *headerView = (ProgramTableHeaderView*)view;
-    headerView.textLabel.textColor = UIColor.headerTextColor;
+    headerView.textLabel.textColor = [UIColor lightTextTintColor];
 }
 
 #pragma mark - segue handler

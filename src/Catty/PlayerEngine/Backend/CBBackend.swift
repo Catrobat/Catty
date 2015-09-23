@@ -26,12 +26,12 @@ final class CBBackend : CBBackendProtocol {
 
     // MARK: - Properties
     var logger: CBLogger
-    private let _scheduler: CBPlayerSchedulerProtocol
-    private let _instructionHandler: CBPlayerInstructionHandlerProtocol
+    private let _scheduler: CBSchedulerProtocol
+    private let _instructionHandler: CBInstructionHandlerProtocol
 
     // MARK: - Initializers
-    init(logger: CBLogger, scheduler: CBPlayerSchedulerProtocol,
-        instructionHandler: CBPlayerInstructionHandlerProtocol)
+    init(logger: CBLogger, scheduler: CBSchedulerProtocol,
+        instructionHandler: CBInstructionHandlerProtocol)
     {
         self.logger = logger
         _scheduler = scheduler

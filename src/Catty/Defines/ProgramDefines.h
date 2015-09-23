@@ -20,6 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#define kSirenUpdateIntervallImmediately 0
+#define kSirenUpdateIntervallDaily 1
+#define kSirenUpdateIntervallWeekly 7
+#define kSirenAlertTypeForce 1
+#define kSirenAlertTypeOption 2
+#define kSirenAlertTypeSkip 3
+#define kSirenAlertTypeNone 4
+
+#define kLengthOfShortCommitHash 7
 #define kLastUsedProgram @"lastUsedProgram"
 #define kMinLoopDurationTime (20 * 1000 * 1000) // in nanoseconds!
 #define kProgramCodeFileName @"code.xml"
@@ -48,7 +57,6 @@
 #define kMaxNumOfMessageNameCharacters 20
 #define kMinNumOfVariableNameCharacters 1
 #define kMaxNumOfVariableNameCharacters 15
-
 
 #define kNoProgramIDYetPlaceholder @"x"
 #define kProgramIDSeparator @"_"
@@ -96,10 +104,12 @@ typedef NS_ENUM(NSUInteger, kDTMActionType) {
 #define kUserIsFirstAppLaunch @"isFirstAppLaunch"
 #define kUserIsLoggedIn @"userIsLoggedIn"
 #define kUserLoginToken @"userLoginToken"
-#define kUseTestServerForUploadAndLogin @"useTestServer" 
+#define kUseTestServerForUploadAndLogin @"useTestServer"
 #define kUserShowIntroductionOnLaunch @"showIntroductionOnLaunch"
 #define kUserDetailsShowDetailsObjectsKey @"detailsForObjects"
 #define kUserDetailsShowDetailsLooksKey @"detailsForLooks"
 #define kUserDetailsShowDetailsSoundsKey @"detailsForSounds"
 #define kUserDetailsShowDetailsProgramsKey @"detailsForPrograms"
 #define kScreenshotThumbnailPrefix @".thumb_"
+
+#define kUserDefaultsBrickSelectionStatisticsMap @"BrickStatisticsMap"

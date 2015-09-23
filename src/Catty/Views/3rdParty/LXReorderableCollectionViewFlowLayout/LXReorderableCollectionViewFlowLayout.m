@@ -8,6 +8,10 @@
 #import "LXReorderableCollectionViewFlowLayout.h"
 #import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
+#import "Script.h"
+#import "Brick.h"
+#import "ScriptCollectionViewController.h"
+#import "BrickInsertManager.h"
 
 #define LX_FRAMES_PER_SECOND 60.0f
 
@@ -270,6 +274,20 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
 
 
 - (void)handleLongPressGesture:(UILongPressGestureRecognizer *)gestureRecognizer {
+    @synchronized(@"moveBrick"){
+    if([[BrickInsertManager sharedInstance] isBrickInsertionMode]){
+        NSIndexPath *currentIndexPath = [self.collectionView indexPathForItemAtPoint:[gestureRecognizer locationInView:self.collectionView]];
+        ScriptCollectionViewController* cvc = (ScriptCollectionViewController*)self.delegate;
+        Script *script = [cvc.object.scriptList objectAtIndex:(NSUInteger)currentIndexPath.section];
+        Brick *brick = nil;
+        
+        if (currentIndexPath.item > 0) {
+            brick = [script.brickList objectAtIndex:currentIndexPath.item - 1];
+        }
+        if (!brick.isAnimatedInsertBrick) {
+            return;
+        }
+    }
     switch(gestureRecognizer.state) {
         case UIGestureRecognizerStateBegan: {
             NSIndexPath *currentIndexPath = [self.collectionView indexPathForItemAtPoint:[gestureRecognizer locationInView:self.collectionView]];
@@ -333,7 +351,9 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
             
             if (currentIndexPath) {
                 if ([self.delegate respondsToSelector:@selector(collectionView:layout:willEndDraggingItemAtIndexPath:)]) {
-                    [self.delegate collectionView:self.collectionView layout:self willEndDraggingItemAtIndexPath:currentIndexPath];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.delegate collectionView:self.collectionView layout:self willEndDraggingItemAtIndexPath:currentIndexPath];
+                    });
                 }
                 
                 self.selectedItemIndexPath = nil;
@@ -383,6 +403,8 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
             
         default: break;
     }
+    }
+    
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)gestureRecognizer {
