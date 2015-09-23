@@ -28,7 +28,7 @@
 #import "FXBlurView.h"
 #import "math.h"
 
-#define kTopAnimationOffset 35.0f
+#define kTopAnimationOffset 50.0f
 
 @interface BrickTransition ()
 @property (nonatomic, strong) UIView *animateView;
