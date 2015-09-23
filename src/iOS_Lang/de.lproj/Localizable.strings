@@ -107,16 +107,16 @@
 "Categories" = "Kategorien";
 
 /* No comment provided by engineer. */
-"Change brightness\nby %@\%" = "Change brightness\nby %1$@\\%2$";
+"Change brightness\nby %@\%" = "Ändere Helligkeit\num %@\%";
 
 /* No comment provided by engineer. */
-"Change size by %@\%" = "Change size by %1$@\\%2$";
+"Change size by %@\%" = "Ändere Größe um %@\%";
 
 /* No comment provided by engineer. */
-"Change transparency\nby %@\%" = "Change transparency\nby %1$@\\%2$";
+"Change transparency\nby %@\%" = "Ändere Transparenz\num %@\%";
 
 /* No comment provided by engineer. */
-"Change variable\n%@\nby %@" = "Change variable\n%1$@\nby %2$@";
+"Change variable\n%@\nby %@" = "Ändere Variable\n%@\num %@";
 
 /* No comment provided by engineer. */
 "Change volume by %@" = "Ändere Lautstärke um %@";
@@ -143,13 +143,13 @@
 "Compute" = "Berechnen";
 
 /* No comment provided by engineer. */
-"Computed result is %.2f" = "Computed result is %.2f";
+"Computed result is %.2f" = "Berechnetes Resultat ist %.2f";
 
 /* No comment provided by engineer. */
-"Computed result is FALSE" = "Computed result is FALSE";
+"Computed result is FALSE" = "Berechnetes Resultat ist FALSCH";
 
 /* No comment provided by engineer. */
-"Computed result is TRUE" = "Computed result is TRUE";
+"Computed result is TRUE" = "Berechnetes Resultat ist RICHTIG";
 
 /* No comment provided by engineer. */
 "Continue" = "Fortsetzen";
@@ -341,7 +341,7 @@
 "From Camera" = "Von Kamera";
 
 /* No comment provided by engineer. */
-"Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %1$@ second(s)\nto X: %2$@ Y: %3$@";
+"Glide %@ second(s)\nto X: %@ Y: %@" = "Gleite %@ Sekunde(n)\nzu X: %@ Y: %@";
 
 /* No comment provided by engineer. */
 "Go back %@ layer(s)" = "Gehe %@ Ebene(n) nach hinten";
@@ -581,7 +581,7 @@
 "pipette" = "pipette";
 
 /* No comment provided by engineer. */
-"Place at\nX: %@ Y: %@" = "Place at\nX: %1$@ Y: %2$@";
+"Place at\nX: %@ Y: %@" = "Platziere auf\nX: %@ Y: %@";
 
 /* No comment provided by engineer. */
 "Play" = "Spielen";
@@ -611,7 +611,7 @@
 "Pocket Paint" = "Pocket Paint: einfach Zeichnen";
 
 /* No comment provided by engineer. */
-"Point in direction %@°" = "Zeige in Richtung %@";
+"Point in direction %@°" = "Zeige in Richtung %@°";
 
 /* No comment provided by engineer. */
 "Point towards\n%@" = "Zeige auf \n%@";
@@ -737,22 +737,22 @@
 "Set background\n%@" = "Setze Hintergrund \n%@";
 
 /* No comment provided by engineer. */
-"Set brightness to %@\%" = "Set brightness to %1$@\\%2$";
+"Set brightness to %@\%" = "Setze Helligkeit auf %@\%";
 
 /* No comment provided by engineer. */
 "Set description" = "Beschreibung";
 
 /* No comment provided by engineer. */
-"Set size to %@\%" = "Set size to %1$@\\%2$";
+"Set size to %@\%" = "Setze Größe auf %@\%";
 
 /* No comment provided by engineer. */
-"Set transparency\nto %@\%" = "Set transparency\nto %1$@\\%2$";
+"Set transparency\nto %@\%" = "Setze Transparenz\nauf %@\%";
 
 /* No comment provided by engineer. */
-"Set variable\n%@\nto %@" = "Set variable\n%1$@\nto %2$@";
+"Set variable\n%@\nto %@" = "Setze Variable\n%@\nauf %@";
 
 /* No comment provided by engineer. */
-"Set volume to %@\%" = "Set volume to %1$@\\%2$";
+"Set volume to %@\%" = "Setze Lautstärke auf %@\%";
 
 /* No comment provided by engineer. */
 "Set X to %@" = "Setze X auf %@";
@@ -848,10 +848,10 @@
 "Tuesday" = "Dienstag";
 
 /* No comment provided by engineer. */
-"Turn left %@°" = "Drehe links %@";
+"Turn left %@°" = "Drehe links %@°";
 
 /* No comment provided by engineer. */
-"Turn right %@°" = "Drehe rechts %@";
+"Turn right %@°" = "Drehe rechts %@°";
 
 /* No comment provided by engineer. */
 "Unable to load program!" = "Fehler: Programm kann nicht geladen werden!";

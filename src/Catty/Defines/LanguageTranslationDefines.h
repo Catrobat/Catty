@@ -294,136 +294,66 @@
 //*******************************       BRICK TITLE TRANSLATIONS      ****************************************
 //************************************************************************************************************
 
-//#if DEBUG == 0 // DEBUG <= TODO: remove this line later
-//------------------------------------------------------------------------------------------------------------
-// TODO: in our first release we do not use translated strings in the script-editor because the translated
-//       strings can vary in their length compared to the english version. This would lead to graphical issues
-//       since the BrickCells are not able to handle the word wrapping of their titles correctly at this
-//       stage.
 
 // control bricks
-#define kLocalizedWhenProgramStarted @"When program started"
-#define kLocalizedWhenTapped @"When tapped"
-#define kLocalizedWaitNSeconds @"Wait %@ second(s)"
-#define kLocalizedVibrateNSeconds @"Vibrate %@ second(s)"
-#define kLocalizedWhenIReceive @"When I receive\n%@"
-#define kLocalizedBroadcast @"Broadcast\n%@"
-#define kLocalizedBroadcastAndWait @"Broadcast and wait\n%@"
-#define kLocalizedNote @"Note %@"
-#define kLocalizedForever @"Forever"
-#define kLocalizedIfIsTrueThen @"If %@ is true then"
-#define kLocalizedElse @"Else"
-#define kLocalizedEndIf @"End If"
-#define kLocalizedRepeatNTimes @"Repeat %@ times"
-#define kLocalizedEndOfLoop @"End of Loop"
+#define kLocalizedWhenProgramStarted NSLocalizedString(@"When program started", nil)
+#define kLocalizedWhenTapped NSLocalizedString(@"When tapped", nil)
+#define kLocalizedWaitNSeconds NSLocalizedString(@"Wait %@ second(s)", nil)
+#define kLocalizedVibrateNSeconds NSLocalizedString(@"Vibrate %@ second(s)", nil)
+#define kLocalizedWhenIReceive NSLocalizedString(@"When I receive\n%@", nil)
+#define kLocalizedBroadcast NSLocalizedString(@"Broadcast\n%@", nil)
+#define kLocalizedBroadcastAndWait NSLocalizedString(@"Broadcast and wait\n%@", nil)
+#define kLocalizedNote NSLocalizedString(@"Note %@", nil)
+#define kLocalizedForever NSLocalizedString(@"Forever", nil)
+#define kLocalizedIfIsTrueThen NSLocalizedString(@"If %@ is true then", nil)
+#define kLocalizedElse NSLocalizedString(@"Else", nil)
+#define kLocalizedEndIf NSLocalizedString(@"End If", nil)
+#define kLocalizedRepeatNTimes NSLocalizedString(@"Repeat %@ times", nil)
+#define kLocalizedEndOfLoop NSLocalizedString(@"End of Loop", nil)
 
 // motion bricks
-#define kLocalizedPlaceAt @"Place at\nX: %@ Y: %@"
-#define kLocalizedSetX @"Set X to %@"
-#define kLocalizedSetY @"Set Y to %@"
-#define kLocalizedChangeX @"Change X by %@"
-#define kLocalizedChangeY @"Change Y by %@"
-#define kLocalizedIfIsTrueThenOnEdgeBounce @"If on edge, bounce"
-#define kLocalizedMoveNSteps @"Move %@ step(s)"
-#define kLocalizedTurnLeft @"Turn left %@°"
-#define kLocalizedTurnRight @"Turn right %@°"
-#define kLocalizedPointInDirection @"Point in direction %@°"
-#define kLocalizedPointTowards @"Point towards\n%@"
-#define kLocalizedGlideTo @"Glide %@ second(s)\nto X: %@ Y: %@"
-#define kLocalizedGoNStepsBack @"Go back %@ layer(s)"
-#define kLocalizedComeToFront @"Go to front"
+#define kLocalizedPlaceAt NSLocalizedString(@"Place at\nX: %@ Y: %@", nil)
+#define kLocalizedSetX NSLocalizedString(@"Set X to %@", nil)
+#define kLocalizedSetY NSLocalizedString(@"Set Y to %@", nil)
+#define kLocalizedChangeX NSLocalizedString(@"Change X by %@", nil)
+#define kLocalizedChangeY NSLocalizedString(@"Change Y by %@", nil)
+#define kLocalizedIfIsTrueThenOnEdgeBounce NSLocalizedString(@"If on edge, bounce", nil)
+#define kLocalizedMoveNSteps NSLocalizedString(@"Move %@ step(s)", nil)
+#define kLocalizedTurnLeft NSLocalizedString(@"Turn left %@°", nil)
+#define kLocalizedTurnRight NSLocalizedString(@"Turn right %@°", nil)
+#define kLocalizedPointInDirection NSLocalizedString(@"Point in direction %@°", nil)
+#define kLocalizedPointTowards NSLocalizedString(@"Point towards\n%@", nil)
+#define kLocalizedGlideTo NSLocalizedString(@"Glide %@ second(s)\nto X: %@ Y: %@", nil)
+#define kLocalizedGoNStepsBack NSLocalizedString(@"Go back %@ layer(s)", nil)
+#define kLocalizedComeToFront NSLocalizedString(@"Go to front", nil)
 
 // look bricks
-#define kLocalizedSetLook @"Switch to look\n%@"
-#define kLocalizedSetBackground @"Set background\n%@"
-#define kLocalizedNextLook @"Next look"
-#define kLocalizedNextBackground @"Next background"
-#define kLocalizedSetSizeTo @"Set size to %@\%"
-#define kLocalizedChangeSizeByN @"Change size by %@\%"
-#define kLocalizedHide @"Hide"
-#define kLocalizedShow @"Show"
-#define kLocalizedLedOn @"Flashlight on"
-#define kLocalizedLedOff @"Flashlight off"
-#define kLocalizedSetGhostEffect @"Set transparency\nto %@\%"
-#define kLocalizedChangeGhostEffectByN @"Change transparency\nby %@\%"
-#define kLocalizedSetBrightness @"Set brightness to %@\%"
-#define kLocalizedChangeBrightnessByN @"Change brightness\nby %@\%"
-#define kLocalizedClearGraphicEffect @"Clear graphic effects"
+#define kLocalizedSetLook NSLocalizedString(@"Switch to look\n%@", nil)
+#define kLocalizedSetBackground NSLocalizedString(@"Set background\n%@", nil)
+#define kLocalizedNextLook NSLocalizedString(@"Next look", nil)
+#define kLocalizedNextBackground NSLocalizedString(@"Next background", nil)
+#define kLocalizedSetSizeTo NSLocalizedString(@"Set size to %@\%", nil)
+#define kLocalizedChangeSizeByN NSLocalizedString(@"Change size by %@\%", nil)
+#define kLocalizedHide NSLocalizedString(@"Hide", nil)
+#define kLocalizedShow NSLocalizedString(@"Show", nil)
+#define kLocalizedLedOn NSLocalizedString(@"Flashlight on", nil)
+#define kLocalizedLedOff NSLocalizedString(@"Flashlight off", nil)
+#define kLocalizedSetGhostEffect NSLocalizedString(@"Set transparency\nto %@\%", nil)
+#define kLocalizedChangeGhostEffectByN NSLocalizedString(@"Change transparency\nby %@\%", nil)
+#define kLocalizedSetBrightness NSLocalizedString(@"Set brightness to %@\%", nil)
+#define kLocalizedChangeBrightnessByN NSLocalizedString(@"Change brightness\nby %@\%", nil)
+#define kLocalizedClearGraphicEffect NSLocalizedString(@"Clear graphic effects", nil)
 
 // sound bricks
-#define kLocalizedPlaySound @"Start sound\n%@"
-#define kLocalizedStopAllSounds @"Stop all sounds"
-#define kLocalizedSetVolumeTo @"Set volume to %@\%"
-#define kLocalizedChangeVolumeByN @"Change volume by %@"
-#define kLocalizedSpeak @"Speak %@"
+#define kLocalizedPlaySound NSLocalizedString(@"Start sound\n%@", nil)
+#define kLocalizedStopAllSounds NSLocalizedString(@"Stop all sounds", nil)
+#define kLocalizedSetVolumeTo NSLocalizedString(@"Set volume to %@\%", nil)
+#define kLocalizedChangeVolumeByN NSLocalizedString(@"Change volume by %@", nil)
+#define kLocalizedSpeak NSLocalizedString(@"Speak %@", nil)
 
 // variable bricks
-#define kLocalizedSetVariable @"Set variable\n%@\nto %@"
-#define kLocalizedChangeVariable @"Change variable\n%@\nby %@"
-
-//#else // DEBUG == 0
-//
-//// control bricks
-//#define kLocalizedWhenProgramStarted NSLocalizedString(@"When program started", nil)
-//#define kLocalizedWhenTapped NSLocalizedString(@"When tapped", nil)
-//#define kLocalizedWaitNSeconds NSLocalizedString(@"Wait %@ second(s)", nil)
-//#define kLocalizedVibrateNSeconds NSLocalizedString(@"Vibrate %@ second(s)", nil)
-//#define kLocalizedWhenIReceive NSLocalizedString(@"When I receive\n%@", nil)
-//#define kLocalizedBroadcast NSLocalizedString(@"Broadcast\n%@", nil)
-//#define kLocalizedBroadcastAndWait NSLocalizedString(@"Broadcast and wait\n%@", nil)
-//#define kLocalizedNote NSLocalizedString(@"Note %@", nil)
-//#define kLocalizedForever NSLocalizedString(@"Forever", nil)
-//#define kLocalizedIfIsTrueThen NSLocalizedString(@"If %@ is true then", nil)
-//#define kLocalizedElse NSLocalizedString(@"Else", nil)
-//#define kLocalizedEndIf NSLocalizedString(@"End If", nil)
-//#define kLocalizedRepeatNTimes NSLocalizedString(@"Repeat %@ times", nil)
-//#define kLocalizedEndOfLoop NSLocalizedString(@"End of Loop", nil)
-//
-//// motion bricks
-//#define kLocalizedPlaceAt NSLocalizedString(@"Place at\nX: %@ Y: %@", nil)
-//#define kLocalizedSetX NSLocalizedString(@"Set X to %@", nil)
-//#define kLocalizedSetY NSLocalizedString(@"Set Y to %@", nil)
-//#define kLocalizedChangeX NSLocalizedString(@"Change X by %@", nil)
-//#define kLocalizedChangeY NSLocalizedString(@"Change Y by %@", nil)
-//#define kLocalizedIfIsTrueThenOnEdgeBounce NSLocalizedString(@"If on edge, bounce", nil)
-//#define kLocalizedMoveNSteps NSLocalizedString(@"Move %@ step(s)", nil)
-//#define kLocalizedTurnLeft NSLocalizedString(@"Turn left %@°", nil)
-//#define kLocalizedTurnRight NSLocalizedString(@"Turn right %@°", nil)
-//#define kLocalizedPointInDirection NSLocalizedString(@"Point in direction %@°", nil)
-//#define kLocalizedPointTowards NSLocalizedString(@"Point towards\n%@", nil)
-//#define kLocalizedGlideTo NSLocalizedString(@"Glide %@ second(s)\nto X: %@ Y: %@", nil)
-//#define kLocalizedGoNStepsBack NSLocalizedString(@"Go back %@ layer(s)", nil)
-//#define kLocalizedComeToFront NSLocalizedString(@"Go to front", nil)
-//
-//// look bricks
-//#define kLocalizedSetLook NSLocalizedString(@"Switch to look\n%@", nil)
-//#define kLocalizedSetBackground NSLocalizedString(@"Set background\n%@", nil)
-//#define kLocalizedNextLook NSLocalizedString(@"Next look", nil)
-//#define kLocalizedNextBackground NSLocalizedString(@"Next background", nil)
-//#define kLocalizedSetSizeTo NSLocalizedString(@"Set size to %@\%", nil)
-//#define kLocalizedChangeSizeByN NSLocalizedString(@"Change size by %@\%", nil)
-//#define kLocalizedHide NSLocalizedString(@"Hide", nil)
-//#define kLocalizedShow NSLocalizedString(@"Show", nil)
-//#define kLocalizedLedOn NSLocalizedString(@"Flashlight on", nil)
-//#define kLocalizedLedOff NSLocalizedString(@"Flashlight off", nil)
-//#define kLocalizedSetGhostEffect NSLocalizedString(@"Set transparency\nto %@\%", nil)
-//#define kLocalizedChangeGhostEffectByN NSLocalizedString(@"Change transparency\nby %@\%", nil)
-//#define kLocalizedSetBrightness NSLocalizedString(@"Set brightness to %@\%", nil)
-//#define kLocalizedChangeBrightnessByN NSLocalizedString(@"Change brightness\nby %@\%", nil)
-//#define kLocalizedClearGraphicEffect NSLocalizedString(@"Clear graphic effects", nil)
-//
-//// sound bricks
-//#define kLocalizedPlaySound NSLocalizedString(@"Start sound\n%@", nil)
-//#define kLocalizedStopAllSounds NSLocalizedString(@"Stop all sounds", nil)
-//#define kLocalizedSetVolumeTo NSLocalizedString(@"Set volume to %@\%", nil)
-//#define kLocalizedChangeVolumeByN NSLocalizedString(@"Change volume by %@", nil)
-//#define kLocalizedSpeak NSLocalizedString(@"Speak %@", nil)
-//
-//// variable bricks
-//#define kLocalizedSetVariable NSLocalizedString(@"Set variable\n%@\nto %@", nil)
-//#define kLocalizedChangeVariable NSLocalizedString(@"Change variable\n%@\nby %@", nil)
-//
-//#endif // DEBUG == 0
+#define kLocalizedSetVariable NSLocalizedString(@"Set variable\n%@\nto %@", nil)
+#define kLocalizedChangeVariable NSLocalizedString(@"Change variable\n%@\nby %@", nil)
 
 #define kLocalizedAddCommentHere NSLocalizedString(@"add comment here...", nil)
 #define kLocalizedMessage1 NSLocalizedString(@"message 1", nil)
