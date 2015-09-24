@@ -1,24 +1,6 @@
-/* *
- *  Copyright (C) 2010-2013 The Catrobat Team
- *  (http://developer.catrobat.org/credits)
- *
- *  This program is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Affero General Public License as
- *  published by the Free Software Foundation, either version 3 of the
- *  License, or (at your option) any later version.
- *
- *  An additional term exception under section 7 of the GNU Affero
- *  General Public License, version 3, is available at
- *  (http://developer.catrobat.org/license_additional_term)
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *  GNU Affero General Public License for more details.
- *
- *  You should have received a copy of the GNU Affero General Public License
- *  along with this program.  If not, see http://www.gnu.org/licenses/.
-*/
+/* No comment provided by engineer. */
+"A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
+
 /* No comment provided by engineer. */
 "A program with the same name already exists, try again." = "هناك  برنامج بنفس الاسم موجود بالفعل، وحاول مرة أخرى.";
 
@@ -27,6 +9,18 @@
 
 /* No comment provided by engineer. */
 "About Pocket Code" = "حول قانون الجيب";
+
+/* No comment provided by engineer. */
+"acceleration_x" = "تسارع x";
+
+/* No comment provided by engineer. */
+"acceleration_y" = "تسارع y";
+
+/* No comment provided by engineer. */
+"acceleration_z" = "تسارع z";
+
+/* No comment provided by engineer. */
+"add comment here..." = "add comment here...";
 
 /* No comment provided by engineer. */
 "Add image" = "إضافة صورة";
@@ -50,6 +44,9 @@
 "An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
+"and" = "and";
+
+/* No comment provided by engineer. */
 "Animate Brick" = "تحريك الطوب";
 
 /* No comment provided by engineer. */
@@ -67,6 +64,9 @@
 /* No comment provided by engineer. */
 "Author" = "المؤلف";
 
+/* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
+"Axes" = "Axes";
+
 /* No comment provided by engineer. */
 "Back" = "الى الخلف";
 
@@ -83,6 +83,9 @@
 "Bricks" = "الطوب";
 
 /* No comment provided by engineer. */
+"brightness" = "السطوع";
+
+/* No comment provided by engineer. */
 "Broadcast and wait\n%@" = "البث والانتظار %@";
 
 /* No comment provided by engineer. */
@@ -90,6 +93,9 @@
 
 /* paint */
 "brush" = "brush";
+
+/* No comment provided by engineer. */
+"By registering you agree to our" = "By registering you agree to our";
 
 /* No comment provided by engineer. */
 "By switching to the section \"Explore\" you can discover much more interesting stuff." = "By switching to the section \"Explore\" you can discover much more interesting stuff.";
@@ -107,16 +113,16 @@
 "Categories" = "فئات";
 
 /* No comment provided by engineer. */
-"Change brightness\nby %@\%" = "Change brightness\nby %1$@\\%2$";
+"Change brightness\nby %@\%" = "Change brightness\nby %@\\%";
 
 /* No comment provided by engineer. */
-"Change size by %@\%" = "Change size by %1$@\\%2$";
+"Change size by %@\%" = "Change size by %@\\%";
 
 /* No comment provided by engineer. */
-"Change transparency\nby %@\%" = "Change transparency\nby %1$@\\%2$";
+"Change transparency\nby %@\%" = "Change transparency\nby %@\\%";
 
 /* No comment provided by engineer. */
-"Change variable\n%@\nby %@" = "Change variable\n%1$@\nby %2$@";
+"Change variable\n%@\nby %@" = "Change variable\n%@\nby %@";
 
 /* No comment provided by engineer. */
 "Change volume by %@" = "تغيير حجم الى %@";
@@ -126,6 +132,12 @@
 
 /* No comment provided by engineer. */
 "Change Y by %@" = "تغير ص %@";
+
+/* No comment provided by engineer. */
+"Changes discarded!" = "تم تجاهل التغييرات!";
+
+/* No comment provided by engineer. */
+"Changes saved!" = "تم حفظ التغييرات!";
 
 /* No comment provided by engineer. */
 "Choose image" = "اختر الصورة";
@@ -138,6 +150,12 @@
 
 /* No comment provided by engineer. */
 "Close" = "إغلاق";
+
+/* paint */
+"Close Paint" = "Close Paint";
+
+/* No comment provided by engineer. */
+"compass" = "compass";
 
 /* No comment provided by engineer. */
 "Compute" = "حساب";
@@ -166,8 +184,8 @@
 /* No comment provided by engineer. */
 "Copy program" = "نسخ البرنامج ";
 
-/* paint */
-"crop" = "crop";
+/* No comment provided by engineer. */
+"Debug mode" = "Debug mode";
 
 /* No comment provided by engineer. */
 "Dec" = "كانون الأول‏ (ديسمبر)";
@@ -182,10 +200,19 @@
 "Delete Brick" = "حذف طوب";
 
 /* No comment provided by engineer. */
+"Delete Condition" = "Delete Condition";
+
+/* No comment provided by engineer. */
 "Delete Looks" = "حذف مشهد";
 
 /* No comment provided by engineer. */
+"Delete Loop" = "Delete Loop";
+
+/* No comment provided by engineer. */
 "Delete Objects" = "حذف الكائنات";
+
+/* No comment provided by engineer. */
+"Delete Program" = "Delete Program";
 
 /* No comment provided by engineer. */
 "Delete Programs" = "حذف البرامج";
@@ -197,7 +224,28 @@
 "Delete Sounds" = "حذف الأصوات";
 
 /* No comment provided by engineer. */
+"Delete these Bricks?" = "Delete these Bricks?";
+
+/* No comment provided by engineer. */
+"Delete these Conditions?" = "Delete these Conditions?";
+
+/* No comment provided by engineer. */
+"Delete these Loops?" = "Delete these Loops?";
+
+/* No comment provided by engineer. */
+"Delete these Scripts?" = "Delete these Scripts?";
+
+/* No comment provided by engineer. */
+"Delete this Brick?" = "Delete this Brick?";
+
+/* No comment provided by engineer. */
+"Delete this Condition?" = "Delete this Condition?";
+
+/* No comment provided by engineer. */
 "Delete this look" = "حذف هذا المشهد";
+
+/* No comment provided by engineer. */
+"Delete this Loop?" = "Delete this Loop?";
 
 /* No comment provided by engineer. */
 "Delete this object" = "حذف هذا الكائن";
@@ -206,7 +254,13 @@
 "Delete this program" = "حذف هذا البرنامج";
 
 /* No comment provided by engineer. */
+"Delete this Script?" = "Delete this Script?";
+
+/* No comment provided by engineer. */
 "Delete this sound" = "حذف هذا الصوت";
+
+/* No comment provided by engineer. */
+"Deletion Mode" = "Deletion Mode";
 
 /* No comment provided by engineer. */
 "Description" = "الوصف";
@@ -214,8 +268,8 @@
 /* No comment provided by engineer. */
 "Details" = "Details";
 
-/* paint */
-"Discard & Close" = "Discard & Close";
+/* No comment provided by engineer. */
+"direction" = "الاتجاه";
 
 /* paint */
 "Do you really want to delete the current drawing?" = "Do you really want to delete the current drawing?";
@@ -228,6 +282,9 @@
 
 /* No comment provided by engineer. */
 "Download" = "تحميل";
+
+/* No comment provided by engineer. */
+"Download sucessful" = "Download sucessful";
 
 /* No comment provided by engineer. */
 "Downloads" = "التنزيلات";
@@ -246,9 +303,6 @@
 
 /* Action sheet menu title */
 "Edit Looks" = "تحرير مظهر";
-
-/* No comment provided by engineer. */
-"Edit Mode" = "وضع التحرير";
 
 /* No comment provided by engineer. */
 "Edit Object" = "Edit Object";
@@ -272,10 +326,22 @@
 "Else" = "غير ذلك";
 
 /* No comment provided by engineer. */
+"Email" = "Email";
+
+/* No comment provided by engineer. */
+"Email is not valid!" = "Email is not valid!";
+
+/* No comment provided by engineer. */
+"End If" = "إنهاء إذا";
+
+/* No comment provided by engineer. */
 "End of Loop" = "نهاية التكرار";
 
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "أدخل اسم الصورة الخاصة بك هنا...";
+
+/* Placeholder for message input field */
+"Enter your message here..." = "Enter your message here...";
 
 /* Placeholder for add object-name input field */
 "Enter your object name here..." = "أدخل اسم الكائن الخاص بك هنا...";
@@ -289,6 +355,9 @@
 /* Placeholder for add sound-name input field */
 "Enter your sound name here..." = "Enter your sound name here...";
 
+/* Placeholder for variable input field */
+"Enter your variable name here..." = "Enter your variable name here...";
+
 /* paint */
 "eraser" = "eraser";
 
@@ -300,6 +369,9 @@
 
 /* No comment provided by engineer. */
 "Explore apps" = "Explore apps";
+
+/* No comment provided by engineer. */
+"false" = "false";
 
 /* No comment provided by engineer. */
 "Featured Programs" = "برامج بارزة";
@@ -320,6 +392,12 @@
 "Flashlight on" = "Flashlight on";
 
 /* No comment provided by engineer. */
+"for all objects" = "for all objects";
+
+/* No comment provided by engineer. */
+"for this object" = "for this object";
+
+/* No comment provided by engineer. */
 "Forever" = "إلى الأبد";
 
 /* No comment provided by engineer. */
@@ -338,7 +416,7 @@
 "From Camera" = "من الكاميرا";
 
 /* No comment provided by engineer. */
-"Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %1$@ second(s)\nto X: %2$@ Y: %3$@";
+"Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %@ second(s)\nto X: %@ Y: %@";
 
 /* No comment provided by engineer. */
 "Go back %@ layer(s)" = "العودة %@ طبقة/طبقات";
@@ -346,11 +424,14 @@
 /* No comment provided by engineer. */
 "Go to front" = "الذهاب إلى الامام";
 
+/* No comment provided by engineer. */
+"GOOD TO SEE YOU" = "GOOD TO SEE YOU";
+
 /* paint */
 "Green" = "أخضر";
 
 /* No comment provided by engineer. */
-"Grid" = "شبكة";
+"Hello !" = "Hello !";
 
 /* No comment provided by engineer. */
 "Help" = "تعليمات";
@@ -365,9 +446,6 @@
 "If %@ is true then" = "إذا كان %@ صحيح ثم";
 
 /* No comment provided by engineer. */
-"If End" = "إذا كانت نهاية";
-
-/* No comment provided by engineer. */
 "If on edge, bounce" = "إذا كان على الحافة، ارتد";
 
 /* paint */
@@ -377,10 +455,25 @@
 "Image name" = "اسم الصورة";
 
 /* No comment provided by engineer. */
+"Image source not available" = "Image source not available";
+
+/* No comment provided by engineer. */
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.";
 
 /* No comment provided by engineer. */
+"inclination_x" = "زاوية ميل x";
+
+/* No comment provided by engineer. */
+"inclination_y" = "زاوية ميل y";
+
+/* No comment provided by engineer. */
 "Information" = "معلومات";
+
+/* paint */
+"Inserted" = "Inserted";
+
+/* No comment provided by engineer. */
+"Invalid input entered, try again." = "Invalid input entered, try again.";
 
 /* No comment provided by engineer. */
 "Invalid URL given!" = "Invalid URL given!";
@@ -390,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "January" = "كانون الثاني / يناير";
+
+/* No comment provided by engineer. */
+"join" = "الانضمام إلى";
 
 /* No comment provided by engineer. */
 "Jul" = "تموز (يوليو)";
@@ -407,7 +503,16 @@
 "Last access" = "أخر وصول";
 
 /* No comment provided by engineer. */
+"layer" = "طبقة";
+
+/* No comment provided by engineer. */
 "Length" = "الطول";
+
+/* No comment provided by engineer. */
+"length" = "طول";
+
+/* No comment provided by engineer. */
+"letter" = "حرف";
 
 /* paint */
 "line" = "line";
@@ -422,7 +527,19 @@
 "Login" = "تسجيل الدخول";
 
 /* No comment provided by engineer. */
+"Login successful" = "Login successful";
+
+/* No comment provided by engineer. */
+"Login/Register" = "Login/Register";
+
+/* LOOK */
+"look" = "مشهد";
+
+/* No comment provided by engineer. */
 "Looks" = "تبدو";
+
+/* No comment provided by engineer. */
+"loudness" = "بريق";
 
 /* No comment provided by engineer. */
 "Mar" = "آذار (مارس)";
@@ -441,6 +558,12 @@
 
 /* paint */
 "Menu" = "القائمة";
+
+/* No comment provided by engineer. */
+"Message" = "Message";
+
+/* No comment provided by engineer. */
+"message 1" = "رسالة 1";
 
 /* paint */
 "mirror" = "mirror";
@@ -469,7 +592,10 @@
 /* No comment provided by engineer. */
 "Move %@ step(s)" = "نقل %@ درجات";
 
-/* Name of the default catrobat program */
+/* No comment provided by engineer. */
+"Move Brick" = "أنقل الطوب";
+
+/* Name of the default catrobat program (used as filename!!) */
 "My first program" = "برنامجي الأول";
 
 /* Default title of imported photo from camera (taken by camera) */
@@ -477,6 +603,9 @@
 
 /* Title for first (default) object */
 "My Object" = "كائني";
+
+/* No comment provided by engineer. */
+"Name" = "Name";
 
 /* No comment provided by engineer. */
 "Name already exists. Please choose another" = "Name already exists. Please choose another";
@@ -488,10 +617,19 @@
 "New Canvas" = "New Canvas";
 
 /* No comment provided by engineer. */
+"New Message" = "New Message";
+
+/* No comment provided by engineer. */
 "New Program" = "برنامج جديد";
 
 /* No comment provided by engineer. */
+"New Text" = "New Text";
+
+/* No comment provided by engineer. */
 "New Variable" = "متغير جديد";
+
+/* No comment provided by engineer. */
+"New..." = "New...";
 
 /* No comment provided by engineer. */
 "Newest" = "الأحدث";
@@ -506,13 +644,19 @@
 "No" = "لا";
 
 /* No comment provided by engineer. */
-"No Description available" = "لا يوجد أي مواصفات";
+"No Camera available" = "No Camera available";
 
 /* No comment provided by engineer. */
-"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "لم يتم العثور على ملف مستورد. الرجاء توصيل أي فون الخاص بك إلى جهاز الكمبيوتر/ماك، واستخدام أي تيونز تبادل الملفات لاستيراد ملفات الصوت إلى التطبيق PocketCode.";
+"No Description available" = "لا يوجد أي مواصفات";
+
+/* Title of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
+"No imported sounds found" = "No imported sounds found";
 
 /* No comment provided by engineer. */
 "No input or the input is too short. Please enter at least %lu character(s)." = "No input or the input is too short. Please enter at least %lu character(s).";
+
+/* No comment provided by engineer. */
+"No Internet Connection" = "No Internet Connection";
 
 /* No comment provided by engineer. */
 "No internet connection available." = "No internet connection available.";
@@ -525,6 +669,9 @@
 
 /* No comment provided by engineer. */
 "No search results" = "No search results";
+
+/* No comment provided by engineer. */
+"not" = "not";
 
 /* No comment provided by engineer. */
 "Not enough free memory to download this program. Please delete some of your programs" = "الذاكرة غير كافية لتحميل هذا البرنامج. الرجاء حذف بعض البرامج الخاصة بك";
@@ -548,13 +695,13 @@
 "Numbers" = "Numbers";
 
 /* No comment provided by engineer. */
-"object" = "object";
-
-/* No comment provided by engineer. */
 "Object" = "كائن";
 
 /* No comment provided by engineer. */
 "Object name" = "اسم الكائن";
+
+/* No comment provided by engineer. */
+"Object variables:" = "Object variables:";
 
 /* No comment provided by engineer. */
 "Objects" = "كائنات";
@@ -572,25 +719,52 @@
 "only 15 characters allowed" = "only 15 characters allowed";
 
 /* No comment provided by engineer. */
+"Only space is not allowed. Please enter at least %lu other character(s)." = "Only space is not allowed. Please enter at least %lu other character(s).";
+
+/* No comment provided by engineer. */
+"or" = "or";
+
+/* No comment provided by engineer. */
 "Password" = "كلمة المرور";
+
+/* No comment provided by engineer. */
+"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Password is not vaild! \n It has to contain at least 6 characters/symbols";
 
 /* paint */
 "pipette" = "pipette";
 
 /* No comment provided by engineer. */
-"Place at\nX: %@ Y: %@" = "Place at\nX: %1$@ Y: %2$@";
+"Place at\nX: %@ Y: %@" = "Place at\nX: %@ Y: %@";
 
 /* No comment provided by engineer. */
 "Play" = "تشغيل";
 
+/* Description of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
+"Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
+
 /* paint */
 "Please pick an item" = "Please pick an item";
+
+/* No comment provided by engineer. */
+"Please register below" = "Please register below";
+
+/* No comment provided by engineer. */
+"Please select a program to upload" = "Please select a program to upload";
 
 /* No comment provided by engineer. */
 "Pocket Code" = "قانون الجيب";
 
 /* No comment provided by engineer. */
 "Pocket Code for iOS" = "النص البرمجي لجهاز الجيب لـiOS";
+
+/* No comment provided by engineer. */
+"Pocket Code has been started in debug mode." = "Pocket Code has been started in debug mode.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.";
 
 /* No comment provided by engineer. */
 "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:";
@@ -617,10 +791,22 @@
 "pointer" = "pointer";
 
 /* No comment provided by engineer. */
-"program" = "program";
+"pos_x" = "pos_x";
+
+/* No comment provided by engineer. */
+"pos_y" = "pos_y";
+
+/* No comment provided by engineer. */
+"Problems occured while Uploading your program" = "Problems occured while Uploading your program";
 
 /* No comment provided by engineer. */
 "Program name" = "اسم البرنامج";
+
+/* No comment provided by engineer. */
+"Program Name is necessary!" = "Program Name is necessary!";
+
+/* No comment provided by engineer. */
+"Program variables:" = "Program variables:";
 
 /* No comment provided by engineer. */
 "Programs" = "البرامج";
@@ -630,6 +816,9 @@
 
 /* No comment provided by engineer. */
 "Rate Us" = "Rate Us";
+
+/* Title of View where the user can see the recently used bricks. */
+"Recently Used" = "Recently Used";
 
 /* No comment provided by engineer. */
 "Recording" = "Recording";
@@ -641,6 +830,12 @@
 "Red" = "أحمر";
 
 /* No comment provided by engineer. */
+"Register" = "Register";
+
+/* No comment provided by engineer. */
+"Registration successful" = "Registration successful";
+
+/* No comment provided by engineer. */
 "Rename" = "إعادة تسمية";
 
 /* No comment provided by engineer. */
@@ -650,7 +845,7 @@
 "Rename object" = "Rename object";
 
 /* No comment provided by engineer. */
-"Rename program" = "إعادة تسمية البرنامج";
+"Rename Program" = "إعادة تسمية البرنامج";
 
 /* No comment provided by engineer. */
 "Rename sound" = "Rename sound";
@@ -660,6 +855,9 @@
 
 /* No comment provided by engineer. */
 "Report as inappropriate" = "تقرير غير مناسب";
+
+/* paint */
+"resize" = "resize";
 
 /* No comment provided by engineer. */
 "Restart" = "اعادة تشغيل";
@@ -678,9 +876,6 @@
 
 /* No comment provided by engineer. */
 "Saturday" = "السبت";
-
-/* paint */
-"Save & Close Paint" = "Save & Close Paint";
 
 /* Action sheet menu title */
 "Save Screenshot to" = "حفظ لقطة الشاشة إلى";
@@ -734,22 +929,22 @@
 "Set background\n%@" = "تعيين خلفية %@";
 
 /* No comment provided by engineer. */
-"Set brightness to %@\%" = "Set brightness to %1$@\\%2$";
+"Set brightness to %@\%" = "Set brightness to %@\\%";
 
 /* No comment provided by engineer. */
 "Set description" = "وصف مجموعة";
 
 /* No comment provided by engineer. */
-"Set size to %@\%" = "Set size to %1$@\\%2$";
+"Set size to %@\%" = "Set size to %@\\%";
 
 /* No comment provided by engineer. */
-"Set transparency\nto %@\%" = "Set transparency\nto %1$@\\%2$";
+"Set transparency\nto %@\%" = "Set transparency\nto %@\\%";
 
 /* No comment provided by engineer. */
-"Set variable\n%@\nto %@" = "Set variable\n%1$@\nto %2$@";
+"Set variable\n%@\nto %@" = "Set variable\n%@\nto %@";
 
 /* No comment provided by engineer. */
-"Set volume to %@\%" = "Set volume to %1$@\\%2$";
+"Set volume to %@\%" = "Set volume to %@\\%";
 
 /* No comment provided by engineer. */
 "Set X to %@" = "تعيين قيمة س %@";
@@ -758,10 +953,16 @@
 "Set Y to %@" = "تعيين قيمة ص %@";
 
 /* No comment provided by engineer. */
+"Settings" = "إعدادات";
+
+/* No comment provided by engineer. */
 "Show" = "إظهار";
 
 /* No comment provided by engineer. */
 "Show Details" = "إظهار التفاصيل";
+
+/* No comment provided by engineer. */
+"size" = "الحجم";
 
 /* No comment provided by engineer. */
 "Size" = "الحجم";
@@ -784,11 +985,17 @@
 /* No comment provided by engineer. */
 "Speak %@" = "التحدث %@";
 
+/* No comment provided by engineer. */
+"sqrt" = "الجذر التربيعي";
+
 /* paint */
 "square" = "square";
 
 /* paint */
 "stamp" = "stamp";
+
+/* paint */
+"Stamped" = "Stamped";
 
 /* No comment provided by engineer. */
 "Start sound\n%@" = "بدء تشغيل الصوت %@";
@@ -818,13 +1025,13 @@
 "Terms of Use" = "شروط الاستخدام";
 
 /* No comment provided by engineer. */
+"Text message:" = "Text message:";
+
+/* No comment provided by engineer. */
 "Th" = "الخميس";
 
 /* No comment provided by engineer. */
 "The description contains invalid characters, try again." = "The description contains invalid characters, try again.";
-
-/* paint */
-"Thickness" = "Thickness";
 
 /* No comment provided by engineer. */
 "This action can not be undone!" = "هذا الإجراء لا يمكن التراجع عنه!";
@@ -833,10 +1040,19 @@
 "This feature is coming soon!" = "هذه الميزة سوف تأتي قريبا!";
 
 /* No comment provided by engineer. */
+"This variable can not be deleted because it is still in use." = "This variable can not be deleted because it is still in use.";
+
+/* No comment provided by engineer. */
 "Thursday" = "الخميس";
 
 /* No comment provided by engineer. */
 "Today" = "اليوم";
+
+/* No comment provided by engineer. */
+"transparency" = "transparency";
+
+/* No comment provided by engineer. */
+"true" = "true";
 
 /* No comment provided by engineer. */
 "Tu" = "الثلاثاء";
@@ -862,6 +1078,15 @@
 /* No comment provided by engineer. */
 "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.";
 
+/* Button title of alert view to invoke undo if user shakes device */
+"Undo" = "التراجع عن";
+
+/* Description text in alert view if user shakes the device */
+"Undo Drawing?" = "Undo Drawing?";
+
+/* Description text in alert view if user shakes the device */
+"Undo Typing?" = "Undo Typing?";
+
 /* No comment provided by engineer. */
 "Unselect All" = "إلغاء اختيار الكل";
 
@@ -872,10 +1097,22 @@
 "Upload" = "تحميل";
 
 /* No comment provided by engineer. */
+"Upload Program" = "Upload Program";
+
+/* No comment provided by engineer. */
+"Upload Selected Program" = "Upload Selected Program";
+
+/* No comment provided by engineer. */
+"Upload successful" = "تم التحميل بنجاح";
+
+/* No comment provided by engineer. */
 "Uploaded" = "تم التحميل";
 
 /* No comment provided by engineer. */
 "Username" = "اسم المستخدم";
+
+/* No comment provided by engineer. */
+"Username is necessary!" = "Username is necessary!";
 
 /* No comment provided by engineer. */
 "v" = "v";
@@ -908,6 +1145,9 @@
 "Wednesday" = "الأربعاء";
 
 /* No comment provided by engineer. */
+"Welcome back, please login below" = "Welcome back, please login below";
+
+/* No comment provided by engineer. */
 "Welcome to Pocket Code" = "Welcome to Pocket Code";
 
 /* No comment provided by engineer. */
@@ -918,6 +1158,9 @@
 
 /* No comment provided by engineer. */
 "When tapped" = "عند استغلالها";
+
+/* paint */
+"Width" = "Width";
 
 /* No comment provided by engineer. */
 "Yes" = "نعم";
@@ -933,4 +1176,3 @@
 
 /* paint */
 "zoom" = "zoom";
-
