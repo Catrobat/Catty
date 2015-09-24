@@ -169,7 +169,7 @@
             insertionIndex = index;
             if (targetScript.brickList.count >=1) {
                 while ([[targetScript.brickList objectAtIndex:index-1] isKindOfClass:[LoopEndBrick class]]) {
-                    LoopEndBrick* loopEndBrickCheck = [targetScript.brickList objectAtIndex:index-1];
+                    LoopEndBrick *loopEndBrickCheck = (LoopEndBrick*)[targetScript.brickList objectAtIndex:index-1];
                     NSInteger loopbeginIndex = 0;
                     for (Brick *brick in targetScript.brickList) {
                         if (brick  == loopEndBrickCheck.loopBeginBrick) {
@@ -279,7 +279,7 @@
     //Check if there is a Forever Loop End-brick
     while (counter >= 1) {
         if ([[script.brickList objectAtIndex:counter-1] isKindOfClass:[LoopEndBrick class]]) {
-            LoopEndBrick *brick =[script.brickList objectAtIndex:counter-1];
+            LoopEndBrick *brick = (LoopEndBrick*)[script.brickList objectAtIndex:counter-1];
             if ([brick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
                 return counter;
             }

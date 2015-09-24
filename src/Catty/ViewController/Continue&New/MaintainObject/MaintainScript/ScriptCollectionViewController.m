@@ -647,7 +647,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     BOOL hasForeverLoop = NO;
     if (targetScript.brickList.count >=1) {
         while ([[targetScript.brickList objectAtIndex:index-1] isKindOfClass:[LoopEndBrick class]]) {
-            LoopEndBrick* loopEndBrickCheck = [targetScript.brickList objectAtIndex:index-1];
+            LoopEndBrick *loopEndBrickCheck = (LoopEndBrick*)[targetScript.brickList objectAtIndex:index-1];
             if ([loopEndBrickCheck.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
                 hasForeverLoop = YES;
             }

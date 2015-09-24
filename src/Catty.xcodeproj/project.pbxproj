@@ -482,12 +482,12 @@
 		92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
 		A918B6B71B89F5870017B92F /* Siren.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A918B6B61B89F5870017B92F /* Siren.bundle */; };
-		AA101E411B8D3A3900797DEF /* Encapsulated.xml in Resources */ = {isa = PBXBuildFile; fileRef = AA101E401B8D3A3900797DEF /* Encapsulated.xml */; settings = {ASSET_TAGS = (); }; };
 		AA70F7F11B866E9B003057C6 /* CBFrontentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA70F7F01B866E9B003057C6 /* CBFrontentTests.swift */; };
 		AA85F6DF1B9B361200398DC7 /* ProgramTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85F6DE1B9B361200398DC7 /* ProgramTVCTests.swift */; settings = {ASSET_TAGS = (); }; };
 		AAA2979A1BB36FEA006F8793 /* SensorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E781A24C7D800093DA7 /* SensorHandler.m */; };
 		AAA2979B1BB3711B006F8793 /* BrickCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6EC1A49812700957E10 /* BrickCategoryViewController.m */; };
 		AAA2979C1BB371EB006F8793 /* ExternInternRepresentationMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEA1A38949E00FA9B0F /* ExternInternRepresentationMapping.m */; };
+		AAA2979D1BB3743C006F8793 /* Encapsulated.xml in Resources */ = {isa = PBXBuildFile; fileRef = AA101E401B8D3A3900797DEF /* Encapsulated.xml */; };
 		AAADA0071B9B29D500E0CA9A /* MyProgramsVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAADA0061B9B29D500E0CA9A /* MyProgramsVCTests.swift */; };
 		AABCB3D81BB36469009F67D2 /* CBScriptSequenceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B31B115E6400419A55 /* CBScriptSequenceList.swift */; };
 		AABCB3D91BB3648E009F67D2 /* CBOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B11B115E6400419A55 /* CBOperation.swift */; };
@@ -5019,6 +5019,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAA2979D1BB3743C006F8793 /* Encapsulated.xml in Resources */,
 				4CC85CD41B9C6EC80097E470 /* Word_balloon_demo_096.xml in Resources */,
 				CAE3E55E1B4C50B300CC88BD /* Tic_Tac_Toe_Master_091.xml in Resources */,
 				4CC85CE91B9C717C0097E470 /* ValidProgramAllBricks.xml in Resources */,
@@ -5092,7 +5093,6 @@
 				CAE3E55B1B4C50B300CC88BD /* Skydiving_Steve_093.xml in Resources */,
 				CAE3E54A1B4C50B300CC88BD /* Memory_093.xml in Resources */,
 				CAE3E5571B4C50B300CC88BD /* Pythagorean_Theorem_093.xml in Resources */,
-				AA101E411B8D3A3900797DEF /* Encapsulated.xml in Resources */,
 				CAE3E53B1B4C50B300CC88BD /* Compass_0.1_091.xml in Resources */,
 				CAE3E54E1B4C50B300CC88BD /* Minions__093.xml in Resources */,
 				4C2EE4111B555882006DE9B8 /* X_Ray_phone_095.xml in Resources */,
