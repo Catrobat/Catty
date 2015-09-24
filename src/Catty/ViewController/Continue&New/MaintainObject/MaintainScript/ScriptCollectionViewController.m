@@ -501,7 +501,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if ([[BrickInsertManager sharedInstance] isBrickInsertionMode]) {
         return [[BrickInsertManager sharedInstance] collectionView:self.collectionView itemAtIndexPath:fromIndexPath canInsertToIndexPath:toIndexPath andObject:self.object];
     }
-        
+    
     return [[BrickMoveManager sharedInstance] collectionView:self.collectionView itemAtIndexPath:fromIndexPath canMoveToIndexPath:toIndexPath andObject:self.object];
 }
 
@@ -588,7 +588,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         brickCell.userInteractionEnabled = YES;
         brickCell.alpha = self.isEditingBrickMode ? kBrickCellInactiveWhileEditingOpacity : kBrickCellActiveOpacity;
     }
-    
+
     return brickCell;
 }
 
@@ -674,7 +674,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     
     [self reloadData];
     [self turnOnInsertingBrickMode];
-//    [self.object.program saveToDisk];
+    [self.object.program saveToDisk];
 }
 
 
