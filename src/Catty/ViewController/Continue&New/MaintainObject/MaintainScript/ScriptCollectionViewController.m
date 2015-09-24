@@ -96,7 +96,7 @@
 @property (nonatomic, strong) NSIndexPath *variableIndexPath;
 @property (nonatomic, assign) BOOL isEditingBrickMode;
 @property (nonatomic) PageIndexCategoryType lastSelectedBrickCategory;
-
+@property (nonatomic,strong) Script *movehHelperScript;
 @end
 
 @implementation ScriptCollectionViewController
@@ -214,7 +214,7 @@
         size = ((indexPath.item == 0)
              ? [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(script.class)]
              : [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass([script.brickList[indexPath.item - 1] class])]);
-        if (script.brickList.count <=1) {
+        if (script.brickList.count <=1 && script == self.movehHelperScript) {
             size =[BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(script.class)];
         }
     }
@@ -419,6 +419,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)actionSheetCancelOnTouch:(CatrobatActionSheet *)actionSheet
 {
+    
     [self enableUserInteractionAndResetHighlight];
 }
 
@@ -436,9 +437,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [script.brickList removeObjectAtIndex:fromIndexPath.item - 1];
             [script.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
         }
-
+        
     } else {
-
+        self.movehHelperScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
         Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
         Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
         Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
