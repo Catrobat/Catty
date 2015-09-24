@@ -482,7 +482,7 @@
         
     } else {
         // normal brick
-        NSUInteger copiedBrickIndex = ([brick.script.brickList indexOfObject:self] + 1);
+        NSUInteger copiedBrickIndex = ([brick.script.brickList indexOfObject:brick] + 1);
         Brick *copiedBrick = [brick mutableCopyWithContext:[CBMutableCopyContext new]];
         [brick.script addBrick:copiedBrick atIndex:copiedBrickIndex];
         NSIndexPath *newIndexPath = [NSIndexPath indexPathForItem:(indexPath.row + 1) inSection:indexPath.section];
