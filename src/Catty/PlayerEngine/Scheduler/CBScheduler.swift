@@ -115,7 +115,12 @@ final class CBScheduler : CBSchedulerProtocol {
     }
     
     func registeredContextForScript(script: Script) -> CBScriptContextAbstract? {
-        return _registeredScriptContexts.filter{ $0.script == script }.first
+        for context in _registeredScriptContexts {
+            if context.script == script {
+                return context
+            }
+        }
+        return nil
     }
 
     func startContext(context: CBScriptContextAbstract) {
@@ -184,7 +189,9 @@ final class CBScheduler : CBSchedulerProtocol {
     private func _resetContext(context: CBScriptContextAbstract) {
         context.reset()
         logger.debug("  >>> !!! RESETTING: \(context.script) <<<");
-        context.script.brickList.filter{ $0 is LoopBeginBrick }.forEach{ $0.resetCondition() }
+        for brick in context.script.brickList {
+            if brick is LoopBeginBrick { brick.resetCondition() }
+        }
     }
     
     func shutdown() {
