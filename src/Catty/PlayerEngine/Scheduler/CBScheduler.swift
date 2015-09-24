@@ -97,23 +97,16 @@ final class CBScheduler : CBSchedulerProtocol {
     
     // MARK: - Events
     func run() {
-        logger.info("")
-        logger.info("#############################################################")
-        logger.info("")
-        logger.info(" => SCHEDULER STARTED")
-        logger.info("")
-        logger.info("#############################################################\n\n")
-        
+        logger.info("\n\n#############################################################\n"
+            + " => SCHEDULER STARTED\n"
+            + "#############################################################\n\n")
+
         // set running flag
         running = true
         _broadcastHandler.setupHandler()
-        
+
         // start all StartScripts
-        for context in _registeredScriptContexts {
-            if let _ = context as? CBStartScriptContext {
-                startContext(context, withInitialState: .Running)
-            }
-        }
+        _registeredScriptContexts.filter{ $0 is CBStartScriptContext }.forEach{ startContext($0) }
     }
     
     func registerContext(context: CBScriptContextAbstract) {
@@ -122,14 +115,9 @@ final class CBScheduler : CBSchedulerProtocol {
     }
     
     func registeredContextForScript(script: Script) -> CBScriptContextAbstract? {
-        for registeredScriptContext in _registeredScriptContexts {
-            if registeredScriptContext.script == script {
-                return registeredScriptContext
-            }
-        }
-        return nil
+        return _registeredScriptContexts.filter{ $0.script == script }.first
     }
-    
+
     func startContext(context: CBScriptContextAbstract) {
         startContext(context, withInitialState: .Running)
     }
@@ -195,23 +183,15 @@ final class CBScheduler : CBSchedulerProtocol {
     
     private func _resetContext(context: CBScriptContextAbstract) {
         context.reset()
-        logger.debug("!!! RESETTING: \(context.script)");
-        logger.debug("-------------------------------------------------------------")
-        for brick in context.script.brickList {
-            if let loopBeginBrick = brick as? LoopBeginBrick {
-                loopBeginBrick.resetCondition()
-            }
-        }
+        logger.debug("  >>> !!! RESETTING: \(context.script) <<<");
+        context.script.brickList.filter{ $0 is LoopBeginBrick }.forEach{ $0.resetCondition() }
     }
     
     func shutdown() {
-        logger.info("")
-        logger.info("#############################################################")
-        logger.info("")
-        logger.info("!!! SCHEDULER SHUTDOWN")
-        logger.info("")
-        logger.info("#############################################################\n\n")
-        
+        logger.info("\n#############################################################\n\n"
+            + "!!! SCHEDULER SHUTDOWN\n\n"
+            + "#############################################################\n\n")
+
         // stop all currently (!) scheduled script contexts
         for context in _scheduledScriptContexts {
             precondition(_registeredScriptContexts.contains(context), "Unable to stop context! Context not registered any more.")
@@ -224,9 +204,8 @@ final class CBScheduler : CBSchedulerProtocol {
             logger.debug("\(script) finished!")
             context.removeReferences()
         }
-        for context in _registeredScriptContexts {
-            context.removeReferences() // IMPORTANT: remove references of other registered scripts as well!
-        }
+        // IMPORTANT: remove references of other registered scripts as well!
+        _registeredScriptContexts.forEach{ $0.removeReferences() }
         _scheduledScriptContexts.removeAll(keepCapacity: false)
         _registeredScriptContexts.removeAll(keepCapacity: false)
         _broadcastHandler.tearDownHandler()
