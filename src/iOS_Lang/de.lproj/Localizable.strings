@@ -113,13 +113,13 @@
 "Categories" = "Kategorien";
 
 /* No comment provided by engineer. */
-"Change brightness\nby %@\%" = "Ändern Sie Helligkeit um %@\\%";
+"Change brightness\nby %@\%" = "Ändere Helligkeit\num %@\%";
 
 /* No comment provided by engineer. */
-"Change size by %@\%" = "Ändere Größe um %@";
+"Change size by %@\%" = "Ändere Größe um %@\%";
 
 /* No comment provided by engineer. */
-"Change transparency\nby %@\%" = "Ändere Transparenz um %@\\%";
+"Change transparency\nby %@\%" = "Ändere Transparenz\num %@\%";
 
 /* No comment provided by engineer. */
 "Change variable\n%@\nby %@" = "Ändere Variable\n%@\num %@";
@@ -782,7 +782,7 @@
 "Pocket Paint" = "Pocket Paint";
 
 /* No comment provided by engineer. */
-"Point in direction %@°" = "Zeige in Richtung %@";
+"Point in direction %@°" = "Zeige in Richtung %@°";
 
 /* No comment provided by engineer. */
 "Point towards\n%@" = "Zeige auf \n%@";
@@ -818,7 +818,7 @@
 "Rate Us" = "Bewerten Sie uns";
 
 /* Title of View where the user can see the recently used bricks. */
-"Recently Used" = "Zuletzt verwendet";
+"Frequently Used" = "Häufig verwendet";
 
 /* No comment provided by engineer. */
 "Recording" = "Aufnehmen";
@@ -929,22 +929,22 @@
 "Set background\n%@" = "Setze Hintergrund \n%@";
 
 /* No comment provided by engineer. */
-"Set brightness to %@\%" = "Setze Helligkeit auf %@\\%";
+"Set brightness to %@\%" = "Setze Helligkeit auf %@\%";
 
 /* No comment provided by engineer. */
 "Set description" = "Beschreibung";
 
 /* No comment provided by engineer. */
-"Set size to %@\%" = "Set-Größe auf %@\\ %";
+"Set size to %@\%" = "Setze Größe auf %@\%";
 
 /* No comment provided by engineer. */
-"Set transparency\nto %@\%" = "Set-Transparenz\nauf %@\\%";
+"Set transparency\nto %@\%" = "Setze Transparenz\nauf %@\%";
 
 /* No comment provided by engineer. */
-"Set variable\n%@\nto %@" = "Setze Variable \n%@\nauf %@";
+"Set variable\n%@\nto %@" = "Setze Variable\n%@\nauf %@";
 
 /* No comment provided by engineer. */
-"Set volume to %@\%" = "Setze Lautstärke auf %@\\%";
+"Set volume to %@\%" = "Setze Lautstärke auf %@\%";
 
 /* No comment provided by engineer. */
 "Set X to %@" = "Setze X auf %@";
@@ -1061,10 +1061,10 @@
 "Tuesday" = "Dienstag";
 
 /* No comment provided by engineer. */
-"Turn left %@°" = "Drehe links %@";
+"Turn left %@°" = "Drehe links %@°";
 
 /* No comment provided by engineer. */
-"Turn right %@°" = "Drehe rechts %@";
+"Turn right %@°" = "Drehe rechts %@°";
 
 /* No comment provided by engineer. */
 "Unable to load program!" = "Fehler: Programm kann nicht geladen werden!";
