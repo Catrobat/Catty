@@ -96,7 +96,7 @@
 @property (nonatomic, strong) NSIndexPath *variableIndexPath;
 @property (nonatomic, assign) BOOL isEditingBrickMode;
 @property (nonatomic) PageIndexCategoryType lastSelectedBrickCategory;
-
+@property (nonatomic,strong) Script *moveHelperScript;
 @end
 
 @implementation ScriptCollectionViewController
@@ -214,7 +214,7 @@
         size = ((indexPath.item == 0)
              ? [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(script.class)]
              : [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass([script.brickList[indexPath.item - 1] class])]);
-        if (script.brickList.count <=1) {
+        if (script.brickList.count <=1 && script == self.moveHelperScript) {
             size =[BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(script.class)];
         }
     }
@@ -436,26 +436,22 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
             [script.brickList removeObjectAtIndex:fromIndexPath.item - 1];
             [script.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
         }
-
+        
     } else {
-
+        self.moveHelperScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
         Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
         Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
         Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
-        fromBrick.script = toScript;
-        if ([toScript.brickList count] == 0) {
-            [fromScript.brickList removeObjectAtIndex:fromIndexPath.item - 1];
-            [toScript.brickList addObject:fromBrick];
-            return;
-        }
-        Brick *toBrick = [toScript.brickList objectAtIndex:toIndexPath.item - 1];
-        [toScript.brickList removeObjectAtIndex:toIndexPath.item - 1];
-        [toScript.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
-        [toScript.brickList insertObject:toBrick atIndex:toIndexPath.item];
+		fromBrick.script = toScript;
         if ([fromScript.brickList count] == 1) {
             [fromScript.brickList removeAllObjects];
         } else {
             [fromScript.brickList removeObjectAtIndex:fromIndexPath.item - 1];
+        }
+        if ([toScript.brickList count] == 0) {
+            [toScript.brickList insertObject:fromBrick atIndex:toIndexPath.item];
+        }else{
+            [toScript.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
         }
     }
 }
@@ -505,7 +501,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if ([[BrickInsertManager sharedInstance] isBrickInsertionMode]) {
         return [[BrickInsertManager sharedInstance] collectionView:self.collectionView itemAtIndexPath:fromIndexPath canInsertToIndexPath:toIndexPath andObject:self.object];
     }
-        
+    
     return [[BrickMoveManager sharedInstance] collectionView:self.collectionView itemAtIndexPath:fromIndexPath canMoveToIndexPath:toIndexPath andObject:self.object];
 }
 
@@ -592,7 +588,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         brickCell.userInteractionEnabled = YES;
         brickCell.alpha = self.isEditingBrickMode ? kBrickCellInactiveWhileEditingOpacity : kBrickCellActiveOpacity;
     }
-    
+
     return brickCell;
 }
 
