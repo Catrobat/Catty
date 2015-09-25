@@ -45,7 +45,7 @@
 {
     [super viewDidLoad];
     self.navigationItem.title = kLocalizedExplore;
-    self.tabBar.barTintColor = [UIColor backgroundColor];
+    self.tabBar.barTintColor = [UIColor navBarColor];
     self.tabBar.barStyle = UIBarStyleDefault;
     self.tabBar.tintColor = [UIColor globalTintColor];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f],

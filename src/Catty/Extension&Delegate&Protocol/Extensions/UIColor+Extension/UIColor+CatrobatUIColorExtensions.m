@@ -45,7 +45,7 @@
 
 + (UIColor*)globalTintColor
 {
-    return [UIColor colorWithRed:(CGFloat)(232.0/255.0) green:146.0f/255.0f blue:6.0f/255.0f alpha:1.0f];
+    return [UIColor colorWithHex:0xADEEF0];
 }
 
 + (UIColor*) utilityTintColor
@@ -55,7 +55,7 @@
 
 + (UIColor*)navBarColor
 {
-    return [self backgroundColor];
+    return [self colorWithHex:0x18A5B7];
 }
 
 + (UIColor*)navTintColor
@@ -65,12 +65,12 @@
 
 + (UIColor*)navTextColor
 {
-    return [self lightTextTintColor];
+    return [self backgroundColor];
 }
 
 + (UIColor*)lightTextTintColor
 {
-    return [UIColor colorWithRed:168.0f/255.0f green:223.0f/255.0f blue:244/255.0f alpha:1.0f];
+    return [UIColor colorWithHex:0x18A5B7];
 }
 
 + (UIColor*)darkTextTintColor
@@ -86,7 +86,7 @@
 
 + (UIColor*)backgroundColor
 {
-    return [UIColor colorWithRed:0 green:37.0f/255.0f blue:52.0f/255.0f alpha:1.0f];
+    return [UIColor colorWithRed:236.0f/255.0f green:236.0f/255.0f blue:236.0f/255.0f alpha:1.0f];
 }
 
 # pragma mark FormulaEditor
