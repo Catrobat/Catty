@@ -419,7 +419,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)actionSheetCancelOnTouch:(CatrobatActionSheet *)actionSheet
 {
-    
     [self enableUserInteractionAndResetHighlight];
 }
 
@@ -443,6 +442,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
         Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
         Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
+		fromBrick.script = toScript;
         if ([fromScript.brickList count] == 1) {
             [fromScript.brickList removeAllObjects];
         } else {
@@ -662,7 +662,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [targetScript.brickList insertObject:brick atIndex:insertionIndex];
     }
     // empty script list, insert first brick and continue
-    if (targetScript.brickList.count == 1) {
+    if (targetScript.brickList.count == 1 && self.object.scriptList.count == 1) {
         
         [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:[NSIndexPath indexPathForRow:0 inSection:targetScriptIndex] andObject:self.object];
         [self reloadData];
@@ -674,7 +674,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     
     [self reloadData];
     [self turnOnInsertingBrickMode];
-    [self.object.program saveToDisk];
+//    [self.object.program saveToDisk];
 }
 
 
@@ -741,8 +741,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 [self.object.scriptList removeObjectAtIndex:indexPath.section];
                 [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
             } else {
-                [script.brickList removeObjectAtIndex:indexPath.item - 1];
-                [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+                if (script.brickList.count) {
+                    [script.brickList removeObjectAtIndex:indexPath.item - 1];
+                    [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+                }
             }
         }
     } completion:^(BOOL finished) {
@@ -893,21 +895,25 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 - (void)removeBrickOrScript:(id<ScriptProtocol>)scriptOrBrick
                 atIndexPath:(NSIndexPath*)indexPath
 {
-    if ([scriptOrBrick isKindOfClass:[Script class]]) {
-        [(Script*)scriptOrBrick removeFromObject];
-        [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
-    } else {
-        CBAssert([scriptOrBrick isKindOfClass:[Brick class]]);
-        Brick *brick = (Brick*)scriptOrBrick;
-        NSArray* removingBrickIndexPaths = [[BrickManager sharedBrickManager] getIndexPathsForRemovingBricks:indexPath andBrick:brick];
-        if (removingBrickIndexPaths) {
-            [self.collectionView deleteItemsAtIndexPaths:removingBrickIndexPaths];
+    [self.collectionView performBatchUpdates:^{
+        if ([scriptOrBrick isKindOfClass:[Script class]]) {
+            [(Script*)scriptOrBrick removeFromObject];
+            [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
+        } else {
+            CBAssert([scriptOrBrick isKindOfClass:[Brick class]]);
+            Brick *brick = (Brick*)scriptOrBrick;
+            NSArray* removingBrickIndexPaths = [[BrickManager sharedBrickManager] getIndexPathsForRemovingBricks:indexPath andBrick:brick];
+            if (removingBrickIndexPaths) {
+                [self.collectionView deleteItemsAtIndexPaths:removingBrickIndexPaths];
+            }
         }
-    }
-    self.placeHolderView.hidden = (self.object.scriptList.count != 0);
-    [self reloadData];
-    [self.object.program saveToDisk];
-    [self setEditing:NO animated:NO];
+    } completion:^(BOOL finished) {
+        self.placeHolderView.hidden = (self.object.scriptList.count != 0);
+        [self reloadData];
+        [self.object.program saveToDisk];
+        [self setEditing:NO animated:NO];
+    }];
+
 }
 
 #pragma mark - Add new Variable
