@@ -50,7 +50,7 @@
 
 + (UIColor*) utilityTintColor
 {
-    return [self utilityTintColor];
+    return [self globalTintColor];
 }
 
 + (UIColor*)navBarColor
@@ -121,12 +121,12 @@
 # pragma mark FormulaEditor
 + (UIColor*)formulaEditorOperatorColor
 {
-    return [self globalTintColor];
+    return [self buttonNormalTintColor];
 }
 
 + (UIColor*)formulaEditorHighlightColor
 {
-    return [self globalTintColor];
+    return [self darkTextTintColor];
 }
 
 + (UIColor*)formulaEditorOperandColor
