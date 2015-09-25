@@ -818,7 +818,7 @@
 "Rate Us" = "Bewerten Sie uns";
 
 /* Title of View where the user can see the recently used bricks. */
-"Recently Used" = "Zuletzt verwendet";
+"Frequently Used" = "Häufig verwendet";
 
 /* No comment provided by engineer. */
 "Recording" = "Aufnehmen";

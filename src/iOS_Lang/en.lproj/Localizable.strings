@@ -113,13 +113,13 @@
 "Categories" = "Categories";
 
 /* No comment provided by engineer. */
-"Change brightness\nby %@\%" = "Change brightness\nby %@\\%";
+"Change brightness\nby %@\%" = "Change brightness\nby %@\%";
 
 /* No comment provided by engineer. */
-"Change size by %@\%" = "Change size by %@\\%";
+"Change size by %@\%" = "Change size by %@\%";
 
 /* No comment provided by engineer. */
-"Change transparency\nby %@\%" = "Change transparency\nby %@\\%";
+"Change transparency\nby %@\%" = "Change transparency\nby %@\%";
 
 /* No comment provided by engineer. */
 "Change variable\n%@\nby %@" = "Change variable\n%@\nby %@";
@@ -408,6 +408,9 @@
 
 /* No comment provided by engineer. */
 "Fr" = "Fr";
+
+/* Title of View where the user can see the frequently used bricks. */
+"Frequently Used" = "Frequently Used";
 
 /* No comment provided by engineer. */
 "Friday" = "Friday";
@@ -817,9 +820,6 @@
 /* No comment provided by engineer. */
 "Rate Us" = "Rate Us";
 
-/* Title of View where the user can see the recently used bricks. */
-"Recently Used" = "Recently Used";
-
 /* No comment provided by engineer. */
 "Recording" = "Recording";
 
@@ -929,22 +929,22 @@
 "Set background\n%@" = "Set background\n%@";
 
 /* No comment provided by engineer. */
-"Set brightness to %@\%" = "Set brightness to %@\\%";
+"Set brightness to %@\%" = "Set brightness to %@\%";
 
 /* No comment provided by engineer. */
 "Set description" = "Set description";
 
 /* No comment provided by engineer. */
-"Set size to %@\%" = "Set size to %@\\%";
+"Set size to %@\%" = "Set size to %@\%";
 
 /* No comment provided by engineer. */
-"Set transparency\nto %@\%" = "Set transparency\nto %@\\%";
+"Set transparency\nto %@\%" = "Set transparency\nto %@\%";
 
 /* No comment provided by engineer. */
 "Set variable\n%@\nto %@" = "Set variable\n%@\nto %@";
 
 /* No comment provided by engineer. */
-"Set volume to %@\%" = "Set volume to %@\\%";
+"Set volume to %@\%" = "Set volume to %@\%";
 
 /* No comment provided by engineer. */
 "Set X to %@" = "Set X to %@";
@@ -1070,7 +1070,7 @@
 "Unable to load program!" = "Unable to load program!";
 
 /* No comment provided by engineer. */
-"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is not a valid sound or the file is corrupt.";
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
 
 /* No comment provided by engineer. */
 "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again.";
@@ -1176,3 +1176,4 @@
 
 /* paint */
 "zoom" = "zoom";
+
