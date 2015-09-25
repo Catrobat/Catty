@@ -29,7 +29,7 @@ final class CBBroadcastHandler : CBBroadcastHandlerProtocol {
     // MARK: - Properties
     var logger: CBLogger
     weak var scheduler: CBSchedulerProtocol?
-    private lazy var _broadcastWaitingScriptContextsQueue = [CBScriptContextAbstract:[CBBroadcastScriptContext]]()
+    private lazy var _broadcastWaitingScriptContextsQueue = [CBScriptContext:[CBBroadcastScriptContext]]()
     private lazy var _registeredBroadcastScriptContexts = [String:[CBBroadcastScriptContext]]()
     private lazy var _broadcastStartQueueBuffer = [CBBroadcastQueueElement]()
     private lazy var _selfBroadcastCounters = [String:Int]()
@@ -46,7 +46,7 @@ final class CBBroadcastHandler : CBBroadcastHandlerProtocol {
     }
 
     // MARK: - Operations
-    func setupHandler() {
+    func setup() {
         // setup broadcast start queue handler
         let broadcastQueue = dispatch_queue_create("org.catrobat.broadcastStart.queue", DISPATCH_QUEUE_CONCURRENT)
         dispatch_async(broadcastQueue, { [weak self] in
@@ -72,7 +72,7 @@ final class CBBroadcastHandler : CBBroadcastHandlerProtocol {
         _broadcastStartQueueBuffer.removeAll()
     }
 
-    func tearDownHandler() {
+    func tearDown() {
         _broadcastWaitingScriptContextsQueue.removeAll(keepCapacity: false)
         _registeredBroadcastScriptContexts.removeAll(keepCapacity: false)
         _broadcastStartQueueBuffer.removeAll(keepCapacity: false)
@@ -90,7 +90,7 @@ final class CBBroadcastHandler : CBBroadcastHandlerProtocol {
             _registeredBroadcastScriptContexts[message] = [context]
         }
 
-        let object = context.broadcastScript.object
+        let object = context.script.object
         logger.info("Subscribed new CBBroadcastScriptContext of object \(object!.name) for message \(message)")
     }
 
@@ -101,7 +101,7 @@ final class CBBroadcastHandler : CBBroadcastHandlerProtocol {
             for registeredContext in registeredContexts {
                 if registeredContext === context {
                     registeredContexts.removeAtIndex(index)
-                    let object = context.broadcastScript.object
+                    let object = context.script.object
                     logger.info("Unsubscribed CBBroadcastScriptContext of object \(object!.name) for message \(message)")
                     return
                 }
@@ -112,7 +112,7 @@ final class CBBroadcastHandler : CBBroadcastHandlerProtocol {
     }
 
     // MARK: - Broadcast Handling
-    func performBroadcastWithMessage(message: String, senderScriptContext: CBScriptContextAbstract,
+    func performBroadcastWithMessage(message: String, senderScriptContext: CBScriptContext,
         broadcastType: CBBroadcastType)
     {
         senderScriptContext.state = .Waiting
@@ -143,20 +143,20 @@ final class CBBroadcastHandler : CBBroadcastHandlerProtocol {
             if registeredContext === senderScriptContext {
                 // end of script reached!! Script will be aborted due to self-calling broadcast
                 isSelfBroadcast = true
-                scheduler?.stopContext(registeredContext) // stop own script (sender script!)
+                scheduler?.stopContext(registeredContext, continueWaitingBroadcastSenders: true) // stop own script (sender script!)
                 continue
             }
 
             // case broadcastScript != senderScript (=> other broadcastscript)
             if scheduler?.isContextScheduled(registeredContext) == true {
-                scheduler?.stopContext(registeredContext) // case broadcastScript is running => stop it
+                scheduler?.stopContext(registeredContext, continueWaitingBroadcastSenders: true) // case broadcastScript is running => stop it
             }
             recipientContexts += registeredContext // collect other (!) broadcastScript
         }
 
         var recipientsInitialState: CBScriptState = .Running
         if isSelfBroadcast == false && broadcastType == .BroadcastWait {
-            // do not wait for broadcastscript if self broadcast == senderScript
+            // do not wait for broadcast script if self broadcast == senderScript
             // => do not execute further actions of senderScript!
             senderScriptContext.state = .Waiting
             recipientsInitialState = .RunningBlocking
@@ -187,17 +187,18 @@ final class CBBroadcastHandler : CBBroadcastHandlerProtocol {
         }
         if ++counter % selfBroadcastRecursionMaxDepthLimit == 0 { // XXX: DIRTY PERFORMANCE HACK!!
             dispatch_async(dispatch_get_main_queue(), { [weak self] in
-                self?.scheduler?.startContext(context) // restart this self-listening BroadcastScript
+                // restart this self-listening BroadcastScript
+                self?.scheduler?.startContext(context, withInitialState: .Running)
             })
         } else {
-            scheduler?.startContext(context)
+            scheduler?.startContext(context, withInitialState: .Running)
         }
         _selfBroadcastCounters[message] = counter
         logger.debug("BROADCASTSCRIPT HAS BEEN RESTARTED DUE TO SELF-BROADCAST!!")
     }
 
     func continueContextsWaitingForTerminationOfBroadcastScriptContext(context: CBBroadcastScriptContext) {
-        var waitingContextsToBeContinued = [CBScriptContextAbstract]()
+        var waitingContextsToBeContinued = [CBScriptContext]()
         for (waitingContext, var runningBroadcastScriptContexts) in _broadcastWaitingScriptContextsQueue {
             assert(waitingContext != context)
             runningBroadcastScriptContexts.removeObject(context)
@@ -220,7 +221,12 @@ final class CBBroadcastHandler : CBBroadcastHandlerProtocol {
         }
     }
 
-    func removeWaitingContext(context: CBScriptContextAbstract) {
-        _broadcastWaitingScriptContextsQueue.removeValueForKey(context)
+    func removeWaitingContextAndTerminateAllCalledBroadcastScripts(context: CBScriptContext) {
+        if let broadcastContexts = _broadcastWaitingScriptContextsQueue[context] {
+            for broadcastContext in broadcastContexts {
+                scheduler?.stopContext(broadcastContext, continueWaitingBroadcastSenders: false)
+            }
+            _broadcastWaitingScriptContextsQueue.removeValueForKey(context)
+        }
     }
 }

@@ -482,6 +482,7 @@
 		92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
 		A918B6B71B89F5870017B92F /* Siren.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A918B6B61B89F5870017B92F /* Siren.bundle */; };
+		AA6CC28B1BB4AB9A0007A621 /* CBScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CC28A1BB4AB9A0007A621 /* CBScriptContext.swift */; settings = {ASSET_TAGS = (); }; };
 		AA70F7F11B866E9B003057C6 /* CBFrontentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA70F7F01B866E9B003057C6 /* CBFrontentTests.swift */; };
 		AA85F6DF1B9B361200398DC7 /* ProgramTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85F6DE1B9B361200398DC7 /* ProgramTVCTests.swift */; settings = {ASSET_TAGS = (); }; };
 		AAA2979A1BB36FEA006F8793 /* SensorHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E781A24C7D800093DA7 /* SensorHandler.m */; };
@@ -493,15 +494,12 @@
 		AABCB3D91BB3648E009F67D2 /* CBOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B11B115E6400419A55 /* CBOperation.swift */; };
 		AABCB3DA1BB3649F009F67D2 /* SwellAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D44401B122E8500A3B53D /* SwellAll.swift */; };
 		AABCB3DB1BB364B9009F67D2 /* CBBroadcastHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3C51BB36120009F67D2 /* CBBroadcastHandlerProtocol.swift */; };
-		AABCB3DC1BB364CE009F67D2 /* CBBroadcastScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E48B61B1CEAE9003EA71E /* CBBroadcastScriptContext.swift */; };
 		AABCB3DD1BB364DD009F67D2 /* CBIfConditionalSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF43B01B115E6400419A55 /* CBIfConditionalSequence.swift */; };
 		AABCB3DE1BB364F2009F67D2 /* CBBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3D41BB3616F009F67D2 /* CBBackend.swift */; };
 		AABCB3DF1BB3650B009F67D2 /* CBBackendProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3C41BB36120009F67D2 /* CBBackendProtocol.swift */; };
 		AABCB3E01BB3650B009F67D2 /* CBFrontendProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3C61BB36120009F67D2 /* CBFrontendProtocol.swift */; };
 		AABCB3E11BB3650B009F67D2 /* CBSchedulerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3C71BB36120009F67D2 /* CBSchedulerProtocol.swift */; };
 		AABCB3E21BB36529009F67D2 /* CBScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D44481B1249DD00A3B53D /* CBScheduler.swift */; };
-		AABCB3E31BB3654D009F67D2 /* CBStartScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E48B81B1CEAE9003EA71E /* CBStartScriptContext.swift */; };
-		AABCB3E41BB3655F009F67D2 /* CBWhenScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E48B91B1CEAE9003EA71E /* CBWhenScriptContext.swift */; };
 		AABCB3E61BB36651009F67D2 /* CBInstructionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3D51BB3616F009F67D2 /* CBInstructionHandler.swift */; };
 		AABCB3E71BB3671F009F67D2 /* LLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72EB1B0C01CD00D6B184 /* LLNode.swift */; };
 		AABCB3EA1BB3687D009F67D2 /* CBScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3CC1BB36131009F67D2 /* CBScene.swift */; };
@@ -518,7 +516,6 @@
 		CA3E72E81B0C00A500D6B184 /* CBStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3E72E71B0C00A500D6B184 /* CBStack.swift */; };
 		CA43C4BA1B165C0B009B604F /* CBBroadcastHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA43C4B91B165C0B009B604F /* CBBroadcastHandler.swift */; };
 		CA4C506B1B1C891000BB43E1 /* SetupScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4C506A1B1C891000BB43E1 /* SetupScene.swift */; };
-		CA4E48BB1B1CEAE9003EA71E /* CBScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4E48B71B1CEAE9003EA71E /* CBScriptContext.swift */; };
 		CA7698C21B0E4B3F000D0340 /* CBStackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD740E71AF2D42B00C32937 /* CBStackTests.m */; };
 		CA7698C41B0E4B3F000D0340 /* CustomExtensionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B44EC17F079F500624730 /* CustomExtensionsTests.m */; };
 		CA7698C51B0E4B3F000D0340 /* ProgramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C247718CD053300314C2B /* ProgramTests.m */; };
@@ -1586,6 +1583,7 @@
 		A918B6B61B89F5870017B92F /* Siren.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Siren.bundle; sourceTree = "<group>"; };
 		AA039CF01B826328003ADEE0 /* commit */ = {isa = PBXFileReference; lastKnownFileType = text; name = commit; path = ../commit; sourceTree = "<group>"; };
 		AA101E401B8D3A3900797DEF /* Encapsulated.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Encapsulated.xml; sourceTree = "<group>"; };
+		AA6CC28A1BB4AB9A0007A621 /* CBScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBScriptContext.swift; path = PlayerEngine/DataModel/CBScriptContext/CBScriptContext.swift; sourceTree = "<group>"; };
 		AA70F7F01B866E9B003057C6 /* CBFrontentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBFrontentTests.swift; path = PlayerEngine/CBFrontentTests.swift; sourceTree = "<group>"; };
 		AA85F6DE1B9B361200398DC7 /* ProgramTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramTVCTests.swift; sourceTree = "<group>"; };
 		AAADA0041B9B29D500E0CA9A /* Catty UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Catty UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1632,10 +1630,6 @@
 		CA3E72EB1B0C01CD00D6B184 /* LLNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LLNode.swift; path = 3rdParty/LLNode/LLNode.swift; sourceTree = "<group>"; };
 		CA43C4B91B165C0B009B604F /* CBBroadcastHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBroadcastHandler.swift; path = PlayerEngine/Scheduler/CBBroadcastHandler.swift; sourceTree = "<group>"; };
 		CA4C506A1B1C891000BB43E1 /* SetupScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetupScene.swift; path = Catty/PlayerEngine/Scene/SetupScene.swift; sourceTree = SOURCE_ROOT; };
-		CA4E48B61B1CEAE9003EA71E /* CBBroadcastScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBroadcastScriptContext.swift; path = PlayerEngine/DataModel/CBScriptContexts/CBBroadcastScriptContext.swift; sourceTree = "<group>"; };
-		CA4E48B71B1CEAE9003EA71E /* CBScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBScriptContext.swift; path = PlayerEngine/DataModel/CBScriptContexts/CBScriptContext.swift; sourceTree = "<group>"; };
-		CA4E48B81B1CEAE9003EA71E /* CBStartScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBStartScriptContext.swift; path = PlayerEngine/DataModel/CBScriptContexts/CBStartScriptContext.swift; sourceTree = "<group>"; };
-		CA4E48B91B1CEAE9003EA71E /* CBWhenScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBWhenScriptContext.swift; path = PlayerEngine/DataModel/CBScriptContexts/CBWhenScriptContext.swift; sourceTree = "<group>"; };
 		CA52403518AD782600052914 /* ProgramTableViewControllerExistingProgramsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramTableViewControllerExistingProgramsTests.m; sourceTree = "<group>"; };
 		CA6E4C4719F9C388001B65C3 /* My first program.catrobat */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My first program.catrobat"; sourceTree = "<group>"; };
 		CA7698AA1B0E4A97000D0340 /* Catty Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Catty Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4507,21 +4501,18 @@
 			isa = PBXGroup;
 			children = (
 				CA02C5E81B14386E00233FB0 /* CBSpriteNode */,
-				CAD232191B10F13100570370 /* CBScriptExecContexts */,
+				CAD232191B10F13100570370 /* CBScriptContext */,
 				CAEE3BEA1ABDFADE009FDA72 /* CBSequence */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
 		};
-		CAD232191B10F13100570370 /* CBScriptExecContexts */ = {
+		CAD232191B10F13100570370 /* CBScriptContext */ = {
 			isa = PBXGroup;
 			children = (
-				CA4E48B71B1CEAE9003EA71E /* CBScriptContext.swift */,
-				CA4E48B61B1CEAE9003EA71E /* CBBroadcastScriptContext.swift */,
-				CA4E48B81B1CEAE9003EA71E /* CBStartScriptContext.swift */,
-				CA4E48B91B1CEAE9003EA71E /* CBWhenScriptContext.swift */,
+				AA6CC28A1BB4AB9A0007A621 /* CBScriptContext.swift */,
 			);
-			name = CBScriptExecContexts;
+			name = CBScriptContext;
 			sourceTree = "<group>";
 		};
 		CAD740E01AF2D2DA00C32937 /* CBStack */ = {
@@ -5342,15 +5333,12 @@
 				AABCB3EB1BB3687D009F67D2 /* CBScene+ScreenRecording.swift in Sources */,
 				AABCB3E71BB3671F009F67D2 /* LLNode.swift in Sources */,
 				AABCB3E61BB36651009F67D2 /* CBInstructionHandler.swift in Sources */,
-				AABCB3E41BB3655F009F67D2 /* CBWhenScriptContext.swift in Sources */,
-				AABCB3E31BB3654D009F67D2 /* CBStartScriptContext.swift in Sources */,
 				AABCB3E21BB36529009F67D2 /* CBScheduler.swift in Sources */,
 				AABCB3DF1BB3650B009F67D2 /* CBBackendProtocol.swift in Sources */,
 				AABCB3E01BB3650B009F67D2 /* CBFrontendProtocol.swift in Sources */,
 				AABCB3E11BB3650B009F67D2 /* CBSchedulerProtocol.swift in Sources */,
 				AABCB3DE1BB364F2009F67D2 /* CBBackend.swift in Sources */,
 				AABCB3DD1BB364DD009F67D2 /* CBIfConditionalSequence.swift in Sources */,
-				AABCB3DC1BB364CE009F67D2 /* CBBroadcastScriptContext.swift in Sources */,
 				AABCB3DB1BB364B9009F67D2 /* CBBroadcastHandlerProtocol.swift in Sources */,
 				AABCB3DA1BB3649F009F67D2 /* SwellAll.swift in Sources */,
 				AABCB3D91BB3648E009F67D2 /* CBOperation.swift in Sources */,
@@ -5364,7 +5352,6 @@
 				CA2D444F1B1251BF00A3B53D /* CBSchedulingAlgorithms.swift in Sources */,
 				CA43C4BA1B165C0B009B604F /* CBBroadcastHandler.swift in Sources */,
 				CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */,
-				CA4E48BB1B1CEAE9003EA71E /* CBScriptContext.swift in Sources */,
 				CA3E72E81B0C00A500D6B184 /* CBStack.swift in Sources */,
 				92DFB05B1A38960C00FA9B0F /* LineTool.m in Sources */,
 				92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */,
@@ -5407,6 +5394,7 @@
 				92FF325B1A24E2F400093DA7 /* BDKNotifyHUD.m in Sources */,
 				92FF32BD1A24E2F400093DA7 /* ProgramTableHeaderView.m in Sources */,
 				4C724E241B4D3E8C00E27479 /* CBXMLValidator.m in Sources */,
+				AA6CC28B1BB4AB9A0007A621 /* CBScriptContext.swift in Sources */,
 				92FF30ED1A24DCAA00093DA7 /* VibrationBrick.m in Sources */,
 				92FF32941A24E2F400093DA7 /* ChangeXByNBrickCell.m in Sources */,
 				92FF2EC21A24C8A700093DA7 /* ProgramLoadingInfo.m in Sources */,

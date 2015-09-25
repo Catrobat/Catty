@@ -22,12 +22,12 @@
 
 protocol CBBroadcastHandlerProtocol : class {
 
-    func setupHandler()
-    func tearDownHandler()
+    func setup()
+    func tearDown()
     func subscribeBroadcastScriptContext(context: CBBroadcastScriptContext)
     func unsubscribeBroadcastScriptContext(context: CBBroadcastScriptContext)
-    func performBroadcastWithMessage(message: String, senderScriptContext: CBScriptContextAbstract, broadcastType: CBBroadcastType)
+    func performBroadcastWithMessage(message: String, senderScriptContext: CBScriptContext, broadcastType: CBBroadcastType)
     func continueContextsWaitingForTerminationOfBroadcastScriptContext(context: CBBroadcastScriptContext)
-    func removeWaitingContext(context: CBScriptContextAbstract)
+    func removeWaitingContextAndTerminateAllCalledBroadcastScripts(context: CBScriptContext)
 
 }

@@ -57,10 +57,10 @@ func <(lhs: NSDate, rhs: NSDate) -> Bool {
 }
 
 // MARK: Typedefs
-typealias CBBroadcastQueueElement = (message: String, senderScriptContext: CBScriptContextAbstract,
+typealias CBBroadcastQueueElement = (message: String, senderScriptContext: CBScriptContext,
     broadcastType: CBBroadcastType)
 typealias CBExecClosure = dispatch_block_t
-typealias CBInstruction = (brick: Brick, context: CBScriptContextAbstract) -> CBExecClosure
+typealias CBInstruction = (brick: Brick, context: CBScriptContext) -> CBExecClosure
 
 // MARK: Enums
 enum CBExecType {

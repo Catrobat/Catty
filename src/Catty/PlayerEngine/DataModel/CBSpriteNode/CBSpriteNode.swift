@@ -23,21 +23,21 @@
 final class CBSpriteNode : SKSpriteNode {
 
     // MARK: - Properties
-    private(set) var spriteObject : SpriteObject?
-    var currentLook : Look?
-    var currentUIImageLook : UIImage?
-    var currentLookBrightness : CGFloat = 1.0
-    var scenePosition : CGPoint {
+    private(set) var spriteObject: SpriteObject?
+    var currentLook: Look?
+    var currentUIImageLook: UIImage?
+    var currentLookBrightness: CGFloat = 1.0
+    var scenePosition: CGPoint {
         set { self.position = (scene as! CBScene).convertPointToScene(newValue) }
         get { return (scene as! CBScene).convertSceneCoordinateToPoint(self.position) }
     }
-    var xPosition : CGFloat { return self.scenePosition.x }
-    var yPosition : CGFloat { return self.scenePosition.y }
-    var zIndex : CGFloat { return zPosition }
-    var brightness : CGFloat { return (100 * self.currentLookBrightness) }
-    var scaleX : CGFloat { return (100 * xScale) }
-    var scaleY : CGFloat { return (100 * yScale) }
-    var rotation : Double {
+    var xPosition: CGFloat { return self.scenePosition.x }
+    var yPosition: CGFloat { return self.scenePosition.y }
+    var zIndex: CGFloat { return zPosition }
+    var brightness: CGFloat { return (100 * self.currentLookBrightness) }
+    var scaleX: CGFloat { return (100 * xScale) }
+    var scaleY: CGFloat { return (100 * yScale) }
+    var rotation: Double {
         set {
             var rotationInDegrees = newValue%360.0 // swift equivalent for fmodf
             if rotationInDegrees < 0.0 { rotationInDegrees += 360.0 }
@@ -162,13 +162,14 @@ final class CBSpriteNode : SKSpriteNode {
 
     func touchedWithTouches(touches: NSSet, withX x: CGFloat, andY y: CGFloat) -> Bool {
         guard let playerScene = (scene as? CBScene),
-              let scheduler = playerScene.scheduler else {
-            return false
-        }
+              let scheduler = playerScene.scheduler
+        else { return false }
+        guard let spriteObject = spriteObject,
+              let spriteName = spriteObject.name
+        else { fatalError("Invalid SpriteObject!") }
+
         // FIXME: this check does not work any more since Swift 2.0! seems to be a compiler problem!
-//        if scheduler.running == false {
-//            return false
-//        }
+//        if !scheduler.running { return false }
 
         for touchAnyObject in touches {
             let touch = touchAnyObject as! UITouch
@@ -186,21 +187,13 @@ final class CBSpriteNode : SKSpriteNode {
 //                    println(@"I'm transparent at this point")
                 return false
             }
-            guard let spriteObject = self.spriteObject,
-                  let scriptList = spriteObject.scriptList as NSArray as? [Script] else {
-                fatalError("Invalid spriteObject or scriptList!")
-            }
 
-            for script in scriptList {
-                guard let whenScript = script as? WhenScript else { continue }
-                guard let whenScriptContext = scheduler.registeredContextForScript(whenScript) else {
-                    fatalError("WhenScript not registered in Scheduler! This should NEVER HAPPEN!")
-                }
-
-                if scheduler.isContextScheduled(whenScriptContext) == false {
-                    scheduler.startContext(whenScriptContext)
-                } else {
-                    scheduler.restartContext(whenScriptContext)
+            if let whenContexts = scheduler.whenContextsForSpriteNodeWithName(spriteName) {
+                for whenContext in whenContexts {
+                    if scheduler.isContextScheduled(whenContext) {
+                        scheduler.stopContext(whenContext, continueWaitingBroadcastSenders: true)
+                    }
+                    scheduler.startContext(whenContext, withInitialState: .Running)
                 }
             }
             return true
@@ -208,8 +201,4 @@ final class CBSpriteNode : SKSpriteNode {
         return true
     }
 
-    // MARK: Helper
-    class func spriteNodeWithName(name: String, inScene scene: SKScene) -> CBSpriteNode? {
-        return scene.childNodeWithName(name) as? CBSpriteNode
-    }
 }

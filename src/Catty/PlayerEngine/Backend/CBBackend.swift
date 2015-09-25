@@ -39,36 +39,30 @@ final class CBBackend : CBBackendProtocol {
     }
 
     // MARK: - Operations
-    func scriptContextForSequenceList(sequenceList: CBScriptSequenceList) -> CBScriptContextAbstract
+    func scriptContextForSequenceList(sequenceList: CBScriptSequenceList,
+        spriteNode: CBSpriteNode) -> CBScriptContext
     {
         logger.info("Generating ScriptContext of \(sequenceList.script)")
-        var scriptContext: CBScriptContextAbstract? = nil
+        var context: CBScriptContext? = nil
 
         switch sequenceList.script {
-
         case let startScript as StartScript:
-            scriptContext = CBStartScriptContext(startScript: startScript, state: .Runnable,
-                scriptSequenceList: sequenceList)
-
+            context = CBStartScriptContext(startScript: startScript, spriteNode: spriteNode, state: .Runnable)
         case let whenScript as WhenScript:
-            scriptContext = CBWhenScriptContext(whenScript: whenScript, state: .Runnable,
-                scriptSequenceList: sequenceList)
-
+            context = CBWhenScriptContext(whenScript: whenScript, spriteNode: spriteNode, state: .Runnable)
         case let bcScript as BroadcastScript:
-            scriptContext = CBBroadcastScriptContext(broadcastScript: bcScript, state: .Runnable,
-                scriptSequenceList: sequenceList)
-
+            context = CBBroadcastScriptContext(broadcastScript: bcScript, spriteNode: spriteNode, state: .Runnable)
         default:
             fatalError("Unknown script! THIS SHOULD NEVER HAPPEN!")
         }
 
         // generate instructions and add them to script context
-        scriptContext! += _instructionsForSequence(sequenceList.sequenceList, context: scriptContext!)
-        return scriptContext!
+        context! += _instructionsForSequence(sequenceList.sequenceList, context: context!)
+        return context!
     }
 
     private func _instructionsForSequence(sequenceList: CBSequenceList,
-        context: CBScriptContextAbstract) -> [CBExecClosure]
+        context: CBScriptContext) -> [CBExecClosure]
     {
         var instructionList = [CBExecClosure]()
         sequenceList.forEach {
@@ -89,7 +83,7 @@ final class CBBackend : CBBackendProtocol {
     }
 
     private func _instructionsForIfSequence(ifSequence: CBIfConditionalSequence,
-        context: CBScriptContextAbstract) -> [CBExecClosure]
+        context: CBScriptContext) -> [CBExecClosure]
     {
         var instructionList = [CBExecClosure]()
 
@@ -98,7 +92,6 @@ final class CBBackend : CBBackendProtocol {
         let numberOfIfInstructions = ifInstructions.count
         instructionList += { [weak self] in
             if ifSequence.checkCondition() == false {
-                context.state = .RunningMature
                 var numberOfInstructionsToJump = numberOfIfInstructions
                 if ifSequence.elseSequenceList != nil {
                     ++numberOfInstructionsToJump // includes jump instr. at the end of if sequence
@@ -119,7 +112,6 @@ final class CBBackend : CBBackendProtocol {
             // add jump instruction to be the last if-instruction
             // (needed to avoid execution of else sequence)
             instructionList += { [weak self] in
-                context.state = .RunningMature
                 context.jump(numberOfInstructions: numberOfElseInstructions)
                 self?._scheduler.runNextInstructionOfContext(context)
             }
@@ -129,13 +121,12 @@ final class CBBackend : CBBackendProtocol {
     }
 
     private func _instructionsForLoopSequence(conditionalSequence: CBConditionalSequence,
-        context: CBScriptContextAbstract) -> [CBExecClosure]
+        context: CBScriptContext) -> [CBExecClosure]
     {
         let bodyInstructions = _instructionsForSequence(conditionalSequence.sequenceList,
             context: context)
         let numOfBodyInstructions = bodyInstructions.count
         let loopEndInstruction: CBExecClosure = { [weak self] in
-            context.state = .RunningMature
             var numOfInstructionsToJump = 0
             if conditionalSequence.checkCondition() {
                 numOfInstructionsToJump -= numOfBodyInstructions + 1 // omits loop begin instruction
@@ -172,7 +163,6 @@ final class CBBackend : CBBackendProtocol {
                 conditionalSequence.lastLoopIterationStartTime = NSDate()
             } else {
                 conditionalSequence.resetCondition() // IMPORTANT: reset loop counter right now
-                context.state = .RunningMature
                 let numOfInstructionsToJump = numOfBodyInstructions + 1 // includes loop end instr.!
                 context.jump(numberOfInstructions: numOfInstructionsToJump)
             }

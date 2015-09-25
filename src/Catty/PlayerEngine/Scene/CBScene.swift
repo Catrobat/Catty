@@ -96,11 +96,9 @@ final class CBScene : SKScene {
     }
 
     func touchedWithTouches(touches: NSSet, withX x:CGFloat, andY y:CGFloat) -> Bool {
-        if scheduler?.running == false {
-            return false
-        }
-
+        if scheduler?.running == false { return false }
         logger?.debug("StartTouchOfScene")
+
         if let touch = touches.anyObject() as? UITouch {
             let location = touch.locationInNode(self)
             logger?.debug("x:\(location.x),y:\(location.y)")
@@ -160,12 +158,8 @@ final class CBScene : SKScene {
 
     // MARK: - Start program
     func startProgram() {
-
-        // sanity check
-        if !NSThread.currentThread().isMainThread {
-            logger?.error("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        if !NSThread.currentThread().isMainThread { // sanity check
             logger?.error("!! FATAL: THIS METHOD SHOULD NEVER EVER BE CALLED FROM ANOTHER THREAD EXCEPT MAIN-THREAD !!")
-            logger?.error("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             abort()
         }
 
@@ -176,9 +170,9 @@ final class CBScene : SKScene {
         else { fatalError("!! Invalid sprite object list given !! This should never happen!") }
 
         var zPosition = 1.0
-        var spriteNodes = [String:CBSpriteNode]()
         for spriteObject in spriteObjectList {
             let spriteNode = CBSpriteNode(spriteObject: spriteObject)
+            spriteNode.name = spriteObject.name
             spriteNode.hidden = false
             guard let scriptList = spriteObject.scriptList as NSArray? as? [Script]
             else { fatalError("!! No script list given in object: \(spriteObject) !!") }
@@ -194,7 +188,6 @@ final class CBScene : SKScene {
 
             // now add the brick with correct visability-state to the Scene
             addChild(spriteNode)
-            spriteNodes[spriteObject.name] = spriteNode
             logger?.debug("\(zPosition)")
             spriteNode.start(CGFloat(zPosition))
             spriteNode.setLook()
@@ -202,21 +195,14 @@ final class CBScene : SKScene {
             if spriteNode.spriteObject?.isBackground() == false {
                 ++zPosition;
             }
-        }
-
-        for spriteObject in spriteObjectList {
-
-            guard let scriptList = spriteObject.scriptList as NSArray as? [Script]
-            else { fatalError("ScriptList conversion error") }
+            scheduler?.registerSpriteNode(spriteNode)
 
             for script in scriptList {
-
                 guard let scriptSequence = frontend?.computeSequenceListForScript(script),
-                      let scriptContext = backend?.scriptContextForSequenceList(scriptSequence)
+                      let scriptContext = backend?.scriptContextForSequenceList(scriptSequence, spriteNode: spriteNode)
                 else { fatalError("Unable to create ScriptSequence and ScriptContext") }
 
                 scheduler?.registerContext(scriptContext)
-
                 if let bcsContext = scriptContext as? CBBroadcastScriptContext {
                     broadcastHandler?.subscribeBroadcastScriptContext(bcsContext)
                 }
@@ -225,8 +211,8 @@ final class CBScene : SKScene {
 
         if #available(iOS 9.0, *) {
             startScreenRecording()
+            // TODO: handle microphone error...
         }
-
         scheduler?.run()
     }
 

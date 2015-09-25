@@ -26,19 +26,19 @@ protocol CBSchedulerProtocol : class {
     var running:Bool { get }
 
     // queries
-    func isContextScheduled(context: CBScriptContextAbstract) -> Bool
+    func isContextScheduled(context: CBScriptContext) -> Bool
     func allStartScriptContextsReachedMatureState() -> Bool
+    func whenContextsForSpriteNodeWithName(spriteName: String) -> [CBWhenScriptContext]?
 
-    // operations
+    // model
+    func registerSpriteNode(spriteNode: CBSpriteNode)
+    func registerContext(context: CBScriptContext)
+
+    // events
     func run()
     func shutdown()
-    func runNextInstructionOfContext(context: CBScriptContextAbstract)
-    func registerContext(context: CBScriptContextAbstract)
-    func registeredContextForScript(script: Script) -> CBScriptContextAbstract?
-    func startContext(context: CBScriptContextAbstract)
-    func startContext(context: CBScriptContextAbstract, withInitialState: CBScriptState)
-    func restartContext(context: CBScriptContextAbstract)
-    func restartContext(context: CBScriptContextAbstract, withInitialState: CBScriptState)
-    func stopContext(context: CBScriptContextAbstract)
+    func runNextInstructionOfContext(context: CBScriptContext)
+    func startContext(context: CBScriptContext, withInitialState: CBScriptState)
+    func stopContext(context: CBScriptContext, continueWaitingBroadcastSenders: Bool)
 
 }

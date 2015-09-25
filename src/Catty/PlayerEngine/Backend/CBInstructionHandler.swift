@@ -24,8 +24,7 @@ import AudioToolbox
 import Darwin // usleep
 
 protocol CBInstructionHandlerProtocol {
-    func instructionForBrick(brick: Brick, withContext context: CBScriptContextAbstract)
-        -> CBExecClosure
+    func instructionForBrick(brick: Brick, withContext context: CBScriptContext) -> CBExecClosure
 }
 
 final class CBInstructionHandler : CBInstructionHandlerProtocol {
@@ -64,16 +63,14 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
     }
 
     // MARK: - Operations
-    func instructionForBrick(brick: Brick, withContext context: CBScriptContextAbstract)
-        -> CBExecClosure
-    {
+    func instructionForBrick(brick: Brick, withContext context: CBScriptContext) -> CBExecClosure {
         if let instruction = _brickInstructionMap["\(brick.dynamicType.description())"] {
             return instruction(brick: brick, context: context)
         }
 
         // not found in map => get action via brick class
         return {
-            context.runAction(brick.action(), completion:{
+            context.spriteNode.runAction(brick.action(), completion:{
                 // the script must continue here. upcoming actions are executed!!
                 self._scheduler.runNextInstructionOfContext(context)
             })
@@ -81,8 +78,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
     }
 
     // MARK: - Mapped instructions
-    private func _broadcastInstruction(brick: Brick, context: CBScriptContextAbstract)
-        -> CBExecClosure
+    private func _broadcastInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure
     {
         guard let bcBrick = brick as? BroadcastBrick
         else { fatalError("This should never happen!") }
@@ -93,8 +89,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         }
     }
 
-    private func _broadcastWaitInstruction(brick: Brick, context: CBScriptContextAbstract)
-        -> CBExecClosure
+    private func _broadcastWaitInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure
     {
         guard let bcWaitBrick = brick as? BroadcastWaitBrick
         else { fatalError("This should never happen!") }
@@ -105,7 +100,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         }
     }
 
-    private func _waitInstruction(brick: Brick, context: CBScriptContextAbstract) -> CBExecClosure {
+    private func _waitInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure {
         guard let waitBrick = brick as? WaitBrick,
               let object = waitBrick.script?.object
         else { fatalError("This should never happen!") }
@@ -161,9 +156,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         }
     }
 
-    private func _playSoundInstruction(brick: Brick, context: CBScriptContextAbstract)
-        -> CBExecClosure
-    {
+    private func _playSoundInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure {
         guard let playSoundBrick = brick as? PlaySoundBrick,
               let fileName = playSoundBrick.sound.fileName,
               let objectName = playSoundBrick.script?.object?.name,
@@ -181,9 +174,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         }
     }
 
-    private func _stopAllSoundsInstruction(brick: Brick, context: CBScriptContextAbstract)
-        -> CBExecClosure
-    {
+    private func _stopAllSoundsInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure {
         guard let _ = brick as? StopAllSoundsBrick else { fatalError("This should never happen!") }
 
         let audioManager = AudioManager.sharedAudioManager()
@@ -195,9 +186,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         }
     }
 
-    private func _speakInstruction(brick: Brick, context: CBScriptContextAbstract)
-        -> CBExecClosure
-    {
+    private func _speakInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure {
         guard let speakBrick = brick as? SpeakBrick,
               let object = speakBrick.script?.object
         else { fatalError("This should never happen!") }
@@ -224,9 +213,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         }
     }
 
-    private func _changeVolumeByNInstruction(brick: Brick, context: CBScriptContextAbstract)
-        -> CBExecClosure
-    {
+    private func _changeVolumeByNInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure {
         guard let changeVolumeByNBrick = brick as? ChangeVolumeByNBrick,
               let spriteObject = changeVolumeByNBrick.script?.object
         else { fatalError("This should never happen!") }
@@ -243,9 +230,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         }
     }
 
-    private func _setVolumeToInstruction(brick: Brick, context: CBScriptContextAbstract)
-        -> CBExecClosure
-    {
+    private func _setVolumeToInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure {
         guard let setVolumeToBrick = brick as? SetVolumeToBrick,
               let spriteObject = setVolumeToBrick.script?.object
         else { fatalError("This should never happen") }
@@ -261,9 +246,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         }
     }
 
-    private func _setVariableInstruction(brick: Brick, context: CBScriptContextAbstract)
-        -> CBExecClosure
-    {
+    private func _setVariableInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure {
         guard let setVariableBrick = brick as? SetVariableBrick,
               let spriteObject = setVariableBrick.script?.object,
               let variables = spriteObject.program?.variables
@@ -280,9 +263,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         }
     }
 
-    private func _changeVariableInstruction(brick: Brick, context: CBScriptContextAbstract)
-        -> CBExecClosure
-    {
+    private func _changeVariableInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure {
         guard let changeVariableBrick = brick as? ChangeVariableBrick,
               let spriteObject = changeVariableBrick.script?.object,
               let variables = spriteObject.program?.variables
@@ -299,9 +280,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         }
     }
 
-    private func _flashLightOnInstruction(brick: Brick, context: CBScriptContextAbstract)
-        -> CBExecClosure
-    {
+    private func _flashLightOnInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure {
         guard let _ = brick as? LedOnBrick else { fatalError("This should never happen!") }
         return {
             self.logger.debug("Performing: FlashLightOnBrick/LEDOnBrick")
@@ -310,9 +289,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         }
     }
 
-    private func _flashLightOffInstruction(brick: Brick, context: CBScriptContextAbstract)
-        -> CBExecClosure
-    {
+    private func _flashLightOffInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure {
         guard let _ = brick as? LedOffBrick else { fatalError("This should never happen!") }
         return {
             self.logger.debug("Performing: FlashLightOnBrick/LEDOnBrick")
@@ -321,9 +298,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         }
     }
 
-    private func _vibrationInstruction(brick: Brick, context: CBScriptContextAbstract)
-        -> CBExecClosure
-    {
+    private func _vibrationInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure {
         guard let vibrationBrick = brick as? VibrationBrick,
               let spriteObject = vibrationBrick.script?.object
         else { fatalError("This should never happen!") }

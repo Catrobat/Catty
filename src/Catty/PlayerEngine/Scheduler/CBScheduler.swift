@@ -24,32 +24,38 @@ final class CBScheduler : CBSchedulerProtocol {
 
     // MARK: - Properties
     var logger: CBLogger
-    var schedulingAlgorithm: CBSchedulingAlgorithmProtocol?
+//    var schedulingAlgorithm: CBSchedulingAlgorithmProtocol?
     private(set) var running = false
-
-    private lazy var _scheduledScriptContexts = [CBScriptContextAbstract]()
-    private lazy var _registeredScriptContexts = [CBScriptContextAbstract]()
     private let _broadcastHandler: CBBroadcastHandlerProtocol
-    private var _currentContext: CBScriptContextAbstract?
+
+    private var _spriteNodes = [String:CBSpriteNode]()
+    private var _contexts = [CBScriptContext]()
+    private var _whenContexts = [String:[CBWhenScriptContext]]()
+    private var _scheduledContexts = [String:[CBScriptContext]]()
 
     // MARK: - Initializers
     init(logger: CBLogger, broadcastHandler: CBBroadcastHandlerProtocol) {
         self.logger = logger
-        self.schedulingAlgorithm = nil // default scheduling behavior
+//        self.schedulingAlgorithm = nil // default scheduling behaviour
         _broadcastHandler = broadcastHandler
     }
 
     // MARK: - Queries
-    func isContextScheduled(context: CBScriptContextAbstract) -> Bool {
-        return _scheduledScriptContexts.contains(context)
+    func isContextScheduled(context: CBScriptContext) -> Bool {
+        guard let spriteName = context.spriteNode.name else { fatalError("Sprite node has no name!") }
+        if let spriteScheduledContexts = _scheduledContexts[spriteName] {
+            return spriteScheduledContexts.contains(context)
+        }
+        return false
     }
 
     func allStartScriptContextsReachedMatureState() -> Bool {
-        for registeredContext in _scheduledScriptContexts {
-            if let startContext = registeredContext as? CBStartScriptContext {
-                if startContext.state != .RunningMature
-                    && startContext.state != .Waiting
-                    && startContext.state != .Dead
+        for contexts in _scheduledContexts.values {
+            for context in contexts {
+                if context is CBStartScriptContext
+                && context.state != .RunningMature
+                && context.state != .Waiting
+                && context.state != .Dead
                 {
                     return false
                 }
@@ -58,43 +64,46 @@ final class CBScheduler : CBSchedulerProtocol {
         return true
     }
 
-    // MARK: - Scheduling
-    func runNextInstructionOfContext(context: CBScriptContextAbstract) {
-        if context.state == .Waiting { return }
-        if _scheduledScriptContexts.count == 0 { return }
-        
-        // apply scheduling via StrategyPattern => selects script to be scheduled NOW!
-        if schedulingAlgorithm != nil {
-            _currentContext = schedulingAlgorithm?.contextForNextInstruction(_currentContext,
-                scheduledContexts: _scheduledScriptContexts)
-            if _currentContext == nil {
-                _currentContext = context
-            }
-        } else {
-            _currentContext = context
-        }
-        
-        if let scriptContext = _currentContext {
-            if scriptContext != context && context.isLocked == false {
-                // remember this runNextInstruction call for current context
-                // => postpone it via async block!!
-                dispatch_async(dispatch_get_main_queue(), { [weak self] in
-                    self?.runNextInstructionOfContext(context)
-                    })
-            }
-            if scriptContext.isLocked { return }
-            if let nextInstruction = scriptContext.nextInstruction() {
-                nextInstruction()
-            } else {
-                precondition(scriptContext.isLocked == false)
-                stopContext(scriptContext)
-                logger.debug("All actions/instructions have been finished!")
-            }
-            return
-        }
-        fatalError("This should NEVER happen!!")
+    func whenContextsForSpriteNodeWithName(spriteName: String) -> [CBWhenScriptContext]? {
+        return _whenContexts[spriteName]
     }
-    
+
+    // MARK: - Model methods
+    func registerSpriteNode(spriteNode: CBSpriteNode) {
+        precondition(spriteNode.name != nil)
+        precondition(_spriteNodes[spriteNode.name!] == nil)
+        _spriteNodes[spriteNode.name!] = spriteNode
+    }
+
+    func registerContext(context: CBScriptContext) {
+        guard let spriteName = context.spriteNode.name else { fatalError("Sprite node has no name!") }
+        precondition(!_contexts.contains(context))
+        precondition(_spriteNodes[spriteName] == context.spriteNode)
+
+        _contexts += context
+        if let whenContext = context as? CBWhenScriptContext {
+            if _whenContexts[spriteName] == nil {
+                _whenContexts[spriteName] = [CBWhenScriptContext]()
+            }
+            _whenContexts[spriteName]! += whenContext
+        }
+    }
+
+    // MARK: - Scheduling
+    func runNextInstructionOfContext(context: CBScriptContext) {
+        if context.state == .Waiting { return }
+        if _scheduledContexts.count == 0 { return }
+
+        // TODO: apply scheduling via StrategyPattern => selects script to be scheduled NOW!
+        if let nextInstruction = context.nextInstruction() {
+            nextInstruction()
+        } else {
+            stopContext(context)
+            logger.debug("All actions/instructions have been finished!")
+        }
+        return
+    }
+
     // MARK: - Events
     func run() {
         logger.info("\n\n#############################################################\n"
@@ -103,120 +112,92 @@ final class CBScheduler : CBSchedulerProtocol {
 
         // set running flag
         running = true
-        _broadcastHandler.setupHandler()
+        _broadcastHandler.setup()
 
         // start all StartScripts
-        _registeredScriptContexts.filter{ $0 is CBStartScriptContext }.forEach{ startContext($0) }
-    }
-    
-    func registerContext(context: CBScriptContextAbstract) {
-        precondition(_registeredScriptContexts.contains(context) == false) // ensure that same context is not added twice
-        _registeredScriptContexts += context
-    }
-    
-    func registeredContextForScript(script: Script) -> CBScriptContextAbstract? {
-        for context in _registeredScriptContexts {
-            if context.script == script {
-                return context
-            }
-        }
-        return nil
+        _contexts.forEach { if $0 is CBStartScriptContext { startContext($0, withInitialState: .Running) } }
     }
 
-    func startContext(context: CBScriptContextAbstract) {
-        startContext(context, withInitialState: .Running)
-    }
-    
-    func startContext(context: CBScriptContextAbstract, withInitialState initialState: CBScriptState) {
-        precondition(running) // make sure that player is running!
-        precondition(_registeredScriptContexts.contains(context), "Unable to start context! Context not registered.")
-        precondition(_scheduledScriptContexts.contains(context) == false, "Unable to start context! Context already scheduled.")
-        logger.info("    STARTING: \(context.script)")
-        logger.info("-------------------------------------------------------------")
-        
-        if context.inParentHierarchy(context.script.object!.spriteNode!) == false {
-            //            NSLog(@" + Adding this node to object");
-            context.script.object!.spriteNode!.addChild(context)
-        }
-        _resetContext(context)
-        if context.hasActions() {
-            context.removeAllActions()
-        }
+    func startContext(context: CBScriptContext, withInitialState initialState: CBScriptState) {
+        guard let spriteName = context.spriteNode.name else { fatalError("Sprite node has no name!") }
+        assert(running)
+        assert(!isContextScheduled(context))
+        assert(_contexts.contains(context))
+        logger.info("[STARTING: \(context.script)]")
+
+        logger.debug("  >>> !!! RESETTING: \(context.script) <<<")
+        context.reset()
+
+//        if context.hasActions() {
+//            context.removeAllActions()
+//        }
         context.state = initialState
-        _scheduledScriptContexts += context
+
+        // enqueue
+        if _scheduledContexts[spriteName] == nil {
+            _scheduledContexts[spriteName] = [CBScriptContext]()
+        }
+        _scheduledContexts[spriteName]! += context
         runNextInstructionOfContext(context) // Ready...Steady...Gooooo!! => invoke first instruction!
     }
-    
-    func restartContext(context: CBScriptContextAbstract) {
-        restartContext(context, withInitialState: .Running)
+
+    func stopContext(context: CBScriptContext) {
+        stopContext(context, continueWaitingBroadcastSenders: true)
     }
-    
-    func restartContext(context: CBScriptContextAbstract, withInitialState initialState: CBScriptState) {
-        precondition(running) // make sure that player is running!
-        precondition(_scheduledScriptContexts.contains(context), "Unable to restart context! Context is not running.")
-        stopContext(context)
-        startContext(context, withInitialState: initialState)
-    }
-    
-    func stopContext(context: CBScriptContextAbstract) {
+
+    func stopContext(context: CBScriptContext, continueWaitingBroadcastSenders: Bool) {
+        guard let spriteName = context.spriteNode.name else { fatalError("Sprite node has no name!") }
         if context.state == .Dead { return } // already stopped => must be an old deprecated enqueued dispatch closure
-        precondition(_registeredScriptContexts.contains(context), "Unable to stop context! Context not registered any more.")
-        if _scheduledScriptContexts.contains(context) == false {
-            return
-        }
-        
+        assert(isContextScheduled(context))
+        assert(_contexts.contains(context))
         let script = context.script
         logger.info("!!! STOPPING: \(script)")
-        logger.info("-------------------------------------------------------------")
+
         context.state = .Dead
-        
+
         // if script has been stopped (e.g. WhenScript via restart)
         // => remove it from broadcast waiting list
-        _broadcastHandler.removeWaitingContext(context)
-        
-        if let broadcastScriptContext = context as? CBBroadcastScriptContext {
+        _broadcastHandler.removeWaitingContextAndTerminateAllCalledBroadcastScripts(context)
+
+        //-----------------------
+        //
+        // FIXME: stop all called running broadcast scripts!!??
+        //
+        //-----------------------
+
+        if let broadcastScriptContext = context as? CBBroadcastScriptContext
+        where continueWaitingBroadcastSenders
+        {
             // continue all broadcastWaiting scripts
             _broadcastHandler.continueContextsWaitingForTerminationOfBroadcastScriptContext(broadcastScriptContext)
         }
-        if context.inParentHierarchy(context.script.object!.spriteNode!) {
-            context.removeFromParent()
+
+        // dequeue
+        var spriteScheduledContexts = _scheduledContexts[spriteName]!
+        spriteScheduledContexts.removeObject(context)
+        if spriteScheduledContexts.count > 0 {
+            _scheduledContexts[spriteName] = spriteScheduledContexts
+        } else {
+            _scheduledContexts.removeValueForKey(spriteName)
         }
-        context.removeAllActions()
-        _scheduledScriptContexts.removeObject(context)
         logger.debug("\(script) finished!")
     }
-    
-    private func _resetContext(context: CBScriptContextAbstract) {
-        context.reset()
-        logger.debug("  >>> !!! RESETTING: \(context.script) <<<");
-        for brick in context.script.brickList {
-            if brick is LoopBeginBrick { brick.resetCondition() }
-        }
-    }
-    
+
     func shutdown() {
         logger.info("\n#############################################################\n\n"
             + "!!! SCHEDULER SHUTDOWN\n\n"
             + "#############################################################\n\n")
 
         // stop all currently (!) scheduled script contexts
-        for context in _scheduledScriptContexts {
-            precondition(_registeredScriptContexts.contains(context), "Unable to stop context! Context not registered any more.")
-            let script = context.script
-            logger.info("!!! STOPPING: \(script)")
-            logger.info("-------------------------------------------------------------")
-            if context.inParentHierarchy(script.object!.spriteNode!) {
-                context.removeFromParent()
+        for contexts in _scheduledContexts.values {
+            for context in contexts {
+                stopContext(context, continueWaitingBroadcastSenders: false)
             }
-            logger.debug("\(script) finished!")
-            context.removeReferences()
         }
-        // IMPORTANT: remove references of other registered scripts as well!
-        _registeredScriptContexts.forEach{ $0.removeReferences() }
-        _scheduledScriptContexts.removeAll(keepCapacity: false)
-        _registeredScriptContexts.removeAll(keepCapacity: false)
-        _broadcastHandler.tearDownHandler()
+        _scheduledContexts.removeAll(keepCapacity: false)
+        _contexts.removeAll(keepCapacity: false)
+        _broadcastHandler.tearDown()
         running = false
-        _currentContext = nil
     }
+
 }
