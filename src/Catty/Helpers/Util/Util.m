@@ -264,14 +264,14 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.backgroundColor = backgroundColor;
     [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor backgroundColor] forState:UIControlStateNormal];
     return button;
 }
 
 + (UIButton*)slideViewButtonMore
 {
     return [Util slideViewButtonWithTitle:kLocalizedMore
-                          backgroundColor:[UIColor backgroundColor]];
+                          backgroundColor:[UIColor globalTintColor]];
 }
 
 + (UIButton*)slideViewButtonDelete

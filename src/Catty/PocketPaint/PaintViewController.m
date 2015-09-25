@@ -301,8 +301,8 @@
     [self.navigationController setToolbarHidden:NO];
     self.navigationController.navigationBar.userInteractionEnabled = YES;
     self.navigationController.toolbar.barStyle = UIBarStyleDefault;
-//    self.navigationController.toolbar.barTintColor = [UIColor clearColor];
-    self.navigationController.toolbar.tintColor = [UIColor globalTintColor];
+    self.navigationController.toolbar.barTintColor = [UIColor toolBarColor];
+    self.navigationController.toolbar.tintColor = [UIColor toolTintColor];
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     [self updateToolbar];
     

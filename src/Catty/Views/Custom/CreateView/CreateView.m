@@ -241,7 +241,7 @@
     downloadButton.tag = kDownloadButtonTag;
     downloadButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     [downloadButton setTitle:kLocalizedDownload forState:UIControlStateNormal];
-    [downloadButton setTintColor:[UIColor globalTintColor]];
+    [downloadButton setTintColor:[UIColor buttonNormalTintColor]];
     
     [downloadButton addTarget:target action:@selector(downloadButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     
@@ -263,7 +263,7 @@
     playButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     [playButton setTitle:kLocalizedPlay forState:UIControlStateNormal];
     [playButton addTarget:target action:@selector(playButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [playButton setTintColor:[UIColor globalTintColor]];
+    [playButton setTintColor:[UIColor buttonNormalTintColor]];
     [playButton sizeToFit];
     
     
@@ -274,11 +274,10 @@
 {
     RoundBorderedButton *downloadAgainButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(view.frame.size.width/2-10,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 100, 25) andBorder:NO];
     downloadAgainButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    [downloadAgainButton setTitleColor:[UIColor globalTintColor] forState:UIControlStateNormal];
-    [downloadAgainButton setTitleColor:[UIColor globalTintColor] forState:UIControlStateHighlighted];
+    [downloadAgainButton setTitleColor:[UIColor buttonNormalTintColor] forState:UIControlStateNormal];
+    [downloadAgainButton setTitleColor:[UIColor buttonHighlightedTintColor] forState:UIControlStateHighlighted];
     [downloadAgainButton setTitle:kLocalizedDownload forState:UIControlStateNormal];
     [downloadAgainButton addTarget:target action:@selector(downloadAgain) forControlEvents:UIControlEventTouchUpInside];
-    [downloadAgainButton setTintColor:[UIColor globalTintColor]];
     downloadAgainButton.tag = kDownloadAgainButtonTag;
     downloadAgainButton.hidden = YES;
     [downloadAgainButton sizeToFit];
@@ -290,7 +289,7 @@
 {
     EVCircularProgressView *button = [[EVCircularProgressView alloc] init];
     button.tag = kStopLoadingTag;
-    button.tintColor = [UIColor globalTintColor];
+    button.tintColor = [UIColor buttonNormalTintColor];
     button.frame = CGRectMake(2*view.frame.size.width/3+30,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 28, 28);
     button.hidden = YES;
     [button addTarget:target action:@selector(stopLoading) forControlEvents:UIControlEventTouchUpInside];
@@ -338,12 +337,12 @@
     [self addHorizontalLineToView:view andHeight:view.frame.size.height + height*0.01f-15];
     UIButton *reportButton = [[UIButton alloc] initWithFrame:CGRectMake(view.frame.size.width/15,view.frame.size.height + height*0.01f, 130, 25)];
     reportButton.titleLabel.font = [UIFont boldSystemFontOfSize:10];
-    [reportButton.titleLabel setTintColor:[UIColor globalTintColor]];
+    [reportButton.titleLabel setTintColor:[UIColor buttonNormalTintColor]];
     [reportButton setTitle:kLocalizedReportProgram forState:UIControlStateNormal];
     [reportButton addTarget:target action:@selector(reportProgram) forControlEvents:UIControlEventTouchUpInside];
     [reportButton sizeToFit];
-    [reportButton setTintColor:[UIColor globalTintColor]];
-    [reportButton setTitleColor:[UIColor globalTintColor] forState:UIControlStateNormal];
+    [reportButton setTintColor:[UIColor buttonNormalTintColor]];
+    [reportButton setTitleColor:[UIColor buttonNormalTintColor] forState:UIControlStateNormal];
     
     [view addSubview:reportButton];
     [self setMaxHeightIfGreaterForView:view withHeight:view.frame.size.height + height*0.01f];

@@ -223,8 +223,8 @@
 {
     [self.navigationController setToolbarHidden:NO];
     self.navigationController.toolbar.barStyle = UIBarStyleDefault;
-    self.navigationController.toolbar.tintColor = [UIColor globalTintColor];
-    self.navigationController.toolbar.barTintColor = [UIColor navBarColor];
+    self.navigationController.toolbar.tintColor = [UIColor toolTintColor];
+    self.navigationController.toolbar.barTintColor = [UIColor toolBarColor];
     self.navigationController.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
 }
 

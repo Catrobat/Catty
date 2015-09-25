@@ -159,7 +159,7 @@
     self.termsOfUseButton.backgroundColor = [UIColor clearColor];
     self.termsOfUseButton.titleLabel.font = [UIFont fontWithName:boldFontName size:14.0f];
     [self.termsOfUseButton setTitle:[NSString stringWithFormat:@"%@ %@",kLocalizedTermsAgreementPart,kLocalizedTermsOfUse] forState:UIControlStateNormal];
-    [self.termsOfUseButton setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateNormal];
+    [self.termsOfUseButton setTitleColor:[UIColor buttonNormalTintColor] forState:UIControlStateNormal];
     [self.termsOfUseButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
     [self.termsOfUseButton addTarget:self action:@selector(openTermsOfUse) forControlEvents:UIControlEventTouchUpInside];
     self.termsOfUseButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.termsOfUseButton.frame.size.height);
@@ -167,7 +167,7 @@
     self.registerButton.backgroundColor = darkColor;
     self.registerButton.titleLabel.font = [UIFont fontWithName:boldFontName size:20.0f];
     [self.registerButton setTitle:kUIFEDone forState:UIControlStateNormal];
-    [self.registerButton setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateNormal];
+    [self.registerButton setTitleColor:[UIColor buttonNormalTintColor] forState:UIControlStateNormal];
     [self.registerButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
     [self.registerButton addTarget:self action:@selector(registerAction) forControlEvents:UIControlEventTouchUpInside];
     self.registerButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.registerButton.frame.size.height);

@@ -148,7 +148,7 @@
     self.loginButton.backgroundColor = darkColor;
     self.loginButton.titleLabel.font = [UIFont fontWithName:boldFontName size:20.0f];
     [self.loginButton setTitle:kLocalizedLogin forState:UIControlStateNormal];
-    [self.loginButton setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateNormal];
+    [self.loginButton setTitleColor:[UIColor buttonNormalTintColor] forState:UIControlStateNormal];
     [self.loginButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
     [self.loginButton addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
     self.loginButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.loginButton.frame.size.height);
@@ -157,7 +157,7 @@
     self.forgotButton.backgroundColor = [UIColor clearColor];
     self.forgotButton.titleLabel.font = [UIFont fontWithName:fontName size:16.0f];
     [self.forgotButton setTitle:kLocalizedForgotPassword forState:UIControlStateNormal];
-    [self.forgotButton setTitleColor:darkColor forState:UIControlStateNormal];
+    [self.forgotButton setTitleColor:[UIColor buttonNormalTintColor] forState:UIControlStateNormal];
     [self.forgotButton setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5] forState:UIControlStateHighlighted];
     [self.forgotButton addTarget:self action:@selector(forgotPassword) forControlEvents:UIControlEventTouchUpInside];
     self.forgotButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.forgotButton.frame.size.height);
@@ -166,7 +166,7 @@
     self.registerButton.backgroundColor = darkColor;
     self.registerButton.titleLabel.font = [UIFont fontWithName:boldFontName size:20.0f];
     [self.registerButton setTitle:kLocalizedRegister forState:UIControlStateNormal];
-    [self.registerButton setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateNormal];
+    [self.registerButton setTitleColor:[UIColor buttonNormalTintColor] forState:UIControlStateNormal];
     [self.registerButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
     [self.registerButton addTarget:self action:@selector(registerAction) forControlEvents:UIControlEventTouchUpInside];
     self.registerButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.registerButton.frame.size.height);

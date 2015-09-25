@@ -34,9 +34,21 @@
 
 + (UIColor*) navTextColor;
 
++ (UIColor*) toolBarColor;
+
++ (UIColor*) toolTintColor;
+
++ (UIColor*) tabBarColor;
+
++ (UIColor*) tabTintColor;
+
 + (UIColor*) lightTextTintColor;
 
 + (UIColor*) darkTextTintColor;
+
++ (UIColor*) buttonNormalTintColor;
+
++ (UIColor*) buttonHighlightedTintColor;
 
 + (UIColor*) destructiveTintColor;
 

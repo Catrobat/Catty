@@ -45,12 +45,12 @@
 
 + (UIColor*)globalTintColor
 {
-    return [UIColor colorWithHex:0xADEEF0];
+    return [UIColor colorWithHex:0x18A5B7];
 }
 
 + (UIColor*) utilityTintColor
 {
-    return [self lightTextTintColor];
+    return [self utilityTintColor];
 }
 
 + (UIColor*)navBarColor
@@ -60,12 +60,32 @@
 
 + (UIColor*)navTintColor
 {
-    return [self globalTintColor];
+    return [UIColor colorWithHex:0xADEEF0];
 }
 
 + (UIColor*)navTextColor
 {
     return [self backgroundColor];
+}
+
++ (UIColor*) toolBarColor
+{
+    return [self navBarColor];
+}
+
++ (UIColor*) toolTintColor
+{
+    return [self navTintColor];
+}
+
++ (UIColor*) tabBarColor
+{
+    return [self navBarColor];
+}
+
++ (UIColor*) tabTintColor
+{
+    return [self navTintColor];
 }
 
 + (UIColor*)lightTextTintColor
@@ -75,9 +95,18 @@
 
 + (UIColor*)darkTextTintColor
 {
-    return [UIColor colorWithRed:111.0f/255.0f green:142.0f/255.0f blue:155.0f/255.0f alpha:1.0f];
+    return [UIColor colorWithHex:0x0C616C];
 }
 
++ (UIColor*)buttonNormalTintColor
+{
+    return [self darkTextTintColor];
+}
+
++ (UIColor*)buttonHighlightedTintColor
+{
+    return [self lightTextTintColor];
+}
 
 + (UIColor*)destructiveTintColor
 {

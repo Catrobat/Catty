@@ -71,7 +71,7 @@
 
     // MenuImageBackground
     UIImage *menuBackgroundImage = [UIImage imageNamed:@"stage_dialog_background_middle_1"];
-    menuBackgroundImage = [UIImage changeImage:menuBackgroundImage toColor:[UIColor backgroundColor]];
+    menuBackgroundImage = [UIImage changeImage:menuBackgroundImage toColor:[UIColor navBarColor]];
     UIImage *newBackgroundImage;
 
     if ([Util screenHeight] == kIphone4ScreenHeight) {
@@ -216,7 +216,7 @@
 - (void)setupLabel:(NSString*)name andView:(UILabel*)label
 {
     label.text = name;
-    label.textColor = [UIColor lightTextTintColor];
+    label.textColor = [UIColor navTintColor];
     label.font = [UIFont fontWithName:@"Helvetica Neue" size:(14.0)];
     label.textAlignment = NSTextAlignmentCenter;
     [self.menuView addSubview:label];

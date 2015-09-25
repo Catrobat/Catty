@@ -138,6 +138,8 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 
 - (void)addMenuButton:(UIButton *)button
 {
+    [button setTitleColor:[UIColor buttonNormalTintColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor buttonHighlightedTintColor] forState:UIControlStateHighlighted];
     [self.view addSubview:button];
     
     UIBezierPath *path = [UIBezierPath bezierPath];
@@ -153,7 +155,8 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 
 - (void)addLinkButton:(UIButton *)button
 {
-    [button setTitleColor:[UIColor globalTintColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor buttonNormalTintColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor buttonHighlightedTintColor] forState:UIControlStateHighlighted];
     [button addTarget:self action:@selector(openURLAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView insertSubview:button belowSubview:self.bodyTextView];
 }
@@ -166,7 +169,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 
     //init header
     UILabel *aboutPocketCodeLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2, HEADER_PADDING_TOP, self.view.frame.size.width, HEADER_LABEL_HEIGHT)];
-    [aboutPocketCodeLabel setTextColor:[UIColor darkTextTintColor]];
+    [aboutPocketCodeLabel setTextColor:[UIColor lightTextTintColor]];
     [aboutPocketCodeLabel setText:headerTitle];
     [aboutPocketCodeLabel sizeToFit];
     aboutPocketCodeLabel.frame = CGRectMake(self.view.frame.size.width / 2 - aboutPocketCodeLabel.frame.size.width / 2, HEADER_PADDING_TOP, aboutPocketCodeLabel.frame.size.width, aboutPocketCodeLabel.frame.size.height);
@@ -201,6 +204,8 @@ const int BUTTON_MARGIN_BOTTOM = 15;
                    action:@selector(backAction)
          forControlEvents:UIControlEventTouchUpInside];
     [backButton sizeToFit];
+    [backButton setTitleColor:[UIColor buttonNormalTintColor] forState:UIControlStateNormal];
+    [backButton setTitleColor:[UIColor buttonHighlightedTintColor] forState:UIControlStateHighlighted];
     backButton.frame = CGRectMake(self.contentView.frame.size.width / 2 - backButton.frame.size.width / 2, self.contentView.frame.size.height - backButton.frame.size.height - BODY_PADDING_BOTTOM+102.0f, backButton.frame.size.width, backButton.frame.size.height);
     [self.contentView addSubview:backButton];
 
