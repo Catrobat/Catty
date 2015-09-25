@@ -40,27 +40,53 @@
 	UIColor *color = [UIColor colorWithRed: red / 255.0f green: green / 255.0f blue: blue / 255.0f alpha: 1.0f];
 	return color;
 }
+#pragma mark intern Colors
+
++ (UIColor*)lightColor
+{
+    return [UIColor colorWithHex:0xADEEF0];
+}
+
++ (UIColor*)mediumColor
+{
+    return [UIColor colorWithHex:0x18A5B7];
+}
+
++ (UIColor*)darkColor
+{
+    return [UIColor colorWithHex:0x0C616C];
+}
+
++(UIColor*)whiteGrayColor
+{
+    return [UIColor colorWithRed:236.0f/255.0f green:236.0f/255.0f blue:236.0f/255.0f alpha:1.0f];
+}
+
++(UIColor*)destructiveColor
+{
+    return [UIColor colorWithHex: 0xF26C4F];
+}
 
 # pragma mark Global
 
 + (UIColor*)globalTintColor
 {
-    return [UIColor colorWithHex:0x18A5B7];
+    return [self mediumColor];
 }
 
 + (UIColor*) utilityTintColor
 {
-    return [self globalTintColor];
+    return [self mediumColor];
 }
 
 + (UIColor*)navBarColor
 {
-    return [self colorWithHex:0x18A5B7];
+    return [self mediumColor];
 }
 
 + (UIColor*)navTintColor
 {
-    return [UIColor colorWithHex:0xADEEF0];
+    return [self lightColor];
 }
 
 + (UIColor*)navTextColor
@@ -90,12 +116,12 @@
 
 + (UIColor*)lightTextTintColor
 {
-    return [UIColor colorWithHex:0x18A5B7];
+    return [self mediumColor];
 }
 
 + (UIColor*)darkTextTintColor
 {
-    return [UIColor colorWithHex:0x0C616C];
+    return [self darkColor];
 }
 
 + (UIColor*)buttonNormalTintColor
@@ -110,12 +136,12 @@
 
 + (UIColor*)destructiveTintColor
 {
-    return [self colorWithHex: 0xF26C4F];
+    return [self destructiveColor];
 }
 
 + (UIColor*)backgroundColor
 {
-    return [UIColor colorWithRed:236.0f/255.0f green:236.0f/255.0f blue:236.0f/255.0f alpha:1.0f];
+    return [self whiteGrayColor];
 }
 
 # pragma mark FormulaEditor
