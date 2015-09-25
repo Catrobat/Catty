@@ -295,18 +295,11 @@
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CatrobatBuildName"];
 }
 
-+ (NSString*)appBuildVersion:(BOOL)shortVersion
++ (NSString*)appBuildVersion
 {
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *buildVersion = [[bundle infoDictionary] objectForKey:@"CFBundleVersion"];
-    NSString *currentCommitHash = [NSString stringWithContentsOfFile:[bundle pathForResource:@"commit"
-                                                                                      ofType:nil]
-                                                            encoding:NSUTF8StringEncoding
-                                                               error:NULL];
-    if (shortVersion && currentCommitHash.length > kLengthOfShortCommitHash) {
-        currentCommitHash = [currentCommitHash substringToIndex:kLengthOfShortCommitHash];
-    }
-    return [NSString stringWithFormat:@"%@-{current:%@}", buildVersion, currentCommitHash];
+    return buildVersion;
 }
 
 + (NSString*)catrobatLanguageVersion
