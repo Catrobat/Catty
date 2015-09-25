@@ -21,20 +21,20 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "UIViewController+CWPopup.h"
-#import "Program.h"
+#import "BaseLoginViewController.h"
+#import "CatrobatTableViewController.h"
 
-@interface UploadInfoViewController : UIViewController
+@interface RegisterViewController : BaseLoginViewController
 
-@property (nonatomic, weak) id<DismissPopupDelegate> delegate;
-@property (nonatomic, weak) Program *program;
+@property (nonatomic, weak) CatrobatTableViewController * catTVC;
 
-@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *sizeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *sizeValueLabel;
-@property (weak, nonatomic) IBOutlet UILabel *programNamelabel;
-@property (weak, nonatomic) IBOutlet UITextField *programNameTextField;
-@property (weak, nonatomic) IBOutlet UIButton *uploadButton;
+@property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+@property (weak, nonatomic) IBOutlet UIButton *termsOfUseButton;
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UITextField *usernameField;
 
 @end

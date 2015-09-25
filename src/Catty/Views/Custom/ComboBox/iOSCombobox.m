@@ -230,8 +230,18 @@
     }
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:FONT_NAME size:rect.size.height/2], NSFontAttributeName,
                                 [UIColor whiteColor], NSForegroundColorAttributeName, nil];
-    [self.currentValue drawInRect:CGRectMake(TEXT_LEFT, rect.size.height/2 - rect.size.height/3,
-                                             rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT,
+    CGSize size = [self.currentValue sizeWithAttributes:@{NSFontAttributeName : [UIFont fontWithName:FONT_NAME size:rect.size.height/2]}];
+    NSString* drawString = self.currentValue;
+    if(size.width > rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30){
+        const int clipLength = 7;
+        if([drawString length]>clipLength)
+        {
+            drawString = [NSString stringWithFormat:@"%@...",[drawString substringToIndex:clipLength]];
+        }
+        
+    }
+    [drawString drawInRect:CGRectMake(TEXT_LEFT, rect.size.height/2 - rect.size.height/3,
+                                             rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30,
                                              rect.size.height - BORDER_WIDTH)
                          withAttributes:attributes];
     
@@ -279,6 +289,28 @@
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     return [self.values objectAtIndex:row];
+}
+
+- (UIView*) pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+{
+    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 110, 60)];
+    if (self.images.count) {
+        if (row != 0) {
+            UIImage *img = [self.images objectAtIndex:row-1];
+            UIImageView *temp = [[UIImageView alloc] initWithImage:img];
+            temp.frame = CGRectMake(-100, 15, 50, 30);
+            [tmpView insertSubview:temp atIndex:0];
+        }
+    }
+    
+    UILabel *channelLabel = [[UILabel alloc] initWithFrame:CGRectMake(-20, -5, 150, 60)];
+    channelLabel.text = [self.values objectAtIndex:row];
+    channelLabel.textAlignment = NSTextAlignmentLeft;
+    channelLabel.backgroundColor = [UIColor clearColor];
+   
+    [tmpView insertSubview:channelLabel atIndex:1];
+    
+    return tmpView;
 }
 
 /***********************************************************

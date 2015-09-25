@@ -39,7 +39,6 @@
 #import "Reachability.h"
 #import "ProgramUpdateDelegate.h"
 #import "UIDefines.h"
-#import "LoginPopupViewController.h"
 
 #define kUIBarHeight 49
 #define kNavBarHeight 44
@@ -253,21 +252,11 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://pocketcode.org/details/%@",self.project.projectID]]];
 
 //    } else {
-//        [self showLoginView];
+//       
 //    }
 }
 
-- (void)showLoginView
-{
-    if (self.popupViewController == nil) {
-        LoginPopupViewController *popupViewController = [[LoginPopupViewController alloc] init];
-        popupViewController.delegate = self;
-        [self presentPopupViewController:popupViewController WithFrame:self.view.frame upwardsCenterByFactor:4.5];
-        self.navigationItem.leftBarButtonItem.enabled = NO;
-    } else {
-        [self dismissPopupWithCode:NO];
-    }
-}
+
 
 static NSCharacterSet *blockedCharacterSet = nil;
 
