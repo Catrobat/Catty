@@ -1,32 +1,26 @@
-/* *
- *  Copyright (C) 2010-2013 The Catrobat Team
- *  (http://developer.catrobat.org/credits)
- *
- *  This program is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Affero General Public License as
- *  published by the Free Software Foundation, either version 3 of the
- *  License, or (at your option) any later version.
- *
- *  An additional term exception under section 7 of the GNU Affero
- *  General Public License, version 3, is available at
- *  (http://developer.catrobat.org/license_additional_term)
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *  GNU Affero General Public License for more details.
- *
- *  You should have received a copy of the GNU Affero General Public License
- *  along with this program.  If not, see http://www.gnu.org/licenses/.
-*/
+/* No comment provided by engineer. */
+"A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
+
 /* No comment provided by engineer. */
 "A program with the same name already exists, try again." = "A program with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
-"About Catrobat" = "About Catrobat";
+"About Catrobat" = "關於 Catrobat";
 
 /* No comment provided by engineer. */
-"About Pocket Code" = "About Pocket Code";
+"About Pocket Code" = "關於 Pocket Code";
+
+/* No comment provided by engineer. */
+"acceleration_x" = "acceleration_x";
+
+/* No comment provided by engineer. */
+"acceleration_y" = "acceleration_y";
+
+/* No comment provided by engineer. */
+"acceleration_z" = "acceleration_z";
+
+/* No comment provided by engineer. */
+"add comment here..." = "add comment here...";
 
 /* No comment provided by engineer. */
 "Add image" = "Add image";
@@ -50,6 +44,9 @@
 "An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
+"and" = "而且";
+
+/* No comment provided by engineer. */
 "Animate Brick" = "Animate Brick";
 
 /* No comment provided by engineer. */
@@ -67,20 +64,26 @@
 /* No comment provided by engineer. */
 "Author" = "Author";
 
-/* No comment provided by engineer. */
-"Back" = "Back";
+/* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
+"Axes" = "Axes";
 
 /* No comment provided by engineer. */
-"Background" = "Background";
+"Back" = "返回";
 
 /* No comment provided by engineer. */
-"Backgrounds" = "Backgrounds";
+"Background" = "背景";
+
+/* No comment provided by engineer. */
+"Backgrounds" = "背景";
 
 /* paint */
 "Blue" = "Blue";
 
 /* No comment provided by engineer. */
 "Bricks" = "Bricks";
+
+/* No comment provided by engineer. */
+"brightness" = "亮度";
 
 /* No comment provided by engineer. */
 "Broadcast and wait\n%@" = "Broadcast and wait\n%@";
@@ -92,6 +95,9 @@
 "brush" = "brush";
 
 /* No comment provided by engineer. */
+"By registering you agree to our" = "By registering you agree to our";
+
+/* No comment provided by engineer. */
 "By switching to the section \"Explore\" you can discover much more interesting stuff." = "By switching to the section \"Explore\" you can discover much more interesting stuff.";
 
 /* No comment provided by engineer. */
@@ -101,22 +107,22 @@
 "Can't restart program!" = "Can't restart program!";
 
 /* No comment provided by engineer. */
-"Cancel" = "Cancel";
+"Cancel" = "取消";
 
 /* No comment provided by engineer. */
-"Categories" = "Categories";
+"Categories" = "程式塊分類";
 
 /* No comment provided by engineer. */
-"Change brightness\nby %@\%" = "Change brightness\nby %1$@\\%2$";
+"Change brightness\nby %@\%" = "Change brightness\nby %@\\%";
 
 /* No comment provided by engineer. */
-"Change size by %@\%" = "Change size by %1$@\\%2$";
+"Change size by %@\%" = "Change size by %@\\%";
 
 /* No comment provided by engineer. */
-"Change transparency\nby %@\%" = "Change transparency\nby %1$@\\%2$";
+"Change transparency\nby %@\%" = "Change transparency\nby %@\\%";
 
 /* No comment provided by engineer. */
-"Change variable\n%@\nby %@" = "Change variable\n%1$@\nby %2$@";
+"Change variable\n%@\nby %@" = "Change variable\n%@\nby %@";
 
 /* No comment provided by engineer. */
 "Change volume by %@" = "Change volume by %@";
@@ -128,19 +134,31 @@
 "Change Y by %@" = "Change Y by %@";
 
 /* No comment provided by engineer. */
+"Changes discarded!" = "放棄修改!";
+
+/* No comment provided by engineer. */
+"Changes saved!" = "修改儲存完成!";
+
+/* No comment provided by engineer. */
 "Choose image" = "Choose image";
 
 /* No comment provided by engineer. */
 "Choose sound" = "Choose sound";
 
 /* No comment provided by engineer. */
-"Clear graphic effects" = "Clear graphic effects";
+"Clear graphic effects" = "清除外觀特效";
 
 /* No comment provided by engineer. */
-"Close" = "Close";
+"Close" = "關閉​​​";
+
+/* paint */
+"Close Paint" = "Close Paint";
 
 /* No comment provided by engineer. */
-"Compute" = "Compute";
+"compass" = "compass";
+
+/* No comment provided by engineer. */
+"Compute" = "計算";
 
 /* No comment provided by engineer. */
 "Computed result is %.2f" = "Computed result is %.2f";
@@ -152,22 +170,22 @@
 "Computed result is TRUE" = "Computed result is TRUE";
 
 /* No comment provided by engineer. */
-"Continue" = "Continue";
+"Continue" = "繼續編輯";
 
 /* No comment provided by engineer. */
-"Control" = "Control";
+"Control" = "控制";
 
 /* No comment provided by engineer. */
-"Copy" = "Copy";
+"Copy" = "複製";
 
 /* No comment provided by engineer. */
-"Copy Brick" = "Copy Brick";
+"Copy Brick" = "複製程式塊";
 
 /* No comment provided by engineer. */
-"Copy program" = "Copy program";
+"Copy program" = "複製程式檔";
 
-/* paint */
-"crop" = "crop";
+/* No comment provided by engineer. */
+"Debug mode" = "Debug mode";
 
 /* No comment provided by engineer. */
 "Dec" = "Dec";
@@ -176,28 +194,58 @@
 "December" = "&#x5341;&#x4E8C;&#x6708;";
 
 /* No comment provided by engineer. */
-"Delete" = "Delete";
+"Delete" = "刪除";
 
 /* No comment provided by engineer. */
-"Delete Brick" = "Delete Brick";
+"Delete Brick" = "刪除程式塊";
+
+/* No comment provided by engineer. */
+"Delete Condition" = "Delete Condition";
 
 /* No comment provided by engineer. */
 "Delete Looks" = "Delete Looks";
 
 /* No comment provided by engineer. */
+"Delete Loop" = "Delete Loop";
+
+/* No comment provided by engineer. */
 "Delete Objects" = "Delete Objects";
+
+/* No comment provided by engineer. */
+"Delete Program" = "Delete Program";
 
 /* No comment provided by engineer. */
 "Delete Programs" = "Delete Programs";
 
 /* No comment provided by engineer. */
-"Delete Script" = "Delete Script";
+"Delete Script" = "刪除腳本";
 
 /* No comment provided by engineer. */
 "Delete Sounds" = "Delete Sounds";
 
 /* No comment provided by engineer. */
+"Delete these Bricks?" = "Delete these Bricks?";
+
+/* No comment provided by engineer. */
+"Delete these Conditions?" = "Delete these Conditions?";
+
+/* No comment provided by engineer. */
+"Delete these Loops?" = "Delete these Loops?";
+
+/* No comment provided by engineer. */
+"Delete these Scripts?" = "Delete these Scripts?";
+
+/* No comment provided by engineer. */
+"Delete this Brick?" = "Delete this Brick?";
+
+/* No comment provided by engineer. */
+"Delete this Condition?" = "Delete this Condition?";
+
+/* No comment provided by engineer. */
 "Delete this look" = "Delete this look";
+
+/* No comment provided by engineer. */
+"Delete this Loop?" = "Delete this Loop?";
 
 /* No comment provided by engineer. */
 "Delete this object" = "Delete this object";
@@ -206,7 +254,13 @@
 "Delete this program" = "Delete this program";
 
 /* No comment provided by engineer. */
+"Delete this Script?" = "Delete this Script?";
+
+/* No comment provided by engineer. */
 "Delete this sound" = "Delete this sound";
+
+/* No comment provided by engineer. */
+"Deletion Mode" = "Deletion Mode";
 
 /* No comment provided by engineer. */
 "Description" = "Description";
@@ -214,8 +268,8 @@
 /* No comment provided by engineer. */
 "Details" = "Details";
 
-/* paint */
-"Discard & Close" = "Discard & Close";
+/* No comment provided by engineer. */
+"direction" = "方向";
 
 /* paint */
 "Do you really want to delete the current drawing?" = "Do you really want to delete the current drawing?";
@@ -230,6 +284,9 @@
 "Download" = "&#x8209;&#x5831;";
 
 /* No comment provided by engineer. */
+"Download sucessful" = "Download sucessful";
+
+/* No comment provided by engineer. */
 "Downloads" = "Downloads";
 
 /* No comment provided by engineer. */
@@ -239,16 +296,13 @@
 "Edit" = "Edit";
 
 /* No comment provided by engineer. */
-"Edit Formula" = "Edit Formula";
+"Edit Formula" = "編輯公式";
 
 /* Action sheet menu title */
 "Edit Look" = "Edit Look";
 
 /* Action sheet menu title */
 "Edit Looks" = "Edit Looks";
-
-/* No comment provided by engineer. */
-"Edit Mode" = "Edit Mode";
 
 /* No comment provided by engineer. */
 "Edit Object" = "Edit Object";
@@ -269,13 +323,25 @@
 "ellipse / circle" = "ellipse / circle";
 
 /* No comment provided by engineer. */
-"Else" = "Else";
+"Else" = "不成立執行";
+
+/* No comment provided by engineer. */
+"Email" = "Email";
+
+/* No comment provided by engineer. */
+"Email is not valid!" = "Email is not valid!";
+
+/* No comment provided by engineer. */
+"End If" = "判斷尾端";
 
 /* No comment provided by engineer. */
 "End of Loop" = "End of Loop";
 
 /* Placeholder for add image-name input field */
 "Enter your image name here..." = "Enter your image name here...";
+
+/* Placeholder for message input field */
+"Enter your message here..." = "Enter your message here...";
 
 /* Placeholder for add object-name input field */
 "Enter your object name here..." = "Enter your object name here...";
@@ -289,17 +355,23 @@
 /* Placeholder for add sound-name input field */
 "Enter your sound name here..." = "Enter your sound name here...";
 
+/* Placeholder for variable input field */
+"Enter your variable name here..." = "Enter your variable name here...";
+
 /* paint */
 "eraser" = "eraser";
 
 /* No comment provided by engineer. */
-"Error" = "Error";
+"Error" = "錯誤";
 
 /* No comment provided by engineer. */
-"Explore" = "Explore";
+"Explore" = "瀏覽";
 
 /* No comment provided by engineer. */
 "Explore apps" = "Explore apps";
+
+/* No comment provided by engineer. */
+"false" = "false";
 
 /* No comment provided by engineer. */
 "Featured Programs" = "Featured Programs";
@@ -320,13 +392,19 @@
 "Flashlight on" = "Flashlight on";
 
 /* No comment provided by engineer. */
-"Forever" = "Forever";
+"for all objects" = "for all objects";
+
+/* No comment provided by engineer. */
+"for this object" = "for this object";
+
+/* No comment provided by engineer. */
+"Forever" = "永遠重複執行";
 
 /* No comment provided by engineer. */
 "Forgot password" = "Forgot password";
 
 /* No comment provided by engineer. */
-"Formula too long!" = "Formula too long!";
+"Formula too long!" = "公式太長!";
 
 /* No comment provided by engineer. */
 "Fr" = "Fr";
@@ -338,37 +416,37 @@
 "From Camera" = "From Camera";
 
 /* No comment provided by engineer. */
-"Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %1$@ second(s)\nto X: %2$@ Y: %3$@";
+"Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %@ second(s)\nto X: %@ Y: %@";
 
 /* No comment provided by engineer. */
 "Go back %@ layer(s)" = "Go back %@ layer(s)";
 
 /* No comment provided by engineer. */
-"Go to front" = "Go to front";
+"Go to front" = "到最上層";
+
+/* No comment provided by engineer. */
+"GOOD TO SEE YOU" = "GOOD TO SEE YOU";
 
 /* paint */
 "Green" = "Green";
 
 /* No comment provided by engineer. */
-"Grid" = "Grid";
+"Hello !" = "Hello !";
 
 /* No comment provided by engineer. */
-"Help" = "Help";
+"Help" = "說明";
 
 /* No comment provided by engineer. */
-"Hide" = "Hide";
+"Hide" = "隱藏";
 
 /* No comment provided by engineer. */
-"Hide Details" = "Hide Details";
+"Hide Details" = "隱藏詳細資訊";
 
 /* No comment provided by engineer. */
 "If %@ is true then" = "If %@ is true then";
 
 /* No comment provided by engineer. */
-"If End" = "If End";
-
-/* No comment provided by engineer. */
-"If on edge, bounce" = "If on edge, bounce";
+"If on edge, bounce" = "碰到邊緣反彈";
 
 /* paint */
 "image" = "image";
@@ -377,10 +455,25 @@
 "Image name" = "Image name";
 
 /* No comment provided by engineer. */
+"Image source not available" = "Image source not available";
+
+/* No comment provided by engineer. */
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.";
 
 /* No comment provided by engineer. */
+"inclination_x" = "inclination_x";
+
+/* No comment provided by engineer. */
+"inclination_y" = "inclination_y";
+
+/* No comment provided by engineer. */
 "Information" = "Information";
+
+/* paint */
+"Inserted" = "Inserted";
+
+/* No comment provided by engineer. */
+"Invalid input entered, try again." = "Invalid input entered, try again.";
 
 /* No comment provided by engineer. */
 "Invalid URL given!" = "Invalid URL given!";
@@ -390,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "January" = "&#x4E00;&#x6708;";
+
+/* No comment provided by engineer. */
+"join" = "join";
 
 /* No comment provided by engineer. */
 "Jul" = "Jul";
@@ -407,7 +503,16 @@
 "Last access" = "Last access";
 
 /* No comment provided by engineer. */
+"layer" = "圖層";
+
+/* No comment provided by engineer. */
 "Length" = "Length";
+
+/* No comment provided by engineer. */
+"length" = "length";
+
+/* No comment provided by engineer. */
+"letter" = "letter";
 
 /* paint */
 "line" = "line";
@@ -416,13 +521,25 @@
 "Loading" = "Loading";
 
 /* No comment provided by engineer. */
-"Logic" = "Logic";
+"Logic" = "邏輯";
 
 /* No comment provided by engineer. */
-"Login" = "Login";
+"Login" = "登入";
 
 /* No comment provided by engineer. */
-"Looks" = "Looks";
+"Login successful" = "Login successful";
+
+/* No comment provided by engineer. */
+"Login/Register" = "Login/Register";
+
+/* LOOK */
+"look" = "外觀";
+
+/* No comment provided by engineer. */
+"Looks" = "外觀";
+
+/* No comment provided by engineer. */
+"loudness" = "loudness";
 
 /* No comment provided by engineer. */
 "Mar" = "Mar";
@@ -442,6 +559,12 @@
 /* paint */
 "Menu" = "&#x4E94;&#x6708;";
 
+/* No comment provided by engineer. */
+"Message" = "Message";
+
+/* No comment provided by engineer. */
+"message 1" = "訊息1";
+
 /* paint */
 "mirror" = "mirror";
 
@@ -449,7 +572,7 @@
 "Mo" = "Mo";
 
 /* Prefix of default catrobat program object names (except background object) */
-"Mole" = "Mole";
+"Mole" = "地鼠";
 
 /* No comment provided by engineer. */
 "Monday" = "Monday";
@@ -464,55 +587,76 @@
 "Most Viewed" = "Most Viewed";
 
 /* No comment provided by engineer. */
-"Motion" = "Motion";
+"Motion" = "動作";
 
 /* No comment provided by engineer. */
 "Move %@ step(s)" = "Move %@ step(s)";
 
-/* Name of the default catrobat program */
-"My first program" = "My first program";
+/* No comment provided by engineer. */
+"Move Brick" = "移動程式塊";
+
+/* Name of the default catrobat program (used as filename!!) */
+"My first program" = "我的程式檔";
 
 /* Default title of imported photo from camera (taken by camera) */
 "My Image" = "My Image";
 
 /* Title for first (default) object */
-"My Object" = "My Object";
+"My Object" = "我的物件";
+
+/* No comment provided by engineer. */
+"Name" = "Name";
 
 /* No comment provided by engineer. */
 "Name already exists. Please choose another" = "Name already exists. Please choose another";
 
 /* No comment provided by engineer. */
-"New" = "New";
+"New" = "建立新檔";
 
 /* paint */
 "New Canvas" = "New Canvas";
 
 /* No comment provided by engineer. */
+"New Message" = "New Message";
+
+/* No comment provided by engineer. */
 "New Program" = "New Program";
 
 /* No comment provided by engineer. */
-"New Variable" = "New Variable";
+"New Text" = "New Text";
+
+/* No comment provided by engineer. */
+"New Variable" = "新變數";
+
+/* No comment provided by engineer. */
+"New..." = "New...";
 
 /* No comment provided by engineer. */
 "Newest" = "&#x4E0B;&#x8F09;&#x6B21;&#x6578;";
 
 /* No comment provided by engineer. */
-"Next background" = "Next background";
+"Next background" = "下一個背景";
 
 /* No comment provided by engineer. */
-"Next look" = "Next look";
+"Next look" = "下一個外觀";
 
 /* No comment provided by engineer. */
-"No" = "No";
+"No" = "否";
+
+/* No comment provided by engineer. */
+"No Camera available" = "No Camera available";
 
 /* No comment provided by engineer. */
 "No Description available" = "No Description available";
 
-/* No comment provided by engineer. */
-"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
+/* Title of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
+"No imported sounds found" = "No imported sounds found";
 
 /* No comment provided by engineer. */
 "No input or the input is too short. Please enter at least %lu character(s)." = "No input or the input is too short. Please enter at least %lu character(s).";
+
+/* No comment provided by engineer. */
+"No Internet Connection" = "No Internet Connection";
 
 /* No comment provided by engineer. */
 "No internet connection available." = "No internet connection available.";
@@ -525,6 +669,9 @@
 
 /* No comment provided by engineer. */
 "No search results" = "No search results";
+
+/* No comment provided by engineer. */
+"not" = "not";
 
 /* No comment provided by engineer. */
 "Not enough free memory to download this program. Please delete some of your programs" = "Not enough free memory to download this program. Please delete some of your programs";
@@ -548,16 +695,16 @@
 "Numbers" = "Numbers";
 
 /* No comment provided by engineer. */
-"object" = "object";
+"Object" = "物件";
 
 /* No comment provided by engineer. */
-"Object" = "Object";
+"Object name" = "物件名稱";
 
 /* No comment provided by engineer. */
-"Object name" = "Object name";
+"Object variables:" = "Object variables:";
 
 /* No comment provided by engineer. */
-"Objects" = "Objects";
+"Objects" = "物件";
 
 /* No comment provided by engineer. */
 "Oct" = "Oct";
@@ -566,31 +713,58 @@
 "October" = "&#x5341;&#x6708;";
 
 /* No comment provided by engineer. */
-"OK" = "OK";
+"OK" = "確認";
 
 /* No comment provided by engineer. */
 "only 15 characters allowed" = "only 15 characters allowed";
 
 /* No comment provided by engineer. */
+"Only space is not allowed. Please enter at least %lu other character(s)." = "Only space is not allowed. Please enter at least %lu other character(s).";
+
+/* No comment provided by engineer. */
+"or" = "or";
+
+/* No comment provided by engineer. */
 "Password" = "Password";
+
+/* No comment provided by engineer. */
+"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Password is not vaild! \n It has to contain at least 6 characters/symbols";
 
 /* paint */
 "pipette" = "pipette";
 
 /* No comment provided by engineer. */
-"Place at\nX: %@ Y: %@" = "Place at\nX: %1$@ Y: %2$@";
+"Place at\nX: %@ Y: %@" = "Place at\nX: %@ Y: %@";
 
 /* No comment provided by engineer. */
 "Play" = "Play";
+
+/* Description of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
+"Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
 
 /* paint */
 "Please pick an item" = "Please pick an item";
 
 /* No comment provided by engineer. */
-"Pocket Code" = "Pocket Code";
+"Please register below" = "Please register below";
+
+/* No comment provided by engineer. */
+"Please select a program to upload" = "Please select a program to upload";
+
+/* No comment provided by engineer. */
+"Pocket Code" = "Pocket Code 口袋編碼";
 
 /* No comment provided by engineer. */
 "Pocket Code for iOS" = "Pocket Code for iOS";
+
+/* No comment provided by engineer. */
+"Pocket Code has been started in debug mode." = "Pocket Code has been started in debug mode.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.";
 
 /* No comment provided by engineer. */
 "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:";
@@ -599,10 +773,10 @@
 "Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on." = "Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on.";
 
 /* No comment provided by engineer. */
-"Pocket Code Recorder" = "Pocket Code Recorder";
+"Pocket Code Recorder" = "Pocket Code 錄音機";
 
 /* No comment provided by engineer. */
-"Pocket Code Source Code License" = "Pocket Code Source Code License";
+"Pocket Code Source Code License" = "Pocket Code 原始程式版權";
 
 /* paint */
 "Pocket Paint" = "Pocket Paint";
@@ -617,19 +791,34 @@
 "pointer" = "pointer";
 
 /* No comment provided by engineer. */
-"program" = "program";
+"pos_x" = "pos_x";
 
 /* No comment provided by engineer. */
-"Program name" = "Program name";
+"pos_y" = "pos_y";
 
 /* No comment provided by engineer. */
-"Programs" = "Programs";
+"Problems occured while Uploading your program" = "Problems occured while Uploading your program";
+
+/* No comment provided by engineer. */
+"Program name" = "程式檔名稱:";
+
+/* No comment provided by engineer. */
+"Program Name is necessary!" = "Program Name is necessary!";
+
+/* No comment provided by engineer. */
+"Program variables:" = "Program variables:";
+
+/* No comment provided by engineer. */
+"Programs" = "程式檔";
 
 /* No comment provided by engineer. */
 "Project" = "Project";
 
 /* No comment provided by engineer. */
 "Rate Us" = "Rate Us";
+
+/* Title of View where the user can see the recently used bricks. */
+"Recently Used" = "Recently Used";
 
 /* No comment provided by engineer. */
 "Recording" = "Recording";
@@ -641,7 +830,13 @@
 "Red" = "Red";
 
 /* No comment provided by engineer. */
-"Rename" = "Rename";
+"Register" = "Register";
+
+/* No comment provided by engineer. */
+"Registration successful" = "Registration successful";
+
+/* No comment provided by engineer. */
+"Rename" = "更名";
 
 /* No comment provided by engineer. */
 "Rename image" = "Rename image";
@@ -650,7 +845,7 @@
 "Rename object" = "Rename object";
 
 /* No comment provided by engineer. */
-"Rename program" = "Rename program";
+"Rename Program" = "程式檔更名";
 
 /* No comment provided by engineer. */
 "Rename sound" = "Rename sound";
@@ -661,8 +856,11 @@
 /* No comment provided by engineer. */
 "Report as inappropriate" = "&#x53D6;&#x6D88;";
 
+/* paint */
+"resize" = "resize";
+
 /* No comment provided by engineer. */
-"Restart" = "Restart";
+"Restart" = "重新開始";
 
 /* No comment provided by engineer. */
 "Result" = "Result";
@@ -679,9 +877,6 @@
 /* No comment provided by engineer. */
 "Saturday" = "Saturday";
 
-/* paint */
-"Save & Close Paint" = "Save & Close Paint";
-
 /* Action sheet menu title */
 "Save Screenshot to" = "Save Screenshot to";
 
@@ -695,7 +890,7 @@
 "Saved" = "Saved";
 
 /* No comment provided by engineer. */
-"Screenshot" = "Screenshot";
+"Screenshot" = "螢幕截圖";
 
 /* No comment provided by engineer. */
 "Screenshot saved to Camera Roll" = "Screenshot saved to Camera Roll";
@@ -704,7 +899,7 @@
 "Screenshot saved to project" = "Screenshot saved to project";
 
 /* No comment provided by engineer. */
-"Scripts" = "Scripts";
+"Scripts" = "腳本";
 
 /* No comment provided by engineer. */
 "Select All" = "Select All";
@@ -722,7 +917,7 @@
 "Select option:" = "Select option:";
 
 /* No comment provided by engineer. */
-"Sensors" = "Sensors";
+"Sensors" = "感應器";
 
 /* No comment provided by engineer. */
 "Sep" = "Sep";
@@ -734,22 +929,22 @@
 "Set background\n%@" = "Set background\n%@";
 
 /* No comment provided by engineer. */
-"Set brightness to %@\%" = "Set brightness to %1$@\\%2$";
+"Set brightness to %@\%" = "Set brightness to %@\\%";
 
 /* No comment provided by engineer. */
-"Set description" = "Set description";
+"Set description" = "設定描述";
 
 /* No comment provided by engineer. */
-"Set size to %@\%" = "Set size to %1$@\\%2$";
+"Set size to %@\%" = "Set size to %@\\%";
 
 /* No comment provided by engineer. */
-"Set transparency\nto %@\%" = "Set transparency\nto %1$@\\%2$";
+"Set transparency\nto %@\%" = "Set transparency\nto %@\\%";
 
 /* No comment provided by engineer. */
-"Set variable\n%@\nto %@" = "Set variable\n%1$@\nto %2$@";
+"Set variable\n%@\nto %@" = "Set variable\n%@\nto %@";
 
 /* No comment provided by engineer. */
-"Set volume to %@\%" = "Set volume to %1$@\\%2$";
+"Set volume to %@\%" = "Set volume to %@\\%";
 
 /* No comment provided by engineer. */
 "Set X to %@" = "Set X to %@";
@@ -758,10 +953,16 @@
 "Set Y to %@" = "Set Y to %@";
 
 /* No comment provided by engineer. */
-"Show" = "Show";
+"Settings" = "設定";
 
 /* No comment provided by engineer. */
-"Show Details" = "Show Details";
+"Show" = "顯示";
+
+/* No comment provided by engineer. */
+"Show Details" = "顯示詳細資訊";
+
+/* No comment provided by engineer. */
+"size" = "大小";
 
 /* No comment provided by engineer. */
 "Size" = "Size";
@@ -773,16 +974,19 @@
 "Slow Internet Connection!" = "Slow Internet Connection!";
 
 /* No comment provided by engineer. */
-"Sound" = "Sound";
+"Sound" = "音效";
 
 /* No comment provided by engineer. */
 "Sound name" = "Sound name";
 
 /* No comment provided by engineer. */
-"Sounds" = "Sounds";
+"Sounds" = "音效";
 
 /* No comment provided by engineer. */
 "Speak %@" = "Speak %@";
+
+/* No comment provided by engineer. */
+"sqrt" = "sqrt";
 
 /* paint */
 "square" = "square";
@@ -790,11 +994,14 @@
 /* paint */
 "stamp" = "stamp";
 
+/* paint */
+"Stamped" = "Stamped";
+
 /* No comment provided by engineer. */
 "Start sound\n%@" = "Start sound\n%@";
 
 /* No comment provided by engineer. */
-"Stop all sounds" = "Stop all sounds";
+"Stop all sounds" = "停止所有音效";
 
 /* No comment provided by engineer. */
 "Su" = "Su";
@@ -818,13 +1025,13 @@
 "Terms of Use" = "&#x641C;&#x5C0B;";
 
 /* No comment provided by engineer. */
+"Text message:" = "Text message:";
+
+/* No comment provided by engineer. */
 "Th" = "Th";
 
 /* No comment provided by engineer. */
 "The description contains invalid characters, try again." = "The description contains invalid characters, try again.";
-
-/* paint */
-"Thickness" = "Thickness";
 
 /* No comment provided by engineer. */
 "This action can not be undone!" = "This action can not be undone!";
@@ -833,10 +1040,19 @@
 "This feature is coming soon!" = "This feature is coming soon!";
 
 /* No comment provided by engineer. */
+"This variable can not be deleted because it is still in use." = "This variable can not be deleted because it is still in use.";
+
+/* No comment provided by engineer. */
 "Thursday" = "Thursday";
 
 /* No comment provided by engineer. */
-"Today" = "Today";
+"Today" = "今天";
+
+/* No comment provided by engineer. */
+"transparency" = "透明度";
+
+/* No comment provided by engineer. */
+"true" = "true";
 
 /* No comment provided by engineer. */
 "Tu" = "Tu";
@@ -862,6 +1078,15 @@
 /* No comment provided by engineer. */
 "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.";
 
+/* Button title of alert view to invoke undo if user shakes device */
+"Undo" = "Undo";
+
+/* Description text in alert view if user shakes the device */
+"Undo Drawing?" = "Undo Drawing?";
+
+/* Description text in alert view if user shakes the device */
+"Undo Typing?" = "Undo Typing?";
+
 /* No comment provided by engineer. */
 "Unselect All" = "Unselect All";
 
@@ -869,13 +1094,25 @@
 "Upcoming version" = "Upcoming version";
 
 /* No comment provided by engineer. */
-"Upload" = "Upload";
+"Upload" = "上傳";
+
+/* No comment provided by engineer. */
+"Upload Program" = "Upload Program";
+
+/* No comment provided by engineer. */
+"Upload Selected Program" = "Upload Selected Program";
+
+/* No comment provided by engineer. */
+"Upload successful" = "上傳成功";
 
 /* No comment provided by engineer. */
 "Uploaded" = "Uploaded";
 
 /* No comment provided by engineer. */
 "Username" = "Username";
+
+/* No comment provided by engineer. */
+"Username is necessary!" = "Username is necessary!";
 
 /* No comment provided by engineer. */
 "v" = "v";
@@ -887,7 +1124,7 @@
 "Variable type" = "Variable type";
 
 /* No comment provided by engineer. */
-"Variables" = "Variables";
+"Variables" = "變數";
 
 /* No comment provided by engineer. */
 "Version" = "Version";
@@ -908,22 +1145,28 @@
 "Wednesday" = "Wednesday";
 
 /* No comment provided by engineer. */
+"Welcome back, please login below" = "Welcome back, please login below";
+
+/* No comment provided by engineer. */
 "Welcome to Pocket Code" = "Welcome to Pocket Code";
 
 /* No comment provided by engineer. */
 "When I receive\n%@" = "When I receive\n%@";
 
 /* No comment provided by engineer. */
-"When program started" = "When program started";
+"When program started" = "當程式開始時";
 
 /* No comment provided by engineer. */
-"When tapped" = "When tapped";
+"When tapped" = "當物件被按時";
+
+/* paint */
+"Width" = "Width";
 
 /* No comment provided by engineer. */
-"Yes" = "Yes";
+"Yes" = "是";
 
 /* No comment provided by engineer. */
-"Yesterday" = "Yesterday";
+"Yesterday" = "昨天";
 
 /* No comment provided by engineer. */
 "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people.";
@@ -933,4 +1176,3 @@
 
 /* paint */
 "zoom" = "zoom";
-
