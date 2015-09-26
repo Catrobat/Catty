@@ -326,6 +326,7 @@
             }
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
+                NSDebug(@"LoadIDS");
                 [self loadIDsWith:data andResponse:response];
             });
         }
@@ -444,42 +445,42 @@
     for (CatrobatProgram* project in projects) {
         //if ([project.author isEqualToString:@""]) {
         if (!project.author) {
+            NSDebug(@"Load Details");
             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@?id=%@", kConnectionHost, kConnectionIDQuery,project.projectID]];
             NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kConnectionTimeout];
-            
-
-            if (self.infoTask) {
-                [self.infoTask cancel];
-            }
-            self.infoTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                if (error) {
-                    if (error.code != -999) {
-                        if ([[Util networkErrorCodes] containsObject:[NSNumber
-                                                                      numberWithInteger:error.code]]){
-                            [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
-                        } else {
-                            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-                            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                            }];
-                            [alert addAction:cancelAction];
-                            [self presentViewController:alert animated:YES completion:nil];
+            dispatch_queue_t _serialQueue = dispatch_queue_create("download.catrob.at", DISPATCH_QUEUE_SERIAL);
+            dispatch_sync(_serialQueue, ^{
+                self.infoTask = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                    if (error) {
+                        if (error.code != -999) {
+                            if ([[Util networkErrorCodes] containsObject:[NSNumber
+                                                                          numberWithInteger:error.code]]){
+                                [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
+                            } else {
+                                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+                                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedOK style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                                }];
+                                [alert addAction:cancelAction];
+                                [self presentViewController:alert animated:YES completion:nil];
+                            }
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [self hideLoadingView];
+                                [self loadingIndicator:NO];
+                            });
                         }
+                    } else {
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [self hideLoadingView];
-                            [self loadingIndicator:NO];
+                            [self loadInfosWith:data andResponse:response];
                         });
                     }
-                } else {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self loadInfosWith:data andResponse:response];
-                    });
+                }];
+                
+                if (self.infoTask) {
+                    [self.infoTask resume];
                 }
-            }];
-            
-            if (self.infoTask) {
-                [self.infoTask resume];
-            }
-//            [self showLoadingView];
+                //            [self showLoadingView];
+            });
+           
         }
         else
         {
