@@ -43,7 +43,7 @@
 #define kUIBarHeight 49
 #define kNavBarHeight 44
 
-#define kScrollViewOffset 0.0f
+#define kScrollViewOffset 30.0f
 
 
 @interface ProgramDetailStoreViewController () <ProgramUpdateDelegate>
@@ -106,11 +106,13 @@
         UIButton * button =(UIButton*)[self.projectView viewWithTag:kDownloadButtonTag];
         button.enabled = NO;
     }
+    CGFloat minHeight = self.view.frame.size.height-kUIBarHeight-kNavBarHeight;
+    self.scrollViewOutlet.frame = CGRectMake(self.scrollViewOutlet.frame.origin.x, self.scrollViewOutlet.frame.origin.y, [Util screenWidth],[Util screenHeight]);
     [self.scrollViewOutlet addSubview:self.projectView];
     self.scrollViewOutlet.delegate = self;
     CGFloat screenHeight = [Util screenHeight];
     CGSize contentSize = self.projectView.bounds.size;
-    CGFloat minHeight = self.view.frame.size.height-kUIBarHeight-kNavBarHeight;
+    
     if (contentSize.height < minHeight) {
         contentSize.height = minHeight;
     }
