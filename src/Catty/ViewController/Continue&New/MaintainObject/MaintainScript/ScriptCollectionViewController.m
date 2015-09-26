@@ -1038,6 +1038,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
     [self.object.program saveToDisk];
     [self reloadData];
+    [self enableUserInteractionAndResetHighlight];
 }
 
 - (void)addVariableWithName:(NSString*)variableName andCompletion:(id)completion
@@ -1048,6 +1049,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
     [self.object.program saveToDisk];
     [self reloadData];
+    [self enableUserInteractionAndResetHighlight];
 }
 
 - (void)updateBrickCellData:(id<BrickCellDataProtocol>)brickCellData withValue:(id)value
@@ -1138,7 +1140,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                                         invertedSet]
                               invalidInputAlertMessage:kLocalizedMessageAlreadyExistsDescription
                                          existingNames:[Util allMessagesForProgram:self.object.program]];
-            [self enableUserInteractionAndResetHighlight];
             return;
         } else {
             [messageBrick setMessage:(NSString*)value forLineNumber:line andParameterNumber:parameter];
