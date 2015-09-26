@@ -625,9 +625,13 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:(self.object.scriptList.count - 1)]
                                     atScrollPosition:UICollectionViewScrollPositionBottom
                                             animated:YES];
-        script.animateInsertBrick = YES;
-        
+       
         [self reloadData];
+        if (self.object.scriptList.count == 1) {
+            [self.object.program saveToDisk];
+            return;
+        }
+        script.animateInsertBrick = YES;
         [self turnOnInsertingBrickMode];
         return;
     }

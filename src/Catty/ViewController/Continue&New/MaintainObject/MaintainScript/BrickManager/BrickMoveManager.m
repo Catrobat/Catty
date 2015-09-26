@@ -49,7 +49,130 @@
     return sharedBrickMoveManager;
 }
 
+
+
+- (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
+    canMoveToIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object
+{
+    Script *fromScript = [object.scriptList objectAtIndex:fromIndexPath.section];
+    Brick *fromBrick;
+    if (fromIndexPath.item == 0) {
+        fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item];
+    } else{
+        fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
+    }
+    
+    if (toIndexPath.item != 0) {
+        Script *script;
+        if (self.moveToOtherScript) {
+            script = [object.scriptList objectAtIndex:toIndexPath.section];
+        }else{
+            script = [object.scriptList objectAtIndex:fromIndexPath.section];
+        }
+        Brick *toBrick;
+        if (script.brickList.count > toIndexPath.item - 1) {
+            toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
+        } else {
+            return NO;
+        }
+        
+        if ([toBrick isKindOfClass:[LoopEndBrick class]]) {
+            LoopEndBrick* loopEndBrick = (LoopEndBrick*) toBrick;
+            if ([loopEndBrick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+                return [self handleMovementToForeverBrick:loopEndBrick fromIndexPath:fromIndexPath toIndexPath:toIndexPath fromBrick:fromBrick andScript:script];
+            }
+        }
+        if ([fromBrick isKindOfClass:[LoopBeginBrick class]]){
+            return [self checkLoopBeginToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick andObject:object];
+        } else if ([fromBrick isKindOfClass:[LoopEndBrick class]]) {
+            return [self checkLoopEndToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick andObject:object];
+        } else if ([fromBrick isKindOfClass:[IfLogicBeginBrick class]]){
+            return [self checkIfBeginToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick andObject:object];
+        } else if ([fromBrick isKindOfClass:[IfLogicElseBrick class]]){
+            return [self checkIfElseToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick andObject:object];
+        } else if ([fromBrick isKindOfClass:[IfLogicEndBrick class]]){
+            return [self checkIfEndToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick andObject:object];
+        } else {
+            //From Below
+            if (toIndexPath.item < fromIndexPath.item) {
+                if ([toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[LoopEndBrick class]]) { //check if repeat?!
+                    Brick *checkBeforeEndBrick = [script.brickList objectAtIndex:toIndexPath.item - 2];
+                    if ([checkBeforeEndBrick isKindOfClass:[LoopEndBrick class]]) {
+                        return NO;
+                    }
+                }
+
+            }
+            
+            return (toIndexPath.item != 0);
+        }
+    } else {
+        return [self handleMovementToOtherScriptwithIndexPath:toIndexPath andObject:object];
+    }
+}
+
 #pragma mark - check move logic
+
+-(BOOL)checkMoveToForeverLoopEndBrickfromBrick:(Brick*)fromBrick fromIndexPath:(NSIndexPath*)fromIndexPath andToIndexPath:(NSIndexPath*)toIndexPath
+{
+    if ([fromBrick isKindOfClass:[IfLogicBeginBrick class]]||[fromBrick isKindOfClass:[IfLogicElseBrick class]]||[fromBrick isKindOfClass:[IfLogicEndBrick class]]||[fromBrick isKindOfClass:[LoopEndBrick class]]||[fromBrick isKindOfClass:[LoopBeginBrick class]]) {
+        if (toIndexPath.item < fromIndexPath.item) {
+            self.higherRankBrick = toIndexPath;
+        } else {
+            self.lowerRankBrick = toIndexPath;
+        }
+
+        return NO;
+    }
+    return YES;
+}
+
+-(BOOL)handleMovementToOtherScriptwithIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object
+{
+    Script *toScript = [object.scriptList objectAtIndex:toIndexPath.section];
+    self.moveToOtherScript = YES;
+    if ([toScript.brickList count] == 0) {
+        return YES;
+    } else {
+        return NO;
+    }
+ 
+}
+
+-(BOOL)handleMovementToForeverBrick:(LoopEndBrick*)loopEndBrick fromIndexPath:(NSIndexPath*)fromIndexPath toIndexPath:(NSIndexPath*)toIndexPath fromBrick:(Brick*)fromBrick andScript:(Script*)script
+{
+    if (script.brickList.count >=1 && ![fromBrick isKindOfClass:[LoopEndBrick class]]) {
+        NSInteger index = script.brickList.count;
+        while ([[script.brickList objectAtIndex:index-1] isKindOfClass:[LoopEndBrick class]]) {
+            LoopEndBrick* loopEndBrickCheck = [script.brickList objectAtIndex:index-1];
+            if (loopEndBrick  == loopEndBrickCheck) {
+                return NO;
+            }
+            index--;
+        }
+        //from above
+        if (toIndexPath.item > fromIndexPath.item) {
+            Brick *checkafterEndBrick = [script.brickList objectAtIndex:toIndexPath.item];
+            if ([checkafterEndBrick isKindOfClass:[IfLogicElseBrick class]] ||[checkafterEndBrick isKindOfClass:[IfLogicEndBrick class]]) {
+                return NO;
+            } else if ([checkafterEndBrick isKindOfClass:[LoopEndBrick class]]){
+                LoopEndBrick *endBrickCheck = (LoopEndBrick*)checkafterEndBrick;
+                if (![endBrickCheck.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+                    return NO;
+                }
+            }
+            
+        }
+        if (![self checkMoveToForeverLoopEndBrickfromBrick:fromBrick fromIndexPath:fromIndexPath andToIndexPath:toIndexPath]) {
+            return NO;
+        }
+        return YES;
+    }
+    return NO;
+ 
+}
+
+
 - (BOOL)checkLoopBeginToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick andObject:(SpriteObject*)object
 {
     if (((toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil) && (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil))||(toIndexPath.item > self.higherRankBrick.item && self.higherRankBrick != nil && self.lowerRankBrick == nil) || (toIndexPath.item < self.lowerRankBrick.item && self.lowerRankBrick != nil && self.higherRankBrick == nil)||(self.higherRankBrick==nil && self.lowerRankBrick==nil))  {
@@ -165,98 +288,6 @@
     }
     return NO;
 }
-
-- (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
-    canMoveToIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object
-{
-    Script *fromScript = [object.scriptList objectAtIndex:fromIndexPath.section];
-    Brick *fromBrick;
-    if (fromIndexPath.item == 0) {
-        fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item];
-    } else{
-        fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
-    }
-    
-    if (toIndexPath.item != 0) {
-        Script *script;
-        if (self.moveToOtherScript) {
-            script = [object.scriptList objectAtIndex:toIndexPath.section];
-        }else{
-            script = [object.scriptList objectAtIndex:fromIndexPath.section];
-        }
-        Brick *toBrick;
-        if (script.brickList.count > toIndexPath.item - 1) {
-            toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
-        } else {
-            return NO;
-        }
-        
-        if ([toBrick isKindOfClass:[LoopEndBrick class]]) {
-            LoopEndBrick* loopEndBrick = (LoopEndBrick*) toBrick;
-            if ([loopEndBrick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
-                if (script.brickList.count >=1 && ![fromBrick isKindOfClass:[LoopEndBrick class]]) {
-                    NSInteger index = script.brickList.count;
-                    while ([[script.brickList objectAtIndex:index-1] isKindOfClass:[LoopEndBrick class]]) {
-                        LoopEndBrick* loopEndBrickCheck = [script.brickList objectAtIndex:index-1];
-                        if (loopEndBrick  == loopEndBrickCheck) {
-                            return NO;
-                        }
-                        index--;
-                    }
-                    //from above
-                    if (toIndexPath.item > fromIndexPath.item) {
-                        Brick *checkafterEndBrick = [script.brickList objectAtIndex:toIndexPath.item];
-                        if ([checkafterEndBrick isKindOfClass:[IfLogicElseBrick class]] ||[checkafterEndBrick isKindOfClass:[IfLogicEndBrick class]]) {
-                            return NO;
-                        } else if ([checkafterEndBrick isKindOfClass:[LoopEndBrick class]]){
-                            LoopEndBrick *endBrickCheck = (LoopEndBrick*)checkafterEndBrick;
-                            if (![endBrickCheck.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
-                                return NO;
-                            }
-                        }
-
-                    }
-                   return YES;
-                }
-                return NO;
-            }
-        }
-        if ([fromBrick isKindOfClass:[LoopBeginBrick class]]){
-            return [self checkLoopBeginToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick andObject:object];
-        } else if ([fromBrick isKindOfClass:[LoopEndBrick class]]) {
-            return [self checkLoopEndToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick andObject:object];
-        } else if ([fromBrick isKindOfClass:[IfLogicBeginBrick class]]){
-            return [self checkIfBeginToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick andObject:object];
-        } else if ([fromBrick isKindOfClass:[IfLogicElseBrick class]]){
-            return [self checkIfElseToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick andObject:object];
-        } else if ([fromBrick isKindOfClass:[IfLogicEndBrick class]]){
-            return [self checkIfEndToIndex:toIndexPath FromIndex:fromIndexPath andFromBrick:fromBrick andObject:object];
-        } else {
-            //From Below
-            if (toIndexPath.item < fromIndexPath.item) {
-                if ([toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[LoopEndBrick class]]) { //check if repeat?!
-                    Brick *checkBeforeEndBrick = [script.brickList objectAtIndex:toIndexPath.item - 2];
-                    if ([checkBeforeEndBrick isKindOfClass:[LoopEndBrick class]]) {
-                        return NO;
-                    }
-                }
-
-            }
-            
-            return (toIndexPath.item != 0);
-        }
-    } else {
-        Script *toScript = [object.scriptList objectAtIndex:toIndexPath.section];
-        self.moveToOtherScript = YES;
-        if ([toScript.brickList count] == 0) {
-            return YES;
-        } else {
-            return NO;
-        }
-        
-    }
-}
-
 
 -(void)reset
 {
