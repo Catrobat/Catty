@@ -429,6 +429,12 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
 // FIXME: UPDATING THE DATA MODEL WHILE THE USER IS DRAGGING IS NO GOOD PRACTICE AND IS ERROR PRONE!!!
 //        USE collectionView:layout:didEndDraggingItemAtIndexPath: DELEGATE METHOD FOR THIS. Updates must happen after the user stopped dragging the brickcell!!
+    if (fromIndexPath.item == 0) {
+        Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+        [self.object.scriptList removeObjectAtIndex:fromIndexPath.section];
+        [self.object.scriptList insertObject:script atIndex:toIndexPath.section];
+        return;
+    }
     if (fromIndexPath.section == toIndexPath.section) {
         Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
         if (fromIndexPath.item >0) {
@@ -469,17 +475,23 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 {
     if ([[BrickInsertManager sharedInstance] isBrickInsertionMode]) {
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
-        Brick *brick;
-        if (script.brickList.count >= 1) {
-            brick = [script.brickList objectAtIndex:indexPath.item - 1];
+        if (indexPath.item != 0) {
+            Brick *brick;
+            if (script.brickList.count >= 1) {
+                brick = [script.brickList objectAtIndex:indexPath.item - 1];
+            }else{
+                brick = [script.brickList objectAtIndex:indexPath.item];
+            }
+            if (brick.isAnimatedInsertBrick) {
+                [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:indexPath andObject:self.object];
+                [self turnOffInsertingBrickMode];
+            }else{
+                return;
+            }
+
         }else{
-            brick = [script.brickList objectAtIndex:indexPath.item];
-        }
-        if (brick.isAnimatedInsertBrick) {
-            [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:indexPath andObject:self.object];
+            script.animateInsertBrick = NO;
             [self turnOffInsertingBrickMode];
-        }else{
-            return;
         }
     }
     [self reloadInputViews];
@@ -508,7 +520,8 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 
 - (BOOL)collectionView:(UICollectionView*)collectionView canMoveItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    return ((self.isEditing || indexPath.item == 0) ? NO : YES);
+    BOOL editable = ((self.isEditing || indexPath.item == 0) ? NO : YES);
+    return ((editable || [[BrickInsertManager sharedInstance] isBrickInsertionMode]) ? YES : editable);
 }
 
 #pragma mark - Collection View Datasource
@@ -612,7 +625,10 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:(self.object.scriptList.count - 1)]
                                     atScrollPosition:UICollectionViewScrollPositionBottom
                                             animated:YES];
-        [self.object.program saveToDisk];
+        script.animateInsertBrick = YES;
+        
+        [self reloadData];
+        [self turnOnInsertingBrickMode];
         return;
     }
     // empty script list, insert start script and continue to insert the chosen brick

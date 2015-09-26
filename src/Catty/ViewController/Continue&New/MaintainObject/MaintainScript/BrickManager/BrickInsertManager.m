@@ -62,6 +62,11 @@
     canInsertToIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object
 {
     Script *fromScript = [object.scriptList objectAtIndex:fromIndexPath.section];
+    if (fromIndexPath.item == 0 && toIndexPath.item !=0) {
+        return NO;
+    }else{
+        return YES;
+    }
     Brick *fromBrick;
     if (fromIndexPath.item <= 0) {
         fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item];
