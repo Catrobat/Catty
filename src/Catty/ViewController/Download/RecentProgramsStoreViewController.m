@@ -170,7 +170,7 @@
     self.tableView.backgroundColor = [UIColor backgroundColor];
     CGFloat navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     CGFloat segmentedcontrolHeight = self.segmentedControlView.frame.size.height;
-    self.tableView.frame = CGRectMake(0, navigationBarHeight+segmentedcontrolHeight+[UIApplication sharedApplication].statusBarFrame.size.height, self.tableView.frame.size.width, [Util screenHeight] - (navigationBarHeight + segmentedcontrolHeight));
+    self.tableView.frame = CGRectMake(0, navigationBarHeight+segmentedcontrolHeight+[UIApplication sharedApplication].statusBarFrame.size.height,[Util screenWidth], [Util screenHeight] - (navigationBarHeight + segmentedcontrolHeight));
     self.tableView.scrollsToTop = YES;
 }
 
