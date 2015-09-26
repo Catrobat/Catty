@@ -185,8 +185,8 @@
 
 - (void)setupCanvas
 {
-    NSInteger width = self.view.bounds.size.width;
-    NSInteger height = (NSInteger)self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height;
+    NSInteger width = self.view.frame.size.width;
+    NSInteger height = (NSInteger)self.view.frame.size.height;
     CGRect rect = CGRectMake(0, 0, width, height);
     self.drawView = [[UIImageView alloc] initWithFrame:rect];
     self.saveView = [[UIImageView alloc] initWithFrame:rect];
