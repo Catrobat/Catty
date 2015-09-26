@@ -322,31 +322,9 @@
 
 - (void)editAction
 {
-    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:kLocalizedPaintSelect
-                                                                         message:@""
-                                                                  preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedCancel
-                                                           style:UIAlertActionStyleCancel
-                                                         handler:^(UIAlertAction *action) {}];
-    [actionSheet addAction:cancelAction];
-    
-    UIAlertAction *saveAction = [UIAlertAction actionWithTitle:kLocalizedPaintSave
-                                                         style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction *action) { [self saveAction]; }];
-    [actionSheet addAction:saveAction];
-    
-    UIAlertAction *saveCloseAction = [UIAlertAction actionWithTitle:kLocalizedPaintClose
-                                                              style:UIAlertActionStyleDefault
-                                                            handler:^(UIAlertAction *action) { [self closeAction]; }];
-    [actionSheet addAction:saveCloseAction];
-    
-    UIAlertAction *newCanvasAction = [UIAlertAction actionWithTitle:kLocalizedPaintNewCanvas
-                                                              style:UIAlertActionStyleDefault
-                                                            handler:^(UIAlertAction *action) { [self newCanvasAction]; }];
-    [actionSheet addAction:newCanvasAction];
-    
-    [self presentViewController:actionSheet animated:YES completion:nil];
+   
+    NSArray *buttonTitles = @[kLocalizedPaintSave,kLocalizedPaintClose,kLocalizedPaintNewCanvas];
+    [Util actionSheetWithTitle:kLocalizedPaintSelect delegate:self destructiveButtonTitle:nil otherButtonTitles:buttonTitles tag:kPocketPaintActionSheetTag view:self.view];
 }
 
 - (void)setupUndoManager
@@ -999,5 +977,26 @@
     }
     return state;
 }
+
+#pragma mark actionsheet delegate
+
+-(void)actionSheet:(CatrobatActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag == kPocketPaintActionSheetTag) {
+        switch (buttonIndex) {
+            case 0:
+                [self saveAction];
+                break;
+            case 1:
+                [self closeAction];
+                break;
+            case 2:
+                [self newCanvasAction];
+            default:
+                break;
+        }
+    }
+}
+
 
 @end
