@@ -1,227 +1,281 @@
-/* *
- *  Copyright (C) 2010-2013 The Catrobat Team
- *  (http://developer.catrobat.org/credits)
- *
- *  This program is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Affero General Public License as
- *  published by the Free Software Foundation, either version 3 of the
- *  License, or (at your option) any later version.
- *
- *  An additional term exception under section 7 of the GNU Affero
- *  General Public License, version 3, is available at
- *  (http://developer.catrobat.org/license_additional_term)
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *  GNU Affero General Public License for more details.
- *
- *  You should have received a copy of the GNU Affero General Public License
- *  along with this program.  If not, see http://www.gnu.org/licenses/.
-*/
 /* No comment provided by engineer. */
-"A program with the same name already exists, try again." = "A program with the same name already exists, try again.";
+"A message with the same name already exists, try again." = "A message with the same name already exists, try again.";
 
 /* No comment provided by engineer. */
-"About Catrobat" = "About Catrobat";
+"A program with the same name already exists, try again." = "در حال حاضر برنامه ای با همین نام وجود دارد، دوباره سعی کن.";
 
 /* No comment provided by engineer. */
-"About Pocket Code" = "About Pocket Code";
+"About Catrobat" = "درباره \"کت ربات\"";
 
 /* No comment provided by engineer. */
-"Add image" = "Add image";
+"About Pocket Code" = "درباره \"پاکت کد\"";
+
+/* No comment provided by engineer. */
+"acceleration_x" = "شتاب x";
+
+/* No comment provided by engineer. */
+"acceleration_y" = "شتاب y";
+
+/* No comment provided by engineer. */
+"acceleration_z" = "شتاب z";
+
+/* No comment provided by engineer. */
+"add comment here..." = "add comment here...";
+
+/* No comment provided by engineer. */
+"Add image" = "اضافه کردن تصویر";
 
 /* Action sheet menu title */
-"Add look" = "Add look";
+"Add look" = "اضافه کردن نگاه";
 
 /* No comment provided by engineer. */
-"Add object" = "Add object";
+"Add object" = "اضافه کردن شیء";
 
 /* Action sheet menu title */
-"Add sound" = "Add sound";
+"Add sound" = "اضافه کردن صدا";
 
 /* paint */
 "Alpha" = "آلفا";
 
 /* No comment provided by engineer. */
-"An image with the same name already exists, try again." = "An image with the same name already exists, try again.";
+"An image with the same name already exists, try again." = "در حال حاضر تصویری با همین نام وجود دارد، دوباره سعی کن.";
 
 /* No comment provided by engineer. */
-"An object with the same name already exists, try again." = "An object with the same name already exists, try again.";
+"An object with the same name already exists, try again." = "در حال حاضر شئ ای با همین نام وجود دارد، دوباره سعی کن.";
 
 /* No comment provided by engineer. */
-"Animate Brick" = "Animate Brick";
+"and" = "و";
 
 /* No comment provided by engineer. */
-"Apr" = "Apr";
+"Animate Brick" = "حرکت آجر";
+
+/* No comment provided by engineer. */
+"Apr" = "آپریل";
 
 /* No comment provided by engineer. */
 "April" = "آوریل";
 
 /* No comment provided by engineer. */
-"Aug" = "Aug";
+"Aug" = "آگوست";
 
 /* No comment provided by engineer. */
 "August" = "آگوست‌";
 
 /* No comment provided by engineer. */
-"Author" = "Author";
+"Author" = "نويسنده";
+
+/* Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size. */
+"Axes" = "Axes";
 
 /* No comment provided by engineer. */
-"Back" = "Back";
+"Back" = "برگشت";
 
 /* No comment provided by engineer. */
-"Background" = "Background";
+"Background" = "پس زمینه";
 
 /* No comment provided by engineer. */
-"Backgrounds" = "Backgrounds";
+"Backgrounds" = "پس‌زمینه‌ها";
 
 /* paint */
 "Blue" = "آبی";
 
 /* No comment provided by engineer. */
-"Bricks" = "Bricks";
+"Bricks" = "آجرها";
 
 /* No comment provided by engineer. */
-"Broadcast and wait\n%@" = "Broadcast and wait\n%@";
+"brightness" = "روشنایی";
 
 /* No comment provided by engineer. */
-"Broadcast\n%@" = "Broadcast\n%@";
+"Broadcast and wait\n%@" = "پخش و انتظار%@";
+
+/* No comment provided by engineer. */
+"Broadcast\n%@" = "پخش%@";
 
 /* paint */
-"brush" = "brush";
+"brush" = "قلم مو";
 
 /* No comment provided by engineer. */
-"By switching to the section \"Explore\" you can discover much more interesting stuff." = "By switching to the section \"Explore\" you can discover much more interesting stuff.";
+"By registering you agree to our" = "By registering you agree to our";
 
 /* No comment provided by engineer. */
-"Camera Roll" = "Camera Roll";
+"By switching to the section \"Explore\" you can discover much more interesting stuff." = "با راه گزینی به بخش \"کاوش\" تو می توانی چیزهای بسیار جالبی کشف کنی.";
 
 /* No comment provided by engineer. */
-"Can't restart program!" = "Can't restart program!";
+"Camera Roll" = "چرخش دوربین";
+
+/* No comment provided by engineer. */
+"Can't restart program!" = "قادر به راه اندازی مجدد برنامه نیستم!";
 
 /* No comment provided by engineer. */
 "Cancel" = "انصراف";
 
 /* No comment provided by engineer. */
-"Categories" = "Categories";
+"Categories" = "دسته ها";
 
 /* No comment provided by engineer. */
-"Change brightness\nby %@\%" = "Change brightness\nby %1$@\\%2$";
+"Change brightness\nby %@\%" = "Change brightness\nby %@\\%";
 
 /* No comment provided by engineer. */
-"Change size by %@\%" = "Change size by %1$@\\%2$";
+"Change size by %@\%" = "Change size by %@\\%";
 
 /* No comment provided by engineer. */
-"Change transparency\nby %@\%" = "Change transparency\nby %1$@\\%2$";
+"Change transparency\nby %@\%" = "Change transparency\nby %@\\%";
 
 /* No comment provided by engineer. */
-"Change variable\n%@\nby %@" = "Change variable\n%1$@\nby %2$@";
+"Change variable\n%@\nby %@" = "Change variable\n%@\nby %@";
 
 /* No comment provided by engineer. */
-"Change volume by %@" = "Change volume by %@";
+"Change volume by %@" = "تغییر حجم با %@";
 
 /* No comment provided by engineer. */
-"Change X by %@" = "Change X by %@";
+"Change X by %@" = "تغییر X با %@";
 
 /* No comment provided by engineer. */
-"Change Y by %@" = "Change Y by %@";
+"Change Y by %@" = "تغییر Y با %@";
 
 /* No comment provided by engineer. */
-"Choose image" = "Choose image";
+"Changes discarded!" = "تغییرات از بین رفت!";
 
 /* No comment provided by engineer. */
-"Choose sound" = "Choose sound";
+"Changes saved!" = "تغییرات ذخیره شد!";
 
 /* No comment provided by engineer. */
-"Clear graphic effects" = "Clear graphic effects";
+"Choose image" = "انتخاب تصویر";
 
 /* No comment provided by engineer. */
-"Close" = "Close";
+"Choose sound" = "انتخاب صدا";
 
 /* No comment provided by engineer. */
-"Compute" = "Compute";
+"Clear graphic effects" = "پاک کردن اثر گرافیکی";
 
 /* No comment provided by engineer. */
-"Computed result is %.2f" = "Computed result is %.2f";
-
-/* No comment provided by engineer. */
-"Computed result is FALSE" = "Computed result is FALSE";
-
-/* No comment provided by engineer. */
-"Computed result is TRUE" = "Computed result is TRUE";
-
-/* No comment provided by engineer. */
-"Continue" = "Continue";
-
-/* No comment provided by engineer. */
-"Control" = "Control";
-
-/* No comment provided by engineer. */
-"Copy" = "Copy";
-
-/* No comment provided by engineer. */
-"Copy Brick" = "Copy Brick";
-
-/* No comment provided by engineer. */
-"Copy program" = "Copy program";
+"Close" = "بستن";
 
 /* paint */
-"crop" = "crop";
+"Close Paint" = "Close Paint";
 
 /* No comment provided by engineer. */
-"Dec" = "Dec";
+"compass" = "compass";
+
+/* No comment provided by engineer. */
+"Compute" = "محاسبه";
+
+/* No comment provided by engineer. */
+"Computed result is %.2f" = "نتیجه محاسبه شده %.2f است";
+
+/* No comment provided by engineer. */
+"Computed result is FALSE" = "نتیجه محاسبه شده اشتباه است";
+
+/* No comment provided by engineer. */
+"Computed result is TRUE" = "نتیجه محاسبه شده درست است";
+
+/* No comment provided by engineer. */
+"Continue" = "ادامه";
+
+/* No comment provided by engineer. */
+"Control" = "کنترل";
+
+/* No comment provided by engineer. */
+"Copy" = "رونوشت";
+
+/* No comment provided by engineer. */
+"Copy Brick" = "کپی آجر";
+
+/* No comment provided by engineer. */
+"Copy program" = "رونوشت کردن برنامه";
+
+/* No comment provided by engineer. */
+"Debug mode" = "Debug mode";
+
+/* No comment provided by engineer. */
+"Dec" = "دسامبر";
 
 /* No comment provided by engineer. */
 "December" = "دسامبر";
 
 /* No comment provided by engineer. */
-"Delete" = "Delete";
+"Delete" = "حذف";
 
 /* No comment provided by engineer. */
-"Delete Brick" = "Delete Brick";
+"Delete Brick" = "حذف آجر";
 
 /* No comment provided by engineer. */
-"Delete Looks" = "Delete Looks";
+"Delete Condition" = "Delete Condition";
 
 /* No comment provided by engineer. */
-"Delete Objects" = "Delete Objects";
+"Delete Looks" = "حذف نگاه ها";
 
 /* No comment provided by engineer. */
-"Delete Programs" = "Delete Programs";
+"Delete Loop" = "Delete Loop";
 
 /* No comment provided by engineer. */
-"Delete Script" = "Delete Script";
+"Delete Objects" = "حذف اشیاء";
 
 /* No comment provided by engineer. */
-"Delete Sounds" = "Delete Sounds";
+"Delete Program" = "Delete Program";
 
 /* No comment provided by engineer. */
-"Delete this look" = "Delete this look";
+"Delete Programs" = "حذف برنامه ها";
 
 /* No comment provided by engineer. */
-"Delete this object" = "Delete this object";
+"Delete Script" = "حذف فیلمنامه";
 
 /* No comment provided by engineer. */
-"Delete this program" = "Delete this program";
+"Delete Sounds" = "حذف صداها";
 
 /* No comment provided by engineer. */
-"Delete this sound" = "Delete this sound";
+"Delete these Bricks?" = "Delete these Bricks?";
+
+/* No comment provided by engineer. */
+"Delete these Conditions?" = "Delete these Conditions?";
+
+/* No comment provided by engineer. */
+"Delete these Loops?" = "Delete these Loops?";
+
+/* No comment provided by engineer. */
+"Delete these Scripts?" = "Delete these Scripts?";
+
+/* No comment provided by engineer. */
+"Delete this Brick?" = "Delete this Brick?";
+
+/* No comment provided by engineer. */
+"Delete this Condition?" = "Delete this Condition?";
+
+/* No comment provided by engineer. */
+"Delete this look" = "حذف این نگاه";
+
+/* No comment provided by engineer. */
+"Delete this Loop?" = "Delete this Loop?";
+
+/* No comment provided by engineer. */
+"Delete this object" = "حذف این شئ";
+
+/* No comment provided by engineer. */
+"Delete this program" = "این برنامه را حذف کن";
+
+/* No comment provided by engineer. */
+"Delete this Script?" = "Delete this Script?";
+
+/* No comment provided by engineer. */
+"Delete this sound" = "حذف این صدا";
+
+/* No comment provided by engineer. */
+"Deletion Mode" = "Deletion Mode";
 
 /* No comment provided by engineer. */
 "Description" = "توضیح";
 
 /* No comment provided by engineer. */
-"Details" = "Details";
+"Details" = "جزئيات";
+
+/* No comment provided by engineer. */
+"direction" = "جهت";
 
 /* paint */
-"Discard & Close" = "Discard & Close";
+"Do you really want to delete the current drawing?" = "آیا واقعا می خواهی نقاشی فعلی را حذف کنی؟";
 
 /* paint */
-"Do you really want to delete the current drawing?" = "Do you really want to delete the current drawing?";
-
-/* paint */
-"Do you want to save the changes" = "Do you want to save the changes";
+"Do you want to save the changes" = "آیا می خواهی تغییرات  انجام شده را ذخیره کنی";
 
 /* No comment provided by engineer. */
 "Done" = "ﺍﻧﺠﺎﻡ شد";
@@ -230,229 +284,298 @@
 "Download" = "دانلود";
 
 /* No comment provided by engineer. */
-"Downloads" = "Downloads";
+"Download sucessful" = "Download sucessful";
 
 /* No comment provided by engineer. */
-"Draw new image" = "Draw new image";
+"Downloads" = "دانلود ها";
 
 /* No comment provided by engineer. */
-"Edit" = "Edit";
+"Draw new image" = "نقاشی جدید بکش";
 
 /* No comment provided by engineer. */
-"Edit Formula" = "Edit Formula";
+"Edit" = "ويرايش";
+
+/* No comment provided by engineer. */
+"Edit Formula" = "ویرایش فرمول";
 
 /* Action sheet menu title */
-"Edit Look" = "Edit Look";
+"Edit Look" = "ویرایش نگاه";
 
 /* Action sheet menu title */
-"Edit Looks" = "Edit Looks";
+"Edit Looks" = "ویرایش نگاه ها";
 
 /* No comment provided by engineer. */
-"Edit Mode" = "Edit Mode";
+"Edit Object" = "ویرایش شئ";
 
 /* No comment provided by engineer. */
-"Edit Object" = "Edit Object";
+"Edit Program" = "ویرایش برنامه";
 
 /* No comment provided by engineer. */
-"Edit Program" = "Edit Program";
-
-/* No comment provided by engineer. */
-"Edit Programs" = "Edit Programs";
+"Edit Programs" = "ویرایش برنامه ها";
 
 /* Action sheet menu title */
-"Edit Sound" = "Edit Sound";
+"Edit Sound" = "ویرایش صدا";
 
 /* Action sheet menu title */
-"Edit Sounds" = "Edit Sounds";
+"Edit Sounds" = "ویرایش صداها";
 
 /* paint */
-"ellipse / circle" = "ellipse / circle";
+"ellipse / circle" = "بیضی / دایره";
 
 /* No comment provided by engineer. */
-"Else" = "Else";
+"Else" = "دیگر";
 
 /* No comment provided by engineer. */
-"End of Loop" = "End of Loop";
+"Email" = "Email";
+
+/* No comment provided by engineer. */
+"Email is not valid!" = "Email is not valid!";
+
+/* No comment provided by engineer. */
+"End If" = "پایان اگر";
+
+/* No comment provided by engineer. */
+"End of Loop" = "انتهای حلقه";
 
 /* Placeholder for add image-name input field */
-"Enter your image name here..." = "Enter your image name here...";
+"Enter your image name here..." = "نام تصویر خود را در اینجا وارد کن...";
+
+/* Placeholder for message input field */
+"Enter your message here..." = "Enter your message here...";
 
 /* Placeholder for add object-name input field */
-"Enter your object name here..." = "Enter your object name here...";
+"Enter your object name here..." = "نام شیء خود را اینجا وارد کن...";
 
 /* Placeholder for program-description input field */
-"Enter your program description here..." = "Enter your program description here...";
+"Enter your program description here..." = "شرح برنامه خود را در اینجا وارد کن...";
 
 /* Placeholder for program-name input field */
-"Enter your program name here..." = "Enter your program name here...";
+"Enter your program name here..." = "نام برنامه خود را اینجا وارد کن...";
 
 /* Placeholder for add sound-name input field */
-"Enter your sound name here..." = "Enter your sound name here...";
+"Enter your sound name here..." = "نام صدا را در اینجا وارد کن...";
+
+/* Placeholder for variable input field */
+"Enter your variable name here..." = "Enter your variable name here...";
 
 /* paint */
-"eraser" = "eraser";
+"eraser" = "پاک کن";
 
 /* No comment provided by engineer. */
 "Error" = "خطا";
 
 /* No comment provided by engineer. */
-"Explore" = "Explore";
+"Explore" = "اکتشاف";
 
 /* No comment provided by engineer. */
-"Explore apps" = "Explore apps";
+"Explore apps" = "کاوش کردن اپلیکیشن ها";
 
 /* No comment provided by engineer. */
-"Featured Programs" = "Featured Programs";
+"false" = "false";
 
 /* No comment provided by engineer. */
-"Feb" = "Feb";
+"Featured Programs" = "برنامه های ویژه";
+
+/* No comment provided by engineer. */
+"Feb" = "فوریه";
 
 /* No comment provided by engineer. */
 "February" = "فوریه";
 
 /* paint */
-"fill" = "fill";
+"fill" = "پر کردن";
 
 /* No comment provided by engineer. */
-"Flashlight off" = "Flashlight off";
+"Flashlight off" = "چراغ قوه خاموش";
 
 /* No comment provided by engineer. */
-"Flashlight on" = "Flashlight on";
+"Flashlight on" = "چراغ قوه روشن";
 
 /* No comment provided by engineer. */
-"Forever" = "Forever";
+"for all objects" = "for all objects";
 
 /* No comment provided by engineer. */
-"Forgot password" = "Forgot password";
+"for this object" = "for this object";
 
 /* No comment provided by engineer. */
-"Formula too long!" = "Formula too long!";
+"Forever" = "برای همیشه";
 
 /* No comment provided by engineer. */
-"Fr" = "Fr";
+"Forgot password" = "رمزعبور را فراموش کردی";
 
 /* No comment provided by engineer. */
-"Friday" = "Friday";
+"Formula too long!" = "فرمول بسیار طولانی است!";
 
 /* No comment provided by engineer. */
-"From Camera" = "From Camera";
+"Fr" = "جمعه";
 
 /* No comment provided by engineer. */
-"Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %1$@ second(s)\nto X: %2$@ Y: %3$@";
+"Friday" = "جمعه";
 
 /* No comment provided by engineer. */
-"Go back %@ layer(s)" = "Go back %@ layer(s)";
+"From Camera" = "از دوربین";
 
 /* No comment provided by engineer. */
-"Go to front" = "Go to front";
+"Glide %@ second(s)\nto X: %@ Y: %@" = "Glide %@ second(s)\nto X: %@ Y: %@";
+
+/* No comment provided by engineer. */
+"Go back %@ layer(s)" = "برگرد به لایه (ها)ی %@";
+
+/* No comment provided by engineer. */
+"Go to front" = "برو به جلو";
+
+/* No comment provided by engineer. */
+"GOOD TO SEE YOU" = "GOOD TO SEE YOU";
 
 /* paint */
 "Green" = "سبز";
 
 /* No comment provided by engineer. */
-"Grid" = "Grid";
+"Hello !" = "Hello !";
 
 /* No comment provided by engineer. */
-"Help" = "Help";
+"Help" = "راهنما";
 
 /* No comment provided by engineer. */
-"Hide" = "Hide";
+"Hide" = "پنهان کردن";
 
 /* No comment provided by engineer. */
-"Hide Details" = "Hide Details";
+"Hide Details" = "پنهان کردن جزئیات";
 
 /* No comment provided by engineer. */
-"If %@ is true then" = "If %@ is true then";
+"If %@ is true then" = "اگر %@ درست است سپس";
 
 /* No comment provided by engineer. */
-"If End" = "If End";
-
-/* No comment provided by engineer. */
-"If on edge, bounce" = "If on edge, bounce";
+"If on edge, bounce" = "اگر در لبه  است، بپر";
 
 /* paint */
-"image" = "image";
+"image" = "تصویر";
 
 /* No comment provided by engineer. */
-"Image name" = "Image name";
+"Image name" = "نام تصویر";
 
 /* No comment provided by engineer. */
-"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.";
+"Image source not available" = "Image source not available";
 
 /* No comment provided by engineer. */
-"Information" = "Information";
+"In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "به منظور مجاز بودن به استفاده از \"پاکت کد\" و دیگر برنامه های اجرایی ارائه شده توسط پروژه \"کت ربات\"، باید با شرایط استفاده و سرویس موافقت کنی و هنگامی که \"پکت کد\" و دیگر برنامه های اجرایی ما را استفاده می کنی باید آنها را دقیقا دنبال کنی. برای فرمول بندی دقیقتر به لینک زیر نگاهی بنداز.";
 
 /* No comment provided by engineer. */
-"Invalid URL given!" = "Invalid URL given!";
+"inclination_x" = "زاويه ميل x";
 
 /* No comment provided by engineer. */
-"Jan" = "Jan";
+"inclination_y" = "زاويه ميل y";
+
+/* No comment provided by engineer. */
+"Information" = "اطلاعات";
+
+/* paint */
+"Inserted" = "Inserted";
+
+/* No comment provided by engineer. */
+"Invalid input entered, try again." = "Invalid input entered, try again.";
+
+/* No comment provided by engineer. */
+"Invalid URL given!" = "URL غیر معتبر داده شده است!";
+
+/* No comment provided by engineer. */
+"Jan" = "ژانویه";
 
 /* No comment provided by engineer. */
 "January" = "ژانویه";
 
 /* No comment provided by engineer. */
-"Jul" = "Jul";
+"join" = "عضویت";
+
+/* No comment provided by engineer. */
+"Jul" = "جولای";
 
 /* No comment provided by engineer. */
 "July" = "جولای";
 
 /* No comment provided by engineer. */
-"Jun" = "Jun";
+"Jun" = "جون";
 
 /* No comment provided by engineer. */
 "June" = "ژوئن";
 
 /* No comment provided by engineer. */
-"Last access" = "Last access";
+"Last access" = "آخرین دسترسی";
 
 /* No comment provided by engineer. */
-"Length" = "Length";
+"layer" = "لایه";
+
+/* No comment provided by engineer. */
+"Length" = "طول";
+
+/* No comment provided by engineer. */
+"length" = "طول";
+
+/* No comment provided by engineer. */
+"letter" = "نامه";
 
 /* paint */
-"line" = "line";
+"line" = "خط";
 
 /* No comment provided by engineer. */
-"Loading" = "Loading";
+"Loading" = "در حال بارگذاری";
 
 /* No comment provided by engineer. */
-"Logic" = "Logic";
+"Logic" = "منطق";
 
 /* No comment provided by engineer. */
-"Login" = "Login";
+"Login" = "ورود به سیستم";
 
 /* No comment provided by engineer. */
-"Looks" = "Looks";
+"Login successful" = "Login successful";
 
 /* No comment provided by engineer. */
-"Mar" = "Mar";
+"Login/Register" = "Login/Register";
+
+/* LOOK */
+"look" = "نگاه";
+
+/* No comment provided by engineer. */
+"Looks" = "نگاه ها";
+
+/* No comment provided by engineer. */
+"loudness" = "بلندی صدای محیط";
+
+/* No comment provided by engineer. */
+"Mar" = "مارس";
 
 /* No comment provided by engineer. */
 "March" = "مارس";
 
 /* No comment provided by engineer. */
-"Math" = "Math";
+"Math" = "ریاضی";
 
 /* No comment provided by engineer. */
 "May" = "مِی";
 
 /* No comment provided by engineer. */
-"Measure" = "Measure";
+"Measure" = "اندازه گیری";
 
 /* paint */
-"Menu" = "Menu";
-
-/* paint */
-"mirror" = "mirror";
+"Menu" = "منو";
 
 /* No comment provided by engineer. */
-"Mo" = "Mo";
+"Message" = "Message";
+
+/* No comment provided by engineer. */
+"message 1" = "پیام 1";
+
+/* paint */
+"mirror" = "آینه";
+
+/* No comment provided by engineer. */
+"Mo" = "دوشنبه";
 
 /* Prefix of default catrobat program object names (except background object) */
-"Mole" = "Mole";
+"Mole" = "خط و خال";
 
 /* No comment provided by engineer. */
-"Monday" = "Monday";
+"Monday" = "دوشنبه";
 
 /* No comment provided by engineer. */
 "More" = "بیشتر";
@@ -464,103 +587,127 @@
 "Most Viewed" = "بیشترین بازدید";
 
 /* No comment provided by engineer. */
-"Motion" = "Motion";
+"Motion" = "حرکت";
 
 /* No comment provided by engineer. */
-"Move %@ step(s)" = "Move %@ step(s)";
+"Move %@ step(s)" = "%@ مرحله حرکت کن";
 
-/* Name of the default catrobat program */
-"My first program" = "My first program";
+/* No comment provided by engineer. */
+"Move Brick" = "حرکت آجر";
+
+/* Name of the default catrobat program (used as filename!!) */
+"My first program" = "اولین برنامه من";
 
 /* Default title of imported photo from camera (taken by camera) */
-"My Image" = "My Image";
+"My Image" = "تصویر من";
 
 /* Title for first (default) object */
-"My Object" = "My Object";
+"My Object" = "شی من";
 
 /* No comment provided by engineer. */
-"Name already exists. Please choose another" = "Name already exists. Please choose another";
+"Name" = "Name";
+
+/* No comment provided by engineer. */
+"Name already exists. Please choose another" = "در حال حاضر این نام وجود دارد. لطفا نام دیگری انتخاب کن";
 
 /* No comment provided by engineer. */
 "New" = "جدید";
 
 /* paint */
-"New Canvas" = "New Canvas";
+"New Canvas" = "بوم جدید";
 
 /* No comment provided by engineer. */
-"New Program" = "New Program";
+"New Message" = "New Message";
 
 /* No comment provided by engineer. */
-"New Variable" = "New Variable";
+"New Program" = "برنامه جدید";
+
+/* No comment provided by engineer. */
+"New Text" = "New Text";
+
+/* No comment provided by engineer. */
+"New Variable" = "متغیر جدید";
+
+/* No comment provided by engineer. */
+"New..." = "New...";
 
 /* No comment provided by engineer. */
 "Newest" = "جدیدترین";
 
 /* No comment provided by engineer. */
-"Next background" = "Next background";
+"Next background" = "پس زمینه بعدی";
 
 /* No comment provided by engineer. */
-"Next look" = "Next look";
+"Next look" = "نگاه بعدی";
 
 /* No comment provided by engineer. */
 "No" = "خیر";
 
 /* No comment provided by engineer. */
-"No Description available" = "No Description available";
+"No Camera available" = "No Camera available";
 
 /* No comment provided by engineer. */
-"No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "No imported sounds found. Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
+"No Description available" = "هیچ توضیحی در دسترس نیست";
+
+/* Title of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
+"No imported sounds found" = "No imported sounds found";
 
 /* No comment provided by engineer. */
-"No input or the input is too short. Please enter at least %lu character(s)." = "No input or the input is too short. Please enter at least %lu character(s).";
+"No input or the input is too short. Please enter at least %lu character(s)." = "هیچی وارد نکردی یا ورودی ات خیلی کوتاه بود. لطفا حداقل %lu نویسه وارد کن.";
 
 /* No comment provided by engineer. */
-"No internet connection available." = "No internet connection available.";
+"No Internet Connection" = "No Internet Connection";
 
 /* No comment provided by engineer. */
-"No or invalid image name entered, try again." = "No or invalid image name entered, try again.";
+"No internet connection available." = "اتصال به اینترنت در دسترس نیست.";
 
 /* No comment provided by engineer. */
-"No or invalid sound name entered, try again." = "No or invalid sound name entered, try again.";
+"No or invalid image name entered, try again." = "نام تصویر نامعتبر یا اصلا وارد نشده است، لطفا دوباره امتحان کن.";
 
 /* No comment provided by engineer. */
-"No search results" = "No search results";
+"No or invalid sound name entered, try again." = "نام صدا نامعتبر یا اصلا وارد نشده است، لطفا دوباره امتحان کن.";
 
 /* No comment provided by engineer. */
-"Not enough free memory to download this program. Please delete some of your programs" = "Not enough free memory to download this program. Please delete some of your programs";
+"No search results" = "جستجو ناموفق";
 
 /* No comment provided by engineer. */
-"Not enough Memory" = "Not enough Memory";
+"not" = "not";
 
 /* No comment provided by engineer. */
-"Note %@" = "Note %@";
+"Not enough free memory to download this program. Please delete some of your programs" = "حافظه به اندازه کافی موجود نیست تا برنامه دانلود شود. لطفا چند تا از برنامه هایت را پاک کن.";
+
+/* No comment provided by engineer. */
+"Not enough Memory" = "حافظه کافی نیست";
+
+/* No comment provided by engineer. */
+"Note %@" = "توجه داشته باش %@";
 
 /* paint */
-"Nothing to crop!" = "Nothing to crop!";
+"Nothing to crop!" = "چیزی برای برش یافت نشد!";
 
 /* No comment provided by engineer. */
-"Nov" = "Nov";
+"Nov" = "نوامبر";
 
 /* No comment provided by engineer. */
 "November" = "نوامبر";
 
 /* No comment provided by engineer. */
-"Numbers" = "Numbers";
+"Numbers" = "تعداد";
 
 /* No comment provided by engineer. */
-"object" = "object";
+"Object" = "شی";
 
 /* No comment provided by engineer. */
-"Object" = "Object";
+"Object name" = "نام شیء";
 
 /* No comment provided by engineer. */
-"Object name" = "Object name";
+"Object variables:" = "Object variables:";
 
 /* No comment provided by engineer. */
-"Objects" = "Objects";
+"Objects" = "اشیاء";
 
 /* No comment provided by engineer. */
-"Oct" = "Oct";
+"Oct" = "اکتبر";
 
 /* No comment provided by engineer. */
 "October" = "اکتبر";
@@ -569,368 +716,463 @@
 "OK" = "تایید";
 
 /* No comment provided by engineer. */
-"only 15 characters allowed" = "only 15 characters allowed";
+"only 15 characters allowed" = "تنها 15 کاراکتر مجاز است";
+
+/* No comment provided by engineer. */
+"Only space is not allowed. Please enter at least %lu other character(s)." = "Only space is not allowed. Please enter at least %lu other character(s).";
+
+/* No comment provided by engineer. */
+"or" = "or";
 
 /* No comment provided by engineer. */
 "Password" = "رمز عبور";
 
-/* paint */
-"pipette" = "pipette";
-
 /* No comment provided by engineer. */
-"Place at\nX: %@ Y: %@" = "Place at\nX: %1$@ Y: %2$@";
-
-/* No comment provided by engineer. */
-"Play" = "Play";
+"Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Password is not vaild! \n It has to contain at least 6 characters/symbols";
 
 /* paint */
-"Please pick an item" = "Please pick an item";
+"pipette" = "قطره چکان";
 
 /* No comment provided by engineer. */
-"Pocket Code" = "Pocket Code";
+"Place at\nX: %@ Y: %@" = "Place at\nX: %@ Y: %@";
 
 /* No comment provided by engineer. */
-"Pocket Code for iOS" = "Pocket Code for iOS";
+"Play" = "اجرا";
 
-/* No comment provided by engineer. */
-"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:";
-
-/* No comment provided by engineer. */
-"Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on." = "Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on.";
-
-/* No comment provided by engineer. */
-"Pocket Code Recorder" = "Pocket Code Recorder";
-
-/* No comment provided by engineer. */
-"Pocket Code Source Code License" = "Pocket Code Source Code License";
+/* Description of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
+"Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
 
 /* paint */
-"Pocket Paint" = "پاکت نقاشی";
+"Please pick an item" = "لطفا یک مورد را انتخاب کن";
 
 /* No comment provided by engineer. */
-"Point in direction %@°" = "Point in direction %@°";
+"Please register below" = "Please register below";
 
 /* No comment provided by engineer. */
-"Point towards\n%@" = "Point towards\n%@";
+"Please select a program to upload" = "Please select a program to upload";
+
+/* No comment provided by engineer. */
+"Pocket Code" = "\"پاکت کد\"";
+
+/* No comment provided by engineer. */
+"Pocket Code for iOS" = "\"پاکت کد\" برای iOS";
+
+/* No comment provided by engineer. */
+"Pocket Code has been started in debug mode." = "Pocket Code has been started in debug mode.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.";
+
+/* No comment provided by engineer. */
+"Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "\"پاکت کد\" یک محیط برناممه نویسی برای iOS برای زبان برنامه نویسی دیداری \"کت ربات\" است. کد \"پاکت کد\" اغلب تحت لیسانس GNU AGPL v3 است. لطفا برای کسب اطلاعات بیشتر از لینک های زیر بازدید کن.";
+
+/* No comment provided by engineer. */
+"Pocket Code let's you play great games and run other fantastic apps like for instance presentations, quizzes and so on." = "\"پاکت کد\" بهت اجازه می ده تا بازی های عالی کنی و اپلیکیشن های فوق العاده دیگری مانند ارائه مثال، آزمون ها و غیره را اجرا کنی.";
+
+/* No comment provided by engineer. */
+"Pocket Code Recorder" = "ضبط صوت \"پاکت کد\"";
+
+/* No comment provided by engineer. */
+"Pocket Code Source Code License" = "مجوز کد منبع \"پاکت کد\"";
 
 /* paint */
-"pointer" = "pointer";
+"Pocket Paint" = "\"پاکت پینت\"";
 
 /* No comment provided by engineer. */
-"program" = "program";
+"Point in direction %@°" = "نقطه در جهت %@ °";
 
 /* No comment provided by engineer. */
-"Program name" = "Program name";
-
-/* No comment provided by engineer. */
-"Programs" = "Programs";
-
-/* No comment provided by engineer. */
-"Project" = "Project";
-
-/* No comment provided by engineer. */
-"Rate Us" = "Rate Us";
-
-/* No comment provided by engineer. */
-"Recording" = "Recording";
+"Point towards\n%@" = "نقطه نسبت به%@";
 
 /* paint */
-"rectangle / square" = "rectangle / square";
+"pointer" = "اشاره گر";
+
+/* No comment provided by engineer. */
+"pos_x" = "pos_x";
+
+/* No comment provided by engineer. */
+"pos_y" = "pos_y";
+
+/* No comment provided by engineer. */
+"Problems occured while Uploading your program" = "Problems occured while Uploading your program";
+
+/* No comment provided by engineer. */
+"Program name" = "نام برنامه";
+
+/* No comment provided by engineer. */
+"Program Name is necessary!" = "Program Name is necessary!";
+
+/* No comment provided by engineer. */
+"Program variables:" = "Program variables:";
+
+/* No comment provided by engineer. */
+"Programs" = "برنامه ها";
+
+/* No comment provided by engineer. */
+"Project" = "پروژه";
+
+/* No comment provided by engineer. */
+"Rate Us" = "ما را ارزیابی کنید";
+
+/* Title of View where the user can see the recently used bricks. */
+"Recently Used" = "Recently Used";
+
+/* No comment provided by engineer. */
+"Recording" = "ضبط کردن";
+
+/* paint */
+"rectangle / square" = "مستطیل / مربع";
 
 /* paint */
 "Red" = "قرمز";
 
 /* No comment provided by engineer. */
+"Register" = "Register";
+
+/* No comment provided by engineer. */
+"Registration successful" = "Registration successful";
+
+/* No comment provided by engineer. */
 "Rename" = "تغییر نام";
 
 /* No comment provided by engineer. */
-"Rename image" = "Rename image";
+"Rename image" = "تغییر نام تصویر";
 
 /* No comment provided by engineer. */
-"Rename object" = "Rename object";
+"Rename object" = "تغییر نام شی";
 
 /* No comment provided by engineer. */
-"Rename program" = "Rename program";
+"Rename Program" = "تغییر نام برنامه";
 
 /* No comment provided by engineer. */
-"Rename sound" = "Rename sound";
+"Rename sound" = "تغییر نام صدا";
 
 /* No comment provided by engineer. */
-"Repeat %@ times" = "Repeat %@ times";
+"Repeat %@ times" = "%@ بار تکرار کن";
 
 /* No comment provided by engineer. */
 "Report as inappropriate" = "به عنوان نامناسب گزارش بده";
 
-/* No comment provided by engineer. */
-"Restart" = "Restart";
+/* paint */
+"resize" = "resize";
 
 /* No comment provided by engineer. */
-"Result" = "Result";
+"Restart" = "شروع مجدد";
+
+/* No comment provided by engineer. */
+"Result" = "نتیجه";
 
 /* paint */
-"rotate" = "rotate";
+"rotate" = "چرخش";
 
 /* paint */
-"round" = "round";
+"round" = "گرد";
 
 /* No comment provided by engineer. */
-"Sa" = "Sa";
+"Sa" = "شنبه";
 
 /* No comment provided by engineer. */
-"Saturday" = "Saturday";
-
-/* paint */
-"Save & Close Paint" = "Save & Close Paint";
+"Saturday" = "شنبه";
 
 /* Action sheet menu title */
-"Save Screenshot to" = "Save Screenshot to";
+"Save Screenshot to" = "ذخیره تصویر در";
 
 /* paint */
-"Save to CameraRoll" = "Save to CameraRoll";
+"Save to CameraRoll" = "در CameraRoll ذخیره کن";
 
 /* No comment provided by engineer. */
-"Save to PocketCode" = "Save to PocketCode";
+"Save to PocketCode" = "ذخیره در \"پاکت کد\"";
 
 /* No comment provided by engineer. */
-"Saved" = "Saved";
+"Saved" = "ذخیره شد";
 
 /* No comment provided by engineer. */
-"Screenshot" = "Screenshot";
+"Screenshot" = "عکس از صفحه نمایش";
 
 /* No comment provided by engineer. */
-"Screenshot saved to Camera Roll" = "Screenshot saved to Camera Roll";
+"Screenshot saved to Camera Roll" = "تصویر در Camera Roll ذخیره شد";
 
 /* No comment provided by engineer. */
-"Screenshot saved to project" = "Screenshot saved to project";
+"Screenshot saved to project" = "تصویر در پروژه ذخیره شد";
 
 /* No comment provided by engineer. */
-"Scripts" = "Scripts";
+"Scripts" = "اسکریپت ها";
 
 /* No comment provided by engineer. */
-"Select All" = "Select All";
+"Select All" = "انتخاب همه";
 
 /* No comment provided by engineer. */
-"Select Brick Category" = "Select Brick Category";
+"Select Brick Category" = "انتخاب نوع آجر";
 
 /* No comment provided by engineer. */
-"Select logical operator" = "Select logical operator";
+"Select logical operator" = "عملگر منطقی را انتخاب کن";
 
 /* No comment provided by engineer. */
-"Select mathematical function" = "Select mathematical function";
+"Select mathematical function" = "تابع ریاضی را انتخاب کن";
 
 /* paint */
-"Select option:" = "Select option:";
+"Select option:" = "گزینه را انتخاب کن:";
 
 /* No comment provided by engineer. */
-"Sensors" = "Sensors";
+"Sensors" = "سنسورها";
 
 /* No comment provided by engineer. */
-"Sep" = "Sep";
+"Sep" = "سپتامبر";
 
 /* No comment provided by engineer. */
 "September" = "سپتامبر";
 
 /* No comment provided by engineer. */
-"Set background\n%@" = "Set background\n%@";
+"Set background\n%@" = "تنظیم پس زمینه %@";
 
 /* No comment provided by engineer. */
-"Set brightness to %@\%" = "Set brightness to %1$@\\%2$";
+"Set brightness to %@\%" = "Set brightness to %@\\%";
 
 /* No comment provided by engineer. */
-"Set description" = "Set description";
+"Set description" = "قرار دادن توضیحات";
 
 /* No comment provided by engineer. */
-"Set size to %@\%" = "Set size to %1$@\\%2$";
+"Set size to %@\%" = "Set size to %@\\%";
 
 /* No comment provided by engineer. */
-"Set transparency\nto %@\%" = "Set transparency\nto %1$@\\%2$";
+"Set transparency\nto %@\%" = "Set transparency\nto %@\\%";
 
 /* No comment provided by engineer. */
-"Set variable\n%@\nto %@" = "Set variable\n%1$@\nto %2$@";
+"Set variable\n%@\nto %@" = "Set variable\n%@\nto %@";
 
 /* No comment provided by engineer. */
-"Set volume to %@\%" = "Set volume to %1$@\\%2$";
+"Set volume to %@\%" = "Set volume to %@\\%";
 
 /* No comment provided by engineer. */
-"Set X to %@" = "Set X to %@";
+"Set X to %@" = "قرار دادن X به %@";
 
 /* No comment provided by engineer. */
-"Set Y to %@" = "Set Y to %@";
+"Set Y to %@" = "قرار دادن Y به %@";
 
 /* No comment provided by engineer. */
-"Show" = "Show";
+"Settings" = "تنظیمات";
 
 /* No comment provided by engineer. */
-"Show Details" = "Show Details";
+"Show" = "نمایش";
 
 /* No comment provided by engineer. */
-"Size" = "Size";
+"Show Details" = "نمایش جزئیات";
 
 /* No comment provided by engineer. */
-"Skip" = "Skip";
+"size" = "اندازه";
 
 /* No comment provided by engineer. */
-"Slow Internet Connection!" = "Slow Internet Connection!";
+"Size" = "اندازه‌";
 
 /* No comment provided by engineer. */
-"Sound" = "Sound";
+"Skip" = "پرش";
 
 /* No comment provided by engineer. */
-"Sound name" = "Sound name";
+"Slow Internet Connection!" = "اتصال به اینترنت را نشان بده!";
 
 /* No comment provided by engineer. */
-"Sounds" = "Sounds";
+"Sound" = "صدا";
 
 /* No comment provided by engineer. */
-"Speak %@" = "Speak %@";
+"Sound name" = "نام صدا";
+
+/* No comment provided by engineer. */
+"Sounds" = "صداها";
+
+/* No comment provided by engineer. */
+"Speak %@" = "بگو %@";
+
+/* No comment provided by engineer. */
+"sqrt" = "جذر";
 
 /* paint */
-"square" = "square";
+"square" = "مربع";
 
 /* paint */
-"stamp" = "stamp";
-
-/* No comment provided by engineer. */
-"Start sound\n%@" = "Start sound\n%@";
-
-/* No comment provided by engineer. */
-"Stop all sounds" = "Stop all sounds";
-
-/* No comment provided by engineer. */
-"Su" = "Su";
-
-/* No comment provided by engineer. */
-"Sunday" = "Sunday";
-
-/* No comment provided by engineer. */
-"Switch to look\n%@" = "Switch to look\n%@";
-
-/* No comment provided by engineer. */
-"Syntax Error!" = "Syntax Error!";
-
-/* No comment provided by engineer. */
-"Take" = "Take";
-
-/* No comment provided by engineer. */
-"Tap \"+\" to add %@" = "Tap \"+\" to add %@";
-
-/* No comment provided by engineer. */
-"Terms of Use" = "Terms of Use";
-
-/* No comment provided by engineer. */
-"Th" = "Th";
-
-/* No comment provided by engineer. */
-"The description contains invalid characters, try again." = "The description contains invalid characters, try again.";
+"stamp" = "استامپ";
 
 /* paint */
-"Thickness" = "Thickness";
+"Stamped" = "Stamped";
 
 /* No comment provided by engineer. */
-"This action can not be undone!" = "This action can not be undone!";
+"Start sound\n%@" = "شروع صدا %@";
 
 /* No comment provided by engineer. */
-"This feature is coming soon!" = "This feature is coming soon!";
+"Stop all sounds" = "توقف همه صداها";
 
 /* No comment provided by engineer. */
-"Thursday" = "Thursday";
+"Su" = "یکشنبه";
 
 /* No comment provided by engineer. */
-"Today" = "Today";
+"Sunday" = "یک‌شنبه";
 
 /* No comment provided by engineer. */
-"Tu" = "Tu";
+"Switch to look\n%@" = "تعویض ظاهر به\n%@";
 
 /* No comment provided by engineer. */
-"Tuesday" = "Tuesday";
+"Syntax Error!" = "خطای ساختاری!";
 
 /* No comment provided by engineer. */
-"Turn left %@°" = "Turn left %@°";
+"Take" = "بگیر";
 
 /* No comment provided by engineer. */
-"Turn right %@°" = "Turn right %@°";
+"Tap \"+\" to add %@" = "روی \"+\" ضربه بزن برای اضافه کردن %@";
 
 /* No comment provided by engineer. */
-"Unable to load program!" = "Unable to load program!";
+"Terms of Use" = "شرایط استفاده";
 
 /* No comment provided by engineer. */
-"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt.";
+"Text message:" = "Text message:";
 
 /* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again.";
+"Th" = "پنجشنبه";
 
 /* No comment provided by engineer. */
-"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again.";
+"The description contains invalid characters, try again." = "توضیحات شامل نویسه های نامعتبر است دوباره سعی کن.";
 
 /* No comment provided by engineer. */
-"Unselect All" = "Unselect All";
+"This action can not be undone!" = "این عملیات امکان برگشت ندارد!";
 
 /* No comment provided by engineer. */
-"Upcoming version" = "Upcoming version";
+"This feature is coming soon!" = "این ویژگی به زودی می آید!";
 
 /* No comment provided by engineer. */
-"Upload" = "Upload";
+"This variable can not be deleted because it is still in use." = "This variable can not be deleted because it is still in use.";
 
 /* No comment provided by engineer. */
-"Uploaded" = "Uploaded";
+"Thursday" = "پنج شنبه";
+
+/* No comment provided by engineer. */
+"Today" = "امروز";
+
+/* No comment provided by engineer. */
+"transparency" = "شفافیت";
+
+/* No comment provided by engineer. */
+"true" = "true";
+
+/* No comment provided by engineer. */
+"Tu" = "سه شنبه";
+
+/* No comment provided by engineer. */
+"Tuesday" = "سه‌ شنبه";
+
+/* No comment provided by engineer. */
+"Turn left %@°" = " %@° بگرد به چپ";
+
+/* No comment provided by engineer. */
+"Turn right %@°" = "%@° بگرد به راست";
+
+/* No comment provided by engineer. */
+"Unable to load program!" = "قادر به بارگذاری برنامه نیستم!";
+
+/* No comment provided by engineer. */
+"Unable to play that sound!\nMaybe this is no valid sound or the file is corrupt." = "قادر به پخش صدا نیستم!\nشاید این صدا معتبر نیست یا فایل خراب است.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the left side of your iPhone and tap on play again." = "قادر به پخش صدای انتخاب شده نیستم. دستگاهت در حالت بی صدا است. لطفا حالت بی صدا را با فشار دادن دگمه صدا در سمت چپ \"آی فون\" خاموش کن و روی پخش مجدد ضربه بزن.";
+
+/* No comment provided by engineer. */
+"Unable to play the selected sound. Your device is in silent mode. Please turn off silent mode by toggling the switch on the right side of your iPad and tap on play again." = "قادر به پخش صدای انتخاب شده نیستم. دستگاهت در حالت بی صدا است. لطفا حالت بی صدا را با فشار دادن دگمه صدا در سمت چپ \"آی فون\" خاموش کن و روی پخش مجدد ضربه بزن.";
+
+/* Button title of alert view to invoke undo if user shakes device */
+"Undo" = "تصحیح عمل قبلی";
+
+/* Description text in alert view if user shakes the device */
+"Undo Drawing?" = "Undo Drawing?";
+
+/* Description text in alert view if user shakes the device */
+"Undo Typing?" = "Undo Typing?";
+
+/* No comment provided by engineer. */
+"Unselect All" = "عدم انتخاب همه";
+
+/* No comment provided by engineer. */
+"Upcoming version" = "نسخه های آینده";
+
+/* No comment provided by engineer. */
+"Upload" = "آپلود";
+
+/* No comment provided by engineer. */
+"Upload Program" = "Upload Program";
+
+/* No comment provided by engineer. */
+"Upload Selected Program" = "Upload Selected Program";
+
+/* No comment provided by engineer. */
+"Upload successful" = "آپلود با موفقیت انجام شد";
+
+/* No comment provided by engineer. */
+"Uploaded" = "بارگذاری شد";
 
 /* No comment provided by engineer. */
 "Username" = "نام کاربری";
 
 /* No comment provided by engineer. */
+"Username is necessary!" = "Username is necessary!";
+
+/* No comment provided by engineer. */
 "v" = "v";
 
 /* No comment provided by engineer. */
-"Variable name:" = "Variable name:";
+"Variable name:" = "نام متغیر:";
 
 /* No comment provided by engineer. */
-"Variable type" = "Variable type";
+"Variable type" = "نوع متغیر";
 
 /* No comment provided by engineer. */
-"Variables" = "Variables";
+"Variables" = "متغیرها";
 
 /* No comment provided by engineer. */
-"Version" = "Version";
+"Version" = "نسخه";
 
 /* No comment provided by engineer. */
-"Vibrate %@ second(s)" = "Vibrate %@ second(s)";
+"Vibrate %@ second(s)" = "%@ ثانیه بلرزان";
 
 /* No comment provided by engineer. */
-"Views" = "Views";
+"Views" = "بازدیدها";
 
 /* No comment provided by engineer. */
-"Wait %@ second(s)" = "Wait %@ second(s)";
+"Wait %@ second(s)" = "%@ ثانیه صبر کن";
 
 /* No comment provided by engineer. */
-"We" = "We";
+"We" = "چهارشنبه";
 
 /* No comment provided by engineer. */
-"Wednesday" = "Wednesday";
+"Wednesday" = "چهارشنبه";
 
 /* No comment provided by engineer. */
-"Welcome to Pocket Code" = "Welcome to Pocket Code";
+"Welcome back, please login below" = "Welcome back, please login below";
 
 /* No comment provided by engineer. */
-"When I receive\n%@" = "When I receive\n%@";
+"Welcome to Pocket Code" = "به \"پاکت کد\" خوش آمدی";
 
 /* No comment provided by engineer. */
-"When program started" = "When program started";
+"When I receive\n%@" = "وقتی که دریافت کنم %@";
 
 /* No comment provided by engineer. */
-"When tapped" = "When tapped";
+"When program started" = "وقتی که برنامه شروع شد";
+
+/* No comment provided by engineer. */
+"When tapped" = "وقتی که ضربه زده شد";
+
+/* paint */
+"Width" = "Width";
 
 /* No comment provided by engineer. */
 "Yes" = "بله";
 
 /* No comment provided by engineer. */
-"Yesterday" = "Yesterday";
+"Yesterday" = "دیروز";
 
 /* No comment provided by engineer. */
-"You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people.";
+"You are also able to build your own apps, edit existing ones and share them with your friends and other exciting people." = "توهمچنین قادر به ساختن برنامه های خود، ویرایش واشتراک گذاری آنها با دوستان خود و افراد دیگر هستی.";
 
 /* No comment provided by engineer. */
-"You have already downloaded this program!" = "You have already downloaded this program!";
+"You have already downloaded this program!" = "تو در حال حاضر این برنامه را دانلود کرده ای!";
 
 /* paint */
-"zoom" = "zoom";
-
+"zoom" = "زوم کن";

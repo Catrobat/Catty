@@ -196,17 +196,17 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
 #define WRAP_UINT_IN_NSNUMBER(number) ([NSNumber numberWithUnsignedInteger:number])
 #define kNSNumberZero WRAP_UINT_IN_NSNUMBER(0)
 
-#define kDefaultFavouriteBricksStatistic @{\
-        WRAP_BRICK_TYPE_IN_NSSTRING(kTappedBrick) : kNSNumberZero,\
-        WRAP_BRICK_TYPE_IN_NSSTRING(kForeverBrick) : kNSNumberZero,\
-        WRAP_BRICK_TYPE_IN_NSSTRING(kIfBrick) : kNSNumberZero,\
-        WRAP_BRICK_TYPE_IN_NSSTRING(kPlaceAtBrick) : kNSNumberZero,\
-        WRAP_BRICK_TYPE_IN_NSSTRING(kPlaySoundBrick) : kNSNumberZero,\
-        WRAP_BRICK_TYPE_IN_NSSTRING(kSpeakBrick) : kNSNumberZero,\
-        WRAP_BRICK_TYPE_IN_NSSTRING(kSetLookBrick) : kNSNumberZero,\
-        WRAP_BRICK_TYPE_IN_NSSTRING(kSetVariableBrick) : kNSNumberZero,\
-        WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick) : kNSNumberZero\
-        }
+#define kDefaultFavouriteBricksStatisticArray @[\
+WRAP_BRICK_TYPE_IN_NSSTRING(kTappedBrick),\
+WRAP_BRICK_TYPE_IN_NSSTRING(kForeverBrick),\
+WRAP_BRICK_TYPE_IN_NSSTRING(kIfBrick),\
+WRAP_BRICK_TYPE_IN_NSSTRING(kPlaceAtBrick),\
+WRAP_BRICK_TYPE_IN_NSSTRING(kPlaySoundBrick),\
+WRAP_BRICK_TYPE_IN_NSSTRING(kSpeakBrick),\
+WRAP_BRICK_TYPE_IN_NSSTRING(kSetLookBrick),\
+WRAP_BRICK_TYPE_IN_NSSTRING(kSetVariableBrick),\
+WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
+]
 
 // brick categories
 #define kBrickCategoryNames @[\
@@ -380,10 +380,10 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 #define kBrickInlineViewOffsetX 54.0f
 #define kBrickShapeNormalInlineViewOffsetY 7.0f
 #define kBrickShapeRoundedSmallInlineViewOffsetY 25.0f
-#define kBrickShapeRoundedBigInlineViewOffsetY 25.0f
+#define kBrickShapeRoundedBigInlineViewOffsetY 35.0f
 #define kBrickShapeNormalMarginHeightDeduction 14.0f
 #define kBrickShapeRoundedSmallMarginHeightDeduction 32.0f
-#define kBrickShapeRoundedBigMarginHeightDeduction 32.0f
+#define kBrickShapeRoundedBigMarginHeightDeduction 42.0f
 #define kBrickPatternImageViewOffsetX 0.0f
 #define kBrickPatternImageViewOffsetY 0.0f
 #define kBrickPatternBackgroundImageViewOffsetX 54.0f
@@ -398,8 +398,8 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 #define kBrickTextFieldFontSize 15.0f
 #define kBrickInputFieldHeight 28.0f
 #define kBrickInputFieldMinWidth 40.0f
-#define kBrickInputFieldMaxWidth [Util screenWidth]/2.5f
-#define kBrickComboBoxWidth [Util screenWidth]/2.5f
+#define kBrickInputFieldMaxWidth [Util screenWidth]/2.0f
+#define kBrickComboBoxWidth [Util screenWidth]/2.0f
 #define kBrickInputFieldTopMargin 4.0f
 #define kBrickInputFieldBottomMargin 5.0f
 #define kBrickInputFieldLeftMargin 4.0f

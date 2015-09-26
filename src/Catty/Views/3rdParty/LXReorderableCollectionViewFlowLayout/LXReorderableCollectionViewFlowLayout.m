@@ -275,22 +275,23 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
 
 - (void)handleLongPressGesture:(UILongPressGestureRecognizer *)gestureRecognizer {
     @synchronized(@"moveBrick"){
-    if([[BrickInsertManager sharedInstance] isBrickInsertionMode]){
-        NSIndexPath *currentIndexPath = [self.collectionView indexPathForItemAtPoint:[gestureRecognizer locationInView:self.collectionView]];
-        ScriptCollectionViewController* cvc = (ScriptCollectionViewController*)self.delegate;
-        Script *script = [cvc.object.scriptList objectAtIndex:(NSUInteger)currentIndexPath.section];
-        Brick *brick = nil;
-        
-        if (currentIndexPath.item > 0) {
-            brick = [script.brickList objectAtIndex:currentIndexPath.item - 1];
-        }
-        if (!brick.isAnimatedInsertBrick) {
-            return;
-        }
-    }
+ 
     switch(gestureRecognizer.state) {
         case UIGestureRecognizerStateBegan: {
-            NSIndexPath *currentIndexPath = [self.collectionView indexPathForItemAtPoint:[gestureRecognizer locationInView:self.collectionView]];
+             NSIndexPath *currentIndexPath = [self.collectionView indexPathForItemAtPoint:[gestureRecognizer locationInView:self.collectionView]];
+            if([[BrickInsertManager sharedInstance] isBrickInsertionMode]){
+                ScriptCollectionViewController* cvc = (ScriptCollectionViewController*)self.delegate;
+                Script *script = [cvc.object.scriptList objectAtIndex:(NSUInteger)currentIndexPath.section];
+                Brick *brick = nil;
+                
+                if (currentIndexPath.item > 0) {
+                    brick = [script.brickList objectAtIndex:currentIndexPath.item - 1];
+                }
+                if (!brick.isAnimatedInsertBrick) {
+                    return;
+                }
+            }
+           
             
             if ([self.dataSource respondsToSelector:@selector(collectionView:canMoveItemAtIndexPath:)] &&
                ![self.dataSource collectionView:self.collectionView canMoveItemAtIndexPath:currentIndexPath]) {
