@@ -196,17 +196,17 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
 #define WRAP_UINT_IN_NSNUMBER(number) ([NSNumber numberWithUnsignedInteger:number])
 #define kNSNumberZero WRAP_UINT_IN_NSNUMBER(0)
 
-#define kDefaultFavouriteBricksStatistic @{\
-        WRAP_BRICK_TYPE_IN_NSSTRING(kTappedBrick) : kNSNumberZero,\
-        WRAP_BRICK_TYPE_IN_NSSTRING(kForeverBrick) : kNSNumberZero,\
-        WRAP_BRICK_TYPE_IN_NSSTRING(kIfBrick) : kNSNumberZero,\
-        WRAP_BRICK_TYPE_IN_NSSTRING(kPlaceAtBrick) : kNSNumberZero,\
-        WRAP_BRICK_TYPE_IN_NSSTRING(kPlaySoundBrick) : kNSNumberZero,\
-        WRAP_BRICK_TYPE_IN_NSSTRING(kSpeakBrick) : kNSNumberZero,\
-        WRAP_BRICK_TYPE_IN_NSSTRING(kSetLookBrick) : kNSNumberZero,\
-        WRAP_BRICK_TYPE_IN_NSSTRING(kSetVariableBrick) : kNSNumberZero,\
-        WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick) : kNSNumberZero\
-        }
+#define kDefaultFavouriteBricksStatisticArray @[\
+WRAP_BRICK_TYPE_IN_NSSTRING(kTappedBrick),\
+WRAP_BRICK_TYPE_IN_NSSTRING(kForeverBrick),\
+WRAP_BRICK_TYPE_IN_NSSTRING(kIfBrick),\
+WRAP_BRICK_TYPE_IN_NSSTRING(kPlaceAtBrick),\
+WRAP_BRICK_TYPE_IN_NSSTRING(kPlaySoundBrick),\
+WRAP_BRICK_TYPE_IN_NSSTRING(kSpeakBrick),\
+WRAP_BRICK_TYPE_IN_NSSTRING(kSetLookBrick),\
+WRAP_BRICK_TYPE_IN_NSSTRING(kSetVariableBrick),\
+WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
+]
 
 // brick categories
 #define kBrickCategoryNames @[\

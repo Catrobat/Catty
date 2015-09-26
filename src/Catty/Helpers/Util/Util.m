@@ -45,6 +45,7 @@
 #import "BroadcastScript.h"
 #import "SpriteObject.h"
 #import <objc/runtime.h>
+#import "OrderedDictionary.h"
 
 @interface Util () <CatrobatAlertViewDelegate>
 #define ROOTVIEW [[[UIApplication sharedApplication] keyWindow] rootViewController]
@@ -1126,15 +1127,12 @@ replacementString:(NSString*)characters
 
 + (void)printBrickStatistics
 {
-    NSDictionary* insertionStatistic = [self getBrickInsertionDictionaryFromUserDefaults];
-    NSDebug(@"Brick Statistics:\n%@", insertionStatistic);
+    NSDebug(@"Brick Statistics:\n%@", [self getBrickInsertionDictionaryFromUserDefaults]);
 }
 
 + (void)printSubsetOfTheMost:(NSUInteger)N
 {
-    NSDictionary* insertionStatistic = [self getBrickInsertionDictionaryFromUserDefaults];
-    NSArray* subset = [self getSubsetOfTheMost:N usedBricksInDictionary:insertionStatistic];
-    NSDebug(@"Most %d used Bricks with their identifier:\n%@", N, subset);
+    NSDebug(@"Most %d used Bricks with their identifier:\n%@", N, [self getSubsetOfTheMost:N usedBricksInDictionary:[self getBrickInsertionDictionaryFromUserDefaults]]);
 }
 
 + (NSArray*) getSubsetOfTheMost:(NSUInteger)N usedBricksInDictionary:(NSDictionary *)brickCountDictionary
@@ -1174,8 +1172,11 @@ replacementString:(NSString*)characters
 
 + (NSDictionary*)defaultBrickStatisticDictionary
 {
-    NSDictionary* defaultStatistics = kDefaultFavouriteBricksStatistic;
-    return defaultStatistics;
-}
+    NSArray* defautArray = kDefaultFavouriteBricksStatisticArray;
+    OrderedDictionary * dict = [[OrderedDictionary alloc] initWithCapacity:defautArray.count];
+    for (NSString * brick in defautArray.reverseObjectEnumerator) {
+        [dict insertObject:kNSNumberZero forKey:brick atIndex:0];
+    }
+    return dict;}
 
 @end
