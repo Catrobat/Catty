@@ -39,18 +39,30 @@
 @implementation BrickMoveManagerTests
 
 - (void)testMoveWaitBehindSetVariableBrick {
+
+    /*  Test:
+     
+     0 startedScript
+     1  wait            --->
+     2  setVariable     <---
+     */
+
     [self.viewController.collectionView reloadData];
+    
+    NSUInteger addedBricks = 1;
     
     WaitBrick *waitBrick = [[WaitBrick alloc] init];
     waitBrick.script = self.startScript;
     [self.startScript.brickList addObject:waitBrick];
+    addedBricks++;
     
     SetVariableBrick *setVariableBrick = [[SetVariableBrick alloc] init];
     setVariableBrick.script = self.startScript;
     [self.startScript.brickList addObject:setVariableBrick];
+    addedBricks++;
     
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
-    XCTAssertEqual(3, [self.viewController.collectionView numberOfItemsInSection:0]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
     
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:1 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:2 inSection:0];
@@ -64,24 +76,28 @@
 }
 
 - (void)testMoveWaitBehindForeverBrick {
+
+    /*  Test:
+     
+     0 startedScript      (1)        (2)
+     1  wait             --->       --->
+     2  foreverBeginA    <---
+     3  foreverEndA                 <---
+     */
+
     [self.viewController.collectionView reloadData];
+    
+    NSUInteger addedBricks = 1;
     
     WaitBrick *waitBrick = [[WaitBrick alloc] init];
     waitBrick.script = self.startScript;
     [self.startScript.brickList addObject:waitBrick];
+    addedBricks++;
     
-    ForeverBrick *foreverBrick = [[ForeverBrick alloc] init];
-    foreverBrick.script = self.startScript;
-    [self.startScript.brickList addObject:foreverBrick];
-    
-    LoopEndBrick *loopEndBrick = [[LoopEndBrick alloc] init];
-    loopEndBrick.script = self.startScript;
-    loopEndBrick.loopBeginBrick = foreverBrick;
-    [self.startScript.brickList addObject:loopEndBrick];
-    foreverBrick.loopEndBrick = loopEndBrick;
+    addedBricks += [self addEmptyForeverLoop];
     
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
-    XCTAssertEqual(4, [self.viewController.collectionView numberOfItemsInSection:0]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
     
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:1 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:2 inSection:0];
@@ -101,24 +117,28 @@
 }
 
 - (void)testMoveWaitBehindRepeatBrick {
+
+    /*  Test:
+     
+     0 startedScript
+     1  wait            --->
+     2  repeatBeginA
+     3  repeatEndA      <---
+     */
+    
     [self.viewController.collectionView reloadData];
+    
+    NSUInteger addedBricks = 1;
     
     WaitBrick *waitBrick = [[WaitBrick alloc] init];
     waitBrick.script = self.startScript;
     [self.startScript.brickList addObject:waitBrick];
+    addedBricks++;
     
-    RepeatBrick *repeatBrick = [[RepeatBrick alloc] init];
-    repeatBrick.script = self.startScript;
-    [self.startScript.brickList addObject:repeatBrick];
-    
-    LoopEndBrick *loopEndBrick = [[LoopEndBrick alloc] init];
-    loopEndBrick.script = self.startScript;
-    loopEndBrick.loopBeginBrick = repeatBrick;
-    [self.startScript.brickList addObject:loopEndBrick];
-    repeatBrick.loopEndBrick = loopEndBrick;
+    addedBricks += [self addEmptyRepeatLoop];
     
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
-    XCTAssertEqual(4, [self.viewController.collectionView numberOfItemsInSection:0]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
     
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:1 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:3 inSection:0];
@@ -131,6 +151,15 @@
 }
 
 - (void)testMoveWaitBrickIntoOtherScript {
+
+    /*  Test:
+     
+     0 startedScript
+     1  wait            --->
+     2  whenScript
+                        <---
+     */
+
     [self.viewController.collectionView reloadData];
     
     WaitBrick *waitBrick = [[WaitBrick alloc] init];

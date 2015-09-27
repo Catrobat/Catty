@@ -31,4 +31,12 @@
 @property (nonatomic, strong) StartScript *startScript;
 @property (nonatomic, strong) ScriptCollectionViewController *viewController;
 
+- (NSUInteger)addForeverLoopWithWaitBrick;
+- (NSUInteger)addRepeatLoopWithWaitBrick;
+- (NSUInteger)addEmptyIfElseEndStructure;
+- (NSUInteger)addEmptyForeverLoop;
+- (NSUInteger)addEmptyRepeatLoop;
+- (NSUInteger)addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricks;
+- (NSUInteger)addNestedIfElseOfOrder1WithRepeatLoopsWithWaitBricks;
+
 @end

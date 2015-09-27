@@ -38,42 +38,28 @@
 
 @implementation BrickMoveManagerLogicTests
 
-- (void)testMoveForeverBrickInsideIfBrick {
+- (void)testMoveForeverBrickInsideIfBranch {
+    
+    /*  Test:
+     
+     0 startedScript
+     1  ifBegin
+     2  else            <---
+     3  ifEnd
+     4  foreverBegin    --->
+     5  foreverEnd
+     */
+
     [self.viewController.collectionView reloadData];
     
-    IfLogicBeginBrick *ifLogicBeginBrick = [[IfLogicBeginBrick alloc] init];
-    ifLogicBeginBrick.script = self.startScript;
-    [self.startScript.brickList addObject:ifLogicBeginBrick];
+    NSUInteger addedBricks = 1;
     
-    IfLogicElseBrick *ifLogicElseBrick = [[IfLogicElseBrick alloc] init];
-    ifLogicElseBrick.script = self.startScript;
-    ifLogicElseBrick.ifBeginBrick = ifLogicBeginBrick;
-    [self.startScript.brickList addObject:ifLogicElseBrick];
-    ifLogicBeginBrick.ifElseBrick = ifLogicElseBrick;
-
-    IfLogicEndBrick *ifLogicEndBrick = [[IfLogicEndBrick alloc] init];
-    ifLogicEndBrick.script = self.startScript;
-    ifLogicEndBrick.ifBeginBrick = ifLogicBeginBrick;
-    ifLogicEndBrick.ifElseBrick = ifLogicElseBrick;
-    [self.startScript.brickList addObject:ifLogicEndBrick];
-    
-    ifLogicBeginBrick.ifEndBrick = ifLogicEndBrick;
-    ifLogicElseBrick.ifEndBrick = ifLogicEndBrick;
-    
-    ForeverBrick *foreverBrick = [[ForeverBrick alloc] init];
-    foreverBrick.script = self.startScript;
-    [self.startScript.brickList addObject:foreverBrick];
-    
-    LoopEndBrick *loopEndBrick = [[LoopEndBrick alloc] init];
-    loopEndBrick.script = self.startScript;
-    loopEndBrick.loopBeginBrick = foreverBrick;
-    [self.startScript.brickList addObject:loopEndBrick];
-    foreverBrick.loopEndBrick = loopEndBrick;
+    addedBricks += [self addEmptyIfElseEndStructure];
+    addedBricks += [self addEmptyForeverLoop];
     
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
-    XCTAssertEqual(6, [self.viewController.collectionView numberOfItemsInSection:0]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
     
-    // if-branch
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:4 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:2 inSection:0];
     
@@ -82,65 +68,83 @@
                                                                                     canMoveToIndexPath:indexPathTo
                                                                                              andObject:self.spriteObject];
     XCTAssertFalse(canMoveInsideIfBrickEditMode, @"Should not be allowed to move ForeverBrick inside if-branch of IfLogicBeginBrick");
+}
+
+- (void)testMoveForeverBrickInsideElseBranch {
     
-    // else-branch
-    indexPathFrom = [NSIndexPath indexPathForRow:4 inSection:0];
-    indexPathTo = [NSIndexPath indexPathForRow:3 inSection:0];
+    /*  Test:
+     
+     0 startedScript
+     1  ifBegin
+     2  else
+     3  ifEnd            <---
+     4  foreverBegin     --->
+     5  foreverEnd
+     */
     
-    foreverBrick.animateInsertBrick = NO;
-    canMoveInsideIfBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                             itemAtIndexPath:indexPathFrom
-                                                                          canMoveToIndexPath:indexPathTo
-                                                                                   andObject:self.spriteObject];
+    [self.viewController.collectionView reloadData];
+    
+    NSUInteger addedBricks = 1;
+    
+    addedBricks += [self addEmptyIfElseEndStructure];
+    addedBricks += [self addEmptyForeverLoop];
+    
+    XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
+
+    NSIndexPath* indexPathFrom = [NSIndexPath indexPathForRow:4 inSection:0];
+    NSIndexPath* indexPathTo = [NSIndexPath indexPathForRow:3 inSection:0];
+    
+    BOOL canMoveInsideIfBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                     itemAtIndexPath:indexPathFrom
+                                                                  canMoveToIndexPath:indexPathTo
+                                                                           andObject:self.spriteObject];
     XCTAssertFalse(canMoveInsideIfBrickEditMode, @"Should not be allowed to move ForeverBrick inside else-branch of IfLogicBeginBrick");
 }
 
-- (void)testMoveIfBrickAboveIfBrick {
+- (void)testMoveIfBrickAboveOuterIfBrick {
+
+    /*  Test:
+     
+     0 startedScript
+     1  ifBeginA            <---
+     2      ifBeginB        --->
+     3      elseB
+     4      ifEndB
+     5  elseA
+     6  ifEndA
+     */
+
     [self.viewController.collectionView reloadData];
+    
+    NSUInteger addedBricks = 1;
     
     IfLogicBeginBrick *ifLogicBeginBrick1 = [[IfLogicBeginBrick alloc] init];
     ifLogicBeginBrick1.script = self.startScript;
     [self.startScript.brickList addObject:ifLogicBeginBrick1];
+    addedBricks++;
     
-    // begin nested if
-    IfLogicBeginBrick *ifLogicBeginBrick2 = [[IfLogicBeginBrick alloc] init];
-    ifLogicBeginBrick2.script = self.startScript;
-    [self.startScript.brickList addObject:ifLogicBeginBrick2];
-    
-    IfLogicElseBrick *ifLogicElseBrick2 = [[IfLogicElseBrick alloc] init];
-    ifLogicElseBrick2.script = self.startScript;
-    ifLogicElseBrick2.ifBeginBrick = ifLogicBeginBrick2;
-    [self.startScript.brickList addObject:ifLogicElseBrick2];
-    ifLogicBeginBrick2.ifElseBrick = ifLogicElseBrick2;
-    
-    IfLogicEndBrick *ifLogicEndBrick2 = [[IfLogicEndBrick alloc] init];
-    ifLogicEndBrick2.script = self.startScript;
-    ifLogicEndBrick2.ifBeginBrick = ifLogicBeginBrick2;
-    ifLogicEndBrick2.ifElseBrick = ifLogicElseBrick2;
-    [self.startScript.brickList addObject:ifLogicEndBrick2];
-    
-    ifLogicBeginBrick2.ifEndBrick = ifLogicEndBrick2;
-    ifLogicElseBrick2.ifEndBrick = ifLogicEndBrick2;
-    // end nested if
+    addedBricks += [self addEmptyIfElseEndStructure];
     
     IfLogicElseBrick *ifLogicElseBrick1 = [[IfLogicElseBrick alloc] init];
     ifLogicElseBrick1.script = self.startScript;
     ifLogicElseBrick1.ifBeginBrick = ifLogicBeginBrick1;
     [self.startScript.brickList addObject:ifLogicElseBrick1];
     ifLogicBeginBrick1.ifElseBrick = ifLogicElseBrick1;
+    addedBricks++;
     
     IfLogicEndBrick *ifLogicEndBrick1 = [[IfLogicEndBrick alloc] init];
     ifLogicEndBrick1.script = self.startScript;
     ifLogicEndBrick1.ifBeginBrick = ifLogicBeginBrick1;
     ifLogicEndBrick1.ifElseBrick = ifLogicElseBrick1;
     [self.startScript.brickList addObject:ifLogicEndBrick1];
-    
     ifLogicBeginBrick1.ifEndBrick = ifLogicEndBrick1;
     ifLogicElseBrick1.ifEndBrick = ifLogicEndBrick1;
+    addedBricks++;
     
     
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
-    XCTAssertEqual(7, [self.viewController.collectionView numberOfItemsInSection:0]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
     
     // nested if brick
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:2 inSection:0];
@@ -154,51 +158,48 @@
 }
 
 - (void)testMoveIfLogicBeginBricksInsideElseBranch {
+
+    /*  Test:
+     
+     0 startedScript        (1)         (2)
+     1  ifBeginA
+     2  elseA              <---        --->
+     3      ifBeginB       --->        <---
+     4      elseB
+     5      ifEndB
+     6  ifEndA
+     */
+
     [self.viewController.collectionView reloadData];
+    
+    NSUInteger addedBricks = 1;
     
     IfLogicBeginBrick *ifLogicBeginBrick1 = [[IfLogicBeginBrick alloc] init];
     ifLogicBeginBrick1.script = self.startScript;
     [self.startScript.brickList addObject:ifLogicBeginBrick1];
+    addedBricks++;
     
     IfLogicElseBrick *ifLogicElseBrick1 = [[IfLogicElseBrick alloc] init];
     ifLogicElseBrick1.script = self.startScript;
     ifLogicElseBrick1.ifBeginBrick = ifLogicBeginBrick1;
     [self.startScript.brickList addObject:ifLogicElseBrick1];
     ifLogicBeginBrick1.ifElseBrick = ifLogicElseBrick1;
+    addedBricks++;
     
-    // begin nested if
-    IfLogicBeginBrick *ifLogicBeginBrick2 = [[IfLogicBeginBrick alloc] init];
-    ifLogicBeginBrick2.script = self.startScript;
-    [self.startScript.brickList addObject:ifLogicBeginBrick2];
-    
-    IfLogicElseBrick *ifLogicElseBrick2 = [[IfLogicElseBrick alloc] init];
-    ifLogicElseBrick2.script = self.startScript;
-    ifLogicElseBrick2.ifBeginBrick = ifLogicBeginBrick2;
-    [self.startScript.brickList addObject:ifLogicElseBrick2];
-    ifLogicBeginBrick2.ifElseBrick = ifLogicElseBrick2;
-    
-    IfLogicEndBrick *ifLogicEndBrick2 = [[IfLogicEndBrick alloc] init];
-    ifLogicEndBrick2.script = self.startScript;
-    ifLogicEndBrick2.ifBeginBrick = ifLogicBeginBrick2;
-    ifLogicEndBrick2.ifElseBrick = ifLogicElseBrick2;
-    [self.startScript.brickList addObject:ifLogicEndBrick2];
-    
-    ifLogicBeginBrick2.ifEndBrick = ifLogicEndBrick2;
-    ifLogicElseBrick2.ifEndBrick = ifLogicEndBrick2;
-    // end nested if
+    addedBricks += [self addEmptyIfElseEndStructure];
     
     IfLogicEndBrick *ifLogicEndBrick1 = [[IfLogicEndBrick alloc] init];
     ifLogicEndBrick1.script = self.startScript;
     ifLogicEndBrick1.ifBeginBrick = ifLogicBeginBrick1;
     ifLogicEndBrick1.ifElseBrick = ifLogicElseBrick1;
     [self.startScript.brickList addObject:ifLogicEndBrick1];
-    
     ifLogicBeginBrick1.ifEndBrick = ifLogicEndBrick1;
     ifLogicElseBrick1.ifEndBrick = ifLogicEndBrick1;
+    addedBricks++;
     
     
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
-    XCTAssertEqual(7, [self.viewController.collectionView numberOfItemsInSection:0]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
     
     // nested if brick
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:3 inSection:0];
@@ -221,49 +222,28 @@
     XCTAssertFalse(canMoveBelowIfBrickEditMode, @"Should not be allowed to move main IfLogicElseBrick below nested IfLogicElseBrick");
 }
 
-- (void)testMoveLogicBricks {
+- (void)testMoveIfBeginBrickInvalidBeforeIfEndBrickOfOtherIfBrick {
+
+    /*  Test:
+     
+     0 startedScript        (1)         (2)
+     1  ifBeginA
+     2  elseA
+     3  endA               <---         --->
+     4  ifBeginB           --->         <---
+     5  elseB
+     6  ifEndB
+     */
+
     [self.viewController.collectionView reloadData];
     
-    IfLogicBeginBrick *ifLogicBeginBrick1 = [[IfLogicBeginBrick alloc] init];
-    ifLogicBeginBrick1.script = self.startScript;
-    [self.startScript.brickList addObject:ifLogicBeginBrick1];
+    NSUInteger addedBricks = 1;
     
-    IfLogicElseBrick *ifLogicElseBrick1 = [[IfLogicElseBrick alloc] init];
-    ifLogicElseBrick1.script = self.startScript;
-    ifLogicElseBrick1.ifBeginBrick = ifLogicBeginBrick1;
-    [self.startScript.brickList addObject:ifLogicElseBrick1];
-    ifLogicBeginBrick1.ifElseBrick = ifLogicElseBrick1;
-    
-    IfLogicEndBrick *ifLogicEndBrick1 = [[IfLogicEndBrick alloc] init];
-    ifLogicEndBrick1.script = self.startScript;
-    ifLogicEndBrick1.ifBeginBrick = ifLogicBeginBrick1;
-    ifLogicEndBrick1.ifElseBrick = ifLogicElseBrick1;
-    [self.startScript.brickList addObject:ifLogicEndBrick1];
-    
-    ifLogicBeginBrick1.ifEndBrick = ifLogicEndBrick1;
-    ifLogicElseBrick1.ifEndBrick = ifLogicEndBrick1;
-    
-    IfLogicBeginBrick *ifLogicBeginBrick2 = [[IfLogicBeginBrick alloc] init];
-    ifLogicBeginBrick2.script = self.startScript;
-    [self.startScript.brickList addObject:ifLogicBeginBrick2];
-    
-    IfLogicElseBrick *ifLogicElseBrick2 = [[IfLogicElseBrick alloc] init];
-    ifLogicElseBrick2.script = self.startScript;
-    ifLogicElseBrick2.ifBeginBrick = ifLogicBeginBrick2;
-    [self.startScript.brickList addObject:ifLogicElseBrick2];
-    ifLogicBeginBrick2.ifElseBrick = ifLogicElseBrick2;
-    
-    IfLogicEndBrick *ifLogicEndBrick2 = [[IfLogicEndBrick alloc] init];
-    ifLogicEndBrick2.script = self.startScript;
-    ifLogicEndBrick2.ifBeginBrick = ifLogicBeginBrick2;
-    ifLogicEndBrick2.ifElseBrick = ifLogicElseBrick2;
-    [self.startScript.brickList addObject:ifLogicEndBrick2];
-    
-    ifLogicBeginBrick2.ifEndBrick = ifLogicEndBrick2;
-    ifLogicElseBrick2.ifEndBrick = ifLogicEndBrick2;
+    addedBricks += [self addEmptyIfElseEndStructure];
+    addedBricks += [self addEmptyIfElseEndStructure];
     
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
-    XCTAssertEqual(7, [self.viewController.collectionView numberOfItemsInSection:0]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
     
     // second if brick (move up)
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:4 inSection:0];
@@ -287,22 +267,31 @@
 }
 
 - (void)testMoveWaitBrickInsideForeverBrickOfIfLogicBeginBrick {
+
+    /*  Test:
+     
+     0 startedScript
+     1  ifBeginA
+     2      foreverBeginA
+     3      foreverEndA     <---
+     4  elseA
+     5      foreverBeginB
+     6      wait            --->
+     7      foreverEndB
+     8  ifEndA
+     */
+    
     [self.viewController.collectionView reloadData];
+    
+    NSUInteger addedBricks = 1;
     
     // start if
     IfLogicBeginBrick *ifLogicBeginBrick = [[IfLogicBeginBrick alloc] init];
     ifLogicBeginBrick.script = self.startScript;
     [self.startScript.brickList addObject:ifLogicBeginBrick];
+    addedBricks++;
     
-    ForeverBrick *foreverBrick1 = [[ForeverBrick alloc] init];
-    foreverBrick1.script = self.startScript;
-    [self.startScript.brickList addObject:foreverBrick1];
-    
-    LoopEndBrick *loopEndBrick1 = [[LoopEndBrick alloc] init];
-    loopEndBrick1.script = self.startScript;
-    loopEndBrick1.loopBeginBrick = foreverBrick1;
-    [self.startScript.brickList addObject:loopEndBrick1];
-    foreverBrick1.loopEndBrick = loopEndBrick1;
+    addedBricks += [self addEmptyForeverLoop];
     
     // start else
     IfLogicElseBrick *ifLogicElseBrick = [[IfLogicElseBrick alloc] init];
@@ -310,32 +299,22 @@
     ifLogicElseBrick.ifBeginBrick = ifLogicBeginBrick;
     [self.startScript.brickList addObject:ifLogicElseBrick];
     ifLogicBeginBrick.ifElseBrick = ifLogicElseBrick;
+    addedBricks++;
     
-    ForeverBrick *foreverBrick2 = [[ForeverBrick alloc] init];
-    foreverBrick2.script = self.startScript;
-    [self.startScript.brickList addObject:foreverBrick2];
-    
-    WaitBrick *waitBrick = [[WaitBrick alloc] init];
-    [self.startScript.brickList addObject:waitBrick];
-    
-    LoopEndBrick *loopEndBrick2 = [[LoopEndBrick alloc] init];
-    loopEndBrick2.script = self.startScript;
-    loopEndBrick2.loopBeginBrick = foreverBrick2;
-    [self.startScript.brickList addObject:loopEndBrick2];
-    foreverBrick2.loopEndBrick = loopEndBrick2;
+    addedBricks += [self addForeverLoopWithWaitBrick];
     
     IfLogicEndBrick *ifLogicEndBrick = [[IfLogicEndBrick alloc] init];
     ifLogicEndBrick.script = self.startScript;
     ifLogicEndBrick.ifBeginBrick = ifLogicBeginBrick;
     ifLogicEndBrick.ifElseBrick = ifLogicElseBrick;
     [self.startScript.brickList addObject:ifLogicEndBrick];
-    
     ifLogicBeginBrick.ifEndBrick = ifLogicEndBrick;
     ifLogicElseBrick.ifEndBrick = ifLogicEndBrick;
+    addedBricks++;
     // end if
     
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
-    XCTAssertEqual(9, [self.viewController.collectionView numberOfItemsInSection:0]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
     
     // if brick above forever brick
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:6 inSection:0];
@@ -349,22 +328,31 @@
 }
 
 - (void)testMoveWaitBrickAfterForeverLoopOfIfLogicBeginBrick {
+
+    /*  Test:
+     
+     0 startedScript
+     1  ifBeginA
+     2      foreverBeginA
+     3      foreverEndA
+     4  elseA               <---
+     5      foreverBeginB
+     6      wait            --->
+     7      foreverBeginB
+     8  ifEndA
+     */
+
     [self.viewController.collectionView reloadData];
+    
+    NSUInteger addedBricks = 1;
     
     // start if
     IfLogicBeginBrick *ifLogicBeginBrick = [[IfLogicBeginBrick alloc] init];
     ifLogicBeginBrick.script = self.startScript;
     [self.startScript.brickList addObject:ifLogicBeginBrick];
+    addedBricks++;
     
-    ForeverBrick *foreverBrick1 = [[ForeverBrick alloc] init];
-    foreverBrick1.script = self.startScript;
-    [self.startScript.brickList addObject:foreverBrick1];
-    
-    LoopEndBrick *loopEndBrick1 = [[LoopEndBrick alloc] init];
-    loopEndBrick1.script = self.startScript;
-    loopEndBrick1.loopBeginBrick = foreverBrick1;
-    [self.startScript.brickList addObject:loopEndBrick1];
-    foreverBrick1.loopEndBrick = loopEndBrick1;
+    addedBricks += [self addEmptyForeverLoop];
     
     // start else
     IfLogicElseBrick *ifLogicElseBrick = [[IfLogicElseBrick alloc] init];
@@ -372,32 +360,22 @@
     ifLogicElseBrick.ifBeginBrick = ifLogicBeginBrick;
     [self.startScript.brickList addObject:ifLogicElseBrick];
     ifLogicBeginBrick.ifElseBrick = ifLogicElseBrick;
+    addedBricks++;
     
-    ForeverBrick *foreverBrick2 = [[ForeverBrick alloc] init];
-    foreverBrick2.script = self.startScript;
-    [self.startScript.brickList addObject:foreverBrick2];
-    
-    WaitBrick *waitBrick = [[WaitBrick alloc] init];
-    [self.startScript.brickList addObject:waitBrick];
-    
-    LoopEndBrick *loopEndBrick2 = [[LoopEndBrick alloc] init];
-    loopEndBrick2.script = self.startScript;
-    loopEndBrick2.loopBeginBrick = foreverBrick2;
-    [self.startScript.brickList addObject:loopEndBrick2];
-    foreverBrick2.loopEndBrick = loopEndBrick2;
+    addedBricks += [self addForeverLoopWithWaitBrick];
     
     IfLogicEndBrick *ifLogicEndBrick = [[IfLogicEndBrick alloc] init];
     ifLogicEndBrick.script = self.startScript;
     ifLogicEndBrick.ifBeginBrick = ifLogicBeginBrick;
     ifLogicEndBrick.ifElseBrick = ifLogicElseBrick;
     [self.startScript.brickList addObject:ifLogicEndBrick];
-    
     ifLogicBeginBrick.ifEndBrick = ifLogicEndBrick;
     ifLogicElseBrick.ifEndBrick = ifLogicEndBrick;
+    addedBricks++;
     // end if
     
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
-    XCTAssertEqual(9, [self.viewController.collectionView numberOfItemsInSection:0]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
     
     // if brick above forever brick
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:6 inSection:0];
@@ -407,7 +385,555 @@
                                                                        itemAtIndexPath:indexPathFrom
                                                                     canMoveToIndexPath:indexPathTo
                                                                              andObject:self.spriteObject];
-    XCTAssertFalse(canMoveAfterLoopEndBrick, @"Should be bot allowed to move WaitBrick after LoopEndBrick of ForeverBrick of if-branch");
+    XCTAssertFalse(canMoveAfterLoopEndBrick, @"Should not be allowed to move WaitBrick after LoopEndBrick of ForeverBrick of if-branch");
 }
+
+- (void)testMoveWaitBrickFromNestedIfStructureWithForeverLoopsToAnother {
+    
+    /*  Test:
+     
+     0 startedScript
+     1  ifBeginA
+     2      ifBeginB
+     3          foreverBeginA
+     4              waitA           <---
+     5          foreverEndA
+     6      elseB
+     7          foreverBeginB
+     8              waitB
+     9          foreverEndB
+    10      ifEndB
+    11  elseA
+    12      ifBeginC
+    13          foreverBeginC
+    14              waitC
+    15          foreverEndC
+    16      elseC
+    17          foreverBeginD
+    18              waitD           --->
+    19          foreverEndD
+    20      ifEndC
+    21  endIfA
+    
+     */
+    
+    [self.viewController.collectionView reloadData];
+    
+    NSUInteger addedBricks = 1;
+    
+    addedBricks += [self addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricks];
+    
+    XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
+    
+    // if brick above forever brick
+    NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:18 inSection:0];
+    NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:4 inSection:0];
+    
+    BOOL canMoveAfterLoopEndBrick = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                      itemAtIndexPath:indexPathFrom
+                                                                   canMoveToIndexPath:indexPathTo
+                                                                            andObject:self.spriteObject];
+    XCTAssertTrue(canMoveAfterLoopEndBrick, @"Should be allowed to move WaitBrick from one if-else structure to another");
+}
+
+- (void)testMoveWaitBrickFromNestedIfStructureWithForeverLoopsToAnotherIndependentIfStructure {
+    
+    /*  Test:
+     
+     0 startedScript
+     1  ifBeginA
+     2      ifBeginB
+     3          foreverBeginA
+     4              waitA          <---
+     5          foreverEndA
+     6      elseB
+     7          foreverBeginB
+     8              waitB
+     9          foreverEndB
+     10      ifEndB
+     11  elseA
+     12      ifBeginC
+     13          foreverBeginC
+     14              waitC
+     15          foreverEndC
+     16      elseC
+     17          foreverBeginD
+     18              waitD
+     19          foreverEndD
+     20      ifEndC
+     21  endIfA
+     22  ifBeginD
+     23      ifBeginE
+     24         foreverBeginG
+     25              waitG
+     26          foreverEndG
+     27      elseE
+     28          foreverBeginH
+     29              waitH
+     30          foreverEndH
+     31      ifEndE
+     32  elseD
+     33      ifBeginF
+     34          foreverBeginI
+     35              waitI
+     36          foreverEndI
+     37      elseF
+     38          foreverBeginJ
+     39              waitJ          --->
+     40          foreverEndJ
+     41      ifEndF
+     42  endIfD
+     
+     */
+    
+    [self.viewController.collectionView reloadData];
+    
+    NSUInteger addedBricks = 1;
+    
+    addedBricks += [self addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricks];
+    addedBricks += [self addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricks];
+    
+    XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
+    
+    // if brick above forever brick
+    NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:39 inSection:0];
+    NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:4 inSection:0];
+    
+    BOOL canMoveAfterLoopEndBrick = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                      itemAtIndexPath:indexPathFrom
+                                                                   canMoveToIndexPath:indexPathTo
+                                                                            andObject:self.spriteObject];
+    XCTAssertTrue(canMoveAfterLoopEndBrick, @"Should be allowed to move WaitBrick from one if-else structure to another");
+}
+
+- (void)testMoveIfBeginInNestedIfElseStructWithForeverLoopsToInvalidDestination {
+                                            //DUPLICATE: Only one case of failing from test below!!!
+    /*  Test:
+     
+     0 startedScript
+     1  ifBeginA
+     2      ifBeginB
+     3          foreverBeginA
+     4              waitA
+     5          foreverEndA        <---
+     6      elseB
+     7          foreverBeginB
+     8              waitB
+     9          foreverEndB
+     10      ifEndB
+     11  elseA
+     12      ifBeginC               --->
+     13          foreverBeginC
+     14              waitC
+     15          foreverEndC
+     16      elseC
+     17          foreverBeginD
+     18              waitD
+     19          foreverEndD
+     20      ifEndC
+     21  endIfA
+     22  ifBeginD
+     23      ifBeginE
+     24         foreverBeginG
+     25              waitG
+     26          foreverEndG
+     27      elseE
+     28          foreverBeginH
+     29              waitH
+     30          foreverEndH
+     31      ifEndE
+     32  elseD
+     33      ifBeginF
+     34          foreverBeginI
+     35              waitI
+     36          foreverEndI
+     37      elseF
+     38          foreverBeginJ
+     39              waitJ
+     40          foreverEndJ
+     41      ifEndF
+     42  endIfD
+     
+     */
+    
+    [self.viewController.collectionView reloadData];
+    
+    NSUInteger addedBricks = 1;
+    
+    addedBricks += [self addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricks];
+    addedBricks += [self addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricks];
+    
+    XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
+    
+    // if brick above forever brick
+    NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:12 inSection:0];
+    NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:5 inSection:0];
+    
+    BOOL canMoveAfterLoopEndBrick = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                      itemAtIndexPath:indexPathFrom
+                                                                   canMoveToIndexPath:indexPathTo
+                                                                            andObject:self.spriteObject];
+    XCTAssertFalse(canMoveAfterLoopEndBrick, @"Should not be allowed to move IfBegin to here!");
+}
+
+- (void)testMoveIfBrickInNestedIfElseStructureWithForeverLoopsToAllPossiblePlaces {
+    
+    /*  Test:
+     
+     0 startedScript               Tested configurations:
+     1  ifBeginA                        <---
+     2      ifBeginB                    <---
+     3          foreverBeginA           <---
+     4              waitA               <---
+     5          foreverEndA             <---
+     6      elseB                       <---
+     7          foreverBeginB           <---
+     8              waitB               <---
+     9          foreverEndB             <---
+     10      ifEndB                     <---
+     11  elseA                          <---
+     12      ifBeginC                   --->
+     13          foreverBeginC          <---
+     14              waitC              <---
+     15          foreverEndC            <---
+     16      elseC                      <---
+     17          foreverBeginD          <---
+     18              waitD              <---
+     19          foreverEndD            <---
+     20      ifEndC                     <---
+     21  endIfA                         <---
+     22  ifBeginD                       <---
+     23      ifBeginE                   <---
+     24         foreverBeginG           <---
+     25              waitG              <---
+     26          foreverEndG            <---
+     27      elseE                      <---
+     28          foreverBeginH          <---
+     29              waitH              <---
+     30          foreverEndH            <---
+     31      ifEndE                     <---
+     32  elseD                          <---
+     33      ifBeginF                   <---
+     34          foreverBeginI          <---
+     35              waitI              <---
+     36          foreverEndI            <---
+     37      elseF                      <---
+     38          foreverBeginJ          <---
+     39              waitJ              <---
+     40          foreverEndJ            <---
+     41      ifEndF                     <---
+     42  endIfD                         <---
+     
+     */
+    
+    [self.viewController.collectionView reloadData];
+    
+    
+    NSUInteger sourceIDX = 12;
+    NSUInteger addedBricks = 1;
+    
+    addedBricks += [self addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricks];
+    addedBricks += [self addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricks];
+    
+    XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
+    
+    // if brick above forever brick
+    NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:sourceIDX inSection:0];
+    
+    
+    for(NSUInteger testedDestination = 1; testedDestination <= 42; testedDestination++) {
+        if(testedDestination != sourceIDX)
+        {
+            NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:testedDestination inSection:0];
+            
+            BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                          itemAtIndexPath:indexPathFrom
+                                                                       canMoveToIndexPath:indexPathTo
+                                                                                andObject:self.spriteObject];
+            
+            XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to line %lu", (unsigned long)testedDestination);
+        }
+    }
+}
+
+- (void)testMoveElseBrickInNestedIfElseStructureWithForeverLoopsToAllPossiblePlaces {
+    
+    /*  Test:
+     
+     0 startedScript               Tested configurations:
+     1  ifBeginA                        <---
+     2      ifBeginB                    <---
+     3          foreverBeginA           <---
+     4              waitA               <---
+     5          foreverEndA             <---
+     6      elseB                       <---
+     7          foreverBeginB           <---
+     8              waitB               <---
+     9          foreverEndB             <---
+     10      ifEndB                     <---
+     11  elseA                          <---
+     12      ifBeginC                   <---
+     13          foreverBeginC          <---
+     14              waitC              <---
+     15          foreverEndC            <---
+     16      elseC                      <---
+     17          foreverBeginD          <---
+     18              waitD              <---
+     19          foreverEndD            <---
+     20      ifEndC                     <---
+     21  endIfA                         <---
+     22  ifBeginD                       <---
+     23      ifBeginE                   <---
+     24         foreverBeginG           <---
+     25              waitG              <---
+     26          foreverEndG            <---
+     27      elseE                      --->
+     28          foreverBeginH          <---
+     29              waitH              <---
+     30          foreverEndH            <---
+     31      ifEndE                     <---
+     32  elseD                          <---
+     33      ifBeginF                   <---
+     34          foreverBeginI          <---
+     35              waitI              <---
+     36          foreverEndI            <---
+     37      elseF                      <---
+     38          foreverBeginJ          <---
+     39              waitJ              <---
+     40          foreverEndJ            <---
+     41      ifEndF                     <---
+     42  endIfD                         <---
+     
+     */
+    
+    [self.viewController.collectionView reloadData];
+    
+    
+    NSUInteger sourceIDX = 27;
+    NSUInteger addedBricks = 1;
+    
+    addedBricks += [self addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricks];
+    addedBricks += [self addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricks];
+    
+    XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
+    
+    // if brick above forever brick
+    NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:sourceIDX inSection:0];
+    
+    
+    for(NSUInteger testedDestination = 1; testedDestination <= 42; testedDestination++) {
+        if(testedDestination != sourceIDX)
+        {
+            NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:testedDestination inSection:0];
+            
+            BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                          itemAtIndexPath:indexPathFrom
+                                                                       canMoveToIndexPath:indexPathTo
+                                                                                andObject:self.spriteObject];
+        
+            XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to line %lu", (unsigned long)testedDestination);
+        }
+    }
+}
+
+- (void)testMoveIfBrickInNestedIfElseStructureWithRepeatLoopsToAllPossiblePlaces {
+    
+    /*  Test:
+     
+     0 startedScript               Tested configurations:
+     1  ifBeginA                        <---
+     2      ifBeginB                    <---
+     3          repeatBeginA            <---
+     4              waitA               <---
+     5          repeatEndA              <---
+     6      elseB                       <---
+     7          repeatBeginB            <---
+     8              waitB               <---
+     9          repeatEndB              <---
+     10      ifEndB                     <---
+     11  elseA                          <---
+     12      ifBeginC                   --->
+     13          repeatBeginC           <---
+     14              waitC              <---
+     15          repeatEndC             <---    (valid)
+     16      elseC                      <---
+     17          repeatBeginD           <---
+     18              waitD              <---
+     19          repeatEndD             <---
+     20      ifEndC                     <---
+     21  endIfA                         <---
+     22  ifBeginD                       <---
+     23      ifBeginE                   <---
+     24         repeatBeginG            <---
+     25              waitG              <---
+     26          repeatEndG             <---
+     27      elseE                      <---
+     28          repeatBeginH           <---
+     29              waitH              <---
+     30          repeatEndH             <---
+     31      ifEndE                     <---
+     32  elseD                          <---
+     33      ifBeginF                   <---
+     34          repeatBeginI           <---
+     35              waitI              <---
+     36          repeatEndI             <---
+     37      elseF                      <---
+     38          repeatBeginJ           <---
+     39              waitJ              <---
+     40          repeatEndJ             <---
+     41      ifEndF                     <---
+     42  endIfD                         <---
+     
+     */
+    
+    [self.viewController.collectionView reloadData];
+    
+    NSUInteger sourceIDX = 12;
+    NSUInteger validIDX = 15;
+    NSUInteger addedBricks = 1;
+    
+    addedBricks += [self addNestedIfElseOfOrder1WithRepeatLoopsWithWaitBricks];
+    addedBricks += [self addNestedIfElseOfOrder1WithRepeatLoopsWithWaitBricks];
+    
+    XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
+    
+    // if brick above forever brick
+    NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:sourceIDX inSection:0];
+    
+    
+    for(NSUInteger testedDestination = 1; testedDestination <= 42; testedDestination++) {
+        if(testedDestination != validIDX)
+        {
+            NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:testedDestination inSection:0];
+            
+            BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                          itemAtIndexPath:indexPathFrom
+                                                                       canMoveToIndexPath:indexPathTo
+                                                                                andObject:self.spriteObject];
+            
+            XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to line %lu", (unsigned long)testedDestination);
+        }
+    }
+    
+    NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:validIDX inSection:0];
+    
+    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                  itemAtIndexPath:indexPathFrom
+                                                               canMoveToIndexPath:indexPathTo
+                                                                        andObject:self.spriteObject];
+    
+    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to line %lu", (unsigned long)validIDX);
+}
+
+- (void)testMoveElseBrickInNestedIfElseStructureWithRepeatLoopsToAllPossiblePlaces {
+    
+    /*  Test:
+     
+     0 startedScript               Tested configurations:
+     1  ifBeginA                        <---
+     2      ifBeginB                    <---
+     3          repeatBeginA            <---
+     4              waitA               <---
+     5          repeatEndA              <---
+     6      elseB                       <---
+     7          repeatBeginB            <---
+     8              waitB               <---
+     9          repeatEndB              <---
+     10      ifEndB                     <---
+     11  elseA                          <---
+     12      ifBeginC                   <---
+     13          repeatBeginC           <---
+     14              waitC              <---
+     15          repeatEndC             <---
+     16      elseC                      <---
+     17          repeatBeginD           <---
+     18              waitD              <---
+     19          repeatEndD             <---
+     20      ifEndC                     <---
+     21  endIfA                         <---
+     22  ifBeginD                       <---
+     23      ifBeginE                   <---
+     24         repeatBeginG            <---    (valid)
+     25              waitG              <---
+     26          repeatEndG             <---
+     27      elseE                      --->
+     28          repeatBeginH           <---
+     29              waitH              <---
+     30          repeatEndH             <---    (valid)
+     31      ifEndE                     <---
+     32  elseD                          <---
+     33      ifBeginF                   <---
+     34          repeatBeginI           <---
+     35              waitI              <---
+     36          repeatEndI             <---
+     37      elseF                      <---
+     38          repeatBeginJ           <---
+     39              waitJ              <---
+     40          repeatEndJ             <---
+     41      ifEndF                     <---
+     42  endIfD                         <---
+     
+     */
+    
+    [self.viewController.collectionView reloadData];
+    
+    NSUInteger sourceIDX = 27;
+    NSUInteger validIDX1 = 24;
+    NSUInteger validIDX2 = 30;
+    NSUInteger addedBricks = 1;
+    
+    addedBricks += [self addNestedIfElseOfOrder1WithRepeatLoopsWithWaitBricks];
+    addedBricks += [self addNestedIfElseOfOrder1WithRepeatLoopsWithWaitBricks];
+    
+    XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
+    XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
+    
+    // if brick above forever brick
+    NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:sourceIDX inSection:0];
+    
+    
+    for(NSUInteger testedDestination = 1; testedDestination <= 42; testedDestination++) {
+        if( (testedDestination != validIDX1)  && (testedDestination != validIDX2))
+        {
+            NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:testedDestination inSection:0];
+            
+            BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                          itemAtIndexPath:indexPathFrom
+                                                                       canMoveToIndexPath:indexPathTo
+                                                                                andObject:self.spriteObject];
+            
+            XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to line %lu", (unsigned long)testedDestination);
+        }
+    }
+    
+    NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:validIDX1 inSection:0];
+    
+    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                  itemAtIndexPath:indexPathFrom
+                                                               canMoveToIndexPath:indexPathTo
+                                                                        andObject:self.spriteObject];
+    
+    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to line %lu", (unsigned long)validIDX1);
+    
+    indexPathTo = [NSIndexPath indexPathForRow:validIDX2 inSection:0];
+    
+    canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                  itemAtIndexPath:indexPathFrom
+                                                               canMoveToIndexPath:indexPathTo
+                                                                        andObject:self.spriteObject];
+    
+    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to line %lu", (unsigned long)validIDX2);
+}
+
+
+
+
+
 
 @end
