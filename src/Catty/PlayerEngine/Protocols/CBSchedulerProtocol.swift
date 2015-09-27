@@ -27,10 +27,9 @@ protocol CBSchedulerProtocol : class {
 
     // queries
     func isContextScheduled(context: CBScriptContext) -> Bool
-    func allStartScriptContextsReachedMatureState() -> Bool
     func whenContextsForSpriteNodeWithName(spriteName: String) -> [CBWhenScriptContext]?
 
-    // model
+    // registration
     func registerSpriteNode(spriteNode: CBSpriteNode)
     func registerContext(context: CBScriptContext)
 
@@ -38,7 +37,8 @@ protocol CBSchedulerProtocol : class {
     func run()
     func shutdown()
     func runNextInstructionOfContext(context: CBScriptContext)
-    func startContext(context: CBScriptContext, withInitialState: CBScriptState)
+    func scheduleContext(context: CBScriptContext, withInitialState initialState: CBContextState)
+    func startContext(context: CBScriptContext, withInitialState: CBContextState)
     func stopContext(context: CBScriptContext, continueWaitingBroadcastSenders: Bool)
 
 }

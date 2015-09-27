@@ -62,9 +62,9 @@ final class CBBackend : CBBackendProtocol {
     }
 
     private func _instructionsForSequence(sequenceList: CBSequenceList,
-        context: CBScriptContext) -> [CBExecClosure]
+        context: CBScriptContext) -> [CBInstruction]
     {
-        var instructionList = [CBExecClosure]()
+        var instructionList = [CBInstruction]()
         sequenceList.forEach {
             switch $0 {
             case let opSequence as CBOperationSequence:
@@ -83,14 +83,14 @@ final class CBBackend : CBBackendProtocol {
     }
 
     private func _instructionsForIfSequence(ifSequence: CBIfConditionalSequence,
-        context: CBScriptContext) -> [CBExecClosure]
+        context: CBScriptContext) -> [CBInstruction]
     {
-        var instructionList = [CBExecClosure]()
+        var instructionList = [CBInstruction]()
 
         // add if condition evaluation instruction
         let ifInstructions = _instructionsForSequence(ifSequence.sequenceList, context: context)
         let numberOfIfInstructions = ifInstructions.count
-        instructionList += { [weak self] in
+        instructionList += CBInstruction.ExecClosure { [weak self] in
             if ifSequence.checkCondition() == false {
                 var numberOfInstructionsToJump = numberOfIfInstructions
                 if ifSequence.elseSequenceList != nil {
@@ -111,7 +111,7 @@ final class CBBackend : CBBackendProtocol {
             numberOfElseInstructions = elseInstructions.count
             // add jump instruction to be the last if-instruction
             // (needed to avoid execution of else sequence)
-            instructionList += { [weak self] in
+            instructionList += CBInstruction.ExecClosure { [weak self] in
                 context.jump(numberOfInstructions: numberOfElseInstructions)
                 self?._scheduler.runNextInstructionOfContext(context)
             }
@@ -121,12 +121,12 @@ final class CBBackend : CBBackendProtocol {
     }
 
     private func _instructionsForLoopSequence(conditionalSequence: CBConditionalSequence,
-        context: CBScriptContext) -> [CBExecClosure]
+        context: CBScriptContext) -> [CBInstruction]
     {
         let bodyInstructions = _instructionsForSequence(conditionalSequence.sequenceList,
             context: context)
         let numOfBodyInstructions = bodyInstructions.count
-        let loopEndInstruction: CBExecClosure = { [weak self] in
+        let loopEndInstruction = CBInstruction.ExecClosure { [weak self] in
             var numOfInstructionsToJump = 0
             if conditionalSequence.checkCondition() {
                 numOfInstructionsToJump -= numOfBodyInstructions + 1 // omits loop begin instruction
@@ -158,7 +158,7 @@ final class CBBackend : CBBackendProtocol {
                 self?._scheduler.runNextInstructionOfContext(context)
             }
         }
-        let loopBeginInstruction: CBExecClosure = { [weak self] in
+        let loopBeginInstruction = CBInstruction.ExecClosure { [weak self] in
             if conditionalSequence.checkCondition() {
                 conditionalSequence.lastLoopIterationStartTime = NSDate()
             } else {
@@ -169,7 +169,7 @@ final class CBBackend : CBBackendProtocol {
             self?._scheduler.runNextInstructionOfContext(context)
         }
         // finally add all instructions to list
-        var instructionList = [CBExecClosure]()
+        var instructionList = [CBInstruction]()
         instructionList += loopBeginInstruction
         instructionList += bodyInstructions
         instructionList += loopEndInstruction

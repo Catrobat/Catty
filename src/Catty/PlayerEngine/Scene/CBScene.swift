@@ -73,7 +73,7 @@ final class CBScene : SKScene {
         self.backend = backend
         self.broadcastHandler = broadcastHandler
         super.init(size: size)
-        self.backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.whiteColor()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -87,8 +87,8 @@ final class CBScene : SKScene {
 
     // MARK: - Scene events
     override func willMoveFromView(view: SKView) {
-        self.removeAllChildren()
-        self.removeAllActions()
+        removeAllChildren()
+        removeAllActions()
     }
 
     override func didMoveToView(view: SKView) {
@@ -99,6 +99,7 @@ final class CBScene : SKScene {
         if scheduler?.running == false { return false }
         logger?.debug("StartTouchOfScene")
 
+        // TODO: simplify!! optimize algorithm...
         if let touch = touches.anyObject() as? UITouch {
             let location = touch.locationInNode(self)
             logger?.debug("x:\(location.x),y:\(location.y)")
@@ -109,6 +110,8 @@ final class CBScene : SKScene {
             }
 
             var spriteNode1: CBSpriteNode? = nil
+
+            // FIXME!!! detect + consider iPhone/iPad version
             if #available(iOS 9, *) {
                 spriteNode1 = nodesAtPoint[0] as? CBSpriteNode
             } else {
@@ -164,7 +167,7 @@ final class CBScene : SKScene {
         }
 
         // init and prepare Scene
-        self.removeAllChildren() // just to ensure
+        removeAllChildren() // just to ensure
 
         guard let spriteObjectList = frontend?.program?.objectList as NSArray? as? [SpriteObject]
         else { fatalError("!! Invalid sprite object list given !! This should never happen!") }
@@ -204,7 +207,7 @@ final class CBScene : SKScene {
 
                 scheduler?.registerContext(scriptContext)
                 if let bcsContext = scriptContext as? CBBroadcastScriptContext {
-                    broadcastHandler?.subscribeBroadcastScriptContext(bcsContext)
+                    broadcastHandler?.subscribeBroadcastContext(bcsContext)
                 }
             }
         }
@@ -219,24 +222,20 @@ final class CBScene : SKScene {
     func stopScreenRecording() {
         if #available(iOS 9.0, *) {
             stopScreenRecordingWithHandler {
-                //        if #available(iOS 9, *) {
-                guard let previewViewController = self.previewViewController else {
-                    fatalError("The user requested playback, but a valid preview controller does not exist.")
-                }
-                guard let rootViewController = self.view?.window?.rootViewController else {
-                    fatalError("The scene must be contained in a window with e root view controller.")
-                }
+                guard let previewViewController = self.previewViewController
+                else { fatalError("The user requested playback, but a valid preview controller does not exist.") }
+                guard let rootViewController = self.view?.window?.rootViewController
+                else { fatalError("The scene must be contained in a window with a root view controller.") }
+
                 // RPPreviewViewController only supports full screen modal presentation.
                 previewViewController.modalPresentationStyle = UIModalPresentationStyle.FullScreen
-                rootViewController.presentViewController(previewViewController, animated:true, completion:nil)
-                //        }
+                rootViewController.presentViewController(previewViewController, animated: true, completion: nil)
             }
         }
     }
 
     // MARK: - Stop program
     func stopProgram() {
-
         view?.paused = true // pause scene!
         scheduler?.shutdown() // stops scheduler and removes all ressources
 
@@ -262,7 +261,6 @@ final class CBScene : SKScene {
     func convertYCoordinateToScene(y: CGFloat) -> CGFloat {
         return (size.height/2.0 + y)
     }
-
 
     func convertSceneCoordinateToPoint(point: CGPoint) -> CGPoint {
         let x = point.x - size.width/2.0

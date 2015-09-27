@@ -24,10 +24,10 @@ protocol CBBroadcastHandlerProtocol : class {
 
     func setup()
     func tearDown()
-    func subscribeBroadcastScriptContext(context: CBBroadcastScriptContext)
-    func unsubscribeBroadcastScriptContext(context: CBBroadcastScriptContext)
-    func performBroadcastWithMessage(message: String, senderScriptContext: CBScriptContext, broadcastType: CBBroadcastType)
-    func continueContextsWaitingForTerminationOfBroadcastScriptContext(context: CBBroadcastScriptContext)
-    func removeWaitingContextAndTerminateAllCalledBroadcastScripts(context: CBScriptContext)
+    func subscribeBroadcastContext(context: CBBroadcastScriptContext)
+    func unsubscribeBroadcastContext(context: CBBroadcastScriptContext)
+    func performBroadcastWithMessage(message: String, senderContext: CBScriptContext, broadcastType: CBBroadcastType)
+    func continueContextsWaitingForTerminationOfBroadcastContext(context: CBBroadcastScriptContext)
+    func removeWaitingContextAndTerminateAllCalledBroadcastContexts(context: CBScriptContext)
 
 }

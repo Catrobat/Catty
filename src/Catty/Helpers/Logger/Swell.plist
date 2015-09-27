@@ -43,7 +43,7 @@
 		<key>SWLQuickFormat</key>
 		<string>DateNameMessage</string>
 	</dict>
-	<key>CBBackendLogger.Release - 2</key>
+	<key>CBBackendLogger.Release</key>
 	<dict>
 		<key>SWLLevel</key>
 		<string>warn</string>
@@ -98,7 +98,7 @@
 		<key>SWLQuickFormat</key>
 		<string>DateNameMessage</string>
 	</dict>
-	<key>CBBackendLogger.Debug - 2</key>
+	<key>CBBackendLogger.Debug</key>
 	<dict>
 		<key>SWLLevel</key>
 		<string>warn</string>
@@ -153,7 +153,7 @@
 		<key>SWLQuickFormat</key>
 		<string>DateNameMessage</string>
 	</dict>
-	<key>CBBackendLogger.Test - 2</key>
+	<key>CBBackendLogger.Test</key>
 	<dict>
 		<key>SWLLevel</key>
 		<string>debug</string>

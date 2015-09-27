@@ -56,6 +56,7 @@
 #import "LedOnBrick.h"
 #import "LedOffBrick.h"
 #import "VibrationBrick.h"
+#import "GlideToBrick.h"
 
 // Formulas
 #import "Formula.h"

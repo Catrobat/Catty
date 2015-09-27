@@ -58,7 +58,6 @@ final class CBSpriteNode : SKSpriteNode {
     // MARK: - Initializers
     required init(spriteObject: SpriteObject) {
         let color = UIColor.clearColor()
-        self.spriteObject = spriteObject
         if let firstLook = spriteObject.lookList.firstObject as? Look,
            let filePathForLook = spriteObject.pathForLook(firstLook),
            let image = UIImage(contentsOfFile:filePathForLook)
@@ -72,9 +71,9 @@ final class CBSpriteNode : SKSpriteNode {
             super.init(color: color, size: CGSizeZero)
         }
         self.spriteObject = spriteObject
-        setLook()
-        self.name = spriteObject.name
         spriteObject.spriteNode = self
+        self.name = spriteObject.name
+        setLook()
     }
 
     required override init(texture: SKTexture?, color: UIColor, size: CGSize) {
@@ -193,7 +192,7 @@ final class CBSpriteNode : SKSpriteNode {
                     if scheduler.isContextScheduled(whenContext) {
                         scheduler.stopContext(whenContext, continueWaitingBroadcastSenders: true)
                     }
-                    scheduler.startContext(whenContext, withInitialState: .Running)
+                    scheduler.startContext(whenContext, withInitialState: .Runnable)
                 }
             }
             return true

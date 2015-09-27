@@ -27,11 +27,6 @@
 #import "Pocket_Code-Swift.h"
 
 @interface GlideToBrick()
-
-@property (nonatomic, assign) BOOL isInitialized;
-@property (nonatomic, assign) CGPoint currentPoint;
-@property (nonatomic, assign) CGPoint startingPoint;
-
 @end
 
 @implementation GlideToBrick
@@ -86,12 +81,12 @@
 - (SKAction*)action
 {
     double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.script.object];
-    double xDestination = [self.xDestination interpretDoubleForSprite:self.script.object];
-    double yDestination = [self.yDestination interpretDoubleForSprite:self.script.object];
     self.isInitialized = NO;
 
     return [SKAction customActionWithDuration:durationInSeconds actionBlock:^(SKNode *node, CGFloat elapsedTime) {
         NSDebug(@"Performing: %@", self.description);
+        double xDestination = [self.xDestination interpretDoubleForSprite:self.script.object];
+        double yDestination = [self.yDestination interpretDoubleForSprite:self.script.object];
         
         if(!self.isInitialized) {
             self.isInitialized = YES;

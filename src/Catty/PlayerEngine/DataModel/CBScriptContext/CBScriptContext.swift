@@ -23,9 +23,9 @@
 protocol CBScriptContextProtocol : class, Hashable, Equatable {
     var spriteNode: CBSpriteNode { get }
     var script: Script { get }
-    var state: CBScriptState { get set }
-    func appendInstructions(instructionList: [CBExecClosure])
-    func nextInstruction() -> CBExecClosure?
+    var state: CBContextState { get set }
+    func appendInstructions(instructionList: [CBInstruction])
+    func nextInstruction() -> CBInstruction?
     func jump(numberOfInstructions numberOfInstructions: Int)
     func reset()
 }
@@ -36,11 +36,11 @@ class CBScriptContext : CBScriptContextProtocol {
     // MARK: - Properties
     final let spriteNode: CBSpriteNode
     final var script: Script
-    final var state: CBScriptState
+    final var state: CBContextState
     final var count: Int { return _instructionList.count }
 
     final private var _instructionPointer: Int = 0
-    final private lazy var _instructionList = [CBExecClosure]()
+    final private lazy var _instructionList = [CBInstruction]()
     var hashValue: Int { return spriteNode.name!.hashValue }
 
     // MARK: - Initializers
@@ -48,9 +48,7 @@ class CBScriptContext : CBScriptContextProtocol {
         self.init(script: script, spriteNode: spriteNode, state: .Runnable, instructionList: [])
     }
 
-    init(script: Script, spriteNode: CBSpriteNode, state: CBScriptState,
-        instructionList: [CBExecClosure]
-    ) {
+    init(script: Script, spriteNode: CBSpriteNode, state: CBContextState, instructionList: [CBInstruction]) {
         self.spriteNode = spriteNode
         self.script = script
         self.state = state
@@ -59,26 +57,23 @@ class CBScriptContext : CBScriptContextProtocol {
     }
 
     // MARK: - Operations
-    final func appendInstructions(instructionList: [CBExecClosure]) {
+    final func appendInstructions(instructionList: [CBInstruction]) {
         _instructionList += instructionList
     }
 
-    final func nextInstruction() -> CBExecClosure? {
+    final func nextInstruction() -> CBInstruction? {
         if state == .Dead { return nil } // must be an old deprecated enqueued dispatch closure
-        assert(state == .Running || state == .RunningMature || state == .RunningBlocking)
+        assert(state == .Running)
         if (_instructionPointer == _instructionList.count) || (_instructionList.count == 0) {
             return nil
         }
-
-        // after first instruction executed => set state to RunningMature
-        if state == .Running { state = .RunningMature }
         return _instructionList[_instructionPointer++]
     }
 
     final func jump(numberOfInstructions numberOfInstructions: Int) {
-        if state == .Dead { return } // must be an old deprecated enqueued dispatch closure
+        if state == .Dead || state == .Runnable { return } // must be an old deprecated enqueued dispatch closure
         if numberOfInstructions == 0 { return }
-        assert(state == .Running || state == .RunningMature || state == .RunningBlocking)
+        assert(state == .Running)
         let newInstructionPointerPosition = _instructionPointer + numberOfInstructions
         if newInstructionPointerPosition < 0 || newInstructionPointerPosition > _instructionList.count {
             return
@@ -97,11 +92,11 @@ class CBScriptContext : CBScriptContextProtocol {
 //--------------------------------------------------------------------------------------------------
 final class CBWhenScriptContext : CBScriptContext {
     
-    convenience init(whenScript: WhenScript, spriteNode: CBSpriteNode, state: CBScriptState) {
+    convenience init(whenScript: WhenScript, spriteNode: CBSpriteNode, state: CBContextState) {
         self.init(whenScript: whenScript, spriteNode: spriteNode, state: state, instructionList: [])
     }
-    
-    init(whenScript: WhenScript, spriteNode: CBSpriteNode, state: CBScriptState, instructionList: [CBExecClosure]) {
+
+    init(whenScript: WhenScript, spriteNode: CBSpriteNode, state: CBContextState, instructionList: [CBInstruction]) {
         super.init(script: whenScript, spriteNode: spriteNode, state: state, instructionList: instructionList)
     }
 
@@ -112,11 +107,11 @@ final class CBBroadcastScriptContext : CBScriptContext {
 
     final var broadcastMessage: String
 
-    convenience init(broadcastScript: BroadcastScript, spriteNode: CBSpriteNode, state: CBScriptState) {
+    convenience init(broadcastScript: BroadcastScript, spriteNode: CBSpriteNode, state: CBContextState) {
         self.init(broadcastScript: broadcastScript, spriteNode: spriteNode, state: state, instructionList: [])
     }
 
-    init(broadcastScript: BroadcastScript, spriteNode: CBSpriteNode, state: CBScriptState, instructionList: [CBExecClosure]) {
+    init(broadcastScript: BroadcastScript, spriteNode: CBSpriteNode, state: CBContextState, instructionList: [CBInstruction]) {
         broadcastMessage = broadcastScript.receivedMessage
         super.init(script: broadcastScript, spriteNode: spriteNode, state: state, instructionList: instructionList)
     }
@@ -126,11 +121,11 @@ final class CBBroadcastScriptContext : CBScriptContext {
 //--------------------------------------------------------------------------------------------------
 final class CBStartScriptContext : CBScriptContext {
 
-    convenience init(startScript: StartScript, spriteNode: CBSpriteNode, state: CBScriptState) {
+    convenience init(startScript: StartScript, spriteNode: CBSpriteNode, state: CBContextState) {
         self.init(startScript: startScript, spriteNode: spriteNode, state: state, instructionList: [])
     }
     
-    init(startScript: StartScript, spriteNode: CBSpriteNode, state: CBScriptState, instructionList: [CBExecClosure]) {
+    init(startScript: StartScript, spriteNode: CBSpriteNode, state: CBContextState, instructionList: [CBInstruction]) {
         super.init(script: startScript, spriteNode: spriteNode, state: state, instructionList: instructionList)
     }
 
@@ -141,10 +136,10 @@ func ==(lhs: CBScriptContext, rhs: CBScriptContext) -> Bool {
     return lhs.spriteNode === rhs.spriteNode && lhs.script === rhs.script
 }
 
-func +=(inout left: CBScriptContext, right: CBExecClosure) {
+func +=(inout left: CBScriptContext, right: CBInstruction) {
     left.appendInstructions([right])
 }
 
-func +=(inout left: CBScriptContext, right: [CBExecClosure]) {
+func +=(inout left: CBScriptContext, right: [CBInstruction]) {
     left.appendInstructions(right)
 }

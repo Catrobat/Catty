@@ -24,7 +24,7 @@ import AudioToolbox
 import Darwin // usleep
 
 protocol CBInstructionHandlerProtocol {
-    func instructionForBrick(brick: Brick, withContext context: CBScriptContext) -> CBExecClosure
+    func instructionForBrick(brick: Brick, withContext context: CBScriptContext) -> CBInstruction
 }
 
 final class CBInstructionHandler : CBInstructionHandlerProtocol {
@@ -32,7 +32,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
     var logger: CBLogger
     private let _scheduler: CBSchedulerProtocol
     private let _broadcastHandler: CBBroadcastHandlerProtocol
-    private var _brickInstructionMap = [String:CBInstruction]()
+    private var _brickInstructionMap = [String:CBInstructionClosure]()
     static let vibrateSerialQueue = dispatch_queue_create("org.catrobat.vibrate.queue", DISPATCH_QUEUE_SERIAL)
 
     // MARK: - Initializers
@@ -43,11 +43,16 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         _scheduler = scheduler
         _broadcastHandler = broadcastHandler
 
+        // brick actions that have been ported to Swift yet
         func _setupBrickInstructionMapping() {
-            // brick actions that have been already ported to Swift
+
+            // long duration bricks
+            _brickInstructionMap["WaitBrick"] = _waitInstruction
+            _brickInstructionMap["GlideToBrick"] = _glideToInstruction
+
+            // short duration bricks
             _brickInstructionMap["BroadcastBrick"] = _broadcastInstruction
             _brickInstructionMap["BroadcastWaitBrick"] = _broadcastWaitInstruction
-            _brickInstructionMap["WaitBrick"] = _waitInstruction
             _brickInstructionMap["PlaySoundBrick"] = _playSoundInstruction
             _brickInstructionMap["StopAllSoundsBrick"] = _stopAllSoundsInstruction
             _brickInstructionMap["SpeakBrick"] = _speakInstruction
@@ -58,140 +63,144 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
             _brickInstructionMap["LedOnBrick"] = _flashLightOnInstruction
             _brickInstructionMap["LedOffBrick"] = _flashLightOffInstruction
             _brickInstructionMap["VibrationBrick"] = _vibrationInstruction
+
         }
         _setupBrickInstructionMapping()
     }
 
     // MARK: - Operations
-    func instructionForBrick(brick: Brick, withContext context: CBScriptContext) -> CBExecClosure {
+    func instructionForBrick(brick: Brick, withContext context: CBScriptContext) -> CBInstruction {
         if let instruction = _brickInstructionMap["\(brick.dynamicType.description())"] {
             return instruction(brick: brick, context: context)
         }
 
-        // not found in map => get action via brick class
-        return {
-            context.spriteNode.runAction(brick.action(), completion:{
-                // the script must continue here. upcoming actions are executed!!
-                self._scheduler.runNextInstructionOfContext(context)
-            })
-        }
+        // cannot find in map => get action via brick class
+        return .Action(action: brick.action())
     }
 
     // MARK: - Mapped instructions
-    private func _broadcastInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure
-    {
-        guard let bcBrick = brick as? BroadcastBrick
-        else { fatalError("This should never happen!") }
-
-        return {
-            self._broadcastHandler.performBroadcastWithMessage(bcBrick.broadcastMessage,
-                senderScriptContext: context, broadcastType: .Broadcast)
-        }
-    }
-
-    private func _broadcastWaitInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure
-    {
-        guard let bcWaitBrick = brick as? BroadcastWaitBrick
-        else { fatalError("This should never happen!") }
-
-        return {
-            self._broadcastHandler.performBroadcastWithMessage(bcWaitBrick.broadcastMessage,
-                senderScriptContext: context, broadcastType: .BroadcastWait)
-        }
-    }
-
-    private func _waitInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure {
+    private func _waitInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
         guard let waitBrick = brick as? WaitBrick,
               let object = waitBrick.script?.object
         else { fatalError("This should never happen!") }
 
-        return {
-            context.state = .RunningMature
+        return CBInstruction.WaitExecClosure {
             let durationInSeconds = waitBrick.timeToWaitInSeconds.interpretDoubleForSprite(object)
 
-            // ignore wait operation if an invalid duration is given!
-            // => UInt32 underflow not possible any more!
-            if durationInSeconds <= 0.0 {
-                self._scheduler.runNextInstructionOfContext(context)
-                return
-            }
+            // check if an invalid duration is given! => prevents UInt32 underflow
+            if durationInSeconds <= 0.0 { return }
 
+            // UInt32 overflow protection check
             if durationInSeconds > 60.0 {
-                self.logger.warn("WOW!!! long time to sleep (more than 1 minute!!!)...")
+                self.logger.warn("WOW!!! long time to sleep (> 1min!!!)...")
                 let wakeUpTime = NSDate().dateByAddingTimeInterval(durationInSeconds)
                 self.logger.debug("Sleeping now until \(wakeUpTime)...")
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-                    NSThread.sleepUntilDate(wakeUpTime)
-                    // now switch back to the main queue for executing the next instruction!
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self._scheduler.runNextInstructionOfContext(context)
-                    });
-                });
+                NSThread.sleepUntilDate(wakeUpTime)
             } else {
                 let durationInMicroSeconds = durationInSeconds * 1_000_000
-                // no worry about UInt32 overflow => not possible any more
-                // because of previous if condition!
-                let uduration = UInt32(durationInMicroSeconds) // in microseconds
-                // >1ms => duration for queue switch ~0.1ms => less than 10% inaccuracy
-                if uduration > 1_000 {
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-                        // high priority queue only needed for blocking purposes...
-                        // the reason for this is that you should NEVER block (serial) main_queue!!
-                        usleep(uduration)
-
-                        // now switch back to the main queue for executing the next instruction!
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self._scheduler.runNextInstructionOfContext(context)
-                        });
-                    });
-                } else {
-                    // to be honest: duration of <1ms is too short for a queue
-                    //               switch due to >10% accuracy
-                    if uduration > 0 { // maybe duration is too small and became 0 after UInt32 conversion
-                        usleep(uduration)
-                    }
-                    self._scheduler.runNextInstructionOfContext(context)
+                let uduration = UInt32(durationInMicroSeconds) // in microseconds (10^-6)
+                if uduration > 100 { // check if it makes sense at all to pause the thread...
+                    usleep(uduration)
                 }
             }
         }
     }
 
-    private func _playSoundInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure {
-        guard let playSoundBrick = brick as? PlaySoundBrick,
-              let fileName = playSoundBrick.sound.fileName,
-              let objectName = playSoundBrick.script?.object?.name,
-              let projectPath = playSoundBrick.script?.object?.projectPath() else {
-                fatalError("This should never happen!")
+    private func _glideToInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+        guard let glideToBrick = brick as? GlideToBrick,
+              let object = glideToBrick.script?.object,
+              let spriteNode = object.spriteNode
+        else { fatalError("This should never happen!") }
+
+        glideToBrick.isInitialized = false
+
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //!!!
+        //!!! FIXME!!!!!!! wrong behaviour issue!! no live evaluation!!
+        //!!!             duration formula only evaluated once!!
+        //!!!
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        let durationInSeconds = glideToBrick.durationInSeconds.interpretDoubleForSprite(object)
+        return .LongDurationAction(action: SKAction.customActionWithDuration(durationInSeconds) {
+            [weak self] (node, elapsedTime) in
+            self?.logger.debug("Performing: \(glideToBrick.description())")
+            let xDestination = Float(glideToBrick.xDestination.interpretDoubleForSprite(object))
+            let yDestination = Float(glideToBrick.yDestination.interpretDoubleForSprite(object))
+            if !glideToBrick.isInitialized {
+                glideToBrick.isInitialized = true
+                glideToBrick.currentPoint = spriteNode.scenePosition
+                glideToBrick.startingPoint = glideToBrick.currentPoint
+            }
+
+            // TODO: handle extreme movemenets and set currentPoint accordingly
+            let percent = Float(elapsedTime) / Float(durationInSeconds)
+            let xPoint = Float(glideToBrick.startingPoint.x) + (xDestination - Float(glideToBrick.startingPoint.x)) * percent
+            let yPoint = Float(glideToBrick.startingPoint.y) + (yDestination - Float(glideToBrick.startingPoint.y)) * percent
+            let currentPoint = CGPointMake(CGFloat(xPoint), CGFloat(yPoint))
+            glideToBrick.currentPoint = currentPoint
+            spriteNode.scenePosition = currentPoint
+        })
+    }
+
+    private func _broadcastInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+        guard let bcBrick = brick as? BroadcastBrick
+        else { fatalError("This should never happen!") }
+
+        return CBInstruction.ExecClosure {
+            self._broadcastHandler.performBroadcastWithMessage(bcBrick.broadcastMessage,
+                senderContext: context, broadcastType: .Broadcast)
         }
+    }
+    
+    private func _broadcastWaitInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+        guard let bcWaitBrick = brick as? BroadcastWaitBrick
+        else { fatalError("This should never happen!") }
+
+        return CBInstruction.ExecClosure {
+            self._broadcastHandler.performBroadcastWithMessage(bcWaitBrick.broadcastMessage,
+                senderContext: context, broadcastType: .BroadcastWait)
+        }
+    }
+
+    private func _playSoundInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+        guard let playSoundBrick = brick as? PlaySoundBrick,
+              let objectName = playSoundBrick.script?.object?.name,
+              let projectPath = playSoundBrick.script?.object?.projectPath()
+        else { fatalError("This should never happen!") }
+
+        guard let sound = playSoundBrick.sound,
+              let fileName = sound.fileName
+        else { return .InvalidInstruction() }
 
         let filePath = projectPath + kProgramSoundsDirName
         let audioManager = AudioManager.sharedAudioManager()
 
-        return {
+        return CBInstruction.ExecClosure {
             self.logger.debug("Performing: PlaySoundBrick")
             audioManager.playSoundWithFileName(fileName, andKey: objectName, atFilePath: filePath)
             self._scheduler.runNextInstructionOfContext(context)
         }
     }
 
-    private func _stopAllSoundsInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure {
-        guard let _ = brick as? StopAllSoundsBrick else { fatalError("This should never happen!") }
+    private func _stopAllSoundsInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+        if brick is StopAllSoundsBrick == false { fatalError("This should never happen!") }
 
         let audioManager = AudioManager.sharedAudioManager()
 
-        return {
-            //            self?.logger.debug("Performing: StopAllSoundsBrick")
+        return CBInstruction.ExecClosure {
+            self.logger.debug("Performing: StopAllSoundsBrick")
             audioManager.stopAllSounds()
             self._scheduler.runNextInstructionOfContext(context)
         }
     }
 
-    private func _speakInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure {
+    private func _speakInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
         guard let speakBrick = brick as? SpeakBrick,
               let object = speakBrick.script?.object
         else { fatalError("This should never happen!") }
 
-        return {
+        return CBInstruction.ExecClosure {
             self.logger.debug("Performing: SpeakBrick")
             var speakText = ""
             if speakBrick.formula.formulaTree.type == STRING {
@@ -213,7 +222,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         }
     }
 
-    private func _changeVolumeByNInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure {
+    private func _changeVolumeByNInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
         guard let changeVolumeByNBrick = brick as? ChangeVolumeByNBrick,
               let spriteObject = changeVolumeByNBrick.script?.object
         else { fatalError("This should never happen!") }
@@ -222,7 +231,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         let audioManager = AudioManager.sharedAudioManager()
         let spriteObjectName = spriteObject.name
 
-        return {
+        return CBInstruction.ExecClosure {
             self.logger.debug("Performing: ChangeVolumeByNBrick")
             let volume = volumeFormula.interpretDoubleForSprite(spriteObject)
             audioManager.changeVolumeByPercent(CGFloat(volume), forKey: spriteObjectName)
@@ -230,7 +239,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         }
     }
 
-    private func _setVolumeToInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure {
+    private func _setVolumeToInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
         guard let setVolumeToBrick = brick as? SetVolumeToBrick,
               let spriteObject = setVolumeToBrick.script?.object
         else { fatalError("This should never happen") }
@@ -238,7 +247,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         let audioManager = AudioManager.sharedAudioManager()
         let spriteObjectName = spriteObject.name
 
-        return {
+        return CBInstruction.ExecClosure {
             self.logger.debug("Performing: SetVolumeToBrick")
             let volume = setVolumeToBrick.volume.interpretDoubleForSprite(spriteObject)
             audioManager.setVolumeToPercent(CGFloat(volume), forKey: spriteObjectName)
@@ -246,7 +255,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         }
     }
 
-    private func _setVariableInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure {
+    private func _setVariableInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
         guard let setVariableBrick = brick as? SetVariableBrick,
               let spriteObject = setVariableBrick.script?.object,
               let variables = spriteObject.program?.variables
@@ -255,7 +264,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         let userVariable = setVariableBrick.userVariable
         let variableFormula = setVariableBrick.variableFormula
 
-        return {
+        return CBInstruction.ExecClosure {
             self.logger.debug("Performing: SetVariableBrick")
             let result = variableFormula.interpretDoubleForSprite(spriteObject)
             variables.setUserVariable(userVariable, toValue: result)
@@ -263,7 +272,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         }
     }
 
-    private func _changeVariableInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure {
+    private func _changeVariableInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
         guard let changeVariableBrick = brick as? ChangeVariableBrick,
               let spriteObject = changeVariableBrick.script?.object,
               let variables = spriteObject.program?.variables
@@ -272,7 +281,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         let userVariable = changeVariableBrick.userVariable
         let variableFormula = changeVariableBrick.variableFormula
 
-        return {
+        return CBInstruction.ExecClosure {
             self.logger.debug("Performing: ChangeVariableBrick")
             let result = variableFormula.interpretDoubleForSprite(spriteObject)
             variables.changeVariable(userVariable, byValue: result)
@@ -280,32 +289,31 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         }
     }
 
-    private func _flashLightOnInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure {
-        guard let _ = brick as? LedOnBrick else { fatalError("This should never happen!") }
-        return {
+    private func _flashLightOnInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+        if brick is LedOnBrick == false { fatalError("This should never happen!") }
+        return CBInstruction.ExecClosure {
             self.logger.debug("Performing: FlashLightOnBrick/LEDOnBrick")
             FlashHelper.sharedFlashHandler().turnOn()
             self._scheduler.runNextInstructionOfContext(context)
         }
     }
 
-    private func _flashLightOffInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure {
-        guard let _ = brick as? LedOffBrick else { fatalError("This should never happen!") }
-        return {
+    private func _flashLightOffInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+        if brick is LedOffBrick == false { fatalError("This should never happen!") }
+        return CBInstruction.ExecClosure {
             self.logger.debug("Performing: FlashLightOnBrick/LEDOnBrick")
             FlashHelper.sharedFlashHandler().turnOff()
             self._scheduler.runNextInstructionOfContext(context)
         }
     }
 
-    private func _vibrationInstruction(brick: Brick, context: CBScriptContext) -> CBExecClosure {
+    private func _vibrationInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
         guard let vibrationBrick = brick as? VibrationBrick,
               let spriteObject = vibrationBrick.script?.object
         else { fatalError("This should never happen!") }
 
         let durationFormula = vibrationBrick.durationInSeconds
-
-        return {
+        return CBInstruction.ExecClosure {
             self.logger.debug("Performing: VibrationBrick")
             dispatch_async(CBInstructionHandler.vibrateSerialQueue, {
                 let durationInSeconds = durationFormula.interpretDoubleForSprite(spriteObject)

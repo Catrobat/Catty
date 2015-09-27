@@ -57,10 +57,21 @@ func <(lhs: NSDate, rhs: NSDate) -> Bool {
 }
 
 // MARK: Typedefs
+typealias CBScheduleActionElement = (context: CBScriptContext, action: SKAction)
+typealias CBScheduleClosureElement = (context: CBScriptContext, closure: CBExecClosure)
 typealias CBBroadcastQueueElement = (message: String, senderScriptContext: CBScriptContext,
     broadcastType: CBBroadcastType)
 typealias CBExecClosure = dispatch_block_t
-typealias CBInstruction = (brick: Brick, context: CBScriptContext) -> CBExecClosure
+typealias CBInstructionClosure = (brick: Brick, context: CBScriptContext) -> CBInstruction
+
+enum CBInstruction {
+    case ExecClosure(closure: CBExecClosure)
+//    case LongDurationExecClosure(closure: CBExecClosure) // unused atm.
+    case WaitExecClosure(closure: CBExecClosure)
+    case LongDurationAction(action: SKAction)
+    case Action(action: SKAction)
+    case InvalidInstruction()
+}
 
 // MARK: Enums
 enum CBExecType {
@@ -77,17 +88,11 @@ enum CBExecType {
 //                                                      /____/
 //##################################################################################################
 //
-//                                                       +---------------+
-//                                                       | RunningMature |----------+
-//                                                       +---------------+          |
-//                                                               ^                  v
-//                 +----------+        +-----------+             |             +--------+
-//     o---------->| Runnable |------->|  Running  |-------------+             |  Dead  |-------->o
-//  (Initial state)+----------+        +-----------+             |             +--------+   (Final
-//                                          | ^                  v                  ^        state)
-//                                          | |         +-----------------+         |
-//                                          | |         | RunningBlocking |---------+
-//                                          | |         +-----------------+
+//                 +----------+        +-----------+          +--------+
+//     o---------->| Runnable |------->|  Running  |--------->|  Dead  |-------->o
+//  (Initial state)+----------+        +-----------+          +--------+   (Final
+//                                          | ^                             state)
+//                                          | |
 //                                          v |
 //                                     +-----------+
 //                                     |  Waiting  |
@@ -95,7 +100,7 @@ enum CBExecType {
 //
 //##################################################################################################
 
-enum CBScriptState {
+enum CBContextState {
 
     // initial state for a CBScriptExecContext that has
     // not yet been added to the scheduler
@@ -105,24 +110,9 @@ enum CBScriptState {
     // been added to the scheduler
     case Running
 
-//    // indicates that a running CBScriptExecContext of
-//    // a StartScript has reached a mature state
-//    // After CBScriptExecContexts of all StartScripts have reached
-//    // a mature state already enqueued "broadcast"- and
-//    // "broadcast wait"-calls can be performed
-    case RunningMature
-
-    // indicates that a running CBScriptExecContext of a BroadcastScript
-    // is blocking the calling CBScriptExecContext's script
-    // i.e. BroadcastScript called by BroadcastWait
-    case RunningBlocking
-
     // indicates that a script is waiting for all BroadcastWait scripts
     // (listening to the broadcastMessage of this script) to be finished!!
     case Waiting
-
-//    // unused at the moment!
-//    case Sleeping
 
     // indicates that CBScriptExecContext is going to be removed
     // from the scheduler soon

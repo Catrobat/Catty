@@ -79,10 +79,7 @@
 //        assert(scheduledContexts.isEmpty == false) // make sure dict is not empty (as specified!)
 //        var runningContexts = [CBScriptContextAbstract]()
 //        for scheduledContext in scheduledContexts {
-//            if scheduledContext.state == .Running
-//            || scheduledContext.state == .RunningMature
-//            || scheduledContext.state == .RunningBlocking
-//            {
+//            if scheduledContext.state == .Running {
 //                runningContexts += scheduledContext
 //                var spriteNameScriptContexts = _spriteNameScriptContexts[scheduledContext.script.object!.name]
 //                if spriteNameScriptContexts == nil {
@@ -147,10 +144,7 @@
 //        assert(scheduledContexts.isEmpty == false) // make sure dict is not empty (as specified!)
 //        var runningContexts = [CBScriptContextAbstract]()
 //        for scheduledContext in scheduledContexts {
-//            if scheduledContext.state == .Running
-//            || scheduledContext.state == .RunningMature
-//            || scheduledContext.state == .RunningBlocking
-//            {
+//            if scheduledContext.state == .Running {
 //                runningContexts += scheduledContext
 //                var spriteNameScriptContexts = _spriteNameScriptContexts[scheduledContext.script.object!.name]
 //                if spriteNameScriptContexts == nil {
@@ -206,9 +200,7 @@
 //        var runningContexts = [CBScriptContextAbstract]()
 //        var runningStartScriptContexts = [CBStartScriptContext]() // start script have higher priority (!)
 //        for scheduledContext in scheduledContexts {
-//            if scheduledContext.state == .Running || scheduledContext.state == .RunningMature
-//                || scheduledContext.state == .RunningBlocking
-//            {
+//            if scheduledContext.state == .Running || scheduledContext.state == .RunningMature {
 //                if let startScriptContext = scheduledContext as? CBStartScriptContext {
 //                    runningStartScriptContexts += startScriptContext
 //                } else {
