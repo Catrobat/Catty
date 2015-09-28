@@ -37,11 +37,9 @@
 #import "ScenePresenterViewController.h"
 #import "LookImageViewController.h"
 #import "ProgramDefines.h"
-#import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "Util.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "NSString+CatrobatNSStringExtensions.h"
-#import "UIImageView+CatrobatUIImageViewExtensions.h"
 #import "NSData+Hashes.h"
 #import "AppDelegate.h"
 #import "LanguageTranslationDefines.h"
@@ -58,6 +56,7 @@
 #import "ViewControllerDefines.h"
 #import "UIUtil.h"
 #import "UIImageView+CatrobatUIImageViewExtensions.h"
+#import "UIImage+CatrobatUIImageExtensions.h"
 
 @interface LooksTableViewController () <CatrobatActionSheetDelegate, UIImagePickerControllerDelegate,
                                         UINavigationControllerDelegate, CatrobatAlertViewDelegate,
@@ -425,7 +424,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (! image) {
         return;
     }
-    image = [UIImage imageWithImage:image scaledToSize:CGSizeMake([Util screenWidth]*2, [Util screenHeight]*2)];
+    image = [UIImage imageWithImage:image scaledToSize:CGSizeMake([Util screenWidth] * 2, [Util screenHeight] * 2)];
 
     // add image to object now
     NSURL *imageURL = [info objectForKey:UIImagePickerControllerReferenceURL];
