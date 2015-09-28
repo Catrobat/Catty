@@ -219,7 +219,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         InfoPopupViewController *popupViewController = [[InfoPopupViewController alloc] init];
         popupViewController.delegate = self;
         self.tableView.scrollEnabled = NO;
-        [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame upwardsCenterByFactor:1];
+        [self presentPopupViewController:popupViewController WithFrame:CGRectMake(0, 0, [Util screenWidth], [Util screenHeight])];
     } else {
         [self dismissPopupWithCode:NO];
     }
