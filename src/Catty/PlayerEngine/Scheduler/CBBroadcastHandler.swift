@@ -24,7 +24,7 @@ final class CBBroadcastHandler : CBBroadcastHandlerProtocol {
 
     // MARK: - Constants
     // specifies max depth limit for self broadcasts running on the same function stack
-    let selfBroadcastRecursionMaxDepthLimit = 30
+    let selfBroadcastRecursionMaxDepthLimit = 40
 
     // MARK: - Properties
     var logger: CBLogger
@@ -47,9 +47,9 @@ final class CBBroadcastHandler : CBBroadcastHandlerProtocol {
     func setup() {}
 
     func tearDown() {
-        _broadcastWaitingContextsQueue.removeAll(keepCapacity: false)
-        _registeredBroadcastContexts.removeAll(keepCapacity: false)
-        _selfBroadcastCounters.removeAll(keepCapacity: false)
+        _broadcastWaitingContextsQueue.removeAll()
+        _registeredBroadcastContexts.removeAll()
+        _selfBroadcastCounters.removeAll()
     }
 
     func subscribeBroadcastContext(context: CBBroadcastScriptContext) {
@@ -129,7 +129,7 @@ final class CBBroadcastHandler : CBBroadcastHandlerProtocol {
 
         // finally schedule all other (!) (collected) listening broadcast scripts
         for recipientContext in recipientContexts {
-            scheduler?.scheduleContext(recipientContext, withInitialState: .Runnable)
+            scheduler?.scheduleContext(recipientContext)
         }
 
         if isSelfBroadcast {
@@ -149,10 +149,14 @@ final class CBBroadcastHandler : CBBroadcastHandlerProtocol {
         if ++counter % selfBroadcastRecursionMaxDepthLimit == 0 { // XXX: DIRTY PERFORMANCE HACK!!
             dispatch_async(dispatch_get_main_queue(), { [weak self] in
                 // restart this self-listening BroadcastScript
-                self?.scheduler?.startContext(context, withInitialState: .Runnable)
+                self?.scheduler?.forceStopContext(context)
+                self?.scheduler?.scheduleContext(context)
+                self?.scheduler?.runNextInstructionsGroup()
             })
         } else {
-            scheduler?.startContext(context, withInitialState: .Runnable)
+            scheduler?.forceStopContext(context)
+            scheduler?.scheduleContext(context)
+            scheduler?.runNextInstructionsGroup()
         }
         _selfBroadcastCounters[message] = counter
         logger.debug("BROADCASTSCRIPT HAS BEEN RESTARTED DUE TO SELF-BROADCAST!!")
@@ -182,12 +186,17 @@ final class CBBroadcastHandler : CBBroadcastHandlerProtocol {
         }
     }
 
-    func removeWaitingContextAndTerminateAllCalledBroadcastContexts(context: CBScriptContext) {
+    func isWaitingForCalledBroadcastContexts(context: CBScriptContext) -> Bool {
+        return _broadcastWaitingContextsQueue[context]?.count > 0
+    }
+
+    func terminateAllCalledBroadcastContextsAndRemoveWaitingContext(context: CBScriptContext) {
         if let broadcastContexts = _broadcastWaitingContextsQueue[context] {
-//            for broadcastContext in broadcastContexts {
-//                scheduler?.stopContext(broadcastContext, continueWaitingBroadcastSenders: false)
-//            }
+            for broadcastContext in broadcastContexts {
+                scheduler?.forceStopContext(broadcastContext)
+            }
             _broadcastWaitingContextsQueue.removeValueForKey(context)
         }
     }
+
 }
