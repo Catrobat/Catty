@@ -26,7 +26,7 @@ import ReplayKit
 final class CBScene : SKScene {
 
     // MARK: - Properties
-    let logger : CBLogger?
+    let logger: CBLogger?
 
     /// ReplayKit preview view controller used when viewing recorded content.
     private var _previewViewController: AnyObject?
@@ -39,10 +39,10 @@ final class CBScene : SKScene {
             _previewViewController = newValue
         }
     }
-    private(set) var scheduler : CBSchedulerProtocol?
-    private(set) var frontend : CBFrontendProtocol?
-    private(set) var backend : CBBackendProtocol?
-    private(set) var broadcastHandler : CBBroadcastHandlerProtocol?
+    private(set) var scheduler: CBSchedulerProtocol?
+    private(set) var frontend: CBFrontendProtocol?
+    private(set) var backend: CBBackendProtocol?
+    private(set) var broadcastHandler: CBBroadcastHandlerProtocol?
 
     // MARK: - Initializers
 
@@ -53,7 +53,7 @@ final class CBScene : SKScene {
     }
 
     // MARK: initializer
-    // ATTENTION: This initializer may only be used for single action testing purposes!!
+    // Note: This initializer may only be used for single action testing purposes!!
     override init(size: CGSize) {
         logger = nil
         scheduler = nil
@@ -81,9 +81,7 @@ final class CBScene : SKScene {
     }
 
     // MARK: - Deinitializer
-    deinit {
-        logger?.info("Dealloc Scene")
-    }
+    deinit { logger?.info("Dealloc Scene") }
 
     // MARK: - Scene events
     override func willMoveFromView(view: SKView) {
@@ -95,84 +93,46 @@ final class CBScene : SKScene {
         startProgram()
     }
 
-    func touchedWithTouches(touches: NSSet, withX x:CGFloat, andY y:CGFloat) -> Bool {
-        if scheduler?.running == false { return false }
-        logger?.debug("StartTouchOfScene")
+    func touchedWithTouch(touch: UITouch, atPosition position: CGPoint) -> Bool {
+        assert(scheduler?.running == true)
+        logger?.debug("StartTouchOfScene (x:\(position.x), y:\(position.y))")
+        var nodes = nodesAtPoint(position)
+        let numberOfNodes = nodes.count
+        if numberOfNodes == 0 { return false } // needed if scene has no background image!
 
-        // TODO: simplify!! optimize algorithm...
-        if let touch = touches.anyObject() as? UITouch {
-            let location = touch.locationInNode(self)
-            logger?.debug("x:\(location.x),y:\(location.y)")
-            var foundObject = false
-            let nodesAtPoint = self.nodesAtPoint(location)
-            if nodesAtPoint.count == 0 {
-                return false
-            }
+        var nodeIndex = numberOfNodes
+        logger?.debug("Number of touched nodes: \(nodeIndex)")
 
-            var spriteNode1: CBSpriteNode? = nil
+        nodes.forEach { print(">>> \($0.name)") }
+        while --nodeIndex >= 0 {
+            guard let currentNode = nodes[nodeIndex] as? CBSpriteNode
+            else { fatalError("This should not happen!") }
 
-            // FIXME!!! detect + consider iPhone/iPad version
-            if #available(iOS 9, *) {
-                spriteNode1 = nodesAtPoint[0] as? CBSpriteNode
-            } else {
-                spriteNode1 = nodesAtPoint[nodesAtPoint.count - 1] as? CBSpriteNode
-            }
-            var counter = nodesAtPoint.count - 2
-            logger?.debug("How many nodes are touched: \(counter)")
-            logger?.debug("First Node:\(spriteNode1)")
-            if spriteNode1?.name == nil {
-                return false
-            }
+            logger?.debug("Current node: \(currentNode)")
+            if currentNode.hidden { continue }
 
-            while foundObject == false {
-                let point = touch.locationInNode(spriteNode1!)
-                if spriteNode1?.hidden == false {
-                    print("\(spriteNode1?.spriteObject?.name)")
-                    if spriteNode1?.touchedWithTouches(touches as Set<NSObject>, withX:point.x, andY:point.y) == false {
-                        if var zPosition = spriteNode1?.zPosition {
-                            zPosition -= 1
-                            if (zPosition == -1) || (counter < 0) {
-                                foundObject = true
-                                logger?.debug("Found Object")
-                            } else {
-                                spriteNode1 = nodesAtPoint[counter] as? CBSpriteNode
-                                logger?.debug("NextNode: \(spriteNode1)")
-                                --counter
-                            }
-                        }
-                    } else {
-                        foundObject = true
-                        logger?.debug("Found Object")
-                    }
-                } else if spriteNode1 != nil {
-                    if counter < 0 {
-                        foundObject = true
-                    } else {
-                        spriteNode1 = nodesAtPoint[counter] as? CBSpriteNode
-                        logger?.debug("NextNode: \(spriteNode1)")
-                        --counter
-                    }
-                }
+            let newPosition = touch.locationInNode(currentNode)
+            if currentNode.touchedWithTouch(touch, atPosition: newPosition) {
+                print("Found sprite node: \(currentNode.name) with logical index: \(nodeIndex)")
+                return true
             }
-            return true
         }
-        return false
+        return true
     }
 
     // MARK: - Start program
     func startProgram() {
-        if !NSThread.currentThread().isMainThread { // sanity check
-            logger?.error("!! FATAL: THIS METHOD SHOULD NEVER EVER BE CALLED FROM ANOTHER THREAD EXCEPT MAIN-THREAD !!")
-            abort()
-        }
+        guard var spriteObjectList = frontend?.program?.objectList as NSArray? as? [SpriteObject]
+        else { fatalError("!! Invalid sprite object list given !! This should never happen!") }
+        assert(NSThread.currentThread().isMainThread)
 
-        // init and prepare Scene
         removeAllChildren() // just to ensure
 
-        guard let spriteObjectList = frontend?.program?.objectList as NSArray? as? [SpriteObject]
-        else { fatalError("!! Invalid sprite object list given !! This should never happen!") }
+        if #available(iOS 9, *) { // FIXME!!! detect + consider iPhone/iPad version
+            spriteObjectList = spriteObjectList.reverse()
+        }
 
-        var zPosition = 1.0
+        var zPosition = 1
         for spriteObject in spriteObjectList {
             let spriteNode = CBSpriteNode(spriteObject: spriteObject)
             spriteNode.name = spriteObject.name
@@ -182,21 +142,19 @@ final class CBScene : SKScene {
 
             for script in scriptList {
                 guard let startScript = script as? StartScript,
-                      let _ = startScript.brickList.firstObject as? HideBrick else {
-                    continue
-                }
+                                    _ = startScript.brickList.firstObject as? HideBrick
+                else { continue }
                 spriteNode.hidden = true
                 break
             }
 
-            // now add the brick with correct visability-state to the Scene
-            addChild(spriteNode)
+            addChild(spriteNode) // now add the brick with correct visability-state to the Scene
             logger?.debug("\(zPosition)")
             spriteNode.start(CGFloat(zPosition))
             spriteNode.setLook()
             spriteNode.userInteractionEnabled = true
             if spriteNode.spriteObject?.isBackground() == false {
-                ++zPosition;
+                ++zPosition
             }
             scheduler?.registerSpriteNode(spriteNode)
 
@@ -221,29 +179,25 @@ final class CBScene : SKScene {
 
     func stopScreenRecording() {
         if #available(iOS 9.0, *) {
-            stopScreenRecordingWithHandler {
-                guard let previewViewController = self.previewViewController
-                else { fatalError("The user requested playback, but a valid preview controller does not exist.") }
-                guard let rootViewController = self.view?.window?.rootViewController
-                else { fatalError("The scene must be contained in a window with a root view controller.") }
+            stopScreenRecordingWithHandler { [weak self] in
+                guard let previewViewController = self?.previewViewController,
+                      let rootViewController = self?.view?.window?.rootViewController
+                else { fatalError("Preview controller or root view controller not available.") }
 
-                // RPPreviewViewController only supports full screen modal presentation.
-                previewViewController.modalPresentationStyle = UIModalPresentationStyle.FullScreen
-                rootViewController.presentViewController(previewViewController, animated: true, completion: nil)
+                // NOTE: RPPreviewViewController only supports full screen modal presentation.
+                previewViewController.modalPresentationStyle = .FullScreen
+                rootViewController.presentViewController(previewViewController,
+                    animated: true, completion: nil)
             }
         }
     }
 
     // MARK: - Stop program
     func stopProgram() {
-        view?.paused = true // pause scene!
-        scheduler?.shutdown() // stops scheduler and removes all ressources
-
-        // now all (!) scripts of all (!) objects have been finished!
-        // we can safely remove all CBSpriteNodes from Scene
-        removeAllChildren()
-        // finally remove all references in program hierarchy
-        frontend?.program?.removeReferences()
+        view?.paused = true
+        scheduler?.shutdown() // stops all script contexts of all objects and removes all ressources
+        removeAllChildren() // remove all CBSpriteNodes from Scene
+        frontend?.program?.removeReferences() // remove all references in program hierarchy
         logger?.info("All SpriteObjects and Scripts have been removed from Scene!")
     }
 
