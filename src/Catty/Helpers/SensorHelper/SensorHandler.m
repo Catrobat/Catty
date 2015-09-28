@@ -67,9 +67,48 @@ static SensorHandler* sharedSensorHandler = nil;
     if (self) {
         self.motionManager = [[CMMotionManager alloc] init];
         self.locationManager = [[CLLocationManager alloc] init];
+        [self checkIfSensorsAreAvailable];
     }
     
     return self;
+}
+
+-(void)checkIfSensorsAreAvailable
+{
+    NSString *notAvailable = @"";
+    if (![CLLocationManager headingAvailable]) {
+        NSDebug(@"NOT AVAILABLE:heading");
+        notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorCompass];
+    }
+    if (!self.motionManager.accelerometerAvailable) {
+        NSDebug(@"NOT AVAILABLE:Accelerometer");
+        if ([notAvailable isEqual: @""]) {
+            notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorAcceleration];
+        } else {
+            notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorAcceleration];
+        }
+        
+    }
+    if (!self.motionManager.gyroAvailable) {
+        NSDebug(@"NOT AVAILABLE:Gyro");
+        if ([notAvailable isEqual: @""]) {
+            notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorRotation];
+        } else {
+            notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorRotation];
+        }
+    }
+    if (!self.motionManager.magnetometerAvailable) {
+        NSDebug(@"NOT AVAILABLE:Magnet");
+        if ([notAvailable isEqual: @""]) {
+            notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorMagnetic];
+        } else {
+            notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorMagnetic];
+        }
+    }
+    if (![notAvailable isEqual: @""]) {
+        notAvailable = [NSString stringWithFormat:@"%@ %@",notAvailable,kLocalizedNotAvailable];
+        [Util alertWithText:notAvailable];
+    }
 }
 
 
@@ -193,7 +232,6 @@ static SensorHandler* sharedSensorHandler = nil;
 
     double direction = -self.locationManager.heading.magneticHeading;
     return direction;
-
 }
 
 - (double)xInclination

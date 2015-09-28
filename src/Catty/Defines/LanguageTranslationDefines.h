@@ -490,7 +490,11 @@
 #define kUIFESensorInclinationX NSLocalizedString(@"inclination_x", nil)
 #define kUIFESensorInclinationY NSLocalizedString(@"inclination_y", nil)
 
-
+#define kLocalizedSensorCompass NSLocalizedString(@"compass", nil)
+#define kLocalizedSensorAcceleration NSLocalizedString(@"acceleration-sensor", nil)
+#define kLocalizedSensorRotation NSLocalizedString(@"gyro-sensor", nil)
+#define kLocalizedSensorMagnetic NSLocalizedString(@"magnetic-sensor", nil)
+#define kLocalizedNotAvailable NSLocalizedString(@"not available", nil)
 
 //************************************************************************************************************
 //************************************       BrickCategoryTitles        ********************************************
