@@ -232,8 +232,8 @@
                                 [UIColor whiteColor], NSForegroundColorAttributeName, nil];
     CGSize size = [self.currentValue sizeWithAttributes:@{NSFontAttributeName : [UIFont fontWithName:FONT_NAME size:rect.size.height/2]}];
     NSString* drawString = self.currentValue;
-    if(size.width > rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30){
-        const int clipLength = 7;
+    if(size.width > rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30 && self.currentImage){
+        const int clipLength = 14;
         if([drawString length]>clipLength)
         {
             drawString = [NSString stringWithFormat:@"%@...",[drawString substringToIndex:clipLength]];

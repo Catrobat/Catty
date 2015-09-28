@@ -184,7 +184,13 @@
         }else{
             script = [object.scriptList objectAtIndex:fromIndexPath.section];
         }
-        Brick *toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
+        Brick *toBrick;
+        if (script.brickList.count > toIndexPath.item - 1) {
+            toBrick = [script.brickList objectAtIndex:toIndexPath.item - 1];
+        } else {
+            return NO;
+        }
+        
         if ([toBrick isKindOfClass:[LoopEndBrick class]]) {
             LoopEndBrick* loopEndBrick = (LoopEndBrick*) toBrick;
             if ([loopEndBrick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {

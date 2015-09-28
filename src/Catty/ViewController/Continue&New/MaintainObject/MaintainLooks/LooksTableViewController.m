@@ -424,6 +424,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (! image) {
         return;
     }
+    image = [UIImage imageWithImage:image scaledToSize:CGSizeMake([Util screenWidth]*2, [Util screenHeight]*2)];
 
     // add image to object now
     NSURL *imageURL = [info objectForKey:UIImagePickerControllerReferenceURL];

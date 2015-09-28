@@ -409,6 +409,9 @@
 /* No comment provided by engineer. */
 "Fr" = "Fr";
 
+/* Title of View where the user can see the frequently used bricks. */
+"Frequently Used" = "Frequently Used";
+
 /* No comment provided by engineer. */
 "Friday" = "Friday";
 
@@ -816,9 +819,6 @@
 
 /* No comment provided by engineer. */
 "Rate Us" = "Rate Us";
-
-/* Title of View where the user can see the recently used bricks. */
-"Recently Used" = "Recently Used";
 
 /* No comment provided by engineer. */
 "Record" = "Record";

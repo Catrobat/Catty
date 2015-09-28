@@ -298,7 +298,7 @@
 {
     if ([brick isKindOfClass:[LoopBeginBrick class]] || [brick isKindOfClass:[LoopEndBrick class]]) {
         return [self loopBrickForAnimationIndexPath:path Script:script andBrick:brick];
-    } else if ([brick isKindOfClass:[IfLogicBeginBrick class]] || [brick isKindOfClass:[IfLogicElseBrick class]] || [self isKindOfClass:[IfLogicEndBrick class]]) {
+    } else if ([brick isKindOfClass:[IfLogicBeginBrick class]] || [brick isKindOfClass:[IfLogicElseBrick class]] || [brick isKindOfClass:[IfLogicEndBrick class]]) {
         return [self ifBrickForAnimationIndexPath:path Script:script andBrick:brick];
     } else {
         return nil;
@@ -531,7 +531,7 @@
         IfLogicBeginBrick *ifLogicBeginBrick = nil;
         IfLogicElseBrick *ifLogicElseBrick = nil;
         IfLogicEndBrick *ifLogicEndBrick = nil;
-        if ([self isKindOfClass:[IfLogicBeginBrick class]]) {
+        if ([brick isKindOfClass:[IfLogicBeginBrick class]]) {
             ifLogicBeginBrick = ((IfLogicBeginBrick*)brick);
             NSUInteger ifLogicBeginIndex = [brick.script.brickList indexOfObject:ifLogicBeginBrick];
             NSIndexPath *ifLogicBeginIndexPath = [NSIndexPath indexPathForItem:(ifLogicBeginIndex + 1) inSection:indexPath.section];
@@ -550,7 +550,7 @@
             
             return @[ifLogicBeginIndexPath,ifLogicElseIndexPath,ifLogicEndIndexPath];
             
-        } else if ([self isKindOfClass:[IfLogicElseBrick class]]) {
+        } else if ([brick isKindOfClass:[IfLogicElseBrick class]]) {
             ifLogicElseBrick = ((IfLogicElseBrick*)brick);
             NSUInteger ifLogicElseIndex = [brick.script.brickList indexOfObject:ifLogicElseBrick];
             NSIndexPath *ifLogicElseIndexPath = [NSIndexPath indexPathForItem:(ifLogicElseIndex + 1) inSection:indexPath.section];
