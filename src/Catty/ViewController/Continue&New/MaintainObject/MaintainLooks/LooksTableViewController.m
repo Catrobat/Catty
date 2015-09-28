@@ -57,6 +57,7 @@
 #import "BrickLookProtocol.h"
 #import "ViewControllerDefines.h"
 #import "UIUtil.h"
+#import "UIImageView+CatrobatUIImageViewExtensions.h"
 
 @interface LooksTableViewController () <CatrobatActionSheetDelegate, UIImagePickerControllerDelegate,
                                         UINavigationControllerDelegate, CatrobatAlertViewDelegate,

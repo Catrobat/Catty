@@ -128,9 +128,9 @@ final class CBScheduler : CBSchedulerProtocol {
                 let groupAction = nextActionElements.count > 1
                                 ? SKAction.group(nextActionElements.map { $0.action })
                                 : nextActionElements.first!.1
-                let startTime = NSDate()
+//                let startTime = NSDate()
                 spriteNode.runAction(groupAction) { [weak self] in
-                    let duration = NSDate().timeIntervalSinceDate(startTime)
+//                    let duration = NSDate().timeIntervalSinceDate(startTime)
                     //                self?.logger.info("  Duration for Group: \(duration*1000)ms")
 //                    print("  Duration for Group: \(duration*1000)ms")
                     nextActionElements.forEach { $0.context.state = .Runnable }
