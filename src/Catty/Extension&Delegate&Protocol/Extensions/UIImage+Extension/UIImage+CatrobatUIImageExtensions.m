@@ -253,8 +253,8 @@
     CGFloat alpha = (CGFloat)pixelData[3] / 255.0f;
     if (alpha == 0){
         return YES;
-    } else
-        return NO;
+    }
+    return NO;
 }
 
 + (UIImage*)imageWithImage:(UIImage*)image
