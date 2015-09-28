@@ -303,7 +303,7 @@
         }
     }
     
-    UILabel *channelLabel = [[UILabel alloc] initWithFrame:CGRectMake(-20, -5, 150, 60)];
+    UILabel *channelLabel = [[UILabel alloc] initWithFrame:CGRectMake(-20, -5, 200, 60)];
     channelLabel.text = [self.values objectAtIndex:row];
     channelLabel.textAlignment = NSTextAlignmentLeft;
     channelLabel.backgroundColor = [UIColor clearColor];
