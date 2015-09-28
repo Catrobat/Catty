@@ -37,8 +37,9 @@ protocol CBSchedulerProtocol : class {
     func run()
     func shutdown()
     func runNextInstructionOfContext(context: CBScriptContext)
-    func scheduleContext(context: CBScriptContext, withInitialState initialState: CBContextState)
-    func startContext(context: CBScriptContext, withInitialState: CBContextState)
+    func runNextInstructionsGroup()
+    func scheduleContext(context: CBScriptContext)
     func stopContext(context: CBScriptContext, continueWaitingBroadcastSenders: Bool)
+    func forceStopContext(context: CBScriptContext)
 
 }
