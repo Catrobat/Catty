@@ -159,6 +159,8 @@ final class CBSpriteNode : SKSpriteNode {
         }
     }
 
+    private var _lastTimeTouchedSpriteNode = [String:NSDate]()
+
     func touchedWithTouches(touches: NSSet, withX x: CGFloat, andY y: CGFloat) -> Bool {
         guard let playerScene = (scene as? CBScene),
               let scheduler = playerScene.scheduler
@@ -166,6 +168,14 @@ final class CBSpriteNode : SKSpriteNode {
         guard let spriteObject = spriteObject,
               let spriteName = spriteObject.name
         else { fatalError("Invalid SpriteObject!") }
+
+        if let lastTime = _lastTimeTouchedSpriteNode[spriteName] {
+            let duration = NSDate().timeIntervalSinceDate(lastTime)
+            if duration < 0.2 { // ignore multiple touches on same sprite node within 200ms...
+                return false
+            }
+        }
+        _lastTimeTouchedSpriteNode[spriteName] = NSDate()
 
         // FIXME: this check does not work any more since Swift 2.0! seems to be a compiler problem!
 //        if !scheduler.running { return false }
@@ -190,10 +200,11 @@ final class CBSpriteNode : SKSpriteNode {
             if let whenContexts = scheduler.whenContextsForSpriteNodeWithName(spriteName) {
                 for whenContext in whenContexts {
                     if scheduler.isContextScheduled(whenContext) {
-                        scheduler.stopContext(whenContext, continueWaitingBroadcastSenders: true)
+                        scheduler.forceStopContext(whenContext)
                     }
-                    scheduler.startContext(whenContext, withInitialState: .Runnable)
+                    scheduler.scheduleContext(whenContext)
                 }
+                scheduler.runNextInstructionsGroup()
             }
             return true
         }
