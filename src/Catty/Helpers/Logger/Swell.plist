@@ -7,7 +7,7 @@
 	<key>SWLLocation</key>
 	<string>console</string>
 	<key>SWLLevel</key>
-	<string>debug</string>
+	<string>info</string>
 	<key>SWLLocationFilename</key>
 	<string>Catty.log</string>
 	<key>CBSceneLogger.Release</key>

@@ -65,6 +65,7 @@ typealias CBExecClosure = dispatch_block_t
 typealias CBInstructionClosure = (brick: Brick, context: CBScriptContext) -> CBInstruction
 
 enum CBInstruction {
+    case HighPriorityExecClosure(closure: CBExecClosure)
     case ExecClosure(closure: CBExecClosure)
 //    case LongDurationExecClosure(closure: CBExecClosure) // unused atm.
     case WaitExecClosure(closure: CBExecClosure)
