@@ -380,10 +380,10 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 #define kBrickInlineViewOffsetX 54.0f
 #define kBrickShapeNormalInlineViewOffsetY 7.0f
 #define kBrickShapeRoundedSmallInlineViewOffsetY 25.0f
-#define kBrickShapeRoundedBigInlineViewOffsetY 35.0f
+#define kBrickShapeRoundedBigInlineViewOffsetY 45.0f
 #define kBrickShapeNormalMarginHeightDeduction 14.0f
 #define kBrickShapeRoundedSmallMarginHeightDeduction 32.0f
-#define kBrickShapeRoundedBigMarginHeightDeduction 42.0f
+#define kBrickShapeRoundedBigMarginHeightDeduction 52.0f
 #define kBrickPatternImageViewOffsetX 0.0f
 #define kBrickPatternImageViewOffsetY 0.0f
 #define kBrickPatternBackgroundImageViewOffsetX 54.0f
