@@ -163,10 +163,10 @@
     self.forgotButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.forgotButton.frame.size.height);
     currentHeight+= self.forgotButton.frame.size.height+20;
     
-    self.registerButton.backgroundColor = darkColor;
-    self.registerButton.titleLabel.font = [UIFont fontWithName:boldFontName size:20.0f];
+    self.registerButton.backgroundColor = [UIColor clearColor];
+    self.registerButton.titleLabel.font = [UIFont fontWithName:boldFontName size:18.0f];
     [self.registerButton setTitle:kLocalizedRegister forState:UIControlStateNormal];
-    [self.registerButton setTitleColor:[UIColor lightTextTintColor] forState:UIControlStateNormal];
+    [self.registerButton setTitleColor:darkColor forState:UIControlStateNormal];
     [self.registerButton setTitleColor:[UIColor colorWithWhite:1.0f alpha:0.5f] forState:UIControlStateHighlighted];
     [self.registerButton addTarget:self action:@selector(registerAction) forControlEvents:UIControlEventTouchUpInside];
     self.registerButton.frame = CGRectMake(0, currentHeight, self.view.frame.size.width, self.registerButton.frame.size.height);
