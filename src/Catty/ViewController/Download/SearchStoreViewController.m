@@ -83,6 +83,7 @@
     self.searchController.searchBar.delegate = self;
     self.searchController.searchBar.barTintColor = UIColor.navBarColor;
     self.searchController.searchBar.barStyle = UISearchBarStyleMinimal;
+    self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y,[Util screenWidth],self.searchController.searchBar.frame.size.height);
 
     self.tableView.backgroundColor = [UIColor backgroundColor];
     self.checkSearch = YES;
@@ -288,6 +289,7 @@
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.tableView.backgroundColor = [UIColor backgroundColor];
+    self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y,[Util screenWidth],self.tableView.frame.size.height);
 }
 
 - (void)initNoSearchResultsLabel
