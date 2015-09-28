@@ -147,7 +147,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         guard let bcBrick = brick as? BroadcastBrick
         else { fatalError("This should never happen!") }
 
-        return CBInstruction.ExecClosure {
+        return CBInstruction.HighPriorityExecClosure {
             self._broadcastHandler.performBroadcastWithMessage(bcBrick.broadcastMessage,
                 senderContext: context, broadcastType: .Broadcast)
         }
@@ -157,7 +157,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         guard let bcWaitBrick = brick as? BroadcastWaitBrick
         else { fatalError("This should never happen!") }
 
-        return CBInstruction.ExecClosure {
+        return CBInstruction.HighPriorityExecClosure {
             self._broadcastHandler.performBroadcastWithMessage(bcWaitBrick.broadcastMessage,
                 senderContext: context, broadcastType: .BroadcastWait)
         }
@@ -179,7 +179,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         return CBInstruction.ExecClosure {
             self.logger.debug("Performing: PlaySoundBrick")
             audioManager.playSoundWithFileName(fileName, andKey: objectName, atFilePath: filePath)
-            self._scheduler.runNextInstructionOfContext(context)
+            context.state = .Runnable
         }
     }
 
@@ -191,7 +191,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         return CBInstruction.ExecClosure {
             self.logger.debug("Performing: StopAllSoundsBrick")
             audioManager.stopAllSounds()
-            self._scheduler.runNextInstructionOfContext(context)
+            context.state = .Runnable
         }
     }
 
@@ -218,7 +218,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
 
             let synthesizer = AVSpeechSynthesizer()
             synthesizer.speakUtterance(utterance)
-            self._scheduler.runNextInstructionOfContext(context)
+            context.state = .Runnable
         }
     }
 
@@ -235,7 +235,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
             self.logger.debug("Performing: ChangeVolumeByNBrick")
             let volume = volumeFormula.interpretDoubleForSprite(spriteObject)
             audioManager.changeVolumeByPercent(CGFloat(volume), forKey: spriteObjectName)
-            self._scheduler.runNextInstructionOfContext(context)
+            context.state = .Runnable
         }
     }
 
@@ -251,7 +251,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
             self.logger.debug("Performing: SetVolumeToBrick")
             let volume = setVolumeToBrick.volume.interpretDoubleForSprite(spriteObject)
             audioManager.setVolumeToPercent(CGFloat(volume), forKey: spriteObjectName)
-            self._scheduler.runNextInstructionOfContext(context)
+            context.state = .Runnable
         }
     }
 
@@ -268,7 +268,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
             self.logger.debug("Performing: SetVariableBrick")
             let result = variableFormula.interpretDoubleForSprite(spriteObject)
             variables.setUserVariable(userVariable, toValue: result)
-            self._scheduler.runNextInstructionOfContext(context)
+            context.state = .Runnable
         }
     }
 
@@ -285,7 +285,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
             self.logger.debug("Performing: ChangeVariableBrick")
             let result = variableFormula.interpretDoubleForSprite(spriteObject)
             variables.changeVariable(userVariable, byValue: result)
-            self._scheduler.runNextInstructionOfContext(context)
+            context.state = .Runnable
         }
     }
 
@@ -294,7 +294,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         return CBInstruction.ExecClosure {
             self.logger.debug("Performing: FlashLightOnBrick/LEDOnBrick")
             FlashHelper.sharedFlashHandler().turnOn()
-            self._scheduler.runNextInstructionOfContext(context)
+            context.state = .Runnable
         }
     }
 
@@ -303,7 +303,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         return CBInstruction.ExecClosure {
             self.logger.debug("Performing: FlashLightOnBrick/LEDOnBrick")
             FlashHelper.sharedFlashHandler().turnOff()
-            self._scheduler.runNextInstructionOfContext(context)
+            context.state = .Runnable
         }
     }
 
@@ -326,7 +326,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
                     }
                 }
             })
-            self._scheduler.runNextInstructionOfContext(context)
+            context.state = .Runnable
         }
     }
 }
