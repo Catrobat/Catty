@@ -45,6 +45,7 @@
     dispatch_once(&onceToken, ^{
         sharedBrickInsertManager = [[self alloc] init];
         [sharedBrickInsertManager reset];
+        sharedBrickInsertManager.isInsertingScript = NO;
     });
     return sharedBrickInsertManager;
 }
@@ -62,10 +63,10 @@
     canInsertToIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object
 {
     Script *fromScript = [object.scriptList objectAtIndex:fromIndexPath.section];
-    if (fromIndexPath.item == 0 && toIndexPath.item !=0) {
-        return NO;
-    }else{
+    if (fromIndexPath.item == 0 && toIndexPath.item ==0 && self.isInsertingScript) {
         return YES;
+    }else if (fromIndexPath.item == 0 && toIndexPath.item !=0 && self.isInsertingScript){
+        return NO;
     }
     Brick *fromBrick;
     if (fromIndexPath.item <= 0) {
