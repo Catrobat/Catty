@@ -85,6 +85,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 {
     UIBarButtonItem *editButtonItem = [TableUtil editButtonItemWithTarget:self action:@selector(editAction:)];
     self.navigationItem.rightBarButtonItem = editButtonItem;
+    [self changeEditingBarButtonState];
 }
 
 #pragma mark viewloaded
@@ -110,7 +111,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.tableView reloadData];
+    [self reloadData];
 }
 
 #pragma mark - actions
@@ -166,6 +167,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if(self.afterSafeBlock) {
         self.afterSafeBlock(look);
     }
+    [self reloadData];
 }
 
 - (void)copyLookActionWithSourceLook:(Look*)sourceLook
@@ -231,6 +233,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                           withRowAnimation:UITableViewRowAnimationNone];
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
     [self hideLoadingView];
+    [self reloadData];
 }
 
 #pragma mark - Table view data source
@@ -560,7 +563,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                    forKey:kUserDetailsShowDetailsLooksKey];
             [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
             [defaults synchronize];
-            [self.tableView reloadData];
+            [self reloadData];
         }
     } else if (actionSheet.tag == kEditLookActionSheetTag) {
         if (buttonIndex == 0) {
@@ -897,7 +900,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
         [queue addOperation:saveOp];
     }
-    [self.tableView reloadData];
+    [self reloadData];
 }
 
 - (BOOL)checkUserAuthorisation:(UIImagePickerControllerSourceType)pickerType
@@ -937,6 +940,25 @@ static NSCharacterSet *blockedCharacterSet = nil;
         }
     }
     return state;
+}
+
+- (void)changeEditingBarButtonState
+{
+    if (self.object.lookList.count >= 1) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    } else {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
+}
+
+-(void)reloadData
+{
+    dispatch_async(dispatch_get_main_queue(),^{
+        //do something
+        [self.tableView reloadData];
+        [self changeEditingBarButtonState];
+        
+    });
 }
 
 @end
