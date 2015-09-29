@@ -710,11 +710,11 @@
     switch (sensor) {
             
         case OBJECT_X: {
-            result = sprite.spriteNode.xPosition;
+            result = sprite.spriteNode.scenePosition.x;
             break;
         }
         case OBJECT_Y: {
-            result = sprite.spriteNode.yPosition;
+            result = sprite.spriteNode.scenePosition.y;
             break;
         }
         case OBJECT_GHOSTEFFECT: {

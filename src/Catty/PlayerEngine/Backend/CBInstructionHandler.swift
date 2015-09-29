@@ -117,6 +117,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
 
         return .LongDurationAction(durationFormula: durationFormula, actionCreateClosure: {
             (duration) -> CBLongActionClosure in
+
             glideToBrick.isInitialized = false
             return {
                 [weak self] (node, elapsedTime) in
@@ -125,17 +126,23 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
                 let yDestination = Float(glideToBrick.yDestination.interpretDoubleForSprite(object))
                 if !glideToBrick.isInitialized {
                     glideToBrick.isInitialized = true
-                    glideToBrick.currentPoint = spriteNode.scenePosition
-                    glideToBrick.startingPoint = glideToBrick.currentPoint
+                    let startingPoint = spriteNode.scenePosition
+                    glideToBrick.startingPoint = startingPoint
+                    let startingX = Float(startingPoint.x)
+                    let startingY = Float(startingPoint.y)
+                    glideToBrick.deltaX = xDestination - startingX
+                    glideToBrick.deltaY = yDestination - startingY
                 }
-                
+
                 // TODO: handle extreme movemenets and set currentPoint accordingly
                 let percent = Float(elapsedTime) / Float(duration)
-                let xPoint = Float(glideToBrick.startingPoint.x) + (xDestination - Float(glideToBrick.startingPoint.x)) * percent
-                let yPoint = Float(glideToBrick.startingPoint.y) + (yDestination - Float(glideToBrick.startingPoint.y)) * percent
-                let currentPoint = CGPointMake(CGFloat(xPoint), CGFloat(yPoint))
-                glideToBrick.currentPoint = currentPoint
-                spriteNode.scenePosition = currentPoint
+                let startingPoint = glideToBrick.startingPoint
+                let startingX = Float(startingPoint.x)
+                let startingY = Float(startingPoint.y)
+                spriteNode.scenePosition = CGPointMake(
+                    CGFloat(startingX + glideToBrick.deltaX * percent),
+                    CGFloat(startingY + glideToBrick.deltaY * percent)
+                )
             }
         })
     }

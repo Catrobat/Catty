@@ -66,7 +66,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(spriteNode.xPosition, (CGFloat)20, @"SetxBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.scenePosition.x, (CGFloat)20, @"SetxBrick is not correctly calculated");
 }
 
 - (void)testSetXBrickNegative
@@ -93,7 +93,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(spriteNode.xPosition, (CGFloat)-20, @"SetxBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.scenePosition.x, (CGFloat)-20, @"SetxBrick is not correctly calculated");
 }
 
 - (void)testSetXBrickOutOfRange
@@ -120,7 +120,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(spriteNode.xPosition, (CGFloat)50000, @"SetxBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.scenePosition.x, (CGFloat)50000, @"SetxBrick is not correctly calculated");
 }
 
 - (void)testSetXBrickWrongInput
@@ -147,7 +147,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(spriteNode.xPosition, (CGFloat)0, @"SetxBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.scenePosition.x, (CGFloat)0, @"SetxBrick is not correctly calculated");
 }
 
 @end

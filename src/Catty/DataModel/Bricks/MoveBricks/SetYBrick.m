@@ -58,7 +58,7 @@
     return ^{
         NSDebug(@"Performing: %@", self.description);
         double yPosition = [self.yPosition interpretDoubleForSprite:self.script.object];
-        self.script.object.spriteNode.scenePosition = CGPointMake(self.script.object.spriteNode.xPosition, (CGFloat)yPosition);
+        self.script.object.spriteNode.scenePosition = CGPointMake(self.script.object.spriteNode.scenePosition.x, (CGFloat)yPosition);
     };
 }
 

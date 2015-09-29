@@ -31,8 +31,6 @@ final class CBSpriteNode : SKSpriteNode {
         set { self.position = (scene as! CBScene).convertPointToScene(newValue) }
         get { return (scene as! CBScene).convertSceneCoordinateToPoint(self.position) }
     }
-    var xPosition: CGFloat { return self.scenePosition.x }
-    var yPosition: CGFloat { return self.scenePosition.y }
     var zIndex: CGFloat { return zPosition }
     var brightness: CGFloat { return (100 * self.currentLookBrightness) }
     var scaleX: CGFloat { return (100 * xScale) }

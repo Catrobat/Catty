@@ -34,5 +34,7 @@
 @property (nonatomic, assign) BOOL isInitialized;
 @property (nonatomic, assign) CGPoint currentPoint;
 @property (nonatomic, assign) CGPoint startingPoint;
+@property (nonatomic) float deltaX;
+@property (nonatomic) float deltaY;
 
 @end
