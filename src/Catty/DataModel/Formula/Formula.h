@@ -30,8 +30,9 @@
 
 @interface Formula : NSObject<CBMutableCopying>
 
-@property (nonatomic, strong) FormulaElement* formulaTree;
-@property (nonatomic, weak) NSString* displayString;
+@property (nonatomic, strong) FormulaElement *formulaTree;
+@property (nonatomic, weak) NSString *displayString;
+@property (nonatomic, strong, readonly) NSNumber *lastResult;
 
 - (id)initWithZero;
 - (id)initWithInteger:(int)value;
