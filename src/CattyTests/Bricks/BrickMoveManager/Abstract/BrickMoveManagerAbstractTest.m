@@ -441,5 +441,57 @@
     return addedBricks;
 }
 
+-(NSUInteger)addNestedRepeatOrder3WithWaitInHighestLevel
+{
+    /*  Setup:
+     
+     0  reapeatBeginA
+     1      repeatBeginB
+     2          repeatBeginC
+     3              waitA
+     4          repeatEndC
+     5      repeatEndB
+     6  repeatEndA
+     
+     */
+    
+    NSUInteger addedBricks = 0;
+    
+    // 0
+    RepeatBrick *repeatBrickA = [[RepeatBrick alloc] init];
+    repeatBrickA.script = self.startScript;
+    [self.startScript.brickList addObject:repeatBrickA];
+    addedBricks++;
+    
+    // 1
+    RepeatBrick *repeatBrickB = [[RepeatBrick alloc] init];
+    repeatBrickB.script = self.startScript;
+    [self.startScript.brickList addObject:repeatBrickB];
+    addedBricks++;
+    
+    // 2, 3, 4
+    addedBricks += [self addRepeatLoopWithWaitBrick];
+    
+    // 5
+    LoopEndBrick *loopEndBrickB = [[LoopEndBrick alloc] init];
+    loopEndBrickB.script = self.startScript;
+    loopEndBrickB.loopBeginBrick = repeatBrickB;
+    [self.startScript.brickList addObject:loopEndBrickB];
+    repeatBrickB.loopEndBrick = loopEndBrickB;
+    addedBricks++;
+    
+    // 6
+    LoopEndBrick *loopEndBrickA = [[LoopEndBrick alloc] init];
+    loopEndBrickA.script = self.startScript;
+    loopEndBrickA.loopBeginBrick = repeatBrickA;
+    [self.startScript.brickList addObject:loopEndBrickA];
+    repeatBrickA.loopEndBrick = loopEndBrickA;
+    addedBricks++;
+    
+    return addedBricks;
+}
+
+
+
 
 @end

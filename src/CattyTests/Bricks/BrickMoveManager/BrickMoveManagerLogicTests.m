@@ -584,48 +584,48 @@
     /*  Test:
      
      0 startedScript               Tested configurations:
-     1  ifBeginA                        <---
-     2      ifBeginB                    <---
-     3          foreverBeginA           <---
-     4              waitA               <---
-     5          foreverEndA             <---
-     6      elseB                       <---
-     7          foreverBeginB           <---
-     8              waitB               <---
-     9          foreverEndB             <---
-     10      ifEndB                     <---
-     11  elseA                          <---
+     1  ifBeginA                        
+     2      ifBeginB                    
+     3          foreverBeginA           
+     4              waitA               
+     5          foreverEndA             
+     6      elseB                       
+     7          foreverBeginB           
+     8              waitB               
+     9          foreverEndB             
+     10      ifEndB                     
+     11  elseA                          
      12      ifBeginC                   --->
-     13          foreverBeginC          <---
-     14              waitC              <---
-     15          foreverEndC            <---
-     16      elseC                      <---
-     17          foreverBeginD          <---
-     18              waitD              <---
-     19          foreverEndD            <---
-     20      ifEndC                     <---
-     21  endIfA                         <---
-     22  ifBeginD                       <---
-     23      ifBeginE                   <---
-     24         foreverBeginG           <---
-     25              waitG              <---
-     26          foreverEndG            <---
-     27      elseE                      <---
-     28          foreverBeginH          <---
-     29              waitH              <---
-     30          foreverEndH            <---
-     31      ifEndE                     <---
-     32  elseD                          <---
-     33      ifBeginF                   <---
-     34          foreverBeginI          <---
-     35              waitI              <---
-     36          foreverEndI            <---
-     37      elseF                      <---
-     38          foreverBeginJ          <---
-     39              waitJ              <---
-     40          foreverEndJ            <---
-     41      ifEndF                     <---
-     42  endIfD                         <---
+     13          foreverBeginC          
+     14              waitC              
+     15          foreverEndC            
+     16      elseC                      
+     17          foreverBeginD          
+     18              waitD              
+     19          foreverEndD            
+     20      ifEndC                     
+     21  endIfA                         
+     22  ifBeginD                       
+     23      ifBeginE                   
+     24         foreverBeginG           
+     25              waitG              
+     26          foreverEndG            
+     27      elseE                      
+     28          foreverBeginH          
+     29              waitH              
+     30          foreverEndH            
+     31      ifEndE                     
+     32  elseD                          
+     33      ifBeginF                   
+     34          foreverBeginI          
+     35              waitI              
+     36          foreverEndI            
+     37      elseF                      
+     38          foreverBeginJ          
+     39              waitJ              
+     40          foreverEndJ            
+     41      ifEndF                     
+     42  endIfD                         
      
      */
     
@@ -665,48 +665,48 @@
     /*  Test:
      
      0 startedScript               Tested configurations:
-     1  ifBeginA                        <---
-     2      ifBeginB                    <---
-     3          foreverBeginA           <---
-     4              waitA               <---
-     5          foreverEndA             <---
-     6      elseB                       <---
-     7          foreverBeginB           <---
-     8              waitB               <---
-     9          foreverEndB             <---
-     10      ifEndB                     <---
-     11  elseA                          <---
-     12      ifBeginC                   <---
-     13          foreverBeginC          <---
-     14              waitC              <---
-     15          foreverEndC            <---
-     16      elseC                      <---
-     17          foreverBeginD          <---
-     18              waitD              <---
-     19          foreverEndD            <---
-     20      ifEndC                     <---
-     21  endIfA                         <---
-     22  ifBeginD                       <---
-     23      ifBeginE                   <---
-     24         foreverBeginG           <---
-     25              waitG              <---
-     26          foreverEndG            <---
+     1  ifBeginA                        
+     2      ifBeginB                    
+     3          foreverBeginA           
+     4              waitA               
+     5          foreverEndA             
+     6      elseB                       
+     7          foreverBeginB           
+     8              waitB               
+     9          foreverEndB             
+     10      ifEndB                     
+     11  elseA                          
+     12      ifBeginC                   
+     13          foreverBeginC          
+     14              waitC              
+     15          foreverEndC            
+     16      elseC                      
+     17          foreverBeginD          
+     18              waitD              
+     19          foreverEndD            
+     20      ifEndC                     
+     21  endIfA                         
+     22  ifBeginD                       
+     23      ifBeginE                   
+     24         foreverBeginG           
+     25              waitG              
+     26          foreverEndG            
      27      elseE                      --->
-     28          foreverBeginH          <---
-     29              waitH              <---
-     30          foreverEndH            <---
-     31      ifEndE                     <---
-     32  elseD                          <---
-     33      ifBeginF                   <---
-     34          foreverBeginI          <---
-     35              waitI              <---
-     36          foreverEndI            <---
-     37      elseF                      <---
-     38          foreverBeginJ          <---
-     39              waitJ              <---
-     40          foreverEndJ            <---
-     41      ifEndF                     <---
-     42  endIfD                         <---
+     28          foreverBeginH          
+     29              waitH              
+     30          foreverEndH            
+     31      ifEndE                     
+     32  elseD                          
+     33      ifBeginF                   
+     34          foreverBeginI          
+     35              waitI              
+     36          foreverEndI            
+     37      elseF                      
+     38          foreverBeginJ          
+     39              waitJ              
+     40          foreverEndJ            
+     41      ifEndF                     
+     42  endIfD                         
      
      */
     
@@ -746,48 +746,48 @@
     /*  Test:
      
      0 startedScript               Tested configurations:
-     1  ifBeginA                        <---
-     2      ifBeginB                    <---
-     3          repeatBeginA            <---
-     4              waitA               <---
-     5          repeatEndA              <---
-     6      elseB                       <---
-     7          repeatBeginB            <---
-     8              waitB               <---
-     9          repeatEndB              <---
-     10      ifEndB                     <---
-     11  elseA                          <---
+     1  ifBeginA                        
+     2      ifBeginB                    
+     3          repeatBeginA            
+     4              waitA               
+     5          repeatEndA              
+     6      elseB                       
+     7          repeatBeginB            
+     8              waitB               
+     9          repeatEndB              
+     10      ifEndB                     
+     11  elseA                          
      12      ifBeginC                   --->
-     13          repeatBeginC           <---
-     14              waitC              <---
-     15          repeatEndC             <---    (valid)
-     16      elseC                      <---
-     17          repeatBeginD           <---
-     18              waitD              <---
-     19          repeatEndD             <---
-     20      ifEndC                     <---
-     21  endIfA                         <---
-     22  ifBeginD                       <---
-     23      ifBeginE                   <---
-     24         repeatBeginG            <---
-     25              waitG              <---
-     26          repeatEndG             <---
-     27      elseE                      <---
-     28          repeatBeginH           <---
-     29              waitH              <---
-     30          repeatEndH             <---
-     31      ifEndE                     <---
-     32  elseD                          <---
-     33      ifBeginF                   <---
-     34          repeatBeginI           <---
-     35              waitI              <---
-     36          repeatEndI             <---
-     37      elseF                      <---
-     38          repeatBeginJ           <---
-     39              waitJ              <---
-     40          repeatEndJ             <---
-     41      ifEndF                     <---
-     42  endIfD                         <---
+     13          repeatBeginC           
+     14              waitC              
+     15          repeatEndC                 (valid)
+     16      elseC                      
+     17          repeatBeginD           
+     18              waitD              
+     19          repeatEndD             
+     20      ifEndC                     
+     21  endIfA                         
+     22  ifBeginD                       
+     23      ifBeginE                   
+     24         repeatBeginG            
+     25              waitG              
+     26          repeatEndG             
+     27      elseE                      
+     28          repeatBeginH           
+     29              waitH              
+     30          repeatEndH             
+     31      ifEndE                     
+     32  elseD                          
+     33      ifBeginF                   
+     34          repeatBeginI           
+     35              waitI              
+     36          repeatEndI             
+     37      elseF                      
+     38          repeatBeginJ           
+     39              waitJ              
+     40          repeatEndJ             
+     41      ifEndF                     
+     42  endIfD                         
      
      */
     
@@ -836,48 +836,48 @@
     /*  Test:
      
      0 startedScript               Tested configurations:
-     1  ifBeginA                        <---
-     2      ifBeginB                    <---
-     3          repeatBeginA            <---
-     4              waitA               <---
-     5          repeatEndA              <---
-     6      elseB                       <---
-     7          repeatBeginB            <---
-     8              waitB               <---
-     9          repeatEndB              <---
-     10      ifEndB                     <---
-     11  elseA                          <---
-     12      ifBeginC                   <---
-     13          repeatBeginC           <---
-     14              waitC              <---
-     15          repeatEndC             <---
-     16      elseC                      <---
-     17          repeatBeginD           <---
-     18              waitD              <---
-     19          repeatEndD             <---
-     20      ifEndC                     <---
-     21  endIfA                         <---
-     22  ifBeginD                       <---
-     23      ifBeginE                   <---
-     24         repeatBeginG            <---    (valid)
-     25              waitG              <---
-     26          repeatEndG             <---
+     1  ifBeginA                        
+     2      ifBeginB                    
+     3          repeatBeginA            
+     4              waitA               
+     5          repeatEndA              
+     6      elseB                       
+     7          repeatBeginB            
+     8              waitB               
+     9          repeatEndB              
+     10      ifEndB                     
+     11  elseA                          
+     12      ifBeginC                   
+     13          repeatBeginC           
+     14              waitC              
+     15          repeatEndC             
+     16      elseC                      
+     17          repeatBeginD           
+     18              waitD              
+     19          repeatEndD             
+     20      ifEndC                     
+     21  endIfA                         
+     22  ifBeginD                       
+     23      ifBeginE                   
+     24         repeatBeginG                (valid)
+     25              waitG              
+     26          repeatEndG             
      27      elseE                      --->
-     28          repeatBeginH           <---
-     29              waitH              <---
-     30          repeatEndH             <---    (valid)
-     31      ifEndE                     <---
-     32  elseD                          <---
-     33      ifBeginF                   <---
-     34          repeatBeginI           <---
-     35              waitI              <---
-     36          repeatEndI             <---
-     37      elseF                      <---
-     38          repeatBeginJ           <---
-     39              waitJ              <---
-     40          repeatEndJ             <---
-     41      ifEndF                     <---
-     42  endIfD                         <---
+     28          repeatBeginH           
+     29              waitH              
+     30          repeatEndH                 (valid)
+     31      ifEndE                     
+     32  elseD                          
+     33      ifBeginF                   
+     34          repeatBeginI           
+     35              waitI              
+     36          repeatEndI             
+     37      elseF                      
+     38          repeatBeginJ           
+     39              waitJ              
+     40          repeatEndJ             
+     41      ifEndF                     
+     42  endIfD                         
      
      */
     

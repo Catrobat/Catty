@@ -38,5 +38,6 @@
 - (NSUInteger)addEmptyRepeatLoop;
 - (NSUInteger)addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricks;
 - (NSUInteger)addNestedIfElseOfOrder1WithRepeatLoopsWithWaitBricks;
+- (NSUInteger)addNestedRepeatOrder3WithWaitInHighestLevel;
 
 @end
