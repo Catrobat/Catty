@@ -95,9 +95,9 @@
     CGFloat currentHeight = 0.0f;
     CGFloat headerHeight;
     if (IS_IPHONE4||IS_IPHONE5) {
-        headerHeight = 100.0f;
+        headerHeight = 70.0f;
     } else {
-        headerHeight = 200.0f;
+        headerHeight = 160.0f;
     }
     
     self.view.backgroundColor = mainColor;
@@ -286,8 +286,8 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
     RegisterViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"RegisterController"];
     vc.catTVC = self.catTVC;
-    vc.usernameField.text = self.usernameField.text;
-    vc.passwordField.text = self.passwordField.text;
+    vc.userName = self.usernameField.text;
+    vc.password = self.passwordField.text;
     
     [self.navigationController pushViewController:vc animated:YES];
 
@@ -437,5 +437,11 @@
 - (void)setEnableActivityIndicator:(BOOL)enabled
 {
     [UIApplication.sharedApplication setNetworkActivityIndicatorVisible:enabled];
+}
+
+-(void)dismissKeyboard {
+    [self.usernameField resignFirstResponder];
+    [self.passwordField resignFirstResponder];
+    [self setViewMovedUp:NO];
 }
 @end
