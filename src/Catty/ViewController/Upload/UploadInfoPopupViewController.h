@@ -27,7 +27,7 @@
 @interface UploadInfoViewController : UIViewController
 
 @property (nonatomic, weak) id<DismissPopupDelegate> delegate;
-@property (nonatomic, weak) Program *program;
+@property (nonatomic, strong) Program *program;
 
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;

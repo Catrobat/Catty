@@ -305,6 +305,7 @@
 
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:kHideLoadingViewNotification object:self];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kReadyToUpload object:self];
         });
     });
 }
