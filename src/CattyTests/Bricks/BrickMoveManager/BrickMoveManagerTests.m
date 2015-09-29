@@ -94,7 +94,7 @@
     [self.startScript.brickList addObject:waitBrick];
     addedBricks++;
     
-    addedBricks += [self addEmptyForeverLoop];
+    addedBricks += [self addEmptyForeverLoopToScript:self.startScript];
     
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
     XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
@@ -135,7 +135,7 @@
     [self.startScript.brickList addObject:waitBrick];
     addedBricks++;
     
-    addedBricks += [self addEmptyRepeatLoop];
+    addedBricks += [self addEmptyRepeatLoopToScript:self.startScript];
     
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
     XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
@@ -156,23 +156,30 @@
      
      0 startedScript
      1  wait            --->
-     2  whenScript
-                        <---
+     
+     0 whenScript
+     1                   <---
      */
 
     [self.viewController.collectionView reloadData];
     
+    NSUInteger addedSections = 1;
+    NSUInteger addedBricksStart = 1;
+    
     WaitBrick *waitBrick = [[WaitBrick alloc] init];
     waitBrick.script = self.startScript;
     [self.startScript.brickList addObject:waitBrick];
+    addedBricksStart++;
     
     WhenScript *whenScript = [[WhenScript alloc] init];
     whenScript.object = self.spriteObject;
     [self.spriteObject.scriptList addObject:whenScript];
+    NSUInteger addedBricksWhen = 1;
+    addedSections++;
     
-    XCTAssertEqual(2, [self.viewController.collectionView numberOfSections]);
-    XCTAssertEqual(2, [self.viewController.collectionView numberOfItemsInSection:0]);
-    XCTAssertEqual(1, [self.viewController.collectionView numberOfItemsInSection:1]);
+    XCTAssertEqual(addedSections, [self.viewController.collectionView numberOfSections]);
+    XCTAssertEqual(addedBricksStart, [self.viewController.collectionView numberOfItemsInSection:0]);
+    XCTAssertEqual(addedBricksWhen, [self.viewController.collectionView numberOfItemsInSection:1]);
     
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:1 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:0 inSection:1];
@@ -182,6 +189,121 @@
                                                                                      canMoveToIndexPath:indexPathTo
                                                                                               andObject:self.spriteObject];
     XCTAssertTrue(canMoveWaitInOtherScript, @"Should be allowed to move WaitBrick into other Script");
+}
+
+- (void)testMoveForeverBeginBrickWithMultipleScripts
+{
+    /*  Test:
+     
+     0 startedScript
+     1  foreverBeginA
+     2      waitA
+     3  foreverEndA
+     
+     0 whenScript
+     1  foreverBegin            --->
+     2      waitB              (valid)
+     3  foreverEndB
+     */
+    
+    [self.viewController.collectionView reloadData];
+    
+    NSUInteger addedSections = 1;
+    NSUInteger addedBricksStart = 1;
+    
+    NSUInteger validRow = 2;
+    NSUInteger validSection = 1;
+    NSIndexPath* validTarget = [NSIndexPath indexPathForRow:validRow inSection:validSection];
+    
+    addedBricksStart += [self addForeverLoopWithWaitBrickToScript:self.startScript];
+    
+    WhenScript *whenScript = [[WhenScript alloc] init];
+    whenScript.object = self.spriteObject;
+    [self.spriteObject.scriptList addObject:whenScript];
+    NSUInteger addedBricksWhen = 1;
+    addedSections++;
+    
+    addedBricksWhen += [self addForeverLoopWithWaitBrickToScript:whenScript];
+    
+    XCTAssertEqual(addedSections, [self.viewController.collectionView numberOfSections]);
+    XCTAssertEqual(addedBricksStart, [self.viewController.collectionView numberOfItemsInSection:0]);
+    XCTAssertEqual(addedBricksWhen, [self.viewController.collectionView numberOfItemsInSection:1]);
+    
+    NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:1 inSection:1];
+    
+    for(NSUInteger section = 0; section <=1; section++)
+    {
+        for(NSUInteger destinationIDX = 1; destinationIDX <=3; destinationIDX++)
+        {
+            NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:destinationIDX inSection:section];
+            
+            if(![indexPathTo isEqual:validTarget]) {
+                BOOL canMoveWaitInOtherScript = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                          itemAtIndexPath:indexPathFrom
+                                                                       canMoveToIndexPath:indexPathTo
+                                                                                andObject:self.spriteObject];
+                XCTAssertFalse(canMoveWaitInOtherScript, @"Should not be allowed to move to idx %lu in section %lu", destinationIDX, section);
+            }
+        }
+    }
+    
+    BOOL canMoveWaitInOtherScript = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                      itemAtIndexPath:indexPathFrom
+                                                                   canMoveToIndexPath:validTarget
+                                                                            andObject:self.spriteObject];
+    XCTAssertFalse(canMoveWaitInOtherScript, @"Should be allowed to move to idx %lu in section %lu", validRow, validSection);
+    
+}
+
+- (void)testMoveForeverEndBrickWithMultipleScripts
+{
+    /*  Test:
+     
+     0 startedScript
+     1  foreverBeginA
+     2      waitA
+     3  foreverEndA
+     
+     0 whenScript
+     1  foreverBegin
+     2      waitB
+     3  foreverEndB             --->
+     */
+    
+    [self.viewController.collectionView reloadData];
+    
+    NSUInteger addedSections = 1;
+    NSUInteger addedBricksStart = 1;
+    
+    addedBricksStart += [self addForeverLoopWithWaitBrickToScript:self.startScript];
+    
+    WhenScript *whenScript = [[WhenScript alloc] init];
+    whenScript.object = self.spriteObject;
+    [self.spriteObject.scriptList addObject:whenScript];
+    NSUInteger addedBricksWhen = 1;
+    addedSections++;
+    
+    addedBricksWhen += [self addForeverLoopWithWaitBrickToScript:whenScript];
+    
+    XCTAssertEqual(addedSections, [self.viewController.collectionView numberOfSections]);
+    XCTAssertEqual(addedBricksStart, [self.viewController.collectionView numberOfItemsInSection:0]);
+    XCTAssertEqual(addedBricksWhen, [self.viewController.collectionView numberOfItemsInSection:1]);
+    
+    NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:3 inSection:1];
+    
+    for(NSUInteger section = 0; section <=1; section++)
+    {
+        for(NSUInteger destinationIDX = 1; destinationIDX <=3; destinationIDX++)
+        {
+            NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:destinationIDX inSection:section];
+            
+            BOOL canMoveWaitInOtherScript = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                              itemAtIndexPath:indexPathFrom
+                                                                           canMoveToIndexPath:indexPathTo
+                                                                                    andObject:self.spriteObject];
+            XCTAssertFalse(canMoveWaitInOtherScript, @"Should not be allowed to move to idx %lu in section %lu", destinationIDX, section);
+        }
+    }
 }
 
 @end

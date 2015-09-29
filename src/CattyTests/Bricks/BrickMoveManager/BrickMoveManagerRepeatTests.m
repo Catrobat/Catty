@@ -53,9 +53,9 @@
     
     NSUInteger addedBricks = 1;
     
-    addedBricks += [self addEmptyRepeatLoop];
+    addedBricks += [self addEmptyRepeatLoopToScript:self.startScript];
     
-    addedBricks += [self addEmptyRepeatLoop];
+    addedBricks += [self addEmptyRepeatLoopToScript:self.startScript];
     
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
     XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
@@ -91,7 +91,7 @@
     [self.startScript.brickList addObject:repeatBrick];
     addedBricks++;
     
-    addedBricks += [self addEmptyIfElseEndStructure];
+    addedBricks += [self addEmptyIfElseEndStructureToScript:self.startScript];
     
     LoopEndBrick *loopEndBrick = [[LoopEndBrick alloc] init];
     loopEndBrick.script = self.startScript;
@@ -147,13 +147,13 @@
     NSUInteger addedBricks = 1;
     NSUInteger sourceIDX = 11;
     
-    addedBricks += [self addRepeatLoopWithWaitBrick];
-    addedBricks += [self addRepeatLoopWithWaitBrick];
-    addedBricks += [self addRepeatLoopWithWaitBrick];
-    addedBricks += [self addRepeatLoopWithWaitBrick];
-    addedBricks += [self addRepeatLoopWithWaitBrick];
-    addedBricks += [self addRepeatLoopWithWaitBrick];
-    addedBricks += [self addRepeatLoopWithWaitBrick];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
     
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
     XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
@@ -207,13 +207,13 @@
     NSUInteger validTarget2 = 18;
     NSUInteger validTarget3 = 21;
     
-    addedBricks += [self addRepeatLoopWithWaitBrick];
-    addedBricks += [self addRepeatLoopWithWaitBrick];
-    addedBricks += [self addRepeatLoopWithWaitBrick];
-    addedBricks += [self addRepeatLoopWithWaitBrick];
-    addedBricks += [self addRepeatLoopWithWaitBrick];
-    addedBricks += [self addRepeatLoopWithWaitBrick];
-    addedBricks += [self addRepeatLoopWithWaitBrick];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
     
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
     XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
@@ -293,13 +293,13 @@
     NSUInteger validTarget2 = 4;
     NSUInteger validTarget3 = 8;
     
-    addedBricks += [self addRepeatLoopWithWaitBrick];
-    addedBricks += [self addRepeatLoopWithWaitBrick];
-    addedBricks += [self addRepeatLoopWithWaitBrick];
-    addedBricks += [self addRepeatLoopWithWaitBrick];
-    addedBricks += [self addRepeatLoopWithWaitBrick];
-    addedBricks += [self addRepeatLoopWithWaitBrick];
-    addedBricks += [self addRepeatLoopWithWaitBrick];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
     
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
     XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
@@ -371,7 +371,7 @@
     NSUInteger sourceIDX = 10;
     
     // 1, 2, 3
-    addedBricks += [self addRepeatLoopWithWaitBrick];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
     
     // 4
     RepeatBrick *repeatBrickA = [[RepeatBrick alloc] init];
@@ -386,7 +386,7 @@
     addedBricks++;
     
     // 6, 7, 8
-    addedBricks += [self addForeverLoopWithWaitBrick];
+    addedBricks += [self addForeverLoopWithWaitBrickToScript:self.startScript];
     
     // 9
     IfLogicElseBrick *ifLogicElseBrickA = [[IfLogicElseBrick alloc] init];
@@ -397,7 +397,7 @@
     addedBricks++;
     
     // 10, 11, 12
-    addedBricks += [self addRepeatLoopWithWaitBrick];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
     
     // 13
     IfLogicEndBrick *ifLogicEndBrickA = [[IfLogicEndBrick alloc] init];
@@ -473,7 +473,7 @@
     NSUInteger sourceIDX = 12;
     
     // 1, 2, 3
-    addedBricks += [self addRepeatLoopWithWaitBrick];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
     
     // 4
     RepeatBrick *repeatBrickA = [[RepeatBrick alloc] init];
@@ -488,7 +488,7 @@
     addedBricks++;
     
     // 6, 7, 8
-    addedBricks += [self addForeverLoopWithWaitBrick];
+    addedBricks += [self addForeverLoopWithWaitBrickToScript:self.startScript];
     
     // 9
     IfLogicElseBrick *ifLogicElseBrickA = [[IfLogicElseBrick alloc] init];
@@ -499,7 +499,7 @@
     addedBricks++;
     
     // 10, 11, 12
-    addedBricks += [self addRepeatLoopWithWaitBrick];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:self.startScript];
     
     // 13
     IfLogicEndBrick *ifLogicEndBrickA = [[IfLogicEndBrick alloc] init];
@@ -589,7 +589,7 @@
     addedBricks++;
     
     // 2-8
-    addedBricks += [self addNestedRepeatOrder3WithWaitInHighestLevel];
+    addedBricks += [self addNestedRepeatOrder3WithWaitInHighestLevelToScript:self.startScript];
     
     // 9
     IfLogicElseBrick *ifLogicElseBrickA = [[IfLogicElseBrick alloc] init];
@@ -600,7 +600,7 @@
     addedBricks++;
     
     // 10-16
-    addedBricks += [self addNestedRepeatOrder3WithWaitInHighestLevel];
+    addedBricks += [self addNestedRepeatOrder3WithWaitInHighestLevelToScript:self.startScript];
     
     // 17
     IfLogicEndBrick *ifLogicEndBrickA = [[IfLogicEndBrick alloc] init];
@@ -613,7 +613,7 @@
     addedBricks++;
     
     // 18-24
-    addedBricks += [self addNestedRepeatOrder3WithWaitInHighestLevel];
+    addedBricks += [self addNestedRepeatOrder3WithWaitInHighestLevelToScript:self.startScript];
     
     
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
@@ -766,7 +766,7 @@
     addedBricks++;
     
     // 2-8
-    addedBricks += [self addNestedRepeatOrder3WithWaitInHighestLevel];
+    addedBricks += [self addNestedRepeatOrder3WithWaitInHighestLevelToScript:self.startScript];
     
     // 9
     IfLogicElseBrick *ifLogicElseBrickA = [[IfLogicElseBrick alloc] init];
@@ -777,7 +777,7 @@
     addedBricks++;
     
     // 10-16
-    addedBricks += [self addNestedRepeatOrder3WithWaitInHighestLevel];
+    addedBricks += [self addNestedRepeatOrder3WithWaitInHighestLevelToScript:self.startScript];
     
     // 17
     IfLogicEndBrick *ifLogicEndBrickA = [[IfLogicEndBrick alloc] init];
@@ -790,7 +790,7 @@
     addedBricks++;
     
     // 18-24
-    addedBricks += [self addNestedRepeatOrder3WithWaitInHighestLevel];
+    addedBricks += [self addNestedRepeatOrder3WithWaitInHighestLevelToScript:self.startScript];
     
     
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);

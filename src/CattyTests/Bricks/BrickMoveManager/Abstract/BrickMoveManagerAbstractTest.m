@@ -60,7 +60,7 @@
     [[BrickMoveManager sharedInstance] reset];
 }
 
-- (NSUInteger)addForeverLoopWithWaitBrick
+- (NSUInteger)addForeverLoopWithWaitBrickToScript:(Script*)script
 {
 
     /* Setup:
@@ -72,25 +72,25 @@
     NSUInteger addedBricks = 0;
 
     ForeverBrick *foreverBrickA = [[ForeverBrick alloc] init];
-    foreverBrickA.script = self.startScript;
-    [self.startScript.brickList addObject:foreverBrickA];
+    foreverBrickA.script = script;
+    [script.brickList addObject:foreverBrickA];
     addedBricks++;
     
     WaitBrick *waitBrickA = [[WaitBrick alloc] init];
-    [self.startScript.brickList addObject:waitBrickA];
+    [script.brickList addObject:waitBrickA];
     addedBricks++;
     
     LoopEndBrick *loopEndBrickA = [[LoopEndBrick alloc] init];
-    loopEndBrickA.script = self.startScript;
+    loopEndBrickA.script = script;
     loopEndBrickA.loopBeginBrick = foreverBrickA;
-    [self.startScript.brickList addObject:loopEndBrickA];
+    [script.brickList addObject:loopEndBrickA];
     foreverBrickA.loopEndBrick = loopEndBrickA;
     addedBricks++;
     
     return addedBricks;
 }
 
-- (NSUInteger)addRepeatLoopWithWaitBrick
+- (NSUInteger)addRepeatLoopWithWaitBrickToScript:(Script*)script
 {
     
     /* Setup:
@@ -102,25 +102,25 @@
     NSUInteger addedBricks = 0;
     
     RepeatBrick *repeatBrickA = [[RepeatBrick alloc] init];
-    repeatBrickA.script = self.startScript;
-    [self.startScript.brickList addObject:repeatBrickA];
+    repeatBrickA.script = script;
+    [script.brickList addObject:repeatBrickA];
     addedBricks++;
     
     WaitBrick *waitBrickA = [[WaitBrick alloc] init];
-    [self.startScript.brickList addObject:waitBrickA];
+    [script.brickList addObject:waitBrickA];
     addedBricks++;
     
     LoopEndBrick *loopEndBrickA = [[LoopEndBrick alloc] init];
-    loopEndBrickA.script = self.startScript;
+    loopEndBrickA.script = script;
     loopEndBrickA.loopBeginBrick = repeatBrickA;
-    [self.startScript.brickList addObject:loopEndBrickA];
+    [script.brickList addObject:loopEndBrickA];
     repeatBrickA.loopEndBrick = loopEndBrickA;
     addedBricks++;
     
     return addedBricks;
 }
 
-- (NSUInteger)addEmptyIfElseEndStructure
+- (NSUInteger)addEmptyIfElseEndStructureToScript:(Script*)script
 {
     /*  Setup:
      
@@ -132,22 +132,22 @@
     NSUInteger addedBricks = 0;
 
     IfLogicBeginBrick *ifLogicBeginBrick = [[IfLogicBeginBrick alloc] init];
-    ifLogicBeginBrick.script = self.startScript;
-    [self.startScript.brickList addObject:ifLogicBeginBrick];
+    ifLogicBeginBrick.script = script;
+    [script.brickList addObject:ifLogicBeginBrick];
     addedBricks++;
     
     IfLogicElseBrick *ifLogicElseBrick = [[IfLogicElseBrick alloc] init];
-    ifLogicElseBrick.script = self.startScript;
+    ifLogicElseBrick.script = script;
     ifLogicElseBrick.ifBeginBrick = ifLogicBeginBrick;
-    [self.startScript.brickList addObject:ifLogicElseBrick];
+    [script.brickList addObject:ifLogicElseBrick];
     ifLogicBeginBrick.ifElseBrick = ifLogicElseBrick;
     addedBricks++;
     
     IfLogicEndBrick *ifLogicEndBrick = [[IfLogicEndBrick alloc] init];
-    ifLogicEndBrick.script = self.startScript;
+    ifLogicEndBrick.script = script;
     ifLogicEndBrick.ifBeginBrick = ifLogicBeginBrick;
     ifLogicEndBrick.ifElseBrick = ifLogicElseBrick;
-    [self.startScript.brickList addObject:ifLogicEndBrick];
+    [script.brickList addObject:ifLogicEndBrick];
     ifLogicBeginBrick.ifEndBrick = ifLogicEndBrick;
     ifLogicElseBrick.ifEndBrick = ifLogicEndBrick;
     addedBricks++;
@@ -155,7 +155,7 @@
     return addedBricks;
 }
 
-- (NSUInteger)addEmptyForeverLoop
+- (NSUInteger)addEmptyForeverLoopToScript:(Script*)script
 {
     /*  Setup:
      
@@ -166,21 +166,21 @@
     NSUInteger addedBricks = 0;
     
     ForeverBrick *foreverBrick = [[ForeverBrick alloc] init];
-    foreverBrick.script = self.startScript;
-    [self.startScript.brickList addObject:foreverBrick];
+    foreverBrick.script = script;
+    [script.brickList addObject:foreverBrick];
     addedBricks++;
     
     LoopEndBrick *loopEndBrick = [[LoopEndBrick alloc] init];
-    loopEndBrick.script = self.startScript;
+    loopEndBrick.script = script;
     loopEndBrick.loopBeginBrick = foreverBrick;
-    [self.startScript.brickList addObject:loopEndBrick];
+    [script.brickList addObject:loopEndBrick];
     foreverBrick.loopEndBrick = loopEndBrick;
     addedBricks++;
     
     return addedBricks;
 }
 
-- (NSUInteger)addEmptyRepeatLoop
+- (NSUInteger)addEmptyRepeatLoopToScript:(Script*)script
 {
     /*  Setup:
      
@@ -191,21 +191,21 @@
     NSUInteger addedBricks = 0;
     
     RepeatBrick *repeatBrick = [[RepeatBrick alloc] init];
-    repeatBrick.script = self.startScript;
-    [self.startScript.brickList addObject:repeatBrick];
+    repeatBrick.script = script;
+    [script.brickList addObject:repeatBrick];
     addedBricks++;
     
     LoopEndBrick *loopEndBrick = [[LoopEndBrick alloc] init];
-    loopEndBrick.script = self.startScript;
+    loopEndBrick.script = script;
     loopEndBrick.loopBeginBrick = repeatBrick;
-    [self.startScript.brickList addObject:loopEndBrick];
+    [script.brickList addObject:loopEndBrick];
     repeatBrick.loopEndBrick = loopEndBrick;
     addedBricks++;
     
     return addedBricks;
 }
 
-- (NSUInteger)addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricks
+- (NSUInteger)addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricksToScript:(Script*)script
 {
     /*  Setup:
      
@@ -238,84 +238,84 @@
     
     // 1
     IfLogicBeginBrick *ifLogicBeginBrickA = [[IfLogicBeginBrick alloc] init];
-    ifLogicBeginBrickA.script = self.startScript;
-    [self.startScript.brickList addObject:ifLogicBeginBrickA];
+    ifLogicBeginBrickA.script = script;
+    [script.brickList addObject:ifLogicBeginBrickA];
     addedBricks++;
     
     // 2
     IfLogicBeginBrick *ifLogicBeginBrickB = [[IfLogicBeginBrick alloc] init];
-    ifLogicBeginBrickB.script = self.startScript;
-    [self.startScript.brickList addObject:ifLogicBeginBrickB];
+    ifLogicBeginBrickB.script = script;
+    [script.brickList addObject:ifLogicBeginBrickB];
     addedBricks++;
     
     // 3, 4, 5
-    addedBricks += [self addForeverLoopWithWaitBrick];
+    addedBricks += [self addForeverLoopWithWaitBrickToScript:script];
     
     // 6
     IfLogicElseBrick *ifLogicElseBrickB = [[IfLogicElseBrick alloc] init];
-    ifLogicElseBrickB.script = self.startScript;
+    ifLogicElseBrickB.script = script;
     ifLogicElseBrickB.ifBeginBrick = ifLogicBeginBrickB;
-    [self.startScript.brickList addObject:ifLogicElseBrickB];
+    [script.brickList addObject:ifLogicElseBrickB];
     ifLogicBeginBrickB.ifElseBrick = ifLogicElseBrickB;
     addedBricks++;
     
     // 7, 8, 9
-    addedBricks += [self addForeverLoopWithWaitBrick];
+    addedBricks += [self addForeverLoopWithWaitBrickToScript:script];
     
     //10
     IfLogicEndBrick *ifLogicEndBrickB = [[IfLogicEndBrick alloc] init];
-    ifLogicEndBrickB.script = self.startScript;
+    ifLogicEndBrickB.script = script;
     ifLogicEndBrickB.ifBeginBrick = ifLogicBeginBrickB;
     ifLogicEndBrickB.ifElseBrick = ifLogicElseBrickB;
-    [self.startScript.brickList addObject:ifLogicEndBrickB];
+    [script.brickList addObject:ifLogicEndBrickB];
     ifLogicBeginBrickB.ifEndBrick = ifLogicEndBrickB;
     ifLogicElseBrickB.ifEndBrick = ifLogicEndBrickB;
     addedBricks++;
     
     // 11
     IfLogicElseBrick *ifLogicElseBrickA = [[IfLogicElseBrick alloc] init];
-    ifLogicElseBrickA.script = self.startScript;
+    ifLogicElseBrickA.script = script;
     ifLogicElseBrickA.ifBeginBrick = ifLogicBeginBrickA;
-    [self.startScript.brickList addObject:ifLogicElseBrickA];
+    [script.brickList addObject:ifLogicElseBrickA];
     ifLogicBeginBrickA.ifElseBrick = ifLogicElseBrickA;
     addedBricks++;
     
     // 12
     IfLogicBeginBrick *ifLogicBeginBrickC = [[IfLogicBeginBrick alloc] init];
-    ifLogicBeginBrickC.script = self.startScript;
-    [self.startScript.brickList addObject:ifLogicBeginBrickC];
+    ifLogicBeginBrickC.script = script;
+    [script.brickList addObject:ifLogicBeginBrickC];
     addedBricks++;
     
     // 13, 14, 15
-    addedBricks += [self addForeverLoopWithWaitBrick];
+    addedBricks += [self addForeverLoopWithWaitBrickToScript:script];
     
     // 16
     IfLogicElseBrick *ifLogicElseBrickC = [[IfLogicElseBrick alloc] init];
-    ifLogicElseBrickC.script = self.startScript;
+    ifLogicElseBrickC.script = script;
     ifLogicElseBrickC.ifBeginBrick = ifLogicBeginBrickC;
-    [self.startScript.brickList addObject:ifLogicElseBrickC];
+    [script.brickList addObject:ifLogicElseBrickC];
     ifLogicBeginBrickC.ifElseBrick = ifLogicElseBrickC;
     addedBricks++;
     
     // 17, 18, 19
-    addedBricks += [self addForeverLoopWithWaitBrick];
+    addedBricks += [self addForeverLoopWithWaitBrickToScript:script];
     
     // 20
     IfLogicEndBrick *ifLogicEndBrickC = [[IfLogicEndBrick alloc] init];
-    ifLogicEndBrickC.script = self.startScript;
+    ifLogicEndBrickC.script = script;
     ifLogicEndBrickC.ifBeginBrick = ifLogicBeginBrickC;
     ifLogicEndBrickC.ifElseBrick = ifLogicElseBrickC;
-    [self.startScript.brickList addObject:ifLogicEndBrickC];
+    [script.brickList addObject:ifLogicEndBrickC];
     ifLogicBeginBrickC.ifEndBrick = ifLogicEndBrickC;
     ifLogicElseBrickC.ifEndBrick = ifLogicEndBrickC;
     addedBricks++;
     
     // 21
     IfLogicEndBrick *ifLogicEndBrickA = [[IfLogicEndBrick alloc] init];
-    ifLogicEndBrickA.script = self.startScript;
+    ifLogicEndBrickA.script = script;
     ifLogicEndBrickA.ifBeginBrick = ifLogicBeginBrickA;
     ifLogicEndBrickA.ifElseBrick = ifLogicElseBrickA;
-    [self.startScript.brickList addObject:ifLogicEndBrickA];
+    [script.brickList addObject:ifLogicEndBrickA];
     ifLogicBeginBrickA.ifEndBrick = ifLogicEndBrickA;
     ifLogicElseBrickA.ifEndBrick = ifLogicEndBrickA;
     addedBricks++;
@@ -323,7 +323,7 @@
     return addedBricks;
 }
 
-- (NSUInteger)addNestedIfElseOfOrder1WithRepeatLoopsWithWaitBricks
+- (NSUInteger)addNestedIfElseOfOrder1WithRepeatLoopsWithWaitBricksToScript:(Script*)script
 {
     /*  Setup:
      
@@ -356,84 +356,84 @@
     
     // 1
     IfLogicBeginBrick *ifLogicBeginBrickA = [[IfLogicBeginBrick alloc] init];
-    ifLogicBeginBrickA.script = self.startScript;
-    [self.startScript.brickList addObject:ifLogicBeginBrickA];
+    ifLogicBeginBrickA.script = script;
+    [script.brickList addObject:ifLogicBeginBrickA];
     addedBricks++;
     
     // 2
     IfLogicBeginBrick *ifLogicBeginBrickB = [[IfLogicBeginBrick alloc] init];
-    ifLogicBeginBrickB.script = self.startScript;
-    [self.startScript.brickList addObject:ifLogicBeginBrickB];
+    ifLogicBeginBrickB.script = script;
+    [script.brickList addObject:ifLogicBeginBrickB];
     addedBricks++;
     
     // 3, 4, 5
-    addedBricks += [self addRepeatLoopWithWaitBrick];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:script];
     
     // 6
     IfLogicElseBrick *ifLogicElseBrickB = [[IfLogicElseBrick alloc] init];
-    ifLogicElseBrickB.script = self.startScript;
+    ifLogicElseBrickB.script = script;
     ifLogicElseBrickB.ifBeginBrick = ifLogicBeginBrickB;
-    [self.startScript.brickList addObject:ifLogicElseBrickB];
+    [script.brickList addObject:ifLogicElseBrickB];
     ifLogicBeginBrickB.ifElseBrick = ifLogicElseBrickB;
     addedBricks++;
     
     // 7, 8, 9
-    addedBricks += [self addRepeatLoopWithWaitBrick];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:script];
     
     //10
     IfLogicEndBrick *ifLogicEndBrickB = [[IfLogicEndBrick alloc] init];
-    ifLogicEndBrickB.script = self.startScript;
+    ifLogicEndBrickB.script = script;
     ifLogicEndBrickB.ifBeginBrick = ifLogicBeginBrickB;
     ifLogicEndBrickB.ifElseBrick = ifLogicElseBrickB;
-    [self.startScript.brickList addObject:ifLogicEndBrickB];
+    [script.brickList addObject:ifLogicEndBrickB];
     ifLogicBeginBrickB.ifEndBrick = ifLogicEndBrickB;
     ifLogicElseBrickB.ifEndBrick = ifLogicEndBrickB;
     addedBricks++;
     
     // 11
     IfLogicElseBrick *ifLogicElseBrickA = [[IfLogicElseBrick alloc] init];
-    ifLogicElseBrickA.script = self.startScript;
+    ifLogicElseBrickA.script = script;
     ifLogicElseBrickA.ifBeginBrick = ifLogicBeginBrickA;
-    [self.startScript.brickList addObject:ifLogicElseBrickA];
+    [script.brickList addObject:ifLogicElseBrickA];
     ifLogicBeginBrickA.ifElseBrick = ifLogicElseBrickA;
     addedBricks++;
     
     // 12
     IfLogicBeginBrick *ifLogicBeginBrickC = [[IfLogicBeginBrick alloc] init];
-    ifLogicBeginBrickC.script = self.startScript;
-    [self.startScript.brickList addObject:ifLogicBeginBrickC];
+    ifLogicBeginBrickC.script = script;
+    [script.brickList addObject:ifLogicBeginBrickC];
     addedBricks++;
     
     // 13, 14, 15
-    addedBricks += [self addRepeatLoopWithWaitBrick];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:script];
     
     // 16
     IfLogicElseBrick *ifLogicElseBrickC = [[IfLogicElseBrick alloc] init];
-    ifLogicElseBrickC.script = self.startScript;
+    ifLogicElseBrickC.script = script;
     ifLogicElseBrickC.ifBeginBrick = ifLogicBeginBrickC;
-    [self.startScript.brickList addObject:ifLogicElseBrickC];
+    [script.brickList addObject:ifLogicElseBrickC];
     ifLogicBeginBrickC.ifElseBrick = ifLogicElseBrickC;
     addedBricks++;
     
     // 17, 18, 19
-    addedBricks += [self addRepeatLoopWithWaitBrick];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:script];
     
     // 20
     IfLogicEndBrick *ifLogicEndBrickC = [[IfLogicEndBrick alloc] init];
-    ifLogicEndBrickC.script = self.startScript;
+    ifLogicEndBrickC.script = script;
     ifLogicEndBrickC.ifBeginBrick = ifLogicBeginBrickC;
     ifLogicEndBrickC.ifElseBrick = ifLogicElseBrickC;
-    [self.startScript.brickList addObject:ifLogicEndBrickC];
+    [script.brickList addObject:ifLogicEndBrickC];
     ifLogicBeginBrickC.ifEndBrick = ifLogicEndBrickC;
     ifLogicElseBrickC.ifEndBrick = ifLogicEndBrickC;
     addedBricks++;
     
     // 21
     IfLogicEndBrick *ifLogicEndBrickA = [[IfLogicEndBrick alloc] init];
-    ifLogicEndBrickA.script = self.startScript;
+    ifLogicEndBrickA.script = script;
     ifLogicEndBrickA.ifBeginBrick = ifLogicBeginBrickA;
     ifLogicEndBrickA.ifElseBrick = ifLogicElseBrickA;
-    [self.startScript.brickList addObject:ifLogicEndBrickA];
+    [script.brickList addObject:ifLogicEndBrickA];
     ifLogicBeginBrickA.ifEndBrick = ifLogicEndBrickA;
     ifLogicElseBrickA.ifEndBrick = ifLogicEndBrickA;
     addedBricks++;
@@ -441,7 +441,7 @@
     return addedBricks;
 }
 
--(NSUInteger)addNestedRepeatOrder3WithWaitInHighestLevel
+-(NSUInteger)addNestedRepeatOrder3WithWaitInHighestLevelToScript:(Script*)script
 {
     /*  Setup:
      
@@ -459,32 +459,32 @@
     
     // 0
     RepeatBrick *repeatBrickA = [[RepeatBrick alloc] init];
-    repeatBrickA.script = self.startScript;
-    [self.startScript.brickList addObject:repeatBrickA];
+    repeatBrickA.script = script;
+    [script.brickList addObject:repeatBrickA];
     addedBricks++;
     
     // 1
     RepeatBrick *repeatBrickB = [[RepeatBrick alloc] init];
-    repeatBrickB.script = self.startScript;
-    [self.startScript.brickList addObject:repeatBrickB];
+    repeatBrickB.script = script;
+    [script.brickList addObject:repeatBrickB];
     addedBricks++;
     
     // 2, 3, 4
-    addedBricks += [self addRepeatLoopWithWaitBrick];
+    addedBricks += [self addRepeatLoopWithWaitBrickToScript:script];
     
     // 5
     LoopEndBrick *loopEndBrickB = [[LoopEndBrick alloc] init];
-    loopEndBrickB.script = self.startScript;
+    loopEndBrickB.script = script;
     loopEndBrickB.loopBeginBrick = repeatBrickB;
-    [self.startScript.brickList addObject:loopEndBrickB];
+    [script.brickList addObject:loopEndBrickB];
     repeatBrickB.loopEndBrick = loopEndBrickB;
     addedBricks++;
     
     // 6
     LoopEndBrick *loopEndBrickA = [[LoopEndBrick alloc] init];
-    loopEndBrickA.script = self.startScript;
+    loopEndBrickA.script = script;
     loopEndBrickA.loopBeginBrick = repeatBrickA;
-    [self.startScript.brickList addObject:loopEndBrickA];
+    [script.brickList addObject:loopEndBrickA];
     repeatBrickA.loopEndBrick = loopEndBrickA;
     addedBricks++;
     
