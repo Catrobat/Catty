@@ -57,19 +57,22 @@ func <(lhs: NSDate, rhs: NSDate) -> Bool {
 }
 
 // MARK: Typedefs
+typealias CBScheduleLongActionElement = (context: CBScriptContext, durationFormula: Formula, actionClosure: CBLongActionCreateClosure)
 typealias CBScheduleActionElement = (context: CBScriptContext, action: SKAction)
 typealias CBScheduleClosureElement = (context: CBScriptContext, closure: CBExecClosure)
 typealias CBBroadcastQueueElement = (message: String, senderScriptContext: CBScriptContext,
     broadcastType: CBBroadcastType)
 typealias CBExecClosure = dispatch_block_t
 typealias CBInstructionClosure = (brick: Brick, context: CBScriptContext) -> CBInstruction
+typealias CBLongActionClosure = (SKNode, CGFloat) -> Void
+typealias CBLongActionCreateClosure = (duration: NSTimeInterval) -> CBLongActionClosure
 
 enum CBInstruction {
     case HighPriorityExecClosure(closure: CBExecClosure)
     case ExecClosure(closure: CBExecClosure)
 //    case LongDurationExecClosure(closure: CBExecClosure) // unused atm.
     case WaitExecClosure(closure: CBExecClosure)
-    case LongDurationAction(action: SKAction)
+    case LongDurationAction(durationFormula: Formula, actionCreateClosure: CBLongActionCreateClosure)
     case Action(action: SKAction)
     case InvalidInstruction()
 }

@@ -45,6 +45,7 @@
     return ^{
         NSDebug(@"Performing: %@", self.description);
         Look* look = [self.script.object.spriteNode nextLook];
+#warning Performance issue: cache images!!!
         UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
         SKTexture *texture = nil;
         if ([self.script.object isBackground]) {

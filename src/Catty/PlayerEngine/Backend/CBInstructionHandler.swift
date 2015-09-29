@@ -63,6 +63,8 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
             _brickInstructionMap["LedOnBrick"] = _flashLightOnInstruction
             _brickInstructionMap["LedOffBrick"] = _flashLightOffInstruction
             _brickInstructionMap["VibrationBrick"] = _vibrationInstruction
+            _brickInstructionMap["MoveNStepsBrick"] = _moveNStepsInstruction
+            _brickInstructionMap["IfOnEdgeBounceBrick"] = _ifOnEdgeBounceInstruction
 
         }
         _setupBrickInstructionMapping()
@@ -108,38 +110,33 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
 
     private func _glideToInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
         guard let glideToBrick = brick as? GlideToBrick,
+              let durationFormula = glideToBrick.durationInSeconds,
               let object = glideToBrick.script?.object,
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
 
-        glideToBrick.isInitialized = false
-
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //!!!
-        //!!! FIXME!!!!!!! wrong behaviour issue!! no live evaluation!!
-        //!!!             duration formula only evaluated once!!
-        //!!!
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-        let durationInSeconds = glideToBrick.durationInSeconds.interpretDoubleForSprite(object)
-        return .LongDurationAction(action: SKAction.customActionWithDuration(durationInSeconds) {
-            [weak self] (node, elapsedTime) in
-            self?.logger.debug("Performing: \(glideToBrick.description())")
-            let xDestination = Float(glideToBrick.xDestination.interpretDoubleForSprite(object))
-            let yDestination = Float(glideToBrick.yDestination.interpretDoubleForSprite(object))
-            if !glideToBrick.isInitialized {
-                glideToBrick.isInitialized = true
-                glideToBrick.currentPoint = spriteNode.scenePosition
-                glideToBrick.startingPoint = glideToBrick.currentPoint
+        return .LongDurationAction(durationFormula: durationFormula, actionCreateClosure: {
+            (duration) -> CBLongActionClosure in
+            glideToBrick.isInitialized = false
+            return {
+                [weak self] (node, elapsedTime) in
+                self?.logger.debug("Performing: \(glideToBrick.description())")
+                let xDestination = Float(glideToBrick.xDestination.interpretDoubleForSprite(object))
+                let yDestination = Float(glideToBrick.yDestination.interpretDoubleForSprite(object))
+                if !glideToBrick.isInitialized {
+                    glideToBrick.isInitialized = true
+                    glideToBrick.currentPoint = spriteNode.scenePosition
+                    glideToBrick.startingPoint = glideToBrick.currentPoint
+                }
+                
+                // TODO: handle extreme movemenets and set currentPoint accordingly
+                let percent = Float(elapsedTime) / Float(duration)
+                let xPoint = Float(glideToBrick.startingPoint.x) + (xDestination - Float(glideToBrick.startingPoint.x)) * percent
+                let yPoint = Float(glideToBrick.startingPoint.y) + (yDestination - Float(glideToBrick.startingPoint.y)) * percent
+                let currentPoint = CGPointMake(CGFloat(xPoint), CGFloat(yPoint))
+                glideToBrick.currentPoint = currentPoint
+                spriteNode.scenePosition = currentPoint
             }
-
-            // TODO: handle extreme movemenets and set currentPoint accordingly
-            let percent = Float(elapsedTime) / Float(durationInSeconds)
-            let xPoint = Float(glideToBrick.startingPoint.x) + (xDestination - Float(glideToBrick.startingPoint.x)) * percent
-            let yPoint = Float(glideToBrick.startingPoint.y) + (yDestination - Float(glideToBrick.startingPoint.y)) * percent
-            let currentPoint = CGPointMake(CGFloat(xPoint), CGFloat(yPoint))
-            glideToBrick.currentPoint = currentPoint
-            spriteNode.scenePosition = currentPoint
         })
     }
 
@@ -328,5 +325,73 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
             })
             context.state = .Runnable
         }
+    }
+
+    private func _moveNStepsInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+        guard let moveNStepsBrick = brick as? MoveNStepsBrick,
+              let object = moveNStepsBrick.script?.object,
+              let spriteNode = object.spriteNode,
+              let stepsFormula = moveNStepsBrick.steps
+        else { fatalError("This should never happen!") }
+
+        return .Action(action: SKAction.runBlock {
+            let steps = stepsFormula.interpretDoubleForSprite(object)
+            let rotation = ((spriteNode.rotation + 90) % 360) * M_PI / 180
+            let position = spriteNode.scenePosition
+            let xPosition = round(Double(position.x) + (steps * sin(rotation)))
+            let yPosition = round(Double(position.y) - (steps * cos(rotation)))
+            spriteNode.scenePosition = CGPointMake(CGFloat(xPosition), CGFloat(yPosition))
+        })
+    }
+
+    private func _ifOnEdgeBounceInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+        guard let ifOnEdgeBounceBrick = brick as? IfOnEdgeBounceBrick,
+              let object = ifOnEdgeBounceBrick.script?.object,
+              let spriteNode = object.spriteNode,
+              let scene = spriteNode.scene
+        else { fatalError("This should never happen!") }
+
+        // TODO: simplify...
+        return .Action(action: SKAction.runBlock {
+            let width = spriteNode.size.width
+            let height = spriteNode.size.height
+
+            let virtualScreenWidth = scene.size.width/2.0
+            let virtualScreenHeight = scene.size.height/2.0
+
+            var xPosition = spriteNode.scenePosition.x
+            var rotation = spriteNode.rotation
+            let xComparePosition = -virtualScreenWidth + (width/2.0)
+            let xOtherComparePosition = virtualScreenWidth - (width/2.0)
+            if xPosition < xComparePosition {
+                if (rotation > 90) && (rotation < 270) {
+                    rotation = 180 - rotation
+                }
+                xPosition = xComparePosition
+            } else if xPosition > xOtherComparePosition {
+                if (rotation >= 0 && rotation < 90) || (rotation > 270 && rotation <= 360) {
+                    rotation = 180 - rotation
+                }
+                xPosition = xOtherComparePosition
+            }
+            if rotation < 0 { rotation += 360 }
+
+            var yPosition = spriteNode.scenePosition.y
+            let yComparePosition = virtualScreenHeight - (height/2.0)
+            let yOtherComparePosition = -virtualScreenHeight + (height/2.0)
+            if yPosition > yComparePosition {
+                if (rotation > 0) && (rotation < 180) {
+                    rotation = -rotation
+                }
+                yPosition = yComparePosition
+            } else if yPosition < yOtherComparePosition {
+                if (rotation > 180) && (rotation < 360) {
+                    rotation = 360 - rotation
+                }
+                yPosition = yOtherComparePosition
+            }
+            spriteNode.rotation = rotation
+            spriteNode.scenePosition = CGPointMake(xPosition, yPosition)
+        })
     }
 }
