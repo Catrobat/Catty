@@ -108,6 +108,7 @@ final class CBScene : SKScene {
             guard let currentNode = nodes[nodeIndex] as? CBSpriteNode
             else { fatalError("This should not happen!") }
 
+            print("Current node: \(currentNode)")
             logger?.debug("Current node: \(currentNode)")
             if currentNode.hidden { continue }
 

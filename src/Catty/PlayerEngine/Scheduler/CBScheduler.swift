@@ -97,20 +97,20 @@ final class CBScheduler : CBSchedulerProtocol {
             guard let spriteNode = _spriteNodes[spriteName]
             else { fatalError("WTH?? Sprite node not available (any more)...") }
 
-            var nextLongActionElements = [CBScheduleActionElement]()
+            // collect
+            var nextLongActionElements = [CBScheduleLongActionElement]()
             var nextActionElements = [CBScheduleActionElement]()
             for context in contexts {
                 if context.state != .Runnable { continue }
                 context.state = .Running
-                // collect...
                 if let nextInstruction = context.nextInstruction() {
                     switch nextInstruction {
                     case let .HighPriorityExecClosure(closure):
                         nextHighPriorityClosures += (context, closure)
                     case let .ExecClosure(closure):
                         nextClosures += (context, closure)
-                    case let .LongDurationAction(action):
-                        nextLongActionElements += (context, action)
+                    case let .LongDurationAction(durationFormula, actionCreateClosure):
+                        nextLongActionElements += (context, durationFormula, actionCreateClosure)
                     case let .WaitExecClosure(closure):
                         nextWaitClosures += (context, closure)
                     case let .Action(action):
@@ -124,6 +124,7 @@ final class CBScheduler : CBSchedulerProtocol {
                 }
             }
 
+            // execute actions (node dependend!)
             if nextActionElements.count > 0 {
                 let groupAction = nextActionElements.count > 1
                                 ? SKAction.group(nextActionElements.map { $0.action })
@@ -138,7 +139,10 @@ final class CBScheduler : CBSchedulerProtocol {
                 }
             }
 
-            for (context, action) in nextLongActionElements {
+            for (context, durationFormula, actionCreateClosure) in nextLongActionElements {
+                let durationInSeconds = durationFormula.interpretDoubleForSprite(context.spriteNode.spriteObject)
+                let actionClosure = actionCreateClosure(duration: durationInSeconds)
+                let action = SKAction.customActionWithDuration(durationInSeconds, actionBlock: actionClosure)
                 spriteNode.runAction(action) { [weak self] in
 //                    let duration = NSDate().timeIntervalSinceDate(startTime)
 //                    print("  Duration for Group: \(duration*1000)ms")
@@ -148,6 +152,7 @@ final class CBScheduler : CBSchedulerProtocol {
             }
         }
 
+        // execute closures (not node dependend!)
         for (context, closure) in nextWaitClosures {
             var queue = _availableWaitQueues.first
             if queue == nil {
