@@ -65,6 +65,13 @@ const CGFloat DESCRIPTION_WIDTH = 280.0f;
 
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.descriptionTextView becomeFirstResponder];
+    [self.descriptionTextView setSelectedTextRange:[self.descriptionTextView textRangeFromPosition:self.descriptionTextView.beginningOfDocument toPosition:self.descriptionTextView.endOfDocument]];
+}
+
 #pragma mark Initialization
 
 - (void)initHeader

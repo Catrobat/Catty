@@ -630,23 +630,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 self.tableView.scrollEnabled = NO;
                 self.navigationController.toolbar.userInteractionEnabled = NO;
                 self.navigationController.navigationBar.userInteractionEnabled = NO;
+                self.navigationController.navigationBar.alpha = 0.3f;
+                self.navigationController.toolbar.alpha = 0.3f;
+                for (UITableViewCell *cell in self.tableView.visibleCells) {
+                    cell.alpha = 0.3f;
+                }
                 self.selectedProgram = program;
-                [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame upwardsCenterByFactor:1];
+                NSLog(@"%f",self.tableView.contentOffset.y);
+                [self presentPopupViewController:popupViewController WithFrame:CGRectMake(self.tableView.contentOffset.x, self.tableView.contentOffset.y, [Util screenWidth], [Util screenHeight]) Centered:NO];
             } else {
                 [self dismissPopupWithCode:NO];
             }
-//            [Util askUserForTextAndPerformAction:@selector(updateProgramDescriptionActionWithText:sourceProgram:)
-//                                          target:self
-//                                    cancelAction:nil 
-//                                      withObject:program
-//                                     promptTitle:kLocalizedSetDescription
-//                                   promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedDescription]
-//                                     promptValue:program.header.programDescription  
-//                               promptPlaceholder:kLocalizedEnterYourProgramDescriptionHere
-//                                  minInputLength:kMinNumOfProgramDescriptionCharacters
-//                                  maxInputLength:kMaxNumOfProgramDescriptionCharacters
-//                             blockedCharacterSet:[self blockedCharacterSet]
-//                        invalidInputAlertMessage:kLocalizedInvalidDescriptionDescription];
 //        } else if (buttonIndex == 3) {
 //            // Upload button
         }
@@ -843,6 +837,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
         self.tableView.scrollEnabled = YES;
         self.navigationController.toolbar.userInteractionEnabled = YES;
         self.navigationController.navigationBar.userInteractionEnabled = YES;
+        self.navigationController.navigationBar.alpha = 1.0f;
+        self.navigationController.toolbar.alpha = 1.0f;
+        for (UITableViewCell *cell in self.tableView.visibleCells) {
+            cell.alpha = 1.0f;
+        }
         return YES;
     }
     return NO;

@@ -144,8 +144,13 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
 
 - (void)addBlurViewWithFrame:(CGRect)frame {
     UIImageView *blurView = [UIImageView new];
-    blurView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-    blurView.image = [[self getScreenImageWithFrame:CGRectMake(0, frame.origin.y, frame.size.width, frame.size.height)] applyBlurWithRadius:15.0f];
+    if (frame.origin.y > 0) {
+        blurView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height+frame.origin.y);
+    }else{
+        blurView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    }
+    
+    blurView.image = [[self getScreenImageWithFrame:CGRectMake(0, frame.size.height/4+frame.origin.y, frame.size.width, frame.size.height)] applyBlurWithRadius:15.0f];
     [self.view addSubview:blurView];
     [self.view bringSubviewToFront:self.popupViewController.view];
     objc_setAssociatedObject(self, &CWBlurViewKey, blurView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -155,7 +160,7 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
 
 //If factor == 1: the popup appears in the middle of the screen
 //Everything >1: moves the popup more to the top
-- (void)presentPopupViewController:(UIViewController *)viewControllerToPresent WithFrame:(CGRect)frame
+- (void)presentPopupViewController:(UIViewController *)viewControllerToPresent WithFrame:(CGRect)frame Centered:(BOOL)centered
 {
     if (self.popupViewController == nil) {
         // initial setup
@@ -170,11 +175,18 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
         viewControllerToPresent.view.layer.borderColor = [UIColor globalTintColor].CGColor;
         
         // blurview
-        [self addBlurViewWithFrame:frame];
+        if (frame.origin.y<0.0f) {
+            frame = CGRectMake(frame.origin.x, 0, frame.size.width, frame.size.height);
+        } else {
+            frame = CGRectMake(frame.origin.x, frame.origin.y+50, frame.size.width, frame.size.height);
+        }
+        if (centered) {
+            [self addBlurViewWithFrame:frame];
+        }
         UIView *blurView = objc_getAssociatedObject(self, &CWBlurViewKey);
 
         // animate
-        viewControllerToPresent.view.center = CGPointMake(self.view.center.x, frame.size.height);
+        viewControllerToPresent.view.center = CGPointMake(self.view.center.x, frame.size.height+frame.origin.y);
         viewControllerToPresent.view.alpha = 0.4f;
         blurView.alpha = 0.4f;
         
@@ -186,7 +198,12 @@ NSString const *CWPopupViewOffset = @"CWPopupViewOffset";
                          animations:^{
                              blurView.alpha = 1.0f;
                              viewControllerToPresent.view.alpha = 1.0f;
-                             viewControllerToPresent.view.center = CGPointMake(self.view.center.x, frame.size.height/2-self.navigationController.navigationBar.frame.size.height/2-10);
+                             if (centered) {
+                                 viewControllerToPresent.view.center = CGPointMake(self.view.center.x, frame.size.height/2-self.navigationController.navigationBar.frame.size.height/2-10);
+                             }else{
+                                  viewControllerToPresent.view.center = CGPointMake(self.view.center.x, 150+frame.origin.y);
+                             }
+                            
                              
                          } completion:^(BOOL finished) {
             [self.popupViewController didMoveToParentViewController:self];

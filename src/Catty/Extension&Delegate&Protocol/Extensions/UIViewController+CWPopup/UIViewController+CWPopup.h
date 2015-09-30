@@ -23,7 +23,7 @@
 
 @property (nonatomic, readwrite) UIViewController *popupViewController;
 
-- (void)presentPopupViewController:(UIViewController *)viewControllerToPresent WithFrame:(CGRect)frame;
+- (void)presentPopupViewController:(UIViewController *)viewControllerToPresent WithFrame:(CGRect)frame Centered:(BOOL)centered;
 - (void)dismissPopupViewController;
 
 @end
