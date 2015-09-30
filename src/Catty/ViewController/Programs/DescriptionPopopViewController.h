@@ -21,11 +21,11 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
+#import "NetworkDefines.h"
 #import "UIViewController+CWPopup.h"
-#import "Program.h"
 
-@interface MyProgramsViewController : BaseTableViewController <DismissPopupDelegate>
-@property (nonatomic, strong) Program *selectedProgram;
-@property (nonatomic, strong) NSString *changedDescription;
+@interface DescriptionPopopViewController : UIViewController
+
+@property (nonatomic, weak) id<DismissPopupDelegate> delegate;
+
 @end
