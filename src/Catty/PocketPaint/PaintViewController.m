@@ -324,7 +324,8 @@
 {
    
     NSArray *buttonTitles = @[kLocalizedPaintSave,kLocalizedPaintClose,kLocalizedPaintNewCanvas];
-    [Util actionSheetWithTitle:kLocalizedPaintSelect delegate:self destructiveButtonTitle:nil otherButtonTitles:buttonTitles tag:kPocketPaintActionSheetTag view:self.view];
+    [Util actionSheetWithTitle:kLocalizedPaintSelect delegate:self destructiveButtonTitle:nil otherButtonTitles:buttonTitles tag:kPocketPaintActionSheetTag view:self.navigationController.view];
+    
 }
 
 - (void)setupUndoManager
