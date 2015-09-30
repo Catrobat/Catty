@@ -48,6 +48,8 @@
 #import "CatrobatLanguageDefines.h"
 #import "BaseTableViewController.h"
 #import "Pocket_Code-Swift.h"
+#import "FileManager.h"
+#import "AppDelegate.h"
 
 @interface ScenePresenterViewController() <UIActionSheetDelegate>
 @property (nonatomic) BOOL menuOpen;
@@ -68,7 +70,7 @@
     self.restartProgram = NO;
     [[[self class] sharedLoadingView] removeFromSuperview];
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
-
+    
     // MenuImageBackground
     UIImage *menuBackgroundImage = [UIImage imageNamed:@"stage_dialog_background_middle_1"];
     menuBackgroundImage = [UIImage changeImage:menuBackgroundImage toColor:[UIColor backgroundColor]];
@@ -112,6 +114,7 @@
     [self setUpLabels];
     [self setUpGridView];
     [self checkAspectRatio];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -410,6 +413,10 @@
                      animations:^{[self continueAnimation];}
                      completion:^(BOOL finished){
                          self.menuOpen = NO;
+                         if (animateDuration == duration) {
+                             [self takeAutomaticScreenshot];
+                         }
+                         
                      }];
     self.skView.paused = NO;
     
@@ -519,6 +526,46 @@
     self.snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     [self showSaveScreenshotActionSheet];
+    
+}
+
+-(void)takeAutomaticScreenshot
+{
+    NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@/small_screenshot.png", [self.program projectPath]],
+                               [[NSString alloc] initWithFormat:@"%@/screenshot.png",[self.program projectPath]],
+                               [[NSString alloc] initWithFormat:@"%@/manual_screenshot.png", [self.program projectPath]],
+                               [[NSString alloc] initWithFormat:@"%@/automatic_screenshot.png", [self.program projectPath]]];
+    BOOL fileExists = NO;
+    for (NSString *fallbackPath in fallbackPaths) {
+        NSString *fileName = [fallbackPath lastPathComponent];
+        fileExists= [[NSFileManager defaultManager] fileExistsAtPath:fileName];
+        if(fileExists){
+            break;
+        }
+    }
+    if (!fileExists) {
+        NSLog(@"AutoScreenshot");
+        UIGraphicsBeginImageContextWithOptions(self.skView.bounds.size, NO, [UIScreen mainScreen].scale);
+        [self.skView drawViewHierarchyInRect:self.skView.bounds afterScreenUpdates:NO];
+        UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString *pngFilePath = [NSString stringWithFormat:@"%@/automatic_screenshot.png",[self.program projectPath]];
+            NSData *data = [NSData dataWithData:UIImagePNGRepresentation(image)];
+            [data writeToFile:pngFilePath atomically:YES];
+            
+            ///Save small Screenshot too??
+            NSString *pngFilePathSmall = [NSString stringWithFormat:@"%@/small_screenshot.png",[self.program projectPath]];
+            UIGraphicsBeginImageContext( CGSizeMake(160, 160) );
+            [image drawInRect:CGRectMake(0,0,160,160)];
+            UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            NSData *dataSmall = [NSData dataWithData:UIImagePNGRepresentation(newImage)];
+            [dataSmall writeToFile:pngFilePathSmall atomically:YES];
+        });
+
+    }
     
 }
 

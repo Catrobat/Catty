@@ -221,6 +221,7 @@
 		923503911BA707DE00021F6A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9235038F1BA707DE00021F6A /* LoginViewController.m */; };
 		928D4D791A7BD19A00E6DFA8 /* CatrobatUISlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 928D4D781A7BD19A00E6DFA8 /* CatrobatUISlider.m */; };
 		92D346BD1B8DDC0A009EB8F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */; };
+		92D71C041BBBC57700F1177C /* DescriptionPopopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D71C031BBBC57700F1177C /* DescriptionPopopViewController.m */; };
 		92DFAFE61A38943D00FA9B0F /* FormulaEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */; };
 		92DFB00E1A38949E00FA9B0F /* ExternInternRepresentationMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEA1A38949E00FA9B0F /* ExternInternRepresentationMapping.m */; };
 		92DFB00F1A38949E00FA9B0F /* ExternToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFEC1A38949E00FA9B0F /* ExternToken.m */; };
@@ -1043,6 +1044,8 @@
 		929108941A41F32A0034564D /* CBSerializerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSerializerProtocol.h; sourceTree = "<group>"; };
 		929108951A41F32A0034564D /* CBXMLNodeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLNodeProtocol.h; sourceTree = "<group>"; };
 		92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		92D71C021BBBC57700F1177C /* DescriptionPopopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptionPopopViewController.h; sourceTree = "<group>"; };
+		92D71C031BBBC57700F1177C /* DescriptionPopopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptionPopopViewController.m; sourceTree = "<group>"; };
 		92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormulaEditor.xib; sourceTree = "<group>"; };
 		92DFAFE91A38949E00FA9B0F /* ExternInternRepresentationMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternInternRepresentationMapping.h; sourceTree = "<group>"; };
 		92DFAFEA1A38949E00FA9B0F /* ExternInternRepresentationMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExternInternRepresentationMapping.m; sourceTree = "<group>"; };
@@ -3765,6 +3768,8 @@
 		92FF31401A24DEB300093DA7 /* Programs */ = {
 			isa = PBXGroup;
 			children = (
+				92D71C021BBBC57700F1177C /* DescriptionPopopViewController.h */,
+				92D71C031BBBC57700F1177C /* DescriptionPopopViewController.m */,
 				92FF31411A24DEB300093DA7 /* MyProgramsViewController.h */,
 				92FF31421A24DEB300093DA7 /* MyProgramsViewController.m */,
 			);
@@ -5295,6 +5300,7 @@
 				92FF30E11A24DCAA00093DA7 /* GlideToBrick.m in Sources */,
 				92FF32981A24E2F400093DA7 /* MoveNStepsBrickCell.m in Sources */,
 				4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */,
+				92D71C041BBBC57700F1177C /* DescriptionPopopViewController.m in Sources */,
 				4C2EE41E1B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m in Sources */,
 				92FF31571A24DEB300093DA7 /* ObjectTableViewController.m in Sources */,
 				92FF32BB1A24E2F400093DA7 /* DarkBlueGradientImageCell.m in Sources */,
