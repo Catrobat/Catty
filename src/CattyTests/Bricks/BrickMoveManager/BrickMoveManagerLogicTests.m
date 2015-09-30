@@ -200,24 +200,28 @@
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
     XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
     
-    NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:3 inSection:0];
-    NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:2 inSection:0];
+    {
+        NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:3 inSection:0];
+        NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:2 inSection:0];
+        
+        BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                                     itemAtIndexPath:indexPathFrom
+                                                                                  canMoveToIndexPath:indexPathTo
+                                                                                           andObject:self.spriteObject];
+        XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move nested IfLogicBeginBrick above main IfLogicElseBrick");
+    }
     
-    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                 itemAtIndexPath:indexPathFrom
-                                                                              canMoveToIndexPath:indexPathTo
-                                                                                       andObject:self.spriteObject];
-    XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move nested IfLogicBeginBrick above main IfLogicElseBrick");
-    
-    // main else brick
-    indexPathFrom = [NSIndexPath indexPathForRow:2 inSection:0];
-    indexPathTo = [NSIndexPath indexPathForRow:3 inSection:0];
-    
-    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                 itemAtIndexPath:indexPathFrom
-                                                                              canMoveToIndexPath:indexPathTo
-                                                                                       andObject:self.spriteObject];
-    XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move main IfLogicElseBrick below nested IfLogicElseBrick");
+    {
+        // main else brick
+        NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:2 inSection:0];
+        NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:3 inSection:0];
+        
+        BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                                     itemAtIndexPath:indexPathFrom
+                                                                                  canMoveToIndexPath:indexPathTo
+                                                                                           andObject:self.spriteObject];
+        XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move main IfLogicElseBrick below nested IfLogicElseBrick");
+    }
 }
 
 - (void)testMoveIfBeginBrickInvalidBeforeIfEndBrickOfOtherIfBrick {
