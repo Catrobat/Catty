@@ -170,6 +170,9 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
     [self.collectionView performBatchUpdates:^{
         __strong typeof(self) strongSelf = weakSelf;
         if (strongSelf) {
+            if (previousIndexPath.item == 0 && newIndexPath.item == 0) {
+                [strongSelf.collectionView moveSection:previousIndexPath.section toSection:newIndexPath.section];
+            }
             [strongSelf.collectionView deleteItemsAtIndexPaths:@[ previousIndexPath ]];
             [strongSelf.collectionView insertItemsAtIndexPaths:@[ newIndexPath ]];
         }
@@ -287,7 +290,7 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
                 if (currentIndexPath.item > 0) {
                     brick = [script.brickList objectAtIndex:currentIndexPath.item - 1];
                 }
-                if (!brick.isAnimatedInsertBrick) {
+                if (!brick.isAnimatedInsertBrick && brick!=nil) {
                     return;
                 }
             }
