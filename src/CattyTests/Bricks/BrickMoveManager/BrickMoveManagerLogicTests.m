@@ -146,7 +146,6 @@
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
     XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
     
-    // nested if brick
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:2 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:1 inSection:0];
     
@@ -201,7 +200,6 @@
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
     XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
     
-    // nested if brick
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:3 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:2 inSection:0];
     
@@ -245,25 +243,29 @@
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
     XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
     
-    // second if brick (move up)
-    NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:4 inSection:0];
-    NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:3 inSection:0];
-    
-    BOOL canMoveAboveEndBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                                  itemAtIndexPath:indexPathFrom
-                                                                               canMoveToIndexPath:indexPathTo
-                                                                                        andObject:self.spriteObject];
-    XCTAssertFalse(canMoveAboveEndBrickEditMode, @"Should not be allowed to move IfLogicBeginBrick above IfLogicEndBrick");
-    
-    // first end brick (move down)
-    indexPathFrom = [NSIndexPath indexPathForRow:3 inSection:0];
-    indexPathTo = [NSIndexPath indexPathForRow:4 inSection:0];
-    
-    BOOL canMoveBelowIfBeginBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+    {
+        // second if brick (move up)
+        NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:4 inSection:0];
+        NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:3 inSection:0];
+        
+        BOOL canMoveAboveEndBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
                                                                                       itemAtIndexPath:indexPathFrom
                                                                                    canMoveToIndexPath:indexPathTo
                                                                                             andObject:self.spriteObject];
-    XCTAssertFalse(canMoveBelowIfBeginBrickEditMode, @"Should not be allowed to move IfLogicEndBrick below IfLogicBeginBrick");    
+        XCTAssertFalse(canMoveAboveEndBrickEditMode, @"Should not be allowed to move IfLogicBeginBrick above IfLogicEndBrick");
+    }
+    
+    {
+        // first end brick (move down)
+        NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:3 inSection:0];
+        NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:4 inSection:0];
+        
+        BOOL canMoveBelowIfBeginBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                                          itemAtIndexPath:indexPathFrom
+                                                                                       canMoveToIndexPath:indexPathTo
+                                                                                                andObject:self.spriteObject];
+        XCTAssertFalse(canMoveBelowIfBeginBrickEditMode, @"Should not be allowed to move IfLogicEndBrick below IfLogicBeginBrick");
+    }
 }
 
 - (void)testMoveWaitBrickInsideForeverBrickOfIfLogicBeginBrick {
@@ -568,7 +570,6 @@
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
     XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
     
-    // if brick above forever brick
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:12 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:5 inSection:0];
     
@@ -641,13 +642,11 @@
     XCTAssertEqual(1, [self.viewController.collectionView numberOfSections]);
     XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
     
-    // if brick above forever brick
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:sourceIDX inSection:0];
     
     
     for(NSUInteger testedDestination = 1; testedDestination <= 42; testedDestination++) {
-        if(testedDestination != sourceIDX)
-        {
+        if(testedDestination != sourceIDX) {
             NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:testedDestination inSection:0];
             
             BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
@@ -727,8 +726,7 @@
     
     
     for(NSUInteger testedDestination = 1; testedDestination <= 42; testedDestination++) {
-        if(testedDestination != sourceIDX)
-        {
+        if(testedDestination != sourceIDX) {
             NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:testedDestination inSection:0];
             
             BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
@@ -808,8 +806,7 @@
     
     
     for(NSUInteger testedDestination = 1; testedDestination <= 42; testedDestination++) {
-        if(testedDestination != validIDX)
-        {
+        if(testedDestination != validIDX) {
             NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:testedDestination inSection:0];
             
             BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
@@ -899,8 +896,7 @@
     
     
     for(NSUInteger testedDestination = 1; testedDestination <= 42; testedDestination++) {
-        if( (testedDestination != validIDX1)  && (testedDestination != validIDX2))
-        {
+        if( (testedDestination != validIDX1)  && (testedDestination != validIDX2)) {
             NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:testedDestination inSection:0];
             
             BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
@@ -912,23 +908,28 @@
         }
     }
     
-    NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:validIDX1 inSection:0];
+    {
+        NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:validIDX1 inSection:0];
+        
+        BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                      itemAtIndexPath:indexPathFrom
+                                                                   canMoveToIndexPath:indexPathTo
+                                                                            andObject:self.spriteObject];
+        
+        XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to line %lu", (unsigned long)validIDX1);
+    }
     
-    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                  itemAtIndexPath:indexPathFrom
-                                                               canMoveToIndexPath:indexPathTo
-                                                                        andObject:self.spriteObject];
+    {
+        NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:validIDX2 inSection:0];
+        
+        BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                      itemAtIndexPath:indexPathFrom
+                                                                   canMoveToIndexPath:indexPathTo
+                                                                            andObject:self.spriteObject];
+        
+        XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to line %lu", (unsigned long)validIDX2);
+    }
     
-    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to line %lu", (unsigned long)validIDX1);
-    
-    indexPathTo = [NSIndexPath indexPathForRow:validIDX2 inSection:0];
-    
-    canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                  itemAtIndexPath:indexPathFrom
-                                                               canMoveToIndexPath:indexPathTo
-                                                                        andObject:self.spriteObject];
-    
-    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to line %lu", (unsigned long)validIDX2);
 }
 
 

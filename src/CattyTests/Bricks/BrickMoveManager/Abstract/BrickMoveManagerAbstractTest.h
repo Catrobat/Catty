@@ -39,5 +39,6 @@
 - (NSUInteger)addNestedIfElseOfOrder1WithForeverLoopsWithWaitBricksToScript:(Script*)script;
 - (NSUInteger)addNestedIfElseOfOrder1WithRepeatLoopsWithWaitBricksToScript:(Script*)script;
 - (NSUInteger)addNestedRepeatOrder3WithWaitInHighestLevelToScript:(Script*)script;
+- (NSUInteger)addWaitSetXSetYWaitPlaceAtWaitBricksToScript:(Script*)script;
 
 @end

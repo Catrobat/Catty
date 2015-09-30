@@ -232,29 +232,36 @@
         }
     }
     
-    NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:validTarget1 inSection:0];
+    {
+        NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:validTarget1 inSection:0];
+        
+        BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                      itemAtIndexPath:indexPathFrom
+                                                                   canMoveToIndexPath:indexPathTo
+                                                                            andObject:self.spriteObject];
+        XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to line %lu.", (unsigned long)validTarget1);
+    }
     
-    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                  itemAtIndexPath:indexPathFrom
-                                                               canMoveToIndexPath:indexPathTo
-                                                                        andObject:self.spriteObject];
-    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to line %lu.", (unsigned long)validTarget1);
+    {
+        NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:validTarget2 inSection:0];
+        
+        BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                      itemAtIndexPath:indexPathFrom
+                                                                   canMoveToIndexPath:indexPathTo
+                                                                            andObject:self.spriteObject];
+        XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to line %lu.", (unsigned long)validTarget2);
+    }
     
-    indexPathTo = [NSIndexPath indexPathForRow:validTarget2 inSection:0];
+    {
+        NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:validTarget3 inSection:0];
+        
+        BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                 itemAtIndexPath:indexPathFrom
+                                                              canMoveToIndexPath:indexPathTo
+                                                                       andObject:self.spriteObject];
+        XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to line %lu.", (unsigned long)validTarget3);
+    }
     
-    canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                  itemAtIndexPath:indexPathFrom
-                                                               canMoveToIndexPath:indexPathTo
-                                                                        andObject:self.spriteObject];
-    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to line %lu.", (unsigned long)validTarget2);
-    
-    indexPathTo = [NSIndexPath indexPathForRow:validTarget3 inSection:0];
-    
-    canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                             itemAtIndexPath:indexPathFrom
-                                                          canMoveToIndexPath:indexPathTo
-                                                                   andObject:self.spriteObject];
-    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to line %lu.", (unsigned long)validTarget3);
 }
 
 - (void)testMoveRepeatBeginToAllPossibleDestinations {
@@ -318,29 +325,36 @@
         }
     }
     
-    NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:validTarget1 inSection:0];
+    {
+        NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:validTarget1 inSection:0];
+        
+        BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                      itemAtIndexPath:indexPathFrom
+                                                                   canMoveToIndexPath:indexPathTo
+                                                                            andObject:self.spriteObject];
+        XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to line %lu.", (unsigned long)validTarget1);
+    }
     
-    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                                  itemAtIndexPath:indexPathFrom
-                                                               canMoveToIndexPath:indexPathTo
-                                                                        andObject:self.spriteObject];
-    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to line %lu.", (unsigned long)validTarget1);
+    {
+        NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:validTarget2 inSection:0];
+        
+        BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                 itemAtIndexPath:indexPathFrom
+                                                              canMoveToIndexPath:indexPathTo
+                                                                       andObject:self.spriteObject];
+        XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to line %lu.", (unsigned long)validTarget2);
+    }
     
-    indexPathTo = [NSIndexPath indexPathForRow:validTarget2 inSection:0];
+    {
+        NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:validTarget3 inSection:0];
+        
+        BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+                                                                 itemAtIndexPath:indexPathFrom
+                                                              canMoveToIndexPath:indexPathTo
+                                                                       andObject:self.spriteObject];
+        XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to line %lu.", (unsigned long)validTarget3);
+    }
     
-    canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                             itemAtIndexPath:indexPathFrom
-                                                          canMoveToIndexPath:indexPathTo
-                                                                   andObject:self.spriteObject];
-    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to line %lu.", (unsigned long)validTarget2);
-    
-    indexPathTo = [NSIndexPath indexPathForRow:validTarget3 inSection:0];
-    
-    canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
-                                                             itemAtIndexPath:indexPathFrom
-                                                          canMoveToIndexPath:indexPathTo
-                                                                   andObject:self.spriteObject];
-    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to line %lu.", (unsigned long)validTarget3);
 }
 
 - (void)testMoveRepeatBeginToAllPossibleDestinationsNested {

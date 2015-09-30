@@ -31,6 +31,9 @@
 #import "IfLogicBeginBrick.h"
 #import "IfLogicElseBrick.h"
 #import "IfLogicEndBrick.h"
+#import "SetXBrick.h"
+#import "SetYBrick.h"
+#import "PlaceAtBrick.h"
 
 @implementation BrickMoveManagerAbstractTest
 
@@ -491,7 +494,79 @@
     return addedBricks;
 }
 
+-(NSUInteger)addWaitSetXSetYWaitPlaceAtWaitBricksToScript:(Script*)script
+{
+    /*  Setup:
+     
+     0  waitBrickA
+     1  setXBrickA
+     2  setYBrickA
+     3  waitBrickB
+     4  placeAtXYA
+     5  waitBrickC
+     
+     */
+    
+    NSUInteger addedBricks = 0;
 
+    // 0
+    WaitBrick *waitBrickA = [[WaitBrick alloc] init];
+    [script.brickList addObject:waitBrickA];
+    addedBricks++;
+    
+    // 1
+    Formula *position = [[Formula alloc] init];
+    FormulaElement *formulaTree = [[FormulaElement alloc] init];
+    formulaTree.type = NUMBER;
+    formulaTree.value = @"20";
+    position.formulaTree = formulaTree;
+    
+    SetXBrick *setXBrickA = [[SetXBrick alloc] init];
+    setXBrickA.script = script;
+    setXBrickA.xPosition = position;
+    [script.brickList addObject:setXBrickA];
+    addedBricks++;
+    
+    // 2
+    SetYBrick *setYBrickA = [[SetYBrick alloc] init];
+    setYBrickA.script = script;
+    setYBrickA.yPosition = position;
+    [script.brickList addObject:setYBrickA];
+    addedBricks++;
+
+    // 3
+    WaitBrick *waitBrickB = [[WaitBrick alloc] init];
+    [script.brickList addObject:waitBrickB];
+    addedBricks++;
+    
+    // 4
+    Formula* yPosition =[[Formula alloc] init];
+    FormulaElement* formulaTree0  = [[FormulaElement alloc] init];
+    formulaTree0.type = NUMBER;
+    formulaTree0.value = @"20";
+    yPosition.formulaTree = formulaTree0;
+    
+    Formula* xPosition =[[Formula alloc] init];
+    FormulaElement* formulaTree1  = [[FormulaElement alloc] init];
+    formulaTree1.type = NUMBER;
+    formulaTree1.value = @"20";
+    xPosition.formulaTree = formulaTree1;
+    
+    PlaceAtBrick* placeAtXYA = [[PlaceAtBrick alloc]init];
+    placeAtXYA.script = script;
+    placeAtXYA.yPosition = yPosition;
+    placeAtXYA.xPosition = xPosition;
+    [script.brickList addObject:placeAtXYA];
+    addedBricks++;
+    
+    // 5
+    WaitBrick *waitBrickC = [[WaitBrick alloc] init];
+    [script.brickList addObject:waitBrickC];
+    addedBricks++;
+    
+
+    return addedBricks;
+}
 
 
 @end
