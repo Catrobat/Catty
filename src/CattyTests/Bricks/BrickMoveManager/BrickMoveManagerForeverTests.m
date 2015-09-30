@@ -64,11 +64,11 @@
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:1 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:3 inSection:0];
     
-    BOOL canMoveInsideForeverBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
                                                                                itemAtIndexPath:indexPathFrom
                                                                             canMoveToIndexPath:indexPathTo
                                                                                      andObject:self.spriteObject];
-    XCTAssertFalse(canMoveInsideForeverBrickEditMode, @"Should not be allowed to move ForeverBrick inside other ForeverBrick");
+    XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move ForeverBrick inside other ForeverBrick");
 }
 
 - (void)testMoveForeverEndToCreateInvalidNestedLoops {
@@ -95,11 +95,11 @@
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:2 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:3 inSection:0];
     
-    BOOL canMoveInsideForeverBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
                                                                                itemAtIndexPath:indexPathFrom
                                                                             canMoveToIndexPath:indexPathTo
                                                                                      andObject:self.spriteObject];
-    XCTAssertFalse(canMoveInsideForeverBrickEditMode, @"Should not be allowed to move ForeverEnd-Brick inside other ForeverBrick");
+    XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move ForeverEnd-Brick inside other ForeverBrick");
 }
 
 - (void)testMoveForeverEndToCreateValidNestedLoops {
@@ -126,11 +126,11 @@
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:2 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:4 inSection:0];
     
-    BOOL canMoveInsideForeverBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
                                                                                itemAtIndexPath:indexPathFrom
                                                                             canMoveToIndexPath:indexPathTo
                                                                                      andObject:self.spriteObject];
-    XCTAssertFalse(canMoveInsideForeverBrickEditMode, @"Should not be allowed to move ForeverEnd-Brick below other ForeverEnd-Brick");
+    XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move ForeverEnd-Brick below other ForeverEnd-Brick");
 }
 
 - (void)testMoveForeverBeginToCreateValidNestedLoops {
@@ -157,11 +157,11 @@
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:3 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:1 inSection:0];
     
-    BOOL canMoveInsideForeverBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
                                                                                itemAtIndexPath:indexPathFrom
                                                                             canMoveToIndexPath:indexPathTo
                                                                                      andObject:self.spriteObject];
-    XCTAssertFalse(canMoveInsideForeverBrickEditMode, @"Should not be allowed to move ForeverBegin-Brick away to leave something below foreverEnd.");
+    XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move ForeverBegin-Brick away to leave something below foreverEnd.");
 }
 
 - (void)testMoveIfBrickBeginInsideForeverBrickToOutside {
@@ -201,11 +201,11 @@
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:2 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:1 inSection:0];
     
-    BOOL canMoveAboveForeverBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
                                                                               itemAtIndexPath:indexPathFrom
                                                                            canMoveToIndexPath:indexPathTo
                                                                                     andObject:self.spriteObject];
-    XCTAssertFalse(canMoveAboveForeverBrickEditMode, @"Should not be allowed to move IfBrick inside forever-loop above ForeverBrick");
+    XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move IfBrick inside forever-loop above ForeverBrick");
 }
 
 - (void)testMoveWaitBrickBelowForeverBrickInsideIfBrick {
@@ -260,11 +260,11 @@
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:3 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:4 inSection:0];
     
-    BOOL canMoveBelowForeverEndBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
                                                                                  itemAtIndexPath:indexPathFrom
                                                                               canMoveToIndexPath:indexPathTo
                                                                                        andObject:self.spriteObject];
-    XCTAssertFalse(canMoveBelowForeverEndBrickEditMode, @"Should not be allowed to move WaitBrick below forever-loop of if-branch");
+    XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move WaitBrick below forever-loop of if-branch");
 }
 
 - (void)testMoveWaitBrickBelowForeverBrickInsideElse {
@@ -319,11 +319,11 @@
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:6 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:7 inSection:0];
     
-    BOOL canMoveBelowForeverEndBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
                                                                                  itemAtIndexPath:indexPathFrom
                                                                               canMoveToIndexPath:indexPathTo
                                                                                        andObject:self.spriteObject];
-    XCTAssertFalse(canMoveBelowForeverEndBrickEditMode, @"Should not be allowed to move WaitBrick below forever-loop of else-branch");
+    XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move WaitBrick below forever-loop of else-branch");
 }
 
 - (void)testMoveWaitBrickBeforeForeverBrickInsideIfBrick {
@@ -378,11 +378,11 @@
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:3 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:2 inSection:0];
     
-    BOOL canMoveBeforeForeverBeginBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
                                                                                  itemAtIndexPath:indexPathFrom
                                                                               canMoveToIndexPath:indexPathTo
                                                                                        andObject:self.spriteObject];
-    XCTAssertTrue(canMoveBeforeForeverBeginBrickEditMode, @"Should be allowed to move WaitBrick before forever-loop of if-branch");
+    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move WaitBrick before forever-loop of if-branch");
 }
 
 - (void)testMoveWaitBrickBeforeForeverBrickInsideElse {
@@ -437,11 +437,11 @@
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:6 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:5 inSection:0];
     
-    BOOL canMoveBeforeForeverBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
                                                                                  itemAtIndexPath:indexPathFrom
                                                                               canMoveToIndexPath:indexPathTo
                                                                                        andObject:self.spriteObject];
-    XCTAssertTrue(canMoveBeforeForeverBrickEditMode, @"Should be allowed to move WaitBrick before forever-loop of else-branch");
+    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move WaitBrick before forever-loop of else-branch");
 }
 
 - (void)testMoveWaitBrickFromOneForeverLoopInIfBranchToAnotherInElseBranch {
@@ -496,11 +496,11 @@
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:3 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:6 inSection:0];
     
-    BOOL canMoveFromOneForeverLoopToAnotherEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
                                                                                     itemAtIndexPath:indexPathFrom
                                                                                  canMoveToIndexPath:indexPathTo
                                                                                           andObject:self.spriteObject];
-    XCTAssertTrue(canMoveFromOneForeverLoopToAnotherEditMode, @"Should be allowed to move WaitBrick from one ForeverLoop to another");
+    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move WaitBrick from one ForeverLoop to another");
 }
 
 - (void)testMoveWaitBrickFromOneForeverLoopInElseBranchToAnotherInIfBranch {
@@ -555,11 +555,11 @@
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:6 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:3 inSection:0];
     
-    BOOL canMoveFromOneForeverLoopToAnotherEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
                                                                                itemAtIndexPath:indexPathFrom
                                                                             canMoveToIndexPath:indexPathTo
                                                                                      andObject:self.spriteObject];
-    XCTAssertTrue(canMoveFromOneForeverLoopToAnotherEditMode, @"Should be allowed to move WaitBrick from one ForeverLoop to another");
+    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move WaitBrick from one ForeverLoop to another");
 }
 
 - (void)testMoveWaitBrickFromOneForeverLoopInElseBranchToAnotherInIfBranchAllTogetherInForeverLoop {
@@ -628,11 +628,11 @@
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:7 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:4 inSection:0];
     
-    BOOL canMoveFromOneForeverLoopToAnotherEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
                                                                                         itemAtIndexPath:indexPathFrom
                                                                                      canMoveToIndexPath:indexPathTo
                                                                                               andObject:self.spriteObject];
-    XCTAssertTrue(canMoveFromOneForeverLoopToAnotherEditMode, @"Should be allowed to move WaitBrick from one ForeverLoop to another all together in ForeverLoop.");
+    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move WaitBrick from one ForeverLoop to another all together in ForeverLoop.");
 }
 
 - (void)testMoveForeverEndBrickInNestedIfElseStructureToAllPossibleDestinations {

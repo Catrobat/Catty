@@ -63,11 +63,11 @@
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:1 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:3 inSection:0];
     
-    BOOL canMoveInsideRepeatBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
                                                                               itemAtIndexPath:indexPathFrom
                                                                            canMoveToIndexPath:indexPathTo
                                                                                     andObject:self.spriteObject];
-    XCTAssertFalse(canMoveInsideRepeatBrickEditMode, @"Should not be allowed to move RepeatBrick inside other RepeatBrick");
+    XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move RepeatBrick inside other RepeatBrick");
 }
 
 - (void)testMoveIfBrickInsideRepeatBrick {
@@ -107,11 +107,11 @@
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:2 inSection:0];
     NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:1 inSection:0];
     
-    BOOL canMoveAboveRepeatBrickEditMode = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
+    BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
                                                                                       itemAtIndexPath:indexPathFrom
                                                                                    canMoveToIndexPath:indexPathTo
                                                                                             andObject:self.spriteObject];
-    XCTAssertFalse(canMoveAboveRepeatBrickEditMode, @"Should not be allowed to move IfBrick inside repeat-loop above RepeatBrick");    
+    XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move IfBrick inside repeat-loop above RepeatBrick");    
 }
 
 - (void)testMoveWaitBrickToAllPossibleDestinations {
