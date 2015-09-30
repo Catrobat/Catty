@@ -48,6 +48,7 @@
 #import "DataTransferMessage.h"
 #import "NSMutableArray+CustomExtensions.h"
 #import "UIDefines.h"
+#import "DescriptionPopopViewController.h"
 
 @interface MyProgramsViewController () <CatrobatActionSheetDelegate, ProgramUpdateDelegate,
                                         CatrobatAlertViewDelegate, UITextFieldDelegate,
@@ -56,7 +57,6 @@
 @property (nonatomic) NSInteger programsCounter;
 @property (nonatomic, strong) NSArray *sectionTitles;
 @property (nonatomic, strong) NSMutableDictionary *programLoadingInfoDict;
-@property (nonatomic, strong) Program *selectedProgram;
 @property (nonatomic, strong) Program *defaultProgram;
 @end
 
@@ -469,6 +469,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (self.editing) {
         return NO;
     }
+    if ([self dismissPopupWithCode:NO]) {
+        return NO;
+    }
 
     static NSString *segueToContinue = kSegueToContinue;
     static NSString *segueToNewProgram = kSegueToNewProgram;
@@ -621,18 +624,29 @@ static NSCharacterSet *blockedCharacterSet = nil;
             NSDictionary *payload = (NSDictionary*)actionSheet.dataTransferMessage.payload;
             ProgramLoadingInfo *info = (ProgramLoadingInfo*)payload[kDTPayloadProgramLoadingInfo];
             Program *program = [Program programWithLoadingInfo:info];
-            [Util askUserForTextAndPerformAction:@selector(updateProgramDescriptionActionWithText:sourceProgram:)
-                                          target:self
-                                    cancelAction:nil 
-                                      withObject:program
-                                     promptTitle:kLocalizedSetDescription
-                                   promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedDescription]
-                                     promptValue:program.header.programDescription  
-                               promptPlaceholder:kLocalizedEnterYourProgramDescriptionHere
-                                  minInputLength:kMinNumOfProgramDescriptionCharacters
-                                  maxInputLength:kMaxNumOfProgramDescriptionCharacters
-                             blockedCharacterSet:[self blockedCharacterSet]
-                        invalidInputAlertMessage:kLocalizedInvalidDescriptionDescription];
+            if (self.popupViewController == nil) {
+                DescriptionPopopViewController *popupViewController = [[DescriptionPopopViewController alloc] init];
+                popupViewController.delegate = self;
+                self.tableView.scrollEnabled = NO;
+                self.navigationController.toolbar.userInteractionEnabled = NO;
+                self.navigationController.navigationBar.userInteractionEnabled = NO;
+                self.selectedProgram = program;
+                [self presentPopupViewController:popupViewController WithFrame:self.tableView.frame upwardsCenterByFactor:1];
+            } else {
+                [self dismissPopupWithCode:NO];
+            }
+//            [Util askUserForTextAndPerformAction:@selector(updateProgramDescriptionActionWithText:sourceProgram:)
+//                                          target:self
+//                                    cancelAction:nil 
+//                                      withObject:program
+//                                     promptTitle:kLocalizedSetDescription
+//                                   promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedDescription]
+//                                     promptValue:program.header.programDescription  
+//                               promptPlaceholder:kLocalizedEnterYourProgramDescriptionHere
+//                                  minInputLength:kMinNumOfProgramDescriptionCharacters
+//                                  maxInputLength:kMaxNumOfProgramDescriptionCharacters
+//                             blockedCharacterSet:[self blockedCharacterSet]
+//                        invalidInputAlertMessage:kLocalizedInvalidDescriptionDescription];
 //        } else if (buttonIndex == 3) {
 //            // Upload button
         }
@@ -816,5 +830,23 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self setSectionHeaders];
     [self.tableView reloadData];
 }
+
+#pragma mark - popup delegate
+- (BOOL)dismissPopupWithCode:(BOOL)save
+{
+    if (self.popupViewController != nil) {
+        [self dismissPopupViewController];
+        if (save) {
+            [self updateProgramDescriptionActionWithText:self.changedDescription sourceProgram:self.selectedProgram];
+        }
+        self.selectedProgram = nil;
+        self.tableView.scrollEnabled = YES;
+        self.navigationController.toolbar.userInteractionEnabled = YES;
+        self.navigationController.navigationBar.userInteractionEnabled = YES;
+        return YES;
+    }
+    return NO;
+}
+
 
 @end
