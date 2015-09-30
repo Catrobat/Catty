@@ -202,7 +202,7 @@
     [self.viewController.collectionView reloadData];
     
     NSUInteger addedBricks = 1;
-    NSUInteger sourceIDX = 11;
+    NSUInteger sourceIDX = 15;
     NSUInteger validTarget1 = 14;
     NSUInteger validTarget2 = 18;
     NSUInteger validTarget3 = 21;
@@ -219,8 +219,8 @@
     XCTAssertEqual(addedBricks, [self.viewController.collectionView numberOfItemsInSection:0]);
     
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:sourceIDX inSection:0];
-    
-    for(NSUInteger destinationIDX = 1; destinationIDX<=21; destinationIDX++) {
+
+    for(NSUInteger destinationIDX = 1; destinationIDX < addedBricks; destinationIDX++) {
         if( (destinationIDX != validTarget1) && (destinationIDX != validTarget2) && (destinationIDX != validTarget3) ) {
             NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:destinationIDX inSection:0];
             
