@@ -21,6 +21,6 @@
  */
 
 protocol CBBackendProtocol {
-    func scriptContextForSequenceList(sequenceList: CBScriptSequenceList, spriteNode: CBSpriteNode)
-        -> CBScriptContext
+    func scriptContextForSequenceList(sequenceList: CBScriptSequenceList,
+        spriteNode: CBSpriteNode, broadcastHandler: CBBroadcastHandlerProtocol) -> CBScriptContext
 }

@@ -20,7 +20,6 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBBackendProtocol {
-    func scriptContextForSequenceList(sequenceList: CBScriptSequenceList,
-        spriteNode: CBSpriteNode, broadcastHandler: CBBroadcastHandlerProtocol) -> CBScriptContext
+protocol CBInstructionProtocol {
+    func instruction() -> CBInstruction
 }
