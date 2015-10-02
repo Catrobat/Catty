@@ -65,9 +65,12 @@ typealias CBBroadcastQueueElement = (message: String, senderScriptContext: CBScr
     broadcastType: CBBroadcastType)
 typealias CBExecClosure = (context: CBScriptContext, scheduler: CBSchedulerProtocol) -> Void
 typealias CBHighPriorityExecClosure = (context: CBScriptContext, scheduler: CBSchedulerProtocol, broadcastHandler: CBBroadcastHandlerProtocol) -> Void
-typealias CBInstructionClosure = (brick: Brick, context: CBScriptContext) -> CBInstruction
 typealias CBLongActionClosure = (SKNode, CGFloat) -> Void
 typealias CBLongActionCreateClosure = (duration: NSTimeInterval) -> CBLongActionClosure
+
+// TODO: remove this after brick-instruction-map is not needed any more...
+typealias CBInstructionClosure = (brick: Brick) -> CBInstruction
+
 
 enum CBInstruction {
     case HighPriorityExecClosure(closure: CBHighPriorityExecClosure)

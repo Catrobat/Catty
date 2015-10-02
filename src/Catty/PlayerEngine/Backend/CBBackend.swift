@@ -26,21 +26,17 @@ final class CBBackend: CBBackendProtocol {
 
     // MARK: - Properties
     var logger: CBLogger
-    private let _scheduler: CBSchedulerProtocol
     private let _instructionHandler: CBInstructionHandlerProtocol
 
     // MARK: - Initializers
-    init(logger: CBLogger, scheduler: CBSchedulerProtocol,
-        instructionHandler: CBInstructionHandlerProtocol)
-    {
+    init(logger: CBLogger, instructionHandler: CBInstructionHandlerProtocol) {
         self.logger = logger
-        _scheduler = scheduler
         _instructionHandler = instructionHandler
     }
 
     // MARK: - Operations
-    func scriptContextForSequenceList(sequenceList: CBScriptSequenceList,
-        spriteNode: CBSpriteNode) -> CBScriptContext
+    func scriptContextForSequenceList(sequenceList: CBScriptSequenceList, spriteNode: CBSpriteNode)
+        -> CBScriptContext
     {
         logger.info("Generating ScriptContext of \(sequenceList.script)")
         var context: CBScriptContext? = nil
@@ -60,24 +56,22 @@ final class CBBackend: CBBackendProtocol {
         }
 
         // generate instructions and add them to script context
-        context! += _instructionsForSequence(sequenceList.sequenceList, context: context!)
+        context! += _instructionsForSequence(sequenceList.sequenceList)
         return context!
     }
 
-    private func _instructionsForSequence(sequenceList: CBSequenceList,
-        context: CBScriptContext) -> [CBInstruction]
-    {
+    private func _instructionsForSequence(sequenceList: CBSequenceList) -> [CBInstruction] {
         var instructionList = [CBInstruction]()
         sequenceList.forEach {
             switch $0 {
             case let opSequence as CBOperationSequence:
                 instructionList += opSequence.operationList.map {
-                    return _instructionHandler.instructionForBrick($0.brick, withContext: context)
+                    return _instructionHandler.instructionForBrick($0.brick)
                 }
             case let ifSequence as CBIfConditionalSequence:
-                instructionList += self._instructionsForIfSequence(ifSequence, context: context)
+                instructionList += self._instructionsForIfSequence(ifSequence)
             case let condSequence as CBConditionalSequence:
-                instructionList += self._instructionsForLoopSequence(condSequence, context: context)
+                instructionList += self._instructionsForLoopSequence(condSequence)
             default:
                 fatalError("Unknown sequence type! THIS SHOULD NEVER HAPPEN!")
             }
@@ -85,13 +79,11 @@ final class CBBackend: CBBackendProtocol {
         return instructionList
     }
 
-    private func _instructionsForIfSequence(ifSequence: CBIfConditionalSequence,
-        context: CBScriptContext) -> [CBInstruction]
-    {
+    private func _instructionsForIfSequence(ifSequence: CBIfConditionalSequence) -> [CBInstruction] {
         var instructionList = [CBInstruction]()
 
         // add if condition evaluation instruction
-        let ifInstructions = _instructionsForSequence(ifSequence.sequenceList, context: context)
+        let ifInstructions = _instructionsForSequence(ifSequence.sequenceList)
         let numberOfIfInstructions = ifInstructions.count
         instructionList += CBInstruction.ExecClosure { (context, scheduler) in
             if ifSequence.checkCondition() == false {
@@ -109,8 +101,7 @@ final class CBBackend: CBBackendProtocol {
         var numberOfElseInstructions = 0
         if ifSequence.elseSequenceList != nil {
             // add else instructions
-            let elseInstructions = _instructionsForSequence(ifSequence.elseSequenceList!,
-                context: context)
+            let elseInstructions = _instructionsForSequence(ifSequence.elseSequenceList!)
             numberOfElseInstructions = elseInstructions.count
             // add jump instruction to be the last if-instruction
             // (needed to avoid execution of else sequence)
@@ -123,24 +114,21 @@ final class CBBackend: CBBackendProtocol {
         return instructionList
     }
 
-    private func _instructionsForLoopSequence(conditionalSequence: CBConditionalSequence,
-        context: CBScriptContext) -> [CBInstruction]
-    {
-        let bodyInstructions = _instructionsForSequence(conditionalSequence.sequenceList,
-            context: context)
+    private func _instructionsForLoopSequence(loopSequence: CBConditionalSequence) -> [CBInstruction] {
+        let bodyInstructions = _instructionsForSequence(loopSequence.sequenceList)
         let numOfBodyInstructions = bodyInstructions.count
 
         let loopEndInstruction = CBInstruction.HighPriorityExecClosure { (context, scheduler, _) in
             var numOfInstructionsToJump = 0
-            if conditionalSequence.checkCondition() {
+            if loopSequence.checkCondition() {
                 numOfInstructionsToJump -= numOfBodyInstructions + 1 // omits loop begin instruction
-                conditionalSequence.lastLoopIterationStartTime = NSDate()
+                loopSequence.lastLoopIterationStartTime = NSDate()
             } else {
-                conditionalSequence.resetCondition() // IMPORTANT: reset loop counter right now
+                loopSequence.resetCondition() // IMPORTANT: reset loop counter right now
             }
 
             // minimum duration (CatrobatLanguage specification!)
-            let duration = NSDate().timeIntervalSinceDate(conditionalSequence.lastLoopIterationStartTime)
+            let duration = NSDate().timeIntervalSinceDate(loopSequence.lastLoopIterationStartTime)
             self.logger.debug("  Duration for Sequence: \(duration*1000)ms")
             if duration < 0.02 {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
@@ -164,10 +152,10 @@ final class CBBackend: CBBackendProtocol {
         }
 
         let loopBeginInstruction = CBInstruction.ExecClosure { (context, scheduler) in
-            if conditionalSequence.checkCondition() {
-                conditionalSequence.lastLoopIterationStartTime = NSDate()
+            if loopSequence.checkCondition() {
+                loopSequence.lastLoopIterationStartTime = NSDate()
             } else {
-                conditionalSequence.resetCondition() // IMPORTANT: reset loop counter right now
+                loopSequence.resetCondition() // IMPORTANT: reset loop counter right now
                 let numOfInstructionsToJump = numOfBodyInstructions + 1 // includes loop end instr.!
                 context.jump(numberOfInstructions: numOfInstructionsToJump)
             }

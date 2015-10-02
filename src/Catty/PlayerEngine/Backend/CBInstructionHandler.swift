@@ -24,20 +24,18 @@ import AudioToolbox
 import Darwin // usleep
 
 protocol CBInstructionHandlerProtocol {
-    func instructionForBrick(brick: Brick, withContext context: CBScriptContext) -> CBInstruction
+    func instructionForBrick(brick: Brick) -> CBInstruction
 }
 
 final class CBInstructionHandler: CBInstructionHandlerProtocol {
 
     var logger: CBLogger
-    private let _scheduler: CBSchedulerProtocol
     private var _brickInstructionMap = [String:CBInstructionClosure]()
     static let vibrateSerialQueue = dispatch_queue_create("org.catrobat.vibrate.queue", DISPATCH_QUEUE_SERIAL)
 
     // MARK: - Initializers
-    init(logger: CBLogger, scheduler: CBSchedulerProtocol) {
+    init(logger: CBLogger) {
         self.logger = logger
-        _scheduler = scheduler
 
         // brick actions that have been ported to Swift yet
         func _setupBrickInstructionMapping() {
@@ -66,9 +64,9 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
     }
 
     // MARK: - Operations
-    func instructionForBrick(brick: Brick, withContext context: CBScriptContext) -> CBInstruction {
+    func instructionForBrick(brick: Brick) -> CBInstruction {
         if let instruction = _brickInstructionMap["\(brick.dynamicType.description())"] {
-            return instruction(brick: brick, context: context)
+            return instruction(brick: brick)
         }
 
         // cannot find in map => check if conforms to CBInstructionProtocol (i.e. Brick extension)
@@ -81,7 +79,7 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
     }
     
     // MARK: - Mapped instructions
-    private func _waitInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+    private func _waitInstruction(brick: Brick) -> CBInstruction {
         guard let waitBrick = brick as? WaitBrick,
               let object = waitBrick.script?.object
         else { fatalError("This should never happen!") }
@@ -108,7 +106,7 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
         }
     }
 
-    private func _glideToInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+    private func _glideToInstruction(brick: Brick) -> CBInstruction {
         guard let glideToBrick = brick as? GlideToBrick,
               let durationFormula = glideToBrick.durationInSeconds,
               let object = glideToBrick.script?.object,
@@ -147,7 +145,7 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
         })
     }
 
-    private func _broadcastWaitInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+    private func _broadcastWaitInstruction(brick: Brick) -> CBInstruction {
         guard let bcWaitBrick = brick as? BroadcastWaitBrick
         else { fatalError("This should never happen!") }
 
@@ -157,7 +155,7 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
         }
     }
 
-    private func _playSoundInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+    private func _playSoundInstruction(brick: Brick) -> CBInstruction {
         guard let playSoundBrick = brick as? PlaySoundBrick,
               let objectName = playSoundBrick.script?.object?.name,
               let projectPath = playSoundBrick.script?.object?.projectPath()
@@ -177,7 +175,7 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
         }
     }
 
-    private func _stopAllSoundsInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+    private func _stopAllSoundsInstruction(brick: Brick) -> CBInstruction {
         if brick is StopAllSoundsBrick == false { fatalError("This should never happen!") }
 
         let audioManager = AudioManager.sharedAudioManager()
@@ -189,7 +187,7 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
         }
     }
 
-    private func _speakInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+    private func _speakInstruction(brick: Brick) -> CBInstruction {
         guard let speakBrick = brick as? SpeakBrick,
               let object = speakBrick.script?.object
         else { fatalError("This should never happen!") }
@@ -216,7 +214,7 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
         }
     }
 
-    private func _changeVolumeByNInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+    private func _changeVolumeByNInstruction(brick: Brick) -> CBInstruction {
         guard let changeVolumeByNBrick = brick as? ChangeVolumeByNBrick,
               let spriteObject = changeVolumeByNBrick.script?.object
         else { fatalError("This should never happen!") }
@@ -233,7 +231,7 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
         }
     }
 
-    private func _setVolumeToInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+    private func _setVolumeToInstruction(brick: Brick) -> CBInstruction {
         guard let setVolumeToBrick = brick as? SetVolumeToBrick,
               let spriteObject = setVolumeToBrick.script?.object
         else { fatalError("This should never happen") }
@@ -249,7 +247,7 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
         }
     }
 
-    private func _setVariableInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+    private func _setVariableInstruction(brick: Brick) -> CBInstruction {
         guard let setVariableBrick = brick as? SetVariableBrick,
               let spriteObject = setVariableBrick.script?.object,
               let variables = spriteObject.program?.variables
@@ -266,7 +264,7 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
         }
     }
 
-    private func _changeVariableInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+    private func _changeVariableInstruction(brick: Brick) -> CBInstruction {
         guard let changeVariableBrick = brick as? ChangeVariableBrick,
               let spriteObject = changeVariableBrick.script?.object,
               let variables = spriteObject.program?.variables
@@ -283,7 +281,7 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
         }
     }
 
-    private func _flashLightOnInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+    private func _flashLightOnInstruction(brick: Brick) -> CBInstruction {
         if brick is LedOnBrick == false { fatalError("This should never happen!") }
         return CBInstruction.ExecClosure { (context, scheduler) in
             self.logger.debug("Performing: FlashLightOnBrick/LEDOnBrick")
@@ -292,7 +290,7 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
         }
     }
 
-    private func _flashLightOffInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+    private func _flashLightOffInstruction(brick: Brick) -> CBInstruction {
         if brick is LedOffBrick == false { fatalError("This should never happen!") }
         return CBInstruction.ExecClosure { (context, scheduler) in
             self.logger.debug("Performing: FlashLightOnBrick/LEDOnBrick")
@@ -301,7 +299,7 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
         }
     }
 
-    private func _vibrationInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+    private func _vibrationInstruction(brick: Brick) -> CBInstruction {
         guard let vibrationBrick = brick as? VibrationBrick,
               let spriteObject = vibrationBrick.script?.object
         else { fatalError("This should never happen!") }
@@ -324,7 +322,7 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
         }
     }
 
-    private func _moveNStepsInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+    private func _moveNStepsInstruction(brick: Brick) -> CBInstruction {
         guard let moveNStepsBrick = brick as? MoveNStepsBrick,
               let object = moveNStepsBrick.script?.object,
               let spriteNode = object.spriteNode,
@@ -341,7 +339,7 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
         })
     }
 
-    private func _ifOnEdgeBounceInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
+    private func _ifOnEdgeBounceInstruction(brick: Brick) -> CBInstruction {
         guard let ifOnEdgeBounceBrick = brick as? IfOnEdgeBounceBrick,
               let object = ifOnEdgeBounceBrick.script?.object,
               let spriteNode = object.spriteNode,

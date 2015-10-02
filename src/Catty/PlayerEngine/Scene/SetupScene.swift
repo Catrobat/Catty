@@ -41,14 +41,14 @@ final class SetupScene : NSObject {
         bcHandler.scheduler = scheduler
 
         // setup instruction handler
-        let instructionHandler = CBInstructionHandler(logger: instrHandlerLogger, scheduler: scheduler)
+        let instructionHandler = CBInstructionHandler(logger: instrHandlerLogger)
 
         // setup frontend
         let frontend = CBFrontend(logger: frontendLogger, program: program)
         frontend.addSequenceFilter(CBFilterRedundantBroadcastWaits())
 
         // setup backend
-        let backend = CBBackend(logger: backendLogger, scheduler: scheduler, instructionHandler: instructionHandler)
+        let backend = CBBackend(logger: backendLogger, instructionHandler: instructionHandler)
 
         // finally create scene
         let programSize = CGSizeMake(CGFloat(program.header.screenWidth.floatValue),
