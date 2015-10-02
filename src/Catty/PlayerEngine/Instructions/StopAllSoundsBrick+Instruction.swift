@@ -20,27 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension PlaySoundBrick: CBInstructionProtocol {
-
+extension StopAllSoundsBrick: CBInstructionProtocol {
+    
     func instruction() -> CBInstruction {
-
-        guard let objectName = self.script?.object?.name,
-              let projectPath = self.script?.object?.projectPath()
-        else { fatalError("This should never happen!") }
-
-        guard let sound = self.sound,
-              let fileName = sound.fileName
-        else { return .InvalidInstruction() }
-
-        let filePath = projectPath + kProgramSoundsDirName
+        
         let audioManager = AudioManager.sharedAudioManager()
-
+        
         return CBInstruction.ExecClosure { (context, scheduler) in
-//            self.logger.debug("Performing: PlaySoundBrick")
-            audioManager.playSoundWithFileName(fileName, andKey: objectName, atFilePath: filePath)
+            //            self.logger.debug("Performing: StopAllSoundsBrick")
+            audioManager.stopAllSounds()
             context.state = .Runnable
         }
-
+        
     }
-
+    
 }

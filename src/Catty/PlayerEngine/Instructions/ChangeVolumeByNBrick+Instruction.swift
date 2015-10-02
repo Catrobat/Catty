@@ -20,30 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SpeakBrick: CBInstructionProtocol {
-
+extension ChangeVolumeByNBrick: CBInstructionProtocol {
+    
     func instruction() -> CBInstruction {
-
-        guard let object = self.script?.object else { fatalError("This should never happen!") }
-
+        
+        guard let spriteObject = self.script?.object else { fatalError("This should never happen!") }
+        
+        let volumeFormula = self.volume
+        let audioManager = AudioManager.sharedAudioManager()
+        let spriteObjectName = spriteObject.name
+        
         return CBInstruction.ExecClosure { (context, scheduler) in
-//            self.logger.debug("Performing: SpeakBrick")
-            var speakText = ""
-            if self.formula.formulaTree.type == STRING {
-                speakText = self.formula.formulaTree.value
-            } else {
-                // remove trailing 0's behind the decimal point!!
-                speakText = String(format: "%g", self.formula.interpretDoubleForSprite(object))
-            }
-//            self.logger.debug("Speak text: '\(speakText)'")
-            let utterance = AVSpeechUtterance(string: speakText)
-            utterance.rate = (floor(NSFoundationVersionNumber) < 1200 ? 0.15 : 0.5)
-
-            let synthesizer = AVSpeechSynthesizer()
-            synthesizer.speakUtterance(utterance)
+            //            self.logger.debug("Performing: ChangeVolumeByNBrick")
+            let volume = volumeFormula.interpretDoubleForSprite(spriteObject)
+            audioManager.changeVolumeByPercent(CGFloat(volume), forKey: spriteObjectName)
             context.state = .Runnable
         }
-
+        
     }
-
+    
 }
+

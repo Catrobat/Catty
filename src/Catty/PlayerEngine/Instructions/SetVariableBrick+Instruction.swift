@@ -20,30 +20,24 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SpeakBrick: CBInstructionProtocol {
+extension SetVariableBrick: CBInstructionProtocol {
     
     func instruction() -> CBInstruction {
-        
-        guard let object = self.script?.object else { fatalError("This should never happen!") }
-        
+
+        guard let spriteObject = self.script?.object,
+              let variables = spriteObject.program?.variables
+        else { fatalError("This should never happen!") }
+
+        let userVariable = self.userVariable
+        let variableFormula = self.variableFormula
+
         return CBInstruction.ExecClosure { (context, scheduler) in
-            //            self.logger.debug("Performing: SpeakBrick")
-            var speakText = ""
-            if self.formula.formulaTree.type == STRING {
-                speakText = self.formula.formulaTree.value
-            } else {
-                // remove trailing 0's behind the decimal point!!
-                speakText = String(format: "%g", self.formula.interpretDoubleForSprite(object))
-            }
-            //            self.logger.debug("Speak text: '\(speakText)'")
-            let utterance = AVSpeechUtterance(string: speakText)
-            utterance.rate = (floor(NSFoundationVersionNumber) < 1200 ? 0.15 : 0.5)
-            
-            let synthesizer = AVSpeechSynthesizer()
-            synthesizer.speakUtterance(utterance)
+//            self.logger.debug("Performing: SetVariableBrick")
+            let result = variableFormula.interpretDoubleForSprite(spriteObject)
+            variables.setUserVariable(userVariable, toValue: result)
             context.state = .Runnable
         }
-        
+
     }
-    
+
 }

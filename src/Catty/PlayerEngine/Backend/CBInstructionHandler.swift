@@ -39,8 +39,6 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
 
         // brick actions that have been ported to Swift yet
         func _setupBrickInstructionMapping() {
-            _brickInstructionMap["SetVolumeToBrick"] = _setVolumeToInstruction
-            _brickInstructionMap["SetVariableBrick"] = _setVariableInstruction
             _brickInstructionMap["ChangeVariableBrick"] = _changeVariableInstruction
             _brickInstructionMap["LedOnBrick"] = _flashLightOnInstruction
             _brickInstructionMap["LedOffBrick"] = _flashLightOffInstruction
@@ -67,23 +65,6 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
     }
     
     // MARK: - Mapped instructions
-    private func _setVariableInstruction(brick: Brick) -> CBInstruction {
-        guard let setVariableBrick = brick as? SetVariableBrick,
-              let spriteObject = setVariableBrick.script?.object,
-              let variables = spriteObject.program?.variables
-        else { fatalError("This should never happen!") }
-
-        let userVariable = setVariableBrick.userVariable
-        let variableFormula = setVariableBrick.variableFormula
-
-        return CBInstruction.ExecClosure { (context, scheduler) in
-            self.logger.debug("Performing: SetVariableBrick")
-            let result = variableFormula.interpretDoubleForSprite(spriteObject)
-            variables.setUserVariable(userVariable, toValue: result)
-            context.state = .Runnable
-        }
-    }
-
     private func _changeVariableInstruction(brick: Brick) -> CBInstruction {
         guard let changeVariableBrick = brick as? ChangeVariableBrick,
               let spriteObject = changeVariableBrick.script?.object,
