@@ -41,11 +41,9 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
         func _setupBrickInstructionMapping() {
 
             // long duration bricks
-            _brickInstructionMap["WaitBrick"] = _waitInstruction
             _brickInstructionMap["GlideToBrick"] = _glideToInstruction
 
             // short duration bricks
-            _brickInstructionMap["BroadcastWaitBrick"] = _broadcastWaitInstruction
             _brickInstructionMap["PlaySoundBrick"] = _playSoundInstruction
             _brickInstructionMap["StopAllSoundsBrick"] = _stopAllSoundsInstruction
             _brickInstructionMap["SpeakBrick"] = _speakInstruction
@@ -79,33 +77,6 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
     }
     
     // MARK: - Mapped instructions
-    private func _waitInstruction(brick: Brick) -> CBInstruction {
-        guard let waitBrick = brick as? WaitBrick,
-              let object = waitBrick.script?.object
-        else { fatalError("This should never happen!") }
-
-        return CBInstruction.WaitExecClosure { (_, _) in
-            let durationInSeconds = waitBrick.timeToWaitInSeconds.interpretDoubleForSprite(object)
-
-            // check if an invalid duration is given! => prevents UInt32 underflow
-            if durationInSeconds <= 0.0 { return }
-
-            // UInt32 overflow protection check
-            if durationInSeconds > 60.0 {
-                self.logger.warn("WOW!!! long time to sleep (> 1min!!!)...")
-                let wakeUpTime = NSDate().dateByAddingTimeInterval(durationInSeconds)
-                self.logger.debug("Sleeping now until \(wakeUpTime)...")
-                NSThread.sleepUntilDate(wakeUpTime)
-            } else {
-                let durationInMicroSeconds = durationInSeconds * 1_000_000
-                let uduration = UInt32(durationInMicroSeconds) // in microseconds (10^-6)
-                if uduration > 100 { // check if it makes sense at all to pause the thread...
-                    usleep(uduration)
-                }
-            }
-        }
-    }
-
     private func _glideToInstruction(brick: Brick) -> CBInstruction {
         guard let glideToBrick = brick as? GlideToBrick,
               let durationFormula = glideToBrick.durationInSeconds,
@@ -143,16 +114,6 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
                 )
             }
         })
-    }
-
-    private func _broadcastWaitInstruction(brick: Brick) -> CBInstruction {
-        guard let bcWaitBrick = brick as? BroadcastWaitBrick
-        else { fatalError("This should never happen!") }
-
-        return CBInstruction.HighPriorityExecClosure { (context, scheduler, bcHandler) in
-            bcHandler.performBroadcastWithMessage(bcWaitBrick.broadcastMessage,
-                senderContext: context, broadcastType: .BroadcastWait)
-        }
     }
 
     private func _playSoundInstruction(brick: Brick) -> CBInstruction {
