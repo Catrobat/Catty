@@ -68,10 +68,6 @@ typealias CBHighPriorityExecClosure = (context: CBScriptContext, scheduler: CBSc
 typealias CBLongActionClosure = (SKNode, CGFloat) -> Void
 typealias CBLongActionCreateClosure = (duration: NSTimeInterval) -> CBLongActionClosure
 
-// TODO: remove this after brick-instruction-map is not needed any more...
-typealias CBInstructionClosure = (brick: Brick) -> CBInstruction
-
-
 enum CBInstruction {
     case HighPriorityExecClosure(closure: CBHighPriorityExecClosure)
     case ExecClosure(closure: CBExecClosure)
@@ -157,7 +153,6 @@ struct LoggerConfig {
     static let PlayerFrontendID = "CBFrontendLogger.Debug"
     static let PlayerBackendID = "CBBackendLogger.Debug"
     static let PlayerBroadcastHandlerID = "CBBroadcastHandlerLogger.Debug"
-    static let PlayerInstructionHandlerID = "CBInstructionHandlerLogger.Debug"
 }
 
 #else // DEBUG == 1
@@ -171,7 +166,6 @@ struct LoggerConfig {
     static let PlayerFrontendID = "CBFrontendLogger.Release"
     static let PlayerBackendID = "CBBackendLogger.Release"
     static let PlayerBroadcastHandlerID = "CBBroadcastHandlerLogger.Release"
-    static let PlayerInstructionHandlerID = "CBInstructionHandlerLogger.Release"
 }
 
 ////------------------------------------------------------------------------------------------------
@@ -188,5 +182,4 @@ struct LoggerTestConfig {
     static let PlayerFrontendID = "CBFrontendLogger.Test"
     static let PlayerBackendID = "CBBackendLogger.Test"
     static let PlayerBroadcastHandlerID = "CBBroadcastHandlerLogger.Test"
-    static let PlayerInstructionHandlerID = "CBInstructionHandlerLogger.Test"
 }

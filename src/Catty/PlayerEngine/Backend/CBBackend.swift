@@ -20,18 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-import Darwin // usleep
-
 final class CBBackend: CBBackendProtocol {
 
     // MARK: - Properties
     var logger: CBLogger
-    private let _instructionHandler: CBInstructionHandlerProtocol
 
     // MARK: - Initializers
-    init(logger: CBLogger, instructionHandler: CBInstructionHandlerProtocol) {
+    init(logger: CBLogger) {
         self.logger = logger
-        _instructionHandler = instructionHandler
     }
 
     // MARK: - Operations
@@ -66,7 +62,7 @@ final class CBBackend: CBBackendProtocol {
             switch $0 {
             case let opSequence as CBOperationSequence:
                 instructionList += opSequence.operationList.map {
-                    return _instructionHandler.instructionForBrick($0.brick)
+                    return _instructionForBrick($0.brick)
                 }
             case let ifSequence as CBIfConditionalSequence:
                 instructionList += self._instructionsForIfSequence(ifSequence)
@@ -77,6 +73,14 @@ final class CBBackend: CBBackendProtocol {
             }
         }
         return instructionList
+    }
+
+    private func _instructionForBrick(brick: Brick) -> CBInstruction {
+        // check whether conforms to CBInstructionProtocol (i.e. brick extension)
+        if let instructionBrick = brick as? CBInstructionProtocol {
+            return instructionBrick.instruction() // actions that have been ported to Swift yet
+        }
+        return .Action(action: brick.action()) // fallback: poor old ObjC fellow... ;)
     }
 
     private func _instructionsForIfSequence(ifSequence: CBIfConditionalSequence) -> [CBInstruction] {

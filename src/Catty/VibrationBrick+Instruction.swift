@@ -20,7 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+//import AudioToolbox
+
 extension VibrationBrick: CBInstructionProtocol {
+
+    static let vibrateSerialQueue = dispatch_queue_create("org.catrobat.vibrate.queue", DISPATCH_QUEUE_SERIAL)
 
     func instruction() -> CBInstruction {
 
@@ -29,7 +33,7 @@ extension VibrationBrick: CBInstructionProtocol {
         let durationFormula = self.durationInSeconds
         return CBInstruction.ExecClosure { (context, scheduler) in
 //            self.logger.debug("Performing: VibrationBrick")
-            dispatch_async(CBInstructionHandler.vibrateSerialQueue, {
+            dispatch_async(VibrationBrick.vibrateSerialQueue, {
                 let durationInSeconds = durationFormula.interpretDoubleForSprite(spriteObject)
                 let max = Int(2 * durationInSeconds)
                 for var i = 1; i < max; i++ {
