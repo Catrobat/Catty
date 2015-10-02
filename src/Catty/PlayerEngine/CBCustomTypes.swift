@@ -114,8 +114,8 @@ enum CBContextState {
     // been added to the scheduler
     case Running
 
-    // indicates that a script is waiting for all BroadcastWait scripts
-    // (listening to the broadcastMessage of this script) to be finished!!
+    // indicates that a script is waiting for BroadcastWait scripts
+    // (listening to the corresponding broadcastMessage) to be finished!!
     case Waiting
 
     // indicates that CBScriptExecContext is going to be removed
