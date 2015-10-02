@@ -517,6 +517,8 @@
 		AAEF88BE1BBF11DB00717E1A /* PlaySoundBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF88BD1BBF11DB00717E1A /* PlaySoundBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
 		AAEF88C01BBF12B400717E1A /* StopAllSoundsBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF88BF1BBF12B400717E1A /* StopAllSoundsBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
 		AAEF88C21BBF131500717E1A /* SpeakBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF88C11BBF131500717E1A /* SpeakBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
+		AAEF88C41BBF13D400717E1A /* ChangeVolumeByNBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF88C31BBF13D400717E1A /* ChangeVolumeByNBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
+		AAEF88C61BBF142700717E1A /* SetVolumeToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF88C51BBF142700717E1A /* SetVolumeToBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
 		CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */; };
 		CA2D44431B12305400A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
 		CA2D44441B1231F900A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
@@ -1613,6 +1615,8 @@
 		AAEF88BD1BBF11DB00717E1A /* PlaySoundBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PlaySoundBrick+Instruction.swift"; path = "PlayerEngine/Instructions/PlaySoundBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AAEF88BF1BBF12B400717E1A /* StopAllSoundsBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StopAllSoundsBrick+Instruction.swift"; path = "PlayerEngine/Instructions/StopAllSoundsBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AAEF88C11BBF131500717E1A /* SpeakBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SpeakBrick+Instruction.swift"; path = "PlayerEngine/Instructions/SpeakBrick+Instruction.swift"; sourceTree = "<group>"; };
+		AAEF88C31BBF13D400717E1A /* ChangeVolumeByNBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChangeVolumeByNBrick+Instruction.swift"; path = "PlayerEngine/Instructions/ChangeVolumeByNBrick+Instruction.swift"; sourceTree = "<group>"; };
+		AAEF88C51BBF142700717E1A /* SetVolumeToBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetVolumeToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/SetVolumeToBrick+Instruction.swift"; sourceTree = "<group>"; };
 		B405BAC7175DD3F600B1A0FC /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		B450309F170F22EF009265D6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -4295,6 +4299,8 @@
 				AAEF88BD1BBF11DB00717E1A /* PlaySoundBrick+Instruction.swift */,
 				AAEF88BF1BBF12B400717E1A /* StopAllSoundsBrick+Instruction.swift */,
 				AAEF88C11BBF131500717E1A /* SpeakBrick+Instruction.swift */,
+				AAEF88C51BBF142700717E1A /* SetVolumeToBrick+Instruction.swift */,
+				AAEF88C31BBF13D400717E1A /* ChangeVolumeByNBrick+Instruction.swift */,
 			);
 			name = Instructions;
 			sourceTree = "<group>";
@@ -5384,6 +5390,7 @@
 				92FF31031A24DCAA00093DA7 /* Script.m in Sources */,
 				92FF30D31A24DCAA00093DA7 /* ComeToFrontBrick.m in Sources */,
 				92FF30E11A24DCAA00093DA7 /* GlideToBrick.m in Sources */,
+				AAEF88C61BBF142700717E1A /* SetVolumeToBrick+Instruction.swift in Sources */,
 				92FF32981A24E2F400093DA7 /* MoveNStepsBrickCell.m in Sources */,
 				4CF773EE1AEE786600DBBB2B /* FormulaElement+UserVariable.m in Sources */,
 				4C2EE41E1B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m in Sources */,
@@ -5464,6 +5471,7 @@
 				D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */,
 				4C724E2C1B4D3E8C00E27479 /* ForeverBrick+CBXMLHandler.m in Sources */,
 				92FF32841A24E2F400093DA7 /* NoteBrickCell.m in Sources */,
+				AAEF88C41BBF13D400717E1A /* ChangeVolumeByNBrick+Instruction.swift in Sources */,
 				92FF2E3C1A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m in Sources */,
 				92DFB0551A38960C00FA9B0F /* DrawTool.m in Sources */,
 				92FF2E9B1A24C7D800093DA7 /* Reachability.m in Sources */,
