@@ -23,10 +23,12 @@
 extension BroadcastBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
+
         let msg = self.broadcastMessage
-        return CBInstruction.HighPriorityExecClosure { (context, scheduler, bcHandler) in
+        return CBInstruction.HighPriorityExecClosure { (context, _, bcHandler) in
             bcHandler.performBroadcastWithMessage(msg, senderContext: context, broadcastType: .Broadcast)
         }
+
     }
 
 }

@@ -31,7 +31,7 @@ extension ChangeVariableBrick: CBInstructionProtocol {
         let userVariable = self.userVariable
         let variableFormula = self.variableFormula
 
-        return CBInstruction.ExecClosure { (context, scheduler) in
+        return CBInstruction.ExecClosure { (context, _) in
 //            self.logger.debug("Performing: ChangeVariableBrick")
             let result = variableFormula.interpretDoubleForSprite(spriteObject)
             variables.changeVariable(userVariable, byValue: result)

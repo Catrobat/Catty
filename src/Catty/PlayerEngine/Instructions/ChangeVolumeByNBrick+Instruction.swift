@@ -30,7 +30,7 @@ extension ChangeVolumeByNBrick: CBInstructionProtocol {
         let audioManager = AudioManager.sharedAudioManager()
         let spriteObjectName = spriteObject.name
         
-        return CBInstruction.ExecClosure { (context, scheduler) in
+        return CBInstruction.ExecClosure { (context, _) in
             //            self.logger.debug("Performing: ChangeVolumeByNBrick")
             let volume = volumeFormula.interpretDoubleForSprite(spriteObject)
             audioManager.changeVolumeByPercent(CGFloat(volume), forKey: spriteObjectName)

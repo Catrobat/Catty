@@ -39,8 +39,6 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
 
         // brick actions that have been ported to Swift yet
         func _setupBrickInstructionMapping() {
-            _brickInstructionMap["LedOnBrick"] = _flashLightOnInstruction
-            _brickInstructionMap["LedOffBrick"] = _flashLightOffInstruction
             _brickInstructionMap["VibrationBrick"] = _vibrationInstruction
             _brickInstructionMap["MoveNStepsBrick"] = _moveNStepsInstruction
             _brickInstructionMap["IfOnEdgeBounceBrick"] = _ifOnEdgeBounceInstruction
@@ -64,24 +62,6 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
     }
     
     // MARK: - Mapped instructions
-    private func _flashLightOnInstruction(brick: Brick) -> CBInstruction {
-        if brick is LedOnBrick == false { fatalError("This should never happen!") }
-        return CBInstruction.ExecClosure { (context, scheduler) in
-            self.logger.debug("Performing: FlashLightOnBrick/LEDOnBrick")
-            FlashHelper.sharedFlashHandler().turnOn()
-            context.state = .Runnable
-        }
-    }
-
-    private func _flashLightOffInstruction(brick: Brick) -> CBInstruction {
-        if brick is LedOffBrick == false { fatalError("This should never happen!") }
-        return CBInstruction.ExecClosure { (context, scheduler) in
-            self.logger.debug("Performing: FlashLightOnBrick/LEDOnBrick")
-            FlashHelper.sharedFlashHandler().turnOff()
-            context.state = .Runnable
-        }
-    }
-
     private func _vibrationInstruction(brick: Brick) -> CBInstruction {
         guard let vibrationBrick = brick as? VibrationBrick,
               let spriteObject = vibrationBrick.script?.object

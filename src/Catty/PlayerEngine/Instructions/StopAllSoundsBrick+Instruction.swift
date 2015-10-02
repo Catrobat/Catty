@@ -26,7 +26,7 @@ extension StopAllSoundsBrick: CBInstructionProtocol {
         
         let audioManager = AudioManager.sharedAudioManager()
         
-        return CBInstruction.ExecClosure { (context, scheduler) in
+        return CBInstruction.ExecClosure { (context, _) in
             //            self.logger.debug("Performing: StopAllSoundsBrick")
             audioManager.stopAllSounds()
             context.state = .Runnable

@@ -27,7 +27,7 @@ extension WaitBrick: CBInstructionProtocol {
         guard let object = self.script?.object
         else { fatalError("This should never happen!") } // (pre)fetch only once (micro-optimization)
 
-        return CBInstruction.WaitExecClosure { (_, scheduler) in
+        return CBInstruction.WaitExecClosure { (_, _) in
             let durationInSeconds = self.timeToWaitInSeconds.interpretDoubleForSprite(object)
 
             // check if an invalid duration is given! => prevents UInt32 underflow
