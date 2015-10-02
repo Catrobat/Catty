@@ -39,11 +39,6 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
 
         // brick actions that have been ported to Swift yet
         func _setupBrickInstructionMapping() {
-
-            // long duration bricks
-            _brickInstructionMap["GlideToBrick"] = _glideToInstruction
-
-            // short duration bricks
             _brickInstructionMap["PlaySoundBrick"] = _playSoundInstruction
             _brickInstructionMap["StopAllSoundsBrick"] = _stopAllSoundsInstruction
             _brickInstructionMap["SpeakBrick"] = _speakInstruction
@@ -56,7 +51,6 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
             _brickInstructionMap["VibrationBrick"] = _vibrationInstruction
             _brickInstructionMap["MoveNStepsBrick"] = _moveNStepsInstruction
             _brickInstructionMap["IfOnEdgeBounceBrick"] = _ifOnEdgeBounceInstruction
-
         }
         _setupBrickInstructionMapping()
     }
@@ -77,45 +71,6 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
     }
     
     // MARK: - Mapped instructions
-    private func _glideToInstruction(brick: Brick) -> CBInstruction {
-        guard let glideToBrick = brick as? GlideToBrick,
-              let durationFormula = glideToBrick.durationInSeconds,
-              let object = glideToBrick.script?.object,
-              let spriteNode = object.spriteNode
-        else { fatalError("This should never happen!") }
-
-        return .LongDurationAction(durationFormula: durationFormula, actionCreateClosure: {
-            (duration) -> CBLongActionClosure in
-
-            glideToBrick.isInitialized = false
-            return {
-                [weak self] (node, elapsedTime) in
-                self?.logger.debug("Performing: \(glideToBrick.description())")
-                let xDestination = Float(glideToBrick.xDestination.interpretDoubleForSprite(object))
-                let yDestination = Float(glideToBrick.yDestination.interpretDoubleForSprite(object))
-                if !glideToBrick.isInitialized {
-                    glideToBrick.isInitialized = true
-                    let startingPoint = spriteNode.scenePosition
-                    glideToBrick.startingPoint = startingPoint
-                    let startingX = Float(startingPoint.x)
-                    let startingY = Float(startingPoint.y)
-                    glideToBrick.deltaX = xDestination - startingX
-                    glideToBrick.deltaY = yDestination - startingY
-                }
-
-                // TODO: handle extreme movemenets and set currentPoint accordingly
-                let percent = Float(elapsedTime) / Float(duration)
-                let startingPoint = glideToBrick.startingPoint
-                let startingX = Float(startingPoint.x)
-                let startingY = Float(startingPoint.y)
-                spriteNode.scenePosition = CGPointMake(
-                    CGFloat(startingX + glideToBrick.deltaX * percent),
-                    CGFloat(startingY + glideToBrick.deltaY * percent)
-                )
-            }
-        })
-    }
-
     private func _playSoundInstruction(brick: Brick) -> CBInstruction {
         guard let playSoundBrick = brick as? PlaySoundBrick,
               let objectName = playSoundBrick.script?.object?.name,
