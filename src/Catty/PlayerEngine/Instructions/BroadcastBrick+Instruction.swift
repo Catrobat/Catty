@@ -20,7 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBBackendProtocol {
-    func scriptContextForSequenceList(sequenceList: CBScriptSequenceList,
-        spriteNode: CBSpriteNode) -> CBScriptContext
+extension BroadcastBrick: CBInstructionProtocol {
+
+    func instruction() -> CBInstruction {
+        return CBInstruction.HighPriorityExecClosure { (context, scheduler, bcHandler) in
+            bcHandler.performBroadcastWithMessage(self.broadcastMessage,
+                senderContext: context, broadcastType: .Broadcast)
+        }
+    }
+
 }

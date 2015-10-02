@@ -482,6 +482,8 @@
 		92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
 		A918B6B71B89F5870017B92F /* Siren.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A918B6B61B89F5870017B92F /* Siren.bundle */; };
+		AA401FE71BBEF646001BC49F /* BroadcastBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA401FE61BBEF646001BC49F /* BroadcastBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
+		AA401FE91BBEF6F9001BC49F /* CBInstructionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */; settings = {ASSET_TAGS = (); }; };
 		AA6CC28B1BB4AB9A0007A621 /* CBScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CC28A1BB4AB9A0007A621 /* CBScriptContext.swift */; settings = {ASSET_TAGS = (); }; };
 		AA70F7F11B866E9B003057C6 /* CBFrontentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA70F7F01B866E9B003057C6 /* CBFrontentTests.swift */; };
 		AA85F6DF1B9B361200398DC7 /* ProgramTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85F6DE1B9B361200398DC7 /* ProgramTVCTests.swift */; settings = {ASSET_TAGS = (); }; };
@@ -1580,6 +1582,8 @@
 		A918B6B41B89F5690017B92F /* Siren.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Siren.swift; path = Siren/Siren.swift; sourceTree = "<group>"; };
 		A918B6B61B89F5870017B92F /* Siren.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Siren.bundle; sourceTree = "<group>"; };
 		AA101E401B8D3A3900797DEF /* Encapsulated.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Encapsulated.xml; sourceTree = "<group>"; };
+		AA401FE61BBEF646001BC49F /* BroadcastBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "BroadcastBrick+Instruction.swift"; path = "PlayerEngine/Instructions/BroadcastBrick+Instruction.swift"; sourceTree = "<group>"; };
+		AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBInstructionProtocol.swift; path = PlayerEngine/Protocols/CBInstructionProtocol.swift; sourceTree = "<group>"; };
 		AA6CC28A1BB4AB9A0007A621 /* CBScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBScriptContext.swift; path = PlayerEngine/DataModel/CBScriptContext/CBScriptContext.swift; sourceTree = "<group>"; };
 		AA70F7F01B866E9B003057C6 /* CBFrontentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBFrontentTests.swift; path = PlayerEngine/CBFrontentTests.swift; sourceTree = "<group>"; };
 		AA85F6DE1B9B361200398DC7 /* ProgramTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramTVCTests.swift; sourceTree = "<group>"; };
@@ -4269,6 +4273,14 @@
 			path = CattyTests/Resources/ParserTests/Encapsulated;
 			sourceTree = SOURCE_ROOT;
 		};
+		AA401FE51BBEF5F5001BC49F /* Instructions */ = {
+			isa = PBXGroup;
+			children = (
+				AA401FE61BBEF646001BC49F /* BroadcastBrick+Instruction.swift */,
+			);
+			name = Instructions;
+			sourceTree = "<group>";
+		};
 		AA70F7EF1B866E63003057C6 /* PlayerEngine */ = {
 			isa = PBXGroup;
 			children = (
@@ -4291,6 +4303,7 @@
 			isa = PBXGroup;
 			children = (
 				AABCB3C41BB36120009F67D2 /* CBBackendProtocol.swift */,
+				AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */,
 				AABCB3C51BB36120009F67D2 /* CBBroadcastHandlerProtocol.swift */,
 				AABCB3C61BB36120009F67D2 /* CBFrontendProtocol.swift */,
 				AABCB3C71BB36120009F67D2 /* CBSchedulerProtocol.swift */,
@@ -4405,6 +4418,7 @@
 		CA3E72D31B0BA46A00D6B184 /* PlayerEngine */ = {
 			isa = PBXGroup;
 			children = (
+				AA401FE51BBEF5F5001BC49F /* Instructions */,
 				AAD498B51B8D2431005894C4 /* Protocols */,
 				92FF30AF1A24DCAA00093DA7 /* Scene */,
 				CAE485D31B13AA4E00DC4485 /* Frontend */,
@@ -5315,6 +5329,7 @@
 				AABCB3EB1BB3687D009F67D2 /* CBScene+ScreenRecording.swift in Sources */,
 				AABCB3E71BB3671F009F67D2 /* LLNode.swift in Sources */,
 				AABCB3E61BB36651009F67D2 /* CBInstructionHandler.swift in Sources */,
+				AA401FE91BBEF6F9001BC49F /* CBInstructionProtocol.swift in Sources */,
 				AABCB3E21BB36529009F67D2 /* CBScheduler.swift in Sources */,
 				AABCB3DF1BB3650B009F67D2 /* CBBackendProtocol.swift in Sources */,
 				AABCB3E01BB3650B009F67D2 /* CBFrontendProtocol.swift in Sources */,
@@ -5454,6 +5469,7 @@
 				92FF32691A24E2F400093DA7 /* MYBlurIntroductionView.m in Sources */,
 				92FF30D01A24DCAA00093DA7 /* ChangeBrightnessByNBrick.m in Sources */,
 				4C724E621B4D3E8C00E27479 /* TestParser.m in Sources */,
+				AA401FE71BBEF646001BC49F /* BroadcastBrick+Instruction.swift in Sources */,
 				92FF2E971A24C7D800093DA7 /* mztools.c in Sources */,
 				92FF32871A24E2F400093DA7 /* WaitBrickCell.m in Sources */,
 				92DFB0531A38960C00FA9B0F /* BrushPickerViewController.m in Sources */,
