@@ -39,7 +39,6 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
 
         // brick actions that have been ported to Swift yet
         func _setupBrickInstructionMapping() {
-            _brickInstructionMap["ChangeVolumeByNBrick"] = _changeVolumeByNInstruction
             _brickInstructionMap["SetVolumeToBrick"] = _setVolumeToInstruction
             _brickInstructionMap["SetVariableBrick"] = _setVariableInstruction
             _brickInstructionMap["ChangeVariableBrick"] = _changeVariableInstruction
@@ -68,39 +67,6 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
     }
     
     // MARK: - Mapped instructions
-    private func _changeVolumeByNInstruction(brick: Brick) -> CBInstruction {
-        guard let changeVolumeByNBrick = brick as? ChangeVolumeByNBrick,
-              let spriteObject = changeVolumeByNBrick.script?.object
-        else { fatalError("This should never happen!") }
-
-        let volumeFormula = changeVolumeByNBrick.volume
-        let audioManager = AudioManager.sharedAudioManager()
-        let spriteObjectName = spriteObject.name
-
-        return CBInstruction.ExecClosure { (context, scheduler) in
-            self.logger.debug("Performing: ChangeVolumeByNBrick")
-            let volume = volumeFormula.interpretDoubleForSprite(spriteObject)
-            audioManager.changeVolumeByPercent(CGFloat(volume), forKey: spriteObjectName)
-            context.state = .Runnable
-        }
-    }
-
-    private func _setVolumeToInstruction(brick: Brick) -> CBInstruction {
-        guard let setVolumeToBrick = brick as? SetVolumeToBrick,
-              let spriteObject = setVolumeToBrick.script?.object
-        else { fatalError("This should never happen") }
-
-        let audioManager = AudioManager.sharedAudioManager()
-        let spriteObjectName = spriteObject.name
-
-        return CBInstruction.ExecClosure { (context, scheduler) in
-            self.logger.debug("Performing: SetVolumeToBrick")
-            let volume = setVolumeToBrick.volume.interpretDoubleForSprite(spriteObject)
-            audioManager.setVolumeToPercent(CGFloat(volume), forKey: spriteObjectName)
-            context.state = .Runnable
-        }
-    }
-
     private func _setVariableInstruction(brick: Brick) -> CBInstruction {
         guard let setVariableBrick = brick as? SetVariableBrick,
               let spriteObject = setVariableBrick.script?.object,
