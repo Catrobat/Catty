@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-final class CBFrontend : CBFrontendProtocol {
+final class CBFrontend: CBFrontendProtocol {
 
     // MARK: - Properties
     let logger: CBLogger

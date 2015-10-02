@@ -24,8 +24,6 @@
 
 extension VibrationBrick: CBInstructionProtocol {
 
-    static let vibrateSerialQueue = dispatch_queue_create("org.catrobat.vibrate.queue", DISPATCH_QUEUE_SERIAL)
-
     func instruction() -> CBInstruction {
 
         guard let spriteObject = self.script?.object else { fatalError("This should never happen!") }
@@ -33,7 +31,7 @@ extension VibrationBrick: CBInstructionProtocol {
         let durationFormula = self.durationInSeconds
         return CBInstruction.ExecClosure { (context, scheduler) in
 //            self.logger.debug("Performing: VibrationBrick")
-            dispatch_async(VibrationBrick.vibrateSerialQueue, {
+            dispatch_async(CBScheduler.vibrateSerialQueue, {
                 let durationInSeconds = durationFormula.interpretDoubleForSprite(spriteObject)
                 let max = Int(2 * durationInSeconds)
                 for var i = 1; i < max; i++ {

@@ -36,6 +36,9 @@ final class CBScheduler: CBSchedulerProtocol {
     private var _availableWaitQueues = [dispatch_queue_t]()
     private var _lastQueueIndex = 3
 
+    // MARK: Static properties
+    static let vibrateSerialQueue = dispatch_queue_create("org.catrobat.vibrate.queue", DISPATCH_QUEUE_SERIAL)
+
     // MARK: - Initializers
     init(logger: CBLogger, broadcastHandler: CBBroadcastHandlerProtocol) {
         self.logger = logger

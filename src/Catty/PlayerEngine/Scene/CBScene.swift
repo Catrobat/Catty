@@ -23,7 +23,7 @@
 import SpriteKit
 import ReplayKit
 
-final class CBScene : SKScene {
+final class CBScene: SKScene {
 
     // MARK: - Properties
     let logger: CBLogger?
