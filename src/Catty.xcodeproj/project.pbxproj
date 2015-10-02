@@ -515,6 +515,7 @@
 		AAEF88BA1BBF0E2300717E1A /* WaitBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF88B91BBF0E2300717E1A /* WaitBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
 		AAEF88BC1BBF10CE00717E1A /* GlideToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF88BB1BBF10CE00717E1A /* GlideToBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
 		AAEF88BE1BBF11DB00717E1A /* PlaySoundBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF88BD1BBF11DB00717E1A /* PlaySoundBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
+		AAEF88C01BBF12B400717E1A /* StopAllSoundsBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF88BF1BBF12B400717E1A /* StopAllSoundsBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
 		CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */; };
 		CA2D44431B12305400A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
 		CA2D44441B1231F900A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
@@ -1609,6 +1610,7 @@
 		AAEF88B91BBF0E2300717E1A /* WaitBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "WaitBrick+Instruction.swift"; path = "PlayerEngine/Instructions/WaitBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AAEF88BB1BBF10CE00717E1A /* GlideToBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "GlideToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/GlideToBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AAEF88BD1BBF11DB00717E1A /* PlaySoundBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PlaySoundBrick+Instruction.swift"; path = "PlayerEngine/Instructions/PlaySoundBrick+Instruction.swift"; sourceTree = "<group>"; };
+		AAEF88BF1BBF12B400717E1A /* StopAllSoundsBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StopAllSoundsBrick+Instruction.swift"; path = "PlayerEngine/Instructions/StopAllSoundsBrick+Instruction.swift"; sourceTree = "<group>"; };
 		B405BAC7175DD3F600B1A0FC /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		B450309F170F22EF009265D6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -4289,6 +4291,7 @@
 				AAEF88B91BBF0E2300717E1A /* WaitBrick+Instruction.swift */,
 				AAEF88BB1BBF10CE00717E1A /* GlideToBrick+Instruction.swift */,
 				AAEF88BD1BBF11DB00717E1A /* PlaySoundBrick+Instruction.swift */,
+				AAEF88BF1BBF12B400717E1A /* StopAllSoundsBrick+Instruction.swift */,
 			);
 			name = Instructions;
 			sourceTree = "<group>";
@@ -5420,6 +5423,7 @@
 				4C724E501B4D3E8C00E27479 /* PlaySoundBrick+CBXMLHandler.m in Sources */,
 				92FF2EC01A24C8A700093DA7 /* OrderedDictionary.m in Sources */,
 				4C724E481B4D3E8C00E27479 /* SetXBrick+CBXMLHandler.m in Sources */,
+				AAEF88C01BBF12B400717E1A /* StopAllSoundsBrick+Instruction.swift in Sources */,
 				92FF2E401A24C5A700093DA7 /* UIViewController+CWPopup.m in Sources */,
 				92FF31491A24DEB300093DA7 /* BaseCollectionViewController.m in Sources */,
 				928D4D791A7BD19A00E6DFA8 /* CatrobatUISlider.m in Sources */,

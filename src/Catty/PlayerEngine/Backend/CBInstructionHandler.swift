@@ -39,8 +39,6 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
 
         // brick actions that have been ported to Swift yet
         func _setupBrickInstructionMapping() {
-            _brickInstructionMap["PlaySoundBrick"] = _playSoundInstruction
-            _brickInstructionMap["StopAllSoundsBrick"] = _stopAllSoundsInstruction
             _brickInstructionMap["SpeakBrick"] = _speakInstruction
             _brickInstructionMap["ChangeVolumeByNBrick"] = _changeVolumeByNInstruction
             _brickInstructionMap["SetVolumeToBrick"] = _setVolumeToInstruction
@@ -71,18 +69,6 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
     }
     
     // MARK: - Mapped instructions
-    private func _stopAllSoundsInstruction(brick: Brick) -> CBInstruction {
-        if brick is StopAllSoundsBrick == false { fatalError("This should never happen!") }
-
-        let audioManager = AudioManager.sharedAudioManager()
-
-        return CBInstruction.ExecClosure { (context, scheduler) in
-            self.logger.debug("Performing: StopAllSoundsBrick")
-            audioManager.stopAllSounds()
-            context.state = .Runnable
-        }
-    }
-
     private func _speakInstruction(brick: Brick) -> CBInstruction {
         guard let speakBrick = brick as? SpeakBrick,
               let object = speakBrick.script?.object
