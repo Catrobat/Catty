@@ -511,6 +511,8 @@
 		AABCB3EF1BB3697E009F67D2 /* CBCustomTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABCB3EE1BB3697E009F67D2 /* CBCustomTypes.swift */; settings = {ASSET_TAGS = (); }; };
 		AABCB3F01BB369DE009F67D2 /* Siren.swift in Sources */ = {isa = PBXBuildFile; fileRef = A918B6B41B89F5690017B92F /* Siren.swift */; };
 		AABCB3F11BB36DCE009F67D2 /* InternFormulaUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DFAFFF1A38949E00FA9B0F /* InternFormulaUtils.m */; };
+		AAEF88B81BBF0D9200717E1A /* BroadcastWaitBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF88B71BBF0D9200717E1A /* BroadcastWaitBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
+		AAEF88BA1BBF0E2300717E1A /* WaitBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF88B91BBF0E2300717E1A /* WaitBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
 		CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */; };
 		CA2D44431B12305400A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
 		CA2D44441B1231F900A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
@@ -1601,6 +1603,8 @@
 		AABCB3D41BB3616F009F67D2 /* CBBackend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBBackend.swift; path = PlayerEngine/Backend/CBBackend.swift; sourceTree = "<group>"; };
 		AABCB3D51BB3616F009F67D2 /* CBInstructionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBInstructionHandler.swift; path = PlayerEngine/Backend/CBInstructionHandler.swift; sourceTree = "<group>"; };
 		AABCB3EE1BB3697E009F67D2 /* CBCustomTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBCustomTypes.swift; path = PlayerEngine/CBCustomTypes.swift; sourceTree = "<group>"; };
+		AAEF88B71BBF0D9200717E1A /* BroadcastWaitBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "BroadcastWaitBrick+Instruction.swift"; path = "PlayerEngine/Instructions/BroadcastWaitBrick+Instruction.swift"; sourceTree = "<group>"; };
+		AAEF88B91BBF0E2300717E1A /* WaitBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "WaitBrick+Instruction.swift"; path = "PlayerEngine/Instructions/WaitBrick+Instruction.swift"; sourceTree = "<group>"; };
 		B405BAC7175DD3F600B1A0FC /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		B450309F170F22EF009265D6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -4277,6 +4281,8 @@
 			isa = PBXGroup;
 			children = (
 				AA401FE61BBEF646001BC49F /* BroadcastBrick+Instruction.swift */,
+				AAEF88B71BBF0D9200717E1A /* BroadcastWaitBrick+Instruction.swift */,
+				AAEF88B91BBF0E2300717E1A /* WaitBrick+Instruction.swift */,
 			);
 			name = Instructions;
 			sourceTree = "<group>";
@@ -5318,6 +5324,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAEF88B81BBF0D9200717E1A /* BroadcastWaitBrick+Instruction.swift in Sources */,
 				AAA2979C1BB371EB006F8793 /* ExternInternRepresentationMapping.m in Sources */,
 				AAA2979B1BB3711B006F8793 /* BrickCategoryViewController.m in Sources */,
 				AAA2979A1BB36FEA006F8793 /* SensorHandler.m in Sources */,
@@ -5356,6 +5363,7 @@
 				CAD740E31AF2D2E800C32937 /* CBStack.m in Sources */,
 				92FF32601A24E2F400093DA7 /* FBShimmeringView.m in Sources */,
 				92FF30D61A24DCAA00093DA7 /* NextLookBrick.m in Sources */,
+				AAEF88BA1BBF0E2300717E1A /* WaitBrick+Instruction.swift in Sources */,
 				92FF30D51A24DCAA00093DA7 /* HideBrick.m in Sources */,
 				92DFB0131A38949E00FA9B0F /* InternFormulaKeyboardAdapter.m in Sources */,
 				92FF32631A24E2F400093DA7 /* FXBlurView.m in Sources */,
