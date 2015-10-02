@@ -39,7 +39,6 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
 
         // brick actions that have been ported to Swift yet
         func _setupBrickInstructionMapping() {
-            _brickInstructionMap["VibrationBrick"] = _vibrationInstruction
             _brickInstructionMap["MoveNStepsBrick"] = _moveNStepsInstruction
             _brickInstructionMap["IfOnEdgeBounceBrick"] = _ifOnEdgeBounceInstruction
         }
@@ -62,29 +61,6 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
     }
     
     // MARK: - Mapped instructions
-    private func _vibrationInstruction(brick: Brick) -> CBInstruction {
-        guard let vibrationBrick = brick as? VibrationBrick,
-              let spriteObject = vibrationBrick.script?.object
-        else { fatalError("This should never happen!") }
-
-        let durationFormula = vibrationBrick.durationInSeconds
-        return CBInstruction.ExecClosure { (context, scheduler) in
-            self.logger.debug("Performing: VibrationBrick")
-            dispatch_async(CBInstructionHandler.vibrateSerialQueue, {
-                let durationInSeconds = durationFormula.interpretDoubleForSprite(spriteObject)
-                let max = Int(2 * durationInSeconds)
-                for var i = 1; i < max; i++ {
-                    let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-                        Int64(Double(i)*0.5 * Double(NSEC_PER_SEC)))
-                    dispatch_after(delayTime, dispatch_get_main_queue()) {
-                        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-                    }
-                }
-            })
-            context.state = .Runnable
-        }
-    }
-
     private func _moveNStepsInstruction(brick: Brick) -> CBInstruction {
         guard let moveNStepsBrick = brick as? MoveNStepsBrick,
               let object = moveNStepsBrick.script?.object,

@@ -523,6 +523,7 @@
 		AAEF88CA1BBF163400717E1A /* ChangeVariableBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF88C91BBF163400717E1A /* ChangeVariableBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
 		AAEF88CC1BBF16F500717E1A /* LedOnBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF88CB1BBF16F500717E1A /* LedOnBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
 		AAEF88CE1BBF17F600717E1A /* LedOffBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF88CD1BBF17F600717E1A /* LedOffBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
+		AAEF88D01BBF191200717E1A /* VibrationBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF88CF1BBF191200717E1A /* VibrationBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
 		CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */; };
 		CA2D44431B12305400A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
 		CA2D44441B1231F900A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
@@ -1625,6 +1626,7 @@
 		AAEF88C91BBF163400717E1A /* ChangeVariableBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChangeVariableBrick+Instruction.swift"; path = "PlayerEngine/Instructions/ChangeVariableBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AAEF88CB1BBF16F500717E1A /* LedOnBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LedOnBrick+Instruction.swift"; path = "PlayerEngine/Instructions/LedOnBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AAEF88CD1BBF17F600717E1A /* LedOffBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LedOffBrick+Instruction.swift"; path = "PlayerEngine/Instructions/LedOffBrick+Instruction.swift"; sourceTree = "<group>"; };
+		AAEF88CF1BBF191200717E1A /* VibrationBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VibrationBrick+Instruction.swift"; sourceTree = "<group>"; };
 		B405BAC7175DD3F600B1A0FC /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		B450309F170F22EF009265D6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -4313,6 +4315,7 @@
 				AAEF88C91BBF163400717E1A /* ChangeVariableBrick+Instruction.swift */,
 				AAEF88CB1BBF16F500717E1A /* LedOnBrick+Instruction.swift */,
 				AAEF88CD1BBF17F600717E1A /* LedOffBrick+Instruction.swift */,
+				AAEF88CF1BBF191200717E1A /* VibrationBrick+Instruction.swift */,
 			);
 			name = Instructions;
 			sourceTree = "<group>";
@@ -5619,6 +5622,7 @@
 				4C724E2A1B4D3E8C00E27479 /* BroadcastWaitBrick+CBXMLHandler.m in Sources */,
 				92FF315E1A24DEB300093DA7 /* HelpWebViewController.m in Sources */,
 				92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */,
+				AAEF88D01BBF191200717E1A /* VibrationBrick+Instruction.swift in Sources */,
 				4C724E291B4D3E8C00E27479 /* BroadcastBrick+CBXMLHandler.m in Sources */,
 				92DFB06D1A38960C00FA9B0F /* YKImageCropperView.m in Sources */,
 				4C724E601B4D3E8C00E27479 /* Parser.m in Sources */,
