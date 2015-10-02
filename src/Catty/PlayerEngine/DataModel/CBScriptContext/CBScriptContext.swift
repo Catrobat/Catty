@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBScriptContextProtocol : class, Hashable, Equatable {
+protocol CBScriptContextProtocol: class, Hashable, Equatable {
     var spriteNode: CBSpriteNode { get }
     var script: Script { get }
     var state: CBContextState { get set }
@@ -31,7 +31,7 @@ protocol CBScriptContextProtocol : class, Hashable, Equatable {
 }
 
 // TODO: refactor abstract class, maybe protocol extension??
-class CBScriptContext : CBScriptContextProtocol {
+class CBScriptContext: CBScriptContextProtocol {
 
     // MARK: - Properties
     final let spriteNode: CBSpriteNode
@@ -90,20 +90,23 @@ class CBScriptContext : CBScriptContextProtocol {
 }
 
 //--------------------------------------------------------------------------------------------------
-final class CBWhenScriptContext : CBScriptContext {
-    
+final class CBWhenScriptContext: CBScriptContext {
+
     convenience init(whenScript: WhenScript, spriteNode: CBSpriteNode, state: CBContextState) {
         self.init(whenScript: whenScript, spriteNode: spriteNode, state: state, instructionList: [])
     }
 
-    init(whenScript: WhenScript, spriteNode: CBSpriteNode, state: CBContextState, instructionList: [CBInstruction]) {
-        super.init(script: whenScript, spriteNode: spriteNode, state: state, instructionList: instructionList)
+    init(whenScript: WhenScript, spriteNode: CBSpriteNode, state: CBContextState,
+        instructionList: [CBInstruction]
+    ) {
+        super.init(script: whenScript, spriteNode: spriteNode, state: state,
+            instructionList: instructionList)
     }
 
 }
 
 //--------------------------------------------------------------------------------------------------
-final class CBBroadcastScriptContext : CBScriptContext {
+final class CBBroadcastScriptContext: CBScriptContext {
 
     final var broadcastMessage: String
 
@@ -111,22 +114,28 @@ final class CBBroadcastScriptContext : CBScriptContext {
         self.init(broadcastScript: broadcastScript, spriteNode: spriteNode, state: state, instructionList: [])
     }
 
-    init(broadcastScript: BroadcastScript, spriteNode: CBSpriteNode, state: CBContextState, instructionList: [CBInstruction]) {
+    init(broadcastScript: BroadcastScript, spriteNode: CBSpriteNode, state: CBContextState,
+        instructionList: [CBInstruction]
+    ) {
         broadcastMessage = broadcastScript.receivedMessage
-        super.init(script: broadcastScript, spriteNode: spriteNode, state: state, instructionList: instructionList)
+        super.init(script: broadcastScript, spriteNode: spriteNode, state: state,
+            instructionList: instructionList)
     }
 
 }
 
 //--------------------------------------------------------------------------------------------------
-final class CBStartScriptContext : CBScriptContext {
+final class CBStartScriptContext: CBScriptContext {
 
     convenience init(startScript: StartScript, spriteNode: CBSpriteNode, state: CBContextState) {
         self.init(startScript: startScript, spriteNode: spriteNode, state: state, instructionList: [])
     }
-    
-    init(startScript: StartScript, spriteNode: CBSpriteNode, state: CBContextState, instructionList: [CBInstruction]) {
-        super.init(script: startScript, spriteNode: spriteNode, state: state, instructionList: instructionList)
+
+    init(startScript: StartScript, spriteNode: CBSpriteNode, state: CBContextState,
+        instructionList: [CBInstruction]
+    ) {
+        super.init(script: startScript, spriteNode: spriteNode, state: state,
+            instructionList: instructionList)
     }
 
 }

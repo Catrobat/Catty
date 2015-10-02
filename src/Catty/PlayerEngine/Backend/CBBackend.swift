@@ -40,7 +40,7 @@ final class CBBackend: CBBackendProtocol {
 
     // MARK: - Operations
     func scriptContextForSequenceList(sequenceList: CBScriptSequenceList,
-        spriteNode: CBSpriteNode, broadcastHandler: CBBroadcastHandlerProtocol) -> CBScriptContext
+        spriteNode: CBSpriteNode) -> CBScriptContext
     {
         logger.info("Generating ScriptContext of \(sequenceList.script)")
         var context: CBScriptContext? = nil
@@ -48,13 +48,13 @@ final class CBBackend: CBBackendProtocol {
         switch sequenceList.script {
         case let startScript as StartScript:
             context = CBStartScriptContext(startScript: startScript, spriteNode: spriteNode,
-                state: .Runnable, broadcastHandler: broadcastHandler)
+                state: .Runnable)
         case let whenScript as WhenScript:
             context = CBWhenScriptContext(whenScript: whenScript, spriteNode: spriteNode,
-                state: .Runnable, broadcastHandler: broadcastHandler)
+                state: .Runnable)
         case let bcScript as BroadcastScript:
             context = CBBroadcastScriptContext(broadcastScript: bcScript, spriteNode: spriteNode,
-                state: .Runnable, broadcastHandler: broadcastHandler)
+                state: .Runnable)
         default:
             fatalError("Unknown script! THIS SHOULD NEVER HAPPEN!")
         }
