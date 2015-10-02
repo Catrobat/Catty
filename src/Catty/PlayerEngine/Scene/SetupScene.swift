@@ -20,7 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-// ATTENTION: this intermediate class is subject to be removed after ScenePresenterVC has been ported to Swift.
+// ATTENTION: this intermediate class is subject to be removed after ScenePresenterVC has been
+//            ported to Swift.
 //            This class is needed to take advantage of Swift's static dispatching concept
 //            used by several player engine components (Scheduler, BroadcastHandler, etc.).
 

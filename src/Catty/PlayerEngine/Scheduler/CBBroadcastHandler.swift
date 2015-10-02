@@ -62,9 +62,8 @@ final class CBBroadcastHandler : CBBroadcastHandlerProtocol {
         } else {
             _registeredBroadcastContexts[message] = [context]
         }
-
-        let object = context.script.object
-        logger.info("Subscribed new CBBroadcastScriptContext of object \(object!.name) for message \(message)")
+        logger.info("Subscribed new CBBroadcastScriptContext of object "
+            + "\(context.script.object!.name) for message \(message)")
     }
 
     func unsubscribeBroadcastContext(context: CBBroadcastScriptContext) {

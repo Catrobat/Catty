@@ -31,32 +31,7 @@ final class CBBackend: CBBackendProtocol {
     }
 
     // MARK: - Operations
-    func scriptContextForSequenceList(sequenceList: CBScriptSequenceList, spriteNode: CBSpriteNode)
-        -> CBScriptContext
-    {
-        logger.info("Generating ScriptContext of \(sequenceList.script)")
-        var context: CBScriptContext? = nil
-
-        switch sequenceList.script {
-        case let startScript as StartScript:
-            context = CBStartScriptContext(startScript: startScript, spriteNode: spriteNode,
-                state: .Runnable)
-        case let whenScript as WhenScript:
-            context = CBWhenScriptContext(whenScript: whenScript, spriteNode: spriteNode,
-                state: .Runnable)
-        case let bcScript as BroadcastScript:
-            context = CBBroadcastScriptContext(broadcastScript: bcScript, spriteNode: spriteNode,
-                state: .Runnable)
-        default:
-            fatalError("Unknown script! THIS SHOULD NEVER HAPPEN!")
-        }
-
-        // generate instructions and add them to script context
-        context! += _instructionsForSequence(sequenceList.sequenceList)
-        return context!
-    }
-
-    private func _instructionsForSequence(sequenceList: CBSequenceList) -> [CBInstruction] {
+    func instructionsForSequence(sequenceList: CBSequenceList) -> [CBInstruction] {
         var instructionList = [CBInstruction]()
         sequenceList.forEach {
             switch $0 {
@@ -87,7 +62,7 @@ final class CBBackend: CBBackendProtocol {
         var instructionList = [CBInstruction]()
 
         // add if condition evaluation instruction
-        let ifInstructions = _instructionsForSequence(ifSequence.sequenceList)
+        let ifInstructions = instructionsForSequence(ifSequence.sequenceList)
         let numberOfIfInstructions = ifInstructions.count
         instructionList += CBInstruction.ExecClosure { (context, scheduler) in
             if ifSequence.checkCondition() == false {
@@ -105,7 +80,7 @@ final class CBBackend: CBBackendProtocol {
         var numberOfElseInstructions = 0
         if ifSequence.elseSequenceList != nil {
             // add else instructions
-            let elseInstructions = _instructionsForSequence(ifSequence.elseSequenceList!)
+            let elseInstructions = instructionsForSequence(ifSequence.elseSequenceList!)
             numberOfElseInstructions = elseInstructions.count
             // add jump instruction to be the last if-instruction
             // (needed to avoid execution of else sequence)
@@ -119,7 +94,7 @@ final class CBBackend: CBBackendProtocol {
     }
 
     private func _instructionsForLoopSequence(loopSequence: CBConditionalSequence) -> [CBInstruction] {
-        let bodyInstructions = _instructionsForSequence(loopSequence.sequenceList)
+        let bodyInstructions = instructionsForSequence(loopSequence.sequenceList)
         let numOfBodyInstructions = bodyInstructions.count
 
         let loopEndInstruction = CBInstruction.HighPriorityExecClosure { (context, scheduler, _) in

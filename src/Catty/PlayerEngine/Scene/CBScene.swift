@@ -161,13 +161,41 @@ final class CBScene : SKScene {
 
             for script in scriptList {
                 guard let scriptSequence = frontend?.computeSequenceListForScript(script),
-                      let scriptContext = backend?.scriptContextForSequenceList(scriptSequence, spriteNode: spriteNode)
+                      let instructions = backend?.instructionsForSequence(scriptSequence.sequenceList)
                 else { fatalError("Unable to create ScriptSequence and ScriptContext") }
 
-                scheduler?.registerContext(scriptContext)
-                if let bcsContext = scriptContext as? CBBroadcastScriptContext {
-                    broadcastHandler?.subscribeBroadcastContext(bcsContext)
+                logger?.info("Generating ScriptContext of \(script)")
+                var context: CBScriptContext? = nil
+
+                switch script {
+                case let startScript as StartScript:
+                    context = CBStartScriptContext(
+                        startScript: startScript,
+                        spriteNode: spriteNode,
+                        state: .Runnable
+                    )
+
+                case let whenScript as WhenScript:
+                    context = CBWhenScriptContext(
+                        whenScript: whenScript,
+                        spriteNode: spriteNode,
+                        state: .Runnable
+                    )
+
+                case let bcScript as BroadcastScript:
+                    let broadcastContext = CBBroadcastScriptContext(
+                        broadcastScript: bcScript,
+                        spriteNode: spriteNode,
+                        state: .Runnable
+                    )
+                    broadcastHandler?.subscribeBroadcastContext(broadcastContext)
+                    context = broadcastContext
+
+                default:
+                    fatalError("Unknown script! THIS SHOULD NEVER HAPPEN!")
                 }
+                context! += instructions // generate instructions and add them to script context
+                scheduler?.registerContext(context!)
             }
         }
 
