@@ -27,21 +27,17 @@ protocol CBInstructionHandlerProtocol {
     func instructionForBrick(brick: Brick, withContext context: CBScriptContext) -> CBInstruction
 }
 
-final class CBInstructionHandler : CBInstructionHandlerProtocol {
+final class CBInstructionHandler: CBInstructionHandlerProtocol {
 
     var logger: CBLogger
     private let _scheduler: CBSchedulerProtocol
-    private let _broadcastHandler: CBBroadcastHandlerProtocol
     private var _brickInstructionMap = [String:CBInstructionClosure]()
     static let vibrateSerialQueue = dispatch_queue_create("org.catrobat.vibrate.queue", DISPATCH_QUEUE_SERIAL)
 
     // MARK: - Initializers
-    init(logger: CBLogger, scheduler: CBSchedulerProtocol,
-        broadcastHandler: CBBroadcastHandlerProtocol)
-    {
+    init(logger: CBLogger, scheduler: CBSchedulerProtocol) {
         self.logger = logger
         _scheduler = scheduler
-        _broadcastHandler = broadcastHandler
 
         // brick actions that have been ported to Swift yet
         func _setupBrickInstructionMapping() {
@@ -51,7 +47,6 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
             _brickInstructionMap["GlideToBrick"] = _glideToInstruction
 
             // short duration bricks
-            _brickInstructionMap["BroadcastBrick"] = _broadcastInstruction
             _brickInstructionMap["BroadcastWaitBrick"] = _broadcastWaitInstruction
             _brickInstructionMap["PlaySoundBrick"] = _playSoundInstruction
             _brickInstructionMap["StopAllSoundsBrick"] = _stopAllSoundsInstruction
@@ -76,17 +71,22 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
             return instruction(brick: brick, context: context)
         }
 
-        // cannot find in map => get action via brick class
+        // cannot find in map => check if conforms to CBInstructionProtocol (i.e. Brick extension)
+        if let instructionBrick = brick as? CBInstructionProtocol {
+            return instructionBrick.instruction()
+        }
+
+        // fallback: poor old ObjC fellow... ;)
         return .Action(action: brick.action())
     }
-
+    
     // MARK: - Mapped instructions
     private func _waitInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
         guard let waitBrick = brick as? WaitBrick,
               let object = waitBrick.script?.object
         else { fatalError("This should never happen!") }
 
-        return CBInstruction.WaitExecClosure {
+        return CBInstruction.WaitExecClosure { (_, _) in
             let durationInSeconds = waitBrick.timeToWaitInSeconds.interpretDoubleForSprite(object)
 
             // check if an invalid duration is given! => prevents UInt32 underflow
@@ -147,22 +147,12 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         })
     }
 
-    private func _broadcastInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
-        guard let bcBrick = brick as? BroadcastBrick
-        else { fatalError("This should never happen!") }
-
-        return CBInstruction.HighPriorityExecClosure {
-            self._broadcastHandler.performBroadcastWithMessage(bcBrick.broadcastMessage,
-                senderContext: context, broadcastType: .Broadcast)
-        }
-    }
-    
     private func _broadcastWaitInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
         guard let bcWaitBrick = brick as? BroadcastWaitBrick
         else { fatalError("This should never happen!") }
 
-        return CBInstruction.HighPriorityExecClosure {
-            self._broadcastHandler.performBroadcastWithMessage(bcWaitBrick.broadcastMessage,
+        return CBInstruction.HighPriorityExecClosure { (context, scheduler, bcHandler) in
+            bcHandler.performBroadcastWithMessage(bcWaitBrick.broadcastMessage,
                 senderContext: context, broadcastType: .BroadcastWait)
         }
     }
@@ -180,7 +170,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         let filePath = projectPath + kProgramSoundsDirName
         let audioManager = AudioManager.sharedAudioManager()
 
-        return CBInstruction.ExecClosure {
+        return CBInstruction.ExecClosure { (context, scheduler) in
             self.logger.debug("Performing: PlaySoundBrick")
             audioManager.playSoundWithFileName(fileName, andKey: objectName, atFilePath: filePath)
             context.state = .Runnable
@@ -192,7 +182,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
 
         let audioManager = AudioManager.sharedAudioManager()
 
-        return CBInstruction.ExecClosure {
+        return CBInstruction.ExecClosure { (context, scheduler) in
             self.logger.debug("Performing: StopAllSoundsBrick")
             audioManager.stopAllSounds()
             context.state = .Runnable
@@ -204,7 +194,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
               let object = speakBrick.script?.object
         else { fatalError("This should never happen!") }
 
-        return CBInstruction.ExecClosure {
+        return CBInstruction.ExecClosure { (context, scheduler) in
             self.logger.debug("Performing: SpeakBrick")
             var speakText = ""
             if speakBrick.formula.formulaTree.type == STRING {
@@ -235,7 +225,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         let audioManager = AudioManager.sharedAudioManager()
         let spriteObjectName = spriteObject.name
 
-        return CBInstruction.ExecClosure {
+        return CBInstruction.ExecClosure { (context, scheduler) in
             self.logger.debug("Performing: ChangeVolumeByNBrick")
             let volume = volumeFormula.interpretDoubleForSprite(spriteObject)
             audioManager.changeVolumeByPercent(CGFloat(volume), forKey: spriteObjectName)
@@ -251,7 +241,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         let audioManager = AudioManager.sharedAudioManager()
         let spriteObjectName = spriteObject.name
 
-        return CBInstruction.ExecClosure {
+        return CBInstruction.ExecClosure { (context, scheduler) in
             self.logger.debug("Performing: SetVolumeToBrick")
             let volume = setVolumeToBrick.volume.interpretDoubleForSprite(spriteObject)
             audioManager.setVolumeToPercent(CGFloat(volume), forKey: spriteObjectName)
@@ -268,7 +258,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         let userVariable = setVariableBrick.userVariable
         let variableFormula = setVariableBrick.variableFormula
 
-        return CBInstruction.ExecClosure {
+        return CBInstruction.ExecClosure { (context, scheduler) in
             self.logger.debug("Performing: SetVariableBrick")
             let result = variableFormula.interpretDoubleForSprite(spriteObject)
             variables.setUserVariable(userVariable, toValue: result)
@@ -285,7 +275,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         let userVariable = changeVariableBrick.userVariable
         let variableFormula = changeVariableBrick.variableFormula
 
-        return CBInstruction.ExecClosure {
+        return CBInstruction.ExecClosure { (context, scheduler) in
             self.logger.debug("Performing: ChangeVariableBrick")
             let result = variableFormula.interpretDoubleForSprite(spriteObject)
             variables.changeVariable(userVariable, byValue: result)
@@ -295,7 +285,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
 
     private func _flashLightOnInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
         if brick is LedOnBrick == false { fatalError("This should never happen!") }
-        return CBInstruction.ExecClosure {
+        return CBInstruction.ExecClosure { (context, scheduler) in
             self.logger.debug("Performing: FlashLightOnBrick/LEDOnBrick")
             FlashHelper.sharedFlashHandler().turnOn()
             context.state = .Runnable
@@ -304,7 +294,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
 
     private func _flashLightOffInstruction(brick: Brick, context: CBScriptContext) -> CBInstruction {
         if brick is LedOffBrick == false { fatalError("This should never happen!") }
-        return CBInstruction.ExecClosure {
+        return CBInstruction.ExecClosure { (context, scheduler) in
             self.logger.debug("Performing: FlashLightOnBrick/LEDOnBrick")
             FlashHelper.sharedFlashHandler().turnOff()
             context.state = .Runnable
@@ -317,7 +307,7 @@ final class CBInstructionHandler : CBInstructionHandlerProtocol {
         else { fatalError("This should never happen!") }
 
         let durationFormula = vibrationBrick.durationInSeconds
-        return CBInstruction.ExecClosure {
+        return CBInstruction.ExecClosure { (context, scheduler) in
             self.logger.debug("Performing: VibrationBrick")
             dispatch_async(CBInstructionHandler.vibrateSerialQueue, {
                 let durationInSeconds = durationFormula.interpretDoubleForSprite(spriteObject)
