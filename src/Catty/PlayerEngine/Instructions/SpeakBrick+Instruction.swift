@@ -26,7 +26,7 @@ extension SpeakBrick: CBInstructionProtocol {
         
         guard let object = self.script?.object else { fatalError("This should never happen!") }
         
-        return CBInstruction.ExecClosure { (context, scheduler) in
+        return CBInstruction.ExecClosure { (context, _) in
             //            self.logger.debug("Performing: SpeakBrick")
             var speakText = ""
             if self.formula.formulaTree.type == STRING {

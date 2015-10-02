@@ -35,7 +35,7 @@ extension PlaySoundBrick: CBInstructionProtocol {
         let filePath = projectPath + kProgramSoundsDirName
         let audioManager = AudioManager.sharedAudioManager()
         
-        return CBInstruction.ExecClosure { (context, scheduler) in
+        return CBInstruction.ExecClosure { (context, _) in
             //            self.logger.debug("Performing: PlaySoundBrick")
             audioManager.playSoundWithFileName(fileName, andKey: objectName, atFilePath: filePath)
             context.state = .Runnable

@@ -521,6 +521,8 @@
 		AAEF88C61BBF142700717E1A /* SetVolumeToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF88C51BBF142700717E1A /* SetVolumeToBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
 		AAEF88C81BBF158400717E1A /* SetVariableBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF88C71BBF158400717E1A /* SetVariableBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
 		AAEF88CA1BBF163400717E1A /* ChangeVariableBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF88C91BBF163400717E1A /* ChangeVariableBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
+		AAEF88CC1BBF16F500717E1A /* LedOnBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF88CB1BBF16F500717E1A /* LedOnBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
+		AAEF88CE1BBF17F600717E1A /* LedOffBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEF88CD1BBF17F600717E1A /* LedOffBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
 		CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */; };
 		CA2D44431B12305400A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
 		CA2D44441B1231F900A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
@@ -1621,6 +1623,8 @@
 		AAEF88C51BBF142700717E1A /* SetVolumeToBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetVolumeToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/SetVolumeToBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AAEF88C71BBF158400717E1A /* SetVariableBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SetVariableBrick+Instruction.swift"; path = "PlayerEngine/Instructions/SetVariableBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AAEF88C91BBF163400717E1A /* ChangeVariableBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChangeVariableBrick+Instruction.swift"; path = "PlayerEngine/Instructions/ChangeVariableBrick+Instruction.swift"; sourceTree = "<group>"; };
+		AAEF88CB1BBF16F500717E1A /* LedOnBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LedOnBrick+Instruction.swift"; path = "PlayerEngine/Instructions/LedOnBrick+Instruction.swift"; sourceTree = "<group>"; };
+		AAEF88CD1BBF17F600717E1A /* LedOffBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LedOffBrick+Instruction.swift"; path = "PlayerEngine/Instructions/LedOffBrick+Instruction.swift"; sourceTree = "<group>"; };
 		B405BAC7175DD3F600B1A0FC /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		B450309F170F22EF009265D6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -4307,6 +4311,8 @@
 				AAEF88C31BBF13D400717E1A /* ChangeVolumeByNBrick+Instruction.swift */,
 				AAEF88C71BBF158400717E1A /* SetVariableBrick+Instruction.swift */,
 				AAEF88C91BBF163400717E1A /* ChangeVariableBrick+Instruction.swift */,
+				AAEF88CB1BBF16F500717E1A /* LedOnBrick+Instruction.swift */,
+				AAEF88CD1BBF17F600717E1A /* LedOffBrick+Instruction.swift */,
 			);
 			name = Instructions;
 			sourceTree = "<group>";
@@ -5372,6 +5378,7 @@
 				AABCB3DA1BB3649F009F67D2 /* SwellAll.swift in Sources */,
 				AABCB3D91BB3648E009F67D2 /* CBOperation.swift in Sources */,
 				AABCB3D81BB36469009F67D2 /* CBScriptSequenceList.swift in Sources */,
+				AAEF88CE1BBF17F600717E1A /* LedOffBrick+Instruction.swift in Sources */,
 				CAE3C79C1B49FABC00AFE9D7 /* CBSequenceProtocol.swift in Sources */,
 				CAE3C79D1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift in Sources */,
 				CABF43BC1B115E6400419A55 /* CBSequenceList.swift in Sources */,
@@ -5680,6 +5687,7 @@
 				92FF314A1A24DEB300093DA7 /* BaseTableViewController.m in Sources */,
 				4C724E4F1B4D3E8C00E27479 /* ChangeVolumeByNBrick+CBXMLHandler.m in Sources */,
 				92FF2E901A24C7D800093DA7 /* GDataXMLNode.m in Sources */,
+				AAEF88CC1BBF16F500717E1A /* LedOnBrick+Instruction.swift in Sources */,
 				92FF2E8F1A24C7D800093DA7 /* FlashHelper.m in Sources */,
 				922FE8E11B963BDE005A19FA /* BrickSelectionManager.m in Sources */,
 				92DFB0141A38949E00FA9B0F /* InternFormulaParser.m in Sources */,

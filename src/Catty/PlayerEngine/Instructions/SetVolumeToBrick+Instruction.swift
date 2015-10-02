@@ -29,7 +29,7 @@ extension SetVolumeToBrick: CBInstructionProtocol {
         let audioManager = AudioManager.sharedAudioManager()
         let spriteObjectName = spriteObject.name
 
-        return CBInstruction.ExecClosure { (context, scheduler) in
+        return CBInstruction.ExecClosure { (context, _) in
 //            self.logger.debug("Performing: SetVolumeToBrick")
             let volume = self.volume.interpretDoubleForSprite(spriteObject)
             audioManager.setVolumeToPercent(CGFloat(volume), forKey: spriteObjectName)

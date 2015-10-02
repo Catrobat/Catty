@@ -20,21 +20,13 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension SetVariableBrick: CBInstructionProtocol {
-    
+extension LedOffBrick: CBInstructionProtocol {
+
     func instruction() -> CBInstruction {
 
-        guard let spriteObject = self.script?.object,
-              let variables = spriteObject.program?.variables
-        else { fatalError("This should never happen!") }
-
-        let userVariable = self.userVariable
-        let variableFormula = self.variableFormula
-
         return CBInstruction.ExecClosure { (context, _) in
-//            self.logger.debug("Performing: SetVariableBrick")
-            let result = variableFormula.interpretDoubleForSprite(spriteObject)
-            variables.setUserVariable(userVariable, toValue: result)
+//            self.logger.debug("Performing: FlashLightOffBrick/LEDOffBrick")
+            FlashHelper.sharedFlashHandler().turnOff()
             context.state = .Runnable
         }
 
