@@ -71,26 +71,6 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
     }
     
     // MARK: - Mapped instructions
-    private func _playSoundInstruction(brick: Brick) -> CBInstruction {
-        guard let playSoundBrick = brick as? PlaySoundBrick,
-              let objectName = playSoundBrick.script?.object?.name,
-              let projectPath = playSoundBrick.script?.object?.projectPath()
-        else { fatalError("This should never happen!") }
-
-        guard let sound = playSoundBrick.sound,
-              let fileName = sound.fileName
-        else { return .InvalidInstruction() }
-
-        let filePath = projectPath + kProgramSoundsDirName
-        let audioManager = AudioManager.sharedAudioManager()
-
-        return CBInstruction.ExecClosure { (context, scheduler) in
-            self.logger.debug("Performing: PlaySoundBrick")
-            audioManager.playSoundWithFileName(fileName, andKey: objectName, atFilePath: filePath)
-            context.state = .Runnable
-        }
-    }
-
     private func _stopAllSoundsInstruction(brick: Brick) -> CBInstruction {
         if brick is StopAllSoundsBrick == false { fatalError("This should never happen!") }
 
