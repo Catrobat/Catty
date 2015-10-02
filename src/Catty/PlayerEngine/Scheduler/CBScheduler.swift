@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-final class CBScheduler : CBSchedulerProtocol {
+final class CBScheduler: CBSchedulerProtocol {
 
     // MARK: - Properties
     var logger: CBLogger
@@ -90,9 +90,9 @@ final class CBScheduler : CBSchedulerProtocol {
         assert(NSThread.currentThread().isMainThread)
         //        let scheduleStartTime = NSDate()
 
-        var nextHighPriorityClosures = [CBScheduleClosureElement]()
-        var nextClosures = [CBScheduleClosureElement]()
-        var nextWaitClosures = [CBScheduleClosureElement]()
+        var nextHighPriorityClosures = [CBHighPriorityScheduleElement]()
+        var nextClosures = [CBScheduleElement]()
+        var nextWaitClosures = [CBScheduleElement]()
         for (spriteName, contexts) in _scheduledContexts {
             guard let spriteNode = _spriteNodes[spriteName]
             else { fatalError("WTH?? Sprite node not available (any more)...") }
@@ -160,18 +160,19 @@ final class CBScheduler : CBSchedulerProtocol {
             } else {
                 _availableWaitQueues.removeFirst()
             }
-            dispatch_async(queue!, { [weak self] in
-                closure()
-                self?._availableWaitQueues += queue!
+            dispatch_async(queue!, {
+                closure(context: context, scheduler: self)
+                self._availableWaitQueues += queue!
                 dispatch_async(dispatch_get_main_queue()) {
-                    self?.runNextInstructionOfContext(context)
+                    self.runNextInstructionOfContext(context)
                 }
             })
         }
 
-        for (_, closure) in nextClosures {
-            closure()
+        for (context, closure) in nextClosures {
+            closure(context: context, scheduler: self)
         }
+
 //        let duration = NSDate().timeIntervalSinceDate(scheduleStartTime)
 //        print("  Duration of last Schedule Cycle: \(duration*1000)ms")
         if nextClosures.count > 0 && nextHighPriorityClosures.count == 0 {
@@ -179,8 +180,8 @@ final class CBScheduler : CBSchedulerProtocol {
             return
         }
 
-        for (_, closure) in nextHighPriorityClosures {
-            closure()
+        for (context, closure) in nextHighPriorityClosures {
+            closure(context: context, scheduler: self, broadcastHandler: _broadcastHandler)
         }
     }
 
@@ -226,7 +227,7 @@ final class CBScheduler : CBSchedulerProtocol {
 
     func stopContext(context: CBScriptContext, continueWaitingBroadcastSenders: Bool) {
         guard let spriteName = context.spriteNode.name else { fatalError("Sprite node has no name!") }
-        assert(!_broadcastHandler.isWaitingForCalledBroadcastContexts(context))
+//        assert(!_broadcastHandler.isWaitingForCalledBroadcastContexts(context))
         if context.state == .Dead { return } // already stopped => must be an old deprecated dispatch closure
         let script = context.script
         logger.info("!!! STOPPING: \(script)")
