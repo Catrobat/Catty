@@ -22,7 +22,7 @@
 
 import Darwin // usleep
 
-final class CBBackend : CBBackendProtocol {
+final class CBBackend: CBBackendProtocol {
 
     // MARK: - Properties
     var logger: CBLogger
@@ -40,18 +40,21 @@ final class CBBackend : CBBackendProtocol {
 
     // MARK: - Operations
     func scriptContextForSequenceList(sequenceList: CBScriptSequenceList,
-        spriteNode: CBSpriteNode) -> CBScriptContext
+        spriteNode: CBSpriteNode, broadcastHandler: CBBroadcastHandlerProtocol) -> CBScriptContext
     {
         logger.info("Generating ScriptContext of \(sequenceList.script)")
         var context: CBScriptContext? = nil
 
         switch sequenceList.script {
         case let startScript as StartScript:
-            context = CBStartScriptContext(startScript: startScript, spriteNode: spriteNode, state: .Runnable)
+            context = CBStartScriptContext(startScript: startScript, spriteNode: spriteNode,
+                state: .Runnable, broadcastHandler: broadcastHandler)
         case let whenScript as WhenScript:
-            context = CBWhenScriptContext(whenScript: whenScript, spriteNode: spriteNode, state: .Runnable)
+            context = CBWhenScriptContext(whenScript: whenScript, spriteNode: spriteNode,
+                state: .Runnable, broadcastHandler: broadcastHandler)
         case let bcScript as BroadcastScript:
-            context = CBBroadcastScriptContext(broadcastScript: bcScript, spriteNode: spriteNode, state: .Runnable)
+            context = CBBroadcastScriptContext(broadcastScript: bcScript, spriteNode: spriteNode,
+                state: .Runnable, broadcastHandler: broadcastHandler)
         default:
             fatalError("Unknown script! THIS SHOULD NEVER HAPPEN!")
         }
@@ -90,7 +93,7 @@ final class CBBackend : CBBackendProtocol {
         // add if condition evaluation instruction
         let ifInstructions = _instructionsForSequence(ifSequence.sequenceList, context: context)
         let numberOfIfInstructions = ifInstructions.count
-        instructionList += CBInstruction.ExecClosure {
+        instructionList += CBInstruction.ExecClosure { (context, scheduler) in
             if ifSequence.checkCondition() == false {
                 var numberOfInstructionsToJump = numberOfIfInstructions
                 if ifSequence.elseSequenceList != nil {
@@ -111,7 +114,7 @@ final class CBBackend : CBBackendProtocol {
             numberOfElseInstructions = elseInstructions.count
             // add jump instruction to be the last if-instruction
             // (needed to avoid execution of else sequence)
-            instructionList += CBInstruction.ExecClosure {
+            instructionList += CBInstruction.ExecClosure { (context, scheduler) in
                 context.jump(numberOfInstructions: numberOfElseInstructions)
                 context.state = .Runnable
             }
@@ -127,7 +130,7 @@ final class CBBackend : CBBackendProtocol {
             context: context)
         let numOfBodyInstructions = bodyInstructions.count
 
-        let loopEndInstruction = CBInstruction.HighPriorityExecClosure { [weak self] in
+        let loopEndInstruction = CBInstruction.HighPriorityExecClosure { (context, scheduler, _) in
             var numOfInstructionsToJump = 0
             if conditionalSequence.checkCondition() {
                 numOfInstructionsToJump -= numOfBodyInstructions + 1 // omits loop begin instruction
@@ -138,29 +141,29 @@ final class CBBackend : CBBackendProtocol {
 
             // minimum duration (CatrobatLanguage specification!)
             let duration = NSDate().timeIntervalSinceDate(conditionalSequence.lastLoopIterationStartTime)
-            self?.logger.debug("  Duration for Sequence: \(duration*1000)ms")
+            self.logger.debug("  Duration for Sequence: \(duration*1000)ms")
             if duration < 0.02 {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
                     // high priority queue only needed for blocking purposes...
                     // the reason for this is that you should NEVER block the (serial) main_queue!!
-                    self?.logger.debug("Waiting on high priority queue")
+                    self.logger.debug("Waiting on high priority queue")
                     let uduration = UInt32((0.02 - duration) * 1_000_000) // in microseconds
                     usleep(uduration)
 
                     // now switch back to the main queue for executing the sequence!
                     dispatch_async(dispatch_get_main_queue(), {
                         context.jump(numberOfInstructions: numOfInstructionsToJump)
-                        self?._scheduler.runNextInstructionOfContext(context)
+                        scheduler.runNextInstructionOfContext(context)
                     });
                 });
             } else {
                 // now switch back to the main queue for executing the sequence!
                 context.jump(numberOfInstructions: numOfInstructionsToJump)
-                self?._scheduler.runNextInstructionOfContext(context)
+                scheduler.runNextInstructionOfContext(context)
             }
         }
 
-        let loopBeginInstruction = CBInstruction.ExecClosure {
+        let loopBeginInstruction = CBInstruction.ExecClosure { (context, scheduler) in
             if conditionalSequence.checkCondition() {
                 conditionalSequence.lastLoopIterationStartTime = NSDate()
             } else {
