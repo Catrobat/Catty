@@ -39,7 +39,6 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
 
         // brick actions that have been ported to Swift yet
         func _setupBrickInstructionMapping() {
-            _brickInstructionMap["SpeakBrick"] = _speakInstruction
             _brickInstructionMap["ChangeVolumeByNBrick"] = _changeVolumeByNInstruction
             _brickInstructionMap["SetVolumeToBrick"] = _setVolumeToInstruction
             _brickInstructionMap["SetVariableBrick"] = _setVariableInstruction
@@ -69,33 +68,6 @@ final class CBInstructionHandler: CBInstructionHandlerProtocol {
     }
     
     // MARK: - Mapped instructions
-    private func _speakInstruction(brick: Brick) -> CBInstruction {
-        guard let speakBrick = brick as? SpeakBrick,
-              let object = speakBrick.script?.object
-        else { fatalError("This should never happen!") }
-
-        return CBInstruction.ExecClosure { (context, scheduler) in
-            self.logger.debug("Performing: SpeakBrick")
-            var speakText = ""
-            if speakBrick.formula.formulaTree.type == STRING {
-                speakText = speakBrick.formula.formulaTree.value
-            } else {
-                // remove trailing 0's behind the decimal point!!
-                func removeTrailingZeros(number: Double) -> String {
-                    return String(format: "%g", number)
-                }
-                speakText = removeTrailingZeros(speakBrick.formula.interpretDoubleForSprite(object))
-            }
-            self.logger.debug("Speak text: '\(speakText)'")
-            let utterance = AVSpeechUtterance(string: speakText)
-            utterance.rate = (floor(NSFoundationVersionNumber) < 1200 ? 0.15 : 0.5)
-
-            let synthesizer = AVSpeechSynthesizer()
-            synthesizer.speakUtterance(utterance)
-            context.state = .Runnable
-        }
-    }
-
     private func _changeVolumeByNInstruction(brick: Brick) -> CBInstruction {
         guard let changeVolumeByNBrick = brick as? ChangeVolumeByNBrick,
               let spriteObject = changeVolumeByNBrick.script?.object
