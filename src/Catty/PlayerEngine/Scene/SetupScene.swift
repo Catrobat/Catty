@@ -41,8 +41,7 @@ final class SetupScene : NSObject {
         bcHandler.scheduler = scheduler
 
         // setup instruction handler
-        let instructionHandler = CBInstructionHandler(logger: instrHandlerLogger,
-            scheduler: scheduler, broadcastHandler: bcHandler)
+        let instructionHandler = CBInstructionHandler(logger: instrHandlerLogger, scheduler: scheduler)
 
         // setup frontend
         let frontend = CBFrontend(logger: frontendLogger, program: program)
