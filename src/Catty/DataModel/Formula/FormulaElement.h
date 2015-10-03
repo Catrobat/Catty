@@ -27,7 +27,7 @@
 
 @class SpriteObject;
 
-typedef enum {
+typedef NS_ENUM(NSInteger, ElementType) {
     OPERATOR = 10000,
     FUNCTION,
     NUMBER,
@@ -35,7 +35,7 @@ typedef enum {
     USER_VARIABLE,
     BRACKET,
     STRING
-} ElementType;
+};
 
 @interface FormulaElement : NSObject<CBMutableCopying>
 

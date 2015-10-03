@@ -20,19 +20,32 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension Functions {
+extension FormulaElement {
 
-    static var cachedNonIdempotentFunctions: [Function]? = nil
-
-    static func isIdempotentFunction(function: Function) -> Bool {
-        if cachedNonIdempotentFunctions == nil {
-            cachedNonIdempotentFunctions = [Function]()
-            Functions.nonIdempotentFunctions().forEach {
-                cachedNonIdempotentFunctions! += Function(rawValue: $0.integerValue)!
-            }
+    func isIdempotentFormulaElement() -> Bool {
+        if leftChild?.isIdempotentFormulaElement() == false {
+            return false
+        }
+        if rightChild?.isIdempotentFormulaElement() == false {
+            return false
         }
 
-        return cachedNonIdempotentFunctions!.contains(function) == false
+//        - (BOOL)isStaticFormula {
+//            return [self.formulaTree isStaticFormulaElement];
+//        }
+
+        if type == .FUNCTION {
+            return Functions.isIdempotentFunction(Functions.getFunctionByValue(self.value))
+        }
+
+        if type == .OPERATOR || type == .NUMBER || type == .SENSOR || type == .BRACKET {
+            return true
+        }
+
+        if type == .USER_VARIABLE || type == .STRING {
+            return false
+        }
+        return false
     }
 
 }

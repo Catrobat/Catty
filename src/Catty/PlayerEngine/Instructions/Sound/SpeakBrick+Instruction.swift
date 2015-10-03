@@ -29,7 +29,7 @@ extension SpeakBrick: CBInstructionProtocol {
         return CBInstruction.ExecClosure { (context, _) in
             //            self.logger.debug("Performing: SpeakBrick")
             var speakText = ""
-            if self.formula.formulaTree.type == STRING {
+            if self.formula.formulaTree.type == .STRING {
                 speakText = self.formula.formulaTree.value
             } else {
                 // remove trailing 0's behind the decimal point!!

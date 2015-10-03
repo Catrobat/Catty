@@ -933,18 +933,13 @@
 
 - (BOOL)isLogicalFunction
 {
-    if(self.type == FUNCTION)
-    {
+    if (self.type == FUNCTION) {
         Function function = [Functions getFunctionByValue:self.value];
         if((function == FALSE_F || function == TRUE_F) && self.leftChild == nil && self.rightChild == nil)
         {
             return YES;
         }
-    }else
-    {
-        return NO;
     }
-    
     return NO;
 }
 
