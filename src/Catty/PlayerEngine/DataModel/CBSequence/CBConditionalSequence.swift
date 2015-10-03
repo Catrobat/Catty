@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class CBConditionalSequence : CBSequenceProtocol, CBSequenceVisitProtocol {
+class CBConditionalSequence: CBSequenceProtocol, CBSequenceVisitProtocol {
 
     // MARK: - Properties
     final weak var rootSequenceList: CBScriptSequenceList?

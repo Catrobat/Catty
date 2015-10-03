@@ -364,6 +364,21 @@
 
 # pragma mark - Touch Event Handling
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
+//    if (self.menuOpen) {
+//        NSDebug(@"touch on scene not allowed, because menu is open");
+//        return;
+//    }
+//    NSDebug(@"touch on scene allowed");
+//    for (UITouch *touch in touches) {
+//        UITouch *anyTouch = (UITouch*)[touches anyObject];
+//        CGPoint location = [anyTouch locationInView:self.skView];
+//        NSDebug(@"StartTouchinScenePresenter");
+//        CBScene *scene = (CBScene*)self.skView.scene;
+//        if ([scene touchedWithTouch:anyTouch atPosition:location]) {
+//            return;
+//        }
+//    }
+
     if (self.menuOpen) {
         NSDebug(@"touch on scene not allowed, because menu is open");
         return;
@@ -372,9 +387,10 @@
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInView:self.skView];
         NSDebug(@"StartTouchinScenePresenter");
+
         CBScene *scene = (CBScene*)self.skView.scene;
-        if ([scene touchedWithTouch:touch atPosition:location]) {
-            return;
+        if ([scene touchedWithTouches:touches withX:location.x andY:location.y]) {
+            break;
         }
     }
 }

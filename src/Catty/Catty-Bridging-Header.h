@@ -63,6 +63,7 @@
 // Formulas
 #import "Formula.h"
 #import "FormulaElement.h"
+#import "Functions.h"
 
 // Assets
 #import "Look.h"
