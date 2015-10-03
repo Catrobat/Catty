@@ -23,21 +23,23 @@
 extension MoveNStepsBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
+        return .Action(action: SKAction.runBlock(actionBlock()))
+    }
 
+    func actionBlock() -> dispatch_block_t {
         guard let object = self.script?.object,
-              let spriteNode = object.spriteNode,
-              let stepsFormula = self.steps
+            let spriteNode = object.spriteNode,
+            let stepsFormula = self.steps
         else { fatalError("This should never happen!") }
 
-        return .Action(action: SKAction.runBlock {
+        return {
             let steps = stepsFormula.interpretDoubleForSprite(object)
             let rotation = ((spriteNode.rotation + 90) % 360) * M_PI / 180
             let position = spriteNode.scenePosition
             let xPosition = round(Double(position.x) + (steps * sin(rotation)))
             let yPosition = round(Double(position.y) - (steps * cos(rotation)))
             spriteNode.scenePosition = CGPointMake(CGFloat(xPosition), CGFloat(yPosition))
-        })
-
+        }
     }
 
 }

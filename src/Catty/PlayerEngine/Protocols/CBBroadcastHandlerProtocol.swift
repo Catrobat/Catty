@@ -20,15 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBBroadcastHandlerProtocol : class {
+protocol CBBroadcastHandlerProtocol: class {
 
     func setup()
     func tearDown()
-    func subscribeBroadcastContext(context: CBBroadcastScriptContext)
-    func unsubscribeBroadcastContext(context: CBBroadcastScriptContext)
-    func performBroadcastWithMessage(message: String, senderContext: CBScriptContext, broadcastType: CBBroadcastType)
-    func continueContextsWaitingForTerminationOfBroadcastContext(context: CBBroadcastScriptContext)
-    func isWaitingForCalledBroadcastContexts(context: CBScriptContext) -> Bool
-    func terminateAllCalledBroadcastContextsAndRemoveWaitingContext(context: CBScriptContext)
+    func subscribeBroadcastContext(context: CBBroadcastScriptContextProtocol)
+    func unsubscribeBroadcastContext(context: CBBroadcastScriptContextProtocol)
+    func performBroadcastWithMessage(message: String, senderContext: CBScriptContextProtocol, broadcastType: CBBroadcastType)
+    func continueContextsWaitingForTerminationOfBroadcastContext(context: CBBroadcastScriptContextProtocol)
+    func isWaitingForCalledBroadcastContexts(context: CBScriptContextProtocol) -> Bool
+    func terminateAllCalledBroadcastContextsAndRemoveWaitingContext(context: CBScriptContextProtocol)
 
 }

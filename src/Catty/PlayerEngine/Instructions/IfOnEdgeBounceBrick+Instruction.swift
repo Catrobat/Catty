@@ -23,14 +23,17 @@
 extension IfOnEdgeBounceBrick: CBInstructionProtocol {
 
     func instruction() -> CBInstruction {
+        return .Action(action: SKAction.runBlock(actionBlock()))
+    }
 
+    func actionBlock() -> dispatch_block_t {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode,
               let scene = spriteNode.scene
         else { fatalError("This should never happen!") }
 
         // TODO: simplify...
-        return .Action(action: SKAction.runBlock {
+        return {
             let width = spriteNode.size.width
             let height = spriteNode.size.height
             
@@ -70,7 +73,7 @@ extension IfOnEdgeBounceBrick: CBInstructionProtocol {
             }
             spriteNode.rotation = rotation
             spriteNode.scenePosition = CGPointMake(xPosition, yPosition)
-        })
+        }
     }
 
 }
