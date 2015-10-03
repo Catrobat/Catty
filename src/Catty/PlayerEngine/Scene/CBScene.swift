@@ -108,11 +108,6 @@ final class CBScene: SKScene {
                 return false
             }
 
-            for node in nodesAtPoint {
-                print(">>>>>>>>>>> I am: '\(node.name)'")
-            }
-            print("---")
-
             var spriteNode1 = nodesAtPoint[nodesAtPoint.count - 1] as? CBSpriteNode
             var counter = nodesAtPoint.count - 2
             logger?.debug("How many nodes are touched: \(counter)")

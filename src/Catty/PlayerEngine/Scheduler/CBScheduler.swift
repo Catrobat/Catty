@@ -34,7 +34,7 @@ final class CBScheduler: CBSchedulerProtocol {
     private var _scheduledContexts = [String:[CBScriptContextProtocol]]()
 
     private var _availableWaitQueues = [dispatch_queue_t]()
-    private var _lastQueueIndex = PlayerConfig.NumberOfWaitQueuesInitialValue
+    private var _lastQueueIndex = 0
 
     // MARK: Static properties
     static let vibrateSerialQueue = dispatch_queue_create("org.catrobat.vibrate.queue", DISPATCH_QUEUE_SERIAL)
@@ -195,9 +195,10 @@ final class CBScheduler: CBSchedulerProtocol {
         running = true
         _broadcastHandler.setup()
 
-        for var idx = 1; idx <= _lastQueueIndex; ++idx {
+        for var idx = 1; idx <= PlayerConfig.NumberOfWaitQueuesInitialValue; ++idx {
             _availableWaitQueues += dispatch_queue_create("org.catrobat.wait.queue[\(idx)]", DISPATCH_QUEUE_SERIAL)
         }
+        _lastQueueIndex = PlayerConfig.NumberOfWaitQueuesInitialValue
 
         // schedule all start scripts
         _contexts.forEach { if $0 is CBStartScriptContext { scheduleContext($0) } }

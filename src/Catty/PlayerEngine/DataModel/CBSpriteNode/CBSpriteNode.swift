@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-final class CBSpriteNode : SKSpriteNode {
+final class CBSpriteNode: SKSpriteNode {
 
     // MARK: - Properties
     private(set) var spriteObject: SpriteObject?
@@ -185,7 +185,8 @@ final class CBSpriteNode : SKSpriteNode {
 
             if let lastTime = _lastTimeTouchedSpriteNode[spriteName] {
                 let duration = NSDate().timeIntervalSinceDate(lastTime)
-                if duration < 0.2 { // ignore multiple touches on same sprite node within 200ms...
+                // ignore multiple touches on same sprite node within a certain amount of time...
+                if duration < PlayerConfig.MinIntervalBetweenTwoAcceptedTouches {
                     return true
                 }
             }
@@ -223,7 +224,8 @@ final class CBSpriteNode : SKSpriteNode {
 
         if let lastTime = _lastTimeTouchedSpriteNode[spriteName] {
             let duration = NSDate().timeIntervalSinceDate(lastTime)
-            if duration < 0.2 { // ignore multiple touches on same sprite node within 200ms...
+            // ignore multiple touches on same sprite node within a certain amount of time...
+            if duration < PlayerConfig.MinIntervalBetweenTwoAcceptedTouches {
                 return true
             }
         }

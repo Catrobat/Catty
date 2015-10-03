@@ -21,7 +21,8 @@
  */
 
 struct PlayerConfig {
-    static let LoopMinDurationTime = 0.2 // 20ms
+    static let LoopMinDurationTime = 0.02 // 20ms
+    static let MinIntervalBetweenTwoAcceptedTouches = 0.2 // 200ms
     static let MaxRecursionLimitOfSelfBroadcasts = 40
     static let NumberOfWaitQueuesInitialValue = 3
 }
