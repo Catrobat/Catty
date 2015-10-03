@@ -29,9 +29,9 @@ final class CBScheduler: CBSchedulerProtocol {
     private let _broadcastHandler: CBBroadcastHandlerProtocol
 
     private var _spriteNodes = [String:CBSpriteNode]()
-    private var _contexts = [CBScriptContext]()
+    private var _contexts = [CBScriptContextProtocol]()
     private var _whenContexts = [String:[CBWhenScriptContext]]()
-    private var _scheduledContexts = [String:[CBScriptContext]]()
+    private var _scheduledContexts = [String:[CBScriptContextProtocol]]()
 
     private var _availableWaitQueues = [dispatch_queue_t]()
     private var _lastQueueIndex = 3
@@ -47,7 +47,7 @@ final class CBScheduler: CBSchedulerProtocol {
     }
 
     // MARK: - Queries
-    func isContextScheduled(context: CBScriptContext) -> Bool {
+    func isContextScheduled(context: CBScriptContextProtocol) -> Bool {
         guard let spriteName = context.spriteNode.name
         else { fatalError("Sprite node has no name!") }
         return _scheduledContexts[spriteName]?.contains(context) == true
@@ -64,7 +64,7 @@ final class CBScheduler: CBSchedulerProtocol {
         _spriteNodes[spriteNode.name!] = spriteNode
     }
 
-    func registerContext(context: CBScriptContext) {
+    func registerContext(context: CBScriptContextProtocol) {
         guard let spriteName = context.spriteNode.name else { fatalError("Sprite node has no name!") }
         precondition(!_contexts.contains(context))
         precondition(_spriteNodes[spriteName] == context.spriteNode)
@@ -79,7 +79,7 @@ final class CBScheduler: CBSchedulerProtocol {
     }
 
     // MARK: - Scheduling
-    func runNextInstructionOfContext(context: CBScriptContext) {
+    func runNextInstructionOfContext(context: CBScriptContextProtocol) {
         assert(NSThread.currentThread().isMainThread)
         context.state = .Runnable
         runNextInstructionsGroup()
@@ -205,7 +205,7 @@ final class CBScheduler: CBSchedulerProtocol {
         runNextInstructionsGroup()
     }
 
-    func scheduleContext(context: CBScriptContext) {
+    func scheduleContext(context: CBScriptContextProtocol) {
         guard let spriteName = context.spriteNode.name else { fatalError("Sprite node has no name!") }
         assert(_contexts.contains(context))
         assert(!isContextScheduled(context))
@@ -222,13 +222,13 @@ final class CBScheduler: CBSchedulerProtocol {
         _scheduledContexts[spriteName]! += context
     }
 
-    func forceStopContext(context: CBScriptContext) {
+    func forceStopContext(context: CBScriptContextProtocol) {
         logger.debug("!!! FORCE STOPPING SCRIPT CONTEXT !!!")
         //_broadcastHandler.terminateAllCalledBroadcastContextsAndRemoveWaitingContext(context)
         stopContext(context, continueWaitingBroadcastSenders: false)
     }
 
-    func stopContext(context: CBScriptContext, continueWaitingBroadcastSenders: Bool) {
+    func stopContext(context: CBScriptContextProtocol, continueWaitingBroadcastSenders: Bool) {
         guard let spriteName = context.spriteNode.name else { fatalError("Sprite node has no name!") }
 //        assert(!_broadcastHandler.isWaitingForCalledBroadcastContexts(context))
         if context.state == .Dead { return } // already stopped => must be an old deprecated dispatch closure
@@ -237,14 +237,17 @@ final class CBScheduler: CBSchedulerProtocol {
 
         context.state = .Dead
 
-        if let broadcastScriptContext = context as? CBBroadcastScriptContext
+        if let broadcastContext = context as? CBBroadcastScriptContext
         where continueWaitingBroadcastSenders {
-            _broadcastHandler.continueContextsWaitingForTerminationOfBroadcastContext(broadcastScriptContext)
+            _broadcastHandler.continueContextsWaitingForTerminationOfBroadcastContext(broadcastContext)
         }
 
         // dequeue
         var spriteScheduledContexts = _scheduledContexts[spriteName]!
-        spriteScheduledContexts.removeObject(context)
+        if let index = spriteScheduledContexts.indexOfElement(context) {
+            spriteScheduledContexts.removeAtIndex(index)
+        }
+
         if spriteScheduledContexts.count > 0 {
             _scheduledContexts[spriteName] = spriteScheduledContexts
         } else {

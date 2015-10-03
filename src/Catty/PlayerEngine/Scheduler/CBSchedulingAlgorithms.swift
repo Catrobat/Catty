@@ -54,13 +54,13 @@
 //// implements a load balancing scheduling algorithm
 //final class CBSchedulingAlgorithmLoadBalancing : CBSchedulingAlgorithmProtocol {
 //
-//    struct CBContextElement {
+//    struct CBScriptContextElement {
 //        let context: CBScriptContextAbstract
 //        var numOfPastInstructions = 0
 //        init(context: CBScriptContextAbstract) { self.context = context }
 //    }
-//    private var _spriteNameScriptContexts = [String:[CBScriptContextAbstract]]()
-//    private var _priorityQueue = PriorityQueue<CBContextElement>({
+//    private var _spriteNameContexts = [String:[CBScriptContextAbstract]]()
+//    private var _priorityQueue = PriorityQueue<CBScriptContextElement>({
 //        $0.numOfPastInstructions < $1.numOfPastInstructions
 //    })
 //    private var _lastContextElement: CBScriptContextAbstract? = nil
@@ -81,15 +81,15 @@
 //        for scheduledContext in scheduledContexts {
 //            if scheduledContext.state == .Running {
 //                runningContexts += scheduledContext
-//                var spriteNameScriptContexts = _spriteNameScriptContexts[scheduledContext.script.object!.name]
-//                if spriteNameScriptContexts == nil {
-//                    spriteNameScriptContexts = [CBScriptContextAbstract]()
+//                var spriteNameContexts = _spriteNameContexts[scheduledContext.script.object!.name]
+//                if spriteNameContexts == nil {
+//                    spriteNameContexts = [CBScriptContextAbstract]()
 //                }
-//                if spriteNameScriptContexts!.contains(scheduledContext) == false {
-//                    spriteNameScriptContexts! += scheduledContext
-//                    _priorityQueue.push(CBContextElement(context: scheduledContext))
+//                if spriteNameContexts!.contains(scheduledContext) == false {
+//                    spriteNameContexts! += scheduledContext
+//                    _priorityQueue.push(CBScriptContextElement(context: scheduledContext))
 //                }
-//                _spriteNameScriptContexts[scheduledContext.script.object!.name] = spriteNameScriptContexts!
+//                _spriteNameContexts[scheduledContext.script.object!.name] = spriteNameContexts!
 //            }
 //        }
 //
@@ -101,9 +101,9 @@
 //            if var contextElement = _priorityQueue.pop() {
 //                let context = contextElement.context
 //                if runningContexts.contains(context) == false {
-//                    if var spriteNameScriptContexts = _spriteNameScriptContexts[context.script.object!.name] {
-//                        spriteNameScriptContexts.removeObject(context)
-//                        _spriteNameScriptContexts[context.script.object!.name] = spriteNameScriptContexts
+//                    if var spriteNameContexts = _spriteNameContexts[context.script.object!.name] {
+//                        spriteNameContexts.removeObject(context)
+//                        _spriteNameContexts[context.script.object!.name] = spriteNameContexts
 //                    }
 //                    continue
 //                }
@@ -127,14 +127,14 @@
 //// implements a priority scheduling algorithm
 //final class CBSchedulingAlgorithmPriorityQueue : CBSchedulingAlgorithmProtocol {
 //
-//    struct CBContextPriorityElement {
+//    struct CBScriptContextPriorityElement {
 //        let context: CBScriptContextAbstract
 //        var timeStampsOfPastInstructionsWithinLast100ms = CBStack<NSDate>() // helper stack
 //        var numOfPastInstructionsWithinLast100ms = 0
 //        init(context: CBScriptContextAbstract) { self.context = context }
 //    }
-//    private var _spriteNameScriptContexts = [String:[CBScriptContextAbstract]]()
-//    private var _priorityQueue = PriorityQueue<CBContextPriorityElement>({
+//    private var _spriteNameContexts = [String:[CBScriptContextAbstract]]()
+//    private var _priorityQueue = PriorityQueue<CBScriptContextPriorityElement>({
 //        $0.numOfPastInstructionsWithinLast100ms < $1.numOfPastInstructionsWithinLast100ms
 //    })
 //
@@ -146,15 +146,15 @@
 //        for scheduledContext in scheduledContexts {
 //            if scheduledContext.state == .Running {
 //                runningContexts += scheduledContext
-//                var spriteNameScriptContexts = _spriteNameScriptContexts[scheduledContext.script.object!.name]
-//                if spriteNameScriptContexts == nil {
-//                    spriteNameScriptContexts = [CBScriptContextAbstract]()
+//                var spriteNameContexts = _spriteNameContexts[scheduledContext.script.object!.name]
+//                if spriteNameContexts == nil {
+//                    spriteNameContexts = [CBScriptContextAbstract]()
 //                }
-//                if spriteNameScriptContexts!.contains(scheduledContext) == false {
-//                    spriteNameScriptContexts! += scheduledContext
-//                    _priorityQueue.push(CBContextPriorityElement(context: scheduledContext))
+//                if spriteNameContexts!.contains(scheduledContext) == false {
+//                    spriteNameContexts! += scheduledContext
+//                    _priorityQueue.push(CBScriptContextPriorityElement(context: scheduledContext))
 //                }
-//                _spriteNameScriptContexts[scheduledContext.script.object!.name] = spriteNameScriptContexts!
+//                _spriteNameContexts[scheduledContext.script.object!.name] = spriteNameContexts!
 //            }
 //        }
 //        if runningContexts.isEmpty {
@@ -198,28 +198,28 @@
 //    {
 //        assert(scheduledContexts.isEmpty == false) // make sure dict is not empty (as specified!)
 //        var runningContexts = [CBScriptContextAbstract]()
-//        var runningStartScriptContexts = [CBStartScriptContext]() // start script have higher priority (!)
+//        var runningStartContexts = [CBStartContext]() // start script have higher priority (!)
 //        for scheduledContext in scheduledContexts {
 //            if scheduledContext.state == .Running || scheduledContext.state == .RunningMature {
-//                if let startScriptContext = scheduledContext as? CBStartScriptContext {
-//                    runningStartScriptContexts += startScriptContext
+//                if let startContext = scheduledContext as? CBStartContext {
+//                    runningStartContexts += startContext
 //                } else {
 //                    runningContexts += scheduledContext
 //                }
 //            }
 //        }
 //
-//        if runningStartScriptContexts.isEmpty == false {
+//        if runningStartContexts.isEmpty == false {
 //            // start scripts should have higher priority (!)
 //            // => double the chance for them to win this lottery game!
-//            let numOfRunningStartScripts = runningStartScriptContexts.count
+//            let numOfRunningStartScripts = runningStartContexts.count
 //            let prioritizedStartScriptRange = numOfRunningStartScripts * 2
 //            let prioritizedOtherScriptRange = runningContexts.count
 //
 //            let range = prioritizedStartScriptRange + prioritizedOtherScriptRange
 //            let randomIndex = Int(arc4random_uniform(UInt32(range)))
 //            if randomIndex < prioritizedStartScriptRange {
-//                return runningStartScriptContexts[randomIndex/2]
+//                return runningStartContexts[randomIndex/2]
 //            } else {
 //                return scheduledContexts[randomIndex - prioritizedStartScriptRange]
 //            }
