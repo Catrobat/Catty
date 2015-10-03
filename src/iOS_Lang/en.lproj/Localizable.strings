@@ -11,6 +11,9 @@
 "About Pocket Code" = "About Pocket Code";
 
 /* No comment provided by engineer. */
+"acceleration-sensor" = "acceleration-sensor";
+
+/* No comment provided by engineer. */
 "acceleration_x" = "acceleration_x";
 
 /* No comment provided by engineer. */
@@ -434,6 +437,9 @@
 "Green" = "Green";
 
 /* No comment provided by engineer. */
+"gyro-sensor" = "gyro-sensor";
+
+/* No comment provided by engineer. */
 "Hello !" = "Hello !";
 
 /* No comment provided by engineer. */
@@ -543,6 +549,9 @@
 
 /* No comment provided by engineer. */
 "loudness" = "loudness";
+
+/* No comment provided by engineer. */
+"magnetic-sensor" = "magnetic-sensor";
 
 /* No comment provided by engineer. */
 "Mar" = "Mar";
@@ -675,6 +684,9 @@
 
 /* No comment provided by engineer. */
 "not" = "not";
+
+/* No comment provided by engineer. */
+"not available" = "not available";
 
 /* No comment provided by engineer. */
 "Not enough free memory to download this program. Please delete some of your programs" = "Not enough free memory to download this program. Please delete some of your programs";
