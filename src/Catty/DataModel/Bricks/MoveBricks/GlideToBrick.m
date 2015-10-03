@@ -77,30 +77,6 @@
     return kLocalizedGlideTo;
 }
 
-#pragma mark - override
-- (SKAction*)action
-{
-    double durationInSeconds = [self.durationInSeconds interpretDoubleForSprite:self.script.object];
-    self.isInitialized = NO;
-
-    return [SKAction customActionWithDuration:durationInSeconds actionBlock:^(SKNode *node, CGFloat elapsedTime) {
-        NSDebug(@"Performing: %@", self.description);
-        double xDestination = [self.xDestination interpretDoubleForSprite:self.script.object];
-        double yDestination = [self.yDestination interpretDoubleForSprite:self.script.object];
-        
-        if(!self.isInitialized) {
-            self.isInitialized = YES;
-            self.currentPoint = self.script.object.spriteNode.scenePosition;
-            self.startingPoint = self.currentPoint;
-        }
-        // TODO: handle extreme movemenets and set currentPoint accordingly
-        CGFloat percent = (CGFloat)(elapsedTime / durationInSeconds);
-        CGFloat xPoint = (CGFloat)(self.startingPoint.x + (xDestination - self.startingPoint.x) * percent);
-        CGFloat yPoint = (CGFloat)(self.startingPoint.y + (yDestination - self.startingPoint.y) * percent);
-        self.script.object.spriteNode.scenePosition = self.currentPoint = CGPointMake(xPoint, yPoint);
-    }];
-}
-
 #pragma mark - Description
 - (NSString*)description
 {

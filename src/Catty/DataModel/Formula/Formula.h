@@ -53,5 +53,5 @@
 - (NSString*)getDisplayString;
 - (InternFormula*)getInternFormula;
 - (void)setDisplayString:(NSString*)text;
-- (NSString *)getResultForComputeDialog:(SpriteObject *)sprite;
+- (NSString*)getResultForComputeDialog:(SpriteObject*)sprite;
 @end

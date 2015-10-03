@@ -20,41 +20,25 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "IfOnEdgeBounceBrick.h"
-#import "Util.h"
-#import "Script.h"
-#import "Pocket_Code-Swift.h"
+import XCTest
 
-@implementation IfOnEdgeBounceBrick
-
-- (BOOL)isSelectableForObject
-{
-    return (! [self.script.object isBackground]);
-}
-
-- (NSString*)brickTitle
-{
-    return kLocalizedIfIsTrueThenOnEdgeBounce;
-}
-
-- (void)performFromScript:(Script*)script;
-{
-    NSDebug(@"Performing: %@", self.description);
-    
-    //[self.script.object ifOnEdgeBounce];
-    
-}
-
-- (SKAction*)action
-{
-    NSError(@"%@ (ERROR: Implementation of this action moved to %@+Instruction.swift", self.class);
-    return nil;
-}
-
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"IfOnEdgeBounceBrick"];
-}
-
-@end
+//@testable import Pocket_Code
+//
+//final class WaitBrickTests: XCTestCase {
+//
+//    func testLongDuration() {
+////        let duration = 2.0 // 2 seconds
+////        let waitBrick = WaitBrick()
+////        waitBrick.timeToWaitInSeconds = Formula(double: duration)
+////        let instruction = waitBrick.instruction()
+////
+////        CBScriptContext(script: <#T##Script#>, spriteNode: SpriteNode())
+////
+////        switch instruction {
+////        case let .WaitExecClosure(closure):
+////            closure(context: , scheduler: TestScheduler())
+////        default: break
+////        }
+//    }
+//
+//}
