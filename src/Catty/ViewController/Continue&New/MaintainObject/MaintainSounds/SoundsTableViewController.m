@@ -100,6 +100,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     self.useDetailCells = [showDetailsSoundsValue boolValue];
     self.navigationController.title = self.title = kLocalizedSounds;
     [self initNavigationBar];
+    [self changeEditingBarButtonState];
     self.currentPlayingSong = nil;
     self.currentPlayingSongCell = nil;
     self.placeHolderView.title = kLocalizedSounds;
@@ -153,6 +154,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (self.afterSafeBlock) {
         self.afterSafeBlock(nil);
     }
+    [self reloadData];
 }
 - (void)recordAdded:(NSNotification*)notification
 {
@@ -178,6 +180,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     if (self.afterSafeBlock) {
         self.afterSafeBlock(nil);
     }
+    [self reloadData];
 }
 
 #pragma mark - actions
@@ -284,6 +287,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self.tableView deleteRowsAtIndexPaths:selectedRowsIndexPaths withRowAnimation:UITableViewRowAnimationNone];
     [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
     [self hideLoadingView];
+    [self reloadData];
 }
 
 - (void)deleteSoundForIndexPath:(NSIndexPath*)indexPath
@@ -296,6 +300,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                           withRowAnimation:UITableViewRowAnimationNone];
     [super showPlaceHolder:(! (BOOL)[self.object.soundList count])];
     [self hideLoadingView];
+    [self reloadData];
 }
 
 #pragma mark - Table view data source
@@ -568,7 +573,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
             [defaults synchronize];
             [self stopAllSounds];
-            [self.tableView reloadData];
+            [self reloadData];
         }
     } else if (actionSheet.tag == kEditSoundActionSheetTag) {
         if (buttonIndex == 0) {
@@ -697,6 +702,25 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, invisibleButton, flexItem,
                          invisibleButton, deleteButton, nil];
+}
+
+- (void)changeEditingBarButtonState
+{
+    if (self.object.soundList.count >= 1) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    } else {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
+}
+
+-(void)reloadData
+{
+    dispatch_async(dispatch_get_main_queue(),^{
+        //do something
+        [self.tableView reloadData];
+        [self changeEditingBarButtonState];
+        
+    });
 }
 
 @end
