@@ -34,7 +34,7 @@ final class CBScheduler: CBSchedulerProtocol {
     private var _scheduledContexts = [String:[CBScriptContextProtocol]]()
 
     private var _availableWaitQueues = [dispatch_queue_t]()
-    private var _lastQueueIndex = 3
+    private var _lastQueueIndex = PlayerConfig.NumberOfWaitQueuesInitialValue
 
     // MARK: Static properties
     static let vibrateSerialQueue = dispatch_queue_create("org.catrobat.vibrate.queue", DISPATCH_QUEUE_SERIAL)
@@ -135,8 +135,8 @@ final class CBScheduler: CBSchedulerProtocol {
 //                let startTime = NSDate()
                 spriteNode.runAction(groupAction) { [weak self] in
 //                    let duration = NSDate().timeIntervalSinceDate(startTime)
-                    //                self?.logger.info("  Duration for Group: \(duration*1000)ms")
-//                    print("  Duration for Group: \(duration*1000)ms")
+                    //                self?.logger.info("  Duration for Group: \(duration*1_000)ms")
+//                    print("  Duration for Group: \(duration*1_000)ms")
                     nextActionElements.forEach { $0.context.state = .Runnable }
                     self?.runNextInstructionsGroup()
                 }
@@ -148,7 +148,7 @@ final class CBScheduler: CBSchedulerProtocol {
                 let action = SKAction.customActionWithDuration(durationInSeconds, actionBlock: actionClosure)
                 spriteNode.runAction(action) { [weak self] in
 //                    let duration = NSDate().timeIntervalSinceDate(startTime)
-//                    print("  Duration for Group: \(duration*1000)ms")
+//                    print("  Duration for Group: \(duration*1_000)ms")
                     context.state = .Runnable
                     self?.runNextInstructionsGroup()
                 }
@@ -177,7 +177,7 @@ final class CBScheduler: CBSchedulerProtocol {
         }
 
 //        let duration = NSDate().timeIntervalSinceDate(scheduleStartTime)
-//        print("  Duration of last Schedule Cycle: \(duration*1000)ms")
+//        print("  Duration of last Schedule Cycle: \(duration*1_000)ms")
         if nextClosures.count > 0 && nextHighPriorityClosures.count == 0 {
             runNextInstructionsGroup()
             return

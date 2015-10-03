@@ -20,43 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-// MARK: Extensions
-extension Array {
-    mutating func removeObject<U: Equatable>(object: U) {
-        var index: Int?
-        for (idx, objectToCompare) in self.enumerate() {
-            if let to = objectToCompare as? U {
-                if object == to {
-                    index = idx
-                }
-            }
-        }
-        if(index != nil) {
-            self.removeAtIndex(index!)
-        }
-    }
-
-    mutating func prepend(newElement: Element) {
-        self.insert(newElement, atIndex: 0)
-    }
-}
-
-func +=<T>(inout left: [T], right: T) {
-    left.append(right)
-}
-
-func ==(lhs: NSDate, rhs: NSDate) -> Bool {
-    return lhs.timeIntervalSince1970 == rhs.timeIntervalSince1970
-}
-
-func <(lhs: NSDate, rhs: NSDate) -> Bool {
-    if lhs.compare(rhs) == .OrderedAscending {
-        return true
-    }
-    return false
-}
-
-// MARK: Typedefs
+// MARK: - Typedefs
 typealias CBScheduleLongActionElement = (context: CBScriptContextProtocol, durationFormula: Formula, actionClosure: CBLongActionCreateClosure)
 typealias CBScheduleActionElement = (context: CBScriptContextProtocol, action: SKAction)
 typealias CBHighPriorityScheduleElement = (context: CBScriptContextProtocol, closure: CBHighPriorityExecClosure)
@@ -68,7 +32,7 @@ typealias CBHighPriorityExecClosure = (context: CBScriptContextProtocol,
 typealias CBLongActionClosure = (SKNode, CGFloat) -> Void
 typealias CBLongActionCreateClosure = (duration: NSTimeInterval) -> CBLongActionClosure
 
-// MARK: Enums
+// MARK: - Enums
 enum CBInstruction {
     case HighPriorityExecClosure(closure: CBHighPriorityExecClosure)
     case ExecClosure(closure: CBExecClosure)
@@ -121,61 +85,44 @@ enum CBScriptContextState {
 
 }
 
-enum CBBroadcastType {
+enum CBBroadcastType: String {
+    case Broadcast = "Broadcast"
+    case BroadcastWait = "BroadcastWait"
+}
 
-    case Broadcast
-    case BroadcastWait
 
-    func typeName() -> String {
-        switch self {
-        case .Broadcast:
-            return "Broadcast"
-        case .BroadcastWait:
-            return "BroadcastWait"
+// MARK: - Extensions
+extension Array {
+    mutating func removeObject<U: Equatable>(object: U) {
+        var index: Int?
+        for (idx, objectToCompare) in self.enumerate() {
+            if let to = objectToCompare as? U {
+                if object == to {
+                    index = idx
+                }
+            }
         }
+        if(index != nil) {
+            self.removeAtIndex(index!)
+        }
+    }
+    
+    mutating func prepend(newElement: Element) {
+        self.insert(newElement, atIndex: 0)
     }
 }
 
-// Logger names for release and debug mode configured in Swell.plist
-//--------------------------------------------------------------------------------------------------
-#if DEBUG
-//==================================================================================================
-//                                      DEVELOPER MODE
-//==================================================================================================
-
-struct LoggerConfig {
-    static let PlayerSceneID = "CBSceneLogger.Debug"
-    static let PlayerSchedulerID = "CBSchedulerLogger.Debug"
-    static let PlayerFrontendID = "CBFrontendLogger.Debug"
-    static let PlayerBackendID = "CBBackendLogger.Debug"
-    static let PlayerBroadcastHandlerID = "CBBroadcastHandlerLogger.Debug"
+func +=<T>(inout left: [T], right: T) {
+    left.append(right)
 }
 
-#else // DEBUG == 1
-//==================================================================================================
-//                                       RELEASE MODE
-//==================================================================================================
-
-struct LoggerConfig {
-    static let PlayerSceneID = "CBSceneLogger.Release"
-    static let PlayerSchedulerID = "CBSchedulerLogger.Release"
-    static let PlayerFrontendID = "CBFrontendLogger.Release"
-    static let PlayerBackendID = "CBBackendLogger.Release"
-    static let PlayerBroadcastHandlerID = "CBBroadcastHandlerLogger.Release"
+func ==(lhs: NSDate, rhs: NSDate) -> Bool {
+    return lhs.timeIntervalSince1970 == rhs.timeIntervalSince1970
 }
 
-////------------------------------------------------------------------------------------------------
-#endif // DEBUG
-
-//==================================================================================================
-//                                        TEST MODE
-//==================================================================================================
-
-// Test logger names configured in Swell.plist
-struct LoggerTestConfig {
-    static let PlayerSceneID = "CBSceneLogger.Test"
-    static let PlayerSchedulerID = "CBSchedulerLogger.Test"
-    static let PlayerFrontendID = "CBFrontendLogger.Test"
-    static let PlayerBackendID = "CBBackendLogger.Test"
-    static let PlayerBroadcastHandlerID = "CBBroadcastHandlerLogger.Test"
+func <(lhs: NSDate, rhs: NSDate) -> Bool {
+    if lhs.compare(rhs) == .OrderedAscending {
+        return true
+    }
+    return false
 }

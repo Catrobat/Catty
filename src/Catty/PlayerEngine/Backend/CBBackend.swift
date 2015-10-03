@@ -108,13 +108,13 @@ final class CBBackend: CBBackendProtocol {
 
             // minimum duration (CatrobatLanguage specification!)
             let duration = NSDate().timeIntervalSinceDate(loopSequence.lastLoopIterationStartTime)
-            self.logger.debug("  Duration for Sequence: \(duration*1000)ms")
-            if duration < 0.02 {
+            self.logger.debug("  Duration for Sequence: \(duration*1_000)ms")
+            if duration < PlayerConfig.LoopMinDurationTime {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
                     // high priority queue only needed for blocking purposes...
                     // the reason for this is that you should NEVER block the (serial) main_queue!!
                     self.logger.debug("Waiting on high priority queue")
-                    let uduration = UInt32((0.02 - duration) * 1_000_000) // in microseconds
+                    let uduration = UInt32((PlayerConfig.LoopMinDurationTime - duration) * 1_000_000) // in µs
                     usleep(uduration)
 
                     // now switch back to the main queue for executing the sequence!
@@ -135,8 +135,7 @@ final class CBBackend: CBBackendProtocol {
                 loopSequence.lastLoopIterationStartTime = NSDate()
             } else {
                 loopSequence.resetCondition() // IMPORTANT: reset loop counter right now
-                let numOfInstructionsToJump = numOfBodyInstructions + 1 // includes loop end instr.!
-                context.jump(numberOfInstructions: numOfInstructionsToJump)
+                context.jump(numberOfInstructions: numOfBodyInstructions + 1) // includes loop end instr.!
             }
             context.state = .Runnable
         }

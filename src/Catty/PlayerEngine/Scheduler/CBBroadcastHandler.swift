@@ -22,10 +22,6 @@
 
 final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
 
-    // MARK: - Constants
-    // specifies max depth limit for self broadcasts running on the same function stack
-    let selfBroadcastRecursionMaxDepthLimit = 40
-
     // MARK: - Properties
     var logger: CBLogger
     weak var scheduler: CBSchedulerProtocol?
@@ -89,7 +85,7 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
     func performBroadcastWithMessage(message: String, senderContext: CBScriptContextProtocol,
         broadcastType: CBBroadcastType)
     {
-        logger.info("Performing \(broadcastType.typeName()) with message '\(message)'")
+        logger.info("Performing \(broadcastType.rawValue) with message '\(message)'")
         let enqueuedWaitingScripts = _broadcastWaitingContextsQueue[senderContext.id]
         assert(enqueuedWaitingScripts == nil || enqueuedWaitingScripts?.count == 0)
 
@@ -150,7 +146,7 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
         if let counterNumber = _selfBroadcastCounters[message] {
             counter = counterNumber
         }
-        if ++counter % selfBroadcastRecursionMaxDepthLimit == 0 { // XXX: DIRTY PERFORMANCE HACK!!
+        if ++counter % PlayerConfig.MaxRecursionLimitOfSelfBroadcasts == 0 { // XXX: DIRTY PERFORMANCE HACK!!
             dispatch_async(dispatch_get_main_queue(), { [weak self] in
                 // restart this self-listening BroadcastScript
                 self?.scheduler?.forceStopContext(context)
