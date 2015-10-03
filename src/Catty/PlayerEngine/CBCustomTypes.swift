@@ -57,17 +57,18 @@ func <(lhs: NSDate, rhs: NSDate) -> Bool {
 }
 
 // MARK: Typedefs
-typealias CBScheduleLongActionElement = (context: CBScriptContext, durationFormula: Formula, actionClosure: CBLongActionCreateClosure)
-typealias CBScheduleActionElement = (context: CBScriptContext, action: SKAction)
-typealias CBHighPriorityScheduleElement = (context: CBScriptContext, closure: CBHighPriorityExecClosure)
-typealias CBScheduleElement = (context: CBScriptContext, closure: CBExecClosure)
-typealias CBBroadcastQueueElement = (message: String, senderScriptContext: CBScriptContext,
-    broadcastType: CBBroadcastType)
-typealias CBExecClosure = (context: CBScriptContext, scheduler: CBSchedulerProtocol) -> Void
-typealias CBHighPriorityExecClosure = (context: CBScriptContext, scheduler: CBSchedulerProtocol, broadcastHandler: CBBroadcastHandlerProtocol) -> Void
+typealias CBScheduleLongActionElement = (context: CBScriptContextProtocol, durationFormula: Formula, actionClosure: CBLongActionCreateClosure)
+typealias CBScheduleActionElement = (context: CBScriptContextProtocol, action: SKAction)
+typealias CBHighPriorityScheduleElement = (context: CBScriptContextProtocol, closure: CBHighPriorityExecClosure)
+typealias CBScheduleElement = (context: CBScriptContextProtocol, closure: CBExecClosure)
+
+typealias CBExecClosure = (context: CBScriptContextProtocol, scheduler: CBSchedulerProtocol) -> Void
+typealias CBHighPriorityExecClosure = (context: CBScriptContextProtocol,
+    scheduler: CBSchedulerProtocol, broadcastHandler: CBBroadcastHandlerProtocol) -> Void
 typealias CBLongActionClosure = (SKNode, CGFloat) -> Void
 typealias CBLongActionCreateClosure = (duration: NSTimeInterval) -> CBLongActionClosure
 
+// MARK: Enums
 enum CBInstruction {
     case HighPriorityExecClosure(closure: CBHighPriorityExecClosure)
     case ExecClosure(closure: CBExecClosure)
@@ -78,11 +79,6 @@ enum CBInstruction {
     case InvalidInstruction()
 }
 
-// MARK: Enums
-enum CBExecType {
-    case Runnable
-    case Running
-}
 
 //##################################################################################################
 //                _____ __        __          ____  _
@@ -105,7 +101,7 @@ enum CBExecType {
 //
 //##################################################################################################
 
-enum CBContextState {
+enum CBScriptContextState {
 
     // initial state for a CBScriptExecContext that has
     // not yet been added to the scheduler
