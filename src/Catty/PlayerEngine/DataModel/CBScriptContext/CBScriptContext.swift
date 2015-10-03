@@ -20,38 +20,50 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-protocol CBScriptContextProtocol: class, Hashable, Equatable {
+protocol CBScriptContextProtocol: class {
+    var id: String { get }
     var spriteNode: CBSpriteNode { get }
     var script: Script { get }
-    var state: CBContextState { get set }
+    var state: CBScriptContextState { get set }
+
     func appendInstructions(instructionList: [CBInstruction])
     func nextInstruction() -> CBInstruction?
     func jump(numberOfInstructions numberOfInstructions: Int)
     func reset()
 }
 
+protocol CBBroadcastScriptContextProtocol: CBScriptContextProtocol {
+    var broadcastMessage: String { get }
+    var waitingContext: CBScriptContextProtocol? { get set }
+}
+
 // TODO: refactor abstract class, maybe protocol extension??
 class CBScriptContext: CBScriptContextProtocol {
 
     // MARK: - Properties
+    final let id: String
     final let spriteNode: CBSpriteNode
-    final var script: Script
-    final var state: CBContextState
+    final let script: Script
+    final var state: CBScriptContextState
     final var count: Int { return _instructionList.count }
 
     final private var _instructionPointer: Int = 0
     final private lazy var _instructionList = [CBInstruction]()
-    var hashValue: Int { return spriteNode.name!.hashValue }
 
     // MARK: - Initializers
     convenience init(script: Script, spriteNode: CBSpriteNode) {
         self.init(script: script, spriteNode: spriteNode, state: .Runnable, instructionList: [])
     }
 
-    init(script: Script, spriteNode: CBSpriteNode, state: CBContextState, instructionList: [CBInstruction]) {
+    init(script: Script, spriteNode: CBSpriteNode, state: CBScriptContextState, instructionList: [CBInstruction]) {
         self.spriteNode = spriteNode
         self.script = script
         self.state = state
+        assert(spriteNode.name != nil)
+        let index = spriteNode.spriteObject?.scriptList.indexOfObject(script)
+        assert(index != nil)
+        self.id = "[\(spriteNode.name!)][\(index!)]"
+        print(self.id)
         _instructionPointer = 0
         _instructionList = instructionList
     }
@@ -92,11 +104,11 @@ class CBScriptContext: CBScriptContextProtocol {
 //--------------------------------------------------------------------------------------------------
 final class CBWhenScriptContext: CBScriptContext {
 
-    convenience init(whenScript: WhenScript, spriteNode: CBSpriteNode, state: CBContextState) {
+    convenience init(whenScript: WhenScript, spriteNode: CBSpriteNode, state: CBScriptContextState) {
         self.init(whenScript: whenScript, spriteNode: spriteNode, state: state, instructionList: [])
     }
 
-    init(whenScript: WhenScript, spriteNode: CBSpriteNode, state: CBContextState,
+    init(whenScript: WhenScript, spriteNode: CBSpriteNode, state: CBScriptContextState,
         instructionList: [CBInstruction]
     ) {
         super.init(script: whenScript, spriteNode: spriteNode, state: state,
@@ -106,18 +118,20 @@ final class CBWhenScriptContext: CBScriptContext {
 }
 
 //--------------------------------------------------------------------------------------------------
-final class CBBroadcastScriptContext: CBScriptContext {
+final class CBBroadcastScriptContext: CBScriptContext, CBBroadcastScriptContextProtocol {
 
-    final var broadcastMessage: String
+    let broadcastMessage: String
+    var waitingContext: CBScriptContextProtocol?
 
-    convenience init(broadcastScript: BroadcastScript, spriteNode: CBSpriteNode, state: CBContextState) {
+    convenience init(broadcastScript: BroadcastScript, spriteNode: CBSpriteNode, state: CBScriptContextState) {
         self.init(broadcastScript: broadcastScript, spriteNode: spriteNode, state: state, instructionList: [])
     }
 
-    init(broadcastScript: BroadcastScript, spriteNode: CBSpriteNode, state: CBContextState,
+    init(broadcastScript: BroadcastScript, spriteNode: CBSpriteNode, state: CBScriptContextState,
         instructionList: [CBInstruction]
     ) {
         broadcastMessage = broadcastScript.receivedMessage
+        waitingContext = nil
         super.init(script: broadcastScript, spriteNode: spriteNode, state: state,
             instructionList: instructionList)
     }
@@ -127,11 +141,11 @@ final class CBBroadcastScriptContext: CBScriptContext {
 //--------------------------------------------------------------------------------------------------
 final class CBStartScriptContext: CBScriptContext {
 
-    convenience init(startScript: StartScript, spriteNode: CBSpriteNode, state: CBContextState) {
+    convenience init(startScript: StartScript, spriteNode: CBSpriteNode, state: CBScriptContextState) {
         self.init(startScript: startScript, spriteNode: spriteNode, state: state, instructionList: [])
     }
 
-    init(startScript: StartScript, spriteNode: CBSpriteNode, state: CBContextState,
+    init(startScript: StartScript, spriteNode: CBSpriteNode, state: CBScriptContextState,
         instructionList: [CBInstruction]
     ) {
         super.init(script: startScript, spriteNode: spriteNode, state: state,
@@ -140,9 +154,59 @@ final class CBStartScriptContext: CBScriptContext {
 
 }
 
+// MARK: - Protocol extensions
+// TODO: simplify and remove duplicate...
+extension CollectionType where Generator.Element == CBScriptContextProtocol {
+
+    func contains(e: Generator.Element) -> Bool {
+        for element in self {
+            if element == e {
+                return true
+            }
+        }
+        return false
+    }
+
+    func indexOfElement(e: Generator.Element) -> Int? {
+        var index = 0
+        for element in self {
+            if element == e {
+                return index
+            }
+            ++index
+        }
+        return nil
+    }
+
+}
+
+extension CollectionType where Generator.Element == CBBroadcastScriptContextProtocol {
+
+    func contains(e: Generator.Element) -> Bool {
+        for element in self {
+            if element == e {
+                return true
+            }
+        }
+        return false
+    }
+
+    func indexOfElement(e: Generator.Element) -> Int? {
+        var index = 0
+        for element in self {
+            if element == e {
+                return index
+            }
+            ++index
+        }
+        return nil
+    }
+
+}
+
 // MARK: - Custom operators
-func ==(lhs: CBScriptContext, rhs: CBScriptContext) -> Bool {
-    return lhs.spriteNode === rhs.spriteNode && lhs.script === rhs.script
+func ==(lhs: CBScriptContextProtocol, rhs: CBScriptContextProtocol) -> Bool {
+    return lhs.id == rhs.id
 }
 
 func +=(inout left: CBScriptContext, right: CBInstruction) {

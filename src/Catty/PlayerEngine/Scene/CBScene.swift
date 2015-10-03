@@ -162,9 +162,9 @@ final class CBScene: SKScene {
             for script in scriptList {
                 guard let scriptSequence = frontend?.computeSequenceListForScript(script),
                       let instructions = backend?.instructionsForSequence(scriptSequence.sequenceList)
-                else { fatalError("Unable to create ScriptSequence and ScriptContext") }
+                else { fatalError("Unable to create ScriptSequence and Context") }
 
-                logger?.info("Generating ScriptContext of \(script)")
+                logger?.info("Generating Context of \(script)")
                 var context: CBScriptContext? = nil
 
                 switch script {
