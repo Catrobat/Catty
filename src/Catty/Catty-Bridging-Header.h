@@ -59,6 +59,16 @@
 #import "GlideToBrick.h"
 #import "MoveNStepsBrick.h"
 #import "IfOnEdgeBounceBrick.h"
+#import "ShowBrick.h"
+#import "SetLookBrick.h"
+#import "SetSizeToBrick.h"
+#import "PointInDirectionBrick.h"
+#import "PlaceAtBrick.h"
+#import "PointToBrick.h"
+#import "SetXBrick.h"
+#import "SetYBrick.h"
+#import "TurnLeftBrick.h"
+#import "TurnRightBrick.h"
 
 // Formulas
 #import "Formula.h"

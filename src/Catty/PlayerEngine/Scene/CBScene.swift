@@ -309,7 +309,7 @@ final class CBScene: SKScene {
         return CGPointMake(x, y);
     }
 
-    func convertDegreesToScene(degrees: CGFloat) -> CGFloat {
+    func convertDegreesToScene(degrees: Double) -> Double {
         return 360.0 - degrees
     }
 

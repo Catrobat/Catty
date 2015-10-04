@@ -27,20 +27,20 @@ extension PlaySoundBrick: CBInstructionProtocol {
         guard let objectName = self.script?.object?.name,
             let projectPath = self.script?.object?.projectPath()
             else { fatalError("This should never happen!") }
-        
+
         guard let sound = self.sound,
-            let fileName = sound.fileName
-            else { return .InvalidInstruction() }
-        
+              let fileName = sound.fileName
+        else { return .InvalidInstruction() }
+
         let filePath = projectPath + kProgramSoundsDirName
         let audioManager = AudioManager.sharedAudioManager()
-        
+
         return CBInstruction.ExecClosure { (context, _) in
             //            self.logger.debug("Performing: PlaySoundBrick")
             audioManager.playSoundWithFileName(fileName, andKey: objectName, atFilePath: filePath)
             context.state = .Runnable
         }
-        
+
     }
-    
+
 }
