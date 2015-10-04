@@ -20,38 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "PointInDirectionBrick.h"
-#import "Formula.h"
-#import "Util.h"
-#import "Script.h"
+extension PointInDirectionBrick: CBInstructionProtocol {
 
-@implementation PointInDirectionBrick
+    func instruction() -> CBInstruction {
+        return .Action(action: SKAction.runBlock(actionBlock()))
+    }
 
-- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    return self.degrees;
+    func actionBlock() -> dispatch_block_t {
+        guard let object = self.script?.object,
+              let spriteNode = object.spriteNode,
+              let scene = spriteNode.scene as? CBScene
+        else { fatalError("This should never happen!") }
+
+        return {
+            let degrees = self.degrees.interpretDoubleForSprite(object) - PlayerConfig.RotationDegreeOffset
+            spriteNode.rotation = scene.convertDegreesToScene(degrees)
+        }
+    }
+
 }
-
-- (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    self.degrees = formula;
-}
-
-- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
-{
-    self.degrees = [[Formula alloc] initWithInteger:90];
-}
-
-- (NSString*)brickTitle
-{
-    return kLocalizedPointInDirection;
-}
-
-#pragma mark - Description
-- (NSString*)description
-{
-    double deg = [self.degrees interpretDoubleForSprite:self.script.object];
-    return [NSString stringWithFormat:@"PointInDirection: %f", deg];
-}
-
-@end
