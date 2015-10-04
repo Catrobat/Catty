@@ -23,7 +23,6 @@
 #import "Placeatbrick.h"
 #import "Formula.h"
 #import "Script.h"
-#import "Pocket_Code-Swift.h"
 
 @implementation PlaceAtBrick
 
@@ -54,21 +53,6 @@
 - (NSString*)brickTitle
 {
     return kLocalizedPlaceAt;
-}
-
-- (SKAction*)action
-{
-  return [SKAction runBlock:[self actionBlock]];
-}
-
-- (dispatch_block_t)actionBlock
-{
-    return ^{
-        NSDebug(@"Performing: %@", self.description);
-        double xPosition = [self.xPosition interpretDoubleForSprite:self.script.object];
-        double yPosition = [self.yPosition interpretDoubleForSprite:self.script.object];
-        self.script.object.spriteNode.scenePosition = CGPointMake((CGFloat)xPosition, (CGFloat)yPosition);
-    };
 }
 
 #pragma mark - Description
