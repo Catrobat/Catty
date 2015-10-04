@@ -162,7 +162,7 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
         logger.debug("BROADCASTSCRIPT HAS BEEN RESTARTED DUE TO SELF-BROADCAST!!")
     }
 
-    func continueContextsWaitingForTerminationOfBroadcastContext(context: CBBroadcastScriptContextProtocol) {
+    func wakeUpContextsWaitingForTerminationOfBroadcastContext(context: CBBroadcastScriptContextProtocol) {
         var waitingContextToBeContinued: CBScriptContextProtocol? = nil
         for (waitingContextID, var runningBroadcastContexts) in _broadcastWaitingContextsQueue {
             assert(waitingContextID != context.id)

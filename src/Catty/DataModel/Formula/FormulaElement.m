@@ -47,8 +47,9 @@
             parent:(FormulaElement*)parent
 {
     self = [super init];
-    if(self) {
+    if (self) {
         [self initialize:[self elementTypeForString:type] value:value leftChild:leftChild rightChild:rightChild parent:parent];
+        _idempotenceState = NOT_CHECKED;
     }
     return self;
 }
@@ -60,8 +61,9 @@
                    parent:(FormulaElement*)parent
 {
     self = [super init];
-    if(self) {
+    if (self) {
         [self initialize:type value:value leftChild:leftChild rightChild:rightChild parent:parent];
+        _idempotenceState = NOT_CHECKED;
     }
     return self;
 }

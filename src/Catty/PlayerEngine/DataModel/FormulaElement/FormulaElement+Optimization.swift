@@ -22,29 +22,38 @@
 
 extension FormulaElement {
 
-    func isIdempotentFormulaElement() -> Bool {
-        if leftChild?.isIdempotentFormulaElement() == false {
-            return false
-        }
-        if rightChild?.isIdempotentFormulaElement() == false {
-            return false
+    func isIdempotent() -> Bool {
+
+        if idempotenceState != .NOT_CHECKED { // cached result!
+            return (idempotenceState == .IDEMPOTENT)
         }
 
-//        - (BOOL)isStaticFormula {
-//            return [self.formulaTree isStaticFormulaElement];
-//        }
+        if leftChild?.isIdempotent() == false {
+            idempotenceState = .NOT_IDEMPOTENT // cache result!
+            return false
+        }
+        if rightChild?.isIdempotent() == false {
+            idempotenceState = .NOT_IDEMPOTENT // cache result!
+            return false
+        }
 
         if type == .FUNCTION {
-            return Functions.isIdempotentFunction(Functions.getFunctionByValue(self.value))
+            let result = Functions.isIdempotentFunction(Functions.getFunctionByValue(self.value))
+            idempotenceState = result ? .IDEMPOTENT : .NOT_IDEMPOTENT // cache result!
+            return result
         }
 
-        if type == .OPERATOR || type == .NUMBER || type == .SENSOR || type == .BRACKET {
+        if (type == .OPERATOR) || (type == .NUMBER) || (type == .BRACKET) {
+            idempotenceState = .IDEMPOTENT // cache result!
             return true
         }
 
-        if type == .USER_VARIABLE || type == .STRING {
+        if (type == .USER_VARIABLE) || (type == .SENSOR) || (type == .STRING) {
+            idempotenceState = .NOT_IDEMPOTENT // cache result!
             return false
         }
+
+        idempotenceState = .NOT_IDEMPOTENT // cache result!
         return false
     }
 

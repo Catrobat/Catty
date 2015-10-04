@@ -37,6 +37,12 @@ typedef NS_ENUM(NSInteger, ElementType) {
     STRING
 };
 
+typedef NS_ENUM(NSInteger, IdempotenceState) {
+    NOT_CHECKED = 0,
+    IDEMPOTENT,
+    NOT_IDEMPOTENT
+};
+
 @interface FormulaElement : NSObject<CBMutableCopying>
 
 @property (nonatomic, assign) ElementType type;
@@ -44,6 +50,7 @@ typedef NS_ENUM(NSInteger, ElementType) {
 @property (nonatomic, strong) FormulaElement* leftChild;
 @property (nonatomic, strong) FormulaElement* rightChild;
 @property (nonatomic, strong) FormulaElement* parent;
+@property (nonatomic) IdempotenceState idempotenceState;
 
 - (id)initWithType:(NSString*)type
              value:(NSString*)value

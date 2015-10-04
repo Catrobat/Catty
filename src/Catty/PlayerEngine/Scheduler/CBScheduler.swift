@@ -91,7 +91,6 @@ final class CBScheduler: CBSchedulerProtocol {
     func runNextInstructionsGroup() {
         // TODO: apply scheduling via StrategyPattern => selects scripts to be scheduled NOW!
         assert(NSThread.currentThread().isMainThread)
-        //        let scheduleStartTime = NSDate()
 
         var nextHighPriorityClosures = [CBHighPriorityScheduleElement]()
         var nextClosures = [CBScheduleElement]()
@@ -119,6 +118,7 @@ final class CBScheduler: CBSchedulerProtocol {
                     case let .Action(action):
                         nextActionElements += (context, action)
                     case .InvalidInstruction:
+                        context.state = .Runnable
                         continue // skip invalid instruction
                     }
                 } else {
@@ -132,23 +132,23 @@ final class CBScheduler: CBSchedulerProtocol {
                 let groupAction = nextActionElements.count > 1
                                 ? SKAction.group(nextActionElements.map { $0.action })
                                 : nextActionElements.first!.1
-//                let startTime = NSDate()
                 spriteNode.runAction(groupAction) { [weak self] in
-//                    let duration = NSDate().timeIntervalSinceDate(startTime)
-                    //                self?.logger.info("  Duration for Group: \(duration*1_000)ms")
-//                    print("  Duration for Group: \(duration*1_000)ms")
                     nextActionElements.forEach { $0.context.state = .Runnable }
                     self?.runNextInstructionsGroup()
                 }
             }
 
-            for (context, durationFormula, actionCreateClosure) in nextLongActionElements {
-                let durationInSeconds = durationFormula.interpretDoubleForSprite(context.spriteNode.spriteObject)
-                let actionClosure = actionCreateClosure(duration: durationInSeconds)
-                let action = SKAction.customActionWithDuration(durationInSeconds, actionBlock: actionClosure)
+            for (context, duration, actionCreateClosure) in nextLongActionElements {
+                var durationTime = 0.0
+                switch duration {
+                case let .VarTime(formula):
+                    durationTime = formula.interpretDoubleForSprite(context.spriteNode.spriteObject)
+                case let .FixedTime(time):
+                    durationTime = time
+                }
+                let actionClosure = actionCreateClosure(duration: durationTime)
+                let action = SKAction.customActionWithDuration(durationTime, actionBlock: actionClosure)
                 spriteNode.runAction(action) { [weak self] in
-//                    let duration = NSDate().timeIntervalSinceDate(startTime)
-//                    print("  Duration for Group: \(duration*1_000)ms")
                     context.state = .Runnable
                     self?.runNextInstructionsGroup()
                 }
@@ -176,8 +176,6 @@ final class CBScheduler: CBSchedulerProtocol {
             closure(context: context, scheduler: self)
         }
 
-//        let duration = NSDate().timeIntervalSinceDate(scheduleStartTime)
-//        print("  Duration of last Schedule Cycle: \(duration*1_000)ms")
         if nextClosures.count > 0 && nextHighPriorityClosures.count == 0 {
             runNextInstructionsGroup()
             return
@@ -240,7 +238,7 @@ final class CBScheduler: CBSchedulerProtocol {
 
         if let broadcastContext = context as? CBBroadcastScriptContext
         where continueWaitingBroadcastSenders {
-            _broadcastHandler.continueContextsWaitingForTerminationOfBroadcastContext(broadcastContext)
+            _broadcastHandler.wakeUpContextsWaitingForTerminationOfBroadcastContext(broadcastContext)
         }
 
         // dequeue

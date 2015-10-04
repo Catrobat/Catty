@@ -29,14 +29,18 @@ extension GlideToBrick: CBInstructionProtocol {
               let spriteNode = object.spriteNode
         else { fatalError("This should never happen!") }
 
-        return .LongDurationAction(durationFormula: durationFormula, actionCreateClosure: {
+        let cachedDuration = durationFormula.isIdempotent()
+                           ? CBDuration.FixedTime(duration: durationFormula.interpretDoubleForSprite(object))
+                           : CBDuration.VarTime(formula: durationFormula)
+
+        return .LongDurationAction(duration: cachedDuration, actionCreateClosure: {
             (duration) -> CBLongActionClosure in
 
             self.isInitialized = false
             return { (node, elapsedTime) in
 //                self?.logger.debug("Performing: \(self.description())")
-                let xDestination = Float(self.xDestination.interpretDoubleForSprite(object))
-                let yDestination = Float(self.yDestination.interpretDoubleForSprite(object))
+                let xDestination = self.xDestination.interpretFloatForSprite(object)
+                let yDestination = self.yDestination.interpretFloatForSprite(object)
                 if !self.isInitialized {
                     self.isInitialized = true
                     let startingPoint = spriteNode.scenePosition

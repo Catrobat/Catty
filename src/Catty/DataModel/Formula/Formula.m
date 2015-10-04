@@ -22,6 +22,7 @@
 
 #import "Formula.h"
 #import "FormulaElement.h"
+#import "Pocket_Code-Swift.h"
 #import "Operators.h"
 
 @interface Formula()
@@ -83,12 +84,15 @@
 }
 
 - (double)interpretDoubleForSprite:(SpriteObject*)sprite {
+    if (self.lastResult) {
+        return self.lastResult.doubleValue;
+    }
     id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
     double returnDoubleValue = 0.0f;
     if ([returnValue isKindOfClass:[NSNumber class]]) {
         returnDoubleValue = [returnValue doubleValue];
     }
-    self.lastResult = @(returnDoubleValue);
+    self.lastResult = [self.formulaTree isIdempotent] ? @(returnDoubleValue) : nil;
     return returnDoubleValue;
 }
 
@@ -98,12 +102,15 @@
 }
 
 - (int)interpretIntegerForSprite:(SpriteObject*)sprite {
+    if (self.lastResult) {
+        return self.lastResult.intValue;
+    }
     id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
     if ([returnValue isKindOfClass:[NSNumber class]]) {
-        self.lastResult = (NSNumber*)returnValue;
-        return (int)[((NSNumber*)returnValue) doubleValue];
+        self.lastResult = [self.formulaTree isIdempotent] ? (NSNumber*)returnValue : nil;
+        return (int)((NSNumber*)returnValue).doubleValue;
     }
-    self.lastResult = @(0);
+    self.lastResult = [self.formulaTree isIdempotent] ? @(0) : nil;
     return 0;
 }
 
@@ -125,10 +132,13 @@
 }
 
 - (NSString*)interpretString:(SpriteObject*)sprite {
+    if (self.lastResult) {
+        return [NSString stringWithFormat:@"%lf", self.lastResult.doubleValue];
+    }
     id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
     if([returnValue isKindOfClass:[NSNumber class]]) {
-        self.lastResult = (NSNumber*)returnValue;
-        return [NSString stringWithFormat:@"%lf", [returnValue doubleValue]];
+        self.lastResult = [self.formulaTree isIdempotent] ? (NSNumber*)returnValue : nil;
+        return [NSString stringWithFormat:@"%lf", ((NSNumber*)returnValue).doubleValue];
     }
     // TODO: Exception handling if no number returned
     return returnValue;

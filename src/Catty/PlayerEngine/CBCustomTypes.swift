@@ -21,7 +21,7 @@
  */
 
 // MARK: - Typedefs
-typealias CBScheduleLongActionElement = (context: CBScriptContextProtocol, durationFormula: Formula, actionClosure: CBLongActionCreateClosure)
+typealias CBScheduleLongActionElement = (context: CBScriptContextProtocol, duration: CBDuration, actionClosure: CBLongActionCreateClosure)
 typealias CBScheduleActionElement = (context: CBScriptContextProtocol, action: SKAction)
 typealias CBHighPriorityScheduleElement = (context: CBScriptContextProtocol, closure: CBHighPriorityExecClosure)
 typealias CBScheduleElement = (context: CBScriptContextProtocol, closure: CBExecClosure)
@@ -38,9 +38,14 @@ enum CBInstruction {
     case ExecClosure(closure: CBExecClosure)
 //    case LongDurationExecClosure(closure: CBExecClosure) // unused atm.
     case WaitExecClosure(closure: CBExecClosure)
-    case LongDurationAction(durationFormula: Formula, actionCreateClosure: CBLongActionCreateClosure)
+    case LongDurationAction(duration: CBDuration, actionCreateClosure: CBLongActionCreateClosure)
     case Action(action: SKAction)
     case InvalidInstruction()
+}
+
+enum CBDuration {
+    case VarTime(formula: Formula)
+    case FixedTime(duration: Double)
 }
 
 
@@ -91,6 +96,56 @@ enum CBBroadcastType: String {
 }
 
 
+// MARK: - Protocol extensions
+// TODO: simplify and remove duplicate...
+extension CollectionType where Generator.Element == CBScriptContextProtocol {
+    
+    func contains(e: Generator.Element) -> Bool {
+        for element in self {
+            if element == e {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func indexOfElement(e: Generator.Element) -> Int? {
+        var index = 0
+        for element in self {
+            if element == e {
+                return index
+            }
+            ++index
+        }
+        return nil
+    }
+    
+}
+
+extension CollectionType where Generator.Element == CBBroadcastScriptContextProtocol {
+    
+    func contains(e: Generator.Element) -> Bool {
+        for element in self {
+            if element == e {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func indexOfElement(e: Generator.Element) -> Int? {
+        var index = 0
+        for element in self {
+            if element == e {
+                return index
+            }
+            ++index
+        }
+        return nil
+    }
+    
+}
+
 // MARK: - Extensions
 extension Array {
     mutating func removeObject<U: Equatable>(object: U) {
@@ -110,6 +165,19 @@ extension Array {
     mutating func prepend(newElement: Element) {
         self.insert(newElement, atIndex: 0)
     }
+}
+
+// MARK: - Custom operators
+func ==(lhs: CBScriptContextProtocol, rhs: CBScriptContextProtocol) -> Bool {
+    return lhs.id == rhs.id
+}
+
+func +=(inout left: CBScriptContext, right: CBInstruction) {
+    left.appendInstructions([right])
+}
+
+func +=(inout left: CBScriptContext, right: [CBInstruction]) {
+    left.appendInstructions(right)
 }
 
 func +=<T>(inout left: [T], right: T) {

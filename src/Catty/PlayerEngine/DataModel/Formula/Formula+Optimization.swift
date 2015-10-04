@@ -20,14 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-extension BroadcastBrick: CBInstructionProtocol {
+extension Formula {
 
-    func instruction() -> CBInstruction {
-
-        let msg = self.broadcastMessage
-        return CBInstruction.HighPriorityExecClosure { (context, _, bcHandler) in
-            bcHandler.performBroadcastWithMessage(msg, senderContext: context, broadcastType: .Broadcast)
-        }
+    func isIdempotent() -> Bool {
+        return formulaTree.isIdempotent()
     }
 
 }

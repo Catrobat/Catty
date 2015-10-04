@@ -27,7 +27,7 @@ protocol CBBroadcastHandlerProtocol: class {
     func subscribeBroadcastContext(context: CBBroadcastScriptContextProtocol)
     func unsubscribeBroadcastContext(context: CBBroadcastScriptContextProtocol)
     func performBroadcastWithMessage(message: String, senderContext: CBScriptContextProtocol, broadcastType: CBBroadcastType)
-    func continueContextsWaitingForTerminationOfBroadcastContext(context: CBBroadcastScriptContextProtocol)
+    func wakeUpContextsWaitingForTerminationOfBroadcastContext(context: CBBroadcastScriptContextProtocol)
     func isWaitingForCalledBroadcastContexts(context: CBScriptContextProtocol) -> Bool
     func terminateAllCalledBroadcastContextsAndRemoveWaitingContext(context: CBScriptContextProtocol)
 
