@@ -110,10 +110,6 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
             }
 
             // case broadcastScript != senderScript (=> other broadcastscript)
-            if scheduler?.isContextScheduled(registeredContext) == true {
-                // case broadcastScript is running => stop it
-                scheduler?.stopContext(registeredContext, continueWaitingBroadcastSenders: true)
-            }
             recipientContexts += registeredContext // collect other (!) broadcastScript
         }
 
@@ -126,9 +122,7 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
         }
 
         // finally schedule all other (!) (collected) listening broadcast scripts
-        for recipientContext in recipientContexts {
-            scheduler?.scheduleContext(recipientContext)
-        }
+        scheduler?.startBroadcastContexts(recipientContexts)
 
         if isSelfBroadcast {
             // launch self (!) listening broadcast script
@@ -147,14 +141,13 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
             counter = counterNumber
         }
         if ++counter % PlayerConfig.MaxRecursionLimitOfSelfBroadcasts == 0 { // XXX: DIRTY PERFORMANCE HACK!!
+            // TODO: restart special case issue
             dispatch_async(dispatch_get_main_queue(), { [weak self] in
                 // restart this self-listening BroadcastScript
-                self?.scheduler?.forceStopContext(context)
                 self?.scheduler?.scheduleContext(context)
                 self?.scheduler?.runNextInstructionsGroup()
             })
         } else {
-            scheduler?.forceStopContext(context)
             scheduler?.scheduleContext(context)
             scheduler?.runNextInstructionsGroup()
         }
@@ -198,11 +191,11 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
 
     func terminateAllCalledBroadcastContextsAndRemoveWaitingContext(context: CBScriptContextProtocol) {
         if let broadcastContexts = _broadcastWaitingContextsQueue[context.id] {
-            for broadcastContext in broadcastContexts {
-                scheduler?.forceStopContext(broadcastContext)
-            }
             _broadcastWaitingContexts.removeValueForKey(context.id)
             _broadcastWaitingContextsQueue.removeValueForKey(context.id)
+            for broadcastContext in broadcastContexts {
+                scheduler?.stopContext(broadcastContext, continueWaitingBroadcastSenders: false)
+            }
         }
     }
 

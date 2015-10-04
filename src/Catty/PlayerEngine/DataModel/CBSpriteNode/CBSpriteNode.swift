@@ -192,15 +192,16 @@ final class CBSpriteNode: SKSpriteNode {
             }
             _lastTimeTouchedSpriteNode[spriteName] = NSDate()
 
-            if let whenContexts = scheduler.whenContextsForSpriteNodeWithName(spriteName) {
-                for whenContext in whenContexts {
-                    if scheduler.isContextScheduled(whenContext) {
-                        scheduler.forceStopContext(whenContext)
-                    }
-                    scheduler.scheduleContext(whenContext)
-                }
-                scheduler.runNextInstructionsGroup()
-            }
+            scheduler.startWhenContextsOfSpriteNodeWithName(spriteName)
+//            if let whenContexts = scheduler.whenContextsForSpriteNodeWithName(spriteName) {
+//                for whenContext in whenContexts {
+//                    if scheduler.isContextScheduled(whenContext) {
+//                        scheduler.forceStopContext(whenContext)
+//                    }
+//                    scheduler.scheduleContext(whenContext)
+//                }
+//                scheduler.runNextInstructionsGroup()
+//            }
             return true
         }
         return true
@@ -231,15 +232,16 @@ final class CBSpriteNode: SKSpriteNode {
         }
         _lastTimeTouchedSpriteNode[spriteName] = NSDate()
 
-        if let whenContexts = scheduler.whenContextsForSpriteNodeWithName(spriteName) {
-            for whenContext in whenContexts {
-                if scheduler.isContextScheduled(whenContext) {
-                    scheduler.forceStopContext(whenContext)
-                }
-                scheduler.scheduleContext(whenContext)
-            }
-            scheduler.runNextInstructionsGroup()
-        }
+        scheduler.startWhenContextsOfSpriteNodeWithName(spriteName)
+//        if let whenContexts = scheduler.whenContextsForSpriteNodeWithName(spriteName) {
+//            for whenContext in whenContexts {
+//                if scheduler.isContextScheduled(whenContext) {
+//                    scheduler.forceStopContext(whenContext)
+//                }
+//                scheduler.scheduleContext(whenContext)
+//            }
+//            scheduler.runNextInstructionsGroup()
+//        }
         return true
     }
 
