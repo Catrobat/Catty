@@ -20,36 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SetYBrick.h"
-#import "Formula.h"
-#import "Script.h"
+extension SetYBrick: CBInstructionProtocol {
 
-@implementation SetYBrick
+    func instruction() -> CBInstruction {
+        return .Action(action: SKAction.runBlock(actionBlock()))
+    }
 
-- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumbers
-{
-    return self.yPosition;
+    func actionBlock() -> dispatch_block_t {
+        guard let object = self.script?.object,
+              let spriteNode = object.spriteNode
+        else { fatalError("This should never happen!") }
+
+        return {
+            spriteNode.scenePosition = CGPointMake(
+                spriteNode.scenePosition.x,
+                CGFloat(self.yPosition.interpretDoubleForSprite(object))
+            )
+        }
+    }
+
 }
-
-- (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    self.yPosition = formula;
-}
-
-- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
-{
-    self.yPosition = [[Formula alloc] initWithInteger:200];
-}
-
-- (NSString*)brickTitle
-{
-    return kLocalizedSetY;
-}
-
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"SetYBrick (y-Pos:%f)", [self.yPosition interpretDoubleForSprite:self.script.object]];
-}
-
-@end
