@@ -28,5 +28,6 @@
 @interface SetLookBrick : Brick<BrickLookProtocol>
 
 @property (nonatomic, strong) Look *look;
+- (NSString*)pathForLook;
 
 @end

@@ -26,54 +26,12 @@
 #import <SpriteKit/SpriteKit.h>
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "Script.h"
-#import "Pocket_Code-Swift.h"
 
 @implementation SetLookBrick
 
 - (NSString*)brickTitle
 {
     return ([self.script.object isBackground] ? kLocalizedSetBackground : kLocalizedSetLook);
-}
-
-- (SKAction*)action
-{
-    return [SKAction runBlock:[self actionBlock]];
-}
-
-- (dispatch_block_t)actionBlock
-{
-    UIImage* image = [UIImage imageWithContentsOfFile:[self pathForLook]];
-    SKTexture* texture = nil;
-    if ([self.script.object isBackground]) {
-        texture = [SKTexture textureWithImage:image];
-        self.script.object.spriteNode.currentUIImageLook = image;
-    } else {
-        //        CGRect newRect = [image cropRectForImage:image];
-        //        CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, newRect);
-        //        UIImage *newImage = [UIImage imageWithCGImage:imageRef];
-        //        CGImageRelease(imageRef);
-        texture = [SKTexture textureWithImage:image];
-        self.script.object.spriteNode.currentUIImageLook = image;
-    }
-    self.script.object.spriteNode.currentLookBrightness = 0;
-    return ^{
-        NSDebug(@"Performing: %@", self.description);
-        if(image && texture) {
-            double xScale = self.script.object.spriteNode.xScale;
-            double yScale = self.script.object.spriteNode.yScale;
-            self.script.object.spriteNode.xScale = 1.0;
-            self.script.object.spriteNode.yScale = 1.0;
-            self.script.object.spriteNode.size = texture.size;
-            self.script.object.spriteNode.texture = texture;
-            self.script.object.spriteNode.currentLook = self.look;
-            if(xScale != 1.0) {
-                self.script.object.spriteNode.xScale = (CGFloat)xScale;
-            }
-            if(yScale != 1.0) {
-                self.script.object.spriteNode.yScale = (CGFloat)yScale;
-            }
-        }
-    };
 }
 
 - (NSString*)pathForLook
