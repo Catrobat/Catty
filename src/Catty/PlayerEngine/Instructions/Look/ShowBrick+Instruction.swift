@@ -20,35 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "IfOnEdgeBounceBrick.h"
-#import "Util.h"
-#import "Script.h"
-#import "Pocket_Code-Swift.h"
+extension ShowBrick: CBInstructionProtocol {
 
-@implementation IfOnEdgeBounceBrick
+    func instruction() -> CBInstruction {
+        return .Action(action: SKAction.runBlock(actionBlock()))
+    }
 
-- (BOOL)isSelectableForObject
-{
-    return (! [self.script.object isBackground]);
+    func actionBlock() -> dispatch_block_t {
+        guard let object = self.script?.object,
+              let spriteNode = object.spriteNode
+        else { fatalError("This should never happen!") }
+
+        return { spriteNode.hidden = false }
+    }
+
 }
-
-- (NSString*)brickTitle
-{
-    return kLocalizedIfIsTrueThenOnEdgeBounce;
-}
-
-- (void)performFromScript:(Script*)script;
-{
-    NSDebug(@"Performing: %@", self.description);
-    
-    //[self.script.object ifOnEdgeBounce];
-    
-}
-
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"IfOnEdgeBounceBrick"];
-}
-
-@end

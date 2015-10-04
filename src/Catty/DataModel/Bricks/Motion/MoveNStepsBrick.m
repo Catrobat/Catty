@@ -24,7 +24,6 @@
 #import "Formula.h"
 #import "Util.h"
 #import "Script.h"
-#import "Pocket_Code-Swift.h"
 
 @implementation MoveNStepsBrick
 
@@ -50,26 +49,6 @@
 
 - (void)performFromScript:(Script *)script
 {
-}
-
-- (SKAction*)action
-{
-    return [SKAction runBlock:[self actionBlock]];
-}
-
-- (dispatch_block_t)actionBlock
-{
-    return ^{
-        double steps = [self.steps interpretDoubleForSprite:self.script.object];
-        double rotation = [self.script.object.spriteNode rotation]+90;
-        while (rotation >= 360) {
-            rotation -= 360;
-        }
-        rotation = rotation * M_PI / 180;
-        int xPosition = (int)round(self.script.object.spriteNode.scenePosition.x + (steps * sin(rotation)));
-        int yPosition = (int)round(self.script.object.spriteNode.scenePosition.y - (steps * cos(rotation)));
-        self.script.object.spriteNode.scenePosition = CGPointMake(xPosition, yPosition);
-    };
 }
 
 - (NSString*)description

@@ -22,26 +22,12 @@
 
 #import "ShowBrick.h"
 #import "Script.h"
-#import "Pocket_Code-Swift.h"
 
 @implementation ShowBrick
 
 - (NSString*)brickTitle
 {
     return kLocalizedShow;
-}
-
-- (SKAction*)action
-{
-    return [SKAction runBlock:[self actionBlock]];
-}
-
-- (dispatch_block_t)actionBlock
-{
-    return ^{
-        NSDebug(@"Performing: %@", self.description);
-        self.script.object.spriteNode.hidden = NO;
-    };
 }
 
 #pragma mark - Description
