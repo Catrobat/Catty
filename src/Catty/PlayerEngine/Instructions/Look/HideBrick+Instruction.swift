@@ -20,20 +20,18 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Hidebrick.h"
-#import "Script.h"
+extension HideBrick: CBInstructionProtocol {
 
-@implementation HideBrick
+    func instruction() -> CBInstruction {
+        return .Action(action: SKAction.runBlock(actionBlock()))
+    }
 
-- (NSString*)brickTitle
-{
-    return kLocalizedHide;
+    func actionBlock() -> dispatch_block_t {
+        guard let object = self.script?.object,
+              let spriteNode = object.spriteNode
+        else { fatalError("This should never happen!") }
+
+        return { spriteNode.hidden = true }
+    }
+
 }
-
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"Hidebrick"];
-}
-
-@end
