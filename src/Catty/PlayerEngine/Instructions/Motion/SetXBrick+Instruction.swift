@@ -20,38 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+extension SetXBrick: CBInstructionProtocol {
 
-#import "SetXBrick.h"
-#import "Formula.h"
-#import "Logger.h"
-#import "Script.h"
+    func instruction() -> CBInstruction {
+        return .Action(action: SKAction.runBlock(actionBlock()))
+    }
 
-@implementation SetXBrick
+    func actionBlock() -> dispatch_block_t {
+        guard let object = self.script?.object,
+              let spriteNode = object.spriteNode
+        else { fatalError("This should never happen!") }
 
-- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    return self.xPosition;
+        return {
+            spriteNode.scenePosition = CGPointMake(
+                CGFloat(self.xPosition.interpretDoubleForSprite(object)),
+                spriteNode.scenePosition.y
+            )
+        }
+    }
+
 }
-
-- (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    self.xPosition = formula;
-}
-
-- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
-{
-    self.xPosition = [[Formula alloc] initWithInteger:100];
-}
-
-- (NSString*)brickTitle
-{
-    return kLocalizedSetX;
-}
-
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"SetXBrick (x-Pos:%f)", [self.xPosition interpretDoubleForSprite:self.script.object]];
-}
-
-@end
