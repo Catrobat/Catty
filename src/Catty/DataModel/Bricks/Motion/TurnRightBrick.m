@@ -24,7 +24,6 @@
 #import "Formula.h"
 #import "Util.h"
 #import "Script.h"
-#import "Pocket_Code-Swift.h"
 
 @implementation TurnRightBrick
 
@@ -46,21 +45,6 @@
 - (NSString*)brickTitle
 {
     return kLocalizedTurnRight;
-}
-
-- (SKAction*)action
-{
-    return [SKAction runBlock:[self actionBlock]];
-}
-
-- (dispatch_block_t)actionBlock
-{
-    return ^{
-        NSDebug(@"Performing: %@", self.description);
-        CGFloat rotation = [self.script.object.spriteNode rotation];
-        rotation -= [self.degrees interpretDoubleForSprite:self.script.object];
-        [self.script.object.spriteNode setRotation:rotation];
-    };
 }
 
 #pragma mark - Description

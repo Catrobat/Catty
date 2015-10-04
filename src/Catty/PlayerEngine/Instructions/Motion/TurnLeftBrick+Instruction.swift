@@ -20,37 +20,20 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "TurnLeftBrick.h"
-#import "Formula.h"
-#import "Util.h"
-#import "Script.h"
+extension TurnLeftBrick: CBInstructionProtocol {
 
-@implementation TurnLeftBrick
+    func instruction() -> CBInstruction {
+        return .Action(action: SKAction.runBlock(actionBlock()))
+    }
 
-- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    return self.degrees;
+    func actionBlock() -> dispatch_block_t {
+        guard let object = self.script?.object,
+              let spriteNode = object.spriteNode
+        else { fatalError("This should never happen!") }
+
+        return {
+            spriteNode.rotation += self.degrees.interpretDoubleForSprite(object)
+        }
+    }
+
 }
-
-- (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    self.degrees = formula;
-}
-
-- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
-{
-    self.degrees = [[Formula alloc] initWithInteger:15];
-}
-
-- (NSString*)brickTitle
-{
-    return kLocalizedTurnLeft;
-}
-
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"TurnLeft (%f degrees)", [self.degrees interpretDoubleForSprite:self.script.object]];
-}
-
-@end
