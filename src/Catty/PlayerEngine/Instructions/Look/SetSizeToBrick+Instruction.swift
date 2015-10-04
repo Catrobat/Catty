@@ -20,36 +20,31 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SetSizeToBrick.h"
-#import "Formula.h"
-#import "Script.h"
+extension SetSizeToBrick: CBInstructionProtocol {
 
-@implementation SetSizeToBrick
+    func instruction() -> CBInstruction {
+        return .Action(action: SKAction.runBlock(actionBlock()))
+    }
 
-- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    return self.size;
+    func actionBlock() -> dispatch_block_t {
+        guard let object = self.script?.object,
+              let spriteNode = object.spriteNode
+        else { fatalError("This should never happen!") }
+
+        return {
+            let sizeInPercent = self.size.interpretDoubleForSprite(object)
+            spriteNode.xScale = CGFloat(sizeInPercent/100.0)
+            spriteNode.yScale = CGFloat(sizeInPercent/100.0)
+
+            //for touch issue
+            if let image = spriteNode.currentUIImageLook?.CGImage {
+                spriteNode.currentUIImageLook = UIImage(
+                    CGImage: image,
+                    scale: CGFloat(1.0/(sizeInPercent/100.0)),
+                    orientation: .Up
+                )
+            }
+        }
+    }
+
 }
-
-- (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    self.size = formula;
-}
-
-- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
-{
-    self.size = [[Formula alloc] initWithZero];
-}
-
-- (NSString*)brickTitle
-{
-    return kLocalizedSetSizeTo;
-}
-
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"SetSizeTo (%f%%)", [self.size interpretDoubleForSprite:self.script.object]];
-}
-
-@end
