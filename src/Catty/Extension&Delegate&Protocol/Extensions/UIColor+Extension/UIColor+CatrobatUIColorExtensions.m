@@ -45,7 +45,7 @@
 
 + (UIColor*)globalTintColor
 {
-    return [UIColor colorWithRed:0 green:37.0f/255.0f blue:52.0f/255.0f alpha:1.0f];
+    return [UIColor colorWithRed:232.0f/255.0f green:146.0f/255.0f blue:6.0f/255.0f alpha:1.0f];
 }
 
 + (UIColor*)utilityTintColor
@@ -70,14 +70,13 @@
 
 + (UIColor*)lightTextTintColor
 {
-    return [UIColor colorWithRed:168.0f/255.0f green:223.0f/255.0f blue:244/255.0f alpha:1.0f];
+    return [UIColor colorWithRed:168.0f/255.0f green:223.0f/255.0f blue:244.0f/255.0f alpha:1.0f];
 }
 
 + (UIColor*)darkTextTintColor
 {
     return [UIColor colorWithRed:111.0f/255.0f green:142.0f/255.0f blue:155.0f/255.0f alpha:1.0f];
 }
-
 
 + (UIColor*)destructiveTintColor
 {
