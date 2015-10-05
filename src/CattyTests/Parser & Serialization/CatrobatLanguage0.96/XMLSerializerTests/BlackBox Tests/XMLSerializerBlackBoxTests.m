@@ -66,7 +66,7 @@
 
 - (void)testEncapsulated
 {
-    [self testParseXMLAndSerializeProgramAndCompareXML:@"Encapsulated"];
+    [self testParseXMLAndSerializeProgramAndCompareXML:@"Encapsulated_096"];
 }
 
 - (void)testFlapPacMan
