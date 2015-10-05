@@ -211,73 +211,74 @@ class MyProgramsVCTests: XCTestCase {
         XCTAssert(app.tables.staticTexts["My first program"].exists)
     }
 
-    func testCanSetDescriptionOfMyFirstProgram() {
-        testCanCreateMyFirstProgramAfterAllProgramsHaveBeenDeleted()
-        let app = XCUIApplication()
-        app.tables.staticTexts["Programs"].tap()
-
-        let tablesQuery = app.tables
-        tablesQuery.staticTexts["My first program"].swipeLeft()
-        XCTAssert(app.buttons["More"].exists)
-
-        app.buttons["More"].tap()
-        XCTAssert(app.buttons["Description"].exists)
-        app.buttons["Description"].tap()
-
-        let descriptionText = "Yet another whack a mole program"
-        XCTAssert(app.alerts["Set description"].exists)
-        let collectionViewsQuery = app.alerts["Set description"].collectionViews
-        XCTAssert(!collectionViewsQuery.buttons["Clear text"].exists) // empty description is expected by default!
-        collectionViewsQuery.textFields["Enter your program description here..."].typeText(descriptionText)
-        XCTAssert(collectionViewsQuery.buttons["OK"].exists)
-        collectionViewsQuery.buttons["OK"].tap()
-
-        // go back and forth to force reload table view!!
-        app.navigationBars["Programs"].buttons["Pocket Code"].tap()
-        app.tables.staticTexts["Programs"].tap()
-
-        tablesQuery.staticTexts["My first program"].swipeLeft()
-        XCTAssert(app.buttons["More"].exists)
-
-        app.buttons["More"].tap()
-        XCTAssert(app.buttons["Description"].exists)
-        app.buttons["Description"].tap()
-        XCTAssert(collectionViewsQuery.textFields[descriptionText].exists)
-    }
-
-    func testCanCancelSettingDescriptionOfMyFirstProgram() {
-        testCanCreateMyFirstProgramAfterAllProgramsHaveBeenDeleted()
-        let app = XCUIApplication()
-        app.tables.staticTexts["Programs"].tap()
-
-        let tablesQuery = app.tables
-        tablesQuery.staticTexts["My first program"].swipeLeft()
-        XCTAssert(app.buttons["More"].exists)
-
-        app.buttons["More"].tap()
-        XCTAssert(app.buttons["Description"].exists)
-        app.buttons["Description"].tap()
-
-        let descriptionText = "Yet another whack a mole program"
-        XCTAssert(app.alerts["Set description"].exists)
-        let collectionViewsQuery = app.alerts["Set description"].collectionViews
-        XCTAssert(!collectionViewsQuery.buttons["Clear text"].exists) // empty description is expected by default!
-        collectionViewsQuery.textFields["Enter your program description here..."].typeText(descriptionText)
-        XCTAssert(collectionViewsQuery.buttons["Cancel"].exists)
-        collectionViewsQuery.buttons["Cancel"].tap()
-
-        // go back and forth to force reload table view!!
-        app.navigationBars["Programs"].buttons["Pocket Code"].tap()
-        app.tables.staticTexts["Programs"].tap()
-
-        tablesQuery.staticTexts["My first program"].swipeLeft()
-        XCTAssert(app.buttons["More"].exists)
-
-        app.buttons["More"].tap()
-        XCTAssert(app.buttons["Description"].exists)
-        app.buttons["Description"].tap()
-        XCTAssert(!collectionViewsQuery.textFields[descriptionText].exists)
-    }
+    // TODO: support for accesibility API
+//    func testCanSetDescriptionOfMyFirstProgram() {
+//        testCanCreateMyFirstProgramAfterAllProgramsHaveBeenDeleted()
+//        let app = XCUIApplication()
+//        app.tables.staticTexts["Programs"].tap()
+//
+//        let tablesQuery = app.tables
+//        tablesQuery.staticTexts["My first program"].swipeLeft()
+//        XCTAssert(app.buttons["More"].exists)
+//
+//        app.buttons["More"].tap()
+//        XCTAssert(app.buttons["Description"].exists)
+//        app.buttons["Description"].tap()
+//
+//        let descriptionText = "Yet another whack a mole program"
+//        XCTAssert(app.alerts["Set description"].exists)
+//        let collectionViewsQuery = app.alerts["Set description"].collectionViews
+//        XCTAssert(!collectionViewsQuery.buttons["Clear text"].exists) // empty description is expected by default!
+//        collectionViewsQuery.textFields["Enter your program description here..."].typeText(descriptionText)
+//        XCTAssert(collectionViewsQuery.buttons["OK"].exists)
+//        collectionViewsQuery.buttons["OK"].tap()
+//
+//        // go back and forth to force reload table view!!
+//        app.navigationBars["Programs"].buttons["Pocket Code"].tap()
+//        app.tables.staticTexts["Programs"].tap()
+//
+//        tablesQuery.staticTexts["My first program"].swipeLeft()
+//        XCTAssert(app.buttons["More"].exists)
+//
+//        app.buttons["More"].tap()
+//        XCTAssert(app.buttons["Description"].exists)
+//        app.buttons["Description"].tap()
+//        XCTAssert(collectionViewsQuery.textFields[descriptionText].exists)
+//    }
+//
+//    func testCanCancelSettingDescriptionOfMyFirstProgram() {
+//        testCanCreateMyFirstProgramAfterAllProgramsHaveBeenDeleted()
+//        let app = XCUIApplication()
+//        app.tables.staticTexts["Programs"].tap()
+//
+//        let tablesQuery = app.tables
+//        tablesQuery.staticTexts["My first program"].swipeLeft()
+//        XCTAssert(app.buttons["More"].exists)
+//
+//        app.buttons["More"].tap()
+//        XCTAssert(app.buttons["Description"].exists)
+//        app.buttons["Description"].tap()
+//
+//        let descriptionText = "Yet another whack a mole program"
+//        XCTAssert(app.alerts["Set description"].exists)
+//        let collectionViewsQuery = app.alerts["Set description"].collectionViews
+//        XCTAssert(!collectionViewsQuery.buttons["Clear text"].exists) // empty description is expected by default!
+//        collectionViewsQuery.textFields["Enter your program description here..."].typeText(descriptionText)
+//        XCTAssert(collectionViewsQuery.buttons["Cancel"].exists)
+//        collectionViewsQuery.buttons["Cancel"].tap()
+//
+//        // go back and forth to force reload table view!!
+//        app.navigationBars["Programs"].buttons["Pocket Code"].tap()
+//        app.tables.staticTexts["Programs"].tap()
+//
+//        tablesQuery.staticTexts["My first program"].swipeLeft()
+//        XCTAssert(app.buttons["More"].exists)
+//
+//        app.buttons["More"].tap()
+//        XCTAssert(app.buttons["Description"].exists)
+//        app.buttons["Description"].tap()
+//        XCTAssert(!collectionViewsQuery.textFields[descriptionText].exists)
+//    }
 
     /**
     TODO:

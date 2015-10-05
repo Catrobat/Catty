@@ -146,7 +146,7 @@
         default:
             NSError(@"Unknown Type: %d", self.type);
             //abort();
-            [InternFormulaParserException raise:@"Unknown Type" format:@"Unknown Type for Formula Element: %d", self.type];
+            [InternFormulaParserException raise:@"Unknown Type" format:@"Unknown Type for Formula Element: %lu", (unsigned long)self.type];
             break;
     }
     
@@ -390,7 +390,7 @@
         }
         default:
             //abort();
-            [InternFormulaParserException raise:@"Unknown Function" format:@"Unknown Function: %d", function];
+            [InternFormulaParserException raise:@"Unknown Function" format:@"Unknown Function: %lu", (unsigned long)function];
             break;
     }
     return result;
@@ -806,7 +806,7 @@
 
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Formula Element: Type: %d, Value: %@", self.type, self.value];
+    return [NSString stringWithFormat:@"Formula Element: Type: %lu, Value: %@", (unsigned long)self.type, self.value];
 }
 
 - (BOOL)doubleIsInteger:(double)number
