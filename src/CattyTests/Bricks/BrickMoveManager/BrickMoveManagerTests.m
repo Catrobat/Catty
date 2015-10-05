@@ -213,7 +213,7 @@
      */
     
     [self.viewController.collectionView reloadData];
-    
+
     NSUInteger addedSections = 1;
     NSUInteger addedBricksStart = 1;
     
@@ -241,7 +241,8 @@
         for(NSUInteger destinationIDX = 1; destinationIDX < addedBricksStart; destinationIDX++) {
             NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:destinationIDX inSection:section];
             
-            if(![indexPathTo isEqual:validTarget]) {
+            if(![indexPathTo isEqual:validTarget] && destinationIDX != indexPathFrom.item ) {
+                [[BrickMoveManager sharedInstance] reset];
                 BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
                                                                           itemAtIndexPath:indexPathFrom
                                                                        canMoveToIndexPath:indexPathTo
@@ -250,7 +251,7 @@
             }
         }
     }
-    
+    [[BrickMoveManager sharedInstance] reset];
     BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
                                                                       itemAtIndexPath:indexPathFrom
                                                                    canMoveToIndexPath:validTarget
@@ -353,7 +354,8 @@
         for(NSUInteger destinationIDX = 1; destinationIDX < addedBricksStart; destinationIDX++) {
             NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:destinationIDX inSection:section];
             
-            if(![indexPathTo isEqual:validTarget]) {
+            if(![indexPathTo isEqual:validTarget] && destinationIDX != indexPathFrom.item) {
+                [[BrickMoveManager sharedInstance] reset];
                 BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
                                                                                   itemAtIndexPath:indexPathFrom
                                                                                canMoveToIndexPath:indexPathTo
@@ -362,7 +364,7 @@
             }
         }
     }
-    
+    [[BrickMoveManager sharedInstance] reset];
     BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
                                                                       itemAtIndexPath:indexPathFrom
                                                                    canMoveToIndexPath:validTarget
@@ -415,7 +417,7 @@
         for(NSUInteger destinationIDX = 1; destinationIDX < addedBricksStart; destinationIDX++) {
             NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:destinationIDX inSection:section];
             
-            if(![indexPathTo isEqual:validTarget]) {
+            if(![indexPathTo isEqual:validTarget] && destinationIDX != indexPathFrom.item) {
                 BOOL canMoveToDestination = [[BrickMoveManager sharedInstance] collectionView:self.viewController.collectionView
                                                                                   itemAtIndexPath:indexPathFrom
                                                                                canMoveToIndexPath:indexPathTo
