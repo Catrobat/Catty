@@ -103,7 +103,10 @@ final class CBScene: SKScene {
             let location = touch.locationInNode(self)
             logger?.debug("x:\(location.x),y:\(location.y)")
             var foundObject = false
-            let nodesAtPoint = self.nodesAtPoint(location)
+            var nodesAtPoint = self.nodesAtPoint(location)
+            if #available(iOS 9.0, *) {
+                nodesAtPoint = nodesAtPoint.reverse()
+            }
             if nodesAtPoint.count == 0 {
                 return false
             }
@@ -188,7 +191,7 @@ final class CBScene: SKScene {
         removeAllChildren() // just to ensure
 
         if #available(iOS 9, *) { // FIXME!!! detect + consider iPhone/iPad version
-            spriteObjectList = spriteObjectList.reverse()
+//            spriteObjectList = spriteObjectList.reverse()
         }
 
         var zPosition = 1
