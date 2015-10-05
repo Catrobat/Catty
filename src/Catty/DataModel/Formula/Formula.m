@@ -22,13 +22,16 @@
 
 #import "Formula.h"
 #import "FormulaElement.h"
+#import "Pocket_Code-Swift.h"
 #import "Operators.h"
+
+@interface Formula()
+@property (nonatomic, strong, readwrite) NSNumber *lastResult;
+@end
 
 @implementation Formula
 
-
-- (id)initWithInteger:(int)value
-{
+- (id)initWithInteger:(int)value {
     self = [super init];
     
     if(self) {
@@ -41,13 +44,12 @@
             self.formulaTree = [[FormulaElement alloc] initWithElementType:NUMBER value:[NSString stringWithFormat:@"%d", value] leftChild:nil rightChild:nil parent:nil];
             
         }
+        self.lastResult = nil;
     }
-    
     return self;
 }
 
-- (id)initWithDouble:(double)value
-{
+- (id)initWithDouble:(double)value {
     self = [super init];
     
     if(self) {
@@ -58,42 +60,39 @@
             self.formulaTree.rightChild = rightChild;
         } else {
             self.formulaTree = [[FormulaElement alloc] initWithElementType:NUMBER value:[NSString stringWithFormat:@"%f", value] leftChild:nil rightChild:nil parent:nil];
-            
         }
+        self.lastResult = nil;
     }
-    
     return self;
 }
 
-- (id)initWithFloat:(float)value
-{
+- (id)initWithFloat:(float)value {
     return [self initWithDouble:value];
 }
 
-- (id)initWithFormulaElement:(FormulaElement*)formulaTree
-{
+- (id)initWithFormulaElement:(FormulaElement*)formulaTree {
     self = [super init];
-    if(self)
-    {
+    if (self) {
         self.formulaTree = formulaTree;
+        self.lastResult = nil;
     }
     return self;
 }
 
-- (id)initWithZero
-{
+- (id)initWithZero {
     return [self initWithInteger:0];
 }
 
-- (double)interpretDoubleForSprite:(SpriteObject*)sprite
-{
+- (double)interpretDoubleForSprite:(SpriteObject*)sprite {
+    if (self.lastResult) {
+        return self.lastResult.doubleValue;
+    }
     id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
     double returnDoubleValue = 0.0f;
-    if([returnValue isKindOfClass:[NSNumber class]])
-    {
+    if ([returnValue isKindOfClass:[NSNumber class]]) {
         returnDoubleValue = [returnValue doubleValue];
     }
-    
+    self.lastResult = [self.formulaTree isIdempotent] ? @(returnDoubleValue) : nil;
     return returnDoubleValue;
 }
 
@@ -102,16 +101,16 @@
     return (float)[self interpretDoubleForSprite:sprite];
 }
 
-- (int)interpretIntegerForSprite:(SpriteObject*)sprite
-{
-    id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
-    
-    
-    if([returnValue isKindOfClass:[NSNumber class]])
-    {
-        return (int)[returnValue doubleValue];
+- (int)interpretIntegerForSprite:(SpriteObject*)sprite {
+    if (self.lastResult) {
+        return self.lastResult.intValue;
     }
-    
+    id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
+    if ([returnValue isKindOfClass:[NSNumber class]]) {
+        self.lastResult = [self.formulaTree isIdempotent] ? (NSNumber*)returnValue : nil;
+        return (int)((NSNumber*)returnValue).doubleValue;
+    }
+    self.lastResult = [self.formulaTree isIdempotent] ? @(0) : nil;
     return 0;
 }
 
@@ -132,37 +131,32 @@
     self.formulaTree = formulaTree;
 }
 
-- (NSString *)interpretString:(SpriteObject*)sprite
-{
-    id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
-
-    if([returnValue isKindOfClass:[NSNumber class]])
-    {
-        return [NSString stringWithFormat:@"%lf", [returnValue doubleValue]];
+- (NSString*)interpretString:(SpriteObject*)sprite {
+    if (self.lastResult) {
+        return [NSString stringWithFormat:@"%lf", self.lastResult.doubleValue];
     }
-    //TODO: Exception handling if no number returned
-    
+    id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
+    if([returnValue isKindOfClass:[NSNumber class]]) {
+        self.lastResult = [self.formulaTree isIdempotent] ? (NSNumber*)returnValue : nil;
+        return [NSString stringWithFormat:@"%lf", ((NSNumber*)returnValue).doubleValue];
+    }
+    // TODO: Exception handling if no number returned
     return returnValue;
 }
 
-- (InternFormulaState*)getInternFormulaState
-{
+- (InternFormulaState*)getInternFormulaState {
     return [[self getInternFormula] getInternFormulaState];
 }
 
-- (InternFormula*)getInternFormula
-{
+- (InternFormula*)getInternFormula {
     InternFormula *internFormula = [[InternFormula alloc]initWithInternTokenList:[self.formulaTree getInternTokenList]];
     return internFormula;
 }
 
-- (NSString*)getDisplayString
-{
-    if(self.displayString != nil)
-    {
+- (NSString*)getDisplayString {
+    if (self.displayString != nil) {
         return self.displayString;
-    }else
-    {
+    } else {
         InternFormula *internFormula = [self getInternFormula];
         [internFormula generateExternFormulaStringAndInternExternMapping];
         return [internFormula getExternFormulaString];
@@ -171,41 +165,36 @@
 
 - (void)setDisplayString:(NSString *)text
 {
-    if(text == nil)
-    {
+    if (text == nil) {
         _displayString = nil;
-    }else
-    {
+    } else {
         _displayString = [NSString stringWithFormat:@"%@",text];
     }
 }
 
 - (BOOL)isEqualToFormula:(Formula*)formula
 {
-    if ([self.formulaTree isEqualToFormulaElement:formula.formulaTree])
+    if ([self.formulaTree isEqualToFormulaElement:formula.formulaTree]) {
         return YES;
+    }
     return NO;
 }
 
 - (NSString *)getResultForComputeDialog:(SpriteObject *)sprite
 {
     NSString *result;
-    
     if ([self.formulaTree isLogicalOperator]) {
         BOOL bool_result = [self interpretBOOLForSprite:sprite];
         result = bool_result ? @"TRUE" : @"FALSE";	
-    }else if ([self.formulaTree isLogicalFunction])
-    {
+    } else if ([self.formulaTree isLogicalFunction]) {
         double double_result = [self interpretDoubleForSprite:sprite];
         if (double_result == 0.0f)
             result = @"FALSE";
         else
             result = @"TRUE";
-    }else if(self.formulaTree.type == STRING)
-    {
+    } else if(self.formulaTree.type == STRING) {
         return [self interpretString:sprite];
-    }
-    else{
+    } else {
         id tempResult = [self.formulaTree interpretRecursiveForSprite:sprite];
         double double_result = 0.0f;
         
@@ -219,9 +208,7 @@
         }
         
         result = [NSString stringWithFormat:@"%f", double_result];
-        
     }
-    
     return result;
 }
 
@@ -229,8 +216,9 @@
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context
 {
     Formula *formula = [Formula new];
-    if(self.formulaTree)
+    if (self.formulaTree) {
         formula.formulaTree = [self.formulaTree mutableCopyWithContext:context];
+    }
     return formula;
 }
 

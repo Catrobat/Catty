@@ -46,9 +46,38 @@
 #import "BroadcastWaitBrick.h"
 #import "HideBrick.h"
 #import "WaitBrick.h"
+#import "PlaySoundBrick.h"
+#import "StopAllSoundsBrick.h"
+#import "SpeakBrick.h"
+#import "ChangeVolumeByNBrick.h"
+#import "SetVolumeToBrick.h"
+#import "SetVariableBrick.h"
+#import "ChangeVariableBrick.h"
+#import "LedOnBrick.h"
+#import "LedOffBrick.h"
+#import "VibrationBrick.h"
+#import "GlideToBrick.h"
+#import "MoveNStepsBrick.h"
+#import "IfOnEdgeBounceBrick.h"
+#import "ShowBrick.h"
+#import "SetLookBrick.h"
+#import "SetSizeToBrick.h"
+#import "PointInDirectionBrick.h"
+#import "PlaceAtBrick.h"
+#import "PointToBrick.h"
+#import "SetXBrick.h"
+#import "SetYBrick.h"
+#import "TurnLeftBrick.h"
+#import "TurnRightBrick.h"
+
+// Formulas
+#import "Formula.h"
+#import "FormulaElement.h"
+#import "Functions.h"
 
 // Assets
 #import "Look.h"
+#import "Sound.h"
 
 //------------------------------------------------------------------------------------------------------------
 // Extension classes
@@ -61,3 +90,7 @@
 //------------------------------------------------------------------------------------------------------------
 
 #import "Util.h"
+#import "AudioManager.h"
+#import "ProgramDefines.h"
+#import "FlashHelper.h"
+#import "LanguageTranslationDefines.h"

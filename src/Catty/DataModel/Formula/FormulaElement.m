@@ -47,8 +47,9 @@
             parent:(FormulaElement*)parent
 {
     self = [super init];
-    if(self) {
+    if (self) {
         [self initialize:[self elementTypeForString:type] value:value leftChild:leftChild rightChild:rightChild parent:parent];
+        _idempotenceState = NOT_CHECKED;
     }
     return self;
 }
@@ -60,8 +61,9 @@
                    parent:(FormulaElement*)parent
 {
     self = [super init];
-    if(self) {
+    if (self) {
         [self initialize:type value:value leftChild:leftChild rightChild:rightChild parent:parent];
+        _idempotenceState = NOT_CHECKED;
     }
     return self;
 }
@@ -144,7 +146,7 @@
         default:
             NSError(@"Unknown Type: %d", self.type);
             //abort();
-            [InternFormulaParserException raise:@"Unknown Type" format:@"Unknown Type for Formula Element: %d", self.type];
+            [InternFormulaParserException raise:@"Unknown Type" format:@"Unknown Type for Formula Element: %lu", (unsigned long)self.type];
             break;
     }
     
@@ -388,7 +390,7 @@
         }
         default:
             //abort();
-            [InternFormulaParserException raise:@"Unknown Function" format:@"Unknown Function: %d", function];
+            [InternFormulaParserException raise:@"Unknown Function" format:@"Unknown Function: %lu", (unsigned long)function];
             break;
     }
     return result;
@@ -710,11 +712,11 @@
     switch (sensor) {
             
         case OBJECT_X: {
-            result = sprite.spriteNode.xPosition;
+            result = sprite.spriteNode.scenePosition.x;
             break;
         }
         case OBJECT_Y: {
-            result = sprite.spriteNode.yPosition;
+            result = sprite.spriteNode.scenePosition.y;
             break;
         }
         case OBJECT_GHOSTEFFECT: {
@@ -804,7 +806,7 @@
 
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Formula Element: Type: %d, Value: %@", self.type, self.value];
+    return [NSString stringWithFormat:@"Formula Element: Type: %lu, Value: %@", (unsigned long)self.type, self.value];
 }
 
 - (BOOL)doubleIsInteger:(double)number
@@ -933,18 +935,13 @@
 
 - (BOOL)isLogicalFunction
 {
-    if(self.type == FUNCTION)
-    {
+    if (self.type == FUNCTION) {
         Function function = [Functions getFunctionByValue:self.value];
         if((function == FALSE_F || function == TRUE_F) && self.leftChild == nil && self.rightChild == nil)
         {
             return YES;
         }
-    }else
-    {
-        return NO;
     }
-    
     return NO;
 }
 

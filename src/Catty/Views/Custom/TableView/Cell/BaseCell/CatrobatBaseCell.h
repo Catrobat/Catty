@@ -21,10 +21,8 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "SWTableViewCell.h"
 
-
-@interface CatrobatBaseCell : SWTableViewCell
+@interface CatrobatBaseCell : UITableViewCell
 
 @property (nonatomic, strong) NSIndexPath *indexPath;
 

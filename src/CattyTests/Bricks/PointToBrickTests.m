@@ -52,7 +52,7 @@
     CBSpriteNode *secondSpriteNode = [[CBSpriteNode alloc] initWithSpriteObject:secondObject];
     secondObject.spriteNode = secondSpriteNode;
 
-    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
+    CBScene *scene = [[CBScene alloc] init];
     [scene addChild:firstSpriteNode];
     [scene addChild:secondSpriteNode];
 
@@ -84,7 +84,7 @@
     CBSpriteNode *secondSpriteNode = [[CBSpriteNode alloc] initWithSpriteObject:secondObject];
     secondObject.spriteNode = secondSpriteNode;
 
-    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
+    CBScene *scene = [[CBScene alloc] init];
     [scene addChild:firstSpriteNode];
     [scene addChild:secondSpriteNode];
 
@@ -110,7 +110,7 @@
     CBSpriteNode *secondSpriteNode = [[CBSpriteNode alloc] initWithSpriteObject:secondObject];
     secondObject.spriteNode = secondSpriteNode;
 
-    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
+    CBScene *scene = [[CBScene alloc] init];
     [scene addChild:firstSpriteNode];
     [scene addChild:secondSpriteNode];
 

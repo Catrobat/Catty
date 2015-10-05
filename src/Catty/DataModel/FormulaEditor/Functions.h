@@ -23,8 +23,16 @@
 #import <Foundation/Foundation.h>
 #import "LanguageTranslationDefines.h"
 
-typedef enum {
-	SIN = 500,
+//**************************************************************************************************
+//
+// TODO:    outsource this to plist file...
+//
+// WARNING: Please keep kNonIdempotentFunctions up to date every time
+//          you add a new function here!!
+//
+
+typedef NS_ENUM(NSInteger, Function) {
+    SIN = 500,
     COS,
     TAN,
     LN,
@@ -48,10 +56,14 @@ typedef enum {
     LETTER,
     LENGTH,
     NO_FUNCTION = -1
-} Function;
+};
+
+#define kNonIdempotentFunctions @[@(RAND)]
+//**************************************************************************************************
 
 @interface Functions : NSObject
 
++ (NSArray<NSNumber*>*)nonIdempotentFunctions;
 + (BOOL)isFunction:(NSString*)value;
 + (Function)getFunctionByValue:(NSString*)value;
 + (NSString*)getName:(Function)function;

@@ -26,9 +26,7 @@
 
 @required
 @property (nonatomic, strong) NSIndexPath *indexPath;
-
 @property (nonatomic, strong) IBOutlet UIImageView *iconImageView;
-
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 
 @end

@@ -48,7 +48,7 @@
 #define kContinueOffset 15
 #define kMenuButtonSize 44
 #define kMenuIPhone4GapSize 30
-#define KMenuIPhone5GapSize 35
+#define kMenuIPhone5GapSize 35
 #define kMenuIPhone4ContinueGapSize 40
 #define kMenuIPhone5ContinueGapSize 45
 #define kMenuLabelWidth 50

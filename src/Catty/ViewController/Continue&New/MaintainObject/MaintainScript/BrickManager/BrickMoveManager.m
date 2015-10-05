@@ -144,7 +144,7 @@
     if (script.brickList.count >=1 && ![fromBrick isKindOfClass:[LoopEndBrick class]]) {
         NSInteger index = script.brickList.count;
         while ([[script.brickList objectAtIndex:index-1] isKindOfClass:[LoopEndBrick class]]) {
-            LoopEndBrick* loopEndBrickCheck = [script.brickList objectAtIndex:index-1];
+            LoopEndBrick* loopEndBrickCheck = (LoopEndBrick*)[script.brickList objectAtIndex:index-1];
             if (loopEndBrick  == loopEndBrickCheck) {
                 return NO;
             }

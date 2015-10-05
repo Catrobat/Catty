@@ -25,7 +25,7 @@
 
 #define kSearchStoreMaxResults 50
 
-@interface SearchStoreViewController : UIViewController<UISearchBarDelegate,UITableViewDelegate, UITableViewDataSource,UIScrollViewDelegate>
+@interface SearchStoreViewController : UIViewController<UISearchBarDelegate,UITableViewDelegate, UITableViewDataSource,UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic) BOOL checkSearch;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

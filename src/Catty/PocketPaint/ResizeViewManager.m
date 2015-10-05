@@ -245,10 +245,10 @@
     UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     [self.canvas.scrollView setZoomScale:scale];
-    
+
     //UNDO-Manager
-    [[self.canvas getUndoManager] setImage:self.canvas.saveView.image]; //.CIImage for IOS9
-    
+    [[self.canvas getUndoManager] setImage:self.canvas.saveView.image.CIImage];
+
     self.canvas.saveView.image = img;
     [self showUserAction];
     self.canvas.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];

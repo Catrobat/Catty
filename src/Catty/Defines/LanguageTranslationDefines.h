@@ -214,6 +214,7 @@
 #define kLocalizedSize NSLocalizedString(@"Size", nil)
 #define kLocalizedLength NSLocalizedString(@"Length", nil)
 #define kLocalizedBack NSLocalizedString(@"Back", nil)
+#define kLocalizedRecord NSLocalizedString(@"Record", nil)
 #define kLocalizedRestart NSLocalizedString(@"Restart", nil)
 #define kLocalizedContinue NSLocalizedString(@"Continue", nil)
 #define kLocalizedScreenshot NSLocalizedString(@"Screenshot", nil)
