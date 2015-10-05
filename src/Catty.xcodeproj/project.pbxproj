@@ -85,6 +85,7 @@
 		4C79F5551B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C79F5541B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m */; };
 		4C8BC6641B26C298001C7E32 /* iOSComboboxPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BC6631B26C298001C7E32 /* iOSComboboxPickerView.m */; };
 		4CB1FB6B1BC2C75B0000A2FE /* Encapsulated_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CB1FB6A1BC2C75B0000A2FE /* Encapsulated_096.xml */; settings = {ASSET_TAGS = (); }; };
+		4CB1FB741BC2D74F0000A2FE /* UITestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB1FB731BC2D74F0000A2FE /* UITestProtocol.swift */; settings = {ASSET_TAGS = (); }; };
 		4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE031B95DF2900431757 /* BrickInsertManager.m */; };
 		4CB4FE071B95DF2900431757 /* BrickMoveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4FE051B95DF2900431757 /* BrickMoveManager.m */; };
 		4CC85CD21B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CD11B9C6E6F0097E470 /* Tic_Tac_Toe_Master_096.xml */; };
@@ -337,7 +338,7 @@
 		AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */; settings = {ASSET_TAGS = (); }; };
 		AA401FE91BBEF6F9001BC49F /* CBInstructionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */; settings = {ASSET_TAGS = (); }; };
 		AA6CC28B1BB4AB9A0007A621 /* CBScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CC28A1BB4AB9A0007A621 /* CBScriptContext.swift */; settings = {ASSET_TAGS = (); }; };
-		AA70F7F11B866E9B003057C6 /* CBFrontentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA70F7F01B866E9B003057C6 /* CBFrontentTests.swift */; };
+		AA70F7F11B866E9B003057C6 /* CBFrontendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA70F7F01B866E9B003057C6 /* CBFrontendTests.swift */; };
 		AA74EE211BC053FD00D1E954 /* BroadcastBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74EE1E1BC053FD00D1E954 /* BroadcastBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
 		AA74EE221BC053FD00D1E954 /* BroadcastWaitBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74EE1F1BC053FD00D1E954 /* BroadcastWaitBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
 		AA74EE231BC053FD00D1E954 /* WaitBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74EE201BC053FD00D1E954 /* WaitBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
@@ -832,6 +833,7 @@
 		4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIViewController+CWPopup.license"; sourceTree = "<group>"; };
 		4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OrderedDictionary.license; sourceTree = "<group>"; };
 		4CB1FB6A1BC2C75B0000A2FE /* Encapsulated_096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Encapsulated_096.xml; sourceTree = "<group>"; };
+		4CB1FB731BC2D74F0000A2FE /* UITestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITestProtocol.swift; sourceTree = "<group>"; };
 		4CB4FE021B95DF2900431757 /* BrickInsertManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickInsertManager.h; sourceTree = "<group>"; };
 		4CB4FE031B95DF2900431757 /* BrickInsertManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickInsertManager.m; sourceTree = "<group>"; };
 		4CB4FE041B95DF2900431757 /* BrickMoveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMoveManager.h; sourceTree = "<group>"; };
@@ -1317,7 +1319,7 @@
 		AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitBrickTests.swift; sourceTree = "<group>"; };
 		AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBInstructionProtocol.swift; path = PlayerEngine/Protocols/CBInstructionProtocol.swift; sourceTree = "<group>"; };
 		AA6CC28A1BB4AB9A0007A621 /* CBScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBScriptContext.swift; path = PlayerEngine/DataModel/CBScriptContext/CBScriptContext.swift; sourceTree = "<group>"; };
-		AA70F7F01B866E9B003057C6 /* CBFrontentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBFrontentTests.swift; path = PlayerEngine/CBFrontentTests.swift; sourceTree = "<group>"; };
+		AA70F7F01B866E9B003057C6 /* CBFrontendTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBFrontendTests.swift; path = PlayerEngine/CBFrontendTests.swift; sourceTree = "<group>"; };
 		AA74EE1E1BC053FD00D1E954 /* BroadcastBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "BroadcastBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Control/BroadcastBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AA74EE1F1BC053FD00D1E954 /* BroadcastWaitBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "BroadcastWaitBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Control/BroadcastWaitBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AA74EE201BC053FD00D1E954 /* WaitBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "WaitBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Control/WaitBrick+Instruction.swift"; sourceTree = "<group>"; };
@@ -2519,6 +2521,14 @@
 			);
 			name = Licenses;
 			path = Resources/Licenses;
+			sourceTree = "<group>";
+		};
+		4CB1FB721BC2D74F0000A2FE /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				4CB1FB731BC2D74F0000A2FE /* UITestProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		4CB4FE011B95DF2900431757 /* BrickManager */ = {
@@ -4006,7 +4016,7 @@
 		AA70F7EF1B866E63003057C6 /* PlayerEngine */ = {
 			isa = PBXGroup;
 			children = (
-				AA70F7F01B866E9B003057C6 /* CBFrontentTests.swift */,
+				AA70F7F01B866E9B003057C6 /* CBFrontendTests.swift */,
 			);
 			name = PlayerEngine;
 			sourceTree = "<group>";
@@ -4427,6 +4437,7 @@
 		AAADA0051B9B29D500E0CA9A /* Catty UITests */ = {
 			isa = PBXGroup;
 			children = (
+				4CB1FB721BC2D74F0000A2FE /* Protocol */,
 				AAADA0061B9B29D500E0CA9A /* MyProgramsVCTests.swift */,
 				AA85F6DE1B9B361200398DC7 /* ProgramTVCTests.swift */,
 				AAADA0081B9B29D500E0CA9A /* Info.plist */,
@@ -5393,6 +5404,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA85F6DF1B9B361200398DC7 /* ProgramTVCTests.swift in Sources */,
+				4CB1FB741BC2D74F0000A2FE /* UITestProtocol.swift in Sources */,
 				AAADA0071B9B29D500E0CA9A /* MyProgramsVCTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5401,7 +5413,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA70F7F11B866E9B003057C6 /* CBFrontentTests.swift in Sources */,
+				AA70F7F11B866E9B003057C6 /* CBFrontendTests.swift in Sources */,
 				4CEB22551B95E47500B3BE2F /* ChangeBrightnessByNBrickTests.m in Sources */,
 				4C68FC8E1B25A00B00AB3EE8 /* FormulaParserOperatorsTest.m in Sources */,
 				4CEB22561B95E47500B3BE2F /* ChangeSizeByNBrickTests.m in Sources */,

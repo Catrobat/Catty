@@ -184,7 +184,7 @@ final class CBScene: SKScene {
 
     // MARK: - Start program
     func startProgram() {
-        guard var spriteObjectList = frontend?.program?.objectList as NSArray? as? [SpriteObject]
+        guard let spriteObjectList = frontend?.program?.objectList as NSArray? as? [SpriteObject]
         else { fatalError("!! Invalid sprite object list given !! This should never happen!") }
         assert(NSThread.currentThread().isMainThread)
 
