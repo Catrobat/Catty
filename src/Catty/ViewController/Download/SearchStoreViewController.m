@@ -90,12 +90,13 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = UIColor.globalTintColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                          action:@selector(dismissKeyboard)];
-    [self.view addGestureRecognizer:tap];
 
-    
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+//                                                                          action:@selector(dismissKeyboard)];
+//    [self.view addGestureRecognizer:tap];
+//    tap.delegate = self;
+
+
     self.view.backgroundColor = [UIColor backgroundColor];
 // [iOS9] DO NOT REMOVE!!!
 //    [[UITextField appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]] setTextColor:[UIColor lightTextTintColor]];
@@ -135,6 +136,11 @@
     //    self.searchDisplayController.displaysSearchBarInNavigationBar = NO;
     //    self.searchDisplayController.searchBar.frame = CGRectMake(0,65,self.searchDisplayController.searchBar.frame.size.width,self.searchDisplayController.searchBar.frame.size.height);
     //    self.navigationController.navigationBar.translucent = YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer*)gestureRecognizer
+shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer*)otherGestureRecognizer {
+    return YES;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
@@ -289,7 +295,7 @@
     self.tableView.dataSource = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.tableView.backgroundColor = [UIColor backgroundColor];
-    self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y,[Util screenWidth],self.tableView.frame.size.height);
+    self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y,[Util screenWidth],[Util screenHeight] - self.navigationController.navigationBar.frame.size.height - self.navigationController.toolbar.frame.size.height - self.searchBar.frame.size.height);
 }
 
 - (void)initNoSearchResultsLabel

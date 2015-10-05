@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="62e-MX-z1C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="62e-MX-z1C">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
         <!--New Program-->
@@ -897,7 +898,7 @@
                     <connections>
                         <outlet property="searchBar" destination="2Ht-uC-rkW" id="HTV-Fh-pm8"/>
                         <outlet property="tableView" destination="wOw-Ve-PBF" id="W3e-9D-HCI"/>
-                        <segue destination="5oV-85-Xov" kind="push" identifier="segueToProgramDetail" id="hYx-2I-Ylf"/>
+                        <segue destination="5oV-85-Xov" kind="push" identifier="segueToProgramDetail" id="Gbh-WU-doT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kRY-CN-4Pq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1210,7 +1211,7 @@
             <objects>
                 <viewController storyboardIdentifier="LoginController" id="ygY-KL-qXA" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sp5-pE-tC9">
-                        <rect key="frame" x="0.0" y="20" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" minimumFontSize="17" id="fmw-qE-O5K">
@@ -1313,7 +1314,7 @@
             <objects>
                 <viewController storyboardIdentifier="RegisterController" id="HFx-Db-9Q9" customClass="RegisterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SoY-sN-8Gg">
-                        <rect key="frame" x="0.0" y="20" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" minimumFontSize="17" id="MIh-6B-MHA">
@@ -1406,7 +1407,7 @@
             <objects>
                 <viewController storyboardIdentifier="UploadController" id="bYj-Ga-eye" customClass="UploadInfoViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1yB-9i-wb8">
-                        <rect key="frame" x="0.0" y="20" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zj8-dt-dyc">
@@ -1495,13 +1496,8 @@
         <image name="micro_active" width="150" height="150"/>
         <image name="top_charts" width="25" height="23"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="1kj-7D-Va7"/>
-        <segue reference="hYx-2I-Ylf"/>
+        <segue reference="Gbh-WU-doT"/>
     </inferredMetricsTieBreakers>
 </document>
