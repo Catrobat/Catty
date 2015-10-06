@@ -20,44 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "SpriteObject.h"
-#import "UIDefines.h"
-#import "BrickProtocol.h"
+#import "PhiroBrick.h"
+#import "BrickPhiroMotorProtocol.h"
 
-@class Script;
+@interface PhiroMotorStopBrick : PhiroBrick<BrickPhiroMotorProtocol>
 
-@interface Brick : NSObject <BrickProtocol>
-
-@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
-@property (nonatomic, readonly) kBrickType brickType;
-@property (nonatomic, strong, readonly) NSString *brickTitle;
-@property (nonatomic, weak) Script *script;
-@property (nonatomic, getter=isAnimated) BOOL animate;
-@property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
-@property (nonatomic) BOOL isSelected;
-
-- (BOOL)isSelectableForObject;
-
-- (BOOL)isAnimateable;
-
-- (BOOL)isFormulaBrick;
-
-- (BOOL)isBluetoothBrick;
-
-- (BOOL)isPhiroBrick;
-
-- (NSString*)description;
-
-- (SKAction*)action;
-
-- (BOOL)isEqualToBrick:(Brick*)brick;
-
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context AndErrorReporting:(BOOL)reportError;
-
-- (void)removeFromScript;
-
-- (void)removeReferences;
-
-
+@property (nonatomic, assign) Motor motor;
 @end

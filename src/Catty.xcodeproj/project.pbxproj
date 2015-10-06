@@ -166,6 +166,22 @@
 		923503901BA707DE00021F6A /* BaseLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9235038D1BA707DE00021F6A /* BaseLoginViewController.m */; };
 		923503911BA707DE00021F6A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9235038F1BA707DE00021F6A /* LoginViewController.m */; };
 		928D4D791A7BD19A00E6DFA8 /* CatrobatUISlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 928D4D781A7BD19A00E6DFA8 /* CatrobatUISlider.m */; };
+		929CC0BD1BC39AD60027DEC0 /* BluetoothBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0BC1BC39AD60027DEC0 /* BluetoothBrick.m */; settings = {ASSET_TAGS = (); }; };
+		929CC0CB1BC39B0A0027DEC0 /* PhiroBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0C01BC39B0A0027DEC0 /* PhiroBrick.m */; settings = {ASSET_TAGS = (); }; };
+		929CC0CC1BC39B0A0027DEC0 /* PhiroMotorMoveBackwardBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0C21BC39B0A0027DEC0 /* PhiroMotorMoveBackwardBrick.m */; settings = {ASSET_TAGS = (); }; };
+		929CC0CD1BC39B0A0027DEC0 /* PhiroMotorMoveForwardBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0C41BC39B0A0027DEC0 /* PhiroMotorMoveForwardBrick.m */; settings = {ASSET_TAGS = (); }; };
+		929CC0CE1BC39B0A0027DEC0 /* PhiroMotorStopBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0C61BC39B0A0027DEC0 /* PhiroMotorStopBrick.m */; settings = {ASSET_TAGS = (); }; };
+		929CC0CF1BC39B0A0027DEC0 /* PhiroPlayToneBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0C81BC39B0A0027DEC0 /* PhiroPlayToneBrick.m */; settings = {ASSET_TAGS = (); }; };
+		929CC0D01BC39B0A0027DEC0 /* PhiroRGBLightBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0CA1BC39B0A0027DEC0 /* PhiroRGBLightBrick.m */; settings = {ASSET_TAGS = (); }; };
+		929CC0D41BC39B280027DEC0 /* PhiroHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0D31BC39B280027DEC0 /* PhiroHelper.m */; settings = {ASSET_TAGS = (); }; };
+		929CC0DE1BC39B690027DEC0 /* BrickCellPhiroLightData.m in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0D91BC39B690027DEC0 /* BrickCellPhiroLightData.m */; settings = {ASSET_TAGS = (); }; };
+		929CC0DF1BC39B690027DEC0 /* BrickCellPhiroMotorData.m in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0DB1BC39B690027DEC0 /* BrickCellPhiroMotorData.m */; settings = {ASSET_TAGS = (); }; };
+		929CC0E01BC39B690027DEC0 /* BrickCellPhiroToneData.m in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0DD1BC39B690027DEC0 /* BrickCellPhiroToneData.m */; settings = {ASSET_TAGS = (); }; };
+		929CC0ED1BC39B8C0027DEC0 /* PhiroMotorMoveBackwardBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0E41BC39B8C0027DEC0 /* PhiroMotorMoveBackwardBrickCell.m */; settings = {ASSET_TAGS = (); }; };
+		929CC0EE1BC39B8C0027DEC0 /* PhiroMotorMoveForwardBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0E61BC39B8C0027DEC0 /* PhiroMotorMoveForwardBrickCell.m */; settings = {ASSET_TAGS = (); }; };
+		929CC0EF1BC39B8C0027DEC0 /* PhiroMotorStopBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0E81BC39B8C0027DEC0 /* PhiroMotorStopBrickCell.m */; settings = {ASSET_TAGS = (); }; };
+		929CC0F01BC39B8C0027DEC0 /* PhiroPlayToneBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0EA1BC39B8C0027DEC0 /* PhiroPlayToneBrickCell.m */; settings = {ASSET_TAGS = (); }; };
+		929CC0F11BC39B8C0027DEC0 /* PhiroRGBLightBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0EC1BC39B8C0027DEC0 /* PhiroRGBLightBrickCell.m */; settings = {ASSET_TAGS = (); }; };
 		92D346BD1B8DDC0A009EB8F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */; };
 		92D71C041BBBC57700F1177C /* DescriptionPopopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D71C031BBBC57700F1177C /* DescriptionPopopViewController.m */; };
 		92DFAFE61A38943D00FA9B0F /* FormulaEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */; };
@@ -972,6 +988,42 @@
 		929108931A41F32A0034564D /* CBParserProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBParserProtocol.h; sourceTree = "<group>"; };
 		929108941A41F32A0034564D /* CBSerializerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSerializerProtocol.h; sourceTree = "<group>"; };
 		929108951A41F32A0034564D /* CBXMLNodeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBXMLNodeProtocol.h; sourceTree = "<group>"; };
+		929CC0BB1BC39AD60027DEC0 /* BluetoothBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothBrick.h; sourceTree = "<group>"; };
+		929CC0BC1BC39AD60027DEC0 /* BluetoothBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothBrick.m; sourceTree = "<group>"; };
+		929CC0BF1BC39B0A0027DEC0 /* PhiroBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhiroBrick.h; sourceTree = "<group>"; };
+		929CC0C01BC39B0A0027DEC0 /* PhiroBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhiroBrick.m; sourceTree = "<group>"; };
+		929CC0C11BC39B0A0027DEC0 /* PhiroMotorMoveBackwardBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhiroMotorMoveBackwardBrick.h; sourceTree = "<group>"; };
+		929CC0C21BC39B0A0027DEC0 /* PhiroMotorMoveBackwardBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhiroMotorMoveBackwardBrick.m; sourceTree = "<group>"; };
+		929CC0C31BC39B0A0027DEC0 /* PhiroMotorMoveForwardBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhiroMotorMoveForwardBrick.h; sourceTree = "<group>"; };
+		929CC0C41BC39B0A0027DEC0 /* PhiroMotorMoveForwardBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhiroMotorMoveForwardBrick.m; sourceTree = "<group>"; };
+		929CC0C51BC39B0A0027DEC0 /* PhiroMotorStopBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhiroMotorStopBrick.h; sourceTree = "<group>"; };
+		929CC0C61BC39B0A0027DEC0 /* PhiroMotorStopBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhiroMotorStopBrick.m; sourceTree = "<group>"; };
+		929CC0C71BC39B0A0027DEC0 /* PhiroPlayToneBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhiroPlayToneBrick.h; sourceTree = "<group>"; };
+		929CC0C81BC39B0A0027DEC0 /* PhiroPlayToneBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhiroPlayToneBrick.m; sourceTree = "<group>"; };
+		929CC0C91BC39B0A0027DEC0 /* PhiroRGBLightBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhiroRGBLightBrick.h; sourceTree = "<group>"; };
+		929CC0CA1BC39B0A0027DEC0 /* PhiroRGBLightBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhiroRGBLightBrick.m; sourceTree = "<group>"; };
+		929CC0D21BC39B280027DEC0 /* PhiroHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhiroHelper.h; sourceTree = "<group>"; };
+		929CC0D31BC39B280027DEC0 /* PhiroHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhiroHelper.m; sourceTree = "<group>"; };
+		929CC0D51BC39B460027DEC0 /* BrickPhiroLightProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickPhiroLightProtocol.h; sourceTree = "<group>"; };
+		929CC0D61BC39B460027DEC0 /* BrickPhiroMotorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickPhiroMotorProtocol.h; sourceTree = "<group>"; };
+		929CC0D71BC39B460027DEC0 /* BrickPhiroToneProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickPhiroToneProtocol.h; sourceTree = "<group>"; };
+		929CC0D81BC39B690027DEC0 /* BrickCellPhiroLightData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellPhiroLightData.h; sourceTree = "<group>"; };
+		929CC0D91BC39B690027DEC0 /* BrickCellPhiroLightData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCellPhiroLightData.m; sourceTree = "<group>"; };
+		929CC0DA1BC39B690027DEC0 /* BrickCellPhiroMotorData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellPhiroMotorData.h; sourceTree = "<group>"; };
+		929CC0DB1BC39B690027DEC0 /* BrickCellPhiroMotorData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCellPhiroMotorData.m; sourceTree = "<group>"; };
+		929CC0DC1BC39B690027DEC0 /* BrickCellPhiroToneData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCellPhiroToneData.h; sourceTree = "<group>"; };
+		929CC0DD1BC39B690027DEC0 /* BrickCellPhiroToneData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCellPhiroToneData.m; sourceTree = "<group>"; };
+		929CC0E11BC39B7B0027DEC0 /* PhiroDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhiroDefines.h; sourceTree = "<group>"; };
+		929CC0E31BC39B8C0027DEC0 /* PhiroMotorMoveBackwardBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhiroMotorMoveBackwardBrickCell.h; sourceTree = "<group>"; };
+		929CC0E41BC39B8C0027DEC0 /* PhiroMotorMoveBackwardBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhiroMotorMoveBackwardBrickCell.m; sourceTree = "<group>"; };
+		929CC0E51BC39B8C0027DEC0 /* PhiroMotorMoveForwardBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhiroMotorMoveForwardBrickCell.h; sourceTree = "<group>"; };
+		929CC0E61BC39B8C0027DEC0 /* PhiroMotorMoveForwardBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhiroMotorMoveForwardBrickCell.m; sourceTree = "<group>"; };
+		929CC0E71BC39B8C0027DEC0 /* PhiroMotorStopBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhiroMotorStopBrickCell.h; sourceTree = "<group>"; };
+		929CC0E81BC39B8C0027DEC0 /* PhiroMotorStopBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhiroMotorStopBrickCell.m; sourceTree = "<group>"; };
+		929CC0E91BC39B8C0027DEC0 /* PhiroPlayToneBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhiroPlayToneBrickCell.h; sourceTree = "<group>"; };
+		929CC0EA1BC39B8C0027DEC0 /* PhiroPlayToneBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhiroPlayToneBrickCell.m; sourceTree = "<group>"; };
+		929CC0EB1BC39B8C0027DEC0 /* PhiroRGBLightBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhiroRGBLightBrickCell.h; sourceTree = "<group>"; };
+		929CC0EC1BC39B8C0027DEC0 /* PhiroRGBLightBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhiroRGBLightBrickCell.m; sourceTree = "<group>"; };
 		92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92D71C021BBBC57700F1177C /* DescriptionPopopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptionPopopViewController.h; sourceTree = "<group>"; };
 		92D71C031BBBC57700F1177C /* DescriptionPopopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptionPopopViewController.m; sourceTree = "<group>"; };
@@ -2122,6 +2174,9 @@
 		4C5517D31ABC6A8100A52FF4 /* BrickData */ = {
 			isa = PBXGroup;
 			children = (
+				929CC0D51BC39B460027DEC0 /* BrickPhiroLightProtocol.h */,
+				929CC0D61BC39B460027DEC0 /* BrickPhiroMotorProtocol.h */,
+				929CC0D71BC39B460027DEC0 /* BrickPhiroToneProtocol.h */,
 				4C5517D41ABC6A8100A52FF4 /* BrickFormulaProtocol.h */,
 				4C5517D51ABC6AA500A52FF4 /* BrickLookProtocol.h */,
 				4C4867BF1AC2CA6D009D679D /* BrickMessageProtocol.h */,
@@ -2790,6 +2845,51 @@
 			path = "Parser&Serializer";
 			sourceTree = "<group>";
 		};
+		929CC0BE1BC39B0A0027DEC0 /* PhiroBricks */ = {
+			isa = PBXGroup;
+			children = (
+				929CC0BF1BC39B0A0027DEC0 /* PhiroBrick.h */,
+				929CC0C01BC39B0A0027DEC0 /* PhiroBrick.m */,
+				929CC0C11BC39B0A0027DEC0 /* PhiroMotorMoveBackwardBrick.h */,
+				929CC0C21BC39B0A0027DEC0 /* PhiroMotorMoveBackwardBrick.m */,
+				929CC0C31BC39B0A0027DEC0 /* PhiroMotorMoveForwardBrick.h */,
+				929CC0C41BC39B0A0027DEC0 /* PhiroMotorMoveForwardBrick.m */,
+				929CC0C51BC39B0A0027DEC0 /* PhiroMotorStopBrick.h */,
+				929CC0C61BC39B0A0027DEC0 /* PhiroMotorStopBrick.m */,
+				929CC0C71BC39B0A0027DEC0 /* PhiroPlayToneBrick.h */,
+				929CC0C81BC39B0A0027DEC0 /* PhiroPlayToneBrick.m */,
+				929CC0C91BC39B0A0027DEC0 /* PhiroRGBLightBrick.h */,
+				929CC0CA1BC39B0A0027DEC0 /* PhiroRGBLightBrick.m */,
+			);
+			path = PhiroBricks;
+			sourceTree = "<group>";
+		};
+		929CC0D11BC39B280027DEC0 /* PhiroHelper */ = {
+			isa = PBXGroup;
+			children = (
+				929CC0D21BC39B280027DEC0 /* PhiroHelper.h */,
+				929CC0D31BC39B280027DEC0 /* PhiroHelper.m */,
+			);
+			path = PhiroHelper;
+			sourceTree = "<group>";
+		};
+		929CC0E21BC39B8C0027DEC0 /* PhiroBrickCells */ = {
+			isa = PBXGroup;
+			children = (
+				929CC0E31BC39B8C0027DEC0 /* PhiroMotorMoveBackwardBrickCell.h */,
+				929CC0E41BC39B8C0027DEC0 /* PhiroMotorMoveBackwardBrickCell.m */,
+				929CC0E51BC39B8C0027DEC0 /* PhiroMotorMoveForwardBrickCell.h */,
+				929CC0E61BC39B8C0027DEC0 /* PhiroMotorMoveForwardBrickCell.m */,
+				929CC0E71BC39B8C0027DEC0 /* PhiroMotorStopBrickCell.h */,
+				929CC0E81BC39B8C0027DEC0 /* PhiroMotorStopBrickCell.m */,
+				929CC0E91BC39B8C0027DEC0 /* PhiroPlayToneBrickCell.h */,
+				929CC0EA1BC39B8C0027DEC0 /* PhiroPlayToneBrickCell.m */,
+				929CC0EB1BC39B8C0027DEC0 /* PhiroRGBLightBrickCell.h */,
+				929CC0EC1BC39B8C0027DEC0 /* PhiroRGBLightBrickCell.m */,
+			);
+			path = PhiroBrickCells;
+			sourceTree = "<group>";
+		};
 		92DFAFE81A38949E00FA9B0F /* FormulaEditor */ = {
 			isa = PBXGroup;
 			children = (
@@ -2919,6 +3019,7 @@
 		92FF2DFD1A24C3BE00093DA7 /* Defines */ = {
 			isa = PBXGroup;
 			children = (
+				929CC0E11BC39B7B0027DEC0 /* PhiroDefines.h */,
 				92FF2DFE1A24C3BE00093DA7 /* ActionSheetAlertViewTags.h */,
 				92FF2E001A24C3BE00093DA7 /* ButtonTags.h */,
 				92FF2E011A24C3BE00093DA7 /* CatrobatLanguageDefines.h */,
@@ -3111,6 +3212,7 @@
 		92FF2E4C1A24C7D800093DA7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				929CC0D11BC39B280027DEC0 /* PhiroHelper */,
 				A918B6B31B89F4CD0017B92F /* Siren */,
 				D63864691AE63EB4008569E6 /* Keychain */,
 				92FF2E4D1A24C7D800093DA7 /* AudioManager */,
@@ -3393,6 +3495,9 @@
 		92FF302B1A24DCAA00093DA7 /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
+				929CC0BE1BC39B0A0027DEC0 /* PhiroBricks */,
+				929CC0BB1BC39AD60027DEC0 /* BluetoothBrick.h */,
+				929CC0BC1BC39AD60027DEC0 /* BluetoothBrick.m */,
 				92FF302C1A24DCAA00093DA7 /* Brick.h */,
 				92FF302D1A24DCAA00093DA7 /* Brick.m */,
 				AA74EF7F1BC05B5F00D1E954 /* Control */,
@@ -4217,6 +4322,12 @@
 		AA74F00F1BC05FCE00D1E954 /* BrickCellData */ = {
 			isa = PBXGroup;
 			children = (
+				929CC0D81BC39B690027DEC0 /* BrickCellPhiroLightData.h */,
+				929CC0D91BC39B690027DEC0 /* BrickCellPhiroLightData.m */,
+				929CC0DA1BC39B690027DEC0 /* BrickCellPhiroMotorData.h */,
+				929CC0DB1BC39B690027DEC0 /* BrickCellPhiroMotorData.m */,
+				929CC0DC1BC39B690027DEC0 /* BrickCellPhiroToneData.h */,
+				929CC0DD1BC39B690027DEC0 /* BrickCellPhiroToneData.m */,
 				AA74F0101BC05FCE00D1E954 /* BrickCellFormulaData.h */,
 				AA74F0111BC05FCE00D1E954 /* BrickCellFormulaData.m */,
 				AA74F0121BC05FCE00D1E954 /* BrickCellLookData.h */,
@@ -4247,6 +4358,7 @@
 		AA74F0211BC05FCE00D1E954 /* BrickCells */ = {
 			isa = PBXGroup;
 			children = (
+				929CC0E21BC39B8C0027DEC0 /* PhiroBrickCells */,
 				AA74F0221BC05FCE00D1E954 /* BrickCell.h */,
 				AA74F0231BC05FCE00D1E954 /* BrickCell.m */,
 				AA74F0241BC05FCE00D1E954 /* Control */,
@@ -5513,6 +5625,7 @@
 				AABCB3DE1BB364F2009F67D2 /* CBBackend.swift in Sources */,
 				AABCB3DD1BB364DD009F67D2 /* CBIfConditionalSequence.swift in Sources */,
 				AA74EFF21BC05B5F00D1E954 /* ChangeTransparencyByNBrick.m in Sources */,
+				929CC0CD1BC39B0A0027DEC0 /* PhiroMotorMoveForwardBrick.m in Sources */,
 				AABCB3DB1BB364B9009F67D2 /* CBBroadcastHandlerProtocol.swift in Sources */,
 				AABCB3DA1BB3649F009F67D2 /* SwellAll.swift in Sources */,
 				AABCB3D91BB3648E009F67D2 /* CBOperation.swift in Sources */,
@@ -5520,6 +5633,7 @@
 				AABCB3D81BB36469009F67D2 /* CBScriptSequenceList.swift in Sources */,
 				AA74EFF61BC05B5F00D1E954 /* SetBrightnessBrick.m in Sources */,
 				AA74EE331BC0542C00D1E954 /* VibrationBrick+Instruction.swift in Sources */,
+				929CC0CB1BC39B0A0027DEC0 /* PhiroBrick.m in Sources */,
 				CAE3C79C1B49FABC00AFE9D7 /* CBSequenceProtocol.swift in Sources */,
 				CAE3C79D1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift in Sources */,
 				CABF43BC1B115E6400419A55 /* CBSequenceList.swift in Sources */,
@@ -5551,6 +5665,7 @@
 				92D71C041BBBC57700F1177C /* DescriptionPopopViewController.m in Sources */,
 				4C2EE41E1B555B55006DE9B8 /* CBXMLOpenedNestingBricksStack.m in Sources */,
 				92FF31571A24DEB300093DA7 /* ObjectTableViewController.m in Sources */,
+				929CC0EF1BC39B8C0027DEC0 /* PhiroMotorStopBrickCell.m in Sources */,
 				92FF32BB1A24E2F400093DA7 /* DarkBlueGradientImageCell.m in Sources */,
 				92FF314E1A24DEB300093DA7 /* LookImageViewController.m in Sources */,
 				92DFB05D1A38960C00FA9B0F /* MirrorRotationZoomTool.m in Sources */,
@@ -5570,6 +5685,7 @@
 				92FF325B1A24E2F400093DA7 /* BDKNotifyHUD.m in Sources */,
 				92FF32BD1A24E2F400093DA7 /* ProgramTableHeaderView.m in Sources */,
 				4C724E241B4D3E8C00E27479 /* CBXMLValidator.m in Sources */,
+				929CC0F11BC39B8C0027DEC0 /* PhiroRGBLightBrickCell.m in Sources */,
 				AA74EFE21BC05B5F00D1E954 /* BroadcastWaitBrick.m in Sources */,
 				AA74F0B31BC05FCE00D1E954 /* SetSizeToBrickCell.m in Sources */,
 				AA6CC28B1BB4AB9A0007A621 /* CBScriptContext.swift in Sources */,
@@ -5604,6 +5720,7 @@
 				92FF2E3A1A24C5A700093DA7 /* NSString+FastImageSize.m in Sources */,
 				AA74F09D1BC05FCE00D1E954 /* BroadcastWaitBrickCell.m in Sources */,
 				CAD116E51A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.m in Sources */,
+				929CC0DE1BC39B690027DEC0 /* BrickCellPhiroLightData.m in Sources */,
 				92DFB06A1A38960C00FA9B0F /* UIViewController+KNSemiModal.m in Sources */,
 				92FF315F1A24DEB300093DA7 /* MyProgramsViewController.m in Sources */,
 				4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */,
@@ -5614,6 +5731,7 @@
 				AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */,
 				AA74F09C1BC05FCE00D1E954 /* BroadcastBrickCell.m in Sources */,
 				AA74F0961BC05FCE00D1E954 /* BrickCellObjectData.m in Sources */,
+				929CC0CC1BC39B0A0027DEC0 /* PhiroMotorMoveBackwardBrick.m in Sources */,
 				92FF32B61A24E2F400093DA7 /* CatrobatBaseCell.m in Sources */,
 				AA74F0051BC05B5F00D1E954 /* PointToBrick.m in Sources */,
 				4C724E571B4D3E8C00E27479 /* FormulaElement+CBXMLHandler.m in Sources */,
@@ -5630,6 +5748,7 @@
 				AA74EE231BC053FD00D1E954 /* WaitBrick+Instruction.swift in Sources */,
 				AA74EEFF1BC057C900D1E954 /* SetTransparencyBrick+CBXMLHandler.m in Sources */,
 				92FF2EA21A24C7D800093DA7 /* TableUtil.m in Sources */,
+				929CC0DF1BC39B690027DEC0 /* BrickCellPhiroMotorData.m in Sources */,
 				92FF315A1A24DEB300093DA7 /* FeaturedProgramsStoreViewController.m in Sources */,
 				D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */,
 				92FF2E3C1A24C5A700093DA7 /* UIColor+CatrobatUIColorExtensions.m in Sources */,
@@ -5715,6 +5834,7 @@
 				92FF31561A24DEB300093DA7 /* SRViewController.m in Sources */,
 				AAF6D9DA1BC0BB1F00686849 /* SetLookBrick+Instruction.swift in Sources */,
 				92DFB01A1A38949E00FA9B0F /* InternToken.m in Sources */,
+				929CC0BD1BC39AD60027DEC0 /* BluetoothBrick.m in Sources */,
 				92FF2E911A24C7D800093DA7 /* DownloadImageCache.m in Sources */,
 				AA74EFF81BC05B5F00D1E954 /* SetSizeToBrick.m in Sources */,
 				923503901BA707DE00021F6A /* BaseLoginViewController.m in Sources */,
@@ -5723,10 +5843,12 @@
 				AA74F0971BC05FCE00D1E954 /* BrickCellSoundData.m in Sources */,
 				4C724E631B4D3E8C00E27479 /* XMLObjectReference.m in Sources */,
 				4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */,
+				929CC0CE1BC39B0A0027DEC0 /* PhiroMotorStopBrick.m in Sources */,
 				92DFB0571A38960C00FA9B0F /* HandTool.m in Sources */,
 				AA74EFF01BC05B5F00D1E954 /* VibrationBrick.m in Sources */,
 				AA74F0AE1BC05FCE00D1E954 /* HideBrickCell.m in Sources */,
 				92FF30FF1A24DCAA00093DA7 /* Program.m in Sources */,
+				929CC0CF1BC39B0A0027DEC0 /* PhiroPlayToneBrick.m in Sources */,
 				AA74EEFD1BC057C900D1E954 /* SetBrightnessBrick+CBXMLHandler.m in Sources */,
 				D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */,
 				92FF2EBF1A24C8A700093DA7 /* CatrobatProgram.m in Sources */,
@@ -5744,6 +5866,7 @@
 				4CB4FE061B95DF2900431757 /* BrickInsertManager.m in Sources */,
 				92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */,
 				92FF2EA31A24C7D800093DA7 /* UIUtil.m in Sources */,
+				929CC0F01BC39B8C0027DEC0 /* PhiroPlayToneBrickCell.m in Sources */,
 				AA74F0AF1BC05FCE00D1E954 /* NextLookBrickCell.m in Sources */,
 				92FF2EBD1A24C8A700093DA7 /* DataTransferMessage.m in Sources */,
 				AA74EF511BC0586F00D1E954 /* GoNStepsBackBrick+CBXMLHandler.m in Sources */,
@@ -5759,10 +5882,13 @@
 				92FF31591A24DEB300093DA7 /* DownloadTabBarController.m in Sources */,
 				4C724E5D1B4D3E8C00E27479 /* SpriteObject+CBXMLHandler.m in Sources */,
 				92DFB0581A38960C00FA9B0F /* ImageHelper.m in Sources */,
+				929CC0D41BC39B280027DEC0 /* PhiroHelper.m in Sources */,
 				AA74F0C81BC05FCE00D1E954 /* StopAllSoundsBrickCell.m in Sources */,
 				92FF31581A24DEB300093DA7 /* ProgramTableViewController.m in Sources */,
 				AA74F0AB1BC05FCE00D1E954 /* ChangeBrightnessByNBrickCell.m in Sources */,
+				929CC0E01BC39B690027DEC0 /* BrickCellPhiroToneData.m in Sources */,
 				AA74F0041BC05B5F00D1E954 /* PointInDirectionBrick.m in Sources */,
+				929CC0EE1BC39B8C0027DEC0 /* PhiroMotorMoveForwardBrickCell.m in Sources */,
 				AAF6D9DE1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift in Sources */,
 				92FF315E1A24DEB300093DA7 /* HelpWebViewController.m in Sources */,
 				AA74EFED1BC05B5F00D1E954 /* SetVariableBrick.m in Sources */,
@@ -5878,10 +6004,12 @@
 				92FF31611A24DEB300093DA7 /* ScenePresenterViewController.m in Sources */,
 				92DFB0541A38960C00FA9B0F /* ColorPickerViewController.m in Sources */,
 				92FF32B31A24E2F400093DA7 /* LoadingView.m in Sources */,
+				929CC0ED1BC39B8C0027DEC0 /* PhiroMotorMoveBackwardBrickCell.m in Sources */,
 				4C4A71921B52733C00BBE32B /* CBXMLAbstractContext.m in Sources */,
 				811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */,
 				92FF32B41A24E2F400093DA7 /* CellMotionEffect.m in Sources */,
 				92FF314F1A24DEB300093DA7 /* LooksTableViewController.m in Sources */,
+				929CC0D01BC39B0A0027DEC0 /* PhiroRGBLightBrick.m in Sources */,
 				92FF32B51A24E2F400093DA7 /* PlaceHolderView.m in Sources */,
 				4C724E561B4D3E8C00E27479 /* Formula+CBXMLHandler.m in Sources */,
 				AA74F0031BC05B5F00D1E954 /* PlaceAtBrick.m in Sources */,

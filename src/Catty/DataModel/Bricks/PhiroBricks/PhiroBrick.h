@@ -20,44 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "SpriteObject.h"
-#import "UIDefines.h"
-#import "BrickProtocol.h"
+#import "BluetoothBrick.h"
 
-@class Script;
+#define MIN_SPEED 0.0f
+#define MAX_SPEED 100.0f
 
-@interface Brick : NSObject <BrickProtocol>
+#define MIN_VALUE 0.0f
+#define MAX_VALUE 255.0f
 
-@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
-@property (nonatomic, readonly) kBrickType brickType;
-@property (nonatomic, strong, readonly) NSString *brickTitle;
-@property (nonatomic, weak) Script *script;
-@property (nonatomic, getter=isAnimated) BOOL animate;
-@property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
-@property (nonatomic) BOOL isSelected;
-
-- (BOOL)isSelectableForObject;
-
-- (BOOL)isAnimateable;
-
-- (BOOL)isFormulaBrick;
-
-- (BOOL)isBluetoothBrick;
-
-- (BOOL)isPhiroBrick;
-
-- (NSString*)description;
-
-- (SKAction*)action;
-
-- (BOOL)isEqualToBrick:(Brick*)brick;
-
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context AndErrorReporting:(BOOL)reportError;
-
-- (void)removeFromScript;
-
-- (void)removeReferences;
-
+@interface PhiroBrick : BluetoothBrick
 
 @end

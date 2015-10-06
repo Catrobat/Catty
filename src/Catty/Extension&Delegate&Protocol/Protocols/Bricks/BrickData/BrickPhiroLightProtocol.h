@@ -20,44 +20,14 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "SpriteObject.h"
-#import "UIDefines.h"
-#import "BrickProtocol.h"
+#import <Foundation/Foundation.h>
+#import "PhiroDefines.h"
 
-@class Script;
+@class Brick;
 
-@interface Brick : NSObject <BrickProtocol>
+@protocol BrickPhiroLightProtocol <NSObject>
 
-@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
-@property (nonatomic, readonly) kBrickType brickType;
-@property (nonatomic, strong, readonly) NSString *brickTitle;
-@property (nonatomic, weak) Script *script;
-@property (nonatomic, getter=isAnimated) BOOL animate;
-@property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
-@property (nonatomic) BOOL isSelected;
-
-- (BOOL)isSelectableForObject;
-
-- (BOOL)isAnimateable;
-
-- (BOOL)isFormulaBrick;
-
-- (BOOL)isBluetoothBrick;
-
-- (BOOL)isPhiroBrick;
-
-- (NSString*)description;
-
-- (SKAction*)action;
-
-- (BOOL)isEqualToBrick:(Brick*)brick;
-
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context AndErrorReporting:(BOOL)reportError;
-
-- (void)removeFromScript;
-
-- (void)removeReferences;
-
+- (Light)lightForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (void)setLight:(Light)light forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 
 @end

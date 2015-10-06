@@ -20,44 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "SpriteObject.h"
-#import "UIDefines.h"
-#import "BrickProtocol.h"
+#import <Foundation/Foundation.h>
+#import "PhiroDefines.h"
 
-@class Script;
+@interface PhiroHelper : NSObject
 
-@interface Brick : NSObject <BrickProtocol>
++ (NSString*)lightToString:(Light)formatType;
 
-@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
-@property (nonatomic, readonly) kBrickType brickType;
-@property (nonatomic, strong, readonly) NSString *brickTitle;
-@property (nonatomic, weak) Script *script;
-@property (nonatomic, getter=isAnimated) BOOL animate;
-@property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
-@property (nonatomic) BOOL isSelected;
++ (Light)stringToLight:(NSString*)string;
 
-- (BOOL)isSelectableForObject;
++ (NSString*)toneToString:(Tone)formatType;
 
-- (BOOL)isAnimateable;
++ (Tone)stringToTone:(NSString*)string;
 
-- (BOOL)isFormulaBrick;
++ (NSString*)motorToString:(Motor)formatType;
 
-- (BOOL)isBluetoothBrick;
++ (Motor)stringToMotor:(NSString*)string;
 
-- (BOOL)isPhiroBrick;
-
-- (NSString*)description;
-
-- (SKAction*)action;
-
-- (BOOL)isEqualToBrick:(Brick*)brick;
-
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context AndErrorReporting:(BOOL)reportError;
-
-- (void)removeFromScript;
-
-- (void)removeReferences;
 
 
 @end

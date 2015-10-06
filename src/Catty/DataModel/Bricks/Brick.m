@@ -89,6 +89,16 @@
     return NO;
 }
 
+- (BOOL)isBluetoothBrick
+{
+    return NO;
+}
+
+- (BOOL)isPhiroBrick
+{
+    return NO;
+}
+
 - (NSString*)description
 {
     return @"Brick (NO SPECIFIC DESCRIPTION GIVEN! OVERRIDE THE DESCRIPTION METHOD!";
