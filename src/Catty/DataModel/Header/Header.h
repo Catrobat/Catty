@@ -49,6 +49,7 @@
 @property (nonatomic, strong) NSString *userHandle;
 @property (nonatomic, strong) NSString *programScreenshotManuallyTaken;
 @property (nonatomic, strong) NSString *tags;
+@property (nonatomic, assign) NSString *isPhiroProProject;
 
 // do not persist following properties
 @property (nonatomic, strong) NSString *programID;
