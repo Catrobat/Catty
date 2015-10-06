@@ -236,6 +236,9 @@
 		92EC985E1BC3ABB90003A891 /* PhiroMotorStopBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98571BC3ABB90003A891 /* PhiroMotorStopBrick+CBXMLHandler.m */; settings = {ASSET_TAGS = (); }; };
 		92EC985F1BC3ABB90003A891 /* PhiroPlayToneBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EC98591BC3ABB90003A891 /* PhiroPlayToneBrick+CBXMLHandler.m */; settings = {ASSET_TAGS = (); }; };
 		92EC98601BC3ABB90003A891 /* PhiroRGBLightBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EC985B1BC3ABB90003A891 /* PhiroRGBLightBrick+CBXMLHandler.m */; settings = {ASSET_TAGS = (); }; };
+		92EC99431BC3C8000003A891 /* BluetoothService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC99421BC3C8000003A891 /* BluetoothService.swift */; settings = {ASSET_TAGS = (); }; };
+		92EC99471BC3C95F0003A891 /* BluetoothDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC99461BC3C95F0003A891 /* BluetoothDevice.swift */; settings = {ASSET_TAGS = (); }; };
+		92EC994A1BC3CA870003A891 /* Firmata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC99491BC3CA870003A891 /* Firmata.swift */; settings = {ASSET_TAGS = (); }; };
 		92ED4D7D1BA9C1380052C852 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ED4D7C1BA9C1380052C852 /* RegisterViewController.m */; };
 		92FC85CE1B9E1EB5001C728F /* BrickManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FC85CD1B9E1EB5001C728F /* BrickManager.m */; };
 		92FF2E331A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF2E0D1A24C5A700093DA7 /* CAGradientLayer+CatrobatCAGradientExtensions.m */; };
@@ -690,6 +693,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		92EC993A1BC3C4D60003A891 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92EC992A1BC3C4D60003A891 /* BluetoothHelper.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 92EC98A01BC3C32A0003A891;
+			remoteInfo = BluetoothHelper;
+		};
+		92EC993C1BC3C4D60003A891 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92EC992A1BC3C4D60003A891 /* BluetoothHelper.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 92EC98AA1BC3C32A0003A891;
+			remoteInfo = BluetoothHelperTests;
+		};
+		92EC993E1BC3C4E00003A891 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92EC992A1BC3C4D60003A891 /* BluetoothHelper.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 92EC989F1BC3C32A0003A891;
+			remoteInfo = BluetoothHelper;
+		};
 		AAADA0091B9B29D500E0CA9A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -1137,6 +1161,10 @@
 		92EC98591BC3ABB90003A891 /* PhiroPlayToneBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PhiroPlayToneBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		92EC985A1BC3ABB90003A891 /* PhiroRGBLightBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PhiroRGBLightBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		92EC985B1BC3ABB90003A891 /* PhiroRGBLightBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PhiroRGBLightBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		92EC992A1BC3C4D60003A891 /* BluetoothHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = BluetoothHelper.xcodeproj; sourceTree = "<group>"; };
+		92EC99421BC3C8000003A891 /* BluetoothService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothService.swift; sourceTree = "<group>"; };
+		92EC99461BC3C95F0003A891 /* BluetoothDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothDevice.swift; sourceTree = "<group>"; };
+		92EC99491BC3CA870003A891 /* Firmata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firmata.swift; sourceTree = "<group>"; };
 		92ED4D7B1BA9C1380052C852 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		92ED4D7C1BA9C1380052C852 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		92FC85CC1B9E1EB5001C728F /* BrickManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrickManager.h; path = "Catty/ViewController/Continue&New/MaintainObject/MaintainScript/BrickManager/BrickManager.h"; sourceTree = SOURCE_ROOT; };
@@ -1948,6 +1976,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				92EC99141BC3C4D60003A891 /* BluetoothHelper */,
 				CA8003E91B48720500A8D99B /* ReplayKit.framework */,
 				92E3351D18FBB6750056C390 /* SystemConfiguration.framework */,
 				921FE2F9182F8122001D7CF6 /* CoreImage.framework */,
@@ -3082,6 +3111,48 @@
 			path = Phiro;
 			sourceTree = "<group>";
 		};
+		92EC99141BC3C4D60003A891 /* BluetoothHelper */ = {
+			isa = PBXGroup;
+			children = (
+				92EC992A1BC3C4D60003A891 /* BluetoothHelper.xcodeproj */,
+			);
+			name = BluetoothHelper;
+			path = Catty/BluetoothHelper;
+			sourceTree = "<group>";
+		};
+		92EC992B1BC3C4D60003A891 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				92EC993B1BC3C4D60003A891 /* BluetoothHelper.framework */,
+				92EC993D1BC3C4D60003A891 /* BluetoothHelperTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		92EC99441BC3C8050003A891 /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				92EC99421BC3C8000003A891 /* BluetoothService.swift */,
+			);
+			name = Bluetooth;
+			sourceTree = "<group>";
+		};
+		92EC99451BC3C95F0003A891 /* BluetoothDevice */ = {
+			isa = PBXGroup;
+			children = (
+				92EC99461BC3C95F0003A891 /* BluetoothDevice.swift */,
+			);
+			path = BluetoothDevice;
+			sourceTree = "<group>";
+		};
+		92EC99481BC3CA870003A891 /* Firmata */ = {
+			isa = PBXGroup;
+			children = (
+				92EC99491BC3CA870003A891 /* Firmata.swift */,
+			);
+			path = Firmata;
+			sourceTree = "<group>";
+		};
 		92FF2DFD1A24C3BE00093DA7 /* Defines */ = {
 			isa = PBXGroup;
 			children = (
@@ -3278,6 +3349,7 @@
 		92FF2E4C1A24C7D800093DA7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				92EC99481BC3CA870003A891 /* Firmata */,
 				929CC0D11BC39B280027DEC0 /* PhiroHelper */,
 				A918B6B31B89F4CD0017B92F /* Siren */,
 				D63864691AE63EB4008569E6 /* Keychain */,
@@ -3295,6 +3367,7 @@
 				92FF2E7F1A24C7D800093DA7 /* SSZipArchive */,
 				92FF2E821A24C7D800093DA7 /* TimerLabel */,
 				92FF2E851A24C7D800093DA7 /* Utils */,
+				92EC99441BC3C8050003A891 /* Bluetooth */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -5180,6 +5253,7 @@
 		CD0CCE54170CB39600B70036 /* Catty */ = {
 			isa = PBXGroup;
 			children = (
+				92EC99451BC3C95F0003A891 /* BluetoothDevice */,
 				92DFB01F1A38960C00FA9B0F /* PocketPaint */,
 				92DFAFE81A38949E00FA9B0F /* FormulaEditor */,
 				92FF2EA51A24C8A700093DA7 /* DataStructures */,
@@ -5258,6 +5332,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				92EC993F1BC3C4E00003A891 /* PBXTargetDependency */,
 			);
 			name = Catty;
 			productName = AppScaffold;
@@ -5331,6 +5406,12 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 92EC992B1BC3C4D60003A891 /* Products */;
+					ProjectRef = 92EC992A1BC3C4D60003A891 /* BluetoothHelper.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				CADBD6D319B0E8C200C62836 /* Catty */,
@@ -5339,6 +5420,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		92EC993B1BC3C4D60003A891 /* BluetoothHelper.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BluetoothHelper.framework;
+			remoteRef = 92EC993A1BC3C4D60003A891 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		92EC993D1BC3C4D60003A891 /* BluetoothHelperTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BluetoothHelperTests.xctest;
+			remoteRef = 92EC993C1BC3C4D60003A891 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		AAADA0021B9B29D500E0CA9A /* Resources */ = {
@@ -5892,6 +5990,7 @@
 				AA74EFF41BC05B5F00D1E954 /* HideBrick.m in Sources */,
 				AAF6D9DC1BC0BFFE00686849 /* SetSizeToBrick+Instruction.swift in Sources */,
 				92DFB01B1A38949E00FA9B0F /* FormulaEditorViewController.m in Sources */,
+				92EC994A1BC3CA870003A891 /* Firmata.swift in Sources */,
 				92EC985D1BC3ABB90003A891 /* PhiroMotorMoveForwardBrick+CBXMLHandler.m in Sources */,
 				AA74EF5A1BC0586F00D1E954 /* TurnRightBrick+CBXMLHandler.m in Sources */,
 				4C724E5B1B4D3E8C00E27479 /* Script+CBXMLHandler.m in Sources */,
@@ -5992,6 +6091,7 @@
 				AA74EF4F1BC0586F00D1E954 /* ComeToFrontBrick+CBXMLHandler.m in Sources */,
 				AA74EFEA1BC05B5F00D1E954 /* RepeatBrick.m in Sources */,
 				4C724E5C1B4D3E8C00E27479 /* Sound+CBXMLHandler.m in Sources */,
+				92EC99431BC3C8000003A891 /* BluetoothService.swift in Sources */,
 				92FF325A1A24E2F400093DA7 /* UIWindow+AHKAdditions.m in Sources */,
 				92DFB06B1A38960C00FA9B0F /* UndoManager.m in Sources */,
 				92FF2E8C1A24C7D800093DA7 /* AudioManager.m in Sources */,
@@ -6053,6 +6153,7 @@
 				922FE8E11B963BDE005A19FA /* BrickSelectionManager.m in Sources */,
 				AA74EEE01BC057B900D1E954 /* IfLogicEndBrick+CBXMLHandler.m in Sources */,
 				92DFB0141A38949E00FA9B0F /* InternFormulaParser.m in Sources */,
+				92EC99471BC3C95F0003A891 /* BluetoothDevice.swift in Sources */,
 				92FF2E961A24C7D800093DA7 /* ioapi.c in Sources */,
 				92DFB0641A38960C00FA9B0F /* PointerTool.m in Sources */,
 				4C724E591B4D3E8C00E27479 /* Look+CBXMLHandler.m in Sources */,
@@ -6107,6 +6208,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		92EC993F1BC3C4E00003A891 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BluetoothHelper;
+			targetProxy = 92EC993E1BC3C4E00003A891 /* PBXContainerItemProxy */;
+		};
 		AAADA00A1B9B29D500E0CA9A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CADBD6D319B0E8C200C62836 /* Catty */;

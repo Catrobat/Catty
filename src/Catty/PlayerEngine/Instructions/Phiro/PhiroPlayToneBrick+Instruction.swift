@@ -27,33 +27,36 @@ extension PhiroPlayToneBrick :CBInstructionProtocol {
     func instruction() -> CBInstruction {
         
         return CBInstruction.ExecClosure { (context, _) in
-//            var durationInterpretation = self.durationFormula.interpretDoubleForSprite(self.script?.object)
-            //        Phiro phiro = btService.getDevice(BluetoothDevice.PHIRO);
-            //        if (phiro == null) {
-            //            return;
-            //        }
+            let durationInterpretation:NSInteger = NSInteger(self.durationFormula.interpretIntegerForSprite(self.script?.object))
+            
+            
+            guard let phiro:Phiro = BluetoothService.sharedInstance.phiro else {
+                        //EROR
+                        return;
+                    }
+            
             
             switch (self.tone) {
             case .DO:
-                //                phiro.playTone(262, durationInterpretation);
+                    phiro.playTone(262, duration: durationInterpretation);
                 break;
             case .RE:
-                //                phiro.playTone(294, durationInterpretation);
+                    phiro.playTone(294, duration: durationInterpretation);
                 break;
             case .MI:
-                //                phiro.playTone(330, durationInterpretation);
+                    phiro.playTone(330, duration: durationInterpretation);
                 break;
             case .FA:
-                //                phiro.playTone(349, durationInterpretation);
+                    phiro.playTone(349, duration: durationInterpretation);
                 break;
             case .SO:
-                //                phiro.playTone(392, durationInterpretation);
+                    phiro.playTone(392, duration: durationInterpretation);
                 break;
             case .LA:
-                //                phiro.playTone(440, durationInterpretation);
+                    phiro.playTone(440, duration: durationInterpretation);
                 break;
             case .TI:
-                //                phiro.playTone(494, durationInterpretation);
+                    phiro.playTone(494, duration: durationInterpretation);
                 break;
             }        }
         
