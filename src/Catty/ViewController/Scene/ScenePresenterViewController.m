@@ -262,11 +262,15 @@
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"]
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio_pressed"]
                     andSelector:@selector(manageAspectRatioAction:)];
-    [self setupButtonWithButton:self.menuRecordButton
-                ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"]
-        andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio_pressed"]
-                    andSelector:@selector(recordProgram:)];
-}
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+        // code here
+        [self setupButtonWithButton:self.menuRecordButton
+                    ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"]
+            andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio_pressed"]
+                        andSelector:@selector(recordProgram:)];
+
+    }
+    }
 
 - (void)setupButtonWithButton:(UIButton*)button ImageNameNormal:(UIImage*)stateNormal andImageNameHighlighted:(UIImage*)stateHighlighted andSelector:(SEL)myAction
 {
@@ -534,14 +538,16 @@
     SKView * view = self.skView;
     if ([((CBScene*)view.scene) isScreenRecording]) {
         [((CBScene*)view.scene) stopScreenRecording];
+        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"] forState:UIControlStateNormal];
+        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"] forState:UIControlStateHighlighted];
+        [self.menuView setNeedsDisplay];
         return;
     }
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
-        // code here
-         [((CBScene*)view.scene) startScreenRecording];
-    }
- 
-    
+    [((CBScene*)view.scene) startScreenRecording];
+    [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"] forState:UIControlStateNormal];
+    [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"] forState:UIControlStateHighlighted];
+    [self.menuView setNeedsDisplay];
+    [self continueProgramAction:nil withDuration:0];
 }
 
 - (void)manageAspectRatioAction:(UIButton *)sender
