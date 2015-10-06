@@ -20,23 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-final class CBOperationSequence : CBSequence {
+final class CBOperationSequence : CBSequenceProtocol, CBSequenceVisitProtocol {
 
     // MARK: - Properties
+    final weak var rootSequenceList: CBScriptSequenceList?
     lazy var operationList = [CBOperation]()
 
     // MARK: - Initializers
-    override init(rootSequenceList: CBScriptSequenceList) {
-        super.init(rootSequenceList: rootSequenceList)
+    init(rootSequenceList: CBScriptSequenceList) {
+        self.rootSequenceList = rootSequenceList
     }
 
     // MARK: - Operations
-    override func isEmpty() -> Bool {
+    func isEmpty() -> Bool {
         return (operationList.count == 0)
     }
 
     func addOperation(operation : CBOperation) {
         operationList.append(operation)
+    }
+
+    func accept(visitor: CBOptimizeSequenceVisitorProtocol) {
+        visitor.visit(self)
     }
 
 }

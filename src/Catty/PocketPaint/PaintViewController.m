@@ -185,8 +185,8 @@
 
 - (void)setupCanvas
 {
-    NSInteger width = self.view.bounds.size.width;
-    NSInteger height = (NSInteger)self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height;
+    NSInteger width = self.view.frame.size.width;
+    NSInteger height = (NSInteger)self.view.frame.size.height;
     CGRect rect = CGRectMake(0, 0, width, height);
     self.drawView = [[UIImageView alloc] initWithFrame:rect];
     self.saveView = [[UIImageView alloc] initWithFrame:rect];
@@ -322,31 +322,10 @@
 
 - (void)editAction
 {
-    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:kLocalizedPaintSelect
-                                                                         message:@""
-                                                                  preferredStyle:UIAlertControllerStyleActionSheet];
+   
+    NSArray *buttonTitles = @[kLocalizedPaintSave,kLocalizedPaintClose,kLocalizedPaintNewCanvas];
+    [Util actionSheetWithTitle:kLocalizedPaintSelect delegate:self destructiveButtonTitle:nil otherButtonTitles:buttonTitles tag:kPocketPaintActionSheetTag view:self.navigationController.view];
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:kLocalizedCancel
-                                                           style:UIAlertActionStyleCancel
-                                                         handler:^(UIAlertAction *action) {}];
-    [actionSheet addAction:cancelAction];
-    
-    UIAlertAction *saveAction = [UIAlertAction actionWithTitle:kLocalizedPaintSave
-                                                         style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction *action) { [self saveAction]; }];
-    [actionSheet addAction:saveAction];
-    
-    UIAlertAction *saveCloseAction = [UIAlertAction actionWithTitle:kLocalizedPaintClose
-                                                              style:UIAlertActionStyleDefault
-                                                            handler:^(UIAlertAction *action) { [self closeAction]; }];
-    [actionSheet addAction:saveCloseAction];
-    
-    UIAlertAction *newCanvasAction = [UIAlertAction actionWithTitle:kLocalizedPaintNewCanvas
-                                                              style:UIAlertActionStyleDefault
-                                                            handler:^(UIAlertAction *action) { [self newCanvasAction]; }];
-    [actionSheet addAction:newCanvasAction];
-    
-    [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
 - (void)setupUndoManager
@@ -999,5 +978,26 @@
     }
     return state;
 }
+
+#pragma mark actionsheet delegate
+
+-(void)actionSheet:(CatrobatActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag == kPocketPaintActionSheetTag) {
+        switch (buttonIndex) {
+            case 0:
+                [self saveAction];
+                break;
+            case 1:
+                [self closeAction];
+                break;
+            case 2:
+                [self newCanvasAction];
+            default:
+                break;
+        }
+    }
+}
+
 
 @end

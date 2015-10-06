@@ -222,7 +222,22 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.calcScrollView.contentSize = CGSizeMake(self.calcScrollView.frame.size.width,self.calcScrollView.frame.size.height);
     
     [self localizeView];
-  
+    
+    UINavigationBar *myNav = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+    [UINavigationBar appearance].barTintColor = [UIColor backgroundColor];
+    [self.view addSubview:myNav];
+    
+
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:kLocalizedCancel
+                                                      style:UIBarButtonItemStylePlain
+                                                     target:self
+                                                            action:@selector(dismissFormulaEditorViewController)];
+    
+    
+    UINavigationItem *navigItem = [[UINavigationItem alloc] initWithTitle:@""];
+    navigItem.leftBarButtonItem = item;
+    myNav.items = [NSArray arrayWithObjects: navigItem,nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -233,14 +248,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
-    self.recognizer.numberOfTapsRequired = 1;
-    self.recognizer.cancelsTouchesInView = NO;
-    [self.view addGestureRecognizer:self.recognizer];
     //self.pickerGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chosenVariable:)];
     //self.pickerGesture.numberOfTapsRequired = 1;
     //[self.variablePicker addGestureRecognizer:self.pickerGesture];
     [self update];
+   
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -261,15 +273,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
 }
 
-- (void)handleGesture:(UIGestureRecognizer *)gestureRecognizer {
-    if ([gestureRecognizer isEqual:self.recognizer]) {
-        CGPoint p = [gestureRecognizer locationInView:self.view];
-        CGRect rect = CGRectMake(0, self.formulaEditorTextView.frame.origin.y+self.formulaEditorTextView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height);
-        if (CGRectContainsPoint(rect, p)) {
-            [self dismissFormulaEditorViewController];
-        }
-    }
-}
 
 - (BOOL)canBecomeFirstResponder {
     return YES;
@@ -341,9 +344,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)dismissFormulaEditorViewController
 {
     if (! self.presentingViewController.isBeingDismissed) {
-        // @warning TODO
-        //[BrickCellFormulaFragment setActiveFormula:nil];
-        
+        [self.brickCellData drawBorder:NO];
         [self.formulaEditorTextView removeFromSuperview];
         [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
     }
@@ -589,7 +590,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 
 - (void)showFormulaEditor
 {
-    self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(1, self.brickCellData.brickCell.frame.size.height + 41, self.view.frame.size.width - 2, 0) AndFormulaEditorViewController:self];
+    self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(1, self.brickCellData.brickCell.frame.size.height + 50, self.view.frame.size.width - 2, 0) AndFormulaEditorViewController:self];
     [self.view addSubview:self.formulaEditorTextView];
     
     for(int i = 0; i < [self.orangeTypeButton count]; i++) {

@@ -55,8 +55,6 @@
 
 @interface RegisterViewController ()
 @property (nonatomic, strong) NSString *userEmail;
-@property (nonatomic, strong) NSString *userName;
-@property (nonatomic, strong) NSString *password;
 @property (strong, nonatomic) NSURLSession *session;
 @property (strong, nonatomic) NSURLSessionDataTask *dataTask;
 //@property (nonatomic, strong) Keychain *keychain;
@@ -93,9 +91,9 @@
     CGFloat currentHeight = 0.0f;
     CGFloat headerHeight;
     if (IS_IPHONE4||IS_IPHONE5) {
-        headerHeight = 100.0f;
+        headerHeight = 50.0f;
     } else {
-        headerHeight = 200.0f;
+        headerHeight = 100.0f;
     }
     
     self.view.backgroundColor = mainColor;
@@ -116,6 +114,9 @@
     currentHeight = headerHeight+self.infoLabel.frame.size.height;
     self.usernameField.backgroundColor = [UIColor whiteColor];
     self.usernameField.placeholder = kLocalizedUsername;
+    if (self.userName) {
+        self.usernameField.text = self.userName;
+    }
     self.usernameField.font = [UIFont fontWithName:fontName size:16.0f];
     self.usernameField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.usernameField.layer.borderWidth = 1.0f;
@@ -130,6 +131,9 @@
     
     self.passwordField.backgroundColor = [UIColor whiteColor];
     self.passwordField.placeholder = kLocalizedPassword;
+    if (self.password) {
+        self.passwordField.text = self.password;
+    }
     [self.passwordField setSecureTextEntry:YES];
     self.passwordField.font = [UIFont fontWithName:fontName size:16.0f];
     self.passwordField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
@@ -433,5 +437,11 @@
 - (void)setEnableActivityIndicator:(BOOL)enabled
 {
     [UIApplication.sharedApplication setNetworkActivityIndicatorVisible:enabled];
+}
+
+-(void)dismissKeyboard {
+    [self.usernameField resignFirstResponder];
+    [self.passwordField resignFirstResponder];
+    [self.emailField resignFirstResponder];
 }
 @end

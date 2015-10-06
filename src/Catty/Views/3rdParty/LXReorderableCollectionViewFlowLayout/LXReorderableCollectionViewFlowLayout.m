@@ -170,6 +170,9 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
     [self.collectionView performBatchUpdates:^{
         __strong typeof(self) strongSelf = weakSelf;
         if (strongSelf) {
+            if (previousIndexPath.item == 0 && newIndexPath.item == 0) {
+                [strongSelf.collectionView moveSection:previousIndexPath.section toSection:newIndexPath.section];
+            }
             [strongSelf.collectionView deleteItemsAtIndexPaths:@[ previousIndexPath ]];
             [strongSelf.collectionView insertItemsAtIndexPaths:@[ newIndexPath ]];
         }
@@ -275,22 +278,23 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
 
 - (void)handleLongPressGesture:(UILongPressGestureRecognizer *)gestureRecognizer {
     @synchronized(@"moveBrick"){
-    if([[BrickInsertManager sharedInstance] isBrickInsertionMode]){
-        NSIndexPath *currentIndexPath = [self.collectionView indexPathForItemAtPoint:[gestureRecognizer locationInView:self.collectionView]];
-        ScriptCollectionViewController* cvc = (ScriptCollectionViewController*)self.delegate;
-        Script *script = [cvc.object.scriptList objectAtIndex:(NSUInteger)currentIndexPath.section];
-        Brick *brick = nil;
-        
-        if (currentIndexPath.item > 0) {
-            brick = [script.brickList objectAtIndex:currentIndexPath.item - 1];
-        }
-        if (!brick.isAnimatedInsertBrick) {
-            return;
-        }
-    }
+ 
     switch(gestureRecognizer.state) {
         case UIGestureRecognizerStateBegan: {
-            NSIndexPath *currentIndexPath = [self.collectionView indexPathForItemAtPoint:[gestureRecognizer locationInView:self.collectionView]];
+             NSIndexPath *currentIndexPath = [self.collectionView indexPathForItemAtPoint:[gestureRecognizer locationInView:self.collectionView]];
+            if([[BrickInsertManager sharedInstance] isBrickInsertionMode]){
+                ScriptCollectionViewController* cvc = (ScriptCollectionViewController*)self.delegate;
+                Script *script = [cvc.object.scriptList objectAtIndex:(NSUInteger)currentIndexPath.section];
+                Brick *brick = nil;
+                
+                if (currentIndexPath.item > 0) {
+                    brick = [script.brickList objectAtIndex:currentIndexPath.item - 1];
+                }
+                if (!brick.isAnimatedInsertBrick && brick!=nil) {
+                    return;
+                }
+            }
+           
             
             if ([self.dataSource respondsToSelector:@selector(collectionView:canMoveItemAtIndexPath:)] &&
                ![self.dataSource collectionView:self.collectionView canMoveItemAtIndexPath:currentIndexPath]) {

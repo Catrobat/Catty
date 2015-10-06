@@ -20,24 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-final class CBSpriteNode : SKSpriteNode {
+final class CBSpriteNode: SKSpriteNode {
 
     // MARK: - Properties
-    private(set) var spriteObject : SpriteObject?
-    var currentLook : Look?
-    var currentUIImageLook : UIImage?
-    var currentLookBrightness : CGFloat = 1.0
-    var scenePosition : CGPoint {
-        set { self.position = (scene as! CBPlayerScene).convertPointToScene(newValue) }
-        get { return (scene as! CBPlayerScene).convertSceneCoordinateToPoint(self.position) }
+    private(set) var spriteObject: SpriteObject?
+    var currentLook: Look?
+    var currentUIImageLook: UIImage?
+    var currentLookBrightness: CGFloat = 1.0
+    var scenePosition: CGPoint {
+        set { self.position = (scene as! CBScene).convertPointToScene(newValue) }
+        get { return (scene as! CBScene).convertSceneCoordinateToPoint(self.position) }
     }
-    var xPosition : CGFloat { return self.scenePosition.x }
-    var yPosition : CGFloat { return self.scenePosition.y }
-    var zIndex : CGFloat { return zPosition }
-    var brightness : CGFloat { return (100 * self.currentLookBrightness) }
-    var scaleX : CGFloat { return (100 * xScale) }
-    var scaleY : CGFloat { return (100 * yScale) }
-    var rotation : Double {
+    var zIndex: CGFloat { return zPosition }
+    var brightness: CGFloat { return (100 * self.currentLookBrightness) }
+    var scaleX: CGFloat { return (100 * xScale) }
+    var scaleY: CGFloat { return (100 * yScale) }
+    var rotation: Double {
         set {
             var rotationInDegrees = newValue%360.0 // swift equivalent for fmodf
             if rotationInDegrees < 0.0 { rotationInDegrees += 360.0 }
@@ -49,6 +47,7 @@ final class CBSpriteNode : SKSpriteNode {
             return rotation
         }
     }
+    private var _lastTimeTouchedSpriteNode = [String:NSDate]()
 
     // MARK: Custom getters and setters
     func setPositionForCropping(position: CGPoint) {
@@ -58,7 +57,6 @@ final class CBSpriteNode : SKSpriteNode {
     // MARK: - Initializers
     required init(spriteObject: SpriteObject) {
         let color = UIColor.clearColor()
-        self.spriteObject = spriteObject
         if let firstLook = spriteObject.lookList.firstObject as? Look,
            let filePathForLook = spriteObject.pathForLook(firstLook),
            let image = UIImage(contentsOfFile:filePathForLook)
@@ -72,9 +70,9 @@ final class CBSpriteNode : SKSpriteNode {
             super.init(color: color, size: CGSizeZero)
         }
         self.spriteObject = spriteObject
-        setLook()
-        self.name = spriteObject.name
         spriteObject.spriteNode = self
+        self.name = spriteObject.name
+        setLook()
     }
 
     required override init(texture: SKTexture?, color: UIColor, size: CGSize) {
@@ -153,76 +151,22 @@ final class CBSpriteNode : SKSpriteNode {
         self.scenePosition = CGPointMake(0, 0)
         self.zRotation = 0
         self.currentLookBrightness = 0
-        if spriteObject?.isBackground() == true {
-            self.zPosition = 0
-        } else {
-            self.zPosition = zPosition
-        }
+        self.zPosition = zPosition
     }
 
-// [Swift2.0] DO NOT REMOVE!!!
-//    func touchedWithTouches(touches: NSSet, withX x: CGFloat, andY y: CGFloat) -> Bool {
-//        guard let playerScene = (scene as? CBPlayerScene),
-//              let scheduler = playerScene.scheduler else {
-//            return false
-//        }
-//        // FIXME: this check does not work any more since Swift 2.0! seems to be a compiler problem!
-////        if scheduler.running == false {
-////            return false
-////        }
-//
-//        for touchAnyObject in touches {
-//            let touch = touchAnyObject as! UITouch
-//            let touchedPoint = touch.locationInNode(self)
-////                println("x:%f,y:%f", touchedPoint.x, touchedPoint.y)
-//            //println("test touch, %@",self.name)
-//            //        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [UIScreen mainScreen].scale);
-//            //        [self.scene.view drawViewHierarchyInRect:self.frame afterScreenUpdates:NO];
-//            //        UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
-//            //        UIGraphicsEndImageContext();
-////                println("image : x:%f,y:%f", self.currentUIImageLook.size.width, self.currentUIImageLook.size.height)
-////            let isTransparent = self.currentUIImageLook?.isTransparentPixel(self.currentUIImageLook, withX:touchedPoint.x, andY:touchedPoint.y)
-//            let isTransparent = self.currentUIImageLook?.isTransparentPixelOLDMETHOD(self.currentUIImageLook, withX:touchedPoint.x, andY:touchedPoint.y)
-//            if isTransparent == true {
-////                    println(@"I'm transparent at this point")
-//                return false
-//            }
-//            guard let spriteObject = self.spriteObject,
-//                  let scriptList = spriteObject.scriptList as NSArray as? [Script] else {
-//                fatalError("Invalid spriteObject or scriptList!")
-//            }
-//
-//            for script in scriptList {
-//                guard let whenScript = script as? WhenScript else { continue }
-//                guard let whenScriptContext = scheduler.registeredContextForScript(whenScript) else {
-//                    fatalError("WhenScript not registered in Scheduler! This should NEVER HAPPEN!")
-//                }
-//
-//                if scheduler.isContextScheduled(whenScriptContext) == false {
-//                    scheduler.startContext(whenScriptContext)
-//                } else {
-//                    scheduler.restartContext(whenScriptContext)
-//                }
-//            }
-//            return true
-//        }
-//        return true
-//    }
-// [Swift2.0] DO NOT REMOVE!!!
-
-// [Swift1.2] DO NOT REMOVE!!!
     func touchedWithTouches(touches: NSSet, withX x: CGFloat, andY y: CGFloat) -> Bool {
+        guard let playerScene = (scene as? CBScene),
+              let scheduler = playerScene.scheduler
+        else { return false }
+
         // FIXME: this check does not work any more since Swift 2.0! seems to be a compiler problem!
-        if scene as? CBPlayerScene == nil {
-            return false
-        }
-        if (scene as! CBPlayerScene).scheduler == nil {
-            return false
-        }
-        let scheduler = (scene as! CBPlayerScene).scheduler!
-        if !scheduler.running {
-            return false
-        }
+        //        if scheduler.running == false {
+        //            return false
+        //        }
+
+        guard let spriteObject = spriteObject,
+              let spriteName = spriteObject.name
+        else { fatalError("Invalid SpriteObject!") }
 
         for touchAnyObject in touches {
             let touch = touchAnyObject as! UITouch
@@ -235,31 +179,70 @@ final class CBSpriteNode : SKSpriteNode {
             //        UIGraphicsEndImageContext();
             //                println("image : x:%f,y:%f", self.currentUIImageLook.size.width, self.currentUIImageLook.size.height)
             //            let isTransparent = self.currentUIImageLook?.isTransparentPixel(self.currentUIImageLook, withX:touchedPoint.x, andY:touchedPoint.y)
-            let isTransparent = self.currentUIImageLook?.isTransparentPixelOLDMETHOD(self.currentUIImageLook, withX:touchedPoint.x, andY:touchedPoint.y)
-            if isTransparent == true {
-                //                    println(@"I'm transparent at this point")
+            if self.currentUIImageLook?.isTransparentPixelOLDMETHOD(self.currentUIImageLook, withX:touchedPoint.x, andY:touchedPoint.y) == true {
                 return false
             }
-            if let scriptList = spriteObject!.scriptList as NSArray as? [Script] {
-                for script in scriptList {
-                    if let whenScript = script as? WhenScript,
-                       let whenScriptContext = scheduler.registeredContextForScript(whenScript) {
-                        if scheduler.isContextScheduled(whenScriptContext) == false {
-                            scheduler.startContext(whenScriptContext)
-                        } else {
-                            scheduler.restartContext(whenScriptContext)
-                        }
-                    }
+
+            if let lastTime = _lastTimeTouchedSpriteNode[spriteName] {
+                let duration = NSDate().timeIntervalSinceDate(lastTime)
+                // ignore multiple touches on same sprite node within a certain amount of time...
+                if duration < PlayerConfig.MinIntervalBetweenTwoAcceptedTouches {
+                    return true
                 }
             }
+            _lastTimeTouchedSpriteNode[spriteName] = NSDate()
+
+            scheduler.startWhenContextsOfSpriteNodeWithName(spriteName)
+//            if let whenContexts = scheduler.whenContextsForSpriteNodeWithName(spriteName) {
+//                for whenContext in whenContexts {
+//                    if scheduler.isContextScheduled(whenContext) {
+//                        scheduler.forceStopContext(whenContext)
+//                    }
+//                    scheduler.scheduleContext(whenContext)
+//                }
+//                scheduler.runNextInstructionsGroup()
+//            }
             return true
         }
         return true
     }
-// [Swift1.2] DO NOT REMOVE!!!
 
-    // MARK: Helper
-    class func spriteNodeWithName(name: String, inScene scene: SKScene) -> CBSpriteNode? {
-        return scene.childNodeWithName(name) as? CBSpriteNode
+    func touchedWithTouch(touch: UITouch, atPosition position: CGPoint) -> Bool {
+        guard let playerScene = (scene as? CBScene),
+              let scheduler = playerScene.scheduler,
+              let imageLook = currentUIImageLook
+        where scheduler.running
+        else { return false }
+
+        guard let spriteObject = spriteObject,
+              let spriteName = spriteObject.name
+        else { fatalError("Invalid SpriteObject!") }
+
+        if imageLook.isTransparentPixelOLDMETHOD(imageLook, withX:position.x, andY:position.y) {
+            print("\(spriteName): \"I'm transparent at this point\"")
+            return false
+        }
+
+        if let lastTime = _lastTimeTouchedSpriteNode[spriteName] {
+            let duration = NSDate().timeIntervalSinceDate(lastTime)
+            // ignore multiple touches on same sprite node within a certain amount of time...
+            if duration < PlayerConfig.MinIntervalBetweenTwoAcceptedTouches {
+                return true
+            }
+        }
+        _lastTimeTouchedSpriteNode[spriteName] = NSDate()
+
+        scheduler.startWhenContextsOfSpriteNodeWithName(spriteName)
+//        if let whenContexts = scheduler.whenContextsForSpriteNodeWithName(spriteName) {
+//            for whenContext in whenContexts {
+//                if scheduler.isContextScheduled(whenContext) {
+//                    scheduler.forceStopContext(whenContext)
+//                }
+//                scheduler.scheduleContext(whenContext)
+//            }
+//            scheduler.runNextInstructionsGroup()
+//        }
+        return true
     }
+
 }

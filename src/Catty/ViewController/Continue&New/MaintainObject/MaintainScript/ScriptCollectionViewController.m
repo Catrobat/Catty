@@ -96,7 +96,7 @@
 @property (nonatomic, strong) NSIndexPath *variableIndexPath;
 @property (nonatomic, assign) BOOL isEditingBrickMode;
 @property (nonatomic) PageIndexCategoryType lastSelectedBrickCategory;
-
+@property (nonatomic,strong) Script *moveHelperScript;
 @end
 
 @implementation ScriptCollectionViewController
@@ -214,7 +214,7 @@
         size = ((indexPath.item == 0)
              ? [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(script.class)]
              : [BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass([script.brickList[indexPath.item - 1] class])]);
-        if (script.brickList.count <=1) {
+        if (script.brickList.count <=1 && script == self.moveHelperScript) {
             size =[BrickManager.sharedBrickManager sizeForBrick:NSStringFromClass(script.class)];
         }
     }
@@ -266,10 +266,24 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         return;
     }
     if ([[BrickInsertManager sharedInstance] isBrickInsertionMode]) {
-        [self turnOffInsertingBrickMode];
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
-        Brick *brick = [script.brickList objectAtIndex:indexPath.item - 1];
-        [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:indexPath andObject:self.object];
+        if (indexPath.item != 0) {
+            Brick *brick;
+            if (script.brickList.count >= 1) {
+                brick = [script.brickList objectAtIndex:indexPath.item - 1];
+            }else{
+                brick = [script.brickList objectAtIndex:indexPath.item];
+            }
+            if (brick.isAnimatedInsertBrick) {
+                [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:indexPath andObject:self.object];
+            }else{
+                return;
+            }
+            
+        }else{
+            script.animateInsertBrick = NO;
+        }
+        [self turnOffInsertingBrickMode];
         [self.object.program saveToDisk];
         [self reloadData];
         [self.collectionView setNeedsDisplay];
@@ -429,33 +443,40 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
 // FIXME: UPDATING THE DATA MODEL WHILE THE USER IS DRAGGING IS NO GOOD PRACTICE AND IS ERROR PRONE!!!
 //        USE collectionView:layout:didEndDraggingItemAtIndexPath: DELEGATE METHOD FOR THIS. Updates must happen after the user stopped dragging the brickcell!!
+    if (fromIndexPath.item == 0) {
+        Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
+        [self.object.scriptList removeObjectAtIndex:fromIndexPath.section];
+        [self.object.scriptList insertObject:script atIndex:toIndexPath.section];
+        return;
+    }
     if (fromIndexPath.section == toIndexPath.section) {
         Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
-        if (fromIndexPath.item >0) {
+        if (fromIndexPath.item > 0) {
             Brick *fromBrick = [script.brickList objectAtIndex:fromIndexPath.item - 1];
             [script.brickList removeObjectAtIndex:fromIndexPath.item - 1];
-            [script.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
+            if (toIndexPath.item > 0) {
+                 [script.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
+            } else {
+                [script.brickList insertObject:fromBrick atIndex:toIndexPath.item+1];
+            }
+           
         }
-
+        
     } else {
-
+        self.moveHelperScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
         Script *toScript = [self.object.scriptList objectAtIndex:toIndexPath.section];
         Script *fromScript = [self.object.scriptList objectAtIndex:fromIndexPath.section];
         Brick *fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item - 1];
-        fromBrick.script = toScript;
-        if ([toScript.brickList count] == 0) {
-            [fromScript.brickList removeObjectAtIndex:fromIndexPath.item - 1];
-            [toScript.brickList addObject:fromBrick];
-            return;
-        }
-        Brick *toBrick = [toScript.brickList objectAtIndex:toIndexPath.item - 1];
-        [toScript.brickList removeObjectAtIndex:toIndexPath.item - 1];
-        [toScript.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
-        [toScript.brickList insertObject:toBrick atIndex:toIndexPath.item];
+		fromBrick.script = toScript;
         if ([fromScript.brickList count] == 1) {
             [fromScript.brickList removeAllObjects];
         } else {
             [fromScript.brickList removeObjectAtIndex:fromIndexPath.item - 1];
+        }
+        if ([toScript.brickList count] == 0) {
+            [toScript.brickList insertObject:fromBrick atIndex:toIndexPath.item];
+        }else{
+            [toScript.brickList insertObject:fromBrick atIndex:toIndexPath.item - 1];
         }
     }
 }
@@ -473,17 +494,23 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 {
     if ([[BrickInsertManager sharedInstance] isBrickInsertionMode]) {
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
-        Brick *brick;
-        if (script.brickList.count > 1) {
-            brick = [script.brickList objectAtIndex:indexPath.item - 1];
+        if (indexPath.item != 0) {
+            Brick *brick;
+            if (script.brickList.count >= 1) {
+                brick = [script.brickList objectAtIndex:indexPath.item - 1];
+            }else{
+                brick = [script.brickList objectAtIndex:indexPath.item];
+            }
+            if (brick.isAnimatedInsertBrick) {
+                [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:indexPath andObject:self.object];
+                [self turnOffInsertingBrickMode];
+            }else{
+                return;
+            }
+
         }else{
-            brick = [script.brickList objectAtIndex:indexPath.item];
-        }
-        if (brick.isAnimatedInsertBrick) {
-            [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:indexPath andObject:self.object];
+            script.animateInsertBrick = NO;
             [self turnOffInsertingBrickMode];
-        }else{
-            return;
         }
     }
     [self reloadInputViews];
@@ -505,14 +532,15 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     if ([[BrickInsertManager sharedInstance] isBrickInsertionMode]) {
         return [[BrickInsertManager sharedInstance] collectionView:self.collectionView itemAtIndexPath:fromIndexPath canInsertToIndexPath:toIndexPath andObject:self.object];
     }
-        
+    
     return [[BrickMoveManager sharedInstance] collectionView:self.collectionView itemAtIndexPath:fromIndexPath canMoveToIndexPath:toIndexPath andObject:self.object];
 }
 
 
 - (BOOL)collectionView:(UICollectionView*)collectionView canMoveItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    return ((self.isEditing || indexPath.item == 0) ? NO : YES);
+    BOOL editable = ((self.isEditing || indexPath.item == 0) ? NO : YES);
+    return ((editable || [[BrickInsertManager sharedInstance] isBrickInsertionMode]) ? YES : editable);
 }
 
 #pragma mark - Collection View Datasource
@@ -592,7 +620,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         brickCell.userInteractionEnabled = YES;
         brickCell.alpha = self.isEditingBrickMode ? kBrickCellInactiveWhileEditingOpacity : kBrickCellActiveOpacity;
     }
-    
+
     return brickCell;
 }
 
@@ -606,7 +634,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     self.lastSelectedBrickCategory = brickCategoryViewController.pageIndexCategoryType;
     brickCategoryViewController.delegate = nil;
     self.placeHolderView.hidden = YES;
-
+    BrickInsertManager* manager = [BrickInsertManager sharedInstance];
     if ([scriptOrBrick isKindOfClass:[Script class]]) {
         Script *script = (Script*)scriptOrBrick;
         script.object = self.object;
@@ -616,7 +644,15 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:(self.object.scriptList.count - 1)]
                                     atScrollPosition:UICollectionViewScrollPositionBottom
                                             animated:YES];
-        [self.object.program saveToDisk];
+       
+        [self reloadData];
+        manager.isInsertingScript = YES;
+        if (self.object.scriptList.count == 1) {
+            [self.object.program saveToDisk];
+            return;
+        }
+        script.animateInsertBrick = YES;
+        [self turnOnInsertingBrickMode];
         return;
     }
     // empty script list, insert start script and continue to insert the chosen brick
@@ -648,7 +684,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     BOOL hasForeverLoop = NO;
     if (targetScript.brickList.count >=1) {
         while ([[targetScript.brickList objectAtIndex:index-1] isKindOfClass:[LoopEndBrick class]]) {
-            LoopEndBrick* loopEndBrickCheck = [targetScript.brickList objectAtIndex:index-1];
+            LoopEndBrick *loopEndBrickCheck = (LoopEndBrick*)[targetScript.brickList objectAtIndex:index-1];
             if ([loopEndBrickCheck.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
                 hasForeverLoop = YES;
             }
@@ -675,7 +711,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
     
     brick.animateInsertBrick = YES;
-    
+    manager.isInsertingScript = NO;
     [self reloadData];
     [self turnOnInsertingBrickMode];
 //    [self.object.program saveToDisk];
@@ -927,7 +963,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 //    if ([brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
 //        variableBrick = (Brick<BrickVariableProtocol>*)brick;
 //    }
-    
+
     NSMutableArray *allVariableNames = [NSMutableArray new];
     if (isProgramVar) {
         for(UserVariable *var in [self.object.program.variables allVariables]) {
@@ -1038,6 +1074,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
     [self.object.program saveToDisk];
     [self reloadData];
+    [self enableUserInteractionAndResetHighlight];
 }
 
 - (void)addVariableWithName:(NSString*)variableName andCompletion:(id)completion
@@ -1048,6 +1085,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
     [self.object.program saveToDisk];
     [self reloadData];
+    [self enableUserInteractionAndResetHighlight];
 }
 
 - (void)updateBrickCellData:(id<BrickCellDataProtocol>)brickCellData withValue:(id)value
@@ -1138,7 +1176,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                                                         invertedSet]
                               invalidInputAlertMessage:kLocalizedMessageAlreadyExistsDescription
                                          existingNames:[Util allMessagesForProgram:self.object.program]];
-            [self enableUserInteractionAndResetHighlight];
             return;
         } else {
             [messageBrick setMessage:(NSString*)value forLineNumber:line andParameterNumber:parameter];

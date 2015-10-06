@@ -74,7 +74,7 @@
     return [self mediumColor];
 }
 
-+ (UIColor*) utilityTintColor
++ (UIColor*)utilityTintColor
 {
     return [self mediumColor];
 }

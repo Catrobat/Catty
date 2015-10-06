@@ -48,6 +48,8 @@
 #import "CatrobatLanguageDefines.h"
 #import "BaseTableViewController.h"
 #import "Pocket_Code-Swift.h"
+#import "FileManager.h"
+#import "AppDelegate.h"
 
 @interface ScenePresenterViewController() <UIActionSheetDelegate>
 @property (nonatomic) BOOL menuOpen;
@@ -68,7 +70,7 @@
     self.restartProgram = NO;
     [[[self class] sharedLoadingView] removeFromSuperview];
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
-
+    
     // MenuImageBackground
     UIImage *menuBackgroundImage = [UIImage imageNamed:@"stage_dialog_background_middle_1"];
     menuBackgroundImage = [UIImage changeImage:menuBackgroundImage toColor:[UIColor navBarColor]];
@@ -112,6 +114,7 @@
     [self setUpLabels];
     [self setUpGridView];
     [self checkAspectRatio];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -186,7 +189,7 @@
         self.menuAxisLabel  = label;
     } else {
             UILabel* label      = [[UILabel alloc] initWithFrame:
-                                   CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-(KMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(kMenuButtonSize)-10, 100, kMenuButtonSize)];
+                                   CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-(kMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(kMenuButtonSize)-10, 100, kMenuButtonSize)];
             self.menuBackLabel  = label;
             label               =[[UILabel alloc] initWithFrame:
                                   CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-kMenuIPhone5ContinueGapSize-10,100, kMenuButtonSize)];
@@ -198,7 +201,7 @@
                                    CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+(kContinueButtonSize/2)+kMenuIPhone5ContinueGapSize+kMenuButtonSize-10,  100, kMenuButtonSize)];
             self.menuScreenshotLabel = label;
             label               = [[UILabel alloc] initWithFrame:
-                                   CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+                    (kContinueButtonSize/2)+(KMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(2*kMenuButtonSize)-10,  100, kMenuButtonSize)];
+                                   CGRectMake(kPlaceofLabels+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+                    (kContinueButtonSize/2)+(kMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(2*kMenuButtonSize)-10,  100, kMenuButtonSize)];
             self.menuAxisLabel  = label;
     }
     NSArray *labelTextArray = [[NSArray alloc] initWithObjects:kLocalizedBack,
@@ -285,11 +288,11 @@
         self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone4ContinueGapSize,  kMenuButtonSize, kMenuButtonSize);
         self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+(kMenuIPhone4GapSize)+kMenuIPhone4ContinueGapSize+(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
     } else {
-        self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-(KMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(2*kMenuButtonSize), kMenuButtonSize, kMenuButtonSize);
+        self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-(kMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(2*kMenuButtonSize), kMenuButtonSize, kMenuButtonSize);
         self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-kMenuIPhone5ContinueGapSize-(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
         self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons+kContinueOffset,([Util screenHeight]/2)-(kContinueButtonSize/2),  kContinueButtonSize, kContinueButtonSize);
         self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+(kContinueButtonSize/2)+kMenuIPhone5ContinueGapSize,  kMenuButtonSize, kMenuButtonSize);
-        self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+(kContinueButtonSize/2)+(KMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
+        self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)+(kContinueButtonSize/2)+(kMenuIPhone5GapSize)+kMenuIPhone5ContinueGapSize+(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
     }
 }
 
@@ -340,7 +343,7 @@
 
 - (void)setupScene
 {
-    CBPlayerScene *scene = [SetupScene setupSceneForProgram:self.program];
+    CBScene *scene = [SetupScene setupSceneForProgram:self.program];
     scene.name = self.program.header.programName;
     if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
         scene.scaleMode = SKSceneScaleModeFill;
@@ -360,8 +363,22 @@
 }
 
 # pragma mark - Touch Event Handling
-- (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
-{
+- (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
+//    if (self.menuOpen) {
+//        NSDebug(@"touch on scene not allowed, because menu is open");
+//        return;
+//    }
+//    NSDebug(@"touch on scene allowed");
+//    for (UITouch *touch in touches) {
+//        UITouch *anyTouch = (UITouch*)[touches anyObject];
+//        CGPoint location = [anyTouch locationInView:self.skView];
+//        NSDebug(@"StartTouchinScenePresenter");
+//        CBScene *scene = (CBScene*)self.skView.scene;
+//        if ([scene touchedWithTouch:anyTouch atPosition:location]) {
+//            return;
+//        }
+//    }
+
     if (self.menuOpen) {
         NSDebug(@"touch on scene not allowed, because menu is open");
         return;
@@ -371,7 +388,7 @@
         CGPoint location = [touch locationInView:self.skView];
         NSDebug(@"StartTouchinScenePresenter");
 
-        CBPlayerScene *scene = (CBPlayerScene*)self.skView.scene;
+        CBScene *scene = (CBScene*)self.skView.scene;
         if ([scene touchedWithTouches:touches withX:location.x andY:location.y]) {
             break;
         }
@@ -410,6 +427,10 @@
                      animations:^{[self continueAnimation];}
                      completion:^(BOOL finished){
                          self.menuOpen = NO;
+                         if (animateDuration == duration) {
+                             [self takeAutomaticScreenshot];
+                         }
+                         
                      }];
     self.skView.paused = NO;
     
@@ -422,7 +443,7 @@
 {
     [self.loadingView show];
     self.menuView.userInteractionEnabled = NO;
-    CBPlayerScene *previousScene = (CBPlayerScene*)self.skView.scene;
+    CBScene *previousScene = (CBScene*)self.skView.scene;
     previousScene.userInteractionEnabled = NO;
     [previousScene stopProgram];
     [[AudioManager sharedAudioManager] stopAllSounds];
@@ -438,7 +459,7 @@
 {
     [self.loadingView show];
     self.menuView.userInteractionEnabled = NO;
-    CBPlayerScene *previousScene = (CBPlayerScene*)self.skView.scene;
+    CBScene *previousScene = (CBScene*)self.skView.scene;
     previousScene.userInteractionEnabled = NO;
     [previousScene stopProgram];
     [[FlashHelper sharedFlashHandler] pause];
@@ -522,6 +543,46 @@
     
 }
 
+-(void)takeAutomaticScreenshot
+{
+    NSArray *fallbackPaths = @[[[NSString alloc] initWithFormat:@"%@/small_screenshot.png", [self.program projectPath]],
+                               [[NSString alloc] initWithFormat:@"%@/screenshot.png",[self.program projectPath]],
+                               [[NSString alloc] initWithFormat:@"%@/manual_screenshot.png", [self.program projectPath]],
+                               [[NSString alloc] initWithFormat:@"%@/automatic_screenshot.png", [self.program projectPath]]];
+    BOOL fileExists = NO;
+    for (NSString *fallbackPath in fallbackPaths) {
+        NSString *fileName = [fallbackPath lastPathComponent];
+        fileExists= [[NSFileManager defaultManager] fileExistsAtPath:fileName];
+        if(fileExists){
+            break;
+        }
+    }
+    if (!fileExists) {
+        NSLog(@"AutoScreenshot");
+        UIGraphicsBeginImageContextWithOptions(self.skView.bounds.size, NO, [UIScreen mainScreen].scale);
+        [self.skView drawViewHierarchyInRect:self.skView.bounds afterScreenUpdates:NO];
+        UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString *pngFilePath = [NSString stringWithFormat:@"%@/automatic_screenshot.png",[self.program projectPath]];
+            NSData *data = [NSData dataWithData:UIImagePNGRepresentation(image)];
+            [data writeToFile:pngFilePath atomically:YES];
+            
+            ///Save small Screenshot too??
+            NSString *pngFilePathSmall = [NSString stringWithFormat:@"%@/small_screenshot.png",[self.program projectPath]];
+            UIGraphicsBeginImageContext( CGSizeMake(160, 160) );
+            [image drawInRect:CGRectMake(0,0,160,160)];
+            UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            NSData *dataSmall = [NSData dataWithData:UIImagePNGRepresentation(newImage)];
+            [dataSmall writeToFile:pngFilePathSmall atomically:YES];
+        });
+
+    }
+    
+}
+
 #pragma mark - Action Sheet & Alert View Handling
 - (void)showSaveScreenshotActionSheet
 {
@@ -596,6 +657,7 @@
                                  if (translate.x < (kWidthSlideMenu) && velocityX > 300) {
                                      [self bounceAnimation];
                                  }
+//                                 [((CBScene*)view.scene) stopScreenRecording];
                              }];
         } else if(translate.x > 0.0 && translate.x <(kWidthSlideMenu/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
             [UIView animateWithDuration:0.25
@@ -633,6 +695,7 @@
                                  if (translate.x > -(kWidthSlideMenu) && velocityX < -100) {
                                      [self bounceAnimation];
                                  }
+//                                 [((CBScene*)view.scene) stopScreenRecording];
                              }];
         }
     }

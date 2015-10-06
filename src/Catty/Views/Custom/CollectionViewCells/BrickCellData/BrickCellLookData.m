@@ -30,6 +30,7 @@
 #import "BrickLookProtocol.h"
 #import "LooksTableViewController.h"
 #import "LanguageTranslationDefines.h"
+#import "RuntimeImageCache.h"
 
 @implementation BrickCellLookData
 
@@ -49,7 +50,17 @@
             Look *currentLook = [lookBrick lookForLineNumber:line andParameterNumber:parameter];
             for(Look *look in lookBrick.script.object.lookList) {
                 [options addObject:look.name];
-                UIImage *image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@%@/%@", [lookBrick.script.object projectPath], kProgramImagesDirName, look.fileName]];
+                NSString *path = [NSString stringWithFormat:@"%@%@/%@", [lookBrick.script.object projectPath], kProgramImagesDirName, look.fileName];
+                RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
+                UIImage *image = [imageCache cachedImageForPath:path];
+                if (!image) {
+                    [imageCache loadImageFromDiskWithPath:path onCompletion:^(UIImage *image) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            UITableView* tV = (UITableView*)self.brickCell.superview;
+                            [tV reloadData];
+                        });
+                    }];
+                }
                 if (image) {
                     [images addObject:image];
                 }
@@ -60,7 +71,18 @@
             if (currentLook && ![options containsObject:currentLook.name]) {
                 [options addObject:currentLook.name];
                 currentOptionIndex = optionIndex;
-                UIImage *image  =[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@%@/%@", [lookBrick.script.object projectPath], kProgramImagesDirName, currentLook.fileName]];
+                NSString *path = [NSString stringWithFormat:@"%@%@/%@", [lookBrick.script.object projectPath], kProgramImagesDirName, currentLook.fileName];
+                RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
+                UIImage *image = [imageCache cachedImageForPath:path];
+                if (!image) {
+                    [imageCache loadImageFromDiskWithPath:path onCompletion:^(UIImage *image) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            UITableView* tV = (UITableView*)self.brickCell.superview;
+                            [tV reloadData];
+                        });
+                    }];
+                }
+
                 if (image) {
                     [images addObject:image];
                 }

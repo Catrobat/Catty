@@ -180,18 +180,17 @@
 
 - (void)hideResizeView
 {
-  self.resizeViewer.hidden = YES;
-  
-  self.takeView.enabled = NO;
-  self.rotateView.enabled = NO;
-  
-  self.resizeViewer.transform = CGAffineTransformMakeRotation(0);
-  self.resizeViewer.frame = CGRectMake(50 , 50, 150 , 150);
-  self.resizeViewer.bounds = CGRectMake(0 , 0, 150 , 150);
-  
-  for (UIGestureRecognizer *recognizer in [self.canvas.scrollView gestureRecognizers]) {
-    recognizer.enabled = YES;
-  }
+    self.resizeViewer.hidden = YES;
+    self.takeView.enabled = NO;
+    self.rotateView.enabled = NO;
+    [self.resizeViewer setTransform:CGAffineTransformIdentity];
+    self.resizeViewer.frame = CGRectMake(50 , 50, 150 , 150);
+    self.resizeViewer.bounds = CGRectMake(0 , 0, 150 , 150);
+    self.resizeViewer.rotation = 0.0f;
+    self.rotation = 0.0f;
+    for (UIGestureRecognizer *recognizer in [self.canvas.scrollView gestureRecognizers]) {
+        recognizer.enabled = YES;
+    }
 }
 
 
@@ -202,15 +201,15 @@
     if (self.canvas.activeAction == stamp) {
         if (!self.gotImage) {
             if (self.canvas.saveView.image != nil) {
-                    //        [self updateTransform:self.resizeImageView transform:0];
-                    //        [self updateTransform:self.saveView transform:0];
+                //        [self updateTransform:self.resizeImageView transform:0];
+                //        [self updateTransform:self.saveView transform:0];
                 CGFloat scale = self.canvas.scrollView.zoomScale;
                 CGRect rect = self.resizeViewer.frame;
                 rect.origin.x = rect.origin.x + 15 + self.canvas.saveView.frame.origin.x;
                 rect.origin.y = rect.origin.y + 10 + self.canvas.saveView.frame.origin.y;
                 rect.size.width -= 40;
                 rect.size.height -= 10;
-                    //for retina displays
+                //for retina displays
                 self.canvas.saveView.backgroundColor = [UIColor clearColor];
                 if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
                     UIGraphicsBeginImageContextWithOptions(rect.size, NO, scale);
@@ -219,6 +218,7 @@
                 }
                 CGContextRef ctx = UIGraphicsGetCurrentContext();
                 CGContextTranslateCTM(ctx, -rect.origin.x, -rect.origin.y);
+                CGContextRotateCTM(ctx, self.resizeViewer.rotation);
                 [self.canvas.saveView.layer renderInContext:ctx];
                 UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
                 UIGraphicsEndImageContext();
@@ -227,12 +227,12 @@
                 self.stampImage = viewImage;
                 self.resizeViewer.contentView.image = viewImage;
                 self.gotImage = YES;
-                    //        [self updateTransform:self.saveView transform:0];
-                    //        [self updateTransform:self.resizeImageView transform:-self.rotation];
+                //        [self updateTransform:self.saveView transform:0];
+                //        [self updateTransform:self.resizeImageView transform:-self.rotation];
                 return;
                 
             }else{
-                    //TODO: alert image is nil;
+                //TODO: alert image is nil;
             }
         }
     }
@@ -245,14 +245,15 @@
     UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     [self.canvas.scrollView setZoomScale:scale];
-    
-        //UNDO-Manager
-    [[self.canvas getUndoManager] setImage:self.canvas.saveView.image]; //.CIImage for IOS9
-    
+
+    //UNDO-Manager
+    [[self.canvas getUndoManager] setImage:self.canvas.saveView.image.CIImage];
+
     self.canvas.saveView.image = img;
     [self showUserAction];
     self.canvas.saveView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
 }
+
 
 - (void)showUserAction
 {

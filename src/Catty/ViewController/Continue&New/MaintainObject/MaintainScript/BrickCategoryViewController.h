@@ -56,5 +56,4 @@ typedef NS_ENUM(NSUInteger, PageIndexCategoryType) {
 
 @end
 
-extern NSString * CBTitleFromPageIndexCategoryType(PageIndexCategoryType pageIndexType);
-
+extern NSString *CBTitleFromPageIndexCategoryType(PageIndexCategoryType pageIndexType);

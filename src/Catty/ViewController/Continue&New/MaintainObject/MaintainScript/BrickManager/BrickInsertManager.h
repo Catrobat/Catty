@@ -26,6 +26,8 @@
 
 @interface BrickInsertManager : NSObject
 
+@property (nonatomic) BOOL isInsertingScript;
+
 - (BOOL)isBrickInsertionMode;
 
 - (void)setBrickInsertionMode:(BOOL)isInserting;

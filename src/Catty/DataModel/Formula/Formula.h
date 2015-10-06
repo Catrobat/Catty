@@ -30,8 +30,9 @@
 
 @interface Formula : NSObject<CBMutableCopying>
 
-@property (nonatomic, strong) FormulaElement* formulaTree;
-@property (nonatomic, weak) NSString* displayString;
+@property (nonatomic, strong) FormulaElement *formulaTree;
+@property (nonatomic, weak) NSString *displayString;
+@property (nonatomic, strong, readonly) NSNumber *lastResult;
 
 - (id)initWithZero;
 - (id)initWithInteger:(int)value;
@@ -52,5 +53,5 @@
 - (NSString*)getDisplayString;
 - (InternFormula*)getInternFormula;
 - (void)setDisplayString:(NSString*)text;
-- (NSString *)getResultForComputeDialog:(SpriteObject *)sprite;
+- (NSString*)getResultForComputeDialog:(SpriteObject*)sprite;
 @end

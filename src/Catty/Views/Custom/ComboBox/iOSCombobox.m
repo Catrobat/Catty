@@ -232,8 +232,8 @@
                                 [UIColor whiteColor], NSForegroundColorAttributeName, nil];
     CGSize size = [self.currentValue sizeWithAttributes:@{NSFontAttributeName : [UIFont fontWithName:FONT_NAME size:rect.size.height/2]}];
     NSString* drawString = self.currentValue;
-    if(size.width > rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30){
-        const int clipLength = 7;
+    if(size.width > rect.size.width - ARROW_BOX_WIDTH - TEXT_LEFT-30 && self.currentImage){
+        const int clipLength = 14;
         if([drawString length]>clipLength)
         {
             drawString = [NSString stringWithFormat:@"%@...",[drawString substringToIndex:clipLength]];
@@ -296,14 +296,23 @@
     UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 110, 60)];
     if (self.images.count) {
         if (row != 0) {
+            CGFloat width = 0;
+            CGFloat height = 30;
             UIImage *img = [self.images objectAtIndex:row-1];
+            if (img.size.width > img.size.height) {
+                width = 50;
+            } else if (img.size.width < img.size.height) {
+                width = 20;
+            } else{
+                width = 30;
+            }
             UIImageView *temp = [[UIImageView alloc] initWithImage:img];
-            temp.frame = CGRectMake(-100, 15, 50, 30);
+            temp.frame = CGRectMake(-100, 15, width, height);
             [tmpView insertSubview:temp atIndex:0];
         }
     }
     
-    UILabel *channelLabel = [[UILabel alloc] initWithFrame:CGRectMake(-20, -5, 150, 60)];
+    UILabel *channelLabel = [[UILabel alloc] initWithFrame:CGRectMake(-20, 0, 200, 60)];
     channelLabel.text = [self.values objectAtIndex:row];
     channelLabel.textAlignment = NSTextAlignmentLeft;
     channelLabel.backgroundColor = [UIColor clearColor];

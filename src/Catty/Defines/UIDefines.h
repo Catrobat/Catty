@@ -48,7 +48,7 @@
 #define kContinueOffset 15
 #define kMenuButtonSize 44
 #define kMenuIPhone4GapSize 30
-#define KMenuIPhone5GapSize 35
+#define kMenuIPhone5GapSize 35
 #define kMenuIPhone4ContinueGapSize 40
 #define kMenuIPhone5ContinueGapSize 45
 #define kMenuLabelWidth 50
@@ -380,10 +380,10 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 #define kBrickInlineViewOffsetX 54.0f
 #define kBrickShapeNormalInlineViewOffsetY 7.0f
 #define kBrickShapeRoundedSmallInlineViewOffsetY 25.0f
-#define kBrickShapeRoundedBigInlineViewOffsetY 25.0f
+#define kBrickShapeRoundedBigInlineViewOffsetY 45.0f
 #define kBrickShapeNormalMarginHeightDeduction 14.0f
 #define kBrickShapeRoundedSmallMarginHeightDeduction 32.0f
-#define kBrickShapeRoundedBigMarginHeightDeduction 32.0f
+#define kBrickShapeRoundedBigMarginHeightDeduction 52.0f
 #define kBrickPatternImageViewOffsetX 0.0f
 #define kBrickPatternImageViewOffsetY 0.0f
 #define kBrickPatternBackgroundImageViewOffsetX 54.0f
@@ -398,8 +398,8 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 #define kBrickTextFieldFontSize 15.0f
 #define kBrickInputFieldHeight 28.0f
 #define kBrickInputFieldMinWidth 40.0f
-#define kBrickInputFieldMaxWidth [Util screenWidth]/2.5f
-#define kBrickComboBoxWidth [Util screenWidth]/2.5f
+#define kBrickInputFieldMaxWidth [Util screenWidth]/2.0f
+#define kBrickComboBoxWidth [Util screenWidth]/2.0f
 #define kBrickInputFieldTopMargin 4.0f
 #define kBrickInputFieldBottomMargin 5.0f
 #define kBrickInputFieldLeftMargin 4.0f

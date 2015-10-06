@@ -27,15 +27,36 @@
 #import "ScriptCollectionViewController.h"
 #import "SetLookBrick.h"
 #import "SetLookBrick.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
 @implementation UIUtil
 
-+ (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame
-{
++ (UITableViewRowAction*)tableViewMoreRowActionWithHandler:(row_action_block_t)handler {
+    UITableViewRowAction *moreRowAction = nil;
+    moreRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault
+                                                       title:kLocalizedMore
+                                                     handler:handler];
+    moreRowAction.backgroundColor = [UIColor clearColor];
+    return moreRowAction;
+}
+
+
+
++ (UITableViewRowAction*)tableViewDeleteRowActionWithHandler:(row_action_block_t)handler {
+    UITableViewRowAction *deleteRowAction = nil;
+    deleteRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault
+                                                         title:kLocalizedDelete
+                                                       handler:handler];
+    deleteRowAction.backgroundColor = [UIColor destructiveTintColor];
+    return deleteRowAction;
+}
+
++ (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame {
     return [self newDefaultBrickLabelWithFrame:frame AndText:nil andRemainingSpace:kBrickInputFieldMaxWidth];
 }
 
-+ (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame AndText:(NSString*)text andRemainingSpace:(NSInteger)remainingSpace
++ (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame AndText:(NSString*)text
+                        andRemainingSpace:(NSInteger)remainingSpace
 {
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
     label.textColor = [UIColor whiteColor];
@@ -63,8 +84,7 @@
     return label;
 }
 
-+ (iOSCombobox*)newDefaultBrickComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items
-{
++ (iOSCombobox*)newDefaultBrickComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items {
     iOSCombobox *comboBox = [[iOSCombobox alloc] initWithFrame:frame];
     [comboBox setValues:items];
     return comboBox;

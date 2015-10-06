@@ -237,9 +237,11 @@
 
 + (void) addDownloadButtonToView:(UIView*)view withTarget:(id)target
 {
-    UIButton *downloadButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(2*view.frame.size.width/3-10,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 105, 25) andBorder:YES];
+    UIButton *downloadButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(view.frame.size.width-75,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 70, 25) andBorder:YES];
     downloadButton.tag = kDownloadButtonTag;
     downloadButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+    downloadButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    downloadButton.titleLabel.minimumScaleFactor = 0.4;
     [downloadButton setTitle:kLocalizedDownload forState:UIControlStateNormal];
     [downloadButton setTintColor:[UIColor buttonNormalTintColor]];
     
@@ -249,22 +251,21 @@
     activity.tag = kActivityIndicator;
     activity.frame = CGRectMake(5, 0, 25, 25);
     [downloadButton addSubview:activity];
-    [downloadButton sizeToFit];
-    
     
     [view addSubview:downloadButton];
 }
 
 + (void)addPlayButtonToView:(UIView*)view withTarget:(id)target
 {
-    UIButton *playButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(2*view.frame.size.width/3+45,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 105, 25) andBorder:YES];
+    UIButton *playButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(view.frame.size.width-75,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 70, 25) andBorder:YES];
     playButton.tag = kPlayButtonTag;
     playButton.hidden = YES;
     playButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+    playButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    playButton.titleLabel.minimumScaleFactor = 0.4;
     [playButton setTitle:kLocalizedPlay forState:UIControlStateNormal];
     [playButton addTarget:target action:@selector(playButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [playButton setTintColor:[UIColor buttonNormalTintColor]];
-    [playButton sizeToFit];
     
     
     [view addSubview:playButton];
@@ -277,10 +278,11 @@
     [downloadAgainButton setTitleColor:[UIColor buttonNormalTintColor] forState:UIControlStateNormal];
     [downloadAgainButton setTitleColor:[UIColor buttonHighlightedTintColor] forState:UIControlStateHighlighted];
     [downloadAgainButton setTitle:kLocalizedDownload forState:UIControlStateNormal];
+    downloadAgainButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    downloadAgainButton.titleLabel.minimumScaleFactor = 0.4;
     [downloadAgainButton addTarget:target action:@selector(downloadAgain) forControlEvents:UIControlEventTouchUpInside];
     downloadAgainButton.tag = kDownloadAgainButtonTag;
     downloadAgainButton.hidden = YES;
-    [downloadAgainButton sizeToFit];
     
     [view addSubview:downloadAgainButton];
 }
@@ -290,7 +292,7 @@
     EVCircularProgressView *button = [[EVCircularProgressView alloc] init];
     button.tag = kStopLoadingTag;
     button.tintColor = [UIColor buttonNormalTintColor];
-    button.frame = CGRectMake(2*view.frame.size.width/3+30,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 28, 28);
+    button.frame = CGRectMake(view.frame.size.width-40,view.frame.size.height*0.1+[Util screenHeight]/4.5f-25, 28, 28);
     button.hidden = YES;
     [button addTarget:target action:@selector(stopLoading) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:button];
