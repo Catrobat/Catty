@@ -112,6 +112,10 @@ static SensorHandler* sharedSensorHandler = nil;
 
 
 - (double)valueForSensor:(Sensor)sensor {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self checkIfSensorsAreAvailable];
+    });
     double result = 0;
     switch (sensor) {
         case X_ACCELERATION: {
