@@ -48,7 +48,7 @@
     BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
     NSUInteger pageIndex = bcVC.pageIndex - 1;
     
-    return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:pageIndex andObject:bcVC.spriteObject];
+    return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:pageIndex andObject:bcVC.spriteObject andMaxPage:self.maxPages];
 }
 
 - (UIViewController*)pageViewController:(UIPageViewController*)pageViewController
@@ -56,7 +56,7 @@
 {
     BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
     NSUInteger pageIndex = bcVC.pageIndex + 1;
-    return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:pageIndex andObject:bcVC.spriteObject];
+    return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:pageIndex andObject:bcVC.spriteObject andMaxPage:self.maxPages];
 }
 
 - (void)pageViewController:(UIPageViewController*)pageViewController
@@ -74,7 +74,7 @@
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController*)pageViewController
 {
     [self overwritePageControl];
-    return kMaxPages;
+    return self.maxPages;
 }
 
 - (void)overwritePageControl
@@ -116,7 +116,7 @@
 {
     BrickCategoryViewController *bcvc = [self.viewControllers objectAtIndex:0];
     NSInteger pageIndex = bcvc.pageIndex;
-    if (pageIndex >= 0 && pageIndex < kMaxPages) {
+    if (pageIndex >= 0 && pageIndex < self.maxPages) {
         self.title = CBTitleFromPageIndexCategoryType(pageIndex);
     }
 }

@@ -28,7 +28,8 @@ typedef NS_ENUM(NSUInteger, PageIndexCategoryType) {
     kPageIndexMotionBrick,
     kPageIndexSoundBrick,
     kPageIndexLookBrick,
-    kPageIndexVariableBrick
+    kPageIndexVariableBrick,
+    kPageIndexPhiroBrick
 };
 
 @class SpriteObject;
@@ -49,7 +50,7 @@ typedef NS_ENUM(NSUInteger, PageIndexCategoryType) {
 
 - (instancetype)initWithBrickCategory:(PageIndexCategoryType)type andObject:(SpriteObject*)spriteObject;
 
-+ (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(NSInteger)pageIndex andObject:(SpriteObject*)spriteObject;
++ (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(NSInteger)pageIndex andObject:(SpriteObject*)spriteObject andMaxPage:(NSInteger)maxPage;
 
 // disallow init
 - (instancetype)init __attribute__((unavailable("init is not a supported initializer for this class.")));

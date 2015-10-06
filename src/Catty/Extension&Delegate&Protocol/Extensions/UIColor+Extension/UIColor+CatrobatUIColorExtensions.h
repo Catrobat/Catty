@@ -74,4 +74,9 @@
 
 + (UIColor*)soundBrickStrokeColor;
 
++ (UIColor*)PhiroBrickColor;
+
++ (UIColor*)PhiroBrickStrokeColor;
+
+
 @end

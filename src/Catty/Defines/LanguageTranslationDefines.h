@@ -227,6 +227,7 @@
 #define kLocalizedSound NSLocalizedString(@"Sound", nil)
 #define kLocalizedLooks NSLocalizedString(@"Looks", nil)
 #define kLocalizedVariables NSLocalizedString(@"Variables", nil)
+#define kLocalizedPhiro NSLocalizedString(@"Phiro", nil)
 #define kLocalizedRecording NSLocalizedString(@"Recording", nil)
 #define kLocalizedError NSLocalizedString(@"Error", nil)
 #define kLocalizedMemoryWarning NSLocalizedString(@"Not enough Memory", nil)
@@ -517,7 +518,25 @@
 #define kUISoundTitle  NSLocalizedStringFromTable(@"Sound", @"BrickCategoryViewController", nil);
 #define kUILookTitle  NSLocalizedStringFromTable(@"Look", @"BrickCategoryViewController", nil);
 #define kUIVariableTitle  NSLocalizedStringFromTable(@"Variable", @"BrickCategoryViewController", nil);
+#define kUIPhiroTitle  NSLocalizedStringFromTable(@"Phiro", @"BrickCategoryViewController", nil);
 
+
+//************************************************************************************************************
+//************************************       PhiroDefines         ********************************************
+//************************************************************************************************************
+
+
+#define kLocalizedPhiroBoth  NSLocalizedString(@"Both", nil)
+#define kLocalizedPhiroLeft  NSLocalizedString(@"Left", nil)
+#define kLocalizedPhiroRight  NSLocalizedString(@"Right", nil)
+
+#define kLocalizedPhiroDO  NSLocalizedString(@"DO", nil)
+#define kLocalizedPhiroRE  NSLocalizedString(@"RE", nil)
+#define kLocalizedPhiroMI  NSLocalizedString(@"MI", nil)
+#define kLocalizedPhiroFA  NSLocalizedString(@"FA", nil)
+#define kLocalizedPhiroSO  NSLocalizedString(@"SO", nil)
+#define kLocalizedPhiroLA  NSLocalizedString(@"LA", nil)
+#define kLocalizedPhiroTI  NSLocalizedString(@"TI", nil)
 
 #if DEBUG == 1
 //************************************************************************************************************
@@ -526,3 +545,6 @@
 #define kLocalizedDebugModeTitle NSLocalizedString(@"Debug mode", nil)
 #define kLocalizedStartedInDebugMode NSLocalizedString(@"Pocket Code has been started in debug mode.", nil)
 #endif
+
+
+

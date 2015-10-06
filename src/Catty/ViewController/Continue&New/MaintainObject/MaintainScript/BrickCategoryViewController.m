@@ -47,9 +47,9 @@
     return self;
 }
 
-+ (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(NSInteger)pageIndex andObject:(SpriteObject*)spriteObject
++ (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(NSInteger)pageIndex andObject:(SpriteObject*)spriteObject andMaxPage:(NSInteger)maxPage
 {
-    if ((pageIndex >= 0) && (pageIndex <= kPageIndexVariableBrick)) {
+    if ((pageIndex >= 0) && (pageIndex <= maxPage-1)) { //TODO Change to other kPageIndex
         return [[self alloc] initWithBrickCategory:pageIndex andObject:spriteObject];
     }
     return nil;
@@ -175,6 +175,8 @@ NSString* CBTitleFromPageIndexCategoryType(PageIndexCategoryType pageIndexType)
             return kUILookTitle;
         case kPageIndexVariableBrick:
             return kUIVariableTitle;
+        case kPageIndexPhiroBrick:
+            return kUIPhiroTitle;
         default:
         {
             NSDebug(@"Invalid pageIndexCategoryType found in BrickCategoryViewController.")

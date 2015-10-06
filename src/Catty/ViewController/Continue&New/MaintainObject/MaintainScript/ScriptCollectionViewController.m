@@ -78,6 +78,13 @@
 #import "BrickInsertManager.h"
 #import "BrickMoveManager.h"
 #import "BrickSelectionManager.h"
+#import "PhiroHelper.h"
+#import "BrickCellPhiroMotorData.h"
+#import "BrickCellPhiroLightData.h"
+#import "BrickCellPhiroToneData.h"
+#import "BrickPhiroMotorProtocol.h"
+#import "BrickPhiroLightProtocol.h"
+#import "BrickPhiroToneProtocol.h"
 
 @interface ScriptCollectionViewController() <UICollectionViewDelegate,
                                              UICollectionViewDataSource,
@@ -174,6 +181,9 @@
                                               options:@{
                                                         UIPageViewControllerOptionInterPageSpacingKey : @20.f
                                                         }];
+        //TODO Change to 7 for Phiro
+        bsvc.maxPages = 6;
+        
         [bsvc setViewControllers:@[bcvc]
                        direction:UIPageViewControllerNavigationDirectionForward
                         animated:NO
@@ -1200,8 +1210,22 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             UserVariable *variable = [self.object.program.variables getUserVariableNamed:(NSString*)value forSpriteObject:self.object];
             if(variable)
                 [variableBrick setVariable:variable forLineNumber:line andParameterNumber:parameter];
+            
         }
-    }
+    }else
+        if ([brickCellData isKindOfClass:[Brick class]] && [brick conformsToProtocol:@protocol(BrickPhiroMotorProtocol)]) {
+            Brick<BrickPhiroMotorProtocol> *motorBrick = (Brick<BrickPhiroMotorProtocol>*)brick;
+            [motorBrick setMotor:[PhiroHelper stringToMotor:(NSString*)value] forLineNumber:line andParameterNumber:parameter];
+    }else
+        if ([brickCellData isKindOfClass:[Brick class]] && [brick conformsToProtocol:@protocol(BrickPhiroToneProtocol)]) {
+            Brick<BrickPhiroToneProtocol> *toneBrick = (Brick<BrickPhiroToneProtocol>*)brick;
+            [toneBrick setTone:[PhiroHelper stringToTone:(NSString*)value] forLineNumber:line andParameterNumber:parameter];
+    }else
+        if ([brickCellData isKindOfClass:[Brick class]] && [brick conformsToProtocol:@protocol(BrickPhiroLightProtocol)]) {
+            Brick<BrickPhiroLightProtocol> *lightBrick = (Brick<BrickPhiroLightProtocol>*)brick;
+            [lightBrick setLight:[PhiroHelper stringToLight:(NSString*)value] forLineNumber:line andParameterNumber:parameter];
+        }
+
     [self reloadData];
     [self enableUserInteractionAndResetHighlight];
     [self.object.program saveToDisk];

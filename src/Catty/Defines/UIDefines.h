@@ -122,6 +122,7 @@ typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
     kSoundBrick                = 3,
     kLookBrick                 = 4,
     kVariableBrick             = 5,
+    kPhiroBrick                = 6,
     kFavouriteBricks           = 0
 };
 
@@ -186,7 +187,15 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
 
     // 4xx variable bricks
     kSetVariableBrick          = 400,
-    kChangeVariableBrick       = 401
+    kChangeVariableBrick       = 401,
+    
+    // 5xx phiro bricks
+    kPhiroMotorStopBrick       = 500,
+    kPhiroMotorMoveForwardBrick = 501,
+    kPhiroMotorMoveBackwardBrick = 502,
+    kPhiroPlayToneBrick          = 503,
+    kPhiroRGBLightBrick          = 504
+
 
 };
 
@@ -214,7 +223,8 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     kLocalizedMotion,\
     kLocalizedSound,\
     kLocalizedLooks,\
-    kLocalizedVariables\
+    kLocalizedVariables,\
+    kLocalizedPhiro\
 ]
 
 #define kBrickCategoryColors @[\
@@ -222,7 +232,8 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     [UIColor motionBrickBlueColor],\
     [UIColor soundBrickVioletColor],\
     [UIColor lookBrickGreenColor],\
-    [UIColor varibaleBrickRedColor]\
+    [UIColor varibaleBrickRedColor],\
+    [UIColor PhiroBrickColor]\
 ]
 
 #define kBrickCategoryStrokeColors @[\
@@ -230,7 +241,8 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     [UIColor motionBrickStrokeColor],\
     [UIColor soundBrickStrokeColor],\
     [UIColor lookBrickStrokeColor],\
-    [UIColor variableBrickStrokeColor]\
+    [UIColor variableBrickStrokeColor],\
+    [UIColor PhiroBrickStrokeColor]\
 ]
 
 #define kWhenScriptDefaultAction @"Tapped" // at the moment Catrobat only supports this type of action for WhenScripts
@@ -294,7 +306,14 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
 \
     /* variable bricks */\
     @"SetVariableBrick"          : @(kSetVariableBrick),\
-    @"ChangeVariableBrick"       : @(kChangeVariableBrick)\
+    @"ChangeVariableBrick"       : @(kChangeVariableBrick),\
+\
+    /* phiro bricks */\
+    @"PhiroMotorStopBrick"          : @(kPhiroMotorStopBrick),\
+    @"PhiroMotorMoveForwardBrick"   : @(kPhiroMotorMoveForwardBrick),\
+    @"PhiroMotorMoveBackwardBrick"  : @(kPhiroMotorMoveBackwardBrick),\
+    @"PhiroPlayToneBrick"           : @(kPhiroPlayToneBrick),\
+    @"kPhiroRGBLightBrick"          : @(kPhiroRGBLightBrick)\
 }
 
 typedef NS_ENUM(NSInteger, kBrickShapeType) {
@@ -364,7 +383,14 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 \
 /* variable bricks */\
 @"SetVariableBrick"          : @(kBrickHeight3h),\
-@"ChangeVariableBrick"       : @(kBrickHeight3h)\
+@"ChangeVariableBrick"       : @(kBrickHeight3h),\
+\
+/* phiro bricks */\
+@"PhiroMotorStopBrick"          : @(kBrickHeight2h),\
+@"PhiroMotorMoveForwardBrick"   : @(kBrickHeight3h),\
+@"PhiroMotorMoveBackwardBrick"  : @(kBrickHeight3h),\
+@"PhiroPlayToneBrick"           : @(kBrickHeight3h),\
+@"kPhiroRGBLightBrick"          : @(kBrickHeight3h)\
 }
 
 // brick heights
