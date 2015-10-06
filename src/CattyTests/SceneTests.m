@@ -40,7 +40,7 @@
 
 - (void)testPointConversionCenter
 {
-    CBPlayerScene *scene = [[CBPlayerScene alloc] initWithSize:CGSizeMake(480, 800)];
+    CBScene *scene = [[CBScene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeCenter = CGPointMake(0, 0);
     CGPoint sceneCenter = CGPointMake(240, 400);
     CGPoint convertedCenter = [scene convertPointToScene:pocketCodeCenter];
@@ -49,7 +49,7 @@
 
 - (void)testPointConversionBottomLeft
 {
-    CBPlayerScene *scene = [[CBPlayerScene alloc] initWithSize:CGSizeMake(480, 800)];
+    CBScene *scene = [[CBScene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeBottomLeft = CGPointMake(-240, -400);
     CGPoint sceneBottomLeft = CGPointMake(0, 0);
     CGPoint convertedBottomLeft = [scene convertPointToScene:pocketCodeBottomLeft];
@@ -59,7 +59,7 @@
 
 - (void)testPointConversionBottomRight
 {
-    CBPlayerScene *scene = [[CBPlayerScene alloc] initWithSize:CGSizeMake(480, 800)];
+    CBScene *scene = [[CBScene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeBottomRight = CGPointMake(240, -400);
     CGPoint sceneBottomRight = CGPointMake(480, 0);
     CGPoint convertedBottomRight = [scene convertPointToScene:pocketCodeBottomRight];
@@ -68,7 +68,7 @@
 
 - (void)testPointConversionTopLeft
 {
-    CBPlayerScene *scene = [[CBPlayerScene alloc] initWithSize:CGSizeMake(480, 800)];
+    CBScene *scene = [[CBScene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeTopLeft = CGPointMake(-240, 400);
     CGPoint sceneTopLeft = CGPointMake(0, 800);
     CGPoint convertedTopLeft = [scene convertPointToScene:pocketCodeTopLeft];
@@ -77,7 +77,7 @@
 
 - (void)testPointConversionTopRight
 {
-    CBPlayerScene *scene = [[CBPlayerScene alloc] initWithSize:CGSizeMake(480, 800)];
+    CBScene *scene = [[CBScene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeTopRight = CGPointMake(240, 400);
     CGPoint sceneTopRight = CGPointMake(480, 800);
     CGPoint convertedTopRight = [scene convertPointToScene:pocketCodeTopRight];
@@ -87,7 +87,7 @@
 #pragma mark Scene to Pocked Code
 - (void)testSceneConversionCenter
 {
-    CBPlayerScene *scene = [[CBPlayerScene alloc] initWithSize:CGSizeMake(480, 800)];
+    CBScene *scene = [[CBScene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeCenter = CGPointMake(0, 0);
     CGPoint sceneCenter = CGPointMake(240, 400);
     CGPoint convertedCenter = [scene convertPointToScene:pocketCodeCenter];
@@ -97,7 +97,7 @@
 
 - (void)testSceneConversionBottomLeft
 {
-    CBPlayerScene *scene = [[CBPlayerScene alloc] initWithSize:CGSizeMake(480, 800)];
+    CBScene *scene = [[CBScene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeBottomLeft = CGPointMake(-240, -400);
     CGPoint sceneBottomLeft = CGPointMake(0, 0);
     CGPoint convertedBottomLeft = [scene convertSceneCoordinateToPoint:sceneBottomLeft];
@@ -106,7 +106,7 @@
 
 - (void)testSceneConversionBottomRight
 {
-    CBPlayerScene *scene = [[CBPlayerScene alloc] initWithSize:CGSizeMake(480, 800)];
+    CBScene *scene = [[CBScene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeBottomRight = CGPointMake(240, -400);
     CGPoint sceneBottomRight = CGPointMake(480, 0);
     CGPoint convertedBottomRight = [scene convertSceneCoordinateToPoint:sceneBottomRight];
@@ -115,7 +115,7 @@
 
 - (void)testSceneConversionTopLeft
 {
-    CBPlayerScene *scene = [[CBPlayerScene alloc] initWithSize:CGSizeMake(480, 800)];
+    CBScene *scene = [[CBScene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeTopLeft = CGPointMake(-240, 400);
     CGPoint sceneTopLeft = CGPointMake(0, 800);
     CGPoint convertedTopLeft = [scene convertSceneCoordinateToPoint:sceneTopLeft];
@@ -124,7 +124,7 @@
 
 - (void)testSceneConversionTopRight
 {
-    CBPlayerScene *scene = [[CBPlayerScene alloc] initWithSize:CGSizeMake(480, 800)];
+    CBScene *scene = [[CBScene alloc] initWithSize:CGSizeMake(480, 800)];
     CGPoint pocketCodeTopRight = CGPointMake(240, 400);
     CGPoint sceneTopRight = CGPointMake(480, 800);
     CGPoint convertedTopRight = [scene convertSceneCoordinateToPoint:sceneTopRight];

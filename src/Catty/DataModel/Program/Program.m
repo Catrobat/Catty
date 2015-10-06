@@ -150,7 +150,7 @@
 
 - (SpriteObject*)addObjectWithName:(NSString*)objectName
 {
-    SpriteObject* object = [[SpriteObject alloc] init];
+    SpriteObject *object = [[SpriteObject alloc] init];
     //object.originalSize;
     object.spriteNode.currentLook = nil;
 

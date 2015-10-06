@@ -27,16 +27,7 @@
 
 #define kImageDownloadQueue "at.tugraz.ist.catrobat.ImageDownloadQueue"
 
-@interface UIImage()
-
-@property (readwrite, strong, nonatomic) dispatch_queue_t imageCacheQueue;
-
-@end
-
-
 @implementation UIImage (CatrobatUIImageExtensions)
-
-
 
 + (UIImage *)imageWithColor:(UIColor *)color {
     
@@ -57,12 +48,12 @@
     return [self imageWithContentsOfURL:imageURL placeholderImage:placeholderImage errorImage:placeholderImage onCompletion:completion];
 }
 
-+ (UIImage*) imageWithContentsOfURL:(NSURL *)imageURL
-                   placeholderImage:(UIImage *)placeholderImage
-                         errorImage:(UIImage*)errorImage
-                       onCompletion:(void (^)(UIImage *image))completion;
++ (UIImage*)imageWithContentsOfURL:(NSURL*)imageURL
+                  placeholderImage:(UIImage*)placeholderImage
+                        errorImage:(UIImage*)errorImage
+                      onCompletion:(void (^)(UIImage *image))completion
 {
-    UIImage* image = [[DownloadImageCache sharedImageCache] getImageWithName:[imageURL absoluteString]];
+    UIImage *image = [[DownloadImageCache sharedImageCache] getImageWithName:[imageURL absoluteString]];
 
     if(image)
         return image;
@@ -92,7 +83,7 @@
     return placeholderImage;
 }
 
-+ (UIImage*) setImage:(UIImage*)uiImage WithBrightness:(CGFloat)brightness {
++ (UIImage*)setImage:(UIImage*)uiImage WithBrightness:(CGFloat)brightness {
   
   CIImage* image = uiImage.CIImage;
   
@@ -113,7 +104,7 @@
   return newImage;
 }
 
-- (CGRect)cropRectForImage:(UIImage *)image {
+- (CGRect)cropRectForImage:(UIImage*)image {
     
     CGImageRef cgImage = image.CGImage;
     CGContextRef context = [self newARGBBitmapContextFromImage:cgImage];
@@ -262,9 +253,10 @@
     CGFloat alpha = (CGFloat)pixelData[3] / 255.0f;
     if (alpha == 0){
         return YES;
-    } else
-        return NO;
+    }
+    return NO;
 }
+
 + (UIImage*)imageWithImage:(UIImage*)image
               scaledToSize:(CGSize)newSize
 {

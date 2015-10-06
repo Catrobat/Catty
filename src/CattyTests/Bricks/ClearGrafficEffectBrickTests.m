@@ -49,7 +49,7 @@
     object.program = program;
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
+    CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
     spriteNode.scenePosition = CGPointMake(0.0f, 0.0f);
 
@@ -97,7 +97,7 @@
     object.program = program;
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
+    CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
     spriteNode.scenePosition = CGPointMake(0.0f, 0.0f);
 
@@ -146,7 +146,7 @@
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
     object.program = program;
-    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
+    CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
     spriteNode.scenePosition = CGPointMake(0.0f, 0.0f);
 

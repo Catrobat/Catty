@@ -27,7 +27,7 @@
 
 @class SpriteObject;
 
-typedef enum {
+typedef NS_ENUM(NSInteger, ElementType) {
     OPERATOR = 10000,
     FUNCTION,
     NUMBER,
@@ -35,7 +35,13 @@ typedef enum {
     USER_VARIABLE,
     BRACKET,
     STRING
-} ElementType;
+};
+
+typedef NS_ENUM(NSInteger, IdempotenceState) {
+    NOT_CHECKED = 0,
+    IDEMPOTENT,
+    NOT_IDEMPOTENT
+};
 
 @interface FormulaElement : NSObject<CBMutableCopying>
 
@@ -44,6 +50,7 @@ typedef enum {
 @property (nonatomic, strong) FormulaElement* leftChild;
 @property (nonatomic, strong) FormulaElement* rightChild;
 @property (nonatomic, strong) FormulaElement* parent;
+@property (nonatomic) IdempotenceState idempotenceState;
 
 - (id)initWithType:(NSString*)type
              value:(NSString*)value

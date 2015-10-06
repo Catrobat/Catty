@@ -25,13 +25,16 @@
 
 @implementation Functions
 
-+ (BOOL)isFunction:(NSString*)value
-{
-    if([self getFunctionByValue:value] == NO_FUNCTION)
-    {
-        return NO;
++ (NSArray<NSNumber*>*)nonIdempotentFunctions {
+    static NSArray *nonIdempotentFunctions = nil;
+    if (nonIdempotentFunctions == nil) {
+        nonIdempotentFunctions = kNonIdempotentFunctions;
     }
-    return YES;
+    return nonIdempotentFunctions;
+}
+
++ (BOOL)isFunction:(NSString*)value {
+    return ([self getFunctionByValue:value] != NO_FUNCTION);
 }
 
 + (Function)getFunctionByValue:(NSString*)value
@@ -168,8 +171,8 @@
     return nil;
 }
 
-+ (NSString*)getExternName:(NSString *)value
-{
++ (NSString*)getExternName:(NSString*)value {
+
     Function function = [self getFunctionByValue:value];
     
     switch (function) {

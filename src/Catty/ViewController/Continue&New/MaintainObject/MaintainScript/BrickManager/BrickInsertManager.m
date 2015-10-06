@@ -45,6 +45,7 @@
     dispatch_once(&onceToken, ^{
         sharedBrickInsertManager = [[self alloc] init];
         [sharedBrickInsertManager reset];
+        sharedBrickInsertManager.isInsertingScript = NO;
     });
     return sharedBrickInsertManager;
 }
@@ -62,6 +63,11 @@
     canInsertToIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object
 {
     Script *fromScript = [object.scriptList objectAtIndex:fromIndexPath.section];
+    if (fromIndexPath.item == 0 && toIndexPath.item ==0 && self.isInsertingScript) {
+        return YES;
+    }else if (fromIndexPath.item == 0 && toIndexPath.item !=0 && self.isInsertingScript){
+        return NO;
+    }
     Brick *fromBrick;
     if (fromIndexPath.item <= 0) {
         fromBrick = [fromScript.brickList objectAtIndex:fromIndexPath.item];
@@ -85,12 +91,12 @@
                 return NO;
             }
             if ([toBrick isKindOfClass:[LoopEndBrick class]]) {
-                LoopEndBrick* loopEndBrick = (LoopEndBrick*) toBrick;
+                LoopEndBrick* loopEndBrick = (LoopEndBrick*)toBrick;
                 if ([loopEndBrick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
                     if (script.brickList.count >=1 && ![fromBrick isKindOfClass:[LoopEndBrick class]]) {
                         NSInteger index = script.brickList.count;
                         while ([[script.brickList objectAtIndex:index-1] isKindOfClass:[LoopEndBrick class]]) {
-                            LoopEndBrick* loopEndBrickCheck = [script.brickList objectAtIndex:index-1];
+                            LoopEndBrick* loopEndBrickCheck = (LoopEndBrick*)[script.brickList objectAtIndex:index-1];
                             if (loopEndBrick  == loopEndBrickCheck) {
                                 return NO;
                             }
@@ -182,7 +188,7 @@
             insertionIndex = index;
             if (targetScript.brickList.count >=1) {
                 while ([[targetScript.brickList objectAtIndex:index-1] isKindOfClass:[LoopEndBrick class]]) {
-                    LoopEndBrick* loopEndBrickCheck = [targetScript.brickList objectAtIndex:index-1];
+                    LoopEndBrick *loopEndBrickCheck = (LoopEndBrick*)[targetScript.brickList objectAtIndex:index-1];
                     NSInteger loopbeginIndex = 0;
                     for (Brick *brick in targetScript.brickList) {
                         if (brick  == loopEndBrickCheck.loopBeginBrick) {
@@ -292,7 +298,7 @@
     //Check if there is a Forever Loop End-brick
     while (counter >= 1) {
         if ([[script.brickList objectAtIndex:counter-1] isKindOfClass:[LoopEndBrick class]]) {
-            LoopEndBrick *brick =[script.brickList objectAtIndex:counter-1];
+            LoopEndBrick *brick = (LoopEndBrick*)[script.brickList objectAtIndex:counter-1];
             if ([brick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
                 return counter;
             }

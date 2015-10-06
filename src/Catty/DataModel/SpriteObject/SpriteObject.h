@@ -34,9 +34,9 @@
 @interface SpriteObject : NSObject <CBMutableCopying>
 
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSMutableArray *lookList;
-@property (nonatomic, strong) NSMutableArray *soundList;
-@property (nonatomic, strong) NSMutableArray *scriptList;
+@property (nonatomic, strong) NSMutableArray<Look*> *lookList;
+@property (nonatomic, strong) NSMutableArray<Sound*> *soundList;
+@property (nonatomic, strong) NSMutableArray<Script*> *scriptList;
 @property (nonatomic, weak) Program *program;
 @property (nonatomic, weak) CBSpriteNode *spriteNode;
 
