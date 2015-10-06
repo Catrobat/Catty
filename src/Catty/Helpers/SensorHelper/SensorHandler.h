@@ -38,6 +38,6 @@
 
 - (void) stopSensors;
 
-
+-(void)checkIfSensorsAreAvailable;
 
 @end

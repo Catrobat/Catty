@@ -67,7 +67,6 @@ static SensorHandler* sharedSensorHandler = nil;
     if (self) {
         self.motionManager = [[CMMotionManager alloc] init];
         self.locationManager = [[CLLocationManager alloc] init];
-        [self checkIfSensorsAreAvailable];
     }
     
     return self;

@@ -67,6 +67,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[SensorHandler sharedSensorHandler] checkIfSensorsAreAvailable];
     self.restartProgram = NO;
     [[[self class] sharedLoadingView] removeFromSuperview];
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
