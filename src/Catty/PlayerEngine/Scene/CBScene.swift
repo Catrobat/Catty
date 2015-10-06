@@ -260,10 +260,6 @@ final class CBScene: SKScene {
             }
         }
 
-        if #available(iOS 9.0, *) {
-            startScreenRecording()
-            // TODO: handle microphone error...
-        }
         scheduler?.run()
     }
 
