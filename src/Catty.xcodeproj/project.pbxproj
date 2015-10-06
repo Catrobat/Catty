@@ -183,6 +183,11 @@
 		929CC0EF1BC39B8C0027DEC0 /* PhiroMotorStopBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0E81BC39B8C0027DEC0 /* PhiroMotorStopBrickCell.m */; settings = {ASSET_TAGS = (); }; };
 		929CC0F01BC39B8C0027DEC0 /* PhiroPlayToneBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0EA1BC39B8C0027DEC0 /* PhiroPlayToneBrickCell.m */; settings = {ASSET_TAGS = (); }; };
 		929CC0F11BC39B8C0027DEC0 /* PhiroRGBLightBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0EC1BC39B8C0027DEC0 /* PhiroRGBLightBrickCell.m */; settings = {ASSET_TAGS = (); }; };
+		929CC0F81BC3A2420027DEC0 /* PhiroMotorMoveBackwardBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0F31BC3A2420027DEC0 /* PhiroMotorMoveBackwardBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
+		929CC0F91BC3A2420027DEC0 /* PhiroMotorMoveForwardBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0F41BC3A2420027DEC0 /* PhiroMotorMoveForwardBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
+		929CC0FA1BC3A2420027DEC0 /* PhiroPlayToneBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0F51BC3A2420027DEC0 /* PhiroPlayToneBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
+		929CC0FB1BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0F61BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
+		929CC0FC1BC3A2420027DEC0 /* PhiroStopMotorBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0F71BC3A2420027DEC0 /* PhiroStopMotorBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
 		92D346BD1B8DDC0A009EB8F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */; };
 		92D71C041BBBC57700F1177C /* DescriptionPopopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D71C031BBBC57700F1177C /* DescriptionPopopViewController.m */; };
 		92DFAFE61A38943D00FA9B0F /* FormulaEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */; };
@@ -1026,6 +1031,11 @@
 		929CC0EA1BC39B8C0027DEC0 /* PhiroPlayToneBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhiroPlayToneBrickCell.m; sourceTree = "<group>"; };
 		929CC0EB1BC39B8C0027DEC0 /* PhiroRGBLightBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhiroRGBLightBrickCell.h; sourceTree = "<group>"; };
 		929CC0EC1BC39B8C0027DEC0 /* PhiroRGBLightBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhiroRGBLightBrickCell.m; sourceTree = "<group>"; };
+		929CC0F31BC3A2420027DEC0 /* PhiroMotorMoveBackwardBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhiroMotorMoveBackwardBrick+Instruction.swift"; sourceTree = "<group>"; };
+		929CC0F41BC3A2420027DEC0 /* PhiroMotorMoveForwardBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhiroMotorMoveForwardBrick+Instruction.swift"; sourceTree = "<group>"; };
+		929CC0F51BC3A2420027DEC0 /* PhiroPlayToneBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhiroPlayToneBrick+Instruction.swift"; sourceTree = "<group>"; };
+		929CC0F61BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhiroRGBLightBrick+Instruction.swift"; sourceTree = "<group>"; };
+		929CC0F71BC3A2420027DEC0 /* PhiroStopMotorBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhiroStopMotorBrick+Instruction.swift"; sourceTree = "<group>"; };
 		92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92D71C021BBBC57700F1177C /* DescriptionPopopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptionPopopViewController.h; sourceTree = "<group>"; };
 		92D71C031BBBC57700F1177C /* DescriptionPopopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptionPopopViewController.m; sourceTree = "<group>"; };
@@ -2900,6 +2910,19 @@
 			path = PhiroBrickCells;
 			sourceTree = "<group>";
 		};
+		929CC0F21BC3A2420027DEC0 /* Phiro */ = {
+			isa = PBXGroup;
+			children = (
+				929CC0F31BC3A2420027DEC0 /* PhiroMotorMoveBackwardBrick+Instruction.swift */,
+				929CC0F41BC3A2420027DEC0 /* PhiroMotorMoveForwardBrick+Instruction.swift */,
+				929CC0F51BC3A2420027DEC0 /* PhiroPlayToneBrick+Instruction.swift */,
+				929CC0F61BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift */,
+				929CC0F71BC3A2420027DEC0 /* PhiroStopMotorBrick+Instruction.swift */,
+			);
+			name = Phiro;
+			path = PlayerEngine/Instructions/Phiro;
+			sourceTree = "<group>";
+		};
 		92DFAFE81A38949E00FA9B0F /* FormulaEditor */ = {
 			isa = PBXGroup;
 			children = (
@@ -4108,6 +4131,7 @@
 		AA401FE51BBEF5F5001BC49F /* Instructions */ = {
 			isa = PBXGroup;
 			children = (
+				929CC0F21BC3A2420027DEC0 /* Phiro */,
 				AA74EDD31BC050A000D1E954 /* Control */,
 				AA74EDDF1BC0525300D1E954 /* Look */,
 				AA74EDDD1BC0520800D1E954 /* Motion */,
@@ -5780,6 +5804,7 @@
 				92FF32591A24E2F400093DA7 /* UIImage+AHKAdditions.m in Sources */,
 				92FF32BA1A24E2F400093DA7 /* DarkBlueGradientFeaturedCell.m in Sources */,
 				92DFB01D1A38949E00FA9B0F /* FormulaEditorTextView.m in Sources */,
+				929CC0F81BC3A2420027DEC0 /* PhiroMotorMoveBackwardBrick+Instruction.swift in Sources */,
 				AA74F0AC1BC05FCE00D1E954 /* ChangeGhostEffectByNBrickCell.m in Sources */,
 				92FF32751A24E2F400093DA7 /* CatrobatAlertView.m in Sources */,
 				AA74EEE21BC057B900D1E954 /* LoopEndBrick+CBXMLHandler.m in Sources */,
@@ -5862,6 +5887,7 @@
 				92FF30FF1A24DCAA00093DA7 /* Program.m in Sources */,
 				929CC0CF1BC39B0A0027DEC0 /* PhiroPlayToneBrick.m in Sources */,
 				AA74EEFD1BC057C900D1E954 /* SetBrightnessBrick+CBXMLHandler.m in Sources */,
+				929CC0FB1BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift in Sources */,
 				D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */,
 				92FF2EBF1A24C8A700093DA7 /* CatrobatProgram.m in Sources */,
 				AA74EFE61BC05B5F00D1E954 /* IfLogicEndBrick.m in Sources */,
@@ -5881,6 +5907,7 @@
 				929CC0F01BC39B8C0027DEC0 /* PhiroPlayToneBrickCell.m in Sources */,
 				AA74F0AF1BC05FCE00D1E954 /* NextLookBrickCell.m in Sources */,
 				92FF2EBD1A24C8A700093DA7 /* DataTransferMessage.m in Sources */,
+				929CC0F91BC3A2420027DEC0 /* PhiroMotorMoveForwardBrick+Instruction.swift in Sources */,
 				AA74EF511BC0586F00D1E954 /* GoNStepsBackBrick+CBXMLHandler.m in Sources */,
 				92FF32B21A24E2F400093DA7 /* RoundBorderedButton.m in Sources */,
 				4C724E611B4D3E8C00E27479 /* ProjectParser.m in Sources */,
@@ -5957,6 +5984,7 @@
 				92FF2EC11A24C8A700093DA7 /* OrderedMapTable.m in Sources */,
 				92FF325D1A24E2F400093DA7 /* EVCircularProgressView.m in Sources */,
 				AA74F0BC1BC05FCE00D1E954 /* MoveNStepsBrickCell.m in Sources */,
+				929CC0FC1BC3A2420027DEC0 /* PhiroStopMotorBrick+Instruction.swift in Sources */,
 				AA74F0A81BC05FCE00D1E954 /* ChangeVariableBrickCell.m in Sources */,
 				92FF2E8E1A24C7D800093DA7 /* FileManager.m in Sources */,
 				92DFB0611A38960C00FA9B0F /* NKOColorPickerView.m in Sources */,
@@ -5990,6 +6018,7 @@
 				92FF2E961A24C7D800093DA7 /* ioapi.c in Sources */,
 				92DFB0641A38960C00FA9B0F /* PointerTool.m in Sources */,
 				4C724E591B4D3E8C00E27479 /* Look+CBXMLHandler.m in Sources */,
+				929CC0FA1BC3A2420027DEC0 /* PhiroPlayToneBrick+Instruction.swift in Sources */,
 				AA74F0CE1BC05FCE00D1E954 /* WhenScriptCell.m in Sources */,
 				92FF31601A24DEB300093DA7 /* SaveToProjectActivity.m in Sources */,
 				AA74F0A71BC05FCE00D1E954 /* WaitBrickCell.m in Sources */,

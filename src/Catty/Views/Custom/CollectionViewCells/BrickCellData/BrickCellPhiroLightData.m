@@ -46,13 +46,13 @@
             Brick<BrickPhiroLightProtocol> *rgbBrick = (Brick<BrickPhiroLightProtocol>*)brickCell.scriptOrBrick;
             Light currentLight = [rgbBrick lightForLineNumber:line andParameterNumber:parameter];
             switch(currentLight) {
-                case LightBoth:
+                case LBoth:
                     currentOptionIndex = 0;
                     break;
-                case LightRight:
+                case LRight:
                     currentOptionIndex = 1;
                     break;
-                case LightLeft:
+                case LLeft:
                     currentOptionIndex = 2;
                     break;
                     
@@ -61,9 +61,9 @@
             }
 
         }
-        [options addObject:[PhiroHelper lightToString:LightBoth]];
-        [options addObject:[PhiroHelper lightToString:LightRight]];
-        [options addObject:[PhiroHelper lightToString:LightLeft]];
+        [options addObject:[PhiroHelper lightToString:LBoth]];
+        [options addObject:[PhiroHelper lightToString:LRight]];
+        [options addObject:[PhiroHelper lightToString:LLeft]];
         [self setValues:options];
         [self setCurrentValue:options[currentOptionIndex]];
         [self setDelegate:(id<iOSComboboxDelegate>)self];

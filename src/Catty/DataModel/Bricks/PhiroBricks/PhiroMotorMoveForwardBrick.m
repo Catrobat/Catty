@@ -30,49 +30,11 @@
     return kLocalizedPhiroMoveForward;
 }
 
-- (SKAction*)action
-{
-    return [SKAction runBlock:[self actionBlock]];
-}
-
-- (dispatch_block_t)actionBlock
-{
-    return ^{
-        double speedValue = [self.formula interpretDoubleForSprite:self.script.object];
-        
-        if (speedValue < MIN_SPEED) {
-            speedValue = MIN_SPEED;
-        } else if (speedValue > MAX_SPEED) {
-            speedValue = MAX_SPEED;
-        }
-        
-        //        Phiro phiro = btService.getDevice(BluetoothDevice.PHIRO);
-        //        if (phiro == null) {
-        //            return;
-        //        }
-        
-        switch (self.motor) {
-            case MotorLeft:
-                //                phiro.moveLeftMotorForward(speedValue);
-                break;
-            case MotorRight:
-                //                phiro.moveRightMotorForward(speedValue);
-                break;
-            case MotorBoth:
-                //                phiro.moveRightMotorForward(speedValue);
-                //                phiro.moveLeftMotorForward(speedValue);
-                break;
-        }
-
-    };
-}
-
-
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"Move Phiro Motor Forward (Motor: %u,Speed: %f)", self.motor,[self.formula interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"Move Phiro Motor Forward (Motor: %lu,Speed: %f)", (unsigned long)self.motor,[self.formula interpretDoubleForSprite:self.script.object]];
 }
 
 - (BOOL)isEqualToBrick:(Brick*)brick
@@ -109,7 +71,7 @@
 #pragma mark - Default values
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.motor = MotorBoth;
+    self.motor = Both;
     self.formula = [[Formula alloc] initWithZero];
 }
 

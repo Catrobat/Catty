@@ -81,13 +81,13 @@
     NSString *result = nil;
     
     switch(formatType) {
-        case MotorBoth:
+        case Both:
             result = kLocalizedPhiroBoth;
             break;
-        case MotorRight:
+        case Right:
             result = kLocalizedPhiroRight;
             break;
-        case MotorLeft:
+        case Left:
             result = kLocalizedPhiroLeft;
             break;
             
@@ -99,26 +99,26 @@
 }
 + (Motor)stringToMotor:(NSString*)string {
     if ([string isEqualToString:kLocalizedPhiroBoth]) {
-        return MotorBoth;
+        return Both;
     } else if ([string isEqualToString:kLocalizedPhiroRight]) {
-        return MotorRight;
+        return Right;
     } else if ([string isEqualToString:kLocalizedPhiroLeft]) {
-        return MotorLeft;
+        return Left;
     }
-    return MotorBoth;
+    return Both;
 }
 
 + (NSString*)lightToString:(Light)formatType {
     NSString *result = nil;
     
     switch(formatType) {
-        case LightBoth:
+        case LBoth:
             result = kLocalizedPhiroBoth;
             break;
-        case LightRight:
+        case LRight:
             result = kLocalizedPhiroRight;
             break;
-        case LightLeft:
+        case LLeft:
             result = kLocalizedPhiroLeft;
             break;
             
@@ -131,13 +131,13 @@
 
 + (Light)stringToLight:(NSString*)string {
     if ([string isEqualToString:kLocalizedPhiroBoth]) {
-        return LightBoth;
+        return LBoth;
     } else if ([string isEqualToString:kLocalizedPhiroRight]) {
-        return LightRight;
+        return LRight;
     } else if ([string isEqualToString:kLocalizedPhiroLeft]) {
-        return LightLeft;
+        return LLeft;
     }
-    return LightBoth;
+    return LBoth;
 }
 
 @end

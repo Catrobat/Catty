@@ -20,19 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-typedef enum {
-    MotorLeft = 1,
-    MotorRight = 2,
-    MotorBoth = 3
-}Motor;
+typedef NS_ENUM(NSUInteger, Motor){
+    Left = 1,
+    Right = 2,
+    Both = 3
+};
 
-typedef enum {
-    LightLeft = 1,
-    LightRight = 2,
-    LightBoth = 3
-}Light;
+typedef NS_ENUM(NSUInteger, Light){
+    LLeft = 1,
+    LRight = 2,
+    LBoth = 3
+};
 
-typedef enum {
+typedef  NS_ENUM(NSUInteger, Tone){
     DO = 1,
     RE = 2,
     MI = 3,
@@ -40,5 +40,5 @@ typedef enum {
     SO = 5,
     LA = 6,
     TI = 7
-}Tone;
+};
 

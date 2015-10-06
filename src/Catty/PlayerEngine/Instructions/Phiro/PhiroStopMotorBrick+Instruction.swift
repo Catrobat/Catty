@@ -20,44 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "PhiroMotorStopBrick.h"
+import Foundation
 
-@implementation PhiroMotorStopBrick
-- (NSString*)brickTitle
-{
-    return kLocalizedStopPhiroMotor;
+
+extension PhiroMotorStopBrick :CBInstructionProtocol {
+    
+    func instruction() -> CBInstruction {
+        
+        return CBInstruction.ExecClosure { (context, _) in
+            switch (self.motor) {
+            case .Left:
+                //                phiro.stopLeftMotor(speedValue);
+                break;
+            case .Right:
+                //                phiro.stopRightMotor(speedValue);
+                break;
+            case .Both:
+                //                phiro.stopRightMotor(speedValue);
+                //                phiro.stopLeftMotor(speedValue);
+                break;
+            }
+        }
+        
+    }
+    
 }
-
-
-
-#pragma mark - Description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"Stop Phiro Motor (Motor: %lu)", (unsigned long)self.motor];
-}
-
-- (BOOL)isEqualToBrick:(Brick*)brick
-{
-    if(self.motor ==((PhiroMotorStopBrick*)brick).motor)
-        return YES;
-    return NO;
-}
-
-- (Motor)motorForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    return self.motor;
-}
-
-- (void)setMotor:(Motor)motor forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
-{
-    if(motor)
-        self.motor = motor;
-}
-
-#pragma mark - Default values
-- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
-{
-    self.motor = Both;
-}
-
-@end

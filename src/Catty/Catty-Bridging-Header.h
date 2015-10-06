@@ -69,6 +69,13 @@
 #import "SetYBrick.h"
 #import "TurnLeftBrick.h"
 #import "TurnRightBrick.h"
+#import "PhiroBrick.h"
+#import "BluetoothBrick.h"
+#import "PhiroRGBLightBrick.h"
+#import "PhiroMotorStopBrick.h"
+#import "PhiroPlayToneBrick.h"
+#import "PhiroMotorMoveForwardBrick.h"
+#import "PhiroMotorMoveBackwardBrick.h"
 
 // Formulas
 #import "Formula.h"

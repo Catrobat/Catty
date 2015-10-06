@@ -30,47 +30,7 @@
     return kLocalizedPhiroRGBLight;
 }
 
-- (SKAction*)action
-{
-    return [SKAction runBlock:[self actionBlock]];
-}
 
-- (dispatch_block_t)actionBlock
-{
-    return ^{
-        
-//        CGFloat redValue = [self getFormulaValue:self.redFormula];
-//        CGFloat greenValue = [self getFormulaValue:self.greenFormula];
-//        CGFloat blueValue = [self getFormulaValue:self.blueFormula];
-        
-        
-        switch (self.light) {
-            case LightLeft:
-                //          		phiro.setLeftRGBLightColor(redValue, greenValue, blueValue);
-                break;
-            case LightRight:
-                //                phiro.setRightRGBLightColor(redValue, greenValue, blueValue);
-                break;
-            case LightBoth:
-                //          		phiro.setLeftRGBLightColor(redValue, greenValue, blueValue);
-                //                phiro.setRightRGBLightColor(redValue, greenValue, blueValue);
-                break;
-        }
-    };
-}
-
-
--(CGFloat)getFormulaValue:(Formula*)formula
-{
-    CGFloat rgbValue = [formula interpretDoubleForSprite:self.script.object];
-    if (rgbValue < MIN_VALUE) {
-        rgbValue = MIN_VALUE;
-    } else if (rgbValue > MAX_VALUE) {
-        rgbValue = MAX_VALUE;
-    }
-    
-    return rgbValue;
-}
 #pragma mark - Description
 - (NSString*)description
 {

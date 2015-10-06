@@ -29,49 +29,6 @@
     return kLocalizedPhiroPlayTone;
 }
 
-- (SKAction*)action
-{
-    return [SKAction runBlock:[self actionBlock]];
-}
-
-- (dispatch_block_t)actionBlock
-{
-    return ^{
-        
-//        CGFloat durationInterpretation = [self.durationFormula interpretDoubleForSprite:self.script.object];
-        
-//        Phiro phiro = btService.getDevice(BluetoothDevice.PHIRO);
-//        if (phiro == null) {
-//            return;
-//        }
-        
-        switch (self.tone) {
-            case DO:
-//                phiro.playTone(262, durationInterpretation);
-                break;
-            case RE:
-//                phiro.playTone(294, durationInterpretation);
-                break;
-            case MI:
-//                phiro.playTone(330, durationInterpretation);
-                break;
-            case FA:
-//                phiro.playTone(349, durationInterpretation);
-                break;
-            case SO:
-//                phiro.playTone(392, durationInterpretation);
-                break;
-            case LA:
-//                phiro.playTone(440, durationInterpretation);
-                break;
-            case TI:
-//                phiro.playTone(494, durationInterpretation);
-                break;
-        }
-    };
-}
-
-
 
 #pragma mark - Description
 - (NSString*)description

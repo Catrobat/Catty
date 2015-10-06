@@ -45,13 +45,13 @@
             Brick<BrickPhiroMotorProtocol> *motorBrick = (Brick<BrickPhiroMotorProtocol>*)brickCell.scriptOrBrick;
             Motor currentMotor = [motorBrick motorForLineNumber:line andParameterNumber:parameter];
             switch(currentMotor) {
-                case MotorBoth:
+                case Both:
                     currentOptionIndex = 0;
                     break;
-                case MotorRight:
+                case Right:
                     currentOptionIndex = 1;
                     break;
-                case MotorLeft:
+                case Left:
                     currentOptionIndex = 2;
                     break;
                     
@@ -59,9 +59,9 @@
                     [NSException raise:NSGenericException format:@"Unexpected FormatType."];
             }
         }
-        [options addObject:[PhiroHelper motorToString:MotorBoth]];
-        [options addObject:[PhiroHelper motorToString:MotorRight]];
-        [options addObject:[PhiroHelper motorToString:MotorLeft]];
+        [options addObject:[PhiroHelper motorToString:Both]];
+        [options addObject:[PhiroHelper motorToString:Right]];
+        [options addObject:[PhiroHelper motorToString:Left]];
         [self setValues:options];
         [self setCurrentValue:options[currentOptionIndex]];
         [self setDelegate:(id<iOSComboboxDelegate>)self];
