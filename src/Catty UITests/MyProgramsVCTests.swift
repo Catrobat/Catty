@@ -22,7 +22,7 @@
 
 import XCTest
 
-class MyProgramsVCTests: XCTestCase {
+class MyProgramsVCTests: XCTestCase, UITestProtocol  {
 
     override func setUp() {
         super.setUp()
@@ -53,21 +53,12 @@ class MyProgramsVCTests: XCTestCase {
     // deletes all programs i.e. only one single program is preserved
     // 'My first program' will be (re)created
     func testCanCreateMyFirstProgramAfterAllProgramsHaveBeenDeleted() {
-        let app = XCUIApplication()
-        app.tables.staticTexts["Programs"].tap()
-        app.navigationBars["Programs"].buttons["Edit"].tap()
-        app.buttons["Delete Programs"].tap()
-        let toolbarsQuery = app.toolbars
-        toolbarsQuery.buttons["Select All"].tap()
-        toolbarsQuery.buttons["Delete"].tap()
-        XCTAssert(app.tables.staticTexts.count == 1)
-        // finally go back to main menu, because this method is used by other tests
-        app.navigationBars["Programs"].buttons["Pocket Code"].tap()
+        restoreDefaultProgram()
     }
 
     // MARK: slide menu tests
     func testCanCancelMoreActionSheetMenu() {
-        testCanCreateMyFirstProgramAfterAllProgramsHaveBeenDeleted()
+        restoreDefaultProgram()
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         
@@ -82,7 +73,7 @@ class MyProgramsVCTests: XCTestCase {
     }
 
     func testCanCopyMyFirstProgram() {
-        testCanCreateMyFirstProgramAfterAllProgramsHaveBeenDeleted()
+        restoreDefaultProgram()
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
 
@@ -114,7 +105,7 @@ class MyProgramsVCTests: XCTestCase {
     }
 
     func testCanCancelCopyMyFirstProgram() {
-        testCanCreateMyFirstProgramAfterAllProgramsHaveBeenDeleted()
+        restoreDefaultProgram()
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
 
@@ -146,7 +137,7 @@ class MyProgramsVCTests: XCTestCase {
     }
 
     func testCanRenameMyFirstProgram() {
-        testCanCreateMyFirstProgramAfterAllProgramsHaveBeenDeleted()
+        restoreDefaultProgram()
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
 
@@ -179,7 +170,7 @@ class MyProgramsVCTests: XCTestCase {
     }
 
     func testCanCancelRenameMyFirstProgram() {
-        testCanCreateMyFirstProgramAfterAllProgramsHaveBeenDeleted()
+        restoreDefaultProgram()
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
 

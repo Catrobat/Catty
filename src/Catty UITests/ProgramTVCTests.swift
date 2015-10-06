@@ -22,7 +22,7 @@
 
 import XCTest
 
-class ProgramTVCTests: XCTestCase {
+class ProgramTVCTests: XCTestCase, UITestProtocol {
 
     override func setUp() {
         super.setUp()
@@ -43,6 +43,8 @@ class ProgramTVCTests: XCTestCase {
     }
 
     func testCanDeleteMultipleProgramsViaEditMode() {
+        restoreDefaultProgram()
+        
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         app.tables.staticTexts["My first program"].tap()
@@ -61,6 +63,8 @@ class ProgramTVCTests: XCTestCase {
     }
 
     func testCanAbortDeleteSingleProgramViaSwipe() {
+        restoreDefaultProgram()
+        
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         app.tables.staticTexts["My first program"].tap()
@@ -75,6 +79,8 @@ class ProgramTVCTests: XCTestCase {
     }
 
     func testCanRenameSingleProgramViaSwipe() {
+        restoreDefaultProgram()
+        
         let app = XCUIApplication()
         app.tables.staticTexts["Programs"].tap()
         app.tables.staticTexts["My first program"].tap()
