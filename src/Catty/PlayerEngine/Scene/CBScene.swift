@@ -153,32 +153,49 @@ final class CBScene: SKScene {
         return false
     }
 
-    func touchedWithTouch(touch: UITouch, atPosition position: CGPoint) -> Bool {
+    func touchedWithTouches(touches: NSSet, atPosition position: CGPoint) -> Bool {
         assert(scheduler?.running == true)
         logger?.debug("StartTouchOfScene (x:\(position.x), y:\(position.y))")
-        var nodes = nodesAtPoint(position)
-        let numberOfNodes = nodes.count
-        if numberOfNodes == 0 { return false } // needed if scene has no background image!
-
-        var nodeIndex = numberOfNodes
-        logger?.debug("Number of touched nodes: \(nodeIndex)")
-
-        nodes.forEach { print(">>> \($0.name)") }
-        while --nodeIndex >= 0 {
-            guard let currentNode = nodes[nodeIndex] as? CBSpriteNode
-            else { fatalError("This should not happen!") }
-
-            print("Current node: \(currentNode)")
-            logger?.debug("Current node: \(currentNode)")
-            if currentNode.hidden { continue }
-
-            let newPosition = touch.locationInNode(currentNode)
-            if currentNode.touchedWithTouch(touch, atPosition: newPosition) {
-                print("Found sprite node: \(currentNode.name) with logical index: \(nodeIndex)")
-                return true
+        if let touch = touches.anyObject() as? UITouch {
+            let location = touch.locationInNode(self)
+            var nodes = nodesAtPoint(location)
+            if #available(iOS 9.0, *) {
+                nodes = nodes.reverse()
             }
+            let numberOfNodes = nodes.count
+            if numberOfNodes == 0 { return false } // needed if scene has no background image!
+            
+            var nodeIndex = numberOfNodes
+            logger?.debug("Number of touched nodes: \(nodeIndex)")
+            
+            nodes.forEach { print(">>> \($0.name)") }
+            while --nodeIndex >= 0 {
+                guard let currentNode = nodes[nodeIndex] as? CBSpriteNode
+                    else { fatalError("This should not happen!") }
+                if currentNode.name == nil {
+                    return false
+                }
+                print("Current node: \(currentNode)")
+                logger?.debug("Current node: \(currentNode)")
+                if currentNode.hidden { continue }
+                
+                let newPosition = touch.locationInNode(currentNode)
+                if currentNode.touchedWithTouch(touch, atPosition: newPosition) {
+                    print("Found sprite node: \(currentNode.name) with logical index: \(nodeIndex)")
+                    return true
+                } else {
+                    var zPosition = currentNode.zPosition
+                    zPosition -= 1
+                    if (zPosition == -1) {
+                        return true;
+                        logger?.debug("Found Object")
+                    }
+                    
+                }
+            }
+            return true
         }
-        return true
+        return false
     }
 
 
