@@ -379,15 +379,13 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return YES;
+    return indexPath.section;
 }
 
 - (NSArray<UITableViewRowAction*>*)tableView:(UITableView*)tableView
                 editActionsForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    if (indexPath.section != kObjectSectionIndex) {
-        return @[];
-    }
+
     UITableViewRowAction *moreAction = [UIUtil tableViewMoreRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // More button was pressed
         NSArray *options = @[kLocalizedCopy, kLocalizedRename];
