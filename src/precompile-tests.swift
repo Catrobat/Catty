@@ -60,7 +60,9 @@ let licenseCheckExcludeDirs = [
     "OrderedDictionary",
     "3rdParty",
     "PocketPaint",
-    "Siren"
+    "Siren",
+    "Pods",
+    "PodSource"
 ]; let licenseCheckExcludeDirsLine = __LINE__; // CAVE: NEVER separate these two statements by adding a new line
 
 let licenseCheckExcludeFiles = [

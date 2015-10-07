@@ -1,0 +1,26 @@
+PODS:
+  - HMSegmentedControl (1.5.2)
+  - M13ProgressSuite (1.2.7)
+  - MXSegmentedPager (2.0.0):
+    - HMSegmentedControl (~> 1.5.2)
+    - MXSegmentedPager/VGParallaxHeader (= 2.0.0)
+  - MXSegmentedPager/VGParallaxHeader (2.0.0):
+    - HMSegmentedControl (~> 1.5.2)
+    - PureLayout (~> 3.0.1)
+  - PureLayout (3.0.1)
+
+DEPENDENCIES:
+  - M13ProgressSuite (~> 1.2.7)
+  - MXSegmentedPager (from `./PodSource/`)
+
+EXTERNAL SOURCES:
+  MXSegmentedPager:
+    :path: ./PodSource/
+
+SPEC CHECKSUMS:
+  HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
+  M13ProgressSuite: 03d194af6359da440641ba758aed5a18b0386a86
+  MXSegmentedPager: 33a1b93464b78ac4b159f6345b173f404b42f058
+  PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
+
+COCOAPODS: 0.38.2

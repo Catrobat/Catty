@@ -29,7 +29,7 @@ public final class Characteristic : CharacteristicWrapper {
     
     internal var implementation = CharacteristicImplementation<Characteristic>()
     
-    internal let cbCharacteristic : CBCharacteristic
+    public let cbCharacteristic : CBCharacteristic
     internal let _service         : Service
     internal let profile          : CharacteristicProfile
     
