@@ -416,7 +416,7 @@ const CGFloat PADDING = 5.0f;
 
 -(void)dismissView
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)showUploadSuccessfulView

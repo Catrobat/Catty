@@ -192,6 +192,9 @@
 		92C631891BC502CB00486958 /* ConnectedDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C631851BC502CB00486958 /* ConnectedDevicesTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		92C6318A1BC502CB00486958 /* KnownDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C631861BC502CB00486958 /* KnownDevicesTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		92C6318B1BC502CB00486958 /* SearchDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C631871BC502CB00486958 /* SearchDevicesTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		92C631911BC50DEE00486958 /* LanguageTranslationDefinesSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C631901BC50DEE00486958 /* LanguageTranslationDefinesSwift.swift */; settings = {ASSET_TAGS = (); }; };
+		92C6319E1BC5183D00486958 /* BluetoothHelper.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 92C631991BC5173200486958 /* BluetoothHelper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		92C631A01BC5193B00486958 /* BluetoothDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C6319F1BC5193B00486958 /* BluetoothDevicesTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		92D346BD1B8DDC0A009EB8F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */; };
 		92D71C041BBBC57700F1177C /* DescriptionPopopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D71C031BBBC57700F1177C /* DescriptionPopopViewController.m */; };
 		92DFAFE61A38943D00FA9B0F /* FormulaEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92DFAFE51A38943D00FA9B0F /* FormulaEditor.xib */; };
@@ -698,26 +701,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		92EC993A1BC3C4D60003A891 /* PBXContainerItemProxy */ = {
+		92C631981BC5173200486958 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 92EC992A1BC3C4D60003A891 /* BluetoothHelper.xcodeproj */;
+			containerPortal = 92C631931BC5173100486958 /* BluetoothHelper.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 92EC98A01BC3C32A0003A891;
 			remoteInfo = BluetoothHelper;
 		};
-		92EC993C1BC3C4D60003A891 /* PBXContainerItemProxy */ = {
+		92C6319A1BC5173200486958 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 92EC992A1BC3C4D60003A891 /* BluetoothHelper.xcodeproj */;
+			containerPortal = 92C631931BC5173100486958 /* BluetoothHelper.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 92EC98AA1BC3C32A0003A891;
 			remoteInfo = BluetoothHelperTests;
-		};
-		92EC993E1BC3C4E00003A891 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 92EC992A1BC3C4D60003A891 /* BluetoothHelper.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 92EC989F1BC3C32A0003A891;
-			remoteInfo = BluetoothHelper;
 		};
 		AAADA0091B9B29D500E0CA9A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -734,6 +730,19 @@
 			remoteInfo = Catty;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		92C6319D1BC5180B00486958 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				92C6319E1BC5183D00486958 /* BluetoothHelper.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1076,6 +1085,9 @@
 		92C631851BC502CB00486958 /* ConnectedDevicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedDevicesTableViewController.swift; sourceTree = "<group>"; };
 		92C631861BC502CB00486958 /* KnownDevicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnownDevicesTableViewController.swift; sourceTree = "<group>"; };
 		92C631871BC502CB00486958 /* SearchDevicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDevicesTableViewController.swift; sourceTree = "<group>"; };
+		92C631901BC50DEE00486958 /* LanguageTranslationDefinesSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTranslationDefinesSwift.swift; sourceTree = "<group>"; };
+		92C631931BC5173100486958 /* BluetoothHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BluetoothHelper.xcodeproj; path = Catty/BluetoothHelper/BluetoothHelper.xcodeproj; sourceTree = "<group>"; };
+		92C6319F1BC5193B00486958 /* BluetoothDevicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothDevicesTableViewController.swift; sourceTree = "<group>"; };
 		92D346BC1B8DDC0A009EB8F7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92D71C021BBBC57700F1177C /* DescriptionPopopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptionPopopViewController.h; sourceTree = "<group>"; };
 		92D71C031BBBC57700F1177C /* DescriptionPopopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptionPopopViewController.m; sourceTree = "<group>"; };
@@ -1172,7 +1184,6 @@
 		92EC98591BC3ABB90003A891 /* PhiroPlayToneBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PhiroPlayToneBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		92EC985A1BC3ABB90003A891 /* PhiroRGBLightBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PhiroRGBLightBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		92EC985B1BC3ABB90003A891 /* PhiroRGBLightBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PhiroRGBLightBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
-		92EC992A1BC3C4D60003A891 /* BluetoothHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = BluetoothHelper.xcodeproj; sourceTree = "<group>"; };
 		92EC99421BC3C8000003A891 /* BluetoothService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothService.swift; sourceTree = "<group>"; };
 		92EC99461BC3C95F0003A891 /* BluetoothDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothDevice.swift; sourceTree = "<group>"; };
 		92EC99491BC3CA870003A891 /* Firmata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firmata.swift; sourceTree = "<group>"; };
@@ -1990,7 +2001,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				92EC99141BC3C4D60003A891 /* BluetoothHelper */,
+				92C631931BC5173100486958 /* BluetoothHelper.xcodeproj */,
 				CA8003E91B48720500A8D99B /* ReplayKit.framework */,
 				92E3351D18FBB6750056C390 /* SystemConfiguration.framework */,
 				921FE2F9182F8122001D7CF6 /* CoreImage.framework */,
@@ -2987,11 +2998,21 @@
 			isa = PBXGroup;
 			children = (
 				92C631841BC502CB00486958 /* BluetoothPopupVC.swift */,
+				92C6319F1BC5193B00486958 /* BluetoothDevicesTableViewController.swift */,
 				92C631851BC502CB00486958 /* ConnectedDevicesTableViewController.swift */,
 				92C631861BC502CB00486958 /* KnownDevicesTableViewController.swift */,
 				92C631871BC502CB00486958 /* SearchDevicesTableViewController.swift */,
 			);
 			path = BluetoothDeviceSelection;
+			sourceTree = "<group>";
+		};
+		92C631941BC5173100486958 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				92C631991BC5173200486958 /* BluetoothHelper.framework */,
+				92C6319B1BC5173200486958 /* BluetoothHelperTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		92DFAFE81A38949E00FA9B0F /* FormulaEditor */ = {
@@ -3137,24 +3158,6 @@
 			path = Phiro;
 			sourceTree = "<group>";
 		};
-		92EC99141BC3C4D60003A891 /* BluetoothHelper */ = {
-			isa = PBXGroup;
-			children = (
-				92EC992A1BC3C4D60003A891 /* BluetoothHelper.xcodeproj */,
-			);
-			name = BluetoothHelper;
-			path = Catty/BluetoothHelper;
-			sourceTree = "<group>";
-		};
-		92EC992B1BC3C4D60003A891 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				92EC993B1BC3C4D60003A891 /* BluetoothHelper.framework */,
-				92EC993D1BC3C4D60003A891 /* BluetoothHelperTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		92EC99441BC3C8050003A891 /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
@@ -3188,6 +3191,7 @@
 				92FF2E011A24C3BE00093DA7 /* CatrobatLanguageDefines.h */,
 				92FF2E021A24C3BE00093DA7 /* CellTagDefines.h */,
 				92FF2E031A24C3BE00093DA7 /* LanguageTranslationDefines.h */,
+				92C631901BC50DEE00486958 /* LanguageTranslationDefinesSwift.swift */,
 				92FF2E041A24C3BE00093DA7 /* NetworkDefines.h */,
 				92FF2E051A24C3BE00093DA7 /* ProgramDefines.h */,
 				92FF2E061A24C3BE00093DA7 /* SegueDefines.h */,
@@ -5367,11 +5371,11 @@
 				AACFFF611B7FE5F50002F899 /* Automatic Version Tracking */,
 				BEC18359F4AE6B828428FCE6 /* Embed Pods Frameworks */,
 				B1530C3ABA65C1BF3F9C0A5E /* Copy Pods Resources */,
+				92C6319D1BC5180B00486958 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				92EC993F1BC3C4E00003A891 /* PBXTargetDependency */,
 			);
 			name = Catty;
 			productName = AppScaffold;
@@ -5396,7 +5400,7 @@
 						TestTargetID = CADBD6D319B0E8C200C62836;
 					};
 					CADBD6D319B0E8C200C62836 = {
-						DevelopmentTeam = 4V6T7BCGGR;
+						DevelopmentTeam = SAUK7AHA7S;
 					};
 				};
 			};
@@ -5447,8 +5451,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 92EC992B1BC3C4D60003A891 /* Products */;
-					ProjectRef = 92EC992A1BC3C4D60003A891 /* BluetoothHelper.xcodeproj */;
+					ProductGroup = 92C631941BC5173100486958 /* Products */;
+					ProjectRef = 92C631931BC5173100486958 /* BluetoothHelper.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -5461,18 +5465,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		92EC993B1BC3C4D60003A891 /* BluetoothHelper.framework */ = {
+		92C631991BC5173200486958 /* BluetoothHelper.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = BluetoothHelper.framework;
-			remoteRef = 92EC993A1BC3C4D60003A891 /* PBXContainerItemProxy */;
+			remoteRef = 92C631981BC5173200486958 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		92EC993D1BC3C4D60003A891 /* BluetoothHelperTests.xctest */ = {
+		92C6319B1BC5173200486958 /* BluetoothHelperTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = BluetoothHelperTests.xctest;
-			remoteRef = 92EC993C1BC3C4D60003A891 /* PBXContainerItemProxy */;
+			remoteRef = 92C6319A1BC5173200486958 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -5972,6 +5976,7 @@
 				AA74F09D1BC05FCE00D1E954 /* BroadcastWaitBrickCell.m in Sources */,
 				CAD116E51A46B6B300F560B4 /* GDataXMLElement+CustomExtensions.m in Sources */,
 				929CC0DE1BC39B690027DEC0 /* BrickCellPhiroLightData.m in Sources */,
+				92C631A01BC5193B00486958 /* BluetoothDevicesTableViewController.swift in Sources */,
 				92DFB06A1A38960C00FA9B0F /* UIViewController+KNSemiModal.m in Sources */,
 				92FF315F1A24DEB300093DA7 /* MyProgramsViewController.m in Sources */,
 				4C724E661B4D3EC500E27479 /* CBXMLSerializerContext.m in Sources */,
@@ -5987,6 +5992,7 @@
 				AA74F0051BC05B5F00D1E954 /* PointToBrick.m in Sources */,
 				4C724E571B4D3E8C00E27479 /* FormulaElement+CBXMLHandler.m in Sources */,
 				92FF2E991A24C7D800093DA7 /* zip.c in Sources */,
+				92C631911BC50DEE00486958 /* LanguageTranslationDefinesSwift.swift in Sources */,
 				AA74EEE51BC057B900D1E954 /* WaitBrick+CBXMLHandler.m in Sources */,
 				AA74F0B01BC05FCE00D1E954 /* SetBrightnessBrickCell.m in Sources */,
 				AA74F0A61BC05FCE00D1E954 /* RepeatBrickCell.m in Sources */,
@@ -6296,11 +6302,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		92EC993F1BC3C4E00003A891 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BluetoothHelper;
-			targetProxy = 92EC993E1BC3C4E00003A891 /* PBXContainerItemProxy */;
-		};
 		AAADA00A1B9B29D500E0CA9A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CADBD6D319B0E8C200C62836 /* Catty */;

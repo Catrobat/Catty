@@ -24,7 +24,7 @@ import UIKit
 import CoreBluetooth
 import BluetoothHelper
 
-class ConnectedDevicesTableViewController: UITableViewController {
+class ConnectedDevicesTableViewController: BluetoothDevicesTableViewController {
     
      var connectedDevices:[Peripheral] = Array()
 
@@ -58,11 +58,17 @@ class ConnectedDevicesTableViewController: UITableViewController {
         future.onSuccess(afterPeripheralDiscovered)
         future.onFailure(afterTimeout)
     }
-    
-    func updateWhenActive() {
-        dispatch_async(dispatch_get_main_queue()){
-            self.tableView.reloadData()
+    func getKnownDevices(){
+        let afterPeripheralDiscovered = {(peripherals:[Peripheral]) -> Void in
+            self.updateWhenActive()
         }
+        let afterTimeout = {(error:NSError) -> Void in
+            
+        }
+        
+        let future : FutureStream<[Peripheral]> = CentralManager.sharedInstance.getKnownPeripheralsWithIdentifiers(NSArray() as! [NSUUID])
+        future.onSuccess(afterPeripheralDiscovered)
+        future.onFailure(afterTimeout)
     }
 
     override func didReceiveMemoryWarning() {

@@ -101,3 +101,9 @@
 #import "ProgramDefines.h"
 #import "FlashHelper.h"
 #import "LanguageTranslationDefines.h"
+
+//------------------------------------------------------------------------------------------------------------
+// TableView classes
+//------------------------------------------------------------------------------------------------------------
+
+#import "BaseTableViewController.h"

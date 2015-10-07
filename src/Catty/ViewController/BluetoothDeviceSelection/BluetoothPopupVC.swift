@@ -22,22 +22,32 @@
 
 import UIKit
 import MXSegmentedPager
+import BluetoothHelper
+
 
 class BluetoothPopupVC: MXSegmentedPagerController {
     
+    weak var delegate : BaseTableViewController?
+    weak var vc : ScenePresenterViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.greenColor()
-        self.segmentedPager.backgroundColor = UIColor.whiteColor()
+        self.segmentedPager.backgroundColor = UIColor.backgroundColor()
         
         // Segmented Control customization
         self.segmentedPager.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-        self.segmentedPager.segmentedControl.backgroundColor = UIColor.whiteColor()
-        self.segmentedPager.segmentedControl.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.blackColor(), NSFontAttributeName: UIFont.systemFontOfSize(12)];
-        self.segmentedPager.segmentedControl.selectedTitleTextAttributes = [NSForegroundColorAttributeName : UIColor.orangeColor()]
+        self.segmentedPager.segmentedControl.backgroundColor = UIColor.backgroundColor()
+        self.segmentedPager.segmentedControl.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.lightTextTintColor(), NSFontAttributeName: UIFont.systemFontOfSize(12)];
+        self.segmentedPager.segmentedControl.selectedTitleTextAttributes = [NSForegroundColorAttributeName : UIColor.globalTintColor()]
         self.segmentedPager.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox
-        self.segmentedPager.segmentedControl.selectionIndicatorColor = UIColor.orangeColor()
+        self.segmentedPager.segmentedControl.selectionIndicatorColor = UIColor.globalTintColor()
         self.segmentedPager.segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyleFixed
+        
+        self.navigationController!.title = "Select Bluetooth Device"
+        let rightButton:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: self, action: "dismissView")
+
+        self.navigationItem.rightBarButtonItem = rightButton
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,6 +57,18 @@ class BluetoothPopupVC: MXSegmentedPagerController {
     
     override func segmentedPager(segmentedPager: MXSegmentedPager, titleForSectionAtIndex index: Int) -> String {
         return ["Known Devices", "Connected Devices", "Search"][index];
+    }
+    
+    func dismissView(){
+        self .dismissViewControllerAnimated(true, completion: {
+            let central = CentralManager.sharedInstance
+            if central.isScanning {
+                central.stopScanning()
+                central.disconnectAllPeripherals()
+                central.removeAllPeripherals()
+            }
+        })
+        
     }
 }
 

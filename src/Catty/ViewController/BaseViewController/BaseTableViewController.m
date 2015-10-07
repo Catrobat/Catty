@@ -32,7 +32,8 @@
 #import "LoadingView.h"
 #import "BDKNotifyHUD.h"
 #import "PlaceHolderView.h"
-#import "ScenePresenterViewController.h"
+
+@class BluetoothPopupVC;
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"
@@ -353,9 +354,28 @@
     if ([self respondsToSelector:@selector(stopAllSounds)]) {
         [self performSelector:@selector(stopAllSounds)];
     }
-    [self.navigationController setToolbarHidden:YES animated:YES];
+    
     ScenePresenterViewController *vc = [ScenePresenterViewController new];
     vc.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
+    
+    if (vc.program.requiresBluetooth || [vc.program.header.isPhiroProProject isEqualToString:@"true"]) {
+        // Open BluetoothSelection
+    // TODO: CHECK Bluetooth Device TYPE NEEDED
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
+        BluetoothPopupVC * bvc = (BluetoothPopupVC*)[storyboard instantiateViewControllerWithIdentifier:@"bluetoothPopupVC"];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:(UIViewController*)bvc];
+        [self.navigationController presentViewController:navController animated:YES completion:^{
+        }];
+    } else {
+        [self.navigationController setToolbarHidden:YES animated:YES];
+        [self startSceneWithVC:vc];
+    }
+    
+
+}
+
+-(void)startSceneWithVC:(ScenePresenterViewController*)vc
+{
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -23,7 +23,7 @@
 import UIKit
 import BluetoothHelper
 
-class KnownDevicesTableViewController: UITableViewController {
+class KnownDevicesTableViewController: BluetoothDevicesTableViewController {
     
     var knownDevices:[Peripheral] = Array()
 
@@ -53,11 +53,7 @@ class KnownDevicesTableViewController: UITableViewController {
         future.onSuccess(afterPeripheralDiscovered)
         future.onFailure(afterTimeout)
     }
-    func updateWhenActive() {
-        dispatch_async(dispatch_get_main_queue()){
-            self.tableView.reloadData()
-        }
-    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

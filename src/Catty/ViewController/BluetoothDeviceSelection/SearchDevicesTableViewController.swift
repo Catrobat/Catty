@@ -24,10 +24,10 @@ import UIKit
 import CoreBluetooth
 import BluetoothHelper
 
-class SearchDevicesTableViewController: UITableViewController {
+class SearchDevicesTableViewController: BluetoothDevicesTableViewController {
     
     var debugData:UInt8 = 0x01
-    override func viewDidLoad() {
+     override func viewDidLoad() {
         super.viewDidLoad()
         let central = CentralManager.sharedInstance
         if central.isScanning {
@@ -96,11 +96,7 @@ class SearchDevicesTableViewController: UITableViewController {
         future.onFailure(afterTimeout)
     }
 
-    func updateWhenActive() {
-        dispatch_async(dispatch_get_main_queue()){
-            self.tableView.reloadData()
-        }
-    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
