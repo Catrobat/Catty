@@ -50,6 +50,7 @@
 
 
 static SensorHandler* sharedSensorHandler = nil;
+static dispatch_once_t onceToken;
 
 + (instancetype)sharedSensorHandler
 {
@@ -111,8 +112,7 @@ static SensorHandler* sharedSensorHandler = nil;
 }
 
 
-- (double)valueForSensor:(Sensor)sensor {
-    static dispatch_once_t onceToken;
+- (double)valueForSensor:(Sensor)sensor {;
     dispatch_once(&onceToken, ^{
         [self checkIfSensorsAreAvailable];
     });
@@ -330,6 +330,11 @@ static SensorHandler* sharedSensorHandler = nil;
 //    CGFloat percent = pow (10, (0.05 * decibel));
     CGFloat percent = (CGFloat)pow (10, decibel / 20.0f);
     return percent * 100.0f;
+}
+
+-(void)resetSensorAvailabilityToken
+{
+    onceToken = 0;
 }
 
 
