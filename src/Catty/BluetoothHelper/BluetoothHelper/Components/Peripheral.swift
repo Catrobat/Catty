@@ -143,7 +143,10 @@ public class Peripheral : NSObject, CBPeripheralDelegate, PeripheralWrapper {
         }
         NSLog("uuid=\(ownCharacteristic.uuid.UUIDString), name=\(ownCharacteristic.name)")
         ownCharacteristic.didUpdate(error)
+        self.didUpdateValue(ownCharacteristic)
     }
+    
+    
     
     public func peripheral(_:CBPeripheral, didWriteValueForCharacteristic characteristic:CBCharacteristic, error: NSError?) {
         guard let ownCharacteristic = self.ownCharacteristics[characteristic] else {
@@ -219,6 +222,10 @@ public class Peripheral : NSObject, CBPeripheralDelegate, PeripheralWrapper {
             self.ownServices[bcService.uuid] = bcService
             NSLog("uuid=\(bcService.uuid.UUIDString), name=\(bcService.name)")
         }
+    }
+    
+    public func didUpdateValue(characteristic:Characteristic) {
+        
     }
     
     public var id : NSUUID {
@@ -356,6 +363,8 @@ public class PeripheralHelper<P where P:PeripheralWrapper,
         }
     }
     
+
+    
     //MARK: RSSI
     public func readRSSI() -> Future<Int> {
         CentralQueue.sync {
@@ -381,7 +390,6 @@ public class PeripheralHelper<P where P:PeripheralWrapper,
             self.readRSSIPromise.success(RSSI.integerValue)
         }
     }
-
     
     //Helper for Central Manager delegates
     public func didDisconnectPeripheral(peripheral:P) {

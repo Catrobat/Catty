@@ -60,7 +60,9 @@ let SYSEX_REALTIME          :UInt8   = 0x7F // MIDI Reserved for realtime messag
 protocol FirmataDelegate {
     
     func sendData(newData: NSData)
-    
+    func didReceiveAnalogMessage(pin:Int,value:Int)
+    //TODO add more delegates!!!
+//    func didReceiveDigitalMessage(pin:Int,value:Int)
 }
 
 enum PinState:Int{
@@ -643,7 +645,7 @@ public class Firmata {
                 
                 print("\(pin):\(val)")
                 
-//                        cell?.setAnalogValue(val)
+                delegate.didReceiveAnalogMessage(pin, value: val)
                 
             }else if(data[i] == REPORT_VERSION){
                 print("Report Version");

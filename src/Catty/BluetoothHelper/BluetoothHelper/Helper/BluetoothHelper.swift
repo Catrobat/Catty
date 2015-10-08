@@ -76,6 +76,7 @@ public protocol PeripheralWrapper {
     func cancel()
     func discoverServices(services:[CBUUID]?)
     func didDiscoverServices()
+    func didUpdateValue(characteristic:Characteristic)
 }
 
 public protocol ServiceWrapper {

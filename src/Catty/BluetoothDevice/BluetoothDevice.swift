@@ -35,6 +35,11 @@ public class BluetoothDevice:Peripheral {
     public func getBluetoothDeviceUUID()->CBUUID{
         return CBUUID.init(string: "TEST")
     }
+    
+    override public func didUpdateValue(characteristic: Characteristic) {
+        // just for other Devices to receive BLE Messages
+    }
+    
 }
 
 public class ArduinoDevice:BluetoothDevice,FirmataDelegate {
@@ -43,6 +48,12 @@ public class ArduinoDevice:BluetoothDevice,FirmataDelegate {
     
     var rxCharacteristic:CBCharacteristic?
     var txCharacteristic:CBCharacteristic?
+    
+    let firmata:Firmata = Firmata()
+    
+    public func setFirmata() {
+        firmata.delegate = self
+    }
     
     func sendData(data: NSData) {
         //Send data to peripheral
@@ -109,6 +120,15 @@ public class ArduinoDevice:BluetoothDevice,FirmataDelegate {
 
     }
     
+    override public func didUpdateValue(characteristic:Characteristic) {
+        
+        
+    }
+    
+    func didReceiveAnalogMessage(pin:Int,value:Int){
+        
+    }
+    
 }
 
 //MARK:PHIRO
@@ -145,9 +165,17 @@ private let MAX_SENSOR_PIN:Int = 5;
 public class Phiro: ArduinoDevice  {
     private let PHIRO_UUID:CBUUID = CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB")
     private static let tag:String = "Phiro";
-
     
-    let firmata:Firmata = Firmata()
+    private var frontLeftSensor = 0;
+    private var frontRightSensor = 0;
+    private var sideLeftSensor = 0;
+    private var sideRightSensor = 0;
+    private var bottomLeftSensor = 0;
+    private var bottomRightSensor = 0;
+    
+    public override func setFirmata() {
+        firmata.delegate = self
+    }
    
     public func playTone(toneFrequency:NSInteger,duration:NSInteger){
         
@@ -304,7 +332,67 @@ public class Phiro: ArduinoDevice  {
         return txUUID
     }
     
+    // MARK: Sensor Values
+    
+    public func getFrontLeftSensor() -> NSInteger {
+    return frontLeftSensor;
+    }
+    
+    public func getFrontRightSensor() -> NSInteger {
+    return frontRightSensor;
+    }
+    
+    public func getSideLeftSensor() -> NSInteger {
+    return sideLeftSensor;
+    }
+    
+    public func getSideRightSensor() -> NSInteger {
+    return sideRightSensor;
+    }
+    
+    public func getBottomLeftSensor() -> NSInteger {
+    return bottomLeftSensor;
+    }
+    
+    public func getBottomRightSensor() -> NSInteger {
+    return bottomRightSensor;
+    }
     
     
+    override public func didUpdateValue(characteristic:Characteristic) {
+        guard let data = characteristic.dataValue else {
+            //ERROR
+            return
+        }
+        firmata.receiveData(data)
+        
+    }
+
+    override func didReceiveAnalogMessage(pin:Int,value:Int){
+        switch (pin) {
+        case PIN_SENSOR_SIDE_RIGHT:
+            sideRightSensor = value
+            break
+        case PIN_SENSOR_FRONT_RIGHT:
+            frontRightSensor = value
+            break
+        case PIN_SENSOR_BOTTOM_RIGHT:
+            bottomRightSensor = value
+            break
+        case PIN_SENSOR_BOTTOM_LEFT:
+            bottomLeftSensor = value
+            break
+        case PIN_SENSOR_FRONT_LEFT:
+            frontLeftSensor = value
+            break
+        case PIN_SENSOR_SIDE_LEFT:
+            sideLeftSensor = value
+            break
+        
+        default: break
+            //NOT USED SENSOR
+        }
+
+    }
     
 }
