@@ -195,7 +195,6 @@
         }
         return (NSArray*)selectableBricksForCategoryMutable;
     }
-    
     for (id<BrickProtocol> brick in selectableBricks) {
         if (brick.brickCategoryType == categoryType) {
             [selectableBricksForCategoryMutable addObject:brick];

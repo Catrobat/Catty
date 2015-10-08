@@ -206,7 +206,12 @@ public final class Characteristic : CharacteristicWrapper {
     }
     
     public func writeValue(value:NSData) {
-        self.service.peripheral.cbPeripheral.writeValue(value, forCharacteristic:self.cbCharacteristic, type:.WithResponse)
+        if(self.propertyEnabled(.WriteWithoutResponse)){
+            self.service.peripheral.cbPeripheral.writeValue(value, forCharacteristic:self.cbCharacteristic, type:.WithoutResponse)
+        } else if (self.propertyEnabled(.Write)){
+            self.service.peripheral.cbPeripheral.writeValue(value, forCharacteristic:self.cbCharacteristic, type:.WithResponse)
+        }
+        
     }
 
 }

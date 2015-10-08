@@ -181,8 +181,8 @@
                                               options:@{
                                                         UIPageViewControllerOptionInterPageSpacingKey : @20.f
                                                         }];
-        //TODO Change to 7 for Phiro
-        bsvc.maxPages = 6;
+        //ADD Indexes from PageIndexCategoryType for selection those bricks
+        [bsvc.pageIndexArray addObject:[NSNumber numberWithInteger:kPageIndexPhiroBrick]];
         
         [bsvc setViewControllers:@[bcvc]
                        direction:UIPageViewControllerNavigationDirectionForward

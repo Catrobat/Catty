@@ -43,13 +43,14 @@
         NSUInteger category = [self brickCategoryTypForPageIndex:type];
         self.bricks = [[BrickManager sharedBrickManager] selectableBricksForCategoryType:category];
         self.spriteObject = spriteObject;
+        
     }
     return self;
 }
 
-+ (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(NSInteger)pageIndex andObject:(SpriteObject*)spriteObject andMaxPage:(NSInteger)maxPage
++ (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(PageIndexCategoryType)pageIndex andObject:(SpriteObject*)spriteObject andMaxPage:(NSInteger)maxPage
 {
-    if ((pageIndex >= 0) && (pageIndex <= maxPage-1)) { //TODO Change to other kPageIndex
+    if ((pageIndex >= kPageIndexScriptFavourites)) { 
         return [[self alloc] initWithBrickCategory:pageIndex andObject:spriteObject];
     }
     return nil;
@@ -175,6 +176,8 @@ NSString* CBTitleFromPageIndexCategoryType(PageIndexCategoryType pageIndexType)
             return kUILookTitle;
         case kPageIndexVariableBrick:
             return kUIVariableTitle;
+        case kPageIndexArduinoBrick:
+            return @"ARDUINO";
         case kPageIndexPhiroBrick:
             return kUIPhiroTitle;
         default:

@@ -25,6 +25,6 @@
 
 @interface BrickSelectionViewController : UIPageViewController
 
-@property (nonatomic,assign) NSInteger maxPages;
+@property(nonatomic, strong) NSMutableArray *pageIndexArray;
 
 @end

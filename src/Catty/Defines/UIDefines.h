@@ -122,8 +122,20 @@ typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
     kSoundBrick                = 3,
     kLookBrick                 = 4,
     kVariableBrick             = 5,
-    kPhiroBrick                = 6,
+    kArduinoBrick              = 6,
+    kPhiroBrick                = 7,
     kFavouriteBricks           = 0
+};
+
+typedef NS_ENUM(NSUInteger, PageIndexCategoryType) {
+    kPageIndexScriptFavourites,
+    kPageIndexControlBrick,
+    kPageIndexMotionBrick,
+    kPageIndexSoundBrick,
+    kPageIndexLookBrick,
+    kPageIndexVariableBrick,
+    kPageIndexArduinoBrick,
+    kPageIndexPhiroBrick
 };
 
 // brick type identifiers
@@ -189,12 +201,12 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kSetVariableBrick          = 400,
     kChangeVariableBrick       = 401,
     
-    // 5xx phiro bricks
-    kPhiroMotorStopBrick       = 500,
-    kPhiroMotorMoveForwardBrick = 501,
-    kPhiroMotorMoveBackwardBrick = 502,
-    kPhiroPlayToneBrick          = 503,
-    kPhiroRGBLightBrick          = 504
+    // 6xx phiro bricks
+    kPhiroMotorStopBrick       = 600,
+    kPhiroMotorMoveForwardBrick = 601,
+    kPhiroMotorMoveBackwardBrick = 602,
+    kPhiroPlayToneBrick          = 603,
+    kPhiroRGBLightBrick          = 604
 
 
 };
@@ -233,6 +245,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     [UIColor soundBrickVioletColor],\
     [UIColor lookBrickGreenColor],\
     [UIColor varibaleBrickRedColor],\
+    [UIColor PhiroBrickColor],\
     [UIColor PhiroBrickColor]\
 ]
 
@@ -242,6 +255,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     [UIColor soundBrickStrokeColor],\
     [UIColor lookBrickStrokeColor],\
     [UIColor variableBrickStrokeColor],\
+    [UIColor PhiroBrickStrokeColor],\
     [UIColor PhiroBrickStrokeColor]\
 ]
 
