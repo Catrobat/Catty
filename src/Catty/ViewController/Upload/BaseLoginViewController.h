@@ -23,5 +23,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BaseLoginViewController : UIViewController
-
+-(void)setViewMovedUp:(BOOL)movedUp;
 @end

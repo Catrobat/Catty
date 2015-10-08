@@ -24,23 +24,23 @@
 
 @interface UIColor (CatrobatUIColorExtensions)
 
-+ (UIColor*) globalTintColor;
++ (UIColor*)globalTintColor;
 
-+ (UIColor*) utilityTintColor;
++ (UIColor*)utilityTintColor;
 
-+ (UIColor*) navBarColor;
++ (UIColor*)navBarColor;
 
-+ (UIColor*) navTintColor;
++ (UIColor*)navTintColor;
 
-+ (UIColor*) navTextColor;
++ (UIColor*)navTextColor;
 
-+ (UIColor*) lightTextTintColor;
++ (UIColor*)lightTextTintColor;
 
-+ (UIColor*) darkTextTintColor;
++ (UIColor*)darkTextTintColor;
 
-+ (UIColor*) destructiveTintColor;
++ (UIColor*)destructiveTintColor;
 
-+ (UIColor*) backgroundColor;
++ (UIColor*)backgroundColor;
 
 // FE
 
@@ -73,4 +73,5 @@
 + (UIColor*)soundBrickVioletColor;
 
 + (UIColor*)soundBrickStrokeColor;
+
 @end

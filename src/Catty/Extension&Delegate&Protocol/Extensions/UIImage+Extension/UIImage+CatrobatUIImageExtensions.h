@@ -24,23 +24,23 @@
 
 @interface UIImage (CatrobatUIImageExtensions)
 
-+ (UIImage *)imageWithColor:(UIColor *)color;
++ (UIImage*)imageWithColor:(UIColor*)color;
 
-+ (UIImage*) imageWithContentsOfURL:(NSURL *)imageURL
-                        placeholderImage:(UIImage *)placeholderImage
-                         onCompletion:(void (^)(UIImage *image))completion;
++ (UIImage*)imageWithContentsOfURL:(NSURL*)imageURL
+                  placeholderImage:(UIImage*)placeholderImage
+                      onCompletion:(void (^)(UIImage *image))completion;
 
-+ (UIImage*) imageWithContentsOfURL:(NSURL *)imageURL
-                        placeholderImage:(UIImage *)placeholderImage
-                         errorImage:(UIImage*)errorImage
-                       onCompletion:(void (^)(UIImage *image))completion;
++ (UIImage*)imageWithContentsOfURL:(NSURL*)imageURL
+                  placeholderImage:(UIImage*)placeholderImage
+                        errorImage:(UIImage*)errorImage
+                      onCompletion:(void (^)(UIImage *image))completion;
 
 + (UIImage*)setImage:(UIImage*)uiImage WithBrightness:(CGFloat)brightness;
 - (CGRect)cropRectForImage:(UIImage *)image;
 - (CGContextRef)newARGBBitmapContextFromImage:(CGImageRef)inImage;
 - (BOOL)isTransparentPixel:(UIImage*)image withX:(CGFloat)x andY:(CGFloat)y;
-// XXX: Unfortunately touch-detection has still problems with the above extension-method!
 - (BOOL)isTransparentPixelOLDMETHOD:(UIImage*)image withX:(CGFloat)x andY:(CGFloat)y;
 + (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
 + (UIImage*)changeImage:(UIImage*)image toColor:(UIColor*)color;
+
 @end

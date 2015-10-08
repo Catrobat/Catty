@@ -36,9 +36,10 @@
     {
         [self.transparentView removeGestureRecognizer:recognizer];
     }
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelOnTouch)];
-    tap.numberOfTapsRequired = 1;
-    [self.transparentView addGestureRecognizer:tap];
+   self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelOnTouch)];
+   self.tap.delaysTouchesBegan = YES;
+   [self.tap setCancelsTouchesInView:NO];
+   [self.transparentView addGestureRecognizer:self.tap];
     
     return self;
 }

@@ -217,14 +217,9 @@ public class FlexFormatter: LogFormatter {
     func getFunctionFormat(function: String) -> String {
         var result = function;
         if (result.hasPrefix("Optional(")) {
-// [Swift2.0] DO NOT REMOVE!!!
-//            let len = "Optional(".characters.count
-// [Swift2.0] DO NOT REMOVE!!!
-// [Swift1.2] DO NOT REMOVE!!!
-            let len = count("Optional(")
-// [Swift1.2] DO NOT REMOVE!!!
-            let start = advance(result.startIndex, len)
-            let end = advance(result.endIndex, -len)
+            let len = "Optional(".characters.count
+            let start = result.startIndex.advancedBy(len)
+            let end = result.endIndex.advancedBy(-len)
             let range = start..<end
             result = result[range]
         }
@@ -233,16 +228,11 @@ public class FlexFormatter: LogFormatter {
         }
         return result
     }
-    
+
     public func formatLog<T>(logger: CBLogger, level: LogLevel, @autoclosure message givenMessage: () -> T,
         filename: String?, line: Int?,  function: String?) -> String {
             var logMessage = ""
-// [Swift2.0] DO NOT REMOVE!!!
-//            for (index, part) in format.enumerate() {
-// [Swift2.0] DO NOT REMOVE!!!
-// [Swift1.2] DO NOT REMOVE!!!
-            for (index, part) in enumerate(format) {
-// [Swift1.2] DO NOT REMOVE!!!
+            for (index, part) in format.enumerate() {
                 switch part {
                 case .MESSAGE:
                     let message = givenMessage()
@@ -252,7 +242,7 @@ public class FlexFormatter: LogFormatter {
                 case .DATE: logMessage += NSDate().description
                 case .LINE:
                     if (filename != nil) && (line != nil) {
-                        logMessage += "[\(filename!.lastPathComponent):\(line!)]"
+                        logMessage += "[\((filename! as NSString).lastPathComponent):\(line!)]"
                     }
                 case .FUNC:
                     if (function != nil) {
@@ -290,12 +280,7 @@ public class FlexFormatter: LogFormatter {
 
     public func description() -> String {
         var desc = ""
-// [Swift2.0] DO NOT REMOVE!!!
-//        for (index, part) in format.enumerate() {
-// [Swift2.0] DO NOT REMOVE!!!
-// [Swift1.2] DO NOT REMOVE!!!
-        for (index, part) in enumerate(format) {
-// [Swift1.2] DO NOT REMOVE!!!
+        for (index, part) in format.enumerate() {
             switch part {
             case .MESSAGE: desc += "MESSAGE"
             case .NAME: desc += "NAME"
@@ -422,7 +407,7 @@ public class FileLocation: LogLocation {
         if temp.rangeOfString("/").location != Foundation.NSNotFound {
             // "/" was found in the filename, so we use whatever path is already there
             if (self.filename.hasPrefix("~/")) {
-                self.filename = self.filename.stringByExpandingTildeInPath
+                self.filename = (self.filename as NSString).stringByExpandingTildeInPath
             }
             
             return
@@ -433,7 +418,7 @@ public class FileLocation: LogLocation {
     
         if let dir: String = dirs as? String {
             //let dir = directories[0]; //documents directory
-            let path = dir.stringByAppendingPathComponent(self.filename);
+            let path = (dir as NSString).stringByAppendingPathComponent(self.filename);
             self.filename = path;
         }
     }
@@ -735,12 +720,7 @@ public class LogSelector {
         let temp = string.componentsSeparatedByString(",")
         for s: String in temp {
             // 'countElements(s)' returns s.length
-// [Swift2.0] DO NOT REMOVE!!!
-//            if (s.characters.count > 0) {
-// [Swift2.0] DO NOT REMOVE!!!
-// [Swift1.2] DO NOT REMOVE!!!
-            if (count(s) > 0) {
-// [Swift1.2] DO NOT REMOVE!!!
+            if (s.characters.count > 0) {
                 result.append(s)
             }
             //if (s.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0) {
@@ -942,12 +922,7 @@ public class Swell {
         
         // Now we need to handle potentially > 1 locations
         if config.locations.count > 1 {
-// [Swift2.0] DO NOT REMOVE!!!
-//            for (index,location) in config.locations.enumerate() {
-// [Swift2.0] DO NOT REMOVE!!!
-// [Swift1.2] DO NOT REMOVE!!!
-            for (index,location) in enumerate(config.locations) {
-// [Swift1.2] DO NOT REMOVE!!!
+            for (index,location) in config.locations.enumerate() {
                 if (index > 0) {
                     result.locations += [location]
                 }
@@ -1238,8 +1213,8 @@ public class Swell {
     func getFormatKey(map: Dictionary<String, AnyObject>) -> String? {
         for (key, _) in map {
             if ((key.hasPrefix("SWL")) && (key.hasSuffix("Format"))) {
-                let start = advance(key.startIndex, 3)
-                let end = advance(key.endIndex, -6)
+                let start = key.startIndex.advancedBy(3)
+                let end = key.endIndex.advancedBy(-6)
                 let result: String = key[start..<end]
                 return result
             }
@@ -1247,19 +1222,13 @@ public class Swell {
         
         return nil;
     }
-    
 
     func getFunctionFormat(function: String) -> String {
         var result = function;
         if (result.hasPrefix("Optional(")) {
-// [Swift2.0] DO NOT REMOVE!!!
-//            let len = "Optional(".characters.count
-// [Swift2.0] DO NOT REMOVE!!!
-// [Swift1.2] DO NOT REMOVE!!!
-            let len = count("Optional(")
-// [Swift1.2] DO NOT REMOVE!!!
-            let start = advance(result.startIndex, len)
-            let end = advance(result.endIndex, -len)
+            let len = "Optional(".characters.count
+            let start = result.startIndex.advancedBy(len)
+            let end = result.endIndex.advancedBy(-len)
             let range = start..<end
             result = result[range]
         }

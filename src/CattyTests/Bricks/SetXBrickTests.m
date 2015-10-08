@@ -47,7 +47,7 @@
     SpriteObject *object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
+    CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
     spriteNode.scenePosition = CGPointMake(0, 0);
 
@@ -66,7 +66,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(spriteNode.xPosition, (CGFloat)20, @"SetxBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.scenePosition.x, (CGFloat)20, @"SetxBrick is not correctly calculated");
 }
 
 - (void)testSetXBrickNegative
@@ -74,7 +74,7 @@
     SpriteObject* object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
+    CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
     spriteNode.scenePosition = CGPointMake(0, 0);
 
@@ -93,7 +93,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(spriteNode.xPosition, (CGFloat)-20, @"SetxBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.scenePosition.x, (CGFloat)-20, @"SetxBrick is not correctly calculated");
 }
 
 - (void)testSetXBrickOutOfRange
@@ -101,7 +101,7 @@
     SpriteObject* object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
+    CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
     spriteNode.scenePosition = CGPointMake(0, 0);
 
@@ -120,7 +120,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(spriteNode.xPosition, (CGFloat)50000, @"SetxBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.scenePosition.x, (CGFloat)50000, @"SetxBrick is not correctly calculated");
 }
 
 - (void)testSetXBrickWrongInput
@@ -128,7 +128,7 @@
     SpriteObject* object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
     object.spriteNode = spriteNode;
-    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
+    CBScene *scene = [[CBScene alloc] init];
     [scene addChild:spriteNode];
     spriteNode.scenePosition = CGPointMake(0, 0);
 
@@ -147,7 +147,7 @@
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(spriteNode.xPosition, (CGFloat)0, @"SetxBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.scenePosition.x, (CGFloat)0, @"SetxBrick is not correctly calculated");
 }
 
 @end

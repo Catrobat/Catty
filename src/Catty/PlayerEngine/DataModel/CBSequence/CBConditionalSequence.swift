@@ -20,22 +20,23 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-class CBConditionalSequence : CBSequence {
+class CBConditionalSequence: CBSequenceProtocol, CBSequenceVisitProtocol {
 
     // MARK: - Properties
+    final weak var rootSequenceList: CBScriptSequenceList?
     final let sequenceList: CBSequenceList
     final var lastLoopIterationStartTime: NSDate = NSDate()
     final private weak var _conditionBrick: BrickConditionalBranchProtocol!
 
     // MARK: - Initializers
     init(rootSequenceList: CBScriptSequenceList, conditionBrick: BrickConditionalBranchProtocol, sequenceList: CBSequenceList) {
+        self.rootSequenceList = rootSequenceList
         self.sequenceList = sequenceList
         self._conditionBrick = conditionBrick
-        super.init(rootSequenceList: rootSequenceList)
     }
 
     // MARK: - Operations
-    override func isEmpty() -> Bool {
+    func isEmpty() -> Bool {
         return (sequenceList.count == 0)
     }
 
@@ -45,6 +46,10 @@ class CBConditionalSequence : CBSequence {
 
     final func resetCondition() {
         _conditionBrick.resetCondition()
+    }
+
+    func accept(visitor: CBOptimizeSequenceVisitorProtocol) {
+        visitor.visit(self)
     }
 
 }

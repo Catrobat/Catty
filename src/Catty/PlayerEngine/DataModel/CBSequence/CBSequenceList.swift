@@ -20,11 +20,11 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-final class CBSequenceList : SequenceType {
+final class CBSequenceList : CBSequenceProtocol, CBSequenceVisitProtocol, SequenceType {
 
     // MARK: - Properties
-    weak var rootSequenceList : CBScriptSequenceList?
-    lazy var sequenceList = [CBSequence]()
+    final weak var rootSequenceList: CBScriptSequenceList?
+    lazy var sequenceList = [CBSequenceProtocol]()
     var count : Int { return sequenceList.count }
 
     // MARK: - Initializers
@@ -33,31 +33,29 @@ final class CBSequenceList : SequenceType {
     }
 
     // MARK: - Operations
-    func append(let sequence : CBSequence) {
+    func append(let sequence : CBSequenceProtocol) {
         sequenceList.append(sequence)
     }
 
     // MARK: - Generator
-// [Swift2.0] DO NOT REMOVE!!!
-//    func generate() -> AnyGenerator<CBSequence> {
-//        var i = 0
-//        return anyGenerator {
-//            return i >= self.sequenceList.count ? .None : self.sequenceList[i++]
-//        }
-//    }
-// [Swift2.0] DO NOT REMOVE!!!
-// [Swift1.2] DO NOT REMOVE!!!
-    func generate() -> GeneratorOf<CBSequence> {
+    func generate() -> AnyGenerator<CBSequenceProtocol> {
         var i = 0
-        return GeneratorOf<CBSequence> {
+        return anyGenerator {
             return i >= self.sequenceList.count ? .None : self.sequenceList[i++]
         }
     }
-// [Swift1.2] DO NOT REMOVE!!!
+
+    func isEmpty() -> Bool {
+        return count == 0
+    }
+
+    func accept(visitor: CBOptimizeSequenceVisitorProtocol) {
+        visitor.visit(self)
+    }
 
 }
 
 // MARK: - Custom operators
-func +=(left: CBSequenceList, right: CBSequence) {
+func +=(left: CBSequenceList, right: CBSequenceProtocol) {
     left.append(right)
 }

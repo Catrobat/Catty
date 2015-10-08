@@ -132,7 +132,7 @@
     XCTAssertEqual(2, internParser.errorTokenIndex, @"Error Token Index is not as expected");
 }
 
-- (void) testLefttBracketMissing
+- (void) testLeftBracketMissing
 {
     NSMutableArray *internTokenList = [[NSMutableArray alloc] init];
     [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:@"42.53"]];

@@ -99,8 +99,7 @@
                             exceptionMessagePrefix,
                             exceptionMessage];
         [NSException raise:exceptionName
-                    format:exceptionMessage
-                 arguments:nil];
+                    format:exceptionMessage, nil];
     } else {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wformat-security"

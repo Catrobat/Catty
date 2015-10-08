@@ -48,7 +48,7 @@
 //    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
 //    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
 //    object.spriteNode = spriteNode;
-//    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
+//    CBScene *scene = [[CBScene alloc] init];
 //    [scene addChild:spriteNode];
 //    object.program = program;
 //
@@ -81,7 +81,7 @@
 //    Program *program = [Program defaultProgramWithName:@"a" programID:nil];
 //    CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
 //    object.spriteNode = spriteNode;
-//    CBPlayerScene *scene = [[CBPlayerScene alloc] init];
+//    CBScene *scene = [[CBScene alloc] init];
 //    [scene addChild:spriteNode];
 //    object.program = program;
 //

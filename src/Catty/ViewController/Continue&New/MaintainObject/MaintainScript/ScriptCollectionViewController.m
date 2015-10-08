@@ -266,10 +266,24 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         return;
     }
     if ([[BrickInsertManager sharedInstance] isBrickInsertionMode]) {
-        [self turnOffInsertingBrickMode];
         Script *script = [self.object.scriptList objectAtIndex:indexPath.section];
-        Brick *brick = [script.brickList objectAtIndex:indexPath.item - 1];
-        [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:indexPath andObject:self.object];
+        if (indexPath.item != 0) {
+            Brick *brick;
+            if (script.brickList.count >= 1) {
+                brick = [script.brickList objectAtIndex:indexPath.item - 1];
+            }else{
+                brick = [script.brickList objectAtIndex:indexPath.item];
+            }
+            if (brick.isAnimatedInsertBrick) {
+                [[BrickInsertManager sharedInstance] insertBrick:brick IndexPath:indexPath andObject:self.object];
+            }else{
+                return;
+            }
+            
+        }else{
+            script.animateInsertBrick = NO;
+        }
+        [self turnOffInsertingBrickMode];
         [self.object.program saveToDisk];
         [self reloadData];
         [self.collectionView setNeedsDisplay];
@@ -672,7 +686,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     BOOL hasForeverLoop = NO;
     if (targetScript.brickList.count >=1) {
         while ([[targetScript.brickList objectAtIndex:index-1] isKindOfClass:[LoopEndBrick class]]) {
-            LoopEndBrick* loopEndBrickCheck = [targetScript.brickList objectAtIndex:index-1];
+            LoopEndBrick *loopEndBrickCheck = (LoopEndBrick*)[targetScript.brickList objectAtIndex:index-1];
             if ([loopEndBrickCheck.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
                 hasForeverLoop = YES;
             }
@@ -951,7 +965,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 //    if ([brick conformsToProtocol:@protocol(BrickVariableProtocol)]) {
 //        variableBrick = (Brick<BrickVariableProtocol>*)brick;
 //    }
-    
+
     NSMutableArray *allVariableNames = [NSMutableArray new];
     if (isProgramVar) {
         for(UserVariable *var in [self.object.program.variables allVariables]) {

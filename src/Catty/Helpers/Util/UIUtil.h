@@ -22,6 +22,8 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^row_action_block_t)(UITableViewRowAction *_Nonnull action, NSIndexPath *_Nonnull indexPath);
+
 @class iOSCombobox;
 @class FormulaEditorTextField;
 @class BrickCell;
@@ -29,8 +31,10 @@
 
 @interface UIUtil : NSObject
 
-+ (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame;
-+ (UILabel*)newDefaultBrickLabelWithFrame:(CGRect)frame AndText:(NSString*)text andRemainingSpace:(NSInteger)remainingSpace;
-+ (iOSCombobox*)newDefaultBrickComboBoxWithFrame:(CGRect)frame AndItems:(NSArray*)items;
++ (UITableViewRowAction* _Nonnull)tableViewMoreRowActionWithHandler:(row_action_block_t _Nonnull)handler;
++ (UITableViewRowAction* _Nonnull)tableViewDeleteRowActionWithHandler:(row_action_block_t _Nonnull)handler;
++ (UILabel* _Nonnull)newDefaultBrickLabelWithFrame:(CGRect)frame;
++ (UILabel* _Nonnull)newDefaultBrickLabelWithFrame:(CGRect)frame AndText:(NSString* _Nullable)text andRemainingSpace:(NSInteger)remainingSpace;
++ (iOSCombobox* _Nonnull)newDefaultBrickComboBoxWithFrame:(CGRect)frame AndItems:(NSArray* _Nonnull)items;
 
 @end

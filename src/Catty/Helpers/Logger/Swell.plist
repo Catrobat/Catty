@@ -7,10 +7,10 @@
 	<key>SWLLocation</key>
 	<string>console</string>
 	<key>SWLLevel</key>
-	<string>debug</string>
+	<string>info</string>
 	<key>SWLLocationFilename</key>
 	<string>Catty.log</string>
-	<key>CBPlayerSceneLogger.Release</key>
+	<key>CBSceneLogger.Release</key>
 	<dict>
 		<key>SWLLevel</key>
 		<string>warn</string>
@@ -21,7 +21,7 @@
 		<key>SWLQuickFormat</key>
 		<string>NameMessage</string>
 	</dict>
-	<key>CBPlayerSchedulerLogger.Release</key>
+	<key>CBSchedulerLogger.Release</key>
 	<dict>
 		<key>SWLLevel</key>
 		<string>warn</string>
@@ -32,7 +32,7 @@
 		<key>SWLQuickFormat</key>
 		<string>NameMessage</string>
 	</dict>
-	<key>CBPlayerFrontendLogger.Release</key>
+	<key>CBFrontendLogger.Release</key>
 	<dict>
 		<key>SWLLevel</key>
 		<string>warn</string>
@@ -43,7 +43,7 @@
 		<key>SWLQuickFormat</key>
 		<string>DateNameMessage</string>
 	</dict>
-	<key>CBPlayerBackendLogger.Release</key>
+	<key>CBBackendLogger.Release</key>
 	<dict>
 		<key>SWLLevel</key>
 		<string>warn</string>
@@ -54,7 +54,7 @@
 		<key>SWLQuickFormat</key>
 		<string>DateNameMessage</string>
 	</dict>
-	<key>CBPlayerBroadcastHandlerLogger.Release</key>
+	<key>CBBroadcastHandlerLogger.Release</key>
 	<dict>
 		<key>SWLLevel</key>
 		<string>warn</string>
@@ -65,7 +65,7 @@
 		<key>SWLQuickFormat</key>
 		<string>DateNameMessage</string>
 	</dict>
-	<key>CBPlayerSceneLogger.Debug</key>
+	<key>CBSceneLogger.Debug</key>
 	<dict>
 		<key>SWLLevel</key>
 		<string>warn</string>
@@ -76,7 +76,7 @@
 		<key>SWLQuickFormat</key>
 		<string>NameMessage</string>
 	</dict>
-	<key>CBPlayerSchedulerLogger.Debug</key>
+	<key>CBSchedulerLogger.Debug</key>
 	<dict>
 		<key>SWLLevel</key>
 		<string>info</string>
@@ -87,7 +87,7 @@
 		<key>SWLQuickFormat</key>
 		<string>NameMessage</string>
 	</dict>
-	<key>CBPlayerFrontendLogger.Debug</key>
+	<key>CBFrontendLogger.Debug</key>
 	<dict>
 		<key>SWLLevel</key>
 		<string>debug</string>
@@ -98,7 +98,7 @@
 		<key>SWLQuickFormat</key>
 		<string>DateNameMessage</string>
 	</dict>
-	<key>CBPlayerBackendLogger.Debug</key>
+	<key>CBBackendLogger.Debug</key>
 	<dict>
 		<key>SWLLevel</key>
 		<string>warn</string>
@@ -109,7 +109,7 @@
 		<key>SWLQuickFormat</key>
 		<string>DateNameMessage</string>
 	</dict>
-	<key>CBPlayerBroadcastHandlerLogger.Debug</key>
+	<key>CBBroadcastHandlerLogger.Debug</key>
 	<dict>
 		<key>SWLLevel</key>
 		<string>warn</string>
@@ -120,7 +120,7 @@
 		<key>SWLQuickFormat</key>
 		<string>DateNameMessage</string>
 	</dict>
-	<key>CBPlayerSceneLogger.Test</key>
+	<key>CBSceneLogger.Test</key>
 	<dict>
 		<key>SWLLevel</key>
 		<string>debug</string>
@@ -131,7 +131,7 @@
 		<key>SWLQuickFormat</key>
 		<string>DateNameMessage</string>
 	</dict>
-	<key>CBPlayerSchedulerLogger.Test</key>
+	<key>CBSchedulerLogger.Test</key>
 	<dict>
 		<key>SWLLevel</key>
 		<string>debug</string>
@@ -142,7 +142,7 @@
 		<key>SWLQuickFormat</key>
 		<string>DateNameMessage</string>
 	</dict>
-	<key>CBPlayerFrontendLogger.Test</key>
+	<key>CBFrontendLogger.Test</key>
 	<dict>
 		<key>SWLLevel</key>
 		<string>debug</string>
@@ -153,7 +153,7 @@
 		<key>SWLQuickFormat</key>
 		<string>DateNameMessage</string>
 	</dict>
-	<key>CBPlayerBackendLogger.Test</key>
+	<key>CBBackendLogger.Test</key>
 	<dict>
 		<key>SWLLevel</key>
 		<string>debug</string>
@@ -164,7 +164,7 @@
 		<key>SWLQuickFormat</key>
 		<string>DateNameMessage</string>
 	</dict>
-	<key>CBPlayerBroadcastHandlerLogger.Test</key>
+	<key>CBBroadcastHandlerLogger.Test</key>
 	<dict>
 		<key>SWLLevel</key>
 		<string>debug</string>

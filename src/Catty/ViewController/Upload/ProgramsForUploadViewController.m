@@ -152,8 +152,6 @@
     }
     cell.titleLabel.text = info.visibleName;
     cell.iconImageView.contentMode = UIViewContentModeScaleAspectFit;
-    cell.rightUtilityButtons = nil;
-    //cell.delegate = self;
     cell.iconImageView.image = nil;
     cell.indexPath = indexPath;
     [cell.iconImageView setBorder:[UIColor globalTintColor] Width:kDefaultImageCellBorderWidth];

@@ -214,6 +214,7 @@
 #define kLocalizedSize NSLocalizedString(@"Size", nil)
 #define kLocalizedLength NSLocalizedString(@"Length", nil)
 #define kLocalizedBack NSLocalizedString(@"Back", nil)
+#define kLocalizedRecord NSLocalizedString(@"Record", nil)
 #define kLocalizedRestart NSLocalizedString(@"Restart", nil)
 #define kLocalizedContinue NSLocalizedString(@"Continue", nil)
 #define kLocalizedScreenshot NSLocalizedString(@"Screenshot", nil)
@@ -490,7 +491,11 @@
 #define kUIFESensorInclinationX NSLocalizedString(@"inclination_x", nil)
 #define kUIFESensorInclinationY NSLocalizedString(@"inclination_y", nil)
 
-
+#define kLocalizedSensorCompass NSLocalizedString(@"compass", nil)
+#define kLocalizedSensorAcceleration NSLocalizedString(@"acceleration-sensor", nil)
+#define kLocalizedSensorRotation NSLocalizedString(@"gyro-sensor", nil)
+#define kLocalizedSensorMagnetic NSLocalizedString(@"magnetic-sensor", nil)
+#define kLocalizedNotAvailable NSLocalizedString(@"not available", nil)
 
 //************************************************************************************************************
 //************************************       BrickCategoryTitles        ********************************************
