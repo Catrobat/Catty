@@ -196,6 +196,8 @@
 		92B46F931BC7B3E5004980C1 /* ArduinoSendPWMValueBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F901BC7B3E5004980C1 /* ArduinoSendPWMValueBrick.m */; settings = {ASSET_TAGS = (); }; };
 		92B46F9B1BC7BC8C004980C1 /* ArduinoSendDigitalValueBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F981BC7BC8C004980C1 /* ArduinoSendDigitalValueBrick+CBXMLHandler.m */; settings = {ASSET_TAGS = (); }; };
 		92B46F9C1BC7BC8C004980C1 /* ArduinoSendPWMValueBrick+CBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F9A1BC7BC8C004980C1 /* ArduinoSendPWMValueBrick+CBXMLHandler.m */; settings = {ASSET_TAGS = (); }; };
+		92B46FA21BC7BDF7004980C1 /* ArduinoSendDigitalValueBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F9F1BC7BDF7004980C1 /* ArduinoSendDigitalValueBrickCell.m */; settings = {ASSET_TAGS = (); }; };
+		92B46FA31BC7BDF7004980C1 /* ArduinoSendPWMValueBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46FA11BC7BDF7004980C1 /* ArduinoSendPWMValueBrickCell.m */; settings = {ASSET_TAGS = (); }; };
 		92C631881BC502CB00486958 /* BluetoothPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C631841BC502CB00486958 /* BluetoothPopupVC.swift */; settings = {ASSET_TAGS = (); }; };
 		92C631891BC502CB00486958 /* ConnectedDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C631851BC502CB00486958 /* ConnectedDevicesTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		92C6318A1BC502CB00486958 /* KnownDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C631861BC502CB00486958 /* KnownDevicesTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -1104,6 +1106,10 @@
 		92B46F981BC7BC8C004980C1 /* ArduinoSendDigitalValueBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ArduinoSendDigitalValueBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
 		92B46F991BC7BC8C004980C1 /* ArduinoSendPWMValueBrick+CBXMLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ArduinoSendPWMValueBrick+CBXMLHandler.h"; sourceTree = "<group>"; };
 		92B46F9A1BC7BC8C004980C1 /* ArduinoSendPWMValueBrick+CBXMLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ArduinoSendPWMValueBrick+CBXMLHandler.m"; sourceTree = "<group>"; };
+		92B46F9E1BC7BDF7004980C1 /* ArduinoSendDigitalValueBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArduinoSendDigitalValueBrickCell.h; sourceTree = "<group>"; };
+		92B46F9F1BC7BDF7004980C1 /* ArduinoSendDigitalValueBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArduinoSendDigitalValueBrickCell.m; sourceTree = "<group>"; };
+		92B46FA01BC7BDF7004980C1 /* ArduinoSendPWMValueBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArduinoSendPWMValueBrickCell.h; sourceTree = "<group>"; };
+		92B46FA11BC7BDF7004980C1 /* ArduinoSendPWMValueBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArduinoSendPWMValueBrickCell.m; sourceTree = "<group>"; };
 		92C631841BC502CB00486958 /* BluetoothPopupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothPopupVC.swift; sourceTree = "<group>"; };
 		92C631851BC502CB00486958 /* ConnectedDevicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedDevicesTableViewController.swift; sourceTree = "<group>"; };
 		92C631861BC502CB00486958 /* KnownDevicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnownDevicesTableViewController.swift; sourceTree = "<group>"; };
@@ -3053,6 +3059,17 @@
 			path = Arduino;
 			sourceTree = "<group>";
 		};
+		92B46F9D1BC7BDF7004980C1 /* ArduinoBrickCells */ = {
+			isa = PBXGroup;
+			children = (
+				92B46F9E1BC7BDF7004980C1 /* ArduinoSendDigitalValueBrickCell.h */,
+				92B46F9F1BC7BDF7004980C1 /* ArduinoSendDigitalValueBrickCell.m */,
+				92B46FA01BC7BDF7004980C1 /* ArduinoSendPWMValueBrickCell.h */,
+				92B46FA11BC7BDF7004980C1 /* ArduinoSendPWMValueBrickCell.m */,
+			);
+			path = ArduinoBrickCells;
+			sourceTree = "<group>";
+		};
 		92C631831BC502CB00486958 /* BluetoothDeviceSelection */ = {
 			isa = PBXGroup;
 			children = (
@@ -4588,6 +4605,7 @@
 		AA74F0211BC05FCE00D1E954 /* BrickCells */ = {
 			isa = PBXGroup;
 			children = (
+				92B46F9D1BC7BDF7004980C1 /* ArduinoBrickCells */,
 				929CC0E21BC39B8C0027DEC0 /* PhiroBrickCells */,
 				AA74F0221BC05FCE00D1E954 /* BrickCell.h */,
 				AA74F0231BC05FCE00D1E954 /* BrickCell.m */,
@@ -5953,6 +5971,7 @@
 				CAE3C79D1B49FABC00AFE9D7 /* CBSequenceVisitProtocol.swift in Sources */,
 				CABF43BC1B115E6400419A55 /* CBSequenceList.swift in Sources */,
 				CABF43B61B115E6400419A55 /* CBConditionalSequence.swift in Sources */,
+				92B46FA31BC7BDF7004980C1 /* ArduinoSendPWMValueBrickCell.m in Sources */,
 				AAF6D9CE1BC0915800686849 /* FormulaElement+Optimization.swift in Sources */,
 				CABF43B91B115E6400419A55 /* CBOperationSequence.swift in Sources */,
 				AA74F0B41BC05FCE00D1E954 /* ShowBrickCell.m in Sources */,
@@ -6340,6 +6359,7 @@
 				4CF773E51AEE3B5100DBBB2B /* VariablePickerData.m in Sources */,
 				AA74F0071BC05B5F00D1E954 /* SetYBrick.m in Sources */,
 				92FF31611A24DEB300093DA7 /* ScenePresenterViewController.m in Sources */,
+				92B46FA21BC7BDF7004980C1 /* ArduinoSendDigitalValueBrickCell.m in Sources */,
 				92DFB0541A38960C00FA9B0F /* ColorPickerViewController.m in Sources */,
 				92FF32B31A24E2F400093DA7 /* LoadingView.m in Sources */,
 				929CC0ED1BC39B8C0027DEC0 /* PhiroMotorMoveBackwardBrickCell.m in Sources */,

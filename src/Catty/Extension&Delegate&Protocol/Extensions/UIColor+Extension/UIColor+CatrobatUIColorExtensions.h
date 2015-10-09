@@ -78,5 +78,8 @@
 
 + (UIColor*)PhiroBrickStrokeColor;
 
++ (UIColor*)ArduinoBrickColor;
+
++ (UIColor*)ArduinoBrickStrokeColor;
 
 @end
