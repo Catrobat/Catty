@@ -256,7 +256,7 @@
 //    }
 //    return NO;
     if (!CGRectContainsPoint(CGRectMake(0.0f, 0.0f, self.size.width, self.size.height), CGPointMake(x,y))) {
-        return nil;
+        return NO;
     }
     
     // Create a 1x1 pixel byte array and bitmap context to draw the pixel onto.
