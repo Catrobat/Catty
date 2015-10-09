@@ -215,6 +215,7 @@
     }
     
     {
+        [[BrickMoveManager sharedInstance] getReadyForNewBrickMovement];
         // main else brick
         NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:2 inSection:0];
         NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:3 inSection:0];

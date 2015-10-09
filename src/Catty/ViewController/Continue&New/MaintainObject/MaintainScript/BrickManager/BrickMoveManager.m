@@ -91,7 +91,10 @@
                 if ([toBrick isKindOfClass:[IfLogicElseBrick class]]||[toBrick isKindOfClass:[IfLogicEndBrick class]]||[toBrick isKindOfClass:[LoopEndBrick class]]) { //check if repeat?!
                     Brick *checkBeforeEndBrick = [script.brickList objectAtIndex:toIndexPath.item - 2];
                     if ([checkBeforeEndBrick isKindOfClass:[LoopEndBrick class]]) {
-                        return NO;
+                        LoopEndBrick *endBrick = (LoopEndBrick*)checkBeforeEndBrick;
+                        if ([endBrick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+                            return NO;
+                        }
                     }
                 }
 

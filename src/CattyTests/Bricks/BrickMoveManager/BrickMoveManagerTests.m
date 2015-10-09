@@ -247,7 +247,7 @@
                                                                           itemAtIndexPath:indexPathFrom
                                                                        canMoveToIndexPath:indexPathTo
                                                                                 andObject:self.spriteObject];
-                XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to idx %lu in section %lu", destinationIDX, section);
+                XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to idx %lu in section %lu", (unsigned long)(unsigned long)destinationIDX, (unsigned long)section);
             }
         }
     }
@@ -256,7 +256,7 @@
                                                                       itemAtIndexPath:indexPathFrom
                                                                    canMoveToIndexPath:validTarget
                                                                             andObject:self.spriteObject];
-    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to idx %lu in section %lu", validRow, validSection);
+    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to idx %lu in section %lu", (unsigned long)validRow, (unsigned long)validSection);
     
 }
 
@@ -305,7 +305,7 @@
                                                                               itemAtIndexPath:indexPathFrom
                                                                            canMoveToIndexPath:indexPathTo
                                                                                     andObject:self.spriteObject];
-            XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to idx %lu in section %lu", destinationIDX, section);
+            XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to idx %lu in section %lu", (unsigned long)destinationIDX, (unsigned long)section);
         }
     }
 }
@@ -349,7 +349,8 @@
     XCTAssertEqual(addedBricksWhen, [self.viewController.collectionView numberOfItemsInSection:1]);
     
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:1 inSection:1];
-    
+    [[BrickMoveManager sharedInstance] setLowerBorder:[NSIndexPath indexPathForRow:3 inSection:1]];
+    [[BrickMoveManager sharedInstance] setUpperBorder:[NSIndexPath indexPathForRow:0 inSection:1]];
     for(NSUInteger section = 0; section < addedSections; section++) {
         for(NSUInteger destinationIDX = 1; destinationIDX < addedBricksStart; destinationIDX++) {
             NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:destinationIDX inSection:section];
@@ -360,7 +361,7 @@
                                                                                   itemAtIndexPath:indexPathFrom
                                                                                canMoveToIndexPath:indexPathTo
                                                                                         andObject:self.spriteObject];
-                XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to idx %lu in section %lu", destinationIDX, section);
+                XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to idx %lu in section %lu", (unsigned long)destinationIDX, (unsigned long)section);
             }
         }
     }
@@ -369,7 +370,7 @@
                                                                       itemAtIndexPath:indexPathFrom
                                                                    canMoveToIndexPath:validTarget
                                                                             andObject:self.spriteObject];
-    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to idx %lu in section %lu", validRow, validSection);
+    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to idx %lu in section %lu", (unsigned long)validRow, (unsigned long)validSection);
     
 }
 
@@ -389,7 +390,7 @@
      */
     
     [self.viewController.collectionView reloadData];
-    
+    [[BrickMoveManager sharedInstance] getReadyForNewBrickMovement];
     NSUInteger addedSections = 1;
     NSUInteger addedBricksStart = 1;
     
@@ -412,7 +413,8 @@
     XCTAssertEqual(addedBricksWhen, [self.viewController.collectionView numberOfItemsInSection:1]);
     
     NSIndexPath *indexPathFrom = [NSIndexPath indexPathForRow:3 inSection:1];
-    
+    [[BrickMoveManager sharedInstance] setLowerBorder:[NSIndexPath indexPathForRow:3 inSection:1]];
+    [[BrickMoveManager sharedInstance] setUpperBorder:[NSIndexPath indexPathForRow:1 inSection:1]];
     for(NSUInteger section = 0; section < addedSections; section++) {
         for(NSUInteger destinationIDX = 1; destinationIDX < addedBricksStart; destinationIDX++) {
             NSIndexPath *indexPathTo = [NSIndexPath indexPathForRow:destinationIDX inSection:section];
@@ -422,7 +424,7 @@
                                                                                   itemAtIndexPath:indexPathFrom
                                                                                canMoveToIndexPath:indexPathTo
                                                                                         andObject:self.spriteObject];
-                XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to idx %lu in section %lu", destinationIDX, section);
+                XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to idx %lu in section %lu", (unsigned long)destinationIDX, (unsigned long)section);
             }
         }
     }
@@ -431,7 +433,7 @@
                                                                       itemAtIndexPath:indexPathFrom
                                                                    canMoveToIndexPath:validTarget
                                                                             andObject:self.spriteObject];
-    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to idx %lu in section %lu", validRow, validSection);
+    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to idx %lu in section %lu", (unsigned long)validRow, (unsigned long)validSection);
     
 }
 
@@ -523,7 +525,7 @@
                                                                                       itemAtIndexPath:indexPathFrom
                                                                                    canMoveToIndexPath:indexPathTo
                                                                                             andObject:self.spriteObject];
-                    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move from section %lu, row %lu to section %lu, row %lu", sourceSection, sourceIDX, destinationSection, destinationIDX);
+                    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move from section %lu, row %lu to section %lu, row %lu", (unsigned long)sourceSection, (unsigned long)sourceIDX, (unsigned long)destinationSection, (unsigned long)destinationIDX);
                     
                 }
             }
