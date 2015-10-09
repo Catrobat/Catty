@@ -20,13 +20,8 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
-#import "UIViewController+CWPopup.h"
+#import <Bohr/Bohr.h>
 
-
-@interface CatrobatTableViewController : BaseTableViewController
-
--(void)afterSuccessfulLogin;
+@interface AboutPoketCodeOptionTableViewController : BOTableViewController
 
 @end

@@ -188,6 +188,9 @@
 		929CC0FA1BC3A2420027DEC0 /* PhiroPlayToneBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0F51BC3A2420027DEC0 /* PhiroPlayToneBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
 		929CC0FB1BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0F61BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
 		929CC0FC1BC3A2420027DEC0 /* PhiroStopMotorBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929CC0F71BC3A2420027DEC0 /* PhiroStopMotorBrick+Instruction.swift */; settings = {ASSET_TAGS = (); }; };
+		92B46F831BC79585004980C1 /* AboutPoketCodeOptionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F7E1BC79585004980C1 /* AboutPoketCodeOptionTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		92B46F841BC79585004980C1 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F801BC79585004980C1 /* SettingsTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		92B46F851BC79585004980C1 /* TermsOfUseOptionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B46F821BC79585004980C1 /* TermsOfUseOptionTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		92C631881BC502CB00486958 /* BluetoothPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C631841BC502CB00486958 /* BluetoothPopupVC.swift */; settings = {ASSET_TAGS = (); }; };
 		92C631891BC502CB00486958 /* ConnectedDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C631851BC502CB00486958 /* ConnectedDevicesTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		92C6318A1BC502CB00486958 /* KnownDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C631861BC502CB00486958 /* KnownDevicesTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -313,7 +316,6 @@
 		92FF314A1A24DEB300093DA7 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF310F1A24DEB300093DA7 /* BaseTableViewController.m */; };
 		92FF314B1A24DEB300093DA7 /* BaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31111A24DEB300093DA7 /* BaseWebViewController.m */; };
 		92FF314C1A24DEB300093DA7 /* CatrobatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31141A24DEB300093DA7 /* CatrobatTableViewController.m */; };
-		92FF314D1A24DEB300093DA7 /* InfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31161A24DEB300093DA7 /* InfoPopupViewController.m */; };
 		92FF314E1A24DEB300093DA7 /* LookImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF311B1A24DEB300093DA7 /* LookImageViewController.m */; };
 		92FF314F1A24DEB300093DA7 /* LooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF311D1A24DEB300093DA7 /* LooksTableViewController.m */; };
 		92FF31541A24DEB300093DA7 /* SoundPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31291A24DEB300093DA7 /* SoundPickerTableViewController.m */; };
@@ -1081,6 +1083,12 @@
 		929CC0F51BC3A2420027DEC0 /* PhiroPlayToneBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhiroPlayToneBrick+Instruction.swift"; sourceTree = "<group>"; };
 		929CC0F61BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhiroRGBLightBrick+Instruction.swift"; sourceTree = "<group>"; };
 		929CC0F71BC3A2420027DEC0 /* PhiroStopMotorBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhiroStopMotorBrick+Instruction.swift"; sourceTree = "<group>"; };
+		92B46F7D1BC79585004980C1 /* AboutPoketCodeOptionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutPoketCodeOptionTableViewController.h; sourceTree = "<group>"; };
+		92B46F7E1BC79585004980C1 /* AboutPoketCodeOptionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutPoketCodeOptionTableViewController.m; sourceTree = "<group>"; };
+		92B46F7F1BC79585004980C1 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
+		92B46F801BC79585004980C1 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
+		92B46F811BC79585004980C1 /* TermsOfUseOptionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsOfUseOptionTableViewController.h; sourceTree = "<group>"; };
+		92B46F821BC79585004980C1 /* TermsOfUseOptionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsOfUseOptionTableViewController.m; sourceTree = "<group>"; };
 		92C631841BC502CB00486958 /* BluetoothPopupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothPopupVC.swift; sourceTree = "<group>"; };
 		92C631851BC502CB00486958 /* ConnectedDevicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedDevicesTableViewController.swift; sourceTree = "<group>"; };
 		92C631861BC502CB00486958 /* KnownDevicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnownDevicesTableViewController.swift; sourceTree = "<group>"; };
@@ -1334,8 +1342,6 @@
 		92FF31111A24DEB300093DA7 /* BaseWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseWebViewController.m; sourceTree = "<group>"; };
 		92FF31131A24DEB300093DA7 /* CatrobatTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatTableViewController.h; sourceTree = "<group>"; };
 		92FF31141A24DEB300093DA7 /* CatrobatTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatTableViewController.m; sourceTree = "<group>"; };
-		92FF31151A24DEB300093DA7 /* InfoPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPopupViewController.h; sourceTree = "<group>"; };
-		92FF31161A24DEB300093DA7 /* InfoPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoPopupViewController.m; sourceTree = "<group>"; };
 		92FF311A1A24DEB300093DA7 /* LookImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookImageViewController.h; sourceTree = "<group>"; };
 		92FF311B1A24DEB300093DA7 /* LookImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookImageViewController.m; sourceTree = "<group>"; };
 		92FF311C1A24DEB300093DA7 /* LooksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LooksTableViewController.h; sourceTree = "<group>"; };
@@ -2994,6 +3000,19 @@
 			path = PlayerEngine/Instructions/Phiro;
 			sourceTree = "<group>";
 		};
+		92B46F881BC7958C004980C1 /* SettingsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				92B46F7D1BC79585004980C1 /* AboutPoketCodeOptionTableViewController.h */,
+				92B46F7E1BC79585004980C1 /* AboutPoketCodeOptionTableViewController.m */,
+				92B46F7F1BC79585004980C1 /* SettingsTableViewController.h */,
+				92B46F801BC79585004980C1 /* SettingsTableViewController.m */,
+				92B46F811BC79585004980C1 /* TermsOfUseOptionTableViewController.h */,
+				92B46F821BC79585004980C1 /* TermsOfUseOptionTableViewController.m */,
+			);
+			name = SettingsViewController;
+			sourceTree = "<group>";
+		};
 		92C631831BC502CB00486958 /* BluetoothDeviceSelection */ = {
 			isa = PBXGroup;
 			children = (
@@ -3833,10 +3852,9 @@
 		92FF31121A24DEB300093DA7 /* CatrobatTableViewController */ = {
 			isa = PBXGroup;
 			children = (
+				92B46F881BC7958C004980C1 /* SettingsViewController */,
 				92FF31131A24DEB300093DA7 /* CatrobatTableViewController.h */,
 				92FF31141A24DEB300093DA7 /* CatrobatTableViewController.m */,
-				92FF31151A24DEB300093DA7 /* InfoPopupViewController.h */,
-				92FF31161A24DEB300093DA7 /* InfoPopupViewController.m */,
 			);
 			path = CatrobatTableViewController;
 			sourceTree = "<group>";
@@ -5962,6 +5980,7 @@
 				AA74F0B51BC05FCE00D1E954 /* ChangeSizeByNBrickCell.m in Sources */,
 				92FF2EC01A24C8A700093DA7 /* OrderedDictionary.m in Sources */,
 				AA74F0CD1BC05FCE00D1E954 /* StartScriptCell.m in Sources */,
+				92B46F841BC79585004980C1 /* SettingsTableViewController.m in Sources */,
 				92FF2E401A24C5A700093DA7 /* UIViewController+CWPopup.m in Sources */,
 				92FF31491A24DEB300093DA7 /* BaseCollectionViewController.m in Sources */,
 				AAAF22881BC0CFC00076F11E /* TurnLeftBrick+Instruction.swift in Sources */,
@@ -6103,6 +6122,7 @@
 				92FF2EA11A24C7D800093DA7 /* TimerLabel.m in Sources */,
 				92FF30C81A24DCAA00093DA7 /* Brick.m in Sources */,
 				AA74F0971BC05FCE00D1E954 /* BrickCellSoundData.m in Sources */,
+				92B46F831BC79585004980C1 /* AboutPoketCodeOptionTableViewController.m in Sources */,
 				4C724E631B4D3E8C00E27479 /* XMLObjectReference.m in Sources */,
 				4C60663A1A5ACC5A00F486CE /* GDataXMLNode+CustomExtensions.m in Sources */,
 				929CC0CE1BC39B0A0027DEC0 /* PhiroMotorStopBrick.m in Sources */,
@@ -6196,7 +6216,6 @@
 				AA74EE211BC053FD00D1E954 /* BroadcastBrick+Instruction.swift in Sources */,
 				92FF30FC1A24DCAA00093DA7 /* Operators.m in Sources */,
 				AA74EF711BC0588A00D1E954 /* SpeakBrick+CBXMLHandler.m in Sources */,
-				92FF314D1A24DEB300093DA7 /* InfoPopupViewController.m in Sources */,
 				92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */,
 				AA74F0BE1BC05FCE00D1E954 /* PointInDirectionBrickCell.m in Sources */,
 				AA74EEFA1BC057C900D1E954 /* ClearGraphicEffectBrick+CBXMLHandler.m in Sources */,
@@ -6288,6 +6307,7 @@
 				92C6318B1BC502CB00486958 /* SearchDevicesTableViewController.swift in Sources */,
 				AA74F0031BC05B5F00D1E954 /* PlaceAtBrick.m in Sources */,
 				AA74F0001BC05B5F00D1E954 /* GoNStepsBackBrick.m in Sources */,
+				92B46F851BC79585004980C1 /* TermsOfUseOptionTableViewController.m in Sources */,
 				92FF31071A24DCAA00093DA7 /* SpriteObject.m in Sources */,
 				AA74EFE51BC05B5F00D1E954 /* IfLogicElseBrick.m in Sources */,
 				AA74EE321BC0542C00D1E954 /* LedOnBrick+Instruction.swift in Sources */,

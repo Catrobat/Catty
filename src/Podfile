@@ -3,3 +3,4 @@ use_frameworks!
 
 pod 'MXSegmentedPager', :path => './PodSource/'
 pod 'M13ProgressSuite', '~> 1.2.7'
+pod 'Bohr'
