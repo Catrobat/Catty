@@ -720,7 +720,7 @@
                                                                   itemAtIndexPath:indexPathFrom
                                                                canMoveToIndexPath:indexPathTo
                                                                         andObject:self.spriteObject];
-    XCTAssertTrue(canMoveToDestination, @"Should be allowed to move to line %lu.", (unsigned long)validTarget1);
+    XCTAssertFalse(canMoveToDestination, @"Should not be allowed to move to line %lu.", (unsigned long)validTarget1);
 
 }
 

@@ -171,6 +171,12 @@
 
 - (BOOL)checkNestedBrickToIndex:(NSIndexPath *)toIndexPath FromIndex:(NSIndexPath*)fromIndexPath andFromBrick:(Brick*)fromBrick andObject:(SpriteObject*)object
 {
+    if ([fromBrick isKindOfClass:[LoopEndBrick class]]) {
+        LoopEndBrick *endBrick = (LoopEndBrick*)fromBrick;
+        if ([endBrick.loopBeginBrick isKindOfClass:[ForeverBrick class]]) {
+            return NO;
+        }
+    }
     if (fromIndexPath.section == toIndexPath.section) {
         if (toIndexPath.item < fromIndexPath.item) {
             if (self.upperBorder == nil) {
