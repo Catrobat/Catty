@@ -20,46 +20,37 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "SpriteObject.h"
-#import "UIDefines.h"
-#import "BrickProtocol.h"
+#import "ArduinoSendDigitalValueBrick.h"
+#import "Script.h"
 
-@class Script;
-
-@interface Brick : NSObject <BrickProtocol>
-
-@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
-@property (nonatomic, readonly) kBrickType brickType;
-@property (nonatomic, strong, readonly) NSString *brickTitle;
-@property (nonatomic, weak) Script *script;
-@property (nonatomic, getter=isAnimated) BOOL animate;
-@property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
-@property (nonatomic) BOOL isSelected;
-
-- (BOOL)isSelectableForObject;
-
-- (BOOL)isAnimateable;
-
-- (BOOL)isFormulaBrick;
-
-- (BOOL)isBluetoothBrick;
-
-- (BOOL)isPhiroBrick;
-
-- (BOOL)isArduinoBrick;
-
-- (NSString*)description;
-
-- (SKAction*)action;
-
-- (BOOL)isEqualToBrick:(Brick*)brick;
-
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context AndErrorReporting:(BOOL)reportError;
-
-- (void)removeFromScript;
-
-- (void)removeReferences;
+@implementation ArduinoSendDigitalValueBrick
+- (NSString*)brickTitle
+{
+    return kLocalizedArduinoSendDigitalValue;
+}
 
 
+#pragma mark - Description
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"Arduino send digital Value (Pin: %f,Value: %f)", [self.pin interpretDoubleForSprite:self.script.object],[self.value interpretDoubleForSprite:self.script.object]];
+}
+
+- (BOOL)isEqualToBrick:(Brick*)brick
+{
+    if (![self.pin isEqualToFormula:((ArduinoSendDigitalValueBrick*)brick).pin]) {
+        return NO;
+    }
+    if (![self.value isEqualToFormula:((ArduinoSendDigitalValueBrick*)brick).value]) {
+        return NO;
+    }
+    return YES;
+}
+
+#pragma mark - Default values
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
+{
+    self.pin = [[Formula alloc] initWithZero];
+    self.value = [[Formula alloc] initWithZero];
+}
 @end

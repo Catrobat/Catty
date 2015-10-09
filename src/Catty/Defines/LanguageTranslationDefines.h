@@ -370,6 +370,11 @@
 #define kLocalizedPhiroPlayTone NSLocalizedString(@"play Phiro Tone\n%@\n Duration %@ seconds", nil)
 
 
+// Arduino bricks
+#define kLocalizedArduinoSendDigitalValue NSLocalizedString(@"Arduino send digital\nPin:%@ Value:%@", nil)
+#define kLocalizedArduinoSendPWMValue NSLocalizedString(@"Arduino send PWM\nPin:%@ Value:%@", nil)
+
+
 //************************************************************************************************************
 //**********************************       Login/Upload            *******************************************
 //************************************************************************************************************

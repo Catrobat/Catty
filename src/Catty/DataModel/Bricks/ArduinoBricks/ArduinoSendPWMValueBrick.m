@@ -20,46 +20,37 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <UIKit/UIKit.h>
-#import "SpriteObject.h"
-#import "UIDefines.h"
-#import "BrickProtocol.h"
+#import "ArduinoSendPWMValueBrick.h"
+#import "Script.h"
 
-@class Script;
-
-@interface Brick : NSObject <BrickProtocol>
-
-@property (nonatomic, readonly) kBrickCategoryType brickCategoryType;
-@property (nonatomic, readonly) kBrickType brickType;
-@property (nonatomic, strong, readonly) NSString *brickTitle;
-@property (nonatomic, weak) Script *script;
-@property (nonatomic, getter=isAnimated) BOOL animate;
-@property (nonatomic, getter=isAnimatedInsertBrick) BOOL animateInsertBrick;
-@property (nonatomic) BOOL isSelected;
-
-- (BOOL)isSelectableForObject;
-
-- (BOOL)isAnimateable;
-
-- (BOOL)isFormulaBrick;
-
-- (BOOL)isBluetoothBrick;
-
-- (BOOL)isPhiroBrick;
-
-- (BOOL)isArduinoBrick;
-
-- (NSString*)description;
-
-- (SKAction*)action;
-
-- (BOOL)isEqualToBrick:(Brick*)brick;
-
-- (id)mutableCopyWithContext:(CBMutableCopyContext*)context AndErrorReporting:(BOOL)reportError;
-
-- (void)removeFromScript;
-
-- (void)removeReferences;
+@implementation ArduinoSendPWMValueBrick
+- (NSString*)brickTitle
+{
+    return kLocalizedArduinoSendPWMValue;
+}
 
 
+#pragma mark - Description
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"Arduino send pwm/analog Value (Pin: %f,Value: %f)", [self.pin interpretDoubleForSprite:self.script.object],[self.value interpretDoubleForSprite:self.script.object]];
+}
+
+- (BOOL)isEqualToBrick:(Brick*)brick
+{
+    if (![self.pin isEqualToFormula:((ArduinoSendPWMValueBrick*)brick).pin]) {
+        return NO;
+    }
+    if (![self.value isEqualToFormula:((ArduinoSendPWMValueBrick*)brick).value]) {
+        return NO;
+    }
+    return YES;
+}
+
+#pragma mark - Default values
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
+{
+    self.pin = [[Formula alloc] initWithZero];
+    self.value = [[Formula alloc] initWithZero];
+}
 @end
