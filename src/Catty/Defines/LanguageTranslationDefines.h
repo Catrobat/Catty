@@ -524,6 +524,7 @@
 #define kUISoundTitle  NSLocalizedStringFromTable(@"Sound", @"BrickCategoryViewController", nil);
 #define kUILookTitle  NSLocalizedStringFromTable(@"Look", @"BrickCategoryViewController", nil);
 #define kUIVariableTitle  NSLocalizedStringFromTable(@"Variable", @"BrickCategoryViewController", nil);
+#define kUIArduinoTitle  NSLocalizedStringFromTable(@"Arduino", @"BrickCategoryViewController", nil);
 #define kUIPhiroTitle  NSLocalizedStringFromTable(@"Phiro", @"BrickCategoryViewController", nil);
 
 

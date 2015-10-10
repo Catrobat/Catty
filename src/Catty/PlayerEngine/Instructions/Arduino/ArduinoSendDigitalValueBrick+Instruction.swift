@@ -20,13 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ArduinoBrick.h"
-#import "Formula.h"
-#import "BrickFormulaProtocol.h"
+import Foundation
 
-@interface ArduinoSendPWMValueBrick : ArduinoBrick<BrickFormulaProtocol>
+extension ArduinoSendDigitalValueBrick :CBInstructionProtocol {
+    
+    func instruction() -> CBInstruction {
+        
+        return CBInstruction.ExecClosure { (context, _) in
+            let pin = UInt8(self.pin.interpretIntegerForSprite(self.script?.object))
+            let value = Int(self.value.interpretDoubleForSprite(self.script?.object))
+            
+            guard let arduino:ArduinoDevice = BluetoothService.sharedInstance.arduino else{
+                return
+            }
 
-@property (nonatomic, strong) Formula *pin;
-@property (nonatomic, strong) Formula *value;
-
-@end
+            arduino.setDigitalArduinoPin(pin, pinValue: value)
+        }
+    }
+    
+}

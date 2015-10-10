@@ -136,14 +136,13 @@ public class Peripheral : NSObject, CBPeripheralDelegate, PeripheralWrapper {
         ownCharacteristic.didUpdateNotificationState(error)
     }
     
-    public func peripheral(_:CBPeripheral, didUpdateValueForCharacteristic characteristic:CBCharacteristic, error:NSError?) {
+    public func peripheral(peripheral:CBPeripheral, didUpdateValueForCharacteristic characteristic:CBCharacteristic, error:NSError?) {
         guard let ownCharacteristic = self.ownCharacteristics[characteristic] else {
             NSLog("Error")
             return
         }
         NSLog("uuid=\(ownCharacteristic.uuid.UUIDString), name=\(ownCharacteristic.name)")
         ownCharacteristic.didUpdate(error)
-        self.didUpdateValue(ownCharacteristic)
     }
     
     
@@ -223,10 +222,7 @@ public class Peripheral : NSObject, CBPeripheralDelegate, PeripheralWrapper {
             NSLog("uuid=\(bcService.uuid.UUIDString), name=\(bcService.name)")
         }
     }
-    
-    public func didUpdateValue(characteristic:Characteristic) {
-        
-    }
+
     
     public var id : NSUUID {
         return self.cbPeripheral.identifier

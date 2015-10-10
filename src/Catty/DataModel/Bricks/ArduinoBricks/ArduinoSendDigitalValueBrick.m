@@ -29,6 +29,23 @@
     return kLocalizedArduinoSendDigitalValue;
 }
 
+- (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    if(paramNumber == 0)
+        return self.pin;
+    else if(paramNumber == 1)
+        return self.value;
+    
+    return nil;
+}
+
+- (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+{
+    if(paramNumber == 0)
+        self.pin = formula;
+    else if(paramNumber == 1)
+        self.value = formula;
+}
 
 #pragma mark - Description
 - (NSString*)description

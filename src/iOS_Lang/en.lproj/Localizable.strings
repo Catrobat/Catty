@@ -59,6 +59,12 @@
 "April" = "April";
 
 /* No comment provided by engineer. */
+"Arduino send digital\nPin:%@ Value:%@" = "Arduino send digital\nPin:%@ Value:%@";
+
+/* No comment provided by engineer. */
+"Arduino send PWM\nPin:%@ Value:%@" = "Arduino send PWM\nPin:%@ Value:%@";
+
+/* No comment provided by engineer. */
 "Aug" = "Aug";
 
 /* No comment provided by engineer. */

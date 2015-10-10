@@ -62,7 +62,12 @@ protocol FirmataDelegate {
     func sendData(newData: NSData)
     func didReceiveAnalogMessage(pin:Int,value:Int)
     //TODO add more delegates!!!
-//    func didReceiveDigitalMessage(pin:Int,value:Int)
+    func didReceiveDigitalMessage(pin:Int,value:Int)
+    func firmwareVersionReceived(name:String)
+    func protocolVersionReceived(name:String)
+//    func I2cMessageReceived(message:String)
+    func stringDataReceived(message:String)
+    func didReceiveDigitalPort(port:Int, portData:[Int])
 }
 
 enum PinState:Int{
@@ -337,7 +342,7 @@ public class Firmata {
     
     
     //REPORT ANALOG PIN
-    func setAnalogValueReportingforPin(pin:Int, enabled:Bool){
+    func setAnalogValueReportingforPin(pin:UInt8, enabled:Bool){
         
         //Enable analog read for a pin
         
@@ -656,14 +661,10 @@ public class Firmata {
     }
     
     func updateForPinStates(pinStates:Int, port:Int) {
-        
-        //        printLog(self, "updateForPinStates", "port = \(port) : pinStates = \(pinStates)")
         print(self, "getting pin states <--", "[\(binaryforByte(portMasks[0]))] [\(binaryforByte(portMasks[1]))] [\(binaryforByte(portMasks[2]))]")
-        
-        //Update pin table with new pin values received
-        
         let offset = 8 * port
         
+        var portData:[Int] = []
         //Iterate through all  pins
         for (var i:Int = 0; i <= 7; i++) {
             
@@ -672,19 +673,18 @@ public class Firmata {
             state = state & mask
             state = state >> i
             
-            print("\(state) \(offset)")
-//                    if (cell?.mode == PinMode.Input || cell?.mode == PinMode.Output){
-//                        cell?.setDigitalValue(state)
-//                    }
-
+            let pin = i + Int(offset)
+            delegate.didReceiveDigitalMessage(pin, value: state)
+            portData.append(state)
         }
+
         
         //Save reference state mask
         portMasks[port] = UInt8(pinStates)
-        
+        delegate.didReceiveDigitalPort(port, portData: portData)
     }
     
-    // PARSE
+    //MARK: PARSE
     
     /* Receive Firmware Name and Version (after query)
     * 0  START_SYSEX (0xF0)
@@ -708,7 +708,7 @@ public class Firmata {
             returnString.appendContentsOf("\(lsb+msb)")
         }
         
-        //TODO
+        delegate.stringDataReceived(returnString)
     }
 
     /* Receive Firmware Name and Version (after query)
@@ -731,12 +731,11 @@ public class Firmata {
         data.getBytes(&bytes, length:count * sizeof(UInt8))
     
         let nameData = data.subdataWithRange(range)
-        let name:NSString = NSString(data: nameData, encoding: NSASCIIStringEncoding)!
-        
+        let name:String = String(data: nameData, encoding: NSASCIIStringEncoding)!
+
         print(name)
 
-//TODO
-//        [peripheralDelegate didReportFirmware:name major:(unsigned short int)bytePtr[2] minor:(unsigned short int)bytePtr[3]];
+        delegate.firmwareVersionReceived(name + " \(Int32(bytes[2]))." + "\(Int32(bytes[3]))")
     }
 
     /* version report format
@@ -750,8 +749,9 @@ public class Firmata {
         let count = data.length / sizeof(UInt8)
         var bytes = [UInt8](count: count, repeatedValue: 0)
         data.getBytes(&bytes, length:count * sizeof(UInt8))
-// TODO
-//    [peripheralDelegate didReportVersionMajor:(unsigned short int)bytes[1] minor:(unsigned short int)bytes[2]];
+
+        
+        delegate.protocolVersionReceived("\(Int32(bytes[1]))," + "\(Int32(bytes[2]))")
     
     }
     

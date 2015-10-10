@@ -27,29 +27,29 @@ extension PhiroMotorMoveBackwardBrick :CBInstructionProtocol {
     func instruction() -> CBInstruction {
         
         return CBInstruction.ExecClosure { (context, _) in
-//            var speedValue = self.formula.interpretDoubleForSprite(self.script?.object)
-            
+            let speedValue:Int = Int(self.formula.interpretIntegerForSprite(self.script?.object))
+            //TODO
             //            if (speedValue < MIN_SPEED) {
             //                speedValue = MIN_SPEED;
             //            } else if (speedValue > MAX_SPEED) {
             //                speedValue = MAX_SPEED;
             //            }
             
-            //        Phiro phiro = btService.getDevice(BluetoothDevice.PHIRO);
-            //        if (phiro == null) {
-            //            return;
-            //        }
+            guard let phiro:Phiro = BluetoothService.sharedInstance.phiro else{
+                return
+            }
+ 
             
             switch (self.motor) {
             case .Left:
-                //                phiro.moveLeftMotorBackward(speedValue);
+                    phiro.moveLeftMotorBackward(speedValue);
                 break;
             case .Right:
-                //                phiro.moveRightMotorBackward(speedValue);
+                    phiro.moveRightMotorBackward(speedValue);
                 break;
             case .Both:
-                //                phiro.moveRightMotorBackward(speedValue);
-                //                phiro.moveLeftMotorBackward(speedValue);
+                    phiro.moveRightMotorBackward(speedValue);
+                    phiro.moveLeftMotorBackward(speedValue);
                 break;
             }
         }

@@ -182,6 +182,7 @@
                                                         UIPageViewControllerOptionInterPageSpacingKey : @20.f
                                                         }];
         //ADD Indexes from PageIndexCategoryType for selection those bricks
+        [bsvc.pageIndexArray addObject:[NSNumber numberWithInteger:kPageIndexArduinoBrick]];
         [bsvc.pageIndexArray addObject:[NSNumber numberWithInteger:kPageIndexPhiroBrick]];
         
         [bsvc setViewControllers:@[bcvc]

@@ -31,7 +31,7 @@ extension PhiroPlayToneBrick :CBInstructionProtocol {
             
             
             guard let phiro:Phiro = BluetoothService.sharedInstance.phiro else {
-                        //EROR
+                        //ERROR
                         return;
                     }
             

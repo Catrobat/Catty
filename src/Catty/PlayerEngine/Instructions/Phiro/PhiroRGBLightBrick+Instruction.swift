@@ -27,29 +27,34 @@ extension PhiroRGBLightBrick :CBInstructionProtocol {
     func instruction() -> CBInstruction {
         
         return CBInstruction.ExecClosure { (context, _) in
-            //        CGFloat redValue = [self getFormulaValue:self.redFormula];
-            //        CGFloat greenValue = [self getFormulaValue:self.greenFormula];
-            //        CGFloat blueValue = [self getFormulaValue:self.blueFormula];
+            let redValue = self.getFormulaValue(self.redFormula)
+            let greenValue = self.getFormulaValue(self.greenFormula)
+            let blueValue = self.getFormulaValue(self.blueFormula)
             
+            
+            guard let phiro:Phiro = BluetoothService.sharedInstance.phiro else {
+                //ERROR
+                return;
+            }
             
             switch (self.light) {
             case .LLeft:
-                //          		phiro.setLeftRGBLightColor(redValue, greenValue, blueValue);
+                phiro.setLeftRGBLightColor(redValue, green: greenValue, blue: blueValue);
                 break;
             case .LRight:
-                //                phiro.setRightRGBLightColor(redValue, greenValue, blueValue);
+                phiro.setRightRGBLightColor(redValue, green: greenValue, blue: blueValue);
                 break;
             case .LBoth:
-                //          		phiro.setLeftRGBLightColor(redValue, greenValue, blueValue);
-                //                phiro.setRightRGBLightColor(redValue, greenValue, blueValue);
+                phiro.setLeftRGBLightColor(redValue, green: greenValue, blue: blueValue);
+                phiro.setRightRGBLightColor(redValue, green: greenValue, blue: blueValue);
                 break;
             }        }
         
     }
     
     
-    func getFormulaValue(formula:Formula) -> Double {
-        let rgbValue = formula.interpretDoubleForSprite(self.script?.object)
+    func getFormulaValue(formula:Formula) -> Int {
+        let rgbValue = Int(formula.interpretIntegerForSprite(self.script?.object))
 //        if (rgbValue < MIN_VALUE) {
 //            rgbValue = MIN_VALUE;
 //        } else if (rgbValue > MAX_VALUE) {

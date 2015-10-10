@@ -201,6 +201,10 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kSetVariableBrick          = 400,
     kChangeVariableBrick       = 401,
     
+    // 5xx arduino bricks
+    kArduinoSendDigitalValueBrick  = 500,
+    kArduinoSendPWMValueBrick = 501,
+    
     // 6xx phiro bricks
     kPhiroMotorStopBrick       = 600,
     kPhiroMotorMoveForwardBrick = 601,
@@ -245,7 +249,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     [UIColor soundBrickVioletColor],\
     [UIColor lookBrickGreenColor],\
     [UIColor varibaleBrickRedColor],\
-    [UIColor PhiroBrickColor],\
+    [UIColor ArduinoBrickColor],\
     [UIColor PhiroBrickColor]\
 ]
 
@@ -255,7 +259,7 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     [UIColor soundBrickStrokeColor],\
     [UIColor lookBrickStrokeColor],\
     [UIColor variableBrickStrokeColor],\
-    [UIColor PhiroBrickStrokeColor],\
+    [UIColor ArduinoBrickStrokeColor],\
     [UIColor PhiroBrickStrokeColor]\
 ]
 
@@ -321,6 +325,10 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     /* variable bricks */\
     @"SetVariableBrick"          : @(kSetVariableBrick),\
     @"ChangeVariableBrick"       : @(kChangeVariableBrick),\
+\
+    /* arduino bricks */\
+    @"ArduinoSendDigitalValueBrick" : @(kArduinoSendDigitalValueBrick),\
+    @"ArduinoSendPWMValueBrick"     : @(kArduinoSendPWMValueBrick),\
 \
     /* phiro bricks */\
     @"PhiroMotorStopBrick"          : @(kPhiroMotorStopBrick),\
@@ -398,6 +406,10 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 /* variable bricks */\
 @"SetVariableBrick"          : @(kBrickHeight3h),\
 @"ChangeVariableBrick"       : @(kBrickHeight3h),\
+\
+/* arduino bricks */\
+@"ArduinoSendDigitalValueBrick" : @(kBrickHeight2h),\
+@"ArduinoSendPWMValueBrick"     : @(kBrickHeight2h),\
 \
 /* phiro bricks */\
 @"PhiroMotorStopBrick"          : @(kBrickHeight2h),\

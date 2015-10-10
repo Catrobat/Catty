@@ -177,7 +177,7 @@ NSString* CBTitleFromPageIndexCategoryType(PageIndexCategoryType pageIndexType)
         case kPageIndexVariableBrick:
             return kUIVariableTitle;
         case kPageIndexArduinoBrick:
-            return @"ARDUINO";
+            return kUIArduinoTitle;
         case kPageIndexPhiroBrick:
             return kUIPhiroTitle;
         default:

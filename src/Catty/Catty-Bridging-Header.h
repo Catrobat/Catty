@@ -76,6 +76,8 @@
 #import "PhiroPlayToneBrick.h"
 #import "PhiroMotorMoveForwardBrick.h"
 #import "PhiroMotorMoveBackwardBrick.h"
+#import "ArduinoSendDigitalValueBrick.h"
+#import "ArduinoSendPWMValueBrick.h"
 
 // Formulas
 #import "Formula.h"

@@ -22,8 +22,9 @@
 
 #import "ArduinoBrick.h"
 #import "Formula.h"
+#import "BrickFormulaProtocol.h"
 
-@interface ArduinoSendDigitalValueBrick : ArduinoBrick
+@interface ArduinoSendDigitalValueBrick : ArduinoBrick<BrickFormulaProtocol>
 
 @property (nonatomic, strong) Formula *pin;
 @property (nonatomic, strong) Formula *value;

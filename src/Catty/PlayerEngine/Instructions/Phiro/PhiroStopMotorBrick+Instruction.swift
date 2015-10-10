@@ -28,16 +28,21 @@ extension PhiroMotorStopBrick :CBInstructionProtocol {
     func instruction() -> CBInstruction {
         
         return CBInstruction.ExecClosure { (context, _) in
+            
+            guard let phiro:Phiro = BluetoothService.sharedInstance.phiro else {
+                //ERROR
+                return;
+            }
             switch (self.motor) {
             case .Left:
-                //                phiro.stopLeftMotor(speedValue);
+                phiro.stopLeftMotor();
                 break;
             case .Right:
-                //                phiro.stopRightMotor(speedValue);
+                phiro.stopRightMotor();
                 break;
             case .Both:
-                //                phiro.stopRightMotor(speedValue);
-                //                phiro.stopLeftMotor(speedValue);
+                phiro.stopRightMotor();
+                phiro.stopLeftMotor();
                 break;
             }
         }

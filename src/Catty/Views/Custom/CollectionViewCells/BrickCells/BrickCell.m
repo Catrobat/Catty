@@ -115,6 +115,12 @@
     @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"]     /* change size by N         */\
 ]
 
+// arduino bricks
+#define kArduinoBrickNameParams @[\
+@[@"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}"], /* SendDigitalValue          */\
+@[@"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}"], /* SendPWMValue           */\
+]
+
 // phiro bricks
 #define kPhiroBrickNameParams @[\
 @[@"{MOTOR}"],    /* stop Phiro Motor             */\
@@ -342,6 +348,9 @@
             break;
         case kPhiroBrick:
             brickCategoryParams = kPhiroBrickNameParams;
+            break;
+        case kArduinoBrick:
+            brickCategoryParams = kArduinoBrickNameParams;
             break;
         default:
             NSError(@"unknown brick category type given");

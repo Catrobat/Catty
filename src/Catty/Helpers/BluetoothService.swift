@@ -35,9 +35,41 @@ class BluetoothService:NSObject {
         return Static.instance!
     }
     
+    var digitalSemaphoreArray:[dispatch_semaphore_t] = []
+    var analogSemaphoreArray:[dispatch_semaphore_t] = []
     
     var phiro:Phiro?
-//    var arduino:Arduino?....
+    var arduino:ArduinoDevice?
     
+    
+    func setDigitalSemaphore(semaphore:dispatch_semaphore_t){
+        digitalSemaphoreArray.append(semaphore)
+    }
+    
+    func signalDigitalSemaphore(){
+        if(digitalSemaphoreArray.count > 0){
+            let sema = digitalSemaphoreArray[0]
+            digitalSemaphoreArray.removeAtIndex(0)
+            dispatch_semaphore_signal(sema)
+        }
+        
+    }
+    
+    func setAnalogSemaphore(semaphore:dispatch_semaphore_t){
+        analogSemaphoreArray.append(semaphore)
+    }
+    
+    func signalAnalogSemaphore(){
+        if(analogSemaphoreArray.count > 0){
+            let sema = analogSemaphoreArray[0]
+            analogSemaphoreArray.removeAtIndex(0)
+            dispatch_semaphore_signal(sema)
+        }
+        
+    }
+    
+    func getSemaphore()->dispatch_semaphore_t {
+        return dispatch_semaphore_create(0)
+    }
     
 }
