@@ -81,7 +81,7 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
 @implementation LXReorderableCollectionViewFlowLayout
 
 - (void)setDefaults {
-    _scrollingSpeed = 100.0f;
+    _scrollingSpeed = 200.0f;
     _scrollingTriggerEdgeInsets = UIEdgeInsetsMake(50.0f, 50.0f, 50.0f, 50.0f);
 }
 
@@ -505,6 +505,10 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
     
     if ([self.panGestureRecognizer isEqual:gestureRecognizer]) {
         return [self.longPressGestureRecognizer isEqual:otherGestureRecognizer];
+    }
+    if ([otherGestureRecognizer isKindOfClass:NSClassFromString(@"UIScrollViewPanGestureRecognizer")] &&
+        [self.collectionView.gestureRecognizers containsObject:otherGestureRecognizer]) {
+        return YES;
     }
     
     return NO;

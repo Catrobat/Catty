@@ -84,6 +84,7 @@
     self.searchController.searchBar.barTintColor = UIColor.navBarColor;
     self.searchController.searchBar.barStyle = UISearchBarStyleMinimal;
     self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y,[Util screenWidth],self.searchController.searchBar.frame.size.height);
+    self.searchBar.frame = CGRectMake(self.searchBar.frame.origin.x, self.searchBar.frame.origin.y,[Util screenWidth],self.searchBar.frame.size.height);
 
     self.tableView.backgroundColor = [UIColor backgroundColor];
     self.checkSearch = YES;
@@ -91,10 +92,11 @@
     self.tableView.separatorColor = UIColor.globalTintColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
-//                                                                          action:@selector(dismissKeyboard)];
-//    [self.view addGestureRecognizer:tap];
-//    tap.delegate = self;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                          action:@selector(dismissKeyboard)];
+    [tap setCancelsTouchesInView:NO];
+    [self.view addGestureRecognizer:tap];
+    tap.delegate = self;
 
 
     self.view.backgroundColor = [UIColor backgroundColor];
@@ -140,6 +142,12 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer*)gestureRecognizer
 shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer*)otherGestureRecognizer {
+    return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+       shouldReceiveTouch:(UITouch *)touch
+{
     return YES;
 }
 
