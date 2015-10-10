@@ -53,7 +53,7 @@
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
-@interface ScenePresenterViewController() <UIActionSheetDelegate>
+@interface ScenePresenterViewController() <UIActionSheetDelegate, RPScreenRecorderDelegate>
 @property (nonatomic) BOOL menuOpen;
 @property (nonatomic) CGPoint firstGestureTouchPoint;
 @property (nonatomic) UIImage *snapshotImage;
@@ -105,6 +105,8 @@
 {
     [super viewWillAppear:animated];
     [self setupScene];
+    RPScreenRecorder *sharedRecorder = [RPScreenRecorder sharedRecorder];
+    sharedRecorder.delegate = self;
     UIApplication.sharedApplication.idleTimerDisabled = YES;
     UIApplication.sharedApplication.statusBarHidden = YES;
     self.navigationController.navigationBar.hidden = YES;
@@ -116,7 +118,6 @@
     [self setUpLabels];
     [self setUpGridView];
     [self checkAspectRatio];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -262,15 +263,13 @@
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"]
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio_pressed"]
                     andSelector:@selector(manageAspectRatioAction:)];
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && ![[Util getExtactDeviceDescription]isEqualToString:@"iPhone 4S"] && ![[Util getExtactDeviceDescription]isEqualToString:@"iPhone 5 (GSM)"] && ![[Util getExtactDeviceDescription]isEqualToString:@"iPhone 5 (GSM+CDMA)"] && ![[Util getExtactDeviceDescription]isEqualToString:@"iPhone 5c (GSM)"] && ![[Util getExtactDeviceDescription]isEqualToString:@"iPhone 5c (GSM+CDMA)"]) {
-        // code here
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
         [self setupButtonWithButton:self.menuRecordButton
                     ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"]
             andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio_pressed"]
                         andSelector:@selector(recordProgram:)];
-
     }
-    }
+}
 
 - (void)setupButtonWithButton:(UIButton*)button ImageNameNormal:(UIImage*)stateNormal andImageNameHighlighted:(UIImage*)stateHighlighted andSelector:(SEL)myAction
 {
@@ -836,6 +835,13 @@
     UIImage *output = [UIImage imageWithCGImage:cgimg];
     CFRelease(cgimg);
     return output;
+}
+
+#pragma mark ScreenRecording
+
+-(void)screenRecorderDidChangeAvailability:(RPScreenRecorder *)screenRecorder
+{
+    self.menuRecordButton.hidden = screenRecorder.available;
 }
 
 @end
