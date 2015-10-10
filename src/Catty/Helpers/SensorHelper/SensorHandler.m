@@ -50,6 +50,7 @@
 
 
 static SensorHandler* sharedSensorHandler = nil;
+static dispatch_once_t onceToken;
 
 + (instancetype)sharedSensorHandler
 {
@@ -67,7 +68,6 @@ static SensorHandler* sharedSensorHandler = nil;
     if (self) {
         self.motionManager = [[CMMotionManager alloc] init];
         self.locationManager = [[CLLocationManager alloc] init];
-        [self checkIfSensorsAreAvailable];
     }
     
     return self;
@@ -112,7 +112,10 @@ static SensorHandler* sharedSensorHandler = nil;
 }
 
 
-- (double)valueForSensor:(Sensor)sensor {
+- (double)valueForSensor:(Sensor)sensor {;
+    dispatch_once(&onceToken, ^{
+        [self checkIfSensorsAreAvailable];
+    });
     double result = 0;
     switch (sensor) {
         case X_ACCELERATION: {
@@ -327,6 +330,11 @@ static SensorHandler* sharedSensorHandler = nil;
 //    CGFloat percent = pow (10, (0.05 * decibel));
     CGFloat percent = (CGFloat)pow (10, decibel / 20.0f);
     return percent * 100.0f;
+}
+
+-(void)resetSensorAvailabilityToken
+{
+    onceToken = 0;
 }
 
 

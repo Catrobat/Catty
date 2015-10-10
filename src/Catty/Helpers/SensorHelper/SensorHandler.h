@@ -38,6 +38,6 @@
 
 - (void) stopSensors;
 
-
+-(void)resetSensorAvailabilityToken;
 
 @end
