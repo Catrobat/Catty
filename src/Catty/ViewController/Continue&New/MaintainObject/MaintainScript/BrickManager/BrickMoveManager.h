@@ -32,5 +32,8 @@
     canMoveToIndexPath:(NSIndexPath*)toIndexPath andObject:(SpriteObject*)object;
 
 -(void)reset;
+-(void)getReadyForNewBrickMovement;
 
+@property (nonatomic, strong) NSIndexPath *upperBorder;
+@property (nonatomic, strong) NSIndexPath *lowerBorder;
 @end
