@@ -262,7 +262,7 @@
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"]
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio_pressed"]
                     andSelector:@selector(manageAspectRatioAction:)];
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0") && ![[Util getExtactDeviceDescription]isEqualToString:@"iPhone 4S"] && ![[Util getExtactDeviceDescription]isEqualToString:@"iPhone 5 (GSM)"] && ![[Util getExtactDeviceDescription]isEqualToString:@"iPhone 5 (GSM+CDMA)"] && ![[Util getExtactDeviceDescription]isEqualToString:@"iPhone 5c (GSM)"] && ![[Util getExtactDeviceDescription]isEqualToString:@"iPhone 5c (GSM+CDMA)"]) {
         // code here
         [self setupButtonWithButton:self.menuRecordButton
                     ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"]
