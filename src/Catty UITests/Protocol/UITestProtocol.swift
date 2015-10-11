@@ -24,6 +24,7 @@ import XCTest
 
 protocol UITestProtocol {
     func restoreDefaultProgram()
+    func addSoundsToCurrentProgramsBackgroundFromCatrobatTVAndStayAtSoundTV(numSounds: UInt)
 }
 
 extension UITestProtocol {
