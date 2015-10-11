@@ -77,6 +77,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *toolTypeButton;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSMutableArray *normalTypeButton;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *highlightedButtons;
+@property (strong, nonatomic) NSMutableArray *sensorTypeButton;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *calcScrollView;
 @property (weak, nonatomic) IBOutlet UIScrollView *mathScrollView;
@@ -257,6 +258,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     //self.pickerGesture.numberOfTapsRequired = 1;
     //[self.variablePicker addGestureRecognizer:self.pickerGesture];
     [self update];
+    [self updateSensorButtonWidth];
    
 }
 
@@ -338,7 +340,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
     NSInteger buttonCount = self.standardSensorArray.count;
     self.sensorScrollHelperView.frame = CGRectMake(self.sensorScrollHelperView.frame.origin.x, self.sensorScrollHelperView.frame.origin.y, self.sensorScrollView.frame.size.width, buttonCount *self.calcButton.frame.size.height);
-    
+    self.sensorTypeButton = [NSMutableArray new];
     for (NSInteger count = 0; count < self.standardSensorArray.count; count++) {
         [self addStandardSensorViewButton:count];
     }
@@ -351,7 +353,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self addArduinoSensorViewButton:count and:buttonCount+count];
     }
     buttonCount += self.arduinoSensorArray.count;
-    
+    [self.normalTypeButton addObjectsFromArray:self.sensorTypeButton];
     self.sensorScrollHelperView.frame = CGRectMake(self.sensorScrollHelperView.frame.origin.x, self.sensorScrollHelperView.frame.origin.y, self.sensorScrollHelperView.frame.size.width, buttonCount *self.calcButton.frame.size.height);
     self.sensorScrollView.contentSize = CGSizeMake(self.sensorScrollHelperView.frame.size.width, buttonCount *self.calcButton.frame.size.height);
 }
@@ -359,29 +361,23 @@ NS_ENUM(NSInteger, ButtonIndex) {
 -(void)addStandardSensorViewButton:(NSInteger)tag
 {
     UIButton *button = [self getSensorButton:tag];
-
     if (tag >5) {
         button.tag = 900+tag+7;
     } else {
         button.tag = 900+tag;
     }
-    [self.sensorScrollHelperView addSubview:button];
-    [self.normalTypeButton addObject:button];
 }
 -(void)addPhiroSensorViewButton:(NSInteger)tag and:(NSInteger)buttonCount
 {
     UIButton *button = [self getSensorButton:buttonCount];
     button.tag = 914+tag;
-    [self.sensorScrollHelperView addSubview:button];
-    [self.normalTypeButton addObject:button];
+
 }
 
 -(void)addArduinoSensorViewButton:(NSInteger)tag and:(NSInteger)buttonCount
 {
     UIButton *button = [self getSensorButton:buttonCount];
     button.tag = 920+tag;
-    [self.sensorScrollHelperView addSubview:button];
-    [self.normalTypeButton addObject:button];
 }
 
 -(UIButton*)getSensorButton:(NSInteger)buttonCount
@@ -391,8 +387,17 @@ NS_ENUM(NSInteger, ButtonIndex) {
                action:@selector(buttonPressed:)
      forControlEvents:UIControlEventTouchUpInside];
     button.frame = CGRectMake(0, buttonCount*self.calcButton.frame.size.height, self.sensorScrollHelperView.frame.size.width, self.calcButton.frame.size.height);
-    
+    [self.sensorScrollHelperView addSubview:button];
+    [self.sensorTypeButton addObject:button];
     return button;
+}
+
+-(void)updateSensorButtonWidth
+{
+    for(UIButton* button in self.sensorTypeButton){
+        button.frame = CGRectMake(button.frame.origin.x, button.frame.origin.y, self.sensorScrollView.frame.size.width, button.frame.size.height);
+    }
+    
 }
 
 #pragma mark - localizeView
