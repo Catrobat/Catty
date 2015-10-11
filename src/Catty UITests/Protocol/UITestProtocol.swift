@@ -24,6 +24,8 @@ import XCTest
 
 protocol UITestProtocol {
     func restoreDefaultProgram()
+    func addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtLooksTV(numLooks: UInt)
+    func addSoundsToCurrentProgramsBackgroundFromCatrobatTVAndStayAtSoundTV(numSounds: UInt)
 }
 
 extension UITestProtocol {
@@ -41,5 +43,66 @@ extension UITestProtocol {
         // finally go back to main menu, because this method is used by other tests
         app.navigationBars["Programs"].buttons["Pocket Code"].tap()
     }
+    
+    func addSoundsToCurrentProgramsBackgroundFromCatrobatTVAndStayAtSoundTV(numSounds: UInt) {
+        let app = XCUIApplication()
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts["Continue"].tap()
+        tablesQuery.staticTexts["Background"].tap()
+        tablesQuery.staticTexts["Sounds"].tap()
+        
+        let toolbarsQuery = app.toolbars
+        let addButton = toolbarsQuery.buttons["Add"]
+        let pocketCodeRecorderButton = app.buttons["Pocket Code Recorder"]
+        let recordButton = toolbarsQuery.buttons["record"]
+        let pauseButton = toolbarsQuery.buttons["pause"]
+        let doneButton = toolbarsQuery.buttons["Done"]
+        
+        for _ in 1...numSounds {
+            addButton.tap()
+            pocketCodeRecorderButton.tap()
+            recordButton.tap()
+            pauseButton.tap()
+            doneButton.tap()
+        }
+    }
 
+    func addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtLooksTV(numLooks: UInt) {
+        // delete all existing looks...
+        let app = XCUIApplication()
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts["Continue"].tap()
+        tablesQuery.staticTexts["Background"].tap()
+        tablesQuery.staticTexts["Backgrounds"].tap()
+        
+        let editButton = app.navigationBars["Looks"].buttons["Edit"]
+        editButton.tap()
+        app.buttons["Delete Looks"].tap()
+        
+        let toolbarsQuery = app.toolbars
+        toolbarsQuery.buttons["Select All"].tap()
+        toolbarsQuery.buttons["Delete"].tap()
+        
+        // add new ones
+        let addButton = app.toolbars.buttons["Add"]
+        let drawNewImageButton = app.buttons["Draw new image"]
+        let image = app.scrollViews.childrenMatchingType(.Other).element.childrenMatchingType(.Image).elementBoundByIndex(1)
+        let looksButton = app.navigationBars["Pocket Paint"].buttons["Looks"]
+        let yesButton = app.alerts["Save to PocketCode"].collectionViews.buttons["Yes"]
+        let collectionViewsQuery = app.alerts["Add image"].collectionViews
+        let enterYourImageNameHereTextField = collectionViewsQuery.textFields["Enter your image name here..."]
+        let okButton = collectionViewsQuery.buttons["OK"]
+        let clearTextButton = collectionViewsQuery.buttons["Clear text"]
+        
+        for i : UInt in 1...numLooks {
+            addButton.tap()
+            drawNewImageButton.tap()
+            image.swipeRight()
+            looksButton.tap()
+            yesButton.tap()
+            clearTextButton.tap()
+            enterYourImageNameHereTextField.typeText("Image" + String(i))
+            okButton.tap()
+        }
+    }
 }
