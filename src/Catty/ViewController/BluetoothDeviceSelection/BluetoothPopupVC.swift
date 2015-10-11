@@ -30,6 +30,16 @@ class BluetoothPopupVC: MXSegmentedPagerController {
     weak var delegate : BaseTableViewController?
     weak var vc : ScenePresenterViewController?
     
+    internal var needPhiro:Bool?
+    internal var needArduino:Bool?
+    
+    @objc func setNeedPhiro(){
+        needPhiro = true
+    }
+    @objc func setNeedArduino(){
+        needArduino = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.segmentedPager.backgroundColor = UIColor.backgroundColor()

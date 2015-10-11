@@ -804,6 +804,8 @@
     return nil;
 }
 
+
+
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"Formula Element: Type: %lu, Value: %@", (unsigned long)self.type, self.value];

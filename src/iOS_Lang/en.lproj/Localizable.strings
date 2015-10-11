@@ -59,6 +59,9 @@
 "April" = "April";
 
 /* No comment provided by engineer. */
+"Arduino" = "Arduino";
+
+/* No comment provided by engineer. */
 "Arduino send digital\nPin:%@ Value:%@" = "Arduino send digital\nPin:%@ Value:%@";
 
 /* No comment provided by engineer. */
@@ -1254,6 +1257,12 @@
 
 /* No comment provided by engineer. */
 "Uploaded" = "Uploaded";
+
+/* No comment provided by engineer. */
+"Use Arduino bricks" = "Use Arduino bricks";
+
+/* No comment provided by engineer. */
+"Use Phiro bricks" = "Use Phiro bricks";
 
 /* No comment provided by engineer. */
 "Username" = "Username";

@@ -91,8 +91,6 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
             return
         }
         
-        //TODO: Test packetization
-        
         //send data in lengths of <= 20 bytes
         let dataLength = data.length
         let limit = 20

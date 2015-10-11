@@ -447,10 +447,6 @@
     NSMutableArray *subviews = [NSMutableArray arrayWithCapacity:totalNumberOfSubViews];
     NSInteger counter = 0;
     for (NSString *partLabelTitle in partLabels) {
-
-        // -----------------------------------
-        // TODO: make x-offset calculation much more smarter...
-
         if (partLabelTitle.length) {
             UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:remainingFrame AndText:partLabelTitle andRemainingSpace:remainingFrame.size.width];
     #ifdef LAYOUT_DEBUG

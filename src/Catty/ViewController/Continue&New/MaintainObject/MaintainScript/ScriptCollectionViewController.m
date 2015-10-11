@@ -85,6 +85,7 @@
 #import "BrickPhiroMotorProtocol.h"
 #import "BrickPhiroLightProtocol.h"
 #import "BrickPhiroToneProtocol.h"
+#import "KeychainUserDefaultsDefines.h"
 
 @interface ScriptCollectionViewController() <UICollectionViewDelegate,
                                              UICollectionViewDataSource,
@@ -182,9 +183,13 @@
                                                         UIPageViewControllerOptionInterPageSpacingKey : @20.f
                                                         }];
         //ADD Indexes from PageIndexCategoryType for selection those bricks
-        [bsvc.pageIndexArray addObject:[NSNumber numberWithInteger:kPageIndexArduinoBrick]];
-        [bsvc.pageIndexArray addObject:[NSNumber numberWithInteger:kPageIndexPhiroBrick]];
-        
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:kUsePhiroBricks]) {
+            [bsvc.pageIndexArray addObject:[NSNumber numberWithInteger:kPageIndexPhiroBrick]];
+        }
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseArduinoBricks]) {
+            [bsvc.pageIndexArray addObject:[NSNumber numberWithInteger:kPageIndexArduinoBrick]];
+        }
+
         [bsvc setViewControllers:@[bcvc]
                        direction:UIPageViewControllerNavigationDirectionForward
                         animated:NO
@@ -778,7 +783,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
 }
 
-// TODO: Remove
 - (void)removeBricksWithIndexPaths:(NSArray*)indexPaths
 {
     NSArray *sortedIndexPaths = [indexPaths sortedArrayUsingSelector:@selector(compare:)];
@@ -859,7 +863,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 }
 
 #pragma mark - Editing
-// TODO: Refactor
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];

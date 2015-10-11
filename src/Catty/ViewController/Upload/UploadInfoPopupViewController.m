@@ -39,7 +39,7 @@
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "LanguageTranslationDefines.h"
 #import "NSData+Hashes.h"
-#import "KeychainDefines.h"
+#import "KeychainUserDefaultsDefines.h"
 #import "JNKeychain.h"
 #import "BDKNotifyHUD.h"
 

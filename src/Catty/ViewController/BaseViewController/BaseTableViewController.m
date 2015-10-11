@@ -357,10 +357,16 @@
     
     ScenePresenterViewController *vc = [ScenePresenterViewController new];
     vc.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
+    BOOL phiro,arduino = NO;
+    if ([vc.program.header.isPhiroProProject isEqualToString:@"true"]) { // or has Phiro Bricks
+        phiro = YES;
+    }
+    if ([vc.program.header.isArduinoProject isEqualToString:@"true"]) { // or has Arduino Bricks
+        arduino = YES;
+    }
     
-    if (vc.program.requiresBluetooth || [vc.program.header.isPhiroProProject isEqualToString:@"true"]) {
-        // Open BluetoothSelection
-    // TODO: CHECK Bluetooth Device TYPE NEEDED
+    if (vc.program.requiresBluetooth &&(phiro||arduino)) {
+        //TODO: Set ARDUINO/Phiro by checking bools
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
         BluetoothPopupVC * bvc = (BluetoothPopupVC*)[storyboard instantiateViewControllerWithIdentifier:@"bluetoothPopupVC"];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:(UIViewController*)bvc];

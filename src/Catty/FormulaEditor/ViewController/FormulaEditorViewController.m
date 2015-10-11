@@ -54,6 +54,7 @@
 #import "Brick+UserVariable.h"
 #import "BDKNotifyHUD.h"
 #import "Speakbrick.h"
+#import "KeychainUserDefaultsDefines.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -319,22 +320,23 @@ NS_ENUM(NSInteger, ButtonIndex) {
     for (NSInteger count = 0; count < standardSensorArray.count; count++) {
         [self addStandardSensorViewButton:count];
     }
-    //TODO: if Phiro project
     
-    NSArray *phiroSensorArray = [NSArray arrayWithObjects:@"front_left", @"front_right",@"side_left", @"side_right", @"bottom_left", @"bottom_right", nil];
-    for (NSInteger count = 0; count < phiroSensorArray.count; count++) {
-        [self addPhiroSensorViewButton:count and:buttonCount+count];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kUsePhiroBricks]) {
+        NSArray *phiroSensorArray = [NSArray arrayWithObjects:@"front_left", @"front_right",@"side_left", @"side_right", @"bottom_left", @"bottom_right", nil];
+        for (NSInteger count = 0; count < phiroSensorArray.count; count++) {
+            [self addPhiroSensorViewButton:count and:buttonCount+count];
+        }
+        buttonCount += phiroSensorArray.count;
     }
-    buttonCount += phiroSensorArray.count;
-    ///END
-    
-    //TODO: if Phiro project
-    NSArray *arduinoSensorArray = [NSArray arrayWithObjects:@"analogPin0", @"analogPin1",@"analogPin2", @"analogPin3", @"analogPin4",@"analogPin5",@"digitalPin0",@"digitalPin1",@"digitalPin2",@"digitalPin3",@"digitalPin4",@"digitalPin5",@"digitalPin6",@"digitalPin7",@"digitalPin8",@"digitalPin9",@"digitalPin10",@"digitalPin11",@"digitalPin12",@"digitalPin13", nil];
-    for (NSInteger count = 0; count < arduinoSensorArray.count; count++) {
-        [self addArduinoSensorViewButton:count and:buttonCount+count];
+
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseArduinoBricks]) {
+        NSArray *arduinoSensorArray = [NSArray arrayWithObjects:@"analogPin0", @"analogPin1",@"analogPin2", @"analogPin3", @"analogPin4",@"analogPin5",@"digitalPin0",@"digitalPin1",@"digitalPin2",@"digitalPin3",@"digitalPin4",@"digitalPin5",@"digitalPin6",@"digitalPin7",@"digitalPin8",@"digitalPin9",@"digitalPin10",@"digitalPin11",@"digitalPin12",@"digitalPin13", nil];
+        for (NSInteger count = 0; count < arduinoSensorArray.count; count++) {
+            [self addArduinoSensorViewButton:count and:buttonCount+count];
+        }
+        buttonCount += arduinoSensorArray.count;
     }
-    buttonCount += arduinoSensorArray.count;
-    ///END
+
     
     [self.normalTypeButton addObjectsFromArray:self.sensorTypeButton];
     self.sensorScrollHelperView.frame = CGRectMake(self.sensorScrollHelperView.frame.origin.x, self.sensorScrollHelperView.frame.origin.y, self.sensorScrollHelperView.frame.size.width, buttonCount *self.calcButton.frame.size.height);

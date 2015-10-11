@@ -25,3 +25,6 @@
 #define kcUsername @"username"
 #define kcPassword @"password"
 #define kcEmail @"userEmail"
+
+#define kUsePhiroBricks @"usePhiroBricks"
+#define kUseArduinoBricks @"useArduinoBricks"

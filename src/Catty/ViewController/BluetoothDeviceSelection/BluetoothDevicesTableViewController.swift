@@ -72,6 +72,7 @@ class BluetoothDevicesTableViewController:UITableViewController {
     
     func deviceConnected(peripheral:Peripheral){
         //TODO: Check BluetoothDevice Type
+        //TODO: if more than one needed -> Alert that the user should select another device
         setPhiro(peripheral)
         setArduino(peripheral)
         startScene()

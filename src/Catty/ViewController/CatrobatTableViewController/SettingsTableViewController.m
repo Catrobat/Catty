@@ -26,6 +26,7 @@
 #import "LanguageTranslationDefines.h"
 #import "NetworkDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "KeychainUserDefaultsDefines.h"
 
 @implementation SettingsTableViewController
 
@@ -36,7 +37,12 @@
     self.view.tintColor = [UIColor globalTintColor];
 	[self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
 		
-        [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedPhiro key:@"phiro" handler:^(BOSwitchTableViewCell *cell) {
+        [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedPhiroBricks key:kUsePhiroBricks handler:^(BOSwitchTableViewCell *cell) {
+            cell.backgroundColor = [UIColor backgroundColor];
+            cell.mainColor = [UIColor globalTintColor];
+        }]];
+        
+        [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedArduinoBricks key:kUseArduinoBricks handler:^(BOSwitchTableViewCell *cell) {
             cell.backgroundColor = [UIColor backgroundColor];
             cell.mainColor = [UIColor globalTintColor];
         }]];
@@ -72,6 +78,11 @@
                              [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
 		section.footerTitle = version;
 	}]];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)presentAlertControllerWithTitle:(NSString *)title message:(NSString *)message {

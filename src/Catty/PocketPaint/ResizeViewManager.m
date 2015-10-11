@@ -231,8 +231,6 @@
                 //        [self updateTransform:self.resizeImageView transform:-self.rotation];
                 return;
                 
-            }else{
-                //TODO: alert image is nil;
             }
         }
     }
