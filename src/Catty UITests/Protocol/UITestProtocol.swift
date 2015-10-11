@@ -25,6 +25,7 @@ import XCTest
 protocol UITestProtocol {
     func restoreDefaultProgram()
     func addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtLooksTV(numLooks: UInt)
+    func addSoundsToCurrentProgramsBackgroundFromCatrobatTVAndStayAtSoundTV(numSounds: UInt)
 }
 
 extension UITestProtocol {
@@ -41,6 +42,29 @@ extension UITestProtocol {
         XCTAssert(app.tables.staticTexts.count == 1)
         // finally go back to main menu, because this method is used by other tests
         app.navigationBars["Programs"].buttons["Pocket Code"].tap()
+    }
+    
+    func addSoundsToCurrentProgramsBackgroundFromCatrobatTVAndStayAtSoundTV(numSounds: UInt) {
+        let app = XCUIApplication()
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts["Continue"].tap()
+        tablesQuery.staticTexts["Background"].tap()
+        tablesQuery.staticTexts["Sounds"].tap()
+        
+        let toolbarsQuery = app.toolbars
+        let addButton = toolbarsQuery.buttons["Add"]
+        let pocketCodeRecorderButton = app.buttons["Pocket Code Recorder"]
+        let recordButton = toolbarsQuery.buttons["record"]
+        let pauseButton = toolbarsQuery.buttons["pause"]
+        let doneButton = toolbarsQuery.buttons["Done"]
+        
+        for _ in 1...numSounds {
+            addButton.tap()
+            pocketCodeRecorderButton.tap()
+            recordButton.tap()
+            pauseButton.tap()
+            doneButton.tap()
+        }
     }
 
     func addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtLooksTV(numLooks: UInt) {
