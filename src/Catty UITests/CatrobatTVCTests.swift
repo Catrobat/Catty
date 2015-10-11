@@ -37,7 +37,6 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
         XCUIApplication().launch()
 
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-        restoreDefaultProgram()
     }
     
     override func tearDown() {
@@ -48,6 +47,7 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
     func testContinue() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        restoreDefaultProgram()
         
         let app = XCUIApplication()
         app.tables.staticTexts["Continue"].tap()
@@ -89,6 +89,7 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
     func testPrograms() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        restoreDefaultProgram()
         
         let programNames = ["testProgram1", "testProgram2", "testProgram3"]
         
@@ -101,24 +102,17 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
         
         let tablesQuery = app.tables
         let newStaticText = tablesQuery.staticTexts["New"]
-        newStaticText.tap()
-        
         let collectionViewsQuery = app.alerts["New Program"].collectionViews
         let enterYourProgramNameHereTextField = collectionViewsQuery.textFields["Enter your program name here..."]
-        
-        // add 3 programs
-        enterYourProgramNameHereTextField.typeText(programNames[0])
         let okButton = collectionViewsQuery.buttons["OK"]
-        okButton.tap()
-        app.navigationBars[programNames[0]].buttons["Pocket Code"].tap()
-        newStaticText.tap()
-        enterYourProgramNameHereTextField.typeText(programNames[1])
-        okButton.tap()
-        app.navigationBars[programNames[1]].buttons["Pocket Code"].tap()
-        newStaticText.tap()
-        enterYourProgramNameHereTextField.typeText(programNames[2])
-        okButton.tap()
-        app.navigationBars[programNames[2]].buttons["Pocket Code"].tap()
+        
+        for i in 0...2 {
+            newStaticText.tap()
+            enterYourProgramNameHereTextField.typeText(programNames[i])
+            okButton.tap()
+            app.navigationBars[programNames[i]].buttons["Pocket Code"].tap()
+        }
+        
         tablesQuery.staticTexts["Programs"].tap()
     
         for programName in programNames {
