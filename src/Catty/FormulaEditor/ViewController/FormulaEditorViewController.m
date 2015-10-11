@@ -112,10 +112,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (strong, nonatomic) AHKActionSheet *logicalOperatorsMenu;
 @property (nonatomic) BOOL isProgramVariable;
 @property (nonatomic, strong) BDKNotifyHUD *notficicationHud;
-
-@property (nonatomic,strong) NSMutableArray *standardSensorArray;
-@property (nonatomic,strong) NSArray *phiroSensorArray;
-@property (nonatomic,strong) NSArray *arduinoSensorArray;
 @end
 
 
@@ -306,29 +302,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 }
 
 #pragma mark initSensorView
--(NSMutableArray*)standardSensorArray
-{
-    if (!_standardSensorArray) {
-       _standardSensorArray = [[NSMutableArray alloc] initWithObjects:@"acceleration_x", @"acceleration_y",@"acceleration_z",@"compass", @"inclination_x", @"inclination_y",@"loudness", nil];
-    }
-    return _standardSensorArray;
-}
-
--(NSArray*)phiroSensorArray
-{
-    if(!_phiroSensorArray){
-        _phiroSensorArray = [NSArray arrayWithObjects:@"front_left", @"front_right",@"side_left", @"side_right", @"bottom_left", @"bottom_right", nil];
-    }
-    return _phiroSensorArray;
-}
-
--(NSArray*)arduinoSensorArray
-{
-    if(!_arduinoSensorArray){
-        _arduinoSensorArray = [NSArray arrayWithObjects:@"analogPin0", @"analogPin1",@"analogPin2", @"analogPin3", @"analogPin4",@"analogPin5",@"digitalPin0",@"digitalPin1",@"digitalPin2",@"digitalPin3",@"digitalPin4",@"digitalPin5",@"digitalPin6",@"digitalPin7",@"digitalPin8",@"digitalPin9",@"digitalPin10",@"digitalPin11",@"digitalPin12",@"digitalPin13", nil];
-    }
-    return _arduinoSensorArray;
-}
 
 -(void)initSensorView
 {
@@ -338,21 +311,31 @@ NS_ENUM(NSInteger, ButtonIndex) {
             break;
         }
     }
-    NSInteger buttonCount = self.standardSensorArray.count;
-    self.sensorScrollHelperView.frame = CGRectMake(self.sensorScrollHelperView.frame.origin.x, self.sensorScrollHelperView.frame.origin.y, self.sensorScrollView.frame.size.width, buttonCount *self.calcButton.frame.size.height);
     self.sensorTypeButton = [NSMutableArray new];
-    for (NSInteger count = 0; count < self.standardSensorArray.count; count++) {
+    NSArray *standardSensorArray = [[NSArray alloc] initWithObjects:@"acceleration_x", @"acceleration_y",@"acceleration_z",@"compass", @"inclination_x", @"inclination_y",@"loudness", nil];
+    NSInteger buttonCount = standardSensorArray.count;
+    self.sensorScrollHelperView.frame = CGRectMake(self.sensorScrollHelperView.frame.origin.x, self.sensorScrollHelperView.frame.origin.y, self.sensorScrollView.frame.size.width, buttonCount *self.calcButton.frame.size.height);
+    //standard Sensors
+    for (NSInteger count = 0; count < standardSensorArray.count; count++) {
         [self addStandardSensorViewButton:count];
     }
-    //TODO: if Phiro/Arduino project
-    for (NSInteger count = 0; count < self.phiroSensorArray.count; count++) {
+    //TODO: if Phiro project
+    
+    NSArray *phiroSensorArray = [NSArray arrayWithObjects:@"front_left", @"front_right",@"side_left", @"side_right", @"bottom_left", @"bottom_right", nil];
+    for (NSInteger count = 0; count < phiroSensorArray.count; count++) {
         [self addPhiroSensorViewButton:count and:buttonCount+count];
     }
-    buttonCount += self.phiroSensorArray.count;
-    for (NSInteger count = 0; count < self.arduinoSensorArray.count; count++) {
+    buttonCount += phiroSensorArray.count;
+    ///END
+    
+    //TODO: if Phiro project
+    NSArray *arduinoSensorArray = [NSArray arrayWithObjects:@"analogPin0", @"analogPin1",@"analogPin2", @"analogPin3", @"analogPin4",@"analogPin5",@"digitalPin0",@"digitalPin1",@"digitalPin2",@"digitalPin3",@"digitalPin4",@"digitalPin5",@"digitalPin6",@"digitalPin7",@"digitalPin8",@"digitalPin9",@"digitalPin10",@"digitalPin11",@"digitalPin12",@"digitalPin13", nil];
+    for (NSInteger count = 0; count < arduinoSensorArray.count; count++) {
         [self addArduinoSensorViewButton:count and:buttonCount+count];
     }
-    buttonCount += self.arduinoSensorArray.count;
+    buttonCount += arduinoSensorArray.count;
+    ///END
+    
     [self.normalTypeButton addObjectsFromArray:self.sensorTypeButton];
     self.sensorScrollHelperView.frame = CGRectMake(self.sensorScrollHelperView.frame.origin.x, self.sensorScrollHelperView.frame.origin.y, self.sensorScrollHelperView.frame.size.width, buttonCount *self.calcButton.frame.size.height);
     self.sensorScrollView.contentSize = CGSizeMake(self.sensorScrollHelperView.frame.size.width, buttonCount *self.calcButton.frame.size.height);
