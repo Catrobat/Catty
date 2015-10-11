@@ -152,14 +152,39 @@ public class Phiro: ArduinoDevice {
         playTone(0, duration: 0)
     }
     
-    public func getSensorValue(sensor:Int) -> Double{
-        return 0
+    public func getSensorValue(sensor:UInt8) -> Double{
+//        firmata.writePinMode(PinMode.Input, pin: sensor)
+//        firmata.setAnalogValueReportingforPin(sensor / 8, enabled: true)
+//        let semaphore = BluetoothService.swiftSharedInstance.getSemaphore()
+//        BluetoothService.swiftSharedInstance.setAnalogSemaphore(semaphore)
+//        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+//        firmata.setAnalogValueReportingforPin(sensor / 8, enabled: false)
+        let value = getAnalogPin(sensor)
+        return Double(value)
     }
     
     public func sendAnalogFirmataMessage(pin:Int,value:Int){
         firmata.writePWMValue(UInt8(value), pin: UInt8(pin))
     }
     
+    override func getAnalogPin(analogPinNumber: UInt8) -> Double {
+        switch (analogPinNumber) {
+        case 0:
+            return Double(getFrontLeftSensor())
+        case 1:
+            return Double(getFrontRightSensor())
+        case 2:
+            return Double(getSideLeftSensor())
+        case 3:
+            return Double(getSideRightSensor())
+        case 4:
+            return Double(getBottomLeftSensor())
+        case 5:
+            return Double(getBottomRightSensor())
+        default:
+            return 0
+        }
+    }
 
     // MARK: Sensor Values
     
@@ -199,7 +224,7 @@ public class Phiro: ArduinoDevice {
     }
     
     override func didReceiveAnalogMessage(pin:Int,value:Int){
-        
+        phiroHelper.didReceiveAnalogMessage(pin, value: value)
     }
     
     override func didReceiveDigitalMessage(pin:Int,value:Int){

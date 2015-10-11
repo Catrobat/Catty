@@ -29,7 +29,7 @@ extension PhiroMotorStopBrick :CBInstructionProtocol {
         
         return CBInstruction.ExecClosure { (context, _) in
             
-            guard let phiro:Phiro = BluetoothService.sharedInstance.phiro else {
+            guard let phiro:Phiro = BluetoothService.swiftSharedInstance.phiro else {
                 //ERROR
                 return;
             }

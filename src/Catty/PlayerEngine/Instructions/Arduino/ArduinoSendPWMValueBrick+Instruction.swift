@@ -30,7 +30,7 @@ extension ArduinoSendPWMValueBrick :CBInstructionProtocol {
             let pin = UInt8(self.pin.interpretIntegerForSprite(self.script?.object))
             let value = UInt8(self.value.interpretDoubleForSprite(self.script?.object))
             
-            guard let arduino:ArduinoDevice = BluetoothService.sharedInstance.arduino else{
+            guard let arduino:ArduinoDevice = BluetoothService.swiftSharedInstance.arduino else{
                 return
             }
             

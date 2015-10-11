@@ -27,6 +27,7 @@
 #import "Util.h"
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudio/CoreAudioTypes.h>
+#import "Pocket_Code-Swift.h"
 
 
 #define kSensorUpdateInterval 0.8
@@ -43,7 +44,7 @@
 @property (nonatomic,strong) AVAudioRecorder* recorder;
 @property (nonatomic,strong) NSTimer* programTimer;
 @property (nonatomic) CGFloat loudnessInPercent;
-
+@property (nonatomic,strong) ArduinoDevice* arduino;
 @end
 
 @implementation SensorHandler
@@ -56,6 +57,7 @@ static SensorHandler* sharedSensorHandler = nil;
     @synchronized(self) {
         if (sharedSensorHandler == nil) {
             sharedSensorHandler = [[[self class] alloc] init];
+            
         }
     }
     return sharedSensorHandler;
@@ -155,7 +157,48 @@ static SensorHandler* sharedSensorHandler = nil;
             break;
         }
             
-        default:
+        case phiro_front_left:
+        case phiro_front_right:
+        case phiro_side_left:
+        case phiro_side_right:
+        case phiro_bottom_left:
+        case phiro_bottom_right:
+        {
+            if ([[BluetoothService sharedInstance] getSensorPhiro]) {
+                [[[BluetoothService sharedInstance] getSensorPhiro] getSensorValue:sensor-phiro_side_right];
+            }
+            break;
+        }
+            
+        case arduino_analogPin0:
+        case arduino_analogPin1:
+        case arduino_analogPin2:
+        case arduino_analogPin3:
+        case arduino_analogPin4:
+        case arduino_analogPin5:
+            if ([[BluetoothService sharedInstance] getSensorArduino]) {
+                [[[BluetoothService sharedInstance] getSensorArduino] getAnalogArduinoPin:sensor-arduino_analogPin0];
+            }
+            break;
+        case arduino_digitalPin0:
+        case arduino_digitalPin1:
+        case arduino_digitalPin2:
+        case arduino_digitalPin3:
+        case arduino_digitalPin4:
+        case arduino_digitalPin5:
+        case arduino_digitalPin6:
+        case arduino_digitalPin7:
+        case arduino_digitalPin8:
+        case arduino_digitalPin9:
+        case arduino_digitalPin10:
+        case arduino_digitalPin11:
+        case arduino_digitalPin12:
+        case arduino_digitalPin13:
+            if ([[BluetoothService sharedInstance] getSensorArduino]) {
+                [[[BluetoothService sharedInstance] getSensorArduino] getDigitalArduinoPin:sensor-arduino_digitalPin0];
+            }
+            break;
+                default:
             abort();
             break;
     }

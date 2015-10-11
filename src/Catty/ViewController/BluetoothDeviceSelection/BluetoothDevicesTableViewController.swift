@@ -78,11 +78,11 @@ class BluetoothDevicesTableViewController:UITableViewController {
     }
     
     func setPhiro(peripheral:Peripheral){
-        BluetoothService.sharedInstance.phiro = peripheral as? Phiro
+        BluetoothService.swiftSharedInstance.phiro = peripheral as? Phiro
     }
     
     func setArduino(peripheral:Peripheral){
-        BluetoothService.sharedInstance.arduino = peripheral as? ArduinoDevice
+        BluetoothService.swiftSharedInstance.arduino = peripheral as? ArduinoDevice
     }
     
     func startScene(){

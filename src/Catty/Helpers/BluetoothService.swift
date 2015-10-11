@@ -23,17 +23,33 @@
 import Foundation
 
 
-class BluetoothService:NSObject {
-    class var sharedInstance: BluetoothService {
-        struct Static {
-            static var onceToken: dispatch_once_t = 0
-            static var instance: BluetoothService? = nil
+public class BluetoothService:NSObject {
+//    class var sharedInstance: BluetoothService {
+//        struct Static {
+//            static var onceToken: dispatch_once_t = 0
+//            static var instance: BluetoothService? = nil
+//        }
+//        dispatch_once(&Static.onceToken) {
+//            Static.instance = BluetoothService()
+//        }
+//        return Static.instance!
+//    }
+    class var swiftSharedInstance: BluetoothService {
+        struct Singleton {
+            static let instance = BluetoothService()
         }
-        dispatch_once(&Static.onceToken) {
-            Static.instance = BluetoothService()
-        }
-        return Static.instance!
+        return Singleton.instance
     }
+    
+    // the sharedInstance class method can be reached from ObjC
+    @objc public class func sharedInstance() -> BluetoothService {
+        return BluetoothService.swiftSharedInstance
+    }
+    
+    override init(){
+        super.init()
+    }
+
     
     var digitalSemaphoreArray:[dispatch_semaphore_t] = []
     var analogSemaphoreArray:[dispatch_semaphore_t] = []
@@ -59,7 +75,7 @@ class BluetoothService:NSObject {
         analogSemaphoreArray.append(semaphore)
     }
     
-    func signalAnalogSemaphore(){
+    @objc public func signalAnalogSemaphore(){
         if(analogSemaphoreArray.count > 0){
             let sema = analogSemaphoreArray[0]
             analogSemaphoreArray.removeAtIndex(0)
@@ -70,6 +86,20 @@ class BluetoothService:NSObject {
     
     func getSemaphore()->dispatch_semaphore_t {
         return dispatch_semaphore_create(0)
+    }
+    
+    @objc public func getSensorPhiro() -> Phiro? {
+        guard let senorPhiro = phiro else{
+            return nil
+        }
+        return senorPhiro
+    }
+    
+    @objc public func getSensorArduino() -> ArduinoDevice? {
+        guard let senorArduino = arduino else{
+            return nil
+        }
+        return senorArduino
     }
     
 }

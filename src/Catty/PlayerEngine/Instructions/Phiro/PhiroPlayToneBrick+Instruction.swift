@@ -30,7 +30,7 @@ extension PhiroPlayToneBrick :CBInstructionProtocol {
             let durationInterpretation:NSInteger = NSInteger(self.durationFormula.interpretIntegerForSprite(self.script?.object))
             
             
-            guard let phiro:Phiro = BluetoothService.sharedInstance.phiro else {
+            guard let phiro:Phiro = BluetoothService.swiftSharedInstance.phiro else {
                         //ERROR
                         return;
                     }

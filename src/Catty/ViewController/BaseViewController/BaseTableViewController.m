@@ -455,11 +455,11 @@
 
 -(LoadingView*)loadingView
 {
-    if (! self.loadingView) {
-        self.loadingView = [[LoadingView alloc] init];
-        [self.view addSubview:self.loadingView];
+    if (! _loadingView) {
+        _loadingView = [[LoadingView alloc] init];
+        [self.view addSubview:_loadingView];
     }
-    return self.loadingView;
+    return _loadingView;
 }
 
 

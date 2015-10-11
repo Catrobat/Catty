@@ -45,7 +45,7 @@ private let MIN_ANALOG_SENSOR_PIN:Int = 0;
 private let MAX_ANALOG_SENSOR_PIN:Int = 5;
 
 
-public class ArduinoDevice:BluetoothDevice,FirmataDelegate {
+@objc public class ArduinoDevice:BluetoothDevice,FirmataDelegate {
     
     private let Arduino_UUID:CBUUID = CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB")
     private static let tag:String = "Arduino";
@@ -166,8 +166,8 @@ public class ArduinoDevice:BluetoothDevice,FirmataDelegate {
     func getDigitalArduinoPin(digitalPinNumber:UInt8)-> Double {
         firmata.writePinMode(PinMode.Input, pin: digitalPinNumber)
         firmata.setDigitalStateReportingForPort(digitalPinNumber / 8, enabled: true)
-        let semaphore = BluetoothService.sharedInstance.getSemaphore()
-        BluetoothService.sharedInstance.setDigitalSemaphore(semaphore)
+        let semaphore = BluetoothService.swiftSharedInstance.getSemaphore()
+        BluetoothService.swiftSharedInstance.setDigitalSemaphore(semaphore)
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
         firmata.setDigitalStateReportingForPort(digitalPinNumber / 8, enabled: false)
         let value = getPortValue(Int(digitalPinNumber))
@@ -178,8 +178,8 @@ public class ArduinoDevice:BluetoothDevice,FirmataDelegate {
     func getAnalogArduinoPin(analogPinNumber:UInt8) -> Double {
         firmata.writePinMode(PinMode.Input, pin: analogPinNumber)
         firmata.setAnalogValueReportingforPin(analogPinNumber / 8, enabled: true)
-        let semaphore = BluetoothService.sharedInstance.getSemaphore()
-        BluetoothService.sharedInstance.setAnalogSemaphore(semaphore)
+        let semaphore = BluetoothService.swiftSharedInstance.getSemaphore()
+        BluetoothService.swiftSharedInstance.setAnalogSemaphore(semaphore)
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
         firmata.setAnalogValueReportingforPin(analogPinNumber / 8, enabled: false)
         let value = getAnalogPin(analogPinNumber)
@@ -294,11 +294,11 @@ public class ArduinoDevice:BluetoothDevice,FirmataDelegate {
 
     func didReceiveDigitalPort(port:Int, portData:[Int]) {
         arduinoHelper.didReceiveDigitalPort(port, portData: portData)
-        BluetoothService.sharedInstance.signalDigitalSemaphore()
+        BluetoothService.swiftSharedInstance.signalDigitalSemaphore()
     }
     func didReceiveAnalogMessage(pin:Int,value:Int){
         arduinoHelper.didReceiveAnalogMessage(pin, value: value)
-        BluetoothService.sharedInstance.signalAnalogSemaphore()
+        BluetoothService.swiftSharedInstance.signalAnalogSemaphore()
     }
     
     func firmwareVersionReceived(name:String){

@@ -35,7 +35,7 @@ extension PhiroMotorMoveForwardBrick :CBInstructionProtocol {
             //                speedValue = MAX_SPEED;
             //            }
             
-            guard let phiro:Phiro = BluetoothService.sharedInstance.phiro else {
+            guard let phiro:Phiro = BluetoothService.swiftSharedInstance.phiro else {
                 return
             }
             
