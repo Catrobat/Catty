@@ -28,9 +28,11 @@
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudio/CoreAudioTypes.h>
 #import "Pocket_Code-Swift.h"
+#import "FaceDetection.h"
 
 
 #define kSensorUpdateInterval 0.8
+#define FACE_DETECTION_DEFAULT_UPDATE_INTERVAL 0.05
 
 #define NOISE_RECOGNIZER_DEFAULT_REFERENCE_PROGRAM 5
 #define NOISE_RECOGNIZER_DEFAULT_RANGE 160
@@ -45,6 +47,7 @@
 @property (nonatomic,strong) NSTimer* programTimer;
 @property (nonatomic) CGFloat loudnessInPercent;
 @property (nonatomic,strong) ArduinoDevice* arduino;
+@property (nonatomic,strong)FaceDetection* faceDetection;
 @end
 
 @implementation SensorHandler
@@ -153,9 +156,56 @@ static SensorHandler* sharedSensorHandler = nil;
             }
             [self loudness];
             result = self.loudnessInPercent;
+            [self.recorder pause];
             NSDebug(@"Loudness: %f %%", result);
             break;
         }
+        case FACE_DETECTED: {
+            if (!self.faceDetection) {
+                [self faceDetectionInit];
+            }
+            [self.faceDetection startFaceDetection];
+            [NSThread sleepForTimeInterval:FACE_DETECTION_DEFAULT_UPDATE_INTERVAL];
+            result = self.faceDetection.isFaceDetected;
+            [self.faceDetection pauseFaceDetection];
+            NSDebug(@"FACE_DETECTED: %f %%", result);
+            break;
+        }
+        case FACE_SIZE: {
+            if (!self.faceDetection) {
+                [self faceDetectionInit];
+            }
+            [self.faceDetection startFaceDetection];
+            [NSThread sleepForTimeInterval:FACE_DETECTION_DEFAULT_UPDATE_INTERVAL];
+            //result = self.faceDetection.faceSize;
+            [self.faceDetection pauseFaceDetection];
+            result = self.faceDetection.faceSize.size.width; // TODO: SIZE?!
+            NSDebug(@"FACE_SIZE: %f %%", result);
+            break;
+        }
+        case FACE_POSITION_X: {
+            if (!self.faceDetection) {
+                [self faceDetectionInit];
+            }
+            [self.faceDetection startFaceDetection];
+            [NSThread sleepForTimeInterval:FACE_DETECTION_DEFAULT_UPDATE_INTERVAL];
+            result = self.faceDetection.facePositionX;
+            [self.faceDetection pauseFaceDetection];
+            NSDebug(@"FACE_POSITION_X: %f %%", result);
+            break;
+        }
+        case FACE_POSITION_Y: {
+            if (!self.faceDetection) {
+                [self faceDetectionInit];
+            }
+            [self.faceDetection startFaceDetection];
+            [NSThread sleepForTimeInterval:FACE_DETECTION_DEFAULT_UPDATE_INTERVAL];
+            result = self.faceDetection.facePositionY;
+            [self.faceDetection pauseFaceDetection];
+            NSDebug(@"FACE_POSITION_Y: %f %%", result);
+            break;
+        }
+
             
         case phiro_front_left:
         case phiro_front_right:
@@ -165,7 +215,7 @@ static SensorHandler* sharedSensorHandler = nil;
         case phiro_bottom_right:
         {
             if ([[BluetoothService sharedInstance] getSensorPhiro]) {
-                [[[BluetoothService sharedInstance] getSensorPhiro] getSensorValue:sensor-phiro_side_right];
+                result = [[[BluetoothService sharedInstance] getSensorPhiro] getSensorValue:sensor-phiro_side_right];
             }
             break;
         }
@@ -177,7 +227,7 @@ static SensorHandler* sharedSensorHandler = nil;
         case arduino_analogPin4:
         case arduino_analogPin5:
             if ([[BluetoothService sharedInstance] getSensorArduino]) {
-                [[[BluetoothService sharedInstance] getSensorArduino] getAnalogArduinoPin:sensor-arduino_analogPin0];
+                result = [[[BluetoothService sharedInstance] getSensorArduino] getAnalogArduinoPin:sensor-arduino_analogPin0];
             }
             break;
         case arduino_digitalPin0:
@@ -195,7 +245,7 @@ static SensorHandler* sharedSensorHandler = nil;
         case arduino_digitalPin12:
         case arduino_digitalPin13:
             if ([[BluetoothService sharedInstance] getSensorArduino]) {
-                [[[BluetoothService sharedInstance] getSensorArduino] getDigitalArduinoPin:sensor-arduino_digitalPin0];
+                result = [[[BluetoothService sharedInstance] getSensorArduino] getDigitalArduinoPin:sensor-arduino_digitalPin0];
             }
             break;
                 default:
@@ -225,6 +275,10 @@ static SensorHandler* sharedSensorHandler = nil;
     
     if([self.motionManager isDeviceMotionActive]) {
         [self.motionManager stopDeviceMotionUpdates];
+    }
+    if (self.faceDetection) {
+        [self.faceDetection stopFaceDetection];
+        self.faceDetection = nil;
     }
     if(self.recorder)
     {
@@ -370,6 +424,11 @@ static SensorHandler* sharedSensorHandler = nil;
 //    CGFloat percent = pow (10, (0.05 * decibel));
     CGFloat percent = (CGFloat)pow (10, decibel / 20.0f);
     return percent * 100.0f;
+}
+
+-(void)faceDetectionInit
+{
+    self.faceDetection = [[FaceDetection alloc] init];
 }
 
 

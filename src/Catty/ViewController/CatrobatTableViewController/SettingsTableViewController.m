@@ -37,6 +37,25 @@
     self.view.backgroundColor = [UIColor backgroundColor];
     self.view.tintColor = [UIColor globalTintColor];
 	[self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
+
+        [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedFaceDetection key:kUseFaceDetectionSensors handler:^(BOSwitchTableViewCell *cell) {
+            cell.backgroundColor = [UIColor backgroundColor];
+            cell.mainColor = [UIColor globalTintColor];
+        }]];
+        [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedFaceDetectionFrontCamera key:kUseFrontCamera handler:^(BOSwitchTableViewCell *cell) {
+            cell.visibilityKey = kUseFaceDetectionSensors;
+            cell.backgroundColor = [UIColor backgroundColor];
+            cell.mainColor = [UIColor globalTintColor];
+            cell.visibilityBlock = ^BOOL(id settingValue) {
+                return [settingValue boolValue];
+            };
+            cell.onFooterTitle = kLocalizedFaceDetectionDefaultCamera;
+        }]];
+        
+    }]];
+	
+    [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
+        
         if (kPhiroActivated) {
             [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedPhiroBricks key:kUsePhiroBricks handler:^(BOSwitchTableViewCell *cell) {
                 cell.backgroundColor = [UIColor backgroundColor];
@@ -51,8 +70,11 @@
             }]];
         }
 
+        
     }]];
-	
+    
+    
+
 	__unsafe_unretained typeof(self) weakSelf = self;
 	[self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
 		[section addCell:[BOChoiceTableViewCell cellWithTitle:kLocalizedAboutPocketCode key:@"choice_2" handler:^(BOChoiceTableViewCell *cell) {

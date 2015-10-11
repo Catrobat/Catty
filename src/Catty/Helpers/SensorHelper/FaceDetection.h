@@ -20,18 +20,19 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+#import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 
-#define kcServiceName @"Catty"
-#define kcUsername @"username"
-#define kcPassword @"password"
-#define kcEmail @"userEmail"
+@interface FaceDetection : NSObject <AVCaptureVideoDataOutputSampleBufferDelegate>
 
-#define kUsePhiroBricks @"usePhiroBricks"
-#define kUseArduinoBricks @"useArduinoBricks"
 
-#define kUseFaceDetectionSensors @"useFaceDetectionSensors"
-#define kUseFrontCamera @"useFrontCamera"
+@property (nonatomic, assign) BOOL isFaceDetected;
+@property (nonatomic, assign) CGRect faceSize;
+@property (nonatomic, assign) NSInteger facePositionX;
+@property (nonatomic, assign) NSInteger facePositionY;
 
-#define kPhiroActivated 0
-#define kArduinoActivated 0
+-(void)startFaceDetection;
+-(void)pauseFaceDetection;
+-(void)stopFaceDetection;
 
+@end

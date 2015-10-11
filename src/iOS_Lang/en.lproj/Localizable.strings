@@ -269,6 +269,9 @@
 "December" = "December";
 
 /* No comment provided by engineer. */
+"default camera is back camera" = "default camera is back camera";
+
+/* No comment provided by engineer. */
 "Delete" = "Delete";
 
 /* No comment provided by engineer. */
@@ -450,6 +453,18 @@
 
 /* No comment provided by engineer. */
 "FA" = "FA";
+
+/* No comment provided by engineer. */
+"face_detected" = "face_detected";
+
+/* No comment provided by engineer. */
+"faceposition_x" = "faceposition_x";
+
+/* No comment provided by engineer. */
+"faceposition_y" = "faceposition_y";
+
+/* No comment provided by engineer. */
+"facesize" = "facesize";
 
 /* No comment provided by engineer. */
 "false" = "false";
@@ -1260,6 +1275,12 @@
 
 /* No comment provided by engineer. */
 "Use Arduino bricks" = "Use Arduino bricks";
+
+/* No comment provided by engineer. */
+"Use face detection" = "Use face detection";
+
+/* No comment provided by engineer. */
+"Use front camera" = "Use front camera";
 
 /* No comment provided by engineer. */
 "Use Phiro bricks" = "Use Phiro bricks";

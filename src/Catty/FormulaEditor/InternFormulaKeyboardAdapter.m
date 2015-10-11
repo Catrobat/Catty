@@ -300,6 +300,18 @@
         case Z_ACCELERATION:
             return [self buildSensor:Z_ACCELERATION];
             break;
+        case FACE_DETECTED:
+            return [self buildSensor:FACE_DETECTED];
+            break;
+        case FACE_SIZE:
+            return [self buildSensor:FACE_SIZE];
+            break;
+        case FACE_POSITION_X:
+            return [self buildSensor:FACE_POSITION_X];
+            break;
+        case FACE_POSITION_Y:
+            return [self buildSensor:FACE_POSITION_Y];
+            break;
         case phiro_front_left:
             return  [self buildSensor:phiro_front_left];
             break;

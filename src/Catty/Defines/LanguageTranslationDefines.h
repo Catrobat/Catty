@@ -231,6 +231,9 @@
 #define kLocalizedArduino NSLocalizedString(@"Arduino", nil)
 #define kLocalizedPhiroBricks NSLocalizedString(@"Use Phiro bricks", nil)
 #define kLocalizedArduinoBricks NSLocalizedString(@"Use Arduino bricks", nil)
+#define kLocalizedFaceDetection NSLocalizedString(@"Use face detection", nil)
+#define kLocalizedFaceDetectionFrontCamera NSLocalizedString(@"Use front camera", nil)
+#define kLocalizedFaceDetectionDefaultCamera NSLocalizedString(@"default camera is back camera", nil)
 #define kLocalizedRecording NSLocalizedString(@"Recording", nil)
 #define kLocalizedError NSLocalizedString(@"Error", nil)
 #define kLocalizedMemoryWarning NSLocalizedString(@"Not enough Memory", nil)
@@ -542,6 +545,11 @@
 #define kLocalizedSensorRotation NSLocalizedString(@"gyro-sensor", nil)
 #define kLocalizedSensorMagnetic NSLocalizedString(@"magnetic-sensor", nil)
 #define kLocalizedNotAvailable NSLocalizedString(@"not available", nil)
+
+#define kUIFESensorFaceDetected NSLocalizedString(@"face_detected", nil)
+#define kUIFESensorFaceSize NSLocalizedString(@"facesize", nil)
+#define kUIFESensorFaceX NSLocalizedString(@"faceposition_x", nil)
+#define kUIFESensorFaceY NSLocalizedString(@"faceposition_y", nil)
 
 //************************************************************************************************************
 //************************************       BrickCategoryTitles        ********************************************

@@ -160,6 +160,7 @@
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
 		81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */; };
 		921EE9B61BA8045A00834711 /* JNKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 921EE9B51BA8045A00834711 /* JNKeychain.m */; };
+		922123CD1BCAEB1D008AAE45 /* FaceDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 922123CC1BCAEB1D008AAE45 /* FaceDetection.m */; settings = {ASSET_TAGS = (); }; };
 		92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A461A42F2A3008C771A /* BSKeyboardControls.m */; };
 		92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A481A42F2A3008C771A /* iOSCombobox.m */; };
 		922FE8E11B963BDE005A19FA /* BrickSelectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 922FE8E01B963BDE005A19FA /* BrickSelectionManager.m */; };
@@ -1004,6 +1005,8 @@
 		921EE9B41BA8045A00834711 /* JNKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JNKeychain.h; path = Keychain/JNKeychain.h; sourceTree = "<group>"; };
 		921EE9B51BA8045A00834711 /* JNKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JNKeychain.m; path = Keychain/JNKeychain.m; sourceTree = "<group>"; };
 		921FE2F9182F8122001D7CF6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		922123CB1BCAEB1D008AAE45 /* FaceDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceDetection.h; sourceTree = "<group>"; };
+		922123CC1BCAEB1D008AAE45 /* FaceDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceDetection.m; sourceTree = "<group>"; };
 		92289A451A42F2A3008C771A /* BSKeyboardControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSKeyboardControls.h; sourceTree = "<group>"; };
 		92289A461A42F2A3008C771A /* BSKeyboardControls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSKeyboardControls.m; sourceTree = "<group>"; };
 		92289A471A42F2A3008C771A /* iOSCombobox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSCombobox.h; sourceTree = "<group>"; };
@@ -3598,6 +3601,8 @@
 		92FF2E761A24C7D800093DA7 /* SensorHelper */ = {
 			isa = PBXGroup;
 			children = (
+				922123CB1BCAEB1D008AAE45 /* FaceDetection.h */,
+				922123CC1BCAEB1D008AAE45 /* FaceDetection.m */,
 				92FF2E771A24C7D800093DA7 /* SensorHandler.h */,
 				92FF2E781A24C7D800093DA7 /* SensorHandler.m */,
 				92FF2E791A24C7D800093DA7 /* SensorManager.h */,
@@ -6231,6 +6236,7 @@
 				AA74F0AE1BC05FCE00D1E954 /* HideBrickCell.m in Sources */,
 				92FF30FF1A24DCAA00093DA7 /* Program.m in Sources */,
 				929CC0CF1BC39B0A0027DEC0 /* PhiroPlayToneBrick.m in Sources */,
+				922123CD1BCAEB1D008AAE45 /* FaceDetection.m in Sources */,
 				AA74EEFD1BC057C900D1E954 /* SetBrightnessBrick+CBXMLHandler.m in Sources */,
 				929CC0FB1BC3A2420027DEC0 /* PhiroRGBLightBrick+Instruction.swift in Sources */,
 				D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */,

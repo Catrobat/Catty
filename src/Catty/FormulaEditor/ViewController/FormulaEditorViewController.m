@@ -321,6 +321,17 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [self addStandardSensorViewButton:count];
     }
     
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseFaceDetectionSensors]) {
+        NSArray *faceDetectionSensorArray = [NSArray arrayWithObjects:@"FACE_DETECTED",
+                                             @"FACE_SIZE",
+                                             @"FACE_POSITION_X",
+                                             @"FACE_POSITION_Y", nil];
+        for (NSInteger count = 0; count < faceDetectionSensorArray.count; count++) {
+            [self addFaceDetectionSensorViewButton:count and:buttonCount+count];
+        }
+        buttonCount += faceDetectionSensorArray.count;
+    }
+    
     if ([[NSUserDefaults standardUserDefaults] boolForKey:kUsePhiroBricks]) {
         NSArray *phiroSensorArray = [NSArray arrayWithObjects:@"front_left", @"front_right",@"side_left", @"side_right", @"bottom_left", @"bottom_right", nil];
         for (NSInteger count = 0; count < phiroSensorArray.count; count++) {
@@ -352,17 +363,23 @@ NS_ENUM(NSInteger, ButtonIndex) {
         button.tag = 900+tag;
     }
 }
--(void)addPhiroSensorViewButton:(NSInteger)tag and:(NSInteger)buttonCount
+-(void)addFaceDetectionSensorViewButton:(NSInteger)tag and:(NSInteger)buttonCount
 {
     UIButton *button = [self getSensorButton:buttonCount];
     button.tag = 914+tag;
 
 }
+-(void)addPhiroSensorViewButton:(NSInteger)tag and:(NSInteger)buttonCount
+{
+    UIButton *button = [self getSensorButton:buttonCount];
+    button.tag = 918+tag;
+    
+}
 
 -(void)addArduinoSensorViewButton:(NSInteger)tag and:(NSInteger)buttonCount
 {
     UIButton *button = [self getSensorButton:buttonCount];
-    button.tag = 920+tag;
+    button.tag = 924+tag;
 }
 
 -(UIButton*)getSensorButton:(NSInteger)buttonCount

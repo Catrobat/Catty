@@ -39,6 +39,10 @@ NSString * const sensorStringArray[] = {
     @"OBJECT_ROTATION",
     @"OBJECT_LAYER",
     @"LOUDNESS",
+    @"FACE_DETECTED",
+    @"FACE_SIZE",
+    @"FACE_POSITION_X",
+    @"FACE_POSITION_Y",
     @"front_left",
     @"front_right",
     @"side_left",
@@ -110,6 +114,18 @@ NSString * const sensorStringArray[] = {
     }
     if([sensor isEqualToString:@"LOUDNESS"]) {
         return LOUDNESS;
+    }
+    if([sensor isEqualToString:@"FACE_DETECTED"]) {
+        return FACE_DETECTED;
+    }
+    if([sensor isEqualToString:@"FACE_SIZE"]) {
+        return FACE_SIZE;
+    }
+    if([sensor isEqualToString:@"FACE_POSITION_X"]) {
+        return FACE_POSITION_X;
+    }
+    if([sensor isEqualToString:@"FACE_POSITION_Y"]) {
+        return FACE_POSITION_Y;
     }
     if([sensor isEqualToString:@"front_left"]) {
         return phiro_front_left;
@@ -256,6 +272,18 @@ NSString * const sensorStringArray[] = {
             break;
         case Z_ACCELERATION:
             name = kUIFESensorAccelerationZ;
+            break;
+        case FACE_DETECTED:
+            name = kUIFESensorFaceDetected;
+            break;
+        case FACE_SIZE:
+            name = kUIFESensorFaceSize;
+            break;
+        case FACE_POSITION_X:
+            name = kUIFESensorFaceX;
+            break;
+        case FACE_POSITION_Y:
+            name = kUIFESensorFaceY;
             break;
         case phiro_front_left:
             name = kUIFESensorPhiroFrontLeft;
