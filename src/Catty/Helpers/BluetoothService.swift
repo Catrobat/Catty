@@ -102,4 +102,11 @@ public class BluetoothService:NSObject {
         return senorArduino
     }
     
+    @objc public func disconnect() {
+        self.phiro?.disconnect()
+        self.arduino?.disconnect()
+        self.phiro = nil
+        self.arduino = nil
+    }
+    
 }

@@ -27,6 +27,8 @@
 #import "NetworkDefines.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "KeychainUserDefaultsDefines.h"
+#import "Pocket_Code-Swift.h"
+
 
 
 @implementation SettingsTableViewController
@@ -72,10 +74,23 @@
 
         
     }]];
-    
+    __unsafe_unretained typeof(self) weakSelf = self;
+    if (kPhiroActivated || kArduinoActivated) {
+        [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
+            
+            [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedDisconnectAllDevices key:nil handler:^(BOButtonTableViewCell *cell) {
+                cell.backgroundColor = [UIColor backgroundColor];
+                cell.mainColor = [UIColor globalTintColor];
+                cell.actionBlock = ^{
+                    [weakSelf disconnect];
+                };
+            }]];
+
+        }]];
+    }
     
 
-	__unsafe_unretained typeof(self) weakSelf = self;
+	
 	[self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
 		[section addCell:[BOChoiceTableViewCell cellWithTitle:kLocalizedAboutPocketCode key:@"choice_2" handler:^(BOChoiceTableViewCell *cell) {
 			cell.destinationViewController = [AboutPoketCodeOptionTableViewController new];
@@ -103,6 +118,8 @@
                              [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
 		section.footerTitle = version;
 	}]];
+    
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -129,5 +146,9 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kAppStoreURL]];
 }
 
+- (void)disconnect
+{
+    [[BluetoothService sharedInstance] disconnect];
+}
 
 @end

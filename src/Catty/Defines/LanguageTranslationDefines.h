@@ -234,6 +234,7 @@
 #define kLocalizedFaceDetection NSLocalizedString(@"Use face detection", nil)
 #define kLocalizedFaceDetectionFrontCamera NSLocalizedString(@"Use front camera", nil)
 #define kLocalizedFaceDetectionDefaultCamera NSLocalizedString(@"default camera is back camera", nil)
+#define kLocalizedDisconnectAllDevices NSLocalizedString(@"Disconnect all devices", nil)
 #define kLocalizedRecording NSLocalizedString(@"Recording", nil)
 #define kLocalizedError NSLocalizedString(@"Error", nil)
 #define kLocalizedMemoryWarning NSLocalizedString(@"Not enough Memory", nil)
