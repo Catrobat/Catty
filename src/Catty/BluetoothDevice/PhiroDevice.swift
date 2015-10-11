@@ -152,7 +152,7 @@ public class Phiro: ArduinoDevice {
         playTone(0, duration: 0)
     }
     
-    public func getSensorValue(sensor:NSInteger)->NSInteger{
+    public func getSensorValue(sensor:Int) -> Double{
         return 0
     }
     
@@ -163,34 +163,34 @@ public class Phiro: ArduinoDevice {
 
     // MARK: Sensor Values
     
-    public func getFrontLeftSensor() -> NSInteger {
+    public func getFrontLeftSensor() -> Int {
         return phiroHelper.frontLeftSensor;
     }
     
-    public func getFrontRightSensor() -> NSInteger {
+    public func getFrontRightSensor() -> Int {
         return phiroHelper.frontRightSensor;
     }
     
-    public func getSideLeftSensor() -> NSInteger {
+    public func getSideLeftSensor() -> Int {
         return phiroHelper.sideLeftSensor;
     }
     
-    public func getSideRightSensor() -> NSInteger {
+    public func getSideRightSensor() -> Int {
         return phiroHelper.sideRightSensor;
     }
     
-    public func getBottomLeftSensor() -> NSInteger {
+    public func getBottomLeftSensor() -> Int {
         return phiroHelper.bottomLeftSensor;
     }
     
-    public func getBottomRightSensor() -> NSInteger {
+    public func getBottomRightSensor() -> Int {
         return phiroHelper.bottomRightSensor;
     }
     
     
     // MARK: override
     
-    override public func getName()->NSString{
+    override public func getName() -> String{
         return "Phiro"
     }
     
@@ -217,12 +217,12 @@ public class Phiro: ArduinoDevice {
 
 
 class PhiroHelper {
-    private var frontLeftSensor = 0;
-    private var frontRightSensor = 0;
-    private var sideLeftSensor = 0;
-    private var sideRightSensor = 0;
-    private var bottomLeftSensor = 0;
-    private var bottomRightSensor = 0;
+    private var frontLeftSensor:Int = 0;
+    private var frontRightSensor:Int = 0;
+    private var sideLeftSensor:Int = 0;
+    private var sideRightSensor:Int = 0;
+    private var bottomLeftSensor:Int = 0;
+    private var bottomRightSensor:Int = 0;
     
     
     

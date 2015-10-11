@@ -58,14 +58,14 @@ class BluetoothDevicesTableViewController:UITableViewController {
             case .ForcedDisconnected:
                 self.updateWhenActive()
             case .Failed:
-                NSLog("Fail")
+                print("Fail")
             case .GiveUp:
                 peripheral.disconnect()
                 self.updateWhenActive()
             }
         }
         future.onFailure {error in
-            NSLog("Fail \(error)")
+            print("Fail \(error)")
         }
         
     }
@@ -73,11 +73,16 @@ class BluetoothDevicesTableViewController:UITableViewController {
     func deviceConnected(peripheral:Peripheral){
         //TODO: Check BluetoothDevice Type
         setPhiro(peripheral)
+        setArduino(peripheral)
         startScene()
     }
     
     func setPhiro(peripheral:Peripheral){
         BluetoothService.sharedInstance.phiro = peripheral as? Phiro
+    }
+    
+    func setArduino(peripheral:Peripheral){
+        BluetoothService.sharedInstance.arduino = peripheral as? ArduinoDevice
     }
     
     func startScene(){

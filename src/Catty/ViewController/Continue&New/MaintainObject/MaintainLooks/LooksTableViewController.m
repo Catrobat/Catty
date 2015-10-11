@@ -783,7 +783,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
         
         NSRange result = [fileName rangeOfString:kResourceFileNameSeparator];
         if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([fileName length]-1)))
-            return; // Invalid file name convention -> this should not happen. XXX/FIXME: maybe we want to abort here??
+            abort();
+            return;
 
         NSUInteger referenceCount = [self.object referenceCountForLook:[fileName substringFromIndex:1]];
         if(referenceCount > 1) {

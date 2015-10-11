@@ -191,8 +191,7 @@ static void *VGParallaxHeaderObserverContext = &VGParallaxHeaderObserverContext;
     if (!self) {
         return nil;
     }
-    
-    // FIXME: Init with storyboards not yet supported
+
 
     return self;
 }

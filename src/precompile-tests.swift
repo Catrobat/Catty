@@ -34,6 +34,7 @@ let pathToReadmeFile = "../README.md"; let pathToReadmeFileLine = __LINE__;
 
 let localizedStringCheckExcludeFiles = [
     "LanguageTranslationDefines.h",
+    "LanguageTranslationDefinesSwift.swift",
     "Functions.[hm]",
     "Operators.m",
     "BSKeyboardControls.m"
@@ -161,7 +162,7 @@ func localizedStringCheck(filePath : String, fileContent : String) -> (failed: B
     if lineNumber == 0 {
         lineNumber = 1
     }
-    let errorMessage : String = "\(filePath):\(lineNumber): error : NSLocalizedString HAS TO BE moved to LanguageTranslationDefines.h!\n"
+    let errorMessage : String = "\(filePath):\(lineNumber): error : NSLocalizedString HAS TO BE moved to LanguageTranslationDefines.h or LanguageTranslationDefines.swift!\n"
     return (true, errorMessage)
 }
 

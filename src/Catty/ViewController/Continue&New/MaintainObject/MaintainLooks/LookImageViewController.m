@@ -179,7 +179,8 @@
     NSRange result = [fileName rangeOfString:kResourceFileNameSeparator];
 
     if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([fileName length]-1)))
-        return; // Invalid file name convention -> this should not happen. XXX/FIXME: maybe we want to abort here??
+        abort();
+        return;
     
     NSString *previewImageName =  [NSString stringWithFormat:@"%@_%@%@",
             [fileName substringToIndex:result.location],

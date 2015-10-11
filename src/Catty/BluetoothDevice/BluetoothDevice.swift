@@ -28,11 +28,11 @@ import BluetoothHelper
 public class BluetoothDevice:Peripheral {
     
     
-    public func getName()->NSString{
+    public func getName() -> String{
         return "BluetoothDevice"
     }
     
-    public func getBluetoothDeviceUUID()->CBUUID{
+    public func getBluetoothDeviceUUID() -> CBUUID{
         return CBUUID.init(string: "TEST")
     }
 

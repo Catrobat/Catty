@@ -569,23 +569,14 @@ public class Firmata {
     
             } else {
                 //Respond to incoming data
-                
-                //Debugging in dev
-                //    [self updateDebugConsoleWithData:newData];
-                
-//                var bytes = [UInt8](count: 20, repeatedValue: 0)
+
                 var buf = [UInt8](count: 512, repeatedValue: 0)  //static only works on classes & structs in swift
                 var length:Int = 0                               //again, was static
                 let dataLength:Int = data.length
-//                
-//                data.getBytes(&bytes, length: dataLength)
-//                
-                
                 
                 if (dataLength < 20){
                     
                     memcpy(&buf, bytes, Int(dataLength))
-                    //        memcpy(&buf[length], data, dataLength)
                     
                     length += dataLength
                     processInputData(buf, length: length)
@@ -594,8 +585,7 @@ public class Firmata {
                     
                 else if (dataLength == 20){
                     
-                    memcpy(&buf, bytes, 20)  //TODO: Check
-                    //    memcpy(&buf[length], data, 20);
+                    memcpy(&buf, bytes, 20)
                     length += dataLength
                     
                     if (length >= 64){

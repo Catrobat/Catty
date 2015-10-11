@@ -411,11 +411,6 @@
 
 - (void)showLoadingView
 {
-    // TODO: create getter for loadingView property and use lazy instantiation instead!
-    if (! self.loadingView) {
-        self.loadingView = [[LoadingView alloc] init];
-        [self.view addSubview:self.loadingView];
-    }
     self.loadingView.backgroundColor = [UIColor whiteColor];
     self.loadingView.alpha = 1.0;
     CGPoint top = CGPointMake(0, -self.navigationController.navigationBar.frame.size.height);
@@ -456,6 +451,15 @@
 - (void)showPlaceHolder:(BOOL)show
 {
     self.tableView.alwaysBounceVertical = self.placeHolderView.hidden = (! show);
+}
+
+-(LoadingView*)loadingView
+{
+    if (! self.loadingView) {
+        self.loadingView = [[LoadingView alloc] init];
+        [self.view addSubview:self.loadingView];
+    }
+    return self.loadingView;
 }
 
 

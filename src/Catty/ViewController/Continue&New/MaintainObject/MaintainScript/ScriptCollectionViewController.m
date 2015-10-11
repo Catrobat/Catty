@@ -452,8 +452,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
        itemAtIndexPath:(NSIndexPath*)fromIndexPath
    willMoveToIndexPath:(NSIndexPath*)toIndexPath
 {
-// FIXME: UPDATING THE DATA MODEL WHILE THE USER IS DRAGGING IS NO GOOD PRACTICE AND IS ERROR PRONE!!!
-//        USE collectionView:layout:didEndDraggingItemAtIndexPath: DELEGATE METHOD FOR THIS. Updates must happen after the user stopped dragging the brickcell!!
     if (fromIndexPath.item == 0) {
         Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
         [self.object.scriptList removeObjectAtIndex:fromIndexPath.section];

@@ -230,7 +230,7 @@ public class ArduinoDevice:BluetoothDevice,FirmataDelegate {
     
     // MARK: override
     
-    override public func getName()->NSString{
+    override public func getName() -> String{
         return "Arduino"
     }
     
