@@ -122,7 +122,9 @@ didSelectItemAtIndexPath:(NSIndexPath*)indexPath
     [collectionView deselectItemAtIndexPath:indexPath animated:NO];
     BrickCell *cell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
     NSAssert(cell.scriptOrBrick, @"Error, no brick.");
-    [Util incrementStatisticCountForBrickType:[cell.scriptOrBrick brickType]];
+    if ([cell.scriptOrBrick brickType] < 500) {
+        [Util incrementStatisticCountForBrickType:[cell.scriptOrBrick brickType]];
+    }
     if ([self.delegate respondsToSelector:@selector(brickCategoryViewController:didSelectScriptOrBrick:)]) {
         [self.delegate brickCategoryViewController:self didSelectScriptOrBrick:cell.scriptOrBrick];
     }
