@@ -28,3 +28,7 @@
 
 #define kUsePhiroBricks @"usePhiroBricks"
 #define kUseArduinoBricks @"useArduinoBricks"
+
+#define kPhiroActivated 0
+#define kArduinoActivated 0
+

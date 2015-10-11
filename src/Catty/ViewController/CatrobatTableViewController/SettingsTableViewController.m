@@ -28,6 +28,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "KeychainUserDefaultsDefines.h"
 
+
 @implementation SettingsTableViewController
 
 - (void)setup {
@@ -36,22 +37,24 @@
     self.view.backgroundColor = [UIColor backgroundColor];
     self.view.tintColor = [UIColor globalTintColor];
 	[self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
-		
-        [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedPhiroBricks key:kUsePhiroBricks handler:^(BOSwitchTableViewCell *cell) {
-            cell.backgroundColor = [UIColor backgroundColor];
-            cell.mainColor = [UIColor globalTintColor];
-        }]];
+        if (kPhiroActivated) {
+            [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedPhiroBricks key:kUsePhiroBricks handler:^(BOSwitchTableViewCell *cell) {
+                cell.backgroundColor = [UIColor backgroundColor];
+                cell.mainColor = [UIColor globalTintColor];
+            }]];
+        }
         
-        [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedArduinoBricks key:kUseArduinoBricks handler:^(BOSwitchTableViewCell *cell) {
-            cell.backgroundColor = [UIColor backgroundColor];
-            cell.mainColor = [UIColor globalTintColor];
-        }]];
-		
+        if (kArduinoActivated) {
+            [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedArduinoBricks key:kUseArduinoBricks handler:^(BOSwitchTableViewCell *cell) {
+                cell.backgroundColor = [UIColor backgroundColor];
+                cell.mainColor = [UIColor globalTintColor];
+            }]];
+        }
+
     }]];
 	
 	__unsafe_unretained typeof(self) weakSelf = self;
 	[self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
-		
 		[section addCell:[BOChoiceTableViewCell cellWithTitle:kLocalizedAboutPocketCode key:@"choice_2" handler:^(BOChoiceTableViewCell *cell) {
 			cell.destinationViewController = [AboutPoketCodeOptionTableViewController new];
             cell.backgroundColor = [UIColor backgroundColor];

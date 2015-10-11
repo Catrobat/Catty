@@ -32,6 +32,7 @@
 #import "LoadingView.h"
 #import "BDKNotifyHUD.h"
 #import "PlaceHolderView.h"
+#import "KeychainUserDefaultsDefines.h"
 
 @class BluetoothPopupVC;
 
@@ -357,15 +358,15 @@
     
     ScenePresenterViewController *vc = [ScenePresenterViewController new];
     vc.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
-    BOOL phiro,arduino = NO;
-    if ([vc.program.header.isPhiroProProject isEqualToString:@"true"]) { // or has Phiro Bricks
+    BOOL phiro = NO,arduino = NO;
+    if ([vc.program.header.isPhiroProProject isEqualToString:@"true"] && kPhiroActivated) { // or has Phiro Bricks
         phiro = YES;
     }
-    if ([vc.program.header.isArduinoProject isEqualToString:@"true"]) { // or has Arduino Bricks
+    if ([vc.program.header.isArduinoProject isEqualToString:@"true"] && kArduinoActivated) { // or has Arduino Bricks
         arduino = YES;
     }
     
-    if (vc.program.requiresBluetooth &&(phiro||arduino)) {
+    if (vc.program.requiresBluetooth && (phiro||arduino)) {
         //TODO: Set ARDUINO/Phiro by checking bools
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
         BluetoothPopupVC * bvc = (BluetoothPopupVC*)[storyboard instantiateViewControllerWithIdentifier:@"bluetoothPopupVC"];
