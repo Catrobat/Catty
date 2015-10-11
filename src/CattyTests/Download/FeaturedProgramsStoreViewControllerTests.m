@@ -60,7 +60,7 @@
     [super tearDown];
 }
 
-/*- (void)testFeatured
+- (void)testFeatured
 {
     [self.featuredProgramsStoreViewController loadFeaturedProjects];
     
@@ -78,6 +78,6 @@
         XCTAssertTrue(catrobatProject.projectID > 0, @"Invalid projectID");
         XCTAssertTrue([catrobatProject.featuredImage length] > 0, @"Invalid featuredImage");
     }
-}*/
+}
 
 @end
