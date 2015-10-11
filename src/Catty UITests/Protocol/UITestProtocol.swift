@@ -24,6 +24,7 @@ import XCTest
 
 protocol UITestProtocol {
     func restoreDefaultProgram()
+    func addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtLooksTV(numLooks: UInt)
 }
 
 extension UITestProtocol {
@@ -41,9 +42,8 @@ extension UITestProtocol {
         // finally go back to main menu, because this method is used by other tests
         app.navigationBars["Programs"].buttons["Pocket Code"].tap()
     }
-    
-    func addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtSoundTV(numLooks: UInt) {
-        
+
+    func addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtLooksTV(numLooks: UInt) {
         // delete all existing looks...
         let app = XCUIApplication()
         let tablesQuery = app.tables

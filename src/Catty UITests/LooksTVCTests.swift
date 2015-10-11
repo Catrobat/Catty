@@ -48,30 +48,30 @@ class LooksTVCTests: XCTestCase, UITestProtocol {
     }
 
     func testDeleteAllLooksFromBackground() {
-        
+
         let app = XCUIApplication()
         let toolbarsQuery = app.toolbars
-        
-        addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtSoundTV(constants.numLooks)
+
+        addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtLooksTV(constants.numLooks)
         XCTAssertEqual(app.tables.staticTexts.count, constants.numLooks)
-        
+
         app.navigationBars["Looks"].buttons["Edit"].tap()
         app.buttons["Delete Looks"].tap()
-        
+
         toolbarsQuery.buttons["Select All"].tap()
         toolbarsQuery.buttons["Delete"].tap()
-        
+
         XCTAssertEqual(app.tables.staticTexts.count, 0)
     }
-    
+
     func testDeleteAllLooksFromBackgroundSequentiallyBySwiping() {
-        
+
         let app = XCUIApplication()
         let tablesQuery = app.tables
-        
-        addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtSoundTV(constants.numLooks)
+
+        addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtLooksTV(constants.numLooks)
         XCTAssertEqual(app.tables.staticTexts.count, constants.numLooks)
-        
+
         for i : UInt in 1...constants.numLooks {
             let name = "Image" + String(i)
             tablesQuery.staticTexts[name].swipeLeft()
@@ -80,17 +80,17 @@ class LooksTVCTests: XCTestCase, UITestProtocol {
             XCTAssertEqual(app.tables.staticTexts.count, (constants.numLooks-i))
         }
     }
-    
+
     func testRenameAllLooksFromBackground() {
-        
+
         let app = XCUIApplication()
         let tablesQuery = app.tables
         let collectionViewsQuery = app.alerts["Rename image"].collectionViews
         let clearTextButton = collectionViewsQuery.buttons["Clear text"]
-        
-        addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtSoundTV(constants.numLooks)
+
+        addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtLooksTV(constants.numLooks)
         XCTAssertEqual(app.tables.staticTexts.count, constants.numLooks)
-        
+
         for i : UInt in 1...constants.numLooks {
             let old_name = "Image" + String(i)
             let new_name = "Renamed" + String(i)
@@ -113,7 +113,7 @@ class LooksTVCTests: XCTestCase, UITestProtocol {
     func testToggleBetweenShowAndHideDetails() {
         
         let app = XCUIApplication()
-        addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtSoundTV(constants.numLooks)
+        addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtLooksTV(constants.numLooks)
         
         let soundsNavigationBar = app.navigationBars["Looks"]
         let editButton = soundsNavigationBar.buttons["Edit"]
