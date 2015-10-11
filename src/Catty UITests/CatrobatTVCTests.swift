@@ -56,8 +56,6 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testNew() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
 
         let programName = "testProgram"
         
@@ -87,8 +85,7 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testPrograms() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
         restoreDefaultProgram()
         
         let programNames = ["testProgram1", "testProgram2", "testProgram3"]
@@ -121,8 +118,6 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testHelp() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
         
         let app = XCUIApplication()
         app.tables.staticTexts["Help"].tap()
@@ -131,8 +126,6 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testExplore() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
         
         let app = XCUIApplication()
         app.tables.staticTexts["Explore"].tap()
@@ -141,8 +134,6 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testUpload() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
         
         let app = XCUIApplication()
         app.tables.staticTexts["Upload"].tap()
