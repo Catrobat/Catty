@@ -154,58 +154,58 @@ final class CBSpriteNode: SKSpriteNode {
         self.zPosition = zPosition
     }
 
-    func touchedWithTouches(touches: NSSet, withX x: CGFloat, andY y: CGFloat) -> Bool {
-        guard let playerScene = (scene as? CBScene),
-              let scheduler = playerScene.scheduler
-        else { return false }
-
-        // FIXME: this check does not work any more since Swift 2.0! seems to be a compiler problem!
-        //        if scheduler.running == false {
-        //            return false
-        //        }
-
-        guard let spriteObject = spriteObject,
-              let spriteName = spriteObject.name
-        else { fatalError("Invalid SpriteObject!") }
-
-        for touchAnyObject in touches {
-            let touch = touchAnyObject as! UITouch
-            let touchedPoint = touch.locationInNode(self)
-            //                println("x:%f,y:%f", touchedPoint.x, touchedPoint.y)
-            //println("test touch, %@",self.name)
-            //        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [UIScreen mainScreen].scale);
-            //        [self.scene.view drawViewHierarchyInRect:self.frame afterScreenUpdates:NO];
-            //        UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
-            //        UIGraphicsEndImageContext();
-            //                println("image : x:%f,y:%f", self.currentUIImageLook.size.width, self.currentUIImageLook.size.height)
-            //            let isTransparent = self.currentUIImageLook?.isTransparentPixel(self.currentUIImageLook, withX:touchedPoint.x, andY:touchedPoint.y)
-            if self.currentUIImageLook?.isTransparentPixelOLDMETHOD(self.currentUIImageLook, withX:touchedPoint.x, andY:touchedPoint.y) == true {
-                return false
-            }
-
-            if let lastTime = _lastTimeTouchedSpriteNode[spriteName] {
-                let duration = NSDate().timeIntervalSinceDate(lastTime)
-                // ignore multiple touches on same sprite node within a certain amount of time...
-                if duration < PlayerConfig.MinIntervalBetweenTwoAcceptedTouches {
-                    return true
-                }
-            }
-            _lastTimeTouchedSpriteNode[spriteName] = NSDate()
-
-            scheduler.startWhenContextsOfSpriteNodeWithName(spriteName)
-//            if let whenContexts = scheduler.whenContextsForSpriteNodeWithName(spriteName) {
-//                for whenContext in whenContexts {
-//                    if scheduler.isContextScheduled(whenContext) {
-//                        scheduler.forceStopContext(whenContext)
-//                    }
-//                    scheduler.scheduleContext(whenContext)
-//                }
-//                scheduler.runNextInstructionsGroup()
+//    func touchedWithTouches(touches: NSSet, withX x: CGFloat, andY y: CGFloat) -> Bool {
+//        guard let playerScene = (scene as? CBScene),
+//              let scheduler = playerScene.scheduler
+//        else { return false }
+//
+//        // FIXME: this check does not work any more since Swift 2.0! seems to be a compiler problem!
+//        //        if scheduler.running == false {
+//        //            return false
+//        //        }
+//
+//        guard let spriteObject = spriteObject,
+//              let spriteName = spriteObject.name
+//        else { fatalError("Invalid SpriteObject!") }
+//
+//        for touchAnyObject in touches {
+//            let touch = touchAnyObject as! UITouch
+//            let touchedPoint = touch.locationInNode(self)
+//            //                println("x:%f,y:%f", touchedPoint.x, touchedPoint.y)
+//            //println("test touch, %@",self.name)
+//            //        UIGraphicsBeginImageContextWithOptions(self.frame.size, NO, [UIScreen mainScreen].scale);
+//            //        [self.scene.view drawViewHierarchyInRect:self.frame afterScreenUpdates:NO];
+//            //        UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
+//            //        UIGraphicsEndImageContext();
+//            //                println("image : x:%f,y:%f", self.currentUIImageLook.size.width, self.currentUIImageLook.size.height)
+//            //            let isTransparent = self.currentUIImageLook?.isTransparentPixel(self.currentUIImageLook, withX:touchedPoint.x, andY:touchedPoint.y)
+//            if self.currentUIImageLook?.isTransparentPixelOLDMETHOD(self.currentUIImageLook, withX:touchedPoint.x, andY:touchedPoint.y) == true {
+//                return false
 //            }
-            return true
-        }
-        return true
-    }
+//
+//            if let lastTime = _lastTimeTouchedSpriteNode[spriteName] {
+//                let duration = NSDate().timeIntervalSinceDate(lastTime)
+//                // ignore multiple touches on same sprite node within a certain amount of time...
+//                if duration < PlayerConfig.MinIntervalBetweenTwoAcceptedTouches {
+//                    return true
+//                }
+//            }
+//            _lastTimeTouchedSpriteNode[spriteName] = NSDate()
+//
+//            scheduler.startWhenContextsOfSpriteNodeWithName(spriteName)
+////            if let whenContexts = scheduler.whenContextsForSpriteNodeWithName(spriteName) {
+////                for whenContext in whenContexts {
+////                    if scheduler.isContextScheduled(whenContext) {
+////                        scheduler.forceStopContext(whenContext)
+////                    }
+////                    scheduler.scheduleContext(whenContext)
+////                }
+////                scheduler.runNextInstructionsGroup()
+////            }
+//            return true
+//        }
+//        return true
+//    }
 
     func touchedWithTouch(touch: UITouch, atPosition position: CGPoint) -> Bool {
         guard let playerScene = (scene as? CBScene),
@@ -217,8 +217,8 @@ final class CBSpriteNode: SKSpriteNode {
         guard let spriteObject = spriteObject,
               let spriteName = spriteObject.name
         else { fatalError("Invalid SpriteObject!") }
-
-        if imageLook.isTransparentPixelOLDMETHOD(imageLook, withX:position.x, andY:position.y) {
+        let touchedPoint = touch.locationInNode(self)
+        if imageLook.isTransparentPixelOLDMETHOD(imageLook, withX:touchedPoint.x, andY:touchedPoint.y) {
             print("\(spriteName): \"I'm transparent at this point\"")
             return false
         }

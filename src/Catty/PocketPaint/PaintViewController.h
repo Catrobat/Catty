@@ -53,6 +53,8 @@
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (nonatomic,strong) UIImage *editingImage;
 @property (nonatomic,strong) NSString *editingPath;
+@property (nonatomic) CGFloat programHeight;
+@property (nonatomic) CGFloat programWidth;
 @property (nonatomic,strong) UIBarButtonItem* handToolBarButtonItem;
 @property (nonatomic,strong) UIBarButtonItem* pointerToolBarButtonItem;
 @property (nonatomic,strong) UIBarButtonItem* redo;
