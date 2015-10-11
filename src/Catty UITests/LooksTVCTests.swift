@@ -64,7 +64,7 @@ class LooksTVCTests: XCTestCase, UITestProtocol {
         XCTAssertEqual(app.tables.staticTexts.count, 0)
     }
     
-    func testDeleteAllSoundsFromBackgroundSequentiallyBySwiping() {
+    func testDeleteAllLooksFromBackgroundSequentiallyBySwiping() {
         
         let app = XCUIApplication()
         let tablesQuery = app.tables
