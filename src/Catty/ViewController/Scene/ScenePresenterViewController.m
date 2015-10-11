@@ -389,7 +389,7 @@
         NSDebug(@"StartTouchinScenePresenter");
 
         CBScene *scene = (CBScene*)self.skView.scene;
-        if ([scene touchedWithTouches:touches withX:location.x andY:location.y]) {
+        if ([scene touchedWithTouches:touches atPosition:location]) {
             break;
         }
     }
