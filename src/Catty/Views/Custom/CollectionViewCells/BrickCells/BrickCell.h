@@ -50,6 +50,7 @@
 @property (nonatomic, strong) id<ScriptProtocol> scriptOrBrick;
 @property (nonatomic, strong) NSArray *brickCategoryColors;
 @property (nonatomic) BOOL enabled;
+@property (nonatomic) BOOL isInserting;
 @property (nonatomic, strong) SelectButton *selectButton;
 
 - (kBrickShapeType)brickShapeType;

@@ -46,29 +46,32 @@ static NSMutableArray *messages = nil;
         NSMutableArray *options = [[NSMutableArray alloc] init];
         [options addObject:kLocalizedNewElement];
         int currentOptionIndex = 0;
-        int optionIndex = 1;
-        if ([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickMessageProtocol)]) {
-            Brick<BrickMessageProtocol> *messageBrick = (Brick<BrickMessageProtocol>*)brickCell.scriptOrBrick;
-            NSString *currentMessage = [messageBrick messageForLineNumber:line andParameterNumber:parameter];
-            NSArray *messages;
-            if ([brickCell.scriptOrBrick isKindOfClass:[Script class]]) {
-                messages = [Util allMessagesForProgram:((Script*)brickCell.scriptOrBrick).object.program];
-            } else {
-                messages = [Util allMessagesForProgram:messageBrick.script.object.program];
-            }
-            for (NSString *message in messages) {
-                if (! [options containsObject:message]) {
-                    [options addObject:message];
-                    if ([message isEqualToString:currentMessage]) {
-                        currentOptionIndex = optionIndex;
+        if (!brickCell.isInserting) {
+            int optionIndex = 1;
+            if ([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickMessageProtocol)]) {
+                Brick<BrickMessageProtocol> *messageBrick = (Brick<BrickMessageProtocol>*)brickCell.scriptOrBrick;
+                NSString *currentMessage = [messageBrick messageForLineNumber:line andParameterNumber:parameter];
+                NSArray *messages;
+                if ([brickCell.scriptOrBrick isKindOfClass:[Script class]]) {
+                    messages = [Util allMessagesForProgram:((Script*)brickCell.scriptOrBrick).object.program];
+                } else {
+                    messages = [Util allMessagesForProgram:messageBrick.script.object.program];
+                }
+                for (NSString *message in messages) {
+                    if (! [options containsObject:message]) {
+                        [options addObject:message];
+                        if ([message isEqualToString:currentMessage]) {
+                            currentOptionIndex = optionIndex;
+                        }
+                        optionIndex++;
                     }
-                    optionIndex++;
+                }
+                if (currentMessage && ![options containsObject:currentMessage]) {
+                    [options addObject:currentMessage];
+                    currentOptionIndex = optionIndex;
                 }
             }
-            if (currentMessage && ![options containsObject:currentMessage]) {
-                [options addObject:currentMessage];
-                currentOptionIndex = optionIndex;
-            }
+
         }
         [self setValues:options];
         [self setCurrentValue:options[currentOptionIndex]];

@@ -42,19 +42,21 @@
         NSMutableArray *options = [[NSMutableArray alloc] init];
         [options addObject:kLocalizedNewElement];
         int currentOptionIndex = 0;
-        int optionIndex = 1;
-        if([self.brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
-            Brick<BrickObjectProtocol> *objectBrick = (Brick<BrickObjectProtocol>*)self.brickCell.scriptOrBrick;
-            SpriteObject *currentObject = [objectBrick objectForLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
-            for(SpriteObject *object in objectBrick.script.object.program.objectList) {
-                [options addObject:object.name];
-                if([currentObject.name isEqualToString:object.name])
+        if (!brickCell.isInserting) {
+            int optionIndex = 1;
+            if([self.brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickObjectProtocol)]) {
+                Brick<BrickObjectProtocol> *objectBrick = (Brick<BrickObjectProtocol>*)self.brickCell.scriptOrBrick;
+                SpriteObject *currentObject = [objectBrick objectForLineNumber:self.lineNumber andParameterNumber:self.parameterNumber];
+                for(SpriteObject *object in objectBrick.script.object.program.objectList) {
+                    [options addObject:object.name];
+                    if([currentObject.name isEqualToString:object.name])
+                        currentOptionIndex = optionIndex;
+                    optionIndex++;
+                }
+                if (currentObject && ![options containsObject:currentObject.name]) {
+                    [options addObject:currentObject.name];
                     currentOptionIndex = optionIndex;
-                optionIndex++;
-            }
-            if (currentObject && ![options containsObject:currentObject.name]) {
-                [options addObject:currentObject.name];
-                currentOptionIndex = optionIndex;
+                }
             }
         }
         [self setValues:options];
