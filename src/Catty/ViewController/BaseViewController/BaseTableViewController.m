@@ -33,6 +33,8 @@
 #import "BDKNotifyHUD.h"
 #import "PlaceHolderView.h"
 #import "KeychainUserDefaultsDefines.h"
+#import "Pocket_Code-Swift.h"
+#import <CoreBluetooth/CoreBluetooth.h>
 
 @class BluetoothPopupVC;
 
@@ -358,18 +360,26 @@
     
     ScenePresenterViewController *vc = [ScenePresenterViewController new];
     vc.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
-    BOOL phiro = NO,arduino = NO;
+    NSMutableArray *array = [NSMutableArray new];
     if ([vc.program.header.isPhiroProProject isEqualToString:@"true"] && kPhiroActivated) { // or has Phiro Bricks
-        phiro = YES;
+        if (!([BluetoothService sharedInstance].phiro.state == CBPeripheralStateConnected)) {
+            [array addObject:[NSNumber numberWithInteger:BluetoothDeviceIDphiro]];
+        }
+    
     }
     if ([vc.program.header.isArduinoProject isEqualToString:@"true"] && kArduinoActivated) { // or has Arduino Bricks
-        arduino = YES;
+        if (!([BluetoothService sharedInstance].arduino.state == CBPeripheralStateConnected)) {
+            [array addObject:[NSNumber numberWithInteger:BluetoothDeviceIDarduino]];
+        }
     }
     
-    if (vc.program.requiresBluetooth && (phiro||arduino)) {
-        //TODO: Set ARDUINO/Phiro by checking bools
+    if ( array.count > 0) { // vc.program.requiresBluetooth
+
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
         BluetoothPopupVC * bvc = (BluetoothPopupVC*)[storyboard instantiateViewControllerWithIdentifier:@"bluetoothPopupVC"];
+        [bvc setDeviceArray:array];
+        [bvc setDelegate:self];
+        [bvc setVc:vc];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:(UIViewController*)bvc];
         [self.navigationController presentViewController:navController animated:YES completion:^{
         }];

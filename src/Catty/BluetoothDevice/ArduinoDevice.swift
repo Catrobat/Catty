@@ -261,6 +261,7 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
             for c in (service.characteristics!) {
                 if((c.properties.rawValue & CBCharacteristicProperties.WriteWithoutResponse.rawValue) > 0 || (c.properties.rawValue & CBCharacteristicProperties.Write.rawValue) > 0){
                     rxCharacteristic = c
+                    cbPeripheral.setNotifyValue(true, forCharacteristic: rxCharacteristic!)
                     break
                 }
             }

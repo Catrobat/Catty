@@ -28,17 +28,9 @@ import BluetoothHelper
 class BluetoothPopupVC: MXSegmentedPagerController {
     
     weak var delegate : BaseTableViewController?
-    weak var vc : ScenePresenterViewController?
-    
-    internal var needPhiro:Bool?
-    internal var needArduino:Bool?
-    
-    @objc func setNeedPhiro(){
-        needPhiro = true
-    }
-    @objc func setNeedArduino(){
-        needArduino = true
-    }
+    var vc : ScenePresenterViewController?
+
+    var deviceArray:[Int]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,10 +44,11 @@ class BluetoothPopupVC: MXSegmentedPagerController {
         self.segmentedPager.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox
         self.segmentedPager.segmentedControl.selectionIndicatorColor = UIColor.globalTintColor()
         self.segmentedPager.segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyleFixed
+    
         
-        self.navigationController!.title = "Select Bluetooth Device"
+        setHeader()
+        
         let rightButton:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: self, action: "dismissView")
-
         self.navigationItem.rightBarButtonItem = rightButton
 
     }
@@ -69,6 +62,12 @@ class BluetoothPopupVC: MXSegmentedPagerController {
         return ["Known Devices", "Connected Devices", "Search"][index];
     }
     
+    override func segmentedPager(segmentedPager: MXSegmentedPager, viewControllerForPageAtIndex index: Int) -> UIViewController {
+        let vc:BluetoothDevicesTableViewController = super.segmentedPager(segmentedPager, viewControllerForPageAtIndex: index) as! BluetoothDevicesTableViewController
+        vc.delegate = self
+        return vc
+    }
+    
     func dismissView(){
         self .dismissViewControllerAnimated(true, completion: {
             let central = CentralManager.sharedInstance
@@ -79,6 +78,26 @@ class BluetoothPopupVC: MXSegmentedPagerController {
             }
         })
         
+    }
+    
+    func setHeader() {
+        if(deviceArray!.count > 0){
+            if(deviceArray![0] == BluetoothDeviceID.phiro.rawValue){
+                self.navigationController!.title = "Select Phiro"
+                self.title = "Select Phiro"
+            } else if (deviceArray![0] == BluetoothDeviceID.arduino.rawValue){
+                self.navigationController!.title = "Select Arduino"
+                self.title = "Select Arduino"
+            }
+        }
+        view.setNeedsDisplay()
+    }
+    
+    func startScene(){
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)){
+             self.delegate!.startSceneWithVC(self.vc!)
+            }
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
 

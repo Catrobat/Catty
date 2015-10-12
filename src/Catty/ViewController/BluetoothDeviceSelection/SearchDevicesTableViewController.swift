@@ -128,110 +128,110 @@ class SearchDevicesTableViewController: BluetoothDevicesTableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let peri :Peripheral = CentralManager.sharedInstance.peripherals[indexPath.row];
-        if peri.state == CBPeripheralState.Connected {
-            self.write(peri)
-            return
-        }
-        let future = peri.connect(10, timeoutRetries: 10, disconnectRetries: 5, connectionTimeout: Double(10))
-        future.onSuccess {(peripheral, connectionEvent) in
-            switch connectionEvent {
-            case .Connected:
-                self.write(peripheral)
-                self.updateWhenActive()
-            case .Disconnected:
-                peripheral.reconnect()
-                self.updateWhenActive()
-            case .Timeout:
-                peripheral.reconnect()
-                self.updateWhenActive()
-            case .ForcedDisconnected:
-                self.updateWhenActive()
-            case .Failed:
-                NSLog("Fail")
-            case .GiveUp:
-                peripheral.disconnect()
-                self.updateWhenActive()
-            }
-        }
-        future.onFailure {error in
-            NSLog("Fail \(error)")
-        }
-
-    }
-    
-
-    func write(peripheral:Peripheral){
-        if peripheral.services.count > 0 {
-            for service in peripheral.services{
-                if service.characteristics.count > 0 {
-                    let characteristics:[Characteristic] = service.characteristics;
-                    self.setLED(characteristics, service: service)
-                    return
-                }
-
-            }
-
-        }
-        let future = peripheral.discoverAllServices()
-        
-        future.onSuccess{peripheral in
-            guard peripheral.services.count > 0 else {
-                //ERROR
-                return
-            }
-            
-            let services:[Service] = peripheral.services
-            
-            for service in services{
-                let charFuture = service.discoverAllCharacteristics();
-                print("SERVICE: \(service.uuid) forPeripheral:\(peripheral.name)")
-                charFuture.onSuccess{service in
-                    guard service.characteristics.count > 0 else {
-                        return
-                    }
-                    
-                    let characteristics:[Characteristic] = service.characteristics;
-                    self.setLED(characteristics, service: service)
-                }
-            }
-            
-        }
-
-    }
-    
-    func setLED(characteristics:[Characteristic],service:Service){
-        var data0:UInt8  //Status
-        var data1:UInt8  //LSB of bitmask
-        var data2:UInt8  //MSB of bitmask
-        
-        //Analog (PWM) I/O message
-
-        
-        for character in characteristics {
-            if(character.uuid == CBUUID(string: "713D0003-503E-4C75-BA94-3148F18D941E")){
-                data0 = 0x90+4;
-                if(debugData == 0x01){
-                    data1 = 0x01
-                    debugData = 0x00
-                } else {
-                    data1 = 0x00
-                    debugData = 0x01
-                }
-                //only 7 bottom bits
-                data2 = 0x01 >> 7;     //top bit in second byte // &0x7f ??
-                
-                let bytes:[UInt8] = [data0,data1,data2]
-                let newData:NSData = NSData(bytes: bytes,length: 3)
-                character.service.peripheral.cbPeripheral.writeValue(newData, forCharacteristic: character.cbCharacteristic, type: CBCharacteristicWriteType.WithoutResponse)
-                print("send \(service.uuid)")
-            }
-
-            print("Characteristic \(character.uuid)")
-        }
-
-    }
+//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        let peri :Peripheral = CentralManager.sharedInstance.peripherals[indexPath.row];
+//        if peri.state == CBPeripheralState.Connected {
+//            self.write(peri)
+//            return
+//        }
+//        let future = peri.connect(10, timeoutRetries: 10, disconnectRetries: 5, connectionTimeout: Double(10))
+//        future.onSuccess {(peripheral, connectionEvent) in
+//            switch connectionEvent {
+//            case .Connected:
+//                self.write(peripheral)
+//                self.updateWhenActive()
+//            case .Disconnected:
+//                peripheral.reconnect()
+//                self.updateWhenActive()
+//            case .Timeout:
+//                peripheral.reconnect()
+//                self.updateWhenActive()
+//            case .ForcedDisconnected:
+//                self.updateWhenActive()
+//            case .Failed:
+//                NSLog("Fail")
+//            case .GiveUp:
+//                peripheral.disconnect()
+//                self.updateWhenActive()
+//            }
+//        }
+//        future.onFailure {error in
+//            NSLog("Fail \(error)")
+//        }
+//
+//    }
+//    
+//
+//    func write(peripheral:Peripheral){
+//        if peripheral.services.count > 0 {
+//            for service in peripheral.services{
+//                if service.characteristics.count > 0 {
+//                    let characteristics:[Characteristic] = service.characteristics;
+//                    self.setLED(characteristics, service: service)
+//                    return
+//                }
+//
+//            }
+//
+//        }
+//        let future = peripheral.discoverAllServices()
+//        
+//        future.onSuccess{peripheral in
+//            guard peripheral.services.count > 0 else {
+//                //ERROR
+//                return
+//            }
+//            
+//            let services:[Service] = peripheral.services
+//            
+//            for service in services{
+//                let charFuture = service.discoverAllCharacteristics();
+//                print("SERVICE: \(service.uuid) forPeripheral:\(peripheral.name)")
+//                charFuture.onSuccess{service in
+//                    guard service.characteristics.count > 0 else {
+//                        return
+//                    }
+//                    
+//                    let characteristics:[Characteristic] = service.characteristics;
+//                    self.setLED(characteristics, service: service)
+//                }
+//            }
+//            
+//        }
+//
+//    }
+//    
+//    func setLED(characteristics:[Characteristic],service:Service){
+//        var data0:UInt8  //Status
+//        var data1:UInt8  //LSB of bitmask
+//        var data2:UInt8  //MSB of bitmask
+//        
+//        //Analog (PWM) I/O message
+//
+//        
+//        for character in characteristics {
+//            if(character.uuid == CBUUID(string: "713D0003-503E-4C75-BA94-3148F18D941E")){
+//                data0 = 0x90+4;
+//                if(debugData == 0x01){
+//                    data1 = 0x01
+//                    debugData = 0x00
+//                } else {
+//                    data1 = 0x00
+//                    debugData = 0x01
+//                }
+//                //only 7 bottom bits
+//                data2 = 0x01 >> 7;     //top bit in second byte // &0x7f ??
+//                
+//                let bytes:[UInt8] = [data0,data1,data2]
+//                let newData:NSData = NSData(bytes: bytes,length: 3)
+//                character.service.peripheral.cbPeripheral.writeValue(newData, forCharacteristic: character.cbCharacteristic, type: CBCharacteristicWriteType.WithoutResponse)
+//                print("send \(service.uuid)")
+//            }
+//
+//            print("Characteristic \(character.uuid)")
+//        }
+//
+//    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

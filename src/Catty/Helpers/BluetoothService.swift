@@ -22,6 +22,10 @@
 
 import Foundation
 
+@objc enum BluetoothDeviceID:Int {
+    case arduino
+    case phiro
+}
 
 public class BluetoothService:NSObject {
 //    class var sharedInstance: BluetoothService {
@@ -40,6 +44,8 @@ public class BluetoothService:NSObject {
         }
         return Singleton.instance
     }
+
+
     
     // the sharedInstance class method can be reached from ObjC
     @objc public class func sharedInstance() -> BluetoothService {

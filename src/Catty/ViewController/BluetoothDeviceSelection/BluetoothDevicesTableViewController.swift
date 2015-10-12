@@ -37,6 +37,8 @@ class BluetoothDevicesTableViewController:UITableViewController {
         }
     }
     
+    weak var delegate : BluetoothPopupVC?
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let peri :Peripheral = CentralManager.sharedInstance.peripherals[indexPath.row];
         if peri.state == CBPeripheralState.Connected {
@@ -71,10 +73,18 @@ class BluetoothDevicesTableViewController:UITableViewController {
     }
     
     func deviceConnected(peripheral:Peripheral){
-        //TODO: Check BluetoothDevice Type
-        //TODO: if more than one needed -> Alert that the user should select another device
-        setPhiro(peripheral)
-        setArduino(peripheral)
+        if(delegate!.deviceArray!.count > 0){
+            if(delegate!.deviceArray![0] == BluetoothDeviceID.phiro.rawValue){
+                setPhiro(peripheral)
+            } else if (delegate!.deviceArray![0] == BluetoothDeviceID.arduino.rawValue){
+                setArduino(peripheral)
+            }
+        }
+        delegate!.deviceArray!.removeAtIndex(0)
+        if(delegate!.deviceArray!.count > 0){
+            delegate!.setHeader()
+            return
+        }
         startScene()
     }
     
@@ -92,7 +102,7 @@ class BluetoothDevicesTableViewController:UITableViewController {
             central.stopScanning()
         }
 
-        
+        delegate!.startScene()
     }
 
 }
