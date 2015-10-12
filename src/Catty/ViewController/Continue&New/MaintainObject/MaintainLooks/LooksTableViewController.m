@@ -845,8 +845,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
         Look *look = [[Look alloc] initWithName:[Util uniqueName:lookName
                                                    existingNames:[self.object allLookNames]]
                                         andPath:newImageFileName];
-        
-            // TODO: outsource this to FileManager
         NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
                                   [self.object projectPath], kProgramImagesDirName, newImageFileName];
         NSDebug(@"Writing file to disk");

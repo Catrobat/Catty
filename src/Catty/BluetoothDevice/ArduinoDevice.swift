@@ -64,6 +64,12 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     }
     
     
+    
+    override init(cbPeripheral: CBPeripheral, advertisements: [String : String], rssi: Int, test: Bool) {
+        super.init(cbPeripheral: cbPeripheral, advertisements: advertisements, rssi: rssi, test: test)
+        setFirmata()
+    }
+    
     //MARK: SendData
     func sendData(data: NSData) {
         //Send data to peripheral
@@ -237,7 +243,18 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     }
     
     override public func peripheral(_: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
-        //TODO
+        guard let ownService = self.ownServices[service.UUID], ownCharacteristics = service.characteristics else {
+            return
+        }
+        ownService.didDiscoverCharacteristics(error)
+//        if error == nil {
+//            for characteristic : AnyObject in ownCharacteristics {
+//                if let ownCharacteristic = characteristic as? CBCharacteristic {
+//                    self.ownCharacteristics[ownCharacteristic] = ownService.ownCharacteristics[characteristic.UUID]
+//                }
+//            }
+//        }
+
         for c in (service.characteristics!) {
             
             switch c.UUID {
@@ -257,19 +274,20 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
             
         }
         
-        if rxCharacteristic == nil{
+        if txCharacteristic == nil{
             for c in (service.characteristics!) {
                 if((c.properties.rawValue & CBCharacteristicProperties.WriteWithoutResponse.rawValue) > 0 || (c.properties.rawValue & CBCharacteristicProperties.Write.rawValue) > 0){
-                    rxCharacteristic = c
-                    cbPeripheral.setNotifyValue(true, forCharacteristic: rxCharacteristic!)
+                    txCharacteristic = c
+
                     break
                 }
             }
         }
-        if txCharacteristic == nil{
+        if rxCharacteristic == nil{
             for c in (service.characteristics!) {
                 if((c.properties.rawValue & CBCharacteristicProperties.Read.rawValue) > 0){
-                    txCharacteristic = c
+                    rxCharacteristic = c
+                    cbPeripheral.setNotifyValue(true, forCharacteristic: rxCharacteristic!)
                     break
                 }
             }
@@ -350,7 +368,7 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
         let port:Int = pin / 8
         let portPin:Int = pin % 8
         arduinoHelper.digitalValues[pin] = value
-        arduinoHelper.portValues[port][portPin] = value
+//        arduinoHelper.portValues[port][portPin] = value
     }
 
     

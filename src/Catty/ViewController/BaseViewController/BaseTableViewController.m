@@ -367,11 +367,11 @@
         }
     
     }
-    if ([vc.program.header.isArduinoProject isEqualToString:@"true"] && kArduinoActivated) { // or has Arduino Bricks
-        if (!([BluetoothService sharedInstance].arduino.state == CBPeripheralStateConnected)) {
+//    if ([vc.program.header.isArduinoProject isEqualToString:@"true"] && kArduinoActivated) { // or has Arduino Bricks
+//        if (!([BluetoothService sharedInstance].arduino.state == CBPeripheralStateConnected)) {
             [array addObject:[NSNumber numberWithInteger:BluetoothDeviceIDarduino]];
-        }
-    }
+//        }
+//    }
     
     if ( array.count > 0) { // vc.program.requiresBluetooth
 
@@ -381,10 +381,8 @@
         [bvc setDelegate:self];
         [bvc setVc:vc];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:(UIViewController*)bvc];
-        [self.navigationController presentViewController:navController animated:YES completion:^{
-        }];
+        [self presentViewController:navController animated:YES completion:nil];
     } else {
-        [self.navigationController setToolbarHidden:YES animated:YES];
         [self startSceneWithVC:vc];
     }
     
@@ -393,6 +391,7 @@
 
 -(void)startSceneWithVC:(ScenePresenterViewController*)vc
 {
+    [self.navigationController setToolbarHidden:YES animated:YES];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

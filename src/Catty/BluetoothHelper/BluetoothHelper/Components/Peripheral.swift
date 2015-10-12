@@ -38,7 +38,7 @@ public class Peripheral : NSObject, CBPeripheralDelegate, PeripheralWrapper {
     public let rssi             : Int
     
     // MARK: Init
-    internal init(cbPeripheral:CBPeripheral, advertisements:[String:String], rssi:Int) {
+    public init(cbPeripheral:CBPeripheral, advertisements:[String:String], rssi:Int) {
         self.cbPeripheral = cbPeripheral
         self.advertisements = advertisements
         self.rssi = rssi

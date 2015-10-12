@@ -453,6 +453,7 @@
     [self.parentViewController.navigationController setToolbarHidden:NO];
     [self.parentViewController.navigationController setNavigationBarHidden:NO];
     [self.navigationController popViewControllerAnimated:YES];
+    [[BluetoothService sharedInstance] disconnect]; // TODO: change this when it is allowed to stay connected
 }
 
 - (void)restartProgramAction:(UIButton*)sender

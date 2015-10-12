@@ -80,6 +80,70 @@ class BluetoothDevicesTableViewController:UITableViewController {
                 setArduino(peripheral)
             }
         }
+
+    }
+    
+    func setPhiro(peripheral:Peripheral){
+        BluetoothService.swiftSharedInstance.phiro = peripheral as? Phiro
+        guard let _ = BluetoothService.swiftSharedInstance.phiro else{
+            print("test")
+            return
+        }
+    }
+    
+    func setArduino(peripheral:Peripheral){
+        let arduino:ArduinoDevice = ArduinoDevice(cbPeripheral: peripheral.cbPeripheral, advertisements: peripheral.advertisements, rssi: peripheral.rssi, test: true)
+        
+        if peripheral.services.count > 0 {
+            for service in peripheral.services{
+                if service.characteristics.count > 0 {
+//                    _:[Characteristic] = service.characteristics;
+//                    self.setLED(characteristics, service: service)
+//                    self.checkStart()
+                    return
+                }
+                
+            }
+            
+        }
+        
+        let future = arduino.discoverAllServices()
+        
+        future.onSuccess{peripheral in
+            guard peripheral.services.count > 0 else {
+                //ERROR
+                return
+            }
+            
+            let services:[Service] = peripheral.services
+            
+            for service in services{
+                let charFuture = service.discoverAllCharacteristics();
+                var token: dispatch_once_t = 0
+                charFuture.onSuccess{service in
+                    guard service.characteristics.count > 0 else {
+                        return
+                    }
+                    if(arduino.txCharacteristic != nil && arduino.rxCharacteristic != nil){
+                        dispatch_once(&token) { () -> Void in
+                            self.checkStart()
+                        }
+                    }
+//                    let characteristics:[Characteristic] = service.characteristics;
+//                    self.setLED(characteristics, service: service)
+                }
+            }
+            
+        }
+
+        BluetoothService.swiftSharedInstance.arduino = arduino
+        guard let _ = BluetoothService.swiftSharedInstance.arduino else{
+            print("test")
+            return
+        }
+    }
+    
+    func checkStart(){
         delegate!.deviceArray!.removeAtIndex(0)
         if(delegate!.deviceArray!.count > 0){
             delegate!.setHeader()
@@ -88,13 +152,6 @@ class BluetoothDevicesTableViewController:UITableViewController {
         startScene()
     }
     
-    func setPhiro(peripheral:Peripheral){
-        BluetoothService.swiftSharedInstance.phiro = peripheral as? Phiro
-    }
-    
-    func setArduino(peripheral:Peripheral){
-        BluetoothService.swiftSharedInstance.arduino = peripheral as? ArduinoDevice
-    }
     
     func startScene(){
         let central = CentralManager.sharedInstance

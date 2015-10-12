@@ -94,7 +94,7 @@ class BluetoothPopupVC: MXSegmentedPagerController {
     }
     
     func startScene(){
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)){
+        dispatch_async(dispatch_get_main_queue()){
              self.delegate!.startSceneWithVC(self.vc!)
             }
         self.dismissViewControllerAnimated(true, completion: nil)

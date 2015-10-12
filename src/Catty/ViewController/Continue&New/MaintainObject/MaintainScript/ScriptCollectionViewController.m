@@ -157,6 +157,7 @@
 #pragma mark - actions
 - (void)playSceneAction:(id)sender
 {
+    //TODO: check Bluetooth
     [self playSceneAction:sender animated:YES];
 }
 

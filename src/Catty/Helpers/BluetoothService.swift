@@ -38,23 +38,20 @@ public class BluetoothService:NSObject {
 //        }
 //        return Static.instance!
 //    }
-    class var swiftSharedInstance: BluetoothService {
-        struct Singleton {
-            static let instance = BluetoothService()
-        }
-        return Singleton.instance
-    }
-
+//    class var swiftSharedInstance: BluetoothService {
+//        struct Singleton {
+//            static let instance = BluetoothService()
+//        }
+//        return Singleton.instance
+//    }
+    static let swiftSharedInstance = BluetoothService()
 
     
     // the sharedInstance class method can be reached from ObjC
     @objc public class func sharedInstance() -> BluetoothService {
         return BluetoothService.swiftSharedInstance
     }
-    
-    override init(){
-        super.init()
-    }
+
 
     
     var digitalSemaphoreArray:[dispatch_semaphore_t] = []
