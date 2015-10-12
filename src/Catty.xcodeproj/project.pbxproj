@@ -5473,10 +5473,10 @@
 				CA0BB4151AA7709900E5A88D /* Add version number to Root.plist */,
 				AACFFF611B7FE5F50002F899 /* Automatic Version Tracking */,
 				BEC18359F4AE6B828428FCE6 /* Embed Pods Frameworks */,
+				929DC44A1BCB9C5000421443 /* License Validator */,
 				B1530C3ABA65C1BF3F9C0A5E /* Copy Pods Resources */,
 				92C6319D1BC5180B00486958 /* CopyFiles */,
-				922123C81BCAB51E008AAE45 /* todo/fixme script */,
-				929DC44A1BCB9C5000421443 /* license check */,
+				922123C81BCAB51E008AAE45 /* Todo/Fixme check */,
 			);
 			buildRules = (
 			);
@@ -5770,33 +5770,33 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		922123C81BCAB51E008AAE45 /* todo/fixme script */ = {
+		922123C81BCAB51E008AAE45 /* Todo/Fixme check */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "todo/fixme script";
+			name = "Todo/Fixme check";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "TAGS=\"TODO:|FIXME:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" -or -name \"*.m\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
+			shellScript = "// TODO check\nTAGS=\"TODO:|FIXME:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" -or -name \"*.h\" -or -name \"*.m\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
 		};
-		929DC44A1BCB9C5000421443 /* license check */ = {
+		929DC44A1BCB9C5000421443 /* License Validator */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "license check";
+			name = "License Validator";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "";
+			shellScript = "/usr/bin/env xcrun swift -sdk $(/usr/bin/env xcrun --show-sdk-path --sdk macosx) license-validator.swift\nOUT=$?\nif [ $OUT -ne 0 ];then\nexit $OUT\nfi";
 		};
 		AACFFF611B7FE5F50002F899 /* Automatic Version Tracking */ = {
 			isa = PBXShellScriptBuildPhase;
