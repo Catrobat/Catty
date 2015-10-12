@@ -338,8 +338,9 @@
 {
     CGFloat height = [self height];
     [self addHorizontalLineToView:view andHeight:view.frame.size.height + height*0.01f-15];
-    UIButton *reportButton = [[UIButton alloc] initWithFrame:CGRectMake(view.frame.size.width/15,view.frame.size.height + height*0.01f, 130, 25)];
-    reportButton.titleLabel.font = [UIFont boldSystemFontOfSize:10];
+    UIButton *reportButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    reportButton.frame =CGRectMake(view.frame.size.width/15,view.frame.size.height + height*0.01f, 130, 25);
+    reportButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];
     [reportButton.titleLabel setTintColor:[UIColor globalTintColor]];
     [reportButton setTitle:kLocalizedReportProgram forState:UIControlStateNormal];
     [reportButton addTarget:target action:@selector(reportProgram) forControlEvents:UIControlEventTouchUpInside];
@@ -348,7 +349,7 @@
     [reportButton setTitleColor:[UIColor globalTintColor] forState:UIControlStateNormal];
     
     [view addSubview:reportButton];
-    [self setMaxHeightIfGreaterForView:view withHeight:view.frame.size.height + height*0.01f];
+    [self setMaxHeightIfGreaterForView:view withHeight:view.frame.size.height + height*0.02f];
 }
 
 + (void)addHorizontalLineToView:(UIView*)view andHeight:(CGFloat)height
