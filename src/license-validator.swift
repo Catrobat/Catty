@@ -102,7 +102,7 @@ let license3rdPartyDict : [String : License] = [
     "NKOColorPickerView" : .MIT,
     "SPUserResizableView" : .MIT,
     "UIImage+FloodFill" : .MIT,
-    "UIViewController+KNSemiModal" : .Unknown,
+    "UIViewController+KNSemiModal" : .MIT,
     "YKImageCropperOverlayView" : .MIT,
     "YKImageCropperView" : .MIT,
     "AHKActionSheet" : .MIT,
