@@ -34,68 +34,37 @@
 
 @implementation ArduinoSendDigitalValueBrick (CBXMLHandler)
 
-//+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
-//{
-//    NSUInteger childCount = [xmlElement.childrenWithoutComments count];
-//    GDataXMLElement *userVariableElement = nil;
-//    
-//    [CBXMLParserHelper validateXMLElement:xmlElement forFormulaListWithTotalNumberOfFormulas:1];
-//    
-//    if (childCount == 3) {
-//        userVariableElement = [xmlElement childWithElementName:@"userVariable"];
-//        [XMLError exceptionIfNil:userVariableElement message:@"No userVariableElement element found..."];
-//        
-//        GDataXMLElement *inUserBrickElement = [xmlElement childWithElementName:@"inUserBrick"];
-//        [XMLError exceptionIfNil:inUserBrickElement message:@"No inUserBrickElement element found..."];
-//        
-//        // inUserBrick code goes here...
-//    } else if (childCount == 2) {
-//        userVariableElement = [xmlElement childWithElementName:@"userVariable"];
-//        GDataXMLElement *inUserBrickElement = [xmlElement childWithElementName:@"inUserBrick"];
-//        
-//        if (userVariableElement == nil && inUserBrickElement == nil) {
-//            [XMLError exceptionWithMessage:@"Neither userVariableElement nor inUserBrickElement found..."];
-//        }
-//    } else if (childCount != 1) {
-//        [XMLError exceptionWithMessage:@"Too many or too less child elements..."];
-//    }
-//
-//    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VARIABLE" withContext:context];
-//    SetVariableBrick *setVariableBrick = [self new];
-//    setVariableBrick.variableFormula = formula;
-//    
-//    if (userVariableElement != nil) {
-//        UserVariable *userVariable = [context parseFromElement:userVariableElement withClass:[UserVariable class]];
-//        [XMLError exceptionIfNil:userVariable message:@"Unable to parse userVariable..."];
-//        
-//        setVariableBrick.userVariable = userVariable;
-//    }
-//    
-//    return setVariableBrick;
-//}
-//
-//+ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
-//{
-//    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
-//}
-//
-//- (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
-//{
-//    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
-//    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
-//    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"SetVariableBrick"]];
-//    GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
-//    GDataXMLElement *formula = [self.variableFormula xmlElementWithContext:context];
-//    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"VARIABLE"]];
-//    [formulaList addChild:formula context:context];
-//    [brick addChild:formulaList context:context];
-//
-//    // add pseudo <inUserBrick> element to produce a Catroid equivalent XML (unused at the moment)
-//    [brick addChild:[GDataXMLElement elementWithName:@"inUserBrick" stringValue:@"false" context:context] context:context];
-//
-//    if (self.userVariable)
-//        [brick addChild:[self.userVariable xmlElementWithContext:context] context:context];
-//    return brick;
-//}
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
+{
+    [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:2];
+    Formula *pin = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"PIN" withContext:context];
+    Formula *value = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VALUE" withContext:context];
+    ArduinoSendDigitalValueBrick *sendDigitalValueBrick = [self new];
+    sendDigitalValueBrick.pin = pin;
+    sendDigitalValueBrick.value = value;
+    return sendDigitalValueBrick;
+}
+
+
++ (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion095:(CBXMLParserContext*)context
+{
+    return [self parseFromElement:xmlElement withContextForLanguageVersion093:context];
+}
+
+- (GDataXMLElement*)xmlElementWithContext:(CBXMLSerializerContext*)context
+{
+    NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
+    GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
+    [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"ArduinoSendDigitalValueBrick"]];
+    GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
+    GDataXMLElement *formula = [self.pin xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"PIN"]];
+    [formulaList addChild:formula context:context];
+    formula = [self.value xmlElementWithContext:context];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"VALUE"]];
+    [formulaList addChild:formula context:context];
+    [brick addChild:formulaList context:context];
+    return brick;
+}
 
 @end
