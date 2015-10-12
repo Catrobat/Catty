@@ -43,7 +43,8 @@
         [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedFaceDetection key:kUseFaceDetectionSensors handler:^(BOSwitchTableViewCell *cell) {
             cell.backgroundColor = [UIColor backgroundColor];
             cell.mainColor = [UIColor globalTintColor];
-        }]];
+                    }]];
+        
         [section addCell:[BOSwitchTableViewCell cellWithTitle:kLocalizedFaceDetectionFrontCamera key:kUseFrontCamera handler:^(BOSwitchTableViewCell *cell) {
             cell.visibilityKey = kUseFaceDetectionSensors;
             cell.backgroundColor = [UIColor backgroundColor];
@@ -52,8 +53,10 @@
                 return [settingValue boolValue];
             };
             cell.onFooterTitle = kLocalizedFaceDetectionDefaultCamera;
+            cell.offFooterTitle = kLocalizedFaceDetectionDefaultCamera;
+            
         }]];
-        
+
     }]];
 	
     [self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
