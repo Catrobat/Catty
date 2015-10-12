@@ -86,7 +86,8 @@ let licenseCheckExcludeFiles = [
     "MYIntroductionPanel.[mh]",
     "FBKVOController.[mh]",
     "JNKeychain.[mh]",
-    "SwellAll.swift"
+    "SwellAll.swift",
+    "license-validator.swift"
 ]; let licenseCheckExcludeFilesLine = __LINE__; // CAVE: NEVER separate these two statements by adding a new line
 
 let licenseSearchStringTemplate = "/**\n *  Copyright (C) 2010-%@ The Catrobat Team\n"

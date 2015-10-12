@@ -526,6 +526,8 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             script.animateInsertBrick = NO;
             [self turnOffInsertingBrickMode];
         }
+    } else {
+        [[BrickMoveManager sharedInstance] getReadyForNewBrickMovement];
     }
     [self reloadInputViews];
     [self reloadData];

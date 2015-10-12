@@ -149,6 +149,7 @@
         self.clearsContextBeforeDrawing = YES;
         self.opaque = NO;
         self.clipsToBounds = NO;
+        self.isInserting = NO;
     }
     return self;
 }
