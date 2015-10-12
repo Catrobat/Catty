@@ -119,7 +119,29 @@ let license3rdPartyDict : [String : License] = [
     "LXReorderableCollectionViewFlowLayout" : .MIT,
     "MYBlurIntroductionView" : .MIT,
     "MYIntroductionPanel" : .MIT,
-    "TTTAttributedLabel" : .MIT
+    "TTTAttributedLabel" : .MIT,
+]
+
+let licenseCheckDirs : [String : License] = [
+    "Bohr": .MIT,
+    "HMSegmentedControl" : .MIT,
+    "PureLayout" : .MIT,
+    "M13ProgressSuite" : .MIT,
+    "MXSegmentedPager" : .MIT,
+    "Target Support Files" : .MIT,
+    "VGParallaxHeader" : .MIT
+    
+]
+
+let checkDirs : [String] = [
+    "Bohr",
+    "HMSegmentedControl",
+    "PureLayout",
+    "M13ProgressSuite",
+    "MXSegmentedPager",
+    "Target Support Files",
+    "VGParallaxHeader"
+    
 ]
 
 let compatibleLicenses : [License] = [
@@ -173,6 +195,27 @@ func checkLicenseOfFile(filePath: String) {
 
     
     if isExternalLibrary {
+        for excludeDir in checkDirs {
+            let range = filePath.rangeOfString(excludeDir)
+            if range != nil {
+                libraryName = excludeDir
+                guard let license = licenseCheckDirs[libraryName] else {
+                    printErrorAndExitIfFailed("No license specified for library: \(libraryName))", withFilePath: filePath)
+                    return
+                }
+                
+                if license == .Unknown {
+                    printWarning("Unknown License found. Not sure if compatible with PocketCode", withFilePath: filePath)
+                } else {
+                    if !isValidLicense(license) {
+                        printErrorAndExitIfFailed("License (\(license)) is not compatible with PockedCode.", withFilePath: filePath)
+                    }
+                }
+                return
+            }
+        }
+
+        
         guard let license = license3rdPartyDict[libraryName] else {
             printErrorAndExitIfFailed("No license specified for library: \(libraryName))", withFilePath: filePath)
             return
@@ -193,6 +236,7 @@ func checkLicenseOfFile(filePath: String) {
     
 }
 
+
 func checkLicenses() {
     
     
@@ -203,6 +247,7 @@ func checkLicenses() {
         if filePath.hasSuffix(".h") == false && filePath.hasSuffix(".m") == false && filePath.hasSuffix(".swift") == false {
             continue
         }
+        
         checkLicenseOfFile(filePath)
     }
     
