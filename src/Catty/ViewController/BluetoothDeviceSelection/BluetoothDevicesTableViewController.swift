@@ -39,109 +39,30 @@ class BluetoothDevicesTableViewController:UITableViewController {
     
     weak var delegate : BluetoothPopupVC?
     
+    
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let peri :Peripheral = CentralManager.sharedInstance.peripherals[indexPath.row];
         if peri.state == CBPeripheralState.Connected {
             self.deviceConnected(peri)
             return
         }
-        let future = peri.connect(10, timeoutRetries: 10, disconnectRetries: 5, connectionTimeout: Double(10))
-        future.onSuccess {(peripheral, connectionEvent) in
-            switch connectionEvent {
-            case .Connected:
-                self.deviceConnected(peripheral)
-                self.updateWhenActive()
-            case .Disconnected:
-                peripheral.reconnect()
-                self.updateWhenActive()
-            case .Timeout:
-                peripheral.reconnect()
-                self.updateWhenActive()
-            case .ForcedDisconnected:
-                self.updateWhenActive()
-            case .Failed:
-                print("Fail")
-            case .GiveUp:
-                peripheral.disconnect()
-                self.updateWhenActive()
-            }
-        }
-        future.onFailure {error in
-            print("Fail \(error)")
-        }
-        
+        BluetoothService.swiftSharedInstance.selectionManager = self
+        BluetoothService.swiftSharedInstance.connectDevice(peri)
+                
     }
     
     func deviceConnected(peripheral:Peripheral){
         if(delegate!.deviceArray!.count > 0){
             if(delegate!.deviceArray![0] == BluetoothDeviceID.phiro.rawValue){
-                setPhiro(peripheral)
+                 BluetoothService.swiftSharedInstance.setPhiroDevice(peripheral)
             } else if (delegate!.deviceArray![0] == BluetoothDeviceID.arduino.rawValue){
-                setArduino(peripheral)
+                BluetoothService.swiftSharedInstance.setArduinoDevice(peripheral)
             }
         }
+    }
 
-    }
     
-    func setPhiro(peripheral:Peripheral){
-        BluetoothService.swiftSharedInstance.phiro = peripheral as? Phiro
-        guard let _ = BluetoothService.swiftSharedInstance.phiro else{
-            print("test")
-            return
-        }
-    }
-    
-    func setArduino(peripheral:Peripheral){
-        let arduino:ArduinoDevice = ArduinoDevice(cbPeripheral: peripheral.cbPeripheral, advertisements: peripheral.advertisements, rssi: peripheral.rssi, test: true)
-        
-        if peripheral.services.count > 0 {
-            for service in peripheral.services{
-                if service.characteristics.count > 0 {
-//                    _:[Characteristic] = service.characteristics;
-//                    self.setLED(characteristics, service: service)
-//                    self.checkStart()
-                    return
-                }
-                
-            }
-            
-        }
-        
-        let future = arduino.discoverAllServices()
-        
-        future.onSuccess{peripheral in
-            guard peripheral.services.count > 0 else {
-                //ERROR
-                return
-            }
-            
-            let services:[Service] = peripheral.services
-            
-            for service in services{
-                let charFuture = service.discoverAllCharacteristics();
-                var token: dispatch_once_t = 0
-                charFuture.onSuccess{service in
-                    guard service.characteristics.count > 0 else {
-                        return
-                    }
-                    if(arduino.txCharacteristic != nil && arduino.rxCharacteristic != nil){
-                        dispatch_once(&token) { () -> Void in
-                            self.checkStart()
-                        }
-                    }
-//                    let characteristics:[Characteristic] = service.characteristics;
-//                    self.setLED(characteristics, service: service)
-                }
-            }
-            
-        }
-
-        BluetoothService.swiftSharedInstance.arduino = arduino
-        guard let _ = BluetoothService.swiftSharedInstance.arduino else{
-            print("test")
-            return
-        }
-    }
     
     func checkStart(){
         delegate!.deviceArray!.removeAtIndex(0)
@@ -158,7 +79,6 @@ class BluetoothDevicesTableViewController:UITableViewController {
         if central.isScanning {
             central.stopScanning()
         }
-
         delegate!.startScene()
     }
 

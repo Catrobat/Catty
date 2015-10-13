@@ -39,7 +39,10 @@ public class BluetoothDevice:Peripheral {
     public func getBluetoothDeviceUUID() -> CBUUID{
         return CBUUID.init(string: "TEST")
     }
-
+//    
+//    override public func peripheral(peri: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
+//        super.peripheral(peri, didDiscoverCharacteristicsForService: service, error: error)
+//    }
     
 }
 

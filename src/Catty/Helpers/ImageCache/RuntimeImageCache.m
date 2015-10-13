@@ -56,7 +56,7 @@
 }
 
 - (void)loadImageFromDiskWithPath:(NSString*)path
-                     onCompletion:(void(^)(UIImage *image))completion
+                     onCompletion:(void(^)(UIImage *image, NSString* path))completion
 {
     dispatch_async(self.imageCacheQueue, ^{
         UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
@@ -64,7 +64,7 @@
 
         // run completion handling block on main queue
         dispatch_sync(dispatch_get_main_queue(), ^{
-            completion(image);
+            completion(image,path);
         });
     });
 }
@@ -72,7 +72,7 @@
 - (void)loadThumbnailImageFromDiskWithThumbnailPath:(NSString*)thumbnailPath
                                           imagePath:(NSString*)imagePath
                                  thumbnailFrameSize:(CGSize)thumbnailFrameSize
-                                       onCompletion:(void(^)(UIImage *image))completion
+                                       onCompletion:(void(^)(UIImage *image, NSString* path))completion
 {
     dispatch_async(self.imageCacheQueue, ^{
         AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -103,7 +103,7 @@
 
         // run completion handling block on main queue
         dispatch_sync(dispatch_get_main_queue(), ^{
-            completion(thumbnailImage);
+            completion(thumbnailImage,nil);
         });
     });
 }

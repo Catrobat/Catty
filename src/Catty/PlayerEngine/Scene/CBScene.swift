@@ -90,7 +90,12 @@ final class CBScene: SKScene {
     }
 
     override func didMoveToView(view: SKView) {
-        startProgram()
+        let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+        let globalQueue = dispatch_get_global_queue(priority, 0)
+        dispatch_async(globalQueue) { () -> Void in
+            self.startProgram()
+        }
+        
     }
 
 //    func touchedWithTouches(touches: NSSet, withX x:CGFloat, andY y:CGFloat) -> Bool {
@@ -203,7 +208,7 @@ final class CBScene: SKScene {
     func startProgram() {
         guard let spriteObjectList = frontend?.program?.objectList as NSArray? as? [SpriteObject]
         else { fatalError("!! Invalid sprite object list given !! This should never happen!") }
-        assert(NSThread.currentThread().isMainThread)
+//        assert(NSThread.currentThread().isMainThread)
 
         removeAllChildren() // just to ensure
 

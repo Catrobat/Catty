@@ -359,35 +359,8 @@
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
     [super beginTrackingWithTouch:touch withEvent:event];
-    self.images = [[NSMutableArray alloc] initWithCapacity:self.object.lookList.count];
-    NSInteger count = 0;
-    for(Look *look in self.object.lookList) {
-        NSString *path = [NSString stringWithFormat:@"%@%@/%@", [self.object projectPath], kProgramImagesDirName, look.fileName];
-        RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
-        UIImage *image = [imageCache cachedImageForPath:path];
-        if (!image) {
-            [imageCache loadImageFromDiskWithPath:path onCompletion:^(UIImage *image) {
-                NSInteger counter = 0;
-                    for (UIImage* checkimage in self.images) {
-                        if (checkimage.size.width == 0) {
-                            [self.images removeObject:checkimage];
-                            [self.images insertObject:image atIndex:counter];
-                            break;
-                        }
-                        counter++;
-                    }
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.pickerView reloadAllComponents];
-                });
-            }];
-        }
-        if (image) {
-            [self.images addObject:image];
-        } else {
-            [self.images addObject:[UIImage new]];
-        }
-        count++;
+    if (self.currentImage) {
+        [self addLookData];
     }
 
     [self becomeFirstResponder];
@@ -437,6 +410,36 @@
     }
     [[keyboardControls activeField] resignFirstResponder];
     [self resignFirstResponder];
+}
+
+-(void)addLookData
+{
+    self.images = [[NSMutableArray alloc] initWithCapacity:self.object.lookList.count];
+    NSInteger count = 0;
+    for(Look *look in self.object.lookList) {
+        NSString *path = [NSString stringWithFormat:@"%@%@/%@", [self.object projectPath], kProgramImagesDirName, look.fileName];
+        RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
+        UIImage *image = [imageCache cachedImageForPath:path];
+        if (!image) {
+            [imageCache loadImageFromDiskWithPath:path onCompletion:^(UIImage *image, NSString* path) {
+                if (self.checkPath == path) {
+                    [self addLookData];
+                    [self setNeedsDisplay];
+                    [self.pickerView reloadAllComponents];
+                    [self.pickerView reloadInputViews];
+                }
+            }];
+        }
+        if (image) {
+            [self.images addObject:image];
+        } else {
+            self.checkPath = path;
+            [self.images addObject:[UIImage new]];
+        }
+        count++;
+        
+    }
+
 }
 
 @end

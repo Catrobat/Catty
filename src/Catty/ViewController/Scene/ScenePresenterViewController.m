@@ -50,8 +50,10 @@
 #import "Pocket_Code-Swift.h"
 #import "FileManager.h"
 #import "AppDelegate.h"
+#import "CatrobatAlertView.h"
+#import "ActionSheetAlertViewTags.h"
 
-@interface ScenePresenterViewController() <UIActionSheetDelegate>
+@interface ScenePresenterViewController() <UIActionSheetDelegate,CatrobatAlertViewDelegate>
 @property (nonatomic) BOOL menuOpen;
 @property (nonatomic) CGPoint firstGestureTouchPoint;
 @property (nonatomic) UIImage *snapshotImage;
@@ -114,6 +116,7 @@
     [self setUpLabels];
     [self setUpGridView];
     [self checkAspectRatio];
+    [[BluetoothService sharedInstance] setScenePresenter:self];
     
 }
 
@@ -453,7 +456,21 @@
     [self.parentViewController.navigationController setToolbarHidden:NO];
     [self.parentViewController.navigationController setNavigationBarHidden:NO];
     [self.navigationController popViewControllerAnimated:YES];
-    [[BluetoothService sharedInstance] disconnect]; // TODO: change this when it is allowed to stay connected
+    [[BluetoothService sharedInstance] setScenePresenter:nil];
+}
+
+-(void)connectionLost
+{
+    [self.loadingView show];
+    self.menuView.userInteractionEnabled = NO;
+    CBScene *previousScene = (CBScene*)self.skView.scene;
+    previousScene.userInteractionEnabled = NO;
+    [previousScene stopProgram];
+    [[AudioManager sharedAudioManager] stopAllSounds];
+    [[FlashHelper sharedFlashHandler] pause];
+    previousScene.userInteractionEnabled = YES;
+    [self.loadingView hide];
+    [Util alertWithText:@"Lost Bluetooth Connection" delegate:self tag:kLostBluetoothConnectionTag];
 }
 
 - (void)restartProgramAction:(UIButton*)sender
@@ -807,6 +824,20 @@
     UIImage *output = [UIImage imageWithCGImage:cgimg];
     CFRelease(cgimg);
     return output;
+}
+
+-(void)alertView:(CatrobatAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+
+}
+
+-(void)alertView:(CatrobatAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == kLostBluetoothConnectionTag) {
+        [self.parentViewController.navigationController setToolbarHidden:NO];
+        [self.parentViewController.navigationController setNavigationBarHidden:NO];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end

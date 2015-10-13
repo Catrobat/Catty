@@ -58,7 +58,7 @@
                         RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
                         UIImage *image = [imageCache cachedImageForPath:path];
                         if (!image) {
-                            [imageCache loadImageFromDiskWithPath:path onCompletion:^(UIImage *image) {
+                            [imageCache loadImageFromDiskWithPath:path onCompletion:^(UIImage *image, NSString* path) {
                                 dispatch_async(dispatch_get_main_queue(), ^{
                                     UITableView* tV = (UITableView*)self.brickCell.superview;
                                     [tV reloadData];

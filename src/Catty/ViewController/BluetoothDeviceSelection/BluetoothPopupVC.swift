@@ -24,10 +24,13 @@ import UIKit
 import MXSegmentedPager
 import BluetoothHelper
 
+@objc protocol BluetoothSelection {
+    func startSceneWithVC(scenePresenter:ScenePresenterViewController)
+}
 
 class BluetoothPopupVC: MXSegmentedPagerController {
     
-    weak var delegate : BaseTableViewController?
+    weak var delegate : BluetoothSelection?
     var vc : ScenePresenterViewController?
 
     var deviceArray:[Int]?
@@ -59,7 +62,7 @@ class BluetoothPopupVC: MXSegmentedPagerController {
     }
     
     override func segmentedPager(segmentedPager: MXSegmentedPager, titleForSectionAtIndex index: Int) -> String {
-        return ["Known Devices", "Connected Devices", "Search"][index];
+        return ["Known Devices","Connected Devices","Search"][index];//
     }
     
     override func segmentedPager(segmentedPager: MXSegmentedPager, viewControllerForPageAtIndex index: Int) -> UIViewController {

@@ -45,7 +45,7 @@
 #define kSelectAllItemsTag 0
 #define kUnselectAllItemsTag 1
 
-@interface BaseTableViewController () <CatrobatAlertViewDelegate>
+@interface BaseTableViewController () <CatrobatAlertViewDelegate,BluetoothSelection>
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *normalModeRightBarButtonItem;
@@ -368,9 +368,9 @@
     
     }
 //    if ([vc.program.header.isArduinoProject isEqualToString:@"true"] && kArduinoActivated) { // or has Arduino Bricks
-//        if (!([BluetoothService sharedInstance].arduino.state == CBPeripheralStateConnected)) {
+        if (!([BluetoothService sharedInstance].arduino.state == CBPeripheralStateConnected)) {
             [array addObject:[NSNumber numberWithInteger:BluetoothDeviceIDarduino]];
-//        }
+        }
 //    }
     
     if ( array.count > 0) { // vc.program.requiresBluetooth

@@ -114,6 +114,26 @@ public class CentralManager : NSObject, CBCentralManagerDelegate, CMWrapper {
             NSLog("error")
             return
         }
+        let id:NSUUID = peripheral.identifier
+        let userdefaults = NSUserDefaults.standardUserDefaults()
+        if let testArray : AnyObject = userdefaults.objectForKey("BluetoothNSUUIDKnown") {
+            let data:NSData = testArray as! NSData
+            let oldSavedArray:NSArray = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! NSArray
+            let objectArray: NSMutableArray = NSMutableArray(array: oldSavedArray)
+            if objectArray.containsObject(id){
+                
+            }else{
+                objectArray.addObject(id)
+                let storeArray:NSArray = NSArray(array: objectArray)
+                userdefaults.setObject(storeArray, forKey: "BluetoothNSUUIDKnown")
+            }
+        } else {
+            var array:[NSUUID] = [NSUUID]()
+            array.append(id)
+            let storeArray:NSArray = NSArray(array: array)
+            userdefaults.setObject(NSKeyedArchiver .archivedDataWithRootObject(storeArray), forKey: "BluetoothNSUUIDKnown")
+        }
+        userdefaults.synchronize()
         ownPeripheral.didConnectPeripheral()
     }
     
@@ -128,6 +148,7 @@ public class CentralManager : NSObject, CBCentralManagerDelegate, CMWrapper {
     
     public func centralManager(_:CBCentralManager, didDiscoverPeripheral peripheral:CBPeripheral, advertisementData:[String:AnyObject], RSSI:NSNumber) {
         if self.ownPeripherals[peripheral] == nil {
+
             let ownPeripheral = Peripheral(cbPeripheral:peripheral, advertisements:self.unpackAdvertisements(advertisementData), rssi:RSSI.integerValue)
             NSLog("peripheral: \(ownPeripheral.name)")
             self.ownPeripherals[peripheral] = ownPeripheral

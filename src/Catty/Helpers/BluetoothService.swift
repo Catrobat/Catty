@@ -21,6 +21,8 @@
  */
 
 import Foundation
+import CoreBluetooth
+import BluetoothHelper
 
 @objc enum BluetoothDeviceID:Int {
     case arduino
@@ -59,17 +61,22 @@ public class BluetoothService:NSObject {
     
     var phiro:Phiro?
     var arduino:ArduinoDevice?
+    var selectionManager:BluetoothDevicesTableViewController?
+    var scenePresenter:ScenePresenterViewController?
     
     
     func setDigitalSemaphore(semaphore:dispatch_semaphore_t){
         digitalSemaphoreArray.append(semaphore)
     }
     
-    func signalDigitalSemaphore(){
+    func signalDigitalSemaphore(check:Bool){
         if(digitalSemaphoreArray.count > 0){
             let sema = digitalSemaphoreArray[0]
             digitalSemaphoreArray.removeAtIndex(0)
-            dispatch_semaphore_signal(sema)
+            if(check == true){
+                dispatch_semaphore_signal(sema)
+            }
+            
         }
         
     }
@@ -111,5 +118,161 @@ public class BluetoothService:NSObject {
         self.phiro = nil
         self.arduino = nil
     }
+    
+    
+    
+    //MARK: Bluetooth Connection
+    
+    func connectDevice(peri:Peripheral) {
+        let future = peri.connect(10, timeoutRetries: 10, disconnectRetries: 5, connectionTimeout: Double(10))
+        future.onSuccess {(peripheral, connectionEvent) in
+
+            switch connectionEvent {
+            case .Connected:
+                guard let manager = self.selectionManager else {
+                    return
+                }
+                manager.deviceConnected(peripheral)
+                manager.updateWhenActive()
+                break
+            case .Disconnected:
+                if let scene = self.scenePresenter {
+                    scene.connectionLost();
+                }
+//                peripheral.reconnect()
+                CentralManager.sharedInstance.stopScanning()
+                CentralManager.sharedInstance.disconnectAllPeripherals()
+                CentralManager.sharedInstance.removeAllPeripherals()
+                guard let manager = self.selectionManager else {
+                    return
+                }
+                manager.updateWhenActive()
+            case .Timeout:
+                //feature
+                peripheral.reconnect()
+            case .ForcedDisconnected:
+                if let scene = self.scenePresenter {
+                    scene.connectionLost();
+                }
+                CentralManager.sharedInstance.disconnectAllPeripherals()
+                CentralManager.sharedInstance.removeAllPeripherals()
+                break
+            case .Failed:
+                CentralManager.sharedInstance.disconnectAllPeripherals()
+                CentralManager.sharedInstance.removeAllPeripherals()
+                print("Fail")
+            case .GiveUp:
+                peripheral.disconnect()
+//                self.updateWhenActive()
+            }
+        }
+        future.onFailure {error in
+            print("Fail \(error)")
+        }
+
+    }
+    
+    
+    func setArduinoDevice(peripheral:Peripheral){
+        
+        let arduino:ArduinoDevice = ArduinoDevice(cbPeripheral: peripheral.cbPeripheral, advertisements: peripheral.advertisements, rssi: peripheral.rssi, test: true)
+        
+        if peripheral.services.count > 0 {
+            for service in peripheral.services{
+                if service.characteristics.count > 0 {
+                    guard let manager = self.selectionManager else {
+                        return
+                    }
+                    BluetoothService.swiftSharedInstance.arduino = arduino
+                    manager.checkStart()
+                    return
+                }
+                
+            }
+            
+        }
+        
+        let future = arduino.discoverAllServices()
+        
+        future.onSuccess{peripheral in
+            guard peripheral.services.count > 0 else {
+                //ERROR
+                return
+            }
+            
+            let services:[Service] = peripheral.services
+            
+            for service in services{
+                let charFuture = service.discoverAllCharacteristics();
+                charFuture.onSuccess{service in
+                    guard service.characteristics.count > 0 else {
+                        return
+                    }
+                    if(arduino.txCharacteristic != nil && arduino.rxCharacteristic != nil){
+                            guard let manager = self.selectionManager else {
+                                return
+                            }
+                            BluetoothService.swiftSharedInstance.arduino = arduino
+                            manager.checkStart()
+                            return
+                    }
+                }
+            }
+            
+        }
+
+    }
+    
+    func setPhiroDevice(peripheral:Peripheral){
+        
+        let phiro:Phiro = Phiro(cbPeripheral: peripheral.cbPeripheral, advertisements: peripheral.advertisements, rssi: peripheral.rssi, test: true)
+        
+        if peripheral.services.count > 0 {
+            for service in peripheral.services{
+                if service.characteristics.count > 0 {
+                    guard let manager = self.selectionManager else {
+                        return
+                    }
+                    BluetoothService.swiftSharedInstance.phiro = phiro
+                    manager.checkStart()
+                    return
+                }
+                
+            }
+            
+        }
+        
+        let future = phiro.discoverAllServices()
+        
+        future.onSuccess{peripheral in
+            guard peripheral.services.count > 0 else {
+                //ERROR
+                return
+            }
+            
+            let services:[Service] = peripheral.services
+            
+            for service in services{
+                let charFuture = service.discoverAllCharacteristics();
+                charFuture.onSuccess{service in
+                    guard service.characteristics.count > 0 else {
+                        return
+                    }
+                    if(phiro.txCharacteristic != nil && phiro.rxCharacteristic != nil){
+                        guard let manager = self.selectionManager else {
+                            return
+                        }
+                        BluetoothService.swiftSharedInstance.phiro = phiro
+                        manager.checkStart()
+                        return
+                    }
+                }
+            }
+            
+        }
+        
+    }
+
+
     
 }

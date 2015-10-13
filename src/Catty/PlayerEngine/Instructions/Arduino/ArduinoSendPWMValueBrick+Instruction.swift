@@ -26,15 +26,17 @@ extension ArduinoSendPWMValueBrick :CBInstructionProtocol {
     
     func instruction() -> CBInstruction {
         
-        return CBInstruction.ExecClosure { (context, _) in
-            let pin = UInt8(self.pin.interpretIntegerForSprite(self.script?.object))
-            let value = UInt8(self.value.interpretDoubleForSprite(self.script?.object))
+        return CBInstruction.Action(action: SKAction.runBlock(actionBlock()))
+    }
+    
+    func actionBlock() -> dispatch_block_t {
+        return{
+            let pinValue = UInt8(self.pin.interpretIntegerForSprite(self.script?.object))
+            let settingValue = UInt8(self.value.interpretDoubleForSprite(self.script?.object))
             
-            guard let arduino:ArduinoDevice = BluetoothService.swiftSharedInstance.arduino else{
-                return
+            if let arduino:ArduinoDevice = BluetoothService.swiftSharedInstance.arduino {
+                arduino.setAnalogArduinoPin(pinValue, value: settingValue)
             }
-            
-            arduino.setAnalogArduinoPin(pin, value: value)
         }
         
     }

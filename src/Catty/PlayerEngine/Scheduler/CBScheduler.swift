@@ -76,7 +76,7 @@ final class CBScheduler: CBSchedulerProtocol {
 
     // MARK: - Scheduling
     func runNextInstructionOfContext(context: CBScriptContextProtocol) {
-        assert(NSThread.currentThread().isMainThread)
+//        assert(NSThread.currentThread().isMainThread)
         context.state = .Runnable
         runNextInstructionsGroup()
     }
@@ -86,7 +86,7 @@ final class CBScheduler: CBSchedulerProtocol {
     // <<<<<<<<<<<<<<<<<<|>>>>>>>>>>>>>>>>>>
     func runNextInstructionsGroup() {
         // TODO: apply scheduling via StrategyPattern => selects scripts to be scheduled NOW!
-        assert(NSThread.currentThread().isMainThread)
+//        assert(NSThread.currentThread().isMainThread)
 
         var nextHighPriorityClosures = [CBHighPriorityScheduleElement]()
         var nextClosures = [CBScheduleElement]()

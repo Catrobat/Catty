@@ -50,7 +50,7 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     private let Arduino_UUID:CBUUID = CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB")
     private static let tag:String = "Arduino";
 
-    private let rxUUID = CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") // TODO
+    private let rxUUID = CBUUID.init(string: "713D0002-503E-4C75-BA94-3148F18D941E") // TODO
     private let txUUID = CBUUID.init(string: "00001101-0000-1000-8000-00805F9B34FB") // TODO
     
     var rxCharacteristic:CBCharacteristic?
@@ -135,9 +135,10 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     }
     
     //MARK: receive Data
-    
+//    
     override public func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
-        super.peripheral(peripheral, didUpdateValueForCharacteristic: characteristic, error: error)
+//        super.peripheral(peripheral, didUpdateValueForCharacteristic: characteristic, error: error)
+        print("readValue")
         if (characteristic == self.rxCharacteristic){
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -170,11 +171,14 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     func getDigitalArduinoPin(digitalPinNumber:UInt8)-> Double {
         firmata.writePinMode(PinMode.Input, pin: digitalPinNumber)
         firmata.setDigitalStateReportingForPort(digitalPinNumber / 8, enabled: true)
+        print("requestValue")
         let semaphore = BluetoothService.swiftSharedInstance.getSemaphore()
         BluetoothService.swiftSharedInstance.setDigitalSemaphore(semaphore)
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+        dispatch_semaphore_wait(semaphore, 500)
+        BluetoothService.swiftSharedInstance.signalDigitalSemaphore(false)
         firmata.setDigitalStateReportingForPort(digitalPinNumber / 8, enabled: false)
         let value = getPortValue(Int(digitalPinNumber))
+        print("setValue:\(value)")
         return Double(value)
     }
     
@@ -182,11 +186,13 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     func getAnalogArduinoPin(analogPinNumber:UInt8) -> Double {
         firmata.writePinMode(PinMode.Input, pin: analogPinNumber)
         firmata.setAnalogValueReportingforPin(analogPinNumber / 8, enabled: true)
+       
         let semaphore = BluetoothService.swiftSharedInstance.getSemaphore()
         BluetoothService.swiftSharedInstance.setAnalogSemaphore(semaphore)
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
         firmata.setAnalogValueReportingforPin(analogPinNumber / 8, enabled: false)
         let value = getAnalogPin(analogPinNumber)
+        print(value)
         return Double(value)
     }
     
@@ -242,20 +248,15 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
         return Arduino_UUID
     }
     
-    override public func peripheral(_: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
-        guard let ownService = self.ownServices[service.UUID], ownCharacteristics = service.characteristics else {
+    override public func peripheral(peri: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
+        self.discoveredCharacteristics(peri, service: service, error: error)
+        
+        guard let characteristics = service.characteristics else {
             return
         }
-        ownService.didDiscoverCharacteristics(error)
-//        if error == nil {
-//            for characteristic : AnyObject in ownCharacteristics {
-//                if let ownCharacteristic = characteristic as? CBCharacteristic {
-//                    self.ownCharacteristics[ownCharacteristic] = ownService.ownCharacteristics[characteristic.UUID]
-//                }
-//            }
-//        }
 
-        for c in (service.characteristics!) {
+
+        for c in (characteristics) {
             
             switch c.UUID {
             case rxCharacteristicUUID():
@@ -287,8 +288,7 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
             for c in (service.characteristics!) {
                 if((c.properties.rawValue & CBCharacteristicProperties.Read.rawValue) > 0){
                     rxCharacteristic = c
-                    cbPeripheral.setNotifyValue(true, forCharacteristic: rxCharacteristic!)
-                    break
+//                    cbPeripheral.setNotifyValue(true, forCharacteristic: c)
                 }
             }
         }
@@ -311,7 +311,7 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
 
     func didReceiveDigitalPort(port:Int, portData:[Int]) {
         arduinoHelper.didReceiveDigitalPort(port, portData: portData)
-        BluetoothService.swiftSharedInstance.signalDigitalSemaphore()
+        BluetoothService.swiftSharedInstance.signalDigitalSemaphore(true)
     }
     func didReceiveAnalogMessage(pin:Int,value:Int){
         arduinoHelper.didReceiveAnalogMessage(pin, value: value)
@@ -368,7 +368,7 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
         let port:Int = pin / 8
         let portPin:Int = pin % 8
         arduinoHelper.digitalValues[pin] = value
-//        arduinoHelper.portValues[port][portPin] = value
+        arduinoHelper.portValues[port][portPin] = value
     }
 
     
@@ -385,7 +385,7 @@ public class ArduinoHelper {
     
     var digitalValues:[Int] = [Int](count: 21, repeatedValue: 0)
     
-    var portValues:[[Int]] = [[Int]]()
+    var portValues = Array(count: 3, repeatedValue: Array(count: 8, repeatedValue: 0))
     //Helper
     private var previousDigitalPin:UInt8 = 255;
     private var previousAnalogPin:UInt8 = 255;

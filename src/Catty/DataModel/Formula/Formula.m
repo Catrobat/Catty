@@ -92,7 +92,7 @@
     if ([returnValue isKindOfClass:[NSNumber class]]) {
         returnDoubleValue = [returnValue doubleValue];
     }
-    self.lastResult = [self.formulaTree isIdempotent] ? @(returnDoubleValue) : nil;
+//    self.lastResult = [self.formulaTree isIdempotent] ? @(returnDoubleValue) : nil;
     return returnDoubleValue;
 }
 

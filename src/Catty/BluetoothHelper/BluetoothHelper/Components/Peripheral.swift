@@ -107,12 +107,17 @@ public class Peripheral : NSObject, CBPeripheralDelegate, PeripheralWrapper {
         self.helper.didDiscoverServices(self, error:error)
     }
     
-    public func peripheral(_:CBPeripheral, didDiscoverIncludedServicesForService service:CBService, error:NSError?) {
+    public func peripheral(peri:CBPeripheral, didDiscoverIncludedServicesForService service:CBService, error:NSError?) {
 
     }
     
     // characteristic delegates
-    public func peripheral(_:CBPeripheral, didDiscoverCharacteristicsForService service:CBService, error:NSError?) {
+    public func peripheral(peri:CBPeripheral, didDiscoverCharacteristicsForService service:CBService, error:NSError?) {
+       self.discoveredCharacteristics(peri, service: service, error: error)
+    }
+    
+    
+    public func discoveredCharacteristics(peri:CBPeripheral, service:CBService,error:NSError?){
         guard let ownService = self.ownServices[service.UUID], ownCharacteristics = service.characteristics else {
             return
         }
@@ -127,7 +132,7 @@ public class Peripheral : NSObject, CBPeripheralDelegate, PeripheralWrapper {
 
     }
     
-    public func peripheral(_:CBPeripheral, didUpdateNotificationStateForCharacteristic characteristic:CBCharacteristic, error:NSError?) {
+    public func peripheral(peripheral:CBPeripheral, didUpdateNotificationStateForCharacteristic characteristic:CBCharacteristic, error:NSError?) {
         guard let ownCharacteristic = self.ownCharacteristics[characteristic] else {
             NSLog("Error")
             return

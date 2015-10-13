@@ -26,16 +26,20 @@ extension ArduinoSendDigitalValueBrick :CBInstructionProtocol {
     
     func instruction() -> CBInstruction {
         
-        return CBInstruction.ExecClosure { (context, _) in
-            let pin = UInt8(self.pin.interpretIntegerForSprite(self.script?.object))
-            let value = Int(self.value.interpretDoubleForSprite(self.script?.object))
-            
-            guard let arduino:ArduinoDevice = BluetoothService.swiftSharedInstance.arduino else{
-                return
-            }
-
-            arduino.setDigitalArduinoPin(pin, pinValue: value)
-        }
+        return CBInstruction.Action(action: SKAction.runBlock(actionBlock()))
     }
+    
+    func actionBlock() -> dispatch_block_t {
+        return{
+        let pinValue = UInt8(self.pin.interpretIntegerForSprite(self.script?.object))
+        let settingValue = Int(self.value.interpretDoubleForSprite(self.script?.object))
+        
+        if let arduino:ArduinoDevice = BluetoothService.swiftSharedInstance.arduino {
+            arduino.setDigitalArduinoPin(pinValue, pinValue: settingValue)
+        }
+        }
+
+    }
+
     
 }

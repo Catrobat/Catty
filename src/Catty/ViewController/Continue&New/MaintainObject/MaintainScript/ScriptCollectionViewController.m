@@ -86,6 +86,9 @@
 #import "BrickPhiroLightProtocol.h"
 #import "BrickPhiroToneProtocol.h"
 #import "KeychainUserDefaultsDefines.h"
+#import "Pocket_Code-Swift.h"
+#import <CoreBluetooth/CoreBluetooth.h>
+
 
 @interface ScriptCollectionViewController() <UICollectionViewDelegate,
                                              UICollectionViewDataSource,
@@ -96,7 +99,8 @@
                                              iOSComboboxDelegate,
                                              BrickCellDataDelegate,
                                              CatrobatActionSheetDelegate,
-                                             CatrobatAlertViewDelegate>
+                                             CatrobatAlertViewDelegate,
+                                             BluetoothSelection>
 
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
 @property (nonatomic, strong) BrickTransition *brickScaleTransition;
@@ -166,9 +170,39 @@
     if ([self respondsToSelector:@selector(stopAllSounds)]) {
         [self performSelector:@selector(stopAllSounds)];
     }
-    [self.navigationController setToolbarHidden:YES animated:YES];
+    
     ScenePresenterViewController *vc = [ScenePresenterViewController new];
     vc.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
+    NSMutableArray *array = [NSMutableArray new];
+    if ([vc.program.header.isPhiroProProject isEqualToString:@"true"] && kPhiroActivated) { // or has Phiro Bricks
+        if (!([BluetoothService sharedInstance].phiro.state == CBPeripheralStateConnected)) {
+            [array addObject:[NSNumber numberWithInteger:BluetoothDeviceIDphiro]];
+        }
+        
+    }
+    //    if ([vc.program.header.isArduinoProject isEqualToString:@"true"] && kArduinoActivated) { // or has Arduino Bricks
+    if (!([BluetoothService sharedInstance].arduino.state == CBPeripheralStateConnected)) {
+        [array addObject:[NSNumber numberWithInteger:BluetoothDeviceIDarduino]];
+    }
+    //    }
+    
+    if ( array.count > 0) { // vc.program.requiresBluetooth
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
+        BluetoothPopupVC * bvc = (BluetoothPopupVC*)[storyboard instantiateViewControllerWithIdentifier:@"bluetoothPopupVC"];
+        [bvc setDeviceArray:array];
+        [bvc setDelegate:self];
+        [bvc setVc:vc];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:(UIViewController*)bvc];
+        [self presentViewController:navController animated:YES completion:nil];
+    } else {
+        [self startSceneWithVC:vc];
+    }
+}
+
+-(void)startSceneWithVC:(ScenePresenterViewController*)vc
+{
+    [self.navigationController setToolbarHidden:YES animated:YES];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

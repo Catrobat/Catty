@@ -42,6 +42,8 @@
 #define kAskUserForReportMessageAlertViewTag 103
 
 #define kAskUserForVariableNameAlertViewTag 104
+#define kLostBluetoothConnectionTag 105
+
 
 #define kConfirmAlertViewTag 200
 

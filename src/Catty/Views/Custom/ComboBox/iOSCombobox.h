@@ -40,6 +40,7 @@
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) NSString *currentValue;
 @property (nonatomic, strong) UIImage *currentImage;
+@property (nonatomic, strong) NSString *checkPath;
 @property (nonatomic, strong) SpriteObject *object;
 @property (nonatomic, weak) id<iOSComboboxDelegate>delegate;
 @property (nonatomic, strong) BSKeyboardControls *keyboard;

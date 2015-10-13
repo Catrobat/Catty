@@ -794,7 +794,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="79" id="cIK-HQ-Utl" customClass="DarkBlueGradientImageCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="79"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cIK-HQ-Utl" id="RXf-ad-8B2">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="78.5"/>
@@ -1501,9 +1501,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="hIa-KA-efo" kind="custom" identifier="mx_page_0" customClass="MXPageSegue" id="Qap-xk-P6b"/>
-                        <segue destination="1IF-Eq-4MO" kind="custom" identifier="mx_page_1" customClass="MXPageSegue" id="3dG-Vy-Za1"/>
                         <segue destination="a7a-zS-TNg" kind="custom" identifier="mx_page_2" customClass="MXPageSegue" id="Hft-aW-TUH"/>
+                        <segue destination="1IF-Eq-4MO" kind="custom" identifier="mx_page_0" customClass="MXPageSegue" id="fUs-W4-WPQ"/>
+                        <segue destination="hIa-KA-efo" kind="custom" identifier="mx_page_1" customClass="MXPageSegue" id="qfU-kS-R8r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2el-ea-6ga" sceneMemberID="firstResponder"/>
