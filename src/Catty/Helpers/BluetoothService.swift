@@ -71,12 +71,16 @@ public class BluetoothService:NSObject {
     
     func signalDigitalSemaphore(check:Bool){
         if(digitalSemaphoreArray.count > 0){
-            let sema = digitalSemaphoreArray[0]
+//            let sema = digitalSemaphoreArray[0]
             digitalSemaphoreArray.removeAtIndex(0)
-            if(check == true){
+        }
+        if(check == true){
+            if(digitalSemaphoreArray.count > 0){
+                let sema = digitalSemaphoreArray[0]
+                digitalSemaphoreArray.removeAtIndex(0)
                 dispatch_semaphore_signal(sema)
+                
             }
-            
         }
         
     }
