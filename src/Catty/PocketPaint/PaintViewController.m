@@ -185,8 +185,8 @@
 
 - (void)setupCanvas
 {
-    NSInteger width = self.view.frame.size.width;
-    NSInteger height = (NSInteger)self.view.frame.size.height;
+    NSInteger width = (NSInteger)self.programWidth;
+    NSInteger height = (NSInteger)self.programHeight;
     CGRect rect = CGRectMake(0, 0, width, height);
     self.drawView = [[UIImageView alloc] initWithFrame:rect];
     self.saveView = [[UIImageView alloc] initWithFrame:rect];

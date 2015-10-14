@@ -44,59 +44,61 @@
         NSMutableArray *images = [[NSMutableArray alloc] init];
         [options addObject:kLocalizedNewElement];
         int currentOptionIndex = 0;
-        int optionIndex = 1;
-        if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickLookProtocol)]) {
-            Brick<BrickLookProtocol> *lookBrick = (Brick<BrickLookProtocol>*)brickCell.scriptOrBrick;
-            Look *currentLook = [lookBrick lookForLineNumber:line andParameterNumber:parameter];
-            for(Look *look in lookBrick.script.object.lookList) {
-                [options addObject:look.name];
-                NSString *path = [NSString stringWithFormat:@"%@%@/%@", [lookBrick.script.object projectPath], kProgramImagesDirName, look.fileName];
-                RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
-                UIImage *image = [imageCache cachedImageForPath:path];
-                if (!image) {
-                    [imageCache loadImageFromDiskWithPath:path onCompletion:^(UIImage *image) {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            UITableView* tV = (UITableView*)self.brickCell.superview;
-                            [tV reloadData];
-                        });
-                    }];
+        if (!brickCell.isInserting) {
+            int optionIndex = 1;
+            if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickLookProtocol)]) {
+                Brick<BrickLookProtocol> *lookBrick = (Brick<BrickLookProtocol>*)brickCell.scriptOrBrick;
+                Look *currentLook = [lookBrick lookForLineNumber:line andParameterNumber:parameter];
+                for(Look *look in lookBrick.script.object.lookList) {
+                    [options addObject:look.name];
+                    NSString *path = [NSString stringWithFormat:@"%@%@/%@", [lookBrick.script.object projectPath], kProgramImagesDirName, look.fileName];
+                    RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
+                    UIImage *image = [imageCache cachedImageForPath:path];
+                    if (!image) {
+                        [imageCache loadImageFromDiskWithPath:path onCompletion:^(UIImage *image) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                UITableView* tV = (UITableView*)self.brickCell.superview;
+                                [tV reloadData];
+                            });
+                        }];
+                    }
+                    if (image) {
+                        [images addObject:image];
+                    }
+                    if([look.name isEqualToString:currentLook.name])
+                        currentOptionIndex = optionIndex;
+                    optionIndex++;
                 }
-                if (image) {
-                    [images addObject:image];
-                }
-                if([look.name isEqualToString:currentLook.name])
+                if (currentLook && ![options containsObject:currentLook.name]) {
+                    [options addObject:currentLook.name];
                     currentOptionIndex = optionIndex;
-                optionIndex++;
+                    NSString *path = [NSString stringWithFormat:@"%@%@/%@", [lookBrick.script.object projectPath], kProgramImagesDirName, currentLook.fileName];
+                    RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
+                    UIImage *image = [imageCache cachedImageForPath:path];
+                    if (!image) {
+                        [imageCache loadImageFromDiskWithPath:path onCompletion:^(UIImage *image) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                UITableView* tV = (UITableView*)self.brickCell.superview;
+                                [tV reloadData];
+                            });
+                        }];
+                    }
+                    
+                    if (image) {
+                        [images addObject:image];
+                    }
+                    
+                }
             }
-            if (currentLook && ![options containsObject:currentLook.name]) {
-                [options addObject:currentLook.name];
-                currentOptionIndex = optionIndex;
-                NSString *path = [NSString stringWithFormat:@"%@%@/%@", [lookBrick.script.object projectPath], kProgramImagesDirName, currentLook.fileName];
-                RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
-                UIImage *image = [imageCache cachedImageForPath:path];
-                if (!image) {
-                    [imageCache loadImageFromDiskWithPath:path onCompletion:^(UIImage *image) {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            UITableView* tV = (UITableView*)self.brickCell.superview;
-                            [tV reloadData];
-                        });
-                    }];
-                }
-
-                if (image) {
-                    [images addObject:image];
-                }
-
+            
+            [self setImages:images];
+            if (currentOptionIndex > 0 && images.count) {
+                [self setCurrentImage:images[currentOptionIndex-1]];
+            } else {
+                [self setCurrentImage:nil];
             }
         }
         [self setValues:options];
-        [self setImages:images];
-        if (currentOptionIndex > 0 && images.count) {
-            [self setCurrentImage:images[currentOptionIndex-1]];
-        } else {
-            [self setCurrentImage:nil];
-        }
-        
         [self setCurrentValue:options[currentOptionIndex]];
         [self setDelegate:(id<iOSComboboxDelegate>)self];
     }
