@@ -305,12 +305,12 @@ static NSCharacterSet *blockedCharacterSet = nil;
     [self configureImageCell:imageCell atIndexPath:indexPath];
     if (self.useDetailCells && [cell isKindOfClass:[DarkBlueGradientImageDetailCell class]]) {
         DarkBlueGradientImageDetailCell *detailCell = (DarkBlueGradientImageDetailCell*)imageCell;
-        detailCell.topLeftDetailLabel.textColor = [UIColor lightTextTintColor];
+        detailCell.topLeftDetailLabel.textColor = [UIColor textTintColor];
         detailCell.topLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedLastAccess];
-        detailCell.topRightDetailLabel.textColor = [UIColor lightTextTintColor];
-        detailCell.bottomLeftDetailLabel.textColor = [UIColor lightTextTintColor];
+        detailCell.topRightDetailLabel.textColor = [UIColor textTintColor];
+        detailCell.bottomLeftDetailLabel.textColor = [UIColor textTintColor];
         detailCell.bottomLeftDetailLabel.text = [NSString stringWithFormat:@"%@:", kLocalizedSize];
-        detailCell.bottomRightDetailLabel.textColor = [UIColor lightTextTintColor];
+        detailCell.bottomRightDetailLabel.textColor = [UIColor textTintColor];
         detailCell.topRightDetailLabel.text = [kLocalizedLoading stringByAppendingString:@"..."];
         detailCell.bottomRightDetailLabel.text = [kLocalizedLoading stringByAppendingString:@"..."];
         NSString *sectionTitle = [self.sectionTitles objectAtIndex:indexPath.section];
@@ -389,6 +389,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                                                                       kDTPayloadProgramLoadingInfo : sectionInfos[indexPath.row]
                                                                                       }];
     }];
+    moreAction.backgroundColor = [UIColor globalTintColor];
     UITableViewRowAction *deleteAction = [UIUtil tableViewDeleteRowActionWithHandler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         // Delete button was pressed
         [self performActionOnConfirmation:@selector(deleteProgramForIndexPath:)

@@ -359,7 +359,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)configureSubtitleLabelForCell:(UITableViewCell*)cell
 {
     UILabel *subtitleLabel = (UILabel*)[cell viewWithTag:kSubtitleLabelTag];
-    subtitleLabel.textColor = [UIColor lightTextTintColor];
+    subtitleLabel.textColor = [UIColor textTintColor];
     ProgramLoadingInfo *loadingInfo = [Util lastUsedProgramLoadingInfo];
     subtitleLabel.text = loadingInfo.visibleName;
 }

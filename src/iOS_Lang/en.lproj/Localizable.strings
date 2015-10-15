@@ -188,6 +188,9 @@
 "Copy program" = "Copy program";
 
 /* No comment provided by engineer. */
+"Create an account" = "Create an account";
+
+/* No comment provided by engineer. */
 "Debug mode" = "Debug mode";
 
 /* No comment provided by engineer. */
@@ -761,9 +764,6 @@
 "Please pick an item" = "Please pick an item";
 
 /* No comment provided by engineer. */
-"Please register below" = "Please register below";
-
-/* No comment provided by engineer. */
 "Please select a program to upload" = "Please select a program to upload";
 
 /* No comment provided by engineer. */
@@ -1158,9 +1158,6 @@
 
 /* No comment provided by engineer. */
 "Wednesday" = "Wednesday";
-
-/* No comment provided by engineer. */
-"Welcome back, please login below" = "Welcome back, please login below";
 
 /* No comment provided by engineer. */
 "Welcome to Pocket Code" = "Welcome to Pocket Code";

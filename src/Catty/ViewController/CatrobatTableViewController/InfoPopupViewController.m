@@ -127,7 +127,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
                          [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
     
     UILabel *versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2, HEADER_PADDING_TOP, self.view.frame.size.width, HEADER_LABEL_HEIGHT)];
-    [versionLabel setTextColor:[UIColor lightTextTintColor]];
+    [versionLabel setTextColor:[UIColor textTintColor]];
     [versionLabel setTextAlignment:NSTextAlignmentRight];
     [versionLabel setText:version];
     [versionLabel sizeToFit];
@@ -138,7 +138,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 
 - (void)addMenuButton:(UIButton *)button
 {
-    [button setTitleColor:[UIColor buttonNormalTintColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor buttonTintColor] forState:UIControlStateNormal];
     [button setTitleColor:[UIColor buttonHighlightedTintColor] forState:UIControlStateHighlighted];
     [self.view addSubview:button];
     
@@ -155,7 +155,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 
 - (void)addLinkButton:(UIButton *)button
 {
-    [button setTitleColor:[UIColor buttonNormalTintColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor buttonTintColor] forState:UIControlStateNormal];
     [button setTitleColor:[UIColor buttonHighlightedTintColor] forState:UIControlStateHighlighted];
     [button addTarget:self action:@selector(openURLAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView insertSubview:button belowSubview:self.bodyTextView];
@@ -169,7 +169,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
 
     //init header
     UILabel *aboutPocketCodeLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2, HEADER_PADDING_TOP, self.view.frame.size.width, HEADER_LABEL_HEIGHT)];
-    [aboutPocketCodeLabel setTextColor:[UIColor lightTextTintColor]];
+    [aboutPocketCodeLabel setTextColor:[UIColor globalTintColor]];
     [aboutPocketCodeLabel setText:headerTitle];
     [aboutPocketCodeLabel sizeToFit];
     aboutPocketCodeLabel.frame = CGRectMake(self.view.frame.size.width / 2 - aboutPocketCodeLabel.frame.size.width / 2, HEADER_PADDING_TOP, aboutPocketCodeLabel.frame.size.width, aboutPocketCodeLabel.frame.size.height);
@@ -192,7 +192,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
     self.bodyTextView.textAlignment = NSTextAlignmentCenter;
     [self.bodyTextView sizeToFit];
     self.bodyTextView.frame = CGRectMake(FRAME_PADDING_HORIZONTAL, HEADER_LABEL_HEIGHT + BODY_PADDING_TOP, self.view.frame.size.width - 2 * FRAME_PADDING_HORIZONTAL, self.bodyTextView.frame.size.height);
-    self.bodyTextView.textColor = [UIColor lightTextTintColor];
+    self.bodyTextView.textColor = [UIColor textTintColor];
     self.bodyTextView.backgroundColor = [UIColor backgroundColor];
     self.bodyTextView.editable = NO;
     [self.contentView addSubview:self.bodyTextView];
@@ -204,7 +204,7 @@ const int BUTTON_MARGIN_BOTTOM = 15;
                    action:@selector(backAction)
          forControlEvents:UIControlEventTouchUpInside];
     [backButton sizeToFit];
-    [backButton setTitleColor:[UIColor buttonNormalTintColor] forState:UIControlStateNormal];
+    [backButton setTitleColor:[UIColor buttonTintColor] forState:UIControlStateNormal];
     [backButton setTitleColor:[UIColor buttonHighlightedTintColor] forState:UIControlStateHighlighted];
     backButton.frame = CGRectMake(self.contentView.frame.size.width / 2 - backButton.frame.size.width / 2, self.contentView.frame.size.height - backButton.frame.size.height - BODY_PADDING_BOTTOM+102.0f, backButton.frame.size.width, backButton.frame.size.height);
     [self.contentView addSubview:backButton];

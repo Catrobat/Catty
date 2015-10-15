@@ -42,17 +42,17 @@
 
 + (UIColor*) tabTintColor;
 
-+ (UIColor*) lightTextTintColor;
++ (UIColor*) buttonTintColor;
 
-+ (UIColor*) darkTextTintColor;
-
-+ (UIColor*) buttonNormalTintColor;
++ (UIColor*) textTintColor;
 
 + (UIColor*) buttonHighlightedTintColor;
 
 + (UIColor*) destructiveTintColor;
 
 + (UIColor*) backgroundColor;
+
++(UIColor*)whiteGrayColor;
 
 // FE
 

@@ -54,12 +54,12 @@
 
 + (UIColor*)darkColor
 {
-    return [UIColor colorWithHex:0x0C616C];
+    return [UIColor colorWithHex:0x191919];
 }
 
 +(UIColor*)whiteGrayColor
 {
-    return [UIColor colorWithRed:236.0f/255.0f green:236.0f/255.0f blue:236.0f/255.0f alpha:1.0f];
+    return [UIColor colorWithRed:250.0f/255.0f green:250.0f/255.0f blue:250.0f/255.0f alpha:1.0f];
 }
 
 +(UIColor*)destructiveColor
@@ -114,24 +114,19 @@
     return [self navTintColor];
 }
 
-+ (UIColor*)lightTextTintColor
++ (UIColor*)buttonTintColor
 {
     return [self mediumColor];
 }
 
-+ (UIColor*)darkTextTintColor
++ (UIColor*)textTintColor
 {
     return [self darkColor];
 }
 
-+ (UIColor*)buttonNormalTintColor
-{
-    return [self darkTextTintColor];
-}
-
 + (UIColor*)buttonHighlightedTintColor
 {
-    return [self lightTextTintColor];
+    return [self backgroundColor];
 }
 
 + (UIColor*)destructiveTintColor
@@ -141,23 +136,23 @@
 
 + (UIColor*)backgroundColor
 {
-    return [self whiteGrayColor];
+    return [self whiteColor];
 }
 
 # pragma mark FormulaEditor
 + (UIColor*)formulaEditorOperatorColor
 {
-    return [self buttonNormalTintColor];
+    return [self buttonTintColor];
 }
 
 + (UIColor*)formulaEditorHighlightColor
 {
-    return [self darkTextTintColor];
+    return [self textTintColor];
 }
 
 + (UIColor*)formulaEditorOperandColor
 {
-    return [self lightTextTintColor];
+    return [self buttonTintColor];
 }
 
 # pragma mark IDE

@@ -81,9 +81,9 @@
 {
     UIPageControl *pageControl = [[self.view.subviews
                                    filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"class = %@", [UIPageControl class]]] lastObject];
-    pageControl.currentPageIndicatorTintColor = [UIColor utilityTintColor];
-    pageControl.pageIndicatorTintColor = [UIColor globalTintColor];
-    pageControl.backgroundColor = [UIColor clearColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor backgroundColor];
+    pageControl.pageIndicatorTintColor = [UIColor toolTintColor];
+    pageControl.backgroundColor = [UIColor toolBarColor];
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController*)pageViewController

@@ -131,10 +131,10 @@
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width*0.1f, self.view.frame.size.height*0.55f, 40, 10)];
   label.text = kLocalizedPaintWidth;
   [label sizeToFit];
-  label.textColor = [UIColor lightTextTintColor];
+  label.textColor = [UIColor globalTintColor];
   self.thicknessLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.brushSlider.frame.origin.x+self.brushSlider.frame.size.width +20, self.view.frame.size.height*0.7f-7, 40, 10)];
   self.thicknessLabel.text = [NSString stringWithFormat:@"%.0f",roundf(self.brush)];
-  self.thicknessLabel.textColor = [UIColor lightTextTintColor];
+  self.thicknessLabel.textColor = [UIColor globalTintColor];
   [self.thicknessLabel sizeToFit];
   
   [self.view addSubview:label];

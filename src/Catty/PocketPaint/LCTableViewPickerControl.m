@@ -225,7 +225,7 @@
     }
     cell.tintColor = [UIColor globalTintColor];
   cell.imageView.backgroundColor = [UIColor backgroundColor];
-  cell.textLabel.textColor = [UIColor lightTextTintColor];
+  cell.textLabel.textColor = [UIColor buttonTintColor];
   cell.backgroundColor = [UIColor backgroundColor];
   
   switch (item) {

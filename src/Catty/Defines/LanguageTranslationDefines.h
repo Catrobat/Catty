@@ -368,7 +368,7 @@
 #define kLocalizedUsername NSLocalizedString(@"Username", nil)
 #define kLocalizedPassword NSLocalizedString(@"Password", nil)
 #define kLocalizedEmail NSLocalizedString(@"Email", nil)
-#define kLocalizedRegister NSLocalizedString(@"Register", nil)
+#define kLocalizedRegister NSLocalizedString(@"Create an account", nil)
 #define kLocalizedLoginOrRegister NSLocalizedString(@"Login/Register", nil)
 #define kLocalizedUploadProgram NSLocalizedString(@"Upload Program", nil)
 #define kLocalizedLoginUsernameNecessary NSLocalizedString(@"Username is necessary!", nil)
@@ -386,8 +386,8 @@
 #define kLocalizedTitleLogin NSLocalizedString(@"GOOD TO SEE YOU",nil)
 #define kLocalizedTitleRegister NSLocalizedString(@"GOOD TO SEE YOU",nil)
 
-#define kLocalizedInfoLogin NSLocalizedString(@"Welcome back, please login below",nil)
-#define kLocalizedInfoRegister NSLocalizedString(@"Please register below",nil)
+#define kLocalizedInfoLogin NSLocalizedString(@"Login",nil)
+#define kLocalizedInfoRegister NSLocalizedString(@"Register",nil)
 
 //************************************************************************************************************
 //************************************       PAINT                ********************************************

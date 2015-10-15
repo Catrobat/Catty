@@ -598,7 +598,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [[self.orangeTypeButton objectAtIndex:i] setBackgroundColor:[UIColor formulaEditorOperatorColor]];
         [[self.orangeTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperandColor]] forState:UIControlStateHighlighted];
         [[[self.orangeTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
-        [[[self.orangeTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor lightTextTintColor].CGColor];
+        [[[self.orangeTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor globalTintColor].CGColor];
     }
   for(int i = 0; i < [self.normalTypeButton count]; i++) {
     [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor formulaEditorOperandColor] forState:UIControlStateNormal];
@@ -606,7 +606,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [[self.normalTypeButton objectAtIndex:i] setBackgroundColor:[UIColor backgroundColor]];
     [[self.normalTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperandColor]] forState:UIControlStateHighlighted];
     [[[self.normalTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
-    [[[self.normalTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor lightTextTintColor].CGColor];
+    [[[self.normalTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor globalTintColor].CGColor];
       
     if([[self.normalTypeButton objectAtIndex:i] tag] == 3011)
     {
@@ -622,7 +622,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperatorColor]] forState:UIControlStateNormal];
     [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperandColor]] forState:UIControlStateSelected];
     [[[self.toolTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
-    [[[self.toolTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor lightTextTintColor].CGColor];
+    [[[self.toolTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor globalTintColor].CGColor];
   }
 
     for(int i = 0; i < [self.highlightedButtons count]; i++) {
@@ -631,7 +631,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [[self.highlightedButtons objectAtIndex:i] setBackgroundColor:[UIColor formulaEditorOperatorColor]];
         [[self.highlightedButtons objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperandColor]] forState:UIControlStateSelected];
         [[[self.highlightedButtons objectAtIndex:i] layer] setBorderWidth:1.0f];
-        [[[self.highlightedButtons objectAtIndex:i] layer] setBorderColor:[UIColor lightTextTintColor].CGColor];
+        [[[self.highlightedButtons objectAtIndex:i] layer] setBorderColor:[UIColor globalTintColor].CGColor];
     }
   
     [self update];

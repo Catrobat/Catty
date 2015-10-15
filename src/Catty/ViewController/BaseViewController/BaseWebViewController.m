@@ -223,7 +223,7 @@
         _urlTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, CGRectGetHeight(self.navigationController.navigationBar.bounds) + kURLViewHeight, CGRectGetWidth(UIScreen.mainScreen.bounds), kURLViewHeight)];
         _urlTitleLabel.backgroundColor = UIColor.backgroundColor;
         _urlTitleLabel.font = [UIFont systemFontOfSize:13.0f];
-        _urlTitleLabel.textColor = [UIColor lightTextTintColor];
+        _urlTitleLabel.textColor = [UIColor globalTintColor];
         _urlTitleLabel.textAlignment = NSTextAlignmentCenter;
         _urlTitleLabel.alpha = 0.6f;
     }

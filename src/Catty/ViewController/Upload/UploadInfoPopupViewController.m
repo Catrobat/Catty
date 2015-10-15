@@ -136,7 +136,7 @@ const CGFloat PADDING = 5.0f;
 - (void)initProgramNameViewElements
 {
     self.programNamelabel.frame = CGRectMake(2*PADDING, self.currentHeight, 100, self.programNamelabel.frame.size.height);
-    [self.programNamelabel setTextColor:[UIColor lightTextTintColor]];
+    [self.programNamelabel setTextColor:[UIColor globalTintColor]];
     [self.programNamelabel setText:kLocalizedName];
     [self.programNamelabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:LABEL_FONT_SIZE]];
     [self.programNamelabel sizeToFit];
@@ -145,7 +145,7 @@ const CGFloat PADDING = 5.0f;
     
     self.programNameTextField.frame = CGRectMake(self.view.frame.size.width/3.0f, self.currentHeight, 2*self.view.frame.size.width/3.0f -20, TEXTFIELD_HEIGHT);
     
-    self.programNameTextField.textColor = [UIColor lightTextTintColor];
+    self.programNameTextField.textColor = [UIColor textTintColor];
     self.programNameTextField.backgroundColor = [UIColor whiteColor];
     [self.programNameTextField setBorderStyle:UITextBorderStyleRoundedRect];
     [self.programNameTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
@@ -163,7 +163,7 @@ const CGFloat PADDING = 5.0f;
 - (void)initSizeViewElements
 {
     self.sizeLabel.frame = CGRectMake(2*PADDING, self.currentHeight, 100, self.sizeLabel.frame.size.height);
-    [self.sizeLabel setTextColor:[UIColor lightTextTintColor]];
+    [self.sizeLabel setTextColor:[UIColor globalTintColor]];
     [self.sizeLabel setText:kLocalizedSize];
     [self.sizeLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:LABEL_FONT_SIZE]];
     [self.sizeLabel sizeToFit];
@@ -181,7 +181,7 @@ const CGFloat PADDING = 5.0f;
     }
     
     self.sizeValueLabel.frame = CGRectMake(self.view.frame.size.width/3.0f, self.currentHeight, 100, self.sizeValueLabel.frame.size.height);
-    [self.sizeValueLabel setTextColor:[UIColor lightTextTintColor]];
+    [self.sizeValueLabel setTextColor:[UIColor textTintColor]];
     [self.sizeValueLabel setText:zipFileSizeString];
     [self.sizeValueLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:LABEL_FONT_SIZE]];
     [self.sizeValueLabel sizeToFit];
@@ -192,14 +192,14 @@ const CGFloat PADDING = 5.0f;
 {
 
     self.descriptionLabel.frame = CGRectMake(2*PADDING, self.currentHeight, 100, self.descriptionLabel.frame.size.height);
-    [self.descriptionLabel setTextColor:[UIColor lightTextTintColor]];
+    [self.descriptionLabel setTextColor:[UIColor globalTintColor]];
     [self.descriptionLabel setText:kLocalizedDescription];
     [self.descriptionLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:LABEL_FONT_SIZE]];
     [self.descriptionLabel sizeToFit];
     
     self.descriptionTextView.frame = CGRectMake(self.view.frame.size.width/3.0f,self.currentHeight,2*self.view.frame.size.width/3.0f -20,100);
     
-    self.descriptionTextView.textColor = [UIColor lightTextTintColor];
+    self.descriptionTextView.textColor = [UIColor textTintColor];
     self.descriptionTextView.keyboardAppearance  = UIKeyboardAppearanceDark;
     self.descriptionTextView.backgroundColor = [UIColor whiteColor];
     [self.descriptionTextView setAutocorrectionType:UITextAutocorrectionTypeNo];
@@ -216,7 +216,7 @@ const CGFloat PADDING = 5.0f;
 {
     [self.uploadButton setTitle:kLocalizedUpload forState:UIControlStateNormal];
     [self.uploadButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:LABEL_FONT_SIZE+4]];
-    [self.uploadButton.titleLabel setTextColor:[UIColor lightTextTintColor]];
+    [self.uploadButton.titleLabel setTextColor:[UIColor buttonHighlightedTintColor]];
     [self.uploadButton setBackgroundColor:[UIColor globalTintColor]];
     self.uploadButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.uploadButton sizeToFit];

@@ -24,6 +24,7 @@
 #import "ActionSheetAlertViewTags.h"
 #import "Util.h"
 #import "BaseTableViewController.h"
+#import "UIColor+CatrobatUIColorExtensions.h"
 
 @implementation CatrobatAlertView
 
@@ -34,7 +35,11 @@
   otherButtonTitles:(NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION
 {
     CatrobatAlertView *alertView = [CatrobatAlertView alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-                                    
+    
+    NSMutableAttributedString *textTitle = [[NSMutableAttributedString alloc] initWithString:title];
+    [textTitle addAttribute:NSForegroundColorAttributeName value:[UIColor globalTintColor] range:NSMakeRange(0,title.length)];
+    [alertView setValue:textTitle forKey:@"attributedTitle"];
+
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelButtonTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
                                    {
                                         [delegate alertView:alertView clickedButtonAtIndex:0];

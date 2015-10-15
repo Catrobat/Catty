@@ -100,7 +100,7 @@
     MYBlurIntroductionView *introductionView = [[MYBlurIntroductionView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)];
     introductionView.delegate = delegate;
     [introductionView setEnabled:YES];
-    introductionView.BackgroundImageView.image = [UIImage imageWithColor:[UIColor lightTextTintColor]];
+    introductionView.BackgroundImageView.image = [UIImage imageWithColor:[UIColor globalTintColor]];
     [introductionView setBackgroundColor:[UIColor backgroundColor]];
     //introductionView.LanguageDirection = MYLanguageDirectionRightToLeft;
     
@@ -232,7 +232,7 @@
                                                            destructiveButtonTitle:destructiveButtonTitle
                                                            otherButtonTitlesArray:otherButtonTitles];
     [actionSheet setButtonBackgroundColor:[UIColor backgroundColor]];
-    [actionSheet setButtonTextColor:[UIColor lightTextTintColor]];
+    [actionSheet setButtonTextColor:[UIColor buttonTintColor]];
 
 //    [actionSheet setButtonBackgroundColor:[UIColor colorWithWhite:0.0f alpha:1.0f]];
 //    [actionSheet setButtonTextColor:[UIColor globalTintColor]];

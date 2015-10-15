@@ -89,10 +89,10 @@
 }
 
 - (void)initializeConstants{
-    kTitleFont = [UIFont boldSystemFontOfSize:21];
-    kTitleTextColor = [UIColor darkTextTintColor];
-    kDescriptionFont = [UIFont systemFontOfSize:14];
-    kDescriptionTextColor = [UIColor lightTextTintColor];
+    kTitleFont = [UIFont boldSystemFontOfSize:24];
+    kTitleTextColor = [UIColor globalTintColor];
+    kDescriptionFont = [UIFont systemFontOfSize:18];
+    kDescriptionTextColor = [UIColor textTintColor];
     kSeparatorLineColor = [UIColor colorWithWhite:0 alpha:0.1];
     
     self.backgroundColor = [UIColor clearColor];
