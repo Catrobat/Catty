@@ -147,13 +147,13 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
         print("readValue")
         if (characteristic == self.rxCharacteristic){
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 guard let data = characteristic.value else {
                     //ERROR
                     return
                 }
                 self.firmata.receiveData(data)
-            })
+//            })
             
         }
     }
@@ -177,11 +177,12 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     func getDigitalArduinoPin(digitalPinNumber:UInt8)-> Double {
         dispatch_sync(digitalQueue){
             self.firmata.writePinMode(PinMode.Input, pin: digitalPinNumber)
+            self.firmata.reportVersion()
             self.firmata.setDigitalStateReportingForPort(digitalPinNumber / 8, enabled: true)
             print("requestValue")
             let semaphore = BluetoothService.swiftSharedInstance.getSemaphore()
             BluetoothService.swiftSharedInstance.setDigitalSemaphore(semaphore)
-            dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)))
+            dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, Int64(6 * NSEC_PER_SEC)))
             BluetoothService.swiftSharedInstance.signalDigitalSemaphore(false)
             self.firmata.setDigitalStateReportingForPort(digitalPinNumber / 8, enabled: false)
             self.digitalValue = self.getPortValue(Int(digitalPinNumber))
@@ -195,11 +196,12 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     func getAnalogArduinoPin(analogPinNumber:UInt8) -> Double {
         dispatch_sync(digitalQueue){
             self.firmata.writePinMode(PinMode.Input, pin: analogPinNumber)
-            self.firmata.setAnalogValueReportingforPin(analogPinNumber / 8, enabled: true)
+            self.firmata.setAnalogValueReportingforPin(analogPinNumber, enabled: true)
             let semaphore = BluetoothService.swiftSharedInstance.getSemaphore()
             BluetoothService.swiftSharedInstance.setAnalogSemaphore(semaphore)
-            dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)))
-            self.firmata.setAnalogValueReportingforPin(analogPinNumber / 8, enabled: false)
+            dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)))
+            self.firmata.setAnalogValueReportingforPin(analogPinNumber, enabled: false)
+            self.firmata.setDigitalStateReportingForPort(1, enabled: true)
             self.analogValue = self.getAnalogPin(analogPinNumber)
             print(self.analogValue)
         }

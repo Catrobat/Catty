@@ -519,7 +519,6 @@ public class Firmata {
         data.getBytes(&bytes, length:count * sizeof(UInt8))
         for (var i = 0; i < data.length; i++){
             let byte:UInt8 = bytes[i];
-            print("Processing %02hhx", byte);
     
             if(byte==START_SYSEX){
                 print("Start sysex received, clear data");
