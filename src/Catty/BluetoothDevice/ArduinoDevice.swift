@@ -230,7 +230,7 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     }
     
     func setAnalogArduinoPin(pin:UInt8, value:UInt8) {
-        firmata.writePinMode(PinMode.Output, pin: pin)
+        firmata.writePinMode(PinMode.PWM, pin: pin)
         firmata.writePWMValue(value, pin: pin)
     }
     
