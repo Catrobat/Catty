@@ -99,6 +99,7 @@
 		4CC85CE91B9C717C0097E470 /* ValidProgramAllBricks.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CE11B9C717C0097E470 /* ValidProgramAllBricks.xml */; };
 		4CC85CEA1B9C717C0097E470 /* ValidProgramAllBricks095.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CE21B9C717C0097E470 /* ValidProgramAllBricks095.xml */; };
 		4CC85CEB1B9C717C0097E470 /* ValidProgramAllBricks096.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4CC85CE31B9C717C0097E470 /* ValidProgramAllBricks096.xml */; };
+		4CE23D3D1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE23D3C1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m */; settings = {ASSET_TAGS = (); }; };
 		4CEB224E1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22301B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m */; };
 		4CEB224F1B95E47500B3BE2F /* BrickMoveManagerForeverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22311B95E47500B3BE2F /* BrickMoveManagerForeverTests.m */; };
 		4CEB22501B95E47500B3BE2F /* BrickMoveManagerLogicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEB22321B95E47500B3BE2F /* BrickMoveManagerLogicTests.m */; };
@@ -335,8 +336,8 @@
 		92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
 		A918B6B71B89F5870017B92F /* Siren.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A918B6B61B89F5870017B92F /* Siren.bundle */; };
-		A988832C1BCA86FF005029E8 /* ObjectTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */; settings = {ASSET_TAGS = (); }; };
 		A920EF3A1BCAB4ED00743FE2 /* LooksTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A920EF391BCAB4ED00743FE2 /* LooksTVCTests.swift */; settings = {ASSET_TAGS = (); }; };
+		A988832C1BCA86FF005029E8 /* ObjectTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */; settings = {ASSET_TAGS = (); }; };
 		A988832E1BCA98DD005029E8 /* SoundsTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988832D1BCA98DD005029E8 /* SoundsTVCTests.swift */; settings = {ASSET_TAGS = (); }; };
 		AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */; settings = {ASSET_TAGS = (); }; };
 		AA401FE91BBEF6F9001BC49F /* CBInstructionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */; settings = {ASSET_TAGS = (); }; };
@@ -853,6 +854,7 @@
 		4CC85CE11B9C717C0097E470 /* ValidProgramAllBricks.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgramAllBricks.xml; sourceTree = "<group>"; };
 		4CC85CE21B9C717C0097E470 /* ValidProgramAllBricks095.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgramAllBricks095.xml; sourceTree = "<group>"; };
 		4CC85CE31B9C717C0097E470 /* ValidProgramAllBricks096.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ValidProgramAllBricks096.xml; sourceTree = "<group>"; };
+		4CE23D3C1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FormulaElementIdempotenceTest.m; path = Formula/FormulaElementIdempotenceTest.m; sourceTree = "<group>"; };
 		4CEB222F1B95E47500B3BE2F /* BrickMoveManagerAbstractTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickMoveManagerAbstractTest.h; sourceTree = "<group>"; };
 		4CEB22301B95E47500B3BE2F /* BrickMoveManagerAbstractTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManagerAbstractTest.m; sourceTree = "<group>"; };
 		4CEB22311B95E47500B3BE2F /* BrickMoveManagerForeverTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickMoveManagerForeverTests.m; sourceTree = "<group>"; };
@@ -1319,8 +1321,8 @@
 		92FF32C21A24E33B00093DA7 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
 		A918B6B41B89F5690017B92F /* Siren.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Siren.swift; path = Siren/Siren.swift; sourceTree = "<group>"; };
 		A918B6B61B89F5870017B92F /* Siren.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Siren.bundle; sourceTree = "<group>"; };
-		A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectTVCTests.swift; sourceTree = "<group>"; };
 		A920EF391BCAB4ED00743FE2 /* LooksTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LooksTVCTests.swift; sourceTree = "<group>"; };
+		A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectTVCTests.swift; sourceTree = "<group>"; };
 		A988832D1BCA98DD005029E8 /* SoundsTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundsTVCTests.swift; sourceTree = "<group>"; };
 		AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitBrickTests.swift; sourceTree = "<group>"; };
 		AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBInstructionProtocol.swift; path = PlayerEngine/Protocols/CBInstructionProtocol.swift; sourceTree = "<group>"; };
@@ -2066,6 +2068,7 @@
 			children = (
 				4C68FC7B1B25A00B00AB3EE8 /* FormulaEditorUtilTests.m */,
 				4C68FC7C1B25A00B00AB3EE8 /* FormulaElementTest.m */,
+				4CE23D3C1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m */,
 				4C68FC7D1B25A00B00AB3EE8 /* FormulaFunctionsTest.m */,
 				4C68FC7E1B25A00B00AB3EE8 /* FormulaParserErrorDetectionTest.m */,
 				4C68FC7F1B25A00B00AB3EE8 /* FormulaParserFunctionsTest.m */,
@@ -5518,6 +5521,7 @@
 				4C68FC931B25A00B00AB3EE8 /* InternFormulaTest.m in Sources */,
 				4C2EE3E31B5554D7006DE9B8 /* XMLParserBlackBoxTests095.m in Sources */,
 				4C2A00C21B5546DF00CD4492 /* XMLParserHeaderTests093.m in Sources */,
+				4CE23D3D1BCE9AA00075C776 /* FormulaElementIdempotenceTest.m in Sources */,
 				4CEB22571B95E47500B3BE2F /* ChangeTransparencyByNBrickTests.m in Sources */,
 				4CEB22641B95E47500B3BE2F /* SetSizeToBrickTests.m in Sources */,
 				4CEB225A1B95E47500B3BE2F /* GoNStepsBackBrickTests.m in Sources */,
