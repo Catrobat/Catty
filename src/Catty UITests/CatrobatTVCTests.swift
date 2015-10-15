@@ -56,7 +56,8 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
     }
     
     func testNew() {
-
+        restoreDefaultProgram()
+        
         let programName = "testProgram"
         
         let app = XCUIApplication()
@@ -82,6 +83,40 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
         
         // check if gone back to initial screen after pressing cancel button
         XCTAssert(app.tables.staticTexts["New"].exists)
+    }
+    
+    func testNewInvalidNames() {
+        restoreDefaultProgram()
+        
+        // TODO: Handle invalid program names and add more testcases (e.g. \, &, ~,...)! (IOS-269)
+        let progNamesErrorMsgMap = ["":                      "No input or the input is too short. Please enter at least 1 character.",
+                                    "i am tooooooo looooog": "The input is too long. Please enter not more than 20 characters."]
+        
+        let app = XCUIApplication()
+        
+        for (programName, errorMessage) in progNamesErrorMsgMap {
+            app.tables.staticTexts["New"].tap()
+            let collectionViewsQuery = app.alerts["New Program"].collectionViews
+            collectionViewsQuery.textFields["Enter your program name here..."].typeText(programName)
+            collectionViewsQuery.buttons["OK"].tap()
+        
+            XCTAssert(app.alerts["Pocket Code"].staticTexts[errorMessage].exists)
+            app.alerts["Pocket Code"].collectionViews.buttons["OK"].tap()
+            collectionViewsQuery.buttons["Cancel"].tap()
+        }
+    }
+    
+    func testNewCanceled() {
+        restoreDefaultProgram()
+        
+        let app = XCUIApplication()
+        app.tables.staticTexts["New"].tap()
+        
+        let collectionViewsQuery = app.alerts["New Program"].collectionViews
+        collectionViewsQuery.textFields["Enter your program name here..."].typeText("testprogramToCancel")
+        collectionViewsQuery.buttons["Cancel"].tap()
+        
+        XCTAssertTrue(app.navigationBars["Pocket Code"].staticTexts["Pocket Code"].exists)
     }
     
     func testPrograms() {
