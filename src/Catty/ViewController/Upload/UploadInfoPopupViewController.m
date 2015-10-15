@@ -42,6 +42,7 @@
 #import "KeychainDefines.h"
 #import "JNKeychain.h"
 #import "BDKNotifyHUD.h"
+#import "LoadingView.h"
 
 #define uploadParameterTag @"upload"                 //zip file with program
 #define fileChecksumParameterTag @"fileChecksum"     //md5 hash
@@ -72,6 +73,7 @@ const CGFloat PADDING = 5.0f;
 @property (nonatomic) CGFloat currentHeight;
 @property (strong, nonatomic) NSURLSession *session;
 @property (strong, nonatomic) NSURLSessionDataTask *dataTask;
+@property (strong, nonatomic) LoadingView *loadingView;
 
 @end
 
@@ -115,7 +117,13 @@ const CGFloat PADDING = 5.0f;
     self.navigationController.title = self.title = kLocalizedUpload;
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissView)];
     self.navigationItem.rightBarButtonItem = rightButton;
+    self.navigationController.toolbarHidden = YES;
     [self.programNameTextField becomeFirstResponder];
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self
+                           selector:@selector(uploadAction)
+                               name:kReadyToUpload
+                             object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -192,6 +200,7 @@ const CGFloat PADDING = 5.0f;
     self.descriptionTextView.frame = CGRectMake(self.view.frame.size.width/3.0f,self.currentHeight,2*self.view.frame.size.width/3.0f -20,100);
     
     self.descriptionTextView.textColor = [UIColor lightTextTintColor];
+    self.descriptionTextView.keyboardAppearance  = UIKeyboardAppearanceDark;
     self.descriptionTextView.backgroundColor = [UIColor whiteColor];
     [self.descriptionTextView setAutocorrectionType:UITextAutocorrectionTypeNo];
     [self.descriptionTextView setAutocapitalizationType:UITextAutocapitalizationTypeNone];
@@ -212,7 +221,7 @@ const CGFloat PADDING = 5.0f;
     self.uploadButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.uploadButton sizeToFit];
     self.uploadButton.frame = CGRectMake(0, self.currentHeight, self.view.frame.size.width, self.uploadButton.frame.size.height);
-    [self.uploadButton addTarget:self action:@selector(uploadAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.uploadButton addTarget:self action:@selector(checkProgramAction) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark Helpers
@@ -262,14 +271,39 @@ const CGFloat PADDING = 5.0f;
     [self.delegate dismissPopupWithCode:NO];
 }
 
--(void)uploadAction
+-(void)checkProgramAction
 {
     if ([self.programNameTextField.text isEqualToString:@""]) {
         [Util alertWithText:kLocalizedUploadProgramNecessary];
         return;
     }
-    
-    
+    //RemixOF
+    if(self.program.header.url && self.program.header.userHandle){
+        self.program.header.remixOf = self.program.header.url;
+        self.program.header.url = nil;
+        self.program.header.userHandle = nil;
+    }
+    [self.program renameToProgramName:self.programNameTextField.text];
+    self.program.header.programDescription = self.descriptionTextView.text;
+    [self.program saveToDisk];
+    if (!self.loadingView) {
+        self.loadingView = [[LoadingView alloc] init];
+        //        _loadingView.backgroundColor = [UIColor globalTintColor];
+        [self.view addSubview:self.loadingView];
+    }
+    [self.loadingView show];
+    for (UIView *view in self.view.subviews) {
+        if (![view isKindOfClass:[LoadingView class]]) {
+            view.alpha = 0.3f;
+        }
+    }
+    self.view.userInteractionEnabled = NO;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+}
+
+-(void)uploadAction
+{
+
     NSString *checksum = nil;
     if (self.zipFileData) {
         checksum = [self.zipFileData md5];
@@ -293,8 +327,7 @@ const CGFloat PADDING = 5.0f;
         [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
         
         NSMutableData *body = [NSMutableData data];
-        
-        //TODO NAME & DESCRIPTION WRONG
+
         //Program Name
         [self setFormDataParameter:programNameTag withData:[self.program.header.programName dataUsingEncoding:NSUTF8StringEncoding] forHTTPBody:body];
         
@@ -331,6 +364,7 @@ const CGFloat PADDING = 5.0f;
         [request addValue:postLength forHTTPHeaderField:@"Content-Length"];
         
         self.dataTask = [self.session dataTaskWithRequest:request  completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            [self enableUploadView];
             if (error) {
                 if (error.code != -999) {
                     NSLog(@"%@", error);
@@ -400,10 +434,12 @@ const CGFloat PADDING = 5.0f;
             self.uploadButton.enabled = NO;
         } else {
             NSDebug(@"Connection could not be established");
+            [self enableUploadView];
             [Util alertWithTitle:kLocalizedNoInternetConnection andText:kLocalizedNoInternetConnectionAvailable];
         }
     } else {
         NSDebug(@"Could not build checksum");
+        [self enableUploadView];
         [Util alertWithText:kLocalizedUploadProblem];
     }
 }
@@ -433,6 +469,13 @@ const CGFloat PADDING = 5.0f;
                   completion:^{ [hud removeFromSuperview]; }];
 }
 
+-(void)enableUploadView
+{
+    [self.loadingView hide];
+    self.view.alpha = 1.0f;
+    self.view.userInteractionEnabled = YES;
+    self.navigationItem.rightBarButtonItem.enabled = YES;
+}
 
 
 @end

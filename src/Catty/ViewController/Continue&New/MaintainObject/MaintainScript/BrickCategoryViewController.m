@@ -104,6 +104,7 @@
     NSString *brickCellIdentifier = NSStringFromClass(brick.class);
     BrickCell *brickCell = [collectionView dequeueReusableCellWithReuseIdentifier:brickCellIdentifier
                                                                      forIndexPath:indexPath];
+    brickCell.isInserting = YES;
     brickCell.scriptOrBrick = self.bricks[indexPath.item];
     [brickCell.scriptOrBrick setDefaultValuesForObject:self.spriteObject];
     [brickCell setupBrickCell];

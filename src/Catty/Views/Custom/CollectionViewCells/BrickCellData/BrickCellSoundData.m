@@ -39,24 +39,26 @@
         _brickCell = brickCell;
         _lineNumber = line;
         _parameterNumber = parameter;
-        
         NSMutableArray *options = [[NSMutableArray alloc] init];
         [options addObject:kLocalizedNewElement];
         int currentOptionIndex = 0;
-        int optionIndex = 1;
-        if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickSoundProtocol)]) {
-            Brick<BrickSoundProtocol> *soundBrick = (Brick<BrickSoundProtocol>*)brickCell.scriptOrBrick;
-            Sound *currentSound = [soundBrick soundForLineNumber:line andParameterNumber:parameter];
-            for(Sound *sound in soundBrick.script.object.soundList) {
-                [options addObject:sound.name];
-                if([sound.name isEqualToString:currentSound.name])
+        if (!brickCell.isInserting) {
+            int optionIndex = 1;
+            if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickSoundProtocol)]) {
+                Brick<BrickSoundProtocol> *soundBrick = (Brick<BrickSoundProtocol>*)brickCell.scriptOrBrick;
+                Sound *currentSound = [soundBrick soundForLineNumber:line andParameterNumber:parameter];
+                for(Sound *sound in soundBrick.script.object.soundList) {
+                    [options addObject:sound.name];
+                    if([sound.name isEqualToString:currentSound.name])
+                        currentOptionIndex = optionIndex;
+                    optionIndex++;
+                }
+                if (currentSound && ![options containsObject:currentSound.name]) {
+                    [options addObject:currentSound.name];
                     currentOptionIndex = optionIndex;
-                optionIndex++;
+                }
             }
-            if (currentSound && ![options containsObject:currentSound.name]) {
-                [options addObject:currentSound.name];
-                currentOptionIndex = optionIndex;
-            }
+
         }
         [self setValues:options];
         [self setCurrentValue:options[currentOptionIndex]];
