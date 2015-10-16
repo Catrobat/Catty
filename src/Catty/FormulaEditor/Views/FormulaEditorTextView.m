@@ -51,6 +51,8 @@
         self.gestureRecognizers = nil;
         //self.selectable = NO;
         [self addGestureRecognizer:self.tapRecognizer];
+        self.tapRecognizer.delegate = self;
+        [self.tapRecognizer setCancelsTouchesInView:NO];
         self.inputView = [[[NSBundle mainBundle] loadNibNamed:@"FormulaEditor" owner:self.formulaEditorViewController options:nil] lastObject];
         self.inputView.backgroundColor = UIColor.backgroundColor;
         self.userInteractionEnabled = YES;
@@ -245,5 +247,15 @@
     [self highlightSelection:cursorPostionIndex start:startIndex end:endIndex];
 }
 
+#pragma mark Gesture delegates
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    return YES;
+}
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
 
 @end
