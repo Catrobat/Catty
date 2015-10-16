@@ -745,7 +745,7 @@ replacementString:(NSString*)characters
         bool notOnlySpecialCharacters = NO;
         for(int i =0; i < input.length; i++){
             NSString * newString = [input substringWithRange:NSMakeRange(i, 1)];
-            if(!([newString  isEqual: @"."])||!([newString  isEqual: @"/"])||!([newString  isEqual: @"\\"])||!([newString  isEqual: @"~"])){
+            if(!([newString  isEqual: @"."])&&!([newString  isEqual: @"/"])&&!([newString  isEqual: @"\\"])&&!([newString  isEqual: @"~"])){
                 notOnlySpecialCharacters = YES;
                 break;
             }
@@ -776,7 +776,7 @@ replacementString:(NSString*)characters
             payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         } else if(!atLeastOneNotspace){
-            NSString *alertText = [NSString stringWithFormat:kLocalizedSpecialCharInputDescription,
+            NSString *alertText = [NSString stringWithFormat:kLocalizedSpaceInputDescription,
                                    textFieldMinInputLength];
             alertText = ((textFieldMinInputLength != 1) ? [[self class] pluralString:alertText]
                          : [[self class] singularString:alertText]);
@@ -786,7 +786,7 @@ replacementString:(NSString*)characters
             payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
         } else if(!notOnlySpecialCharacters){
-            NSString *alertText = [NSString stringWithFormat:kLocalizedSpaceInputDescription,
+            NSString *alertText = [NSString stringWithFormat:kLocalizedSpecialCharInputDescription,
                                    textFieldMinInputLength];
             alertText = ((textFieldMinInputLength != 1) ? [[self class] pluralString:alertText]
                          : [[self class] singularString:alertText]);
