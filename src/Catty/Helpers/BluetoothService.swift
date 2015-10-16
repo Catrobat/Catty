@@ -136,6 +136,7 @@ public class BluetoothService:NSObject {
                 guard let manager = self.selectionManager else {
                     return
                 }
+                self.updateKnownDevices(peripheral.id)
                 manager.deviceConnected(peripheral)
                 manager.updateWhenActive()
                 break
@@ -174,6 +175,26 @@ public class BluetoothService:NSObject {
             print("Fail \(error)")
         }
 
+    }
+    
+    func updateKnownDevices(id:NSUUID){
+        let userdefaults = NSUserDefaults.standardUserDefaults()
+        if let testArray : [AnyObject] = userdefaults.arrayForKey("KnownBleDevices") {
+            var objectArray:[NSUUID] = testArray as! [NSUUID]
+            if objectArray.contains(id){
+                
+            }else{
+                objectArray.append(id)
+                userdefaults.setObject(objectArray, forKey: "KnownBleDevices")
+            }
+            
+        } else {
+            var array:[NSUUID] = [NSUUID]()
+            array.append(id)
+            userdefaults.setObject(array, forKey: "KnownBleDevices")
+            
+        }
+        userdefaults.synchronize()
     }
     
     

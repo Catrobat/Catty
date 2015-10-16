@@ -114,26 +114,6 @@ public class CentralManager : NSObject, CBCentralManagerDelegate, CMWrapper {
             NSLog("error")
             return
         }
-//        let id:NSUUID = peripheral.identifier
-//        let userdefaults = NSUserDefaults.standardUserDefaults()
-//        if let testArray : AnyObject = userdefaults.objectForKey("BluetoothNSUUIDKnown") {
-//            let data:NSData = testArray as! NSData
-//            let oldSavedArray:NSArray = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! NSArray
-//            let objectArray: NSMutableArray = NSMutableArray(array: oldSavedArray)
-//            if objectArray.containsObject(id){
-//                
-//            }else{
-//                objectArray.addObject(id)
-//                let storeArray:NSArray = NSArray(array: objectArray)
-//                userdefaults.setObject(storeArray, forKey: "BluetoothNSUUIDKnown")
-//            }
-//        } else {
-//            var array:[NSUUID] = [NSUUID]()
-//            array.append(id)
-//            let storeArray:NSArray = NSArray(array: array)
-//            userdefaults.setObject(NSKeyedArchiver .archivedDataWithRootObject(storeArray), forKey: "BluetoothNSUUIDKnown")
-//        }
-//        userdefaults.synchronize()
         ownPeripheral.didConnectPeripheral()
     }
     

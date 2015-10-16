@@ -51,14 +51,12 @@ class KnownDevicesTableViewController: BluetoothDevicesTableViewController {
         }
         let userdefaults = NSUserDefaults.standardUserDefaults()
         let future : FutureStream<[Peripheral]>
-//        if let testArray : AnyObject = userdefaults.objectForKey("BluetoothNSUUIDKnown") {
-//            let data:NSData = testArray as! NSData
-//            let oldSavedArray:NSArray = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! NSArray
-////            var queryArray:[NSUUID] = oldSavedArray as NSArray as! [NSUUID]
-//            future = CentralManager.sharedInstance.getKnownPeripheralsWithIdentifiers(oldSavedArray as! [NSUUID])
-//        } else {
+        if let testArray : [AnyObject] = userdefaults.arrayForKey("KnownBleDevices") {
+            let queryArray:[NSUUID] = testArray as! [NSUUID]
+            future = CentralManager.sharedInstance.getKnownPeripheralsWithIdentifiers(queryArray)
+        } else {
            future = CentralManager.sharedInstance.getKnownPeripheralsWithIdentifiers(NSArray() as! [NSUUID])
-//        }
+        }
 
        
         future.onSuccess(afterPeripheralDiscovered)
