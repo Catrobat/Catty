@@ -22,6 +22,7 @@
 
 #import "FillTool.h"
 #import "UIImage+FloodFill.h"
+#import "UndoManager.h"
 
 @implementation FillTool
 - (id) initWithDrawViewCanvas:(PaintViewController *)canvas
@@ -49,11 +50,13 @@
     UIGraphicsEndImageContext();
     self.canvas.saveView.image = blank;
   }
-  //UNDO-Manager
-  [[self.canvas getUndoManager] setImage:self.canvas.saveView.image.CIImage];
+  
 //  NSDebug(@"%@",self.canvas.saveView.image);
     UIImage *image = self.canvas.saveView.image;
-  image = [self fillImage:image startingPoint:lastPoint andColor:[UIColor colorWithRed:self.canvas.red green:self.canvas.green blue:self.canvas.blue alpha:self.canvas.opacity]];
+    //UNDO-Manager
+    UndoManager* manager = [self.canvas getUndoManager];
+    [manager setImage:self.canvas.saveView.image];
+    image = [self fillImage:image startingPoint:lastPoint andColor:[UIColor colorWithRed:self.canvas.red green:self.canvas.green blue:self.canvas.blue alpha:self.canvas.opacity]];
     UIGraphicsBeginImageContext(image.size);
     [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
     self.canvas.saveView.image = UIGraphicsGetImageFromCurrentImageContext();
