@@ -97,7 +97,7 @@
     }
     
     self.view.backgroundColor = mainColor;
-    self.headerImageView.image = [UIImage imageNamed:@"cat"];
+    self.headerImageView.image = [UIImage imageNamed:@"PocketCode"];
     self.headerImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.headerImageView.frame = CGRectMake(0, 0, self.view.frame.size.width, headerHeight);
     
