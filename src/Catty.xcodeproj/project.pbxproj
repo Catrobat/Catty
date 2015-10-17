@@ -606,10 +606,8 @@
 		CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */; };
 		CADBD6DE19B0E8C200C62836 /* OrderedDictionary.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D42198F6A8800455B77 /* OrderedDictionary.license */; };
 		CADBD6DF19B0E8C200C62836 /* AHKActionSheet.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D28198F635B00455B77 /* AHKActionSheet.license */; };
-		CADBD6E019B0E8C200C62836 /* SMPageControl.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D1E198EA6B600455B77 /* SMPageControl.license */; };
 		CADBD6E319B0E8C200C62836 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81C27425189EF94600827A95 /* Images.xcassets */; };
 		CADBD6E419B0E8C200C62836 /* minizip.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D38198F67FB00455B77 /* minizip.license */; };
-		CADBD6E519B0E8C200C62836 /* EAIntroView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D20198EACE200455B77 /* EAIntroView.license */; };
 		CADBD6E619B0E8C200C62836 /* TTTAttributedLabel.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D2C198F63B400455B77 /* TTTAttributedLabel.license */; };
 		CADBD6E719B0E8C200C62836 /* LXReorderableCollectionViewFlowLayout.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D2A198F638C00455B77 /* LXReorderableCollectionViewFlowLayout.license */; };
 		CADBD6E819B0E8C200C62836 /* FXBlurView.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D30198F645400455B77 /* FXBlurView.license */; };
@@ -879,8 +877,6 @@
 		4C79F5541B3C29DC00202749 /* RecentProgramsStoreViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecentProgramsStoreViewControllerTests.m; path = Download/RecentProgramsStoreViewControllerTests.m; sourceTree = "<group>"; };
 		4C8BC6621B26C298001C7E32 /* iOSComboboxPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSComboboxPickerView.h; sourceTree = "<group>"; };
 		4C8BC6631B26C298001C7E32 /* iOSComboboxPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSComboboxPickerView.m; sourceTree = "<group>"; };
-		4C9E2D1E198EA6B600455B77 /* SMPageControl.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SMPageControl.license; sourceTree = "<group>"; };
-		4C9E2D20198EACE200455B77 /* EAIntroView.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EAIntroView.license; sourceTree = "<group>"; };
 		4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDKNotifyHUD.license; sourceTree = "<group>"; };
 		4C9E2D24198F62A600455B77 /* SWTableViewCell.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SWTableViewCell.license; sourceTree = "<group>"; };
 		4C9E2D26198F62D800455B77 /* IBActionSheet.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = IBActionSheet.license; sourceTree = "<group>"; };
@@ -2637,8 +2633,6 @@
 		4C9E2D1D198EA6B600455B77 /* Licenses */ = {
 			isa = PBXGroup;
 			children = (
-				4C9E2D20198EACE200455B77 /* EAIntroView.license */,
-				4C9E2D1E198EA6B600455B77 /* SMPageControl.license */,
 				4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */,
 				4C9E2D24198F62A600455B77 /* SWTableViewCell.license */,
 				4C9E2D26198F62D800455B77 /* IBActionSheet.license */,
@@ -5619,14 +5613,12 @@
 				92D346BD1B8DDC0A009EB8F7 /* LaunchScreen.storyboard in Resources */,
 				92DFB05E1A38960C00FA9B0F /* nko_brightness_guide.png in Resources */,
 				CADBD6DF19B0E8C200C62836 /* AHKActionSheet.license in Resources */,
-				CADBD6E019B0E8C200C62836 /* SMPageControl.license in Resources */,
 				92FF2E951A24C7D800093DA7 /* LoggerProperties.plist in Resources */,
 				92FF32641A24E2F400093DA7 /* LICENSE_FXBlurView in Resources */,
 				CADBD6E319B0E8C200C62836 /* Images.xcassets in Resources */,
 				92FF2E9E1A24C7D800093DA7 /* IMPORTANT.caf in Resources */,
 				CADBD6E419B0E8C200C62836 /* minizip.license in Resources */,
 				92FF2E3F1A24C5A700093DA7 /* LICENSE_UIViewController+Popup in Resources */,
-				CADBD6E519B0E8C200C62836 /* EAIntroView.license in Resources */,
 				CADBD6E619B0E8C200C62836 /* TTTAttributedLabel.license in Resources */,
 				CADBD6E719B0E8C200C62836 /* LXReorderableCollectionViewFlowLayout.license in Resources */,
 				CADBD6E819B0E8C200C62836 /* FXBlurView.license in Resources */,
