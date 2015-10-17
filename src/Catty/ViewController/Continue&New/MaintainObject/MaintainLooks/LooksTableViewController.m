@@ -95,7 +95,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
     NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsLooksKey];
     self.useDetailCells = [showDetailsProgramsValue boolValue];
-    self.title = self.navigationItem.title = kLocalizedLooks;
+    self.title = self.navigationItem.title = (self.object.isBackground
+                                              ? kLocalizedBackgrounds
+                                              : kLocalizedLooks);
     [self initNavigationBar];
     self.placeHolderView.title = kLocalizedLooks;
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];
@@ -656,13 +658,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 }
             }
         } else if (buttonIndex != actionSheet.cancelButtonIndex) {
-            // implement this after Pocket Paint is fully integrated
             // draw new image
             NSDebug(@"Draw new image");
-            PaintViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kPaintViewControllerIdentifier];
-            vc.delegate = self;
-            vc.editingPath = nil;
-            [self.navigationController pushViewController:vc animated:YES];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                PaintViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kPaintViewControllerIdentifier];
+                vc.delegate = self;
+                vc.editingPath = nil;
+                vc.programHeight = self.object.program.header.screenHeight.floatValue;
+                vc.programWidth = self.object.program.header.screenWidth.floatValue;
+                [self.navigationController pushViewController:vc animated:YES];
+            });
+
         } else {
             if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor) {
                 if (self.afterSafeBlock) {
