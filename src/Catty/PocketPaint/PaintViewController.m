@@ -271,7 +271,7 @@
 
 - (void)setupZoom
 {
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height, self.view.frame.size.width, self.view.frame.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height)];
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height)];
     self.scrollView.scrollEnabled = NO;
     self.scrollView.maximumZoomScale = kMaxZoomScale;
     self.scrollView.minimumZoomScale = kMinZoomScale;
@@ -280,7 +280,7 @@
     [self.scrollView addSubview:self.helper];
     [self.view addSubview:self.scrollView];
     NSInteger width = self.view.bounds.size.width;
-    NSInteger height = (NSInteger)self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height-self.navigationController.toolbar.frame.size.height;
+    NSInteger height = (NSInteger)self.view.bounds.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
     NSInteger imageWidth = self.editingImage.size.width;
     NSInteger imageHeight = self.editingImage.size.height;
     if ((imageWidth > width) || (imageHeight > height)) {
@@ -363,7 +363,7 @@
 
 - (void)changeAction
 {
-    LCTableViewPickerControl *pickerView = [[LCTableViewPickerControl alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, kPickerControlAgeHeight) title:kLocalizedPaintPickItem value:self.activeAction items:self.actionTypeArray offset:CGPointMake(0, 0)];
+    LCTableViewPickerControl *pickerView = [[LCTableViewPickerControl alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, kPickerControlAgeHeight) title:kLocalizedPaintPickItem value:self.activeAction items:self.actionTypeArray offset:CGPointMake(0, 0) navBarOffset:self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height];
     pickerView.delegate = self;
     self.navigationController.toolbarHidden = YES;
     self.navigationController.navigationBar.userInteractionEnabled = NO;
@@ -373,7 +373,7 @@
     self.lineToolGesture.enabled = NO;
     [self.view addSubview:pickerView];
     self.pipetteRecognizer.enabled = NO;
-    [pickerView showInView:self.scrollView];
+    [pickerView showInView:self.view];
 }
 
 - (void) updateToolbar

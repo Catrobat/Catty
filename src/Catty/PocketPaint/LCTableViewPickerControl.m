@@ -24,6 +24,7 @@
 @property (nonatomic, assign) CGPoint offset;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 @property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
+@property (nonatomic, assign) NSInteger navBarOffset;
 
 @end
 
@@ -31,7 +32,7 @@
 
 @dynamic tag;
 
-- (id)initWithFrame:(CGRect)frame title:(NSString*)title value:(actionType)value items:(NSArray *)array offset:(CGPoint)offset
+- (id)initWithFrame:(CGRect)frame title:(NSString*)title value:(actionType)value items:(NSArray *)array offset:(CGPoint)offset navBarOffset:(NSInteger)navbarOffset
 {
     if (self = [super initWithFrame:frame])
     {
@@ -39,6 +40,7 @@
         self.items = [NSArray arrayWithArray:array];
         self.title = title;
         self.offset = offset;
+        self.navBarOffset = navbarOffset;
         
         [self initializeControlWithFrame:frame];
     }
@@ -81,7 +83,7 @@
   item.hidesBackButton = YES;
   item.titleView.tintColor = [UIColor globalTintColor];
   [_navBar pushNavigationItem:item animated:NO];
-    self.aTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavBarHeight, frame.size.width, frame.size.height - kNavBarHeight) style:UITableViewStylePlain];
+    self.aTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavBarHeight, frame.size.width, frame.size.height - kNavBarHeight-self.navBarOffset) style:UITableViewStylePlain];
   self.aTableView.backgroundColor = [UIColor backgroundColor];
   self.aTableView.separatorColor = [UIColor globalTintColor];
     [_aTableView setDelegate:self];
@@ -101,7 +103,7 @@
 - (void)showInView:(UIView *)view
 {
     //add mask
-    self.maskView = [[UIView alloc] initWithFrame:view.bounds];
+    self.maskView = [[UIView alloc] initWithFrame:CGRectMake(view.bounds.origin.x, view.bounds.origin.y, view.bounds.size.width, view.bounds.size.height+500)];
     [_maskView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0]];
     [view insertSubview:_maskView atIndex:0];
     
