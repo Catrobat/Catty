@@ -353,7 +353,6 @@
 		92FF32641A24E2F400093DA7 /* LICENSE_FXBlurView in Resources */ = {isa = PBXBuildFile; fileRef = 92FF31821A24E2F400093DA7 /* LICENSE_FXBlurView */; };
 		92FF32671A24E2F400093DA7 /* LICENSE_LXReorderableCollectionViewFlowLayout in Resources */ = {isa = PBXBuildFile; fileRef = 92FF31881A24E2F400093DA7 /* LICENSE_LXReorderableCollectionViewFlowLayout */; };
 		92FF32681A24E2F400093DA7 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF318A1A24E2F400093DA7 /* LXReorderableCollectionViewFlowLayout.m */; };
-		92FF32721A24E2F400093DA7 /* LICENSE_TTTAttributedLabel in Resources */ = {isa = PBXBuildFile; fileRef = 92FF319F1A24E2F400093DA7 /* LICENSE_TTTAttributedLabel */; };
 		92FF32741A24E2F400093DA7 /* CatrobatActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31A51A24E2F400093DA7 /* CatrobatActionSheet.m */; };
 		92FF32751A24E2F400093DA7 /* CatrobatAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31A81A24E2F400093DA7 /* CatrobatAlertView.m */; };
 		92FF32B11A24E2F400093DA7 /* CreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF322B1A24E2F400093DA7 /* CreateView.m */; };
@@ -620,7 +619,6 @@
 		CADBD6F819B0E8C200C62836 /* UIViewController+CWPopup.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D40198F6A2300455B77 /* UIViewController+CWPopup.license */; };
 		CADBD6FA19B0E8C200C62836 /* GDataXMLNode.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D3C198F68F400455B77 /* GDataXMLNode.license */; };
 		CADBD6FC19B0E8C200C62836 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92300CE918B2196700F2B4DC /* Localizable.strings */; };
-		CADBD6FD19B0E8C200C62836 /* SWTableViewCell.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D24198F62A600455B77 /* SWTableViewCell.license */; };
 		CADBD6FF19B0E8C200C62836 /* FBShimmering.license in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E2D2E198F63FB00455B77 /* FBShimmering.license */; };
 		CADBD71919B0E8C200C62836 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F243CC170EBEF7007A071D /* AppDelegate.m */; };
 		CADBD71A19B0E8C200C62836 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -878,7 +876,6 @@
 		4C8BC6621B26C298001C7E32 /* iOSComboboxPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSComboboxPickerView.h; sourceTree = "<group>"; };
 		4C8BC6631B26C298001C7E32 /* iOSComboboxPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSComboboxPickerView.m; sourceTree = "<group>"; };
 		4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDKNotifyHUD.license; sourceTree = "<group>"; };
-		4C9E2D24198F62A600455B77 /* SWTableViewCell.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SWTableViewCell.license; sourceTree = "<group>"; };
 		4C9E2D26198F62D800455B77 /* IBActionSheet.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = IBActionSheet.license; sourceTree = "<group>"; };
 		4C9E2D28198F635B00455B77 /* AHKActionSheet.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AHKActionSheet.license; sourceTree = "<group>"; };
 		4C9E2D2A198F638C00455B77 /* LXReorderableCollectionViewFlowLayout.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LXReorderableCollectionViewFlowLayout.license; sourceTree = "<group>"; };
@@ -1402,7 +1399,6 @@
 		92FF31881A24E2F400093DA7 /* LICENSE_LXReorderableCollectionViewFlowLayout */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_LXReorderableCollectionViewFlowLayout; sourceTree = "<group>"; };
 		92FF31891A24E2F400093DA7 /* LXReorderableCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXReorderableCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		92FF318A1A24E2F400093DA7 /* LXReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
-		92FF319F1A24E2F400093DA7 /* LICENSE_TTTAttributedLabel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_TTTAttributedLabel; sourceTree = "<group>"; };
 		92FF31A41A24E2F400093DA7 /* CatrobatActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatActionSheet.h; sourceTree = "<group>"; };
 		92FF31A51A24E2F400093DA7 /* CatrobatActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatActionSheet.m; sourceTree = "<group>"; };
 		92FF31A71A24E2F400093DA7 /* CatrobatAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatAlertView.h; sourceTree = "<group>"; };
@@ -2634,7 +2630,6 @@
 			isa = PBXGroup;
 			children = (
 				4C9E2D22198EAD1800455B77 /* BDKNotifyHUD.license */,
-				4C9E2D24198F62A600455B77 /* SWTableViewCell.license */,
 				4C9E2D26198F62D800455B77 /* IBActionSheet.license */,
 				4C9E2D28198F635B00455B77 /* AHKActionSheet.license */,
 				4C9E2D2A198F638C00455B77 /* LXReorderableCollectionViewFlowLayout.license */,
@@ -4023,7 +4018,6 @@
 				92FF31721A24E2F400093DA7 /* EVCircularProgressView */,
 				92FF317F1A24E2F400093DA7 /* FXBlurView */,
 				92FF31871A24E2F400093DA7 /* LXReorderableCollectionViewFlowLayout */,
-				92FF319E1A24E2F400093DA7 /* TTTAttributedLabel */,
 			);
 			path = 3rdParty;
 			sourceTree = "<group>";
@@ -4066,14 +4060,6 @@
 				92FF318A1A24E2F400093DA7 /* LXReorderableCollectionViewFlowLayout.m */,
 			);
 			path = LXReorderableCollectionViewFlowLayout;
-			sourceTree = "<group>";
-		};
-		92FF319E1A24E2F400093DA7 /* TTTAttributedLabel */ = {
-			isa = PBXGroup;
-			children = (
-				92FF319F1A24E2F400093DA7 /* LICENSE_TTTAttributedLabel */,
-			);
-			path = TTTAttributedLabel;
 			sourceTree = "<group>";
 		};
 		92FF31A21A24E2F400093DA7 /* Custom */ = {
@@ -5637,9 +5623,7 @@
 				CADBD6F819B0E8C200C62836 /* UIViewController+CWPopup.license in Resources */,
 				CADBD6FA19B0E8C200C62836 /* GDataXMLNode.license in Resources */,
 				CADBD6FC19B0E8C200C62836 /* Localizable.strings in Resources */,
-				92FF32721A24E2F400093DA7 /* LICENSE_TTTAttributedLabel in Resources */,
 				92FF32671A24E2F400093DA7 /* LICENSE_LXReorderableCollectionViewFlowLayout in Resources */,
-				CADBD6FD19B0E8C200C62836 /* SWTableViewCell.license in Resources */,
 				CADBD6FF19B0E8C200C62836 /* FBShimmering.license in Resources */,
 				92DFAFE61A38943D00FA9B0F /* FormulaEditor.xib in Resources */,
 			);

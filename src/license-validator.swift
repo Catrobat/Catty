@@ -141,7 +141,6 @@ let checkDirs : [String] = [
     "MXSegmentedPager",
     "Target Support Files",
     "VGParallaxHeader"
-    
 ]
 
 let compatibleLicenses : [License] = [
@@ -200,7 +199,7 @@ func checkLicenseOfFile(filePath: String) {
             if range != nil {
                 libraryName = excludeDir
                 guard let license = licenseCheckDirs[libraryName] else {
-                    printErrorAndExitIfFailed("No license specified for library: \(libraryName))", withFilePath: filePath)
+                    printErrorAndExitIfFailed("No license specified for library: \(libraryName). Please add the license also to our license folder", withFilePath: filePath)
                     return
                 }
                 
@@ -217,7 +216,7 @@ func checkLicenseOfFile(filePath: String) {
 
         
         guard let license = license3rdPartyDict[libraryName] else {
-            printErrorAndExitIfFailed("No license specified for library: \(libraryName))", withFilePath: filePath)
+            printErrorAndExitIfFailed("No license specified for library: \(libraryName).Please add the license also to our license folder", withFilePath: filePath)
             return
         }
         
