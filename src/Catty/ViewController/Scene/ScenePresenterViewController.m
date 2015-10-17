@@ -96,10 +96,7 @@
     self.menuView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, kWidthSlideMenu + kBounceEffect, CGRectGetHeight(UIScreen.mainScreen.bounds))];
     self.menuView.backgroundColor = [[UIColor alloc] initWithPatternImage:newBackgroundImage];
 
-    // disable swipe back gesture
-    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-    }
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -112,6 +109,10 @@
     UIApplication.sharedApplication.statusBarHidden = YES;
     self.navigationController.navigationBar.hidden = YES;
     self.navigationController.toolbarHidden = YES;
+    // disable swipe back gesture
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
     self.menuOpen = NO;
     [self.view addSubview:self.skView];
     [self.view insertSubview:self.menuView aboveSubview:self.skView];
