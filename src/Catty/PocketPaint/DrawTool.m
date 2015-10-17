@@ -21,6 +21,7 @@
  */
 
 #import "DrawTool.h"
+#import "UndoManager.h"
 
 @implementation DrawTool
 
@@ -141,8 +142,9 @@
           self.canvas.saveView.image = image;
           self.canvas.drawView.hidden = YES;
         }else {
-                //UNDO-Manager
-            [[self.canvas getUndoManager] setImage:self.canvas.saveView.image.CIImage];
+            //UNDO-Manager
+            UndoManager* manager = [self.canvas getUndoManager];
+            [manager setImage:self.canvas.saveView.image];
           self.canvas.saveView.image = self.canvas.drawView.image;
             self.canvas.drawView.image = nil;
             self.canvas.saveView.hidden = NO;
@@ -177,7 +179,8 @@
         [self.canvas.saveView.image drawInRect:CGRectMake(self.canvas.drawView.frame.origin.x,self.canvas.drawView.frame.origin.y, self.canvas.saveView.frame.size.width, self.canvas.saveView.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
         [self.canvas.drawView.image drawInRect:CGRectMake(self.canvas.drawView.frame.origin.x,self.canvas.drawView.frame.origin.y, self.canvas.drawView.frame.size.width, self.canvas.drawView.frame.size.height) blendMode:kCGBlendModeNormal alpha:self.canvas.opacity];
         //UNDO-Manager
-        [[self.canvas getUndoManager] setImage:self.canvas.saveView.image.CIImage];
+          UndoManager* manager = [self.canvas getUndoManager];
+          [manager setImage:self.canvas.saveView.image];
         self.canvas.saveView.image = UIGraphicsGetImageFromCurrentImageContext();
         self.canvas.drawView.image = nil;
         UIGraphicsEndImageContext();
