@@ -61,6 +61,7 @@
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) SKView *skView;
 @property (nonatomic) BOOL restartProgram;
+@property (nonatomic, strong) CBScene *scene;
 @end
 
 @implementation ScenePresenterViewController
@@ -110,6 +111,7 @@
     UIApplication.sharedApplication.idleTimerDisabled = YES;
     UIApplication.sharedApplication.statusBarHidden = YES;
     self.navigationController.navigationBar.hidden = YES;
+    self.navigationController.toolbarHidden = YES;
     self.menuOpen = NO;
     [self.view addSubview:self.skView];
     [self.view insertSubview:self.menuView aboveSubview:self.skView];
@@ -355,18 +357,22 @@
 
 - (void)setupScene
 {
-    CBScene *scene = [SetupScene setupSceneForProgram:self.program];
-    scene.name = self.program.header.programName;
-    if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
-        scene.scaleMode = SKSceneScaleModeFill;
-    } else if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
-        scene.scaleMode = SKSceneScaleModeAspectFit;
-    } else {
-        scene.scaleMode = SKSceneScaleModeFill;
+    if (!self.scene) {
+        CBScene *scene = [SetupScene setupSceneForProgram:self.program];
+        scene.name = self.program.header.programName;
+        if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
+            scene.scaleMode = SKSceneScaleModeFill;
+        } else if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
+            scene.scaleMode = SKSceneScaleModeAspectFit;
+        } else {
+            scene.scaleMode = SKSceneScaleModeFill;
+        }
+        self.skView.paused = NO;
+        [self.skView presentScene:scene];
+        self.scene = scene;
+        [ProgramManager sharedProgramManager].program = self.program; // TODO: should be removed!
+
     }
-    self.skView.paused = NO;
-    [self.skView presentScene:scene];
-    [ProgramManager sharedProgramManager].program = self.program; // TODO: should be removed!
 }
 
 - (BOOL)prefersStatusBarHidden
