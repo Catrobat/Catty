@@ -51,7 +51,9 @@
 #import "FileManager.h"
 #import "AppDelegate.h"
 
-@interface ScenePresenterViewController() <UIActionSheetDelegate>
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
+@interface ScenePresenterViewController() <UIActionSheetDelegate, RPScreenRecorderDelegate>
 @property (nonatomic) BOOL menuOpen;
 @property (nonatomic) CGPoint firstGestureTouchPoint;
 @property (nonatomic) UIImage *snapshotImage;
@@ -59,6 +61,7 @@
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) SKView *skView;
 @property (nonatomic) BOOL restartProgram;
+@property (nonatomic, strong) CBScene *scene;
 @end
 
 @implementation ScenePresenterViewController
@@ -93,19 +96,23 @@
     self.menuView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, kWidthSlideMenu + kBounceEffect, CGRectGetHeight(UIScreen.mainScreen.bounds))];
     self.menuView.backgroundColor = [[UIColor alloc] initWithPatternImage:newBackgroundImage];
 
-    // disable swipe back gesture
-    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-    }
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self setupScene];
+    RPScreenRecorder *sharedRecorder = [RPScreenRecorder sharedRecorder];
+    sharedRecorder.delegate = self;
     UIApplication.sharedApplication.idleTimerDisabled = YES;
     UIApplication.sharedApplication.statusBarHidden = YES;
     self.navigationController.navigationBar.hidden = YES;
+    self.navigationController.toolbarHidden = YES;
+    // disable swipe back gesture
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
     self.menuOpen = NO;
     [self.view addSubview:self.skView];
     [self.view insertSubview:self.menuView aboveSubview:self.skView];
@@ -114,7 +121,6 @@
     [self setUpLabels];
     [self setUpGridView];
     [self checkAspectRatio];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -234,6 +240,7 @@
     self.menuRestartButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.menuAxisButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.menuAspectRatioButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.menuRecordButton = [UIButton buttonWithType:UIButtonTypeCustom];
 
     [self setupButtonWithButton:self.menuBackButton
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_back"]
@@ -259,6 +266,12 @@
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"]
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio_pressed"]
                     andSelector:@selector(manageAspectRatioAction:)];
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+        [self setupButtonWithButton:self.menuRecordButton
+                    ImageNameNormal:[UIImage imageNamed:@"record"]
+            andImageNameHighlighted:[UIImage imageNamed:@"record"]
+                        andSelector:@selector(recordProgram:)];
+    }
 }
 
 - (void)setupButtonWithButton:(UIButton*)button ImageNameNormal:(UIImage*)stateNormal andImageNameHighlighted:(UIImage*)stateHighlighted andSelector:(SEL)myAction
@@ -279,6 +292,7 @@
 - (void)setUpMenuFrames
 {
     self.menuAspectRatioButton.frame = CGRectMake(10,10, kMenuButtonSize-20, kMenuButtonSize-20);
+    self.menuRecordButton.frame = CGRectMake(10,[Util screenHeight]- 10 - (kMenuButtonSize-20), kMenuButtonSize-20, kMenuButtonSize-20);
     ///StartPosition
     if ([Util screenHeight]==kIphone4ScreenHeight) {
         self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-(kMenuIPhone4GapSize)-(2*kMenuButtonSize)-kMenuIPhone4ContinueGapSize, kMenuButtonSize, kMenuButtonSize);
@@ -287,6 +301,7 @@
         self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons+kContinueOffset,(kIphone4ScreenHeight/2)-(kContinueButtonSize/2),  kContinueButtonSize, kContinueButtonSize);
         self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone4ContinueGapSize,  kMenuButtonSize, kMenuButtonSize);
         self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+(kMenuIPhone4GapSize)+kMenuIPhone4ContinueGapSize+(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
+        
     } else {
         self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-(kMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(2*kMenuButtonSize), kMenuButtonSize, kMenuButtonSize);
         self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-kMenuIPhone5ContinueGapSize-(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
@@ -343,18 +358,22 @@
 
 - (void)setupScene
 {
-    CBScene *scene = [SetupScene setupSceneForProgram:self.program];
-    scene.name = self.program.header.programName;
-    if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
-        scene.scaleMode = SKSceneScaleModeFill;
-    } else if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
-        scene.scaleMode = SKSceneScaleModeAspectFit;
-    } else {
-        scene.scaleMode = SKSceneScaleModeFill;
+    if (!self.scene) {
+        CBScene *scene = [SetupScene setupSceneForProgram:self.program];
+        scene.name = self.program.header.programName;
+        if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
+            scene.scaleMode = SKSceneScaleModeFill;
+        } else if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
+            scene.scaleMode = SKSceneScaleModeAspectFit;
+        } else {
+            scene.scaleMode = SKSceneScaleModeFill;
+        }
+        self.skView.paused = NO;
+        [self.skView presentScene:scene];
+        self.scene = scene;
+        [ProgramManager sharedProgramManager].program = self.program; // TODO: should be removed!
+
     }
-    self.skView.paused = NO;
-    [self.skView presentScene:scene];
-    [ProgramManager sharedProgramManager].program = self.program; // TODO: should be removed!
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -520,6 +539,23 @@
     }
 }
 
+-(void)recordProgram:(UIButton*)sender
+{
+    SKView * view = self.skView;
+    if ([((CBScene*)view.scene) isScreenRecording]) {
+        [((CBScene*)view.scene) stopScreenRecording];
+        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"record"] forState:UIControlStateNormal];
+        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"record"] forState:UIControlStateHighlighted];
+        [self.menuView setNeedsDisplay];
+        return;
+    }
+    [((CBScene*)view.scene) startScreenRecording];
+    [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
+    [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"pause"] forState:UIControlStateHighlighted];
+    [self.menuView setNeedsDisplay];
+    [self continueProgramAction:nil withDuration:0];
+}
+
 - (void)manageAspectRatioAction:(UIButton *)sender
 {
     self.skView.scene.scaleMode = self.skView.scene.scaleMode == SKSceneScaleModeAspectFit ? SKSceneScaleModeFill : SKSceneScaleModeAspectFit;
@@ -657,7 +693,7 @@
                                  if (translate.x < (kWidthSlideMenu) && velocityX > 300) {
                                      [self bounceAnimation];
                                  }
-//                                 [((CBScene*)view.scene) stopScreenRecording];
+                                 
                              }];
         } else if(translate.x > 0.0 && translate.x <(kWidthSlideMenu/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
             [UIView animateWithDuration:0.25
@@ -806,6 +842,13 @@
     UIImage *output = [UIImage imageWithCGImage:cgimg];
     CFRelease(cgimg);
     return output;
+}
+
+#pragma mark ScreenRecording
+
+-(void)screenRecorderDidChangeAvailability:(RPScreenRecorder *)screenRecorder
+{
+    self.menuRecordButton.hidden = screenRecorder.available;
 }
 
 @end

@@ -22,6 +22,7 @@
 
 #import "MirrorRotationZoomTool.h"
 #import "UIImage+Rotate.h"
+#import "UndoManager.h"
 
 #define kMaxZoomScale 5.0f
 #define kMinZoomScale 0.25f
@@ -51,8 +52,9 @@
                                  orientation:UIImageOrientationUp];
     self.canvas.vertical=NO;
   }
-  //UNDO-Manager
- [[self.canvas getUndoManager] setImage:self.canvas.saveView.image.CIImage];
+    //UNDO-Manager
+    UndoManager* manager = [self.canvas getUndoManager];
+    [manager setImage:self.canvas.saveView.image];
   self.canvas.saveView.image = flippedImage;
   self.canvas.drawView.image = nil;
 }
@@ -71,8 +73,9 @@
                                  orientation:UIImageOrientationUp];
     self.canvas.horizontal=NO;
   }
-  //UNDO-Manager
- [[self.canvas getUndoManager] setImage:self.canvas.saveView.image.CIImage];
+    //UNDO-Manager
+    UndoManager* manager = [self.canvas getUndoManager];
+    [manager setImage:self.canvas.saveView.image];
   self.canvas.saveView.image = flippedImage;
   self.canvas.drawView.image = nil;
 }
@@ -90,9 +93,9 @@
 
     self.canvas.scrollView.zoomScale = zoomScale;
 
-    
-  //UNDO-Manager
-  [[self.canvas getUndoManager] setImage:self.canvas.saveView.image.CIImage];
+    //UNDO-Manager
+    UndoManager* manager = [self.canvas getUndoManager];
+    [manager setImage:self.canvas.saveView.image];
   self.canvas.saveView.image = image;
 }
 
@@ -106,8 +109,9 @@
   self.canvas.drawView.frame =CGRectMake(0,0, (self.canvas.helper.frame.size.height), (self.canvas.helper.frame.size.width));
   self.canvas.helper.frame =CGRectMake(self.canvas.helper.frame.origin.x,self.canvas.helper.frame.origin.y, self.canvas.helper.frame.size.height, self.canvas.helper.frame.size.width);
   self.canvas.scrollView.zoomScale = zoomScale;
-  //UNDO-Manager
-  [[self.canvas getUndoManager] setImage:self.canvas.saveView.image.CIImage];
+    //UNDO-Manager
+    UndoManager* manager = [self.canvas getUndoManager];
+    [manager setImage:self.canvas.saveView.image];
   self.canvas.saveView.image = image;
 }
 

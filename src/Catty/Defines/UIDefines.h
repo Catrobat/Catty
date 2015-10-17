@@ -372,19 +372,19 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 #define kBrickHeight1h 48.9f
 #define kBrickHeight2h 75.9f
 #define kBrickHeight3h 98.9f
-#define kBrickHeightControl1h 79.9f
-#define kBrickHeightControl2h 106.9f
+#define kBrickHeightControl1h 72.4f
+#define kBrickHeightControl2h 99.4f
 
 #define kBrickOverlapHeight -4.4f
 
 // brick subview const values
 #define kBrickInlineViewOffsetX 54.0f
 #define kBrickShapeNormalInlineViewOffsetY 7.0f
-#define kBrickShapeRoundedSmallInlineViewOffsetY 25.0f
-#define kBrickShapeRoundedBigInlineViewOffsetY 45.0f
+#define kBrickShapeRoundedSmallInlineViewOffsetY 17.0f
+#define kBrickShapeRoundedBigInlineViewOffsetY 37.0f
 #define kBrickShapeNormalMarginHeightDeduction 14.0f
-#define kBrickShapeRoundedSmallMarginHeightDeduction 32.0f
-#define kBrickShapeRoundedBigMarginHeightDeduction 52.0f
+#define kBrickShapeRoundedSmallMarginHeightDeduction 27.0f
+#define kBrickShapeRoundedBigMarginHeightDeduction 47.0f
 #define kBrickPatternImageViewOffsetX 0.0f
 #define kBrickPatternImageViewOffsetY 0.0f
 #define kBrickPatternBackgroundImageViewOffsetX 54.0f

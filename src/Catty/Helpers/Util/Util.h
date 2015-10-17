@@ -132,6 +132,8 @@
 
 + (NSString*)platformName;
 
++ (NSString*)getExtactDeviceDescription;
+
 + (NSString*)platformVersion;
 
 + (CGSize)screenSize;
