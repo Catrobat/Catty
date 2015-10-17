@@ -265,8 +265,8 @@
                     andSelector:@selector(manageAspectRatioAction:)];
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
         [self setupButtonWithButton:self.menuRecordButton
-                    ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"]
-            andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio_pressed"]
+                    ImageNameNormal:[UIImage imageNamed:@"record"]
+            andImageNameHighlighted:[UIImage imageNamed:@"record"]
                         andSelector:@selector(recordProgram:)];
     }
 }
@@ -537,14 +537,14 @@
     SKView * view = self.skView;
     if ([((CBScene*)view.scene) isScreenRecording]) {
         [((CBScene*)view.scene) stopScreenRecording];
-        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"] forState:UIControlStateNormal];
-        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"] forState:UIControlStateHighlighted];
+        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"record"] forState:UIControlStateNormal];
+        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"record"] forState:UIControlStateHighlighted];
         [self.menuView setNeedsDisplay];
         return;
     }
     [((CBScene*)view.scene) startScreenRecording];
-    [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"] forState:UIControlStateNormal];
-    [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"] forState:UIControlStateHighlighted];
+    [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
+    [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"pause"] forState:UIControlStateHighlighted];
     [self.menuView setNeedsDisplay];
     [self continueProgramAction:nil withDuration:0];
 }
