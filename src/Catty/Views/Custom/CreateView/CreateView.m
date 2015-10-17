@@ -29,7 +29,7 @@
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "ButtonTags.h"
-#import "TTTAttributedLabel.h"
+#import <TTTAttributedLabel/TTTAttributedLabel.h>
 #import "EVCircularProgressView.h"
 #import "LanguageTranslationDefines.h"
 #import "RoundBorderedButton.h"
@@ -142,7 +142,7 @@
     CGSize expectedSize = CGSizeMake(ceilf(labelBounds.size.width), ceilf(labelBounds.size.height));
     //    CGSize expectedSize = [description sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:maximumLabelSize lineBreakMode:NSLineBreakByWordWrapping];
     
-    TTTAttributedLabel* descriptionLabel = [[TTTAttributedLabel alloc] init];
+    TTTAttributedLabel* descriptionLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectZero];
     if (height == kIpadScreenHeight) {
         descriptionLabel.frame = CGRectMake(view.frame.size.width/15, height*0.35f+40, 540, expectedSize.height);
     }else{

@@ -37,7 +37,6 @@
 #import "BrickCell.h"
 #import "FormulaElement.h"
 #import "LanguageTranslationDefines.h"
-#import "AHKActionSheet.h"
 #import "BrickFormulaProtocol.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "VariablesContainer.h"
@@ -55,6 +54,7 @@
 #import "BDKNotifyHUD.h"
 #import "Speakbrick.h"
 #import "KeychainUserDefaultsDefines.h"
+#import <AHKActionSheet/AHKActionSheet.h>
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,

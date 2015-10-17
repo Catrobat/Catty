@@ -32,7 +32,7 @@
 #import "ActionSheetAlertViewTags.h"
 #import "DataTransferMessage.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
-#import "MYBlurIntroductionView.h"
+#import <MYBlurIntroductionView/MYBlurIntroductionView.h>
 #import "FormulaEditorTextView.h"
 #import "CatrobatLanguageDefines.h"
 #import "NSString+CatrobatNSStringExtensions.h"

@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "IBActionSheet.h"
+#import <IBActionSheet/IBActionSheet.h>
 
 @class CatrobatActionSheet;
 @class DataTransferMessage;

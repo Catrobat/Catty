@@ -345,29 +345,15 @@
 		92FF315F1A24DEB300093DA7 /* MyProgramsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31421A24DEB300093DA7 /* MyProgramsViewController.m */; };
 		92FF31601A24DEB300093DA7 /* SaveToProjectActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31451A24DEB300093DA7 /* SaveToProjectActivity.m */; };
 		92FF31611A24DEB300093DA7 /* ScenePresenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31471A24DEB300093DA7 /* ScenePresenterViewController.m */; };
-		92FF32561A24E2F400093DA7 /* AHKActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31661A24E2F400093DA7 /* AHKActionSheet.m */; };
-		92FF32571A24E2F400093DA7 /* AHKActionSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31681A24E2F400093DA7 /* AHKActionSheetViewController.m */; };
-		92FF32581A24E2F400093DA7 /* LICENSE_AHKActionSheet in Resources */ = {isa = PBXBuildFile; fileRef = 92FF31691A24E2F400093DA7 /* LICENSE_AHKActionSheet */; };
-		92FF32591A24E2F400093DA7 /* UIImage+AHKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF316B1A24E2F400093DA7 /* UIImage+AHKAdditions.m */; };
-		92FF325A1A24E2F400093DA7 /* UIWindow+AHKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF316D1A24E2F400093DA7 /* UIWindow+AHKAdditions.m */; };
 		92FF325B1A24E2F400093DA7 /* BDKNotifyHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31701A24E2F400093DA7 /* BDKNotifyHUD.m */; };
 		92FF325C1A24E2F400093DA7 /* LICENSE_BDKNotifyHUD in Resources */ = {isa = PBXBuildFile; fileRef = 92FF31711A24E2F400093DA7 /* LICENSE_BDKNotifyHUD */; };
 		92FF325D1A24E2F400093DA7 /* EVCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31741A24E2F400093DA7 /* EVCircularProgressView.m */; };
 		92FF325E1A24E2F400093DA7 /* LICENSE_EVCircularProgressView in Resources */ = {isa = PBXBuildFile; fileRef = 92FF31751A24E2F400093DA7 /* LICENSE_EVCircularProgressView */; };
-		92FF325F1A24E2F400093DA7 /* FBShimmeringLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF317A1A24E2F400093DA7 /* FBShimmeringLayer.m */; };
-		92FF32601A24E2F400093DA7 /* FBShimmeringView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF317C1A24E2F400093DA7 /* FBShimmeringView.m */; };
-		92FF32611A24E2F400093DA7 /* LICENSE_FBShimmering in Resources */ = {isa = PBXBuildFile; fileRef = 92FF317D1A24E2F400093DA7 /* LICENSE_FBShimmering */; };
-		92FF32621A24E2F400093DA7 /* PATENTS_FBShimmering in Resources */ = {isa = PBXBuildFile; fileRef = 92FF317E1A24E2F400093DA7 /* PATENTS_FBShimmering */; };
 		92FF32631A24E2F400093DA7 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31811A24E2F400093DA7 /* FXBlurView.m */; };
 		92FF32641A24E2F400093DA7 /* LICENSE_FXBlurView in Resources */ = {isa = PBXBuildFile; fileRef = 92FF31821A24E2F400093DA7 /* LICENSE_FXBlurView */; };
-		92FF32651A24E2F400093DA7 /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31851A24E2F400093DA7 /* IBActionSheet.m */; };
-		92FF32661A24E2F400093DA7 /* LICENSE_IBActionSheet in Resources */ = {isa = PBXBuildFile; fileRef = 92FF31861A24E2F400093DA7 /* LICENSE_IBActionSheet */; };
 		92FF32671A24E2F400093DA7 /* LICENSE_LXReorderableCollectionViewFlowLayout in Resources */ = {isa = PBXBuildFile; fileRef = 92FF31881A24E2F400093DA7 /* LICENSE_LXReorderableCollectionViewFlowLayout */; };
 		92FF32681A24E2F400093DA7 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF318A1A24E2F400093DA7 /* LXReorderableCollectionViewFlowLayout.m */; };
-		92FF32691A24E2F400093DA7 /* MYBlurIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF318D1A24E2F400093DA7 /* MYBlurIntroductionView.m */; };
-		92FF326A1A24E2F400093DA7 /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF318F1A24E2F400093DA7 /* MYIntroductionPanel.m */; };
 		92FF32721A24E2F400093DA7 /* LICENSE_TTTAttributedLabel in Resources */ = {isa = PBXBuildFile; fileRef = 92FF319F1A24E2F400093DA7 /* LICENSE_TTTAttributedLabel */; };
-		92FF32731A24E2F400093DA7 /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31A11A24E2F400093DA7 /* TTTAttributedLabel.m */; };
 		92FF32741A24E2F400093DA7 /* CatrobatActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31A51A24E2F400093DA7 /* CatrobatActionSheet.m */; };
 		92FF32751A24E2F400093DA7 /* CatrobatAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF31A81A24E2F400093DA7 /* CatrobatAlertView.m */; };
 		92FF32B11A24E2F400093DA7 /* CreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF322B1A24E2F400093DA7 /* CreateView.m */; };
@@ -386,9 +372,6 @@
 		92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
 		A918B6B71B89F5870017B92F /* Siren.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A918B6B61B89F5870017B92F /* Siren.bundle */; };
-		A920EF3A1BCAB4ED00743FE2 /* LooksTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A920EF391BCAB4ED00743FE2 /* LooksTVCTests.swift */; settings = {ASSET_TAGS = (); }; };
-		A988832C1BCA86FF005029E8 /* ObjectTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */; settings = {ASSET_TAGS = (); }; };
-		A988832E1BCA98DD005029E8 /* SoundsTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988832D1BCA98DD005029E8 /* SoundsTVCTests.swift */; settings = {ASSET_TAGS = (); }; };
 		AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */; settings = {ASSET_TAGS = (); }; };
 		AA401FE91BBEF6F9001BC49F /* CBInstructionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */; settings = {ASSET_TAGS = (); }; };
 		AA6CC28B1BB4AB9A0007A621 /* CBScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CC28A1BB4AB9A0007A621 /* CBScriptContext.swift */; settings = {ASSET_TAGS = (); }; };
@@ -1411,45 +1394,19 @@
 		92FF31451A24DEB300093DA7 /* SaveToProjectActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveToProjectActivity.m; sourceTree = "<group>"; };
 		92FF31461A24DEB300093DA7 /* ScenePresenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenePresenterViewController.h; sourceTree = "<group>"; };
 		92FF31471A24DEB300093DA7 /* ScenePresenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenePresenterViewController.m; sourceTree = "<group>"; };
-		92FF31651A24E2F400093DA7 /* AHKActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AHKActionSheet.h; sourceTree = "<group>"; };
-		92FF31661A24E2F400093DA7 /* AHKActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AHKActionSheet.m; sourceTree = "<group>"; };
-		92FF31671A24E2F400093DA7 /* AHKActionSheetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AHKActionSheetViewController.h; sourceTree = "<group>"; };
-		92FF31681A24E2F400093DA7 /* AHKActionSheetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AHKActionSheetViewController.m; sourceTree = "<group>"; };
-		92FF31691A24E2F400093DA7 /* LICENSE_AHKActionSheet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_AHKActionSheet; sourceTree = "<group>"; };
-		92FF316A1A24E2F400093DA7 /* UIImage+AHKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AHKAdditions.h"; sourceTree = "<group>"; };
-		92FF316B1A24E2F400093DA7 /* UIImage+AHKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AHKAdditions.m"; sourceTree = "<group>"; };
-		92FF316C1A24E2F400093DA7 /* UIWindow+AHKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+AHKAdditions.h"; sourceTree = "<group>"; };
-		92FF316D1A24E2F400093DA7 /* UIWindow+AHKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+AHKAdditions.m"; sourceTree = "<group>"; };
 		92FF316F1A24E2F400093DA7 /* BDKNotifyHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKNotifyHUD.h; sourceTree = "<group>"; };
 		92FF31701A24E2F400093DA7 /* BDKNotifyHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKNotifyHUD.m; sourceTree = "<group>"; };
 		92FF31711A24E2F400093DA7 /* LICENSE_BDKNotifyHUD */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_BDKNotifyHUD; sourceTree = "<group>"; };
 		92FF31731A24E2F400093DA7 /* EVCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVCircularProgressView.h; sourceTree = "<group>"; };
 		92FF31741A24E2F400093DA7 /* EVCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EVCircularProgressView.m; sourceTree = "<group>"; };
 		92FF31751A24E2F400093DA7 /* LICENSE_EVCircularProgressView */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_EVCircularProgressView; sourceTree = "<group>"; };
-		92FF31771A24E2F400093DA7 /* FBShimmering-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBShimmering-Prefix.pch"; sourceTree = "<group>"; };
-		92FF31781A24E2F400093DA7 /* FBShimmering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmering.h; sourceTree = "<group>"; };
-		92FF31791A24E2F400093DA7 /* FBShimmeringLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmeringLayer.h; sourceTree = "<group>"; };
-		92FF317A1A24E2F400093DA7 /* FBShimmeringLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringLayer.m; sourceTree = "<group>"; };
-		92FF317B1A24E2F400093DA7 /* FBShimmeringView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmeringView.h; sourceTree = "<group>"; };
-		92FF317C1A24E2F400093DA7 /* FBShimmeringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringView.m; sourceTree = "<group>"; };
-		92FF317D1A24E2F400093DA7 /* LICENSE_FBShimmering */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_FBShimmering; sourceTree = "<group>"; };
-		92FF317E1A24E2F400093DA7 /* PATENTS_FBShimmering */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PATENTS_FBShimmering; sourceTree = "<group>"; };
 		92FF31801A24E2F400093DA7 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		92FF31811A24E2F400093DA7 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		92FF31821A24E2F400093DA7 /* LICENSE_FXBlurView */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_FXBlurView; sourceTree = "<group>"; };
-		92FF31841A24E2F400093DA7 /* IBActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBActionSheet.h; sourceTree = "<group>"; };
-		92FF31851A24E2F400093DA7 /* IBActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBActionSheet.m; sourceTree = "<group>"; };
-		92FF31861A24E2F400093DA7 /* LICENSE_IBActionSheet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_IBActionSheet; sourceTree = "<group>"; };
 		92FF31881A24E2F400093DA7 /* LICENSE_LXReorderableCollectionViewFlowLayout */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_LXReorderableCollectionViewFlowLayout; sourceTree = "<group>"; };
 		92FF31891A24E2F400093DA7 /* LXReorderableCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXReorderableCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		92FF318A1A24E2F400093DA7 /* LXReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
-		92FF318C1A24E2F400093DA7 /* MYBlurIntroductionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYBlurIntroductionView.h; sourceTree = "<group>"; };
-		92FF318D1A24E2F400093DA7 /* MYBlurIntroductionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYBlurIntroductionView.m; sourceTree = "<group>"; };
-		92FF318E1A24E2F400093DA7 /* MYIntroductionPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYIntroductionPanel.h; sourceTree = "<group>"; };
-		92FF318F1A24E2F400093DA7 /* MYIntroductionPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYIntroductionPanel.m; sourceTree = "<group>"; };
 		92FF319F1A24E2F400093DA7 /* LICENSE_TTTAttributedLabel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_TTTAttributedLabel; sourceTree = "<group>"; };
-		92FF31A01A24E2F400093DA7 /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
-		92FF31A11A24E2F400093DA7 /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		92FF31A41A24E2F400093DA7 /* CatrobatActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatActionSheet.h; sourceTree = "<group>"; };
 		92FF31A51A24E2F400093DA7 /* CatrobatActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatrobatActionSheet.m; sourceTree = "<group>"; };
 		92FF31A71A24E2F400093DA7 /* CatrobatAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatrobatAlertView.h; sourceTree = "<group>"; };
@@ -1486,9 +1443,6 @@
 		92FF32C21A24E33B00093DA7 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
 		A918B6B41B89F5690017B92F /* Siren.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Siren.swift; path = Siren/Siren.swift; sourceTree = "<group>"; };
 		A918B6B61B89F5870017B92F /* Siren.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Siren.bundle; sourceTree = "<group>"; };
-		A920EF391BCAB4ED00743FE2 /* LooksTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LooksTVCTests.swift; sourceTree = "<group>"; };
-		A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectTVCTests.swift; sourceTree = "<group>"; };
-		A988832D1BCA98DD005029E8 /* SoundsTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundsTVCTests.swift; sourceTree = "<group>"; };
 		AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitBrickTests.swift; sourceTree = "<group>"; };
 		AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBInstructionProtocol.swift; path = PlayerEngine/Protocols/CBInstructionProtocol.swift; sourceTree = "<group>"; };
 		AA6CC28A1BB4AB9A0007A621 /* CBScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBScriptContext.swift; path = PlayerEngine/DataModel/CBScriptContext/CBScriptContext.swift; sourceTree = "<group>"; };
@@ -4071,33 +4025,13 @@
 		92FF31631A24E2F400093DA7 /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
-				92FF31641A24E2F400093DA7 /* AHK */,
 				92FF316E1A24E2F400093DA7 /* BDKNotifyHUD */,
 				92FF31721A24E2F400093DA7 /* EVCircularProgressView */,
-				92FF31761A24E2F400093DA7 /* FBShimmering */,
 				92FF317F1A24E2F400093DA7 /* FXBlurView */,
-				92FF31831A24E2F400093DA7 /* IBActionSheet */,
 				92FF31871A24E2F400093DA7 /* LXReorderableCollectionViewFlowLayout */,
-				92FF318B1A24E2F400093DA7 /* MYBlurIntroductionView */,
 				92FF319E1A24E2F400093DA7 /* TTTAttributedLabel */,
 			);
 			path = 3rdParty;
-			sourceTree = "<group>";
-		};
-		92FF31641A24E2F400093DA7 /* AHK */ = {
-			isa = PBXGroup;
-			children = (
-				92FF31651A24E2F400093DA7 /* AHKActionSheet.h */,
-				92FF31661A24E2F400093DA7 /* AHKActionSheet.m */,
-				92FF31671A24E2F400093DA7 /* AHKActionSheetViewController.h */,
-				92FF31681A24E2F400093DA7 /* AHKActionSheetViewController.m */,
-				92FF31691A24E2F400093DA7 /* LICENSE_AHKActionSheet */,
-				92FF316A1A24E2F400093DA7 /* UIImage+AHKAdditions.h */,
-				92FF316B1A24E2F400093DA7 /* UIImage+AHKAdditions.m */,
-				92FF316C1A24E2F400093DA7 /* UIWindow+AHKAdditions.h */,
-				92FF316D1A24E2F400093DA7 /* UIWindow+AHKAdditions.m */,
-			);
-			path = AHK;
 			sourceTree = "<group>";
 		};
 		92FF316E1A24E2F400093DA7 /* BDKNotifyHUD */ = {
@@ -4120,21 +4054,6 @@
 			path = EVCircularProgressView;
 			sourceTree = "<group>";
 		};
-		92FF31761A24E2F400093DA7 /* FBShimmering */ = {
-			isa = PBXGroup;
-			children = (
-				92FF31771A24E2F400093DA7 /* FBShimmering-Prefix.pch */,
-				92FF31781A24E2F400093DA7 /* FBShimmering.h */,
-				92FF31791A24E2F400093DA7 /* FBShimmeringLayer.h */,
-				92FF317A1A24E2F400093DA7 /* FBShimmeringLayer.m */,
-				92FF317B1A24E2F400093DA7 /* FBShimmeringView.h */,
-				92FF317C1A24E2F400093DA7 /* FBShimmeringView.m */,
-				92FF317D1A24E2F400093DA7 /* LICENSE_FBShimmering */,
-				92FF317E1A24E2F400093DA7 /* PATENTS_FBShimmering */,
-			);
-			path = FBShimmering;
-			sourceTree = "<group>";
-		};
 		92FF317F1A24E2F400093DA7 /* FXBlurView */ = {
 			isa = PBXGroup;
 			children = (
@@ -4143,16 +4062,6 @@
 				92FF31821A24E2F400093DA7 /* LICENSE_FXBlurView */,
 			);
 			path = FXBlurView;
-			sourceTree = "<group>";
-		};
-		92FF31831A24E2F400093DA7 /* IBActionSheet */ = {
-			isa = PBXGroup;
-			children = (
-				92FF31841A24E2F400093DA7 /* IBActionSheet.h */,
-				92FF31851A24E2F400093DA7 /* IBActionSheet.m */,
-				92FF31861A24E2F400093DA7 /* LICENSE_IBActionSheet */,
-			);
-			path = IBActionSheet;
 			sourceTree = "<group>";
 		};
 		92FF31871A24E2F400093DA7 /* LXReorderableCollectionViewFlowLayout */ = {
@@ -4165,23 +4074,10 @@
 			path = LXReorderableCollectionViewFlowLayout;
 			sourceTree = "<group>";
 		};
-		92FF318B1A24E2F400093DA7 /* MYBlurIntroductionView */ = {
-			isa = PBXGroup;
-			children = (
-				92FF318C1A24E2F400093DA7 /* MYBlurIntroductionView.h */,
-				92FF318D1A24E2F400093DA7 /* MYBlurIntroductionView.m */,
-				92FF318E1A24E2F400093DA7 /* MYIntroductionPanel.h */,
-				92FF318F1A24E2F400093DA7 /* MYIntroductionPanel.m */,
-			);
-			path = MYBlurIntroductionView;
-			sourceTree = "<group>";
-		};
 		92FF319E1A24E2F400093DA7 /* TTTAttributedLabel */ = {
 			isa = PBXGroup;
 			children = (
 				92FF319F1A24E2F400093DA7 /* LICENSE_TTTAttributedLabel */,
-				92FF31A01A24E2F400093DA7 /* TTTAttributedLabel.h */,
-				92FF31A11A24E2F400093DA7 /* TTTAttributedLabel.m */,
 			);
 			path = TTTAttributedLabel;
 			sourceTree = "<group>";
@@ -5716,7 +5612,6 @@
 				CA2D44431B12305400A3B53D /* Swell.plist in Resources */,
 				CA775CBF19FD5BCB00C1E761 /* My first program.catrobat in Resources */,
 				92FF325E1A24E2F400093DA7 /* LICENSE_EVCircularProgressView in Resources */,
-				92FF32621A24E2F400093DA7 /* PATENTS_FBShimmering in Resources */,
 				92DFB05F1A38960C00FA9B0F /* nko_brightness_guide@2x.png in Resources */,
 				CADBD6D919B0E8C200C62836 /* SSZipArchive.license in Resources */,
 				CADBD6DA19B0E8C200C62836 /* BDKNotifyHUD.license in Resources */,
@@ -5733,15 +5628,12 @@
 				92FF2E3F1A24C5A700093DA7 /* LICENSE_UIViewController+Popup in Resources */,
 				CADBD6E519B0E8C200C62836 /* EAIntroView.license in Resources */,
 				CADBD6E619B0E8C200C62836 /* TTTAttributedLabel.license in Resources */,
-				92FF32661A24E2F400093DA7 /* LICENSE_IBActionSheet in Resources */,
 				CADBD6E719B0E8C200C62836 /* LXReorderableCollectionViewFlowLayout.license in Resources */,
 				CADBD6E819B0E8C200C62836 /* FXBlurView.license in Resources */,
-				92FF32611A24E2F400093DA7 /* LICENSE_FBShimmering in Resources */,
 				CADBD6EA19B0E8C200C62836 /* IBActionSheet.license in Resources */,
 				A918B6B71B89F5870017B92F /* Siren.bundle in Resources */,
 				92FF325C1A24E2F400093DA7 /* LICENSE_BDKNotifyHUD in Resources */,
 				922FE8E31B96430D005A19FA /* Default-568h@2x.png in Resources */,
-				92FF32581A24E2F400093DA7 /* LICENSE_AHKActionSheet in Resources */,
 				CADBD6EB19B0E8C200C62836 /* EVCircularProgressView.license in Resources */,
 				CADBD6ED19B0E8C200C62836 /* SharkfoodMuteSwitchDetector.license in Resources */,
 				CADBD6F019B0E8C200C62836 /* Reachability.license in Resources */,
@@ -6054,7 +5946,6 @@
 				92FF31051A24DCAA00093DA7 /* WhenScript.m in Sources */,
 				4C724E251B4D3E8C00E27479 /* CBXMLParser.m in Sources */,
 				CAD740E31AF2D2E800C32937 /* CBStack.m in Sources */,
-				92FF32601A24E2F400093DA7 /* FBShimmeringView.m in Sources */,
 				92DFB0131A38949E00FA9B0F /* InternFormulaKeyboardAdapter.m in Sources */,
 				92FF32631A24E2F400093DA7 /* FXBlurView.m in Sources */,
 				AA74F0BB1BC05FCE00D1E954 /* IfOnEdgeBounceBrickCell.m in Sources */,
@@ -6073,7 +5964,6 @@
 				92DFB0651A38960C00FA9B0F /* ResizeViewManager.m in Sources */,
 				AA74EEF91BC057C900D1E954 /* ChangeTransparencyByNBrick+CBXMLHandler.m in Sources */,
 				CADBD71919B0E8C200C62836 /* AppDelegate.m in Sources */,
-				92FF32561A24E2F400093DA7 /* AHKActionSheet.m in Sources */,
 				92FF32BC1A24E2F400093DA7 /* DarkBlueGradientImageDetailCell.m in Sources */,
 				92FF32B11A24E2F400093DA7 /* CreateView.m in Sources */,
 				AA74EEE41BC057B900D1E954 /* RepeatBrick+CBXMLHandler.m in Sources */,
@@ -6171,7 +6061,6 @@
 				AA74EE3B1BC0543700D1E954 /* SetVolumeToBrick+Instruction.swift in Sources */,
 				92FF30FE1A24DCAA00093DA7 /* Look.m in Sources */,
 				AA74EF631BC0587B00D1E954 /* VibrationBrick+CBXMLHandler.m in Sources */,
-				92FF32591A24E2F400093DA7 /* UIImage+AHKAdditions.m in Sources */,
 				92FF32BA1A24E2F400093DA7 /* DarkBlueGradientFeaturedCell.m in Sources */,
 				92DFB01D1A38949E00FA9B0F /* FormulaEditorTextView.m in Sources */,
 				929CC0F81BC3A2420027DEC0 /* PhiroMotorMoveBackwardBrick+Instruction.swift in Sources */,
@@ -6192,7 +6081,6 @@
 				AA74EF7B1BC059E300D1E954 /* SetSizeToBrick+CBXMLHandler.m in Sources */,
 				AA74EE2D1BC0541E00D1E954 /* MoveNStepsBrick+Instruction.swift in Sources */,
 				AA74F0CC1BC05FCE00D1E954 /* BroadcastScriptCell.m in Sources */,
-				92FF32691A24E2F400093DA7 /* MYBlurIntroductionView.m in Sources */,
 				4C724E621B4D3E8C00E27479 /* TestParser.m in Sources */,
 				AA74EF001BC057C900D1E954 /* ShowBrick+CBXMLHandler.m in Sources */,
 				AA74EFE41BC05B5F00D1E954 /* IfLogicBeginBrick.m in Sources */,
@@ -6236,7 +6124,6 @@
 				AA74EE261BC0540D00D1E954 /* ChangeVariableBrick+Instruction.swift in Sources */,
 				AA74F0B81BC05FCE00D1E954 /* ComeToFrontBrickCell.m in Sources */,
 				AA74F0981BC05FCE00D1E954 /* BrickCellTextData.m in Sources */,
-				92FF32571A24E2F400093DA7 /* AHKActionSheetViewController.m in Sources */,
 				92FF2E3D1A24C5A700093DA7 /* UIImage+CatrobatUIImageExtensions.m in Sources */,
 				AA74EF7E1BC05A3400D1E954 /* IfOnEdgeBounceBrick+CBXMLHandler.m in Sources */,
 				AA74F00B1BC05B5F00D1E954 /* PlaySoundBrick.m in Sources */,
@@ -6338,7 +6225,6 @@
 				92B46F9C1BC7BC8C004980C1 /* ArduinoSendPWMValueBrick+CBXMLHandler.m in Sources */,
 				4C724E5C1B4D3E8C00E27479 /* Sound+CBXMLHandler.m in Sources */,
 				92EC99431BC3C8000003A891 /* BluetoothService.swift in Sources */,
-				92FF325A1A24E2F400093DA7 /* UIWindow+AHKAdditions.m in Sources */,
 				92DFB06B1A38960C00FA9B0F /* UndoManager.m in Sources */,
 				92FF2E8C1A24C7D800093DA7 /* AudioManager.m in Sources */,
 				92FF2E9F1A24C7D800093DA7 /* SharkfoodMuteSwitchDetector.m in Sources */,
@@ -6362,7 +6248,6 @@
 				AA74EF541BC0586F00D1E954 /* PointInDirectionBrick+CBXMLHandler.m in Sources */,
 				92FF2E361A24C5A700093DA7 /* NSDate+CustomExtensions.m in Sources */,
 				92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */,
-				92FF325F1A24E2F400093DA7 /* FBShimmeringLayer.m in Sources */,
 				4C724E231B4D3E8C00E27479 /* CBXMLSerializerHelper.m in Sources */,
 				92FF2EC11A24C8A700093DA7 /* OrderedMapTable.m in Sources */,
 				92FF325D1A24E2F400093DA7 /* EVCircularProgressView.m in Sources */,
@@ -6381,7 +6266,6 @@
 				92FF2E921A24C7D800093DA7 /* ImageCache.m in Sources */,
 				AAAF22861BC0CA590076F11E /* SetYBrick+Instruction.swift in Sources */,
 				92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */,
-				92FF32731A24E2F400093DA7 /* TTTAttributedLabel.m in Sources */,
 				AA74F0061BC05B5F00D1E954 /* SetXBrick.m in Sources */,
 				92DFB0671A38960C00FA9B0F /* SPUserResizableView.m in Sources */,
 				92EC98601BC3ABB90003A891 /* PhiroRGBLightBrick+CBXMLHandler.m in Sources */,
@@ -6409,7 +6293,6 @@
 				92FF31601A24DEB300093DA7 /* SaveToProjectActivity.m in Sources */,
 				AA74F0A71BC05FCE00D1E954 /* WaitBrickCell.m in Sources */,
 				92FF32B91A24E2F400093DA7 /* DarkBlueGradientCell.m in Sources */,
-				92FF326A1A24E2F400093DA7 /* MYIntroductionPanel.m in Sources */,
 				AA74EF551BC0586F00D1E954 /* PointToBrick+CBXMLHandler.m in Sources */,
 				AA74EF781BC0589700D1E954 /* SetVariableBrick+CBXMLHandler.m in Sources */,
 				92FF2E981A24C7D800093DA7 /* unzip.c in Sources */,
@@ -6448,7 +6331,6 @@
 				92FF31071A24DCAA00093DA7 /* SpriteObject.m in Sources */,
 				AA74EFE51BC05B5F00D1E954 /* IfLogicElseBrick.m in Sources */,
 				AA74EE321BC0542C00D1E954 /* LedOnBrick+Instruction.swift in Sources */,
-				92FF32651A24E2F400093DA7 /* IBActionSheet.m in Sources */,
 				AA74EFFB1BC05B5F00D1E954 /* ChangeSizeByNBrick.m in Sources */,
 				92ED4D7D1BA9C1380052C852 /* RegisterViewController.m in Sources */,
 				AA74F0A31BC05FCE00D1E954 /* LedOnBrickCell.m in Sources */,
