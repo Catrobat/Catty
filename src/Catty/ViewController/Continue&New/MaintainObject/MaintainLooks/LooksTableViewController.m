@@ -788,9 +788,11 @@ static NSCharacterSet *blockedCharacterSet = nil;
         NSString *fileName = [path stringByReplacingOccurrencesOfString:imageDirPath withString:@""];
         
         NSRange result = [fileName rangeOfString:kResourceFileNameSeparator];
-        if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([fileName length]-1)))
+        if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([fileName length]-1))){
             abort();
             return;
+        }
+
 
         NSUInteger referenceCount = [self.object referenceCountForLook:[fileName substringFromIndex:1]];
         if(referenceCount > 1) {
