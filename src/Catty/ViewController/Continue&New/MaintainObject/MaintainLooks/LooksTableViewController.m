@@ -64,7 +64,7 @@
 @property (nonatomic) BOOL useDetailCells;
 @property (nonatomic,strong)UIImage* paintImage;
 @property (nonatomic,strong)NSString* paintImagePath;
-@property (nonatomic, weak) Look *selectedLook;
+@property (nonatomic, assign) NSInteger selectedLookIndex;
 @end
 
 @implementation LooksTableViewController
@@ -376,8 +376,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
 //        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         PaintViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:kPaintViewControllerIdentifier];
         vc.delegate = self;
-        self.selectedLook = [self.object.lookList objectAtIndex:indexPath.row];
-        NSString *lookImagePath = [self.object pathForLook:self.selectedLook];
+        self.selectedLookIndex = indexPath.row;
+        NSString *lookImagePath = [self.object pathForLook:[self.object.lookList objectAtIndex:self.selectedLookIndex]];
         UIImage *image = [[UIImage alloc] initWithContentsOfFile:lookImagePath];
         vc.editingImage = image;
         vc.editingPath = lookImagePath;
@@ -817,13 +817,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
 
         NSUInteger referenceCount = [self.object referenceCountForLook:[fileName substringFromIndex:1]];
         if(referenceCount > 1) {
+            Look *look = [self.object.lookList objectAtIndex:self.selectedLookIndex];
             NSString *newImageFileName = [NSString stringWithFormat:@"%@_%@.%@",
                                           [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
-                                          self.selectedLook.name,
+                                          look.name,
                                           kLocalizedMyImageExtension];
             path = [path stringByReplacingOccurrencesOfString:[fileName substringFromIndex:1] withString:newImageFileName];
             fileName = newImageFileName;
-            self.selectedLook.fileName = fileName;
+            look.fileName = fileName;
         }
         
         NSDebug(@"Writing file to disk");
@@ -836,7 +837,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [saveOp setCompletionBlock:^{
                 // execute this on the main queue
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                
+                [self.object.program saveToDisk];
             }];
         }];
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -845,14 +846,14 @@ static NSCharacterSet *blockedCharacterSet = nil;
         
         RuntimeImageCache *cache = [RuntimeImageCache sharedImageCache];
         
-        NSString *previewImageName =  [NSString stringWithFormat:@"%@_%@%@",
+        NSString *previewImageName =  [NSString stringWithFormat:@"%@%@%@",
                                        [fileName substringToIndex:result.location],
                                        kPreviewImageNamePrefix,
-                                       [fileName substringFromIndex:(result.location + 1)]
+                                       [fileName substringFromIndex:(result.location)]
                                        ];
         
         
-        NSString *filePath = [NSString stringWithFormat:@"%@%@", imageDirPath, previewImageName];
+        NSString *filePath = [NSString stringWithFormat:@"%@/%@", imageDirPath, previewImageName];
         [cache overwriteThumbnailImageFromDiskWithThumbnailPath:filePath image:image thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)];
         
         
