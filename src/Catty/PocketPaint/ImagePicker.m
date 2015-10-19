@@ -24,6 +24,7 @@
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
+#import "UIImage+Rotate.h"  
 
 @implementation ImagePicker
 
@@ -126,8 +127,17 @@
 #pragma mark imagePicker delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
   
-  self.originalImage = info[UIImagePickerControllerEditedImage];
-  UIImage* image = [UIImage imageWithImage:self.originalImage scaledToSize:self.canvas.saveView.frame.size];
+    UIImage *image = info[UIImagePickerControllerEditedImage];
+    if (! image) {
+        image = info[UIImagePickerControllerOriginalImage];
+    }
+    image = [image fixOrientation];
+    if (! image) {
+        return;
+    }
+    image = [UIImage imageWithImage:image
+                   scaledToMaxWidth:self.canvas.saveView.frame.size.width
+                          maxHeight:self.canvas.saveView.frame.size.height];
   [self.canvas setImagePickerImage:image];
   
   [picker dismissViewControllerAnimated:YES completion:NULL];

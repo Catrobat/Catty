@@ -421,13 +421,15 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIImage *image = info[UIImagePickerControllerEditedImage];
     if (! image) {
         image = info[UIImagePickerControllerOriginalImage];
-        image = [image fixOrientation];
     }
-
+    image = [image fixOrientation];
     if (! image) {
         return;
     }
-    image = [UIImage imageWithImage:image scaledToSize:CGSizeMake([Util screenWidth] * 2, [Util screenHeight] * 2)];
+    image = [UIImage imageWithImage:image
+                                            scaledToMaxWidth:[Util screenWidth]
+                                                   maxHeight:[Util screenHeight]];
+//    image = [UIImage imageWithImage:image scaledToSize:CGSizeMake([Util screenWidth] * 2, [Util screenHeight] * 2)];
 
     // add image to object now
     NSURL *imageURL = [info objectForKey:UIImagePickerControllerReferenceURL];
