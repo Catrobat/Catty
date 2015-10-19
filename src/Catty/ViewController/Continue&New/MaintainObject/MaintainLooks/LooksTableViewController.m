@@ -643,7 +643,17 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 {
                     [self presentImagePicker:UIImagePickerControllerSourceTypeCamera];
                 }else{
-                    [self presentViewController:alertControllerCamera animated:YES completion:nil];
+                    [self presentViewController:alertControllerCamera animated:YES completion:^{
+                        if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor) {
+                            if (self.afterSafeBlock) {
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    self.afterSafeBlock(nil);
+                                });
+                            }
+                        }
+
+                    }];
+
                 }
             }
             
@@ -652,7 +662,16 @@ static NSCharacterSet *blockedCharacterSet = nil;
             if([self checkUserAuthorisation:UIImagePickerControllerSourceTypePhotoLibrary])
             {
                 if (statusCameraRoll != ALAuthorizationStatusAuthorized) {
-                    [self presentViewController:alertControllerCameraRoll animated:YES completion:nil];
+                    [self presentViewController:alertControllerCameraRoll animated:YES completion:^{
+                        if (self.showAddLookActionSheetAtStartForObject || self.showAddLookActionSheetAtStartForScriptEditor) {
+                            if (self.afterSafeBlock) {
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    self.afterSafeBlock(nil);
+                                });
+                            }
+                        }
+                    }];
+                    
                 }else{
                     [self presentImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
                 }

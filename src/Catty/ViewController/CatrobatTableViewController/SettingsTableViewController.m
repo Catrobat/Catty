@@ -109,6 +109,13 @@
 	
 	[self addSection:[BOTableViewSection sectionWithHeaderTitle:@"" handler:^(BOTableViewSection *section) {
 		
+        [section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedPrivacySettings key:nil handler:^(BOButtonTableViewCell *cell) {
+            cell.backgroundColor = [UIColor backgroundColor];
+            cell.mainColor = [UIColor globalTintColor];
+            cell.actionBlock = ^{
+                [weakSelf openPrivacySettings];
+            };
+        }]];
 		[section addCell:[BOButtonTableViewCell cellWithTitle:kLocalizedRateUs key:nil handler:^(BOButtonTableViewCell *cell) {
             cell.backgroundColor = [UIColor backgroundColor];
             cell.mainColor = [UIColor globalTintColor];
@@ -147,6 +154,11 @@
 - (void)openRateUsURL
 {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kAppStoreURL]];
+}
+
+- (void)openPrivacySettings
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
 }
 
 - (void)disconnect

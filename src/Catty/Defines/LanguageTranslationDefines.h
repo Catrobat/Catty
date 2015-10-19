@@ -100,6 +100,7 @@
 #define kLocalizedTermsOfUse NSLocalizedString(@"Terms of Use", nil)
 #define kLocalizedForgotPassword NSLocalizedString(@"Forgot password", nil)
 #define kLocalizedRateUs NSLocalizedString(@"Rate Us", nil)
+#define kLocalizedPrivacySettings NSLocalizedString(@"Privacy Settings", nil)
 #define kLocalizedVersionLabel NSLocalizedString(@"v", nil)
 #define kLocalizedBack NSLocalizedString(@"Back", nil)
 #define kLocalizedSourceCodeLicenseButtonLabel NSLocalizedString(@"Pocket Code Source Code License", nil)
