@@ -76,6 +76,12 @@
                 <key>Type</key>
                 <string>PSGroupSpecifier</string>
                 <key>FooterText</key>
+                <string>Catty/Resources/Licenses/MXSegmentedPager</string>
+            </dict>
+            <dict>
+                <key>Type</key>
+                <string>PSGroupSpecifier</string>
+                <key>FooterText</key>
                 <string>Catty/Resources/Licenses/NKOColorPickerView</string>
             </dict>
             <dict>
@@ -89,6 +95,12 @@
                 <string>PSGroupSpecifier</string>
                 <key>FooterText</key>
                 <string>Catty/Resources/Licenses/OrderedDictionary</string>
+            </dict>
+            <dict>
+                <key>Type</key>
+                <string>PSGroupSpecifier</string>
+                <key>FooterText</key>
+                <string>Catty/Resources/Licenses/PureLayout</string>
             </dict>
             <dict>
                 <key>Type</key>
@@ -137,6 +149,12 @@
                 <string>PSGroupSpecifier</string>
                 <key>FooterText</key>
                 <string>Catty/Resources/Licenses/UIViewController+KNSemiModal</string>
+            </dict>
+            <dict>
+                <key>Type</key>
+                <string>PSGroupSpecifier</string>
+                <key>FooterText</key>
+                <string>Catty/Resources/Licenses/VGParallaxHeader</string>
             </dict>
             <dict>
                 <key>Type</key>
