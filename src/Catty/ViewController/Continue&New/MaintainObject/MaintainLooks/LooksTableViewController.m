@@ -95,7 +95,9 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSDictionary *showDetails = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDetailsShowDetailsKey];
     NSNumber *showDetailsProgramsValue = (NSNumber*)[showDetails objectForKey:kUserDetailsShowDetailsLooksKey];
     self.useDetailCells = [showDetailsProgramsValue boolValue];
-    self.title = self.navigationItem.title = kLocalizedLooks;
+    self.title = self.navigationItem.title = (self.object.isBackground
+                                              ? kLocalizedBackgrounds
+                                              : kLocalizedLooks);
     [self initNavigationBar];
     self.placeHolderView.title = kLocalizedLooks;
     [self showPlaceHolder:(! (BOOL)[self.object.lookList count])];

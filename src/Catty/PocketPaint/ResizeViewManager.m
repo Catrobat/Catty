@@ -25,6 +25,7 @@
 #import "YKImageCropperOverlayView.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import "BDKNotifyHUD.h"
+#import "UndoManager.h"
 
 
 #define kControlSize 45.0f
@@ -247,7 +248,8 @@
     [self.canvas.scrollView setZoomScale:scale];
 
     //UNDO-Manager
-    [[self.canvas getUndoManager] setImage:self.canvas.saveView.image.CIImage];
+    UndoManager* manager = [self.canvas getUndoManager];
+    [manager setImage:self.canvas.saveView.image];
 
     self.canvas.saveView.image = img;
     [self showUserAction];
