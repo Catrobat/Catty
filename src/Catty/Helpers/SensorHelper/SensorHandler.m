@@ -156,7 +156,6 @@ static SensorHandler* sharedSensorHandler = nil;
             }
             [self loudness];
             result = self.loudnessInPercent;
-            [self.recorder pause];
             NSDebug(@"Loudness: %f %%", result);
             break;
         }
@@ -415,6 +414,7 @@ static SensorHandler* sharedSensorHandler = nil;
 {
     [self.recorder updateMeters];
     self.loudnessInPercent = [self decibelToPercent:[self.recorder averagePowerForChannel:0]];
+//    [self.recorder pause];
     NSDebug(@"loudness: %f", self.loudnessInPercent);
 }
 
