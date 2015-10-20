@@ -151,7 +151,12 @@ final class CBSpriteNode: SKSpriteNode {
         self.scenePosition = CGPointMake(0, 0)
         self.zRotation = 0
         self.currentLookBrightness = 0
-        self.zPosition = zPosition
+        if self.spriteObject?.isBackground() == true {
+            self.zPosition = 0
+        } else {
+            self.zPosition = zPosition
+        }
+        
     }
 
 //    func touchedWithTouches(touches: NSSet, withX x: CGFloat, andY y: CGFloat) -> Bool {

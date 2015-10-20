@@ -64,7 +64,7 @@
         CGFloat zValue = self.script.object.spriteNode.zPosition;
         int steps = [self.steps interpretIntegerForSprite:self.script.object];
         NSDebug(@"%f",self.script.object.spriteNode.zPosition-steps);
-        self.script.object.spriteNode.zPosition = MAX(1, self.script.object.spriteNode.zPosition-steps);
+        self.script.object.spriteNode.zPosition = MAX(1, zValue-steps);
         for(SpriteObject *obj in self.script.object.program.objectList){
             if ((obj.spriteNode.zPosition < zValue) && (obj.spriteNode.zPosition >= self.script.object.spriteNode.zPosition) && (obj != self.script.object)) {
                 obj.spriteNode.zPosition +=1;
