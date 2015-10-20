@@ -268,10 +268,6 @@ func getFilePaths() -> NSDirectoryEnumerator {
         exit(kErrorFailed)
     }
     
-    //let fileNameOfThisScript = getFileNameOfScript()
-    
-    // TODO: Exclude files??
-    
     return enumerator!
 }
 
