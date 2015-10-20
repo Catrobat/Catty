@@ -23,6 +23,7 @@
 #import "ImagePicker.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
 #import <AVFoundation/AVFoundation.h>
 #import "UIImage+Rotate.h"  
 
@@ -85,7 +86,7 @@
 
 - (void)imagePickerAction
 {
-  ALAuthorizationStatus statusCameraRoll = [ALAssetsLibrary authorizationStatus];
+  PHAuthorizationStatus statusCameraRoll = [PHPhotoLibrary authorizationStatus];
   UIAlertController *alertControllerCameraRoll = [UIAlertController
                                               alertControllerWithTitle:nil
                                               message:kLocalizedNoAccesToImagesCheckSettingsDescription
@@ -116,7 +117,7 @@
 
     //IMAGEPICKER CameraRoll
     if ([self checkUserAuthorisation:UIImagePickerControllerSourceTypePhotoLibrary]) {
-        if (statusCameraRoll == ALAuthorizationStatusAuthorized) {
+        if (statusCameraRoll == PHAuthorizationStatusAuthorized) {
             [self openPicker:UIImagePickerControllerSourceTypePhotoLibrary];
         }else
         {
@@ -152,21 +153,24 @@
 - (BOOL)checkUserAuthorisation:(UIImagePickerControllerSourceType)pickerType
 {
     
+    
     BOOL state = NO;
     
     if(pickerType == UIImagePickerControllerSourceTypePhotoLibrary)
     {
-        if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusNotDetermined) {
-            ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
-            [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusNotDetermined) {
+            
+            PHFetchOptions *allPhotosOptions = [PHFetchOptions new];
+            allPhotosOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
+            
+            PHFetchResult *allPhotosResult = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeImage options:allPhotosOptions];
+            [allPhotosResult enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL *stop) {
+                NSDebug(@"asset %@", asset);
                 if (*stop) {
                     [self openPicker:pickerType];
                     return;
                 }
                 *stop = TRUE;
-            } failureBlock:^(NSError *error) {
-                return;
-            
             }];
         }else{
             state = YES;

@@ -23,6 +23,7 @@
 #import "LooksTableViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
 #import <AVFoundation/AVFoundation.h>
 #import "ProgramDefines.h"
 #import "UIDefines.h"
@@ -65,6 +66,7 @@
 @property (nonatomic,strong)UIImage* paintImage;
 @property (nonatomic,strong)NSString* paintImagePath;
 @property (nonatomic, assign) NSInteger selectedLookIndex;
+@property (nonatomic,strong)NSString *filePath;
 @end
 
 @implementation LooksTableViewController
@@ -429,82 +431,107 @@ static NSCharacterSet *blockedCharacterSet = nil;
         return;
     }
     image = [UIImage imageWithImage:image
-                                            scaledToMaxWidth:[Util screenWidth]
-                                                   maxHeight:[Util screenHeight]];
-//    image = [UIImage imageWithImage:image scaledToSize:CGSizeMake([Util screenWidth] * 2, [Util screenHeight] * 2)];
-
+                   scaledToMaxWidth:[Util screenWidth]
+                          maxHeight:[Util screenHeight]];
+    //    image = [UIImage imageWithImage:image scaledToSize:CGSizeMake([Util screenWidth] * 2, [Util screenHeight] * 2)];
+    
     // add image to object now
-    NSURL *imageURL = [info objectForKey:UIImagePickerControllerReferenceURL];
+    NSURL *assetURL = [info objectForKey:UIImagePickerControllerReferenceURL];
     [self showLoadingView];
-
-    ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset) {
-        // still on the main queue here
-        ALAssetRepresentation *representation = [myasset defaultRepresentation];
-        NSString *imageFileName = [representation filename];
-        NSDebug(@"fileName: %@",imageFileName);
-        NSArray *imageFileNameParts = [imageFileName componentsSeparatedByString:@"."];
-        imageFileName = [imageFileNameParts firstObject];
-        NSString *imageFileNameExtension = [imageFileNameParts lastObject];
-        if ((! [imageFileName length]) || (! [imageFileNameExtension length])) {
-            imageFileName = kLocalizedMyImage;
-            imageFileNameExtension = kLocalizedMyImageExtension;
+    NSString *mediaType = info[UIImagePickerControllerMediaType];
+    NSDebug(@"Writing file to disk");
+    if ([mediaType isEqualToString:@"public.image"]) {
+        if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary || picker.sourceType == UIImagePickerControllerSourceTypeSavedPhotosAlbum) {
+            PHFetchResult *result = [PHAsset fetchAssetsWithALAssetURLs:@[assetURL] options:nil];
+            PHAsset *asset;
+            if (result != nil && result.count > 0) {
+                // get last photo from Photos
+                asset = [result lastObject];
+            }
+            if (asset) {
+                // get photo info from this asset IOS8 hack?!
+                PHImageRequestOptions * imageRequestOptions = [[PHImageRequestOptions alloc] init];
+                imageRequestOptions.synchronous = YES;
+                [[PHImageManager defaultManager]
+                 requestImageDataForAsset:asset
+                 options:imageRequestOptions
+                 resultHandler:^(NSData *imageData, NSString *dataUTI,
+                                 UIImageOrientation orientation,
+                                 NSDictionary *info)
+                 {
+                     if ([info objectForKey:@"PHImageFileURLKey"]) {
+                         NSURL *path = [info objectForKey:@"PHImageFileURLKey"];
+                         NSString* imageFileName = [path lastPathComponent];
+                         NSArray *imageFileNameParts = [imageFileName componentsSeparatedByString:@"."];
+                         imageFileName = [imageFileNameParts firstObject];
+                         NSString *imageFileNameExtension = [imageFileNameParts lastObject];
+                         [self saveImageData:imageData withFileName:imageFileName andImageFileNameExtension:imageFileNameExtension];
+                     } else {
+                         [self saveImageData:imageData withFileName:@"" andImageFileNameExtension:@""];
+                     }
+                 }];
+            }
+        } else if(picker.sourceType == UIImagePickerControllerSourceTypeCamera){
+            NSData *imageData = UIImagePNGRepresentation(image);
+            [self saveImageData:imageData withFileName:@"" andImageFileNameExtension:@""];
         }
-
-        NSData *imageData = UIImagePNGRepresentation(image);
-        NSString *lookName = imageFileName;
-        // use temporary filename, will be renamed by user afterwards
-        NSString *newImageFileName = [NSString stringWithFormat:@"temp_%@.%@",
-                                      [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
-                                      imageFileNameExtension];
-        Look *look = [[Look alloc] initWithName:[Util uniqueName:lookName
-                                                   existingNames:[self.object allLookNames]]
-                                        andPath:newImageFileName];
-
-        NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
-                                  [self.object projectPath], kProgramImagesDirName, newImageFileName];
-        NSString *mediaType = info[UIImagePickerControllerMediaType];
-        NSDebug(@"Writing file to disk");
-        if ([mediaType isEqualToString:@"public.image"]) {
-            // leaving the main queue here!
-            NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{
-                // save image to programs directory
-                [imageData writeToFile:newImagePath atomically:YES];
-            }];
-            // completion block is NOT executed on the main queue
-            [saveOp setCompletionBlock:^{
-                // execute this on the main queue
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    [self hideLoadingView];
-                    [self showPlaceHolder:([self.object.lookList count] == 0)];
-
-                    if (self.showAddLookActionSheetAtStartForObject) {
-                        [self addLookActionWithName:look.name look:look];
-                    }else{
-                    // ask user for image name
-                    [Util askUserForTextAndPerformAction:@selector(addLookActionWithName:look:)
-                                                  target:self
-                                            cancelAction:@selector(cancelPaintSave)
-                                              withObject:look
-                                             promptTitle:kLocalizedAddImage
-                                           promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
-                                             promptValue:look.name
-                                       promptPlaceholder:kLocalizedEnterYourImageNameHere
-                                          minInputLength:kMinNumOfLookNameCharacters
-                                          maxInputLength:kMaxNumOfLookNameCharacters
-                                     blockedCharacterSet:[self blockedCharacterSet]
-                                invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
-                    }
-                }];
-            }];
-            NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-            [queue addOperation:saveOp];
-        }
-    };
-    ALAssetsLibrary* assetslibrary = [[ALAssetsLibrary alloc] init];
-    [assetslibrary assetForURL:imageURL
-                   resultBlock:resultblock
-                  failureBlock:nil];
+    }
     [self hideLoadingView];
+}
+
+
+-(void)saveImageData:(NSData*)imageData withFileName:(NSString*)imageFileName andImageFileNameExtension:(NSString*)imageFileNameExtension
+{
+    if ((! [imageFileName length])) {
+        imageFileName = kLocalizedMyImage;
+        imageFileNameExtension = kLocalizedMyImageExtension;
+    }
+    NSString *lookName = imageFileName;
+    // use temporary filename, will be renamed by user afterwards
+    NSString *newImageFileName = [NSString stringWithFormat:@"temp_%@.%@",
+                                  [[[imageData md5] stringByReplacingOccurrencesOfString:@"-" withString:@""] uppercaseString],
+                                  imageFileNameExtension];
+    Look *look = [[Look alloc] initWithName:[Util uniqueName:lookName
+                                               existingNames:[self.object allLookNames]]
+                                    andPath:newImageFileName];
+    
+    NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
+                              [self.object projectPath], kProgramImagesDirName, newImageFileName];
+    self.filePath = newImagePath;
+    // leaving the main queue here!
+    NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{
+        // save image to programs directory
+        [imageData writeToFile:newImagePath atomically:YES];
+    }];
+    // completion block is NOT executed on the main queue
+    [saveOp setCompletionBlock:^{
+        // execute this on the main queue
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self hideLoadingView];
+            [self showPlaceHolder:([self.object.lookList count] == 0)];
+            
+            if (self.showAddLookActionSheetAtStartForObject) {
+                [self addLookActionWithName:look.name look:look];
+            }else{
+                // ask user for image name
+                [Util askUserForTextAndPerformAction:@selector(addLookActionWithName:look:)
+                                              target:self
+                                        cancelAction:@selector(cancelPaintSave)
+                                          withObject:look
+                                         promptTitle:kLocalizedAddImage
+                                       promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedImageName]
+                                         promptValue:look.name
+                                   promptPlaceholder:kLocalizedEnterYourImageNameHere
+                                      minInputLength:kMinNumOfLookNameCharacters
+                                      maxInputLength:kMaxNumOfLookNameCharacters
+                                 blockedCharacterSet:[self blockedCharacterSet]
+                            invalidInputAlertMessage:kLocalizedInvalidImageNameDescription];
+            }
+        }];
+    }];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [queue addOperation:saveOp];
+    
 }
 
 #pragma mark - text field delegates
@@ -574,7 +601,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         }
     } else if (actionSheet.tag == kAddLookActionSheetTag) {
 
-        ALAuthorizationStatus statusCameraRoll = [ALAssetsLibrary authorizationStatus];
+        PHAuthorizationStatus statusCameraRoll = [PHPhotoLibrary authorizationStatus];
         //status for camera
         AVAuthorizationStatus statusCamera = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
         
@@ -796,6 +823,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
             self.afterSafeBlock(nil);
         }
     }
+    if (self.filePath && [[NSFileManager defaultManager] fileExistsAtPath:self.filePath isDirectory:NO]) {
+        [[NSFileManager defaultManager] removeItemAtPath:self.filePath error:nil];
+    }
+    
 }
 
 
@@ -873,6 +904,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                                         andPath:newImageFileName];
         NSString *newImagePath = [NSString stringWithFormat:@"%@%@/%@",
                                   [self.object projectPath], kProgramImagesDirName, newImageFileName];
+        self.filePath = newImagePath;
         NSDebug(@"Writing file to disk");
             // leaving the main queue here!
         NSBlockOperation* saveOp = [NSBlockOperation blockOperationWithBlock:^{
@@ -920,17 +952,19 @@ static NSCharacterSet *blockedCharacterSet = nil;
     
     if(pickerType == UIImagePickerControllerSourceTypePhotoLibrary)
     {
-        if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusNotDetermined) {
-            ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
-            [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusNotDetermined) {
+            
+            PHFetchOptions *allPhotosOptions = [PHFetchOptions new];
+            allPhotosOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
+            
+            PHFetchResult *allPhotosResult = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeImage options:allPhotosOptions];
+            [allPhotosResult enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL *stop) {
+                NSDebug(@"asset %@", asset);
                 if (*stop) {
                     [self presentImagePicker:pickerType];
                     return;
                 }
                 *stop = TRUE;
-            } failureBlock:^(NSError *error) {
-                return;
-                
             }];
         }else{
             state = YES;
