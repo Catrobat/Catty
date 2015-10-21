@@ -92,7 +92,7 @@
     if ([returnValue isKindOfClass:[NSNumber class]]) {
         returnDoubleValue = [returnValue doubleValue];
     }
-//    self.lastResult = [self.formulaTree isIdempotent] ? @(returnDoubleValue) : nil;
+    self.lastResult = [self.formulaTree isIdempotent] ? @(returnDoubleValue) : nil;
     return returnDoubleValue;
 }
 
@@ -106,6 +106,9 @@
         return self.lastResult.intValue;
     }
     id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
+    if (returnValue == nil) {
+        return 0;
+    }
     if ([returnValue isKindOfClass:[NSNumber class]]) {
         self.lastResult = [self.formulaTree isIdempotent] ? (NSNumber*)returnValue : nil;
         return (int)((NSNumber*)returnValue).doubleValue;

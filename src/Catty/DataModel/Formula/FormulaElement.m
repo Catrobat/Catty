@@ -118,6 +118,9 @@
             Program *program = [ProgramManager sharedProgramManager].program;
             UserVariable *var = [program.variables getUserVariableNamed:self.value forSpriteObject:sprite];
 //            result = [NSNumber numberWithDouble:[var.value doubleValue]];
+            if (var.value == nil) {
+                return [NSNumber numberWithInt:0];
+            }
             result = var.value;
             break;
         }

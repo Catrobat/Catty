@@ -182,7 +182,7 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
             print("requestValue")
             let semaphore = BluetoothService.swiftSharedInstance.getSemaphore()
             BluetoothService.swiftSharedInstance.setDigitalSemaphore(semaphore)
-            dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, Int64(6 * NSEC_PER_SEC)))
+            dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)))
             BluetoothService.swiftSharedInstance.signalDigitalSemaphore(false)
             self.firmata.setDigitalStateReportingForPort(digitalPinNumber / 8, enabled: false)
             self.digitalValue = self.getPortValue(Int(digitalPinNumber))
