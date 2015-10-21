@@ -525,6 +525,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
             NSArray *sectionInfos = [self.programLoadingInfoDict objectForKey:[[sectionTitle substringToIndex:1] uppercaseString]];
             ProgramLoadingInfo *info = [sectionInfos objectAtIndex:path.row];
             self.selectedProgram =[Program programWithLoadingInfo:info];
+            if (![self.selectedProgram.header.programName isEqualToString:info.visibleName]) {
+                self.selectedProgram.header.programName = info.visibleName;
+                [self.selectedProgram saveToDisk];
+            }
             if (self.selectedProgram) {
                 return YES;
             }
