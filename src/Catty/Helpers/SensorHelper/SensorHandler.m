@@ -32,22 +32,23 @@
 
 
 #define kSensorUpdateInterval 0.8
-#define FACE_DETECTION_DEFAULT_UPDATE_INTERVAL 0.05
+#define FACE_DETECTION_DEFAULT_UPDATE_INTERVAL 0.01
 
 #define NOISE_RECOGNIZER_DEFAULT_REFERENCE_PROGRAM 5
 #define NOISE_RECOGNIZER_DEFAULT_RANGE 160
 #define NOISE_RECOGNIZER_DEFAULT_OFFSET 50
-#define NOISE_RECOGNIZER_DEFAULT_UPDATE_INTERVAL 0.001
+#define NOISE_RECOGNIZER_DEFAULT_UPDATE_INTERVAL 0.05
 
 @interface SensorHandler()
 
-@property (nonatomic, strong) CMMotionManager* motionManager;
-@property (nonatomic, strong) CLLocationManager* locationManager;
-@property (nonatomic,strong) AVAudioRecorder* recorder;
-@property (nonatomic,strong) NSTimer* programTimer;
-@property (nonatomic) CGFloat loudnessInPercent;
-@property (nonatomic,strong) ArduinoDevice* arduino;
-@property (nonatomic,strong)FaceDetection* faceDetection;
+@property (nonatomic,   strong) CMMotionManager* motionManager;
+@property (nonatomic,   strong) CLLocationManager* locationManager;
+@property (nonatomic,   strong) AVAudioRecorder* recorder;
+@property (nonatomic,   strong) NSTimer* loudnessTimer;
+@property (nonatomic)           CGFloat loudnessInPercent;
+@property (nonatomic,   strong) ArduinoDevice* arduino;
+@property (nonatomic,   strong) FaceDetection* faceDetection;
+@property (nonatomic,   strong) dispatch_semaphore_t loudnessSemaphore;
 @end
 
 @implementation SensorHandler
@@ -153,8 +154,13 @@ static SensorHandler* sharedSensorHandler = nil;
         case LOUDNESS: {
             if (!self.recorder) {
                 [self recorderinit];
+                
             }
-            [self loudness];
+            if (!self.loudnessTimer.isValid) {
+                [self loudness];
+            }
+//            self.loudnessSemaphore = dispatch_semaphore_create(0);
+//            dispatch_semaphore_wait(self.loudnessSemaphore, dispatch_time(DISPATCH_TIME_NOW, 0.0075 * NSEC_PER_SEC));
             result = self.loudnessInPercent;
             NSDebug(@"Loudness: %f %%", result);
             break;
@@ -163,10 +169,12 @@ static SensorHandler* sharedSensorHandler = nil;
             if (!self.faceDetection) {
                 [self faceDetectionInit];
             }
-            [self.faceDetection startFaceDetection];
-            [NSThread sleepForTimeInterval:FACE_DETECTION_DEFAULT_UPDATE_INTERVAL];
+            if (!self.faceDetection.session.isRunning) {
+                [self.faceDetection startFaceDetection];
+                [NSThread sleepForTimeInterval:FACE_DETECTION_DEFAULT_UPDATE_INTERVAL];
+            }
             result = self.faceDetection.isFaceDetected;
-            [self.faceDetection pauseFaceDetection];
+//            [self.faceDetection pauseFaceDetection];
             NSDebug(@"FACE_DETECTED: %f %%", result);
             break;
         }
@@ -174,10 +182,12 @@ static SensorHandler* sharedSensorHandler = nil;
             if (!self.faceDetection) {
                 [self faceDetectionInit];
             }
-            [self.faceDetection startFaceDetection];
-            [NSThread sleepForTimeInterval:FACE_DETECTION_DEFAULT_UPDATE_INTERVAL];
+            if (!self.faceDetection.session.isRunning) {
+                [self.faceDetection startFaceDetection];
+                [NSThread sleepForTimeInterval:FACE_DETECTION_DEFAULT_UPDATE_INTERVAL];
+            }
             //result = self.faceDetection.faceSize;
-            [self.faceDetection pauseFaceDetection];
+//            [self.faceDetection pauseFaceDetection];
             result = self.faceDetection.faceSize.size.width; // TODO: SIZE?!
             NSDebug(@"FACE_SIZE: %f %%", result);
             break;
@@ -186,10 +196,12 @@ static SensorHandler* sharedSensorHandler = nil;
             if (!self.faceDetection) {
                 [self faceDetectionInit];
             }
-            [self.faceDetection startFaceDetection];
-            [NSThread sleepForTimeInterval:FACE_DETECTION_DEFAULT_UPDATE_INTERVAL];
+            if (!self.faceDetection.session.isRunning) {
+                [self.faceDetection startFaceDetection];
+                [NSThread sleepForTimeInterval:FACE_DETECTION_DEFAULT_UPDATE_INTERVAL];
+            }
             result = self.faceDetection.facePositionX;
-            [self.faceDetection pauseFaceDetection];
+//            [self.faceDetection pauseFaceDetection];
             NSDebug(@"FACE_POSITION_X: %f %%", result);
             break;
         }
@@ -197,10 +209,12 @@ static SensorHandler* sharedSensorHandler = nil;
             if (!self.faceDetection) {
                 [self faceDetectionInit];
             }
-            [self.faceDetection startFaceDetection];
-            [NSThread sleepForTimeInterval:FACE_DETECTION_DEFAULT_UPDATE_INTERVAL];
+            if (!self.faceDetection.session.isRunning) {
+                [self.faceDetection startFaceDetection];
+                [NSThread sleepForTimeInterval:FACE_DETECTION_DEFAULT_UPDATE_INTERVAL];
+            }
             result = self.faceDetection.facePositionY;
-            [self.faceDetection pauseFaceDetection];
+//            [self.faceDetection pauseFaceDetection];
             NSDebug(@"FACE_POSITION_Y: %f %%", result);
             break;
         }
@@ -282,8 +296,8 @@ static SensorHandler* sharedSensorHandler = nil;
     if(self.recorder)
     {
         [self.recorder stop];
-        [self.programTimer invalidate];
-        self.programTimer = nil;
+        [self.loudnessTimer invalidate];
+        self.loudnessTimer = nil;
         self.recorder = nil;
         
     }
@@ -402,11 +416,11 @@ static SensorHandler* sharedSensorHandler = nil;
        [self.recorder record];
    }
 
-    self.programTimer = [NSTimer scheduledTimerWithTimeInterval: NOISE_RECOGNIZER_DEFAULT_UPDATE_INTERVAL
+    self.loudnessTimer = [NSTimer scheduledTimerWithTimeInterval: NOISE_RECOGNIZER_DEFAULT_UPDATE_INTERVAL
                                                          target: self
                                                        selector: @selector(programTimerCallback:)
                                                        userInfo: nil
-                                                        repeats: NO];
+                                                        repeats: YES];
 }
 
 
@@ -414,6 +428,7 @@ static SensorHandler* sharedSensorHandler = nil;
 {
     [self.recorder updateMeters];
     self.loudnessInPercent = [self decibelToPercent:[self.recorder averagePowerForChannel:0]];
+//    dispatch_semaphore_signal(self.loudnessSemaphore);
 //    [self.recorder pause];
     NSDebug(@"loudness: %f", self.loudnessInPercent);
 }

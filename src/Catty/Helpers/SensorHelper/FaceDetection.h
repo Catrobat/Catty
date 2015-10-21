@@ -30,6 +30,7 @@
 @property (nonatomic, assign) CGRect faceSize;
 @property (nonatomic, assign) NSInteger facePositionX;
 @property (nonatomic, assign) NSInteger facePositionY;
+@property (nonatomic, strong) AVCaptureSession *session;
 
 -(void)startFaceDetection;
 -(void)pauseFaceDetection;

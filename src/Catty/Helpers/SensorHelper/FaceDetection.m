@@ -34,8 +34,8 @@
 @property (nonatomic, strong) AVCaptureVideoDataOutput *videoDataOutput;
 @property (nonatomic) dispatch_queue_t videoDataOutputQueue;
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *previewLayer;
-@property (nonatomic, strong) AVCaptureSession *session;
 @property (nonatomic,strong) NSTimer* timer;
+
 
 @property (nonatomic, strong) CIDetector *faceDetector;
 
@@ -65,8 +65,8 @@
 
 -(void)startFaceDetection
 {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(pauseFaceDetection) userInfo:nil repeats:NO];
-        [self.session startRunning];
+//    self.timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(pauseFaceDetection) userInfo:nil repeats:NO];
+    [self.session startRunning];
 }
 
 -(void)pauseFaceDetection
