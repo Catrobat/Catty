@@ -41,8 +41,8 @@ private let MAX_PWM_PIN_GROUP_2:Int = 6;
 private let MIN_PWM_PIN_GROUP_3:Int = 9;
 private let MAX_PWM_PIN_GROUP_3:Int = 11;
 
-private let MIN_ANALOG_SENSOR_PIN:Int = 0;
-private let MAX_ANALOG_SENSOR_PIN:Int = 5;
+private let MIN_ANALOG_SENSOR_PIN:UInt8 = 0;
+private let MAX_ANALOG_SENSOR_PIN:UInt8 = 5;
 
 
 @objc public class ArduinoDevice:BluetoothDevice,FirmataDelegate {
@@ -61,6 +61,7 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     
     var digitalValue:Int = 0
     var analogValue:Double = 0
+    private var isReportingSensorData = false
     
     let firmata:Firmata = Firmata()
     public let arduinoHelper:ArduinoHelper = ArduinoHelper()
@@ -182,7 +183,7 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
             print("requestValue")
             let semaphore = BluetoothService.swiftSharedInstance.getSemaphore()
             BluetoothService.swiftSharedInstance.setDigitalSemaphore(semaphore)
-            dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)))
+            dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)))
             BluetoothService.swiftSharedInstance.signalDigitalSemaphore(false)
             self.firmata.setDigitalStateReportingForPort(digitalPinNumber / 8, enabled: false)
             self.digitalValue = self.getPortValue(Int(digitalPinNumber))
@@ -193,15 +194,19 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     }
     
     
+    func reportAnalogArduinoPin(analogPinNumber:UInt8,report:Bool) {
+        self.firmata.writePinMode(PinMode.Input, pin: analogPinNumber)
+        self.firmata.setAnalogValueReportingforPin(analogPinNumber, enabled: report)
+    }
+    
     func getAnalogArduinoPin(analogPinNumber:UInt8) -> Double {
-        dispatch_sync(digitalQueue){
+        dispatch_sync(analogQueue){
             self.firmata.writePinMode(PinMode.Input, pin: analogPinNumber)
             self.firmata.setAnalogValueReportingforPin(analogPinNumber, enabled: true)
             let semaphore = BluetoothService.swiftSharedInstance.getSemaphore()
             BluetoothService.swiftSharedInstance.setAnalogSemaphore(semaphore)
             dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)))
-            self.firmata.setAnalogValueReportingforPin(analogPinNumber, enabled: false)
-            self.firmata.setDigitalStateReportingForPort(1, enabled: true)
+//            self.firmata.setAnalogValueReportingforPin(analogPinNumber, enabled: false)
             self.analogValue = self.getAnalogPin(analogPinNumber)
             print(self.analogValue)
         }
@@ -229,13 +234,33 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
         }
     }
     
-    func setAnalogArduinoPin(pin:UInt8, value:UInt8) {
+    func setPWMArduinoPin(pin:UInt8, value:UInt8) {
         firmata.writePinMode(PinMode.PWM, pin: pin)
         firmata.writePWMValue(value, pin: pin)
     }
     
+    func reportSensorData(report:Bool) {
+        if (isReportingSensorData == report) {
+            return;
+        }
+    
+        isReportingSensorData = report;
+    
+        for (var i:UInt8 = MIN_ANALOG_SENSOR_PIN; i <= MAX_ANALOG_SENSOR_PIN; i++) {
+            reportAnalogArduinoPin(i,report: report)
+        }
+    }
+    
     func reportFirmwareVersion(){
         firmata.reportFirmware()
+    }
+    
+    func resetArduino(){
+        reportSensorData(false)
+        for (var i:UInt8 = 2; i <= 11; i++) {
+            setDigitalArduinoPin(i, pinValue: 0)
+        }
+        
     }
     
     //MARK: Helper

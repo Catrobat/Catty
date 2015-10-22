@@ -267,7 +267,7 @@ public class Firmata {
         delegate!.sendData(newData)
     }
     
-    // WRITE ANALOG (PWM)
+    // WRITE PWM
     
     func writePWMValue(value:UInt8, pin:UInt8) {
         

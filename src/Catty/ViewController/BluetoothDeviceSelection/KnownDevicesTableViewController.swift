@@ -49,16 +49,24 @@ class KnownDevicesTableViewController: BluetoothDevicesTableViewController {
         let afterTimeout = {(error:NSError) -> Void in
             
         }
-        let userdefaults = NSUserDefaults.standardUserDefaults()
+        let bleDevicesData = NSUserDefaults.standardUserDefaults().objectForKey("BLEDevices") as? NSData
         let future : FutureStream<[Peripheral]>
-        if let testArray : [AnyObject] = userdefaults.arrayForKey("KnownBleDevices") {
-            let queryArray:[NSUUID] = testArray as! [NSUUID]
-            future = CentralManager.sharedInstance.getKnownPeripheralsWithIdentifiers(queryArray)
+        if let bleDevices = bleDevicesData {
+            let bleDevicesArray = NSKeyedUnarchiver.unarchiveObjectWithData(bleDevices) as? [NSUUID]
+            
+            if let knownBleDevices = bleDevicesArray {
+                var knownBLEArray:[NSUUID] = Array()
+                for id:NSUUID in knownBleDevices {
+                    print(id)
+                    knownBLEArray.append(id)
+                }
+                future = CentralManager.sharedInstance.getKnownPeripheralsWithIdentifiers(knownBLEArray)
+            }else{
+                future = CentralManager.sharedInstance.getKnownPeripheralsWithIdentifiers(NSArray() as! [NSUUID])
+            }
         } else {
-           future = CentralManager.sharedInstance.getKnownPeripheralsWithIdentifiers(NSArray() as! [NSUUID])
+            future = CentralManager.sharedInstance.getKnownPeripheralsWithIdentifiers(NSArray() as! [NSUUID])
         }
-
-       
         future.onSuccess(afterPeripheralDiscovered)
         future.onFailure(afterTimeout)
     }

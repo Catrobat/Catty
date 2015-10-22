@@ -240,7 +240,7 @@ static SensorHandler* sharedSensorHandler = nil;
         case arduino_analogPin4:
         case arduino_analogPin5:
             if ([[BluetoothService sharedInstance] getSensorArduino]) {
-                result = [[[BluetoothService sharedInstance] getSensorArduino] getAnalogArduinoPin:sensor-arduino_analogPin0];
+                result = [[[BluetoothService sharedInstance] getSensorArduino] getAnalogPin:sensor-arduino_analogPin0];
             }
             break;
         case arduino_digitalPin0:

@@ -128,6 +128,7 @@ public class BluetoothService:NSObject {
     //MARK: Bluetooth Connection
     
     func connectDevice(peri:Peripheral) {
+     
         let future = peri.connect(10, timeoutRetries: 10, disconnectRetries: 5, connectionTimeout: Double(10))
         future.onSuccess {(peripheral, connectionEvent) in
 
@@ -178,30 +179,57 @@ public class BluetoothService:NSObject {
     }
     
     func updateKnownDevices(id:NSUUID){
-        let userdefaults = NSUserDefaults.standardUserDefaults()
-        if let testArray : [AnyObject] = userdefaults.arrayForKey("KnownBleDevices") {
-            var objectArray:[NSUUID] = testArray as! [NSUUID]
-            if objectArray.contains(id){
-                
+//        let userdefaults = NSUserDefaults.standardUserDefaults()
+//        if let testArray : [AnyObject] = userdefaults.arrayForKey("KnownBluetoothDevicesTest") {
+//            var objectArray:[NSUUID] = testArray as! [NSUUID]
+//            if objectArray.contains(id){
+//                
+//            }else{
+//                objectArray.append(id)
+//                userdefaults.setObject(objectArray, forKey: "KnownBluetoothDevicesTest")
+//            }
+//            
+//        } else {
+//            var array:[NSUUID] = [NSUUID]()
+//            array.append(id)
+//            userdefaults.setObject(array, forKey: "KnownBluetoothDevicesTest")
+//            
+//        }
+//        userdefaults.synchronize()
+        let bleDevicesData = NSUserDefaults.standardUserDefaults().objectForKey("BLEDevices") as? NSData
+        
+        if let bleDevices = bleDevicesData {
+            let bleDevicesArray = NSKeyedUnarchiver.unarchiveObjectWithData(bleDevices) as? [NSUUID]
+            
+            if let knownBleDevices = bleDevicesArray {
+                var knownBleDevicesArray = knownBleDevices
+                if knownBleDevicesArray.contains(id){
+                    
+                } else {
+                    knownBleDevicesArray.append(id)
+                    let knownBleDevicesData = NSKeyedArchiver.archivedDataWithRootObject(knownBleDevicesArray)
+                    NSUserDefaults.standardUserDefaults().setObject(knownBleDevicesData, forKey: "BLEDevices")
+                }
             }else{
-                objectArray.append(id)
-                userdefaults.setObject(objectArray, forKey: "KnownBleDevices")
+                var knownBleDevicesArray:[NSUUID] = []
+                knownBleDevicesArray.append(id)
+                let knownBleDevicesData = NSKeyedArchiver.archivedDataWithRootObject(knownBleDevicesArray)
+                NSUserDefaults.standardUserDefaults().setObject(knownBleDevicesData, forKey: "BLEDevices")
+ 
             }
-            
         } else {
-            var array:[NSUUID] = [NSUUID]()
-            array.append(id)
-            userdefaults.setObject(array, forKey: "KnownBleDevices")
-            
+            var knownBleDevicesArray:[NSUUID] = []
+            knownBleDevicesArray.append(id)
+            let knownBleDevicesData = NSKeyedArchiver.archivedDataWithRootObject(knownBleDevicesArray)
+            NSUserDefaults.standardUserDefaults().setObject(knownBleDevicesData, forKey: "BLEDevices")
         }
-        userdefaults.synchronize()
     }
     
     
     func setArduinoDevice(peripheral:Peripheral){
         
         let arduino:ArduinoDevice = ArduinoDevice(cbPeripheral: peripheral.cbPeripheral, advertisements: peripheral.advertisements, rssi: peripheral.rssi, test: true)
-        
+        arduino.reportSensorData(true)
         if peripheral.services.count > 0 {
             for service in peripheral.services{
                 if service.characteristics.count > 0 {
@@ -251,7 +279,7 @@ public class BluetoothService:NSObject {
     func setPhiroDevice(peripheral:Peripheral){
         
         let phiro:Phiro = Phiro(cbPeripheral: peripheral.cbPeripheral, advertisements: peripheral.advertisements, rssi: peripheral.rssi, test: true)
-        
+        phiro.reportSensorData(true)
         if peripheral.services.count > 0 {
             for service in peripheral.services{
                 if service.characteristics.count > 0 {
@@ -296,6 +324,23 @@ public class BluetoothService:NSObject {
             
         }
         
+    }
+    
+    func resetPhiro(){
+    	guard let phiroReset = phiro else {
+    		return
+    	}
+    	phiroReset.reportSensorData(false)
+    	phiroReset.resetPins()
+    }
+    
+    func resetArduino(){
+    	guard let arduinoReset = arduino else {
+    		return
+    	}
+        arduinoReset.reportSensorData(false)
+    	//RESET
+//    	arduinoReset.re
     }
 
 

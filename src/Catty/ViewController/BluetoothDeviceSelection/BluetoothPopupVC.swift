@@ -47,8 +47,7 @@ class BluetoothPopupVC: MXSegmentedPagerController {
         self.segmentedPager.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleBox
         self.segmentedPager.segmentedControl.selectionIndicatorColor = UIColor.globalTintColor()
         self.segmentedPager.segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyleFixed
-    
-        
+
         setHeader()
         
         let rightButton:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: self, action: "dismissView")
@@ -62,7 +61,7 @@ class BluetoothPopupVC: MXSegmentedPagerController {
     }
     
     override func segmentedPager(segmentedPager: MXSegmentedPager, titleForSectionAtIndex index: Int) -> String {
-        return ["Known Devices","Connected Devices","Search"][index];//
+        return ["Search"][index];//
     }
     
     override func segmentedPager(segmentedPager: MXSegmentedPager, viewControllerForPageAtIndex index: Int) -> UIViewController {

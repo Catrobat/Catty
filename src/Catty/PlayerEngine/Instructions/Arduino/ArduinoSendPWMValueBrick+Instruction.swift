@@ -35,7 +35,7 @@ extension ArduinoSendPWMValueBrick :CBInstructionProtocol {
             let settingValue = UInt8(self.value.interpretDoubleForSprite(self.script?.object))
             
             if let arduino:ArduinoDevice = BluetoothService.swiftSharedInstance.arduino {
-                arduino.setAnalogArduinoPin(pinValue, value: settingValue)
+                arduino.setPWMArduinoPin(pinValue, value: settingValue)
             }
         }
         
