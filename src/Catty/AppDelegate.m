@@ -26,6 +26,7 @@
 #import "UIColor+CatrobatUIColorExtensions.h"
 #import <AVFoundation/AVFoundation.h>
 #import "ScenePresenterViewController.h"
+#import "CatrobatTableViewController.h"
 #import "Pocket_Code-Swift.h"
 #import "NetworkDefines.h"
 
@@ -106,6 +107,19 @@ void uncaughtExceptionHandler(NSException *exception)
     [UINavigationBar appearance].barTintColor = UIColor.navBarColor;
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor navTextColor]}];
     self.window.tintColor = [UIColor globalTintColor];
+}
+
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    UINavigationController *vc = (UINavigationController*)self.window.rootViewController;
+    
+    if ([vc.topViewController isKindOfClass:[CatrobatTableViewController class]]){
+        CatrobatTableViewController* ctvc = (CatrobatTableViewController*)vc.topViewController;
+        [ctvc addProgramFromInbox];
+        return YES;
+    }
+    
+    return NO;
 }
 
 @end

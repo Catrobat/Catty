@@ -336,10 +336,10 @@
 		92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
 		A918B6B71B89F5870017B92F /* Siren.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A918B6B61B89F5870017B92F /* Siren.bundle */; };
-		A9B507291BC7EE5100A01D39 /* CatrobatTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B507281BC7EE5100A01D39 /* CatrobatTVCTests.swift */; settings = {ASSET_TAGS = (); }; };
 		A920EF3A1BCAB4ED00743FE2 /* LooksTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A920EF391BCAB4ED00743FE2 /* LooksTVCTests.swift */; settings = {ASSET_TAGS = (); }; };
 		A988832C1BCA86FF005029E8 /* ObjectTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */; settings = {ASSET_TAGS = (); }; };
 		A988832E1BCA98DD005029E8 /* SoundsTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988832D1BCA98DD005029E8 /* SoundsTVCTests.swift */; settings = {ASSET_TAGS = (); }; };
+		A9B507291BC7EE5100A01D39 /* CatrobatTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B507281BC7EE5100A01D39 /* CatrobatTVCTests.swift */; settings = {ASSET_TAGS = (); }; };
 		AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */; settings = {ASSET_TAGS = (); }; };
 		AA401FE91BBEF6F9001BC49F /* CBInstructionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */; settings = {ASSET_TAGS = (); }; };
 		AA6CC28B1BB4AB9A0007A621 /* CBScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CC28A1BB4AB9A0007A621 /* CBScriptContext.swift */; settings = {ASSET_TAGS = (); }; };
@@ -1322,10 +1322,10 @@
 		92FF32C21A24E33B00093DA7 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
 		A918B6B41B89F5690017B92F /* Siren.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Siren.swift; path = Siren/Siren.swift; sourceTree = "<group>"; };
 		A918B6B61B89F5870017B92F /* Siren.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Siren.bundle; sourceTree = "<group>"; };
-		A9B507281BC7EE5100A01D39 /* CatrobatTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatrobatTVCTests.swift; sourceTree = "<group>"; };
 		A920EF391BCAB4ED00743FE2 /* LooksTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LooksTVCTests.swift; sourceTree = "<group>"; };
 		A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectTVCTests.swift; sourceTree = "<group>"; };
 		A988832D1BCA98DD005029E8 /* SoundsTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundsTVCTests.swift; sourceTree = "<group>"; };
+		A9B507281BC7EE5100A01D39 /* CatrobatTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatrobatTVCTests.swift; sourceTree = "<group>"; };
 		AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitBrickTests.swift; sourceTree = "<group>"; };
 		AA401FE81BBEF6F9001BC49F /* CBInstructionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBInstructionProtocol.swift; path = PlayerEngine/Protocols/CBInstructionProtocol.swift; sourceTree = "<group>"; };
 		AA6CC28A1BB4AB9A0007A621 /* CBScriptContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBScriptContext.swift; path = PlayerEngine/DataModel/CBScriptContext/CBScriptContext.swift; sourceTree = "<group>"; };

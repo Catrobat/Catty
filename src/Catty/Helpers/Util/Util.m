@@ -47,6 +47,7 @@
 #import <objc/runtime.h>
 #import <sys/sysctl.h>
 #import "OrderedDictionary.h"
+#import "SSZipArchive.h"
 
 @interface Util () <CatrobatAlertViewDelegate>
 #define ROOTVIEW [[[UIApplication sharedApplication] keyWindow] rootViewController]
@@ -1223,6 +1224,7 @@ replacementString:(NSString*)characters
     for (NSString * brick in defautArray.reverseObjectEnumerator) {
         [dict insertObject:kNSNumberZero forKey:brick atIndex:0];
     }
-    return dict;}
+    return dict;
+}
 
 @end
