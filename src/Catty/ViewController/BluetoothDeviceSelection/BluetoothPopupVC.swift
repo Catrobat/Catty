@@ -34,6 +34,7 @@ class BluetoothPopupVC: MXSegmentedPagerController {
     var vc : ScenePresenterViewController?
 
     var deviceArray:[Int]?
+    var rightButton:UIBarButtonItem = UIBarButtonItem()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +51,7 @@ class BluetoothPopupVC: MXSegmentedPagerController {
 
         setHeader()
         
-        let rightButton:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: self, action: "dismissView")
+        rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: self, action: "dismissView")
         self.navigationItem.rightBarButtonItem = rightButton
 
     }

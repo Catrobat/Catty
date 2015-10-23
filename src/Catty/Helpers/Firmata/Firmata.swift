@@ -55,8 +55,6 @@ let SAMPLING_INTERVAL       :UInt8   = 0x7A // sampling interval
 let SYSEX_NON_REALTIME      :UInt8   = 0x7E // MIDI Reserved for non-realtime messages
 let SYSEX_REALTIME          :UInt8   = 0x7F // MIDI Reserved for realtime messages
 
-
-
 protocol FirmataDelegate {
     
     func sendData(newData: NSData)
@@ -68,6 +66,8 @@ protocol FirmataDelegate {
 //    func I2cMessageReceived(message:String)
     func stringDataReceived(message:String)
     func didReceiveDigitalPort(port:Int, portData:[Int])
+    func didUpdateAnalogMapping(mapping:NSMutableDictionary)
+    func didUpdateCapability(pins:[[Int:Int]])
 }
 
 enum PinState:Int{
@@ -82,6 +82,8 @@ enum PinMode:Int{
     case Analog
     case PWM
     case Servo
+    case Shift
+    case I2C
 }
 
 public class Firmata {
@@ -536,7 +538,9 @@ public class Firmata {
                 sysexData.getBytes(&firmataDataBytes, length:sysexCount * sizeof(UInt8))
     
                 print("Sysex Command byte is %02hhx", firmataDataBytes[1]);
-    
+                if firmataDataBytes.count < 2{
+                    return
+                }
                 switch ( firmataDataBytes[1] ){
     
                     case ANALOG_MAPPING_RESPONSE:
@@ -561,6 +565,7 @@ public class Firmata {
                     break;
                 }
                 sysexData.length = 0
+                break;
     
             } else if(seenStartSysex) {
                 print("In sysex, appending waiting for end sysex %c", byte);
@@ -815,12 +820,11 @@ public class Firmata {
                 analogMapping.setObject(NSNumber(unsignedChar: j), forKey: NSNumber(unsignedChar: bytes[i]))
             }
     
-            j=j+1;
+            j=j+1
         }
     
-        print("Analog Mapping Response %@",analogMapping);
-//    TODO
-//    [peripheralDelegate didUpdateAnalogMapping:analogMapping];
+        print("Analog Mapping Response %@",analogMapping)
+        delegate.didUpdateAnalogMapping(analogMapping)
     }
 
     /* capabilities response
@@ -838,7 +842,7 @@ public class Firmata {
     */
     func parseCapabilityResponse(data:NSData){
         
-        let pins = NSMutableArray()
+        var pins = [[Int:Int]]()
     
         var j:UInt8 = 0
     
@@ -850,21 +854,22 @@ public class Firmata {
         //take end byte off the end
         for (var i = 2; i < data.length - 1; i++){
             //ugh altering i inside of loop...
-            let modes = NSMutableDictionary()
+            var modes = [Int:Int]()
     
             while(bytes[i] != 127){
     
                 let mode = bytes[i++];
                 let resolution = bytes[i++];
     
-                print("Pin %i  Mode: %02hhx Resolution:%02hhx", j, mode, resolution);
-                modes.setObject(NSNumber(unsignedChar: resolution), forKey: NSNumber(unsignedChar: mode))
+//                print("Pin %i  Mode: %02hhx Resolution:%02hhx", j, mode, resolution);
+                modes[Int(mode)] = Int(resolution)
             }
             j=j+1;
-            pins.addObject(modes);
+            pins.append(modes);
         }
     
         print("Capability Response %@",pins);
+        delegate.didUpdateCapability(pins)
 //    [peripheralDelegate didUpdateCapability:(NSMutableArray*)pins];
     }
 

@@ -103,6 +103,7 @@
 #import "ProgramDefines.h"
 #import "FlashHelper.h"
 #import "LanguageTranslationDefines.h"
+#import "LoadingView.h"
 
 //------------------------------------------------------------------------------------------------------------
 // TableView classes

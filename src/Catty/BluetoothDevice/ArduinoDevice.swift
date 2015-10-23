@@ -62,6 +62,9 @@ private let MAX_ANALOG_SENSOR_PIN:UInt8 = 5;
     var digitalValue:Int = 0
     var analogValue:Double = 0
     private var isReportingSensorData = false
+    private var totalPins = 0
+    private var analogMapping = NSMutableDictionary()
+    private var pinsArray = [[String:Any]]()
     
     let firmata:Firmata = Firmata()
     public let arduinoHelper:ArduinoHelper = ArduinoHelper()
@@ -163,54 +166,64 @@ private let MAX_ANALOG_SENSOR_PIN:UInt8 = 5;
     
     //MARK: Arduino Functions
     func setDigitalArduinoPin(digitalPinNumber:UInt8, pinValue:Int){
-        if(pinValue > 0){
-            firmata.writePinMode(PinMode.Output, pin: digitalPinNumber)
-            firmata.writePinState(PinState.High, pin: digitalPinNumber)
-            setPortValue(Int(digitalPinNumber), value: 1)
-        } else {
-            firmata.writePinMode(PinMode.Output, pin: digitalPinNumber)
-            firmata.writePinState(PinState.Low, pin: digitalPinNumber)
-            setPortValue(Int(digitalPinNumber), value: 0)
+        if checkDigitalPinCapability(digitalPinNumber, neededMode: PinMode.Output){
+            if(pinValue > 0){
+                firmata.writePinMode(PinMode.Output, pin: digitalPinNumber)
+                firmata.writePinState(PinState.High, pin: digitalPinNumber)
+                setPortValue(Int(digitalPinNumber), value: 1)
+            } else {
+                firmata.writePinMode(PinMode.Output, pin: digitalPinNumber)
+                firmata.writePinState(PinState.Low, pin: digitalPinNumber)
+                setPortValue(Int(digitalPinNumber), value: 0)
+            }
         }
-        
     }
     
+    
     func getDigitalArduinoPin(digitalPinNumber:UInt8)-> Double {
-        dispatch_sync(digitalQueue){
-            self.firmata.writePinMode(PinMode.Input, pin: digitalPinNumber)
-            self.firmata.reportVersion()
-            self.firmata.setDigitalStateReportingForPort(digitalPinNumber / 8, enabled: true)
-            print("requestValue")
-            let semaphore = BluetoothService.swiftSharedInstance.getSemaphore()
-            BluetoothService.swiftSharedInstance.setDigitalSemaphore(semaphore)
-            dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)))
-            BluetoothService.swiftSharedInstance.signalDigitalSemaphore(false)
-            self.firmata.setDigitalStateReportingForPort(digitalPinNumber / 8, enabled: false)
-            self.digitalValue = self.getPortValue(Int(digitalPinNumber))
-            print("setValue:\(self.digitalValue)")
+        if checkDigitalPinCapability(digitalPinNumber, neededMode: PinMode.Input){
+            dispatch_sync(digitalQueue){
+                self.firmata.writePinMode(PinMode.Input, pin: digitalPinNumber)
+                self.firmata.reportVersion()
+                self.firmata.setDigitalStateReportingForPort(digitalPinNumber / 8, enabled: true)
+                print("requestValue")
+                let semaphore = BluetoothService.swiftSharedInstance.getSemaphore()
+                BluetoothService.swiftSharedInstance.setDigitalSemaphore(semaphore)
+                dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)))
+                BluetoothService.swiftSharedInstance.signalDigitalSemaphore(false)
+                self.firmata.setDigitalStateReportingForPort(digitalPinNumber / 8, enabled: false)
+                self.digitalValue = self.getPortValue(Int(digitalPinNumber))
+                print("setValue:\(self.digitalValue)")
+            }
+            print("setValue after dispatch:\(self.digitalValue)")
+            return Double(self.digitalValue)
         }
-        print("setValue after dispatch:\(self.digitalValue)")
-        return Double(self.digitalValue)
+        return Double(0)
     }
     
     
     func reportAnalogArduinoPin(analogPinNumber:UInt8,report:Bool) {
-        self.firmata.writePinMode(PinMode.Input, pin: analogPinNumber)
-        self.firmata.setAnalogValueReportingforPin(analogPinNumber, enabled: report)
+        if checkAnalogPinCapability(analogPinNumber, neededMode: PinMode.Unknown) {
+            self.firmata.writePinMode(PinMode.Input, pin: analogPinNumber)
+            self.firmata.setAnalogValueReportingforPin(analogPinNumber, enabled: report)
+        }
     }
     
     func getAnalogArduinoPin(analogPinNumber:UInt8) -> Double {
-        dispatch_sync(analogQueue){
-            self.firmata.writePinMode(PinMode.Input, pin: analogPinNumber)
-            self.firmata.setAnalogValueReportingforPin(analogPinNumber, enabled: true)
-            let semaphore = BluetoothService.swiftSharedInstance.getSemaphore()
-            BluetoothService.swiftSharedInstance.setAnalogSemaphore(semaphore)
-            dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)))
+        if checkAnalogPinCapability(analogPinNumber, neededMode: PinMode.Unknown) {
+            dispatch_sync(analogQueue){
+                self.firmata.writePinMode(PinMode.Input, pin: analogPinNumber)
+                self.firmata.setAnalogValueReportingforPin(analogPinNumber, enabled: true)
+                let semaphore = BluetoothService.swiftSharedInstance.getSemaphore()
+                BluetoothService.swiftSharedInstance.setAnalogSemaphore(semaphore)
+                dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)))
 //            self.firmata.setAnalogValueReportingforPin(analogPinNumber, enabled: false)
-            self.analogValue = self.getAnalogPin(analogPinNumber)
-            print(self.analogValue)
+                self.analogValue = self.getAnalogPin(analogPinNumber)
+                print(self.analogValue)
+            }
+            return Double(self.analogValue)
         }
-        return Double(self.analogValue)
+        return Double(0)
     }
     
     
@@ -235,8 +248,10 @@ private let MAX_ANALOG_SENSOR_PIN:UInt8 = 5;
     }
     
     func setPWMArduinoPin(pin:UInt8, value:UInt8) {
-        firmata.writePinMode(PinMode.PWM, pin: pin)
-        firmata.writePWMValue(value, pin: pin)
+        if checkDigitalPinCapability(pin, neededMode: PinMode.PWM){
+            firmata.writePinMode(PinMode.PWM, pin: pin)
+            firmata.writePWMValue(value, pin: pin)
+        }
     }
     
     func reportSensorData(report:Bool) {
@@ -274,6 +289,55 @@ private let MAX_ANALOG_SENSOR_PIN:UInt8 = 5;
         
         return (Int) (Double(value) * 2.55);
     }
+    
+    func checkDigitalPinCapability(pinNumber:UInt8,neededMode:PinMode) -> Bool {
+        if(pinsArray.count > 0){
+            let pinCheck = "D\(pinNumber)"
+            for pin:[String:Any] in pinsArray {
+                let pinName:String = pin["name"] as! String
+                if pinName == pinCheck {
+                    if neededMode == PinMode.Unknown {
+                        return true
+                    }
+                    let modes:[Int:Int] = pin["modes"] as! [Int:Int]
+                    for (mode,_) in modes {
+                        if mode == neededMode.rawValue {
+                            return true
+                        }
+                    }
+                    return false
+                }
+            }
+            //do not sent if no mapping
+            return false
+        }
+        return true
+    }
+    
+    
+    func checkAnalogPinCapability(pinNumber:UInt8,neededMode:PinMode) -> Bool {
+        if(pinsArray.count > 0){
+            let pinCheck = "A\(pinNumber)"
+            for pin:[String:Any] in pinsArray {
+                let pinName:String = pin["name"] as! String
+                if pinName == pinCheck {
+                    if neededMode == PinMode.Unknown {
+                        return true
+                    }
+                    let modes:[Int:Int] = pin["modes"] as! [Int:Int]
+                    for (mode,_) in modes {
+                        if mode == neededMode.rawValue {
+                            return true
+                        }
+                    }
+                }
+            }
+            //do not sent if no mapping
+            return false
+        }
+        return true
+    }
+
     
     // MARK: override
     
@@ -329,6 +393,7 @@ private let MAX_ANALOG_SENSOR_PIN:UInt8 = 5;
                 }
             }
         }
+        firmata.analogMappingQuery()
         
     }
     
@@ -365,7 +430,36 @@ private let MAX_ANALOG_SENSOR_PIN:UInt8 = 5;
         print(message)
     }
     
+    func didUpdateAnalogMapping(analogMapping:NSMutableDictionary){
+        self.analogMapping = analogMapping
+        firmata.capabilityQuery()
+    }
     
+    func didUpdateCapability(pins: [[Int:Int]]) {
+        let totalPins = pins.count
+        let totalAnalog = analogMapping.count
+        let totalDigital = totalPins-totalAnalog
+        
+        var k = 0;
+        var pinArray = [[String:Any]]()
+        for (var i = 0; i < pins.count ; i++)
+        {
+            let modes:[Int:Int] = pins[i] 
+            
+            var pin:[String:Any] = [String:Any]()
+            
+            if(i<totalDigital){
+                pin["name"] = "D\(i)"
+            }else{
+                k++
+                pin["name"] = "A\(k)"
+            }
+            pin["modes"] = modes
+            pin["firmatapin"] = i
+            pinArray.append(pin)
+        }
+        pinsArray = pinArray
+    }
     //MARK: setter/getter
     
     public func getAnalogPin0() -> Int {

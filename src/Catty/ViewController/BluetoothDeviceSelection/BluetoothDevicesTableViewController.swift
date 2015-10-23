@@ -38,7 +38,7 @@ class BluetoothDevicesTableViewController:UITableViewController {
     }
     
     weak var delegate : BluetoothPopupVC?
-    
+    private let loadingView = LoadingView()
     
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -60,6 +60,11 @@ class BluetoothDevicesTableViewController:UITableViewController {
                 BluetoothService.swiftSharedInstance.setArduinoDevice(peripheral)
             }
         }
+        dispatch_async(dispatch_get_main_queue(), {
+            self.view.addSubview(self.loadingView)
+            self.loadingView.show()
+        })
+        
     }
 
     
@@ -70,6 +75,8 @@ class BluetoothDevicesTableViewController:UITableViewController {
             delegate!.setHeader()
             return
         }
+        tableView.userInteractionEnabled = false
+        delegate!.rightButton.enabled = false
         startScene()
     }
     
@@ -79,7 +86,11 @@ class BluetoothDevicesTableViewController:UITableViewController {
         if central.isScanning {
             central.stopScanning()
         }
-        delegate!.startScene()
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 2 * Int64(NSEC_PER_SEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.loadingView.hide()
+            self.delegate!.startScene()
+        }
     }
 
 }
