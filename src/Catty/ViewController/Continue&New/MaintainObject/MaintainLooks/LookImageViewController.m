@@ -172,8 +172,6 @@
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [queue addOperation:saveOp];
     
-    
-    RuntimeImageCache *cache = [RuntimeImageCache sharedImageCache];
     NSString *imageDirPath = [[self.spriteObject projectPath] stringByAppendingString:kProgramImagesDirName];
     NSString * fileName = [self.imagePath stringByReplacingOccurrencesOfString:imageDirPath withString:@""];
     NSRange result = [fileName rangeOfString:kResourceFileNameSeparator];
@@ -188,7 +186,7 @@
             [fileName substringFromIndex:(result.location + 1)]
             ];
 
-    
+    RuntimeImageCache *cache = [RuntimeImageCache sharedImageCache];
     NSString *filePath = [NSString stringWithFormat:@"%@%@", imageDirPath, previewImageName];
     [cache overwriteThumbnailImageFromDiskWithThumbnailPath:filePath image:image thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)];
     
