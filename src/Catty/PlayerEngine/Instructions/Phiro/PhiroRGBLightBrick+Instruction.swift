@@ -37,7 +37,7 @@ extension PhiroRGBLightBrick :CBInstructionProtocol {
                 return;
             }
             
-            switch (self.light) {
+            switch (self.phiroLight()) {
             case .LLeft:
                 phiro.setLeftRGBLightColor(redValue, green: greenValue, blue: blueValue);
                 break;

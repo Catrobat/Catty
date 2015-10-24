@@ -36,7 +36,7 @@ extension PhiroPlayToneBrick :CBInstructionProtocol {
                     }
             
             
-            switch (self.tone) {
+            switch (self.phiroTone()) {
             case .DO:
                     phiro.playTone(262, duration: durationInterpretation);
                 break;

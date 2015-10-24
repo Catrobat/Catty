@@ -1256,15 +1256,15 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }else
         if ([brickCellData isKindOfClass:[Brick class]] && [brick conformsToProtocol:@protocol(BrickPhiroMotorProtocol)]) {
             Brick<BrickPhiroMotorProtocol> *motorBrick = (Brick<BrickPhiroMotorProtocol>*)brick;
-            [motorBrick setMotor:[PhiroHelper stringToMotor:(NSString*)value] forLineNumber:line andParameterNumber:parameter];
+            [motorBrick setMotor:(NSString*)value forLineNumber:line andParameterNumber:parameter];
     }else
         if ([brickCellData isKindOfClass:[Brick class]] && [brick conformsToProtocol:@protocol(BrickPhiroToneProtocol)]) {
             Brick<BrickPhiroToneProtocol> *toneBrick = (Brick<BrickPhiroToneProtocol>*)brick;
-            [toneBrick setTone:[PhiroHelper stringToTone:(NSString*)value] forLineNumber:line andParameterNumber:parameter];
+            [toneBrick setTone:(NSString*)value forLineNumber:line andParameterNumber:parameter];
     }else
         if ([brickCellData isKindOfClass:[Brick class]] && [brick conformsToProtocol:@protocol(BrickPhiroLightProtocol)]) {
             Brick<BrickPhiroLightProtocol> *lightBrick = (Brick<BrickPhiroLightProtocol>*)brick;
-            [lightBrick setLight:[PhiroHelper stringToLight:(NSString*)value] forLineNumber:line andParameterNumber:parameter];
+            [lightBrick setLight:(NSString*)value forLineNumber:line andParameterNumber:parameter];
         }
 
     [self reloadData];

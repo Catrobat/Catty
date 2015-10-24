@@ -26,5 +26,7 @@
 
 @interface PhiroPlayToneBrick : PhiroBrick <BrickFormulaProtocol,BrickPhiroToneProtocol>
 @property (nonatomic, strong) Formula *durationFormula;
-@property (nonatomic, assign) Tone tone;
+@property (nonatomic, strong) NSString* tone;
+
+-(Tone)phiroTone;
 @end

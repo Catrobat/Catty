@@ -27,7 +27,7 @@
 
 @protocol BrickPhiroToneProtocol <NSObject>
 
-- (Tone)toneForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
-- (void)setTone:(Tone)tone forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (NSString*)toneForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (void)setTone:(NSString*)tone forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 
 @end

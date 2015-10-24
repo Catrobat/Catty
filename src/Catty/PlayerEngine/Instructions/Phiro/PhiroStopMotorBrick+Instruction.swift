@@ -33,7 +33,7 @@ extension PhiroMotorStopBrick :CBInstructionProtocol {
                 //ERROR
                 return;
             }
-            switch (self.motor) {
+            switch (self.phiroMotor()) {
             case .Left:
                 phiro.stopLeftMotor();
                 break;

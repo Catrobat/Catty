@@ -44,8 +44,8 @@
         int currentOptionIndex = 0;
         if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickPhiroLightProtocol)]) {
             Brick<BrickPhiroLightProtocol> *rgbBrick = (Brick<BrickPhiroLightProtocol>*)brickCell.scriptOrBrick;
-            Light currentLight = [rgbBrick lightForLineNumber:line andParameterNumber:parameter];
-            switch(currentLight) {
+            NSString* currentLight = [rgbBrick lightForLineNumber:line andParameterNumber:parameter];
+            switch([PhiroHelper stringToLight:currentLight]) {
                 case LBoth:
                     currentOptionIndex = 0;
                     break;

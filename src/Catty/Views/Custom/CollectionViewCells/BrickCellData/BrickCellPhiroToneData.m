@@ -44,8 +44,9 @@
         int currentOptionIndex = 0;
         if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickPhiroToneProtocol)]) {
             Brick<BrickPhiroToneProtocol> *toneBrick = (Brick<BrickPhiroToneProtocol>*)brickCell.scriptOrBrick;
-            Tone currentLight = [toneBrick toneForLineNumber:line andParameterNumber:parameter];
-            currentOptionIndex = currentLight - 1;
+            NSString* currentLight = [toneBrick toneForLineNumber:line andParameterNumber:parameter];
+            Tone current = [PhiroHelper stringToTone:currentLight];
+            currentOptionIndex = current - 1;
 
         }
         [options addObject:[PhiroHelper toneToString:DO]];

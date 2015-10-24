@@ -26,8 +26,10 @@
 
 @interface PhiroRGBLightBrick : PhiroBrick <BrickFormulaProtocol,BrickPhiroLightProtocol>
 
-@property (nonatomic, assign) Light light;
+@property (nonatomic, strong) NSString* light;
 @property (nonatomic, strong) Formula *redFormula;
 @property (nonatomic, strong) Formula *greenFormula;
 @property (nonatomic, strong) Formula *blueFormula;
+
+-(Light)phiroLight;
 @end

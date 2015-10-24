@@ -25,5 +25,7 @@
 
 @interface PhiroMotorStopBrick : PhiroBrick<BrickPhiroMotorProtocol>
 
-@property (nonatomic, assign) Motor motor;
+@property (nonatomic, strong) NSString* motor;
+
+-(Motor)phiroMotor;
 @end

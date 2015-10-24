@@ -23,6 +23,7 @@
 #import "PhiroRGBLightBrick.h"
 #import "BrickFormulaProtocol.h"
 #import "Script.h"
+#import "PhiroHelper.h"
 
 @implementation PhiroRGBLightBrick
 - (NSString*)brickTitle
@@ -74,12 +75,12 @@
         self.blueFormula = formula;
     }
 }
-- (Light)lightForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+- (NSString*)lightForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.light;
 }
 
-- (void)setLight:(Light)light forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+- (void)setLight:(NSString*)light forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     if(light)
         self.light = light;
@@ -88,8 +89,14 @@
 #pragma mark - Default values
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
+    self.light = [PhiroHelper lightToString:LBoth];
     self.redFormula = [[Formula alloc] initWithZero];
     self.greenFormula = [[Formula alloc] initWithZero];
     self.blueFormula = [[Formula alloc] initWithZero];
+}
+
+-(Light)phiroLight
+{
+    return [PhiroHelper stringToLight:self.light];
 }
 @end

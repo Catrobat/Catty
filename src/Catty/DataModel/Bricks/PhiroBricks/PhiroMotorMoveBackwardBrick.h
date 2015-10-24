@@ -26,7 +26,8 @@
 
 @interface PhiroMotorMoveBackwardBrick : PhiroBrick <BrickPhiroMotorProtocol,BrickFormulaProtocol>
 
-@property (nonatomic, assign) Motor motor;
+@property (nonatomic, strong) NSString* motor;
 @property (nonatomic, strong) Formula *formula;
 
+-(Motor)phiroMotor;
 @end

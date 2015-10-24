@@ -22,6 +22,7 @@
 
 #import "PhiroPlayToneBrick.h"
 #import "Script.h"
+#import "PhiroHelper.h"
 
 @implementation PhiroPlayToneBrick
 - (NSString*)brickTitle
@@ -52,12 +53,12 @@
 {
     self.durationFormula = formula;
 }
-- (Tone)toneForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+- (NSString*)toneForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.tone;
 }
 
-- (void)setTone:(Tone)tone forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+- (void)setTone:(NSString*)tone forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     self.tone = tone;
 }
@@ -65,7 +66,12 @@
 #pragma mark - Default values
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-
+    self.tone = [PhiroHelper toneToString:DO];
     self.durationFormula = [[Formula alloc] initWithZero];
 }
+
+-(Tone)phiroTone
+{
+    return [PhiroHelper stringToTone:self.tone];
+};
 @end

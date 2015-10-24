@@ -43,8 +43,8 @@
         int currentOptionIndex = 0;
         if([brickCell.scriptOrBrick conformsToProtocol:@protocol(BrickPhiroMotorProtocol)]) {
             Brick<BrickPhiroMotorProtocol> *motorBrick = (Brick<BrickPhiroMotorProtocol>*)brickCell.scriptOrBrick;
-            Motor currentMotor = [motorBrick motorForLineNumber:line andParameterNumber:parameter];
-            switch(currentMotor) {
+            NSString* currentMotor = [motorBrick motorForLineNumber:line andParameterNumber:parameter];
+            switch([PhiroHelper stringToMotor:currentMotor]) {
                 case Both:
                     currentOptionIndex = 0;
                     break;

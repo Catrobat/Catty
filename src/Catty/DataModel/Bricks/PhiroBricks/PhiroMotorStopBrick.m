@@ -21,6 +21,7 @@
  */
 
 #import "PhiroMotorStopBrick.h"
+#import "PhiroHelper.h"
 
 @implementation PhiroMotorStopBrick
 - (NSString*)brickTitle
@@ -43,12 +44,12 @@
     return NO;
 }
 
-- (Motor)motorForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+- (NSString*)motorForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     return self.motor;
 }
 
-- (void)setMotor:(Motor)motor forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
+- (void)setMotor:(NSString*)motor forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
     if(motor)
         self.motor = motor;
@@ -57,7 +58,12 @@
 #pragma mark - Default values
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.motor = Both;
+    self.motor = [PhiroHelper motorToString:Both];
+}
+
+-(Motor)phiroMotor
+{
+    return [PhiroHelper stringToMotor:self.motor];
 }
 
 @end

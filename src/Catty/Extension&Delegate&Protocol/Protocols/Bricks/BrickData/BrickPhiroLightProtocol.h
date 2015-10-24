@@ -27,7 +27,7 @@
 
 @protocol BrickPhiroLightProtocol <NSObject>
 
-- (Light)lightForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
-- (void)setLight:(Light)light forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (NSString*)lightForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
+- (void)setLight:(NSString*)light forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber;
 
 @end

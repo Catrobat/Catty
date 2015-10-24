@@ -39,7 +39,7 @@ extension PhiroMotorMoveForwardBrick :CBInstructionProtocol {
                 return
             }
             
-            switch (self.motor) {
+            switch (self.phiroMotor()) {
             case .Left:
                     phiro.moveLeftMotorForward(speedValue);
                 break;
