@@ -25,7 +25,7 @@ import BluetoothHelper
 import CoreBluetooth
 
 
-class BluetoothDevicesTableViewController:UITableViewController {
+class BluetoothDevicesTableViewController:UITableViewController,CatrobatAlertViewDelegate {
     override func viewDidLoad() {
         self.tableView.backgroundColor = UIColor.backgroundColor()
     }
@@ -43,20 +43,33 @@ class BluetoothDevicesTableViewController:UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let peri :Peripheral = CentralManager.sharedInstance.peripherals[indexPath.row];
+        BluetoothService.swiftSharedInstance.selectionManager = self
         if peri.state == CBPeripheralState.Connected {
             self.deviceConnected(peri)
             return
         }
-        BluetoothService.swiftSharedInstance.selectionManager = self
         BluetoothService.swiftSharedInstance.connectDevice(peri)
-                
     }
     
     func deviceConnected(peripheral:Peripheral){
         if(delegate!.deviceArray!.count > 0){
             if(delegate!.deviceArray![0] == BluetoothDeviceID.phiro.rawValue){
-                 BluetoothService.swiftSharedInstance.setPhiroDevice(peripheral)
+                guard let _ = BluetoothService.sharedInstance().selectionManager else {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        Util.alertWithTitle("Connection not possible", andText:  "Please try resetting the device and try again.")
+                        self.delegate?.dismissView()
+                    })
+                    return
+                }
+                BluetoothService.swiftSharedInstance.setPhiroDevice(peripheral)
             } else if (delegate!.deviceArray![0] == BluetoothDeviceID.arduino.rawValue){
+                guard let _ = BluetoothService.sharedInstance().selectionManager else {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        Util.alertWithTitle("Connection not possible", andText:  "Please try resetting the device and try again.")
+                        self.delegate?.dismissView()
+                    })
+                    return
+                }
                 BluetoothService.swiftSharedInstance.setArduinoDevice(peripheral)
             }
         }
@@ -66,7 +79,22 @@ class BluetoothDevicesTableViewController:UITableViewController {
         })
         
     }
-
+    
+    func deviceFailedConnection(){
+        dispatch_async(dispatch_get_main_queue(), {
+            self.loadingView.hide()
+            Util.alertWithTitle("Connection failed", andText:  "Cannot connect to device, please try resetting the device and try again.")
+            self.updateWhenActive()
+        })
+    }
+    
+    func giveUpConnectionToDevice(){
+        dispatch_async(dispatch_get_main_queue(), {
+            self.loadingView.hide()
+            Util.alertWithTitle("Connection failed", andText:  "Cannot connect to device. The device is not responding.")
+            self.updateWhenActive()
+        })
+    }
     
     
     func checkStart(){

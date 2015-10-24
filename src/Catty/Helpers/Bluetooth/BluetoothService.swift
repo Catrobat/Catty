@@ -30,22 +30,7 @@ import BluetoothHelper
 }
 
 public class BluetoothService:NSObject {
-//    class var sharedInstance: BluetoothService {
-//        struct Static {
-//            static var onceToken: dispatch_once_t = 0
-//            static var instance: BluetoothService? = nil
-//        }
-//        dispatch_once(&Static.onceToken) {
-//            Static.instance = BluetoothService()
-//        }
-//        return Static.instance!
-//    }
-//    class var swiftSharedInstance: BluetoothService {
-//        struct Singleton {
-//            static let instance = BluetoothService()
-//        }
-//        return Singleton.instance
-//    }
+
     static let swiftSharedInstance = BluetoothService()
 
     
@@ -71,7 +56,6 @@ public class BluetoothService:NSObject {
     
     func signalDigitalSemaphore(check:Bool){
         if(digitalSemaphoreArray.count > 0){
-//            let sema = digitalSemaphoreArray[0]
             digitalSemaphoreArray.removeAtIndex(0)
         }
         if(check == true){
@@ -129,15 +113,15 @@ public class BluetoothService:NSObject {
     
     func connectDevice(peri:Peripheral) {
      
-        let future = peri.connect(10, timeoutRetries: 10, disconnectRetries: 5, connectionTimeout: Double(10))
+        let future = peri.connect(10, timeoutRetries: 4, disconnectRetries: 0, connectionTimeout: Double(4))
         future.onSuccess {(peripheral, connectionEvent) in
-
+   
             switch connectionEvent {
             case .Connected:
+                self.updateKnownDevices(peripheral.id)
                 guard let manager = self.selectionManager else {
                     return
                 }
-                self.updateKnownDevices(peripheral.id)
                 manager.deviceConnected(peripheral)
                 manager.updateWhenActive()
                 break
@@ -153,9 +137,10 @@ public class BluetoothService:NSObject {
                     return
                 }
                 manager.updateWhenActive()
+                break
             case .Timeout:
-                //feature
                 peripheral.reconnect()
+                break
             case .ForcedDisconnected:
                 if let scene = self.scenePresenter {
                     scene.connectionLost();
@@ -167,13 +152,18 @@ public class BluetoothService:NSObject {
                 CentralManager.sharedInstance.disconnectAllPeripherals()
                 CentralManager.sharedInstance.removeAllPeripherals()
                 print("Fail")
+                self.connectionFailure()
+                break
             case .GiveUp:
                 peripheral.disconnect()
-//                self.updateWhenActive()
+                print("GiveUp")
+                self.giveUpFailure()
+                break
             }
         }
         future.onFailure {error in
             print("Fail \(error)")
+            self.connectionFailure()
         }
 
     }
@@ -234,6 +224,7 @@ public class BluetoothService:NSObject {
             for service in peripheral.services{
                 if service.characteristics.count > 0 {
                     guard let manager = self.selectionManager else {
+                        print("SHOULD NEVER HAPPEN")
                         return
                     }
                     BluetoothService.swiftSharedInstance.arduino = arduino
@@ -249,7 +240,7 @@ public class BluetoothService:NSObject {
         
         future.onSuccess{peripheral in
             guard peripheral.services.count > 0 else {
-                //ERROR
+                self.serviceDiscoveryFailed()
                 return
             }
             
@@ -259,21 +250,47 @@ public class BluetoothService:NSObject {
                 let charFuture = service.discoverAllCharacteristics();
                 charFuture.onSuccess{service in
                     guard service.characteristics.count > 0 else {
+                        self.serviceDiscoveryFailed()
                         return
                     }
                     if(arduino.txCharacteristic != nil && arduino.rxCharacteristic != nil){
                             guard let manager = self.selectionManager else {
+                                print("SHOULD NEVER HAPPEN")
                                 return
                             }
                             BluetoothService.swiftSharedInstance.arduino = arduino
                             manager.checkStart()
                             return
                     }
+                    self.serviceDiscoveryFailed()
+                }
+                charFuture.onFailure{error in
+                    self.serviceDiscoveryFailed()
                 }
             }
             
         }
+        
+        future.onFailure{error in
+            self.serviceDiscoveryFailed()
+        }
 
+    }
+    
+    func serviceDiscoveryFailed() {
+        giveUpFailure()
+    }
+    
+    func giveUpFailure() {
+        if let manager = self.selectionManager  {
+            manager.giveUpConnectionToDevice()
+        }
+    }
+    
+    func connectionFailure() {
+        if let manager = self.selectionManager  {
+            manager.deviceFailedConnection()
+        }
     }
     
     func setPhiroDevice(peripheral:Peripheral){
@@ -299,7 +316,7 @@ public class BluetoothService:NSObject {
         
         future.onSuccess{peripheral in
             guard peripheral.services.count > 0 else {
-                //ERROR
+                self.serviceDiscoveryFailed()
                 return
             }
             
@@ -309,6 +326,7 @@ public class BluetoothService:NSObject {
                 let charFuture = service.discoverAllCharacteristics();
                 charFuture.onSuccess{service in
                     guard service.characteristics.count > 0 else {
+                        self.serviceDiscoveryFailed()
                         return
                     }
                     if(phiro.txCharacteristic != nil && phiro.rxCharacteristic != nil){
@@ -319,9 +337,17 @@ public class BluetoothService:NSObject {
                         manager.checkStart()
                         return
                     }
+                    self.serviceDiscoveryFailed()
+                }
+                charFuture.onFailure{error in
+                    self.serviceDiscoveryFailed()
                 }
             }
             
+        }
+        
+        future.onFailure{error in
+            self.serviceDiscoveryFailed()
         }
         
     }
@@ -339,7 +365,7 @@ public class BluetoothService:NSObject {
     		return
     	}
         arduinoReset.reportSensorData(false)
-    	//RESET
+    	//TODO should we reset?!
 //    	arduinoReset.re
     }
 
