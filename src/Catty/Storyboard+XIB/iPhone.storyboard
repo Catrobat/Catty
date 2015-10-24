@@ -1511,7 +1511,7 @@
         <!--Connected Devices Table View Controller-->
         <scene sceneID="I3k-0F-vqH">
             <objects>
-                <tableViewController id="hIa-KA-efo" customClass="ConnectedDevicesTableViewController" customModule="Pocket_Code" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ConnectedDevices" id="hIa-KA-efo" customClass="ConnectedDevicesTableViewController" customModule="Pocket_Code" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="20V-pm-SpW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1542,7 +1542,7 @@
         <!--Known Devices Table View Controller-->
         <scene sceneID="pzD-yL-fg4">
             <objects>
-                <tableViewController id="1IF-Eq-4MO" customClass="KnownDevicesTableViewController" customModule="Pocket_Code" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="KnownDevices" id="1IF-Eq-4MO" customClass="KnownDevicesTableViewController" customModule="Pocket_Code" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="e4U-a0-vya">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

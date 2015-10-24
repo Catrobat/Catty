@@ -164,7 +164,7 @@ final class CBSpriteNode: SKSpriteNode {
 //              let scheduler = playerScene.scheduler
 //        else { return false }
 //
-//        // FIXME: this check does not work any more since Swift 2.0! seems to be a compiler problem!
+//        //  this check does not work any more since Swift 2.0! seems to be a compiler problem!
 //        //        if scheduler.running == false {
 //        //            return false
 //        //        }

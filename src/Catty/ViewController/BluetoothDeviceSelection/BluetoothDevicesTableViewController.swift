@@ -25,7 +25,7 @@ import BluetoothHelper
 import CoreBluetooth
 
 
-class BluetoothDevicesTableViewController:UITableViewController,CatrobatAlertViewDelegate {
+class BluetoothDevicesTableViewController:UITableViewController{
     override func viewDidLoad() {
         self.tableView.backgroundColor = UIColor.backgroundColor()
     }

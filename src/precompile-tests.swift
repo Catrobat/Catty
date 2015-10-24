@@ -143,7 +143,7 @@ func printErrorAndExitIfFailed(errorMessage: String)
 extension String {
     func removeCharsFromEnd(count:Int) -> String {
         let temp = self as NSString
-        let stringLength = temp.length // FIXME: workaround for count(self)
+        let stringLength = temp.length
         let substringIndex = (stringLength < count) ? 0 : stringLength - count
         return self.substringToIndex(self.startIndex.advancedBy(substringIndex))
     }

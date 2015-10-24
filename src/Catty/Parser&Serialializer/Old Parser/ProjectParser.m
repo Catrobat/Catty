@@ -47,7 +47,6 @@
 #define kParserObjectTypeMutableDictionary @"T@\"NSMutableDictionary\""
 #define kParserObjectTypeDate           @"T@\"NSDate\""
 
-// TODO: fix the user defined warnings below and remove this in final version
 #define kParserObjectTypeSprite         @"T@\"SpriteObject\""
 #define kParserObjectTypeLookData       @"T@\"Look\""
 #define kParserObjectTypeLoopBeginBrick @"T@\"LoopBeginBrick\""
