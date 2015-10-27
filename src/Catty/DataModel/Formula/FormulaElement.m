@@ -21,7 +21,7 @@
  */
 
 #import "FormulaElement.h"
-#import "ProgramManager.h"
+#import "ProgramVariableManager.h"
 #import "Program.h"
 #import "VariablesContainer.h"
 #import "UserVariable.h"
@@ -115,8 +115,8 @@
 
         case USER_VARIABLE: {
             //NSDebug(@"User Variable");
-            Program *program = [ProgramManager sharedProgramManager].program;
-            UserVariable *var = [program.variables getUserVariableNamed:self.value forSpriteObject:sprite];
+            VariablesContainer *variables = [ProgramVariableManager sharedProgramVariablesManager].variables;
+            UserVariable *var = [variables getUserVariableNamed:self.value forSpriteObject:sprite];
 //            result = [NSNumber numberWithDouble:[var.value doubleValue]];
             if (var.value == nil) {
                 return [NSNumber numberWithInt:0];
@@ -493,9 +493,8 @@
 
 - (int)handleLengthUserVariableParameter:(SpriteObject *)sprite
 {
-    ProgramManager *programManager = [ProgramManager sharedProgramManager];
-    VariablesContainer *container = programManager.program.variables;
-    UserVariable *userVariable = [container getUserVariableNamed:self.leftChild.value forSpriteObject:sprite];
+    VariablesContainer *variables = [ProgramVariableManager sharedProgramVariablesManager].variables;
+    UserVariable *userVariable = [variables getUserVariableNamed:self.leftChild.value forSpriteObject:sprite];
     
     id userVariableVvalue = [userVariable value];
     if([userVariableVvalue isKindOfClass:[NSString class]])

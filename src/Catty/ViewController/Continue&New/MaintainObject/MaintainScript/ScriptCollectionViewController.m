@@ -161,7 +161,6 @@
 #pragma mark - actions
 - (void)playSceneAction:(id)sender
 {
-    //TODO: check Bluetooth
     [self playSceneAction:sender animated:YES];
 }
 
@@ -180,11 +179,11 @@
         }
         
     }
-    //    if ([vc.program.header.isArduinoProject isEqualToString:@"true"] && kArduinoActivated) { // or has Arduino Bricks
-    if (!([BluetoothService sharedInstance].arduino.state == CBPeripheralStateConnected)) {
-        [array addObject:[NSNumber numberWithInteger:BluetoothDeviceIDarduino]];
+    if ([vc.program.header.isArduinoProject isEqualToString:@"true"] && kArduinoActivated) { // or has Arduino Bricks
+        if (!([BluetoothService sharedInstance].arduino.state == CBPeripheralStateConnected)) {
+            [array addObject:[NSNumber numberWithInteger:BluetoothDeviceIDarduino]];
+        }
     }
-    //    }
     
     if ( array.count > 0) { // vc.program.requiresBluetooth
         

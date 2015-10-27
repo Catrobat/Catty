@@ -327,7 +327,7 @@
 		92FF30FD1A24DCAA00093DA7 /* Header.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30A51A24DCAA00093DA7 /* Header.m */; };
 		92FF30FE1A24DCAA00093DA7 /* Look.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30A81A24DCAA00093DA7 /* Look.m */; };
 		92FF30FF1A24DCAA00093DA7 /* Program.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30AB1A24DCAA00093DA7 /* Program.m */; };
-		92FF31001A24DCAA00093DA7 /* ProgramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30AE1A24DCAA00093DA7 /* ProgramManager.m */; };
+		92FF31001A24DCAA00093DA7 /* ProgramVariableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30AE1A24DCAA00093DA7 /* ProgramVariableManager.m */; };
 		92FF31021A24DCAA00093DA7 /* BroadcastScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30B41A24DCAA00093DA7 /* BroadcastScript.m */; };
 		92FF31031A24DCAA00093DA7 /* Script.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30B61A24DCAA00093DA7 /* Script.m */; };
 		92FF31041A24DCAA00093DA7 /* StartScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF30B81A24DCAA00093DA7 /* StartScript.m */; };
@@ -1352,8 +1352,8 @@
 		92FF30A81A24DCAA00093DA7 /* Look.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Look.m; sourceTree = "<group>"; };
 		92FF30AA1A24DCAA00093DA7 /* Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Program.h; sourceTree = "<group>"; };
 		92FF30AB1A24DCAA00093DA7 /* Program.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Program.m; sourceTree = "<group>"; };
-		92FF30AD1A24DCAA00093DA7 /* ProgramManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramManager.h; sourceTree = "<group>"; };
-		92FF30AE1A24DCAA00093DA7 /* ProgramManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramManager.m; sourceTree = "<group>"; };
+		92FF30AD1A24DCAA00093DA7 /* ProgramVariableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramVariableManager.h; sourceTree = "<group>"; };
+		92FF30AE1A24DCAA00093DA7 /* ProgramVariableManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramVariableManager.m; sourceTree = "<group>"; };
 		92FF30B31A24DCAA00093DA7 /* BroadcastScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastScript.h; sourceTree = "<group>"; };
 		92FF30B41A24DCAA00093DA7 /* BroadcastScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastScript.m; sourceTree = "<group>"; };
 		92FF30B51A24DCAA00093DA7 /* Script.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Script.h; sourceTree = "<group>"; };
@@ -3813,8 +3813,8 @@
 		92FF30AC1A24DCAA00093DA7 /* ProgramManager */ = {
 			isa = PBXGroup;
 			children = (
-				92FF30AD1A24DCAA00093DA7 /* ProgramManager.h */,
-				92FF30AE1A24DCAA00093DA7 /* ProgramManager.m */,
+				92FF30AD1A24DCAA00093DA7 /* ProgramVariableManager.h */,
+				92FF30AE1A24DCAA00093DA7 /* ProgramVariableManager.m */,
 			);
 			path = ProgramManager;
 			sourceTree = "<group>";
@@ -6230,7 +6230,7 @@
 				92DFB0161A38949E00FA9B0F /* InternFormulaState.m in Sources */,
 				AA74F0C51BC05FCE00D1E954 /* PlaySoundBrickCell.m in Sources */,
 				92FF30FA1A24DCAA00093DA7 /* Functions.m in Sources */,
-				92FF31001A24DCAA00093DA7 /* ProgramManager.m in Sources */,
+				92FF31001A24DCAA00093DA7 /* ProgramVariableManager.m in Sources */,
 				92DFB0151A38949E00FA9B0F /* InternFormulaParserEmptyStackException.m in Sources */,
 				AA74EFF31BC05B5F00D1E954 /* ClearGraphicEffectBrick.m in Sources */,
 				AAF6D9C91BC0914100686849 /* CBPlayerConfig.swift in Sources */,
