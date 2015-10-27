@@ -35,7 +35,6 @@ extension WaitBrick: CBInstructionProtocol {
 
             // UInt32 overflow protection check
             if durationInSeconds > 60.0 {
-                // TODO: handle logging in brick extension...
                 //logger.warn("WOW!!! long time to sleep (> 1min!!!)...")
                 let wakeUpTime = NSDate().dateByAddingTimeInterval(durationInSeconds)
                 //logger.debug("Sleeping now until \(wakeUpTime)...")

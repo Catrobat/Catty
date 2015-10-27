@@ -142,8 +142,9 @@
     if([returnValue isKindOfClass:[NSNumber class]]) {
         self.lastResult = [self.formulaTree isIdempotent] ? (NSNumber*)returnValue : nil;
         return [NSString stringWithFormat:@"%lf", ((NSNumber*)returnValue).doubleValue];
+    } else {
+        return @"";
     }
-    // TODO: Exception handling if no number returned
     return returnValue;
 }
 

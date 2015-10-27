@@ -381,7 +381,6 @@
         [self.skView presentScene:scene];
         self.scene = scene;
         [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:self.program.variables];
-
     }
 }
 

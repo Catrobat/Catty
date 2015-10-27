@@ -493,6 +493,7 @@
 
 - (int)handleLengthUserVariableParameter:(SpriteObject *)sprite
 {
+//    ProgramManager *programManager = [ProgramManager sharedProgramManager];
     VariablesContainer *variables = [ProgramVariablesManager sharedProgramVariablesManager].variables;
     UserVariable *userVariable = [variables getUserVariableNamed:self.leftChild.value forSpriteObject:sprite];
     

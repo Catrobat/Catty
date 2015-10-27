@@ -186,9 +186,8 @@ static SensorHandler* sharedSensorHandler = nil;
                 [self.faceDetection startFaceDetection];
                 [NSThread sleepForTimeInterval:FACE_DETECTION_DEFAULT_UPDATE_INTERVAL];
             }
-            //result = self.faceDetection.faceSize;
 //            [self.faceDetection pauseFaceDetection];
-            result = self.faceDetection.faceSize.size.width; // TODO: SIZE?!
+            result = [self checkFaceSize:self.faceDetection.faceSize.size];
             NSDebug(@"FACE_SIZE: %f %%", result);
             break;
         }
@@ -446,6 +445,13 @@ static SensorHandler* sharedSensorHandler = nil;
     self.faceDetection = [[FaceDetection alloc] init];
 }
 
-
+-(double)checkFaceSize:(CGSize)faceSize
+{
+    if (faceSize.width < [Util screenWidth] && faceSize.height < [Util screenHeight]) {
+        return (faceSize.width * faceSize.height) / ([Util screenWidth]*[Util screenHeight]) * 100;
+    } else {
+        return ([Util screenWidth]*[Util screenHeight]) / (faceSize.width * faceSize.height) * 100;
+    }
+}
 
 @end
