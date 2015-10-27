@@ -367,9 +367,9 @@ public class BluetoothService:NSObject {
     	guard let arduinoReset = arduino else {
     		return
     	}
-        arduinoReset.reportSensorData(false)
+        //arduinoReset.reportSensorData(false)
     	//TODO should we reset?!
-//    	arduinoReset.re
+        arduinoReset.resetArduino()
     }
 
 
