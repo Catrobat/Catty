@@ -20,15 +20,37 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
-#import "BrickFormulaProtocol.h"
+extension ChangeTransparencyByNBrick: CBInstructionProtocol {
 
-@class Formula;
+    func instruction() -> CBInstruction {
+        if let actionClosure = actionBlock() {
+            return .Action(action: SKAction.runBlock(actionClosure))
+        }
+        return .InvalidInstruction()
+    }
 
-@interface ChangeBrightnessByNBrick : Brick<BrickFormulaProtocol>
+    func actionBlock() -> dispatch_block_t? {
+        guard let object = self.script?.object,
+              let spriteNode = object.spriteNode,
+              let transparency = self.changeGhostEffect
+        else { fatalError("This should never happen!") }
 
-@property (nonatomic, strong) Formula *changeBrightness;
 
-- (NSString*)pathForLook:(Look*)look;
+        return {
+            let trans = transparency.interpretDoubleForSprite(object)
+            let alpha = CGFloat(spriteNode.alpha - CGFloat(trans / 100.0))
+            if (alpha < 0) {
+                spriteNode.alpha = 0;
+            
+            }
+            else if (alpha > 1){
+                spriteNode.alpha = 1;
+            }
+            else{
+                spriteNode.alpha = alpha;
+            }
+        }
 
-@end
+    }
+
+}

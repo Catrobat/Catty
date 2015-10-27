@@ -36,27 +36,6 @@
     return kLocalizedComeToFront;
 }
 
-- (SKAction*)action
-{
-    return [SKAction runBlock:[self actionBlock]];
-}
-
-- (dispatch_block_t)actionBlock
-{
-    return ^{
-        NSDebug(@"Performing: %@", self.description);
-        CGFloat zValue = self.script.object.spriteNode.zPosition;
-        CGFloat frontValue = [self.script.object.program numberOfNormalObjects];
-        self.script.object.spriteNode.zPosition = frontValue;
-        for(SpriteObject *obj in self.script.object.program.objectList){
-            if((obj.spriteNode.zPosition > zValue) && (obj.spriteNode.zPosition <= frontValue) && (obj != self.script.object)) {
-                obj.spriteNode.zPosition -=1;
-            }
-        }
-        NSDebug(@"%f",self.script.object.spriteNode.zPosition);
-    };
-}
-
 #pragma mark - Description
 - (NSString*)description
 {

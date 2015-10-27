@@ -20,15 +20,22 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "Brick.h"
-#import "BrickFormulaProtocol.h"
+extension ChangeXByNBrick: CBInstructionProtocol {
 
-@class Formula;
+    func instruction() -> CBInstruction {
+        return .Action(action: SKAction.runBlock(actionBlock()))
+    }
 
-@interface ChangeBrightnessByNBrick : Brick<BrickFormulaProtocol>
+    func actionBlock() -> dispatch_block_t {
+        guard let object = self.script?.object,
+            let spriteNode = object.spriteNode,
+            let xMovement = self.xMovement
+            else { fatalError("This should never happen!") }
+        
+        return {
+            let xMov = xMovement.interpretDoubleForSprite(object)
+            spriteNode.scenePosition = CGPointMake(spriteNode.scenePosition.x + CGFloat(xMov), spriteNode.scenePosition.y);
+        }
+    }
 
-@property (nonatomic, strong) Formula *changeBrightness;
-
-- (NSString*)pathForLook:(Look*)look;
-
-@end
+}
