@@ -88,7 +88,7 @@ class BluetoothDevicesTableViewController:UITableViewController{
         })
     }
     
-    func giveUpConnectionToDevice(){
+    func deviceNotResponding(){
         dispatch_async(dispatch_get_main_queue(), {
             self.loadingView.hide()
             Util.alertWithTitle("Connection failed", andText:  "Cannot connect to device. The device is not responding.")
@@ -96,6 +96,13 @@ class BluetoothDevicesTableViewController:UITableViewController{
         })
     }
     
+    func giveUpConnectionToDevice(){
+        dispatch_async(dispatch_get_main_queue(), {
+            self.loadingView.hide()
+            Util.alertWithTitle("Connection Lost", andText:  "Device disconnected.")
+            self.updateWhenActive()
+        })
+    }
     
     func checkStart(){
         delegate!.deviceArray!.removeAtIndex(0)

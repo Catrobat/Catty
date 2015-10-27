@@ -219,7 +219,6 @@ public class BluetoothService:NSObject {
     func setArduinoDevice(peripheral:Peripheral){
         
         let arduino:ArduinoDevice = ArduinoDevice(cbPeripheral: peripheral.cbPeripheral, advertisements: peripheral.advertisements, rssi: peripheral.rssi, test: true)
-        arduino.reportSensorData(true)
         if peripheral.services.count > 0 {
             for service in peripheral.services{
                 if service.characteristics.count > 0 {
@@ -258,6 +257,8 @@ public class BluetoothService:NSObject {
                                 print("SHOULD NEVER HAPPEN")
                                 return
                             }
+                        // TODO: Enable when reset is finished
+//                            arduino.reportSensorData(true)
                             BluetoothService.swiftSharedInstance.arduino = arduino
                             manager.checkStart()
                             return
@@ -278,7 +279,9 @@ public class BluetoothService:NSObject {
     }
     
     func serviceDiscoveryFailed() {
-        giveUpFailure()
+        if let manager = self.selectionManager  {
+            manager.deviceNotResponding()
+        }
     }
     
     func giveUpFailure() {
