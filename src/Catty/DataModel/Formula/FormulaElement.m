@@ -21,7 +21,7 @@
  */
 
 #import "FormulaElement.h"
-#import "ProgramVariableManager.h"
+#import "ProgramVariablesManager.h"
 #import "Program.h"
 #import "VariablesContainer.h"
 #import "UserVariable.h"
@@ -115,7 +115,7 @@
 
         case USER_VARIABLE: {
             //NSDebug(@"User Variable");
-            VariablesContainer *variables = [ProgramVariableManager sharedProgramVariablesManager].variables;
+            VariablesContainer *variables = [ProgramVariablesManager sharedProgramVariablesManager].variables;
             UserVariable *var = [variables getUserVariableNamed:self.value forSpriteObject:sprite];
 //            result = [NSNumber numberWithDouble:[var.value doubleValue]];
             if (var.value == nil) {
@@ -493,7 +493,7 @@
 
 - (int)handleLengthUserVariableParameter:(SpriteObject *)sprite
 {
-    VariablesContainer *variables = [ProgramVariableManager sharedProgramVariablesManager].variables;
+    VariablesContainer *variables = [ProgramVariablesManager sharedProgramVariablesManager].variables;
     UserVariable *userVariable = [variables getUserVariableNamed:self.leftChild.value forSpriteObject:sprite];
     
     id userVariableVvalue = [userVariable value];

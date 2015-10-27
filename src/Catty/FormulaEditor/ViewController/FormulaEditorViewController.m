@@ -55,7 +55,7 @@
 #import "Speakbrick.h"
 #import "KeychainUserDefaultsDefines.h"
 #import <AHKActionSheet/AHKActionSheet.h>
-#import "ProgramVariableManager.h"
+#import "ProgramVariablesManager.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -203,7 +203,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[ProgramVariableManager sharedProgramVariablesManager] setVariables:self.object.program.variables];
+    [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:self.object.program.variables];
     self.view.backgroundColor = [UIColor backgroundColor];
     [self showFormulaEditor];
     [self initSensorView];

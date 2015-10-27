@@ -31,7 +31,7 @@
 #import "SpriteManagerDelegate.h"
 #import "Brick.h"
 #import "AudioManager.h"
-#import "ProgramVariableManager.h"
+#import "ProgramVariablesManager.h"
 #import "SensorHandler.h"
 #import <AVFoundation/AVFoundation.h>
 #import <CoreImage/CoreImage.h>
@@ -167,7 +167,7 @@
 {
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
-    [[ProgramVariableManager sharedProgramVariablesManager] setVariables:nil];
+    [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:nil];
 
     // Delete sound rec for loudness sensor
     NSError *error;
@@ -380,7 +380,7 @@
         self.skView.paused = NO;
         [self.skView presentScene:scene];
         self.scene = scene;
-        [[ProgramVariableManager sharedProgramVariablesManager] setVariables:self.program.variables];
+        [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:self.program.variables];
 
     }
 }

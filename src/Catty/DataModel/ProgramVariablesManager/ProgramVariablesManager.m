@@ -20,32 +20,21 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import <Foundation/Foundation.h>
-#import "InternToken.h"
-#import "FormulaElement.h"
-#import "UserVariable.h"
-#import "VariablesContainer.h"
+
 #import "ProgramVariablesManager.h"
-#import "Program.h"
 
-typedef enum {
-    FORMULA_PARSER_OK = -1,
-    FORMULA_PARSER_STACK_OVERFLOW = -2,
-    FORMULA_PARSER_INPUT_SYNTAX_ERROR = -3,
-    FORMULA_PARSER_NO_INPUT = -4
-} FormulaParserStatus;
+@interface ProgramVariablesManager ()
 
-@interface InternFormulaParser : NSObject
+@end
 
-@property (nonatomic, strong) NSMutableArray* internTokensToParse; // of InternToken
-@property (nonatomic) int currentTokenParseIndex;
-@property (nonatomic) int errorTokenIndex;
-@property (nonatomic, weak) InternToken* currentToken;
-@property (nonatomic) BOOL isBool;
+@implementation ProgramVariablesManager
 
-- (id)initWithTokens:(NSArray*)tokens; // of InternToken
-- (void)handleOperator:(NSString*) operator WithCurrentElement:(FormulaElement*) currentElement AndNewElement: (FormulaElement*) newElement;
-- (FormulaElement*)parseFormulaForSpriteObject:(SpriteObject*)object;
-- (int)getErrorTokenIndex;
++ (instancetype)sharedProgramVariablesManager
+{
+    static ProgramVariablesManager *_sharedCattyProgramVariablesManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{ _sharedCattyProgramVariablesManager = [ProgramVariablesManager new]; });
+    return _sharedCattyProgramVariablesManager;
+}
 
 @end
