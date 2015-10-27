@@ -285,6 +285,11 @@ private let MAX_ANALOG_SENSOR_PIN:UInt8 = 5;
                 setDigitalArduinoPin(i, pinValue: 0)
             }
         }
+        let totalAnalog = analogMapping.count
+        let totalDigital = totalPins-totalAnalog
+        arduinoHelper.digitalValues = [Int](count: totalDigital, repeatedValue: 0)
+        let ports = totalPins/8 + 1
+        arduinoHelper.portValues =  Array(count: ports, repeatedValue: Array(count: 8, repeatedValue: 0))
     }
     
     //MARK: Helper
@@ -445,7 +450,7 @@ private let MAX_ANALOG_SENSOR_PIN:UInt8 = 5;
     }
     
     func didUpdateCapability(pins: [[Int:Int]]) {
-        let totalPins = pins.count
+        totalPins = pins.count
         let totalAnalog = analogMapping.count
         let totalDigital = totalPins-totalAnalog
         
@@ -468,6 +473,10 @@ private let MAX_ANALOG_SENSOR_PIN:UInt8 = 5;
             pinArray.append(pin)
         }
         pinsArray = pinArray
+        
+        arduinoHelper.digitalValues = [Int](count: totalDigital, repeatedValue: 0)
+        let ports = totalPins/8 + 1
+        arduinoHelper.portValues =  Array(count: ports, repeatedValue: Array(count: 8, repeatedValue: 0))
     }
     //MARK: setter/getter
     
