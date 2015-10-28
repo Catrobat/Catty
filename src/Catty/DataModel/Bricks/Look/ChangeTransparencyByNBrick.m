@@ -41,7 +41,7 @@
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.changeTransparency = [[Formula alloc] initWithZero];
+    self.changeTransparency = [[Formula alloc] initWithInteger:25];
 }
 
 - (NSString*)brickTitle
