@@ -21,9 +21,18 @@ DEPENDENCIES:
   - M13ProgressSuite (~> 1.2.7)
   - MXSegmentedPager
   - MYBlurIntroductionView
-  - PureLayout
   - Shimmer
   - TTTAttributedLabel
+  - VGParallaxHeader (from `https://github.com/stoprocent/VGParallaxHeader.git`)
+
+EXTERNAL SOURCES:
+  VGParallaxHeader:
+    :git: https://github.com/stoprocent/VGParallaxHeader.git
+
+CHECKOUT OPTIONS:
+  VGParallaxHeader:
+    :commit: b90168b1c959da91176b02a246faee20c6383f3f
+    :git: https://github.com/stoprocent/VGParallaxHeader.git
 
 SPEC CHECKSUMS:
   AHKActionSheet: cf463df49fb173ecdf85a7eb1f78da3913b558c7
@@ -38,4 +47,4 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   VGParallaxHeader: 1213aba58c9b0aea84f9e81ad526fde57aa4fe48
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0
