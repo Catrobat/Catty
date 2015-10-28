@@ -33,6 +33,7 @@
 #import "BDKNotifyHUD.h"
 #import "PlaceHolderView.h"
 #import "ScenePresenterViewController.h"
+#import "AppDelegate.h"
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"
@@ -438,5 +439,48 @@
     self.tableView.alwaysBounceVertical = self.placeHolderView.hidden = (! show);
 }
 
+-(void)addProgramWithName:(NSString*)newProgramName
+{
+    
+    NSFileManager* filemgr = [NSFileManager defaultManager];
+    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* documentsDirectory = [paths objectAtIndex:0];
+    NSString* inboxPath = [documentsDirectory stringByAppendingPathComponent:@"Inbox"];
+    NSArray* dirFiles = [filemgr contentsOfDirectoryAtPath:inboxPath error:nil];
+    if(![dirFiles firstObject])
+    {
+        return;
+    }
+    NSString* newProgramPath = [NSString stringWithFormat:@"%@/%@", inboxPath, [dirFiles firstObject]];
+    
+    
+    NSData* newProgram = [NSData dataWithContentsOfFile:newProgramPath];
+    
+    
+    AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    [appDelegate.fileManager unzipAndStore:newProgram withProgramID:nil withName:newProgramName];
+    
+    [[NSFileManager defaultManager] removeItemAtPath:newProgramPath error:nil];
+
+}
+
+-(void)addProgramFromInbox
+{
+    NSCharacterSet* blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                           invertedSet];
+    
+    [Util askUserForUniqueNameAndPerformAction:@selector(addProgramWithName:)
+                                        target:self
+                                   promptTitle:kLocalizedNewProgram
+                                 promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
+                                   promptValue:nil
+                             promptPlaceholder:kLocalizedEnterYourProgramNameHere
+                                minInputLength:kMinNumOfProgramNameCharacters
+                                maxInputLength:kMaxNumOfProgramNameCharacters
+                           blockedCharacterSet:blockedCharacterSet
+                      invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
+                                 existingNames:[Program allProgramNames]];
+}
 
 @end

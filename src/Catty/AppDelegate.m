@@ -29,6 +29,7 @@
 #import "CatrobatTableViewController.h"
 #import "Pocket_Code-Swift.h"
 #import "NetworkDefines.h"
+#import "BaseTableViewController.h"
 
 void uncaughtExceptionHandler(NSException *exception)
 {
@@ -113,11 +114,25 @@ void uncaughtExceptionHandler(NSException *exception)
 {
     UINavigationController *vc = (UINavigationController*)self.window.rootViewController;
     
+    if ([vc.topViewController isKindOfClass:[BaseTableViewController class]]){
+        BaseTableViewController* btvc = (BaseTableViewController*)vc.topViewController;
+        [btvc addProgramFromInbox];
+        [btvc reloadInputViews];
+        return YES;
+    }
+    
+    /*
     if ([vc.topViewController isKindOfClass:[CatrobatTableViewController class]]){
         CatrobatTableViewController* ctvc = (CatrobatTableViewController*)vc.topViewController;
         [ctvc addProgramFromInbox];
         return YES;
     }
+    
+    else{
+        // TODO: segue to catrobatTableViewController
+        return YES;
+    }
+    */
     
     return NO;
 }
