@@ -20,32 +20,10 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "SetGhostEffectBrickCell.h"
+#import "BrickCell.h"
 
-@interface SetGhostEffectBrickCell ()
-@property (nonatomic, strong) UILabel *firstRowTextLabel;
-@property (nonatomic, strong) UILabel *secondRowLeftTextLabel;
-@property (nonatomic, strong) UILabel *secondRowRightTextLabel;
-@end
+@interface SetTransparencyBrickCell : BrickCell
 
-@implementation SetGhostEffectBrickCell
-
-- (void)drawRect:(CGRect)rect
-{
-    [BrickShapeFactory drawSquareBrickShapeWithFillColor:UIColor.lookBrickGreenColor strokeColor:UIColor.lookBrickStrokeColor height:mediumBrick width:[Util screenWidth]];
-}
-
-+ (CGFloat)cellHeight
-{
-    return kBrickHeight2h;
-}
-
-- (void)hookUpSubViews:(NSArray *)inlineViewSubViews
-{
-    self.firstRowTextLabel = inlineViewSubViews[0];
-    self.secondRowLeftTextLabel = inlineViewSubViews[1];
-    self.transparencyTextField = inlineViewSubViews[2];
-    self.secondRowRightTextLabel = inlineViewSubViews[3];
-}
+@property (nonatomic, weak) UITextField *transparencyTextField;
 
 @end

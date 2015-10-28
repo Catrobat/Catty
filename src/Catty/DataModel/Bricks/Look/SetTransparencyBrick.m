@@ -46,7 +46,7 @@
 
 - (NSString*)brickTitle
 {
-    return kLocalizedSetGhostEffect;
+    return kLocalizedSetTransparency;
 }
 
 - (SKAction*)action
