@@ -39,6 +39,10 @@ let localizedStringCheckExcludeFiles = [
     "Operators.m",
     "BSKeyboardControls.m"
 ]; let localizedStringCheckExcludeFilesLine = __LINE__; // CAVE: NEVER separate these two statements by adding a new line
+let localizedStringCheckSeparatedExcludeDirs = [
+    "Pods",
+]; let localizedStringCheckSeparatedExcludeDirsLine = __LINE__; // CAVE: NEVER separate these two statements by adding a new line
+
 
 let licenseCheckExcludeDirs = [
     "TTTAttributedLabel",
@@ -304,6 +308,18 @@ while let filePath = enumerator!.nextObject() as? String {
     // localized string check
     var content : String? = nil
     if localizedStringCheckSeparatedExcludeFiles.contains(fileName) == false {
+        var fileIsStoredInAnExcludedDir = false
+        for excludeDir in localizedStringCheckSeparatedExcludeDirs {
+            let range = filePath.rangeOfString(excludeDir)
+            if range != nil {
+                fileIsStoredInAnExcludedDir = true
+                break
+            }
+        }
+        if fileIsStoredInAnExcludedDir {
+            continue
+        }
+
         content = try String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
         if (content == nil) {
             continue
