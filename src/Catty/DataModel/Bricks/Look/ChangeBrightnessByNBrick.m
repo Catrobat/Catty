@@ -41,7 +41,7 @@
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.changeBrightness = [[Formula alloc] initWithZero];
+    self.changeBrightness = [[Formula alloc] initWithInteger:25];
 }
 
 - (NSString*)brickTitle

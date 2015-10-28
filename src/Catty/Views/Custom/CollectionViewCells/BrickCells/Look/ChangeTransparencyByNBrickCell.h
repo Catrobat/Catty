@@ -22,7 +22,7 @@
 
 #import "BrickCell.h"
 
-@interface ChangeGhostEffectByNBrickCell : BrickCell
+@interface ChangeTransparencyByNBrickCell : BrickCell
 
 @property (nonatomic, weak) UITextField *transparencyTextField;
 
