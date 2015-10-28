@@ -476,7 +476,7 @@
 		AA74F0A91BC05FCE00D1E954 /* SetVariableBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0411BC05FCE00D1E954 /* SetVariableBrickCell.m */; };
 		AA74F0AA1BC05FCE00D1E954 /* VibrationBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0441BC05FCE00D1E954 /* VibrationBrickCell.m */; };
 		AA74F0AB1BC05FCE00D1E954 /* ChangeBrightnessByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0471BC05FCE00D1E954 /* ChangeBrightnessByNBrickCell.m */; };
-		AA74F0AC1BC05FCE00D1E954 /* ChangeTransparencyNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0491BC05FCE00D1E954 /* ChangeTransparencyNBrickCell.m */; };
+		AA74F0AC1BC05FCE00D1E954 /* ChangeTransparencyByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0491BC05FCE00D1E954 /* ChangeTransparencyByNBrickCell.m */; };
 		AA74F0AD1BC05FCE00D1E954 /* ClearGraphicEffectBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F04B1BC05FCE00D1E954 /* ClearGraphicEffectBrickCell.m */; };
 		AA74F0AE1BC05FCE00D1E954 /* HideBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F04D1BC05FCE00D1E954 /* HideBrickCell.m */; };
 		AA74F0AF1BC05FCE00D1E954 /* NextLookBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F04F1BC05FCE00D1E954 /* NextLookBrickCell.m */; };
@@ -1579,7 +1579,7 @@
 		AA74F0461BC05FCE00D1E954 /* ChangeBrightnessByNBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeBrightnessByNBrickCell.h; sourceTree = "<group>"; };
 		AA74F0471BC05FCE00D1E954 /* ChangeBrightnessByNBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeBrightnessByNBrickCell.m; sourceTree = "<group>"; };
 		AA74F0481BC05FCE00D1E954 /* ChangeTransparencyByNBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeTransparencyByNBrickCell.h; sourceTree = "<group>"; };
-		AA74F0491BC05FCE00D1E954 /* ChangeTransparencyNBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeTransparencyNBrickCell.m; sourceTree = "<group>"; };
+		AA74F0491BC05FCE00D1E954 /* ChangeTransparencyByNBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeTransparencyByNBrickCell.m; sourceTree = "<group>"; };
 		AA74F04A1BC05FCE00D1E954 /* ClearGraphicEffectBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearGraphicEffectBrickCell.h; sourceTree = "<group>"; };
 		AA74F04B1BC05FCE00D1E954 /* ClearGraphicEffectBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearGraphicEffectBrickCell.m; sourceTree = "<group>"; };
 		AA74F04C1BC05FCE00D1E954 /* HideBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideBrickCell.h; sourceTree = "<group>"; };
@@ -4337,7 +4337,7 @@
 				AA74F0461BC05FCE00D1E954 /* ChangeBrightnessByNBrickCell.h */,
 				AA74F0471BC05FCE00D1E954 /* ChangeBrightnessByNBrickCell.m */,
 				AA74F0481BC05FCE00D1E954 /* ChangeTransparencyByNBrickCell.h */,
-				AA74F0491BC05FCE00D1E954 /* ChangeTransparencyNBrickCell.m */,
+				AA74F0491BC05FCE00D1E954 /* ChangeTransparencyByNBrickCell.m */,
 				AA74F04A1BC05FCE00D1E954 /* ClearGraphicEffectBrickCell.h */,
 				AA74F04B1BC05FCE00D1E954 /* ClearGraphicEffectBrickCell.m */,
 				AA74F04C1BC05FCE00D1E954 /* HideBrickCell.h */,
@@ -5711,7 +5711,7 @@
 				92FF32591A24E2F400093DA7 /* UIImage+AHKAdditions.m in Sources */,
 				92FF32BA1A24E2F400093DA7 /* DarkBlueGradientFeaturedCell.m in Sources */,
 				92DFB01D1A38949E00FA9B0F /* FormulaEditorTextView.m in Sources */,
-				AA74F0AC1BC05FCE00D1E954 /* ChangeTransparencyNBrickCell.m in Sources */,
+				AA74F0AC1BC05FCE00D1E954 /* ChangeTransparencyByNBrickCell.m in Sources */,
 				92FF32751A24E2F400093DA7 /* CatrobatAlertView.m in Sources */,
 				AA74EEE21BC057B900D1E954 /* LoopEndBrick+CBXMLHandler.m in Sources */,
 				92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */,
