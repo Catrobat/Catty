@@ -20,15 +20,15 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "ChangeGhostEffectByNBrickCell.h"
+#import "SetTransparencyBrickCell.h"
 
-@interface ChangeGhostEffectByNBrickCell ()
+@interface SetTransparencyBrickCell ()
 @property (nonatomic, strong) UILabel *firstRowTextLabel;
 @property (nonatomic, strong) UILabel *secondRowLeftTextLabel;
 @property (nonatomic, strong) UILabel *secondRowRightTextLabel;
 @end
 
-@implementation ChangeGhostEffectByNBrickCell
+@implementation SetTransparencyBrickCell
 
 - (void)drawRect:(CGRect)rect
 {

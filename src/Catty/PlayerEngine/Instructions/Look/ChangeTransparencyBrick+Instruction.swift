@@ -32,7 +32,7 @@ extension ChangeTransparencyByNBrick: CBInstructionProtocol {
     func actionBlock() -> dispatch_block_t? {
         guard let object = self.script?.object,
               let spriteNode = object.spriteNode,
-              let transparency = self.changeGhostEffect
+              let transparency = self.changeTransparency
         else { fatalError("This should never happen!") }
 
 

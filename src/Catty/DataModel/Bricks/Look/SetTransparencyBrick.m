@@ -41,12 +41,12 @@
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.transparency = [[Formula alloc] initWithZero];
+    self.transparency = [[Formula alloc] initWithInteger:50];
 }
 
 - (NSString*)brickTitle
 {
-    return kLocalizedSetGhostEffect;
+    return kLocalizedSetTransparency;
 }
 
 #pragma mark - Description

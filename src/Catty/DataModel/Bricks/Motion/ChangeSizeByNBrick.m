@@ -39,7 +39,7 @@
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.size = [[Formula alloc] initWithZero];
+    self.size = [[Formula alloc] initWithInteger:10];
 }
 
 - (NSString*)brickTitle

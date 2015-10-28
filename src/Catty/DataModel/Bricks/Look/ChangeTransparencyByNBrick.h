@@ -28,6 +28,6 @@
 
 @interface ChangeTransparencyByNBrick : Brick<BrickFormulaProtocol>
 
-@property (nonatomic, strong) Formula *changeGhostEffect;
+@property (nonatomic, strong) Formula *changeTransparency;
 
 @end

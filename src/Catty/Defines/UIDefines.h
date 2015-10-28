@@ -189,8 +189,8 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kChangeSizeByNBrick        = 303,
     kHideBrick                 = 304,
     kShowBrick                 = 305,
-    kSetGhostEffectBrick       = 306,
-    kChangeGhostEffectByNBrick = 307,
+    kSetTransparencyBrick      = 306,
+    kChangeTransparencyByNBrick= 307,
     kSetBrightnessBrick        = 308,
     kChangeBrightnessByNBrick  = 309,
     kClearGraphicEffectBrick   = 310,
@@ -314,8 +314,8 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"ChangeSizeByNBrick"        : @(kChangeSizeByNBrick),\
     @"HideBrick"                 : @(kHideBrick),\
     @"ShowBrick"                 : @(kShowBrick),\
-    @"SetGhostEffectBrick"       : @(kSetGhostEffectBrick),\
-    @"ChangeGhostEffectByNBrick" : @(kChangeGhostEffectByNBrick),\
+    @"SetTransparencyBrick"      : @(kSetTransparencyBrick),\
+    @"ChangeTransparencyByNBrick": @(kChangeTransparencyByNBrick),\
     @"SetBrightnessBrick"        : @(kSetBrightnessBrick),\
     @"ChangeBrightnessByNBrick"  : @(kChangeBrightnessByNBrick),\
     @"ClearGraphicEffectBrick"   : @(kClearGraphicEffectBrick),\
@@ -395,8 +395,8 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"ChangeSizeByNBrick"        : @(kBrickHeight1h),\
 @"HideBrick"                 : @(kBrickHeight1h),\
 @"ShowBrick"                 : @(kBrickHeight1h),\
-@"SetGhostEffectBrick"       : @(kBrickHeight2h),\
-@"ChangeGhostEffectByNBrick" : @(kBrickHeight2h),\
+@"SetTransparencyBrick"      : @(kBrickHeight2h),\
+@"ChangeTransparencyByNBrick": @(kBrickHeight2h),\
 @"SetBrightnessBrick"        : @(kBrickHeight2h),\
 @"ChangeBrightnessByNBrick"  : @(kBrickHeight2h),\
 @"ClearGraphicEffectBrick"   : @(kBrickHeight1h),\

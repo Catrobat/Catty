@@ -42,7 +42,7 @@
     [super tearDown];
 }
 
-- (void)testChangeGhostEffectByNBrickPositive
+- (void)testChangeTransparencyByNBrickPositive
 {
     SpriteObject *object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
@@ -62,15 +62,15 @@
 
     ChangeTransparencyByNBrick *brick = [[ChangeTransparencyByNBrick alloc]init];
     brick.script = script;
-    brick.changeGhostEffect = transparency;
+    brick.changeTransparency = transparency;
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(spriteNode.alpha, 0.8f, @"ChangeGhostEffectBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.alpha, 0.8f, @"ChangeTransparencyBrick is not correctly calculated");
 }
 
 
-- (void)testChangeGhostEffectByNBrickNegative
+- (void)testChangeTransparencyByNBrickNegative
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
@@ -91,15 +91,15 @@
 
     ChangeTransparencyByNBrick *brick = [[ChangeTransparencyByNBrick alloc]init];
     brick.script = script;
-    brick.changeGhostEffect = transparency;
+    brick.changeTransparency = transparency;
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(spriteNode.alpha, 0.6f, @"ChangeGhostEffectBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.alpha, 0.6f, @"ChangeTransparencyBrick is not correctly calculated");
 }
 
 
-- (void)testChangeGhostEffectByNBrickOutOfRange
+- (void)testChangeTransparencyByNBrickOutOfRange
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
@@ -120,14 +120,14 @@
 
     ChangeTransparencyByNBrick *brick = [[ChangeTransparencyByNBrick alloc]init];
     brick.script = script;
-    brick.changeGhostEffect = transparency;
+    brick.changeTransparency = transparency;
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(spriteNode.alpha, 0.0f, @"ChangeGhostEffectBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.alpha, 0.0f, @"ChangeTransparencyBrick is not correctly calculated");
 }
 
-- (void)testChangeGhostEffectByNBrickWrongInput
+- (void)testChangeTransparencyByNBrickWrongInput
 {
     SpriteObject* object = [[SpriteObject alloc] init];
     CBSpriteNode *spriteNode = [[CBSpriteNode alloc] initWithSpriteObject:object];
@@ -147,11 +147,11 @@
 
     ChangeTransparencyByNBrick *brick = [[ChangeTransparencyByNBrick alloc]init];
     brick.script = script;
-    brick.changeGhostEffect = transparency;
+    brick.changeTransparency = transparency;
 
     dispatch_block_t action = [brick actionBlock];
     action();
-    XCTAssertEqual(spriteNode.alpha, 1.0f, @"ChangeGhostEffectBrick is not correctly calculated");
+    XCTAssertEqual(spriteNode.alpha, 1.0f, @"ChangeTransparencyBrick is not correctly calculated");
 }
 
 @end

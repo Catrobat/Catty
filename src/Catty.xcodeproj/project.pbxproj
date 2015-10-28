@@ -519,12 +519,11 @@
 		AA74F0A91BC05FCE00D1E954 /* SetVariableBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0411BC05FCE00D1E954 /* SetVariableBrickCell.m */; };
 		AA74F0AA1BC05FCE00D1E954 /* VibrationBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0441BC05FCE00D1E954 /* VibrationBrickCell.m */; };
 		AA74F0AB1BC05FCE00D1E954 /* ChangeBrightnessByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0471BC05FCE00D1E954 /* ChangeBrightnessByNBrickCell.m */; };
-		AA74F0AC1BC05FCE00D1E954 /* ChangeGhostEffectByNBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0491BC05FCE00D1E954 /* ChangeGhostEffectByNBrickCell.m */; };
 		AA74F0AD1BC05FCE00D1E954 /* ClearGraphicEffectBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F04B1BC05FCE00D1E954 /* ClearGraphicEffectBrickCell.m */; };
 		AA74F0AE1BC05FCE00D1E954 /* HideBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F04D1BC05FCE00D1E954 /* HideBrickCell.m */; };
 		AA74F0AF1BC05FCE00D1E954 /* NextLookBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F04F1BC05FCE00D1E954 /* NextLookBrickCell.m */; };
 		AA74F0B01BC05FCE00D1E954 /* SetBrightnessBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0511BC05FCE00D1E954 /* SetBrightnessBrickCell.m */; };
-		AA74F0B11BC05FCE00D1E954 /* SetGhostEffectBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0531BC05FCE00D1E954 /* SetGhostEffectBrickCell.m */; };
+		AA74F0B11BC05FCE00D1E954 /* SetTransparencyBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0531BC05FCE00D1E954 /* SetTransparencyBrickCell.m */; };
 		AA74F0B21BC05FCE00D1E954 /* SetLookBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0551BC05FCE00D1E954 /* SetLookBrickCell.m */; };
 		AA74F0B31BC05FCE00D1E954 /* SetSizeToBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0571BC05FCE00D1E954 /* SetSizeToBrickCell.m */; };
 		AA74F0B41BC05FCE00D1E954 /* ShowBrickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA74F0591BC05FCE00D1E954 /* ShowBrickCell.m */; };
@@ -1713,8 +1712,8 @@
 		AA74F0441BC05FCE00D1E954 /* VibrationBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VibrationBrickCell.m; sourceTree = "<group>"; };
 		AA74F0461BC05FCE00D1E954 /* ChangeBrightnessByNBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeBrightnessByNBrickCell.h; sourceTree = "<group>"; };
 		AA74F0471BC05FCE00D1E954 /* ChangeBrightnessByNBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeBrightnessByNBrickCell.m; sourceTree = "<group>"; };
-		AA74F0481BC05FCE00D1E954 /* ChangeGhostEffectByNBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeGhostEffectByNBrickCell.h; sourceTree = "<group>"; };
-		AA74F0491BC05FCE00D1E954 /* ChangeGhostEffectByNBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeGhostEffectByNBrickCell.m; sourceTree = "<group>"; };
+		AA74F0481BC05FCE00D1E954 /* ChangeTransparencyByNBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeTransparencyByNBrickCell.h; sourceTree = "<group>"; };
+		AA74F0491BC05FCE00D1E954 /* ChangeTransparencyNBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeTransparencyNBrickCell.m; sourceTree = "<group>"; };
 		AA74F04A1BC05FCE00D1E954 /* ClearGraphicEffectBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearGraphicEffectBrickCell.h; sourceTree = "<group>"; };
 		AA74F04B1BC05FCE00D1E954 /* ClearGraphicEffectBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearGraphicEffectBrickCell.m; sourceTree = "<group>"; };
 		AA74F04C1BC05FCE00D1E954 /* HideBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideBrickCell.h; sourceTree = "<group>"; };
@@ -1723,8 +1722,8 @@
 		AA74F04F1BC05FCE00D1E954 /* NextLookBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextLookBrickCell.m; sourceTree = "<group>"; };
 		AA74F0501BC05FCE00D1E954 /* SetBrightnessBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetBrightnessBrickCell.h; sourceTree = "<group>"; };
 		AA74F0511BC05FCE00D1E954 /* SetBrightnessBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetBrightnessBrickCell.m; sourceTree = "<group>"; };
-		AA74F0521BC05FCE00D1E954 /* SetGhostEffectBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetGhostEffectBrickCell.h; sourceTree = "<group>"; };
-		AA74F0531BC05FCE00D1E954 /* SetGhostEffectBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetGhostEffectBrickCell.m; sourceTree = "<group>"; };
+		AA74F0521BC05FCE00D1E954 /* SetTransparencyBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTransparencyBrickCell.h; sourceTree = "<group>"; };
+		AA74F0531BC05FCE00D1E954 /* SetTransparencyBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTransparencyBrickCell.m; sourceTree = "<group>"; };
 		AA74F0541BC05FCE00D1E954 /* SetLookBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetLookBrickCell.h; sourceTree = "<group>"; };
 		AA74F0551BC05FCE00D1E954 /* SetLookBrickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetLookBrickCell.m; sourceTree = "<group>"; };
 		AA74F0561BC05FCE00D1E954 /* SetSizeToBrickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSizeToBrickCell.h; sourceTree = "<group>"; };
@@ -4623,8 +4622,8 @@
 			children = (
 				AA74F0461BC05FCE00D1E954 /* ChangeBrightnessByNBrickCell.h */,
 				AA74F0471BC05FCE00D1E954 /* ChangeBrightnessByNBrickCell.m */,
-				AA74F0481BC05FCE00D1E954 /* ChangeGhostEffectByNBrickCell.h */,
-				AA74F0491BC05FCE00D1E954 /* ChangeGhostEffectByNBrickCell.m */,
+				AA74F0481BC05FCE00D1E954 /* ChangeTransparencyByNBrickCell.h */,
+				AA74F0491BC05FCE00D1E954 /* ChangeTransparencyNBrickCell.m */,
 				AA74F04A1BC05FCE00D1E954 /* ClearGraphicEffectBrickCell.h */,
 				AA74F04B1BC05FCE00D1E954 /* ClearGraphicEffectBrickCell.m */,
 				AA74F04C1BC05FCE00D1E954 /* HideBrickCell.h */,
@@ -4633,8 +4632,8 @@
 				AA74F04F1BC05FCE00D1E954 /* NextLookBrickCell.m */,
 				AA74F0501BC05FCE00D1E954 /* SetBrightnessBrickCell.h */,
 				AA74F0511BC05FCE00D1E954 /* SetBrightnessBrickCell.m */,
-				AA74F0521BC05FCE00D1E954 /* SetGhostEffectBrickCell.h */,
-				AA74F0531BC05FCE00D1E954 /* SetGhostEffectBrickCell.m */,
+				AA74F0521BC05FCE00D1E954 /* SetTransparencyBrickCell.h */,
+				AA74F0531BC05FCE00D1E954 /* SetTransparencyBrickCell.m */,
 				AA74F0541BC05FCE00D1E954 /* SetLookBrickCell.h */,
 				AA74F0551BC05FCE00D1E954 /* SetLookBrickCell.m */,
 				AA74F0561BC05FCE00D1E954 /* SetSizeToBrickCell.h */,
@@ -6007,7 +6006,7 @@
 				92FF2E351A24C5A700093DA7 /* NSData+Hashes.m in Sources */,
 				921EE9B61BA8045A00834711 /* JNKeychain.m in Sources */,
 				AA74F0991BC05FCE00D1E954 /* BrickCellVariableData.m in Sources */,
-				AA74F0B11BC05FCE00D1E954 /* SetGhostEffectBrickCell.m in Sources */,
+				AA74F0B11BC05FCE00D1E954 /* SetTransparencyBrickCell.m in Sources */,
 				4C724E581B4D3E8C00E27479 /* Header+CBXMLHandler.m in Sources */,
 				92FF31541A24DEB300093DA7 /* SoundPickerTableViewController.m in Sources */,
 				AA74F00A1BC05B5F00D1E954 /* ChangeVolumeByNBrick.m in Sources */,
@@ -6086,7 +6085,6 @@
 				92FF32BA1A24E2F400093DA7 /* DarkBlueGradientFeaturedCell.m in Sources */,
 				92DFB01D1A38949E00FA9B0F /* FormulaEditorTextView.m in Sources */,
 				929CC0F81BC3A2420027DEC0 /* PhiroMotorMoveBackwardBrick+Instruction.swift in Sources */,
-				AA74F0AC1BC05FCE00D1E954 /* ChangeGhostEffectByNBrickCell.m in Sources */,
 				92FF32751A24E2F400093DA7 /* CatrobatAlertView.m in Sources */,
 				AA74EEE21BC057B900D1E954 /* LoopEndBrick+CBXMLHandler.m in Sources */,
 				92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */,
