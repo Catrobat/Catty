@@ -40,10 +40,12 @@
     Formula *red = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"RED" withContext:context];
     Formula *green = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"GREEN" withContext:context];
     Formula *blue = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"BLUE" withContext:context];
+    GDataXMLElement *light = [xmlElement childWithElementName:@"light"];
     PhiroRGBLightBrick *phiroRGBLightBrick = [self new];
     phiroRGBLightBrick.redFormula = red;
     phiroRGBLightBrick.greenFormula = green;
     phiroRGBLightBrick.blueFormula = blue;
+    phiroRGBLightBrick.light = light.stringValue;
     return phiroRGBLightBrick;
 }
 
@@ -60,15 +62,17 @@
     [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"PhiroRGBLightBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.redFormula xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"RED"]];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"PHIRO_LIGHT_RED"]];
     [formulaList addChild:formula context:context];
     formula = [self.greenFormula xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"GREEN"]];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"PHIRO_LIGHT_GREEN"]];
     [formulaList addChild:formula context:context];
     formula = [self.blueFormula xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"BLUE"]];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"PHIRO_LIGHT_BLUE"]];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
+    GDataXMLElement *value = [GDataXMLElement elementWithName:@"light" stringValue:self.light context:context];
+    [brick addChild:value context:context];
     return brick;
 }
 
