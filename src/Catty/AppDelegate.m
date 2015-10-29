@@ -56,7 +56,7 @@ void uncaughtExceptionHandler(NSException *exception)
     
     [self initNavigationBar];
     
-    [UITextField appearance].keyboardAppearance = UIKeyboardAppearanceDark;
+    [UITextField appearance].keyboardAppearance = UIKeyboardAppearanceDefault;
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"YES"

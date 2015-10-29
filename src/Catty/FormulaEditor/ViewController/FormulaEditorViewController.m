@@ -228,7 +228,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     [self localizeView];
     
     UINavigationBar *myNav = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
-    [UINavigationBar appearance].barTintColor = [UIColor backgroundColor];
+    [UINavigationBar appearance].barTintColor = [UIColor globalTintColor];
     [self.view addSubview:myNav];
     
 
@@ -238,7 +238,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
                                                      target:self
                                                             action:@selector(dismissFormulaEditorViewController)];
     
-    
+    item.tintColor = [UIColor navTintColor];
     UINavigationItem *navigItem = [[UINavigationItem alloc] initWithTitle:@""];
     navigItem.leftBarButtonItem = item;
     myNav.items = [NSArray arrayWithObjects: navigItem,nil];
@@ -729,11 +729,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
     for(int i = 0; i < [self.toolTypeButton count]; i++) {
         [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor formulaEditorHighlightColor] forState:UIControlStateNormal];
-        [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor textTintColor] forState:UIControlStateHighlighted];
-        [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor textTintColor] forState:UIControlStateSelected];
+        [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor utilityTintColor] forState:UIControlStateHighlighted];
+        [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor utilityTintColor] forState:UIControlStateSelected];
         [[self.toolTypeButton objectAtIndex:i] setBackgroundColor:[UIColor backgroundColor]];
         [[[self.toolTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
-        [[[self.toolTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor textTintColor].CGColor];
+        [[[self.toolTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor globalTintColor].CGColor];
     }
     
   for(int i = 0; i < [self.toolTypeButton count]; i++) {

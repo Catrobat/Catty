@@ -185,6 +185,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
 - (void)initNavigationBar
 {
     self.navigationItem.title = kLocalizedPocketCode;
+    self.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName : [UIColor navTintColor] };
     self.navigationController.navigationBar.tintColor = [UIColor navTintColor];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoLight];
     [button addTarget:self action:@selector(infoPressed:) forControlEvents:UIControlEventTouchUpInside];

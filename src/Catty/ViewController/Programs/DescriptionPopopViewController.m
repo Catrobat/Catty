@@ -90,7 +90,7 @@ const CGFloat DESCRIPTION_WIDTH = 280.0f;
 
 -(void)initTextView
 {
-    self.descriptionTextView.keyboardAppearance = UIKeyboardAppearanceDark;
+    self.descriptionTextView.keyboardAppearance = UIKeyboardAppearanceDefault;
     self.descriptionTextView.backgroundColor = [UIColor whiteColor];
     self.descriptionTextView.textColor = [UIColor textTintColor];
     self.descriptionTextView.tintColor = [UIColor globalTintColor];

@@ -200,7 +200,7 @@ const CGFloat PADDING = 5.0f;
     self.descriptionTextView.frame = CGRectMake(self.view.frame.size.width/3.0f,self.currentHeight,2*self.view.frame.size.width/3.0f -20,100);
     
     self.descriptionTextView.textColor = [UIColor textTintColor];
-    self.descriptionTextView.keyboardAppearance  = UIKeyboardAppearanceDark;
+    self.descriptionTextView.keyboardAppearance  = UIKeyboardAppearanceDefault;
     self.descriptionTextView.backgroundColor = [UIColor whiteColor];
     [self.descriptionTextView setAutocorrectionType:UITextAutocorrectionTypeNo];
     [self.descriptionTextView setAutocapitalizationType:UITextAutocapitalizationTypeNone];
