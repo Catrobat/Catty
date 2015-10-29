@@ -27,6 +27,7 @@
 
 @interface CatrobatTableViewController : BaseTableViewController <DismissPopupDelegate>
 
--(void)afterSuccessfulLogin;
+- (void)afterSuccessfulLogin;
+- (void)addProgramFromInbox;
 
 @end

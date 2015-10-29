@@ -114,25 +114,31 @@ void uncaughtExceptionHandler(NSException *exception)
 {
     UINavigationController *vc = (UINavigationController*)self.window.rootViewController;
     
-    if ([vc.topViewController isKindOfClass:[BaseTableViewController class]]){
-        BaseTableViewController* btvc = (BaseTableViewController*)vc.topViewController;
-        [btvc addProgramFromInbox];
-        [btvc reloadInputViews];
-        return YES;
-    }
+    [vc popToRootViewControllerAnimated:YES];
     
-    /*
     if ([vc.topViewController isKindOfClass:[CatrobatTableViewController class]]){
         CatrobatTableViewController* ctvc = (CatrobatTableViewController*)vc.topViewController;
-        [ctvc addProgramFromInbox];
+        
+        NSCharacterSet* blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
+                                               invertedSet];
+        
+        [Util askUserForUniqueNameAndPerformAction:@selector(addProgramWithName:)
+                                            target:ctvc
+                                       promptTitle:kLocalizedNewProgram
+                                     promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
+                                       promptValue:nil
+                                 promptPlaceholder:kLocalizedEnterYourProgramNameHere
+                                    minInputLength:kMinNumOfProgramNameCharacters
+                                    maxInputLength:kMaxNumOfProgramNameCharacters
+                               blockedCharacterSet:blockedCharacterSet
+                          invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
+                                     existingNames:[Program allProgramNames]];
+        
+        //[ctvc reloadInputViews];
         return YES;
     }
     
-    else{
-        // TODO: segue to catrobatTableViewController
-        return YES;
-    }
-    */
+
     
     return NO;
 }
