@@ -60,7 +60,7 @@ NS_ENUM(NSInteger, ViewControllerIndex) {
     kUploadVC
 };
 
-@interface CatrobatTableViewController () <UITextFieldDelegate, MYIntroductionDelegate>
+@interface CatrobatTableViewController () <UITextFieldDelegate, MYIntroductionDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSArray *cells;
 @property (nonatomic, strong) NSArray *imageNames;
@@ -581,7 +581,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     
     [Util askUserForUniqueNameAndPerformAction:@selector(addProgramWithName:)
                                         target:self
-                                   promptTitle:kLocalizedNewProgram
+                                   promptTitle:kLocalizedEnterNameForImportedProgramTitle
                                  promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
                                    promptValue:nil
                              promptPlaceholder:kLocalizedEnterYourProgramNameHere
@@ -590,6 +590,16 @@ static NSCharacterSet *blockedCharacterSet = nil;
                            blockedCharacterSet:blockedCharacterSet
                       invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                  existingNames:[Program allProgramNames]];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == kAskUserForUnivqueNameForImportedFileAlertViewTag) {
+        if (buttonIndex == 1)
+        {
+            NSLog(@"user pressed Button Indexed 0");
+        }
+    }
 }
 
 

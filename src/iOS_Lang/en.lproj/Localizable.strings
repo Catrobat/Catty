@@ -466,6 +466,9 @@
 /* No comment provided by engineer. */
 "Image source not available" = "Image source not available";
 
+/* Title of prompt shown if a file is imported e.g. from the browser with the ending *.catrobat */
+"Import Program" = "Import Program";
+
 /* No comment provided by engineer. */
 "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation." = "In order to be allowed to use Pocket Code and other executables offered by the Catrobat project, you must agree to our Terms of Use and strictly follow them when you use Pocket Code and our other executables. Please see the link below for their precise formulation.";
 

@@ -30,6 +30,7 @@
 #import "Pocket_Code-Swift.h"
 #import "NetworkDefines.h"
 #import "BaseTableViewController.h"
+#import "CatrobatAlertView.h"
 
 void uncaughtExceptionHandler(NSException *exception)
 {
@@ -119,22 +120,8 @@ void uncaughtExceptionHandler(NSException *exception)
     if ([vc.topViewController isKindOfClass:[CatrobatTableViewController class]]){
         CatrobatTableViewController* ctvc = (CatrobatTableViewController*)vc.topViewController;
         
-        NSCharacterSet* blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
-                                               invertedSet];
+        [ctvc addProgramFromInbox];
         
-        [Util askUserForUniqueNameAndPerformAction:@selector(addProgramWithName:)
-                                            target:ctvc
-                                       promptTitle:kLocalizedNewProgram
-                                     promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
-                                       promptValue:nil
-                                 promptPlaceholder:kLocalizedEnterYourProgramNameHere
-                                    minInputLength:kMinNumOfProgramNameCharacters
-                                    maxInputLength:kMaxNumOfProgramNameCharacters
-                               blockedCharacterSet:blockedCharacterSet
-                          invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
-                                     existingNames:[Program allProgramNames]];
-        
-        //[ctvc reloadInputViews];
         return YES;
     }
     
