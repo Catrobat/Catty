@@ -102,37 +102,65 @@
     if ((requiredResources & kVibration) > 0) {
         NSInteger available = kSystemSoundID_Vibrate;
         if (!available) {
-            notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedVibration];
+            if([notAvailable isEqualToString:@""]){
+                notAvailable = [NSString stringWithFormat:@"%@",kLocalizedVibration];
+            } else {
+                notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedVibration];
+            }
         }
     }
     if ((requiredResources & kLocation) > 0) {
         if (![[SensorHandler sharedSensorHandler] locationAvailable]) {
-            notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorCompass];
+            if([notAvailable isEqualToString:@""]){
+                notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorCompass];
+            } else {
+                notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorCompass];
+            }
         }
     }
     if ((requiredResources & kAccelerometer) > 0) {
         if (![[SensorHandler sharedSensorHandler] accelerometerAvailable]) {
-            notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorAcceleration];
+            if([notAvailable isEqualToString:@""]){
+                notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorAcceleration];
+            } else {
+                notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorAcceleration];
+            }
         }
     }
     if ((requiredResources & kGyro) > 0) {
         if (![[SensorHandler sharedSensorHandler] gyroAvailable]) {
-            notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorRotation];
+            if([notAvailable isEqualToString:@""]){
+                notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorRotation];
+            } else {
+                notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorRotation];
+            }
         }
     }
     if ((requiredResources & kMagnetometer) > 0) {
         if (![[SensorHandler sharedSensorHandler] magnetometerAvailable]) {
-            notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorMagnetic];
+            if([notAvailable isEqualToString:@""]){
+                notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorMagnetic];
+            } else {
+                notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorMagnetic];
+            }
         }
     }
     if ((requiredResources & kLoudness) > 0) {
         if (![[SensorHandler sharedSensorHandler] loudnessAvailable]) {
-            notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorLoudness];
+            if([notAvailable isEqualToString:@""]){
+                notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorLoudness];
+            } else {
+                notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorLoudness];
+            }
         }
     }
     if ((requiredResources & kLED) > 0) {
         if (![[FlashHelper sharedFlashHandler] isAvailable]) {
-            notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorLED];
+            if([notAvailable isEqualToString:@""]){
+                notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorLED];
+            } else {
+                notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorLED];
+            }
         }
     }
     if (![notAvailable isEqualToString:@""]) {

@@ -84,17 +84,17 @@ typedef NS_ENUM(NSUInteger, kDTMActionType) {
 
 typedef NS_ENUM(NSInteger, ResourceType) {
     kNoResources =          0,
-    kTextToSpeech =         1 < 0,
-    kBluetoothPhiro =       1 < 1,
-    kBluetoothArduino =     1 < 2,
-    kFaceDetection =        1 < 3,
-    kVibration =            1 < 4,
-    kLocation =             1 < 5,
-    kAccelerometer =        1 < 6,
-    kGyro =                 1 < 7,
-    kMagnetometer =         1 < 8,
-    kLoudness =             1 < 9,
-    kLED =                  1 < 10
+    kTextToSpeech =         1 << 0,
+    kBluetoothPhiro =       1 << 1,
+    kBluetoothArduino =     1 << 2,
+    kFaceDetection =        1 << 3,
+    kVibration =            1 << 4,
+    kLocation =             1 << 5,
+    kAccelerometer =        1 << 6,
+    kGyro =                 1 << 7,
+    kMagnetometer =         1 << 8,
+    kLoudness =             1 << 9,
+    kLED =                  1 << 10
 };
 
 #define kDTPayloadProgramLoadingInfo @"DTPayloadProgramLoadingInfo"
