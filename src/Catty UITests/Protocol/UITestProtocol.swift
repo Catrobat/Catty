@@ -26,6 +26,7 @@ protocol UITestProtocol {
     func restoreDefaultProgram()
     func addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtLooksTV(numLooks: UInt)
     func addSoundsToCurrentProgramsBackgroundFromCatrobatTVAndStayAtSoundTV(numSounds: UInt)
+    func dismissWelcomeScreenIfShown()
 }
 
 extension UITestProtocol {
@@ -104,5 +105,18 @@ extension UITestProtocol {
             enterYourImageNameHereTextField.typeText("Image" + String(i))
             okButton.tap()
         }
+    }
+    
+    func dismissWelcomeScreenIfShown() {
+        let app = XCUIApplication()
+        let elementsQuery = app.scrollViews.otherElements
+        if(!elementsQuery.staticTexts["Welcome to Pocket Code"].exists) {
+            return
+        }
+        if(!app.otherElements.containingType(.NavigationBar, identifier:"Pocket Code").childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Button).matchingIdentifier("Skip").elementBoundByIndex(1).exists) {
+            return
+        }
+        
+        app.otherElements.containingType(.NavigationBar, identifier:"Pocket Code").childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Button).matchingIdentifier("Skip").elementBoundByIndex(1).tap()
     }
 }
