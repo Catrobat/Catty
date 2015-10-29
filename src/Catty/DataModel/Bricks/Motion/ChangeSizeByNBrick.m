@@ -39,31 +39,12 @@
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.size = [[Formula alloc] initWithZero];
+    self.size = [[Formula alloc] initWithInteger:10];
 }
 
 - (NSString*)brickTitle
 {
     return kLocalizedChangeSizeByN;
-}
-
-- (SKAction*)action
-{
-    return [SKAction runBlock:[self actionBlock]];
-}
-
-- (dispatch_block_t)actionBlock
-{
-    return ^{
-        NSDebug(@"Performing: %@", self.description);
-        double sizeInPercent = [self.size interpretDoubleForSprite:self.script.object];
-        [self.script.object.spriteNode setXScale:(CGFloat)(self.script.object.spriteNode.xScale + sizeInPercent/100.0)];
-        [self.script.object.spriteNode setYScale:(CGFloat)(self.script.object.spriteNode.yScale + sizeInPercent/100.0)];
-        //for touch issue
-        CGImageRef image = [self.script.object.spriteNode.currentUIImageLook CGImage];
-        self.script.object.spriteNode.currentUIImageLook = [UIImage imageWithCGImage:image scale:(CGFloat)(self.script.object.spriteNode.xScale + 1.0f/(sizeInPercent/100.0f)) orientation:UIImageOrientationUp];
-    };
-
 }
 
 #pragma mark - Description

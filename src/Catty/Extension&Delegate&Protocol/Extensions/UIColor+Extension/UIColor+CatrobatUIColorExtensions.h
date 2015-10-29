@@ -52,7 +52,7 @@
 
 + (UIColor*) backgroundColor;
 
-+(UIColor*)whiteGrayColor;
++(UIColor*)  whiteGrayColor;
 
 // FE
 
@@ -85,5 +85,13 @@
 + (UIColor*)soundBrickVioletColor;
 
 + (UIColor*)soundBrickStrokeColor;
+
++ (UIColor*)PhiroBrickColor;
+
++ (UIColor*)PhiroBrickStrokeColor;
+
++ (UIColor*)ArduinoBrickColor;
+
++ (UIColor*)ArduinoBrickStrokeColor;
 
 @end

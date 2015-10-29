@@ -23,7 +23,9 @@
 #import "ImagePicker.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
 #import <AVFoundation/AVFoundation.h>
+#import "UIImage+Rotate.h"  
 
 @implementation ImagePicker
 
@@ -84,7 +86,7 @@
 
 - (void)imagePickerAction
 {
-  ALAuthorizationStatus statusCameraRoll = [ALAssetsLibrary authorizationStatus];
+  PHAuthorizationStatus statusCameraRoll = [PHPhotoLibrary authorizationStatus];
   UIAlertController *alertControllerCameraRoll = [UIAlertController
                                               alertControllerWithTitle:nil
                                               message:kLocalizedNoAccesToImagesCheckSettingsDescription
@@ -115,7 +117,7 @@
 
     //IMAGEPICKER CameraRoll
     if ([self checkUserAuthorisation:UIImagePickerControllerSourceTypePhotoLibrary]) {
-        if (statusCameraRoll == ALAuthorizationStatusAuthorized) {
+        if (statusCameraRoll == PHAuthorizationStatusAuthorized) {
             [self openPicker:UIImagePickerControllerSourceTypePhotoLibrary];
         }else
         {
@@ -126,8 +128,17 @@
 #pragma mark imagePicker delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
   
-  self.originalImage = info[UIImagePickerControllerEditedImage];
-  UIImage* image = [UIImage imageWithImage:self.originalImage scaledToSize:self.canvas.saveView.frame.size];
+    UIImage *image = info[UIImagePickerControllerEditedImage];
+    if (! image) {
+        image = info[UIImagePickerControllerOriginalImage];
+    }
+    image = [image fixOrientation];
+    if (! image) {
+        return;
+    }
+    image = [UIImage imageWithImage:image
+                   scaledToMaxWidth:self.canvas.saveView.frame.size.width
+                          maxHeight:self.canvas.saveView.frame.size.height];
   [self.canvas setImagePickerImage:image];
   
   [picker dismissViewControllerAnimated:YES completion:NULL];
@@ -142,21 +153,24 @@
 - (BOOL)checkUserAuthorisation:(UIImagePickerControllerSourceType)pickerType
 {
     
+    
     BOOL state = NO;
     
     if(pickerType == UIImagePickerControllerSourceTypePhotoLibrary)
     {
-        if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusNotDetermined) {
-            ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
-            [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusNotDetermined) {
+            
+            PHFetchOptions *allPhotosOptions = [PHFetchOptions new];
+            allPhotosOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
+            
+            PHFetchResult *allPhotosResult = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeImage options:allPhotosOptions];
+            [allPhotosResult enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL *stop) {
+                NSDebug(@"asset %@", asset);
                 if (*stop) {
                     [self openPicker:pickerType];
                     return;
                 }
                 *stop = TRUE;
-            } failureBlock:^(NSError *error) {
-                return;
-            
             }];
         }else{
             state = YES;

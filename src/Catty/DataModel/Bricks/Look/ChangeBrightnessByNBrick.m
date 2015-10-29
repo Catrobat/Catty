@@ -41,77 +41,13 @@
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.changeBrightness = [[Formula alloc] initWithZero];
+    self.changeBrightness = [[Formula alloc] initWithInteger:25];
 }
 
 - (NSString*)brickTitle
 {
     return kLocalizedChangeBrightnessByN;
 }
-
-- (SKAction*)action
-{
-    NSDebug(@"Adding: %@", self.description);
-    return [SKAction runBlock:[self actionBlock]];
-}
-
-- (dispatch_block_t)actionBlock
-{
-    return ^{
-        
-        NSDebug(@"Performing: %@", self.description);
-        
-        CGFloat brightness = (CGFloat)[self.changeBrightness interpretDoubleForSprite:self.script.object] / 100.0f;
-        brightness += self.script.object.spriteNode.currentLookBrightness;
-        if (brightness > 2) {
-            brightness = 1;
-        }
-        else if (brightness < 0){
-            brightness = -1;
-        }
-        
-        Look* look = [self.script.object.spriteNode currentLook];
-        UIImage* lookImage = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
-        
-        CGImageRef image = lookImage.CGImage;
-        CIImage *ciImage =[ CIImage imageWithCGImage:image];
-        /////
-        CIContext *context = [CIContext contextWithOptions:nil];
-        
-        CIFilter *filter = [CIFilter filterWithName:@"CIColorControls"
-                                      keysAndValues:kCIInputImageKey, ciImage, @"inputBrightness",
-                            @(brightness), nil];
-        CIImage *outputImage = [filter outputImage];
-        
-        // 2
-        CGImageRef cgimg =
-        [context createCGImage:outputImage fromRect:[outputImage extent]];
-        
-        // 3
-        UIImage *newImage = [UIImage imageWithCGImage:cgimg];
-        self.script.object.spriteNode.currentUIImageLook = newImage;
-        self.script.object.spriteNode.texture = [SKTexture textureWithImage:newImage];
-        self.script.object.spriteNode.currentLookBrightness = brightness;
-        CGFloat xScale = self.script.object.spriteNode.xScale;
-        CGFloat yScale = self.script.object.spriteNode.yScale;
-        self.script.object.spriteNode.xScale = 1.0;
-        self.script.object.spriteNode.yScale = 1.0;
-        self.script.object.spriteNode.size = self.script.object.spriteNode.texture.size;
-        self.script.object.spriteNode.texture = self.script.object.spriteNode.texture;
-        if(xScale != 1.0) {
-            self.script.object.spriteNode.xScale = xScale;
-        }
-        if(yScale != 1.0) {
-            self.script.object.spriteNode.yScale = yScale;
-        }
-        
-        // 4
-        CGImageRelease(cgimg);
-        
-           };
-}
-
-
 
 #pragma mark - Description
 - (NSString*)description

@@ -29,4 +29,6 @@
 
 @property (nonatomic, strong) Formula *brightness;
 
+- (NSString*)pathForLook:(Look*)look;
+
 @end

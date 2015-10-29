@@ -52,6 +52,7 @@
 #import "ResizeViewManager.h"
 #import "PointerTool.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
 
 
 #define kStackSize 5
@@ -790,7 +791,7 @@
 
 - (void)saveAction
 {
-    ALAuthorizationStatus statusCameraRoll = [ALAssetsLibrary authorizationStatus];
+    PHAuthorizationStatus statusCameraRoll = [PHPhotoLibrary authorizationStatus];
     UIAlertController *alertControllerCameraRoll = [UIAlertController
                                                     alertControllerWithTitle:nil
                                                     message:kLocalizedNoAccesToImagesCheckSettingsDescription
@@ -821,23 +822,20 @@
     [alertControllerCameraRoll addAction:settingsAction];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if([self checkUserAuthorisation:false])
+        if([self checkUserAuthorisation])
         {
-            if (statusCameraRoll == ALAuthorizationStatusAuthorized) {
-        UIImageWriteToSavedPhotosAlbum(self.saveView.image, nil, nil, nil);
+            if (statusCameraRoll == PHAuthorizationStatusAuthorized) {
+                UIImageWriteToSavedPhotosAlbum(self.saveView.image, nil, nil, nil);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                   [self showSavedView];
+                });
             }else
             {
                 [self presentViewController:alertControllerCameraRoll animated:YES completion:nil];
             }
         }
-        
     });
-    
-    if([self checkUserAuthorisation:false] && (statusCameraRoll == ALAuthorizationStatusAuthorized))
-    {
-        [self showSavedView];
-    }
-    
+
     NSDebug(@"saved to Camera Roll");
 }
 
@@ -928,53 +926,33 @@
     NSLog(@"dealloc");
 }
 
-- (BOOL)checkUserAuthorisation:(BOOL)close
+- (BOOL)checkUserAuthorisation
 {
-    
     BOOL state = NO;
-    
-    if(close)
-    {
-        if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusNotDetermined) {
-            ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
-            [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-                if (*stop) {
-                    if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
-                        UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
-                        UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
-                        UIGraphicsEndImageContext();
-                        if (![self.saveView.image isEqual:blank]) {
-                            [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
-                        }
-                    }
-                    [self.navigationController popViewControllerAnimated:YES];
-                    return;
-                }
-                *stop = TRUE;
-            } failureBlock:^(NSError *error) {
+    if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusNotDetermined) {
+        
+        PHFetchOptions *allPhotosOptions = [PHFetchOptions new];
+        allPhotosOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
+        
+        PHFetchResult *allPhotosResult = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeImage options:allPhotosOptions];
+        [allPhotosResult enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL *stop) {
+            NSDebug(@"asset %@", asset);
+            if (*stop) {
+//                if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
+//                    UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
+//                    UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
+//                    UIGraphicsEndImageContext();
+//                    if (![self.saveView.image isEqual:blank]) {
+//                        [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
+//                    }
+//                }
+//                [self.navigationController popViewControllerAnimated:YES];
                 return;
-                
-            }];
-        }else{
-            state = YES;
-        }
-    }else
-    {
-        if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusNotDetermined) {
-            ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
-            [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-                if (*stop) {
-                    UIImageWriteToSavedPhotosAlbum(self.saveView.image, nil, nil, nil);
-                    return;
-                }
-                *stop = TRUE;
-            } failureBlock:^(NSError *error) {
-                return;
-                
-            }];
-        }else{
-            state = YES;
-        }
+            }
+            *stop = TRUE;
+        }];
+    }else{
+        state = YES;
     }
     return state;
 }

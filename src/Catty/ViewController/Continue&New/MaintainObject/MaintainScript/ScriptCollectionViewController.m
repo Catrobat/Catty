@@ -78,6 +78,17 @@
 #import "BrickInsertManager.h"
 #import "BrickMoveManager.h"
 #import "BrickSelectionManager.h"
+#import "PhiroHelper.h"
+#import "BrickCellPhiroMotorData.h"
+#import "BrickCellPhiroLightData.h"
+#import "BrickCellPhiroToneData.h"
+#import "BrickPhiroMotorProtocol.h"
+#import "BrickPhiroLightProtocol.h"
+#import "BrickPhiroToneProtocol.h"
+#import "KeychainUserDefaultsDefines.h"
+#import "Pocket_Code-Swift.h"
+#import <CoreBluetooth/CoreBluetooth.h>
+
 
 @interface ScriptCollectionViewController() <UICollectionViewDelegate,
                                              UICollectionViewDataSource,
@@ -88,7 +99,8 @@
                                              iOSComboboxDelegate,
                                              BrickCellDataDelegate,
                                              CatrobatActionSheetDelegate,
-                                             CatrobatAlertViewDelegate>
+                                             CatrobatAlertViewDelegate,
+                                             BluetoothSelection>
 
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
 @property (nonatomic, strong) BrickTransition *brickScaleTransition;
@@ -157,9 +169,39 @@
     if ([self respondsToSelector:@selector(stopAllSounds)]) {
         [self performSelector:@selector(stopAllSounds)];
     }
-    [self.navigationController setToolbarHidden:YES animated:YES];
+    
     ScenePresenterViewController *vc = [ScenePresenterViewController new];
     vc.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
+    NSMutableArray *array = [NSMutableArray new];
+    if ([vc.program.header.isPhiroProProject isEqualToString:@"true"] && kPhiroActivated) { // or has Phiro Bricks
+        if (!([BluetoothService sharedInstance].phiro.state == CBPeripheralStateConnected)) {
+            [array addObject:[NSNumber numberWithInteger:BluetoothDeviceIDphiro]];
+        }
+        
+    }
+    if ([vc.program.header.isArduinoProject isEqualToString:@"true"] && kArduinoActivated) { // or has Arduino Bricks
+        if (!([BluetoothService sharedInstance].arduino.state == CBPeripheralStateConnected)) {
+            [array addObject:[NSNumber numberWithInteger:BluetoothDeviceIDarduino]];
+        }
+    }
+    
+    if ( array.count > 0) { // vc.program.requiresBluetooth
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
+        BluetoothPopupVC * bvc = (BluetoothPopupVC*)[storyboard instantiateViewControllerWithIdentifier:@"bluetoothPopupVC"];
+        [bvc setDeviceArray:array];
+        [bvc setDelegate:self];
+        [bvc setVc:vc];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:(UIViewController*)bvc];
+        [self presentViewController:navController animated:YES completion:nil];
+    } else {
+        [self startSceneWithVC:vc];
+    }
+}
+
+-(void)startSceneWithVC:(ScenePresenterViewController*)vc
+{
+    [self.navigationController setToolbarHidden:YES animated:YES];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -174,6 +216,14 @@
                                               options:@{
                                                         UIPageViewControllerOptionInterPageSpacingKey : @20.f
                                                         }];
+        //ADD Indexes from PageIndexCategoryType for selection those bricks
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:kUsePhiroBricks]) {
+            [bsvc.pageIndexArray addObject:[NSNumber numberWithInteger:kPageIndexPhiroBrick]];
+        }
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseArduinoBricks]) {
+            [bsvc.pageIndexArray addObject:[NSNumber numberWithInteger:kPageIndexArduinoBrick]];
+        }
+
         [bsvc setViewControllers:@[bcvc]
                        direction:UIPageViewControllerNavigationDirectionForward
                         animated:NO
@@ -441,8 +491,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
        itemAtIndexPath:(NSIndexPath*)fromIndexPath
    willMoveToIndexPath:(NSIndexPath*)toIndexPath
 {
-// FIXME: UPDATING THE DATA MODEL WHILE THE USER IS DRAGGING IS NO GOOD PRACTICE AND IS ERROR PRONE!!!
-//        USE collectionView:layout:didEndDraggingItemAtIndexPath: DELEGATE METHOD FOR THIS. Updates must happen after the user stopped dragging the brickcell!!
     if (fromIndexPath.item == 0) {
         Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
         [self.object.scriptList removeObjectAtIndex:fromIndexPath.section];
@@ -771,7 +819,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
 }
 
-// TODO: Remove
 - (void)removeBricksWithIndexPaths:(NSArray*)indexPaths
 {
     NSArray *sortedIndexPaths = [indexPaths sortedArrayUsingSelector:@selector(compare:)];
@@ -852,7 +899,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 }
 
 #pragma mark - Editing
-// TODO: Refactor
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
@@ -1155,6 +1201,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     } else
     if ([brickCellData isKindOfClass:[BrickCellFormulaData class]] && [brick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
         [(Brick<BrickFormulaProtocol>*)brick setFormula:(Formula*)value forLineNumber:line andParameterNumber:parameter];
+        [self.object.program saveToDisk];
         return;
     } else
     if ([brickCellData isKindOfClass:[BrickCellTextData class]] && [brick conformsToProtocol:@protocol(BrickTextProtocol)]) {
@@ -1203,8 +1250,22 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             UserVariable *variable = [self.object.program.variables getUserVariableNamed:(NSString*)value forSpriteObject:self.object];
             if(variable)
                 [variableBrick setVariable:variable forLineNumber:line andParameterNumber:parameter];
+            
         }
-    }
+    }else
+        if ([brickCellData isKindOfClass:[Brick class]] && [brick conformsToProtocol:@protocol(BrickPhiroMotorProtocol)]) {
+            Brick<BrickPhiroMotorProtocol> *motorBrick = (Brick<BrickPhiroMotorProtocol>*)brick;
+            [motorBrick setMotor:(NSString*)value forLineNumber:line andParameterNumber:parameter];
+    }else
+        if ([brickCellData isKindOfClass:[Brick class]] && [brick conformsToProtocol:@protocol(BrickPhiroToneProtocol)]) {
+            Brick<BrickPhiroToneProtocol> *toneBrick = (Brick<BrickPhiroToneProtocol>*)brick;
+            [toneBrick setTone:(NSString*)value forLineNumber:line andParameterNumber:parameter];
+    }else
+        if ([brickCellData isKindOfClass:[Brick class]] && [brick conformsToProtocol:@protocol(BrickPhiroLightProtocol)]) {
+            Brick<BrickPhiroLightProtocol> *lightBrick = (Brick<BrickPhiroLightProtocol>*)brick;
+            [lightBrick setLight:(NSString*)value forLineNumber:line andParameterNumber:parameter];
+        }
+
     [self reloadData];
     [self enableUserInteractionAndResetHighlight];
     [self.object.program saveToDisk];

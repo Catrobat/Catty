@@ -25,7 +25,6 @@
 
 //**************************************************************************************************
 //
-// TODO:    outsource this to plist file...
 //
 // WARNING: Please keep kNonIdempotentFunctions up to date every time
 //          you add a new function here!!

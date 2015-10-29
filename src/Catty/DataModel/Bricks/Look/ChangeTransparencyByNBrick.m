@@ -27,56 +27,32 @@
 
 @implementation ChangeTransparencyByNBrick
 
-@synthesize changeGhostEffect = _changeGhostEffect;
+@synthesize changeTransparency = _changeTransparency;
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
-    return self.changeGhostEffect;
+    return self.changeTransparency;
 }
 
 - (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
-    self.changeGhostEffect = formula;
+    self.changeTransparency = formula;
 }
 
 - (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
 {
-    self.changeGhostEffect = [[Formula alloc] initWithZero];
+    self.changeTransparency = [[Formula alloc] initWithInteger:25];
 }
 
 - (NSString*)brickTitle
 {
-    return kLocalizedChangeGhostEffectByN;
-}
-
-- (SKAction*)action
-{
-  return [SKAction runBlock:[self actionBlock]];
-}
-
-- (dispatch_block_t)actionBlock
-{
-  return ^{
-    NSDebug(@"Performing: %@", self.description);
-    double transparency = [self.changeGhostEffect interpretDoubleForSprite:self.script.object];
-      CGFloat alpha = (CGFloat)(self.script.object.spriteNode.alpha - transparency/100.0f);
-      if (alpha < 0) {
-          self.script.object.spriteNode.alpha = 0;
-          
-      }
-      else if (alpha > 1){
-          self.script.object.spriteNode.alpha = 1;
-      }
-      else{
-          self.script.object.spriteNode.alpha = alpha;
-      }
-  };
+    return kLocalizedChangeTransparencyByN;
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"ChangeTransparencyByNBrick by (%f)", [self.changeGhostEffect interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"ChangeTransparencyByNBrick by (%f)", [self.changeTransparency interpretDoubleForSprite:self.script.object]];
 }
 
 @end

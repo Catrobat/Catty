@@ -25,6 +25,7 @@
 #import "LanguageTranslationDefines.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MyProgramsViewController.h"
+#import "ProgramTableViewController.h"
 
 @interface DescriptionPopopViewController ()
 @property (nonatomic, strong) UILabel *header;
@@ -128,10 +129,15 @@ const CGFloat DESCRIPTION_WIDTH = 280.0f;
 -(void)saveAction
 {
     MyProgramsViewController *mpvc;
+    ProgramTableViewController *pTVC;
     if ([self.delegate isKindOfClass:[MyProgramsViewController class]]) {
         mpvc = (MyProgramsViewController*)self.delegate;
+        mpvc.changedDescription = self.descriptionTextView.text;
+    } else if ([self.delegate isKindOfClass:[ProgramTableViewController class]]){
+        pTVC = (ProgramTableViewController*)self.delegate;
+        pTVC.changedProgramDescription = self.descriptionTextView.text;
     }
-    mpvc.changedDescription = self.descriptionTextView.text;
+    
     [self.delegate dismissPopupWithCode:YES];
 }
 

@@ -22,7 +22,9 @@
 
 #import <UIKit/UIKit.h>
 
-#define kMaxPages 6
 
 @interface BrickSelectionViewController : UIPageViewController
+
+@property(nonatomic, strong) NSMutableArray *pageIndexArray;
+
 @end

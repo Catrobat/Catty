@@ -23,6 +23,9 @@
 #import "iOSCombobox.h"
 #import "BSKeyboardControls.h"
 #import "UIColor+CatrobatUIColorExtensions.h"
+#import "RuntimeImageCache.h"
+#import "Look.h"
+
 
 #define BORDER_WIDTH 1.0f
 #define BORDER_OFFSET (BORDER_WIDTH / 2)
@@ -55,7 +58,7 @@
     [self.pickerView selectRow:[self.values indexOfObject:[self currentValue]] inComponent:0 animated:NO];
     self.keyboard = [[BSKeyboardControls alloc] initWithFields:@[self]];
     [self.keyboard setDelegate:self];
-//    [self setCurrentImagee:[UIImage imageNamed:@"brush"]];
+    
     self.inputView = self.pickerView;
 }
 - (id)initWithFrame:(CGRect)frame
@@ -294,7 +297,7 @@
 - (UIView*) pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
     UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 110, 60)];
-    if (self.images.count) {
+    if (self.images.count >= row) {
         if (row != 0) {
             CGFloat width = 0;
             CGFloat height = 30;
@@ -356,6 +359,10 @@
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
     [super beginTrackingWithTouch:touch withEvent:event];
+    if (self.currentImage) {
+        [self addLookData];
+    }
+
     [self becomeFirstResponder];
     return NO;
 }
@@ -373,7 +380,6 @@
 - (BOOL)becomeFirstResponder
 {
     [super becomeFirstResponder];
-    
     active = YES;
     [self.keyboard setActiveField:self];
     [self setNeedsDisplay];
@@ -389,7 +395,7 @@
 - (BOOL)resignFirstResponder
 {
     [super resignFirstResponder];
-    
+    self.images = nil;
     active = NO;
     [self setNeedsDisplay];
     
@@ -402,9 +408,38 @@
     {
         [[self delegate] comboboxDonePressed:self withValue:[self currentValue]];
     }
-
     [[keyboardControls activeField] resignFirstResponder];
     [self resignFirstResponder];
+}
+
+-(void)addLookData
+{
+    self.images = [[NSMutableArray alloc] initWithCapacity:self.object.lookList.count];
+    NSInteger count = 0;
+    for(Look *look in self.object.lookList) {
+        NSString *path = [NSString stringWithFormat:@"%@%@/%@", [self.object projectPath], kProgramImagesDirName, look.fileName];
+        RuntimeImageCache *imageCache = [RuntimeImageCache sharedImageCache];
+        UIImage *image = [imageCache cachedImageForPath:path];
+        if (!image) {
+            [imageCache loadImageFromDiskWithPath:path onCompletion:^(UIImage *image, NSString* path) {
+                if (self.checkPath == path) {
+                    [self addLookData];
+                    [self setNeedsDisplay];
+                    [self.pickerView reloadAllComponents];
+                    [self.pickerView reloadInputViews];
+                }
+            }];
+        }
+        if (image) {
+            [self.images addObject:image];
+        } else {
+            self.checkPath = path;
+            [self.images addObject:[UIImage new]];
+        }
+        count++;
+        
+    }
+
 }
 
 @end

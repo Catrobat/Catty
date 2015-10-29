@@ -32,7 +32,11 @@
 #import "LoadingView.h"
 #import "BDKNotifyHUD.h"
 #import "PlaceHolderView.h"
-#import "ScenePresenterViewController.h"
+#import "KeychainUserDefaultsDefines.h"
+#import "Pocket_Code-Swift.h"
+#import <CoreBluetooth/CoreBluetooth.h>
+
+@class BluetoothPopupVC;
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"
@@ -41,7 +45,7 @@
 #define kSelectAllItemsTag 0
 #define kUnselectAllItemsTag 1
 
-@interface BaseTableViewController () <CatrobatAlertViewDelegate>
+@interface BaseTableViewController () <CatrobatAlertViewDelegate,BluetoothSelection>
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *normalModeRightBarButtonItem;
@@ -353,9 +357,41 @@
     if ([self respondsToSelector:@selector(stopAllSounds)]) {
         [self performSelector:@selector(stopAllSounds)];
     }
-    [self.navigationController setToolbarHidden:YES animated:YES];
+    
     ScenePresenterViewController *vc = [ScenePresenterViewController new];
     vc.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
+    NSMutableArray *array = [NSMutableArray new];
+    if ([vc.program.header.isPhiroProProject isEqualToString:@"true"] && kPhiroActivated) { // or has Phiro Bricks
+        if (!([BluetoothService sharedInstance].phiro.state == CBPeripheralStateConnected)) {
+            [array addObject:[NSNumber numberWithInteger:BluetoothDeviceIDphiro]];
+        }
+    
+    }
+//    if ([vc.program.header.isArduinoProject isEqualToString:@"true"] && kArduinoActivated) { // or has Arduino Bricks
+//        if (!([BluetoothService sharedInstance].arduino.state == CBPeripheralStateConnected)) {
+//            [array addObject:[NSNumber numberWithInteger:BluetoothDeviceIDarduino]];
+//        }
+//    }
+    
+    if ( array.count > 0) { // vc.program.requiresBluetooth
+
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
+        BluetoothPopupVC * bvc = (BluetoothPopupVC*)[storyboard instantiateViewControllerWithIdentifier:@"bluetoothPopupVC"];
+        [bvc setDeviceArray:array];
+        [bvc setDelegate:self];
+        [bvc setVc:vc];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:(UIViewController*)bvc];
+        [self presentViewController:navController animated:YES completion:nil];
+    } else {
+        [self startSceneWithVC:vc];
+    }
+    
+
+}
+
+-(void)startSceneWithVC:(ScenePresenterViewController*)vc
+{
+    [self.navigationController setToolbarHidden:YES animated:YES];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -391,11 +427,6 @@
 
 - (void)showLoadingView
 {
-    // TODO: create getter for loadingView property and use lazy instantiation instead!
-    if (! self.loadingView) {
-        self.loadingView = [[LoadingView alloc] init];
-        [self.view addSubview:self.loadingView];
-    }
     self.loadingView.backgroundColor = [UIColor whiteColor];
     self.loadingView.alpha = 1.0;
     CGPoint top = CGPointMake(0, -self.navigationController.navigationBar.frame.size.height);
@@ -436,6 +467,15 @@
 - (void)showPlaceHolder:(BOOL)show
 {
     self.tableView.alwaysBounceVertical = self.placeHolderView.hidden = (! show);
+}
+
+-(LoadingView*)loadingView
+{
+    if (! _loadingView) {
+        _loadingView = [[LoadingView alloc] init];
+        [self.view addSubview:_loadingView];
+    }
+    return _loadingView;
 }
 
 

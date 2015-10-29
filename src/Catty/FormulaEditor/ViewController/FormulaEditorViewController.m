@@ -37,7 +37,6 @@
 #import "BrickCell.h"
 #import "FormulaElement.h"
 #import "LanguageTranslationDefines.h"
-#import "AHKActionSheet.h"
 #import "BrickFormulaProtocol.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "VariablesContainer.h"
@@ -54,6 +53,9 @@
 #import "Brick+UserVariable.h"
 #import "BDKNotifyHUD.h"
 #import "Speakbrick.h"
+#import "KeychainUserDefaultsDefines.h"
+#import <AHKActionSheet/AHKActionSheet.h>
+#import "ProgramVariablesManager.h"
 
 NS_ENUM(NSInteger, ButtonIndex) {
     kButtonIndexDelete = 0,
@@ -75,14 +77,16 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (strong, nonatomic) FormulaEditorTextView *formulaEditorTextView;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *orangeTypeButton;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *toolTypeButton;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *normalTypeButton;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSMutableArray *normalTypeButton;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *highlightedButtons;
+@property (strong, nonatomic) NSMutableArray *sensorTypeButton;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *calcScrollView;
 @property (weak, nonatomic) IBOutlet UIScrollView *mathScrollView;
 @property (weak, nonatomic) IBOutlet UIScrollView *logicScrollView;
 @property (weak, nonatomic) IBOutlet UIScrollView *objectScrollView;
-@property (weak, nonatomic) IBOutlet UIScrollView *sensorScrollView;
+@property (weak, nonatomic)IBOutlet  UIScrollView *sensorScrollView;
+@property (strong, nonatomic)        UIScrollView *sensorScrollHelperView;
 @property (weak, nonatomic) IBOutlet UIScrollView *variableScrollView;
 @property (weak, nonatomic) IBOutlet UIPickerView *variablePicker;
 
@@ -110,7 +114,6 @@ NS_ENUM(NSInteger, ButtonIndex) {
 @property (strong, nonatomic) AHKActionSheet *logicalOperatorsMenu;
 @property (nonatomic) BOOL isProgramVariable;
 @property (nonatomic, strong) BDKNotifyHUD *notficicationHud;
-
 @end
 
 
@@ -200,10 +203,11 @@ NS_ENUM(NSInteger, ButtonIndex) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[ProgramManager sharedProgramManager] setProgram:self.object.program];
+    [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:self.object.program.variables];
     self.view.backgroundColor = [UIColor backgroundColor];
-
     [self showFormulaEditor];
+    [self initSensorView];
+    [self colorFormulaEditor];
     [self hideScrollViews];
     self.calcScrollView.hidden = NO;
     [self.calcButton setSelected:YES];
@@ -252,6 +256,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
     //self.pickerGesture.numberOfTapsRequired = 1;
     //[self.variablePicker addGestureRecognizer:self.pickerGesture];
     [self update];
+    [self updateSensorButtonWidth];
    
 }
 
@@ -298,6 +303,106 @@ NS_ENUM(NSInteger, ButtonIndex) {
     }
 }
 
+#pragma mark initSensorView
+
+-(void)initSensorView
+{
+    for (UIView* view in [self.formulaEditorTextView.inputView subviews]){
+        if (view.tag == 9000) {
+            self.sensorScrollHelperView = (UIScrollView*)view;
+            break;
+        }
+    }
+    self.sensorTypeButton = [NSMutableArray new];
+    NSArray *standardSensorArray = [[NSArray alloc] initWithObjects:@"acceleration_x", @"acceleration_y",@"acceleration_z",@"compass", @"inclination_x", @"inclination_y",@"loudness", nil];
+    NSInteger buttonCount = standardSensorArray.count;
+    self.sensorScrollHelperView.frame = CGRectMake(self.sensorScrollHelperView.frame.origin.x, self.sensorScrollHelperView.frame.origin.y, self.sensorScrollView.frame.size.width, buttonCount *self.calcButton.frame.size.height);
+    //standard Sensors
+    for (NSInteger count = 0; count < standardSensorArray.count; count++) {
+        [self addStandardSensorViewButton:count];
+    }
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseFaceDetectionSensors]) {
+        NSArray *faceDetectionSensorArray = [NSArray arrayWithObjects:@"FACE_DETECTED",
+                                             @"FACE_SIZE",
+                                             @"FACE_POSITION_X",
+                                             @"FACE_POSITION_Y", nil];
+        for (NSInteger count = 0; count < faceDetectionSensorArray.count; count++) {
+            [self addFaceDetectionSensorViewButton:count and:buttonCount+count];
+        }
+        buttonCount += faceDetectionSensorArray.count;
+    }
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kUsePhiroBricks]) {
+        NSArray *phiroSensorArray = [NSArray arrayWithObjects:@"front_left", @"front_right",@"side_left", @"side_right", @"bottom_left", @"bottom_right", nil];
+        for (NSInteger count = 0; count < phiroSensorArray.count; count++) {
+            [self addPhiroSensorViewButton:count and:buttonCount+count];
+        }
+        buttonCount += phiroSensorArray.count;
+    }
+
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseArduinoBricks]) {
+        NSArray *arduinoSensorArray = [NSArray arrayWithObjects:@"analogPin0", @"analogPin1",@"analogPin2", @"analogPin3", @"analogPin4",@"analogPin5",@"digitalPin0",@"digitalPin1",@"digitalPin2",@"digitalPin3",@"digitalPin4",@"digitalPin5",@"digitalPin6",@"digitalPin7",@"digitalPin8",@"digitalPin9",@"digitalPin10",@"digitalPin11",@"digitalPin12",@"digitalPin13", nil];
+        for (NSInteger count = 0; count < arduinoSensorArray.count; count++) {
+            [self addArduinoSensorViewButton:count and:buttonCount+count];
+        }
+        buttonCount += arduinoSensorArray.count;
+    }
+
+    
+    [self.normalTypeButton addObjectsFromArray:self.sensorTypeButton];
+    self.sensorScrollHelperView.frame = CGRectMake(self.sensorScrollHelperView.frame.origin.x, self.sensorScrollHelperView.frame.origin.y, self.sensorScrollHelperView.frame.size.width, buttonCount *self.calcButton.frame.size.height);
+    self.sensorScrollView.contentSize = CGSizeMake(self.sensorScrollHelperView.frame.size.width, buttonCount *self.calcButton.frame.size.height);
+}
+
+-(void)addStandardSensorViewButton:(NSInteger)tag
+{
+    UIButton *button = [self getSensorButton:tag];
+    if (tag >5) {
+        button.tag = 900+tag+7;
+    } else {
+        button.tag = 900+tag;
+    }
+}
+-(void)addFaceDetectionSensorViewButton:(NSInteger)tag and:(NSInteger)buttonCount
+{
+    UIButton *button = [self getSensorButton:buttonCount];
+    button.tag = 914+tag;
+
+}
+-(void)addPhiroSensorViewButton:(NSInteger)tag and:(NSInteger)buttonCount
+{
+    UIButton *button = [self getSensorButton:buttonCount];
+    button.tag = 918+tag;
+    
+}
+
+-(void)addArduinoSensorViewButton:(NSInteger)tag and:(NSInteger)buttonCount
+{
+    UIButton *button = [self getSensorButton:buttonCount];
+    button.tag = 924+tag;
+}
+
+-(UIButton*)getSensorButton:(NSInteger)buttonCount
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button addTarget:self
+               action:@selector(buttonPressed:)
+     forControlEvents:UIControlEventTouchUpInside];
+    button.frame = CGRectMake(0, buttonCount*self.calcButton.frame.size.height, self.sensorScrollHelperView.frame.size.width, self.calcButton.frame.size.height);
+    [self.sensorScrollHelperView addSubview:button];
+    [self.sensorTypeButton addObject:button];
+    return button;
+}
+
+-(void)updateSensorButtonWidth
+{
+    for(UIButton* button in self.sensorTypeButton){
+        button.frame = CGRectMake(button.frame.origin.x, button.frame.origin.y, self.sensorScrollView.frame.size.width, button.frame.size.height);
+    }
+    
+}
+
 #pragma mark - localizeView
 
 - (void)localizeView
@@ -314,8 +419,7 @@ NS_ENUM(NSInteger, ButtonIndex) {
             if([name length] != 0)
             {
                 [button setTitle:name forState:UIControlStateAll];
-            }else
-{
+            }else{
                 name = [SensorManager getExternName:[SensorManager stringForSensor:(Sensor)[button tag]]];
                 if([name length] != 0)
                 {
@@ -593,6 +697,12 @@ NS_ENUM(NSInteger, ButtonIndex) {
     self.formulaEditorTextView = [[FormulaEditorTextView alloc] initWithFrame: CGRectMake(1, self.brickCellData.brickCell.frame.size.height + 50, self.view.frame.size.width - 2, 0) AndFormulaEditorViewController:self];
     [self.view addSubview:self.formulaEditorTextView];
     
+        [self update];
+    [self.formulaEditorTextView becomeFirstResponder];
+}
+
+-(void)colorFormulaEditor
+{
     for(int i = 0; i < [self.orangeTypeButton count]; i++) {
         [[self.orangeTypeButton objectAtIndex:i] setTitleColor:[UIColor backgroundColor] forState:UIControlStateNormal];
         [[self.orangeTypeButton objectAtIndex:i] setBackgroundColor:[UIColor formulaEditorOperatorColor]];
@@ -600,10 +710,10 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [[[self.orangeTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
         [[[self.orangeTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor globalTintColor].CGColor];
     }
-  for(int i = 0; i < [self.normalTypeButton count]; i++) {
-    [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor formulaEditorOperandColor] forState:UIControlStateNormal];
+    for(int i = 0; i < [self.normalTypeButton count]; i++) {
+        [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor formulaEditorOperandColor] forState:UIControlStateNormal];
     [[self.normalTypeButton objectAtIndex:i] setTitleColor:[UIColor backgroundColor] forState:UIControlStateHighlighted];
-    [[self.normalTypeButton objectAtIndex:i] setBackgroundColor:[UIColor backgroundColor]];
+        [[self.normalTypeButton objectAtIndex:i] setBackgroundColor:[UIColor backgroundColor]];
     [[self.normalTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperandColor]] forState:UIControlStateHighlighted];
     [[[self.normalTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
     [[[self.normalTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor globalTintColor].CGColor];
@@ -614,9 +724,18 @@ NS_ENUM(NSInteger, ButtonIndex) {
        {
             [[self.normalTypeButton objectAtIndex:i] setEnabled:NO];
             [[self.normalTypeButton objectAtIndex:i] setBackgroundColor:[UIColor grayColor]];
+            }
         }
     }
-  }
+    for(int i = 0; i < [self.toolTypeButton count]; i++) {
+        [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor formulaEditorHighlightColor] forState:UIControlStateNormal];
+        [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor textTintColor] forState:UIControlStateHighlighted];
+        [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor textTintColor] forState:UIControlStateSelected];
+        [[self.toolTypeButton objectAtIndex:i] setBackgroundColor:[UIColor backgroundColor]];
+        [[[self.toolTypeButton objectAtIndex:i] layer] setBorderWidth:1.0f];
+        [[[self.toolTypeButton objectAtIndex:i] layer] setBorderColor:[UIColor textTintColor].CGColor];
+    }
+    
   for(int i = 0; i < [self.toolTypeButton count]; i++) {
     [[self.toolTypeButton objectAtIndex:i] setTitleColor:[UIColor backgroundColor] forState:UIControlStateNormal];
     [[self.toolTypeButton objectAtIndex:i] setBackgroundImage:[UIImage imageWithColor:[UIColor formulaEditorOperatorColor]] forState:UIControlStateNormal];
@@ -633,9 +752,8 @@ NS_ENUM(NSInteger, ButtonIndex) {
         [[[self.highlightedButtons objectAtIndex:i] layer] setBorderWidth:1.0f];
         [[[self.highlightedButtons objectAtIndex:i] layer] setBorderColor:[UIColor globalTintColor].CGColor];
     }
-  
-    [self update];
-    [self.formulaEditorTextView becomeFirstResponder];
+    
+
 }
 
 - (void)update

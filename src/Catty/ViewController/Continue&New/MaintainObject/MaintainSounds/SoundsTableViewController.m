@@ -601,13 +601,52 @@ static NSCharacterSet *blockedCharacterSet = nil;
         if (buttonIndex == 0) {
                 //Recorder
             NSDebug(@"Recorder");
-            self.isAllowed = YES;
-            [self stopAllSounds];
-            SRViewController *soundRecorderViewController;
-            soundRecorderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kSoundRecorderViewControllerIdentifier];
-            soundRecorderViewController.soundsTableViewController = self;
-            [self showViewController:soundRecorderViewController sender:self];
-        } else if (buttonIndex == 1) {
+            AVAudioSession *session = [AVAudioSession sharedInstance];
+            if ([session respondsToSelector:@selector(requestRecordPermission:)]) {
+                [session performSelector:@selector(requestRecordPermission:) withObject:^(BOOL granted) {
+                    if (granted) {
+                        // Microphone enabled code
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            self.isAllowed = YES;
+                            [self stopAllSounds];
+                            SRViewController *soundRecorderViewController;
+                            soundRecorderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kSoundRecorderViewControllerIdentifier];
+                            soundRecorderViewController.soundsTableViewController = self;
+                            [self showViewController:soundRecorderViewController sender:self];
+ 
+                        });
+                        
+                    }
+                    else {
+                        // Microphone disabled code
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            UIAlertController *alertControllerCameraRoll = [UIAlertController
+                                                                            alertControllerWithTitle:nil
+                                                                            message:kLocalizedNoAccesToMicrophoneCheckSettingsDescription
+                                                                            preferredStyle:UIAlertControllerStyleAlert];
+                            
+                            
+                            UIAlertAction *cancelAction = [UIAlertAction
+                                                           actionWithTitle:kLocalizedCancel
+                                                           style:UIAlertActionStyleCancel
+                                                           handler:nil];
+                            
+                            UIAlertAction *settingsAction = [UIAlertAction
+                                                             actionWithTitle:kLocalizedSettings
+                                                             style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction *action)
+                                                             {
+                                                                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                                             }];
+                            
+                            [alertControllerCameraRoll addAction:cancelAction];
+                            [alertControllerCameraRoll addAction:settingsAction];
+                            [self presentViewController:alertControllerCameraRoll animated:YES completion:nil];
+                        });
+                    }
+                }];
+            }
+                    } else if (buttonIndex == 1) {
             // Select music track
             NSDebug(@"Select music track");
             self.isAllowed = YES;

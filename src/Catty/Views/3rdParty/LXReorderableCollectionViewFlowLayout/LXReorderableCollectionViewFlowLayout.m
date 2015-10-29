@@ -180,6 +180,7 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
         __strong typeof(self) strongSelf = weakSelf;
         if ([strongSelf.dataSource respondsToSelector:@selector(collectionView:itemAtIndexPath:didMoveToIndexPath:)]) {
             [strongSelf.dataSource collectionView:strongSelf.collectionView itemAtIndexPath:previousIndexPath didMoveToIndexPath:newIndexPath];
+            [strongSelf.collectionView reloadData];
         }
     }];
 }

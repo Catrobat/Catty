@@ -123,7 +123,20 @@ typedef NS_ENUM(NSUInteger, kBrickCategoryType) {
     kSoundBrick                = 3,
     kLookBrick                 = 4,
     kVariableBrick             = 5,
+    kArduinoBrick              = 6,
+    kPhiroBrick                = 7,
     kFavouriteBricks           = 0
+};
+
+typedef NS_ENUM(NSUInteger, PageIndexCategoryType) {
+    kPageIndexScriptFavourites,
+    kPageIndexControlBrick,
+    kPageIndexMotionBrick,
+    kPageIndexSoundBrick,
+    kPageIndexLookBrick,
+    kPageIndexVariableBrick,
+    kPageIndexArduinoBrick,
+    kPageIndexPhiroBrick
 };
 
 // brick type identifiers
@@ -176,8 +189,8 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
     kChangeSizeByNBrick        = 303,
     kHideBrick                 = 304,
     kShowBrick                 = 305,
-    kSetGhostEffectBrick       = 306,
-    kChangeGhostEffectByNBrick = 307,
+    kSetTransparencyBrick      = 306,
+    kChangeTransparencyByNBrick= 307,
     kSetBrightnessBrick        = 308,
     kChangeBrightnessByNBrick  = 309,
     kClearGraphicEffectBrick   = 310,
@@ -187,7 +200,19 @@ typedef NS_ENUM(NSUInteger, kBrickType) {
 
     // 4xx variable bricks
     kSetVariableBrick          = 400,
-    kChangeVariableBrick       = 401
+    kChangeVariableBrick       = 401,
+    
+    // 5xx arduino bricks
+    kArduinoSendDigitalValueBrick  = 500,
+    kArduinoSendPWMValueBrick = 501,
+    
+    // 6xx phiro bricks
+    kPhiroMotorStopBrick       = 600,
+    kPhiroMotorMoveForwardBrick = 601,
+    kPhiroMotorMoveBackwardBrick = 602,
+    kPhiroPlayToneBrick          = 603,
+    kPhiroRGBLightBrick          = 604
+
 
 };
 
@@ -215,7 +240,8 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     kLocalizedMotion,\
     kLocalizedSound,\
     kLocalizedLooks,\
-    kLocalizedVariables\
+    kLocalizedVariables,\
+    kLocalizedPhiro\
 ]
 
 #define kBrickCategoryColors @[\
@@ -223,7 +249,9 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     [UIColor motionBrickBlueColor],\
     [UIColor soundBrickVioletColor],\
     [UIColor lookBrickGreenColor],\
-    [UIColor varibaleBrickRedColor]\
+    [UIColor varibaleBrickRedColor],\
+    [UIColor ArduinoBrickColor],\
+    [UIColor PhiroBrickColor]\
 ]
 
 #define kBrickCategoryStrokeColors @[\
@@ -231,7 +259,9 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     [UIColor motionBrickStrokeColor],\
     [UIColor soundBrickStrokeColor],\
     [UIColor lookBrickStrokeColor],\
-    [UIColor variableBrickStrokeColor]\
+    [UIColor variableBrickStrokeColor],\
+    [UIColor ArduinoBrickStrokeColor],\
+    [UIColor PhiroBrickStrokeColor]\
 ]
 
 #define kWhenScriptDefaultAction @"Tapped" // at the moment Catrobat only supports this type of action for WhenScripts
@@ -284,8 +314,8 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
     @"ChangeSizeByNBrick"        : @(kChangeSizeByNBrick),\
     @"HideBrick"                 : @(kHideBrick),\
     @"ShowBrick"                 : @(kShowBrick),\
-    @"SetGhostEffectBrick"       : @(kSetGhostEffectBrick),\
-    @"ChangeGhostEffectByNBrick" : @(kChangeGhostEffectByNBrick),\
+    @"SetTransparencyBrick"      : @(kSetTransparencyBrick),\
+    @"ChangeTransparencyByNBrick": @(kChangeTransparencyByNBrick),\
     @"SetBrightnessBrick"        : @(kSetBrightnessBrick),\
     @"ChangeBrightnessByNBrick"  : @(kChangeBrightnessByNBrick),\
     @"ClearGraphicEffectBrick"   : @(kClearGraphicEffectBrick),\
@@ -295,7 +325,18 @@ WRAP_BRICK_TYPE_IN_NSSTRING(kChangeVariableBrick)\
 \
     /* variable bricks */\
     @"SetVariableBrick"          : @(kSetVariableBrick),\
-    @"ChangeVariableBrick"       : @(kChangeVariableBrick)\
+    @"ChangeVariableBrick"       : @(kChangeVariableBrick),\
+\
+    /* arduino bricks */\
+    @"ArduinoSendDigitalValueBrick" : @(kArduinoSendDigitalValueBrick),\
+    @"ArduinoSendPWMValueBrick"     : @(kArduinoSendPWMValueBrick),\
+\
+    /* phiro bricks */\
+    @"PhiroMotorStopBrick"          : @(kPhiroMotorStopBrick),\
+    @"PhiroMotorMoveForwardBrick"   : @(kPhiroMotorMoveForwardBrick),\
+    @"PhiroMotorMoveBackwardBrick"  : @(kPhiroMotorMoveBackwardBrick),\
+    @"PhiroPlayToneBrick"           : @(kPhiroPlayToneBrick),\
+    @"kPhiroRGBLightBrick"          : @(kPhiroRGBLightBrick)\
 }
 
 typedef NS_ENUM(NSInteger, kBrickShapeType) {
@@ -354,8 +395,8 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 @"ChangeSizeByNBrick"        : @(kBrickHeight1h),\
 @"HideBrick"                 : @(kBrickHeight1h),\
 @"ShowBrick"                 : @(kBrickHeight1h),\
-@"SetGhostEffectBrick"       : @(kBrickHeight2h),\
-@"ChangeGhostEffectByNBrick" : @(kBrickHeight2h),\
+@"SetTransparencyBrick"      : @(kBrickHeight2h),\
+@"ChangeTransparencyByNBrick": @(kBrickHeight2h),\
 @"SetBrightnessBrick"        : @(kBrickHeight2h),\
 @"ChangeBrightnessByNBrick"  : @(kBrickHeight2h),\
 @"ClearGraphicEffectBrick"   : @(kBrickHeight1h),\
@@ -365,7 +406,18 @@ typedef NS_ENUM(NSInteger, kBrickShapeType) {
 \
 /* variable bricks */\
 @"SetVariableBrick"          : @(kBrickHeight3h),\
-@"ChangeVariableBrick"       : @(kBrickHeight3h)\
+@"ChangeVariableBrick"       : @(kBrickHeight3h),\
+\
+/* arduino bricks */\
+@"ArduinoSendDigitalValueBrick" : @(kBrickHeight2h),\
+@"ArduinoSendPWMValueBrick"     : @(kBrickHeight2h),\
+\
+/* phiro bricks */\
+@"PhiroMotorStopBrick"          : @(kBrickHeight2h),\
+@"PhiroMotorMoveForwardBrick"   : @(kBrickHeight3h),\
+@"PhiroMotorMoveBackwardBrick"  : @(kBrickHeight3h),\
+@"PhiroPlayToneBrick"           : @(kBrickHeight3h),\
+@"kPhiroRGBLightBrick"          : @(kBrickHeight3h)\
 }
 
 // brick heights

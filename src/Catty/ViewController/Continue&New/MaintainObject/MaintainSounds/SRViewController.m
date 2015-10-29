@@ -81,6 +81,7 @@
     [self.recorder stop];
     [self.timerLabel reset];
     [self.record setSelected:NO];
+    [[NSFileManager defaultManager] removeItemAtPath:self.filePath error:nil];
     self.recorder = nil;
     if(self.soundsTableViewController.afterSafeBlock)
     {
@@ -103,7 +104,6 @@
     self.filePath = [NSString stringWithFormat:@"%@/%@", delegate.fileManager.documentsDirectory, fileName];
     self.sound = [[Sound alloc] init];
     self.sound.fileName = fileName;
-    self.sound.name = kLocalizedRecording;
     NSURL* outputFileUrl = [NSURL fileURLWithPath:self.filePath isDirectory:NO];
     self.session = [AVAudioSession sharedInstance];
     NSError *err = NULL;
@@ -151,6 +151,7 @@
         AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
         [self.recorder recordForDuration:(([delegate.fileManager freeDiskspace]/1024ll)/256.0)];
         [self setupToolBar];
+        self.sound.name = kLocalizedRecording;
             //        self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateProgressView) userInfo:nil repeats:YES];
     } else {
         [self.recorder pause];
@@ -222,7 +223,7 @@
     [self.timerLabel reset];
     [self.record setSelected:NO];
     self.recorder = nil;
-    if (self.sound) {
+    if (self.sound.name) {
         NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
         [dnc postNotificationName:kRecordAddedNotification
                            object:nil

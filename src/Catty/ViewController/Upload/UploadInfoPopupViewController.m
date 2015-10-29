@@ -39,7 +39,7 @@
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "LanguageTranslationDefines.h"
 #import "NSData+Hashes.h"
-#import "KeychainDefines.h"
+#import "KeychainUserDefaultsDefines.h"
 #import "JNKeychain.h"
 #import "BDKNotifyHUD.h"
 #import "LoadingView.h"
@@ -452,7 +452,7 @@ const CGFloat PADDING = 5.0f;
 
 -(void)dismissView
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)showUploadSuccessfulView

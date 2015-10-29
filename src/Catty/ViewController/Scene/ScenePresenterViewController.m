@@ -31,7 +31,7 @@
 #import "SpriteManagerDelegate.h"
 #import "Brick.h"
 #import "AudioManager.h"
-#import "ProgramManager.h"
+#import "ProgramVariablesManager.h"
 #import "SensorHandler.h"
 #import <AVFoundation/AVFoundation.h>
 #import <CoreImage/CoreImage.h>
@@ -50,8 +50,12 @@
 #import "Pocket_Code-Swift.h"
 #import "FileManager.h"
 #import "AppDelegate.h"
+#import "CatrobatAlertView.h"
+#import "ActionSheetAlertViewTags.h"
 
-@interface ScenePresenterViewController() <UIActionSheetDelegate>
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
+@interface ScenePresenterViewController() <UIActionSheetDelegate,CatrobatAlertViewDelegate, RPScreenRecorderDelegate>
 @property (nonatomic) BOOL menuOpen;
 @property (nonatomic) CGPoint firstGestureTouchPoint;
 @property (nonatomic) UIImage *snapshotImage;
@@ -59,6 +63,7 @@
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) SKView *skView;
 @property (nonatomic) BOOL restartProgram;
+@property (nonatomic, strong) CBScene *scene;
 @end
 
 @implementation ScenePresenterViewController
@@ -93,19 +98,23 @@
     self.menuView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, kWidthSlideMenu + kBounceEffect, CGRectGetHeight(UIScreen.mainScreen.bounds))];
     self.menuView.backgroundColor = [[UIColor alloc] initWithPatternImage:newBackgroundImage];
 
-    // disable swipe back gesture
-    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-    }
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self setupScene];
+    RPScreenRecorder *sharedRecorder = [RPScreenRecorder sharedRecorder];
+    sharedRecorder.delegate = self;
     UIApplication.sharedApplication.idleTimerDisabled = YES;
     UIApplication.sharedApplication.statusBarHidden = YES;
     self.navigationController.navigationBar.hidden = YES;
+    self.navigationController.toolbarHidden = YES;
+    // disable swipe back gesture
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
     self.menuOpen = NO;
     [self.view addSubview:self.skView];
     [self.view insertSubview:self.menuView aboveSubview:self.skView];
@@ -114,6 +123,7 @@
     [self setUpLabels];
     [self setUpGridView];
     [self checkAspectRatio];
+    [[BluetoothService sharedInstance] setScenePresenter:self];
     
 }
 
@@ -157,7 +167,7 @@
 {
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
-    [ProgramManager sharedProgramManager].program = nil;
+    [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:nil];
 
     // Delete sound rec for loudness sensor
     NSError *error;
@@ -234,6 +244,7 @@
     self.menuRestartButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.menuAxisButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.menuAspectRatioButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.menuRecordButton = [UIButton buttonWithType:UIButtonTypeCustom];
 
     [self setupButtonWithButton:self.menuBackButton
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_back"]
@@ -259,6 +270,12 @@
                 ImageNameNormal:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio"]
         andImageNameHighlighted:[UIImage imageNamed:@"stage_dialog_button_aspect_ratio_pressed"]
                     andSelector:@selector(manageAspectRatioAction:)];
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+        [self setupButtonWithButton:self.menuRecordButton
+                    ImageNameNormal:[UIImage imageNamed:@"record"]
+            andImageNameHighlighted:[UIImage imageNamed:@"record"]
+                        andSelector:@selector(recordProgram:)];
+    }
 }
 
 - (void)setupButtonWithButton:(UIButton*)button ImageNameNormal:(UIImage*)stateNormal andImageNameHighlighted:(UIImage*)stateHighlighted andSelector:(SEL)myAction
@@ -279,6 +296,7 @@
 - (void)setUpMenuFrames
 {
     self.menuAspectRatioButton.frame = CGRectMake(10,10, kMenuButtonSize-20, kMenuButtonSize-20);
+    self.menuRecordButton.frame = CGRectMake(10,[Util screenHeight]- 10 - (kMenuButtonSize-20), kMenuButtonSize-20, kMenuButtonSize-20);
     ///StartPosition
     if ([Util screenHeight]==kIphone4ScreenHeight) {
         self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)-(kContinueButtonSize/2)-(kMenuIPhone4GapSize)-(2*kMenuButtonSize)-kMenuIPhone4ContinueGapSize, kMenuButtonSize, kMenuButtonSize);
@@ -287,6 +305,7 @@
         self.menuContinueButton.frame = CGRectMake(kPlaceOfButtons+kContinueOffset,(kIphone4ScreenHeight/2)-(kContinueButtonSize/2),  kContinueButtonSize, kContinueButtonSize);
         self.menuScreenshotButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+kMenuIPhone4ContinueGapSize,  kMenuButtonSize, kMenuButtonSize);
         self.menuAxisButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),(kIphone4ScreenHeight/2)+(kContinueButtonSize/2)+(kMenuIPhone4GapSize)+kMenuIPhone4ContinueGapSize+(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
+        
     } else {
         self.menuBackButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-(kMenuIPhone5GapSize)-kMenuIPhone5ContinueGapSize-(2*kMenuButtonSize), kMenuButtonSize, kMenuButtonSize);
         self.menuRestartButton.frame = CGRectMake(kPlaceOfButtons+((kContinueButtonSize-kMenuButtonSize)/2),([Util screenHeight]/2)-(kContinueButtonSize/2)-kMenuIPhone5ContinueGapSize-(kMenuButtonSize),  kMenuButtonSize, kMenuButtonSize);
@@ -314,21 +333,26 @@
     UILabel *positiveWidth = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]- 40, [Util screenHeight]/2 + 5, 30, 15)];
     positiveWidth.text = [NSString stringWithFormat:@"%d",(int)self.program.header.screenWidth.floatValue/2];
     positiveWidth.textColor = [UIColor redColor];
+    [positiveWidth sizeToFit];
+    positiveWidth.frame = CGRectMake([Util screenWidth] - positiveWidth.frame.size.width - 5, [Util screenHeight]/2 + 5, positiveWidth.frame.size.width, positiveWidth.frame.size.height);
     [self.gridView addSubview:positiveWidth];
     // negativeWidth
     UILabel *negativeWidth = [[UILabel alloc] initWithFrame:CGRectMake(5, [Util screenHeight]/2 + 5, 40, 15)];
     negativeWidth.text = [NSString stringWithFormat:@"-%d",(int)self.program.header.screenWidth.floatValue/2];
     negativeWidth.textColor = [UIColor redColor];
+    [negativeWidth sizeToFit];
     [self.gridView addSubview:negativeWidth];
     // positveHeight
     UILabel *positiveHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5, [Util screenHeight] - 20, 40, 15)];
     positiveHeight.text = [NSString stringWithFormat:@"-%d",(int)self.program.header.screenHeight.floatValue/2];
     positiveHeight.textColor = [UIColor redColor];
+    [positiveHeight sizeToFit];
     [self.gridView addSubview:positiveHeight];
     // negativeHeight
     UILabel *negativeHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5,5, 40, 15)];
     negativeHeight.text = [NSString stringWithFormat:@"%d",(int)self.program.header.screenHeight.floatValue/2];
     negativeHeight.textColor = [UIColor redColor];
+    [negativeHeight sizeToFit];
     [self.gridView addSubview:negativeHeight];
     
     [self.view insertSubview:self.gridView aboveSubview:self.skView];
@@ -343,18 +367,21 @@
 
 - (void)setupScene
 {
-    CBScene *scene = [SetupScene setupSceneForProgram:self.program];
-    scene.name = self.program.header.programName;
-    if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
-        scene.scaleMode = SKSceneScaleModeFill;
-    } else if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
-        scene.scaleMode = SKSceneScaleModeAspectFit;
-    } else {
-        scene.scaleMode = SKSceneScaleModeFill;
+    if (!self.scene) {
+        CBScene *scene = [SetupScene setupSceneForProgram:self.program];
+        scene.name = self.program.header.programName;
+        if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeMaximize]) {
+            scene.scaleMode = SKSceneScaleModeFill;
+        } else if ([self.program.header.screenMode isEqualToString: kCatrobatHeaderScreenModeStretch]){
+            scene.scaleMode = SKSceneScaleModeAspectFit;
+        } else {
+            scene.scaleMode = SKSceneScaleModeFill;
+        }
+        self.skView.paused = NO;
+        [self.skView presentScene:scene];
+        self.scene = scene;
+        [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:self.program.variables];
     }
-    self.skView.paused = NO;
-    [self.skView presentScene:scene];
-    [ProgramManager sharedProgramManager].program = self.program; // TODO: should be removed!
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -453,6 +480,21 @@
     [self.parentViewController.navigationController setToolbarHidden:NO];
     [self.parentViewController.navigationController setNavigationBarHidden:NO];
     [self.navigationController popViewControllerAnimated:YES];
+    [[BluetoothService sharedInstance] setScenePresenter:nil];
+}
+
+-(void)connectionLost
+{
+    [self.loadingView show];
+    self.menuView.userInteractionEnabled = NO;
+    CBScene *previousScene = (CBScene*)self.skView.scene;
+    previousScene.userInteractionEnabled = NO;
+    [previousScene stopProgram];
+    [[AudioManager sharedAudioManager] stopAllSounds];
+    [[FlashHelper sharedFlashHandler] pause];
+    previousScene.userInteractionEnabled = YES;
+    [self.loadingView hide];
+    [Util alertWithText:@"Lost Bluetooth Connection" delegate:self tag:kLostBluetoothConnectionTag];
 }
 
 - (void)restartProgramAction:(UIButton*)sender
@@ -518,6 +560,23 @@
     } else {
         self.gridView.hidden = NO;
     }
+}
+
+-(void)recordProgram:(UIButton*)sender
+{
+    SKView * view = self.skView;
+    if ([((CBScene*)view.scene) isScreenRecording]) {
+        [((CBScene*)view.scene) stopScreenRecording];
+        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"record"] forState:UIControlStateNormal];
+        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"record"] forState:UIControlStateHighlighted];
+        [self.menuView setNeedsDisplay];
+        return;
+    }
+    [((CBScene*)view.scene) startScreenRecording];
+    [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
+    [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"pause"] forState:UIControlStateHighlighted];
+    [self.menuView setNeedsDisplay];
+    [self continueProgramAction:nil withDuration:0];
 }
 
 - (void)manageAspectRatioAction:(UIButton *)sender
@@ -657,7 +716,7 @@
                                  if (translate.x < (kWidthSlideMenu) && velocityX > 300) {
                                      [self bounceAnimation];
                                  }
-//                                 [((CBScene*)view.scene) stopScreenRecording];
+                                 
                              }];
         } else if(translate.x > 0.0 && translate.x <(kWidthSlideMenu/4) && self.menuOpen == NO && self.firstGestureTouchPoint.x < kSlidingStartArea) {
             [UIView animateWithDuration:0.25
@@ -806,6 +865,27 @@
     UIImage *output = [UIImage imageWithCGImage:cgimg];
     CFRelease(cgimg);
     return output;
+}
+
+-(void)alertView:(CatrobatAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+
+}
+
+-(void)alertView:(CatrobatAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == kLostBluetoothConnectionTag) {
+        [self.parentViewController.navigationController setToolbarHidden:NO];
+        [self.parentViewController.navigationController setNavigationBarHidden:NO];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+#pragma mark ScreenRecording
+
+-(void)screenRecorderDidChangeAvailability:(RPScreenRecorder *)screenRecorder
+{
+    self.menuRecordButton.hidden = screenRecorder.available;
 }
 
 @end

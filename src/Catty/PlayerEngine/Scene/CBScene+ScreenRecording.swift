@@ -45,6 +45,11 @@ extension CBScene: RPPreviewViewControllerDelegate, RPScreenRecorderDelegate {
             }
         }
     }
+    
+    func isScreenRecording()->Bool{
+        let sharedRecorder = RPScreenRecorder.sharedRecorder()
+        return sharedRecorder.recording
+    }
 
     func stopScreenRecordingWithHandler(handler:(() -> Void)) {
         let sharedRecorder = RPScreenRecorder.sharedRecorder()

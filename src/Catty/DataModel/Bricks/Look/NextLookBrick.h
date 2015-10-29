@@ -24,4 +24,6 @@
 
 @interface NextLookBrick : Brick
 
+- (NSString*)pathForLook:(Look*)look;
+
 @end

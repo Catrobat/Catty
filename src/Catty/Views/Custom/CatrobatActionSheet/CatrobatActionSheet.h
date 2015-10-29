@@ -20,7 +20,7 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "IBActionSheet.h"
+#import <IBActionSheet/IBActionSheet.h>
 
 @class CatrobatActionSheet;
 @class DataTransferMessage;
@@ -39,8 +39,8 @@
 @interface CatrobatActionSheet : IBActionSheet
 
 @property (nonatomic, strong) DataTransferMessage *dataTransferMessage; // DTO design pattern
-@property (nonatomic) NSInteger destructiveButtonIndex;        // sets destructive (red) button. -1 means none set. default is -1. ignored if only one button
-@property (nonatomic) NSInteger cancelButtonIndex;      // if the delegate does not implement -actionSheetCancel:, we pretend this button was clicked on. default is -1
+//@property (nonatomic) NSInteger destructiveButtonIndex;        // sets destructive (red) button. -1 means none set. default is -1. ignored if only one button
+//@property (nonatomic) NSInteger cancelButtonIndex;      // if the delegate does not implement -actionSheetCancel:, we pretend this button was clicked on. default is -1
 @property (nonatomic, strong) UITapGestureRecognizer *tap;
 
 - (void)addDestructiveButtonWithTitle:(NSString*)destructiveTitle;

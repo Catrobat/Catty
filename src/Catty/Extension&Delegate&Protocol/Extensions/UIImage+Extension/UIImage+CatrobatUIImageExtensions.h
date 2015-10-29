@@ -41,6 +41,7 @@
 - (BOOL)isTransparentPixel:(UIImage*)image withX:(CGFloat)x andY:(CGFloat)y;
 - (BOOL)isTransparentPixelOLDMETHOD:(UIImage*)image withX:(CGFloat)x andY:(CGFloat)y;
 + (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
++ (UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height;
 + (UIImage*)changeImage:(UIImage*)image toColor:(UIColor*)color;
 
 @end

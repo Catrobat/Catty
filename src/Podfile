@@ -1,0 +1,14 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+# ignore all warnings from all pods
+inhibit_all_warnings!
+
+pod 'MXSegmentedPager', :git => 'https://github.com/maxep/MXSegmentedPager.git'
+pod 'M13ProgressSuite', '~> 1.2.7'
+pod 'Bohr'
+pod 'AHKActionSheet'
+pod 'Shimmer'
+pod 'IBActionSheet'
+pod 'MYBlurIntroductionView'
+pod 'TTTAttributedLabel'

@@ -211,4 +211,24 @@
     return [UIColor colorWithRed:179.0f/255.0f green:137.0f/255.0f blue:255.0f/255.0f alpha:1.0f];
 }
 
++ (UIColor*)PhiroBrickColor
+{
+    return [UIColor colorWithRed:234.0f/255.0f green:200.0f/255.0f blue:59.0f/255.0f alpha:1.0f];
+}
+
++ (UIColor*)PhiroBrickStrokeColor
+{
+    return [UIColor colorWithRed:179.0f/255.0f green:137.0f/255.0f blue:255.0f/255.0f alpha:1.0f];
+}
+
++ (UIColor*)ArduinoBrickColor
+{
+    return [UIColor colorWithRed:234.0f/255.0f green:200.0f/255.0f blue:59.0f/255.0f alpha:1.0f];
+}
+
++ (UIColor*)ArduinoBrickStrokeColor
+{
+    return [UIColor colorWithRed:179.0f/255.0f green:137.0f/255.0f blue:255.0f/255.0f alpha:1.0f];
+}
+
 @end

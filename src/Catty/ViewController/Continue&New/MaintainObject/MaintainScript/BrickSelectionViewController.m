@@ -30,6 +30,14 @@
 
 @implementation BrickSelectionViewController
 
+-(id)initWithTransitionStyle:(UIPageViewControllerTransitionStyle)style navigationOrientation:(UIPageViewControllerNavigationOrientation)navigationOrientation options:(NSDictionary<NSString *,id> *)options
+{
+    self = [super initWithTransitionStyle:style navigationOrientation:navigationOrientation options:options];
+    self.pageIndexArray = [[NSMutableArray alloc] initWithArray:@[[NSNumber numberWithInteger:kPageIndexScriptFavourites],[NSNumber numberWithInteger:kPageIndexControlBrick],[NSNumber numberWithInteger:kPageIndexMotionBrick],[NSNumber numberWithInteger:kPageIndexSoundBrick],[NSNumber numberWithInteger:kPageIndexLookBrick],[NSNumber numberWithInteger:kPageIndexVariableBrick]]];
+    return self;
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -46,9 +54,12 @@
      viewControllerBeforeViewController:(UIViewController*)viewController
 {
     BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
-    NSUInteger pageIndex = bcVC.pageIndex - 1;
-    
-    return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:pageIndex andObject:bcVC.spriteObject];
+    NSInteger pageIndex = bcVC.pageIndex - 1;
+    if (pageIndex >= 0) {
+        NSNumber *index = self.pageIndexArray[pageIndex];
+        return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:index.unsignedIntegerValue andObject:bcVC.spriteObject andMaxPage:self.pageIndexArray.count];
+    }
+    return nil;
 }
 
 - (UIViewController*)pageViewController:(UIPageViewController*)pageViewController
@@ -56,7 +67,11 @@
 {
     BrickCategoryViewController *bcVC = (BrickCategoryViewController *)viewController;
     NSUInteger pageIndex = bcVC.pageIndex + 1;
-    return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:pageIndex andObject:bcVC.spriteObject];
+    if (pageIndex < self.pageIndexArray.count) {
+        NSNumber *index = self.pageIndexArray[pageIndex];
+        return [BrickCategoryViewController brickCategoryViewControllerForPageIndex:index.unsignedIntegerValue andObject:bcVC.spriteObject andMaxPage:self.pageIndexArray.count];
+    }
+    return nil;
 }
 
 - (void)pageViewController:(UIPageViewController*)pageViewController
@@ -74,7 +89,7 @@
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController*)pageViewController
 {
     [self overwritePageControl];
-    return kMaxPages;
+    return self.pageIndexArray.count;
 }
 
 - (void)overwritePageControl
@@ -116,7 +131,7 @@
 {
     BrickCategoryViewController *bcvc = [self.viewControllers objectAtIndex:0];
     NSInteger pageIndex = bcvc.pageIndex;
-    if (pageIndex >= 0 && pageIndex < kMaxPages) {
+    if (pageIndex >= 0) {
         self.title = CBTitleFromPageIndexCategoryType(pageIndex);
     }
 }

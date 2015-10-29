@@ -32,7 +32,7 @@
 #import "ActionSheetAlertViewTags.h"
 #import "DataTransferMessage.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
-#import "MYBlurIntroductionView.h"
+#import <MYBlurIntroductionView/MYBlurIntroductionView.h>
 #import "FormulaEditorTextView.h"
 #import "CatrobatLanguageDefines.h"
 #import "NSString+CatrobatNSStringExtensions.h"
@@ -45,6 +45,7 @@
 #import "BroadcastScript.h"
 #import "SpriteObject.h"
 #import <objc/runtime.h>
+#import <sys/sysctl.h>
 #import "OrderedDictionary.h"
 
 @interface Util () <CatrobatAlertViewDelegate>
@@ -743,6 +744,16 @@ replacementString:(NSString*)characters
                 break;
             }
         }
+        bool notOnlySpecialCharacters = NO;
+        for(int i =0; i < input.length; i++){
+            NSString * newString = [input substringWithRange:NSMakeRange(i, 1)];
+            if(!([newString  isEqual: @"."])&&!([newString  isEqual: @"/"])&&!([newString  isEqual: @"\\"])&&!([newString  isEqual: @"~"])){
+                notOnlySpecialCharacters = YES;
+                break;
+            }
+        }
+        
+        
         NSUInteger textFieldMinInputLength = [payload[kDTPayloadAskUserMinInputLength] unsignedIntegerValue];
         if ([input isEqualToString:kLocalizedNewElement]) {
             CatrobatAlertView *newAlertView = [Util alertWithText:kLocalizedInvalidInputDescription
@@ -776,7 +787,17 @@ replacementString:(NSString*)characters
                                                               tag:kInvalidNameWarningAlertViewTag];
             payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
             newAlertView.dataTransferMessage = alertView.dataTransferMessage;
-        } else {
+        } else if(!notOnlySpecialCharacters){
+            NSString *alertText = [NSString stringWithFormat:kLocalizedSpecialCharInputDescription,
+                                   textFieldMinInputLength];
+            alertText = ((textFieldMinInputLength != 1) ? [[self class] pluralString:alertText]
+                         : [[self class] singularString:alertText]);
+            CatrobatAlertView *newAlertView = [Util alertWithText:alertText
+                                                         delegate:(id<CatrobatAlertViewDelegate>)self
+                                                              tag:kInvalidNameWarningAlertViewTag];
+            payload[kDTPayloadAskUserPromptValue] = (NSValue*)input;
+            newAlertView.dataTransferMessage = alertView.dataTransferMessage;
+        }else {
             // no name duplicate => call action on target
             SEL action = NULL;
             if (((NSValue*)payload[kDTPayloadAskUserAction]) != nil) {
