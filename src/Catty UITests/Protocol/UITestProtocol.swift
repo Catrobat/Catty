@@ -75,7 +75,7 @@ extension UITestProtocol {
         tablesQuery.staticTexts["Background"].tap()
         tablesQuery.staticTexts["Backgrounds"].tap()
         
-        let editButton = app.navigationBars["Looks"].buttons["Edit"]
+        let editButton = app.navigationBars["Backgrounds"].buttons["Edit"]
         editButton.tap()
         app.buttons["Delete Looks"].tap()
         
@@ -87,7 +87,7 @@ extension UITestProtocol {
         let addButton = app.toolbars.buttons["Add"]
         let drawNewImageButton = app.buttons["Draw new image"]
         let image = app.scrollViews.childrenMatchingType(.Other).element.childrenMatchingType(.Image).elementBoundByIndex(1)
-        let looksButton = app.navigationBars["Pocket Paint"].buttons["Looks"]
+        let looksButton = app.navigationBars["Pocket Paint"].buttons["Backgrounds"]
         let yesButton = app.alerts["Save to PocketCode"].collectionViews.buttons["Yes"]
         let collectionViewsQuery = app.alerts["Add image"].collectionViews
         let enterYourImageNameHereTextField = collectionViewsQuery.textFields["Enter your image name here..."]
