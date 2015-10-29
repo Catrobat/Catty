@@ -90,7 +90,6 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
     func testNewInvalidNames() {
         restoreDefaultProgram()
         
-        // TODO: Handle invalid program names and add more testcases (e.g. \, &, ~,...)! (IOS-269)
         let progNamesErrorMsgMap = ["":                      "No input or the input is too short. Please enter at least 1 character.",
                                     "i am tooooooo looooog": "The input is too long. Please enter not more than 20 characters."]
         

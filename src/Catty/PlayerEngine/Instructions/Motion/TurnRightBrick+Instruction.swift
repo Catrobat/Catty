@@ -32,7 +32,12 @@ extension TurnRightBrick: CBInstructionProtocol {
         else { fatalError("This should never happen!") }
 
         return {
-            spriteNode.rotation -= self.degrees.interpretDoubleForSprite(object)
+            assert(NSThread.currentThread().isMainThread)
+            let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+            let globalQueue = dispatch_get_global_queue(priority, 0)
+            dispatch_async(globalQueue){
+                 spriteNode.rotation -= self.degrees.interpretDoubleForSprite(object)
+            }
         }
     }
 

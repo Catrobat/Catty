@@ -100,6 +100,7 @@
 #define kLocalizedTermsOfUse NSLocalizedString(@"Terms of Use", nil)
 #define kLocalizedForgotPassword NSLocalizedString(@"Forgot password", nil)
 #define kLocalizedRateUs NSLocalizedString(@"Rate Us", nil)
+#define kLocalizedPrivacySettings NSLocalizedString(@"Privacy Settings", nil)
 #define kLocalizedVersionLabel NSLocalizedString(@"v", nil)
 #define kLocalizedBack NSLocalizedString(@"Back", nil)
 #define kLocalizedSourceCodeLicenseButtonLabel NSLocalizedString(@"Pocket Code Source Code License", nil)
@@ -227,6 +228,14 @@
 #define kLocalizedSound NSLocalizedString(@"Sound", nil)
 #define kLocalizedLooks NSLocalizedString(@"Looks", nil)
 #define kLocalizedVariables NSLocalizedString(@"Variables", nil)
+#define kLocalizedPhiro NSLocalizedString(@"Phiro", nil)
+#define kLocalizedArduino NSLocalizedString(@"Arduino", nil)
+#define kLocalizedPhiroBricks NSLocalizedString(@"Use Phiro bricks", nil)
+#define kLocalizedArduinoBricks NSLocalizedString(@"Use Arduino bricks", nil)
+#define kLocalizedFaceDetection NSLocalizedString(@"Use face detection", nil)
+#define kLocalizedFaceDetectionFrontCamera NSLocalizedString(@"Use front camera", nil)
+#define kLocalizedFaceDetectionDefaultCamera NSLocalizedString(@"default camera is back camera", nil)
+#define kLocalizedDisconnectAllDevices NSLocalizedString(@"Disconnect all devices", nil)
 #define kLocalizedRecording NSLocalizedString(@"Recording", nil)
 #define kLocalizedError NSLocalizedString(@"Error", nil)
 #define kLocalizedMemoryWarning NSLocalizedString(@"Not enough Memory", nil)
@@ -235,6 +244,7 @@
 #define kLocalizedName NSLocalizedString(@"Name", nil)
 #define kLocalizedDownloaded NSLocalizedString(@"Download sucessful", nil)
 #define kLocalizedSettings NSLocalizedString(@"Settings", nil)
+
 
 //************************************************************************************************************
 //**********************************       SHORT DESCRIPTIONS      *******************************************
@@ -276,6 +286,7 @@
 #define kLocalizedNoImportedSoundsFoundDescription NSLocalizedString(@"Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.", @"Description of AlertView if the user tries to import a sound but no sound has been imported using iTunes.")
 #define kLocalizedNoOrTooShortInputDescription NSLocalizedString(@"No input or the input is too short. Please enter at least %lu character(s).", nil)
 #define kLocalizedSpaceInputDescription NSLocalizedString(@"Only space is not allowed. Please enter at least %lu other character(s).", nil)
+#define kLocalizedSpecialCharInputDescription NSLocalizedString(@"Only special characters are not allowed. Please enter at least %lu other character(s).", nil)
 #define kLocalizedInvalidInputDescription NSLocalizedString(@"Invalid input entered, try again.", nil)
 #define kLocalizedProgramNameAlreadyExistsDescription NSLocalizedString(@"A program with the same name already exists, try again.", nil)
 #define kLocalizedInvalidDescriptionDescription NSLocalizedString(@"The description contains invalid characters, try again.", nil)
@@ -290,6 +301,7 @@
 #define kLocalizedProgramAlreadyDownloadedDescription NSLocalizedString(@"You have already downloaded this program!", nil)
 #define kLocalizedNoAccesToImagesCheckSettingsDescription NSLocalizedString(@"Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.", nil)
 #define kLocalizedNoAccesToCameraCheckSettingsDescription NSLocalizedString(@"Pocket Code has no access to your camera. To permit access, tap settings and activate camera. Your drawing will automatically be saved to PocketCode for you.", nil)
+#define kLocalizedNoAccesToMicrophoneCheckSettingsDescription NSLocalizedString(@"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone.", nil)
 
 //************************************************************************************************************
 //*******************************       BRICK TITLE TRANSLATIONS      ****************************************
@@ -359,6 +371,19 @@
 #define kLocalizedAddCommentHere NSLocalizedString(@"add comment here...", nil)
 #define kLocalizedMessage1 NSLocalizedString(@"message 1", nil)
 #define kLocalizedHello NSLocalizedString(@"Hello !", nil)
+
+// phiro bricks
+#define kLocalizedStopPhiroMotor NSLocalizedString(@"Stop Phiro Motor\n%@", nil)
+#define kLocalizedPhiroMoveForward NSLocalizedString(@"Move Phiro Motor forward\n%@\n Speed %@\%", nil)
+#define kLocalizedPhiroMoveBackward NSLocalizedString(@"Move Phiro Motor backward\n%@\n Speed %@\%", nil)
+#define kLocalizedPhiroRGBLight NSLocalizedString(@"Set Phiro Light\n%@\n Red %@ Green %@ Blue %@", nil)
+#define kLocalizedPhiroPlayTone NSLocalizedString(@"play Phiro Tone\n%@\n Duration %@ seconds", nil)
+
+
+// Arduino bricks
+#define kLocalizedArduinoSendDigitalValue NSLocalizedString(@"Arduino send digital\nPin:%@ Value:%@", nil)
+#define kLocalizedArduinoSendPWMValue NSLocalizedString(@"Arduino send PWM\nPin:%@ Value:%@", nil)
+
 
 //************************************************************************************************************
 //**********************************       Login/Upload            *******************************************
@@ -490,12 +515,45 @@
 #define kUIFESensorAccelerationZ NSLocalizedString(@"acceleration_z", nil)
 #define kUIFESensorInclinationX NSLocalizedString(@"inclination_x", nil)
 #define kUIFESensorInclinationY NSLocalizedString(@"inclination_y", nil)
+#define kUIFESensorPhiroFrontLeft NSLocalizedString(@"phiro_front_left", nil)
+#define kUIFESensorPhiroFrontRight NSLocalizedString(@"phiro_front_right", nil)
+#define kUIFESensorPhiroSideLeft NSLocalizedString(@"phiro_side_left", nil)
+#define kUIFESensorPhiroSideRight NSLocalizedString(@"phiro_side_right", nil)
+#define kUIFESensorPhiroBottomLeft NSLocalizedString(@"phiro_bottom_left", nil)
+#define kUIFESensorPhiroBottomRight NSLocalizedString(@"phiro_bottom_right", nil)
+
+#define kUIFESensorArduinoAnalog0 NSLocalizedString(@"arduino_analog_0", nil)
+#define kUIFESensorArduinoAnalog1 NSLocalizedString(@"arduino_analog_1", nil)
+#define kUIFESensorArduinoAnalog2 NSLocalizedString(@"arduino_analog_2", nil)
+#define kUIFESensorArduinoAnalog3 NSLocalizedString(@"arduino_analog_3", nil)
+#define kUIFESensorArduinoAnalog4 NSLocalizedString(@"arduino_analog_4", nil)
+#define kUIFESensorArduinoAnalog5 NSLocalizedString(@"arduino_analog_5", nil)
+
+#define kUIFESensorArduinoDigital0 NSLocalizedString(@"arduino_digital_0", nil)
+#define kUIFESensorArduinoDigital1 NSLocalizedString(@"arduino_digital_1", nil)
+#define kUIFESensorArduinoDigital2 NSLocalizedString(@"arduino_digital_2", nil)
+#define kUIFESensorArduinoDigital3 NSLocalizedString(@"arduino_digital_3", nil)
+#define kUIFESensorArduinoDigital4 NSLocalizedString(@"arduino_digital_4", nil)
+#define kUIFESensorArduinoDigital5 NSLocalizedString(@"arduino_digital_5", nil)
+#define kUIFESensorArduinoDigital6 NSLocalizedString(@"arduino_digital_6", nil)
+#define kUIFESensorArduinoDigital7 NSLocalizedString(@"arduino_digital_7", nil)
+#define kUIFESensorArduinoDigital8 NSLocalizedString(@"arduino_digital_8", nil)
+#define kUIFESensorArduinoDigital9 NSLocalizedString(@"arduino_digital_9", nil)
+#define kUIFESensorArduinoDigital10 NSLocalizedString(@"arduino_digital_10", nil)
+#define kUIFESensorArduinoDigital11 NSLocalizedString(@"arduino_digital_11", nil)
+#define kUIFESensorArduinoDigital12 NSLocalizedString(@"arduino_digital_12", nil)
+#define kUIFESensorArduinoDigital13 NSLocalizedString(@"arduino_digital_13", nil)
 
 #define kLocalizedSensorCompass NSLocalizedString(@"compass", nil)
 #define kLocalizedSensorAcceleration NSLocalizedString(@"acceleration-sensor", nil)
 #define kLocalizedSensorRotation NSLocalizedString(@"gyro-sensor", nil)
 #define kLocalizedSensorMagnetic NSLocalizedString(@"magnetic-sensor", nil)
 #define kLocalizedNotAvailable NSLocalizedString(@"not available", nil)
+
+#define kUIFESensorFaceDetected NSLocalizedString(@"face_detected", nil)
+#define kUIFESensorFaceSize NSLocalizedString(@"facesize", nil)
+#define kUIFESensorFaceX NSLocalizedString(@"faceposition_x", nil)
+#define kUIFESensorFaceY NSLocalizedString(@"faceposition_y", nil)
 
 //************************************************************************************************************
 //************************************       BrickCategoryTitles        ********************************************
@@ -509,7 +567,26 @@
 #define kUISoundTitle  NSLocalizedStringFromTable(@"Sound", @"BrickCategoryViewController", nil);
 #define kUILookTitle  NSLocalizedStringFromTable(@"Look", @"BrickCategoryViewController", nil);
 #define kUIVariableTitle  NSLocalizedStringFromTable(@"Variable", @"BrickCategoryViewController", nil);
+#define kUIArduinoTitle  NSLocalizedStringFromTable(@"Arduino", @"BrickCategoryViewController", nil);
+#define kUIPhiroTitle  NSLocalizedStringFromTable(@"Phiro", @"BrickCategoryViewController", nil);
 
+
+//************************************************************************************************************
+//************************************       PhiroDefines         ********************************************
+//************************************************************************************************************
+
+
+#define kLocalizedPhiroBoth  NSLocalizedString(@"Both", nil)
+#define kLocalizedPhiroLeft  NSLocalizedString(@"Left", nil)
+#define kLocalizedPhiroRight  NSLocalizedString(@"Right", nil)
+
+#define kLocalizedPhiroDO  NSLocalizedString(@"DO", nil)
+#define kLocalizedPhiroRE  NSLocalizedString(@"RE", nil)
+#define kLocalizedPhiroMI  NSLocalizedString(@"MI", nil)
+#define kLocalizedPhiroFA  NSLocalizedString(@"FA", nil)
+#define kLocalizedPhiroSO  NSLocalizedString(@"SO", nil)
+#define kLocalizedPhiroLA  NSLocalizedString(@"LA", nil)
+#define kLocalizedPhiroTI  NSLocalizedString(@"TI", nil)
 
 #if DEBUG == 1
 //************************************************************************************************************
@@ -518,3 +595,6 @@
 #define kLocalizedDebugModeTitle NSLocalizedString(@"Debug mode", nil)
 #define kLocalizedStartedInDebugMode NSLocalizedString(@"Pocket Code has been started in debug mode.", nil)
 #endif
+
+
+

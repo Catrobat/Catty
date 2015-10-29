@@ -177,7 +177,7 @@
             break;
             
         default:
-            NSDebug(@"Invalid operator");
+            return nil;
             break;
     }
     

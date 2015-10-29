@@ -24,6 +24,7 @@
 #import <UIKit/UIResponder.h>
 #import "iOSComboboxPickerView.h"
 #import "BSKeyboardControls.h"
+#import "SpriteObject.h"
 
 #define kiOSComboboxTotalHeight 305.0f
 
@@ -35,10 +36,12 @@
 }
 
 @property (nonatomic, strong) NSArray *values;
-@property (nonatomic, strong) NSArray *images;
+@property (atomic, strong) NSMutableArray *images;
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) NSString *currentValue;
 @property (nonatomic, strong) UIImage *currentImage;
+@property (nonatomic, strong) NSString *checkPath;
+@property (nonatomic, strong) SpriteObject *object;
 @property (nonatomic, weak) id<iOSComboboxDelegate>delegate;
 @property (nonatomic, strong) BSKeyboardControls *keyboard;
 @property (readwrite, strong) UIView *inputView;

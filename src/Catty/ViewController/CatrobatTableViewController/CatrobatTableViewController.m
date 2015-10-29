@@ -44,12 +44,12 @@
 #import "HelpWebViewController.h"
 #import "NetworkDefines.h"
 #import "DataTransferMessage.h"
-#import "InfoPopupViewController.h"
 #import "MYBlurIntroductionView.h"
 #import "ProgramsForUploadViewController.h"
 #import "Util.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "LoginViewController.h"
+#import "SettingsTableViewController.h"
 
 NS_ENUM(NSInteger, ViewControllerIndex) {
     kContinueProgramVC = 0,
@@ -215,14 +215,8 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - actions
 - (void)infoPressed:(id)sender
 {
-    if (self.popupViewController == nil) {
-        InfoPopupViewController *popupViewController = [[InfoPopupViewController alloc] init];
-        popupViewController.delegate = self;
-        self.tableView.scrollEnabled = NO;
-        [self presentPopupViewController:popupViewController WithFrame:CGRectMake(0, 0, [Util screenWidth], [Util screenHeight]) Centered:YES];
-    } else {
-        [self dismissPopupWithCode:NO];
-    }
+    SettingsTableViewController *sTVC = [SettingsTableViewController new];
+    [self.navigationController pushViewController:sTVC animated:YES];
 }
 
 - (void)addProgramAndSegueToItActionForProgramWithName:(NSString*)programName
@@ -272,11 +266,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    if ([self dismissPopupWithCode:NO]) {
-        [tableView deselectRowAtIndexPath:indexPath animated:NO];
-        return;
-    }
-    
     NSString* identifier = [self.identifiers objectAtIndex:indexPath.row];
     switch (indexPath.row) {
         case kNewProgramVC:
@@ -379,9 +368,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
 #pragma mark - segue handling
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString*)identifier sender:(id)sender
 {
-    if ([self dismissPopupWithCode:NO]) {
-        return NO;
-    }
     if ([identifier isEqualToString:kSegueToContinue]) {
         // check if program loaded successfully -> not nil
         if (self.lastUsedProgram) {
@@ -524,28 +510,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[NSNumber numberWithBool:YES] forKey:kUserIsFirstAppLaunch];
     [defaults synchronize];
-}
-
-#pragma mark - popup delegate
-- (BOOL)dismissPopupWithCode:(BOOL)successLogin
-{
-    if (self.popupViewController != nil) {
-        self.tableView.scrollEnabled = YES;
-        [self dismissPopupViewController];
-        self.navigationItem.leftBarButtonItem.enabled = YES;
-        if (successLogin) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                
-                NSString *identifier = kSegueToUpload;
-                if ([self shouldPerformSegueWithIdentifier:identifier sender:self]) {
-                    [self performSegueWithIdentifier:identifier sender:self];
-                }
-                
-            });
-        }
-        return YES;
-    }
-    return NO;
 }
 
 @end

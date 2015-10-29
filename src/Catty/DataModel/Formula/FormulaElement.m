@@ -21,7 +21,7 @@
  */
 
 #import "FormulaElement.h"
-#import "ProgramManager.h"
+#import "ProgramVariablesManager.h"
 #import "Program.h"
 #import "VariablesContainer.h"
 #import "UserVariable.h"
@@ -115,9 +115,12 @@
 
         case USER_VARIABLE: {
             //NSDebug(@"User Variable");
-            Program *program = [ProgramManager sharedProgramManager].program;
-            UserVariable *var = [program.variables getUserVariableNamed:self.value forSpriteObject:sprite];
+            VariablesContainer *variables = [ProgramVariablesManager sharedProgramVariablesManager].variables;
+            UserVariable *var = [variables getUserVariableNamed:self.value forSpriteObject:sprite];
 //            result = [NSNumber numberWithDouble:[var.value doubleValue]];
+            if (var.value == nil) {
+                return [NSNumber numberWithInt:0];
+            }
             result = var.value;
             break;
         }
@@ -490,9 +493,9 @@
 
 - (int)handleLengthUserVariableParameter:(SpriteObject *)sprite
 {
-    ProgramManager *programManager = [ProgramManager sharedProgramManager];
-    VariablesContainer *container = programManager.program.variables;
-    UserVariable *userVariable = [container getUserVariableNamed:self.leftChild.value forSpriteObject:sprite];
+//    ProgramManager *programManager = [ProgramManager sharedProgramManager];
+    VariablesContainer *variables = [ProgramVariablesManager sharedProgramVariablesManager].variables;
+    UserVariable *userVariable = [variables getUserVariableNamed:self.leftChild.value forSpriteObject:sprite];
     
     id userVariableVvalue = [userVariable value];
     if([userVariableVvalue isKindOfClass:[NSString class]])
@@ -803,6 +806,8 @@
     NSError(@"Unknown Type: %@", type);
     return nil;
 }
+
+
 
 - (NSString*)description
 {

@@ -83,13 +83,11 @@ static pthread_mutex_t variablesLock;
     NSMutableArray *objectUserVariables = [self.objectVariableList objectForKey:sprite];
     UserVariable *variable = [self findUserVariableNamed:name inArray:objectUserVariables];
     if (variable) {
-            //TODO REMOVE
         [self removeObjectUserVariableNamed:name inArray:objectUserVariables forSpriteObject:sprite];
         return YES;
     } else {
         variable = [self findUserVariableNamed:name inArray:self.programVariableList];
         if (variable) {
-                //TODO REMOVE
                 [self removeProgramUserVariableNamed:name];
             return YES;
         }

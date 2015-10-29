@@ -186,7 +186,7 @@
                 [imageCache loadThumbnailImageFromDiskWithThumbnailPath:thumbnailPath
                                                               imagePath:fallbackPath
                                                      thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)
-                                                           onCompletion:^(UIImage *image){
+                                                           onCompletion:^(UIImage *image, NSString* path){
                                                                // check if cell still needed
                                                                if ([cell.indexPath isEqual:indexPath]) {
                                                                    cell.iconImageView.image = image;

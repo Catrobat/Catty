@@ -23,7 +23,6 @@
 #import "SetVariableBrick.h"
 #import "Formula.h"
 #import "UserVariable.h"
-#import "ProgramManager.h"
 #import "Program.h"
 #import "VariablesContainer.h"
 #import "Script.h"

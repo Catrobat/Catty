@@ -822,9 +822,6 @@
     }
     self.previousSelectedIndex = self.downloadSegmentedControl.selectedSegmentIndex;
     [self update];
-
-    // TODO: Add Support that tableView will scroll to the top after changing
-    //self.tableView.contentOffset = CGPointMake(0, 0);
 }
 
 - (void)loadingIndicator:(BOOL)value

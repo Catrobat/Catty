@@ -36,7 +36,7 @@
 #import "ProgramDefines.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "LanguageTranslationDefines.h"
-#import "KeychainDefines.h"
+#import "KeychainUserDefaultsDefines.h"
 
 #define usernameTag @"registrationUsername"
 #define passwordTag @"registrationPassword"

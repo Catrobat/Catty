@@ -172,14 +172,13 @@
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [queue addOperation:saveOp];
     
-    
-    RuntimeImageCache *cache = [RuntimeImageCache sharedImageCache];
     NSString *imageDirPath = [[self.spriteObject projectPath] stringByAppendingString:kProgramImagesDirName];
     NSString * fileName = [self.imagePath stringByReplacingOccurrencesOfString:imageDirPath withString:@""];
     NSRange result = [fileName rangeOfString:kResourceFileNameSeparator];
 
     if ((result.location == NSNotFound) || (result.location == 0) || (result.location >= ([fileName length]-1)))
-        return; // Invalid file name convention -> this should not happen. XXX/FIXME: maybe we want to abort here??
+        abort();
+        return;
     
     NSString *previewImageName =  [NSString stringWithFormat:@"%@_%@%@",
             [fileName substringToIndex:result.location],
@@ -187,7 +186,7 @@
             [fileName substringFromIndex:(result.location + 1)]
             ];
 
-    
+    RuntimeImageCache *cache = [RuntimeImageCache sharedImageCache];
     NSString *filePath = [NSString stringWithFormat:@"%@%@", imageDirPath, previewImageName];
     [cache overwriteThumbnailImageFromDiskWithThumbnailPath:filePath image:image thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)];
     

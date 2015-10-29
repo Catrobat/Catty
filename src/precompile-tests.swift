@@ -34,10 +34,15 @@ let pathToReadmeFile = "../README.md"; let pathToReadmeFileLine = __LINE__;
 
 let localizedStringCheckExcludeFiles = [
     "LanguageTranslationDefines.h",
+    "LanguageTranslationDefinesSwift.swift",
     "Functions.[hm]",
     "Operators.m",
     "BSKeyboardControls.m"
 ]; let localizedStringCheckExcludeFilesLine = __LINE__; // CAVE: NEVER separate these two statements by adding a new line
+let localizedStringCheckSeparatedExcludeDirs = [
+    "Pods",
+]; let localizedStringCheckSeparatedExcludeDirsLine = __LINE__; // CAVE: NEVER separate these two statements by adding a new line
+
 
 let licenseCheckExcludeDirs = [
     "TTTAttributedLabel",
@@ -60,7 +65,9 @@ let licenseCheckExcludeDirs = [
     "OrderedDictionary",
     "3rdParty",
     "PocketPaint",
-    "Siren"
+    "Siren",
+    "Pods",
+    "PodSource"
 ]; let licenseCheckExcludeDirsLine = __LINE__; // CAVE: NEVER separate these two statements by adding a new line
 
 let licenseCheckExcludeFiles = [
@@ -140,7 +147,7 @@ func printErrorAndExitIfFailed(errorMessage: String)
 extension String {
     func removeCharsFromEnd(count:Int) -> String {
         let temp = self as NSString
-        let stringLength = temp.length // FIXME: workaround for count(self)
+        let stringLength = temp.length
         let substringIndex = (stringLength < count) ? 0 : stringLength - count
         return self.substringToIndex(self.startIndex.advancedBy(substringIndex))
     }
@@ -160,7 +167,7 @@ func localizedStringCheck(filePath : String, fileContent : String) -> (failed: B
     if lineNumber == 0 {
         lineNumber = 1
     }
-    let errorMessage : String = "\(filePath):\(lineNumber): error : NSLocalizedString HAS TO BE moved to LanguageTranslationDefines.h!\n"
+    let errorMessage : String = "\(filePath):\(lineNumber): error : NSLocalizedString HAS TO BE moved to LanguageTranslationDefines.h or LanguageTranslationDefines.swift!\n"
     return (true, errorMessage)
 }
 
@@ -301,6 +308,18 @@ while let filePath = enumerator!.nextObject() as? String {
     // localized string check
     var content : String? = nil
     if localizedStringCheckSeparatedExcludeFiles.contains(fileName) == false {
+        var fileIsStoredInAnExcludedDir = false
+        for excludeDir in localizedStringCheckSeparatedExcludeDirs {
+            let range = filePath.rangeOfString(excludeDir)
+            if range != nil {
+                fileIsStoredInAnExcludedDir = true
+                break
+            }
+        }
+        if fileIsStoredInAnExcludedDir {
+            continue
+        }
+
         content = try String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
         if (content == nil) {
             continue

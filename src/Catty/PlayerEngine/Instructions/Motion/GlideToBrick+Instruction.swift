@@ -50,8 +50,7 @@ extension GlideToBrick: CBInstructionProtocol {
                     self.deltaX = xDestination - startingX
                     self.deltaY = yDestination - startingY
                 }
-
-                // TODO: handle extreme movemenets and set currentPoint accordingly
+                
                 let percent = Float(elapsedTime) / Float(duration)
                 let startingPoint = self.startingPoint
                 let startingX = Float(startingPoint.x)

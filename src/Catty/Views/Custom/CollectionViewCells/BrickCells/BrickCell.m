@@ -39,6 +39,9 @@
 #import "BrickCellTextData.h"
 #import "BrickCellMessageData.h"
 #import "BrickCellVariableData.h"
+#import "BrickCellPhiroMotorData.h"
+#import "BrickCellPhiroLightData.h"
+#import "BrickCellPhiroToneData.h"
 #import "LoopEndBrickCell.h"
 #import "BrickManager.h"
 
@@ -110,6 +113,21 @@
 #define kVariableBrickNameParams @[\
     @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"],    /* set size to              */\
     @[@"{VARIABLE}",@"{FLOAT;range=(-inf,inf)}"]     /* change size by N         */\
+]
+
+// arduino bricks
+#define kArduinoBrickNameParams @[\
+@[@"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}"], /* SendDigitalValue          */\
+@[@"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}"], /* SendPWMValue           */\
+]
+
+// phiro bricks
+#define kPhiroBrickNameParams @[\
+@[@"{MOTOR}"],    /* stop Phiro Motor             */\
+@[@"{MOTOR}",@"{FLOAT;range=(-inf,inf)}"],     /* move forward         */\
+@[@"{MOTOR}",@"{FLOAT;range=(-inf,inf)}"],     /* move backward         */\
+@[@"{SOUND}",@"{FLOAT;range=(-inf,inf)}"],     /* play tone         */\
+@[@"{LIGHT}",@"{FLOAT;range=(-inf,inf)}",@"{FLOAT;range=(-inf,inf)}",@"{FLOAT;range=(-inf,inf)}"]     /* move forward         */\
 ]
 // ----------------- REFACTOR END -------------------
 
@@ -329,6 +347,12 @@
         case kVariableBrick:
             brickCategoryParams = kVariableBrickNameParams;
             break;
+        case kPhiroBrick:
+            brickCategoryParams = kPhiroBrickNameParams;
+            break;
+        case kArduinoBrick:
+            brickCategoryParams = kArduinoBrickNameParams;
+            break;
         default:
             NSError(@"unknown brick category type given");
             abort();
@@ -424,10 +448,6 @@
     NSMutableArray *subviews = [NSMutableArray arrayWithCapacity:totalNumberOfSubViews];
     NSInteger counter = 0;
     for (NSString *partLabelTitle in partLabels) {
-
-        // -----------------------------------
-        // TODO: make x-offset calculation much more smarter...
-
         if (partLabelTitle.length) {
             UILabel *textLabel = [UIUtil newDefaultBrickLabelWithFrame:remainingFrame AndText:partLabelTitle andRemainingSpace:remainingFrame.size.width];
     #ifdef LAYOUT_DEBUG
@@ -474,7 +494,16 @@
             } else if ([afterLabelParam rangeOfString:@"VARIABLE"].location != NSNotFound) {
                 inputViewFrame.size.width = kBrickComboBoxWidth;
                 inputField = [[BrickCellVariableData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
-            } else {
+            }  else if ([afterLabelParam rangeOfString:@"MOTOR"].location != NSNotFound) {
+                inputViewFrame.size.width = kBrickComboBoxWidth;
+                inputField = [[BrickCellPhiroMotorData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
+            } else if ([afterLabelParam rangeOfString:@"LIGHT"].location != NSNotFound) {
+                inputViewFrame.size.width = kBrickComboBoxWidth;
+                inputField = [[BrickCellPhiroLightData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
+            } else if ([afterLabelParam rangeOfString:@"TONE"].location != NSNotFound) {
+                inputViewFrame.size.width = kBrickComboBoxWidth;
+                inputField = [[BrickCellPhiroToneData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
+            }else {
                 NSError(@"unknown data type %@ given", afterLabelParam);
                 abort();
             }
