@@ -36,7 +36,7 @@
     
     Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"TRANSPARENCY_CHANGE" withContext:context];
     ChangeTransparencyByNBrick *changeTransparencyByNBrick = [self new];
-    changeTransparencyByNBrick.changeGhostEffect = formula;
+    changeTransparencyByNBrick.changeTransparency = formula;
     return changeTransparencyByNBrick;
 }
 
@@ -51,7 +51,7 @@
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
     [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"ChangeTransparencyByNBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
-    GDataXMLElement *formula = [self.changeGhostEffect xmlElementWithContext:context];
+    GDataXMLElement *formula = [self.changeTransparency xmlElementWithContext:context];
     [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"TRANSPARENCY_CHANGE"]];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];

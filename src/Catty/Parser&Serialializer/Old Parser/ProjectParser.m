@@ -161,25 +161,28 @@
     XMLObjectReference* ref = [[XMLObjectReference alloc] initWithParent:parent andObject:object];
     
     for (GDataXMLElement *child in node.children) {
+        NSString *propertyName = [self propertyNameForString:child.name];
+        
         // workaround for description property in Header class!!
-        if ([object isKindOfClass:[Header class]] && [child.name isEqualToString:@"description"]) {
+        if ([object isKindOfClass:[Header class]] && [propertyName isEqualToString:@"description"]) {
             ((Header*)object).programDescription = child.stringValue;
             continue;
         }
-        objc_property_t property = class_getProperty([object class], [child.name UTF8String]);
+        
+        objc_property_t property = class_getProperty([object class], [propertyName UTF8String]);
         
         if (property) {
             NSString *propertyType = [NSString stringWithUTF8String:property_getTypeString(property)];
             
             if ([propertyType isEqualToString:kParserObjectTypeArray]) {
-                [NSException raise:@"WrongPropertyException" format:@"We need to keep the references at all time, please use NSMutableArray for property: %@", child.name];
+                [NSException raise:@"WrongPropertyException" format:@"We need to keep the references at all time, please use NSMutableArray for property: %@", propertyName];
             }
             
             else if ([propertyType isEqualToString:kParserObjectTypeMutableArray]) {
-                NSMutableArray* arr = [object valueForKey:child.name];
+                NSMutableArray* arr = [object valueForKey:propertyName];
                 if (!arr) {
                     arr = [[NSMutableArray alloc] initWithCapacity:child.childCount];
-                    [object setValue:arr forKey:child.name];
+                    [object setValue:arr forKey:propertyName];
                 }
                 XMLObjectReference* arrayReference = [[XMLObjectReference alloc] initWithParent:ref andObject:arr];
                 for (GDataXMLElement *arrElement in child.children) {
@@ -197,16 +200,16 @@
             }
             else { // NOT ARRAY
                 id value = [self getSingleValue:child ofType:propertyType withParent:ref];
-                [object setValue:value forKey:child.name];
+                [object setValue:value forKey:propertyName];
                 
                 if(![propertyType isEqualToString:kParserObjectTypeSprite] && [self isWeakProperty:property] && value != nil) {
                     [self.weakPropertyRetainer addObject:value];
                 }
             }
         // omit property "object" in all subclasses of Brick class
-        } else if ([child.name isEqualToString:@"object"] && [className hasSuffix:@"Brick"]) {
+        } else if ([propertyName isEqualToString:@"object"] && [className hasSuffix:@"Brick"]) {
         } else {
-            [NSException raise:@"PropertyNotFoundException" format:@"property <%@> does NOT exist in our implementation of <%@>", child.name, className];
+            [NSException raise:@"PropertyNotFoundException" format:@"property <%@> does NOT exist in our implementation of <%@>", propertyName, className];
         }
     }
     return object;
@@ -615,6 +618,16 @@ const char *property_getTypeString(objc_property_t property)
         className = @"ChangeTransparencyByNBrick";
     }
     return className;
+}
+
+- (NSString*)propertyNameForString:(NSString*)propertyString
+{
+    NSString* propertyName = propertyString;
+    
+    if ([propertyName isEqualToString:@"changeGhostEffect"]) {
+        propertyName = @"changeTransparency";
+    }
+    return propertyName;
 }
 
 - (BOOL)isReferenceElement:(GDataXMLElement*)element
