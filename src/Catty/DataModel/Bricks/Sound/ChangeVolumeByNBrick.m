@@ -54,4 +54,10 @@
     return [NSString stringWithFormat:@"Change Volume by: %f%%)", [self.volume interpretDoubleForSprite:self.script.object]/100.0f];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return [self.volume getRequiredResources];
+}
+
 @end

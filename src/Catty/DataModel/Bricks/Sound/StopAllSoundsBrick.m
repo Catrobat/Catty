@@ -35,5 +35,11 @@
     return [NSString stringWithFormat:@"Stop All Sounds Brick"];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return kNoResources;
+}
+
 
 @end

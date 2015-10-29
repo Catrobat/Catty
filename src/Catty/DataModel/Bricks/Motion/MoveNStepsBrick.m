@@ -56,4 +56,9 @@
     return [NSString stringWithFormat:@"MoveNStepsBrick: %f steps", [self.steps interpretDoubleForSprite:self.script.object] ];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return [self.steps getRequiredResources];
+}
 @end

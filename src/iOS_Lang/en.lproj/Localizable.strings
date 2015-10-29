@@ -614,6 +614,9 @@
 "layer" = "layer";
 
 /* No comment provided by engineer. */
+"LED" = "LED";
+
+/* No comment provided by engineer. */
 "Left" = "Left";
 
 /* No comment provided by engineer. */
@@ -1320,6 +1323,9 @@
 
 /* No comment provided by engineer. */
 "Vibrate %@ second(s)" = "Vibrate %@ second(s)";
+
+/* No comment provided by engineer. */
+"vibration" = "vibration";
 
 /* No comment provided by engineer. */
 "Views" = "Views";

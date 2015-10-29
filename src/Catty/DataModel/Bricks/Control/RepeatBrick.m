@@ -81,4 +81,10 @@
     return brick;
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return [self.timesToRepeat getRequiredResources];
+}
+
 @end

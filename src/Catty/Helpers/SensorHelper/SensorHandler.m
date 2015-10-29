@@ -73,50 +73,38 @@ static SensorHandler* sharedSensorHandler = nil;
     if (self) {
         self.motionManager = [[CMMotionManager alloc] init];
         self.locationManager = [[CLLocationManager alloc] init];
-        [self checkIfSensorsAreAvailable];
     }
     
     return self;
 }
 
--(void)checkIfSensorsAreAvailable
+-(BOOL)locationAvailable
 {
-    NSString *notAvailable = @"";
-    if (![CLLocationManager headingAvailable]) {
-        NSDebug(@"NOT AVAILABLE:heading");
-        notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorCompass];
-    }
-    if (!self.motionManager.accelerometerAvailable) {
-        NSDebug(@"NOT AVAILABLE:Accelerometer");
-        if ([notAvailable isEqual: @""]) {
-            notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorAcceleration];
-        } else {
-            notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorAcceleration];
-        }
-        
-    }
-    if (!self.motionManager.gyroAvailable) {
-        NSDebug(@"NOT AVAILABLE:Gyro");
-        if ([notAvailable isEqual: @""]) {
-            notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorRotation];
-        } else {
-            notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorRotation];
-        }
-    }
-    if (!self.motionManager.magnetometerAvailable) {
-        NSDebug(@"NOT AVAILABLE:Magnet");
-        if ([notAvailable isEqual: @""]) {
-            notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorMagnetic];
-        } else {
-            notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorMagnetic];
-        }
-    }
-    if (![notAvailable isEqual: @""]) {
-        notAvailable = [NSString stringWithFormat:@"%@ %@",notAvailable,kLocalizedNotAvailable];
-        [Util alertWithText:notAvailable];
-    }
+    return [CLLocationManager headingAvailable];
 }
-
+-(BOOL)accelerometerAvailable
+{
+    return self.motionManager.accelerometerAvailable;
+}
+-(BOOL)gyroAvailable
+{
+    return self.motionManager.gyroAvailable;
+}
+-(BOOL)magnetometerAvailable
+{
+    return self.motionManager.magnetometerAvailable;
+}
+-(BOOL)loudnessAvailable
+{
+    if (!self.recorder) {
+        [self recorderinit];
+    }
+    if (!self.recorder) {
+        return NO;
+    }
+    [self loudness];
+    return YES;
+}
 
 - (double)valueForSensor:(Sensor)sensor {
     double result = 0;
@@ -152,10 +140,6 @@ static SensorHandler* sharedSensorHandler = nil;
             break;
         }
         case LOUDNESS: {
-            if (!self.recorder) {
-                [self recorderinit];
-                
-            }
             if (!self.loudnessTimer.isValid) {
                 [self loudness];
             }
@@ -166,9 +150,6 @@ static SensorHandler* sharedSensorHandler = nil;
             break;
         }
         case FACE_DETECTED: {
-            if (!self.faceDetection) {
-                [self faceDetectionInit];
-            }
             if (!self.faceDetection.session.isRunning) {
                 [self.faceDetection startFaceDetection];
                 [NSThread sleepForTimeInterval:FACE_DETECTION_DEFAULT_UPDATE_INTERVAL];
@@ -179,9 +160,6 @@ static SensorHandler* sharedSensorHandler = nil;
             break;
         }
         case FACE_SIZE: {
-            if (!self.faceDetection) {
-                [self faceDetectionInit];
-            }
             if (!self.faceDetection.session.isRunning) {
                 [self.faceDetection startFaceDetection];
                 [NSThread sleepForTimeInterval:FACE_DETECTION_DEFAULT_UPDATE_INTERVAL];
@@ -192,9 +170,6 @@ static SensorHandler* sharedSensorHandler = nil;
             break;
         }
         case FACE_POSITION_X: {
-            if (!self.faceDetection) {
-                [self faceDetectionInit];
-            }
             if (!self.faceDetection.session.isRunning) {
                 [self.faceDetection startFaceDetection];
                 [NSThread sleepForTimeInterval:FACE_DETECTION_DEFAULT_UPDATE_INTERVAL];
@@ -205,9 +180,6 @@ static SensorHandler* sharedSensorHandler = nil;
             break;
         }
         case FACE_POSITION_Y: {
-            if (!self.faceDetection) {
-                [self faceDetectionInit];
-            }
             if (!self.faceDetection.session.isRunning) {
                 [self.faceDetection startFaceDetection];
                 [NSThread sleepForTimeInterval:FACE_DETECTION_DEFAULT_UPDATE_INTERVAL];
@@ -443,6 +415,7 @@ static SensorHandler* sharedSensorHandler = nil;
 -(void)faceDetectionInit
 {
     self.faceDetection = [[FaceDetection alloc] init];
+    [self.faceDetection startFaceDetection];
 }
 
 -(double)checkFaceSize:(CGSize)faceSize

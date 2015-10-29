@@ -99,4 +99,10 @@
 {
     return [PhiroHelper stringToLight:self.light];
 }
+
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return kBluetoothPhiro|[self.redFormula getRequiredResources]|[self.greenFormula getRequiredResources]|[self.blueFormula getRequiredResources];
+}
 @end

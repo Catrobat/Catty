@@ -74,4 +74,10 @@ andParameterNumber:(NSInteger)paramNumber
     return [NSString stringWithFormat:@"Broadcast (Msg: %@)", self.broadcastMessage];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return kNoResources;
+}
+
 @end

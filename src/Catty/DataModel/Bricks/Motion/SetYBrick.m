@@ -52,4 +52,9 @@
     return [NSString stringWithFormat:@"SetYBrick (y-Pos:%f)", [self.yPosition interpretDoubleForSprite:self.script.object]];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return [self.yPosition getRequiredResources];
+}
 @end

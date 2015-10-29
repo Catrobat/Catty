@@ -60,4 +60,10 @@
     return [NSString stringWithFormat:@"%@images/%@", [self.script.object projectPath], look.fileName];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return [self.changeBrightness getRequiredResources];
+}
+
 @end

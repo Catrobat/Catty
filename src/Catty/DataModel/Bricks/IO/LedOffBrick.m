@@ -37,4 +37,10 @@
     return [NSString stringWithFormat:@"LedOffBrick on: %@", self.script.object.name];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return kLED;
+}
+
 @end

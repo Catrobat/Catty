@@ -104,4 +104,9 @@
     
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return [self.durationInSeconds getRequiredResources]|[self.xDestination getRequiredResources]|[self.yDestination getRequiredResources];
+}
 @end

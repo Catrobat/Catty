@@ -46,6 +46,7 @@
 
 
 #define kConfirmAlertViewTag 200
+#define kResourcesAlertView 201
 
 // Alert view button indexes
 #define kAlertViewButtonOK 1

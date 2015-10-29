@@ -55,4 +55,9 @@
     return [NSString stringWithFormat:@"SetTransparencyBrick (%f%%)", [self.transparency interpretDoubleForSprite:self.script.object]];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return [self.transparency getRequiredResources];
+}
 @end

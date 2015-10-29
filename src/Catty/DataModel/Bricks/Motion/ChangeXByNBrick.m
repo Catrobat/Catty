@@ -54,4 +54,9 @@
     return [NSString stringWithFormat:@"ChangeXBy (%f)", xMov];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return [self.xMovement getRequiredResources];
+}
 @end
