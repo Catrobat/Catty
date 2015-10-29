@@ -47,7 +47,7 @@
 #define kTranslateYNavigationBar 40.0f
 #define kScrollDownThreshold 30.0f
 #define kURLViewHeight 20.0f
-#define kScrollOffset 64.0f
+#define kScrollOffset 24.0f
 
 @implementation BaseWebViewController {
     BOOL _errorLoadingURL;
@@ -220,7 +220,7 @@
 - (UILabel *)urlTitleLabel
 {
     if (!_urlTitleLabel) {
-        _urlTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, CGRectGetHeight(self.navigationController.navigationBar.bounds) + kURLViewHeight, CGRectGetWidth(UIScreen.mainScreen.bounds), kURLViewHeight)];
+        _urlTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(UIScreen.mainScreen.bounds), kURLViewHeight)];
         _urlTitleLabel.backgroundColor = UIColor.backgroundColor;
         _urlTitleLabel.font = [UIFont systemFontOfSize:13.0f];
         _urlTitleLabel.textColor = [UIColor globalTintColor];
@@ -353,12 +353,12 @@
         return;
     }
     
-    CGFloat offsetY = MAX(0.0f, scrollView.contentOffset.y + kScrollOffset);
+    CGFloat offsetY = MAX(0.0f, scrollView.contentOffset.y - kScrollOffset);
     CGFloat translateUrlTitleLabel;
 
     
     if (!_controlsHidden && offsetY < kScrollOffset) {
-        translateUrlTitleLabel = MIN(kURLViewHeight*2.0+4.0, offsetY);
+        translateUrlTitleLabel = MIN(0, offsetY);
         
         self.urlTitleLabel.alpha = 0.6;
         self.urlTitleLabel.transform = CGAffineTransformMakeTranslation(0.0f, -translateUrlTitleLabel);
