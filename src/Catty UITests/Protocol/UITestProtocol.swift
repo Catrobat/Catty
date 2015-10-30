@@ -26,6 +26,7 @@ protocol UITestProtocol {
     func restoreDefaultProgram()
     func addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtLooksTV(numLooks: UInt)
     func addSoundsToCurrentProgramsBackgroundFromCatrobatTVAndStayAtSoundTV(numSounds: UInt)
+    func dismissWelcomeScreenIfShown()
 }
 
 extension UITestProtocol {
@@ -75,7 +76,7 @@ extension UITestProtocol {
         tablesQuery.staticTexts["Background"].tap()
         tablesQuery.staticTexts["Backgrounds"].tap()
         
-        let editButton = app.navigationBars["Looks"].buttons["Edit"]
+        let editButton = app.navigationBars["Backgrounds"].buttons["Edit"]
         editButton.tap()
         app.buttons["Delete Looks"].tap()
         
@@ -87,7 +88,7 @@ extension UITestProtocol {
         let addButton = app.toolbars.buttons["Add"]
         let drawNewImageButton = app.buttons["Draw new image"]
         let image = app.scrollViews.childrenMatchingType(.Other).element.childrenMatchingType(.Image).elementBoundByIndex(1)
-        let looksButton = app.navigationBars["Pocket Paint"].buttons["Looks"]
+        let looksButton = app.navigationBars["Pocket Paint"].buttons["Backgrounds"]
         let yesButton = app.alerts["Save to PocketCode"].collectionViews.buttons["Yes"]
         let collectionViewsQuery = app.alerts["Add image"].collectionViews
         let enterYourImageNameHereTextField = collectionViewsQuery.textFields["Enter your image name here..."]
@@ -104,5 +105,18 @@ extension UITestProtocol {
             enterYourImageNameHereTextField.typeText("Image" + String(i))
             okButton.tap()
         }
+    }
+    
+    func dismissWelcomeScreenIfShown() {
+        let app = XCUIApplication()
+        let elementsQuery = app.scrollViews.otherElements
+        if(!elementsQuery.staticTexts["Welcome to Pocket Code"].exists) {
+            return
+        }
+        if(!app.otherElements.containingType(.NavigationBar, identifier:"Pocket Code").childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Button).matchingIdentifier("Skip").elementBoundByIndex(1).exists) {
+            return
+        }
+        
+        app.otherElements.containingType(.NavigationBar, identifier:"Pocket Code").childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Button).matchingIdentifier("Skip").elementBoundByIndex(1).tap()
     }
 }

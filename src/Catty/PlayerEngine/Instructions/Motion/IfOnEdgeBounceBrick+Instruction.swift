@@ -31,8 +31,9 @@ extension IfOnEdgeBounceBrick: CBInstructionProtocol {
               let spriteNode = object.spriteNode,
               let scene = spriteNode.scene
         else { fatalError("This should never happen!") }
-
+        /* newVersion
         return {
+        
             let width = spriteNode.size.width
             let height = spriteNode.size.height
             
@@ -75,7 +76,50 @@ extension IfOnEdgeBounceBrick: CBInstructionProtocol {
             if rotation < 0 { rotation += 360 }
             spriteNode.rotation = rotation
             spriteNode.scenePosition = CGPointMake(xPosition, yPosition)
-        }
+        }*/
+            
+        return {
+                let width = spriteNode.size.width
+                let height = spriteNode.size.height
+                
+                let virtualScreenWidth = scene.size.width/2.0
+                let virtualScreenHeight = scene.size.height/2.0
+                
+                var xPosition = spriteNode.scenePosition.x
+                var rotation = spriteNode.rotation
+                let xComparePosition = -virtualScreenWidth + (width/2.0)
+                let xOtherComparePosition = virtualScreenWidth - (width/2.0)
+                if xPosition < xComparePosition {
+                    if (rotation > 90) && (rotation < 270) {
+                        rotation = 180 - rotation
+                    }
+                    xPosition = xComparePosition
+                } else if xPosition > xOtherComparePosition {
+                    if (rotation >= 0 && rotation < 90) || (rotation > 270 && rotation <= 360) {
+                        rotation = 180 - rotation
+                    }
+                    xPosition = xOtherComparePosition
+                }
+                if rotation < 0 { rotation += 360 }
+                
+                var yPosition = spriteNode.scenePosition.y
+                let yComparePosition = virtualScreenHeight - (height/2.0)
+                let yOtherComparePosition = -virtualScreenHeight + (height/2.0)
+                if yPosition > yComparePosition {
+                    if (rotation > 0) && (rotation < 180) {
+                        rotation = -rotation
+                    }
+                    yPosition = yComparePosition
+                } else if yPosition < yOtherComparePosition {
+                    if (rotation > 180) && (rotation < 360) {
+                        rotation = 360 - rotation
+                    }
+                    yPosition = yOtherComparePosition
+                }
+                spriteNode.rotation = rotation
+                spriteNode.scenePosition = CGPointMake(xPosition, yPosition)
+            }
+            
     }
     
     func isLookingDown(rotation:Double) -> Bool {

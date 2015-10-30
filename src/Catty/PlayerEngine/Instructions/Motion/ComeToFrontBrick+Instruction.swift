@@ -35,14 +35,15 @@ extension ComeToFrontBrick: CBInstructionProtocol {
         
         return {
             let zValue = spriteNode.zPosition
-            let frontValue:NSInteger = program.numberOfNormalObjects()
+            let frontValue = program.numberOfNormalObjects()
             spriteNode.zPosition = CGFloat(frontValue)
             for obj in objectList {
                 guard let objSpriteNode = obj.spriteNode! else {
                     continue
                 }
-                if(objSpriteNode.zPosition < zValue) && (objSpriteNode.zPosition >= object.spriteNode?.zPosition) && (obj as! SpriteObject != object){
+                if(objSpriteNode.zPosition > zValue) && (objSpriteNode.zPosition <= CGFloat(frontValue) && (obj as! SpriteObject != object)){
                     objSpriteNode.zPosition -= 1
+                    print(objSpriteNode.zPosition)
                 }
             }
         }

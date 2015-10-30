@@ -42,14 +42,6 @@
     [super tearDown];
 }
 
-- (void)testSetSizeToBrickAction
-{
-    ComeToFrontBrick* brick = [[ComeToFrontBrick alloc] init];
-    SKAction* action = [brick action];
-    
-    XCTAssertNotNil(action, @"Returned action is nil");
-}
-
 - (void)testSetSizeToBrickPositive
 {
     SpriteObject *object = [[SpriteObject alloc] init];

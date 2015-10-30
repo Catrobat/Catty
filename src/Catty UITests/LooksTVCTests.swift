@@ -39,6 +39,9 @@ class LooksTVCTests: XCTestCase, UITestProtocol {
         XCUIApplication().launch()
         
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        
+        dismissWelcomeScreenIfShown()
+        
         restoreDefaultProgram()
     }
     
@@ -55,7 +58,7 @@ class LooksTVCTests: XCTestCase, UITestProtocol {
         addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtLooksTV(constants.numLooks)
         XCTAssertEqual(app.tables.staticTexts.count, constants.numLooks)
 
-        app.navigationBars["Looks"].buttons["Edit"].tap()
+        app.navigationBars["Backgrounds"].buttons["Edit"].tap()
         app.buttons["Delete Looks"].tap()
 
         toolbarsQuery.buttons["Select All"].tap()
@@ -115,7 +118,7 @@ class LooksTVCTests: XCTestCase, UITestProtocol {
         let app = XCUIApplication()
         addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtLooksTV(constants.numLooks)
         
-        let soundsNavigationBar = app.navigationBars["Looks"]
+        let soundsNavigationBar = app.navigationBars["Backgrounds"]
         let editButton = soundsNavigationBar.buttons["Edit"]
         let showDetailsButton = app.buttons["Show Details"]
         let hideDetailsButton = app.buttons["Hide Details"]
