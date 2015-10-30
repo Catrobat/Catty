@@ -58,6 +58,9 @@
         self.userInteractionEnabled = YES;
         [self setAutocorrectionType:UITextAutocorrectionTypeNo];
         self.backgroundColor = [UIColor whiteColor];
+        [[self layer] setBorderColor:[[UIColor globalTintColor] CGColor]];
+        [[self layer] setBorderWidth:1.0];
+        [[self layer] setCornerRadius:15];
         self.font = [UIFont boldSystemFontOfSize:20.0f];
         
         self.contentInset = UIEdgeInsetsZero;

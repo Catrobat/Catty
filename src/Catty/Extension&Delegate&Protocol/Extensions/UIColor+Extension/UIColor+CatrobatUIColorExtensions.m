@@ -144,10 +144,19 @@
 {
     return [self buttonTintColor];
 }
++ (UIColor*)formulaEditorBorderColor
+{
+    return [self lightColor];
+}
+
++ (UIColor*)formulaButtonTextColor
+{
+    return [self lightColor];
+}
 
 + (UIColor*)formulaEditorHighlightColor
 {
-    return [self textTintColor];
+    return [self buttonTintColor];
 }
 
 + (UIColor*)formulaEditorOperandColor

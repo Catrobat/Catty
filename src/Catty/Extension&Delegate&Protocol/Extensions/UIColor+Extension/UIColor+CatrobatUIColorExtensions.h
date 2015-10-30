@@ -62,6 +62,10 @@
 
 + (UIColor*)formulaEditorOperandColor;
 
++ (UIColor*)formulaEditorBorderColor;
+
++ (UIColor*)formulaButtonTextColor;
+
 // Bricks & Scripts Colors
 
 + (UIColor*)brickSelectionBackgroundColor;
