@@ -95,11 +95,18 @@ const CGFloat DESCRIPTION_WIDTH = 280.0f;
     self.descriptionTextView.textColor = [UIColor lightTextTintColor];
     self.descriptionTextView.tintColor = [UIColor globalTintColor];
     self.descriptionTextView.frame = CGRectMake(20, self.header.frame.origin.y+self.header.frame.size.height+30, self.view.frame.size.width-40, 100);
-    MyProgramsViewController *mpvc;
+    
     if ([self.delegate isKindOfClass:[MyProgramsViewController class]]) {
+        MyProgramsViewController *mpvc;
         mpvc = (MyProgramsViewController*)self.delegate;
+        self.descriptionTextView.text = mpvc.selectedProgram.header.programDescription;
     }
-    self.descriptionTextView.text = mpvc.selectedProgram.header.programDescription;
+    if ([self.delegate isKindOfClass:[ProgramTableViewController class]]) {
+        ProgramTableViewController *mpvc;
+        mpvc = (ProgramTableViewController*)self.delegate;
+        self.descriptionTextView.text = mpvc.program.header.programDescription;
+    }
+    
     [self.view addSubview:self.descriptionTextView];
 }
 
