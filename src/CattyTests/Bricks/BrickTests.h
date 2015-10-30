@@ -72,6 +72,7 @@
 #import "ChangeBrightnessByNBrick.h"
 #import "NextLookBrick.h"
 
+
 @interface BrickTests : XCTestCase
 
 @property (strong, nonatomic) NSMutableArray* programs;

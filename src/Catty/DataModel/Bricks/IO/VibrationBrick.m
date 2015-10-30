@@ -54,7 +54,7 @@
 #pragma mark - Resources
 - (NSInteger)getRequiredResources
 {
-    return kVibration;
+    return kVibration|[self.durationInSeconds getRequiredResources];
 }
 
 @end
