@@ -37,11 +37,11 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:2];
-    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"SPEED" withContext:context];
-    //    Formula *value = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VALUE" withContext:context];
+    Formula *formula = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"PHIRO_SPEED" withContext:context];
+    GDataXMLElement *motor = [xmlElement childWithElementName:@"motor"];
     PhiroMotorMoveBackwardBrick *phiroMotorMoveBackwardBrick = [self new];
     phiroMotorMoveBackwardBrick.formula = formula;
-    //    phiroPlayToneBrick.tone = value;
+    phiroMotorMoveBackwardBrick.motor = motor.stringValue;
     return phiroMotorMoveBackwardBrick;
 }
 
@@ -58,9 +58,11 @@
     [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"PhiroMotorMoveBackwardBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.formula xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"SPEED"]];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"PHIRO_SPEED"]];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
+    GDataXMLElement *value = [GDataXMLElement elementWithName:@"motor" stringValue:self.motor context:context];
+    [brick addChild:value context:context];
     return brick;
 }
 

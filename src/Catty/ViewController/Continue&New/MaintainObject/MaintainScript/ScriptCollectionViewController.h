@@ -21,10 +21,10 @@
  */
 
 #import "BrickCategoryViewController.h"
+#import "BaseCollectionViewController.h"
 
 @class SpriteObject;
 
-@interface ScriptCollectionViewController : UICollectionViewController<BrickCategoryViewControllerDelegate>
+@interface ScriptCollectionViewController : BaseCollectionViewController<BrickCategoryViewControllerDelegate>
 @property (nonatomic, strong) SpriteObject *object;
-- (void)playSceneAction:(id)sender animated:(BOOL)animated;
 @end

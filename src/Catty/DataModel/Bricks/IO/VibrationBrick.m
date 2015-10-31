@@ -51,4 +51,10 @@
     return [NSString stringWithFormat:@"VibrationBrick (%f Seconds)", [self.durationInSeconds interpretDoubleForSprite:self.script.object]];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return kVibration|[self.durationInSeconds getRequiredResources];
+}
+
 @end

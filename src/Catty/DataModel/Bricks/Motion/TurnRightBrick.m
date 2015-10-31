@@ -53,4 +53,9 @@
     return [NSString stringWithFormat:@"TurnRight (%f degrees)", [self.degrees interpretDoubleForSprite:self.script.object]];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return [self.degrees getRequiredResources];
+}
 @end

@@ -87,4 +87,9 @@
     return YES;
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return [self.ifCondition getRequiredResources];
+}
 @end

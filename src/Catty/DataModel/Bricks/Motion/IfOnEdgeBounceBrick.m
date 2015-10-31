@@ -51,4 +51,9 @@
     return [NSString stringWithFormat:@"IfOnEdgeBounceBrick"];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return kNoResources;
+}
 @end

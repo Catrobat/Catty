@@ -548,6 +548,9 @@
 #define kLocalizedSensorAcceleration NSLocalizedString(@"acceleration-sensor", nil)
 #define kLocalizedSensorRotation NSLocalizedString(@"gyro-sensor", nil)
 #define kLocalizedSensorMagnetic NSLocalizedString(@"magnetic-sensor", nil)
+#define kLocalizedVibration NSLocalizedString(@"vibration", nil)
+#define kLocalizedSensorLoudness NSLocalizedString(@"loudness", nil)
+#define kLocalizedSensorLED NSLocalizedString(@"LED", nil)
 #define kLocalizedNotAvailable NSLocalizedString(@"not available", nil)
 
 #define kUIFESensorFaceDetected NSLocalizedString(@"face_detected", nil)

@@ -61,5 +61,6 @@
 
 - (void)removeReferences;
 
+- (NSInteger)getRequiredResources;
 
 @end

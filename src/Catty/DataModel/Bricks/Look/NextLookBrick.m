@@ -45,4 +45,9 @@
     return [NSString stringWithFormat:@"Nextlookbrick"];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return kNoResources;
+}
 @end

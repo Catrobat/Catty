@@ -21,12 +21,19 @@
  */
 
 #import <UIKit/UIKit.h>
-@class PlaceHolderView;
+#import "CatrobatAlertView.h"
+#import "Pocket_Code-Swift.h"
+#import "ScenePresenterViewController.h"
 
-@interface BaseCollectionViewController : UICollectionViewController
+@class PlaceHolderView;
+@class BluetoothPopupVC;
+@interface BaseCollectionViewController : UICollectionViewController <CatrobatAlertViewDelegate,BluetoothSelection>
 
 @property (nonatomic, strong) PlaceHolderView *placeHolderView;
+@property (nonatomic, strong) ScenePresenterViewController *scenePresenterViewController;
 
 - (void)showPlaceHolder:(BOOL)show;
+- (void)playSceneAction:(id)sender animated:(BOOL)animated;
+- (void)setupToolBar;
 
 @end

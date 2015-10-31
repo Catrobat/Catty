@@ -28,5 +28,9 @@
 {
     return YES;
 }
+- (NSInteger)getRequiredResources
+{
+    return kBluetoothArduino;
+}
 
 @end

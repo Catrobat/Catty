@@ -525,7 +525,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
             [defaults synchronize];
             [self.tableView reloadData];
-        } else if (buttonIndex == 4){
+        } else if (buttonIndex == 4 || ((buttonIndex == 3) && ![self.program numberOfNormalObjects])){
           //description
             if (self.popupViewController == nil) {
                 DescriptionPopopViewController *popupViewController = [[DescriptionPopopViewController alloc] init];

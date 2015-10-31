@@ -37,11 +37,11 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:2];
-    Formula *duration = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"DURATION" withContext:context];
-    //    Formula *value = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VALUE" withContext:context];
+    Formula *duration = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"PHIRO_DURATION_IN_SECONDS" withContext:context];
+    GDataXMLElement *tone = [xmlElement childWithElementName:@"tone"];
     PhiroPlayToneBrick *phiroPlayToneBrick = [self new];
     phiroPlayToneBrick.durationFormula = duration;
-    //    phiroPlayToneBrick.tone = value;
+    phiroPlayToneBrick.tone = tone.stringValue;
     return phiroPlayToneBrick;
 }
 
@@ -58,9 +58,11 @@
     [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"PhiroPlayToneBrick"]];
     GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
     GDataXMLElement *formula = [self.durationFormula xmlElementWithContext:context];
-    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"DURATION"]];
+    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"PHIRO_DURATION_IN_SECONDS"]];
     [formulaList addChild:formula context:context];
     [brick addChild:formulaList context:context];
+    GDataXMLElement *value = [GDataXMLElement elementWithName:@"tone" stringValue:self.tone context:context];
+    [brick addChild:value context:context];
     return brick;
 }
 

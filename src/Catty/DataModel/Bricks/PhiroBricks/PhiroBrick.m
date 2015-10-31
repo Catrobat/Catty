@@ -29,4 +29,10 @@
     return YES;
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return kBluetoothPhiro;
+}
+
 @end
