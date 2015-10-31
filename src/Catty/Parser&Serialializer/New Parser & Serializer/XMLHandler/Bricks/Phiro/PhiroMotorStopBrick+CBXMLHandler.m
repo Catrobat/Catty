@@ -37,11 +37,9 @@
 + (instancetype)parseFromElement:(GDataXMLElement*)xmlElement withContextForLanguageVersion093:(CBXMLParserContext*)context
 {
     [CBXMLParserHelper validateXMLElement:xmlElement forNumberOfChildNodes:1 AndFormulaListWithTotalNumberOfFormulas:2];
-//    Formula *duration = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"DURATION" withContext:context];
-    //    Formula *value = [CBXMLParserHelper formulaInXMLElement:xmlElement forCategoryName:@"VALUE" withContext:context];
+    GDataXMLElement *motor = [xmlElement childWithElementName:@"motor"];
     PhiroMotorStopBrick *phiroMotorStopBrick = [self new];
-//    phiroMotorStopBrick.motor = motor;
-    //    phiroPlayToneBrick.tone = value;
+    phiroMotorStopBrick.motor = motor.stringValue;
     return phiroMotorStopBrick;
 }
 
@@ -56,11 +54,8 @@
     NSUInteger indexOfBrick = [CBXMLSerializerHelper indexOfElement:self inArray:context.brickList];
     GDataXMLElement *brick = [GDataXMLElement elementWithName:@"brick" xPathIndex:(indexOfBrick+1) context:context];
     [brick addAttribute:[GDataXMLElement attributeWithName:@"type" escapedStringValue:@"PhiroMotorStopBrick"]];
-    GDataXMLElement *formulaList = [GDataXMLElement elementWithName:@"formulaList" context:context];
-//    GDataXMLElement *formula = [self.durationFormula xmlElementWithContext:context];
-//    [formula addAttribute:[GDataXMLElement attributeWithName:@"category" escapedStringValue:@"DURATION"]];
-//    [formulaList addChild:formula context:context];
-    [brick addChild:formulaList context:context];
+    GDataXMLElement *value = [GDataXMLElement elementWithName:@"motor" stringValue:self.motor context:context];
+    [brick addChild:value context:context];
     return brick;
 }
 
