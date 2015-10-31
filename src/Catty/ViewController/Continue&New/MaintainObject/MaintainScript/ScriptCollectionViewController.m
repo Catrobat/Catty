@@ -632,6 +632,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 {
     [self dismissViewControllerAnimated:YES completion:NULL];
     scriptOrBrick = [scriptOrBrick mutableCopyWithContext:[CBMutableCopyContext new]];
+    [scriptOrBrick setDefaultValuesForObject:self.object];
     self.lastSelectedBrickCategory = brickCategoryViewController.pageIndexCategoryType;
     brickCategoryViewController.delegate = nil;
     self.placeHolderView.hidden = YES;
