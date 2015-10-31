@@ -50,4 +50,10 @@
     return [NSString stringWithFormat:@"ForeverLoop"];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return kNoResources;
+}
+
 @end

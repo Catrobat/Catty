@@ -36,4 +36,10 @@
     return [NSString stringWithFormat:@"ShowBrick on: %@", self.script.object.name];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return kNoResources;
+}
+
 @end

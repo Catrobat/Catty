@@ -70,4 +70,10 @@
     self.pin = [[Formula alloc] initWithZero];
     self.value = [[Formula alloc] initWithZero];
 }
+
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return kBluetoothArduino|[self.pin getRequiredResources]|[self.value getRequiredResources];
+}
 @end

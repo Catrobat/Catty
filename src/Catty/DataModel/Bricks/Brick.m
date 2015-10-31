@@ -226,5 +226,13 @@
     self.script = nil;
 }
 
+- (NSInteger)getRequiredResources
+{
+    //OVERRIDE IN EVERY BRICK
+    NSInteger resources = kNoResources;
+
+    return resources;
+}
+
 
 @end

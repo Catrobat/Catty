@@ -226,4 +226,11 @@
     return formula;
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return [self.formulaTree getRequiredResources];
+}
+
+
 @end

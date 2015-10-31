@@ -42,4 +42,9 @@
     return [NSString stringWithFormat:@"ComeToFront"];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return kNoResources;
+}
 @end

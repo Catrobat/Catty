@@ -1006,4 +1006,76 @@
     return YES;
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    NSInteger resources = kNoResources;
+    if (self.leftChild != nil) {
+        resources |= [self.leftChild getRequiredResources];
+    }
+    if (self.rightChild != nil) {
+        resources |= [self.rightChild getRequiredResources];
+    }
+    if (self.type == SENSOR) {
+        Sensor sensor = [SensorManager sensorForString:self.value];
+        switch (sensor) {
+            case FACE_DETECTED:
+            case FACE_SIZE:
+            case FACE_POSITION_X:
+            case FACE_POSITION_Y:
+                resources |= kFaceDetection;
+                break;
+                
+            case phiro_bottom_left:
+            case phiro_bottom_right:
+            case phiro_front_left:
+            case phiro_front_right:
+            case phiro_side_left:
+            case phiro_side_right:
+                resources |= kBluetoothPhiro;
+                break;
+            case arduino_analogPin0:
+            case arduino_analogPin1:
+            case arduino_analogPin2:
+            case arduino_analogPin3:
+            case arduino_analogPin4:
+            case arduino_analogPin5:
+            case arduino_digitalPin0:
+            case arduino_digitalPin1:
+            case arduino_digitalPin10:
+            case arduino_digitalPin11:
+            case arduino_digitalPin12:
+            case arduino_digitalPin13:
+            case arduino_digitalPin2:
+            case arduino_digitalPin3:
+            case arduino_digitalPin4:
+            case arduino_digitalPin5:
+            case arduino_digitalPin6:
+            case arduino_digitalPin7:
+            case arduino_digitalPin8:
+            case arduino_digitalPin9:
+                resources |= kBluetoothArduino;
+                break;
+            case X_ACCELERATION:
+            case Y_ACCELERATION:
+            case Z_ACCELERATION:
+                resources |= kAccelerometer;
+                break;
+            case X_INCLINATION:
+            case Y_INCLINATION:
+                resources |= kAccelerometer;
+                break;
+            case COMPASS_DIRECTION:
+                resources |= kLocation;
+                break;
+            case LOUDNESS:
+                resources |= kLoudness;
+                break;
+            default:
+                resources |= kNoResources;
+        }
+    }
+    return resources;
+}
+
 @end

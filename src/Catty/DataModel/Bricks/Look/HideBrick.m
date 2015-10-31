@@ -36,4 +36,9 @@
     return [NSString stringWithFormat:@"Hidebrick"];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return kNoResources;
+}
 @end

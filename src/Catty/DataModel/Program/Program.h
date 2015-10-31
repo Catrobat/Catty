@@ -55,6 +55,7 @@
 - (SpriteObject* _Nonnull)copyObject:(SpriteObject* _Nonnull)sourceObject
     withNameForCopiedObject:(NSString* _Nonnull)nameOfCopiedObject;
 - (BOOL)isEqualToProgram:(Program* _Nonnull)program;
+- (NSInteger)getRequiredResources;
 
 + (instancetype _Nonnull)defaultProgramWithName:(NSString* _Nonnull)programName
                                       programID:(NSString* _Nullable)programID;

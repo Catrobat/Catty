@@ -23,7 +23,7 @@
 #import "SensorManager.h"
 #import "LanguageTranslationDefines.h"
 @implementation SensorManager
-
+//if sensorStringArray changes -> update TestArray in RequiredResourcesTests
 NSString * const sensorStringArray[] = {
     @"X_ACCELERATION",
     @"Y_ACCELERATION",

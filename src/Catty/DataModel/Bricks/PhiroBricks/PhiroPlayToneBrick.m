@@ -74,4 +74,10 @@
 {
     return [PhiroHelper stringToTone:self.tone];
 };
+
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return kBluetoothPhiro|[self.durationFormula getRequiredResources];
+}
 @end

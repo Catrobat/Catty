@@ -197,4 +197,14 @@
     // Override this method in Script implementation
 }
 
+- (NSInteger)getRequiredResources
+{
+    NSInteger resources = kNoResources;
+    
+    for (Brick *brick in self.brickList) {
+        resources |= [brick getRequiredResources];
+    }
+    return resources;
+}
+
 @end

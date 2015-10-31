@@ -81,4 +81,9 @@
     return [PhiroHelper stringToMotor:self.motor];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return kBluetoothPhiro|[self.formula getRequiredResources];
+}
 @end

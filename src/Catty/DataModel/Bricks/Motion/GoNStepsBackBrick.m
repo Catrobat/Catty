@@ -57,5 +57,9 @@
 {
     return [NSString stringWithFormat:@"GoNStepsBack (%d)", [self.steps interpretIntegerForSprite:self.script.object]];
 }
-
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return [self.steps getRequiredResources];
+}
 @end

@@ -50,5 +50,6 @@
 - (BOOL)isEqualToScript:(Script*)script;
 - (void)removeFromObject;
 - (void)removeReferences;
+- (NSInteger)getRequiredResources;
 
 @end
