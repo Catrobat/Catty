@@ -551,7 +551,7 @@
 #define kLocalizedVibration NSLocalizedString(@"vibration", nil)
 #define kLocalizedSensorLoudness NSLocalizedString(@"loudness", nil)
 #define kLocalizedSensorLED NSLocalizedString(@"LED", nil)
-#define kLocalizedNotAvailable NSLocalizedString(@"not available", nil)
+#define kLocalizedNotAvailable NSLocalizedString(@"not available. Continue anyway?", nil)
 
 #define kUIFESensorFaceDetected NSLocalizedString(@"face_detected", nil)
 #define kUIFESensorFaceSize NSLocalizedString(@"facesize", nil)
