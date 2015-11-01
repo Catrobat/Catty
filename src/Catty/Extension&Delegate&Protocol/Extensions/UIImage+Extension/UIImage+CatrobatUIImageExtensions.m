@@ -23,6 +23,7 @@
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "DownloadImageCache.h"
 #import "RGBAHelper.h"
+#import "ImageHelper.h"
 #import <CoreImage/CoreImage.h>
 
 #define kImageDownloadQueue "at.tugraz.ist.catrobat.ImageDownloadQueue"
@@ -196,25 +197,15 @@
 
 - (BOOL)isTransparentPixel:(UIImage*)image withX:(CGFloat)x andY:(CGFloat)y
 {
-    CGFloat r,g,b,a;
-    NSInteger xCounter = -1;
-    NSInteger yCounter = -1;
-    a = 0.0f;
-    while (xCounter <= 1) {
-        yCounter = -1;
-        while (yCounter <= 1) {
-            UIColor *color = [RGBAHelper getRGBAsFromImage:image atX:x+xCounter andY:y+yCounter];
-            [color getRed:&r green:&g blue:&b alpha:&a];
-            if(a <= 0.001f){
-                return YES;
-            }
-
-            yCounter++;
-        }
-        xCounter++;
-
+    x += (image.size.width/2);
+    y -= (image.size.height/2);
+    y = -y;
+    unsigned char * imageData = [ImageHelper convertUIImageToBitmapRGBA8:image];
+    NSUInteger byteIndex = (CGImageGetWidth(image.CGImage) * y) + x * 4;
+    CGFloat alpha = imageData[byteIndex+3];
+    if(alpha <= 0.001f){
+        return YES;
     }
-
     return NO;
 
 }
@@ -222,39 +213,76 @@
 // XXX: Unfortunately touch-detection has still problems with the above extension-method!
 - (BOOL)isTransparentPixelOLDMETHOD:(UIImage*)image withX:(CGFloat)x andY:(CGFloat)y
 {
-    x += (image.size.width/2);
-    y += (image.size.height/2);
-    y = image.size.height - y;
-    NSInteger pointX = (NSInteger)x;
-    NSInteger pointY = (NSInteger)y;
-    CGImageRef cgImage = image.CGImage;
-    NSUInteger width = (NSUInteger)image.size.width;
-    NSUInteger height = (NSUInteger)image.size.height;
+        x += (image.size.width/2);
+        y += (image.size.height/2);
+        y = image.size.height - y;
+    CGImageRef imageRef = [image CGImage];
+    NSUInteger width = CGImageGetWidth(imageRef);
+    NSUInteger height = CGImageGetHeight(imageRef);
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    int bytesPerPixel = 4;
-    int bytesPerRow = bytesPerPixel * 1;
+    unsigned char *rawData = (unsigned char*) calloc(height * width * 4, sizeof(unsigned char));
+    NSUInteger bytesPerPixel = 4;
+    NSUInteger bytesPerRow = bytesPerPixel * width;
     NSUInteger bitsPerComponent = 8;
-    unsigned char pixelData[4] = { 0, 0, 0, 0 };
-    CGContextRef context = CGBitmapContextCreate(pixelData,
-                                                 1,
-                                                 1,
-                                                 bitsPerComponent,
-                                                 bytesPerRow,
-                                                 colorSpace,
+    CGContextRef context = CGBitmapContextCreate(rawData, width, height,
+                                                 bitsPerComponent, bytesPerRow, colorSpace,
                                                  kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
     CGColorSpaceRelease(colorSpace);
-    CGContextSetBlendMode(context, kCGBlendModeCopy);
     
-    // Draw the pixel we are interested in onto the bitmap context
-    CGContextTranslateCTM(context, -pointX, pointY-(CGFloat)height);
-    CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, (CGFloat)width, (CGFloat)height), cgImage);
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
     CGContextRelease(context);
     
-    CGFloat alpha = (CGFloat)pixelData[3] / 255.0f;
-    if (alpha == 0){
-        return YES;
-    }
+    // Now your rawData contains the image data in the RGBA8888 pixel format.
+    NSUInteger byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
+//    for (int i = 0 ; i < count ; ++i)
+//    {
+        CGFloat alpha = (rawData[byteIndex + 3] * 1.0) / 255.0;
+//        byteIndex += bytesPerPixel;
+    NSLog(@"ALPHA:   %f",alpha);
+        if(alpha <= 0.001f){
+            free(rawData);
+            return YES;
+        }
+//        UIColor *acolor = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+//        [result addObject:acolor];
+//    }
+    
+    
+    
     return NO;
+//    x += (image.size.width/2);
+//    y += (image.size.height/2);
+//    y = image.size.height - y;
+//    NSInteger pointX = (NSInteger)x;
+//    NSInteger pointY = (NSInteger)y;
+//    CGImageRef cgImage = image.CGImage;
+//    NSUInteger width = (NSUInteger)image.size.width;
+//    NSUInteger height = (NSUInteger)image.size.height;
+//    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+//    int bytesPerPixel = 4;
+//    int bytesPerRow = bytesPerPixel * 1;
+//    NSUInteger bitsPerComponent = 8;
+//    unsigned char pixelData[4] = { 0, 0, 0, 0 };
+//    CGContextRef context = CGBitmapContextCreate(pixelData,
+//                                                 1,
+//                                                 1,
+//                                                 bitsPerComponent,
+//                                                 bytesPerRow,
+//                                                 colorSpace,
+//                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+//    CGColorSpaceRelease(colorSpace);
+//    CGContextSetBlendMode(context, kCGBlendModeCopy);
+//    
+//    // Draw the pixel we are interested in onto the bitmap context
+//    CGContextTranslateCTM(context, -pointX, pointY-(CGFloat)height);
+//    CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, (CGFloat)width, (CGFloat)height), cgImage);
+//    CGContextRelease(context);
+//    
+//    CGFloat alpha = (CGFloat)pixelData[3] / 255.0f;
+//    if (alpha == 0){
+//        return YES;
+//    }
+//    return NO;
 //    if (!CGRectContainsPoint(CGRectMake(0.0f, 0.0f, self.size.width, self.size.height), CGPointMake(x,y))) {
 //        return YES;
 //    }

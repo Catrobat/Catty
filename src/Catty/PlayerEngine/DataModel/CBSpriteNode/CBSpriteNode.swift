@@ -223,7 +223,7 @@ final class CBSpriteNode: SKSpriteNode {
               let spriteName = spriteObject.name
         else { fatalError("Invalid SpriteObject!") }
         let touchedPoint = touch.locationInNode(self)
-        if imageLook.isTransparentPixelOLDMETHOD(imageLook, withX:touchedPoint.x, andY:touchedPoint.y) {
+        if imageLook.isTransparentPixel(imageLook, withX:touchedPoint.x, andY:touchedPoint.y) {
             print("\(spriteName): \"I'm transparent at this point\"")
             return false
         }
@@ -249,5 +249,23 @@ final class CBSpriteNode: SKSpriteNode {
 //        }
         return true
     }
+    
+//    func pixelFromTexture(texture: SKTexture, position: CGPoint) -> SKColor {
+//        let view = SKView(frame: CGRectMake(0, 0, 1, 1))
+//        let scene = SKScene(size: CGSize(width: 1, height: 1))
+//        let sprite  = SKSpriteNode(texture: texture)
+//        sprite.anchorPoint = CGPointZero
+//        sprite.position = CGPoint(x: -floor(position.x), y: -floor(position.y))
+//        scene.anchorPoint = CGPointZero
+//        scene.addChild(sprite)
+//        view.presentScene(scene)
+//        var pixel: [UInt8] = [0, 0, 0, 0]
+//        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedLast.rawValue)
+//        let context = CGBitmapContextCreate(&pixel, 1, 1, 8, 4, CGColorSpaceCreateDeviceRGB(), bitmapInfo);
+//        UIGraphicsPushContext(context);
+//        view.drawViewHierarchyInRect(view.bounds, afterScreenUpdates: true)
+//        UIGraphicsPopContext()
+//        return SKColor(red: CGFloat(pixel[0]) / 255.0, green: CGFloat(pixel[1]) / 255.0, blue: CGFloat(pixel[2]) / 255.0, alpha: CGFloat(pixel[3]) / 255.0)
+//    }
 
 }
