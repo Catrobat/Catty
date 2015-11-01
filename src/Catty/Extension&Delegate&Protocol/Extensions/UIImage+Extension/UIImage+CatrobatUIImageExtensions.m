@@ -203,7 +203,7 @@
     unsigned char * imageData = [ImageHelper convertUIImageToBitmapRGBA8:image];
     NSUInteger byteIndex = (CGImageGetWidth(image.CGImage) * y) + x * 4;
     CGFloat alpha = imageData[byteIndex+3];
-    if(alpha <= 0.001f){
+    if(alpha <= 1.0f){
         return YES;
     }
     return NO;
@@ -213,119 +213,44 @@
 // XXX: Unfortunately touch-detection has still problems with the above extension-method!
 - (BOOL)isTransparentPixelOLDMETHOD:(UIImage*)image withX:(CGFloat)x andY:(CGFloat)y
 {
-        x += (image.size.width/2);
-        y += (image.size.height/2);
-        y = image.size.height - y;
-    CGImageRef imageRef = [image CGImage];
-    NSUInteger width = CGImageGetWidth(imageRef);
-    NSUInteger height = CGImageGetHeight(imageRef);
+
+    x += (image.size.width/2);
+    y += (image.size.height/2);
+    y = image.size.height - y;
+    NSInteger pointX = (NSInteger)x;
+    NSInteger pointY = (NSInteger)y;
+    CGImageRef cgImage = image.CGImage;
+    NSUInteger width = (NSUInteger)image.size.width;
+    NSUInteger height = (NSUInteger)image.size.height;
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    unsigned char *rawData = (unsigned char*) calloc(height * width * 4, sizeof(unsigned char));
-    NSUInteger bytesPerPixel = 4;
-    NSUInteger bytesPerRow = bytesPerPixel * width;
+    int bytesPerPixel = 4;
+    int bytesPerRow = bytesPerPixel * 1;
     NSUInteger bitsPerComponent = 8;
-    CGContextRef context = CGBitmapContextCreate(rawData, width, height,
-                                                 bitsPerComponent, bytesPerRow, colorSpace,
+    unsigned char pixelData[4] = { 0, 0, 0, 0 };
+    CGContextRef context = CGBitmapContextCreate(pixelData,
+                                                 1,
+                                                 1,
+                                                 bitsPerComponent,
+                                                 bytesPerRow,
+                                                 colorSpace,
                                                  kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
     CGColorSpaceRelease(colorSpace);
+    CGContextSetBlendMode(context, kCGBlendModeCopy);
     
-    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+    // Draw the pixel we are interested in onto the bitmap context
+    CGContextTranslateCTM(context, -pointX, pointY-(CGFloat)height);
+    CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, (CGFloat)width, (CGFloat)height), cgImage);
     CGContextRelease(context);
     
-    // Now your rawData contains the image data in the RGBA8888 pixel format.
-    NSUInteger byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
-//    for (int i = 0 ; i < count ; ++i)
-//    {
-        CGFloat alpha = (rawData[byteIndex + 3] * 1.0) / 255.0;
-//        byteIndex += bytesPerPixel;
-    NSLog(@"ALPHA:   %f",alpha);
-        if(alpha <= 0.001f){
-            free(rawData);
-            return YES;
-        }
-//        UIColor *acolor = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
-//        [result addObject:acolor];
-//    }
-    
-    
-    
+    CGFloat alpha = (CGFloat)pixelData[3] / 255.0f;
+    if (alpha == 0){
+        return YES;
+    }
     return NO;
-//    x += (image.size.width/2);
-//    y += (image.size.height/2);
-//    y = image.size.height - y;
-//    NSInteger pointX = (NSInteger)x;
-//    NSInteger pointY = (NSInteger)y;
-//    CGImageRef cgImage = image.CGImage;
-//    NSUInteger width = (NSUInteger)image.size.width;
-//    NSUInteger height = (NSUInteger)image.size.height;
-//    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-//    int bytesPerPixel = 4;
-//    int bytesPerRow = bytesPerPixel * 1;
-//    NSUInteger bitsPerComponent = 8;
-//    unsigned char pixelData[4] = { 0, 0, 0, 0 };
-//    CGContextRef context = CGBitmapContextCreate(pixelData,
-//                                                 1,
-//                                                 1,
-//                                                 bitsPerComponent,
-//                                                 bytesPerRow,
-//                                                 colorSpace,
-//                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
-//    CGColorSpaceRelease(colorSpace);
-//    CGContextSetBlendMode(context, kCGBlendModeCopy);
-//    
-//    // Draw the pixel we are interested in onto the bitmap context
-//    CGContextTranslateCTM(context, -pointX, pointY-(CGFloat)height);
-//    CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, (CGFloat)width, (CGFloat)height), cgImage);
-//    CGContextRelease(context);
-//    
-//    CGFloat alpha = (CGFloat)pixelData[3] / 255.0f;
-//    if (alpha == 0){
-//        return YES;
-//    }
-//    return NO;
 //    if (!CGRectContainsPoint(CGRectMake(0.0f, 0.0f, self.size.width, self.size.height), CGPointMake(x,y))) {
 //        return YES;
 //    }
     
-    // Create a 1x1 pixel byte array and bitmap context to draw the pixel onto.
-    // Reference: http://stackoverflow.com/questions/1042830/retrieving-a-pixel-alpha-value-for-a-uiimage
-//    NSInteger pointX = trunc(x);
-//    NSInteger pointY = trunc(y);
-//    
-//    CGImageRef cgImage = self.CGImage;
-//    
-//    NSUInteger width = CGImageGetWidth(cgImage);
-//    NSUInteger height = CGImageGetHeight(cgImage);
-//    
-//    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-//    
-//    int bytesPerPixel = 4;
-//    int bytesPerRow = bytesPerPixel * 1;
-//    NSUInteger bitsPerComponent = 8;
-//    
-//    unsigned char pixelData[4] = { 0, 0, 0, 0 };
-//    
-//    CGContextRef context = CGBitmapContextCreate( pixelData, 1, 1, bitsPerComponent, bytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
-//    
-//    CGColorSpaceRelease(colorSpace);
-//    
-//    CGContextSetBlendMode(context, kCGBlendModeCopy);
-//    
-//    // Draw the pixel we are interested in
-//    CGContextTranslateCTM(context, -pointX, -pointY);
-//    CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, (CGFloat)width, (CGFloat)height), cgImage);
-//    CGContextRelease(context);
-//    
-//    // Convert the color values [0...255] to floats [0.0f...1.0f]
-////    CGFloat r = (CGFloat)pixelData[0] / 255.0f;
-////    CGFloat g = (CGFloat)pixelData[1] / 255.0f;
-////    CGFloat b = (CGFloat)pixelData[2] / 255.0f;
-//    CGFloat a = (CGFloat)pixelData[3] / 255.0f;
-//    if (a < 0.01f) {
-//        return true;
-//    }
-//    return false;
-//
 }
 
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
