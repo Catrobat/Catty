@@ -800,7 +800,7 @@
 "not" = "not";
 
 /* No comment provided by engineer. */
-"not available" = "not available";
+"not available. Continue anyway?" = "not available. Continue anyway?";
 
 /* No comment provided by engineer. */
 "Not enough free memory to download this program. Please delete some of your programs" = "Not enough free memory to download this program. Please delete some of your programs";
