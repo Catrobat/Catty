@@ -120,22 +120,19 @@ void uncaughtExceptionHandler(NSException *exception)
     self.window.tintColor = [UIColor globalTintColor];
 }
 
--(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+-(BOOL)application:(UIApplication* )application
+           openURL:(NSURL* )url
+ sourceApplication:(NSString* )sourceApplication
+        annotation:(id)annotation
 {
-    UINavigationController *vc = (UINavigationController*)self.window.rootViewController;
-    
+    UINavigationController* vc = (UINavigationController*)self.window.rootViewController;
     [vc popToRootViewControllerAnimated:YES];
     
     if ([vc.topViewController isKindOfClass:[CatrobatTableViewController class]]){
         CatrobatTableViewController* ctvc = (CatrobatTableViewController*)vc.topViewController;
-        
         [ctvc addProgramFromInbox];
-        
         return YES;
     }
-    
-
-    
     return NO;
 }
 

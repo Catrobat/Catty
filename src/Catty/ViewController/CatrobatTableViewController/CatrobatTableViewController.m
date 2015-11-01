@@ -534,30 +534,31 @@ static NSCharacterSet *blockedCharacterSet = nil;
     return NO;
 }
 
--(void)addProgramWithName:(NSString*)newProgramName
+-(void)addProgramFromInboxWithName:(NSString*)newProgramName
 {
     
     NSFileManager* filemgr = [NSFileManager defaultManager];
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString* documentsDirectory = [paths objectAtIndex:0];
     NSString* inboxPath = [documentsDirectory stringByAppendingPathComponent:@"Inbox"];
-    NSArray* dirFiles = [filemgr contentsOfDirectoryAtPath:inboxPath error:nil];
+    NSArray* dirFiles = [filemgr contentsOfDirectoryAtPath:inboxPath
+                                                     error:nil];
     if(![dirFiles firstObject])
     {
         return;
     }
     NSString* newProgramPath = [NSString stringWithFormat:@"%@/%@", inboxPath, [dirFiles firstObject]];
     
-    
     NSData* newProgram = [NSData dataWithContentsOfFile:newProgramPath];
-    
     
     AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     
-    [appDelegate.fileManager unzipAndStore:newProgram withProgramID:nil withName:newProgramName];
+    [appDelegate.fileManager unzipAndStore:newProgram
+                             withProgramID:nil
+                                  withName:newProgramName];
     
-    [[NSFileManager defaultManager] removeItemAtPath:newProgramPath error:nil];
-    
+    [[NSFileManager defaultManager] removeItemAtPath:newProgramPath
+                                               error:nil];
 }
 
 -(void)addProgramFromInbox
@@ -565,7 +566,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     NSCharacterSet* blockedCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:kTextFieldAllowedCharacters]
                                            invertedSet];
     
-    [Util askUserForUniqueNameAndPerformAction:@selector(addProgramWithName:)
+    [Util askUserForUniqueNameAndPerformAction:@selector(addProgramFromInboxWithName:)
                                         target:self
                                    promptTitle:kLocalizedEnterNameForImportedProgramTitle
                                  promptMessage:[NSString stringWithFormat:@"%@:", kLocalizedProgramName]
@@ -576,16 +577,6 @@ static NSCharacterSet *blockedCharacterSet = nil;
                            blockedCharacterSet:blockedCharacterSet
                       invalidInputAlertMessage:kLocalizedProgramNameAlreadyExistsDescription
                                  existingNames:[Program allProgramNames]];
-}
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (alertView.tag == kAskUserForUnivqueNameForImportedFileAlertViewTag) {
-        if (buttonIndex == 1)
-        {
-            NSLog(@"user pressed Button Indexed 0");
-        }
-    }
 }
 
 
