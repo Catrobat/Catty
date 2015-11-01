@@ -48,13 +48,9 @@ void uncaughtExceptionHandler(NSException *exception)
 {
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     
-    Siren* siren = Siren.sharedInstance;
-    siren.appID = kAppStoreIdentifier;
-
-    [siren checkVersion:kSirenUpdateIntervallDaily];
-    [siren setAlertType:kSirenAlertTypeOption];
-    
     [self initNavigationBar];
+    
+    [SwiftBridge sirenBridgeApplicationDidFinishLaunching];
     
     [UITextField appearance].keyboardAppearance = UIKeyboardAppearanceDark;
     
@@ -78,7 +74,7 @@ void uncaughtExceptionHandler(NSException *exception)
 
 -(void)applicationDidBecomeActive:(UIApplication *)application
 {
-    [Siren.sharedInstance checkVersion:kSirenUpdateIntervallDaily];
+    [SwiftBridge sirenApplicationDidBecomeActive];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -107,7 +103,7 @@ void uncaughtExceptionHandler(NSException *exception)
         [spvc resumeAction];
     }
     
-    [Siren.sharedInstance checkVersion:kSirenUpdateIntervallDaily];
+    [SwiftBridge sirenApplicationWillEnterForeground];
 }
 
 - (void)initNavigationBar
