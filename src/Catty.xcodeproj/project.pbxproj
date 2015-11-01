@@ -593,6 +593,7 @@
 		AAF6D9DE1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9DD1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift */; };
 		AAF6D9E01BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9DF1BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift */; };
 		AAF6D9E21BC0C48300686849 /* PointToBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF6D9E11BC0C48300686849 /* PointToBrick+Instruction.swift */; };
+		BB391408A617C144F6F7B397 /* Pods_Catty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C40964ED613CCE2F4E159A6 /* Pods_Catty.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		CA02C5E71B14386900233FB0 /* CBSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA02C5E61B14386900233FB0 /* CBSpriteNode.swift */; };
 		CA2D44431B12305400A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
 		CA2D44441B1231F900A3B53D /* Swell.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA2D44421B12305400A3B53D /* Swell.plist */; };
@@ -707,7 +708,6 @@
 		CAE3E5671B4C50B300CC88BD /* ValidFormulaList.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE3E5341B4C50B300CC88BD /* ValidFormulaList.xml */; };
 		D63864651AE632FE008569E6 /* ProgramsForUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864641AE632FE008569E6 /* ProgramsForUploadViewController.m */; };
 		D63864681AE6334E008569E6 /* UploadInfoPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63864671AE6334E008569E6 /* UploadInfoPopupViewController.m */; };
-		ECB7ED6D681B96F51A19A4A9 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F8D321C59F7D79902BCF650 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -987,7 +987,8 @@
 		4CF773ED1AEE786600DBBB2B /* FormulaElement+UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FormulaElement+UserVariable.m"; sourceTree = "<group>"; };
 		4CF773F21AEE79A800DBBB2B /* Brick+UserVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brick+UserVariable.h"; sourceTree = "<group>"; };
 		4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Brick+UserVariable.m"; sourceTree = "<group>"; };
-		5703FCE2766AC6237CCD4DE4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		6C40964ED613CCE2F4E159A6 /* Pods_Catty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Catty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7583464ACE4C90D8AFA93C02 /* Pods-Catty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Catty/Pods-Catty.debug.xcconfig"; sourceTree = "<group>"; };
 		811FB6E81A4980EF00957E10 /* ScriptCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptCollectionViewController.h; sourceTree = "<group>"; };
 		811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptCollectionViewController.m; sourceTree = "<group>"; };
 		811FB6EB1A49812700957E10 /* BrickCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickCategoryViewController.h; sourceTree = "<group>"; };
@@ -1814,6 +1815,7 @@
 		AAF6D9DD1BC0C1F300686849 /* PlaceAtBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PlaceAtBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/PlaceAtBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AAF6D9DF1BC0C2AA00686849 /* PointInDirectionBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PointInDirectionBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/PointInDirectionBrick+Instruction.swift"; sourceTree = "<group>"; };
 		AAF6D9E11BC0C48300686849 /* PointToBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PointToBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/PointToBrick+Instruction.swift"; sourceTree = "<group>"; };
+		AB916948D973AFB41C1CA750 /* Pods-Catty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Catty.release.xcconfig"; path = "Pods/Target Support Files/Pods-Catty/Pods-Catty.release.xcconfig"; sourceTree = "<group>"; };
 		B405BAC7175DD3F600B1A0FC /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		B44F32AC1737BCBF00BD97AC /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		B450309F170F22EF009265D6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -1925,7 +1927,6 @@
 		DE4A3D7E10FFB08B00FDA492 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DE5C4E6D138ED109004892CA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		DEAAF3DE16BC114D004EB9D5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		FA345A2C4822CF65FF1A5FDB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1968,7 +1969,7 @@
 				CADBD7F519B0E8C200C62836 /* AVFoundation.framework in Frameworks */,
 				CADBD7F619B0E8C200C62836 /* AudioToolbox.framework in Frameworks */,
 				CADBD7F719B0E8C200C62836 /* OpenAL.framework in Frameworks */,
-				ECB7ED6D681B96F51A19A4A9 /* Pods.framework in Frameworks */,
+				BB391408A617C144F6F7B397 /* Pods_Catty.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1996,7 +1997,7 @@
 				AAADA0051B9B29D500E0CA9A /* Catty UITests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				C779629B76F76C5C401087EA /* Pods */,
+				3E35E9446B11D52C9B7F182C /* Pods */,
 			);
 			indentWidth = 4;
 			name = CustomTemplate;
@@ -2046,8 +2047,18 @@
 				B450309F170F22EF009265D6 /* SenTestingKit.framework */,
 				B46B26E817703E4000172837 /* XCTest.framework */,
 				1F8D321C59F7D79902BCF650 /* Pods.framework */,
+				6C40964ED613CCE2F4E159A6 /* Pods_Catty.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3E35E9446B11D52C9B7F182C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7583464ACE4C90D8AFA93C02 /* Pods-Catty.debug.xcconfig */,
+				AB916948D973AFB41C1CA750 /* Pods-Catty.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		4C1608A31A095480002C7032 /* Resources */ = {
@@ -4873,15 +4884,6 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
-		C779629B76F76C5C401087EA /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				FA345A2C4822CF65FF1A5FDB /* Pods.debug.xcconfig */,
-				5703FCE2766AC6237CCD4DE4 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		CA02C5E81B14386E00233FB0 /* CBSpriteNode */ = {
 			isa = PBXGroup;
 			children = (
@@ -5400,7 +5402,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CADBD7F819B0E8C200C62836 /* Build configuration list for PBXNativeTarget "Catty" */;
 			buildPhases = (
-				1C6A151AD87D50C17B187B38 /* Check Pods Manifest.lock */,
+				0996A6A7C8E2E38BE98F9351 /* Check Pods Manifest.lock */,
 				CADBD6D619B0E8C200C62836 /* Catty Precompile Tests */,
 				CADBD6D719B0E8C200C62836 /* Add Licenses To Acknowledgements.plist */,
 				CADBD6D819B0E8C200C62836 /* Resources */,
@@ -5408,11 +5410,11 @@
 				CADBD7E419B0E8C200C62836 /* Frameworks */,
 				CA0BB4151AA7709900E5A88D /* Add version number to Root.plist */,
 				AACFFF611B7FE5F50002F899 /* Automatic Version Tracking */,
-				BEC18359F4AE6B828428FCE6 /* Embed Pods Frameworks */,
 				929DC44A1BCB9C5000421443 /* License Validator */,
-				B1530C3ABA65C1BF3F9C0A5E /* Copy Pods Resources */,
 				92C6319D1BC5180B00486958 /* CopyFiles */,
 				922123C81BCAB51E008AAE45 /* Todo/Fixme check */,
+				4FEDB393FCF94E05E6C01E4C /* Embed Pods Frameworks */,
+				1CAB9D66718A42AFF93E08C1 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -5683,7 +5685,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1C6A151AD87D50C17B187B38 /* Check Pods Manifest.lock */ = {
+		0996A6A7C8E2E38BE98F9351 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -5696,6 +5698,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		1CAB9D66718A42AFF93E08C1 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Catty/Pods-Catty-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4FEDB393FCF94E05E6C01E4C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Catty/Pods-Catty-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		922123C81BCAB51E008AAE45 /* Todo/Fixme check */ = {
@@ -5739,36 +5771,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/usr/bin/env python";
 			shellScript = "#!/usr/bin/env python\n\nimport os, sys\n\n# config\nsuccess_msg = \"A local git hook has been created! The script will automatically keep track of the project's build number. You should never hear this message again. The app is launching now!\"\nalert_msg_template = \"Can't create local {0} commit git hook! Please stop commiting to the repository and inform the team leader.\"\n\n# immutable paths\nenv = os.environ\nassert(env['PROJECT_DIR'])\nPROJECT_SRC_DIR = env['PROJECT_DIR']\nPLIST_PATH = os.path.join(PROJECT_SRC_DIR, env['INFOPLIST_FILE'])\nPROJECT_ROOT_DIR = os.path.normpath(os.path.join(PROJECT_SRC_DIR, \"..\")) # get out of \"src\" subfolder\nHOOK_DIR = os.path.join(PROJECT_ROOT_DIR, \".git\", \"hooks\")\n\n# helpers\ndef touch(path):\n    if os.path.exists(path):\n        os.utime(path, None)\n    else:\n        open(fname, 'a').close()\n\ndef make_dir_if_not_exists(path):\n    try:\n        if not os.path.exists(path):\n            os.makedirs(path)\n        elif not os.path.isdir(path):\n            print(\"An error occured! Invalid path '{0}'. This is NO directory.\".format(path))\n    except Exception, e:\n        print(e)\n        raise e\n\n# inject hook code\nmake_dir_if_not_exists(HOOK_DIR)\nassert(os.access(HOOK_DIR, os.W_OK))\npre_commit_hook_path = os.path.join(HOOK_DIR, \"pre-commit\")\n\n# TODO: TEMPORARY TODO SECTION => remove this section later {\npost_commit_hook_path = os.path.join(HOOK_DIR, \"post-commit\")\n\nimport datetime\nexpire_date = datetime.datetime(2015, 10, 7)\nnow_date = datetime.datetime.now()\n\n\nif os.path.isfile(post_commit_hook_path):\n    os.remove(post_commit_hook_path)\n    if not os.path.isfile(post_commit_hook_path):\n        os.system(\"say -v Alex \\\"Successfully removed post-commit hook file. You should never hear this message again. The app is launching now!\\\"\")\n    else:\n        os.system(\"say -v Alex \\\"Cannot remove post-commit hook file. The app is launching now!\\\"\")\n# }\n\npre_commit_code = \"\"\"\n    \\#!/bin/sh\n    PROJECT_ROOT_DIR=\"%s\"\n    PLIST_PATH=\"%s\"\n\n    branchName=`/usr/bin/env git symbolic-ref HEAD | sed -e 's,.*/\\\\(.*\\\\),\\\\1,'`\n    gitCount=`/usr/bin/env git rev-list $branchName |wc -l | sed 's/^ *//;s/ *$//'`\n    simpleBranchName=`/usr/bin/env git rev-parse --abbrev-ref HEAD`\n    shortHash=`/usr/bin/env git rev-parse --short HEAD`\n\n    buildNumber=\"$((gitCount + 1))\"\n    buildNumber+=\"-${simpleBranchName}\"\n    buildNumber+=\"-{parent:${shortHash}}\"\n    /usr/libexec/PlistBuddy -c \"Set CFBundleVersion $buildNumber\" \"${PLIST_PATH}\"\n\n    # Add modified plist to the staging area\n    cd ${PROJECT_ROOT_DIR}\n    /usr/bin/env git add ${PLIST_PATH}\n    exit 0\n\"\"\" % (PROJECT_ROOT_DIR, PLIST_PATH)\n\n# remove line indentation\npre_commit_code = \"\".join([(line.lstrip() + \"\\n\") for line in pre_commit_code.split(\"\\n\")[1:]])\n\nhook_existed_before = os.path.isfile(pre_commit_hook_path)\n\nwith open(pre_commit_hook_path, \"w\") as shell_script_file:\n    shell_script_file.write(pre_commit_code[1:])\n\nos.chmod(pre_commit_hook_path, 0755) # make script editable and executable\n\nhook_exists_now = os.path.isfile(pre_commit_hook_path)\n\n# inform developer!\nif hook_exists_now and not hook_existed_before:\n    os.system(\"say -v Alex \\\"{0}\\\"\".format(success_msg))\nif not os.path.isfile(pre_commit_hook_path):\n    os.system(\"say -v Alex \\\"{0}\\\"\".format(alert_msg_template.format(\"pre\")))\n";
-		};
-		B1530C3ABA65C1BF3F9C0A5E /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BEC18359F4AE6B828428FCE6 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		CA0BB4151AA7709900E5A88D /* Add version number to Root.plist */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -6712,7 +6714,7 @@
 		};
 		CADBD7F919B0E8C200C62836 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA345A2C4822CF65FF1A5FDB /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 7583464ACE4C90D8AFA93C02 /* Pods-Catty.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -6752,7 +6754,7 @@
 		};
 		CADBD7FA19B0E8C200C62836 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5703FCE2766AC6237CCD4DE4 /* Pods.release.xcconfig */;
+			baseConfigurationReference = AB916948D973AFB41C1CA750 /* Pods-Catty.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
