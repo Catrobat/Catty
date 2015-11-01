@@ -752,29 +752,13 @@
 
 }
 
-// TODO: use map for this...
+
 - (ElementType)elementTypeForString:(NSString*)type
 {
-    if ([type isEqualToString:@"OPERATOR"]) {
-        return OPERATOR;
-    }
-    if ([type isEqualToString:@"FUNCTION"]) {
-        return FUNCTION;
-    }
-    if ([type isEqualToString:@"NUMBER"]) {
-        return NUMBER;
-    }
-    if ([type isEqualToString:@"SENSOR"]) {
-        return SENSOR;
-    }
-    if ([type isEqualToString:@"USER_VARIABLE"]) {
-        return USER_VARIABLE;
-    }
-    if ([type isEqualToString:@"BRACKET"]) {
-        return BRACKET;
-    }
-    if ([type isEqualToString:@"STRING"]) {
-        return STRING;
+    NSDictionary *dict = kelementTypeStringDict;
+    NSNumber *elementType = dict[type];
+    if (elementType) {
+        return (ElementType)elementType.integerValue;
     }
     NSError(@"Unknown Type: %@", type);
     return -1;
@@ -782,26 +766,10 @@
 
 - (NSString*)stringForElementType:(ElementType)type
 {
-    if (type == OPERATOR) {
-        return @"OPERATOR";
-    }
-    if (type == FUNCTION) {
-        return @"FUNCTION";
-    }
-    if (type == NUMBER) {
-        return @"NUMBER";
-    }
-    if (type == SENSOR) {
-        return @"SENSOR";
-    }
-    if (type == USER_VARIABLE) {
-        return @"USER_VARIABLE";
-    }
-    if (type == BRACKET) {
-        return @"BRACKET";
-    }
-    if (type == STRING) {
-        return @"STRING";
+    NSDictionary *dict = kstringElementTypeDict;
+    NSString *elementType = dict[[NSNumber numberWithInt:type]];
+    if (elementType) {
+        return elementType;
     }
     NSError(@"Unknown Type: %@", type);
     return nil;
