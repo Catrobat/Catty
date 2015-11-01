@@ -47,21 +47,6 @@
     return kLocalizedChangeX;
 }
 
-- (SKAction*)action
-{
-    return [SKAction runBlock:[self actionBlock]];
-}
-
-- (dispatch_block_t)actionBlock
-{
-    return ^{
-        NSDebug(@"Performing: %@", self.description);
-        double xMov = [self.xMovement interpretDoubleForSprite:self.script.object];
-        self.script.object.spriteNode.scenePosition = CGPointMake((CGFloat)(self.script.object.spriteNode.scenePosition.x+xMov), self.script.object.spriteNode.scenePosition.y);
-
-    };
-}
-
 #pragma mark - Description
 - (NSString*)description
 {
@@ -69,4 +54,9 @@
     return [NSString stringWithFormat:@"ChangeXBy (%f)", xMov];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return [self.xMovement getRequiredResources];
+}
 @end

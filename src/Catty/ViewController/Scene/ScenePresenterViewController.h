@@ -49,5 +49,6 @@
 
 - (void)pauseAction;
 - (void)resumeAction;
+- (void)connectionLost;
 
 @end

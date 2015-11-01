@@ -31,6 +31,7 @@
 #import "NetworkDefines.h"
 #import "BaseTableViewController.h"
 #import "CatrobatAlertView.h"
+#import "KeychainUserDefaultsDefines.h"
 
 void uncaughtExceptionHandler(NSException *exception)
 {
@@ -64,9 +65,17 @@ void uncaughtExceptionHandler(NSException *exception)
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"YES"
                                                             forKey:@"lockiphone"];
     [defaults registerDefaults:appDefaults];
-    [defaults synchronize];
+    
     application.statusBarHidden = NO;
     application.statusBarStyle = UIStatusBarStyleLightContent;
+    
+    if (!kPhiroActivated) {
+        [defaults setBool:NO forKey:kUsePhiroBricks];
+    }
+    if (!kArduinoActivated) {
+        [defaults setBool:NO forKey:kUseArduinoBricks];
+    }
+    [defaults synchronize];
     return YES;
 }
 

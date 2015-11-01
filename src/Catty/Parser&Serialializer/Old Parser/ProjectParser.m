@@ -47,7 +47,6 @@
 #define kParserObjectTypeMutableDictionary @"T@\"NSMutableDictionary\""
 #define kParserObjectTypeDate           @"T@\"NSDate\""
 
-// TODO: fix the user defined warnings below and remove this in final version
 #define kParserObjectTypeSprite         @"T@\"SpriteObject\""
 #define kParserObjectTypeLookData       @"T@\"Look\""
 #define kParserObjectTypeLoopBeginBrick @"T@\"LoopBeginBrick\""
@@ -585,7 +584,6 @@ const char *property_getTypeString(objc_property_t property)
     return buffer;
 }
 
-// TODO: use map to handle these cases. Also needed in toXML methods for serialization
 - (NSString*)classNameForString:(NSString*)classString
 {
     NSString* className = [classString firstCharacterUppercaseString];

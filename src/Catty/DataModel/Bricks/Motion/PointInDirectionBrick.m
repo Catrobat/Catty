@@ -54,4 +54,10 @@
     return [NSString stringWithFormat:@"PointInDirection: %f", deg];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return [self.degrees getRequiredResources];
+}
+
 @end

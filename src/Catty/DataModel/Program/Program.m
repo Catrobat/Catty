@@ -38,6 +38,7 @@
 #import "CBXMLSerializer.h"
 #import "CBMutableCopyContext.h"
 #import "Pocket_Code-Swift.h"
+#import "ProgramDefines.h"
 
 @implementation Program
 
@@ -417,6 +418,17 @@
             return NO;
     }
     return YES;
+}
+
+- (NSInteger)getRequiredResources
+{
+    NSInteger resources = kNoResources;
+    
+    for (SpriteObject *obj in self.objectList) {
+        resources |= [obj getRequiredResources];
+    }
+    return resources;
+
 }
 
 #pragma mark - helpers

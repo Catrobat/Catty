@@ -82,5 +82,10 @@
     return self.formula;
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return kTextToSpeech;
+}
 
 @end

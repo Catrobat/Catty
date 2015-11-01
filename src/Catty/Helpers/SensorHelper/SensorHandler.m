@@ -27,23 +27,28 @@
 #import "Util.h"
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudio/CoreAudioTypes.h>
+#import "Pocket_Code-Swift.h"
+#import "FaceDetection.h"
 
 
 #define kSensorUpdateInterval 0.8
+#define FACE_DETECTION_DEFAULT_UPDATE_INTERVAL 0.01
 
 #define NOISE_RECOGNIZER_DEFAULT_REFERENCE_PROGRAM 5
 #define NOISE_RECOGNIZER_DEFAULT_RANGE 160
 #define NOISE_RECOGNIZER_DEFAULT_OFFSET 50
-#define NOISE_RECOGNIZER_DEFAULT_UPDATE_INTERVAL 0.001
+#define NOISE_RECOGNIZER_DEFAULT_UPDATE_INTERVAL 0.05
 
 @interface SensorHandler()
 
-@property (nonatomic, strong) CMMotionManager* motionManager;
-@property (nonatomic, strong) CLLocationManager* locationManager;
-@property (nonatomic,strong) AVAudioRecorder* recorder;
-@property (nonatomic,strong) NSTimer* programTimer;
-@property (nonatomic) CGFloat loudnessInPercent;
-
+@property (nonatomic,   strong) CMMotionManager* motionManager;
+@property (nonatomic,   strong) CLLocationManager* locationManager;
+@property (nonatomic,   strong) AVAudioRecorder* recorder;
+@property (nonatomic,   strong) NSTimer* loudnessTimer;
+@property (nonatomic)           CGFloat loudnessInPercent;
+@property (nonatomic,   strong) ArduinoDevice* arduino;
+@property (nonatomic,   strong) FaceDetection* faceDetection;
+@property (nonatomic,   strong) dispatch_semaphore_t loudnessSemaphore;
 @end
 
 @implementation SensorHandler
@@ -56,6 +61,7 @@ static SensorHandler* sharedSensorHandler = nil;
     @synchronized(self) {
         if (sharedSensorHandler == nil) {
             sharedSensorHandler = [[[self class] alloc] init];
+            
         }
     }
     return sharedSensorHandler;
@@ -67,50 +73,38 @@ static SensorHandler* sharedSensorHandler = nil;
     if (self) {
         self.motionManager = [[CMMotionManager alloc] init];
         self.locationManager = [[CLLocationManager alloc] init];
-        [self checkIfSensorsAreAvailable];
     }
     
     return self;
 }
 
--(void)checkIfSensorsAreAvailable
+-(BOOL)locationAvailable
 {
-    NSString *notAvailable = @"";
-    if (![CLLocationManager headingAvailable]) {
-        NSDebug(@"NOT AVAILABLE:heading");
-        notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorCompass];
-    }
-    if (!self.motionManager.accelerometerAvailable) {
-        NSDebug(@"NOT AVAILABLE:Accelerometer");
-        if ([notAvailable isEqual: @""]) {
-            notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorAcceleration];
-        } else {
-            notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorAcceleration];
-        }
-        
-    }
-    if (!self.motionManager.gyroAvailable) {
-        NSDebug(@"NOT AVAILABLE:Gyro");
-        if ([notAvailable isEqual: @""]) {
-            notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorRotation];
-        } else {
-            notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorRotation];
-        }
-    }
-    if (!self.motionManager.magnetometerAvailable) {
-        NSDebug(@"NOT AVAILABLE:Magnet");
-        if ([notAvailable isEqual: @""]) {
-            notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorMagnetic];
-        } else {
-            notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorMagnetic];
-        }
-    }
-    if (![notAvailable isEqual: @""]) {
-        notAvailable = [NSString stringWithFormat:@"%@ %@",notAvailable,kLocalizedNotAvailable];
-        [Util alertWithText:notAvailable];
-    }
+    return [CLLocationManager headingAvailable];
 }
-
+-(BOOL)accelerometerAvailable
+{
+    return self.motionManager.accelerometerAvailable;
+}
+-(BOOL)gyroAvailable
+{
+    return self.motionManager.gyroAvailable;
+}
+-(BOOL)magnetometerAvailable
+{
+    return self.motionManager.magnetometerAvailable;
+}
+-(BOOL)loudnessAvailable
+{
+    if (!self.recorder) {
+        [self recorderinit];
+    }
+    if (!self.recorder) {
+        return NO;
+    }
+    [self loudness];
+    return YES;
+}
 
 - (double)valueForSensor:(Sensor)sensor {
     double result = 0;
@@ -146,16 +140,99 @@ static SensorHandler* sharedSensorHandler = nil;
             break;
         }
         case LOUDNESS: {
-            if (!self.recorder) {
-                [self recorderinit];
+            if (!self.loudnessTimer.isValid) {
+                [self loudness];
             }
-            [self loudness];
+//            self.loudnessSemaphore = dispatch_semaphore_create(0);
+//            dispatch_semaphore_wait(self.loudnessSemaphore, dispatch_time(DISPATCH_TIME_NOW, 0.0075 * NSEC_PER_SEC));
             result = self.loudnessInPercent;
             NSDebug(@"Loudness: %f %%", result);
             break;
         }
+        case FACE_DETECTED: {
+            if (!self.faceDetection.session.isRunning) {
+                [self.faceDetection startFaceDetection];
+                [NSThread sleepForTimeInterval:FACE_DETECTION_DEFAULT_UPDATE_INTERVAL];
+            }
+            result = self.faceDetection.isFaceDetected;
+//            [self.faceDetection pauseFaceDetection];
+            NSDebug(@"FACE_DETECTED: %f %%", result);
+            break;
+        }
+        case FACE_SIZE: {
+            if (!self.faceDetection.session.isRunning) {
+                [self.faceDetection startFaceDetection];
+                [NSThread sleepForTimeInterval:FACE_DETECTION_DEFAULT_UPDATE_INTERVAL];
+            }
+//            [self.faceDetection pauseFaceDetection];
+            result = [self checkFaceSize:self.faceDetection.faceSize.size];
+            NSDebug(@"FACE_SIZE: %f %%", result);
+            break;
+        }
+        case FACE_POSITION_X: {
+            if (!self.faceDetection.session.isRunning) {
+                [self.faceDetection startFaceDetection];
+                [NSThread sleepForTimeInterval:FACE_DETECTION_DEFAULT_UPDATE_INTERVAL];
+            }
+            result = self.faceDetection.facePositionX;
+//            [self.faceDetection pauseFaceDetection];
+            NSDebug(@"FACE_POSITION_X: %f %%", result);
+            break;
+        }
+        case FACE_POSITION_Y: {
+            if (!self.faceDetection.session.isRunning) {
+                [self.faceDetection startFaceDetection];
+                [NSThread sleepForTimeInterval:FACE_DETECTION_DEFAULT_UPDATE_INTERVAL];
+            }
+            result = self.faceDetection.facePositionY;
+//            [self.faceDetection pauseFaceDetection];
+            NSDebug(@"FACE_POSITION_Y: %f %%", result);
+            break;
+        }
+
             
-        default:
+        case phiro_front_left:
+        case phiro_front_right:
+        case phiro_side_left:
+        case phiro_side_right:
+        case phiro_bottom_left:
+        case phiro_bottom_right:
+        {
+            if ([[BluetoothService sharedInstance] getSensorPhiro]) {
+                result = [[[BluetoothService sharedInstance] getSensorPhiro] getSensorValue:sensor-phiro_side_right];
+            }
+            break;
+        }
+            
+        case arduino_analogPin0:
+        case arduino_analogPin1:
+        case arduino_analogPin2:
+        case arduino_analogPin3:
+        case arduino_analogPin4:
+        case arduino_analogPin5:
+            if ([[BluetoothService sharedInstance] getSensorArduino]) {
+                result = [[[BluetoothService sharedInstance] getSensorArduino] getAnalogPin:sensor-arduino_analogPin0];
+            }
+            break;
+        case arduino_digitalPin0:
+        case arduino_digitalPin1:
+        case arduino_digitalPin2:
+        case arduino_digitalPin3:
+        case arduino_digitalPin4:
+        case arduino_digitalPin5:
+        case arduino_digitalPin6:
+        case arduino_digitalPin7:
+        case arduino_digitalPin8:
+        case arduino_digitalPin9:
+        case arduino_digitalPin10:
+        case arduino_digitalPin11:
+        case arduino_digitalPin12:
+        case arduino_digitalPin13:
+            if ([[BluetoothService sharedInstance] getSensorArduino]) {
+                result = [[[BluetoothService sharedInstance] getSensorArduino] getDigitalArduinoPin:sensor-arduino_digitalPin0];
+            }
+            break;
+                default:
             abort();
             break;
     }
@@ -183,11 +260,15 @@ static SensorHandler* sharedSensorHandler = nil;
     if([self.motionManager isDeviceMotionActive]) {
         [self.motionManager stopDeviceMotionUpdates];
     }
+    if (self.faceDetection) {
+        [self.faceDetection stopFaceDetection];
+        self.faceDetection = nil;
+    }
     if(self.recorder)
     {
         [self.recorder stop];
-        [self.programTimer invalidate];
-        self.programTimer = nil;
+        [self.loudnessTimer invalidate];
+        self.loudnessTimer = nil;
         self.recorder = nil;
         
     }
@@ -306,11 +387,11 @@ static SensorHandler* sharedSensorHandler = nil;
        [self.recorder record];
    }
 
-    self.programTimer = [NSTimer scheduledTimerWithTimeInterval: NOISE_RECOGNIZER_DEFAULT_UPDATE_INTERVAL
+    self.loudnessTimer = [NSTimer scheduledTimerWithTimeInterval: NOISE_RECOGNIZER_DEFAULT_UPDATE_INTERVAL
                                                          target: self
                                                        selector: @selector(programTimerCallback:)
                                                        userInfo: nil
-                                                        repeats: NO];
+                                                        repeats: YES];
 }
 
 
@@ -318,6 +399,8 @@ static SensorHandler* sharedSensorHandler = nil;
 {
     [self.recorder updateMeters];
     self.loudnessInPercent = [self decibelToPercent:[self.recorder averagePowerForChannel:0]];
+//    dispatch_semaphore_signal(self.loudnessSemaphore);
+//    [self.recorder pause];
     NSDebug(@"loudness: %f", self.loudnessInPercent);
 }
 
@@ -329,6 +412,19 @@ static SensorHandler* sharedSensorHandler = nil;
     return percent * 100.0f;
 }
 
+-(void)faceDetectionInit
+{
+    self.faceDetection = [[FaceDetection alloc] init];
+    [self.faceDetection startFaceDetection];
+}
 
+-(double)checkFaceSize:(CGSize)faceSize
+{
+    if (faceSize.width < [Util screenWidth] && faceSize.height < [Util screenHeight]) {
+        return (faceSize.width * faceSize.height) / ([Util screenWidth]*[Util screenHeight]) * 100;
+    } else {
+        return ([Util screenWidth]*[Util screenHeight]) / (faceSize.width * faceSize.height) * 100;
+    }
+}
 
 @end

@@ -43,6 +43,12 @@
 
 - (BOOL)isFormulaBrick;
 
+- (BOOL)isBluetoothBrick;
+
+- (BOOL)isPhiroBrick;
+
+- (BOOL)isArduinoBrick;
+
 - (NSString*)description;
 
 - (SKAction*)action;
@@ -54,5 +60,7 @@
 - (void)removeFromScript;
 
 - (void)removeReferences;
+
+- (NSInteger)getRequiredResources;
 
 @end

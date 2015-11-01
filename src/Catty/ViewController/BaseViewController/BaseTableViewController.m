@@ -34,6 +34,14 @@
 #import "PlaceHolderView.h"
 #import "ScenePresenterViewController.h"
 #import "AppDelegate.h"
+#import "KeychainUserDefaultsDefines.h"
+#import "Pocket_Code-Swift.h"
+
+#import <CoreBluetooth/CoreBluetooth.h>
+#import "SensorHandler.h"
+#import <AudioToolbox/AudioToolbox.h>
+
+@class BluetoothPopupVC;
 
 // identifiers
 #define kTableHeaderIdentifier @"Header"
@@ -42,11 +50,11 @@
 #define kSelectAllItemsTag 0
 #define kUnselectAllItemsTag 1
 
-@interface BaseTableViewController () <CatrobatAlertViewDelegate>
+@interface BaseTableViewController () <CatrobatAlertViewDelegate,BluetoothSelection>
 @property (nonatomic, strong) LoadingView* loadingView;
 @property (nonatomic, strong) UIBarButtonItem *selectAllRowsButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *normalModeRightBarButtonItem;
-
+@property (nonatomic, strong) ScenePresenterViewController *scenePresenterViewController;
 @property (nonatomic) SEL confirmedAction;
 @property (nonatomic) SEL canceledAction;
 @property (nonatomic, strong) id target;
@@ -354,10 +362,127 @@
     if ([self respondsToSelector:@selector(stopAllSounds)]) {
         [self performSelector:@selector(stopAllSounds)];
     }
+    
+    self.scenePresenterViewController = [ScenePresenterViewController new];
+    self.scenePresenterViewController.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
+    NSInteger resources = [self.scenePresenterViewController.program getRequiredResources];
+    if ([self checkResources:resources]) {
+        [self startSceneWithVC:self.scenePresenterViewController];
+    }
+}
+
+-(void)startSceneWithVC:(ScenePresenterViewController*)vc
+{
     [self.navigationController setToolbarHidden:YES animated:YES];
-    ScenePresenterViewController *vc = [ScenePresenterViewController new];
-    vc.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(BOOL)checkResources:(NSInteger)requiredResources
+{
+    NSString *notAvailable = @"";
+    NSMutableArray *bluetoothArray = [NSMutableArray new];
+    if ((requiredResources & kTextToSpeech) > 0) {
+        //intern iOS AVSpeechSynthesizer always available
+    }
+    
+    if ((requiredResources & kFaceDetection) > 0) {
+        [[SensorHandler sharedSensorHandler] faceDetectionInit];
+    }
+    
+    if ((requiredResources & kVibration) > 0) {
+        NSInteger available = kSystemSoundID_Vibrate;
+        if (!available) {
+            if([notAvailable isEqualToString:@""]){
+               notAvailable = [NSString stringWithFormat:@"%@",kLocalizedVibration];
+            } else {
+               notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedVibration];
+            }
+        }
+    }
+    if ((requiredResources & kLocation) > 0) {
+        if (![[SensorHandler sharedSensorHandler] locationAvailable]) {
+            if([notAvailable isEqualToString:@""]){
+                notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorCompass];
+            } else {
+               notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorCompass];
+            }
+        }
+    }
+    if ((requiredResources & kAccelerometer) > 0) {
+        if (![[SensorHandler sharedSensorHandler] accelerometerAvailable]) {
+            if([notAvailable isEqualToString:@""]){
+                notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorAcceleration];
+            } else {
+                notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorAcceleration];
+            }
+        }
+    }
+    if ((requiredResources & kGyro) > 0) {
+        if (![[SensorHandler sharedSensorHandler] gyroAvailable]) {
+            if([notAvailable isEqualToString:@""]){
+                notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorRotation];
+            } else {
+                notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorRotation];
+            }
+        }
+    }
+    if ((requiredResources & kMagnetometer) > 0) {
+        if (![[SensorHandler sharedSensorHandler] magnetometerAvailable]) {
+            if([notAvailable isEqualToString:@""]){
+                notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorMagnetic];
+            } else {
+                notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorMagnetic];
+            }
+        }
+    }
+    if ((requiredResources & kLoudness) > 0) {
+        if (![[SensorHandler sharedSensorHandler] loudnessAvailable]) {
+            if([notAvailable isEqualToString:@""]){
+                notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorLoudness];
+            } else {
+                notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorLoudness];
+            }
+        }
+    }
+    if ((requiredResources & kLED) > 0) {
+        if (![[FlashHelper sharedFlashHandler] isAvailable]) {
+            if([notAvailable isEqualToString:@""]){
+                notAvailable = [NSString stringWithFormat:@"%@",kLocalizedSensorLED];
+            } else {
+                notAvailable = [NSString stringWithFormat:@"%@,%@",notAvailable,kLocalizedSensorLED];
+            }
+        }
+    }
+    if (![notAvailable isEqualToString:@""]) {
+        notAvailable = [NSString stringWithFormat:@"%@ %@",notAvailable,kLocalizedNotAvailable];
+        [Util confirmAlertWithTitle:kLocalizedPocketCode message:notAvailable delegate:self tag:kResourcesAlertView];
+        return NO;
+    }
+    //CheckBluetooth
+    
+    if ((requiredResources & kBluetoothPhiro) > 0 && kPhiroActivated) {
+        //ConnectPhiro
+        [bluetoothArray addObject:[NSNumber numberWithInteger:BluetoothDeviceIDphiro]];
+    }
+    
+    if ((requiredResources & kBluetoothArduino) > 0 && kArduinoActivated) {
+        //ConnectArduino
+        [bluetoothArray addObject:[NSNumber numberWithInteger:BluetoothDeviceIDarduino]];
+    }
+    if ( bluetoothArray.count > 0) {
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle: nil];
+        BluetoothPopupVC * bvc = (BluetoothPopupVC*)[storyboard instantiateViewControllerWithIdentifier:@"bluetoothPopupVC"];
+        [bvc setDeviceArray:bluetoothArray];
+        [bvc setDelegate:self];
+        [bvc setVc:self.scenePresenterViewController];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:(UIViewController*)bvc];
+        [self presentViewController:navController animated:YES completion:nil];
+        return NO;
+    } else {
+        return YES;
+    }
+    return YES;
 }
 
 #pragma mark - alert view delegate handlers
@@ -388,15 +513,18 @@
             }
         }
     }
+    if (alertView.tag == kResourcesAlertView) {
+        // check if user agreed
+        if (buttonIndex != 0) {
+            [self startSceneWithVC:self.scenePresenterViewController];
+        } else {
+            
+        }
+    }
 }
 
 - (void)showLoadingView
 {
-    // TODO: create getter for loadingView property and use lazy instantiation instead!
-    if (! self.loadingView) {
-        self.loadingView = [[LoadingView alloc] init];
-        [self.view addSubview:self.loadingView];
-    }
     self.loadingView.backgroundColor = [UIColor whiteColor];
     self.loadingView.alpha = 1.0;
     CGPoint top = CGPointMake(0, -self.navigationController.navigationBar.frame.size.height);
@@ -437,6 +565,15 @@
 - (void)showPlaceHolder:(BOOL)show
 {
     self.tableView.alwaysBounceVertical = self.placeHolderView.hidden = (! show);
+}
+
+-(LoadingView*)loadingView
+{
+    if (! _loadingView) {
+        _loadingView = [[LoadingView alloc] init];
+        [self.view addSubview:_loadingView];
+    }
+    return _loadingView;
 }
 
 

@@ -59,6 +59,75 @@
 "April" = "April";
 
 /* No comment provided by engineer. */
+"Arduino" = "Arduino";
+
+/* No comment provided by engineer. */
+"Arduino send digital\nPin:%@ Value:%@" = "Arduino send digital\nPin:%@ Value:%@";
+
+/* No comment provided by engineer. */
+"Arduino send PWM\nPin:%@ Value:%@" = "Arduino send PWM\nPin:%@ Value:%@";
+
+/* No comment provided by engineer. */
+"arduino_analog_0" = "arduino_analog_0";
+
+/* No comment provided by engineer. */
+"arduino_analog_1" = "arduino_analog_1";
+
+/* No comment provided by engineer. */
+"arduino_analog_2" = "arduino_analog_2";
+
+/* No comment provided by engineer. */
+"arduino_analog_3" = "arduino_analog_3";
+
+/* No comment provided by engineer. */
+"arduino_analog_4" = "arduino_analog_4";
+
+/* No comment provided by engineer. */
+"arduino_analog_5" = "arduino_analog_5";
+
+/* No comment provided by engineer. */
+"arduino_digital_0" = "arduino_digital_0";
+
+/* No comment provided by engineer. */
+"arduino_digital_1" = "arduino_digital_1";
+
+/* No comment provided by engineer. */
+"arduino_digital_10" = "arduino_digital_10";
+
+/* No comment provided by engineer. */
+"arduino_digital_11" = "arduino_digital_11";
+
+/* No comment provided by engineer. */
+"arduino_digital_12" = "arduino_digital_12";
+
+/* No comment provided by engineer. */
+"arduino_digital_13" = "arduino_digital_13";
+
+/* No comment provided by engineer. */
+"arduino_digital_2" = "arduino_digital_2";
+
+/* No comment provided by engineer. */
+"arduino_digital_3" = "arduino_digital_3";
+
+/* No comment provided by engineer. */
+"arduino_digital_4" = "arduino_digital_4";
+
+/* No comment provided by engineer. */
+"arduino_digital_5" = "arduino_digital_5";
+
+/* No comment provided by engineer. */
+"arduino_digital_6" = "arduino_digital_6";
+
+/* No comment provided by engineer. */
+"arduino_digital_7" = "arduino_digital_7";
+
+/* No comment provided by engineer. */
+"arduino_digital_8" = "arduino_digital_8";
+
+/* No comment provided by engineer. */
+"arduino_digital_9" = "arduino_digital_9";
+
+/* No comment provided by engineer. */
 "Aug" = "Aug";
 
 /* No comment provided by engineer. */
@@ -81,6 +150,9 @@
 
 /* paint */
 "Blue" = "Blue";
+
+/* No comment provided by engineer. */
+"Both" = "Both";
 
 /* No comment provided by engineer. */
 "Bricks" = "Bricks";
@@ -197,6 +269,9 @@
 "December" = "December";
 
 /* No comment provided by engineer. */
+"default camera is back camera" = "default camera is back camera";
+
+/* No comment provided by engineer. */
 "Delete" = "Delete";
 
 /* No comment provided by engineer. */
@@ -273,6 +348,12 @@
 
 /* No comment provided by engineer. */
 "direction" = "direction";
+
+/* No comment provided by engineer. */
+"Disconnect all devices" = "Disconnect all devices";
+
+/* No comment provided by engineer. */
+"DO" = "DO";
 
 /* paint */
 "Do you really want to delete the current drawing?" = "Do you really want to delete the current drawing?";
@@ -372,6 +453,21 @@
 
 /* No comment provided by engineer. */
 "Explore apps" = "Explore apps";
+
+/* No comment provided by engineer. */
+"FA" = "FA";
+
+/* No comment provided by engineer. */
+"face_detected" = "face_detected";
+
+/* No comment provided by engineer. */
+"faceposition_x" = "faceposition_x";
+
+/* No comment provided by engineer. */
+"faceposition_y" = "faceposition_y";
+
+/* No comment provided by engineer. */
+"facesize" = "facesize";
 
 /* No comment provided by engineer. */
 "false" = "false";
@@ -512,10 +608,19 @@
 "June" = "June";
 
 /* No comment provided by engineer. */
+"LA" = "LA";
+
+/* No comment provided by engineer. */
 "Last access" = "Last access";
 
 /* No comment provided by engineer. */
 "layer" = "layer";
+
+/* No comment provided by engineer. */
+"LED" = "LED";
+
+/* No comment provided by engineer. */
+"Left" = "Left";
 
 /* No comment provided by engineer. */
 "Length" = "Length";
@@ -580,6 +685,9 @@
 /* No comment provided by engineer. */
 "message 1" = "message 1";
 
+/* No comment provided by engineer. */
+"MI" = "MI";
+
 /* paint */
 "mirror" = "mirror";
 
@@ -609,6 +717,12 @@
 
 /* No comment provided by engineer. */
 "Move Brick" = "Move Brick";
+
+/* No comment provided by engineer. */
+"Move Phiro Motor backward\n%@\n Speed %@\%" = "Move Phiro Motor backward\n%@\n Speed %@\%";
+
+/* No comment provided by engineer. */
+"Move Phiro Motor forward\n%@\n Speed %@\%" = "Move Phiro Motor forward\n%@\n Speed %@\%";
 
 /* Name of the default catrobat program (used as filename!!) */
 "My first program" = "My first program";
@@ -740,6 +854,9 @@
 "Only space is not allowed. Please enter at least %lu other character(s)." = "Only space is not allowed. Please enter at least %lu other character(s).";
 
 /* No comment provided by engineer. */
+"Only special characters are not allowed. Please enter at least %lu other character(s)." = "Only special characters are not allowed. Please enter at least %lu other character(s).";
+
+/* No comment provided by engineer. */
 "or" = "or";
 
 /* No comment provided by engineer. */
@@ -747,6 +864,27 @@
 
 /* No comment provided by engineer. */
 "Password is not vaild! \n It has to contain at least 6 characters/symbols" = "Password is not vaild! \n It has to contain at least 6 characters/symbols";
+
+/* No comment provided by engineer. */
+"Phiro" = "Phiro";
+
+/* No comment provided by engineer. */
+"phiro_bottom_left" = "phiro_bottom_left";
+
+/* No comment provided by engineer. */
+"phiro_bottom_right" = "phiro_bottom_right";
+
+/* No comment provided by engineer. */
+"phiro_front_left" = "phiro_front_left";
+
+/* No comment provided by engineer. */
+"phiro_front_right" = "phiro_front_right";
+
+/* No comment provided by engineer. */
+"phiro_side_left" = "phiro_side_left";
+
+/* No comment provided by engineer. */
+"phiro_side_right" = "phiro_side_right";
 
 /* paint */
 "pipette" = "pipette";
@@ -756,6 +894,9 @@
 
 /* No comment provided by engineer. */
 "Play" = "Play";
+
+/* No comment provided by engineer. */
+"play Phiro Tone\n%@\n Duration %@ seconds" = "play Phiro Tone\n%@\n Duration %@ seconds";
 
 /* Description of AlertView if the user tries to import a sound but no sound has been imported using iTunes. */
 "Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app." = "Please connect your iPhone to your PC/Mac and use iTunes FileSharing to import sound files into the PocketCode app.";
@@ -783,6 +924,9 @@
 
 /* No comment provided by engineer. */
 "Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you." = "Pocket Code has no access to your images. To permit access, tap settings and activate images. Your drawing will automatically be saved to PocketCode for you.";
+
+/* No comment provided by engineer. */
+"Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone." = "Pocket Code has no access to your microphone. To permit access, tap settings and activate microphone.";
 
 /* No comment provided by engineer. */
 "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:" = "Pocket Code is a programming environment for iOS for the visual programming language Catrobat. The code of Pocket Code is mostly under GNU AGPL v3 licence. For further information to the licence please visit following links:";
@@ -815,6 +959,9 @@
 "pos_y" = "pos_y";
 
 /* No comment provided by engineer. */
+"Privacy Settings" = "Privacy Settings";
+
+/* No comment provided by engineer. */
 "Problems occured while Uploading your program" = "Problems occured while Uploading your program";
 
 /* No comment provided by engineer. */
@@ -834,6 +981,9 @@
 
 /* No comment provided by engineer. */
 "Rate Us" = "Rate Us";
+
+/* No comment provided by engineer. */
+"RE" = "RE";
 
 /* No comment provided by engineer. */
 "Record" = "Record";
@@ -882,6 +1032,9 @@
 
 /* No comment provided by engineer. */
 "Result" = "Result";
+
+/* No comment provided by engineer. */
+"Right" = "Right";
 
 /* paint */
 "rotate" = "rotate";
@@ -953,6 +1106,9 @@
 "Set description" = "Set description";
 
 /* No comment provided by engineer. */
+"Set Phiro Light\n%@\n Red %@ Green %@ Blue %@" = "Set Phiro Light\n%@\n Red %@ Green %@ Blue %@";
+
+/* No comment provided by engineer. */
 "Set size to %@\%" = "Set size to %@\%";
 
 /* No comment provided by engineer. */
@@ -992,6 +1148,9 @@
 "Slow Internet Connection!" = "Slow Internet Connection!";
 
 /* No comment provided by engineer. */
+"SO" = "SO";
+
+/* No comment provided by engineer. */
 "Sound" = "Sound";
 
 /* No comment provided by engineer. */
@@ -1020,6 +1179,9 @@
 
 /* No comment provided by engineer. */
 "Stop all sounds" = "Stop all sounds";
+
+/* No comment provided by engineer. */
+"Stop Phiro Motor\n%@" = "Stop Phiro Motor\n%@";
 
 /* No comment provided by engineer. */
 "Su" = "Su";
@@ -1062,6 +1224,9 @@
 
 /* No comment provided by engineer. */
 "Thursday" = "Thursday";
+
+/* No comment provided by engineer. */
+"TI" = "TI";
 
 /* No comment provided by engineer. */
 "Today" = "Today";
@@ -1127,6 +1292,18 @@
 "Uploaded" = "Uploaded";
 
 /* No comment provided by engineer. */
+"Use Arduino bricks" = "Use Arduino bricks";
+
+/* No comment provided by engineer. */
+"Use face detection" = "Use face detection";
+
+/* No comment provided by engineer. */
+"Use front camera" = "Use front camera";
+
+/* No comment provided by engineer. */
+"Use Phiro bricks" = "Use Phiro bricks";
+
+/* No comment provided by engineer. */
 "Username" = "Username";
 
 /* No comment provided by engineer. */
@@ -1149,6 +1326,9 @@
 
 /* No comment provided by engineer. */
 "Vibrate %@ second(s)" = "Vibrate %@ second(s)";
+
+/* No comment provided by engineer. */
+"vibration" = "vibration";
 
 /* No comment provided by engineer. */
 "Views" = "Views";

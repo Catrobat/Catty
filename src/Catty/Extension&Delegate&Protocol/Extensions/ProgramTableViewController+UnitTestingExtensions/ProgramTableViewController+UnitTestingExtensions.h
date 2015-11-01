@@ -22,7 +22,6 @@
 
 #import "ProgramTableViewController.h"
 
-@class SWTableViewCell;
 
 @interface ProgramTableViewController (UnitTestingExtensions)
 

@@ -23,7 +23,6 @@
 #import "SetVariableBrick.h"
 #import "Formula.h"
 #import "UserVariable.h"
-#import "ProgramManager.h"
 #import "Program.h"
 #import "VariablesContainer.h"
 #import "Script.h"
@@ -81,6 +80,12 @@
     if (! [self.variableFormula isEqualToFormula:((SetVariableBrick*)brick).variableFormula])
         return NO;
     return YES;
+}
+
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return [self.variableFormula getRequiredResources];
 }
 
 @end

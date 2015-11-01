@@ -43,13 +43,14 @@
         NSUInteger category = [self brickCategoryTypForPageIndex:type];
         self.bricks = [[BrickManager sharedBrickManager] selectableBricksForCategoryType:category];
         self.spriteObject = spriteObject;
+        
     }
     return self;
 }
 
-+ (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(NSInteger)pageIndex andObject:(SpriteObject*)spriteObject
++ (BrickCategoryViewController*)brickCategoryViewControllerForPageIndex:(PageIndexCategoryType)pageIndex andObject:(SpriteObject*)spriteObject andMaxPage:(NSInteger)maxPage
 {
-    if ((pageIndex >= 0) && (pageIndex <= kPageIndexVariableBrick)) {
+    if ((pageIndex >= kPageIndexScriptFavourites)) { 
         return [[self alloc] initWithBrickCategory:pageIndex andObject:spriteObject];
     }
     return nil;
@@ -122,7 +123,9 @@ didSelectItemAtIndexPath:(NSIndexPath*)indexPath
     [collectionView deselectItemAtIndexPath:indexPath animated:NO];
     BrickCell *cell = (BrickCell*)[collectionView cellForItemAtIndexPath:indexPath];
     NSAssert(cell.scriptOrBrick, @"Error, no brick.");
-    [Util incrementStatisticCountForBrickType:[cell.scriptOrBrick brickType]];
+    if ([cell.scriptOrBrick brickType] < 500) {
+        [Util incrementStatisticCountForBrickType:[cell.scriptOrBrick brickType]];
+    }
     if ([self.delegate respondsToSelector:@selector(brickCategoryViewController:didSelectScriptOrBrick:)]) {
         [self.delegate brickCategoryViewController:self didSelectScriptOrBrick:cell.scriptOrBrick];
     }
@@ -176,6 +179,10 @@ NSString* CBTitleFromPageIndexCategoryType(PageIndexCategoryType pageIndexType)
             return kUILookTitle;
         case kPageIndexVariableBrick:
             return kUIVariableTitle;
+        case kPageIndexArduinoBrick:
+            return kUIArduinoTitle;
+        case kPageIndexPhiroBrick:
+            return kUIPhiroTitle;
         default:
         {
             NSDebug(@"Invalid pageIndexCategoryType found in BrickCategoryViewController.")

@@ -33,37 +33,6 @@
     return kLocalizedClearGraphicEffect;
 }
 
-- (SKAction*)action
-{
-    return [SKAction runBlock:[self actionBlock]];
-}
-
-- (dispatch_block_t)actionBlock
-{
-    return ^{
-        NSDebug(@"Performing: %@", self.description);
-        Look *look = [self.script.object.spriteNode currentLook];
-        UIImage *image = [UIImage imageWithContentsOfFile:[self pathForLook:look]];
-        SKTexture *texture = [SKTexture textureWithImage:image];
-        self.script.object.spriteNode.currentUIImageLook = image;
-        self.script.object.spriteNode.currentLookBrightness = 0;
-        self.script.object.spriteNode.alpha = 1.0f;
-        double xScale = self.script.object.spriteNode.xScale;
-        double yScale = self.script.object.spriteNode.yScale;
-        self.script.object.spriteNode.xScale = 1.0;
-        self.script.object.spriteNode.yScale = 1.0;
-        self.script.object.spriteNode.size = texture.size;
-        self.script.object.spriteNode.texture = texture;
-        self.script.object.spriteNode.currentLook = look;
-        if (xScale != 1.0) {
-            self.script.object.spriteNode.xScale = (CGFloat)xScale;
-        }
-        if (yScale != 1.0) {
-            self.script.object.spriteNode.yScale = (CGFloat)yScale;
-        }
-    };
-}
-
 - (NSString*)pathForLook:(Look*)look
 {
     return [NSString stringWithFormat:@"%@images/%@", [self.script.object projectPath], look.fileName];
@@ -73,6 +42,12 @@
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"ClearGraphicEffect"];
+}
+
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return kNoResources;
 }
 
 @end

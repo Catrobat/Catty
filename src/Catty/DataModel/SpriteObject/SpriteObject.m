@@ -456,6 +456,16 @@
     return newObject;
 }
 
+- (NSInteger)getRequiredResources
+{
+    NSInteger resources = kNoResources;
+    
+    for (Script *script in self.scriptList) {
+        resources |= [script getRequiredResources];
+    }
+    return resources;
+}
+
 #pragma mark - Helpers
 - (NSUInteger)referenceCountForLook:(NSString*)fileName
 {

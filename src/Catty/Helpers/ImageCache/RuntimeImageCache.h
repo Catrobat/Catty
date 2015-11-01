@@ -32,12 +32,12 @@
              onCompletion:(void(^)(UIImage *image))completion;
 
 - (void)loadImageFromDiskWithPath:(NSString*)path
-                     onCompletion:(void(^)(UIImage *image))completion;
+                     onCompletion:(void(^)(UIImage *image, NSString* path))completion;
 
 - (void)loadThumbnailImageFromDiskWithThumbnailPath:(NSString*)thumbnailPath
                                           imagePath:(NSString*)imagePath
                                  thumbnailFrameSize:(CGSize)thumbnailFrameSize
-                                       onCompletion:(void(^)(UIImage *image))completion;
+                                       onCompletion:(void(^)(UIImage *image, NSString* path))completion;
 
 - (void)overwriteThumbnailImageFromDiskWithThumbnailPath:(NSString*)thumbnailPath image:(UIImage*)image thumbnailFrameSize:(CGSize)thumbnailFrameSize;
 

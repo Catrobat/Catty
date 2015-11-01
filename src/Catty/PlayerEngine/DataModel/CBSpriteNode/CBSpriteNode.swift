@@ -151,7 +151,12 @@ final class CBSpriteNode: SKSpriteNode {
         self.scenePosition = CGPointMake(0, 0)
         self.zRotation = 0
         self.currentLookBrightness = 0
-        self.zPosition = zPosition
+        if self.spriteObject?.isBackground() == true {
+            self.zPosition = 0
+        } else {
+            self.zPosition = zPosition
+        }
+        
     }
 
 //    func touchedWithTouches(touches: NSSet, withX x: CGFloat, andY y: CGFloat) -> Bool {
@@ -159,7 +164,7 @@ final class CBSpriteNode: SKSpriteNode {
 //              let scheduler = playerScene.scheduler
 //        else { return false }
 //
-//        // FIXME: this check does not work any more since Swift 2.0! seems to be a compiler problem!
+//        //  this check does not work any more since Swift 2.0! seems to be a compiler problem!
 //        //        if scheduler.running == false {
 //        //            return false
 //        //        }

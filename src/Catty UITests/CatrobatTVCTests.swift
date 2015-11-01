@@ -37,6 +37,8 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
         XCUIApplication().launch()
 
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        
+        dismissWelcomeScreenIfShown()
     }
     
     override func tearDown() {
@@ -88,7 +90,6 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
     func testNewInvalidNames() {
         restoreDefaultProgram()
         
-        // TODO: Handle invalid program names and add more testcases (e.g. \, &, ~,...)! (IOS-269)
         let progNamesErrorMsgMap = ["":                      "No input or the input is too short. Please enter at least 1 character.",
                                     "i am tooooooo looooog": "The input is too long. Please enter not more than 20 characters."]
         

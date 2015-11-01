@@ -21,6 +21,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "ScenePresenterViewController.h"
 @class PlaceHolderView;
 @class CatrobatAlertView;
 
@@ -57,5 +58,7 @@
 - (void)playSceneAction:(id)sender animated:(BOOL)animated;
 - (void)showLoadingView;
 - (void)hideLoadingView;
+- (void)startSceneWithVC:(ScenePresenterViewController*)vc;
+
 
 @end

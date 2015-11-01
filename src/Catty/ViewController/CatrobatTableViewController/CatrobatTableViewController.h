@@ -25,7 +25,7 @@
 #import "UIViewController+CWPopup.h"
 
 
-@interface CatrobatTableViewController : BaseTableViewController <DismissPopupDelegate>
+@interface CatrobatTableViewController : BaseTableViewController
 
 - (void)afterSuccessfulLogin;
 - (void)addProgramFromInbox;

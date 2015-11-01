@@ -116,4 +116,14 @@ static FlashHelper *sharedFlashHandler = nil;
     }
 }
 
+-(BOOL)isAvailable
+{
+    AVCaptureDevice * device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    
+    if ([device hasTorch] && [device hasFlash]){
+        return YES;
+    }
+    return NO;
+}
+
 @end

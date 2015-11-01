@@ -31,7 +31,7 @@
 #import "SpriteManagerDelegate.h"
 #import "Brick.h"
 #import "AudioManager.h"
-#import "ProgramManager.h"
+#import "ProgramVariablesManager.h"
 #import "SensorHandler.h"
 #import <AVFoundation/AVFoundation.h>
 #import <CoreImage/CoreImage.h>
@@ -50,10 +50,12 @@
 #import "Pocket_Code-Swift.h"
 #import "FileManager.h"
 #import "AppDelegate.h"
+#import "CatrobatAlertView.h"
+#import "ActionSheetAlertViewTags.h"
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
-@interface ScenePresenterViewController() <UIActionSheetDelegate, RPScreenRecorderDelegate>
+@interface ScenePresenterViewController() <UIActionSheetDelegate,CatrobatAlertViewDelegate, RPScreenRecorderDelegate>
 @property (nonatomic) BOOL menuOpen;
 @property (nonatomic) CGPoint firstGestureTouchPoint;
 @property (nonatomic) UIImage *snapshotImage;
@@ -121,6 +123,8 @@
     [self setUpLabels];
     [self setUpGridView];
     [self checkAspectRatio];
+    [[BluetoothService sharedInstance] setScenePresenter:self];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -163,7 +167,7 @@
 {
     [[AudioManager sharedAudioManager] stopAllSounds];
     [[SensorHandler sharedSensorHandler] stopSensors];
-    [ProgramManager sharedProgramManager].program = nil;
+    [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:nil];
 
     // Delete sound rec for loudness sensor
     NSError *error;
@@ -329,21 +333,26 @@
     UILabel *positiveWidth = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]- 40, [Util screenHeight]/2 + 5, 30, 15)];
     positiveWidth.text = [NSString stringWithFormat:@"%d",(int)self.program.header.screenWidth.floatValue/2];
     positiveWidth.textColor = [UIColor redColor];
+    [positiveWidth sizeToFit];
+    positiveWidth.frame = CGRectMake([Util screenWidth] - positiveWidth.frame.size.width - 5, [Util screenHeight]/2 + 5, positiveWidth.frame.size.width, positiveWidth.frame.size.height);
     [self.gridView addSubview:positiveWidth];
     // negativeWidth
     UILabel *negativeWidth = [[UILabel alloc] initWithFrame:CGRectMake(5, [Util screenHeight]/2 + 5, 40, 15)];
     negativeWidth.text = [NSString stringWithFormat:@"-%d",(int)self.program.header.screenWidth.floatValue/2];
     negativeWidth.textColor = [UIColor redColor];
+    [negativeWidth sizeToFit];
     [self.gridView addSubview:negativeWidth];
     // positveHeight
     UILabel *positiveHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5, [Util screenHeight] - 20, 40, 15)];
     positiveHeight.text = [NSString stringWithFormat:@"-%d",(int)self.program.header.screenHeight.floatValue/2];
     positiveHeight.textColor = [UIColor redColor];
+    [positiveHeight sizeToFit];
     [self.gridView addSubview:positiveHeight];
     // negativeHeight
     UILabel *negativeHeight = [[UILabel alloc] initWithFrame:CGRectMake([Util screenWidth]/2 + 5,5, 40, 15)];
     negativeHeight.text = [NSString stringWithFormat:@"%d",(int)self.program.header.screenHeight.floatValue/2];
     negativeHeight.textColor = [UIColor redColor];
+    [negativeHeight sizeToFit];
     [self.gridView addSubview:negativeHeight];
     
     [self.view insertSubview:self.gridView aboveSubview:self.skView];
@@ -371,8 +380,7 @@
         self.skView.paused = NO;
         [self.skView presentScene:scene];
         self.scene = scene;
-        [ProgramManager sharedProgramManager].program = self.program; // TODO: should be removed!
-
+        [[ProgramVariablesManager sharedProgramVariablesManager] setVariables:self.program.variables];
     }
 }
 
@@ -472,6 +480,21 @@
     [self.parentViewController.navigationController setToolbarHidden:NO];
     [self.parentViewController.navigationController setNavigationBarHidden:NO];
     [self.navigationController popViewControllerAnimated:YES];
+    [[BluetoothService sharedInstance] setScenePresenter:nil];
+}
+
+-(void)connectionLost
+{
+    [self.loadingView show];
+    self.menuView.userInteractionEnabled = NO;
+    CBScene *previousScene = (CBScene*)self.skView.scene;
+    previousScene.userInteractionEnabled = NO;
+    [previousScene stopProgram];
+    [[AudioManager sharedAudioManager] stopAllSounds];
+    [[FlashHelper sharedFlashHandler] pause];
+    previousScene.userInteractionEnabled = YES;
+    [self.loadingView hide];
+    [Util alertWithText:@"Lost Bluetooth Connection" delegate:self tag:kLostBluetoothConnectionTag];
 }
 
 - (void)restartProgramAction:(UIButton*)sender
@@ -842,6 +865,20 @@
     UIImage *output = [UIImage imageWithCGImage:cgimg];
     CFRelease(cgimg);
     return output;
+}
+
+-(void)alertView:(CatrobatAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+
+}
+
+-(void)alertView:(CatrobatAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == kLostBluetoothConnectionTag) {
+        [self.parentViewController.navigationController setToolbarHidden:NO];
+        [self.parentViewController.navigationController setNavigationBarHidden:NO];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark ScreenRecording

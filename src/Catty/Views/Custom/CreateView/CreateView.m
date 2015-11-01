@@ -29,7 +29,7 @@
 #import "NSString+CatrobatNSStringExtensions.h"
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import "ButtonTags.h"
-#import "TTTAttributedLabel.h"
+#import <TTTAttributedLabel/TTTAttributedLabel.h>
 #import "EVCircularProgressView.h"
 #import "LanguageTranslationDefines.h"
 #import "RoundBorderedButton.h"
@@ -142,7 +142,7 @@
     CGSize expectedSize = CGSizeMake(ceilf(labelBounds.size.width), ceilf(labelBounds.size.height));
     //    CGSize expectedSize = [description sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:maximumLabelSize lineBreakMode:NSLineBreakByWordWrapping];
     
-    TTTAttributedLabel* descriptionLabel = [[TTTAttributedLabel alloc] init];
+    TTTAttributedLabel* descriptionLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectZero];
     if (height == kIpadScreenHeight) {
         descriptionLabel.frame = CGRectMake(view.frame.size.width/15, height*0.35f+40, 540, expectedSize.height);
     }else{
@@ -338,17 +338,16 @@
 {
     CGFloat height = [self height];
     [self addHorizontalLineToView:view andHeight:view.frame.size.height + height*0.01f-15];
-    UIButton *reportButton = [[UIButton alloc] initWithFrame:CGRectMake(view.frame.size.width/15,view.frame.size.height + height*0.01f, 130, 25)];
-    reportButton.titleLabel.font = [UIFont boldSystemFontOfSize:10];
+    RoundBorderedButton *reportButton = [[RoundBorderedButton alloc] initWithFrame:CGRectMake(view.frame.size.width/15,view.frame.size.height + height*0.01f, 130, 25) andBorder:NO];
+    reportButton.titleLabel.font = [UIFont boldSystemFontOfSize:13];
     [reportButton.titleLabel setTintColor:[UIColor globalTintColor]];
     [reportButton setTitle:kLocalizedReportProgram forState:UIControlStateNormal];
     [reportButton addTarget:target action:@selector(reportProgram) forControlEvents:UIControlEventTouchUpInside];
     [reportButton sizeToFit];
     [reportButton setTintColor:[UIColor globalTintColor]];
     [reportButton setTitleColor:[UIColor globalTintColor] forState:UIControlStateNormal];
-    
     [view addSubview:reportButton];
-    [self setMaxHeightIfGreaterForView:view withHeight:view.frame.size.height + height*0.01f];
+    [self setMaxHeightIfGreaterForView:view withHeight:view.frame.size.height + reportButton.frame.size.height];
 }
 
 + (void)addHorizontalLineToView:(UIView*)view andHeight:(CGFloat)height

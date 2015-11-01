@@ -49,34 +49,15 @@
     return kLocalizedChangeTransparencyByN;
 }
 
-- (SKAction*)action
-{
-  return [SKAction runBlock:[self actionBlock]];
-}
-
-- (dispatch_block_t)actionBlock
-{
-  return ^{
-    NSDebug(@"Performing: %@", self.description);
-    double transparency = [self.changeTransparency interpretDoubleForSprite:self.script.object];
-      CGFloat alpha = (CGFloat)(self.script.object.spriteNode.alpha - transparency/100.0f);
-      if (alpha < 0) {
-          self.script.object.spriteNode.alpha = 0;
-          
-      }
-      else if (alpha > 1){
-          self.script.object.spriteNode.alpha = 1;
-      }
-      else{
-          self.script.object.spriteNode.alpha = alpha;
-      }
-  };
-}
-
 #pragma mark - Description
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"ChangeTransparencyByNBrick by (%f)", [self.changeTransparency interpretDoubleForSprite:self.script.object]];
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return [self.changeTransparency getRequiredResources];
+}
 @end

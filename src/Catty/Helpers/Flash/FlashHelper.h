@@ -35,5 +35,6 @@
 - (void)turnOff;
 - (void)reset;
 - (void)pause;
+- (BOOL)isAvailable;
 
 @end

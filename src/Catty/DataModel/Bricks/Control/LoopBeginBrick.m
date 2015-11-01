@@ -50,4 +50,10 @@
     return YES;
 }
 
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return kNoResources;
+}
+
 @end

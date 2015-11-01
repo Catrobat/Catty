@@ -106,6 +106,9 @@
         return self.lastResult.intValue;
     }
     id returnValue = [self.formulaTree interpretRecursiveForSprite:sprite];
+    if (returnValue == nil) {
+        return 0;
+    }
     if ([returnValue isKindOfClass:[NSNumber class]]) {
         self.lastResult = [self.formulaTree isIdempotent] ? (NSNumber*)returnValue : nil;
         return (int)((NSNumber*)returnValue).doubleValue;
@@ -139,8 +142,9 @@
     if([returnValue isKindOfClass:[NSNumber class]]) {
         self.lastResult = [self.formulaTree isIdempotent] ? (NSNumber*)returnValue : nil;
         return [NSString stringWithFormat:@"%lf", ((NSNumber*)returnValue).doubleValue];
+    } else {
+        return @"";
     }
-    // TODO: Exception handling if no number returned
     return returnValue;
 }
 
@@ -221,5 +225,12 @@
     }
     return formula;
 }
+
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return [self.formulaTree getRequiredResources];
+}
+
 
 @end

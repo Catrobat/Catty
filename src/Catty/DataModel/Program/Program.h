@@ -32,6 +32,7 @@
 @property (nonatomic, strong, nonnull) Header *header;
 @property (nonatomic, strong, nonnull) NSMutableArray *objectList;
 @property (nonatomic, strong, nonnull) VariablesContainer *variables;
+@property (nonatomic) BOOL requiresBluetooth;
 
 - (NSInteger)numberOfTotalObjects;
 - (NSInteger)numberOfBackgroundObjects;
@@ -54,6 +55,7 @@
 - (SpriteObject* _Nonnull)copyObject:(SpriteObject* _Nonnull)sourceObject
     withNameForCopiedObject:(NSString* _Nonnull)nameOfCopiedObject;
 - (BOOL)isEqualToProgram:(Program* _Nonnull)program;
+- (NSInteger)getRequiredResources;
 
 + (instancetype _Nonnull)defaultProgramWithName:(NSString* _Nonnull)programName
                                       programID:(NSString* _Nullable)programID;

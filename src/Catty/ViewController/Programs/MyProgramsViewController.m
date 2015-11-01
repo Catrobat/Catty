@@ -350,8 +350,10 @@ static NSCharacterSet *blockedCharacterSet = nil;
             detailCell.topRightDetailLabel.text = [lastAccessDate humanFriendlyFormattedString];
             detailCell.bottomRightDetailLabel.text = [NSByteCountFormatter stringFromByteCount:[programSize unsignedIntegerValue]
                                                                                     countStyle:NSByteCountFormatterCountStyleBinary];
-            [detailCell setNeedsLayout];
-            [self.tableView endUpdates];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [detailCell setNeedsLayout];
+                [self.tableView endUpdates];
+            });
         });
         return detailCell;
     }
@@ -456,7 +458,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
                 [imageCache loadThumbnailImageFromDiskWithThumbnailPath:thumbnailPath
                                                               imagePath:fallbackPath
                                                      thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)
-                                                           onCompletion:^(UIImage *image){
+                                                           onCompletion:^(UIImage *image, NSString* path){
                                                                // check if cell still needed
                                                                if ([cell.indexPath isEqual:indexPath]) {
                                                                    cell.iconImageView.image = image;

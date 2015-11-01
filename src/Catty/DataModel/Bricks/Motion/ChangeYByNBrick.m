@@ -47,25 +47,15 @@
     return kLocalizedChangeY;
 }
 
-- (SKAction*)action
-{    
-    return [SKAction runBlock:[self actionBlock]];
-}
-
-- (dispatch_block_t)actionBlock
-{
-    return ^{
-        NSDebug(@"Performing: %@", self.description);
-        float yMov = (float)[self.yMovement interpretDoubleForSprite:self.script.object];
-        self.script.object.spriteNode.scenePosition = CGPointMake(self.script.object.spriteNode.scenePosition.x, self.script.object.spriteNode.scenePosition.y + yMov);
-    };
-}
-
 #pragma mark - Description
 - (NSString*)description
 {
-    double xMov = [self.yMovement interpretDoubleForSprite:self.script.object];
-    return [NSString stringWithFormat:@"ChangeYBy (%f)", xMov];
+    double yMov = [self.yMovement interpretDoubleForSprite:self.script.object];
+    return [NSString stringWithFormat:@"ChangeYBy (%f)", yMov];
 }
-
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return [self.yMovement getRequiredResources];
+}
 @end

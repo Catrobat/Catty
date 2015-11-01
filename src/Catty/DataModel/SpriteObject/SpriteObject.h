@@ -77,6 +77,8 @@
 - (Sound*)copySound:(Sound*)sourceSound withNameForCopiedSound:(NSString*)nameOfCopiedSound AndSaveToDisk:(BOOL)save;;
 - (void)removeReferences;
 
+- (NSInteger)getRequiredResources;
+
 // compare
 - (BOOL)isEqualToSpriteObject:(SpriteObject*)spriteObject;
 

@@ -99,9 +99,9 @@ withContextForLanguageVersion095:(CBXMLParserContext*)context
 
     for (CBXMLPropertyMapping *headerProperty in headerProperties) {
         // ignore isPhiroProProject property
-        if ([headerProperty.xmlElementName isEqualToString:@"isPhiroProProject"]) {
-            continue;
-        }
+//        if ([headerProperty.xmlElementName isEqualToString:@"isPhiroProProject"]) {
+//            continue;
+//        }
 
         GDataXMLElement *headerPropertyNode = [xmlElement childWithElementName:headerProperty.xmlElementName];
         [XMLError exceptionIfNil:headerPropertyNode message:@"No XML property named %@ in header!",

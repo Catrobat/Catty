@@ -90,4 +90,6 @@ typedef NS_ENUM(NSInteger, IdempotenceState) {
 
 - (BOOL)containsElement:(ElementType)elementType;
 
+- (NSInteger)getRequiredResources;
+
 @end

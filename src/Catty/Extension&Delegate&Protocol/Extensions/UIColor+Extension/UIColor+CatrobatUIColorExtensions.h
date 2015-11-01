@@ -74,4 +74,12 @@
 
 + (UIColor*)soundBrickStrokeColor;
 
++ (UIColor*)PhiroBrickColor;
+
++ (UIColor*)PhiroBrickStrokeColor;
+
++ (UIColor*)ArduinoBrickColor;
+
++ (UIColor*)ArduinoBrickStrokeColor;
+
 @end

@@ -64,11 +64,31 @@
 #import "SetSizeToBrick.h"
 #import "PointInDirectionBrick.h"
 #import "PlaceAtBrick.h"
+#import "GoNStepsBackBrick.h"
+#import "ComeToFrontBrick.h"
+#import "ChangeSizeByNBrick.h"
+#import "ChangeXByNBrick.h"
+#import "ChangeYByNBrick.h"
 #import "PointToBrick.h"
 #import "SetXBrick.h"
 #import "SetYBrick.h"
 #import "TurnLeftBrick.h"
 #import "TurnRightBrick.h"
+#import "PhiroBrick.h"
+#import "BluetoothBrick.h"
+#import "PhiroRGBLightBrick.h"
+#import "PhiroMotorStopBrick.h"
+#import "PhiroPlayToneBrick.h"
+#import "PhiroMotorMoveForwardBrick.h"
+#import "PhiroMotorMoveBackwardBrick.h"
+#import "ArduinoSendDigitalValueBrick.h"
+#import "ArduinoSendPWMValueBrick.h"
+#import "SetTransparencyBrick.h"
+#import "SetBrightnessBrick.h"
+#import "NextLookBrick.h"
+#import "ClearGraphicEffectBrick.h"
+#import "ChangeTransparencyByNBrick.h"
+#import "ChangeBrightnessByNBrick.h"
 
 // Formulas
 #import "Formula.h"
@@ -94,3 +114,11 @@
 #import "ProgramDefines.h"
 #import "FlashHelper.h"
 #import "LanguageTranslationDefines.h"
+#import "LoadingView.h"
+#import "CatrobatAlertView.h"
+
+//------------------------------------------------------------------------------------------------------------
+// TableView classes
+//------------------------------------------------------------------------------------------------------------
+
+#import "BaseTableViewController.h"

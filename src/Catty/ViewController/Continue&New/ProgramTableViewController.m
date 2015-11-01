@@ -56,8 +56,10 @@
 #import "ObjectTableViewController.h"
 #import "LooksTableViewController.h"
 #import "ViewControllerDefines.h"
+#import "UIViewController+CWPopup.h"
+#import "DescriptionPopopViewController.h"
 
-@interface ProgramTableViewController () <CatrobatActionSheetDelegate, UINavigationBarDelegate>
+@interface ProgramTableViewController () <CatrobatActionSheetDelegate, UINavigationBarDelegate, DismissPopupDelegate>
 @property (nonatomic) BOOL useDetailCells;
 @end
 
@@ -220,6 +222,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
     } else {
         [options addObject:kLocalizedShowDetails];
     }
+    [options addObject:kLocalizedDescription];
     CatrobatActionSheet *actionSheet = [Util actionSheetWithTitle:kLocalizedEditProgram
                                                          delegate:self
                                            destructiveButtonTitle:kLocalizedDeleteProgram
@@ -352,7 +355,7 @@ static NSCharacterSet *blockedCharacterSet = nil;
         [imageCache loadThumbnailImageFromDiskWithThumbnailPath:previewImagePath
                                                       imagePath:imagePath
                                              thumbnailFrameSize:CGSizeMake(kPreviewImageWidth, kPreviewImageHeight)
-                                                   onCompletion:^(UIImage *img){
+                                                   onCompletion:^(UIImage *img, NSString* path){
                                                        // check if cell still needed
                                                        if ([imageCell.indexPath isEqual:indexPath]) {
                                                            imageCell.iconImageView.image = img;
@@ -522,6 +525,24 @@ static NSCharacterSet *blockedCharacterSet = nil;
             [defaults setObject:showDetailsMutable forKey:kUserDetailsShowDetailsKey];
             [defaults synchronize];
             [self.tableView reloadData];
+        } else if (buttonIndex == 4 || ((buttonIndex == 3) && ![self.program numberOfNormalObjects])){
+          //description
+            if (self.popupViewController == nil) {
+                DescriptionPopopViewController *popupViewController = [[DescriptionPopopViewController alloc] init];
+                popupViewController.delegate = self;
+                self.tableView.scrollEnabled = NO;
+                self.navigationController.toolbar.userInteractionEnabled = NO;
+                self.navigationController.navigationBar.userInteractionEnabled = NO;
+                self.navigationController.navigationBar.alpha = 0.3f;
+                self.navigationController.toolbar.alpha = 0.3f;
+                for (UITableViewCell *cell in self.tableView.visibleCells) {
+                    cell.alpha = 0.3f;
+                }
+                [self presentPopupViewController:popupViewController WithFrame:CGRectMake(self.tableView.contentOffset.x, self.tableView.contentOffset.y, [Util screenWidth], [Util screenHeight]) Centered:NO];
+            } else {
+                [self dismissPopupWithCode:NO];
+            }
+
         } else if (buttonIndex == actionSheet.destructiveButtonIndex) {
             // Delete program button
             [self performActionOnConfirmation:@selector(deleteProgramAction)
@@ -595,6 +616,28 @@ static NSCharacterSet *blockedCharacterSet = nil;
     UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     self.toolbarItems = [NSArray arrayWithObjects:self.selectAllRowsButtonItem, invisibleButton, flexItem,
                          invisibleButton, deleteButton, nil];
+}
+
+
+#pragma mark Dismiss popup
+- (BOOL)dismissPopupWithCode:(BOOL)save
+{
+    if (self.popupViewController != nil) {
+        [self dismissPopupViewController];
+        if (save) {
+            [self.program updateDescriptionWithText:self.changedProgramDescription];
+        }
+        self.tableView.scrollEnabled = YES;
+        self.navigationController.toolbar.userInteractionEnabled = YES;
+        self.navigationController.navigationBar.userInteractionEnabled = YES;
+        self.navigationController.navigationBar.alpha = 1.0f;
+        self.navigationController.toolbar.alpha = 1.0f;
+        for (UITableViewCell *cell in self.tableView.visibleCells) {
+            cell.alpha = 1.0f;
+        }
+        return YES;
+    }
+    return NO;
 }
 
 @end

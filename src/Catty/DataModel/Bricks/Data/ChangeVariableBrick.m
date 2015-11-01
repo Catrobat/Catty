@@ -23,7 +23,6 @@
 #import "ChangeVariableBrick.h"
 #import "Formula.h"
 #import "Program.h"
-#import "ProgramManager.h"
 #import "VariablesContainer.h"
 #import "UserVariable.h"
 #import "Script.h"
@@ -83,6 +82,12 @@
         return NO;
     }
     return YES;
+}
+
+#pragma mark - Resources
+- (NSInteger)getRequiredResources
+{
+    return [self.variableFormula getRequiredResources];
 }
 
 @end

@@ -78,6 +78,17 @@
 #import "BrickInsertManager.h"
 #import "BrickMoveManager.h"
 #import "BrickSelectionManager.h"
+#import "PhiroHelper.h"
+#import "BrickCellPhiroMotorData.h"
+#import "BrickCellPhiroLightData.h"
+#import "BrickCellPhiroToneData.h"
+#import "BrickPhiroMotorProtocol.h"
+#import "BrickPhiroLightProtocol.h"
+#import "BrickPhiroToneProtocol.h"
+#import "KeychainUserDefaultsDefines.h"
+#import "Pocket_Code-Swift.h"
+#import <CoreBluetooth/CoreBluetooth.h>
+
 
 @interface ScriptCollectionViewController() <UICollectionViewDelegate,
                                              UICollectionViewDataSource,
@@ -88,9 +99,9 @@
                                              iOSComboboxDelegate,
                                              BrickCellDataDelegate,
                                              CatrobatActionSheetDelegate,
-                                             CatrobatAlertViewDelegate>
+                                             CatrobatAlertViewDelegate,
+                                             BluetoothSelection>
 
-@property (nonatomic, strong) PlaceHolderView *placeHolderView;
 @property (nonatomic, strong) BrickTransition *brickScaleTransition;
 //@property (nonatomic, strong) NSMutableArray *selectedIndexPositions;  // refactor
 @property (nonatomic, strong) NSIndexPath *variableIndexPath;
@@ -104,17 +115,6 @@
 #define kBrickCellInactiveWhileEditingOpacity 0.7f
 #define kBrickCellInactiveWhileInsertingOpacity 0.7f
 #define kBrickCellActiveOpacity 1.0f
-
-#pragma mark - getters and setters
-- (PlaceHolderView*)placeHolderView
-{
-    if (! _placeHolderView) {
-        _placeHolderView = [[PlaceHolderView alloc] initWithFrame:self.collectionView.bounds];
-        [self.view insertSubview:_placeHolderView aboveSubview:self.collectionView];
-        _placeHolderView.hidden = YES;
-    }
-    return _placeHolderView;
-}
 
 @dynamic collectionView;
 
@@ -146,22 +146,6 @@
     [[BrickMoveManager sharedInstance] reset];
 }
 
-#pragma mark - actions
-- (void)playSceneAction:(id)sender
-{
-    [self playSceneAction:sender animated:YES];
-}
-
-- (void)playSceneAction:(id)sender animated:(BOOL)animated
-{
-    if ([self respondsToSelector:@selector(stopAllSounds)]) {
-        [self performSelector:@selector(stopAllSounds)];
-    }
-    [self.navigationController setToolbarHidden:YES animated:YES];
-    ScenePresenterViewController *vc = [ScenePresenterViewController new];
-    vc.program = [Program programWithLoadingInfo:[Util lastUsedProgramLoadingInfo]];
-    [self.navigationController pushViewController:vc animated:YES];
-}
 
 - (void)showBrickPickerAction:(id)sender
 {
@@ -174,6 +158,14 @@
                                               options:@{
                                                         UIPageViewControllerOptionInterPageSpacingKey : @20.f
                                                         }];
+        //ADD Indexes from PageIndexCategoryType for selection those bricks
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:kUsePhiroBricks]) {
+            [bsvc.pageIndexArray addObject:[NSNumber numberWithInteger:kPageIndexPhiroBrick]];
+        }
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:kUseArduinoBricks]) {
+            [bsvc.pageIndexArray addObject:[NSNumber numberWithInteger:kPageIndexArduinoBrick]];
+        }
+
         [bsvc setViewControllers:@[bcvc]
                        direction:UIPageViewControllerNavigationDirectionForward
                         animated:NO
@@ -376,6 +368,15 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
 
 - (void)alertView:(CatrobatAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if (alertView.tag == kResourcesAlertView) {
+        // check if user agreed
+        if (buttonIndex != 0) {
+            [self startSceneWithVC:self.scenePresenterViewController];
+            return;
+        } else {
+            return;
+        }
+    }
     if (buttonIndex == 1)
     {
         [self deleteSelectedBricks];
@@ -441,8 +442,6 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
        itemAtIndexPath:(NSIndexPath*)fromIndexPath
    willMoveToIndexPath:(NSIndexPath*)toIndexPath
 {
-// FIXME: UPDATING THE DATA MODEL WHILE THE USER IS DRAGGING IS NO GOOD PRACTICE AND IS ERROR PRONE!!!
-//        USE collectionView:layout:didEndDraggingItemAtIndexPath: DELEGATE METHOD FOR THIS. Updates must happen after the user stopped dragging the brickcell!!
     if (fromIndexPath.item == 0) {
         Script *script = [self.object.scriptList objectAtIndex:fromIndexPath.section];
         [self.object.scriptList removeObjectAtIndex:fromIndexPath.section];
@@ -633,6 +632,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 {
     [self dismissViewControllerAnimated:YES completion:NULL];
     scriptOrBrick = [scriptOrBrick mutableCopyWithContext:[CBMutableCopyContext new]];
+    [scriptOrBrick setDefaultValuesForObject:self.object];
     self.lastSelectedBrickCategory = brickCategoryViewController.pageIndexCategoryType;
     brickCategoryViewController.delegate = nil;
     self.placeHolderView.hidden = YES;
@@ -771,7 +771,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
 }
 
-// TODO: Remove
 - (void)removeBricksWithIndexPaths:(NSArray*)indexPaths
 {
     NSArray *sortedIndexPaths = [indexPaths sortedArrayUsingSelector:@selector(compare:)];
@@ -852,7 +851,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 }
 
 #pragma mark - Editing
-// TODO: Refactor
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
@@ -1039,33 +1037,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     }
 }
 
-#pragma mark - Setup Toolbar
-- (void)setupToolBar
-{
-    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                              target:nil
-                                                                              action:nil];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"transparent1x1"]];
-    UIBarButtonItem *invisibleButton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-    UIBarButtonItem *delete = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
-                                                                            target:self
-                                                                            action:@selector(deleteAlertView)];
-    delete.tintColor = [UIColor redColor];
-    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                         target:self
-                                                                         action:@selector(showBrickPickerAction:)];
-    add.enabled = (! self.editing);
-    UIBarButtonItem *play = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
-                                                                          target:self
-                                                                          action:@selector(playSceneAction:)];
-    play.enabled = (! self.editing);
-    if (self.editing) {
-        self.toolbarItems = @[flexItem,invisibleButton, delete, invisibleButton, flexItem];
-    } else {
-        self.toolbarItems = @[flexItem,invisibleButton, add, invisibleButton, flexItem,
-                              flexItem, flexItem, invisibleButton, play, invisibleButton, flexItem];
-    }
-}
 
 #pragma mark - BrickCellData Delegate
 - (void)addMessageWithName:(NSString*)messageName andCompletion:(id)completion
@@ -1155,6 +1126,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
     } else
     if ([brickCellData isKindOfClass:[BrickCellFormulaData class]] && [brick conformsToProtocol:@protocol(BrickFormulaProtocol)]) {
         [(Brick<BrickFormulaProtocol>*)brick setFormula:(Formula*)value forLineNumber:line andParameterNumber:parameter];
+        [self.object.program saveToDisk];
         return;
     } else
     if ([brickCellData isKindOfClass:[BrickCellTextData class]] && [brick conformsToProtocol:@protocol(BrickTextProtocol)]) {
@@ -1203,8 +1175,22 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             UserVariable *variable = [self.object.program.variables getUserVariableNamed:(NSString*)value forSpriteObject:self.object];
             if(variable)
                 [variableBrick setVariable:variable forLineNumber:line andParameterNumber:parameter];
+            
         }
-    }
+    }else
+        if ([brickCellData isKindOfClass:[Brick class]] && [brick conformsToProtocol:@protocol(BrickPhiroMotorProtocol)]) {
+            Brick<BrickPhiroMotorProtocol> *motorBrick = (Brick<BrickPhiroMotorProtocol>*)brick;
+            [motorBrick setMotor:(NSString*)value forLineNumber:line andParameterNumber:parameter];
+    }else
+        if ([brickCellData isKindOfClass:[Brick class]] && [brick conformsToProtocol:@protocol(BrickPhiroToneProtocol)]) {
+            Brick<BrickPhiroToneProtocol> *toneBrick = (Brick<BrickPhiroToneProtocol>*)brick;
+            [toneBrick setTone:(NSString*)value forLineNumber:line andParameterNumber:parameter];
+    }else
+        if ([brickCellData isKindOfClass:[Brick class]] && [brick conformsToProtocol:@protocol(BrickPhiroLightProtocol)]) {
+            Brick<BrickPhiroLightProtocol> *lightBrick = (Brick<BrickPhiroLightProtocol>*)brick;
+            [lightBrick setLight:(NSString*)value forLineNumber:line andParameterNumber:parameter];
+        }
+
     [self reloadData];
     [self enableUserInteractionAndResetHighlight];
     [self.object.program saveToDisk];
