@@ -227,13 +227,30 @@
     int bytesPerRow = bytesPerPixel * 1;
     NSUInteger bitsPerComponent = 8;
     unsigned char pixelData[4] = { 0, 0, 0, 0 };
+    CGBitmapInfo oldBitmapInfo = CGImageGetBitmapInfo(cgImage);
+    CGImageAlphaInfo alphaInfo = oldBitmapInfo & kCGBitmapAlphaInfoMask;
+    
+    //Since iOS8 it's not allowed anymore to create contexts with unmultiplied Alpha info
+    if (alphaInfo == kCGImageAlphaLast) {
+        alphaInfo = kCGImageAlphaPremultipliedLast;
+    }
+    if (alphaInfo == kCGImageAlphaFirst) {
+        alphaInfo = kCGImageAlphaPremultipliedFirst;
+    }
+    
+    //reset the bits
+    CGBitmapInfo newBitmapInfo = oldBitmapInfo & ~kCGBitmapAlphaInfoMask;
+    
+    //set the bits to the new alphaInfo
+    newBitmapInfo |= alphaInfo;
+
     CGContextRef context = CGBitmapContextCreate(pixelData,
                                                  1,
                                                  1,
                                                  bitsPerComponent,
                                                  bytesPerRow,
                                                  colorSpace,
-                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+                                                 newBitmapInfo);
     CGColorSpaceRelease(colorSpace);
     CGContextSetBlendMode(context, kCGBlendModeCopy);
     
