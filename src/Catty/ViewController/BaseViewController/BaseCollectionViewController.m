@@ -172,12 +172,16 @@
     
     if ((requiredResources & kBluetoothPhiro) > 0 && kPhiroActivated) {
         //ConnectPhiro
-        [bluetoothArray addObject:[NSNumber numberWithInteger:BluetoothDeviceIDphiro]];
+        if (!([BluetoothService sharedInstance].phiro.state == CBPeripheralStateConnected)) {
+            [bluetoothArray addObject:[NSNumber numberWithInteger:BluetoothDeviceIDphiro]];
+        }
     }
     
     if ((requiredResources & kBluetoothArduino) > 0 && kArduinoActivated) {
         //ConnectArduino
-        [bluetoothArray addObject:[NSNumber numberWithInteger:BluetoothDeviceIDarduino]];
+        if (!([BluetoothService sharedInstance].arduino.state == CBPeripheralStateConnected)) {
+            [bluetoothArray addObject:[NSNumber numberWithInteger:BluetoothDeviceIDarduino]];
+        }
     }
     if ( bluetoothArray.count > 0) {
         
