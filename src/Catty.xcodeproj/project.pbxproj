@@ -160,6 +160,7 @@
 		4CF773F41AEE79A800DBBB2B /* Brick+UserVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF773F31AEE79A800DBBB2B /* Brick+UserVariable.m */; };
 		811FB6EA1A4980EF00957E10 /* ScriptCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811FB6E91A4980EF00957E10 /* ScriptCollectionViewController.m */; };
 		81C0A67F1A4EE8CF003A77C5 /* BrickSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */; };
+		920F16DD1BE7467D000D18BE /* ResourceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F16DC1BE7467D000D18BE /* ResourceHelper.m */; };
 		921D467A1BDF61350086AD20 /* ChangeSizeByNBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D46751BDF61350086AD20 /* ChangeSizeByNBrick+Instruction.swift */; };
 		921D467B1BDF61350086AD20 /* ChangeXByNBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D46761BDF61350086AD20 /* ChangeXByNBrick+Instruction.swift */; };
 		921D467C1BDF61350086AD20 /* ChangeYByNBrick+Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921D46771BDF61350086AD20 /* ChangeYByNBrick+Instruction.swift */; };
@@ -997,6 +998,8 @@
 		81C0A67E1A4EE8CF003A77C5 /* BrickSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickSelectionViewController.m; sourceTree = "<group>"; };
 		81C27425189EF94600827A95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "App-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		920F16DB1BE7467D000D18BE /* ResourceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResourceHelper.h; path = ResourceHelper/ResourceHelper.h; sourceTree = "<group>"; };
+		920F16DC1BE7467D000D18BE /* ResourceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResourceHelper.m; path = ResourceHelper/ResourceHelper.m; sourceTree = "<group>"; };
 		921D46751BDF61350086AD20 /* ChangeSizeByNBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChangeSizeByNBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/ChangeSizeByNBrick+Instruction.swift"; sourceTree = "<group>"; };
 		921D46761BDF61350086AD20 /* ChangeXByNBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChangeXByNBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/ChangeXByNBrick+Instruction.swift"; sourceTree = "<group>"; };
 		921D46771BDF61350086AD20 /* ChangeYByNBrick+Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ChangeYByNBrick+Instruction.swift"; path = "PlayerEngine/Instructions/Motion/ChangeYByNBrick+Instruction.swift"; sourceTree = "<group>"; };
@@ -3505,6 +3508,8 @@
 				92FF2E821A24C7D800093DA7 /* TimerLabel */,
 				92FF2E851A24C7D800093DA7 /* Utils */,
 				92EC99441BC3C8050003A891 /* Bluetooth */,
+				920F16DB1BE7467D000D18BE /* ResourceHelper.h */,
+				920F16DC1BE7467D000D18BE /* ResourceHelper.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -6131,6 +6136,7 @@
 				AA74EF6F1BC0588A00D1E954 /* PlaySoundBrick+CBXMLHandler.m in Sources */,
 				92FF2E971A24C7D800093DA7 /* mztools.c in Sources */,
 				92DFB0531A38960C00FA9B0F /* BrushPickerViewController.m in Sources */,
+				920F16DD1BE7467D000D18BE /* ResourceHelper.m in Sources */,
 				AA74EFEB1BC05B5F00D1E954 /* WaitBrick.m in Sources */,
 				AA74EF611BC0587B00D1E954 /* LedOffBrick+CBXMLHandler.m in Sources */,
 				AA74F0021BC05B5F00D1E954 /* MoveNStepsBrick.m in Sources */,
