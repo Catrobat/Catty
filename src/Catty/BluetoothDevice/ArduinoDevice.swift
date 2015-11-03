@@ -222,7 +222,7 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
                 BluetoothService.swiftSharedInstance.setAnalogSemaphore(semaphore)
                 dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)))
 //            self.firmata.setAnalogValueReportingforPin(analogPinNumber, enabled: false)
-                self.analogValue = self.getAnalogPin(pin)
+                self.analogValue = self.getAnalogPin(analogPinNumber)
                 print(self.analogValue)
             }
             return Double(self.analogValue)
@@ -231,9 +231,9 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     }
     
     
-    func getAnalogPin(analogPinNumber:UInt8) -> Double {
-
-        switch (analogPinNumber) {
+    func getAnalogPin(analogPinNumber:Int) -> Double {
+        let pin: UInt8 = UInt8(checkValue(analogPinNumber))
+        switch (pin) {
         case 0:
             return Double(getAnalogPin0())
         case 1:

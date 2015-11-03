@@ -391,6 +391,18 @@
             result = [self interpretFunctionJOIN:sprite];
             break;
         }
+        case ARDUINOANALOG : {
+            if ([[BluetoothService sharedInstance] getSensorArduino]) {
+                result = [NSNumber numberWithDouble:[[[BluetoothService sharedInstance] getSensorArduino] getAnalogPin:(NSInteger)left]];
+            }
+            break;
+        }
+        case ARDUINODIGITAL : {
+            if ([[BluetoothService sharedInstance] getSensorArduino]) {
+                result = [NSNumber numberWithDouble:[[[BluetoothService sharedInstance] getSensorArduino] getDigitalArduinoPin:(NSInteger)left]];
+            }
+            break;
+        }
         default:
             //abort();
             [InternFormulaParserException raise:@"Unknown Function" format:@"Unknown Function: %lu", (unsigned long)function];
@@ -874,10 +886,27 @@
         case NUMBER:
             [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_NUMBER AndValue:self.value]];
             break;
-        case SENSOR:
-            [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:self.value]];
+        case SENSOR:{
+            [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_NAME AndValue:self.value]];
+            BOOL functionHasParameters = false;
+            if (self.leftChild != nil) {
+                [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_OPEN]];
+                functionHasParameters = true;
+                [internTokenList addObjectsFromArray:[self.leftChild getInternTokenList]];
+            }
+            if (self.rightChild != nil) {
+                [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETER_DELIMITER]];
+                [internTokenList addObjectsFromArray:[self.rightChild getInternTokenList]];
+            }
+            if (functionHasParameters) {
+                [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_FUNCTION_PARAMETERS_BRACKET_CLOSE]];
+            } else {
+                [internTokenList removeAllObjects];
+               [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_SENSOR AndValue:self.value]];
+            }
+            }
             break;
-            case STRING:
+        case STRING:
             [internTokenList addObject:[[InternToken alloc] initWithType:TOKEN_TYPE_STRING AndValue:self.value]];
             break;
     }
@@ -1002,26 +1031,8 @@
             case phiro_side_right:
                 resources |= kBluetoothPhiro;
                 break;
-            case arduino_analogPin0:
-            case arduino_analogPin1:
-            case arduino_analogPin2:
-            case arduino_analogPin3:
-            case arduino_analogPin4:
-            case arduino_analogPin5:
-            case arduino_digitalPin0:
-            case arduino_digitalPin1:
-            case arduino_digitalPin10:
-            case arduino_digitalPin11:
-            case arduino_digitalPin12:
-            case arduino_digitalPin13:
-            case arduino_digitalPin2:
-            case arduino_digitalPin3:
-            case arduino_digitalPin4:
-            case arduino_digitalPin5:
-            case arduino_digitalPin6:
-            case arduino_digitalPin7:
-            case arduino_digitalPin8:
-            case arduino_digitalPin9:
+            case arduino_analogPin:
+            case arduino_digitalPin:
                 resources |= kBluetoothArduino;
                 break;
             case X_ACCELERATION:
