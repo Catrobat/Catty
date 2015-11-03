@@ -28,5 +28,6 @@
 @interface CatrobatTableViewController : BaseTableViewController
 
 -(void)afterSuccessfulLogin;
+-(void)addProgramFromInbox;
 
 @end

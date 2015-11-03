@@ -29,6 +29,7 @@
 #import "Pocket_Code-Swift.h"
 #import "NetworkDefines.h"
 #import "KeychainUserDefaultsDefines.h"
+#import "CatrobatTableViewController.h"
 
 void uncaughtExceptionHandler(NSException *exception)
 {
@@ -111,6 +112,22 @@ void uncaughtExceptionHandler(NSException *exception)
     [UINavigationBar appearance].barTintColor = UIColor.navBarColor;
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor navTextColor]}];
     self.window.tintColor = [UIColor globalTintColor];
+}
+
+-(BOOL)application:(UIApplication* )application
+           openURL:(NSURL* )url
+ sourceApplication:(NSString* )sourceApplication
+        annotation:(id)annotation
+{
+    UINavigationController* vc = (UINavigationController*)self.window.rootViewController;
+    [vc popToRootViewControllerAnimated:YES];
+    
+    if ([vc.topViewController isKindOfClass:[CatrobatTableViewController class]]){
+        CatrobatTableViewController* ctvc = (CatrobatTableViewController*)vc.topViewController;
+        [ctvc addProgramFromInbox];
+        return YES;
+    }
+    return NO;
 }
 
 @end
